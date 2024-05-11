@@ -1,0 +1,36 @@
+//
+//  CasinoFlowDetailsVC.h
+//  Casino
+//
+//  Created by Jobs on 2021/12/7.
+//
+
+#import "BaseViewController.h"
+
+#if __has_include(<ZMJGanttChart/ZMJGanttChart.h>)
+#import <ZMJGanttChart/ZMJGanttChart.h>
+#else
+#import "ZMJGanttChart.h"
+#endif
+
+#if __has_include(<MJExtension/MJExtension.h>)
+#import <MJExtension/MJExtension.h>
+#else
+#import "MJExtension.h"
+#endif
+
+#import "ZMJCells.h"
+#import "ZMJCell+CustomView.h"
+#import "CasinoFlowDetailsModel.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface CasinoFlowDetailsVC : BaseViewController
+<
+SpreadsheetViewDelegate
+,SpreadsheetViewDataSource
+>
+
+@end
+
+NS_ASSUME_NONNULL_END

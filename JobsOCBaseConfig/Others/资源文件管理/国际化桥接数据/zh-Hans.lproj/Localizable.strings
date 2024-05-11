@@ -1,0 +1,43 @@
+/*
+  Localizable.strings
+  Casino
+
+  Created by Jobs on 2021/11/18.
+  
+*/
+
+"By System" = "跟随系统";
+"Chinese" = "中文";
+"English" = "英文";
+"App language switch" = "App国际化之应用内部切换语言";
+
+"Home" = "首页";
+"XiMa" = "洗码";
+"Recharge" = "充值";
+"CustomerService" = "客服";
+"MemberCenter" = "会员中心";
+
+"B\na\nc\nk\nT\no\nL\no\ng\ni\nn" = "返\n回\n登\n录";
+"L\no\ng\ni\nn" = "新\n用\n户\n注\n册";
+"Forgot code" = "忘记密码";
+"Back to HomePage" = "返回首页";
+"Save the user name" = "保存用户名";
+"Register" = "注册";
+"Login" = "登录";
+"Customer service" = "人工客服";
+"Get" = "获取验证码";
+
+"User" = "用户名";
+"Code" = "密码";
+"Confirm" = "确认密码";
+"Telephone" = "手机号码";
+"Auth code" = "手机验证码";
+"Play Record" = "洗码记录";
+"My Play" = "我的洗码";
+"Draw it" = "领取洗码";
+
+"Sec" = "秒";
+"Online customer service" = "在线客服";
+"You can also contact customer service through the following ways" = "您还可以通过以下方式联系客服";
+"Later" = "后获取";
+"zaixiankefu_en" = "zaixiankefu_zh-Hans";

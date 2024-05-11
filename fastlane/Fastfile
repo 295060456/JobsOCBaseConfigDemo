@@ -1,0 +1,54 @@
+desc 'release_pod 航道用来自动化升级维护私有库'
+# 命令和参数的注册
+lane :release_pod do |options|
+
+podspecName    = options[:specName]
+target_repo    = options[:repo]
+target_project = options[:project]
+target_version = options[:version]
+spec_path      = "#{target_project}.podspec"
+
+# 航道上需要执行的操作
+# 具体action到 https://docs.fastlane.tools/actions 上面查找
+# 这里的路径以仓库根目录为准
+
+# 1、git pull
+git_pull
+# 2、确认是 master 分支
+ensure_git_branch
+# 3、修改 spec 为即将发布的版本（修改s.version，s.description等）
+version_bump_podspec(path: spec_path, version_number: target_version)
+# 4、pod install （使Example与pod下来的库产生关联）
+cocoapods(
+  clean: true,
+  podfile: "./Podfile"
+)
+# 5、提交本地仓库代码至远程仓库
+git_add(path: ".")
+git_commit(path: ".", message: "Jobs_release")
+push_to_git_remote
+# 6、打标签，并提交至远程
+## 先验证tag是否存在，如果存在则删除本地标签和远程标签
+if git_tag_exists(tag: target_version)
+  UI.message("您输入的tag:#{target_version}已存在，即将自动清除") 
+### 删除对应 tag
+  remove_git_tag(tag: target_version)
+end
+### 添加 tag
+add_git_tag(
+  tag: target_version
+)
+### 提交 tag
+push_git_tags
+# 7、验证spec，并提至私有索引库
+pod_lib_lint(allow_warnings: true)
+## 检查是否传了 repo 参数
+if target_repo
+  ## pod repo push 'target_repo' 'spec_path'
+  pod_push(path: spec_path, repo: target_repo, allow_warnings: true)
+else
+  ## pod trunk push 'spec_path'
+  pod_push(path: spec_path, allow_warnings: true)
+end
+
+end
