@@ -7,7 +7,7 @@
 
 install! 'cocoapods',# install! 只走一次，多次使用只以最后一个标准执行
   :deterministic_uuids => false,# 【解决与私有库的冲突】用于控制生成的库的唯一标识符（UUID）是否是确定性的。UUID 是用于标识对象的唯一标识符，通常在构建软件时用于确保唯一性。当 deterministic_uuids 设置为 false 时，意味着 CocoaPods 将不会确保生成的库的 UUID 是确定性的。换句话说，每次构建时，生成的库的 UUID 可能会发生变化，即使源代码没有变化也可能如此。这可能会影响一些情况，例如在依赖库的版本控制方面。通常情况下，将 deterministic_uuids 设置为 true 会更安全，因为它可以确保每次构建生成的库都具有相同的 UUID，从而确保了可预测性和一致性。
-  :generate_multiple_pod_projects => true,# 可以让每个依赖都作为一个单独的项目引入，大大增加了解析速度；cocoapods 1.7 以后支持
+  :generate_multiple_pod_projects => true,# ❤️可以让每个依赖都作为一个单独的项目引入（而不是文件夹的形式），大大增加了解析速度❤️；cocoapods 1.7 以后支持
   :disable_input_output_paths => true # 在 CocoaPods 中，disable_input_output_paths 是一个选项，用于控制是否禁用输入和输出路径。当设置为 true 时，这意味着 CocoaPods 将会禁用与输入和输出路径相关的功能或设置。通常情况下，禁用输入和输出路径可能会用于某些特定的构建环境或配置中，以确保在构建过程中不考虑或不使用指定的输入和输出路径。这可能是出于安全性、调试或其他特定需求的考虑。具体来说，当 disable_input_output_paths 设置为 true 时，可能会禁用与输入和输出路径相关的功能，例如对输入文件的读取、对输出文件的写入等操作。这样可以确保构建过程不受指定路径的影响。
 
 platform :ios, '10.0'
