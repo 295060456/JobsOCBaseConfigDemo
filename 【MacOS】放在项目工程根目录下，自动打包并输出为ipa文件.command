@@ -1,4 +1,10 @@
 #!/bin/bash
+
+# 获取当前脚本文件的目录
+current_directory=$(dirname "$(readlink -f "$0")")
+echo $current_directory
+cd $current_directory
+
 #查找Xcode.app的位置
 XCODE_DIR=/Applications/Xcode.app
 if [ ! -d $XCODE_DIR ]; then
