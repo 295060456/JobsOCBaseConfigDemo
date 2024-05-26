@@ -71,6 +71,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)makeIQKeyboardManagerConfigure;
 #pragma mark —— 全局配置GKNavigationBar
 -(void)makeGKNavigationBarConfigure;
+#pragma mark —— 本地推送通知
+-(void)localNotifications;
 #pragma mark —— 网络环境监测
 -(void)makeReachabilityConfigure;
 #pragma mark —— 开屏广告

@@ -95,6 +95,9 @@
 		840F971827736428004979E9 /* JobsShowObjInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95D827736427004979E9 /* JobsShowObjInfoVC.m */; };
 		840F971927736428004979E9 /* App国际化.md in Resources */ = {isa = PBXBuildFile; fileRef = 840F95DA27736427004979E9 /* App国际化.md */; };
 		840F971A27736428004979E9 /* AppInternationalizationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95DC27736427004979E9 /* AppInternationalizationVC.m */; };
+		84175CAD2C034F0100A535D9 /* LocalNotificationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84175CAC2C034F0100A535D9 /* LocalNotificationsVC.m */; };
+		84175CB02C03530100A535D9 /* JobsOCBaseConfig.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84175CAE2C03530100A535D9 /* JobsOCBaseConfig.xcdatamodeld */; };
+		84175CB32C03558F00A535D9 /* JobsMakeLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 84175CB22C03558F00A535D9 /* JobsMakeLocalNotification.m */; };
 		8424743527C0C32B00831270 /* YTKNetworkStudyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8424743427C0C32B00831270 /* YTKNetworkStudyVC.m */; };
 		8424743F27C0CAEB00831270 /* GetImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8424743827C0CAEA00831270 /* GetImageApi.m */; };
 		8424744027C0CAEB00831270 /* YTKUrlArgumentsFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8424743927C0CAEA00831270 /* YTKUrlArgumentsFilter.m */; };
@@ -817,7 +820,6 @@
 		C5978ADD2BE3599700A56125 /* UIViewController+XLBubbleTransition.md in Resources */ = {isa = PBXBuildFile; fileRef = C59789DC2BE3599600A56125 /* UIViewController+XLBubbleTransition.md */; };
 		C5978ADE2BE3599700A56125 /* XLBubbleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789DE2BE3599600A56125 /* XLBubbleTransition.m */; };
 		C5978ADF2BE3599700A56125 /* UIWindow+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789E52BE3599600A56125 /* UIWindow+Extra.m */; };
-		C5978F602BE40F7800A56125 /* JobsOCBaseConfig.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5978F5E2BE40F7800A56125 /* JobsOCBaseConfig.xcdatamodeld */; };
 		C5A21B9B2872D94A00CD6ED3 /* CustomBtnVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A21B9A2872D94A00CD6ED3 /* CustomBtnVC.m */; };
 		C5A7C2DC285B290F00F0F2BB /* 临时的占位图.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A7C2DB285B290400F0F2BB /* 临时的占位图.xcassets */; };
 		C5A7C2E6285B5E8700F0F2BB /* ThreeClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A7C2DE285B5E8600F0F2BB /* ThreeClassCell.m */; };
@@ -1119,6 +1121,11 @@
 		840F95DE27736427004979E9 /* JobsDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsDebug.h; sourceTree = "<group>"; };
 		840F95E027736427004979E9 /* DebugLogDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLogDescription.h; sourceTree = "<group>"; };
 		840F95E127736427004979E9 /* DebugLogDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugLogDescription.m; sourceTree = "<group>"; };
+		84175CAB2C034F0100A535D9 /* LocalNotificationsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalNotificationsVC.h; sourceTree = "<group>"; };
+		84175CAC2C034F0100A535D9 /* LocalNotificationsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationsVC.m; sourceTree = "<group>"; };
+		84175CAF2C03530100A535D9 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
+		84175CB12C03558F00A535D9 /* JobsMakeLocalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsMakeLocalNotification.h; sourceTree = "<group>"; };
+		84175CB22C03558F00A535D9 /* JobsMakeLocalNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsMakeLocalNotification.m; sourceTree = "<group>"; };
 		8424743327C0C32B00831270 /* YTKNetworkStudyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YTKNetworkStudyVC.h; sourceTree = "<group>"; };
 		8424743427C0C32B00831270 /* YTKNetworkStudyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YTKNetworkStudyVC.m; sourceTree = "<group>"; };
 		8424743727C0CAE900831270 /* YTKUrlArgumentsFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKUrlArgumentsFilter.h; sourceTree = "<group>"; };
@@ -2612,7 +2619,6 @@
 		C59789E52BE3599600A56125 /* UIWindow+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Extra.m"; sourceTree = "<group>"; };
 		C59789E72BE3599600A56125 /* JobsBaseCustomizeUIKitCoreHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBaseCustomizeUIKitCoreHeader.h; sourceTree = "<group>"; };
 		C5978D3E2BE35B6800A56125 /* 文档和资料 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "文档和资料"; path = "../文档和资料"; sourceTree = "<group>"; };
-		C5978F5F2BE40F7800A56125 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		C5A21B992872D94A00CD6ED3 /* CustomBtnVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomBtnVC.h; sourceTree = "<group>"; };
 		C5A21B9A2872D94A00CD6ED3 /* CustomBtnVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomBtnVC.m; sourceTree = "<group>"; };
 		C5A7C2DB285B290400F0F2BB /* 临时的占位图.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "临时的占位图.xcassets"; sourceTree = "<group>"; };
@@ -3414,6 +3420,67 @@
 			path = DebugLogDescription;
 			sourceTree = "<group>";
 		};
+		84175CA72C034E8100A535D9 /* 本地通知 */ = {
+			isa = PBXGroup;
+			children = (
+				84175CAA2C034EA900A535D9 /* Model */,
+				84175CA92C034EA000A535D9 /* View */,
+				84175CA82C034E9800A535D9 /* ViewController */,
+			);
+			path = "本地通知";
+			sourceTree = "<group>";
+		};
+		84175CA82C034E9800A535D9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84175CAB2C034F0100A535D9 /* LocalNotificationsVC.h */,
+				84175CAC2C034F0100A535D9 /* LocalNotificationsVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84175CA92C034EA000A535D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84175CAA2C034EA900A535D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84175CB52C03597600A535D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84175CB82C03598300A535D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84175CBB2C0359AD00A535D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84175CBD2C0359AE00A535D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8424731227C0C19700831270 /* 探究猿题库网络框架（YTKNetwork） */ = {
 			isa = PBXGroup;
 			children = (
@@ -3818,6 +3885,22 @@
 				8443310E278D456A0028A27D /* NSObject+CasinoCheck.m */,
 			);
 			path = CasinoCheck;
+			sourceTree = "<group>";
+		};
+		8447CE802C035B5F004BD07D /* JobsMakeLocalNotification */ = {
+			isa = PBXGroup;
+			children = (
+				84175CB12C03558F00A535D9 /* JobsMakeLocalNotification.h */,
+				84175CB22C03558F00A535D9 /* JobsMakeLocalNotification.m */,
+			);
+			path = JobsMakeLocalNotification;
+			sourceTree = "<group>";
+		};
+		8447CE812C035B83004BD07D /* 扫一扫组件（空缺） */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "扫一扫组件（空缺）";
 			sourceTree = "<group>";
 		};
 		844B02042764C8EE00B0513D = {
@@ -4883,7 +4966,7 @@
 		84CA5CD427895A6000E46E71 /* 系统创建 */ = {
 			isa = PBXGroup;
 			children = (
-				C5978F5E2BE40F7800A56125 /* JobsOCBaseConfig.xcdatamodeld */,
+				84175CAE2C03530100A535D9 /* JobsOCBaseConfig.xcdatamodeld */,
 				844B02192764C8EE00B0513D /* Main.storyboard */,
 				844B021F2764C8F000B0513D /* Assets.xcassets */,
 				844B02212764C8F000B0513D /* LaunchScreen.storyboard */,
@@ -5037,9 +5120,10 @@
 		84CA5EBD27897AFA00E46E71 /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				8447CE812C035B83004BD07D /* 扫一扫组件（空缺） */,
+				8447CE802C035B5F004BD07D /* JobsMakeLocalNotification */,
 				C53683452875715F00DD7AA7 /* WalletLayout */,
 				C57FAED62875625E00E72F91 /* GXCardView */,
-				84CA5FE627897BEB00E46E71 /* 扫一扫组件（空缺） */,
 				84CA5EBE27897AFA00E46E71 /* XLSphereView */,
 				84CA5EC427897AFA00E46E71 /* FFmpeg */,
 				84CA5EC627897AFA00E46E71 /* WebSocket */,
@@ -5523,16 +5607,10 @@
 			path = RYCuteView;
 			sourceTree = "<group>";
 		};
-		84CA5FE627897BEB00E46E71 /* 扫一扫组件（空缺） */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "扫一扫组件（空缺）";
-			sourceTree = "<group>";
-		};
 		84CA609D278980E700E46E71 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				84175CA72C034E8100A535D9 /* 本地通知 */,
 				C52688DA2BDBBC7A00872F26 /* 测试剪切板提示关闭 */,
 				C52687042BD8FCBA00872F26 /* 图片字符串化（加盐）存取 */,
 				C5432D632ACB1C5A008F92B0 /* UITableViewCell的折叠效果 */,
@@ -6112,8 +6190,8 @@
 		C52687042BD8FCBA00872F26 /* 图片字符串化（加盐）存取 */ = {
 			isa = PBXGroup;
 			children = (
-				C52687072BD8FCF800872F26 /* View */,
-				C52687062BD8FCF100872F26 /* Model */,
+				84175CBB2C0359AD00A535D9 /* Model */,
+				84175CBD2C0359AE00A535D9 /* View */,
 				C52687052BD8FCE300872F26 /* ViewController */,
 			);
 			path = "图片字符串化（加盐）存取";
@@ -6126,20 +6204,6 @@
 				C526870C2BD9065A00872F26 /* PicToStrStoreSubC */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		C52687062BD8FCF100872F26 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		C52687072BD8FCF800872F26 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		C52687082BD8FE6300872F26 /* PicToStrStoreVC */ = {
@@ -6436,25 +6500,11 @@
 		C52688DA2BDBBC7A00872F26 /* 测试剪切板提示关闭 */ = {
 			isa = PBXGroup;
 			children = (
-				C52688DC2BDBBCA100872F26 /* Model */,
-				C52688DB2BDBBC9B00872F26 /* View */,
+				84175CB82C03598300A535D9 /* View */,
+				84175CB52C03597600A535D9 /* Model */,
 				C52688DD2BDBBCA900872F26 /* ViewController */,
 			);
 			path = "测试剪切板提示关闭";
-			sourceTree = "<group>";
-		};
-		C52688DB2BDBBC9B00872F26 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		C52688DC2BDBBCA100872F26 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C52688DD2BDBBCA900872F26 /* ViewController */ = {
@@ -12169,6 +12219,7 @@
 				84CA63D12789B3CC00E46E71 /* TestIrregularViewTestVC.m in Sources */,
 				842477A627C114BE00831270 /* NotifiManager.m in Sources */,
 				C539A0342AD69BCF00C8A5E3 /* TKPermissionFolders.m in Sources */,
+				84175CB32C03558F00A535D9 /* JobsMakeLocalNotification.m in Sources */,
 				C5AA8B6F282CE2F00057EB84 /* JobsAppDoorInputViewBaseStyle_1.m in Sources */,
 				842475AB27C0D67000831270 /* YTKChainRequest+AnimatingAccessory.m in Sources */,
 				C5978A272BE3599700A56125 /* NSObject+UUID.m in Sources */,
@@ -12423,6 +12474,7 @@
 				C5B3AF3728537E320052A4A9 /* BaiShaETProjCollectionHeaderView.m in Sources */,
 				8459D61C2779A88A00125782 /* CasinoCustomerContactModel.m in Sources */,
 				C5978A5D2BE3599700A56125 /* BaseCollectionReusableView.m in Sources */,
+				84175CB02C03530100A535D9 /* JobsOCBaseConfig.xcdatamodeld in Sources */,
 				C52E5CDF2AC07EE500FE5494 /* HTTPAsyncFileResponse.m in Sources */,
 				84CA5F9927897AFB00E46E71 /* GTMBase64.m in Sources */,
 				84CA64BF2789C80600E46E71 /* JobsRightBtnsView.m in Sources */,
@@ -12494,6 +12546,7 @@
 				846DF03A27806D230050468A /* JobsAppDoorForgotCodeContentView.m in Sources */,
 				C5BFA2FA285992BE009681C0 /* JXCategoryViewVerticalShowVC.m in Sources */,
 				844B08442764CF4800B0513D /* FMDatabase+Manager.m in Sources */,
+				84175CAD2C034F0100A535D9 /* LocalNotificationsVC.m in Sources */,
 				C5978A9F2BE3599700A56125 /* UITableViewCell+WhiteArrows.m in Sources */,
 				C52E5C972AC07E9800FE5494 /* KTVHCHTTPServer.m in Sources */,
 				C5978A062BE3599700A56125 /* TouchID.m in Sources */,
@@ -12597,7 +12650,6 @@
 				84869679277C68470098BE7A /* NSString+Check.m in Sources */,
 				C5978A0F2BE3599700A56125 /* NSObject+SYSAlertController.m in Sources */,
 				C52E5CE22AC07EE500FE5494 /* HTTPLogging.m in Sources */,
-				C5978F602BE40F7800A56125 /* JobsOCBaseConfig.xcdatamodeld in Sources */,
 				84CA5FC627897AFB00E46E71 /* JhtBannerScrollView.m in Sources */,
 				840F95FE27736427004979E9 /* JobsTabbarVC.m in Sources */,
 				840F971727736428004979E9 /* CheckMemFreeVC.m in Sources */,
@@ -13085,14 +13137,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C5978F5E2BE40F7800A56125 /* JobsOCBaseConfig.xcdatamodeld */ = {
+		84175CAE2C03530100A535D9 /* JobsOCBaseConfig.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C5978F5F2BE40F7800A56125 /* JobsBaseConfig.xcdatamodel */,
+				84175CAF2C03530100A535D9 /* JobsBaseConfig.xcdatamodel */,
 			);
-			currentVersion = C5978F5F2BE40F7800A56125 /* JobsBaseConfig.xcdatamodel */;
+			currentVersion = 84175CAF2C03530100A535D9 /* JobsBaseConfig.xcdatamodel */;
 			name = JobsOCBaseConfig.xcdatamodeld;
-			path = "/Users/jobs/Documents/GitHub/JobsOCBaseConfig/Example/JobsOCBaseConfig/Others/系统创建/JobsOCBaseConfig.xcdatamodeld";
+			path = "/Users/admin/Documents/Github/JobsOCBaseConfig/JobsOCBaseConfigDemo/JobsOCBaseConfig/Others/系统创建/JobsOCBaseConfig.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

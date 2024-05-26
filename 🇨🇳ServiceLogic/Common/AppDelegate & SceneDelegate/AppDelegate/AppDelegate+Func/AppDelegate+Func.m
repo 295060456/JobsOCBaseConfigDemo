@@ -97,6 +97,22 @@
 //        configure.shiledItemSpaceVCs = @[@"PUPhotoPickerHostViewController"];
     }];
 }
+#pragma mark —— 本地推送通知
+-(void)localNotifications{
+    UNUserNotificationCenter *center = UNUserNotificationCenter.currentNotificationCenter;
+    center.delegate = self;
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert +
+                                             UNAuthorizationOptionSound +
+                                             UNAuthorizationOptionBadge)
+                          completionHandler:^(BOOL granted,
+                                              NSError * _Nullable error) {
+        if (granted) {
+            NSLog(@"Notification permission granted.");
+        } else {
+            NSLog(@"Notification permission denied.");
+        }
+    }];
+}
 #pragma mark —— 网络环境监测
 -(void)makeReachabilityConfigure{
     // Allocate a reachability object

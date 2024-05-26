@@ -81,5 +81,6 @@
 #import "UITBVCellFoldVC.h"
 #import "PicToStrStoreVC.h"
 #import "CtrlClipboardCueVC.h"
+#import "LocalNotificationsVC.h"
 
 #endif /* Other_h */

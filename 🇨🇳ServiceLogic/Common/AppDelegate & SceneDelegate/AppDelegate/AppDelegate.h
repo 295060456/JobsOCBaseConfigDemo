@@ -10,11 +10,16 @@
 
 #import "JobsTabbarVC.h"
 #import "Other.h"
+@import UserNotifications;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunguarded-availability-new"
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+// AppDelegate *appDelegate = getSysAppDelegate();
+@interface AppDelegate : UIResponder
+<
+UIApplicationDelegate
+,UNUserNotificationCenterDelegate
+>
 // UI
 @property(nonatomic,strong)UIWindow *window;//仅仅为了iOS 13 版本向下兼容而存在
 // Data

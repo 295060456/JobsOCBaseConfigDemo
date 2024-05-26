@@ -14,6 +14,7 @@
 #pragma mark —— UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self localNotifications];
     [self launchFunc2];
     if (HDDeviceSystemVersion.floatValue < 13.0) {
         self.window.alpha = 1;

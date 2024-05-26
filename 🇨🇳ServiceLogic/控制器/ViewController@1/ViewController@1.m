@@ -271,6 +271,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:Internationalization(@"本地推送通知")
+                                                           attributeSubTitle:Internationalization(@"本地推送通知")];
+            
+            viewModel.cls = LocalNotificationsVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:Internationalization(@"系统剪切板测试")
                                                            attributeSubTitle:Internationalization(@"尝试控制粘贴提示")];
             
