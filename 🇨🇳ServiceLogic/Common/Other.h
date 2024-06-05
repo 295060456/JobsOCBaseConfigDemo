@@ -82,5 +82,6 @@
 #import "PicToStrStoreVC.h"
 #import "CtrlClipboardCueVC.h"
 #import "LocalNotificationsVC.h"
+#import "CompressStrVC.h"
 
 #endif /* Other_h */

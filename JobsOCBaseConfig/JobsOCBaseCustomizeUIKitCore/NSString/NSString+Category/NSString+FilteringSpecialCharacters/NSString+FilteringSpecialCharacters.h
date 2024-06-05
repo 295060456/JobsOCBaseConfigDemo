@@ -30,7 +30,6 @@ FOUNDATION_EXTERN NSString *const 俄语字母;
 FOUNDATION_EXTERN NSString *const 汉语拼音;
 FOUNDATION_EXTERN NSString *const 中文字符;
 FOUNDATION_EXTERN NSString *const 日文平假名和片假名;
-
 /// 过滤特殊字符
 @interface NSString (FilteringSpecialCharacters)
 /// 外界灵活选择的特殊符号拼接成一个包含所有被选中特殊符号的字符串

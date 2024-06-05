@@ -22,6 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *)convertToJsonData:(NSDictionary *)dict;
 /// NSDictionary 转 NSString
 -(NSString *)convertDictionaryToString:(NSMutableDictionary *)dict;
+///【实例方法】解压缩字符串
+-(NSData *)compress;
+///【类方法】压缩字符串成NSData
++(NSData *)compressString:(NSString *)string;
+///【类方法】解压缩字符串
++(NSString *)decompressString:(NSData *)compressedData;
 
 @end
 

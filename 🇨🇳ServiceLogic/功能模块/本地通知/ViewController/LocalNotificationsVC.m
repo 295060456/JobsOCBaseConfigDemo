@@ -6,7 +6,6 @@
 //
 
 #import "LocalNotificationsVC.h"
-#import "AppDelegate.h"
 
 @interface LocalNotificationsVC ()
 /// UI

@@ -82,5 +82,30 @@
                                            encoding:NSUTF8StringEncoding];
     return nsJson;
 }
+///【实例方法】解压缩字符串
+-(NSData *)compress{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data 
+                                                   requiringSecureCoding:NO
+                                                                   error:nil];
+    return compressedData;
+}
+///【类方法】压缩字符串成NSData
++(NSData *)compressString:(NSString *)string{
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data 
+                                                   requiringSecureCoding:NO
+                                                                   error:nil];
+    return compressedData;
+}
+///【类方法】解压缩字符串
++(NSString *)decompressString:(NSData *)compressedData{
+    NSData *data = [NSKeyedUnarchiver unarchivedObjectOfClass:NSData.class
+                                                     fromData:compressedData
+                                                        error:nil];
+    NSString *string = [NSString.alloc initWithData:data
+                                           encoding:NSUTF8StringEncoding];
+    return string;
+}
 
 @end

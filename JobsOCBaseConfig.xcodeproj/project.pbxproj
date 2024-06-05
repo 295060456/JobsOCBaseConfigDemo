@@ -262,6 +262,8 @@
 		84A494D427906D050002A837 /* 头像.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A494D327906D050002A837 /* 头像.bundle */; };
 		84A494D627906D0B0002A837 /* Telegram.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A494D527906D0B0002A837 /* Telegram.bundle */; };
 		84AA2C952796E9A8000401C6 /* UserData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84AA2C942796E9A8000401C6 /* UserData.json */; };
+		84B38AF12C10BBDD00922974 /* CompressStrVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B38AF02C10BBDD00922974 /* CompressStrVC.m */; };
+		84B38AF72C10BEE000922974 /* NSData+Other.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B38AF62C10BEE000922974 /* NSData+Other.m */; };
 		84B9A8CE279680C80070DD20 /* TestLabelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B9A8CD279680C80070DD20 /* TestLabelVC.m */; };
 		84CA5CCF2789587900E46E71 /* AppDelegate+Func.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5CC72789587900E46E71 /* AppDelegate+Func.m */; };
 		84CA5CD02789587900E46E71 /* AppDelegate+UIApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5CCA2789587900E46E71 /* AppDelegate+UIApplicationDelegate.m */; };
@@ -1435,6 +1437,11 @@
 		84A4955627906E620002A837 /* JobsIM【Outlines 10】.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JobsIM【Outlines 10】.png"; sourceTree = "<group>"; };
 		84A4955727906E620002A837 /* JobsIM【Outlines 01】.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JobsIM【Outlines 01】.png"; sourceTree = "<group>"; };
 		84AA2C942796E9A8000401C6 /* UserData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserData.json; sourceTree = "<group>"; };
+		84B38AEF2C10BBDD00922974 /* CompressStrVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompressStrVC.h; sourceTree = "<group>"; };
+		84B38AF02C10BBDD00922974 /* CompressStrVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompressStrVC.m; sourceTree = "<group>"; };
+		84B38AF42C10BEBD00922974 /* JobsData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsData.h; sourceTree = "<group>"; };
+		84B38AF52C10BEE000922974 /* NSData+Other.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Other.h"; sourceTree = "<group>"; };
+		84B38AF62C10BEE000922974 /* NSData+Other.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Other.m"; sourceTree = "<group>"; };
 		84B9A8CC279680C80070DD20 /* TestLabelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLabelVC.h; sourceTree = "<group>"; };
 		84B9A8CD279680C80070DD20 /* TestLabelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestLabelVC.m; sourceTree = "<group>"; };
 		84CA5CC72789587900E46E71 /* AppDelegate+Func.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Func.m"; sourceTree = "<group>"; };
@@ -4918,6 +4925,57 @@
 			path = Outlines;
 			sourceTree = "<group>";
 		};
+		84B38AEB2C10BB9100922974 /* 字符串解压缩 */ = {
+			isa = PBXGroup;
+			children = (
+				84B38AEE2C10BBB200922974 /* ViewController */,
+				84B38AED2C10BBAD00922974 /* View */,
+				84B38AEC2C10BBA300922974 /* Model */,
+			);
+			path = "字符串解压缩";
+			sourceTree = "<group>";
+		};
+		84B38AEC2C10BBA300922974 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84B38AED2C10BBAD00922974 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84B38AEE2C10BBB200922974 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84B38AEF2C10BBDD00922974 /* CompressStrVC.h */,
+				84B38AF02C10BBDD00922974 /* CompressStrVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84B38AF22C10BE8600922974 /* NSData */ = {
+			isa = PBXGroup;
+			children = (
+				84B38AF32C10BE9A00922974 /* NSData+Category */,
+				84B38AF42C10BEBD00922974 /* JobsData.h */,
+			);
+			path = NSData;
+			sourceTree = "<group>";
+		};
+		84B38AF32C10BE9A00922974 /* NSData+Category */ = {
+			isa = PBXGroup;
+			children = (
+				84B38AF52C10BEE000922974 /* NSData+Other.h */,
+				84B38AF62C10BEE000922974 /* NSData+Other.m */,
+			);
+			path = "NSData+Category";
+			sourceTree = "<group>";
+		};
 		84B9A8CA279680AA0070DD20 /* TestLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -5610,6 +5668,7 @@
 		84CA609D278980E700E46E71 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				84B38AEB2C10BB9100922974 /* 字符串解压缩 */,
 				84175CA72C034E8100A535D9 /* 本地通知 */,
 				C52688DA2BDBBC7A00872F26 /* 测试剪切板提示关闭 */,
 				C52687042BD8FCBA00872F26 /* 图片字符串化（加盐）存取 */,
@@ -10718,6 +10777,7 @@
 		C59789E82BE3599600A56125 /* JobsOCBaseCustomizeUIKitCore */ = {
 			isa = PBXGroup;
 			children = (
+				84B38AF22C10BE8600922974 /* NSData */,
 				C59786C22BE3599600A56125 /* AppDelegate */,
 				C59786DA2BE3599600A56125 /* BaseProtocol */,
 				C59786E32BE3599600A56125 /* CALayer */,
@@ -12264,6 +12324,7 @@
 				C5978A832BE3599700A56125 /* UILabel+Extra.m in Sources */,
 				C5978A892BE3599700A56125 /* UINavigationController+SafeTransition.m in Sources */,
 				C5A7C2E7285B5E8700F0F2BB /* LeftCell.m in Sources */,
+				84B38AF72C10BEE000922974 /* NSData+Other.m in Sources */,
 				84A491F127904A970002A837 /* JobsIMChatInfoModel.m in Sources */,
 				844B083B2764CF4800B0513D /* JXCategoryTitleBackgroundCell.m in Sources */,
 				8424779227C1141900831270 /* CoreTextLearningVC.m in Sources */,
@@ -12643,6 +12704,7 @@
 				C5978A1C2BE3599700A56125 /* DynamicInvoke.m in Sources */,
 				C5978A8B2BE3599700A56125 /* BaseScrollView.m in Sources */,
 				C5978AC82BE3599700A56125 /* UIViewController+JXPagerViewListViewDelegate.m in Sources */,
+				84B38AF12C10BBDD00922974 /* CompressStrVC.m in Sources */,
 				C5BDB3D72AC278F0009583D7 /* JobsShootingVC.m in Sources */,
 				C5978A232BE3599700A56125 /* NSObject+DeviceID.m in Sources */,
 				8424743527C0C32B00831270 /* YTKNetworkStudyVC.m in Sources */,

@@ -47,6 +47,8 @@
 #import "NSNotificationCenter.h"
 #pragma mark —— NSAttributedString
 #import "NSAttributedString+Extra.h"
+#pragma mark —— NSData
+#import "JobsData.h"
 
 #pragma mark —— UIScrollView
 #import "JobsScrollView.h"

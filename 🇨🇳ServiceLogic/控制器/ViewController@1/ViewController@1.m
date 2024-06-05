@@ -279,6 +279,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:Internationalization(@"字符串解压缩")
+                                                           attributeSubTitle:Internationalization(@"字符串解压缩")];
+            
+            viewModel.cls = CompressStrVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:Internationalization(@"系统剪切板测试")
                                                            attributeSubTitle:Internationalization(@"尝试控制粘贴提示")];
             
