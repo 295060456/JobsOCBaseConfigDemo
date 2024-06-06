@@ -52,39 +52,44 @@ check_and_update_brew() {
     fi
 }
 
-# 检查 npm 是否安装及其安装方式，并更新
-check_and_update_npm() {
-    if command -v npm &> /dev/null
-    then
-        npm_path=$(which npm)
-        print_message "npm在这个路径下找到： $npm_path"
+# 检查并安装/更新 npm
+install_npm_homebrew() {
+    print_message "正在通过 Homebrew 安装 npm..."
+    brew install npm
+}
 
-        if [[ $npm_path == *"/usr/local/Cellar"* || $npm_path == *"/opt/homebrew"* ]]
-        then
-            print_message "npm 是通过 Homebrew 安装的"
-            latest_version=$(npm show npm version)
-            current_version=$(npm -v)
-            if [ "$latest_version" != "$current_version" ];then
-                print_message "更新npm版本，从 $current_version 到 $latest_version"
-                brew upgrade npm
-            else
-                print_message "npm 已更新到最新的版本"
-            fi
+install_npm_official() {
+    print_message "正在打开 npm 官网以进行安装..."
+    open https://nodejs.org/en/
+}
+
+check_and_install_npm() {
+    while ! command -v npm &> /dev/null
+    do
+        print_message "npm 没有找到，请选择安装方式："
+        echo "1. 通过 Homebrew 安装"
+        echo "2. 通过官网安装（将打开浏览器）"
+        read -p "选择 (1 或 2): " choice
+
+        case $choice in
+            1)
+                install_npm_homebrew
+                ;;
+            2)
+                install_npm_official
+                ;;
+            *)
+                print_message "无效选择，请重新选择。"
+                ;;
+        esac
+
+        if command -v npm &> /dev/null; then
+            print_message "npm 安装成功。"
+            break
         else
-            print_message "npm 是通过其他方式安装的"
-            latest_version=$(npm show npm version)
-            current_version=$(npm -v)
-            if [ "$latest_version" != "$current_version" ];then
-                print_message "更新npm版本，从 $current_version 到 $latest_version"
-                npm install -g npm@latest
-            else
-                print_message "npm 已更新到最新的版本"
-            fi
+            print_message "npm 尚未安装，请再次选择安装方式。"
         fi
-    else
-        print_message "npm没找到，正在安装到最新版本"
-        curl -L https://www.npmjs.com/install.sh | sh
-    fi
+    done
 }
 
 # 检查并安装/更新 json-server
@@ -150,7 +155,7 @@ main() {
     read -r -p "是否进行更新流程？按任意键继续，按回车键跳过: " response
     if [ -n "$response" ];then
         check_and_update_brew
-        check_and_update_npm
+        check_and_install_npm
         check_and_update_json_server
         check_and_update_fzf
     else
