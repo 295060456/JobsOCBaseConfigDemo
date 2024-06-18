@@ -956,6 +956,7 @@
 		C5C4809F284E246D007916B3 /* JobsAppDoorInputViewBaseStyle_10.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C4809C284E246D007916B3 /* JobsAppDoorInputViewBaseStyle_10.m */; };
 		C5C480A5284E250A007916B3 /* JobsSettingGestureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C480A4284E250A007916B3 /* JobsSettingGestureVC.m */; };
 		C5C48124284E254B007916B3 /* JobsMembersSubsBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C48123284E254B007916B3 /* JobsMembersSubsBaseVC.m */; };
+		C5C56B002C2220CD009F2290 /* AppIconSwitchingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D260072C220F0A005AD2DD /* AppIconSwitchingVC.m */; };
 		C5D2600B2C22120A005AD2DD /* JobsOCBaseConfig.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5D260092C22120A005AD2DD /* JobsOCBaseConfig.xcdatamodeld */; };
 		C5D46FFC284E29A90090D20F /* JobsGetiOSNewestVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D46FFB284E29A90090D20F /* JobsGetiOSNewestVersionModel.m */; };
 		C5E4ABC02858BEED00B782F0 /* UILabelWordRotatingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E4ABBF2858BEED00B782F0 /* UILabelWordRotatingVC.m */; };
@@ -12763,6 +12764,7 @@
 				C552266D2AC89F9000668516 /* NSObject+URLManager.m in Sources */,
 				C5B3AE81285378A70052A4A9 /* JXCategoryViewWithHeaderViewSubVC.m in Sources */,
 				840F963D27736427004979E9 /* JobsPageView.m in Sources */,
+				C5C56B002C2220CD009F2290 /* AppIconSwitchingVC.m in Sources */,
 				C5978A722BE3599700A56125 /* UIControl+Extra.m in Sources */,
 				C5978AC02BE3599700A56125 /* UIView+Measure.m in Sources */,
 				846DF03B27806D230050468A /* JobsAppDoorContentView.m in Sources */,

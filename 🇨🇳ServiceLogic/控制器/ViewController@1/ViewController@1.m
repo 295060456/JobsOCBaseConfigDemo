@@ -286,13 +286,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             [_dataMutArr addObject:viewModel];
         }
         
-//        {
-//            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"动态切换App图标")
-//                                                           attributeSubTitle:JobsInternationalization(@"只能跑真机，模拟器编译报错，且iOS 10.3 或更高版本")];
-//
-//            viewModel.cls = AppIconSwitchingVC.class;
-//            [_dataMutArr addObject:viewModel];
-//        }
+        {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"动态切换App图标")
+                                                           attributeSubTitle:JobsInternationalization(@"只能跑真机，模拟器编译报错，且iOS 10.3 或更高版本")];
+
+            viewModel.cls = AppIconSwitchingVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"系统剪切板测试")
