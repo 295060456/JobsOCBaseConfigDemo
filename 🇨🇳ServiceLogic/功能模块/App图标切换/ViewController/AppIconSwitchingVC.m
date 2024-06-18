@@ -101,7 +101,7 @@
                                                    highlightImage:nil
                                                   attributedTitle:nil
                                           selectedAttributedTitle:nil
-                                               attributedSubtitle:[self richTextWithDataConfigMutArr:self.richTextConfigMutArr]
+                                               attributedSubtitle:nil
                                                             title:JobsInternationalization(@"点击")
                                                          subTitle:JobsInternationalization(@"切换App图标")
                                                         titleFont:UIFontWeightBoldSize(18)
@@ -117,7 +117,7 @@
                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                cornerRadiusValue:JobsWidth(0)
+                                                cornerRadiusValue:JobsWidth(8)
                                                   roundingCorners:UIRectCornerAllCorners
                                              roundingCornersRadii:CGSizeZero
                                                    layerBorderCor:nil

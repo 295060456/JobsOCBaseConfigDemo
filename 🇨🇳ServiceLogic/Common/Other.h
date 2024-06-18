@@ -83,6 +83,6 @@
 #import "CtrlClipboardCueVC.h"
 #import "LocalNotificationsVC.h"
 #import "CompressStrVC.h"
-#import "AppIconSwitchingVC.h"
+//#import "AppIconSwitchingVC.h"
 
 #endif /* Other_h */

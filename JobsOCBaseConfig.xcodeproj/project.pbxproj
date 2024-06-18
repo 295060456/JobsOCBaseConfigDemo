@@ -137,7 +137,6 @@
 		844B02152764C8EE00B0513D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02142764C8EE00B0513D /* SceneDelegate.m */; };
 		844B02182764C8EE00B0513D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02172764C8EE00B0513D /* ViewController.m */; };
 		844B021B2764C8EE00B0513D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844B02192764C8EE00B0513D /* Main.storyboard */; };
-		844B02202764C8F000B0513D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844B021F2764C8F000B0513D /* Assets.xcassets */; };
 		844B02232764C8F000B0513D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844B02212764C8F000B0513D /* LaunchScreen.storyboard */; };
 		844B02262764C8F000B0513D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02252764C8F000B0513D /* main.m */; };
 		844B02302764C8F000B0513D /* JobsOCBaseConfigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B022F2764C8F000B0513D /* JobsOCBaseConfigTests.m */; };
@@ -957,7 +956,6 @@
 		C5C4809F284E246D007916B3 /* JobsAppDoorInputViewBaseStyle_10.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C4809C284E246D007916B3 /* JobsAppDoorInputViewBaseStyle_10.m */; };
 		C5C480A5284E250A007916B3 /* JobsSettingGestureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C480A4284E250A007916B3 /* JobsSettingGestureVC.m */; };
 		C5C48124284E254B007916B3 /* JobsMembersSubsBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C48123284E254B007916B3 /* JobsMembersSubsBaseVC.m */; };
-		C5D260082C220F0A005AD2DD /* AppIconSwitchingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D260072C220F0A005AD2DD /* AppIconSwitchingVC.m */; };
 		C5D2600B2C22120A005AD2DD /* JobsOCBaseConfig.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5D260092C22120A005AD2DD /* JobsOCBaseConfig.xcdatamodeld */; };
 		C5D46FFC284E29A90090D20F /* JobsGetiOSNewestVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D46FFB284E29A90090D20F /* JobsGetiOSNewestVersionModel.m */; };
 		C5E4ABC02858BEED00B782F0 /* UILabelWordRotatingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E4ABBF2858BEED00B782F0 /* UILabelWordRotatingVC.m */; };
@@ -1210,7 +1208,6 @@
 		844B02162764C8EE00B0513D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		844B02172764C8EE00B0513D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		844B021A2764C8EE00B0513D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		844B021F2764C8F000B0513D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		844B02222764C8F000B0513D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		844B02242764C8F000B0513D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		844B02252764C8F000B0513D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -5029,7 +5026,6 @@
 			children = (
 				C5D260092C22120A005AD2DD /* JobsOCBaseConfig.xcdatamodeld */,
 				844B02192764C8EE00B0513D /* Main.storyboard */,
-				844B021F2764C8F000B0513D /* Assets.xcassets */,
 				844B02212764C8F000B0513D /* LaunchScreen.storyboard */,
 				844B02252764C8F000B0513D /* main.m */,
 			);
@@ -12017,7 +12013,6 @@
 				C5C4806D284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-Black.ttf in Resources */,
 				84CA5E7F27895BA400E46E71 /* Assets.xcassets in Resources */,
 				840F95ED27736427004979E9 /* green_lottie_tab_news.json in Resources */,
-				844B02202764C8F000B0513D /* Assets.xcassets in Resources */,
 				840F95F727736427004979E9 /* music_animation.json in Resources */,
 				C520F8252AB39EDD00142DCC /* 480x762.png in Resources */,
 				840F95FD27736427004979E9 /* tab_message_animate.json in Resources */,
@@ -12768,7 +12763,6 @@
 				C552266D2AC89F9000668516 /* NSObject+URLManager.m in Sources */,
 				C5B3AE81285378A70052A4A9 /* JXCategoryViewWithHeaderViewSubVC.m in Sources */,
 				840F963D27736427004979E9 /* JobsPageView.m in Sources */,
-				C5D260082C220F0A005AD2DD /* AppIconSwitchingVC.m in Sources */,
 				C5978A722BE3599700A56125 /* UIControl+Extra.m in Sources */,
 				C5978AC02BE3599700A56125 /* UIView+Measure.m in Sources */,
 				846DF03B27806D230050468A /* JobsAppDoorContentView.m in Sources */,
@@ -13058,11 +13052,15 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xbm.JobsOCBaseConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "JobsOCBaseConfig/JobsOCBaseConfig-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -13096,10 +13094,14 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xbm.JobsOCBaseConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "JobsOCBaseConfig/JobsOCBaseConfig-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
