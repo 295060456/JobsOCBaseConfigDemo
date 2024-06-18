@@ -60,7 +60,7 @@ static JobsRecordPresentedViewController *static_JobsRecordPresentedVC = nil;
                 AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
                 if (status == AVAuthorizationStatusDenied ||
                     status == AVAuthorizationStatusRestricted) {
-                    [WHToast jobsToastMsg:Internationalization(@"请在iPhone的“设置-隐私-相机”选项中，允许App访问您的相机。")];
+                    [WHToast jobsToastMsg:JobsInternationalization(@"请在iPhone的“设置-隐私-相机”选项中，允许App访问您的相机。")];
                 }
             };
         }

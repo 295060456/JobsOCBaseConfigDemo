@@ -53,7 +53,7 @@ static dispatch_once_t static_launchVCOnceToken;
     self.setupNavigationBarHidden = YES;/// 禁用系统的导航栏
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -198,12 +198,12 @@ static dispatch_once_t static_launchVCOnceToken;
         _btnTimerConfigModel.readyPlayValue.attributedText = LaunchConfig.attributedText;
         /// 计时器进行中【动态值】
         _btnTimerConfigModel.runningValue.bgCor = UIColor.cyanColor;
-        _btnTimerConfigModel.runningValue.text = Internationalization(Title12);
+        _btnTimerConfigModel.runningValue.text = JobsInternationalization(Title12);
         _btnTimerConfigModel.runningValue.layerBorderCor = UIColor.redColor;
         _btnTimerConfigModel.runningValue.textCor = JobsBlackColor;
         /// 计时器结束【静态值】
         _btnTimerConfigModel.endValue.bgCor = UIColor.yellowColor;
-        _btnTimerConfigModel.endValue.text = Internationalization(@"点击跳过");
+        _btnTimerConfigModel.endValue.text = JobsInternationalization(@"点击跳过");
         _btnTimerConfigModel.endValue.layerBorderCor = UIColor.purpleColor;
         _btnTimerConfigModel.endValue.textCor = JobsBlackColor;
         

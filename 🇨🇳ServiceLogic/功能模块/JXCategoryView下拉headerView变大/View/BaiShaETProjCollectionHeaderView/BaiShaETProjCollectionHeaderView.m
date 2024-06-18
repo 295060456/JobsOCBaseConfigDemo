@@ -126,7 +126,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UIButton *)userHeaderBtn{
     if (!_userHeaderBtn) {
         _userHeaderBtn = UIButton.new;
-        _userHeaderBtn.normalTitle = [self.readUserInfo.userName stringByAppendingString:Internationalization(@"    VIP 0")];
+        _userHeaderBtn.normalTitle = [self.readUserInfo.userName stringByAppendingString:JobsInternationalization(@"    VIP 0")];
         NSLog(@"%@",_userHeaderBtn.titleForNormalState);
         _userHeaderBtn.normalImage = JobsIMG(@"默认头像");
         _userHeaderBtn.normalTitleColor = HEXCOLOR(0xAE8330);
@@ -201,7 +201,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UILabel *)leftLab{
     if (!_leftLab) {
         _leftLab = UILabel.new;
-        _leftLab.text = Internationalization(@"Lv 0");
+        _leftLab.text = JobsInternationalization(@"Lv 0");
         _leftLab.textColor = HEXCOLOR(0x757575);
         _leftLab.font = notoSansRegular(12);
         _leftLab.textAlignment = NSTextAlignmentCenter;
@@ -218,7 +218,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UILabel *)rightLab{
     if (!_rightLab) {
         _rightLab = UILabel.new;
-        _rightLab.text = Internationalization(@"Lv 1");
+        _rightLab.text = JobsInternationalization(@"Lv 1");
         _rightLab.textColor = HEXCOLOR(0x757575);
         _rightLab.textAlignment = NSTextAlignmentCenter;
         _rightLab.font = notoSansRegular(12);
@@ -269,8 +269,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(NSMutableArray<NSString *> *)richTextMutArr{
     if (!_richTextMutArr) {
         _richTextMutArr = NSMutableArray.array;
-        [_richTextMutArr addObject:Internationalization(@"當前晉級進度")];
-        [_richTextMutArr addObject:Internationalization(@" %")];
+        [_richTextMutArr addObject:JobsInternationalization(@"當前晉級進度")];
+        [_richTextMutArr addObject:JobsInternationalization(@" %")];
     }return _richTextMutArr;
 }
 
@@ -304,7 +304,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _dataMutArr = NSMutableArray.array;
         {
             UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = Internationalization(@"當前存款");
+            viewModel.textModel.text = JobsInternationalization(@"當前存款");
             viewModel.subTextModel.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr2[0]
                                                                         paragraphStyle:nil];
             [_dataMutArr addObject:viewModel];
@@ -312,7 +312,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         
         {
             UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = Internationalization(@"當前流水");
+            viewModel.textModel.text = JobsInternationalization(@"當前流水");
             viewModel.subTextModel.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr2[1]
                                                                         paragraphStyle:nil];
             [_dataMutArr addObject:viewModel];
@@ -325,15 +325,15 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _richTextMutArr2 = NSMutableArray.array;
         {
             NSMutableArray *mutArr = NSMutableArray.array;
-            [mutArr addObject:Internationalization(@"7.00 ")];
-            [mutArr addObject:Internationalization(@"/ 40,000.00")];
+            [mutArr addObject:JobsInternationalization(@"7.00 ")];
+            [mutArr addObject:JobsInternationalization(@"/ 40,000.00")];
             [_richTextMutArr2 addObject:mutArr];
         }
         
         {
             NSMutableArray *mutArr = NSMutableArray.array;
-            [mutArr addObject:Internationalization(@"1.00 ")];
-            [mutArr addObject:Internationalization(@"/ 20,000.00")];
+            [mutArr addObject:JobsInternationalization(@"1.00 ")];
+            [mutArr addObject:JobsInternationalization(@"/ 20,000.00")];
             [_richTextMutArr2 addObject:mutArr];
         }
     }return _richTextMutArr2;

@@ -21,7 +21,7 @@ JobsKey(_suspendBtn)
         [SuspendBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            NSLog(@"%@",x.selected ? Internationalization(@"开始旋转") : Internationalization(@"停止旋转"));
+            NSLog(@"%@",x.selected ? JobsInternationalization(@"开始旋转") : JobsInternationalization(@"停止旋转"));
 //            [x rotateAnimation:x.selected];
             if (self.objectBlock) self.objectBlock(x);
             return nil;

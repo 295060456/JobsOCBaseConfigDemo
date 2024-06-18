@@ -28,7 +28,7 @@ UIViewModelOthersProtocol_synthesize
 -(NSString *)text{
     if (!_text) {
 #ifdef DEBUG
-        _text = Internationalization(TextModelDataString);
+        _text = JobsInternationalization(TextModelDataString);
 #endif
     }return _text;
 }

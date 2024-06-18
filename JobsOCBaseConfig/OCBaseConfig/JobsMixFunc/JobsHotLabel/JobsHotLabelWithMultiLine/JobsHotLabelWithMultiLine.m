@@ -255,7 +255,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(JobsHeaderFooterViewModel *)headerViewModel{
     if (!_headerViewModel) {
         _headerViewModel = JobsHeaderFooterViewModel.new;
-//        _headerViewModel.textModel.text = Internationalization(@"独家情报");
+//        _headerViewModel.textModel.text = JobsInternationalization(@"独家情报");
 //        _headerViewModel.bgCor = UIColor.greenColor;
 /// 结构体虽然分配了空间，但是里面的成员的值是随机的，特别是如果里面有指针的话，如果不初始化而直接访问，则会造成读取非法的内存地址的错误。
         _headerViewModel.jobsSize = CGSizeZero;
@@ -271,7 +271,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(JobsHeaderFooterViewModel *)footerViewModel{
     if (!_footerViewModel) {
         _footerViewModel = JobsHeaderFooterViewModel.new;
-//        _footerViewModel.textModel.text = Internationalization(@"查看详情");
+//        _footerViewModel.textModel.text = JobsInternationalization(@"查看详情");
 //        _footerViewModel.bgCor = UIColor.blueColor;
 /// 结构体虽然分配了空间，但是里面的成员的值是随机的，特别是如果里面有指针的话，如果不初始化而直接访问，则会造成读取非法的内存地址的错误。
         _footerViewModel.jobsSize = CGSizeZero;

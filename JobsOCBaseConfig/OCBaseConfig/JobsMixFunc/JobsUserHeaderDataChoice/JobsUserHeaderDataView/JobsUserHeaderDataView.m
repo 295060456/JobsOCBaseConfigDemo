@@ -70,7 +70,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
     NSMutableArray *dataMutArr = NSMutableArray.array;
     {
         UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"拍照");
+        viewModel.textModel.text = JobsInternationalization(@"拍照");
         viewModel.textModel.font = [UIFont systemFontOfSize:JobsWidth(18) weight:UIFontWeightRegular];
         viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         [dataMutArr addObject:viewModel];
@@ -78,7 +78,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
 
     {
         UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"从相册中选取");
+        viewModel.textModel.text = JobsInternationalization(@"从相册中选取");
         viewModel.textModel.font = [UIFont systemFontOfSize:JobsWidth(18) weight:UIFontWeightRegular];
         viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         [dataMutArr addObject:viewModel];
@@ -86,7 +86,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
 
     {
         UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"取消");
+        viewModel.textModel.text = JobsInternationalization(@"取消");
         viewModel.textModel.font = [UIFont systemFontOfSize:JobsWidth(18) weight:UIFontWeightRegular];
         viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         [dataMutArr addObject:viewModel];

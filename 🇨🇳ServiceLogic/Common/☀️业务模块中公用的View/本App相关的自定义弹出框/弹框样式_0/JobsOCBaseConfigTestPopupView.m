@@ -68,8 +68,8 @@ static dispatch_once_t static_testPopupViewOnceToken;
                                                       attributedTitle:nil
                                               selectedAttributedTitle:nil
                                                    attributedSubtitle:nil
-                                                                title:self.viewModel.textModel.text.nullString ? Internationalization(@"测试弹窗"): self.viewModel.textModel.text
-                                                             subTitle:self.viewModel.subTextModel.text.nullString ? Internationalization(@"相关信息"): self.viewModel.textModel.text
+                                                                title:self.viewModel.textModel.text.nullString ? JobsInternationalization(@"测试弹窗"): self.viewModel.textModel.text
+                                                             subTitle:self.viewModel.subTextModel.text.nullString ? JobsInternationalization(@"相关信息"): self.viewModel.textModel.text
                                                             titleFont:UIFontWeightBoldSize(20)
                                                          subTitleFont:nil
                                                              titleCor:UIColor.redColor
@@ -108,7 +108,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
         _testPopupViewSureBtn = UIButton.new;
         _testPopupViewSureBtn.normalBackgroundImage = JobsIMG(@"测试弹窗的确定按钮");
         _testPopupViewSureBtn.selectedBackgroundImage = JobsIMG(@"测试弹窗的确定按钮");
-        _testPopupViewSureBtn.normalTitle = Internationalization(@"确定");
+        _testPopupViewSureBtn.normalTitle = JobsInternationalization(@"确定");
         _testPopupViewSureBtn.normalTitleColor = JobsBlackColor;
         _testPopupViewSureBtn.titleFont = UIFontWeightRegularSize(18);
         [self addSubview:_testPopupViewSureBtn];

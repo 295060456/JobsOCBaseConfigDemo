@@ -15,7 +15,7 @@
 ///   - completion: 回调，用户是否申请权限成功！
 +(void)authWithAlert:(BOOL)isAlert
           completion:(void(^)(BOOL isAuth))completion{
-    [TKPermissionPublic alertTips:Internationalization(@"文件与文件夹访问权限不需要请求，直接在info文件中添加描述即可!")];
+    [TKPermissionPublic alertTips:JobsInternationalization(@"文件与文件夹访问权限不需要请求，直接在info文件中添加描述即可!")];
     NSString *key = @"\n 权限描述(根据需求选取):\n Supports opening documents in place        =  YES \n Supports Document Browser                  =  YES\n Application supports iTunes file sharing   =  YES";
     NSLog(@"%@",key);
 }

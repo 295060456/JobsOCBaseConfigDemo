@@ -91,7 +91,7 @@ static DDUploadingProgressView *static_uploadingProgressView = nil;
         @jobs_weakify(self)
         [_nsTimerManager actionObjectBlock:^(id data) {
             @jobs_strongify(self)
-            self.refreshLabel.text = [self.refreshLabel.text isEqualToString:Internationalization(@"正在上传...")] ? Internationalization(@"正在上传") : [NSString stringWithFormat:@"%@.",self.refreshLabel.text];
+            self.refreshLabel.text = [self.refreshLabel.text isEqualToString:JobsInternationalization(@"正在上传...")] ? JobsInternationalization(@"正在上传") : [NSString stringWithFormat:@"%@.",self.refreshLabel.text];
         }];
     }return _nsTimerManager;
 }
@@ -173,7 +173,7 @@ static DDUploadingProgressView *static_uploadingProgressView = nil;
     if (!_refreshLabel) {
         _refreshLabel = UILabel.new;
         _refreshLabel.textColor = JobsWhiteColor;
-        _refreshLabel.text = Internationalization(@"正在上传...");
+        _refreshLabel.text = JobsInternationalization(@"正在上传...");
         [self addSubview:_refreshLabel];
         [_refreshLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.shapLayerView.mas_right).offset(JobsWidth(12));

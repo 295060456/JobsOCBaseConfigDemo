@@ -81,7 +81,7 @@ static dispatch_once_t static_mineView2OnceToken;
         }
         
         {// 一般的文字
-            _btnConfig.title = Internationalization(@"入职Mata");
+            _btnConfig.title = JobsInternationalization(@"入职Mata");
             _btnConfig.subtitle = @"";
             _btnConfig.baseForegroundColor = UIColor.blackColor;// 前景颜色（= 文字颜色）
         }
@@ -96,7 +96,7 @@ static dispatch_once_t static_mineView2OnceToken;
                 }];
                 return newTextAttributes.copy;
             };
-            _btnConfig.attributedTitle = [NSAttributedString.alloc initWithString:Internationalization(@"入职Mata") attributes:@{NSForegroundColorAttributeName:UIColor.blackColor}];
+            _btnConfig.attributedTitle = [NSAttributedString.alloc initWithString:JobsInternationalization(@"入职Mata") attributes:@{NSForegroundColorAttributeName:UIColor.blackColor}];
         }
         
         {// 其他
@@ -114,7 +114,7 @@ static dispatch_once_t static_mineView2OnceToken;
             _btn1 = UIButton.new;
             _btn1.normalImage = JobsIMG(@"入职Mata");
             _btn1.titleFont = UIFontWeightRegularSize(14);
-            _btn1.normalTitle = Internationalization(@"入职Mata");
+            _btn1.normalTitle = JobsInternationalization(@"入职Mata");
             _btn1.normalTitleColor = JobsBlackColor;
         }
         // 添加按钮到视图中
@@ -135,7 +135,7 @@ static dispatch_once_t static_mineView2OnceToken;
     if(!_btn2){
         _btn2 = UIButton.new;
         _btn2.titleFont = UIFontWeightRegularSize(14);
-        _btn2.normalTitle = Internationalization(@"立即进入");
+        _btn2.normalTitle = JobsInternationalization(@"立即进入");
         _btn2.normalTitleColor = JobsWhiteColor;
         _btn2.backgroundColor = JobsCor(@"#EA2918");
         [self addSubview:_btn2];

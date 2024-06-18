@@ -89,7 +89,7 @@ static TKPermissionBluetooth * _shared = nil;
 }
 
 - (void)jumpSetting{
-    [TKPermissionPublic alertPromptTips:Internationalization(@"访问蓝牙时需要您提供权限，去设置！")];
+    [TKPermissionPublic alertPromptTips:JobsInternationalization(@"访问蓝牙时需要您提供权限，去设置！")];
 }
 
 @end

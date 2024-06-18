@@ -56,7 +56,7 @@
             [alertController addAction:okAction];
         }
     }else{
-        [WHToast jobsToastMsg:Internationalization(@"参数配置错误，请检查")];
+        [WHToast jobsToastMsg:JobsInternationalization(@"参数配置错误，请检查")];
     }
     if (alertVCBlock) {
         alertVCBlock(alertController);
@@ -109,7 +109,7 @@
             [alertController addAction:okAction];
         }
     }else{
-        [WHToast jobsToastMsg:Internationalization(@"参数配置错误，请检查")];
+        [WHToast jobsToastMsg:JobsInternationalization(@"参数配置错误，请检查")];
     }
 
     if (alertVCBlock) {
@@ -127,32 +127,32 @@
 }
 
 +(void)showLoginAlertViewWithTargetVC:(UIViewController *)targetVC{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:Internationalization(@"Login")
-                                                                             message:Internationalization(@"Enter Your Account Info Below")
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:JobsInternationalization(@"Login")
+                                                                             message:JobsInternationalization(@"Enter Your Account Info Below")
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     @jobs_weakify(self)
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         @jobs_strongify(self)
-        textField.placeholder = Internationalization(@"username");
+        textField.placeholder = JobsInternationalization(@"username");
         [textField addTarget:self
                       action:@selector(alertUserAccountInfoDidChange:targetVC:)
             forControlEvents:UIControlEventEditingChanged];
     }];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         @jobs_strongify(self)
-        textField.placeholder = Internationalization(@"password");
+        textField.placeholder = JobsInternationalization(@"password");
         textField.secureTextEntry = YES;
         [textField addTarget:self
                       action:@selector(alertUserAccountInfoDidChange:targetVC:)
             forControlEvents:UIControlEventEditingChanged];
     }];
 
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:Internationalization(@"Cancel")
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:JobsInternationalization(@"Cancel")
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction * _Nonnull action) {
                                                              NSLog(@"Cancel Action");
                                                          }];
-    UIAlertAction *loginAction = [UIAlertAction actionWithTitle:Internationalization(@"Login")
+    UIAlertAction *loginAction = [UIAlertAction actionWithTitle:JobsInternationalization(@"Login")
                                                           style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction * _Nonnull action) {
                                                             UITextField *userName = alertController.textFields.firstObject;

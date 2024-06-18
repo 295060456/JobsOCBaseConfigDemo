@@ -52,7 +52,7 @@ UIViewModelProtocol_synthesize
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -143,7 +143,7 @@ UIViewModelProtocol_synthesize
 -(void)保留文字{
     if (![NSString isNullString:self.inputDataString]) {
         JobsUserModel.sharedInstance.postDraftURLStr = [NSObject saveData:self.inputDataString
-                                                  withDocumentsChildDir:Internationalization(@"发帖草稿数据临时文件夹")
+                                                  withDocumentsChildDir:JobsInternationalization(@"发帖草稿数据临时文件夹")
                                                            fileFullname:@"发帖草稿数据.txt"
                                                                  error:nil];
     }else{
@@ -158,7 +158,7 @@ UIViewModelProtocol_synthesize
             if (success) {
                 [self back:nil];
             }else {
-                [self.view hx_showImageHUDText:Internationalization(@"保存失败")];
+                [self.view hx_showImageHUDText:JobsInternationalization(@"保存失败")];
             }
         });
     });
@@ -173,13 +173,13 @@ UIViewModelProtocol_synthesize
 -(void)saveDoc{
     SPAlertControllerConfig *config = SPAlertControllerConfig.new;
     config.SPAlertControllerInitType = NSObject_SPAlertControllerInitType_2;
-    config.title = Internationalization(@"提示");
-    config.message = Internationalization(@"是否将当前内容保存为草稿？");
+    config.title = JobsInternationalization(@"提示");
+    config.message = JobsInternationalization(@"是否将当前内容保存为草稿？");
     config.preferredStyle = SPAlertControllerStyleAlert;
     config.animationType = SPAlertAnimationTypeDefault;
-    config.alertActionTitleArr = @[Internationalization(@"不保存"),Internationalization(@"保存")];
+    config.alertActionTitleArr = @[JobsInternationalization(@"不保存"),JobsInternationalization(@"保存")];
     config.alertActionStyleArr = @[@(SPAlertActionStyleDestructive),@(SPAlertActionStyleDefault)];
-    config.alertBtnActionArr = @[Internationalization(@"不保留文字"),Internationalization(@"保留文字")];
+    config.alertBtnActionArr = @[JobsInternationalization(@"不保留文字"),JobsInternationalization(@"保留文字")];
     config.targetVC = self;
     config.funcInWhere = self;
     config.animated = YES;
@@ -328,7 +328,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         _releaseBtn = UIButton.new;
         _releaseBtn.enabled = NO;
         _releaseBtn.normalBackgroundImage = JobsIMG(@"未发布");
-        _releaseBtn.normalTitle = Internationalization(@"发布");
+        _releaseBtn.normalTitle = JobsInternationalization(@"发布");
         _releaseBtn.normalTitleColor = JobsWhiteColor;
         _releaseBtn.titleFont = UIFontWeightRegularSize(12.5);
         _releaseBtn.width = JobsWidth(38);
@@ -425,7 +425,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         _tipsLab.textColor = RGB_SAMECOLOR(173);
         _tipsLab.font = UIFontWeightBoldSize(12);
         _tipsLab.numberOfLines = 0;
-        _tipsLab.text = Internationalization(@"1、内容不允许出现纯数字，英文字母；\n2、图片/视频(图片最多9张/仅上传一段视频，大小不超100M)。");
+        _tipsLab.text = JobsInternationalization(@"1、内容不允许出现纯数字，英文字母；\n2、图片/视频(图片最多9张/仅上传一段视频，大小不超100M)。");
         [self.view addSubview:_tipsLab];
         [_tipsLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view).offset(JobsWidth(14));
@@ -440,7 +440,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         _postTextModel = UITextModel.new;
         _postTextModel.text = self.inputDataHistoryString;
         _postTextModel.textCor = JobsBlackColor;
-        _postTextModel.placeholder = Internationalization(@"撩骚内容，写在这里哦~");
+        _postTextModel.placeholder = JobsInternationalization(@"撩骚内容，写在这里哦~");
         _postTextModel.placeholderColor = RGB_SAMECOLOR(173);
         _postTextModel.font = UIFontWeightRegularSize(14);
         _postTextModel.maxWordCount = 10;
@@ -449,7 +449,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
 
 -(NSString *)inputDataHistoryString{
     if(!_inputDataHistoryString){
-        _inputDataHistoryString = Internationalization(@"");
+        _inputDataHistoryString = JobsInternationalization(@"");
     }return _inputDataHistoryString;
 }
 

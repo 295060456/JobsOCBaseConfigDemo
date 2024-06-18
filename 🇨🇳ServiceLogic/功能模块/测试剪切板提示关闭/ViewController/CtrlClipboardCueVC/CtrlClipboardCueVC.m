@@ -32,7 +32,7 @@
     }
     self.setupNavigationBarHidden = YES;
     
-    self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -129,7 +129,7 @@
     if(!_label){
         _label = BaseLabel.new;
         _label.backgroundColor = JobsLightGrayColor;
-        _label.text = [Internationalization(@"请点击复制：") stringByAppendingString:self.textData1];
+        _label.text = [JobsInternationalization(@"请点击复制：") stringByAppendingString:self.textData1];
         _label.textColor = JobsRedColor;
         _label.font = UIFontSystemFontOfSize(20);
         _label.textAlignment = NSTextAlignmentCenter;
@@ -159,7 +159,7 @@
     if (!_textView) {
         _textView = BaseTextView.new;
         _textView.backgroundColor = JobsLightTextColor;
-        _textView.placeholder = Internationalization(@"请粘贴！！！");
+        _textView.placeholder = JobsInternationalization(@"请粘贴！！！");
         _textView.textColor = JobsBlackColor;
         _textView.delegate = self;
         _textView.font = UIFontSystemFontOfSize(14);
@@ -176,7 +176,7 @@
 
 -(NSString *)textData1{
     if(!_textData1){
-        _textData1 = Internationalization(@"财神到，四季发财！！！！");
+        _textData1 = JobsInternationalization(@"财神到，四季发财！！！！");
     }return _textData1;
 }
 

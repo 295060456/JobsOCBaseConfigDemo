@@ -89,7 +89,7 @@ static dispatch_once_t static_codeViewOnceToken;
 /// CodeTypeImage
 - (void)CodeTypeImageView{
     [self addSubview:({
-        self.tipLabel.text = Internationalization(@"拖动下方滑块完成拼图");
+        self.tipLabel.text = JobsInternationalization(@"拖动下方滑块完成拼图");
         self.tipLabel.frame = CGRectMake(WMZmargin,
                                          WMZmargin,
                                          self.width - WMZmargin * 2,

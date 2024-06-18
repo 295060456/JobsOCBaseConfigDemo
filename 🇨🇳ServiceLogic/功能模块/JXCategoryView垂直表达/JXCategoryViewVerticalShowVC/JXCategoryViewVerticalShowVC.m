@@ -36,7 +36,7 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -226,12 +226,12 @@ ratio:(CGFloat)ratio {
 -(NSMutableArray<NSString *> *)titleMutArr{
     if (!_titleMutArr) {
         _titleMutArr = NSMutableArray.array;
-        [_titleMutArr addObject:Internationalization(@"豆花")];
-        [_titleMutArr addObject:Internationalization(@"莲子羹")];
-        [_titleMutArr addObject:Internationalization(@"蒸肉")];
-        [_titleMutArr addObject:Internationalization(@"排骨")];
-        [_titleMutArr addObject:Internationalization(@"美女")];
-        [_titleMutArr addObject:Internationalization(@"豪车")];
+        [_titleMutArr addObject:JobsInternationalization(@"豆花")];
+        [_titleMutArr addObject:JobsInternationalization(@"莲子羹")];
+        [_titleMutArr addObject:JobsInternationalization(@"蒸肉")];
+        [_titleMutArr addObject:JobsInternationalization(@"排骨")];
+        [_titleMutArr addObject:JobsInternationalization(@"美女")];
+        [_titleMutArr addObject:JobsInternationalization(@"豪车")];
     }return _titleMutArr;
 }
 

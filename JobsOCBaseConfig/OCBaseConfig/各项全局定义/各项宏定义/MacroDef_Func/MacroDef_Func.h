@@ -177,16 +177,16 @@ static inline id _Nullable getSysSceneDelegate(void){
 #pragma mark —— 弹出提示
 static inline void toast(NSString *_Nullable msg){
     if(!msg || ![msg isKindOfClass:NSString.class]){
-        msg = Internationalization(@"数据错误");
+        msg = JobsInternationalization(@"数据错误");
     }
-    [NSObject jobsToastMsg:Internationalization(msg)];
+    [NSObject jobsToastMsg:JobsInternationalization(msg)];
 }
 
 static inline void toastErr(NSString *_Nullable msg){
     if(!msg || ![msg isKindOfClass:NSString.class]){
-        msg = Internationalization(@"数据错误");
+        msg = JobsInternationalization(@"数据错误");
     }
-    [NSObject jobsToastErrMsg:Internationalization(msg)];
+    [NSObject jobsToastErrMsg:JobsInternationalization(msg)];
 }
 #pragma mark —— 定义一些默认值
 #ifndef listContainerViewDefaultOffset

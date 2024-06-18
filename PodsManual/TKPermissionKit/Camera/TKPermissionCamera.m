@@ -41,13 +41,13 @@ static bool safeLock = NO;/// 防止连续请求lock
 /// 检查前置摄像头是否可用
 + (BOOL)checkCameraFrontAvailableWithAlert:(BOOL)isAlert{
     BOOL isAvailable = [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront];
-    if (!isAvailable && isAlert) [TKPermissionPublic alertTips:Internationalization(@"前置摄像头无法使用")];
+    if (!isAvailable && isAlert) [TKPermissionPublic alertTips:JobsInternationalization(@"前置摄像头无法使用")];
     return isAvailable;
 }
 /// 检测后置摄像头是否可用
 + (BOOL)checkCameraRearAvailableWithAlert:(BOOL)isAlert{
     BOOL isAvailable = [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear];
-    if (!isAvailable && isAlert) [TKPermissionPublic alertTips:Internationalization(@"后置摄像头无法使用")];
+    if (!isAvailable && isAlert) [TKPermissionPublic alertTips:JobsInternationalization(@"后置摄像头无法使用")];
     return isAvailable;
 }
 /// 提示照相机无法使用
@@ -57,11 +57,11 @@ static bool safeLock = NO;/// 防止连续请求lock
     BOOL isRear =  [TKPermissionCamera checkCameraRearAvailableWithAlert:NO];
     BOOL isFront = [TKPermissionCamera checkCameraFrontAvailableWithAlert:NO];
     if (!isRear || isFront) err = YES;
-    if (err) [TKPermissionPublic alertTips:Internationalization(@"相机无法使用")];
+    if (err) [TKPermissionPublic alertTips:JobsInternationalization(@"相机无法使用")];
 }
 #pragma mark —— 一些私有方法
 + (void)jumpSetting{
-    [TKPermissionPublic alertPromptTips:Internationalization(@"访问相机时需要您提供权限，去设置!")];
+    [TKPermissionPublic alertPromptTips:JobsInternationalization(@"访问相机时需要您提供权限，去设置!")];
 }
 
 @end

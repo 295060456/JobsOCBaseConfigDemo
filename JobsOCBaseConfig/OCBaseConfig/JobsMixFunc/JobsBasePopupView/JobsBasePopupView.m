@@ -90,7 +90,7 @@
         _btn1.normalImage = self.viewModel.image;
         _btn1.normalBackgroundImage = JobsIMG(@"弹窗取消按钮背景图");
         _btn1.normalTitleColor = HEXCOLOR(0x502600);
-        _btn1.normalTitle = Internationalization(@"Cancel");
+        _btn1.normalTitle = JobsInternationalization(@"Cancel");
         @jobs_weakify(self)
         [_btn1 jobsBtnClickEventBlock:^id(id data) {
             @jobs_strongify(self)
@@ -114,7 +114,7 @@
         _btn2.normalImage = self.viewModel.image;
         _btn2.normalBackgroundImage = JobsIMG(@"弹窗确定按钮背景图");
         _btn2.normalTitleColor = HEXCOLOR(0x502600);
-        _btn2.normalTitle = Internationalization(@"Sure");
+        _btn2.normalTitle = JobsInternationalization(@"Sure");
         [_btn2 jobsBtnClickEventBlock:^id(id data) {
             if(self.objectBlock) self.objectBlock(self->_btn2);
             return nil;

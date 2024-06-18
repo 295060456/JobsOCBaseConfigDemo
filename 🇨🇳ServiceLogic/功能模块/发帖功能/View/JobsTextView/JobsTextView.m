@@ -97,7 +97,7 @@ static dispatch_once_t static_textViewOnceToken;
             /// 超过直接截取
             if(x.length > self.textModel.maxWordCount) {
                 x = [x substringToIndex:self.textModel.maxWordCount];
-                [WHToast jobsToastMsg:[NSString stringWithFormat:Internationalization(@"最多只能输入%ld个字"), self.textModel.maxWordCount]];
+                [WHToast jobsToastMsg:[NSString stringWithFormat:JobsInternationalization(@"最多只能输入%ld个字"), self.textModel.maxWordCount]];
             }
             self.textView.text = x;
             self.textModel.curWordCount = x.length;

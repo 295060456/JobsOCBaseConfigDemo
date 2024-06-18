@@ -96,7 +96,6 @@
 		840F971927736428004979E9 /* App国际化.md in Resources */ = {isa = PBXBuildFile; fileRef = 840F95DA27736427004979E9 /* App国际化.md */; };
 		840F971A27736428004979E9 /* AppInternationalizationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95DC27736427004979E9 /* AppInternationalizationVC.m */; };
 		84175CAD2C034F0100A535D9 /* LocalNotificationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84175CAC2C034F0100A535D9 /* LocalNotificationsVC.m */; };
-		84175CB02C03530100A535D9 /* JobsOCBaseConfig.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84175CAE2C03530100A535D9 /* JobsOCBaseConfig.xcdatamodeld */; };
 		84175CB32C03558F00A535D9 /* JobsMakeLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 84175CB22C03558F00A535D9 /* JobsMakeLocalNotification.m */; };
 		8424743527C0C32B00831270 /* YTKNetworkStudyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8424743427C0C32B00831270 /* YTKNetworkStudyVC.m */; };
 		8424743F27C0CAEB00831270 /* GetImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8424743827C0CAEA00831270 /* GetImageApi.m */; };
@@ -958,6 +957,8 @@
 		C5C4809F284E246D007916B3 /* JobsAppDoorInputViewBaseStyle_10.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C4809C284E246D007916B3 /* JobsAppDoorInputViewBaseStyle_10.m */; };
 		C5C480A5284E250A007916B3 /* JobsSettingGestureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C480A4284E250A007916B3 /* JobsSettingGestureVC.m */; };
 		C5C48124284E254B007916B3 /* JobsMembersSubsBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C48123284E254B007916B3 /* JobsMembersSubsBaseVC.m */; };
+		C5D260082C220F0A005AD2DD /* AppIconSwitchingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D260072C220F0A005AD2DD /* AppIconSwitchingVC.m */; };
+		C5D2600B2C22120A005AD2DD /* JobsOCBaseConfig.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5D260092C22120A005AD2DD /* JobsOCBaseConfig.xcdatamodeld */; };
 		C5D46FFC284E29A90090D20F /* JobsGetiOSNewestVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D46FFB284E29A90090D20F /* JobsGetiOSNewestVersionModel.m */; };
 		C5E4ABC02858BEED00B782F0 /* UILabelWordRotatingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E4ABBF2858BEED00B782F0 /* UILabelWordRotatingVC.m */; };
 		C5E8A7582869848600FAB31D /* CustomTableViewCellVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E8A7572869848600FAB31D /* CustomTableViewCellVC.m */; };
@@ -1125,7 +1126,6 @@
 		840F95E127736427004979E9 /* DebugLogDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugLogDescription.m; sourceTree = "<group>"; };
 		84175CAB2C034F0100A535D9 /* LocalNotificationsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalNotificationsVC.h; sourceTree = "<group>"; };
 		84175CAC2C034F0100A535D9 /* LocalNotificationsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationsVC.m; sourceTree = "<group>"; };
-		84175CAF2C03530100A535D9 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		84175CB12C03558F00A535D9 /* JobsMakeLocalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsMakeLocalNotification.h; sourceTree = "<group>"; };
 		84175CB22C03558F00A535D9 /* JobsMakeLocalNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsMakeLocalNotification.m; sourceTree = "<group>"; };
 		8424743327C0C32B00831270 /* YTKNetworkStudyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YTKNetworkStudyVC.h; sourceTree = "<group>"; };
@@ -2835,6 +2835,9 @@
 		C5C480A4284E250A007916B3 /* JobsSettingGestureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsSettingGestureVC.m; sourceTree = "<group>"; };
 		C5C48122284E254B007916B3 /* JobsMembersSubsBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsMembersSubsBaseVC.h; sourceTree = "<group>"; };
 		C5C48123284E254B007916B3 /* JobsMembersSubsBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsMembersSubsBaseVC.m; sourceTree = "<group>"; };
+		C5D260062C220F0A005AD2DD /* AppIconSwitchingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppIconSwitchingVC.h; sourceTree = "<group>"; };
+		C5D260072C220F0A005AD2DD /* AppIconSwitchingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppIconSwitchingVC.m; sourceTree = "<group>"; };
+		C5D2600A2C22120A005AD2DD /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		C5D46FFA284E29A90090D20F /* JobsGetiOSNewestVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsGetiOSNewestVersionModel.h; sourceTree = "<group>"; };
 		C5D46FFB284E29A90090D20F /* JobsGetiOSNewestVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsGetiOSNewestVersionModel.m; sourceTree = "<group>"; };
 		C5E4ABBE2858BEED00B782F0 /* UILabelWordRotatingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UILabelWordRotatingVC.h; sourceTree = "<group>"; };
@@ -5024,7 +5027,7 @@
 		84CA5CD427895A6000E46E71 /* 系统创建 */ = {
 			isa = PBXGroup;
 			children = (
-				84175CAE2C03530100A535D9 /* JobsOCBaseConfig.xcdatamodeld */,
+				C5D260092C22120A005AD2DD /* JobsOCBaseConfig.xcdatamodeld */,
 				844B02192764C8EE00B0513D /* Main.storyboard */,
 				844B021F2764C8F000B0513D /* Assets.xcassets */,
 				844B02212764C8F000B0513D /* LaunchScreen.storyboard */,
@@ -5668,6 +5671,7 @@
 		84CA609D278980E700E46E71 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				C5D260022C220EB5005AD2DD /* App图标切换 */,
 				84B38AEB2C10BB9100922974 /* 字符串解压缩 */,
 				84175CA72C034E8100A535D9 /* 本地通知 */,
 				C52688DA2BDBBC7A00872F26 /* 测试剪切板提示关闭 */,
@@ -11510,6 +11514,39 @@
 			path = JobsMembersSubsBaseVC;
 			sourceTree = "<group>";
 		};
+		C5D260022C220EB5005AD2DD /* App图标切换 */ = {
+			isa = PBXGroup;
+			children = (
+				C5D260052C220ED5005AD2DD /* Model */,
+				C5D260042C220ED0005AD2DD /* View */,
+				C5D260032C220ECA005AD2DD /* ViewController */,
+			);
+			path = "App图标切换";
+			sourceTree = "<group>";
+		};
+		C5D260032C220ECA005AD2DD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C5D260062C220F0A005AD2DD /* AppIconSwitchingVC.h */,
+				C5D260072C220F0A005AD2DD /* AppIconSwitchingVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C5D260042C220ED0005AD2DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C5D260052C220ED5005AD2DD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C5D46FF9284E29A90090D20F /* JobsGetiOSNewestVersionModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -12346,6 +12383,7 @@
 				84D764AF2780924A0003F0E4 /* CasinoGetiOSNewestVersionModel.m in Sources */,
 				C539A0432AD69BCF00C8A5E3 /* TKPermissionBluetooth.m in Sources */,
 				C52E5CE32AC07EE500FE5494 /* HTTPConnection.m in Sources */,
+				C5D2600B2C22120A005AD2DD /* JobsOCBaseConfig.xcdatamodeld in Sources */,
 				C5978AC42BE3599700A56125 /* UIView+ViewController.m in Sources */,
 				C5BF3F32286952DF0047F591 /* JobsCountdownView.m in Sources */,
 				C5978A852BE3599700A56125 /* UILabel+Measure.m in Sources */,
@@ -12535,7 +12573,6 @@
 				C5B3AF3728537E320052A4A9 /* BaiShaETProjCollectionHeaderView.m in Sources */,
 				8459D61C2779A88A00125782 /* CasinoCustomerContactModel.m in Sources */,
 				C5978A5D2BE3599700A56125 /* BaseCollectionReusableView.m in Sources */,
-				84175CB02C03530100A535D9 /* JobsOCBaseConfig.xcdatamodeld in Sources */,
 				C52E5CDF2AC07EE500FE5494 /* HTTPAsyncFileResponse.m in Sources */,
 				84CA5F9927897AFB00E46E71 /* GTMBase64.m in Sources */,
 				84CA64BF2789C80600E46E71 /* JobsRightBtnsView.m in Sources */,
@@ -12731,6 +12768,7 @@
 				C552266D2AC89F9000668516 /* NSObject+URLManager.m in Sources */,
 				C5B3AE81285378A70052A4A9 /* JXCategoryViewWithHeaderViewSubVC.m in Sources */,
 				840F963D27736427004979E9 /* JobsPageView.m in Sources */,
+				C5D260082C220F0A005AD2DD /* AppIconSwitchingVC.m in Sources */,
 				C5978A722BE3599700A56125 /* UIControl+Extra.m in Sources */,
 				C5978AC02BE3599700A56125 /* UIView+Measure.m in Sources */,
 				846DF03B27806D230050468A /* JobsAppDoorContentView.m in Sources */,
@@ -13199,14 +13237,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		84175CAE2C03530100A535D9 /* JobsOCBaseConfig.xcdatamodeld */ = {
+		C5D260092C22120A005AD2DD /* JobsOCBaseConfig.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				84175CAF2C03530100A535D9 /* JobsBaseConfig.xcdatamodel */,
+				C5D2600A2C22120A005AD2DD /* JobsBaseConfig.xcdatamodel */,
 			);
-			currentVersion = 84175CAF2C03530100A535D9 /* JobsBaseConfig.xcdatamodel */;
+			currentVersion = C5D2600A2C22120A005AD2DD /* JobsBaseConfig.xcdatamodel */;
 			name = JobsOCBaseConfig.xcdatamodeld;
-			path = "/Users/admin/Documents/Github/JobsOCBaseConfig/JobsOCBaseConfigDemo/JobsOCBaseConfig/Others/系统创建/JobsOCBaseConfig.xcdatamodeld";
+			path = "/Users/jobs/Documents/GitHub/JobsOCBaseConfig/JobsOCBaseConfigDemo/JobsOCBaseConfig/Others/系统创建/JobsOCBaseConfig.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

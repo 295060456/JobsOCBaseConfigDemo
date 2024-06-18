@@ -124,7 +124,7 @@
         
         {
             UIViewModel *jobsPageViewModel = UIViewModel.new;
-            jobsPageViewModel.textModel.text = Internationalization(@"請選擇區號");
+            jobsPageViewModel.textModel.text = JobsInternationalization(@"請選擇區號");
             jobsPageViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
             jobsPageViewModel.bgCor = JobsClearColor;
             jobsPageViewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -196,7 +196,7 @@
 -(UIViewModel *)chooseBtnViewModel{
     if (!_chooseBtnViewModel) {
         _chooseBtnViewModel = UIViewModel.new;
-        _chooseBtnViewModel.textModel.text = Internationalization(@"請選擇區號");
+        _chooseBtnViewModel.textModel.text = JobsInternationalization(@"請選擇區號");
         _chooseBtnViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
         _chooseBtnViewModel.textModel.textLineSpacing = 0;
         _chooseBtnViewModel.textModel.font = notoSansRegular(14);

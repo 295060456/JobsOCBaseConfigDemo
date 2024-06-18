@@ -65,7 +65,7 @@
 -(UILabel *)titleLab{
     if (!_titleLab) {
         _titleLab = UILabel.new;
-        _titleLab.text = Internationalization(Title10);
+        _titleLab.text = JobsInternationalization(Title10);
         _titleLab.textColor = JobsWhiteColor;
         _titleLab.font = UIFontWeightRegularSize(20);
         [_titleLab makeLabelByShowingType:UILabelShowingType_03];
@@ -104,7 +104,7 @@
 -(UIButton *)contactCustomerServiceBtn{
     if (!_contactCustomerServiceBtn) {
         _contactCustomerServiceBtn = UIButton.new;
-        _contactCustomerServiceBtn.normalImage = JobsIMG(Internationalization(@"zaixiankefu_en"));
+        _contactCustomerServiceBtn.normalImage = JobsIMG(JobsInternationalization(@"zaixiankefu_en"));
         @jobs_weakify(self)
         [_contactCustomerServiceBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             NSLog(@"返回登录");
@@ -131,7 +131,7 @@
 -(UILabel *)subTitleLab{
     if (!_subTitleLab) {
         _subTitleLab = UILabel.new;
-        _subTitleLab.text = Internationalization(Title11);
+        _subTitleLab.text = JobsInternationalization(Title11);
         _subTitleLab.textAlignment = NSTextAlignmentCenter;
         _subTitleLab.numberOfLines = 0;
         _subTitleLab.textColor = JobsWhiteColor;

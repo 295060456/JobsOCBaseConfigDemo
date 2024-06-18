@@ -79,15 +79,15 @@ successCompletionHandlerBlock:^(id data) {
 }
 /// 简单弹窗，没有action事件
 +(void)alertTips:(NSString *)msg{
-    [self alertActionTitle:Internationalization(@"提示")
+    [self alertActionTitle:JobsInternationalization(@"提示")
                        msg:msg
-               actionTitle:Internationalization(@"知道了")];
+               actionTitle:JobsInternationalization(@"知道了")];
 }
 /// 权限提示alert
 +(void)alertPromptTips:(NSString *)msg{
-    [self alertTitle:Internationalization(@"权限提示") msg:msg
-           leftTitle:Internationalization(@"设置")
-          rightTitle:Internationalization(@"取消")];
+    [self alertTitle:JobsInternationalization(@"权限提示") msg:msg
+           leftTitle:JobsInternationalization(@"设置")
+          rightTitle:JobsInternationalization(@"取消")];
 }
 #pragma mark —— 一些私有方法
 /// TKPermissionKit Bundle Path

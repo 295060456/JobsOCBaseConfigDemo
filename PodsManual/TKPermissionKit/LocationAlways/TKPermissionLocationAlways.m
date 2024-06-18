@@ -106,11 +106,11 @@ static TKPermissionLocationAlways * _shared = nil;
 }
 
 -(void)jumpSetting{
-    [TKPermissionPublic alertPromptTips:Internationalization(@"访问位置时需要您提供权限，去设置！")];
+    [TKPermissionPublic alertPromptTips:JobsInternationalization(@"访问位置时需要您提供权限，去设置！")];
 }
 
 -(void)alertAction{
-    [TKPermissionPublic alertTips:Internationalization(@"请先到\"隐私\"中，开启定位服务！")];
+    [TKPermissionPublic alertTips:JobsInternationalization(@"请先到\"隐私\"中，开启定位服务！")];
 }
 
 @end

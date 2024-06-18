@@ -17,7 +17,7 @@
     if (self = [super initWithFrame:frame]) {
         UIMenuController *menu = UIMenuController.sharedMenuController;
         @jobs_weakify(self)
-        UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:Internationalization(@"相应事件")
+        UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:JobsInternationalization(@"相应事件")
                                                         action:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
                                                                                             id  _Nullable arg) {
             @jobs_strongify(self)

@@ -103,7 +103,7 @@ static dispatch_once_t static_filtrationViewOnceToken;
     if (!_headerViewModel) {
         _headerViewModel = JobsHeaderFooterViewModel.new;
         _headerViewModel.useHeaderView = YES;
-        _headerViewModel.textModel.text = Internationalization(@"交易类型");
+        _headerViewModel.textModel.text = JobsInternationalization(@"交易类型");
         _headerViewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         _headerViewModel.textModel.font = UIFontWeightBoldSize(14);
         _headerViewModel.textModel.textAlignment = NSTextAlignmentLeft;
@@ -116,7 +116,7 @@ static dispatch_once_t static_filtrationViewOnceToken;
     if (!_footerViewModel) {
         _footerViewModel = JobsHeaderFooterViewModel.new;
         _footerViewModel.useFooterView = NO;
-        _footerViewModel.textModel.text = Internationalization(@"查看详情");
+        _footerViewModel.textModel.text = JobsInternationalization(@"查看详情");
         _footerViewModel.textModel.textAlignment = NSTextAlignmentLeft;
         _footerViewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         _footerViewModel.textModel.font = UIFontWeightBoldSize(14);
@@ -143,14 +143,14 @@ static dispatch_once_t static_filtrationViewOnceToken;
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
         _btnTitleMutArr = NSMutableArray.array;
-        [_btnTitleMutArr addObject:Internationalization(@"全部")];
-        [_btnTitleMutArr addObject:Internationalization(@"充值")];
-        [_btnTitleMutArr addObject:Internationalization(@"取款")];
-        [_btnTitleMutArr addObject:Internationalization(@"转账")];
-        [_btnTitleMutArr addObject:Internationalization(@"返水")];
-        [_btnTitleMutArr addObject:Internationalization(@"会员活动")];
-        [_btnTitleMutArr addObject:Internationalization(@"VIP福利")];
-        [_btnTitleMutArr addObject:Internationalization(@"其他")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"全部")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"充值")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"取款")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"转账")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"返水")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"会员活动")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"VIP福利")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"其他")];
     }return _btnTitleMutArr;
 }
 

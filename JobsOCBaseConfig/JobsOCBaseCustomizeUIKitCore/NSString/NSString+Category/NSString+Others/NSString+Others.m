@@ -11,13 +11,13 @@
 #pragma mark —— 其他
 /// 该文字是否是Debug定义的文字
 -(BOOL)isDebugText{
-    return self.isEqualToString(Internationalization(TextModelDataString));
+    return self.isEqualToString(JobsInternationalization(TextModelDataString));
 }
 /// 复制到系统剪切板
 -(NSString *_Nonnull)pasteboard{
     UIPasteboard *pasteboard = UIPasteboard.generalPasteboard;
     pasteboard.string = self;
-    [WHToast jobsToastSuccessMsg:Internationalization(@"复制成功")];
+    [WHToast jobsToastSuccessMsg:JobsInternationalization(@"复制成功")];
     return pasteboard.string;
 }
 /// 根据字符串生成二维码图像

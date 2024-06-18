@@ -36,7 +36,7 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -89,7 +89,7 @@
 -(UIButton *)btn{
     if (!_btn) {
         _btn = UIButton.new;
-        _btn.normalTitle = Internationalization(@"点击按钮弹出下拉列表");
+        _btn.normalTitle = JobsInternationalization(@"点击按钮弹出下拉列表");
         _btn.titleFont = UIFontWeightRegularSize(12);
         _btn.normalTitleColor = JobsWhiteColor;
         @jobs_weakify(self)
@@ -145,9 +145,9 @@
             [self endDropDownListView];
             x.thumbTintColor = x.selected ? self.cor : HEXCOLOR(0xB0B0B0);
             [x layerBorderCor:x.selected ? self.cor : HEXCOLOR(0xB0B0B0) andBorderWidth:JobsWidth(1)];
-//            toast(x.selected ? Internationalization(@"打开解锁"):Internationalization(@"关闭解锁"));
+//            toast(x.selected ? JobsInternationalization(@"打开解锁"):JobsInternationalization(@"关闭解锁"));
             self.dropDownListViewDirection = x.selected;
-            self->_btn.normalTitle = x.selected ? Internationalization(@"点击按钮弹出上拉列表") : Internationalization(@"点击按钮弹出下拉列表");
+            self->_btn.normalTitle = x.selected ? JobsInternationalization(@"点击按钮弹出上拉列表") : JobsInternationalization(@"点击按钮弹出下拉列表");
         }];
     }return _switcher;
 }
@@ -168,8 +168,8 @@
 
         for (int i = 1; i <= 9; i++) {
             UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = Internationalization([NSString stringWithFormat:@"0%d",i]);
-            viewModel.subTextModel.text = Internationalization([NSString stringWithFormat:@"00%d",i]);
+            viewModel.textModel.text = JobsInternationalization([NSString stringWithFormat:@"0%d",i]);
+            viewModel.subTextModel.text = JobsInternationalization([NSString stringWithFormat:@"00%d",i]);
             
             [_listViewData addObject:viewModel];
         }

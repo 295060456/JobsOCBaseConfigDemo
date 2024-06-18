@@ -12,10 +12,10 @@
 #define TextModelDataString @"主文字默认占位内容"
 /// 数据归位
 #define MakeDataNull \
-if ([self.viewModel.textModel.text isEqualToString:Internationalization(TextModelDataString)]) {\
+if ([self.viewModel.textModel.text isEqualToString:JobsInternationalization(TextModelDataString)]) {\
     self.viewModel.textModel.text = @"";\
 }\
-if ([self.viewModel.subTextModel.text isEqualToString:Internationalization(TextModelDataString)]) {\
+if ([self.viewModel.subTextModel.text isEqualToString:JobsInternationalization(TextModelDataString)]) {\
     self.viewModel.subTextModel.text = @"";\
 }\
 

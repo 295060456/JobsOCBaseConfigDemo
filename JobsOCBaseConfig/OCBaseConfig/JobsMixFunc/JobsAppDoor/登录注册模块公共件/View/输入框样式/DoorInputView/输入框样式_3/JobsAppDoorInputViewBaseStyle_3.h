@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_END
      if (!_配置用户名输入框) {
          _配置用户名输入框 = JobsAppDoorInputViewBaseStyleModel.new;
          _配置用户名输入框.leftViewIMG = JobsIMG(@"用户名");
-         _配置用户名输入框.placeHolderStr = Internationalization(@"请输入您的用户名");
+         _配置用户名输入框.placeHolderStr = JobsInternationalization(@"请输入您的用户名");
          _配置用户名输入框.placeholderFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightRegular];
          _配置用户名输入框.placeholderColor = HEXCOLOR(0xC4C4C4);
          _配置用户名输入框.placeHolderOffset = JobsWidth(35);

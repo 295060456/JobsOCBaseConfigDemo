@@ -30,7 +30,7 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -79,8 +79,8 @@
 -(UIButton *)contactCustomerServiceBtn{
     if (!_contactCustomerServiceBtn) {
         _contactCustomerServiceBtn = UIButton.new;
-        _contactCustomerServiceBtn.normalImage = JobsIMG(Internationalization(@"zaixiankefu_en"));
-        _contactCustomerServiceBtn.selectedImage = JobsIMG(Internationalization(@"zaixiankefu_en"));
+        _contactCustomerServiceBtn.normalImage = JobsIMG(JobsInternationalization(@"zaixiankefu_en"));
+        _contactCustomerServiceBtn.selectedImage = JobsIMG(JobsInternationalization(@"zaixiankefu_en"));
         @jobs_weakify(self)
         [_contactCustomerServiceBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)

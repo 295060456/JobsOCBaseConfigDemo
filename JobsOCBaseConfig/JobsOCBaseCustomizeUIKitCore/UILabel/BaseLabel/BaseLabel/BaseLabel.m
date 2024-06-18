@@ -52,14 +52,14 @@ UILocationProtocol_synthesize
 /// UILabel文字的复制
 -(void)copyText:(NSString *)text{
     [text pasteboard];
-    NSLog(@"%@%@",Internationalization(@"复制的文字："),text);
+    NSLog(@"%@%@",JobsInternationalization(@"复制的文字："),text);
 }
 /// 弹出系统菜单控件
 -(void)makeMenuCtrl:(NSString *)text{
     UIMenuController.sharedMenuController.menuItems = nil;
     UIMenuController *menu = UIMenuController.sharedMenuController;
     @jobs_weakify(self)
-    UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:Internationalization(@"请复制")
+    UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:JobsInternationalization(@"请复制")
                                                     action:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
                                                                                         id  _Nullable arg) {
         @jobs_strongify(self)

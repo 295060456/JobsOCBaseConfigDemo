@@ -143,15 +143,15 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     
     {
         UITextModel *textModel = UITextModel.new;
-        textModel.text = Internationalization(title);
+        textModel.text = JobsInternationalization(title);
         viewModel.textModel = textModel;
         
         UITextModel *subTextModel = UITextModel.new;
-        subTextModel.text = Internationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle);
+        subTextModel.text = JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle);
         viewModel.subTextModel = subTextModel;
         
         UITextModel *backBtnTitleModel = UITextModel.new;
-        backBtnTitleModel.text = Internationalization(@"返回首页");
+        backBtnTitleModel.text = JobsInternationalization(@"返回首页");
         viewModel.backBtnTitleModel = backBtnTitleModel;
     }return viewModel;
 }
@@ -161,10 +161,10 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     UIViewModel *viewModel = UIViewModel.new;
     
     {
-        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:Internationalization(title)];
+        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:JobsInternationalization(title)];
         [attributedText addAttribute:NSFontAttributeName
                                value:UITextModel.new.font
-                               range:NSMakeRange(0, Internationalization(title).length)];
+                               range:NSMakeRange(0, JobsInternationalization(title).length)];
 
         NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
         paragraphStyle.lineSpacing = 0;
@@ -172,16 +172,16 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
         [attributedText addAttribute:NSParagraphStyleAttributeName
                                value:paragraphStyle
-                               range:NSMakeRange(0, Internationalization(title).length)];
+                               range:NSMakeRange(0, JobsInternationalization(title).length)];
         
         viewModel.textModel.attributedText = attributedText;
     }
     
     {
-        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:Internationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle)];
+        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle)];
         [attributedText addAttribute:NSFontAttributeName
                                value:UITextModel.new.font
-                               range:NSMakeRange(0, Internationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle).length)];
+                               range:NSMakeRange(0, JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle).length)];
 
         NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
         paragraphStyle.lineSpacing = 0;
@@ -189,14 +189,14 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
         [attributedText addAttribute:NSParagraphStyleAttributeName
                                value:paragraphStyle
-                               range:NSMakeRange(0, Internationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle).length)];
+                               range:NSMakeRange(0, JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle).length)];
         
         viewModel.subTextModel.attributedText = attributedText;
     }
 
     {
         UITextModel *backBtnTitleModel = UITextModel.new;
-        backBtnTitleModel.text = Internationalization(@"返回首页");
+        backBtnTitleModel.text = JobsInternationalization(@"返回首页");
         viewModel.backBtnTitleModel = backBtnTitleModel;
     }
     
@@ -235,13 +235,13 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     
     {
         UITextModel *textModel = UITextModel.new;
-        textModel.text = Internationalization(@"主标题");
+        textModel.text = JobsInternationalization(@"主标题");
         viewModel.textModel = textModel;
     }
     
     {
         UITextModel *textModel = UITextModel.new;
-        textModel.text = Internationalization(@"副标题");
+        textModel.text = JobsInternationalization(@"副标题");
         viewModel.subTextModel = textModel;
     }
     return viewModel;
@@ -250,7 +250,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //-(JobsOCBaseConfigTestPopupView *)JobsTestPopView:(NSString *)string{
 //    UIViewModel *viewModel = UIViewModel.new;
 //    UITextModel *textModel = UITextModel.new;
-//    textModel.text = [NSString isNullString:string] ? Internationalization(@"登入按钮") : string;
+//    textModel.text = [NSString isNullString:string] ? JobsInternationalization(@"登入按钮") : string;
 //    viewModel.textModel = textModel;
 //    return [self jobsTestPopView:viewModel];
 //}
@@ -264,9 +264,9 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //    @jobs_weakify(popupView)
 //    [testPopupView actionObjectBlock:^(UIButton *data) {
 //        @jobs_strongify(popupView)
-//        if ([[data titleForNormalState] isEqualToString:Internationalization(@"Cancel")]) {
+//        if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Cancel")]) {
 //            
-//        }else if ([[data titleForNormalState] isEqualToString:Internationalization(@"Sure")]){
+//        }else if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Sure")]){
 //            
 //        }else{}
 //        [testPopupView tf_hide];
@@ -288,9 +288,9 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     [popupView actionObjectBlock:^(UIButton *data) {
         @jobs_strongify(popupView)
         if([data.titleForNormalState isKindOfClass:NSString.class]){
-            if (data.titleForNormalState.isEqualToString(Internationalization(@"取消"))) {
+            if (data.titleForNormalState.isEqualToString(JobsInternationalization(@"取消"))) {
 
-            }else if (data.titleForNormalState.isEqualToString(Internationalization(@"确认"))){
+            }else if (data.titleForNormalState.isEqualToString(JobsInternationalization(@"确认"))){
                 
             }else{}
         }
@@ -307,9 +307,9 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //    [upgradePopupView richElementsInViewWithModel:updateData];
 //
 //    [upgradePopupView actionObjectBlock:^(UIButton *data) {
-//        if ([[data titleForNormalState] isEqualToString:Internationalization(@"Cancel")]) {
+//        if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Cancel")]) {
 //            if (cancelBlock) cancelBlock(@1);
-//        }else if ([[data titleForNormalState] isEqualToString:Internationalization(@"Sure")]){
+//        }else if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Sure")]){
 //            if (sureBlock) sureBlock(@1);
 //        }else{}
 //        [upgradePopupView tf_hide];
@@ -615,7 +615,7 @@ JobsKey(__立即注册)
     UIButton *_立即注册 = Jobs_getAssociatedObject(_立即注册);
     if ([self isKindOfClass:UIViewController.class] && !_立即注册 ) {
         _立即注册 = UIButton.new;
-        _立即注册.normalTitle = Internationalization(@"立即注册");
+        _立即注册.normalTitle = JobsInternationalization(@"立即注册");
         _立即注册.normalTitleColor = HEXCOLOR(0x757575);
         _立即注册.titleFont = UIFontWeightRegularSize(14);
         UIViewController *viewController = (UIViewController *)self;
@@ -647,7 +647,7 @@ JobsKey(__联系客服)
     UIButton *_联系客服 = Jobs_getAssociatedObject(__联系客服);
     if ([self isKindOfClass:UIViewController.class] && !_联系客服) {
         _联系客服 = UIButton.new;
-        _联系客服.normalTitle = Internationalization(@"联系客服");
+        _联系客服.normalTitle = JobsInternationalization(@"联系客服");
         _联系客服.normalTitleColor = HEXCOLOR(0x757575);
         _联系客服.titleFont = UIFontWeightRegularSize(14);
         UIViewController *viewController = (UIViewController *)self;
@@ -693,8 +693,8 @@ JobsKey(_richTextMutArr)
     NSMutableArray <NSString *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextMutArr);
     if (!RichTextMutArr) {
         RichTextMutArr = NSMutableArray.array;
-        [RichTextMutArr addObject:Internationalization(@"如需帮助，请联系")];
-        [RichTextMutArr addObject:Internationalization(@"专属客服")];
+        [RichTextMutArr addObject:JobsInternationalization(@"如需帮助，请联系")];
+        [RichTextMutArr addObject:JobsInternationalization(@"专属客服")];
         [self setRichTextMutArr:RichTextMutArr];
         Jobs_setAssociatedRETAIN_NONATOMIC(_richTextMutArr, RichTextMutArr)
     }return RichTextMutArr;
@@ -773,10 +773,10 @@ JobsKey(_jxCategoryViewTitleMutArr)
     NSMutableArray *JXCategoryViewTitleMutArr = Jobs_getAssociatedObject(_jxCategoryViewTitleMutArr);
     if (!JXCategoryViewTitleMutArr) {
         JXCategoryViewTitleMutArr = NSMutableArray.array;
-        [JXCategoryViewTitleMutArr addObject:Internationalization(@"今日")];
-        [JXCategoryViewTitleMutArr addObject:Internationalization(@"昨日")];
-        [JXCategoryViewTitleMutArr addObject:Internationalization(@"近7日")];
-        [JXCategoryViewTitleMutArr addObject:Internationalization(@"近30日")];
+        [JXCategoryViewTitleMutArr addObject:JobsInternationalization(@"今日")];
+        [JXCategoryViewTitleMutArr addObject:JobsInternationalization(@"昨日")];
+        [JXCategoryViewTitleMutArr addObject:JobsInternationalization(@"近7日")];
+        [JXCategoryViewTitleMutArr addObject:JobsInternationalization(@"近30日")];
     
         Jobs_setAssociatedRETAIN_NONATOMIC(_jxCategoryViewTitleMutArr, JXCategoryViewTitleMutArr)
     }return JXCategoryViewTitleMutArr;

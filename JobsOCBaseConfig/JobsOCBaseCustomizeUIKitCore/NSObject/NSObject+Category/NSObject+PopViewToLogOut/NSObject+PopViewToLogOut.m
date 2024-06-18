@@ -15,10 +15,10 @@ JobsKey(_logOutPopupVM)
     UIViewModel *LogOutPopupVM = Jobs_getAssociatedObject(_logOutPopupVM);
     if (!LogOutPopupVM) {
         LogOutPopupVM = UIViewModel.new;
-        LogOutPopupVM.textModel.text = Internationalization(@"Confirm to exit ?");
+        LogOutPopupVM.textModel.text = JobsInternationalization(@"Confirm to exit ?");
         LogOutPopupVM.textModel.font = UIFontWeightRegularSize(14);
         LogOutPopupVM.textModel.textAlignment = NSTextAlignmentCenter;
-        LogOutPopupVM.subTextModel.text = Internationalization(@"");
+        LogOutPopupVM.subTextModel.text = JobsInternationalization(@"");
         LogOutPopupVM.bgCor = UIColor.whiteColor;
         Jobs_setAssociatedRETAIN_NONATOMIC(_logOutPopupVM, LogOutPopupVM)
     }return LogOutPopupVM;
@@ -43,7 +43,7 @@ JobsKey(_logOutPopupView)
                 NSLog(@"手滑了");
             }else if (data.tag == 999){// 确定退出
                 [self logOut];
-                [WHToast jobsToastSuccessMsg:Internationalization(@"Logout succeeded")];
+                [WHToast jobsToastSuccessMsg:JobsInternationalization(@"Logout succeeded")];
                 extern BOOL ISLogin;
                 ISLogin = NO;
                 [NSNotificationCenter.defaultCenter postNotificationName:退出登录 object:@(NO)];

@@ -92,11 +92,11 @@ static TKPermissionMotion * _shared = nil;
 }
 
 -(void)jumpSetting{
-    [TKPermissionPublic alertPromptTips:Internationalization(@"访问运动与健身时需要您提供权限，去设置！")];
+    [TKPermissionPublic alertPromptTips:JobsInternationalization(@"访问运动与健身时需要您提供权限，去设置！")];
 }
 
 -(void)alertAction{
-    [TKPermissionPublic alertTips:Internationalization(@"当前设备不支持运动与健身！")];
+    [TKPermissionPublic alertTips:JobsInternationalization(@"当前设备不支持运动与健身！")];
 }
 
 @end

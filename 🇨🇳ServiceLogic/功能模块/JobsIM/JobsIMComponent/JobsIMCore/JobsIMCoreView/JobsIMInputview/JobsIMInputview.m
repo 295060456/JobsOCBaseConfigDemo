@@ -62,7 +62,7 @@
         _sendBtn = UIButton.new;
         _sendBtn.userInteractionEnabled = NO;
         _sendBtn.enabled = NO;
-        _sendBtn.normalTitle = Internationalization(@"发送");
+        _sendBtn.normalTitle = JobsInternationalization(@"发送");
         _sendBtn.normalTitleColor = JobsWhiteColor;
         [_sendBtn setTitleColor:JobsWhiteColor forState:UIControlStateDisabled];
         _sendBtn.normalBackgroundImage = [UIImage imageWithColor:JobsCyanColor];

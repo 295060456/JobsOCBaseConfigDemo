@@ -100,7 +100,7 @@ static bool safeLock = NO;//防止连续请求lock
 }
 
 +(void)jumpSetting{
-    [TKPermissionPublic alertPromptTips:Internationalization(@"访问相册时需要您提供权限，去设置!")];
+    [TKPermissionPublic alertPromptTips:JobsInternationalization(@"访问相册时需要您提供权限，去设置!")];
 }
 
 @end

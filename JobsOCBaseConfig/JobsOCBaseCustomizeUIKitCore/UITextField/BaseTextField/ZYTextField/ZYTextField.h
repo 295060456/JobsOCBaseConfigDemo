@@ -61,7 +61,7 @@
          _textField.keyboardType = UIKeyboardTypeDefault;
          _textField.rightView = self.titleLab;
          _textField.rightViewMode = UITextFieldViewModeAlways;
-         _textField.placeholder = Internationalization(@"打赏的Mata值");
+         _textField.placeholder = JobsInternationalization(@"打赏的Mata值");
          _textField.placeholderColor = JobsCor(@"#333333");
          _textField.placeholderFont = UIFontWeightRegularSize(12);
 
@@ -184,7 +184,7 @@
          _textField.leftViewMode = UITextFieldViewModeAlways;
          _textField.rightView = self.searchBtn;
          _textField.rightViewMode = UITextFieldViewModeAlways;
-         _textField.placeholder = Internationalization(@"搜索关键词");
+         _textField.placeholder = JobsInternationalization(@"搜索关键词");
          _textField.placeholderFont = UIFontWeightRegularSize(14);
          _textField.placeholderColor = JobsGrayColor;
          _textField.size = CGSizeMake(JobsWidth(220 - 80 - 12), JobsWidth(28));

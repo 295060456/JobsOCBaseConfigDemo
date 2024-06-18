@@ -33,7 +33,7 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -68,7 +68,7 @@
 -(UIButton *)cameraBtn{
     if(!_cameraBtn){
         _cameraBtn = UIButton.new;
-        _cameraBtn.normalTitle = Internationalization(@"调取系统相机");
+        _cameraBtn.normalTitle = JobsInternationalization(@"调取系统相机");
         _cameraBtn.backgroundColor = UIColor.greenColor;
         _cameraBtn.normalTitleColor = JobsWhiteColor;
         [self.view addSubview:_cameraBtn];
@@ -97,7 +97,7 @@
         _photoAlbumBtn = UIButton.new;
         _photoAlbumBtn.backgroundColor = UIColor.blueColor;
         _photoAlbumBtn.normalTitleColor = JobsWhiteColor;
-        _photoAlbumBtn.normalTitle = Internationalization(@"调取系统相机");
+        _photoAlbumBtn.normalTitle = JobsInternationalization(@"调取系统相机");
         [self.view addSubview:_photoAlbumBtn];
         [_photoAlbumBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(50));

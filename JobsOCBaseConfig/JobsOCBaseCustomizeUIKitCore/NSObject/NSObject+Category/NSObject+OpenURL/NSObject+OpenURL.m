@@ -17,7 +17,7 @@
                                                     requestParams:nil
                                                        completion:completionHandlerBlock];
     }else{
-        [self jobsToastMsg:Internationalization(@"打开邮件失败,请确保设备上至少启用了一个电子邮件帐户！")];
+        [self jobsToastMsg:JobsInternationalization(@"打开邮件失败,请确保设备上至少启用了一个电子邮件帐户！")];
     }
 }
 #pragma mark —— MFMessageComposeViewControllerDelegate
@@ -108,15 +108,15 @@ successCompletionHandlerBlock:(jobsByVoidBlock _Nullable)successCompletionHandle
 failCompletionHandlerBlock:(jobsByVoidBlock _Nullable)failCompletionHandlerBlock{
     /// URLStr不是字符串、为空、不能打开均不走以下逻辑判断
     if (![URLStr isKindOfClass:NSString.class]) {
-        [self jobsToastMsg:Internationalization(@"URL类型不匹配，请检查")];
+        [self jobsToastMsg:JobsInternationalization(@"URL类型不匹配，请检查")];
         return NO;
     }
     if ([NSString isNullString:URLStr]) {
-        [self jobsToastMsg:Internationalization(@"URL为空，请检查！")];
+        [self jobsToastMsg:JobsInternationalization(@"URL为空，请检查！")];
         return NO;
     }
     if (!URLStr.jobsCanOpenUrl) {
-        [self jobsToastMsg:[NSString stringWithFormat:Internationalization(@"打开%@失败，请检查"),URLStr]];
+        [self jobsToastMsg:[NSString stringWithFormat:JobsInternationalization(@"打开%@失败，请检查"),URLStr]];
         return URLStr.jobsCanOpenUrl;
     }
     options = options ? options : @{};
@@ -153,7 +153,7 @@ JobsKey(_messageComposeVC)
     if (!MessageComposeVC) {
         MessageComposeVC = MFMessageComposeViewController.new;
         //设置短信内容
-        MessageComposeVC.body = Internationalization(@"吃饭了没");
+        MessageComposeVC.body = JobsInternationalization(@"吃饭了没");
         //设置收件人列表
         MessageComposeVC.recipients = @[@"10010",@"10086"];
         //设置代理
@@ -173,9 +173,9 @@ JobsKey(_mailComposeVC)
     if (!MailComposeVC) {
         MailComposeVC = MFMailComposeViewController.new;
         //设置邮件主题
-        [MailComposeVC setSubject:Internationalization(@"测试邮件")];
+        [MailComposeVC setSubject:JobsInternationalization(@"测试邮件")];
         //设置邮件内容
-        [MailComposeVC setMessageBody:Internationalization(@"测试内容") isHTML:NO];
+        [MailComposeVC setMessageBody:JobsInternationalization(@"测试内容") isHTML:NO];
         //设置收件人列表
         [MailComposeVC setToRecipients:@[@"test@qq.com"]];
         //设置抄送人列表

@@ -12,7 +12,7 @@
 
 + (instancetype)diyEmptyViewWithTitle:(NSString *_Nullable)title{
     if (title.nullString) {
-        title = Internationalization(@"No Data");
+        title = JobsInternationalization(@"No Data");
     }
     return [EmptyView emptyViewWithImageStr:@"暂无数据"
                                    titleStr:title

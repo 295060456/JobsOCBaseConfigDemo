@@ -40,7 +40,7 @@
     NSError *error = nil;
     NSDataDetector *detector = [NSDataDetector.alloc initWithTypes:NSTextCheckingTypeLink error:&error];
     if (error) {
-        [WHToast jobsToastMsg:Internationalization(@"出现错误")];
+        [WHToast jobsToastMsg:JobsInternationalization(@"出现错误")];
         return;
     }
     //通过检测字符串最后几位是否是.com .cn...来进行判定
@@ -50,12 +50,12 @@
     //判断有没有链接
     if(checkArr.count > 0) {
         if (checkArr.count > 1) { //网址多于1个时让用户选择跳哪个链接
-            [WHToast jobsToastMsg:Internationalization(@"多于1个链接")];
+            [WHToast jobsToastMsg:JobsInternationalization(@"多于1个链接")];
         }else {//一个链接直接打开
-            [WHToast jobsToastMsg:Internationalization(@"只有1个链接")];
+            [WHToast jobsToastMsg:JobsInternationalization(@"只有1个链接")];
         }
     }else{
-        [WHToast jobsToastMsg:Internationalization(@"没有链接")];
+        [WHToast jobsToastMsg:JobsInternationalization(@"没有链接")];
     }
 }
 

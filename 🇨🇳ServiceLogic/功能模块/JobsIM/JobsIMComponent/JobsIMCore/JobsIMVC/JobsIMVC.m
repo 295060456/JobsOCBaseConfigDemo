@@ -38,7 +38,7 @@
         [self.chatInfoModelMutArr addObject:self.chatInfoModel];
         
         self.viewModel.textModel.text = self.chatInfoModel.userNameStr;
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"聊天列表");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"聊天列表");
     }
 }
 
@@ -446,7 +446,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
         _shareBtn.normalTitleColor = JobsWhiteColor;
         [_shareBtn cornerCutToCircleWithCornerRadius:23 / 2];
         [_shareBtn jobsBtnClickEventBlock:^id(id data) {
-            toast(Internationalization(@"正在研发中...敬请期待"));
+            toast(JobsInternationalization(@"正在研发中...敬请期待"));
             return nil;
         }];
     }return _shareBtn;

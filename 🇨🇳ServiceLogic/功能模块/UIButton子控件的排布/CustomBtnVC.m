@@ -32,9 +32,9 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-//        self.viewModel.textModel.text = Internationalization(@"UIButton子控件的排布");
+//        self.viewModel.textModel.text = JobsInternationalization(@"UIButton子控件的排布");
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
@@ -62,7 +62,7 @@
 -(UIButton *)btn1{
     if (!_btn1) {
         _btn1 = UIButton.new;
-        _btn1.normalTitle = Internationalization(@"image左、label右【系统默认状态】");
+        _btn1.normalTitle = JobsInternationalization(@"image左、label右【系统默认状态】");
         _btn1.normalImage = JobsIMG(@"Lock");
         _btn1.normalTitleColor = JobsWhiteColor;
         _btn1.titleFont = notoSansRegular(14);
@@ -87,7 +87,7 @@
 -(UIButton *)btn2{
     if (!_btn2) {
         _btn2 = UIButton.new;
-        _btn2.normalTitle = Internationalization(@"image右、label左");
+        _btn2.normalTitle = JobsInternationalization(@"image右、label左");
         _btn2.normalImage = JobsIMG(@"Lock");
         _btn2.normalTitleColor = JobsWhiteColor;
         _btn2.titleFont = notoSansRegular(14);
@@ -112,7 +112,7 @@
 -(UIButton *)btn3{
     if (!_btn3) {
         _btn3 = UIButton.new;
-        _btn3.normalTitle = Internationalization(@"image上，label下");
+        _btn3.normalTitle = JobsInternationalization(@"image上，label下");
         _btn3.normalImage = JobsIMG(@"Lock");
         _btn3.normalTitleColor = JobsWhiteColor;
         _btn3.titleFont = notoSansRegular(14);
@@ -137,7 +137,7 @@
 -(UIButton *)btn4{
     if (!_btn4) {
         _btn4 = UIButton.new;
-        _btn4.normalTitle = Internationalization(@"image下，label上");
+        _btn4.normalTitle = JobsInternationalization(@"image下，label上");
         _btn4.normalImage = JobsIMG(@"Lock");
         _btn4.normalTitleColor = JobsWhiteColor;
         _btn4.titleFont = notoSansRegular(14);

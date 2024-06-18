@@ -38,8 +38,8 @@
     if (self = [super init]) {
 //        self.backgroundColor = JobsRedColor;
         self.thisViewSize = thisViewSize;
-        self.titleStr_1 = Internationalization(@"点击");
-        self.titleStr_2 = Internationalization(@"发送验证码");
+        self.titleStr_1 = JobsInternationalization(@"点击");
+        self.titleStr_2 = JobsInternationalization(@"发送验证码");
         [self layerBorderCor:JobsWhiteColor andBorderWidth:1];
     }return self;
 }
@@ -136,7 +136,7 @@
                                                                                weight:UIFontWeightMedium];
         /// 计时器进行中【动态值】
         _btnTimerConfigModel.runningValue.bgCor = UIColor.clearColor;
-        _btnTimerConfigModel.runningValue.text = Internationalization(Title12);
+        _btnTimerConfigModel.runningValue.text = JobsInternationalization(Title12);
         _btnTimerConfigModel.runningValue.layerBorderCor = UIColor.clearColor;
         _btnTimerConfigModel.runningValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
         _btnTimerConfigModel.runningValue.font = [UIFont systemFontOfSize:JobsWidth(14)

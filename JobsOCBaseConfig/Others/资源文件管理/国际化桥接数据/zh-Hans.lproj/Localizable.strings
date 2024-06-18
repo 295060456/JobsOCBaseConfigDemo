@@ -6,6 +6,29 @@
   
 */
 
+/// 权限设置
+"NSFaceIDUsageDescription" = "App需要您的同意，才能访问您的面容识别功能，用于安全验证";
+"NSAppleMusicUsageDescription" = "添加曲目到您的音乐库";
+"NSBluetoothAlwaysUsageDescription" = "若不允许，你将无法使用联机服务";
+"NSBluetoothPeripheralUsageDescription" = "若不允许，你将无法使用联机服务";
+"NSCalendarsUsageDescription" = "若不允许，你将无法使用添加日历功能";
+"NSCameraUsageDescription" = "若不允许，你将无法使用拍照功能";
+"NSContactsUsageDescription" = "通讯录信息仅用于查找联系人，并会得到严格保密";
+"NSHealthShareUsageDescription" = "若不允许，你将无法参与运动排行榜活动";
+"NSHealthUpdateUsageDescription" = "若不允许，你将无法参与运动排行榜活动";
+"NSHomeKitUsageDescription" = "若不允许，你将无法使用智能家居服务";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "我们需要获取你的定位权限以供完成查找附近商户功能";
+"NSLocationAlwaysUsageDescription" = "我们需要您的同意,您的位置信息将用于查看当前位置信息";
+"NSLocationWhenInUseUsageDescription" = "我们需要获取你的定位权限以供完成查找附近商户功能";
+"NSMicrophoneUsageDescription" = "我们需要获取你的麦克风权限以供完成语音搜索功能";
+"NSMotionUsageDescription" = "我们需要获取你的运动权限以完成运动挑战赛功能";
+"NSPhotoLibraryAddUsageDescription" = "我们需要获取你的相册权限以完成选择本地图片功能";
+"NSPhotoLibraryUsageDescription" = "我们需要获取你的相册权限以完成选择本地图片功能";
+"NSRemindersUsageDescription" = "我们需要获取你的提醒事项权限以供添加提醒事项";
+"NSSiriUsageDescription" = "我们需要获取你的Siri权限以方便完成Siri建议功能";
+"NSSpeechRecognitionUsageDescription" = "我们需要获取你的语音识别功能已完成键盘语音识别输入功能";
+"NSVideoSubscriberAccountUsageDescription" = "我们需要获取你的TV权限";
+
 "By System" = "跟随系统";
 "Chinese" = "中文";
 "English" = "英文";

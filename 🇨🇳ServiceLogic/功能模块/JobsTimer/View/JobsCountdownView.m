@@ -95,9 +95,9 @@ static dispatch_once_t static_countdownViewOnceToken;
             @jobs_strongify(self)
             if ([data isKindOfClass:TimerProcessModel.class]) {
                 self.timerProcessModel = (TimerProcessModel *)data;
-                NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",self.timerProcessModel.data.anticlockwiseTime] formatTime:self.formatTime] componentsSeparatedByString:Internationalization(@"分")];
+                NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",self.timerProcessModel.data.anticlockwiseTime] formatTime:self.formatTime] componentsSeparatedByString:JobsInternationalization(@"分")];
                 self.minutesStr = strArr1[0];
-                NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:Internationalization(@"秒")];
+                NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
                 self.secondStr = strArr2[0];
                 self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
                                                                            paragraphStyle:self.paragraphStyle];
@@ -109,19 +109,19 @@ static dispatch_once_t static_countdownViewOnceToken;
 -(JobsFormatTime *)formatTime{
     if (!_formatTime) {
         _formatTime = JobsFormatTime.new;
-        _formatTime.year = Internationalization(@"");
-        _formatTime.month = Internationalization(@"");
-        _formatTime.day = Internationalization(@"");
-        _formatTime.hour = Internationalization(@"");
-        _formatTime.minute = Internationalization(@"分");
-        _formatTime.second = Internationalization(@"秒");
+        _formatTime.year = JobsInternationalization(@"");
+        _formatTime.month = JobsInternationalization(@"");
+        _formatTime.day = JobsInternationalization(@"");
+        _formatTime.hour = JobsInternationalization(@"");
+        _formatTime.minute = JobsInternationalization(@"分");
+        _formatTime.second = JobsInternationalization(@"秒");
     }return _formatTime;
 }
 
 -(UILabel *)titleLab{
     if (!_titleLab) {
         _titleLab = UILabel.new;
-        _titleLab.text = Internationalization(@"支付時間還有");
+        _titleLab.text = JobsInternationalization(@"支付時間還有");
         _titleLab.font = notoSansRegular(14);
         _titleLab.textColor = HEXCOLOR(0x757575);
         [self addSubview:_titleLab];
@@ -161,7 +161,7 @@ static dispatch_once_t static_countdownViewOnceToken;
     RichTextConfig *config_02 = RichTextConfig.new;
     config_02.font = notoSansRegular(12);
     config_02.textCor = HEXCOLOR(0x757575);
-    config_02.targetString = Internationalization(@"分");
+    config_02.targetString = JobsInternationalization(@"分");
     [_richTextConfigMutArr addObject:config_02];
     
     RichTextConfig *config_03 = RichTextConfig.new;
@@ -173,7 +173,7 @@ static dispatch_once_t static_countdownViewOnceToken;
     RichTextConfig *config_04 = RichTextConfig.new;
     config_04.font = notoSansRegular(12);
     config_04.textCor = HEXCOLOR(0x757575);
-    config_04.targetString = Internationalization(@"秒");
+    config_04.targetString = JobsInternationalization(@"秒");
     [_richTextConfigMutArr addObject:config_04];
     
     return _richTextConfigMutArr;
@@ -182,9 +182,9 @@ static dispatch_once_t static_countdownViewOnceToken;
 -(NSMutableArray<NSString *> *)richTextMutArr{
     JobsMutableArray(_richTextMutArr);
     [_richTextMutArr addObject:self.minutesStr];
-    [_richTextMutArr addObject:Internationalization(@"分")];
+    [_richTextMutArr addObject:JobsInternationalization(@"分")];
     [_richTextMutArr addObject:self.secondStr];
-    [_richTextMutArr addObject:Internationalization(@"秒")];
+    [_richTextMutArr addObject:JobsInternationalization(@"秒")];
     return _richTextMutArr;
 }
 
@@ -197,13 +197,13 @@ static dispatch_once_t static_countdownViewOnceToken;
 
 -(NSString *)minutesStr{
     if (!_minutesStr) {
-        _minutesStr = Internationalization(@"30");
+        _minutesStr = JobsInternationalization(@"30");
     }return _minutesStr;
 }
 
 -(NSString *)secondStr{
     if (!_secondStr) {
-        _secondStr = Internationalization(@"0");
+        _secondStr = JobsInternationalization(@"0");
     }return _secondStr;
 }
 

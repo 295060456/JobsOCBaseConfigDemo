@@ -89,7 +89,7 @@
     if (replaceString == nil ||
         replaceString == Nil ||
         replaceString.length == 0) {
-        replaceString = Internationalization(@"No Data");
+        replaceString = JobsInternationalization(@"No Data");
     }
     if (nullableString == nil ||
         nullableString == NULL ||

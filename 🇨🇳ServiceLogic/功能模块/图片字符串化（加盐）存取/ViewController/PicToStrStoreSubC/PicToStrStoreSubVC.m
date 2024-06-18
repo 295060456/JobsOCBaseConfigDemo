@@ -38,7 +38,7 @@
         self.viewModel = (UIViewModel *)self.requestParams;
     }
     self.setupNavigationBarHidden = YES;
-    self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -130,7 +130,7 @@
         _showStr = [_showStr stringByAppendingString:@"...后面还有很多，就不一一列举了（渲染UI会撑爆内存，最终导致程序崩溃）"];
         self.textView.text = _showStr;
     }else{
-        [WHToast jobsToastMsg:Internationalization(@"暂无编码数据！！！")];
+        [WHToast jobsToastMsg:JobsInternationalization(@"暂无编码数据！！！")];
     }return string;
 }
 /// 输出图片到Btn_1
@@ -139,7 +139,7 @@
         _picBefore = image;
         self.btn_1.jobsResetBtnImage(_picBefore);
     }else{
-        [WHToast jobsToastMsg:Internationalization(@"字符串解码转换失败")];
+        [WHToast jobsToastMsg:JobsInternationalization(@"字符串解码转换失败")];
     }
 }
 /// 输出图片到Btn_2
@@ -148,7 +148,7 @@
         _picAfter = image;
         self.btn_2.jobsResetBtnImage(image);
     }else{
-        [WHToast jobsToastMsg:Internationalization(@"字符串解码转换失败")];
+        [WHToast jobsToastMsg:JobsInternationalization(@"字符串解码转换失败")];
     }return _picAfter;
 }
 #pragma mark —— 图片（图片数据Data）=编码=> 字符串(加盐)
@@ -218,8 +218,8 @@
                                               attributedTitle:nil
                                       selectedAttributedTitle:nil
                                            attributedSubtitle:nil
-                                                        title:Internationalization(@"点击按钮")
-                                                     subTitle:Internationalization(@"选取相册图片")
+                                                        title:JobsInternationalization(@"点击按钮")
+                                                     subTitle:JobsInternationalization(@"选取相册图片")
                                                     titleFont:UIFontWeightBoldSize(25)
                                                  subTitleFont:UIFontWeightBoldSize(18)
                                                      titleCor:JobsCor(@"#333333")
@@ -285,8 +285,8 @@
                                               attributedTitle:nil
                                       selectedAttributedTitle:nil
                                            attributedSubtitle:nil
-                                                        title:Internationalization(@"点击按钮")
-                                                     subTitle:Internationalization(@"编码转译成图片")
+                                                        title:JobsInternationalization(@"点击按钮")
+                                                     subTitle:JobsInternationalization(@"编码转译成图片")
                                                     titleFont:UIFontWeightBoldSize(25)
                                                  subTitleFont:UIFontWeightBoldSize(18)
                                                      titleCor:JobsCor(@"#333333")
@@ -314,7 +314,7 @@
                 /// 存在于内存里面的编码，转变成图像对外进行输出
                 [self picForStr:self->_resultStr];
             }else{
-                [WHToast jobsToastMsg:Internationalization(@"请先编码图片")];
+                [WHToast jobsToastMsg:JobsInternationalization(@"请先编码图片")];
             }return nil;
         }];
         [self.view addSubview:_btn_2];
@@ -332,7 +332,7 @@
     if (!_textView) {
         _textView = UITextView.new;
         _textView.backgroundColor = JobsLightTextColor;
-        _textView.text = Internationalization(@"暂无编码数据！！！");
+        _textView.text = JobsInternationalization(@"暂无编码数据！！！");
         _textView.textColor = HEXCOLOR(0xB0B0B0);
         _textView.font = UIFontSystemFontOfSize(14);
         [self.view addSubview:_textView];

@@ -13,7 +13,7 @@
     CFUUIDRef uuid_ref = CFUUIDCreate(kCFAllocatorDefault);
     CFStringRef uuid_string_ref = CFUUIDCreateString(kCFAllocatorDefault, uuid_ref);
     CFRelease(uuid_ref);
-    NSString *uuid = JobsNonnullString([NSString stringWithString:(__bridge NSString*)uuid_string_ref], Internationalization(@""));
+    NSString *uuid = JobsNonnullString([NSString stringWithString:(__bridge NSString*)uuid_string_ref], JobsInternationalization(@""));
     CFRelease(uuid_string_ref);
     return uuid.lowercaseString;
 }

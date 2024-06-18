@@ -51,11 +51,11 @@ static bool safeLock = NO;//防止连续请求lock
 }
 #pragma mark —— 一些私有方法
 +(void)jumpSetting{
-    [TKPermissionPublic alertPromptTips:Internationalization(@"使用语音识别功能时需要您提供权限，去设置!")];
+    [TKPermissionPublic alertPromptTips:JobsInternationalization(@"使用语音识别功能时需要您提供权限，去设置!")];
 }
 
 +(void)alertAction{
-    [TKPermissionPublic alertTips:Internationalization(@"要使用语音识别功能，系统版本需要iOS10及以上！")];
+    [TKPermissionPublic alertTips:JobsInternationalization(@"要使用语音识别功能，系统版本需要iOS10及以上！")];
 }
 
 @end

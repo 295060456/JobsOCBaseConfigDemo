@@ -197,13 +197,13 @@
 - (void)registerNotificationCategory {
     // calendarCategory
     UNNotificationAction *completeAction = [UNNotificationAction actionWithIdentifier:@"markAsCompleted"
-                                                                                title:Internationalization(@"Mark as Completed")
+                                                                                title:JobsInternationalization(@"Mark as Completed")
                                                                               options:UNNotificationActionOptionNone];
     UNNotificationAction *remindMeIn1MinuteAction = [UNNotificationAction actionWithIdentifier:@"remindMeIn1Minute"
-                                                                                         title:Internationalization(@"Remind me in 1 Minute")
+                                                                                         title:JobsInternationalization(@"Remind me in 1 Minute")
                                                                                        options:UNNotificationActionOptionNone];
     UNNotificationAction *remindMeIn5MinuteAction = [UNNotificationAction actionWithIdentifier:@"remindMeIn5Minute"
-                                                                                         title:Internationalization(@"Remind me in 5 Minutes")
+                                                                                         title:JobsInternationalization(@"Remind me in 5 Minutes")
                                                                                        options:UNNotificationActionOptionNone];
     UNNotificationCategory *calendarCategory = [UNNotificationCategory categoryWithIdentifier:@"calendarCategory"
                                                                                       actions:@[completeAction, remindMeIn1MinuteAction, remindMeIn5MinuteAction]
@@ -212,13 +212,13 @@
     
     // customUICategory
     UNNotificationAction *nextAction = [UNNotificationAction actionWithIdentifier:@"stop"
-                                                                            title:Internationalization(@"Stop")
+                                                                            title:JobsInternationalization(@"Stop")
                                                                           options:UNNotificationActionOptionForeground];
     UNNotificationAction *commentAction = [UNTextInputNotificationAction actionWithIdentifier:@"comment"
-                                                                                        title:Internationalization(@"Comment")
+                                                                                        title:JobsInternationalization(@"Comment")
                                                                                       options:UNNotificationActionOptionForeground
-                                                                         textInputButtonTitle:Internationalization(@"Send")
-                                                                         textInputPlaceholder:Internationalization(@"Say something")];
+                                                                         textInputButtonTitle:JobsInternationalization(@"Send")
+                                                                         textInputPlaceholder:JobsInternationalization(@"Say something")];
     UNNotificationCategory *customUICategory = [UNNotificationCategory categoryWithIdentifier:@"customUICategory"
                                                                                       actions:@[nextAction, commentAction]
                                                                             intentIdentifiers:@[]

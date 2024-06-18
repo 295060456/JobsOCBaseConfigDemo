@@ -96,8 +96,8 @@ NS_ASSUME_NONNULL_END
  -(NSMutableArray<NSString *> *)richTextMutArr{
      if (!_richTextMutArr) {
          _richTextMutArr = NSMutableArray.array;
-         [_richTextMutArr addObject:Internationalization(@"如需帮助，请联系")];
-         [_richTextMutArr addObject:Internationalization(@"专属客服")];
+         [_richTextMutArr addObject:JobsInternationalization(@"如需帮助，请联系")];
+         [_richTextMutArr addObject:JobsInternationalization(@"专属客服")];
      }return _richTextMutArr;
  }
 
@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_END
  shouldInteractWithURL:(NSURL *)URL
           inRange:(NSRange)characterRange
       interaction:(UITextItemInteraction)interaction{
-     [WHToast jobsToastMsg:Internationalization(@"专属客服")];
+     [WHToast jobsToastMsg:JobsInternationalization(@"专属客服")];
      return YES;
  }
  

@@ -40,7 +40,7 @@
 -(UILabel *)titleLab{
     if (!_titleLab) {
         _titleLab = UILabel.new;
-        _titleLab.text = Internationalization(@"评论");
+        _titleLab.text = JobsInternationalization(@"评论");
         _titleLab.textColor = JobsCor(@"#999999");
         _titleLab.font = UIFontWeightRegularSize(18);
         [_titleLab labelAutoWidthByFont];

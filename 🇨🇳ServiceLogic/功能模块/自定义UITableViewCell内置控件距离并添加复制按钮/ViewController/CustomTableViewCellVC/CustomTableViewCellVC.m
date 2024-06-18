@@ -32,9 +32,9 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-//        self.viewModel.textModel.text = Internationalization(@"充值");
+//        self.viewModel.textModel.text = JobsInternationalization(@"充值");
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
@@ -145,43 +145,43 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             NSMutableArray <UIViewModel *>*mutArr = NSMutableArray.array;
             {
                 UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = Internationalization(@"存款金额");
-                viewModel.subTextModel.text = Internationalization(@"10,000.00");
+                viewModel.textModel.text = JobsInternationalization(@"存款金额");
+                viewModel.subTextModel.text = JobsInternationalization(@"10,000.00");
                 [mutArr addObject:viewModel];
             }
             
             {
                 UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = Internationalization(@"存款方式");
-                viewModel.subTextModel.text = Internationalization(@"虛擬幣充值");
+                viewModel.textModel.text = JobsInternationalization(@"存款方式");
+                viewModel.subTextModel.text = JobsInternationalization(@"虛擬幣充值");
                 [mutArr addObject:viewModel];
             }
             
             {
                 UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = Internationalization(@"訂單編號");
-                viewModel.subTextModel.text = Internationalization(@"YSF2025022302644565964");
+                viewModel.textModel.text = JobsInternationalization(@"訂單編號");
+                viewModel.subTextModel.text = JobsInternationalization(@"YSF2025022302644565964");
                 [mutArr addObject:viewModel];
             }
             
             {
                 UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = Internationalization(@"轉賬姓名");
-                viewModel.subTextModel.text = Internationalization(@"張三 ");
+                viewModel.textModel.text = JobsInternationalization(@"轉賬姓名");
+                viewModel.subTextModel.text = JobsInternationalization(@"張三 ");
                 [mutArr addObject:viewModel];
             }
             
             {
                 UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = Internationalization(@"銀行賬號");
-                viewModel.subTextModel.text = Internationalization(@"6230 5822 0031 5762 430");
+                viewModel.textModel.text = JobsInternationalization(@"銀行賬號");
+                viewModel.subTextModel.text = JobsInternationalization(@"6230 5822 0031 5762 430");
                 [mutArr addObject:viewModel];
             }
             
             {
                 UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = Internationalization(@"轉賬地址");
-                viewModel.subTextModel.text = Internationalization(@"中國平安銀行");
+                viewModel.textModel.text = JobsInternationalization(@"轉賬地址");
+                viewModel.subTextModel.text = JobsInternationalization(@"中國平安銀行");
                 [mutArr addObject:viewModel];
             }
             UIViewModel *viewModel = UIViewModel.new;

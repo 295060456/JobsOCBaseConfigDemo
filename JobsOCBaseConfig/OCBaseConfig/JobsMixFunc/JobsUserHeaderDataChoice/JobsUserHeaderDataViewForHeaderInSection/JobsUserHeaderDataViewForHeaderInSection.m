@@ -52,7 +52,7 @@
     if (!_titleLab) {
         _titleLab = UILabel.new;
         _titleLab.backgroundColor = HEXCOLOR(0xFFFFFF);
-        _titleLab.text = self.viewModel.textModel.text.nullString ? Internationalization(@"请设置大标题") : self.viewModel.textModel.text;
+        _titleLab.text = self.viewModel.textModel.text.nullString ? JobsInternationalization(@"请设置大标题") : self.viewModel.textModel.text;
         _titleLab.textColor = self.viewModel.textModel.textCor;
         _titleLab.font = [UIFont systemFontOfSize:JobsWidth(20) weight:UIFontWeightRegular];
         _titleLab.textAlignment = NSTextAlignmentCenter;

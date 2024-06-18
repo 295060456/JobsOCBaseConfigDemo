@@ -57,7 +57,7 @@
         _titleLab = UILabel.new;
         _titleLab.font = UIFontWeightMediumSize(14);
         _titleLab.textColor = HEXCOLOR(0x524740);
-        _titleLab.text = Internationalization(@"The existing new version needs to be updated. Are you sure to download it?");
+        _titleLab.text = JobsInternationalization(@"The existing new version needs to be updated. Are you sure to download it?");
         _titleLab.numberOfLines = 0;
         _titleLab.textAlignment = NSTextAlignmentCenter;
         [_titleLab makeLabelByShowingType:UILabelShowingType_03];
@@ -74,7 +74,7 @@
 -(UIButton *)cancelBtn{
     if (!_cancelBtn) {
         _cancelBtn = UIButton.new;
-        _cancelBtn.normalTitle = Internationalization(@"Cancel");
+        _cancelBtn.normalTitle = JobsInternationalization(@"Cancel");
         _cancelBtn.normalTitleColor = HEXCOLOR(0x502600);
         _cancelBtn.titleFont = UIFontWeightRegularSize(14);
         _cancelBtn.normalBackgroundImage = JobsIMG(@"弹窗取消按钮背景图");
@@ -96,7 +96,7 @@
 -(UIButton *)sureBtn{
     if (!_sureBtn) {
         _sureBtn = UIButton.new;
-        _sureBtn.normalTitle = Internationalization(@"Sure");
+        _sureBtn.normalTitle = JobsInternationalization(@"Sure");
         _sureBtn.normalTitleColor = HEXCOLOR(0x502600);
         _sureBtn.normalBackgroundImage = JobsIMG(@"弹窗确定按钮背景图");
         _sureBtn.titleFont = UIFontWeightRegularSize(14);

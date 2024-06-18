@@ -79,11 +79,11 @@
                     }];
                 }
             }else{
-                [self jobsToastMsg:Internationalization(@"授权失败,无法使用相机.请在设置-隐私-相机中允许访问相机")];
+                [self jobsToastMsg:JobsInternationalization(@"授权失败,无法使用相机.请在设置-隐私-相机中允许访问相机")];
             }
         }];
     }else{
-        [self jobsToastMsg:Internationalization(@"此设备不支持相机!")];
+        [self jobsToastMsg:JobsInternationalization(@"此设备不支持相机!")];
     }
 }
 #pragma mark —— @property(nonatomic,strong)HXPhotoManager *photoManager;//选取图片的数据管理类

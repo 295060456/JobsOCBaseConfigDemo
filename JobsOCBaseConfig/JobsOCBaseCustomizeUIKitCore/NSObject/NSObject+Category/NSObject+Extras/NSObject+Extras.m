@@ -145,7 +145,7 @@
         NSString *string = (NSString *)self;
         return [NSString isNullString:string];
     }else{
-        NSCAssert(self.isKindOfClassBlock(NSString.class), Internationalization(@"目标对象不是字符串类型"));
+        NSCAssert(self.isKindOfClassBlock(NSString.class), JobsInternationalization(@"目标对象不是字符串类型"));
         return YES;
     }
 }
@@ -511,10 +511,10 @@
             if (![NSString isNullString:view.internationalizationKEY]) {
                 if ([view isKindOfClass:UILabel.class]) {
                     UILabel *lab = (UILabel *)view;
-                    lab.text = Internationalization(view.internationalizationKEY);
+                    lab.text = JobsInternationalization(view.internationalizationKEY);
                 }else if ([view isKindOfClass:UIButton.class]){
                     UIButton *btn = (UIButton *)view;
-                    [btn normalTitle:Internationalization(view.internationalizationKEY)];
+                    [btn normalTitle:JobsInternationalization(view.internationalizationKEY)];
                 }else{}
             }
         }
@@ -631,10 +631,10 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (success) {
                     NSLog(@"保存照片成功");
-                    toast(Internationalization(@"图片保存成功"));
+                    toast(JobsInternationalization(@"图片保存成功"));
                 } else if (error) {
                     NSLog(@"保存照片出错:%@",error.localizedDescription);
-                    toastErr(Internationalization(@"保存保存失败"));
+                    toastErr(JobsInternationalization(@"保存保存失败"));
                 }
             });
         }];

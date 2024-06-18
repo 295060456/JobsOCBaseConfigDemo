@@ -261,7 +261,7 @@
                 self.btnTimerConfig.formatTimeStr = [self getHHMMSSFromStr:[NSString stringWithFormat:@"%ld",(long)currentTime] formatTime:nil];
             }break;
             default:
-                self.btnTimerConfig.formatTimeStr = Internationalization(@"异常值");
+                self.btnTimerConfig.formatTimeStr = JobsInternationalization(@"异常值");
                 break;
         }
         // 字符串拼接
@@ -273,7 +273,7 @@
                 self.btnTimerConfig.runningValue.text = [self.btnTimerConfig.formatTimeStr stringByAppendingString:self.btnTimerConfig.runningValue.text];
             }break;
             default:
-                self.btnTimerConfig.runningValue.text = Internationalization(@"异常值");
+                self.btnTimerConfig.runningValue.text = JobsInternationalization(@"异常值");
                 break;
         }
     }

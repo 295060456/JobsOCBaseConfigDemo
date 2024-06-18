@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_END
     refreshConfigHeader.stateIdleTitle = @"下拉刷新数据";
     refreshConfigHeader.pullingTitle = @"下拉刷新数据";
     refreshConfigHeader.refreshingTitle = @"正在刷新数据";
-    refreshConfigHeader.willRefreshTitle = Internationalization(@"Refreshing data");
+    refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"Refreshing data");
     refreshConfigHeader.noMoreDataTitle = @"下拉刷新数据";
     
     MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_END
      mJRefreshConfigModel.stateIdleTitle = @"下拉刷新数据";
      mJRefreshConfigModel.pullingTitle = @"下拉刷新数据";
      mJRefreshConfigModel.refreshingTitle = @"正在刷新数据";
-     mJRefreshConfigModel.willRefreshTitle = Internationalization(@"Refreshing data");
+     mJRefreshConfigModel.willRefreshTitle = JobsInternationalization(@"Refreshing data");
      mJRefreshConfigModel.noMoreDataTitle = @"下拉刷新数据";
      self.refreshConfigHeader = mJRefreshConfigModel;//数据赋值
  

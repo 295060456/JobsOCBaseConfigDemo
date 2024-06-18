@@ -193,18 +193,18 @@ willDisplayHeaderView:(UIView *)view
         
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = Internationalization(@"下拉可以刷新");
-            refreshConfigHeader.pullingTitle = Internationalization(@"下拉可以刷新");
-            refreshConfigHeader.refreshingTitle = Internationalization(@"松开立即刷新");
-            refreshConfigHeader.willRefreshTitle = Internationalization(@"刷新数据中");
-            refreshConfigHeader.noMoreDataTitle = Internationalization(@"下拉可以刷新");
+            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = Internationalization(@"");
-            refreshConfigFooter.pullingTitle = Internationalization(@"");;
-            refreshConfigFooter.refreshingTitle = Internationalization(@"");;
-            refreshConfigFooter.willRefreshTitle = Internationalization(@"");;
-            refreshConfigFooter.noMoreDataTitle = Internationalization(@"");;
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");;
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");;
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");;
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");;
             
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
@@ -215,8 +215,8 @@ willDisplayHeaderView:(UIView *)view
         
         {
             _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                titleStr:Internationalization(@"暂无数据")
-                                                               detailStr:Internationalization(@"")];
+                                                                titleStr:JobsInternationalization(@"暂无数据")
+                                                               detailStr:JobsInternationalization(@"")];
             
             _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _tableView.ly_emptyView.contentViewOffset = JobsWidth(-180);
@@ -264,7 +264,7 @@ willDisplayHeaderView:(UIView *)view
             }
             
             MSCommentModel *commentModel = MSCommentModel.new;
-            commentModel.sectionTitle = Internationalization(@"张山的歌");
+            commentModel.sectionTitle = JobsInternationalization(@"张山的歌");
             commentModel.commentDataMutArr = commentDataMutArr;
             
             [_dataMutArr addObject:commentModel];
@@ -298,7 +298,7 @@ willDisplayHeaderView:(UIView *)view
             }
             
             MSCommentModel *commentModel = MSCommentModel.new;
-            commentModel.sectionTitle = Internationalization(@"我是李闯");
+            commentModel.sectionTitle = JobsInternationalization(@"我是李闯");
             commentModel.commentDataMutArr = commentDataMutArr;
             
             [_dataMutArr addObject:commentModel];
@@ -338,7 +338,7 @@ willDisplayHeaderView:(UIView *)view
             }
             
             MSCommentModel *commentModel = MSCommentModel.new;
-            commentModel.sectionTitle = Internationalization(@"今天我很高兴");
+            commentModel.sectionTitle = JobsInternationalization(@"今天我很高兴");
             commentModel.commentDataMutArr = commentDataMutArr;
             
             [_dataMutArr addObject:commentModel];

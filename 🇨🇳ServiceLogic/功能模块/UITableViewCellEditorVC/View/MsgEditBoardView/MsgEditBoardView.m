@@ -128,8 +128,8 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
         _allChooseBtn.selectedImage = JobsIMG(@"按钮已选中");
         _allChooseBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
         _allChooseBtn.titleFont = notoSansBold(14);
-        _allChooseBtn.normalTitle = Internationalization(@"全選");
-        _allChooseBtn.selectedTitle = Internationalization(@"取消");
+        _allChooseBtn.normalTitle = JobsInternationalization(@"全選");
+        _allChooseBtn.selectedTitle = JobsInternationalization(@"取消");
         [self addSubview:_allChooseBtn];
         [_allChooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(28 + 14 + 12), JobsWidth(14)));
@@ -154,7 +154,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
         _markToReadBtn.normalTitleColor = HEXCOLOR(0xAE8330);
         _markToReadBtn.titleFont = notoSansBold(14);
         _markToReadBtn.normalTitleColor = HEXCOLOR(0xAE8330);
-        _markToReadBtn.normalTitle = Internationalization(@"標記為已讀");
+        _markToReadBtn.normalTitle = JobsInternationalization(@"標記為已讀");
         _markToReadBtn.enabledBlock(NO);
         [self addSubview:_markToReadBtn];
         [_markToReadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -175,7 +175,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
 -(UIButton *)deleteBtn{
     if (!_deleteBtn) {
         _deleteBtn = UIButton.new;
-        _deleteBtn.normalTitle = Internationalization(@"删除");
+        _deleteBtn.normalTitle = JobsInternationalization(@"删除");
         _deleteBtn.normalTitleColor = HEXCOLOR(0xEB677F);
         _deleteBtn.titleFont = notoSansBold(14);
         _deleteBtn.enabledBlock(NO);

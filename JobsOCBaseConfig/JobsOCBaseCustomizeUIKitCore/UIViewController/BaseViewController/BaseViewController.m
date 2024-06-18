@@ -21,7 +21,7 @@ BaseViewControllerProtocol_synthesize
     [NSNotificationCenter.defaultCenter removeObserver:self];
     [self.view endEditing:YES];
     if (JobsDebug) {
-        toast([NSString stringWithFormat:@"%@%@",Internationalization(@"成功销毁了控制器"),NSStringFromClass(self.class)]);
+        toast([NSString stringWithFormat:@"%@%@",JobsInternationalization(@"成功销毁了控制器"),NSStringFromClass(self.class)]);
         NSLog(@"%@",JobsLocalFunc);
         PrintRetainCount(self)
     }

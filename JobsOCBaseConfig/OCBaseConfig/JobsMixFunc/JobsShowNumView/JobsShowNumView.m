@@ -70,7 +70,7 @@ static dispatch_once_t static_showNumViewOnceToken;
     for (NSString *string in temp) {
         UIButton *btn = UIButton.new;
         btn.normalBackgroundImage = JobsIMG(@"JobsShowNum");
-        btn.normalTitle = Internationalization(string);
+        btn.normalTitle = JobsInternationalization(string);
         btn.titleFont = UIFontWeightBoldSize(40);
         btn.normalTitleColor = HEXCOLOR(0xAE8330);
         @jobs_weakify(self)

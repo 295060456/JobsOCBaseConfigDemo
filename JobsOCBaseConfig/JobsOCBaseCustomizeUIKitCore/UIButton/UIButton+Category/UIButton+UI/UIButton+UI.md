@@ -45,8 +45,8 @@ button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
                                                  attributedTitle:nil
                                          selectedAttributedTitle:nil
                                               attributedSubtitle:[self richTextWithDataConfigMutArr:self.richTextConfigMutArr]
-                                                           title:Internationalization(@"请支付")
-                                                        subTitle:nil//Internationalization(@"观看完整教学视频需支付99Mata值")
+                                                           title:JobsInternationalization(@"请支付")
+                                                        subTitle:nil//JobsInternationalization(@"观看完整教学视频需支付99Mata值")
                                                        titleFont:UIFontWeightBoldSize(18)
                                                     subTitleFont:nil
                                                         titleCor:JobsCor(@"#333333")
@@ -85,9 +85,9 @@ button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 -(NSMutableArray<NSString *> *)richTextMutArr{
    if (!_richTextMutArr) {
        _richTextMutArr = NSMutableArray.array;
-       [_richTextMutArr addObject:Internationalization(@"观看完整教学视频需支付")];
-       [_richTextMutArr addObject:Internationalization(@"99")];
-       [_richTextMutArr addObject:Internationalization(@"Mata值")];
+       [_richTextMutArr addObject:JobsInternationalization(@"观看完整教学视频需支付")];
+       [_richTextMutArr addObject:JobsInternationalization(@"99")];
+       [_richTextMutArr addObject:JobsInternationalization(@"Mata值")];
    }return _richTextMutArr;
 }
 

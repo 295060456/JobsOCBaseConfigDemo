@@ -27,7 +27,7 @@ UIViewModelProtocol_synthesize
 -(UITextModel *)backBtnTitleModel{
     if (!_backBtnTitleModel) {
         _backBtnTitleModel = UITextModel.new;
-        _backBtnTitleModel.text = Internationalization(@"Back");
+        _backBtnTitleModel.text = JobsInternationalization(@"Back");
         _backBtnTitleModel.textCor = HEXCOLOR(0xD3B698);
     }return _backBtnTitleModel;
 }

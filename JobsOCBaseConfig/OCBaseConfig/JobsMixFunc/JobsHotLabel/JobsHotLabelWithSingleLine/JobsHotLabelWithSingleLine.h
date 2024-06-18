@@ -43,13 +43,13 @@ NS_ASSUME_NONNULL_END
          @jobs_weakify(self)
          [_hl actionObjectBlock:^(UIButton *btn) {
              @jobs_strongify(self)
-             if ([btn.titleForNormalState isEqualToString:Internationalization(@"Top-up check in progress")]) {
+             if ([btn.titleForNormalState isEqualToString:JobsInternationalization(@"Top-up check in progress")]) {
                  self.chargeOrderType = ChargeOrderType_processing;
-             }else if ([btn.titleForNormalState isEqualToString:Internationalization(@"Top-up success")]){
+             }else if ([btn.titleForNormalState isEqualToString:JobsInternationalization(@"Top-up success")]){
                  self.chargeOrderType = ChargeOrderType_success;
-             }else if ([btn.titleForNormalState isEqualToString:Internationalization(@"Top-up cancel")]){
+             }else if ([btn.titleForNormalState isEqualToString:JobsInternationalization(@"Top-up cancel")]){
                  self.chargeOrderType = ChargeOrderType_cancel;
-             }else if ([btn.titleForNormalState isEqualToString:Internationalization(@"All")]){
+             }else if ([btn.titleForNormalState isEqualToString:JobsInternationalization(@"All")]){
                  self.chargeOrderType = ChargeOrderType_all;//ChargeOrderType_all;
              }else{}
              

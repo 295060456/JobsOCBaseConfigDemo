@@ -89,14 +89,14 @@ NS_ASSUME_NONNULL_END
          _btnTimerConfigModel.countDownBtnType = TimerStyle_anticlockwise;/// 逆时针模式（倒计时模式）
          _btnTimerConfigModel.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;
          _btnTimerConfigModel.labelShowingType = UILabelShowingType_03;/// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
-         _btnTimerConfigModel.secondStr = Internationalization(@"秒后重新发送");
+         _btnTimerConfigModel.secondStr = JobsInternationalization(@"秒后重新发送");
          /// 计时器未开始【静态值】
          _btnTimerConfigModel.readyPlayValue.layerBorderWidth = 0;
          _btnTimerConfigModel.readyPlayValue.layerCornerRadius = JobsWidth(0);
          _btnTimerConfigModel.readyPlayValue.bgCor = JobsClearColor;
          _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsClearColor;
          _btnTimerConfigModel.readyPlayValue.textCor = JobsCor(@"#333333");
-         _btnTimerConfigModel.readyPlayValue.text = Internationalization(@"获取验证码");
+         _btnTimerConfigModel.readyPlayValue.text = JobsInternationalization(@"获取验证码");
          _btnTimerConfigModel.readyPlayValue.font = UIFontWeightRegularSize(14);
          /// 计时器进行中【动态值】
          _btnTimerConfigModel.runningValue.layerBorderWidth = 0;
@@ -104,7 +104,7 @@ NS_ASSUME_NONNULL_END
          _btnTimerConfigModel.runningValue.bgCor = JobsClearColor;
          _btnTimerConfigModel.runningValue.layerBorderCor = JobsClearColor;
          _btnTimerConfigModel.runningValue.textCor = JobsCor(@"#333333");
-         _btnTimerConfigModel.runningValue.text = Internationalization(@"");
+         _btnTimerConfigModel.runningValue.text = JobsInternationalization(@"");
          _btnTimerConfigModel.runningValue.font = UIFontWeightRegularSize(14);
 
          /// 计时器结束【静态值】
@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_END
          _btnTimerConfigModel.endValue.bgCor = JobsClearColor;
          _btnTimerConfigModel.endValue.layerBorderCor = JobsClearColor;
          _btnTimerConfigModel.endValue.textCor = JobsCor(@"#333333");
-         _btnTimerConfigModel.endValue.text = Internationalization(@"重新获取");
+         _btnTimerConfigModel.endValue.text = JobsInternationalization(@"重新获取");
          _btnTimerConfigModel.endValue.font = UIFontWeightRegularSize(14);
          
      }return _btnTimerConfigModel;

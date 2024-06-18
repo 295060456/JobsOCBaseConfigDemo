@@ -26,37 +26,37 @@
 #pragma mark —— lazyLoad
 -(NSString *)year{
     if (!_year) {
-        _year = Internationalization(@"year");
+        _year = JobsInternationalization(@"year");
     }return _year;
 }
 
 -(NSString *)month{
     if (!_month) {
-        _month = Internationalization(@"month");
+        _month = JobsInternationalization(@"month");
     }return _month;
 }
 
 -(NSString *)day{
     if (!_day) {
-        _day = Internationalization(@"day");
+        _day = JobsInternationalization(@"day");
     }return _day;
 }
 
 -(NSString *)hour{
     if (!_hour) {
-        _hour = Internationalization(@"hour");
+        _hour = JobsInternationalization(@"hour");
     }return _hour;
 }
 
 -(NSString *)minute{
     if (!_minute) {
-        _minute = Internationalization(@"minute");
+        _minute = JobsInternationalization(@"minute");
     }return _minute;
 }
 
 -(NSString *)second{
     if (!_second) {
-        _second = Internationalization(@"second");
+        _second = JobsInternationalization(@"second");
     }return _second;
 }
 

@@ -32,9 +32,9 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = Internationalization(@"App language switch");
+        self.viewModel.textModel.text = JobsInternationalization(@"App language switch");
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -199,11 +199,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = Internationalization(@"Pull down to refresh");
-            refreshConfigHeader.pullingTitle = Internationalization(@"Pull down to refresh");
-            refreshConfigHeader.refreshingTitle = Internationalization(@"Release Refresh now");
-            refreshConfigHeader.willRefreshTitle = Internationalization(@"Refreshing data");
-            refreshConfigHeader.noMoreDataTitle = Internationalization(@"Pull down to refresh");
+            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"Pull down to refresh");
+            refreshConfigHeader.pullingTitle = JobsInternationalization(@"Pull down to refresh");
+            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"Release Refresh now");
+            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"Refreshing data");
+            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"Pull down to refresh");
 
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
             refreshConfigFooter.stateIdleTitle = @"";
@@ -241,9 +241,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_dataMutArr) {
         _dataMutArr = NSMutableArray.array;
         
-        [_dataMutArr addObject:Internationalization(@"By System")];
-        [_dataMutArr addObject:Internationalization(@"Chinese")];
-        [_dataMutArr addObject:Internationalization(@"English")];
+        [_dataMutArr addObject:JobsInternationalization(@"By System")];
+        [_dataMutArr addObject:JobsInternationalization(@"Chinese")];
+        [_dataMutArr addObject:JobsInternationalization(@"English")];
         
     }return _dataMutArr;
 }

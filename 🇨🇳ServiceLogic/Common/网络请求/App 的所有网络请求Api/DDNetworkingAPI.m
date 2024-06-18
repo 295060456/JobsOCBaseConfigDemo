@@ -156,12 +156,12 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
         extern BOOL xhLaunchAdShowFinish;
         switch (responseModel.code) {
             case HTTPResponseCodeServeError:{// 服务器异常
-                [WHToast jobsToastErrMsg:Internationalization(@"Server Exception")];
+                [WHToast jobsToastErrMsg:JobsInternationalization(@"Server Exception")];
             }break;
             case HTTPResponseCodeLoginDate:{// 登录已过期，请重新登录 DDResponseModel
                 if (xhLaunchAdShowFinish) {
                     if (self.isLogin) {
-                        [WHToast jobsToastErrMsg:Internationalization(@"Login has expired. Please log in again")];
+                        [WHToast jobsToastErrMsg:JobsInternationalization(@"Login has expired. Please log in again")];
                         [self logOut];
                     }[self forcedLogin];
                 }
@@ -169,20 +169,20 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
                 [NSNotificationCenter.defaultCenter postNotificationName:退出登录 object:@(NO)];
             }break;
             case HTTPResponseCodeAuthorizationFailure:{// 授权失败
-                [WHToast jobsToastErrMsg:Internationalization(@"Authorization failure")];
+                [WHToast jobsToastErrMsg:JobsInternationalization(@"Authorization failure")];
             }break;
             case HTTPResponseCodeLeakTime:{// 限定时间内超过请求次数
-                [WHToast jobsToastErrMsg:Internationalization(@"The requests exceeded within a specified time")];
+                [WHToast jobsToastErrMsg:JobsInternationalization(@"The requests exceeded within a specified time")];
             }break;
             case HTTPResponseCodeRiskOperation:{// 风险操作
-                [WHToast jobsToastErrMsg:Internationalization(@"Risk operation")];
+                [WHToast jobsToastErrMsg:JobsInternationalization(@"Risk operation")];
             }break;
             case HTTPResponseCodeNoSettingTransactionPassword:{// 未设置交易密码
-                [WHToast jobsToastErrMsg:Internationalization(@"No transaction password is set")];
+                [WHToast jobsToastErrMsg:JobsInternationalization(@"No transaction password is set")];
             }break;
             case HTTPResponseCodeOffline:{// 帐号已在其他设备登录
                 if (xhLaunchAdShowFinish) {
-                    [WHToast jobsToastErrMsg:Internationalization(@"The account has been logged in to another device")];
+                    [WHToast jobsToastErrMsg:JobsInternationalization(@"The account has been logged in to another device")];
                     if (self.isLogin) {
                         /// 清除本地的用户数据，并转向登录页面
                         [self logOut];

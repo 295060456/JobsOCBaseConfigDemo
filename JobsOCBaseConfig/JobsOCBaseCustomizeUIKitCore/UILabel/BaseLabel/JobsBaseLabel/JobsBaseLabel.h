@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_END
              make.height.mas_equalTo(JobsWidth(26));
          }];
      }
-     _titleLab.getLabel.text = Internationalization(@" 真人           ");
+     _titleLab.getLabel.text = JobsInternationalization(@" 真人           ");
      _titleLab.getBgImageView.image = JobsIMG(@"优惠活动背景图_真人");
      
      [_titleLab.getLabel makeLabelByShowingType:UILabelShowingType_03];

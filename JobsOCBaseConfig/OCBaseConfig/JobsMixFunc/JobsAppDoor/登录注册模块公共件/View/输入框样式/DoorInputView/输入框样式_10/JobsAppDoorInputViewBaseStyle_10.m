@@ -28,8 +28,8 @@
     if (self = [super init]) {
 //        self.backgroundColor = JobsRedColor;
         self.thisViewSize = thisViewSize;
-        self.titleStr_1 = Internationalization(@"請輸入金額");
-        self.titleStr_2 = Internationalization(@"全部金額");
+        self.titleStr_1 = JobsInternationalization(@"請輸入金額");
+        self.titleStr_2 = JobsInternationalization(@"全部金額");
 //        [self layerBorderCor:JobsWhiteColor andBorderWidth:1];
         
     }return self;

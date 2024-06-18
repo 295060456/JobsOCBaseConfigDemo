@@ -14,8 +14,8 @@
     pickerStyle.pickerColor = UIColor.whiteColor;
     pickerStyle.pickerTextColor = HEXCOLOR(0x3D4A58);
     pickerStyle.separatorColor = HEXCOLOR(0xEAEBED);
-    pickerStyle.cancelBtnTitle = Internationalization(@"取消");
-    pickerStyle.doneBtnTitle = Internationalization(@"确定");
+    pickerStyle.cancelBtnTitle = JobsInternationalization(@"取消");
+    pickerStyle.doneBtnTitle = JobsInternationalization(@"确定");
     return pickerStyle;
 }
 
@@ -27,7 +27,7 @@
      BRAddressPickerModeProvince/// 显示【省】
      */
     addressPickerView.pickerMode = BRAddressPickerModeArea;
-    addressPickerView.title = Internationalization(@"请选择地区");
+    addressPickerView.title = JobsInternationalization(@"请选择地区");
     // AddressPickerView.selectValues = @[@"浙江省", @"杭州市", @"西湖区"];
     addressPickerView.selectIndexs = @[@10, @0, @4];
     addressPickerView.isAutoSelect = YES;
@@ -46,7 +46,7 @@
     }
     BRDatePickerView *datePickerView = BRDatePickerView.new;
     datePickerView.pickerMode = BRDatePickerModeYMD;
-    datePickerView.title = Internationalization(@"选择年月日");
+    datePickerView.title = JobsInternationalization(@"选择年月日");
     // datePickerView.selectValue = @"2019-10-30";
     datePickerView.selectDate = [NSDate br_setYear:2019
                                               month:10
@@ -104,13 +104,13 @@
     if (!stringPickerViewModel) {
         stringPickerViewModel = BRStringPickerViewModel.new;
         stringPickerViewModel.pickerMode = BRStringPickerComponentSingle;
-        stringPickerViewModel.title = Internationalization(@"学历");
-        stringPickerViewModel.dataSourceArr = @[Internationalization(@"大专以下"),
-                                                Internationalization(@"大专"),
-                                                Internationalization(@"本科"),
-                                                Internationalization(@"硕士"),
-                                                Internationalization(@"博士"),
-                                                Internationalization(@"博士后")];
+        stringPickerViewModel.title = JobsInternationalization(@"学历");
+        stringPickerViewModel.dataSourceArr = @[JobsInternationalization(@"大专以下"),
+                                                JobsInternationalization(@"大专"),
+                                                JobsInternationalization(@"本科"),
+                                                JobsInternationalization(@"硕士"),
+                                                JobsInternationalization(@"博士"),
+                                                JobsInternationalization(@"博士后")];
         stringPickerViewModel.selectIndex = 2;
     }
     

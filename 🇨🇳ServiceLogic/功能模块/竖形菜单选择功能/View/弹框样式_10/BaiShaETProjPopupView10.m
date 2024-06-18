@@ -108,7 +108,7 @@ atIndexPath:(NSIndexPath *)indexPath {
                                                                                                        forIndexPath:indexPath];
         
         UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"拖動按鈕迸行位置調整");
+        viewModel.textModel.text = JobsInternationalization(@"拖動按鈕迸行位置調整");
         viewModel.subTextModel.text = @"";
         
         [headerView richElementsInViewWithModel:viewModel];
@@ -315,7 +315,7 @@ insetForSectionAtIndex:(NSInteger)section {
     if (!_titleLab) {
         _titleLab = UILabel.new;
         _titleLab.userInteractionEnabled = YES;
-        _titleLab.text = Internationalization(@"全部分類");
+        _titleLab.text = JobsInternationalization(@"全部分類");
         _titleLab.textAlignment = NSTextAlignmentCenter;
         _titleLab.backgroundColor = self.cor;
         [self addSubview:_titleLab];
@@ -357,7 +357,7 @@ insetForSectionAtIndex:(NSInteger)section {
         _cancelBtn = UIButton.new;
         _cancelBtn.normalBackgroundImage = JobsIMG(@"弹窗取消按钮");
         _cancelBtn.selectedBackgroundImage = JobsIMG(@"弹窗取消按钮");
-        _cancelBtn.normalTitle = Internationalization(@"恢复默认");
+        _cancelBtn.normalTitle = JobsInternationalization(@"恢复默认");
         _cancelBtn.normalTitleColor = HEXCOLOR(0xB0B0B0);
         _cancelBtn.titleFont = notoSansRegular(18);
         [self.bgView addSubview:_cancelBtn];
@@ -383,7 +383,7 @@ insetForSectionAtIndex:(NSInteger)section {
         _sureBtn = UIButton.new;
         _sureBtn.normalBackgroundImage = JobsIMG(@"弹窗提交按钮");
         _sureBtn.selectedBackgroundImage = JobsIMG(@"弹窗提交按钮");
-        _sureBtn.normalTitle = Internationalization(@"完成");
+        _sureBtn.normalTitle = JobsInternationalization(@"完成");
         _sureBtn.normalTitleColor = JobsBlackColor;
         _sureBtn.titleFont = UIFontWeightRegularSize(18);
         [self.bgView addSubview:_sureBtn];

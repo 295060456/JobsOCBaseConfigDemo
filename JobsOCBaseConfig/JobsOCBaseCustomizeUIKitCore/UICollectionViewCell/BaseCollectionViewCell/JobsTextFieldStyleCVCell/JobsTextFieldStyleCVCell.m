@@ -76,7 +76,7 @@
         _textField.returnKeyType = UIReturnKeyDefault;
         _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
         _textField.keyboardType = UIKeyboardTypeNumberPad;
-        _textField.placeholder = Internationalization(@"请输入充值金额");
+        _textField.placeholder = JobsInternationalization(@"请输入充值金额");
         _textField.font = UIFontWeightMediumSize(18);
         _textField.placeholderFont = _textField.font;
         _textField.placeholderColor = JobsCor(@"#AAAAAA");

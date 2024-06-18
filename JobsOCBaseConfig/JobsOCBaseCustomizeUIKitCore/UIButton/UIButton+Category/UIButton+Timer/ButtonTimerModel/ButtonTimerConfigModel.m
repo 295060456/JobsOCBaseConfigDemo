@@ -111,7 +111,7 @@ UILocationProtocol_synthesize
 
         _readyPlayValue.labelShowingType = UILabelShowingType_01;
         /// 普通文本
-        _readyPlayValue.text = Internationalization(@"准备开始");
+        _readyPlayValue.text = JobsInternationalization(@"准备开始");
         /// 富文本相关
         if (_readyPlayValue.titleAttributedDataMutArr.count) {
             _readyPlayValue.attributedText = [self richTextWithDataConfigMutArr:_readyPlayValue.titleAttributedDataMutArr];
@@ -132,7 +132,7 @@ UILocationProtocol_synthesize
 //        _runningValue.layerBorderWidth = 1;
         _runningValue.labelShowingType = UILabelShowingType_01;
         /// 普通文本
-        _runningValue.text = Internationalization(@"    重新开始    ");
+        _runningValue.text = JobsInternationalization(@"    重新开始    ");
         /// 富文本相关
         if (_runningValue.titleAttributedDataMutArr.count) {
             _runningValue.attributedText = [self richTextWithDataConfigMutArr:_runningValue.titleAttributedDataMutArr];
@@ -153,7 +153,7 @@ UILocationProtocol_synthesize
         
         _endValue.labelShowingType = UILabelShowingType_01;
         /// 普通文本
-        _endValue.text = Internationalization(@"重新开始");
+        _endValue.text = JobsInternationalization(@"重新开始");
         /// 富文本相关
         if (_endValue.titleAttributedDataMutArr.count) {
             _endValue.attributedText = [self richTextWithDataConfigMutArr:_endValue.titleAttributedDataMutArr];
@@ -170,7 +170,7 @@ UILocationProtocol_synthesize
 
 -(NSString *)secondStr{
     if (!_secondStr) {
-        _secondStr = Internationalization(@"Sec");
+        _secondStr = JobsInternationalization(@"Sec");
     }return _secondStr;
 }
 

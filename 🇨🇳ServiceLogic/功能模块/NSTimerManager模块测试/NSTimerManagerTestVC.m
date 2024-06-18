@@ -32,9 +32,9 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = Internationalization(@"NSTimerManager模块测试");
+        self.viewModel.textModel.text = JobsInternationalization(@"NSTimerManager模块测试");
 //        self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
@@ -187,10 +187,10 @@
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
         _btnTitleMutArr = NSMutableArray.array;
-        [_btnTitleMutArr addObject:Internationalization(@"开始")];
-        [_btnTitleMutArr addObject:Internationalization(@"暂停")];
-        [_btnTitleMutArr addObject:Internationalization(@"继续")];
-        [_btnTitleMutArr addObject:Internationalization(@"结束")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"开始")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"暂停")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"继续")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"结束")];
     }return _btnTitleMutArr;
 }
 

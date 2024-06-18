@@ -52,7 +52,7 @@ static bool safeLock = NO;//防止连续请求lock
 }
 #pragma mark —— 一些私有方法
 +(void)jumpSetting{
-    [TKPermissionPublic alertPromptTips:Internationalization(@"访问媒体与Apple Music时需要您提供权限，去设置!")];
+    [TKPermissionPublic alertPromptTips:JobsInternationalization(@"访问媒体与Apple Music时需要您提供权限，去设置!")];
 }
 
 @end

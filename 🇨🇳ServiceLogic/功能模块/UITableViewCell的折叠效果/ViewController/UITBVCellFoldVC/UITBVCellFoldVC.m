@@ -30,9 +30,9 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    //    self.viewModel.textModel.text = Internationalization(@"消息详情页");
+    //    self.viewModel.textModel.text = JobsInternationalization(@"消息详情页");
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
@@ -81,7 +81,7 @@
 -(UILabel *)titleLab{
     if(!_titleLab){
         _titleLab = UILabel.new;
-        _titleLab.text = Internationalization(@"评论");
+        _titleLab.text = JobsInternationalization(@"评论");
         _titleLab.textColor = JobsCor(@"#333333");
         _titleLab.font = UIFontWeightBoldSize(18);
         [self.view addSubview:_titleLab];

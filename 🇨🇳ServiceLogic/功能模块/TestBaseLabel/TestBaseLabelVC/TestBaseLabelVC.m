@@ -29,7 +29,7 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -97,7 +97,7 @@
             return @1;
         }];
     }
-    _titleLab.getLabel.text = Internationalization(@" 真人           ");
+    _titleLab.getLabel.text = JobsInternationalization(@" 真人           ");
     _titleLab.getBgImageView.image = JobsIMG(@"优惠活动背景图_真人");
     
     [_titleLab.getLabel makeLabelByShowingType:UILabelShowingType_03];
@@ -109,7 +109,7 @@
     if (!_baseLabel) {
         _baseLabel = BaseLabel.new;
         _baseLabel.jobsOffsetX = JobsWidth(10);
-        _baseLabel.text = Internationalization(@"测试 -BaseLabel-");
+        _baseLabel.text = JobsInternationalization(@"测试 -BaseLabel-");
         _baseLabel.backgroundColor = JobsCyanColor;
         [self.view addSubview:_baseLabel];
         [_baseLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -78,9 +78,9 @@ extern JobsNetworkingEnvir networkingEnvir;
         NSLog(@"action----->%ld",(long)menuRow);
         networkingEnvir = menuRow;
         if (menuRow + 1 <= self.operationEnvironMutArr.count) {
-            [WHToast jobsToastMsg:[Internationalization(@"当前环境") stringByAppendingString:self.operationEnvironMutArr[menuRow]]];
+            [WHToast jobsToastMsg:[JobsInternationalization(@"当前环境") stringByAppendingString:self.operationEnvironMutArr[menuRow]]];
         }else{
-            [WHToast jobsToastErrMsg:Internationalization(@"切换环境出现错误")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"切换环境出现错误")];
         }
     };
 }
@@ -96,13 +96,13 @@ extern JobsNetworkingEnvir networkingEnvir;
 -(NSMutableArray<NSString *> *)operationEnvironMutArr{
     if (!_operationEnvironMutArr) {
         _operationEnvironMutArr = NSMutableArray.array;
-        [_operationEnvironMutArr addObject:Internationalization(@"开发环境_01")];
-        [_operationEnvironMutArr addObject:Internationalization(@"开发环境_02")];
-        [_operationEnvironMutArr addObject:Internationalization(@"开发环境_03")];
-        [_operationEnvironMutArr addObject:Internationalization(@"开发环境_04")];
-        [_operationEnvironMutArr addObject:Internationalization(@"测试环境")];
-        [_operationEnvironMutArr addObject:Internationalization(@"UAT环境")];
-        [_operationEnvironMutArr addObject:Internationalization(@"生产环境")];
+        [_operationEnvironMutArr addObject:JobsInternationalization(@"开发环境_01")];
+        [_operationEnvironMutArr addObject:JobsInternationalization(@"开发环境_02")];
+        [_operationEnvironMutArr addObject:JobsInternationalization(@"开发环境_03")];
+        [_operationEnvironMutArr addObject:JobsInternationalization(@"开发环境_04")];
+        [_operationEnvironMutArr addObject:JobsInternationalization(@"测试环境")];
+        [_operationEnvironMutArr addObject:JobsInternationalization(@"UAT环境")];
+        [_operationEnvironMutArr addObject:JobsInternationalization(@"生产环境")];
     }return _operationEnvironMutArr;
 }
 

@@ -156,7 +156,7 @@ static dispatch_once_t static_customViewOnceToken;
 -(UILabel *)tipsLab{
     if (!_tipsLab) {
         _tipsLab = UILabel.new;
-        _tipsLab.text = Internationalization(@"當前支持查詢最近30天的投注記錄");
+        _tipsLab.text = JobsInternationalization(@"當前支持查詢最近30天的投注記錄");
         _tipsLab.font = UIFontWeightRegularSize(12);
         _tipsLab.textColor = HEXCOLOR(0x757575);
         [self addSubview:_tipsLab];
@@ -171,7 +171,7 @@ static dispatch_once_t static_customViewOnceToken;
 -(UIButton *)cancelBtn{
     if (!_cancelBtn) {
         _cancelBtn = UIButton.new;
-        _cancelBtn.normalTitle = Internationalization(@"取消");
+        _cancelBtn.normalTitle = JobsInternationalization(@"取消");
         _cancelBtn.normalTitleColor = HEXCOLOR(0xB0B0B0);
         _cancelBtn.backgroundColor = self.cancelBtnBgCor;
         [self addSubview:_cancelBtn];
@@ -191,7 +191,7 @@ static dispatch_once_t static_customViewOnceToken;
 -(UIButton *)sureBtn{
     if (!_sureBtn) {
         _sureBtn = UIButton.new;
-        _sureBtn.normalTitle = Internationalization(@"确定");
+        _sureBtn.normalTitle = JobsInternationalization(@"确定");
         _sureBtn.normalTitleColor = JobsBlackColor;
         _sureBtn.backgroundColor = self.sureBtnBgCor;
         [self addSubview:_sureBtn];

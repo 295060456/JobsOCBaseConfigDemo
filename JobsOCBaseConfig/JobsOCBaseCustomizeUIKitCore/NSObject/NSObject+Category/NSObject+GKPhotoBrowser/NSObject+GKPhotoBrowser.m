@@ -184,7 +184,7 @@ didDisappearAtIndex:(NSInteger)index{
 /// 自定义单个图片的加载失败文字，优先级高于failureText
 -(NSString *)photoBrowser:(GKPhotoBrowser *)browser 
         failedTextAtIndex:(NSInteger)index{
-    return Internationalization(@"图片加载失败");
+    return JobsInternationalization(@"图片加载失败");
 }
 /// 自定义单个图片的加载失败图片，优先级高于failureImage
 -(UIImage *)photoBrowser:(GKPhotoBrowser *)browser 

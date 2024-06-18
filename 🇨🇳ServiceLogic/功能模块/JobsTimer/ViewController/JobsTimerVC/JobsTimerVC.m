@@ -35,7 +35,7 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -156,16 +156,16 @@
         _btnTimerConfigModel.readyPlayValue.bgCor = JobsYellowColor;
         _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsBrownColor;
         _btnTimerConfigModel.readyPlayValue.textCor = JobsBlueColor;
-        _btnTimerConfigModel.readyPlayValue.text = Internationalization(@"      获取验证码       ");
+        _btnTimerConfigModel.readyPlayValue.text = JobsInternationalization(@"      获取验证码       ");
         _btnTimerConfigModel.readyPlayValue.font = UIFontWeightMediumSize(13);
         /// 计时器进行中【动态值】
         _btnTimerConfigModel.runningValue.bgCor = JobsCyanColor;
-        _btnTimerConfigModel.runningValue.text = Internationalization(Title12);
+        _btnTimerConfigModel.runningValue.text = JobsInternationalization(Title12);
         _btnTimerConfigModel.runningValue.layerBorderCor = JobsRedColor;
         _btnTimerConfigModel.runningValue.textCor = JobsBlackColor;
         /// 计时器结束【静态值】
         _btnTimerConfigModel.endValue.bgCor = JobsYellowColor;
-        _btnTimerConfigModel.endValue.text = Internationalization(@"    哈哈哈哈    ");
+        _btnTimerConfigModel.endValue.text = JobsInternationalization(@"    哈哈哈哈    ");
         _btnTimerConfigModel.endValue.layerBorderCor = JobsPurpleColor;
         _btnTimerConfigModel.endValue.textCor = JobsBlackColor;
         
@@ -192,10 +192,10 @@
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
         _btnTitleMutArr = NSMutableArray.array;
-        [_btnTitleMutArr addObject:Internationalization(@"开始")];
-        [_btnTitleMutArr addObject:Internationalization(@"暂停")];
-        [_btnTitleMutArr addObject:Internationalization(@"继续")];
-        [_btnTitleMutArr addObject:Internationalization(@"结束")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"开始")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"暂停")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"继续")];
+        [_btnTitleMutArr addObject:JobsInternationalization(@"结束")];
     }return _btnTitleMutArr;
 }
 

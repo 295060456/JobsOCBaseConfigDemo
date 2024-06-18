@@ -71,14 +71,14 @@
 //                         parameters:parameters
 //                       successBlock:^(DDResponseModel *data) {
 //            NSLog(@"用户获取短信验证码成功");
-//            [WHToast jobsToastSuccessMsg:Internationalization(@"Verification send success")];
+//            [WHToast jobsToastSuccessMsg:JobsInternationalization(@"Verification send success")];
 //        } failureBlock:^(id data) {
 //            [DDNetworkingAPI handleError:data];
 //            JobsAppDoorInputViewBaseStyle_1 *手机验证码 = (JobsAppDoorInputViewBaseStyle_1 *)self.registerDoorInputViewBaseStyleMutArr[4];
 //            [手机验证码.getCountDownBtn timerDestroy];
 //        }];
 //    }else{
-//        [WHToast jobsToastErrMsg:Internationalization(@"TelePhone Number Error")];
+//        [WHToast jobsToastErrMsg:JobsInternationalization(@"TelePhone Number Error")];
 //        JobsAppDoorInputViewBaseStyle_1 *手机验证码 = (JobsAppDoorInputViewBaseStyle_1 *)self.registerDoorInputViewBaseStyleMutArr[4];
 //        [手机验证码.getCountDownBtn timerDestroy];
 //    }
@@ -144,9 +144,9 @@
         [inputView actionObjectBlock:^(UITextField *data) {
             @jobs_strongify(self)
             JobsAppDoorInputViewTFModel *textFieldInputModel = (JobsAppDoorInputViewTFModel *)data.requestParams;
-            if ([textFieldInputModel.PlaceHolder isEqualToString:Internationalization(@"User")]) {
+            if ([textFieldInputModel.PlaceHolder isEqualToString:JobsInternationalization(@"User")]) {
                 self.appDoorModel.userName = data.text;
-            }else if ([textFieldInputModel.PlaceHolder isEqualToString:Internationalization(@"Code")]){
+            }else if ([textFieldInputModel.PlaceHolder isEqualToString:JobsInternationalization(@"Code")]){
                 self.appDoorModel.password = data.text;
             }else{}
             if (self.objectBlock) self.objectBlock(self.appDoorModel);
@@ -526,7 +526,7 @@
         {
             JobsAppDoorInputViewBaseStyleModel *用户名 = JobsAppDoorInputViewBaseStyleModel.new;
             用户名.leftViewIMG = JobsIMG(@"用户名称");
-            用户名.placeHolderStr = Internationalization(@"User");
+            用户名.placeHolderStr = JobsInternationalization(@"User");
             用户名.isShowDelBtn = YES;
             用户名.isShowSecurityBtn = NO;
             用户名.useCustomClearButton = YES;
@@ -547,7 +547,7 @@
         {
             JobsAppDoorInputViewBaseStyleModel *密码 = JobsAppDoorInputViewBaseStyleModel.new;
             密码.leftViewIMG = JobsIMG(@"Lock");
-            密码.placeHolderStr = Internationalization(@"Code");
+            密码.placeHolderStr = JobsInternationalization(@"Code");
             密码.isShowDelBtn = YES;
             密码.isShowSecurityBtn = YES;
             密码.useCustomClearButton = YES;
@@ -574,7 +574,7 @@
         {
             JobsAppDoorInputViewBaseStyleModel *用户名 = JobsAppDoorInputViewBaseStyleModel.new;
             用户名.leftViewIMG = JobsIMG(@"用户名称");
-            用户名.placeHolderStr = Internationalization(@"User");
+            用户名.placeHolderStr = JobsInternationalization(@"User");
             用户名.isShowDelBtn = YES;
             用户名.isShowSecurityBtn = NO;
             用户名.useCustomClearButton = YES;
@@ -593,7 +593,7 @@
         {
             JobsAppDoorInputViewBaseStyleModel *密码 = JobsAppDoorInputViewBaseStyleModel.new;
             密码.leftViewIMG = JobsIMG(@"Lock");
-            密码.placeHolderStr = Internationalization(@"Code");
+            密码.placeHolderStr = JobsInternationalization(@"Code");
             密码.isShowDelBtn = YES;
             密码.isShowSecurityBtn = YES;
             密码.useCustomClearButton = YES;
@@ -613,7 +613,7 @@
         {
             JobsAppDoorInputViewBaseStyleModel *确认密码 = JobsAppDoorInputViewBaseStyleModel.new;
             确认密码.leftViewIMG = JobsIMG(@"Lock");
-            确认密码.placeHolderStr = Internationalization(@"Confirm");
+            确认密码.placeHolderStr = JobsInternationalization(@"Confirm");
             确认密码.isShowDelBtn = YES;
             确认密码.isShowSecurityBtn = YES;
             确认密码.useCustomClearButton = YES;
@@ -633,7 +633,7 @@
         {
             JobsAppDoorInputViewBaseStyleModel *手机号码 = JobsAppDoorInputViewBaseStyleModel.new;
             手机号码.leftViewIMG = JobsIMG(@"手机号码");
-            手机号码.placeHolderStr = Internationalization(@"Telephone");
+            手机号码.placeHolderStr = JobsInternationalization(@"Telephone");
             手机号码.isShowDelBtn = YES;
             手机号码.isShowSecurityBtn = NO;
             手机号码.useCustomClearButton = YES;
@@ -651,7 +651,7 @@
         {
             JobsAppDoorInputViewBaseStyleModel *手机验证码 = JobsAppDoorInputViewBaseStyleModel.new;
             手机验证码.leftViewIMG = JobsIMG(@"验证ICON");
-            手机验证码.placeHolderStr = Internationalization(@"Auth code");
+            手机验证码.placeHolderStr = JobsInternationalization(@"Auth code");
             手机验证码.isShowDelBtn = YES;
             手机验证码.isShowSecurityBtn = NO;
             手机验证码.useCustomClearButton = YES;

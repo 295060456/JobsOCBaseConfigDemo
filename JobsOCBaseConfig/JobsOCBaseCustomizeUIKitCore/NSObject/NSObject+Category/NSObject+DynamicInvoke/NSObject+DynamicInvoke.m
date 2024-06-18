@@ -169,8 +169,8 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock block,
                              NSString *_Nullable selectorName,
                              id _Nullable target){
     if (!block) {
-        toastErr(Internationalization(@"方法不存在,请检查参数"));
-        /// 【经常崩溃损伤硬件】 [NSException raise:Internationalization(@"block can not be nil") format:@"%@ selectorBlock error", target];
+        toastErr(JobsInternationalization(@"方法不存在,请检查参数"));
+        /// 【经常崩溃损伤硬件】 [NSException raise:JobsInternationalization(@"block can not be nil") format:@"%@ selectorBlock error", target];
     }
     /// 动态注册方法：对方法名进行拼接（加盐），以防止和当下的其他方法名引起冲突
     NSString *selName = [NSString stringWithFormat:@"selector_%d_%@",random100__200(),selectorName];
@@ -198,7 +198,7 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock block,
                                      block,
                                      OBJC_ASSOCIATION_COPY_NONATOMIC);
         }else{
-            [NSException raise:Internationalization(@"添加方法失败")
+            [NSException raise:JobsInternationalization(@"添加方法失败")
                         format:@"%@ selectorBlock error", target];
         }
     }return sel;

@@ -75,7 +75,7 @@ static dispatch_once_t static_launchConfigOnceToken;
 
 -(NSString *)text{
     if (!_text) {
-        _text = Internationalization(@"跳过");
+        _text = JobsInternationalization(@"跳过");
     }return _text;
 }
 

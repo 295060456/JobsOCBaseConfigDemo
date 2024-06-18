@@ -50,18 +50,18 @@ typedef NS_ENUM(NSInteger, JobsAppDoorBgType){
 #define RegisterBtnWidth JobsWidth(64)//竖形按钮的宽度
 #define InputViewOffset JobsWidth(20)//输入框承接控件之间的上下间距
 
-#define Title1 Internationalization(@"B\na\nc\nk\nT\no\nL\no\ng\ni\nn")
-#define Title2 Internationalization(@"L\no\ng\ni\nn")
-#define Title3 Internationalization(@"Forgot code")
-#define Title4 Internationalization(@"Back to HomePage")
-#define Title5 Internationalization(@"Save the user name")
-#define Title6 Internationalization(@"Register")
-#define Title7 Internationalization(@"Login")
-#define Title8 Internationalization(@"Customer service")
-#define Title9 Internationalization(@"Get")
-#define Title10 Internationalization(@"Online customer service")
-#define Title11 Internationalization(@"You can also contact customer service through the following ways")
-#define Title12 Internationalization(@"Later")
+#define Title1 JobsInternationalization(@"B\na\nc\nk\nT\no\nL\no\ng\ni\nn")
+#define Title2 JobsInternationalization(@"L\no\ng\ni\nn")
+#define Title3 JobsInternationalization(@"Forgot code")
+#define Title4 JobsInternationalization(@"Back to HomePage")
+#define Title5 JobsInternationalization(@"Save the user name")
+#define Title6 JobsInternationalization(@"Register")
+#define Title7 JobsInternationalization(@"Login")
+#define Title8 JobsInternationalization(@"Customer service")
+#define Title9 JobsInternationalization(@"Get")
+#define Title10 JobsInternationalization(@"Online customer service")
+#define Title11 JobsInternationalization(@"You can also contact customer service through the following ways")
+#define Title12 JobsInternationalization(@"Later")
 
 /**
  

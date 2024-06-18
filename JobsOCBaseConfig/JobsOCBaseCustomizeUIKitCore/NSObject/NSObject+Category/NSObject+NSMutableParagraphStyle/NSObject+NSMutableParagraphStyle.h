@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 通过NSTextAlignment映射NSParagraphStyle *
 -(NSParagraphStyle *)jobsparagraphStyleByTextAlignment:(NSTextAlignment)textAlignment;
 
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -157,25 +157,25 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self jobsToastMsg:viewModel.textModel.text];
 
     {
-        if(viewModel.textModel.text.isEqualToString(Internationalization(@"个人资料"))){
+        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"个人资料"))){
             
         }
-        if(viewModel.textModel.text.isEqualToString(Internationalization(@"意见反馈"))){
+        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"意见反馈"))){
             
         }
-        if(viewModel.textModel.text.isEqualToString(Internationalization(@"消息通知"))){
+        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"消息通知"))){
             
         }
-        if(viewModel.textModel.text.isEqualToString(Internationalization(@"收货地址"))){
+        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"收货地址"))){
             
         }
-        if(viewModel.textModel.text.isEqualToString(Internationalization(@"修改密码"))){
+        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"修改密码"))){
             
         }
-        if(viewModel.textModel.text.isEqualToString(Internationalization(@"设置"))){
+        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"设置"))){
             
         }
-        if(viewModel.textModel.text.isEqualToString(Internationalization(@"购物车"))){
+        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"购物车"))){
             
         }
     }
@@ -227,7 +227,7 @@ insetForSectionAtIndex:(NSInteger)section {
                                                   attributedTitle:nil
                                           selectedAttributedTitle:nil
                                                attributedSubtitle:nil
-                                                            title:Internationalization(@"取消")
+                                                            title:JobsInternationalization(@"取消")
                                                          subTitle:nil
                                                         titleFont:UIFontWeightMediumSize(16)
                                                      subTitleFont:nil
@@ -297,28 +297,28 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = Internationalization(@"钱包");
+            viewModel.textModel.text = JobsInternationalization(@"钱包");
             viewModel.image = JobsIMG(@"钱包");
             [_dataMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = Internationalization(@"我的店铺");
+            viewModel.textModel.text = JobsInternationalization(@"我的店铺");
             viewModel.image = JobsIMG(@"我的店铺");
             [_dataMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = Internationalization(@"我的团队");
+            viewModel.textModel.text = JobsInternationalization(@"我的团队");
             viewModel.image = JobsIMG(@"我的团队");
             [_dataMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = Internationalization(@"信用分数");
+            viewModel.textModel.text = JobsInternationalization(@"信用分数");
             viewModel.image = JobsIMG(@"信用分数");
             [_dataMutArr addObject:viewModel];
         }

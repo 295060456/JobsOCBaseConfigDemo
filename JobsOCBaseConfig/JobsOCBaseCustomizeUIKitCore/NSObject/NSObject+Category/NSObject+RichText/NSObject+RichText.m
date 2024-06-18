@@ -47,12 +47,12 @@
     RichTextConfig *config_01 = RichTextConfig.new;
     config_01.font = UIFontWeightRegularSize(10.6);
     config_01.textCor = RGB_SAMECOLOR(115);
-    config_01.targetString = Internationalization(@"我是第一段文字");
+    config_01.targetString = JobsInternationalization(@"我是第一段文字");
 
     RichTextConfig *config_02 = RichTextConfig.new;
     config_02.font = UIFontWeightRegularSize(10.6);;
     config_02.textCor = color;
-    config_02.targetString = Internationalization(@"我是第二段文字");
+    config_02.targetString = JobsInternationalization(@"我是第二段文字");
     
     NSMutableArray *dataMutArr = NSMutableArray.array;
     [dataMutArr addObject:config_01];

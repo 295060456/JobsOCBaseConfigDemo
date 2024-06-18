@@ -79,7 +79,7 @@
                                                                   animationType:config.animationType];
         }break;
         default:
-            [WHToast jobsToastErrMsg:Internationalization(@"参数配置错误，请检查")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"参数配置错误，请检查")];
             return nil;
             break;
     }
@@ -126,7 +126,7 @@
         
         if (alertVCBlock) alertVCBlock(vc,mutArr);
     }else{
-        [WHToast jobsToastErrMsg:Internationalization(@"参数配置错误，请检查")];
+        [WHToast jobsToastErrMsg:JobsInternationalization(@"参数配置错误，请检查")];
         return nil;
     }
     

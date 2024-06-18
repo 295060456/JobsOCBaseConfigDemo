@@ -178,7 +178,7 @@
 -(UIButton *)authCodeBtn{
     if (!_authCodeBtn) {
         _authCodeBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel];
-        _authCodeBtn.normalTitle = Internationalization(@"獲取驗證碼");
+        _authCodeBtn.normalTitle = JobsInternationalization(@"獲取驗證碼");
 //        @jobs_weakify(self)
         [_authCodeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
 //            @jobs_strongify(self)
@@ -256,7 +256,7 @@
             @jobs_strongify(self)
             self.securityModeBtn.jobsVisible = !x.nullString && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
             if ([x isContainsSpecialSymbolsString:nil]) {
-                toast(Internationalization(@"Do not enter special characters"));
+                toast(JobsInternationalization(@"Do not enter special characters"));
             }else{
                 if (self.objectBlock) self.objectBlock(self->_textField);
             }
@@ -286,7 +286,7 @@
 -(UIViewModel *)chooseBtnViewModel{
     if (!_chooseBtnViewModel) {
         _chooseBtnViewModel = UIViewModel.new;
-        _chooseBtnViewModel.textModel.text = Internationalization(@"請選擇區號");
+        _chooseBtnViewModel.textModel.text = JobsInternationalization(@"請選擇區號");
         _chooseBtnViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
         _chooseBtnViewModel.textModel.textLineSpacing = 0;
         _chooseBtnViewModel.textModel.font = notoSansRegular(14);
@@ -303,7 +303,7 @@
 
         {
             UIViewModel *jobsPageViewModel = UIViewModel.new;
-            jobsPageViewModel.textModel.text = Internationalization(@"+87");
+            jobsPageViewModel.textModel.text = JobsInternationalization(@"+87");
             jobsPageViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
             jobsPageViewModel.textModel.textLineSpacing = 0;
             jobsPageViewModel.textModel.font = notoSansRegular(14);
@@ -316,7 +316,7 @@
         
         {
             UIViewModel *jobsPageViewModel = UIViewModel.new;
-            jobsPageViewModel.textModel.text = Internationalization(@"+88");
+            jobsPageViewModel.textModel.text = JobsInternationalization(@"+88");
             jobsPageViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
             jobsPageViewModel.textModel.textLineSpacing = 0;
             jobsPageViewModel.textModel.font = notoSansRegular(14);
@@ -340,25 +340,25 @@
         _btnTimerConfigModel.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
         _btnTimerConfigModel.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;// 文本显示类型
         _btnTimerConfigModel.labelShowingType = UILabelShowingType_03;
-        _btnTimerConfigModel.secondStr = Internationalization(@"S");
+        _btnTimerConfigModel.secondStr = JobsInternationalization(@"S");
         /// 计时器未开始【静态值】
         _btnTimerConfigModel.readyPlayValue.layerBorderWidth = 1;
         _btnTimerConfigModel.readyPlayValue.layerCornerRadius = 0;
         _btnTimerConfigModel.readyPlayValue.bgCor = JobsClearColor;
         _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsClearColor;
         _btnTimerConfigModel.readyPlayValue.textCor = HEXCOLOR(0xAE8330);
-        _btnTimerConfigModel.readyPlayValue.text = Internationalization(@"獲取驗證碼");
+        _btnTimerConfigModel.readyPlayValue.text = JobsInternationalization(@"獲取驗證碼");
         _btnTimerConfigModel.readyPlayValue.font = notoSansBold(14);
         /// 计时器进行中【动态值】
         _btnTimerConfigModel.runningValue.bgCor = JobsClearColor;
         _btnTimerConfigModel.runningValue.layerBorderCor = JobsClearColor;
         _btnTimerConfigModel.runningValue.textCor = HEXCOLOR(0xAE8330);
-        _btnTimerConfigModel.runningValue.text = Internationalization(@"");
+        _btnTimerConfigModel.runningValue.text = JobsInternationalization(@"");
         /// 计时器结束【静态值】
         _btnTimerConfigModel.endValue.bgCor = JobsClearColor;
         _btnTimerConfigModel.endValue.layerBorderCor = JobsClearColor;
         _btnTimerConfigModel.endValue.textCor = HEXCOLOR(0xAE8330);
-        _btnTimerConfigModel.endValue.text = Internationalization(@"重新获取验证码");
+        _btnTimerConfigModel.endValue.text = JobsInternationalization(@"重新获取验证码");
         
     }return _btnTimerConfigModel;
 }

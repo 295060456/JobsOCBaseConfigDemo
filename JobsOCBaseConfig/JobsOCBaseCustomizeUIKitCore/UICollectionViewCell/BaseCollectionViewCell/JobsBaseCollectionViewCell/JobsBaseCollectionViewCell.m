@@ -68,7 +68,7 @@
     self.viewModel = model;
     /// 如果有图片则只显示这个图片，并铺满
     BOOL A = model.bgImage || model.image;
-    BOOL B = (![model.textModel.text isEqualToString:Internationalization(TextModelDataString)] && model.textModel.text) || model.textModel.attributedText;
+    BOOL B = (![model.textModel.text isEqualToString:JobsInternationalization(TextModelDataString)] && model.textModel.text) || model.textModel.attributedText;
 
     if (A || self.forceUseBgBtn) {
         self.bgBtn.jobsVisible = A || self.forceUseBgBtn;

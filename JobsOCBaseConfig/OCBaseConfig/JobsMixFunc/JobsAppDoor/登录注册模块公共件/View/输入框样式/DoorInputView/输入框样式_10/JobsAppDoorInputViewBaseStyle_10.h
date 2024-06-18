@@ -50,13 +50,13 @@ NS_ASSUME_NONNULL_END
                      
                      JobsBaseTableViewCell *cell00 = [self.tableView cellForRowAtIndexPath:[self myIndexPath:(JobsIndexPath){0,0}]];
                      if (self->OK) {
-                         cell00.textLabel.text = Internationalization(@"输入金额已超过可取款金额");
+                         cell00.textLabel.text = JobsInternationalization(@"输入金额已超过可取款金额");
                          cell00.detailTextLabel.text = @"";
                          self.tbvCellTipsLab.text = @"";
                      }else{
                          cell00.textLabel.text = self.dataMutArr[0].textModel.text;
                          cell00.detailTextLabel.text = self.viewModel.amount;
-                         self.tbvCellTipsLab.text = Internationalization(@"USDT");
+                         self.tbvCellTipsLab.text = JobsInternationalization(@"USDT");
                      }
                  }
              }else if ([data isKindOfClass:JobsAppDoorInputViewTFModel.class]){
@@ -83,8 +83,8 @@ NS_ASSUME_NONNULL_END
      if (!_配置金额输入框) {
          _配置金额输入框 = JobsAppDoorInputViewBaseStyleModel.new;
  //        _配置金额输入框.leftViewIMG = JobsIMG(@"安全");
-         _配置金额输入框.textModel.text = Internationalization(@"最大金额");
-         _配置金额输入框.placeHolderStr = Internationalization(@"請輸入取款金額");
+         _配置金额输入框.textModel.text = JobsInternationalization(@"最大金额");
+         _配置金额输入框.placeHolderStr = JobsInternationalization(@"請輸入取款金額");
          _配置金额输入框.placeholderFont = UIFontWeightRegularSize(14);
          _配置金额输入框.isShowDelBtn = YES;
          _配置金额输入框.isShowSecurityBtn = NO;

@@ -30,7 +30,7 @@
     self.setupNavigationBarHidden = YES;
 //    uibu
     
-    self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -93,8 +93,8 @@
                                             attributedTitle:nil
                                     selectedAttributedTitle:nil
                                          attributedSubtitle:nil
-                                                      title:Internationalization(@"点我")
-                                                   subTitle:Internationalization(@"出推送通知")
+                                                      title:JobsInternationalization(@"点我")
+                                                   subTitle:JobsInternationalization(@"出推送通知")
                                                   titleFont:UIFontWeightBoldSize(18)
                                                subTitleFont:nil
                                                    titleCor:JobsCor(@"#333333")

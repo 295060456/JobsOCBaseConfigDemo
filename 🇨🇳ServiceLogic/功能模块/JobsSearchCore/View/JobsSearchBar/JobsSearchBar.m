@@ -96,7 +96,7 @@
     if (!_cancelBtn) {
         _cancelBtn = UIButton.new;
         _cancelBtn.backgroundColor = JobsLightGrayColor;
-        _cancelBtn.normalTitle = Internationalization(@"取消");
+        _cancelBtn.normalTitle = JobsInternationalization(@"取消");
         _cancelBtn.titleFont = UIFontWeightRegularSize(12);
         _cancelBtn.normalTitleColor = HEXCOLOR(0x0F81FE);
 //        [_cancelBtn buttonAutoWidthByFont]; // 无效

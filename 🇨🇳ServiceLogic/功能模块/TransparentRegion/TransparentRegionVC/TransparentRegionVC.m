@@ -31,7 +31,7 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -101,7 +101,7 @@
 -(UILabel *)label{
     if (!_label) {
         _label = UILabel.new;
-        _label.text = Internationalization(@"iOS-UIView设置阴影效果");
+        _label.text = JobsInternationalization(@"iOS-UIView设置阴影效果");
         _label.frame = CGRectMake(100, 400, 200, 200);
         _label.backgroundColor = JobsYellowColor;
         _label.layer.shadowColor = JobsBlueColor.CGColor;//阴影颜色

@@ -111,11 +111,11 @@
 }
 
 -(void)一级标题点击事件{
-    [self jobsToastMsg:Internationalization(@"一级标题点击事件")];
+    [self jobsToastMsg:JobsInternationalization(@"一级标题点击事件")];
 }
 
 -(void)二级标题点击事件{
-    [self jobsToastMsg:Internationalization(@"二级标题点击事件")];
+    [self jobsToastMsg:JobsInternationalization(@"二级标题点击事件")];
 }
 #pragma mark —— BaseViewProtocol
 /// 下拉刷新 （子类要进行覆写）
@@ -253,8 +253,8 @@ heightForHeaderInSection:(NSInteger)section{///  👌
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.separatorColor = JobsWhiteColor;
         _tableView.ly_emptyView = [EmptyView emptyViewWithImageStr:@"Indeterminate Spinner - Small"
-                                                          titleStr:Internationalization(@"没有评论")
-                                                         detailStr:Internationalization(@"来发布第一条吧")];
+                                                          titleStr:JobsInternationalization(@"没有评论")
+                                                         detailStr:JobsInternationalization(@"来发布第一条吧")];
         @jobs_weakify(self)
         _tableView.mj_header = [LOTAnimationMJRefreshHeader headerWithRefreshingBlock:^{
             @jobs_strongify(self)

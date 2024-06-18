@@ -12,11 +12,11 @@
 /// 仅仅对数值tabBarTitleMutArr做简单的添加元素并赋值
 -(void)addElementByTabBarTitleMutArr:(NSMutableArray *)tabBarTitleMutArr{
     if (tabBarTitleMutArr) {
-        [tabBarTitleMutArr addObject:Internationalization(@"首页")];
-        [tabBarTitleMutArr addObject:Internationalization(@"圈子")];
-        [tabBarTitleMutArr addObject:Internationalization(@"")];
-        [tabBarTitleMutArr addObject:Internationalization(@"消息")];
-        [tabBarTitleMutArr addObject:Internationalization(@"未登录")];
+        [tabBarTitleMutArr addObject:JobsInternationalization(@"首页")];
+        [tabBarTitleMutArr addObject:JobsInternationalization(@"圈子")];
+        [tabBarTitleMutArr addObject:JobsInternationalization(@"")];
+        [tabBarTitleMutArr addObject:JobsInternationalization(@"消息")];
+        [tabBarTitleMutArr addObject:JobsInternationalization(@"未登录")];
         Jobs_setAssociatedRETAIN_NONATOMIC(_tabBarTitleMutArr, tabBarTitleMutArr)
     }
 }

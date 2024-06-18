@@ -140,11 +140,11 @@
         
         {
             CasinoFlowDetailsModel *viewModel = CasinoFlowDetailsModel.new;
-            viewModel.title1 = Internationalization(@"Prepaid Time");//充值时间2
-            viewModel.title2 = Internationalization(@"Prepaid Style");//充值类型4
-            viewModel.title3 = Internationalization(@"Top-up amount");//充值金额5
-            viewModel.title4 = Internationalization(@"PlayDemand");//需求打码1
-            viewModel.title5 = Internationalization(@"PlayCumulative");//累计所需打码3
+            viewModel.title1 = JobsInternationalization(@"Prepaid Time");//充值时间2
+            viewModel.title2 = JobsInternationalization(@"Prepaid Style");//充值类型4
+            viewModel.title3 = JobsInternationalization(@"Top-up amount");//充值金额5
+            viewModel.title4 = JobsInternationalization(@"PlayDemand");//需求打码1
+            viewModel.title5 = JobsInternationalization(@"PlayCumulative");//累计所需打码3
             [_dataMutArr addObject:viewModel];
         }
         

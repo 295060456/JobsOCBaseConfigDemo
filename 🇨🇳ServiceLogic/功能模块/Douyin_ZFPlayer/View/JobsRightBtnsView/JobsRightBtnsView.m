@@ -106,9 +106,9 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
     self.loveBtn.selected = _isSelected;
     if (self.loveBtn.selected) {
         //特别重要，花了老子半个小时，mmp.只要改变选择状态都要进行刷新 走这一句
-        self.loveBtn.selectedTitle = JobsNonnullString(self.viewModel.textModel.text, Internationalization(@"点赞"));
+        self.loveBtn.selectedTitle = JobsNonnullString(self.viewModel.textModel.text, JobsInternationalization(@"点赞"));
     }else{
-        self.loveBtn.normalTitle = JobsNonnullString(self.viewModel.textModel.text, Internationalization(@"点赞"));;
+        self.loveBtn.normalTitle = JobsNonnullString(self.viewModel.textModel.text, JobsInternationalization(@"点赞"));;
     }
     [self.loveBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
                                      imagePadding:JobsWidth(5)];
@@ -127,7 +127,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                    attributedTitle:nil
                                            selectedAttributedTitle:nil
                                                 attributedSubtitle:nil
-                                                             title:JobsNonnullString(self.viewModel.textModel.text, Internationalization(@"点赞"))
+                                                             title:JobsNonnullString(self.viewModel.textModel.text, JobsInternationalization(@"点赞"))
                                                           subTitle:nil
                                                          titleFont:UIFontWeightRegularSize(12)
                                                       subTitleFont:nil
@@ -178,7 +178,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                    attributedTitle:nil
                                            selectedAttributedTitle:nil
                                                 attributedSubtitle:nil
-                                                             title:JobsNonnullString(self.viewModel.subTextModel.text, Internationalization(@"评论"))
+                                                             title:JobsNonnullString(self.viewModel.subTextModel.text, JobsInternationalization(@"评论"))
                                                           subTitle:nil
                                                             titleFont:UIFontWeightRegularSize(12)
                                                       subTitleFont:nil
@@ -243,7 +243,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                  attributedTitle:nil
                                          selectedAttributedTitle:nil
                                               attributedSubtitle:nil
-                                                           title:Internationalization(@"分享")
+                                                           title:JobsInternationalization(@"分享")
                                                         subTitle:nil
                                                        titleFont:UIFontWeightRegularSize(12)
                                                     subTitleFont:nil

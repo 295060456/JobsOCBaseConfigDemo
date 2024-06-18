@@ -130,7 +130,7 @@ heightForFooterInSection:(NSInteger)section{
 -(UIButton *)jobsCopyBtn{
     if (!_jobsCopyBtn) {
         _jobsCopyBtn = UIButton.new;
-        _jobsCopyBtn.normalTitle = Internationalization(@"   複製  ");
+        _jobsCopyBtn.normalTitle = JobsInternationalization(@"   複製  ");
         _jobsCopyBtn.titleFont = notoSansBold(12);
         _jobsCopyBtn.normalTitleColor = HEXCOLOR(0x757575);
         _jobsCopyBtn.backgroundColor = HEXCOLOR(0xEAEBED);

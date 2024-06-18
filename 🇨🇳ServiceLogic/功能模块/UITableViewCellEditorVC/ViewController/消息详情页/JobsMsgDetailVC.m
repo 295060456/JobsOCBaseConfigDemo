@@ -37,9 +37,9 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = Internationalization(@"消息详情页");
+        self.viewModel.textModel.text = JobsInternationalization(@"消息详情页");
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -125,7 +125,7 @@
 -(UIButton *)drawBtn{
     if (!_drawBtn) {
         _drawBtn = UIButton.new;
-        _drawBtn.normalTitle = self.msgDataModel.isDraw ? Internationalization(@"  已领取  ") : Internationalization(@"  领取  ");
+        _drawBtn.normalTitle = self.msgDataModel.isDraw ? JobsInternationalization(@"  已领取  ") : JobsInternationalization(@"  领取  ");
         _drawBtn.normalTitleColor = HEXCOLOR(0xAE8330);
         _drawBtn.selectedTitleColor = HEXCOLOR(0x757575);
         _drawBtn.backgroundColor = HEXCOLOR(0xFFEABA);
@@ -170,7 +170,7 @@
 -(UIButton *)deleteBtn{
     if (!_deleteBtn) {
         _deleteBtn = UIButton.new;
-        _deleteBtn.normalTitle = Internationalization(@"删除");
+        _deleteBtn.normalTitle = JobsInternationalization(@"删除");
         _deleteBtn.titleFont = notoSansRegular(12);
         _deleteBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
         @jobs_weakify(self)

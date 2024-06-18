@@ -12,7 +12,7 @@
 #import "MacroDef_Size.h"
 
 #pragma mark —— 国际化
-static inline NSString *_Nonnull Internationalization(NSString *_Nonnull text){
+static inline NSString *_Nonnull JobsInternationalization(NSString *_Nonnull text){
     return [NSObject localStringWithKey:text];
 }
 #pragma mark —— 字体定义

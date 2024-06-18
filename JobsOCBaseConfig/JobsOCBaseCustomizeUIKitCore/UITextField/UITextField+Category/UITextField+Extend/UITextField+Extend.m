@@ -44,7 +44,7 @@ JobsKey(_customSysClearBtn)
         @jobs_weakify(self)
         [CustomSysClearBtn jobsBtnClickEventBlock:^id(UIButton *data) {
             @jobs_strongify(self)
-            self.text = Internationalization(@"");
+            self.text = JobsInternationalization(@"");
             return nil;
         }];
         Jobs_setAssociatedRETAIN_NONATOMIC(_customSysClearBtn, CustomSysClearBtn)

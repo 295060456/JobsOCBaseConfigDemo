@@ -46,7 +46,7 @@ extern AppDelegate *appDelegate;
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -114,7 +114,7 @@ extern AppDelegate *appDelegate;
     NSMutableArray *titleMutArr = NSMutableArray.array;
     {
         UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"收藏");
+        viewModel.textModel.text = JobsInternationalization(@"收藏");
         [titleMutArr addObject:viewModel];
     }
     
@@ -127,31 +127,31 @@ extern AppDelegate *appDelegate;
     
     {
         UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"真人");
+        viewModel.textModel.text = JobsInternationalization(@"真人");
         [titleMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"体育");
+        viewModel.textModel.text = JobsInternationalization(@"体育");
         [titleMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"电子");
+        viewModel.textModel.text = JobsInternationalization(@"电子");
         [titleMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"棋牌");
+        viewModel.textModel.text = JobsInternationalization(@"棋牌");
         [titleMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"彩票");
+        viewModel.textModel.text = JobsInternationalization(@"彩票");
         [titleMutArr addObject:viewModel];
     }return titleMutArr;
 }
@@ -209,7 +209,7 @@ extern AppDelegate *appDelegate;
     model.pid = [NSString stringWithFormat:@"%d", iFlag];
     model.name = [NSString stringWithFormat:@"随机-%d", iFlag];
     model.textModel.text = @"1234";
-    model.subTextModel.text = Internationalization([NSString stringWithFormat:@"%d球桌球",iFlag]);
+    model.subTextModel.text = JobsInternationalization([NSString stringWithFormat:@"%d球桌球",iFlag]);
     model.bgImage = self.imageDataMutArr[iFlag];
     NSLog(@"%@",model.bgImage);
     NSMutableArray *arr = NSMutableArray.array;
@@ -367,7 +367,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
     if (!_editBtn) {
         _editBtn = UIButton.new;
         _editBtn.backgroundColor = HEXCOLOR(0xFCFBFB);
-        _editBtn.normalTitle = Internationalization(@"编辑");
+        _editBtn.normalTitle = JobsInternationalization(@"编辑");
         _editBtn.normalTitleColor = HEXCOLOR(0xB0B0B0);
         _editBtn.titleFont = notoSansRegular(12);
         _editBtn.normalImage = JobsIMG(@"编辑");
@@ -376,7 +376,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
         @jobs_weakify(self)
         [_editBtn jobsBtnClickEventBlock:^id(id data) {
             @jobs_strongify(self)
-//            toast(Internationalization(@"编辑"));
+//            toast(JobsInternationalization(@"编辑"));
             self.popupParameter.dragEnable = YES;
             self.popupParameter.disuseBackgroundTouchHide = NO;
             [self.popupView tf_showSlide:jobsGetMainWindow()
@@ -520,7 +520,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                 self.titleMutArr = dataMutArr;
             }else if ([data isKindOfClass:UIButton.class]){
                 UIButton *btn = (UIButton *)data;
-                if ([btn.titleForNormalState isEqualToString:Internationalization(@"恢复默认")]) {
+                if ([btn.titleForNormalState isEqualToString:JobsInternationalization(@"恢复默认")]) {
                     self.titleMutArr = self.makeTitleMutArr;
                 }
             }else{}

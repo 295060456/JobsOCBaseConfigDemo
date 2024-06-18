@@ -34,15 +34,15 @@
     }else{
         if (model.userName.nullString &&
             model.password.nullString) {
-            [WHToast jobsToastErrMsg:Internationalization(@"Please complete the login information")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please complete the login information")];
         }else if (!model.userName.nullString &&
                   model.password.nullString){
-            [WHToast jobsToastErrMsg:Internationalization(@"Please enter your password")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter your password")];
         }else if (model.userName.nullString &&
                   !model.password.nullString){
-            [WHToast jobsToastErrMsg:Internationalization(@"Please enter a user name")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter a user name")];
         }else{
-            [WHToast jobsToastErrMsg:Internationalization(@"The password consists of 6 to 15 characters and can only be letters and numbers")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"The password consists of 6 to 15 characters and can only be letters and numbers")];
         }return NO;
     }
 }
@@ -60,37 +60,37 @@
                   !model.confirmPassword.nullString &&
                   !model.tel.nullString &&
                   !model.verificationCode.nullString){
-            [WHToast jobsToastErrMsg:Internationalization(@"Please enter a user name")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter a user name")];
         }else if (!model.userName.nullString &&
                   model.password.nullString &&
                   !model.confirmPassword.nullString &&
                   !model.tel.nullString &&
                   !model.verificationCode.nullString){
-            [WHToast jobsToastErrMsg:Internationalization(@"Please enter your password")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter your password")];
         }else if (!model.userName.nullString &&
                   !model.password.nullString &&
                   model.confirmPassword.nullString &&
                   !model.tel.nullString &&
                   !model.verificationCode.nullString){
-            [WHToast jobsToastErrMsg:Internationalization(@"Please confirm your password")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please confirm your password")];
         }else if (!model.userName.nullString &&
                   !model.password.nullString &&
                   !model.confirmPassword.nullString &&
                   model.tel.nullString &&
                   !model.verificationCode.nullString){
-            [WHToast jobsToastErrMsg:Internationalization(@"Please enter your mobile phone number")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter your mobile phone number")];
         }else if (!model.userName.nullString &&
                   !model.password.nullString &&
                   !model.confirmPassword.nullString &&
                   !model.tel.nullString &&
                   model.verificationCode.nullString){
-            [WHToast jobsToastErrMsg:Internationalization(@"Please enter the verification code")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter the verification code")];
         }else if ([self checkUserName:model.userName] ||
                   [self checkUserPassword:model.password] ||
                   [self checkUserPassword:model.confirmPassword]){
-            [WHToast jobsToastErrMsg:Internationalization(@"The password consists of 6 to 15 characters and can only be letters and numbers")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"The password consists of 6 to 15 characters and can only be letters and numbers")];
         }else{
-            [WHToast jobsToastErrMsg:Internationalization(@"Please complete the registration information")];
+            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please complete the registration information")];
         }
     }return NO;
 }

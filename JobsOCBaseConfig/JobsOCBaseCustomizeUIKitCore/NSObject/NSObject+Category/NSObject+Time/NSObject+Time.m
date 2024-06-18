@@ -93,12 +93,12 @@ NSString *const App当日首次进入 = @"App当日首次进入";
     
     if (!formatTime) {
         formatTime = JobsFormatTime.new;
-        formatTime.year = Internationalization(@":");
-        formatTime.month = Internationalization(@":");
-        formatTime.day = Internationalization(@":");
-        formatTime.hour = Internationalization(@":");
-        formatTime.minute = Internationalization(@":");
-        formatTime.second = Internationalization(@":");
+        formatTime.year = JobsInternationalization(@":");
+        formatTime.month = JobsInternationalization(@":");
+        formatTime.day = JobsInternationalization(@":");
+        formatTime.hour = JobsInternationalization(@":");
+        formatTime.minute = JobsInternationalization(@":");
+        formatTime.second = JobsInternationalization(@":");
     }
     
     return [formatTime formatTimeWithYear:nil
@@ -118,12 +118,12 @@ NSString *const App当日首次进入 = @"App当日首次进入";
     
     if (!formatTime) {
         formatTime = JobsFormatTime.new;
-        formatTime.year = Internationalization(@":");
-        formatTime.month = Internationalization(@":");
-        formatTime.day = Internationalization(@":");
-        formatTime.hour = Internationalization(@":");
-        formatTime.minute = Internationalization(@":");
-        formatTime.second = Internationalization(@":");
+        formatTime.year = JobsInternationalization(@":");
+        formatTime.month = JobsInternationalization(@":");
+        formatTime.day = JobsInternationalization(@":");
+        formatTime.hour = JobsInternationalization(@":");
+        formatTime.minute = JobsInternationalization(@":");
+        formatTime.second = JobsInternationalization(@":");
     }
     
     return [formatTime formatTimeWithYear:nil
@@ -178,29 +178,29 @@ NSString *const App当日首次进入 = @"App当日首次进入";
 
     switch (resResWeekDay) {
         case 0:{
-            return Internationalization(@"星期六");
+            return JobsInternationalization(@"星期六");
         }break;
         case 1:{
-            return Internationalization(@"星期日");
+            return JobsInternationalization(@"星期日");
         }break;
         case 2:{
-            return Internationalization(@"星期一");
+            return JobsInternationalization(@"星期一");
         }break;
         case 3:{
-            return Internationalization(@"星期二");
+            return JobsInternationalization(@"星期二");
         }break;
         case 4:{
-            return Internationalization(@"星期三");
+            return JobsInternationalization(@"星期三");
         }break;
         case 5:{
-            return Internationalization(@"星期四");
+            return JobsInternationalization(@"星期四");
         }break;
         case 6:{
-            return Internationalization(@"星期五");
+            return JobsInternationalization(@"星期五");
         }break;
             
         default:
-            return Internationalization(@"异常数据");
+            return JobsInternationalization(@"异常数据");
             break;
     }
 }

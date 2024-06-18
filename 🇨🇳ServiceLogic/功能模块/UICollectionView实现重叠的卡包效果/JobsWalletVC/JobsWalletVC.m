@@ -34,9 +34,9 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = Internationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-//        self.viewModel.textModel.text = Internationalization(@"JobsWallet");
+//        self.viewModel.textModel.text = JobsInternationalization(@"JobsWallet");
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
@@ -211,24 +211,24 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
             NSMutableArray *dataMutArr = NSMutableArray.array;
             {
                 UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = Internationalization(@"上海银行");
-                viewModel.subTextModel.text = Internationalization(@"**** 7895");
+                viewModel.textModel.text = JobsInternationalization(@"上海银行");
+                viewModel.subTextModel.text = JobsInternationalization(@"**** 7895");
                 viewModel.image = JobsIMG(@"第一银行");
                 [dataMutArr addObject:viewModel];
             }
             
             {
                 UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = Internationalization(@"国泰世华");
-                viewModel.subTextModel.text = Internationalization(@"**** 2345");
+                viewModel.textModel.text = JobsInternationalization(@"国泰世华");
+                viewModel.subTextModel.text = JobsInternationalization(@"**** 2345");
                 viewModel.image = JobsIMG(@"国泰世华");
                 [dataMutArr addObject:viewModel];
             }
             
             {
                 UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = Internationalization(@"台湾银行");
-                viewModel.subTextModel.text = Internationalization(@"**** 7654");
+                viewModel.textModel.text = JobsInternationalization(@"台湾银行");
+                viewModel.subTextModel.text = JobsInternationalization(@"**** 7654");
                 viewModel.image = JobsIMG(@"台湾银行");
                 [dataMutArr addObject:viewModel];
             }
@@ -239,7 +239,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
             NSMutableArray *dataMutArr = NSMutableArray.array;
             {
                 UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = Internationalization(@"＋添加新的銀行卡");
+                viewModel.textModel.text = JobsInternationalization(@"＋添加新的銀行卡");
                 viewModel.textModel.font = notoSansRegular(16);
                 viewModel.textModel.textCor = HEXCOLOR(0x757575);
                 [dataMutArr addObject:viewModel];
@@ -254,7 +254,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         _sectionHeaderDataSource = NSMutableArray.array;
         for (id data in self.dataSourceMutArr) {
             UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = Internationalization(@"我是头部");
+            viewModel.textModel.text = JobsInternationalization(@"我是头部");
             [_sectionHeaderDataSource addObject:viewModel];
         }
     }return _sectionHeaderDataSource;
@@ -265,7 +265,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         _sectionFooterDataSource = NSMutableArray.array;
         for (id data in self.dataSourceMutArr) {
             UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = Internationalization(@"我是尾部");
+            viewModel.textModel.text = JobsInternationalization(@"我是尾部");
             [_sectionFooterDataSource addObject:viewModel];
         }
     }return _sectionFooterDataSource;
