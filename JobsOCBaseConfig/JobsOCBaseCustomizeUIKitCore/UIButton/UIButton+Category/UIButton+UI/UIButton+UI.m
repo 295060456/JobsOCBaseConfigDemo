@@ -261,20 +261,23 @@
 /// 设置按钮的长按手势
 -(void)jobsBtnLongPressGestureEventBlock:(JobsSelectorBlock)longPressGestureEventBlock{
     @jobs_weakify(self)
-    self.userInteractionEnabled = YES;
-    self.numberOfTouchesRequired = 1;
-    self.numberOfTapsRequired = 0;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
-    self.minimumPressDuration = 0.1;
-    self.numberOfTouchesRequired = 1;
-    self.allowableMovement = 1;
-    self.target = weak_self;/// ⚠️注意：任何手势这一句都要写
-    self.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
-                                                                             UILongPressGestureRecognizer *  _Nullable arg) {
-        if(longPressGestureEventBlock) longPressGestureEventBlock(weakSelf,arg);
-        return nil;
-    }];
-    self.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
-    self.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+    if(longPressGestureEventBlock){
+        self.userInteractionEnabled = YES;
+        self.numberOfTouchesRequired = 1;
+        self.numberOfTapsRequired = 0;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
+        self.minimumPressDuration = 0.1;
+        self.numberOfTouchesRequired = 1;
+        self.allowableMovement = 1;
+        self.target = weak_self;/// ⚠️注意：任何手势这一句都要写
+        if (!NSStringFromSelector(self.longPressGR_SelImp.selector)) {
+            self.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
+                                                                                     UILongPressGestureRecognizer *  _Nullable arg) {
+                if(longPressGestureEventBlock) longPressGestureEventBlock(weakSelf,arg);
+                return nil;
+            }];
+        }
+        self.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+    }
 }
 /// 方法名字符串（带参数、参数之间用"："隔开）、作用对象、参数
 -(JobsReturnIDByThreeIDBlock)btnClickActionWithParamarrays{

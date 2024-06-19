@@ -77,6 +77,12 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches
+          withEvent:(UIEvent *)event{
+//    [self changeAppIconToName:nil];
+    [self changeAppIconToName:@"AlternateIcon1"];
+}
 #pragma mark —— 一些私有方法
 -(void)changeAppIconToName:(NSString *)iconName {
     if (UIApplication.sharedApplication.supportsAlternateIcons) {
@@ -123,17 +129,17 @@
                                                    layerBorderCor:nil
                                                       borderWidth:JobsWidth(0)
                                                     primaryAction:nil
-                                       longPressGestureEventBlock:^(id  _Nullable weakSelf, 
-                                                                    id  _Nullable arg) {
-            /// 还原
-            [self changeAppIconToName:nil];
+                                       longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
+                                                                    id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
         }
                                                   clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
-            x.selected = !x.selected;
             if (self.objectBlock) self.objectBlock(x);
-            NSString *appIconToName = x.selected ? @"AlternateIcon1" : @"AlternateIcon2";
-            [self changeAppIconToName:appIconToName];
+//            x.selected = !x.selected;
+//            NSString *appIconToName = x.selected ? @"AlternateIcon2" : @"AlternateIcon1";
+//            [self changeAppIconToName:appIconToName];
+            [self changeAppIconToName:@"AlternateIcon2"];
             return nil;
         }];
         [self.view addSubview:_switchBtn];
