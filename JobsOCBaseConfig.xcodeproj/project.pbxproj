@@ -40,9 +40,7 @@
 		840F960027736427004979E9 /* JobsPullListTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92A527736425004979E9 /* JobsPullListTBVCell.m */; };
 		840F960127736427004979E9 /* JobsPullListAutoSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92A727736425004979E9 /* JobsPullListAutoSizeView.m */; };
 		840F960227736427004979E9 /* TransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92A927736425004979E9 /* TransitionAnimation.m */; };
-		840F960327736427004979E9 /* 功能性动效：手势横向滚动子VC联动Tabbar切换.md in Resources */ = {isa = PBXBuildFile; fileRef = 840F92AA27736425004979E9 /* 功能性动效：手势横向滚动子VC联动Tabbar切换.md */; };
 		840F960427736427004979E9 /* TransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92AC27736425004979E9 /* TransitionController.m */; };
-		840F960527736427004979E9 /* Tabbaritem点击动效.md in Resources */ = {isa = PBXBuildFile; fileRef = 840F92B027736425004979E9 /* Tabbaritem点击动效.md */; };
 		840F960627736427004979E9 /* TLTabBarAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92B227736425004979E9 /* TLTabBarAnimation.m */; };
 		840F960727736427004979E9 /* UITabBar+TLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92B527736425004979E9 /* UITabBar+TLAnimation.m */; };
 		840F960827736427004979E9 /* UITabBar+Ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92B627736425004979E9 /* UITabBar+Ex.m */; };
@@ -57,7 +55,6 @@
 		840F961627736427004979E9 /* JobsNoticePopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92E027736426004979E9 /* JobsNoticePopupView.m */; };
 		840F961727736427004979E9 /* 登录弹窗@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840F92E127736426004979E9 /* 登录弹窗@3x.png */; };
 		840F961827736427004979E9 /* JobsImageNumberViewCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92E527736426004979E9 /* JobsImageNumberViewCVCell.m */; };
-		840F961927736427004979E9 /* JobsImageNumberView.md in Resources */ = {isa = PBXBuildFile; fileRef = 840F92E727736426004979E9 /* JobsImageNumberView.md */; };
 		840F961A27736427004979E9 /* JobsImageNumberView.png in Resources */ = {isa = PBXBuildFile; fileRef = 840F92E827736426004979E9 /* JobsImageNumberView.png */; };
 		840F961B27736427004979E9 /* 7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840F92EB27736426004979E9 /* 7@2x.png */; };
 		840F961C27736427004979E9 /* 小数点@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840F92EC27736426004979E9 /* 小数点@2x.png */; };
@@ -83,17 +80,14 @@
 		840F963027736427004979E9 /* 0@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840F930027736426004979E9 /* 0@3x.png */; };
 		840F963127736427004979E9 /* JobsImageNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F930227736426004979E9 /* JobsImageNumberView.m */; };
 		840F963B27736427004979E9 /* JobsPageTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F931C27736426004979E9 /* JobsPageTBVCell.m */; };
-		840F963C27736427004979E9 /* JobsPageTBV.md in Resources */ = {isa = PBXBuildFile; fileRef = 840F931D27736426004979E9 /* JobsPageTBV.md */; };
 		840F963D27736427004979E9 /* JobsPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F931E27736426004979E9 /* JobsPageView.m */; };
 		840F963E27736427004979E9 /* JobsSuspendBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F932527736426004979E9 /* JobsSuspendBtn.m */; };
 		840F963F27736427004979E9 /* JobsSuspendLab.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F932727736426004979E9 /* JobsSuspendLab.m */; };
 		840F964027736427004979E9 /* JobsSuspendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F932A27736426004979E9 /* JobsSuspendView.m */; };
 		840F964227736427004979E9 /* UIScrollView+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F933027736426004979E9 /* UIScrollView+FDFullscreenPopGesture.m */; };
-		840F964327736427004979E9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 840F933227736426004979E9 /* README.md */; };
 		840F964427736427004979E9 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F933427736426004979E9 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		840F971727736428004979E9 /* CheckMemFreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95D527736427004979E9 /* CheckMemFreeVC.m */; };
 		840F971827736428004979E9 /* JobsShowObjInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95D827736427004979E9 /* JobsShowObjInfoVC.m */; };
-		840F971927736428004979E9 /* App国际化.md in Resources */ = {isa = PBXBuildFile; fileRef = 840F95DA27736427004979E9 /* App国际化.md */; };
 		840F971A27736428004979E9 /* AppInternationalizationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95DC27736427004979E9 /* AppInternationalizationVC.m */; };
 		84175CAD2C034F0100A535D9 /* LocalNotificationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84175CAC2C034F0100A535D9 /* LocalNotificationsVC.m */; };
 		84175CB32C03558F00A535D9 /* JobsMakeLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 84175CB22C03558F00A535D9 /* JobsMakeLocalNotification.m */; };
@@ -142,7 +136,6 @@
 		844B02302764C8F000B0513D /* JobsOCBaseConfigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B022F2764C8F000B0513D /* JobsOCBaseConfigTests.m */; };
 		844B023A2764C8F000B0513D /* JobsOCBaseConfigUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02392764C8F000B0513D /* JobsOCBaseConfigUITests.m */; };
 		844B023C2764C8F000B0513D /* JobsOCBaseConfigUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B023B2764C8F000B0513D /* JobsOCBaseConfigUITestsLaunchTests.m */; };
-		844B08382764CF4800B0513D /* RAC_Define.md in Resources */ = {isa = PBXBuildFile; fileRef = 844B07AE2764CF4700B0513D /* RAC_Define.md */; };
 		844B08392764CF4800B0513D /* RACEXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B07AF2764CF4700B0513D /* RACEXTRuntimeExtensions.m */; };
 		844B083A2764CF4800B0513D /* JXCategoryTitleBackgroundCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B07B82764CF4700B0513D /* JXCategoryTitleBackgroundCellModel.m */; };
 		844B083B2764CF4800B0513D /* JXCategoryTitleBackgroundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B07B92764CF4700B0513D /* JXCategoryTitleBackgroundCell.m */; };
@@ -158,12 +151,10 @@
 		844B08452764CF4800B0513D /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B07D32764CF4700B0513D /* EmptyView.m */; };
 		844B08752764CF4800B0513D /* ZMJCell+CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B081B2764CF4800B0513D /* ZMJCell+CustomView.m */; };
 		844B08762764CF4800B0513D /* CasinoFlowDetailsVC_h in Resources */ = {isa = PBXBuildFile; fileRef = 844B081D2764CF4800B0513D /* CasinoFlowDetailsVC_h */; };
-		844B08772764CF4800B0513D /* CasinoFlowDetailsVC_m in Resources */ = {isa = PBXBuildFile; fileRef = 844B081E2764CF4800B0513D /* CasinoFlowDetailsVC_m */; };
 		844B08782764CF4800B0513D /* XHLaunchAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B08242764CF4800B0513D /* XHLaunchAdView.m */; };
 		844B08792764CF4800B0513D /* XHLaunchAdButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B08272764CF4800B0513D /* XHLaunchAdButton.m */; };
 		844B087A2764CF4800B0513D /* XHLaunchImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B08292764CF4800B0513D /* XHLaunchImageView.m */; };
 		844B087B2764CF4800B0513D /* XHLaunchAdConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B082A2764CF4800B0513D /* XHLaunchAdConst.m */; };
-		844B087C2764CF4800B0513D /* XHLaunchAd不用pod导入的情况说明.md in Resources */ = {isa = PBXBuildFile; fileRef = 844B082C2764CF4800B0513D /* XHLaunchAd不用pod导入的情况说明.md */; };
 		844B087D2764CF4800B0513D /* XHLaunchAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B082D2764CF4800B0513D /* XHLaunchAd.m */; };
 		844B087E2764CF4800B0513D /* XHLaunchAdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B082E2764CF4800B0513D /* XHLaunchAdController.m */; };
 		844B087F2764CF4800B0513D /* XHLaunchAdDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B082F2764CF4800B0513D /* XHLaunchAdDownloader.m */; };
@@ -251,7 +242,6 @@
 		84A4920C27904A970002A837 /* JobsIMVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A491E727904A970002A837 /* JobsIMVC.m */; };
 		84A4920D27904A970002A837 /* JobsIMListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A491E927904A970002A837 /* JobsIMListView.m */; };
 		84A4920E27904A970002A837 /* JobsIMListTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A491EC27904A970002A837 /* JobsIMListTBVCell.m */; };
-		84A4920F27904A970002A837 /* JobsIMListView.md in Resources */ = {isa = PBXBuildFile; fileRef = 84A491EE27904A970002A837 /* JobsIMListView.md */; };
 		84A4921427904B000002A837 /* JobsIMShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A4921327904B000002A837 /* JobsIMShowVC.m */; };
 		84A494CF27906CC90002A837 /* 动态头像_2 尺寸84.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84A494CB27906CC90002A837 /* 动态头像_2 尺寸84.gif */; };
 		84A494D027906CC90002A837 /* 动态头像_1 尺寸126.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84A494CC27906CC90002A837 /* 动态头像_1 尺寸126.gif */; };
@@ -282,15 +272,12 @@
 		84CA5E8027895BA400E46E71 /* Tabbar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5E7D27895BA400E46E71 /* Tabbar.xcassets */; };
 		84CA5E8327895BCE00E46E71 /* MetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5E8227895BCE00E46E71 /* MetaData.plist */; };
 		84CA5EBB27895C0A00E46E71 /* 非iph_X.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5EBA27895C0A00E46E71 /* 非iph_X.mp4 */; };
-		84CA5F8F27897AFB00E46E71 /* 牛逼标签效果 - SphereView👍 in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5EC127897AFA00E46E71 /* 牛逼标签效果 - SphereView👍 */; };
 		84CA5F9027897AFB00E46E71 /* XLSphereView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5EC327897AFA00E46E71 /* XLSphereView.m */; };
-		84CA5F9127897AFB00E46E71 /* File in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5EC527897AFA00E46E71 /* File */; };
 		84CA5F9527897AFB00E46E71 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5ED427897AFA00E46E71 /* NSString+Base64.m */; };
 		84CA5F9627897AFB00E46E71 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5ED727897AFA00E46E71 /* NSData+Base64.m */; };
 		84CA5F9927897AFB00E46E71 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5EDD27897AFA00E46E71 /* GTMBase64.m */; };
 		84CA5F9A27897AFB00E46E71 /* RSAUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5EDF27897AFA00E46E71 /* RSAUtil.m */; };
 		84CA5FA227897AFB00E46E71 /* AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5EF427897AFA00E46E71 /* AES.m */; };
-		84CA5FA327897AFB00E46E71 /* AESCipher in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5EF627897AFA00E46E71 /* AESCipher */; };
 		84CA5FA427897AFB00E46E71 /* AESCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5EF727897AFA00E46E71 /* AESCipher.m */; };
 		84CA5FA627897AFB00E46E71 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F0027897AFA00E46E71 /* NSData+CommonCrypto.m */; };
 		84CA5FA827897AFB00E46E71 /* MovieCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F0427897AFA00E46E71 /* MovieCountDown.m */; };
@@ -300,39 +287,30 @@
 		84CA5FAF27897AFB00E46E71 /* XLChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F1327897AFA00E46E71 /* XLChannelView.m */; };
 		84CA5FB027897AFB00E46E71 /* XLChannelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F1527897AFA00E46E71 /* XLChannelItem.m */; };
 		84CA5FB127897AFB00E46E71 /* HAHandleDemoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F1727897AFA00E46E71 /* HAHandleDemoView.m */; };
-		84CA5FB227897AFB00E46E71 /* 高仿Uber取消叫车按钮效果(按住放大) in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F1927897AFA00E46E71 /* 高仿Uber取消叫车按钮效果(按住放大) */; };
 		84CA5FB327897AFB00E46E71 /* GifLoopPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F1B27897AFA00E46E71 /* GifLoopPlayView.m */; };
 		84CA5FB427897AFB00E46E71 /* 音律跳动.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F1D27897AFA00E46E71 /* 音律跳动.bundle */; };
-		84CA5FB527897AFB00E46E71 /* 上传中....md in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F2027897AFA00E46E71 /* 上传中....md */; };
 		84CA5FB627897AFB00E46E71 /* DDUploadingProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F2127897AFA00E46E71 /* DDUploadingProgressView.m */; };
 		84CA5FBD27897AFB00E46E71 /* XXTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F3027897AFA00E46E71 /* XXTools.m */; };
 		84CA5FBE27897AFB00E46E71 /* ZHKeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F3427897AFA00E46E71 /* ZHKeyChainManager.m */; };
 		84CA5FC327897AFB00E46E71 /* LongPressToDeleteImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F4027897AFA00E46E71 /* LongPressToDeleteImageView.m */; };
-		84CA5FC427897AFB00E46E71 /* 仿iOS图标抖动、iOS删除App效果 in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F4127897AFA00E46E71 /* 仿iOS图标抖动、iOS删除App效果 */; };
 		84CA5FC527897AFB00E46E71 /* JhtBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F4627897AFA00E46E71 /* JhtBannerView.m */; };
 		84CA5FC627897AFB00E46E71 /* JhtBannerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F4827897AFA00E46E71 /* JhtBannerScrollView.m */; };
 		84CA5FC727897AFB00E46E71 /* JhtBannerCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F4D27897AFA00E46E71 /* JhtBannerCardView.m */; };
-		84CA5FC827897AFB00E46E71 /* Use in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F4E27897AFA00E46E71 /* Use */; };
 		84CA5FC927897AFB00E46E71 /* XDTextBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F5027897AFA00E46E71 /* XDTextBtnView.m */; };
 		84CA5FCA27897AFB00E46E71 /* TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F5327897AFA00E46E71 /* TBCityIconFont.m */; };
 		84CA5FCB27897AFB00E46E71 /* TBCityIconInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F5427897AFA00E46E71 /* TBCityIconInfo.m */; };
 		84CA5FCC27897AFB00E46E71 /* UIImage+TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F5527897AFA00E46E71 /* UIImage+TBCityIconFont.m */; };
-		84CA5FD627897AFB00E46E71 /* 电话号码国家选择器 in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F7027897AFA00E46E71 /* 电话号码国家选择器 */; };
 		84CA5FD727897AFB00E46E71 /* sortedNameEN.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F7127897AFA00E46E71 /* sortedNameEN.plist */; };
 		84CA5FD827897AFB00E46E71 /* sortedNameCH.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F7227897AFB00E46E71 /* sortedNameCH.plist */; };
 		84CA5FD927897AFB00E46E71 /* XWCountryCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F7327897AFB00E46E71 /* XWCountryCodeController.m */; };
-		84CA5FDA27897AFB00E46E71 /* 手势解锁 in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F7527897AFB00E46E71 /* 手势解锁 */; };
 		84CA5FDB27897AFB00E46E71 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F7627897AFB00E46E71 /* AESCrypt.m */; };
 		84CA5FDC27897AFB00E46E71 /* CFGradientLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F7927897AFB00E46E71 /* CFGradientLabel.m */; };
 		84CA5FDD27897AFB00E46E71 /* WGradientProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F7D27897AFB00E46E71 /* WGradientProgress.m */; };
 		84CA5FDE27897AFB00E46E71 /* WGradientProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F7E27897AFB00E46E71 /* WGradientProgressView.m */; };
-		84CA5FDF27897AFB00E46E71 /* GDFadeView.md in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F8227897AFB00E46E71 /* GDFadeView.md */; };
 		84CA5FE027897AFB00E46E71 /* GDFadeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F8327897AFB00E46E71 /* GDFadeView.m */; };
 		84CA5FE127897AFB00E46E71 /* CountdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F8627897AFB00E46E71 /* CountdownView.m */; };
 		84CA5FE227897AFB00E46E71 /* FSAppIconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F8827897AFB00E46E71 /* FSAppIconManager.m */; };
-		84CA5FE327897AFB00E46E71 /* App图标更换 in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F8927897AFB00E46E71 /* App图标更换 */; };
 		84CA5FE427897AFB00E46E71 /* RYCuteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F8C27897AFB00E46E71 /* RYCuteView.m */; };
-		84CA5FE527897AFB00E46E71 /* Q弹 in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F8E27897AFB00E46E71 /* Q弹 */; };
 		84CA60A12789817300E46E71 /* PHCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA609F2789817300E46E71 /* PHCycleView.m */; };
 		84CA611C278981BD00E46E71 /* JobsProgressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA611B278981BD00E46E71 /* JobsProgressVC.m */; };
 		84CA61932789851300E46E71 /* A_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA61922789851300E46E71 /* A_VC.m */; };
@@ -576,7 +554,6 @@
 		C596B7A4283F6F7900C13619 /* JobsHotLabelWithMultiLineCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C596B79C283F6F7800C13619 /* JobsHotLabelWithMultiLineCVCell.m */; };
 		C596B7A5283F6F7900C13619 /* JobsHotLabelWithMultiLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C596B79F283F6F7800C13619 /* JobsHotLabelWithMultiLine.m */; };
 		C59789E92BE3599600A56125 /* AppDelegate+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786BE2BE3599600A56125 /* AppDelegate+Extra.m */; };
-		C59789EA2BE3599700A56125 /* BaseProtocol.md in Resources */ = {isa = PBXBuildFile; fileRef = C59786D82BE3599600A56125 /* BaseProtocol.md */; };
 		C59789EB2BE3599700A56125 /* CALayer+Anim.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786DC2BE3599600A56125 /* CALayer+Anim.m */; };
 		C59789EC2BE3599700A56125 /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786DF2BE3599600A56125 /* CALayer+Transition.m */; };
 		C59789ED2BE3599700A56125 /* NSArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786E52BE3599600A56125 /* NSArray+Safety.m */; };
@@ -585,18 +562,14 @@
 		C59789F02BE3599700A56125 /* NSBundle+CLLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786F22BE3599600A56125 /* NSBundle+CLLanguage.m */; };
 		C59789F12BE3599700A56125 /* NSCache+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786F82BE3599600A56125 /* NSCache+Extra.m */; };
 		C59789F22BE3599700A56125 /* NSMutableArray+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786FE2BE3599600A56125 /* NSMutableArray+Extra.m */; };
-		C59789F32BE3599700A56125 /* 字典有序化.md in Resources */ = {isa = PBXBuildFile; fileRef = C59787012BE3599600A56125 /* 字典有序化.md */; };
 		C59789F42BE3599700A56125 /* NSMutableDictionary+Ordered.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787032BE3599600A56125 /* NSMutableDictionary+Ordered.m */; };
 		C59789F52BE3599700A56125 /* NSNotificationCenter+JobsBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787092BE3599600A56125 /* NSNotificationCenter+JobsBlock.m */; };
 		C59789F62BE3599700A56125 /* NSNumber+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C597870E2BE3599600A56125 /* NSNumber+Extra.m */; };
 		C59789F72BE3599700A56125 /* CLLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787132BE3599600A56125 /* CLLanguageManager.m */; };
 		C59789F82BE3599700A56125 /* DeleteSystemUITabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787162BE3599600A56125 /* DeleteSystemUITabBarButton.m */; };
-		C59789F92BE3599700A56125 /* DeleteSystemUITabBarButton.md in Resources */ = {isa = PBXBuildFile; fileRef = C59787172BE3599600A56125 /* DeleteSystemUITabBarButton.md */; };
 		C59789FA2BE3599700A56125 /* FileFolderHandleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C597871A2BE3599600A56125 /* FileFolderHandleTool.m */; };
-		C59789FB2BE3599700A56125 /* FileFolderHandleTool.md in Resources */ = {isa = PBXBuildFile; fileRef = C597871B2BE3599600A56125 /* FileFolderHandleTool.md */; };
 		C59789FC2BE3599700A56125 /* JobsFormatTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C597871E2BE3599600A56125 /* JobsFormatTime.m */; };
 		C59789FD2BE3599700A56125 /* JobsMonitorNetwoking.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787212BE3599600A56125 /* JobsMonitorNetwoking.m */; };
-		C59789FE2BE3599700A56125 /* MonitorNetwoking.md in Resources */ = {isa = PBXBuildFile; fileRef = C59787222BE3599600A56125 /* MonitorNetwoking.md */; };
 		C59789FF2BE3599700A56125 /* JobsSEL_IMP.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787252BE3599600A56125 /* JobsSEL_IMP.m */; };
 		C5978A002BE3599700A56125 /* JobsTimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787282BE3599600A56125 /* JobsTimeModel.m */; };
 		C5978A012BE3599700A56125 /* CADisplayLink_TimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C597872B2BE3599600A56125 /* CADisplayLink_TimerManager.m */; };
@@ -605,16 +578,13 @@
 		C5978A042BE3599700A56125 /* NSTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787342BE3599600A56125 /* NSTimerManager.m */; };
 		C5978A052BE3599700A56125 /* JobsTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = C597873A2BE3599600A56125 /* JobsTuple.m */; };
 		C5978A062BE3599700A56125 /* TouchID.m in Sources */ = {isa = PBXBuildFile; fileRef = C597873D2BE3599600A56125 /* TouchID.m */; };
-		C5978A072BE3599700A56125 /* TouchID.md in Resources */ = {isa = PBXBuildFile; fileRef = C597873E2BE3599600A56125 /* TouchID.md */; };
 		C5978A082BE3599700A56125 /* JobsHeaderFooterViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787412BE3599600A56125 /* JobsHeaderFooterViewModel.m */; };
 		C5978A092BE3599700A56125 /* UIButtonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787442BE3599600A56125 /* UIButtonModel.m */; };
 		C5978A0A2BE3599700A56125 /* UITextModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787472BE3599600A56125 /* UITextModel.m */; };
 		C5978A0B2BE3599700A56125 /* UIViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C597874A2BE3599600A56125 /* UIViewModel.m */; };
-		C5978A0C2BE3599700A56125 /* BaseObject.md in Resources */ = {isa = PBXBuildFile; fileRef = C597874D2BE3599600A56125 /* BaseObject.md */; };
 		C5978A0D2BE3599700A56125 /* NSObject+AFNReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787502BE3599600A56125 /* NSObject+AFNReachability.m */; };
 		C5978A0E2BE3599700A56125 /* NSObject+SPAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787532BE3599600A56125 /* NSObject+SPAlertController.m */; };
 		C5978A0F2BE3599700A56125 /* NSObject+SYSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787562BE3599600A56125 /* NSObject+SYSAlertController.m */; };
-		C5978A102BE3599700A56125 /* 此类主要封装一些本App常用的、可以替换资源的函数调用或者是鉴权机制.md in Resources */ = {isa = PBXBuildFile; fileRef = C59787592BE3599600A56125 /* 此类主要封装一些本App常用的、可以替换资源的函数调用或者是鉴权机制.md */; };
 		C5978A112BE3599700A56125 /* NSObject+AppTools.m in Sources */ = {isa = PBXBuildFile; fileRef = C597875B2BE3599600A56125 /* NSObject+AppTools.m */; };
 		C5978A122BE3599700A56125 /* NSObject+BRPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C597875E2BE3599600A56125 /* NSObject+BRPickerView.m */; };
 		C5978A132BE3599700A56125 /* NSObject+CallBackInfoByBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787612BE3599600A56125 /* NSObject+CallBackInfoByBlock.m */; };
@@ -638,7 +608,6 @@
 		C5978A252BE3599700A56125 /* NSObject+IDFV.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787962BE3599600A56125 /* NSObject+IDFV.m */; };
 		C5978A262BE3599700A56125 /* NSObject+UDID.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787992BE3599600A56125 /* NSObject+UDID.m */; };
 		C5978A272BE3599700A56125 /* NSObject+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = C597879C2BE3599600A56125 /* NSObject+UUID.m */; };
-		C5978A282BE3599700A56125 /* 获取iOS设备唯一标示.md in Resources */ = {isa = PBXBuildFile; fileRef = C597879E2BE3599600A56125 /* 获取iOS设备唯一标示.md */; };
 		C5978A292BE3599700A56125 /* NSObject+Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787A22BE3599600A56125 /* NSObject+Measure.m */; };
 		C5978A2A2BE3599700A56125 /* NSObject+Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787A52BE3599600A56125 /* NSObject+Notification.m */; };
 		C5978A2B2BE3599700A56125 /* NSObject+NSMutableParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787A82BE3599600A56125 /* NSObject+NSMutableParagraphStyle.m */; };
@@ -651,7 +620,6 @@
 		C5978A322BE3599700A56125 /* NSObject+RunrtimeGet.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787BD2BE3599600A56125 /* NSObject+RunrtimeGet.m */; };
 		C5978A332BE3599700A56125 /* NSObject+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787C02BE3599600A56125 /* NSObject+Shake.m */; };
 		C5978A342BE3599700A56125 /* NSObject+Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787C32BE3599600A56125 /* NSObject+Sound.m */; };
-		C5978A352BE3599700A56125 /* 如何理解iOS的Runtime？ - 掘金.mht in Resources */ = {isa = PBXBuildFile; fileRef = C59787C52BE3599600A56125 /* 如何理解iOS的Runtime？ - 掘金.mht */; };
 		C5978A362BE3599700A56125 /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787C72BE3599600A56125 /* NSObject+Swizzling.m */; };
 		C5978A372BE3599700A56125 /* NSObject+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787CA2BE3599600A56125 /* NSObject+Time.m */; };
 		C5978A382BE3599700A56125 /* NSObject+UIScrollViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787CD2BE3599600A56125 /* NSObject+UIScrollViewDelegate.m */; };
@@ -685,11 +653,9 @@
 		C5978A542BE3599700A56125 /* UIButton+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788252BE3599600A56125 /* UIButton+Animation.m */; };
 		C5978A552BE3599700A56125 /* UIButton+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788282BE3599600A56125 /* UIButton+Extra.m */; };
 		C5978A562BE3599700A56125 /* UIButton+ImageTitleSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = C597882B2BE3599600A56125 /* UIButton+ImageTitleSpacing.m */; };
-		C5978A572BE3599700A56125 /* UIButton+ImageTitleSpacing.md in Resources */ = {isa = PBXBuildFile; fileRef = C597882C2BE3599600A56125 /* UIButton+ImageTitleSpacing.md */; };
 		C5978A582BE3599700A56125 /* ButtonTimerConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C597882F2BE3599600A56125 /* ButtonTimerConfigModel.m */; };
 		C5978A592BE3599700A56125 /* UIButton+Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788332BE3599600A56125 /* UIButton+Timer.m */; };
 		C5978A5A2BE3599700A56125 /* UIButton+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788362BE3599600A56125 /* UIButton+UI.m */; };
-		C5978A5B2BE3599700A56125 /* UIButton+UI.md in Resources */ = {isa = PBXBuildFile; fileRef = C59788372BE3599600A56125 /* UIButton+UI.md */; };
 		C5978A5C2BE3599700A56125 /* UICollectionHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C597883D2BE3599600A56125 /* UICollectionHeaderFooterView.m */; };
 		C5978A5D2BE3599700A56125 /* BaseCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788402BE3599600A56125 /* BaseCollectionReusableView.m */; };
 		C5978A5E2BE3599700A56125 /* JobsHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788432BE3599600A56125 /* JobsHeaderFooterView.m */; };
@@ -704,16 +670,11 @@
 		C5978A682BE3599700A56125 /* UICollectionViewCell+ShakeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788632BE3599600A56125 /* UICollectionViewCell+ShakeAnimation.m */; };
 		C5978A692BE3599700A56125 /* UICollectionViewCell+UICollectionViewCellProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788662BE3599600A56125 /* UICollectionViewCell+UICollectionViewCellProtocol.m */; };
 		C5978A6A2BE3599700A56125 /* HQCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C597886C2BE3599600A56125 /* HQCollectionViewFlowLayout.m */; };
-		C5978A6B2BE3599700A56125 /* HQCollectionViewFlowLayout.md in Resources */ = {isa = PBXBuildFile; fileRef = C597886D2BE3599600A56125 /* HQCollectionViewFlowLayout.md */; };
 		C5978A6C2BE3599700A56125 /* KFZShopCatoryFlowLayput.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788702BE3599600A56125 /* KFZShopCatoryFlowLayput.m */; };
-		C5978A6D2BE3599700A56125 /* KFZShopCatoryFlowLayput.md in Resources */ = {isa = PBXBuildFile; fileRef = C59788712BE3599600A56125 /* KFZShopCatoryFlowLayput.md */; };
 		C5978A6E2BE3599700A56125 /* LMHWaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788742BE3599600A56125 /* LMHWaterFallLayout.m */; };
-		C5978A6F2BE3599700A56125 /* LMHWaterFallLayout.md in Resources */ = {isa = PBXBuildFile; fileRef = C59788752BE3599600A56125 /* LMHWaterFallLayout.md */; };
-		C5978A702BE3599700A56125 /* UICollectionViewFlowLayout.md in Resources */ = {isa = PBXBuildFile; fileRef = C59788792BE3599600A56125 /* UICollectionViewFlowLayout.md */; };
 		C5978A712BE3599700A56125 /* UIColor+Other.m in Sources */ = {isa = PBXBuildFile; fileRef = C597887C2BE3599600A56125 /* UIColor+Other.m */; };
 		C5978A722BE3599700A56125 /* UIControl+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788822BE3599600A56125 /* UIControl+Extra.m */; };
 		C5978A732BE3599700A56125 /* UIControl+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788852BE3599600A56125 /* UIControl+XY.m */; };
-		C5978A742BE3599700A56125 /* UIControl+XY.md in Resources */ = {isa = PBXBuildFile; fileRef = C59788862BE3599600A56125 /* UIControl+XY.md */; };
 		C5978A752BE3599700A56125 /* iOS 获取手机型号、系统版本.png in Resources */ = {isa = PBXBuildFile; fileRef = C597888B2BE3599600A56125 /* iOS 获取手机型号、系统版本.png */; };
 		C5978A762BE3599700A56125 /* UIDevice+XMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C597888D2BE3599600A56125 /* UIDevice+XMUtils.m */; };
 		C5978A772BE3599700A56125 /* UIFont+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788932BE3599600A56125 /* UIFont+Extras.m */; };
@@ -742,11 +703,9 @@
 		C5978A8E2BE3599700A56125 /* UISlider+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788F12BE3599600A56125 /* UISlider+Extra.m */; };
 		C5978A8F2BE3599700A56125 /* UISwitch+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788F72BE3599600A56125 /* UISwitch+UI.m */; };
 		C5978A902BE3599700A56125 /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788FD2BE3599600A56125 /* BaseTableView.m */; };
-		C5978A912BE3599700A56125 /* BaseTableView.md in Resources */ = {isa = PBXBuildFile; fileRef = C59788FE2BE3599600A56125 /* BaseTableView.md */; };
 		C5978A922BE3599700A56125 /* UITableView+Expand.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789012BE3599600A56125 /* UITableView+Expand.m */; };
 		C5978A932BE3599700A56125 /* UITableView+RegisterClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789042BE3599600A56125 /* UITableView+RegisterClass.m */; };
 		C5978A942BE3599700A56125 /* UITableView+WWFoldableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789072BE3599600A56125 /* UITableView+WWFoldableTableView.m */; };
-		C5978A952BE3599700A56125 /* UITableView+WWFoldableTableView.md in Resources */ = {isa = PBXBuildFile; fileRef = C59789082BE3599600A56125 /* UITableView+WWFoldableTableView.md */; };
 		C5978A962BE3599700A56125 /* UITableViewCellStyleDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = C597890D2BE3599600A56125 /* UITableViewCellStyleDefault.png */; };
 		C5978A972BE3599700A56125 /* UITableViewCellStyleSubtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = C597890E2BE3599600A56125 /* UITableViewCellStyleSubtitle.png */; };
 		C5978A982BE3599700A56125 /* UITableViewCellStyleValue1.png in Resources */ = {isa = PBXBuildFile; fileRef = C597890F2BE3599600A56125 /* UITableViewCellStyleValue1.png */; };
@@ -818,7 +777,6 @@
 		C5978ADA2BE3599700A56125 /* UIViewController+TFPopupView（01）.png in Resources */ = {isa = PBXBuildFile; fileRef = C59789D72BE3599600A56125 /* UIViewController+TFPopupView（01）.png */; };
 		C5978ADB2BE3599700A56125 /* UIViewController+TFPopupView（02）.png in Resources */ = {isa = PBXBuildFile; fileRef = C59789D82BE3599600A56125 /* UIViewController+TFPopupView（02）.png */; };
 		C5978ADC2BE3599700A56125 /* UIViewController+XLBubbleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789DB2BE3599600A56125 /* UIViewController+XLBubbleTransition.m */; };
-		C5978ADD2BE3599700A56125 /* UIViewController+XLBubbleTransition.md in Resources */ = {isa = PBXBuildFile; fileRef = C59789DC2BE3599600A56125 /* UIViewController+XLBubbleTransition.md */; };
 		C5978ADE2BE3599700A56125 /* XLBubbleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789DE2BE3599600A56125 /* XLBubbleTransition.m */; };
 		C5978ADF2BE3599700A56125 /* UIWindow+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789E52BE3599600A56125 /* UIWindow+Extra.m */; };
 		C5A21B9B2872D94A00CD6ED3 /* CustomBtnVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A21B9A2872D94A00CD6ED3 /* CustomBtnVC.m */; };
@@ -958,6 +916,10 @@
 		C5C480A5284E250A007916B3 /* JobsSettingGestureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C480A4284E250A007916B3 /* JobsSettingGestureVC.m */; };
 		C5C48124284E254B007916B3 /* JobsMembersSubsBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C48123284E254B007916B3 /* JobsMembersSubsBaseVC.m */; };
 		C5C56B002C2220CD009F2290 /* AppIconSwitchingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D260072C220F0A005AD2DD /* AppIconSwitchingVC.m */; };
+		C5C56C4C2C233C37009F2290 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C56C4B2C233C37009F2290 /* libc++.tbd */; };
+		C5C56C4E2C233C43009F2290 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C56C4D2C233C43009F2290 /* libz.tbd */; };
+		C5C56C502C233C4D009F2290 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C56C4F2C233C4D009F2290 /* libsqlite3.tbd */; };
+		C5C56C522C233C55009F2290 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C56C512C233C55009F2290 /* libxml2.tbd */; };
 		C5D46FFC284E29A90090D20F /* JobsGetiOSNewestVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D46FFB284E29A90090D20F /* JobsGetiOSNewestVersionModel.m */; };
 		C5E4ABC02858BEED00B782F0 /* UILabelWordRotatingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E4ABBF2858BEED00B782F0 /* UILabelWordRotatingVC.m */; };
 		C5E8A7582869848600FAB31D /* CustomTableViewCellVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E8A7572869848600FAB31D /* CustomTableViewCellVC.m */; };
@@ -2834,6 +2796,10 @@
 		C5C480A4284E250A007916B3 /* JobsSettingGestureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsSettingGestureVC.m; sourceTree = "<group>"; };
 		C5C48122284E254B007916B3 /* JobsMembersSubsBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsMembersSubsBaseVC.h; sourceTree = "<group>"; };
 		C5C48123284E254B007916B3 /* JobsMembersSubsBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsMembersSubsBaseVC.m; sourceTree = "<group>"; };
+		C5C56C4B2C233C37009F2290 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		C5C56C4D2C233C43009F2290 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		C5C56C4F2C233C4D009F2290 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		C5C56C512C233C55009F2290 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		C5D260062C220F0A005AD2DD /* AppIconSwitchingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppIconSwitchingVC.h; sourceTree = "<group>"; };
 		C5D260072C220F0A005AD2DD /* AppIconSwitchingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppIconSwitchingVC.m; sourceTree = "<group>"; };
 		C5D46FFA284E29A90090D20F /* JobsGetiOSNewestVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsGetiOSNewestVersionModel.h; sourceTree = "<group>"; };
@@ -2856,6 +2822,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5C56C522C233C55009F2290 /* libxml2.tbd in Frameworks */,
+				C5C56C502C233C4D009F2290 /* libsqlite3.tbd in Frameworks */,
+				C5C56C4E2C233C43009F2290 /* libz.tbd in Frameworks */,
+				C5C56C4C2C233C37009F2290 /* libc++.tbd in Frameworks */,
 				ABB2A8B711CC6C1FEF7A4899 /* Pods_JobsOCBaseConfig.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2882,6 +2852,10 @@
 		04E860081AB2FE077DB952CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C5C56C512C233C55009F2290 /* libxml2.tbd */,
+				C5C56C4F2C233C4D009F2290 /* libsqlite3.tbd */,
+				C5C56C4D2C233C43009F2290 /* libz.tbd */,
+				C5C56C4B2C233C37009F2290 /* libc++.tbd */,
 				013934AB50FCDA373FFA6597 /* Pods_JobsOCBaseConfig.framework */,
 				8E523CE469CB59906A8C5207 /* Pods_JobsOCBaseConfigTests.framework */,
 				9CBEFF215A35C0EDBA485968 /* Pods_JobsOCBaseConfigUITests.framework */,
@@ -11748,13 +11722,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5C48031284E21E5007916B3 /* NotoSans-Regular.ttf in Resources */,
-				C5978A742BE3599700A56125 /* UIControl+XY.md in Resources */,
 				C5978A502BE3599700A56125 /* RBCLikeButton.bundle in Resources */,
 				840F962127736427004979E9 /* 小数点@3x.png in Resources */,
 				C5C4804A284E21E5007916B3 /* NotoSansDisplay-Black.ttf in Resources */,
 				C593DBF12AC897AA00F875B5 /* 安全区域.png in Resources */,
 				C5368A272AC3D54D00A6AF05 /* MSMineView2.jpg in Resources */,
-				C5978A282BE3599700A56125 /* 获取iOS设备唯一标示.md in Resources */,
 				C5C4806C284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-Italic.ttf in Resources */,
 				840F95EE27736427004979E9 /* dingdan.json in Resources */,
 				84A491FA27904A970002A837 /* Drop@2x.png in Resources */,
@@ -11768,7 +11740,6 @@
 				84CA5FD827897AFB00E46E71 /* sortedNameCH.plist in Resources */,
 				C5C4805E284E21E5007916B3 /* NotoSansDisplay_Condensed-ThinItalic.ttf in Resources */,
 				C5C48045284E21E5007916B3 /* NotoSansDisplay-LightItalic.ttf in Resources */,
-				84CA5FB527897AFB00E46E71 /* 上传中....md in Resources */,
 				84CA5E0827895B4700E46E71 /* iph_X.mp4 in Resources */,
 				840F962A27736427004979E9 /* 6@3x.png in Resources */,
 				840F95F027736427004979E9 /* 我的.json in Resources */,
@@ -11783,7 +11754,6 @@
 				84A494D227906CC90002A837 /* 动态头像_2 尺寸126.gif in Resources */,
 				C539A0412AD69BCF00C8A5E3 /* TKPermissionKit.bundle in Resources */,
 				C5C48062284E21E5007916B3 /* NotoSansDisplay_Condensed-Medium.ttf in Resources */,
-				84A4920F27904A970002A837 /* JobsIMListView.md in Resources */,
 				C5C48046284E21E5007916B3 /* NotoSansDisplay-Thin.ttf in Resources */,
 				C5C4803B284E21E5007916B3 /* NotoSans-Light.ttf in Resources */,
 				840F961F27736427004979E9 /* 9@2x.png in Resources */,
@@ -11798,13 +11768,10 @@
 				C5C48053284E21E5007916B3 /* NotoSansDisplay-MediumItalic.ttf in Resources */,
 				84A491F827904A970002A837 /* Class@2x.png in Resources */,
 				C5C48096284E22C4007916B3 /* JobsShowNum@3x.png in Resources */,
-				C59789FB2BE3599700A56125 /* FileFolderHandleTool.md in Resources */,
 				C5C4805F284E21E5007916B3 /* NotoSansDisplay_Condensed-ExtraLight.ttf in Resources */,
 				8459CE1F2776DCCF00125782 /* 启动页_05.png in Resources */,
 				84A494CF27906CC90002A837 /* 动态头像_2 尺寸84.gif in Resources */,
-				C59789F32BE3599700A56125 /* 字典有序化.md in Resources */,
 				84562573278BF1FB0067ABB9 /* JobsComment【OutLines 05】.png in Resources */,
-				844B087C2764CF4800B0513D /* XHLaunchAd不用pod导入的情况说明.md in Resources */,
 				C5C4806B284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-SemiBold.ttf in Resources */,
 				840F95FA27736427004979E9 /* fangzi.json in Resources */,
 				840F961A27736427004979E9 /* JobsImageNumberView.png in Resources */,
@@ -11821,9 +11788,7 @@
 				840F95EB27736427004979E9 /* wode.json in Resources */,
 				C5978A4E2BE3599700A56125 /* del_Photo@3x.png in Resources */,
 				C5C48051284E21E5007916B3 /* NotoSansDisplay-ExtraBoldItalic.ttf in Resources */,
-				84CA5FD627897AFB00E46E71 /* 电话号码国家选择器 in Resources */,
 				C5C48039284E21E5007916B3 /* NotoSans-SemiBoldItalic.ttf in Resources */,
-				84CA5FE527897AFB00E46E71 /* Q弹 in Resources */,
 				C5C4803E284E21E5007916B3 /* NotoSans-BlackItalic.ttf in Resources */,
 				84A4920327904A970002A837 /* 输入框无值@2x.png in Resources */,
 				84CA5E0627895B4700E46E71 /* InfoPlist.strings in Resources */,
@@ -11847,18 +11812,15 @@
 				C520F8302AB39EDD00142DCC /* 1242x2208.png in Resources */,
 				C520F82D2AB39EDD00142DCC /* 1284x2778.png in Resources */,
 				C5C4804B284E21E5007916B3 /* NotoSansDisplay-BoldItalic.ttf in Resources */,
-				C5978A952BE3599700A56125 /* UITableView+WWFoldableTableView.md in Resources */,
 				840F95F427736427004979E9 /* 社区.json in Resources */,
 				C5978A522BE3599700A56125 /* Sound.wav in Resources */,
 				C5C48077284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-Bold.ttf in Resources */,
-				840F963C27736427004979E9 /* JobsPageTBV.md in Resources */,
 				84432C12278C45C40028A27D /* 跳动的竖线.gif in Resources */,
 				C5C4805A284E21E5007916B3 /* NotoSansDisplay_Condensed-Regular.ttf in Resources */,
 				C593DBF22AC897AA00F875B5 /* iPhone尺寸.png in Resources */,
 				C5C4804E284E21E5007916B3 /* NotoSansDisplay-Bold.ttf in Resources */,
 				840F962927736427004979E9 /* 6@2x.png in Resources */,
 				C5C48042284E21E5007916B3 /* NotoSans-ExtraLightItalic.ttf in Resources */,
-				840F971927736428004979E9 /* App国际化.md in Resources */,
 				C520F8272AB39EDD00142DCC /* 720x1242.png in Resources */,
 				C5C48032284E21E5007916B3 /* NotoSans-Medium.ttf in Resources */,
 				C5978A4D2BE3599700A56125 /* del_Photo@2x.png in Resources */,
@@ -11867,8 +11829,6 @@
 				84A4920227904A970002A837 /* Menu@3x.png in Resources */,
 				C5C48083284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-LightItalic.ttf in Resources */,
 				840F95F927736427004979E9 /* huiyuan.json in Resources */,
-				C5978A6B2BE3599700A56125 /* HQCollectionViewFlowLayout.md in Resources */,
-				844B08382764CF4800B0513D /* RAC_Define.md in Resources */,
 				C5C48088284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-MediumItalic.ttf in Resources */,
 				C57FAEE0287562C600E72F91 /* GXCardItemDemoCell.xib in Resources */,
 				C5C48035284E21E5007916B3 /* NotoSans-Bold.ttf in Resources */,
@@ -11892,18 +11852,13 @@
 				C5978A962BE3599700A56125 /* UITableViewCellStyleDefault.png in Resources */,
 				840F962027736427004979E9 /* 5@2x.png in Resources */,
 				840F961727736427004979E9 /* 登录弹窗@3x.png in Resources */,
-				84CA5FA327897AFB00E46E71 /* AESCipher in Resources */,
-				840F964327736427004979E9 /* README.md in Resources */,
 				C5C48075284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-Thin.ttf in Resources */,
-				84CA5FDF27897AFB00E46E71 /* GDFadeView.md in Resources */,
 				C5C4803D284E21E5007916B3 /* NotoSansDisplay-Italic-VariableFont_wdth,wght.ttf in Resources */,
-				C5978A912BE3599700A56125 /* BaseTableView.md in Resources */,
 				C5932EC8282D26E500B3B053 /* 测试弹窗的背景图@3x.png in Resources */,
 				C5978AA12BE3599700A56125 /* WhiteRightArrow@3x.png in Resources */,
 				84CA5E7E27895BA400E46E71 /* AppDoor.xcassets in Resources */,
 				C5C48084284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-Medium.ttf in Resources */,
 				C5C48082284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-SemiBold.ttf in Resources */,
-				84CA5F9127897AFB00E46E71 /* File in Resources */,
 				84CA642B2789C00300E46E71 /* data.json in Resources */,
 				C593DBF32AC897AA00F875B5 /* iPad尺寸.png in Resources */,
 				C5C4803A284E21E5007916B3 /* NotoSans-LightItalic.ttf in Resources */,
@@ -11919,18 +11874,15 @@
 				C5C48060284E21E5007916B3 /* NotoSansDisplay_Condensed-ExtraBold.ttf in Resources */,
 				84432C10278C45C40028A27D /* 热度.gif in Resources */,
 				C5C48089284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-ExtraLight.ttf in Resources */,
-				84CA5FB227897AFB00E46E71 /* 高仿Uber取消叫车按钮效果(按住放大) in Resources */,
 				84A491FF27904A970002A837 /* Menu@2x.png in Resources */,
 				840F962727736427004979E9 /* 4@3x.png in Resources */,
 				C5978A752BE3599700A56125 /* iOS 获取手机型号、系统版本.png in Resources */,
-				C5978A072BE3599700A56125 /* TouchID.md in Resources */,
 				84A491FC27904A970002A837 /* Header@3x.png in Resources */,
 				C5932ECA282D26E500B3B053 /* 测试弹窗的确定按钮@3x.png in Resources */,
 				840F962B27736427004979E9 /* 8@2x.png in Resources */,
 				84CA5E0327895B4700E46E71 /* Others.bundle in Resources */,
 				C5C48052284E21E5007916B3 /* NotoSansDisplay-BlackItalic.ttf in Resources */,
 				84CA5E0227895B4700E46E71 /* 登录 * 注册 * 密码找回.bundle in Resources */,
-				C5978A5B2BE3599700A56125 /* UIButton+UI.md in Resources */,
 				84432C13278C45C40028A27D /* 钱袋.gif in Resources */,
 				844B08762764CF4800B0513D /* CasinoFlowDetailsVC_h in Resources */,
 				C5978AB22BE3599700A56125 /* UITextView+IndicateWordLimit.png in Resources */,
@@ -11942,35 +11894,27 @@
 				C5C48055284E21E5007916B3 /* NotoSansDisplay-Italic.ttf in Resources */,
 				C5C4807C284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-ExtraBoldItalic.ttf in Resources */,
 				C520F8292AB39EDD00142DCC /* 1125x2436.png in Resources */,
-				840F961927736427004979E9 /* JobsImageNumberView.md in Resources */,
 				84CA5E0727895B4700E46E71 /* welcome_video.mp4 in Resources */,
 				C5C4804C284E21E5007916B3 /* NotoSansDisplay-ThinItalic.ttf in Resources */,
 				C5C4807F284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-Italic.ttf in Resources */,
 				C5C48044284E21E5007916B3 /* NotoSans-Italic.ttf in Resources */,
-				840F960527736427004979E9 /* Tabbaritem点击动效.md in Resources */,
 				C5C48097284E22C4007916B3 /* JobsShowNum@2x.png in Resources */,
 				C5C48061284E21E5007916B3 /* NotoSansDisplay_Condensed-BoldItalic.ttf in Resources */,
 				C5C4806A284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-ExtraBoldItalic.ttf in Resources */,
 				C5C4807A284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-Medium.ttf in Resources */,
 				840F962627736427004979E9 /* 3@2x.png in Resources */,
-				C5978ADD2BE3599700A56125 /* UIViewController+XLBubbleTransition.md in Resources */,
 				C5932ECB282D26E500B3B053 /* 测试弹窗的确定按钮@2x.png in Resources */,
 				C520F8282AB39EDD00142DCC /* 1290x2796.png in Resources */,
 				8459CE1C2776DCCF00125782 /* 启动页_02.png in Resources */,
 				846DF03C27806D230050468A /* 尝试高仿蜜柚.md in Resources */,
 				C5C48056284E21E5007916B3 /* NotoSansDisplay-Light.ttf in Resources */,
 				C5C48054284E21E5007916B3 /* NotoSansDisplay-ExtraLightItalic.ttf in Resources */,
-				840F960327736427004979E9 /* 功能性动效：手势横向滚动子VC联动Tabbar切换.md in Resources */,
 				8459D6182779A6CC00125782 /* CasinoCustomerServiceView.png in Resources */,
-				C5978A352BE3599700A56125 /* 如何理解iOS的Runtime？ - 掘金.mht in Resources */,
-				84CA5FDA27897AFB00E46E71 /* 手势解锁 in Resources */,
 				C5C48068284E21E5007916B3 /* NotoSansDisplay_Condensed-MediumItalic.ttf in Resources */,
-				84CA5FE327897AFB00E46E71 /* App图标更换 in Resources */,
 				C5C48057284E21E5007916B3 /* NotoSansDisplay_Condensed-SemiBold.ttf in Resources */,
 				84CA5DFE27895B4700E46E71 /* Customer.xcassets in Resources */,
 				84AA2C952796E9A8000401C6 /* UserData.json in Resources */,
 				C520F82E2AB39EDD00142DCC /* 640x1136.png in Resources */,
-				84CA5FC827897AFB00E46E71 /* Use in Resources */,
 				840F95FF27736427004979E9 /* JobsPullListAutoSizeView.md in Resources */,
 				84A4920127904A970002A837 /* Fav@3x.png in Resources */,
 				C5978A982BE3599700A56125 /* UITableViewCellStyleValue1.png in Resources */,
@@ -11994,8 +11938,6 @@
 				840F95EA27736427004979E9 /* 主页.json in Resources */,
 				84CA5E0527895B4700E46E71 /* Localizable.strings in Resources */,
 				84A491FD27904A970002A837 /* Check@2x.png in Resources */,
-				844B08772764CF4800B0513D /* CasinoFlowDetailsVC_m in Resources */,
-				C59789EA2BE3599700A56125 /* BaseProtocol.md in Resources */,
 				84CA5FB427897AFB00E46E71 /* 音律跳动.bundle in Resources */,
 				C5978AA02BE3599700A56125 /* WhiteRightArrow@2x.png in Resources */,
 				C5C48034284E21E5007916B3 /* NotoSans-Black.ttf in Resources */,
@@ -12020,28 +11962,21 @@
 				C5432D752ACB1CF6008F92B0 /* MSCommentView.jpg in Resources */,
 				C59483342879846400EC655B /* B.png in Resources */,
 				8440287B27930D020038FF6F /* 垃圾箱.png in Resources */,
-				84CA5F8F27897AFB00E46E71 /* 牛逼标签效果 - SphereView👍 in Resources */,
 				C5C48078284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-ExtraLightItalic.ttf in Resources */,
 				C5C4804F284E21E5007916B3 /* NotoSansDisplay-ExtraLight.ttf in Resources */,
 				C5978A992BE3599700A56125 /* UITableViewCellStyleValue2.png in Resources */,
-				C5978A102BE3599700A56125 /* 此类主要封装一些本App常用的、可以替换资源的函数调用或者是鉴权机制.md in Resources */,
 				C5786EE2285DD04100AD9FF1 /* 弹框样式_10.png in Resources */,
 				84562576278BF1FB0067ABB9 /* JobsComment【OutLines 02】.png in Resources */,
-				C5978A6D2BE3599700A56125 /* KFZShopCatoryFlowLayput.md in Resources */,
 				C5C48069284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-BlackItalic.ttf in Resources */,
 				C5C48073284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-BoldItalic.ttf in Resources */,
 				84A494D127906CC90002A837 /* 动态头像_1 尺寸84.gif in Resources */,
 				C5978ADA2BE3599700A56125 /* UIViewController+TFPopupView（01）.png in Resources */,
 				C5C48076284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-Light.ttf in Resources */,
 				C5C48085284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-Black.ttf in Resources */,
-				84CA5FC427897AFB00E46E71 /* 仿iOS图标抖动、iOS删除App效果 in Resources */,
-				C59789FE2BE3599700A56125 /* MonitorNetwoking.md in Resources */,
 				8456259F278BF2780067ABB9 /* CommentData.json in Resources */,
-				C5978A6F2BE3599700A56125 /* LMHWaterFallLayout.md in Resources */,
 				84401D282791B9F90038FF6F /* 假数据.json in Resources */,
 				C5C48081284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-Light.ttf in Resources */,
 				C5C48079284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-ExtraBold.ttf in Resources */,
-				C59789F92BE3599700A56125 /* DeleteSystemUITabBarButton.md in Resources */,
 				840F962227736427004979E9 /* 7@3x.png in Resources */,
 				C5C48063284E21E5007916B3 /* NotoSansDisplay_Condensed-LightItalic.ttf in Resources */,
 				84A4920527904A970002A837 /* 输入框有值@3x.png in Resources */,
@@ -12050,7 +11985,6 @@
 				C57A2036282CB59F0032156B /* gesture_indicator_normal@2x.png in Resources */,
 				C5A7C2DC285B290F00F0F2BB /* 临时的占位图.xcassets in Resources */,
 				C59483352879846400EC655B /* A.png in Resources */,
-				C5978A702BE3599700A56125 /* UICollectionViewFlowLayout.md in Resources */,
 				C5C48074284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-MediumItalic.ttf in Resources */,
 				8459CE1B2776DCCF00125782 /* 启动页_01.png in Resources */,
 				C57A203C282CB59F0032156B /* 橙色椭圆.png in Resources */,
@@ -12062,13 +11996,11 @@
 				C5C48043284E21E5007916B3 /* NotoSans-ExtraBold.ttf in Resources */,
 				84432C14278C45C40028A27D /* Bt9h.gif in Resources */,
 				840F962827736427004979E9 /* 8@3x.png in Resources */,
-				C5978A0C2BE3599700A56125 /* BaseObject.md in Resources */,
 				C5C4807D284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-BlackItalic.ttf in Resources */,
 				844B021B2764C8EE00B0513D /* Main.storyboard in Resources */,
 				C5C4807E284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-Thin.ttf in Resources */,
 				840F95EF27736427004979E9 /* green_lottie_tab_home.json in Resources */,
 				C5C4805D284E21E5007916B3 /* NotoSansDisplay_Condensed-SemiBoldItalic.ttf in Resources */,
-				C5978A572BE3599700A56125 /* UIButton+ImageTitleSpacing.md in Resources */,
 				C5C48087284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-BoldItalic.ttf in Resources */,
 				C5C4808B284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-Regular.ttf in Resources */,
 				C520F8262AB39EDD00142DCC /* 640x960.png in Resources */,
@@ -13052,6 +12984,7 @@
 					"\"$(SRCROOT)/JobsOCBaseConfig/Others/Sys.lib/libstdc++/iPhone-Simulator\"",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xbm.JobsOCBaseConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
