@@ -93,6 +93,7 @@
                                              layerBorderCor:nil
                                                 borderWidth:JobsWidth(0)
                                               primaryAction:nil
+                                 longPressGestureEventBlock:nil
                                             clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);

@@ -123,6 +123,11 @@
                                                    layerBorderCor:nil
                                                       borderWidth:JobsWidth(0)
                                                     primaryAction:nil
+                                       longPressGestureEventBlock:^(id  _Nullable weakSelf, 
+                                                                    id  _Nullable arg) {
+            /// 还原
+            [self changeAppIconToName:nil];
+        }
                                                   clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;

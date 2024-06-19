@@ -44,6 +44,7 @@
 ///   - layerBorderCor: 描边的颜色
 ///   - borderWidth: 描边线的宽度
 ///   - primaryAction: 新Api的点击事件
+///   - longPressGestureEventBlock: 按钮的长按事件
 ///   - clickEventBlock: 老Api的点击事件，利用RAC实现
 ///   如果同时设置 clickEventBlock 和 primaryAction，会优先响应新的Api，再响应老的Api
 -(instancetype)jobsInitBtnByConfiguration:(UIButtonConfiguration *_Nullable)btnConfiguration
@@ -77,6 +78,7 @@
                            layerBorderCor:(UIColor *_Nullable)layerBorderCor
                               borderWidth:(CGFloat)borderWidth
                             primaryAction:(UIAction *_Nullable)primaryAction
+               longPressGestureEventBlock:(JobsSelectorBlock _Nullable)longPressGestureEventBlock
                           clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
     if(!btnConfiguration) btnConfiguration = UIButtonConfiguration.filledButtonConfiguration;
     if(!background) background = UIBackgroundConfiguration.clearConfiguration;
@@ -213,8 +215,10 @@
         /// 内容的对齐方式
         btn.contentVerticalAlignment = contentVerticalAlignment;
         btn.contentHorizontalAlignment = contentHorizontalAlignment;
-        /// 点击事件
+        /// 按钮的点击事件
         [btn jobsBtnClickEventBlock:clickEventBlock];
+        /// 按钮的长按事件
+        [btn jobsBtnLongPressGestureEventBlock:longPressGestureEventBlock];
     }return btn;
 }
 /// UIButtonConfiguration 创建的UIbutton修改字体以及颜色的方法
@@ -253,6 +257,24 @@
     return [[self rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIButton * _Nullable x) {
         if(subscribeNextBlock) subscribeNextBlock(x);
     }];
+}
+/// 设置按钮的长按手势
+-(void)jobsBtnLongPressGestureEventBlock:(JobsSelectorBlock)longPressGestureEventBlock{
+    @jobs_weakify(self)
+    self.userInteractionEnabled = YES;
+    self.numberOfTouchesRequired = 1;
+    self.numberOfTapsRequired = 0;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
+    self.minimumPressDuration = 0.1;
+    self.numberOfTouchesRequired = 1;
+    self.allowableMovement = 1;
+    self.target = weak_self;/// ⚠️注意：任何手势这一句都要写
+    self.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
+                                                                             UILongPressGestureRecognizer *  _Nullable arg) {
+        if(longPressGestureEventBlock) longPressGestureEventBlock(weakSelf,arg);
+        return nil;
+    }];
+    self.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+    self.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
 }
 /// 方法名字符串（带参数、参数之间用"："隔开）、作用对象、参数
 -(JobsReturnIDByThreeIDBlock)btnClickActionWithParamarrays{

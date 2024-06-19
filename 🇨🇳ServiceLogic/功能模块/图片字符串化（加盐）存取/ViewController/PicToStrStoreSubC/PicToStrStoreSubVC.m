@@ -239,6 +239,7 @@
                                                layerBorderCor:nil
                                                   borderWidth:JobsWidth(.5f)
                                                 primaryAction:nil
+                                   longPressGestureEventBlock:nil
                                               clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
@@ -306,6 +307,7 @@
                                                layerBorderCor:nil
                                                   borderWidth:JobsWidth(.5f)
                                                 primaryAction:nil
+                                   longPressGestureEventBlock:nil
                                               clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;

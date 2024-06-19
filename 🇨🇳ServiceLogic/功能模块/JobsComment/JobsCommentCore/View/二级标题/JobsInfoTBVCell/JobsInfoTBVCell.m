@@ -100,6 +100,7 @@ BaseProtocol_synthesize
                                                     layerBorderCor:nil
                                                        borderWidth:JobsWidth(0)
                                                      primaryAction:nil
+                                        longPressGestureEventBlock:nil
                                                    clickEventBlock:^id(RBCLikeButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;

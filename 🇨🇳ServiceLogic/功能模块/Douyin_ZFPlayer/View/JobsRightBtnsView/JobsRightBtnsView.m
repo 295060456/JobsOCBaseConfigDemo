@@ -148,6 +148,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                     layerBorderCor:nil
                                                        borderWidth:JobsWidth(0)
                                                      primaryAction:nil
+                                        longPressGestureEventBlock:nil
                                                    clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             NSLog(@"我是点赞");
@@ -199,6 +200,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                     layerBorderCor:nil
                                                        borderWidth:JobsWidth(0)
                                                      primaryAction:nil
+                                        longPressGestureEventBlock:nil
                                                    clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             NSLog(@"我是评论");
@@ -264,6 +266,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                   layerBorderCor:nil
                                                      borderWidth:JobsWidth(0)
                                                    primaryAction:nil
+                                      longPressGestureEventBlock:nil
                                                  clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             NSLog(@"我是分享");
