@@ -7,7 +7,7 @@
 
 #import "BaiShaETProjChoiceStadiumView.h"
 
-@interface BaiShaETProjChoiceStadiumTBVHeaderView : BaseLabel
+@interface BaiShaETProjChoiceStadiumTBVHeaderView ()
 
 @property(nonatomic,strong)UIColor *cor;
 

@@ -1,19 +1,19 @@
 //
-//  AppIconSwitchingVC.m
+//  PeekAndPopVC.m
 //  JobsOCBaseConfig
 //
-//  Created by Jobs Hi on 6/19/24.
+//  Created by Jobs Hi on 6/22/24.
 //
 
-#import "AppIconSwitchingVC.h"
+#import "PeekAndPopVC.h"
 
-@interface AppIconSwitchingVC ()
+@interface PeekAndPopVC ()
 
 @property(nonatomic,strong)BaseButton *switchBtn;
 
 @end
 
-@implementation AppIconSwitchingVC
+@implementation PeekAndPopVC
 
 - (void)dealloc{
     [NSNotificationCenter.defaultCenter removeObserver:self];
@@ -78,20 +78,10 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
-//    [self changeAppIconToName:nil];
-    [self changeAppIconToName:@"AlternateIcon1"];
+    [self comingToPushVC:MyTableTableVC.new];
 }
 #pragma mark —— 一些私有方法
--(void)changeAppIconToName:(NSString *)iconName {
-    if (UIApplication.sharedApplication.supportsAlternateIcons) {
-        [UIApplication.sharedApplication setAlternateIconName:iconName
-                                            completionHandler:^(NSError * _Nullable error) {
-            if (error) {
-                NSLog(@"Error changing app icon: %@", error.localizedDescription);
-            }
-        }];
-    }
-}
+
 #pragma mark —— lazyLoad
 -(BaseButton *)switchBtn{
     if(!_switchBtn){
@@ -107,7 +97,7 @@
                                           selectedAttributedTitle:nil
                                                attributedSubtitle:nil
                                                             title:JobsInternationalization(@"点击")
-                                                         subTitle:JobsInternationalization(@"切换App图标")
+                                                         subTitle:JobsInternationalization(@"跳转Collection控制器")
                                                         titleFont:UIFontWeightBoldSize(18)
                                                      subTitleFont:nil
                                                          titleCor:JobsCor(@"#333333")
@@ -134,10 +124,7 @@
                                                   clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
-//            x.selected = !x.selected;
-//            NSString *appIconToName = x.selected ? @"AlternateIcon2" : @"AlternateIcon1";
-//            [self changeAppIconToName:appIconToName];
-            [self changeAppIconToName:@"AlternateIcon2"];
+            [self comingToPushVC:MyCollectionVC.new];
             return nil;
         }];
         [self.view addSubview:_switchBtn];
@@ -150,3 +137,6 @@
 }
 
 @end
+
+
+

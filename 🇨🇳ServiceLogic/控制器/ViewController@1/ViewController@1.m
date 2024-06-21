@@ -295,6 +295,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"长按Cell出3D-Touch的菜单")
+                                                           attributeSubTitle:JobsInternationalization(@"PeekAndPop")];
+
+            viewModel.cls = PeekAndPopVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"系统剪切板测试")
                                                            attributeSubTitle:JobsInternationalization(@"尝试控制粘贴提示")];
             

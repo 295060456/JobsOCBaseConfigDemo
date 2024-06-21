@@ -534,6 +534,10 @@
 		C57FAEE0287562C600E72F91 /* GXCardItemDemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C57FAEDD287562C600E72F91 /* GXCardItemDemoCell.xib */; };
 		C57FAEE52875630400E72F91 /* GXCardViewDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C57FAEE42875630400E72F91 /* GXCardViewDemoVC.m */; };
 		C58D84712877DCF3007020B6 /* BaiShaETProjBankAccMgmtCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58D846F2877DCF3007020B6 /* BaiShaETProjBankAccMgmtCVCell.m */; };
+		C592C66F2C261FEF00F274F8 /* PreviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C592C66E2C261FEF00F274F8 /* PreviewVC.m */; };
+		C592C6742C26204600F274F8 /* MyTableTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C592C6732C26204600F274F8 /* MyTableTableVC.m */; };
+		C592C6782C26210700F274F8 /* MyCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C592C6772C26210700F274F8 /* MyCollectionVC.m */; };
+		C592C67C2C2621BD00F274F8 /* PeekAndPopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C592C67B2C2621BD00F274F8 /* PeekAndPopVC.m */; };
 		C5932EC7282D26E500B3B053 /* JobsOCBaseConfigTestPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5932EC0282D26E500B3B053 /* JobsOCBaseConfigTestPopupView.m */; };
 		C5932EC8282D26E500B3B053 /* 测试弹窗的背景图@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5932EC2282D26E500B3B053 /* 测试弹窗的背景图@3x.png */; };
 		C5932EC9282D26E500B3B053 /* 测试弹窗的背景图@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5932EC3282D26E500B3B053 /* 测试弹窗的背景图@2x.png */; };
@@ -2013,6 +2017,14 @@
 		C58D846E2877DCF3007020B6 /* BaiShaETProjBankAccMgmtCVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiShaETProjBankAccMgmtCVCell.h; sourceTree = "<group>"; };
 		C58D846F2877DCF3007020B6 /* BaiShaETProjBankAccMgmtCVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiShaETProjBankAccMgmtCVCell.m; sourceTree = "<group>"; };
 		C58D84702877DCF3007020B6 /* BaiShaETProjBankAccMgmtCVCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BaiShaETProjBankAccMgmtCVCell.png; sourceTree = "<group>"; };
+		C592C66D2C261FEF00F274F8 /* PreviewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviewVC.h; sourceTree = "<group>"; };
+		C592C66E2C261FEF00F274F8 /* PreviewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreviewVC.m; sourceTree = "<group>"; };
+		C592C6722C26204600F274F8 /* MyTableTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTableTableVC.h; sourceTree = "<group>"; };
+		C592C6732C26204600F274F8 /* MyTableTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTableTableVC.m; sourceTree = "<group>"; };
+		C592C6762C26210700F274F8 /* MyCollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCollectionVC.h; sourceTree = "<group>"; };
+		C592C6772C26210700F274F8 /* MyCollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCollectionVC.m; sourceTree = "<group>"; };
+		C592C67A2C2621BD00F274F8 /* PeekAndPopVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeekAndPopVC.h; sourceTree = "<group>"; };
+		C592C67B2C2621BD00F274F8 /* PeekAndPopVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeekAndPopVC.m; sourceTree = "<group>"; };
 		C5932EC0282D26E500B3B053 /* JobsOCBaseConfigTestPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsOCBaseConfigTestPopupView.m; sourceTree = "<group>"; };
 		C5932EC2282D26E500B3B053 /* 测试弹窗的背景图@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "测试弹窗的背景图@3x.png"; sourceTree = "<group>"; };
 		C5932EC3282D26E500B3B053 /* 测试弹窗的背景图@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "测试弹窗的背景图@2x.png"; sourceTree = "<group>"; };
@@ -5642,6 +5654,7 @@
 		84CA609D278980E700E46E71 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				C592C66C2C261FBF00F274F8 /* PeekAndPop */,
 				C5D260022C220EB5005AD2DD /* App图标切换 */,
 				84B38AEB2C10BB9100922974 /* 字符串解压缩 */,
 				84175CA72C034E8100A535D9 /* 本地通知 */,
@@ -7691,6 +7704,77 @@
 				C58D84702877DCF3007020B6 /* BaiShaETProjBankAccMgmtCVCell.png */,
 			);
 			path = BaiShaETProjBankAccMgmtCVCell;
+			sourceTree = "<group>";
+		};
+		C592C66C2C261FBF00F274F8 /* PeekAndPop */ = {
+			isa = PBXGroup;
+			children = (
+				C592C67F2C2621E100F274F8 /* Model */,
+				C592C67E2C2621DA00F274F8 /* View */,
+				C592C67D2C2621C800F274F8 /* ViewController */,
+			);
+			path = PeekAndPop;
+			sourceTree = "<group>";
+		};
+		C592C6702C26202300F274F8 /* PreviewVC */ = {
+			isa = PBXGroup;
+			children = (
+				C592C66D2C261FEF00F274F8 /* PreviewVC.h */,
+				C592C66E2C261FEF00F274F8 /* PreviewVC.m */,
+			);
+			path = PreviewVC;
+			sourceTree = "<group>";
+		};
+		C592C6712C26202F00F274F8 /* MyTableVC */ = {
+			isa = PBXGroup;
+			children = (
+				C592C6722C26204600F274F8 /* MyTableTableVC.h */,
+				C592C6732C26204600F274F8 /* MyTableTableVC.m */,
+			);
+			path = MyTableVC;
+			sourceTree = "<group>";
+		};
+		C592C6752C2620E900F274F8 /* MyCollectionVC */ = {
+			isa = PBXGroup;
+			children = (
+				C592C6762C26210700F274F8 /* MyCollectionVC.h */,
+				C592C6772C26210700F274F8 /* MyCollectionVC.m */,
+			);
+			path = MyCollectionVC;
+			sourceTree = "<group>";
+		};
+		C592C6792C2621A000F274F8 /* PeekAndPopVC */ = {
+			isa = PBXGroup;
+			children = (
+				C592C67A2C2621BD00F274F8 /* PeekAndPopVC.h */,
+				C592C67B2C2621BD00F274F8 /* PeekAndPopVC.m */,
+			);
+			path = PeekAndPopVC;
+			sourceTree = "<group>";
+		};
+		C592C67D2C2621C800F274F8 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C592C6792C2621A000F274F8 /* PeekAndPopVC */,
+				C592C6752C2620E900F274F8 /* MyCollectionVC */,
+				C592C6712C26202F00F274F8 /* MyTableVC */,
+				C592C6702C26202300F274F8 /* PreviewVC */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C592C67E2C2621DA00F274F8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C592C67F2C2621E100F274F8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C5932EBD282D26CD00B3B053 /* ☀️业务模块中公用的View */ = {
@@ -12165,6 +12249,7 @@
 				C5978A7C2BE3599700A56125 /* UIImage+YBGIF.m in Sources */,
 				C52E5C9F2AC07E9800FE5494 /* KTVHCDataCacheItemZone.m in Sources */,
 				84CA5FC327897AFB00E46E71 /* LongPressToDeleteImageView.m in Sources */,
+				C592C66F2C261FEF00F274F8 /* PreviewVC.m in Sources */,
 				844B08402764CF4800B0513D /* ZWPullMenuConfig.m in Sources */,
 				C520F88B2AB3A12100142DCC /* WMZBannerView.m in Sources */,
 				C52E5CA12AC07E9800FE5494 /* KTVHCDataNetworkSource.m in Sources */,
@@ -12205,6 +12290,7 @@
 				84CA660E2789D4CD00E46E71 /* ForgetCodeStep_02View.m in Sources */,
 				84CA65452789CB2A00E46E71 /* DDNetworkingAPI+DemoTestApi.m in Sources */,
 				C5AA8B7D282CE2F00057EB84 /* JobsAppDoorInputViewBaseStyle.m in Sources */,
+				C592C6782C26210700F274F8 /* MyCollectionVC.m in Sources */,
 				C5978A032BE3599700A56125 /* Nanosecond_TimerManager.m in Sources */,
 				C5C48124284E254B007916B3 /* JobsMembersSubsBaseVC.m in Sources */,
 				C5978ACA2BE3599700A56125 /* LOTAnimationMJRefreshFooter.m in Sources */,
@@ -12282,6 +12368,7 @@
 				840F963127736427004979E9 /* JobsImageNumberView.m in Sources */,
 				C5978A1B2BE3599700A56125 /* NSObject+DeviceIP.m in Sources */,
 				C5978A2A2BE3599700A56125 /* NSObject+Notification.m in Sources */,
+				C592C67C2C2621BD00F274F8 /* PeekAndPopVC.m in Sources */,
 				844B0E532764DE1A00B0513D /* DDResponseModel.m in Sources */,
 				C57A809F284F36BA00DD089E /* JobsMsgDetailVC.m in Sources */,
 				C5978A9E2BE3599700A56125 /* UITableViewCell+UITableViewCellProtocoll.m in Sources */,
@@ -12514,6 +12601,7 @@
 				C5978A112BE3599700A56125 /* NSObject+AppTools.m in Sources */,
 				C5978ACF2BE3599700A56125 /* UIViewController+BaseNavigationBar.m in Sources */,
 				84A160FE278956BF00DACA3C /* ViewController@4.m in Sources */,
+				C592C6742C26204600F274F8 /* MyTableTableVC.m in Sources */,
 				C59789F52BE3599700A56125 /* NSNotificationCenter+JobsBlock.m in Sources */,
 				C526874C2BDA023300872F26 /* NSString+Base85.m in Sources */,
 				C5AA8B6C282CE2F00057EB84 /* AuthCodeLab.m in Sources */,

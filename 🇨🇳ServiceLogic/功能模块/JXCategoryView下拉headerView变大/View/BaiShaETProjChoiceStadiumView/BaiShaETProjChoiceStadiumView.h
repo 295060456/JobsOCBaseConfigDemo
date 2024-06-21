@@ -9,6 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface BaiShaETProjChoiceStadiumTBVHeaderView : BaseLabel
+
+@end
+
 @interface BaiShaETProjChoiceStadiumView : BaseView
 <
 UITableViewDelegate

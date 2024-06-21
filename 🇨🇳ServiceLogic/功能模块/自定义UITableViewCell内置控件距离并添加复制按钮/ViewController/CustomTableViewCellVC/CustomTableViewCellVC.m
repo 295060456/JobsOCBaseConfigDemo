@@ -84,7 +84,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [self jobsCellPlanSizeForSectionAtIndexPath:indexPath
+    return [self jobsCellPlanSizeForSectionAtIndexPath:indexPath.section
                                             cellBlock0:^CGSize{
         return [BaiShaETProjOrderDetailsCVCell cellSizeWithModel:self.dataMutArr[indexPath.section]];
     } 

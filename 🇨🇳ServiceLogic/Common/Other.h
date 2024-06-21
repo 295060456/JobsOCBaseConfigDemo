@@ -84,5 +84,6 @@
 #import "LocalNotificationsVC.h"
 #import "CompressStrVC.h"
 #import "AppIconSwitchingVC.h"
+#import "PeekAndPopVC.h"
 
 #endif /* Other_h */
