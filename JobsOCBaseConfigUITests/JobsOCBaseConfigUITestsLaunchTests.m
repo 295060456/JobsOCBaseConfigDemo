@@ -1,17 +1,17 @@
 //
-//  JobsBaseConfigUITestsLaunchTests.m
-//  JobsBaseConfigUITests
+//  JobsOCBaseConfigUITestsLaunchTests.m
+//  JobsOCBaseConfigUITests
 //
 //  Created by Jobs on 2021/12/11.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface JobsBaseConfigUITestsLaunchTests : XCTestCase
+@interface JobsOCBaseConfigUITestsLaunchTests : XCTestCase
 
 @end
 
-@implementation JobsBaseConfigUITestsLaunchTests
+@implementation JobsOCBaseConfigUITestsLaunchTests
 
 + (BOOL)runsForEachTargetApplicationUIConfiguration {
     return YES;

@@ -1,17 +1,17 @@
 //
-//  JobsBaseConfigTests.m
-//  JobsBaseConfigTests
+//  JobsOCBaseConfigTests.m
+//  JobsOCBaseConfigTests
 //
 //  Created by Jobs on 2021/12/11.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface JobsBaseConfigTests : XCTestCase
+@interface JobsOCBaseConfigTests : XCTestCase
 
 @end
 
-@implementation JobsBaseConfigTests
+@implementation JobsOCBaseConfigTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
