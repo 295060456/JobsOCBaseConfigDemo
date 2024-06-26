@@ -60,6 +60,18 @@ setup_git() {
     # 这可以帮助防止例如 "RPC failed" 和 "fatal: early EOF" 这样的错误，特别是在处理大型仓库或文件时。适用于当前用户执行的所有 Git 操作。
     git config --global http.maxRequestBuffer 1048576000  # 允许 Git 在通过 HTTP 与远程仓库通信时处理更大的请求
 }
+# HomeBrew 安装或升级 jq
+# jq 是一个轻量级且灵活的命令行 JSON 处理器，它允许你对 JSON 数据进行各种操作，如解析、过滤、映射和转换结构化数据
+install_or_upgrade_jq() {
+    # 检查 jq 是否已安装
+    if brew list jq &>/dev/null; then
+        echo "jq 已安装，尝试升级..."
+        brew upgrade jq
+    else
+        echo "jq 未安装，正在安装..."
+        brew install jq
+    fi
+}
 # 检查和设置镜像
 check_and_set_mirror() {
     # 获取当前公网 IP 和地理位置信息
@@ -358,12 +370,6 @@ replace_podfile() {
         _JobsPrint_Red "Podfile 文件不存在"
     fi
 }
-# 重命名文件
-rename_file() {
-    local old_path="$DESKTOP_PATH/$1"  # 指定桌面路径
-    local new_path="$DESKTOP_PATH/$2"  # 指定桌面路径
-    _JobsPrint_Green "重命名前检查文件是否存在：$old_path"
-    
 # 将路径进行编码转换
 #    old_path_encoded=$(iconv -f utf-8 -t utf-8-mac <<< "$old_path")
 #    new_path_encoded=$(iconv -f utf-8 -t utf-8-mac <<< "$new_path")
@@ -374,22 +380,33 @@ rename_file() {
 #    else
 #        _JobsPrint_Red "文件未找到：$old_path"
 #    fi
-    
+
+# 重命名文件
+rename_file() {
+    local old_path="$DESKTOP_PATH/$1"  # 使用桌面路径并追加相对路径
+    local new_path="$DESKTOP_PATH/$2"  # 使用桌面路径并追加相对路径
+    _JobsPrint_Green "尝试重命名文件：从 $old_path 到 $new_path"
     if [[ -f "$old_path" ]]; then
-        mv "$old_path" "$new_path"
-        _JobsPrint_Green "文件已重命名：$old_path -> $new_path"
+        if mv "$old_path" "$new_path"; then
+            _JobsPrint_Green "文件已成功重命名：$old_path -> $new_path"
+        else
+            _JobsPrint_Red "文件重命名失败：$old_path"
+        fi
     else
         _JobsPrint_Red "文件未找到：$old_path"
     fi
 }
 # 重命名文件夹
 rename_folder() {
-    local old_path="$1"
-    local new_path="$2"
+    local old_path="$DESKTOP_PATH/$1"
+    local new_path="$DESKTOP_PATH/$2"
     _JobsPrint_Green "重命名前检查文件夹是否存在：$old_path"
     if [[ -d "$old_path" ]]; then
-        mv "$old_path" "$new_path"
-        _JobsPrint_Green "文件夹已重命名：$old_path -> $new_path"
+        if mv "$old_path" "$new_path"; then
+            _JobsPrint_Green "文件夹已重命名：$old_path -> $new_path"
+        else
+            _JobsPrint_Red "文件夹重命名失败：$old_path"
+        fi
     else
         _JobsPrint_Red "文件夹未找到：$old_path"
     fi
@@ -455,11 +472,11 @@ rename_xcodeproj() {
 # 其他的一些自定义的，需要手动配置的
 others() {
     ## 数据库
-    rename_file "$script_dir/$NEW_PROJECT_NAME/Others/系统创建/${default_old_project_name}.xcdatamodeld" \
-                "$script_dir/$NEW_PROJECT_NAME/Others/系统创建/${NEW_PROJECT_NAME}.xcdatamodeld"
+    rename_file "Monkey/Others/系统创建/${default_old_project_name}.xcdatamodeld" \
+                "Monkey/Others/系统创建/${NEW_PROJECT_NAME}.xcdatamodeld"
     ## pch文件
-    rename_file "$script_dir/${NEW_PROJECT_NAME}/${default_old_project_name}PrefixHeader.pch" \
-                "$script_dir/${NEW_PROJECT_NAME}/${NEW_PROJECT_NAME}PrefixHeader.pch"
+    rename_file "Monkey/${default_old_project_name}PrefixHeader.pch" \
+                "Monkey/${NEW_PROJECT_NAME}PrefixHeader.pch"
 }
 # 重新安装 CocoaPods 依赖
 reinstall_pods() {
@@ -494,6 +511,7 @@ main() {
 
     others # 其他的一些自定义的，需要手动配置的
     setup_git # 设置 Git 配置
+    install_or_upgrade_jq # HomeBrew 安装或升级 jq
     check_and_set_mirror # 检查和设置镜像
     reinstall_pods # 重新安装 CocoaPods 依赖
 

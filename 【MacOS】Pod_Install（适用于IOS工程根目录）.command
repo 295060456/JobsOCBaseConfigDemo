@@ -69,6 +69,18 @@ setup_git() {
     # 这可以帮助防止例如 "RPC failed" 和 "fatal: early EOF" 这样的错误，特别是在处理大型仓库或文件时。适用于当前用户执行的所有 Git 操作。
     git config --global http.maxRequestBuffer 1048576000  # 允许 Git 在通过 HTTP 与远程仓库通信时处理更大的请求
 }
+# HomeBrew 安装或升级 jq
+# jq 是一个轻量级且灵活的命令行 JSON 处理器，它允许你对 JSON 数据进行各种操作，如解析、过滤、映射和转换结构化数据
+install_or_upgrade_jq() {
+    # 检查 jq 是否已安装
+    if brew list jq &>/dev/null; then
+        echo "jq 已安装，尝试升级..."
+        brew upgrade jq
+    else
+        echo "jq 未安装，正在安装..."
+        brew install jq
+    fi
+}
 # 检查和设置镜像
 check_and_set_mirror() {
     # 获取当前公网 IP 和地理位置信息
@@ -110,6 +122,7 @@ main() {
     jobs_logo # 打印 "Jobs" logo
     self_intro # 自述信息
     setup_git # 设置 Git 配置
+    install_or_upgrade_jq # HomeBrew 安装或升级 jq
     check_and_set_mirror # 检查和设置镜像
     run_pod_install # 运行 pod install
 }
