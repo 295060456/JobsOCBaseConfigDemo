@@ -13,13 +13,13 @@ JJ    JJ    oo    oo   bb      bb  SS      SS
 "
     _JobsPrint_Green "$logo"
 }
-# 全局变量声明
-CURRENT_DIRECTORY=$(dirname "$(readlink -f "$0")") # 获取当前脚本文件的目录
-DESKTOP_PATH="$HOME/Desktop" # 定义目标桌面路径
-typeset -g script_dir
-typeset -g default_old_project_name
 # 定义新的工程名变量
 NEW_PROJECT_NAME="Monkey"
+# 全局变量声明
+CURRENT_DIRECTORY=$(dirname "$(readlink -f "$0")") # 获取当前脚本文件的目录
+DESKTOP_PATH="$HOME/Desktop/$NEW_PROJECT_NAME" # 定义目标桌面路径
+typeset -g script_dir
+typeset -g default_old_project_name
 # 通用打印方法
 _JobsPrint() {
     local COLOR="$1"
@@ -124,7 +124,7 @@ copy_to_desk(){
     # 它是许多 UNIX 和类 UNIX 系统（包括 Linux 和 macOS）中的标准工具之一。
     # 在 macOS 上，rsync 通常预装在系统中。
     # 可以通过打开终端并输入 rsync --version 来检查它是否已经安装以及其版本信息
-    rsync -av --exclude '.git' "$CURRENT_DIRECTORY" "$DESKTOP_PATH/$NEW_PROJECT_NAME" --progress
+    rsync -av --exclude '.git' "$CURRENT_DIRECTORY/" "$DESKTOP_PATH/" --progress
     _JobsPrint_Green "文件夹已成功复制到桌面并重命名为 $NEW_PROJECT_NAME "
     set_and_cd_to_script_dir # 切换到脚本运行的当前目录
 }
