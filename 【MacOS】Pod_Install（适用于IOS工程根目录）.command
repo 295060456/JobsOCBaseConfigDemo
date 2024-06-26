@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# 定义全局变量
+CURRENT_DIRECTORY=$(dirname "$(readlink -f "$0")") # 获取当前脚本文件的目录
 # 通用打印方法
 _JobsPrint() {
     local COLOR="$1"
@@ -90,15 +92,13 @@ check_and_set_mirror() {
 }
 # 运行 pod install
 run_pod_install() {
-    # 获取当前脚本文件的目录
-    local current_directory=$(dirname "$(readlink -f "$0")")
-    _JobsPrint_Green "Current directory: $current_directory"
+    _JobsPrint_Green "当前路径: $CURRENT_DIRECTORY"
     # 检查是否存在Podfile文件
-    if [ -f "$current_directory/Podfile" ]; then
+    if [ -f "$CURRENT_DIRECTORY/Podfile" ]; then
         _JobsPrint_Green "已找到 Podfile 文件，pod install 操作开始"
         # 在新的终端中运行pod install命令
         osascript -e "tell application \"Terminal\" to do script \"\
-            cd '$current_directory' && \
+            cd '$CURRENT_DIRECTORY' && \
             pod install\
             \""
     else
