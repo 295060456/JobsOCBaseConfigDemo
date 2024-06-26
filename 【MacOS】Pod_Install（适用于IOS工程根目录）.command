@@ -74,10 +74,16 @@ setup_git() {
 install_or_upgrade_jq() {
     # 检查 jq 是否已安装
     if brew list jq &>/dev/null; then
-        echo "jq 已安装，尝试升级..."
-        brew upgrade jq
+        _JobsPrint_Green "jq 已安装，检查是否有可用的升级..."
+        # 检查是否存在可用的升级
+        if brew outdated | grep jq &>/dev/null; then
+            _JobsPrint_Green "存在可用的升级，正在升级 jq..."
+            brew upgrade jq
+        else
+            _JobsPrint_Green "当前 jq 已是最新版本。"
+        fi
     else
-        echo "jq 未安装，正在安装..."
+        _JobsPrint_Red "jq 未安装，正在安装..."
         brew install jq
     fi
 }

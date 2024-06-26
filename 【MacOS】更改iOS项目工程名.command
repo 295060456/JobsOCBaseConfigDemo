@@ -18,8 +18,8 @@ NEW_PROJECT_NAME="Monkey"
 # 全局变量声明
 CURRENT_DIRECTORY=$(dirname "$(readlink -f "$0")") # 获取当前脚本文件的目录
 DESKTOP_PATH="$HOME/Desktop/$NEW_PROJECT_NAME" # 定义目标桌面路径
-typeset -g script_dir
-typeset -g default_old_project_name
+typeset -g script_dir # /Users/user/Desktop/Monkey
+typeset -g default_old_project_name # JobsOCBaseConfig
 # 通用打印方法
 _JobsPrint() {
     local COLOR="$1"
@@ -65,10 +65,16 @@ setup_git() {
 install_or_upgrade_jq() {
     # 检查 jq 是否已安装
     if brew list jq &>/dev/null; then
-        echo "jq 已安装，尝试升级..."
-        brew upgrade jq
+        _JobsPrint_Green "jq 已安装，检查是否有可用的升级..."
+        # 检查是否存在可用的升级
+        if brew outdated | grep jq &>/dev/null; then
+            _JobsPrint_Green "存在可用的升级，正在升级 jq..."
+            brew upgrade jq
+        else
+            _JobsPrint_Green "当前 jq 已是最新版本。"
+        fi
     else
-        echo "jq 未安装，正在安装..."
+        _JobsPrint_Red "jq 未安装，正在安装..."
         brew install jq
     fi
 }
@@ -108,26 +114,6 @@ search_and_replace() {
         _JobsPrint_Green "内容已从 '$search_term' 替换为 '$replace_term'。"
     else
         _JobsPrint_Red "文件中没有找到 '$search_term'。"
-    fi
-}
-# 在指定路径下搜索并替换文件内容
-process_file() {
-    local directory="$1"
-    local filename_pattern="$2"
-    local search_term="$3"
-    local replace_term="$4"
-
-    _JobsPrint_Green "directory = $directory"
-    _JobsPrint_Green "filename_pattern = $filename_pattern"
-    _JobsPrint_Green "search_term = $search_term"
-    _JobsPrint_Green "replace_term = $replace_term"
-
-    file_path=$(find "$directory" -type f -path "$directory/$filename_pattern")
-    if [[ -n "$file_path" ]]; then
-        _JobsPrint_Green "正在处理文件：$file_path"
-        search_and_replace "$file_path" "$search_term" "$replace_term"
-    else
-        _JobsPrint_Red "未找到符合条件的文件: $filename_pattern"
     fi
 }
 # 复制文件夹，排除.git目录，到桌面，并重命名为 $NEW_PROJECT_NAME
@@ -337,9 +323,34 @@ delete_xcworkspace() {
         _JobsPrint_Red "${default_old_project_name}.xcworkspace 文件不存在"
     fi
 }
+# 在指定路径下搜索并替换文件内容
+process_file() {
+    local directory="$1"
+    local filename_pattern="$2"
+    local search_term="$3"
+    local replace_term="$4"
+
+    _JobsPrint_Green "directory = $directory"
+    _JobsPrint_Green "filename_pattern = $filename_pattern"
+    _JobsPrint_Green "search_term = $search_term"
+    _JobsPrint_Green "replace_term = $replace_term"
+
+    file_path=$(find "$directory" -type f -path "$directory/$filename_pattern")
+    _JobsPrint_Green "file_path = $file_path" #
+    if [[ -n "$file_path" ]]; then
+        _JobsPrint_Green "正在处理文件：$file_path"
+        search_and_replace "$file_path" "$search_term" "$replace_term"
+    else
+        _JobsPrint_Red "未找到符合条件的文件: $filename_pattern"
+    fi
+}
 # 替换项目目录和文件名中的旧工程名
 replace_project_content() {
     _JobsPrint_Red "替换项目目录和文件名中的旧工程名..."
+    
+    _JobsPrint_Red "script_dir = $script_dir" # /Users/user/Desktop/Monkey
+    _JobsPrint_Red "NEW_PROJECT_NAME = $NEW_PROJECT_NAME" # Monkey
+    _JobsPrint_Red "default_old_project_name = $default_old_project_name" # JobsOCBaseConfig
 
     process_file "$script_dir" \
         "${NEW_PROJECT_NAME}Tests/${NEW_PROJECT_NAME}Tests.m" \
@@ -383,8 +394,8 @@ replace_podfile() {
 
 # 重命名文件
 rename_file() {
-    local old_path="$DESKTOP_PATH/$1"  # 使用桌面路径并追加相对路径
-    local new_path="$DESKTOP_PATH/$2"  # 使用桌面路径并追加相对路径
+    local old_path="$1"  # 使用桌面路径并追加相对路径
+    local new_path="$2"  # 使用桌面路径并追加相对路径
     _JobsPrint_Green "尝试重命名文件：从 $old_path 到 $new_path"
     if [[ -f "$old_path" ]]; then
         if mv "$old_path" "$new_path"; then
@@ -398,8 +409,8 @@ rename_file() {
 }
 # 重命名文件夹
 rename_folder() {
-    local old_path="$DESKTOP_PATH/$1"
-    local new_path="$DESKTOP_PATH/$2"
+    local old_path="$1"
+    local new_path="$2"
     _JobsPrint_Green "重命名前检查文件夹是否存在：$old_path"
     if [[ -d "$old_path" ]]; then
         if mv "$old_path" "$new_path"; then
@@ -413,7 +424,7 @@ rename_folder() {
 }
 # 替换项目目录和文件名中的旧工程名
 replace_project_names() {
-    _JobsPrint_Red "替换项目目录和文件名中的旧工程名..."
+    _JobsPrint_Red "替换项目目录和文件名中的旧工程名..." #DESKTOP_PATH/
     rename_folder "$script_dir/${default_old_project_name}Tests" \
                   "$script_dir/${NEW_PROJECT_NAME}Tests"
     rename_file "$script_dir/${NEW_PROJECT_NAME}Tests/${default_old_project_name}Tests.m" \
