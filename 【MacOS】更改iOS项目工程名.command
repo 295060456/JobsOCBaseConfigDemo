@@ -20,6 +20,7 @@ CURRENT_DIRECTORY=$(dirname "$(readlink -f "$0")") # 获取当前脚本文件的
 DESKTOP_PATH="$HOME/Desktop/$NEW_PROJECT_NAME" # 定义目标桌面路径
 typeset -g script_dir # /Users/user/Desktop/Monkey
 typeset -g default_old_project_name # JobsOCBaseConfig
+typeset -g script_path # 执行的脚本路径
 # 通用打印方法
 _JobsPrint() {
     local COLOR="$1"
@@ -49,6 +50,7 @@ set_and_cd_to_script_dir() {
 get_script_dir() {
     script_path="${(%):-%x}"
     script_dir=$DESKTOP_PATH  # 将 script_dir 设置为桌面路径
+    _JobsPrint_Red "执行的脚本路径 = $script_path"
     _JobsPrint_Red "当前脚本的执行目录：$script_dir"
 }
 # 设置 Git 配置
@@ -381,23 +383,13 @@ replace_podfile() {
         _JobsPrint_Red "Podfile 文件不存在"
     fi
 }
-# 将路径进行编码转换
-#    old_path_encoded=$(iconv -f utf-8 -t utf-8-mac <<< "$old_path")
-#    new_path_encoded=$(iconv -f utf-8 -t utf-8-mac <<< "$new_path")
-    
-#    if [[ -f "$old_path_encoded" ]]; then
-#        mv "$old_path_encoded" "$new_path_encoded"
-#        _JobsPrint_Green "文件已重命名：$old_path -> $new_path"
-#    else
-#        _JobsPrint_Red "文件未找到：$old_path"
-#    fi
-
 # 重命名文件
 rename_file() {
-    local old_path="$1"  # 使用桌面路径并追加相对路径
-    local new_path="$2"  # 使用桌面路径并追加相对路径
+    local old_path="$1"
+    local new_path="$2"
     _JobsPrint_Green "尝试重命名文件：从 $old_path 到 $new_path"
     if [[ -f "$old_path" ]]; then
+        echo "找到文件，准备重命名..."
         if mv "$old_path" "$new_path"; then
             _JobsPrint_Green "文件已成功重命名：$old_path -> $new_path"
         else
@@ -406,6 +398,16 @@ rename_file() {
     else
         _JobsPrint_Red "文件未找到：$old_path"
     fi
+}
+# 其他的一些自定义的，需要手动配置的
+others() {
+    ## 数据库
+    mv "$DESKTOP_PATH/$NEW_PROJECT_NAME/Others/系统创建/${default_old_project_name}.xcdatamodeld" \
+       "$DESKTOP_PATH/$NEW_PROJECT_NAME/Others/系统创建/${NEW_PROJECT_NAME}.xcdatamodeld"
+
+    ## pch文件
+    rename_file "$DESKTOP_PATH/$NEW_PROJECT_NAME/${default_old_project_name}PrefixHeader.pch" \
+                "$DESKTOP_PATH/$NEW_PROJECT_NAME/${NEW_PROJECT_NAME}PrefixHeader.pch"
 }
 # 重命名文件夹
 rename_folder() {
@@ -479,15 +481,6 @@ rename_xcodeproj() {
     else
         _JobsPrint_Red ".xcodeproj 文件不存在"
     fi
-}
-# 其他的一些自定义的，需要手动配置的
-others() {
-    ## 数据库
-    rename_file "Monkey/Others/系统创建/${default_old_project_name}.xcdatamodeld" \
-                "Monkey/Others/系统创建/${NEW_PROJECT_NAME}.xcdatamodeld"
-    ## pch文件
-    rename_file "Monkey/${default_old_project_name}PrefixHeader.pch" \
-                "Monkey/${NEW_PROJECT_NAME}PrefixHeader.pch"
 }
 # 重新安装 CocoaPods 依赖
 reinstall_pods() {
