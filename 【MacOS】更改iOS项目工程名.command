@@ -120,6 +120,10 @@ process_file() {
 }
 # 复制文件夹，排除.git目录，到桌面，并重命名为 $NEW_PROJECT_NAME
 copy_to_desk(){
+    # rsync 是一个非常流行的文件传输和同步工具，通常用于有效地复制和同步文件到本地目录或者通过网络到其他服务器。
+    # 它是许多 UNIX 和类 UNIX 系统（包括 Linux 和 macOS）中的标准工具之一。
+    # 在 macOS 上，rsync 通常预装在系统中。
+    # 可以通过打开终端并输入 rsync --version 来检查它是否已经安装以及其版本信息
     rsync -av --exclude '.git' "$CURRENT_DIRECTORY" "$DESKTOP_PATH/$NEW_PROJECT_NAME" --progress
     _JobsPrint_Green "文件夹已成功复制到桌面并重命名为 $NEW_PROJECT_NAME "
     set_and_cd_to_script_dir # 切换到脚本运行的当前目录
