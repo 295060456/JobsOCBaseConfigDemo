@@ -48,7 +48,7 @@ set_and_cd_to_script_dir() {
 # 定义获取脚本目录的方法
 get_script_dir() {
     script_path="${(%):-%x}"
-    script_dir=$(cd "$(dirname "$script_path")"; pwd)
+    script_dir=$DESKTOP_PATH  # 将 script_dir 设置为桌面路径
     _JobsPrint_Red "当前脚本的执行目录：$script_dir"
 }
 # 设置 Git 配置
@@ -126,7 +126,7 @@ copy_to_desk(){
     # 可以通过打开终端并输入 rsync --version 来检查它是否已经安装以及其版本信息
     rsync -av --exclude '.git' "$CURRENT_DIRECTORY/" "$DESKTOP_PATH/" --progress
     _JobsPrint_Green "文件夹已成功复制到桌面并重命名为 $NEW_PROJECT_NAME "
-    set_and_cd_to_script_dir # 切换到脚本运行的当前目录
+    cd "$DESKTOP_PATH" || { _JobsPrint_Red "切换目录失败"; exit 1; }
 }
 # 更新 Oh My Zsh
 update_OhMyZsh() {
@@ -360,11 +360,11 @@ replace_podfile() {
 }
 # 重命名文件
 rename_file() {
-    local old_path="$1"
-    local new_path="$2"
+    local old_path="$DESKTOP_PATH/$1"  # 指定桌面路径
+    local new_path="$DESKTOP_PATH/$2"  # 指定桌面路径
     _JobsPrint_Green "重命名前检查文件是否存在：$old_path"
     
-    # 将路径进行编码转换
+# 将路径进行编码转换
 #    old_path_encoded=$(iconv -f utf-8 -t utf-8-mac <<< "$old_path")
 #    new_path_encoded=$(iconv -f utf-8 -t utf-8-mac <<< "$new_path")
     
@@ -374,7 +374,7 @@ rename_file() {
 #    else
 #        _JobsPrint_Red "文件未找到：$old_path"
 #    fi
-
+    
     if [[ -f "$old_path" ]]; then
         mv "$old_path" "$new_path"
         _JobsPrint_Green "文件已重命名：$old_path -> $new_path"
@@ -469,26 +469,26 @@ reinstall_pods() {
 }
 # 主流程
 main() {
-    jobs_logo # 版权所有
-    self_intro # 显示自诉信息并等待用户回车
+    jobs_logo # 打印 logo
+    self_intro # 显示自述信息并等待用户回车
     prepare_environment # 检查并准备环境
     get_script_dir # 获取脚本所在目录
-    get_project_names # 获取用户选择或确认项目名称
+
     copy_to_desk # 复制文件夹，排除.git目录，到桌面，并重命名为 $NEW_PROJECT_NAME
-    
+
+    get_project_names # 获取用户选择或确认项目名称
     delete_pods # 删除 Pods 目录及其内容
     delete_podfile_lock # 删除 Podfile.lock 文件
     delete_xcworkspace # 删除 .xcworkspace 文件
     
-    replace_project_names # 处理文件夹名：JobsOCBaseConfigTests、JobsOCBaseConfigUITests、JobsOCBaseConfig
-    replace_project_content # 处理文件内容：JobsOCBaseConfigTests、JobsOCBaseConfigUITests、JobsOCBaseConfig
+    replace_project_names # 处理文件夹名
+    replace_project_content # 处理文件内容
     
     replace_podfile # 替换 Podfile 文件中的旧工程名
-    
-    replace_pbxproj # 处理文件内容 *.xcodeproj.project.pbxproj
-    rename_xcodeproj # 处理 *.xcodeproj 文件
+    replace_pbxproj # 处理 project.pbxproj 文件中的旧工程名
+    rename_xcodeproj # 处理 .xcodeproj 文件
 
-    replace_infoplist # 处理文件内容 Info.plist
+    replace_infoplist # 处理 Info.plist 文件中的旧工程名
     replace_xcscheme # 替换 .xcscheme 文件中的旧工程名
     process_symlinks # 处理符号链接（如果有）
 
