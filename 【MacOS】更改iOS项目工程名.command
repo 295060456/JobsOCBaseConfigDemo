@@ -13,8 +13,9 @@ JJ    JJ    oo    oo   bb      bb  SS      SS
 "
     _JobsPrint_Green "$logo"
 }
-
 # 全局变量声明
+CURRENT_DIRECTORY=$(dirname "$(readlink -f "$0")") # 获取当前脚本文件的目录
+DESKTOP_PATH="$HOME/Desktop" # 定义目标桌面路径
 typeset -g script_dir
 typeset -g default_old_project_name
 # 定义新的工程名变量
@@ -39,6 +40,46 @@ self_intro() {
     _JobsPrint_Red "【MacOS】更改iOS项目工程名"
     _JobsPrint_Red "按回车键继续..."
     read
+}
+# 切换到脚本运行的当前目录
+set_and_cd_to_script_dir() {
+    cd "$CURRENT_DIRECTORY" || { _JobsPrint_Red "切换目录失败"; exit 1; }
+}
+# 定义获取脚本目录的方法
+get_script_dir() {
+    script_path="${(%):-%x}"
+    script_dir=$(cd "$(dirname "$script_path")"; pwd)
+    _JobsPrint_Red "当前脚本的执行目录：$script_dir"
+}
+# 设置 Git 配置
+setup_git() {
+    # 增加 Git 的缓冲区大小
+    git config --global http.postBuffer 524288000  # 设置缓冲区为500MB
+    # 将 http.maxRequestBuffer 设置为较高的值
+    # 目的是允许 Git 在通过 HTTP 与远程仓库通信时处理更大的请求。
+    # 这可以帮助防止例如 "RPC failed" 和 "fatal: early EOF" 这样的错误，特别是在处理大型仓库或文件时。适用于当前用户执行的所有 Git 操作。
+    git config --global http.maxRequestBuffer 1048576000  # 允许 Git 在通过 HTTP 与远程仓库通信时处理更大的请求
+}
+# 检查和设置镜像
+check_and_set_mirror() {
+    # 获取当前公网 IP 和地理位置信息
+    local IP_INFO=$(curl -s https://ipinfo.io)
+    local COUNTRY=$(echo $IP_INFO | jq -r '.country')
+    _JobsPrint_Green "您的 IP 地址位于: $COUNTRY"
+    # 判断当前是否在中国大陆
+    if [ "$COUNTRY" = "CN" ]; then
+        _JobsPrint_Red "检测到您当前在中国大陆。"
+        _JobsPrint_Red "请输入 '1' 切换到清华大学镜像，或直接回车使用默认镜像："
+        read user_choice
+        if [ "$user_choice" = "1" ]; then
+            _JobsPrint_Green "将使用清华大学镜像..."
+            add_line_if_not_exists "Podfile" "source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'"
+        else
+            _JobsPrint_Green "将使用默认镜像..."
+        fi
+    else
+        _JobsPrint_Green "您不在中国大陆，将使用默认镜像。"
+    fi
 }
 # 定义一个函数用于搜索和替换内容
 search_and_replace() {
@@ -76,6 +117,12 @@ process_file() {
     else
         _JobsPrint_Red "未找到符合条件的文件: $filename_pattern"
     fi
+}
+# 复制文件夹，排除.git目录，到桌面，并重命名为 $NEW_PROJECT_NAME
+copy_to_desk(){
+    rsync -av --exclude '.git' "$CURRENT_DIRECTORY" "$DESKTOP_PATH/$NEW_PROJECT_NAME" --progress
+    _JobsPrint_Green "文件夹已成功复制到桌面并重命名为 $NEW_PROJECT_NAME "
+    set_and_cd_to_script_dir # 切换到脚本运行的当前目录
 }
 # 更新 Oh My Zsh
 update_OhMyZsh() {
@@ -209,12 +256,6 @@ check_and_install_zsh() {
         check_homebrew
         brew install zsh
     fi
-}
-# 定义获取脚本目录的方法
-get_script_dir() {
-    script_path="${(%):-%x}"
-    script_dir=$(cd "$(dirname "$script_path")"; pwd)
-    _JobsPrint_Red "当前脚本的执行目录：$script_dir"
 }
 # 定义提取文件名的方法
 extract_filename() {
@@ -429,6 +470,7 @@ main() {
     prepare_environment # 检查并准备环境
     get_script_dir # 获取脚本所在目录
     get_project_names # 获取用户选择或确认项目名称
+    copy_to_desk # 复制文件夹，排除.git目录，到桌面，并重命名为 $NEW_PROJECT_NAME
     
     delete_pods # 删除 Pods 目录及其内容
     delete_podfile_lock # 删除 Podfile.lock 文件
@@ -447,6 +489,8 @@ main() {
     process_symlinks # 处理符号链接（如果有）
 
     others # 其他的一些自定义的，需要手动配置的
+    setup_git # 设置 Git 配置
+    check_and_set_mirror # 检查和设置镜像
     reinstall_pods # 重新安装 CocoaPods 依赖
 
     _JobsPrint_Green "项目名称已成功从 $default_old_project_name 修改为 $new_project_name，并重新安装了 CocoaPods 依赖"
