@@ -100,7 +100,7 @@ check_and_set_mirror() {
         read user_choice
         if [ "$user_choice" = "1" ]; then
             _JobsPrint_Green "将使用清华大学镜像..."
-            add_line_if_not_exists "Podfile" "source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'"
+            add_line_if_not_exists ".bash_profile" "source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'"
         else
             _JobsPrint_Green "将使用默认镜像..."
         fi

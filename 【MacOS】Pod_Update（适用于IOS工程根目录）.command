@@ -83,7 +83,7 @@ install_or_upgrade_jq() {
             _JobsPrint_Green "当前 jq 已是最新版本。"
         fi
     else
-        _JobsPrint_Green "jq 未安装，正在安装..."
+        _JobsPrint_Red "jq 未安装，正在安装..."
         brew install jq
     fi
 }
@@ -100,7 +100,7 @@ check_and_set_mirror() {
         read user_choice
         if [ "$user_choice" = "1" ]; then
             _JobsPrint_Green "将使用清华大学镜像..."
-            add_line_if_not_exists "Podfile" "source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'"
+            add_line_if_not_exists ".bash_profile" "source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'"
         else
             _JobsPrint_Green "将使用默认镜像..."
         fi
