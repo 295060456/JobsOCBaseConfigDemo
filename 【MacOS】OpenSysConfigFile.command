@@ -1,12 +1,43 @@
 #! /bin/zsh
-open ~/.bash_profile
-open ~/.bashrc
-open ~/.zshrc
+
+# 通用打印方法
+_JobsPrint() {
+    local COLOR="$1"
+    local text="$2"
+    local RESET="\033[0m"
+    echo "${COLOR}${text}${RESET}"
+}
+# 定义红色加粗输出方法
+_JobsPrint_Red() {
+    _JobsPrint "\033[1;31m" "$1"
+}
+# 定义绿色加粗输出方法
+_JobsPrint_Green() {
+    _JobsPrint "\033[1;32m" "$1"
+}
+# 打开系统配置文件
+open_files_if_enter() {
+    _JobsPrint_Green "按回车键打开所有配置文件，输入任意字符并回车跳过..."
+    read user_input
+    if [[ -z "$user_input" ]]; then
+        open "$HOME/.bash_profile"
+        open "$HOME/.bashrc"
+        open "$HOME/.zshrc"
+    else
+        _JobsPrint_Red "跳过打开配置文件。"
+    fi
+}
 # 如果文件存在且非空，则执行source
-[[ -s "$HOME/.bash_profile" ]] && source "$HOME/.bash_profile"
-[[ -s "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
-[[ -s "$HOME/.zshrc" ]] && source "$HOME/.zshrc"
-[[ -s "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
+source_if_exists() {
+  local file="$1"
+  [[ -s "$file" ]] && source "$file"
+}
+
+open_files_if_enter
+source_if_exists "$HOME/.bash_profile"
+source_if_exists "$HOME/.bashrc"
+source_if_exists "$HOME/.zshrc"
+source_if_exists "$ZSH/oh-my-zsh.sh"
 
 # ~/.bash_profile
 # ~/.bashrc
