@@ -486,6 +486,8 @@ rename_xcodeproj() {
 reinstall_pods() {
     _JobsPrint_Red "重新安装 CocoaPods 依赖..."
     (cd "$script_dir" && pod install)
+    _JobsPrint_Green "显示依赖关系"
+    cat Podfile.lock
     _JobsPrint_Green "CocoaPods 依赖安装完成"
 }
 # 主流程
