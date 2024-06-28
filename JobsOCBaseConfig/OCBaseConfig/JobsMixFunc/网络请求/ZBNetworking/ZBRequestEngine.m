@@ -11,6 +11,16 @@
 #import "ZBURLRequest.h"
 #import "NSString+ZBUTF8Encoding.h"
 
+#if __has_include(<AFNetworking/AFNetworking.h>)
+#import <AFNetworking/AFNetworking.h>
+#elif __has_include("AFNetworking.h")
+#import "AFNetworking.h"
+#elif __has_include("AFNetworking-umbrella.h")
+#import "AFNetworking-umbrella.h"
+#else
+#error "AFNetworking header not found"
+#endif
+
 NSString *const _successBlock =@"_successBlock";
 NSString *const _failureBlock =@"_failureBlock";
 NSString *const _finishedBlock =@"_finishedBlock";

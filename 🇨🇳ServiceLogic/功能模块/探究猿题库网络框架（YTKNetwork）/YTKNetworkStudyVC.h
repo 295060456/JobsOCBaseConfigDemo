@@ -26,8 +26,12 @@
 
 #if __has_include(<AFNetworking/AFNetworking.h>)
 #import <AFNetworking/AFNetworking.h>
-#else
+#elif __has_include("AFNetworking.h")
 #import "AFNetworking.h"
+#elif __has_include("AFNetworking-umbrella.h")
+#import "AFNetworking-umbrella.h"
+#else
+#error "AFNetworking header not found"
 #endif
 
 #if __has_include(<YTKNetwork/YTKNetwork.h>)

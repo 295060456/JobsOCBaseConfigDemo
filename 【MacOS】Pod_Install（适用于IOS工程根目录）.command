@@ -116,8 +116,10 @@ run_pod_install() {
         _JobsPrint_Green "已找到 Podfile 文件，pod install 操作开始"
         # 在新的终端中运行pod install命令
         osascript -e "tell application \"Terminal\" to do script \"\
-            cd '$CURRENT_DIRECTORY' && \
-            pod install\
+            cd '$CURRENT_DIRECTORY'; \
+            pod install; \
+            echo '\\033[1;32m显示依赖关系\\033[0m';\
+            cat Podfile.lock; \
             \""
     else
         _JobsPrint_Red "没找到 Podfile 文件，pod install 操作自动终止"

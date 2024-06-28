@@ -12,12 +12,12 @@ install! 'cocoapods',# install! 只走一次，多次使用只以最后一个标
 
 platform :ios, '10.0'
 inhibit_all_warnings!
-use_frameworks!
+use_frameworks! :linkage => :static
 
 # 单元测试框架
 def testApp
 
-  end
+end
 
 def longConnection
   pod 'Socket.IO-Client-Swift'
@@ -32,7 +32,7 @@ def debugPods
 # pod 'JJException' # https://github.com/jezzmemo/JJException 保护App,一般常见的问题不会导致闪退，增强App的健壮性，同时会将错误抛出来，根据每个App自身的日志渠道记录 NO_SMP
 # pod 'FBRetainCycleDetector' # https://github.com/facebook/FBRetainCycleDetector
   #pod 'LookinServer', :configurations => ['Debug'] # https://lookin.work/
-  end
+end
 
 # 几乎每个App都会用到的
 def appCommon
@@ -41,7 +41,7 @@ def appCommon
   pod 'XYColorOC' # https://github.com/RayJiang16/XYColor 适配iOS 13夜间模式/深色外观(Dark Mode)
   pod 'IQKeyboardManager' # https://github.com/hackiftekhar/IQKeyboardManager Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more.
   pod 'Masonry' # https://github.com/SnapKit/Masonry NO_SMP
-#  pod 'AFNetworking' # https://github.com/AFNetworking/AFNetworking YES_SMP ⚠️作者停止维护
+  pod 'AFNetworking' # https://github.com/AFNetworking/AFNetworking YES_SMP ⚠️作者停止维护
   pod 'Reachability'  # https://github.com/tonymillion/Reachability 检查联网情况 NO_SMP
   pod 'ReactiveObjC' # https://github.com/ReactiveCocoa/ReactiveObjC NO_SMP
   pod 'MJRefresh' # https://github.com/CoderMJLee/MJRefresh NO_SMP
@@ -51,13 +51,13 @@ def appCommon
   pod 'YQImageTool'
   pod 'OpenUDID'  # https://github.com/ylechelle/OpenUDID Open source initiative for a universal and persistent UDID solution for iOS
   pod 'TABAnimated' # https://github.com/tigerAndBull/TABAnimated
-  pod 'YTKNetwork' # https://github.com/yuantiku/YTKNetwork
-  end
+#  pod 'YTKNetwork' # https://github.com/yuantiku/YTKNetwork
+end
 ## GK一族
 def gk
   pod 'GKNavigationBar' # https://github.com/QuintGao/GKNavigationBar NO_SMP
   pod 'GKPhotoBrowser' # https://github.com/QuintGao/GKPhotoBrowser iOS仿微信、今日头条等图片浏览器
-  end
+end
 ## JX一族
 def jx
   pod 'JXCategoryView' # https://github.com/pujiaxin33/JXCategoryView NO_SMP
@@ -88,12 +88,12 @@ def jx
 #  # RTL
 #  pod 'JXCategoryViewExt/RTL'
 
-  end
+end
 ## 提示框
 def alert
   pod 'SPAlertController'# https://github.com/SPStore/SPAlertController 深度定制AlertController NO_SMP
   pod 'TFPopup'# https://github.com/shmxybfq/TFPopup 不耦合view代码,可以为已创建过 / 未创建过的view添加弹出方式;只是一种弹出方式;
-  end
+end
 # UI相关
 def ui
   pod 'ZMJGanttChart' # https://github.com/keshiim/ZMJGanttChart excel
@@ -120,7 +120,7 @@ def ui
   jx # JX一族
   alert # 提示框
   
-  end
+end
 # 视频相关
 def videoFunc
   pod 'ZFPlayer' # https://github.com/renzifeng/ZFPlayer
@@ -129,7 +129,7 @@ def videoFunc
   pod 'ZFPlayer/ijkplayer'
   #pod 'KTVHTTPCache' # 边下边播
 #  pod 'VIMediaCache' # https://github.com/vitoziv/VIMediaCache 边下边播
-  end
+end
 # 一些功能性
 def func
 #  pod 'NTESVerifyCode' # 网易验证码 https://github.com/yidun/NTESVerifyCode https://support.dun.163.com/documents/15588062143475712?docId=150442931089756160
@@ -137,13 +137,13 @@ def func
   pod 'HXPhotoPicker' # 相册选择 https://github.com/SilenceLove/HXPhotoPicker
   pod 'BMLongPressDragCellCollectionView' # https://github.com/liangdahong/BMLongPressDragCellCollectionView
   pod 'JPImageresizerView' # https://github.com/Rogue24/JPImageresizerView 一个专门裁剪图片、GIF、视频的轮子，简单易用，功能丰富（高自由度的参数设定、支持旋转和镜像翻转、蒙版、压缩等），能满足绝大部分裁剪的需求。
-  pod 'lottie-ios', '~> 2.5.3' # 这是OC终极版本
+  pod 'lottie-ios', '~> 2.5.3' # 这是OC终极版本 https://github.com/airbnb/lottie-ios
 #  pod 'WCDB'
   pod 'AYCheckVersion'  # https://github.com/AYJk/AYCheckVersion 提示更新 Check version from AppStore / 从AppStore检查更新
   pod 'FSCalendar' # https://github.com/WenchaoD/FSCalendar 日历签到
   #pod 'LCAuthManager' # https://github.com/LennonChin/LCAuthManager 简单易用的权限验证库，提供了手势密码、生物特性验证（包括Touch ID和Face ID）的集成
   videoFunc # 视频相关
-  end
+end
 # 数据库
 def database
   pod 'FMDB'
@@ -151,45 +151,68 @@ def database
   # pod 'FMDB/standalone'   # FMDB with latest SQLite amalgamation source
   # pod 'FMDB/standalone/FTS'   # FMDB with latest SQLite amalgamation source and FTS
   # pod 'FMDB/SQLCipher'   # FMDB with SQLCipher
-  end
+end
 # 基础的公共配置
 def cocoPodsConfig
   # ❤️新工程需要修改这里❤️
   target 'JobsOCBaseConfigTests' do
     inherit! :search_paths # abstract! 指示当前的target是抽象的，因此不会直接链接Xcode target。与其相对应的是 inherit！
     # Pods for testing
-    end
+  end
   # ❤️新工程需要修改这里❤️
   target 'JobsOCBaseConfigUITests' do
     inherit! :search_paths
     # Pods for testing
-    end
+  end
   
   # 当我们下载完成，但是还没有安装之时，可以使用hook机制通过pre_install指定要做更改，更改完之后进入安装阶段。 格式如下：
   pre_install do |installer|
       # 做一些安装之前的更改
-    end
+  end
   
   # 这个是cocoapods的一些配置,官网并没有太详细的说明,一般采取默认就好了,也就是不写.
   post_install do |installer|
-    
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+    end
+    # 这段代码的作用是在 CocoaPods 安装完所有依赖库之后，遍历所有生成的 Xcode 项目的 targets，并为每个 target 设置特定的构建配置。
+    # 具体来说，它在 post_install 钩子中执行，用于修改生成的项目的构建配置。
     installer.generated_projects.each do |project|
       project.targets.each do |target|
         target.build_configurations.each do |config|
           config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+          config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
         end
       end
     end
     
+    # 遍历 CocoaPods 项目中的所有 targets，并为每个 target 设置特定的构建配置。
+    # 具体来说，它是在 post_install 钩子中执行的，用于修改 Pods 项目的构建配置。
     installer.pods_project.targets.each do |target|
-      # 当我们安装完成，但是生成的工程还没有写入磁盘之时，我们可以指定要执行的操作。 比如，我们可以在写入磁盘之前，修改一些工程的配置：
+      # 用于在控制台输出每个 CocoaPods target 的名称。它通常放在 post_install 钩子中，用于调试或验证。
       puts "!!!! #{target.name}"
+      # YTKNetwork 会集成 AFNetworking。而 AFNetworking 目前OC版本已经停更，且或许在某些场景下，需要修改 AFNetworking 源代码。
+      # 所以，拉 YTKNetwork 的时候，需要排除 AFNetworking
+#      if target.name == 'YTKNetwork'
+#        target.dependencies.delete_if { |dependency| dependency.name == 'AFNetworking' }
+#      end
+      
+      # 有时候，在 Podfile 中没有明确指定最低支持的 iOS 版本时，某些 Pods 可能默认使用较低版本的 IPHONEOS_DEPLOYMENT_TARGET。
+      # 这可能导致构建时出现兼容性问题或警告。
+      # 因此，通过在 post_install 钩子中统一设置所有 Pods 的 IPHONEOS_DEPLOYMENT_TARGET，可以确保所有依赖库使用一致的最低 iOS 版本，减少潜在的兼容性问题。
+      # 在 CocoaPods 安装完所有依赖库之后，遍历每个 target 的构建配置，并将 IPHONEOS_DEPLOYMENT_TARGET 设置为 13.0。
+      # 具体来说，它是在 post_install 钩子中执行的，这意味着它会在所有 Pods 安装完成之后、写入 Xcode 项目之前被调用。
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
       end
+    end
     
+    # 这段代码的作用是在 CocoaPods 安装完所有依赖库之后，遍历 Pods 项目的所有构建配置，并设置 EXCLUDED_ARCHS 构建设置，以排除 arm64 架构。
+    # 这通常是为了解决在模拟器上构建项目时遇到的 arm64 架构兼容性问题。
     installer.pods_project.build_configurations.each do |config|
       config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
     end
-    
   end
 end
 # ❤️新工程需要修改这里❤️

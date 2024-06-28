@@ -120,6 +120,8 @@ run_pod_update() {
             pod cache clean --all && \
             pod repo update && \
             pod install\
+            echo '\033[1;32m显示依赖关系\033[0m';\
+            cat Podfile.lock; \
             \""
     else
         _JobsPrint_Red "没找到 Podfile 文件，pod install 操作自动终止"
