@@ -5,6 +5,7 @@
     <img src="https://img.shields.io/badge/OC-orange" alt="OC" title="OC"/>
     <img src="https://img.shields.io/badge/xcode-13.1-blue" alt="xcode" title="xcode"/>
 </p>
+
 <details id="目的">
   <summary><strong>目的</strong></summary>
 
@@ -30,6 +31,51 @@
 
 ## 几点重要说明
 
+<details id="在Apple芯片（目前是M系列），编译失败的解决方案">
+  <summary>
+    <strong>在Apple芯片（目前是M系列），编译失败的解决方案</strong>
+  </summary>
+
+* 禁用系统完整性保护 (System Integrity Protection, SIP)   <font color=red>**如果不禁用，会对某些文件夹有读写权限控制**</font>
+
+  * 重启MacOS，长按开机键，直到🌏页面，进入恢复模式
+
+  * 在恢复模式的 macOS 实用工具窗口中，选择“实用工具”菜单，然后选择“终端”以打开终端窗口
+
+    ```shell
+    csrutil disable
+    ```
+
+  * 重启MacOS
+
+* 在xcode里面做如下设置：
+
+  ![image-20240628195445480](./assets/image-20240628195445480.png)
+
+  ![image-20240628200436387](./assets/image-20240628200436387.png)
+
+* 文件夹授权
+
+  ```
+  sudo chown -R $(whoami) 项目目录
+  sudo chmod -R u+rw 项目目录
+  ```
+
+* 在`podfile`文件里面，设置：
+
+  ```ruby
+  # 用于指定你的 Pod 项目应使用静态库而不是动态库。
+  # 这个选项主要用于解决某些与动态库相关的兼容性和性能问题。
+  use_frameworks! :linkage => :static
+  ```
+
+* 重新运行pod
+
+  ```shell
+  pod install
+  ```
+
+</details>
 
 
 <details id="iOS Xcode 代码块">

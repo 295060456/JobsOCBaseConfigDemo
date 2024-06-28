@@ -12,6 +12,8 @@ install! 'cocoapods',# install! 只走一次，多次使用只以最后一个标
 
 platform :ios, '10.0'
 inhibit_all_warnings!
+# 用于指定你的 Pod 项目应使用静态库而不是动态库。
+# 这个选项主要用于解决某些与动态库相关的兼容性和性能问题。
 use_frameworks! :linkage => :static
 
 # 单元测试框架
