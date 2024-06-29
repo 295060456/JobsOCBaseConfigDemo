@@ -79,7 +79,7 @@
 
 <details id="iOS Xcode 代码块">
  <summary>
- 		<strong>iOS Xcode 代码块</strong>
+ 		<strong>iOS Xcode 代码块，提升编码效率必备之选</strong>
  </summary>
 
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
