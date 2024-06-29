@@ -53,9 +53,19 @@ NSString *const 用户名数组 = @"用户名数组";
         SuppressWdeprecatedDeclarationsWarning(return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];);
     }else{
         NSError *error = nil;
-        JobsUserModel *userModel = [NSKeyedUnarchiver unarchivedObjectOfClass:JobsUserModel.class
-                                                                     fromData:archivedData
-                                                                        error:&error];
+        /// 如果 JobsUserModel 中包含更多自定义类型或者你需要解码其他基本类型（例如 NSArray 或 NSDictionary），需要将这些类也加入到 allowedClasses 集合中。
+        /// 确保在解码所有需要的类时，将其包含在 allowedClasses 集合中以避免警告和潜在的解码失败。例如
+        NSSet *allowedClasses = [NSSet setWithObjects:
+                                 JobsUserModel.class,
+                                 NSString.class,
+                                 NSNumber.class,
+                                 NSArray.class,
+                                 NSDictionary.class,
+                                 UIImage.class,
+                                 nil];
+        JobsUserModel *userModel = [NSKeyedUnarchiver unarchivedObjectOfClasses:allowedClasses
+                                                                       fromData:archivedData
+                                                                          error:&error];
         if (!userModel) {
             NSLog(@"解档失败: %@", error.localizedDescription);
         }return userModel;

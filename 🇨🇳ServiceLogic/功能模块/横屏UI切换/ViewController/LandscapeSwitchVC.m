@@ -13,6 +13,11 @@
 @property(nonatomic,strong)BaseButton *switchBtn2;
 @property(nonatomic,strong)BaseButton *switchBtn3;
 @property(nonatomic,strong)BaseButton *switchBtn4;
+@property(nonatomic,strong)BaseButton *switchBtn5;
+@property(nonatomic,strong)BaseButton *switchBtn6;
+@property(nonatomic,strong)NSMutableArray <BaseButton *>*btnMutArr;
+// Data
+@property(nonatomic,assign)UIInterfaceOrientationMask currentVCInterfaceOrientationMask;
 
 @end
 
@@ -61,6 +66,8 @@
     self.switchBtn2.alpha = 1;
     self.switchBtn3.alpha = 1;
     self.switchBtn4.alpha = 1;
+    self.switchBtn5.alpha = 1;
+    self.switchBtn6.alpha = 1;
     
     [self masonry];
 }
@@ -110,12 +117,12 @@
 }
 #pragma mark —— 一些私有方法
 -(void)masonry{
-    [@[self.switchBtn1, self.switchBtn2, self.switchBtn3, self.switchBtn4] mas_distributeViewsAlongAxis:MASAxisTypeVertical
-                                                                                       withFixedSpacing:10
-                                                                                            leadSpacing:100
-                                                                                            tailSpacing:100];
-     // 设置控件的高度
-     [@[self.switchBtn1, self.switchBtn2, self.switchBtn3, self.switchBtn4] mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.btnMutArr mas_distributeViewsAlongAxis:MASAxisTypeVertical
+                                withFixedSpacing:10
+                                     leadSpacing:100
+                                     tailSpacing:100];
+     /// 设置控件的高度
+     [self.btnMutArr mas_makeConstraints:^(MASConstraintMaker *make) {
          make.width.mas_equalTo(100); // 宽度设为固定值，这里示意为 100
          make.centerX.equalTo(self.view.mas_centerX); // 水平居中
      }];
@@ -124,6 +131,8 @@
     [_switchBtn2 makeBtnLabelByShowingType:UILabelShowingType_03];
     [_switchBtn3 makeBtnLabelByShowingType:UILabelShowingType_03];
     [_switchBtn4 makeBtnLabelByShowingType:UILabelShowingType_03];
+    [_switchBtn5 makeBtnLabelByShowingType:UILabelShowingType_03];
+    [_switchBtn6 makeBtnLabelByShowingType:UILabelShowingType_03];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification *)notification {
@@ -146,6 +155,14 @@
         default:
             break;
     }
+}
+#pragma mark —— 屏幕旋转相关
+-(BOOL)shouldAutorotate {
+    return YES;
+}
+/// 支持哪些屏幕方向
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return self.currentVCInterfaceOrientationMask;
 }
 /// 检测屏幕方向
 -(void)checkScreenOrientation{
@@ -244,8 +261,10 @@
                                                    clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"按钮点击：设备竖直向上，Home 按钮在下方");
-            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortrait));/// 设备竖直向上，Home 按钮在下方
+//            NSLog(@"按钮点击：设备竖直向上，Home 按钮在下方");
+//            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortrait));/// 设备竖直向上，Home 按钮在下方
+            
+            [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
             return nil;
         }];
         [self.view addSubview:_switchBtn1];
@@ -298,8 +317,9 @@
                                                    clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"按钮点击：设备竖直向下，Home 按钮在上方");
-            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortraitUpsideDown));/// 设备竖直向下，Home 按钮在上方
+//            NSLog(@"按钮点击：设备竖直向下，Home 按钮在上方");
+//            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortraitUpsideDown));/// 设备竖直向下，Home 按钮在上方
+            [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
             return nil;
         }];
         [self.view addSubview:_switchBtn2];
@@ -352,8 +372,11 @@
                                                    clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"按钮点击：设备水平，Home 按钮在右侧");
-            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationLandscapeRight));/// 设备水平，Home 按钮在右侧
+//            NSLog(@"按钮点击：设备水平，Home 按钮在右侧");
+//            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationLandscapeRight));/// 设备水平，Home 按钮在右侧
+            NSLog(@"按钮点击：强制旋转到横屏");
+            self.currentVCInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
+            [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationLandscapeRight];
             return nil;
         }];
         [self.view addSubview:_switchBtn3];
@@ -379,7 +402,7 @@
                                            selectedAttributedTitle:nil
                                                 attributedSubtitle:nil
                                                              title:JobsInternationalization(@"点击")
-                                                          subTitle:JobsInternationalization(@"切换到横屏")
+                                                          subTitle:JobsInternationalization(@"切换到横屏 no")
                                                          titleFont:UIFontWeightBoldSize(18)
                                                       subTitleFont:nil
                                                           titleCor:JobsCor(@"#333333")
@@ -406,8 +429,10 @@
                                                    clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"按钮点击：设备水平，Home 按钮在左侧");
-            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationLandscapeLeft));/// 设备水平，Home 按钮在左侧
+//            NSLog(@"按钮点击：设备水平，Home 按钮在左侧");
+//            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationLandscapeLeft));/// 设备水平，Home 按钮在左侧
+            self.currentVCInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
+            [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationLandscapeLeft];
             return nil;
         }];
         [self.view addSubview:_switchBtn4];
@@ -417,6 +442,128 @@
 //        }];
 //        [_switchBtn4 makeBtnLabelByShowingType:UILabelShowingType_03];
     }return _switchBtn4;
+}
+
+-(BaseButton *)switchBtn5{
+    if(!_switchBtn5){
+        @jobs_weakify(self)
+        _switchBtn5 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                        background:nil
+                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                     textAlignment:NSTextAlignmentCenter
+                                                  subTextAlignment:NSTextAlignmentCenter
+                                                       normalImage:nil
+                                                    highlightImage:nil
+                                                   attributedTitle:nil
+                                           selectedAttributedTitle:nil
+                                                attributedSubtitle:nil
+                                                             title:JobsInternationalization(@"点击")
+                                                          subTitle:JobsInternationalization(@"锁定横屏")
+                                                         titleFont:UIFontWeightBoldSize(18)
+                                                      subTitleFont:nil
+                                                          titleCor:JobsCor(@"#333333")
+                                                       subTitleCor:nil
+                                                titleLineBreakMode:NSLineBreakByWordWrapping
+                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                               baseBackgroundColor:UIColor.whiteColor
+                                                      imagePadding:JobsWidth(0)
+                                                      titlePadding:JobsWidth(10)
+                                                    imagePlacement:NSDirectionalRectEdgeNone
+                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                 cornerRadiusValue:JobsWidth(8)
+                                                   roundingCorners:UIRectCornerAllCorners
+                                              roundingCornersRadii:CGSizeZero
+                                                    layerBorderCor:nil
+                                                       borderWidth:JobsWidth(0)
+                                                     primaryAction:nil
+                                        longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
+                                                                     id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+        }
+                                                   clickEventBlock:^id(BaseButton *x) {
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            NSLog(@"锁定横屏 ？？");
+            self.currentVCInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
+            [self hx_setNeedsUpdateOfSupportedInterfaceOrientations];
+            return nil;
+        }];
+        [self.view addSubview:_switchBtn5];
+//        [_switchBtn5 mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.size.mas_equalTo(CGSizeMake(JobsWidth(80), JobsWidth(100)));
+//            make.center.equalTo(self.view);
+//        }];
+//        [_switchBtn5 makeBtnLabelByShowingType:UILabelShowingType_03];
+    }return _switchBtn5;
+}
+
+-(BaseButton *)switchBtn6{
+    if(!_switchBtn6){
+        @jobs_weakify(self)
+        _switchBtn6 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                        background:nil
+                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                     textAlignment:NSTextAlignmentCenter
+                                                  subTextAlignment:NSTextAlignmentCenter
+                                                       normalImage:nil
+                                                    highlightImage:nil
+                                                   attributedTitle:nil
+                                           selectedAttributedTitle:nil
+                                                attributedSubtitle:nil
+                                                             title:JobsInternationalization(@"点击")
+                                                          subTitle:JobsInternationalization(@"解除锁定")
+                                                         titleFont:UIFontWeightBoldSize(18)
+                                                      subTitleFont:nil
+                                                          titleCor:JobsCor(@"#333333")
+                                                       subTitleCor:nil
+                                                titleLineBreakMode:NSLineBreakByWordWrapping
+                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                               baseBackgroundColor:UIColor.whiteColor
+                                                      imagePadding:JobsWidth(0)
+                                                      titlePadding:JobsWidth(10)
+                                                    imagePlacement:NSDirectionalRectEdgeNone
+                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                 cornerRadiusValue:JobsWidth(8)
+                                                   roundingCorners:UIRectCornerAllCorners
+                                              roundingCornersRadii:CGSizeZero
+                                                    layerBorderCor:nil
+                                                       borderWidth:JobsWidth(0)
+                                                     primaryAction:nil
+                                        longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
+                                                                     id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+        }
+                                                   clickEventBlock:^id(BaseButton *x) {
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            NSLog(@"解除锁定 ？？");
+            self.currentVCInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
+            [self hx_setNeedsUpdateOfSupportedInterfaceOrientations];
+            return nil;
+        }];
+        [self.view addSubview:_switchBtn6];
+//        [_switchBtn6 mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.size.mas_equalTo(CGSizeMake(JobsWidth(80), JobsWidth(100)));
+//            make.center.equalTo(self.view);
+//        }];
+//        [_switchBtn6 makeBtnLabelByShowingType:UILabelShowingType_03];
+    }return _switchBtn6;
+}
+
+-(NSMutableArray<BaseButton *> *)btnMutArr{
+    if(!_btnMutArr){
+        _btnMutArr = NSMutableArray.array;
+        [_btnMutArr addObject:self.switchBtn1];
+        [_btnMutArr addObject:self.switchBtn2];
+        [_btnMutArr addObject:self.switchBtn3];
+        [_btnMutArr addObject:self.switchBtn4];
+        [_btnMutArr addObject:self.switchBtn5];
+        [_btnMutArr addObject:self.switchBtn6];
+    }return _btnMutArr;
 }
 
 @end

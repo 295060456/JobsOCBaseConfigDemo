@@ -53,6 +53,7 @@ def appCommon
   pod 'YQImageTool'
   pod 'OpenUDID'  # https://github.com/ylechelle/OpenUDID Open source initiative for a universal and persistent UDID solution for iOS
   pod 'TABAnimated' # https://github.com/tigerAndBull/TABAnimated
+  pod 'HXRotationTool' # https://github.com/TheLittleBoy/HXRotationTool 屏幕旋转
 #  pod 'YTKNetwork' # https://github.com/yuantiku/YTKNetwork
 end
 ## GK一族

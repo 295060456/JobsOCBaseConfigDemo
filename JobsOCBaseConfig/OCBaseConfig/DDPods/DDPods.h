@@ -9,6 +9,7 @@
 #ifndef Pods_h
 #define Pods_h
 
+/// 以下是 Debug 区段
 #if DEBUG
 
 #if __has_include(<FLEX/FLEX.h>)
@@ -17,25 +18,23 @@
 //#import "FLEX.h"
 #endif
 
-//#if __has_include(<FBRetainCycleDetector/FBRetainCycleDetector.h>)
-//#import <FBRetainCycleDetector/FBRetainCycleDetector.h>
-//#else
-//#import "FBRetainCycleDetector.h"
-//#endif
-
-#if __has_include(<FSCalendar/FSCalendar.h>)
-#import <FSCalendar/FSCalendar.h>
-#else
-#import "FSCalendar.h"
-#endif
-
 #if __has_include(<DoraemonManager/DoraemonManager.h>)
 #import <DoraemonKit/DoraemonManager.h>
 #else
 //#import "DoraemonManager.h"
 #endif
 
+//#if __has_include(<FBRetainCycleDetector/FBRetainCycleDetector.h>)
+//#import <FBRetainCycleDetector/FBRetainCycleDetector.h>
+//#else
+//#import "FBRetainCycleDetector.h"
+//#endif
+
 #endif
+/// 以上是 Debug 区段
+
+#import "UITextView+Placeholder.h"
+#import "UIInterface+HXRotation.h"
 
 #if __has_include(<XYColorOC/XYColorOC.h>)
 #import <XYColorOC/XYColorOC.h>
@@ -46,8 +45,6 @@
 #else
 #error "XYColorOC header not found"
 #endif
-
-#import "UITextView+Placeholder.h"
 
 #if __has_include(<YTKNetwork/YTKNetwork.h>)
 #import <YTKNetwork/YTKNetwork.h>
@@ -61,6 +58,11 @@
 #import "WMZCodeView.h"
 #endif
 
+#if __has_include(<FSCalendar/FSCalendar.h>)
+#import <FSCalendar/FSCalendar.h>
+#else
+#import "FSCalendar.h"
+#endif
 
 #if __has_include(<ZMJGanttChart/ZMJGanttChart.h>)
 #import <ZMJGanttChart/ZMJGanttChart.h>
