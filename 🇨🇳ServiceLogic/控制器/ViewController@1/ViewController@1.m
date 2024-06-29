@@ -271,6 +271,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"手机横屏")
+                                                           attributeSubTitle:JobsInternationalization(@"全局设定")];
+            
+            viewModel.cls = LandscapeSwitchVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"本地推送通知")
                                                            attributeSubTitle:JobsInternationalization(@"本地推送通知")];
             

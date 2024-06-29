@@ -37,6 +37,7 @@ typedef void(^jobsByUnsignedLongBlock)(unsigned long data);
 typedef void(^jobsByUnsignedLongLongBlock)(unsigned long long data);
 /// 4、入参为多类型、不定个数的形参
 typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
+typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
 #pragma mark —— 多形参
 /// 5、入参个数为2~10的ID类型、且没有返回值的Block定义
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;

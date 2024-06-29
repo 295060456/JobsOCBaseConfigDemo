@@ -6,6 +6,8 @@
 //
 
 #import "BaseViewController.h"
+#import "NSObject+Extras.h"
+#import "MacroDef_SysWarning.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

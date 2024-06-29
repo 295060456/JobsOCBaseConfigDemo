@@ -85,5 +85,6 @@
 #import "CompressStrVC.h"
 #import "AppIconSwitchingVC.h"
 #import "PeekAndPopVC.h"
+#import "LandscapeSwitchVC.h"
 
 #endif /* Other_h */

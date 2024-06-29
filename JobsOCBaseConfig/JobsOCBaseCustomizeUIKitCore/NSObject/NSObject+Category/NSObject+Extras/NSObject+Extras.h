@@ -164,8 +164,23 @@ BaseProtocol
 /// 判空【是空返回YES】
 -(BOOL)nullString;
 /// 此功能的必要性：如果外界传入的数组是空，那么拿到的count是0，做-1操作就是-1，直接用for循环就会进入死循环
--(void)jobsSafetyCycleFunc:(int)ceiling cycleBlock:(jobsByIntBlock _Nullable)cycleBlock;
+-(void)jobsSafetyCycleFunc:(int)ceiling
+                cycleBlock:(jobsByIntBlock _Nullable)cycleBlock;
 -(NSMutableArray <ImageModel *>*_Nonnull)changeGifToImage:(NSData *_Nonnull)gifData;
+/**
+ 
+ NSMutableArray <UIViewModel *>*dataMutArr = popupView.valueForKeyBlock(@"dataMutArr");
+ [dataMutArr removeAllObjects];
+ [dataMutArr addObjectsFromArray:self.createDataMutArr2];
+ 
+ // dataMutArr = self.createDataMutArr2; 这一段无效
+ 
+ */
+-(JobsReturnIDByIDBlock _Nonnull)valueForKeyBlock;
+/// KVC 的二次封装
+-(jobsByKey_ValueBlock _Nonnull)jobsKVC;
+-(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClassBlock;
+-(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClassBlock;
 -(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
                          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock;
 +(instancetype _Nonnull)jobsInitWithReuseIdentifier;
@@ -182,7 +197,7 @@ BaseProtocol
 /// @param propertyName 需要查找的属性值
 -(id _Nullable)checkTargetObj:(NSObject *_Nullable)obj
                  propertyName:(NSString *_Nullable)propertyName;
-/// 版本号比较
+/// 版本号比较 版本号的格式：数字中间由点隔开
 /// @param versionNumber1 版本号1
 /// @param versionNumber2 版本号2
 -(CompareRes)versionNumber1:(NSString *_Nonnull)versionNumber1
@@ -190,6 +205,7 @@ BaseProtocol
 /// 给定一个数据源（数组）和 每行需要展示的元素个数，计算行数
 /// @param num 每行需要展示的元素个数
 -(NSInteger)lineNum:(NSInteger)num;
+
 -(NSInteger)count:(NSUInteger)count
               num:(NSInteger)num;
 /**
@@ -242,6 +258,7 @@ BaseProtocol
 -(void)autoLockedScreen:(BOOL)lockSwitch;
 
 -(void)savePic:(GKPhotoBrowser *_Nonnull)browser;
+
 -(void)saveImageData:(NSData *_Nonnull)imageData;
 /// 将基本数据类型（先统一默认视作浮点数）转化为图片进行显示。使用前提，图片的名字命令为0~9，方便进行映射
 /// @param inputData 需要进行转换映射的基本数据类型数据
@@ -321,52 +338,32 @@ BaseProtocol
                                num2:(NSNumber *_Nonnull)num2;
 #pragma mark —— 键盘⌨️
 /**
- ❤️使用方法❤️
- /// 在初始化方法里面进行接入
- -(instancetype)init{
-     if (self = [super init]) {
-         [self registerKeyboard];
-     }return self;
- }
+ 使用方法：
+ IQKeyboardManager.sharedManager.enable = NO;
+ [self keyboard];
+ [self actionNotificationBlock:^id(NSNotificationKeyboardModel *data) {
+     @jobs_strongify(self)
+     NSLog(@"userInfo = %@",data.userInfo);
+     NSLog(@"beginFrame = %@",NSStringFromCGRect(data.beginFrame));
+     NSLog(@"endFrame = %@",NSStringFromCGRect(data.endFrame));
+     NSLog(@"keyboardOffsetY = %f",data.keyboardOffsetY);
+     NSLog(@"notificationName = %@",data.notificationName);
+     if (data.notificationName.isEqualToString(@"UIKeyboardWillChangeFrameNotification")) {
 
- -(void)registerKeyboard{
-     IQKeyboardManager.sharedManager.enable = NO;
-     [self keyboard];
-     @jobs_weakify(self)
-     __block CGFloat gg = 0;// 修正间距
-     /// 键盘弹起的时候的方法监听回调
-     [self actionkeyboardUpNotificationBlock:^id(NSNotificationKeyboardModel *data) {
-         @jobs_strongify(self)
-         NSLog(@"userInfo = %@",data.userInfo);
-         NSLog(@"beginFrame = %@",NSStringFromCGRect(data.beginFrame));
-         NSLog(@"endFrame = %@",NSStringFromCGRect(data.endFrame));
-         NSLog(@"keyboardOffsetY = %f",data.keyboardOffsetY);
-         NSLog(@"notificationName = %@",data.notificationName);
-         
-         // 键盘高度：data.keyboardOffsetY
-         // view底的Y值：self.y + [MSPayView viewSizeWithModel:nil].height
-         // 我希望的view距离键盘的固定距离为JobsWidth(20),即:data.keyboardOffsetY - (self.y + [MSPayView viewSizeWithModel:nil].height) = JobsWidth(20)
-         CGFloat dd = data.keyboardOffsetY - (self.y + [MSPayView viewSizeWithModel:nil].height);// 实际间距
-         CGFloat ff = JobsWidth(20) - dd;
-         if(ff > 0){
-             // 实际间距 小于 我希望的距离
-             self.y -= JobsWidth(20);
-             gg = ff;// 修正为补偿值
-         }else{
-             // 实际间距 大于 我希望的距离
-             gg = JobsWidth(20);
+         if (data.keyboardOffsetY >= 0) {
+             [self.collectionView setContentOffset:CGPointMake(0,self.collectionView.contentOffset.y + data.keyboardOffsetY)
+                                          animated:YES];
+         }else if(data.keyboardOffsetY < 0){
+             [self.collectionView setContentOffset:CGPointMake(0,0)
+                                          animated:YES];
          }
-         self.y -= gg;
-         return nil;
-     }];
-     /// 键盘消失的时候的方法监听回调
-     [self actionkeyboardDownNotificationBlock:^id(id data) {
-         @jobs_strongify(self)
-         self.y += gg;
-         NSLog(@"ddd = %f",self.origin.y);
-         return nil;
-     }];
- }
+         
+     }else if (data.notificationName.isEqualToString(@"UIKeyboardDidChangeFrameNotification")){
+         NSLog(@"");
+     }else{}
+     
+     return nil;
+ }];
  */
 /// 加入键盘通知的监听者
 -(void)keyboard;

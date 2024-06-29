@@ -197,6 +197,12 @@
         }return value;
     };
 }
+/// KVC 的二次封装
+-(jobsByKey_ValueBlock _Nonnull)jobsKVC{
+    return ^(NSString *_Nonnull key,id _Nullable value) {
+        [self setValue:value forKey:key];
+    };
+}
 
 -(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClassBlock{
     return ^(Class cls) {
