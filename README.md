@@ -82,7 +82,7 @@
   * 资料来源：
     * [**UIButtonConfiguration**](https://www.jianshu.com/p/12426709420e)
     * [**Chat GPT 3.5**](https://chatgpt.com/)
-      
+      </details>
 
 <details id="示例代码">
  <summary><strong>示例代码</strong></summary>
