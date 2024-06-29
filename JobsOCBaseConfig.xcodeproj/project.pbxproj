@@ -922,6 +922,7 @@
 		CE6B14152C2ED50D00A542A4 /* YTKNetworkPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B14082C2ED50D00A542A4 /* YTKNetworkPrivate.m */; };
 		CE6B14162C2ED50D00A542A4 /* YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B140A2C2ED50D00A542A4 /* YTKRequest.m */; };
 		CE6B14172C2ED50D00A542A4 /* YTKRequestEventAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B140C2C2ED50D00A542A4 /* YTKRequestEventAccessory.m */; };
+		CE6B18422C2FA45A00A542A4 /* LandscapeSwitchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B18412C2FA45A00A542A4 /* LandscapeSwitchVC.m */; };
 		CE8620732C2C254B0009C664 /* libarclite_appletvos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86206A2C2C254B0009C664 /* libarclite_appletvos.a */; };
 		CE8620742C2C254B0009C664 /* libarclite_appletvsimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86206B2C2C254B0009C664 /* libarclite_appletvsimulator.a */; };
 		CE8620752C2C254B0009C664 /* libarclite_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86206C2C2C254B0009C664 /* libarclite_iphoneos.a */; };
@@ -2818,6 +2819,8 @@
 		CE6B140A2C2ED50D00A542A4 /* YTKRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKRequest.m; sourceTree = "<group>"; };
 		CE6B140B2C2ED50D00A542A4 /* YTKRequestEventAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKRequestEventAccessory.h; sourceTree = "<group>"; };
 		CE6B140C2C2ED50D00A542A4 /* YTKRequestEventAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKRequestEventAccessory.m; sourceTree = "<group>"; };
+		CE6B18402C2FA45A00A542A4 /* LandscapeSwitchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandscapeSwitchVC.h; sourceTree = "<group>"; };
+		CE6B18412C2FA45A00A542A4 /* LandscapeSwitchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandscapeSwitchVC.m; sourceTree = "<group>"; };
 		CE86206A2C2C254B0009C664 /* libarclite_appletvos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_appletvos.a; sourceTree = "<group>"; };
 		CE86206B2C2C254B0009C664 /* libarclite_appletvsimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_appletvsimulator.a; sourceTree = "<group>"; };
 		CE86206C2C2C254B0009C664 /* libarclite_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_iphoneos.a; sourceTree = "<group>"; };
@@ -5661,6 +5664,7 @@
 		84CA609D278980E700E46E71 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				CE6B183C2C2FA3C200A542A4 /* 横屏UI切换 */,
 				C592C66C2C261FBF00F274F8 /* PeekAndPop */,
 				C5D260022C220EB5005AD2DD /* App图标切换 */,
 				84B38AEB2C10BB9100922974 /* 字符串解压缩 */,
@@ -11672,6 +11676,39 @@
 			path = YTKNetwork;
 			sourceTree = "<group>";
 		};
+		CE6B183C2C2FA3C200A542A4 /* 横屏UI切换 */ = {
+			isa = PBXGroup;
+			children = (
+				CE6B183F2C2FA3F300A542A4 /* ViewController */,
+				CE6B183E2C2FA3EC00A542A4 /* View */,
+				CE6B183D2C2FA3E500A542A4 /* Model */,
+			);
+			path = "横屏UI切换";
+			sourceTree = "<group>";
+		};
+		CE6B183D2C2FA3E500A542A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE6B183E2C2FA3EC00A542A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE6B183F2C2FA3F300A542A4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE6B18402C2FA45A00A542A4 /* LandscapeSwitchVC.h */,
+				CE6B18412C2FA45A00A542A4 /* LandscapeSwitchVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		CE8620722C2C254B0009C664 /* Libarclite */ = {
 			isa = PBXGroup;
 			children = (
@@ -12577,6 +12614,7 @@
 				C59789F52BE3599700A56125 /* NSNotificationCenter+JobsBlock.m in Sources */,
 				C526874C2BDA023300872F26 /* NSString+Base85.m in Sources */,
 				C5AA8B6C282CE2F00057EB84 /* AuthCodeLab.m in Sources */,
+				CE6B18422C2FA45A00A542A4 /* LandscapeSwitchVC.m in Sources */,
 				C5978AB72BE3599700A56125 /* UIView+BackgroundImage.m in Sources */,
 				84CA65402789CAB600E46E71 /* DDNetworkingAPI.m in Sources */,
 				C5786EDC285DD01F00AD9FF1 /* BaiShaETProjSearchView.m in Sources */,

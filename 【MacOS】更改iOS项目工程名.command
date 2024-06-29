@@ -443,6 +443,28 @@ replace_project_names() {
                 "$script_dir/${NEW_PROJECT_NAME}.xcodeproj"
     _JobsPrint_Green "项目目录和文件名中的旧工程名替换完成"
 }
+# 遍历某文件夹下的所有文件名 和 文件内容，对其进行字符串替换
+replace_in_files_and_filenames() {
+    local dir_path="$1"
+    local old_string="$2"
+    local new_string="$3"
+
+    # 遍历文件夹下所有文件，替换文件名中的 old_string 为 new_string
+    find "$dir_path" -type f | while read -r file; do
+        local base_name=$(basename "$file")
+        local dir_name=$(dirname "$file")
+        if [[ "$base_name" == *"$old_string"* ]]; then
+            local new_base_name=${base_name//$old_string/$new_string}
+            mv "$file" "$dir_name/$new_base_name"
+        fi
+    done
+
+    # 遍历文件夹下所有文件，替换文件内容中的 old_string 为 new_string
+    find "$dir_path" -type f | while read -r file; do
+        sed -i.bak "s/$old_string/$new_string/g" "$file"
+        rm "${file}.bak"
+    done
+}
 # 处理 *.xcodeproj.project.pbxproj
 replace_pbxproj() {
     _JobsPrint_Red "替换 project.pbxproj 文件中的旧工程名..."

@@ -77,14 +77,13 @@
 
 </details>
 
-
 <details id="iOS Xcode 代码块">
- <summary><strong>iOS Xcode 代码块</strong></summary>
+ <summary>
+ 		<strong>iOS Xcode 代码块</strong>
+ </summary>
 
-* 要想快，用快捷键调取代码块。集成方式：<br>
-```javascript
-https://github.com/JobsKit/JobsCodeSnippets
-```
+* 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
+
 </details>
 
 <details id="UIButton">
