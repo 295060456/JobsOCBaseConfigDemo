@@ -66,7 +66,7 @@ UICollectionViewDataSource
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    
 }
 
 -(void)viewWillLayoutSubviews{
@@ -89,8 +89,8 @@ UICollectionViewDataSource
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-//    NSLog(@"按钮点击：设备竖直向上，Home 按钮在下方");
-//    UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortrait));/// 设备竖直向上，Home 按钮在下方
+    //    NSLog(@"按钮点击：设备竖直向上，Home 按钮在下方");
+    //    UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortrait));/// 设备竖直向上，Home 按钮在下方
     self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;/// 设备处于竖屏（Portrait）模式。
     [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
 }
@@ -99,7 +99,7 @@ UICollectionViewDataSource
        withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size
           withTransitionCoordinator:coordinator];
-
+    
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
         // 在动画过渡中执行的操作，可以根据 size 和当前设备方向来调整界面布局
     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
@@ -109,21 +109,21 @@ UICollectionViewDataSource
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
-
+    
 }
 #pragma mark —— 屏幕旋转相关
 /// UIDeviceOrientationDidChangeNotification 通知方法
 - (void)deviceOrientationDidChange:(NSNotification *)notification {
     UIDeviceOrientation orientation = UIDevice.currentDevice.orientation;
     switch (orientation) {
-        // 处理竖屏方向的逻辑
+            // 处理竖屏方向的逻辑
         case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
             NSLog(@"系统通知：↓");
             break;
         case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
             NSLog(@"系统通知：↑");
             break;
-        // 处理横屏方向的逻辑
+            // 处理横屏方向的逻辑
         case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
             NSLog(@"系统通知：→");
             break;
@@ -136,52 +136,72 @@ UICollectionViewDataSource
 }
 /// 决定视图控制器是否支持自动旋转
 -(BOOL)shouldAutorotate {
+    /**
+     
+     typedef NS_OPTIONS(NSUInteger, UIInterfaceOrientationMask) {
+     UIInterfaceOrientationMaskPortrait = (1 << UIInterfaceOrientationPortrait),/// 表示设备处于竖屏（Portrait）模式。
+     UIInterfaceOrientationMaskLandscapeLeft = (1 << UIInterfaceOrientationLandscapeLeft),/// 表示设备处于左横屏（Landscape Left）模式。
+     UIInterfaceOrientationMaskLandscapeRight = (1 << UIInterfaceOrientationLandscapeRight),/// 表示设备处于右横屏（Landscape Right）模式。
+     UIInterfaceOrientationMaskPortraitUpsideDown = (1 << UIInterfaceOrientationPortraitUpsideDown),/// 表示设备处于倒竖屏（Portrait Upside Down）模式。
+     UIInterfaceOrientationMaskLandscape = (UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight), /// 表示设备可以处于任意横屏（Landscape）模式，包括左横屏和右横屏。
+     UIInterfaceOrientationMaskAll = (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight | UIInterfaceOrientationMaskPortraitUpsideDown),/// 表示设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏。
+     UIInterfaceOrientationMaskAllButUpsideDown = (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight),/// 表示设备可以处于所有方向，但不包括倒竖屏。
+     } API_UNAVAILABLE(tvos);
+     
+     
+     typedef NS_ENUM(NSInteger, UIInterfaceOrientation) {
+     UIInterfaceOrientationUnknown            = UIDeviceOrientationUnknown, /// 界面方向未知或不确定。这通常用于初始化或错误状态
+     UIInterfaceOrientationPortrait           = UIDeviceOrientationPortrait, /// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
+     UIInterfaceOrientationPortraitUpsideDown = UIDeviceOrientationPortraitUpsideDown,/// 设备处于倒竖屏（Portrait Upside Down）模式，即设备的顶部朝下
+     UIInterfaceOrientationLandscapeLeft      = UIDeviceOrientationLandscapeRight, /// 设备处于左横屏（Landscape Left）模式。❤️注意，这个方向对应于设备顶部向右（而不是向左），这与其名称可能引起的直观理解不同❤️
+     UIInterfaceOrientationLandscapeRight     = UIDeviceOrientationLandscapeLeft /// 设备处于右横屏（Landscape Right）模式。同样地，这个方向对应于设备顶部向左
+     } API_UNAVAILABLE(tvos);
+     
+     typedef NS_ENUM(NSInteger, UIDeviceOrientation) {
+         UIDeviceOrientationUnknown, /// 设备方向未知或不确定。这通常用于初始化或错误状态
+         UIDeviceOrientationPortrait,            /// 设备竖直放置，设备底部的 Home 键在底部（设备顶部朝上）
+         UIDeviceOrientationPortraitUpsideDown,  /// 设备竖直放置，设备底部的 Home 键在顶部（设备顶部朝下）
+         UIDeviceOrientationLandscapeLeft,       /// 设备水平放置，设备底部的 Home 键在右侧（设备顶部朝左）
+         UIDeviceOrientationLandscapeRight,      /// 设备水平放置，设备底部的 Home 键在左侧（设备顶部朝右）
+         UIDeviceOrientationFaceUp,              /// 设备平放，屏幕朝上
+         UIDeviceOrientationFaceDown             /// 设备平放，屏幕朝下
+     } API_UNAVAILABLE(tvos);
+     
+     */
     return YES;
 }
 /// 支持哪些屏幕方向
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    /**
-     
-     typedef NS_OPTIONS(NSUInteger, UIInterfaceOrientationMask) {
-         UIInterfaceOrientationMaskPortrait = (1 << UIInterfaceOrientationPortrait),/// 表示设备处于竖屏（Portrait）模式。
-         UIInterfaceOrientationMaskLandscapeLeft = (1 << UIInterfaceOrientationLandscapeLeft),/// 表示设备处于左横屏（Landscape Left）模式。
-         UIInterfaceOrientationMaskLandscapeRight = (1 << UIInterfaceOrientationLandscapeRight),/// 表示设备处于右横屏（Landscape Right）模式。
-         UIInterfaceOrientationMaskPortraitUpsideDown = (1 << UIInterfaceOrientationPortraitUpsideDown),/// 表示设备处于倒竖屏（Portrait Upside Down）模式。
-         UIInterfaceOrientationMaskLandscape = (UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight), /// 表示设备可以处于任意横屏（Landscape）模式，包括左横屏和右横屏。
-         UIInterfaceOrientationMaskAll = (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight | UIInterfaceOrientationMaskPortraitUpsideDown),/// 表示设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏。
-         UIInterfaceOrientationMaskAllButUpsideDown = (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight),/// 表示设备可以处于所有方向，但不包括倒竖屏。
-     } API_UNAVAILABLE(tvos);
-
-     */
     return self.currentInterfaceOrientationMask;
 }
-/// 检测屏幕方向
--(void)checkScreenOrientation{
-    /**
-     界面方向（UIInterfaceOrientation）与设备方向（UIDeviceOrientation）对应关系：
-     界面方向（UIInterfaceOrientation）用于描述应用界面的期望方向，通常在应用中设置和管理。（开发中常用）
-     设备方向（UIDeviceOrientation）描述了设备在物理空间中的方向，可以通过设备的传感器获取。
- 
-     UIInterfaceOrientationUnknown            = UIDeviceOrientationUnknown, // 通常用于表示界面方向未知或无法确定的情况
-     UIInterfaceOrientationPortrait           = UIDeviceOrientationPortrait,
-     UIInterfaceOrientationPortraitUpsideDown = UIDeviceOrientationPortraitUpsideDown,
-     UIInterfaceOrientationLandscapeLeft      = UIDeviceOrientationLandscapeRight,
-     UIInterfaceOrientationLandscapeRight     = UIDeviceOrientationLandscapeLeft
- 
-     【界面】竖屏方向
-     UIInterfaceOrientationPortraitUpsideDown：设备竖直向下，Home 按钮在上方。
-     UIInterfaceOrientationPortrait：设备竖直向上，Home 按钮在下方。
-     【界面】横屏方向
-     UIInterfaceOrientationLandscapeLeft：设备水平，Home 按钮在左侧
-     UIInterfaceOrientationLandscapeRight：设备水平，Home 按钮在右侧
-
-     【设备】竖屏方向
-     UIDeviceOrientationPortrait：设备竖直向上，Home 按钮在下方。
-     UIDeviceOrientationPortraitUpsideDown：设备竖直向下，Home 按钮在上方。
-     【设备】竖屏方向
-     UIDeviceOrientationLandscapeRight：设备水平，Home 按钮在左侧
-     UIDeviceOrientationLandscapeLeft：设备水平，Home 按钮在右侧
-     */
+/// UIInterfaceOrientationMask 检测屏幕方向
+-(void)checkScreenOrientation_UIInterfaceOrientationMask{
+    switch (self.currentInterfaceOrientationMask) {
+        ///【界面】竖屏方向
+        case UIInterfaceOrientationMaskPortrait:{
+            NSLog(@"检测屏幕方向：设备竖直向上，Home 按钮在下方");
+            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向上，Home 按钮在下方"));
+        }break;
+        ///【界面】倒竖屏方向
+        case UIInterfaceOrientationMaskLandscapeLeft:{
+            NSLog(@"检测屏幕方向：设备竖直向下，Home 按钮在上方");
+            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向下，Home 按钮在上方"));
+        }break;
+        ///【界面】左横屏方向
+        case UIInterfaceOrientationMaskLandscapeRight:{
+            NSLog(@"检测屏幕方向：设备水平，Home 按钮在左侧");
+            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在左侧"));
+        }break;
+        ///【界面】右横屏方向
+        case UIInterfaceOrientationMaskPortraitUpsideDown:{
+            NSLog(@"检测屏幕方向：设备水平，Home 按钮在右侧");
+            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在右侧"));
+        }default:
+            break;
+    }
+}
+/// UIInterfaceOrientation 检测屏幕方向
+-(void)checkScreenOrientation_UIInterfaceOrientation{
     UIInterfaceOrientation currentOrientation = UIInterfaceOrientationUnknown;
     if (@available(iOS 13.0, *)) {
         // 获取当前窗口的场景
@@ -193,19 +213,25 @@ UICollectionViewDataSource
     }
     
     switch (currentOrientation) {
-        ///【界面】竖屏方向
+        ///【界面】倒竖屏方向
         case UIInterfaceOrientationPortraitUpsideDown:{
-            NSLog(@"检测屏幕方向：设备竖直向下，Home 按钮在上方");
-        }break;
-        case UIInterfaceOrientationPortrait:{
             NSLog(@"检测屏幕方向：设备竖直向上，Home 按钮在下方");
+            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向上，Home 按钮在下方"));
         }break;
-        ///【界面】横屏方向
+        ///【界面】竖屏方向
+        case UIInterfaceOrientationPortrait:{
+            NSLog(@"检测屏幕方向：设备竖直向下，Home 按钮在上方");
+            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向下，Home 按钮在上方"));
+        }break;
+        ///【界面】左横屏方向
         case UIInterfaceOrientationLandscapeLeft:{
             NSLog(@"检测屏幕方向：设备水平，Home 按钮在左侧");
+            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在左侧"));
         }break;
+        ///【界面】右横屏方向
         case UIInterfaceOrientationLandscapeRight:{
             NSLog(@"检测屏幕方向：设备水平，Home 按钮在右侧");
+            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在右侧"));
         }default:
             break;
     }
@@ -246,6 +272,7 @@ UICollectionViewDataSource
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     JobsBaseCollectionViewCell *cell = [JobsBaseCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
     [cell richElementsInCellWithModel:self.dataMutArr[indexPath.item]];
+    cell.contentView.backgroundColor = JobsRandomColor;
     return cell;
 }
 
@@ -258,22 +285,11 @@ numberOfItemsInSection:(NSInteger)section {
 viewForSupplementaryElementOfKind:(NSString *)kind
 atIndexPath:(NSIndexPath *)indexPath {
     if (kind.isEqualToString(UICollectionElementKindSectionHeader)) {
-        JobsHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHeaderFooterView.class
-                                                                                        forIndexPath:indexPath];
-        
-        NSMutableArray *mutArr = NSMutableArray.array;
-        NSMutableArray *sectionMutArr = NSMutableArray.array;
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"请快速选择金额(元)");
-        [sectionMutArr addObject:viewModel];
-        [mutArr addObject:sectionMutArr];
-        [headerView richElementsInViewWithModel:mutArr[indexPath.section]];
-        return headerView;
+        ReturnBaseCollectionReusableHeaderView
     }else if (kind.isEqualToString(UICollectionElementKindSectionFooter)) {
         ReturnBaseCollectionReusableFooterView
-        
     }else ReturnBaseCollectionReusableHeaderView
-        }
+}
 #pragma mark —— UICollectionViewDelegate
 /// 允许选中时，高亮
 -(BOOL)collectionView:(UICollectionView *)collectionView
@@ -336,7 +352,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
 - (CGSize)collectionView:(UICollectionView *)collectionView
 layout:(UICollectionViewLayout *)collectionViewLayout
 sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(JobsMainScreen_WIDTH() / 2, JobsMainScreen_WIDTH() / 2);
+    return CGSizeMake(JobsMainScreen_WIDTH() / 2 - 20, JobsMainScreen_WIDTH() / 2 - 20);
 }
 /// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView
@@ -350,13 +366,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 - (CGFloat)collectionView:(UICollectionView *)collectionView
 layout:(UICollectionViewLayout *)collectionViewLayout
 minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 0;
+    return 10;
 }
 /// 内间距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
 layout:(UICollectionViewLayout *)collectionViewLayout
 insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 0, 0, 0);
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 #pragma mark —— lazyLoad
 -(UICollectionViewFlowLayout *)layout{
@@ -525,7 +541,7 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             UITextModel *textModel = UITextModel.new;
-            textModel.text = JobsInternationalization(@"6、解除锁定\n:设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏");
+            textModel.text = JobsInternationalization(@"6、解除锁定:\n设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏");
             textModel.textCor = JobsRedColor;
             textModel.textAlignment = NSTextAlignmentCenter;
             
@@ -552,7 +568,8 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
                 NSLog(@"检测当前屏幕方向");
-                [self checkScreenOrientation];
+                [self checkScreenOrientation_UIInterfaceOrientation];
+//                [self checkScreenOrientation_UIInterfaceOrientationMask];
                 return nil;
             };
             [_dataMutArr addObject:viewModel];
