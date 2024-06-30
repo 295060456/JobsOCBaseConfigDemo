@@ -35,9 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseViewController : UIViewController
 <
-BaseViewControllerProtocol
+UIGestureRecognizerDelegate
 ,UIViewModelProtocol
-,UIGestureRecognizerDelegate
+,BaseViewControllerProtocol
 >
 
 @end

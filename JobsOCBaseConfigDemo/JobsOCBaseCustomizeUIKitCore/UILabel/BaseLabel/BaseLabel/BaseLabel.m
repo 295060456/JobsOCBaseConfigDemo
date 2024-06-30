@@ -13,6 +13,7 @@
 
 @implementation BaseLabel
 UILocationProtocol_synthesize
+UILocationProtocol_UIViewModelSynthesize
 -(instancetype)init{
     if (self = [super init]) {
         

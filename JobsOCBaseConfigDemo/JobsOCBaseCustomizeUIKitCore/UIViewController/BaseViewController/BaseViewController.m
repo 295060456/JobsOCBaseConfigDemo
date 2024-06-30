@@ -16,6 +16,8 @@
 UIViewModelProtocol_synthesize
 #pragma mark —— BaseViewControllerProtocol
 BaseViewControllerProtocol_synthesize
+#pragma mark —— UILocationProtocol
+UILocationProtocol_synthesize
 
 - (void)dealloc{
     [NSNotificationCenter.defaultCenter removeObserver:self];

@@ -86,6 +86,7 @@ UITableViewCellProtocol_synthesize
      如果这个TableViewCell是JobsBaseTableViewCell则不需要复写-(void)setFrame:(CGRect)frame；否则是需要：
      
      UILocationProtocol_synthesize
+     UILocationProtocol_UIViewModelSynthesize
      直接影响:
      cell.offsetXForEach = JobsWidth(8);
      cell.offsetYForEach = JobsWidth(6);

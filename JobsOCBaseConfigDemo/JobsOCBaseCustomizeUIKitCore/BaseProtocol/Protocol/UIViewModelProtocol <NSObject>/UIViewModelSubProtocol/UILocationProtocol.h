@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol UILocationProtocol <NSObject>
 @optional
+#pragma mark —— 屏幕方向
+@property(nonatomic,assign)UIInterfaceOrientationMask currentInterfaceOrientationMask;
 #pragma mark —— 方位和大小
 @property(nonatomic,assign)CGFloat __block cornerRadius;/// 圆切角（全角）
 @property(nonatomic,assign)UIRectCorner __block rectCorner;/// 设置切哪个直角
@@ -53,10 +55,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#pragma mark —— @synthesize UILocationProtocol
-#ifndef UILocationProtocol_synthesize
-#define UILocationProtocol_synthesize \
-\
+#pragma mark —— @synthesize UILocationProtocol_UIViewModelSynthesize
+/// 和 UIViewModel 重复定义的部分
+#ifndef UILocationProtocol_UIViewModelSynthesize
+#define UILocationProtocol_UIViewModelSynthesize \
 @synthesize cornerRadius = _cornerRadius;\
 @synthesize rectCorner = _rectCorner;\
 @synthesize cornerRadii = _cornerRadii;\
@@ -91,10 +93,19 @@ NS_ASSUME_NONNULL_END
 
 #endif
 
+#pragma mark —— @synthesize UILocationProtocol
+#ifndef UILocationProtocol_synthesize
+#define UILocationProtocol_synthesize \
+\
+@synthesize currentInterfaceOrientationMask = _currentInterfaceOrientationMask;\
+
+#endif
+
 #pragma mark —— @dynamic UILocationProtocol
 #ifndef UILocationProtocol_dynamic
 #define UILocationProtocol_dynamic \
 \
+@dynamic currentInterfaceOrientationMask;\
 @dynamic cornerRadius;\
 @dynamic rectCorner;\
 @dynamic cornerRadii;\

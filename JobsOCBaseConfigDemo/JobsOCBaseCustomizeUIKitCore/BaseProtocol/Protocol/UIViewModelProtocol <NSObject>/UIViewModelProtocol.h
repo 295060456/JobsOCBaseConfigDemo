@@ -44,6 +44,8 @@ UIPictureAndBackGroundCorProtocol
 @property(nonatomic,strong,nullable)UITextModel *backBtnTitleModel;
 @property(nonatomic,strong,nullable)UIButtonModel *buttonModel;
 @property(nonatomic,strong,nullable)UIButtonModel *subButtonModel;
+@property(nonatomic,strong,nullable)JobsReturnIDByIDBlock jobsBlock;
+@property(nonatomic,strong,nullable)NSMutableArray <JobsReturnIDByIDBlock>*jobsBlockMutArr;
 
 @end
 
@@ -58,6 +60,8 @@ NS_ASSUME_NONNULL_END
 @synthesize backBtnTitleModel = _backBtnTitleModel;\
 @synthesize buttonModel = _buttonModel;\
 @synthesize subButtonModel = _subButtonModel;\
+@synthesize jobsBlock = _jobsBlock;\
+@synthesize jobsBlockMutArr = _jobsBlockMutArr;\
 \
 @synthesize image = _image;\
 @synthesize bgImage = _bgImage;\
@@ -215,6 +219,8 @@ NS_ASSUME_NONNULL_END
 @dynamic backBtnTitleModel;\
 @dynamic buttonModel;\
 @dynamic subButtonModel;\
+@dynamic jobsBlock;\
+@dynamic jobsBlockMutArr;\
 \
 @dynamic image;\
 @dynamic bgImage;\

@@ -57,6 +57,7 @@ UIViewModelOthersProtocol_synthesize
 
 @implementation ButtonTimerConfigModel
 UILocationProtocol_synthesize
+UILocationProtocol_UIViewModelSynthesize
 #pragma mark —— 重写set方法
 @synthesize countDownBtnType = _countDownBtnType;
 -(void)setCountDownBtnType:(TimerStyle)countDownBtnType{

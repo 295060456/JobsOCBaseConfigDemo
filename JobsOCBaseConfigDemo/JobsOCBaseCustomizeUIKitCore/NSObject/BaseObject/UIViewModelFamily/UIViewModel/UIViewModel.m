@@ -112,4 +112,112 @@ UIViewModelProtocol_synthesize
     }return _jobsDataMutDic;
 }
 
+-(NSTextAlignment)textAlignment{
+    if (!_textAlignment) {
+        _textAlignment = NSTextAlignmentLeft;
+    }return _textAlignment;
+}
+
+-(NSLineBreakMode)lineBreakMode{
+    if(!_lineBreakMode){
+        _lineBreakMode = NSLineBreakByWordWrapping;
+    }return _lineBreakMode;
+}
+
+-(CGFloat)textLineSpacing{
+    if(!_textLineSpacing){
+        _textLineSpacing = 0.0f;
+    }return _textLineSpacing;
+}
+
+-(NSString *)placeholder{
+    if(!_placeholder){
+        _placeholder = JobsInternationalization(@"");
+    }return _placeholder;
+}
+
+-(UIColor *)placeholderColor{
+    if (!_placeholderColor) {
+        _placeholderColor = JobsBlackColor;
+    }return _placeholderColor;
+}
+
+-(NSInteger)curWordCount{
+    if(!_curWordCount){
+        _curWordCount = 0;
+    }return _curWordCount;
+}
+
+-(NSInteger)maxWordCount{
+    if(!_maxWordCount){
+        _maxWordCount = 0;
+    }return _maxWordCount;
+}
+
+-(NSString *)text{
+    if(!_text){
+        _text = JobsInternationalization(@"");
+    }return _text;
+}
+
+-(UIFont *)font{
+    if(!_font){
+        _font = JobsFontRegular(17);
+    }return _font;
+}
+
+-(UIColor *)textCor{
+    if(!_textCor){
+        _textCor = JobsBlackColor;
+    }return _textCor;
+}
+
+-(NSAttributedString *)attributedText{
+    if(!_attributedText){
+        
+    }return _attributedText;
+}
+
+-(NSMutableArray<RichTextConfig *> *)titleAttributedDataMutArr{
+    if(!_titleAttributedDataMutArr){
+        
+    }return _titleAttributedDataMutArr;
+}
+
+-(NSString *)selectedText{
+    if(!_selectedText){
+        _selectedText = JobsInternationalization(@"");
+    }return _selectedText;
+}
+
+-(UIFont *)selectedFont{
+    if(!_selectedFont){
+        
+    }return _selectedFont;
+}
+
+-(UIColor *)selectedTextCor{
+    if(!_selectedTextCor){
+        
+    }return _selectedTextCor;
+}
+
+-(NSAttributedString *)selectedAttributedText{
+    if(!_selectedAttributedText){
+        
+    }return _selectedAttributedText;
+}
+
+-(NSMutableArray<RichTextConfig *> *)selectedTitleAttributedDataMutArr{
+    if(!_selectedTitleAttributedDataMutArr){
+        
+    }return _selectedTitleAttributedDataMutArr;
+}
+
+-(NSMutableArray<JobsReturnIDByIDBlock> *)jobsBlockMutArr{
+    if(!_jobsBlockMutArr){
+        _jobsBlockMutArr = NSMutableArray.array;
+    }return _jobsBlockMutArr;
+}
+
 @end

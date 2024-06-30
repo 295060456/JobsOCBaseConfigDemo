@@ -15,11 +15,9 @@ UICollectionViewDataSource
 >
 /// UI
 @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
-@property(nonatomic,strong)UICollectionView *collectionView;
+@property(nonatomic,strong)BaseCollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
-// Data
-@property(nonatomic,assign)UIInterfaceOrientationMask currentVCInterfaceOrientationMask;
 
 @end
 
@@ -63,7 +61,7 @@ UICollectionViewDataSource
     [self setGKNav];
     [self setGKNavBackBtn];
     self.gk_navigationBar.jobsVisible = YES;
-
+    self.collectionView.alpha = 1;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -105,20 +103,12 @@ UICollectionViewDataSource
     }];
 }
 
--(void)layoutSubviews{
-    [super layoutSubviews];
-    JobsLock(self.size = [MSHomePopupView viewSizeWithModel:nil];)
-    /// 内部指定圆切角
-    [self layoutSubviewsCutCnrByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
-cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
-}
-
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
 
 }
-#pragma mark —— 一些私有方法
-/// 屏幕旋转相关
+#pragma mark —— 屏幕旋转相关
+/// UIDeviceOrientationDidChangeNotification 通知方法
 - (void)deviceOrientationDidChange:(NSNotification *)notification {
     UIDeviceOrientation orientation = UIDevice.currentDevice.orientation;
     switch (orientation) {
@@ -140,13 +130,13 @@ cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
             break;
     }
 }
-
+/// 决定视图控制器是否支持自动旋转
 -(BOOL)shouldAutorotate {
     return YES;
 }
 /// 支持哪些屏幕方向
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return self.currentVCInterfaceOrientationMask;
+    return self.currentInterfaceOrientationMask;
 }
 /// 检测屏幕方向
 -(void)checkScreenOrientation{
@@ -203,6 +193,7 @@ cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
             break;
     }
 }
+#pragma mark —— 一些私有方法
 /// 下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
     [self feedbackGenerator];//震动反馈
@@ -217,9 +208,9 @@ cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
         /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
         @jobs_weakify(self)
         [self getMainQueue:^{
-            @jobs_strongify(self)
-            [CollectionViewAnimationKit showWithAnimationType:XSCollectionViewAnimationTypeFall
-                                               collectionView:self.collectionView];
+//            @jobs_strongify(self)
+//            [CollectionViewAnimationKit showWithAnimationType:XSCollectionViewAnimationTypeFall
+//                                               collectionView:self.collectionView];
         }];
     }];
 }
@@ -236,25 +227,9 @@ cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    @jobs_weakify(self)
-    return [self planAtIndexPath:indexPath
-                          block1:^{
-        @jobs_strongify(self)
-        BaiShaETProjCountdownCVCell *cell = [BaiShaETProjCountdownCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-        [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section]];
-        return cell;
-    }block2:^{
-        @jobs_strongify(self)
-        BaiShaETProjOrderDetailsCVCell *cell = [BaiShaETProjOrderDetailsCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-        [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section]];
-        return cell;
-    }block3:^{
-        ReturnBaseCollectionViewCell;
-    }block4:^{
-        ReturnBaseCollectionViewCell;
-    }block5:^id{
-        ReturnBaseCollectionViewCell;
-    }];
+    JobsBaseCollectionViewCell *cell = [JobsBaseCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
+    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.item]];
+    return cell;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
@@ -315,6 +290,7 @@ shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 - (void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __FUNCTION__);
+    self.dataMutArr[indexPath.item].jobsBlock(nil);
     /**
      滚动到指定位置
      _collectionView.contentOffset = CGPointMake(0,-100);
@@ -331,30 +307,19 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 - (CGSize)collectionView:(UICollectionView *)collectionView
 layout:(UICollectionViewLayout *)collectionViewLayout
 referenceSizeForHeaderInSection:(NSInteger)section {
-    return [UBLSearchCollectionReusableView collectionReusableViewSizeWithModel:nil];
+    return [JobsHeaderFooterView collectionReusableViewSizeWithModel:nil];
 }
 /// Footer 大小
 - (CGSize)collectionView:(UICollectionView *)collectionView
 layout:(UICollectionViewLayout*)collectionViewLayout
 referenceSizeForFooterInSection:(NSInteger)section{
-    return [CasinoAgencyRecommendTipsCRView collectionReusableViewSizeWithModel:nil];
+    return [JobsHeaderFooterView collectionReusableViewSizeWithModel:nil];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
 layout:(UICollectionViewLayout *)collectionViewLayout
 sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [self planSizeAtIndexPath:indexPath
-                              block1:^CGSize{
-        return [BaiShaETProjCountdownCVCell cellSizeWithModel:nil];
-    } block2:^CGSize{
-        return [BaiShaETProjOrderDetailsCVCell cellSizeWithModel:self.dataMutArr[indexPath.section]];
-    } block3:^CGSize{
-        return CGSizeZero;
-    } block4:^CGSize{
-        return CGSizeZero;
-    } block5:^CGSize{
-        return CGSizeZero;
-    }];
+    return CGSizeMake(JobsMainScreen_WIDTH() / 2, JobsMainScreen_WIDTH() / 2);
 }
 /// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView
@@ -376,7 +341,6 @@ layout:(UICollectionViewLayout *)collectionViewLayout
 insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
-
 #pragma mark —— lazyLoad
 -(UICollectionViewFlowLayout *)layout{
     if (!_layout) {
@@ -385,10 +349,10 @@ insetForSectionAtIndex:(NSInteger)section {
     }return _layout;
 }
 
--(UICollectionView *)collectionView{
+-(BaseCollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [UICollectionView.alloc initWithFrame:CGRectZero
-                                           collectionViewLayout:self.layout];
+        _collectionView = [BaseCollectionView.alloc initWithFrame:CGRectZero
+                                             collectionViewLayout:self.layout];
         _collectionView.backgroundColor = RGB_SAMECOLOR(246);
         _collectionView.layoutSubviewsRectCorner = UIRectCornerTopLeft | UIRectCornerTopRight;
         _collectionView.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(20), JobsWidth(20));
@@ -411,18 +375,18 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = Internationalization(@"下拉可以刷新");
-            refreshConfigHeader.pullingTitle = Internationalization(@"下拉可以刷新");
-            refreshConfigHeader.refreshingTitle = Internationalization(@"松开立即刷新");
-            refreshConfigHeader.willRefreshTitle = Internationalization(@"刷新数据中");
-            refreshConfigHeader.noMoreDataTitle = Internationalization(@"下拉可以刷新");
+            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = Internationalization(@"");
-            refreshConfigFooter.pullingTitle = Internationalization(@"");;
-            refreshConfigFooter.refreshingTitle = Internationalization(@"");;
-            refreshConfigFooter.willRefreshTitle = Internationalization(@"");;
-            refreshConfigFooter.noMoreDataTitle = Internationalization(@"");;
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");;
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");;
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");;
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");;
             
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
@@ -435,52 +399,136 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                     titleStr:Internationalization(@"暂无数据")
-                                                                    detailStr:Internationalization(@"")];
+                                                                     titleStr:JobsInternationalization(@"暂无数据")
+                                                                    detailStr:JobsInternationalization(@"")];
             
             _collectionView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _collectionView.ly_emptyView.contentViewOffset = JobsWidth(-180);
             _collectionView.ly_emptyView.titleLabFont = UIFontWeightMediumSize(16);
         }
         
-        {
-            
-            NSArray *classArray = @[
-                DDCollectionViewCell_Style2.class,
-                DDCollectionViewCell_Style3.class,
-                DDCollectionViewCell_Style4.class,
-            ];
-            NSArray *sizeArray = @[
-                [NSValue valueWithCGSize:[DDCollectionViewCell_Style2 cellSizeWithModel:nil]],
-                [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeWithModel:nil]],
-                [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeWithModel:nil]]
-            ];
-            
-            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:classArray
-                                                                              cellSizeArray:sizeArray
-                                                                         animatedCountArray:@[@(1),@(1),@(1)]];
-            
-            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
-                                                   viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeWithModel:nil]
-                                                  toSection:0];
-            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
-                                                   viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeWithModel:nil]
-                                                  toSection:2];
-            
-            _collectionView.tabAnimated.containNestAnimation = YES;
-            _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
-            _collectionView.tabAnimated.canLoadAgain = YES;
-            [_collectionView tab_startAnimation];   // 开启动画
-        }
-        
         [self.view addSubview:_collectionView];
-        [self fullScreenConstraintTargetView:_collectionView topViewOffset:self.getTopLineLabSize.height];
+        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
     }return _collectionView;
 }
 
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = NSMutableArray.array;
+        @jobs_weakify(self)
+        {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = JobsInternationalization(@"1、设备竖直向上\n Home 按钮在下方");
+            textModel.textCor = JobsRedColor;
+            textModel.textAlignment = NSTextAlignmentCenter;
+            
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel = textModel;
+            viewModel.jobsBlock = ^id(id param) {
+                @jobs_strongify(self)
+//                NSLog(@"按钮点击：设备竖直向上，Home 按钮在下方");
+//                UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortrait));/// 设备竖直向上，Home 按钮在下方
+                [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
+                return nil;
+            };
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = JobsInternationalization(@"2、设备竖直向下\n Home 按钮在上方");
+            textModel.textCor = JobsRedColor;
+            textModel.textAlignment = NSTextAlignmentCenter;
+            
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel = textModel;
+            viewModel.jobsBlock = ^id(id param){
+                @jobs_strongify(self)
+//                NSLog(@"按钮点击：设备竖直向下，Home 按钮在上方");
+//                UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortraitUpsideDown));/// 设备竖直向下，Home 按钮在上方
+                [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
+                return nil;
+            };
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = JobsInternationalization(@"3、设备水平\n Home 按钮在右侧");
+            textModel.textCor = JobsRedColor;
+            textModel.textAlignment = NSTextAlignmentCenter;
+            
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel = textModel;
+            viewModel.jobsBlock = ^id(id param){
+                @jobs_strongify(self)
+//                NSLog(@"按钮点击：设备水平，Home 按钮在右侧");
+//                UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationLandscapeRight));/// 设备水平，Home 按钮在右侧
+                NSLog(@"按钮点击：强制旋转到横屏");
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
+                [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationLandscapeRight];
+                return nil;
+            };
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = JobsInternationalization(@"4、设备水平\n Home 按钮在左侧");
+            textModel.textCor = JobsRedColor;
+            textModel.textAlignment = NSTextAlignmentCenter;
+            
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel = textModel;
+            viewModel.jobsBlock = ^id(id param){
+                @jobs_strongify(self)
+//                NSLog(@"按钮点击：设备水平，Home 按钮在左侧");
+//                UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationLandscapeLeft));/// 设备水平，Home 按钮在左侧
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
+                [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationLandscapeLeft];
+                return nil;
+            };
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = JobsInternationalization(@"5、锁定横屏");
+            textModel.textCor = JobsRedColor;
+            textModel.textAlignment = NSTextAlignmentCenter;
+            
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel = textModel;
+            viewModel.jobsBlock = ^id(id param){
+                @jobs_strongify(self)
+                NSLog(@"解除锁定");
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
+                [self hx_setNeedsUpdateOfSupportedInterfaceOrientations];
+                return nil;
+            };
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = JobsInternationalization(@"6、解除锁定");
+            textModel.textCor = JobsRedColor;
+            textModel.textAlignment = NSTextAlignmentCenter;
+            
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel = textModel;
+            viewModel.jobsBlock = ^id(id param){
+                @jobs_strongify(self)
+                NSLog(@"解除锁定");
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
+                [self hx_setNeedsUpdateOfSupportedInterfaceOrientations];
+                return nil;
+            };
+            [_dataMutArr addObject:viewModel];
+        }
+        
     }return _dataMutArr;
 }
 
