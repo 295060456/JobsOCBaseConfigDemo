@@ -14,10 +14,12 @@
 @implementation BaseViewController
 #pragma mark —— UIViewModelProtocol
 UIViewModelProtocol_synthesize
-#pragma mark —— BaseViewControllerProtocol
-BaseViewControllerProtocol_synthesize
 #pragma mark —— UILocationProtocol
 UILocationProtocol_synthesize
+#pragma mark —— BaseViewProtocol
+BaseViewProtocol_synthesize
+#pragma mark —— BaseViewControllerProtocol
+BaseViewControllerProtocol_synthesize
 
 - (void)dealloc{
     [NSNotificationCenter.defaultCenter removeObserver:self];
@@ -93,6 +95,10 @@ UILocationProtocol_synthesize
                     LanguageSwitchNotification,
                     nil);
     [self UIViewControllerLifeCycle:JobsLocalFunc];
+    self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
+        NSLog(@"退出页面的逻辑");
+        return nil;
+    };
 }
 
 - (void)viewWillAppear:(BOOL)animated {

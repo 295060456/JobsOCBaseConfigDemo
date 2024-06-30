@@ -29,6 +29,9 @@
 }
 ///【子类需要覆写 】创建返回键的点击事件
 -(void)backBtnClickEvent:(UIButton *_Nullable)sender{
+    if (self.jobsBackBlock) {
+        self.jobsBackBlock(sender);
+    }
     switch (self.pushOrPresent) {
         case ComingStyle_PRESENT:{
             [self dismissViewControllerAnimated:YES completion:nil];

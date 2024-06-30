@@ -38,7 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(UIButton *)makeBackBtn:(UIViewModel *)viewModel;
 /// 配置返回键图片
 -(UIImage *)makeBackBtnImage;
-///【子类需要覆写 】创建返回键的点击事件
+///【子类需要覆写 】创建返回键的点击事件 或者实现 jobsBackBlock
+/// self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
+///      NSLog(@"退出页面的逻辑");
+///      return nil;
+/// };
 -(void)backBtnClickEvent:(UIButton *_Nullable)sender;
 
 @end

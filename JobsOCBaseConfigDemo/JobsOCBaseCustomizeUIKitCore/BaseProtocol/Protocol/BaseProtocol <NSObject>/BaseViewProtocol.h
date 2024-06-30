@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BaseViewProtocol <BaseProtocol>
 
 @optional
+/// 退出当前页面的时候，除了当前页面出栈以外，你额外需要做的事情
+@property(nonatomic,strong,nullable)JobsReturnIDByIDBlock jobsBackBlock;
 /// 作用于-(void)layoutSubviews的圆切角参数
 @property(nonatomic,assign)UIRectCorner layoutSubviewsRectCorner;
 @property(nonatomic,assign)CGSize layoutSubviewsRectCornerSize;
@@ -111,6 +113,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewProtocol_synthesize
 #define BaseViewProtocol_synthesize \
 \
+@synthesize jobsBackBlock = _jobsBackBlock;\
 @synthesize layoutSubviewsRectCorner = _layoutSubviewsRectCorner;\
 @synthesize layoutSubviewsRectCornerSize = _layoutSubviewsRectCornerSize;\
 @synthesize constraintMutArr = _constraintMutArr;\
@@ -123,6 +126,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewProtocol_dynamic
 #define BaseViewProtocol_dynamic \
 \
+@dynamic jobsBackBlock;\
 @dynamic layoutSubviewsRectCorner;\
 @dynamic layoutSubviewsRectCornerSize;\
 @dynamic constraintMutArr;\

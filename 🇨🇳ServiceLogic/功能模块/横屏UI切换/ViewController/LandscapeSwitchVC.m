@@ -62,6 +62,10 @@ UICollectionViewDataSource
     [self setGKNavBackBtn];
     self.gk_navigationBar.jobsVisible = YES;
     self.collectionView.alpha = 1;
+    self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
+        NSLog(@"退出页面的逻辑");
+        return nil;
+    };
 }
 
 -(void)viewWillAppear:(BOOL)animated{
