@@ -109,35 +109,8 @@ UICollectionViewDataSource
         // 过渡动画完成后的操作，如果需要的话
     }];
 }
-
--(void)touchesBegan:(NSSet<UITouch *> *)touches
-          withEvent:(UIEvent *)event{
-    
-}
-#pragma mark —— 屏幕旋转相关
-/// UIDeviceOrientationDidChangeNotification 通知方法
-- (void)deviceOrientationDidChange:(NSNotification *)notification {
-    UIDeviceOrientation orientation = UIDevice.currentDevice.orientation;
-    switch (orientation) {
-            // 处理竖屏方向的逻辑
-        case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
-            NSLog(@"系统通知：↓");
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
-            NSLog(@"系统通知：↑");
-            break;
-            // 处理横屏方向的逻辑
-        case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
-            NSLog(@"系统通知：→");
-            break;
-        case UIDeviceOrientationLandscapeRight:/// 设备水平，Home 按钮在左侧
-            NSLog(@"系统通知：←");
-            break;
-        default:
-            break;
-    }
-}
-/// 决定视图控制器是否支持自动旋转
+#pragma mark —— 屏幕旋转相关 在 UIViewController 中定义，子类需复写
+/// 决定当前界面是否开启自动转屏，如果返回NO，后面两个方法也不会被调用，只是会支持默认的方向
 -(BOOL)shouldAutorotate {
     /**
      
@@ -173,10 +146,16 @@ UICollectionViewDataSource
      */
     return YES;
 }
-/// 支持哪些屏幕方向
+/// 设置当前界面支持的所有方向
+/// iPad设备上，默认返回值UIInterfaceOrientationMaskAllButUpSideDwon
+/// iPad设备上，默认返回值是UIInterfaceOrientationMaskAll
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
 //    return self.currentInterfaceOrientationMask;
     return UIInterfaceOrientationMaskAll;
+}
+/// 设置进入界面默认支持的方向
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return [super preferredInterfaceOrientationForPresentation];
 }
 /// UIInterfaceOrientationMask 检测屏幕方向
 //-(void)checkScreenOrientation_UIInterfaceOrientationMask{
@@ -204,6 +183,28 @@ UICollectionViewDataSource
 //            break;
 //    }
 //}
+/// UIDeviceOrientationDidChangeNotification 通知方法
+- (void)deviceOrientationDidChange:(NSNotification *)notification {
+    UIDeviceOrientation orientation = UIDevice.currentDevice.orientation;
+    switch (orientation) {
+            // 处理竖屏方向的逻辑
+        case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
+            NSLog(@"系统通知：↓");
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
+            NSLog(@"系统通知：↑");
+            break;
+            // 处理横屏方向的逻辑
+        case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
+            NSLog(@"系统通知：→");
+            break;
+        case UIDeviceOrientationLandscapeRight:/// 设备水平，Home 按钮在左侧
+            NSLog(@"系统通知：←");
+            break;
+        default:
+            break;
+    }
+}
 /// UIInterfaceOrientation 检测屏幕方向
 -(void)checkScreenOrientation_UIInterfaceOrientation{
     UIInterfaceOrientation currentOrientation = UIInterfaceOrientationUnknown;
@@ -239,6 +240,11 @@ UICollectionViewDataSource
         }default:
             break;
     }
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches
+          withEvent:(UIEvent *)event{
+    
 }
 #pragma mark —— 一些私有方法
 /// 下拉刷新 （子类要进行覆写）
@@ -485,7 +491,8 @@ insetForSectionAtIndex:(NSInteger)section {
                 @jobs_strongify(self)
                 NSLog(@"设备处于倒竖屏模式");
 //                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortraitUpsideDown;/// 设备处于倒竖屏（Portrait Upside Down）模式
-                [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
+//                [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
+                [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortraitUpsideDown) forKey:@"orientation"];
                 return nil;
             };
             [_dataMutArr addObject:viewModel];
