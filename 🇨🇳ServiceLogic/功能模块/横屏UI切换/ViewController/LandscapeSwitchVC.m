@@ -89,6 +89,10 @@ UICollectionViewDataSource
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+//    NSLog(@"按钮点击：设备竖直向上，Home 按钮在下方");
+//    UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortrait));/// 设备竖直向上，Home 按钮在下方
+    self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;/// 设备处于竖屏（Portrait）模式。
+    [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
 }
 /// UIViewController 的生命周期方法。这个方法会在设备方向即将变化时被调用
 - (void)viewWillTransitionToSize:(CGSize)size
@@ -136,6 +140,19 @@ UICollectionViewDataSource
 }
 /// 支持哪些屏幕方向
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    /**
+     
+     typedef NS_OPTIONS(NSUInteger, UIInterfaceOrientationMask) {
+         UIInterfaceOrientationMaskPortrait = (1 << UIInterfaceOrientationPortrait),/// 表示设备处于竖屏（Portrait）模式。
+         UIInterfaceOrientationMaskLandscapeLeft = (1 << UIInterfaceOrientationLandscapeLeft),/// 表示设备处于左横屏（Landscape Left）模式。
+         UIInterfaceOrientationMaskLandscapeRight = (1 << UIInterfaceOrientationLandscapeRight),/// 表示设备处于右横屏（Landscape Right）模式。
+         UIInterfaceOrientationMaskPortraitUpsideDown = (1 << UIInterfaceOrientationPortraitUpsideDown),/// 表示设备处于倒竖屏（Portrait Upside Down）模式。
+         UIInterfaceOrientationMaskLandscape = (UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight), /// 表示设备可以处于任意横屏（Landscape）模式，包括左横屏和右横屏。
+         UIInterfaceOrientationMaskAll = (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight | UIInterfaceOrientationMaskPortraitUpsideDown),/// 表示设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏。
+         UIInterfaceOrientationMaskAllButUpsideDown = (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight),/// 表示设备可以处于所有方向，但不包括倒竖屏。
+     } API_UNAVAILABLE(tvos);
+
+     */
     return self.currentInterfaceOrientationMask;
 }
 /// 检测屏幕方向
@@ -353,7 +370,7 @@ insetForSectionAtIndex:(NSInteger)section {
     if (!_collectionView) {
         _collectionView = [BaseCollectionView.alloc initWithFrame:CGRectZero
                                              collectionViewLayout:self.layout];
-        _collectionView.backgroundColor = RGB_SAMECOLOR(246);
+        _collectionView.backgroundColor = JobsGreenColor;//RGB_SAMECOLOR(246);
         _collectionView.layoutSubviewsRectCorner = UIRectCornerTopLeft | UIRectCornerTopRight;
         _collectionView.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(20), JobsWidth(20));
         [self dataLinkByCollectionView:_collectionView];
@@ -428,8 +445,7 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.textModel = textModel;
             viewModel.jobsBlock = ^id(id param) {
                 @jobs_strongify(self)
-//                NSLog(@"按钮点击：设备竖直向上，Home 按钮在下方");
-//                UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortrait));/// 设备竖直向上，Home 按钮在下方
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;/// 设备处于竖屏（Portrait）模式
                 [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
                 return nil;
             };
@@ -446,8 +462,7 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.textModel = textModel;
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
-//                NSLog(@"按钮点击：设备竖直向下，Home 按钮在上方");
-//                UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortraitUpsideDown));/// 设备竖直向下，Home 按钮在上方
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortraitUpsideDown;/// 设备处于竖屏（Portrait）模式
                 [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
                 return nil;
             };
@@ -456,7 +471,7 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             UITextModel *textModel = UITextModel.new;
-            textModel.text = JobsInternationalization(@"3、设备水平\n Home 按钮在右侧");
+            textModel.text = JobsInternationalization(@"3、设备右横屏");
             textModel.textCor = JobsRedColor;
             textModel.textAlignment = NSTextAlignmentCenter;
             
@@ -464,10 +479,8 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.textModel = textModel;
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
-//                NSLog(@"按钮点击：设备水平，Home 按钮在右侧");
-//                UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationLandscapeRight));/// 设备水平，Home 按钮在右侧
-                NSLog(@"按钮点击：强制旋转到横屏");
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
+                NSLog(@"设备处于右横屏模式");
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;/// 设备处于右横屏（Landscape Right）模式
                 [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationLandscapeRight];
                 return nil;
             };
@@ -476,7 +489,7 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             UITextModel *textModel = UITextModel.new;
-            textModel.text = JobsInternationalization(@"4、设备水平\n Home 按钮在左侧");
+            textModel.text = JobsInternationalization(@"4、设备左横屏");
             textModel.textCor = JobsRedColor;
             textModel.textAlignment = NSTextAlignmentCenter;
             
@@ -484,9 +497,8 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.textModel = textModel;
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
-//                NSLog(@"按钮点击：设备水平，Home 按钮在左侧");
-//                UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationLandscapeLeft));/// 设备水平，Home 按钮在左侧
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
+                NSLog(@"设备处于左横屏模式");
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeLeft;/// 设备处于左横屏（Landscape Left）模式
                 [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationLandscapeLeft];
                 return nil;
             };
@@ -495,7 +507,7 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             UITextModel *textModel = UITextModel.new;
-            textModel.text = JobsInternationalization(@"5、锁定横屏");
+            textModel.text = JobsInternationalization(@"5、锁定横屏:\n设备可以处于任意横屏（Landscape）模式，包括左横屏和右横屏");
             textModel.textCor = JobsRedColor;
             textModel.textAlignment = NSTextAlignmentCenter;
             
@@ -503,8 +515,8 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.textModel = textModel;
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
-                NSLog(@"解除锁定");
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
+                NSLog(@"锁定横屏:设备可以处于任意横屏模式，包括左横屏和右横屏");
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;/// 设备可以处于任意横屏（Landscape）模式，包括左横屏和右横屏
                 [self hx_setNeedsUpdateOfSupportedInterfaceOrientations];
                 return nil;
             };
@@ -513,7 +525,7 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             UITextModel *textModel = UITextModel.new;
-            textModel.text = JobsInternationalization(@"6、解除锁定");
+            textModel.text = JobsInternationalization(@"6、解除锁定\n:设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏");
             textModel.textCor = JobsRedColor;
             textModel.textAlignment = NSTextAlignmentCenter;
             
@@ -521,9 +533,26 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.textModel = textModel;
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
-                NSLog(@"解除锁定");
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
+                NSLog(@"解除锁定:设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏");
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAll;/// 设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏
                 [self hx_setNeedsUpdateOfSupportedInterfaceOrientations];
+                return nil;
+            };
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = JobsInternationalization(@"检测当前屏幕方向");
+            textModel.textCor = JobsRedColor;
+            textModel.textAlignment = NSTextAlignmentCenter;
+            
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel = textModel;
+            viewModel.jobsBlock = ^id(id param){
+                @jobs_strongify(self)
+                NSLog(@"检测当前屏幕方向");
+                [self checkScreenOrientation];
                 return nil;
             };
             [_dataMutArr addObject:viewModel];
