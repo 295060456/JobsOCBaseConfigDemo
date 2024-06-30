@@ -117,15 +117,26 @@
 }
 #pragma mark —— 一些私有方法
 -(void)masonry{
+//    [self.btnMutArr mas_distributeViewsAlongAxis:MASAxisTypeVertical
+//                                withFixedSpacing:10
+//                                     leadSpacing:100
+//                                     tailSpacing:100];
+//     /// 设置控件的高度
+//     [self.btnMutArr mas_makeConstraints:^(MASConstraintMaker *make) {
+//         make.width.mas_equalTo(100); // 宽度设为固定值，这里示意为 100
+//         make.centerX.equalTo(self.view.mas_centerX); // 水平居中
+//     }];
+    
+    // 使用Masonry布局
     [self.btnMutArr mas_distributeViewsAlongAxis:MASAxisTypeVertical
                                 withFixedSpacing:10
                                      leadSpacing:100
                                      tailSpacing:100];
-     /// 设置控件的高度
-     [self.btnMutArr mas_makeConstraints:^(MASConstraintMaker *make) {
-         make.width.mas_equalTo(100); // 宽度设为固定值，这里示意为 100
-         make.centerX.equalTo(self.view.mas_centerX); // 水平居中
-     }];
+    
+    [self.btnMutArr mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(100); // 设置按钮宽度为固定值
+        make.centerX.equalTo(self.view.mas_centerX); // 水平居中
+    }];
     
     [_switchBtn1 makeBtnLabelByShowingType:UILabelShowingType_03];
     [_switchBtn2 makeBtnLabelByShowingType:UILabelShowingType_03];

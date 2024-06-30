@@ -16,8 +16,10 @@ JJ    JJ    oo    oo   bb      bb  SS      SS
 # 定义新的工程名变量
 NEW_PROJECT_NAME="Monkey"
 # 全局变量声明
-CURRENT_DIRECTORY=$(dirname "$(readlink -f "$0")") # 获取当前脚本文件的目录
-DESKTOP_PATH="$HOME/Desktop/$NEW_PROJECT_NAME" # 定义目标桌面路径
+typeset -g CURRENT_DIRECTORY=$(dirname "$(readlink -f "$0")") # 获取当前脚本文件的目录
+typeset -g DESKTOP_PATH # 定义目标桌面路径
+typeset -g SHORTCUT_DESKTOP_PATH # 创建一份由 pod 创建的文件目录索引（*.xcworkspace）文件 替身/快捷方式/别名 到桌面
+typeset -g WORKSPACE_FILE # 原始的 *.xcworkspace 的位置
 typeset -g script_dir # /Users/user/Desktop/Monkey
 typeset -g default_old_project_name # JobsOCBaseConfig
 typeset -g script_path # 执行的脚本路径
@@ -48,9 +50,10 @@ set_and_cd_to_script_dir() {
 }
 # 定义获取脚本目录的方法
 get_script_dir() {
-    script_path="${(%):-%x}"
+    script_path="${(%):-%x}" # 在 zsh 中，${(%):-%x} 将展开为当前脚本的绝对路径。
+    DESKTOP_PATH="$HOME/Desktop/$NEW_PROJECT_NAME" # 定义目标桌面路径
     script_dir=$DESKTOP_PATH  # 将 script_dir 设置为桌面路径
-    _JobsPrint_Red "执行的脚本路径 = $script_path"
+    _JobsPrint_Red "当前脚本的执行路径 = $script_path"
     _JobsPrint_Red "当前脚本的执行目录：$script_dir"
 }
 # 设置 Git 配置
@@ -154,12 +157,16 @@ check_OhMyZsh() {
 }
 # 检查系统是否支持 Rosetta 2
 check_rosetta_compatibility() {
-    if /usr/sbin/softwareupdate --install-rosetta --agree-to-license &> /dev/null; then
-        _JobsPrint_Red "系统支持 Rosetta 2，正在安装..."
-        /usr/sbin/softwareupdate --install-rosetta --agree-to-license
-        _JobsPrint_Green "Rosetta 2 安装成功"
+    # 检查 Rosetta 2 是否已安装
+    if /usr/bin/pgrep oahd &> /dev/null; then
+        _JobsPrint_Green "Rosetta 2 已安装，跳过安装。"
     else
-        _JobsPrint_Red "系统不支持 Rosetta 2，跳过安装。"
+        _JobsPrint_Red "当前系统支持 Rosetta 2，正在安装..."
+        if /usr/sbin/softwareupdate --install-rosetta --agree-to-license &> /dev/null; then
+            _JobsPrint_Green "Rosetta 2 安装成功"
+        else
+            _JobsPrint_Red "当前系统不支持 Rosetta 2 安装失败"
+        fi
     fi
 }
 # 准备前置环境
@@ -169,6 +176,15 @@ prepare_environment() {
     sudo spctl --master-disable
     check_OhMyZsh
     check_rosetta_compatibility
+    
+    read "new_proj_name?请输入新工程名（按回车使用默认值: $NEW_PROJECT_NAME）："
+    # 如果用户输入了新值，则更新 NEW_PROJECT_NAME
+    # -z: 这个条件测试字符串是否为空。如果字符串的长度为零，则条件为真。
+    # -n: 这个条件测试字符串是否非空。如果字符串的长度大于零，则条件为真。
+    if [[ -n "$new_proj_name" ]]; then
+        NEW_PROJECT_NAME="$new_proj_name"
+    fi
+    _JobsPrint_Green "新工程名为：$NEW_PROJECT_NAME"
 }
 # 检查 Xcode 和 Xcode Command Line Tools
 check_xcode_and_tools() {
@@ -291,9 +307,6 @@ get_project_names() {
         selected_project=$(printf "%s\n" "${xcodeproj_files[@]}" | fzf --prompt "请选择旧项目名称：")
         default_old_project_name=$(basename "$selected_project" .xcodeproj)
     fi
-
-    read "new_project_name?请输入新工程名（按回车使用默认值: $NEW_PROJECT_NAME）："
-    new_project_name=${new_project_name:-$NEW_PROJECT_NAME}
 }
 # 删除 Pods 目录及其内容
 delete_pods() {
@@ -323,6 +336,38 @@ delete_xcworkspace() {
         _JobsPrint_Green "已删除 ${default_old_project_name}.xcworkspace 文件"
     else
         _JobsPrint_Red "${default_old_project_name}.xcworkspace 文件不存在"
+    fi
+}
+# 检查 当前目录下 *.xcworkspace 文件是否存在。如果存在则创建该文件的替身/快捷方式/别名 到桌面
+check_and_create_xcworkspace_shortcut(){
+    WORKSPACE_FILE="$HOME/Desktop/${NEW_PROJECT_NAME}/${NEW_PROJECT_NAME}.xcworkspace"
+    # 检查 .xcworkspace 文件是否存在
+    if [[ -e "$WORKSPACE_FILE" ]]; then
+        _JobsPrint_Red "*.xcworkspace 文件在："
+        _JobsPrint_Green "$WORKSPACE_FILE"
+        create_shortcut # 创建一份由 pod 创建的文件目录索引（*.xcworkspace）文件 替身/快捷方式/别名 到桌面
+    else
+        _JobsPrint_Red "错误：未找到 ${NEW_PROJECT_NAME}.xcworkspace 文件。"
+    fi
+}
+# 创建一份由 pod 创建的文件目录索引（*.xcworkspace）文件 替身/快捷方式/别名 到桌面
+create_shortcut() {
+#    WORKSPACE_FILE="/Users/user/Desktop/JobsOCBaseConfigDemo/JobsOCBaseConfigDemo.xcworkspace"
+    SHORTCUT_DESKTOP_PATH="$HOME/Desktop/${NEW_PROJECT_NAME}.xcworkspace"
+
+    _JobsPrint_Red "尝试创建别名："
+    _JobsPrint_Red "工作空间文件路径：$WORKSPACE_FILE"
+    _JobsPrint_Red "桌面路径：$SHORTCUT_DESKTOP_PATH"
+
+    # 创建桌面路径的目录（如果不存在）
+    mkdir -p "$(dirname "$SHORTCUT_DESKTOP_PATH")"
+    # 使用 ln 命令创建符号链接
+    ln -s "$WORKSPACE_FILE" "$SHORTCUT_DESKTOP_PATH"
+
+    if [ $? -eq 0 ]; then
+        _JobsPrint_Green "已将 ${NEW_PROJECT_NAME}.xcworkspace 的快捷方式创建到桌面。"
+    else
+        _JobsPrint_Red "创建快捷方式失败。"
     fi
 }
 # 在指定路径下搜索并替换文件内容
@@ -475,13 +520,13 @@ replace_pbxproj() {
 # 替换 Info.plist 文件中的旧工程名
 replace_infoplist() {
     _JobsPrint_Red "替换 Info.plist 文件中的旧工程名..."
-    find "$script_dir" -name "Info.plist" -exec sed -i '' "s/$default_old_project_name/$new_project_name/g" {} +
+    find "$script_dir" -name "Info.plist" -exec sed -i '' "s/$default_old_project_name/$NEW_PROJECT_NAME/g" {} +
     _JobsPrint_Red "Info.plist 文件中的旧工程名替换完成"
 }
 # 替换 .xcscheme 文件中的旧工程名
 replace_xcscheme() {
     _JobsPrint_Red "替换 .xcscheme 文件中的旧工程名..."
-    find "$script_dir" -name "*.xcscheme" -exec sed -i '' "s/$default_old_project_name/$new_project_name/g" {} +
+    find "$script_dir" -name "*.xcscheme" -exec sed -i '' "s/$default_old_project_name/$NEW_PROJECT_NAME/g" {} +
     _JobsPrint_Green ".xcscheme 文件中的旧工程名替换完成"
 }
 # 处理符号链接（如果有）
@@ -489,7 +534,7 @@ process_symlinks() {
     _JobsPrint_Red "处理符号链接（如果有）..."
     find "$script_dir" -type l -name "*$default_old_project_name*" | while read -r symlink; do
         target=$(readlink "$symlink")
-        new_target=${target//$default_old_project_name/$new_project_name}
+        new_target=${target//$default_old_project_name/$NEW_PROJECT_NAME}
         ln -sf "$new_target" "$symlink"
     done
     _JobsPrint_Green "符号链接处理完成"
@@ -498,7 +543,7 @@ process_symlinks() {
 rename_xcodeproj() {
     _JobsPrint_Red "重命名 .xcodeproj 文件..."
     if [[ -d "$script_dir/${default_old_project_name}.xcodeproj" ]]; then
-        mv "$script_dir/${default_old_project_name}.xcodeproj" "$script_dir/${new_project_name}.xcodeproj"
+        mv "$script_dir/${default_old_project_name}.xcodeproj" "$script_dir/${NEW_PROJECT_NAME}.xcodeproj"
         _JobsPrint_Green "已重命名 .xcodeproj 文件"
     else
         _JobsPrint_Red ".xcodeproj 文件不存在"
@@ -543,7 +588,8 @@ main() {
     check_and_set_mirror # 检查和设置镜像
     reinstall_pods # 重新安装 CocoaPods 依赖
 
-    _JobsPrint_Green "项目名称已成功从 $default_old_project_name 修改为 $new_project_name，并重新安装了 CocoaPods 依赖"
+    check_and_create_xcworkspace_shortcut # 检查 当前目录下 *.xcworkspace 文件是否存在。如果存在则创建该文件的替身/快捷方式/别名 到桌面
+    _JobsPrint_Green "项目名称已成功从 $default_old_project_name 修改为 $NEW_PROJECT_NAME，并重新安装了 CocoaPods 依赖"
 }
 # 调用主函数
 main
