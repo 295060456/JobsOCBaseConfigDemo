@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # 定义全局变量
-CURRENT_DIRECTORY=$(dirname "$(readlink -f "$0")") # 获取当前脚本文件的目录
+typeset -g CURRENT_DIRECTORY=$(dirname "$(readlink -f "$0")") # 获取当前脚本文件的目录
 # 通用打印方法
 _JobsPrint() {
     local COLOR="$1"
