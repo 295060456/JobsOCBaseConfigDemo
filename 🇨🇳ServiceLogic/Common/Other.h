@@ -88,5 +88,6 @@
 #import "LandscapeSwitchVC.h"
 #import "WidgetVC.h"
 #import "HotRefreshVC.h"
+#import "LanguageVC.h"
 
 #endif /* Other_h */

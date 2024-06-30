@@ -907,6 +907,7 @@
 		C5C56C4E2C233C43009F2290 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C56C4D2C233C43009F2290 /* libz.tbd */; };
 		C5C56C502C233C4D009F2290 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C56C4F2C233C4D009F2290 /* libsqlite3.tbd */; };
 		C5C56C522C233C55009F2290 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C56C512C233C55009F2290 /* libxml2.tbd */; };
+		C5CC22BA2C31E75D00A9B626 /* LanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CC22B92C31E75D00A9B626 /* LanguageVC.m */; };
 		C5D46FFC284E29A90090D20F /* JobsGetiOSNewestVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D46FFB284E29A90090D20F /* JobsGetiOSNewestVersionModel.m */; };
 		C5E4ABC02858BEED00B782F0 /* UILabelWordRotatingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E4ABBF2858BEED00B782F0 /* UILabelWordRotatingVC.m */; };
 		C5E8A7582869848600FAB31D /* CustomTableViewCellVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E8A7572869848600FAB31D /* CustomTableViewCellVC.m */; };
@@ -2786,6 +2787,8 @@
 		C5C56C4D2C233C43009F2290 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C5C56C4F2C233C4D009F2290 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		C5C56C512C233C55009F2290 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		C5CC22B82C31E75D00A9B626 /* LanguageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageVC.h; sourceTree = "<group>"; };
+		C5CC22B92C31E75D00A9B626 /* LanguageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LanguageVC.m; sourceTree = "<group>"; };
 		C5D260062C220F0A005AD2DD /* AppIconSwitchingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppIconSwitchingVC.h; sourceTree = "<group>"; };
 		C5D260072C220F0A005AD2DD /* AppIconSwitchingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppIconSwitchingVC.m; sourceTree = "<group>"; };
 		C5D46FFA284E29A90090D20F /* JobsGetiOSNewestVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsGetiOSNewestVersionModel.h; sourceTree = "<group>"; };
@@ -5672,6 +5675,7 @@
 		84CA609D278980E700E46E71 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				C5CC22A42C31E65E00A9B626 /* 多语言切换 */,
 				CE03ED8D2C312F1D00138A1E /* Widget */,
 				CE03ED772C312ED000138A1E /* 热更新 */,
 				CE6B183C2C2FA3C200A542A4 /* 横屏UI切换 */,
@@ -11534,6 +11538,67 @@
 			path = JobsMembersSubsBaseVC;
 			sourceTree = "<group>";
 		};
+		C5CC22A42C31E65E00A9B626 /* 多语言切换 */ = {
+			isa = PBXGroup;
+			children = (
+				C5CC22B72C31E70D00A9B626 /* ViewController */,
+				C5CC22B42C31E6FB00A9B626 /* Model */,
+				C5CC22B22C31E6FB00A9B626 /* View */,
+			);
+			path = "多语言切换";
+			sourceTree = "<group>";
+		};
+		C5CC22A62C31E69700A9B626 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C5CC22A82C31E69700A9B626 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C5CC22AC2C31E6CC00A9B626 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C5CC22AE2C31E6CC00A9B626 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C5CC22B22C31E6FB00A9B626 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C5CC22B42C31E6FB00A9B626 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C5CC22B72C31E70D00A9B626 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C5CC22B82C31E75D00A9B626 /* LanguageVC.h */,
+				C5CC22B92C31E75D00A9B626 /* LanguageVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		C5D260022C220EB5005AD2DD /* App图标切换 */ = {
 			isa = PBXGroup;
 			children = (
@@ -11661,9 +11726,9 @@
 		CE03ED772C312ED000138A1E /* 热更新 */ = {
 			isa = PBXGroup;
 			children = (
+				C5CC22AC2C31E6CC00A9B626 /* Model */,
+				C5CC22AE2C31E6CC00A9B626 /* View */,
 				CE03ED932C312F4F00138A1E /* ViewController */,
-				CE03ED962C312F5000138A1E /* View */,
-				CE03ED972C312F5000138A1E /* Model */,
 			);
 			path = "热更新";
 			sourceTree = "<group>";
@@ -11677,25 +11742,11 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		CE03ED792C312EF400138A1E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		CE03ED7A2C312EF500138A1E /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		CE03ED8D2C312F1D00138A1E /* Widget */ = {
 			isa = PBXGroup;
 			children = (
-				CE03ED792C312EF400138A1E /* Model */,
-				CE03ED7A2C312EF500138A1E /* View */,
+				C5CC22A82C31E69700A9B626 /* Model */,
+				C5CC22A62C31E69700A9B626 /* View */,
 				CE03ED782C312EF400138A1E /* ViewController */,
 			);
 			path = Widget;
@@ -11708,20 +11759,6 @@
 				CE03ED992C312FA300138A1E /* HotRefreshVC.m */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		CE03ED962C312F5000138A1E /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		CE03ED972C312F5000138A1E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		CE6B140D2C2ED50D00A542A4 /* YTKNetwork */ = {
@@ -12438,6 +12475,7 @@
 				C539A0342AD69BCF00C8A5E3 /* TKPermissionFolders.m in Sources */,
 				84175CB32C03558F00A535D9 /* JobsMakeLocalNotification.m in Sources */,
 				C5AA8B6F282CE2F00057EB84 /* JobsAppDoorInputViewBaseStyle_1.m in Sources */,
+				C5CC22BA2C31E75D00A9B626 /* LanguageVC.m in Sources */,
 				842475AB27C0D67000831270 /* YTKChainRequest+AnimatingAccessory.m in Sources */,
 				C5978A272BE3599700A56125 /* NSObject+UUID.m in Sources */,
 				840F961827736427004979E9 /* JobsImageNumberViewCVCell.m in Sources */,

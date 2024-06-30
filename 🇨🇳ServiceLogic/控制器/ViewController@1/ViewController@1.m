@@ -279,6 +279,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"iOS 多语言切换")
+                                                           attributeSubTitle:JobsInternationalization(@"")];
+            
+            viewModel.cls = LanguageVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"iOS Widget")
                                                            attributeSubTitle:JobsInternationalization(@"")];
             
