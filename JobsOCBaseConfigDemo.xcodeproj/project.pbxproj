@@ -933,6 +933,7 @@
 		CE8620782C2C254B0009C664 /* libarclite_watchos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86206F2C2C254B0009C664 /* libarclite_watchos.a */; };
 		CE8620792C2C254B0009C664 /* libarclite_watchsimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8620702C2C254B0009C664 /* libarclite_watchsimulator.a */; };
 		CE86207A2C2C254B0009C664 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CE8620712C2C254B0009C664 /* README.md */; };
+		CED90E942C31954A008D9F68 /* 配置info.plist.md in Resources */ = {isa = PBXBuildFile; fileRef = CED90E912C31954A008D9F68 /* 配置info.plist.md */; };
 		DFEAED65A0CE0960B61EAA74 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19F1CC739164B10E3F364DB /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		FE973CF0DF4FF09D277A1A4E /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72729AEE45FB4BEEB368A595 /* Pods_JobsOCBaseConfigDemoTests.framework */; };
 /* End PBXBuildFile section */
@@ -1300,7 +1301,6 @@
 		8459D61A2779A88900125782 /* CasinoCustomerContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasinoCustomerContactModel.h; sourceTree = "<group>"; };
 		8459D61B2779A88900125782 /* CasinoCustomerContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CasinoCustomerContactModel.m; sourceTree = "<group>"; };
 		845A0B1B276DAC99008E75A5 /* JobsOCBaseConfigDemoPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsOCBaseConfigDemoPrefixHeader.pch; sourceTree = "<group>"; };
-		8465454D2769A53A003EC0B5 /* 配置info.plist.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "配置info.plist.md"; sourceTree = "<group>"; };
 		846DEE0027804C340050468A /* JobsBasePopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsBasePopupView.m; sourceTree = "<group>"; };
 		846DEE0127804C340050468A /* JobsBasePopupView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JobsBasePopupView.png; sourceTree = "<group>"; };
 		846DEE0227804C340050468A /* JobsBasePopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBasePopupView.h; sourceTree = "<group>"; };
@@ -2835,6 +2835,8 @@
 		CE86206F2C2C254B0009C664 /* libarclite_watchos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_watchos.a; sourceTree = "<group>"; };
 		CE8620702C2C254B0009C664 /* libarclite_watchsimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_watchsimulator.a; sourceTree = "<group>"; };
 		CE8620712C2C254B0009C664 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CED90E912C31954A008D9F68 /* 配置info.plist.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "配置info.plist.md"; sourceTree = "<group>"; };
+		CED90E922C31954A008D9F68 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3941,10 +3943,10 @@
 		844B020F2764C8EE00B0513D /* JobsOCBaseConfigDemo */ = {
 			isa = PBXGroup;
 			children = (
-				C59789E82BE3599600A56125 /* JobsOCBaseCustomizeUIKitCore */,
-				845A0B1B276DAC99008E75A5 /* JobsOCBaseConfigDemoPrefixHeader.pch */,
-				8465454D2769A53A003EC0B5 /* 配置info.plist.md */,
 				844B02242764C8F000B0513D /* Info.plist */,
+				845A0B1B276DAC99008E75A5 /* JobsOCBaseConfigDemoPrefixHeader.pch */,
+				C59789E82BE3599600A56125 /* JobsOCBaseCustomizeUIKitCore */,
+				CED90E932C31954A008D9F68 /* 配置info.plist */,
 				844B03342764CB0000B0513D /* OCBaseConfig */,
 				844B02482764C93600B0513D /* Others */,
 			);
@@ -11798,6 +11800,15 @@
 			path = Libarclite;
 			sourceTree = "<group>";
 		};
+		CED90E932C31954A008D9F68 /* 配置info.plist */ = {
+			isa = PBXGroup;
+			children = (
+				CED90E912C31954A008D9F68 /* 配置info.plist.md */,
+				CED90E922C31954A008D9F68 /* Info.plist */,
+			);
+			path = "配置info.plist";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -12106,6 +12117,7 @@
 				C520F82E2AB39EDD00142DCC /* 640x1136.png in Resources */,
 				840F95FF27736427004979E9 /* JobsPullListAutoSizeView.md in Resources */,
 				84A4920127904A970002A837 /* Fav@3x.png in Resources */,
+				CED90E942C31954A008D9F68 /* 配置info.plist.md in Resources */,
 				C5978A982BE3599700A56125 /* UITableViewCellStyleValue1.png in Resources */,
 				840F962C27736427004979E9 /* 4@2x.png in Resources */,
 				C5C48064284E21E5007916B3 /* NotoSansDisplay_Condensed-Light.ttf in Resources */,
