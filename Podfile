@@ -158,12 +158,12 @@ end
 # 基础的公共配置
 def cocoPodsConfig
   # ❤️新工程需要修改这里❤️
-  target 'JobsOCBaseConfigTests' do
+  target 'JobsOCBaseConfigDemoTests' do
     inherit! :search_paths # abstract! 指示当前的target是抽象的，因此不会直接链接Xcode target。与其相对应的是 inherit！
     # Pods for testing
   end
   # ❤️新工程需要修改这里❤️
-  target 'JobsOCBaseConfigUITests' do
+  target 'JobsOCBaseConfigDemoUITests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -219,8 +219,8 @@ def cocoPodsConfig
   end
 end
 # ❤️新工程需要修改这里❤️
-target 'JobsOCBaseConfig' do
-  # Pods for JobsOCBaseConfig
+target 'JobsOCBaseConfigDemo' do
+  # Pods for JobsOCBaseConfigDemo
 #  testApp # 单元测试框架
   longConnection # 长链接框架
   debugPods # 调试框架

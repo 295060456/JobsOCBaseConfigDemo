@@ -2,8 +2,8 @@
 //  LongPressToDeleteImageView.h
 //  ShengAi
 //
-//  Created by 刘赓 on 2018/12/4.
-//  Copyright © 2018 刘赓. All rights reserved.
+//  Created by Jobs on 2018/12/4.
+//  Copyright © 2018 Jobs. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

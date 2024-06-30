@@ -31,7 +31,7 @@
     csrutil disable
     ```
   * 重启MacOS
-  * 在xcode里面做如下设置：
+  * 在xcode里面做如下设置：<font color=red>**每一个工程下都做检查**</font>
   ![image-20240628195445480](./assets/image-20240628195445480.png)
   ![image-20240628200436387](./assets/image-20240628200436387.png)
   

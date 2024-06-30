@@ -2,7 +2,7 @@
 //  Other.h
 //  My_BaseProj
 //
-//  Created by 刘赓 on 2019/9/26.
+//  Created by Jobs on 2019/9/26.
 //  Copyright © 2019 Corp. All rights reserved.
 //
 
