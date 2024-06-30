@@ -14,8 +14,8 @@
 @implementation HotRefreshVC
 
 - (void)dealloc{
-[NSNotificationCenter.defaultCenter removeObserver:self];
-NSLog(@"%@",JobsLocalFunc);
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+    NSLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
