@@ -8,14 +8,16 @@
 #import "LandscapeSwitchVC.h"
 
 @interface LandscapeSwitchVC ()
-// UI
-@property(nonatomic,strong)BaseButton *switchBtn1;
-@property(nonatomic,strong)BaseButton *switchBtn2;
-@property(nonatomic,strong)BaseButton *switchBtn3;
-@property(nonatomic,strong)BaseButton *switchBtn4;
-@property(nonatomic,strong)BaseButton *switchBtn5;
-@property(nonatomic,strong)BaseButton *switchBtn6;
-@property(nonatomic,strong)NSMutableArray <BaseButton *>*btnMutArr;
+<
+UICollectionViewDataSource
+,UICollectionViewDelegate
+,UICollectionViewDelegateFlowLayout
+>
+/// UI
+@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
+@property(nonatomic,strong)UICollectionView *collectionView;
+/// Data
+@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 // Data
 @property(nonatomic,assign)UIInterfaceOrientationMask currentVCInterfaceOrientationMask;
 
@@ -61,15 +63,7 @@
     [self setGKNav];
     [self setGKNavBackBtn];
     self.gk_navigationBar.jobsVisible = YES;
-    
-    self.switchBtn1.alpha = 1;
-    self.switchBtn2.alpha = 1;
-    self.switchBtn3.alpha = 1;
-    self.switchBtn4.alpha = 1;
-    self.switchBtn5.alpha = 1;
-    self.switchBtn6.alpha = 1;
-    
-    [self masonry];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -111,41 +105,20 @@
     }];
 }
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    JobsLock(self.size = [MSHomePopupView viewSizeWithModel:nil];)
+    /// 内部指定圆切角
+    [self layoutSubviewsCutCnrByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
+cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+}
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
 
 }
 #pragma mark —— 一些私有方法
--(void)masonry{
-//    [self.btnMutArr mas_distributeViewsAlongAxis:MASAxisTypeVertical
-//                                withFixedSpacing:10
-//                                     leadSpacing:100
-//                                     tailSpacing:100];
-//     /// 设置控件的高度
-//     [self.btnMutArr mas_makeConstraints:^(MASConstraintMaker *make) {
-//         make.width.mas_equalTo(100); // 宽度设为固定值，这里示意为 100
-//         make.centerX.equalTo(self.view.mas_centerX); // 水平居中
-//     }];
-    
-    // 使用Masonry布局
-    [self.btnMutArr mas_distributeViewsAlongAxis:MASAxisTypeVertical
-                                withFixedSpacing:10
-                                     leadSpacing:100
-                                     tailSpacing:100];
-    
-    [self.btnMutArr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(100); // 设置按钮宽度为固定值
-        make.centerX.equalTo(self.view.mas_centerX); // 水平居中
-    }];
-    
-    [_switchBtn1 makeBtnLabelByShowingType:UILabelShowingType_03];
-    [_switchBtn2 makeBtnLabelByShowingType:UILabelShowingType_03];
-    [_switchBtn3 makeBtnLabelByShowingType:UILabelShowingType_03];
-    [_switchBtn4 makeBtnLabelByShowingType:UILabelShowingType_03];
-    [_switchBtn5 makeBtnLabelByShowingType:UILabelShowingType_03];
-    [_switchBtn6 makeBtnLabelByShowingType:UILabelShowingType_03];
-}
-
+/// 屏幕旋转相关
 - (void)deviceOrientationDidChange:(NSNotification *)notification {
     UIDeviceOrientation orientation = UIDevice.currentDevice.orientation;
     switch (orientation) {
@@ -167,7 +140,7 @@
             break;
     }
 }
-#pragma mark —— 屏幕旋转相关
+
 -(BOOL)shouldAutorotate {
     return YES;
 }
@@ -230,351 +203,286 @@
             break;
     }
 }
+/// 下拉刷新 （子类要进行覆写）
+-(void)pullToRefresh{
+    [self feedbackGenerator];//震动反馈
+    @jobs_weakify(self)
+    [self withdrawBanklist:^(NSArray *data) {
+        @jobs_strongify(self)
+        if (data.count) {
+            [self endRefreshing:self.collectionView];
+        }else{
+            [self endRefreshingWithNoMoreData:self.collectionView];
+        }
+        /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
+        @jobs_weakify(self)
+        [self getMainQueue:^{
+            @jobs_strongify(self)
+            [CollectionViewAnimationKit showWithAnimationType:XSCollectionViewAnimationTypeFall
+                                               collectionView:self.collectionView];
+        }];
+    }];
+}
+/// 上拉加载更多 （子类要进行覆写）
+-(void)loadMoreRefresh{
+    [self pullToRefresh];
+}
+#pragma mark —— UICollectionViewCell 部署策略
+//见 @interface NSObject (JobsDeployCellConfig)
+#pragma mark —— UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
+                                   cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    @jobs_weakify(self)
+    return [self planAtIndexPath:indexPath
+                          block1:^{
+        @jobs_strongify(self)
+        BaiShaETProjCountdownCVCell *cell = [BaiShaETProjCountdownCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
+        [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section]];
+        return cell;
+    }block2:^{
+        @jobs_strongify(self)
+        BaiShaETProjOrderDetailsCVCell *cell = [BaiShaETProjOrderDetailsCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
+        [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section]];
+        return cell;
+    }block3:^{
+        ReturnBaseCollectionViewCell;
+    }block4:^{
+        ReturnBaseCollectionViewCell;
+    }block5:^id{
+        ReturnBaseCollectionViewCell;
+    }];
+}
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
+numberOfItemsInSection:(NSInteger)section {
+    return self.dataMutArr.count;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+viewForSupplementaryElementOfKind:(NSString *)kind
+atIndexPath:(NSIndexPath *)indexPath {
+    if (kind.isEqualToString(UICollectionElementKindSectionHeader)) {
+        JobsHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHeaderFooterView.class
+                                                                                        forIndexPath:indexPath];
+        
+        NSMutableArray *mutArr = NSMutableArray.array;
+        NSMutableArray *sectionMutArr = NSMutableArray.array;
+        UIViewModel *viewModel = UIViewModel.new;
+        viewModel.textModel.text = JobsInternationalization(@"请快速选择金额(元)");
+        [sectionMutArr addObject:viewModel];
+        [mutArr addObject:sectionMutArr];
+        [headerView richElementsInViewWithModel:mutArr[indexPath.section]];
+        return headerView;
+    }else if (kind.isEqualToString(UICollectionElementKindSectionFooter)) {
+        ReturnBaseCollectionReusableFooterView
+        
+    }else ReturnBaseCollectionReusableHeaderView
+        }
+#pragma mark —— UICollectionViewDelegate
+/// 允许选中时，高亮
+-(BOOL)collectionView:(UICollectionView *)collectionView
+shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s", __FUNCTION__);
+    return YES;
+}
+/// 高亮完成后回调
+-(void)collectionView:(UICollectionView *)collectionView
+didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s", __FUNCTION__);
+}
+/// 由高亮转成非高亮完成时的回调
+-(void)collectionView:(UICollectionView *)collectionView
+didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s", __FUNCTION__);
+}
+/// 设置是否允许选中
+-(BOOL)collectionView:(UICollectionView *)collectionView
+shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s", __FUNCTION__);
+    return YES;
+}
+/// 设置是否允许取消选中
+-(BOOL)collectionView:(UICollectionView *)collectionView
+shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s", __FUNCTION__);
+    return YES;
+}
+/// 选中操作
+- (void)collectionView:(UICollectionView *)collectionView
+didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s", __FUNCTION__);
+    /**
+     滚动到指定位置
+     _collectionView.contentOffset = CGPointMake(0,-100);
+     [_collectionView setContentOffset:CGPointMake(0, -200) animated:YES];// 只有在viewDidAppear周期 或者 手动触发才有效
+     */
+}
+/// 取消选中操作
+-(void)collectionView:(UICollectionView *)collectionView
+didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s", __FUNCTION__);
+}
+#pragma mark —— UICollectionViewDelegateFlowLayout
+/// header 大小
+- (CGSize)collectionView:(UICollectionView *)collectionView
+layout:(UICollectionViewLayout *)collectionViewLayout
+referenceSizeForHeaderInSection:(NSInteger)section {
+    return [UBLSearchCollectionReusableView collectionReusableViewSizeWithModel:nil];
+}
+/// Footer 大小
+- (CGSize)collectionView:(UICollectionView *)collectionView
+layout:(UICollectionViewLayout*)collectionViewLayout
+referenceSizeForFooterInSection:(NSInteger)section{
+    return [CasinoAgencyRecommendTipsCRView collectionReusableViewSizeWithModel:nil];
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+layout:(UICollectionViewLayout *)collectionViewLayout
+sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return [self planSizeAtIndexPath:indexPath
+                              block1:^CGSize{
+        return [BaiShaETProjCountdownCVCell cellSizeWithModel:nil];
+    } block2:^CGSize{
+        return [BaiShaETProjOrderDetailsCVCell cellSizeWithModel:self.dataMutArr[indexPath.section]];
+    } block3:^CGSize{
+        return CGSizeZero;
+    } block4:^CGSize{
+        return CGSizeZero;
+    } block5:^CGSize{
+        return CGSizeZero;
+    }];
+}
+/// 定义的是元素垂直之间的间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 12;
+}
+/// 定义的是UICollectionViewScrollDirectionVertical下，元素水平之间的间距。
+/// UICollectionViewScrollDirectionHorizontal下，垂直和水平正好相反
+/// Api自动计算一行的Cell个数，只有当间距小于此定义的最小值时才会换行，最小执行单元是Section（每个section里面的样式是统一的）
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 0;
+}
+/// 内间距
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+layout:(UICollectionViewLayout *)collectionViewLayout
+insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
 #pragma mark —— lazyLoad
--(BaseButton *)switchBtn1{
-    if(!_switchBtn1){
-        @jobs_weakify(self)
-        _switchBtn1 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:JobsInternationalization(@"点击")
-                                                          subTitle:JobsInternationalization(@"切换到竖屏")
-                                                         titleFont:UIFontWeightBoldSize(18)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsCor(@"#333333")
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.whiteColor
-                                                      imagePadding:JobsWidth(0)
-                                                      titlePadding:JobsWidth(10)
-                                                    imagePlacement:NSDirectionalRectEdgeNone
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(8)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
-                                                                     id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-        }
-                                                   clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-//            NSLog(@"按钮点击：设备竖直向上，Home 按钮在下方");
-//            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortrait));/// 设备竖直向上，Home 按钮在下方
+-(UICollectionViewFlowLayout *)layout{
+    if (!_layout) {
+        _layout = UICollectionViewFlowLayout.new;
+        _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    }return _layout;
+}
+
+-(UICollectionView *)collectionView{
+    if (!_collectionView) {
+        _collectionView = [UICollectionView.alloc initWithFrame:CGRectZero
+                                           collectionViewLayout:self.layout];
+        _collectionView.backgroundColor = RGB_SAMECOLOR(246);
+        _collectionView.layoutSubviewsRectCorner = UIRectCornerTopLeft | UIRectCornerTopRight;
+        _collectionView.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(20), JobsWidth(20));
+        [self dataLinkByCollectionView:_collectionView];
+        
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        
+        _collectionView.bounces = NO;///设置为NO，使得collectionView只能上拉，不能下拉
+        
+        _collectionView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
+        //_collectionView.contentOffset = CGPointMake(0, -JobsWidth(250));//
+        [_collectionView setContentOffset:CGPointMake(0, -400) animated:YES];// 这句最快在 viewWillLayoutSubviews 有效
+        
+        [_collectionView registerCollectionViewClass];
+        
+        [_collectionView registerCollectionViewCellClass:TMSWalletCollectionViewCell.class];
+        [_collectionView registerCollectionElementKindSectionHeaderClass:TMSWalletCollectionReusableView.class];
+        [_collectionView registerCollectionElementKindSectionFooterClass:TMSWalletCollectionReusableView.class];
+        
+        {
+            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+            refreshConfigHeader.stateIdleTitle = Internationalization(@"下拉可以刷新");
+            refreshConfigHeader.pullingTitle = Internationalization(@"下拉可以刷新");
+            refreshConfigHeader.refreshingTitle = Internationalization(@"松开立即刷新");
+            refreshConfigHeader.willRefreshTitle = Internationalization(@"刷新数据中");
+            refreshConfigHeader.noMoreDataTitle = Internationalization(@"下拉可以刷新");
             
-            [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
-            return nil;
-        }];
-        [self.view addSubview:_switchBtn1];
-//        [_switchBtn1 mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.size.mas_equalTo(CGSizeMake(JobsWidth(80), JobsWidth(100)));
-//            make.center.equalTo(self.view);
-//        }];
-//        [_switchBtn1 makeBtnLabelByShowingType:UILabelShowingType_03];
-    }return _switchBtn1;
-}
-
--(BaseButton *)switchBtn2{
-    if(!_switchBtn2){
-        @jobs_weakify(self)
-        _switchBtn2 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:JobsInternationalization(@"点击")
-                                                          subTitle:JobsInternationalization(@"切换到竖屏")
-                                                         titleFont:UIFontWeightBoldSize(18)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsCor(@"#333333")
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.whiteColor
-                                                      imagePadding:JobsWidth(0)
-                                                      titlePadding:JobsWidth(10)
-                                                    imagePlacement:NSDirectionalRectEdgeNone
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(8)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
-                                                                     id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
+            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+            refreshConfigFooter.stateIdleTitle = Internationalization(@"");
+            refreshConfigFooter.pullingTitle = Internationalization(@"");;
+            refreshConfigFooter.refreshingTitle = Internationalization(@"");;
+            refreshConfigFooter.willRefreshTitle = Internationalization(@"");;
+            refreshConfigFooter.noMoreDataTitle = Internationalization(@"");;
+            
+            self.refreshConfigHeader = refreshConfigHeader;
+            self.refreshConfigFooter = refreshConfigFooter;
+            
+            _collectionView.mj_header = self.mjRefreshNormalHeader;
+            _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+            
+            _collectionView.mj_footer = self.mjRefreshAutoNormalFooter;
         }
-                                                   clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-//            NSLog(@"按钮点击：设备竖直向下，Home 按钮在上方");
-//            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationPortraitUpsideDown));/// 设备竖直向下，Home 按钮在上方
-            [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortraitUpsideDown];
-            return nil;
-        }];
-        [self.view addSubview:_switchBtn2];
-//        [_switchBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.size.mas_equalTo(CGSizeMake(JobsWidth(80), JobsWidth(100)));
-//            make.center.equalTo(self.view);
-//        }];
-//        [_switchBtn2 makeBtnLabelByShowingType:UILabelShowingType_03];
-    }return _switchBtn2;
-}
-
--(BaseButton *)switchBtn3{
-    if(!_switchBtn3){
-        @jobs_weakify(self)
-        _switchBtn3 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:JobsInternationalization(@"点击")
-                                                          subTitle:JobsInternationalization(@"切换到横屏")
-                                                         titleFont:UIFontWeightBoldSize(18)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsCor(@"#333333")
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.whiteColor
-                                                      imagePadding:JobsWidth(0)
-                                                      titlePadding:JobsWidth(10)
-                                                    imagePlacement:NSDirectionalRectEdgeNone
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(8)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
-                                                                     id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
+        
+        {
+            _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
+                                                                     titleStr:Internationalization(@"暂无数据")
+                                                                    detailStr:Internationalization(@"")];
+            
+            _collectionView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
+            _collectionView.ly_emptyView.contentViewOffset = JobsWidth(-180);
+            _collectionView.ly_emptyView.titleLabFont = UIFontWeightMediumSize(16);
         }
-                                                   clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-//            NSLog(@"按钮点击：设备水平，Home 按钮在右侧");
-//            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationLandscapeRight));/// 设备水平，Home 按钮在右侧
-            NSLog(@"按钮点击：强制旋转到横屏");
-            self.currentVCInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
-            [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationLandscapeRight];
-            return nil;
-        }];
-        [self.view addSubview:_switchBtn3];
-//        [_switchBtn3 mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.size.mas_equalTo(CGSizeMake(JobsWidth(80), JobsWidth(100)));
-//            make.center.equalTo(self.view);
-//        }];
-//        [_switchBtn3 makeBtnLabelByShowingType:UILabelShowingType_03];
-    }return _switchBtn3;
-}
-
--(BaseButton *)switchBtn4{
-    if(!_switchBtn4){
-        @jobs_weakify(self)
-        _switchBtn4 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:JobsInternationalization(@"点击")
-                                                          subTitle:JobsInternationalization(@"切换到横屏 no")
-                                                         titleFont:UIFontWeightBoldSize(18)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsCor(@"#333333")
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.whiteColor
-                                                      imagePadding:JobsWidth(0)
-                                                      titlePadding:JobsWidth(10)
-                                                    imagePlacement:NSDirectionalRectEdgeNone
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(8)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
-                                                                     id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
+        
+        {
+            
+            NSArray *classArray = @[
+                DDCollectionViewCell_Style2.class,
+                DDCollectionViewCell_Style3.class,
+                DDCollectionViewCell_Style4.class,
+            ];
+            NSArray *sizeArray = @[
+                [NSValue valueWithCGSize:[DDCollectionViewCell_Style2 cellSizeWithModel:nil]],
+                [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeWithModel:nil]],
+                [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeWithModel:nil]]
+            ];
+            
+            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:classArray
+                                                                              cellSizeArray:sizeArray
+                                                                         animatedCountArray:@[@(1),@(1),@(1)]];
+            
+            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+                                                   viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeWithModel:nil]
+                                                  toSection:0];
+            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+                                                   viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeWithModel:nil]
+                                                  toSection:2];
+            
+            _collectionView.tabAnimated.containNestAnimation = YES;
+            _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+            _collectionView.tabAnimated.canLoadAgain = YES;
+            [_collectionView tab_startAnimation];   // 开启动画
         }
-                                                   clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-//            NSLog(@"按钮点击：设备水平，Home 按钮在左侧");
-//            UIDevice.currentDevice.jobsKVC(@"orientation",@(UIInterfaceOrientationLandscapeLeft));/// 设备水平，Home 按钮在左侧
-            self.currentVCInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
-            [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationLandscapeLeft];
-            return nil;
-        }];
-        [self.view addSubview:_switchBtn4];
-//        [_switchBtn4 mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.size.mas_equalTo(CGSizeMake(JobsWidth(80), JobsWidth(100)));
-//            make.center.equalTo(self.view);
-//        }];
-//        [_switchBtn4 makeBtnLabelByShowingType:UILabelShowingType_03];
-    }return _switchBtn4;
+        
+        [self.view addSubview:_collectionView];
+        [self fullScreenConstraintTargetView:_collectionView topViewOffset:self.getTopLineLabSize.height];
+    }return _collectionView;
 }
 
--(BaseButton *)switchBtn5{
-    if(!_switchBtn5){
-        @jobs_weakify(self)
-        _switchBtn5 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:JobsInternationalization(@"点击")
-                                                          subTitle:JobsInternationalization(@"锁定横屏")
-                                                         titleFont:UIFontWeightBoldSize(18)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsCor(@"#333333")
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.whiteColor
-                                                      imagePadding:JobsWidth(0)
-                                                      titlePadding:JobsWidth(10)
-                                                    imagePlacement:NSDirectionalRectEdgeNone
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(8)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
-                                                                     id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-        }
-                                                   clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"锁定横屏 ？？");
-            self.currentVCInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
-            [self hx_setNeedsUpdateOfSupportedInterfaceOrientations];
-            return nil;
-        }];
-        [self.view addSubview:_switchBtn5];
-//        [_switchBtn5 mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.size.mas_equalTo(CGSizeMake(JobsWidth(80), JobsWidth(100)));
-//            make.center.equalTo(self.view);
-//        }];
-//        [_switchBtn5 makeBtnLabelByShowingType:UILabelShowingType_03];
-    }return _switchBtn5;
-}
-
--(BaseButton *)switchBtn6{
-    if(!_switchBtn6){
-        @jobs_weakify(self)
-        _switchBtn6 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:JobsInternationalization(@"点击")
-                                                          subTitle:JobsInternationalization(@"解除锁定")
-                                                         titleFont:UIFontWeightBoldSize(18)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsCor(@"#333333")
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.whiteColor
-                                                      imagePadding:JobsWidth(0)
-                                                      titlePadding:JobsWidth(10)
-                                                    imagePlacement:NSDirectionalRectEdgeNone
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(8)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
-                                                                     id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-        }
-                                                   clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"解除锁定 ？？");
-            self.currentVCInterfaceOrientationMask = UIInterfaceOrientationMaskAllButUpsideDown;
-            [self hx_setNeedsUpdateOfSupportedInterfaceOrientations];
-            return nil;
-        }];
-        [self.view addSubview:_switchBtn6];
-//        [_switchBtn6 mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.size.mas_equalTo(CGSizeMake(JobsWidth(80), JobsWidth(100)));
-//            make.center.equalTo(self.view);
-//        }];
-//        [_switchBtn6 makeBtnLabelByShowingType:UILabelShowingType_03];
-    }return _switchBtn6;
-}
-
--(NSMutableArray<BaseButton *> *)btnMutArr{
-    if(!_btnMutArr){
-        _btnMutArr = NSMutableArray.array;
-        [_btnMutArr addObject:self.switchBtn1];
-        [_btnMutArr addObject:self.switchBtn2];
-        [_btnMutArr addObject:self.switchBtn3];
-        [_btnMutArr addObject:self.switchBtn4];
-        [_btnMutArr addObject:self.switchBtn5];
-        [_btnMutArr addObject:self.switchBtn6];
-    }return _btnMutArr;
+-(NSMutableArray<UIViewModel *> *)dataMutArr{
+    if (!_dataMutArr) {
+        _dataMutArr = NSMutableArray.array;
+    }return _dataMutArr;
 }
 
 @end
+

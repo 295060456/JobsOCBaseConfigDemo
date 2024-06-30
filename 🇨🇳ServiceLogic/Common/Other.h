@@ -86,5 +86,7 @@
 #import "AppIconSwitchingVC.h"
 #import "PeekAndPopVC.h"
 #import "LandscapeSwitchVC.h"
+#import "WidgetVC.h"
+#import "HotRefreshVC.h"
 
 #endif /* Other_h */

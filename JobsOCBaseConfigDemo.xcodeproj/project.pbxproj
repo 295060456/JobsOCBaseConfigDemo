@@ -912,6 +912,8 @@
 		C5E8A7582869848600FAB31D /* CustomTableViewCellVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E8A7572869848600FAB31D /* CustomTableViewCellVC.m */; };
 		C5E8A761286984C300FAB31D /* BaiShaETProjOrderDetailsCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E8A75D286984C300FAB31D /* BaiShaETProjOrderDetailsCVCell.m */; };
 		C5FBD1E62AC1A92A0043B932 /* JobsPresentedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FBD1E52AC1A92A0043B932 /* JobsPresentedVC.m */; };
+		CE03ED9A2C312FA300138A1E /* HotRefreshVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE03ED992C312FA300138A1E /* HotRefreshVC.m */; };
+		CE03ED9D2C31304E00138A1E /* WidgetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE03ED9C2C31304E00138A1E /* WidgetVC.m */; };
 		CE6B140E2C2ED50D00A542A4 /* YTKBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B13F92C2ED50D00A542A4 /* YTKBaseRequest.m */; };
 		CE6B140F2C2ED50D00A542A4 /* YTKBatchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B13FB2C2ED50D00A542A4 /* YTKBatchRequest.m */; };
 		CE6B14102C2ED50D00A542A4 /* YTKBatchRequestAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B13FD2C2ED50D00A542A4 /* YTKBatchRequestAgent.m */; };
@@ -2798,6 +2800,10 @@
 		C5E8A760286984C300FAB31D /* BaiShaETProjOrderDetailsCVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiShaETProjOrderDetailsCVCell.h; sourceTree = "<group>"; };
 		C5FBD1E42AC1A92A0043B932 /* JobsPresentedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsPresentedVC.h; sourceTree = "<group>"; };
 		C5FBD1E52AC1A92A0043B932 /* JobsPresentedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsPresentedVC.m; sourceTree = "<group>"; };
+		CE03ED982C312FA300138A1E /* HotRefreshVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotRefreshVC.h; sourceTree = "<group>"; };
+		CE03ED992C312FA300138A1E /* HotRefreshVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotRefreshVC.m; sourceTree = "<group>"; };
+		CE03ED9B2C31304E00138A1E /* WidgetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WidgetVC.h; sourceTree = "<group>"; };
+		CE03ED9C2C31304E00138A1E /* WidgetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WidgetVC.m; sourceTree = "<group>"; };
 		CE6B13F82C2ED50D00A542A4 /* YTKBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKBaseRequest.h; sourceTree = "<group>"; };
 		CE6B13F92C2ED50D00A542A4 /* YTKBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKBaseRequest.m; sourceTree = "<group>"; };
 		CE6B13FA2C2ED50D00A542A4 /* YTKBatchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKBatchRequest.h; sourceTree = "<group>"; };
@@ -5664,6 +5670,8 @@
 		84CA609D278980E700E46E71 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				CE03ED8D2C312F1D00138A1E /* Widget */,
+				CE03ED772C312ED000138A1E /* 热更新 */,
 				CE6B183C2C2FA3C200A542A4 /* 横屏UI切换 */,
 				C592C66C2C261FBF00F274F8 /* PeekAndPop */,
 				C5D260022C220EB5005AD2DD /* App图标切换 */,
@@ -11648,6 +11656,72 @@
 			path = JobsPresentedVC;
 			sourceTree = "<group>";
 		};
+		CE03ED772C312ED000138A1E /* 热更新 */ = {
+			isa = PBXGroup;
+			children = (
+				CE03ED932C312F4F00138A1E /* ViewController */,
+				CE03ED962C312F5000138A1E /* View */,
+				CE03ED972C312F5000138A1E /* Model */,
+			);
+			path = "热更新";
+			sourceTree = "<group>";
+		};
+		CE03ED782C312EF400138A1E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE03ED9B2C31304E00138A1E /* WidgetVC.h */,
+				CE03ED9C2C31304E00138A1E /* WidgetVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CE03ED792C312EF400138A1E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE03ED7A2C312EF500138A1E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE03ED8D2C312F1D00138A1E /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				CE03ED792C312EF400138A1E /* Model */,
+				CE03ED7A2C312EF500138A1E /* View */,
+				CE03ED782C312EF400138A1E /* ViewController */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		CE03ED932C312F4F00138A1E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE03ED982C312FA300138A1E /* HotRefreshVC.h */,
+				CE03ED992C312FA300138A1E /* HotRefreshVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CE03ED962C312F5000138A1E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE03ED972C312F5000138A1E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CE6B140D2C2ED50D00A542A4 /* YTKNetwork */ = {
 			isa = PBXGroup;
 			children = (
@@ -12277,6 +12351,7 @@
 				C5D46FFC284E29A90090D20F /* JobsGetiOSNewestVersionModel.m in Sources */,
 				C5978A692BE3599700A56125 /* UICollectionViewCell+UICollectionViewCellProtocol.m in Sources */,
 				C55E6B5628436F8100ABA84A /* JobsFiltrationView.m in Sources */,
+				CE03ED9D2C31304E00138A1E /* WidgetVC.m in Sources */,
 				C57FAEE52875630400E72F91 /* GXCardViewDemoVC.m in Sources */,
 				844B08832764CF4800B0513D /* XHLaunchAdImageManager.m in Sources */,
 				8456259A278BF2780067ABB9 /* JobsLoadMoreTBVCell.m in Sources */,
@@ -12300,6 +12375,7 @@
 				C5978A662BE3599700A56125 /* JobsImageViewStyleCVCell.m in Sources */,
 				C5978AA42BE3599700A56125 /* UITableViewHeaderFooterView+Attribute.m in Sources */,
 				C596B7A5283F6F7900C13619 /* JobsHotLabelWithMultiLine.m in Sources */,
+				CE03ED9A2C312FA300138A1E /* HotRefreshVC.m in Sources */,
 				C5AA8B7C282CE2F00057EB84 /* JobsAppDoorInputViewBaseStyle_5.m in Sources */,
 				C52E5CA92AC07E9800FE5494 /* KTVHCError.m in Sources */,
 				C52688402BDB76C200872F26 /* NSString+HexadecimalData.m in Sources */,

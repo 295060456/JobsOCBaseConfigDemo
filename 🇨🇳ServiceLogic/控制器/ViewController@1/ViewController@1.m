@@ -271,6 +271,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"iOS 热更新")
+                                                           attributeSubTitle:JobsInternationalization(@"")];
+            
+            viewModel.cls = HotRefreshVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"iOS Widget")
+                                                           attributeSubTitle:JobsInternationalization(@"")];
+            
+            viewModel.cls = WidgetVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"手机横屏")
                                                            attributeSubTitle:JobsInternationalization(@"全局设定")];
             
