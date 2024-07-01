@@ -60,9 +60,10 @@ typedef NS_ENUM(NSInteger, JobsUpdateType) {
 #ifndef APP_LANGUAGE_ENUM_DEFINED
 #define APP_LANGUAGE_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, AppLanguage) {
-    AppLanguageChineseSimplified, // zh-Hans:简体中文
-    AppLanguageEnglish,           // en:标准英语
-    AppLanguageTagalog            // tl:菲律宾他加禄语
+    AppLanguageBySys,/// App语言跟随当前系统
+    AppLanguageChineseSimplified, /// zh-Hans:简体中文
+    AppLanguageEnglish,           /// en:标准英语
+    AppLanguageTagalog            /// tl:菲律宾他加禄语
 };
 #endif/* APP_LANGUAGE_ENUM_DEFINED */
 /// 图片编码格式

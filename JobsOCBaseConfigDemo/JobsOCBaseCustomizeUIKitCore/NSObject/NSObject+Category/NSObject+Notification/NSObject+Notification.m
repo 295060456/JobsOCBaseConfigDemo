@@ -38,6 +38,9 @@
 -(void)setAppLanguageAtAppLanguage:(AppLanguage)appLanguage
           byNotificationName:(nullable NSString *)NotificationName{
     switch (appLanguage) {
+        case AppLanguageBySys:{
+            [CLLanguageManager resetSystemLanguage];
+        }break;
         case AppLanguageChineseSimplified:{
             [CLLanguageManager setUserLanguage:@"zh-Hans"];
         }break;

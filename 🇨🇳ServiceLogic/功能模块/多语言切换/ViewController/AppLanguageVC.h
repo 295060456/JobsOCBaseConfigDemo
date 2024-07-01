@@ -27,7 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AppInternationalizationVC : BaseViewController
+@interface AppLanguageVC : BaseViewController
 <
 UITableViewDelegate
 ,UITableViewDataSource

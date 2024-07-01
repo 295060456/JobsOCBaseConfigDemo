@@ -87,6 +87,6 @@
 #import "LandscapeSwitchVC.h"
 #import "WidgetVC.h"
 #import "HotRefreshVC.h"
-#import "AppInternationalizationVC.h"// 国际化
+#import "AppLanguageVC.h"// 国际化
 
 #endif /* Other_h */

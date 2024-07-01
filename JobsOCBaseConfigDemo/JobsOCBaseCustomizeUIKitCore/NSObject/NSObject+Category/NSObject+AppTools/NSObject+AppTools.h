@@ -14,7 +14,7 @@
 
 #import "AppDelegate.h"
 #import "JobsAppDoorVC.h"
-#import "AppInternationalizationVC.h"
+#import "AppLanguageVC.h"
 //#import "CasinoUpgradePopupView.h"
 #import "JobsHotLabelWithSingleLine.h"
 

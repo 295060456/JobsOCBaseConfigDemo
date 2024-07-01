@@ -209,6 +209,8 @@
 
 <details id="退出ViewController的时候，需要做的操作">
  <summary><strong>退出ViewController的时候，需要做的操作</strong></summary>
+定义于`BaseViewProtocol`，因为是进数据，所以可以实现在控制器生命周期的任意处
+
 
  ```objective-c
   @jobs_weakify(self)
@@ -218,6 +220,12 @@
       return nil;
   };
  ```
+也可以在具体的子控制器覆写下列方法
+
+```objective-c
+-(void)backBtnClickEvent:(UIButton *_Nullable)sender;
+```
+
 </details>
 
 <details id="Test">

@@ -282,7 +282,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"iOS 多语言切换")
                                                            attributeSubTitle:JobsInternationalization(@"")];
             
-            viewModel.cls = AppInternationalizationVC.class;
+            viewModel.cls = AppLanguageVC.class;
             [_dataMutArr addObject:viewModel];
         }
         

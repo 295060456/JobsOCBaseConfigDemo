@@ -5,3 +5,62 @@
   Created by User on 7/1/24.
   
 */
+/// 多语言测试
+"App language switch" = "Pagpapalit ng Wika ng App";
+"By System" = "Sumunod sa Sistema";
+"Chinese" = "Tsino";
+"English" = "Ingles";
+"Tagalog" = "Tagalog";
+/// 权限设置
+"NSFaceIDUsageDescription" = "Kailangan ng App ang iyong pahintulot upang ma-access ang iyong Face ID para sa seguridad";
+"NSAppleMusicUsageDescription" = "Magdagdag ng mga track sa iyong music library";
+"NSBluetoothAlwaysUsageDescription" = "Kung hindi pinapayagan, hindi ka makakapagamit ng mga serbisyo na naka-konekta";
+"NSBluetoothPeripheralUsageDescription" = "Kung hindi pinapayagan, hindi ka makakapagamit ng mga serbisyo na naka-konekta";
+"NSCalendarsUsageDescription" = "Kung hindi pinapayagan, hindi ka makakapagdagdag ng mga kalendaryo";
+"NSCameraUsageDescription" = "Kung hindi pinapayagan, hindi ka makakapagkuha ng litrato";
+"NSContactsUsageDescription" = "Impormasyon ng contact directory ay gamitin lamang para sa paghahanap ng mga contact, at laging panatilihing pribado";
+"NSHealthShareUsageDescription" = "Kung hindi pinapayagan, hindi ka makakalahok sa mga aktibidad ng ranggong pangkalusugan";
+"NSHealthUpdateUsageDescription" = "Kung hindi pinapayagan, hindi ka makakalahok sa mga aktibidad ng ranggong pangkalusugan";
+"NSHomeKitUsageDescription" = "Kung hindi pinapayagan, hindi ka makakapagamit ng mga serbisyong pang-smart home";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Kailangan namin ang iyong lokasyon upang magamit ang mga serbisyong paghahanap ng mga malapit na negosyo";
+"NSLocationAlwaysUsageDescription" = "Kailangan namin ang iyong pahintulot, ang impormasyon ng iyong lokasyon ay gamitin para sa kasalukuyang lokasyon";
+"NSLocationWhenInUseUsageDescription" = "Kailangan namin ang iyong lokasyon upang magamit ang mga serbisyong paghahanap ng mga malapit na negosyo";
+"NSMicrophoneUsageDescription" = "Kailangan namin ang pahintulot sa iyong mikropono upang magamit ang mga serbisyong paghahanap gamit ang boses";
+"NSMotionUsageDescription" = "Kailangan namin ang pahintulot sa iyong galaw upang magamit ang mga serbisyong paglalahad ng kumpetisyon sa aktibidad";
+"NSPhotoLibraryAddUsageDescription" = "Kailangan namin ang pahintulot sa iyong gallery upang magamit ang pagpili ng mga larawan";
+"NSPhotoLibraryUsageDescription" = "Kailangan namin ang pahintulot sa iyong gallery upang magamit ang pagpili ng mga larawan";
+"NSRemindersUsageDescription" = "Kailangan namin ang pahintulot sa iyong mga paalaala upang magamit ang pagdaragdag ng mga paalaala";
+"NSSiriUsageDescription" = "Kailangan namin ang pahintulot sa Siri upang magamit ang mga serbisyong Siri";
+"NSSpeechRecognitionUsageDescription" = "Kailangan namin ang pahintulot sa pagkilala ng boses upang magamit ang pagkilala ng boses sa keyboard";
+"NSVideoSubscriberAccountUsageDescription" = "Kailangan namin ang pahintulot sa TV upang magamit ang TV";
+/// TabBarItem
+"Home" = "Home";
+"XiMa" = "XiMa";
+"Recharge" = "Recharge";
+"CustomerService" = "Customer Service";
+"MemberCenter" = "Member Center";
+/// 登陆/注册/忘记密码
+"B\na\nc\nk\nT\no\nL\no\ng\ni\nn" = "Bumalik sa Log-in";
+"L\no\ng\ni\nn" = "Magparehistro ng bagong user";
+"Forgot code" = "Nakalimutan ang password";
+"Back to HomePage" = "Bumalik sa Home";
+"Save the user name" = "I-save ang username";
+"Register" = "Magparehistro";
+"Login" = "Mag-log in";
+"Customer service" = "Customer service";
+"Get" = "Kunin ang verification code";
+/// 其他业务
+"User" = "User";
+"Code" = "Password";
+"Confirm" = "Confirm Password";
+"Telephone" = "Telephone Number";
+"Auth code" = "Auth Code";
+"Play Record" = "Play Record";
+"My Play" = "My Play";
+"Draw it" = "Claim Rewards";
+///
+"Sec" = "Sec";
+"Online customer service" = "Online Customer Service";
+"You can also contact customer service through the following ways" = "You can also contact customer service through the following ways";
+"Later" = "Later";
+"zaixiankefu_en" = "zaixiankefu_zh-Hans";

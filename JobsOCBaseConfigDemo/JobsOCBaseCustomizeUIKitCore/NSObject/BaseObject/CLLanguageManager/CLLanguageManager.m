@@ -13,12 +13,12 @@ static NSString *CLUserLanguageKey = @"CLUserLanguageKey";
 @implementation CLLanguageManager
 
 +(void)setUserLanguage:(nullable NSString *)userLanguage{
-    //跟随手机系统
+    /// 跟随手机系统
     if ([NSString isNullString:userLanguage]) {
         [self resetSystemLanguage];
         return;
     }
-    //用户自定义
+    /// 用户自定义
     [NSUserDefaults.standardUserDefaults setValue:userLanguage forKey:CLUserLanguageKey];
     [NSUserDefaults.standardUserDefaults synchronize];
 }
@@ -26,9 +26,7 @@ static NSString *CLUserLanguageKey = @"CLUserLanguageKey";
 +(nullable NSString *)userLanguage{
     return [NSUserDefaults.standardUserDefaults valueForKey:CLUserLanguageKey];
 }
-/**
- 重置系统语言
- */
+/// 重置系统语言/跟随手机系统
 +(void)resetSystemLanguage{
     [NSUserDefaults.standardUserDefaults removeObjectForKey:CLUserLanguageKey];
     [NSUserDefaults.standardUserDefaults synchronize];

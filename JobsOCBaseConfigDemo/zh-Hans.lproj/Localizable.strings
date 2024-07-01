@@ -5,13 +5,12 @@
   Created by User on 7/1/24.
   
 */
-
 /// 多语言测试
+"App language switch" = "App国际化之应用内部切换语言";
 "By System" = "跟随系统";
 "Chinese" = "中文";
 "English" = "英文";
-"App language switch" = "App国际化之应用内部切换语言";
-
+"Tagalog" = "他加禄语";
 /// 权限设置
 "NSFaceIDUsageDescription" = "App需要您的同意，才能访问您的面容识别功能，用于安全验证";
 "NSAppleMusicUsageDescription" = "添加曲目到您的音乐库";
@@ -59,9 +58,10 @@
 "Play Record" = "洗码记录";
 "My Play" = "我的洗码";
 "Draw it" = "领取洗码";
-/// 
+///
 "Sec" = "秒";
 "Online customer service" = "在线客服";
 "You can also contact customer service through the following ways" = "您还可以通过以下方式联系客服";
 "Later" = "后获取";
 "zaixiankefu_en" = "zaixiankefu_zh-Hans";
+

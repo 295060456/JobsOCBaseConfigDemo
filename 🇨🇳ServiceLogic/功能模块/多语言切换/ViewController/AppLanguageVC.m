@@ -5,9 +5,9 @@
 //  Created by Jobs on 2021/11/19.
 //
 
-#import "AppInternationalizationVC.h"
+#import "AppLanguageVC.h"
 
-@interface AppInternationalizationVC ()
+@interface AppLanguageVC ()
 // UI
 @property(nonatomic,strong)UITableView *tableView;
 // Data
@@ -15,7 +15,7 @@
 
 @end
 
-@implementation AppInternationalizationVC
+@implementation AppLanguageVC
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
@@ -34,7 +34,7 @@
     {
         self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = JobsInternationalization(@"App language switch");
+        self.viewModel.textModel.text = JobsInternationalization(@"App国际化之应用内部切换语言");
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -127,11 +127,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self setAppLanguageAtIndex:indexPath.row
              byNotificationName:nil];// 设置App语言环境并发送全局通知LanguageSwitchNotification
     [self changeTabBarItemTitle:indexPath];///【App语言国际化】更改UITabBarItem的标题
-    
     /// 刷新本界面，且2秒后退出
-    [self.tableView.mj_header beginRefreshing];
+//    [self.tableView.mj_header beginRefreshing];
     @jobs_weakify(self)
-    DispathdDelaySth(2.0, [weak_self backBtnClickEvent:nil]);
+//    DispathdDelaySth(2.0, [weak_self backBtnClickEvent:nil]);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -147,7 +146,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [cell richElementsInCellWithModel:viewModel];
     
     {
-        //    用户没有自己设置的语言，则跟随手机系统
+        // 用户没有自己设置的语言，则跟随手机系统
         if (!CLLanguageManager.userLanguage.length) {
             cell.accessoryType = indexPath.row == 0 ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         } else {
@@ -252,6 +251,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         [_dataMutArr addObject:JobsInternationalization(@"By System")];
         [_dataMutArr addObject:JobsInternationalization(@"Chinese")];
         [_dataMutArr addObject:JobsInternationalization(@"English")];
+        [_dataMutArr addObject:JobsInternationalization(@"Tagalog")];
+        
+//        [_dataMutArr addObject:JobsInternationalization(@"跟随系统")];
+//        [_dataMutArr addObject:JobsInternationalization(@"中文")];
+//        [_dataMutArr addObject:JobsInternationalization(@"英文")];
+//        [_dataMutArr addObject:JobsInternationalization(@"他加禄语")];
         
     }return _dataMutArr;
 }

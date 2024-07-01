@@ -89,7 +89,7 @@
 		840F964427736427004979E9 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F933427736426004979E9 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		840F971727736428004979E9 /* CheckMemFreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95D527736427004979E9 /* CheckMemFreeVC.m */; };
 		840F971827736428004979E9 /* JobsShowObjInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95D827736427004979E9 /* JobsShowObjInfoVC.m */; };
-		840F971A27736428004979E9 /* AppInternationalizationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95DC27736427004979E9 /* AppInternationalizationVC.m */; };
+		840F971A27736428004979E9 /* AppLanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95DC27736427004979E9 /* AppLanguageVC.m */; };
 		84175CAD2C034F0100A535D9 /* LocalNotificationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84175CAC2C034F0100A535D9 /* LocalNotificationsVC.m */; };
 		84175CB32C03558F00A535D9 /* JobsMakeLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 84175CB22C03558F00A535D9 /* JobsMakeLocalNotification.m */; };
 		8424743527C0C32B00831270 /* YTKNetworkStudyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8424743427C0C32B00831270 /* YTKNetworkStudyVC.m */; };
@@ -1092,9 +1092,8 @@
 		840F95D527736427004979E9 /* CheckMemFreeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckMemFreeVC.m; sourceTree = "<group>"; };
 		840F95D727736427004979E9 /* JobsShowObjInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsShowObjInfoVC.h; sourceTree = "<group>"; };
 		840F95D827736427004979E9 /* JobsShowObjInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsShowObjInfoVC.m; sourceTree = "<group>"; };
-		840F95DA27736427004979E9 /* App国际化.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "App国际化.md"; sourceTree = "<group>"; };
-		840F95DC27736427004979E9 /* AppInternationalizationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInternationalizationVC.m; sourceTree = "<group>"; };
-		840F95DD27736427004979E9 /* AppInternationalizationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInternationalizationVC.h; sourceTree = "<group>"; };
+		840F95DC27736427004979E9 /* AppLanguageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLanguageVC.m; sourceTree = "<group>"; };
+		840F95DD27736427004979E9 /* AppLanguageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLanguageVC.h; sourceTree = "<group>"; };
 		840F95DE27736427004979E9 /* JobsDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsDebug.h; sourceTree = "<group>"; };
 		840F95E027736427004979E9 /* DebugLogDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLogDescription.h; sourceTree = "<group>"; };
 		840F95E127736427004979E9 /* DebugLogDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugLogDescription.m; sourceTree = "<group>"; };
@@ -3384,7 +3383,6 @@
 			isa = PBXGroup;
 			children = (
 				840F95D627736427004979E9 /* 查看对象 */,
-				840F95D927736427004979E9 /* App国际化 */,
 				840F95D327736427004979E9 /* CheckMemFreeVC */,
 			);
 			path = DebugTools;
@@ -3406,14 +3404,6 @@
 				840F95D827736427004979E9 /* JobsShowObjInfoVC.m */,
 			);
 			path = "查看对象";
-			sourceTree = "<group>";
-		};
-		840F95D927736427004979E9 /* App国际化 */ = {
-			isa = PBXGroup;
-			children = (
-				840F95DA27736427004979E9 /* App国际化.md */,
-			);
-			path = "App国际化";
 			sourceTree = "<group>";
 		};
 		840F95DF27736427004979E9 /* DebugLogDescription */ = {
@@ -11584,8 +11574,8 @@
 		C5CC22B72C31E70D00A9B626 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				840F95DD27736427004979E9 /* AppInternationalizationVC.h */,
-				840F95DC27736427004979E9 /* AppInternationalizationVC.m */,
+				840F95DD27736427004979E9 /* AppLanguageVC.h */,
+				840F95DC27736427004979E9 /* AppLanguageVC.m */,
 				C5CC22B82C31E75D00A9B626 /* LanguageVC.h */,
 				C5CC22B92C31E75D00A9B626 /* LanguageVC.m */,
 			);
@@ -12776,7 +12766,7 @@
 				844B087A2764CF4800B0513D /* XHLaunchImageView.m in Sources */,
 				C53684D328758C6B00DD7AA7 /* TMSCollectionViewLayout.m in Sources */,
 				C5E8A761286984C300FAB31D /* BaiShaETProjOrderDetailsCVCell.m in Sources */,
-				840F971A27736428004979E9 /* AppInternationalizationVC.m in Sources */,
+				840F971A27736428004979E9 /* AppLanguageVC.m in Sources */,
 				84CA5CD12789587900E46E71 /* AppDelegate+XHLaunchAdDelegate.m in Sources */,
 				840F961127736427004979E9 /* ZBRequestManager.m in Sources */,
 				C52E5CAA2AC07E9800FE5494 /* KTVHCDownload.m in Sources */,
