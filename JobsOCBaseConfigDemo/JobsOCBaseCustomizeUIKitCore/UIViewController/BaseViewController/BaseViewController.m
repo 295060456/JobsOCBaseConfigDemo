@@ -56,7 +56,6 @@ BaseViewControllerProtocol_synthesize
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     /**
      NOTE:
      View controllers presented with custom presentation controllers
