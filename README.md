@@ -24,7 +24,7 @@
 - [ ] 统一的WebView<br>
 ## 几点重要说明
 ### 1、在Apple芯片（目前是M系列）编译失败的解决方案
-* 禁用系统完整性保护 (System Integrity Protection, SIP)   <font color=red>**如果不禁用，会对某些文件夹有读写权限控制**</font>
+* 禁用系统完整性保护 (**S**ystem **I**ntegrity **P**rotection, SIP)   <font color=red>**如果不禁用，会对某些文件夹有读写权限控制**</font>
   * 重启MacOS，长按开机键，直到🌏页面，进入恢复模式
   * 在恢复模式的 macOS 实用工具窗口中，选择“实用工具”菜单，然后选择“终端”以打开终端窗口
     ```shell
@@ -55,72 +55,32 @@
 * `Environment Variables`标签，添加一个新的环境变量。将 `Name` 设置为 `IDEPreferLogStreaming`，将 `Value` 设置为 `YES`
 ![image-20240629161626945](./assets/image-20240629161626945.png)
 
-### 3、iOS Xcode 代码块，提升编码效率必备之选
+### 3、iOS xcode 代码块，提升编码效率必备之选
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 ## 代码讲解
 
 <details id="UIButton">
  <summary><strong>UIButton</strong></summary>
 
-* 兼容新Api，如果还是按照以前的方式创建，你会发现UIButton不正常出现（请看下面的示例代码）<br>
+* 苹果在后续的Api中推出了 UIButtonConfiguration 来设置UIButton，但是这个新Api会存在几大问题
 
-  ```javascript
-  苹果在后续的Api中推出了 UIButtonConfiguration 来设置UIButton，但是这个新Api会存在几大问题
-  1、大多数开发者对这个Api不熟悉
-  2、用了新Api以后，老的Api的一些调用方式可能不会起效果
-  3、大多数时候，我们会涉及到富文本。而富文本和普通的文本之间对于控件有优先级。富文本的优先级最高
-  4、因为要做兼容处理，但是 UIButtonConfiguration 的设置环节非常繁琐
+  * 大多数开发者对这个Api不熟悉
+  * 用了新Api以后，老的Api的一些调用方式可能不会起效果。如果还是按照以前的方式创建，你会发现UIButton不正常出现
+  * 大多数时候，我们会涉及到富文本。而富文本和普通的文本之间对于控件有优先级。富文本的优先级最高
+  * 因为要做兼容处理，但是 UIButtonConfiguration 的设置环节非常繁琐
   
-  所以，为了应对以上的问题，可以快捷键（init.JobsBtn）调代码块来设置 UIButton
-  得出的 UIButton 是没有约束的，需要自己在外界加
-  具体的内部实现，请关注@implementation UIButton (UI)
+* 所以，为了应对以上的问题，可以快捷键（init.JobsBtn）调代码块来设置 UIButton
+
+  * 得出的 UIButton 是没有约束的，需要自己在外界加
+  * 具体的内部实现，请关注`@implementation UIButton (UI)`
   
-  资料来源：
-  Chat GPT 3.5 
-  https://www.jianshu.com/p/12426709420e
-  ```
-  
-  * 资料来源：
-    * [**UIButtonConfiguration**](https://www.jianshu.com/p/12426709420e)
-    * [**Chat GPT 3.5**](https://chatgpt.com/)
-      </details>
-
-<details id="示例代码">
- <summary><strong>示例代码</strong></summary>
-
-* Masonry约束动画<br>
-
-  ```objective-c
-  -(MSMineView2 *)view2{
-      if(!_view2){
-          _view2 = MSMineView2.new;
-          [_view2 richElementsInViewWithModel:nil];
-          [self addSubview:_view2];
-          [_view2 jobsMasonryBeforeBlock:^(MASConstraintMaker * _Nonnull make) {
-              // 添加第一个 _view2 的约束
-              make.width.mas_equalTo(0);
-              make.height.mas_equalTo([MSMineView2 viewSizeWithModel:nil].height);
-              make.right.equalTo(self).offset(JobsWidth(-10));
-              make.top.equalTo(self).offset(JobsWidth(10));
-          }
-                       masonryAfterBlock:^(MASConstraintMaker * _Nonnull make) {
-              // 添加第二个 _view2 的约束
-              make.size.mas_equalTo([MSMineView2 viewSizeWithModel:nil]);
-              make.centerX.equalTo(self);
-              make.top.equalTo(self).offset(JobsWidth(10));
-          }];
-          [_view2 cornerCutToCircleWithCornerRadius:[MSMineView2 viewSizeWithModel:nil].height / 2];
-      }return _view2;
-  }
-  ```
-
-* 用新Api创建一个带富文本的UIButton
+* 用新Api（UIButtonConfiguration）创建一个带富文本的UIButton
 
   ```objective-c
   @property(nonatomic,strong)BaseButton *titleBtn;
   @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
   @property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richTextConfigMutArr;
-
+  
    -(BaseButton *)titleBtn{
        if(!_titleBtn){
            @jobs_weakify(self)
@@ -170,7 +130,7 @@
            [_titleBtn makeBtnLabelByShowingType:UILabelShowingType_03];
        }return _titleBtn;
    }
-
+  
    -(NSMutableArray<NSString *> *)richTextMutArr{
        if (!_richTextMutArr) {
            _richTextMutArr = NSMutableArray.array;
@@ -179,7 +139,7 @@
            [_richTextMutArr addObject:Internationalization(@"Mata值")];
        }return _richTextMutArr;
    }
-
+  
    -(NSMutableArray<RichTextConfig *> *)richTextConfigMutArr{
        if (!_richTextConfigMutArr) {
            _richTextConfigMutArr = NSMutableArray.array;
@@ -191,7 +151,7 @@
                config_01.paragraphStyle = self.jobsParagraphStyleCenter;
                [_richTextConfigMutArr addObject:config_01];
            }
-
+  
            {
                RichTextConfig *config_02 = RichTextConfig.new;
                config_02.font = UIFontWeightRegularSize(14);
@@ -200,7 +160,7 @@
                config_02.paragraphStyle = self.jobsParagraphStyleCenter;
                [_richTextConfigMutArr addObject:config_02];
            }
-
+  
            {
                RichTextConfig *config_03 = RichTextConfig.new;
                config_03.font = UIFontWeightRegularSize(14);
@@ -212,7 +172,62 @@
        }return _richTextConfigMutArr;
    }
   ```
+  
+* 资料来源：
+
+  * * [**UIButtonConfiguration**](https://www.jianshu.com/p/12426709420e)
+    * [**Chat GPT 3.5**](https://chatgpt.com/)
+      </details>
+
+<details id="Masonry约束动画<br>">
+ <summary><strong>Masonry约束动画<br></strong></summary>
+
+  ```objective-c
+  -(MSMineView2 *)view2{
+      if(!_view2){
+          _view2 = MSMineView2.new;
+          [_view2 richElementsInViewWithModel:nil];
+          [self addSubview:_view2];
+          [_view2 jobsMasonryBeforeBlock:^(MASConstraintMaker * _Nonnull make) {
+              // 添加第一个 _view2 的约束
+              make.width.mas_equalTo(0);
+              make.height.mas_equalTo([MSMineView2 viewSizeWithModel:nil].height);
+              make.right.equalTo(self).offset(JobsWidth(-10));
+              make.top.equalTo(self).offset(JobsWidth(10));
+          }
+                       masonryAfterBlock:^(MASConstraintMaker * _Nonnull make) {
+              // 添加第二个 _view2 的约束
+              make.size.mas_equalTo([MSMineView2 viewSizeWithModel:nil]);
+              make.centerX.equalTo(self);
+              make.top.equalTo(self).offset(JobsWidth(10));
+          }];
+          [_view2 cornerCutToCircleWithCornerRadius:[MSMineView2 viewSizeWithModel:nil].height / 2];
+      }return _view2;
+  }
+  ```
 </details>
+
+<details id="退出ViewController的时候，需要做的操作">
+ <summary><strong>退出ViewController的时候，需要做的操作</strong></summary>
+ ```objective-c
+  @jobs_weakify(self)
+  self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
+      @jobs_strongify(self)
+      NSLog(@"退出页面的逻辑");
+      return nil;
+  };
+ ```
+
+</details>
+
+
+
+
+
+
+
+
+
 
 <details id="一些文档和资料">
  <summary><strong>一些文档和资料</strong></summary>
@@ -233,4 +248,4 @@
 * 浏览器打开并输入 
   ```html
   feedbackassistant://
-  ```
+ ```

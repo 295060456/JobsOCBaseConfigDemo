@@ -11,42 +11,42 @@
 #ifndef SERVER_URL_DEFINED
 #define SERVER_URL_DEFINED
 #define server_URL NSObject.BaseUrl
-#endif
+#endif /* SERVER_URL_DEFINED */
 /// 服务器相关
 #ifndef HTTP_REQUEST_TOKEN_KEY_DEFINED
 #define HTTP_REQUEST_TOKEN_KEY_DEFINED
 #define HTTPRequestTokenKey @"token"
-#endif
+#endif /* HTTP_REQUEST_TOKEN_KEY_DEFINED */
 /// 签名key
 #ifndef HTTP_SERVICE_SIGN_KEY_DEFINED
 #define HTTP_SERVICE_SIGN_KEY_DEFINED
 #define HTTPServiceSignKey @"sign"
-#endif
+#endif /* HTTP_SERVICE_SIGN_KEY_DEFINED */
 /// 私钥key
 #ifndef HTTP_SERVICE_KEY_DEFINED
 #define HTTP_SERVICE_KEY_DEFINED
 #define HTTPServiceKey @"privatekey"
-#endif
+#endif /* HTTP_SERVICE_KEY_DEFINED */
 /// 私钥Value
 #ifndef HTTP_SERVICE_KEY_VALUE_DEFINED
 #define HTTP_SERVICE_KEY_VALUE_DEFINED
 #define HTTPServiceKeyValue @"/** 你的私钥 **/"
-#endif
+#endif /* HTTP_SERVICE_KEY_VALUE_DEFINED */
 /// 状态码key
 #ifndef HTTP_SERVICE_RESPONSE_CODE_KEY_DEFINED
 #define HTTP_SERVICE_RESPONSE_CODE_KEY_DEFINED
 #define HTTPServiceResponseCodeKey @"code"
-#endif
+#endif /* HTTP_SERVICE_RESPONSE_CODE_KEY_DEFINED */
 /// 消息key
 #ifndef HTTP_SERVICE_RESPONSE_MSG_KEY_DEFINED
 #define HTTP_SERVICE_RESPONSE_MSG_KEY_DEFINED
 #define HTTPServiceResponseMsgKey @"msg"
-#endif
+#endif /* HTTP_SERVICE_RESPONSE_MSG_KEY_DEFINED */
 /// 数据data
 #ifndef HTTP_SERVICE_RESPONSE_DATA_KEY_DEFINED
 #define HTTP_SERVICE_RESPONSE_DATA_KEY_DEFINED
 #define HTTPServiceResponseDataKey @"data"
-#endif
+#endif /* HTTP_SERVICE_RESPONSE_DATA_KEY_DEFINED */
 /**
  后台定义：
  

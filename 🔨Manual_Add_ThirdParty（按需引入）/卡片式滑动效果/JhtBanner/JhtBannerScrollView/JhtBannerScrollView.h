@@ -12,15 +12,12 @@
 #import <UIKit/UIKit.h>
 #import "JhtBannerCardView.h"
 #import "JhtBannerScrollViewProtocol.h"
-
-/** banner滚动方向 */
+/// banner滚动方向
 #ifndef JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED
 #define JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, JhtBannerViewOrientation) {
-    // 横向
-    BV_Orientation_Horizontal,
-    // 纵向
-    BV_Orientation_Vertical,
+    BV_Orientation_Horizontal,// 横向
+    BV_Orientation_Vertical,// 纵向
 };
 #endif /* JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED */
 
