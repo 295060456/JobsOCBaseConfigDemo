@@ -209,6 +209,7 @@
 
 <details id="退出ViewController的时候，需要做的操作">
  <summary><strong>退出ViewController的时候，需要做的操作</strong></summary>
+
  ```objective-c
   @jobs_weakify(self)
   self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
@@ -217,7 +218,6 @@
       return nil;
   };
  ```
-
 </details>
 
 
