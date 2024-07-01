@@ -10,12 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#ifndef INTERVAL_STYLE_ENUM_DEFINED
+#define INTERVAL_STYLE_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, IntervalStyle) {
-    /// 单位：秒
-    intervalBySec = 0,
-    /// 单位：毫秒
-    intervalByMilliSec
+    intervalBySec = 0,      /// 单位：秒
+    intervalByMilliSec       /// 单位：毫秒
 };
+#endif /* INTERVAL_STYLE_ENUM_DEFINED */
 /// 以应对同一时间不同格式的需求
 @interface JobsTimeFormatterModel : NSObject
 

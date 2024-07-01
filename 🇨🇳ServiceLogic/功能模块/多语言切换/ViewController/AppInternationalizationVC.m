@@ -117,7 +117,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         acell.accessoryType = acell == cell ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
     
-    [self setAppLanguageAtIndexPath:indexPath byNotificationName:nil];// 设置App语言环境并发送全局通知LanguageSwitchNotification
+    [self setAppLanguageAtIndex:indexPath.row
+             byNotificationName:nil];// 设置App语言环境并发送全局通知LanguageSwitchNotification
     [self changeTabBarItemTitle:indexPath];///【App语言国际化】更改UITabBarItem的标题
     
     /// 刷新本界面，且2秒后退出

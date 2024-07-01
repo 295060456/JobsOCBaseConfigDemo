@@ -7,15 +7,18 @@
 
 #import <UIKit/UIKit.h>
 typedef void(^FinishBlock)(NSString* _Nullable key);
-typedef NS_ENUM(NSInteger, NotifiViewState){
-    NotifiViewStateInit = 0, //初始化
-    NotifiViewStateReady, //就绪
-    NotifiViewStateBegin, //开始动画执行
-    NotifiViewStateStart, //开始动画结束，正式进入开始阶段
-    NotifiViewStateShowing, //正在展示view
-    NotifiViewStateEnd, //结束动画开始执行
-    NotifiViewStateFinish //结束动画完成执行，整个view展示的生命周期结束
+#ifndef NOTIFI_VIEW_STATE_ENUM_DEFINED
+#define NOTIFI_VIEW_STATE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, NotifiViewState) {
+    NotifiViewStateInit = 0, // 初始化
+    NotifiViewStateReady, // 就绪
+    NotifiViewStateBegin, // 开始动画执行
+    NotifiViewStateStart, // 开始动画结束，正式进入开始阶段
+    NotifiViewStateShowing, // 正在展示view
+    NotifiViewStateEnd, // 结束动画开始执行
+    NotifiViewStateFinish // 结束动画完成执行，整个view展示的生命周期结束
 };
+#endif /* NOTIFI_VIEW_STATE_ENUM_DEFINED */
 
 #ifndef SD_LOCK
 #define SD_LOCK(lock) dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);

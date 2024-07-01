@@ -21,21 +21,9 @@ https://gitee.com/liuboliu/lbdown-load-manager
 ### 全局设定模块
 
 ## 借鉴的一些东西
-/** 程序从后台恢复时,是否需要展示广告(defailt NO) */
-@property (nonatomic,assign) BOOL showEnterForeground;
-/** 图片广告缩放模式(default UIViewContentModeScaleToFill) */
-@property(nonatomic,assign)UIViewContentMode contentMode;
-/** 设置GIF动图是否只循环播放一次(YES:只播放一次,NO:循环播放,default NO,仅对动图设置有效) */
-@property (nonatomic, assign) BOOL GIFImageCycleOnce;
-
-/** 视频缩放模式(default MPMovieScalingModeAspectFill) */
-@property(nonatomic,assign)MPMovieScalingMode scalingMode XHLaunchAdDeprecated("请使用videoGravity");
-/** 视频缩放模式(default AVLayerVideoGravityResizeAspectFill) */
-@property (nonatomic, copy) AVLayerVideoGravity videoGravity;
-/** 设置视频是否只循环播放一次(YES:只播放一次,NO循环播放,default NO) */
-@property (nonatomic, assign) BOOL videoCycleOnce;
-/** 是否关闭音频(default NO) */
-@property (nonatomic, assign) BOOL muted;
+```objective-c
+#ifndef XHLAUNCHAD_IMAGE_OPTIONS_ENUM_DEFINED
+#define XHLAUNCHAD_IMAGE_OPTIONS_ENUM_DEFINED
 /**
  *  缓存类型
  */
@@ -49,19 +37,42 @@ typedef NS_OPTIONS(NSUInteger, XHLaunchAdImageOptions) {
     /** 后台缓存本次不显示,缓存OK后下次再显示(建议使用这种方式)*/
     XHLaunchAdImageCacheInBackground = 1 << 3
 };
+#endif /* XHLAUNCHAD_IMAGE_OPTIONS_ENUM_DEFINED */
 
 /**
  *  倒计时类型
  */
-typedef NS_ENUM(NSInteger,SkipType) {
-    SkipTypeNone      = 1,//无
+ #ifndef SKIP_TYPE_ENUM_DEFINED
+ #define SKIP_TYPE_ENUM_DEFINED
+ typedef NS_ENUM(NSInteger, SkipType) {
+    SkipTypeNone = 1,              // 无
     /** 方形 */
-    SkipTypeTime      = 2,//方形:倒计时
-    SkipTypeText      = 3,//方形:跳过
-    SkipTypeTimeText  = 4,//方形:倒计时+跳过 (default)
+    SkipTypeTime = 2,              // 方形:倒计时
+    SkipTypeText = 3,              // 方形:跳过
+    SkipTypeTimeText = 4,          // 方形:倒计时+跳过 (default)
     /** 圆形 */
-    SkipTypeRoundTime = 5,//圆形:倒计时
-    SkipTypeRoundText = 6,//圆形:跳过
-    SkipTypeRoundProgressTime = 7,//圆形:进度圈+倒计时
-    SkipTypeRoundProgressText = 8,//圆形:进度圈+跳过
-};
+    SkipTypeRoundTime = 5,         // 圆形:倒计时
+    SkipTypeRoundText = 6,         // 圆形:跳过
+    SkipTypeRoundProgressTime = 7, // 圆形:进度圈+倒计时
+    SkipTypeRoundProgressText = 8  // 圆形:进度圈+跳过
+ };
+ #endif /* SKIP_TYPE_ENUM_DEFINED */
+```
+
+```objective-c
+/** 程序从后台恢复时,是否需要展示广告(defailt NO) */
+@property (nonatomic,assign) BOOL showEnterForeground;
+/** 图片广告缩放模式(default UIViewContentModeScaleToFill) */
+@property(nonatomic,assign)UIViewContentMode contentMode;
+/** 设置GIF动图是否只循环播放一次(YES:只播放一次,NO:循环播放,default NO,仅对动图设置有效) */
+@property (nonatomic, assign) BOOL GIFImageCycleOnce;
+/** 视频缩放模式(default MPMovieScalingModeAspectFill) */
+@property(nonatomic,assign)MPMovieScalingMode scalingMode XHLaunchAdDeprecated("请使用videoGravity");
+/** 视频缩放模式(default AVLayerVideoGravityResizeAspectFill) */
+@property (nonatomic, copy) AVLayerVideoGravity videoGravity;
+/** 设置视频是否只循环播放一次(YES:只播放一次,NO循环播放,default NO) */
+@property (nonatomic, assign) BOOL videoCycleOnce;
+/** 是否关闭音频(default NO) */
+@property (nonatomic, assign) BOOL muted;
+```
+

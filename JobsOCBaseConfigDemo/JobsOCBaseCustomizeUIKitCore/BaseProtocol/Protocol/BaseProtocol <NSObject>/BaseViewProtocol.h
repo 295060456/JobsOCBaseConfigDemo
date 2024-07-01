@@ -14,12 +14,15 @@
 #import "Masonry.h"
 #endif
 
-@class UIViewModel;
-
+#ifndef JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED
+#define JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, JobsHeaderFooterViewStyle) {
     JobsHeaderViewStyle = 0,
     JobsFooterViewStyle
 };
+#endif /* JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED */
+
+@class UIViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
 

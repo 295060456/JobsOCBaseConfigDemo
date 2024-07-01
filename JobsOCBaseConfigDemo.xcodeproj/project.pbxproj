@@ -903,7 +903,6 @@
 		C5C56C4E2C233C43009F2290 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C56C4D2C233C43009F2290 /* libz.tbd */; };
 		C5C56C502C233C4D009F2290 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C56C4F2C233C4D009F2290 /* libsqlite3.tbd */; };
 		C5C56C522C233C55009F2290 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C56C512C233C55009F2290 /* libxml2.tbd */; };
-		C5CC22BA2C31E75D00A9B626 /* LanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CC22B92C31E75D00A9B626 /* LanguageVC.m */; };
 		C5D46FFC284E29A90090D20F /* JobsGetiOSNewestVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D46FFB284E29A90090D20F /* JobsGetiOSNewestVersionModel.m */; };
 		C5E4ABC02858BEED00B782F0 /* UILabelWordRotatingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E4ABBF2858BEED00B782F0 /* UILabelWordRotatingVC.m */; };
 		C5E8A7582869848600FAB31D /* CustomTableViewCellVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E8A7572869848600FAB31D /* CustomTableViewCellVC.m */; };
@@ -932,6 +931,8 @@
 		CE86207A2C2C254B0009C664 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CE8620712C2C254B0009C664 /* README.md */; };
 		CEAAD4712C32758A00349C11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD46F2C32758A00349C11 /* InfoPlist.strings */; };
 		CEAAD47D2C32804000349C11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD4762C327C7A00349C11 /* Localizable.strings */; };
+		CEAAD4822C32875B00349C11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD47E2C32875A00349C11 /* LaunchScreen.storyboard */; };
+		CEAAD4832C32875B00349C11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD4802C32875A00349C11 /* Main.storyboard */; };
 		CED90E942C31954A008D9F68 /* 配置info.plist.md in Resources */ = {isa = PBXBuildFile; fileRef = CED90E912C31954A008D9F68 /* 配置info.plist.md */; };
 		DFEAED65A0CE0960B61EAA74 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19F1CC739164B10E3F364DB /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		FE973CF0DF4FF09D277A1A4E /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72729AEE45FB4BEEB368A595 /* Pods_JobsOCBaseConfigDemoTests.framework */; };
@@ -2836,6 +2837,8 @@
 		CEAAD4792C327DA400349C11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CEAAD47B2C327DAE00349C11 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CEAAD47C2C327DAF00349C11 /* fil-PH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fil-PH"; path = "fil-PH.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		CEAAD47F2C32875A00349C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CEAAD4812C32875A00349C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CED90E912C31954A008D9F68 /* 配置info.plist.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "配置info.plist.md"; sourceTree = "<group>"; };
 		CED90E922C31954A008D9F68 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3409,18 +3412,8 @@
 			isa = PBXGroup;
 			children = (
 				840F95DA27736427004979E9 /* App国际化.md */,
-				840F95DB27736427004979E9 /* AppInternationalizationVC */,
 			);
 			path = "App国际化";
-			sourceTree = "<group>";
-		};
-		840F95DB27736427004979E9 /* AppInternationalizationVC */ = {
-			isa = PBXGroup;
-			children = (
-				840F95DD27736427004979E9 /* AppInternationalizationVC.h */,
-				840F95DC27736427004979E9 /* AppInternationalizationVC.m */,
-			);
-			path = AppInternationalizationVC;
 			sourceTree = "<group>";
 		};
 		840F95DF27736427004979E9 /* DebugLogDescription */ = {
@@ -5031,6 +5024,8 @@
 		84CA5CD427895A6000E46E71 /* 系统创建 */ = {
 			isa = PBXGroup;
 			children = (
+				CEAAD47E2C32875A00349C11 /* LaunchScreen.storyboard */,
+				CEAAD4802C32875A00349C11 /* Main.storyboard */,
 				C57C860E2C228FB400FFC95A /* JobsOCBaseConfigDemo.xcdatamodeld */,
 				844B02252764C8F000B0513D /* main.m */,
 			);
@@ -11589,6 +11584,8 @@
 		C5CC22B72C31E70D00A9B626 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				840F95DD27736427004979E9 /* AppInternationalizationVC.h */,
+				840F95DC27736427004979E9 /* AppInternationalizationVC.m */,
 				C5CC22B82C31E75D00A9B626 /* LanguageVC.h */,
 				C5CC22B92C31E75D00A9B626 /* LanguageVC.m */,
 			);
@@ -11990,6 +11987,7 @@
 				C5C48046284E21E5007916B3 /* NotoSansDisplay-Thin.ttf in Resources */,
 				C5C4803B284E21E5007916B3 /* NotoSans-Light.ttf in Resources */,
 				840F961F27736427004979E9 /* 9@2x.png in Resources */,
+				CEAAD4832C32875B00349C11 /* Main.storyboard in Resources */,
 				84A4920627904A970002A837 /* 左气泡@2x.png in Resources */,
 				840F95F327736427004979E9 /* tab_home_animate.json in Resources */,
 				84562575278BF1FB0067ABB9 /* JobsComment【OutLines 03】.png in Resources */,
@@ -12123,6 +12121,7 @@
 				840F961B27736427004979E9 /* 7@2x.png in Resources */,
 				C5978AD72BE3599700A56125 /* 旋转.png in Resources */,
 				C5978ADB2BE3599700A56125 /* UIViewController+TFPopupView（02）.png in Resources */,
+				CEAAD4822C32875B00349C11 /* LaunchScreen.storyboard in Resources */,
 				C5978AA92BE3599700A56125 /* ZYTextField.bundle in Resources */,
 				C57A2037282CB59F0032156B /* gesture_indicator_selected@2x.png in Resources */,
 				C5C48055284E21E5007916B3 /* NotoSansDisplay-Italic.ttf in Resources */,
@@ -12470,7 +12469,6 @@
 				C539A0342AD69BCF00C8A5E3 /* TKPermissionFolders.m in Sources */,
 				84175CB32C03558F00A535D9 /* JobsMakeLocalNotification.m in Sources */,
 				C5AA8B6F282CE2F00057EB84 /* JobsAppDoorInputViewBaseStyle_1.m in Sources */,
-				C5CC22BA2C31E75D00A9B626 /* LanguageVC.m in Sources */,
 				842475AB27C0D67000831270 /* YTKChainRequest+AnimatingAccessory.m in Sources */,
 				C5978A272BE3599700A56125 /* NSObject+UUID.m in Sources */,
 				840F961827736427004979E9 /* JobsImageNumberViewCVCell.m in Sources */,
@@ -13046,6 +13044,22 @@
 				CEAAD47C2C327DAF00349C11 /* fil-PH */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		CEAAD47E2C32875A00349C11 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEAAD47F2C32875A00349C11 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CEAAD4802C32875A00349C11 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEAAD4812C32875A00349C11 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

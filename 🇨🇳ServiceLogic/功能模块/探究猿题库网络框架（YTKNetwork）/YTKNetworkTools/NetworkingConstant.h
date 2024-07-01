@@ -7,22 +7,46 @@
 
 #ifndef NetworkingConstant_h
 #define NetworkingConstant_h
-
+/// BaseURL
+#ifndef SERVER_URL_DEFINED
+#define SERVER_URL_DEFINED
 #define server_URL NSObject.BaseUrl
+#endif
 /// 服务器相关
+#ifndef HTTP_REQUEST_TOKEN_KEY_DEFINED
+#define HTTP_REQUEST_TOKEN_KEY_DEFINED
 #define HTTPRequestTokenKey @"token"
+#endif
 /// 签名key
+#ifndef HTTP_SERVICE_SIGN_KEY_DEFINED
+#define HTTP_SERVICE_SIGN_KEY_DEFINED
 #define HTTPServiceSignKey @"sign"
+#endif
 /// 私钥key
-#define HTTPServiceKey  @"privatekey"
+#ifndef HTTP_SERVICE_KEY_DEFINED
+#define HTTP_SERVICE_KEY_DEFINED
+#define HTTPServiceKey @"privatekey"
+#endif
 /// 私钥Value
+#ifndef HTTP_SERVICE_KEY_VALUE_DEFINED
+#define HTTP_SERVICE_KEY_VALUE_DEFINED
 #define HTTPServiceKeyValue @"/** 你的私钥 **/"
+#endif
 /// 状态码key
+#ifndef HTTP_SERVICE_RESPONSE_CODE_KEY_DEFINED
+#define HTTP_SERVICE_RESPONSE_CODE_KEY_DEFINED
 #define HTTPServiceResponseCodeKey @"code"
+#endif
 /// 消息key
+#ifndef HTTP_SERVICE_RESPONSE_MSG_KEY_DEFINED
+#define HTTP_SERVICE_RESPONSE_MSG_KEY_DEFINED
 #define HTTPServiceResponseMsgKey @"msg"
+#endif
 /// 数据data
-#define HTTPServiceResponseDataKey  @"data"
+#ifndef HTTP_SERVICE_RESPONSE_DATA_KEY_DEFINED
+#define HTTP_SERVICE_RESPONSE_DATA_KEY_DEFINED
+#define HTTPServiceResponseDataKey @"data"
+#endif
 /**
  后台定义：
  
@@ -38,9 +62,10 @@
  
  【需要权限的接口】请求头加上authorization字段，值为服务器颁发的jwt令牌。令牌无感刷新，需实时更新
  */
+#ifndef HTTP_RESPONSE_CODE_ENUM_DEFINED
+#define HTTP_RESPONSE_CODE_ENUM_DEFINED
 /// 请求数据返回的状态码、根据自己的服务端数据来
 typedef NS_ENUM(NSInteger, HTTPResponseCode) {//KKK
-    
     HTTPResponseCodeServeError = -1,/// 服务器异常
     HTTPResponseCodeSuccess = 0,/// 请求成功
     HTTPResponseCodeLoginDate = 1,/// 登录已过期，请重新登录
@@ -51,15 +76,16 @@ typedef NS_ENUM(NSInteger, HTTPResponseCode) {//KKK
     HTTPResponseCodeOffline = 8/// 帐号已在其他设备登录
     ///其他代号，展示msg内容即可
 };
+#endif /* HTTP_RESPONSE_CODE_ENUM_DEFINED */
 
+#ifndef HTTP_REQUEST_HEADER_LANGUAGE_TYPE_ENUM_DEFINED
+#define HTTP_REQUEST_HEADER_LANGUAGE_TYPE_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, HTTPRequestHeaderLanguageType) {
-    /// 英文
-    HTTPRequestHeaderLanguageEn,
-    /// 中文
-    HTTPRequestHeaderLanguageCN,
-    /// 其他语言
-    HTTPRequestHeaderLanguageOther
+    HTTPRequestHeaderLanguageEn,/// 英文
+    HTTPRequestHeaderLanguageCN,/// 中文
+    HTTPRequestHeaderLanguageOther/// 其他语言
 };
+#endif /* HTTP_REQUEST_HEADER_LANGUAGE_TYPE_ENUM_DEFINED */
 
 static NSString *const HTTPServiceErrorDomain = @"HTTPServiceErrorDomain";/// The Http request error domain
 static NSString *const HTTPServiceErrorResponseCodeKey = @"HTTPServiceErrorResponseCodeKey";/// 请求成功，但statusCode != 0

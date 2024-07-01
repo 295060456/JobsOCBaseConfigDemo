@@ -13,20 +13,25 @@
 #import "JhtBannerCardView.h"
 #import "JhtBannerScrollViewProtocol.h"
 
-@class JhtBannerScrollView;
-
-#define WidthScale375 (([[UIScreen mainScreen] bounds].size.width) / 375)
-
-/** banner view（整条view） */
-@interface JhtBannerScrollView : UIView
-
 /** banner滚动方向 */
+#ifndef JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED
+#define JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, JhtBannerViewOrientation) {
     // 横向
     BV_Orientation_Horizontal,
     // 纵向
     BV_Orientation_Vertical,
 };
+#endif /* JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED */
+
+#ifndef WIDTH_SCALE_375_DEFINED
+#define WIDTH_SCALE_375_DEFINED
+#define WidthScale375 (([[UIScreen mainScreen] bounds].size.width) / 375)
+#endif /* WIDTH_SCALE_375_DEFINED */
+
+@class JhtBannerScrollView;
+/** banner view（整条view） */
+@interface JhtBannerScrollView : UIView
 /** 滚动方向
  *	default: BV_Orientation_Horizontal
  */

@@ -24,12 +24,14 @@
 #define StorageID @"StorageID"
 #endif
 
-
+#ifndef HOT_SEARCH_STYLE_ENUM_DEFINED
+#define HOT_SEARCH_STYLE_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, HotSearchStyle) {
-    HotSearchStyle_1 = 0,//横排自适应提行
-    HotSearchStyle_2,//一行N列（默认N = 2），前三颜色突出表示
-    HotSearchStyle_3,//暂时未定义
+    HotSearchStyle_1 = 0, /// 横排自适应提行
+    HotSearchStyle_2,     /// 一行N列（默认N = 2），前三颜色突出表示
+    HotSearchStyle_3,     /// 暂时未定义
 };
+#endif /* HOT_SEARCH_STYLE_ENUM_DEFINED */
 /// 取数据
 static inline NSArray *_Nullable JobsSearchReadData(void){
     return (NSArray *)[NSUserDefaults readWithKey:StorageID];

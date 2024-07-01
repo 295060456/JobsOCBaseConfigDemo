@@ -8,11 +8,14 @@
 #import <Foundation/Foundation.h>
 #import "MacroDef_Func.h"
 
+#ifndef DISPATCH_TIMER_STATE_ENUM_DEFINED
+#define DISPATCH_TIMER_STATE_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, DispatchTimerState) {
     DispatchTimerState_init = 0,
     DispatchTimerState_resume,
     DispatchTimerState_suspend
 };
+#endif /* DISPATCH_TIMER_STATE_ENUM_DEFINED */
 
 NS_ASSUME_NONNULL_BEGIN
 /**

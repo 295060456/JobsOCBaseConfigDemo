@@ -36,27 +36,30 @@
  iPhone 14 Pro Max                            6.7                       460                  430 * 932          1290 * 2796     @3x
  ----------------------------------------------------------------------------
  */
+#ifndef iPhScrPxType_h
+#define iPhScrPxType_h
 typedef NS_ENUM(NSUInteger, iPhScrPxType) {
     iPhScrPxType_None,
-    iPhScrPxType_4_4S,// 屏幕分辨率(px) = 640 * 960
-    iPhScrPxType_5_5C_5S_SE,// 屏幕分辨率(px) = 640 * 1136
-    iPhScrPxType_6_6S_7_8_SE2,// 屏幕分辨率(px) = 750 * 1334
-    iPhScrPxType_6_6S_7_8Plus,// 屏幕分辨率(px) = 1242 * 2208
-    /// 从这里开始刘海屏
-    iPhScrPxType_X_XS_11Pro,// 屏幕分辨率(px) = 1125 * 2436
-    iPhScrPxType_Xr_11,// 屏幕分辨率(px) = 828 * 1792
+    iPhScrPxType_4_4S,          // 屏幕分辨率(px) = 640 * 960
+    iPhScrPxType_5_5C_5S_SE,    // 屏幕分辨率(px) = 640 * 1136
+    iPhScrPxType_6_6S_7_8_SE2,  // 屏幕分辨率(px) = 750 * 1334
+    iPhScrPxType_6_6S_7_8Plus,  // 屏幕分辨率(px) = 1242 * 2208
+    // 从这里开始刘海屏
+    iPhScrPxType_X_XS_11Pro,    // 屏幕分辨率(px) = 1125 * 2436
+    iPhScrPxType_Xr_11,         // 屏幕分辨率(px) = 828 * 1792
     iPhScrPxType_XSMax_11ProMax,// 屏幕分辨率(px) = 1242 * 2688
-    iPhScrPxType_12mini,// 屏幕分辨率(px) = 1125 * 2436
-    iPhScrPxType_12_12Pro,// 屏幕分辨率(px) = 1170 * 2532
-    iPhScrPxType_12ProMax,// 屏幕分辨率(px) = 1284 * 2778
-    iPhScrPxType_13mini,// 屏幕分辨率(px) = 1125 * 2436
-    iPhScrPxType_13_13Pro,// 屏幕分辨率(px) = 1170 * 2532
-    iPhScrPxType_13ProMax,// 屏幕分辨率(px) = 1284 * 2778
-    iPhScrPxType_14,// 屏幕分辨率(px) = 1125 * 2436
-    iPhScrPxType_14Plus,// 屏幕分辨率(px) = 1284 * 2778
-    iPhScrPxType_14Pro,// 屏幕分辨率(px) = 1179 * 2556
-    iPhScrPxType_14ProMax,// 屏幕分辨率(px) = 1290 * 2796
+    iPhScrPxType_12mini,        // 屏幕分辨率(px) = 1125 * 2436
+    iPhScrPxType_12_12Pro,      // 屏幕分辨率(px) = 1170 * 2532
+    iPhScrPxType_12ProMax,      // 屏幕分辨率(px) = 1284 * 2778
+    iPhScrPxType_13mini,        // 屏幕分辨率(px) = 1125 * 2436
+    iPhScrPxType_13_13Pro,      // 屏幕分辨率(px) = 1170 * 2532
+    iPhScrPxType_13ProMax,      // 屏幕分辨率(px) = 1284 * 2778
+    iPhScrPxType_14,            // 屏幕分辨率(px) = 1125 * 2436
+    iPhScrPxType_14Plus,        // 屏幕分辨率(px) = 1284 * 2778
+    iPhScrPxType_14Pro,         // 屏幕分辨率(px) = 1179 * 2556
+    iPhScrPxType_14ProMax,      // 屏幕分辨率(px) = 1290 * 2796
 };
+#endif /* iPhScrPxType_h */
 /// 获取当前iOS移动设备的屏幕分辨率
 static inline iPhScrPxType iPhScrPx(void){
     if([UIDevice.platformIDStr isEqualToString:@"iPhone3,1"]||// iPhone 4 (GSM)

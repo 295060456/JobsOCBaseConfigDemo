@@ -8,47 +8,45 @@
 #ifndef NSObject_h
 #define NSObject_h
 
-typedef struct{
+#ifndef JobsIndexPath_h
+#define JobsIndexPath_h
+typedef struct {
     NSInteger section;
     NSInteger rowOrItem;
-}JobsIndexPath;
+} JobsIndexPath;
+#endif /* JobsIndexPath_h */
 
+#ifndef CompareRes_h
+#define CompareRes_h
 typedef NS_ENUM(NSInteger, CompareRes) {
     CompareRes_Error,
-    /// >
-    CompareRes_MoreThan,
-    /// ==
-    CompareRes_Equal,
-    /// <
-    CompareRes_LessThan
+    CompareRes_MoreThan,  /// >
+    CompareRes_Equal,     /// ==
+    CompareRes_LessThan   /// <
 };
+#endif /* CompareRes_h */
 
+#ifndef JobsSearchStrategy_h
+#define JobsSearchStrategy_h
 typedef NS_ENUM(NSInteger, JobsSearchStrategy) {
-    /// 精确查询
-    JobsSearchStrategy_Accurate = 0,
-    /// 模糊查询
-    JobsSearchStrategy_Fuzzy
+    JobsSearchStrategy_Accurate = 0, /// 精确查询
+    JobsSearchStrategy_Fuzzy         /// 模糊查询
 };
+#endif /* JobsSearchStrategy_h */
 
+#ifndef ScrollDirection_h
+#define ScrollDirection_h
 typedef NS_ENUM(NSInteger, ScrollDirection) {
     ScrollDirectionNone = 0,
-    /// 右👉🏻
-    ScrollDirectionRight,
-    /// 左👈🏻
-    ScrollDirectionLeft,
-    /// 上面👆🏻
-    ScrollDirectionUp,
-    /// 下面👇🏻
-    ScrollDirectionDown,
-    /// 右上👉🏻👆🏻
-    ScrollDirectionRight_UP,
-    /// 左上👈🏻👆🏻
-    ScrollDirectionLeft_UP,
-    /// 右下👉🏻👇🏻
-    ScrollDirectionRight_Down,
-    /// 左下👈🏻👇🏻
-    ScrollDirectionLeft_Down,
+    ScrollDirectionRight,       /// 右👉🏻
+    ScrollDirectionLeft,        /// 左👈🏻
+    ScrollDirectionUp,          /// 上面👆🏻
+    ScrollDirectionDown,        /// 下面👇🏻
+    ScrollDirectionRight_UP,    /// 右上👉🏻👆🏻
+    ScrollDirectionLeft_UP,     /// 左上👈🏻👆🏻
+    ScrollDirectionRight_Down,  /// 右下👉🏻👇🏻
+    ScrollDirectionLeft_Down    /// 左下👈🏻👇🏻
 };
-
+#endif /* ScrollDirection_h */
 
 #endif /* NSObject_h */

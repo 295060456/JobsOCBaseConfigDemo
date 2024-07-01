@@ -320,7 +320,9 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.textModel = textModel;
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
-                NSLog(@"切换当前语言环境为中国大陆🇨🇳-简体中文");
+                NSLog(@"切换当前语言环境为中国大陆🇨🇳-简体中文");/// JobsIndexPath
+                [self setAppLanguageAtIndex:0
+                         byNotificationName:nil];
                 return nil;
             };
             [_dataMutArr addObject:viewModel];
@@ -337,6 +339,8 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
                 NSLog(@"切换当前语言环境为美国🇺🇸-英语");
+                [self setAppLanguageAtIndex:1
+                         byNotificationName:nil];
                 return nil;
             };
             [_dataMutArr addObject:viewModel];
@@ -344,7 +348,7 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             UITextModel *textModel = UITextModel.new;
-            textModel.text = JobsInternationalization(@"切换当前语言环境为他加禄语");
+            textModel.text = JobsInternationalization(@"切换当前语言环境为菲律宾他加禄语");
             textModel.textCor = JobsRedColor;
             textModel.textAlignment = NSTextAlignmentCenter;
 
@@ -353,6 +357,8 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
                 NSLog(@"切换当前语言环境为菲律宾🇵🇭-他加禄语");
+                [self setAppLanguageAtIndex:2
+                         byNotificationName:nil];
                 return nil;
             };
             [_dataMutArr addObject:viewModel];

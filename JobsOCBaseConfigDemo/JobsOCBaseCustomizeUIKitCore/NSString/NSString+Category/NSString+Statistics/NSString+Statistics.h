@@ -7,12 +7,13 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger,StatisticsAlphabetNumberType) {
-    /// 统计汉字字数
-    StatisticsAlphabetNumberType_Chinese = 0,
-    /// 统计英文字母数字
-    StatisticsAlphabetNumberType_English
+#ifndef StatisticsAlphabetNumberType_h
+#define StatisticsAlphabetNumberType_h
+typedef NS_ENUM(NSInteger, StatisticsAlphabetNumberType) {
+    StatisticsAlphabetNumberType_Chinese = 0,  /// 统计汉字字数
+    StatisticsAlphabetNumberType_English      /// 统计英文字母数字
 };
+#endif /* StatisticsAlphabetNumberType_h */
 
 NS_ASSUME_NONNULL_BEGIN
 

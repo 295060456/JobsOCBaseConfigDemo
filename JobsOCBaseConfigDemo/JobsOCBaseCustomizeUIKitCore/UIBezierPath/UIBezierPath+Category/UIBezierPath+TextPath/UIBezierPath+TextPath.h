@@ -11,12 +11,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#ifndef TransformLayerDirectionType_h
+#define TransformLayerDirectionType_h
 typedef NS_ENUM(NSUInteger, TransformLayerDirectionType) {
-    TransformLayerDirectionUp = 0, /// 文字方向朝上(默认正常)
-    TransformLayerDirectionLeft,/// 文字方向朝左
-    TransformLayerDirectionDown,/// 文字方向朝下
-    TransformLayerDirectionRight/// 文字方向朝右
+    TransformLayerDirectionUp = 0,    /// 文字方向朝上(默认正常)
+    TransformLayerDirectionLeft,      /// 文字方向朝左
+    TransformLayerDirectionDown,      /// 文字方向朝下
+    TransformLayerDirectionRight      /// 文字方向朝右
 };
+#endif /* TransformLayerDirectionType_h */
 
 @interface UIBezierPath (TextPath)
 

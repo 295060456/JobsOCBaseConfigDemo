@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "JobsDefineAllEnumHeader.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
 #import <ReactiveObjC/ReactiveObjC.h>
@@ -44,8 +45,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///【监听通知】设置App语言环境
 -(void)monitorAppLanguage;//NSObject (Notification)
 ///【发通知】设置App语言环境
--(void)setAppLanguageAtIndexPath:(nonnull NSIndexPath *)indexPath
-              byNotificationName:(nullable NSString *)NotificationName;
+-(void)setAppLanguageAtIndex:(NSInteger)index
+          byNotificationName:(nullable NSString *)NotificationName;
+///【发通知】设置App语言环境
+-(void)setAppLanguageAtAppLanguage:(AppLanguage)appLanguage
+                byNotificationName:(nullable NSString *)NotificationName;
 /// 接收通知并相应的方法【在分类或者基类中实现会屏蔽具体子类的相关实现】
 -(void)languageSwitchNotification:(nonnull NSNotification *)notification;//在具体子类进行实现
 #pragma mark —— 单例化和销毁

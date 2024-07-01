@@ -6,6 +6,7 @@
 //
 
 #import "BaseViewController.h"
+#import "NSObject+Notification.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

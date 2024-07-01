@@ -32,7 +32,6 @@
 
 // 测试专用
 #import "JobsShowObjInfoVC.h"// 查看对象
-#import "AppInternationalizationVC.h"// 国际化
 
 // App 的所有网络请求Api
 #import "DDNetworkingHeader.h"
@@ -88,6 +87,6 @@
 #import "LandscapeSwitchVC.h"
 #import "WidgetVC.h"
 #import "HotRefreshVC.h"
-#import "LanguageVC.h"
+#import "AppInternationalizationVC.h"// 国际化
 
 #endif /* Other_h */

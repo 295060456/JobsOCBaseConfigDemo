@@ -25,17 +25,27 @@
                      withSelector:@selector(languageSwitchNotification:)];
 }
 ///【发通知】设置App语言环境
--(void)setAppLanguageAtIndexPath:(nonnull NSIndexPath *)indexPath
-              byNotificationName:(nullable NSString *)NotificationName{
-    switch (indexPath.row) {
-        case 0:{
-            [CLLanguageManager setUserLanguage:@"en"];
-        }break;
-        case 1:{
+-(void)setAppLanguageAtIndex:(NSInteger)index
+          byNotificationName:(nullable NSString *)NotificationName{
+    [self setAppLanguageAtAppLanguage:index
+                   byNotificationName:NotificationName];
+    /// 发通知，通知需要更改的地方进行修改
+    JobsPostNotificationOnMainThread(LanguageSwitchNotification,
+                                 CLLanguageManager.userLanguage,
+                                 nil);
+}
+///【发通知】设置App语言环境
+-(void)setAppLanguageAtAppLanguage:(AppLanguage)appLanguage
+          byNotificationName:(nullable NSString *)NotificationName{
+    switch (appLanguage) {
+        case AppLanguageChineseSimplified:{
             [CLLanguageManager setUserLanguage:@"zh-Hans"];
         }break;
-        case 2:{
+        case AppLanguageEnglish:{
             [CLLanguageManager setUserLanguage:@"en"];
+        }break;
+        case AppLanguageTagalog:{
+            [CLLanguageManager setUserLanguage:@"tl"];
         }break;
             
         default:
