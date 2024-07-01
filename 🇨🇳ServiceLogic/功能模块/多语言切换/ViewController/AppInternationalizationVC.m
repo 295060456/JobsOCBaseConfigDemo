@@ -50,6 +50,13 @@
     [self setGKNav];
     [self setGKNavBackBtn];
     self.tableView.alpha = 1;
+    @jobs_weakify(self)
+    self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
+        @jobs_strongify(self)
+        NSLog(@"退出页面的逻辑");
+        
+        return nil;
+    };
 }
 
 -(void)viewWillAppear:(BOOL)animated{

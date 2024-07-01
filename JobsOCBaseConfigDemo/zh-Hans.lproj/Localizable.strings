@@ -7,8 +7,10 @@
 */
 
 /// 多语言测试
-"Change the current language environment to Simplified Chinese" = "切换当前语言环境为简体中文";
-"Change the current language environment to English" = "切换当前语言环境为英语";
+"By System" = "跟随系统";
+"Chinese" = "中文";
+"English" = "英文";
+"App language switch" = "App国际化之应用内部切换语言";
 
 /// 权限设置
 "NSFaceIDUsageDescription" = "App需要您的同意，才能访问您的面容识别功能，用于安全验证";
@@ -32,18 +34,13 @@
 "NSSiriUsageDescription" = "我们需要获取你的Siri权限以方便完成Siri建议功能";
 "NSSpeechRecognitionUsageDescription" = "我们需要获取你的语音识别功能已完成键盘语音识别输入功能";
 "NSVideoSubscriberAccountUsageDescription" = "我们需要获取你的TV权限";
-
-"By System" = "跟随系统";
-"Chinese" = "中文";
-"English" = "英文";
-"App language switch" = "App国际化之应用内部切换语言";
-
+/// TabBarItem
 "Home" = "首页";
 "XiMa" = "洗码";
 "Recharge" = "充值";
 "CustomerService" = "客服";
 "MemberCenter" = "会员中心";
-
+/// 登陆/注册/忘记密码
 "B\na\nc\nk\nT\no\nL\no\ng\ni\nn" = "返\n回\n登\n录";
 "L\no\ng\ni\nn" = "新\n用\n户\n注\n册";
 "Forgot code" = "忘记密码";
@@ -53,7 +50,7 @@
 "Login" = "登录";
 "Customer service" = "人工客服";
 "Get" = "获取验证码";
-
+/// 其他业务
 "User" = "用户名";
 "Code" = "密码";
 "Confirm" = "确认密码";
@@ -62,7 +59,7 @@
 "Play Record" = "洗码记录";
 "My Play" = "我的洗码";
 "Draw it" = "领取洗码";
-
+/// 
 "Sec" = "秒";
 "Online customer service" = "在线客服";
 "You can also contact customer service through the following ways" = "您还可以通过以下方式联系客服";

@@ -12,52 +12,66 @@
 #import "MacroDef_SysWarning.h"
 #import "MacroDef_AppDeviceScreenSize.h"
 #import "UIDevice+XMUtils.h"
-/// 资料来源：https://tommygirl.cn/2022/09/15/iPhone_dev_size/
+/// 资料来源：
+/// https://tommygirl.cn/2022/09/15/iPhone_dev_size/
+/// https://chatgpt.com/
 #pragma mark —— 屏幕尺寸/启动图作图大小 (从 iPhone 4 开始统计)
 /**
-      型号                                 屏幕尺寸(inch)      屏幕密度(ppi)      屏幕宽高(pt)      屏幕分辨率(px)      倍图
- -----------------------------------------------------------------------------
- iPhone 4/4S                                       3.5                       326                  320 * 480          640 * 960          @2x
- iPhone 5/5C/5S/SE                            4.0                       326                  320 * 568          640 * 1136        @2x
- iPhone 6/6S/7/8/SE 2                         4.7                       326                  375 * 667          750 * 1334        @2x
- iPhone 6/6S/7/8 Plus                         5.5                       401                  414 * 736          1242 * 2208      @3x
- iPhone X / XS / 11 Pro                       5.8                       458                  375 * 812          1125 * 2436      @3x
- iPhone Xr / 11                                    6.1                       326                  414 * 896           828 * 1792       @2x
- iPhone XS Max / 11 Pro Max             6.5                       458                  414 * 896          1242 * 2688      @3x
- iPhone 12 mini                                   5.4                       476                  375 * 812          1125 * 2436      @3x
- iPhone 12 / 12 Pro                             6.1                       460                  390 * 844          1170 * 2532      @3x
- iPhone 12 Pro Max                            6.7                       458                  428 * 926          1284 * 2778      @3x
- iPhone 13 mini                                   5.4                       476                  375 * 812          1125 * 2436      @3x
- iPhone 13 / 13 Pro                             6.1                       460                  390 * 844          1170 * 2532      @3x
- iPhone 13 Pro Max                            6.7                       458                  428 * 926          1284 * 2778      @3x
- iPhone 14                                          6.1                       460                  375 * 812          1125 * 2436      @3x
- iPhone 14 Plus                                  6.7                       458                  428 * 926          1284 * 2778      @3x
- iPhone 14 Pro                                    6.1                       460                  393 * 852          1179 * 2556     @3x
- iPhone 14 Pro Max                            6.7                       460                  430 * 932          1290 * 2796     @3x
- ----------------------------------------------------------------------------
+      型号                                 屏幕尺寸(inch)      屏幕密度(ppi)      屏幕宽高(pt)             屏幕分辨率(px)             倍图
+ ---------------------------------------------------------------------------------------
+ iPhone 4/4S                                       3.5                       326                  320 * 480             640 * 960                      @2x
+ iPhone 5/5C/5S/SE                            4.0                       326                  320 * 568             640 * 1136                    @2x
+ iPhone 6/6S/7/8/SE 2                        4.7                       326                  375 * 667             750 * 1334                    @2x
+ iPhone 6/6S/7/8 Plus                         5.5                       401                  414 * 736             1242 * 2208                  @3x
+ iPhone X / XS / 11 Pro                       5.8                       458                  375 * 812             1125 * 2436                  @3x
+ iPhone Xr / 11                                    6.1                       326                  414 * 896             828 * 1792                    @2x
+ iPhone XS Max / 11 Pro Max             6.5                       458                  414 * 896             1242 * 2688                  @3x
+ iPhone 12 mini                                   5.4                       476                  375 * 812             1125 * 2436                   @3x
+ iPhone 12 / 12 Pro                             6.1                       460                  390 * 844             1170 * 2532                   @3x
+ iPhone 12 Pro Max                            6.7                       458                  428 * 926             1284 * 2778                   @3x
+ iPhone 13 mini                                   5.4                       476                  375 * 812             1125 * 2436                   @3x
+ iPhone 13 / 13 Pro                             6.1                       460                  390 * 844             1170 * 2532                   @3x
+ iPhone 13 Pro Max                            6.7                       458                  428 * 926             1284 * 2778                   @3x
+ iPhone 14                                          6.1                       460                  375 * 812             1125 * 2436                    @3x
+ iPhone 14 Plus                                  6.7                       458                  428 * 926             1284 * 2778                    @3x
+ iPhone 14 Pro                                    6.1                       460                  393 * 852             1179 * 2556                    @3x
+ iPhone 14 Pro Max                            6.7                       460                  430 * 932             1290 * 2796                    @3x
+ iPhone 15                                          6.1                       460                  393*852             1179*2556                        @3x
+ iPhone 15 Plus                                   6.7                       460                  430*932             1290*2796                       @3x
+ iPhone 15 Pro                                    6.1                       463                  375*812             1179*2556                        @3x
+ iPhone 15 Pro Max                            6.7                       463                  414*896             1290*2796                        @3x
+ --------------------------------------------------------------------------------------
  */
 #ifndef iPhScrPxType_h
 #define iPhScrPxType_h
 typedef NS_ENUM(NSUInteger, iPhScrPxType) {
     iPhScrPxType_None,
-    iPhScrPxType_4_4S,          // 屏幕分辨率(px) = 640 * 960
-    iPhScrPxType_5_5C_5S_SE,    // 屏幕分辨率(px) = 640 * 1136
-    iPhScrPxType_6_6S_7_8_SE2,  // 屏幕分辨率(px) = 750 * 1334
-    iPhScrPxType_6_6S_7_8Plus,  // 屏幕分辨率(px) = 1242 * 2208
+    iPhScrPxType_4_4S,          /// 屏幕分辨率(px) = 640 * 960
+    iPhScrPxType_5_5C_5S_SE,    /// 屏幕分辨率(px) = 640 * 1136
+    iPhScrPxType_6_6S_7_8_SE2,  /// 屏幕分辨率(px) = 750 * 1334
+    iPhScrPxType_6_6S_7_8Plus,  /// 屏幕分辨率(px) = 1242 * 2208
     // 从这里开始刘海屏
-    iPhScrPxType_X_XS_11Pro,    // 屏幕分辨率(px) = 1125 * 2436
-    iPhScrPxType_Xr_11,         // 屏幕分辨率(px) = 828 * 1792
-    iPhScrPxType_XSMax_11ProMax,// 屏幕分辨率(px) = 1242 * 2688
-    iPhScrPxType_12mini,        // 屏幕分辨率(px) = 1125 * 2436
-    iPhScrPxType_12_12Pro,      // 屏幕分辨率(px) = 1170 * 2532
-    iPhScrPxType_12ProMax,      // 屏幕分辨率(px) = 1284 * 2778
-    iPhScrPxType_13mini,        // 屏幕分辨率(px) = 1125 * 2436
-    iPhScrPxType_13_13Pro,      // 屏幕分辨率(px) = 1170 * 2532
-    iPhScrPxType_13ProMax,      // 屏幕分辨率(px) = 1284 * 2778
-    iPhScrPxType_14,            // 屏幕分辨率(px) = 1125 * 2436
-    iPhScrPxType_14Plus,        // 屏幕分辨率(px) = 1284 * 2778
-    iPhScrPxType_14Pro,         // 屏幕分辨率(px) = 1179 * 2556
-    iPhScrPxType_14ProMax,      // 屏幕分辨率(px) = 1290 * 2796
+    iPhScrPxType_X_XS_11Pro,    /// 屏幕分辨率(px) = 1125 * 2436
+    iPhScrPxType_Xr_11,         /// 屏幕分辨率(px) = 828 * 1792
+    iPhScrPxType_XSMax_11ProMax,/// 屏幕分辨率(px) = 1242 * 2688
+    // iPhone 12 系列
+    iPhScrPxType_12mini,        /// 屏幕分辨率(px) = 1125 * 2436
+    iPhScrPxType_12_12Pro,      /// 屏幕分辨率(px) = 1170 * 2532
+    iPhScrPxType_12ProMax,      /// 屏幕分辨率(px) = 1284 * 2778
+    // iPhone 13 系列
+    iPhScrPxType_13mini,        /// 屏幕分辨率(px) = 1125 * 2436
+    iPhScrPxType_13_13Pro,      /// 屏幕分辨率(px) = 1170 * 2532
+    iPhScrPxType_13ProMax,      /// 屏幕分辨率(px) = 1284 * 2778
+    // iPhone 14 系列
+    iPhScrPxType_14,            /// 屏幕分辨率(px) = 1125 * 2436
+    iPhScrPxType_14Plus,        /// 屏幕分辨率(px) = 1284 * 2778
+    iPhScrPxType_14Pro,         /// 屏幕分辨率(px) = 1179 * 2556
+    iPhScrPxType_14ProMax,      /// 屏幕分辨率(px) = 1290 * 2796
+    // iPhone 15 系列
+    iPhScrPxType_15,            /// 屏幕分辨率(px) = 1170 * 2532
+    iPhScrPxType_15Plus,        /// 屏幕分辨率(px) = 1284 * 2778
+    iPhScrPxType_15Pro,         /// 屏幕分辨率(px) = 1179 * 2556
+    iPhScrPxType_15ProMax,      /// 屏幕分辨率(px) = 1290 * 2796
 };
 #endif /* iPhScrPxType_h */
 /// 获取当前iOS移动设备的屏幕分辨率
@@ -89,16 +103,17 @@ static inline iPhScrPxType iPhScrPx(void){
         return iPhScrPxType_6_6S_7_8_SE2;
     }
     
-    if([UIDevice.platformIDStr isEqualToString:@"iPhone7,2"]||// iPhone 6
-       [UIDevice.platformIDStr isEqualToString:@"iPhone8,1"]||// iPhone 6s
-       [UIDevice.platformIDStr isEqualToString:@"iPhone9,1"]||// iPhone 7
-       [UIDevice.platformIDStr isEqualToString:@"iPhone9,3"]||// iPhone 7
+    if([UIDevice.platformIDStr isEqualToString:@"iPhone7,1"]||// iPhone 6 Plus
+       [UIDevice.platformIDStr isEqualToString:@"iPhone8,2"]||// iPhone 6s Plus
+       [UIDevice.platformIDStr isEqualToString:@"iPhone9,2"]||// iPhone 7 Plus
+       [UIDevice.platformIDStr isEqualToString:@"iPhone9,4"]||// iPhone 7 Plus
        [UIDevice.platformIDStr isEqualToString:@"iPhone10,2"]||// iPhone 8 Plus
        [UIDevice.platformIDStr isEqualToString:@"iPhone10,5"]){// iPhone 8 Plus
         return iPhScrPxType_6_6S_7_8Plus;
     }
 
-    if([UIDevice.platformIDStr isEqualToString:@"iPhone10,6"]||// iPhone X
+    if([UIDevice.platformIDStr isEqualToString:@"iPhone10,3"]||// iPhone X
+       [UIDevice.platformIDStr isEqualToString:@"iPhone10,6"]||// iPhone X
        [UIDevice.platformIDStr isEqualToString:@"iPhone11,2"]||// iPhone XS
        [UIDevice.platformIDStr isEqualToString:@"iPhone12,3"]){// iPhone 11 Pro
         return iPhScrPxType_X_XS_11Pro;
@@ -155,6 +170,22 @@ static inline iPhScrPxType iPhScrPx(void){
     
     if ([UIDevice.platformIDStr isEqualToString:@"iPhone15,3"]){// iPhone 14 Pro Max
         return iPhScrPxType_14ProMax;
+    }
+
+    if ([UIDevice.platformIDStr isEqualToString:@"iPhone15,4"]){// iPhone 15
+        return iPhScrPxType_15;
+    }
+    
+    if ([UIDevice.platformIDStr isEqualToString:@"iPhone15,5"]){// iPhone 15 Plus
+        return iPhScrPxType_15Plus;
+    }
+
+    if ([UIDevice.platformIDStr isEqualToString:@"iPhone16,1"]){// iPhone 15 Pro
+        return iPhScrPxType_15Pro;
+    }
+    
+    if ([UIDevice.platformIDStr isEqualToString:@"iPhone16,2"]){// iPhone 15 Pro Max
+        return iPhScrPxType_15ProMax;
     }return iPhScrPxType_None;
 }
 /// 判断当前设备是否是全面屏
@@ -169,56 +200,64 @@ static inline BOOL isFullScreen(void){
 }
 #pragma mark —— APP桌面Logo图片尺寸
 /**
-        标注                                               尺寸(px)
+    标注                                               尺寸(px)
 ------------------------------------------------
- iPhone Notification 20pt @2x                       40 * 40
- iPhone Notification 20pt @3x                       60 * 60
- iPhone Settings 29pt @2x                            58 * 58
- iPhone Settings 29pt @3x                            87 * 87
- iPhone Spotlight 40pt @2x                           80 * 80
- iPhone Spotlight 40pt @3x                          120 * 120
- iPhone App 60pt @2x                                  120 * 120
- iPhone App 60pt @3x                                  180 * 180
- App Store 1024pt @1x                                1024 * 1024
+iPhone Notification 20pt @2x                       40 * 40
+iPhone Notification 20pt @3x                       60 * 60
+iPhone Settings 29pt @2x                            58 * 58
+iPhone Settings 29pt @3x                            87 * 87
+iPhone Spotlight 40pt @2x                           80 * 80
+iPhone Spotlight 40pt @3x                          120 * 120
+iPhone App 60pt @2x                                  120 * 120
+iPhone App 60pt @3x                                  180 * 180
+App Store 1024pt @1x                                1024 * 1024
 ------------------------------------------------
- */
+*/
 #pragma mark —— 安全区
 /**
-       型号                                                   Edge(Top, Left, Bottom, Right)
- ----------------------------------------------------------
- iPhone SE / 5S                                                                 ——
- iPhone 6s / 7 / 8                                                               ——
- iPhone 6 / 7 / 8 Plus                                                         ——
- iPhone X / XS                                                              (44, 0, 34, 0)
- iPhone Xr / 11                                                              (48, 0, 34, 0)
- iPhone XS Max / 11 Pro Max                                       (44, 0, 34, 0)
- iPhone 12 mini / 13mini                                               (50, 0, 34, 0)
- iPhone 12 / 12 Pro / 13 / 13 Pro                                  (47, 0, 34, 0)
- iPhone 12 Pro Max / 13 Pro Max                                 (47, 0, 34, 0)
- iPhone 14                                                                     (47, 0, 34, 0)
- iPhone 14 Plus                                                             (47, 0, 34, 0)
- iPhone 14 Pro                                                              (59, 0, 34, 0)
- iPhone 14 Pro Max                                                      (59, 0, 34, 0)
- ----------------------------------------------------------
- */
+    型号                                                   Edge(Top, Left, Bottom, Right)
+----------------------------------------------------------
+iPhone SE / 5S                                                                 ——
+iPhone 6s / 7 / 8                                                               ——
+iPhone 6 / 7 / 8 Plus                                                         ——
+iPhone X / XS                                                              (44, 0, 34, 0)
+iPhone Xr / 11                                                              (48, 0, 34, 0)
+iPhone XS Max / 11 Pro Max                                       (44, 0, 34, 0)
+iPhone 12 mini / 13mini                                               (50, 0, 34, 0)
+iPhone 12 / 12 Pro / 13 / 13 Pro                                  (47, 0, 34, 0)
+iPhone 12 Pro Max / 13 Pro Max                                 (47, 0, 34, 0)
+iPhone 14                                                                     (47, 0, 34, 0)
+iPhone 14 Plus                                                             (47, 0, 34, 0)
+iPhone 14 Pro                                                              (59, 0, 34, 0)
+iPhone 14 Pro Max                                                      (59, 0, 34, 0)
+iPhone 15                                                                     (59, 0, 34, 0)
+iPhone 15 Plus                                                             (59, 0, 34, 0)
+iPhone 15 Pro                                                              (59, 0, 34, 0)
+iPhone 15 Pro Max                                                      (59, 0, 34, 0)
+----------------------------------------------------------
+*/
 #pragma mark ——Tabbar 作图大小
 /**
- 型号                                                           尺寸(px)         Tabbar 高度(pt)
- ----------------------------------------------------------
- iPhone SE / 5S                                          640 * 98               49
- iPhone 6s / 7 / 8                                        750 * 98                49
- iPhone 6 / 7 / 8 Plus                                1242 * 147              49
- iPhone X / XS                                          1125 * 249               83
- iPhone Xr / 11                                            828 * 166              83
- iPhone XS Max / 11 Pro Max                   1242 * 249              83
- iPhone 12 mini / 13mini                            1080 * 249             83
- iPhone 12 / 12 Pro / 13 / 13 Pro               1170 * 249              83
- iPhone 12 Pro Max / 13 Pro Max             1284 * 249              83
- iPhone 14                                                 1170 * 249              83
- iPhone 14 Plus                                         1284 * 249             83
- iPhone 14 Pro                                           1179 * 249             83
- iPhone 14 Pro Max                                   1290 * 249             83
- ----------------------------------------------------------
+型号                                                           尺寸(px)         Tabbar 高度(pt)
+----------------------------------------------------------
+iPhone SE / 5S                                          640 * 98                49
+iPhone 6s / 7 / 8                                        750 * 98                49
+iPhone 6 / 7 / 8 Plus                                1242 * 147              49
+iPhone X / XS                                          1125 * 249               83
+iPhone Xr / 11                                            828 * 166              83
+iPhone XS Max / 11 Pro Max                   1242 * 249              83
+iPhone 12 mini / 13mini                            1080 * 249             83
+iPhone 12 / 12 Pro / 13 / 13 Pro               1170 * 249              83
+iPhone 12 Pro Max / 13 Pro Max             1284 * 249              83
+iPhone 14                                                 1170 * 249              83
+iPhone 14 Plus                                         1284 * 249             83
+iPhone 14 Pro                                           1179 * 249             83
+iPhone 14 Pro Max                                   1290 * 249             83
+iPhone 15                                                 1179 * 249             83
+iPhone 15 Plus                                         1290 * 249             83
+iPhone 15 Pro                                           1179 * 249             83
+iPhone 15 Pro Max                                   1290 * 249             83
+----------------------------------------------------------
  */
 #pragma mark —— 屏幕二维长宽数据输出
 static inline CGSize JobsMainScreen(void){
@@ -277,30 +316,35 @@ static inline CGFloat JobsBottomSafeAreaHeight(void){
  非刘海屏的状态栏高度 = 20pt
  */
 /// 方法一：状态栏高度
-static inline CGFloat JobsStatusBarHeightByAppleIncData(void){
+static inline CGFloat JobsStatusBarHeightByAppleIncData(void) {
     if (UIDevice.currentDevice.systemVersion.floatValue < 14.0) {
         return isiPhoneX_series() ? 44 : 20;
     } else {
-        if([UIDevice.simulatorModel isEqualToString:@"iPhone12,1"] ||// iPhone 11
-           [UIDevice.simulatorModel isEqualToString:@"iPhone12,3"] ||// iPhone 11 Pro
-           [UIDevice.simulatorModel isEqualToString:@"iPhone12,5"] ||// iPhone 11 Pro Max
-           [UIDevice.simulatorModel isEqualToString:@"iPhone10,6"] ||// iPhone X
-           [UIDevice.simulatorModel isEqualToString:@"iPhone10,8"] ){// iPhone XR
+        if ([UIDevice.simulatorModel isEqualToString:@"iPhone12,1"] ||  // iPhone 11
+            [UIDevice.simulatorModel isEqualToString:@"iPhone12,3"] ||  // iPhone 11 Pro
+            [UIDevice.simulatorModel isEqualToString:@"iPhone12,5"] ||  // iPhone 11 Pro Max
+            [UIDevice.simulatorModel isEqualToString:@"iPhone10,6"] ||  // iPhone X
+            [UIDevice.simulatorModel isEqualToString:@"iPhone10,8"]) {  // iPhone XR
             return 48;
         }
            
-        if([UIDevice.simulatorModel isEqualToString:@"iPhone13,2"] ||// iPhone 12
-           [UIDevice.simulatorModel isEqualToString:@"iPhone13,3"] ||// iPhone 12 Pro
-           [UIDevice.simulatorModel isEqualToString:@"iPhone14,2"] ||// iPhone 13 Pro
-           [UIDevice.simulatorModel isEqualToString:@"iPhone14,5"] ||// iPhone 13
-           [UIDevice.simulatorModel isEqualToString:@"iPhone14,7"] ){// iPhone 14
+        if ([UIDevice.simulatorModel isEqualToString:@"iPhone13,2"] ||  // iPhone 12
+            [UIDevice.simulatorModel isEqualToString:@"iPhone13,3"] ||  // iPhone 12 Pro
+            [UIDevice.simulatorModel isEqualToString:@"iPhone14,2"] ||  // iPhone 13 Pro
+            [UIDevice.simulatorModel isEqualToString:@"iPhone14,5"] ||  // iPhone 13
+            [UIDevice.simulatorModel isEqualToString:@"iPhone14,7"] ||  // iPhone 14
+            [UIDevice.simulatorModel isEqualToString:@"iPhone14,8"] ||  // iPhone 14 Plus
+            [UIDevice.simulatorModel isEqualToString:@"iPhone15,4"] ||  // iPhone 15
+            [UIDevice.simulatorModel isEqualToString:@"iPhone15,5"]) {  // iPhone 15 Plus
             return 47;
         }
         
-        if([UIDevice.simulatorModel isEqualToString:@"iPhone15,2"] ||// iPhone 14 Pro
-           [UIDevice.simulatorModel isEqualToString:@"iPhone15,3"] ){// iPhone 14 Pro Max
+        if ([UIDevice.simulatorModel isEqualToString:@"iPhone15,2"] ||  // iPhone 14 Pro
+            [UIDevice.simulatorModel isEqualToString:@"iPhone15,3"] ||  // iPhone 14 Pro Max
+            [UIDevice.simulatorModel isEqualToString:@"iPhone16,1"] ||  // iPhone 15 Pro
+            [UIDevice.simulatorModel isEqualToString:@"iPhone16,2"]) {  // iPhone 15 Pro Max
             return 59;
-        } return UIDevice.isFullScreen ? 44 : 20;
+        }return UIDevice.isFullScreen ? 44 : 20;
     }
 }
 /// 方法二：状态栏高度
