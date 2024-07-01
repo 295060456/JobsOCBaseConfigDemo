@@ -1,10 +1,11 @@
-/*
+/* 
   Localizable.strings
-  Casino
+  JobsOCBaseConfigDemo
 
-  Created by Jobs on 2021/11/18.
+  Created by User on 7/1/24.
   
 */
+
 /// 多语言测试
 "Change the current language environment to Simplified Chinese" = "切换当前语言环境为简体中文";
 "Change the current language environment to English" = "切换当前语言环境为英语";

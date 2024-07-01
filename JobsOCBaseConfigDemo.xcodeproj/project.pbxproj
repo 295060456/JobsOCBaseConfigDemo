@@ -131,8 +131,6 @@
 		844B02122764C8EE00B0513D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02112764C8EE00B0513D /* AppDelegate.m */; };
 		844B02152764C8EE00B0513D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02142764C8EE00B0513D /* SceneDelegate.m */; };
 		844B02182764C8EE00B0513D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02172764C8EE00B0513D /* ViewController.m */; };
-		844B021B2764C8EE00B0513D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844B02192764C8EE00B0513D /* Main.storyboard */; };
-		844B02232764C8F000B0513D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844B02212764C8F000B0513D /* LaunchScreen.storyboard */; };
 		844B02262764C8F000B0513D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02252764C8F000B0513D /* main.m */; };
 		844B02302764C8F000B0513D /* JobsOCBaseConfigDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B022F2764C8F000B0513D /* JobsOCBaseConfigDemoTests.m */; };
 		844B023A2764C8F000B0513D /* JobsOCBaseConfigDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02392764C8F000B0513D /* JobsOCBaseConfigDemoUITests.m */; };
@@ -264,8 +262,6 @@
 		84CA5E0227895B4700E46E71 /* 登录 * 注册 * 密码找回.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5DE327895B4700E46E71 /* 登录 * 注册 * 密码找回.bundle */; };
 		84CA5E0327895B4700E46E71 /* Others.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5DE427895B4700E46E71 /* Others.bundle */; };
 		84CA5E0427895B4700E46E71 /* GIF大图.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5DE627895B4700E46E71 /* GIF大图.gif */; };
-		84CA5E0527895B4700E46E71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5DE827895B4700E46E71 /* Localizable.strings */; };
-		84CA5E0627895B4700E46E71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5DEA27895B4700E46E71 /* InfoPlist.strings */; };
 		84CA5E0727895B4700E46E71 /* welcome_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5DF127895B4700E46E71 /* welcome_video.mp4 */; };
 		84CA5E0827895B4700E46E71 /* iph_X.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5DF227895B4700E46E71 /* iph_X.mp4 */; };
 		84CA5E7E27895BA400E46E71 /* AppDoor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5E7B27895BA400E46E71 /* AppDoor.xcassets */; };
@@ -934,6 +930,8 @@
 		CE8620782C2C254B0009C664 /* libarclite_watchos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86206F2C2C254B0009C664 /* libarclite_watchos.a */; };
 		CE8620792C2C254B0009C664 /* libarclite_watchsimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8620702C2C254B0009C664 /* libarclite_watchsimulator.a */; };
 		CE86207A2C2C254B0009C664 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CE8620712C2C254B0009C664 /* README.md */; };
+		CEAAD4712C32758A00349C11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD46F2C32758A00349C11 /* InfoPlist.strings */; };
+		CEAAD47D2C32804000349C11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD4762C327C7A00349C11 /* Localizable.strings */; };
 		CED90E942C31954A008D9F68 /* 配置info.plist.md in Resources */ = {isa = PBXBuildFile; fileRef = CED90E912C31954A008D9F68 /* 配置info.plist.md */; };
 		DFEAED65A0CE0960B61EAA74 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19F1CC739164B10E3F364DB /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		FE973CF0DF4FF09D277A1A4E /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72729AEE45FB4BEEB368A595 /* Pods_JobsOCBaseConfigDemoTests.framework */; };
@@ -1184,8 +1182,6 @@
 		844B02142764C8EE00B0513D /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		844B02162764C8EE00B0513D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		844B02172764C8EE00B0513D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		844B021A2764C8EE00B0513D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		844B02222764C8F000B0513D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		844B02242764C8F000B0513D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		844B02252764C8F000B0513D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		844B022B2764C8F000B0513D /* JobsOCBaseConfigDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JobsOCBaseConfigDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1439,12 +1435,6 @@
 		84CA5DE327895B4700E46E71 /* 登录 * 注册 * 密码找回.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "登录 * 注册 * 密码找回.bundle"; sourceTree = "<group>"; };
 		84CA5DE427895B4700E46E71 /* Others.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Others.bundle; sourceTree = "<group>"; };
 		84CA5DE627895B4700E46E71 /* GIF大图.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GIF大图.gif"; sourceTree = "<group>"; };
-		84CA5DE927895B4700E46E71 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		84CA5DEB27895B4700E46E71 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		84CA5DEC27895B4700E46E71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		84CA5DED27895B4700E46E71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		84CA5DEE27895B4700E46E71 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		84CA5DEF27895B4700E46E71 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		84CA5DF127895B4700E46E71 /* welcome_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = welcome_video.mp4; sourceTree = "<group>"; };
 		84CA5DF227895B4700E46E71 /* iph_X.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = iph_X.mp4; sourceTree = "<group>"; };
 		84CA5E7B27895BA400E46E71 /* AppDoor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppDoor.xcassets; sourceTree = "<group>"; };
@@ -2838,6 +2828,14 @@
 		CE86206F2C2C254B0009C664 /* libarclite_watchos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_watchos.a; sourceTree = "<group>"; };
 		CE8620702C2C254B0009C664 /* libarclite_watchsimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_watchsimulator.a; sourceTree = "<group>"; };
 		CE8620712C2C254B0009C664 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CEAAD4702C32758A00349C11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEAAD4722C32770A00349C11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CEAAD4742C32771000349C11 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEAAD4752C32771100349C11 /* fil-PH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fil-PH"; path = "fil-PH.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CEAAD4772C327C7A00349C11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CEAAD4792C327DA400349C11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		CEAAD47B2C327DAE00349C11 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CEAAD47C2C327DAF00349C11 /* fil-PH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fil-PH"; path = "fil-PH.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CED90E912C31954A008D9F68 /* 配置info.plist.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "配置info.plist.md"; sourceTree = "<group>"; };
 		CED90E922C31954A008D9F68 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3947,6 +3945,8 @@
 			isa = PBXGroup;
 			children = (
 				844B02242764C8F000B0513D /* Info.plist */,
+				CEAAD4762C327C7A00349C11 /* Localizable.strings */,
+				CEAAD46F2C32758A00349C11 /* InfoPlist.strings */,
 				845A0B1B276DAC99008E75A5 /* JobsOCBaseConfigDemoPrefixHeader.pch */,
 				C59789E82BE3599600A56125 /* JobsOCBaseCustomizeUIKitCore */,
 				CED90E932C31954A008D9F68 /* 配置info.plist */,
@@ -5032,8 +5032,6 @@
 			isa = PBXGroup;
 			children = (
 				C57C860E2C228FB400FFC95A /* JobsOCBaseConfigDemo.xcdatamodeld */,
-				844B02192764C8EE00B0513D /* Main.storyboard */,
-				844B02212764C8F000B0513D /* LaunchScreen.storyboard */,
 				844B02252764C8F000B0513D /* main.m */,
 			);
 			path = "系统创建";
@@ -5085,7 +5083,7 @@
 				C5C47FCE284E21D1007916B3 /* 外源字体 */,
 				84CA5E8127895BCE00E46E71 /* Plist资源文件 */,
 				84CA5DD327895B4700E46E71 /* 图片资源文件 */,
-				84CA5DE727895B4700E46E71 /* 国际化桥接数据 */,
+				84CA5DE727895B4700E46E71 /* 语言包 */,
 				84CA5DF027895B4700E46E71 /* 视频资源文件 */,
 				84CA5DF327895B4700E46E71 /* Json文件 */,
 			);
@@ -5144,13 +5142,11 @@
 			path = Gif;
 			sourceTree = "<group>";
 		};
-		84CA5DE727895B4700E46E71 /* 国际化桥接数据 */ = {
+		84CA5DE727895B4700E46E71 /* 语言包 */ = {
 			isa = PBXGroup;
 			children = (
-				84CA5DE827895B4700E46E71 /* Localizable.strings */,
-				84CA5DEA27895B4700E46E71 /* InfoPlist.strings */,
 			);
-			path = "国际化桥接数据";
+			path = "语言包";
 			sourceTree = "<group>";
 		};
 		84CA5DF027895B4700E46E71 /* 视频资源文件 */ = {
@@ -11938,7 +11934,8 @@
 				en,
 				Base,
 				"zh-Hans",
-				"en-GB",
+				"fil-PH",
+				fil,
 			);
 			mainGroup = 844B02042764C8EE00B0513D;
 			productRefGroup = 844B020E2764C8EE00B0513D /* Products */;
@@ -11959,6 +11956,7 @@
 			files = (
 				C5C48031284E21E5007916B3 /* NotoSans-Regular.ttf in Resources */,
 				C5978A502BE3599700A56125 /* RBCLikeButton.bundle in Resources */,
+				CEAAD47D2C32804000349C11 /* Localizable.strings in Resources */,
 				840F962127736427004979E9 /* 小数点@3x.png in Resources */,
 				C5C4804A284E21E5007916B3 /* NotoSansDisplay-Black.ttf in Resources */,
 				C593DBF12AC897AA00F875B5 /* 安全区域.png in Resources */,
@@ -11981,7 +11979,6 @@
 				840F95F027736427004979E9 /* 我的.json in Resources */,
 				C536CF022AC248C6005D1FCD /* 相册选取图片和视频.xcassets in Resources */,
 				C520F8312AB39EDD00142DCC /* 1179x2556.png in Resources */,
-				844B02232764C8F000B0513D /* LaunchScreen.storyboard in Resources */,
 				C57A2039282CB59F0032156B /* gesture_selected@2x.png in Resources */,
 				C5C48049284E21E5007916B3 /* NotoSansDisplay-SemiBoldItalic.ttf in Resources */,
 				84CA5EBB27895C0A00E46E71 /* 非iph_X.mp4 in Resources */,
@@ -12028,7 +12025,6 @@
 				C5C48039284E21E5007916B3 /* NotoSans-SemiBoldItalic.ttf in Resources */,
 				C5C4803E284E21E5007916B3 /* NotoSans-BlackItalic.ttf in Resources */,
 				84A4920327904A970002A837 /* 输入框无值@2x.png in Resources */,
-				84CA5E0627895B4700E46E71 /* InfoPlist.strings in Resources */,
 				C5C4808A284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-ThinItalic.ttf in Resources */,
 				84A494D427906D050002A837 /* 头像.bundle in Resources */,
 				C5C48038284E21E5007916B3 /* NotoSansDisplay-VariableFont_wdth,wght.ttf in Resources */,
@@ -12051,6 +12047,7 @@
 				C5C4804B284E21E5007916B3 /* NotoSansDisplay-BoldItalic.ttf in Resources */,
 				840F95F427736427004979E9 /* 社区.json in Resources */,
 				C5978A522BE3599700A56125 /* Sound.wav in Resources */,
+				CEAAD4712C32758A00349C11 /* InfoPlist.strings in Resources */,
 				C5C48077284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-Bold.ttf in Resources */,
 				84432C12278C45C40028A27D /* 跳动的竖线.gif in Resources */,
 				C5C4805A284E21E5007916B3 /* NotoSansDisplay_Condensed-Regular.ttf in Resources */,
@@ -12174,7 +12171,6 @@
 				C5C4803C284E21E5007916B3 /* NotoSans-BoldItalic.ttf in Resources */,
 				84CA621D27899E2700E46E71 /* 1.jpeg in Resources */,
 				840F95EA27736427004979E9 /* 主页.json in Resources */,
-				84CA5E0527895B4700E46E71 /* Localizable.strings in Resources */,
 				84A491FD27904A970002A837 /* Check@2x.png in Resources */,
 				84CA5FB427897AFB00E46E71 /* 音律跳动.bundle in Resources */,
 				C5978AA02BE3599700A56125 /* WhiteRightArrow@2x.png in Resources */,
@@ -12235,7 +12231,6 @@
 				84432C14278C45C40028A27D /* Bt9h.gif in Resources */,
 				840F962827736427004979E9 /* 8@3x.png in Resources */,
 				C5C4807D284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-BlackItalic.ttf in Resources */,
-				844B021B2764C8EE00B0513D /* Main.storyboard in Resources */,
 				C5C4807E284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-Thin.ttf in Resources */,
 				840F95EF27736427004979E9 /* green_lottie_tab_home.json in Resources */,
 				C5C4805D284E21E5007916B3 /* NotoSansDisplay_Condensed-SemiBoldItalic.ttf in Resources */,
@@ -13031,40 +13026,26 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		844B02192764C8EE00B0513D /* Main.storyboard */ = {
+		CEAAD46F2C32758A00349C11 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				844B021A2764C8EE00B0513D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		844B02212764C8F000B0513D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				844B02222764C8F000B0513D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		84CA5DE827895B4700E46E71 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84CA5DE927895B4700E46E71 /* zh-Hans */,
-				84CA5DEC27895B4700E46E71 /* en */,
-				84CA5DEE27895B4700E46E71 /* en-GB */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		84CA5DEA27895B4700E46E71 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84CA5DEB27895B4700E46E71 /* zh-Hans */,
-				84CA5DED27895B4700E46E71 /* en */,
-				84CA5DEF27895B4700E46E71 /* en-GB */,
+				CEAAD4702C32758A00349C11 /* en */,
+				CEAAD4722C32770A00349C11 /* zh-Hans */,
+				CEAAD4742C32771000349C11 /* fil */,
+				CEAAD4752C32771100349C11 /* fil-PH */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CEAAD4762C327C7A00349C11 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEAAD4772C327C7A00349C11 /* en */,
+				CEAAD4792C327DA400349C11 /* zh-Hans */,
+				CEAAD47B2C327DAE00349C11 /* fil */,
+				CEAAD47C2C327DAF00349C11 /* fil-PH */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
