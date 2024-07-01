@@ -312,7 +312,7 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             UITextModel *textModel = UITextModel.new;
-            textModel.text = JobsInternationalization(@"2、设备竖直向下\n Home 按钮在上方");/// 点不动
+            textModel.text = JobsInternationalization(@"切换当前语言环境为简体中文");
             textModel.textCor = JobsRedColor;
             textModel.textAlignment = NSTextAlignmentCenter;
             
@@ -328,23 +328,7 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             UITextModel *textModel = UITextModel.new;
-            textModel.text = JobsInternationalization(@"检测当前屏幕方向");
-            textModel.textCor = JobsRedColor;
-            textModel.textAlignment = NSTextAlignmentCenter;
-
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel = textModel;
-            viewModel.jobsBlock = ^id(id param){
-                @jobs_strongify(self)
-                NSLog(@"切换当前语言环境为菲律宾🇵🇭-他加禄语");
-                return nil;
-            };
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UITextModel *textModel = UITextModel.new;
-            textModel.text = JobsInternationalization(@"2、设备竖直向下\n Home 按钮在上方");/// 点不动
+            textModel.text = JobsInternationalization(@"切换当前语言环境为英语");
             textModel.textCor = JobsRedColor;
             textModel.textAlignment = NSTextAlignmentCenter;
             
@@ -353,6 +337,22 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
                 NSLog(@"切换当前语言环境为美国🇺🇸-英语");
+                return nil;
+            };
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = JobsInternationalization(@"切换当前语言环境为他加禄语");
+            textModel.textCor = JobsRedColor;
+            textModel.textAlignment = NSTextAlignmentCenter;
+
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel = textModel;
+            viewModel.jobsBlock = ^id(id param){
+                @jobs_strongify(self)
+                NSLog(@"切换当前语言环境为菲律宾🇵🇭-他加禄语");
                 return nil;
             };
             [_dataMutArr addObject:viewModel];
