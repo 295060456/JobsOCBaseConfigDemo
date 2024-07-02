@@ -139,4 +139,7 @@ pod 'HXRotationTool' # https://github.com/TheLittleBoy/HXRotationTool
 * 具体来说，以下 iPhone 型号不支持倒立屏幕：iPhone X 及之后的所有型号（包括 iPhone XS, XR, 11, 12, 13, 14, 15 系列等）；
 * 对于应用开发，如果 App 特别需要支持倒立显示（例如，为了在某些特殊场景下方便查看内容），可能需要考虑实现自定义的界面旋转逻辑，而不是依赖系统的屏幕旋转；
 
-<div style="background-color: red; color: white; padding: 10px;">   Warning: Error creating LLDB target at path '/Users/user/Library/Developer/Xcode/DerivedData/EmptyProj-cielbsoscijopmertqueblewazua/Build/Products/Debug-iphonesimulator/EmptyProj.app' - using an empty LLDB target which can cause slow memory reads from remote devices. </div>
+
+
+
+
