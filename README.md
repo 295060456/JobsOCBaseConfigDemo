@@ -64,10 +64,12 @@
 * `Environment Variables`标签，添加一个新的环境变量。将 `Name` 设置为 `IDEPreferLogStreaming`，将 `Value` 设置为 `YES`
 ![image-20240629161626945](./assets/image-20240629161626945.png)
 
-### 3、iOS xcode 代码块，提升编码效率必备之选
+### 3、iOS xcode 代码块，提升编码效率必备之首选
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 
 ### 4、[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
+
+* 统一全局的Block定义，减少冗余代码
 
 ### 5、[**<font color=red>BaseProtocol 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md)
 
@@ -109,7 +111,51 @@ classDiagram
     }
 ```
 
+* 减少冗余代码，将公用头文件提升到协议进行定义
 
+### 6、UIViewModelFamily
+
+* 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理；
+* `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
+* `UITextModel`是专门针对文本的<font color=red>**数据束**</font>
+* 结合`BaseProtocol`进行封装
+
+```mermaid
+classDiagram
+    class UIViewModelProtocol {
+    }
+    
+    class UIViewModel {
+        <<NSObject>>
+    }
+    UIViewModel --> UIViewModelProtocol
+
+    class JobsHeaderFooterViewModel {
+        <<UIViewModel>>
+    }
+    JobsHeaderFooterViewModel --> UIViewModel
+
+    class BaseButtonProtocol {
+    }
+
+    class UIButtonModel {
+        <<NSObject>>
+    }
+    UIButtonModel --> BaseButtonProtocol
+
+    class UITextModel {
+        <<NSObject>>
+    }
+```
+
+### 7、JobsOCBaseCustomizeUIKitCore
+
+* 产生背景
+  * OC的基类是单继承
+  * 继承会产生很多基类，客观上造成代码的冗余
+* 解决方案
+  * 继承和分类结合使用
+  * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用
 
 ## 代码讲解
 ### 1、UIButton.UIButtonConfiguration
@@ -286,6 +332,85 @@ classDiagram
 
 </details>
 
+<details id="实例对象的weak化，避免循环引用">
+ <summary><strong>实例对象的weak化，避免循环引用</strong></summary>
+* 相关定义
+
+  ```objective-c
+  #ifndef MacroDef_Strong_Weak_h
+  #define MacroDef_Strong_Weak_h
+  
+  /** 强弱引用
+      Uses
+      UIView *view;
+      UIButton *btn;
+       
+      @jobs_weakify(view)
+      weak_view.size;
+      @jobs_weakify(btn)
+      weak_btn.frame
+   
+   # 能用@符号进行调用的根本原因：来自GPT-3.5的回答
+      在如下的宏定义中：
+      @符号可以用于调用的原因是因为宏内部实际上不包含Objective-C代码块，而是包含了一个函数调用，
+      这个函数调用是Objective-C代码中的一个有效表达式。
+   */
+  #ifndef jobs_weakify
+  #if DEBUG
+  #if __has_feature(objc_arc)
+  #define jobs_weakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
+  #else
+  #define jobs_weakify(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
+  #endif
+  #else
+  #if __has_feature(objc_arc)
+  #define jobs_weakify(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
+  #else
+  #define jobs_weakify(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
+  #endif
+  #endif
+  #endif
+  
+  #ifndef jobs_strongify
+  #if DEBUG
+  #if __has_feature(objc_arc)
+  #define jobs_strongify(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
+  #else
+  #define jobs_strongify(object) autoreleasepool{} __typeof__(object) object = block##_##object;
+  #endif
+  #else
+  #if __has_feature(objc_arc)
+  #define jobs_strongify(object) try{} @finally{} __typeof__(object) object = weak##_##object;
+  #else
+  #define jobs_strongify(object) try{} @finally{} __typeof__(object) object = block##_##object;
+  #endif
+  #endif
+  #endif
+  
+  #endif /* MacroDef_Strong_Weak_h */
+  ```
+
+* 使用方式
+
+  ```objective-c
+  @jobs_strongify(self)
+  @jobs_weakify(self)
+  ```
+
+</details>
+
+</details>
+
+<details id="Test">
+ <summary><strong>Test</strong></summary>
+
+ ```objective-c
+// TODO
+ ```
+</details>
+
+</details>
+
 <details id="Test">
  <summary><strong>Test</strong></summary>
 
@@ -339,12 +464,18 @@ classDiagram
   * 算法问题
     * [**N宫格问题**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/N%E5%AE%AB%E6%A0%BC%E9%97%AE%E9%A2%98.md)
     * [**定一行个数得出几行**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E5%AE%9A%E4%B8%80%E8%A1%8C%E4%B8%AA%E6%95%B0%E5%BE%97%E5%87%BA%E5%87%A0%E8%A1%8C.md)
+  * 加密体系
+    * [**Unicode**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/Unicode/Unicode.md)
+    * [**MIME**]()
+    * [**HexadecimalData**]()
+    * [**凯撒加密解密**]()
 * 课外阅读
   * [**FFmpeg**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/FFmpeg/FFmpeg.md)
   * [**优秀的关于音视频处理的文献资料**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E4%BC%98%E7%A7%80%E7%9A%84%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86%E7%9A%84%E6%96%87%E7%8C%AE%E8%B5%84%E6%96%99.md)
   * [**Fastlane-iOS持续集成自动打包发布**](https://github.com/yanmingLiu/Xminds/blob/main/iOS/Fastlane-iOS%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83%E3%80%82.md)
   * [**Flutter-iOS-打包等采坑ing**](https://github.com/yanmingLiu/Xminds/blob/main/iOS/Flutter-iOS-%E6%89%93%E5%8C%85%E7%AD%89%E9%87%87%E5%9D%91ing---.md)
   * [**创建Framework**](https://github.com/yanmingLiu/Xminds/blob/main/iOS/%E5%88%9B%E5%BB%BAFramework.md)
+  * 
 * TODO
   * 将[**时间按照【年-月份】分组**](#时间按照【年-月份】分组)集成到靶场项目里
   * 完善 [**iOS功能：跳转其他App,如果本机不存在,则进行下载（需要补充）**](#iOS功能：跳转其他App,如果本机不存在,则进行下载)

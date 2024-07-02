@@ -279,7 +279,6 @@
 		84CA5FA627897AFB00E46E71 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F0027897AFA00E46E71 /* NSData+CommonCrypto.m */; };
 		84CA5FA827897AFB00E46E71 /* MovieCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F0427897AFA00E46E71 /* MovieCountDown.m */; };
 		84CA5FAC27897AFB00E46E71 /* XLChannelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F0D27897AFA00E46E71 /* XLChannelControl.m */; };
-		84CA5FAD27897AFB00E46E71 /* XLChannelControl in Resources */ = {isa = PBXBuildFile; fileRef = 84CA5F1127897AFA00E46E71 /* XLChannelControl */; };
 		84CA5FAE27897AFB00E46E71 /* XLChannelHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F1227897AFA00E46E71 /* XLChannelHeader.m */; };
 		84CA5FAF27897AFB00E46E71 /* XLChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F1327897AFA00E46E71 /* XLChannelView.m */; };
 		84CA5FB027897AFB00E46E71 /* XLChannelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA5F1527897AFA00E46E71 /* XLChannelItem.m */; };
@@ -1482,19 +1481,18 @@
 		84CA5F0E27897AFA00E46E71 /* XLChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLChannelView.h; sourceTree = "<group>"; };
 		84CA5F0F27897AFA00E46E71 /* XLChannelHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLChannelHeader.h; sourceTree = "<group>"; };
 		84CA5F1027897AFA00E46E71 /* XLChannelItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLChannelItem.h; sourceTree = "<group>"; };
-		84CA5F1127897AFA00E46E71 /* XLChannelControl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XLChannelControl; sourceTree = "<group>"; };
 		84CA5F1227897AFA00E46E71 /* XLChannelHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLChannelHeader.m; sourceTree = "<group>"; };
 		84CA5F1327897AFA00E46E71 /* XLChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLChannelView.m; sourceTree = "<group>"; };
 		84CA5F1427897AFA00E46E71 /* XLChannelControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLChannelControl.h; sourceTree = "<group>"; };
 		84CA5F1527897AFA00E46E71 /* XLChannelItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLChannelItem.m; sourceTree = "<group>"; };
 		84CA5F1727897AFA00E46E71 /* HAHandleDemoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHandleDemoView.m; sourceTree = "<group>"; };
 		84CA5F1827897AFA00E46E71 /* HAHandleDemoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHandleDemoView.h; sourceTree = "<group>"; };
-		84CA5F1927897AFA00E46E71 /* 高仿Uber取消叫车按钮效果(按住放大) */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "高仿Uber取消叫车按钮效果(按住放大)"; sourceTree = "<group>"; };
+		84CA5F1927897AFA00E46E71 /* HAHandleDemoView.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = HAHandleDemoView.md; sourceTree = "<group>"; };
 		84CA5F1B27897AFA00E46E71 /* GifLoopPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifLoopPlayView.m; sourceTree = "<group>"; };
 		84CA5F1C27897AFA00E46E71 /* GifLoopPlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifLoopPlayView.h; sourceTree = "<group>"; };
 		84CA5F1D27897AFA00E46E71 /* 音律跳动.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "音律跳动.bundle"; sourceTree = "<group>"; };
 		84CA5F1F27897AFA00E46E71 /* DDUploadingProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDUploadingProgressView.h; sourceTree = "<group>"; };
-		84CA5F2027897AFA00E46E71 /* 上传中....md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "上传中....md"; sourceTree = "<group>"; };
+		84CA5F2027897AFA00E46E71 /* DDUploadingProgressView.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DDUploadingProgressView.md; sourceTree = "<group>"; };
 		84CA5F2127897AFA00E46E71 /* DDUploadingProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDUploadingProgressView.m; sourceTree = "<group>"; };
 		84CA5F3027897AFA00E46E71 /* XXTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTools.m; sourceTree = "<group>"; };
 		84CA5F3127897AFA00E46E71 /* XXTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTools.h; sourceTree = "<group>"; };
@@ -1502,7 +1500,7 @@
 		84CA5F3427897AFA00E46E71 /* ZHKeyChainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHKeyChainManager.m; sourceTree = "<group>"; };
 		84CA5F3F27897AFA00E46E71 /* LongPressToDeleteImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongPressToDeleteImageView.h; sourceTree = "<group>"; };
 		84CA5F4027897AFA00E46E71 /* LongPressToDeleteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongPressToDeleteImageView.m; sourceTree = "<group>"; };
-		84CA5F4127897AFA00E46E71 /* 仿iOS图标抖动、iOS删除App效果 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "仿iOS图标抖动、iOS删除App效果"; sourceTree = "<group>"; };
+		84CA5F4127897AFA00E46E71 /* LongPressToDeleteImageView.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LongPressToDeleteImageView.md; sourceTree = "<group>"; };
 		84CA5F4527897AFA00E46E71 /* JhtBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JhtBannerView.h; sourceTree = "<group>"; };
 		84CA5F4627897AFA00E46E71 /* JhtBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JhtBannerView.m; sourceTree = "<group>"; };
 		84CA5F4827897AFA00E46E71 /* JhtBannerScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JhtBannerScrollView.m; sourceTree = "<group>"; };
@@ -1510,7 +1508,6 @@
 		84CA5F4A27897AFA00E46E71 /* JhtBannerScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JhtBannerScrollView.h; sourceTree = "<group>"; };
 		84CA5F4C27897AFA00E46E71 /* JhtBannerCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JhtBannerCardView.h; sourceTree = "<group>"; };
 		84CA5F4D27897AFA00E46E71 /* JhtBannerCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JhtBannerCardView.m; sourceTree = "<group>"; };
-		84CA5F4E27897AFA00E46E71 /* Use */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Use; sourceTree = "<group>"; };
 		84CA5F5027897AFA00E46E71 /* XDTextBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDTextBtnView.m; sourceTree = "<group>"; };
 		84CA5F5127897AFA00E46E71 /* XDTextBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDTextBtnView.h; sourceTree = "<group>"; };
 		84CA5F5327897AFA00E46E71 /* TBCityIconFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCityIconFont.m; sourceTree = "<group>"; };
@@ -1520,11 +1517,11 @@
 		84CA5F5727897AFA00E46E71 /* TBCityIconFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCityIconFont.h; sourceTree = "<group>"; };
 		84CA5F5827897AFA00E46E71 /* UIImage+TBCityIconFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TBCityIconFont.h"; sourceTree = "<group>"; };
 		84CA5F6F27897AFA00E46E71 /* XWCountryCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWCountryCodeController.h; sourceTree = "<group>"; };
-		84CA5F7027897AFA00E46E71 /* 电话号码国家选择器 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "电话号码国家选择器"; sourceTree = "<group>"; };
+		84CA5F7027897AFA00E46E71 /* XWCountryCodeController.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = XWCountryCodeController.md; sourceTree = "<group>"; };
 		84CA5F7127897AFA00E46E71 /* sortedNameEN.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = sortedNameEN.plist; sourceTree = "<group>"; };
 		84CA5F7227897AFB00E46E71 /* sortedNameCH.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = sortedNameCH.plist; sourceTree = "<group>"; };
 		84CA5F7327897AFB00E46E71 /* XWCountryCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWCountryCodeController.m; sourceTree = "<group>"; };
-		84CA5F7527897AFB00E46E71 /* 手势解锁 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "手势解锁"; sourceTree = "<group>"; };
+		84CA5F7527897AFB00E46E71 /* AESCrypt-ObjC.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "AESCrypt-ObjC.md"; sourceTree = "<group>"; };
 		84CA5F7627897AFB00E46E71 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
 		84CA5F7727897AFB00E46E71 /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
 		84CA5F7927897AFB00E46E71 /* CFGradientLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFGradientLabel.m; sourceTree = "<group>"; };
@@ -1539,11 +1536,11 @@
 		84CA5F8527897AFB00E46E71 /* CountdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownView.h; sourceTree = "<group>"; };
 		84CA5F8627897AFB00E46E71 /* CountdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownView.m; sourceTree = "<group>"; };
 		84CA5F8827897AFB00E46E71 /* FSAppIconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAppIconManager.m; sourceTree = "<group>"; };
-		84CA5F8927897AFB00E46E71 /* App图标更换 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "App图标更换"; sourceTree = "<group>"; };
+		84CA5F8927897AFB00E46E71 /* FSAppIconManager.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = FSAppIconManager.md; sourceTree = "<group>"; };
 		84CA5F8A27897AFB00E46E71 /* FSAppIconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAppIconManager.h; sourceTree = "<group>"; };
 		84CA5F8C27897AFB00E46E71 /* RYCuteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYCuteView.m; sourceTree = "<group>"; };
 		84CA5F8D27897AFB00E46E71 /* RYCuteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYCuteView.h; sourceTree = "<group>"; };
-		84CA5F8E27897AFB00E46E71 /* Q弹 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Q弹"; sourceTree = "<group>"; };
+		84CA5F8E27897AFB00E46E71 /* RYCuteView.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = RYCuteView.md; sourceTree = "<group>"; };
 		84CA609F2789817300E46E71 /* PHCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHCycleView.m; sourceTree = "<group>"; };
 		84CA60A02789817300E46E71 /* PHCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHCycleView.h; sourceTree = "<group>"; };
 		84CA60A42789818800E46E71 /* Progress【OutLines】.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Progress【OutLines】.png"; sourceTree = "<group>"; };
@@ -2838,6 +2835,7 @@
 		CEAAD47C2C327DAF00349C11 /* fil-PH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fil-PH"; path = "fil-PH.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CEAAD47F2C32875A00349C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEAAD4812C32875A00349C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CEAF7CFD2C341473007AE308 /* XLChannelControl.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = XLChannelControl.md; sourceTree = "<group>"; };
 		CED90E912C31954A008D9F68 /* 配置info.plist.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "配置info.plist.md"; sourceTree = "<group>"; };
 		CED90E922C31954A008D9F68 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -5432,7 +5430,7 @@
 		84CA5F0C27897AFA00E46E71 /* XLChannelControl */ = {
 			isa = PBXGroup;
 			children = (
-				84CA5F1127897AFA00E46E71 /* XLChannelControl */,
+				CEAF7CFD2C341473007AE308 /* XLChannelControl.md */,
 				84CA5F1427897AFA00E46E71 /* XLChannelControl.h */,
 				84CA5F0D27897AFA00E46E71 /* XLChannelControl.m */,
 				84CA5F0F27897AFA00E46E71 /* XLChannelHeader.h */,
@@ -5450,7 +5448,7 @@
 			children = (
 				84CA5F1727897AFA00E46E71 /* HAHandleDemoView.m */,
 				84CA5F1827897AFA00E46E71 /* HAHandleDemoView.h */,
-				84CA5F1927897AFA00E46E71 /* 高仿Uber取消叫车按钮效果(按住放大) */,
+				84CA5F1927897AFA00E46E71 /* HAHandleDemoView.md */,
 			);
 			path = HAHandleDemoView;
 			sourceTree = "<group>";
@@ -5469,7 +5467,7 @@
 			isa = PBXGroup;
 			children = (
 				84CA5F1F27897AFA00E46E71 /* DDUploadingProgressView.h */,
-				84CA5F2027897AFA00E46E71 /* 上传中....md */,
+				84CA5F2027897AFA00E46E71 /* DDUploadingProgressView.md */,
 				84CA5F2127897AFA00E46E71 /* DDUploadingProgressView.m */,
 			);
 			path = DDUploadingProgressView;
@@ -5498,7 +5496,7 @@
 			children = (
 				84CA5F3F27897AFA00E46E71 /* LongPressToDeleteImageView.h */,
 				84CA5F4027897AFA00E46E71 /* LongPressToDeleteImageView.m */,
-				84CA5F4127897AFA00E46E71 /* 仿iOS图标抖动、iOS删除App效果 */,
+				84CA5F4127897AFA00E46E71 /* LongPressToDeleteImageView.md */,
 			);
 			path = LongPressToDeleteImageView;
 			sourceTree = "<group>";
@@ -5517,7 +5515,6 @@
 				84CA5F4427897AFA00E46E71 /* JhtBannerView */,
 				84CA5F4727897AFA00E46E71 /* JhtBannerScrollView */,
 				84CA5F4B27897AFA00E46E71 /* JhtBannerCardView */,
-				84CA5F4E27897AFA00E46E71 /* Use */,
 			);
 			path = JhtBanner;
 			sourceTree = "<group>";
@@ -5575,11 +5572,10 @@
 		84CA5F6E27897AFA00E46E71 /* XWCountryCodeController */ = {
 			isa = PBXGroup;
 			children = (
+				84CA5F7027897AFA00E46E71 /* XWCountryCodeController.md */,
 				84CA5F6F27897AFA00E46E71 /* XWCountryCodeController.h */,
-				84CA5F7027897AFA00E46E71 /* 电话号码国家选择器 */,
-				84CA5F7127897AFA00E46E71 /* sortedNameEN.plist */,
-				84CA5F7227897AFB00E46E71 /* sortedNameCH.plist */,
 				84CA5F7327897AFB00E46E71 /* XWCountryCodeController.m */,
+				CEAF7CFC2C3413B9007AE308 /* XWCountryCodeController.plist */,
 			);
 			path = XWCountryCodeController;
 			sourceTree = "<group>";
@@ -5587,7 +5583,7 @@
 		84CA5F7427897AFB00E46E71 /* AESCrypt-ObjC */ = {
 			isa = PBXGroup;
 			children = (
-				84CA5F7527897AFB00E46E71 /* 手势解锁 */,
+				84CA5F7527897AFB00E46E71 /* AESCrypt-ObjC.md */,
 				84CA5F7627897AFB00E46E71 /* AESCrypt.m */,
 				84CA5F7727897AFB00E46E71 /* AESCrypt.h */,
 			);
@@ -5637,7 +5633,7 @@
 			isa = PBXGroup;
 			children = (
 				84CA5F8827897AFB00E46E71 /* FSAppIconManager.m */,
-				84CA5F8927897AFB00E46E71 /* App图标更换 */,
+				84CA5F8927897AFB00E46E71 /* FSAppIconManager.md */,
 				84CA5F8A27897AFB00E46E71 /* FSAppIconManager.h */,
 			);
 			path = FSAppIconManager;
@@ -5648,7 +5644,7 @@
 			children = (
 				84CA5F8C27897AFB00E46E71 /* RYCuteView.m */,
 				84CA5F8D27897AFB00E46E71 /* RYCuteView.h */,
-				84CA5F8E27897AFB00E46E71 /* Q弹 */,
+				84CA5F8E27897AFB00E46E71 /* RYCuteView.md */,
 			);
 			path = RYCuteView;
 			sourceTree = "<group>";
@@ -11820,6 +11816,15 @@
 			path = Libarclite;
 			sourceTree = "<group>";
 		};
+		CEAF7CFC2C3413B9007AE308 /* XWCountryCodeController.plist */ = {
+			isa = PBXGroup;
+			children = (
+				84CA5F7127897AFA00E46E71 /* sortedNameEN.plist */,
+				84CA5F7227897AFB00E46E71 /* sortedNameCH.plist */,
+			);
+			path = XWCountryCodeController.plist;
+			sourceTree = "<group>";
+		};
 		CED90E932C31954A008D9F68 /* 配置info.plist */ = {
 			isa = PBXGroup;
 			children = (
@@ -12029,7 +12034,6 @@
 				C52E59F82AC04B8900FE5494 /* 视频模块.xcassets in Resources */,
 				C5C4804D284E21E5007916B3 /* NotoSansDisplay-ExtraBold.ttf in Resources */,
 				C5C4808C284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-ExtraBold.ttf in Resources */,
-				84CA5FAD27897AFB00E46E71 /* XLChannelControl in Resources */,
 				C520F8302AB39EDD00142DCC /* 1242x2208.png in Resources */,
 				C520F82D2AB39EDD00142DCC /* 1284x2778.png in Resources */,
 				C5C4804B284E21E5007916B3 /* NotoSansDisplay-BoldItalic.ttf in Resources */,
