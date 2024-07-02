@@ -66,8 +66,53 @@
 
 ### 3、iOS xcode 代码块，提升编码效率必备之选
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
-## 代码讲解
 
+### 4、[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
+
+### 5、[**<font color=red>BaseProtocol 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md)
+
+```mermaid
+classDiagram
+    NSObject <|-- UIViewModelProtocol
+    NSObject <|-- BaseProtocol
+    BaseProtocol <|-- AppToolsProtocol
+    BaseProtocol <|-- BaseViewProtocol
+    BaseViewProtocol <|-- BaseViewControllerProtocol
+    BaseViewProtocol <|-- BaseButtonProtocol
+    BaseViewProtocol <|-- BaseCellProtocol
+    BaseCellProtocol <|-- UITableViewCellProtocol
+    BaseCellProtocol <|-- UICollectionViewCellProtocol
+    NSObject <|-- NTESVerifyCodeManagerProtocol
+    NSObject <|-- ZFDouYinCellDelegate
+
+    class UIViewModelProtocol {
+    }
+    class BaseProtocol {
+    }
+    class AppToolsProtocol {
+    }
+    class BaseViewProtocol {
+    }
+    class BaseViewControllerProtocol {
+    }
+    class BaseButtonProtocol {
+    }
+    class BaseCellProtocol {
+    }
+    class UITableViewCellProtocol {
+    }
+    class UICollectionViewCellProtocol {
+    }
+    class NTESVerifyCodeManagerProtocol {
+    }
+    class ZFDouYinCellDelegate {
+    }
+```
+
+
+
+## 代码讲解
+### 1、UIButton.UIButtonConfiguration
 <details id="UIButton">
  <summary><strong>UIButton</strong></summary>
 
@@ -184,37 +229,42 @@
   
 * 资料来源：
 
-  * * [**UIButtonConfiguration**](https://www.jianshu.com/p/12426709420e)
-    * [**Chat GPT 3.5**](https://chatgpt.com/)
-      </details>
+  * [**UIButtonConfiguration**](https://www.jianshu.com/p/12426709420e)
+  * [**Chat GPT 3.5**](https://chatgpt.com/)
+
+ </details>
+
+### 2、Masonry约束动画
 
 <details id="Masonry约束动画<br>">
  <summary><strong>Masonry约束动画<br></strong></summary>
 
-  ```objective-c
-  -(MSMineView2 *)view2{
-      if(!_view2){
-          _view2 = MSMineView2.new;
-          [_view2 richElementsInViewWithModel:nil];
-          [self addSubview:_view2];
-          [_view2 jobsMasonryBeforeBlock:^(MASConstraintMaker * _Nonnull make) {
-              // 添加第一个 _view2 的约束
-              make.width.mas_equalTo(0);
-              make.height.mas_equalTo([MSMineView2 viewSizeWithModel:nil].height);
-              make.right.equalTo(self).offset(JobsWidth(-10));
-              make.top.equalTo(self).offset(JobsWidth(10));
-          }
-                       masonryAfterBlock:^(MASConstraintMaker * _Nonnull make) {
-              // 添加第二个 _view2 的约束
-              make.size.mas_equalTo([MSMineView2 viewSizeWithModel:nil]);
-              make.centerX.equalTo(self);
-              make.top.equalTo(self).offset(JobsWidth(10));
-          }];
-          [_view2 cornerCutToCircleWithCornerRadius:[MSMineView2 viewSizeWithModel:nil].height / 2];
-      }return _view2;
-  }
-  ```
+```objective-c
+-(MSMineView2 *)view2{
+    if(!_view2){
+        _view2 = MSMineView2.new;
+        [_view2 richElementsInViewWithModel:nil];
+        [self addSubview:_view2];
+        [_view2 jobsMasonryBeforeBlock:^(MASConstraintMaker * _Nonnull make) {
+            // 添加第一个 _view2 的约束
+            make.width.mas_equalTo(0);
+            make.height.mas_equalTo([MSMineView2 viewSizeWithModel:nil].height);
+            make.right.equalTo(self).offset(JobsWidth(-10));
+            make.top.equalTo(self).offset(JobsWidth(10));
+        }
+                     masonryAfterBlock:^(MASConstraintMaker * _Nonnull make) {
+            // 添加第二个 _view2 的约束
+            make.size.mas_equalTo([MSMineView2 viewSizeWithModel:nil]);
+            make.centerX.equalTo(self);
+            make.top.equalTo(self).offset(JobsWidth(10));
+        }];
+        [_view2 cornerCutToCircleWithCornerRadius:[MSMineView2 viewSizeWithModel:nil].height / 2];
+    }return _view2;
+}
+```
 </details>
+
+### 3、退出ViewController的时候，需要做的操作
 
 <details id="退出ViewController的时候，需要做的操作">
  <summary><strong>退出ViewController的时候，需要做的操作</strong></summary>
@@ -291,15 +341,11 @@
 * 课外阅读
   * [**FFmpeg**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/FFmpeg/FFmpeg.md)
   * [**优秀的关于音视频处理的文献资料**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E4%BC%98%E7%A7%80%E7%9A%84%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86%E7%9A%84%E6%96%87%E7%8C%AE%E8%B5%84%E6%96%99.md)
-
 * TODO
   * 将[**时间按照【年-月份】分组**](#时间按照【年-月份】分组)集成到靶场项目里
   * 完善 [**iOS功能：跳转其他App,如果本机不存在,则进行下载（需要补充）**](#iOS功能：跳转其他App,如果本机不存在,则进行下载)
 * 其他
-  * [**其他-关于系统Nav**](文档和资料/其他/关于系统Nav.md)
-  * [**其他-键盘方法生命周期**](文档和资料/其他/键盘方法生命周期.md)
-  * [**其他-精确度量iOS-App的启动时间**](文档和资料/其他/精确度量iOS-App的启动时间.md)
-  * [**其他-谁说HTTP和GET就不能通过Body来发送数据呢？**](文档和资料/其他/谁说HTTP和GET就不能通过Body来发送数据呢？.md)
+  * 
 
 ## 打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://)
 * 浏览器打开并输入 
