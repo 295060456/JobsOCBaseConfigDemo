@@ -108,7 +108,7 @@
   xcrun simctl create "iPhone 12" "com.apple.CoreSimulator.SimDeviceType.iPhone-12" "com.apple.CoreSimulator.SimRuntime.iOS-14-4"
   ```
 
-## 3、lldb
+### 3、lldb
 
 ```shell
 (lldb) target list
@@ -119,21 +119,74 @@ Current targets:
 * target #0: /Users/user/Library/Developer/CoreSimulator/Devices/E17E7DE8-7ADA-42FD-A743-A1A3A6CB7E42/data/Containers/Bundle/Application/C590303C-50A7-4BB2-826F-8598E5F3A66C/JobsOCBaseConfigDemo.app/JobsOCBaseConfigDemo ( arch=x86_64-apple-ios-simulator, platform=ios-simulator, pid=89318, state=stopped )
 ```
 
-
-
-### 2、xcode 日志配置
+### 4、xcode 日志配置
 
 * `Environment Variables`标签，添加一个新的环境变量。将 `Name` 设置为 `IDEPreferLogStreaming`，将 `Value` 设置为 `YES`
 ![image-20240629161626945](./assets/image-20240629161626945.png)
 
-### 3、iOS xcode 代码块，提升编码效率必备之首选
+### 5、重写打印输出
+
+* 使之能定位到具体文件行的输出
+
+  ```objective-c
+  #pragma mark —— 控制台Log打印格式重写
+  #ifndef NSLog
+  #define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d content:%s\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+  #endif
+  ```
+
+* 使之能简化打印结构体步骤
+
+  ```objective-c
+  #pragma mark —— 打印结构体
+  #ifndef JobsLogCGPoint
+  #define JobsLogCGPoint(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGPoint(__VA_ARGS__))
+  #endif
+  
+  #ifndef JobsLogCGVector
+  #define JobsLogCGVector(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGVector(__VA_ARGS__))
+  #endif
+  
+  #ifndef JobsLogCGSize
+  #define JobsLogCGSize(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGSize(__VA_ARGS__))
+  #endif
+  
+  #ifndef JobsLogCGRect
+  #define JobsLogCGRect(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGRect(__VA_ARGS__))
+  #endif
+  
+  #ifndef JobsLogCGAffineTransform
+  #define JobsLogCGAffineTransform(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGAffineTransform(__VA_ARGS__))
+  #endif
+  
+  #ifndef JobsLogUIEdgeInsets
+  #define JobsLogUIEdgeInsets(format, ...) NSLog(@"%s = %@", #format, NSStringFromUIEdgeInsets(__VA_ARGS__))
+  #endif
+  
+  #ifndef JobsLogDirectionalEdgeInsets
+  #define JobsLogDirectionalEdgeInsets(format, ...) NSLog(@"%s = %@", #format, NSStringFromDirectionalEdgeInsets(__VA_ARGS__))
+  #endif
+  
+  #ifndef JobsLogOffset
+  #define JobsLogOffset(format, ...) NSLog(@"%s = %@", #format, NSStringFromUIOffset(__VA_ARGS__))
+  #endif
+  ```
+  
+* 举例说明
+  
+  ```objective-c
+  JobsLogCGRect(@"%@",self.frame);
+  ```
+
+### 6、iOS xcode 代码块，提升编码效率必备之首选
+
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 
-### 4、[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
+### 7、[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
 
 * 统一全局的Block定义，减少冗余代码
 
-### 5、[**<font color=red>BaseProtocol 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md)
+### 8、[**<font color=red>BaseProtocol 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md)
 
 ```mermaid
 classDiagram
@@ -173,7 +226,7 @@ classDiagram
     }
 ```
 
-### 6、UIViewModelFamily
+### 9、UIViewModelFamily
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理；
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
@@ -209,7 +262,7 @@ classDiagram
     }
 ```
 
-### 7、JobsOCBaseCustomizeUIKitCore
+### 10、JobsOCBaseCustomizeUIKitCore
 
 * 产生背景
   * OC的基类是单继承；
@@ -218,14 +271,14 @@ classDiagram
   * 继承和分类应该结合使用，功能各有优劣；
   * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用；
 
-### 8、BaseViewController
+### 11、BaseViewController
 
 * 为了方便管理，理论上，全局只应有一个`UIViewController`。开发者不应该创建过多的子控制器；
 * 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行；
 * 命名为`BaseViewController`也是充分考虑同业者的偏好习惯；
 * 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`；
 
-### 9、度量衡适配。[**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
+### 12、度量衡适配。[**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
 
 * **当前设备是否是全面屏**：`static inline BOOL isFullScreen(void) ` 
 * **全局比例尺**

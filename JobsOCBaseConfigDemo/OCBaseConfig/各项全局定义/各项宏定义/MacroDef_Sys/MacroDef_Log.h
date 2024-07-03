@@ -13,9 +13,39 @@
 #define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d content:%s\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 #endif
 
-#ifndef DLog
-#define DLog( s, ... ) NSLog( @"< %@:(%d) > %@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
+#pragma mark —— 打印结构体
+#ifndef JobsLogCGPoint
+#define JobsLogCGPoint(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGPoint(__VA_ARGS__))
 #endif
+
+#ifndef JobsLogCGVector
+#define JobsLogCGVector(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGVector(__VA_ARGS__))
+#endif
+
+#ifndef JobsLogCGSize
+#define JobsLogCGSize(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGSize(__VA_ARGS__))
+#endif
+
+#ifndef JobsLogCGRect
+#define JobsLogCGRect(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGRect(__VA_ARGS__))
+#endif
+
+#ifndef JobsLogCGAffineTransform
+#define JobsLogCGAffineTransform(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGAffineTransform(__VA_ARGS__))
+#endif
+
+#ifndef JobsLogUIEdgeInsets
+#define JobsLogUIEdgeInsets(format, ...) NSLog(@"%s = %@", #format, NSStringFromUIEdgeInsets(__VA_ARGS__))
+#endif
+
+#ifndef JobsLogDirectionalEdgeInsets
+#define JobsLogDirectionalEdgeInsets(format, ...) NSLog(@"%s = %@", #format, NSStringFromDirectionalEdgeInsets(__VA_ARGS__))
+#endif
+
+#ifndef JobsLogOffset
+#define JobsLogOffset(format, ...) NSLog(@"%s = %@", #format, NSStringFromUIOffset(__VA_ARGS__))
+#endif
+
 #pragma mark —— LOG等级
 /// LOG等级
 #define ITTLOGLEVEL_INFO        10

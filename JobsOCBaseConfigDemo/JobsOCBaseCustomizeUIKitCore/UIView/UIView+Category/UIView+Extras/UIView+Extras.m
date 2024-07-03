@@ -260,6 +260,9 @@
         UILabel *label = (UILabel *)self;
         CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName:label.font}];
         CGFloat stringWidth = size.width;
+
+        JobsLogCGRect(@"%@",self.frame);
+        
         layer.frame = CGRectMake(0, 0, stringWidth, self.frame.size.height);
         layer.alignmentMode = kCAAlignmentCenter;
         layer.font = (__bridge CFTypeRef _Nullable)(label.font.fontName);
