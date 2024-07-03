@@ -5237,6 +5237,7 @@
 			isa = PBXGroup;
 			children = (
 				84CA5ED127897AFA00E46E71 /* Cryptography.h */,
+				CEAF7CFE2C34EA3E007AE308 /* Base编码系列 */,
 				C52688592BDB9C5A00872F26 /* Unicode */,
 				C52688482BDB8F3000872F26 /* MIME */,
 				C52688382BDB75D800872F26 /* HexadecimalData */,
@@ -5245,10 +5246,6 @@
 				84CA5EF327897AFA00E46E71 /* AES */,
 				84CA5ECE27897AFA00E46E71 /* DES */,
 				84CA5EE227897AFA00E46E71 /* SHA */,
-				C52687152BD9229F00872F26 /* Base16 */,
-				C52687102BD91D9300872F26 /* Base32 */,
-				84CA5ED227897AFA00E46E71 /* Base64 */,
-				C52687162BD9257900872F26 /* Base85 */,
 			);
 			path = "加密（编码）算法";
 			sourceTree = "<group>";
@@ -11823,6 +11820,17 @@
 				84CA5F7227897AFB00E46E71 /* sortedNameCH.plist */,
 			);
 			path = XWCountryCodeController.plist;
+			sourceTree = "<group>";
+		};
+		CEAF7CFE2C34EA3E007AE308 /* Base编码系列 */ = {
+			isa = PBXGroup;
+			children = (
+				C52687152BD9229F00872F26 /* Base16 */,
+				C52687102BD91D9300872F26 /* Base32 */,
+				84CA5ED227897AFA00E46E71 /* Base64 */,
+				C52687162BD9257900872F26 /* Base85 */,
+			);
+			path = "Base编码系列";
 			sourceTree = "<group>";
 		};
 		CED90E932C31954A008D9F68 /* 配置info.plist */ = {
