@@ -51,6 +51,67 @@ BaseViewControllerProtocol_synthesize
     self.setupNavigationBarHidden = YES;
     self.currentPage = 1;
     self.modalInPresentation = NO;/// 禁用下拉手势dismiss画面需要将此属性设置为YES
+    self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
+        NSLog(@"退出页面的逻辑");
+        return nil;
+    };
+    
+    @jobs_weakify(self)
+    /// 语言切换
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        NSNumber *b = notification.object;
+        NSLog(@"SSS = %d",b.boolValue);
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        return nil;
+    },nil, self),LanguageSwitchNotification,nil);
+
+    /// 语言切换
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        NSNumber *b = notification.object;
+        NSLog(@"SSS = %d",b.boolValue);
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        return nil;
+    },nil, self),LanguageSwitchNotification,nil);
+    /// 设备方向
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        NSNumber *b = notification.object;
+        NSLog(@"SSS = %d",b.boolValue);
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        
+        switch (UIDevice.currentDevice.orientation) {
+                // 处理竖屏方向的逻辑
+            case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
+                NSLog(@"系统通知：↓");
+                break;
+            case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
+                NSLog(@"系统通知：↑");
+                break;
+                // 处理横屏方向的逻辑
+            case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
+                NSLog(@"系统通知：→");
+                break;
+            case UIDeviceOrientationLandscapeRight:/// 设备水平，Home 按钮在左侧
+                NSLog(@"系统通知：←");
+                break;
+            default:
+                break;
+        }
+        
+        return nil;
+    },nil, self),UIDeviceOrientationDidChangeNotification,nil);
+    
     [self UIViewControllerLifeCycle:JobsLocalFunc];
 }
 
@@ -78,31 +139,24 @@ BaseViewControllerProtocol_synthesize
 //                                       [UIBarButtonItem.alloc initWithCustomView:self.customerServiceBtn]];
 //    self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.userHeadBtn];
     self.gk_statusBarHidden = NO;
-    /*
-     *  #pragma mark —— 全局配置 GKNavigationBar -(void)makeGKNavigationBarConfigure
-     */
-//    {
-//        self.gk_navBackgroundColor = JobsWhiteColor;
-//        self.gk_navTitleFont = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
-//        self.gk_navTitleColor = AppMainCor_01;
-//        self.gk_backStyle = GKNavigationBarBackStyleBlack;
-//        self.gk_navLineHidden = YES;
-//    }
+/*
+ *  #pragma mark —— 全局配置 GKNavigationBar -(void)makeGKNavigationBarConfigure
+ {
+     self.gk_navBackgroundColor = JobsWhiteColor;
+     self.gk_navTitleFont = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
+     self.gk_navTitleColor = AppMainCor_01;
+     self.gk_backStyle = GKNavigationBarBackStyleBlack;
+     self.gk_navLineHidden = YES;
+ }
+ */
+
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    JobsAddNotification(self,
-                    @selector(languageSwitchNotification:),
-                    LanguageSwitchNotification,
-                    nil);
     [self UIViewControllerLifeCycle:JobsLocalFunc];
-    self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
-        NSLog(@"退出页面的逻辑");
-        return nil;
-    };
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [self updateStatusBarCor:JobsOrangeColor];/// 在具体子类实现，不要写在父类
+//    [self updateStatusBarCor:JobsOrangeColor];/// 在具体子类实现，不要写在父类。父类只做提示
     NSLog(@"%d",self.setupNavigationBarHidden);
     self.isHiddenNavigationBar = self.setupNavigationBarHidden;
     [self.navigationController setNavigationBarHidden:self.setupNavigationBarHidden animated:animated];

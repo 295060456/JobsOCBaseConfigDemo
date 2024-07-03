@@ -394,20 +394,19 @@ BaseProtocol
  接受通知：
          @jobs_weakify(self)
          [NSNotificationCenter.defaultCenter addObserver:self
-                                                selector:selectorBlocks(^(id  _Nullable weakSelf,
-                                                                          id  _Nullable arg) {
+                                                selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
+                                                                                      id  _Nullable arg) {
              NSNotification *notification = (NSNotification *)arg;
              NSNumber *b = notification.object;
              NSLog(@"SSS = %d",b.boolValue);
              @jobs_strongify(self)
-             self.imageView.hidden = !b.boolValue;
-             self.imageView.hidden = self.selectedIndex != 4;
-             self.imageView.alpha = b.boolValue;
-         }, nil,self)
-                                                    name:@"点击开拍提示"
+             NSLog(@"通知传递过来的 = %@",notification.object);
+             return nil;
+         }, nil, self)
+                                                    name:LanguageSwitchNotification
                                                   object:nil];
  
- 发通知：[NSNotificationCenter.defaultCenter postNotificationName:@"点击开拍提示" object:@(NO)];
+ 发通知：[NSNotificationCenter.defaultCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
  
  */
 

@@ -83,10 +83,13 @@ pod 'HXRotationTool' # https://github.com/TheLittleBoy/HXRotationTool
 * 代码示例
 
 ```objective-c
+/// 决定当前界面是否开启自动转屏，如果返回NO，后面两个方法也不会被调用，只是会支持默认的方向
 - (BOOL)shouldAutorotate {
     return YES;
 }
 /// 当前控制器支持的屏幕旋转方向（在具体的控制器子类进行覆写）
+/// iPad设备上，默认返回值UIInterfaceOrientationMaskAllButUpSideDwon
+/// iPhone设备上，默认返回值是UIInterfaceOrientationMaskAll
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAll;
 }

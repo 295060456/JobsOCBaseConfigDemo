@@ -26,9 +26,6 @@ UICollectionViewDataSource
 - (void)dealloc{
     [NSNotificationCenter.defaultCenter removeObserver:self];
     NSLog(@"%@",JobsLocalFunc);
-    [NSNotificationCenter.defaultCenter removeObserver:self
-                                                  name:UIDeviceOrientationDidChangeNotification
-                                                object:nil];
 }
 
 -(void)loadView{
@@ -48,10 +45,6 @@ UICollectionViewDataSource
     // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");/// self.gk_navBackgroundImage 和 self.bgImageView
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);/// self.gk_navBackgroundColor 和 self.view.backgroundColor
     self.viewModel.bgImage = JobsIMG(@"新首页的底图");
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(deviceOrientationDidChange:)
-                                               name:UIDeviceOrientationDidChangeNotification
-                                             object:nil];
 }
 
 - (void)viewDidLoad {
@@ -65,8 +58,10 @@ UICollectionViewDataSource
     self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
         @jobs_strongify(self)
         NSLog(@"退出页面的逻辑");
-//        self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;/// 设备处于竖屏（Portrait）模式。
-        [self hx_rotateToInterfaceOrientation:UIInterfaceOrientationPortrait];
+        self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;/// 设备处于竖屏（Portrait）模式。
+        self.currentInterfaceOrientation = UIInterfaceOrientationPortrait;/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
+        self.currentDeviceOrientation = UIDeviceOrientationPortrait;/// 设备竖直放置，设备底部的 Home 键在底部（设备顶部朝上）
+        [self hx_rotateToInterfaceOrientation:self.currentInterfaceOrientation];/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
         return nil;
     };
 }
@@ -102,7 +97,6 @@ UICollectionViewDataSource
        withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size
           withTransitionCoordinator:coordinator];
-    
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
         // 在动画过渡中执行的操作，可以根据 size 和当前设备方向来调整界面布局
     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
@@ -113,7 +107,6 @@ UICollectionViewDataSource
 /// 决定当前界面是否开启自动转屏，如果返回NO，后面两个方法也不会被调用，只是会支持默认的方向
 -(BOOL)shouldAutorotate {
     /**
-     
      typedef NS_OPTIONS(NSUInteger, UIInterfaceOrientationMask) {
          UIInterfaceOrientationMaskPortrait = (1 << UIInterfaceOrientationPortrait),/// 表示设备处于竖屏（Portrait）模式。
          UIInterfaceOrientationMaskLandscapeLeft = (1 << UIInterfaceOrientationLandscapeLeft),/// 表示设备处于左横屏（Landscape Left）模式。
@@ -148,7 +141,7 @@ UICollectionViewDataSource
 }
 /// 设置当前界面支持的所有方向
 /// iPad设备上，默认返回值UIInterfaceOrientationMaskAllButUpSideDwon
-/// iPad设备上，默认返回值是UIInterfaceOrientationMaskAll
+/// iPhone设备上，默认返回值是UIInterfaceOrientationMaskAll
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
 //    return self.currentInterfaceOrientationMask;
     return UIInterfaceOrientationMaskAll;
@@ -158,50 +151,28 @@ UICollectionViewDataSource
     return [super preferredInterfaceOrientationForPresentation];
 }
 /// UIInterfaceOrientationMask 检测屏幕方向
-//-(void)checkScreenOrientation_UIInterfaceOrientationMask{
-//    switch (self.currentInterfaceOrientationMask) {
-//        ///【界面】竖屏方向
-//        case UIInterfaceOrientationMaskPortrait:{
-//            NSLog(@"检测屏幕方向：设备竖直向上，Home 按钮在下方");
-//            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向上，Home 按钮在下方"));
-//        }break;
-//        ///【界面】倒竖屏方向
-//        case UIInterfaceOrientationMaskLandscapeLeft:{
-//            NSLog(@"检测屏幕方向：设备竖直向下，Home 按钮在上方");
-//            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向下，Home 按钮在上方"));
-//        }break;
-//        ///【界面】左横屏方向
-//        case UIInterfaceOrientationMaskLandscapeRight:{
-//            NSLog(@"检测屏幕方向：设备水平，Home 按钮在左侧");
-//            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在左侧"));
-//        }break;
-//        ///【界面】右横屏方向
-//        case UIInterfaceOrientationMaskPortraitUpsideDown:{
-//            NSLog(@"检测屏幕方向：设备水平，Home 按钮在右侧");
-//            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在右侧"));
-//        }default:
-//            break;
-//    }
-//}
-/// UIDeviceOrientationDidChangeNotification 通知方法
-- (void)deviceOrientationDidChange:(NSNotification *)notification {
-    UIDeviceOrientation orientation = UIDevice.currentDevice.orientation;
-    switch (orientation) {
-            // 处理竖屏方向的逻辑
-        case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
-            NSLog(@"系统通知：↓");
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
-            NSLog(@"系统通知：↑");
-            break;
-            // 处理横屏方向的逻辑
-        case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
-            NSLog(@"系统通知：→");
-            break;
-        case UIDeviceOrientationLandscapeRight:/// 设备水平，Home 按钮在左侧
-            NSLog(@"系统通知：←");
-            break;
-        default:
+-(void)checkScreenOrientation_UIInterfaceOrientationMask{
+    switch (self.currentInterfaceOrientationMask) {
+        ///【界面】竖屏方向
+        case UIInterfaceOrientationMaskPortrait:{
+            NSLog(@"检测屏幕方向：设备竖直向上，Home 按钮在下方");
+            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向上，Home 按钮在下方"));
+        }break;
+        ///【界面】倒竖屏方向
+        case UIInterfaceOrientationMaskLandscapeLeft:{
+            NSLog(@"检测屏幕方向：设备竖直向下，Home 按钮在上方");
+            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向下，Home 按钮在上方"));
+        }break;
+        ///【界面】左横屏方向
+        case UIInterfaceOrientationMaskLandscapeRight:{
+            NSLog(@"检测屏幕方向：设备水平，Home 按钮在左侧");
+            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在左侧"));
+        }break;
+        ///【界面】右横屏方向
+        case UIInterfaceOrientationMaskPortraitUpsideDown:{
+            NSLog(@"检测屏幕方向：设备水平，Home 按钮在右侧");
+            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在右侧"));
+        }default:
             break;
     }
 }
@@ -241,11 +212,6 @@ UICollectionViewDataSource
             break;
     }
 }
-
--(void)touchesBegan:(NSSet<UITouch *> *)touches
-          withEvent:(UIEvent *)event{
-    
-}
 #pragma mark —— 一些私有方法
 /// 下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
@@ -270,6 +236,11 @@ UICollectionViewDataSource
 /// 上拉加载更多 （子类要进行覆写）
 -(void)loadMoreRefresh{
     [self pullToRefresh];
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches
+          withEvent:(UIEvent *)event{
+    
 }
 #pragma mark —— UICollectionViewCell 部署策略
 //见 @interface NSObject (JobsDeployCellConfig)

@@ -174,7 +174,7 @@ classDiagram
   * 得出的 UIButton 是没有约束的，需要自己在外界加
   * 具体的内部实现，请关注`@implementation UIButton (UI)`
   
-* 用新Api（UIButtonConfiguration）创建一个带富文本的UIButton
+* <font color=red id=用新Api（UIButtonConfiguration）创建一个带富文本的UIButton>**用新Api（UIButtonConfiguration）创建一个带富文本的UIButton**</font>
 
   ```objective-c
   @property(nonatomic,strong)BaseButton *titleBtn;
@@ -332,6 +332,8 @@ classDiagram
 
 </details>
 
+### 4、实例对象的weak化，避免循环引用
+
 <details id="实例对象的weak化，避免循环引用">
  <summary><strong>实例对象的weak化，避免循环引用</strong></summary>
 * 相关定义
@@ -398,8 +400,127 @@ classDiagram
   ```
 
 </details>
+### 5、使用block，对selector的封装，避免方法割裂
+* <details id="使用block，对selector的封装，避免方法割裂">
+   <summary><strong>使用block，对selector的封装，避免方法割裂</strong></summary>
+   ```objective-c
+   typedef id _Nullable(^JobsReturnIDBySelectorBlock)(id _Nullable weakSelf, id _Nullable arg);
+  /// 用block来代替selector
+  -(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock{
+      return selectorBlocks(selectorBlock,nil,self);
+   }
+   ```
+   
+   
+   ```objective-c
+   /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
+   /// - Parameters:
+   ///   - block: 最终的执行体
+   ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
+   ///   - target: 执行目标
+   SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock block,
+                                NSString *_Nullable selectorName,
+                                id _Nullable target){
+       if (!block) {
+           toastErr(JobsInternationalization(@"方法不存在,请检查参数"));
+           /// 【经常崩溃损伤硬件】 [NSException raise:JobsInternationalization(@"block can not be nil") format:@"%@ selectorBlock error", target];
+       }
+       /// 动态注册方法：对方法名进行拼接（加盐），以防止和当下的其他方法名引起冲突
+       NSString *selName = [NSString stringWithFormat:@"selector_%d_%@",random100__200(),selectorName];
+       NSLog(@"selName = %@",selName);
+       SEL sel = NSSelectorFromString(selName);
+       /**
+        方法签名由方法名称和一个参数列表（方法的参数的顺序和类型）组成
+        注意：方法签名不包括方法的返回类型。不包括返回值和访问修饰符
+        第一个参数是在哪个类中添加方法
+        第二个参数是所添加方法的编号SEL
+        第三个参数是所添加方法的函数实现的指针IMP
+        第四个参数是所添加方法的签名
+        */
+       NSLog(@"%@",[NSString stringWithFormat:@"%d",random100__200()]);
+       if(class_getInstanceMethod([target class], sel)){
+           NSLog(@"方法曾经已经被成功添加，再次添加会崩溃");
+       }else{
+           /// class_addMethod这个方法的实现会覆盖父类的方法实现，但不会取代本类中已存在的实现，如果本类中包含一个同名的实现，则函数会返回NO
+           if (class_addMethod([target class],
+                               sel,
+                               (IMP)selectorImp,
+                               "111")) {
+               objc_setAssociatedObject(target,
+                                        sel,
+                                        block,
+                                        OBJC_ASSOCIATION_COPY_NONATOMIC);
+           }else{
+               [NSException raise:JobsInternationalization(@"添加方法失败")
+                           format:@"%@ selectorBlock error", target];
+           }
+       }return sel;
+   }
+   /// 内部调用无需暴露
+   static void selectorImp(id self,
+                           SEL _cmd,
+                           id arg) {
+       JobsReturnIDBySelectorBlock block = objc_getAssociatedObject(self, _cmd);
+       @jobs_weakify(self)
+       if (block) block(weak_self, arg);
+   }
+   ```
+   </details>
+   
+* [**对按钮点击事件的使用**](#用新Api（UIButtonConfiguration）创建一个带富文本的UIButton)
 
-</details>
+* 对通知的使用
+
+  * [**`MacroDef_Notification.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Notification.h)
+
+    ```objective-c
+    #ifndef JobsAddNotification
+    #define JobsAddNotification(Observer, SEL, NotificationName, Obj)\
+    [JobsNotificationCenter addObserver:(Observer) \
+                            selector:(SEL) \
+                            name:(NotificationName) \
+                            object:(Obj)]
+    #endif
+    ```
+    
+  * 接收通知：
+  
+    ```objective-c
+    @jobs_weakify(self)
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                          selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
+                                                                                id  _Nullable arg) {
+       NSNotification *notification = (NSNotification *)arg;
+       NSNumber *b = notification.object;
+       NSLog(@"SSS = %d",b.boolValue);
+       @jobs_strongify(self)
+       NSLog(@"通知传递过来的 = %@",notification.object);
+       return nil;
+    }, nil, self)
+                                              name:LanguageSwitchNotification
+                                            object:nil];
+    ```
+  
+    ```objective-c
+    @jobs_weakify(self)
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        NSNumber *b = notification.object;
+        NSLog(@"SSS = %d",b.boolValue);
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        return nil;
+    },nil, self),LanguageSwitchNotification,nil);
+    ```
+  
+  * 发通知：
+  
+    ```objective-c
+    [NSNotificationCenter.defaultCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
+    ```
+
 
 <details id="Test">
  <summary><strong>Test</strong></summary>
@@ -407,8 +528,6 @@ classDiagram
  ```objective-c
 // TODO
  ```
-</details>
-
 </details>
 
 <details id="Test">

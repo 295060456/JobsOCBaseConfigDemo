@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UILocationProtocol <NSObject>
 @optional
 #pragma mark —— 屏幕方向
-@property(nonatomic,assign)UIInterfaceOrientationMask currentInterfaceOrientationMask;
+@property(nonatomic,assign)UIInterfaceOrientationMask currentInterfaceOrientationMask;/// 定义应用程序支持的方向
+@property(nonatomic,assign)UIInterfaceOrientation currentInterfaceOrientation;/// 描述界面当前的方向，用于确定应用界面是如何显示的
+@property(nonatomic,assign)UIDeviceOrientation currentDeviceOrientation;/// 描述设备本身的物理方向，即设备如何被用户持握
 #pragma mark —— 方位和大小
 @property(nonatomic,assign)CGFloat __block cornerRadius;/// 圆切角（全角）
 @property(nonatomic,assign)UIRectCorner __block rectCorner;/// 设置切哪个直角
@@ -98,6 +100,8 @@ NS_ASSUME_NONNULL_END
 #define UILocationProtocol_synthesize \
 \
 @synthesize currentInterfaceOrientationMask = _currentInterfaceOrientationMask;\
+@synthesize currentInterfaceOrientation = _currentInterfaceOrientation;\
+@synthesize currentDeviceOrientation = _currentDeviceOrientation;\
 
 #endif
 
@@ -106,6 +110,8 @@ NS_ASSUME_NONNULL_END
 #define UILocationProtocol_dynamic \
 \
 @dynamic currentInterfaceOrientationMask;\
+@dynamic currentInterfaceOrientation;\
+@dynamic currentDeviceOrientation;\
 @dynamic cornerRadius;\
 @dynamic rectCorner;\
 @dynamic cornerRadii;\
