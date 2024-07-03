@@ -159,7 +159,7 @@ classDiagram
 ## 代码讲解
 ### 1、UIButton.UIButtonConfiguration
 <details id="UIButton">
-<summary><strong>点开了解详情</strong></summary>
+<summary><strong>点我了解详情</strong></summary>
 
 * 苹果在后续的Api中推出了 UIButtonConfiguration 来设置UIButton，但是这个新Api会存在几大问题
 
@@ -282,7 +282,7 @@ classDiagram
 ### 2、Masonry约束动画
 
 <details id="Masonry约束动画<br>">
- <summary><strong>点开了解详情<br></strong></summary>
+ <summary><strong>点我了解详情<br></strong></summary>
 
 ```objective-c
 -(MSMineView2 *)view2{
@@ -312,7 +312,7 @@ classDiagram
 ### 3、退出ViewController的时候，需要做的操作
 
 <details id="退出ViewController的时候，需要做的操作">
- <summary><strong>退出ViewController的时候，需要做的操作</strong></summary>
+ <summary><strong>点我了解详情</strong></summary>
 
 定义于`BaseViewProtocol`，因为是进数据，所以可以实现在控制器生命周期的任意处
  ```objective-c
@@ -332,7 +332,7 @@ classDiagram
 
 ### 4、实例对象的weak化，避免循环引用
 <details id="相关定义">
-<summary><strong>相关定义</strong></summary>
+<summary><strong>点我了解详情：相关定义</strong></summary>
 
 ```objective-c
 #ifndef MacroDef_Strong_Weak_h
@@ -391,7 +391,7 @@ classDiagram
 </details>
 
 <details id="使用方式">
- <summary><strong>使用方式</strong></summary>
+ <summary><strong>点我了解详情：使用方式</strong></summary>
 
  ```objective-c
 @jobs_strongify(self)
@@ -402,7 +402,7 @@ classDiagram
 ### 5、使用block，对selector的封装，避免方法割裂
 
 <details id="使用block，对selector的封装，避免方法割裂">
- <summary><strong>使用block，对selector的封装，避免方法割裂</strong></summary>
+ <summary><strong>点我了解详情</strong></summary>
 
    ```objective-c
  typedef id _Nullable(^JobsReturnIDBySelectorBlock)(id _Nullable weakSelf, id _Nullable arg);
