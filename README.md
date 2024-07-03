@@ -163,6 +163,29 @@ classDiagram
 * 命名为`BaseViewController`也是充分考虑同业者的偏好习惯；
 * 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`；
 
+### 9、度量衡适配。[**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
+
+* **当前设备是否是全面屏**：`static inline BOOL isFullScreen(void) ` 
+* **全局比例尺**
+  * `static inline CGFloat JobsWidth(CGFloat width)`  
+  * `static inline CGFloat JobsHeight(CGFloat height)`
+* **安全距离**
+  * 顶部的安全距离：`static inline CGFloat JobsTopSafeAreaHeight(void)`
+  * 底部的安全距离，全面屏手机为34pt，非全面屏手机为0pt：`static inline CGFloat JobsBottomSafeAreaHeight(void)`
+* **状态栏高度**
+  * `static inline CGFloat JobsStatusBarHeightByAppleIncData(void) `
+  * `static inline CGFloat JobsRectOfStatusbar(void)`
+  * `static inline CGFloat JobsStatusBarHeight(void)`
+* **导航栏高度**
+  * `static inline CGFloat JobsNavigationHeight(UINavigationController * _Nullable navigationController)`
+* **状态栏 + 导航栏高度**
+  * `static inline CGFloat JobsNavigationBarAndStatusBarHeight(UINavigationController * _Nullable navigationController)`
+* **Tabbar高度**：全面屏手机比普通手机多34的安全区域
+  * `static inline CGFloat JobsTabBarHeight(UITabBarController * _Nullable tabBarController)`
+  * `static inline CGFloat JobsTabBarHeightByBottomSafeArea(UITabBarController * _Nullable tabBarController)`<font color=red>**包括了底部安全区域的TabBar高度，一般用这个**</font>
+* **除开 tabBarController 和 navigationController 的内容可用区域的大小**
+  * `static inline CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBarController, UINavigationController * _Nullable navigationController)`
+
 ## 五、代码讲解
 ### 1、UIButton.UIButtonConfiguration
 <details id="UIButton">
