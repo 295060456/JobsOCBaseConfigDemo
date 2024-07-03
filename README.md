@@ -330,10 +330,9 @@ classDiagram
 ```
 </details>
 
-<details id="实例对象的weak化，避免循环引用">
- ### <summary><strong>4、实例对象的weak化，避免循环引用</strong></summary>
-* 相关定义
-
+### 4、实例对象的weak化，避免循环引用
+<details id="相关定义">
+ ### <summary><strong>相关定义</strong></summary>
   ```objective-c
   #ifndef MacroDef_Strong_Weak_h
   #define MacroDef_Strong_Weak_h
