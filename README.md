@@ -388,13 +388,15 @@ classDiagram
 #endif /* MacroDef_Strong_Weak_h */
 ```
 
+</details>
 
-* 使用方式
+<details id="使用方式">
+ <summary><strong>使用方式</strong></summary>
 
-  ```objective-c
-  @jobs_strongify(self)
-  @jobs_weakify(self)
-  ```
+ ```objective-c
+@jobs_strongify(self)
+@jobs_weakify(self)
+ ```
 </details>
 
 ### 5、使用block，对selector的封装，避免方法割裂
