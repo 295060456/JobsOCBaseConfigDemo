@@ -111,7 +111,7 @@ classDiagram
     }
 ```
 
-* 减少冗余代码，将公用头文件提升到协议进行定义
+* 
 
 ### 6、UIViewModelFamily
 
@@ -119,6 +119,7 @@ classDiagram
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
 * `UITextModel`是专门针对文本的<font color=red>**数据束**</font>
 * 结合`BaseProtocol`进行封装
+* 减少冗余代码，将公用头文件提升到协议进行定义
 
 ```mermaid
 classDiagram
@@ -332,10 +333,8 @@ classDiagram
 
 </details>
 
-### 4、实例对象的weak化，避免循环引用
-
 <details id="实例对象的weak化，避免循环引用">
- <summary><strong>实例对象的weak化，避免循环引用</strong></summary>
+ <summary><strong>### 4、实例对象的weak化，避免循环引用</strong></summary>
 * 相关定义
 
   ```objective-c
@@ -398,8 +397,8 @@ classDiagram
   @jobs_strongify(self)
   @jobs_weakify(self)
   ```
-
 </details>
+
 ### 5、使用block，对selector的封装，避免方法割裂
 * <details id="使用block，对selector的封装，避免方法割裂">
    <summary><strong>使用block，对selector的封装，避免方法割裂</strong></summary>
@@ -411,7 +410,7 @@ classDiagram
    }
    ```
    
-   
+  
    ```objective-c
    /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
    /// - Parameters:
@@ -466,7 +465,7 @@ classDiagram
    }
    ```
    </details>
-   
+  
 * [**对按钮点击事件的使用**](#用新Api（UIButtonConfiguration）创建一个带富文本的UIButton)
 
 * 对通知的使用
