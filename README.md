@@ -159,7 +159,7 @@ classDiagram
 ## 代码讲解
 ### 1、UIButton.UIButtonConfiguration
 <details id="UIButton">
- <summary><strong>UIButton</strong></summary>
+<summary><strong>点开了解详情</strong></summary>
 
 * 苹果在后续的Api中推出了 UIButtonConfiguration 来设置UIButton，但是这个新Api会存在几大问题
 
@@ -180,96 +180,96 @@ classDiagram
   @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
   @property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richTextConfigMutArr;
   
-   -(BaseButton *)titleBtn{
-       if(!_titleBtn){
-           @jobs_weakify(self)
-           _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                          background:nil
-                                                      titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                       textAlignment:NSTextAlignmentCenter
-                                                    subTextAlignment:NSTextAlignmentCenter
-                                                         normalImage:nil
-                                                      highlightImage:nil
-                                                     attributedTitle:nil
-                                             selectedAttributedTitle:nil
-                                                  attributedSubtitle:[self richTextWithDataConfigMutArr:self.richTextConfigMutArr]
-                                                               title:Internationalization(@"请支付")
-                                                            subTitle:nil//Internationalization(@"观看完整教学视频需支付99Mata值")
-                                                           titleFont:UIFontWeightBoldSize(18)
-                                                        subTitleFont:nil
-                                                            titleCor:JobsCor(@"#333333")
-                                                         subTitleCor:nil
-                                                  titleLineBreakMode:NSLineBreakByWordWrapping
-                                               subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                 baseBackgroundColor:UIColor.whiteColor
-                                                        imagePadding:JobsWidth(0)
-                                                        titlePadding:JobsWidth(10)
-                                                      imagePlacement:NSDirectionalRectEdgeNone
-                                          contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                            contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                       contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                   cornerRadiusValue:JobsWidth(0)
-                                                     roundingCorners:UIRectCornerAllCorners
-                                                roundingCornersRadii:CGSizeZero
-                                                      layerBorderCor:nil
-                                                         borderWidth:JobsWidth(0)
-                                                       primaryAction:nil
-                                                     clickEventBlock:^id(BaseButton *x) {
-               @jobs_strongify(self)
-               x.selected = !x.selected;
-               if (self.objectBlock) self.objectBlock(x);
-               return nil;
-           }];
-           [self addSubview:_titleBtn];
-           [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-               make.height.mas_equalTo(JobsWidth(72));
-               make.top.equalTo(self).offset(JobsWidth(20));
-               make.centerX.equalTo(self);
-           }];
-           [_titleBtn makeBtnLabelByShowingType:UILabelShowingType_03];
-       }return _titleBtn;
-   }
+  -(BaseButton *)titleBtn{
+     if(!_titleBtn){
+         @jobs_weakify(self)
+         _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                        background:nil
+                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                     textAlignment:NSTextAlignmentCenter
+                                                  subTextAlignment:NSTextAlignmentCenter
+                                                       normalImage:nil
+                                                    highlightImage:nil
+                                                   attributedTitle:nil
+                                           selectedAttributedTitle:nil
+                                                attributedSubtitle:[self richTextWithDataConfigMutArr:self.richTextConfigMutArr]
+                                                             title:Internationalization(@"请支付")
+                                                          subTitle:nil//Internationalization(@"观看完整教学视频需支付99Mata值")
+                                                         titleFont:UIFontWeightBoldSize(18)
+                                                      subTitleFont:nil
+                                                          titleCor:JobsCor(@"#333333")
+                                                       subTitleCor:nil
+                                                titleLineBreakMode:NSLineBreakByWordWrapping
+                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                               baseBackgroundColor:UIColor.whiteColor
+                                                      imagePadding:JobsWidth(0)
+                                                      titlePadding:JobsWidth(10)
+                                                    imagePlacement:NSDirectionalRectEdgeNone
+                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                 cornerRadiusValue:JobsWidth(0)
+                                                   roundingCorners:UIRectCornerAllCorners
+                                              roundingCornersRadii:CGSizeZero
+                                                    layerBorderCor:nil
+                                                       borderWidth:JobsWidth(0)
+                                                     primaryAction:nil
+                                                   clickEventBlock:^id(BaseButton *x) {
+             @jobs_strongify(self)
+             x.selected = !x.selected;
+             if (self.objectBlock) self.objectBlock(x);
+             return nil;
+         }];
+         [self addSubview:_titleBtn];
+         [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.height.mas_equalTo(JobsWidth(72));
+             make.top.equalTo(self).offset(JobsWidth(20));
+             make.centerX.equalTo(self);
+         }];
+         [_titleBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+     }return _titleBtn;
+  }
   
-   -(NSMutableArray<NSString *> *)richTextMutArr{
-       if (!_richTextMutArr) {
-           _richTextMutArr = NSMutableArray.array;
-           [_richTextMutArr addObject:Internationalization(@"观看完整教学视频需支付")];
-           [_richTextMutArr addObject:Internationalization(@"99")];
-           [_richTextMutArr addObject:Internationalization(@"Mata值")];
-       }return _richTextMutArr;
-   }
+  -(NSMutableArray<NSString *> *)richTextMutArr{
+     if (!_richTextMutArr) {
+         _richTextMutArr = NSMutableArray.array;
+         [_richTextMutArr addObject:Internationalization(@"观看完整教学视频需支付")];
+         [_richTextMutArr addObject:Internationalization(@"99")];
+         [_richTextMutArr addObject:Internationalization(@"Mata值")];
+     }return _richTextMutArr;
+  }
   
-   -(NSMutableArray<RichTextConfig *> *)richTextConfigMutArr{
-       if (!_richTextConfigMutArr) {
-           _richTextConfigMutArr = NSMutableArray.array;
-           {
-               RichTextConfig *config_01 = RichTextConfig.new;
-               config_01.font = UIFontWeightRegularSize(14);
-               config_01.textCor = JobsCor(@"#666666");
-               config_01.targetString = self.richTextMutArr[0];
-               config_01.paragraphStyle = self.jobsParagraphStyleCenter;
-               [_richTextConfigMutArr addObject:config_01];
-           }
+  -(NSMutableArray<RichTextConfig *> *)richTextConfigMutArr{
+     if (!_richTextConfigMutArr) {
+         _richTextConfigMutArr = NSMutableArray.array;
+         {
+             RichTextConfig *config_01 = RichTextConfig.new;
+             config_01.font = UIFontWeightRegularSize(14);
+             config_01.textCor = JobsCor(@"#666666");
+             config_01.targetString = self.richTextMutArr[0];
+             config_01.paragraphStyle = self.jobsParagraphStyleCenter;
+             [_richTextConfigMutArr addObject:config_01];
+         }
   
-           {
-               RichTextConfig *config_02 = RichTextConfig.new;
-               config_02.font = UIFontWeightRegularSize(14);
-               config_02.textCor = JobsCor(@"#BA9B77");
-               config_02.targetString = self.richTextMutArr[1];
-               config_02.paragraphStyle = self.jobsParagraphStyleCenter;
-               [_richTextConfigMutArr addObject:config_02];
-           }
+         {
+             RichTextConfig *config_02 = RichTextConfig.new;
+             config_02.font = UIFontWeightRegularSize(14);
+             config_02.textCor = JobsCor(@"#BA9B77");
+             config_02.targetString = self.richTextMutArr[1];
+             config_02.paragraphStyle = self.jobsParagraphStyleCenter;
+             [_richTextConfigMutArr addObject:config_02];
+         }
   
-           {
-               RichTextConfig *config_03 = RichTextConfig.new;
-               config_03.font = UIFontWeightRegularSize(14);
-               config_03.textCor = JobsCor(@"#666666");
-               config_03.targetString = self.richTextMutArr[2];
-               config_03.paragraphStyle = self.jobsParagraphStyleCenter;
-               [_richTextConfigMutArr addObject:config_03];
-           }
-       }return _richTextConfigMutArr;
-   }
+         {
+             RichTextConfig *config_03 = RichTextConfig.new;
+             config_03.font = UIFontWeightRegularSize(14);
+             config_03.textCor = JobsCor(@"#666666");
+             config_03.targetString = self.richTextMutArr[2];
+             config_03.paragraphStyle = self.jobsParagraphStyleCenter;
+             [_richTextConfigMutArr addObject:config_03];
+         }
+     }return _richTextConfigMutArr;
+  }
   ```
   
 * 资料来源：
@@ -282,7 +282,7 @@ classDiagram
 ### 2、Masonry约束动画
 
 <details id="Masonry约束动画<br>">
- <summary><strong>Masonry约束动画<br></strong></summary>
+ <summary><strong>点开了解详情<br></strong></summary>
 
 ```objective-c
 -(MSMineView2 *)view2{
@@ -400,16 +400,18 @@ classDiagram
 </details>
 
 ### 5、使用block，对selector的封装，避免方法割裂
-* <details id="使用block，对selector的封装，避免方法割裂">
-   <summary><strong>使用block，对selector的封装，避免方法割裂</strong></summary>
+
+<details id="使用block，对selector的封装，避免方法割裂">
+ <summary><strong>使用block，对selector的封装，避免方法割裂</strong></summary>
+
    ```objective-c
-   typedef id _Nullable(^JobsReturnIDBySelectorBlock)(id _Nullable weakSelf, id _Nullable arg);
-  /// 用block来代替selector
-  -(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock{
-      return selectorBlocks(selectorBlock,nil,self);
-   }
+ typedef id _Nullable(^JobsReturnIDBySelectorBlock)(id _Nullable weakSelf, id _Nullable arg);
+ /// 用block来代替selector
+ -(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock{
+    return selectorBlocks(selectorBlock,nil,self);
+ }
    ```
-  
+
    ```objective-c
    /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
    /// - Parameters:
@@ -463,8 +465,8 @@ classDiagram
        if (block) block(weak_self, arg);
    }
    ```
-   </details>
-  
+</details>
+
 * [**对按钮点击事件的使用**](#用新Api（UIButtonConfiguration）创建一个带富文本的UIButton)
 
 * 对通知的使用
