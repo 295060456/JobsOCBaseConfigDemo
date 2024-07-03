@@ -46,7 +46,7 @@
     ![image-20240628200436387](./assets/image-20240628200436387.png)
   
   * 文件夹授权
-    ```
+    ```shell
     sudo chown -R $(whoami) 项目目录
     sudo chmod -R u+rw 项目目录
     ```
@@ -161,17 +161,17 @@ classDiagram
 <details id="UIButton">
 <summary><strong>点我了解详情</strong></summary>
 
-* 苹果在后续的Api中推出了 UIButtonConfiguration 来设置UIButton，但是这个新Api会存在几大问题
+* 苹果在后续的Api中推出了`UIButtonConfiguration` 来设置UIButton，但是这个新Api会存在几大问题；
 
-  * 大多数开发者对这个Api不熟悉
-  * 用了新Api以后，老的Api的一些调用方式可能不会起效果。如果还是按照以前的方式创建，你会发现UIButton不正常出现
-  * 大多数时候，我们会涉及到富文本。而富文本和普通的文本之间对于控件有优先级。富文本的优先级最高
-  * 因为要做兼容处理，但是 UIButtonConfiguration 的设置环节非常繁琐
+  * 大多数开发者对这个Api不熟悉；
+  * 用了新Api以后，老的Api的一些调用方式可能不会起效果。如果还是按照以前的方式创建，你会发现UIButton不正常出现；
+  * 大多数时候，我们会涉及到富文本。而富文本和普通的文本之间对于控件有优先级。富文本的优先级最高；
+  * 因为要做兼容处理，但是`UIButtonConfiguration` 的设置环节非常繁琐；
   
-* 所以，为了应对以上的问题，可以快捷键（init.JobsBtn）调代码块来设置 UIButton
+* 所以，为了应对以上的问题，可以使用快捷键（init.JobsBtn）调取代码块来设置 UIButton。[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 
-  * 得出的 UIButton 是没有约束的，需要自己在外界加
-  * 具体的内部实现，请关注`@implementation UIButton (UI)`
+  * 得出的 UIButton 是没有约束的，需要自己在外界加；
+  * 具体的内部实现，请关注`@implementation UIButton (UI)`；
   
 * <font color=red id=用新Api（UIButtonConfiguration）创建一个带富文本的UIButton>**用新Api（UIButtonConfiguration）创建一个带富文本的UIButton**</font>
 
@@ -313,21 +313,23 @@ classDiagram
 
 <details id="退出ViewController的时候，需要做的操作">
  <summary><strong>点我了解详情</strong></summary>
+* 定义于`BaseViewProtocol`，因为是进数据，所以可以实现在控制器生命周期的任意处
 
-定义于`BaseViewProtocol`，因为是进数据，所以可以实现在控制器生命周期的任意处
- ```objective-c
-  @jobs_weakify(self)
-  self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
-      @jobs_strongify(self)
-      NSLog(@"退出页面的逻辑");
-      return nil;
-  };
- ```
-也可以在具体的子控制器覆写下列方法
+  ```objective-c
+   @jobs_weakify(self)
+   self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
+       @jobs_strongify(self)
+       NSLog(@"退出页面的逻辑");
+       return nil;
+   };
+  ```
 
-```objective-c
--(void)backBtnClickEvent:(UIButton *_Nullable)sender;
-```
+* 也可以在具体的子控制器覆写下列方法
+
+  ```objective-c
+  -(void)backBtnClickEvent:(UIButton *_Nullable)sender;
+  ```
+
 </details>
 
 ### 4、实例对象的weak化，避免循环引用
@@ -605,8 +607,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 // TODO
 ```
 </details>
-
-
 
 ## 六、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99)
 ### 1、配置相关
