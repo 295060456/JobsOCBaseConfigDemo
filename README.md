@@ -150,11 +150,18 @@ classDiagram
 ### 7、JobsOCBaseCustomizeUIKitCore
 
 * 产生背景
-  * OC的基类是单继承
-  * 继承会产生很多基类，客观上造成代码的冗余
+  * OC的基类是单继承；
+  * 继承会产生很多基类，客观上造成代码的冗余；
 * 解决方案
-  * 继承和分类结合使用
-  * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用
+  * 继承和分类应该结合使用，功能各有优劣；
+  * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用；
+
+### 8、BaseViewController
+
+* 为了方便管理，理论上，全局只应有一个`UIViewController`。开发者不应该创建过多的子控制器；
+* 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行；
+* 命名为`BaseViewController`也是充分考虑同业者的偏好习惯；
+* 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`；
 
 ## 五、代码讲解
 ### 1、UIButton.UIButtonConfiguration
@@ -526,7 +533,7 @@ classDiagram
 
 ### 6、UIViewModel的使用
 
-* 将数据束``绑定到UI中，包括一些UI交互事件
+* 将数据束`UIViewModel`绑定到UI中，包括一些UI交互事件
 
 <details id="UIViewModel的使用">
  <summary><strong>对 UICollectionView 点击事件的封UIViewModel+block</strong></summary>
