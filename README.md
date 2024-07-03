@@ -1,4 +1,4 @@
-# 基础的配置说明
+# <font color=red>iOS.OC靶场项目</font><基础配置的说明>
 <p align="left">
   <img src="https://img.shields.io/badge/pod-1.15.2-brightgreen" alt="cocoapods" title="cocoapods"/>
   <img src="https://img.shields.io/badge/OC-orange" alt="OC" title="OC"/>
@@ -6,7 +6,7 @@
 </p>
 [toc]
 
-## 目的
+## 一、目的
 
 * 所有的项目根据这个根来进行统一配置和调用。
 * 将它作为所有项目的基类，做到全局的统一
@@ -16,7 +16,7 @@
 * 作为学习的资料，可以快速了解到一些常用的知识
 * 作为项目的参考，可以快速的了解到项目的架构，代码规范，以及一些设计模式
 
-## 特色
+## 二、特色
 - [x] 网络模块Api<br>
 - [x] Toast<br>
 - [x] 系统、UI配置<br>
@@ -24,13 +24,13 @@
 - [x] 语言本地化<br>
 - [x] 数据存储UserDefaults<br>
 - [ ] 统一的WebView<br>
-## 相关链接
+## 三、相关链接
 
 * [**OC代码实验室**](https://github.com/295060456/Jobs_ObjectiveC_Laboratory)
 * [**yanmingLiu-Xminds**](https://github.com/yanmingLiu/Xminds)
 * [**yanmingLiu-iOSNotes**](https://github.com/yanmingLiu/iOSNotes)
 
-## 几点重要说明
+## 四、几点重要说明
 
 ### 1、在Apple芯片（目前是M系列）编译失败的解决方案
 * 禁用系统完整性保护 (**S**ystem **I**ntegrity **P**rotection, SIP)   <font color=red>**如果不禁用，会对某些文件夹有读写权限控制**</font>
@@ -156,7 +156,7 @@ classDiagram
   * 继承和分类结合使用
   * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用
 
-## 代码讲解
+## 五、代码讲解
 ### 1、UIButton.UIButtonConfiguration
 <details id="UIButton">
 <summary><strong>点我了解详情</strong></summary>
@@ -521,24 +521,94 @@ classDiagram
     [NSNotificationCenter.defaultCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
     ```
 
+### 6、UIViewModel的使用
 
+* 将数据束``绑定到UI中，包括一些UI交互事件
+
+<details id="UIViewModel的使用">
+ <summary><strong>对 UICollectionView 点击事件的封UIViewModel+block</strong></summary>
+
+ ```objective-c
+/// Data
+@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
+ ```
+```objective-c
+-(NSMutableArray<UIViewModel *> *)dataMutArr{
+    if (!_dataMutArr) {
+        _dataMutArr = NSMutableArray.array;
+        @jobs_weakify(self)
+
+        {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = JobsInternationalization(@"Hello");
+            textModel.textCor = JobsRedColor;
+            textModel.textAlignment = NSTextAlignmentCenter;
+            
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel = textModel;
+            viewModel.jobsBlock = ^id(id param){
+                @jobs_strongify(self)
+                NSLog(@"Hello");
+                return nil;
+            };
+            [_dataMutArr addObject:viewModel];
+        }
+
+        {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = JobsInternationalization(@"OK");
+            textModel.textCor = JobsRedColor;
+            textModel.textAlignment = NSTextAlignmentCenter;
+            
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel = textModel;
+            viewModel.jobsBlock = ^id(id param){
+                @jobs_strongify(self)
+                NSLog(@"OK");
+                return nil;
+            };
+            [_dataMutArr addObject:viewModel];
+        }
+    }return _dataMutArr;
+}
+```
+
+```objective-c
+/// collectionView 选中操作
+- (void)collectionView:(UICollectionView *)collectionView
+didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s", __FUNCTION__);
+    self.dataMutArr[indexPath.item].jobsBlock(nil);
+    /**
+     滚动到指定位置
+     _collectionView.contentOffset = CGPointMake(0,-100);
+     [_collectionView setContentOffset:CGPointMake(0, -200) animated:YES];// 只有在viewDidAppear周期 或者 手动触发才有效
+     */
+}
+```
+
+</details>
+
+### 7、统一注册全局的 `UICollectionViewCell`
+* 不注册相对应当UICollectionViewCell相关子类，使用时会崩溃；
+* 系统注册UICollectionViewCell相关子类，是利用字符串作为桥梁进行操作；
+* 注册不会开辟内存，只有当使用的时候才会开辟内存；
+* 对全局进行统一的UICollectionViewCell相关子类注册是很有必要的，方便管理，防止崩溃；
+* 关注实现类<font color=blue>**`@implementation UICollectionView (JobsRegisterClass)`**</font>
+
+```markdown
+### Test
 <details id="Test">
- <summary><strong>Test</strong></summary>
+ <summary><strong>点我了解详情</strong></summary>
 
  ```objective-c
 // TODO
- ```
+```
 </details>
 
-<details id="Test">
- <summary><strong>Test</strong></summary>
 
- ```objective-c
-// TODO
- ```
-</details>
 
-## [一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99)
+## 六、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99)
 ### 1、配置相关
 * [**解决Xcode出现：SDK does not contain 'libarclite' 错误**](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E8%A7%A3%E5%86%B3Xcode%E5%87%BA%E7%8E%B0%EF%BC%9ASDK%20does%20not%20contain%20'libarclite'%20%E9%94%99%E8%AF%AF)
 * [**通过SSH连接到GitHub**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub.md)
@@ -617,7 +687,7 @@ classDiagram
   * 将[**时间按照【年-月份】分组**](#时间按照【年-月份】分组)集成到靶场项目里
   * 完善 [**iOS功能：跳转其他App,如果本机不存在,则进行下载（需要补充）**](#iOS功能：跳转其他App,如果本机不存在,则进行下载)
 * 其他
-## 打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://)
+## 七、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://)
 * 浏览器打开并输入 
   ```html
   feedbackassistant://
