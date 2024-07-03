@@ -126,6 +126,8 @@ Current targets:
 
 ### 5、重写打印输出
 
+* 关注文件[**MacroDef_Log.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Sys/MacroDef_Log.h)
+
 * 使之能定位到具体文件行的输出
 
   ```objective-c
@@ -172,11 +174,7 @@ Current targets:
   #endif
   ```
   
-* 举例说明
-  
-  ```objective-c
-  JobsLogCGRect(@"%@",self.frame);
-  ```
+  ![image-20240703193326163](./assets/image-20240703193326163.png)
 
 ### 6、iOS xcode 代码块，提升编码效率必备之首选
 
@@ -226,7 +224,7 @@ classDiagram
     }
 ```
 
-### 9、UIViewModelFamily
+### 9、**UIViewModelFamily**
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理；
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
@@ -301,8 +299,59 @@ classDiagram
 * **除开 tabBarController 和 navigationController 的内容可用区域的大小**
   * `static inline CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBarController, UINavigationController * _Nullable navigationController)`
 
+### 13、**键盘监听**
+
+* 关注[**`@implementation NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
+
+  ```objective-c
+  /// 加入键盘通知的监听者
+  -(void)keyboard{
+      @jobs_weakify(self)
+      /// 键盘的弹出
+      JobsAddNotification(self,
+                      selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                id _Nullable arg){
+          NSNotification *notification = (NSNotification *)arg;
+          @jobs_strongify(self)
+          NSLog(@"通知传递过来的 = %@",notification.object);
+          NSNotificationKeyboardModel *notificationKeyboardModel = NSNotificationKeyboardModel.new;
+          notificationKeyboardModel.userInfo = notification.userInfo;
+          notificationKeyboardModel.beginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+          notificationKeyboardModel.endFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+          notificationKeyboardModel.keyboardOffsetY = notificationKeyboardModel.beginFrame.origin.y - notificationKeyboardModel.endFrame.origin.y;// 正则抬起 ，负值下降
+          notificationKeyboardModel.notificationName = UIKeyboardWillChangeFrameNotification;
+          NSLog(@"KeyboardOffsetY = %f", notificationKeyboardModel.keyboardOffsetY);
+       
+          if (notificationKeyboardModel.keyboardOffsetY > 0) {
+              NSLog(@"键盘抬起");
+              if (self.keyboardUpNotificationBlock) self.keyboardUpNotificationBlock(notificationKeyboardModel);
+          }else if(notificationKeyboardModel.keyboardOffsetY < 0){
+              NSLog(@"键盘收回");
+              if (self.keyboardDownNotificationBlock) self.keyboardDownNotificationBlock(notificationKeyboardModel);
+          }else{
+              NSLog(@"键盘");
+          }return nil;
+      },nil, self),UIKeyboardWillChangeFrameNotification,nil);
+      /// 键盘的回收
+      JobsAddNotification(self,
+                      selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                id _Nullable arg){
+          NSNotification *notification = (NSNotification *)arg;
+          @jobs_strongify(self)
+          NSLog(@"通知传递过来的 = %@",notification.object);
+          return nil;
+      },nil, self),UIKeyboardDidChangeFrameNotification,nil);
+  }
+  ```
+
+### 14、**手动打包流程**
+
+![image-20240703211611574](./assets/image-20240703211611574.png)
+
+
+
 ## 五、代码讲解
-### 1、UIButton.UIButtonConfiguration
+### 1、**UIButton.UIButtonConfiguration**
 <details id="UIButton">
 <summary><strong>点我了解详情</strong></summary>
 
@@ -547,7 +596,7 @@ classDiagram
  ```
 </details>
 
-### 5、使用block，对selector的封装，避免方法割裂
+### 5、**使用block，对selector的封装，避免方法割裂**
 
 <details id="使用block，对selector的封装，避免方法割裂">
  <summary><strong>点我了解详情</strong></summary>
@@ -615,61 +664,63 @@ classDiagram
    ```
 </details>
 
-* [**对按钮点击事件的使用**](#用新Api（UIButtonConfiguration）创建一个带富文本的UIButton)
+##### [**对按钮点击事件的使用**](#用新Api（UIButtonConfiguration）创建一个带富文本的UIButton)
 
-* 对通知的使用
+##### 对通知的使用
 
-  * [**`MacroDef_Notification.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Notification.h)
+* [**`MacroDef_Notification.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Notification.h)
 
-    ```objective-c
-    #ifndef JobsAddNotification
-    #define JobsAddNotification(Observer, SEL, NotificationName, Obj)\
-    [JobsNotificationCenter addObserver:(Observer) \
-                            selector:(SEL) \
-                            name:(NotificationName) \
-                            object:(Obj)]
-    #endif
-    ```
-    
-  * 接收通知：
+  ```objective-c
+  #ifndef JobsAddNotification
+  #define JobsAddNotification(Observer, SEL, NotificationName, Obj)\
+  [JobsNotificationCenter addObserver:(Observer) \
+                          selector:(SEL) \
+                          name:(NotificationName) \
+                          object:(Obj)]
+  #endif
+  ```
   
-    ```objective-c
-    @jobs_weakify(self)
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                          selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
-                                                                                id  _Nullable arg) {
-       NSNotification *notification = (NSNotification *)arg;
-       if([notification.object isKindOfClass:NSNumber.class]){
-           NSNumber *b = notification.object;
-           NSLog(@"SSS = %d",b.boolValue);
-       }
-       @jobs_strongify(self)
-       NSLog(@"通知传递过来的 = %@",notification.object);
-       return nil;
-    }, nil, self)
-                                              name:LanguageSwitchNotification
-                                            object:nil];
-    ```
-  
-    ```objective-c
-    @jobs_weakify(self)
-    JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
-        NSNotification *notification = (NSNotification *)arg;
-        NSNumber *b = notification.object;
-        NSLog(@"SSS = %d",b.boolValue);
-        @jobs_strongify(self)
-        NSLog(@"通知传递过来的 = %@",notification.object);
-        return nil;
-    },nil, self),LanguageSwitchNotification,nil);
-    ```
-  
-  * 发通知：
-  
-    ```objective-c
-    [NSNotificationCenter.defaultCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
-    ```
+* 接收通知：
+
+  ```objective-c
+  @jobs_weakify(self)
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                        selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
+                                                                              id  _Nullable arg) {
+     NSNotification *notification = (NSNotification *)arg;
+     if([notification.object isKindOfClass:NSNumber.class]){
+         NSNumber *b = notification.object;
+         NSLog(@"SSS = %d",b.boolValue);
+     }
+     @jobs_strongify(self)
+     NSLog(@"通知传递过来的 = %@",notification.object);
+     return nil;
+  }, nil, self)
+                                            name:LanguageSwitchNotification
+                                          object:nil];
+  ```
+
+  ```objective-c
+  @jobs_weakify(self)
+  JobsAddNotification(self,
+                  selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                            id _Nullable arg){
+      NSNotification *notification = (NSNotification *)arg;
+      if([notification.object isKindOfClass:NSNumber.class]){
+          NSNumber *b = notification.object;
+          NSLog(@"SSS = %d",b.boolValue);
+      }
+      @jobs_strongify(self)
+      NSLog(@"通知传递过来的 = %@",notification.object);
+      return nil;
+  },nil, self),LanguageSwitchNotification,nil);
+  ```
+
+* 发通知：
+
+  ```objective-c
+  [NSNotificationCenter.defaultCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
+  ```
 
 ### 6、UIViewModel的使用
 

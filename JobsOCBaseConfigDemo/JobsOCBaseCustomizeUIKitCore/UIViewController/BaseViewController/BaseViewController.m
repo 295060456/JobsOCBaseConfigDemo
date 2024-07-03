@@ -70,7 +70,6 @@ BaseViewControllerProtocol_synthesize
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
     },nil, self),LanguageSwitchNotification,nil);
-
     /// 语言切换
     JobsAddNotification(self,
                     selectorBlocks(^id _Nullable(id _Nullable weakSelf,

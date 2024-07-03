@@ -40,10 +40,20 @@ static dispatch_once_t static_mineView2OnceToken;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
+        @jobs_weakify(self)
         JobsAddNotification(self,
-                        @selector(languageSwitchNotification:),
-                        LanguageSwitchNotification,
-                        nil);
+                        selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                  id _Nullable arg){
+            NSNotification *notification = (NSNotification *)arg;
+            if([notification.object isKindOfClass:NSNumber.class]){
+                NSNumber *b = notification.object;
+                NSLog(@"SSS = %d",b.boolValue);
+            }
+            @jobs_strongify(self)
+            NSLog(@"通知传递过来的 = %@",notification.object);
+            [self languageSwitchNotification:notification];
+            return nil;
+        },nil, self),LanguageSwitchNotification,nil);
     }return self;
 }
 

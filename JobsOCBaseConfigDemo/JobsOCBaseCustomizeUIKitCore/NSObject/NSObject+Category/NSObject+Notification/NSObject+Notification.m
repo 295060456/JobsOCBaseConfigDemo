@@ -8,7 +8,7 @@
 #import "NSObject+Notification.h"
 
 @implementation NSObject (Notification)
-///【监听所有通知】
+///【监听所有通知】用 selector
 -(void)monitorNotification:(nonnull NSString *)notificationName
               withSelector:(nonnull SEL)selector{
     if ([NSString isNullString:notificationName]) {
@@ -18,6 +18,24 @@
                     @selector(selector),
                     notificationName,
                     nil);
+}
+///【监听所有通知】用 Block
+-(void)monitorNotification:(nonnull NSString *)notificationName
+                 withBlock:(nonnull JobsReturnIDBySelectorBlock)actionBlock{
+    if ([NSString isNullString:notificationName]) {
+        return;
+    }
+    @jobs_weakify(self)
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        if(actionBlock){
+            actionBlock(weakSelf,arg);
+        }return nil;
+    },nil, self),notificationName,nil);
 }
 ///【监听通知】设置App语言环境
 -(void)monitorAppLanguage{

@@ -16,6 +16,8 @@
 #import "UIView+Measure.h"
 #import "NSObject+Extras.h"
 #import "NSObject+GKPhotoBrowser.h"
+#import "MacroDef_Notification.h"
+#import "NSObject+DynamicInvoke.h"
 
 typedef NS_OPTIONS(NSUInteger, ShadowDirection) {
     ShadowDirection_top = 0,

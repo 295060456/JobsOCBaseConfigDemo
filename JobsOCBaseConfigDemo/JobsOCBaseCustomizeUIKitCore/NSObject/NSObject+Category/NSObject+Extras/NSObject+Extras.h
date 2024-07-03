@@ -367,11 +367,6 @@ BaseProtocol
  */
 /// 加入键盘通知的监听者
 -(void)keyboard;
-/// 键盘 弹出 和 收回 走这个方法
--(void)keyboardWillChangeFrameNotification:(NSNotification *_Nullable)notification;
--(void)keyboardDidChangeFrameNotification:(NSNotification *_Nullable)notification;
--(void)actionkeyboardUpNotificationBlock:(JobsReturnIDByIDBlock _Nullable)keyboardUpNotificationBlock;
--(void)actionkeyboardDownNotificationBlock:(JobsReturnIDByIDBlock _Nullable)keyboardDownNotificationBlock;
 #pragma mark —— 刷新
 /// 停止刷新【可能还有数据的情况，状态为：MJRefreshStateIdle】
 -(void)endRefreshing:(UIScrollView *_Nonnull)targetScrollView;

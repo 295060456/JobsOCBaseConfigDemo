@@ -12,19 +12,33 @@
 #pragma mark —— 键盘事件
 /// 监听键盘事件
 -(void)monitorKeyboardAction{
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(keyboardWillShow:)
-                                               name:UIKeyboardWillShowNotification
-                                             object:nil];
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(keyboardWillHide:)
-                                               name:UIKeyboardWillHideNotification
-                                             object:nil];
-
+    @jobs_weakify(self)
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        if([notification.object isKindOfClass:NSNumber.class]){
+            NSNumber *b = notification.object;
+            NSLog(@"SSS = %d",b.boolValue);
+        }
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        return nil;
+    },nil, self),UIKeyboardWillShowNotification,nil);
+    
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        if([notification.object isKindOfClass:NSNumber.class]){
+            NSNumber *b = notification.object;
+            NSLog(@"SSS = %d",b.boolValue);
+        }
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        return nil;
+    },nil, self),UIKeyboardWillHideNotification,nil);
 }
-
--(void)keyboardWillShow:(NSNotification *)notification {}
--(void)keyboardWillHide:(NSNotification *)notification {}
 #pragma mark —— 截屏
 /*
  1、将图片存本地相册 UIImageWriteToSavedPhotosAlbum
@@ -244,6 +258,18 @@
         [textLayer removeAllAnimations];
         [textLayer removeFromSuperlayer];
     }
+    /// 下面的代码是防止当横屏切且手机屏幕旋转的时候，因为UI超过屏幕宽度造成的崩溃
+    /// 具体是：-(CATextLayer *_Nonnull)getTextLayer里面的：layer.frame = CGRectMake(0, 0, stringWidth, self.frame.size.height);发生崩溃
+    if([self isKindOfClass:UILabel.class]){
+        UILabel *label = (UILabel *)self;
+        // 优化文本布局以减少过宽文本
+        label.numberOfLines = 0; // 设置文本包装的行数
+        label.lineBreakMode = NSLineBreakByWordWrapping; // 启用文字换行
+    }else if ([self isKindOfClass:UIButton.class]){
+        UIButton *btn = (UIButton *)self;
+        btn.titleLabel.numberOfLines = 0; // 设置文本包装的行数
+        btn.titleLabel.lineBreakMode = NSLineBreakByWordWrapping; // 启用文字换行
+    }else{}
 }
 /// runtime存放textLayer，避免多次生成
 -(CATextLayer *_Nonnull)getTextLayer{
@@ -261,7 +287,9 @@
         CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName:label.font}];
         CGFloat stringWidth = size.width;
 
-        JobsLogCGRect(@"%@",self.frame);
+        NSLog(@"stringWidth = %f",stringWidth);
+        JobsLogCGRect(@"layer.frame = %@",layer.frame);
+        JobsLogCGRect(@"self.frame = %@",self.frame);
         
         layer.frame = CGRectMake(0, 0, stringWidth, self.frame.size.height);
         layer.alignmentMode = kCAAlignmentCenter;

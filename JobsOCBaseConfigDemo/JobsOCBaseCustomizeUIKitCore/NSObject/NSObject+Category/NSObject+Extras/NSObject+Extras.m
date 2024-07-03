@@ -906,34 +906,41 @@
  */
 /// 加入键盘通知的监听者
 -(void)keyboard{
-    JobsAddNotification(self, @selector(keyboardWillChangeFrameNotification:), UIKeyboardWillChangeFrameNotification, nil);
-    JobsAddNotification(self, @selector(keyboardDidChangeFrameNotification:), UIKeyboardDidChangeFrameNotification, nil);
-}
-/// 键盘 弹出 和 收回 走这个方法
--(void)keyboardWillChangeFrameNotification:(NSNotification *_Nullable)notification{
-    NSLog(@"%@",JobsLocalFunc);
-    NSNotificationKeyboardModel *notificationKeyboardModel = NSNotificationKeyboardModel.new;
-    notificationKeyboardModel.userInfo = notification.userInfo;
-    notificationKeyboardModel.beginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    notificationKeyboardModel.endFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    notificationKeyboardModel.keyboardOffsetY = notificationKeyboardModel.beginFrame.origin.y - notificationKeyboardModel.endFrame.origin.y;// 正则抬起 ，负值下降
-    notificationKeyboardModel.notificationName = UIKeyboardWillChangeFrameNotification;
-    NSLog(@"KeyboardOffsetY = %f", notificationKeyboardModel.keyboardOffsetY);
- 
-    if (notificationKeyboardModel.keyboardOffsetY > 0) {
-        NSLog(@"键盘抬起");
-        if (self.keyboardUpNotificationBlock) self.keyboardUpNotificationBlock(notificationKeyboardModel);
-    }else if(notificationKeyboardModel.keyboardOffsetY < 0){
-        NSLog(@"键盘收回");
-        if (self.keyboardDownNotificationBlock) self.keyboardDownNotificationBlock(notificationKeyboardModel);
-    }else{
-        NSLog(@"键盘");
-    }
-}
-
--(void)keyboardDidChangeFrameNotification:(NSNotification *_Nullable)notification{
-    NSLog(@"%@",JobsLocalFunc);
-    /// 同上
+    @jobs_weakify(self)
+    /// 键盘的弹出
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        NSNotificationKeyboardModel *notificationKeyboardModel = NSNotificationKeyboardModel.new;
+        notificationKeyboardModel.userInfo = notification.userInfo;
+        notificationKeyboardModel.beginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+        notificationKeyboardModel.endFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        notificationKeyboardModel.keyboardOffsetY = notificationKeyboardModel.beginFrame.origin.y - notificationKeyboardModel.endFrame.origin.y;// 正则抬起 ，负值下降
+        notificationKeyboardModel.notificationName = UIKeyboardWillChangeFrameNotification;
+        NSLog(@"KeyboardOffsetY = %f", notificationKeyboardModel.keyboardOffsetY);
+     
+        if (notificationKeyboardModel.keyboardOffsetY > 0) {
+            NSLog(@"键盘抬起");
+            if (self.keyboardUpNotificationBlock) self.keyboardUpNotificationBlock(notificationKeyboardModel);
+        }else if(notificationKeyboardModel.keyboardOffsetY < 0){
+            NSLog(@"键盘收回");
+            if (self.keyboardDownNotificationBlock) self.keyboardDownNotificationBlock(notificationKeyboardModel);
+        }else{
+            NSLog(@"键盘");
+        }return nil;
+    },nil, self),UIKeyboardWillChangeFrameNotification,nil);
+    /// 键盘的回收
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        return nil;
+    },nil, self),UIKeyboardDidChangeFrameNotification,nil);
 }
 
 -(void)actionkeyboardUpNotificationBlock:(JobsReturnIDByIDBlock _Nullable)keyboardUpNotificationBlock{

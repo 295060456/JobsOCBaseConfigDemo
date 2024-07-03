@@ -36,8 +36,12 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClassBlock;
 #pragma mark —— iOS 通知
 ///【监听所有通知】
+///【监听所有通知】用 selector
 -(void)monitorNotification:(nonnull NSString *)notificationName
               withSelector:(nonnull SEL)selector;
+///【监听所有通知】用 Block
+-(void)monitorNotification:(nonnull NSString *)notificationName
+                 withBlock:(nonnull JobsReturnIDBySelectorBlock)actionBlock;
 ///【通知监听】国际化语言修改UI
 /// @param target 需要铆定监听通知的对象
 /// @param aSelector 相关逻辑
