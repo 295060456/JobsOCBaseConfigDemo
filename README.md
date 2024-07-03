@@ -171,7 +171,7 @@ classDiagram
 * 所以，为了应对以上的问题，可以使用快捷键（init.JobsBtn）调取代码块来设置 UIButton。[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 
   * 得出的 UIButton 是没有约束的，需要自己在外界加；
-  * 具体的内部实现，请关注`@implementation UIButton (UI)`；
+  * 具体的内部实现，请关注[<font color=blue>**`@implementation UIButton (UI)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIButton/UIButton+Category/UIButton+UI);
   
 * <font color=red id=用新Api（UIButtonConfiguration）创建一个带富文本的UIButton>**用新Api（UIButtonConfiguration）创建一个带富文本的UIButton**</font>
 
@@ -279,10 +279,10 @@ classDiagram
 
  </details>
 
-### 2、Masonry约束动画
+### 2、Masonry的一些使用技巧
 
 <details id="Masonry约束动画<br>">
- <summary><strong>点我了解详情<br></strong></summary>
+ <summary><strong>点我了解详情：Masonry约束动画<br></strong></summary>
 
 ```objective-c
 -(MSMineView2 *)view2{
@@ -313,6 +313,7 @@ classDiagram
 
 <details id="退出ViewController的时候，需要做的操作">
  <summary><strong>点我了解详情</strong></summary>
+
 * 定义于`BaseViewProtocol`，因为是进数据，所以可以实现在控制器生命周期的任意处
 
   ```objective-c
@@ -596,7 +597,28 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 系统注册UICollectionViewCell相关子类，是利用字符串作为桥梁进行操作；
 * 注册不会开辟内存，只有当使用的时候才会开辟内存；
 * 对全局进行统一的UICollectionViewCell相关子类注册是很有必要的，方便管理，防止崩溃；
-* 关注实现类<font color=blue>**`@implementation UICollectionView (JobsRegisterClass)`**</font>
+* 关注实现类[<font color=blue>**`@implementation UICollectionView (JobsRegisterClass)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UICollectionView/UICollectionView+Category/UICollectionView+JobsRegisterClass)
+
+### 8、全局统一的提示弹出框（对`WHToast`的二次封装）
+
+* `Podfile`
+
+  ```ruby
+  pod 'WHToast' # https://github.com/remember17/WHToast 一个轻量级的提示控件，没有任何依赖 NO_SMP
+  ```
+
+* 关注实现类[<font color=blue>**`@implementation NSObject (WHToast)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+WHToast)
+
+* [**`MacroDef_Func.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h)
+
+  ```objective-c
+  static inline void toast(NSString *_Nullable msg){
+      if(!msg || ![msg isKindOfClass:NSString.class]){
+          msg = JobsInternationalization(@"数据错误");
+      }
+      [NSObject jobsToastMsg:JobsInternationalization(msg)];
+  }
+  ```
 
 ```markdown
 ### Test
