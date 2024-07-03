@@ -6,6 +6,10 @@
 </p>
 [toc]
 
+## 前言
+
+* 工欲善其事必先利其器
+
 ## 一、目的
 
 * 所有的项目根据这个根来进行统一配置和调用。
@@ -60,7 +64,65 @@
     ```shell
     pod install
     ```
+### 2、iOS模拟器
+
+* 如果更新或者删除xcode，那么下载的iOS模拟器将会丢失
+
+* 模拟器文件通常存储在以下路径
+
+  ```shell
+  ~/Library/Developer/CoreSimulator/Devices
+  ```
+
+* 备份iOS模拟器文件夹到桌面`SimulatorBackup`
+
+  ```shell
+  cp -R ~/Library/Developer/CoreSimulator/Devices ~/Desktop/SimulatorBackup
+  ```
+
+* 还原iOS模拟器（执行完毕后，需要重启xcode）
+
+  ```shell
+  cp -R ~/Desktop/SimulatorBackup/* ~/Library/Developer/CoreSimulator/Devices
+  ```
+
+* 列出模拟器
+
+  ```shell
+  xcrun simctl list devices
+  ```
+
+* 导出模拟器配置
+
+  ```shell
+  xcrun simctl list devices > ~/Desktop/simulators_backup.txt
+  ```
+
+* 重新导入模拟器配置
+
+  ```shell
+  xcrun simctl create <name> <device_type> <runtime>
+  ```
+
+  ```shell
+  xcrun simctl create "iPhone 12" "com.apple.CoreSimulator.SimDeviceType.iPhone-12" "com.apple.CoreSimulator.SimRuntime.iOS-14-4"
+  ```
+
+## 3、lldb
+
+```shell
+(lldb) target list
+Current targets:
+* target #0: /Users/user/Library/Developer/CoreSimulator/Devices/E17E7DE8-7ADA-42FD-A743-A1A3A6CB7E42/data/Containers/Bundle/Application/C590303C-50A7-4BB2-826F-8598E5F3A66C/JobsOCBaseConfigDemo.app/JobsOCBaseConfigDemo ( arch=x86_64-apple-ios-simulator, platform=ios-simulator, pid=89318, state=stopped )
+(lldb) target select 0
+Current targets:
+* target #0: /Users/user/Library/Developer/CoreSimulator/Devices/E17E7DE8-7ADA-42FD-A743-A1A3A6CB7E42/data/Containers/Bundle/Application/C590303C-50A7-4BB2-826F-8598E5F3A66C/JobsOCBaseConfigDemo.app/JobsOCBaseConfigDemo ( arch=x86_64-apple-ios-simulator, platform=ios-simulator, pid=89318, state=stopped )
+```
+
+
+
 ### 2、xcode 日志配置
+
 * `Environment Variables`标签，添加一个新的环境变量。将 `Name` 设置为 `IDEPreferLogStreaming`，将 `Value` 设置为 `YES`
 ![image-20240629161626945](./assets/image-20240629161626945.png)
 
@@ -524,8 +586,10 @@ classDiagram
                                           selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
                                                                                 id  _Nullable arg) {
        NSNotification *notification = (NSNotification *)arg;
-       NSNumber *b = notification.object;
-       NSLog(@"SSS = %d",b.boolValue);
+       if([notification.object isKindOfClass:NSNumber.class]){
+           NSNumber *b = notification.object;
+           NSLog(@"SSS = %d",b.boolValue);
+       }
        @jobs_strongify(self)
        NSLog(@"通知传递过来的 = %@",notification.object);
        return nil;
@@ -648,6 +712,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       }
       [NSObject jobsToastMsg:JobsInternationalization(msg)];
   }
+  ```
+  
+* 在每一个`_collectionView`创建的时候，加入这一段代码：
+
+  ```objective-c
+  [_collectionView registerCollectionViewClass];
   ```
 
 ```markdown

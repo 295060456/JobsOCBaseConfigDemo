@@ -62,8 +62,10 @@ BaseViewControllerProtocol_synthesize
                     selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                               id _Nullable arg){
         NSNotification *notification = (NSNotification *)arg;
-        NSNumber *b = notification.object;
-        NSLog(@"SSS = %d",b.boolValue);
+        if([notification.object isKindOfClass:NSNumber.class]){
+            NSNumber *b = notification.object;
+            NSLog(@"SSS = %d",b.boolValue);
+        }
         @jobs_strongify(self)
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
@@ -74,8 +76,10 @@ BaseViewControllerProtocol_synthesize
                     selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                               id _Nullable arg){
         NSNotification *notification = (NSNotification *)arg;
-        NSNumber *b = notification.object;
-        NSLog(@"SSS = %d",b.boolValue);
+        if([notification.object isKindOfClass:NSNumber.class]){
+            NSNumber *b = notification.object;
+            NSLog(@"SSS = %d",b.boolValue);
+        }
         @jobs_strongify(self)
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
@@ -85,8 +89,10 @@ BaseViewControllerProtocol_synthesize
                     selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                               id _Nullable arg){
         NSNotification *notification = (NSNotification *)arg;
-        NSNumber *b = notification.object;
-        NSLog(@"SSS = %d",b.boolValue);
+        if([notification.object isKindOfClass:NSNumber.class]){
+            NSNumber *b = notification.object;
+            NSLog(@"SSS = %d",b.boolValue);
+        }
         @jobs_strongify(self)
         NSLog(@"通知传递过来的 = %@",notification.object);
         

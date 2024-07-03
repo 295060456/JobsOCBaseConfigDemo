@@ -222,8 +222,10 @@
                                            selector:selectorBlocks(^id  _Nullable(id  _Nullable weakSelf,
                                                                                   id  _Nullable arg){
         NSNotification *notification = (NSNotification *)arg;
-        NSNumber *b = notification.object;
-        NSLog(@"SSS = %d",b.boolValue);
+        if([notification.object isKindOfClass:NSNumber.class]){
+            NSNumber *b = notification.object;
+            NSLog(@"SSS = %d",b.boolValue);
+        }
         if (selectorBlock) selectorBlock(weakSelf,arg);
         return nil;
     },nil,self)
