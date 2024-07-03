@@ -111,8 +111,6 @@ classDiagram
     }
 ```
 
-* 
-
 ### 6、UIViewModelFamily
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理；
@@ -330,11 +328,10 @@ classDiagram
 ```objective-c
 -(void)backBtnClickEvent:(UIButton *_Nullable)sender;
 ```
-
 </details>
 
 <details id="实例对象的weak化，避免循环引用">
- <summary><strong>### 4、实例对象的weak化，避免循环引用</strong></summary>
+ ### <summary><strong>4、实例对象的weak化，避免循环引用</strong></summary>
 * 相关定义
 
   ```objective-c
@@ -409,7 +406,6 @@ classDiagram
       return selectorBlocks(selectorBlock,nil,self);
    }
    ```
-   
   
    ```objective-c
    /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
