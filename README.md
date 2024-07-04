@@ -180,6 +180,22 @@ Current targets:
 
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 
+### 7、**手动打包流程**
+
+* 电脑桌面新建文件夹，并重命名为`payload；`
+
+* 真机运行项目（不同设备，不同芯片组，底层指令集不一致）；
+
+* 打开项目工程目录下`Products`，里面有个`*.app`；
+
+  ![image-20240704113342353](./assets/image-20240704113342353.png)
+
+* 将这个`*.app`复制到刚才电脑桌面新建的`payload`文件夹；
+
+* 压缩电脑桌面新建的`payload`文件夹为zip格式的压缩包；
+
+* 将这个`zip`格式的压缩包，强行改名`*.ipa`
+
 ### 7、[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
 
 * 统一全局的Block定义，减少冗余代码
@@ -613,115 +629,6 @@ NSObject <|-- BaseProtocol
 * **除开 tabBarController 和 navigationController 的内容可用区域的大小**
   * `static inline CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBarController, UINavigationController * _Nullable navigationController)`
 
-### 12、**键盘监听**
-
-* 关注[**`@implementation NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
-
-  ```objective-c
-  /// 加入键盘通知的监听者
-  -(void)keyboard{
-      @jobs_weakify(self)
-      /// 键盘的弹出
-      JobsAddNotification(self,
-                      selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                id _Nullable arg){
-          NSNotification *notification = (NSNotification *)arg;
-          @jobs_strongify(self)
-          NSLog(@"通知传递过来的 = %@",notification.object);
-          NSNotificationKeyboardModel *notificationKeyboardModel = NSNotificationKeyboardModel.new;
-          notificationKeyboardModel.userInfo = notification.userInfo;
-          notificationKeyboardModel.beginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-          notificationKeyboardModel.endFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-          notificationKeyboardModel.keyboardOffsetY = notificationKeyboardModel.beginFrame.origin.y - notificationKeyboardModel.endFrame.origin.y;// 正则抬起 ，负值下降
-          notificationKeyboardModel.notificationName = UIKeyboardWillChangeFrameNotification;
-          NSLog(@"KeyboardOffsetY = %f", notificationKeyboardModel.keyboardOffsetY);
-       
-          if (notificationKeyboardModel.keyboardOffsetY > 0) {
-              NSLog(@"键盘抬起");
-              if (self.keyboardUpNotificationBlock) self.keyboardUpNotificationBlock(notificationKeyboardModel);
-          }else if(notificationKeyboardModel.keyboardOffsetY < 0){
-              NSLog(@"键盘收回");
-              if (self.keyboardDownNotificationBlock) self.keyboardDownNotificationBlock(notificationKeyboardModel);
-          }else{
-              NSLog(@"键盘");
-          }return nil;
-      },nil, self),UIKeyboardWillChangeFrameNotification,nil);
-      /// 键盘的回收
-      JobsAddNotification(self,
-                      selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                id _Nullable arg){
-          NSNotification *notification = (NSNotification *)arg;
-          @jobs_strongify(self)
-          NSLog(@"通知传递过来的 = %@",notification.object);
-          return nil;
-      },nil, self),UIKeyboardDidChangeFrameNotification,nil);
-  }
-  ```
-
-### 13、**手动打包流程**
-
-* 电脑桌面新建文件夹，并重命名为`payload；`
-
-* 真机运行项目（不同设备，不同芯片组，底层指令集不一致）；
-
-* 打开项目工程目录下`Products`，里面有个`*.app`；
-
-  ![image-20240704113342353](./assets/image-20240704113342353.png)
-
-* 将这个`*.app`复制到刚才电脑桌面新建的`payload`文件夹；
-
-* 压缩电脑桌面新建的`payload`文件夹为zip格式的压缩包；
-
-* 将这个`zip`格式的压缩包，强行改名`*.ipa`
-
-### 14、iOS 状态栏颜色的修改
-
-* 全局修改
-
-  * 在Info.plist里面加入如下键值对：
-
-    ```xml
-    <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
-    <key>UIViewControllerBasedStatusBarAppearance</key>
-    <false/>
-    <!-- iOS 状态栏颜色的修改【全局设置】Status bar style : Light Content-->
-    <key>UIStatusBarStyle</key>
-    <string>UIStatusBarStyleLightContent</string>
-    ```
-
-  * ```objective-c
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;// iOS 13 后方法被标注废弃
-    ```
-
-* 局部修改
-
-  * 在`Info.plist`里面加入如下键值对
-
-    ```xml
-    <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
-    <key>UIViewControllerBasedStatusBarAppearance</key>
-    <true/>
-    ```
-
-  * 定位`@ interface BaseNavigationVC : UINavigationController`
-
-    *在 BaseNavigationVC.m里面写入：*
-
-    ```objective-c
-    - (UIViewController *)childViewControllerForStatusBarStyle {
-        return self.topViewController;
-    }
-    ```
-
-    *在具体的需要修改的VC.m里面写入：*
-
-    ```objective-c
-    -(UIStatusBarStyle)preferredStatusBarStyle{
-        return UIStatusBarStyleLightContent;
-    }
-    ```
-
-
 
 ## 五、代码讲解
 
@@ -739,7 +646,7 @@ NSObject <|-- BaseProtocol
 * 所以，为了应对以上的问题，可以使用快捷键（init.JobsBtn）调取代码块来设置 UIButton。[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 
   * 得出的 UIButton 是没有约束的，需要自己在外界加；
-  * 具体的内部实现，请关注[<font color=blue>**`@implementation UIButton (UI)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIButton/UIButton+Category/UIButton+UI);
+  * 关注实现类：[<font color=blue>**`@implementation UIButton (UI)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIButton/UIButton+Category/UIButton+UI);
   
 * <font color=red id=用新Api（UIButtonConfiguration）创建一个带富文本的UIButton>**用新Api（UIButtonConfiguration）创建一个带富文本的UIButton**</font>
 
@@ -1042,7 +949,7 @@ NSObject <|-- BaseProtocol
 
 #### 5.2、对通知的使用
 
-* [**`MacroDef_Notification.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Notification.h)
+* 关注实现类：[**`MacroDef_Notification.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Notification.h)
 
   ```objective-c
   #ifndef JobsAddNotification
@@ -1179,9 +1086,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   pod 'WHToast' # https://github.com/remember17/WHToast 一个轻量级的提示控件，没有任何依赖 NO_SMP
   ```
 
-* 关注实现类[<font color=blue>**`@implementation NSObject (WHToast)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+WHToast)
+* 关注实现类：[<font color=blue>**`@implementation NSObject (WHToast)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+WHToast)
 
-* [**`MacroDef_Func.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h)
+* 关注实现类：[**`MacroDef_Func.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h)
 
   ```objective-c
   static inline void toast(NSString *_Nullable msg){
@@ -1211,7 +1118,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 #### 9.2、推控制器
 
-  * 关注实现类[**`@interface NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
+  * 关注实现类：[**`@interface NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
 
     ```objective-c
     /// 强制以Push的方式展现页面
@@ -1231,7 +1138,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                        completion:(void (^ __nullable)(void))completion;
     ```
     
-  * 关注实现类[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BBaseVC)
+  * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BBaseVC)
 
     ```objective-c
     #pragma mark —— present
@@ -1274,16 +1181,174 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   #### 9.3、[**`UIViewController`转场动画的使用方法**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition/UIViewController%2BXLBubbleTransition.md)
 
-  * [**@interface UIViewController (XLBubbleTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition)
+  * 关注实现类：[**@interface UIViewController (XLBubbleTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition)
 
 #### 9.4、悬浮按钮
 
-  * [**@interface UIViewController (SuspendBtn)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+SuspendBtn)
+  * 关注实现类：[**@interface UIViewController (SuspendBtn)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+SuspendBtn)
 
 ####  9.5、防止过多的`presented`模态推出`UIViewController`
-  * [**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)
+  * 关注实现类：[**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)
+
+### 10、KVC的封装
+
+* 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
+
+  * 存值
+
+    ```objective-c
+    -(jobsByKey_ValueBlock _Nonnull)jobsKVC;
+    ```
+
+  * 取值
+
+    ```objective-c
+    -(JobsReturnIDByIDBlock _Nonnull)valueForKeyBlock;
+    ```
+
+* 使用方法
+
+  ```objective-c
+  /// 存值
+  UIImageView *headIcon = UIImageView.new;
+  headIcon.jobsKVC(@"name", @"John Doe");
+  /// 取值
+  UIImageView *headIcon = self.valueForKeyBlock(@"headIcon");/// 账户头像
+  ```
+
+### 11、**键盘监听**
+
+* 关注实现类：[**`@implementation NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
+
+  ```objective-c
+  /// 加入键盘通知的监听者
+  -(void)keyboard{
+      @jobs_weakify(self)
+      /// 键盘的弹出
+      JobsAddNotification(self,
+                      selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                id _Nullable arg){
+          NSNotification *notification = (NSNotification *)arg;
+          @jobs_strongify(self)
+          NSLog(@"通知传递过来的 = %@",notification.object);
+          NSNotificationKeyboardModel *notificationKeyboardModel = NSNotificationKeyboardModel.new;
+          notificationKeyboardModel.userInfo = notification.userInfo;
+          notificationKeyboardModel.beginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+          notificationKeyboardModel.endFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+          notificationKeyboardModel.keyboardOffsetY = notificationKeyboardModel.beginFrame.origin.y - notificationKeyboardModel.endFrame.origin.y;// 正则抬起 ，负值下降
+          notificationKeyboardModel.notificationName = UIKeyboardWillChangeFrameNotification;
+          NSLog(@"KeyboardOffsetY = %f", notificationKeyboardModel.keyboardOffsetY);
+       
+          if (notificationKeyboardModel.keyboardOffsetY > 0) {
+              NSLog(@"键盘抬起");
+              if (self.keyboardUpNotificationBlock) self.keyboardUpNotificationBlock(notificationKeyboardModel);
+          }else if(notificationKeyboardModel.keyboardOffsetY < 0){
+              NSLog(@"键盘收回");
+              if (self.keyboardDownNotificationBlock) self.keyboardDownNotificationBlock(notificationKeyboardModel);
+          }else{
+              NSLog(@"键盘");
+          }return nil;
+      },nil, self),UIKeyboardWillChangeFrameNotification,nil);
+      /// 键盘的回收
+      JobsAddNotification(self,
+                      selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                id _Nullable arg){
+          NSNotification *notification = (NSNotification *)arg;
+          @jobs_strongify(self)
+          NSLog(@"通知传递过来的 = %@",notification.object);
+          return nil;
+      },nil, self),UIKeyboardDidChangeFrameNotification,nil);
+  }
+  ```
+
+### 12、iOS 状态栏颜色的修改
+
+* 全局修改
+
+  * 在`Info.plist`里面加入如下键值对：
+
+    ```xml
+    <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
+    <!-- iOS 状态栏颜色的修改【全局设置】Status bar style : Light Content-->
+    <key>UIStatusBarStyle</key>
+    <string>UIStatusBarStyleLightContent</string>
+    ```
+
+  * ```objective-c
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;// iOS 13 后方法被标注废弃
+    ```
+
+* 局部修改
+
+  * 在`Info.plist`里面加入如下键值对
+
+    ```xml
+    <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <true/>
+    ```
+
+  * 关注实现类：[**`@interface BaseNavigationVC : UINavigationController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UINavigationController/BaseNavigationVC)
+
+    *在 `BaseNavigationVC.m`里面写入：*
+
+    ```objective-c
+    - (UIViewController *)childViewControllerForStatusBarStyle {
+        return self.topViewController;
+    }
+    ```
+
+    *在具体的需要修改的`VC.m`里面写入：*
+
+    ```objective-c
+    -(UIStatusBarStyle)preferredStatusBarStyle{
+        return UIStatusBarStyleLightContent;
+    }
+    ```
+
+### 13、对`NSUserDefaults.standardUserDefaults` 的二次封装
+
+* 关注实现类：[**`@interface NSUserDefaults (Manager)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSUserDefaults/NSUserDefaults+Category/NSUserDefaults+Manager)
+
+* 读取数据
+
+  ```objective-c
+  +(id _Nullable)readWithKey:(NSString *)key;
+  ```
+
+* 删除数据
+
+  ```objective-c
+  +(void)deleteWithKey:(NSString *)key;
+  ```
+
+* 存数据（包括父类直到NSObject的所有属性）。<font color=red>**将数据封装到对象`UserDefaultModel`里面进行存取**</font>
+
+  ```objective-c
+  +(void)updateWithModel:(UserDefaultModel *)userDefaultModel;
+  ```
+
+### 14、对小型本地化数据的读取
+
+  * 产生背景：方便临时调试，避免打印输出
+
+  * 关注实现类：[**`@interface JobsShowObjInfoVC : BaseViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/Debug/DebugTools/%E6%9F%A5%E7%9C%8B%E5%AF%B9%E8%B1%A1)
+
+  * 因为是小型化的一些临时数据，所以数据本地化方案选用的是`NSUserDefaults.standardUserDefaults`
+
+  * 数据来源`JobsUserModel`。用key = 用户信息进行存取
+
+    ```objective-c
+    /// 读取用户信息
+    -(JobsUserModel *)readUserInfo{
+        return [self readUserInfoByUserName:用户信息];
+    }
+    ```
 
 ### Test
+
 <details id="Test">
  <summary><strong>点我了解详情</strong></summary>
 
