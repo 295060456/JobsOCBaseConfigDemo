@@ -1,0 +1,35 @@
+name: Generate Mermaid Diagrams
+
+on:
+  push:
+    branches:
+      - main  # 或者您希望的其他分支
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install mermaid-cli
+      run: npm install -g @mermaid-js/mermaid-cli
+
+    - name: Generate Diagrams
+      run: |
+        # 提取 Mermaid 代码块并生成图像
+        npx mmdc -i README.md -o diagrams/diagram.png -b transparent
+
+    - name: Commit and push diagram
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add *
+        git commit -m 'Generate Mermaid diagram'
+        git push
