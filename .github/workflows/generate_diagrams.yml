@@ -24,10 +24,16 @@ jobs:
 
     - name: Generate Diagrams
       run: |
+        echo "Current directory:"
+        pwd
+        echo "List files in current directory:"
+        ls -al
         mkdir -p diagrams
-        ls -al  # 列出当前目录的文件，检查是否有 README.md
+        echo "List files in diagrams directory before generating diagram:"
+        ls -al diagrams
         npx mmdc -i README.md -o diagrams/diagram.png -b transparent
-        ls -al diagrams  # 列出 diagrams 目录中的文件，检查是否生成了 diagram.png
+        echo "List files in diagrams directory after generating diagram:"
+        ls -al diagrams
 
     - name: Commit and push diagram
       if: success()
