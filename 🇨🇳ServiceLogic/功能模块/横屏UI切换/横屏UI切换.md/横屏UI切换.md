@@ -38,7 +38,7 @@ pod 'HXRotationTool' # https://github.com/TheLittleBoy/HXRotationTool
 
 ## 代码处理
 
-* 相关枚举说明
+* <font color=green>**相关枚举说明**</font>
 
   * `UIInterfaceOrientationMask`用于指定应用支持的界面方向的位掩码。它的值可以组合使用，以定义应用程序支持的方向
 
@@ -84,57 +84,121 @@ pod 'HXRotationTool' # https://github.com/TheLittleBoy/HXRotationTool
     } API_UNAVAILABLE(tvos);
     ```
   
-* 代码示例
+* <font color=blue>**代码示例**</font>
 
-  ```objective-c
-  /// 决定当前界面是否开启自动转屏，如果返回NO，后面两个方法也不会被调用，只是会支持默认的方向
-  - (BOOL)shouldAutorotate {
-      return YES;
-  }
-  /// 当前控制器支持的屏幕旋转方向（在具体的控制器子类进行覆写）
-  /// iPad设备上，默认返回值UIInterfaceOrientationMaskAllButUpSideDwon
-  /// iPhone设备上，默认返回值是UIInterfaceOrientationMaskAll
-  - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-      return UIInterfaceOrientationMaskAll;
-  }
-  /// 设置进入界面默认支持的方向
-  - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
-      return [super preferredInterfaceOrientationForPresentation];
-  }
-  ```
-
-  ```objective-c
-  [NSNotificationCenter.defaultCenter addObserver:self
-                                         selector:@selector(deviceOrientationDidChange:)
-                                             name:UIDeviceOrientationDidChangeNotification
-                                           object:nil];
-  [NSNotificationCenter.defaultCenter removeObserver:self
-                                                name:UIDeviceOrientationDidChangeNotification
-                                              object:nil];
-                                               
-  /// UIDeviceOrientationDidChangeNotification 通知方法
-  - (void)deviceOrientationDidChange:(NSNotification *)notification {
-      UIDeviceOrientation orientation = UIDevice.currentDevice.orientation;
-      switch (orientation) {
-              // 处理竖屏方向的逻辑
-          case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
-              NSLog(@"系统通知：↓");
-              break;
-          case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
-              NSLog(@"系统通知：↑");
-              break;
-              // 处理横屏方向的逻辑
-          case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
-              NSLog(@"系统通知：→");
-              break;
-          case UIDeviceOrientationLandscapeRight:/// 设备水平，Home 按钮在左侧
-              NSLog(@"系统通知：←");
-              break;
-          default:
-              break;
-      }
-  }                                            
-  ```
+  * 在 `UITabBarController` 中适配横屏
+  
+    ```objective-c
+    @interface MyTabBarController : UITabBarController
+    @end
+    
+    @implementation MyTabBarController
+    
+    - (BOOL)shouldAutorotate {
+        return [self.selectedViewController shouldAutorotate];
+    }
+    
+    - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+        return [self.selectedViewController supportedInterfaceOrientations];
+    }
+    
+    @end
+    ```
+  
+  * 在 `UINavigationController` 中适配横屏
+  
+    ```objective-c
+    @interface MyNavigationController : UINavigationController
+    @end
+    
+    @implementation MyNavigationController
+    
+    - (BOOL)shouldAutorotate {
+        return [self.topViewController shouldAutorotate];
+    }
+    
+    - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+        return [self.topViewController supportedInterfaceOrientations];
+    }
+    
+    @end
+    ```
+  
+  * 确保所有子视图控制器正确实现了旋转方法
+  
+    ```objective-c
+    @interface MyViewController : UIViewController
+    @end
+    
+    @implementation MyViewController
+    
+    - (BOOL)shouldAutorotate {
+        return YES;
+    }
+    
+    - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    }
+    
+    @end
+    ```
+  
+  * 关键方法说明
+  
+    ```objective-c
+    /// 决定当前界面是否开启自动转屏，如果返回NO，后面两个方法也不会被调用，只是会支持默认的方向
+    - (BOOL)shouldAutorotate {
+        return YES;
+    }
+    /// 当前控制器支持的屏幕旋转方向（在具体的控制器子类进行覆写）
+    /// iPad设备上，默认返回值UIInterfaceOrientationMaskAllButUpSideDwon
+    /// iPhone设备上，默认返回值是UIInterfaceOrientationMaskAll
+    - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+        return UIInterfaceOrientationMaskAll;
+    }
+    /// 设置进入界面默认支持的方向
+    - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+        return [super preferredInterfaceOrientationForPresentation];
+    }
+    ```
+  
+  * 通知监听`UIDeviceOrientationDidChangeNotification`
+  
+    ```objective-c
+    /// 设备方向
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        if([notification.object isKindOfClass:NSNumber.class]){
+            NSNumber *b = notification.object;
+            NSLog(@"SSS = %d",b.boolValue);
+        }
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+    
+        switch (UIDevice.currentDevice.orientation) {
+                // 处理竖屏方向的逻辑
+            case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
+                NSLog(@"系统通知：↓");
+                break;
+            case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
+                NSLog(@"系统通知：↑");
+                break;
+                // 处理横屏方向的逻辑
+            case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
+                NSLog(@"系统通知：→");
+                break;
+            case UIDeviceOrientationLandscapeRight:/// 设备水平，Home 按钮在左侧
+                NSLog(@"系统通知：←");
+                break;
+            default:
+                break;
+        }
+    
+        return nil;
+    },nil, self),UIDeviceOrientationDidChangeNotification,nil);
+    ```
 
 ## 屏幕上下倒立<font color=red>不可用</font>
 

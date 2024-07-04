@@ -99,6 +99,14 @@ static JobsTabbarVC *static_tabbarVC = nil;
 
 //    [self ppBadge:YES];
 }
+/// 在 UITabBarController 中适配横屏
+- (BOOL)shouldAutorotate {
+    return [self.selectedViewController shouldAutorotate];
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return [self.selectedViewController supportedInterfaceOrientations];
+}
 #pragma mark —— 一些公有方法
 /// 关闭手势
 -(void)closePan{

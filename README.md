@@ -1211,6 +1211,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 #### 9.2、推控制器
 
+  * 关注实现类[**`@interface NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
+
+    ```objective-c
+    /// 强制以Push的方式展现页面
+    /// @param toPushVC 需要进行展现的页面
+    /// @param requestParams 正向推页面传递的参数
+    /// 如果想用AppDelegate的自定义TabbarVC：
+    /// extern AppDelegate *appDelegate;
+    /// (UIViewController *)appDelegate.tabBarVC;
+    -(void)forceComingToPushVC:(UIViewController *_Nonnull)toPushVC
+                 requestParams:(id _Nullable)requestParams;
+    /// 强制以Present的方式展现页面
+    /// @param toPresentVC 需要进行展现的页面
+    /// @param requestParams 正向推页面传递的参数
+    /// @param completion 完成Present动作以后得动作
+    -(void)forceComingToPresentVC:(UIViewController *_Nonnull)toPresentVC
+                    requestParams:(id _Nullable)requestParams
+                       completion:(void (^ __nullable)(void))completion;
+    ```
+    
   * 关注实现类[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BBaseVC)
 
     ```objective-c

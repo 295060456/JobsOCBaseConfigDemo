@@ -230,6 +230,14 @@ BaseViewControllerProtocol_synthesize
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
+/// 适配横屏
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
 #pragma mark —— 一些私有方法
 /// 用于检测UIViewController的生命周期
 -(void)UIViewControllerLifeCycle:(NSString *)lifeCycle{

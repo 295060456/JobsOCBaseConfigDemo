@@ -111,6 +111,14 @@
     viewController.hidesBottomBarWhenPushed = self.viewControllers.count;//push 的时候把 tabBar 隐藏了
     [super pushViewController:viewController animated:animated];
 }
+/// 在 UINavigationController 中适配横屏
+- (BOOL)shouldAutorotate {
+    return [self.topViewController shouldAutorotate];
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return [self.topViewController supportedInterfaceOrientations];
+}
 #pragma mark —— UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController
       willShowViewController:(UIViewController *)viewController
