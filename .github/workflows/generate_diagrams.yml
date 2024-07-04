@@ -34,8 +34,8 @@ jobs:
         npx mmdc -i README.md -o diagrams/diagram.png -b transparent
         echo "List files in diagrams directory after generating diagram:"
         ls -al diagrams
-        if [ -f diagrams/diagram.png ]; then
-          echo "Diagram generated successfully"
+        if ls diagrams/diagram-*.png 1> /dev/null 2>&1; then
+          echo "Diagrams generated successfully"
         else
           echo "Diagram generation failed"
           exit 1
@@ -48,6 +48,6 @@ jobs:
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        git add diagrams/diagram.png
+        git add diagrams/diagram-*.png
         git commit -m 'Generate Mermaid diagram'
         git push
