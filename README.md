@@ -231,7 +231,7 @@ classDiagram
 * `UITextModel`是专门针对文本的<font color=red>**数据束**</font>
 * 结合`BaseProtocol`进行封装
 * 减少冗余代码，将公用头文件提升到协议进行定义
-
+![Mermaid Diagram](diagram.png)
 ```mermaid
 classDiagram
 class UIViewModelProtocol {
