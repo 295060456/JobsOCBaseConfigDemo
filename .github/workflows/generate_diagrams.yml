@@ -34,6 +34,12 @@ jobs:
         npx mmdc -i README.md -o diagrams/diagram.png -b transparent
         echo "List files in diagrams directory after generating diagram:"
         ls -al diagrams
+        if [ -f diagrams/diagram.png ]; then
+          echo "Diagram generated successfully"
+        else
+          echo "Diagram generation failed"
+          exit 1
+        fi
 
     - name: Commit and push diagram
       if: success()
