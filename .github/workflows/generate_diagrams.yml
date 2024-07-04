@@ -25,9 +25,12 @@ jobs:
     - name: Generate Diagrams
       run: |
         mkdir -p diagrams
+        ls -al  # 列出当前目录的文件，检查是否有 README.md
         npx mmdc -i README.md -o diagrams/diagram.png -b transparent
+        ls -al diagrams  # 列出 diagrams 目录中的文件，检查是否生成了 diagram.png
 
     - name: Commit and push diagram
+      if: success()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
