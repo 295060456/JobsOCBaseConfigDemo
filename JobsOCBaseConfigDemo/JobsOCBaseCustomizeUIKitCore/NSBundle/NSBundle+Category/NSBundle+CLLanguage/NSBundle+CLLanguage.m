@@ -51,11 +51,31 @@
 }
 /// 是否是中文
 +(BOOL)isChineseLanguage{
-    return [self.currentLanguage hasPrefix:@"zh-Hans"];
+    return [self.currentLanguage hasPrefix:@"zh-Han"];
 }
-/// 查询当前语言
-+(NSString *)currentLanguage {
-    return CLLanguageManager.userLanguage ? : NSLocale.preferredLanguages.firstObject;
+/// 查询当前语言：自定义枚举 和 基于 ISO 639-1 语言代码标准的字符串之间的转换关系
++(NSString *)currentLanguage{
+    switch (CLLanguageManager.appLanguage) {
+        case AppLanguageBySys:{
+            return NSLocale.preferredLanguages.firstObject;
+        }break;
+        case AppLanguageChineseSimplified:{
+            return @"zh-Hans";
+        }break;
+        case AppLanguageChineseTraditional:{
+            return @"zh-Hant";
+        }break;
+        case AppLanguageEnglish:{
+            return @"en";
+        }break;
+        case AppLanguageTagalog:{
+            return @"tl";
+        }break;
+            
+        default:
+            return @"";
+            break;
+    }
 }
 
 @end

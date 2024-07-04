@@ -1357,6 +1357,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 13、对`NSUserDefaults.standardUserDefaults` 的二次封装
 
+* 对`NSUserDefaults.standardUserDefaults`的数据存取进行宏定义的方式的封装。关注实现类：[**`JobsUserDefaultDefine.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSUserDefaults/JobsUserDefaultDefine.h)
+
 * 关注实现类：[**`@interface NSUserDefaults (Manager)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSUserDefaults/NSUserDefaults+Category/NSUserDefaults+Manager)
 
 * 读取数据

@@ -31,10 +31,19 @@
 /// @param aSelector 相关逻辑
 +(void)targetView:(UIView *)targetView
 languageSwitchNotificationWithSelector:(SEL)aSelector{
+    @jobs_weakify(self)
     JobsAddNotification(targetView,
-                        aSelector,
-                        LanguageSwitchNotification,
-                        nil);
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        if([notification.object isKindOfClass:NSNumber.class]){
+            NSNumber *b = notification.object;
+            NSLog(@"SSS = %d",b.boolValue);
+        }
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        return nil;
+    },nil, self),LanguageSwitchNotification,nil);
 }
 /// 【App语言国际化】更改UITabBarItem的标题
 -(void)changeTabBarItemTitle:(NSIndexPath *)indexPath{
@@ -47,10 +56,6 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         [ad refreshTabBarTitle];
     }
 }
-/// 接收通知并相应的方法【在分类或者基类中实现会屏蔽具体子类的相关实现】
-//-(void)languageSwitchNotification:(nonnull NSNotification *)notification{
-//    NSLog(@"通知传递过来的 = %@",notification.object);
-//}
 #pragma mark —— <AppToolsProtocol> 关于注册登录
 /// 去登录？去注册？
 -(void)toLoginOrRegister:(CurrentPage)appDoorContentType{

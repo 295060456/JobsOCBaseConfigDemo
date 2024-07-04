@@ -7,29 +7,29 @@
 //
 
 #import "CLLanguageManager.h"
-
-static NSString *CLUserLanguageKey = @"CLUserLanguageKey";
-
+//#ifndef CLUserLanguageKey_defined
+//#define CLUserLanguageKey_defined
+//NSString *const CLUserLanguageKey = @"CLUserLanguageKey";
+//#endif /* CLUserLanguageKey_defined */
 @implementation CLLanguageManager
 
-+(void)setUserLanguage:(nullable NSString *)userLanguage{
-    /// 跟随手机系统
-    if ([NSString isNullString:userLanguage]) {
++(void)setAppLanguage:(AppLanguage)appLanguage{
+    /// 语言跟随手机系统
+    if(appLanguage == AppLanguageBySys){
         [self resetSystemLanguage];
         return;
     }
-    /// 用户自定义
-    [NSUserDefaults.standardUserDefaults setValue:userLanguage forKey:CLUserLanguageKey];
-    [NSUserDefaults.standardUserDefaults synchronize];
+    SetUserDefaultKeyWithInteger(CLUserLanguageKey, appLanguage);
 }
 
-+(nullable NSString *)userLanguage{
-    return [NSUserDefaults.standardUserDefaults valueForKey:CLUserLanguageKey];
++(AppLanguage)appLanguage{
+    return GetUserDefaultIntegerForKey(CLUserLanguageKey);
 }
+
 /// 重置系统语言/跟随手机系统
 +(void)resetSystemLanguage{
-    [NSUserDefaults.standardUserDefaults removeObjectForKey:CLUserLanguageKey];
-    [NSUserDefaults.standardUserDefaults synchronize];
+    DeleUserDefaultWithKey(CLUserLanguageKey);
+    UserDefaultSynchronize;
 }
 
 @end

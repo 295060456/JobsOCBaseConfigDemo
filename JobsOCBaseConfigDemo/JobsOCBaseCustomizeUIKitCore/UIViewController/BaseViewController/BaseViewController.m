@@ -70,19 +70,6 @@ BaseViewControllerProtocol_synthesize
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
     },nil, self),LanguageSwitchNotification,nil);
-    /// 语言切换
-    JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
-        NSNotification *notification = (NSNotification *)arg;
-        if([notification.object isKindOfClass:NSNumber.class]){
-            NSNumber *b = notification.object;
-            NSLog(@"SSS = %d",b.boolValue);
-        }
-        @jobs_strongify(self)
-        NSLog(@"通知传递过来的 = %@",notification.object);
-        return nil;
-    },nil, self),LanguageSwitchNotification,nil);
     /// 设备方向
     JobsAddNotification(self,
                     selectorBlocks(^id _Nullable(id _Nullable weakSelf,
@@ -112,9 +99,7 @@ BaseViewControllerProtocol_synthesize
                 break;
             default:
                 break;
-        }
-        
-        return nil;
+        }return nil;
     },nil, self),UIDeviceOrientationDidChangeNotification,nil);
     
     [self UIViewControllerLifeCycle:JobsLocalFunc];

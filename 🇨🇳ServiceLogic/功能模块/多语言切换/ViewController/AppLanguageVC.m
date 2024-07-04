@@ -8,9 +8,9 @@
 #import "AppLanguageVC.h"
 
 @interface AppLanguageVC ()
-// UI
+/// UI
 @property(nonatomic,strong)UITableView *tableView;
-// Data
+/// Data
 @property(nonatomic,strong)NSMutableArray <NSString *>*dataMutArr;
 
 @end
@@ -114,22 +114,25 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    /// 当前点选的Cell
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-        return;
-    }
+
     for (UITableViewCell *acell in tableView.visibleCells) {
         acell.accessoryType = acell == cell ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    }
+    
+    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+        return;
     }
     
     [self setAppLanguageAtIndex:indexPath.row
              byNotificationName:nil];// 设置App语言环境并发送全局通知LanguageSwitchNotification
     [self changeTabBarItemTitle:indexPath];///【App语言国际化】更改UITabBarItem的标题
-    /// 刷新本界面，且2秒后退出
-//    [self.tableView.mj_header beginRefreshing];
+    /// 刷新本界面
+    [self.tableView.mj_header beginRefreshing];
     @jobs_weakify(self)
+    /// 2秒后退出本页面
 //    DispathdDelaySth(2.0, [weak_self backBtnClickEvent:nil]);
 }
 
@@ -144,27 +147,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIViewModel *viewModel = UIViewModel.new;
     viewModel.textModel.text = self.dataMutArr[indexPath.row];
     [cell richElementsInCellWithModel:viewModel];
-    
-    {
-        // 用户没有自己设置的语言，则跟随手机系统
-        if (!CLLanguageManager.userLanguage.length) {
-            cell.accessoryType = indexPath.row == 0 ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-        } else {
-            if (NSBundle.isChineseLanguage) {
-                if (indexPath.row == 1) {
-                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                } else {
-                    cell.accessoryType = UITableViewCellAccessoryNone;
-                }
-            } else {
-                if (indexPath.row == 2) {
-                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                } else {
-                    cell.accessoryType = UITableViewCellAccessoryNone;
-                }
-            }
-        }
-    }return cell;
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
