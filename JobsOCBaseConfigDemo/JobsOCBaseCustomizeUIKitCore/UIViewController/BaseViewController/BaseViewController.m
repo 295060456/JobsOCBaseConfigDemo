@@ -210,7 +210,7 @@ BaseViewControllerProtocol_synthesize
      1.1、View controller-based status bar appearance : NO
      1.2、Status bar style : Light Content
 
-  2、[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;// iOS 13 后方法被标注废弃
+  2、UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleLightContent;// iOS 13 后方法被标注废弃
 
   1.2 和 2 任意选一个即可
 

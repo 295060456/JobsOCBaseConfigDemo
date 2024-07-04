@@ -629,6 +629,33 @@ NSObject <|-- BaseProtocol
 * **除开 tabBarController 和 navigationController 的内容可用区域的大小**
   * `static inline CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBarController, UINavigationController * _Nullable navigationController)`
 
+### 12、`NavigationBar`
+
+* 摒弃系统的，而转为使用第三方`GKNavigationBar`
+
+  ```ruby
+  pod 'GKNavigationBar' # https://github.com/QuintGao/GKNavigationBar NO_SMP
+  ```
+
+* 背景和原因
+
+  * 系统原生的`NavigationBar`晦涩难懂不方便修改，很多人理解不深刻容易出问题；
+  * 系统原生的`NavigationBar`有很多内部类（系统创建但不希望程序员进行直接访问的）。某些版本内部类的图层结构会用有所不同；
+  * 第三方`GKNavigationBar`因为是分类实现，没有代码入侵性，更加的安全和方便；
+  * 第三方`GKNavigationBar`更加契合国人的开发思维；
+  
+* 应用层实现
+  
+  * 关注实现类：[**`@interface BaseViewController : UIViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/BaseViewController)
+  * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
+
+### 13、输入框
+
+* 有4个`TextField`可供继承使用（具体使用方式，查询相关头文件定义）
+  * `CJTextField`
+  * `HQTextField`
+  * `JobsMagicTextField`
+  * `ZYTextField`
 
 ## 五、代码讲解
 
@@ -756,8 +783,11 @@ NSObject <|-- BaseProtocol
 
 ### 2、Masonry的一些使用技巧
 
+* 关注实现类：[**@interface UIView (Masonry)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+Masonry)
+
 <details id="Masonry约束动画<br>">
  <summary><strong>点我了解详情：Masonry约束动画<br></strong></summary>
+
 
 ```objective-c
 -(MSMineView2 *)view2{
@@ -1186,9 +1216,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 #### 9.4、悬浮按钮
 
   * 关注实现类：[**@interface UIViewController (SuspendBtn)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+SuspendBtn)
+  * 关注实现类：[**@interface UIView (SuspendView)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+SuspendView)
 
 ####  9.5、防止过多的`presented`模态推出`UIViewController`
   * 关注实现类：[**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)
+
+#### 9.6、<font color=red>**寻找当前控制器**</font>
+
+* 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
+
+  ```objective-c
+  -(UIViewController *_Nullable)getCurrentViewControllerFromRootVC:(UIViewController *_Nullable)rootVC;
+  -(UIViewController *_Nullable)getCurrentViewController;
+  -(UIViewController *_Nullable)jobsGetCurrentViewController
+  ```
+
+* 关注实现类：[**@interface UIView (ViewController)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BViewController)
+
+  ```objective-c
+  -(UIViewController *_Nullable)currentController;
+  ```
 
 ### 10、KVC的封装
 
@@ -1277,7 +1324,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```
 
   * ```objective-c
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;// iOS 13 后方法被标注废弃
+    UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleLightContent;// iOS 13 后方法被标注废弃
     ```
 
 * 局部修改
@@ -1330,11 +1377,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   +(void)updateWithModel:(UserDefaultModel *)userDefaultModel;
   ```
 
-### 14、对小型本地化数据的读取
+### 14、对小型本地化数据的读取（NSUserDefaults）
 
   * 产生背景：方便临时调试，避免打印输出
 
-  * 关注实现类：[**`@interface JobsShowObjInfoVC : BaseViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/Debug/DebugTools/%E6%9F%A5%E7%9C%8B%E5%AF%B9%E8%B1%A1)
+  * 关注Demo实现类：[**`@interface JobsShowObjInfoVC : BaseViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/Debug/DebugTools/%E6%9F%A5%E7%9C%8B%E5%AF%B9%E8%B1%A1)
 
   * 因为是小型化的一些临时数据，所以数据本地化方案选用的是`NSUserDefaults.standardUserDefaults`
 
@@ -1346,6 +1393,31 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         return [self readUserInfoByUserName:用户信息];
     }
     ```
+
+### 15、视频播放器
+
+* 关注实现类：[**@interface UIView (ZFPlayer)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+ZFPlayer)
+
+* `Podfile`
+
+   ```ruby
+   pod 'ZFPlayer' # https://github.com/renzifeng/ZFPlayer
+   pod 'ZFPlayer/ControlView'
+   pod 'ZFPlayer/AVPlayer'
+   pod 'ZFPlayer/ijkplayer'
+   #  pod 'KTVHTTPCache' # 边下边播
+   #  pod 'VIMediaCache' # https://github.com/vitoziv/VIMediaCache 边下边播
+   ```
+
+### 16、动画相关
+
+* `Podfile`
+
+  ```
+  pod 'lottie-ios', '~> 2.5.3' # 这是OC终极版本 https://github.com/airbnb/lottie-ios
+  ```
+
+* 关注实现类：[**@interface UIView (Animation)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BAnimation)
 
 ### Test
 
@@ -1437,6 +1509,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * 将[**时间按照【年-月份】分组**](#时间按照【年-月份】分组)集成到靶场项目里
   * 完善 [**iOS功能：跳转其他App,如果本机不存在,则进行下载（需要补充）**](#iOS功能：跳转其他App,如果本机不存在,则进行下载)
   * 这里还需要进一步研究，有点问题。[**Github.workflow（工作流）的使用**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/Github.workflow.md/Github.workflow.md)
+  * 用FMDB来实现小型化数据的读写，生成Demo
 * 其他
 ## 七、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://)
 * 浏览器打开并输入 
