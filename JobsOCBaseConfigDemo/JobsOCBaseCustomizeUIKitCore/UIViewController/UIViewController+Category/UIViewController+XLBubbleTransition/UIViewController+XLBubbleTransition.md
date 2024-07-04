@@ -1,9 +1,12 @@
 # UIViewController+XLBubbleTransition
 ## 转场动画的使用方法
 
+```objective-c
 self.xl_pushTranstion = [XLBubbleTransition transitionWithAnchorRect:self.postBtn.frame];
 self.xl_popTranstion = [XLBubbleTransition transitionWithAnchorRect:self.postBtn.frame];
+```
 
+```objective-c
 -(JobsSuspendBtn *)postBtn{
     if (!_postBtn) {
         _postBtn = JobsSuspendBtn.new;
@@ -33,3 +36,5 @@ self.xl_popTranstion = [XLBubbleTransition transitionWithAnchorRect:self.postBtn
         }];
     }return _postBtn;
 }
+```
+

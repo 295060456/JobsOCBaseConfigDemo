@@ -4,7 +4,12 @@
     <dict>
         <key>UILaunchStoryboardName</key>
         <string>LaunchScreen</string>
-        
+        <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
+        <key>UIViewControllerBasedStatusBarAppearance</key>
+        <false/>
+        <!-- iOS 状态栏颜色的修改【全局设置】Status bar style : Light Content-->
+        <key>UIStatusBarStyle</key>
+        <string>UIStatusBarStyleLightContent</string>
         <!--❤️屏幕旋转❤️-->
         <key>UISupportedInterfaceOrientations</key>
         <array>

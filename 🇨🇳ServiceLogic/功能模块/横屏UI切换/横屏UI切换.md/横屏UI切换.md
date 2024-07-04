@@ -14,7 +14,7 @@ pod 'HXRotationTool' # https://github.com/TheLittleBoy/HXRotationTool
 
 * iPhone 应用
 
-  ```objective-c
+  ```xml
   <key>UISupportedInterfaceOrientations</key>
   <array>
       <string>UIInterfaceOrientationPortrait</string>
@@ -26,7 +26,7 @@ pod 'HXRotationTool' # https://github.com/TheLittleBoy/HXRotationTool
 
 * iPad 应用
 
-  ```objective-c
+  ```xml
   <key>UISupportedInterfaceOrientations~ipad</key>
   <array>
       <string>UIInterfaceOrientationPortrait</string>

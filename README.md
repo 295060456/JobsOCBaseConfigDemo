@@ -269,14 +269,9 @@ classDiagram
   * 继承和分类应该结合使用，功能各有优劣；
   * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用；
 
-### 11、BaseViewController
 
-* 为了方便管理，理论上，全局只应有一个`UIViewController`。开发者不应该创建过多的子控制器；
-* 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行；
-* 命名为`BaseViewController`也是充分考虑同业者的偏好习惯；
-* 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`；
 
-### 12、度量衡适配。[**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
+### 11、度量衡适配。[**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
 
 * **当前设备是否是全面屏**：`static inline BOOL isFullScreen(void) ` 
 * **全局比例尺**
@@ -299,7 +294,7 @@ classDiagram
 * **除开 tabBarController 和 navigationController 的内容可用区域的大小**
   * `static inline CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBarController, UINavigationController * _Nullable navigationController)`
 
-### 13、**键盘监听**
+### 12、**键盘监听**
 
 * 关注[**`@implementation NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
 
@@ -344,13 +339,74 @@ classDiagram
   }
   ```
 
-### 14、**手动打包流程**
+### 13、**手动打包流程**
 
-![image-20240703211611574](./assets/image-20240703211611574.png)
+* 电脑桌面新建文件夹，并重命名为`payload；`
 
+* 真机运行项目（不同设备，不同芯片组，底层指令集不一致）；
+
+* 打开项目工程目录下`Products`，里面有个`*.app`；
+
+  ![image-20240704113342353](./assets/image-20240704113342353.png)
+
+* 将这个`*.app`复制到刚才电脑桌面新建的`payload`文件夹；
+
+* 压缩电脑桌面新建的`payload`文件夹为zip格式的压缩包；
+
+* 将这个`zip`格式的压缩包，强行改名`*.ipa`
+
+### 14、iOS 状态栏颜色的修改
+
+* 全局修改
+
+  * 在Info.plist里面加入如下键值对：
+
+    ```xml
+    <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
+    <!-- iOS 状态栏颜色的修改【全局设置】Status bar style : Light Content-->
+    <key>UIStatusBarStyle</key>
+    <string>UIStatusBarStyleLightContent</string>
+    ```
+
+  * ```objective-c
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;// iOS 13 后方法被标注废弃
+    ```
+
+* 局部修改
+
+  * 在`Info.plist`里面加入如下键值对
+
+    ```xml
+    <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <true/>
+    ```
+
+  * 定位`@ interface BaseNavigationVC : UINavigationController`
+
+    *在 BaseNavigationVC.m里面写入：*
+
+    ```objective-c
+    - (UIViewController *)childViewControllerForStatusBarStyle {
+        return self.topViewController;
+    }
+    ```
+
+    *在具体的需要修改的VC.m里面写入：*
+
+    ```objective-c
+    -(UIStatusBarStyle)preferredStatusBarStyle{
+        return UIStatusBarStyleLightContent;
+    }
+    ```
+
+    
 
 
 ## 五、代码讲解
+
 ### 1、**UIButton.UIButtonConfiguration**
 <details id="UIButton">
 <summary><strong>点我了解详情</strong></summary>
@@ -664,9 +720,9 @@ classDiagram
    ```
 </details>
 
-##### [**对按钮点击事件的使用**](#用新Api（UIButtonConfiguration）创建一个带富文本的UIButton)
+#### 5.1、[**对按钮点击事件的使用**](#用新Api（UIButtonConfiguration）创建一个带富文本的UIButton)
 
-##### 对通知的使用
+#### 5.2、对通知的使用
 
 * [**`MacroDef_Notification.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Notification.h)
 
@@ -824,23 +880,89 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   [_collectionView registerCollectionViewClass];
   ```
 
-```markdown
+</details>
+
+### 9、关于`UIViewController`的一些配置
+
+####  9.1、BaseViewController
+
+  * 为了方便管理，理论上，全局只应有一个`UIViewController`。开发者不应该创建过多的子控制器；
+  * 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行；
+  * 命名为`BaseViewController`也是充分考虑同业者的偏好习惯；
+  * 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`；
+
+#### 9.2、推控制器
+
+  * 关注实现类[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BBaseVC)
+
+    ```objective-c
+    #pragma mark —— present
+    /// 简洁版强制present展现一个控制器页面【不需要正向传参】
+    -(void)comingToPresentVC:(UIViewController *_Nonnull)viewController;
+    /// 简洁版强制present展现一个控制器页面【需要正向传参】
+    -(void)comingToPresentVC:(UIViewController *_Nonnull)viewController
+               requestParams:(id _Nullable)requestParams;
+    #pragma mark —— push
+    /// 简洁版强制展现一个控制器页面【不需要正向传参】
+    -(void)comingToPushVC:(UIViewController *_Nonnull)viewController;
+    /// 简洁版强制展现一个控制器页面【需要正向传参】
+    -(void)comingToPushVC:(UIViewController *_Nonnull)viewController
+            requestParams:(id _Nullable)requestParams;
+    ```
+    
+    ```objective-c
+    /**
+     ❤️【强制推控制器】❤️
+     1、自定义是PUSH还是PRESENT展现控制器，如果自定义PUSH但是navigationController不存在，则换用PRESENT展现控制器
+     2、定位于@implementation UINavigationController (SafeTransition)，交换系统的push方法，防止某些情况下系统资源紧张导致的多次推控制器
+     @param fromVC 从A控制器（上一个页面）
+     @param toVC  推到B控制器 （下一个页面）
+     @param comingStyle 自定义展现的方式
+     @param presentationStyle  如果是PRESENT情况下的一个系统参数设定
+     @param requestParams  A控制器—>B控制器，正向传值
+     @param hidesBottomBarWhenPushed 跳转子页面的时候隐藏tabbar
+     @param animated  是否动画展现
+     @param successBlock 在推控制器之前，反向block(B控制器），以便对B控制器的一些自定义修改
+     */
+    +(instancetype _Nullable)comingFromVC:(UIViewController *_Nonnull)fromVC
+                                     toVC:(UIViewController *_Nonnull)toVC
+                              comingStyle:(ComingStyle)comingStyle
+                        presentationStyle:(UIModalPresentationStyle)presentationStyle
+                            requestParams:(id _Nullable)requestParams
+                 hidesBottomBarWhenPushed:(BOOL)hidesBottomBarWhenPushed
+                                 animated:(BOOL)animated
+                                  success:(jobsByIDBlock _Nullable)successBlock;
+    ```
+
+  #### 9.3、[**`UIViewController`转场动画的使用方法**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition/UIViewController%2BXLBubbleTransition.md)
+
+  * [**@interface UIViewController (XLBubbleTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition)
+
+#### 9.4、悬浮按钮
+
+  * [**@interface UIViewController (SuspendBtn)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+SuspendBtn)
+
+####  9.5、防止过多的`presented`模态推出`UIViewController`
+  * [**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)
+
+
+
 ### Test
 <details id="Test">
  <summary><strong>点我了解详情</strong></summary>
 
  ```objective-c
 // TODO
-```
-</details>
+ ```
 
 ## 六、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99)
 ### 1、配置相关
-* [**解决Xcode出现：SDK does not contain 'libarclite' 错误**](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E8%A7%A3%E5%86%B3Xcode%E5%87%BA%E7%8E%B0%EF%BC%9ASDK%20does%20not%20contain%20'libarclite'%20%E9%94%99%E8%AF%AF)
+* [**解决xcode出现：SDK does not contain 'libarclite' 错误**](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E8%A7%A3%E5%86%B3Xcode%E5%87%BA%E7%8E%B0%EF%BC%9ASDK%20does%20not%20contain%20'libarclite'%20%E9%94%99%E8%AF%AF)
 * [**通过SSH连接到GitHub**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub.md)
 * [**JobsGenesis**](https://github.com/295060456/JobsGenesis)
 * [**unknown class viewcontroller in interface builder file**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/unknown%20class%20viewcontroller%20in%20interface%20builder%20file.md)
-* [**Xcode资料下载**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/Xcode%E8%B5%84%E6%96%99%E4%B8%8B%E8%BD%BD.md)
+* [**xcode资料下载**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/Xcode%E8%B5%84%E6%96%99%E4%B8%8B%E8%BD%BD.md)
+* [**配置`info.plist`文件**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/%E9%85%8D%E7%BD%AEinfo.plist/%E9%85%8D%E7%BD%AEinfo.plist.md)
 ### 2、面试相关
 * [**OC相关经验**](https://github.com/295060456/JobsOCBaseConfig/blob/main/OCDoc/OCDoc.md)
 * [**Swift 相关经验**](https://github.com/295060456/JobsOCBaseConfig/blob/main/SwiftDoc/SwiftDoc.md)

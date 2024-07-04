@@ -756,8 +756,6 @@
 		C5978AD72BE3599700A56125 /* 旋转.png in Resources */ = {isa = PBXBuildFile; fileRef = C59789D02BE3599600A56125 /* 旋转.png */; };
 		C5978AD82BE3599700A56125 /* UIViewController+SuspendBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789D22BE3599600A56125 /* UIViewController+SuspendBtn.m */; };
 		C5978AD92BE3599700A56125 /* UIViewController+TFPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789D62BE3599600A56125 /* UIViewController+TFPopupView.m */; };
-		C5978ADA2BE3599700A56125 /* UIViewController+TFPopupView（01）.png in Resources */ = {isa = PBXBuildFile; fileRef = C59789D72BE3599600A56125 /* UIViewController+TFPopupView（01）.png */; };
-		C5978ADB2BE3599700A56125 /* UIViewController+TFPopupView（02）.png in Resources */ = {isa = PBXBuildFile; fileRef = C59789D82BE3599600A56125 /* UIViewController+TFPopupView（02）.png */; };
 		C5978ADC2BE3599700A56125 /* UIViewController+XLBubbleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789DB2BE3599600A56125 /* UIViewController+XLBubbleTransition.m */; };
 		C5978ADE2BE3599700A56125 /* XLBubbleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789DE2BE3599600A56125 /* XLBubbleTransition.m */; };
 		C5978ADF2BE3599700A56125 /* UIWindow+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789E52BE3599600A56125 /* UIWindow+Extra.m */; };
@@ -12122,7 +12120,6 @@
 				C5978AB22BE3599700A56125 /* UITextView+IndicateWordLimit.png in Resources */,
 				840F961B27736427004979E9 /* 7@2x.png in Resources */,
 				C5978AD72BE3599700A56125 /* 旋转.png in Resources */,
-				C5978ADB2BE3599700A56125 /* UIViewController+TFPopupView（02）.png in Resources */,
 				CEAAD4822C32875B00349C11 /* LaunchScreen.storyboard in Resources */,
 				C5978AA92BE3599700A56125 /* ZYTextField.bundle in Resources */,
 				C57A2037282CB59F0032156B /* gesture_indicator_selected@2x.png in Resources */,
@@ -12205,7 +12202,6 @@
 				C5C48069284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-BlackItalic.ttf in Resources */,
 				C5C48073284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-BoldItalic.ttf in Resources */,
 				84A494D127906CC90002A837 /* 动态头像_1 尺寸84.gif in Resources */,
-				C5978ADA2BE3599700A56125 /* UIViewController+TFPopupView（01）.png in Resources */,
 				C5C48076284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-Light.ttf in Resources */,
 				C5C48085284E21E5007916B3 /* NotoSansDisplay_SemiCondensed-Black.ttf in Resources */,
 				8456259F278BF2780067ABB9 /* CommentData.json in Resources */,
