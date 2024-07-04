@@ -44,11 +44,10 @@ jobs:
     - name: Commit and push diagram
       if: success()
       env:
-        GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
+        ACTIONS_PAT: ${{ secrets.ACTIONS_PAT }}
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        git remote set-url origin https://github-actions:${{ secrets.ACTIONS_PAT }}@github.com/${{ github.repository }}
         git add diagrams/diagram-*.png
         git commit -m 'Generate Mermaid diagram'
-        git push origin HEAD:main
+        git push https://${{ secrets.ACTIONS_PAT }}@github.com/${{ github.repository }}.git HEAD:main
