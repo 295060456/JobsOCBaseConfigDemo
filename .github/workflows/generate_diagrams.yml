@@ -23,13 +23,15 @@ jobs:
 
     - name: Generate Diagrams
       run: |
-        # 提取 Mermaid 代码块并生成图像
+        mkdir -p diagrams
         npx mmdc -i README.md -o diagrams/diagram.png -b transparent
 
     - name: Commit and push diagram
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        git add *
+        git add diagrams/diagram.png
         git commit -m 'Generate Mermaid diagram'
         git push
