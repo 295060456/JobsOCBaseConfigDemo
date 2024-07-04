@@ -19,18 +19,23 @@
 #import "MacroDef_Notification.h"
 #import "NSObject+DynamicInvoke.h"
 
+#ifndef ShadowDirection_h
+#define ShadowDirection_h
 typedef NS_OPTIONS(NSUInteger, ShadowDirection) {
     ShadowDirection_top = 0,
-    ShadowDirection_down,
-    ShadowDirection_left,
-    ShadowDirection_right,
-    ShadowDirection_leftTop,
-    ShadowDirection_leftDown,
-    ShadowDirection_rightTop,
-    ShadowDirection_rightDown,
-    ShadowDirection_All
+    ShadowDirection_down = 1 << 0,
+    ShadowDirection_left = 1 << 1,
+    ShadowDirection_right = 1 << 2,
+    ShadowDirection_leftTop = 1 << 3,
+    ShadowDirection_leftDown = 1 << 4,
+    ShadowDirection_rightTop = 1 << 5,
+    ShadowDirection_rightDown = 1 << 6,
+    ShadowDirection_All = ~0UL
 };
+#endif /* ShadowDirection_h */
 
+#ifndef UIBorderSideType_h
+#define UIBorderSideType_h
 typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
     UIBorderSideTypeAll  = 0,
     UIBorderSideTypeTop = 1 << 0,
@@ -38,6 +43,7 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
     UIBorderSideTypeLeft = 1 << 2,
     UIBorderSideTypeRight = 1 << 3,
 };
+#endif /* UIBorderSideType_h */
 
 @interface UIView (Extras)
 #pragma mark —— 键盘事件

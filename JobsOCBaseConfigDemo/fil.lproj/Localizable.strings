@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   JobsOCBaseConfigDemo
 
@@ -6,61 +6,60 @@
   
 */
 /// 多语言测试
-"App language switch" = "Pagpapalit ng Wika ng App";
-"By System" = "Sumunod sa Sistema";
-"Chinese" = "Tsino";
-"English" = "Ingles";
-"Tagalog" = "Tagalog";
+"App国际化之应用内部切换语言" = "Paglipat ng wika ng app";
+"跟随系统" = "Sundin ang sistema";
+"中文" = "Intsik";
+"英文" = "Ingles";
+"他加禄语" = "Tagalog";
 /// 权限设置
-"NSFaceIDUsageDescription" = "Kailangan ng App ang iyong pahintulot upang ma-access ang iyong Face ID para sa seguridad";
-"NSAppleMusicUsageDescription" = "Magdagdag ng mga track sa iyong music library";
-"NSBluetoothAlwaysUsageDescription" = "Kung hindi pinapayagan, hindi ka makakapagamit ng mga serbisyo na naka-konekta";
-"NSBluetoothPeripheralUsageDescription" = "Kung hindi pinapayagan, hindi ka makakapagamit ng mga serbisyo na naka-konekta";
-"NSCalendarsUsageDescription" = "Kung hindi pinapayagan, hindi ka makakapagdagdag ng mga kalendaryo";
-"NSCameraUsageDescription" = "Kung hindi pinapayagan, hindi ka makakapagkuha ng litrato";
-"NSContactsUsageDescription" = "Impormasyon ng contact directory ay gamitin lamang para sa paghahanap ng mga contact, at laging panatilihing pribado";
-"NSHealthShareUsageDescription" = "Kung hindi pinapayagan, hindi ka makakalahok sa mga aktibidad ng ranggong pangkalusugan";
-"NSHealthUpdateUsageDescription" = "Kung hindi pinapayagan, hindi ka makakalahok sa mga aktibidad ng ranggong pangkalusugan";
-"NSHomeKitUsageDescription" = "Kung hindi pinapayagan, hindi ka makakapagamit ng mga serbisyong pang-smart home";
-"NSLocationAlwaysAndWhenInUseUsageDescription" = "Kailangan namin ang iyong lokasyon upang magamit ang mga serbisyong paghahanap ng mga malapit na negosyo";
-"NSLocationAlwaysUsageDescription" = "Kailangan namin ang iyong pahintulot, ang impormasyon ng iyong lokasyon ay gamitin para sa kasalukuyang lokasyon";
-"NSLocationWhenInUseUsageDescription" = "Kailangan namin ang iyong lokasyon upang magamit ang mga serbisyong paghahanap ng mga malapit na negosyo";
-"NSMicrophoneUsageDescription" = "Kailangan namin ang pahintulot sa iyong mikropono upang magamit ang mga serbisyong paghahanap gamit ang boses";
-"NSMotionUsageDescription" = "Kailangan namin ang pahintulot sa iyong galaw upang magamit ang mga serbisyong paglalahad ng kumpetisyon sa aktibidad";
-"NSPhotoLibraryAddUsageDescription" = "Kailangan namin ang pahintulot sa iyong gallery upang magamit ang pagpili ng mga larawan";
-"NSPhotoLibraryUsageDescription" = "Kailangan namin ang pahintulot sa iyong gallery upang magamit ang pagpili ng mga larawan";
-"NSRemindersUsageDescription" = "Kailangan namin ang pahintulot sa iyong mga paalaala upang magamit ang pagdaragdag ng mga paalaala";
-"NSSiriUsageDescription" = "Kailangan namin ang pahintulot sa Siri upang magamit ang mga serbisyong Siri";
-"NSSpeechRecognitionUsageDescription" = "Kailangan namin ang pahintulot sa pagkilala ng boses upang magamit ang pagkilala ng boses sa keyboard";
-"NSVideoSubscriberAccountUsageDescription" = "Kailangan namin ang pahintulot sa TV upang magamit ang TV";
+"App需要您的同意，才能访问您的面容识别功能，用于安全验证" = "Kailangan ng App ang iyong pahintulot upang ma-access ang iyong face recognition para sa seguridad na pagpapatunay";
+"添加曲目到您的音乐库" = "Magdagdag ng mga kanta sa iyong music library";
+"若不允许，你将无法使用联机服务" = "Kung hindi pinapayagan, hindi mo magagamit ang online services";
+"若不允许，你将无法使用联机服务" = "Kung hindi pinapayagan, hindi mo magagamit ang online services";
+"若不允许，你将无法使用添加日历功能" = "Kung hindi pinapayagan, hindi mo magagamit ang pagdagdag ng kalendaryo";
+"若不允许，你将无法使用拍照功能" = "Kung hindi pinapayagan, hindi mo magagamit ang pagkuha ng larawan";
+"通讯录信息仅用于查找联系人，并会得到严格保密" = "Ang impormasyon ng contact ay ginagamit lamang upang mahanap ang mga contact at ito ay mahigpit na kumpidensyal";
+"若不允许，你将无法参与运动排行榜活动" = "Kung hindi pinapayagan, hindi ka makakasali sa mga sports leaderboard activities";
+"若不允许，你将无法参与运动排行榜活动" = "Kung hindi pinapayagan, hindi ka makakasali sa mga sports leaderboard activities";
+"若不允许，你将无法使用智能家居服务" = "Kung hindi pinapayagan, hindi mo magagamit ang smart home services";
+"我们需要获取你的定位权限以供完成查找附近商户功能" = "Kailangan naming makuha ang iyong lokasyon upang makumpleto ang paghahanap ng malapit na mga merchant";
+"我们需要您的同意,您的位置信息将用于查看当前位置信息" = "Kailangan namin ang iyong pahintulot, ang iyong impormasyon ng lokasyon ay gagamitin upang tingnan ang kasalukuyang impormasyon ng lokasyon";
+"我们需要获取你的定位权限以供完成查找附近商户功能" = "Kailangan naming makuha ang iyong lokasyon upang makumpleto ang paghahanap ng malapit na mga merchant";
+"我们需要获取你的麦克风权限以供完成语音搜索功能" = "Kailangan naming makuha ang iyong pahintulot sa mikropono upang makumpleto ang voice search";
+"我们需要获取你的运动权限以完成运动挑战赛功能" = "Kailangan naming makuha ang iyong pahintulot sa paggalaw upang makumpleto ang sports challenge";
+"我们需要获取你的相册权限以完成选择本地图片功能" = "Kailangan naming makuha ang iyong pahintulot sa photo library upang makumpleto ang pagpili ng mga lokal na larawan";
+"我们需要获取你的相册权限以完成选择本地图片功能" = "Kailangan naming makuha ang iyong pahintulot sa photo library upang makumpleto ang pagpili ng mga lokal na larawan";
+"我们需要获取你的提醒事项权限以供添加提醒事项" = "Kailangan naming makuha ang iyong pahintulot sa mga paalala upang makapagdagdag ng mga paalala";
+"我们需要获取你的Siri权限以方便完成Siri建议功能" = "Kailangan naming makuha ang iyong pahintulot sa Siri upang magamit ang mga suhestiyon ng Siri";
+"我们需要获取你的语音识别功能已完成键盘语音识别输入功能" = "Kailangan naming makuha ang iyong pahintulot sa speech recognition upang makumpleto ang input ng speech sa keyboard";
+"我们需要获取你的TV权限" = "Kailangan naming makuha ang iyong pahintulot sa TV";
 /// TabBarItem
-"Home" = "Home";
-"XiMa" = "XiMa";
-"Recharge" = "Recharge";
-"CustomerService" = "Customer Service";
-"MemberCenter" = "Member Center";
+"首页" = "Tahanan";
+"洗码" = "Linisin ang code";
+"充值" = "Mag-recharge";
+"客服" = "Serbisyo sa Kustomer";
+"会员中心" = "Sentro ng Miyembro";
 /// 登陆/注册/忘记密码
-"B\na\nc\nk\nT\no\nL\no\ng\ni\nn" = "Bumalik sa Log-in";
-"L\no\ng\ni\nn" = "Magparehistro ng bagong user";
-"Forgot code" = "Nakalimutan ang password";
-"Back to HomePage" = "Bumalik sa Home";
-"Save the user name" = "I-save ang username";
-"Register" = "Magparehistro";
-"Login" = "Mag-log in";
-"Customer service" = "Customer service";
-"Get" = "Kunin ang verification code";
+"返\n回\n登\n录" = "Bum\nal\nik\nsa\nPag-\nlo\ngin";
+"新\n用\n户\n注\n册" = "Mag-re\nhis\ntro ng\nBag\nong\nGu\nmit";
+"忘记密码" = "Nakalimutan ang password";
+"返回首页" = "Bumalik sa Home Page";
+"保存用户名" = "I-save ang username";
+"注册" = "Magparehistro";
+"登录" = "Mag-login";
+"人工客服" = "Serbisyo sa tao";
+"获取验证码" = "Kumuha ng verification code";
 /// 其他业务
-"User" = "User";
-"Code" = "Password";
-"Confirm" = "Confirm Password";
-"Telephone" = "Telephone Number";
-"Auth code" = "Auth Code";
-"Play Record" = "Play Record";
-"My Play" = "My Play";
-"Draw it" = "Claim Rewards";
+"用户名" = "Username";
+"密码" = "Password";
+"确认密码" = "Kumpirmahin ang password";
+"手机号码" = "Numero ng telepono";
+"手机验证码" = "Verification code ng telepono";
+"洗码记录" = "Record ng paglilinis ng code";
+"我的洗码" = "Aking paglilinis ng code";
+"领取洗码" = "Kunin ang paglilinis ng code";
 ///
-"Sec" = "Sec";
-"Online customer service" = "Online Customer Service";
-"You can also contact customer service through the following ways" = "You can also contact customer service through the following ways";
-"Later" = "Later";
-"zaixiankefu_en" = "zaixiankefu_zh-Hans";
+"秒" = "Segundo";
+"在线客服" = "Online na serbisyo sa kustomer";
+"您还可以通过以下方式联系客服" = "Maaari ka ring makipag-ugnay sa serbisyo sa kustomer sa pamamagitan ng sumusunod na paraan";
+"后获取" = "Makukuha mamaya";

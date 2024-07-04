@@ -13,10 +13,10 @@
 -(void)addElementByTabBarTitleMutArr:(NSMutableArray *)tabBarTitleMutArr{
     if (tabBarTitleMutArr) {
         [tabBarTitleMutArr addObject:JobsInternationalization(@"首页")];
-        [tabBarTitleMutArr addObject:JobsInternationalization(@"圈子")];
+        [tabBarTitleMutArr addObject:JobsInternationalization(@"洗码")];
         [tabBarTitleMutArr addObject:JobsInternationalization(@"")];
-        [tabBarTitleMutArr addObject:JobsInternationalization(@"消息")];
-        [tabBarTitleMutArr addObject:JobsInternationalization(@"未登录")];
+        [tabBarTitleMutArr addObject:JobsInternationalization(@"客服")];
+        [tabBarTitleMutArr addObject:JobsInternationalization(@"会员中心")];
         Jobs_setAssociatedRETAIN_NONATOMIC(_tabBarTitleMutArr, tabBarTitleMutArr)
     }
 }

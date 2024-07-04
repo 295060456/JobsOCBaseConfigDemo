@@ -248,15 +248,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_dataMutArr) {
         _dataMutArr = NSMutableArray.array;
         
-        [_dataMutArr addObject:JobsInternationalization(@"By System")];
-        [_dataMutArr addObject:JobsInternationalization(@"Chinese")];
-        [_dataMutArr addObject:JobsInternationalization(@"English")];
-        [_dataMutArr addObject:JobsInternationalization(@"Tagalog")];
-        
-//        [_dataMutArr addObject:JobsInternationalization(@"跟随系统")];
-//        [_dataMutArr addObject:JobsInternationalization(@"中文")];
-//        [_dataMutArr addObject:JobsInternationalization(@"英文")];
-//        [_dataMutArr addObject:JobsInternationalization(@"他加禄语")];
+        [_dataMutArr addObject:JobsInternationalization(@"跟随系统")];
+        [_dataMutArr addObject:JobsInternationalization(@"中文")];
+        [_dataMutArr addObject:JobsInternationalization(@"英文")];
+        [_dataMutArr addObject:JobsInternationalization(@"他加禄语")];
         
     }return _dataMutArr;
 }
