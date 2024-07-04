@@ -721,7 +721,6 @@ NSObject <|-- BaseProtocol
     }
     ```
 
-    
 
 
 ## 五、代码讲解
@@ -1263,8 +1262,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ####  9.5、防止过多的`presented`模态推出`UIViewController`
   * [**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)
-
-
 
 ### Test
 <details id="Test">
