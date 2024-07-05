@@ -1485,6 +1485,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }];
   _collectionView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
   ```
+### 18、富文本
+
+* 
 
 ### Test
 

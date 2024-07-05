@@ -10,15 +10,22 @@
 @implementation AppDelegate (Extra)
 #pragma mark —— 一些私有方法
 /// 仅仅对数值tabBarTitleMutArr做简单的添加元素并赋值
--(void)addElementByTabBarTitleMutArr:(NSMutableArray *)tabBarTitleMutArr{
-    if (tabBarTitleMutArr) {
-        [tabBarTitleMutArr addObject:JobsInternationalization(@"首页")];
-        [tabBarTitleMutArr addObject:JobsInternationalization(@"洗码")];
-        [tabBarTitleMutArr addObject:JobsInternationalization(JobsInternationalization(@""))];
-        [tabBarTitleMutArr addObject:JobsInternationalization(@"客服")];
-        [tabBarTitleMutArr addObject:JobsInternationalization(@"会员中心")];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_tabBarTitleMutArr, tabBarTitleMutArr)
+-(NSMutableArray *)addElementByTabBarTitleMutArr:(NSMutableArray *_Nullable)tabBarTitleMutArr{
+    NSMutableArray *mutArr = nil;
+    if(tabBarTitleMutArr){
+        mutArr = tabBarTitleMutArr;
+    }else{
+        mutArr = NSMutableArray.array;
     }
+    
+    if (mutArr) {
+        [mutArr addObject:JobsInternationalization(@"首页")];
+        [mutArr addObject:JobsInternationalization(@"洗码")];
+        [mutArr addObject:JobsInternationalization(JobsInternationalization(@""))];
+        [mutArr addObject:JobsInternationalization(@"客服")];
+        [mutArr addObject:JobsInternationalization(@"会员中心")];
+        Jobs_setAssociatedRETAIN_NONATOMIC(_tabBarTitleMutArr, mutArr)
+    }return mutArr;
 }
 
 -(TFPopupParam *)appDelegatePopupParameter{
@@ -35,13 +42,13 @@
 #pragma mark —— 一些公有方法
 /// 刷新 TabBarTitle
 -(void)refreshTabBarTitle{
-    
     NSMutableArray *TabBarTitleMutArr = objc_getAssociatedObject(self, _cmd);
-    
     if (TabBarTitleMutArr.count) {
         [TabBarTitleMutArr removeAllObjects];
-        [self addElementByTabBarTitleMutArr:TabBarTitleMutArr];
+        TabBarTitleMutArr = nil;
     }
+    
+    TabBarTitleMutArr = [self addElementByTabBarTitleMutArr:TabBarTitleMutArr];
     
     for (JobsTabBarControllerConfig *config in self.configMutArr) {
         NSInteger index = [self.configMutArr indexOfObject:config];
@@ -190,11 +197,7 @@ JobsKey(_configMutArr)
 JobsKey(_tabBarTitleMutArr)
 @dynamic tabBarTitleMutArr;
 -(NSMutableArray<NSString *> *)tabBarTitleMutArr{
-    NSMutableArray *TabBarTitleMutArr = Jobs_getAssociatedObject(_tabBarTitleMutArr);
-    if (!TabBarTitleMutArr) {
-        TabBarTitleMutArr = NSMutableArray.array;
-        [self addElementByTabBarTitleMutArr:TabBarTitleMutArr];
-    }return TabBarTitleMutArr;
+    return [self addElementByTabBarTitleMutArr:Jobs_getAssociatedObject(_tabBarTitleMutArr)];
 }
 
 -(void)setTabBarTitleMutArr:(NSMutableArray<NSString *> *)tabBarTitleMutArr{

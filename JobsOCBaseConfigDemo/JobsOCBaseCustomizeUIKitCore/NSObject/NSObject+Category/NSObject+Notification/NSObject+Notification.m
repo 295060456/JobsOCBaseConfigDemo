@@ -46,8 +46,7 @@
     }];
 }
 ///【发通知】设置App语言环境
--(void)setAppLanguageAtAppLanguage:(AppLanguage)appLanguage
-                byNotificationName:(nullable NSString *)NotificationName{
+-(void)setAppLanguageAtAppLanguage:(AppLanguage)appLanguage{
     if(appLanguage == AppLanguageBySys){
         [CLLanguageManager resetSystemLanguage];
     }else{

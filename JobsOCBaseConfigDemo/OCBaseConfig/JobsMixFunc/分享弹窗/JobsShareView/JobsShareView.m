@@ -53,7 +53,6 @@ static dispatch_once_t static_shareViewOnceToken;
             }
             @jobs_strongify(self)
             NSLog(@"通知传递过来的 = %@",notification.object);
-            [self languageSwitchNotification:notification];
             return nil;
         },nil, self),LanguageSwitchNotification,nil);
 //        [self netWorking];

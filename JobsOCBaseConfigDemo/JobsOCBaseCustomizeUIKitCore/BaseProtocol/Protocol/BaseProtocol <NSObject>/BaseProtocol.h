@@ -49,8 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///【监听通知】设置App语言环境
 -(void)monitorAppLanguage;//NSObject (Notification)
 ///【发通知】设置App语言环境
--(void)setAppLanguageAtAppLanguage:(AppLanguage)appLanguage
-                byNotificationName:(nullable NSString *)NotificationName;
+-(void)setAppLanguageAtAppLanguage:(AppLanguage)appLanguage;
 /// 接收通知并相应的方法【在分类或者基类中实现会屏蔽具体子类的相关实现】
 -(void)languageSwitchNotification:(nonnull NSNotification *)notification;//在具体子类进行实现
 #pragma mark —— 单例化和销毁

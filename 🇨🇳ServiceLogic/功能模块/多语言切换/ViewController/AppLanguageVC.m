@@ -43,6 +43,27 @@
         self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);/// self.gk_navBackgroundColor 和 self.view.backgroundColor
     //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
     }
+    
+    @jobs_weakify(self)
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        if([notification.object isKindOfClass:NSNumber.class]){
+            NSNumber *b = notification.object;
+            NSLog(@"SSS = %d",b.boolValue);
+        }
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        return nil;
+    },nil, self),LanguageSwitchNotification,nil);
+    
+    self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
+        @jobs_strongify(self)
+        NSLog(@"退出页面的逻辑");
+        
+        return nil;
+    };
 }
 
 - (void)viewDidLoad {
@@ -50,13 +71,6 @@
     [self setGKNav];
     [self setGKNavBackBtn];
     self.tableView.alpha = 1;
-    @jobs_weakify(self)
-    self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
-        @jobs_strongify(self)
-        NSLog(@"退出页面的逻辑");
-        
-        return nil;
-    };
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -98,10 +112,6 @@
 -(void)loadMoreRefresh{
     [self pullToRefresh];
 }
-/// 接收通知并相应的方法
-- (void)languageSwitchNotification:(NSNotification *)notification{
-    NSLog(@"通知传递过来的 = %@",notification.object);
-}
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -122,14 +132,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         acell.accessoryType = acell == cell ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
     
-    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-        return;
-    }
-    [self setAppLanguageAtAppLanguage:self.dataMutArr[indexPath.row].appLanguage
-             byNotificationName:nil];// 设置App语言环境并发送全局通知LanguageSwitchNotification
+    [self setAppLanguageAtAppLanguage:self.dataMutArr[indexPath.row].appLanguage];// 设置App语言环境并发送全局通知LanguageSwitchNotification
     [self changeTabBarItemTitle:indexPath];///【App语言国际化】更改UITabBarItem的标题
+    /// 重塑数据源
+    [self.dataMutArr removeAllObjects];
+    _dataMutArr = nil;
     /// 刷新本界面
     [self.tableView.mj_header beginRefreshing];
+//    [self.tableView reloadData];
     @jobs_weakify(self)
     /// 2秒后退出本页面
 //    DispathdDelaySth(2.0, [weak_self backBtnClickEvent:nil]);
