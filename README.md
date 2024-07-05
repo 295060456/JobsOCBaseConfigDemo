@@ -1457,6 +1457,35 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 关注实现类：[**@interface UIView (Animation)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BAnimation)
 
+### 17、手势
+
+* 因为手势传递是在view层。所以对其进行了一次封装。关注实现类：[**@interface UIView (Gesture)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BGesture)
+
+  调用示例
+
+  ```objective-c
+  _collectionView.numberOfTouchesRequired = 1;
+  _collectionView.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
+  _collectionView.minimumPressDuration = 0.1;
+  _collectionView.numberOfTouchesRequired = 1;
+  _collectionView.allowableMovement = 1;
+  _collectionView.userInteractionEnabled = YES;
+  _collectionView.target = self;/// ⚠️注意：任何手势这一句都要写
+  _collectionView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
+                                    UILongPressGestureRecognizer *  _Nullable arg) {
+     NSLog(JobsInternationalization(@""));
+     return nil;
+  }];
+  _collectionView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+  
+  _collectionView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target,
+                                    UITapGestureRecognizer *_Nullable arg) {
+     NSLog(JobsInternationalization(@""));
+     return nil;
+  }];
+  _collectionView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+  ```
+
 ### Test
 
 <details id="Test">

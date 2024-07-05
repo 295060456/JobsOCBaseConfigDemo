@@ -309,11 +309,6 @@ BaseViewControllerProtocol_synthesize
 shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
 }
-#pragma mark —— BaseProtocol
-/// 接收通知相应的方法【在分类或者基类中实现会屏蔽具体子类的相关实现】
--(void)languageSwitchNotification:(nonnull NSNotification *)notification{
-    NSLog(@"通知传递过来的 = %@",notification.object);
-}
 #pragma mark —— lazyLoad
 - (UIView *)statusBar{
     if (!_statusBar) {
