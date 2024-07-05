@@ -131,8 +131,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     for (UITableViewCell *acell in tableView.visibleCells) {
         acell.accessoryType = acell == cell ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
-    
-    [self setAppLanguageAtAppLanguage:self.dataMutArr[indexPath.row].appLanguage];// 设置App语言环境并发送全局通知LanguageSwitchNotification
+    [self setAppLanguageAtAppLanguage:self.dataMutArr[indexPath.row].appLanguage];/// 设置App语言环境并发送全局通知LanguageSwitchNotification
     [self changeTabBarItemTitle:indexPath];///【App语言国际化】更改UITabBarItem的标题
     /// 重塑数据源
     [self.dataMutArr removeAllObjects];
@@ -153,7 +152,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [UITableViewCell cellStyleValue1WithTableView:tableView];
-    cell.accessoryType = self.dataMutArr[indexPath.row].appLanguage == CLLanguageManager.appLanguage ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    cell.accessoryType = self.dataMutArr[indexPath.row].appLanguage == JobsLanguageManager.currentAppLanguage ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     [cell richElementsInCellWithModel2:self.dataMutArr[indexPath.row]];
     return cell;
 }

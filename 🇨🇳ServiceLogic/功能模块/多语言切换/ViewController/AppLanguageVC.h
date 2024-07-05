@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#import "JobsLanguageManager.h"
 #import "BaseViewController.h"
 #import "MacroDef_Func.h"
 #import "MacroDef_Notification.h"

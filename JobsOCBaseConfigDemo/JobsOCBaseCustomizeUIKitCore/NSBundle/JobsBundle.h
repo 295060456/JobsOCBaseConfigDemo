@@ -11,6 +11,5 @@
 #pragma mark —— Base
 // TODO
 #pragma mark —— Category
-#import "NSBundle+CLLanguage.h"
 
 #endif /* JobsBundle_h */

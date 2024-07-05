@@ -541,13 +541,11 @@
 		C59789ED2BE3599700A56125 /* NSArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786E52BE3599600A56125 /* NSArray+Safety.m */; };
 		C59789EE2BE3599700A56125 /* NSArray+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786E82BE3599600A56125 /* NSArray+Tools.m */; };
 		C59789EF2BE3599700A56125 /* NSAttributedString+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786EE2BE3599600A56125 /* NSAttributedString+Extra.m */; };
-		C59789F02BE3599700A56125 /* NSBundle+CLLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786F22BE3599600A56125 /* NSBundle+CLLanguage.m */; };
 		C59789F12BE3599700A56125 /* NSCache+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786F82BE3599600A56125 /* NSCache+Extra.m */; };
 		C59789F22BE3599700A56125 /* NSMutableArray+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59786FE2BE3599600A56125 /* NSMutableArray+Extra.m */; };
 		C59789F42BE3599700A56125 /* NSMutableDictionary+Ordered.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787032BE3599600A56125 /* NSMutableDictionary+Ordered.m */; };
 		C59789F52BE3599700A56125 /* NSNotificationCenter+JobsBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787092BE3599600A56125 /* NSNotificationCenter+JobsBlock.m */; };
 		C59789F62BE3599700A56125 /* NSNumber+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C597870E2BE3599600A56125 /* NSNumber+Extra.m */; };
-		C59789F72BE3599700A56125 /* CLLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787132BE3599600A56125 /* CLLanguageManager.m */; };
 		C59789F82BE3599700A56125 /* DeleteSystemUITabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787162BE3599600A56125 /* DeleteSystemUITabBarButton.m */; };
 		C59789FA2BE3599700A56125 /* FileFolderHandleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C597871A2BE3599600A56125 /* FileFolderHandleTool.m */; };
 		C59789FC2BE3599700A56125 /* JobsFormatTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C597871E2BE3599600A56125 /* JobsFormatTime.m */; };
@@ -930,6 +928,7 @@
 		CEAAD47D2C32804000349C11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD4762C327C7A00349C11 /* Localizable.strings */; };
 		CEAAD4822C32875B00349C11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD47E2C32875A00349C11 /* LaunchScreen.storyboard */; };
 		CEAAD4832C32875B00349C11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD4802C32875A00349C11 /* Main.storyboard */; };
+		CEB72E592C37C7B200E652CA /* JobsLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB72E582C37C7B200E652CA /* JobsLanguageManager.m */; };
 		CED90E942C31954A008D9F68 /* 配置info.plist.md in Resources */ = {isa = PBXBuildFile; fileRef = CED90E912C31954A008D9F68 /* 配置info.plist.md */; };
 		DFEAED65A0CE0960B61EAA74 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19F1CC739164B10E3F364DB /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		FE973CF0DF4FF09D277A1A4E /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72729AEE45FB4BEEB368A595 /* Pods_JobsOCBaseConfigDemoTests.framework */; };
@@ -2074,8 +2073,6 @@
 		C59786EB2BE3599600A56125 /* JobsArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsArray.h; sourceTree = "<group>"; };
 		C59786ED2BE3599600A56125 /* NSAttributedString+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extra.h"; sourceTree = "<group>"; };
 		C59786EE2BE3599600A56125 /* NSAttributedString+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extra.m"; sourceTree = "<group>"; };
-		C59786F12BE3599600A56125 /* NSBundle+CLLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+CLLanguage.h"; sourceTree = "<group>"; };
-		C59786F22BE3599600A56125 /* NSBundle+CLLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+CLLanguage.m"; sourceTree = "<group>"; };
 		C59786F52BE3599600A56125 /* JobsBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBundle.h; sourceTree = "<group>"; };
 		C59786F72BE3599600A56125 /* NSCache+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCache+Extra.h"; sourceTree = "<group>"; };
 		C59786F82BE3599600A56125 /* NSCache+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCache+Extra.m"; sourceTree = "<group>"; };
@@ -2092,8 +2089,6 @@
 		C597870D2BE3599600A56125 /* NSNumber+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Extra.h"; sourceTree = "<group>"; };
 		C597870E2BE3599600A56125 /* NSNumber+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Extra.m"; sourceTree = "<group>"; };
 		C59787102BE3599600A56125 /* JobsNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNumber.h; sourceTree = "<group>"; };
-		C59787122BE3599600A56125 /* CLLanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLLanguageManager.h; sourceTree = "<group>"; };
-		C59787132BE3599600A56125 /* CLLanguageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLLanguageManager.m; sourceTree = "<group>"; };
 		C59787152BE3599600A56125 /* DeleteSystemUITabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteSystemUITabBarButton.h; sourceTree = "<group>"; };
 		C59787162BE3599600A56125 /* DeleteSystemUITabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteSystemUITabBarButton.m; sourceTree = "<group>"; };
 		C59787172BE3599600A56125 /* DeleteSystemUITabBarButton.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DeleteSystemUITabBarButton.md; sourceTree = "<group>"; };
@@ -2832,6 +2827,8 @@
 		CEAAD4812C32875A00349C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEAF7CFD2C341473007AE308 /* XLChannelControl.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = XLChannelControl.md; sourceTree = "<group>"; };
 		CEAF7FF32C3699E5007AE308 /* UIViewController+XLBubbleTransition.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = "UIViewController+XLBubbleTransition.md"; path = "UIViewController+XLBubbleTransition.md/UIViewController+XLBubbleTransition.md"; sourceTree = "<group>"; };
+		CEB72E572C37C7B200E652CA /* JobsLanguageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsLanguageManager.h; sourceTree = "<group>"; };
+		CEB72E582C37C7B200E652CA /* JobsLanguageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsLanguageManager.m; sourceTree = "<group>"; };
 		CED90E912C31954A008D9F68 /* 配置info.plist.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "配置info.plist.md"; sourceTree = "<group>"; };
 		CED90E922C31954A008D9F68 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -8134,19 +8131,9 @@
 			path = NSAttributedString;
 			sourceTree = "<group>";
 		};
-		C59786F32BE3599600A56125 /* NSBundle+CLLanguage */ = {
-			isa = PBXGroup;
-			children = (
-				C59786F12BE3599600A56125 /* NSBundle+CLLanguage.h */,
-				C59786F22BE3599600A56125 /* NSBundle+CLLanguage.m */,
-			);
-			path = "NSBundle+CLLanguage";
-			sourceTree = "<group>";
-		};
 		C59786F42BE3599600A56125 /* NSBundle+Category */ = {
 			isa = PBXGroup;
 			children = (
-				C59786F32BE3599600A56125 /* NSBundle+CLLanguage */,
 			);
 			path = "NSBundle+Category";
 			sourceTree = "<group>";
@@ -8264,15 +8251,6 @@
 				C59787102BE3599600A56125 /* JobsNumber.h */,
 			);
 			path = NSNumber;
-			sourceTree = "<group>";
-		};
-		C59787142BE3599600A56125 /* CLLanguageManager */ = {
-			isa = PBXGroup;
-			children = (
-				C59787122BE3599600A56125 /* CLLanguageManager.h */,
-				C59787132BE3599600A56125 /* CLLanguageManager.m */,
-			);
-			path = CLLanguageManager;
 			sourceTree = "<group>";
 		};
 		C59787182BE3599600A56125 /* DeleteSystemUITabBarButton */ = {
@@ -8450,7 +8428,6 @@
 		C597874E2BE3599600A56125 /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
-				C59787142BE3599600A56125 /* CLLanguageManager */,
 				C59787182BE3599600A56125 /* DeleteSystemUITabBarButton */,
 				C597871C2BE3599600A56125 /* FileFolderHandleTool */,
 				C597871F2BE3599600A56125 /* JobsFormatTime */,
@@ -11565,6 +11542,8 @@
 			children = (
 				840F95DD27736427004979E9 /* AppLanguageVC.h */,
 				840F95DC27736427004979E9 /* AppLanguageVC.m */,
+				CEB72E572C37C7B200E652CA /* JobsLanguageManager.h */,
+				CEB72E582C37C7B200E652CA /* JobsLanguageManager.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -12615,7 +12594,6 @@
 				C5978ABB2BE3599700A56125 /* UIView+Extras.m in Sources */,
 				C5C47D10284E1C4B007916B3 /* MsgEditBoardView.m in Sources */,
 				C52E5C582AC07E9000FE5494 /* KTVHTTPCache.m in Sources */,
-				C59789F02BE3599700A56125 /* NSBundle+CLLanguage.m in Sources */,
 				84CA65FE2789D3B500E46E71 /* JobsAppDoorLoginContentView.m in Sources */,
 				84CA61932789851300E46E71 /* A_VC.m in Sources */,
 				8456259D278BF2780067ABB9 /* JobsCommentConfig.m in Sources */,
@@ -12736,7 +12714,6 @@
 				C5978A3C2BE3599700A56125 /* NSObject+WHToast.m in Sources */,
 				C53683622875855E00DD7AA7 /* TMSWalletCollectionViewCell.m in Sources */,
 				C5978A942BE3599700A56125 /* UITableView+WWFoldableTableView.m in Sources */,
-				C59789F72BE3599700A56125 /* CLLanguageManager.m in Sources */,
 				C52688582BDB8FFC00872F26 /* NSString+MIME.m in Sources */,
 				C5978A6E2BE3599700A56125 /* LMHWaterFallLayout.m in Sources */,
 				84CA5F9527897AFB00E46E71 /* NSString+Base64.m in Sources */,
@@ -12932,6 +12909,7 @@
 				C5978A0D2BE3599700A56125 /* NSObject+AFNReachability.m in Sources */,
 				C533BBBC2837D095006FB231 /* JobsUserHeaderDataView.m in Sources */,
 				CE6B14132C2ED50D00A542A4 /* YTKNetworkAgent.m in Sources */,
+				CEB72E592C37C7B200E652CA /* JobsLanguageManager.m in Sources */,
 				C52E5C9D2AC07E9800FE5494 /* KTVHCDataUnit.m in Sources */,
 				840F961327736427004979E9 /* NSString+ZBUTF8Encoding.m in Sources */,
 				C5366D752ABA40B200BA9C3C /* JobsScrollYView.m in Sources */,

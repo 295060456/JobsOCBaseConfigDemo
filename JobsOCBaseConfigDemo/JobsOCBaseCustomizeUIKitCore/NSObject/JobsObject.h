@@ -10,7 +10,7 @@
 
 #pragma mark —— Base
 /// App语言国际化
-#import "CLLanguageManager.h"
+#import "JobsLanguageManager.h"
 /// 文件夹操作
 #import "FileFolderHandleTool.h"
 /// 时间管理

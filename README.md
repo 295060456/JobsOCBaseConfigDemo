@@ -1489,6 +1489,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 
 
+### 19、字符串定义
+
+*  ```objective-c
+   FOUNDATION_EXTERN NSString *const 皇冠符号;
+   ```
+
+  ```objective-c
+  NSString *const 皇冠符号 = @"♚　♛　♝　♞　♜　♟　♔　♕　♗　♘　♖　♟";
+  ```
+
+* ```objective-c
+  extern NSString *const UserDefaultKey_AppLanguage;
+  ```
+
+  ```objective-c
+  NSString *const UserDefaultKey_AppLanguage = @"AppLanguage";
+  ```
+
+* 
+
 ### Test
 
 <details id="Test">

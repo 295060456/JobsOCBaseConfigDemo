@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CLLanguageManager.h"
+#import "JobsLanguageManager.h"
 #import "BaseProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN

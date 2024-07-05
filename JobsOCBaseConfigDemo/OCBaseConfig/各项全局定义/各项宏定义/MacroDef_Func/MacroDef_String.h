@@ -10,10 +10,11 @@
 
 #import "NSObject+Extras.h"
 #import "MacroDef_Size.h"
+#import "JobsLanguageManager.h"
 
 #pragma mark —— 国际化
 static inline NSString *_Nonnull JobsInternationalization(NSString *_Nonnull text){
-    return [NSObject localStringWithKey:text];
+    return [JobsLanguageManager localStringWithKey:text];
 }
 #pragma mark —— 字体定义
 static inline UIFont *_Nonnull JobsFontUltraLight(NSInteger fontSize){

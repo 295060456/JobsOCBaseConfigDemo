@@ -47,14 +47,10 @@
 }
 ///【发通知】设置App语言环境
 -(void)setAppLanguageAtAppLanguage:(AppLanguage)appLanguage{
-    if(appLanguage == AppLanguageBySys){
-        [CLLanguageManager resetSystemLanguage];
-    }else{
-        [CLLanguageManager setAppLanguage:appLanguage];
-    }
+    [JobsLanguageManager setLanguage:appLanguage];
     /// 发通知，通知需要更改的地方进行修改
     JobsPostNotificationOnMainThread(LanguageSwitchNotification,
-                                     @(CLLanguageManager.appLanguage),
+                                     @(appLanguage),
                                      nil);
 }
 
