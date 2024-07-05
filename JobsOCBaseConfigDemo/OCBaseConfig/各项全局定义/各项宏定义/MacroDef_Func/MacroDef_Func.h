@@ -151,7 +151,7 @@ static inline BOOL isiPhoneX_series(void) {
      
      获取方式：extern AppDelegate *appDelegate;
  */
-static inline id _Nullable getSysAppDelegate(void){
+static inline id<UIApplicationDelegate> _Nullable getSysAppDelegate(void){
     return UIApplication.sharedApplication.delegate;
 }
 /**

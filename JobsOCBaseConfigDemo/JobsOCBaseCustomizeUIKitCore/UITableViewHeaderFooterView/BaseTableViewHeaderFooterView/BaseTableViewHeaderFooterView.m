@@ -13,10 +13,13 @@
 
 @implementation BaseTableViewHeaderFooterView
 #pragma mark —— BaseViewProtocol
+@synthesize backgroundView = _backgroundView;
 BaseViewProtocol_synthesize
 -(instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        NSLog(JobsInternationalization(@""));
+        /// self.backgroundColor 和  self.contentView.backgroundColor 均是无效操作
+        /// 只有 self.backgroundView.backgroundColor 是有效操作
+        self.backgroundView.alpha = 1;
     }return self;
 }
 /// 在具体的子类实现，实现控制UITableViewHeaderFooterView是否悬停
@@ -42,6 +45,13 @@ BaseViewProtocol_synthesize
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGFloat)heightForFooterInSection:(id _Nullable)model{
     return JobsWidth(70);
+}
+#pragma mark —— lazyLoad
+-(UIView *)backgroundView{
+    if (!_backgroundView) {
+        _backgroundView = UIView.new;
+        _backgroundView.frame = self.bounds;
+    }return _backgroundView;
 }
 
 @end

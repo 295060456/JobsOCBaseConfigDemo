@@ -689,10 +689,41 @@ NSObject <|-- BaseProtocol
   getSysAppDelegate();
   ```
 
+  ```c
+  extern AppDelegate *appDelegate;
+  ```
+
 * 寻找**SceneDelegate**
 
   ```
   getSysSceneDelegate();
+  ```
+  
+* 读取用户信息
+
+  ```objective-c
+  /// 模拟用户数据
+  -(void)simulateUserData{
+      JobsUserModel *userModel = JobsUserModel.new;
+      userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
+      userModel.userName = @"张三丰";
+      userModel.phone = @"134****0000";
+      [self saveUserInfo:userModel];
+      
+      id f = self.readUserInfo;
+      NSLog(JobsInternationalization(@""));
+  }
+  /// 存取用户信息Demo
+  -(void)saveAndReadUserInfoDemo{
+      JobsUserModel *userModel = JobsUserModel.new;
+      userModel.token = @"12345";
+      userModel.uid = @"54321";
+      
+      [self saveUserInfo:userModel];
+      NSLog(JobsInternationalization(@""));
+      JobsUserModel *f = [self readUserInfo];
+      NSLog(JobsInternationalization(@""));
+  }
   ```
 
 ## 五、代码讲解
@@ -1507,7 +1538,28 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   NSString *const UserDefaultKey_AppLanguage = @"AppLanguage";
   ```
 
-* 
+### 20、<font color=red>**万物回调**</font>
+
+* 产生背景：点击事件的带参回调
+
+* 关注实现类：[**@interface NSObject (CallBackInfoByBlock)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BCallBackInfoByBlock)
+
+* 调用情况
+
+  ```objective-c
+  -(void)touchesBegan:(NSSet<UITouch *> *)touches
+            withEvent:(UIEvent *)event{
+      if (self.objectBlock) self.objectBlock(@1);
+  }
+  
+  @jobs_weakify(self)
+  [headerView actionObjectBlock:^(id data) {
+    @jobs_strongify(self)
+  }];
+  ```
+
+### 21、系统相机相册调取
+
 
 ### Test
 

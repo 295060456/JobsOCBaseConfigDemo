@@ -10,6 +10,7 @@
 @interface AppLanguageVC ()
 /// UI
 @property(nonatomic,strong)UITableView *tableView;
+@property(nonatomic,strong)UIImageView *imageView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -158,7 +159,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{
-    return [BaseTableViewHeaderFooterView viewHeightWithModel:nil];
+    return [BaseTableViewHeaderFooterView heightForHeaderInSection:nil];
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -174,8 +175,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     BaseTableViewHeaderFooterView *headerView = BaseTableViewHeaderFooterView.jobsInitWithReuseIdentifier;
     headerView.headerFooterViewStyle = JobsHeaderViewStyle;
     headerView.section = section;
-    headerView.backgroundColor = JobsWhiteColor;
-    headerView.contentView.backgroundColor = JobsWhiteColor;
+    /// headerView.backgroundColor 和  headerView.contentView.backgroundColor 均是无效操作
+    /// 只有 headerView.backgroundView.backgroundColor 是有效操作
+    headerView.backgroundView.backgroundColor = JobsRedColor;
     [headerView richElementsInViewWithModel:UIViewModel.new];
 //        @jobs_weakify(self)
     [headerView actionObjectBlock:^(id data) {
@@ -231,6 +233,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             make.left.right.bottom.equalTo(self.view);
         }];
     }return _tableView;
+}
+
+-(UIImageView *)imageView{
+    if (!_imageView) {
+        _imageView = UIImageView.new;
+    }return _imageView;
 }
 
 -(NSMutableArray<UIViewModel *> *)dataMutArr{

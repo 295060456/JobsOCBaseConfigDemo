@@ -117,9 +117,9 @@ heightForFooterInSection:(NSInteger)section{
     BaseTableViewHeaderFooterView *tbvFooterView = BaseTableViewHeaderFooterView.jobsInitWithReuseIdentifier;
     tbvFooterView.headerFooterViewStyle = JobsFooterViewStyle;
     tbvFooterView.section = section;// 不写这一句有悬浮
-    tbvFooterView.backgroundColor = HEXCOLOR(0xFFFFFF);
+    /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作
+    /// 只有 tbvFooterView.backgroundView.backgroundColor 是有效操作
     tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xFFFFFF);
-    
     [tbvFooterView richElementsInViewWithModel:nil];
     @jobs_weakify(self)
     [tbvFooterView actionObjectBlock:^(id data) {

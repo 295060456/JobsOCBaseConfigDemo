@@ -79,7 +79,11 @@ willConnectToSession:(UISceneSession *)session
 }
 #pragma mark —— lazyLoad
 -(UIWindow *)window{
-    AppDelegate *appDelegate = getSysAppDelegate();
+//    if(!_window){
+//        _window = [UIWindow.alloc initWithWindowScene:self.windowScene];
+//        _window.frame = self.windowScene.coordinateSpace.bounds;
+//    }
+    AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
     _window.rootViewController = appDelegate.tabBarVC;
     [_window makeKeyAndVisible];
     return _window;

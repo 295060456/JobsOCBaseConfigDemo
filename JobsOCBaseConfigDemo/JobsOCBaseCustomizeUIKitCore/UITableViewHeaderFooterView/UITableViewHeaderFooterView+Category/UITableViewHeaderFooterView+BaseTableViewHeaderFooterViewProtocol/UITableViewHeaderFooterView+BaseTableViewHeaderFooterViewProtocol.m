@@ -11,8 +11,8 @@
 /// 具体由子类进行复写【数据定UI】
 -(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
     if ([model isKindOfClass:UIViewModel.class]) {
-        // TODO
-        self.contentView.backgroundColor = JobsCyanColor;
+        /// self.contentView.backgroundColor = JobsCyanColor; 这样设置无效
+        self.backgroundView.backgroundColor = JobsCyanColor;
     }
 }
 /// 具体由子类进行复写【数据定高】
