@@ -69,7 +69,7 @@ BaseViewControllerProtocol_synthesize
         @jobs_strongify(self)
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
-    },nil, self),LanguageSwitchNotification,nil);
+    },nil, self),JobsLanguageSwitchNotification,nil);
     /// 设备方向
     JobsAddNotification(self,
                     selectorBlocks(^id _Nullable(id _Nullable weakSelf,

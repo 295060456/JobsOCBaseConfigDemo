@@ -39,7 +39,7 @@
 }
 ///【监听通知】设置App语言环境
 -(void)monitorAppLanguage{
-    [self monitorNotification:LanguageSwitchNotification
+    [self monitorNotification:JobsLanguageSwitchNotification
                     withBlock:^id _Nullable(id  _Nullable weakSelf,
                                             id  _Nullable arg) {
         return nil;
@@ -49,7 +49,7 @@
 -(void)setAppLanguageAtAppLanguage:(AppLanguage)appLanguage{
     [JobsLanguageManager setLanguage:appLanguage];
     /// 发通知，通知需要更改的地方进行修改
-    JobsPostNotificationOnMainThread(LanguageSwitchNotification,
+    JobsPostNotificationOnMainThread(JobsLanguageSwitchNotification,
                                      @(appLanguage),
                                      nil);
 }

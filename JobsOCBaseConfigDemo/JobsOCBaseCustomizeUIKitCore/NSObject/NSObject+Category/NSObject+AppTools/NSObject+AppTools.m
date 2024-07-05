@@ -43,7 +43,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         @jobs_strongify(self)
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
-    },nil, self),LanguageSwitchNotification,nil);
+    },nil, self),JobsLanguageSwitchNotification,nil);
 }
 /// 【App语言国际化】更改UITabBarItem的标题
 -(void)changeTabBarItemTitle:(NSIndexPath *)indexPath{

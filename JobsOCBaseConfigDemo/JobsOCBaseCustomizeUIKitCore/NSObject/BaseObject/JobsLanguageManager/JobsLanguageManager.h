@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "MacroDef_UserDefault.h"
 /// 系统支持语言
 #ifndef APP_LANGUAGE_ENUM_DEFINED
 #define APP_LANGUAGE_ENUM_DEFINED

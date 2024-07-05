@@ -56,7 +56,7 @@
         @jobs_strongify(self)
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
-    },nil, self),LanguageSwitchNotification,nil);
+    },nil, self),JobsLanguageSwitchNotification,nil);
     
     self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
         @jobs_strongify(self)
@@ -131,14 +131,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     for (UITableViewCell *acell in tableView.visibleCells) {
         acell.accessoryType = acell == cell ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
-    [self setAppLanguageAtAppLanguage:self.dataMutArr[indexPath.row].appLanguage];/// 设置App语言环境并发送全局通知LanguageSwitchNotification
+    [self setAppLanguageAtAppLanguage:self.dataMutArr[indexPath.row].appLanguage];/// 设置App语言环境并发送全局通知JobsLanguageSwitchNotification
     [self changeTabBarItemTitle:indexPath];///【App语言国际化】更改UITabBarItem的标题
     /// 重塑数据源
     [self.dataMutArr removeAllObjects];
     _dataMutArr = nil;
     /// 刷新本界面
     [self.tableView.mj_header beginRefreshing];
-//    [self.tableView reloadData];
     @jobs_weakify(self)
     /// 2秒后退出本页面
 //    DispathdDelaySth(2.0, [weak_self backBtnClickEvent:nil]);

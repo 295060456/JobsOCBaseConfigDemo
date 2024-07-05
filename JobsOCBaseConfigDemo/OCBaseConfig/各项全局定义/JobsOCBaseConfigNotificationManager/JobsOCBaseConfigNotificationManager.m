@@ -9,4 +9,4 @@
 /// 此文件定义工程全局的通知字符串
 NSString *const JobsAFNReachabilityStatus = @"JobsAFNReachabilityStatus";/// 网络状态监控
 NSString *const JobsEnterBackgroundStopPlayer = @"JobsEnterBackgroundStopPlayer";/// 退到后台停止播放ZFPlayer
-NSString *const LanguageSwitchNotification = @"LanguageSwitchNotification";/// 语言切换
+NSString *const JobsLanguageSwitchNotification = @"JobsLanguageSwitchNotification";/// 语言切换

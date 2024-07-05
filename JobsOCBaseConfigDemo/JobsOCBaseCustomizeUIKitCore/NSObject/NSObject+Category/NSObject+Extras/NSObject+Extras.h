@@ -400,7 +400,7 @@ BaseProtocol
  NSLog(@"通知传递过来的 = %@",notification.object);
  return nil;
 }, nil, self)
-                                        name:LanguageSwitchNotification
+                                        name:JobsLanguageSwitchNotification
                                       object:nil];
  或者：
  @jobs_weakify(self)
@@ -415,12 +415,12 @@ BaseProtocol
      @jobs_strongify(self)
      NSLog(@"通知传递过来的 = %@",notification.object);
      return nil;
- },nil, self),LanguageSwitchNotification,nil);
+ },nil, self),JobsLanguageSwitchNotification,nil);
  ======================================================================================
  发通知：
- [NSNotificationCenter.defaultCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
+ [NSNotificationCenter.defaultCenter postNotificationName:JobsLanguageSwitchNotification object:@(NO)];
  或者：
- JobsPostNotificationOnMainThread(LanguageSwitchNotification,
+ JobsPostNotificationOnMainThread(JobsLanguageSwitchNotification,
                                   @(CLLanguageManager.appLanguage),
                                   nil);
  */

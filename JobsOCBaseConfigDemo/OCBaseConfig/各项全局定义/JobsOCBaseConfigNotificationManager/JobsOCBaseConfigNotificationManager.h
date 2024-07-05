@@ -9,4 +9,4 @@
 /// 此文件定义工程全局的通知字符串
 FOUNDATION_EXTERN NSString * _Nonnull const JobsAFNReachabilityStatus;
 FOUNDATION_EXTERN NSString * _Nonnull const JobsEnterBackgroundStopPlayer;
-FOUNDATION_EXTERN NSString * _Nonnull const LanguageSwitchNotification;
+FOUNDATION_EXTERN NSString * _Nonnull const JobsLanguageSwitchNotification;

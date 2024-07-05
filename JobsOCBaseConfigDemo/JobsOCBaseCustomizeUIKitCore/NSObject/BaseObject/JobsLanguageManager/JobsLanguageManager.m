@@ -1,4 +1,12 @@
+//
+//  JobsLanguageManager.m
+//  JobsOCBaseConfigDemo
+//
+//  Created by User on 7/5/24.
+//
+
 #import "JobsLanguageManager.h"
+
 NSString *const JobsLanguageKey = @"JobsLanguageKey";
 @implementation JobsLanguageManager
 
