@@ -12,7 +12,7 @@
 
 ## 一、目的
 
-* 所有的项目根据这个根来进行统一配置和调用。
+* 所有的项目根据这个根来进行统一配置和调用
 * 将它作为所有项目的基类，做到全局的统一
 * 千万要保证这个工程的编译通过，以后项目直接进行引用
 * 作为某些代码实践的靶场，是非常有必要的
@@ -174,15 +174,15 @@ Current targets:
 
 * 电脑桌面新建文件夹，并重命名为`payload；`
 
-* 真机运行项目（不同设备，不同芯片组，底层指令集不一致）；
+* 真机运行项目（不同设备，不同芯片组，底层指令集不一致）
 
-* 打开项目工程目录下`Products`，里面有个`*.app`；
+* 打开项目工程目录下`Products`，里面有个`*.app`
 
   ![image-20240704113342353](./assets/image-20240704113342353.png)
 
-* 将这个`*.app`复制到刚才电脑桌面新建的`payload`文件夹；
+* 将这个`*.app`复制到刚才电脑桌面新建的`payload`文件夹
 
-* 压缩电脑桌面新建的`payload`文件夹为zip格式的压缩包；
+* 压缩电脑桌面新建的`payload`文件夹为zip格式的压缩包
 
 * 将这个`zip`格式的压缩包，强行改名`*.ipa`
 
@@ -232,7 +232,7 @@ classDiagram
 
 ### 9、**UIViewModelFamily**
 
-* 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理；
+* 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
 * `UITextModel`是专门针对文本的<font color=red>**数据束**</font>
 * 结合`BaseProtocol`进行封装
@@ -591,11 +591,11 @@ NSObject <|-- BaseProtocol
 ### 10、JobsOCBaseCustomizeUIKitCore
 
 * 产生背景
-  * OC的基类是单继承；
-  * 继承会产生很多基类，客观上造成代码的冗余；
+  * OC的基类是单继承
+  * 继承会产生很多基类，客观上造成代码的冗余
 * 解决方案
-  * 继承和分类应该结合使用，功能各有优劣；
-  * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用；
+  * 继承和分类应该结合使用，功能各有优劣
+  * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用
 
 ### 11、度量衡适配。[**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
 
@@ -630,10 +630,10 @@ NSObject <|-- BaseProtocol
 
 * 背景和原因
 
-  * 系统原生的`NavigationBar`晦涩难懂不方便修改，很多人理解不深刻容易出问题；
-  * 系统原生的`NavigationBar`有很多内部类（系统创建但不希望程序员进行直接访问的）。某些版本内部类的图层结构会用有所不同；
-  * 第三方`GKNavigationBar`因为是分类实现，没有代码入侵性，更加的安全和方便；
-  * 第三方`GKNavigationBar`更加契合国人的开发思维；
+  * 系统原生的`NavigationBar`晦涩难懂不方便修改，很多人理解不深刻容易出问题
+  * 系统原生的`NavigationBar`有很多内部类（系统创建但不希望程序员进行直接访问的）。某些版本内部类的图层结构会用有所不同
+  * 第三方`GKNavigationBar`因为是分类实现，没有代码入侵性，更加的安全和方便
+  * 第三方`GKNavigationBar`更加契合国人的开发思维
   
 * 应用层实现
   
@@ -701,17 +701,17 @@ NSObject <|-- BaseProtocol
 <details id="UIButton">
 <summary><strong>点我了解详情</strong></summary>
 
-* 苹果在后续的Api中推出了`UIButtonConfiguration` 来设置UIButton，但是这个新Api会存在几大问题；
+* 苹果在后续的Api中推出了`UIButtonConfiguration` 来设置UIButton，但是这个新Api会存在几大问题
 
-  * 大多数开发者对这个Api不熟悉；
-  * 用了新Api以后，老的Api的一些调用方式可能不会起效果。如果还是按照以前的方式创建，你会发现UIButton不正常出现；
-  * 大多数时候，我们会涉及到富文本。而富文本和普通的文本之间对于控件有优先级。富文本的优先级最高；
-  * 因为要做兼容处理，但是`UIButtonConfiguration` 的设置环节非常繁琐；
+  * 大多数开发者对这个Api不熟悉
+  * 用了新Api以后，老的Api的一些调用方式可能不会起效果。如果还是按照以前的方式创建，你会发现UIButton不正常出现
+  * 大多数时候，我们会涉及到富文本。而富文本和普通的文本之间对于控件有优先级。富文本的优先级最高
+  * 因为要做兼容处理，但是`UIButtonConfiguration` 的设置环节非常繁琐
   
 * 所以，为了应对以上的问题，可以使用快捷键（init.JobsBtn）调取代码块来设置 UIButton。[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 
-  * 得出的 UIButton 是没有约束的，需要自己在外界加；
-  * 关注实现类：[<font color=blue>**`@implementation UIButton (UI)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIButton/UIButton+Category/UIButton+UI);
+  * 得出的 UIButton 是没有约束的，需要自己在外界加
+  * 关注实现类：[<font color=blue>**`@implementation UIButton (UI)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIButton/UIButton+Category/UIButton+UI)
   
 * <font color=red id=用新Api（UIButtonConfiguration）创建一个带富文本的UIButton>**用新Api（UIButtonConfiguration）创建一个带富文本的UIButton**</font>
 
@@ -825,8 +825,6 @@ NSObject <|-- BaseProtocol
 
 <details id="Masonry约束动画<br>">
  <summary><strong>点我了解详情：Masonry约束动画<br></strong></summary>
-
-
 ```objective-c
 -(MSMineView2 *)view2{
     if(!_view2){
@@ -1140,10 +1138,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 </details>
 
 ### 7、统一注册全局的 `UICollectionViewCell`
-* 不注册相对应当UICollectionViewCell相关子类，使用时会崩溃；
-* 系统注册UICollectionViewCell相关子类，是利用字符串作为桥梁进行操作；
-* 注册不会开辟内存，只有当使用的时候才会开辟内存；
-* 对全局进行统一的UICollectionViewCell相关子类注册是很有必要的，方便管理，防止崩溃；
+* 不注册相对应当UICollectionViewCell相关子类，使用时会崩溃
+* 系统注册UICollectionViewCell相关子类，是利用字符串作为桥梁进行操作
+* 注册不会开辟内存，只有当使用的时候才会开辟内存
+* 对全局进行统一的UICollectionViewCell相关子类注册是很有必要的，方便管理，防止崩溃
 * 关注实现类[<font color=blue>**`@implementation UICollectionView (JobsRegisterClass)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UICollectionView/UICollectionView+Category/UICollectionView+JobsRegisterClass)
 
 ### 8、全局统一的提示弹出框（对`WHToast`的二次封装）
@@ -1179,10 +1177,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ####  9.1、BaseViewController
 
-  * 为了方便管理，理论上，全局只应有一个`UIViewController`。开发者不应该创建过多的子控制器；
-  * 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行；
-  * 命名为`BaseViewController`也是充分考虑同业者的偏好习惯；
-  * 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`；
+  * 为了方便管理，理论上，全局只应有一个`UIViewController`。开发者不应该创建过多的子控制器
+  * 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行
+  * 命名为`BaseViewController`也是充分考虑同业者的偏好习惯
+  * 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`
 
 #### 9.2、推控制器
 
@@ -1350,7 +1348,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 全局修改
 
-  * 在`Info.plist`里面加入如下键值对：
+  * 在`Info.plist`里面加入如下键值对
 
     ```xml
     <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
@@ -1377,7 +1375,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   * 关注实现类：[**`@interface BaseNavigationVC : UINavigationController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UINavigationController/BaseNavigationVC)
 
-    *在 `BaseNavigationVC.m`里面写入：*
+    *在 `BaseNavigationVC.m`里面写入*
 
     ```objective-c
     - (UIViewController *)childViewControllerForStatusBarStyle {
@@ -1385,7 +1383,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-    *在具体的需要修改的`VC.m`里面写入：*
+    *在具体的需要修改的`VC.m`里面写入*
 
     ```objective-c
     -(UIStatusBarStyle)preferredStatusBarStyle{

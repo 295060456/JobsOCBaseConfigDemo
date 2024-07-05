@@ -112,14 +112,14 @@ NS_ASSUME_NONNULL_END
      _collectionView.target = self;/// ⚠️注意：任何手势这一句都要写
      _collectionView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
                                         UILongPressGestureRecognizer *  _Nullable arg) {
-         NSLog(@"");
+         NSLog(JobsInternationalization(@""));
          return nil;
      }];
      _collectionView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
      
      _collectionView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target,
                                         UITapGestureRecognizer *_Nullable arg) {
-         NSLog(@"");
+         NSLog(JobsInternationalization(@""));
          return nil;
      }];
      _collectionView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行

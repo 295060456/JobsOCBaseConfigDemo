@@ -429,8 +429,8 @@ UITableViewCellProtocol_synthesize
 +(CGFloat)cellHeightWithModel:(UIViewModel *_Nullable)model{
     if(model){
         UIViewModel *vm = UIViewModel.new;
-        NSString *title = @"";
-        NSString *subtitle = @"";
+        NSString *title = JobsInternationalization(@"");
+        NSString *subtitle = JobsInternationalization(@"");
         if(model.textModel.attributedText.string.length){
             title = model.textModel.attributedText.string;
             vm.textModel.font = model.textModel.attributedText.attributedStringFont ? : UIFontWeightRegularSize(14);

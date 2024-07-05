@@ -12,7 +12,7 @@
 ///【类方法】NSData对象  转换为  16进制字符串
 +(NSString *_Nullable)hexStringByData:(NSData *_Nonnull)data{
     const unsigned char *dataBuffer = (const unsigned char *)data.bytes;
-    if (!dataBuffer) return @"";
+    if (!dataBuffer) return JobsInternationalization(@"");
     
     NSUInteger dataLength = data.length;
     NSMutableString *hexString = [NSMutableString stringWithCapacity:(dataLength * 2)];
@@ -24,7 +24,7 @@
 ///【实例方法】NSData对象  转换为  16进制字符串
 -(NSString *_Nullable)hexStringByData{
     const unsigned char *dataBuffer = (const unsigned char *)self.bytes;
-    if (!dataBuffer) return @"";
+    if (!dataBuffer) return JobsInternationalization(@"");
     
     NSUInteger dataLength = self.length;
     NSMutableString *hexString = [NSMutableString stringWithCapacity:(dataLength * 2)];

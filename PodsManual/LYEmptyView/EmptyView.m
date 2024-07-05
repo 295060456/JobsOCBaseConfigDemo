@@ -14,9 +14,9 @@
     if (title.nullString) {
         title = JobsInternationalization(@"No Data");
     }
-    return [EmptyView emptyViewWithImageStr:@"暂无数据"
+    return [EmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
                                    titleStr:title
-                                  detailStr:@""];
+                                  detailStr:JobsInternationalization(@"")];
 }
 
 + (instancetype)diyEmptyActionViewWithTarget:(id)target

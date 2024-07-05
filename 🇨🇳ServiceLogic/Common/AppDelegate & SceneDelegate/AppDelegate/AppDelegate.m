@@ -35,7 +35,7 @@ AppDelegate *appDelegate;
     [self saveUserInfo:userModel];
     
     id f = self.readUserInfo;
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(NSMutableArray <JobsTabBarControllerConfig *>*)makeConfigMutArr{

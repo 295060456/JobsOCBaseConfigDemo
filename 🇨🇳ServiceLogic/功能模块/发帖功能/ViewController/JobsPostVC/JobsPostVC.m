@@ -449,7 +449,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
 
 -(NSString *)inputDataHistoryString{
     if(!_inputDataHistoryString){
-        _inputDataHistoryString = JobsInternationalization(@"");
+        _inputDataHistoryString = JobsInternationalization(JobsInternationalization(@""));
     }return _inputDataHistoryString;
 }
 

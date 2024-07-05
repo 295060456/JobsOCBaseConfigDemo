@@ -300,7 +300,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             self.lastGesturePsw = nil;
             self.statusLabel.text = JobsInternationalization(@"请绘制手势密码");
             self.resetPswBtn.hidden = YES;
-            [self.gestureLockIndicator setGesturePassword:@""];
+            [self.gestureLockIndicator setGesturePassword:JobsInternationalization(@"")];
             return nil;
         }];
         [self.view addSubview:_resetPswBtn];

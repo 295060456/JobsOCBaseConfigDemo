@@ -81,7 +81,7 @@
 /// 利用 NSArray <RichTextConfig *>* 形成富文本
 /// @param richTextDataConfigMutArr 富文本的配置集合,对该纯文本字符串的释义
 -(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <RichTextConfig *>*_Nonnull)richTextDataConfigMutArr{
-    NSString *resultString = @"";
+    NSString *resultString = JobsInternationalization(@"");
     /// 先拼接字符串
     for (RichTextConfig *config in richTextDataConfigMutArr) {
         if (config.targetString) {

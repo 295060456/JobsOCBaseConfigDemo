@@ -131,7 +131,7 @@
     NSURL *url = [NSURL URLWithString:baseUrl];
 
     if (baseUrl.length > 0 && ![baseUrl hasSuffix:@"/"]) {
-        url = [url URLByAppendingPathComponent:@""];
+        url = [url URLByAppendingPathComponent:JobsInternationalization(@"")];
     }
 
     return [NSURL URLWithString:detailUrl relativeToURL:url].absoluteString;

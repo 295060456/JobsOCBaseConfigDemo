@@ -178,7 +178,7 @@
 //
 //            vm.requestParams = element;
 //            vm.bgImageURLString = [self.BaseUrl stringByAppendingString:element.appIconUrl];
-//            vm.text = @"";
+//            vm.text = JobsInternationalization(@"");
 //            vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
 //            vm.offsetXForEach = JobsWidth(46);
 //            vm.offsetYForEach = JobsWidth(46);

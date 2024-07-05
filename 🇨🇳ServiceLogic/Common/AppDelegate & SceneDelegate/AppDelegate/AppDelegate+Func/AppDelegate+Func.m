@@ -50,9 +50,9 @@
     userModel.uid = @"54321";
     
     [self saveUserInfo:userModel];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
     JobsUserModel *f = [self readUserInfo];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 #pragma mark —— 读取Plist配置文件
 -(void)readPlistConfig{
@@ -403,7 +403,7 @@
 }
 /// 适配各种机型的开屏图片
 -(NSString * _Nullable)imageNameOrURLString{
-    NSString *imgNameOrUrlStr = @"";
+    NSString *imgNameOrUrlStr = JobsInternationalization(@"");
     switch (iPhScrPx()) {
         case iPhScrPxType_4_4S:{// 屏幕分辨率(px) = 640 * 960
             imgNameOrUrlStr = @"640x960.png";
@@ -464,7 +464,7 @@
 }
 /// 适配各种机型的开屏视频
 -(NSString * _Nullable)videoNameOrURLString{
-    NSString *imgNameOrUrlStr = @"";
+    NSString *imgNameOrUrlStr = JobsInternationalization(@"");
     switch (iPhScrPx()) {
         case iPhScrPxType_4_4S:{// 屏幕分辨率(px) = 640 * 960
             imgNameOrUrlStr = @"非iph_X.mp4";

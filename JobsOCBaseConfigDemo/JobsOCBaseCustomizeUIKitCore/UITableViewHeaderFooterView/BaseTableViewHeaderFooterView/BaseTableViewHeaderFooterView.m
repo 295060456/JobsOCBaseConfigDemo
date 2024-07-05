@@ -16,7 +16,7 @@
 BaseViewProtocol_synthesize
 -(instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        NSLog(@"");
+        NSLog(JobsInternationalization(@""));
     }return self;
 }
 /// 在具体的子类实现，实现控制UITableViewHeaderFooterView是否悬停

@@ -64,12 +64,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -80,7 +80,7 @@
     [super viewWillDisappear:animated];
 //    [self restoreStatusBarCor];
     IQKeyboardManager.sharedManager.enable = YES;
-    UIPasteboard.generalPasteboard.string = @"";
+    UIPasteboard.generalPasteboard.string = JobsInternationalization(@"");
 }
 
 -(void)viewDidDisappear:(BOOL)animated{

@@ -33,6 +33,11 @@
 "我们需要获取你的Siri权限以方便完成Siri建议功能" = "NSSiriUsageDescription";
 "我们需要获取你的语音识别功能已完成键盘语音识别输入功能" = "NSSpeechRecognitionUsageDescription";
 "我们需要获取你的TV权限" = "NSVideoSubscriberAccountUsageDescription";
+/// 加载刷新控件
+"下拉刷新" = "Pull down to refresh";
+"立即释放刷新" = "Release Refresh now";
+"刷新数据" = "Refreshing data";
+"暂无数据" = "NO data";
 /// TabBarItem
 "首页" = "Home";
 "洗码" = "XiMa";

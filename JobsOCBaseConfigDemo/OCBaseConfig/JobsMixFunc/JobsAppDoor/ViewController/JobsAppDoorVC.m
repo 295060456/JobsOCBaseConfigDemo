@@ -195,13 +195,13 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
 //
-//    NSDictionary *parameters = @{@"account":[NSString ensureNonnullString:account replaceStr:@""],// 帐号
+//    NSDictionary *parameters = @{@"account":[NSString ensureNonnullString:account replaceStr:JobsInternationalization(@"")],// 帐号
 //                                 @"country":[NSString ensureNonnullString:country replaceStr:@"855"],// 区号，柬埔寨：855
 //                                 @"inviteCode":[NSString ensureNonnullString:inviteCode replaceStr:@"1111"],// 邀请码
-//                                 @"password":[NSString ensureNonnullString:password replaceStr:@""],// 密码
-//                                 @"phone":[NSString ensureNonnullString:phone replaceStr:@""],// 电话号码
-//                                 @"phoneCode":[NSString ensureNonnullString:phoneCode replaceStr:@""],// 手机号验证码
-//                                 @"validate":[NSString ensureNonnullString:validate replaceStr:@""]};// 网易云盾
+//                                 @"password":[NSString ensureNonnullString:password replaceStr:JobsInternationalization(@"")],// 密码
+//                                 @"phone":[NSString ensureNonnullString:phone replaceStr:JobsInternationalization(@"")],// 电话号码
+//                                 @"phoneCode":[NSString ensureNonnullString:phoneCode replaceStr:JobsInternationalization(@"")],// 手机号验证码
+//                                 @"validate":[NSString ensureNonnullString:validate replaceStr:JobsInternationalization(@"")]};// 网易云盾
 //    @jobs_weakify(self)
 //    [DDNetworkingAPI requestApi:NSObject.authRegisterPOST.funcName
 //                     parameters:parameters
@@ -226,10 +226,10 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
 //
-//    NSDictionary *parameters = @{@"account":[NSString ensureNonnullString:account replaceStr:@""],// 账号
+//    NSDictionary *parameters = @{@"account":[NSString ensureNonnullString:account replaceStr:JobsInternationalization(@"")],// 账号
 //                                 @"deviceId":[NSString ensureNonnullString:deviceId replaceStr:self.deviceIdentity],// 设备ID,移动端必传
-//                                 @"password":[NSString ensureNonnullString:password replaceStr:@""],// 密码
-//                                 @"validate":[NSString ensureNonnullString:validate replaceStr:@""]};// 网易易顿
+//                                 @"password":[NSString ensureNonnullString:password replaceStr:JobsInternationalization(@"")],// 密码
+//                                 @"validate":[NSString ensureNonnullString:validate replaceStr:JobsInternationalization(@"")]};// 网易易顿
 //    @jobs_weakify(self)
 //    [DDNetworkingAPI requestApi:NSObject.authLoginAPOST.funcName
 //                     parameters:parameters
@@ -318,7 +318,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             index++;
         }
     }
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 #pragma mark —— lazyLoad
 -(JobsAppDoorLogoContentView *)logoContentView{

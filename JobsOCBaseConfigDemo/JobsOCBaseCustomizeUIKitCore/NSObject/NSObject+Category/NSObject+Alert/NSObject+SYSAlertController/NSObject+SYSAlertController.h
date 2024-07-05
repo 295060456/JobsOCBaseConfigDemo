@@ -51,7 +51,7 @@
  在sheet模式：是否分组显示（标题 + 副标题）（取消）
  
 *  targetVC，你不能要求每一个触发的点都是VC，也可以是View，所以将上个版本的集成在VC里面的弹框摘出来，但是推弹框出现需要调用系统方法presentViewController，所以这里必须手动传一个标的VC
-*  message、title 你不想要就传nil，传@"" 系统会为你留位置,从而造成界面问题（空一坨出来）
+*  message、title 你不想要就传nil，传JobsInternationalization(@"") 系统会为你留位置,从而造成界面问题（空一坨出来）
 
 *  showLoginAlertViewWithTargetVC 是一种登录样式
 */
@@ -104,9 +104,9 @@ NS_ASSUME_NONNULL_END
  config.title = @"是否取消对其关注？";
  config.isSeparateStyle = NO;
  config.btnTitleArr = @[@"确定",@"取消"];
- config.alertBtnActionArr = @[@"unfollow:",@""];
+ config.alertBtnActionArr = @[@"unfollow:",JobsInternationalization(@"")];
  config.parametersArr = @[@{@"btn":btn,
-                            @"plazaCommunityListModel":plazaCommunityListModel},@""];
+                            @"plazaCommunityListModel":plazaCommunityListModel},JobsInternationalization(@"")];
  config.targetVC = NSObject.getCurrentViewController;
  config.funcInWhere = self;
  config.animated = YES;
@@ -121,7 +121,7 @@ NS_ASSUME_NONNULL_END
  SYSAlertControllerConfig *config = SYSAlertControllerConfig.new;
  config.isSeparateStyle = YES;
  config.btnTitleArr = @[@"保存图片",@"取消"];
- config.alertBtnActionArr = @[@"savePic",@""];
+ config.alertBtnActionArr = @[@"savePic",JobsInternationalization(@"")];
  config.targetVC = self.saveImageModel.photoBrowser;
  config.funcInWhere = self;
  config.animated = YES;

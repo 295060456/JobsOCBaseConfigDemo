@@ -42,7 +42,7 @@
     NSString *modifiedString = [regex stringByReplacingMatchesInString:self
                                                                options:0
                                                                  range:NSMakeRange(0, self.length)
-                                                          withTemplate:@""];
+                                                          withTemplate:JobsInternationalization(@"")];
     return modifiedString;
 }
 

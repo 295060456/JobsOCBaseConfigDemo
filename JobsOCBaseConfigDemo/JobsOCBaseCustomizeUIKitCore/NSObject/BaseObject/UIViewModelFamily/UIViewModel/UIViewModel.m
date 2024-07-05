@@ -132,7 +132,7 @@ UIViewModelProtocol_synthesize
 
 -(NSString *)placeholder{
     if(!_placeholder){
-        _placeholder = JobsInternationalization(@"");
+        _placeholder = JobsInternationalization(JobsInternationalization(@""));
     }return _placeholder;
 }
 
@@ -156,7 +156,7 @@ UIViewModelProtocol_synthesize
 
 -(NSString *)text{
     if(!_text){
-        _text = JobsInternationalization(@"");
+        _text = JobsInternationalization(JobsInternationalization(@""));
     }return _text;
 }
 
@@ -186,7 +186,7 @@ UIViewModelProtocol_synthesize
 
 -(NSString *)selectedText{
     if(!_selectedText){
-        _selectedText = JobsInternationalization(@"");
+        _selectedText = JobsInternationalization(JobsInternationalization(@""));
     }return _selectedText;
 }
 

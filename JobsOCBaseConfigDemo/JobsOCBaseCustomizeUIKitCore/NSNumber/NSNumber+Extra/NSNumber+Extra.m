@@ -53,7 +53,7 @@
     }else if (strcmp([self objCType], @encode(unsigned long long)) == 0){// unsigned long long 类型
         if (block) block(NSNumber_unsignedLongLong);
         return [NSString stringWithFormat:@"%llu",b.unsignedLongLongValue];
-    }else if (block) block(NSNumber_None);return @"";
+    }else if (block) block(NSNumber_None);return JobsInternationalization(@"");
 }
 
 @end

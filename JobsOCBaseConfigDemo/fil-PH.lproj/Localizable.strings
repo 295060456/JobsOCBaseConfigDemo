@@ -39,6 +39,11 @@
 "充值" = "Mag-recharge";
 "客服" = "Serbisyo sa Kustomer";
 "会员中心" = "Sentro ng Miyembro";
+/// 加载刷新控件
+"下拉刷新" = "Hilahin pababa para i-refresh";
+"立即释放刷新" = "Bitawan para i-refresh ngayon";
+"刷新数据" = "Nire-refresh ang data";
+"暂无数据" = "Walang data";
 /// 登陆/注册/忘记密码
 "返\n回\n登\n录" = "Bum\nal\nik\nsa\nPag-\nlo\ngin";
 "新\n用\n户\n注\n册" = "Mag-re\nhis\ntro ng\nBag\nong\nGu\nmit";

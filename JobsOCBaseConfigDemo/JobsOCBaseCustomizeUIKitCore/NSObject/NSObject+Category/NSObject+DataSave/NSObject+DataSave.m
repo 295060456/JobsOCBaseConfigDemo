@@ -19,7 +19,7 @@
                          error:(NSError *__autoreleasing *)error{
     // 文件夹路径
     if ([NSString isNullString:documentsChildDir]) {
-        documentsChildDir = @"";
+        documentsChildDir = JobsInternationalization(@"");
     }
     NSString *folderPath = [NSString stringWithFormat:@"%@/%@",NSString.documentsDir,documentsChildDir];
     // 创建文件夹
@@ -42,7 +42,7 @@
     if (Q) {
         return localFileFullNameStr;
     }else{
-        return @"";
+        return JobsInternationalization(@"");
     }
 }
 

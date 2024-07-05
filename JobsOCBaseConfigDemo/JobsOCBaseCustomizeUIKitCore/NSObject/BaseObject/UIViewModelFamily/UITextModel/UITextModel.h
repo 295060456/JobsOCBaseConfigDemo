@@ -13,10 +13,10 @@
 /// 数据归位
 #define MakeDataNull \
 if ([self.viewModel.textModel.text isEqualToString:JobsInternationalization(TextModelDataString)]) {\
-    self.viewModel.textModel.text = @"";\
+    self.viewModel.textModel.text = JobsInternationalization(@"");\
 }\
 if ([self.viewModel.subTextModel.text isEqualToString:JobsInternationalization(TextModelDataString)]) {\
-    self.viewModel.subTextModel.text = @"";\
+    self.viewModel.subTextModel.text = JobsInternationalization(@"");\
 }\
 
 NS_ASSUME_NONNULL_BEGIN

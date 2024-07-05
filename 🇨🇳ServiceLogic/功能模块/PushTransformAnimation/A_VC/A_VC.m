@@ -29,7 +29,7 @@
     {
         self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = JobsInternationalization(@"");
+        self.viewModel.textModel.text = JobsInternationalization(JobsInternationalization(@""));
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -135,7 +135,7 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.mj_footer = self.mjRefreshAutoGifFooter;
         _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"noData"
                                                     titleStr:@"您还没有粉丝"
-                                                   detailStr:@""];
+                                                   detailStr:JobsInternationalization(@"")];
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.gk_navigationBar.mas_bottom);

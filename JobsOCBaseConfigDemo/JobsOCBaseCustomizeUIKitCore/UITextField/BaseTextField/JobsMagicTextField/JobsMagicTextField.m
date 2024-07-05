@@ -33,7 +33,7 @@
 }
 
 -(void)changeEditing{
-    self.placeholderAnimationLbl.jobsVisible = self.placeholdAnimationable && ![self.text isEqualToString:@""];
+    self.placeholderAnimationLbl.jobsVisible = self.placeholdAnimationable && ![self.text isEqualToString:JobsInternationalization(@"")];
 }
 /// ⚠️当一个TF1->TF2，先获得焦点再失去焦点
 /// 这个方法里面，正在获得、但还没有获得焦点，此时的self.isFirstResponder == NO
@@ -67,7 +67,7 @@
                     self.placeholderAnimationLbl.text = self.placeholder;
                 }
                 
-                self.placeholder = @"";
+                self.placeholder = JobsInternationalization(@"");
             }
         }];
     }
@@ -91,7 +91,7 @@
                 self.placeholderAnimationLbl.attributedText = self.attributedPlaceholder;
             }else{
                 self.placeholder = self.placeholderAnimationLbl.text;
-                self.placeholderAnimationLbl.text = @"";
+                self.placeholderAnimationLbl.text = JobsInternationalization(@"");
                 self.placeholderAnimationLbl.textColor = self.placeholderColor;
                 self.placeholderAnimationLbl.font = self.placeholderFont;
             }

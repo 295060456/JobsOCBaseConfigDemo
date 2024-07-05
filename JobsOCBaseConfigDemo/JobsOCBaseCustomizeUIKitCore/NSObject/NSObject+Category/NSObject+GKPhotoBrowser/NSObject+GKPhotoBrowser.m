@@ -189,7 +189,7 @@ didDisappearAtIndex:(NSInteger)index{
 /// 自定义单个图片的加载失败图片，优先级高于failureImage
 -(UIImage *)photoBrowser:(GKPhotoBrowser *)browser 
       failedImageAtIndex:(NSInteger)index{
-    return JobsIMG(@"");
+    return JobsIMG(JobsInternationalization(@""));
 }
 /// 视频播放状态回调
 -(void)photoBrowser:(GKPhotoBrowser *)browser

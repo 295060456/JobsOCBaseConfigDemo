@@ -133,15 +133,15 @@ NSString *const YTKRequestValidationErrorDomain = @"com.yuantiku.request.validat
 }
 
 - (NSString *)requestUrl {
-    return @"";
+    return JobsInternationalization(@"");
 }
 
 - (NSString *)cdnUrl {
-    return @"";
+    return JobsInternationalization(@"");
 }
 
 - (NSString *)baseUrl {
-    return @"";
+    return JobsInternationalization(@"");
 }
 
 - (NSTimeInterval)requestTimeoutInterval {

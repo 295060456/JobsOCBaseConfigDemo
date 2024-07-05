@@ -140,7 +140,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 /// 解码
 -(NSString *)decodePicStr:(NSString *)encodePicStr{
     // 删除字符串
-    NSString *modifiedString = [encodePicStr stringByReplacingOccurrencesOfString:PicSalt withString:@""];
+    NSString *modifiedString = [encodePicStr stringByReplacingOccurrencesOfString:PicSalt withString:JobsInternationalization(@"")];
     return modifiedString;
 }
 #pragma mark —— <AppToolsProtocol> 其他
@@ -347,11 +347,11 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //                    [NSObject openURL:[NSString stringWithFormat:@"https://wa.me/%@",customerContactElementModel.customerAccount]];
 //                }break;
 //                case CustomerContactStyle_手机号码:{
-////                            [NSObject openURL:@""];
+////                            [NSObject openURL:JobsInternationalization(@"")];
 //                    [WHToast jobsToastMsg:@"打开手机号码未配置"];
 //                }break;
 //                case CustomerContactStyle_onlineURL:{
-////                            [NSObject openURL:@""];
+////                            [NSObject openURL:JobsInternationalization(@"")];
 //                    [WHToast jobsToastMsg:@"打开onlineURL未配置"];
 //                }break;
 //
@@ -578,8 +578,8 @@ JobsKey(_hotLabelDataMutArr)
 //            UIViewModel *vm = UIViewModel.new;
 //
 //            vm.requestParams = element;
-//            vm.bgImageURLString = @"";//[self.BaseUrl stringByAppendingString:element.appIconUrl];
-//            vm.textModel.text = @"";
+//            vm.bgImageURLString = JobsInternationalization(@"");//[self.BaseUrl stringByAppendingString:element.appIconUrl];
+//            vm.textModel.text = JobsInternationalization(@"");
 //            vm.jobsSize = CGSizeMake(JobsWidth(46), JobsWidth(46));
 //            vm.offsetXForEach = JobsWidth(46);
 //            vm.offsetYForEach = JobsWidth(46);

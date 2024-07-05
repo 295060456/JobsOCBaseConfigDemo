@@ -162,7 +162,7 @@ _Pragma("clang diagnostic pop")
     newRect.origin.y += self.jobsOffsetX;
     newRect.origin.x += self.jobsOffsetY;
     
-    if (self.text && ![self.text isEqualToString:@""]) {
+    if (self.text && ![self.text isEqualToString:JobsInternationalization(@"")]) {
         [super drawTextInRect:UIEdgeInsetsInsetRect(newRect, self.edgeInsets)];
         self.hidden = NO;
     } else {

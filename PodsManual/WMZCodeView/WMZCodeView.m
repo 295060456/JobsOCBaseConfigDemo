@@ -263,7 +263,7 @@ static dispatch_once_t static_codeViewOnceToken;
         return seed ? [str1 compare:str2] : [str2 compare:str1];
     }];
     
-    NSMutableString *string = [NSMutableString.alloc initWithString:@""];
+    NSMutableString *string = [NSMutableString.alloc initWithString:JobsInternationalization(@"")];
     for (int i = 0; i< arr.count; i++) {
         [string appendString:arr[i]];
     }
@@ -339,7 +339,7 @@ static dispatch_once_t static_codeViewOnceToken;
         dispatch_resume(timer);
     }
     self.tapCount += 1;
-    self.selectChinese = [NSString stringWithFormat:@"%@%@",self.selectChinese?:@"",btn.titleLabel.text];
+    self.selectChinese = [NSString stringWithFormat:@"%@%@",self.selectChinese?:JobsInternationalization(@""),btn.titleLabel.text];
     btn.backgroundColor = JobsRedColor;
     if (self.tapCount == self.factChinese.length) {
         if (timer) {
@@ -401,7 +401,7 @@ static dispatch_once_t static_codeViewOnceToken;
 }
 /// 恢复默认数据（CodeTypeLabel,CodeTypeNineLabel ）
 -(void)defaultBtnAndData{
-    self.selectChinese = @"";
+    self.selectChinese = JobsInternationalization(@"");
     self.tapCount = 0;
     for (int i = 0; i < self.btnArr.count; i++) {
         UIButton *btn = self.btnArr[i];
@@ -517,7 +517,7 @@ static inline UIBezierPath* getCodePath(){
 }
 /// 获取随机数量中文
 - (NSString*)getRandomChineseWithCount:(NSInteger)count{
-     NSMutableString *mString = [NSMutableString.alloc initWithString:@""];
+     NSMutableString *mString = [NSMutableString.alloc initWithString:JobsInternationalization(@"")];
      NSStringEncoding gbkEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     for (int i = 0; i < count; i++) {
         NSInteger randomH = 0xA1 + arc4random()%(0xFE - 0xA1+1);

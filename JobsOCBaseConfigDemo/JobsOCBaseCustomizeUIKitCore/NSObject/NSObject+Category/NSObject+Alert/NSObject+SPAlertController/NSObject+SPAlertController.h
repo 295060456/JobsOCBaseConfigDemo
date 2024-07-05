@@ -248,7 +248,7 @@ NS_ASSUME_NONNULL_END
      config.animationType = SPAlertAnimationTypeDefault;
      config.alertActionTitleArr = @[@"取消",@"确定"];
      config.alertActionStyleArr = @[@(SPAlertActionStyleDestructive),@(SPAlertActionStyleDefault)];
-     config.alertBtnActionArr = @[@"",@"networking_chargeGoldPOST"];// 金币换余额
+     config.alertBtnActionArr = @[JobsInternationalization(@""),@"networking_chargeGoldPOST"];// 金币换余额
      config.targetVC = [NSObject getCurrentViewController];
      config.funcInWhere = self;
      config.animated = YES;

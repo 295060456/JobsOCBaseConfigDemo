@@ -79,18 +79,18 @@ NS_ASSUME_NONNULL_END
 /**
 {
     MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-    refreshConfigHeader.stateIdleTitle = @"下拉刷新数据";
-    refreshConfigHeader.pullingTitle = @"下拉刷新数据";
-    refreshConfigHeader.refreshingTitle = @"正在刷新数据";
-    refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"Refreshing data");
-    refreshConfigHeader.noMoreDataTitle = @"下拉刷新数据";
+    refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉刷新");
+    refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉刷新");
+    refreshConfigHeader.refreshingTitle = JobsInternationalization(@"立即释放刷新");
+    refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据");
+    refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新");
     
     MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-    refreshConfigFooter.stateIdleTitle = @"";
-    refreshConfigFooter.pullingTitle = @"";
-    refreshConfigFooter.refreshingTitle = @"";
-    refreshConfigFooter.willRefreshTitle = @"";
-    refreshConfigFooter.noMoreDataTitle = @"";
+    refreshConfigFooter.stateIdleTitle = JobsInternationalization(JobsInternationalization(@""));
+    refreshConfigFooter.pullingTitle = JobsInternationalization(JobsInternationalization(@""));
+    refreshConfigFooter.refreshingTitle = JobsInternationalization(JobsInternationalization(@""));
+    refreshConfigFooter.willRefreshTitle = JobsInternationalization(JobsInternationalization(@""));
+    refreshConfigFooter.noMoreDataTitle = JobsInternationalization(JobsInternationalization(@""));
     
     self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
     self.refreshConfigFooter = refreshConfigFooter;//数据赋值
@@ -103,12 +103,12 @@ NS_ASSUME_NONNULL_END
 
 /**
  {
-     MJRefreshConfigModel *mJRefreshConfigModel = MJRefreshConfigModel.new;
-     mJRefreshConfigModel.stateIdleTitle = @"下拉刷新数据";
-     mJRefreshConfigModel.pullingTitle = @"下拉刷新数据";
-     mJRefreshConfigModel.refreshingTitle = @"正在刷新数据";
-     mJRefreshConfigModel.willRefreshTitle = JobsInternationalization(@"Refreshing data");
-     mJRefreshConfigModel.noMoreDataTitle = @"下拉刷新数据";
+     MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+     refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉刷新");
+     refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉刷新");
+     refreshConfigHeader.refreshingTitle = JobsInternationalization(@"立即释放刷新");
+     refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据");
+     refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新");
      self.refreshConfigHeader = mJRefreshConfigModel;//数据赋值
  
      _tableView.mj_header = self.mjRefreshNormalHeader;

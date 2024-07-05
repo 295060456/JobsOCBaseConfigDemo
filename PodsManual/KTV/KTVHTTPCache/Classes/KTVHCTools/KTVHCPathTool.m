@@ -82,7 +82,7 @@
 + (NSString *)converToRelativePath:(NSString *)path
 {
     if ([self isAbsolutePath:path]) {
-        path = [path stringByReplacingOccurrencesOfString:[self basePath] withString:@""];
+        path = [path stringByReplacingOccurrencesOfString:[self basePath] withString:JobsInternationalization(@"")];
     }
     return path;
 }

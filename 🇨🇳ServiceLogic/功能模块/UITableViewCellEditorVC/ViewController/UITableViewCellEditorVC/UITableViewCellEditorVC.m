@@ -67,12 +67,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -268,11 +268,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = @"";
-            refreshConfigFooter.pullingTitle = @"";
-            refreshConfigFooter.refreshingTitle = @"";
-            refreshConfigFooter.willRefreshTitle = @"";
-            refreshConfigFooter.noMoreDataTitle = @"";
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
@@ -282,9 +282,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                titleStr:JobsInternationalization(@"暂无数据")
-                                                               detailStr:JobsInternationalization(@"")];
+            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
+                                                                titleStr:JobsInternationalization(JobsInternationalization(@"暂无数据"))
+                                                               detailStr:JobsInternationalization(JobsInternationalization(@""))];
             
             _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);

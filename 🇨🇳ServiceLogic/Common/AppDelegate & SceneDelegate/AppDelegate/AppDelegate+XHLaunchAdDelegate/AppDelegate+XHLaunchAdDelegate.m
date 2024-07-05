@@ -69,7 +69,7 @@ videoDownLoadProgress:(float)progress
 }
 /// 广告显示完成
 -(void)xhLaunchAdShowFinish:(XHLaunchAd *)launchAd{
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
     xhLaunchAdShowFinish = YES;
 }
 /// 如果你想用SDWebImage等框架加载网络广告图片,请实现此代理,注意:实现此方法后,图片缓存将不受XHLaunchAd管理

@@ -22,7 +22,7 @@
 
 -(NSString *)getCurrentTextFieldValueByReplacementString:(NSString *)replacementString{
     if (self.text.length >= 1) {
-        return [replacementString isEqualToString:@""] ? [self.text substringToIndex:(self.text.length - 1)] : [self.text stringByAppendingString:replacementString];
+        return [replacementString isEqualToString:JobsInternationalization(@"")] ? [self.text substringToIndex:(self.text.length - 1)] : [self.text stringByAppendingString:replacementString];
     }else{
         return replacementString;
     }
@@ -44,7 +44,7 @@ JobsKey(_customSysClearBtn)
         @jobs_weakify(self)
         [CustomSysClearBtn jobsBtnClickEventBlock:^id(UIButton *data) {
             @jobs_strongify(self)
-            self.text = JobsInternationalization(@"");
+            self.text = JobsInternationalization(JobsInternationalization(@""));
             return nil;
         }];
         Jobs_setAssociatedRETAIN_NONATOMIC(_customSysClearBtn, CustomSysClearBtn)

@@ -218,7 +218,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                 jobsCommentCoreVC.transitioningDelegate = presentationController;
                 
                 [self forceComingToPresentVC:jobsCommentCoreVC
-                               requestParams:@""
+                               requestParams:JobsInternationalization(@"")
                                   completion:nil];
                 @jobs_weakify(self)
                 [jobsCommentCoreVC actionObjectBlock:^(id data) {

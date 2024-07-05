@@ -55,7 +55,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 }
 
 -(void)handleCustomUICategory:(UNNotificationResponse *)response {
-    NSString *text = @"";
+    NSString *text = JobsInternationalization(@"");
     if ([response.actionIdentifier isEqualToString:@"stop"]) {
         return;
     } else if ([response.actionIdentifier isEqualToString:@"comment"]) {

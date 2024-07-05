@@ -155,7 +155,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_userHeadBtn) {
         _userHeadBtn = UIButton.new;
         _userHeadBtn.normalImage = JobsIMG(@"首页_头像");
-        _userHeadBtn.normalTitle = JobsInternationalization(@"");
+        _userHeadBtn.normalTitle = JobsInternationalization(JobsInternationalization(@""));
         @jobs_weakify(self)
         [_userHeadBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
@@ -195,11 +195,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.pullingTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(JobsInternationalization(@""));
             
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
@@ -209,9 +209,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                titleStr:JobsInternationalization(@"暂无数据")
-                                                               detailStr:JobsInternationalization(@"")];
+            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
+                                                                titleStr:JobsInternationalization(JobsInternationalization(@"暂无数据"))
+                                                               detailStr:JobsInternationalization(JobsInternationalization(@""))];
             
             _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
@@ -272,7 +272,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"iOS 热更新")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(JobsInternationalization(@""))];
             
             viewModel.cls = HotRefreshVC.class;
             [_dataMutArr addObject:viewModel];
@@ -280,7 +280,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"iOS 多语言切换")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(JobsInternationalization(@""))];
             
             viewModel.cls = AppLanguageVC.class;
             [_dataMutArr addObject:viewModel];
@@ -288,7 +288,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"iOS Widget")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(JobsInternationalization(@""))];
             
             viewModel.cls = WidgetVC.class;
             [_dataMutArr addObject:viewModel];
@@ -409,7 +409,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"相册选取图片和视频")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(JobsInternationalization(@""))];
             viewModel.cls = JobsShootingVC.class;
             [_dataMutArr addObject:viewModel];
         }

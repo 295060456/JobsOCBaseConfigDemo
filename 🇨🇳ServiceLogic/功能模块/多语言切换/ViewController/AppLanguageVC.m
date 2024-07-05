@@ -187,18 +187,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"Pull down to refresh");
-            refreshConfigHeader.pullingTitle = JobsInternationalization(@"Pull down to refresh");
-            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"Release Refresh now");
-            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"Refreshing data");
-            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"Pull down to refresh");
+            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉刷新");
+            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉刷新");
+            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"立即释放刷新");
+            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据");
+            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新");
 
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = @"";
-            refreshConfigFooter.pullingTitle = @"";
-            refreshConfigFooter.refreshingTitle = @"";
-            refreshConfigFooter.willRefreshTitle = @"";
-            refreshConfigFooter.noMoreDataTitle = @"";
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
 
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
@@ -208,9 +208,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                titleStr:@"暂无数据"
-                                                               detailStr:@""];
+            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
+                                                                titleStr:JobsInternationalization(@"暂无数据")
+                                                               detailStr:JobsInternationalization(@"")];
 
             _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);

@@ -160,7 +160,7 @@
         
         NSLog(@"%@",btnConfiguration);
         NSLog(@"%@",btn.configuration);
-        NSLog(@"");
+        NSLog(JobsInternationalization(@""));
     /**
      UIAction *action = [UIAction actionWithTitle:@"按钮点击操作"
                                             image:nil
@@ -378,7 +378,7 @@
     return ^(NSString *data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            self.jobsResetTitle(data ? : JobsInternationalization(@"暂无数据"));
+            self.jobsResetTitle(data ? : JobsInternationalization(JobsInternationalization(@"暂无数据")));
         } else {
             self.normalTitle = data;
         }

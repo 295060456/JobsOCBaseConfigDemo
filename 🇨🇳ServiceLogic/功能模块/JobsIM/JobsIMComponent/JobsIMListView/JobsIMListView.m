@@ -115,8 +115,8 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
         }];
         _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"noData"
-                                                            titleStr:@"暂无数据"
-                                                           detailStr:@""];
+                                                            titleStr:JobsInternationalization(@"暂无数据")
+                                                           detailStr:JobsInternationalization(@"")];
         
         if (self.jobsIMListMutArr.count) {
             [_tableView ly_hideEmptyView];

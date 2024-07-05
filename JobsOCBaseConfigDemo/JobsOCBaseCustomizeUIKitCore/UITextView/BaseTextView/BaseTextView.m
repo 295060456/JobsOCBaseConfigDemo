@@ -70,7 +70,7 @@ _Pragma("clang diagnostic ignored \"-Wundeclared-selector\"")
            action == @selector(_accessibilityPauseSpeaking:) ||
            action == @selector(_share:)){/// 共享
             return NO;
-        }else if ([NSStringFromSelector(action) containsString:@""]){
+        }else if ([NSStringFromSelector(action) containsString:JobsInternationalization(@"")]){
             return YES;
         }else{
             return NO;

@@ -24,7 +24,7 @@
 /// 每隔num个字符添加一个空格的字符串算法
 /// @param num 默认值是4
 -(NSString *)dealWithString:(NSInteger)num{
-    NSString *doneTitle = @"";
+    NSString *doneTitle = JobsInternationalization(@"");
     if (num == 0) num = 4;
     int count = 0;
     for (int i = 0; i < self.length; i++) {

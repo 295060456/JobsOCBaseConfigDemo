@@ -51,8 +51,8 @@ NS_ASSUME_NONNULL_END
                      JobsBaseTableViewCell *cell00 = [self.tableView cellForRowAtIndexPath:[self myIndexPath:(JobsIndexPath){0,0}]];
                      if (self->OK) {
                          cell00.textLabel.text = JobsInternationalization(@"输入金额已超过可取款金额");
-                         cell00.detailTextLabel.text = @"";
-                         self.tbvCellTipsLab.text = @"";
+                         cell00.detailTextLabel.text = JobsInternationalization(@"");
+                         self.tbvCellTipsLab.text = JobsInternationalization(@"");
                      }else{
                          cell00.textLabel.text = self.dataMutArr[0].textModel.text;
                          cell00.detailTextLabel.text = self.viewModel.amount;

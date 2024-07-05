@@ -202,7 +202,7 @@
         _chooseBtnViewModel.textModel.font = notoSansRegular(14);
         _chooseBtnViewModel.bgCor = JobsClearColor;
         _chooseBtnViewModel.jobsWidth = self.chooseBtnSize.width;
-        _chooseBtnViewModel.subTextModel.text = @"";
+        _chooseBtnViewModel.subTextModel.text = JobsInternationalization(@"");
         _chooseBtnViewModel.image = JobsIMG(@"向下的箭头");
     }return _chooseBtnViewModel;
 }

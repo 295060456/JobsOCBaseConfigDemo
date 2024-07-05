@@ -34,7 +34,7 @@ NSString *const 日文平假名和片假名 = @"ぁあぃいぅうぇえぉお�
 /// 外界灵活选择的特殊符号拼接成一个包含所有被选中特殊符号的字符串
 /// @param specialSymbolsStringMutArr 选择的特殊符号数组
 -(NSString *)specialSymbolsAction:(NSMutableArray <NSString *>*_Nullable)specialSymbolsStringMutArr{
-    NSString *tempStr = @"";
+    NSString *tempStr = JobsInternationalization(@"");
     for (NSString *specialSymbolsString in specialSymbolsStringMutArr) {
         tempStr = [tempStr stringByAppendingString:specialSymbolsString];
     }return tempStr;
@@ -64,7 +64,7 @@ NSString *const 日文平假名和片假名 = @"ぁあぃいぅうぇえぉお�
      
         componentsSeparatedByCharactersInSet：返回一个数组，其中包含来自接收者的子字符串，这些子字符串已被给定集合中的字符分开
      */
-    NSString *filtered = [[self componentsSeparatedByCharactersInSet:set] componentsJoinedByString:@""];//filtered 就是过滤掉特殊符号的字符串。可以输入中文英文
+    NSString *filtered = [[self componentsSeparatedByCharactersInSet:set] componentsJoinedByString:JobsInternationalization(@"")];//filtered 就是过滤掉特殊符号的字符串。可以输入中文英文
     return filtered;
 }
 /// 是否包含特殊字符【包含返回YES、不包含返回NO】
@@ -85,7 +85,7 @@ NSString *const 日文平假名和片假名 = @"ぁあぃいぅうぇえぉお�
         [specialSymbolsStringMutArr addObject:符号图案];
     }
     NSString *checkStr = [self specialSymbolsAction:specialSymbolsStringMutArr];
-    NSArray <NSString *>*checkArr = [checkStr componentsSeparatedByString:@""]; // 意思是通过“,”来切割字符串
+    NSArray <NSString *>*checkArr = [checkStr componentsSeparatedByString:JobsInternationalization(@"")]; // 意思是通过“,”来切割字符串
     
     for (NSString *str in checkArr) {
         if ([self containsString:str]) {

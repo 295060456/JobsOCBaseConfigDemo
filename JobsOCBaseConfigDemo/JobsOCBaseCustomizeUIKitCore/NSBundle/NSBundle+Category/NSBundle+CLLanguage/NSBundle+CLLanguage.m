@@ -73,7 +73,7 @@
         }break;
             
         default:
-            return @"";
+            return JobsInternationalization(@"");
             break;
     }
 }

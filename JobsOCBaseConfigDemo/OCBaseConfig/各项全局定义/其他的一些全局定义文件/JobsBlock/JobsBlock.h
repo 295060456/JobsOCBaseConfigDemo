@@ -50,19 +50,19 @@
                     arg = va_arg(args, id);
     //                    NSLog(@"KKK = %@", arg);
                     if ([arg isKindOfClass:UIImage.class]) {
-                        NSLog(@"");
+                        NSLog(JobsInternationalization(@""));
                     }else if ([arg isKindOfClass:PHAsset.class]){
-                        NSLog(@"");
+                        NSLog(JobsInternationalization(@""));
                     }else if ([arg isKindOfClass:NSString.class]){
-                        NSLog(@"");
+                        NSLog(JobsInternationalization(@""));
                     }else if ([arg isKindOfClass:NSArray.class]){
-                        NSLog(@"");
+                        NSLog(JobsInternationalization(@""));
                     }else{
-                        NSLog(@"");
+                        NSLog(JobsInternationalization(@""));
                     }
                 }
             }else{
-                NSLog(@"");
+                NSLog(JobsInternationalization(@""));
             }
             // 清空参数列表，并置参数指针args无效
             va_end(args);

@@ -15,7 +15,7 @@
  */
 -(NSString *)urlProtect{
     if ([self containsString:@"\u200B"]) {
-        return [self stringByReplacingOccurrencesOfString:@"\u200B" withString:@""];
+        return [self stringByReplacingOccurrencesOfString:@"\u200B" withString:JobsInternationalization(@"")];
     }else return self;
 }
 

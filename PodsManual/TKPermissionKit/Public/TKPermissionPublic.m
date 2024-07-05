@@ -111,7 +111,7 @@ successCompletionHandlerBlock:^(id data) {
         return [evaluatedObject hasSuffix:@".lproj"];
     }]];
     for (NSString *dirName in subPaths) {
-        NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:@""];
+        NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:JobsInternationalization(@"")];
         NSString *lowerName = [name lowercaseString];
         if ([lowerName containsString:systemLanguage] || [systemLanguage containsString:lowerName]) {
             selectedLanguage = name;
@@ -119,7 +119,7 @@ successCompletionHandlerBlock:^(id data) {
         }
     }
     for (NSString *dirName in subPaths) {
-        NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:@""];
+        NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:JobsInternationalization(@"")];
         NSString *lowerName = [name lowercaseString];
         if ([lowerName isEqualToString:systemLanguage]) {
             selectedLanguage = name;
@@ -148,7 +148,7 @@ successCompletionHandlerBlock:^(id data) {
           NSArray *ary = [NSFileManager.defaultManager contentsOfDirectoryAtPath:path error:nil];
           for (NSString *dirName in ary) {
               if ([dirName hasSuffix:@"lproj"]) {
-                  [lproj addObject:[dirName stringByReplacingOccurrencesOfString:@".lproj" withString:@""]];
+                  [lproj addObject:[dirName stringByReplacingOccurrencesOfString:@".lproj" withString:JobsInternationalization(@"")]];
               }
           }
           NSString *language = NSLocale.preferredLanguages.firstObject;

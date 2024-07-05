@@ -72,7 +72,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_INFO; // | HTTP_LOG_FLAG_TRACE;
 		// the system will automatically use the "Computer Name".
 		// Passing in an empty string will also handle name conflicts
 		// by automatically appending a digit to the end of the name.
-		name = @"";
+		name = JobsInternationalization(@"");
 		
 		// Initialize arrays to hold all the HTTP and webSocket connections
 		connections = [[NSMutableArray alloc] init];

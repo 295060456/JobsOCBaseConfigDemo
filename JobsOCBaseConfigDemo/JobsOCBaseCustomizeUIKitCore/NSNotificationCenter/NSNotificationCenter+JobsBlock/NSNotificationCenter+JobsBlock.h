@@ -25,13 +25,13 @@ NS_ASSUME_NONNULL_END
                                                   queue:nil
                                              usingBlock:^(NSNotification * _Nonnull notification) {
      NSString *d = notification.name;
-     NSLog(@"");
+     NSLog(JobsInternationalization(@""));
  }];
  =================================================================================================
  或者，使用方法 2：
  NSNotificationCenter.defaultCenter.jobsNotificationBlock = ^(NSNotification * _Nonnull notification) {
      NSString *d = notification.name;
-     NSLog(@"");
+     NSLog(JobsInternationalization(@""));
  };
 
  // 添加观察者监听通知
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_END
                                         selector:selectorBlocks(^(JobsBitsMonitorSuspendLab *_Nullable weakSelf,
                                                                   NSNotification *_Nullable arg) {
      /// upload
-     NSLog(@"");
+     NSLog(JobsInternationalization(@""));
  },nil, self)
                                             name:GSUploadNetworkSpeedNotificationKey
                                           object:nil];

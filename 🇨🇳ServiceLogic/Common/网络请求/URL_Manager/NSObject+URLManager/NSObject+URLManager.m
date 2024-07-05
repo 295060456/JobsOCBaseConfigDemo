@@ -43,14 +43,14 @@ JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_DevEnviron_Cambodia_Mi
         }break;
         case JobsNetworkingEnvir_TestEnviron:{
             /// 测试环境
-            return @"".urlProtect;
+            return JobsInternationalization(@"").urlProtect;
         }break;
         case JobsNetworkingEnvir_ProductEnviron:{
             /// 生产环境
-            return @"".urlProtect;
+            return JobsInternationalization(@"").urlProtect;
         }break;
         default:
-            return @"".urlProtect;
+            return JobsInternationalization(@"").urlProtect;
             break;
     }
 }
@@ -59,26 +59,26 @@ JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_DevEnviron_Cambodia_Mi
     switch (networkingEnvir) {
         case JobsNetworkingEnvir_DevEnviron_Cambodia_Main:{
             /// 柬埔寨（主要）开发环境
-            return @"";
+            return JobsInternationalization(@"");
         }break;
         case JobsNetworkingEnvir_DevEnviron_Cambodia_Minor:{
             /// 柬埔寨的开发环境(次要)，因为某些代码未合并，柬埔寨的开发环境临时用测试环境替代
-            return @"";
+            return JobsInternationalization(@"");
         }break;
         case JobsNetworkingEnvir_DevEnviron_China_Mainland:{
             /// 中国大陆开发环境
-            return @"";
+            return JobsInternationalization(@"");
         }break;
         case JobsNetworkingEnvir_TestEnviron:{
             /// 测试环境
-            return @"";
+            return JobsInternationalization(@"");
         }break;
         case JobsNetworkingEnvir_ProductEnviron:{
             /// 生产环境
-            return @"";
+            return JobsInternationalization(@"");
         }break;
         default:
-            return @"";
+            return JobsInternationalization(@"");
             break;
     }
 }

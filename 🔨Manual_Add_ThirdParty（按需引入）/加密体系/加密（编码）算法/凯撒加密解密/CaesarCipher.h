@@ -20,7 +20,7 @@ static inline NSString *caesardDecode(NSString *string){
         [arr addObject:encryptStr];
     }
     // //加密结果
-    NSString *encodeStr = [arr componentsJoinedByString:@""];
+    NSString *encodeStr = [arr componentsJoinedByString:JobsInternationalization(@"")];
     return encodeStr;
 }
 ///凯撒解密
@@ -35,7 +35,7 @@ static inline NSString *caesarEncrypt(NSString *encodeStr){
         [arr addObject:encryptStr];
     }
     //解密结果
-    NSString *decodeStr = [arr componentsJoinedByString:@""];
+    NSString *decodeStr = [arr componentsJoinedByString:JobsInternationalization(@"")];
     return decodeStr;
 }
 

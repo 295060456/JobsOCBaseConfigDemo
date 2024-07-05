@@ -121,10 +121,10 @@ static NSData *base64_decode(NSString *str){
         NSRange range = NSMakeRange(s, e-s);
         key = [key substringWithRange:range];
     }
-    key = [key stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-    key = [key stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    key = [key stringByReplacingOccurrencesOfString:@"\t" withString:@""];
-    key = [key stringByReplacingOccurrencesOfString:@" "  withString:@""];
+    key = [key stringByReplacingOccurrencesOfString:@"\r" withString:JobsInternationalization(@"")];
+    key = [key stringByReplacingOccurrencesOfString:@"\n" withString:JobsInternationalization(@"")];
+    key = [key stringByReplacingOccurrencesOfString:@"\t" withString:JobsInternationalization(@"")];
+    key = [key stringByReplacingOccurrencesOfString:@" "  withString:JobsInternationalization(@"")];
     
     // This will be base64 encoded, decode it.
     NSData *data = base64_decode(key);
@@ -188,10 +188,10 @@ static NSData *base64_decode(NSString *str){
         NSRange range = NSMakeRange(s, e-s);
         key = [key substringWithRange:range];
     }
-    key = [key stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-    key = [key stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    key = [key stringByReplacingOccurrencesOfString:@"\t" withString:@""];
-    key = [key stringByReplacingOccurrencesOfString:@" "  withString:@""];
+    key = [key stringByReplacingOccurrencesOfString:@"\r" withString:JobsInternationalization(@"")];
+    key = [key stringByReplacingOccurrencesOfString:@"\n" withString:JobsInternationalization(@"")];
+    key = [key stringByReplacingOccurrencesOfString:@"\t" withString:JobsInternationalization(@"")];
+    key = [key stringByReplacingOccurrencesOfString:@" "  withString:JobsInternationalization(@"")];
     
     // This will be base64 encoded, decode it.
     NSData *data = base64_decode(key);

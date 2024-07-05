@@ -15,12 +15,12 @@
                                    hour:(NSString * _Nullable)hour
                                  minute:(NSString * _Nullable)minute
                                  second:(NSString * _Nullable)second{
-    if (!year) year = @"";
-    if (!month) month = @"";
-    if (!day) day = @"";
-    if (!hour) hour = @"";
-    if (!minute) minute = @"";
-    if (!second) second = @"";
+    if (!year) year = JobsInternationalization(@"");
+    if (!month) month = JobsInternationalization(@"");
+    if (!day) day = JobsInternationalization(@"");
+    if (!hour) hour = JobsInternationalization(@"");
+    if (!minute) minute = JobsInternationalization(@"");
+    if (!second) second = JobsInternationalization(@"");
     return [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@",year,self.year,month,self.month,day,self.day,hour,self.hour,minute,self.minute,second,self.second];
 }
 #pragma mark —— lazyLoad

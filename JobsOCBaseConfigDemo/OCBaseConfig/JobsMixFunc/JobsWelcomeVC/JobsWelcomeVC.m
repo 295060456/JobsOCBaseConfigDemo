@@ -32,7 +32,7 @@
     {
         self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = JobsInternationalization(@"");
+        self.viewModel.textModel.text = JobsInternationalization(JobsInternationalization(@""));
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -70,7 +70,7 @@
         UIImageView * imageView = UIImageView.new;
         imageView.frame = CGRectMake(JobsMainScreen_WIDTH() * i, 0, JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
         //用SDWebImage下载图片
-        NSString *imageName = @"";
+        NSString *imageName = JobsInternationalization(@"");
         if (i < 10) {
             imageName = [NSString stringWithFormat:@"启动页_0%lu",(unsigned long)i];
         }else{

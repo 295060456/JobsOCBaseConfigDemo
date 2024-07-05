@@ -42,7 +42,7 @@
     {
         self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = JobsInternationalization(@"");
+        self.viewModel.textModel.text = JobsInternationalization(JobsInternationalization(@""));
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -72,12 +72,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidAppear:(BOOL)animated{

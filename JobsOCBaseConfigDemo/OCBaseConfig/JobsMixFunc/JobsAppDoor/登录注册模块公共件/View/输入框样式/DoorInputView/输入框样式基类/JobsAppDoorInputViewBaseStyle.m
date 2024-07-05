@@ -12,13 +12,13 @@
 
 -(NSString *)PlaceHolder{
     if (!_PlaceHolder) {
-        _PlaceHolder = @"";
+        _PlaceHolder = JobsInternationalization(@"");
     }return _PlaceHolder;
 }
 
 -(NSString *)resString{
     if (!_resString) {
-        _resString = @"";
+        _resString = JobsInternationalization(@"");
     }return _resString;
 }
 
@@ -32,7 +32,7 @@
 -(JobsAppDoorInputViewTFModel *)textFieldInputModel{
     if (!_textFieldInputModel) {
         _textFieldInputModel = JobsAppDoorInputViewTFModel.new;
-        _textFieldInputModel.resString = @"";
+        _textFieldInputModel.resString = JobsInternationalization(@"");
         _textFieldInputModel.PlaceHolder = self.getTextField.placeholder;
     }return _textFieldInputModel;
 }

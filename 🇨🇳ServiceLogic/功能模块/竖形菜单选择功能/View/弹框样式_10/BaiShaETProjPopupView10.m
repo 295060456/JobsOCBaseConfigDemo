@@ -109,7 +109,7 @@ atIndexPath:(NSIndexPath *)indexPath {
         
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"拖動按鈕迸行位置調整");
-        viewModel.subTextModel.text = @"";
+        viewModel.subTextModel.text = JobsInternationalization(@"");
         
         [headerView richElementsInViewWithModel:viewModel];
         headerView.backgroundColor = HEXCOLOR(0xFFFCF7);
@@ -302,7 +302,7 @@ insetForSectionAtIndex:(NSInteger)section {
             _collectionView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
             _collectionView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
                                                                                           id  _Nullable arg) {
-                NSLog(@"");
+                NSLog(JobsInternationalization(@""));
                 [self shakeCell:NO];
                 return nil;
             }];

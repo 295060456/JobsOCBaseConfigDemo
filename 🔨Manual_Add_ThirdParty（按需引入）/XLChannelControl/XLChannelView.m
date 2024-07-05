@@ -190,7 +190,7 @@ static CGFloat CellMarginY = 10.0f;
         headerView.subTitle = @"按住拖动调整排序";
     }else{
         headerView.title = @"推荐频道";
-        headerView.subTitle = @"";
+        headerView.subTitle = JobsInternationalization(@"");
     }
     return headerView;
 }

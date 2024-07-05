@@ -60,12 +60,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -95,42 +95,42 @@
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DG體育");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
+        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
         [dataMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DG真人");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
+        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
         [dataMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DG電子");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
+        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
         [dataMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DG彩票");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
+        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
         [dataMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DG棋牌");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
+        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
         [dataMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DA電子");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
+        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
         [dataMutArr addObject:viewModel];
     }return dataMutArr;
 }
@@ -174,7 +174,7 @@
                 NSLog(@"Action 2 selected for row %ld", (long)indexPath.row);
             }];
             // 创建并返回菜单
-            return [UIMenu menuWithTitle:@"" children:@[action1, action2]];
+            return [UIMenu menuWithTitle:JobsInternationalization(@"") children:@[action1, action2]];
         }];return configuration;
     }return nil;
 }

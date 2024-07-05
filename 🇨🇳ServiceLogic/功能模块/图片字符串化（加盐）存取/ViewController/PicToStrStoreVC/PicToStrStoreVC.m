@@ -67,12 +67,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -164,11 +164,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.pullingTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(JobsInternationalization(@""));
             
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
@@ -178,9 +178,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                titleStr:JobsInternationalization(@"暂无数据")
-                                                               detailStr:JobsInternationalization(@"")];
+            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
+                                                                titleStr:JobsInternationalization(JobsInternationalization(@"暂无数据"))
+                                                               detailStr:JobsInternationalization(JobsInternationalization(@""))];
             
             _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
@@ -233,42 +233,42 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用十六进制字符串进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(JobsInternationalization(@""))];
             viewModel.requestParams = @(PicToStrStyle_Hexadecimal);
             [_dataMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base16编码进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(JobsInternationalization(@""))];
             viewModel.requestParams = @(PicToStrStyle_Base16);
             [_dataMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base32编码进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(JobsInternationalization(@""))];
             viewModel.requestParams = @(PicToStrStyle_Base32);
             [_dataMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base64编码进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(JobsInternationalization(@""))];
             viewModel.requestParams = @(PicToStrStyle_Base64);
             [_dataMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base85编码进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(JobsInternationalization(@""))];
             viewModel.requestParams = @(PicToStrStyle_Base85);
             [_dataMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用MIME编码进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(JobsInternationalization(@""))];
             viewModel.requestParams = @(PicToStrStyle_MIME);
             [_dataMutArr addObject:viewModel];
         }

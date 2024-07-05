@@ -13,10 +13,10 @@
 
 + (NSString *)getCurrentAppIconName {
     if (@available(iOS 10.3, *)) {
-        return ([UIApplication sharedApplication].alternateIconName.length == 0) ? @"" : [UIApplication sharedApplication].alternateIconName;
+        return ([UIApplication sharedApplication].alternateIconName.length == 0) ? JobsInternationalization(@"") : [UIApplication sharedApplication].alternateIconName;
     } else {
         // Fallback on earlier versions
-        return @"";
+        return JobsInternationalization(@"");
     }
 }
 
@@ -45,9 +45,9 @@
         NSDictionary *userInfo = @{
                                    NSLocalizedDescriptionKey: NSLocalizedString(@"AppIcon change failed", nil),
                                    NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"The current system version does not support replacing the AppIcon.", nil),
-                                   NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"", nil)
+                                   NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(JobsInternationalization(@""), nil)
                                    };
-        NSError *error = [NSError errorWithDomain:@""
+        NSError *error = [NSError errorWithDomain:JobsInternationalization(@"")
                                              code:34001
                                          userInfo:userInfo];
         completionHandler(error);

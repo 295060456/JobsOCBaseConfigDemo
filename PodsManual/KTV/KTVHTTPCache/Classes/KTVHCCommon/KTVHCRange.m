@@ -142,7 +142,7 @@ KTVHCRange KTVHCRangeWithRequestHeaderValue(NSString *value)
 KTVHCRange KTVHCRangeWithResponseHeaderValue(NSString *value, long long *totalLength)
 {
     if ([value hasPrefix:@"bytes "]) {
-        value = [value stringByReplacingOccurrencesOfString:@"bytes " withString:@""];
+        value = [value stringByReplacingOccurrencesOfString:@"bytes " withString:JobsInternationalization(@"")];
         NSRange range = [value rangeOfString:@"/"];
         if (range.location != NSNotFound) {
             NSString *rangeString = [value substringToIndex:range.location];

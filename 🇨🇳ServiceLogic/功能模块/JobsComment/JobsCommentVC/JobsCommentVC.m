@@ -73,7 +73,7 @@
     }];
 
     [self comingToPresentVC:jobsCommentCoreVC
-              requestParams:@""];
+              requestParams:JobsInternationalization(@"")];
 }
 #pragma mark —— lazyLoad
 -(UIButton *)contactCustomerServiceBtn{

@@ -50,8 +50,8 @@
     
     _picBefore = nil;
     _picAfter = nil;
-    _resultStr = @"";
-    _showStr = @"";
+    _resultStr = JobsInternationalization(@"");
+    _showStr = JobsInternationalization(@"");
 }
 
 - (void)viewDidLoad {
@@ -75,12 +75,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidAppear:(BOOL)animated{

@@ -12,7 +12,7 @@
 /// 数组转字符串
 -(NSString *)string{
     if(!self
-       ||self.count == 0) return @"";
+       ||self.count == 0) return JobsInternationalization(@"");
     NSMutableString *str = NSMutableString.string;
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx,
                                        BOOL *stop) {

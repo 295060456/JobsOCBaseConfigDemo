@@ -43,7 +43,7 @@
     NSString *resultStr;
     for (int i = 0; i < arr.count; i++) {
         NSString *tempStr = arr[i];
-        tempStr = [tempStr stringByReplacingOccurrencesOfString:@"/" withString:@""];//去除字符 /
+        tempStr = [tempStr stringByReplacingOccurrencesOfString:@"/" withString:JobsInternationalization(@"")];//去除字符 /
         [resultStr stringByAppendingString:[NSString stringWithFormat:@"/%@",tempStr]];
     }return resultStr;
 }
@@ -59,7 +59,7 @@
         NSString *tempString = [NSString stringWithUTF8String:&s];
         [carries addObject:tempString];
     }
-    NSString *string = [carries componentsJoinedByString:@""];
+    NSString *string = [carries componentsJoinedByString:JobsInternationalization(@"")];
     NSString *anonymousString = [self stringByReplacingCharactersInRange:NSMakeRange(1, self.length - 2)
                                                               withString:string];
     return anonymousString;
@@ -67,7 +67,7 @@
 /// 系统的stringByAppendingString方法在参数为nil的时候会崩溃
 -(NSString *_Nonnull)jobsStringByAppendingString:(NSString *_Nullable)str{
     if (!str) {
-        str = @"";
+        str = JobsInternationalization(@"");
     }return [self stringByAppendingString:str];
 }
 /// 获取到最后一个字符
@@ -97,7 +97,7 @@
  */
 -(NSString *_Nonnull)urlProtect{
     if ([self containsString:@"\u200B"]) {
-        return [self stringByReplacingOccurrencesOfString:@"\u200B" withString:@""];
+        return [self stringByReplacingOccurrencesOfString:@"\u200B" withString:JobsInternationalization(@"")];
     }else return self;
 }
 /// 将某个字符串进行限定字符个数，二次包装以后对外输出。【截取完了以后添加替换字符】
@@ -116,7 +116,7 @@
     /// limit 是不包括省略号的实际的限制字数
     NSString *resultStr = self;
     NSRange range;
-    NSString *pointStr = @"";
+    NSString *pointStr = JobsInternationalization(@"");
     for (int i = 0; i < replaceStrLenth; i++) {
         pointStr = [pointStr stringByAppendingString:replaceStr];
     }

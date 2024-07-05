@@ -274,7 +274,7 @@ NSString *const _delegate =@"_delegate";
     NSURL *baseURL = [NSURL URLWithString:request.server];
             
     if ([[baseURL path] length] > 0 && ![[baseURL absoluteString] hasSuffix:@"/"]) {
-                   baseURL = [baseURL URLByAppendingPathComponent:@""];
+                   baseURL = [baseURL URLByAppendingPathComponent:JobsInternationalization(@"")];
     }
 
 //    request.url= [[NSURL URLWithString:request.url relativeToURL:baseURL] absoluteString];

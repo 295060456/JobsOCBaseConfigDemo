@@ -14,7 +14,7 @@
 }
 
 -(UILabel *)placeholderLabel{
-    //placeholder为nil或者为@"",placeholderLabel均为nil
+    //placeholder为nil或者为JobsInternationalization(@""),placeholderLabel均为nil
     if (!self.placeholder.length || !self.placeholder) {
         self.placeholder = @" ";
     }

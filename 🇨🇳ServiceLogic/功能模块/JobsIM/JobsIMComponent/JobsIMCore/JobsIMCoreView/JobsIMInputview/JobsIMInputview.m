@@ -76,7 +76,7 @@
                                      type:@"wav"];
                 if (self.objectBlock) self.objectBlock(self.inputTextField);
             }
-            self.inputTextField.text = @"";
+            self.inputTextField.text = JobsInternationalization(@"");
             x.enabled = NO;
             return nil;
         }];

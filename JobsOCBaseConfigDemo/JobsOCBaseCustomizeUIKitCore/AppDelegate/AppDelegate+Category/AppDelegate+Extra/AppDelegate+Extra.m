@@ -14,7 +14,7 @@
     if (tabBarTitleMutArr) {
         [tabBarTitleMutArr addObject:JobsInternationalization(@"首页")];
         [tabBarTitleMutArr addObject:JobsInternationalization(@"洗码")];
-        [tabBarTitleMutArr addObject:JobsInternationalization(@"")];
+        [tabBarTitleMutArr addObject:JobsInternationalization(JobsInternationalization(@""))];
         [tabBarTitleMutArr addObject:JobsInternationalization(@"客服")];
         [tabBarTitleMutArr addObject:JobsInternationalization(@"会员中心")];
         Jobs_setAssociatedRETAIN_NONATOMIC(_tabBarTitleMutArr, tabBarTitleMutArr)

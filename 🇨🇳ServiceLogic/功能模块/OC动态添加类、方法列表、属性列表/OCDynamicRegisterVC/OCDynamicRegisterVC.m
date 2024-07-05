@@ -104,11 +104,11 @@
     ((void (*)(id, SEL, float)) objc_msgSend)(self, @selector(sendObjMsg:), (float)M_PI);
     /// 有返回值的调用，需要注明返回类型
     id f = ((NSString * (*)(id, SEL, float)) objc_msgSend)(self, @selector(sendObjMsg:), (float)M_PI);
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(NSString *)sendObjMsg: (float)x{
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
     return @"Jobs";
 }
 
@@ -145,7 +145,7 @@
     
     id A = [myobjc performSelector:@selector(setJobsName:) withObject:@"bmw"];
     id B = [myobjc performSelector:@selector(jobsName) withObject:nil];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
     /// 如果不调用- (void)addMethodForMyClass:(NSString *)string 这个方法，就不会调用static void addMethodForMyClass(id self, SEL _cmd, NSString *test) 函数
 //    [myobjc addMethodForMyClass:@"参数"];
 }
@@ -162,7 +162,7 @@ NSString *jobsName(){
 /// 动态创建类并添加：成员变量、属性、方法、协议
 -(Class)createClass:(NSString *)className {
     if (!NSClassFromString(className)) {
-        /// ❤️添加一个集成NSObject的类  类名是className；注意：调用的c语言的方法  所以不要使用@""表示字符串 应该使用""❤️
+        /// ❤️添加一个集成NSObject的类  类名是className；注意：调用的c语言的方法  所以不要使用JobsInternationalization(@"")表示字符串 应该使用""❤️
         /// 我们如果使用objc_allocateClassPair函数来创建一个类对象失败了，那么objc_allocateClassPair就会返回Nil。如果所要创建的类已经存在了，那么就会返回Nil.
         newClass = objc_allocateClassPair(OCDynamic.class,/// 第一个参数是父类对象，如果传nil那么新创建的类就是跟NSObject同等级别的根类对象;
                                           className.UTF8String,/// 第二个参数是本类类名;
@@ -278,7 +278,7 @@ static void addMethodForMyClass(id self, SEL _cmd, NSString *test) {
 }
 /// 这个方法实际上没有被调用,但是必须实现否则不会调用下面的方法
 - (void)addMethodForMyClass:(NSString *)string {
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)知识点{

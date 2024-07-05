@@ -240,7 +240,7 @@
     self.totalTimeLabel.text         = @"00:00";
     self.backgroundColor             = [UIColor clearColor];
     self.playOrPauseBtn.selected     = YES;
-    self.titleLabel.text             = @"";
+    self.titleLabel.text             = JobsInternationalization(@"");
 }
 
 - (void)showControlView {

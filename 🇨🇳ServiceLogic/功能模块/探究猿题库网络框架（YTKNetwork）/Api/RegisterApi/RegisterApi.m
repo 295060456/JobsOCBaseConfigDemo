@@ -35,7 +35,7 @@
 }
 /// 在链式请求中，下一个请求的参数来源于上一个请求的结果
 -(NSString *_Nonnull)userId{
-    return [[self.responseJSONObject objectForKey:@"userId"] stringValue] ? : @"";
+    return [[self.responseJSONObject objectForKey:@"userId"] stringValue] ? : JobsInternationalization(@"");
 }
 
 @end

@@ -303,10 +303,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         }
         
         {
-//            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-//                                                                titleStr:JobsInternationalization(@"暂无数据")
-//                                                               detailStr:JobsInternationalization(@"")];
-            _tableView.ly_emptyView = [EmptyView diyEmptyViewWithTitle:JobsInternationalization(@"暂无数据")];
+//            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
+//                                                                titleStr:JobsInternationalization(JobsInternationalization(@"暂无数据"))
+//                                                               detailStr:JobsInternationalization(JobsInternationalization(@""))];
+            _tableView.ly_emptyView = [EmptyView diyEmptyViewWithTitle:JobsInternationalization(JobsInternationalization(@"暂无数据"))];
             _tableView.ly_emptyView.autoShowEmptyView = NO;
             _tableView.ly_emptyView.titleLabTextColor = JobsWhiteColor;
             _tableView.ly_emptyView.contentViewOffset = -JobsWidth(40);
@@ -738,7 +738,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                                   @"pageNum":@(self.currentPage)}
                    successBlock:^(DDResponseModel *data) {
         @jobs_strongify(self)
-        NSLog(@"");
+        NSLog(JobsInternationalization(@""));
         if([data.data isKindOfClass:NSArray.class]){
             NSArray *tempDataArr = (NSArray *)data.data;
             

@@ -42,7 +42,7 @@
     /// 下列配置一般体现在Appdelegate
     YTKNetworkConfig *config = YTKNetworkConfig.sharedConfig;
     config.baseUrl = self.BaseUrl;
-    config.cdnUrl = @"";
+    config.cdnUrl = JobsInternationalization(@"");
     //config.urlFilters = nil;
     //config.cacheDirPathFilters = nil;
     config.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];

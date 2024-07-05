@@ -92,7 +92,7 @@ static dispatch_once_t static_mineView2OnceToken;
         
         {// 一般的文字
             _btnConfig.title = JobsInternationalization(@"入职Mata");
-            _btnConfig.subtitle = @"";
+            _btnConfig.subtitle = JobsInternationalization(@"");
             _btnConfig.baseForegroundColor = UIColor.blackColor;// 前景颜色（= 文字颜色）
         }
         

@@ -42,7 +42,7 @@
             __,__,__,__, __,__,__,__, __,__,__,__, __,__,__,__,  // 0xF0 - 0xFF
         };
         static NSUInteger paddingAdjustment[8] = {0,1,1,1,2,3,3,4};
-        encoding = [encoding stringByReplacingOccurrencesOfString:@"=" withString:@""];
+        encoding = [encoding stringByReplacingOccurrencesOfString:@"=" withString:JobsInternationalization(@"")];
         NSData *encodedData = [encoding dataUsingEncoding:NSASCIIStringEncoding];
         unsigned char *encodedBytes = (unsigned char *)[encodedData bytes];
 

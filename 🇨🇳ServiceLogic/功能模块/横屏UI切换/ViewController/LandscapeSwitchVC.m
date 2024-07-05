@@ -73,12 +73,12 @@ UICollectionViewDataSource
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -397,11 +397,11 @@ insetForSectionAtIndex:(NSInteger)section {
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");;
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.pullingTitle = JobsInternationalization(JobsInternationalization(@""));;
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(JobsInternationalization(@""));;
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(JobsInternationalization(@""));;
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(JobsInternationalization(@""));;
             
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
@@ -413,9 +413,9 @@ insetForSectionAtIndex:(NSInteger)section {
         }
         
         {
-            _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                     titleStr:JobsInternationalization(@"暂无数据")
-                                                                    detailStr:JobsInternationalization(@"")];
+            _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
+                                                                     titleStr:JobsInternationalization(JobsInternationalization(@"暂无数据"))
+                                                                    detailStr:JobsInternationalization(JobsInternationalization(@""))];
             
             _collectionView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _collectionView.ly_emptyView.contentViewOffset = JobsWidth(-180);

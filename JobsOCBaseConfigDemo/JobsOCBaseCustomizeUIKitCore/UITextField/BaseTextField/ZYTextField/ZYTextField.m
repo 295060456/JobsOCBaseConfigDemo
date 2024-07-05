@@ -29,7 +29,7 @@
 -(void)setUseCustomClearButton:(BOOL)useCustomClearButton{
     _useCustomClearButton = useCustomClearButton;
     if (_useCustomClearButton) {
-        [self modifyClearButtonWithImage:JobsBuddleIMG(nil,@"ZYTextField",@"", @"CloseCircle（小号）.png")];
+        [self modifyClearButtonWithImage:JobsBuddleIMG(nil,@"ZYTextField",JobsInternationalization(@""), @"CloseCircle（小号）.png")];
     }
 }
 /// 必须在self有具体frame的时候才管用

@@ -310,8 +310,8 @@
 /// @param versionNumber2 版本号2
 -(CompareRes)versionNumber1:(NSString *_Nonnull)versionNumber1
              versionNumber2:(NSString *_Nonnull)versionNumber2{
-    NSString *v1 = [versionNumber1 stringByReplacingOccurrencesOfString:@"." withString:@""];
-    NSString *v2 = [versionNumber2 stringByReplacingOccurrencesOfString:@"." withString:@""];
+    NSString *v1 = [versionNumber1 stringByReplacingOccurrencesOfString:@"." withString:JobsInternationalization(@"")];
+    NSString *v2 = [versionNumber2 stringByReplacingOccurrencesOfString:@"." withString:JobsInternationalization(@"")];
     if (v1.isPureInt && v2.isPureInt) {
         if (v1.integerValue > v2.integerValue) {
             return CompareRes_MoreThan;
@@ -898,7 +898,7 @@
          }
          
      }else if (data.notificationName.isEqualToString(@"UIKeyboardDidChangeFrameNotification")){
-         NSLog(@"");
+         NSLog(JobsInternationalization(@""));
      }else{}
      
      return nil;

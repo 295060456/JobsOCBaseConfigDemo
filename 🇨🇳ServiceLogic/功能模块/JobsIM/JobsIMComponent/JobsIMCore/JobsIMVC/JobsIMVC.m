@@ -416,8 +416,8 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
         [self.view layoutIfNeeded];
         _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"noData"
-                                                            titleStr:@"暂无数据"
-                                                           detailStr:@""];
+                                                            titleStr:JobsInternationalization(@"暂无数据")
+                                                           detailStr:JobsInternationalization(@"")];
         
         if (self.chatInfoModelMutArr.count) {
             [_tableView ly_hideEmptyView];

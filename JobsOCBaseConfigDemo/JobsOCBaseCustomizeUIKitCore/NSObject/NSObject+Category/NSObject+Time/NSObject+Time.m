@@ -228,7 +228,7 @@ NSString *const App当日首次进入 = @"App当日首次进入";
     timeModel.customDate = date;
     timeModel.dateFormatterStr = dateFormatterStr;
     //NSDate 转 NSString
-    NSString *dateString = @"";
+    NSString *dateString = JobsInternationalization(@"");
     if (timeModel.customDate) {
         dateString = [timeModel.dateFormatter stringFromDate:timeModel.customDate];
     }else{

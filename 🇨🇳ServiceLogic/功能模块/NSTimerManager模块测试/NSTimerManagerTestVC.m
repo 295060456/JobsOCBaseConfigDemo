@@ -83,7 +83,7 @@
         [self reloadBtn:data];
         [self.nsTimerManager nsTimeDestroy];
         self.nsTimerManager = nil;
-        self.valueLab.text = @"";
+        self.valueLab.text = JobsInternationalization(@"");
         return nil;
     }];
 }

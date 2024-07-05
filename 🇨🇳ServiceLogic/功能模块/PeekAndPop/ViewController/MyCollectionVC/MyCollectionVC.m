@@ -59,12 +59,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    NSLog(JobsInternationalization(@""));
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -129,7 +129,7 @@
                 NSLog(@"Action 2 selected for item %ld", (long)indexPath.item);
             }];
             // 创建并返回菜单
-            return [UIMenu menuWithTitle:@"" children:@[action1, action2]];
+            return [UIMenu menuWithTitle:JobsInternationalization(@"") children:@[action1, action2]];
         }];return configuration;
     }return nil;
 }

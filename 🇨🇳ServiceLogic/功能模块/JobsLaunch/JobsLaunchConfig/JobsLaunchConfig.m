@@ -63,13 +63,13 @@ static dispatch_once_t static_launchConfigOnceToken;
 
 -(NSString *)imageURLString{
     if (!_imageURLString) {
-        _imageURLString = @"";
+        _imageURLString = JobsInternationalization(@"");
     }return _imageURLString;
 }
 
 -(NSString *)bgImageURLString{
     if (!_bgImageURLString) {
-        _bgImageURLString = @"";
+        _bgImageURLString = JobsInternationalization(@"");
     }return _bgImageURLString;
 }
 

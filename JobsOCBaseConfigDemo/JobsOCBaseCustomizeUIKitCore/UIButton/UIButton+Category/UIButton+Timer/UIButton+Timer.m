@@ -246,7 +246,7 @@
     // 清除上一次拼装的数据
     if (self.btnTimerConfig.formatTimeStr.length > 0 &&
         [self.btnTimerConfig.runningValue.text containsString:self.btnTimerConfig.formatTimeStr]) {
-        self.btnTimerConfig.runningValue.text = [self.btnTimerConfig.runningValue.text stringByReplacingOccurrencesOfString:self.btnTimerConfig.formatTimeStr withString:@""];
+        self.btnTimerConfig.runningValue.text = [self.btnTimerConfig.runningValue.text stringByReplacingOccurrencesOfString:self.btnTimerConfig.formatTimeStr withString:JobsInternationalization(@"")];
     }
     // 显示数据的二次封装
     {

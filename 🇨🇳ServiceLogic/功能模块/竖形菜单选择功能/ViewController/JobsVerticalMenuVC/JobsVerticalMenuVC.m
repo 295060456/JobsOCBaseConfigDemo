@@ -307,7 +307,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         GoodsClassModel *rightModel = [self.rightDataArray objectAtIndex:indexPath.section];
-        label.text = rightModel.name ? : @"";
+        label.text = rightModel.name ? : JobsInternationalization(@"");
         
         return headerView;
     }else if ([kind isEqualToString:UICollectionElementKindSectionFooter]){

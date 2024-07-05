@@ -120,7 +120,7 @@
                      parameters:parameters
                    successBlock:^(DDResponseModel *data) {
         @jobs_strongify(self)
-        NSLog(@"");
+        NSLog(JobsInternationalization(@""));
         if([data.data isKindOfClass:NSArray.class]){
             NSArray *tempDataArr = (NSArray *)data.data;
             
@@ -299,11 +299,11 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.pullingTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(JobsInternationalization(@""));
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(JobsInternationalization(@""));
             // 赋值
             self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;//数据赋值
@@ -316,7 +316,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
         
         {
             _tableView.ly_emptyView = [EmptyView emptyViewWithImageStr:@"Indeterminate Spinner - Small"
-                                                              titleStr:JobsInternationalization(@"暂无数据")
+                                                              titleStr:JobsInternationalization(JobsInternationalization(@"暂无数据"))
                                                              detailStr:JobsInternationalization(@"骚等片刻")];
         }
         

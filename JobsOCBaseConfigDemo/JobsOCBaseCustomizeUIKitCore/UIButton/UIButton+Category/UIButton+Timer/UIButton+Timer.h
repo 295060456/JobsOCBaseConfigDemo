@@ -104,7 +104,7 @@ NS_ASSUME_NONNULL_END
          _btnTimerConfigModel.runningValue.bgCor = JobsClearColor;
          _btnTimerConfigModel.runningValue.layerBorderCor = JobsClearColor;
          _btnTimerConfigModel.runningValue.textCor = JobsCor(@"#333333");
-         _btnTimerConfigModel.runningValue.text = JobsInternationalization(@"");
+         _btnTimerConfigModel.runningValue.text = JobsInternationalization(JobsInternationalization(@""));
          _btnTimerConfigModel.runningValue.font = UIFontWeightRegularSize(14);
 
          /// 计时器结束【静态值】

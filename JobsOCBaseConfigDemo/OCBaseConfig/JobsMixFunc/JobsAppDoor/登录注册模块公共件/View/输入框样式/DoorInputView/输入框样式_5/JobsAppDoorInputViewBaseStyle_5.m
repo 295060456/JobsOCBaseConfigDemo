@@ -281,7 +281,7 @@
         }];
     }
     if (self.doorInputViewBaseStyleModel.textModel.text.isDebugText) {
-        _textField.text = @"";
+        _textField.text = JobsInternationalization(@"");
     }return _textField;
 }
 
@@ -294,7 +294,7 @@
         _chooseBtnViewModel.textModel.font = notoSansRegular(14);
         _chooseBtnViewModel.bgCor = JobsClearColor;
         _chooseBtnViewModel.jobsWidth = self.chooseBtnSize.width;
-        _chooseBtnViewModel.subTextModel.text = @"";
+        _chooseBtnViewModel.subTextModel.text = JobsInternationalization(@"");
         _chooseBtnViewModel.image = JobsIMG(@"向下的箭头");
     }return _chooseBtnViewModel;
 }
@@ -311,7 +311,7 @@
             jobsPageViewModel.textModel.font = notoSansRegular(14);
             jobsPageViewModel.bgCor = JobsClearColor;
             jobsPageViewModel.jobsWidth = self.chooseBtnSize.width;
-            jobsPageViewModel.subTextModel.text = @"";
+            jobsPageViewModel.subTextModel.text = JobsInternationalization(@"");
             
             [_jobsPageViewDataMutArr addObject:jobsPageViewModel];
         }
@@ -324,7 +324,7 @@
             jobsPageViewModel.textModel.font = notoSansRegular(14);
             jobsPageViewModel.bgCor = JobsClearColor;
             jobsPageViewModel.jobsWidth = self.chooseBtnSize.width;
-            jobsPageViewModel.subTextModel.text = @"";
+            jobsPageViewModel.subTextModel.text = JobsInternationalization(@"");
             
             [_jobsPageViewDataMutArr addObject:jobsPageViewModel];
         }
@@ -355,7 +355,7 @@
         _btnTimerConfigModel.runningValue.bgCor = JobsClearColor;
         _btnTimerConfigModel.runningValue.layerBorderCor = JobsClearColor;
         _btnTimerConfigModel.runningValue.textCor = HEXCOLOR(0xAE8330);
-        _btnTimerConfigModel.runningValue.text = JobsInternationalization(@"");
+        _btnTimerConfigModel.runningValue.text = JobsInternationalization(JobsInternationalization(@""));
         /// 计时器结束【静态值】
         _btnTimerConfigModel.endValue.bgCor = JobsClearColor;
         _btnTimerConfigModel.endValue.layerBorderCor = JobsClearColor;

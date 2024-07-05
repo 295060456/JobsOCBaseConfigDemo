@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = JobsIMG(@"service_skype");
-             vm.text = @"";
+             vm.text = JobsInternationalization(@"");
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);
@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = JobsIMG(@"service_qq");
-             vm.text = @"";
+             vm.text = JobsInternationalization(@"");
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = JobsIMG(@"service_telegram");
-             vm.text = @"";
+             vm.text = JobsInternationalization(@"");
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);
@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = JobsIMG(@"service_wechat");
-             vm.text = @"";
+             vm.text = JobsInternationalization(@"");
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);
@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = JobsIMG(@"login_skype");
-             vm.text = @"";
+             vm.text = JobsInternationalization(@"");
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);
@@ -135,7 +135,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = JobsIMG(@"service_meiqia");
-             vm.text = @"";
+             vm.text = JobsInternationalization(@"");
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);

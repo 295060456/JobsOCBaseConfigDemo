@@ -47,8 +47,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _baseUrl = @"";
-        _cdnUrl = @"";
+        _baseUrl = JobsInternationalization(@"");
+        _cdnUrl = JobsInternationalization(@"");
         _urlFilters = [NSMutableArray array];
         _cacheDirPathFilters = [NSMutableArray array];
         _securityPolicy = [AFSecurityPolicy defaultPolicy];

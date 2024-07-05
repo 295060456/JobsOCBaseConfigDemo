@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_END
      if (![NSString isNullString:textView.text] && [NSString isNullString:text]) {
          
          if (textView.text.length == 1) {
-             resString = @"";
+             resString = JobsInternationalization(@"");
          }else{
              resString = [textView.text substringToIndex:(textView.text.length - 1)];//去掉最后一个
          }

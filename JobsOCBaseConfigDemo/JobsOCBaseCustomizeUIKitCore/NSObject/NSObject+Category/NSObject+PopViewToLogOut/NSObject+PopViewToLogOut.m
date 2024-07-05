@@ -18,7 +18,7 @@ JobsKey(_logOutPopupVM)
         LogOutPopupVM.textModel.text = JobsInternationalization(@"Confirm to exit ?");
         LogOutPopupVM.textModel.font = UIFontWeightRegularSize(14);
         LogOutPopupVM.textModel.textAlignment = NSTextAlignmentCenter;
-        LogOutPopupVM.subTextModel.text = JobsInternationalization(@"");
+        LogOutPopupVM.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
         LogOutPopupVM.bgCor = UIColor.whiteColor;
         Jobs_setAssociatedRETAIN_NONATOMIC(_logOutPopupVM, LogOutPopupVM)
     }return LogOutPopupVM;
