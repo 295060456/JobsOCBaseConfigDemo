@@ -86,11 +86,11 @@ NS_ASSUME_NONNULL_END
     refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新");
     
     MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-    refreshConfigFooter.stateIdleTitle = JobsInternationalization(JobsInternationalization(@""));
-    refreshConfigFooter.pullingTitle = JobsInternationalization(JobsInternationalization(@""));
-    refreshConfigFooter.refreshingTitle = JobsInternationalization(JobsInternationalization(@""));
-    refreshConfigFooter.willRefreshTitle = JobsInternationalization(JobsInternationalization(@""));
-    refreshConfigFooter.noMoreDataTitle = JobsInternationalization(JobsInternationalization(@""));
+    refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+    refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+    refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+    refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+    refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
     
     self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
     self.refreshConfigFooter = refreshConfigFooter;//数据赋值

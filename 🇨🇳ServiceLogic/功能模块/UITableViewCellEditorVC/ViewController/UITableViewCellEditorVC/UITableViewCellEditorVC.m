@@ -283,8 +283,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         
         {
             _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
-                                                                titleStr:JobsInternationalization(JobsInternationalization(@"暂无数据"))
-                                                               detailStr:JobsInternationalization(JobsInternationalization(@""))];
+                                                                titleStr:JobsInternationalization(@"暂无数据")
+                                                               detailStr:JobsInternationalization(@"")];
             
             _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);

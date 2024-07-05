@@ -109,10 +109,10 @@ static dispatch_once_t static_countdownViewOnceToken;
 -(JobsFormatTime *)formatTime{
     if (!_formatTime) {
         _formatTime = JobsFormatTime.new;
-        _formatTime.year = JobsInternationalization(JobsInternationalization(@""));
-        _formatTime.month = JobsInternationalization(JobsInternationalization(@""));
-        _formatTime.day = JobsInternationalization(JobsInternationalization(@""));
-        _formatTime.hour = JobsInternationalization(JobsInternationalization(@""));
+        _formatTime.year = JobsInternationalization(@"");
+        _formatTime.month = JobsInternationalization(@"");
+        _formatTime.day = JobsInternationalization(@"");
+        _formatTime.hour = JobsInternationalization(@"");
         _formatTime.minute = JobsInternationalization(@"分");
         _formatTime.second = JobsInternationalization(@"秒");
     }return _formatTime;

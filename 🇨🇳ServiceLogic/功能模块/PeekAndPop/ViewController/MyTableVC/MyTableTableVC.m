@@ -95,42 +95,42 @@
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DG體育");
-        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
+        viewModel.subTextModel.text = JobsInternationalization(@"");
         [dataMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DG真人");
-        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
+        viewModel.subTextModel.text = JobsInternationalization(@"");
         [dataMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DG電子");
-        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
+        viewModel.subTextModel.text = JobsInternationalization(@"");
         [dataMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DG彩票");
-        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
+        viewModel.subTextModel.text = JobsInternationalization(@"");
         [dataMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DG棋牌");
-        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
+        viewModel.subTextModel.text = JobsInternationalization(@"");
         [dataMutArr addObject:viewModel];
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"DA電子");
-        viewModel.subTextModel.text = JobsInternationalization(JobsInternationalization(@""));
+        viewModel.subTextModel.text = JobsInternationalization(@"");
         [dataMutArr addObject:viewModel];
     }return dataMutArr;
 }

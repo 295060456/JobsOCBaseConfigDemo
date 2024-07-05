@@ -397,11 +397,11 @@ insetForSectionAtIndex:(NSInteger)section {
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = JobsInternationalization(JobsInternationalization(@""));
-            refreshConfigFooter.pullingTitle = JobsInternationalization(JobsInternationalization(@""));;
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(JobsInternationalization(@""));;
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(JobsInternationalization(@""));;
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(JobsInternationalization(@""));;
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");;
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");;
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");;
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");;
             
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
@@ -414,8 +414,8 @@ insetForSectionAtIndex:(NSInteger)section {
         
         {
             _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
-                                                                     titleStr:JobsInternationalization(JobsInternationalization(@"暂无数据"))
-                                                                    detailStr:JobsInternationalization(JobsInternationalization(@""))];
+                                                                     titleStr:JobsInternationalization(@"暂无数据")
+                                                                    detailStr:JobsInternationalization(@"")];
             
             _collectionView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _collectionView.ly_emptyView.contentViewOffset = JobsWidth(-180);

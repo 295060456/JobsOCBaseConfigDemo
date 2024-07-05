@@ -355,7 +355,7 @@
         _btnTimerConfigModel.runningValue.bgCor = JobsClearColor;
         _btnTimerConfigModel.runningValue.layerBorderCor = JobsClearColor;
         _btnTimerConfigModel.runningValue.textCor = HEXCOLOR(0xAE8330);
-        _btnTimerConfigModel.runningValue.text = JobsInternationalization(JobsInternationalization(@""));
+        _btnTimerConfigModel.runningValue.text = JobsInternationalization(@"");
         /// 计时器结束【静态值】
         _btnTimerConfigModel.endValue.bgCor = JobsClearColor;
         _btnTimerConfigModel.endValue.layerBorderCor = JobsClearColor;
