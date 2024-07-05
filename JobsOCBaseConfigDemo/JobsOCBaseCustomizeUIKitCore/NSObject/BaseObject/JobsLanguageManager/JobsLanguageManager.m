@@ -12,15 +12,15 @@ static AppLanguage _language = AppLanguageBySys;
         [self setLanguage:JobsGetUserDefaultIntegerForKey(JobsLanguageKey)];
     });
 }
-
+/// 语言包路径
 + (NSBundle *)bundle {
     return bundle;
 }
-
+/// 获取当前语言
 + (AppLanguage)language {
     return _language;
 }
-
+/// 设置当前语言
 + (void)setLanguage:(AppLanguage)language {
     _language = language;
     NSString *languageCode = [self languageCodeForAppLanguage:language];
@@ -34,7 +34,7 @@ static AppLanguage _language = AppLanguageBySys;
     JobsSetUserDefaultKeyWithInteger(JobsLanguageKey, language);
     JobsUserDefaultSynchronize;
 }
-
+/// 枚举和语言字符串的转换
 + (NSString *)languageCodeForAppLanguage:(AppLanguage)language {
     switch (language) {
         case AppLanguageChineseSimplified:
@@ -49,12 +49,11 @@ static AppLanguage _language = AppLanguageBySys;
             return NSLocale.preferredLanguages.firstObject;
     }
 }
-
-+ (NSString *)localStringWithKey:(NSString *)key {
-    return NSLocalizedStringFromTableInBundle(key, 
-                                              nil,
-                                              self.bundle,
-                                              nil);
+/// 通过key取值对应的语言
++ (NSString *)localStringWithKey:(NSString *_Nonnull)key {
+    return [self localizedString:key 
+                       fromTable:nil
+                        inBundle:self.bundle];
 }
 
 @end

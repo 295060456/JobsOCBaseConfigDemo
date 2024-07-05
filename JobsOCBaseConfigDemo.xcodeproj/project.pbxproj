@@ -8428,6 +8428,7 @@
 		C597874E2BE3599600A56125 /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
+				CEB72E5A2C37EE4900E652CA /* JobsLanguageManager */,
 				C59787182BE3599600A56125 /* DeleteSystemUITabBarButton */,
 				C597871C2BE3599600A56125 /* FileFolderHandleTool */,
 				C597871F2BE3599600A56125 /* JobsFormatTime */,
@@ -11542,8 +11543,6 @@
 			children = (
 				840F95DD27736427004979E9 /* AppLanguageVC.h */,
 				840F95DC27736427004979E9 /* AppLanguageVC.m */,
-				CEB72E572C37C7B200E652CA /* JobsLanguageManager.h */,
-				CEB72E582C37C7B200E652CA /* JobsLanguageManager.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -11804,6 +11803,15 @@
 				C52687162BD9257900872F26 /* Base85 */,
 			);
 			path = "Base编码系列";
+			sourceTree = "<group>";
+		};
+		CEB72E5A2C37EE4900E652CA /* JobsLanguageManager */ = {
+			isa = PBXGroup;
+			children = (
+				CEB72E572C37C7B200E652CA /* JobsLanguageManager.h */,
+				CEB72E582C37C7B200E652CA /* JobsLanguageManager.m */,
+			);
+			path = JobsLanguageManager;
 			sourceTree = "<group>";
 		};
 		CED90E932C31954A008D9F68 /* 配置info.plist */ = {

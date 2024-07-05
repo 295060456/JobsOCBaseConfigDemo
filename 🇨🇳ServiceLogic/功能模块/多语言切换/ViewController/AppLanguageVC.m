@@ -169,7 +169,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView hideSeparatorLineAtLast:indexPath
                                   cell:cell];
 }
-/// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
+/// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派 生类
 - (nullable UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{
     BaseTableViewHeaderFooterView *headerView = BaseTableViewHeaderFooterView.jobsInitWithReuseIdentifier;

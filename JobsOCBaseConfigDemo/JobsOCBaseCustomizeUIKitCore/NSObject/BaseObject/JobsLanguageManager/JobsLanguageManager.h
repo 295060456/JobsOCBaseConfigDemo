@@ -22,12 +22,14 @@ FOUNDATION_EXTERN NSString * _Nonnull const JobsLanguageKey;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsLanguageManager : NSObject
-
+/// 获取和设置当前语言
 @property(class,nonatomic,assign)AppLanguage language;
-
+/// 语言包路径
 + (NSBundle *)bundle;
+/// 枚举和语言字符串的转换
 + (NSString *)languageCodeForAppLanguage:(AppLanguage)language;
-+ (NSString *)localStringWithKey:(NSString *)key;
+/// 通过key取值对应的语言
++ (NSString *)localStringWithKey:(NSString *_Nonnull)key;
 
 @end
 
