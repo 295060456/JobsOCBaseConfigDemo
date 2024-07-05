@@ -60,7 +60,7 @@
     # 这个选项主要用于解决某些与动态库相关的兼容性和性能问题。
     use_frameworks! :linkage => :static
     ```
-  * 重新运行pod
+  * 重新运行`pod`
     ```shell
     pod install
     ```
@@ -71,41 +71,31 @@
 * 模拟器文件通常存储在以下路径
 
   ```shell
-  ~/Library/Developer/CoreSimulator/Devices
+  ~/Library/Developer/CoreSimulator/Volumes/
   ```
 
-* 备份iOS模拟器文件夹到桌面`SimulatorBackup`
+* 备份iOS模拟器文件夹到桌面`Volumes`
 
   ```shell
-  cp -R ~/Library/Developer/CoreSimulator/Devices ~/Desktop/SimulatorBackup
+  #!/bin/bash
+  
+  # 创建桌面上的Volumes文件夹（如果不存在）
+  mkdir -p ~/Desktop/Volumes
+  # 使用rsync复制目录并显示进度
+  sudo rsync -avh --progress /Library/Developer/CoreSimulator/Volumes/ ~/Desktop/Volumes/
+  echo "Volumes文件夹已成功复制到桌面。"
   ```
 
 * 还原iOS模拟器（执行完毕后，需要重启xcode）
 
   ```shell
-  cp -R ~/Desktop/SimulatorBackup/* ~/Library/Developer/CoreSimulator/Devices
-  ```
-
-* 列出模拟器
-
-  ```shell
-  xcrun simctl list devices
-  ```
-
-* 导出模拟器配置
-
-  ```shell
-  xcrun simctl list devices > ~/Desktop/simulators_backup.txt
-  ```
-
-* 重新导入模拟器配置
-
-  ```shell
-  xcrun simctl create <name> <device_type> <runtime>
-  ```
-
-  ```shell
-  xcrun simctl create "iPhone 12" "com.apple.CoreSimulator.SimDeviceType.iPhone-12" "com.apple.CoreSimulator.SimRuntime.iOS-14-4"
+  #!/bin/bash
+  
+  # 确保目标目录存在
+  sudo mkdir -p /Library/Developer/CoreSimulator/Volumes
+  # 使用rsync复制目录并显示进度
+  sudo rsync -avh --progress ~/Desktop/Volumes/ /Library/Developer/CoreSimulator/Volumes/
+  echo "桌面的Volumes文件夹内容已成功复制到/Library/Developer/CoreSimulator/Volumes。"
   ```
 
 ### 3、lldb
