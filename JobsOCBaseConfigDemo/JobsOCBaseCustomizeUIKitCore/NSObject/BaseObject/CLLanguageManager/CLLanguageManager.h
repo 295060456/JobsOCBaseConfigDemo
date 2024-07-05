@@ -30,7 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CLLanguageManager : NSObject
 /// 用户自定义使用的语言，当传nil时，等同于resetSystemLanguage
 @property(class,nonatomic,assign)AppLanguage appLanguage;
-
 /// 重置系统语言/跟随手机系统
 +(void)resetSystemLanguage;
 

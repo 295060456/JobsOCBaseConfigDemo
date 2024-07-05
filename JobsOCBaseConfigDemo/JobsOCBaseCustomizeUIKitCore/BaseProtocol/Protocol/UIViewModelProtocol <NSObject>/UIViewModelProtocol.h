@@ -121,6 +121,7 @@ NS_ASSUME_NONNULL_END
 @synthesize isMark = _isMark;\
 @synthesize presentUpHeight = _presentUpHeight;\
 \
+@synthesize appLanguage = _appLanguage;\
 @synthesize cls = _cls;\
 @synthesize viewModel = _viewModel;\
 @synthesize viewModelMutArr = _viewModelMutArr;\
@@ -280,6 +281,7 @@ NS_ASSUME_NONNULL_END
 @dynamic isMark;\
 @dynamic presentUpHeight;\
 \
+@dynamic appLanguage;\
 @dynamic cls;\
 @dynamic viewModel;\
 @dynamic viewModelMutArr;\

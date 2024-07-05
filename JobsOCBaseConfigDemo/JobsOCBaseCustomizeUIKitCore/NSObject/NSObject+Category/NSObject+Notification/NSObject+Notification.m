@@ -46,37 +46,12 @@
     }];
 }
 ///【发通知】设置App语言环境
--(void)setAppLanguageAtIndex:(NSInteger)index
-          byNotificationName:(nullable NSString *)NotificationName{
-    [self setAppLanguageAtAppLanguage:index
-                   byNotificationName:NotificationName];
-    /// 发通知，通知需要更改的地方进行修改
-    JobsPostNotificationOnMainThread(LanguageSwitchNotification,
-                                     @(CLLanguageManager.appLanguage),
-                                     nil);
-}
-///【发通知】设置App语言环境
 -(void)setAppLanguageAtAppLanguage:(AppLanguage)appLanguage
-          byNotificationName:(nullable NSString *)NotificationName{
-    switch (appLanguage) {
-        case AppLanguageBySys:{
-            [CLLanguageManager resetSystemLanguage];
-        }break;
-        case AppLanguageChineseSimplified:{
-            [CLLanguageManager setAppLanguage:AppLanguageChineseSimplified];
-        }break;
-        case AppLanguageChineseTraditional:{
-            [CLLanguageManager setAppLanguage:AppLanguageChineseTraditional];
-        }break;
-        case AppLanguageEnglish:{
-            [CLLanguageManager setAppLanguage:AppLanguageEnglish];
-        }break;
-        case AppLanguageTagalog:{
-            [CLLanguageManager setAppLanguage:AppLanguageTagalog];
-        }break;
-            
-        default:
-            break;
+                byNotificationName:(nullable NSString *)NotificationName{
+    if(appLanguage == AppLanguageBySys){
+        [CLLanguageManager resetSystemLanguage];
+    }else{
+        [CLLanguageManager setAppLanguage:appLanguage];
     }
     /// 发通知，通知需要更改的地方进行修改
     JobsPostNotificationOnMainThread(LanguageSwitchNotification,

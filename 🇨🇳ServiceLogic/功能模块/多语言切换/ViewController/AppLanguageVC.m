@@ -11,7 +11,7 @@
 /// UI
 @property(nonatomic,strong)UITableView *tableView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <NSString *>*dataMutArr;
+@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 
@@ -125,8 +125,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         return;
     }
-    
-    [self setAppLanguageAtIndex:indexPath.row
+    [self setAppLanguageAtAppLanguage:self.dataMutArr[indexPath.row].appLanguage
              byNotificationName:nil];// 设置App语言环境并发送全局通知LanguageSwitchNotification
     [self changeTabBarItemTitle:indexPath];///【App语言国际化】更改UITabBarItem的标题
     /// 刷新本界面
@@ -144,9 +143,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [UITableViewCell cellStyleValue1WithTableView:tableView];
-    UIViewModel *viewModel = UIViewModel.new;
-    viewModel.textModel.text = self.dataMutArr[indexPath.row];
-    [cell richElementsInCellWithModel:viewModel];
+    cell.accessoryType = self.dataMutArr[indexPath.row].appLanguage == CLLanguageManager.appLanguage ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    [cell richElementsInCellWithModel2:self.dataMutArr[indexPath.row]];
     return cell;
 }
 
@@ -227,14 +225,41 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _tableView;
 }
 
--(NSMutableArray<NSString *> *)dataMutArr{
+-(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = NSMutableArray.array;
         
-        [_dataMutArr addObject:JobsInternationalization(@"跟随系统")];
-        [_dataMutArr addObject:JobsInternationalization(@"中文")];
-        [_dataMutArr addObject:JobsInternationalization(@"英文")];
-        [_dataMutArr addObject:JobsInternationalization(@"他加禄语")];
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.appLanguage = AppLanguageBySys;
+            viewModel.text = JobsInternationalization(@"跟随系统");
+            
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.appLanguage = AppLanguageChineseSimplified;
+            viewModel.text = JobsInternationalization(@"中文");
+            
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.appLanguage = AppLanguageEnglish;
+            viewModel.text = JobsInternationalization(@"英文");
+            
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.appLanguage = AppLanguageTagalog;
+            viewModel.text = JobsInternationalization(@"他加禄语");
+            
+            [_dataMutArr addObject:viewModel];
+        }
         
     }return _dataMutArr;
 }

@@ -18,12 +18,17 @@
 
 @class JobsBasePopupView;
 
-typedef enum : NSUInteger {
+#ifndef COMING_STYLE_ENUM_DEFINED
+#define COMING_STYLE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, ComingStyle) {
     ComingStyle_PUSH = 0,
     ComingStyle_PRESENT
-} ComingStyle;
+};
+#endif /* COMING_STYLE_ENUM_DEFINED */
 
-typedef enum : NSUInteger {
+#ifndef VC_LIFE_CYCLE_ENUM_DEFINED
+#define VC_LIFE_CYCLE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, UIViewControllerLifeCycle) {
     VCLifeCycle_loadView = 0,
     VCLifeCycle_viewDidLoad,
     VCLifeCycle_viewWillAppear,
@@ -32,7 +37,8 @@ typedef enum : NSUInteger {
     VCLifeCycle_viewDidDisappear,
     VCLifeCycle_viewWillLayoutSubviews,
     VCLifeCycle_viewDidLayoutSubviews
-} UIViewControllerLifeCycle;
+};
+#endif /* VC_LIFE_CYCLE_ENUM_DEFINED */
 
 NS_ASSUME_NONNULL_BEGIN
 

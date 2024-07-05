@@ -25,7 +25,6 @@
 +(AppLanguage)appLanguage{
     return GetUserDefaultIntegerForKey(CLUserLanguageKey);
 }
-
 /// 重置系统语言/跟随手机系统
 +(void)resetSystemLanguage{
     DeleUserDefaultWithKey(CLUserLanguageKey);

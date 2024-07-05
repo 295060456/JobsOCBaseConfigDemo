@@ -136,7 +136,7 @@ static inline BOOL isiPhoneX_series(void) {
         iPhoneXSeries = window.safeAreaInsets.top > 20;
     }return iPhoneXSeries;
 }
-#pragma mark —— 获取 AppDelegate 和 sceneDelegate
+#pragma mark —— 获取 AppDelegate 和 SceneDelegate
 /**
     1、该方法只能获取系统默认的AppDelegate；
     2、如果要获取自定义的appDelegate，则需要：

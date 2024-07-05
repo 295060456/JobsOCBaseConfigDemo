@@ -2771,8 +2771,6 @@
 		C5C56C4D2C233C43009F2290 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C5C56C4F2C233C4D009F2290 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		C5C56C512C233C55009F2290 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
-		C5CC22B82C31E75D00A9B626 /* LanguageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageVC.h; sourceTree = "<group>"; };
-		C5CC22B92C31E75D00A9B626 /* LanguageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LanguageVC.m; sourceTree = "<group>"; };
 		C5D260062C220F0A005AD2DD /* AppIconSwitchingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppIconSwitchingVC.h; sourceTree = "<group>"; };
 		C5D260072C220F0A005AD2DD /* AppIconSwitchingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppIconSwitchingVC.m; sourceTree = "<group>"; };
 		C5D46FFA284E29A90090D20F /* JobsGetiOSNewestVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsGetiOSNewestVersionModel.h; sourceTree = "<group>"; };
@@ -11567,8 +11565,6 @@
 			children = (
 				840F95DD27736427004979E9 /* AppLanguageVC.h */,
 				840F95DC27736427004979E9 /* AppLanguageVC.m */,
-				C5CC22B82C31E75D00A9B626 /* LanguageVC.h */,
-				C5CC22B92C31E75D00A9B626 /* LanguageVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

@@ -346,6 +346,7 @@ BaseProtocol <|-- AppToolsProtocol
 class UIViewModelOthersProtocol {
     +-(BOOL)jobsVisible;
     +-(void)setJobsVisible:(BOOL)jobsVisible;
+    +@property(nonatomic,assign)AppLanguage appLanguage;
     +@property(nonatomic,strong,nullable)Class __block cls;
     +@property(nonatomic,strong,nullable)UIViewModel __block *viewModel;
     +@property(nonatomic,strong,nullable)NSMutableArray <UIViewModel *> __block *viewModelMutArr;
@@ -656,6 +657,53 @@ NSObject <|-- BaseProtocol
   * `HQTextField`
   * `JobsMagicTextField`
   * `ZYTextField`
+
+### 14、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h)
+* [**寻找当前控制器 **](#寻找当前控制器 )
+
+* 获取**window**
+
+  * 获取 iOS 13 之前的 **window**
+
+    ```objective-c
+    static inline UIWindow *_Nullable jobsGetMainWindowBefore13(void);
+    ```
+
+  * 获取 iOS 13 之后的 **window**
+
+    ```objective-c
+    static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void);
+    ```
+
+  * 获取全系统是的 **window**
+
+    ```objective-c
+    static inline UIWindow *_Nullable jobsGetMainWindow(void);
+    ```
+
+  * 获取一个有Size的 **window**
+
+    ```objective-c
+    static inline UIWindow *_Nullable jobsGetMainWindowWithSize(void);
+    ```
+
+  * 获取 **keyWindowScene** iOS13版本后可用
+
+    ```objective-c
+    static inline UIWindowScene *_Nullable jobsGetkeyWindowScene(void);
+    ```
+
+* 寻找**AppDelegate**
+
+  ```
+  getSysAppDelegate();
+  ```
+
+* 寻找**SceneDelegate**
+
+  ```
+  getSysSceneDelegate();
+  ```
 
 ## 五、代码讲解
 
@@ -1221,7 +1269,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 ####  9.5、防止过多的`presented`模态推出`UIViewController`
   * 关注实现类：[**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)
 
-#### 9.6、<font color=red>**寻找当前控制器**</font>
+#### 9.6、<font color=red id=寻找当前控制器>**寻找当前控制器**</font>
 
 * 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
 

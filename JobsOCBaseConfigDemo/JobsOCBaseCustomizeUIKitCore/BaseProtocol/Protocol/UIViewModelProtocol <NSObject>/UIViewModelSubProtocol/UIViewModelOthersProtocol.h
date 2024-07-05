@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UIViewModelOthersProtocol <NSObject>
 @optional
 #pragma mark —— 其他
+@property(nonatomic,assign)AppLanguage appLanguage;
 @property(nonatomic,strong,nullable)Class __block cls;/// 绑定的class
 @property(nonatomic,strong,nullable)UIViewModel __block *viewModel;
 @property(nonatomic,strong,nullable)NSMutableArray <UIViewModel *> __block *viewModelMutArr;
@@ -51,6 +52,7 @@ NS_ASSUME_NONNULL_END
 #ifndef UIViewModelOthersProtocol_synthesize
 #define UIViewModelOthersProtocol_synthesize \
 \
+@synthesize appLanguage = _appLanguage;\
 @synthesize cls = _cls;\
 @synthesize viewModel = _viewModel;\
 @synthesize viewModelMutArr = _viewModelMutArr;\
@@ -77,6 +79,7 @@ NS_ASSUME_NONNULL_END
 #ifndef UIViewModelOthersProtocol_dynamic
 #define UIViewModelOthersProtocol_dynamic \
 \
+@dynamic appLanguage;\
 @dynamic cls;\
 @dynamic viewModel;\
 @dynamic viewModelMutArr;\
