@@ -152,7 +152,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [UITableViewCell cellStyleValue1WithTableView:tableView];
-    cell.accessoryType = self.dataMutArr[indexPath.row].appLanguage == JobsLanguageManager.currentAppLanguage ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    cell.accessoryType = self.dataMutArr[indexPath.row].appLanguage == JobsLanguageManager.language ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     [cell richElementsInCellWithModel2:self.dataMutArr[indexPath.row]];
     return cell;
 }

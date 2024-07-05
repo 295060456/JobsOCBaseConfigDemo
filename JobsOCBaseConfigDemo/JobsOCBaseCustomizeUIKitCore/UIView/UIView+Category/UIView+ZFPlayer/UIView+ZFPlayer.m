@@ -11,7 +11,7 @@
 #pragma mark —— 一些公有方法
 -(void)enterBackgroundStopPlayer{
     @jobs_weakify(self)
-    [NSNotificationCenter.defaultCenter addObserverForName:UBLEnterBackgroundStopPlayer
+    [NSNotificationCenter.defaultCenter addObserverForName:JobsEnterBackgroundStopPlayer
                                                     object:nil
                                                      queue:nil
                                                 usingBlock:^(NSNotification * _Nonnull notification) {

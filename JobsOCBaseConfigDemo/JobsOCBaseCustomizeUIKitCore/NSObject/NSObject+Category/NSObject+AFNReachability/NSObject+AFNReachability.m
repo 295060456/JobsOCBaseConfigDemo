@@ -21,7 +21,7 @@
     @weakify(networkReachabilityManager)
     [networkReachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         if (statusBlock) statusBlock(status);
-        [NSNotificationCenter.defaultCenter postNotificationName:MKAFNReachabilityStatus
+        [NSNotificationCenter.defaultCenter postNotificationName:JobsAFNReachabilityStatus
                                                           object:@(status)];
         @strongify(networkReachabilityManager)
         [networkReachabilityManager startMonitoring];

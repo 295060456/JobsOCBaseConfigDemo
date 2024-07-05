@@ -18,14 +18,14 @@ typedef NS_ENUM(NSInteger, AppLanguage) {
     AppLanguageTagalog            /// tl：菲律宾他加禄语
 };
 #endif/* APP_LANGUAGE_ENUM_DEFINED */
-
+FOUNDATION_EXTERN NSString * _Nonnull const JobsLanguageKey;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsLanguageManager : NSObject
 
+@property(class,nonatomic,assign)AppLanguage language;
+
 + (NSBundle *)bundle;
-+ (void)setLanguage:(AppLanguage)language;
-+ (AppLanguage)currentAppLanguage;
 + (NSString *)languageCodeForAppLanguage:(AppLanguage)language;
 + (NSString *)localStringWithKey:(NSString *)key;
 

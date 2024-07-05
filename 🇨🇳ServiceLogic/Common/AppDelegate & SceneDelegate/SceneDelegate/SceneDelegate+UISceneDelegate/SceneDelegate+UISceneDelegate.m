@@ -45,7 +45,7 @@ willConnectToSession:(UISceneSession *)session
 - (void)sceneDidEnterBackground:(UIScene *)scene {
     NSLog(@"---applicationDidEnterBackground----"); //进入后台
     [(AppDelegate *)UIApplication.sharedApplication.delegate saveContext];
-    [NSNotificationCenter.defaultCenter postNotificationName:UBLEnterBackgroundStopPlayer
+    [NSNotificationCenter.defaultCenter postNotificationName:JobsEnterBackgroundStopPlayer
                                                       object:nil];
 }
 

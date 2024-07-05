@@ -24,7 +24,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidEnterBackground:(UIApplication *)application{
     NSLog(@"---applicationDidEnterBackground----");//进入后台
-    [NSNotificationCenter.defaultCenter postNotificationName:UBLEnterBackgroundStopPlayer object:nil];
+    [NSNotificationCenter.defaultCenter postNotificationName:JobsEnterBackgroundStopPlayer object:nil];
 }
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidBecomeActive:(UIApplication *)application{

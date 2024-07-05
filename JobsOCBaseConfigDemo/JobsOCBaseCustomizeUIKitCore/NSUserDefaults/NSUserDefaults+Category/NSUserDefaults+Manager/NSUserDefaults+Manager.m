@@ -22,18 +22,16 @@
                 NSLog(@"归档失败: %@", error.localizedDescription);
             } else {
                 // 步骤2: 将归档数据存储到NSUserDefaults
-                [NSUserDefaults.standardUserDefaults setObject:archivedData
-                                                        forKey:userDefaultModel.key];
-                [NSUserDefaults.standardUserDefaults synchronize];
+                JobsSetUserDefaultKeyWithObject(userDefaultModel.key, archivedData);
+                JobsUserDefaultSynchronize;
                 NSLog(@"%@",NSString.userDefaultsDir);
                 return;
             }
         }
         
         if (userDefaultModel.booLValue) {
-            [NSUserDefaults.standardUserDefaults setBool:userDefaultModel.booLValue
-                                                  forKey:userDefaultModel.key];
-            [NSUserDefaults.standardUserDefaults synchronize];
+            JobsSetUserBoolKeyWithBool(userDefaultModel.key, userDefaultModel.booLValue);
+            JobsUserDefaultSynchronize;
             NSLog(@"%@",NSString.userDefaultsDir);
             return;
         }
@@ -49,8 +47,8 @@
 /// 删除数据
 +(void)deleteWithKey:(NSString *)key{
     if (![NSString isNullString:key]){
-        [NSUserDefaults.standardUserDefaults removeObjectForKey:key];
-        [NSUserDefaults.standardUserDefaults synchronize];
+        JobsDeleUserDefaultWithKey(key);
+        JobsUserDefaultSynchronize;
     }
 }
 

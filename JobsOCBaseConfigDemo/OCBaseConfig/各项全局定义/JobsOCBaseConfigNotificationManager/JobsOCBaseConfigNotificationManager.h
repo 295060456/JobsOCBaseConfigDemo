@@ -6,23 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#ifndef LanguageSwitchNotification_h
-#define LanguageSwitchNotification_h
+/// 此文件定义工程全局的通知字符串
+FOUNDATION_EXTERN NSString * _Nonnull const JobsAFNReachabilityStatus;
+FOUNDATION_EXTERN NSString * _Nonnull const JobsEnterBackgroundStopPlayer;
 FOUNDATION_EXTERN NSString * _Nonnull const LanguageSwitchNotification;
-#endif /* LanguageSwitchNotification_h */
-
-#ifndef UBLEnterBackgroundStopPlayer_h
-#define UBLEnterBackgroundStopPlayer_h
-FOUNDATION_EXTERN NSString * _Nonnull const UBLEnterBackgroundStopPlayer;
-#endif /* UBLEnterBackgroundStopPlayer_h */
-
-#ifndef MKAFNReachabilityStatus_h
-#define MKAFNReachabilityStatus_h
-FOUNDATION_EXTERN NSString * _Nonnull const MKAFNReachabilityStatus;
-#endif /* MKAFNReachabilityStatus_h */
-
-#ifndef CLUserLanguageKey_h
-#define CLUserLanguageKey_h
-FOUNDATION_EXTERN NSString * _Nonnull const CLUserLanguageKey;
-#endif /* CLUserLanguageKey_h */
