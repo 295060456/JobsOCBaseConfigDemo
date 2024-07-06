@@ -48,6 +48,11 @@ static  SourceType _sourceType = SourceTypeLaunchImage;
 
 -(void)scene:(UIWindowScene *)scene{
     _window.windowScene = scene;
+//    if (@available(iOS 13.0, *)) {
+//        self.window = [[UIWindow alloc] initWithWindowScene:scene];
+//    } else {
+//        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    }
 }
 
 +(XHLaunchAd *)setWaitDataDuration:(NSInteger )waitDataDuration{
