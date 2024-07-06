@@ -32,6 +32,7 @@ jobs:
       run: |
         npx mmdc -i README.md -o diagram.png
         ls -la # 列出当前目录中的文件
+        ls -la diagram.png # 检查 diagram.png 文件是否存在
 
     - name: Show current directory structure
       run: ls -R
