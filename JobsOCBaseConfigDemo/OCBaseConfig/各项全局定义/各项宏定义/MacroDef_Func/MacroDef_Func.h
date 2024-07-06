@@ -96,7 +96,7 @@ static inline UIWindow *_Nullable jobsGetMainWindowWithSize(void){
     window = jobsGetMainWindow();
     return CGSizeEqualToSize(CGSizeZero, window.size) ? jobsGetMainWindowBefore13() : window;
 }
-/// 获取 keyWindowScene iOS13版本后可用
+/// 获取 keyWindowScene iOS 13版本后可用
 static inline UIWindowScene *_Nullable jobsGetkeyWindowScene(void) {
     if(@available(iOS 13.0, *)){
         UIWindowScene *keyWindowScene = (UIWindowScene *)UIApplication.sharedApplication.connectedScenes.allObjects.firstObject;

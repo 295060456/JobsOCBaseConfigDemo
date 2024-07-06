@@ -12,7 +12,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunguarded-availability-new"
 
-AppDelegate *appDelegate;
+AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会崩溃
 @interface AppDelegate ()
 
 @end

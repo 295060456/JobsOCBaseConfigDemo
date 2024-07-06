@@ -108,17 +108,17 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 }
 /// JobsTabbarVC 关闭手势
 -(void)tabBarClosePan{
-    AppDelegate *appDelegate = getSysAppDelegate();
+    AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
     [appDelegate.tabBarVC closePan];
 }
 /// JobsTabbarVC 打开手势
 -(void)tabBarOpenPan{
-    AppDelegate *appDelegate = getSysAppDelegate();
+    AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
     [appDelegate.tabBarVC openPan];
 }
 /// 获取Tabbar管理的，不含导航的根控制器
 -(NSMutableArray <UIViewController *>*)appRootVC{
-    AppDelegate *appDelegate = getSysAppDelegate();
+    AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
     return appDelegate.getAppRootVC;
 }
 /// 当前对象是否是 Tabbar管理的，不含导航的根控制器

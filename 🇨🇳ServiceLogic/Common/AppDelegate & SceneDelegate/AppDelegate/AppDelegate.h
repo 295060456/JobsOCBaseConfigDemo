@@ -14,7 +14,7 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunguarded-availability-new"
-// AppDelegate *appDelegate = getSysAppDelegate();
+// AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
 @interface AppDelegate : UIResponder
 <
 UIApplicationDelegate

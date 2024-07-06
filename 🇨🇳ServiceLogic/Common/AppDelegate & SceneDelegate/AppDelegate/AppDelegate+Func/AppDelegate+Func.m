@@ -15,7 +15,7 @@
     SceneDelegate *sceneDelegate = getSysSceneDelegate();
     [ad scene:sceneDelegate.windowScene];
     
-//    AppDelegate *appDelegate = getSysAppDelegate();
+//    AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
 //    [appDelegate guide];// 未完成
 }
 

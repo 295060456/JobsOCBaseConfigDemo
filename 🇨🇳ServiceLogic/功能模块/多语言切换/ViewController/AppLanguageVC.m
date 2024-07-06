@@ -10,7 +10,7 @@
 @interface AppLanguageVC ()
 /// UI
 @property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)UIImageView *imageView;
+//@property(nonatomic,strong)UIImageView *imageView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -169,15 +169,28 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView hideSeparatorLineAtLast:indexPath
                                   cell:cell];
 }
+
+-(UIView *)makeViewOnTableViewHeaderFooterView:(UITableViewHeaderFooterView *)headerFooterView{
+    UIImageView *imageView = UIImageView.new;
+    imageView.backgroundColor = JobsYellowColor;
+    [headerFooterView addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(headerFooterView);
+        make.size.mas_equalTo(CGSizeMake([BaseTableViewHeaderFooterView heightForHeaderInSection:nil],
+                                         [BaseTableViewHeaderFooterView heightForHeaderInSection:nil]));
+    }];return imageView;
+}
+
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派 生类
 - (nullable UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{
     BaseTableViewHeaderFooterView *headerView = BaseTableViewHeaderFooterView.jobsInitWithReuseIdentifier;
     headerView.headerFooterViewStyle = JobsHeaderViewStyle;
     headerView.section = section;
-    /// headerView.backgroundColor 和  headerView.contentView.backgroundColor 均是无效操作
-    /// 只有 headerView.backgroundView.backgroundColor 是有效操作
-    headerView.backgroundView.backgroundColor = JobsRedColor;
+    /// headerView.backgroundColor 和  headerView.contentView.backgroundColor 均是无效操作❌
+    /// 只有 headerView.backgroundView.backgroundColor 是有效操作✅
+    headerView.backgroundView.backgroundColor = JobsCyanColor;
+    [self makeViewOnTableViewHeaderFooterView:headerView].alpha = 1;
     [headerView richElementsInViewWithModel:UIViewModel.new];
 //        @jobs_weakify(self)
     [headerView actionObjectBlock:^(id data) {
@@ -233,12 +246,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             make.left.right.bottom.equalTo(self.view);
         }];
     }return _tableView;
-}
-
--(UIImageView *)imageView{
-    if (!_imageView) {
-        _imageView = UIImageView.new;
-    }return _imageView;
 }
 
 -(NSMutableArray<UIViewModel *> *)dataMutArr{

@@ -190,6 +190,12 @@ Current targets:
 
 * 统一全局的Block定义，减少冗余代码
 
+* ```ruby
+  pod 'JobsBlock' # https://github.com/295060456/JobsBlock
+  ```
+
+  ![image-20240706110034202](./assets/image-20240706110034202.png)
+
 ### 8、[**<font color=red>BaseProtocol 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md)
 
 ```mermaid
@@ -525,6 +531,7 @@ class BaseViewProtocol {
     +-(void)pullToRefresh;
     +-(void)loadMoreRefresh;
     +-(UIViewModel *_Nullable)getViewModel;
+    +-(UIView *_Nullable)makeViewOnTableViewHeaderFooterView:(UITableViewHeaderFooterView *)headerFooterView;
     +@property(nonatomic,strong,nullable)JobsReturnIDByIDBlock jobsBackBlock;
     +@property(nonatomic,assign)UIRectCorner layoutSubviewsRectCorner;
     +@property(nonatomic,assign)CGSize layoutSubviewsRectCornerSize;
@@ -653,13 +660,55 @@ NSObject <|-- BaseProtocol
 
 * 获取**window**
 
-  * 获取 iOS 13 之前的 **window**
+  * 获取<font color=blue>**iOS 13**</font>之前的 **window**
+
+    ```objective-c
+    static inline UIWindow *_Nullable jobsGetMainWindowBefore13(void){
+        UIWindow *window = nil;
+        /// 使用UIApplication的windows属性来获取当前窗口：
+        /// 这种方式获取窗口的方式在iOS 13之前是常用的做法
+        if (UIApplication.sharedApplication.delegate.window) {
+            window = UIApplication.sharedApplication.delegate.window;
+        }
+        
+        if(!window){
+            /// 这种获取窗口的方式在iOS 2.0到iOS 13.0版本之间都是可用的
+            SuppressWdeprecatedDeclarationsWarning(
+                if (UIApplication.sharedApplication.keyWindow) {
+                window = UIApplication.sharedApplication.keyWindow;
+            });
+        }return window;
+    }
+    ```
 
     ```objective-c
     static inline UIWindow *_Nullable jobsGetMainWindowBefore13(void);
     ```
 
-  * 获取 iOS 13 之后的 **window**
+  * 获取<font color=blue>**iOS 13**</font>之后的 **window**
+
+    ```objective-c
+    static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
+        UIWindow *mainWindow = nil;
+        if (@available(iOS 13.0, *)) {
+            for (UIWindowScene* windowScene in UIApplication.sharedApplication.connectedScenes) {
+                if (windowScene.activationState == UISceneActivationStateForegroundActive) {
+                    for (UIWindow *window in windowScene.windows) {
+                        if (window.isKeyWindow) {
+                            mainWindow = window;
+                            break;
+                        }
+                    }
+                }
+                if (mainWindow) {
+                    break; // 如果找到主窗口，退出循环
+                }else{
+                    mainWindow = windowScene.windows.firstObject;
+                }
+            }
+        }return mainWindow;
+    }
+    ```
 
     ```objective-c
     static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void);
@@ -668,36 +717,81 @@ NSObject <|-- BaseProtocol
   * 获取全系统是的 **window**
 
     ```objective-c
+    static inline UIWindow *_Nullable jobsGetMainWindow(void){
+        return UIDevice.currentDevice.systemVersion.floatValue >= 13.0 ? jobsGetMainWindowAfter13() : jobsGetMainWindowBefore13();
+    }
+    ```
+
+    ```objective-c
     static inline UIWindow *_Nullable jobsGetMainWindow(void);
     ```
 
   * 获取一个有Size的 **window**
 
     ```objective-c
+    static inline UIWindow *_Nullable jobsGetMainWindowWithSize(void){
+        UIWindow *window = nil;
+        window = jobsGetMainWindow();
+        return CGSizeEqualToSize(CGSizeZero, window.size) ? jobsGetMainWindowBefore13() : window;
+    }
+    ```
+
+    ```objective-c
     static inline UIWindow *_Nullable jobsGetMainWindowWithSize(void);
     ```
 
-  * 获取 **keyWindowScene** iOS13版本后可用
+  * 获取 **keyWindowScene**<font color=blue>**iOS 13**</font>版本后可用
 
+    ```objective-c
+    static inline UIWindowScene *_Nullable jobsGetkeyWindowScene(void) {
+        if(@available(iOS 13.0, *)){
+            UIWindowScene *keyWindowScene = (UIWindowScene *)UIApplication.sharedApplication.connectedScenes.allObjects.firstObject;
+            return keyWindowScene;
+        }else return nil;
+    }
+    ```
+    
     ```objective-c
     static inline UIWindowScene *_Nullable jobsGetkeyWindowScene(void);
     ```
 
 * 寻找**AppDelegate**
 
-  ```
-  getSysAppDelegate();
-  ```
+  * ```objective-c
+    static inline id<UIApplicationDelegate> _Nullable getSysAppDelegate(void){
+        return UIApplication.sharedApplication.delegate;
+    }
+    ```
 
-  ```c
-  extern AppDelegate *appDelegate;
-  ```
+    ```objective-c
+    getSysAppDelegate();
+    ```
+
+  * ```objective-c
+    AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会崩溃
+    @interface AppDelegate ()
+    
+    @end
+    ```
+
+    ```c
+    extern AppDelegate *appDelegate;
+    ```
 
 * 寻找**SceneDelegate**
 
-  ```
-  getSysSceneDelegate();
-  ```
+  * ```objective-c
+    static inline id _Nullable getSysSceneDelegate(void){
+        id sceneDelegate = nil;
+        if (@available(iOS 13.0, *)) {
+            sceneDelegate = UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
+        }return sceneDelegate;
+    }
+    ```
+  
+    ```objective-c
+    getSysSceneDelegate();
+    ```
   
 * 读取用户信息
 
@@ -735,11 +829,11 @@ NSObject <|-- BaseProtocol
 * 苹果在后续的Api中推出了`UIButtonConfiguration` 来设置UIButton，但是这个新Api会存在几大问题
 
   * 大多数开发者对这个Api不熟悉
-  * 用了新Api以后，老的Api的一些调用方式可能不会起效果。如果还是按照以前的方式创建，你会发现UIButton不正常出现
-  * 大多数时候，我们会涉及到富文本。而富文本和普通的文本之间对于控件有优先级。富文本的优先级最高
+  * <font color=red>**用了新Api以后，老的Api的一些调用方式可能不会起效果**</font>。如果还是按照以前的方式创建，你会发现UIButton不正常出现
+  * 大多数时候，我们会涉及到富文本。而富文本和普通的文本之间对于控件有优先级。<font color=blue>**富文本的优先级最高**</font>
   * 因为要做兼容处理，但是`UIButtonConfiguration` 的设置环节非常繁琐
   
-* 所以，为了应对以上的问题，可以使用快捷键（init.JobsBtn）调取代码块来设置 UIButton。[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
+* 所以，为了应对以上的问题，可以使用快捷键（`init.JobsBtn`）调取代码块来设置 UIButton。[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 
   * 得出的 UIButton 是没有约束的，需要自己在外界加
   * 关注实现类：[<font color=blue>**`@implementation UIButton (UI)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIButton/UIButton+Category/UIButton+UI)
@@ -1518,7 +1612,72 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 ### 18、富文本
 
-* 
+* 富文本的本质是告诉系统，某段文字的表达方式
+
+* 运行机制：
+
+  * 将根数据源：`RichTextConfig` 赋值后，装载到可变数组里面
+
+  * 关注实现类：[**@interface NSObject (RichText)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+RichText)。<font color=red>**最终输出`NSMutableAttributedString *`供系统解析使用**</font>
+
+    ```objective-c
+    /// 整合输出富文本，作用于lable.attributedText
+    /// @param richTextDataConfigMutArr 富文本的配置集合,对该纯文本字符串的释义
+    /// @param paragraphStyle 段落样式
+    -(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <RichTextConfig *>*_Nonnull)richTextDataConfigMutArr
+                                                         paragraphStyle:(NSMutableParagraphStyle *_Nullable)paragraphStyle;
+    /// 利用 NSArray <RichTextConfig *>* 形成富文本
+    /// @param richTextDataConfigMutArr 富文本的配置集合,对该纯文本字符串的释义
+    -(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <RichTextConfig *>*_Nonnull)richTextDataConfigMutArr;
+    ```
+
+* 调用示例
+
+  ```objective-c
+  @property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richLabelDataStringsMutArr;
+  @property(nonatomic,strong,nullable)NSAttributedString __block *attributedText API_AVAILABLE(ios(6.0));
+  ```
+
+  ```objective-c
+  #pragma mark —— lazyLoad
+  -(NSMutableArray<RichTextConfig *> *)richLabelDataStringsMutArr{
+      if (!_richLabelDataStringsMutArr) {
+          _richLabelDataStringsMutArr = NSMutableArray.array;
+          
+          RichTextConfig *config_01 = RichTextConfig.new;
+          config_01.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
+          config_01.textCor = JobsBlueColor;
+          config_01.targetString = @"编译器自动管理内存地址,\n";
+          config_01.textBgCor = UIColor.brownColor;
+          config_01.paragraphStyle = self.paragtaphStyle;
+          
+          RichTextConfig *config_02 = RichTextConfig.new;
+          config_02.font = [UIFont systemFontOfSize:JobsWidth(13) weight:UIFontWeightMedium];
+          config_02.textCor = JobsWhiteColor;
+          config_02.targetString = @"让程序员更加专注于\n";
+          config_02.textBgCor = UIColor.brownColor;
+          config_02.paragraphStyle = self.paragtaphStyle;
+          
+          RichTextConfig *config_03 = RichTextConfig.new;
+          config_03.font = [UIFont systemFontOfSize:JobsWidth(14) weight:UIFontWeightSemibold];
+          config_03.textCor = JobsGreenColor;
+          config_03.targetString = @"APP的业务。";
+          config_03.textBgCor = UIColor.brownColor;
+          config_03.paragraphStyle = self.paragtaphStyle;
+          
+          [_richLabelDataStringsMutArr addObject:config_01];
+          [_richLabelDataStringsMutArr addObject:config_02];
+          [_richLabelDataStringsMutArr addObject:config_03];
+          
+      }return _richLabelDataStringsMutArr;
+  }
+  
+  -(NSAttributedString *)attributedText{
+      if (!_attributedText) {
+          _attributedText = [self richTextWithDataConfigMutArr:self.richLabelDataStringsMutArr];
+      }return _attributedText;
+  }
+  ```
 
 ### 19、字符串定义
 
@@ -1559,6 +1718,62 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 
 ### 21、系统相机相册调取
+
+* 借助第三方`HXPhotoPicker`
+
+  ```ruby
+  pod 'HXPhotoPicker' # 相册选择 https://github.com/SilenceLove/HXPhotoPicker
+  ```
+
+  ```objective-c
+  #if __has_include(<HXPhotoPicker/HXPhotoPicker.h>)
+  #import <HXPhotoPicker/HXPhotoPicker.h>
+  #else
+  #import "HXPhotoPicker.h"
+  #endif
+  ```
+
+* 对第三方`HXPhotoPicker`数据层的二次封装，方便调用
+
+  * 关注实现类：[**@interface HXPhotoPickerModel : NSObject**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BHXPhotoPicker)
+  * 关注实现类：[**@interface NSObject (HXPhotoPicker)<HXCustomNavigationControllerDelegate>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BHXPhotoPicker)
+
+* 调取系统相册
+
+  ```objective-c
+  [_photoAlbumBtn jobsBtnClickEventBlock:^id(id data) {
+      /// 调取系统相册
+      @jobs_weakify(self)
+      [self invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
+          self.photoManager = data.photoManager;
+          [data.photoList hx_requestImageWithOriginal:NO
+                                           completion:^(NSArray<UIImage *> * _Nullable imageArray,
+                                                        NSArray<HXPhotoModel *> * _Nullable errorArray) {
+              @jobs_strongify(self)
+              self.photosImageMutArr = [NSMutableArray arrayWithArray:imageArray];
+              self.imageView.image = (UIImage *)self.photosImageMutArr.lastObject;/// 永远值显示最后选择的图
+          }];
+      } failBlock:^(HXPhotoPickerModel *data) {
+          @jobs_strongify(self)
+      }];return nil;
+  }];
+  ```
+
+* 调取系统相机
+
+  ```objective-c
+  @jobs_weakify(self)
+  [_cameraBtn jobsBtnClickEventBlock:^id(id data) {
+      /// 调取系统相机
+      [self invokeSysCameraSuccessBlock:^(HXPhotoPickerModel *data) {
+          @jobs_strongify(self)
+          self.imageView.image = data.photoModel.previewPhoto;
+      } failBlock:^(HXPhotoPickerModel *data) {
+          @jobs_strongify(self)
+      }];
+      return nil;
+  }];
+  ```
 
 
 ### Test
