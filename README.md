@@ -188,13 +188,18 @@ Current targets:
 
 ### 7、[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
 
-* 统一全局的Block定义，减少冗余代码
+* 背景意义：统一全局的Block定义，减少冗余代码
 
 * ```ruby
   pod 'JobsBlock' # https://github.com/295060456/JobsBlock
   ```
 
   ![image-20240706110034202](./assets/image-20240706110034202.png)
+
+* <font color=red>因为**CDN**同步的原因，有些第三方pod并不能在[**cocoapods.org**](https://cocoapods.org/)被成功的搜索到，这就导致如果`pod install`拉取不到代码，可能需要切换镜像，然后再进行操作。建议运行项目根目录下的2个脚本文件，自动获取</font>
+
+  * `【MacOS】Pod_Install（适用于IOS工程根目录）.command`
+  * `【MacOS】Pod_Update（适用于IOS工程根目录）.command`
 
 ### 8、[**<font color=red>BaseProtocol 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md)
 
