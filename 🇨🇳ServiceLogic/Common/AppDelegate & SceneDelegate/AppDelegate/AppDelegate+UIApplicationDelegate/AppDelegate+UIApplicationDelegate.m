@@ -6,8 +6,6 @@
 //
 
 #import "AppDelegate+UIApplicationDelegate.h"
-#import "AppDelegate+XHLaunchAdDelegate.h"
-#import "AppDelegate+Func.h"
 
 @implementation AppDelegate (UIApplicationDelegate)
 

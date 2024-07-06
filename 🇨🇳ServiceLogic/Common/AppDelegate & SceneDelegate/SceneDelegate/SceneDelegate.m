@@ -23,22 +23,15 @@ SceneDelegate *sceneDelegate;
     if (self = [super init]) {
         sceneDelegate = self;
         @jobs_weakify(self)
-        
-//        selectorBlocks(^id _Nullable(id  _Nullable weakSelf, SEL  _Nullable selector, id  _Nullable arg) {
-//            <#code#>
-//        }, NSString * _Nullable selectorName, id  _Nullable target)
-        
-        [NSNotificationCenter.defaultCenter addObserver:self
-                                               selector:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                                     id _Nullable arg) {
+        JobsAddNotification(self,
+                        selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                  id _Nullable arg){
             NSNotification *notification = (NSNotification *)arg;
             @jobs_strongify(self)
+            NSLog(@"通知传递过来的 = %@",notification.object);
             self.windowScene = notification.object;
             return nil;
-        }, nil,self)
-                                                   name:UISceneWillConnectNotification
-                                                 object:nil];
-        
+        },nil, self),UISceneWillConnectNotification,nil);
     }return self;
 }
 #pragma mark —— UIWindowSceneDelegate
@@ -48,6 +41,15 @@ willConnectToSession:(UISceneSession *)session
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+//    if ([scene isKindOfClass:[UIWindowScene class]]) {
+//            UIWindowScene *windowScene = (UIWindowScene *)scene;
+//            self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
+//            self.window.frame = windowScene.coordinateSpace.bounds;
+//            
+//            AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
+//            self.window.rootViewController = appDelegate.tabBarVC;
+//            [self.window makeKeyAndVisible];
+//    }
 }
 
 - (void)sceneDidDisconnect:(UIScene *)scene {
@@ -88,6 +90,12 @@ willConnectToSession:(UISceneSession *)session
     [_window makeKeyAndVisible];
     return _window;
 }
+//-(UIWindow *)window{
+//    if (!_window) {
+//        _window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+//    }
+//    return _window;
+//}
 
 @end
 

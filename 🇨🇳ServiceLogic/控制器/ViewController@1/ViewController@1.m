@@ -464,14 +464,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsLaunchVC")
-                                                           attributeSubTitle:JobsInternationalization(@"App启动广告模块")];
-            viewModel.cls = JobsLaunchVC.class;
-            viewModel.requestParams = @(JobsLaunchBgType_video);
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsDropDownListVC")
                                                            attributeSubTitle:JobsInternationalization(@"👇🏻下拉列表")];
             viewModel.cls = JobsDropDownListVC.class;

@@ -11,12 +11,7 @@
 -(void)reachabilityChanged:(NSNotification *)notify{}
 #pragma mark —— 启动调用功能
 +(void)launchFunc1{
-    XHLaunchAd *ad = [XHLaunchAd setWaitDataDuration:10];
-    SceneDelegate *sceneDelegate = getSysSceneDelegate();
-    [ad scene:sceneDelegate.windowScene];
-    
-//    AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
-//    [appDelegate guide];// 未完成
+
 }
 
 -(void)launchFunc2{
@@ -27,13 +22,48 @@
      */
     [FileFolderHandleTool banSysDocSynchronization];
 #ifdef DEBUG
-    [UIFont getAvailableFont];//打印全员字体
+    [UIFont getAvailableFont];/// 打印全员字体
 #endif
-    [self makeTABAnimatedConfigure];
-    [self makeIQKeyboardManagerConfigure];
-    [self makeGKNavigationBarConfigure];//自定义导航栏
-    [self makeXHLaunchAdConfigure];//开屏广告
-//    [self makeReachabilityConfigure];//网络环境监测
+    [self makeTABAnimatedConfig];
+    [self makeIQKeyboardManagerConfig];
+    [self makeGKNavigationBarConfig];/// 自定义导航栏
+    [self makeJobsLaunchAdConfig];/// 开屏广告
+//    [self makeReachabilityConfig];/// 网络环境监测
+}
+#pragma mark —— 开屏广告
+-(void)makeJobsLaunchAdConfig{
+    // 配置并展示开屏广告
+    JobsLaunchAdMgr *adManager = [JobsLaunchAdMgr sharedManager];
+    adManager.buttonTitle = @"跳过广告";
+    adManager.buttonMode = SkipButtonModeCountdown;
+    adManager.countdownDuration = 50;
+    adManager.redirectURL = @"https://www.google.com";
+    adManager.onSingleTap = ^{
+        NSLog(@"用户单击了广告");
+    };
+    adManager.onDoubleTap = ^{
+        NSLog(@"用户双击了广告");
+    };
+    adManager.onLongPress = ^{
+         NSLog(@"用户长按了广告");
+     };
+    adManager.onShake = ^{
+        NSLog(@"用户摇晃了设备");
+    };
+    
+//    // 本地图片资源示例
+//    NSString *localImagePath = [[NSBundle mainBundle] pathForResource:@"1242x2688" ofType:@"png"];
+//    [adManager showAdWithLocalResource:localImagePath isVideo:NO];
+    
+    // 本地视频资源示例
+//     NSString *localVideoPath = [[NSBundle mainBundle] pathForResource:@"welcome_video" ofType:@"mp4"];
+//     [adManager showAdWithLocalResource:localVideoPath isVideo:YES];
+    
+    // URL图片资源示例
+//     [adManager showAdWithURLResource:@"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80_%D0%9F%D1%83%D1%82%D0%B8%D0%BD_%2808-03-2024%29_%28cropped%29.jpg/220px-%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80_%D0%9F%D1%83%D1%82%D0%B8%D0%BD_%2808-03-2024%29_%28cropped%29.jpg" isVideo:NO shouldPreload:YES];
+    
+    // URL视频资源示例
+     [adManager showAdWithURLResource:@"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4" isVideo:YES shouldPreload:YES];
 }
 #pragma mark —— 欢迎引导页面
 -(void)guide{
@@ -63,12 +93,12 @@
     });
 }
 #pragma mark —— 全局配置 TABAnimated
--(void)makeTABAnimatedConfigure{
+-(void)makeTABAnimatedConfig{
     [TABAnimated.sharedAnimated initWithOnlySkeleton];
     TABAnimated.sharedAnimated.openLog = YES;
 }
 #pragma mark —— 全局配置键盘
--(void)makeIQKeyboardManagerConfigure{
+-(void)makeIQKeyboardManagerConfig{
     IQKeyboardManager *keyboardManager = IQKeyboardManager.sharedManager; // 获取类库的单例变量
     keyboardManager.enable = YES; // 控制整个功能是否启用
     keyboardManager.shouldResignOnTouchOutside = YES; // 启用手势触摸:控制点击背景是否收起键盘
@@ -80,7 +110,7 @@
     keyboardManager.keyboardDistanceFromTextField = 10.0f; // 输入框距离键盘的距离
 }
 #pragma mark —— 全局配置GKNavigationBar
--(void)makeGKNavigationBarConfigure{
+-(void)makeGKNavigationBarConfig{
     [GKConfigure setupCustomConfigure:^(GKNavigationBarConfigure * _Nonnull configure) {
         // 导航栏背景色
         configure.backgroundColor = JobsClearColor;
@@ -114,7 +144,7 @@
     }];
 }
 #pragma mark —— 网络环境监测
--(void)makeReachabilityConfigure{
+-(void)makeReachabilityConfig{
     // Allocate a reachability object
     Reachability *reach = [Reachability reachabilityWithHostname:@"www.google.com"];
     // Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
@@ -130,276 +160,6 @@
          [NSNotificationCenter.defaultCenter postNotificationName:kReachabilityChangedNotification
                                                            object:self];
      });
-}
-#pragma mark —— 开屏广告
--(void)makeXHLaunchAdConfigure{
-    
-    [self launchAd_localPic_default];//图 - 本地 - 默认
-//    [self launchAd_localPic_custom];//图 - 本地 - 自定义
-//    [self launchAd_networkDataPic_default];//图 - 网络 - 默认
-//    [self launchAd_networkDataPic_custom];//图 - 网络 - 自定义
-    
-//    [self launchAd_localVedio_default];//视频 - 本地 - 默认
-//    [self launchAd_localVedio_custom];//视频 - 本地 - 自定义 👌
-//    [self launchAd_networkVedio_default];//视频 - 网络 - 默认
-//    [self launchAd_networkVedio_custom];//视频 - 网络 - 自定义
-}
-#pragma mark —— 配置开屏广告
-/// 图 - 本地 - 默认
--(void)launchAd_localPic_default{
-    //1.使用默认配置初始化
-    //设置你工程的启动页使用的是:LaunchImage 还是 LaunchScreen.storyboard(不设置默认:LaunchImage)
-    [XHLaunchAd setLaunchSourceType:SourceTypeLaunchScreen];
-    //配置广告数据
-    XHLaunchImageAdConfiguration *imageAdconfiguration = XHLaunchImageAdConfiguration.defaultConfiguration;
-    //广告图片URLString/或本地图片名(.jpg/.gif/.png请带上后缀)
-    imageAdconfiguration.imageNameOrURLString = self.imageNameOrURLString;
-     //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
-    imageAdconfiguration.openModel = @"http://www.baidu.com";
-    //显示图片开屏广告
-    [XHLaunchAd imageAdWithImageAdConfiguration:imageAdconfiguration delegate:self];
-}
-/// 图 - 本地 - 自定义
--(void)launchAd_localPic_custom{
-    //2.自定义配置初始化
-    //设置你工程的启动页使用的是:LaunchImage 还是 LaunchScreen.storyboard(不设置默认:LaunchImage)
-    [XHLaunchAd setLaunchSourceType:SourceTypeLaunchImage];
-    //配置广告数据
-    XHLaunchImageAdConfiguration *imageAdconfiguration = XHLaunchImageAdConfiguration.new;
-    //广告停留时间
-    imageAdconfiguration.duration = 5;
-    //广告frame
-    imageAdconfiguration.frame = CGRectMake(0,
-                                            0,
-                                            JobsMainScreen_WIDTH(),
-                                            JobsMainScreen_HEIGHT() - JobsWidth(150));
-    //广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
-    imageAdconfiguration.imageNameOrURLString = self.imageNameOrURLString;
-    //设置GIF动图是否只循环播放一次(仅对动图设置有效)
-    imageAdconfiguration.GIFImageCycleOnce = NO;
-    //网络图片缓存机制(只对网络图片有效)
-    imageAdconfiguration.imageOption = XHLaunchAdImageRefreshCached;
-    //图片填充模式
-    imageAdconfiguration.contentMode = UIViewContentModeScaleToFill;
-     //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
-//    imageAdconfiguration.openModel = @"http://www.it7090.com";
-    //广告显示完成动画
-    imageAdconfiguration.showFinishAnimate = ShowFinishAnimateFadein;
-    //广告显示完成动画时间
-    imageAdconfiguration.showFinishAnimateTime = 0.8;
-    //跳过按钮类型
-    imageAdconfiguration.skipButtonType = SkipTypeTimeText;
-    //后台返回时,是否显示广告
-    imageAdconfiguration.showEnterForeground = NO;
-     //设置要添加的子视图(可选)
-    //imageAdconfiguration.subViews = ...
-    //显示图片开屏广告
-    [XHLaunchAd imageAdWithImageAdConfiguration:imageAdconfiguration delegate:self];
-}
-/// 图 - 网络 - 默认
--(void)launchAd_networkDataPic_default{
-    //设置你工程的启动页使用的是:LaunchImage 还是 LaunchScreen.storyboard(不设置默认:LaunchImage)
-    [XHLaunchAd setLaunchSourceType:SourceTypeLaunchImage];
-
-    //1.因为数据请求是异步的,请在数据请求前,调用下面方法配置数据等待时间.
-    //2.设为2即表示:启动页将停留2s等待服务器返回广告数据,2s内等到广告数据,将正常显示广告,否则将不显示
-    //3.数据获取成功,配置广告数据后,自动结束等待,显示广告
-    //注意:请求广告数据前,必须设置此属性,否则会先进入window的的根控制器
-    [XHLaunchAd setWaitDataDuration:2];
-
-//    //广告数据请求
-//    [Network getLaunchAdImageDataSuccess:^(NSDictionary * response) {
-//
-//        NSLog(@"广告数据 = %@",response);
-//
-//        //广告数据转模型
-//        LaunchAdModel *model = [[LaunchAdModel alloc] initWithDict:response[@"data"]];
-//        //配置广告数据
-//        XHLaunchImageAdConfiguration *imageAdconfiguration = [XHLaunchImageAdConfiguration defaultConfiguration];
-//        //广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
-//        imageAdconfiguration.imageNameOrURLString = model.content;
-//         //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
-//        imageAdconfiguration.openModel = model.openUrl;
-//        //显示开屏广告
-//        [XHLaunchAd imageAdWithImageAdConfiguration:imageAdconfiguration delegate:self];
-//
-//    } failure:^(NSError *error) {
-//
-//    }];
-}
-/// 图 - 网络 - 自定义
--(void)launchAd_networkDataPic_custom{
-    //设置你工程的启动页使用的是:LaunchImage 还是 LaunchScreen.storyboard(不设置默认:LaunchImage)
-    [XHLaunchAd setLaunchSourceType:SourceTypeLaunchImage];
-    //1.因为数据请求是异步的,请在数据请求前,调用下面方法配置数据等待时间.
-    //2.设为2即表示:启动页将停留2s等待服务器返回广告数据,2s内等到广告数据,将正常显示广告,否则将不显示
-    //3.数据获取成功,配置广告数据后,自动结束等待,显示广告
-    //注意:请求广告数据前,必须设置此属性,否则会先进入window的的根控制器
-    [XHLaunchAd setWaitDataDuration:2];
-    //广告数据请求
-//    [Network getLaunchAdImageDataSuccess:^(NSDictionary * response) {
-//        NSLog(@"广告数据 = %@",response);
-//        //广告数据转模型
-//        LaunchAdModel *model = [[LaunchAdModel alloc] initWithDict:response[@"data"]];
-//        //配置广告数据
-//        XHLaunchImageAdConfiguration *imageAdconfiguration = [XHLaunchImageAdConfiguration new];
-//        //广告停留时间
-//        imageAdconfiguration.duration = model.duration;
-//        //广告frame
-//        imageAdconfiguration.frame = CGRectMake(0,
-//                                                0,
-//                                                JobsMainScreen_WIDTH(),
-//                                                JobsMainScreen_WIDTH() / model.width * model.height);
-//        //广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
-//        imageAdconfiguration.imageNameOrURLString = model.content;
-//        //设置GIF动图是否只循环播放一次(仅对动图设置有效)
-//        imageAdconfiguration.GIFImageCycleOnce = NO;
-//        //缓存机制(仅对网络图片有效)
-//        //为告展示效果更好,可设置为XHLaunchAdImageCacheInBackground,先缓存,下次显示
-//        imageAdconfiguration.imageOption = XHLaunchAdImageDefault;
-//        //图片填充模式
-//        imageAdconfiguration.contentMode = UIViewContentModeScaleToFill;
-//        //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
-//        imageAdconfiguration.openModel = model.openUrl;
-//        //广告显示完成动画
-//        imageAdconfiguration.showFinishAnimate = ShowFinishAnimateLite;
-//        //广告显示完成动画时间
-//        imageAdconfiguration.showFinishAnimateTime = 0.8;
-//        //跳过按钮类型
-//        imageAdconfiguration.skipButtonType = SkipTypeTimeText;
-//        //后台返回时,是否显示广告
-//        imageAdconfiguration.showEnterForeground = NO;
-//        //设置要添加的自定义视图(可选)
-//        //imageAdconfiguration.subViews = ...
-//        //显示开屏广告
-//        [XHLaunchAd imageAdWithImageAdConfiguration:imageAdconfiguration delegate:self];
-//    } failure:^(NSError *error) {
-//
-//    }];
-}
-/// 视频 - 本地 - 默认
--(void)launchAd_localVedio_default{
-    //设置你工程的启动页使用的是:LaunchImage 还是 LaunchScreen.storyboard(不设置默认:LaunchImage)
-    [XHLaunchAd setLaunchSourceType:SourceTypeLaunchImage];
-
-    //1.使用默认配置初始化
-    XHLaunchVideoAdConfiguration *videoAdconfiguration = XHLaunchVideoAdConfiguration.defaultConfiguration;
-    //广告视频URLString/或本地视频名(请带上后缀)
-    videoAdconfiguration.videoNameOrURLString = self.videoNameOrURLString;
-     //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
-//    videoAdconfiguration.openModel = @"http://www.it7090.com";
-    //显示视频开屏广告
-    [XHLaunchAd videoAdWithVideoAdConfiguration:videoAdconfiguration delegate:self];
-}
-/// 视频 - 本地 - 自定义
--(void)launchAd_localVedio_custom{
-    //设置你工程的启动页使用的是:LaunchImage 还是 LaunchScreen.storyboard(不设置默认:LaunchImage)
-    [XHLaunchAd setLaunchSourceType:SourceTypeLaunchImage];
-    //2.自定义配置
-    XHLaunchVideoAdConfiguration *videoAdconfiguration = XHLaunchVideoAdConfiguration.new;
-    //广告停留时间
-    videoAdconfiguration.duration = 5;
-    //广告frame
-    videoAdconfiguration.frame = CGRectMake(0,
-                                            0,
-                                            JobsMainScreen_WIDTH(),
-                                            JobsMainScreen_HEIGHT());
-    //广告视频URLString/或本地视频名(请带上后缀)
-    videoAdconfiguration.videoNameOrURLString = self.videoNameOrURLString;
-    //是否关闭音频
-    videoAdconfiguration.muted = NO;
-    //视频填充模式
-    videoAdconfiguration.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    //是否只循环播放一次
-    videoAdconfiguration.videoCycleOnce = NO;
-     //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
-//    videoAdconfiguration.openModel = @"http://www.it7090.com";
-    //广告显示完成动画
-    videoAdconfiguration.showFinishAnimate = ShowFinishAnimateFadein;
-    //广告显示完成动画时间
-    videoAdconfiguration.showFinishAnimateTime = 0.8;
-    //跳过按钮类型
-    videoAdconfiguration.skipButtonType = SkipTypeTimeText;
-    //后台返回时,是否显示广告
-    videoAdconfiguration.showEnterForeground = NO;
-    //设置要添加的子视图(可选)
-    //videoAdconfiguration.subViews = ...
-    //显示视频开屏广告
-    [XHLaunchAd videoAdWithVideoAdConfiguration:videoAdconfiguration delegate:self];
-}
-/// 视频 - 网络 - 默认
--(void)launchAd_networkVedio_default{
-    //设置你工程的启动页使用的是:LaunchImage 还是 LaunchScreen.storyboard(不设置默认:LaunchImage)
-    [XHLaunchAd setLaunchSourceType:SourceTypeLaunchImage];
-    //1.因为数据请求是异步的,请在数据请求前,调用下面方法配置数据等待时间.
-    //2.设为2即表示:启动页将停留2s等待服务器返回广告数据,2s内等到广告数据,将正常显示广告,否则将不显示
-    //3.数据获取成功,配置广告数据后,自动结束等待,显示广告
-    //注意:请求广告数据前,必须设置此属性,否则会先进入window的的根控制器
-    [XHLaunchAd setWaitDataDuration:2];
-    //广告数据请求
-//    [Network getLaunchAdVideoDataSuccess:^(NSDictionary * response) {
-//        NSLog(@"广告数据 = %@",response);
-//        //广告数据转模型
-//        LaunchAdModel *model = [LaunchAdModel.alloc initWithDict:response[@"data"]];
-//        //配置广告数据
-//        XHLaunchVideoAdConfiguration *videoAdconfiguration = [XHLaunchVideoAdConfiguration defaultConfiguration];
-//        //注意:视频广告只支持先缓存,下次显示(看效果请二次运行)
-//        videoAdconfiguration.videoNameOrURLString = model.content;
-//        //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
-//        videoAdconfiguration.openModel = model.openUrl;
-//        [XHLaunchAd videoAdWithVideoAdConfiguration:videoAdconfiguration delegate:self];
-//    } failure:^(NSError *error) {
-//
-//    }];
-}
-/// 视频 - 网络 - 自定义
--(void)launchAd_networkVedio_custom{
-    //设置你工程的启动页使用的是:LaunchImage 还是 LaunchScreen.storyboard(不设置默认:LaunchImage)
-    [XHLaunchAd setLaunchSourceType:SourceTypeLaunchImage];
-    //1.因为数据请求是异步的,请在数据请求前,调用下面方法配置数据等待时间.
-    //2.设为2即表示:启动页将停留2s等待服务器返回广告数据,2s内等到广告数据,将正常显示广告,否则将不显示
-    //3.数据获取成功,配置广告数据后,自动结束等待,显示广告
-    //注意:请求广告数据前,必须设置此属性,否则会先进入window的的根控制器
-    [XHLaunchAd setWaitDataDuration:2];
-    //广告数据请求
-//    [Network getLaunchAdVideoDataSuccess:^(NSDictionary * response) {
-//        NSLog(@"广告数据 = %@",response);
-//        //广告数据转模型
-//        LaunchAdModel *model = [LaunchAdModel.alloc initWithDict:response[@"data"]];
-//        //配置广告数据
-//        XHLaunchVideoAdConfiguration *videoAdconfiguration = [XHLaunchVideoAdConfiguration new];
-//        //广告停留时间
-//        videoAdconfiguration.duration = model.duration;
-//        //广告frame
-//        videoAdconfiguration.frame = CGRectMake(0,
-//                                                0,
-//                                                JobsMainScreen_WIDTH(),
-//                                                JobsMainScreen_WIDTH() / model.width * model.height);
-//        //广告视频URLString/或本地视频名(请带上后缀)
-//        //注意:视频广告只支持先缓存,下次显示(看效果请二次运行)
-//        videoAdconfiguration.videoNameOrURLString = model.content;
-//        //是否关闭音频
-//        videoAdconfiguration.muted = NO;
-//        //视频填充模式
-//        videoAdconfiguration.videoGravity = AVLayerVideoGravityResizeAspectFill;
-//        //是否只循环播放一次
-//        videoAdconfiguration.videoCycleOnce = NO;
-//        //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
-//        videoAdconfiguration.openModel = model.openUrl;
-//        //广告显示完成动画
-//        videoAdconfiguration.showFinishAnimate = ShowFinishAnimateFadein;
-//        //广告显示完成动画时间
-//        videoAdconfiguration.showFinishAnimateTime = 0.8;
-//        //后台返回时,是否显示广告
-//        videoAdconfiguration.showEnterForeground = NO;
-//        //跳过按钮类型
-//        videoAdconfiguration.skipButtonType = SkipTypeTimeText;
-//        //设置要添加的自定义视图(可选)
-//        //videoAdconfiguration.subViews = ...
-//        [XHLaunchAd videoAdWithVideoAdConfiguration:videoAdconfiguration delegate:self];
-//    } failure:^(NSError *error) {
-//
-//    }];
 }
 /// 适配各种机型的开屏图片
 -(NSString * _Nullable)imageNameOrURLString{

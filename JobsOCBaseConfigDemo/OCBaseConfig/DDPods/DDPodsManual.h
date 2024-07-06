@@ -38,12 +38,6 @@
 #import "RACEXTRuntimeExtensions.h"
 #endif
 
-#if __has_include(<XHLaunchAd/XHLaunchAd.h>)
-#import <XHLaunchAd/XHLaunchAd.h>
-#else
-#import "XHLaunchAd.h"
-#endif
-
 #if __has_include(<KTVHTTPCache/KTVHTTPCache.h>)
 #import <KTVHTTPCache/KTVHTTPCache.h>
 #else

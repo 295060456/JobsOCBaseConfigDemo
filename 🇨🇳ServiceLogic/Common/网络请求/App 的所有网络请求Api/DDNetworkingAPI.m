@@ -153,18 +153,11 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
     }else if ([error isKindOfClass:DDResponseModel.class]){
         DDResponseModel *responseModel = (DDResponseModel *)error;
         NSLog(@"code = %lu",(unsigned long)responseModel.code);
-        extern BOOL xhLaunchAdShowFinish;
         switch (responseModel.code) {
             case HTTPResponseCodeServeError:{// 服务器异常
                 [WHToast jobsToastErrMsg:JobsInternationalization(@"Server Exception")];
             }break;
             case HTTPResponseCodeLoginDate:{// 登录已过期，请重新登录 DDResponseModel
-                if (xhLaunchAdShowFinish) {
-                    if (self.isLogin) {
-                        [WHToast jobsToastErrMsg:JobsInternationalization(@"Login has expired. Please log in again")];
-                        [self logOut];
-                    }[self forcedLogin];
-                }
                 JobsPostNotification(退出登录,@(NO));
                 [NSNotificationCenter.defaultCenter postNotificationName:退出登录 object:@(NO)];
             }break;
@@ -181,14 +174,7 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
                 [WHToast jobsToastErrMsg:JobsInternationalization(@"No transaction password is set")];
             }break;
             case HTTPResponseCodeOffline:{// 帐号已在其他设备登录
-                if (xhLaunchAdShowFinish) {
-                    [WHToast jobsToastErrMsg:JobsInternationalization(@"The account has been logged in to another device")];
-                    if (self.isLogin) {
-                        /// 清除本地的用户数据，并转向登录页面
-                        [self logOut];
-                    }
-                    [self toLogin];
-                }
+                
             }break;
                 
             default:{

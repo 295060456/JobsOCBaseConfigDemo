@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
+        <!-- 应用程序是否需要持久的 Wi-Fi 连接才能运行。已废弃 -->
+        <key>UIRequiresPersistentWiFi</key>
+        <true/>
+        <!-- 于启用应用程序中的摇动手势，通常与撤销/重做操作相关联 -->
+        <key>UIApplicationSupportsShakeToEdit</key>
+        <true/>
         <!-- 用于指定应用程序的显示名称是否本地化 -->
         <key>LSHasLocalizedDisplayName</key>
         <true/>

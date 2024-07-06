@@ -1,13 +1,13 @@
 //
-//  NSObject+CasinoCheck.m
+//  NSObject+JobsCheck.m
 //  Casino
 //
 //  Created by Jobs on 2022/1/10.
 //
 
-#import "NSObject+CasinoCheck.h"
+#import "NSObject+JobsCheck.h"
 
-@implementation NSObject (CasinoCheck)
+@implementation NSObject (JobsCheck)
 
 #pragma mark —— 通过验证返回YES
 

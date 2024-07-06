@@ -9,7 +9,9 @@
 #define JobsObject_h
 
 #pragma mark —— Base
-/// App语言国际化
+/// App 开屏广告
+#import "JobsLaunchAdMgr.h"
+/// App 语言国际化
 #import "JobsLanguageManager.h"
 /// 文件夹操作
 #import "FileFolderHandleTool.h"

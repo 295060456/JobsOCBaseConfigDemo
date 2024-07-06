@@ -1,5 +1,5 @@
 //
-//  NSObject+CasinoCheck.h
+//  NSObject+JobsCheck.h
 //  Casino
 //
 //  Created by Jobs on 2022/1/10.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 /// 本工程的各种限制条件
-@interface NSObject (CasinoCheck)
+@interface NSObject (JobsCheck)
 
 #pragma mark —— 通过验证返回YES
 -(BOOL)userAndPasswordNotUpTo:(NSString *)value;

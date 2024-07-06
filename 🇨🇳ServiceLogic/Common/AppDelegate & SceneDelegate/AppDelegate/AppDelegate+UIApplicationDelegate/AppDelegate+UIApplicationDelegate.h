@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AppDelegate+Func.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

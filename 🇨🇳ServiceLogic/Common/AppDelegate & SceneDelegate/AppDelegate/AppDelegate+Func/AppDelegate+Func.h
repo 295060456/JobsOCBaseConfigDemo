@@ -66,17 +66,17 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 读取Plist配置文件
 -(void)readPlistConfig;
 #pragma mark —— 全局配置 TABAnimated
--(void)makeTABAnimatedConfigure;
+-(void)makeTABAnimatedConfig;
 #pragma mark —— 全局配置键盘
--(void)makeIQKeyboardManagerConfigure;
+-(void)makeIQKeyboardManagerConfig;
 #pragma mark —— 全局配置GKNavigationBar
--(void)makeGKNavigationBarConfigure;
+-(void)makeGKNavigationBarConfig;
 #pragma mark —— 本地推送通知
 -(void)localNotifications;
 #pragma mark —— 网络环境监测
--(void)makeReachabilityConfigure;
+-(void)makeReachabilityConfig;
 #pragma mark —— 开屏广告
--(void)makeXHLaunchAdConfigure;
+-(void)makeJobsLaunchAdConfig;
 
 @end
 

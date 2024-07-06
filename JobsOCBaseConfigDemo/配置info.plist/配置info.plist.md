@@ -2,7 +2,7 @@
 
 * 用Open As Source Code的方式，打开`info.plist`，并添加以下信息
 [toc]
-## 1、索取用户权限（做多语言化处理）
+## 1、App索取用户权限（做多语言化处理）
 ```xml
 <key>NSFaceIDUsageDescription</key>
 <string>$(NSFaceIDUsageDescription)</string><!-- App需要您的同意，才能访问您的面容识别功能，用于安全验证 -->
@@ -48,34 +48,52 @@
 <string>$(NSVideoSubscriberAccountUsageDescription)</string><!-- 我们需要获取你的TV权限 -->
 ```
 
-*Localizable.strings*
+*Localizable.strings(English)* <font color=red>**多语言映射文件**</font>
 
 ```
 /// 权限设置
-"NSFaceIDUsageDescription" = "App需要您的同意，才能访问您的面容识别功能，用于安全验证";
-"NSAppleMusicUsageDescription" = "添加曲目到您的音乐库";
-"NSBluetoothAlwaysUsageDescription" = "若不允许，你将无法使用联机服务";
-"NSBluetoothPeripheralUsageDescription" = "若不允许，你将无法使用联机服务";
-"NSCalendarsUsageDescription" = "若不允许，你将无法使用添加日历功能";
-"NSCameraUsageDescription" = "若不允许，你将无法使用拍照功能";
-"NSContactsUsageDescription" = "通讯录信息仅用于查找联系人，并会得到严格保密";
-"NSHealthShareUsageDescription" = "若不允许，你将无法参与运动排行榜活动";
-"NSHealthUpdateUsageDescription" = "若不允许，你将无法参与运动排行榜活动";
-"NSHomeKitUsageDescription" = "若不允许，你将无法使用智能家居服务";
-"NSLocationAlwaysAndWhenInUseUsageDescription" = "我们需要获取你的定位权限以供完成查找附近商户功能";
-"NSLocationAlwaysUsageDescription" = "我们需要您的同意,您的位置信息将用于查看当前位置信息";
-"NSLocationWhenInUseUsageDescription" = "我们需要获取你的定位权限以供完成查找附近商户功能";
-"NSMicrophoneUsageDescription" = "我们需要获取你的麦克风权限以供完成语音搜索功能";
-"NSMotionUsageDescription" = "我们需要获取你的运动权限以完成运动挑战赛功能";
-"NSPhotoLibraryAddUsageDescription" = "我们需要获取你的相册权限以完成选择本地图片功能";
-"NSPhotoLibraryUsageDescription" = "我们需要获取你的相册权限以完成选择本地图片功能";
-"NSRemindersUsageDescription" = "我们需要获取你的提醒事项权限以供添加提醒事项";
-"NSSiriUsageDescription" = "我们需要获取你的Siri权限以方便完成Siri建议功能";
-"NSSpeechRecognitionUsageDescription" = "我们需要获取你的语音识别功能已完成键盘语音识别输入功能";
-"NSVideoSubscriberAccountUsageDescription" = "我们需要获取你的TV权限";
+"App需要您的同意，才能访问您的面容识别功能，用于安全验证" = "NSFaceIDUsageDescription";
+"添加曲目到您的音乐库" = "NSAppleMusicUsageDescription";
+"若不允许，你将无法使用联机服务" = "NSBluetoothAlwaysUsageDescription";
+"若不允许，你将无法使用联机服务" = "NSBluetoothPeripheralUsageDescription";
+"若不允许，你将无法使用添加日历功能" = "NSCalendarsUsageDescription";
+"若不允许，你将无法使用拍照功能" = "NSCameraUsageDescription";
+"通讯录信息仅用于查找联系人，并会得到严格保密" = "NSContactsUsageDescription";
+"若不允许，你将无法参与运动排行榜活动" = "NSHealthShareUsageDescription";
+"若不允许，你将无法参与运动排行榜活动" = "NSHealthUpdateUsageDescription";
+"若不允许，你将无法使用智能家居服务" = "NSHomeKitUsageDescription";
+"我们需要获取你的定位权限以供完成查找附近商户功能" = "NSLocationAlwaysAndWhenInUseUsageDescription";
+"我们需要您的同意,您的位置信息将用于查看当前位置信息" = "NSLocationAlwaysUsageDescription";
+"我们需要获取你的定位权限以供完成查找附近商户功能" = "NSLocationWhenInUseUsageDescription";
+"我们需要获取你的麦克风权限以供完成语音搜索功能" = "NSMicrophoneUsageDescription";
+"我们需要获取你的运动权限以完成运动挑战赛功能" = "NSMotionUsageDescription";
+"我们需要获取你的相册权限以完成选择本地图片功能" = "NSPhotoLibraryAddUsageDescription";
+"我们需要获取你的相册权限以完成选择本地图片功能" = "NSPhotoLibraryUsageDescription";
+"我们需要获取你的提醒事项权限以供添加提醒事项" = "NSRemindersUsageDescription";
+"我们需要获取你的Siri权限以方便完成Siri建议功能" = "NSSiriUsageDescription";
+"我们需要获取你的语音识别功能已完成键盘语音识别输入功能" = "NSSpeechRecognitionUsageDescription";
+"我们需要获取你的TV权限" = "NSVideoSubscriberAccountUsageDescription";
 ```
 
-## 2、添加外部字体
+## 2、App多语言化
+
+```xml
+<!-- 用于指定应用程序的显示名称是否本地化 -->
+<key>LSHasLocalizedDisplayName</key>
+<true/>
+<!-- 应用支持的所有语言代码，这些语言代码应该与您的本地化资源文件夹相匹配 -->
+<key>CFBundleLocalizations</key>
+<array>
+	<string>en</string>
+	<string>zh-Hans</string>
+	<string>fil-PH</string>
+</array>
+<!-- 开发区域的语言代码 -->
+<key>CFBundleDevelopmentRegion</key>
+<string>en</string>
+```
+
+## 3、App添加外部字体
 
 * 需要把外部字体包含进工程项目里面
 
@@ -87,7 +105,7 @@
   </array>
   ```
 
-## 3、App白名单
+## 4、App白名单
 
 * iOS 9系统策略更新，限制了http协议的访问，此外应用需要在`Info.plist`中将要使用的URL Schemes列为白名单，才可正常检查其他应用是否安装。
 
@@ -135,7 +153,7 @@
   </array>
   ```
 
-## 4、屏幕旋转
+## 5、App屏幕旋转
 
 ```xml
 <key>UISupportedInterfaceOrientations</key>
@@ -147,7 +165,7 @@
 </array>
 ```
 
-## 5、iOS 横竖屏UI切换
+## 6、iOS 横竖屏UI切换
 
 * iPhone 应用
 
@@ -173,7 +191,7 @@
   </array>
   ```
 
-## 6、添加Appicon
+## 7、App添加Appicon
 
 ```xml
 <key>CFBundleIcons</key>
@@ -240,7 +258,7 @@
 </dict>
 ```
 
-## 7、iOS 状态栏修改
+## 8、iOS 状态栏修改
 
 ```xml
 <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
@@ -250,4 +268,15 @@
 <key>UIStatusBarStyle</key>
 <string>UIStatusBarStyleLightContent</string>
 ```
+
+## 9、其他
+
+ ```xml
+ <!-- 应用程序是否需要持久的 Wi-Fi 连接才能运行。已废弃 -->
+ <key>UIRequiresPersistentWiFi</key>
+ <true/>
+ <!-- 于启用应用程序中的摇动手势，通常与撤销/重做操作相关联 -->
+ <key>UIApplicationSupportsShakeToEdit</key>
+ <true/>
+ ```
 
