@@ -57,12 +57,12 @@
     NSLog(@"Users: %@", users);
     /// 更新用户
     if (users.count > 0) {
-        User *user = users[0];
+        User_Realm *user = users[0];
         [self updateUser:user newName:@"Alice Smith" newAge:26];
     }
     /// 删除用户
     if (users.count > 1) {
-        User *user = users[1];
+        User_Realm *user = users[1];
         [self deleteUser:user];
     }
     /// 获取更新后的用户列表
@@ -96,7 +96,7 @@
 - (void)insertUserWithName:(NSString *)name age:(NSInteger)age {
     RLMRealm *realm = RLMRealm.defaultRealm;
     [realm transactionWithBlock:^{
-        User *newUser = User.new;
+        User_Realm *newUser = User_Realm.new;
         newUser.name = name;
         newUser.age = age;
         [realm addObject:newUser];
@@ -104,14 +104,14 @@
 }
 /// 查询数据
 - (NSArray *)fetchAllUsers {
-    RLMResults<User *> *results = User.allObjects;
+    RLMResults<User_Realm *> *results = User_Realm.allObjects;
     NSMutableArray *users = NSMutableArray.array;
-    for (User *user in results) {
+    for (User_Realm *user in results) {
         [users addObject:user];
     }return users;
 }
 /// 更新/改正 数据
-- (void)updateUser:(User *)user
+- (void)updateUser:(User_Realm *)user
            newName:(NSString *)newName
             newAge:(NSInteger)newAge {
     RLMRealm *realm = RLMRealm.defaultRealm;
@@ -121,7 +121,7 @@
     }];
 }
 /// 删除数据
-- (void)deleteUser:(User *)user {
+- (void)deleteUser:(User_Realm *)user {
     RLMRealm *realm = RLMRealm.defaultRealm;
     [realm transactionWithBlock:^{
         [realm deleteObject:user];

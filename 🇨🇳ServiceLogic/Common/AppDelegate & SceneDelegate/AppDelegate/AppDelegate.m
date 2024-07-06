@@ -134,6 +134,11 @@ didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
     completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
 }
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application 
+  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return UIInterfaceOrientationMaskLandscape;
+}
 #pragma mark —— lazyLoad
 /// 仅仅为了iOS 13 版本向下兼容而存在
 -(UIWindow *)window{

@@ -152,7 +152,7 @@ def database
   pod 'Realm'
   
   pod 'FMDB' # https://github.com/ccgus/fmdb
-  pod 'JQFMDB' # https://github.com/gaojunquan/JQFMDB 对 FMDB进行的二次封装
+#  pod 'JQFMDB' # https://github.com/gaojunquan/JQFMDB 对 FMDB进行的二次封装
   # pod 'FMDB/FTS'   # FMDB with FTS
   # pod 'FMDB/standalone'   # FMDB with latest SQLite amalgamation source
   # pod 'FMDB/standalone/FTS'   # FMDB with latest SQLite amalgamation source and FTS

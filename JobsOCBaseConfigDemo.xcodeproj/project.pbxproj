@@ -493,6 +493,7 @@
 		C57A8ED62851A8E600DD089E /* OCDynamicRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C57A8ED52851A8E600DD089E /* OCDynamicRegisterVC.m */; };
 		C57C86102C228FB400FFC95A /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C57C860E2C228FB400FFC95A /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		C57D1E3D2C398F060082EAE7 /* User_Realm.m in Sources */ = {isa = PBXBuildFile; fileRef = C57D1E3C2C398F060082EAE7 /* User_Realm.m */; };
+		C57D1F2D2C39BD270082EAE7 /* Realm_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C57D1E3A2C398C110082EAE7 /* Realm_VC.m */; };
 		C57FAED92875625E00E72F91 /* GXCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = C57FAED82875625E00E72F91 /* GXCardView.m */; };
 		C57FAEDF287562C600E72F91 /* GXCardItemDemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C57FAEDC287562C600E72F91 /* GXCardItemDemoCell.m */; };
 		C57FAEE0287562C600E72F91 /* GXCardItemDemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C57FAEDD287562C600E72F91 /* GXCardItemDemoCell.xib */; };
@@ -1930,8 +1931,6 @@
 		C57D1E3C2C398F060082EAE7 /* User_Realm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User_Realm.m; sourceTree = "<group>"; };
 		C57D1E432C3993790082EAE7 /* CoreDataVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataVC.h; sourceTree = "<group>"; };
 		C57D1E442C3993790082EAE7 /* CoreDataVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataVC.m; sourceTree = "<group>"; };
-		C57D1E472C3993790082EAE7 /* User_Realm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User_Realm.h; sourceTree = "<group>"; };
-		C57D1E482C3993790082EAE7 /* User_Realm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User_Realm.m; sourceTree = "<group>"; };
 		C57FAED72875625E00E72F91 /* GXCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GXCardView.h; sourceTree = "<group>"; };
 		C57FAED82875625E00E72F91 /* GXCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GXCardView.m; sourceTree = "<group>"; };
 		C57FAEDA2875627100E72F91 /* GXCardView.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = GXCardView.md; sourceTree = "<group>"; };
@@ -7562,7 +7561,6 @@
 		C57D1E412C3993790082EAE7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C57D1E462C3993790082EAE7 /* User_Realm */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7581,15 +7579,6 @@
 			children = (
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		C57D1E462C3993790082EAE7 /* User_Realm */ = {
-			isa = PBXGroup;
-			children = (
-				C57D1E472C3993790082EAE7 /* User_Realm.h */,
-				C57D1E482C3993790082EAE7 /* User_Realm.m */,
-			);
-			path = User_Realm;
 			sourceTree = "<group>";
 		};
 		C57FAED62875625E00E72F91 /* GXCardView */ = {
@@ -12686,6 +12675,7 @@
 				8456259D278BF2780067ABB9 /* JobsCommentConfig.m in Sources */,
 				C5978ABF2BE3599700A56125 /* UIView+Masonry.m in Sources */,
 				C5E4ABC02858BEED00B782F0 /* UILabelWordRotatingVC.m in Sources */,
+				C57D1F2D2C39BD270082EAE7 /* Realm_VC.m in Sources */,
 				C55C895628437190005295B1 /* JXCategoryPopupVC.m in Sources */,
 				C5978A122BE3599700A56125 /* NSObject+BRPickerView.m in Sources */,
 				C59478D62851E2D7009D040A /* OCDynamic.m in Sources */,
