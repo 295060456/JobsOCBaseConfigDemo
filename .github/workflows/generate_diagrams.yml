@@ -31,6 +31,10 @@ jobs:
     - name: Generate Diagrams
       run: |
         npx mmdc -i README.md -o diagram.png
+        ls -la # 列出当前目录中的文件
+
+    - name: Show current directory structure
+      run: ls -R
 
     - name: Commit and push diagram
       if: success()
