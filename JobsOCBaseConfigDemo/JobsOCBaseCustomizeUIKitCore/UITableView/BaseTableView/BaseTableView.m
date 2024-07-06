@@ -40,7 +40,7 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
     if (self.objectBlock) self.objectBlock(@1);
 }
 /// 专治UITableView相应链断裂【核心代码】

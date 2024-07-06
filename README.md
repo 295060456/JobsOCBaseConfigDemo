@@ -972,6 +972,7 @@ NSObject <|-- BaseProtocol
                                                     layerBorderCor:nil
                                                        borderWidth:JobsWidth(0)
                                                      primaryAction:nil
+  									                    longPressGestureEventBlock:nil
                                                    clickEventBlock:^id(BaseButton *x) {
              @jobs_strongify(self)
              x.selected = !x.selected;
@@ -1037,7 +1038,96 @@ NSObject <|-- BaseProtocol
 
  </details>
 
-### 2、Masonry的一些使用技巧
+### 2、倒计时按钮的封装
+
+* 关注实现类
+
+* 调用示例
+
+  ```objective-c
+  @property(nonatomic,strong)UIButton *countDownBtn;
+  @property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
+  ```
+
+   ```objective-c
+   -(UIButton *)countDownBtn{
+        if (!_countDownBtn) {
+            _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel];
+            [self addSubview:_countDownBtn];
+            [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(JobsWidth(14));
+                make.centerY.equalTo(self);
+                make.right.equalTo(self).offset(JobsWidth(-10));
+            }];
+            [_countDownBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+            
+            [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+                [x startTimer];//选择时机、触发启动
+                NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
+                return nil;
+            }];
+            
+            [_countDownBtn actionObjectBlock:^(id data) {
+    //            @jobs_strongify(self)
+                if ([data isKindOfClass:TimerProcessModel.class]) {
+                    TimerProcessModel *model = (TimerProcessModel *)data;
+                    NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
+                }
+            }];
+        }return _countDownBtn;
+    }
+   ```
+
+  ```objective-c
+   -(ButtonTimerConfigModel *)btnTimerConfigModel{
+       if (!_btnTimerConfigModel) {
+           _btnTimerConfigModel = ButtonTimerConfigModel.new;
+           /// 一些通用的设置
+           _btnTimerConfigModel.jobsSize = CGSizeMake(JobsWidth(108), JobsWidth(14));
+           _btnTimerConfigModel.count = 60;
+           _btnTimerConfigModel.showTimeType = ShowTimeType_SS;//时间显示风格
+           _btnTimerConfigModel.countDownBtnType = TimerStyle_anticlockwise;/// 逆时针模式（倒计时模式）
+           _btnTimerConfigModel.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;
+           _btnTimerConfigModel.labelShowingType = UILabelShowingType_03;/// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
+           _btnTimerConfigModel.secondStr = JobsInternationalization(@"秒后重新发送");
+           /// 计时器未开始【静态值】
+           _btnTimerConfigModel.readyPlayValue.layerBorderWidth = 0;
+           _btnTimerConfigModel.readyPlayValue.layerCornerRadius = JobsWidth(0);
+           _btnTimerConfigModel.readyPlayValue.bgCor = JobsClearColor;
+           _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsClearColor;
+           _btnTimerConfigModel.readyPlayValue.textCor = JobsCor(@"#333333");
+           _btnTimerConfigModel.readyPlayValue.text = JobsInternationalization(@"获取验证码");
+           _btnTimerConfigModel.readyPlayValue.font = UIFontWeightRegularSize(14);
+           /// 计时器进行中【动态值】
+           _btnTimerConfigModel.runningValue.layerBorderWidth = 0;
+           _btnTimerConfigModel.runningValue.layerCornerRadius = JobsWidth(0);
+           _btnTimerConfigModel.runningValue.bgCor = JobsClearColor;
+           _btnTimerConfigModel.runningValue.layerBorderCor = JobsClearColor;
+           _btnTimerConfigModel.runningValue.textCor = JobsCor(@"#333333");
+           _btnTimerConfigModel.runningValue.text = JobsInternationalization(@"");
+           _btnTimerConfigModel.runningValue.font = UIFontWeightRegularSize(14);
+  
+           /// 计时器结束【静态值】
+           _btnTimerConfigModel.endValue.layerBorderWidth = 0;
+           _btnTimerConfigModel.endValue.layerCornerRadius = JobsWidth(0);
+           _btnTimerConfigModel.endValue.bgCor = JobsClearColor;
+           _btnTimerConfigModel.endValue.layerBorderCor = JobsClearColor;
+           _btnTimerConfigModel.endValue.textCor = JobsCor(@"#333333");
+           _btnTimerConfigModel.endValue.text = JobsInternationalization(@"重新获取");
+           _btnTimerConfigModel.endValue.font = UIFontWeightRegularSize(14);
+           
+       }return _btnTimerConfigModel;
+   }
+  ```
+
+  ```objective-c
+  [self.countDownBtn startTimer];/// 开始 
+  [self.countDownBtn timerSuspend];/// 暂停 
+  [self.countDownBtn timerContinue];/// 继续 
+  [self.countDownBtn timerDestroy];/// 结束 
+  ```
+
+### 3、Masonry的一些使用技巧
 
 * 关注实现类：[**@interface UIView (Masonry)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+Masonry)
 
@@ -1068,7 +1158,7 @@ NSObject <|-- BaseProtocol
 ```
 </details>
 
-### 3、退出ViewController的时候，需要做的操作
+### 4、退出ViewController的时候，需要做的操作
 
 <details id="退出ViewController的时候，需要做的操作">
  <summary><strong>点我了解详情</strong></summary>
@@ -1092,7 +1182,7 @@ NSObject <|-- BaseProtocol
 
 </details>
 
-### 4、实例对象的weak化，避免循环引用
+### 5、实例对象的weak化，避免循环引用
 <details id="相关定义">
 <summary><strong>点我了解详情：相关定义</strong></summary>
 
@@ -1161,7 +1251,7 @@ NSObject <|-- BaseProtocol
  ```
 </details>
 
-### 5、**使用block，对selector的封装，避免方法割裂**
+### 6、**使用block，对selector的封装，避免方法割裂**
 
 <details id="使用block，对selector的封装，避免方法割裂">
  <summary><strong>点我了解详情</strong></summary>
@@ -1229,9 +1319,9 @@ NSObject <|-- BaseProtocol
    ```
 </details>
 
-#### 5.1、[**对按钮点击事件的使用**](#用新Api（UIButtonConfiguration）创建一个带富文本的UIButton)
+#### 6.1、[**对按钮点击事件的使用**](#用新Api（UIButtonConfiguration）创建一个带富文本的UIButton)
 
-#### 5.2、对通知的使用
+#### 6.2、对通知的使用
 
 * 关注实现类：[**`MacroDef_Notification.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Notification.h)
 
@@ -1287,7 +1377,7 @@ NSObject <|-- BaseProtocol
   [NSNotificationCenter.defaultCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
   ```
 
-### 6、UIViewModel的使用
+### 7、UIViewModel的使用
 
 * 将数据束`UIViewModel`绑定到UI中，包括一些UI交互事件
 
@@ -1355,14 +1445,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 </details>
 
-### 7、统一注册全局的 `UICollectionViewCell`
+### 8、统一注册全局的 `UICollectionViewCell`
 * 不注册相对应当UICollectionViewCell相关子类，使用时会崩溃
 * 系统注册UICollectionViewCell相关子类，是利用字符串作为桥梁进行操作
 * 注册不会开辟内存，只有当使用的时候才会开辟内存
 * 对全局进行统一的UICollectionViewCell相关子类注册是很有必要的，方便管理，防止崩溃
 * 关注实现类[<font color=blue>**`@implementation UICollectionView (JobsRegisterClass)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UICollectionView/UICollectionView+Category/UICollectionView+JobsRegisterClass)
 
-### 8、全局统一的提示弹出框（对`WHToast`的二次封装）
+### 9、全局统一的提示弹出框（对`WHToast`的二次封装）
 
 * `Podfile`
 
@@ -1391,16 +1481,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 </details>
 
-### 9、关于`UIViewController`的一些配置
+### 10、关于`UIViewController`的一些配置
 
-####  9.1、BaseViewController
+####  10.1、BaseViewController
 
   * 为了方便管理，理论上，全局只应有一个`UIViewController`。开发者不应该创建过多的子控制器
   * 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行
   * 命名为`BaseViewController`也是充分考虑同业者的偏好习惯
   * 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`
 
-#### 9.2、推控制器
+#### 10.2、推控制器
 
   * 关注实现类：[**`@interface NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
 
@@ -1463,19 +1553,19 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                                   success:(jobsByIDBlock _Nullable)successBlock;
     ```
 
-  #### 9.3、[**`UIViewController`转场动画的使用方法**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition/UIViewController%2BXLBubbleTransition.md/UIViewController%2BXLBubbleTransition.md)
+  #### 10.3、[**`UIViewController`转场动画的使用方法**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition/UIViewController%2BXLBubbleTransition.md/UIViewController%2BXLBubbleTransition.md)
 
   * 关注实现类：[**@interface UIViewController (XLBubbleTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition)
 
-#### 9.4、悬浮按钮
+#### 10.4、悬浮按钮
 
   * 关注实现类：[**@interface UIViewController (SuspendBtn)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+SuspendBtn)
   * 关注实现类：[**@interface UIView (SuspendView)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+SuspendView)
 
-####  9.5、防止过多的`presented`模态推出`UIViewController`
+####  10.5、防止过多的`presented`模态推出`UIViewController`
   * 关注实现类：[**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)
 
-#### 9.6、<font color=red id=寻找当前控制器>**寻找当前控制器**</font>
+#### 10.6、<font color=red id=寻找当前控制器>**寻找当前控制器**</font>
 
 * 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
 
@@ -1491,7 +1581,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   -(UIViewController *_Nullable)currentController;
   ```
 
-### 10、KVC的封装
+### 11、KVC的封装
 
 * 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
 
@@ -1517,7 +1607,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   UIImageView *headIcon = self.valueForKeyBlock(@"headIcon");/// 账户头像
   ```
 
-### 11、**键盘监听**
+### 12、**键盘监听**
 
 * 关注实现类：[**`@implementation NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
 
@@ -1562,7 +1652,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 12、iOS 状态栏颜色的修改
+### 13、iOS 状态栏颜色的修改
 
 * 全局修改
 
@@ -1609,7 +1699,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-### 13、对`NSUserDefaults.standardUserDefaults` 的二次封装
+### 14、对`NSUserDefaults.standardUserDefaults` 的二次封装
 
 * 对`NSUserDefaults.standardUserDefaults`的数据存取进行宏定义的方式的封装。关注实现类：[**`JobsUserDefaultDefine.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSUserDefaults/JobsUserDefaultDefine.h)
 
@@ -1633,7 +1723,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   +(void)updateWithModel:(UserDefaultModel *)userDefaultModel;
   ```
 
-### 14、对小型本地化数据的读取（NSUserDefaults）
+### 15、对小型本地化数据的读取（NSUserDefaults）
 
   * 产生背景：方便临时调试，避免打印输出
 
@@ -1650,7 +1740,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-### 15、视频播放器
+### 16、视频播放器
 
 * 关注实现类：[**@interface UIView (ZFPlayer)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+ZFPlayer)
 
@@ -1665,7 +1755,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    #  pod 'VIMediaCache' # https://github.com/vitoziv/VIMediaCache 边下边播
    ```
 
-### 16、动画相关
+### 17、动画相关
 
 * `Podfile`
 
@@ -1675,35 +1765,50 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 关注实现类：[**@interface UIView (Animation)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BAnimation)
 
-### 17、手势
+### 18、手势封装
 
 * 因为手势传递是在view层。所以对其进行了一次封装。关注实现类：[**@interface UIView (Gesture)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BGesture)
 
   调用示例
 
   ```objective-c
-  _collectionView.numberOfTouchesRequired = 1;
-  _collectionView.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
-  _collectionView.minimumPressDuration = 0.1;
-  _collectionView.numberOfTouchesRequired = 1;
-  _collectionView.allowableMovement = 1;
-  _collectionView.userInteractionEnabled = YES;
-  _collectionView.target = self;/// ⚠️注意：任何手势这一句都要写
-  _collectionView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
-                                    UILongPressGestureRecognizer *  _Nullable arg) {
-     NSLog(JobsInternationalization(@""));
-     return nil;
-  }];
-  _collectionView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+  {
+      _adView.numberOfTouchesRequired = 1;
+      _adView.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
+      _adView.minimumPressDuration = 0.1;
+      _adView.numberOfTouchesRequired = 1;
+      _adView.allowableMovement = 1;
+      _adView.userInteractionEnabled = YES;
+      _adView.target = self;/// ⚠️注意：任何手势这一句都要写
   
-  _collectionView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target,
-                                    UITapGestureRecognizer *_Nullable arg) {
-     NSLog(JobsInternationalization(@""));
-     return nil;
-  }];
-  _collectionView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+      {
+          _adView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
+                                                                                      UILongPressGestureRecognizer *  _Nullable arg) {
+             NSLog(@"长按手势被触发");
+             return nil;
+          }];
+          _adView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+      }
+  
+      {
+          _adView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target,
+                                                                                UITapGestureRecognizer *_Nullable arg) {
+             NSLog(@"单击手势被触发");
+             return nil;
+          }];
+          _adView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+      }
+  
+      {
+          _adView.doubleTapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target, UITapGestureRecognizer *_Nullable arg) {
+              NSLog(@"双击手势被触发");
+              return nil;
+          }];
+          _adView.doubleTapGR.enabled = YES; // 必须在设置完Target和selector以后方可开启执行
+      }
+  }
   ```
-### 18、富文本
+### 19、富文本
 
 * 富文本的本质是告诉系统，某段文字的表达方式
 
@@ -1772,7 +1877,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 19、字符串定义
+### 20、字符串定义
 
 *  ```objective-c
    FOUNDATION_EXTERN NSString *const 皇冠符号;
@@ -1790,7 +1895,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   NSString *const UserDefaultKey_AppLanguage = @"AppLanguage";
   ```
 
-### 20、<font color=red>**万物回调**</font>
+### 21、<font color=red>**万物回调**</font>
 
 * 产生背景：点击事件的带参回调
 
@@ -1810,7 +1915,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }];
   ```
 
-### 21、系统相机相册调取
+### 22、系统相机相册调取
 
 * 借助第三方`HXPhotoPicker`
 
@@ -1876,6 +1981,37 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       return nil;
   }];
   ```
+
+### 23、完整的单例写法
+
+```objective-c
+static JobsLaunchAdMgr *JobsLaunchAdMgrInstance;
+static dispatch_once_t JobsLaunchAdMgrOnceToken;
++ (instancetype)sharedManager {
+    dispatch_once(&JobsLaunchAdMgrOnceToken, ^{
+        JobsLaunchAdMgrInstance = self.new;
+    });return JobsLaunchAdMgrInstance;
+}
+/// 单例的销毁
++ (void)destroyInstance {
+    JobsLaunchAdMgrOnceToken = 0;
+    JobsLaunchAdMgrInstance = nil;
+}
+/// 防止外部使用 alloc/init 等创建新实例
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+    dispatch_once(&JobsLaunchAdMgrOnceToken, ^{
+        JobsLaunchAdMgrInstance = [super allocWithZone:zone];
+    });return JobsLaunchAdMgrInstance;
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+- (instancetype)mutableCopyWithZone:(NSZone *)zone {
+    return self;
+}
+```
 
 
 ### Test

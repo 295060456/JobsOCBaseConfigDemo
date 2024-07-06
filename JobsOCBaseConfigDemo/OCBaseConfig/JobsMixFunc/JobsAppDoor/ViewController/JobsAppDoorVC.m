@@ -318,7 +318,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             index++;
         }
     }
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 #pragma mark —— lazyLoad
 -(JobsAppDoorLogoContentView *)logoContentView{

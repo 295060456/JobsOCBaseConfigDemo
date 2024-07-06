@@ -22,14 +22,14 @@
 }
 
 -(void)gestureDoubleTapped:(ZFPlayerGestureControl *)gestureControl{
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
     [self endEditing:YES];
 }
 //走一次
 -(void)gestureBeganPan:(ZFPlayerGestureControl *)gestureControl
           panDirection:(ZFPanDirection)direction
            panLocation:(ZFPanLocation)location{
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 //    //UITableViewCell自动滚动到顶部
 //    [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
 //                     atScrollPosition:UITableViewScrollPositionTop
@@ -41,7 +41,7 @@
             panDirection:(ZFPanDirection)direction
              panLocation:(ZFPanLocation)location
             withVelocity:(CGPoint)velocity{
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 //走一次
 -(void)gestureEndedPan:(ZFPlayerGestureControl *)gestureControl
@@ -56,7 +56,7 @@
 
 -(void)gesturePinched:(ZFPlayerGestureControl *)gestureControl
                 scale:(float)scale{
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 
 -(void)actionCustomZFPlayerControlViewBlock:(jobsByTwoIDBlock _Nullable)customZFPlayerControlViewBlock{

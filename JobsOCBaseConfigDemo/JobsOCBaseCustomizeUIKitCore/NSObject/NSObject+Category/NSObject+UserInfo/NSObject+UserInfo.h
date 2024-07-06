@@ -54,9 +54,9 @@ NS_ASSUME_NONNULL_END
      userModel.uid = @"54321";
      
      [self saveUserInfo:userModel];
-     NSLog(JobsInternationalization(@""));
+     NSLog(@"");
      JobsAppDoorVC *f = [self readUserInfo];
-     NSLog(JobsInternationalization(@""));
+     NSLog(@"");
  }
  
  */

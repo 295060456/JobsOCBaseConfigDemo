@@ -54,11 +54,11 @@
 }
 
 -(void)instanceMethod{
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 
 +(void)classMethod{
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 #pragma mark —— IMP调用实例方法
 -(void)invokeIMP{
@@ -86,7 +86,7 @@
 }
 
 +(void)Test{
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 
 

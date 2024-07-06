@@ -1396,7 +1396,6 @@
 		84CA5EBA27895C0A00E46E71 /* 非iph_X.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "非iph_X.mp4"; sourceTree = "<group>"; };
 		84CA5EBF27897AFA00E46E71 /* XLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLPoint.h; sourceTree = "<group>"; };
 		84CA5EC027897AFA00E46E71 /* XLSphereView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLSphereView.h; sourceTree = "<group>"; };
-		84CA5EC127897AFA00E46E71 /* 牛逼标签效果 - SphereView👍 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "牛逼标签效果 - SphereView👍"; sourceTree = "<group>"; };
 		84CA5EC227897AFA00E46E71 /* XLMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLMatrix.h; sourceTree = "<group>"; };
 		84CA5EC327897AFA00E46E71 /* XLSphereView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLSphereView.m; sourceTree = "<group>"; };
 		84CA5EC527897AFA00E46E71 /* File */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = File; sourceTree = "<group>"; };
@@ -2792,6 +2791,7 @@
 		CEB72FF62C390FA400E652CA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/6.59.png"; sourceTree = "<group>"; };
 		CEB72FF92C393BE300E652CA /* JobsLaunchAdMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsLaunchAdMgr.h; sourceTree = "<group>"; };
 		CEB72FFA2C393BE300E652CA /* JobsLaunchAdMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsLaunchAdMgr.m; sourceTree = "<group>"; };
+		CEB730022C39490400E652CA /* 牛逼标签效果 - SphereView👍.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "牛逼标签效果 - SphereView👍.md"; sourceTree = "<group>"; };
 		CED90E912C31954A008D9F68 /* 配置info.plist.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "配置info.plist.md"; sourceTree = "<group>"; };
 		CED90E922C31954A008D9F68 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -5051,6 +5051,7 @@
 		84CA5EBD27897AFA00E46E71 /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				CEB730012C39478F00E652CA /* App开屏广告-JobsLaunchAdMgr */,
 				8447CE812C035B83004BD07D /* 扫一扫组件（空缺） */,
 				8447CE802C035B5F004BD07D /* JobsMakeLocalNotification */,
 				C53683452875715F00DD7AA7 /* WalletLayout */,
@@ -5085,7 +5086,7 @@
 		84CA5EBE27897AFA00E46E71 /* XLSphereView */ = {
 			isa = PBXGroup;
 			children = (
-				84CA5EC127897AFA00E46E71 /* 牛逼标签效果 - SphereView👍 */,
+				CEB730022C39490400E652CA /* 牛逼标签效果 - SphereView👍.md */,
 				84CA5EC227897AFA00E46E71 /* XLMatrix.h */,
 				84CA5EBF27897AFA00E46E71 /* XLPoint.h */,
 				84CA5EC027897AFA00E46E71 /* XLSphereView.h */,
@@ -5536,7 +5537,6 @@
 		84CA609D278980E700E46E71 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
-				CEB72FF82C393BB300E652CA /* App开屏广告 */,
 				C5CC22A42C31E65E00A9B626 /* 多语言切换 */,
 				CE03ED8D2C312F1D00138A1E /* Widget */,
 				CE03ED772C312ED000138A1E /* 热更新 */,
@@ -11708,21 +11708,13 @@
 			path = JobsLanguageManager;
 			sourceTree = "<group>";
 		};
-		CEB72FF82C393BB300E652CA /* App开屏广告 */ = {
-			isa = PBXGroup;
-			children = (
-				CEB730012C39478F00E652CA /* JobsLaunchAdMgr */,
-			);
-			path = "App开屏广告";
-			sourceTree = "<group>";
-		};
-		CEB730012C39478F00E652CA /* JobsLaunchAdMgr */ = {
+		CEB730012C39478F00E652CA /* App开屏广告-JobsLaunchAdMgr */ = {
 			isa = PBXGroup;
 			children = (
 				CEB72FF92C393BE300E652CA /* JobsLaunchAdMgr.h */,
 				CEB72FFA2C393BE300E652CA /* JobsLaunchAdMgr.m */,
 			);
-			path = JobsLaunchAdMgr;
+			path = "App开屏广告-JobsLaunchAdMgr";
 			sourceTree = "<group>";
 		};
 		CED90E932C31954A008D9F68 /* 配置info.plist */ = {

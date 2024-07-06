@@ -156,7 +156,7 @@
         _btnTimerConfigModel.readyPlayValue.bgCor = JobsYellowColor;
         _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsBrownColor;
         _btnTimerConfigModel.readyPlayValue.textCor = JobsBlueColor;
-        _btnTimerConfigModel.readyPlayValue.text = JobsInternationalization(@"      获取验证码       ");
+        _btnTimerConfigModel.readyPlayValue.text = JobsInternationalization(@"获取验证码");
         _btnTimerConfigModel.readyPlayValue.font = UIFontWeightMediumSize(13);
         /// 计时器进行中【动态值】
         _btnTimerConfigModel.runningValue.bgCor = JobsCyanColor;
@@ -165,7 +165,7 @@
         _btnTimerConfigModel.runningValue.textCor = JobsBlackColor;
         /// 计时器结束【静态值】
         _btnTimerConfigModel.endValue.bgCor = JobsYellowColor;
-        _btnTimerConfigModel.endValue.text = JobsInternationalization(@"    哈哈哈哈    ");
+        _btnTimerConfigModel.endValue.text = JobsInternationalization(@"哈哈哈哈");
         _btnTimerConfigModel.endValue.layerBorderCor = JobsPurpleColor;
         _btnTimerConfigModel.endValue.textCor = JobsBlackColor;
         

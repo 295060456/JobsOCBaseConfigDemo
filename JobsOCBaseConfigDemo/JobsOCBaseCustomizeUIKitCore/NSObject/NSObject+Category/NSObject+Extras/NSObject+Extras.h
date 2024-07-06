@@ -359,7 +359,7 @@ BaseProtocol
          }
          
      }else if (data.notificationName.isEqualToString(@"UIKeyboardDidChangeFrameNotification")){
-         NSLog(JobsInternationalization(@""));
+         NSLog(@"");
      }else{}
      
      return nil;

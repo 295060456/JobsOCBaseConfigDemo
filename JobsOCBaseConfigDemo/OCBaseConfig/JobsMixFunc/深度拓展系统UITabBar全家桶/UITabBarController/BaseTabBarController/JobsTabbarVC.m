@@ -298,7 +298,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
         subView.target = self;
         subView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                     UILongPressGestureRecognizer *_Nullable longPressGR) {
-            NSLog(JobsInternationalization(@""));
+            NSLog(@"");
             switch (longPressGR.state) {
                 case UIGestureRecognizerStatePossible:{
                     NSLog(@"没有触摸事件发生，所有手势识别的默认状态");

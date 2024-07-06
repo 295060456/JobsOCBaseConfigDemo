@@ -35,7 +35,7 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
     [self saveUserInfo:userModel];
     
     id f = self.readUserInfo;
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 
 -(NSMutableArray <JobsTabBarControllerConfig *>*)makeConfigMutArr{

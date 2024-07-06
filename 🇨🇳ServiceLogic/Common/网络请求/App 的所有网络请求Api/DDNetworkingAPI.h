@@ -319,7 +319,7 @@ NS_ASSUME_NONNULL_END
      NSDictionary *rootDict = [NSJSONSerialization JSONObjectWithData:data
                                                   options:NSJSONReadingAllowFragments
                                                     error:&err];
-     NSLog(JobsInternationalization(@""));
+     NSLog(@"");
  }
  
  **/

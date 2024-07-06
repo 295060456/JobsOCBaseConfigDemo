@@ -104,11 +104,11 @@
     ((void (*)(id, SEL, float)) objc_msgSend)(self, @selector(sendObjMsg:), (float)M_PI);
     /// 有返回值的调用，需要注明返回类型
     id f = ((NSString * (*)(id, SEL, float)) objc_msgSend)(self, @selector(sendObjMsg:), (float)M_PI);
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 
 -(NSString *)sendObjMsg: (float)x{
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
     return @"Jobs";
 }
 
@@ -145,7 +145,7 @@
     
     id A = [myobjc performSelector:@selector(setJobsName:) withObject:@"bmw"];
     id B = [myobjc performSelector:@selector(jobsName) withObject:nil];
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
     /// 如果不调用- (void)addMethodForMyClass:(NSString *)string 这个方法，就不会调用static void addMethodForMyClass(id self, SEL _cmd, NSString *test) 函数
 //    [myobjc addMethodForMyClass:@"参数"];
 }
@@ -278,7 +278,7 @@ static void addMethodForMyClass(id self, SEL _cmd, NSString *test) {
 }
 /// 这个方法实际上没有被调用,但是必须实现否则不会调用下面的方法
 - (void)addMethodForMyClass:(NSString *)string {
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 
 -(void)知识点{

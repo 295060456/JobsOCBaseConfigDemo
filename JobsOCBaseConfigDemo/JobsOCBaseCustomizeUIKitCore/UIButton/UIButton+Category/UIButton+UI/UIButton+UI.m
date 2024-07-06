@@ -160,7 +160,7 @@
         
         NSLog(@"%@",btnConfiguration);
         NSLog(@"%@",btn.configuration);
-        NSLog(JobsInternationalization(@""));
+        NSLog(@"");
     /**
      UIAction *action = [UIAction actionWithTitle:@"按钮点击操作"
                                             image:nil

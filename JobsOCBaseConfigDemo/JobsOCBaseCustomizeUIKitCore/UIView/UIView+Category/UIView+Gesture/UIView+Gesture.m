@@ -29,6 +29,13 @@
                          action:self.tapGR_SelImp.selector];
         }
     }
+    UITapGestureRecognizer *DoubleTapGR = objc_getAssociatedObject(self,_doubleTapGR);
+    if (DoubleTapGR) {
+        if (self.doubleTapGR_SelImp.selector) {
+            [TapGR removeTarget:self.target
+                         action:self.doubleTapGR_SelImp.selector];
+        }
+    }
     UISwipeGestureRecognizer *SwipeGR = objc_getAssociatedObject(self, _swipeGR);
     if (SwipeGR) {
         if (self.swipeGR_SelImp.selector) {
@@ -234,6 +241,29 @@ JobsKey(_tapGR)
 -(void)setTapGR:(UITapGestureRecognizer *)tapGR{
     Jobs_setAssociatedRETAIN_NONATOMIC(_tapGR, tapGR)
 }
+#pragma mark —— @property(nonatomic,strong)UITapGestureRecognizer *doubleTapGR;/// 双击手势
+JobsKey(_doubleTapGR)
+@dynamic doubleTapGR;
+-(UITapGestureRecognizer *)doubleTapGR{
+    UITapGestureRecognizer *DoubleTapGR = Jobs_getAssociatedObject(_doubleTapGR);
+    if (!DoubleTapGR) {
+        DoubleTapGR = UITapGestureRecognizer.new;
+        NSLog(@"self.target = %@",self.target);
+        DoubleTapGR.delegate = self.target;
+        DoubleTapGR.numberOfTapsRequired = 2; // 设置为双击
+        DoubleTapGR.numberOfTouchesRequired = self.numberOfTouchesRequired ? self.numberOfTouchesRequired : 1; // 设置手指字数, 默认1
+        if (self.doubleTapGR_SelImp.selector) {
+            [DoubleTapGR addTarget:self.target action:self.doubleTapGR_SelImp.selector];
+        }
+        [self addGestureRecognizer:DoubleTapGR];
+        Jobs_setAssociatedRETAIN_NONATOMIC(_doubleTapGR, DoubleTapGR)
+    }return DoubleTapGR;
+}
+
+
+-(void)setDoubleTapGR:(UITapGestureRecognizer *)doubleTapGR{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_doubleTapGR, doubleTapGR)
+}
 #pragma mark —— @property(nonatomic,strong)UISwipeGestureRecognizer *swipeGR;// 轻扫手势
 JobsKey(_swipeGR)
 @dynamic swipeGR;
@@ -375,6 +405,19 @@ JobsKey(_tapGR_SelImp)
 
 -(void)setTapGR_SelImp:(JobsSEL_IMP *)tapGR_SelImp{
     Jobs_setAssociatedRETAIN_NONATOMIC(_tapGR_SelImp, tapGR_SelImp)
+}
+JobsKey(_doubleTapGR_SelImp)
+@dynamic doubleTapGR_SelImp;
+-(JobsSEL_IMP *)doubleTapGR_SelImp{
+    JobsSEL_IMP *SEL_IMP = Jobs_getAssociatedObject(_doubleTapGR_SelImp);
+    if (!SEL_IMP) {
+        SEL_IMP = JobsSEL_IMP.new;
+        Jobs_setAssociatedRETAIN_NONATOMIC(_doubleTapGR_SelImp, SEL_IMP)
+    }return SEL_IMP;
+}
+
+-(void)setDoubleTapGR_SelImp:(JobsSEL_IMP *)doubleTapGR_SelImp{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_doubleTapGR_SelImp, doubleTapGR_SelImp)
 }
 #pragma mark —— @property(nonatomic,strong)JobsSEL_IMP *swipeGR_SelImp;
 JobsKey(_swipeGR_SelImp)

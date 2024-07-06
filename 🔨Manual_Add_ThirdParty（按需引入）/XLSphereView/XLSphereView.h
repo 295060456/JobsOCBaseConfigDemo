@@ -10,14 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XLSphereView : UIView
+@interface XLSphereView : UIView<UIGestureRecognizerDelegate>
 
 @property(nonatomic,assign) BOOL isTimerStart;
 
 - (void)setItems:(NSArray *)items;
-
 - (void)timerStart;
-
 - (void)timerStop;
 
 @end

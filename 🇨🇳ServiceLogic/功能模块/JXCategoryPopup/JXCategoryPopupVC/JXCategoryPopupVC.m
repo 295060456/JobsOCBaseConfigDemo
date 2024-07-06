@@ -121,7 +121,7 @@ didScrollSelectedItemAtIndex:(NSInteger)index{
 scrollingFromLeftIndex:(NSInteger)leftIndex
 toRightIndex:(NSInteger)rightIndex
 ratio:(CGFloat)ratio {
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
     //    [self.listContainerView scrollingFromLeftIndex:leftIndex
     //                                      toRightIndex:rightIndex
     //                                             ratio:ratio

@@ -7,6 +7,17 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "JobsBlock.h"
+#import "MacroDef_String.h"
+#import "MacroDef_Func.h"
+#import "MacroDef_Cor.h"
+#import "MacroDef_Notification.h"
+#import "UIView+Gesture.h"
+#import "NSString+Others.h"
+#import "UIButton+Timer.h"
+//#import "UIView+Gesture.h"
+//#import "UIView+Gesture.h"
+//#import "UIView+Gesture.h"
 
 typedef NS_ENUM(NSUInteger, SkipButtonMode) {
     SkipButtonModeNormal,
@@ -44,25 +55,22 @@ NS_ASSUME_NONNULL_BEGIN
              跳转的网页需要配置，如果没有配置，则跳转google
          6.3、用户摇晃手机
  */
-typedef void (^AdInteractionCallback)(void);
-
 @interface JobsLaunchAdMgr : NSObject
 
-@property (nonatomic, copy) NSString *buttonTitle;
-@property (nonatomic, assign) CGRect buttonFrame;
-@property (nonatomic, assign) SkipButtonMode buttonMode;
-@property (nonatomic, assign) NSInteger countdownDuration;
-@property (nonatomic, copy) NSString *redirectURL;
-@property (nonatomic, copy) AdInteractionCallback onDoubleTap;
-@property (nonatomic, copy) AdInteractionCallback onSingleTap;
-@property (nonatomic, copy) AdInteractionCallback onLongPress;
-@property (nonatomic, copy) AdInteractionCallback onShake;
+@property(nonatomic,copy)NSString *buttonTitle;
+@property(nonatomic,assign)CGRect buttonFrame;
+@property(nonatomic,assign)SkipButtonMode buttonMode;
+@property(nonatomic,assign)NSInteger countdownDuration;
+@property(nonatomic,copy)NSString *redirectURL;
+@property(nonatomic,copy)jobsByVoidBlock onDoubleTap;
+@property(nonatomic,copy)jobsByVoidBlock onSingleTap;
+@property(nonatomic,copy)jobsByVoidBlock onLongPress;
+@property(nonatomic,copy)jobsByVoidBlock onShake;
 
 + (instancetype)sharedManager;
 - (void)showAdWithLocalResource:(NSString *)resourcePath isVideo:(BOOL)isVideo;
 - (void)showAdWithURLResource:(NSString *)url isVideo:(BOOL)isVideo shouldPreload:(BOOL)shouldPreload;
 
 @end
-
 
 NS_ASSUME_NONNULL_END

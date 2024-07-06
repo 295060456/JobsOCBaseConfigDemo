@@ -33,8 +33,8 @@
 #pragma mark —— 开屏广告
 -(void)makeJobsLaunchAdConfig{
     // 配置并展示开屏广告
-    JobsLaunchAdMgr *adManager = [JobsLaunchAdMgr sharedManager];
-    adManager.buttonTitle = @"跳过广告";
+    JobsLaunchAdMgr *adManager = JobsLaunchAdMgr.sharedManager;
+    adManager.buttonTitle = JobsInternationalization(@"跳过广告");
     adManager.buttonMode = SkipButtonModeCountdown;
     adManager.countdownDuration = 50;
     adManager.redirectURL = @"https://www.google.com";
@@ -80,9 +80,9 @@
     userModel.uid = @"54321";
     
     [self saveUserInfo:userModel];
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
     JobsUserModel *f = [self readUserInfo];
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 #pragma mark —— 读取Plist配置文件
 -(void)readPlistConfig{

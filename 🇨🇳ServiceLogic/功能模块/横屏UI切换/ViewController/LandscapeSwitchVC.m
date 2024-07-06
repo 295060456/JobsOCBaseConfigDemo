@@ -73,12 +73,12 @@ UICollectionViewDataSource
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{

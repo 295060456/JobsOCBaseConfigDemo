@@ -302,7 +302,7 @@ insetForSectionAtIndex:(NSInteger)section {
             _collectionView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
             _collectionView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
                                                                                           id  _Nullable arg) {
-                NSLog(JobsInternationalization(@""));
+                NSLog(@"");
                 [self shakeCell:NO];
                 return nil;
             }];

@@ -120,7 +120,7 @@
                      parameters:parameters
                    successBlock:^(DDResponseModel *data) {
         @jobs_strongify(self)
-        NSLog(JobsInternationalization(@""));
+        NSLog(@"");
         if([data.data isKindOfClass:NSArray.class]){
             NSArray *tempDataArr = (NSArray *)data.data;
             

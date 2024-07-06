@@ -19,7 +19,7 @@
 
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 }
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes{

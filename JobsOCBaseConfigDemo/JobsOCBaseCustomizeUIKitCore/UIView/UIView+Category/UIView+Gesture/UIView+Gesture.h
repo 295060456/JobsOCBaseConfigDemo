@@ -79,6 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 // UIGestureRecognizer
 @property(nonatomic,strong)UILongPressGestureRecognizer *longPressGR;/// 长按手势
 @property(nonatomic,strong)UITapGestureRecognizer *tapGR;/// 点击手势
+@property(nonatomic,strong)UITapGestureRecognizer *doubleTapGR;/// 双击手势
 @property(nonatomic,strong)UISwipeGestureRecognizer *swipeGR;/// 轻扫手势
 @property(nonatomic,strong)UIPanGestureRecognizer *panGR;/// 平移手势
 @property(nonatomic,strong)UIPinchGestureRecognizer *pinchGR;/// 捏合（缩放）手势
@@ -87,6 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 // action
 @property(nonatomic,strong)JobsSEL_IMP *longPressGR_SelImp;
 @property(nonatomic,strong)JobsSEL_IMP *tapGR_SelImp;
+@property(nonatomic,strong)JobsSEL_IMP *doubleTapGR_SelImp;
 @property(nonatomic,strong)JobsSEL_IMP *swipeGR_SelImp;
 @property(nonatomic,strong)JobsSEL_IMP *panGR_SelImp;
 @property(nonatomic,strong)JobsSEL_IMP *pinchGR_SelImp;
@@ -99,30 +101,43 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-
 /**
  调用示例：设置长按手势和点击手势
  {
-     _collectionView.numberOfTouchesRequired = 1;
-     _collectionView.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
-     _collectionView.minimumPressDuration = 0.1;
-     _collectionView.numberOfTouchesRequired = 1;
-     _collectionView.allowableMovement = 1;
-     _collectionView.userInteractionEnabled = YES;
-     _collectionView.target = self;/// ⚠️注意：任何手势这一句都要写
-     _collectionView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
-                                        UILongPressGestureRecognizer *  _Nullable arg) {
-         NSLog(JobsInternationalization(@""));
-         return nil;
-     }];
-     _collectionView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+     _adView.numberOfTouchesRequired = 1;
+     _adView.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
+     _adView.minimumPressDuration = 0.1;
+     _adView.numberOfTouchesRequired = 1;
+     _adView.allowableMovement = 1;
+     _adView.userInteractionEnabled = YES;
+     _adView.target = self;/// ⚠️注意：任何手势这一句都要写
+
+     {
+         _adView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
+                                                                                     UILongPressGestureRecognizer *  _Nullable arg) {
+            NSLog(@"长按手势被触发");
+            return nil;
+         }];
+         _adView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+     }
+
+     {
+         _adView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target,
+                                                                               UITapGestureRecognizer *_Nullable arg) {
+            NSLog(@"单击手势被触发");
+            return nil;
+         }];
+         _adView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+     }
      
-     _collectionView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target,
-                                        UITapGestureRecognizer *_Nullable arg) {
-         NSLog(JobsInternationalization(@""));
-         return nil;
-     }];
-     _collectionView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+     {
+         _adView.doubleTapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target, UITapGestureRecognizer *_Nullable arg) {
+             NSLog(@"双击手势被触发");
+             return nil;
+         }];
+         _adView.doubleTapGR.enabled = YES; // 必须在设置完Target和selector以后方可开启执行
+     }
+
  }
 
  */

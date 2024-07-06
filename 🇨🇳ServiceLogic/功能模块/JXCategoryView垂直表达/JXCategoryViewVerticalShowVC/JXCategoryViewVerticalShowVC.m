@@ -87,7 +87,7 @@
 
 //    JXCategoryBaseCell *cell = (JXCategoryBaseCell *)[self.categoryView.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
 //    NSArray <UICollectionViewCell *>*visibleCells = self.categoryView.collectionView.visibleCells;
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
 
     for (UICollectionViewCell *cell in self.categoryView.collectionView.visibleCells) {
         [cell transformByRadians:0.5f];
@@ -145,7 +145,7 @@ didScrollSelectedItemAtIndex:(NSInteger)index{
 scrollingFromLeftIndex:(NSInteger)leftIndex
 toRightIndex:(NSInteger)rightIndex
 ratio:(CGFloat)ratio {
-    NSLog(JobsInternationalization(@""));
+    NSLog(@"");
     //    [self.listContainerView scrollingFromLeftIndex:leftIndex
     //                                      toRightIndex:rightIndex
     //                                             ratio:ratio
