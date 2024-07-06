@@ -80,12 +80,12 @@
 * 模拟器文件通常存储在以下路径
 
   ```shell
-  ~/Library/Developer/CoreSimulator/Volumes/
+  open ~/Library/Developer/CoreSimulator/Volumes/
   ```
 
 * 备份iOS模拟器文件夹到桌面`Volumes`
 
-  脚本自动化：[**【MacOS】备份iOS模拟器.command**]()
+  脚本自动化：[**【MacOS】备份iOS模拟器.command**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%A4%87%E4%BB%BDiOS%E6%A8%A1%E6%8B%9F%E5%99%A8.command)
 
   ```shell
   #!/bin/bash
@@ -99,7 +99,7 @@
 
 * 还原iOS模拟器（执行完毕后，需要重启xcode）
 
-  脚本自动化：[**【MacOS】恢复iOS模拟器.command**]()
+  脚本自动化：[**【MacOS】恢复iOS模拟器.command**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%81%A2%E5%A4%8DiOS%E6%A8%A1%E6%8B%9F%E5%99%A8.command)
   
   ```shell
   #!/bin/bash
