@@ -32,18 +32,17 @@ jobs:
       run: |
         npx mmdc -i README.md -o diagram.png
         ls -la # 列出当前目录中的文件
-        ls -la diagram.png # 检查 diagram.png 文件是否存在
 
     - name: Show current directory structure
       run: ls -R
 
-    - name: Commit and push diagram
+    - name: Commit and push diagrams
       if: success()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        git add diagram.png
-        git commit -m 'Auto-Generate Mermaid diagram'
+        git add diagram-*.png
+        git commit -m 'Auto-Generate Mermaid diagrams'
         git push
