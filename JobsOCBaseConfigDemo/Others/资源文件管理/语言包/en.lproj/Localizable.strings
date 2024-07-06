@@ -11,6 +11,7 @@
 "中文" = "Chinese";
 "英文" = "English";
 "他加禄语" = "Tagalog";
+"6.59" = "6.59.png";
 /// 权限设置
 "App需要您的同意，才能访问您的面容识别功能，用于安全验证" = "NSFaceIDUsageDescription";
 "添加曲目到您的音乐库" = "NSAppleMusicUsageDescription";

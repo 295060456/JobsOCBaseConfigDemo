@@ -87,6 +87,24 @@
     [super viewWillDisappear:animated];
 }
 #pragma mark —— BaseViewProtocol
+-(UIView *)makeViewOnTableViewHeaderFooterView:(UITableViewHeaderFooterView *)headerFooterView{
+    /// 清除缓存以确保新图片被加载
+    [SDImageCache.sharedImageCache clearMemory];
+    [SDImageCache.sharedImageCache clearDiskOnCompletion:nil];
+    
+    UIImageView *imageView = UIImageView.new;
+//    imageView.image = JobsIMG(NSLocalizedString(@"6.59", nil));
+    imageView.image = JobsIMG(JobsInternationalization(@"6.59"));
+    id dd = JobsIMG(JobsInternationalization(@"6.59"));
+    id f = JobsIMG(NSLocalizedString(@"6.59", nil));
+//    imageView.backgroundColor = JobsYellowColor;
+    [headerFooterView addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(headerFooterView);
+        make.size.mas_equalTo(CGSizeMake([BaseTableViewHeaderFooterView heightForHeaderInSection:nil],
+                                         [BaseTableViewHeaderFooterView heightForHeaderInSection:nil]));
+    }];return imageView;
+}
 /// 下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
     // 刷新本界面
@@ -169,18 +187,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView hideSeparatorLineAtLast:indexPath
                                   cell:cell];
 }
-
--(UIView *)makeViewOnTableViewHeaderFooterView:(UITableViewHeaderFooterView *)headerFooterView{
-    UIImageView *imageView = UIImageView.new;
-    imageView.backgroundColor = JobsYellowColor;
-    [headerFooterView addSubview:imageView];
-    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(headerFooterView);
-        make.size.mas_equalTo(CGSizeMake([BaseTableViewHeaderFooterView heightForHeaderInSection:nil],
-                                         [BaseTableViewHeaderFooterView heightForHeaderInSection:nil]));
-    }];return imageView;
-}
-
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派 生类
 - (nullable UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{

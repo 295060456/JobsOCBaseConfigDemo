@@ -89,7 +89,6 @@
 		840F964427736427004979E9 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F933427736426004979E9 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		840F971727736428004979E9 /* CheckMemFreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95D527736427004979E9 /* CheckMemFreeVC.m */; };
 		840F971827736428004979E9 /* JobsShowObjInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95D827736427004979E9 /* JobsShowObjInfoVC.m */; };
-		840F971A27736428004979E9 /* AppLanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F95DC27736427004979E9 /* AppLanguageVC.m */; };
 		84175CAD2C034F0100A535D9 /* LocalNotificationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84175CAC2C034F0100A535D9 /* LocalNotificationsVC.m */; };
 		84175CB32C03558F00A535D9 /* JobsMakeLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 84175CB22C03558F00A535D9 /* JobsMakeLocalNotification.m */; };
 		8424743527C0C32B00831270 /* YTKNetworkStudyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8424743427C0C32B00831270 /* YTKNetworkStudyVC.m */; };
@@ -926,9 +925,11 @@
 		CE86207A2C2C254B0009C664 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CE8620712C2C254B0009C664 /* README.md */; };
 		CEAAD4712C32758A00349C11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD46F2C32758A00349C11 /* InfoPlist.strings */; };
 		CEAAD47D2C32804000349C11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD4762C327C7A00349C11 /* Localizable.strings */; };
-		CEAAD4822C32875B00349C11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD47E2C32875A00349C11 /* LaunchScreen.storyboard */; };
-		CEAAD4832C32875B00349C11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD4802C32875A00349C11 /* Main.storyboard */; };
 		CEB72E592C37C7B200E652CA /* JobsLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB72E582C37C7B200E652CA /* JobsLanguageManager.m */; };
+		CEB72FAD2C39079400E652CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB72FAB2C39079400E652CA /* Main.storyboard */; };
+		CEB72FAE2C39079400E652CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB72FAC2C39079400E652CA /* LaunchScreen.storyboard */; };
+		CEB72FE22C390AE500E652CA /* AppLanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB72FE12C390AE500E652CA /* AppLanguageVC.m */; };
+		CEB72FF72C3911CC00E652CA /* 6.59.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB72FF12C390F8100E652CA /* 6.59.png */; };
 		CED90E942C31954A008D9F68 /* 配置info.plist.md in Resources */ = {isa = PBXBuildFile; fileRef = CED90E912C31954A008D9F68 /* 配置info.plist.md */; };
 		DFEAED65A0CE0960B61EAA74 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19F1CC739164B10E3F364DB /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		FE973CF0DF4FF09D277A1A4E /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72729AEE45FB4BEEB368A595 /* Pods_JobsOCBaseConfigDemoTests.framework */; };
@@ -1088,7 +1089,6 @@
 		840F95D527736427004979E9 /* CheckMemFreeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckMemFreeVC.m; sourceTree = "<group>"; };
 		840F95D727736427004979E9 /* JobsShowObjInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsShowObjInfoVC.h; sourceTree = "<group>"; };
 		840F95D827736427004979E9 /* JobsShowObjInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsShowObjInfoVC.m; sourceTree = "<group>"; };
-		840F95DC27736427004979E9 /* AppLanguageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLanguageVC.m; sourceTree = "<group>"; };
 		840F95DD27736427004979E9 /* AppLanguageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLanguageVC.h; sourceTree = "<group>"; };
 		840F95DE27736427004979E9 /* JobsDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsDebug.h; sourceTree = "<group>"; };
 		840F95E027736427004979E9 /* DebugLogDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLogDescription.h; sourceTree = "<group>"; };
@@ -2823,12 +2823,17 @@
 		CEAAD4792C327DA400349C11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CEAAD47B2C327DAE00349C11 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CEAAD47C2C327DAF00349C11 /* fil-PH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fil-PH"; path = "fil-PH.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		CEAAD47F2C32875A00349C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CEAAD4812C32875A00349C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEAF7CFD2C341473007AE308 /* XLChannelControl.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = XLChannelControl.md; sourceTree = "<group>"; };
 		CEAF7FF32C3699E5007AE308 /* UIViewController+XLBubbleTransition.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = "UIViewController+XLBubbleTransition.md"; path = "UIViewController+XLBubbleTransition.md/UIViewController+XLBubbleTransition.md"; sourceTree = "<group>"; };
 		CEB72E572C37C7B200E652CA /* JobsLanguageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsLanguageManager.h; sourceTree = "<group>"; };
 		CEB72E582C37C7B200E652CA /* JobsLanguageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsLanguageManager.m; sourceTree = "<group>"; };
+		CEB72FAB2C39079400E652CA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CEB72FAC2C39079400E652CA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CEB72FE12C390AE500E652CA /* AppLanguageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLanguageVC.m; sourceTree = "<group>"; };
+		CEB72FF22C390F8100E652CA /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/6.59.png; sourceTree = "<group>"; };
+		CEB72FF42C390F9200E652CA /* fil-PH */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fil-PH"; path = "fil-PH.lproj/6.59.png"; sourceTree = "<group>"; };
+		CEB72FF52C390F9E00E652CA /* fil */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fil; path = fil.lproj/6.59.png; sourceTree = "<group>"; };
+		CEB72FF62C390FA400E652CA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/6.59.png"; sourceTree = "<group>"; };
 		CED90E912C31954A008D9F68 /* 配置info.plist.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "配置info.plist.md"; sourceTree = "<group>"; };
 		CED90E922C31954A008D9F68 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -5003,8 +5008,8 @@
 		84CA5CD427895A6000E46E71 /* 系统创建 */ = {
 			isa = PBXGroup;
 			children = (
-				CEAAD47E2C32875A00349C11 /* LaunchScreen.storyboard */,
-				CEAAD4802C32875A00349C11 /* Main.storyboard */,
+				CEB72FAC2C39079400E652CA /* LaunchScreen.storyboard */,
+				CEB72FAB2C39079400E652CA /* Main.storyboard */,
 				C57C860E2C228FB400FFC95A /* JobsOCBaseConfigDemo.xcdatamodeld */,
 				844B02252764C8F000B0513D /* main.m */,
 			);
@@ -5119,6 +5124,7 @@
 		84CA5DE727895B4700E46E71 /* 语言包 */ = {
 			isa = PBXGroup;
 			children = (
+				CEB72FF12C390F8100E652CA /* 6.59.png */,
 				CEAAD4762C327C7A00349C11 /* Localizable.strings */,
 				CEAAD46F2C32758A00349C11 /* InfoPlist.strings */,
 			);
@@ -11542,7 +11548,7 @@
 			isa = PBXGroup;
 			children = (
 				840F95DD27736427004979E9 /* AppLanguageVC.h */,
-				840F95DC27736427004979E9 /* AppLanguageVC.m */,
+				CEB72FE12C390AE500E652CA /* AppLanguageVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -11971,7 +11977,6 @@
 				C5C48046284E21E5007916B3 /* NotoSansDisplay-Thin.ttf in Resources */,
 				C5C4803B284E21E5007916B3 /* NotoSans-Light.ttf in Resources */,
 				840F961F27736427004979E9 /* 9@2x.png in Resources */,
-				CEAAD4832C32875B00349C11 /* Main.storyboard in Resources */,
 				84A4920627904A970002A837 /* 左气泡@2x.png in Resources */,
 				840F95F327736427004979E9 /* tab_home_animate.json in Resources */,
 				84562575278BF1FB0067ABB9 /* JobsComment【OutLines 03】.png in Resources */,
@@ -11997,6 +12002,7 @@
 				84409F1827A007170089EE40 /* 放大镜.png in Resources */,
 				84A4920827904A970002A837 /* 右气泡@2x.png in Resources */,
 				C5C48058284E21E5007916B3 /* NotoSansDisplay_Condensed-Black.ttf in Resources */,
+				CEB72FAE2C39079400E652CA /* LaunchScreen.storyboard in Resources */,
 				84CA5DFF27895B4700E46E71 /* 开屏页面.bundle in Resources */,
 				C5C4805B284E21E5007916B3 /* NotoSansDisplay_Condensed-ExtraLightItalic.ttf in Resources */,
 				C520F8322AB39EDD00142DCC /* 320x480.png in Resources */,
@@ -12004,6 +12010,7 @@
 				840F95EB27736427004979E9 /* wode.json in Resources */,
 				C5978A4E2BE3599700A56125 /* del_Photo@3x.png in Resources */,
 				C5C48051284E21E5007916B3 /* NotoSansDisplay-ExtraBoldItalic.ttf in Resources */,
+				CEB72FF72C3911CC00E652CA /* 6.59.png in Resources */,
 				C5C48039284E21E5007916B3 /* NotoSans-SemiBoldItalic.ttf in Resources */,
 				C5C4803E284E21E5007916B3 /* NotoSans-BlackItalic.ttf in Resources */,
 				84A4920327904A970002A837 /* 输入框无值@2x.png in Resources */,
@@ -12103,7 +12110,6 @@
 				C5978AB22BE3599700A56125 /* UITextView+IndicateWordLimit.png in Resources */,
 				840F961B27736427004979E9 /* 7@2x.png in Resources */,
 				C5978AD72BE3599700A56125 /* 旋转.png in Resources */,
-				CEAAD4822C32875B00349C11 /* LaunchScreen.storyboard in Resources */,
 				C5978AA92BE3599700A56125 /* ZYTextField.bundle in Resources */,
 				C57A2037282CB59F0032156B /* gesture_indicator_selected@2x.png in Resources */,
 				C5C48055284E21E5007916B3 /* NotoSansDisplay-Italic.ttf in Resources */,
@@ -12153,6 +12159,7 @@
 				84CA621D27899E2700E46E71 /* 1.jpeg in Resources */,
 				840F95EA27736427004979E9 /* 主页.json in Resources */,
 				84A491FD27904A970002A837 /* Check@2x.png in Resources */,
+				CEB72FAD2C39079400E652CA /* Main.storyboard in Resources */,
 				84CA5FB427897AFB00E46E71 /* 音律跳动.bundle in Resources */,
 				C5978AA02BE3599700A56125 /* WhiteRightArrow@2x.png in Resources */,
 				C5C48034284E21E5007916B3 /* NotoSans-Black.ttf in Resources */,
@@ -12432,6 +12439,7 @@
 				844B08782764CF4800B0513D /* XHLaunchAdView.m in Sources */,
 				C539A0402AD69BCF00C8A5E3 /* TKPermissionSpeech.m in Sources */,
 				CE6B14102C2ED50D00A542A4 /* YTKBatchRequestAgent.m in Sources */,
+				CEB72FE22C390AE500E652CA /* AppLanguageVC.m in Sources */,
 				846DF03927806D230050468A /* BaseContentView.m in Sources */,
 				C5978A192BE3599700A56125 /* NSObject+DefConfig.m in Sources */,
 				C539A03F2AD69BCF00C8A5E3 /* TKPermissionMotion.m in Sources */,
@@ -12755,7 +12763,6 @@
 				844B087A2764CF4800B0513D /* XHLaunchImageView.m in Sources */,
 				C53684D328758C6B00DD7AA7 /* TMSCollectionViewLayout.m in Sources */,
 				C5E8A761286984C300FAB31D /* BaiShaETProjOrderDetailsCVCell.m in Sources */,
-				840F971A27736428004979E9 /* AppLanguageVC.m in Sources */,
 				84CA5CD12789587900E46E71 /* AppDelegate+XHLaunchAdDelegate.m in Sources */,
 				840F961127736427004979E9 /* ZBRequestManager.m in Sources */,
 				C52E5CAA2AC07E9800FE5494 /* KTVHCDownload.m in Sources */,
@@ -13026,20 +13033,15 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		CEAAD47E2C32875A00349C11 /* LaunchScreen.storyboard */ = {
+		CEB72FF12C390F8100E652CA /* 6.59.png */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CEAAD47F2C32875A00349C11 /* Base */,
+				CEB72FF22C390F8100E652CA /* en */,
+				CEB72FF42C390F9200E652CA /* fil-PH */,
+				CEB72FF52C390F9E00E652CA /* fil */,
+				CEB72FF62C390FA400E652CA /* zh-Hans */,
 			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		CEAAD4802C32875A00349C11 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CEAAD4812C32875A00349C11 /* Base */,
-			);
-			name = Main.storyboard;
+			name = 6.59.png;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -122,10 +122,82 @@ Current targets:
 * target #0: /Users/user/Library/Developer/CoreSimulator/Devices/E17E7DE8-7ADA-42FD-A743-A1A3A6CB7E42/data/Containers/Bundle/Application/C590303C-50A7-4BB2-826F-8598E5F3A66C/JobsOCBaseConfigDemo.app/JobsOCBaseConfigDemo ( arch=x86_64-apple-ios-simulator, platform=ios-simulator, pid=89318, state=stopped )
 ```
 
-### 5、xcode 日志配置
+### 5、xcode 配置
 
-* `Environment Variables`标签，添加一个新的环境变量。将 `Name` 设置为 `IDEPreferLogStreaming`，将 `Value` 设置为 `YES`
-![image-20240629161626945](./assets/image-20240629161626945.png)
+* `Arguments Passed On Launch`标签设置
+
+  * 设置应用的语言环境
+
+    ```
+    AppleLanguages ( "en" )
+    ```
+
+  * 启用**Core Data SQL**语句调试日志
+
+    ```
+    -com.apple.CoreData.SQLDebug 1
+    ```
+
+  * 忽略应用的保存状态，强制应用在每次启动时都以初始状态运行    <font color=red>**这个参数在调试应用启动问题时很有用**</font>
+
+    ```
+    -ApplePersistenceIgnoreState YES
+    ```
+
+  * 强制应用使用特定的用户界面风格（浅色模式或深色模式）
+
+    ```
+    -UIUserInterfaceStyle Light
+    -UIUserInterfaceStyle Dark
+    ```
+
+  * 启用 **Firebase** 调试日志
+
+    ```
+    -FIRDebugEnabled
+    ```
+
+  * 启用`僵尸对象`检测   <font color=red>**帮助调试被释放的对象仍然被访问的问题**</font>
+
+    ```
+    -NSZombieEnabled YES
+    ```
+
+  * 启用视图对齐矩形的可视化   <font color=red>**这可以帮助调试视图布局问题**</font>
+
+    ```
+    -UIViewShowAlignmentRects YES
+    ```
+
+  * 启用 **Foundation** 框架的调试描述
+
+    ```
+    -NSDebugDescription YES
+    ```
+
+  * 启用文档修订调试模式
+
+    ```
+    -NSDocumentRevisionsDebugMode YES
+    ```
+
+  * 启用 CFNetwork 诊断日志。    <font color=red>**这对于调试网络请求问题非常有用**</font>
+
+    ```
+    -CFNetworkDiagnosticsEnable 1
+    ```
+
+  * 强制应用使用特定的文本方向（例如从左到右或从右到左）
+
+    ```
+    -AppleTextDirection YES
+    ```
+
+* `Environment Variables`标签
+
+  * 日志配置：添加一个新的环境变量。将 `Name` 设置为 `IDEPreferLogStreaming`，将 `Value` 设置为 `YES`
+
+    ![image-20240629161626945](./assets/image-20240629161626945.png)
 
 ### 6、重写打印输出
 

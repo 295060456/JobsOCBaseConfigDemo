@@ -52,6 +52,10 @@ static AppLanguage _language = AppLanguageBySys;
         case AppLanguageEnglish:
             return @"en";
         case AppLanguageTagalog:
+            /// fil（菲律宾语）：这是菲律宾的国家语言，基于他加禄语（Tagalog），但融合了来自菲律宾其他语言和外来语言的词汇和语法。ISO 639-1代码为"fil"
+            /// tl（他加禄语）：这是菲律宾的主要语言之一，也是菲律宾语的基础语言。ISO 639-1代码为"tl"
+            /// fil-PH：表示菲律宾的菲律宾语
+            /// tl-PH：表示菲律宾的他加禄语
             return [NSBundle.mainBundle pathForResource:@"fil" ofType:@"lproj"] ? @"fil" : @"fil-PH";
         default:
             return NSLocale.preferredLanguages.firstObject;
