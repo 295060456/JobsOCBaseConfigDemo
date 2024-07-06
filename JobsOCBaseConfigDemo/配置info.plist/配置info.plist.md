@@ -278,5 +278,8 @@
  <!-- 于启用应用程序中的摇动手势，通常与撤销/重做操作相关联 -->
  <key>UIApplicationSupportsShakeToEdit</key>
  <true/>
+ <!-- Core Data -->
+ <key>NSPersistentStoreTypeKey</key>
+ <string>SQLite</string>
  ```
 

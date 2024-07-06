@@ -46,19 +46,24 @@ MFMessageComposeViewControllerDelegate
 -(void)jobsPushToSysConfig;
 #pragma mark —— 安全打开URL
 /// 软性打开URL：【不会处理打开成功和打开失败两种情况】如果URL有误则无法打开
--(void)jobsOpenURL:(NSString *_Nullable)URLStr;
+/// 可以接受NSString * 和 URL *
+-(void)jobsOpenURL:(id _Nullable)URLStr;
 /// 软性打开URL：【只处理打开成功的情况】
--(void)jobsOpenURL:(NSString *_Nullable)URLStr
+/// 可以接受NSString * 和 URL *
+-(void)jobsOpenURL:(id _Nullable)URLStr
 successCompletionHandlerBlock:(jobsByIDBlock _Nullable)successCompletionHandlerBlock;
 /// 软性打开URL：【只处理打开失败的情况】
--(void)jobsOpenURL:(NSString *_Nullable)URLStr
+/// 可以接受NSString * 和 URL *
+-(void)jobsOpenURL:(id _Nullable)URLStr
 failCompletionHandlerBlock:(jobsByIDBlock _Nullable)failCompletionHandlerBlock;
 /// 软性打开URL：【会处理打开成功和打开失败两种情况】如果URL有误，可以做其他事，比如打开一个备用URL
--(void)jobsOpenURL:(NSString *_Nullable)URLStr
+/// 可以接受NSString * 和 URL *
+-(void)jobsOpenURL:(id _Nullable)URLStr
 successCompletionHandlerBlock:(jobsByIDBlock _Nullable)successCompletionHandlerBlock
 failCompletionHandlerBlock:(jobsByIDBlock _Nullable)failCompletionHandlerBlock;
 /// 硬性打开URL：【会处理打开成功和打开失败两种情况】如果URL有误，可以做其他事，比如打开一个备用URL
--(BOOL)jobsOpenURL:(NSString *_Nullable)URLStr
+/// 可以接受NSString * 和 URL *
+-(BOOL)jobsOpenURL:(id _Nullable)URL
            options:(NSDictionary<UIApplicationOpenExternalURLOptionsKey, id> *_Nullable)options
 successCompletionHandlerBlock:(jobsByVoidBlock _Nullable)successCompletionHandlerBlock
 failCompletionHandlerBlock:(jobsByVoidBlock _Nullable)failCompletionHandlerBlock;

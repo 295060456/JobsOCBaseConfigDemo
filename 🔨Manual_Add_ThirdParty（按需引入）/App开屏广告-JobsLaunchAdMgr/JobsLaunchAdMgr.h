@@ -15,9 +15,8 @@
 #import "UIView+Gesture.h"
 #import "NSString+Others.h"
 #import "UIButton+Timer.h"
-//#import "UIView+Gesture.h"
-//#import "UIView+Gesture.h"
-//#import "UIView+Gesture.h"
+#import "NSObject+DynamicInvoke.h"
+#import "NSObject+OpenURL.h"
 
 typedef NS_ENUM(NSUInteger, SkipButtonMode) {
     SkipButtonModeNormal,
@@ -62,14 +61,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)SkipButtonMode buttonMode;
 @property(nonatomic,assign)NSInteger countdownDuration;
 @property(nonatomic,copy)NSString *redirectURL;
+
 @property(nonatomic,copy)jobsByVoidBlock onDoubleTap;
 @property(nonatomic,copy)jobsByVoidBlock onSingleTap;
 @property(nonatomic,copy)jobsByVoidBlock onLongPress;
 @property(nonatomic,copy)jobsByVoidBlock onShake;
 
 + (instancetype)sharedManager;
-- (void)showAdWithLocalResource:(NSString *)resourcePath isVideo:(BOOL)isVideo;
-- (void)showAdWithURLResource:(NSString *)url isVideo:(BOOL)isVideo shouldPreload:(BOOL)shouldPreload;
++ (void)destroyInstance;
+- (void)showAdWithLocalResource:(NSString *)resourcePath
+                        isVideo:(BOOL)isVideo;
+- (void)showAdWithURLResource:(NSString *)url 
+                      isVideo:(BOOL)isVideo
+                shouldPreload:(BOOL)shouldPreload;
 
 @end
 

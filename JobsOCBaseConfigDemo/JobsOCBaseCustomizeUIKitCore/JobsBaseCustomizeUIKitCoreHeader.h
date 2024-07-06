@@ -14,6 +14,9 @@
 #import "JobsBaseProtocolHeader.h"
 #pragma mark —— Debug
 #import "JobsDebug.h"
+#pragma mark —— CALayer
+#import "JobsCALayer.h"
+
 #pragma mark —— NSCache
 #import "JobsCache.h"
 #pragma mark —— NSMutableDictionary
@@ -31,6 +34,15 @@
 #import "JobsString.h"
 #pragma mark —— NSUserDefaults
 #import "JobsUserDefaults.h"
+#pragma mark —— NSURL
+#import "JobsURL.h"
+#pragma mark —— NSNotificationCenter
+#import "NSNotificationCenter.h"
+#pragma mark —— NSAttributedString
+#import "NSAttributedString+Extra.h"
+#pragma mark —— NSData
+#import "JobsData.h"
+
 #pragma mark —— UIColor
 #import "JobsColor.h"
 #pragma mark —— UIDevice
@@ -41,15 +53,6 @@
 #import "JobsImage.h"
 #pragma mark —— UIControl
 #import "JobsControl.h"
-#pragma mark —— CALayer
-#import "JobsCALayer.h"
-#pragma mark —— NSNotificationCenter
-#import "NSNotificationCenter.h"
-#pragma mark —— NSAttributedString
-#import "NSAttributedString+Extra.h"
-#pragma mark —— NSData
-#import "JobsData.h"
-
 #pragma mark —— UIScrollView
 #import "JobsScrollView.h"
 #pragma mark —— UITableView
@@ -58,7 +61,6 @@
 #import "JobsTableViewCell.h"
 #pragma mark —— UITableViewHeaderFooterView
 #import "JobsTableViewHeaderFooterView.h"
-
 #pragma mark —— UICollectionReusableView
 #import "JobsCollectionReusableView.h"
 #pragma mark —— UICollectionView
@@ -69,7 +71,6 @@
 #import "UICollectionHeaderFooterView.h"
 #pragma mark —— UICollectionViewFlowLayout
 #import "JobsCollectionViewFlowLayout.h"
-
 #pragma mark —— UIBezierPath
 #import "JobsBezierPath.h"
 #pragma mark —— UIProgressView
@@ -92,7 +93,6 @@
 #import "JobsSlider.h"
 #pragma mark —— UIViewController
 #import "JobsViewController.h"
-
 #pragma mark —— UINavigationController
 #import "JobsNavigationController.h"
 #pragma mark —— UINavigationBar

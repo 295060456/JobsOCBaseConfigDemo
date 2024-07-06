@@ -287,6 +287,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"FMDB示例")
+                                                           attributeSubTitle:JobsInternationalization(@"增删查改")];
+            
+            viewModel.cls = FMDB_VC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"Realm示例")
+                                                           attributeSubTitle:JobsInternationalization(@"增删查改")];
+            
+            viewModel.cls = Realm_VC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"iOS Widget")
                                                            attributeSubTitle:JobsInternationalization(@"")];
             

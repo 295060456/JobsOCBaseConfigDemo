@@ -62,14 +62,14 @@ failCompletionHandlerBlock:^{
 }
 #pragma mark —— 安全打开URL
 /// 软性打开URL：【不会处理打开成功和打开失败两种情况】如果URL有误则无法打开
--(void)jobsOpenURL:(NSString *_Nullable)URLStr{
+-(void)jobsOpenURL:(id _Nullable)URLStr{
     [self jobsOpenURL:URLStr
               options:@{}
 successCompletionHandlerBlock:nil
 failCompletionHandlerBlock:nil];
 }
 /// 软性打开URL：【只处理打开成功的情况】
--(void)jobsOpenURL:(NSString *_Nullable)URLStr
+-(void)jobsOpenURL:(id _Nullable)URLStr
 successCompletionHandlerBlock:(jobsByIDBlock _Nullable)successCompletionHandlerBlock{
     [self jobsOpenURL:URLStr
               options:@{}
@@ -79,7 +79,7 @@ successCompletionHandlerBlock:^{
 failCompletionHandlerBlock:nil];
 }
 /// 软性打开URL：【只处理打开失败的情况】
--(void)jobsOpenURL:(NSString *_Nullable)URLStr
+-(void)jobsOpenURL:(id _Nullable)URLStr
 failCompletionHandlerBlock:(jobsByIDBlock _Nullable)failCompletionHandlerBlock{
     [self jobsOpenURL:URLStr
               options:@{}
@@ -89,7 +89,7 @@ failCompletionHandlerBlock:^{
     }];
 }
 /// 软性打开URL：【会处理打开成功和打开失败两种情况】如果URL有误，可以做其他事，比如打开一个备用URL
--(void)jobsOpenURL:(NSString *_Nullable)URLStr
+-(void)jobsOpenURL:(id _Nullable)URLStr
 successCompletionHandlerBlock:(jobsByIDBlock _Nullable)successCompletionHandlerBlock
 failCompletionHandlerBlock:(jobsByIDBlock _Nullable)failCompletionHandlerBlock{
     [self jobsOpenURL:URLStr
@@ -102,29 +102,48 @@ failCompletionHandlerBlock:^{
     }];
 }
 /// 硬性打开URL：【会处理打开成功和打开失败两种情况】如果URL有误，可以做其他事，比如打开一个备用URL
--(BOOL)jobsOpenURL:(NSString *_Nullable)URLStr
+/// 可以接受NSString * 和 URL *
+-(BOOL)jobsOpenURL:(id _Nullable)URL
            options:(NSDictionary<UIApplicationOpenExternalURLOptionsKey, id> *_Nullable)options
 successCompletionHandlerBlock:(jobsByVoidBlock _Nullable)successCompletionHandlerBlock
 failCompletionHandlerBlock:(jobsByVoidBlock _Nullable)failCompletionHandlerBlock{
-    /// URLStr不是字符串、为空、不能打开均不走以下逻辑判断
-    if (![URLStr isKindOfClass:NSString.class]) {
+
+    if ([URL isKindOfClass:NSString.class]) {
+        NSString *url = (NSString *)URL;
+        if ([NSString isNullString:url]) {
+            [self jobsToastMsg:JobsInternationalization(@"URL为空，请检查！")];
+            return NO;
+        }else{
+            if (!url.jobsCanOpenUrl) {
+                [self jobsToastMsg:[NSString stringWithFormat:JobsInternationalization(@"打开%@失败，请检查"),url]];
+                return url.jobsCanOpenUrl;
+            }
+        }
+    }else if ([URL isKindOfClass:NSURL.class]){
+        NSURL *url = (NSURL *)URL;
+        if (!url.jobsCanOpenUrl) {
+            [self jobsToastMsg:[NSString stringWithFormat:JobsInternationalization(@"打开%@失败，请检查"),url.absoluteString]];
+            return url.jobsCanOpenUrl;
+        }
+    }else{
         [self jobsToastMsg:JobsInternationalization(@"URL类型不匹配，请检查")];
         return NO;
     }
-    if ([NSString isNullString:URLStr]) {
-        [self jobsToastMsg:JobsInternationalization(@"URL为空，请检查！")];
-        return NO;
-    }
-    if (!URLStr.jobsCanOpenUrl) {
-        [self jobsToastMsg:[NSString stringWithFormat:JobsInternationalization(@"打开%@失败，请检查"),URLStr]];
-        return URLStr.jobsCanOpenUrl;
-    }
+
+    NSURL *openURL = nil;
+    if([URL isKindOfClass:NSURL.class]){
+        openURL = URL;
+    }else if ([URL isKindOfClass:NSString.class]){
+        NSString *url = (NSString *)URL;
+        openURL = url.jobsUrl;
+    }else{}
+    
     options = options ? options : @{};
     /// 打开的动作
     if (@available(iOS 10.0, *)) {
         if ([UIApplication.sharedApplication respondsToSelector:@selector(openURL:options:completionHandler:)]) {
-            if (URLStr.jobsCanOpenUrl) {
-                [UIApplication.sharedApplication openURL:URLStr.jobsUrl
+            if (openURL.jobsCanOpenUrl) {
+                [UIApplication.sharedApplication openURL:openURL
                                                  options:options
                                        completionHandler:^(BOOL success) {
                     NSLog(@"打开成功");
@@ -139,10 +158,10 @@ failCompletionHandlerBlock:(jobsByVoidBlock _Nullable)failCompletionHandlerBlock
             return NO;
         }
     }else {
-        if (URLStr.jobsCanOpenUrl) {
-            SuppressWdeprecatedDeclarationsWarning([UIApplication.sharedApplication openURL:URLStr.jobsUrl]);
+        if (openURL.jobsCanOpenUrl) {
+            SuppressWdeprecatedDeclarationsWarning([UIApplication.sharedApplication openURL:openURL]);
         }else if (failCompletionHandlerBlock) failCompletionHandlerBlock();
-        return URLStr.jobsCanOpenUrl;
+        return openURL.jobsCanOpenUrl;
     }
 }
 #pragma mark —— @property(nonatomic,strong)MFMessageComposeViewController *messageComposeVC;

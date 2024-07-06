@@ -1812,7 +1812,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 富文本的本质是告诉系统，某段文字的表达方式
 
-* 运行机制：
+* 运行机制
 
   * 将根数据源：`RichTextConfig` 赋值后，装载到可变数组里面
 
@@ -1917,7 +1917,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 22、系统相机相册调取
 
-* 借助第三方`HXPhotoPicker`
+* 借助第三方[**`HXPhotoPicker`**](https://github.com/SilenceLove/HXPhotoPicker)
 
   ```ruby
   pod 'HXPhotoPicker' # 相册选择 https://github.com/SilenceLove/HXPhotoPicker
@@ -1931,12 +1931,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   #endif
   ```
 
-* 对第三方`HXPhotoPicker`数据层的二次封装，方便调用
+* 对第三方[**`HXPhotoPicker`**](https://github.com/SilenceLove/HXPhotoPicker)的数据层进行二次封装，方便调用
 
   * 关注实现类：[**@interface HXPhotoPickerModel : NSObject**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BHXPhotoPicker)
   * 关注实现类：[**@interface NSObject (HXPhotoPicker)<HXCustomNavigationControllerDelegate>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BHXPhotoPicker)
 
-* [**需要对`info.plist` 文件进行相应字段的配置**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/%E9%85%8D%E7%BD%AEinfo.plist/%E9%85%8D%E7%BD%AEinfo.plist.md)。系统需要主动索取用户权限。如果未授权，则以下代码将会调用失败
+* [**需要对`info.plist` 文件进行相应字段的配置**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/%E9%85%8D%E7%BD%AEinfo.plist/%E9%85%8D%E7%BD%AEinfo.plist.md)。<font color=red>**系统需要主动索取用户权限。如果未授权，则以下代码将会调用失败**</font>
 
   ```xml
   <string>$(NSPhotoLibraryAddUsageDescription)</string><!-- 我们需要获取你的相册权限以完成选择本地图片功能 -->
@@ -1984,6 +1984,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 23、完整的单例写法
 
+* 在 **OC**中，`static` 关键字用于声明静态变量。这些变量在整个应用程序的生命周期内只会被初始化一次，并且它们的作用域仅限于定义它们的文件
+* `dispatch_once_t` 是 **GCD**（**G**rand **C**entral **D**ispatch）提供的一种机制，用于确保某段代码在应用程序的生命周期内只执行一次。它是线程安全的，适用于多线程环境
+
 ```objective-c
 static JobsLaunchAdMgr *JobsLaunchAdMgrInstance;
 static dispatch_once_t JobsLaunchAdMgrOnceToken;
@@ -2012,6 +2015,314 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
     return self;
 }
 ```
+
+### 24、打开URL
+
+* 关注实现类：[**@interface NSObject (OpenURL)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+OpenURL)
+
+* 处理警告，向下兼容API
+
+* **URL**兼容`NSString *` 和 `NSURL *`
+
+* 丰富打开失败后的操作
+
+* 具体代码调用
+
+  ```objective-c
+              [self jobsOpenURL:self.redirectURL
+  successCompletionHandlerBlock:^(id  _Nullable data) {
+  
+              } failCompletionHandlerBlock:^(id  _Nullable data) {
+  
+              }];
+  ```
+
+### 25、数据库
+
+* **FMDB**
+
+  <font color=blue>**需要写SQL**</font>
+
+  ```objective-c
+  #if __has_include(<FMDB/FMDB.h>)
+  #import <FMDB/FMDB.h>
+  #else
+  #import "FMDB.h"
+  #endif
+  
+  /// 建表
+  - (void)createTable {
+      [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+          NSString *createTableQuery = @"CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER)";
+          BOOL success = [db executeUpdate:createTableQuery];
+          if (success) {
+              NSLog(@"Table created successfully.");
+          } else {
+              NSLog(@"Failed to create table.");
+          }
+      }];
+  }
+  /// 插入数据
+  - (void)insertUserWithName:(NSString *)name age:(NSInteger)age {
+      [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+          NSString *insertQuery = @"INSERT INTO Users (name, age) VALUES (?, ?)";
+          BOOL success = [db executeUpdate:insertQuery, name, @(age)];
+          if (success) {
+              NSLog(@"User inserted successfully.");
+          } else {
+              NSLog(@"Failed to insert user.");
+          }
+      }];
+  }
+  /// 查询数据
+  - (NSArray *)fetchAllUsers {
+      NSMutableArray *users = NSMutableArray.array;
+      [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+          NSString *selectQuery = @"SELECT * FROM Users";
+          FMResultSet *result = [db executeQuery:selectQuery];
+          while (result.next) {
+              NSDictionary *user = @{
+                  @"id": @([result intForColumn:@"id"]),
+                  @"name": [result stringForColumn:@"name"],
+                  @"age": @([result intForColumn:@"age"])
+              };
+              [users addObject:user];
+          }
+      }];return users;
+  }
+  /// 更新/改正 数据
+  - (void)updateUserWithID:(NSInteger)userID
+                   newName:(NSString *)newName
+                    newAge:(NSInteger)newAge {
+      [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+          NSString *updateQuery = @"UPDATE Users SET name = ?, age = ? WHERE id = ?";
+          BOOL success = [db executeUpdate:updateQuery, newName, @(newAge), @(userID)];
+          if (success) {
+              NSLog(@"User updated successfully.");
+          } else {
+              NSLog(@"Failed to update user.");
+          }
+      }];
+  }
+  /// 删除数据
+  - (void)deleteUserWithID:(NSInteger)userID {
+      [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+          NSString *deleteQuery = @"DELETE FROM Users WHERE id = ?";
+          BOOL success = [db executeUpdate:deleteQuery, @(userID)];
+          if (success) {
+              NSLog(@"User deleted successfully.");
+          } else {
+              NSLog(@"Failed to delete user.");
+          }
+      }];
+  }
+  ```
+
+* **Realm**
+
+  * <font color=red>**不需要写SQL，pod一键集成**</font>
+  * **model**需要继承自**RLMObject**
+
+  ```objective-c
+  #if __has_include(<Realm/Realm.h>)
+  #import <Realm/Realm.h>
+  #else
+  #import "Realm.h"
+  #endif
+  
+  /// 插入数据
+  - (void)insertUserWithName:(NSString *)name age:(NSInteger)age {
+      RLMRealm *realm = RLMRealm.defaultRealm;
+      [realm transactionWithBlock:^{
+          User *newUser = User.new;
+          newUser.name = name;
+          newUser.age = age;
+          [realm addObject:newUser];
+      }];
+  }
+  /// 查询数据
+  - (NSArray *)fetchAllUsers {
+      RLMResults<User *> *results = User.allObjects;
+      NSMutableArray *users = NSMutableArray.array;
+      for (User *user in results) {
+          [users addObject:user];
+      }return users;
+  }
+  /// 更新/改正 数据
+  - (void)updateUser:(User *)user
+             newName:(NSString *)newName
+              newAge:(NSInteger)newAge {
+      RLMRealm *realm = RLMRealm.defaultRealm;
+      [realm transactionWithBlock:^{
+          user.name = newName;
+          user.age = newAge;
+      }];
+  }
+  /// 删除数据
+  - (void)deleteUser:(User *)user {
+      RLMRealm *realm = RLMRealm.defaultRealm;
+      [realm transactionWithBlock:^{
+          [realm deleteObject:user];
+      }];
+  }
+  ```
+
+* **Core Data**
+
+  * <font color=blue>**不需要写SQL，但是需要在xcode上进行配置，比较繁琐**</font>
+
+  * `Info.plist`中，添加一个新的键 `NSPersistentStoreTypeKey`，并将值设置为 `SQLite`
+
+  * 创建**Core Data**模型文件`.xcdatamodeld`，并在其中创建一个实体 `User`，并添加两个属性：
+
+    - `name` (**String**)
+    - `age` (**Integer 32**)
+
+    ![image-20240706231719263](./assets/image-20240706231719263.png)
+
+  * `AppDelegate`设置**Core Data**堆栈
+
+    ```objective-c
+    #import <UIKit/UIKit.h>
+    #import <CoreData/CoreData.h>
+    
+    @interface AppDelegate : UIResponder <UIApplicationDelegate>
+    
+    @property (strong, nonatomic) UIWindow *window;
+    @property (readonly, strong) NSPersistentContainer *persistentContainer;
+    
+    - (void)saveContext;
+    
+    @end
+    ```
+
+    ```objective-c
+    #import "AppDelegate.h"
+    
+    @interface AppDelegate ()
+    
+    @end
+    
+    @implementation AppDelegate
+    
+    @synthesize persistentContainer = _persistentContainer;
+    
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+        return YES;
+    }
+    
+    - (NSPersistentContainer *)persistentContainer {
+        @synchronized (self) {
+            if (_persistentContainer == nil) {
+                _persistentContainer = [[NSPersistentContainer alloc] initWithName:@"ModelName"];
+                [_persistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription *storeDescription, NSError *error) {
+                    if (error != nil) {
+                        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+                        abort();
+                    }
+                }];
+            }
+        }
+        return _persistentContainer;
+    }
+    
+    - (void)saveContext {
+        NSManagedObjectContext *context = self.persistentContainer.viewContext;
+        if ([context hasChanges]) {
+            NSError *error = nil;
+            if (![context save:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+                abort();
+            }
+        }
+    }
+    
+    @end
+    ```
+
+  * 增删查改
+
+    ```objective-c
+    #import "ViewController.h"
+    #import "AppDelegate.h"
+    #import <CoreData/CoreData.h>
+    
+    @interface ViewController ()
+    
+    @property (nonatomic, strong) NSManagedObjectContext *context;
+    
+    @end
+    
+    @implementation ViewController
+    
+    - (void)viewDidLoad {
+        [super viewDidLoad];
+        
+        self.context = ((AppDelegate *)[UIApplication sharedApplication].delegate).persistentContainer.viewContext;
+        
+        // 插入数据
+        [self insertUserWithName:@"Alice" age:25];
+        [self insertUserWithName:@"Bob" age:30];
+        
+        // 获取所有用户
+        NSArray *users = [self fetchAllUsers];
+        NSLog(@"Users: %@", users);
+        
+        // 更新用户
+        if (users.count > 0) {
+            NSManagedObject *user = users[0];
+            [self updateUser:user newName:@"Alice Smith" newAge:26];
+        }
+        
+        // 删除用户
+        if (users.count > 1) {
+            NSManagedObject *user = users[1];
+            [self deleteUser:user];
+        }
+        
+        // 获取更新后的用户列表
+        users = [self fetchAllUsers];
+        NSLog(@"Updated Users: %@", users);
+    }
+    
+    - (void)insertUserWithName:(NSString *)name age:(NSInteger)age {
+        NSManagedObject *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.context];
+        [newUser setValue:name forKey:@"name"];
+        [newUser setValue:@(age) forKey:@"age"];
+        [self saveContext];
+    }
+    
+    - (NSArray *)fetchAllUsers {
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+        NSError *error = nil;
+        NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+        if (error) {
+            NSLog(@"Error fetching users: %@", error);
+        }
+        return result;
+    }
+    
+    - (void)updateUser:(NSManagedObject *)user newName:(NSString *)newName newAge:(NSInteger)newAge {
+        [user setValue:newName forKey:@"name"];
+        [user setValue:@(newAge) forKey:@"age"];
+        [self saveContext];
+    }
+    
+    - (void)deleteUser:(NSManagedObject *)user {
+        [self.context deleteObject:user];
+        [self saveContext];
+    }
+    
+    - (void)saveContext {
+        NSError *error = nil;
+        if ([self.context hasChanges] && ![self.context save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+            abort();
+        }
+    }
+    
+    @end
+    ```
 
 
 ### Test

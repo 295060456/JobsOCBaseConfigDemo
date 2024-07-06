@@ -17,6 +17,8 @@
 /// Data
 @property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
 @property(nonatomic,strong)NSURL *url;
+@property(nonatomic,strong)UIImage *image;
+@property(nonatomic,strong)NSString *path;
 
 @end
 
@@ -50,14 +52,12 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
 
 - (instancetype)init {
     if (self = [super init]) {
-        _buttonTitle = JobsInternationalization(@"跳过");
         _buttonFrame = CGRectZero;
-        _countdownDuration = 5;
-        _redirectURL = @"https://www.google.com";
     }return self;
 }
 
-- (void)showAdWithLocalResource:(NSString *)resourcePath isVideo:(BOOL)isVideo {
+- (void)showAdWithLocalResource:(NSString *)resourcePath
+                        isVideo:(BOOL)isVideo {
     [self setupAdView];
     if (isVideo) {
         [self playLocalVideo:resourcePath];
@@ -66,7 +66,9 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
     }
 }
 
-- (void)showAdWithURLResource:(NSString *)url isVideo:(BOOL)isVideo shouldPreload:(BOOL)shouldPreload {
+- (void)showAdWithURLResource:(NSString *)url
+                      isVideo:(BOOL)isVideo
+                shouldPreload:(BOOL)shouldPreload {
     [self setupAdView];
     if (shouldPreload) {
         // Implement preloading logic here
@@ -80,7 +82,6 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
 
 - (void)setupAdView {
     self.adView.alpha = 1;
-    self.countDownBtn.alpha = 1;
 
     {
         _adView.numberOfTouchesRequired = 1;
@@ -112,10 +113,15 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
                 if (self.onSingleTap) {
                     self.onSingleTap();
                 } else {
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.redirectURL] options:@{} completionHandler:nil];
+                    [self jobsOpenURL:self.redirectURL
+        successCompletionHandlerBlock:^(id  _Nullable data) {
+                        
+                    } failCompletionHandlerBlock:^(id  _Nullable data) {
+                        
+                    }];
+                    
                     [self adDidFinish];
-                }
-               return nil;
+                }return nil;
             }];
             _adView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
         }
@@ -125,8 +131,7 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
                 NSLog(@"双击手势被触发");
                 if (self.onDoubleTap) {
                     self.onDoubleTap();
-                }
-                return nil;
+                }return nil;
             }];
             _adView.doubleTapGR.enabled = YES; // 必须在设置完Target和selector以后方可开启执行
         }
@@ -152,23 +157,22 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
 }
 
 - (void)displayLocalImage:(NSString *)path {
-    UIImage *image = [UIImage imageWithContentsOfFile:path];
-    _imageView = [UIImageView.alloc initWithFrame:_adView.bounds];
-    _imageView.image = image;
-    _imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [_adView addSubview:_imageView];
-    [self performSelector:@selector(adDidFinish)
+    self.path = path;
+    self.imageView.image = self.image;
+    @jobs_weakify(self)
+    [self performSelector:[self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
+                                                                id  _Nullable arg) {
+        @jobs_strongify(self)
+        [self adDidFinish];
+        return nil;
+    }]
                withObject:nil
                afterDelay:self.countdownDuration];
 }
 
 - (void)playURLVideo:(NSString *)urlString {
-    NSURL *videoURL = urlString.jobsUrl;
-    _videoPlayer = [AVPlayer playerWithURL:videoURL];
-    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_videoPlayer];
-    playerLayer.frame = _adView.bounds;
-    [_adView.layer addSublayer:playerLayer];
-    [_videoPlayer play];
+    self.url = urlString.jobsUrl;
+    [self.videoPlayer play];
     @jobs_weakify(self)
     JobsAddNotification(self,
                     selectorBlocks(^id _Nullable(id _Nullable weakSelf,
@@ -182,14 +186,15 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
 }
 
 - (void)displayURLImage:(NSString *)urlString {
-    NSURL *imageURL = [NSURL URLWithString:urlString];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage *image = [UIImage imageWithData:imageData];
-    _imageView = [[UIImageView alloc] initWithFrame:_adView.bounds];
-    _imageView.image = image;
-    _imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [_adView addSubview:_imageView];
-    [self performSelector:@selector(adDidFinish)
+    self.url = urlString.jobsUrl;
+    self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.url]];
+    @jobs_weakify(self)
+    [self performSelector:[self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
+                                                                id  _Nullable arg) {
+        @jobs_strongify(self)
+        [self adDidFinish];
+        return nil;
+    }]
                withObject:nil
                afterDelay:self.countdownDuration];
 }
@@ -212,19 +217,41 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
     if(!_playerLayer){
         _playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.videoPlayer];
         _playerLayer.frame = self.adView.bounds;
-        
+        [self.adView.layer addSublayer:_playerLayer];
     }return _playerLayer;
 }
 
 -(NSURL *)url{
-    return _url;
+    if(!_url){
+        _url = @"".jobsUrl;
+    }return _url;
+}
+
+-(NSString *)path{
+    if(!_path){
+        _path = @"";
+    }return _path;
+}
+
+-(UIImageView *)imageView{
+    if(!_imageView){
+        _imageView = UIImageView.new;
+        _imageView.frame = self.adView.bounds;
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        [self.adView addSubview:_imageView];
+    }return _imageView;
+}
+
+-(UIImage *)image{
+    if(_image){
+        _image = [UIImage imageWithContentsOfFile:self.path];
+    }return _image;
 }
 
 -(UIView *)adView{
     if (!_adView) {
         _adView = [UIView.alloc initWithFrame:jobsGetMainWindow().bounds];
         _adView.backgroundColor = JobsBlackColor;
-        [_adView.layer addSublayer:self.playerLayer];
         [jobsGetMainWindow() addSubview:_adView];
     }return _adView;
 }
@@ -233,38 +260,38 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
     if(!_countDownBtn){
         @jobs_weakify(self)
         _countDownBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:[self richTextWithDataConfigMutArr:self.richTextConfigMutArr]
-                                                             title:JobsInternationalization(_buttonTitle)
-                                                          subTitle:nil//Internationalization(@"观看完整教学视频需支付99Mata值")
-                                                         titleFont:UIFontWeightBoldSize(18)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsCor(@"#333333")
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.whiteColor
-                                                      imagePadding:JobsWidth(0)
-                                                      titlePadding:JobsWidth(10)
-                                                    imagePlacement:NSDirectionalRectEdgeNone
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(0)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                            longPressGestureEventBlock:nil
-                                                   clickEventBlock:^id(BaseButton *x) {
+                                                          background:nil
+                                                      titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                       textAlignment:NSTextAlignmentCenter
+                                                    subTextAlignment:NSTextAlignmentCenter
+                                                         normalImage:nil
+                                                      highlightImage:nil
+                                                     attributedTitle:nil
+                                             selectedAttributedTitle:nil
+                                                  attributedSubtitle:[self richTextWithDataConfigMutArr:self.richTextConfigMutArr]
+                                                               title:JobsInternationalization(_buttonTitle)
+                                                            subTitle:nil
+                                                           titleFont:UIFontWeightBoldSize(18)
+                                                        subTitleFont:nil
+                                                            titleCor:JobsCor(@"#333333")
+                                                         subTitleCor:nil
+                                                  titleLineBreakMode:NSLineBreakByWordWrapping
+                                               subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                 baseBackgroundColor:UIColor.whiteColor
+                                                        imagePadding:JobsWidth(0)
+                                                        titlePadding:JobsWidth(10)
+                                                      imagePlacement:NSDirectionalRectEdgeNone
+                                          contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                            contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                       contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                   cornerRadiusValue:JobsWidth(0)
+                                                     roundingCorners:UIRectCornerAllCorners
+                                                roundingCornersRadii:CGSizeZero
+                                                      layerBorderCor:nil
+                                                         borderWidth:JobsWidth(0)
+                                                       primaryAction:nil
+                                                longPressGestureEventBlock:nil
+                                                     clickEventBlock:^id(BaseButton *x) {
            @jobs_strongify(self)
            x.selected = !x.selected;
            if (self.objectBlock) self.objectBlock(x);
@@ -287,5 +314,22 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
     }return _countDownBtn;
 }
 
+-(NSString *)buttonTitle{
+    if(!_buttonTitle){
+        _buttonTitle = JobsInternationalization(@"跳过");
+    }return _buttonTitle;
+}
+
+-(NSInteger)countdownDuration{
+    if(!_countdownDuration){
+        _countdownDuration = 5;
+    }return _countdownDuration;
+}
+
+-(NSString *)redirectURL{
+    if(!_redirectURL){
+        _redirectURL = @"https://www.google.com";
+    }return _redirectURL;
+}
 
 @end

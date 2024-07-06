@@ -27,7 +27,7 @@
 #import "ViewController@4.h"
 #import "ViewController@5.h"
 
-#import "NSObject+CasinoCheck.h"// 数据检验
+#import "NSObject+JobsCheck.h"// 数据检验
 #import "JobsOCBaseConfigPopupViewHeader.h"// 本App相关的自定义弹出框
 
 // 测试专用
@@ -87,5 +87,7 @@
 #import "WidgetVC.h"
 #import "HotRefreshVC.h"
 #import "AppLanguageVC.h"// 国际化
+#import "FMDB_VC.h"
+#import "Realm_VC.h"
 
 #endif /* Other_h */
