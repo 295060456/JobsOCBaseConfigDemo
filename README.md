@@ -85,6 +85,8 @@
 
 * 备份iOS模拟器文件夹到桌面`Volumes`
 
+  脚本自动化：[**【MacOS】备份iOS模拟器.command**]()
+
   ```shell
   #!/bin/bash
   
@@ -97,6 +99,8 @@
 
 * 还原iOS模拟器（执行完毕后，需要重启xcode）
 
+  脚本自动化：[**【MacOS】恢复iOS模拟器.command**]()
+  
   ```shell
   #!/bin/bash
   
@@ -178,6 +182,7 @@ Current targets:
 ### 7、iOS xcode 代码块，提升编码效率必备之首选
 
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
+* 脚本自动化：[**`【MacOS】安装JobsCodeSnippets.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%AE%89%E8%A3%85JobsCodeSnippets.command)
 
 ### 8、**手动打包流程**
 
@@ -194,6 +199,8 @@ Current targets:
 * 压缩电脑桌面新建的`payload`文件夹为zip格式的压缩包
 
 * 将这个`zip`格式的压缩包，强行改名`*.ipa`
+
+* 脚本自动化：[**`【MacOS】放在iOS项目工程根目录下，自动打包并输出为ipa文件.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%94%BE%E5%9C%A8iOS%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B9%B6%E8%BE%93%E5%87%BA%E4%B8%BAipa%E6%96%87%E4%BB%B6.command)
 
 ### 9、[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
 
