@@ -23,7 +23,7 @@ jobs:
         node-version: '20'  # 使用最新版本的 Node.js
         
     - name: Install dependencies
-      run: |
+       run: |
         sudo apt-get update
         sudo apt-get install -y chromium-browser
         npm install -g @mermaid-js/mermaid-cli
@@ -34,14 +34,17 @@ jobs:
         ls -la # 列出当前目录中的文件
 
     - name: Show current directory structure
-      run: ls -R
+       run: ls -R
       
+    - name: Print environment variables
+       run: printenv
+    
     - name: Check GITHUB_TOKEN permissions
-      run: |
-       curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }} -I
+       run: |
+        curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }} -I
 
     - name: Commit and push diagrams
-      if: success()
+       if: success()
       env:
         ACTIONS_PAT: ${{ secrets.ACTIONS_PAT }}
       run: |
