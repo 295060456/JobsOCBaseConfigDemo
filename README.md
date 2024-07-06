@@ -36,7 +36,16 @@
 
 ## 四、几点重要说明
 
-### 1、在Apple芯片（目前是M系列）编译失败的解决方案
+### 1、特别说明
+
+* 经实践证明，如果配置多语言化，那么xcode将会刷新`Info.plist`，导致里面的注释消失。正确的做法是，对`Info.plist`进行备份，随时进行替换
+
+* 工程项目的`Info.plist`文件是对整个工程的配置说明，系统固定读取，所以必须在工程项目根目录的同名文件夹下。否则项目启动会出问题
+
+  ![image-20240706113246025](./assets/image-20240706113246025.png)
+
+
+### 2、在Apple芯片（目前是M系列）编译失败的解决方案
 * 禁用系统完整性保护 (**S**ystem **I**ntegrity **P**rotection, SIP)   <font color=red>**如果不禁用，会对某些文件夹有读写权限控制**</font>
   * 重启MacOS，长按开机键，直到🌏页面，进入恢复模式
   * 在恢复模式的 macOS 实用工具窗口中，选择“实用工具”菜单，然后选择“终端”以打开终端窗口
@@ -64,7 +73,7 @@
     ```shell
     pod install
     ```
-### 2、iOS模拟器
+### 3、iOS模拟器
 
 * 如果更新或者删除xcode，那么下载的iOS模拟器将会丢失
 
@@ -98,7 +107,7 @@
   echo "桌面的Volumes文件夹内容已成功复制到/Library/Developer/CoreSimulator/Volumes。"
   ```
 
-### 3、lldb
+### 4、lldb
 
 ```shell
 (lldb) target list
@@ -109,12 +118,12 @@ Current targets:
 * target #0: /Users/user/Library/Developer/CoreSimulator/Devices/E17E7DE8-7ADA-42FD-A743-A1A3A6CB7E42/data/Containers/Bundle/Application/C590303C-50A7-4BB2-826F-8598E5F3A66C/JobsOCBaseConfigDemo.app/JobsOCBaseConfigDemo ( arch=x86_64-apple-ios-simulator, platform=ios-simulator, pid=89318, state=stopped )
 ```
 
-### 4、xcode 日志配置
+### 5、xcode 日志配置
 
 * `Environment Variables`标签，添加一个新的环境变量。将 `Name` 设置为 `IDEPreferLogStreaming`，将 `Value` 设置为 `YES`
 ![image-20240629161626945](./assets/image-20240629161626945.png)
 
-### 5、重写打印输出
+### 6、重写打印输出
 
 * 关注文件[**MacroDef_Log.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Sys/MacroDef_Log.h)
 
@@ -166,11 +175,11 @@ Current targets:
   
   ![image-20240703193326163](./assets/image-20240703193326163.png)
 
-### 6、iOS xcode 代码块，提升编码效率必备之首选
+### 7、iOS xcode 代码块，提升编码效率必备之首选
 
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 
-### 7、**手动打包流程**
+### 8、**手动打包流程**
 
 * 电脑桌面新建文件夹，并重命名为`payload；`
 
@@ -186,7 +195,7 @@ Current targets:
 
 * 将这个`zip`格式的压缩包，强行改名`*.ipa`
 
-### 7、[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
+### 9、[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
 
 * 背景意义：统一全局的Block定义，减少冗余代码
 
@@ -201,7 +210,7 @@ Current targets:
   * `【MacOS】Pod_Install（适用于IOS工程根目录）.command`
   * `【MacOS】Pod_Update（适用于IOS工程根目录）.command`
 
-### 8、[**<font color=red>BaseProtocol 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md)
+### 10、[**<font color=red>BaseProtocol 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md)
 
 ```mermaid
 classDiagram
@@ -241,7 +250,7 @@ classDiagram
     }
 ```
 
-### 9、**UIViewModelFamily**
+### 11、**UIViewModelFamily**
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
@@ -600,7 +609,7 @@ class BaseProtocol {
 }
 NSObject <|-- BaseProtocol
 ```
-### 10、JobsOCBaseCustomizeUIKitCore
+### 12、JobsOCBaseCustomizeUIKitCore
 
 * 产生背景
   * OC的基类是单继承
@@ -609,7 +618,7 @@ NSObject <|-- BaseProtocol
   * 继承和分类应该结合使用，功能各有优劣
   * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用
 
-### 11、度量衡适配。[**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
+### 13、度量衡适配。[**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
 
 * **当前设备是否是全面屏**：`static inline BOOL isFullScreen(void) ` 
 * **全局比例尺**
@@ -632,7 +641,7 @@ NSObject <|-- BaseProtocol
 * **除开 tabBarController 和 navigationController 的内容可用区域的大小**
   * `static inline CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBarController, UINavigationController * _Nullable navigationController)`
 
-### 12、`NavigationBar`
+### 14、`NavigationBar`
 
 * 摒弃系统的，而转为使用第三方`GKNavigationBar`
 
@@ -652,7 +661,7 @@ NSObject <|-- BaseProtocol
   * 关注实现类：[**`@interface BaseViewController : UIViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/BaseViewController)
   * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
 
-### 13、输入框
+### 15、输入框
 
 * 有4个`TextField`可供继承使用（具体使用方式，查询相关头文件定义）
   * `CJTextField`
@@ -660,7 +669,7 @@ NSObject <|-- BaseProtocol
   * `JobsMagicTextField`
   * `ZYTextField`
 
-### 14、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h)
+### 16、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h)
 * [**寻找当前控制器 **](#寻找当前控制器 )
 
 * 获取**window**
@@ -1742,6 +1751,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   * 关注实现类：[**@interface HXPhotoPickerModel : NSObject**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BHXPhotoPicker)
   * 关注实现类：[**@interface NSObject (HXPhotoPicker)<HXCustomNavigationControllerDelegate>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BHXPhotoPicker)
+
+* [**需要对`info.plist` 文件进行相应字段的配置**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/%E9%85%8D%E7%BD%AEinfo.plist/%E9%85%8D%E7%BD%AEinfo.plist.md)。系统需要主动索取用户权限。如果未授权，则以下代码将会调用失败
+
+  ```xml
+  <string>$(NSPhotoLibraryAddUsageDescription)</string><!-- 我们需要获取你的相册权限以完成选择本地图片功能 -->
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>$(NSPhotoLibraryUsageDescription)</string><!-- 我们需要获取你的相册权限以完成选择本地图片功能 -->
+  <key>NSRemindersUsageDescription</key>
+  ```
 
 * 调取系统相册
 

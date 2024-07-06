@@ -3919,8 +3919,6 @@
 			isa = PBXGroup;
 			children = (
 				844B02242764C8F000B0513D /* Info.plist */,
-				CEAAD4762C327C7A00349C11 /* Localizable.strings */,
-				CEAAD46F2C32758A00349C11 /* InfoPlist.strings */,
 				845A0B1B276DAC99008E75A5 /* JobsOCBaseConfigDemoPrefixHeader.pch */,
 				C59789E82BE3599600A56125 /* JobsOCBaseCustomizeUIKitCore */,
 				CED90E932C31954A008D9F68 /* 配置info.plist */,
@@ -5121,6 +5119,8 @@
 		84CA5DE727895B4700E46E71 /* 语言包 */ = {
 			isa = PBXGroup;
 			children = (
+				CEAAD4762C327C7A00349C11 /* Localizable.strings */,
+				CEAAD46F2C32758A00349C11 /* InfoPlist.strings */,
 			);
 			path = "语言包";
 			sourceTree = "<group>";
