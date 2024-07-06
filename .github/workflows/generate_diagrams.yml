@@ -18,28 +18,16 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '20'  # 使用最新版本的 Node.js
-
-    - name: Install mermaid-cli
-      run: npm install -g @mermaid-js/mermaid-cli
+        
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser
+        npm install -g @mermaid-js/mermaid-cli
 
     - name: Generate Diagrams
       run: |
-        echo "Current directory:"
-        pwd
-        echo "List files in current directory:"
-        ls -al
-        mkdir -p diagrams
-        echo "List files in diagrams directory before generating diagram:"
-        ls -al diagrams
-        npx mmdc -i README.md -o diagrams/diagram.png -b transparent
-        echo "List files in diagrams directory after generating diagram:"
-        ls -al diagrams
-        if ls diagrams/diagram-*.png 1> /dev/null 2>&1; then
-          echo "Diagrams generated successfully"
-        else
-          echo "Diagram generation failed"
-          exit 1
-        fi
+        npx mmdc -i README.md -o diagram.png
 
     - name: Commit and push diagram
       if: success()
@@ -48,6 +36,8 @@ jobs:
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        git add diagrams/diagram-*.png
-        git commit -m 'Generate Mermaid diagram'
+        git add diagrams/diagram.png
+        git commit -m 'Auto-Generate Mermaid diagram'
         git push https://${{ secrets.ACTIONS_PAT }}@github.com/${{ github.repository }}.git HEAD:main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
