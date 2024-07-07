@@ -35,14 +35,12 @@ jobs:
 
     - name: Show current directory structure
       run: ls -R
-
+        
     - name: Commit and push diagrams
       if: success()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
         git add diagram-*.png
         git commit -m 'Auto-Generate Mermaid diagrams'
-        git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+        git push https://${{ github.actor }}:${{ secrets.PAT }}@github.com/${{ github.repository }}.git HEAD:main
