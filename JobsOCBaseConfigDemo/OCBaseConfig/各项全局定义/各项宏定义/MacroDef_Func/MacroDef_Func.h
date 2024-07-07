@@ -39,11 +39,31 @@ static inline UIWindow *_Nullable jobsGetMainWindowBefore13(void){
         /// 这种获取窗口的方式在iOS 2.0到iOS 13.0版本之间都是可用的
         SuppressWdeprecatedDeclarationsWarning(
             if (UIApplication.sharedApplication.keyWindow) {
-            window = UIApplication.sharedApplication.keyWindow;
-        });
+                window = UIApplication.sharedApplication.keyWindow;
+            });
     }return window;
 }
 /// 获取 iOS 13 之后的 window
+static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
+    UIWindow *mainWindow = nil;
+    if (@available(iOS 13.0, *)) {
+        for (UIWindowScene *windowScene in UIApplication.sharedApplication.connectedScenes) {
+            if (windowScene.activationState == UISceneActivationStateForegroundActive) {
+                for (UIWindow *window in windowScene.windows) {
+                    if (window.isKeyWindow) {
+                        mainWindow = window;
+                        break;
+                    }
+                }
+            }
+            if (mainWindow) {
+                break; // 如果找到主窗口，退出循环
+            } else if (windowScene.windows.count > 0) {
+                mainWindow = windowScene.windows.firstObject;
+            }
+        }
+    }return mainWindow;
+}
 //static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
 //    UIWindow *window = nil;
 //    /// 使用UIWindowScene（需要iOS 13及更高版本）来获取主窗口
@@ -56,26 +76,6 @@ static inline UIWindow *_Nullable jobsGetMainWindowBefore13(void){
 //        }
 //    }return window;
 //}
-static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
-    UIWindow *mainWindow = nil;
-    if (@available(iOS 13.0, *)) {
-        for (UIWindowScene* windowScene in UIApplication.sharedApplication.connectedScenes) {
-            if (windowScene.activationState == UISceneActivationStateForegroundActive) {
-                for (UIWindow *window in windowScene.windows) {
-                    if (window.isKeyWindow) {
-                        mainWindow = window;
-                        break;
-                    }
-                }
-            }
-            if (mainWindow) {
-                break; // 如果找到主窗口，退出循环
-            }else{
-                mainWindow = windowScene.windows.firstObject;
-            }
-        }
-    }return mainWindow;
-}
 /**
  注意：有些时候UIApplication.sharedApplication.keyWindow获取到的window有frame，而windowScene.windows.firstObject获取到的window没有frame
  
