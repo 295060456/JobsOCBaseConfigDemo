@@ -13,41 +13,42 @@ UITextModelProtocol_synthesize
 UITextModelProtocol_UIViewModelSynthesize
 UIViewModelOthersProtocol_synthesize
 
-//-(UIColor *)layerBorderCor{
-//    if(!_layerBorderCor){
-//        _layerBorderCor = JobsWhiteColor;
-//    }return _layerBorderCor;
-//}
-//
-//-(UIColor *)textCor{
-//    if(!_textCor){
-//        _textCor = JobsWhiteColor;
-//    }return _textCor;
-//}
-//
-//-(UIFont *)font{
-//    if(!_font){
-//        _font = UIFontWeightRegularSize(12);
-//    }return _font;
-//}
-//
-//-(UIColor *)bgCor{
-//    if(!_bgCor){
-//        _bgCor = JobsLightGrayColor;
-//    }return _bgCor;
-//}
-//
-//-(CGFloat)layerCornerRadius{
-//    if(!_layerCornerRadius){
-//        _layerCornerRadius = JobsWidth(8);
-//    }return _layerCornerRadius;
-//}
-//
-//-(CGFloat)layerBorderWidth{
-//    if(!_layerBorderWidth){
-//        _layerBorderWidth = 0.5f;
-//    }return _layerBorderWidth;
-//}
+#pragma mark —— 缺省值
+-(UIColor *)layerBorderCor{
+    if(!_layerBorderCor){
+        _layerBorderCor = JobsWhiteColor;
+    }return _layerBorderCor;
+}
+
+-(UIColor *)textCor{
+    if(!_textCor){
+        _textCor = JobsWhiteColor;
+    }return _textCor;
+}
+
+-(UIFont *)font{
+    if(!_font){
+        _font = UIFontWeightRegularSize(12);
+    }return _font;
+}
+
+-(UIColor *)bgCor{
+    if(!_bgCor){
+        _bgCor = JobsLightGrayColor;
+    }return _bgCor;
+}
+
+-(CGFloat)layerCornerRadius{
+    if(!_layerCornerRadius){
+        _layerCornerRadius = JobsWidth(8);
+    }return _layerCornerRadius;
+}
+
+-(CGFloat)layerBorderWidth{
+    if(!_layerBorderWidth){
+        _layerBorderWidth = 0.5f;
+    }return _layerBorderWidth;
+}
 
 @end
 

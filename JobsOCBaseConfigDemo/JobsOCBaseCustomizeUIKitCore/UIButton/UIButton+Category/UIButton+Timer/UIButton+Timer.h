@@ -43,8 +43,13 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)timerContinue;
 #pragma mark —— 时间相关方法【定时器销毁】
 -(void)timerDestroy;/// 可以不结束直接掐死
-
--(instancetype)initWithConfig:(nullable ButtonTimerConfigModel *)config;
+/// - Parameters:
+///   - config: 倒计时按钮配置的数据源
+///   - longPressGestureEventBlock: 长按回掉
+///   - clickEventBlock: 点击回掉
+-(instancetype)initWithConfig:(nullable ButtonTimerConfigModel *)config
+   longPressGestureEventBlock:(JobsSelectorBlock _Nullable)longPressGestureEventBlock
+              clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock;
 
 @end
 
@@ -54,27 +59,36 @@ NS_ASSUME_NONNULL_END
  
  -(UIButton *)countDownBtn{
      if (!_countDownBtn) {
-         _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel];
-         [self addSubview:_countDownBtn];
+         @jobs_weakify(self)
+         _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
+                             longPressGestureEventBlock:nil
+                                        clickEventBlock:^id _Nullable(UIButton *_Nullable x) {
+             x.selected = !x.selected;
+             [self adDidFinish];
+             return nil;
+         }];
+         [self.adView addSubview:_countDownBtn];
          [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.height.mas_equalTo(JobsWidth(14));
-             make.centerY.equalTo(self);
-             make.right.equalTo(self).offset(JobsWidth(-10));
+             make.height.mas_equalTo(JobsWidth(72));
+             make.top.equalTo(self).offset(JobsWidth(20));
+             make.centerX.equalTo(self);
          }];
          [_countDownBtn makeBtnLabelByShowingType:UILabelShowingType_03];
-         
+
+         /// 倒计时按钮点击事件（可以在其他地方实现）
          [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
              [x startTimer];//选择时机、触发启动
              NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
              return nil;
          }];
-         
+         /// 定时器跳动的回调（可以在其他地方实现）
          [_countDownBtn actionObjectBlock:^(id data) {
- //            @jobs_strongify(self)
+             @jobs_strongify(self)
              if ([data isKindOfClass:TimerProcessModel.class]) {
                  TimerProcessModel *model = (TimerProcessModel *)data;
                  NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
              }
+             [self adDidFinish];
          }];
      }return _countDownBtn;
  }

@@ -1053,33 +1053,41 @@ NSObject <|-- BaseProtocol
 
    ```objective-c
    -(UIButton *)countDownBtn{
-        if (!_countDownBtn) {
-            _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel];
-            [self addSubview:_countDownBtn];
+       if (!_countDownBtn) {
+           @jobs_weakify(self)
+           _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
+                               longPressGestureEventBlock:nil
+                                          clickEventBlock:^id _Nullable(UIButton *_Nullable x) {
+               x.selected = !x.selected;
+               [self adDidFinish];
+               return nil;
+           }];
+           [self.adView addSubview:_countDownBtn];
             [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(JobsWidth(14));
-                make.centerY.equalTo(self);
-                make.right.equalTo(self).offset(JobsWidth(-10));
+                make.height.mas_equalTo(JobsWidth(72));
+                make.top.equalTo(self).offset(JobsWidth(20));
+                make.centerX.equalTo(self);
             }];
             [_countDownBtn makeBtnLabelByShowingType:UILabelShowingType_03];
-            
-            [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-                [x startTimer];//选择时机、触发启动
-                NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
-                return nil;
-            }];
-            
-            [_countDownBtn actionObjectBlock:^(id data) {
-    //            @jobs_strongify(self)
-                if ([data isKindOfClass:TimerProcessModel.class]) {
-                    TimerProcessModel *model = (TimerProcessModel *)data;
-                    NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
-                }
-            }];
-        }return _countDownBtn;
-    }
+           /// 倒计时按钮点击事件
+           [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+               [x startTimer];//选择时机、触发启动
+               NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
+               return nil;
+           }];
+           /// 定时器跳动的回调
+           [_countDownBtn actionObjectBlock:^(id data) {
+               @jobs_strongify(self)
+               if ([data isKindOfClass:TimerProcessModel.class]) {
+                   TimerProcessModel *model = (TimerProcessModel *)data;
+                   NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
+               }
+               [self adDidFinish];
+           }];
+       }return _countDownBtn;
+   }
    ```
-
+  
   ```objective-c
    -(ButtonTimerConfigModel *)btnTimerConfigModel{
        if (!_btnTimerConfigModel) {
@@ -1121,13 +1129,53 @@ NSObject <|-- BaseProtocol
        }return _btnTimerConfigModel;
    }
   ```
-
-  ```objective-c
-  [self.countDownBtn startTimer];/// 开始 
-  [self.countDownBtn timerSuspend];/// 暂停 
-  [self.countDownBtn timerContinue];/// 继续 
-  [self.countDownBtn timerDestroy];/// 结束 
-  ```
+  
+* <font color=red>**倒计时事件触发**</font>
+  
+  * **对倒计时按钮的倒计时功能进行控制**
+  
+    * **开始**
+    
+      ```objective-c
+      [self.countDownBtn startTimer];
+      ```
+    
+      * **暂停**
+      
+        ```objective-c
+        [self.countDownBtn timerSuspend];
+        ```
+      
+      * **继续**
+      
+        ```objective-c
+        [self.countDownBtn timerContinue];
+        ```
+      
+      * **结束**
+      
+        ```objective-c
+        [self.countDownBtn timerDestroy];
+        ```
+    
+  * **正常的按钮点击事件**
+    
+    * 主调用中的`clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock`参数
+    
+    * 和主调用进行剥离，可以在其他地方灵活实现
+    
+      ```objective-c
+      [self.countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+         [x startTimer];//选择时机、触发启动
+         NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
+         return nil;
+      }];
+      ```
+    
+  * **按钮的长按事件**：
+    
+    * 因为是低频需求，所以目前只封装在主调用上进行呈现
+    * `longPressGestureEventBlock:(JobsSelectorBlock _Nullable)longPressGestureEventBlock`参数
 
 ### 3、Masonry的一些使用技巧
 
@@ -1990,11 +2038,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * `dispatch_once_t` 是 **GCD**（**G**rand **C**entral **D**ispatch）提供的一种机制，用于确保某段代码在应用程序的生命周期内只执行一次。它是线程安全的，适用于多线程环境
 
 ```objective-c
-static JobsLaunchAdMgr *JobsLaunchAdMgrInstance;
+static JobsLaunchAdMgr *JobsLaunchAdMgrInstance = nil;
 static dispatch_once_t JobsLaunchAdMgrOnceToken;
 + (instancetype)sharedManager {
     dispatch_once(&JobsLaunchAdMgrOnceToken, ^{
-        JobsLaunchAdMgrInstance = self.new;
+        JobsLaunchAdMgrInstance = [super allocWithZone:NULL].init;
     });return JobsLaunchAdMgrInstance;
 }
 /// 单例的销毁

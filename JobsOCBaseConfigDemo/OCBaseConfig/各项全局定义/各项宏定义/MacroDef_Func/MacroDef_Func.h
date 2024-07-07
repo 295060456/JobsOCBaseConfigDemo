@@ -88,7 +88,18 @@ static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
  总之，要处理多窗口应用程序中窗口的不同状态，您应该确保在访问窗口属性之前进行适当的检查，以确保窗口已经准备好并且具有所需的属性。这可以通过在适当的时机监听窗口的状态变化来实现。
  */
 static inline UIWindow *_Nullable jobsGetMainWindow(void){
-    return UIDevice.currentDevice.systemVersion.floatValue >= 13.0 ? jobsGetMainWindowAfter13() : jobsGetMainWindowBefore13();
+    UIWindow *mainWindowBefore13 = jobsGetMainWindowBefore13();
+    UIWindow *mainWindowAfter13 = jobsGetMainWindowAfter13();
+    UIWindow *resultWindow = UIDevice.currentDevice.systemVersion.floatValue >= 13.0 ? mainWindowAfter13 : mainWindowBefore13;
+    if (resultWindow) {
+        return resultWindow;
+    }else if (mainWindowBefore13){
+        return mainWindowBefore13;
+    }else if (mainWindowAfter13){
+        return mainWindowAfter13;
+    }else{
+        return nil;
+    }
 }
 /// 获取一个有Size的window
 static inline UIWindow *_Nullable jobsGetMainWindowWithSize(void){

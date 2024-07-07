@@ -53,8 +53,10 @@
 "保存用户名" = "I-save ang username";
 "注册" = "Magparehistro";
 "登录" = "Mag-login";
-"人工客服" = "Serbisyo sa tao";
 "获取验证码" = "Kumuha ng verification code";
+"人工客服" = "Serbisyo ng Online na Customer";
+"您也可以通过以下方式联系客服" = "Maaari ka ring makipag-ugnayan sa serbisyo ng customer sa pamamagitan ng mga sumusunod na paraan";
+"以后" = "Mamaya";
 /// 其他业务
 "用户名" = "Username";
 "密码" = "Password";

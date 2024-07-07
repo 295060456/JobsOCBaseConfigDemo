@@ -179,7 +179,9 @@
 
 -(UIButton *)authCodeBtn{
     if (!_authCodeBtn) {
-        _authCodeBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel];
+        _authCodeBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
+                           longPressGestureEventBlock:nil
+                                      clickEventBlock:nil];
         _authCodeBtn.normalTitle = JobsInternationalization(@"獲取驗證碼");
 //        @jobs_weakify(self)
         [_authCodeBtn jobsBtnClickEventBlock:^id(UIButton *x) {

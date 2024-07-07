@@ -53,8 +53,10 @@
 "保存用户名" = "Save the user name";
 "注册" = "Register";
 "登录" = "Login";
-"人工客服" = "Customer service";
+"人工客服" = "Online Customer service";
 "获取验证码" = "Get";
+"您也可以通过以下方式联系客服" = "You can also contact customer service through the following ways";
+"以后" = "Later";
 /// 其他业务
 "用户名" = "User";
 "密码" = "Code";

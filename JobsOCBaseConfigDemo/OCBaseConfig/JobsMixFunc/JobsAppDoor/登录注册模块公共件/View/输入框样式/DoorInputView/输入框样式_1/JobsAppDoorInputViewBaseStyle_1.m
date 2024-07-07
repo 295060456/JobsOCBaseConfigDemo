@@ -150,7 +150,9 @@
 
 -(UIButton *)countDownBtn{
     if (!_countDownBtn) {
-        _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel];
+        _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
+                            longPressGestureEventBlock:nil
+                                       clickEventBlock:nil];
         @jobs_weakify(self)
         [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)

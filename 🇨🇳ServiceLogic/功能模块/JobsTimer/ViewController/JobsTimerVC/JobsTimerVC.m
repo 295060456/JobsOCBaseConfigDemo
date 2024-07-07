@@ -115,7 +115,10 @@
 #pragma mark —— lazyLoad
 -(UIButton *)countDownBtn{
     if (!_countDownBtn) {
-        _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel];
+        @jobs_weakify(self)
+        _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
+                            longPressGestureEventBlock:nil
+                                       clickEventBlock:nil];
         [self.view addSubview:_countDownBtn];
         [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(25));

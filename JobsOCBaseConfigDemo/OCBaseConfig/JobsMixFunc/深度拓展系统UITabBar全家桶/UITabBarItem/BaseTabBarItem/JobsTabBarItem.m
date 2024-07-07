@@ -24,9 +24,9 @@
             self.selectedImage = [config.imageSelected imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.title = config.title;
             
-            [self setTitleTextAttributes:@{NSForegroundColorAttributeName: config.titleCorNormal}
+            [self setTitleTextAttributes:@{NSForegroundColorAttributeName:config.titleCorNormal}
                                 forState:UIControlStateNormal];
-            [self setTitleTextAttributes:@{NSForegroundColorAttributeName: config.titleCorSelected}
+            [self setTitleTextAttributes:@{NSForegroundColorAttributeName:config.titleCorSelected}
                                 forState:UIControlStateSelected];
         }
     }return self;

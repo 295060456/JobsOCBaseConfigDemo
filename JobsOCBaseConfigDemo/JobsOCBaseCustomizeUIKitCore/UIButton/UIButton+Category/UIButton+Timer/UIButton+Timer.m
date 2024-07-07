@@ -10,7 +10,9 @@
 @implementation UIButton (Timer)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
--(instancetype)initWithConfig:(nullable ButtonTimerConfigModel *)config{
+-(instancetype)initWithConfig:(nullable ButtonTimerConfigModel *)config 
+   longPressGestureEventBlock:(JobsSelectorBlock _Nullable)longPressGestureEventBlock
+              clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
     @jobs_weakify(self)
     self = [UIButton.alloc jobsInitBtnByConfiguration:nil
                                            background:nil
@@ -43,12 +45,15 @@
                                        layerBorderCor:nil
                                           borderWidth:JobsWidth(0)
                                         primaryAction:nil
-                           longPressGestureEventBlock:nil
-                                      clickEventBlock:^id(BaseButton *x) {
+                           longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
+                                                        id _Nullable arg) {
+        NSLog(@"按钮的长按事件触发");
+        if (longPressGestureEventBlock) longPressGestureEventBlock(weakSelf,arg);
+}
+                                      clickEventBlock:^id(UIButton *x) {
         @jobs_strongify(self)
         x.selected = !x.selected;
-        // CountDownBtn 的点击事件回调
-        if (self.objectBlock) self.objectBlock(x);
+        if(clickEventBlock)clickEventBlock(x);
         return nil;
     }];
     self.btnTimerConfig = config;// 为空则加载默认配置，self.btnTimerConfig 有容错机制
@@ -155,6 +160,9 @@
     }else{
         if (@available(iOS 16.0, *)) {
             /// 拼凑组装
+            NSLog(@"%@",self.btnTimerConfig.readyPlayValue.text);
+            NSLog(@"%@",self.btnTimerConfig.readyPlayValue.textCor);
+            NSLog(@"%@",self.btnTimerConfig.readyPlayValue.font);
             self.jobsResetAttributedTitle([NSAttributedString.alloc initWithString:self.btnTimerConfig.readyPlayValue.text
                                                                         attributes:@{NSForegroundColorAttributeName:self.btnTimerConfig.readyPlayValue.textCor,
                                                                                      NSFontAttributeName:self.btnTimerConfig.readyPlayValue.font,
@@ -175,12 +183,10 @@
         }
     }else{
         if (@available(iOS 16.0, *)) {
-            
+            /// 拼凑组装
             NSLog(@"%@",self.btnTimerConfig.runningValue.text);
             NSLog(@"%@",self.btnTimerConfig.runningValue.textCor);
             NSLog(@"%@",self.btnTimerConfig.runningValue.font);
-            
-            /// 拼凑组装
             self.jobsResetAttributedTitle([NSAttributedString.alloc initWithString:self.btnTimerConfig.runningValue.text
                                                                         attributes:@{NSForegroundColorAttributeName:self.btnTimerConfig.runningValue.textCor,
                                                                                      NSFontAttributeName:self.btnTimerConfig.runningValue.font,
@@ -202,6 +208,9 @@
     }else{
         if (@available(iOS 16.0, *)) {
             /// 拼凑组装
+            NSLog(@"%@",self.btnTimerConfig.endValue.text);
+            NSLog(@"%@",self.btnTimerConfig.endValue.textCor);
+            NSLog(@"%@",self.btnTimerConfig.endValue.font);
             self.jobsResetAttributedTitle([NSAttributedString.alloc initWithString:self.btnTimerConfig.endValue.text
                                                                         attributes:@{NSForegroundColorAttributeName:self.btnTimerConfig.endValue.textCor,
                                                                                      NSFontAttributeName:self.btnTimerConfig.endValue.font,
@@ -355,8 +364,7 @@ JobsKey(_btnTimerConfig)
                 break;
         }
         if (self.objectBlock) self.objectBlock(data);
-    }];
-    return BtnTimerConfig;
+    }];return BtnTimerConfig;
 }
 
 -(void)setBtnTimerConfig:(ButtonTimerConfigModel *)btnTimerConfig{
