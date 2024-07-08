@@ -2035,36 +2035,85 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 ### 23、完整的单例写法 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 在 **OC**中，`static` 关键字用于声明静态变量。这些变量在整个应用程序的生命周期内只会被初始化一次，并且它们的作用域仅限于定义它们的文件
-* `dispatch_once_t` 是 **GCD**（**G**rand **C**entral **D**ispatch）提供的一种机制，用于确保某段代码在应用程序的生命周期内只执行一次。它是线程安全的，适用于多线程环境
 
-```objective-c
-static JobsLaunchAdMgr *JobsLaunchAdMgrInstance = nil;
-static dispatch_once_t JobsLaunchAdMgrOnceToken;
-+ (instancetype)sharedManager {
-    dispatch_once(&JobsLaunchAdMgrOnceToken, ^{
-        JobsLaunchAdMgrInstance = [super allocWithZone:NULL].init;
-    });return JobsLaunchAdMgrInstance;
-}
-/// 单例的销毁
-+ (void)destroyInstance {
-    JobsLaunchAdMgrOnceToken = 0;
-    JobsLaunchAdMgrInstance = nil;
-}
-/// 防止外部使用 alloc/init 等创建新实例
-+ (instancetype)allocWithZone:(struct _NSZone *)zone {
-    dispatch_once(&JobsLaunchAdMgrOnceToken, ^{
-        JobsLaunchAdMgrInstance = [super allocWithZone:zone];
-    });return JobsLaunchAdMgrInstance;
-}
+* 在单例实现中，如果覆盖了 `allocWithZone:`应该确保初始化方法也使用这个覆盖的方法进行实例化
 
-- (instancetype)copyWithZone:(NSZone *)zone {
-    return self;
-}
+* 以`GCD`的方式实现
 
-- (instancetype)mutableCopyWithZone:(NSZone *)zone {
-    return self;
-}
-```
+  `dispatch_once_t` 是 **GCD**（**G**rand **C**entral **D**ispatch）提供的一种机制，用于确保某段代码在应用程序的生命周期内只执行一次。它是线程安全的，适用于多线程环境
+
+  ```objective-c
+  static JobsLaunchAdMgr *JobsLaunchAdMgrInstance = nil;
+  static dispatch_once_t JobsLaunchAdMgrOnceToken;
+  + (instancetype)sharedManager {
+      dispatch_once(&JobsLaunchAdMgrOnceToken, ^{
+          JobsLaunchAdMgrInstance = [super allocWithZone:NULL].init;
+      });return JobsLaunchAdMgrInstance;
+  }
+  /// 单例的销毁
+  + (void)destroyInstance {
+      JobsLaunchAdMgrOnceToken = 0;
+      JobsLaunchAdMgrInstance = nil;
+  }
+  /// 防止外部使用 alloc/init 等创建新实例
+  + (instancetype)allocWithZone:(struct _NSZone *)zone {
+      dispatch_once(&JobsLaunchAdMgrOnceToken, ^{
+          JobsLaunchAdMgrInstance = [super allocWithZone:zone];
+      });return JobsLaunchAdMgrInstance;
+  }
+  
+  - (instancetype)copyWithZone:(NSZone *)zone {
+      return self;
+  }
+  
+  - (instancetype)mutableCopyWithZone:(NSZone *)zone {
+      return self;
+  }
+  ```
+
+* 以<font color=red>**`@synchronized`**</font>的方式实现
+
+  <font color=red>**`@synchronized`**</font>关键字用于实现线程安全,它确保一段代码在同一时间内只能被一个线程执行，从而防止多个线程同时访问和修改共享资源，避免数据竞争和不一致性问题
+
+  ```objective-c
+  static JobsLaunchAdMgr *JobsLaunchAdMgrInstance = nil;
+  + (instancetype)sharedManager {
+      @synchronized(self) {
+          if (!JobsLaunchAdMgrInstance) {
+              JobsLaunchAdMgrInstance = [super allocWithZone:NULL].init;
+          }
+      }return JobsLaunchAdMgrInstance;
+  }
+  
+  + (void)destroyInstance {
+      @synchronized(self) {
+          JobsLaunchAdMgrInstance = nil;
+      }
+  }
+  
+  + (instancetype)allocWithZone:(struct _NSZone *)zone {
+      @synchronized(self) {
+          if (!JobsLaunchAdMgrInstance) {
+              JobsLaunchAdMgrInstance = [super allocWithZone:zone];
+              return JobsLaunchAdMgrInstance;
+          }
+      }return nil;
+  }
+  
+  - (instancetype)copyWithZone:(NSZone *)zone {
+      return self;
+  }
+  
+  - (instancetype)mutableCopyWithZone:(NSZone *)zone {
+      return self;
+  }
+  // 初始化代码可以放在这里
+  - (instancetype)init {
+      if (self = [super init]) {
+          // Initialization code
+      }return self;
+  }
+  ```
 
 ### 24、打开URL <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

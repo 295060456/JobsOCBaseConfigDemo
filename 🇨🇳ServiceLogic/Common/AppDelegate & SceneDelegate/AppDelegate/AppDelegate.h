@@ -9,20 +9,24 @@
 #import <CoreData/CoreData.h>
 
 #import "JobsTabbarVC.h"
+#import "JobsGameTabbarVC.h"
 #import "Other.h"
-@import UserNotifications;
+@import UserNotifications;/// 配置本地通知
+
+//#define RootViewController appDelegate.tabBarVC
+#define RootViewController appDelegate.gameTabBarVC
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunguarded-availability-new"
-// AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
+/// AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
 @interface AppDelegate : UIResponder
 <
 UIApplicationDelegate
 ,UNUserNotificationCenterDelegate
 >
-// UI
-@property(nonatomic,strong)UIWindow *window;//仅仅为了iOS 13 版本向下兼容而存在
-// Data
+/// UI
+@property(nonatomic,strong)UIWindow *window;/// 仅仅为了iOS 13 版本向下兼容而存在
+/// Data
 @property(readonly,strong)NSPersistentCloudKitContainer *persistentContainer;
 @property(nonatomic,assign)BOOL allowOrentitaionRotation;
 

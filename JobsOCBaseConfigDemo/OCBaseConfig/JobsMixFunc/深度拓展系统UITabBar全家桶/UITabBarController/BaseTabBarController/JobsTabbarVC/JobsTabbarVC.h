@@ -57,20 +57,20 @@ UITabBarControllerDelegate,
 UIGestureRecognizerDelegate
 >
 /// UI
-@property(nonatomic,strong,readonly)JobsTabBar *myTabBar;// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
+@property(nonatomic,strong,readonly)JobsTabBar *myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
 /// Data
-@property(nonatomic,assign)NSInteger firstUI_selectedIndex;// 初始显示第一个
-@property(nonatomic,strong)NSMutableArray <UIViewController *>*childVCMutArr;// 子控制器
-@property(nonatomic,strong)NSMutableArray <JobsTabBarControllerConfig *>*tabBarControllerConfigMutArr;
-@property(nonatomic,assign)BOOL isOpenScrollTabbar;// 是否开启手势横向滚动子VC联动Tabbar切换，默认开启
-@property(nonatomic,assign)BOOL isAnimationAlert;// 图片从小放大
-@property(nonatomic,assign)BOOL isShakerAnimation;// 重力弹跳动画效果
+@property(nonatomic,assign)NSInteger firstUI_selectedIndex;/// 初始显示第一个
+@property(nonatomic,strong)NSMutableArray <UIViewController *>*childVCMutArr;/// 子控制器
+@property(nonatomic,strong)NSMutableArray <JobsTabBarControllerConfig *>*tabBarControllerConfigMutArr;/// TabBar的配置数据源
+@property(nonatomic,assign)BOOL isOpenScrollTabbar;/// 是否开启手势横向滚动子VC联动Tabbar切换，默认开启
+@property(nonatomic,assign)BOOL isAnimationAlert;/// 图片从小放大
+@property(nonatomic,assign)BOOL isShakerAnimation;/// 重力弹跳动画效果
 @property(nonatomic,assign)BOOL isPlaySound;// 点击声
-@property(nonatomic,assign)BOOL isFeedbackGenerator;// 振动反馈
-@property(nonatomic,strong)NSArray <NSNumber *>*jumpIndexArr;// 需要跳开的item
-@property(nonatomic,strong)NSArray <NSNumber *>*needLoginArr;// 在某些页面强制弹出登录
-@property(nonatomic,strong)NSArray <NSNumber *>*noNeedLoginArr;// 在某些页面不需要弹出登录，其优先级高于needLoginArr（也就是item点了没反应）
-@property(nonatomic,assign)BOOL isJumpToNextVC;// 当需要跳开的item,是否是需要直接跳到下一个VC？默认NO
+@property(nonatomic,assign)BOOL isFeedbackGenerator;/// 振动反馈
+@property(nonatomic,strong)NSArray <NSNumber *>*jumpIndexArr;/// 需要跳开的item
+@property(nonatomic,strong)NSArray <NSNumber *>*needLoginArr;/// 在某些页面强制弹出登录
+@property(nonatomic,strong)NSArray <NSNumber *>*noNeedLoginArr;/// 在某些页面不需要弹出登录，其优先级高于needLoginArr（也就是item点了没反应）
+@property(nonatomic,assign)BOOL isJumpToNextVC;/// 当需要跳开的item,是否是需要直接跳到下一个VC？默认NO
 
 #pragma mark —— 初始化方法
 ///【单例模式】使用内置默认的JobsTabBar
@@ -79,6 +79,8 @@ UIGestureRecognizerDelegate
 +(instancetype)sharedInstanceWithJobsTabBar:(JobsTabBar *)tabBar;
 /// 一般的初始化模式
 -(instancetype)initWithJobsTabBar:(JobsTabBar *)tabBar;
+#pragma mark —— 单例的销毁
++ (void)destroyInstance;
 #pragma mark —— 一些公有方法
 /// 需要强制跳转登录的index。点击和手势滑动都需要共同调用
 -(BOOL)forcedLoginIndex:(NSUInteger)index;

@@ -86,7 +86,7 @@ willConnectToSession:(UISceneSession *)session
 //        _window.frame = self.windowScene.coordinateSpace.bounds;
 //    }
     AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
-    _window.rootViewController = appDelegate.tabBarVC;
+    _window.rootViewController = RootViewController;
     [_window makeKeyAndVisible];
     return _window;
 }

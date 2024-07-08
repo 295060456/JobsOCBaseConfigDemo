@@ -914,6 +914,7 @@
 		CE8620782C2C254B0009C664 /* libarclite_watchos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86206F2C2C254B0009C664 /* libarclite_watchos.a */; };
 		CE8620792C2C254B0009C664 /* libarclite_watchsimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8620702C2C254B0009C664 /* libarclite_watchsimulator.a */; };
 		CE86207A2C2C254B0009C664 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CE8620712C2C254B0009C664 /* README.md */; };
+		CE8C1A472C3BAB2000928E88 /* JobsGameTabbarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C1A462C3BAB2000928E88 /* JobsGameTabbarVC.m */; };
 		CEAAD4712C32758A00349C11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD46F2C32758A00349C11 /* InfoPlist.strings */; };
 		CEAAD47D2C32804000349C11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD4762C327C7A00349C11 /* Localizable.strings */; };
 		CEB72E592C37C7B200E652CA /* JobsLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB72E582C37C7B200E652CA /* JobsLanguageManager.m */; };
@@ -2788,6 +2789,8 @@
 		CE86206F2C2C254B0009C664 /* libarclite_watchos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_watchos.a; sourceTree = "<group>"; };
 		CE8620702C2C254B0009C664 /* libarclite_watchsimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_watchsimulator.a; sourceTree = "<group>"; };
 		CE8620712C2C254B0009C664 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CE8C1A452C3BAB2000928E88 /* JobsGameTabbarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsGameTabbarVC.h; sourceTree = "<group>"; };
+		CE8C1A462C3BAB2000928E88 /* JobsGameTabbarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsGameTabbarVC.m; sourceTree = "<group>"; };
 		CEAAD4702C32758A00349C11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CEAAD4722C32770A00349C11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CEAAD4742C32771000349C11 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -3044,8 +3047,8 @@
 		840F929D27736425004979E9 /* BaseTabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				840F929E27736425004979E9 /* JobsTabbarVC.h */,
-				840F929F27736425004979E9 /* JobsTabbarVC.m */,
+				CE8C1A442C3BAAF200928E88 /* JobsGameTabbarVC */,
+				CE8C1A432C3BAAA900928E88 /* JobsTabbarVC */,
 			);
 			path = BaseTabBarController;
 			sourceTree = "<group>";
@@ -11846,6 +11849,24 @@
 			path = Libarclite;
 			sourceTree = "<group>";
 		};
+		CE8C1A432C3BAAA900928E88 /* JobsTabbarVC */ = {
+			isa = PBXGroup;
+			children = (
+				840F929E27736425004979E9 /* JobsTabbarVC.h */,
+				840F929F27736425004979E9 /* JobsTabbarVC.m */,
+			);
+			path = JobsTabbarVC;
+			sourceTree = "<group>";
+		};
+		CE8C1A442C3BAAF200928E88 /* JobsGameTabbarVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C1A452C3BAB2000928E88 /* JobsGameTabbarVC.h */,
+				CE8C1A462C3BAB2000928E88 /* JobsGameTabbarVC.m */,
+			);
+			path = JobsGameTabbarVC;
+			sourceTree = "<group>";
+		};
 		CEAF7CFC2C3413B9007AE308 /* XWCountryCodeController.plist */ = {
 			isa = PBXGroup;
 			children = (
@@ -12969,6 +12990,7 @@
 				C5978A772BE3599700A56125 /* UIFont+Extras.m in Sources */,
 				C5978A0A2BE3599700A56125 /* UITextModel.m in Sources */,
 				C5978A582BE3599700A56125 /* ButtonTimerConfigModel.m in Sources */,
+				CE8C1A472C3BAB2000928E88 /* JobsGameTabbarVC.m in Sources */,
 				C5978AAC2BE3599700A56125 /* UITextField+Extend.m in Sources */,
 				C52E5CA42AC07E9800FE5494 /* KTVHCDataUnitQueue.m in Sources */,
 				84CA5CCF2789587900E46E71 /* AppDelegate+Func.m in Sources */,

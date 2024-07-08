@@ -135,11 +135,11 @@ didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
     completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
 }
-
-//- (UIInterfaceOrientationMask)application:(UIApplication *)application 
-//  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-//    return UIInterfaceOrientationMaskLandscape;
-//}
+/// 一进入App就横屏
+- (UIInterfaceOrientationMask)application:(UIApplication *)application
+  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return UIInterfaceOrientationMaskLandscape;
+}
 #pragma mark —— lazyLoad
 /// 仅仅为了iOS 13 版本向下兼容而存在
 -(UIWindow *)window{
@@ -147,7 +147,7 @@ didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
         _window = UIWindow.new;
         _window.frame = UIScreen.mainScreen.bounds;
         self.configMutArr = self.makeConfigMutArr;
-        _window.rootViewController = self.tabBarVC;
+        _window.rootViewController = RootViewController;
 //        [self.tabBarVC ppBadge:YES];
         [_window makeKeyAndVisible];
     }return _window;

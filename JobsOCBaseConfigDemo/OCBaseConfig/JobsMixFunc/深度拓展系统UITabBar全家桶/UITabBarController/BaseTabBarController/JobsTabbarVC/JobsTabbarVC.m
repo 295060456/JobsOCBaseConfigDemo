@@ -12,11 +12,11 @@
     BOOL A;
 }
 /// UI
-@property(nonatomic,strong,readwrite)JobsTabBar *myTabBar;//myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
+@property(nonatomic,strong,readwrite)JobsTabBar *myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
 /// Data
 @property(nonatomic,assign)BOOL isOpenPPBadge;
 @property(nonatomic,assign)NSInteger subViewControllerCount;
-@property(nonatomic,strong)NSMutableArray <UIView *>*UITabBarButtonMutArr;//UITabBarButton 是内部类 直接获取不到，需要间接获取
+@property(nonatomic,strong)NSMutableArray <UIView *>*UITabBarButtonMutArr;/// UITabBarButton 是内部类 直接获取不到，需要间接获取
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*pullListAutoSizeViewMutArr;
 
 @end
@@ -35,7 +35,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
 +(instancetype)sharedInstance{
     @synchronized(self){
         if (!static_tabbarVC) {
-            static_tabbarVC = JobsTabbarVC.new;
+            static_tabbarVC = [super allocWithZone:NULL].init;
         }
     }return static_tabbarVC;
 }
@@ -43,16 +43,39 @@ static JobsTabbarVC *static_tabbarVC = nil;
 +(instancetype)sharedInstanceWithJobsTabBar:(JobsTabBar *)tabBar{
     @synchronized(self){
         if (!static_tabbarVC) {
-            static_tabbarVC = JobsTabbarVC.new;
+            static_tabbarVC = [super allocWithZone:NULL].init;
             static_tabbarVC.myTabBar = tabBar;
         }
     }return static_tabbarVC;
+}
+/// 在单例实现中，如果覆盖了 allocWithZone: 应该确保初始化方法也使用这个覆盖的方法进行实例化
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+    @synchronized(self) {
+        if (!static_tabbarVC) {
+            static_tabbarVC = [super allocWithZone:zone];
+            return static_tabbarVC;
+        }
+    }return nil;
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+- (instancetype)mutableCopyWithZone:(NSZone *)zone {
+    return self;
 }
 /// 一般的初始化模式
 -(instancetype)initWithJobsTabBar:(JobsTabBar *)tabBar{
     if (self = [super init]) {
         self.myTabBar = tabBar;
     }return self;
+}
+#pragma mark —— 单例的销毁
++ (void)destroyInstance{
+    @synchronized(self) {
+        static_tabbarVC = nil;
+    }
 }
 #pragma mark —— ViewController的生命周期
 -(void)loadView{
@@ -99,13 +122,20 @@ static JobsTabbarVC *static_tabbarVC = nil;
 
 //    [self ppBadge:YES];
 }
-/// 在 UITabBarController 中适配横屏
+#pragma mark —— 在 UITabBarController 中适配横屏在 UITabBarController 中适配横屏
+/// 决定当前界面是否开启自动转屏，如果返回NO，后面两个方法也不会被调用，只是会支持默认的方向
 - (BOOL)shouldAutorotate {
     return [self.selectedViewController shouldAutorotate];
 }
-
+/// 当前控制器支持的屏幕旋转方向（在具体的控制器子类进行覆写）
+/// iPad设备上，默认返回值UIInterfaceOrientationMaskAllButUpSideDwon
+/// iPhone设备上，默认返回值是UIInterfaceOrientationMaskAll
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [self.selectedViewController supportedInterfaceOrientations];
+}
+/// 设置进入界面默认支持的方向
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return [super preferredInterfaceOrientationForPresentation];
 }
 #pragma mark —— 一些公有方法
 /// 关闭手势
@@ -176,11 +206,13 @@ static JobsTabbarVC *static_tabbarVC = nil;
         
         if (config.humpOffsetY != 0) {
             //一般的图片
-            [viewController.tabBarItem setImageInsets:UIEdgeInsetsMake(-config.humpOffsetY,
-                                                                       0,
-                                                                       -config.humpOffsetY / 2,
-                                                                       0)];//修改图片偏移量，上下，左右必须为相反数，否则图片会被压缩
-            [viewController.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, 0)];//修改文字偏移量
+            /// 修改图片偏移量，上下，左右必须为相反数，否则图片会被压缩
+            viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(-config.humpOffsetY,
+                                                                     0,
+                                                                     -config.humpOffsetY / 2,
+                                                                     0);
+            /// 修改文字偏移量
+            viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
         }
 
         if (![viewController isKindOfClass:UINavigationController.class]) {//防止UIImagePickerController崩
@@ -278,7 +310,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
 #pragma mark —— TabBarItem的相关手势
 -(void)长按手势做什么:(UILongPressGestureRecognizer *)longPressGR{
     if (self.isFeedbackGenerator) {
-        [NSObject feedbackGenerator];//震动反馈
+        [self feedbackGenerator];//震动反馈
     }
 
     [JobsPullListAutoSizeView initWithTargetView:self.UITabBarButtonMutArr[longPressGR.view.tag]
@@ -437,8 +469,7 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (!_myTabBar) {
         _myTabBar = JobsTabBar.new;
         [_myTabBar richElementsInViewWithModel:self.viewModel];
-        [self setValue:_myTabBar
-                forKey:@"tabBar"];//KVC 进行替换
+        self.jobsKVC(@"tabBar",_myTabBar);/// KVC 进行替换
     }return _myTabBar;
 }
 
@@ -467,21 +498,21 @@ shouldSelectViewController:(UIViewController *)viewController {
         {
             UIViewModel *viewModel = UIViewModel.new;
             viewModel.image = JobsIMG(JobsInternationalization(@""));
-            viewModel.textModel.text = @"111";
+            viewModel.textModel.text = JobsInternationalization(@"111");
             [_pullListAutoSizeViewMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = UIViewModel.new;
             viewModel.image = JobsIMG(JobsInternationalization(@""));
-            viewModel.textModel.text = @"222";
+            viewModel.textModel.text = JobsInternationalization(@"222");
             [_pullListAutoSizeViewMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = UIViewModel.new;
             viewModel.image = JobsIMG(JobsInternationalization(@""));
-            viewModel.textModel.text = @"333";
+            viewModel.textModel.text = JobsInternationalization(@"333");
             [_pullListAutoSizeViewMutArr addObject:viewModel];
         }
         

@@ -16,6 +16,7 @@
 #import "JobsTabBarItem.h"
 //UITabBarController
 #import "JobsTabbarVC.h"
+#import "JobsGameTabbarVC.h"
 //UITabBar
 #import "UITabBar+TLAnimation.h"
 #import "JobsTabBar.h"

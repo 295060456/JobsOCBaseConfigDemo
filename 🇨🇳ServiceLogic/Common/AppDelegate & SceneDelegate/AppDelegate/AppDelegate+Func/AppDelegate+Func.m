@@ -27,7 +27,7 @@
     [self makeTABAnimatedConfig];
     [self makeIQKeyboardManagerConfig];
     [self makeGKNavigationBarConfig];/// 自定义导航栏
-    [self makeJobsLaunchAdConfig];/// 开屏广告
+//    [self makeJobsLaunchAdConfig];/// 开屏广告
 //    [self makeReachabilityConfig];/// 网络环境监测
 }
 #pragma mark —— 开屏广告

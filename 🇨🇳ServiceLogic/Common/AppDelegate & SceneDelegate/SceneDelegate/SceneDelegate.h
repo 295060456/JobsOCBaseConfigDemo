@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 #import "NSObject+Extras.h"
 
 API_AVAILABLE(ios(13.0))

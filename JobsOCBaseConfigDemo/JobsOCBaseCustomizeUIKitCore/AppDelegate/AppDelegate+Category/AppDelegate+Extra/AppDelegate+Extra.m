@@ -120,6 +120,20 @@ JobsKey(_tabBarVC)
 -(void)setTabBarVC:(JobsTabbarVC *)tabBarVC{
     Jobs_setAssociatedRETAIN_NONATOMIC(_tabBarVC, tabBarVC);
 }
+#pragma mark —— @property(nonatomic,strong)JobsGameTabbarVC *gameTabBarVC;
+JobsKey(_gameTabBarVC)
+@dynamic gameTabBarVC;
+-(JobsGameTabbarVC *)gameTabBarVC{
+    JobsGameTabbarVC *GameTabBarVC = Jobs_getAssociatedObject(_gameTabBarVC);
+    if (!GameTabBarVC) {
+        GameTabBarVC = JobsGameTabbarVC.new;
+        Jobs_setAssociatedRETAIN_NONATOMIC(_gameTabBarVC, GameTabBarVC);
+    }return GameTabBarVC;
+}
+
+-(void)setGameTabBarVC:(JobsGameTabbarVC *)gameTabBarVC{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_gameTabBarVC, gameTabBarVC);
+}
 #pragma mark —— @property(nonatomic,strong)NSMutableArray <JobsTabBarControllerConfig *>*configMutArr;
 JobsKey(_configMutArr)
 @dynamic configMutArr;
