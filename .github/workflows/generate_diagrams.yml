@@ -1,46 +1,46 @@
-name: Generate Mermaid Diagrams
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch: # 允许手动触发
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'  # 使用最新版本的 Node.js
-        
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y chromium-browser
-        npm install -g @mermaid-js/mermaid-cli
-
-    - name: Generate Diagrams
-      run: |
-        npx mmdc -i README.md -o diagram.png
-        ls -la # 列出当前目录中的文件
-
-    - name: Show current directory structure
-      run: ls -R
-        
-    - name: Commit and push diagrams
-      if: success()
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
-        git add diagram-*.png
-        git commit -m 'Auto-Generate Mermaid diagrams'
-        git push https://${{ github.actor }}:${{ secrets.PAT }}@github.com/${{ github.repository }}.git HEAD:main
+#name: Generate Mermaid Diagrams
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#  pull_request:
+#    branches:
+#      - main
+#  workflow_dispatch: # 允许手动触发
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#    - name: Checkout repository
+#      uses: actions/checkout@v2
+#
+#    - name: Setup Node.js
+#      uses: actions/setup-node@v3
+#      with:
+#        node-version: '20'  # 使用最新版本的 Node.js
+#        
+#    - name: Install dependencies
+#      run: |
+#        sudo apt-get update
+#        sudo apt-get install -y chromium-browser
+#        npm install -g @mermaid-js/mermaid-cli
+#
+#    - name: Generate Diagrams
+#      run: |
+#        npx mmdc -i README.md -o diagram.png
+#        ls -la # 列出当前目录中的文件
+#
+#    - name: Show current directory structure
+#      run: ls -R
+#        
+#    - name: Commit and push diagrams
+#      if: success()
+#      run: |
+#        git config --global user.name 'github-actions'
+#        git config --global user.email 'github-actions@github.com'
+#        git add diagram-*.png
+#        git commit -m 'Auto-Generate Mermaid diagrams'
+#        git push https://${{ github.actor }}:${{ secrets.PAT }}@github.com/${{ github.repository }}.git HEAD:main
