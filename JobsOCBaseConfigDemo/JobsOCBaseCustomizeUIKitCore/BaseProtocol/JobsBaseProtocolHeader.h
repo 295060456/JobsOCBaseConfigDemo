@@ -14,6 +14,7 @@
 
 #import "BaseProtocol.h"
 #import "UITableViewCellProtocol.h"
+#import "UITabbarConfigProtocol.h"
 #import "UICollectionViewCellProtocol.h"
 #import "BaseViewProtocol.h"
 #import "BaseCellProtocol.h"

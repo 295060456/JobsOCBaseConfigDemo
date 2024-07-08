@@ -9,6 +9,14 @@
 
 @implementation AppDelegate (Extra)
 #pragma mark —— 一些私有方法
+/// UITabBarController 配置数据：子VC、Tabbaritem标题
+-(void)dataWithTabBarVC:(UITabBarController <UITabbarConfigProtocol>*)tabBarVC{
+    for (JobsTabBarControllerConfig *config in self.configMutArr) {
+        [tabBarVC.tabBarControllerConfigMutArr addObject:config];
+        [tabBarVC.childVCMutArr addObject:config.vc];
+        [self.tabBarTitleMutArr addObject:config.title];
+    }
+}
 /// 仅仅对数值tabBarTitleMutArr做简单的添加元素并赋值
 -(NSMutableArray *)addElementByTabBarTitleMutArr:(NSMutableArray *_Nullable)tabBarTitleMutArr{
     NSMutableArray *mutArr = nil;
@@ -80,11 +88,7 @@ JobsKey(_tabBarVC)
 //        TabBarVC.isShakerAnimation = YES;
         TabBarVC.isOpenScrollTabbar = NO;
 
-        for (JobsTabBarControllerConfig *config in self.configMutArr) {
-            [TabBarVC.tabBarControllerConfigMutArr addObject:config];
-            [TabBarVC.childVCMutArr addObject:config.vc];
-            [self.tabBarTitleMutArr addObject:config.title];
-        }
+        [self dataWithTabBarVC:TabBarVC];
         
         [TabBarVC actionReturnObjectBlock:^id(id data) {
             if ([data isKindOfClass:NSNumber.class]) {
@@ -140,66 +144,7 @@ JobsKey(_configMutArr)
 -(NSMutableArray<JobsTabBarControllerConfig *> *)configMutArr{
     NSMutableArray *ConfigMutArr = Jobs_getAssociatedObject(_configMutArr);
     if (!ConfigMutArr) {
-        ConfigMutArr = NSMutableArray.array;
-        {
-            JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-            config.vc = UIViewController.new;
-            config.title = self.tabBarTitleMutArr[ConfigMutArr.count];
-            config.imageSelected = JobsIMG(@"tabbar_home_selected");
-            config.imageUnselected = JobsIMG(@"tabbar_home_normal");
-            config.humpOffsetY = 0;
-            config.lottieName = nil;
-            config.tag = ConfigMutArr.count + 1;
-            [ConfigMutArr addObject:config];
-        }
-        
-        {
-            JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-            config.vc = UIViewController.new;
-            config.title = self.tabBarTitleMutArr[ConfigMutArr.count];
-            config.imageSelected = JobsIMG(@"tabbar_game_selected");
-            config.imageUnselected = JobsIMG(@"tabbar_game_normal");
-            config.humpOffsetY = 0;
-            config.lottieName = nil;
-            config.tag = ConfigMutArr.count + 1;
-            [ConfigMutArr addObject:config];
-        }
-        
-        {
-            JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-            config.vc = UIViewController.new;
-            config.title = self.tabBarTitleMutArr[ConfigMutArr.count];
-            config.imageSelected = JobsIMG(@"tabbar_discount_selected");
-            config.imageUnselected = JobsIMG(@"tabbar_discount_normal");
-            config.humpOffsetY = 0;
-            config.lottieName = nil;
-            config.tag = ConfigMutArr.count + 1;
-            [ConfigMutArr addObject:config];
-        }
-        
-        {
-            JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-            config.vc = UIViewController.new;
-            config.title = self.tabBarTitleMutArr[ConfigMutArr.count];
-            config.imageSelected = JobsIMG(@"tabbar_tutorial_selected");
-            config.imageUnselected = JobsIMG(@"tabbar_tutorial_normal");
-            config.humpOffsetY = 0;
-            config.lottieName = nil;
-            config.tag = ConfigMutArr.count + 1;
-            [ConfigMutArr addObject:config];
-        }
-        
-        {
-            JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-            config.vc = UIViewController.new;
-            config.title = self.tabBarTitleMutArr[ConfigMutArr.count];
-            config.imageSelected = JobsIMG(@"tabbar_member_selected");
-            config.imageUnselected = JobsIMG(@"tabbar_member_normal");
-            config.humpOffsetY = 0;
-            config.lottieName = nil;
-            config.tag = ConfigMutArr.count + 1;
-            [ConfigMutArr addObject:config];
-        }
+        ConfigMutArr = self.makeConfigMutArr;
         Jobs_setAssociatedRETAIN_NONATOMIC(_configMutArr, ConfigMutArr);
     }return ConfigMutArr;
 }

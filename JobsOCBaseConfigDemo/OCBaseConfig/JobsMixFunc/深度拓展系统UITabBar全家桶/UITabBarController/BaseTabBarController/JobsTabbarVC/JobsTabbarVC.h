@@ -19,6 +19,7 @@
 
 #import "JobsTabBarItem.h"
 
+#import "UITabbarConfigProtocol.h"
 #import "JobsTabBar.h"
 #import "UITabBar+Ex.h"
 #import "TLTabBarAnimation.h"
@@ -54,14 +55,13 @@
 @interface JobsTabbarVC : UITabBarController
 <
 UITabBarControllerDelegate,
-UIGestureRecognizerDelegate
+UIGestureRecognizerDelegate,
+UITabbarConfigProtocol
 >
 /// UI
 @property(nonatomic,strong,readonly)JobsTabBar *myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
 /// Data
 @property(nonatomic,assign)NSInteger firstUI_selectedIndex;/// 初始显示第一个
-@property(nonatomic,strong)NSMutableArray <UIViewController *>*childVCMutArr;/// 子控制器
-@property(nonatomic,strong)NSMutableArray <JobsTabBarControllerConfig *>*tabBarControllerConfigMutArr;/// TabBar的配置数据源
 @property(nonatomic,assign)BOOL isOpenScrollTabbar;/// 是否开启手势横向滚动子VC联动Tabbar切换，默认开启
 @property(nonatomic,assign)BOOL isAnimationAlert;/// 图片从小放大
 @property(nonatomic,assign)BOOL isShakerAnimation;/// 重力弹跳动画效果

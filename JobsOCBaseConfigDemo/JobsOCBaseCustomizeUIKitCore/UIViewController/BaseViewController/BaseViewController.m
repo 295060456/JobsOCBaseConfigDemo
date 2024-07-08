@@ -215,13 +215,20 @@ BaseViewControllerProtocol_synthesize
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
+#pragma mark —— 在 当前控制器 中适配横屏
 /// 适配横屏
 - (BOOL)shouldAutorotate {
     return YES;
 }
-
+/// 当前控制器支持的屏幕旋转方向（在具体的控制器子类进行覆写）
+/// iPad设备上，默认返回值UIInterfaceOrientationMaskAllButUpSideDwon
+/// iPhone设备上，默认返回值是UIInterfaceOrientationMaskAll
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAllButUpsideDown;
+}
+/// 设置进入界面默认支持的方向
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return [super preferredInterfaceOrientationForPresentation];
 }
 #pragma mark —— 一些私有方法
 /// 用于检测UIViewController的生命周期

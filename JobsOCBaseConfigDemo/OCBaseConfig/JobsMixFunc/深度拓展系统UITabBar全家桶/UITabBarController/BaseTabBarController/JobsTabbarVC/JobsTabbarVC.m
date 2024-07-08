@@ -22,7 +22,7 @@
 @end
 
 @implementation JobsTabbarVC
-
+UITabbarConfigProtocol_synthesize
 static dispatch_once_t onceToken;
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
@@ -190,7 +190,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
     JobsTabBarControllerConfig *config = (JobsTabBarControllerConfig *)self.tabBarControllerConfigMutArr[index];
     return ![NSString isNullString:config.lottieName];
 }
-
+/// ❤️关键方法❤️
 -(void)UISetting{
     for (int i = 0; i < self.tabBarControllerConfigMutArr.count; i++) {
         
@@ -215,15 +215,14 @@ static JobsTabbarVC *static_tabbarVC = nil;
             viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
         }
 
-        if (![viewController isKindOfClass:UINavigationController.class]) {//防止UIImagePickerController崩
+        if (![viewController isKindOfClass:UINavigationController.class]) {/// 防止UIImagePickerController崩
             BaseNavigationVC *nav = [BaseNavigationVC.alloc initWithRootViewController:viewController];
             nav.title = config.title;
-            [self.childVCMutArr replaceObjectAtIndex:i withObject:nav];//替换元素，每个VC加Navigation
+            [self.childVCMutArr replaceObjectAtIndex:i withObject:nav];/// 替换元素，每个VC加Navigation
         }
     }
     /// ❤️这句话走了以后 才会有self.tabBar
     self.viewControllers = self.childVCMutArr;
-    
     for (UIView *subView in self.tabBar.subviews) {
         if ([subView isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
             [subView animationAlert];//图片从小放大

@@ -2791,6 +2791,7 @@
 		CE8620712C2C254B0009C664 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CE8C1A452C3BAB2000928E88 /* JobsGameTabbarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsGameTabbarVC.h; sourceTree = "<group>"; };
 		CE8C1A462C3BAB2000928E88 /* JobsGameTabbarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsGameTabbarVC.m; sourceTree = "<group>"; };
+		CE8C1A482C3BC75900928E88 /* UITabbarConfigProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITabbarConfigProtocol.h; sourceTree = "<group>"; };
 		CEAAD4702C32758A00349C11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CEAAD4722C32770A00349C11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CEAAD4742C32771000349C11 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -8016,6 +8017,7 @@
 		C59786D72BE3599600A56125 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				CE8C1A492C3BC99600928E88 /* UITabbarConfigProtocol <NSObject> */,
 				C59786CB2BE3599600A56125 /* BaseProtocol <NSObject> */,
 				C59786CD2BE3599600A56125 /* UITextModelProtocol <NSObject> */,
 				C59786D42BE3599600A56125 /* UIViewModelProtocol <NSObject> */,
@@ -11865,6 +11867,14 @@
 				CE8C1A462C3BAB2000928E88 /* JobsGameTabbarVC.m */,
 			);
 			path = JobsGameTabbarVC;
+			sourceTree = "<group>";
+		};
+		CE8C1A492C3BC99600928E88 /* UITabbarConfigProtocol <NSObject> */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C1A482C3BC75900928E88 /* UITabbarConfigProtocol.h */,
+			);
+			path = "UITabbarConfigProtocol <NSObject>";
 			sourceTree = "<group>";
 		};
 		CEAF7CFC2C3413B9007AE308 /* XWCountryCodeController.plist */ = {

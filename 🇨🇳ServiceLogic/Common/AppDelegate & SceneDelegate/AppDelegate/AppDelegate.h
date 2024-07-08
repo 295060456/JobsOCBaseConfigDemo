@@ -30,6 +30,7 @@ UIApplicationDelegate
 @property(readonly,strong)NSPersistentCloudKitContainer *persistentContainer;
 @property(nonatomic,assign)BOOL allowOrentitaionRotation;
 
+-(NSMutableArray <JobsTabBarControllerConfig *>*)makeConfigMutArr;
 -(void)saveContext;
 
 @end

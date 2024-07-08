@@ -914,6 +914,130 @@ NSObject <|-- BaseProtocol
       NSLog(JobsInternationalization(@""));
   }
   ```
+  
+### 17、`JobsTabbarVC` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* **`@interface JobsTabbarVC : UITabBarController`**，<font color=red>**继承自系统`UITabBarController`**</font>
+
+* 支持单例模式
+
+* 支持`Tabbaritem`的偏移
+
+  ```objective-c
+  if (config.humpOffsetY != 0) {
+      //一般的图片
+      /// 修改图片偏移量，上下，左右必须为相反数，否则图片会被压缩
+      viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(-config.humpOffsetY,
+                                                               0,
+                                                               -config.humpOffsetY / 2,
+                                                               0);
+      /// 修改文字偏移量
+      viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
+  }
+  ```
+
+* 支持**`Lottie`**动画
+
+  * 关注实现类：[**@interface UIViewController (Lottie)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+Lottie)
+
+  ```objective-c
+  if ([self judgeLottieWithIndex:i]) {
+      [self addLottieImage:config.lottieName];// 有Lottie动画名，则优先创建Lottie动画
+  }
+  ```
+
+* 支持`Tabbaritem`长按手势。长按默认出列表菜单（仿**Telegram**）
+
+  ```objective-c
+  -(NSMutableArray<UIViewModel *> *)pullListAutoSizeViewMutArr{
+      if (!_pullListAutoSizeViewMutArr) {
+          _pullListAutoSizeViewMutArr = NSMutableArray.array;
+          
+          {
+              UIViewModel *viewModel = UIViewModel.new;
+              viewModel.image = JobsIMG(JobsInternationalization(@""));
+              viewModel.textModel.text = JobsInternationalization(@"111");
+              [_pullListAutoSizeViewMutArr addObject:viewModel];
+          }
+          
+          {
+              UIViewModel *viewModel = UIViewModel.new;
+              viewModel.image = JobsIMG(JobsInternationalization(@""));
+              viewModel.textModel.text = JobsInternationalization(@"222");
+              [_pullListAutoSizeViewMutArr addObject:viewModel];
+          }
+          
+          {
+              UIViewModel *viewModel = UIViewModel.new;
+              viewModel.image = JobsIMG(JobsInternationalization(@""));
+              viewModel.textModel.text = JobsInternationalization(@"333");
+              [_pullListAutoSizeViewMutArr addObject:viewModel];
+          }
+          
+      }return _pullListAutoSizeViewMutArr;
+  }
+  ```
+
+* 支持手势左右滑动以切换`TabbarControl`挂载的`ViewController`
+
+* 支持横屏模式
+
+* 支持震动反馈
+
+  ```objective-c
+  if (self.isFeedbackGenerator) {
+      [self feedbackGenerator];
+  }
+  ```
+
+* 支持点击`Tabbaritem`有声音
+
+  ```objective-c
+  if (self.isPlaySound) {
+      [self playSoundWithFileName:@"Sound.wav"];
+  }
+  ```
+
+* 支持[**`PPBadgeView`**](https://github.com/jkpang/PPBadgeView)
+
+  ```ruby
+  pod 'PPBadgeView' # https://github.com/jkpang/PPBadgeView iOS自定义Badge组件, 支持UIView, UITabBarItem, UIBarButtonItem以及子类 NO_SMP
+  ```
+
+* 支持重力弹跳动画效果
+
+  ```objective-c
+  if (self.isShakerAnimation) {
+      [item.badgeView shakerAnimationWithDuration:2 height:20];
+  }
+  ```
+
+* 支持图片从小放大
+
+  ```objective-c
+  if (self.isAnimationAlert) {
+     [self.UITabBarButtonMutArr[index] animationAlert];
+  }
+  ```
+
+* 支持点击增加标数
+
+  ```objective-c
+  if (self.isOpenPPBadge) {
+     [item pp_increase];
+  }
+  ```
+
+* 防止当子控制器为`UIImagePickerController` 引起的崩溃
+
+  ```objective-c
+  UIViewController *viewController = self.childVCMutArr[i];
+  if (![viewController isKindOfClass:UINavigationController.class]) {/// 防止UIImagePickerController崩
+      BaseNavigationVC *nav = [BaseNavigationVC.alloc initWithRootViewController:viewController];
+      nav.title = config.title;
+      [self.childVCMutArr replaceObjectAtIndex:i withObject:nav];/// 替换元素，每个VC加Navigation
+  }
+  ```
 
 ## 五、代码讲解
 
