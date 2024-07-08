@@ -1,10 +1,3 @@
-//
-//  SplashAdManager.m
-//  JobsOCBaseConfigDemo
-//
-//  Created by User on 7/6/24.
-//
-
 #import "JobsLaunchAdMgr.h"
 #import <CoreMotion/CoreMotion.h>
 
@@ -116,7 +109,7 @@
 
 - (void)updateSkipButtonFrame {
     if (CGRectEqualToRect(self.buttonFrame, CGRectZero)) {
-        _skipButton.frame = CGRectMake(_adView.bounds.size.width - 60, 40, 50, 30);
+        _skipButton.frame = CGRectMake(_adView.bounds.size.width - 70, 40, 60, 30);
     } else {
         _skipButton.frame = self.buttonFrame;
     }
