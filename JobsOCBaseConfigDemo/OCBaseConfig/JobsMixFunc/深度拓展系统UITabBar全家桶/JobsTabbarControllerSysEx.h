@@ -16,13 +16,12 @@
 #import "JobsTabBarItem.h"
 //UITabBarController
 #import "JobsTabbarVC.h"
-#import "JobsGameTabbarVC.h"
 //UITabBar
 #import "UITabBar+TLAnimation.h"
 #import "JobsTabBar.h"
 #import "UITabBar+Ex.h"
 
-//在系统api基础上二次封装的功能性拓展
+//在系统API基础上二次封装的功能性拓展
 #import "LoadingImage.h"
 //UIView
 #import "UIView+Animation.h"

@@ -13,7 +13,7 @@
 @end
 
 @implementation JobsTabBar
-
+UITabbarConfigProtocol_synthesize
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.clipsToBounds = NO;//超出视图部分显示
@@ -27,6 +27,21 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
+    NSMutableArray <UIView *>*tabBarButtons = NSMutableArray.array;
+    for (UIView *subview in self.subviews) {
+        if ([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+            subview.backgroundColor = JobsRandomColor;
+            [tabBarButtons addObject:subview];
+        }
+    }
+    CGFloat s;
+    for (int t = 0; t < self.tabBarControllerConfigMutArr.count ; t++) {
+        JobsTabBarControllerConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[t];
+        UIView *tabBarButton = tabBarButtons[t];
+        s = tabBarControllerConfig.xOffset;
+        tabBarButton.resetOriginX(s + tabBarControllerConfig.xOffset + tabBarControllerConfig.tabBarItemWidth);
+        tabBarButton.resetWidth(tabBarControllerConfig.tabBarItemWidth);
+    }
 }
 //具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{

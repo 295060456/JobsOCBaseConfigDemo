@@ -1,5 +1,5 @@
 //
-//  TabbarVC.m
+//  JobsTabbarVC.m
 //  TabbarItemLottie
 //
 //  Created by 叶晓倩 on 2017/9/29.
@@ -103,8 +103,8 @@ static JobsTabbarVC *static_tabbarVC = nil;
     [super viewWillAppear:animated];
     self.isHiddenNavigationBar = YES;
 
-    static dispatch_once_t JobsTabbarVC_viewWillAppear_onceToken;
     @jobs_weakify(self)
+    static dispatch_once_t JobsTabbarVC_viewWillAppear_onceToken;
     dispatch_once(&JobsTabbarVC_viewWillAppear_onceToken, ^{
         @jobs_strongify(self)
         [self UISetting];//最高只能在viewWillAppear，在viewDidLoad不出效果 self.tabBar.subviews为空
@@ -362,9 +362,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
 /// 监听TabBarItem点击事件
 - (void)tabBar:(UITabBar *)tabBar
  didSelectItem:(UITabBarItem *)item {
-
     if ([tabBar.items containsObject:item]) {
-        
         NSUInteger index = [self.tabBar.items indexOfObject:item];
         NSLog(@"当前点击：%ld",(long)index);
         for (NSNumber *indexNUM in self.jumpIndexArr) {
@@ -467,6 +465,7 @@ shouldSelectViewController:(UIViewController *)viewController {
 -(JobsTabBar *)myTabBar{
     if (!_myTabBar) {
         _myTabBar = JobsTabBar.new;
+        _myTabBar.tabBarControllerConfig = self.
         [_myTabBar richElementsInViewWithModel:self.viewModel];
         self.jobsKVC(@"tabBar",_myTabBar);/// KVC 进行替换
     }return _myTabBar;

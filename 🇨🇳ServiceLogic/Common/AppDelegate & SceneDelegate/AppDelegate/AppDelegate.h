@@ -9,12 +9,10 @@
 #import <CoreData/CoreData.h>
 
 #import "JobsTabbarVC.h"
-#import "JobsGameTabbarVC.h"
 #import "Other.h"
 @import UserNotifications;/// 配置本地通知
 
-//#define RootViewController appDelegate.tabBarVC
-#define RootViewController appDelegate.gameTabBarVC
+#define RootViewController appDelegate.tabBarVC
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunguarded-availability-new"

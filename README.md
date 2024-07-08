@@ -331,7 +331,7 @@ classDiagram
     }
 ```
 
-### 11、**UIViewModelFamily <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
+### 11、**UIViewModelFamily（持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
@@ -921,6 +921,33 @@ NSObject <|-- BaseProtocol
 
 * 支持单例模式
 
+* `UITabBarButton` 是内部类。直接获取不到，需要间接获取
+
+  ```objective-c
+  @property(nonatomic,strong)NSMutableArray <UIView *>*UITabBarButtonMutArr;
+  ```
+
+  ```objective-c
+  for (UIView *subView in self.tabBar.subviews) {
+      if ([subView isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+          [subView animationAlert];//图片从小放大
+          [self.UITabBarButtonMutArr addObject:subView];
+      }
+  }
+  ```
+
+* 系统的`UITabBarController.tabBar`通过**KVC**的方式替换为自建的`JobsTabBar`
+
+  ```objective-c
+  -(JobsTabBar *)myTabBar{
+      if (!_myTabBar) {
+          _myTabBar = JobsTabBar.new;
+          [_myTabBar richElementsInViewWithModel:self.viewModel];
+          self.jobsKVC(@"tabBar",_myTabBar);/// KVC 进行替换
+      }return _myTabBar;
+  }
+  ```
+
 * 支持`Tabbaritem`的偏移
 
   ```objective-c
@@ -947,6 +974,17 @@ NSObject <|-- BaseProtocol
   ```
 
 * 支持`Tabbaritem`长按手势。长按默认出列表菜单（仿**Telegram**）
+
+  ```objective-c
+  -(void)长按手势做什么:(UILongPressGestureRecognizer *)longPressGR{
+      if (self.isFeedbackGenerator) {
+          [self feedbackGenerator];//震动反馈
+      }
+  
+      [JobsPullListAutoSizeView initWithTargetView:self.UITabBarButtonMutArr[longPressGR.view.tag]
+                                        dataMutArr:self.pullListAutoSizeViewMutArr];
+  }
+  ```
 
   ```objective-c
   -(NSMutableArray<UIViewModel *> *)pullListAutoSizeViewMutArr{
@@ -979,6 +1017,14 @@ NSObject <|-- BaseProtocol
   ```
 
 * 支持手势左右滑动以切换`TabbarControl`挂载的`ViewController`
+
+  ```objective-c
+  /// 手势左右滑动以切换TabbarControl挂载的ViewController
+  if (self.isOpenScrollTabbar) {
+      [self openPan];
+      self.view.panGR.enabled = self.isOpenScrollTabbar;
+  }
+  ```
 
 * 支持横屏模式
 
@@ -1028,6 +1074,30 @@ NSObject <|-- BaseProtocol
   }
   ```
 
+* 支持点击`Tabbaritem`自检强行登录
+
+  ```objective-c
+  @property(nonatomic,strong)NSArray <NSNumber *>*jumpIndexArr;/// 需要跳开的item
+  @property(nonatomic,strong)NSArray <NSNumber *>*needLoginArr;/// 在某些页面强制弹出登录
+  @property(nonatomic,strong)NSArray <NSNumber *>*noNeedLoginArr;/// 在某些页面不需要弹出登录，其优先级高于needLoginArr（也就是item点了没反应）
+  ```
+  
+  ```objective-c
+  TabBarVC.jumpIndexArr = @[@3];//小标为3的客服模块需要被跳开做另行处理
+  TabBarVC.needLoginArr = @[@1,@2,@4];
+  TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优先级高于needLoginArr
+  ```
+  
+  ```objective-c
+  /// 需要强制跳转登录的index。点击和手势滑动都需要共同调用
+  -(BOOL)forcedLoginIndex:(NSUInteger)index{
+      if ([self.needLoginArr containsObject:@(index)]) {
+          [self forcedLogin];
+          return YES;
+      }return NO;
+  }
+  ```
+  
 * 防止当子控制器为`UIImagePickerController` 引起的崩溃
 
   ```objective-c

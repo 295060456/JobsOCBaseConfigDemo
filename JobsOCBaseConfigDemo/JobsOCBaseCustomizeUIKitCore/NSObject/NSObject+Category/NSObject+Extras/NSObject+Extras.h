@@ -318,6 +318,47 @@ BaseProtocol
 -(CGRect)frameInCVSuperview:(UIView *_Nonnull)cvSuperview
              collectionView:(UICollectionView *_Nonnull)collectionView
          collectionViewCell:(UICollectionViewCell *_Nonnull)collectionViewCell;
+#pragma mark —— 利用数组和NSValue，存取结构体
+/// CGPoint
+-(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
+                                       addCGPoint:(CGPoint)point;
+
+-(CGPoint)jobsGetPoint:(NSValue *_Nullable)value;
+/// CGVector
+-(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
+                                      addCGVector:(CGVector)vector;
+
+-(CGVector)jobsGetVector:(NSValue *_Nullable)value;
+/// CGSize
+-(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
+                                        addCGSize:(CGSize)size;
+
+-(CGSize)jobsGetSize:(NSValue *_Nullable)value;
+/// CGRect
+-(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
+                                        addCGRect:(CGRect)frame;
+
+-(CGRect)jobsGetFrame:(NSValue *_Nullable)value;
+/// CGAffineTransform
+-(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
+                             addCGAffineTransform:(CGAffineTransform)affineTransform;
+
+-(CGAffineTransform)jobsGetCGAffineTransform:(NSValue *_Nullable)value;
+/// UIEdgeInsets
+-(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
+                                  addUIEdgeInsets:(UIEdgeInsets)edgeInsets;
+
+-(UIEdgeInsets)jobsGetUIEdgeInsets:(NSValue *_Nullable)value;
+/// NSDirectionalEdgeInsets
+-(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
+                       addNSDirectionalEdgeInsets:(NSDirectionalEdgeInsets)directionalEdgeInsets;
+
+-(NSDirectionalEdgeInsets)jobsGetNSDirectionalEdgeInsets:(NSValue *_Nullable)value;
+/// UIOffset
+-(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
+                                      addUIOffset:(UIOffset)offset;
+
+-(UIOffset)jobsGetValueWithUIOffset:(NSValue *_Nullable)value;
 #pragma mark —— 数字
 /// 获取任意数字最高位数字
 -(NSInteger)getTopDigit:(NSInteger)number;

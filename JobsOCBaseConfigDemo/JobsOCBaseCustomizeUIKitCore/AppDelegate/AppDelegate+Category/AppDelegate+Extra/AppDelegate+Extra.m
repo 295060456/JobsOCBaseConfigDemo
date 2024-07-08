@@ -81,9 +81,9 @@ JobsKey(_tabBarVC)
         TabBarVC.isPlaySound = YES;
         TabBarVC.isFeedbackGenerator = YES;
         
-//        TabBarVC.jumpIndexArr = @[@3];//小标为3的客服模块需要被跳开做另行处理
-//        TabBarVC.needLoginArr = @[@1,@2,@4];
-//        TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优先级高于needLoginArr
+        TabBarVC.jumpIndexArr = @[@3];//小标为3的客服模块需要被跳开做另行处理
+        TabBarVC.needLoginArr = @[@1,@2,@4];
+        TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优先级高于needLoginArr
         
 //        TabBarVC.isShakerAnimation = YES;
         TabBarVC.isOpenScrollTabbar = NO;
@@ -123,20 +123,6 @@ JobsKey(_tabBarVC)
 
 -(void)setTabBarVC:(JobsTabbarVC *)tabBarVC{
     Jobs_setAssociatedRETAIN_NONATOMIC(_tabBarVC, tabBarVC);
-}
-#pragma mark —— @property(nonatomic,strong)JobsGameTabbarVC *gameTabBarVC;
-JobsKey(_gameTabBarVC)
-@dynamic gameTabBarVC;
--(JobsGameTabbarVC *)gameTabBarVC{
-    JobsGameTabbarVC *GameTabBarVC = Jobs_getAssociatedObject(_gameTabBarVC);
-    if (!GameTabBarVC) {
-        GameTabBarVC = JobsGameTabbarVC.new;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_gameTabBarVC, GameTabBarVC);
-    }return GameTabBarVC;
-}
-
--(void)setGameTabBarVC:(JobsGameTabbarVC *)gameTabBarVC{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_gameTabBarVC, gameTabBarVC);
 }
 #pragma mark —— @property(nonatomic,strong)NSMutableArray <JobsTabBarControllerConfig *>*configMutArr;
 JobsKey(_configMutArr)

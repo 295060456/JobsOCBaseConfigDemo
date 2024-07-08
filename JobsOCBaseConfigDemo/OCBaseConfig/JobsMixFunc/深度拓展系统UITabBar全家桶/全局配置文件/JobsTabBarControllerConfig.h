@@ -23,6 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UIFont *fontSelected;/// 未选中字体
 @property(nonatomic,assign)CGFloat humpOffsetY;/// Y轴凸起的偏移量 传0就是不凸起
 @property(nonatomic,assign)NSUInteger tag;
+@property(nonatomic,assign)CGRect tabBarItemFrame;/// 每一个TabbarItem 的Frame
+@property(nonatomic,assign)CGSize tabBarItemSize;/// 每一个TabbarItem  的size
+@property(nonatomic,assign)CGFloat tabBarItemWidth;/// 每一个TabbarItem  的宽
+@property(nonatomic,assign)CGFloat tabBarItemHeight;/// 每一个TabbarItem  的高
+@property(nonatomic,assign)CGFloat xOffset;/// 每一个TabbarItem 和前一个TabbarItem在x轴方向的偏移量。如果是第一个TabbarItem则是和左屏幕进行比较
 
 @end
 

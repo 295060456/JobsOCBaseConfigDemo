@@ -277,7 +277,6 @@
 JobsKey(_x)
 @dynamic x;
 -(CGFloat)x{
-    
     if (Jobs_getAssociatedObject(_x)) {
         return [Jobs_getAssociatedObject(_x) floatValue];
     }else{
