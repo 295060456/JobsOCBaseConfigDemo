@@ -1,131 +1,230 @@
+//
+//  SplashAdManager.m
+//  JobsOCBaseConfigDemo
+//
+//  Created by User on 7/6/24.
+//
+
 #import "JobsLaunchAdMgr.h"
-#import <AVKit/AVKit.h>
+#import <CoreMotion/CoreMotion.h>
 
-@interface JobsLaunchAdMgr ()
+@implementation JobsLaunchAdMgr {
+    UIView *_adView;
+    UIButton *_skipButton;
+    AVPlayer *_videoPlayer;
+    UIImageView *_imageView;
+    NSTimer *_countdownTimer;
+    NSInteger _currentCountdown;
+    CMMotionManager *_motionManager;
+}
 
-@property (nonatomic, strong) UIView *adView;
-@property (nonatomic, strong) UIButton *skipButton;
-@property (nonatomic, strong) AVPlayer *videoPlayer;
-@property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) UIWindow *mainWindow;
-
-@end
-
-@implementation JobsLaunchAdMgr
-
-+ (instancetype)sharedInstance {
++ (instancetype)sharedManager {
     static JobsLaunchAdMgr *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[JobsLaunchAdMgr alloc] init];
-        instance.buttonTitle = @"跳过";
-        instance.buttonFrame = CGRectMake([UIScreen mainScreen].bounds.size.width - 60, 20, 50, 30);
-        instance.imageDisplayDuration = 5.0;
-        instance.preloadResources = NO;
-        instance.shouldPlayVideoSound = NO;
+        instance = [[self alloc] init];
     });
     return instance;
 }
 
-- (void)configureWithAdMode:(JobsLaunchAdMode)adMode {
-    self.adMode = adMode;
+- (instancetype)init {
+    if (self = [super init]) {
+        _buttonTitle = @"跳过";
+        _buttonFrame = CGRectZero;
+        _buttonMode = SkipButtonModeNormal;
+        _countdownDuration = 5;
+        _redirectURL = @"https://www.google.com";
+        [self setupMotionManager];
+    }
+    return self;
 }
 
-- (void)showAd {
-    [self setupAdView];
-    if (self.adURL) {
-        [self loadAdFromURL:self.adURL];
-    } else {
-        // Load local resources
+- (void)setupMotionManager {
+    _motionManager = [[CMMotionManager alloc] init];
+    if (_motionManager.isAccelerometerAvailable) {
+        _motionManager.accelerometerUpdateInterval = 0.1;
+        __weak typeof(self) weakSelf = self;
+        [_motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) {
+            [weakSelf handleShakeWithAccelerometerData:accelerometerData];
+        }];
     }
+}
+
+- (void)handleShakeWithAccelerometerData:(CMAccelerometerData *)accelerometerData {
+    static NSDate *lastShakeDate;
+    static const NSTimeInterval shakeThresholdTime = 1.0;
+    if (!lastShakeDate || [[NSDate date] timeIntervalSinceDate:lastShakeDate] > shakeThresholdTime) {
+        double accelerationThreshold = 2.3; // Adjust based on your sensitivity preference
+        if (fabs(accelerometerData.acceleration.x) > accelerationThreshold || fabs(accelerometerData.acceleration.y) > accelerationThreshold || fabs(accelerometerData.acceleration.z) > accelerationThreshold) {
+            if (self.onShake) {
+                self.onShake();
+            }
+            lastShakeDate = [NSDate date];
+        }
+    }
+}
+
+- (void)showAdWithLocalResource:(NSString *)resourcePath isVideo:(BOOL)isVideo {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setupAdView];
+        if (isVideo) {
+            [self playLocalVideo:resourcePath];
+        } else {
+            [self displayLocalImage:resourcePath];
+        }
+    });
+}
+
+- (void)showAdWithURLResource:(NSString *)url isVideo:(BOOL)isVideo shouldPreload:(BOOL)shouldPreload {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setupAdView];
+        if (shouldPreload) {
+            // Implement preloading logic here
+        }
+        if (isVideo) {
+            [self playURLVideo:url];
+        } else {
+            [self displayURLImage:url];
+        }
+    });
 }
 
 - (void)setupAdView {
-    self.mainWindow = [UIApplication sharedApplication].delegate.window;
-    self.adView = [[UIView alloc] initWithFrame:self.mainWindow.bounds];
-    [self.mainWindow addSubview:self.adView];
-    
-    self.skipButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.skipButton setTitle:self.buttonTitle forState:UIControlStateNormal];
-    self.skipButton.frame = self.buttonFrame;
-    [self.skipButton addTarget:self action:@selector(skipAd) forControlEvents:UIControlEventTouchUpInside];
-    [self.adView addSubview:self.skipButton];
-    
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    _adView = [[UIView alloc] initWithFrame:keyWindow.bounds];
+    _adView.backgroundColor = [UIColor blackColor];
+    [keyWindow addSubview:_adView];
+
+    _skipButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_skipButton setTitle:self.buttonTitle forState:UIControlStateNormal];
+    [_skipButton addTarget:self action:@selector(skipButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self updateSkipButtonFrame];
+    [_adView addSubview:_skipButton];
+
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-    [self.adView addGestureRecognizer:singleTap];
-    
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     doubleTap.numberOfTapsRequired = 2;
-    [self.adView addGestureRecognizer:doubleTap];
-    
     [singleTap requireGestureRecognizerToFail:doubleTap];
+    [_adView addGestureRecognizer:singleTap];
+    [_adView addGestureRecognizer:doubleTap];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShake) name:@"UIEventSubtypeMotionShake" object:nil];
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    [_adView addGestureRecognizer:longPress];
+
+    [self startCountdownIfNeeded];
 }
 
-- (void)loadAdFromURL:(NSURL *)url {
-    if ([url.absoluteString hasSuffix:@"mp4"]) {
-        // Load video
-        self.videoPlayer = [AVPlayer playerWithURL:url];
-        AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.videoPlayer];
-        playerLayer.frame = self.adView.bounds;
-        [self.adView.layer addSublayer:playerLayer];
-        [self.videoPlayer play];
-        
-        if (self.adMode == JobsLaunchAdModeCountdown) {
-            [self startCountdown];
-        } else {
-            [self.videoPlayer addObserver:self forKeyPath:@"status" options:0 context:nil];
-        }
+- (void)updateSkipButtonFrame {
+    if (CGRectEqualToRect(self.buttonFrame, CGRectZero)) {
+        _skipButton.frame = CGRectMake(_adView.bounds.size.width - 60, 40, 50, 30);
     } else {
-        // Load image
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [UIImage imageWithData:data];
-        self.imageView = [[UIImageView alloc] initWithImage:image];
-        self.imageView.frame = self.adView.bounds;
-        [self.adView addSubview:self.imageView];
-        
-        [NSTimer scheduledTimerWithTimeInterval:self.imageDisplayDuration target:self selector:@selector(skipAd) userInfo:nil repeats:NO];
+        _skipButton.frame = self.buttonFrame;
     }
 }
 
-- (void)skipAd {
-    [self.adView removeFromSuperview];
-    // Enter the root controller
+- (void)playLocalVideo:(NSString *)path {
+    NSURL *videoURL = [NSURL fileURLWithPath:path];
+    _videoPlayer = [AVPlayer playerWithURL:videoURL];
+    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_videoPlayer];
+    playerLayer.frame = _adView.bounds;
+    [_adView.layer addSublayer:playerLayer];
+    [_videoPlayer play];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoDidFinish:) name:AVPlayerItemDidPlayToEndTimeNotification object:_videoPlayer.currentItem];
+}
+
+- (void)displayLocalImage:(NSString *)path {
+    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    _imageView = [[UIImageView alloc] initWithFrame:_adView.bounds];
+    _imageView.image = image;
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [_adView addSubview:_imageView];
+    [self performSelector:@selector(adDidFinish) withObject:nil afterDelay:self.countdownDuration];
+}
+
+- (void)playURLVideo:(NSString *)urlString {
+    NSURL *videoURL = [NSURL URLWithString:urlString];
+    _videoPlayer = [AVPlayer playerWithURL:videoURL];
+    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_videoPlayer];
+    playerLayer.frame = _adView.bounds;
+    [_adView.layer addSublayer:playerLayer];
+    [_videoPlayer play];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoDidFinish:) name:AVPlayerItemDidPlayToEndTimeNotification object:_videoPlayer.currentItem];
+}
+
+- (void)displayURLImage:(NSString *)urlString {
+    NSURL *imageURL = [NSURL URLWithString:urlString];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage *image = [UIImage imageWithData:imageData];
+    _imageView = [[UIImageView alloc] initWithFrame:_adView.bounds];
+    _imageView.image = image;
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [_adView addSubview:_imageView];
+    [self performSelector:@selector(adDidFinish) withObject:nil afterDelay:self.countdownDuration];
+}
+
+- (void)startCountdownIfNeeded {
+    if (self.buttonMode == SkipButtonModeCountdown) {
+        _currentCountdown = self.countdownDuration;
+        _countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateCountdown) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)updateCountdown {
+    if (_currentCountdown > 0) {
+        [_skipButton setTitle:[NSString stringWithFormat:@"跳过 %ld", (long)_currentCountdown] forState:UIControlStateNormal];
+        _currentCountdown--;
+    } else {
+        [self adDidFinish];
+    }
+}
+
+- (void)skipButtonTapped {
+    [self adDidFinish];
+}
+
+- (void)videoDidFinish:(NSNotification *)notification {
+    [self adDidFinish];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)gesture {
-    if (self.singleTapCallback) {
-        self.singleTapCallback();
+    if (self.onSingleTap) {
+        self.onSingleTap();
     } else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.google.com"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.redirectURL] options:@{} completionHandler:nil];
+        [self adDidFinish];
     }
 }
 
 - (void)handleDoubleTap:(UITapGestureRecognizer *)gesture {
-    if (self.doubleTapCallback) {
-        self.doubleTapCallback();
+    if (self.onDoubleTap) {
+        self.onDoubleTap();
     }
 }
 
-- (void)handleShake {
-    if (self.shakeCallback) {
-        self.shakeCallback();
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        if (self.onLongPress) {
+            self.onLongPress();
+        }
     }
 }
 
-- (void)startCountdown {
-    __block NSInteger countdown = 5; // default countdown time
-    if (self.adMode == JobsLaunchAdModeCountdown) {
-        countdown = self.imageDisplayDuration;
+- (void)adDidFinish {
+    [_adView removeFromSuperview];
+    if (_countdownTimer) {
+        [_countdownTimer invalidate];
+        _countdownTimer = nil;
     }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(countdown * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self skipAd];
-    });
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (_videoPlayer) {
+        [_videoPlayer pause];
+        _videoPlayer = nil;
+    }
+    if (_motionManager) {
+        [_motionManager stopAccelerometerUpdates];
+    }
+    if (self.onAdDidFinish) {
+        self.onAdDidFinish();
+    }
 }
 
 @end

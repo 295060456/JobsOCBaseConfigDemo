@@ -61,10 +61,10 @@
 //            [adManager showAd];
 //    }
     {
-        JobsLaunchAdMgr *adManager = JobsLaunchAdMgr.sharedInstance;
+        JobsLaunchAdMgr *adManager = JobsLaunchAdMgr.sharedManager;
         adManager.buttonTitle = JobsInternationalization(@"跳过广告");
         adManager.buttonMode = SkipButtonModeCountdown;
-        adManager.countdownDuration = 50;
+        adManager.countdownDuration = 5;
         adManager.redirectURL = @"https://www.google.com";
         adManager.onSingleTap = ^{
             NSLog(@"用户单击了广告");
@@ -73,26 +73,27 @@
             NSLog(@"用户双击了广告");
         };
         adManager.onLongPress = ^{
-             NSLog(@"用户长按了广告");
-         };
+            NSLog(@"用户长按了广告");
+        };
         adManager.onShake = ^{
             NSLog(@"用户摇晃了设备");
         };
         
-    //    // 本地图片资源示例
+        // 本地图片资源示例
         NSString *localImagePath = [NSBundle.mainBundle pathForResource:@"1242x2688" ofType:@"png"];
         [adManager showAdWithLocalResource:localImagePath isVideo:NO];
         
         // 本地视频资源示例
-    //     NSString *localVideoPath = [NSBundle.mainBundle pathForResource:@"welcome_video" ofType:@"mp4"];
-    //     [adManager showAdWithLocalResource:localVideoPath isVideo:YES];
+        // NSString *localVideoPath = [NSBundle.mainBundle pathForResource:@"welcome_video" ofType:@"mp4"];
+        // [adManager showAdWithLocalResource:localVideoPath isVideo:YES];
         
         // URL图片资源示例
-    //     [adManager showAdWithURLResource:@"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80_%D0%9F%D1%83%D1%82%D0%B8%D0%BD_%2808-03-2024%29_%28cropped%29.jpg/220px-%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80_%D0%9F%D1%83%D1%82%D0%B8%D0%BD_%2808-03-2024%29_%28cropped%29.jpg" isVideo:NO shouldPreload:YES];
+        // [adManager showAdWithURLResource:@"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80_%D0%9F%D1%83%D1%82%D0%B8%D0%BD_%2808-03-2024%29_%28cropped%29.jpg/220px-%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80_%D0%9F%D1%83%D1%82%D0%B8%D0%BD_%2808-03-2024%29_%28cropped%29.jpg" isVideo:NO shouldPreload:YES];
         
         // URL视频资源示例
-    //     [adManager showAdWithURLResource:@"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4" isVideo:YES shouldPreload:YES];
+        // [adManager showAdWithURLResource:@"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4" isVideo:YES shouldPreload:YES];
     }
+
 }
 #pragma mark —— 欢迎引导页面
 -(void)guide{

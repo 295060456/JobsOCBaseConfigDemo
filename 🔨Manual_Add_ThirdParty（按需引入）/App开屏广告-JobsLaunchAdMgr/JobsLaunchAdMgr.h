@@ -1,28 +1,41 @@
+
+//
+//  SplashAdManager.h
+//  JobsOCBaseConfigDemo
+//
+//  Created by User on 7/6/24.
+//
+
 #import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
-typedef void(^JobsLaunchAdMgrCallback)(void);
-
-typedef NS_ENUM(NSUInteger, JobsLaunchAdMode) {
-    JobsLaunchAdModeNormal,
-    JobsLaunchAdModeCountdown
+typedef NS_ENUM(NSUInteger, SkipButtonMode) {
+    SkipButtonModeNormal,
+    SkipButtonModeCountdown
 };
+
+NS_ASSUME_NONNULL_BEGIN
+
+typedef void (^AdInteractionCallback)(void);
+typedef void (^AdCompletionCallback)(void);
 
 @interface JobsLaunchAdMgr : NSObject
 
-@property (nonatomic, strong) NSString *buttonTitle;
+@property (nonatomic, copy) NSString *buttonTitle;
 @property (nonatomic, assign) CGRect buttonFrame;
-@property (nonatomic, assign) JobsLaunchAdMode adMode;
-@property (nonatomic, assign) NSTimeInterval imageDisplayDuration;
-@property (nonatomic, strong) NSURL *adURL;
-@property (nonatomic, assign) BOOL preloadResources;
-@property (nonatomic, assign) BOOL shouldPlayVideoSound;
-@property (nonatomic, copy) JobsLaunchAdMgrCallback doubleTapCallback;
-@property (nonatomic, copy) JobsLaunchAdMgrCallback singleTapCallback;
-@property (nonatomic, copy) JobsLaunchAdMgrCallback shakeCallback;
+@property (nonatomic, assign) SkipButtonMode buttonMode;
+@property (nonatomic, assign) NSInteger countdownDuration;
+@property (nonatomic, copy) NSString *redirectURL;
+@property (nonatomic, copy) AdInteractionCallback onDoubleTap;
+@property (nonatomic, copy) AdInteractionCallback onSingleTap;
+@property (nonatomic, copy) AdInteractionCallback onLongPress;
+@property (nonatomic, copy) AdInteractionCallback onShake;
+@property (nonatomic, copy) AdCompletionCallback onAdDidFinish;
 
-+ (instancetype)sharedInstance;
-- (void)configureWithAdMode:(JobsLaunchAdMode)adMode;
-- (void)showAd;
++ (instancetype)sharedManager;
+- (void)showAdWithLocalResource:(NSString *)resourcePath isVideo:(BOOL)isVideo;
+- (void)showAdWithURLResource:(NSString *)url isVideo:(BOOL)isVideo shouldPreload:(BOOL)shouldPreload;
 
 @end
+
+NS_ASSUME_NONNULL_END
