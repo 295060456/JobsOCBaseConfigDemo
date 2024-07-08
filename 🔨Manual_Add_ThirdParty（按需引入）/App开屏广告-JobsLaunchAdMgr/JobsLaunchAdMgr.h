@@ -1,4 +1,3 @@
-
 //
 //  SplashAdManager.h
 //  JobsOCBaseConfigDemo
