@@ -465,7 +465,7 @@ shouldSelectViewController:(UIViewController *)viewController {
 -(JobsTabBar *)myTabBar{
     if (!_myTabBar) {
         _myTabBar = JobsTabBar.new;
-        _myTabBar.tabBarControllerConfig = self.
+        _myTabBar.tabBarControllerConfigMutArr = self.tabBarControllerConfigMutArr;
         [_myTabBar richElementsInViewWithModel:self.viewModel];
         self.jobsKVC(@"tabBar",_myTabBar);/// KVC 进行替换
     }return _myTabBar;
