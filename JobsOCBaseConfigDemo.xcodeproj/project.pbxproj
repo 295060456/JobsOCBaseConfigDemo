@@ -2940,10 +2940,10 @@
 		840F927727736425004979E9 /* 深度拓展系统UITabBar全家桶 */ = {
 			isa = PBXGroup;
 			children = (
+				840F92BC27736425004979E9 /* JobsTabbarControllerSysEx.h */,
 				840F928027736425004979E9 /* 全局配置文件 */,
 				840F92A027736425004979E9 /* 一些需要单独列出来的功能性模块 */,
 				840F928427736425004979E9 /* 资源文件 */,
-				840F92BC27736425004979E9 /* JobsTabbarControllerSysEx.h */,
 				840F92B327736425004979E9 /* UITabBar */,
 				840F929C27736425004979E9 /* UITabBarController */,
 				840F927827736425004979E9 /* UITabBarItem */,

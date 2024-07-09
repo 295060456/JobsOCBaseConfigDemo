@@ -49,7 +49,7 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
         config.humpOffsetY = 0;
         config.lottieName = nil;
         config.xOffset = JobsWidth(200);
-        config.tabBarItemWidth = JobsWidth(50);
+        config.tabBarItemWidth = JobsWidth(100);
         config.tag = ConfigMutArr.count + 1;
         [ConfigMutArr addObject:config];
     }
@@ -63,52 +63,52 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
         config.humpOffsetY = 0;
         config.lottieName = nil;
         config.xOffset = JobsWidth(5);
-        config.tabBarItemWidth = JobsWidth(50);
-        config.tag = ConfigMutArr.count + 1;
-        [ConfigMutArr addObject:config];
-    }
-    
-    {
-        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-        config.vc = ViewController_3.new;
-        config.title = JobsInternationalization(@"充值");
-        config.imageSelected = JobsIMG(@"tabbbar_pay_seleteds");
-        config.imageUnselected = JobsIMG(@"tabbbar_pay_normal");
-        config.humpOffsetY = 0;
-        config.lottieName = nil;
-        config.xOffset = JobsWidth(5);
-        config.tabBarItemWidth = JobsWidth(50);
-        config.tag = ConfigMutArr.count + 1;
-        [ConfigMutArr addObject:config];
-    }
-    
-    {
-        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-        config.vc = ViewController_4.new;
-        config.title = JobsInternationalization(@"客服");
-        config.imageSelected = JobsIMG(@"tabbbar_service_seleteds");
-        config.imageUnselected = JobsIMG(@"tabbbar_service_normal");
-        config.humpOffsetY = 0;
-        config.lottieName = nil;
-        config.xOffset = JobsWidth(5);
-        config.tabBarItemWidth = JobsWidth(50);
-        config.tag = ConfigMutArr.count + 1;
-        [ConfigMutArr addObject:config];
-    }
-    
-    {
-        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-        config.vc = ViewController_5.new;
-        config.title = JobsInternationalization(@"会员中心");
-        config.imageSelected = JobsIMG(@"tabbar_VIP_seleteds");
-        config.imageUnselected = JobsIMG(@"tabbar_VIP_normal");
-        config.humpOffsetY = 0;
-        config.lottieName = nil;
-        config.xOffset = JobsWidth(5);
         config.tabBarItemWidth = JobsWidth(100);
         config.tag = ConfigMutArr.count + 1;
         [ConfigMutArr addObject:config];
     }
+    
+//    {
+//        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
+//        config.vc = ViewController_3.new;
+//        config.title = JobsInternationalization(@"充值");
+//        config.imageSelected = JobsIMG(@"tabbbar_pay_seleteds");
+//        config.imageUnselected = JobsIMG(@"tabbbar_pay_normal");
+//        config.humpOffsetY = 0;
+//        config.lottieName = nil;
+//        config.xOffset = JobsWidth(5);
+//        config.tabBarItemWidth = JobsWidth(50);
+//        config.tag = ConfigMutArr.count + 1;
+//        [ConfigMutArr addObject:config];
+//    }
+//    
+//    {
+//        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
+//        config.vc = ViewController_4.new;
+//        config.title = JobsInternationalization(@"客服");
+//        config.imageSelected = JobsIMG(@"tabbbar_service_seleteds");
+//        config.imageUnselected = JobsIMG(@"tabbbar_service_normal");
+//        config.humpOffsetY = 0;
+//        config.lottieName = nil;
+//        config.xOffset = JobsWidth(5);
+//        config.tabBarItemWidth = JobsWidth(50);
+//        config.tag = ConfigMutArr.count + 1;
+//        [ConfigMutArr addObject:config];
+//    }
+//    
+//    {
+//        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
+//        config.vc = ViewController_5.new;
+//        config.title = JobsInternationalization(@"会员中心");
+//        config.imageSelected = JobsIMG(@"tabbar_VIP_seleteds");
+//        config.imageUnselected = JobsIMG(@"tabbar_VIP_normal");
+//        config.humpOffsetY = 0;
+//        config.lottieName = nil;
+//        config.xOffset = JobsWidth(5);
+//        config.tabBarItemWidth = JobsWidth(100);
+//        config.tag = ConfigMutArr.count + 1;
+//        [ConfigMutArr addObject:config];
+//    }
     
     return ConfigMutArr;
 }
@@ -146,10 +146,10 @@ didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
     completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
 }
 /// 一进入App就横屏
-- (UIInterfaceOrientationMask)application:(UIApplication *)application
-  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-    return UIInterfaceOrientationMaskLandscape;
-}
+//- (UIInterfaceOrientationMask)application:(UIApplication *)application
+//  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+//    return UIInterfaceOrientationMaskLandscape;
+//}
 #pragma mark —— lazyLoad
 /// 仅仅为了iOS 13 版本向下兼容而存在
 -(UIWindow *)window{
