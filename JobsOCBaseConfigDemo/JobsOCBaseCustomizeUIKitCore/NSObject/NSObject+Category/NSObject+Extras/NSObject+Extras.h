@@ -377,6 +377,11 @@ BaseProtocol
  */
 -(BOOL)judgementExactDivisionByNum1:(NSNumber *_Nonnull)num1
                                num2:(NSNumber *_Nonnull)num2;
+#pragma mark —— 检测当前设备屏幕方向
+/// UIInterfaceOrientationMask 检测屏幕方向
+-(CGSize)checkScreenOrientation_UIInterfaceOrientationMask:(JobsReturnSizeByUIntegerBlock _Nullable)interfaceOrientationMaskBlock;
+/// UIInterfaceOrientation 检测屏幕方向
+-(CGSize)checkScreenOrientation_UIInterfaceOrientation:(JobsReturnSizeByNSIntegerBlock _Nullable)interfaceOrientationBlock;
 #pragma mark —— 键盘⌨️
 /**
  使用方法：

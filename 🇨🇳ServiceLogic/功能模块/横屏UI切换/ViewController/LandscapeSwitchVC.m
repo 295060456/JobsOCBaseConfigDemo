@@ -150,68 +150,6 @@ UICollectionViewDataSource
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
     return [super preferredInterfaceOrientationForPresentation];
 }
-/// UIInterfaceOrientationMask 检测屏幕方向
--(void)checkScreenOrientation_UIInterfaceOrientationMask{
-    switch (self.currentInterfaceOrientationMask) {
-        ///【界面】竖屏方向
-        case UIInterfaceOrientationMaskPortrait:{
-            NSLog(@"检测屏幕方向：设备竖直向上，Home 按钮在下方");
-            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向上，Home 按钮在下方"));
-        }break;
-        ///【界面】倒竖屏方向
-        case UIInterfaceOrientationMaskLandscapeLeft:{
-            NSLog(@"检测屏幕方向：设备竖直向下，Home 按钮在上方");
-            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向下，Home 按钮在上方"));
-        }break;
-        ///【界面】左横屏方向
-        case UIInterfaceOrientationMaskLandscapeRight:{
-            NSLog(@"检测屏幕方向：设备水平，Home 按钮在左侧");
-            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在左侧"));
-        }break;
-        ///【界面】右横屏方向
-        case UIInterfaceOrientationMaskPortraitUpsideDown:{
-            NSLog(@"检测屏幕方向：设备水平，Home 按钮在右侧");
-            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在右侧"));
-        }default:
-            break;
-    }
-}
-/// UIInterfaceOrientation 检测屏幕方向
--(void)checkScreenOrientation_UIInterfaceOrientation{
-    UIInterfaceOrientation currentOrientation = UIInterfaceOrientationUnknown;
-    if (@available(iOS 13.0, *)) {
-        // 获取当前窗口的场景
-        UIWindowScene *windowScene = self.view.window.windowScene;
-        // 获取当前窗口场景的界面方向
-        currentOrientation = windowScene.interfaceOrientation;
-    } else {
-        SuppressWdeprecatedDeclarationsWarning(currentOrientation = UIApplication.sharedApplication.statusBarOrientation;);
-    }
-    
-    switch (currentOrientation) {
-        ///【界面】倒竖屏方向
-        case UIInterfaceOrientationPortraitUpsideDown:{
-            NSLog(@"检测屏幕方向：设备竖直向下，Home 按钮在上方");
-            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向下，Home 按钮在上方"));
-        }break;
-        ///【界面】竖屏方向
-        case UIInterfaceOrientationPortrait:{
-            NSLog(@"检测屏幕方向：设备竖直向上，Home 按钮在下方");
-            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向上，Home 按钮在下方"));
-        }break;
-        ///【界面】左横屏方向
-        case UIInterfaceOrientationLandscapeLeft:{
-            NSLog(@"检测屏幕方向：设备水平，Home 按钮在左侧");
-            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在左侧"));
-        }break;
-        ///【界面】右横屏方向
-        case UIInterfaceOrientationLandscapeRight:{
-            NSLog(@"检测屏幕方向：设备水平，Home 按钮在右侧");
-            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在右侧"));
-        }default:
-            break;
-    }
-}
 #pragma mark —— 一些私有方法
 /// 下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
@@ -444,9 +382,12 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
                 NSLog(@"检测当前屏幕方向");
-                [self checkScreenOrientation_UIInterfaceOrientation];
-//                [self checkScreenOrientation_UIInterfaceOrientationMask];
-                return nil;
+                [self checkScreenOrientation_UIInterfaceOrientation:^CGSize(NSInteger data) {
+                    return CGSizeZero;
+                }];
+                [self checkScreenOrientation_UIInterfaceOrientationMask:^CGSize(NSUInteger data) {
+                    return CGSizeZero;
+                }];return nil;
             };
             [_dataMutArr addObject:viewModel];
         }

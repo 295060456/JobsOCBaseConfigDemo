@@ -114,7 +114,6 @@ static JobsTabbarVC *static_tabbarVC = nil;
 
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-
     dispatch_once(&onceToken, ^{
         self.myTabBar.height += self.myTabBar.customTabBarOffsetHeight;
         self.myTabBar.y = self.view.height - self.myTabBar.height;

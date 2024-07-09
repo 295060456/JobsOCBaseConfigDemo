@@ -956,6 +956,87 @@
         return s1/a-s2/a <= 0;
     }else return YES;
 }
+#pragma mark —— 检测当前设备屏幕方向
+/// UIInterfaceOrientationMask 检测屏幕方向
+-(CGSize)checkScreenOrientation_UIInterfaceOrientationMask:(JobsReturnSizeByUIntegerBlock _Nullable)interfaceOrientationMaskBlock{
+    if (interfaceOrientationMaskBlock){
+        return interfaceOrientationMaskBlock(self.currentInterfaceOrientationMask);
+    }else return CGSizeZero;
+//    switch (self.currentInterfaceOrientationMask) {
+//        ///【界面】竖屏方向
+//        case UIInterfaceOrientationMaskPortrait:{
+//            NSLog(@"检测屏幕方向：设备竖直向上，Home 按钮在下方");
+////            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向上，Home 按钮在下方"));
+//        }break;
+//        ///【界面】倒竖屏方向
+//        case UIInterfaceOrientationMaskLandscapeLeft:{
+//            NSLog(@"检测屏幕方向：设备竖直向下，Home 按钮在上方");
+////            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向下，Home 按钮在上方"));
+//        }break;
+//        ///【界面】左横屏方向
+//        case UIInterfaceOrientationMaskLandscapeRight:{
+//            NSLog(@"检测屏幕方向：设备水平，Home 按钮在左侧");
+////            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在左侧"));
+//        }break;
+//        ///【界面】右横屏方向
+//        case UIInterfaceOrientationMaskPortraitUpsideDown:{
+//            NSLog(@"检测屏幕方向：设备水平，Home 按钮在右侧");
+////            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在右侧"));
+//        }default:
+//            break;
+//    }
+}
+/// UIInterfaceOrientation 检测屏幕方向
+-(CGSize)checkScreenOrientation_UIInterfaceOrientation:(JobsReturnSizeByNSIntegerBlock _Nullable)interfaceOrientationBlock{
+    UIInterfaceOrientation currentOrientation = UIInterfaceOrientationUnknown;
+    if (@available(iOS 13.0, *)) {
+        /// 获取当前窗口的场景
+        UIWindowScene *windowScene = nil;
+        if([self isKindOfClass:UIViewController.class]){
+            UIViewController *vc = (UIViewController *)self;
+            windowScene = vc.view.window.windowScene;
+        }else if ([self isKindOfClass:UIView.class]){
+            UIView *view = (UIView *)self;
+            windowScene = view.window.windowScene;
+        }else{
+            NSLog(@"当前不是视图。检测结束");
+            return CGSizeZero;
+        }
+        /// 获取当前窗口场景的界面方向
+        currentOrientation = windowScene.interfaceOrientation;
+    } else {
+        SuppressWdeprecatedDeclarationsWarning(currentOrientation = UIApplication.sharedApplication.statusBarOrientation;);
+        return CGSizeZero;
+    }
+    
+    if (interfaceOrientationBlock){
+        return interfaceOrientationBlock(currentOrientation);
+    }else return CGSizeZero;
+    
+//    switch (currentOrientation) {
+//        ///【界面】倒竖屏方向
+//        case UIInterfaceOrientationPortraitUpsideDown:{
+//            NSLog(@"检测屏幕方向：设备竖直向下，Home 按钮在上方");
+//            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向下，Home 按钮在上方"));
+//        }break;
+//        ///【界面】竖屏方向
+//        case UIInterfaceOrientationPortrait:{
+//            NSLog(@"检测屏幕方向：设备竖直向上，Home 按钮在下方");
+//            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向上，Home 按钮在下方"));
+//        }break;
+//        ///【界面】左横屏方向
+//        case UIInterfaceOrientationLandscapeLeft:{
+//            NSLog(@"检测屏幕方向：设备水平，Home 按钮在左侧");
+//            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在左侧"));
+//        }break;
+//        ///【界面】右横屏方向
+//        case UIInterfaceOrientationLandscapeRight:{
+//            NSLog(@"检测屏幕方向：设备水平，Home 按钮在右侧");
+//            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在右侧"));
+//        }default:
+//            break;
+//    }
+}
 #pragma mark —— 键盘⌨️
 /**
  使用方法：
