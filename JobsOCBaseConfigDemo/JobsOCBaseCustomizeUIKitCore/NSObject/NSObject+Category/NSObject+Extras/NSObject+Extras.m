@@ -9,7 +9,6 @@
 #import "NSObject+Extras.h"
 
 @implementation NSObject (Extras)
-UILocationProtocol_Dynamic
 #pragma mark —— 宏
 /// App 国际化相关系统宏二次封装 + 设置缺省值
 +(NSString *_Nullable)localStringWithKey:(nonnull NSString *)key{
@@ -1171,6 +1170,39 @@ UILocationProtocol_Dynamic
         contentView.ly_emptyView.alpha = 1;
     }
     contentView.mj_footer.hidden = !dataSource.count;
+}
+/// 定义应用程序支持的方向
+#pragma mark —— @property(nonatomic,assign)UIInterfaceOrientationMask currentInterfaceOrientationMask;
+JobsKey(_currentInterfaceOrientationMask)
+@dynamic currentInterfaceOrientationMask;
+-(NSInteger)currentInterfaceOrientationMask{
+    return [Jobs_getAssociatedObject(_currentInterfaceOrientationMask) integerValue];
+}
+
+-(void)setCurrentInterfaceOrientationMask:(UIInterfaceOrientationMask)currentInterfaceOrientationMask{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_currentInterfaceOrientationMask, @(currentInterfaceOrientationMask));
+}
+/// 描述界面当前的方向，用于确定应用界面是如何显示的
+#pragma mark —— @property(nonatomic,assign)UIInterfaceOrientation currentInterfaceOrientation;
+JobsKey(_currentInterfaceOrientation)
+@dynamic currentInterfaceOrientation;
+-(UIInterfaceOrientation)currentInterfaceOrientation{
+    return [Jobs_getAssociatedObject(_currentInterfaceOrientation) integerValue];
+}
+
+-(void)setCurrentInterfaceOrientation:(UIInterfaceOrientation)currentInterfaceOrientation{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_currentInterfaceOrientation, @(currentInterfaceOrientation));
+}
+/// 描述设备本身的物理方向，即设备如何被用户持握
+#pragma mark —— @property(nonatomic,assign)UIDeviceOrientation currentDeviceOrientation;
+JobsKey(_currentDeviceOrientation)
+@dynamic currentDeviceOrientation;
+-(UIDeviceOrientation)currentDeviceOrientation{
+    return [Jobs_getAssociatedObject(_currentDeviceOrientation) integerValue];
+}
+
+-(void)setCurrentDeviceOrientation:(UIDeviceOrientation)currentDeviceOrientation{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_currentDeviceOrientation, @(currentDeviceOrientation));
 }
 #pragma mark —— @property(nonatomic,assign)CGPoint lastPoint;
 JobsKey(_lastPoint)

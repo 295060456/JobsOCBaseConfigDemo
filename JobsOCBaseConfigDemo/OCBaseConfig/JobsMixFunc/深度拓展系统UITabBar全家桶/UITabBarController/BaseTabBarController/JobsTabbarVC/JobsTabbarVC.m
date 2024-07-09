@@ -143,7 +143,6 @@ static JobsTabbarVC *static_tabbarVC = nil;
 }
 /// 打开手势
 -(void)openPan{
-    
     self.view.numberOfTouchesRequired = 1;
     self.view.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
     self.view.minimumPressDuration = 0.1;

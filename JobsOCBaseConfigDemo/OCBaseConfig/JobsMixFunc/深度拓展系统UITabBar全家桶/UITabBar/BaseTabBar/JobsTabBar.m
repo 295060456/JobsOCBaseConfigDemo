@@ -61,11 +61,14 @@ UITabbarConfigProtocol_synthesize
             case UIInterfaceOrientationMaskLandscapeRight:///【界面】左横屏方向
             case UIInterfaceOrientationMaskPortraitUpsideDown:{///【界面】右横屏方向
                 CGSize newSize = [super sizeThatFits:size];
-                newSize.height = JobsWidth(50); // 设定你想要的高度
+                newSize.height = JobsWidth(120); /// 设定你想要的高度
                 return newSize;
-            }default:
-                return CGSizeZero;
-                break;
+            }default:{
+//                return [super sizeThatFits:size];
+                CGSize newSize = [super sizeThatFits:size];
+                newSize.height = JobsWidth(120); /// 设定你想要的高度
+                return newSize;
+            }break;
         }
     }];
 }
