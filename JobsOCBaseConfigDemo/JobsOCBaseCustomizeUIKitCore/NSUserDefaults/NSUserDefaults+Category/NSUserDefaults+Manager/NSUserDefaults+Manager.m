@@ -41,7 +41,7 @@
 +(id _Nullable)readWithKey:(NSString *)key{
     id data = nil;
     if (![NSString isNullString:key]){
-        data = [NSUserDefaults.standardUserDefaults valueForKey:key];
+        data = JobsGetUserDefaultValueForKey(key);
     }return data;
 }
 /// 删除数据

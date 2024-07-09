@@ -1971,7 +1971,6 @@
 		C593DBDA2AC897A900F875B5 /* MacroDef_Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDef_Font.h; sourceTree = "<group>"; };
 		C593DBDB2AC897A900F875B5 /* MacroDef_Func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDef_Func.h; sourceTree = "<group>"; };
 		C593DBDC2AC897A900F875B5 /* MacroDef_QUEUE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDef_QUEUE.h; sourceTree = "<group>"; };
-		C593DBDD2AC897A900F875B5 /* MacroDef_UserDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDef_UserDefault.h; sourceTree = "<group>"; };
 		C593DBDE2AC897A900F875B5 /* MacroDef_Strong@Weak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MacroDef_Strong@Weak.h"; sourceTree = "<group>"; };
 		C593DBE02AC897A900F875B5 /* MacroDef_Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDef_Notification.h; sourceTree = "<group>"; };
 		C593DBE22AC897A900F875B5 /* MacroDef_Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDef_Size.h; sourceTree = "<group>"; };
@@ -2216,7 +2215,6 @@
 		C59788012BE3599600A56125 /* NSUserDefaults+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Swizzle.m"; sourceTree = "<group>"; };
 		C59788042BE3599600A56125 /* UserDefaultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultModel.h; sourceTree = "<group>"; };
 		C59788052BE3599600A56125 /* UserDefaultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultModel.m; sourceTree = "<group>"; };
-		C59788072BE3599600A56125 /* JobsUserDefaultDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsUserDefaultDefine.h; sourceTree = "<group>"; };
 		C59788082BE3599600A56125 /* JobsUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsUserDefaults.h; sourceTree = "<group>"; };
 		C597880A2BE3599600A56125 /* UIBezierPath+TextPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+TextPath.h"; sourceTree = "<group>"; };
 		C597880B2BE3599600A56125 /* UIBezierPath+TextPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+TextPath.m"; sourceTree = "<group>"; };
@@ -2789,6 +2787,7 @@
 		CE8620702C2C254B0009C664 /* libarclite_watchsimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_watchsimulator.a; sourceTree = "<group>"; };
 		CE8620712C2C254B0009C664 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CE8C1A482C3BC75900928E88 /* UITabbarConfigProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITabbarConfigProtocol.h; sourceTree = "<group>"; };
+		CE8C1A4E2C3D021400928E88 /* JobsUserDefaultDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsUserDefaultDefine.h; sourceTree = "<group>"; };
 		CEAAD4702C32758A00349C11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CEAAD4722C32770A00349C11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CEAAD4742C32771000349C11 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -7802,7 +7801,6 @@
 				C593DBDA2AC897A900F875B5 /* MacroDef_Font.h */,
 				C593DBDB2AC897A900F875B5 /* MacroDef_Func.h */,
 				C593DBDC2AC897A900F875B5 /* MacroDef_QUEUE.h */,
-				C593DBDD2AC897A900F875B5 /* MacroDef_UserDefault.h */,
 				C593DBDE2AC897A900F875B5 /* MacroDef_Strong@Weak.h */,
 				C593DBE02AC897A900F875B5 /* MacroDef_Notification.h */,
 			);
@@ -9052,10 +9050,10 @@
 		C59788092BE3599600A56125 /* NSUserDefaults */ = {
 			isa = PBXGroup;
 			children = (
+				C59788082BE3599600A56125 /* JobsUserDefaults.h */,
+				CE8C1A4E2C3D021400928E88 /* JobsUserDefaultDefine.h */,
 				C59788032BE3599600A56125 /* NSUserDefaults+Category */,
 				C59788062BE3599600A56125 /* UserDefaultModel */,
-				C59788072BE3599600A56125 /* JobsUserDefaultDefine.h */,
-				C59788082BE3599600A56125 /* JobsUserDefaults.h */,
 			);
 			path = NSUserDefaults;
 			sourceTree = "<group>";

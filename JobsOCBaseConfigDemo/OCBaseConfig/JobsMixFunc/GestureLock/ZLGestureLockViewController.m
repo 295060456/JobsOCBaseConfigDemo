@@ -185,17 +185,17 @@
 }
 #pragma mark —— 手势数据的存取和删除
 +(void)deleteGesturesPassword{
-    [NSUserDefaults.standardUserDefaults removeObjectForKey:GesturesPassword];
-    [NSUserDefaults.standardUserDefaults synchronize];
+    JobsDeleUserDefaultWithKey(GesturesPassword);
+    JobsUserDefaultSynchronize;
 }
 
 +(void)addGesturesPassword:(NSString *)gesturesPassword{
-    [NSUserDefaults.standardUserDefaults setObject:gesturesPassword forKey:GesturesPassword];
-    [NSUserDefaults.standardUserDefaults synchronize];
+    JobsSetUserDefaultKeyWithObject(GesturesPassword, gesturesPassword);
+    JobsUserDefaultSynchronize;
 }
 
 +(NSString *)gesturesPassword {
-    return [NSUserDefaults.standardUserDefaults objectForKey:GesturesPassword];
+    return [JobsUserDefaults objectForKey:GesturesPassword];
 }
 #pragma mark —— UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView

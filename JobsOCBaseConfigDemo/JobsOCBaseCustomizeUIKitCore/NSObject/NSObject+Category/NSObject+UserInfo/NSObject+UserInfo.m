@@ -79,28 +79,28 @@ NSString *const 用户名数组 = @"用户名数组";
 /// 全局保存已经登录成功 且 并未删除的用户名组
 -(void)saveUserName:(NSString *_Nullable)userName{
     if ([NSString isNullString:userName]) return;
-    NSMutableArray *userNameMutArr = [NSMutableArray arrayWithArray:NSUserDefaults.standardUserDefaults.valueForKeyBlock(用户名数组)];//取出来的实际上是个不可变数组，所以需要向可变数组进行转化
+    NSMutableArray *userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKeyBlock(用户名数组)];//取出来的实际上是个不可变数组，所以需要向可变数组进行转化
     if (!userNameMutArr) {
         userNameMutArr = NSMutableArray.array;
     }
     // 保持唯一性
     if (![userNameMutArr containsObject:userName]) {
         [userNameMutArr addObject:userName];
-        [NSUserDefaults.standardUserDefaults setObject:userNameMutArr forKey:用户名数组];
-        [NSUserDefaults.standardUserDefaults synchronize];
+        JobsSetUserDefaultKeyWithObject(用户名数组, userNameMutArr);
+        JobsUserDefaultSynchronize;
     }
 }
 /// 读取用户名组
 -(NSArray *_Nullable)readUserNameMutArr{
-    return NSUserDefaults.standardUserDefaults.valueForKeyBlock(用户名数组);
+    return JobsUserDefaults.valueForKeyBlock(用户名数组);
 }
 /// 全局删除已经登录成功的用户名
 -(void)deleteUserName:(NSString *_Nullable)userName{
-    NSMutableArray *userNameMutArr = [NSMutableArray arrayWithArray:NSUserDefaults.standardUserDefaults.valueForKeyBlock(用户名数组)];
+    NSMutableArray *userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKeyBlock(用户名数组)];
     if (userNameMutArr && ![NSString isNullString:userName]) {
         [userNameMutArr removeObject:userName];
-        [NSUserDefaults.standardUserDefaults setObject:userNameMutArr forKey:用户名数组];
-        [NSUserDefaults.standardUserDefaults synchronize];
+        JobsSetUserDefaultKeyWithObject(用户名数组, userNameMutArr);
+        JobsUserDefaultSynchronize;
     }
 }
 

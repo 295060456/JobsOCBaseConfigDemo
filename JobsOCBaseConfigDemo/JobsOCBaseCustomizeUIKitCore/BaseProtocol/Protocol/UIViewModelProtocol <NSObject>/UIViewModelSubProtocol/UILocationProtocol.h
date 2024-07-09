@@ -105,13 +105,10 @@ NS_ASSUME_NONNULL_END
 
 #endif
 
-#pragma mark —— @dynamic UILocationProtocol
-#ifndef UILocationProtocol_dynamic
-#define UILocationProtocol_dynamic \
+#pragma mark —— @dynamic UILocationProtocol_UIViewModelDynamic
+#ifndef UILocationProtocol_UIViewModelDynamic
+#define UILocationProtocol_UIViewModelDynamic \
 \
-@dynamic currentInterfaceOrientationMask;\
-@dynamic currentInterfaceOrientation;\
-@dynamic currentDeviceOrientation;\
 @dynamic cornerRadius;\
 @dynamic rectCorner;\
 @dynamic cornerRadii;\
@@ -143,5 +140,15 @@ NS_ASSUME_NONNULL_END
 @dynamic tableFooterViewSize;\
 @dynamic usesTableViewHeaderView;\
 @dynamic usesTableViewFooterView;\
+
+#endif
+
+#pragma mark —— @dynamic UILocationProtocol_Dynamic
+#ifndef UILocationProtocol_Dynamic
+#define UILocationProtocol_Dynamic \
+\
+@dynamic currentInterfaceOrientationMask;\
+@dynamic currentInterfaceOrientation;\
+@dynamic currentDeviceOrientation;\
 
 #endif

@@ -13,7 +13,7 @@
 #import "MacroDef_Notification.h"
 #import "MacroDef_QUEUE.h"
 #import "MacroDef_String.h"
-#import "MacroDef_UserDefault.h"
+#import "JobsUserDefaultDefine.h"
 #import "MacroDef_Strong@Weak.h"
 #import "MacroDef_Time.h"
 #import "MacroDef_Singleton.h"

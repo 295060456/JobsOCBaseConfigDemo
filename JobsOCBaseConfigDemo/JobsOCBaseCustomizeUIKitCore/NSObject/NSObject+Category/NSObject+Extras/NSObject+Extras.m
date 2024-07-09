@@ -9,6 +9,7 @@
 #import "NSObject+Extras.h"
 
 @implementation NSObject (Extras)
+UILocationProtocol_Dynamic
 #pragma mark —— 宏
 /// App 国际化相关系统宏二次封装 + 设置缺省值
 +(NSString *_Nullable)localStringWithKey:(nonnull NSString *)key{
@@ -533,16 +534,12 @@
     if (task) {
         // 请求URL
         NSLog(@"请求URL:%@\n",task.originalRequest.URL);
-        
         // 请求方式
         NSLog(@"请求方式:%@\n",task.originalRequest.HTTPMethod);
-        
         // 请求头信息
         NSLog(@"请求头信息:%@\n",task.originalRequest.allHTTPHeaderFields);
-        
         // 请求正文信息
         NSLog(@"请求正文信息:%@\n",[NSString.alloc initWithData:task.originalRequest.HTTPBody encoding:NSUTF8StringEncoding]);
-        
     //    // 请求响应时间
     //    NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:NSDate.date];
     //    NSLog(@"请求响应时间:%@\n",@(time));
@@ -553,23 +550,23 @@
 }
 /// 判断是否是此版本App的首次启动
 -(BOOL)isAppFirstLaunch{
-    BOOL isFirstLaunch = [NSUserDefaults.standardUserDefaults boolForKey:@"AppFirstLaunch"];
+    BOOL isFirstLaunch = JobsGetUserDefaultBoolForKey(@"AppFirstLaunch");
     if (!isFirstLaunch) {
-        [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"AppFirstLaunch"];
-        [NSUserDefaults.standardUserDefaults synchronize];
+        JobsSetUserBoolKeyWithBool(@"AppFirstLaunch", YES);
+        JobsUserDefaultSynchronize;
     }return !isFirstLaunch;
 }
 /// 判断是否是App今日的首次启动
 -(BOOL)isTodayAppFirstLaunch{
-    NSString *recordToday = NSUserDefaults.standardUserDefaults.valueForKeyBlock(@"TodayAppFirstLaunch");
+    NSString *recordToday = JobsUserDefaults.valueForKeyBlock(@"TodayAppFirstLaunch");
     JobsTimeModel *timeModel = JobsTimeModel.new;
     NSString *today = [NSString stringWithFormat:@"%ld-%ld-%ld-%ld",timeModel.currentEra,timeModel.currentYear,timeModel.currentMonth,timeModel.currentDay];
     if ([recordToday isEqualToString:today]) {
         NSLog(@"今天已经启动过");
     }else{
         NSLog(@"今天第一次启动");
-        [NSUserDefaults.standardUserDefaults setValue:today forKey:@"TodayAppFirstLaunch"];
-        [NSUserDefaults.standardUserDefaults synchronize];//
+        JobsSetUserDefaultKeyWithValue(@"TodayAppFirstLaunch", today);
+        JobsUserDefaultSynchronize;//
     }return ![recordToday isEqualToString:today];
 }
 /// 震动特效反馈
@@ -585,14 +582,14 @@
 }
 /// 检测用户是否锁屏：根据屏幕光线来进行判定，而不是系统通知
 -(BOOL)didUserPressLockButton{
-    //获取屏幕亮度
+    /// 获取屏幕亮度
     CGFloat oldBrightness = UIScreen.mainScreen.brightness;
-    //以较小的数量改变屏幕亮度
+    /// 以较小的数量改变屏幕亮度
     UIScreen.mainScreen.brightness = oldBrightness + (oldBrightness <= 0.01 ? (0.01) : (-0.01));
     CGFloat newBrightness = UIScreen.mainScreen.brightness;
-    //恢复屏幕亮度
+    /// 恢复屏幕亮度
     UIScreen.mainScreen.brightness = oldBrightness;
-    //判断屏幕亮度是否能够被改变
+    /// 判断屏幕亮度是否能够被改变
     return oldBrightness != newBrightness;
 }
 /// iOS 限制自动锁屏 lockSwitch:YES(关闭自动锁屏)

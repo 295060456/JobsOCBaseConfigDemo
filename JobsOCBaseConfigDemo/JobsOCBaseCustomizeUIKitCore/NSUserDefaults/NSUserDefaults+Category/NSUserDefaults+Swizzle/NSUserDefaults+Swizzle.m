@@ -61,7 +61,7 @@
     // TODO 可以接入加解密的模块
     [self swizzleSetObject:object
                     forKey:key];
-    [NSUserDefaults.standardUserDefaults synchronize];// 强制让它存了立即写磁盘
+    JobsUserDefaultSynchronize;// 强制让它存了立即写磁盘
 }
 
 -(nullable id)swizzleObjectForKey:(NSString *_Nonnull)key{
@@ -74,7 +74,7 @@
     // TODO 可以接入加解密的模块
     [self swizzleSetValue:value
                    forKey:key];
-    [NSUserDefaults.standardUserDefaults synchronize];// 强制让它存了立即写磁盘
+    JobsUserDefaultSynchronize;// 强制让它存了立即写磁盘
 }
 
 -(nullable id)swizzleValueForKey:(NSString *_Nonnull)key{
@@ -87,7 +87,7 @@
     // TODO 可以接入加解密的模块
     [self swizzleSetBool:boolValue
                   forKey:key];
-    [NSUserDefaults.standardUserDefaults synchronize];// 强制让它存了立即写磁盘
+    JobsUserDefaultSynchronize;// 强制让它存了立即写磁盘
 }
 
 -(BOOL)swizzleBoolForKey:(NSString *_Nonnull)key{
@@ -97,7 +97,7 @@
 #pragma mark —— removeObject
 -(void)swizzleRemoveObjectForKey:(NSString *_Nonnull)key{
     [self swizzleRemoveObjectForKey:key];
-    [NSUserDefaults.standardUserDefaults synchronize];// 强制让它存了立即写磁盘
+    JobsUserDefaultSynchronize;// 强制让它存了立即写磁盘
 }
 
 @end
