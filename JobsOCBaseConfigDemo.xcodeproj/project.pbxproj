@@ -491,6 +491,7 @@
 		C57A8ED12851A7DE00DD089E /* CXBVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C57A8ECD2851A7DD00DD089E /* CXBVC.m */; };
 		C57A8ED22851A7DE00DD089E /* UIView+layout.m in Sources */ = {isa = PBXBuildFile; fileRef = C57A8ECF2851A7DD00DD089E /* UIView+layout.m */; };
 		C57A8ED62851A8E600DD089E /* OCDynamicRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C57A8ED52851A8E600DD089E /* OCDynamicRegisterVC.m */; };
+		C57AE4A12C3DA8C80012462F /* UILabel+AutoScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788BF2BE3599600A56125 /* UILabel+AutoScroll.m */; };
 		C57C86102C228FB400FFC95A /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C57C860E2C228FB400FFC95A /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		C57D1E3D2C398F060082EAE7 /* User_Realm.m in Sources */ = {isa = PBXBuildFile; fileRef = C57D1E3C2C398F060082EAE7 /* User_Realm.m */; };
 		C57D1F2D2C39BD270082EAE7 /* Realm_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C57D1E3A2C398C110082EAE7 /* Realm_VC.m */; };
@@ -655,7 +656,6 @@
 		C5978A7F2BE3599700A56125 /* BaseLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788B42BE3599600A56125 /* BaseLabel.m */; };
 		C5978A802BE3599700A56125 /* JobsAnimationLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788B72BE3599600A56125 /* JobsAnimationLabel.m */; };
 		C5978A812BE3599700A56125 /* JobsBaseLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788BA2BE3599600A56125 /* JobsBaseLabel.m */; };
-		C5978A822BE3599700A56125 /* UILabel+AutoScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788BF2BE3599600A56125 /* UILabel+AutoScroll.m */; };
 		C5978A832BE3599700A56125 /* UILabel+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788C22BE3599600A56125 /* UILabel+Extra.m */; };
 		C5978A842BE3599700A56125 /* UILabel+Gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788C52BE3599600A56125 /* UILabel+Gesture.m */; };
 		C5978A852BE3599700A56125 /* UILabel+Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = C59788C82BE3599600A56125 /* UILabel+Measure.m */; };
@@ -12702,12 +12702,12 @@
 				84401A8727919E3B0038FF6F /* JobsSearchTableViewHeaderView.m in Sources */,
 				C5978A712BE3599700A56125 /* UIColor+Other.m in Sources */,
 				C533BBBD2837D095006FB231 /* JobsUserHeaderDataViewTBVCell.m in Sources */,
-				C5978A822BE3599700A56125 /* UILabel+AutoScroll.m in Sources */,
 				840F964427736427004979E9 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				C5432D742ACB1CF6008F92B0 /* MSCommentTBVCell.m in Sources */,
 				C539A0382AD69BCF00C8A5E3 /* TKPermissionLocationWhen.m in Sources */,
 				C5978A052BE3599700A56125 /* JobsTuple.m in Sources */,
 				C539A03E2AD69BCF00C8A5E3 /* TKPermissionNetWork.m in Sources */,
+				C57AE4A12C3DA8C80012462F /* UILabel+AutoScroll.m in Sources */,
 				C5B3AE9A285378FA0052A4A9 /* BaiShaETProjVIPSubCVCell_03.m in Sources */,
 				844B02262764C8F000B0513D /* main.m in Sources */,
 				C5978ADF2BE3599700A56125 /* UIWindow+Extra.m in Sources */,

@@ -145,6 +145,10 @@ UITabbarConfigProtocol_synthesize
                                      CGRectGetMaxY(imageView.frame) + spacing,
                                      labelWidth,
                                      labelHeight);
+            if(labelHeight >= labelWidth){
+                label.resetWidth(labelHeight);
+                label.resetHeight(labelWidth);
+            }
             label.jobsLogSize(@"SDFD");
             label.textAlignment = NSTextAlignmentCenter;
             break;
