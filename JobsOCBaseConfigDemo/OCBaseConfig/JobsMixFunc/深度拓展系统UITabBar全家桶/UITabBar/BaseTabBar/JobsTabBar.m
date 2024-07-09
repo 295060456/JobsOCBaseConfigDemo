@@ -52,23 +52,21 @@ UITabbarConfigProtocol_synthesize
 }
 ///【覆写父类方法】自定义 TabBar 的高度
 - (CGSize)sizeThatFits:(CGSize)size {
-    return [self checkScreenOrientation_UIInterfaceOrientationMask:^CGSize(UIInterfaceOrientationMask data) {
+    return [self checkScreenOrientation_UIInterfaceOrientation:^CGSize(UIInterfaceOrientation data) {
         switch (data) {
-            case UIInterfaceOrientationMaskPortrait:///【界面】竖屏方向
-            case UIInterfaceOrientationMaskLandscapeLeft:{///【界面】倒竖屏方向
+            case UIInterfaceOrientationPortraitUpsideDown:/// 倒竖屏方向
+            case UIInterfaceOrientationPortrait:{ /// 竖屏方向
+                    return [super sizeThatFits:size];
+            }break;
+            case UIInterfaceOrientationLandscapeLeft:/// 左横屏方向
+            case UIInterfaceOrientationLandscapeRight:{ /// 右横屏方向
+                    CGSize newSize = [super sizeThatFits:size];
+                    newSize.height = JobsWidth(80); /// 设定你想要的高度
+                    return newSize;
+                }
+            default:
                 return [super sizeThatFits:size];
-            }break;
-            case UIInterfaceOrientationMaskLandscapeRight:///【界面】左横屏方向
-            case UIInterfaceOrientationMaskPortraitUpsideDown:{///【界面】右横屏方向
-                CGSize newSize = [super sizeThatFits:size];
-                newSize.height = JobsWidth(120); /// 设定你想要的高度
-                return newSize;
-            }default:{
-//                return [super sizeThatFits:size];
-                CGSize newSize = [super sizeThatFits:size];
-                newSize.height = JobsWidth(120); /// 设定你想要的高度
-                return newSize;
-            }break;
+                break;
         }
     }];
 }
