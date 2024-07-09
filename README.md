@@ -1976,9 +1976,127 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 14、对`NSUserDefaults.standardUserDefaults` 的二次封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 对`NSUserDefaults.standardUserDefaults`的数据存取进行宏定义的方式的封装。关注实现类：[**`JobsUserDefaultDefine.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSUserDefaults/JobsUserDefaultDefine.h)
+### 14.1、使用<font color=red>**宏定义**</font>对`NSUserDefaults.standardUserDefaults` 的二次封装
+
+* 关注实现类：[**`JobsUserDefaultDefine.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSUserDefaults/JobsUserDefaultDefine.h)
+
+* 存数据
+
+  * 设置 `UserDefault` 值（Value）
+
+    ```objective-c
+    JobsSetUserDefaultKeyWithValue
+    ```
+
+  * 设置 `UserDefault` 对象（Object）
+
+    ```objective-c
+    JobsSetUserDefaultKeyWithObject
+    ```
+
+  * 设置 `UserDefault` 布尔值（Bool）
+
+    ```objective-c
+    JobsSetUserBoolKeyWithBool
+    ```
+
+  * 设置  `UserDefault`  整数值（Integer）
+
+    ```objective-c
+    JobsSetUserDefaultKeyWithInteger
+    ```
+
+  * 设置  `UserDefault`  浮点数值（Float）
+
+    ```objective-c
+    JobsSetUserDefaultKeyWithFloat
+    ```
+
+  * 设置  `UserDefault`  双精度浮点数值（Double）
+
+    ```objective-c
+    JobsSetUserDefaultKeyWithDouble
+    ```
+
+  * 设置  `UserDefault`  URL（URL）
+
+    ```objective-c
+    JobsSetUserDefaultKeyWithURL
+    ```
+
+* 读取数据
+
+  * 获取 `UserDefault` 值（Value）
+
+    ```objective-c
+    JobsGetUserDefaultValueForKey
+    ```
+
+  * 获取 `UserDefault` 对象（Object）
+
+    ```objective-c
+    JobsGetUserDefaultObjForKey
+    ```
+
+  * 获取 `UserDefault` 布尔值（Bool）
+
+    ```objective-c
+    JobsGetUserDefaultBoolForKey
+    ```
+
+  * 获取 `UserDefault` 整数值（Integer）
+
+    ```objective-c
+    JobsGetUserDefaultIntegerForKey
+    ```
+
+  * 获取 `UserDefault` 浮点数值（Float）
+
+    ```objective-c
+    JobsGetUserDefaultFloatForKey
+    ```
+
+  * 获取 `UserDefault` 双精度浮点数值（Double）
+
+    ```objective-c
+    JobsGetUserDefaultDoubleForKey
+    ```
+
+  * 获取 `UserDefault` URL（URL）
+
+    ```objective-c
+    JobsGetUserDefaultURLForKey
+    ```
+
+* 删除数据
+
+  ```objective-c
+  JobsDeleUserDefaultWithKey
+  ```
+
+* 其他
+
+  * 单例对象
+
+    ```objective-c
+    JobsUserDefaults
+    ```
+
+  * 同步 `NSUserDefaults`
+
+    ```objective-c
+    JobsUserDefaultSynchronize
+    ```
+
+### 14.2、以<font color=red>**分类**</font>的形式对`NSUserDefaults.standardUserDefaults` 的二次封装
 
 * 关注实现类：[**`@interface NSUserDefaults (Manager)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSUserDefaults/NSUserDefaults+Category/NSUserDefaults+Manager)
+
+* 存数据（包括父类直到`NSObject`的所有属性）。<font color=red>**将数据封装到对象`UserDefaultModel`里面进行存取**</font>
+
+  ```objective-c
+  +(void)updateWithModel:(UserDefaultModel *)userDefaultModel;
+  ```
 
 * 读取数据
 
@@ -1990,12 +2108,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   ```objective-c
   +(void)deleteWithKey:(NSString *)key;
-  ```
-
-* 存数据（包括父类直到NSObject的所有属性）。<font color=red>**将数据封装到对象`UserDefaultModel`里面进行存取**</font>
-
-  ```objective-c
-  +(void)updateWithModel:(UserDefaultModel *)userDefaultModel;
   ```
 
 ### 15、对小型本地化数据的读取（`NSUserDefaults`） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

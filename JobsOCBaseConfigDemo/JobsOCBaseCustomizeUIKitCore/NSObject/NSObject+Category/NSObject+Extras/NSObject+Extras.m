@@ -594,7 +594,7 @@ UILocationProtocol_Dynamic
 }
 /// iOS 限制自动锁屏 lockSwitch:YES(关闭自动锁屏)
 -(void)autoLockedScreen:(BOOL)lockSwitch{
-    [UIApplication.sharedApplication setIdleTimerDisabled:lockSwitch];
+    UIApplication.sharedApplication.idleTimerDisabled = lockSwitch;
 }
 
 -(void)savePic:(GKPhotoBrowser *_Nonnull)browser{
