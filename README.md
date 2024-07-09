@@ -21,13 +21,44 @@
 * 作为项目的参考，可以快速的了解到项目的架构，代码规范，以及一些设计模式
 
 ## 二、特色
-- [x] 网络模块Api<br>
-- [x] Toast<br>
-- [x] 系统、UI配置<br>
-- [x] UI组件库<br>
-- [x] 语言本地化<br>
-- [x] 数据存储UserDefaults<br>
-- [ ] 统一的WebView<br>
+
+* UI层
+  * [x] 统一的UI组件库**JobsOCBaseCustomizeUIKitCore**<br>
+  * [x] 统一的输入框封装<br>
+  * [x] 对悬浮层的封装<br>
+  * [x] 对视频播放器的二次封装<br>
+  * [x] UIButton兼容最新Api：**UIButtonConfiguration**<br>
+  * [x] 对倒计时按钮的封装<br>
+  * [x] 统一的**Toast**封装<br>
+  * [x] 对**UITabBarController**和**UITabBar**的封装<br>
+  * [x] 富文本的封装<br>
+  * [x] 语言本地化<br>
+  * [x] 设备屏幕横竖屏适配<br>
+  * [x] 统一注册全局的 **UICollectionViewCell**
+  * [x] 防止多次推出同一控制器页面<br>
+  * [x] 对调用系统相机、系统相册的功能性封装<br>
+  * [ ] 统一的WebView封装<br>
+  
+* 数据层
+  * [x] 网络模块Api<br>
+  * [x] 公共的协议簇**BaseProtocol**<br>
+  * [x] 统一的**Block**管理：[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)<br>
+  * [x] 统一数据源的封装：[**<font color=red>UIViewModel</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/UIViewModelFamily/UIViewModel)<br>
+  * [x] **Block**替换**@selector**<br>
+  * [x] 统一的对手势的封装<br>
+  * [x] 多语言支持<br>
+  * [x] **UserDefaults**数据存储封装<br>
+  * [x] 对打开**URL**的兼容性封装<br>
+  * [x] 对KVC的封装<br>
+  
+* 其他
+
+  * [x] GitHub.workflow<br>
+  * [x] iOS手动打包/脚本打包成`*.ipa`<br>
+  * [x] iOS代码块<br>
+  * [x] 实用性脚本`*.command`<br>
+  * [x] 对`info.plist`的备份<br>
+
 ## 三、相关链接
 
 * [**OC代码实验室**](https://github.com/295060456/Jobs_ObjectiveC_Laboratory)
@@ -258,7 +289,7 @@ Current targets:
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 * 脚本自动化：[**`【MacOS】安装JobsCodeSnippets.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%AE%89%E8%A3%85JobsCodeSnippets.command)
 
-### 8、**手动打包流程 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
+### 8、**手动打包`*.ipa`流程 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
 
 * 电脑桌面新建文件夹，并重命名为`payload；`
 
@@ -276,7 +307,7 @@ Current targets:
 
 * 脚本自动化：[**`【MacOS】放在iOS项目工程根目录下，自动打包并输出为ipa文件.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%94%BE%E5%9C%A8iOS%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B9%B6%E8%BE%93%E5%87%BA%E4%B8%BAipa%E6%96%87%E4%BB%B6.command)
 
-### 9、[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 9、[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 背景意义：统一全局的Block定义，减少冗余代码
 
@@ -291,7 +322,7 @@ Current targets:
   * `【MacOS】Pod_Install（适用于IOS工程根目录）.command`
   * `【MacOS】Pod_Update（适用于IOS工程根目录）.command`
 
-### 10、[**<font color=red>BaseProtocol 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 10、[**<font color=red>`BaseProtocol` 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 ```mermaid
 classDiagram
@@ -331,7 +362,7 @@ classDiagram
     }
 ```
 
-### 11、**UIViewModelFamily（持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
+### 11、**`UIViewModelFamily`（持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
@@ -690,7 +721,7 @@ class BaseProtocol {
 }
 NSObject <|-- BaseProtocol
 ```
-### 12、JobsOCBaseCustomizeUIKitCore <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 12、`JobsOCBaseCustomizeUIKitCore` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 产生背景
   * OC的基类是单继承
@@ -1402,7 +1433,7 @@ NSObject <|-- BaseProtocol
 ```
 </details>
 
-### 4、退出ViewController的时候，需要做的操作 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 4、退出`ViewController`的时候，需要做的操作 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 <details id="退出ViewController的时候，需要做的操作">
  <summary><strong>点我了解详情</strong></summary>
@@ -1495,7 +1526,7 @@ NSObject <|-- BaseProtocol
  ```
 </details>
 
-### 6、**使用block，对selector的封装，避免方法割裂** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 6、**使用block，对`@selector`的封装，避免方法割裂** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 <details id="使用block，对selector的封装，避免方法割裂">
  <summary><strong>点我了解详情</strong></summary>
@@ -1621,7 +1652,7 @@ NSObject <|-- BaseProtocol
   [NSNotificationCenter.defaultCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
   ```
 
-### 7、UIViewModel的使用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 7、`UIViewModel`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 将数据束`UIViewModel`绑定到UI中，包括一些UI交互事件
 
@@ -1727,7 +1758,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 10、关于`UIViewController`的一些配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-####  10.1、BaseViewController
+####  10.1、`BaseViewController`
 
   * 为了方便管理，理论上，全局只应有一个`UIViewController`。开发者不应该创建过多的子控制器
   * 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行
@@ -1825,7 +1856,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   -(UIViewController *_Nullable)currentController;
   ```
 
-### 11、KVC的封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 11、`KVC`的封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
 
@@ -1967,7 +1998,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   +(void)updateWithModel:(UserDefaultModel *)userDefaultModel;
   ```
 
-### 15、对小型本地化数据的读取（NSUserDefaults） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 15、对小型本地化数据的读取（`NSUserDefaults`） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
   * 产生背景：方便临时调试，避免打印输出
 
@@ -2309,7 +2340,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 24、打开URL <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 24、打开`URL` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注实现类：[**@interface NSObject (OpenURL)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+OpenURL)
 
@@ -2707,7 +2738,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 ### 7、TODO
   * 将[**时间按照【年-月份】分组**](#时间按照【年-月份】分组)集成到靶场项目里
   * 完善 [**iOS功能：跳转其他App,如果本机不存在,则进行下载（需要补充）**](#iOS功能：跳转其他App,如果本机不存在,则进行下载)
-  * 这里还需要进一步研究，有点问题。[**Github.workflow（工作流）的使用**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/Github.workflow.md/Github.workflow.md)
   * 用FMDB来实现小型化数据的读写，生成Demo
 * 其他
 ## 七、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
