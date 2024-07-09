@@ -102,7 +102,6 @@ static JobsTabbarVC *static_tabbarVC = nil;
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.isHiddenNavigationBar = YES;
-
     @jobs_weakify(self)
     static dispatch_once_t JobsTabbarVC_viewWillAppear_onceToken;
     dispatch_once(&JobsTabbarVC_viewWillAppear_onceToken, ^{
@@ -166,7 +165,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
         for (UITabBarItem *item in self.tabBar.items) {
             if ([item.title isEqualToString:@"首页"]) {
                 [item pp_addBadgeWithText:@"919+"];
-    #pragma mark —— 动画
+#pragma mark —— 动画
                 [item.badgeView animationAlert];//图片从小放大
                 [item.badgeView shakerAnimationWithDuration:2 height:20];//重力弹跳动画效果
     //            [UIView 视图上下一直来回跳动的动画:item.badgeView];
@@ -191,13 +190,11 @@ static JobsTabbarVC *static_tabbarVC = nil;
 /// ❤️关键方法❤️
 -(void)UISetting{
     for (int i = 0; i < self.tabBarControllerConfigMutArr.count; i++) {
-        
         JobsTabBarControllerConfig *config = (JobsTabBarControllerConfig *)self.tabBarControllerConfigMutArr[i];
         // For Test
 //        if ([self judgeLottieWithIndex:i]) {
 //            [self addLottieImage:config.lottieName];// 有Lottie动画名，则优先创建Lottie动画
 //        }
-        
         UIViewController *viewController = self.childVCMutArr[i];
         viewController.title = config.title;
         viewController.tabBarItem = [JobsTabBarItem.alloc initWithConfig:config];
@@ -210,9 +207,10 @@ static JobsTabbarVC *static_tabbarVC = nil;
                                                                      -config.humpOffsetY / 2,
                                                                      0);
             /// 修改文字偏移量
-            viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
+            viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);/// titlePositionAdjustment是图文间距
         }
 
+        /// 用导航控制器包裹每一个控制器
         if (![viewController isKindOfClass:UINavigationController.class]) {/// 防止UIImagePickerController崩
             BaseNavigationVC *nav = [BaseNavigationVC.alloc initWithRootViewController:viewController];
             nav.title = config.title;
@@ -223,7 +221,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
     self.viewControllers = self.childVCMutArr;
     for (UIView *subView in self.tabBar.subviews) {
         if ([subView isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
-            [subView animationAlert];//图片从小放大
+            [subView animationAlert];/// 图片从小放大
             [self.UITabBarButtonMutArr addObject:subView];
         }
     }
@@ -234,8 +232,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
                             offsetY:-config.humpOffsetY / 2
                          lottieName:config.lottieName];
     }
-    
-    //初始显示【具备Lottie播放条件才进行相关初始化操作】
+    /// 初始显示【具备Lottie播放条件才进行相关初始化操作】
     if (self.firstUI_selectedIndex < self.viewControllers.count) {
         self.selectedIndex = self.firstUI_selectedIndex;//初始显示哪个
         if ([self judgeLottieWithIndex:self.selectedIndex]) {
@@ -258,7 +255,6 @@ static JobsTabbarVC *static_tabbarVC = nil;
 
 -(void)beginInteractiveTransitionIfPossible:(UIPanGestureRecognizer *)sender{
     CGPoint translation = [sender translationInView:self.view];
-
     NSLog(@"FromIndex = %lu",(unsigned long)self.selectedIndex);
     /// ❤️需要被跳开的item的逻辑❤️
     for (NSNumber *indexNUM in self.jumpIndexArr) {
@@ -464,6 +460,7 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (!_myTabBar) {
         _myTabBar = JobsTabBar.new;
         _myTabBar.tabBarControllerConfigMutArr = self.tabBarControllerConfigMutArr;
+        _myTabBar.alignmentType = ImageLeftTitleRight;
         [_myTabBar richElementsInViewWithModel:self.viewModel];
         self.jobsKVC(@"tabBar",_myTabBar);/// KVC 进行替换
     }return _myTabBar;
