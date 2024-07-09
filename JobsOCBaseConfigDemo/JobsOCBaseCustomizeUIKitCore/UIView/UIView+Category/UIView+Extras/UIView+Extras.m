@@ -9,6 +9,24 @@
 #import "UIView+Extras.h"
 
 @implementation UIView (Extras)
+#pragma mark —— 打印
+-(jobsByStringBlock _Nonnull)jobsLogFrame{
+    return ^(NSString *_Nonnull str) {
+        NSLog(@"%@ = %@", str, NSStringFromCGRect(self.frame));
+    };
+}
+
+-(jobsByStringBlock _Nonnull)jobsLogPoint{
+    return ^(NSString *_Nonnull str) {
+        NSLog(@"%@ = %@", str, NSStringFromCGPoint(self.origin));
+    };
+}
+
+-(jobsByStringBlock _Nonnull)jobsLogSize{
+    return ^(NSString *_Nonnull str) {
+        NSLog(@"%@ = %@", str, NSStringFromCGSize(self.size));
+    };
+}
 #pragma mark —— 键盘事件
 /// 监听键盘事件
 -(void)monitorKeyboardAction{

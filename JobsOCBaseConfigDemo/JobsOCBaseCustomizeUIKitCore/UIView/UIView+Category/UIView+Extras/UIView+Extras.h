@@ -46,6 +46,10 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 #endif /* UIBorderSideType_h */
 
 @interface UIView (Extras)
+#pragma mark —— 打印
+-(jobsByStringBlock _Nonnull)jobsLogFrame;
+-(jobsByStringBlock _Nonnull)jobsLogPoint;
+-(jobsByStringBlock _Nonnull)jobsLogSize;
 #pragma mark —— 键盘事件
 /// 监听键盘事件
 -(void)monitorKeyboardAction;

@@ -1140,6 +1140,24 @@ NSObject <|-- BaseProtocol
   }
   ```
 
+### 18、打印结构体
+
+* 定义在`View`层
+
+  ```objective-c
+  -(jobsByStringBlock _Nonnull)jobsLogFrame;
+  -(jobsByStringBlock _Nonnull)jobsLogPoint;
+  -(jobsByStringBlock _Nonnull)jobsLogSize;
+  ```
+
+* 相关调用
+
+  ```objective-c
+  label.jobsLogFrame(@"打印的时候额外添加的标识字符");
+  label.jobsLogPoint(@"打印的时候额外添加的标识字符");
+  label.jobsLogSize(@"打印的时候额外添加的标识字符");
+  ```
+
 ## 五、代码讲解
 
 ### 1、**UIButton.UIButtonConfiguration** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

@@ -101,7 +101,7 @@ UITabbarConfigProtocol_synthesize
     CGFloat imageWidth = imageView.bounds.size.width;
     CGFloat imageHeight = imageView.bounds.size.height;
     
-    CGFloat spacing = 24.0; // Spacing between image and label
+    CGFloat spacing = 0.0; // Spacing between image and label
     
     switch (self.alignmentType) {
         case ImageLeftTitleRight: {
@@ -145,6 +145,7 @@ UITabbarConfigProtocol_synthesize
                                      CGRectGetMaxY(imageView.frame) + spacing,
                                      labelWidth,
                                      labelHeight);
+            label.jobsLogSize(@"SDFD");
             label.textAlignment = NSTextAlignmentCenter;
             break;
         }
