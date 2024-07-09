@@ -25,6 +25,25 @@ UITabbarConfigProtocol_synthesize
     [super drawRect:rect];
 }
 
+//{
+//    [super layoutSubviews];
+//    NSMutableArray <UIView *>*tabBarButtons = NSMutableArray.array;
+//    for (UIView *subview in self.subviews) {
+//        if ([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+//            subview.backgroundColor = JobsRandomColor;
+//            [tabBarButtons addObject:subview];
+//        }
+//    }
+//    CGFloat s;
+//    for (int t = 0; t < self.tabBarControllerConfigMutArr.count ; t++) {
+//        JobsTabBarControllerConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[t];
+//        UIView *tabBarButton = tabBarButtons[t];
+//        s = tabBarControllerConfig.xOffset;
+//        tabBarButton.resetOriginX(s + tabBarControllerConfig.xOffset + tabBarControllerConfig.tabBarItemWidth);
+//        tabBarButton.resetWidth(tabBarControllerConfig.tabBarItemWidth);
+//    }
+//}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     NSMutableArray<UIView *> *tabBarButtons = NSMutableArray.array;
@@ -57,15 +76,13 @@ UITabbarConfigProtocol_synthesize
     for (int t = 0; t < self.tabBarControllerConfigMutArr.count ; t++) {
         JobsTabBarControllerConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[t];
         UIView *tabBarButton = tabBarButtons[t];
-        s += tabBarControllerConfig.xOffset;
-        tabBarButton.resetOriginX(s + tabBarControllerConfig.xOffset + tabBarControllerConfig.tabBarItemWidth);
-        
         if (t) {
-            tabBarButton.resetOriginX(s + tabBarControllerConfig.tabBarItemWidth);
+            tabBarButton.resetOriginX(s + tabBarControllerConfig.xOffset);
         }else{
-            tabBarButton.resetOriginX(s);
+            tabBarButton.resetOriginX(tabBarControllerConfig.xOffset);
         }
         
+        s += (tabBarControllerConfig.xOffset + tabBarControllerConfig.tabBarItemWidth);
         tabBarButton.resetWidth(tabBarControllerConfig.tabBarItemWidth);
     }
 }
