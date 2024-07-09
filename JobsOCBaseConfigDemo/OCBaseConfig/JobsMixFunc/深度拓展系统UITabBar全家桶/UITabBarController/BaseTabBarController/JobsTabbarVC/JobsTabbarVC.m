@@ -199,16 +199,23 @@ static JobsTabbarVC *static_tabbarVC = nil;
         viewController.title = config.title;
         viewController.tabBarItem = [JobsTabBarItem.alloc initWithConfig:config];
         
-        if (config.humpOffsetY != 0) {
-            //一般的图片
-            /// 修改图片偏移量，上下，左右必须为相反数，否则图片会被压缩
-            viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(-config.humpOffsetY,
-                                                                     0,
-                                                                     -config.humpOffsetY / 2,
-                                                                     0);
-            /// 修改文字偏移量
-            viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);/// titlePositionAdjustment是图文间距
-        }
+//        viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(-10,
+//                                                                 10,
+//                                                                 0,
+//                                                                 0);
+//        /// 修改文字偏移量
+//        viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);/// titlePositionAdjustment是图文间距
+        
+//        if (config.humpOffsetY != 0) {
+//            //一般的图片
+//            /// 修改图片偏移量，上下，左右必须为相反数，否则图片会被压缩
+//            viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(-config.humpOffsetY,
+//                                                                     0,
+//                                                                     -config.humpOffsetY / 2,
+//                                                                     0);
+//            /// 修改文字偏移量
+//            viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);/// titlePositionAdjustment是图文间距
+//        }
 
         /// 用导航控制器包裹每一个控制器
         if (![viewController isKindOfClass:UINavigationController.class]) {/// 防止UIImagePickerController崩
@@ -460,7 +467,7 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (!_myTabBar) {
         _myTabBar = JobsTabBar.new;
         _myTabBar.tabBarControllerConfigMutArr = self.tabBarControllerConfigMutArr;
-        _myTabBar.alignmentType = ImageLeftTitleRight;
+        _myTabBar.alignmentType = ImageTopTitleBottom;
         [_myTabBar richElementsInViewWithModel:self.viewModel];
         self.jobsKVC(@"tabBar",_myTabBar);/// KVC 进行替换
     }return _myTabBar;

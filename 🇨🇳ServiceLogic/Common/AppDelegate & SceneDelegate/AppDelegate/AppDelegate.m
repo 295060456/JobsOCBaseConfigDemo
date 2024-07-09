@@ -54,19 +54,19 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
         [ConfigMutArr addObject:config];
     }
     
-    {
-        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-        config.vc = ViewController_2.new;
-        config.title = JobsInternationalization(@"洗码");
-        config.imageSelected = JobsIMG(@"tabbbar_weights_seleteds");
-        config.imageUnselected = JobsIMG(@"tabbbar_weights_normal");
-        config.humpOffsetY = 0;
-        config.lottieName = nil;
-        config.xOffset = JobsWidth(5);
-        config.tabBarItemWidth = JobsWidth(100);
-        config.tag = ConfigMutArr.count + 1;
-        [ConfigMutArr addObject:config];
-    }
+//    {
+//        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
+//        config.vc = ViewController_2.new;
+//        config.title = JobsInternationalization(@"洗码");
+//        config.imageSelected = JobsIMG(@"tabbbar_weights_seleteds");
+//        config.imageUnselected = JobsIMG(@"tabbbar_weights_normal");
+//        config.humpOffsetY = 0;
+//        config.lottieName = nil;
+//        config.xOffset = JobsWidth(5);
+//        config.tabBarItemWidth = JobsWidth(100);
+//        config.tag = ConfigMutArr.count + 1;
+//        [ConfigMutArr addObject:config];
+//    }
     
 //    {
 //        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;

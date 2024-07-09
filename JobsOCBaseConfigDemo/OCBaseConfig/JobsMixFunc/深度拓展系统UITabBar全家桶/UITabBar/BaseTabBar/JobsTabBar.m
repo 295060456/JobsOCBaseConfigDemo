@@ -36,21 +36,22 @@ UITabbarConfigProtocol_synthesize
             UILabel *label = nil;
             UIImageView *imageView = nil;
             
-//            for (UIView *subSubview in subview.subviews) {
-//                if ([subSubview isKindOfClass:[UILabel class]]) {
-//                    label = (UILabel *)subSubview;
-//                    label.backgroundColor = [UIColor redColor]; // Assuming JobsRedColor returns red color
-//                    [label sizeToFit];
-//                }
-//                
-//                if ([subSubview isKindOfClass:[UIImageView class]]) {
-//                    imageView = (UIImageView *)subSubview;
-//                }
-//            }
-//            
-//            if (label && imageView) {
-//                [self alignLabel:label imageView:imageView inTabBarButton:subview];
-//            }
+            for (UIView *subSubview in subview.subviews) {
+                if ([subSubview isKindOfClass:[UILabel class]]) {
+                    label = (UILabel *)subSubview;
+                    label.backgroundColor = JobsRedColor; // Assuming JobsRedColor returns red color
+                    [label sizeToFit];
+                }
+                
+                if ([subSubview isKindOfClass:[UIImageView class]]) {
+                    imageView = (UIImageView *)subSubview;
+                }
+            }
+
+            [self layoutIfNeeded];
+            if (label && imageView) {
+                [self alignLabel:label imageView:imageView inTabBarButton:subview];
+            }
         }
     }   
     CGFloat s = 0.f;
@@ -108,32 +109,56 @@ UITabbarConfigProtocol_synthesize
             CGFloat startingX = (totalWidth - totalContentWidth) / 2.0;
             CGFloat centerY = totalHeight / 2.0;
             
-            imageView.frame = CGRectMake(startingX, centerY - imageHeight / 2.0, imageWidth, imageHeight);
-            label.frame = CGRectMake(CGRectGetMaxX(imageView.frame) + spacing, centerY - labelHeight / 2.0, labelWidth, labelHeight);
+            imageView.frame = CGRectMake(startingX,
+                                         centerY - imageHeight / 2.0,
+                                         imageWidth,
+                                         imageHeight);
+            label.frame = CGRectMake(CGRectGetMaxX(imageView.frame) + spacing, 
+                                     centerY - labelHeight / 2.0,
+                                     labelWidth,
+                                     labelHeight);
             label.textAlignment = NSTextAlignmentLeft;
             break;
         }
         case ImageRightTitleLeft: {
             CGFloat totalContentWidth = labelWidth + spacing + imageWidth;
             CGFloat startingX = (totalWidth - totalContentWidth) / 2.0;
-            label.frame = CGRectMake(startingX, (totalHeight - labelHeight) / 2.0, labelWidth, labelHeight);
-            imageView.frame = CGRectMake(CGRectGetMaxX(label.frame) + spacing, (totalHeight - imageHeight) / 2.0, imageWidth, imageHeight);
+            label.frame = CGRectMake(startingX, 
+                                     (totalHeight - labelHeight) / 2.0,
+                                     labelWidth,
+                                     labelHeight);
+            imageView.frame = CGRectMake(CGRectGetMaxX(label.frame) + spacing, 
+                                         (totalHeight - imageHeight) / 2.0,
+                                         imageWidth,
+                                         imageHeight);
             label.textAlignment = NSTextAlignmentRight;
             break;
         }
         case ImageTopTitleBottom: {
             CGFloat totalContentHeight = imageHeight + spacing + labelHeight;
             CGFloat startingY = (totalHeight - totalContentHeight) / 2.0;
-            imageView.frame = CGRectMake((totalWidth - imageWidth) / 2.0, startingY, imageWidth, imageHeight);
-            label.frame = CGRectMake((totalWidth - labelWidth) / 2.0, CGRectGetMaxY(imageView.frame) + spacing, labelWidth, labelHeight);
+            imageView.frame = CGRectMake((totalWidth - imageWidth) / 2.0,
+                                         startingY,
+                                         imageWidth,
+                                         imageHeight);
+            label.frame = CGRectMake((totalWidth - labelWidth) / 2.0,
+                                     CGRectGetMaxY(imageView.frame) + spacing,
+                                     labelWidth,
+                                     labelHeight);
             label.textAlignment = NSTextAlignmentCenter;
             break;
         }
         case ImageBottomTitleTop: {
             CGFloat totalContentHeight = labelHeight + spacing + imageHeight;
             CGFloat startingY = (totalHeight - totalContentHeight) / 2.0;
-            label.frame = CGRectMake((totalWidth - labelWidth) / 2.0, startingY, labelWidth, labelHeight);
-            imageView.frame = CGRectMake((totalWidth - imageWidth) / 2.0, CGRectGetMaxY(label.frame) + spacing, imageWidth, imageHeight);
+            label.frame = CGRectMake((totalWidth - labelWidth) / 2.0,
+                                     startingY,
+                                     labelWidth,
+                                     labelHeight);
+            imageView.frame = CGRectMake((totalWidth - imageWidth) / 2.0, 
+                                         CGRectGetMaxY(label.frame) + spacing,
+                                         imageWidth,
+                                         imageHeight);
             label.textAlignment = NSTextAlignmentCenter;
             break;
         }
