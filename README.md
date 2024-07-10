@@ -981,199 +981,28 @@ NSObject <|-- BaseProtocol
   }
   ```
   
-### 18、`JobsTabbarVC` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 18、[**`JobsTabBarCtrl`-深层次自定义`UITabbar`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/%E6%B7%B1%E5%BA%A6%E6%8B%93%E5%B1%95%E7%B3%BB%E7%BB%9FUITabBar%E5%85%A8%E5%AE%B6%E6%A1%B6/JobsTabbarCtrl.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* **`@interface JobsTabbarVC : UITabBarController`**，<font color=red>**继承自系统`UITabBarController`**</font>
-
-* 支持单例模式
-
-* `UITabBarButton` 是内部类。直接获取不到，需要间接获取
-
-  ```objective-c
-  @property(nonatomic,strong)NSMutableArray <UIView *>*UITabBarButtonMutArr;
-  ```
-
-  ```objective-c
-  for (UIView *subView in self.tabBar.subviews) {
-      if ([subView isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
-          [subView animationAlert];//图片从小放大
-          [self.UITabBarButtonMutArr addObject:subView];
-      }
-  }
-  ```
-
-* 系统的`UITabBarController.tabBar`通过**KVC**的方式替换为自建的`JobsTabBar`
-
-  ```objective-c
-  -(JobsTabBar *)myTabBar{
-      if (!_myTabBar) {
-          _myTabBar = JobsTabBar.new;
-          [_myTabBar richElementsInViewWithModel:self.viewModel];
-          self.jobsKVC(@"tabBar",_myTabBar);/// KVC 进行替换
-      }return _myTabBar;
-  }
-  ```
-
-* 支持`Tabbaritem`的偏移
-
-  ```objective-c
-  if (config.humpOffsetY != 0) {
-      //一般的图片
-      /// 修改图片偏移量，上下，左右必须为相反数，否则图片会被压缩
-      viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(-config.humpOffsetY,
-                                                               0,
-                                                               -config.humpOffsetY / 2,
-                                                               0);
-      /// 修改文字偏移量
-      viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
-  }
-  ```
-
-* 支持**`Lottie`**动画
-
-  * 关注实现类：[**@interface UIViewController (Lottie)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+Lottie)
-
-  ```objective-c
-  if ([self judgeLottieWithIndex:i]) {
-      [self addLottieImage:config.lottieName];// 有Lottie动画名，则优先创建Lottie动画
-  }
-  ```
-
-* 支持`Tabbaritem`长按手势。长按默认出列表菜单（仿**Telegram**）
-
-  ```objective-c
-  -(void)长按手势做什么:(UILongPressGestureRecognizer *)longPressGR{
-      if (self.isFeedbackGenerator) {
-          [self feedbackGenerator];//震动反馈
-      }
-  
-      [JobsPullListAutoSizeView initWithTargetView:self.UITabBarButtonMutArr[longPressGR.view.tag]
-                                        dataMutArr:self.pullListAutoSizeViewMutArr];
-  }
-  ```
-
-  ```objective-c
-  -(NSMutableArray<UIViewModel *> *)pullListAutoSizeViewMutArr{
-      if (!_pullListAutoSizeViewMutArr) {
-          _pullListAutoSizeViewMutArr = NSMutableArray.array;
-          
-          {
-              UIViewModel *viewModel = UIViewModel.new;
-              viewModel.image = JobsIMG(JobsInternationalization(@""));
-              viewModel.textModel.text = JobsInternationalization(@"111");
-              [_pullListAutoSizeViewMutArr addObject:viewModel];
-          }
-          
-          {
-              UIViewModel *viewModel = UIViewModel.new;
-              viewModel.image = JobsIMG(JobsInternationalization(@""));
-              viewModel.textModel.text = JobsInternationalization(@"222");
-              [_pullListAutoSizeViewMutArr addObject:viewModel];
-          }
-          
-          {
-              UIViewModel *viewModel = UIViewModel.new;
-              viewModel.image = JobsIMG(JobsInternationalization(@""));
-              viewModel.textModel.text = JobsInternationalization(@"333");
-              [_pullListAutoSizeViewMutArr addObject:viewModel];
-          }
-          
-      }return _pullListAutoSizeViewMutArr;
-  }
-  ```
-
-* 支持手势左右滑动以切换`TabbarControl`挂载的`ViewController`
-
-  ```objective-c
-  /// 手势左右滑动以切换TabbarControl挂载的ViewController
-  if (self.isOpenScrollTabbar) {
-      [self openPan];
-      self.view.panGR.enabled = self.isOpenScrollTabbar;
-  }
-  ```
-
-* 支持横屏模式
-
-* 支持震动反馈
-
-  ```objective-c
-  if (self.isFeedbackGenerator) {
-      [self feedbackGenerator];
-  }
-  ```
-
-* 支持点击`Tabbaritem`有声音
-
-  ```objective-c
-  if (self.isPlaySound) {
-      [self playSoundWithFileName:@"Sound.wav"];
-  }
-  ```
-
-* 支持[**`PPBadgeView`**](https://github.com/jkpang/PPBadgeView)
-
-  ```ruby
-  pod 'PPBadgeView' # https://github.com/jkpang/PPBadgeView iOS自定义Badge组件, 支持UIView, UITabBarItem, UIBarButtonItem以及子类 NO_SMP
-  ```
-
-* 支持重力弹跳动画效果
-
-  ```objective-c
-  if (self.isShakerAnimation) {
-      [item.badgeView shakerAnimationWithDuration:2 height:20];
-  }
-  ```
-
-* 支持图片从小放大
-
-  ```objective-c
-  if (self.isAnimationAlert) {
-     [self.UITabBarButtonMutArr[index] animationAlert];
-  }
-  ```
-
-* 支持点击增加标数
-
-  ```objective-c
-  if (self.isOpenPPBadge) {
-     [item pp_increase];
-  }
-  ```
-
-* 支持点击`Tabbaritem`自检强行登录
-
-  ```objective-c
-  @property(nonatomic,strong)NSArray <NSNumber *>*jumpIndexArr;/// 需要跳开的item
-  @property(nonatomic,strong)NSArray <NSNumber *>*needLoginArr;/// 在某些页面强制弹出登录
-  @property(nonatomic,strong)NSArray <NSNumber *>*noNeedLoginArr;/// 在某些页面不需要弹出登录，其优先级高于needLoginArr（也就是item点了没反应）
-  ```
-  
-  ```objective-c
-  TabBarVC.jumpIndexArr = @[@3];//小标为3的客服模块需要被跳开做另行处理
-  TabBarVC.needLoginArr = @[@1,@2,@4];
-  TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优先级高于needLoginArr
-  ```
-  
-  ```objective-c
-  /// 需要强制跳转登录的index。点击和手势滑动都需要共同调用
-  -(BOOL)forcedLoginIndex:(NSUInteger)index{
-      if ([self.needLoginArr containsObject:@(index)]) {
-          [self forcedLogin];
-          return YES;
-      }return NO;
-  }
-  ```
-  
-* 防止当子控制器为`UIImagePickerController` 引起的崩溃
-
-  ```objective-c
-  UIViewController *viewController = self.childVCMutArr[i];
-  if (![viewController isKindOfClass:UINavigationController.class]) {/// 防止UIImagePickerController崩
-      BaseNavigationVC *nav = [BaseNavigationVC.alloc initWithRootViewController:viewController];
-      nav.title = config.title;
-      [self.childVCMutArr replaceObjectAtIndex:i withObject:nav];/// 替换元素，每个VC加Navigation
-  }
-  ```
+* 背景介绍
+  * 完全继承自系统Api，最大化兼容系统特色
+  * 扩展系统的一些方法，丰富使用
+* 功能介绍
+  * 支持 `Tabbaritem` 在居中对齐的大前提下，图文相对位置的4个方向适配
+  * 自定义 `UITabBar`
+  * 支持单例模式
+  * 导航控制器包裹每一个子控制器，使得每一个子控制器具备`push`到其他控制器的能力
+  * 支持手势滑动切换子控制器。（等效于： `- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item`切换挂载的子控制器 ）
+  * 支持对某一特定的`Tabbaritem`向上凸起
+  * 支持自定义 `UITabBar`的高度
+  * `Tabbaritem`事件触发
+    * 支持长按手势
+      * 长按手势出菜单（高仿 **Telegram**）
+    * 一些动画效果（比如：图片从小放大）
+    * 点击震动
+    * 点击声音
+    * 支持`lottie`动画
+    * 支持`PPBadgeView`
+    * 支持强行自检跳转登录模块
 
 ## 五、代码讲解
 
