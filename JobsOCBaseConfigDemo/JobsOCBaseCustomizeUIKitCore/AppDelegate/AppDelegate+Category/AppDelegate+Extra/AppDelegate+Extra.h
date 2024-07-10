@@ -11,7 +11,7 @@
 #import "NSObject+AppTools.h"
 
 #import "JobsTabbarVC.h"
-#import "JobsTabBarControllerConfig.h"
+#import "JobsTabBarCtrlConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// UI
 @property(nonatomic,strong)JobsTabbarVC *tabBarVC;
 /// Data
-@property(nonatomic,strong)NSMutableArray <JobsTabBarControllerConfig *>*_Nullable configMutArr;
+@property(nonatomic,strong)NSMutableArray <JobsTabBarCtrlConfig *>*_Nullable configMutArr;
 @property(nonatomic,strong)NSMutableArray <NSString *>*_Nullable tabBarTitleMutArr;
 /// 刷新 TabBarTitle
 -(void)refreshTabBarTitle;

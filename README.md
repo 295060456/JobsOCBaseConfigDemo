@@ -155,7 +155,22 @@ Current targets:
 * target #0: /Users/user/Library/Developer/CoreSimulator/Devices/E17E7DE8-7ADA-42FD-A743-A1A3A6CB7E42/data/Containers/Bundle/Application/C590303C-50A7-4BB2-826F-8598E5F3A66C/JobsOCBaseConfigDemo.app/JobsOCBaseConfigDemo ( arch=x86_64-apple-ios-simulator, platform=ios-simulator, pid=89318, state=stopped )
 ```
 
-### 5、xcode 配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 5、`Command Line Tools` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 查看`Command Line Tools`版本
+
+  ```shell
+  Last login: Wed Jul 10 09:58:40 on ttys003
+  ➜  Desktop pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+  
+  package-id: com.apple.pkg.CLTools_Executables
+  version: 15.3.0.0.1.1708646388
+  volume: /
+  location: /
+  install-time: 1719293997
+  ```
+
+### 6、xcode 配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * `Arguments Passed On Launch`标签设置
 
@@ -232,64 +247,84 @@ Current targets:
 
     ![image-20240629161626945](./assets/image-20240629161626945.png)
 
-### 6、重写打印输出 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 7、重写打印输出 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 关注文件[**MacroDef_Log.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Sys/MacroDef_Log.h)
+* 关注文件：[**MacroDef_Log.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Sys/MacroDef_Log.h)
 
-* 使之能定位到具体文件行的输出
+  * 使之能定位到具体文件行的输出
 
-  ```objective-c
-  #pragma mark —— 控制台Log打印格式重写
-  #ifndef NSLog
-  #define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d content:%s\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
-  #endif
-  ```
+    ```objective-c
+    #pragma mark —— 控制台Log打印格式重写
+    #ifndef NSLog
+    #define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d content:%s\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+    #endif
+    ```
 
-* 使之能简化打印结构体步骤
+  * 使之能简化打印结构体步骤
 
-  ```objective-c
-  #pragma mark —— 打印结构体
-  #ifndef JobsLogCGPoint
-  #define JobsLogCGPoint(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGPoint(__VA_ARGS__))
-  #endif
-  
-  #ifndef JobsLogCGVector
-  #define JobsLogCGVector(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGVector(__VA_ARGS__))
-  #endif
-  
-  #ifndef JobsLogCGSize
-  #define JobsLogCGSize(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGSize(__VA_ARGS__))
-  #endif
-  
-  #ifndef JobsLogCGRect
-  #define JobsLogCGRect(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGRect(__VA_ARGS__))
-  #endif
-  
-  #ifndef JobsLogCGAffineTransform
-  #define JobsLogCGAffineTransform(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGAffineTransform(__VA_ARGS__))
-  #endif
-  
-  #ifndef JobsLogUIEdgeInsets
-  #define JobsLogUIEdgeInsets(format, ...) NSLog(@"%s = %@", #format, NSStringFromUIEdgeInsets(__VA_ARGS__))
-  #endif
-  
-  #ifndef JobsLogDirectionalEdgeInsets
-  #define JobsLogDirectionalEdgeInsets(format, ...) NSLog(@"%s = %@", #format, NSStringFromDirectionalEdgeInsets(__VA_ARGS__))
-  #endif
-  
-  #ifndef JobsLogOffset
-  #define JobsLogOffset(format, ...) NSLog(@"%s = %@", #format, NSStringFromUIOffset(__VA_ARGS__))
-  #endif
-  ```
-  
-  ![image-20240703193326163](./assets/image-20240703193326163.png)
+    ![image-20240703193326163](./assets/image-20240703193326163.png)
 
-### 7、iOS xcode 代码块，提升编码效率必备之首选 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+    ```objective-c
+    #pragma mark —— 打印结构体
+    #ifndef JobsLogCGPoint
+    #define JobsLogCGPoint(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGPoint(__VA_ARGS__))
+    #endif
+    
+    #ifndef JobsLogCGVector
+    #define JobsLogCGVector(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGVector(__VA_ARGS__))
+    #endif
+    
+    #ifndef JobsLogCGSize
+    #define JobsLogCGSize(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGSize(__VA_ARGS__))
+    #endif
+    
+    #ifndef JobsLogCGRect
+    #define JobsLogCGRect(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGRect(__VA_ARGS__))
+    #endif
+    
+    #ifndef JobsLogCGAffineTransform
+    #define JobsLogCGAffineTransform(format, ...) NSLog(@"%s = %@", #format, NSStringFromCGAffineTransform(__VA_ARGS__))
+    #endif
+    
+    #ifndef JobsLogUIEdgeInsets
+    #define JobsLogUIEdgeInsets(format, ...) NSLog(@"%s = %@", #format, NSStringFromUIEdgeInsets(__VA_ARGS__))
+    #endif
+    
+    #ifndef JobsLogDirectionalEdgeInsets
+    #define JobsLogDirectionalEdgeInsets(format, ...) NSLog(@"%s = %@", #format, NSStringFromDirectionalEdgeInsets(__VA_ARGS__))
+    #endif
+    
+    #ifndef JobsLogOffset
+    #define JobsLogOffset(format, ...) NSLog(@"%s = %@", #format, NSStringFromUIOffset(__VA_ARGS__))
+    #endif
+    ```
+
+* 关注实现类：[**@interface UIView (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BExtras)
+
+  ![image-20240710102050455](./assets/image-20240710102050455.png)
+
+  * 定义在`View`层
+
+    ```objective-c
+    -(jobsByStringBlock _Nonnull)jobsLogFrame;
+    -(jobsByStringBlock _Nonnull)jobsLogPoint;
+    -(jobsByStringBlock _Nonnull)jobsLogSize;
+    ```
+  
+  * 相关调用
+
+    ```objective-c
+    label.jobsLogFrame(@"打印的时候额外添加的标识字符");
+    label.jobsLogPoint(@"打印的时候额外添加的标识字符");
+    label.jobsLogSize(@"打印的时候额外添加的标识字符");
+    ```
+
+### 8、iOS xcode 代码块，提升编码效率必备之首选 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 * 脚本自动化：[**`【MacOS】安装JobsCodeSnippets.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%AE%89%E8%A3%85JobsCodeSnippets.command)
 
-### 8、**手动打包`*.ipa`流程 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
+### 9、**手动打包`*.ipa`流程 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
 
 * 电脑桌面新建文件夹，并重命名为`payload；`
 
@@ -307,7 +342,7 @@ Current targets:
 
 * 脚本自动化：[**`【MacOS】放在iOS项目工程根目录下，自动打包并输出为ipa文件.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%94%BE%E5%9C%A8iOS%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B9%B6%E8%BE%93%E5%87%BA%E4%B8%BAipa%E6%96%87%E4%BB%B6.command)
 
-### 9、[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 10、[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 背景意义：统一全局的Block定义，减少冗余代码
 
@@ -322,7 +357,7 @@ Current targets:
   * `【MacOS】Pod_Install（适用于IOS工程根目录）.command`
   * `【MacOS】Pod_Update（适用于IOS工程根目录）.command`
 
-### 10、[**<font color=red>`BaseProtocol` 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 11、[**<font color=red>`BaseProtocol` 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 ```mermaid
 classDiagram
@@ -362,7 +397,7 @@ classDiagram
     }
 ```
 
-### 11、**`UIViewModelFamily`（持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
+### 12、**`UIViewModelFamily`（持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
@@ -721,7 +756,7 @@ class BaseProtocol {
 }
 NSObject <|-- BaseProtocol
 ```
-### 12、`JobsOCBaseCustomizeUIKitCore` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 13、`JobsOCBaseCustomizeUIKitCore` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 产生背景
   * OC的基类是单继承
@@ -730,7 +765,7 @@ NSObject <|-- BaseProtocol
   * 继承和分类应该结合使用，功能各有优劣
   * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用
 
-### 13、度量衡适配。[**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 14、度量衡适配。[**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * **当前设备是否是全面屏**：`static inline BOOL isFullScreen(void) ` 
 * **全局比例尺**
@@ -753,7 +788,7 @@ NSObject <|-- BaseProtocol
 * **除开 tabBarController 和 navigationController 的内容可用区域的大小**
   * `static inline CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBarController, UINavigationController * _Nullable navigationController)`
 
-### 14、`NavigationBar` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 15、`NavigationBar` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 摒弃系统的，而转为使用第三方`GKNavigationBar`
 
@@ -773,7 +808,7 @@ NSObject <|-- BaseProtocol
   * 关注实现类：[**`@interface BaseViewController : UIViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/BaseViewController)
   * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
 
-### 15、输入框 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 16、输入框 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 有4个`TextField`可供继承使用（具体使用方式，查询相关头文件定义）
   * `CJTextField`
@@ -781,7 +816,7 @@ NSObject <|-- BaseProtocol
   * `JobsMagicTextField`
   * `ZYTextField`
 
-### 16、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 17、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * [**寻找当前控制器 **](#寻找当前控制器 )
 
 * 获取**window**
@@ -946,7 +981,7 @@ NSObject <|-- BaseProtocol
   }
   ```
   
-### 17、`JobsTabbarVC` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 18、`JobsTabbarVC` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * **`@interface JobsTabbarVC : UITabBarController`**，<font color=red>**继承自系统`UITabBarController`**</font>
 
@@ -1138,24 +1173,6 @@ NSObject <|-- BaseProtocol
       nav.title = config.title;
       [self.childVCMutArr replaceObjectAtIndex:i withObject:nav];/// 替换元素，每个VC加Navigation
   }
-  ```
-
-### 18、打印结构体
-
-* 定义在`View`层
-
-  ```objective-c
-  -(jobsByStringBlock _Nonnull)jobsLogFrame;
-  -(jobsByStringBlock _Nonnull)jobsLogPoint;
-  -(jobsByStringBlock _Nonnull)jobsLogSize;
-  ```
-
-* 相关调用
-
-  ```objective-c
-  label.jobsLogFrame(@"打印的时候额外添加的标识字符");
-  label.jobsLogPoint(@"打印的时候额外添加的标识字符");
-  label.jobsLogSize(@"打印的时候额外添加的标识字符");
   ```
 
 ## 五、代码讲解

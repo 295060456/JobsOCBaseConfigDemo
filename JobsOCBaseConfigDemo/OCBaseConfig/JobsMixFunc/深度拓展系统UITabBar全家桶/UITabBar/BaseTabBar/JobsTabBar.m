@@ -30,16 +30,16 @@ UITabbarConfigProtocol_synthesize
     NSMutableArray<UIView *> *tabBarButtons = NSMutableArray.array;
     for (UIView *subview in self.subviews) {
         if ([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
-            subview.backgroundColor = JobsRandomColor; // Assuming JobsRandomColor returns a random color
+//            subview.backgroundColor = JobsRandomColor;
             [tabBarButtons addObject:subview];
             
-            UILabel *label = nil;
-            UIImageView *imageView = nil;
+            UILabel *label = nil; /// TabBar的文字
+            UIImageView *imageView = nil; /// TabBar的图片
             
             for (UIView *subSubview in subview.subviews) {
                 if ([subSubview isKindOfClass:[UILabel class]]) {
                     label = (UILabel *)subSubview;
-                    label.backgroundColor = JobsRedColor; // Assuming JobsRedColor returns red color
+//                    label.backgroundColor = JobsRedColor;
                     [label sizeToFit];
                 }
                 
@@ -50,13 +50,17 @@ UITabbarConfigProtocol_synthesize
 
             [self layoutIfNeeded];
             if (label && imageView) {
-                [self alignLabel:label imageView:imageView inTabBarButton:subview];
+                JobsTabBarCtrlConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[tabBarButtons.count - 1];
+                [self alignLabel:label
+                       imageView:imageView
+                  inTabBarButton:subview
+                         spacing:tabBarControllerConfig.spacing];
             }
         }
     }   
     CGFloat s = 0.f;
     for (int t = 0; t < self.tabBarControllerConfigMutArr.count ; t++) {
-        JobsTabBarControllerConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[t];
+        JobsTabBarCtrlConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[t];
         UIView *tabBarButton = tabBarButtons[t];
         if (t) {
             tabBarButton.resetOriginX(s + tabBarControllerConfig.xOffset);
@@ -88,87 +92,6 @@ UITabbarConfigProtocol_synthesize
         }
     }];
 }
-
-- (void)alignLabel:(UILabel *)label 
-         imageView:(UIImageView *)imageView
-    inTabBarButton:(UIView *)tabBarButton {
-    CGFloat totalWidth = tabBarButton.bounds.size.width;
-    CGFloat totalHeight = tabBarButton.bounds.size.height;
-    
-    CGFloat labelWidth = label.bounds.size.width;
-    CGFloat labelHeight = label.bounds.size.height;
-    
-    CGFloat imageWidth = imageView.bounds.size.width;
-    CGFloat imageHeight = imageView.bounds.size.height;
-    
-    CGFloat spacing = 0.0; // Spacing between image and label
-    
-    switch (self.alignmentType) {
-        case ImageLeftTitleRight: {
-            CGFloat totalContentWidth = imageWidth + spacing + labelWidth;
-            CGFloat startingX = (totalWidth - totalContentWidth) / 2.0;
-            CGFloat centerY = totalHeight / 2.0;
-            
-            imageView.frame = CGRectMake(startingX,
-                                         centerY - imageHeight / 2.0,
-                                         imageWidth,
-                                         imageHeight);
-            label.frame = CGRectMake(CGRectGetMaxX(imageView.frame) + spacing, 
-                                     centerY - labelHeight / 2.0,
-                                     labelWidth,
-                                     labelHeight);
-            label.textAlignment = NSTextAlignmentLeft;
-            break;
-        }
-        case ImageRightTitleLeft: {
-            CGFloat totalContentWidth = labelWidth + spacing + imageWidth;
-            CGFloat startingX = (totalWidth - totalContentWidth) / 2.0;
-            label.frame = CGRectMake(startingX, 
-                                     (totalHeight - labelHeight) / 2.0,
-                                     labelWidth,
-                                     labelHeight);
-            imageView.frame = CGRectMake(CGRectGetMaxX(label.frame) + spacing, 
-                                         (totalHeight - imageHeight) / 2.0,
-                                         imageWidth,
-                                         imageHeight);
-            label.textAlignment = NSTextAlignmentRight;
-            break;
-        }
-        case ImageTopTitleBottom: {
-            CGFloat totalContentHeight = imageHeight + spacing + labelHeight;
-            CGFloat startingY = (totalHeight - totalContentHeight) / 2.0;
-            imageView.frame = CGRectMake((totalWidth - imageWidth) / 2.0,
-                                         startingY,
-                                         imageWidth,
-                                         imageHeight);
-            label.frame = CGRectMake((totalWidth - labelWidth) / 2.0,
-                                     CGRectGetMaxY(imageView.frame) + spacing,
-                                     labelWidth,
-                                     labelHeight);
-            if(labelHeight >= labelWidth){
-                label.resetWidth(labelHeight);
-                label.resetHeight(labelWidth);
-            }
-            label.jobsLogSize(@"SDFD");
-            label.textAlignment = NSTextAlignmentCenter;
-            break;
-        }
-        case ImageBottomTitleTop: {
-            CGFloat totalContentHeight = labelHeight + spacing + imageHeight;
-            CGFloat startingY = (totalHeight - totalContentHeight) / 2.0;
-            label.frame = CGRectMake((totalWidth - labelWidth) / 2.0,
-                                     startingY,
-                                     labelWidth,
-                                     labelHeight);
-            imageView.frame = CGRectMake((totalWidth - imageWidth) / 2.0, 
-                                         CGRectGetMaxY(label.frame) + spacing,
-                                         imageWidth,
-                                         imageHeight);
-            label.textAlignment = NSTextAlignmentCenter;
-            break;
-        }
-    }
-}
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
     self.viewModel = model;
@@ -190,6 +113,88 @@ UITabbarConfigProtocol_synthesize
 
 -(CGFloat)customTabBarOffsetHeight{
     return self.viewModel.offsetHeight ? self.viewModel.offsetHeight : 0.f;
+}
+
+- (void)alignLabel:(UILabel *)label
+         imageView:(UIImageView *)imageView
+    inTabBarButton:(UIView *)tabBarButton
+           spacing:(CGFloat)spacing{
+    CGFloat totalWidth = tabBarButton.bounds.size.width;
+    CGFloat totalHeight = tabBarButton.bounds.size.height;
+    
+    CGFloat labelWidth = label.bounds.size.width;
+    CGFloat labelHeight = label.bounds.size.height;
+    
+    CGFloat imageWidth = imageView.bounds.size.width;
+    CGFloat imageHeight = imageView.bounds.size.height;
+    
+    switch (self.alignmentType) {
+        case ImageLeftTitleRight: {
+            CGFloat totalContentWidth = imageWidth + spacing + labelWidth;
+            CGFloat startingX = (totalWidth - totalContentWidth) / 2.0;
+            CGFloat centerY = totalHeight / 2.0;
+            
+            imageView.frame = CGRectMake(startingX,
+                                         centerY - imageHeight / 2.0,
+                                         imageWidth,
+                                         imageHeight);
+            label.frame = CGRectMake(CGRectGetMaxX(imageView.frame) + spacing,
+                                     centerY - labelHeight / 2.0,
+                                     labelWidth,
+                                     labelHeight);
+            label.textAlignment = NSTextAlignmentLeft;
+            break;
+        }
+        case ImageRightTitleLeft: {
+            CGFloat totalContentWidth = labelWidth + spacing + imageWidth;
+            CGFloat startingX = (totalWidth - totalContentWidth) / 2.0;
+            label.frame = CGRectMake(startingX,
+                                     (totalHeight - labelHeight) / 2.0,
+                                     labelWidth,
+                                     labelHeight);
+            imageView.frame = CGRectMake(CGRectGetMaxX(label.frame) + spacing,
+                                         (totalHeight - imageHeight) / 2.0,
+                                         imageWidth,
+                                         imageHeight);
+            label.textAlignment = NSTextAlignmentRight;
+            break;
+        }
+        case ImageTopTitleBottom: {
+            CGFloat totalContentHeight = imageHeight + spacing + labelHeight;
+            CGFloat startingY = (totalHeight - totalContentHeight) / 2.0;
+            imageView.frame = CGRectMake((totalWidth - imageWidth) / 2.0,
+                                         startingY,
+                                         imageWidth,
+                                         imageHeight);
+            label.frame = CGRectMake((totalWidth - labelWidth) / 2.0,
+                                     CGRectGetMaxY(imageView.frame) + spacing,
+                                     labelWidth,
+                                     labelHeight);
+            if(labelHeight >= labelWidth){
+                label.resetWidth(labelHeight);
+                label.resetHeight(labelWidth);
+            }
+//            label.jobsLogFrame(@"打印的时候额外添加的标识字符.Frame");
+//            label.jobsLogPoint(@"打印的时候额外添加的标识字符.Point");
+            label.jobsLogSize(@"打印的时候额外添加的标识字符.Size");
+            label.textAlignment = NSTextAlignmentCenter;
+            break;
+        }
+        case ImageBottomTitleTop: {
+            CGFloat totalContentHeight = labelHeight + spacing + imageHeight;
+            CGFloat startingY = (totalHeight - totalContentHeight) / 2.0;
+            label.frame = CGRectMake((totalWidth - labelWidth) / 2.0,
+                                     startingY,
+                                     labelWidth,
+                                     labelHeight);
+            imageView.frame = CGRectMake((totalWidth - imageWidth) / 2.0,
+                                         CGRectGetMaxY(label.frame) + spacing,
+                                         imageWidth,
+                                         imageHeight);
+            label.textAlignment = NSTextAlignmentCenter;
+            break;
+        }
+    }
 }
 
 //-(UIView *)hitTest:(CGPoint)point

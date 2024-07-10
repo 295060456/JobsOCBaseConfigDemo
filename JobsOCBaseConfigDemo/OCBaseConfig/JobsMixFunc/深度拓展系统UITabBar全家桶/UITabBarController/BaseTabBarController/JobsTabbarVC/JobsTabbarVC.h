@@ -16,6 +16,7 @@
 #import "UIView+Gesture.h"
 #import "UIView+Measure.h"
 #import "UIButton+UI.h"
+#import "NSObject+CallBackInfoByBlock.h"
 
 #import "JobsTabBarItem.h"
 
@@ -31,7 +32,7 @@
 #import "TransitionController.h"
 #import "TransitionAnimation.h"
 #import "JobsPullListAutoSizeView.h"
-#import "JobsTabBarControllerConfig.h"
+#import "JobsTabBarCtrlConfig.h"
 #import "JobsSuspendBtn.h"
 
 #if __has_include(<lottie-ios/Lottie.h>)

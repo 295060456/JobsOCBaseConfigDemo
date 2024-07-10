@@ -38,10 +38,10 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
     NSLog(@"");
 }
 #pragma mark —— 一些公有方法
--(NSMutableArray <JobsTabBarControllerConfig *>*)makeConfigMutArr{
+-(NSMutableArray <JobsTabBarCtrlConfig *>*)makeConfigMutArr{
     NSMutableArray *ConfigMutArr = NSMutableArray.array;
     {
-        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
+        JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
         config.vc = ViewController_1.new;
         config.title = JobsInternationalization(@"首页");
         config.imageSelected = JobsIMG(@"tabbbar_home_seleteds");
@@ -50,65 +50,69 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
         config.lottieName = nil;
         config.xOffset = JobsWidth(200);
         config.tabBarItemWidth = JobsWidth(100);
+        config.spacing = JobsWidth(3);
         config.tag = ConfigMutArr.count + 1;
         [ConfigMutArr addObject:config];
     }
     
-//    {
-//        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-//        config.vc = ViewController_2.new;
-//        config.title = JobsInternationalization(@"洗码");
-//        config.imageSelected = JobsIMG(@"tabbbar_weights_seleteds");
-//        config.imageUnselected = JobsIMG(@"tabbbar_weights_normal");
-//        config.humpOffsetY = 0;
-//        config.lottieName = nil;
-//        config.xOffset = JobsWidth(5);
-//        config.tabBarItemWidth = JobsWidth(100);
-//        config.tag = ConfigMutArr.count + 1;
-//        [ConfigMutArr addObject:config];
-//    }
+    {
+        JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
+        config.vc = ViewController_2.new;
+        config.title = JobsInternationalization(@"洗码");
+        config.imageSelected = JobsIMG(@"tabbbar_weights_seleteds");
+        config.imageUnselected = JobsIMG(@"tabbbar_weights_normal");
+        config.humpOffsetY = 0;
+        config.lottieName = nil;
+        config.xOffset = JobsWidth(5);
+        config.tabBarItemWidth = JobsWidth(100);
+        config.spacing = JobsWidth(3);
+        config.tag = ConfigMutArr.count + 1;
+        [ConfigMutArr addObject:config];
+    }
     
-//    {
-//        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-//        config.vc = ViewController_3.new;
-//        config.title = JobsInternationalization(@"充值");
-//        config.imageSelected = JobsIMG(@"tabbbar_pay_seleteds");
-//        config.imageUnselected = JobsIMG(@"tabbbar_pay_normal");
-//        config.humpOffsetY = 0;
-//        config.lottieName = nil;
-//        config.xOffset = JobsWidth(5);
-//        config.tabBarItemWidth = JobsWidth(50);
-//        config.tag = ConfigMutArr.count + 1;
-//        [ConfigMutArr addObject:config];
-//    }
-//    
-//    {
-//        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-//        config.vc = ViewController_4.new;
-//        config.title = JobsInternationalization(@"客服");
-//        config.imageSelected = JobsIMG(@"tabbbar_service_seleteds");
-//        config.imageUnselected = JobsIMG(@"tabbbar_service_normal");
-//        config.humpOffsetY = 0;
-//        config.lottieName = nil;
-//        config.xOffset = JobsWidth(5);
-//        config.tabBarItemWidth = JobsWidth(50);
-//        config.tag = ConfigMutArr.count + 1;
-//        [ConfigMutArr addObject:config];
-//    }
-//    
-//    {
-//        JobsTabBarControllerConfig *config = JobsTabBarControllerConfig.new;
-//        config.vc = ViewController_5.new;
-//        config.title = JobsInternationalization(@"会员中心");
-//        config.imageSelected = JobsIMG(@"tabbar_VIP_seleteds");
-//        config.imageUnselected = JobsIMG(@"tabbar_VIP_normal");
-//        config.humpOffsetY = 0;
-//        config.lottieName = nil;
-//        config.xOffset = JobsWidth(5);
-//        config.tabBarItemWidth = JobsWidth(100);
-//        config.tag = ConfigMutArr.count + 1;
-//        [ConfigMutArr addObject:config];
-//    }
+    {
+        JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
+        config.vc = ViewController_3.new;
+        config.title = JobsInternationalization(@"充值");
+        config.imageSelected = JobsIMG(@"tabbbar_pay_seleteds");
+        config.imageUnselected = JobsIMG(@"tabbbar_pay_normal");
+        config.humpOffsetY = 0;
+        config.lottieName = nil;
+        config.xOffset = JobsWidth(5);
+        config.tabBarItemWidth = JobsWidth(50);
+        config.spacing = JobsWidth(3);
+        config.tag = ConfigMutArr.count + 1;
+        [ConfigMutArr addObject:config];
+    }
+    
+    {
+        JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
+        config.vc = ViewController_4.new;
+        config.title = JobsInternationalization(@"客服");
+        config.imageSelected = JobsIMG(@"tabbbar_service_seleteds");
+        config.imageUnselected = JobsIMG(@"tabbbar_service_normal");
+        config.humpOffsetY = 0;
+        config.lottieName = nil;
+        config.xOffset = JobsWidth(5);
+        config.tabBarItemWidth = JobsWidth(50);
+        config.spacing = JobsWidth(3);
+        config.tag = ConfigMutArr.count + 1;
+        [ConfigMutArr addObject:config];
+    }
+    
+    {
+        JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
+        config.vc = ViewController_5.new;
+        config.title = JobsInternationalization(@"会员中心");
+        config.imageSelected = JobsIMG(@"tabbar_VIP_seleteds");
+        config.imageUnselected = JobsIMG(@"tabbar_VIP_normal");
+        config.humpOffsetY = 0;
+        config.lottieName = nil;
+        config.xOffset = JobsWidth(5);
+        config.tabBarItemWidth = JobsWidth(100);
+        config.tag = ConfigMutArr.count + 1;
+        [ConfigMutArr addObject:config];
+    }
     
     return ConfigMutArr;
 }

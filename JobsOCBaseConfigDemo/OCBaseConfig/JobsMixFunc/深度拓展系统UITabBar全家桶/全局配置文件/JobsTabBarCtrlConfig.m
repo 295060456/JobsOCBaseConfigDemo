@@ -5,9 +5,9 @@
 //  Created by Jobs on 2020/10/16.
 //
 
-#import "JobsTabBarControllerConfig.h"
+#import "JobsTabBarCtrlConfig.h"
 
-@implementation JobsTabBarControllerConfig
+@implementation JobsTabBarCtrlConfig
 
 #pragma mark —— lazyLoad
 -(UIColor *)titleCorNormal{

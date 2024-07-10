@@ -63,16 +63,14 @@
             } 
             else {
                 [self updateInteractiveTransition:[self percentForGesture:gestureRecognizer]];
-            }
-            break;
+            }break;
         case UIGestureRecognizerStateEnded:
             if ([self percentForGesture:gestureRecognizer] >= 0.4f){
                 [self finishInteractiveTransition];
             }
             else{
                 [self cancelInteractiveTransition];
-            }
-            break;
+            }break;
         default:
             [self cancelInteractiveTransition];
             break;

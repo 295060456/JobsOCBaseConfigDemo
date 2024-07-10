@@ -13,7 +13,7 @@
 		840F95E427736427004979E9 /* JobsBitsMonitorCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F927427736425004979E9 /* JobsBitsMonitorCore.m */; };
 		840F95E527736427004979E9 /* JobsTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F927A27736425004979E9 /* JobsTabBarItem.m */; };
 		840F95E627736427004979E9 /* UITabBarItem+TLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F927E27736425004979E9 /* UITabBarItem+TLAnimation.m */; };
-		840F95E727736427004979E9 /* JobsTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F928327736425004979E9 /* JobsTabBarControllerConfig.m */; };
+		840F95E727736427004979E9 /* JobsTabBarCtrlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F928327736425004979E9 /* JobsTabBarCtrlConfig.m */; };
 		840F95E827736427004979E9 /* TabbaritemImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 840F928527736425004979E9 /* TabbaritemImage.bundle */; };
 		840F95E927736427004979E9 /* home_priase_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 840F928727736425004979E9 /* home_priase_animation.json */; };
 		840F95EA27736427004979E9 /* 主页.json in Resources */ = {isa = PBXBuildFile; fileRef = 840F928827736425004979E9 /* 主页.json */; };
@@ -37,7 +37,6 @@
 		840F95FC27736427004979E9 /* record_change.json in Resources */ = {isa = PBXBuildFile; fileRef = 840F929A27736425004979E9 /* record_change.json */; };
 		840F95FD27736427004979E9 /* tab_message_animate.json in Resources */ = {isa = PBXBuildFile; fileRef = 840F929B27736425004979E9 /* tab_message_animate.json */; };
 		840F95FE27736427004979E9 /* JobsTabbarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F929F27736425004979E9 /* JobsTabbarVC.m */; };
-		840F95FF27736427004979E9 /* JobsPullListAutoSizeView.md in Resources */ = {isa = PBXBuildFile; fileRef = 840F92A227736425004979E9 /* JobsPullListAutoSizeView.md */; };
 		840F960027736427004979E9 /* JobsPullListTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92A527736425004979E9 /* JobsPullListTBVCell.m */; };
 		840F960127736427004979E9 /* JobsPullListAutoSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92A727736425004979E9 /* JobsPullListAutoSizeView.m */; };
 		840F960227736427004979E9 /* TransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92A927736425004979E9 /* TransitionAnimation.m */; };
@@ -964,9 +963,9 @@
 		840F927B27736425004979E9 /* JobsTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabBarItem.h; sourceTree = "<group>"; };
 		840F927E27736425004979E9 /* UITabBarItem+TLAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+TLAnimation.m"; sourceTree = "<group>"; };
 		840F927F27736425004979E9 /* UITabBarItem+TLAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+TLAnimation.h"; sourceTree = "<group>"; };
-		840F928127736425004979E9 /* JobsTabBarControllerConstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabBarControllerConstruction.h; sourceTree = "<group>"; };
-		840F928227736425004979E9 /* JobsTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabBarControllerConfig.h; sourceTree = "<group>"; };
-		840F928327736425004979E9 /* JobsTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTabBarControllerConfig.m; sourceTree = "<group>"; };
+		840F928127736425004979E9 /* JobsTabBarCtrlConstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabBarCtrlConstruction.h; sourceTree = "<group>"; };
+		840F928227736425004979E9 /* JobsTabBarCtrlConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabBarCtrlConfig.h; sourceTree = "<group>"; };
+		840F928327736425004979E9 /* JobsTabBarCtrlConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTabBarCtrlConfig.m; sourceTree = "<group>"; };
 		840F928527736425004979E9 /* TabbaritemImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TabbaritemImage.bundle; sourceTree = "<group>"; };
 		840F928727736425004979E9 /* home_priase_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home_priase_animation.json; sourceTree = "<group>"; };
 		840F928827736425004979E9 /* 主页.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "主页.json"; sourceTree = "<group>"; };
@@ -991,7 +990,6 @@
 		840F929B27736425004979E9 /* tab_message_animate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tab_message_animate.json; sourceTree = "<group>"; };
 		840F929E27736425004979E9 /* JobsTabbarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabbarVC.h; sourceTree = "<group>"; };
 		840F929F27736425004979E9 /* JobsTabbarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTabbarVC.m; sourceTree = "<group>"; };
-		840F92A227736425004979E9 /* JobsPullListAutoSizeView.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = JobsPullListAutoSizeView.md; sourceTree = "<group>"; };
 		840F92A327736425004979E9 /* JobsPullListAutoSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsPullListAutoSizeView.h; sourceTree = "<group>"; };
 		840F92A527736425004979E9 /* JobsPullListTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsPullListTBVCell.m; sourceTree = "<group>"; };
 		840F92A627736425004979E9 /* JobsPullListTBVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsPullListTBVCell.h; sourceTree = "<group>"; };
@@ -1002,7 +1000,7 @@
 		840F92AC27736425004979E9 /* TransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionController.m; sourceTree = "<group>"; };
 		840F92AD27736425004979E9 /* TransitionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionAnimation.h; sourceTree = "<group>"; };
 		840F92AF27736425004979E9 /* TLAnimationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLAnimationProtocol.h; sourceTree = "<group>"; };
-		840F92B027736425004979E9 /* Tabbaritem点击动效.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Tabbaritem点击动效.md"; sourceTree = "<group>"; };
+		840F92B027736425004979E9 /* 功能性动效：Tabbaritem的点击动效.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "功能性动效：Tabbaritem的点击动效.md"; sourceTree = "<group>"; };
 		840F92B127736425004979E9 /* TLTabBarAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTabBarAnimation.h; sourceTree = "<group>"; };
 		840F92B227736425004979E9 /* TLTabBarAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTabBarAnimation.m; sourceTree = "<group>"; };
 		840F92B527736425004979E9 /* UITabBar+TLAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+TLAnimation.m"; sourceTree = "<group>"; };
@@ -1011,7 +1009,7 @@
 		840F92B827736425004979E9 /* UITabBar+Ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+Ex.h"; sourceTree = "<group>"; };
 		840F92BA27736425004979E9 /* JobsTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabBar.h; sourceTree = "<group>"; };
 		840F92BB27736425004979E9 /* JobsTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTabBar.m; sourceTree = "<group>"; };
-		840F92BC27736425004979E9 /* JobsTabbarControllerSysEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabbarControllerSysEx.h; sourceTree = "<group>"; };
+		840F92BC27736425004979E9 /* JobsTabbarCtrlSysEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabbarCtrlSysEx.h; sourceTree = "<group>"; };
 		840F92C527736425004979E9 /* JobsMixFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsMixFunc.h; sourceTree = "<group>"; };
 		840F92CB27736425004979E9 /* ZBRequestConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBRequestConst.h; sourceTree = "<group>"; };
 		840F92CC27736425004979E9 /* ZBURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBURLRequest.m; sourceTree = "<group>"; };
@@ -2755,6 +2753,7 @@
 		CE03ED992C312FA300138A1E /* HotRefreshVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotRefreshVC.m; sourceTree = "<group>"; };
 		CE03ED9B2C31304E00138A1E /* WidgetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WidgetVC.h; sourceTree = "<group>"; };
 		CE03ED9C2C31304E00138A1E /* WidgetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WidgetVC.m; sourceTree = "<group>"; };
+		CE1F9E4D2C3E542E00B315B4 /* 功能性动效：高仿 Telegram，在指定位置出现菜单列表.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "功能性动效：高仿 Telegram，在指定位置出现菜单列表.md"; sourceTree = "<group>"; };
 		CE6B13F82C2ED50D00A542A4 /* YTKBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKBaseRequest.h; sourceTree = "<group>"; };
 		CE6B13F92C2ED50D00A542A4 /* YTKBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKBaseRequest.m; sourceTree = "<group>"; };
 		CE6B13FA2C2ED50D00A542A4 /* YTKBatchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKBatchRequest.h; sourceTree = "<group>"; };
@@ -2940,7 +2939,7 @@
 		840F927727736425004979E9 /* 深度拓展系统UITabBar全家桶 */ = {
 			isa = PBXGroup;
 			children = (
-				840F92BC27736425004979E9 /* JobsTabbarControllerSysEx.h */,
+				840F92BC27736425004979E9 /* JobsTabbarCtrlSysEx.h */,
 				840F928027736425004979E9 /* 全局配置文件 */,
 				840F92A027736425004979E9 /* 一些需要单独列出来的功能性模块 */,
 				840F928427736425004979E9 /* 资源文件 */,
@@ -2989,9 +2988,9 @@
 		840F928027736425004979E9 /* 全局配置文件 */ = {
 			isa = PBXGroup;
 			children = (
-				840F928227736425004979E9 /* JobsTabBarControllerConfig.h */,
-				840F928327736425004979E9 /* JobsTabBarControllerConfig.m */,
-				840F928127736425004979E9 /* JobsTabBarControllerConstruction.h */,
+				840F928227736425004979E9 /* JobsTabBarCtrlConfig.h */,
+				840F928327736425004979E9 /* JobsTabBarCtrlConfig.m */,
+				840F928127736425004979E9 /* JobsTabBarCtrlConstruction.h */,
 			);
 			path = "全局配置文件";
 			sourceTree = "<group>";
@@ -3053,21 +3052,20 @@
 			isa = PBXGroup;
 			children = (
 				840F92A827736425004979E9 /* 功能性动效：手势横向滚动子VC联动Tabbar切换 */,
-				840F92AE27736425004979E9 /* Tabbaritem点击动效 */,
-				840F92A127736425004979E9 /* Telegram动效：在指定位置出现菜单列表 */,
+				840F92AE27736425004979E9 /* 功能性动效：Tabbaritem的点击动效 */,
+				840F92A127736425004979E9 /* 功能性动效：高仿 Telegram，在指定位置出现菜单列表 */,
 			);
 			path = "一些需要单独列出来的功能性模块";
 			sourceTree = "<group>";
 		};
-		840F92A127736425004979E9 /* Telegram动效：在指定位置出现菜单列表 */ = {
+		840F92A127736425004979E9 /* 功能性动效：高仿 Telegram，在指定位置出现菜单列表 */ = {
 			isa = PBXGroup;
 			children = (
-				840F92A327736425004979E9 /* JobsPullListAutoSizeView.h */,
-				840F92A727736425004979E9 /* JobsPullListAutoSizeView.m */,
-				840F92A227736425004979E9 /* JobsPullListAutoSizeView.md */,
+				CE1F9E4D2C3E542E00B315B4 /* 功能性动效：高仿 Telegram，在指定位置出现菜单列表.md */,
+				CE1F9E4C2C3E53CE00B315B4 /* JobsPullListAutoSizeView */,
 				840F92A427736425004979E9 /* JobsPullListTBVCell */,
 			);
-			path = "Telegram动效：在指定位置出现菜单列表";
+			path = "功能性动效：高仿 Telegram，在指定位置出现菜单列表";
 			sourceTree = "<group>";
 		};
 		840F92A427736425004979E9 /* JobsPullListTBVCell */ = {
@@ -3091,15 +3089,15 @@
 			path = "功能性动效：手势横向滚动子VC联动Tabbar切换";
 			sourceTree = "<group>";
 		};
-		840F92AE27736425004979E9 /* Tabbaritem点击动效 */ = {
+		840F92AE27736425004979E9 /* 功能性动效：Tabbaritem的点击动效 */ = {
 			isa = PBXGroup;
 			children = (
-				840F92B027736425004979E9 /* Tabbaritem点击动效.md */,
+				840F92B027736425004979E9 /* 功能性动效：Tabbaritem的点击动效.md */,
 				840F92AF27736425004979E9 /* TLAnimationProtocol.h */,
 				840F92B127736425004979E9 /* TLTabBarAnimation.h */,
 				840F92B227736425004979E9 /* TLTabBarAnimation.m */,
 			);
-			path = "Tabbaritem点击动效";
+			path = "功能性动效：Tabbaritem的点击动效";
 			sourceTree = "<group>";
 		};
 		840F92B327736425004979E9 /* UITabBar */ = {
@@ -11769,6 +11767,15 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		CE1F9E4C2C3E53CE00B315B4 /* JobsPullListAutoSizeView */ = {
+			isa = PBXGroup;
+			children = (
+				840F92A327736425004979E9 /* JobsPullListAutoSizeView.h */,
+				840F92A727736425004979E9 /* JobsPullListAutoSizeView.m */,
+			);
+			path = JobsPullListAutoSizeView;
+			sourceTree = "<group>";
+		};
 		CE6B140D2C2ED50D00A542A4 /* YTKNetwork */ = {
 			isa = PBXGroup;
 			children = (
@@ -12216,7 +12223,6 @@
 				84CA5DFE27895B4700E46E71 /* Customer.xcassets in Resources */,
 				84AA2C952796E9A8000401C6 /* UserData.json in Resources */,
 				C520F82E2AB39EDD00142DCC /* 640x1136.png in Resources */,
-				840F95FF27736427004979E9 /* JobsPullListAutoSizeView.md in Resources */,
 				84A4920127904A970002A837 /* Fav@3x.png in Resources */,
 				CED90E942C31954A008D9F68 /* 配置info.plist.md in Resources */,
 				C5978A982BE3599700A56125 /* UITableViewCellStyleValue1.png in Resources */,
@@ -12992,7 +12998,7 @@
 				C52E5C9B2AC07E9800FE5494 /* KTVHCDataReader.m in Sources */,
 				C52E5CB02AC07ECB00FE5494 /* GCDAsyncSocket.m in Sources */,
 				CE6B14152C2ED50D00A542A4 /* YTKNetworkPrivate.m in Sources */,
-				840F95E727736427004979E9 /* JobsTabBarControllerConfig.m in Sources */,
+				840F95E727736427004979E9 /* JobsTabBarCtrlConfig.m in Sources */,
 				C5978A0D2BE3599700A56125 /* NSObject+AFNReachability.m in Sources */,
 				C533BBBC2837D095006FB231 /* JobsUserHeaderDataView.m in Sources */,
 				CE6B14132C2ED50D00A542A4 /* YTKNetworkAgent.m in Sources */,

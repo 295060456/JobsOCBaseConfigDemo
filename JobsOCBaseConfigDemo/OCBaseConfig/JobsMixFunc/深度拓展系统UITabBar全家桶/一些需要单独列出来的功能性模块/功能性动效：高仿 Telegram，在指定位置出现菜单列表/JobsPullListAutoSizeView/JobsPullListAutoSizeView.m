@@ -25,8 +25,7 @@
 
 + (instancetype)initWithTargetView:(UIView *__nonnull)targetView
                         dataMutArr:(NSArray <UIViewModel *>*__nonnull)dataMutArr{
-
-    //先检查MainWindow里面是否存在本类，如果存在即释放 保证只创建一次
+    /// 先检查MainWindow里面是否存在本类，如果存在即释放 保证只创建一次
     JobsPullListAutoSizeView *(^checkMainWindowExistSelf)(void) = ^(void){
         JobsPullListAutoSizeView *jobsPullListAutoSizeView = nil;
         for (UIView *subview in jobsGetMainWindow().subviews) {
@@ -40,8 +39,8 @@
     if (view) {
         [view removeFromSuperview];//释放
     }else{
-        view = [[JobsPullListAutoSizeView alloc] initWithTargetView:targetView
-                                                         dataMutArr:dataMutArr];
+        view = [JobsPullListAutoSizeView.alloc initWithTargetView:targetView
+                                                       dataMutArr:dataMutArr];
     }return view;
 }
 

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 @property(nonatomic,strong)NSMutableArray <UIViewController *>*childVCMutArr;/// 子控制器
-@property(nonatomic,strong)NSMutableArray <JobsTabBarControllerConfig *>*tabBarControllerConfigMutArr;/// TabBar的配置数据源
+@property(nonatomic,strong)NSMutableArray <JobsTabBarCtrlConfig *>*tabBarControllerConfigMutArr;/// TabBar的配置数据源
 
 @end
 

@@ -9,13 +9,13 @@
 
 @interface JobsTabBarItem ()
 
-@property(nonatomic,strong)JobsTabBarControllerConfig *tabBarControllerConfig;
+@property(nonatomic,strong)JobsTabBarCtrlConfig *tabBarControllerConfig;
 
 @end
 
 @implementation JobsTabBarItem
 
--(instancetype)initWithConfig:(JobsTabBarControllerConfig *)config{
+-(instancetype)initWithConfig:(JobsTabBarCtrlConfig *)config{
     if (self = [super init]) {
         if (config) {
             self.tabBarControllerConfig = config;

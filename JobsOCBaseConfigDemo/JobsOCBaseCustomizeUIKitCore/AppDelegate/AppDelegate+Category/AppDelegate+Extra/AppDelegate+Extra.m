@@ -11,7 +11,7 @@
 #pragma mark —— 一些私有方法
 /// UITabBarController 配置数据：子VC、Tabbaritem标题
 -(void)dataWithTabBarVC:(UITabBarController <UITabbarConfigProtocol>*)tabBarVC{
-    for (JobsTabBarControllerConfig *config in self.configMutArr) {
+    for (JobsTabBarCtrlConfig *config in self.configMutArr) {
         [tabBarVC.tabBarControllerConfigMutArr addObject:config];
         [tabBarVC.childVCMutArr addObject:config.vc];
         [self.tabBarTitleMutArr addObject:config.title];
@@ -58,7 +58,7 @@
     
     TabBarTitleMutArr = [self addElementByTabBarTitleMutArr:TabBarTitleMutArr];
     
-    for (JobsTabBarControllerConfig *config in self.configMutArr) {
+    for (JobsTabBarCtrlConfig *config in self.configMutArr) {
         NSInteger index = [self.configMutArr indexOfObject:config];
         config.vc.tabBarItem.title = TabBarTitleMutArr[index];
     }
@@ -66,7 +66,7 @@
 /// 获取Tabbar管理的，不含导航的根控制器
 -(NSMutableArray <UIViewController *>*)getAppRootVC{
     NSMutableArray *mutArr = NSMutableArray.array;
-    for (JobsTabBarControllerConfig *config in self.configMutArr) {
+    for (JobsTabBarCtrlConfig *config in self.configMutArr) {
         [mutArr addObject:config.vc];
     }return mutArr;
 }
@@ -127,7 +127,7 @@ JobsKey(_tabBarVC)
 #pragma mark —— @property(nonatomic,strong)NSMutableArray <JobsTabBarControllerConfig *>*configMutArr;
 JobsKey(_configMutArr)
 @dynamic configMutArr;
--(NSMutableArray<JobsTabBarControllerConfig *> *)configMutArr{
+-(NSMutableArray<JobsTabBarCtrlConfig *> *)configMutArr{
     NSMutableArray *ConfigMutArr = Jobs_getAssociatedObject(_configMutArr);
     if (!ConfigMutArr) {
         ConfigMutArr = self.makeConfigMutArr;
@@ -135,7 +135,7 @@ JobsKey(_configMutArr)
     }return ConfigMutArr;
 }
 
--(void)setConfigMutArr:(NSMutableArray<JobsTabBarControllerConfig *> *)configMutArr{
+-(void)setConfigMutArr:(NSMutableArray<JobsTabBarCtrlConfig *> *)configMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_configMutArr, configMutArr);
 }
 #pragma mark —— #pragma mark —— @property(nonatomic,strong)NSMutableArray <NSString *>*tabBarTitleMutArr;

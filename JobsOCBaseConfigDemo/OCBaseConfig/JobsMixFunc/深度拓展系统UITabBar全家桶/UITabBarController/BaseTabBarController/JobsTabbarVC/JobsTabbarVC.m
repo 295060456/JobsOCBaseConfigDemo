@@ -151,10 +151,13 @@ static JobsTabbarVC *static_tabbarVC = nil;
     self.view.target = self;
     @jobs_weakify(self)
     self.view.panGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target,
-                                                                            UIPanGestureRecognizer *_Nullable arg) {
+                                                                            UIPanGestureRecognizer *_Nullable pan) {
         @jobs_strongify(self)
-        [self panGestureRecognizer:arg];
-        return nil;
+        if (self.transitionCoordinator) return nil;
+        if (pan.state == UIGestureRecognizerStateBegan ||
+            pan.state == UIGestureRecognizerStateChanged){
+            [self beginInteractiveTransitionIfPossible:pan];
+        }return nil;
     }];
     self.view.panGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
 }
@@ -163,7 +166,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
     self.isOpenPPBadge = open;
     if (open) {
         for (UITabBarItem *item in self.tabBar.items) {
-            if ([item.title isEqualToString:@"首页"]) {
+            if ([item.title isEqualToString:JobsInternationalization(@"首页")]) {
                 [item pp_addBadgeWithText:@"919+"];
 #pragma mark —— 动画
                 [item.badgeView animationAlert];//图片从小放大
@@ -184,13 +187,13 @@ static JobsTabbarVC *static_tabbarVC = nil;
 /// 判别是否有Lottie
 /// @param index index
 -(BOOL)judgeLottieWithIndex:(NSInteger)index{
-    JobsTabBarControllerConfig *config = (JobsTabBarControllerConfig *)self.tabBarControllerConfigMutArr[index];
+    JobsTabBarCtrlConfig *config = (JobsTabBarCtrlConfig *)self.tabBarControllerConfigMutArr[index];
     return ![NSString isNullString:config.lottieName];
 }
 /// ❤️关键方法❤️
 -(void)UISetting{
     for (int i = 0; i < self.tabBarControllerConfigMutArr.count; i++) {
-        JobsTabBarControllerConfig *config = (JobsTabBarControllerConfig *)self.tabBarControllerConfigMutArr[i];
+        JobsTabBarCtrlConfig *config = (JobsTabBarCtrlConfig *)self.tabBarControllerConfigMutArr[i];
         // For Test
 //        if ([self judgeLottieWithIndex:i]) {
 //            [self addLottieImage:config.lottieName];// 有Lottie动画名，则优先创建Lottie动画
@@ -199,23 +202,16 @@ static JobsTabbarVC *static_tabbarVC = nil;
         viewController.title = config.title;
         viewController.tabBarItem = [JobsTabBarItem.alloc initWithConfig:config];
         
-//        viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(-10,
-//                                                                 10,
-//                                                                 0,
-//                                                                 0);
-//        /// 修改文字偏移量
-//        viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);/// titlePositionAdjustment是图文间距
-        
-//        if (config.humpOffsetY != 0) {
-//            //一般的图片
-//            /// 修改图片偏移量，上下，左右必须为相反数，否则图片会被压缩
-//            viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(-config.humpOffsetY,
-//                                                                     0,
-//                                                                     -config.humpOffsetY / 2,
-//                                                                     0);
-//            /// 修改文字偏移量
-//            viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);/// titlePositionAdjustment是图文间距
-//        }
+        if (config.humpOffsetY != 0) {
+            //一般的图片
+            /// 修改图片偏移量，上下，左右必须为相反数，否则图片会被压缩
+            viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(-config.humpOffsetY,
+                                                                     0,
+                                                                     -config.humpOffsetY / 2,
+                                                                     0);
+            /// 修改文字偏移量
+            viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);/// titlePositionAdjustment是图文间距
+        }
 
         /// 用导航控制器包裹每一个控制器
         if (![viewController isKindOfClass:UINavigationController.class]) {/// 防止UIImagePickerController崩
@@ -234,7 +230,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
     }
     /// 根据config.lottieName 方法-config.lottieName:offsetY:lottieName:内部做了判空处理
     for (int i = 0; i < self.childVCMutArr.count; i++) {
-        JobsTabBarControllerConfig *config = (JobsTabBarControllerConfig *)self.tabBarControllerConfigMutArr[i];
+        JobsTabBarCtrlConfig *config = (JobsTabBarCtrlConfig *)self.tabBarControllerConfigMutArr[i];
         [self.tabBar addLottieImage:i
                             offsetY:-config.humpOffsetY / 2
                          lottieName:config.lottieName];
@@ -249,17 +245,6 @@ static JobsTabbarVC *static_tabbarVC = nil;
     }
 }
 #pragma mark —— 手势左右滑动以切换TabbarControl挂载的ViewController
-- (void)panGestureRecognizer:(UIPanGestureRecognizer *)pan{
-    if (self.transitionCoordinator) {
-        return;
-    }
-    
-    if (pan.state == UIGestureRecognizerStateBegan ||
-        pan.state == UIGestureRecognizerStateChanged){
-        [self beginInteractiveTransitionIfPossible:pan];
-    }
-}
-
 -(void)beginInteractiveTransitionIfPossible:(UIPanGestureRecognizer *)sender{
     CGPoint translation = [sender translationInView:self.view];
     NSLog(@"FromIndex = %lu",(unsigned long)self.selectedIndex);
@@ -308,15 +293,6 @@ static JobsTabbarVC *static_tabbarVC = nil;
     NSLog(@"ToIndex = %lu",(unsigned long)self.selectedIndex);
 }
 #pragma mark —— TabBarItem的相关手势
--(void)长按手势做什么:(UILongPressGestureRecognizer *)longPressGR{
-    if (self.isFeedbackGenerator) {
-        [self feedbackGenerator];//震动反馈
-    }
-
-    [JobsPullListAutoSizeView initWithTargetView:self.UITabBarButtonMutArr[longPressGR.view.tag]
-                                      dataMutArr:self.pullListAutoSizeViewMutArr];
-}
-
 -(void)添加长按手势{
     for (UIView *subView in self.UITabBarButtonMutArr) {
         subView.tag = [self.UITabBarButtonMutArr indexOfObject:subView];
@@ -330,14 +306,18 @@ static JobsTabbarVC *static_tabbarVC = nil;
         subView.target = self;
         subView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                     UILongPressGestureRecognizer *_Nullable longPressGR) {
-            NSLog(@"");
+            if(self.gestureRecognizerBlock) self.gestureRecognizerBlock(longPressGR);
             switch (longPressGR.state) {
                 case UIGestureRecognizerStatePossible:{
                     NSLog(@"没有触摸事件发生，所有手势识别的默认状态");
                 }break;
                 case UIGestureRecognizerStateBegan:{
-                    //长按手势
-                    [self 长按手势做什么:longPressGR];
+                    if (self.isFeedbackGenerator) {
+                        [self feedbackGenerator];/// 震动反馈
+                    }
+                    /// 长按手势出菜单（高仿 Telegram）
+                    [JobsPullListAutoSizeView initWithTargetView:self.UITabBarButtonMutArr[longPressGR.view.tag]
+                                                      dataMutArr:self.pullListAutoSizeViewMutArr];
                     NSLog(@"一个手势已经开始  但尚未改变或者完成时");
                 }break;
                 case UIGestureRecognizerStateChanged:{
@@ -413,9 +393,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
  */
 - (BOOL)tabBarController:(UITabBarController *)tabBarController
 shouldSelectViewController:(UIViewController *)viewController {
-
     NSInteger index = [self.childVCMutArr indexOfObject:viewController];
-    
     if ([viewController isKindOfClass:UIViewController.class] &&
         [self judgeLottieWithIndex:index]) {
         [viewController lottieImagePlay];
@@ -429,13 +407,12 @@ shouldSelectViewController:(UIViewController *)viewController {
            animationControllerForTransitionFromViewController:(UIViewController *)fromVC
                                              toViewController:(UIViewController *)toVC{
     // 打开注释 可以屏蔽点击item时的动画效果
-//    if (self.panGestureRecognizer.state == UIGestureRecognizerStateBegan || self.panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+    if (self.view.panGR.state == UIGestureRecognizerStateBegan ||
+        self.view.panGR.state == UIGestureRecognizerStateChanged) {
         NSArray *viewControllers = tabBarController.viewControllers;
-        return [TransitionAnimation.alloc initWithTargetEdge: [viewControllers indexOfObject:toVC] > [viewControllers indexOfObject:fromVC] ? UIRectEdgeLeft : UIRectEdgeRight];
-//    }
-//    else{
-//        return nil;
-//    }
+        return [TransitionAnimation.alloc initWithTargetEdge: 
+                [viewControllers indexOfObject:toVC] > [viewControllers indexOfObject:fromVC] ? UIRectEdgeLeft : UIRectEdgeRight];
+    }else return nil;
 }
 
 - (id<UIViewControllerInteractiveTransitioning>)tabBarController:(UITabBarController *)tabBarController
@@ -443,9 +420,7 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (self.view.panGR.state == UIGestureRecognizerStateBegan ||
         self.view.panGR.state == UIGestureRecognizerStateChanged) {
         return [TransitionController.alloc initWithGestureRecognizer:self.view.panGR];
-    }else {
-        return nil;
-    }
+    }else return nil;
 }
 #pragma mark —— lazyLoad
 @synthesize viewModel = _viewModel;
@@ -485,7 +460,7 @@ shouldSelectViewController:(UIViewController *)viewController {
     }return _childVCMutArr;
 }
 
--(NSMutableArray<JobsTabBarControllerConfig *> *)tabBarControllerConfigMutArr{
+-(NSMutableArray<JobsTabBarCtrlConfig *> *)tabBarControllerConfigMutArr{
     if (!_tabBarControllerConfigMutArr) {
         _tabBarControllerConfigMutArr = NSMutableArray.array;
     }return _tabBarControllerConfigMutArr;

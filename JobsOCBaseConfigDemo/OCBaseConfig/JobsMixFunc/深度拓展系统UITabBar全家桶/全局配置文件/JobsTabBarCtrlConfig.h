@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsTabBarControllerConfig : NSObject
+@interface JobsTabBarCtrlConfig : NSObject
 
 @property(nonatomic,strong)UIViewController *vc;
 @property(nonatomic,strong)NSString *title;/// 显示标题
@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat tabBarItemWidth;/// 每一个TabbarItem  的宽
 @property(nonatomic,assign)CGFloat tabBarItemHeight;/// 每一个TabbarItem  的高
 @property(nonatomic,assign)CGFloat xOffset;/// 每一个TabbarItem 和前一个TabbarItem在x轴方向的偏移量。如果是第一个TabbarItem则是和左屏幕进行比较
+@property(nonatomic,assign)CGFloat spacing;/// 每一个TabbarItem中的图文间距
 
 @end
 

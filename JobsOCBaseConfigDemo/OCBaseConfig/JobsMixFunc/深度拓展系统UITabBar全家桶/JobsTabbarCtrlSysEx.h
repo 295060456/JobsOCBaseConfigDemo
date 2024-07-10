@@ -1,15 +1,15 @@
 //
-//  JobsTabbarControllerSysEx.h
+//  JobsTabbarCtrlSysEx.h
 //  Casino
 //
 //  Created by Jobs on 2021/11/29.
 //
 
-#ifndef JobsTabbarControllerSysEx_h
-#define JobsTabbarControllerSysEx_h
+#ifndef JobsTabbarCtrlSysEx_h
+#define JobsTabbarCtrlSysEx_h
 
-#import "JobsTabBarControllerConfig.h"//全局配置文件
-#import "JobsTabBarControllerConstruction.h"//构造方法
+#import "JobsTabBarCtrlConfig.h"//全局配置文件
+#import "JobsTabBarCtrlConstruction.h"//构造方法
 
 //UITabBarItem
 #import "UITabBarItem+TLAnimation.h"
@@ -47,4 +47,4 @@
 //悬浮小球、可旋转、可择机手动停止
 #import "JobsSuspendBtn.h"
 
-#endif /* JobsTabbarControllerSysEx_h */
+#endif /* JobsTabbarCtrlSysEx_h */

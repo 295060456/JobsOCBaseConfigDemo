@@ -20,7 +20,7 @@
 #import "JobsBitsMonitor.h"
 #import "JobsSuspend.h"
 #import "JobsImageNumberView.h"
-#import "JobsTabbarControllerSysEx.h"
+#import "JobsTabbarCtrlSysEx.h"
 #import "ImageCodeView.h"
 #import "ZFCustomControlView.h"
 #import "CustomZFPlayerControlView.h"
