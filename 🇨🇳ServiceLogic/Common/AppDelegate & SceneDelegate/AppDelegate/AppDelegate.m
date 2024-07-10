@@ -151,10 +151,10 @@ didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
     completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
 }
 /// 一进入App就横屏
-//- (UIInterfaceOrientationMask)application:(UIApplication *)application
-//  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-//    return UIInterfaceOrientationMaskLandscape;
-//}
+- (UIInterfaceOrientationMask)application:(UIApplication *)application
+  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return UIInterfaceOrientationMaskLandscape;
+}
 #pragma mark —— lazyLoad
 /// 仅仅为了iOS 13 版本向下兼容而存在
 -(UIWindow *)window{
@@ -166,20 +166,6 @@ didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
 //        [self.tabBarVC ppBadge:YES];
         [_window makeKeyAndVisible];
     }return _window;
-}
-
--(JobsMenuView *)menuView{
-    if(!_menuView){
-        _menuView = JobsMenuView.new;
-        [jobsGetMainWindow() addSubview:_menuView];
-        [_menuView richElementsInViewWithModel:nil];
-        _menuView.frame = CGRectMake(0, 0, 200, 200);
-//        [_menuView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.size.mas_equalTo([_menuView viewSizeWithModel:nil]);
-//            make.centerY.equalTo(jobsGetMainWindow());
-//            make.left.equalTo(jobsGetMainWindow());
-//        }];
-    }return _menuView;
 }
 /// Core Data stack
 @synthesize persistentContainer = _persistentContainer;

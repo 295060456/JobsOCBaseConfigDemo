@@ -12,6 +12,10 @@
 #pragma mark —— UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self 横屏通知的监听:^(id  _Nullable weakSelf,
+                    id  _Nullable arg) {
+        
+    }];
     [self localNotifications];
     [self launchFunc2];
     if (HDDeviceSystemVersion.floatValue < 13.0) {

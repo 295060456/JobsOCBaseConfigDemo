@@ -75,7 +75,7 @@
 
 -(CGFloat)spreadsheetView:(SpreadsheetView *)spreadsheetView
            widthForColumn:(NSInteger)column{
-    return JobsMainScreen_WIDTH(nil) / self.dataMutArr.count;
+    return JobsMainScreen_WIDTH() / self.dataMutArr.count;
 }
 
 -(CGFloat)spreadsheetView:(SpreadsheetView *)spreadsheetView
@@ -117,7 +117,7 @@
         _spreadsheetView.scrollView.showsHorizontalScrollIndicator = NO;
         [self.view addSubview:_spreadsheetView];
         [_spreadsheetView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(200)));
+            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(200)));
             make.center.equalTo(self.view);
 //            make.edges.equalTo(self.view);
         }];

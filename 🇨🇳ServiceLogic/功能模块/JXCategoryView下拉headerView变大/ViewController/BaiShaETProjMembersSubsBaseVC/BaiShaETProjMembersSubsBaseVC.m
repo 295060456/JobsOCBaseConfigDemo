@@ -64,7 +64,7 @@
 }
 #pragma mark —— 一些公有方法
 -(CGSize)getTopLineLabSize{
-    return CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(2));
+    return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(2));
 }
 #pragma mark —— lazyLoad
 -(UILabel *)topLineLab{

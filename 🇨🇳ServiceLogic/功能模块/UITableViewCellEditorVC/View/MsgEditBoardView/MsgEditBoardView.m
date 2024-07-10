@@ -74,13 +74,13 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH(nil),
+    return CGSizeMake(JobsMainScreen_WIDTH(),
                       [MsgEditBoardView viewChangeYWithModel:nil]);
 }
 /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGRect)viewFrameWithModel:(id _Nullable)model{
     return CGRectMake(0,
-                      JobsMainScreen_HEIGHT(nil),
+                      JobsMainScreen_HEIGHT(),
                       [MsgEditBoardView viewSizeWithModel:nil].width,
                       [MsgEditBoardView viewSizeWithModel:nil].height);
 }

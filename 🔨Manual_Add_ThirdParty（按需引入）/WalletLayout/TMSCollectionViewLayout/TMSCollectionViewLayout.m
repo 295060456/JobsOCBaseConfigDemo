@@ -56,7 +56,7 @@ static CGFloat const itemInnerInset = 10; // 被遮盖的cell头部留出的距�
     UICollectionViewLayoutAttributes *lastAttributes = self.attrubutesArray.lastObject;
     attribute.zIndex = indexPath.item * 2;
     CGRect frame;
-    frame.size = CGSizeMake(JobsMainScreen_WIDTH(nil) - 2 * self.padding, itemH);
+    frame.size = CGSizeMake(JobsMainScreen_WIDTH() - 2 * self.padding, itemH);
     CGFloat offfsetY = indexPath.item == 0 ? 0 : itemInnerInset;
     CGFloat expandH = (self.isExpand && self.clickIndexPath && self.clickIndexPath.section == indexPath.section && self.clickIndexPath.item + 1 == indexPath.item) ? -10 : offfsetY;
     frame.origin = CGPointMake(self.padding, CGRectGetMaxY(lastAttributes.frame) - expandH);
@@ -74,13 +74,13 @@ static CGFloat const itemInnerInset = 10; // 被遮盖的cell头部留出的距�
         if (headerViewH <= 0) {
             return nil;
         }
-        frame.size = CGSizeMake(JobsMainScreen_WIDTH(nil), headerViewH);
+        frame.size = CGSizeMake(JobsMainScreen_WIDTH(), headerViewH);
     } else {
         CGFloat footerViewH = [self.layout_delegate collectionView:self.collectionView resuableFooterViewHeightForIndexPath:indexPath];
         if (footerViewH <= 0) {
             return nil;
         }
-        frame.size = CGSizeMake(JobsMainScreen_WIDTH(nil), footerViewH);
+        frame.size = CGSizeMake(JobsMainScreen_WIDTH(), footerViewH);
     }
     frame.origin = CGPointMake(0, CGRectGetMaxY(lastAttributes.frame));
     attributes.frame = frame;
@@ -92,7 +92,7 @@ static CGFloat const itemInnerInset = 10; // 被遮盖的cell头部留出的距�
     CGFloat safeAreaBottom = 0;
     if (@available(iOS 11.0, *)) {
         safeAreaBottom = self.collectionView.safeAreaInsets.bottom;
-    }return CGSizeMake(JobsMainScreen_WIDTH(nil), CGRectGetMaxY(attribute.frame) + 5 + safeAreaBottom);
+    }return CGSizeMake(JobsMainScreen_WIDTH(), CGRectGetMaxY(attribute.frame) + 5 + safeAreaBottom);
 }
 
 -(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect{

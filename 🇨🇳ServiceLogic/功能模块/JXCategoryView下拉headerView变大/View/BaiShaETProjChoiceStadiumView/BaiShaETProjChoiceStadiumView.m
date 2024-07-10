@@ -37,7 +37,7 @@
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH(nil),JobsWidth(46));
+    return CGSizeMake(JobsMainScreen_WIDTH(),JobsWidth(46));
 }
 #pragma mark —— lazyLoad
 -(UIColor *)cor{
@@ -50,7 +50,7 @@
 //                                opaque:NO
 //                        targetViewRect:CGRectMake(0,
 //                                                  0,
-//                                                  JobsMainScreen_WIDTH(nil),
+//                                                  JobsMainScreen_WIDTH(),
 //                                                  JobsWidth(46))];
     }return _cor;
 }
@@ -119,7 +119,7 @@ static dispatch_once_t static_choiceStadiumViewOnceToken;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(JobsMainScreen_WIDTH(nil)), JobsWidth(46) * [BaiShaETProjChoiceStadiumView createDataMutArr].count + JobsWidth(44) + JobsBottomSafeAreaHeight());
+    return CGSizeMake(JobsWidth(JobsMainScreen_WIDTH()), JobsWidth(46) * [BaiShaETProjChoiceStadiumView createDataMutArr].count + JobsWidth(44) + JobsBottomSafeAreaHeight());
 }
 #pragma mark —— 一些私有方法
 +(NSMutableArray<UIViewModel *> *)createDataMutArr{
@@ -215,7 +215,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.textLabel.textColor = HEXCOLOR(0x757575);
     cell.textLabel.font = notoSansRegular(16);
     cell.textLabelFrameOffsetX = JobsWidth(16);
-    cell.imageViewFrameOffsetX = JobsMainScreen_WIDTH(nil) - JobsWidth(50);
+    cell.imageViewFrameOffsetX = JobsMainScreen_WIDTH() - JobsWidth(50);
     cell.imageView.image = JobsIMG(@"红色的对勾");
     cell.imageView.jobsVisible = NO;
     

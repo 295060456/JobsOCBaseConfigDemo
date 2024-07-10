@@ -1033,6 +1033,50 @@
 //            break;
 //    }
 }
+/// 横屏通知的监听
+-(void)横屏通知的监听:(JobsSelectorBlock)block{
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        if(block)block(weakSelf,arg);
+        self.currentDeviceOrientation = UIDevice.currentDevice.orientation;
+        switch (UIDevice.currentDevice.orientation) {
+            case UIDeviceOrientationFaceUp:
+                NSLog(@"屏幕朝上平躺");
+                break;
+            case UIDeviceOrientationFaceDown:
+                NSLog(@"屏幕朝下平躺");
+                break;
+            case UIDeviceOrientationUnknown:
+                NSLog(@"未知方向");
+                break;
+            case UIDeviceOrientationLandscapeLeft:
+                NSLog(@"屏幕向左横置");
+                self.currentInterfaceOrientation = UIInterfaceOrientationLandscapeRight;
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;
+                break;
+            case UIDeviceOrientationLandscapeRight:
+                NSLog(@"屏幕向右橫置");
+                self.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft;
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeLeft;
+                break;
+            case UIDeviceOrientationPortrait:
+                NSLog(@"屏幕直立");
+                self.currentInterfaceOrientation = UIInterfaceOrientationPortrait;
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;
+                break;
+            case UIDeviceOrientationPortraitUpsideDown:
+                NSLog(@"屏幕直立，上下顛倒");
+                self.currentInterfaceOrientation = UIInterfaceOrientationPortraitUpsideDown;
+                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortraitUpsideDown;
+                break;
+            default:
+                NSLog(@"无法辨识");
+                break;
+            }
+        return @(self.currentDeviceOrientation);
+    },nil, self),UIDeviceOrientationDidChangeNotification,nil);
+}
 #pragma mark —— 键盘⌨️
 /**
  使用方法：

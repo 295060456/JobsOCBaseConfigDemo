@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_END
          [self.view addSubview:_hl];
          [_hl mas_makeConstraints:^(MASConstraintMaker *make) {
              make.centerX.equalTo(self.view);
-             make.width.mas_equalTo(JobsMainScreen_WIDTH(nil));
+             make.width.mas_equalTo(JobsMainScreen_WIDTH());
              make.top.equalTo(self.dropdownMenu.mas_bottom).offset(JobsWidth(5));
              switch (self.currentLanguageType) {
                  case HTTPRequestHeaderLanguageEn:{

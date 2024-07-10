@@ -34,6 +34,7 @@
 #import "JobsPullListAutoSizeView.h"
 #import "JobsTabBarCtrlConfig.h"
 #import "JobsSuspendBtn.h"
+#import "JobsMenuView.h"
 
 #if __has_include(<lottie-ios/Lottie.h>)
 #import <lottie-ios/Lottie.h>

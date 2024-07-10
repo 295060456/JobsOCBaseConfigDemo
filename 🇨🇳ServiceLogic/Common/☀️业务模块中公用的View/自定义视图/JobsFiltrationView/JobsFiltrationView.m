@@ -72,7 +72,7 @@ static dispatch_once_t static_filtrationViewOnceToken;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(134));
+    return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(134));
 }
 #pragma mark —— lazyLoad
 -(JobsHotLabelWithMultiLine *)hotLabel{
@@ -108,7 +108,7 @@ static dispatch_once_t static_filtrationViewOnceToken;
         _headerViewModel.textModel.font = UIFontWeightBoldSize(14);
         _headerViewModel.textModel.textAlignment = NSTextAlignmentLeft;
         _headerViewModel.bgCor = HEXCOLOR(0xFDFCF9);
-//        _headerViewModel.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(20));
+//        _headerViewModel.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(20));
     }return _headerViewModel;
 }
 
@@ -121,7 +121,7 @@ static dispatch_once_t static_filtrationViewOnceToken;
         _footerViewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         _footerViewModel.textModel.font = UIFontWeightBoldSize(14);
         _footerViewModel.bgCor = HEXCOLOR(0xFDFCF9);
-//        _footerViewModel.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(20));
+//        _footerViewModel.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(20));
     }return _footerViewModel;
 }
 

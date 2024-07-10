@@ -33,7 +33,7 @@
     if ([model isKindOfClass:UITableView.class]) {
         UITableView *tbv = (UITableView *)model;
         return tbv.mj_h;
-    }return JobsMainScreen_HEIGHT(nil);
+    }return JobsMainScreen_HEIGHT();
 }
 
 -(void)richElementsInCellWithModel:(VideoModel_Core *_Nullable)model{

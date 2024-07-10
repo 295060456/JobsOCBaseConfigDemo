@@ -34,7 +34,7 @@
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(id _Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(60));
+    return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(60));
 }
 #pragma mark —— JobsDoorInputViewProtocol
 -(UITextField *_Nullable)getTextField{
@@ -61,11 +61,11 @@
         [self addSubview:_textField];
         _textField.frame = CGRectMake(10,
                                10,
-                               JobsMainScreen_WIDTH(nil) - 20,
+                               JobsMainScreen_WIDTH() - 20,
                                self.mj_h - 20);
         _textField.x = JobsWidth(10);
         _textField.y = JobsWidth(10);
-        CGFloat TextFieldWidth = JobsMainScreen_WIDTH(nil) - JobsWidth(20);
+        CGFloat TextFieldWidth = JobsMainScreen_WIDTH() - JobsWidth(20);
         _textField.size = CGSizeMake(TextFieldWidth,
                                      self.mj_h - JobsWidth(30));
         @jobs_weakify(self)
@@ -102,7 +102,7 @@
 //        [_cancelBtn buttonAutoWidthByFont]; // 无效
         [self addSubview:_cancelBtn];
         _cancelBtn.size = CGSizeMake(JobsWidth(50), JobsWidth(30));
-        _cancelBtn.x = JobsMainScreen_WIDTH(nil) - _cancelBtn.size.width - JobsWidth(5);
+        _cancelBtn.x = JobsMainScreen_WIDTH() - _cancelBtn.size.width - JobsWidth(5);
         _cancelBtn.centerY = self.textField.centerY;
         [_cancelBtn layerBorderCor:UIColor.whiteColor andBorderWidth:1];
         [_cancelBtn cornerCutToCircleWithCornerRadius:8];

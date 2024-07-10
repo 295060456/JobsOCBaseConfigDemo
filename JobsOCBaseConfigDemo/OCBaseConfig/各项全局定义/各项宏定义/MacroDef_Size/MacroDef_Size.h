@@ -259,48 +259,31 @@ iPhone 15 Pro                                           1179 * 249             8
 iPhone 15 Pro Max                                   1290 * 249             83
 ----------------------------------------------------------
  */
-#pragma mark ——  横屏判定
-static inline BOOL JobsCheckLandscape(UIView * _Nullable view){
-    if (!view) return NO;
-    UIInterfaceOrientation currentOrientation = UIInterfaceOrientationUnknown;
-    if (@available(iOS 13.0, *)) {
-        /// 获取当前窗口的场景
-        UIWindowScene *windowScene = view.window.windowScene;
-        /// 获取当前窗口场景的界面方向
-        currentOrientation = windowScene.interfaceOrientation;
-    } else {
-        SuppressWdeprecatedDeclarationsWarning(currentOrientation = UIApplication.sharedApplication.statusBarOrientation;);
-    }
-    
-    if(currentOrientation == UIInterfaceOrientationPortraitUpsideDown ||
-       currentOrientation == UIInterfaceOrientationPortrait){
-        return NO;
-    }
-    
-    if(currentOrientation == UIInterfaceOrientationLandscapeLeft ||
-       currentOrientation == UIInterfaceOrientationLandscapeRight){
-        return YES;
-    }return NO;
-}
 #pragma mark —— 屏幕二维长宽数据输出
 static inline CGSize JobsMainScreen(void){
     return UIScreen.mainScreen.bounds.size;
 }
+#pragma mark ——  横屏判定
 /// 横屏模式下，正常的宽高反转
-static inline CGFloat JobsMainScreen_WIDTH(UIView * _Nullable view){
-    return JobsCheckLandscape(view) ? JobsMainScreen().height : JobsMainScreen().width;
+/// 应用程序的早期阶段，横屏的UI尚未更新，此时下列方法失效
+static inline BOOL JobsCheckLandscape(void){
+    return JobsMainScreen().width > JobsMainScreen().height;
 }
-/// 横屏模式下，正常的宽高反转
-static inline CGFloat JobsMainScreen_HEIGHT(UIView * _Nullable view){
-    return JobsCheckLandscape(view) ? JobsMainScreen().width : JobsMainScreen().height;
+
+static inline CGFloat JobsMainScreen_WIDTH(void){
+    return JobsCheckLandscape() ? JobsMainScreen().height : JobsMainScreen().width;
+}
+
+static inline CGFloat JobsMainScreen_HEIGHT(void){
+    return JobsCheckLandscape() ? JobsMainScreen().width : JobsMainScreen().height;
 }
 /// 寻找真正的高
 static inline CGFloat SCREEN_MAX_LENGTH(void){
-    return MAX(JobsMainScreen_WIDTH(nil), JobsMainScreen_HEIGHT(nil));
+    return MAX(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
 }
 /// 寻找真正的宽
 static inline CGFloat SCREEN_MIN_LENGTH(void){
-    return MIN(JobsMainScreen_WIDTH(nil), JobsMainScreen_HEIGHT(nil));
+    return MIN(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
 }
 #pragma mark —— 【比例尺】屏幕像素标准转化：输入原型图上的宽和高，对外输出App对应的移动设备的真实宽高
 /// 宽转化 JobsWidth(1) == 0.85333333333...9
@@ -414,7 +397,7 @@ static inline CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBa
                                             UINavigationController * _Nullable navigationController){
     CGFloat tabBarHeightByBottomSafeArea = JobsTabBarHeightByBottomSafeArea(tabBarController);
     CGFloat navigationBarAndStatusBarHeight = JobsNavigationBarAndStatusBarHeight(navigationController);
-    return JobsMainScreen_HEIGHT(nil) - tabBarHeightByBottomSafeArea - navigationBarAndStatusBarHeight;
+    return JobsMainScreen_HEIGHT() - tabBarHeightByBottomSafeArea - navigationBarAndStatusBarHeight;
 }
 #pragma mark —— 尺寸相关的结构体判定
 /// 结构体虽然分配了空间，但是里面的成员的值是随机的，特别是如果里面有指针的话，如果不初始化而直接访问，则会造成读取非法的内存地址的错误。

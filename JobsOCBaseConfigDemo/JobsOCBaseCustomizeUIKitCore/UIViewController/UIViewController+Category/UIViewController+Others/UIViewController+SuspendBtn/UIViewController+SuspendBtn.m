@@ -28,8 +28,8 @@ JobsKey(_suspendBtn)
         }];
         self.view.vc = weak_self;
         [self.view addSubview:SuspendBtn];
-        SuspendBtn.frame = CGRectMake(JobsMainScreen_WIDTH(nil) - JobsWidth(50) - JobsWidth(5),
-                                      JobsMainScreen_HEIGHT(nil) - JobsTabBarHeightByBottomSafeArea(nil) - JobsWidth(100),
+        SuspendBtn.frame = CGRectMake(JobsMainScreen_WIDTH() - JobsWidth(50) - JobsWidth(5),
+                                      JobsMainScreen_HEIGHT() - JobsTabBarHeightByBottomSafeArea(nil) - JobsWidth(100),
                                       JobsWidth(50),
                                       JobsWidth(50));
         [SuspendBtn cornerCutToCircleWithCornerRadius:SuspendBtn.width / 2];

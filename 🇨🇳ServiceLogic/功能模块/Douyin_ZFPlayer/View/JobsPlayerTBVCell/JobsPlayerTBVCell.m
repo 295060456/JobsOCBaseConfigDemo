@@ -51,7 +51,7 @@
 }
 #pragma mark —— BaseCellProtocol
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{
-    return JobsMainScreen_HEIGHT(nil);
+    return JobsMainScreen_HEIGHT();
 }
 
 -(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{

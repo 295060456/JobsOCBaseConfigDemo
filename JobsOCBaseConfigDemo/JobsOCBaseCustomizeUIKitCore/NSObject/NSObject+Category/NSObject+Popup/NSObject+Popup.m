@@ -79,9 +79,9 @@
     TFPopupParam *popupParameter = TFPopupParam.new;
     popupParameter.bubbleDirection = PopupDirectionBottom;
     if(viewHeight){
-        popupParameter.popupSize = CGSizeMake(JobsMainScreen_WIDTH(nil), viewHeight);
+        popupParameter.popupSize = CGSizeMake(JobsMainScreen_WIDTH(), viewHeight);
     }else{
-        popupParameter.popupSize = CGSizeMake(JobsMainScreen_WIDTH(nil), 300);
+        popupParameter.popupSize = CGSizeMake(JobsMainScreen_WIDTH(), 300);
     }
     popupParameter.dragEnable = YES;
     return popupParameter;
@@ -91,7 +91,7 @@
     TFPopupParam *popupParameter = TFPopupParam.new;
     popupParameter.bubbleDirection = PopupDirectionBottom;
     if(jobsZeroSizeValue(viewSize)){
-        popupParameter.popupSize = CGSizeMake(JobsMainScreen_WIDTH(nil), 300);
+        popupParameter.popupSize = CGSizeMake(JobsMainScreen_WIDTH(), 300);
     }else{
         popupParameter.popupSize = viewSize;
     }
@@ -119,7 +119,7 @@ JobsKey(_popupView)
     JobsNoticePopupView *PopupView = Jobs_getAssociatedObject(_popupView);
     if (!PopupView) {
         PopupView = JobsNoticePopupView.new;
-        PopupView.size = CGSizeMake(JobsMainScreen_WIDTH(nil) - 12 * 2, JobsMainScreen_HEIGHT(nil) * 2 / 3);
+        PopupView.size = CGSizeMake(JobsMainScreen_WIDTH() - 12 * 2, JobsMainScreen_HEIGHT() * 2 / 3);
         [PopupView richElementsInViewWithModel:UIViewModel.new];
         [self setPopupView:PopupView];
         Jobs_setAssociatedRETAIN_NONATOMIC(_popupView, PopupView)

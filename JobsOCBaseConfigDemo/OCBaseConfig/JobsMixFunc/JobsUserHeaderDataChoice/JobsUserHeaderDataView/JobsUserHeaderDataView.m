@@ -106,7 +106,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
     model = model ? : UIViewModel.new;
 //    model.usesTableViewHeaderView = YES;// 这个属性在外面设置
-    return CGSizeMake(JobsMainScreen_WIDTH(nil),
+    return CGSizeMake(JobsMainScreen_WIDTH(),
                       (model.usesTableViewHeaderView ? [JobsUserHeaderDataViewForHeaderInSection viewHeightWithModel:nil] : 0 ) +
                       JobsBottomSafeAreaHeight() +
                       JobsWidth(31) +

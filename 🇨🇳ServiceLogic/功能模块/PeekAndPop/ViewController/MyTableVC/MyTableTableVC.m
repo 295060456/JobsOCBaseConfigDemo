@@ -297,7 +297,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.textLabel.textColor = HEXCOLOR(0x757575);
     cell.textLabel.font = notoSansRegular(16);
     cell.textLabelFrameOffsetX = JobsWidth(16);
-    cell.imageViewFrameOffsetX = JobsMainScreen_WIDTH(nil) - JobsWidth(50);
+    cell.imageViewFrameOffsetX = JobsMainScreen_WIDTH() - JobsWidth(50);
     cell.imageView.image = JobsIMG(@"红色的对勾");
     cell.imageView.jobsVisible = NO;
     cell.backgroundColor = cell.contentView.backgroundColor = HEXCOLOR(0xFFFCF7);

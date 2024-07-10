@@ -382,6 +382,8 @@ BaseProtocol
 -(CGSize)checkScreenOrientation_UIInterfaceOrientationMask:(JobsReturnSizeByUIntegerBlock _Nullable)interfaceOrientationMaskBlock;
 /// UIInterfaceOrientation 检测屏幕方向
 -(CGSize)checkScreenOrientation_UIInterfaceOrientation:(JobsReturnSizeByNSIntegerBlock _Nullable)interfaceOrientationBlock;
+/// 横屏通知的监听
+-(void)横屏通知的监听:(JobsSelectorBlock)block;
 #pragma mark —— 键盘⌨️
 /**
  使用方法：

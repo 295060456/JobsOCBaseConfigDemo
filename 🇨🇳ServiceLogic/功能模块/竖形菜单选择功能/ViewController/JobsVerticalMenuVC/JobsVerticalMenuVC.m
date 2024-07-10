@@ -401,7 +401,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
         _tableView.frame = CGRectMake(0,
                                       JobsTopSafeAreaHeight() + JobsStatusBarHeight(),
                                       TableViewWidth,
-                                      JobsMainScreen_HEIGHT(nil) - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(appDelegate.tabBarVC) - EditBtnHeight);
+                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(appDelegate.tabBarVC) - EditBtnHeight);
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_tableView];
@@ -419,7 +419,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
     if (!_collectionView){
         _collectionView = [UICollectionView.alloc initWithFrame:CGRectMake(self.tableView.right,
                                                                            self.tableView.top,
-                                                                           JobsMainScreen_WIDTH(nil) - self.tableView.width,
+                                                                           JobsMainScreen_WIDTH() - self.tableView.width,
                                                                            self.tableView.height + EditBtnHeight)
                                            collectionViewLayout:self.flowLayout];
         [self dataLinkByCollectionView:_collectionView];

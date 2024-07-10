@@ -146,7 +146,7 @@
         @jobs_strongify(self)
         [self.btnHeightMutArr addObject:data];
     }];
-    btn.size = CGSizeMake((JobsMainScreen_WIDTH(nil) - JobsWidth(15 * 5)) / 4, JobsWidth(30));
+    btn.size = CGSizeMake((JobsMainScreen_WIDTH() - JobsWidth(15 * 5)) / 4, JobsWidth(30));
     [btn makeBtnLabelByShowingType:self.labelShowingType];
     return btn;
 }

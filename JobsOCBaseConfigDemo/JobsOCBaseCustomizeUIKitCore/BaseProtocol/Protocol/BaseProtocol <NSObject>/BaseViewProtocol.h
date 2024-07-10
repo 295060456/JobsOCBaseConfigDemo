@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BaseViewProtocol <BaseProtocol>
 
 @optional
+/// 是否允许托拽手势
+@property(nonatomic,assign)BOOL isAllowDrag;
 /// 退出当前页面的时候，除了当前页面出栈以外，你额外需要做的事情
 @property(nonatomic,strong,nullable)JobsReturnIDByIDBlock jobsBackBlock;
 /// 作用于-(void)layoutSubviews的圆切角参数
@@ -124,6 +126,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewProtocol_synthesize
 #define BaseViewProtocol_synthesize \
 \
+@synthesize isAllowDrag = _isAllowDrag;\
 @synthesize jobsBackBlock = _jobsBackBlock;\
 @synthesize layoutSubviewsRectCorner = _layoutSubviewsRectCorner;\
 @synthesize layoutSubviewsRectCornerSize = _layoutSubviewsRectCornerSize;\
@@ -137,6 +140,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewProtocol_dynamic
 #define BaseViewProtocol_dynamic \
 \
+@dynamic isAllowDrag;\
 @dynamic jobsBackBlock;\
 @dynamic layoutSubviewsRectCorner;\
 @dynamic layoutSubviewsRectCornerSize;\

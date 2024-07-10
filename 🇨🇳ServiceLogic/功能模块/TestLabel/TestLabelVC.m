@@ -102,7 +102,7 @@
 -(UIScrollView *)scrollView{
     if (!_scrollView) {
         _scrollView = UIScrollView.new;
-        _scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(nil), 2 * JobsMainScreen_HEIGHT(nil));
+        _scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(), 2 * JobsMainScreen_HEIGHT());
         [self.view addSubview:_scrollView];
         [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.gk_navigationBar.mas_bottom);
@@ -260,7 +260,7 @@
         _lab6.text = @"编译器自动管理内存地址，\n让程序员更加专注于\nAPP的业务。";
         [self.scrollView addSubview:_lab6];
         [_lab6 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(JobsMainScreen_WIDTH(nil));
+            make.width.mas_equalTo(JobsMainScreen_WIDTH());
             make.top.equalTo(self.lab5.mas_bottom).offset(20);
             make.centerX.equalTo(self.scrollView);
         }];
@@ -274,7 +274,7 @@
         _lab7.attributedText = self.attributedText;
         [self.scrollView addSubview:_lab7];
         [_lab7 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(JobsMainScreen_WIDTH(nil));
+            make.width.mas_equalTo(JobsMainScreen_WIDTH());
             make.top.equalTo(self.lab6.mas_bottom).offset(20);
             make.centerX.equalTo(self.scrollView);
         }];
@@ -363,7 +363,7 @@
         [_btn6 labelAutoWidthByFont];
         [self.scrollView addSubview:_btn6];
         [_btn6 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(nil), 20));
+            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), 20));
             make.top.equalTo(self.btn5.mas_bottom).offset(20);
             make.centerX.equalTo(self.scrollView);
         }];
@@ -384,7 +384,7 @@
         [_btn7 labelAutoWidthByFont];
         [self.scrollView addSubview:_btn7];
         [_btn7 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(nil), 20));
+            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), 20));
             make.top.equalTo(self.btn6.mas_bottom).offset(40);//K
             make.centerX.equalTo(self.scrollView);
         }];

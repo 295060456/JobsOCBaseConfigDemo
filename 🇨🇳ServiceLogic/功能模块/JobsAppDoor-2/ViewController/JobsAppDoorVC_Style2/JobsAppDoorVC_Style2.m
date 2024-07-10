@@ -178,9 +178,9 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         _loginContentView = JobsAppDoorLoginContentView.new;
         
         _loginContentView.x = 20;
-        _loginContentView.y = JobsMainScreen_HEIGHT(nil) / 4;
+        _loginContentView.y = JobsMainScreen_HEIGHT() / 4;
         _loginContentView.height = JobsAppDoorContentViewLoginHeight;
-        _loginContentView.width = JobsMainScreen_WIDTH(nil) - 40;
+        _loginContentView.width = JobsMainScreen_WIDTH() - 40;
         self.loginContentViewY = _loginContentView.y;
         [self.view addSubview:_loginContentView];
 
@@ -234,10 +234,10 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     if (!_registerContentView) {
         _registerContentView = JobsAppDoorRegisterContentView.new;
         
-        _registerContentView.x = JobsMainScreen_WIDTH(nil) + 20;
-        _registerContentView.y = JobsMainScreen_HEIGHT(nil) / 4;
+        _registerContentView.x = JobsMainScreen_WIDTH() + 20;
+        _registerContentView.y = JobsMainScreen_HEIGHT() / 4;
         _registerContentView.height = JobsAppDoorContentViewRegisterHeight;
-        _registerContentView.width = JobsMainScreen_WIDTH(nil) - 40;
+        _registerContentView.width = JobsMainScreen_WIDTH() - 40;
         self.registerContentViewY = _registerContentView.y;
         [self.view addSubview:_registerContentView];
         [_registerContentView richElementsInViewWithModel:nil];
@@ -271,10 +271,10 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     if (!_forgotCodeContentView) {
         _forgotCodeContentView = JobsAppDoorForgotCodeContentView.new;
         
-        _forgotCodeContentView.x = JobsMainScreen_WIDTH(nil) + 20;
-        _forgotCodeContentView.y = JobsMainScreen_HEIGHT(nil) / 4;
+        _forgotCodeContentView.x = JobsMainScreen_WIDTH() + 20;
+        _forgotCodeContentView.y = JobsMainScreen_HEIGHT() / 4;
         _forgotCodeContentView.height = JobsAppDoorContentViewFindPasswordHeight;
-        _forgotCodeContentView.width = JobsMainScreen_WIDTH(nil) - 40;
+        _forgotCodeContentView.width = JobsMainScreen_WIDTH() - 40;
         self.forgotCodeContentViewY = _forgotCodeContentView.y;
         [self.view addSubview:_forgotCodeContentView];
         [_forgotCodeContentView richElementsInViewWithModel:nil];
@@ -332,7 +332,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         [_customerServiceBtn buttonAutoFontByWidth];
         [self.view addSubview:_customerServiceBtn];
         [_customerServiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(nil) / 2.5, JobsMainScreen_WIDTH(nil) / 9));
+            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 2.5, JobsMainScreen_WIDTH() / 9));
             make.centerX.equalTo(self.view);
             make.top.mas_equalTo(self.loginContentView.top + self.loginContentView.height + 20);
         }];
