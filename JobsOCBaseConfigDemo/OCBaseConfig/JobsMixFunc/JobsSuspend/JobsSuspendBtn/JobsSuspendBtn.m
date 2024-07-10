@@ -18,8 +18,9 @@
     if (self = [super init]) {
         self.backgroundColor = self.backgroundColor ? :JobsBlackColor;
 
-        [self addTarget:self touchUpInsideAction:[self jobsSelectorBlock:^id _Nullable(id _Nullable weakSelf,
-                                                                                       id _Nullable arg) {
+        [self addTarget:self
+    touchUpInsideAction:[self jobsSelectorBlock:^id _Nullable(id _Nullable weakSelf,
+                                                              id _Nullable arg) {
             NSLog(@"Hello Jobs");
             return nil;
         }]];

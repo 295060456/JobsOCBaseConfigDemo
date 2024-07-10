@@ -23,8 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 /**
 使用方法：
- 如果是View：在需要作用的UIView的子类
- 
+ # 如果是View：在需要作用的UIView的子类
  @property(nonatomic,weak)UIViewController *vcer;//这个属性掌管悬浮效果，具体实现见  @interface UIView (SuspendView)
  -(void)drawRect:(CGRect)rect{
      [super drawRect:rect];
@@ -37,27 +36,35 @@ NS_ASSUME_NONNULL_END
      }
  }
  
- 如果是ViewController
-  #pragma mark —— lazyLoad
-  -(JobsSuspendBtn *)suspendBtn{
-      if (!_suspendBtn) {
-          _suspendBtn = JobsSuspendBtn.new;
-          [_suspendBtn setImage:JobsBuddleIMG(@"bundle",
-                                           @"Others",
-                                           nil,
-                                           @"旋转")
-                       forState:UIControlStateNormal];
-          _suspendBtn.panRcognize.enabled = YES;//悬浮效果必须要的参数
-          @jobs_weakify(self)
-          self.view.vc = weak_self;
-          [self.view addSubview:_suspendBtn];
-          _suspendBtn.frame = CGRectMake(80, 100, 50, 50);
-          [[_suspendBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-              @jobs_strongify(self)
-              [self->_suspendBtn rotateAnimation:YES];
-              
-          }];
-      }return _suspendBtn;
-  }
+ # 如果是ViewController
+ -(JobsSuspendBtn *)suspendBtn{
+     JobsSuspendBtn *SuspendBtn = Jobs_getAssociatedObject(_suspendBtn);
+     if (!SuspendBtn) {
+         SuspendBtn = JobsSuspendBtn.new;
+         SuspendBtn.normalImage = JobsIMG(@"旋转");
+         SuspendBtn.isAllowDrag = YES;//悬浮效果必须要的参数
+         @jobs_weakify(self)
+         [SuspendBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+             @jobs_strongify(self)
+             x.selected = !x.selected;
+             NSLog(@"%@",x.selected ? JobsInternationalization(@"开始旋转") : JobsInternationalization(@"停止旋转"));
+ //            [x rotateAnimation:x.selected];
+             if (self.objectBlock) self.objectBlock(x);
+             return nil;
+         }];
+         self.view.vc = weak_self;
+         [self.view addSubview:SuspendBtn];
+         SuspendBtn.frame = CGRectMake(JobsMainScreen_WIDTH(nil) - JobsWidth(50) - JobsWidth(5),
+                                       JobsMainScreen_HEIGHT(nil) - JobsTabBarHeightByBottomSafeArea(nil) - JobsWidth(100),
+                                       JobsWidth(50),
+                                       JobsWidth(50));
+         [SuspendBtn cornerCutToCircleWithCornerRadius:SuspendBtn.width / 2];
+         Jobs_setAssociatedRETAIN_NONATOMIC(_suspendBtn, SuspendBtn)
+     }return SuspendBtn;
+ }
+ 
+ -(void)setSuspendBtn:(JobsSuspendBtn *)suspendBtn{
+     Jobs_setAssociatedRETAIN_NONATOMIC(_suspendBtn, suspendBtn)
+ }
 
 */

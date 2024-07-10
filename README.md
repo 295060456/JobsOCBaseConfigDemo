@@ -794,28 +794,140 @@ NSObject <|-- BaseProtocol
   * 继承和分类应该结合使用，功能各有优劣
   * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用
 
-### 14、度量衡适配。[**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 14、度量衡 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 关注文件： [**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
+
+* <font color=red>**当设备横竖屏切换的时候，设备宽高定义会互相反转**</font>
 
 * **当前设备是否是全面屏**：`static inline BOOL isFullScreen(void) ` 
+
+* 当前设备尺寸
+  
+  * 设备宽：定义x轴为宽
+  
+     ```objective-c
+     /// 横屏模式下，正常的宽高反转
+     static inline CGFloat JobsMainScreen_WIDTH(UIView * _Nullable view){
+         return JobsCheckLandscape(view) ? JobsMainScreen().height : JobsMainScreen().width;
+     }
+     ```
+  
+  * 设备高：定义y轴为高
+  
+    ```objective-c
+    /// 横屏模式下，正常的宽高反转
+    static inline CGFloat JobsMainScreen_HEIGHT(UIView * _Nullable view){
+        return JobsCheckLandscape(view) ? JobsMainScreen().width : JobsMainScreen().height;
+    }
+    ```
+  
 * **全局比例尺**
-  * `static inline CGFloat JobsWidth(CGFloat width)`  
-  * `static inline CGFloat JobsHeight(CGFloat height)`
+  
+  * ```objective-c
+    static inline CGFloat JobsWidth(CGFloat width){
+        return (SCREEN_MIN_LENGTH() / 375) * width; 
+    }
+    ```
+  
+  * ```objective-c
+    static inline CGFloat JobsHeight(CGFloat height){
+        return (SCREEN_MAX_LENGTH() / 743) * height; //743 对应原型图的高
+    }
+    ```
+  
 * **安全距离**
-  * 顶部的安全距离：`static inline CGFloat JobsTopSafeAreaHeight(void)`
-  * 底部的安全距离，全面屏手机为34pt，非全面屏手机为0pt：`static inline CGFloat JobsBottomSafeAreaHeight(void)`
+  
+  * 顶部的安全距离
+  
+    ```objective-c
+    static inline CGFloat JobsTopSafeAreaHeight(void){
+        if (@available(iOS 11.0, *)) {
+            return jobsGetMainWindow().safeAreaInsets.top;
+        } else return 0.f;
+    }
+    ```
+  
+  * 底部的安全距离：全面屏手机为**34pt**，非全面屏手机为**0pt** 
+  
+    ```objective-c
+    static inline CGFloat JobsBottomSafeAreaHeight(void){
+        if (@available(iOS 11.0, *)) {
+            return jobsGetMainWindow().safeAreaInsets.bottom;
+        } else return 0.f;
+    }
+    ```
+  
 * **状态栏高度**
+  
   * `static inline CGFloat JobsStatusBarHeightByAppleIncData(void) `
-  * `static inline CGFloat JobsRectOfStatusbar(void)`
-  * `static inline CGFloat JobsStatusBarHeight(void)`
+  
+  * ```objective-c
+    static inline CGFloat JobsRectOfStatusbar(void){
+        SuppressWdeprecatedDeclarationsWarning(
+            if (@available(iOS 13.0, *)){
+                UIStatusBarManager *statusBarManager = jobsGetMainWindow().windowScene.statusBarManager;
+                return statusBarManager.statusBarHidden ? 0 : statusBarManager.statusBarFrame.size.height;
+            }else return UIApplication.sharedApplication.statusBarFrame.size.height;);
+    }
+    ```
+  
+  * ```objective-c
+    static inline CGFloat JobsStatusBarHeight(void){
+        if (@available(iOS 11.0, *)) {
+            return jobsGetMainWindow().safeAreaInsets.top;
+        } else return JobsRectOfStatusbar();
+    }
+    ```
+  
 * **导航栏高度**
-  * `static inline CGFloat JobsNavigationHeight(UINavigationController * _Nullable navigationController)`
+  * ```objective-c
+    static inline CGFloat JobsNavigationHeight(UINavigationController * _Nullable navigationController){
+        if (navigationController) {
+            return navigationController.navigationBar.frame.size.height;
+        }else return 44.f;
+    }
+    ```
+  
 * **状态栏 + 导航栏高度**
-  * `static inline CGFloat JobsNavigationBarAndStatusBarHeight(UINavigationController * _Nullable navigationController)`
+  * ```objective-c
+    /// 非刘海屏：状态栏高度(20.f) + 导航栏高度(44.f) = 64.f
+    /// 刘海屏系列：状态栏高度(44.f) + 导航栏高度(44.f) = 88.f
+    static inline CGFloat JobsNavigationBarAndStatusBarHeight(UINavigationController * _Nullable navigationController){
+        return JobsStatusBarHeight() + JobsNavigationHeight(navigationController);
+    }
+    ```
+  
 * **Tabbar高度**：全面屏手机比普通手机多34的安全区域
-  * `static inline CGFloat JobsTabBarHeight(UITabBarController * _Nullable tabBarController)`
-  * `static inline CGFloat JobsTabBarHeightByBottomSafeArea(UITabBarController * _Nullable tabBarController)`<font color=red>**包括了底部安全区域的TabBar高度，一般用这个**</font>
+  * ```objective-c
+    static inline CGFloat JobsTabBarHeight(UITabBarController * _Nullable tabBarController){
+        //因为tabbar可以自定义高度，所以这个地方返回系统默认的49像素的高度
+        if (tabBarController) {
+            return tabBarController.tabBar.frame.size.height;
+        }else return 49.f;
+    }
+    ```
+  
+  * <font color=red>**包括了底部安全区域的TabBar高度，一般用这个**</font>
+  
+    ```objective-c
+    /// tabbar高度：【包括了底部安全区域的TabBar高度，一般用这个】
+    static inline CGFloat JobsTabBarHeightByBottomSafeArea(UITabBarController * _Nullable tabBarController){
+        return JobsTabBarHeight(tabBarController) + JobsBottomSafeAreaHeight();
+    }
+    ```
+  
 * **除开 tabBarController 和 navigationController 的内容可用区域的大小**
-  * `static inline CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBarController, UINavigationController * _Nullable navigationController)`
+  
+  * ```objective-c
+    #pragma mark ——  除开 tabBarController 和 navigationController 的内容可用区域的大小
+    static inline CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBarController,
+                                                UINavigationController * _Nullable navigationController){
+        CGFloat tabBarHeightByBottomSafeArea = JobsTabBarHeightByBottomSafeArea(tabBarController);
+        CGFloat navigationBarAndStatusBarHeight = JobsNavigationBarAndStatusBarHeight(navigationController);
+        return JobsMainScreen_HEIGHT(nil) - tabBarHeightByBottomSafeArea - navigationBarAndStatusBarHeight;
+    }
+    ```
 
 ### 15、`NavigationBar` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -1725,10 +1837,65 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   * 关注实现类：[**@interface UIViewController (XLBubbleTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition)
 
-#### 10.4、悬浮按钮
+#### 10.4、<font color=red>**悬浮视图**</font>
 
-  * 关注实现类：[**@interface UIViewController (SuspendBtn)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+SuspendBtn)
-  * 关注实现类：[**@interface UIView (SuspendView)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+SuspendView)
+  * 以分类的方式，定义在`view`层，针对全局所有的`UIView *`
+
+    * 关注实现类：[**@interface UIViewController (SuspendBtn)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+SuspendBtn)
+    * 关注实现类：[**@interface UIView (SuspendView)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+SuspendView)
+
+  * 使用方法
+
+    * **在需要作用的UIView的子类**
+
+      * 关键代码（外界传进来的，父承接的VC）：<font color=red>self.vc = self.vcer;</font>
+      * 关键代码（是否允许拖动手势 <font color=red>= isAllowDrag</font>）：<font color=red>self.panRcognize.enabled = YES;</font>
+
+      ```objective-c
+      -(void)drawRect:(CGRect)rect{
+           [super drawRect:rect];
+      	   //开启悬浮效果
+           if (self.isSuspend) {
+               self.vc = self.vcer;//外界传进来的，父承接的VC
+               self.panRcognize.enabled = YES;
+           }else{
+               self.vc = nil;
+           }
+       }
+      ```
+
+    * 在某个控制器上添加某个悬浮视图（按钮为例）
+
+      * 关键代码：<font color=red>self.view.vc = weak_self;</font>
+      * 关键代码（悬浮效果必须要的参数）：<font color=red>SuspendBtn.isAllowDrag = YES;</font>
+
+      ```objective-c
+      -(JobsSuspendBtn *)suspendBtn{
+          JobsSuspendBtn *SuspendBtn = Jobs_getAssociatedObject(_suspendBtn);
+          if (!SuspendBtn) {
+              SuspendBtn = JobsSuspendBtn.new;
+              SuspendBtn.normalImage = JobsIMG(@"旋转");
+              SuspendBtn.isAllowDrag = YES;//悬浮效果必须要的参数
+              @jobs_weakify(self)
+              [SuspendBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+                  @jobs_strongify(self)
+                  x.selected = !x.selected;
+                  NSLog(@"%@",x.selected ? JobsInternationalization(@"开始旋转") : JobsInternationalization(@"停止旋转"));
+      //            [x rotateAnimation:x.selected];
+                  if (self.objectBlock) self.objectBlock(x);
+                  return nil;
+              }];
+              self.view.vc = weak_self;
+              [self.view addSubview:SuspendBtn];
+              SuspendBtn.frame = CGRectMake(JobsMainScreen_WIDTH(nil) - JobsWidth(50) - JobsWidth(5),
+                                            JobsMainScreen_HEIGHT(nil) - JobsTabBarHeightByBottomSafeArea(nil) - JobsWidth(100),
+                                            JobsWidth(50),
+                                            JobsWidth(50));
+              [SuspendBtn cornerCutToCircleWithCornerRadius:SuspendBtn.width / 2];
+              Jobs_setAssociatedRETAIN_NONATOMIC(_suspendBtn, SuspendBtn)
+          }return SuspendBtn;
+      }
+      ```
 
 ####  10.5、防止过多的`presented`模态推出`UIViewController`
   * 关注实现类：[**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)

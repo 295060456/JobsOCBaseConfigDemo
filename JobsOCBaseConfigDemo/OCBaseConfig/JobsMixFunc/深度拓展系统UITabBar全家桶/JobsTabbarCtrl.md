@@ -519,11 +519,19 @@ TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优
     }
     ```
 
-### 六、使用
+## 六、使用
 
 ```objective-c
-self.configMutArr = self.makeConfigMutArr;
-_window.rootViewController = RootViewController;
+-(UIWindow *)window{
+    if (!_window) {
+        _window = UIWindow.new;
+        _window.frame = UIScreen.mainScreen.bounds;
+        self.configMutArr = self.makeConfigMutArr;
+        _window.rootViewController = RootViewController;
+//        [self.tabBarVC ppBadge:YES];
+        [_window makeKeyAndVisible];
+    }return _window;
+}
 ```
 
 * **@implementation AppDelegate**

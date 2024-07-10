@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "JobsMenuView.h"
 #import "JobsTabbarVC.h"
 #import "Other.h"
 @import UserNotifications;/// 配置本地通知
@@ -24,6 +25,7 @@ UIApplicationDelegate
 >
 /// UI
 @property(nonatomic,strong)UIWindow *window;/// 仅仅为了iOS 13 版本向下兼容而存在
+@property(nonatomic,strong)JobsMenuView *menuView;
 /// Data
 @property(readonly,strong)NSPersistentCloudKitContainer *persistentContainer;
 @property(nonatomic,assign)BOOL allowOrentitaionRotation;

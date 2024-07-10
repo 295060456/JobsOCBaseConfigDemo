@@ -3941,6 +3941,7 @@
 		844B02BD2764C95E00B0513D /* AppDelegate & SceneDelegate */ = {
 			isa = PBXGroup;
 			children = (
+				CE5499B12C3E642E008487E0 /* 菜单 */,
 				844B02BE2764C96400B0513D /* AppDelegate */,
 				844B02BF2764C96B00B0513D /* SceneDelegate */,
 			);
@@ -3952,7 +3953,6 @@
 			children = (
 				844B02102764C8EE00B0513D /* AppDelegate.h */,
 				844B02112764C8EE00B0513D /* AppDelegate.m */,
-				CE5499B12C3E642E008487E0 /* 菜单 */,
 				84CA5CC62789587900E46E71 /* AppDelegate+Func */,
 				84CA5CC92789587900E46E71 /* AppDelegate+UIApplicationDelegate */,
 			);

@@ -294,22 +294,22 @@ static inline CGFloat JobsMainScreen_WIDTH(UIView * _Nullable view){
 static inline CGFloat JobsMainScreen_HEIGHT(UIView * _Nullable view){
     return JobsCheckLandscape(view) ? JobsMainScreen().width : JobsMainScreen().height;
 }
-
+/// 寻找真正的高
 static inline CGFloat SCREEN_MAX_LENGTH(void){
     return MAX(JobsMainScreen_WIDTH(nil), JobsMainScreen_HEIGHT(nil));
 }
-
+/// 寻找真正的宽
 static inline CGFloat SCREEN_MIN_LENGTH(void){
     return MIN(JobsMainScreen_WIDTH(nil), JobsMainScreen_HEIGHT(nil));
 }
 #pragma mark —— 【比例尺】屏幕像素标准转化：输入原型图上的宽和高，对外输出App对应的移动设备的真实宽高
 /// 宽转化 JobsWidth(1) == 0.85333333333...9
 static inline CGFloat JobsWidth(CGFloat width){
-    return (MIN(JobsMainScreen_WIDTH(nil), JobsMainScreen_HEIGHT(nil)) / 375) * width; //375 对应原型图的宽 在iph 12 pro max 此系数 = 1.1413333333333333
+    return (SCREEN_MIN_LENGTH() / 375) * width; //375 对应原型图的宽 在iph 12 pro max 此系数 = 1.1413333333333333
 }
 /// 高转化 JobsHeight(1) == 0.93270524899057872
 static inline CGFloat JobsHeight(CGFloat height){
-    return (JobsMainScreen_HEIGHT(nil) / 743) * height; //743 对应原型图的高
+    return (SCREEN_MAX_LENGTH() / 743) * height; //743 对应原型图的高
 }
 #import "MacroDef_Func.h"/// 提到最前面，就会因为编译顺序的问题报错
 #pragma mark —— 安全区域
@@ -319,7 +319,7 @@ static inline CGFloat JobsTopSafeAreaHeight(void){
         return jobsGetMainWindow().safeAreaInsets.top;
     } else return 0.f;
 }
-/// 底部的安全距离，全面屏手机为34pt，非全面屏手机为0pt
+/// 底部的安全距离：全面屏手机为34pt，非全面屏手机为0pt
 static inline CGFloat JobsBottomSafeAreaHeight(void){
     if (@available(iOS 11.0, *)) {
         return jobsGetMainWindow().safeAreaInsets.bottom;
