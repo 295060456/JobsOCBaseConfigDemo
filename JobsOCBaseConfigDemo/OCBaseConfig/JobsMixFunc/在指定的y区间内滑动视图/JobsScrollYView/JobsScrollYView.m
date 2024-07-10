@@ -78,7 +78,7 @@ static dispatch_once_t static_scrollYViewOnceToken;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
+    return CGSizeMake(JobsMainScreen_WIDTH(nil), JobsMainScreen_HEIGHT(nil));
 }
 #pragma mark —— 一些私有方法
 - (void)setupGesture {
@@ -96,8 +96,8 @@ static dispatch_once_t static_scrollYViewOnceToken;
         }
 
         if (sender.state == UIGestureRecognizerStateChanged) {
-            CGFloat maxH = JobsMainScreen_HEIGHT() / 2 + 初始位置;
-            CGFloat minH = JobsMainScreen_HEIGHT() / 2 + 终点位置;
+            CGFloat maxH = JobsMainScreen_HEIGHT(nil) / 2 + 初始位置;
+            CGFloat minH = JobsMainScreen_HEIGHT(nil) / 2 + 终点位置;
             // 计算新的位置
             CGFloat newY = self.initialTouchPoint.y + translation.y;
             // 限制在 minY 和 maxY 之间

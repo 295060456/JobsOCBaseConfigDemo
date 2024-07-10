@@ -66,7 +66,7 @@
 }
 #pragma mark —— 一些公有方法
 -(CGSize)getTopLineLabSize{
-    return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(2));
+    return CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(2));
 }
 #pragma mark —— 私有方法
 -(void)重定义父类控件的距离{
@@ -96,7 +96,7 @@
         _topLineLab.backgroundColor = HEXCOLOR(0xF8DA87);
         [self.view addSubview:_topLineLab];
         [_topLineLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(2)));
+            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(2)));
             make.centerX.equalTo(self.view);
             make.top.equalTo(self.gk_navigationBar.mas_bottom);
         }];

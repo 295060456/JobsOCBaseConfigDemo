@@ -85,7 +85,7 @@ static dispatch_once_t static_shareViewOnceToken;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(148));
+    return CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(148));
 }
 #pragma mark —— 一些私有方法
 /// 下拉刷新 （子类要进行覆写）

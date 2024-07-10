@@ -109,7 +109,7 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
         config.humpOffsetY = 0;
         config.lottieName = nil;
         config.xOffset = JobsWidth(5);
-        config.tabBarItemWidth = JobsWidth(100);
+        config.tabBarItemWidth = JobsWidth(50);
         config.tag = ConfigMutArr.count + 1;
         [ConfigMutArr addObject:config];
     }
@@ -150,10 +150,10 @@ didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
     completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
 }
 /// 一进入App就横屏
-//- (UIInterfaceOrientationMask)application:(UIApplication *)application
-//  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-//    return UIInterfaceOrientationMaskLandscape;
-//}
+- (UIInterfaceOrientationMask)application:(UIApplication *)application
+  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return UIInterfaceOrientationMaskLandscape;
+}
 #pragma mark —— lazyLoad
 /// 仅仅为了iOS 13 版本向下兼容而存在
 -(UIWindow *)window{

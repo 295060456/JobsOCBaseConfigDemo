@@ -144,7 +144,7 @@
   echo "桌面的Volumes文件夹内容已成功复制到/Library/Developer/CoreSimulator/Volumes。"
   ```
 
-### 4、lldb <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 4、`lldb` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 ```shell
 (lldb) target list
@@ -247,7 +247,9 @@ Current targets:
 
     ![image-20240629161626945](./assets/image-20240629161626945.png)
 
-### 7、重写打印输出 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 7、打印 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+#### 7.1、重写打印输出
 
 * 关注文件：[**MacroDef_Log.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Sys/MacroDef_Log.h)
 
@@ -318,8 +320,35 @@ Current targets:
     label.jobsLogPoint(@"打印的时候额外添加的标识字符");
     label.jobsLogSize(@"打印的时候额外添加的标识字符");
     ```
+  
+#### 7.2、利用Runtime的机制打印类的内容
 
-### 8、iOS xcode 代码块，提升编码效率必备之首选 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+* 返回并打印成员变量列表
+
+  ```objective-c
+  -(NSMutableArray <NSString *>*)printIvarList;
+  ```
+
+* 返回并打印属性列表
+
+  ```objective-c
+  -(NSMutableArray <NSString *>*)printPropertyList;
+  ```
+
+* 返回并打印方法列表
+
+  ````objective-c
+  -(NSMutableArray <NSString *>*)printMethodList;
+  ````
+
+* 返回并打印协议列表
+
+  ```objective-c
+  -(NSMutableArray <NSString *>*)printProtocolList;
+  ```
+
+
+### 8、iOS xcode <font color=red>代码块</font>，提升编码效率必备之首选 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 * 脚本自动化：[**`【MacOS】安装JobsCodeSnippets.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%AE%89%E8%A3%85JobsCodeSnippets.command)
@@ -1840,7 +1869,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 14、对`NSUserDefaults.standardUserDefaults` 的二次封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-### 14.1、使用<font color=red>**宏定义**</font>对`NSUserDefaults.standardUserDefaults` 的二次封装
+#### 14.1、使用<font color=red>**宏定义**</font>对`NSUserDefaults.standardUserDefaults` 的二次封装
 
 * 关注实现类：[**`JobsUserDefaultDefine.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSUserDefaults/JobsUserDefaultDefine.h)
 
@@ -1952,7 +1981,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     JobsUserDefaultSynchronize
     ```
 
-### 14.2、以<font color=red>**分类**</font>的形式对`NSUserDefaults.standardUserDefaults` 的二次封装
+#### 14.2、以<font color=red>**分类**</font>的形式对`NSUserDefaults.standardUserDefaults` 的二次封装
 
 * 关注实现类：[**`@interface NSUserDefaults (Manager)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSUserDefaults/NSUserDefaults+Category/NSUserDefaults+Manager)
 

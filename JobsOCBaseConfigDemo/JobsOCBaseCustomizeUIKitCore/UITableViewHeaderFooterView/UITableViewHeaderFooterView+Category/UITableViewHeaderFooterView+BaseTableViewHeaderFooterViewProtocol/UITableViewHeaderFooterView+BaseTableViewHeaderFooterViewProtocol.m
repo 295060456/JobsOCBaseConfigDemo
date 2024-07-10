@@ -23,7 +23,7 @@
 +(CGRect)viewFrameWithModel:(id _Nullable)model{
     return CGRectMake(0,
                       0,
-                      JobsMainScreen_WIDTH(),
+                      JobsMainScreen_WIDTH(nil),
                       JobsWidth(5));
 }
 

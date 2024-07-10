@@ -8,8 +8,8 @@
 
 #import "JobsBaseTableViewCell.h"
 
-#define UITableViewCellTitleWidth JobsMainScreen_WIDTH() * 2 / 3
-#define UITableViewCellSubTitleWidth JobsMainScreen_WIDTH() / 3
+#define UITableViewCellTitleWidth JobsMainScreen_WIDTH(nil) * 2 / 3
+#define UITableViewCellSubTitleWidth JobsMainScreen_WIDTH(nil) / 3
 
 @interface JobsBaseTableViewCell ()
 /// Data

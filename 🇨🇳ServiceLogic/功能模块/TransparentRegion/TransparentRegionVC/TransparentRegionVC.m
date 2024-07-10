@@ -90,7 +90,7 @@
     if (!_scrollView) {
         _scrollView = UIScrollView.new;
         _scrollView.backgroundColor = [UIColor redColor];
-        _scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT() * 2);
+        _scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(nil), JobsMainScreen_HEIGHT(nil) * 2);
         [self.view addSubview:_scrollView];
         [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.bottom.equalTo(self.view);

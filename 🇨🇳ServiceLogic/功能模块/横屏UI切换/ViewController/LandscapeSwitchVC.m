@@ -271,8 +271,8 @@ referenceSizeForFooterInSection:(NSInteger)section{
 - (CGSize)collectionView:(UICollectionView *)collectionView
 layout:(UICollectionViewLayout *)collectionViewLayout
 sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(JobsMainScreen_WIDTH() / 2 - 20, JobsMainScreen_WIDTH() / 2 - 20);
-//    return CGSizeMake(JobsMainScreen_WIDTH() / 3 - 20 * 2, JobsMainScreen_WIDTH() / 3 - 20 * 2);
+    return CGSizeMake(JobsMainScreen_WIDTH(nil) / 2 - 20, JobsMainScreen_WIDTH(nil) / 2 - 20);
+//    return CGSizeMake(JobsMainScreen_WIDTH(nil) / 3 - 20 * 2, JobsMainScreen_WIDTH(nil) / 3 - 20 * 2);
 }
 /// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView

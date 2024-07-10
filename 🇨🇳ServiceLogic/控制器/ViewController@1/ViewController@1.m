@@ -244,7 +244,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableFooterView.font = UIFontWeightRegularSize(12);
         _tableFooterView.textAlignment = NSTextAlignmentCenter;
         _tableFooterView.textColor = HEXCOLOR(0xB0B0B0);
-//        _tableFooterView.size = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(48));
+//        _tableFooterView.size = CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(48));
         [_tableFooterView makeLabelByShowingType:UILabelShowingType_03];
     }return _tableFooterView;
 }

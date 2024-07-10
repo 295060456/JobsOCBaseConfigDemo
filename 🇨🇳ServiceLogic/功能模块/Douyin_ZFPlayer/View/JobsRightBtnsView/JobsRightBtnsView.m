@@ -75,7 +75,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(50), JobsMainScreen_HEIGHT()/ 4);
+    return CGSizeMake(JobsWidth(50), JobsMainScreen_HEIGHT(nil)/ 4);
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】

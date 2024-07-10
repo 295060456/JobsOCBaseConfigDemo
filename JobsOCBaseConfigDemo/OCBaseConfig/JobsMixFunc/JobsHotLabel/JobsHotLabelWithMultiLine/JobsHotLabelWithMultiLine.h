@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_END
          _headerViewModel.textModel.font = UIFontWeightBoldSize(14);
          _headerViewModel.textModel.textAlignment = NSTextAlignmentLeft;
          _headerViewModel.bgCor = HEXCOLOR(0xFDFCF9);
- //        _headerViewModel.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(20));
+ //        _headerViewModel.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(20));
      }return _headerViewModel;
  }
 
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_END
          _footerViewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
          _footerViewModel.textModel.font = UIFontWeightBoldSize(14);
          _footerViewModel.bgCor = HEXCOLOR(0xFDFCF9);
- //        _footerViewModel.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(20));
+ //        _footerViewModel.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(20));
      }return _footerViewModel;
  }
 

@@ -293,7 +293,7 @@ gestureRecognizerBegan:(UILongPressGestureRecognizer *)longPgr
     [UIView animateWithDuration:0.25f
                      animations:^{
         @strongify(self)
-        self.postDelView.y = JobsMainScreen_HEIGHT() - self->JobsPostDelViewHeight;
+        self.postDelView.y = JobsMainScreen_HEIGHT(nil) - self->JobsPostDelViewHeight;
     }];
 }
 
@@ -316,7 +316,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
     [UIView animateWithDuration:0.25f
                      animations:^{
         @jobs_strongify(self)
-        self.postDelView.y = JobsMainScreen_HEIGHT();
+        self.postDelView.y = JobsMainScreen_HEIGHT(nil);
     } completion:^(BOOL finished) {
         @jobs_strongify(self)
         [self.postDelView richElementsInViewWithModel:@(NO)];
@@ -386,7 +386,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         [_postPhotoView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view).offset(JobsWidth(10));
             make.top.equalTo(self.tipsLab.mas_bottom).offset(JobsWidth(20));
-            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() - JobsWidth(10) * 2, JobsWidth(600)));
+            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(nil) - JobsWidth(10) * 2, JobsWidth(600)));
         }];
     }return _postPhotoView;
 }

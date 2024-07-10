@@ -90,8 +90,8 @@
         _countDown.textColor = self.countDownTextColor;
         _countDown.font = [UIFont boldSystemFontOfSize:100];
         _countDown.textAlignment = 1;
-        _countDown.x = (JobsMainScreen_WIDTH() - 100) / 2;
-        _countDown.y = (JobsMainScreen_HEIGHT() - 100) / 2;
+        _countDown.x = (JobsMainScreen_WIDTH(nil) - 100) / 2;
+        _countDown.y = (JobsMainScreen_HEIGHT(nil) - 100) / 2;
         _countDown.width = _countDown.height = 100;
         [self.effectView addSubview:_countDown];
     }return _countDown;

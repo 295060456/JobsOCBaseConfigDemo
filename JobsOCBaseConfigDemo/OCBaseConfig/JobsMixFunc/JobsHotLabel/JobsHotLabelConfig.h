@@ -33,7 +33,7 @@
 #endif
 
 #ifndef JobsSearchShowHotwordsTBVCellWidth
-#define JobsSearchShowHotwordsTBVCellWidth JobsMainScreen_WIDTH()
+#define JobsSearchShowHotwordsTBVCellWidth JobsMainScreen_WIDTH(nil)
 #endif
 
 #endif /* JobsHotLabelConfig_h */

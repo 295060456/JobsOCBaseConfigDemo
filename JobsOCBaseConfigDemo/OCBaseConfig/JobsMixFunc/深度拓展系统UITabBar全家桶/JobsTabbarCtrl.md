@@ -518,3 +518,176 @@ TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优
         }return _pullListAutoSizeViewMutArr;
     }
     ```
+
+### 六、使用
+
+```objective-c
+self.configMutArr = self.makeConfigMutArr;
+_window.rootViewController = RootViewController;
+```
+
+* **@implementation AppDelegate**
+
+  ```objective-c
+  -(NSMutableArray <JobsTabBarCtrlConfig *>*)makeConfigMutArr{
+      NSMutableArray *ConfigMutArr = NSMutableArray.array;
+      {
+          JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
+          config.vc = ViewController_1.new;
+          config.title = JobsInternationalization(@"首页");
+          config.imageSelected = JobsIMG(@"tabbbar_home_seleteds");
+          config.imageUnselected = JobsIMG(@"tabbbar_home_normal");
+          config.humpOffsetY = 0;
+          config.lottieName = nil;
+          config.xOffset = JobsWidth(200);
+          config.tabBarItemWidth = JobsWidth(100);
+          config.spacing = JobsWidth(3);
+          config.tag = ConfigMutArr.count + 1;
+          [ConfigMutArr addObject:config];
+      }
+      
+      {
+          JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
+          config.vc = ViewController_2.new;
+          config.title = JobsInternationalization(@"洗码");
+          config.imageSelected = JobsIMG(@"tabbbar_weights_seleteds");
+          config.imageUnselected = JobsIMG(@"tabbbar_weights_normal");
+          config.humpOffsetY = 0;
+          config.lottieName = nil;
+          config.xOffset = JobsWidth(5);
+          config.tabBarItemWidth = JobsWidth(100);
+          config.spacing = JobsWidth(3);
+          config.tag = ConfigMutArr.count + 1;
+          [ConfigMutArr addObject:config];
+      }
+      
+      {
+          JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
+          config.vc = ViewController_3.new;
+          config.title = JobsInternationalization(@"充值");
+          config.imageSelected = JobsIMG(@"tabbbar_pay_seleteds");
+          config.imageUnselected = JobsIMG(@"tabbbar_pay_normal");
+          config.humpOffsetY = 0;
+          config.lottieName = nil;
+          config.xOffset = JobsWidth(5);
+          config.tabBarItemWidth = JobsWidth(50);
+          config.spacing = JobsWidth(3);
+          config.tag = ConfigMutArr.count + 1;
+          [ConfigMutArr addObject:config];
+      }
+      
+      {
+          JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
+          config.vc = ViewController_4.new;
+          config.title = JobsInternationalization(@"客服");
+          config.imageSelected = JobsIMG(@"tabbbar_service_seleteds");
+          config.imageUnselected = JobsIMG(@"tabbbar_service_normal");
+          config.humpOffsetY = 0;
+          config.lottieName = nil;
+          config.xOffset = JobsWidth(5);
+          config.tabBarItemWidth = JobsWidth(50);
+          config.spacing = JobsWidth(3);
+          config.tag = ConfigMutArr.count + 1;
+          [ConfigMutArr addObject:config];
+      }
+      
+      {
+          JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
+          config.vc = ViewController_5.new;
+          config.title = JobsInternationalization(@"会员中心");
+          config.imageSelected = JobsIMG(@"tabbar_VIP_seleteds");
+          config.imageUnselected = JobsIMG(@"tabbar_VIP_normal");
+          config.humpOffsetY = 0;
+          config.lottieName = nil;
+          config.xOffset = JobsWidth(5);
+          config.tabBarItemWidth = JobsWidth(100);
+          config.tag = ConfigMutArr.count + 1;
+          [ConfigMutArr addObject:config];
+      }
+      
+      return ConfigMutArr;
+  }
+  ```
+
+* **@implementation AppDelegate (Extra)**
+
+  ```objective-c
+  @property(nonatomic,strong)JobsTabbarVC *tabBarVC;
+  ```
+
+  ```objective-c
+  /// UITabBarController 配置数据：子VC、Tabbaritem标题
+  -(void)dataWithTabBarVC:(UITabBarController <UITabbarConfigProtocol>*)tabBarVC{
+      for (JobsTabBarCtrlConfig *config in self.configMutArr) {
+          [tabBarVC.tabBarControllerConfigMutArr addObject:config];
+          [tabBarVC.childVCMutArr addObject:config.vc];
+          [self.tabBarTitleMutArr addObject:config.title];
+      }
+  }
+  ```
+
+* 分类挂载
+
+  ```objective-c
+  #define RootViewController appDelegate.tabBarVC
+  ```
+
+  ```objective-c
+  #pragma mark —— @property(nonatomic,strong)JobsTabbarVC *tabBarVC;
+  JobsKey(_tabBarVC)
+  @dynamic tabBarVC;
+  -(JobsTabbarVC *)tabBarVC{
+      JobsTabbarVC *TabBarVC = Jobs_getAssociatedObject(_tabBarVC);
+      if (!TabBarVC) {
+          TabBarVC = JobsTabbarVC.new;
+          TabBarVC.isAnimationAlert = YES;//OK
+          TabBarVC.isPlaySound = YES;
+          TabBarVC.isFeedbackGenerator = YES;
+          
+          TabBarVC.jumpIndexArr = @[@3];//小标为3的客服模块需要被跳开做另行处理
+          TabBarVC.needLoginArr = @[@1,@2,@4];
+          TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优先级高于needLoginArr
+          
+  //        TabBarVC.isShakerAnimation = YES;
+          TabBarVC.isOpenScrollTabbar = NO;
+  
+          [self dataWithTabBarVC:TabBarVC];
+          
+          [TabBarVC actionReturnObjectBlock:^id(id data) {
+              if ([data isKindOfClass:NSNumber.class]) {
+                  NSNumber *num = (NSNumber *)data;
+                  
+                  BOOL ok = NO;
+                  for (NSNumber *number in self.tabBarVC.jumpIndexArr) {
+                      if (num.unsignedIntegerValue == number.unsignedIntegerValue) {
+                          ok = YES;
+                          break;
+                      }
+                  }
+                  if (ok) {
+  //                    if (self.customerContactModel.customerList.count) {
+  //                        /// 单例模式防止重复添加
+  //                        CasinoCustomerServiceView *customerServiceView = CasinoCustomerServiceView.sharedInstance;
+  //                        [customerServiceView actionObjectBlock:^(id data) {
+  //                            [customerServiceView tf_hide];
+  //                        }];
+  //                        customerServiceView.size = [CasinoCustomerServiceView viewSizeWithModel:self.hotLabelDataMutArr];
+  //                        [customerServiceView richElementsInViewWithModel:self.hotLabelDataMutArr];
+  //                        [customerServiceView tf_showSlide:jobsGetMainWindow()
+  //                                                direction:PopupDirectionBottom
+  //                                               popupParam:self.appDelegatePopupParameter];
+  //                    }
+                  }return @(!ok);
+              }return @(YES);
+          }];
+          Jobs_setAssociatedRETAIN_NONATOMIC(_tabBarVC, TabBarVC);
+      }return TabBarVC;
+  }
+  
+  -(void)setTabBarVC:(JobsTabbarVC *)tabBarVC{
+      Jobs_setAssociatedRETAIN_NONATOMIC(_tabBarVC, tabBarVC);
+  }
+  ```
+
+
+

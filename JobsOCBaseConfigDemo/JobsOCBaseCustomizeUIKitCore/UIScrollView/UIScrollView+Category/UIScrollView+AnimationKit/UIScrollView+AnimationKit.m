@@ -32,7 +32,7 @@
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
         UIView *cell = [self scrollViewCellsAtIndex:i];
-        cell.transform = CGAffineTransformMakeTranslation(-JobsMainScreen_WIDTH(), 0);
+        cell.transform = CGAffineTransformMakeTranslation(-JobsMainScreen_WIDTH(nil), 0);
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.25
                               delay:i * (totalTime/cells.count)
@@ -59,7 +59,7 @@
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
         UIView *cell = [self scrollViewCellsAtIndex:i];
-        cell.transform = CGAffineTransformMakeTranslation(-JobsMainScreen_WIDTH(), 0);
+        cell.transform = CGAffineTransformMakeTranslation(-JobsMainScreen_WIDTH(nil), 0);
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.4
                               delay:i*(totalTime/cells.count)
@@ -120,7 +120,7 @@
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
         UIView *cell = [self scrollViewCellsAtIndex:i];
-        cell.transform = CGAffineTransformMakeTranslation(0, - JobsMainScreen_HEIGHT());
+        cell.transform = CGAffineTransformMakeTranslation(0, - JobsMainScreen_HEIGHT(nil));
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.3
                               delay:(cells.count - i) * (totalTime / cells.count)
@@ -147,9 +147,9 @@
         @jobs_strongify(self)
         UIView *cell = [self scrollViewCellsAtIndex:i];
         if (i % 2 == 0) {
-            cell.transform = CGAffineTransformMakeTranslation(-JobsMainScreen_WIDTH(),0);
+            cell.transform = CGAffineTransformMakeTranslation(-JobsMainScreen_WIDTH(nil),0);
         }else {
-            cell.transform = CGAffineTransformMakeTranslation(JobsMainScreen_WIDTH(),0);
+            cell.transform = CGAffineTransformMakeTranslation(JobsMainScreen_WIDTH(nil),0);
         }
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.4
@@ -208,7 +208,7 @@
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
         UIView *cell = [self scrollViewCellsAtIndex:i];
-        cell.transform = CGAffineTransformMakeTranslation(0,JobsMainScreen_HEIGHT());
+        cell.transform = CGAffineTransformMakeTranslation(0,JobsMainScreen_HEIGHT(nil));
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.35
                               delay:i*(totalTime/cells.count)
@@ -236,7 +236,7 @@
         @jobs_strongify(self)
         UIView *cell = [self scrollViewCellsAtIndex:i];
         cell.layer.opacity = 0.7;
-        cell.layer.transform = CATransform3DMakeTranslation(0, -JobsMainScreen_HEIGHT(), 20);
+        cell.layer.transform = CATransform3DMakeTranslation(0, -JobsMainScreen_HEIGHT(nil), 20);
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.4
                               delay:i * (totalTime/cells.count)

@@ -47,7 +47,7 @@ UITableViewCell_UIViewModelProtocolSynthesize
     
     UIViewModel *vm = UIViewModel.new;
     vm.textModel.font = UIFontWeightRegularSize(14);
-    vm.jobsWidth = JobsMainScreen_WIDTH() - JobsWidth(200);
+    vm.jobsWidth = JobsMainScreen_WIDTH(nil) - JobsWidth(200);
     vm.textModel.text = vm.subTextModel.text;
     vm.textModel.textLineSpacing = 0;
     

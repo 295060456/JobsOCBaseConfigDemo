@@ -89,7 +89,7 @@ static dispatch_once_t dispatchOnce;
         //单个节点的高度
 //        CGFloat singleElementH = self.mj_h;
         //每个节点的宽度
-        CGFloat singleElementW = JobsMainScreen_WIDTH() / self.flowNum;
+        CGFloat singleElementW = JobsMainScreen_WIDTH(nil) / self.flowNum;
         for (int t = 0; t < self.flowNum; t++) {
             FlowChartSingleElementView *singleElement = FlowChartSingleElementView.new;
             singleElement.titleLab.text = self.titleMutArr[t];

@@ -111,7 +111,7 @@ static NSString *kY = @"curveY";
 - (void)configCurveView{
     
     // _curveView就是r5点
-    self.curveX = JobsMainScreen_WIDTH()/2.0;       // r5点x坐标
+    self.curveX = JobsMainScreen_WIDTH(nil)/2.0;       // r5点x坐标
     
     self.curveY = MIN_HEIGHT;                 // r5点y坐标
     
@@ -135,7 +135,7 @@ static NSString *kY = @"curveY";
             // 这部分代码使r5红点跟着手势走
             _mHeight = point.y*0.7 + MIN_HEIGHT;
             
-            self.curveX = JobsMainScreen_WIDTH() / 2.0 + point.x;
+            self.curveX = JobsMainScreen_WIDTH(nil) / 2.0 + point.x;
             
             self.curveY = _mHeight > MIN_HEIGHT ? _mHeight : MIN_HEIGHT;
             
@@ -163,7 +163,7 @@ static NSString *kY = @"curveY";
                              animations:^{
                                  
                                  // 曲线点(r5点)是一个view.所以在block中有弹簧效果.然后根据他的动效路径,在calculatePath中计算弹性图形的形状
-                                 _curveView.frame = CGRectMake(JobsMainScreen_WIDTH() / 2.0, MIN_HEIGHT, 3, 3);
+                                 _curveView.frame = CGRectMake(JobsMainScreen_WIDTH(nil) / 2.0, MIN_HEIGHT, 3, 3);
                                  
                              } completion:^(BOOL finished) {
                                  
@@ -186,9 +186,9 @@ static NSString *kY = @"curveY";
     
     [tPath moveToPoint:CGPointMake(0, 0)];                              // r1点
     
-    [tPath addLineToPoint:CGPointMake(JobsMainScreen_WIDTH(), 0)];            // r2点
+    [tPath addLineToPoint:CGPointMake(JobsMainScreen_WIDTH(nil), 0)];            // r2点
     
-    [tPath addLineToPoint:CGPointMake(JobsMainScreen_WIDTH(), MIN_HEIGHT)];  // r4点
+    [tPath addLineToPoint:CGPointMake(JobsMainScreen_WIDTH(nil), MIN_HEIGHT)];  // r4点
     
     [tPath addQuadCurveToPoint:CGPointMake(0, MIN_HEIGHT)
                   controlPoint:CGPointMake(_curveX, _curveY)]; // r3,r4,r5确定的一个弧线

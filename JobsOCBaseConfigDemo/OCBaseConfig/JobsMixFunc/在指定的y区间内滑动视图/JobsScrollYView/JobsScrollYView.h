@@ -8,7 +8,7 @@
 #import "BaseView.h"
 
 /// 锚点1（最低点）
-#define 初始位置 JobsMainScreen_HEIGHT() / 2
+#define 初始位置 JobsMainScreen_HEIGHT(nil) / 2
 /// 锚点2（最高点）
 #define 终点位置 100
 

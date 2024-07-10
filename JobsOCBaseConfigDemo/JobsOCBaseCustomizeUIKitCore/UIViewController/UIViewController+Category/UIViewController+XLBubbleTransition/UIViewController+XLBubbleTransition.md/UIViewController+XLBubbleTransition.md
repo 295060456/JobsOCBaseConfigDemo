@@ -17,8 +17,8 @@ self.xl_popTranstion = [XLBubbleTransition transitionWithAnchorRect:self.postBtn
         @jobs_weakify(self)
         self.view.vc = weak_self;
         [self.view addSubview:_postBtn];
-        _postBtn.frame = CGRectMake(JobsMainScreen_WIDTH() - 43 - 34,
-                                    JobsMainScreen_HEIGHT() - 84 - 34 - TabBarHeight() - BottomSafeAreaHeight(),
+        _postBtn.frame = CGRectMake(JobsMainScreen_WIDTH(nil) - 43 - 34,
+                                    JobsMainScreen_HEIGHT(nil) - 84 - 34 - TabBarHeight() - BottomSafeAreaHeight(),
                                     34,
                                     34);
         [[_postBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof JobsSuspendBtn * _Nullable x) {

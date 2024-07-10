@@ -68,7 +68,7 @@
 - (void)loadPhoto{
     for (NSUInteger i = 0; i < self.dataMutArr.count; i++) {
         UIImageView * imageView = UIImageView.new;
-        imageView.frame = CGRectMake(JobsMainScreen_WIDTH() * i, 0, JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
+        imageView.frame = CGRectMake(JobsMainScreen_WIDTH(nil) * i, 0, JobsMainScreen_WIDTH(nil), JobsMainScreen_HEIGHT(nil));
         //用SDWebImage下载图片
         NSString *imageName = JobsInternationalization(@"");
         if (i < 10) {
@@ -82,18 +82,18 @@
 }
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (self.scrollView.contentOffset.x > JobsMainScreen_WIDTH() * 2.8){
+    if (self.scrollView.contentOffset.x > JobsMainScreen_WIDTH(nil) * 2.8){
         if (self.objectBlock) self.objectBlock(@1);
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    if (self.scrollView.contentOffset.x < JobsMainScreen_WIDTH() * 0.5) {
+    if (self.scrollView.contentOffset.x < JobsMainScreen_WIDTH(nil) * 0.5) {
         self.pageControl.currentPage = 0;
-    }else if(self.scrollView.contentOffset.x > JobsMainScreen_WIDTH() * 0.5 &&
-             self.scrollView.contentOffset.x < JobsMainScreen_WIDTH() * 1.5){
+    }else if(self.scrollView.contentOffset.x > JobsMainScreen_WIDTH(nil) * 0.5 &&
+             self.scrollView.contentOffset.x < JobsMainScreen_WIDTH(nil) * 1.5){
         self.pageControl.currentPage = 1;
-    }else if(self.scrollView.contentOffset.x > JobsMainScreen_WIDTH() * 1.5){
+    }else if(self.scrollView.contentOffset.x > JobsMainScreen_WIDTH(nil) * 1.5){
         self.pageControl.currentPage = 2;
     }else{}
 }
@@ -118,7 +118,7 @@
         _scrollView = [UIScrollView.alloc initWithFrame:UIScreen.mainScreen.bounds];
         _scrollView.delegate = self;
         _scrollView.contentOffset = CGPointMake(0, 0);
-        _scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH() * 4, JobsMainScreen_HEIGHT());
+        _scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(nil) * 4, JobsMainScreen_HEIGHT(nil));
         _scrollView.bounces = NO;
         _scrollView.pagingEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = NO;

@@ -169,7 +169,7 @@ ratio:(CGFloat)ratio {
         // 关联cotentScrollView，关联之后才可以互相联动！！！
         _categoryView.contentScrollView = self.listContainerView.scrollView;//
         [self.view addSubview:_categoryView];
-//        _categoryView.frame = CGRectMake(0, 0, JobsMainScreen_WIDTH(), listContainerViewDefaultOffset);
+//        _categoryView.frame = CGRectMake(0, 0, JobsMainScreen_WIDTH(nil), listContainerViewDefaultOffset);
 //        [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.top.equalTo(self.view).offset(0);
 //            make.left.right.equalTo(self.view);
@@ -180,7 +180,7 @@ ratio:(CGFloat)ratio {
         /// 本来的值
         _categoryView.frame = CGRectMake(0,
                                          0,
-                                         JobsMainScreen_HEIGHT(),
+                                         JobsMainScreen_HEIGHT(nil),
                                          listContainerViewDefaultOffset);
         
        
@@ -213,8 +213,8 @@ ratio:(CGFloat)ratio {
         
         _listContainerView.frame = CGRectMake(0,
                                               listContainerViewDefaultOffset,
-                                              JobsMainScreen_HEIGHT(),
-                                              JobsMainScreen_WIDTH() - listContainerViewDefaultOffset);
+                                              JobsMainScreen_HEIGHT(nil),
+                                              JobsMainScreen_WIDTH(nil) - listContainerViewDefaultOffset);
         
         /// ❤️在需要的地方写❤️
         NSNumber *currentIndex = [self.listContainerView valueForKey:@"currentIndex"];

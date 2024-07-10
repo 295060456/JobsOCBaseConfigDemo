@@ -135,8 +135,8 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
         [self.view addSubview:_pagerView];
         _pagerView.frame = CGRectMake(0,
                                       JobsNavigationBarAndStatusBarHeight(nil) + self.getTopLineLabSize.height,
-                                      JobsMainScreen_WIDTH(),
-                                      JobsMainScreen_HEIGHT());
+                                      JobsMainScreen_WIDTH(nil),
+                                      JobsMainScreen_HEIGHT(nil));
         _pagerView.pinSectionHeaderVerticalOffset = JobsWidth(0);/// 额外的偏移量
     }return _pagerView;
 }

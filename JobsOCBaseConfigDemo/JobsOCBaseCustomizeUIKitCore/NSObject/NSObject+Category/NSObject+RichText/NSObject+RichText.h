@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_END
          _tipsTextView.userInteractionEnabled = YES;
          [self.contentView addSubview:_tipsTextView];
          [_tipsTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(30)));
+             make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(nil), JobsWidth(30)));
              make.centerX.equalTo(self.contentView);
              make.bottom.equalTo(self.contentView).offset(-JobsWidth(38));
          }];

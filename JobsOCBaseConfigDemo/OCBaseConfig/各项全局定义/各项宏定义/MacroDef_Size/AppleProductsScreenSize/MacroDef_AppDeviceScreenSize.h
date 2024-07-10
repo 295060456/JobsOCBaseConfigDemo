@@ -9,7 +9,7 @@
 #define MacroDef_AppDeviceScreenSize_h
 
 #define CurrentModeSize UIScreen.mainScreen.currentMode.size
-#define CurrentModeRespondSelector CurrentModeRespondSelector
+#define CurrentModeRespondSelector UIScreen.mainScreen.currentMode != nil
 #pragma mark —— 判断iPhone
 // 判断 【iPhone 6】、【iPhone 6s】、【iPhone 7】、【iPhone 8】
 #define iPh6_6s_7_8 (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(750, 1334), CurrentModeSize) && !isPad : NO)
@@ -21,11 +21,11 @@
 #define iPhXR (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(828, 1792), CurrentModeSize) && !isPad : NO)
 // 判断 【iPhone XS】
 #define iPhXS (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1125, 2436), CurrentModeSize) && !isPad : NO)
-// 判断 【iPhoneXS_Max】
+// 判断 【iPhone XS Max】
 #define iPhXS_Max (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1242, 2688), CurrentModeSize) && !isPad : NO)
-// 判断 【iPhoneSE (第一代)】
+// 判断 【iPhone SE (第一代)】
 #define iPhSE_1 (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(640, 1136), CurrentModeSize) && !isPad : NO)
-// 判断 【iPhoneSE (第二代)】
+// 判断 【iPhone SE (第二代)】
 #define iPhSE_2 (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(750, 1334), CurrentModeSize) && !isPad : NO)
 // 判断 【iPhone 11】
 #define iPh11 (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(828, 1792), CurrentModeSize) && !isPad : NO)
@@ -41,6 +41,31 @@
 #define iPh12Pro (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1170, 2532), CurrentModeSize) && !isPad : NO)
 // 判断 【iPhone 12 Pro Max】
 #define iPh12ProMax (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1284, 2778), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 13 Mini】
+#define iPh13Mini (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1080, 2340), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 13】
+#define iPh13 (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1170, 2532), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 13 Pro】
+#define iPh13Pro (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1170, 2532), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 13 Pro Max】
+#define iPh13ProMax (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1284, 2778), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 14】
+#define iPh14 (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1170, 2532), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 14 Plus】
+#define iPh14Plus (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1284, 2778), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 14 Pro】
+#define iPh14Pro (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1179, 2556), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 14 Pro Max】
+#define iPh14ProMax (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1290, 2796), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 15】
+#define iPh15 (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1179, 2556), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 15 Plus】
+#define iPh15Plus (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1290, 2796), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 15 Pro】
+#define iPh15Pro (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1179, 2556), CurrentModeSize) && !isPad : NO)
+// 判断 【iPhone 15 Pro Max】
+#define iPh15ProMax (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(1290, 2796), CurrentModeSize) && !isPad : NO)
+
 #pragma mark —— 判断iPad
 // 判断 【iPad mini 7.9】、【iPad 9.7】
 #define iPadMini7_9Or9_7 (CurrentModeRespondSelector ? CGSizeEqualToSize(CGSizeMake(2048, 1536), CurrentModeSize) && !isiPhone : NO)

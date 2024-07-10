@@ -49,12 +49,12 @@ JobsKey(_scrollViewClass)
  [self.scrollView addSubview:_tableView];
  [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
      make.top.equalTo(self.scrollView);
-     make.height.mas_equalTo(JobsMainScreen_HEIGHT());
-     make.width.mas_equalTo(JobsMainScreen_WIDTH());
+     make.height.mas_equalTo(JobsMainScreen_HEIGHT(nil));
+     make.width.mas_equalTo(JobsMainScreen_WIDTH(nil));
      make.centerX.equalTo(self.scrollView);
  }];
  2、必须设置 contentSize。否则无法拖动
- self.scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(), 2*JobsMainScreen_HEIGHT());
+ self.scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(nil), 2*JobsMainScreen_HEIGHT(nil));
  3、加在scrollView上的内容物的相关长度比如超出scrollView容器的相关长度。否则无法拖动
  */
 -(UIScrollView *)scrollView{
