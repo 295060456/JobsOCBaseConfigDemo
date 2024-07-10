@@ -2754,6 +2754,7 @@
 		CE03ED9B2C31304E00138A1E /* WidgetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WidgetVC.h; sourceTree = "<group>"; };
 		CE03ED9C2C31304E00138A1E /* WidgetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WidgetVC.m; sourceTree = "<group>"; };
 		CE1F9E4D2C3E542E00B315B4 /* 功能性动效：高仿 Telegram，在指定位置出现菜单列表.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "功能性动效：高仿 Telegram，在指定位置出现菜单列表.md"; sourceTree = "<group>"; };
+		CE1F9E4E2C3E554300B315B4 /* JobsTabbarCtrl.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = JobsTabbarCtrl.md; sourceTree = "<group>"; };
 		CE6B13F82C2ED50D00A542A4 /* YTKBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKBaseRequest.h; sourceTree = "<group>"; };
 		CE6B13F92C2ED50D00A542A4 /* YTKBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKBaseRequest.m; sourceTree = "<group>"; };
 		CE6B13FA2C2ED50D00A542A4 /* YTKBatchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKBatchRequest.h; sourceTree = "<group>"; };
@@ -2939,6 +2940,7 @@
 		840F927727736425004979E9 /* 深度拓展系统UITabBar全家桶 */ = {
 			isa = PBXGroup;
 			children = (
+				CE1F9E4E2C3E554300B315B4 /* JobsTabbarCtrl.md */,
 				840F92BC27736425004979E9 /* JobsTabbarCtrlSysEx.h */,
 				840F928027736425004979E9 /* 全局配置文件 */,
 				840F92A027736425004979E9 /* 一些需要单独列出来的功能性模块 */,
