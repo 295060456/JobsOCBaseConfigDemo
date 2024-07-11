@@ -13,7 +13,6 @@
 }
 /// UI
 @property(nonatomic,strong,readwrite)JobsTabBar *myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
-@property(nonatomic,strong)JobsMenuView *menuView;
 /// Data
 @property(nonatomic,assign)BOOL isOpenPPBadge;
 @property(nonatomic,assign)NSInteger subViewControllerCount;
@@ -99,17 +98,6 @@ static JobsTabbarVC *static_tabbarVC = nil;
     }
     self.myTabBar.alpha = 1;
 //    self.suspendBtn.alpha = 1;
-    self.menuView.alpha = 0;
-    @jobs_weakify(self)
-    [self 横屏通知的监听:^(id  _Nullable weakSelf,
-                    NSNotification *_Nullable arg) {
-        @jobs_strongify(self)
-        if(<#Jobs#>){
-            
-        }
-        /// 只有在横屏才会出现这个菜单
-        self.menuView.alpha = self.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscapeRight || self.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscapeLeft;
-    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -122,6 +110,10 @@ static JobsTabbarVC *static_tabbarVC = nil;
         [self UISetting];//最高只能在viewWillAppear，在viewDidLoad不出效果 self.tabBar.subviews为空
 //        [self 添加长按手势];
     });
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 -(void)viewDidLayoutSubviews {
@@ -459,23 +451,6 @@ shouldSelectViewController:(UIViewController *)viewController {
         [_myTabBar richElementsInViewWithModel:self.viewModel];
         self.jobsKVC(@"tabBar",_myTabBar);/// KVC 进行替换
     }return _myTabBar;
-}
-
--(JobsMenuView *)menuView{
-    if(!_menuView){
-        _menuView = JobsMenuView.new;
-        _menuView.isAllowDrag = YES;//悬浮效果必须要的参数
-        @jobs_weakify(self)
-        self.view.vc = weak_self;
-        [self.view addSubview:_menuView];
-        [_menuView richElementsInViewWithModel:nil];
-//        _menuView.frame = CGRectMake(0, 0, 200, 200);
-        [_menuView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo([_menuView viewSizeWithModel:nil]);
-            make.centerY.equalTo(self.view);
-            make.left.equalTo(self.view);
-        }];
-    }return _menuView;
 }
 
 -(NSMutableArray<UIView *> *)UITabBarButtonMutArr{

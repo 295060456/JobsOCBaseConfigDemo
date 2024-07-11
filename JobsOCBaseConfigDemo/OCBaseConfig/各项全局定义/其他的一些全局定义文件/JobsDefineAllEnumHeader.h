@@ -67,6 +67,24 @@ typedef NS_ENUM(NSInteger, AppLanguage) {
     AppLanguageTagalog            /// tl：菲律宾他加禄语
 };
 #endif/* APP_LANGUAGE_ENUM_DEFINED */
+/// 屏幕方向
+#ifndef DeviceOrientation_typedef
+#define DeviceOrientation_typedef
+typedef NS_ENUM(NSInteger, DeviceOrientation) {
+    DeviceOrientationUnknown, /// 未知方向
+    DeviceOrientationPortrait,/// 竖屏
+    DeviceOrientationLandscape /// 横屏
+};
+#endif /* DeviceOrientation_typedef */
+/// 当前类型
+#ifndef MyEnums_h
+#define MyEnums_h
+typedef NS_ENUM(NSInteger, ComponentType) {
+    ComponentTypeUnknown,/// 其他
+    ComponentTypeView,/// 视图
+    ComponentTypeViewController/// 控制器
+};
+#endif /* MyEnums_h */
 /// 图片编码格式
 #ifndef PIC_TO_STR_STYLE_ENUM_DEFINED
 #define PIC_TO_STR_STYLE_ENUM_DEFINED

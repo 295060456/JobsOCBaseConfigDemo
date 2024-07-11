@@ -18,6 +18,7 @@
 #import "UIView+Category.h"
 #import "UIViewController+Category.h"
 #import "JobsBasePopupView.h"
+#import "JobsMenuView.h"
 
 #if __has_include(<GKNavigationBar/GKNavigationBar.h>)
 #import <GKNavigationBar/GKNavigationBar.h>
@@ -39,6 +40,8 @@ UIGestureRecognizerDelegate
 ,UIViewModelProtocol
 ,BaseViewControllerProtocol
 >
+
+@property(nonatomic,strong)JobsMenuView *menuView;
 
 @end
 

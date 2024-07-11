@@ -139,7 +139,6 @@ BaseViewControllerProtocol_synthesize
      self.gk_navLineHidden = YES;
  }
  */
-
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self UIViewControllerLifeCycle:JobsLocalFunc];
 }
@@ -158,6 +157,7 @@ BaseViewControllerProtocol_synthesize
     /// 只有是在Tabbar管理的，不含导航的根控制器才开启手势（点语法会有 Property access result unused警告）
     self.isRootVC ? [self tabBarOpenPan] : [self tabBarClosePan];
     [self UIViewControllerLifeCycle:JobsLocalFunc];
+//    self.menuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;
 #ifdef DEBUG
     /// 网络异步数据刷新UI会在viewDidAppear以后执行viewWillLayoutSubviews、viewDidLayoutSubviews
 //    [self ifEmptyData];
@@ -332,6 +332,23 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 //        self.view = _bgImageView; // 有时候不正确
         [self.view insertSubview:_bgImageView atIndex:0];
     }return _bgImageView;
+}
+
+-(JobsMenuView *)menuView{
+    if(!_menuView){
+        _menuView = JobsMenuView.new;
+        _menuView.isAllowDrag = YES;//悬浮效果必须要的参数
+        @jobs_weakify(self)
+        self.view.vc = weak_self;
+        [jobsGetMainWindow() addSubview:_menuView];
+        [_menuView richElementsInViewWithModel:nil];
+//        _menuView.frame = CGRectMake(0, 0, 200, 200);
+        [_menuView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo([_menuView viewSizeWithModel:nil]);
+            make.centerY.equalTo(jobsGetMainWindow());
+            make.left.equalTo(jobsGetMainWindow());
+        }];
+    }return _menuView;
 }
 
 -(UIViewModel *)viewModel{

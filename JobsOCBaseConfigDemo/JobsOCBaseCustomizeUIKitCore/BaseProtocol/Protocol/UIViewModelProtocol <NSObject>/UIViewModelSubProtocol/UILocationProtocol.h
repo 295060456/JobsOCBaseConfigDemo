@@ -8,15 +8,25 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "UIButton+ImageTitleSpacing.h"
+/// 屏幕方向
+#ifndef DeviceOrientation_typedef
+#define DeviceOrientation_typedef
+typedef NS_ENUM(NSInteger, DeviceOrientation) {
+    DeviceOrientationUnknown, /// 未知方向
+    DeviceOrientationPortrait,/// 竖屏
+    DeviceOrientationLandscape /// 横屏
+};
+#endif /* DeviceOrientation_typedef */
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol UILocationProtocol <NSObject>
 @optional
 #pragma mark —— 屏幕方向
-@property(nonatomic,assign)UIInterfaceOrientationMask currentInterfaceOrientationMask;/// 定义应用程序支持的方向
-@property(nonatomic,assign)UIInterfaceOrientation currentInterfaceOrientation;/// 描述界面当前的方向，用于确定应用界面是如何显示的
-@property(nonatomic,assign)UIDeviceOrientation currentDeviceOrientation;/// 描述设备本身的物理方向，即设备如何被用户持握
+@property(nonatomic,assign)UIInterfaceOrientationMask __block currentInterfaceOrientationMask;/// 定义应用程序支持的方向
+@property(nonatomic,assign)UIInterfaceOrientation __block currentInterfaceOrientation;/// 描述界面当前的方向，用于确定应用界面是如何显示的
+@property(nonatomic,assign)UIDeviceOrientation __block currentDeviceOrientation;/// 描述设备本身的物理方向，即设备如何被用户持握
+@property(nonatomic,assign)DeviceOrientation __block jobsDeviceOrientation;/// 自定义枚举，直接输出横竖屏判定
 #pragma mark —— 方位和大小
 @property(nonatomic,assign)CGFloat __block cornerRadius;/// 圆切角（全角）
 @property(nonatomic,assign)UIRectCorner __block rectCorner;/// 设置切哪个直角
@@ -102,6 +112,7 @@ NS_ASSUME_NONNULL_END
 @synthesize currentInterfaceOrientationMask = _currentInterfaceOrientationMask;\
 @synthesize currentInterfaceOrientation = _currentInterfaceOrientation;\
 @synthesize currentDeviceOrientation = _currentDeviceOrientation;\
+@synthesize jobsDeviceOrientation = _jobsDeviceOrientation;\
 
 #endif
 
@@ -150,5 +161,6 @@ NS_ASSUME_NONNULL_END
 @dynamic currentInterfaceOrientationMask;\
 @dynamic currentInterfaceOrientation;\
 @dynamic currentDeviceOrientation;\
+@dynamic jobsDeviceOrientation;\
 
 #endif

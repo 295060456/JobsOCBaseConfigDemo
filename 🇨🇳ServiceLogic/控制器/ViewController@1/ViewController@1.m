@@ -62,7 +62,6 @@ BOOL ISLogin;
     self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.userHeadBtn];
     self.tableView.alpha = 1;
     self.suspendBtn.alpha = 1;
-    
     @jobs_weakify(self)
     self.objectBlock = ^(id data) {
         @jobs_strongify(self)
@@ -96,6 +95,11 @@ BOOL ISLogin;
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+//    DeviceOrientation d = self.getDeviceOrientation;
+//    UIInterfaceOrientation s = self.getInterfaceOrientation;
+//    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+//    NSLog(@"");
+    self.menuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

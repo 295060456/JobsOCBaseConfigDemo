@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_END
 
  // Handle notification when app is running
  - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
-     completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
+    if(completionHandler) completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
  }
 
  @end

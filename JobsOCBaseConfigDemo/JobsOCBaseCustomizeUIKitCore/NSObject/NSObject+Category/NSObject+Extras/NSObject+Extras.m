@@ -505,15 +505,7 @@
 }
 /// 依据View上铆定的internationalizationKEY来全局更改文字以适配国际化
 -(void)languageSwitch{
-    UIView *v = nil;
-    if ([self isKindOfClass:UIViewController.class]) {
-        UIViewController *viewController = (UIViewController *)self;
-        v = viewController.view;
-    }else if ([self isKindOfClass:UIView.class]){
-        UIView *viewer = (UIView *)self;
-        v = viewer;
-    }else{}
-    
+    UIView *v = self.getView;
     if (v) {
         for (UIView *view in v.subviews) {
             if (![NSString isNullString:view.internationalizationKEY]) {
@@ -953,6 +945,40 @@
     }else return YES;
 }
 #pragma mark —— 检测当前设备屏幕方向
+/**
+ * 系统通知`UIDeviceOrientationDidChangeNotification`也是需要服从界面UI的生命周期，否则取值不成功
+ * `UIDevice.currentDevice.orientation`
+   * `UIDevice.currentDevice.orientation`不是总是有效。在应用启动时，设备方向信息有时可能还没有完全初始化，这可能导致得到 `UIDeviceOrientationUnknown`
+   * 不能配置 `- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window ` ，因为竖屏检测会失败
+   * 如果当前控制器为`UITabBarController`及其子类，`-(void)viewDidAppear:(BOOL)animated`生命周期以后（包含），方位数据才正常
+   * 如果当前控制器为普通的`UIViewController`及其子类，则全部生命周期正常
+ * 如果锚定场景方向`UIInterfaceOrientation`，则需要在相关控制器的`-(void)viewDidAppear:(BOOL)animated`生命周期（包含）以后，才会获取到真正的`UIInterfaceOrientation`
+ * 如果锚定`view.traitCollection.verticalSizeClass`，则需要配置 `- (UIInterfaceOrientationMask)application:(UIApplication *)application
+   supportedInterfaceOrientationsForWindow:(UIWindow *)window`，方可正常检测横竖屏
+ * 只要在`UITabBarController`及其子类的`-(void)viewDidAppear:(BOOL)animated`生命周期之前（不包含），均取值无效
+ */
+-(UIView *_Nullable)getView{
+    UIView *view = nil;
+    if ([self isKindOfClass:UIView.class]) {
+        view = (UIView *)self;
+    }else if ([self isKindOfClass:UIViewController.class]){
+        UIViewController *vc = (UIViewController *)self;
+        view = vc.view;
+    }return view;
+}
+
+-(id _Nullable)getViewByBlock:(JobsReturnIDByComponentTypeAndUIViewBlock _Nullable)block{
+    UIView *view = nil;
+    if ([self isKindOfClass:UIView.class]) {
+        view = (UIView *)self;
+        if(block) return block(ComponentTypeView,view);
+    }else if ([self isKindOfClass:UIViewController.class]){
+        UIViewController *vc = (UIViewController *)self;
+        view = vc.view;
+        if(block) return block(ComponentTypeViewController,view);
+    }else if(block) return block(ComponentTypeUnknown,nil);
+    return nil;
+}
 /// UIInterfaceOrientationMask 检测屏幕方向
 -(CGSize)checkScreenOrientation_UIInterfaceOrientationMask:(JobsReturnSizeByUIntegerBlock _Nullable)interfaceOrientationMaskBlock{
     if (interfaceOrientationMaskBlock){
@@ -983,63 +1009,37 @@
 //    }
 }
 /// UIInterfaceOrientation 检测屏幕方向
--(CGSize)checkScreenOrientation_UIInterfaceOrientation:(JobsReturnSizeByNSIntegerBlock _Nullable)interfaceOrientationBlock{
-    UIInterfaceOrientation currentOrientation = UIInterfaceOrientationUnknown;
+-(UIInterfaceOrientation)getInterfaceOrientation{
+    UIInterfaceOrientation __block currentOrientation = UIInterfaceOrientationUnknown;
     if (@available(iOS 13.0, *)) {
-        /// 获取当前窗口的场景
-        UIWindowScene *windowScene = nil;
-        if([self isKindOfClass:UIViewController.class]){
-            UIViewController *vc = (UIViewController *)self;
-            windowScene = vc.view.window.windowScene;
-        }else if ([self isKindOfClass:UIView.class]){
-            UIView *view = (UIView *)self;
-            windowScene = view.window.windowScene;
-        }else{
-            NSLog(@"当前不是视图。检测结束");
-            return CGSizeZero;
-        }
-        /// 获取当前窗口场景的界面方向
-        currentOrientation = windowScene.interfaceOrientation;
+        [self getViewByBlock:^id _Nullable(ComponentType componentType,
+                                           UIView * _Nullable data) {
+            /// 获取当前窗口场景的界面方向
+            currentOrientation = data.window.windowScene.interfaceOrientation;
+            return nil;
+        }];
     } else {
         SuppressWdeprecatedDeclarationsWarning(currentOrientation = UIApplication.sharedApplication.statusBarOrientation;);
-        return CGSizeZero;
-    }
-    
-    if (interfaceOrientationBlock){
-        return interfaceOrientationBlock(currentOrientation);
-    }else return CGSizeZero;
-    
-//    switch (currentOrientation) {
-//        ///【界面】倒竖屏方向
-//        case UIInterfaceOrientationPortraitUpsideDown:{
-//            NSLog(@"检测屏幕方向：设备竖直向下，Home 按钮在上方");
-//            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向下，Home 按钮在上方"));
-//        }break;
-//        ///【界面】竖屏方向
-//        case UIInterfaceOrientationPortrait:{
-//            NSLog(@"检测屏幕方向：设备竖直向上，Home 按钮在下方");
-//            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向上，Home 按钮在下方"));
-//        }break;
-//        ///【界面】左横屏方向
-//        case UIInterfaceOrientationLandscapeLeft:{
-//            NSLog(@"检测屏幕方向：设备水平，Home 按钮在左侧");
-//            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在左侧"));
-//        }break;
-//        ///【界面】右横屏方向
-//        case UIInterfaceOrientationLandscapeRight:{
-//            NSLog(@"检测屏幕方向：设备水平，Home 按钮在右侧");
-//            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在右侧"));
-//        }default:
-//            break;
-//    }
+    }return currentOrientation;
+}
+/// UIInterfaceOrientation 检测屏幕方向
+-(CGSize)checkScreenOrientation_UIInterfaceOrientation:(JobsReturnSizeByNSIntegerBlock _Nullable)interfaceOrientationBlock{
+    if(self.getInterfaceOrientation == UIInterfaceOrientationUnknown) return CGSizeZero;
+    if (interfaceOrientationBlock) return interfaceOrientationBlock(self.getInterfaceOrientation);
+    return CGSizeZero;
+}
+/// UIUserInterfaceSizeClass 检测屏幕方向
+-(DeviceOrientation)getDeviceOrientation{
+    UIView *view = self.getView;
+    return view ? (view.traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact ? DeviceOrientationLandscape : DeviceOrientationPortrait)
+    :DeviceOrientationUnknown;
 }
 /// 横屏通知的监听
--(void)横屏通知的监听:(JobsSelectorBlock)block{
+-(void)横屏通知的监听:(JobsSelectorBlock1)block{
+    @jobs_weakify(self)
     JobsAddNotification(self,
                     selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                               id _Nullable arg){
-        if(block)block(weakSelf,arg);
-        self.currentDeviceOrientation = UIDevice.currentDevice.orientation;
         switch (UIDevice.currentDevice.orientation) {
             case UIDeviceOrientationFaceUp:
                 NSLog(@"屏幕朝上平躺");
@@ -1048,33 +1048,38 @@
                 NSLog(@"屏幕朝下平躺");
                 break;
             case UIDeviceOrientationUnknown:
-                NSLog(@"未知方向");
+                NSLog(@"屏幕未知方向");
                 break;
             case UIDeviceOrientationLandscapeLeft:
                 NSLog(@"屏幕向左横置");
                 self.currentInterfaceOrientation = UIInterfaceOrientationLandscapeRight;
                 self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;
+                self.jobsDeviceOrientation = DeviceOrientationLandscape;
                 break;
             case UIDeviceOrientationLandscapeRight:
                 NSLog(@"屏幕向右橫置");
                 self.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft;
                 self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeLeft;
+                self.jobsDeviceOrientation = DeviceOrientationLandscape;
                 break;
             case UIDeviceOrientationPortrait:
                 NSLog(@"屏幕直立");
                 self.currentInterfaceOrientation = UIInterfaceOrientationPortrait;
                 self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;
+                self.jobsDeviceOrientation = DeviceOrientationPortrait;
                 break;
             case UIDeviceOrientationPortraitUpsideDown:
                 NSLog(@"屏幕直立，上下顛倒");
                 self.currentInterfaceOrientation = UIInterfaceOrientationPortraitUpsideDown;
                 self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortraitUpsideDown;
+                self.jobsDeviceOrientation = DeviceOrientationPortrait;
                 break;
             default:
-                NSLog(@"无法辨识");
+                NSLog(@"屏幕方向无法辨识");
                 break;
             }
-        return @(self.currentDeviceOrientation);
+        if(block)block(weakSelf,arg,@(self.jobsDeviceOrientation));
+        return nil;
     },nil, self),UIDeviceOrientationDidChangeNotification,nil);
 }
 #pragma mark —— 键盘⌨️
@@ -1216,11 +1221,21 @@
     contentView.mj_footer.hidden = !dataSource.count;
 }
 /// 定义应用程序支持的方向
+#pragma mark —— @property(nonatomic,assign)DeviceOrientation __block jobsDeviceOrientation;
+JobsKey(_jobsDeviceOrientation)
+@dynamic jobsDeviceOrientation;
+-(DeviceOrientation)jobsDeviceOrientation{
+    return [Jobs_getAssociatedObject(_jobsDeviceOrientation) unsignedIntegerValue];
+}
+
+-(void)setJobsDeviceOrientation:(DeviceOrientation)jobsDeviceOrientation{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_jobsDeviceOrientation, @(jobsDeviceOrientation));
+}
 #pragma mark —— @property(nonatomic,assign)UIInterfaceOrientationMask currentInterfaceOrientationMask;
 JobsKey(_currentInterfaceOrientationMask)
 @dynamic currentInterfaceOrientationMask;
--(NSInteger)currentInterfaceOrientationMask{
-    return [Jobs_getAssociatedObject(_currentInterfaceOrientationMask) integerValue];
+-(UIInterfaceOrientationMask)currentInterfaceOrientationMask{
+    return [Jobs_getAssociatedObject(_currentInterfaceOrientationMask) unsignedIntegerValue];
 }
 
 -(void)setCurrentInterfaceOrientationMask:(UIInterfaceOrientationMask)currentInterfaceOrientationMask{

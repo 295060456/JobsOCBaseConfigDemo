@@ -148,7 +148,7 @@ didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
        willPresentNotification:(UNNotification *)notification
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
-    completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
+    if(completionHandler) completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
 }
 /// 一进入App就横屏
 - (UIInterfaceOrientationMask)application:(UIApplication *)application

@@ -72,7 +72,18 @@
 
 #import "JobsDropDownListView.h"
 
-#define JobsMutableArray(MutArrInstace) MutArrInstace ? [MutArrInstace removeAllObjects] : (MutArrInstace = NSMutableArray.array);
+#ifndef JobsMutableArray
+#define JobsMutableArray(MutArrInstace) (MutArrInstace ? [MutArrInstace removeAllObjects] : (MutArrInstace = NSMutableArray.array))
+#endif /* JobsMutableArray */
+/// 屏幕方向
+#ifndef DeviceOrientation_typedef
+#define DeviceOrientation_typedef
+typedef NS_ENUM(NSInteger, DeviceOrientation) {
+    DeviceOrientationUnknown,
+    DeviceOrientationPortrait,
+    DeviceOrientationLandscape
+};
+#endif /* DeviceOrientation_typedef */
 
 static inline NSObject *_Nullable idToObject(id _Nullable data){
     if ([data isKindOfClass:NSObject.class]) {
@@ -378,12 +389,30 @@ BaseProtocol
 -(BOOL)judgementExactDivisionByNum1:(NSNumber *_Nonnull)num1
                                num2:(NSNumber *_Nonnull)num2;
 #pragma mark —— 检测当前设备屏幕方向
+/**
+ * 系统通知`UIDeviceOrientationDidChangeNotification`也是需要服从界面UI的生命周期，否则取值不成功
+ * `UIDevice.currentDevice.orientation`
+   * `UIDevice.currentDevice.orientation`不是总是有效。在应用启动时，设备方向信息有时可能还没有完全初始化，这可能导致得到 `UIDeviceOrientationUnknown`
+   * 不能配置 `- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window ` ，因为竖屏检测会失败
+   * 如果当前控制器为`UITabBarController`及其子类，`-(void)viewDidAppear:(BOOL)animated`生命周期以后（包含），方位数据才正常
+   * 如果当前控制器为普通的`UIViewController`及其子类，则全部生命周期正常
+ * 如果锚定场景方向`UIInterfaceOrientation`，则需要在相关控制器的`-(void)viewDidAppear:(BOOL)animated`生命周期（包含）以后，才会获取到真正的`UIInterfaceOrientation`
+ * 如果锚定`view.traitCollection.verticalSizeClass`，则需要配置 `- (UIInterfaceOrientationMask)application:(UIApplication *)application
+   supportedInterfaceOrientationsForWindow:(UIWindow *)window`，方可正常检测横竖屏
+ * 只要在`UITabBarController`及其子类的`-(void)viewDidAppear:(BOOL)animated`生命周期之前（不包含），均取值无效
+ */
+-(UIView *_Nullable)getView;
+-(id _Nullable)getViewByBlock:(JobsReturnIDByComponentTypeAndUIViewBlock _Nullable)block;
 /// UIInterfaceOrientationMask 检测屏幕方向
 -(CGSize)checkScreenOrientation_UIInterfaceOrientationMask:(JobsReturnSizeByUIntegerBlock _Nullable)interfaceOrientationMaskBlock;
 /// UIInterfaceOrientation 检测屏幕方向
+-(UIInterfaceOrientation)getInterfaceOrientation;
+/// UIInterfaceOrientation 检测屏幕方向
 -(CGSize)checkScreenOrientation_UIInterfaceOrientation:(JobsReturnSizeByNSIntegerBlock _Nullable)interfaceOrientationBlock;
+
+-(DeviceOrientation)getDeviceOrientation;
 /// 横屏通知的监听
--(void)横屏通知的监听:(JobsSelectorBlock)block;
+-(void)横屏通知的监听:(JobsSelectorBlock1)block;
 #pragma mark —— 键盘⌨️
 /**
  使用方法：
