@@ -98,6 +98,10 @@ static JobsTabbarVC *static_tabbarVC = nil;
     }
     self.myTabBar.alpha = 1;
 //    self.suspendBtn.alpha = 1;
+    DeviceOrientation d = self.getDeviceOrientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    NSLog(@"");
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -110,10 +114,18 @@ static JobsTabbarVC *static_tabbarVC = nil;
         [self UISetting];//最高只能在viewWillAppear，在viewDidLoad不出效果 self.tabBar.subviews为空
 //        [self 添加长按手势];
     });
+    DeviceOrientation d = self.getDeviceOrientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    NSLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    DeviceOrientation d = self.getDeviceOrientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    NSLog(@"");
 }
 
 -(void)viewDidLayoutSubviews {

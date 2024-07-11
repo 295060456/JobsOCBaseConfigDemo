@@ -84,6 +84,10 @@ BOOL ISLogin;
             }
         }
     };
+    DeviceOrientation d = self.getDeviceOrientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    NSLog(@"");
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -93,6 +97,10 @@ BOOL ISLogin;
         _dataMutArr = nil;
     }
     [self.tableView.mj_header beginRefreshing];
+    DeviceOrientation d = self.getDeviceOrientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    NSLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{

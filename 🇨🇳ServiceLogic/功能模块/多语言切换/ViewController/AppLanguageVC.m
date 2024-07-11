@@ -71,17 +71,27 @@
     [self setGKNav];
     [self setGKNavBackBtn];
     self.tableView.alpha = 1;
-    NSLog(@"%lu",JobsAppTool.currentInterfaceOrientationMask);
+    DeviceOrientation d = self.getDeviceOrientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
     NSLog(@"");
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.tableView.mj_header beginRefreshing];
+    DeviceOrientation d = self.getDeviceOrientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    NSLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    DeviceOrientation d = self.getDeviceOrientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    NSLog(@"");
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
