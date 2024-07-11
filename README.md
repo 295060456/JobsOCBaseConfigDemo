@@ -19,6 +19,7 @@
 * 作为代码笔记，记录一些常用的代码，方便查阅
 * 作为学习的资料，可以快速了解到一些常用的知识
 * 作为项目的参考，可以快速的了解到项目的架构，代码规范，以及一些设计模式
+* <font color=blue>**示例Demo可能因为相关Api的升级没有覆盖处理会出现闪退。修复即可**</font>
 
 ## 二、特色
 
@@ -37,8 +38,7 @@
   * [x] 统一注册全局的 **UICollectionViewCell**
   * [x] 防止多次推出同一控制器页面<br>
   * [x] 对调用系统相机、系统相册的功能性封装<br>
-  * [ ] 统一的WebView封装<br>
-  
+  * [ ] 统一的**WebView**封装<br>
 * 数据层
   * [x] 网络模块Api<br>
   * [x] 公共的协议簇**BaseProtocol**<br>
@@ -49,12 +49,17 @@
   * [x] 多语言支持<br>
   * [x] **UserDefaults**数据存储封装<br>
   * [x] 对打开**URL**的兼容性封装<br>
-  * [x] 对KVC的封装<br>
-  
-* 特色功能
-  * [x] 指纹识别<br>
-  * [x] 手势解锁 <br>
-  
+  * [x] 对**KVC**的封装<br>
+* <font color=red>**自主研发**</font>
+  * [x] [**高仿蜜柚App的登录模块动态UI：`JobsAppDoor`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsAppDoor-2)
+  * [x] [**聊天功能：`JobsIM`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsIM)
+  * [x] [**发帖功能：`JobsPostVC`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/%E5%8F%91%E5%B8%96%E5%8A%9F%E8%83%BD) （相册获取资源+存/取未完成字符串）
+  * [x] [**评论功能：`JobsComment`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsComment)
+  * [x] [**搜索功能：`JobsSearch`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsSearchCore/JobsSearchVC)
+  * [x] [**时间管理：`JobsTimerVC`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsTimer/ViewController/JobsTimerVC)
+  * [x] [**悬浮模块：`JobsSuspend`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsSuspend)
+  * [x] [**下载流量监控：`JobsBitsMonitor`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsBitsMonitor)
+  * [x] [**下拉列表：`JobsDropDownListVC`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsDropDownList)
 * 其他
   * [x] **GitHub.workflow**<br>
   * [x] iOS手动打包/脚本打包成`*.ipa`<br>
@@ -62,13 +67,7 @@
   * [x] 实用性脚本`*.command`<br>
   * [x] 对`info.plist`的备份<br>
 
-## 三、相关链接
-
-* [**OC代码实验室**](https://github.com/295060456/Jobs_ObjectiveC_Laboratory)
-* [**yanmingLiu-Xminds**](https://github.com/yanmingLiu/Xminds)
-* [**yanmingLiu-iOSNotes**](https://github.com/yanmingLiu/iOSNotes)
-
-## 四、几点重要说明 
+## 三、几点重要说明 
 
 ### 1、特别说明 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -1148,7 +1147,7 @@ NSObject <|-- BaseProtocol
     * 支持`PPBadgeView`
     * 支持强行自检跳转登录模块
 
-### 19、iOS横竖屏切换
+### 19、iOS横竖屏切换 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * [**相关文档：iOS 横竖屏切换**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md)
 * <font color=red>**相关经验总结**</font>
@@ -1169,14 +1168,14 @@ NSObject <|-- BaseProtocol
   * [**如果锚定`view.traitCollection.verticalSizeClass`**](#锚定`view.traitCollection.verticalSizeClass`)，则需要配置 `- (UIInterfaceOrientationMask)application:(UIApplication *)application
     supportedInterfaceOrientationsForWindow:(UIWindow *)window`，方可正常检测横竖屏
 
-### 20、<font color=red>**全局工具箱**</font>
+### 20、<font color=red>**全局工具箱**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * [**JobsAppTools**]() （单例模式）
 * [**NSObject+AppTools**]() （分类模式）
 * [**`FileFolderHandleModel`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/FileFolderHandleTool)：**文件夹操作**
 * [**`JobsLoadingImage`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIImage/JobsLoadingImage)：**图片存取**
 
-### 21、特色功能模块
+### 21、<font color=red>**特色功能模块**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 加密相关
   * [**指纹识别**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/TouchID)
@@ -1190,25 +1189,35 @@ NSObject <|-- BaseProtocol
 * 特色UI：**UITableViewCell**
   * [**UITableViewCell的折叠效果**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/UITableViewCell%E7%9A%84%E6%8A%98%E5%8F%A0%E6%95%88%E6%9E%9C)
   * [**自定义UITableViewCell内置控件距离并添加复制按钮**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/%E8%87%AA%E5%AE%9A%E4%B9%89UITableViewCell%E5%86%85%E7%BD%AE%E6%8E%A7%E4%BB%B6%E8%B7%9D%E7%A6%BB%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%A4%8D%E5%88%B6%E6%8C%89%E9%92%AE)
+  * [**替换系统UITableViewCell编辑状态下前面的按钮UI样式，及其一部分逻辑**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/UITableViewCellEditorVC)
+  * [**自定义UITableViewCell内置控件距离并添加复制按钮**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/%E8%87%AA%E5%AE%9A%E4%B9%89UITableViewCell%E5%86%85%E7%BD%AE%E6%8E%A7%E4%BB%B6%E8%B7%9D%E7%A6%BB%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%A4%8D%E5%88%B6%E6%8C%89%E9%92%AE/ViewController/CustomTableViewCellVC)
+* 特色UI：**UICollectionViewCell**
+  * [**UICollectionView实现重叠的卡包效果**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/UICollectionView%E5%AE%9E%E7%8E%B0%E9%87%8D%E5%8F%A0%E7%9A%84%E5%8D%A1%E5%8C%85%E6%95%88%E6%9E%9C/JobsWalletVC)
 * 特色UI：**JX**系列Demo
   * [**JXCategoryView垂直表达**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JXCategoryView%E5%9E%82%E7%9B%B4%E8%A1%A8%E8%BE%BE)
   * [**JXCategoryView下拉headerView变大**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JXCategoryView%E4%B8%8B%E6%8B%89headerView%E5%8F%98%E5%A4%A7)
+  * [**JXCategory弹出框**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JXCategoryPopup/JXCategoryPopupVC)
 * 特色UI：<font color=red>**自有知识产权**</font>
   * [**高仿蜜柚App的登录模块动态UI：`JobsAppDoor`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsAppDoor-2)
   * [**聊天功能：`JobsIM`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsIM)
-  * [**发帖功能：`JobsPostVC`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/%E5%8F%91%E5%B8%96%E5%8A%9F%E8%83%BD)
+  * [**发帖功能：`JobsPostVC`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/%E5%8F%91%E5%B8%96%E5%8A%9F%E8%83%BD) （相册获取资源+存/取未完成字符串）
   * [**评论功能：`JobsComment`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsComment)
+  * [**搜索功能：`JobsSearch`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsSearchCore/JobsSearchVC)
   * [**时间管理：`JobsTimerVC`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsTimer/ViewController/JobsTimerVC)
   * [**悬浮模块：`JobsSuspend`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsSuspend)
   * [**下载流量监控：`JobsBitsMonitor`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsBitsMonitor)
+  * [**下拉列表：JobsDropDownListVC**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsDropDownList)
 * 其他
   * [**高仿抖音：Douyin_ZFPlayer**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/Douyin_ZFPlayer)
   * [**3D Touch：长按Cell出菜单**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/PeekAndPop)
   * [**卡片式滑动效果**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8D%A1%E7%89%87%E5%BC%8F%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C)
   * [**图形验证码**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/%E5%9B%BE%E5%BD%A2%E9%AA%8C%E8%AF%81%E7%A0%81)
   * [**App图标切换**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/App%E5%9B%BE%E6%A0%87%E5%88%87%E6%8D%A2)
+  * [**镂空特效**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/TransparentRegion/TransparentRegionVC)
+  * [**不规则的按钮**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/TestIrregularView)
+  * [**转场动画研究：`JobsPresentingVC`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/UIPresentationController%E7%9A%84%E4%BD%BF%E7%94%A8/JobsPresentingVC)
 
-## 五、代码讲解
+## 四、代码讲解
 
 ### 1、**UIButton.UIButtonConfiguration** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 <details id="UIButton">
@@ -2892,12 +2901,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 <details id="Test">
  <summary><strong>点我了解详情</strong></summary>
+* [**OC代码实验室**](https://github.com/295060456/Jobs_ObjectiveC_Laboratory)
 
- ```objective-c
-// TODO
- ```
+  ```objective-c
+  /// TODO
+  ```
 
-## 六、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+ </details>
+
+## 五、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 ### 1、配置相关
 * [**解决xcode出现：SDK does not contain 'libarclite' 错误**](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E8%A7%A3%E5%86%B3Xcode%E5%87%BA%E7%8E%B0%EF%BC%9ASDK%20does%20not%20contain%20'libarclite'%20%E9%94%99%E8%AF%AF)
 * [**通过SSH连接到GitHub**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub.md)
@@ -2907,10 +2919,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * [**配置`info.plist`文件**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/%E9%85%8D%E7%BD%AEinfo.plist/%E9%85%8D%E7%BD%AEinfo.plist.md)
 * [**Github.workflow（工作流）的使用**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/Github.workflow.md/Github.workflow.md)
 ### 2、面试相关
+* [**yanmingLiu-Xminds**](https://github.com/yanmingLiu/Xminds)
+* [**yanmingLiu-iOSNotes**](https://github.com/yanmingLiu/iOSNotes)
 * [**OC相关经验**](https://github.com/295060456/JobsOCBaseConfig/blob/main/OCDoc/OCDoc.md)
 * [**Swift 相关经验**](https://github.com/295060456/JobsOCBaseConfig/blob/main/SwiftDoc/SwiftDoc.md)
-* [**iOSNotes**](https://github.com/yanmingLiu/iOSNotes)
 * [**谁说HTTP GET就不能通过Body来发送数据呢？**](https://juejin.cn/post/6844903685206573069)
+
 ### 3、功能相关
   * [**UITableView 的使用指南**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/UITableView/UITableView.md)
   * [**关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E5%85%B3%E4%BA%8EUITableViewCell%E5%92%8CUICollectionViewCell%E5%9C%86%E5%88%87%E8%A7%92%2BCell%E7%9A%84%E5%81%8F%E7%A7%BB%E9%87%8F.md)
@@ -2979,7 +2993,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * iOS.热更新
   * iOS.Widget
 * 其他
-## 七、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+## 六、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * 浏览器打开并输入 
   ```html
   feedbackassistant://
