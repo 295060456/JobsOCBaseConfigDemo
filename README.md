@@ -4,11 +4,10 @@
   <img src="https://img.shields.io/badge/OC-orange" alt="OC" title="OC"/>
   <img src="https://img.shields.io/badge/xcode-15.4-blue" alt="xcode" title="xcode"/>
 </p>
-[toc]
-
 ## <font id=前言>前言</font>
 
-* 工欲善其事必先利其器
+* **工欲善其事必先利其器**
+* **面向信仰编程**
 
 ## 一、目的
 
@@ -41,10 +40,10 @@
   * [ ] 统一的**WebView**封装<br>
 * 数据层
   * [x] 网络模块Api<br>
-  * [x] 公共的协议簇**BaseProtocol**<br>
+  * [x] 公共的协议簇 **BaseProtocol**<br>
   * [x] 统一的**Block**管理：[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)<br>
   * [x] 统一数据源的封装：[**<font color=red>UIViewModel</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/UIViewModelFamily/UIViewModel)<br>
-  * [x] **Block**替换**@selector**<br>
+  * [x] **Block** 替换 **@selector** <br>
   * [x] 统一的对手势的封装<br>
   * [x] 多语言支持<br>
   * [x] **UserDefaults**数据存储封装<br>
@@ -2992,6 +2991,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * 完善 [**iOS功能：跳转其他App,如果本机不存在,则进行下载（需要补充）**](#iOS功能：跳转其他App,如果本机不存在,则进行下载)
   * iOS.热更新
   * iOS.Widget
+* Demo里面有些因为Api升级而没有来得及对齐的，目前打开会崩溃
 * 其他
 ## 六、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * 浏览器打开并输入 
