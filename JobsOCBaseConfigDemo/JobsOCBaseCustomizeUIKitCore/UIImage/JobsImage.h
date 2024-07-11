@@ -10,7 +10,7 @@
 
 #import <ImageIO/ImageIO.h>
 
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #pragma mark —— Base
 // TODO
 #pragma mark —— Category

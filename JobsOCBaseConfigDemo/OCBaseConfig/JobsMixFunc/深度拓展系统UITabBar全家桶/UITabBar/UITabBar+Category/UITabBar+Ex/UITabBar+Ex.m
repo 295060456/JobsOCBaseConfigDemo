@@ -9,6 +9,14 @@
 #import "UITabBar+Ex.h"
 
 @implementation UITabBar (Ex)
+/// 移除系统的 UITabBarButton
+-(void)deleteUITabBarButton{
+    for (UIView *childView in self.subviews) {
+        if ([childView isKindOfClass:UIControl.class]) {//UITabBarButton
+            [childView removeFromSuperview];
+        }
+    }
+}
 
 -(void)addLottieImage:(NSUInteger)index
               offsetY:(CGFloat)offsetY

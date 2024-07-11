@@ -9,7 +9,6 @@
 #import "FileFolderHandleTool.h"
 
 @implementation FileFolderHandleTool
-
 #pragma mark —— 禁止App系统文件夹document同步
 /// 因为它会同步。苹果要求：可重复产生的数据不得进行同步,什么叫做可重复数据？这里最好禁止，否则会影响上架，被拒！
 +(void)banSysDocSynchronization{

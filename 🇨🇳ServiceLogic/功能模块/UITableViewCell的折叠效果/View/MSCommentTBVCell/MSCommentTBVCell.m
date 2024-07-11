@@ -32,7 +32,6 @@ UIViewModelProtocol_synthesize
          ❤️如果单独的对每一个row对应的UITableViewCell的边距有缩进则使用下列方法❤️
          如果这个TableViewCell是JobsBaseTableViewCell则不需要复写-(void)setFrame:(CGRect)frame；否则是需要：
          
-         UILocationProtocol_synthesize
          UILocationProtocol_UIViewModelSynthesize
          直接影响:
          cell.offsetXForEach = JobsWidth(8);

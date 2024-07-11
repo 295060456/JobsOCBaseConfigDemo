@@ -13,7 +13,7 @@
 #import "UIView+Chain.h"
 #import "UIView+Gesture.h"
 #import "UIButton+UI.h"
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "NSObject+CallBackInfoByBlock.h"
 
 //#if __has_include(<Masonry/Masonry.h>)

@@ -946,13 +946,11 @@
 }
 #pragma mark —— 检测当前设备屏幕方向
 -(CGFloat)jobsMainScreen_HEIGHT{
-    UIInterfaceOrientationMask d = self.currentInterfaceOrientationMask;
-    return self.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_WIDTH() : JobsMainScreen_HEIGHT();
+    return  JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_WIDTH() : JobsMainScreen_HEIGHT();
 }
 
 -(CGFloat)jobsMainScreen_WIDTH{
-    UIInterfaceOrientationMask d = self.currentInterfaceOrientationMask;
-    return self.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_HEIGHT() : JobsMainScreen_WIDTH();
+    return  JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_HEIGHT() : JobsMainScreen_WIDTH();
 }
 /**
  * 系统通知`UIDeviceOrientationDidChangeNotification`也是需要服从界面UI的生命周期，否则取值不成功
@@ -997,7 +995,7 @@
 /// UIInterfaceOrientationMask 检测屏幕方向
 -(CGSize)checkScreenOrientation_UIInterfaceOrientationMask:(JobsReturnSizeByUIntegerBlock _Nullable)interfaceOrientationMaskBlock{
     if (interfaceOrientationMaskBlock){
-        return interfaceOrientationMaskBlock(self.currentInterfaceOrientationMask);
+        return interfaceOrientationMaskBlock( JobsAppTool.currentInterfaceOrientationMask);
     }else return CGSizeZero;
 //    switch (self.currentInterfaceOrientationMask) {
 //        ///【界面】竖屏方向
@@ -1067,33 +1065,33 @@
                 break;
             case UIDeviceOrientationLandscapeLeft:
                 NSLog(@"屏幕向左横置");
-                self.currentInterfaceOrientation = UIInterfaceOrientationLandscapeRight;
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;
-                self.jobsDeviceOrientation = DeviceOrientationLandscape;
+                 JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeRight;
+                 JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;
+                 JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
                 break;
             case UIDeviceOrientationLandscapeRight:
                 NSLog(@"屏幕向右橫置");
-                self.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft;
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeLeft;
-                self.jobsDeviceOrientation = DeviceOrientationLandscape;
+                 JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft;
+                 JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeLeft;
+                 JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
                 break;
             case UIDeviceOrientationPortrait:
                 NSLog(@"屏幕直立");
-                self.currentInterfaceOrientation = UIInterfaceOrientationPortrait;
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;
-                self.jobsDeviceOrientation = DeviceOrientationPortrait;
+                 JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationPortrait;
+                 JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;
+                 JobsAppTool.jobsDeviceOrientation = DeviceOrientationPortrait;
                 break;
             case UIDeviceOrientationPortraitUpsideDown:
                 NSLog(@"屏幕直立，上下顛倒");
-                self.currentInterfaceOrientation = UIInterfaceOrientationPortraitUpsideDown;
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortraitUpsideDown;
-                self.jobsDeviceOrientation = DeviceOrientationPortrait;
+                 JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationPortraitUpsideDown;
+                 JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortraitUpsideDown;
+                 JobsAppTool.jobsDeviceOrientation = DeviceOrientationPortrait;
                 break;
             default:
                 NSLog(@"屏幕方向无法辨识");
                 break;
             }
-        if(block)block(weakSelf,arg,@(self.jobsDeviceOrientation));
+        if(block)block(weakSelf,arg,@( JobsAppTool.jobsDeviceOrientation));
         return nil;
     },nil, self),UIDeviceOrientationDidChangeNotification,nil);
 }
@@ -1234,53 +1232,6 @@
         contentView.ly_emptyView.alpha = 1;
     }
     contentView.mj_footer.hidden = !dataSource.count;
-}
-/// 定义应用程序支持的方向
-#pragma mark —— @property(nonatomic,assign)DeviceOrientation __block jobsDeviceOrientation;
-JobsKey(_jobsDeviceOrientation)
-@dynamic jobsDeviceOrientation;
--(DeviceOrientation)jobsDeviceOrientation{
-    return [Jobs_getAssociatedObject(_jobsDeviceOrientation) unsignedIntegerValue];
-}
-
--(void)setJobsDeviceOrientation:(DeviceOrientation)jobsDeviceOrientation{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_jobsDeviceOrientation, @(jobsDeviceOrientation));
-}
-#pragma mark —— @property(nonatomic,assign)UIInterfaceOrientationMask currentInterfaceOrientationMask;
-JobsKey(_currentInterfaceOrientationMask)
-@dynamic currentInterfaceOrientationMask;
--(UIInterfaceOrientationMask)currentInterfaceOrientationMask{
-    UIInterfaceOrientationMask d = [Jobs_getAssociatedObject(_currentInterfaceOrientationMask) unsignedIntegerValue];
-    NSLog(@"%lu",(unsigned long)d);
-    return [Jobs_getAssociatedObject(_currentInterfaceOrientationMask) unsignedIntegerValue];
-}
-
--(void)setCurrentInterfaceOrientationMask:(UIInterfaceOrientationMask)currentInterfaceOrientationMask{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_currentInterfaceOrientationMask, @(currentInterfaceOrientationMask));
-    UIInterfaceOrientationMask d = [Jobs_getAssociatedObject(_currentInterfaceOrientationMask) unsignedIntegerValue];
-    NSLog(@"%lu",(unsigned long)d);
-}
-/// 描述界面当前的方向，用于确定应用界面是如何显示的
-#pragma mark —— @property(nonatomic,assign)UIInterfaceOrientation currentInterfaceOrientation;
-JobsKey(_currentInterfaceOrientation)
-@dynamic currentInterfaceOrientation;
--(UIInterfaceOrientation)currentInterfaceOrientation{
-    return [Jobs_getAssociatedObject(_currentInterfaceOrientation) integerValue];
-}
-
--(void)setCurrentInterfaceOrientation:(UIInterfaceOrientation)currentInterfaceOrientation{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_currentInterfaceOrientation, @(currentInterfaceOrientation));
-}
-/// 描述设备本身的物理方向，即设备如何被用户持握
-#pragma mark —— @property(nonatomic,assign)UIDeviceOrientation currentDeviceOrientation;
-JobsKey(_currentDeviceOrientation)
-@dynamic currentDeviceOrientation;
--(UIDeviceOrientation)currentDeviceOrientation{
-    return [Jobs_getAssociatedObject(_currentDeviceOrientation) integerValue];
-}
-
--(void)setCurrentDeviceOrientation:(UIDeviceOrientation)currentDeviceOrientation{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_currentDeviceOrientation, @(currentDeviceOrientation));
 }
 #pragma mark —— @property(nonatomic,assign)CGPoint lastPoint;
 JobsKey(_lastPoint)

@@ -1,8 +1,8 @@
 //
-//  UITextModelProtocol.h
-//  JobsOCBaseConfig
+// UITextModelProtocol.h
+// JobsOCBaseConfig
 //
-//  Created by Jobs on 2022/1/17.
+// Created by Jobs on 2022/1/17.
 //
 
 #import <Foundation/Foundation.h>
@@ -15,25 +15,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 /// Common
-@property(nonatomic,assign)NSTextAlignment __block textAlignment;/// 主文字对齐方式
-@property(nonatomic,assign)NSLineBreakMode __block lineBreakMode;/// 主文字提行方式
-@property(nonatomic,assign)CGFloat __block textLineSpacing;
-@property(nonatomic,copy)NSString __block *placeholder;
-@property(nonatomic,strong)UIColor __block *placeholderColor;
-@property(nonatomic,assign)NSInteger __block curWordCount;/// 目前字数
-@property(nonatomic,assign)NSInteger __block maxWordCount;/// 最大限制字数
+@property(nonatomic,assign)NSTextAlignment textAlignment;/// 主文字对齐方式
+@property(nonatomic,assign)NSLineBreakMode lineBreakMode;/// 主文字提行方式
+@property(nonatomic,assign)CGFloat textLineSpacing;
+@property(nonatomic,copy)NSString *placeholder;
+@property(nonatomic,strong)UIColor *placeholderColor;
+@property(nonatomic,assign)NSInteger curWordCount;/// 目前字数
+@property(nonatomic,assign)NSInteger maxWordCount;/// 最大限制字数
 /// Normal
-@property(nonatomic,strong,nullable)NSString __block *text;
-@property(nonatomic,strong,nullable)UIFont __block *font;
-@property(nonatomic,strong,nullable)UIColor __block *textCor;/// 主字体颜色
-@property(nonatomic,strong,nullable)NSAttributedString __block *attributedText API_AVAILABLE(ios(6.0));
-@property(nonatomic,strong)NSMutableArray <RichTextConfig *>__block *titleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
+@property(nonatomic,strong,nullable)NSString *text;
+@property(nonatomic,strong,nullable)UIFont *font;
+@property(nonatomic,strong,nullable)UIColor *textCor;/// 主字体颜色
+@property(nonatomic,strong,nullable)NSAttributedString *attributedText API_AVAILABLE(ios(6.0));
+@property(nonatomic,strong)NSMutableArray <RichTextConfig *> *titleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
 /// Selected
-@property(nonatomic,strong,nullable)NSString __block *selectedText;
-@property(nonatomic,strong,nullable)UIFont __block *selectedFont;
-@property(nonatomic,strong,nullable)UIColor __block *selectedTextCor;/// 主字体颜色
-@property(nonatomic,strong,nullable)NSAttributedString __block *selectedAttributedText API_AVAILABLE(ios(6.0));
-@property(nonatomic,strong)NSMutableArray <RichTextConfig *>__block *selectedTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
+@property(nonatomic,strong,nullable)NSString *selectedText;
+@property(nonatomic,strong,nullable)UIFont *selectedFont;
+@property(nonatomic,strong,nullable)UIColor *selectedTextCor;/// 主字体颜色
+@property(nonatomic,strong,nullable)NSAttributedString *selectedAttributedText API_AVAILABLE(ios(6.0));
+@property(nonatomic,strong)NSMutableArray <RichTextConfig *> *selectedTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
 
 @end
 

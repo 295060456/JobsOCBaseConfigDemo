@@ -9,6 +9,8 @@
 #define JobsObject_h
 
 #pragma mark —— Base
+/// 作用于全局的工具类（单例模式）
+#import "JobsAppTools.h"
 /// App 开屏广告
 #import "JobsLaunchAdMgr.h"
 /// App 语言国际化
@@ -25,8 +27,6 @@
 //#import "JobsSocketIOTools.h"
 /// TouchID
 #import "TouchID.h"
-/// 移除系统自带的UITabBarButton
-#import "DeleteSystemUITabBarButton.h"
 /// 本类是自定义类，但是是对系统类的仿写，目的是承接上下文数据 成一束，方便管理
 #import "UIViewModel.h"
 #import "JobsHeaderFooterViewModel.h"

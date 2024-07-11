@@ -20,7 +20,6 @@
 
 @implementation TreeClassItemCell
 #pragma mark —— UILocationProtocol
-UILocationProtocol_synthesize
 UILocationProtocol_UIViewModelSynthesize
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView

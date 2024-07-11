@@ -11,7 +11,6 @@
 
 UITextModelProtocol_synthesize
 UITextModelProtocol_UIViewModelSynthesize
-UILocationProtocol_synthesize
 UILocationProtocol_UIViewModelSynthesize
 UIViewModelOthersProtocol_synthesize
 

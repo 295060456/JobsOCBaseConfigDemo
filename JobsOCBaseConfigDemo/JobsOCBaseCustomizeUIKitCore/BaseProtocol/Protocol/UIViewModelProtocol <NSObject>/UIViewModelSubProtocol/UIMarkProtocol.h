@@ -1,8 +1,8 @@
 //
-//  UIMarkProtocol.h
-//  JobsOCBaseConfig
+// UIMarkProtocol.h
+// JobsOCBaseConfig
 //
-//  Created by Jobs on 2022/1/20.
+// Created by Jobs on 2022/1/20.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,15 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UIMarkProtocol <NSObject>
 @optional
 #pragma mark —— 标记📌
-@property(nonatomic,strong,nullable)NSIndexPath __block *indexPath;
-@property(nonatomic,assign)NSInteger __block section;
-@property(nonatomic,assign)NSInteger __block row;
-@property(nonatomic,assign)NSInteger __block item;
-@property(nonatomic,assign)CGPoint __block lastPoint;
-@property(nonatomic,assign)NSInteger __block index;
-@property(nonatomic,assign)NSInteger __block currentPage;/// 网路请求分页数据的时候的当前页码
-@property(nonatomic,assign)NSInteger __block pageSize;
-@property(nonatomic,assign)BOOL __block isMark;/// 是否被标记。标记的意思可以是是否维护中等等......
+@property(nonatomic,strong,nullable)NSIndexPath *indexPath;
+@property(nonatomic,assign)NSInteger section;
+@property(nonatomic,assign)NSInteger row;
+@property(nonatomic,assign)NSInteger item;
+@property(nonatomic,assign)CGPoint lastPoint;
+@property(nonatomic,assign)NSInteger index;
+@property(nonatomic,assign)NSInteger currentPage;/// 网路请求分页数据的时候的当前页码
+@property(nonatomic,assign)NSInteger pageSize;
+@property(nonatomic,assign)BOOL isMark;/// 是否被标记。标记的意思可以是是否维护中等等......
 @property(nonatomic,assign)CGFloat presentUpHeight;/// 当一个VC被以present的形式推出的时候，距离手机屏幕下边距的距离
 
 @end

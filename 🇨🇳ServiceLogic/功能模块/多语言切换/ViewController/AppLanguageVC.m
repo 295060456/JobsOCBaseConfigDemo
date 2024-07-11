@@ -25,7 +25,6 @@
 
 -(void)loadView{
     [super loadView];
-    
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
     }
@@ -72,6 +71,8 @@
     [self setGKNav];
     [self setGKNavBackBtn];
     self.tableView.alpha = 1;
+    NSLog(@"%lu",JobsAppTool.currentInterfaceOrientationMask);
+    NSLog(@"");
 }
 
 -(void)viewWillAppear:(BOOL)animated{

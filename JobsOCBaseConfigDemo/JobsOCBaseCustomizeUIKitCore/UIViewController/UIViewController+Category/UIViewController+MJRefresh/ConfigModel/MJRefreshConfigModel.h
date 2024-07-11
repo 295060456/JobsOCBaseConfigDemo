@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "MacroDef_Cor.h"
 /**
  MJRefreshStateIdle,   //   普通闲置状态

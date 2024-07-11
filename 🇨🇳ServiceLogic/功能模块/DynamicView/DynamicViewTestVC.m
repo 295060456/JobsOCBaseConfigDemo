@@ -78,8 +78,8 @@
 
 -(NSString *)path{
     if (!_path) {
-        _path = [[NSBundle mainBundle] pathForResource:@"GIF大图"
-                                                ofType:@"gif"];
+        _path = [NSBundle.mainBundle pathForResource:@"GIF大图"
+                                              ofType:@"gif"];
     }return _path;
 }
 @synthesize data = _data;

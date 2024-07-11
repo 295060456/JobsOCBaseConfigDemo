@@ -12,7 +12,7 @@
 #import "UIButton+UI.h"
 #import "UISlider+Extra.h"
 #import "MacroDef_Cor.h"
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "NSObject+CallBackInfoByBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN

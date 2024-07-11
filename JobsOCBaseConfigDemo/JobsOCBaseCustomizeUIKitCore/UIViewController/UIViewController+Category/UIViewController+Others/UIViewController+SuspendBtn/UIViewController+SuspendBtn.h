@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "JobsSuspendBtn.h"
 #import "UIButton+UI.h"
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "MacroDef_App.h"
 
 NS_ASSUME_NONNULL_BEGIN

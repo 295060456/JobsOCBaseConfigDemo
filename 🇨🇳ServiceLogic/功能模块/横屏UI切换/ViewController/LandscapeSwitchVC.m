@@ -58,10 +58,10 @@ UICollectionViewDataSource
     self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
         @jobs_strongify(self)
         NSLog(@"退出页面的逻辑");
-        self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;/// 设备处于竖屏（Portrait）模式。
-        self.currentInterfaceOrientation = UIInterfaceOrientationPortrait;/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
+         JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;/// 设备处于竖屏（Portrait）模式。
+         JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationPortrait;/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
 //        self.currentDeviceOrientation = UIDeviceOrientationPortrait;/// 设备竖直放置，设备底部的 Home 键在底部（设备顶部朝上）
-        [self hx_rotateToInterfaceOrientation:self.currentInterfaceOrientation];/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
+        [self hx_rotateToInterfaceOrientation: JobsAppTool.currentInterfaceOrientation];/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
         return nil;
     };
 }
@@ -404,7 +404,7 @@ insetForSectionAtIndex:(NSInteger)section {
                 @jobs_strongify(self)
                 NSLog(@"锁定横屏:设备可以处于任意横屏模式，包括左横屏和右横屏");
 //                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;/// 设备可以处于任意横屏（Landscape）模式，包括左横屏和右横屏
-                self.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;/// 设备可以处于任意横屏（Landscape）模式，包括左横屏和右横屏
+                 JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;/// 设备可以处于任意横屏（Landscape）模式，包括左横屏和右横屏
 //                self.currentDeviceOrientation = UIDeviceOrientationUnknown;/// 设备方向未知或不确定
                 [self hx_setNeedsUpdateOfSupportedInterfaceOrientations];
                 return nil;
@@ -423,8 +423,8 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
                 NSLog(@"解除锁定:设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏");
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAll;/// 设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏
-                self.currentInterfaceOrientation = UIInterfaceOrientationPortrait | 
+                JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAll;/// 设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏
+                JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationPortrait |
                                                    UIInterfaceOrientationPortraitUpsideDown |
                                                    UIInterfaceOrientationLandscapeLeft |
                                                    UIInterfaceOrientationLandscapeRight;/// 设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏
@@ -446,10 +446,10 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
                 NSLog(@"设备处于左横屏模式");
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeLeft;/// 设备处于左横屏（Landscape Left）模式
-                self.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft;/// 设备处于左横屏（Landscape Left）模式
+                JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeLeft;/// 设备处于左横屏（Landscape Left）模式
+                JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft;/// 设备处于左横屏（Landscape Left）模式
 //                self.currentDeviceOrientation = UIDeviceOrientationUnknown;/// 设备方向未知或不确定
-                [self hx_rotateToInterfaceOrientation:self.currentInterfaceOrientation];/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
+                [self hx_rotateToInterfaceOrientation:JobsAppTool.currentInterfaceOrientation];/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
                 return nil;
             };
             [_dataMutArr addObject:viewModel];
@@ -466,10 +466,10 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.jobsBlock = ^id(id param){
                 @jobs_strongify(self)
                 NSLog(@"设备处于右横屏模式");
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;/// 设备处于右横屏（Landscape Right）模式
-                self.currentInterfaceOrientation = UIInterfaceOrientationLandscapeRight;/// 设备处于右横屏（Landscape Right）模式
+                JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;/// 设备处于右横屏（Landscape Right）模式
+                JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeRight;/// 设备处于右横屏（Landscape Right）模式
 //                self.currentDeviceOrientation = UIDeviceOrientationUnknown;/// 设备方向未知或不确定
-                [self hx_rotateToInterfaceOrientation:self.currentInterfaceOrientation];/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
+                [self hx_rotateToInterfaceOrientation:JobsAppTool.currentInterfaceOrientation];/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
                 return nil;
             };
             [_dataMutArr addObject:viewModel];
@@ -486,10 +486,10 @@ insetForSectionAtIndex:(NSInteger)section {
             viewModel.jobsBlock = ^id(id param) {
                 @jobs_strongify(self)
                 NSLog(@"设备处于竖屏模式");
-                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;/// 设备处于竖屏（Portrait）模式。
-                self.currentInterfaceOrientation = UIInterfaceOrientationPortrait;/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
+                JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;/// 设备处于竖屏（Portrait）模式。
+                JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationPortrait;/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
 //                self.currentDeviceOrientation = UIDeviceOrientationPortrait;/// 设备竖直放置，设备底部的 Home 键在底部（设备顶部朝上）
-                [self hx_rotateToInterfaceOrientation:self.currentInterfaceOrientation];/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
+                [self hx_rotateToInterfaceOrientation:JobsAppTool.currentInterfaceOrientation];/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
                 return nil;
             };
             [_dataMutArr addObject:viewModel];

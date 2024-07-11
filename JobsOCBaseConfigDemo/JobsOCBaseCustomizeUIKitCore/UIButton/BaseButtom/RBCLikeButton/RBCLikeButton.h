@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIView+Measure.h"
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "BaseButtonProtocol.h"
 
 typedef NS_ENUM(NSInteger, RBCLikeButtonStatus) {

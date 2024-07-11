@@ -11,7 +11,7 @@
 #import "BaseViewControllerProtocol.h"
 #import "JobsBlock.h"
 #import "MacroDef_Func.h"
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "NSObject+Extras.h"
 #import "UIViewModel.h"
 #import "AppToolsProtocol.h"

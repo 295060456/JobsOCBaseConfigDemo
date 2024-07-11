@@ -151,14 +151,13 @@ didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
     if(completionHandler) completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
 }
 /// 一进入App就横屏
-- (UIInterfaceOrientationMask)application:(UIApplication *)application
-  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-    self.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
-    self.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
-    self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
-    NSLog(@"%lu",self.currentInterfaceOrientationMask);
-    return UIInterfaceOrientationMaskLandscape;
-}
+//- (UIInterfaceOrientationMask)application:(UIApplication *)application
+//  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+//    JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+//    JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
+//    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
+//    return UIInterfaceOrientationMaskLandscape;
+//}
 #pragma mark —— lazyLoad
 /// 仅仅为了iOS 13 版本向下兼容而存在
 -(UIWindow *)window{

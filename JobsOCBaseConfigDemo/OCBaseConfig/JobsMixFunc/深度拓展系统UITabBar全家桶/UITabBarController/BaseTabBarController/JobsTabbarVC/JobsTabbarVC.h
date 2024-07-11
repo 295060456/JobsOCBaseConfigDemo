@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "MacroDef_Func.h"
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "NSObject+Sound.h"
 #import "NSObject+Extras.h"
 #import "UIView+Gesture.h"

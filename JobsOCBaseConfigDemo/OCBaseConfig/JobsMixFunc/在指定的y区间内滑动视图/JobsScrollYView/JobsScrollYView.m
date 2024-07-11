@@ -14,8 +14,6 @@
 @end
 
 @implementation JobsScrollYView
-//UILocationProtocol_synthesize
-//UILocationProtocol_UIViewModelSynthesize
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{

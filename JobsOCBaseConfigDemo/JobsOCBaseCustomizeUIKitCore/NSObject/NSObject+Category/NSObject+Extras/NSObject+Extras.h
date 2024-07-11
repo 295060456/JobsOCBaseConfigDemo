@@ -13,6 +13,7 @@
 #import <mach/mach.h>
 #import <ImageIO/CGImageSource.h>
 
+#import "NSObject+Class.h"
 #import "BaseProtocol.h"
 #import "UIViewModelProtocol.h"
 #import "JobsBlock.h"
@@ -20,7 +21,7 @@
 #import "MacroDef_SysWarning.h"
 #import "FileFolderHandleTool.h"
 #import "JobsDefineAllEnumHeader.h"
-#import "NSObject+Class.h"
+#import "JobsAppTools.h"
 
 #if __has_include(<WHToast/WHToast.h>)
 #import <WHToast/WHToast.h>

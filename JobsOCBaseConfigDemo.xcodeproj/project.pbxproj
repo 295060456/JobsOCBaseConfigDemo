@@ -498,6 +498,7 @@
 		C57FAEDF287562C600E72F91 /* GXCardItemDemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C57FAEDC287562C600E72F91 /* GXCardItemDemoCell.m */; };
 		C57FAEE0287562C600E72F91 /* GXCardItemDemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C57FAEDD287562C600E72F91 /* GXCardItemDemoCell.xib */; };
 		C57FAEE52875630400E72F91 /* GXCardViewDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C57FAEE42875630400E72F91 /* GXCardViewDemoVC.m */; };
+		C5887B7A2C40204E0033E888 /* JobsAppTools.m in Sources */ = {isa = PBXBuildFile; fileRef = C5887B792C40204E0033E888 /* JobsAppTools.m */; };
 		C58D84712877DCF3007020B6 /* BaiShaETProjBankAccMgmtCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58D846F2877DCF3007020B6 /* BaiShaETProjBankAccMgmtCVCell.m */; };
 		C592C66F2C261FEF00F274F8 /* PreviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C592C66E2C261FEF00F274F8 /* PreviewVC.m */; };
 		C592C6742C26204600F274F8 /* MyTableTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C592C6732C26204600F274F8 /* MyTableTableVC.m */; };
@@ -533,7 +534,6 @@
 		C59789F42BE3599700A56125 /* NSMutableDictionary+Ordered.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787032BE3599600A56125 /* NSMutableDictionary+Ordered.m */; };
 		C59789F52BE3599700A56125 /* NSNotificationCenter+JobsBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787092BE3599600A56125 /* NSNotificationCenter+JobsBlock.m */; };
 		C59789F62BE3599700A56125 /* NSNumber+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C597870E2BE3599600A56125 /* NSNumber+Extra.m */; };
-		C59789F82BE3599700A56125 /* DeleteSystemUITabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787162BE3599600A56125 /* DeleteSystemUITabBarButton.m */; };
 		C59789FA2BE3599700A56125 /* FileFolderHandleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C597871A2BE3599600A56125 /* FileFolderHandleTool.m */; };
 		C59789FC2BE3599700A56125 /* JobsFormatTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C597871E2BE3599600A56125 /* JobsFormatTime.m */; };
 		C59789FD2BE3599700A56125 /* JobsMonitorNetwoking.m in Sources */ = {isa = PBXBuildFile; fileRef = C59787212BE3599600A56125 /* JobsMonitorNetwoking.m */; };
@@ -1938,6 +1938,9 @@
 		C57FAEDE287562C600E72F91 /* GXCardItemDemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GXCardItemDemoCell.h; sourceTree = "<group>"; };
 		C57FAEE32875630400E72F91 /* GXCardViewDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GXCardViewDemoVC.h; sourceTree = "<group>"; };
 		C57FAEE42875630400E72F91 /* GXCardViewDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GXCardViewDemoVC.m; sourceTree = "<group>"; };
+		C5887B782C40204E0033E888 /* JobsAppTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsAppTools.h; sourceTree = "<group>"; };
+		C5887B792C40204E0033E888 /* JobsAppTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsAppTools.m; sourceTree = "<group>"; };
+		C5887B7B2C40218E0033E888 /* NSObject+AppTools.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "NSObject+AppTools.md"; sourceTree = "<group>"; };
 		C58D846E2877DCF3007020B6 /* BaiShaETProjBankAccMgmtCVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiShaETProjBankAccMgmtCVCell.h; sourceTree = "<group>"; };
 		C58D846F2877DCF3007020B6 /* BaiShaETProjBankAccMgmtCVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiShaETProjBankAccMgmtCVCell.m; sourceTree = "<group>"; };
 		C58D84702877DCF3007020B6 /* BaiShaETProjBankAccMgmtCVCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BaiShaETProjBankAccMgmtCVCell.png; sourceTree = "<group>"; };
@@ -2053,9 +2056,6 @@
 		C597870D2BE3599600A56125 /* NSNumber+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Extra.h"; sourceTree = "<group>"; };
 		C597870E2BE3599600A56125 /* NSNumber+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Extra.m"; sourceTree = "<group>"; };
 		C59787102BE3599600A56125 /* JobsNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNumber.h; sourceTree = "<group>"; };
-		C59787152BE3599600A56125 /* DeleteSystemUITabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteSystemUITabBarButton.h; sourceTree = "<group>"; };
-		C59787162BE3599600A56125 /* DeleteSystemUITabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteSystemUITabBarButton.m; sourceTree = "<group>"; };
-		C59787172BE3599600A56125 /* DeleteSystemUITabBarButton.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DeleteSystemUITabBarButton.md; sourceTree = "<group>"; };
 		C59787192BE3599600A56125 /* FileFolderHandleTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileFolderHandleTool.h; sourceTree = "<group>"; };
 		C597871A2BE3599600A56125 /* FileFolderHandleTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileFolderHandleTool.m; sourceTree = "<group>"; };
 		C597871B2BE3599600A56125 /* FileFolderHandleTool.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = FileFolderHandleTool.md; sourceTree = "<group>"; };
@@ -2063,7 +2063,7 @@
 		C597871E2BE3599600A56125 /* JobsFormatTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsFormatTime.m; sourceTree = "<group>"; };
 		C59787202BE3599600A56125 /* JobsMonitorNetwoking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsMonitorNetwoking.h; sourceTree = "<group>"; };
 		C59787212BE3599600A56125 /* JobsMonitorNetwoking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsMonitorNetwoking.m; sourceTree = "<group>"; };
-		C59787222BE3599600A56125 /* MonitorNetwoking.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = MonitorNetwoking.md; sourceTree = "<group>"; };
+		C59787222BE3599600A56125 /* JobsMonitorNetwoking.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = JobsMonitorNetwoking.md; sourceTree = "<group>"; };
 		C59787242BE3599600A56125 /* JobsSEL_IMP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsSEL_IMP.h; sourceTree = "<group>"; };
 		C59787252BE3599600A56125 /* JobsSEL_IMP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsSEL_IMP.m; sourceTree = "<group>"; };
 		C59787272BE3599600A56125 /* JobsTimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTimeModel.h; sourceTree = "<group>"; };
@@ -2098,7 +2098,6 @@
 		C59787532BE3599600A56125 /* NSObject+SPAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPAlertController.m"; sourceTree = "<group>"; };
 		C59787552BE3599600A56125 /* NSObject+SYSAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SYSAlertController.h"; sourceTree = "<group>"; };
 		C59787562BE3599600A56125 /* NSObject+SYSAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SYSAlertController.m"; sourceTree = "<group>"; };
-		C59787592BE3599600A56125 /* 此类主要封装一些本App常用的、可以替换资源的函数调用或者是鉴权机制.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "此类主要封装一些本App常用的、可以替换资源的函数调用或者是鉴权机制.md"; sourceTree = "<group>"; };
 		C597875A2BE3599600A56125 /* NSObject+AppTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AppTools.h"; sourceTree = "<group>"; };
 		C597875B2BE3599600A56125 /* NSObject+AppTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AppTools.m"; sourceTree = "<group>"; };
 		C597875D2BE3599600A56125 /* NSObject+BRPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BRPickerView.h"; sourceTree = "<group>"; };
@@ -2314,7 +2313,7 @@
 		C59788A42BE3599600A56125 /* UIImage+YBGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+YBGIF.h"; sourceTree = "<group>"; };
 		C59788A52BE3599600A56125 /* UIImage+YBGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YBGIF.m"; sourceTree = "<group>"; };
 		C59788A82BE3599600A56125 /* JobsImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsImage.h; sourceTree = "<group>"; };
-		C59788A92BE3599600A56125 /* LoadingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingImage.h; sourceTree = "<group>"; };
+		C59788A92BE3599600A56125 /* JobsLoadingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsLoadingImage.h; sourceTree = "<group>"; };
 		C59788AB2BE3599600A56125 /* BaseImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseImageView.h; sourceTree = "<group>"; };
 		C59788AC2BE3599600A56125 /* BaseImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseImageView.m; sourceTree = "<group>"; };
 		C59788AE2BE3599600A56125 /* UIImageView+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+GIF.h"; sourceTree = "<group>"; };
@@ -3117,10 +3116,8 @@
 		840F92B427736425004979E9 /* UITabBar+Category */ = {
 			isa = PBXGroup;
 			children = (
-				840F92B827736425004979E9 /* UITabBar+Ex.h */,
-				840F92B627736425004979E9 /* UITabBar+Ex.m */,
-				840F92B727736425004979E9 /* UITabBar+TLAnimation.h */,
-				840F92B527736425004979E9 /* UITabBar+TLAnimation.m */,
+				C5887B762C401FA10033E888 /* UITabBar+TLAnimation */,
+				C5887B752C401F9A0033E888 /* UITabBar+Ex */,
 			);
 			path = "UITabBar+Category";
 			sourceTree = "<group>";
@@ -7615,6 +7612,33 @@
 			path = GXCardViewDemo;
 			sourceTree = "<group>";
 		};
+		C5887B752C401F9A0033E888 /* UITabBar+Ex */ = {
+			isa = PBXGroup;
+			children = (
+				840F92B827736425004979E9 /* UITabBar+Ex.h */,
+				840F92B627736425004979E9 /* UITabBar+Ex.m */,
+			);
+			path = "UITabBar+Ex";
+			sourceTree = "<group>";
+		};
+		C5887B762C401FA10033E888 /* UITabBar+TLAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				840F92B727736425004979E9 /* UITabBar+TLAnimation.h */,
+				840F92B527736425004979E9 /* UITabBar+TLAnimation.m */,
+			);
+			path = "UITabBar+TLAnimation";
+			sourceTree = "<group>";
+		};
+		C5887B772C4020180033E888 /* JobsAppTools */ = {
+			isa = PBXGroup;
+			children = (
+				C5887B782C40204E0033E888 /* JobsAppTools.h */,
+				C5887B792C40204E0033E888 /* JobsAppTools.m */,
+			);
+			path = JobsAppTools;
+			sourceTree = "<group>";
+		};
 		C58D846D2877DCE1007020B6 /* JobsWalletVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -8245,16 +8269,6 @@
 			path = NSNumber;
 			sourceTree = "<group>";
 		};
-		C59787182BE3599600A56125 /* DeleteSystemUITabBarButton */ = {
-			isa = PBXGroup;
-			children = (
-				C59787152BE3599600A56125 /* DeleteSystemUITabBarButton.h */,
-				C59787162BE3599600A56125 /* DeleteSystemUITabBarButton.m */,
-				C59787172BE3599600A56125 /* DeleteSystemUITabBarButton.md */,
-			);
-			path = DeleteSystemUITabBarButton;
-			sourceTree = "<group>";
-		};
 		C597871C2BE3599600A56125 /* FileFolderHandleTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -8279,7 +8293,7 @@
 			children = (
 				C59787202BE3599600A56125 /* JobsMonitorNetwoking.h */,
 				C59787212BE3599600A56125 /* JobsMonitorNetwoking.m */,
-				C59787222BE3599600A56125 /* MonitorNetwoking.md */,
+				C59787222BE3599600A56125 /* JobsMonitorNetwoking.md */,
 			);
 			path = JobsMonitorNetwoking;
 			sourceTree = "<group>";
@@ -8420,8 +8434,8 @@
 		C597874E2BE3599600A56125 /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
+				C5887B772C4020180033E888 /* JobsAppTools */,
 				CEB72E5A2C37EE4900E652CA /* JobsLanguageManager */,
-				C59787182BE3599600A56125 /* DeleteSystemUITabBarButton */,
 				C597871C2BE3599600A56125 /* FileFolderHandleTool */,
 				C597871F2BE3599600A56125 /* JobsFormatTime */,
 				C59787232BE3599600A56125 /* JobsMonitorNetwoking */,
@@ -8475,7 +8489,7 @@
 		C597875C2BE3599600A56125 /* NSObject+AppTools */ = {
 			isa = PBXGroup;
 			children = (
-				C59787592BE3599600A56125 /* 此类主要封装一些本App常用的、可以替换资源的函数调用或者是鉴权机制.md */,
+				C5887B7B2C40218E0033E888 /* NSObject+AppTools.md */,
 				C597875A2BE3599600A56125 /* NSObject+AppTools.h */,
 				C597875B2BE3599600A56125 /* NSObject+AppTools.m */,
 			);
@@ -9625,7 +9639,7 @@
 			children = (
 				C59788A72BE3599600A56125 /* UIImage+Category */,
 				C59788A82BE3599600A56125 /* JobsImage.h */,
-				C59788A92BE3599600A56125 /* LoadingImage.h */,
+				C59788A92BE3599600A56125 /* JobsLoadingImage.h */,
 			);
 			path = UIImage;
 			sourceTree = "<group>";
@@ -12716,6 +12730,7 @@
 				C55C895628437190005295B1 /* JXCategoryPopupVC.m in Sources */,
 				C5978A122BE3599700A56125 /* NSObject+BRPickerView.m in Sources */,
 				C59478D62851E2D7009D040A /* OCDynamic.m in Sources */,
+				C5887B7A2C40204E0033E888 /* JobsAppTools.m in Sources */,
 				C54BC43628325BA80010EF20 /* JobsTitleView01.m in Sources */,
 				C5978A7E2BE3599700A56125 /* UIImageView+GIF.m in Sources */,
 				C5978A212BE3599700A56125 /* KeychainHelper.m in Sources */,
@@ -12866,7 +12881,6 @@
 				C55C8959284371A9005295B1 /* JXCategoryPopupSubVC.m in Sources */,
 				840F960227736427004979E9 /* TransitionAnimation.m in Sources */,
 				C5CC23352C39853500A9B626 /* FMDB_VC.m in Sources */,
-				C59789F82BE3599700A56125 /* DeleteSystemUITabBarButton.m in Sources */,
 				C59789EB2BE3599700A56125 /* CALayer+Anim.m in Sources */,
 				846DF03A27806D230050468A /* JobsAppDoorForgotCodeContentView.m in Sources */,
 				CE6B14162C2ED50D00A542A4 /* YTKRequest.m in Sources */,

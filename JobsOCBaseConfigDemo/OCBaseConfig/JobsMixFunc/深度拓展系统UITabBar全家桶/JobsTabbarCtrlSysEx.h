@@ -22,7 +22,7 @@
 #import "UITabBar+Ex.h"
 
 //在系统API基础上二次封装的功能性拓展
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 //UIView
 #import "UIView+Animation.h"
 #import "UIView+Chain.h"

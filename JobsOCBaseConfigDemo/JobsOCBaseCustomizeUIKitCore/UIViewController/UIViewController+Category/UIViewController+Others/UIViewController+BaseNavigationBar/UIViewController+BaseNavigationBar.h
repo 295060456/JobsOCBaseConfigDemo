@@ -10,7 +10,7 @@
 #import "BaseNavigationBar.h"
 #import "MacroDef_Cor.h"
 #import "MacroDef_Size.h"
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "UIViewController+BaseVC.h"
 
 #if __has_include(<Masonry/Masonry.h>)

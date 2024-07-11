@@ -21,6 +21,7 @@
 
 @interface UITabBar (Ex)
 
+-(void)deleteUITabBarButton;
 -(void)addLottieImage:(NSUInteger)index
               offsetY:(CGFloat)offsetY
            lottieName:(nullable NSString *)lottieName;

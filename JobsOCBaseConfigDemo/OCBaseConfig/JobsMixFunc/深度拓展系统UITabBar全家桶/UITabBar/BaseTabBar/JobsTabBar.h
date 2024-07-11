@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewProtocol.h"
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "UIView+Measure.h"
 
 #ifndef ALIGNMENT_TYPE_ENUM_DEFINED

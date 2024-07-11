@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "MacroDef_Cor.h"
 #import "MacroDef_App.h"
 #import "MacroDef_String.h"

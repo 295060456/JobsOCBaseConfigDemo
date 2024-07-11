@@ -13,7 +13,7 @@
 #import "JobsBlock.h"
 #import "UIView+Measure.h"
 #import "UIButton+UI.h"
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
 #import <ReactiveObjC/ReactiveObjC.h>

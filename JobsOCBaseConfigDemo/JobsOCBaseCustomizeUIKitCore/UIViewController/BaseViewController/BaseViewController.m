@@ -14,8 +14,6 @@
 @implementation BaseViewController
 #pragma mark —— UIViewModelProtocol
 UIViewModelProtocol_synthesize
-#pragma mark —— UILocationProtocol
-UILocationProtocol_synthesize
 #pragma mark —— BaseViewProtocol
 BaseViewProtocol_synthesize
 #pragma mark —— BaseViewControllerProtocol

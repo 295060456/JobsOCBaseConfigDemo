@@ -3,7 +3,7 @@
 #import "NSObject+CurrentDevice.h"
 #import "NSObject+RichText.h"
 #import "UITextField+Extend.h"
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "MacroDef_Cor.h"
 
 @interface ZYTextField : UITextField

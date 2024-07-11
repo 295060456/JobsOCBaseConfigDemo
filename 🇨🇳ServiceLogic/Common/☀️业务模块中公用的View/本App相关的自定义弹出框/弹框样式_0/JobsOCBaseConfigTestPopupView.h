@@ -11,7 +11,7 @@
 #import "UIView+BackgroundImage.h"
 #import "UIViewModelOthersProtocol.h"
 #import "NSString+Judgment.h"
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 #warning 需要测试

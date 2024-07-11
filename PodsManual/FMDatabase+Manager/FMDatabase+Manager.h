@@ -5,7 +5,7 @@
 //  Created by Jobs on 2021/12/1.
 //
 
-#import "LoadingImage.h"
+#import "JobsLoadingImage.h"
 #import "FileFolderHandleTool.h"
 
 #if __has_include(<FMDB/FMDB.h>)
