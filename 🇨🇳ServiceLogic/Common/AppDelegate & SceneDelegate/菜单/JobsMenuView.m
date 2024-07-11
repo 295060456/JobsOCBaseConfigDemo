@@ -85,7 +85,12 @@ static dispatch_once_t JobsMenuViewOnceToken;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(150) + JobsRectOfStatusbar(),JobsMainScreen_HEIGHT());
+    
+    NSLog(@"%f",self.jobsMainScreen_WIDTH);
+    NSLog(@"%f",self.jobsMainScreen_HEIGHT);
+    
+    return CGSizeMake(self.jobsMainScreen_WIDTH / 2 + JobsRectOfStatusbar(),
+                      self.jobsMainScreen_HEIGHT);
 }
 
 -(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{

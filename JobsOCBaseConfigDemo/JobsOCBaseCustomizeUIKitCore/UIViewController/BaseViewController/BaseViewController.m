@@ -345,8 +345,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 //        _menuView.frame = CGRectMake(0, 0, 200, 200);
         [_menuView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo([_menuView viewSizeWithModel:nil]);
-            make.centerY.equalTo(jobsGetMainWindow());
-            make.left.equalTo(jobsGetMainWindow());
+            make.centerY.equalTo(self.view);
+            make.left.equalTo(self.view);
         }];
     }return _menuView;
 }

@@ -264,18 +264,12 @@ static inline CGSize JobsMainScreen(void){
     return UIScreen.mainScreen.bounds.size;
 }
 #pragma mark ——  横屏判定
-/// 横屏模式下，正常的宽高反转
-/// 应用程序的早期阶段，横屏的UI尚未更新，此时下列方法失效
-static inline BOOL JobsCheckLandscape(void){
-    return JobsMainScreen().width > JobsMainScreen().height;
-}
-
 static inline CGFloat JobsMainScreen_WIDTH(void){
-    return JobsCheckLandscape() ? JobsMainScreen().height : JobsMainScreen().width;
+    return JobsMainScreen().width;
 }
 
 static inline CGFloat JobsMainScreen_HEIGHT(void){
-    return JobsCheckLandscape() ? JobsMainScreen().width : JobsMainScreen().height;
+    return  JobsMainScreen().height;
 }
 /// 寻找真正的高
 static inline CGFloat SCREEN_MAX_LENGTH(void){

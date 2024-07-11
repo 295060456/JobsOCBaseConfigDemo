@@ -74,11 +74,13 @@ BOOL ISLogin;
                 if (r < 1) return;
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:r - 1 inSection:s - 1];/// 取最后一行数据
                 [self.tableView scrollToRowAtIndexPath:indexPath
-                                      atScrollPosition:UITableViewScrollPositionBottom animated:YES];/// 滚动到最后一行
+                                      atScrollPosition:UITableViewScrollPositionBottom 
+                                              animated:YES];/// 滚动到最后一行
             }else{
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];/// 取第一行数据
                 [self.tableView scrollToRowAtIndexPath:indexPath
-                                      atScrollPosition:UITableViewScrollPositionTop animated:YES];/// 滚动到第一行
+                                      atScrollPosition:UITableViewScrollPositionTop
+                                              animated:YES];/// 滚动到第一行
             }
         }
     };
@@ -95,11 +97,12 @@ BOOL ISLogin;
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-//    DeviceOrientation d = self.getDeviceOrientation;
-//    UIInterfaceOrientation s = self.getInterfaceOrientation;
-//    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
-//    NSLog(@"");
-    self.menuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;
+    DeviceOrientation d = self.getDeviceOrientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    NSLog(@"");
+    self.menuView.alpha = 1;
+//    self.getDeviceOrientation == DeviceOrientationLandscape;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

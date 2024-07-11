@@ -153,6 +153,10 @@ didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
 /// 一进入App就横屏
 - (UIInterfaceOrientationMask)application:(UIApplication *)application
   supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    self.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+    self.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
+    self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
+    NSLog(@"%lu",self.currentInterfaceOrientationMask);
     return UIInterfaceOrientationMaskLandscape;
 }
 #pragma mark —— lazyLoad
