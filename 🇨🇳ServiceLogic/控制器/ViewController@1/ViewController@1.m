@@ -101,7 +101,8 @@ BOOL ISLogin;
     UIInterfaceOrientation s = self.getInterfaceOrientation;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
     NSLog(@"");
-    self.menuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;;
+//    self.menuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;
+    self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
