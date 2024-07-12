@@ -10,7 +10,6 @@
 @interface AppLanguageVC ()
 /// UI
 @property(nonatomic,strong)UITableView *tableView;
-//@property(nonatomic,strong)UIImageView *imageView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -71,26 +70,26 @@
     [self setGKNav];
     [self setGKNavBackBtn];
     self.tableView.alpha = 1;
-    DeviceOrientation d = self.getDeviceOrientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    DeviceOrientation d = self.getDeviceOrientation;
     NSLog(@"");
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.tableView.mj_header beginRefreshing];
-    DeviceOrientation d = self.getDeviceOrientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    DeviceOrientation d = self.getDeviceOrientation;
     NSLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    DeviceOrientation d = self.getDeviceOrientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    DeviceOrientation d = self.getDeviceOrientation;
     NSLog(@"");
 }
 
@@ -104,7 +103,6 @@
     [SDImageCache.sharedImageCache clearDiskOnCompletion:nil];
     
     UIImageView *imageView = UIImageView.new;
-//    imageView.image = JobsIMG(NSLocalizedString(@"6.59", nil));
     imageView.image = JobsIMG(JobsInternationalization(@"6.59"));
     id dd = JobsIMG(JobsInternationalization(@"6.59"));
     id f = JobsIMG(NSLocalizedString(@"6.59", nil));
@@ -157,7 +155,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     /// 当前点选的Cell
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-
     for (UITableViewCell *acell in tableView.visibleCells) {
         acell.accessoryType = acell == cell ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
@@ -168,7 +165,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _dataMutArr = nil;
     /// 刷新本界面
     [self.tableView.mj_header beginRefreshing];
-    @jobs_weakify(self)
+//    @jobs_weakify(self)
     /// 2秒后退出本页面
 //    DispathdDelaySth(2.0, [weak_self backBtnClickEvent:nil]);
 }

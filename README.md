@@ -109,6 +109,12 @@
     ```
 ### 3、iOS模拟器 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+* 命令行唤起 iOS模拟器
+
+  ```shell
+  open -a Simulator
+  ```
+
 * 如果更新或者删除xcode，那么下载的iOS模拟器将会丢失
 
 * 模拟器文件通常存储在以下路径

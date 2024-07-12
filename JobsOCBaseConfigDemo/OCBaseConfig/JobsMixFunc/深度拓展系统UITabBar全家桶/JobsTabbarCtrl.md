@@ -26,12 +26,16 @@
   * 支持`PPBadgeView`
   * 支持强行自检跳转登录模块
 
-## 一、`JobsTabBarCtrlConfig`
+## 一、生命周期
+
+* <font color=red>**`UITabBarController`** 走完`-(void)viewWillAppear:(BOOL)animated`之后，会走挂载的控制器的生命周期，然后再调回来走**`UITabBarController`** 的**`-(void)viewDidAppear:(BOOL)animated`**</font>
+
+## 二、`JobsTabBarCtrlConfig`
 
 * 对`JobsTabBarCtrl`的全局配置文件
 * 是一个继承自`NSObject`的**model**
 
-## 二、 `JobsTabbarVC`
+## 三、 `JobsTabbarVC`
 
 * 相关继承树： **`JobsTabbarVC`** : **`UITabBarController`**：**`UIViewController <UITabBarDelegate, NSCoding>`**
 
@@ -375,7 +379,7 @@ TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优
   }
   ```
 
-## 三、`JobsTabBar`
+## 四、`JobsTabBar`
 
 * 相关继承树： **`JobsTabBar`** : **`UITabBar`**：**`UIView`**
 
@@ -468,12 +472,12 @@ TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优
  }
 ```
 
-## 四、`JobsTabBarItem`
+## 五、`JobsTabBarItem`
 
 * 相关继承树：**`JobsTabBarItem`** ： **`UITabBarItem`**：**`UIBarItem`**：**` NSObject <NSCoding, UIAppearance>`** 
 * 其本质只是挂载到`UITabBar`的一个配置文件，<font color=red>**不是View**</font>
 
-## 五、附加的功能性
+## 六、附加的功能性
 
 * [**功能性动效：手势横向滚动子`VC`联动`Tabbar`切换**](https://github.com/cdcyd/CommonControlsCollection)
 
@@ -519,7 +523,7 @@ TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优
     }
     ```
 
-## 六、使用
+## 七、使用
 
 ```objective-c
 -(UIWindow *)window{

@@ -8,7 +8,8 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-//open -a Simulator
+/// open -a Simulator
+/// main 函数
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
     @autoreleasepool {

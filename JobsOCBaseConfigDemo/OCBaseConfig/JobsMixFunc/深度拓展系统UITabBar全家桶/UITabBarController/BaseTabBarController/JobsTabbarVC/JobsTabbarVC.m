@@ -98,9 +98,9 @@ static JobsTabbarVC *static_tabbarVC = nil;
     }
     self.myTabBar.alpha = 1;
 //    self.suspendBtn.alpha = 1;
-    DeviceOrientation d = self.getDeviceOrientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    DeviceOrientation d = self.getDeviceOrientation;
     NSLog(@"");
 }
 
@@ -114,17 +114,17 @@ static JobsTabbarVC *static_tabbarVC = nil;
         [self UISetting];//最高只能在viewWillAppear，在viewDidLoad不出效果 self.tabBar.subviews为空
 //        [self 添加长按手势];
     });
-    DeviceOrientation d = self.getDeviceOrientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    DeviceOrientation d = self.getDeviceOrientation;
     NSLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    DeviceOrientation d = self.getDeviceOrientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    DeviceOrientation d = self.getDeviceOrientation;
     NSLog(@"");
 }
 
@@ -140,13 +140,13 @@ static JobsTabbarVC *static_tabbarVC = nil;
 #pragma mark —— 在 UITabBarController 中适配横屏在 UITabBarController 中适配横屏
 /// 决定当前界面是否开启自动转屏，如果返回NO，后面两个方法也不会被调用，只是会支持默认的方向
 - (BOOL)shouldAutorotate {
-    return [self.selectedViewController shouldAutorotate];
+    return self.selectedViewController.shouldAutorotate;
 }
 /// 当前控制器支持的屏幕旋转方向（在具体的控制器子类进行覆写）
 /// iPad设备上，默认返回值UIInterfaceOrientationMaskAllButUpSideDwon
 /// iPhone设备上，默认返回值是UIInterfaceOrientationMaskAll
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return [self.selectedViewController supportedInterfaceOrientations];
+    return self.selectedViewController.supportedInterfaceOrientations;
 }
 /// 设置进入界面默认支持的方向
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{

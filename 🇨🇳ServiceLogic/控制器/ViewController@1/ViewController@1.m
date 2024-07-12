@@ -84,9 +84,9 @@ BOOL ISLogin;
             }
         }
     };
-    DeviceOrientation d = self.getDeviceOrientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    DeviceOrientation d = self.getDeviceOrientation;
     NSLog(@"");
 }
 
@@ -97,20 +97,21 @@ BOOL ISLogin;
         _dataMutArr = nil;
     }
     [self.tableView.mj_header beginRefreshing];
-    DeviceOrientation d = self.getDeviceOrientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    DeviceOrientation d = self.getDeviceOrientation;
     NSLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    DeviceOrientation d = self.getDeviceOrientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+    UIInterfaceOrientation s = self.getInterfaceOrientation;
+    DeviceOrientation d = self.getDeviceOrientation;
     NSLog(@"");
+    self.menuView.alpha = self.getInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.getInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
 //    self.menuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;
-    self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
+//    self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
