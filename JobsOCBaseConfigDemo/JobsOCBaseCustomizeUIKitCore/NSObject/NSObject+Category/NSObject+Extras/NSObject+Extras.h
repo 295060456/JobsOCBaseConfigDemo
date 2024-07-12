@@ -401,7 +401,7 @@ BaseProtocol
 -(UIInterfaceOrientation)getInterfaceOrientation;
 /// UIInterfaceOrientation 检测屏幕方向
 -(CGSize)checkScreenOrientation_UIInterfaceOrientation:(JobsReturnSizeByNSIntegerBlock _Nullable)interfaceOrientationBlock;
-
+/// DeviceOrientation 检测屏幕方向
 -(DeviceOrientation)getDeviceOrientation;
 /// 横屏通知的监听
 -(void)横屏通知的监听:(JobsSelectorBlock1)block;

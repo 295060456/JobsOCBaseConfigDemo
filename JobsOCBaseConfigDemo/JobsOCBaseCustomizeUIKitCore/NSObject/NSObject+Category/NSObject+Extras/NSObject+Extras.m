@@ -1025,7 +1025,7 @@
     if (interfaceOrientationBlock) return interfaceOrientationBlock(self.getInterfaceOrientation);
     return CGSizeZero;
 }
-/// UIUserInterfaceSizeClass 检测屏幕方向
+/// DeviceOrientation 检测屏幕方向
 -(DeviceOrientation)getDeviceOrientation{
     UIView *view = self.getView;
     return view ? (view.traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact ? DeviceOrientationLandscape : DeviceOrientationPortrait)
