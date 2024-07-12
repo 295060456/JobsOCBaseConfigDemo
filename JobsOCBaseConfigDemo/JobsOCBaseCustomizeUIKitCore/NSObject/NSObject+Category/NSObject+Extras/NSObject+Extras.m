@@ -189,11 +189,11 @@
  
  */
 -(JobsReturnIDByIDBlock _Nonnull)valueForKeyBlock{
-    return ^(NSString *data) {
+    return ^(NSString *key) {
         id value = nil;
-        if([data isKindOfClass:NSString.class] && 
-           [self respondsToSelector:NSSelectorFromString(data)]){
-            value = [self valueForKey:data];
+        if([key isKindOfClass:NSString.class] &&
+           [self respondsToSelector:NSSelectorFromString(key)]){
+            value = [self valueForKey:key];
         }return value;
     };
 }

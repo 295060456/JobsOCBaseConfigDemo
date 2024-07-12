@@ -9,6 +9,8 @@
 #define JobsObject_h
 
 #pragma mark —— Base
+/// 只执行一次
+#import "JobsOnceExecutor.h"
 /// 作用于全局的工具类（单例模式）
 #import "JobsAppTools.h"
 /// App 开屏广告

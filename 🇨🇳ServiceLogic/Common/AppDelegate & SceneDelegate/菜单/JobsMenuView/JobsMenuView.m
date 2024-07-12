@@ -79,6 +79,7 @@ static dispatch_once_t JobsMenuViewOnceToken;
     /// 内部指定圆切角
     [self layoutSubviewsCutCnrByRoundingCorners:UIRectCornerBottomRight | UIRectCornerTopRight
                                     cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+    [self getCollectionViewCell];
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -93,7 +94,6 @@ static dispatch_once_t JobsMenuViewOnceToken;
     self.backgroundColor = JobsGreenColor;
     self.categoryView.alpha = 1;
     [self transformByRadians:1.5f];
-    [self getCollectionViewCell];
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
@@ -107,13 +107,14 @@ static dispatch_once_t JobsMenuViewOnceToken;
 #pragma mark —— 一些私有方法
 /// 只有在viewDidAppear才能获取到UICollectionViewCell
 -(void)getCollectionViewCell{
-
-//    JXCategoryBaseCell *cell = (JXCategoryBaseCell *)[self.categoryView.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
-//    NSArray <UICollectionViewCell *>*visibleCells = self.categoryView.collectionView.visibleCells;
-    NSLog(@"");
-
-    for (UICollectionViewCell *cell in self.categoryView.collectionView.visibleCells) {
-        [cell transformByRadians:1];
+    if(self.categoryView.collectionView.visibleCells.count){
+        @jobs_weakify(self)
+        [JobsOnceExecutor.new executeOnceWithBlock:^{
+            @jobs_strongify(self)
+            for (UICollectionViewCell *cell in self.categoryView.collectionView.visibleCells) {
+                [cell transformByRadians:0.5];
+            }
+        }];
     }
 }
 #pragma mark JXCategoryTitleViewDataSource
