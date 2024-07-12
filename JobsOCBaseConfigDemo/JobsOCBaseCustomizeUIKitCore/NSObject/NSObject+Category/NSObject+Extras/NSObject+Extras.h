@@ -390,26 +390,9 @@ BaseProtocol
 -(BOOL)judgementExactDivisionByNum1:(NSNumber *_Nonnull)num1
                                num2:(NSNumber *_Nonnull)num2;
 #pragma mark —— 检测当前设备屏幕方向
+//https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md
 -(CGFloat)jobsMainScreen_HEIGHT;
 -(CGFloat)jobsMainScreen_WIDTH;
-/**
- * 系统通知`UIDeviceOrientationDidChangeNotification`也是需要服从界面UI的生命周期，否则取值不成功
- * 其实系统有2个维度来读取是否横屏
-   * 设备真实的方向（定义手机横卧为横屏）
-   * 在`AppDelegate`里面，对`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`进行了配置。因为是强制性的横屏呈现，所以**优先级最高**
- * 如果配置了`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`为横屏模式（默认为竖屏模式），但是终值为竖屏，**则为错误读取**
- * 如果不配置`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`为横屏模式（默认为竖屏模式），则以当前设备定位为准
- * 对于页面，因为需要自适应调整，那么以靠后的生命周期读取值为准。比如在**viewController**里面`-(void)viewDidAppear:(BOOL)animated`的值为最终系统在综合各种因素后调整后的值。**不要去关心中间值，以终值为准，这样方便定位我们从何时调用方法为有效调用**
- * **一般的架构是将`UITabBarController`及其子类作为根控制器，那么在呈现页面的时候，内部会去调整UI适配横竖屏。所以，`UITabBarController`及其子类以及挂载在上面的子控制器，均是需要在页面生命周期走完以后（即，`-(void)viewDidAppear:(BOOL)animated`以后）才能获取到正确的值**
- * 如果锚定`UIDevice.currentDevice.orientation`
-   * `UIDevice.currentDevice.orientation`不是总是有效。在应用启动时，设备方向信息有时可能还没有完全初始化，这可能导致得到 `UIDeviceOrientationUnknown`
-   * 不能配置 `- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window ` ，因为竖屏检测会失败
-   * 如果当前控制器为`UITabBarController`及其子类，`-(void)viewDidAppear:(BOOL)animated`生命周期以后（包含），方位数据才正常
-   * 如果当前控制器为普通的`UIViewController`及其子类，则全部生命周期正常
- * 如果锚定场景方向`UIInterfaceOrientation`，则需要在相关控制器的`-(void)viewDidAppear:(BOOL)animated`生命周期（包含）以后，才会获取到真正的`UIInterfaceOrientation`
- * 如果锚定`view.traitCollection.verticalSizeClass`，则需要配置 `- (UIInterfaceOrientationMask)application:(UIApplication *)application
-   supportedInterfaceOrientationsForWindow:(UIWindow *)window`，方可正常检测横竖屏
- */
 -(UIView *_Nullable)getView;
 -(id _Nullable)getViewByBlock:(JobsReturnIDByComponentTypeAndUIViewBlock _Nullable)block;
 /// UIInterfaceOrientationMask 检测屏幕方向
