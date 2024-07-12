@@ -720,7 +720,6 @@
 		C5978AC32BE3599700A56125 /* UIView+UIBackgroundConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789922BE3599600A56125 /* UIView+UIBackgroundConfig.m */; };
 		C5978AC42BE3599700A56125 /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789952BE3599600A56125 /* UIView+ViewController.m */; };
 		C5978AC52BE3599700A56125 /* UIView+ZFPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789982BE3599600A56125 /* UIView+ZFPlayer.m */; };
-		C5978AC62BE3599700A56125 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C597899F2BE3599600A56125 /* BaseViewController.m */; };
 		C5978AC72BE3599700A56125 /* UIViewController+JXCategoryListContentViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789A22BE3599600A56125 /* UIViewController+JXCategoryListContentViewDelegate.m */; };
 		C5978AC82BE3599700A56125 /* UIViewController+JXPagerViewListViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789A52BE3599600A56125 /* UIViewController+JXPagerViewListViewDelegate.m */; };
 		C5978AC92BE3599700A56125 /* MJRefreshConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C59789A92BE3599600A56125 /* MJRefreshConfigModel.m */; };
@@ -894,6 +893,8 @@
 		C5FBD1E62AC1A92A0043B932 /* JobsPresentedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FBD1E52AC1A92A0043B932 /* JobsPresentedVC.m */; };
 		CE03ED9A2C312FA300138A1E /* HotRefreshVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE03ED992C312FA300138A1E /* HotRefreshVC.m */; };
 		CE03ED9D2C31304E00138A1E /* WidgetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE03ED9C2C31304E00138A1E /* WidgetVC.m */; };
+		CE0E0E7B2C412744000FB709 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C597899F2BE3599600A56125 /* BaseViewController.m */; };
+		CE0E0E812C412912000FB709 /* HomeMenuSubBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0E0E802C412912000FB709 /* HomeMenuSubBaseVC.m */; };
 		CE5499B42C3E644A008487E0 /* JobsMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5499B32C3E644A008487E0 /* JobsMenuView.m */; };
 		CE6B140E2C2ED50D00A542A4 /* YTKBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B13F92C2ED50D00A542A4 /* YTKBaseRequest.m */; };
 		CE6B140F2C2ED50D00A542A4 /* YTKBatchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B13FB2C2ED50D00A542A4 /* YTKBatchRequest.m */; };
@@ -2753,6 +2754,8 @@
 		CE03ED992C312FA300138A1E /* HotRefreshVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotRefreshVC.m; sourceTree = "<group>"; };
 		CE03ED9B2C31304E00138A1E /* WidgetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WidgetVC.h; sourceTree = "<group>"; };
 		CE03ED9C2C31304E00138A1E /* WidgetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WidgetVC.m; sourceTree = "<group>"; };
+		CE0E0E7F2C412912000FB709 /* HomeMenuSubBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeMenuSubBaseVC.h; sourceTree = "<group>"; };
+		CE0E0E802C412912000FB709 /* HomeMenuSubBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeMenuSubBaseVC.m; sourceTree = "<group>"; };
 		CE1F9E4D2C3E542E00B315B4 /* 功能性动效：高仿 Telegram，在指定位置出现菜单列表.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "功能性动效：高仿 Telegram，在指定位置出现菜单列表.md"; sourceTree = "<group>"; };
 		CE1F9E4E2C3E554300B315B4 /* JobsTabbarCtrl.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = JobsTabbarCtrl.md; sourceTree = "<group>"; };
 		CE5499B22C3E644A008487E0 /* JobsMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsMenuView.h; sourceTree = "<group>"; };
@@ -11787,6 +11790,24 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		CE0E0E072C41228B000FB709 /* JobsMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				CE5499B22C3E644A008487E0 /* JobsMenuView.h */,
+				CE5499B32C3E644A008487E0 /* JobsMenuView.m */,
+			);
+			path = JobsMenuView;
+			sourceTree = "<group>";
+		};
+		CE0E0E0B2C4122F8000FB709 /* HomeMenuSubBaseVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE0E0E7F2C412912000FB709 /* HomeMenuSubBaseVC.h */,
+				CE0E0E802C412912000FB709 /* HomeMenuSubBaseVC.m */,
+			);
+			path = HomeMenuSubBaseVC;
+			sourceTree = "<group>";
+		};
 		CE1F9E4C2C3E53CE00B315B4 /* JobsPullListAutoSizeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -11799,8 +11820,8 @@
 		CE5499B12C3E642E008487E0 /* 菜单 */ = {
 			isa = PBXGroup;
 			children = (
-				CE5499B22C3E644A008487E0 /* JobsMenuView.h */,
-				CE5499B32C3E644A008487E0 /* JobsMenuView.m */,
+				CE0E0E0B2C4122F8000FB709 /* HomeMenuSubBaseVC */,
+				CE0E0E072C41228B000FB709 /* JobsMenuView */,
 			);
 			path = "菜单";
 			sourceTree = "<group>";
@@ -12571,6 +12592,7 @@
 				C539A0342AD69BCF00C8A5E3 /* TKPermissionFolders.m in Sources */,
 				84175CB32C03558F00A535D9 /* JobsMakeLocalNotification.m in Sources */,
 				C5AA8B6F282CE2F00057EB84 /* JobsAppDoorInputViewBaseStyle_1.m in Sources */,
+				CE0E0E812C412912000FB709 /* HomeMenuSubBaseVC.m in Sources */,
 				842475AB27C0D67000831270 /* YTKChainRequest+AnimatingAccessory.m in Sources */,
 				C5978A272BE3599700A56125 /* NSObject+UUID.m in Sources */,
 				840F961827736427004979E9 /* JobsImageNumberViewCVCell.m in Sources */,
@@ -12605,6 +12627,7 @@
 				C5978A2A2BE3599700A56125 /* NSObject+Notification.m in Sources */,
 				C592C67C2C2621BD00F274F8 /* PeekAndPopVC.m in Sources */,
 				844B0E532764DE1A00B0513D /* DDResponseModel.m in Sources */,
+				CE0E0E7B2C412744000FB709 /* BaseViewController.m in Sources */,
 				C57A809F284F36BA00DD089E /* JobsMsgDetailVC.m in Sources */,
 				C5978A9E2BE3599700A56125 /* UITableViewCell+UITableViewCellProtocoll.m in Sources */,
 				C5978A782BE3599700A56125 /* UIImage+Extras.m in Sources */,
@@ -12807,7 +12830,6 @@
 				C520F88C2AB3A12100142DCC /* WMZBannerControl.m in Sources */,
 				C5978A002BE3599700A56125 /* JobsTimeModel.m in Sources */,
 				C59789FA2BE3599700A56125 /* FileFolderHandleTool.m in Sources */,
-				C5978AC62BE3599700A56125 /* BaseViewController.m in Sources */,
 				C52E5C9E2AC07E9800FE5494 /* KTVHCDataRequest.m in Sources */,
 				C5E8A7582869848600FAB31D /* CustomTableViewCellVC.m in Sources */,
 				C53683572875722300DD7AA7 /* JobsWalletVC.m in Sources */,

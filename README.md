@@ -423,6 +423,8 @@ Current targets:
 
 ### 11、[**<font color=red>`BaseProtocol` 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+* **如果两个对象都继承了共同的协议，互相包含会造成编译器错误**
+
 ```mermaid
 classDiagram
     NSObject <|-- UIViewModelProtocol

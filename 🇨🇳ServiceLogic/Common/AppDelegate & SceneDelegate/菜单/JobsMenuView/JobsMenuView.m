@@ -1,13 +1,13 @@
 //
-//  JXCategoryViewVerticalShowVC.m
-//  JobsOCBaseConfig
+//  JobsMenuView.m
+//  JobsOCBaseConfigDemo
 //
-//  Created by Jobs on 2022/6/15.
+//  Created by User on 7/10/24.
 //
 
-#import "JXCategoryViewVerticalShowVC.h"
+#import "JobsMenuView.h"
 
-@interface JXCategoryViewVerticalShowVC ()
+@interface JobsMenuView ()
 /// UI
 @property(nonatomic,strong)JXCategoryTitleView *categoryView;/// 文字
 @property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
@@ -20,66 +20,89 @@
 
 @end
 
-@implementation JXCategoryViewVerticalShowVC
-
-- (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
-    //    [NSNotificationCenter.defaultCenter removeObserver:self];
+@implementation JobsMenuView
+BaseViewProtocol_synthesize
+static JobsMenuView *JobsMenuViewInstance = nil;
+static dispatch_once_t JobsMenuViewOnceToken;
++ (instancetype)sharedManager {
+    dispatch_once(&JobsMenuViewOnceToken, ^{
+        JobsMenuViewInstance = [super allocWithZone:NULL].init;
+    });return JobsMenuViewInstance;
+}
+/// 单例的销毁
++ (void)destroyInstance {
+    JobsMenuViewOnceToken = 0;
+    JobsMenuViewInstance = nil;
+}
+/// 防止外部使用 alloc/init 等创建新实例
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+    dispatch_once(&JobsMenuViewOnceToken, ^{
+        JobsMenuViewInstance = [super allocWithZone:zone];
+    });return JobsMenuViewInstance;
 }
 
--(void)loadView{
-    [super loadView];
-    
-    if ([self.requestParams isKindOfClass:UIViewModel.class]) {
-        self.viewModel = (UIViewModel *)self.requestParams;
-    }
-    self.setupNavigationBarHidden = YES;
-    
-    {
-        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
-        self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
-        self.viewModel.textModel.font = UIFontWeightRegularSize(16);
-        
-        // 使用原则：底图有 + 底色有 = 优先使用底图数据
-        // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-        // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");/// self.gk_navBackgroundImage 和 self.bgImageView
-        self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);/// self.gk_navBackgroundColor 和 self.view.backgroundColor
-    //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
-    }
+- (instancetype)copyWithZone:(NSZone *)zone {
+    return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self setGKNav];
-    [self setGKNavBackBtn];
-    
-    self.gk_navigationBar.jobsVisible = NO;
-    
+- (instancetype)mutableCopyWithZone:(NSZone *)zone {
+    return self;
+}
+#pragma mark —— SysMethod
+-(instancetype)init{
+    if (self = [super init]) {
+        self.backgroundColor = JobsWhiteColor;
+    }return self;
+}
+
+-(instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        @jobs_weakify(self)
+        JobsAddNotification(self,
+                        selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                  id _Nullable arg){
+            NSNotification *notification = (NSNotification *)arg;
+            @jobs_strongify(self)
+            NSLog(@"通知传递过来的 = %@",notification.object);
+            return nil;
+        },nil, self),JobsLanguageSwitchNotification,nil);
+//        [self netWorking];
+    }return self;
+}
+
+-(void)drawRect:(CGRect)rect{
+    [super drawRect:rect];
+}
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    /// 内部指定圆切角
+    [self layoutSubviewsCutCnrByRoundingCorners:UIRectCornerBottomRight | UIRectCornerTopRight
+                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+}
+#pragma mark —— BaseViewProtocol
+- (instancetype)initWithSize:(CGSize)thisViewSize{
+    if (self = [super init]) {
+        self.backgroundColor = JobsGreenColor;
+    }return self;
+}
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
+//    self.viewModel = model ? : UIViewModel.new;
+//    MakeDataNull
+    self.backgroundColor = JobsGreenColor;
     self.categoryView.alpha = 1;
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.view transformByRadians:1.5f];
-}
-
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-}
-
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+    [self transformByRadians:1.5f];
     [self getCollectionViewCell];
 }
+/// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
+    return CGSizeMake(self.jobsMainScreen_WIDTH / 2 + JobsRectOfStatusbar(),
+                      self.jobsMainScreen_HEIGHT);
+}
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
+-(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
+    return [self.class viewSizeWithModel:model];
 }
 #pragma mark —— 一些私有方法
 /// 只有在viewDidAppear才能获取到UICollectionViewCell
@@ -90,7 +113,7 @@
     NSLog(@"");
 
     for (UICollectionViewCell *cell in self.categoryView.collectionView.visibleCells) {
-        [cell transformByRadians:0.5f];
+        [cell transformByRadians:1];
     }
 }
 #pragma mark JXCategoryTitleViewDataSource
@@ -168,7 +191,7 @@ ratio:(CGFloat)ratio {
         _categoryView.cellSpacing = JobsWidth(-20);
         // 关联cotentScrollView，关联之后才可以互相联动！！！
         _categoryView.contentScrollView = self.listContainerView.scrollView;//
-        [self.view addSubview:_categoryView];
+        [self addSubview:_categoryView];
 //        _categoryView.frame = CGRectMake(0, 0, JobsMainScreen_WIDTH(), listContainerViewDefaultOffset);
 //        [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.top.equalTo(self.view).offset(0);
@@ -202,7 +225,7 @@ ratio:(CGFloat)ratio {
         _listContainerView = [JXCategoryListContainerView.alloc initWithType:JXCategoryListContainerType_CollectionView
                                                                     delegate:self];
         _listContainerView.defaultSelectedIndex = 1;// 默认从第二个开始显示
-        [self.view addSubview:_listContainerView];
+        [self addSubview:_listContainerView];
 //        [_listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
 //
 //            make.top.equalTo(self.view).offset(listContainerViewDefaultOffset);
@@ -239,7 +262,7 @@ ratio:(CGFloat)ratio {
     if (!_childVCMutArr) {
         _childVCMutArr = NSMutableArray.array;
         for (NSString *str in self.titleMutArr) {
-            [_childVCMutArr addObject:JXCategoryViewVerticalShowSubBaseVC.new];
+            [_childVCMutArr addObject:HomeMenuSubBaseVC.new];
         }
     }return _childVCMutArr;
 }
