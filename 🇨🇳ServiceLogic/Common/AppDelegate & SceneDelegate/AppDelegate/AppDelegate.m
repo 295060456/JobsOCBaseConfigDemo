@@ -110,7 +110,7 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
         config.humpOffsetY = 0;
         config.lottieName = nil;
         config.xOffset = JobsWidth(5);
-        config.tabBarItemWidth = JobsWidth(80);
+        config.tabBarItemWidth = JobsWidth(50);
         config.tag = ConfigMutArr.count + 1;
         [ConfigMutArr addObject:config];
     }

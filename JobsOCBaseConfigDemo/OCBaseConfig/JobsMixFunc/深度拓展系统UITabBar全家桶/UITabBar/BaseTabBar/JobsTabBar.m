@@ -32,22 +32,18 @@ UITabbarConfigProtocol_synthesize
         if ([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
 //            subview.backgroundColor = JobsRandomColor;
             [tabBarButtons addObject:subview];
-            
             UILabel *label = nil; /// TabBar的文字
             UIImageView *imageView = nil; /// TabBar的图片
-            
             for (UIView *subSubview in subview.subviews) {
                 if ([subSubview isKindOfClass:[UILabel class]]) {
                     label = (UILabel *)subSubview;
 //                    label.backgroundColor = JobsRedColor;
                     [label sizeToFit];
                 }
-                
                 if ([subSubview isKindOfClass:[UIImageView class]]) {
                     imageView = (UIImageView *)subSubview;
                 }
             }
-
             [self layoutIfNeeded];
             if (label && imageView) {
                 JobsTabBarCtrlConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[tabBarButtons.count - 1];
