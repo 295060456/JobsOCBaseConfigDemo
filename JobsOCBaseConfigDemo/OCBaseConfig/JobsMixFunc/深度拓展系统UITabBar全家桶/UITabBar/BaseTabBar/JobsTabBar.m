@@ -58,14 +58,19 @@ UITabbarConfigProtocol_synthesize
     for (int t = 0; t < self.tabBarControllerConfigMutArr.count ; t++) {
         JobsTabBarCtrlConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[t];
         UIView *tabBarButton = tabBarButtons[t];
-        if (t) {
-            tabBarButton.resetOriginX(s + tabBarControllerConfig.xOffset);
-        }else{
-            tabBarButton.resetOriginX(tabBarControllerConfig.xOffset);
+        
+        if(tabBarControllerConfig.xOffset){
+            if (t) {
+                tabBarButton.resetOriginX(s + tabBarControllerConfig.xOffset);
+            }else{
+                tabBarButton.resetOriginX(tabBarControllerConfig.xOffset);
+            }
+            s += (tabBarControllerConfig.xOffset + tabBarControllerConfig.tabBarItemWidth);
         }
         
-        s += (tabBarControllerConfig.xOffset + tabBarControllerConfig.tabBarItemWidth);
-        tabBarButton.resetWidth(tabBarControllerConfig.tabBarItemWidth);
+        if(tabBarControllerConfig.tabBarItemWidth){
+            tabBarButton.resetWidth(tabBarControllerConfig.tabBarItemWidth);
+        }
     }
 }
 ///【覆写父类方法】自定义 TabBar 的高度
