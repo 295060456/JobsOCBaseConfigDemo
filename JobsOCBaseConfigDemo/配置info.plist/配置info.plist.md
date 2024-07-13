@@ -269,7 +269,25 @@
 <string>UIStatusBarStyleLightContent</string>
 ```
 
-## 9、其他
+## 9、App名
+
+```xml
+<!-- 是应用程序的唯一标识符，通常以反转的域名格式（例如：com.example.MyApp）表示。-->
+<!-- Products文件夹下打包的App的名字将会命名为${CFBundleDisplayName}.app-->
+<key>CFBundleIdentifier</key>
+<string></string>
+<!-- 应用程序的显示名称。会显示在设备的主屏幕上以及应用程序内的标题栏等位置-->
+<!-- 可以是应用程序的短名称，用于显示给用户，不需要是全名-->
+<!-- Products文件夹下打包的App的名字将会命名为${CFBundleDisplayName}.app-->
+<key>CFBundleName</key>
+<string>CFBundleDisplayName</string>
+<!-- 应用程序的显示名称，用于在设备的主屏幕上显示。-->
+<!-- Products文件夹下打包的App的名字将会命名为${工程项目名}.app-->
+<key>CFBundleDisplayName</key>
+<string>CFBundleDisplayName</string>
+```
+
+## 10、其他
 
  ```xml
  <!-- 应用程序是否需要持久的 Wi-Fi 连接才能运行。已废弃 -->

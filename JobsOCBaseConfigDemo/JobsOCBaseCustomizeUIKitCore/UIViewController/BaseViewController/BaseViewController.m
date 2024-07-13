@@ -340,34 +340,19 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         self.view.vc = weak_self;
         [jobsGetMainWindow() addSubview:_menuView];
         [_menuView richElementsInViewWithModel:nil];
-//        _menuView.frame = CGRectMake(0, 0, 200, 200);
-        [_menuView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo([_menuView viewSizeWithModel:nil]);
-            make.centerY.equalTo(self.view);
-            make.left.equalTo(self.view);
-        }];
-    }return _menuView;
-}
-
--(JXCategoryViewVerticalShowVC *)categoryViewVerticalShowVC{
-    if(!_categoryViewVerticalShowVC){
-        _categoryViewVerticalShowVC = JXCategoryViewVerticalShowVC.new;
-//        _categoryViewVerticalShowVC.view.isAllowDrag = YES;//悬浮效果必须要的参数
-        @jobs_weakify(self)
-//        self.view.vc = weak_self;
-        [jobsGetMainWindow() addSubview:_categoryViewVerticalShowVC.view];
-//        [_categoryViewVerticalShowVC.view richElementsInViewWithModel:nil];
-        [self addChildViewController:_categoryViewVerticalShowVC];
-        _categoryViewVerticalShowVC.view.frame = CGRectMake(0, 0, [JobsMenuView viewSizeWithModel:nil].width, [JobsMenuView viewSizeWithModel:nil].height);
-//        [_categoryViewVerticalShowVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        _menuView.frame = CGRectMake(0,
+                                     0,
+                                     [_menuView viewSizeWithModel:nil].width,
+                                     [_menuView viewSizeWithModel:nil].height);
+        
+//        [_menuView transformByRadians:0];
+        
+//        [_menuView mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.size.mas_equalTo([_menuView viewSizeWithModel:nil]);
-//            make.centerX.equalTo(self.view);
+//            make.centerY.equalTo(self.view);
 //            make.left.equalTo(self.view);
 //        }];
-        NSLog(@"%f",self.jobsMainScreen_WIDTH);
-        NSLog(@"%f",self.jobsMainScreen_HEIGHT);
-        NSLog(@"");
-    }return _categoryViewVerticalShowVC;
+    }return _menuView;
 }
 
 -(UIViewModel *)viewModel{

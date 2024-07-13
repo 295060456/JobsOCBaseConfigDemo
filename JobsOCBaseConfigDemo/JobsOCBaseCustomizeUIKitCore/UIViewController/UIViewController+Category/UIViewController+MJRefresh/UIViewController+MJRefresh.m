@@ -129,7 +129,7 @@ JobsKey(_lotAnimMJRefreshHeader)
                                     forState:MJRefreshStatePulling];
             // 正在刷新中的状态
             [lotAnimMJRefreshHeader setTitle:self.refreshConfigHeader.refreshingTitle
-                                  forState:MJRefreshStateRefreshing];
+                                    forState:MJRefreshStateRefreshing];
             // 即将刷新的状态
             [lotAnimMJRefreshHeader setTitle:self.refreshConfigHeader.willRefreshTitle
                                     forState:MJRefreshStateWillRefresh];
@@ -163,7 +163,7 @@ JobsKey(_mjRefreshNormalHeader)
         @jobs_weakify(self)
         MjRefreshNormalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
+            if(self.refreshConfigHeader.loadBlock) self.refreshConfigHeader.loadBlock(nil);
         }];
         //文字
         {

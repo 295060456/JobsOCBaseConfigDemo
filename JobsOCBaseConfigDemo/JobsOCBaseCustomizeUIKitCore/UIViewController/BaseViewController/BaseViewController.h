@@ -44,7 +44,6 @@ UIGestureRecognizerDelegate
 >
 
 @property(nonatomic,strong)JobsMenuView *menuView;
-@property(nonatomic,strong)JXCategoryViewVerticalShowVC *categoryViewVerticalShowVC;
 
 @end
 

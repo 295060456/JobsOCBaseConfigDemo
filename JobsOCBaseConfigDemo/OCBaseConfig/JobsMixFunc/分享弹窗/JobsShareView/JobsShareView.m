@@ -281,6 +281,7 @@ insetForSectionAtIndex:(NSInteger)section {
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
                 [self feedbackGenerator];//震动反馈
+                [self endRefreshing:self.collectionView];
                 return nil;
             };
 
@@ -292,6 +293,7 @@ insetForSectionAtIndex:(NSInteger)section {
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
+                [self endRefreshing:self.collectionView];
                 return nil;
             };
 

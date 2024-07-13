@@ -133,6 +133,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 self.tableView.mj_footer.state = MJRefreshStateIdle;
                 self.tableView.mj_footer.hidden = YES;
                 self.tableView.pagingEnabled = YES;
+                [self endRefreshing:self.tableView];
                 return nil;
             };
             // 赋值

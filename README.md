@@ -1208,6 +1208,67 @@ NSObject <|-- BaseProtocol
 * [**`FileFolderHandleModel`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/FileFolderHandleTool)：**文件夹操作**
 * [**`JobsLoadingImage`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIImage/JobsLoadingImage)：**图片存取**
 
+### 21、`View` 和 的区别 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 两者都是UI层
+
+* 因为`ViewController`里面也包含了一部分数据层，不利于解耦。所以在Flutter中对UI层和数据层进行完全的剥离，即一个UI层带一个状态（State）
+
+* `View`层可以允许初始化方法带参（Frame）。而`ViewController`是控制器，通常铺满整个屏幕，所以不需要带参（Frame）初始化
+
+* 两者的生命周期有很大区别。主要关系到UI布局和进数据
+
+* <font color=red>**因为是继承，所以创建和销毁必须调用父类，否则异常**</font>。<font size=2>因为是ARC模式，所以`-(void)dealloc`方法不需要调用父类</font>
+
+* 一般`View`不会独立存在，会依附于`ViewController`。<font color=red>就要求`ViewController`需要观察是否正常销毁</font>（即，退出页面是否执行`-(void)dealloc`方法）。<font color=blue>如果对象没有成功销毁，会影响数据的写入，且下一次新建对象的时候，会优先执行上一个对象的`-(void)dealloc`方法</font>
+
+#### 21.1、`ViewController`的生命周期
+
+* **初始化方法**`-(instancetype)init`：最早装载本页面数据的时机
+    * `- (void)loadView`：**一般在此方法里面装载**本页面的固定数据和刷新的数据（比如网络请求的数据）
+    * `- (void)viewDidLoad`：最晚装载本页面数据的时机。**只要本页面没有被销毁，则此方法只执行一次**
+    * `-(void)viewWillAppear:(BOOL)animated`：不建议在此生命周期方法及其以后装载本页面的一些固定的数据，刷新的数据（比如网络请求的数据）可以。**只要出现本页面都会走一次**
+    * `-(void)viewDidAppear:(BOOL)animated`：同上
+    * `-(void)viewWillLayoutSubviews`：页面UI进行调整的时候，都会执行（多次运行，直到UI布局）稳定。**这里取值可能是过程值，有可能不准确**
+    * `-(void)viewDidLayoutSubviews `：同上
+* 销毁流程
+    * `-(void)viewWillDisappear:(BOOL)animated`
+    * `-(void)viewDidDisappear:(BOOL)animated`
+    * `-(void)dealloc`
+
+#### 21.2、`View`的生命周期
+
+* **初始化方法**`-(instancetype)init`：最根本的初始化方法
+
+  * **初始化方法（带参Frame）**`-(instancetype)initWithFrame:(CGRect)frame`
+  * `- (void)layoutSubviews`：只要布局UI，此方法会执行多次，直到UI布局稳定。**这里取值可能是过程值，有可能不准确**
+  * `-(void)drawRect:(CGRect)rect`：UI布局完成，进行绘制，**只会执行一次**
+  * `- (void)layoutIfNeeded`：<font color=red>如果利用`Masonry`进行布局，不可能马上得到**Frame**值。但是如果需要马上得到**Frame**值，就需要在最顶层的父View上执行`layoutIfNeeded`，在子View上执行得到的值为过程值，可能不准确。</font>
+
+* 销毁流程
+
+  * 如果当前View是单例模式，则需要
+
+    ```objective-c
+    static JobsMenuView *JobsMenuViewInstance = nil;
+    static dispatch_once_t JobsMenuViewOnceToken;
+    + (void)destroyInstance {
+        JobsMenuViewOnceToken = 0;
+        JobsMenuViewInstance = nil;
+    }
+    ```
+
+  * ```objective-c
+    -(void)dealloc
+    ```
+
+#### 22、其他
+
+* <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
+* <font color=red>不要在属性上加`__block`</font>。转而是在这个对象上使用`__block`
+* <font color=red>属性化的`NSString *`可以用**assign**修饰，但是最好用**copy**</font>
+
+
 ## 四、代码讲解
 
 ### 1、**UIButton.UIButtonConfiguration** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

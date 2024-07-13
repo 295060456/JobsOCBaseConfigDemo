@@ -22,6 +22,9 @@
 
 @implementation JobsMenuView
 BaseViewProtocol_synthesize
+-(void)dealloc{
+    
+}
 static JobsMenuView *JobsMenuViewInstance = nil;
 static dispatch_once_t JobsMenuViewOnceToken;
 + (instancetype)sharedManager {
@@ -192,19 +195,19 @@ ratio:(CGFloat)ratio {
         // 关联cotentScrollView，关联之后才可以互相联动！！！
         _categoryView.contentScrollView = self.listContainerView.scrollView;//
         [self addSubview:_categoryView];
-//        _categoryView.frame = CGRectMake(0, 0, JobsMainScreen_WIDTH(), listContainerViewDefaultOffset);
-//        [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.view).offset(0);
-//            make.left.right.equalTo(self.view);
-//            make.height.mas_equalTo(listContainerViewDefaultOffset);
-//        }];
-//        [self.view layoutIfNeeded];
+
+        [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(0);
+            make.left.right.equalTo(self);
+            make.height.mas_equalTo(listContainerViewDefaultOffset);
+        }];
+        [self layoutIfNeeded];
         
         /// 本来的值
-        _categoryView.frame = CGRectMake(0,
-                                         0,
-                                         JobsMainScreen_HEIGHT(),
-                                         listContainerViewDefaultOffset);
+//        _categoryView.frame = CGRectMake(0,
+//                                         0,
+//                                         JobsMainScreen_HEIGHT(),
+//                                         listContainerViewDefaultOffset);
         
        
     }return _categoryView;

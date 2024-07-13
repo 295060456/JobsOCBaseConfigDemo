@@ -167,6 +167,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                [self endRefreshing:self.tableView];
                 return nil;
             };
             

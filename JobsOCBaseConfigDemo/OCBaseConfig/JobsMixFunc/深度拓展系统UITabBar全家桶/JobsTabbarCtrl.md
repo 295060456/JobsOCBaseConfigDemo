@@ -30,6 +30,41 @@
 
 * <font color=red>**`UITabBarController`** 走完`-(void)viewWillAppear:(BOOL)animated`之后，会走挂载的控制器的生命周期，然后再调回来走**`UITabBarController`** 的**`-(void)viewDidAppear:(BOOL)animated`**</font>
 
+* <font id=监听`TabBarItem`点击事件>**点击`Tabbaritem`后，先后触发**</font>
+
+  * ```objective-c
+    - (void)tabBar:(UITabBar *)tabBar
+     didSelectItem:(UITabBarItem *)item;
+    ```
+
+  * ```objective-c
+    - (BOOL)tabBarController:(UITabBarController *)tabBarController
+    shouldSelectViewController:(UIViewController *)viewController;
+    ```
+
+  * 如果此方法返回nil，则下次点击会跳过此方法
+
+    ```objective-c
+    - (id<UIViewControllerAnimatedTransitioning>)tabBarController:(UITabBarController *)tabBarController
+               animationControllerForTransitionFromViewController:(UIViewController *)fromVC
+                                                 toViewController:(UIViewController *)toVC;
+    ```
+
+  * ```objective-c
+    - (void)tabBarController:(UITabBarController *)tabBarController 
+     didSelectViewController:(UIViewController *)viewController{
+        NSLog(@"");
+    }
+    ```
+
+  * ```objective-c
+    -(void)viewWillLayoutSubviews;
+    ```
+
+  * ```objective-c
+    -(void)viewDidLayoutSubviews
+    ```
+
 ## 二、`JobsTabBarCtrlConfig`
 
 * 对`JobsTabBarCtrl`的全局配置文件
@@ -59,77 +94,7 @@
 }
 ```
 
-### 2、监听`TabBarItem`点击事件
-
-```objective-c
-#pragma mark —— UITabBarDelegate
-/// 监听TabBarItem点击事件
-- (void)tabBar:(UITabBar *)tabBar
- didSelectItem:(UITabBarItem *)item {
-    if ([tabBar.items containsObject:item]) {
-        NSUInteger index = [self.tabBar.items indexOfObject:item];
-        NSLog(@"当前点击：%ld",(long)index);
-        for (NSNumber *indexNUM in self.jumpIndexArr) {
-            if (indexNUM.unsignedIntegerValue != index) {
-                if (![self forcedLoginIndex:index]) {
-                    /// 不需要进行强制登录的时候，才重新赋值刷新self.selectedIndex
-                    self.selectedIndex = index;
-                }
-            }
-        }
-        // Lottie 动画
-        if ([self judgeLottieWithIndex:self.selectedIndex]) {
-            [self.tabBar animationLottieImage:(int)index];
-        }
-        // 震动反馈
-        if (self.isFeedbackGenerator) {
-            [self feedbackGenerator];
-        }
-        // 点击声音
-        if (self.isPlaySound) {
-            [self playSoundWithFileName:@"Sound.wav"];
-        }
-        // 重力弹跳动画效果
-        if (self.isShakerAnimation) {
-            [item.badgeView shakerAnimationWithDuration:2 height:20];
-        }
-        // 点击增加标数
-        if (self.isOpenPPBadge) {
-            [item pp_increase];
-        }
-        // 图片从小放大
-        if (self.isAnimationAlert) {
-            [self.UITabBarButtonMutArr[index] animationAlert];
-        }
-    }
-}
-```
-
-```objective-c
-/**
- 【点击TabBarItem进行切换】return YES可以切换 | return NO 不可切换
- 
- 【调用先后次序】
-    ①- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item；
- 
-    ②- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController；
- 
- 【📢注意】在①中，如果对self.selectedIndex进行修改，那么在②中，设置返回值为NO无效
- */
-- (BOOL)tabBarController:(UITabBarController *)tabBarController
-shouldSelectViewController:(UIViewController *)viewController {
-
-    NSInteger index = [self.childVCMutArr indexOfObject:viewController];
-    
-    if ([viewController isKindOfClass:UIViewController.class] &&
-        [self judgeLottieWithIndex:index]) {
-        [viewController lottieImagePlay];
-    }
-    
-    if (self.returnObjectBlock) A = [self.returnObjectBlock(@(index)) boolValue];
-    return [self forcedLoginIndex:index] ? (A && self.isLogin) : A;
-}
-```
+### 2、[监听`TabBarItem`点击事件](#监听`TabBarItem`点击事件)
 
 ### 3、<font color=red>对系统的 `UITabBar` 通过**KVC**的方式替换为自定义的 `JobsTabBar`</font>
 
@@ -149,7 +114,7 @@ shouldSelectViewController:(UIViewController *)viewController {
 }
 ```
 
-### 4、挂载子控制器
+### 4、挂载的子控制器
 
 ```objective-c
 @property(nonatomic,strong)NSMutableArray <UIViewController *>*childVCMutArr;/// 子控制器
@@ -169,7 +134,7 @@ self.viewControllers = self.childVCMutArr;
 }
 ```
 
-###  5、用导航控制器包裹每一个控制器。<font color=red>**使其每个控制器都具备`push`到其他控制器的功能**</font>
+###  5、用导航控制器包裹每一个控制器。<font color=red>**使其每个控制器都具备`push`到其他控制器的能力**</font>
 
 ```objective-c
 if (![viewController isKindOfClass:UINavigationController.class]) {/// 防止UIImagePickerController崩
@@ -274,35 +239,35 @@ if (![viewController isKindOfClass:UINavigationController.class]) {/// 防止UII
 
 ### 8、支持[**`PPBadgeView`**](https://github.com/jkpang/PPBadgeView)：`TabBarItem`计数小红点
 
-```ruby
-pod 'PPBadgeView' # https://github.com/jkpang/PPBadgeView iOS自定义Badge组件, 支持UIView, UITabBarItem, UIBarButtonItem以及子类NO_SMP
-```
+* ```ruby
+  pod 'PPBadgeView' # https://github.com/jkpang/PPBadgeView iOS自定义Badge组件, 支持UIView, UITabBarItem, UIBarButtonItem以及子类NO_SMP
+  ```
 
-```objective-c
-/// 开启/关闭 PPBadgeView的效果,至少在viewDidLayoutSubviews后有效
--(void)ppBadge:(BOOL)open{
-    self.isOpenPPBadge = open;
-    if (open) {
-        for (UITabBarItem *item in self.tabBar.items) {
-            if ([item.title isEqualToString:@"首页"]) {
-                [item pp_addBadgeWithText:@"919+"];
-#pragma mark —— 动画
-                [item.badgeView animationAlert];//图片从小放大
-                [item.badgeView shakerAnimationWithDuration:2 height:20];//重力弹跳动画效果
-    //            [UIView 视图上下一直来回跳动的动画:item.badgeView];
-            }
-        }
-    }
-}
-```
+* ```objective-c
+  /// 开启/关闭 PPBadgeView的效果,至少在viewDidLayoutSubviews后有效
+  -(void)ppBadge:(BOOL)open{
+      self.isOpenPPBadge = open;
+      if (open) {
+          for (UITabBarItem *item in self.tabBar.items) {
+              if ([item.title isEqualToString:@"首页"]) {
+                  [item pp_addBadgeWithText:@"919+"];
+  #pragma mark —— 动画
+                  [item.badgeView animationAlert];//图片从小放大
+                  [item.badgeView shakerAnimationWithDuration:2 height:20];//重力弹跳动画效果
+      //            [UIView 视图上下一直来回跳动的动画:item.badgeView];
+              }
+          }
+      }
+  }
+  ```
 
-点击增加标数
+* 点击增加标数
 
-```objective-c
-if (self.isOpenPPBadge) {
-   [item pp_increase];
-}
-```
+  ```objective-c
+  if (self.isOpenPPBadge) {
+     [item pp_increase];
+  }
+  ```
 
 ### 9、至少在`-(void)viewWillAppear:(BOOL)animated`以后的生命周期，实现：
 
@@ -638,7 +603,7 @@ TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优
   }
   ```
 
-* 分类挂载
+* 使用分类的方式进行挂载
 
   ```objective-c
   #define RootViewController appDelegate.tabBarVC

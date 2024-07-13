@@ -108,9 +108,7 @@ BOOL ISLogin;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
     UIInterfaceOrientation s = self.getInterfaceOrientation;
     DeviceOrientation d = self.getDeviceOrientation;
-    NSLog(@"");
-//    self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
-    self.categoryViewVerticalShowVC.view.alpha = 1;
+    self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -179,6 +177,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(UITableView *)tableView{
     if (!_tableView) {
+        @jobs_weakify(self)
         _tableView = UITableView.new;
         _tableView.backgroundColor = JobsWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -199,6 +198,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
                 /// 下拉刷新
                 [self feedbackGenerator];//震动反馈
                 [self endRefreshing:self.tableView];
@@ -212,7 +212,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data){
-
+                @jobs_strongify(self)
+                [self endRefreshing:self.tableView];
                 return nil;
             };
             

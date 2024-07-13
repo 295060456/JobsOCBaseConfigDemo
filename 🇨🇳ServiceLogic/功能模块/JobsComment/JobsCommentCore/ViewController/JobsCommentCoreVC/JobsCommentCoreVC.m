@@ -260,7 +260,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
                 NSLog(@"上拉加载更多");
-
+                [self endRefreshing:self.tableView];
                 return nil;
             };
             // 赋值

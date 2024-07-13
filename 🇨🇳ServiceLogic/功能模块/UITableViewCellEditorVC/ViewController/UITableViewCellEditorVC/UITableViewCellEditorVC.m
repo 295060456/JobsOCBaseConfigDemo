@@ -228,6 +228,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(UITableView *)tableView{
     if (!_tableView) {
+        @jobs_weakify(self)
         _tableView = UITableView.initWithStylePlain;
         _tableView.backgroundColor = JobsWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -253,6 +254,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                [self endRefreshing:self.tableView];
                 return nil;
             };
             
@@ -263,6 +266,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                [self endRefreshing:self.tableView];
                 return nil;
             };
             

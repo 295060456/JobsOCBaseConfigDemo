@@ -74,14 +74,14 @@ UITabbarConfigProtocol_synthesize
         switch (data) {
             case UIInterfaceOrientationPortraitUpsideDown:/// 倒竖屏方向
             case UIInterfaceOrientationPortrait:{ /// 竖屏方向
-                    return [super sizeThatFits:size];
+                return [super sizeThatFits:size];
             }break;
             case UIInterfaceOrientationLandscapeLeft:/// 左横屏方向
             case UIInterfaceOrientationLandscapeRight:{ /// 右横屏方向
-                    CGSize newSize = [super sizeThatFits:size];
-                    newSize.height = JobsWidth(80); /// 设定你想要的高度
-                    return newSize;
-                }
+                CGSize newSize = [super sizeThatFits:size];
+                newSize.height = JobsWidth(80); /// 设定你想要的高度
+                return newSize;
+            }
             default:
                 return [super sizeThatFits:size];
                 break;
@@ -106,11 +106,11 @@ UITabbarConfigProtocol_synthesize
         }
     }
 }
-
+#pragma mark —— 一些公共方法
 -(CGFloat)customTabBarOffsetHeight{
     return self.viewModel.offsetHeight ? self.viewModel.offsetHeight : 0.f;
 }
-
+#pragma mark —— 一些私有方法
 - (void)alignLabel:(UILabel *)label
          imageView:(UIImageView *)imageView
     inTabBarButton:(UIView *)tabBarButton

@@ -284,6 +284,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
                 NSLog(@"下拉刷新");
                 self.currentPage = 1;
                 @"data".readLocalFileWithName;/// 获取本地的数据
+                [self endRefreshing:self.tableView];
                 return nil;
             };
             
@@ -305,6 +306,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
             //    [self performSelector:@selector(delayMethods) withObject:nil afterDelay:2];
                 
                 @"data".readLocalFileWithName;/// 获取本地的数据
+                [self endRefreshing:self.tableView];
                 return nil;
             };
             // 赋值

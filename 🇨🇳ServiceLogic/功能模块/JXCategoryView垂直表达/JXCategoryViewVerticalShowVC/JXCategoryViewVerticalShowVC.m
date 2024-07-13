@@ -51,7 +51,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = JobsGreenColor;
     [self setGKNav];
     [self setGKNavBackBtn];
     
@@ -176,14 +176,11 @@ ratio:(CGFloat)ratio {
 //            make.height.mas_equalTo(listContainerViewDefaultOffset);
 //        }];
 //        [self.view layoutIfNeeded];
-        
         /// 本来的值
         _categoryView.frame = CGRectMake(0,
                                          0,
                                          JobsMainScreen_HEIGHT(),
                                          listContainerViewDefaultOffset);
-        
-       
     }return _categoryView;
 }
 
@@ -210,16 +207,13 @@ ratio:(CGFloat)ratio {
 //
 //        }];
 //        [self.view layoutIfNeeded];
-        
         _listContainerView.frame = CGRectMake(0,
                                               listContainerViewDefaultOffset,
                                               JobsMainScreen_HEIGHT(),
                                               JobsMainScreen_WIDTH() - listContainerViewDefaultOffset);
-        
         /// ❤️在需要的地方写❤️
         NSNumber *currentIndex = [self.listContainerView valueForKey:@"currentIndex"];
         NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
-        
     }return _listContainerView;
 }
 

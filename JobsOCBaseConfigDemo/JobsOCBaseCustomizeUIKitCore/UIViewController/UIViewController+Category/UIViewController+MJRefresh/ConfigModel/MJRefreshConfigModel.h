@@ -53,7 +53,7 @@ typedef enum : NSInteger {
 @property(nonatomic,strong)NSMutableArray <UIImage *>*noMoreDataPicsMutArr;
 #pragma mark —— Lottie配置
 @property(nonatomic,strong)NSString *jsonLottiefilePaths;
-@property(nonatomic,assign)JobsReturnIDByIDBlock loadBlock;
+@property(nonatomic,copy)JobsReturnIDByIDBlock loadBlock;
 
 @end
 

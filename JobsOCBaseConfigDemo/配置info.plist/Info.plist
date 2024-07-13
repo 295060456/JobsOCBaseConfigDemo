@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
+        <!-- 是应用程序的唯一标识符，通常以反转的域名格式（例如：com.example.MyApp）表示。-->
+        <!-- Products文件夹下打包的App的名字将会命名为${CFBundleDisplayName}.app-->
+        <key>CFBundleIdentifier</key>
+        <string></string>
+        <!-- 应用程序的显示名称。会显示在设备的主屏幕上以及应用程序内的标题栏等位置-->
+        <!-- 可以是应用程序的短名称，用于显示给用户，不需要是全名-->
+        <!-- Products文件夹下打包的App的名字将会命名为${CFBundleDisplayName}.app-->
+        <key>CFBundleName</key>
+        <string>CFBundleDisplayName</string>
+        <!-- 应用程序的显示名称，用于在设备的主屏幕上显示。-->
+        <!-- Products文件夹下打包的App的名字将会命名为${工程项目名}.app-->
+        <key>CFBundleDisplayName</key>
+        <string>CFBundleDisplayName</string>
         <!-- Core Data -->
         <key>NSPersistentStoreTypeKey</key>
         <string>SQLite</string>

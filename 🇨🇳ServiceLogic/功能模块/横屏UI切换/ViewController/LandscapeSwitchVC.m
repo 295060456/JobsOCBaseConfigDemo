@@ -279,6 +279,7 @@ insetForSectionAtIndex:(NSInteger)section {
 
 -(BaseCollectionView *)collectionView{
     if (!_collectionView) {
+        @jobs_weakify(self)
         _collectionView = [BaseCollectionView.alloc initWithFrame:CGRectZero
                                              collectionViewLayout:self.layout];
         _collectionView.backgroundColor = JobsGreenColor;//RGB_SAMECOLOR(246);
@@ -309,8 +310,8 @@ insetForSectionAtIndex:(NSInteger)section {
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
                 [self feedbackGenerator];//震动反馈
-                @jobs_weakify(self)
                 [self withdrawBanklist:^(NSArray *data) {
                     @jobs_strongify(self)
                     if (data.count) {
@@ -335,6 +336,8 @@ insetForSectionAtIndex:(NSInteger)section {
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                [self endRefreshing:self.collectionView];
                 return nil;
             };
             self.refreshConfigHeader = refreshConfigHeader;

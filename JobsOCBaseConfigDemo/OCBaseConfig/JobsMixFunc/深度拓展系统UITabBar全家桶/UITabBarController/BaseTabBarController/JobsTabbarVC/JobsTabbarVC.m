@@ -91,6 +91,8 @@ static JobsTabbarVC *static_tabbarVC = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
     /// 手势左右滑动以切换TabbarControl挂载的ViewController
     if (self.isOpenScrollTabbar) {
         [self openPan];
@@ -128,6 +130,11 @@ static JobsTabbarVC *static_tabbarVC = nil;
     NSLog(@"");
 }
 
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    NSLog(@"");
+}
+
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     dispatch_once(&onceToken, ^{
@@ -136,6 +143,14 @@ static JobsTabbarVC *static_tabbarVC = nil;
     });
 
 //    [self ppBadge:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
 }
 #pragma mark —— 在 UITabBarController 中适配横屏在 UITabBarController 中适配横屏
 /// 决定当前界面是否开启自动转屏，如果返回NO，后面两个方法也不会被调用，只是会支持默认的方向
@@ -430,6 +445,11 @@ shouldSelectViewController:(UIViewController *)viewController {
         return [TransitionAnimation.alloc initWithTargetEdge: 
                 [viewControllers indexOfObject:toVC] > [viewControllers indexOfObject:fromVC] ? UIRectEdgeLeft : UIRectEdgeRight];
     }else return nil;
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController
+ didSelectViewController:(UIViewController *)viewController{
+    NSLog(@"");
 }
 
 - (id<UIViewControllerInteractiveTransitioning>)tabBarController:(UITabBarController *)tabBarController
