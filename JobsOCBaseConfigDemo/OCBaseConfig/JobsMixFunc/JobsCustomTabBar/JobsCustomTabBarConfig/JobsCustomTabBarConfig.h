@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UIImage *tabBarBackgroundImage;
 @property(nonatomic,strong)NSArray <UIButton *>*tabBarItems;
 @property(nonatomic,strong)NSArray <NSNumber *>*tabBarItemYOffsets;
+@property(nonatomic,strong)NSArray <UIViewController *>*viewControllers;
 
 +(instancetype)sharedManager;
 +(void)destroyInstance;

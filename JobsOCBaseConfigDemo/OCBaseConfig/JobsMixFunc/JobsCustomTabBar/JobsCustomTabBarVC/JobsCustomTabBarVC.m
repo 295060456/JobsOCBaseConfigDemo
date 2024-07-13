@@ -29,6 +29,8 @@
     self.tabBar.hidden = YES;
     self.view.backgroundColor = JobsGreenColor;
     self.customTabBar.alpha = 1;
+    id f = JobsCustomTabBarConfig.sharedManager.viewControllers;
+    self.viewControllers = JobsCustomTabBarConfig.sharedManager.viewControllers;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

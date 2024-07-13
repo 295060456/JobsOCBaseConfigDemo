@@ -40,6 +40,7 @@ UIApplicationDelegate
 +(NSMutableArray <NSString *>*)makeTabBarItemTitleMutArr;
 +(NSMutableArray <UIImage *>*)makeImageSelectedMutArr;
 +(NSMutableArray <UIImage *>*)makeImageUnselectedMutArr;
++(NSMutableArray <UIViewController *>*)makeUIViewControllerMutArr;
 +(NSMutableArray <JobsTabBarCtrlConfig *>*)makeConfigMutArr;
 
 -(void)saveContext;

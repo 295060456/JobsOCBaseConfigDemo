@@ -241,6 +241,7 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
     customTabBarConfig.tabBarBackgroundColor = JobsCyanColor;
     customTabBarConfig.tabBarBackgroundImage = JobsIMG(@"");
     customTabBarConfig.tabBarItems = self.makeTabBarItems;
+    customTabBarConfig.viewControllers = self.makeUIViewControllerMutArr;
 //    customTabBarConfig.tabBarItemYOffsets
     return customTabBarConfig;
 }
@@ -282,11 +283,21 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
     return imageUnselectedMutArr;
 }
 
++(NSMutableArray <UIViewController *>*)makeUIViewControllerMutArr{
+    NSMutableArray *UIViewControllerMutArr = NSMutableArray.array;
+    [UIViewControllerMutArr addObject:ViewController_1.new];
+    [UIViewControllerMutArr addObject:ViewController_2.new];
+    [UIViewControllerMutArr addObject:ViewController_3.new];
+    [UIViewControllerMutArr addObject:ViewController_4.new];
+    [UIViewControllerMutArr addObject:ViewController_5.new];
+    return UIViewControllerMutArr;
+}
+
 +(NSMutableArray <JobsTabBarCtrlConfig *>*)makeConfigMutArr{
     NSMutableArray *configMutArr = NSMutableArray.array;
     {
         JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
-        config.vc = ViewController_1.new;
+        config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
         config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
         config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
         config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
@@ -301,7 +312,7 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
     
     {
         JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
-        config.vc = ViewController_2.new;
+        config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
         config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
         config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
         config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
@@ -316,7 +327,7 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
     
     {
         JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
-        config.vc = ViewController_3.new;
+        config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
         config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
         config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
         config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
@@ -331,7 +342,7 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
     
     {
         JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
-        config.vc = ViewController_4.new;
+        config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
         config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
         config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
         config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
@@ -346,7 +357,7 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
     
     {
         JobsTabBarCtrlConfig *config = JobsTabBarCtrlConfig.new;
-        config.vc = ViewController_5.new;
+        config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
         config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
         config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
         config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
