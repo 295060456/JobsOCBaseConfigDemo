@@ -114,32 +114,6 @@
                                          [BaseTableViewHeaderFooterView heightForHeaderInSection:nil]));
     }];return imageView;
 }
-/// 下拉刷新 （子类要进行覆写）
--(void)pullToRefresh{
-    // 刷新本界面
-    if (self.dataMutArr.count) {
-        [self.dataMutArr remove];
-        _dataMutArr = nil;
-    }
-    self.isVisible = YES;
-    if (self.dataMutArr.count) {
-        [self endRefreshing:self.tableView];
-    }else{
-        [self endRefreshingWithNoMoreData:self.tableView];
-    }
-    /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
-    @jobs_weakify(self)
-    [self getMainQueue:^{
-        @jobs_strongify(self)
-        [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
-                                  animationBlock:nil
-                                 completionBlock:nil];
-    }];
-}
-/// 上拉加载更多 （子类要进行覆写）
--(void)loadMoreRefresh{
-    [self pullToRefresh];
-}
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -214,6 +188,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 #pragma mark —— lazyLoad
 -(UITableView *)tableView{
     if (!_tableView) {
+        @jobs_weakify(self)
         _tableView = UITableView.new;
         [self dataLinkByTableView:_tableView];
         _tableView.backgroundColor = JobsWhiteColor;
@@ -229,6 +204,28 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.refreshingTitle = JobsInternationalization(@"立即释放刷新");
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                // 刷新本界面
+                if (self.dataMutArr.count) {
+                    [self.dataMutArr remove];
+                    self->_dataMutArr = nil;
+                }
+                self.isVisible = YES;
+                if (self.dataMutArr.count) {
+                    [self endRefreshing:self.tableView];
+                }else{
+                    [self endRefreshingWithNoMoreData:self.tableView];
+                }
+                /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
+                @jobs_weakify(self)
+                [self getMainQueue:^{
+                    @jobs_strongify(self)
+                    [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
+                                              animationBlock:nil
+                                             completionBlock:nil];
+                }];return nil;
+            };
 
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
             refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
@@ -236,6 +233,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                return nil;
+            };
 
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;

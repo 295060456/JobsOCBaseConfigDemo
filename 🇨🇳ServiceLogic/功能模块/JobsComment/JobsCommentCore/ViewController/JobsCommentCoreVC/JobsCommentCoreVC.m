@@ -93,44 +93,12 @@
     return self.tableView;
 }
 #pragma mark —— 一些私有方法
-/// 装载本地假数据
--(void)loadData{
-    NSDictionary *dic = @"CommentData".readLocalFileWithName;
-    self.mjModel = [JobsCommentModel mj_objectWithKeyValues:dic[@"data"]];
-//    self.yyModel = [MKCommentModel yy_modelWithDictionary:dic[@"data"]];
-
-    NSLog(@"self.mjModel = %@",self.mjModel);
-    [self dataSource:self.mjModel.listDataArr contentView:self.tableView];
-    [self endRefreshing:self.tableView];
-}
-
--(void)delayMethods{
-    self.tableView.mj_footer.state = MJRefreshStateIdle;
-    self.tableView.mj_footer.hidden = YES;
-    self.tableView.pagingEnabled = YES;
-}
-
 -(void)一级标题点击事件{
     [self jobsToastMsg:JobsInternationalization(@"一级标题点击事件")];
 }
 
 -(void)二级标题点击事件{
     [self jobsToastMsg:JobsInternationalization(@"二级标题点击事件")];
-}
-#pragma mark —— BaseViewProtocol
-/// 下拉刷新 （子类要进行覆写）
--(void)pullToRefresh{
-    [self loadData];
-}
-/// 上拉加载更多 （子类要进行覆写）
--(void)loadMoreRefresh{
-    self.tableView.pagingEnabled = NO;
-    @jobs_weakify(self)
-    [self delay:0.1
-          doSth:^(id data) {
-        @jobs_strongify(self)
-        [self delayMethods];
-    }];
 }
 #pragma mark —————————— UITableViewDelegate,UITableViewDataSource ——————————
 -(CGFloat)tableView:(UITableView *)tableView
@@ -236,6 +204,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
 
 -(UITableView *)tableView{
     if (!_tableView) {
+        @jobs_weakify(self)
         // UITableViewStyleGrouped 取消悬停效果
         _tableView = UITableView.initWithStylePlain;
         _tableView.backgroundColor = HEXCOLOR(0x242A37);
@@ -255,16 +224,54 @@ heightForHeaderInSection:(NSInteger)section{///  👌
         _tableView.ly_emptyView = [EmptyView emptyViewWithImageStr:@"Indeterminate Spinner - Small"
                                                           titleStr:JobsInternationalization(@"没有评论")
                                                          detailStr:JobsInternationalization(@"来发布第一条吧")];
-        @jobs_weakify(self)
-        _tableView.mj_header = [LOTAnimationMJRefreshHeader headerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            @jobs_weakify(self)
-            [self delay:0.1
-                  doSth:^(id data) {
+        {
+            // 创建自定义值，用model管理
+            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
+            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉刷新数据");
+            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"正在刷新数据");
+            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self pullToRefresh];
-            }];
-        }];
+                /// 装载本地假数据
+                NSDictionary *dic = @"CommentData".readLocalFileWithName;
+                self.mjModel = [JobsCommentModel mj_objectWithKeyValues:dic[@"data"]];
+            //    self.yyModel = [MKCommentModel yy_modelWithDictionary:dic[@"data"]];
+
+                NSLog(@"self.mjModel = %@",self.mjModel);
+                [self dataSource:self.mjModel.listDataArr contentView:self.tableView];
+                [self endRefreshing:self.tableView];
+                // 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
+                self.tableView.pagingEnabled = NO;
+                self.tableView.mj_footer.state = MJRefreshStateIdle;
+                self.tableView.mj_footer.hidden = YES;
+                self.tableView.pagingEnabled = YES;
+                
+                return nil;
+            };
+            
+            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                NSLog(@"上拉加载更多");
+
+                return nil;
+            };
+            // 赋值
+            self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
+            self.refreshConfigFooter = refreshConfigFooter;//数据赋值
+            // 用值
+            _tableView.mj_header = self.lotAnimMJRefreshHeader;
+            _tableView.mj_footer = self.mjRefreshAutoGifFooter;
+            _tableView.mj_footer.backgroundColor = JobsRedColor;
+            self.view.mjRefreshTargetView = _tableView;
+        }
         
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {

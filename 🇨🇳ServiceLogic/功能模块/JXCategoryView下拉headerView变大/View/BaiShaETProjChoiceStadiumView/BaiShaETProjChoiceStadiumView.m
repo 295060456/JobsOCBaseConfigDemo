@@ -166,19 +166,6 @@ static dispatch_once_t static_choiceStadiumViewOnceToken;
         [dataMutArr addObject:viewModel];
     }return dataMutArr;
 }
-///下拉刷新 （子类要进行覆写）
--(void)pullToRefresh{
-    [self feedbackGenerator];//震动反馈
-//    if (data.count) {
-//        [self endRefreshing:self.tableView];
-//    }else{
-//        [self endRefreshingWithNoMoreData:self.tableView];
-//    }
-}
-///上拉加载更多 （子类要进行覆写）
--(void)loadMoreRefresh{
-    [self pullToRefresh];
-}
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -225,6 +212,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 #pragma mark —— lazyLoad
 -(UITableView *)tableView{
     if (!_tableView) {
+        @jobs_weakify(self)
         _tableView = UITableView.initWithStyleGrouped;
         _tableView.backgroundColor = JobsWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -237,6 +225,42 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
         [_tableView registerTableViewClass];
+        
+        {
+            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                [self feedbackGenerator];//震动反馈
+            //    if (data.count) {
+            //        [self endRefreshing:self.tableView];
+            //    }else{
+            //        [self endRefreshingWithNoMoreData:self.tableView];
+            //    }
+                return nil;
+            };
+            
+            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                return nil;
+            };
+            
+            self.refreshConfigHeader = refreshConfigHeader;
+            self.refreshConfigFooter = refreshConfigFooter;
+            
+            _tableView.mj_header = self.mjRefreshNormalHeader;
+            _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+        }
+        
         if(@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }

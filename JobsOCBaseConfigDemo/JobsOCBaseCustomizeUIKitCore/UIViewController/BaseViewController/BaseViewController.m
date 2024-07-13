@@ -349,6 +349,27 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }return _menuView;
 }
 
+-(JXCategoryViewVerticalShowVC *)categoryViewVerticalShowVC{
+    if(!_categoryViewVerticalShowVC){
+        _categoryViewVerticalShowVC = JXCategoryViewVerticalShowVC.new;
+//        _categoryViewVerticalShowVC.view.isAllowDrag = YES;//悬浮效果必须要的参数
+        @jobs_weakify(self)
+//        self.view.vc = weak_self;
+        [jobsGetMainWindow() addSubview:_categoryViewVerticalShowVC.view];
+//        [_categoryViewVerticalShowVC.view richElementsInViewWithModel:nil];
+        [self addChildViewController:_categoryViewVerticalShowVC];
+        _categoryViewVerticalShowVC.view.frame = CGRectMake(0, 0, [JobsMenuView viewSizeWithModel:nil].width, [JobsMenuView viewSizeWithModel:nil].height);
+//        [_categoryViewVerticalShowVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.size.mas_equalTo([_menuView viewSizeWithModel:nil]);
+//            make.centerX.equalTo(self.view);
+//            make.left.equalTo(self.view);
+//        }];
+        NSLog(@"%f",self.jobsMainScreen_WIDTH);
+        NSLog(@"%f",self.jobsMainScreen_HEIGHT);
+        NSLog(@"");
+    }return _categoryViewVerticalShowVC;
+}
+
 -(UIViewModel *)viewModel{
     if (!_viewModel) {
         _viewModel = UIViewModel.new;

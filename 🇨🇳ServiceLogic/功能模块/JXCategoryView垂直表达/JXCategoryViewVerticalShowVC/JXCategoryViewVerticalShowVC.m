@@ -155,7 +155,7 @@ ratio:(CGFloat)ratio {
 -(JXCategoryTitleView *)categoryView{
     if (!_categoryView) {
         _categoryView = JXCategoryTitleView.new;
-        _categoryView.backgroundColor = UIColor.clearColor;
+        _categoryView.backgroundColor = UIColor.cyanColor;
         _categoryView.titleSelectedColor = UIColor.redColor;
         _categoryView.titleColor = UIColor.redColor;
         _categoryView.titleFont = notoSansRegular(16);

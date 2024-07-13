@@ -33,19 +33,6 @@
               context:nil];
 }
 #pragma mark —— BaseViewProtocol
-///下拉刷新 （子类要进行覆写）
--(void)pullToRefresh{
-    NSLog(@"下拉刷新");
-    // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        // 结束刷新
-//        [self.tableView.mj_header endRefreshing];
-//    });
-}
-///上拉加载更多 （子类要进行覆写）
-- (void)loadMoreRefresh{
-    NSLog(@"上拉加载更多");
-}
 ///KVO 监听 MJRefresh + 震动特效反馈
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
@@ -109,7 +96,7 @@ JobsKey(_lotAnimMJRefreshHeader)
         @jobs_weakify(self)
         lotAnimMJRefreshHeader = [LOTAnimationMJRefreshHeader headerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self pullToRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         //图片
         {
@@ -176,7 +163,7 @@ JobsKey(_mjRefreshNormalHeader)
         @jobs_weakify(self)
         MjRefreshNormalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self pullToRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         //文字
         {
@@ -222,7 +209,7 @@ JobsKey(_mjRefreshStateHeader)
         @jobs_weakify(self)
         MjRefreshStateHeader = [MJRefreshStateHeader headerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self pullToRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         //文字
         {
@@ -268,7 +255,7 @@ JobsKey(_mjRefreshHeader)
         @jobs_weakify(self)
         MjRefreshHeader = [MJRefreshHeader headerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self pullToRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         //其他
         {
@@ -292,7 +279,7 @@ JobsKey(_mjRefreshGifHeader)
         @jobs_weakify(self)
         MjRefreshGifHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self pullToRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         //图片
         {
@@ -358,7 +345,7 @@ JobsKey(_mjRefreshAutoGifFooter)
         @jobs_weakify(self)
         MjRefreshAutoGifFooter = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self loadMoreRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         // 图片
         {
@@ -423,7 +410,7 @@ JobsKey(_mjRefreshBackNormalFooter)
         @jobs_weakify(self)
         MjRefreshBackNormalFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self loadMoreRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         // 文字 (此模式下只有文字而没有图片)
         {
@@ -469,7 +456,7 @@ JobsKey(_mjRefreshAutoNormalFooter)
         @jobs_weakify(self)
         MjRefreshAutoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self loadMoreRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         
         // 文字
@@ -516,7 +503,7 @@ JobsKey(_mjRefreshAutoStateFooter)
         @jobs_weakify(self)
         MjRefreshAutoStateFooter = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self loadMoreRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         // 文字
         {
@@ -562,7 +549,7 @@ JobsKey(_mjRefreshAutoFooter)
         @jobs_weakify(self)
         MjRefreshAutoFooter = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self loadMoreRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoFooter, MjRefreshAutoFooter)
     }return MjRefreshAutoFooter;
@@ -580,7 +567,7 @@ JobsKey(_mjRefreshBackGifFooter)
         @jobs_weakify(self)
         MjRefreshBackGifFooter = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self loadMoreRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         // 图片
         {
@@ -645,7 +632,7 @@ JobsKey(_mjRefreshBackStateFooter)
         @jobs_weakify(self)
         MjRefreshBackStateFooter = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self loadMoreRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         // 文字
         {
@@ -691,7 +678,7 @@ JobsKey(_mjRefreshBackFooter)
         @jobs_weakify(self)
         MjRefreshBackFooter = [MJRefreshBackFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self loadMoreRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         //其他
         {
@@ -715,7 +702,7 @@ JobsKey(_mjRefreshFooter)
         @jobs_weakify(self)
         MjRefreshFooter = [MJRefreshFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            [self loadMoreRefresh];
+            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
         }];
         //其他
         {

@@ -108,16 +108,6 @@
     [_dropDownListView dropDownListViewDisappear:nil];
     _dropDownListView = nil;
 }
-///下拉刷新 （子类要进行覆写）
--(void)pullToRefresh{
-    [self feedbackGenerator];//震动反馈
-    [self endRefreshing:self.tableView];
-//    [self endRefreshingWithNoMoreData:self.tableView];
-}
-///上拉加载更多 （子类要进行覆写）
--(void)loadMoreRefresh{
-    [self pullToRefresh];
-}
 /// 逐字搜索功能
 //-(void)searchByString:(NSString *)string{
 //    //每次都清数据
@@ -361,6 +351,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark —— lazyLoad
 -(BaseTableView *)tableView{
     if (!_tableView) {
+        @jobs_weakify(self)
         /// 值得注意：只能用这样的初始化方式传入UITableViewStyleGrouped进行
         /// 否则viewForHeaderInSection 和 tableHeaderView 之间会有一段距离
         _tableView = [BaseTableView.alloc initWithFrame:CGRectZero style:UITableViewStyleGrouped];
@@ -381,6 +372,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                [self feedbackGenerator];//震动反馈
+                [self endRefreshing:self.tableView];
+            //    [self endRefreshingWithNoMoreData:self.tableView];
+                return nil;
+            };
 
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
             refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
@@ -388,6 +386,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                return nil;
+            };
 
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
@@ -396,7 +397,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
         }
         
-        @jobs_weakify(self)
         [_tableView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
             [self endDropDownListView];

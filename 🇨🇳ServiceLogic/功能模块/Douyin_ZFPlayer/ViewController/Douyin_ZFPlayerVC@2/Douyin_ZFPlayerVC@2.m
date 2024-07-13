@@ -130,23 +130,6 @@
     [self endRefreshing:self.tableView];
 //    [self endRefreshingWithNoMoreData:self.tableView];
 }
-/// 下拉刷新
--(void)pullToRefresh{
-    NSLog(@"下拉刷新");
-    self.currentPage = 1;
-    [self requestData];
-//    [self requestData:NO];
-//    [self playVideo];
-}
-/// 上拉加载更多
-- (void)loadMoreRefresh{
-    NSLog(@"上拉加载更多");
-    self.currentPage += 1;
-    [self requestData];
-//    NSLog(@"currentPageNum = %ld",self.currentPage);
-//    [self requestData:YES];
-//    [self playVideo];
-}
 /**
  play the video
  
@@ -284,6 +267,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (UITableView *)tableView{
     if (!_tableView) {
+        @jobs_weakify(self)
         _tableView = UITableView.new;
         _tableView.pagingEnabled = YES;
         _tableView.backgroundColor = UIColor.lightGrayColor;
@@ -319,6 +303,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
             refreshConfigHeader.refreshingTitle = JobsInternationalization(@"正在刷新数据");
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                NSLog(@"下拉刷新");
+                self.currentPage = 1;
+                [self requestData];
+            //    [self requestData:NO];
+            //    [self playVideo];
+                return nil;
+            };
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
             refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"上拉加载数据");
@@ -326,6 +319,16 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
             refreshConfigFooter.refreshingTitle = JobsInternationalization(@"正在加载数据");
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"加载数据中");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"没有更多数据");
+            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                NSLog(@"上拉加载更多");
+                self.currentPage += 1;
+                [self requestData];
+            //    NSLog(@"currentPageNum = %ld",self.currentPage);
+            //    [self requestData:YES];
+            //    [self playVideo];
+                return nil;
+            };
             
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;

@@ -2889,12 +2889,204 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 关注实现类：[**@interface  TouchID : NSObject**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/TouchID)
 
+### 27、创建`UICollectionView` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* ```objective-c
+  @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
+  @property(nonatomic,strong)BaseCollectionView *collectionView;
+  ```
+
+  ```objective-c
+  -(UICollectionViewFlowLayout *)layout{
+      if (!_layout) {
+          _layout = UICollectionViewFlowLayout.new;
+          _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+      }return _layout;
+  }
+  
+  -(BaseCollectionView *)collectionView{
+      if (!_collectionView) {
+          @jobs_weakify(self)
+          _collectionView = [BaseCollectionView.alloc initWithFrame:CGRectZero
+                                               collectionViewLayout:self.layout];
+          _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
+          [self dataLinkByCollectionView:_collectionView];
+          _collectionView.showsVerticalScrollIndicator = NO;
+          _collectionView.showsHorizontalScrollIndicator = NO;
+          _collectionView.bounces = NO;
+          
+          [_collectionView registerCollectionViewClass];
+          [_collectionView registerCollectionViewCellClass:MSMineView6CVCell.class];
+          
+          {
+              MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+              refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+              refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+              refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+              refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+              refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+              refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                  @jobs_strongify(self)
+                  [self feedbackGenerator];//震动反馈
+                  return nil;
+              };
+  
+              MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+              refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+              refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+              refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+              refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+              refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+              refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                  @jobs_strongify(self)
+                  return nil;
+              };
+  
+              {
+                self.refreshConfigHeader = refreshConfigHeader;
+                self.refreshConfigFooter = refreshConfigFooter;
+  
+                _collectionView.mj_header = self.mjRefreshNormalHeader;
+                _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+              }
+  
+            // 如果需要支持lottie动画
+            //{
+            //               // 赋值
+            //  self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
+            //  self.refreshConfigFooter = refreshConfigFooter;//数据赋值
+            //  // 用值
+            //  _collectionView.mj_header = self.lotAnimMJRefreshHeader;
+            //}
+          }
+          
+          [self addSubview:_collectionView];
+          [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.top.left.right.equalTo(self);
+              make.height.mas_equalTo(JobsWidth(102));
+          }];
+      }return _collectionView;
+  }
+  ```
+
+### 28、创建`UITableView` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* ```objective-c
+  /// UI
+  @property(nonatomic,strong)BaseTableView *tableView;
+  ```
+
+  ```objective-c
+  -(BaseTableView *)tableView{
+      if (!_tableView) {
+          @jobs_weakify(self)
+          _tableView = BaseTableView.new;
+          [self dataLinkByTableView:_tableView];
+          _tableView.backgroundColor = UIColor.whiteColor;
+          _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+          _tableView.showsVerticalScrollIndicator = NO;
+          _tableView.tableFooterView = UIView.new;
+          _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+          {
+              MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+              refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+              refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+              refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+              refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+              refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+              refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                  @jobs_strongify(self)
+                  [NSObject feedbackGenerator];//震动反馈
+                  if (self.dataMutArr.count) {
+                      [self.dataMutArr removeAllObjects];
+                  }
+                  /// 装载数据
+                  if ([self.viewModel.requestParams isKindOfClass:NSObject.class]) {
+                      NSObject *requestParams = (NSObject *)self.viewModel.requestParams;
+                      NSMutableArray <NSString *>*propertyList = requestParams.printPropertyList;
+                      for (NSString *propertyName in propertyList) {
+                          UIViewModel *viewModel = UIViewModel.new;
+                          NSString *text = propertyName;
+                          id subtext = requestParams.valueForKeyBlock(propertyName);
+                          /// 防崩溃处理：
+                          if([subtext isKindOfClass:NSString.class] &&
+                             [text isKindOfClass:NSString.class]){
+                              viewModel.textModel.text = propertyName;
+                              viewModel.subTextModel.text = requestParams.valueForKeyBlock(propertyName);
+                              viewModel.textModel.textCor = UIColor.blueColor;
+                              viewModel.textModel.textCor = UIColor.redColor;
+                              [self.dataMutArr addObject:viewModel];
+                          }
+                      }
+                  }
+                  self.isVisible = YES;
+                  if (self.dataMutArr.count) {
+                      [self endRefreshing:self.tableView];
+                  }else{
+                      [self endRefreshingWithNoMoreData:self.tableView];
+                  }
+                  /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
+                  @jobs_weakify(self)
+                  [self getMainQueue:^{
+                      @jobs_strongify(self)
+                      [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
+                                                animationBlock:nil
+                                               completionBlock:nil];
+                  }];
+                  return nil;
+              };
+  
+              MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+              refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+              refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+              refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+              refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+              refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+              refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                  return nil;
+              };
+  
+              {
+                self.refreshConfigHeader = refreshConfigHeader;
+                self.refreshConfigFooter = refreshConfigFooter;
+  
+                _tableView.mj_header = self.mjRefreshNormalHeader;
+                _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+              }
+            
+              // 如果需要支持lottie动画
+              //{
+              //               // 赋值
+              //  self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
+              //  self.refreshConfigFooter = refreshConfigFooter;//数据赋值
+              //  // 用值
+              //  _tableView.mj_header = self.lotAnimMJRefreshHeader;
+              //}
+          }
+          
+          {
+              _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"加载失败"
+                                                                  titleStr:JobsInternationalization(@"No Data")
+                                                                 detailStr:JobsInternationalization(@"")];
+              
+              _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
+              _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
+              _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightMedium];
+          }
+          
+          [self.view addSubview:_tableView];
+          [self fullScreenConstraintTargetView:_tableView topViewOffset:0];
+      }return _tableView;
+  }
+  ```
+
 
 ### Test <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 <details id="Test">
  <summary><strong>点我了解详情</strong></summary>
 * [**OC代码实验室**](https://github.com/295060456/Jobs_ObjectiveC_Laboratory)
+
 
   ```objective-c
   /// TODO

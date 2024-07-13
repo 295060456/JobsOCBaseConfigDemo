@@ -81,25 +81,6 @@
     [super viewDidDisappear:animated];
 }
 #pragma mark —— 一些私有方法
-///下拉刷新
--(void)pullToRefresh{
-    NSLog(@"下拉刷新");
-    self.currentPage = 1;
-    @"data".readLocalFileWithName;/// 获取本地的数据
-}
-///上拉加载更多
-- (void)loadMoreRefresh{
-    NSLog(@"上拉加载更多");
-    self.currentPage += 1;
-//    NSLog(@"%@",self.tableView.mj_footer);
-//    [self.tableView.mj_footer endRefreshing];
-//    [self.tableView reloadData];
-//    //特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
-//    self.tableView.pagingEnabled = NO;
-//    [self performSelector:@selector(delayMethods) withObject:nil afterDelay:2];
-    
-    @"data".readLocalFileWithName;/// 获取本地的数据
-}
 /// 真实的网络请求
 -(void)requestData:(BOOL)isLoadMore{
     DDNetworkingPrepare
@@ -280,6 +261,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 #pragma mark —— lazyLoad
 -(UITableView *)tableView{
     if (!_tableView) {
+        @jobs_weakify(self)
         _tableView = UITableView.new;
         _tableView.backgroundColor = JobsWhiteColor;
         _tableView.pagingEnabled = YES;
@@ -297,6 +279,13 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
             refreshConfigHeader.refreshingTitle = JobsInternationalization(@"正在刷新数据");
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                NSLog(@"下拉刷新");
+                self.currentPage = 1;
+                @"data".readLocalFileWithName;/// 获取本地的数据
+                return nil;
+            };
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
             refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
@@ -304,6 +293,20 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
             refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                NSLog(@"上拉加载更多");
+                self.currentPage += 1;
+            //    NSLog(@"%@",self.tableView.mj_footer);
+            //    [self.tableView.mj_footer endRefreshing];
+            //    [self.tableView reloadData];
+            //    //特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
+            //    self.tableView.pagingEnabled = NO;
+            //    [self performSelector:@selector(delayMethods) withObject:nil afterDelay:2];
+                
+                @"data".readLocalFileWithName;/// 获取本地的数据
+                return nil;
+            };
             // 赋值
             self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;//数据赋值

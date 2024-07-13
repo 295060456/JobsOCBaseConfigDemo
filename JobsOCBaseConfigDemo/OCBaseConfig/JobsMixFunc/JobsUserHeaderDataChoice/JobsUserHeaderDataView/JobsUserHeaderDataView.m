@@ -112,15 +112,6 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
                       JobsWidth(31) +
                       [JobsUserHeaderDataViewTBVCell cellHeightWithModel:nil] * JobsUserHeaderDataView.createDataMutArr.count);
 }
-/// 下拉刷新 （子类要进行覆写）
--(void)pullToRefresh{
-    [NSObject feedbackGenerator];//震动反馈
-
-}
-/// 上拉加载更多 （子类要进行覆写）
--(void)loadMoreRefresh{
-    [self pullToRefresh];
-}
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -173,9 +164,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }];return headerView;
     }return nil;
 }
+
+
 #pragma mark —— lazyLoad
 -(UITableView *)tableView{
     if (!_tableView) {
+        @jobs_weakify(self)
         _tableView = UITableView.initWithStylePlain;
         _tableView.backgroundColor = UIColor.clearColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -192,6 +186,37 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
+        
+        {
+            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                [self feedbackGenerator];//震动反馈
+                return nil;
+            };
+
+            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                return nil;
+            };
+
+            self.refreshConfigHeader = refreshConfigHeader;
+            self.refreshConfigFooter = refreshConfigFooter;
+
+            _tableView.mj_header = self.mjRefreshNormalHeader;
+            _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+        }
+        
     }return _tableView;
 }
 

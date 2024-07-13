@@ -13,7 +13,6 @@
 @end
 
 @implementation BaseView
-
 #pragma mark —— UIViewModelProtocol
 UIViewModelProtocol_synthesize
 #pragma mark —— BaseProtocol

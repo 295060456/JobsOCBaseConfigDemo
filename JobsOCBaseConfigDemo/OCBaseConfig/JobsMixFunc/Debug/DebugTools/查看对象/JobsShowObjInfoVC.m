@@ -9,7 +9,7 @@
 
 @interface JobsShowObjInfoVC ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+@property(nonatomic,strong)BaseTableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -68,54 +68,6 @@
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleDefault;
 }
-/// 装载数据
--(void)loadData{
-    if ([self.viewModel.requestParams isKindOfClass:NSObject.class]) {
-        NSObject *requestParams = (NSObject *)self.viewModel.requestParams;
-        NSMutableArray <NSString *>*propertyList = requestParams.printPropertyList;
-        for (NSString *propertyName in propertyList) {
-            UIViewModel *viewModel = UIViewModel.new;
-            NSString *text = propertyName;
-            id subtext = requestParams.valueForKeyBlock(propertyName);
-            /// 防崩溃处理：
-            if([subtext isKindOfClass:NSString.class] &&
-               [text isKindOfClass:NSString.class]){
-                viewModel.textModel.text = propertyName;
-                viewModel.subTextModel.text = requestParams.valueForKeyBlock(propertyName);
-                viewModel.textModel.textCor = UIColor.blueColor;
-                viewModel.textModel.textCor = UIColor.redColor;
-                [self.dataMutArr addObject:viewModel];
-            }
-        }
-    }
-}
-#pragma mark —— BaseViewProtocol
-///下拉刷新 （子类要进行覆写）
--(void)pullToRefresh{
-    [NSObject feedbackGenerator];//震动反馈
-    if (self.dataMutArr.count) {
-        [self.dataMutArr removeAllObjects];
-    }
-    [self loadData];
-    self.isVisible = YES;
-    if (self.dataMutArr.count) {
-        [self endRefreshing:self.tableView];
-    }else{
-        [self endRefreshingWithNoMoreData:self.tableView];
-    }
-    /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
-    @jobs_weakify(self)
-    [self getMainQueue:^{
-        @jobs_strongify(self)
-        [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
-                                  animationBlock:nil
-                                 completionBlock:nil];
-    }];
-}
-///上拉加载更多 （子类要进行覆写）
--(void)loadMoreRefresh{
-    [self pullToRefresh];
-}
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -153,9 +105,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.alpha = self.isVisible;
 }
 #pragma mark —— lazyLoad
--(UITableView *)tableView{
+-(BaseTableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.new;
+        @jobs_weakify(self)
+        _tableView = BaseTableView.new;
         [self dataLinkByTableView:_tableView];
         _tableView.backgroundColor = UIColor.whiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -164,11 +117,52 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"Pull down to refresh");
-            refreshConfigHeader.pullingTitle = JobsInternationalization(@"Pull down to refresh");
-            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"Release Refresh now");
-            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"Refreshing data");
-            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"Pull down to refresh");
+            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                [NSObject feedbackGenerator];//震动反馈
+                if (self.dataMutArr.count) {
+                    [self.dataMutArr removeAllObjects];
+                }
+                /// 装载数据
+                if ([self.viewModel.requestParams isKindOfClass:NSObject.class]) {
+                    NSObject *requestParams = (NSObject *)self.viewModel.requestParams;
+                    NSMutableArray <NSString *>*propertyList = requestParams.printPropertyList;
+                    for (NSString *propertyName in propertyList) {
+                        UIViewModel *viewModel = UIViewModel.new;
+                        NSString *text = propertyName;
+                        id subtext = requestParams.valueForKeyBlock(propertyName);
+                        /// 防崩溃处理：
+                        if([subtext isKindOfClass:NSString.class] &&
+                           [text isKindOfClass:NSString.class]){
+                            viewModel.textModel.text = propertyName;
+                            viewModel.subTextModel.text = requestParams.valueForKeyBlock(propertyName);
+                            viewModel.textModel.textCor = UIColor.blueColor;
+                            viewModel.textModel.textCor = UIColor.redColor;
+                            [self.dataMutArr addObject:viewModel];
+                        }
+                    }
+                }
+                self.isVisible = YES;
+                if (self.dataMutArr.count) {
+                    [self endRefreshing:self.tableView];
+                }else{
+                    [self endRefreshingWithNoMoreData:self.tableView];
+                }
+                /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
+                @jobs_weakify(self)
+                [self getMainQueue:^{
+                    @jobs_strongify(self)
+                    [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
+                                              animationBlock:nil
+                                             completionBlock:nil];
+                }];
+                return nil;
+            };
 
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
             refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
@@ -176,6 +170,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                return nil;
+            };
 
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;

@@ -31,10 +31,6 @@
  +(CGFloat)widthByData:(UIViewModel *_Nonnull)data;
  /// 数据（字符串）定高
  +(CGFloat)heightByData:(UIViewModel *_Nonnull)data;
- /// 下拉刷新 （子类要进行覆写）
- -(void)pullToRefresh;
- /// 上拉加载更多 （子类要进行覆写）
- -(void)loadMoreRefresh;
  */
 
 @end

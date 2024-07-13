@@ -151,31 +151,6 @@ UICollectionViewDataSource
     return [super preferredInterfaceOrientationForPresentation];
 }
 #pragma mark —— 一些私有方法
-/// 下拉刷新 （子类要进行覆写）
--(void)pullToRefresh{
-    [self feedbackGenerator];//震动反馈
-    @jobs_weakify(self)
-    [self withdrawBanklist:^(NSArray *data) {
-        @jobs_strongify(self)
-        if (data.count) {
-            [self endRefreshing:self.collectionView];
-        }else{
-            [self endRefreshingWithNoMoreData:self.collectionView];
-        }
-        /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
-        @jobs_weakify(self)
-        [self getMainQueue:^{
-            @jobs_strongify(self)
-//            [CollectionViewAnimationKit showWithAnimationType:XSCollectionViewAnimationTypeFall
-//                                               collectionView:self.collectionView];
-        }];
-    }];
-}
-/// 上拉加载更多 （子类要进行覆写）
--(void)loadMoreRefresh{
-    [self pullToRefresh];
-}
-
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
     
@@ -333,14 +308,35 @@ insetForSectionAtIndex:(NSInteger)section {
             refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                [self feedbackGenerator];//震动反馈
+                @jobs_weakify(self)
+                [self withdrawBanklist:^(NSArray *data) {
+                    @jobs_strongify(self)
+                    if (data.count) {
+                        [self endRefreshing:self.collectionView];
+                    }else{
+                        [self endRefreshingWithNoMoreData:self.collectionView];
+                    }
+                    /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
+                    @jobs_weakify(self)
+                    [self getMainQueue:^{
+                        @jobs_strongify(self)
+            //            [CollectionViewAnimationKit showWithAnimationType:XSCollectionViewAnimationTypeFall
+            //                                               collectionView:self.collectionView];
+                    }];
+                }];return nil;
+            };
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
             refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");;
-            
+            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                return nil;
+            };
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
             

@@ -84,6 +84,9 @@ NS_ASSUME_NONNULL_END
     refreshConfigHeader.refreshingTitle = JobsInternationalization(@"立即释放刷新");
     refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据");
     refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新");
+    refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+        return nil;
+    };
     
     MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
     refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
@@ -109,6 +112,9 @@ NS_ASSUME_NONNULL_END
      refreshConfigHeader.refreshingTitle = JobsInternationalization(@"立即释放刷新");
      refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据");
      refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新");
+     refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+         return nil;
+     };
      self.refreshConfigHeader = mJRefreshConfigModel;//数据赋值
  
      _tableView.mj_header = self.mjRefreshNormalHeader;

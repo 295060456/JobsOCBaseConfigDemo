@@ -567,7 +567,6 @@
         [generator prepare];
         [generator impactOccurred];
     } else {
-        // Fallback on earlier versions
         AudioServicesPlaySystemSound(1520);
     }
 }

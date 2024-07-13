@@ -138,20 +138,6 @@
 -(UITableView *)getTableView{
     return self.tableView;
 }
-/// 下拉刷新 （子类要进行覆写）
--(void)pullToRefresh{
-    [self feedbackGenerator];//震动反馈
-//    @jobs_weakify(self)
-//    if (data.count) {
-//        [self endRefreshing:self.tableView];
-//    }else{
-//        [self endRefreshingWithNoMoreData:self.tableView];
-//    }
-}
-///上拉加载更多 （子类要进行覆写）
--(void)loadMoreRefresh{
-    [self pullToRefresh];
-}
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (void)tableView:(UITableView*)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
@@ -266,6 +252,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                return nil;
+            };
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
             refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
@@ -273,6 +262,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                return nil;
+            };
             
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;

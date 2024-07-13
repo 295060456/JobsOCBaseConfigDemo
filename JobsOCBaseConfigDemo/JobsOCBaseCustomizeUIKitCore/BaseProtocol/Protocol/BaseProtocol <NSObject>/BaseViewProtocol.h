@@ -103,10 +103,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 一些功能性的
 /// 初始化的时候最好传入一个size值将其子视图的大小固定死。因为只有当父视图有Size的情况下子视图才会展开，从而避免刷新约束时候的一系列麻烦事。
 -(instancetype)initWithSize:(CGSize)thisViewSize;
-/// 下拉刷新 （子类要进行覆写）
--(void)pullToRefresh;
-/// 上拉加载更多 （子类要进行覆写）
--(void)loadMoreRefresh;
 /// 获取绑定的数据源
 -(UIViewModel *_Nullable)getViewModel;
 /**

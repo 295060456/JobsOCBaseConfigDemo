@@ -109,23 +109,14 @@ BOOL ISLogin;
     UIInterfaceOrientation s = self.getInterfaceOrientation;
     DeviceOrientation d = self.getDeviceOrientation;
     NSLog(@"");
-    self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
+//    self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
+    self.categoryViewVerticalShowVC.view.alpha = 1;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
 }
 #pragma mark —— 一些私有方法
-#pragma mark —— BaseViewProtocol
-/// 下拉刷新 （子类要进行覆写）
--(void)pullToRefresh{
-    [self feedbackGenerator];//震动反馈
-    [self endRefreshing:self.tableView];
-}
-/// 上拉加载更多 （子类要进行覆写）
--(void)loadMoreRefresh{
-    [self pullToRefresh];
-}
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -207,6 +198,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                /// 下拉刷新
+                [self feedbackGenerator];//震动反馈
+                [self endRefreshing:self.tableView];
+                return nil;
+            };
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
             refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
@@ -214,6 +211,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data){
+
+                return nil;
+            };
             
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;

@@ -10,7 +10,7 @@
 @interface JobsShareView ()
 /// UI
 @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
-@property(nonatomic,strong)UICollectionView *collectionView;
+@property(nonatomic,strong)BaseCollectionView *collectionView;
 @property(nonatomic,strong)BaseButton *cancelBtn;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -88,30 +88,7 @@ static dispatch_once_t static_shareViewOnceToken;
     return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(148));
 }
 #pragma mark —— 一些私有方法
-/// 下拉刷新 （子类要进行覆写）
--(void)pullToRefresh{
-    [self feedbackGenerator];//震动反馈
-//    @jobs_weakify(self)
-//    [self withdrawBanklist:^(NSArray *data) {
-//        @jobs_strongify(self)
-//        if (data.count) {
-//            [self endRefreshing:self.collectionView];
-//        }else{
-//            [self endRefreshingWithNoMoreData:self.collectionView];
-//        }
-//        /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
-//        @jobs_weakify(self)
-//        [self getMainQueue:^{
-//            @jobs_strongify(self)
-//            [CollectionViewAnimationKit showWithAnimationType:XSCollectionViewAnimationTypeFall
-//                                               collectionView:self.collectionView];
-//        }];
-//    }];
-}
-/// 上拉加载更多 （子类要进行覆写）
--(void)loadMoreRefresh{
-    [self pullToRefresh];
-}
+
 #pragma mark —— UICollectionViewCell 部署策略
 //见 @interface NSObject (JobsDeployCellConfig)
 #pragma mark —— UICollectionViewDataSource
@@ -280,10 +257,11 @@ insetForSectionAtIndex:(NSInteger)section {
     }return _layout;
 }
 
--(UICollectionView *)collectionView{
+-(BaseCollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [UICollectionView.alloc initWithFrame:CGRectZero
-                                           collectionViewLayout:self.layout];
+        @jobs_weakify(self)
+        _collectionView = [BaseCollectionView.alloc initWithFrame:CGRectZero
+                                             collectionViewLayout:self.layout];
         _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
         [self dataLinkByCollectionView:_collectionView];
         _collectionView.showsVerticalScrollIndicator = NO;
@@ -292,6 +270,37 @@ insetForSectionAtIndex:(NSInteger)section {
         
         [_collectionView registerCollectionViewClass];
         [_collectionView registerCollectionViewCellClass:MSMineView6CVCell.class];
+        
+        {
+            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                [self feedbackGenerator];//震动反馈
+                return nil;
+            };
+
+            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                return nil;
+            };
+
+            self.refreshConfigHeader = refreshConfigHeader;
+            self.refreshConfigFooter = refreshConfigFooter;
+
+            _collectionView.mj_header = self.mjRefreshNormalHeader;
+            _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+        }
         
         [self addSubview:_collectionView];
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JXCategoryViewVerticalShowSubBaseVC : BaseViewController
+@interface JXCategoryViewVerticalShowSubBaseVC : UIViewController//BaseViewController
 
 @end
 

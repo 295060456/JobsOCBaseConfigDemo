@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JobsLoadingImage.h"
 #import "MacroDef_Cor.h"
+#import "JobsBlock.h"
 /**
  MJRefreshStateIdle,   //   普通闲置状态
  MJRefreshStatePulling,   //   松开就可以进行刷新的状态
@@ -52,6 +53,7 @@ typedef enum : NSInteger {
 @property(nonatomic,strong)NSMutableArray <UIImage *>*noMoreDataPicsMutArr;
 #pragma mark —— Lottie配置
 @property(nonatomic,strong)NSString *jsonLottiefilePaths;
+@property(nonatomic,assign)JobsReturnIDByIDBlock loadBlock;
 
 @end
 
