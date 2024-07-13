@@ -9,10 +9,15 @@
 #import <CoreData/CoreData.h>
 
 #import "JobsTabbarVC.h"
+#import "JobsCustomTabBarConfig.h"
 #import "Other.h"
 @import UserNotifications;/// 配置本地通知
 
-#define RootViewController appDelegate.tabBarVC
+#ifndef ROOT_VIEW_CONTROLLER_H
+#define ROOT_VIEW_CONTROLLER_H
+//#define RootViewController appDelegate.tabBarVC
+#define RootViewController appDelegate.customTabBarVC
+#endif // ROOT_VIEW_CONTROLLER_H
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunguarded-availability-new"
@@ -28,7 +33,15 @@ UIApplicationDelegate
 @property(readonly,strong)NSPersistentCloudKitContainer *persistentContainer;
 @property(nonatomic,assign)BOOL allowOrentitaionRotation;
 
--(NSMutableArray <JobsTabBarCtrlConfig *>*)makeConfigMutArr;
+#pragma mark —— 配置数据源
++(NSMutableArray <UIButton *>*)makeTabBarItems;
++(JobsCustomTabBarConfig *)makeJobsCustomTabBarConfig;
++(NSMutableArray <UIViewController *>*)makeViewControllerMutArr;
++(NSMutableArray <NSString *>*)makeTabBarItemTitleMutArr;
++(NSMutableArray <UIImage *>*)makeImageSelectedMutArr;
++(NSMutableArray <UIImage *>*)makeImageUnselectedMutArr;
++(NSMutableArray <JobsTabBarCtrlConfig *>*)makeConfigMutArr;
+
 -(void)saveContext;
 
 @end

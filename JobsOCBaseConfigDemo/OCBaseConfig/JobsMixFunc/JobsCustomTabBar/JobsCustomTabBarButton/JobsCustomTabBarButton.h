@@ -9,9 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsCustomTabBaritem : UIView
-
-@property (nonatomic, strong) UIButton *button;
+@interface JobsCustomTabBarButton : UIButton
 
 @end
 

@@ -124,13 +124,28 @@ JobsKey(_tabBarVC)
 -(void)setTabBarVC:(JobsTabbarVC *)tabBarVC{
     Jobs_setAssociatedRETAIN_NONATOMIC(_tabBarVC, tabBarVC);
 }
+#pragma mark —— @property(nonatomic,strong)JobsCustomTabBarVC *customTabBarVC;
+JobsKey(_customTabBarVC)
+@dynamic customTabBarVC;
+-(JobsCustomTabBarVC *)customTabBarVC{
+    JobsCustomTabBarVC *CustomTabBarVC = Jobs_getAssociatedObject(_customTabBarVC);
+    if(!CustomTabBarVC){
+        CustomTabBarVC = JobsCustomTabBarVC.new;
+        CustomTabBarVC.viewControllers = AppDelegate.makeViewControllerMutArr;
+        Jobs_setAssociatedRETAIN_NONATOMIC(_customTabBarVC, CustomTabBarVC);
+    }return CustomTabBarVC;
+}
+
+-(void)setCustomTabBarVC:(JobsCustomTabBarVC *)customTabBarVC{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_customTabBarVC, customTabBarVC);
+}
 #pragma mark —— @property(nonatomic,strong)NSMutableArray <JobsTabBarControllerConfig *>*configMutArr;
 JobsKey(_configMutArr)
 @dynamic configMutArr;
 -(NSMutableArray<JobsTabBarCtrlConfig *> *)configMutArr{
     NSMutableArray *ConfigMutArr = Jobs_getAssociatedObject(_configMutArr);
     if (!ConfigMutArr) {
-        ConfigMutArr = self.makeConfigMutArr;
+        ConfigMutArr = AppDelegate.makeConfigMutArr;
         Jobs_setAssociatedRETAIN_NONATOMIC(_configMutArr, ConfigMutArr);
     }return ConfigMutArr;
 }

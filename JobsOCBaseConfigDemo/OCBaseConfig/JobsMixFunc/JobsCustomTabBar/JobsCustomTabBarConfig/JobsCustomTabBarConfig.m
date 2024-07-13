@@ -7,26 +7,42 @@
 
 #import "JobsCustomTabBarConfig.h"
 
-@implementation JobsCustomTabBarConfig
+@interface JobsCustomTabBarConfig ()
 
-+ (instancetype)sharedConfig {
-    static JobsCustomTabBarConfig *sharedConfig = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedConfig = [[self alloc] init];
-    });
-    return sharedConfig;
+@end
+
+@implementation JobsCustomTabBarConfig
+static JobsCustomTabBarConfig *JobsCustomTabBarConfigInstance = nil;
+static dispatch_once_t JobsCustomTabBarConfigOnceToken;
++(instancetype)sharedManager {
+    dispatch_once(&JobsCustomTabBarConfigOnceToken, ^{
+        JobsCustomTabBarConfigInstance = [super allocWithZone:NULL].init;
+    });return JobsCustomTabBarConfigInstance;
+}
+/// 单例的销毁
++(void)destroyInstance {
+    JobsCustomTabBarConfigOnceToken = 0;
+    JobsCustomTabBarConfigInstance = nil;
+}
+/// 防止外部使用 alloc/init 等创建新实例
++(instancetype)allocWithZone:(struct _NSZone *)zone {
+    dispatch_once(&JobsCustomTabBarConfigOnceToken, ^{
+        JobsCustomTabBarConfigInstance = [super allocWithZone:zone];
+    });return JobsCustomTabBarConfigInstance;
 }
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _tabBarHeight = 50.0;
-        _tabBarBackgroundColor = [UIColor whiteColor];
-        _tabBarItems = @[];
-        _tabBarItemYOffsets = @[];
-    }
+-(instancetype)copyWithZone:(NSZone *)zone {
     return self;
+}
+
+-(instancetype)mutableCopyWithZone:(NSZone *)zone {
+    return self;
+}
+
+-(instancetype)init{
+    if (self = [super init]) {
+        
+    }return self;
 }
 
 @end

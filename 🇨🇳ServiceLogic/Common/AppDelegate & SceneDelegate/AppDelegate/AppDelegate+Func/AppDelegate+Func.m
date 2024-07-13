@@ -21,6 +21,7 @@
      * 苹果要求：可重复产生的数据不得进行同步,什么叫做可重复数据？这里最好禁止，否则会影响上架，被拒！
      */
     [FileFolderHandleTool banSysDocSynchronization];
+    [AppDelegate makeJobsCustomTabBarConfig];
 #ifdef DEBUG
     [UIFont getAvailableFont];/// 打印全员字体
 #endif

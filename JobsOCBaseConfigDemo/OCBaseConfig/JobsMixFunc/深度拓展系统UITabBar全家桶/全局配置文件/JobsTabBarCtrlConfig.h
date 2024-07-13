@@ -14,7 +14,7 @@
 #endif /* LANDSCAPE_VALUE_H */
 
 NS_ASSUME_NONNULL_BEGIN
-
+/// 对单个的 TabBarItem 进行的配置
 @interface JobsTabBarCtrlConfig : NSObject
 
 @property(nonatomic,strong)UIViewController *vc;
@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat tabBarItemHeight;/// 每一个TabbarItem  的高
 @property(nonatomic,assign)CGFloat xOffset;/// 每一个TabbarItem 和前一个TabbarItem在x轴方向的偏移量。如果是第一个TabbarItem则是和左屏幕进行比较
 @property(nonatomic,assign)CGFloat spacing;/// 每一个TabbarItem中的图文间距
+
++(instancetype)sharedManager;
++(void)destroyInstance;
 
 @end
 

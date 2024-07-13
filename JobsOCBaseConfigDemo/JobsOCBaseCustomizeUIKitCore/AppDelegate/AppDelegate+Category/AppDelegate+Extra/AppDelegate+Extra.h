@@ -11,13 +11,14 @@
 #import "NSObject+AppTools.h"
 
 #import "JobsTabbarVC.h"
-#import "JobsTabBarCtrlConfig.h"
+#import "JobsCustomTabBarVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AppDelegate (Extra)
 /// UI
 @property(nonatomic,strong)JobsTabbarVC *tabBarVC;
+@property(nonatomic,strong)JobsCustomTabBarVC *customTabBarVC;
 /// Data
 @property(nonatomic,strong)NSMutableArray <JobsTabBarCtrlConfig *>*_Nullable configMutArr;
 @property(nonatomic,strong)NSMutableArray <NSString *>*_Nullable tabBarTitleMutArr;

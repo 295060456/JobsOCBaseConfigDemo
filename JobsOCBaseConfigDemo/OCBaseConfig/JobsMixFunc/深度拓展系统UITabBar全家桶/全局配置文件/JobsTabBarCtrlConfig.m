@@ -7,8 +7,37 @@
 
 #import "JobsTabBarCtrlConfig.h"
 
-@implementation JobsTabBarCtrlConfig
+@interface JobsTabBarCtrlConfig ()
 
+@end
+
+@implementation JobsTabBarCtrlConfig
+static JobsTabBarCtrlConfig *JobsTabBarCtrlConfigInstance = nil;
+static dispatch_once_t JobsTabBarCtrlConfigOnceToken;
++(instancetype)sharedManager{
+    dispatch_once(&JobsTabBarCtrlConfigOnceToken, ^{
+        JobsTabBarCtrlConfigInstance = [super allocWithZone:NULL].init;
+    });return JobsTabBarCtrlConfigInstance;
+}
+/// 单例的销毁
++(void)destroyInstance {
+    JobsTabBarCtrlConfigOnceToken = 0;
+    JobsTabBarCtrlConfigInstance = nil;
+}
+/// 防止外部使用 alloc/init 等创建新实例
++(instancetype)allocWithZone:(struct _NSZone *)zone {
+    dispatch_once(&JobsTabBarCtrlConfigOnceToken, ^{
+        JobsTabBarCtrlConfigInstance = [super allocWithZone:zone];
+    });return JobsTabBarCtrlConfigInstance;
+}
+
+-(instancetype)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+-(instancetype)mutableCopyWithZone:(NSZone *)zone {
+    return self;
+}
 #pragma mark —— lazyLoad
 -(UIColor *)titleCorNormal{
     if (!_titleCorNormal) {

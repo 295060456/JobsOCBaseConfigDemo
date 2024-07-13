@@ -1307,7 +1307,7 @@ NSObject <|-- BaseProtocol
                                                    attributedTitle:nil
                                            selectedAttributedTitle:nil
                                                 attributedSubtitle:[self richTextWithDataConfigMutArr:self.richTextConfigMutArr]
-                                                             title:Internationalization(@"请支付")
+                                                             title:JobsInternationalization(@"请支付")
                                                           subTitle:nil//Internationalization(@"观看完整教学视频需支付99Mata值")
                                                          titleFont:UIFontWeightBoldSize(18)
                                                       subTitleFont:nil

@@ -926,7 +926,7 @@
 		CEB72FFB2C393BE400E652CA /* JobsLaunchAdMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB72FFA2C393BE300E652CA /* JobsLaunchAdMgr.m */; };
 		CED90E942C31954A008D9F68 /* 配置info.plist.md in Resources */ = {isa = PBXBuildFile; fileRef = CED90E912C31954A008D9F68 /* 配置info.plist.md */; };
 		CEDA46F92C428C8500C03CF9 /* JobsCustomTabBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA46F82C428C8500C03CF9 /* JobsCustomTabBarConfig.m */; };
-		CEDA46FE2C428CD100C03CF9 /* JobsCustomTabBaritem.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA46FD2C428CD100C03CF9 /* JobsCustomTabBaritem.m */; };
+		CEDA46FE2C428CD100C03CF9 /* JobsCustomTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA46FD2C428CD100C03CF9 /* JobsCustomTabBarButton.m */; };
 		CEDA47022C428D0100C03CF9 /* JobsCustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA47012C428D0100C03CF9 /* JobsCustomTabBar.m */; };
 		CEDA47062C428D3600C03CF9 /* JobsCustomTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA47052C428D3600C03CF9 /* JobsCustomTabBarVC.m */; };
 		DFEAED65A0CE0960B61EAA74 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19F1CC739164B10E3F364DB /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
@@ -2826,8 +2826,8 @@
 		CED90E922C31954A008D9F68 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEDA46F72C428C8500C03CF9 /* JobsCustomTabBarConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCustomTabBarConfig.h; sourceTree = "<group>"; };
 		CEDA46F82C428C8500C03CF9 /* JobsCustomTabBarConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCustomTabBarConfig.m; sourceTree = "<group>"; };
-		CEDA46FC2C428CD100C03CF9 /* JobsCustomTabBaritem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCustomTabBaritem.h; sourceTree = "<group>"; };
-		CEDA46FD2C428CD100C03CF9 /* JobsCustomTabBaritem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCustomTabBaritem.m; sourceTree = "<group>"; };
+		CEDA46FC2C428CD100C03CF9 /* JobsCustomTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCustomTabBarButton.h; sourceTree = "<group>"; };
+		CEDA46FD2C428CD100C03CF9 /* JobsCustomTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCustomTabBarButton.m; sourceTree = "<group>"; };
 		CEDA47002C428D0100C03CF9 /* JobsCustomTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCustomTabBar.h; sourceTree = "<group>"; };
 		CEDA47012C428D0100C03CF9 /* JobsCustomTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCustomTabBar.m; sourceTree = "<group>"; };
 		CEDA47042C428D3600C03CF9 /* JobsCustomTabBarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCustomTabBarVC.h; sourceTree = "<group>"; };
@@ -11997,7 +11997,7 @@
 			children = (
 				CEDA47032C428D2100C03CF9 /* JobsCustomTabBarVC */,
 				CEDA46FF2C428CF400C03CF9 /* JobsCustomTabBar */,
-				CEDA46FB2C428CB400C03CF9 /* JobsCustomTabBaritem */,
+				CEDA46FB2C428CB400C03CF9 /* JobsCustomTabBarButton */,
 				CEDA46FA2C428CAE00C03CF9 /* JobsCustomTabBarConfig */,
 			);
 			path = JobsCustomTabBar;
@@ -12012,13 +12012,13 @@
 			path = JobsCustomTabBarConfig;
 			sourceTree = "<group>";
 		};
-		CEDA46FB2C428CB400C03CF9 /* JobsCustomTabBaritem */ = {
+		CEDA46FB2C428CB400C03CF9 /* JobsCustomTabBarButton */ = {
 			isa = PBXGroup;
 			children = (
-				CEDA46FC2C428CD100C03CF9 /* JobsCustomTabBaritem.h */,
-				CEDA46FD2C428CD100C03CF9 /* JobsCustomTabBaritem.m */,
+				CEDA46FC2C428CD100C03CF9 /* JobsCustomTabBarButton.h */,
+				CEDA46FD2C428CD100C03CF9 /* JobsCustomTabBarButton.m */,
 			);
-			path = JobsCustomTabBaritem;
+			path = JobsCustomTabBarButton;
 			sourceTree = "<group>";
 		};
 		CEDA46FF2C428CF400C03CF9 /* JobsCustomTabBar */ = {
@@ -12691,7 +12691,7 @@
 				844B0E552764DE1A00B0513D /* JobsUserModel.m in Sources */,
 				C5978A8A2BE3599700A56125 /* UIProgressView+Extra.m in Sources */,
 				C5978ABE2BE3599700A56125 /* UIView+JHGestureBlock.m in Sources */,
-				CEDA46FE2C428CD100C03CF9 /* JobsCustomTabBaritem.m in Sources */,
+				CEDA46FE2C428CD100C03CF9 /* JobsCustomTabBarButton.m in Sources */,
 				C52E5CA62AC07E9800FE5494 /* KTVHCDataCallback.m in Sources */,
 				C539A03D2AD69BCF00C8A5E3 /* TKPermissionReminder.m in Sources */,
 				C52E5CEA2AC07EE500FE5494 /* DDData.m in Sources */,

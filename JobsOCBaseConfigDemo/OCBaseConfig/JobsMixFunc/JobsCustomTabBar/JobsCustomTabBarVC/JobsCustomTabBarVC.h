@@ -9,6 +9,8 @@
 #import "JobsCustomTabBar.h"
 #import "JobsCustomTabBarConfig.h"
 
+#import "UIView+Measure.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsCustomTabBarVC : UITabBarController
