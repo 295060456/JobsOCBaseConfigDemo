@@ -356,6 +356,36 @@ insetForSectionAtIndex:(NSInteger)section {
             _collectionView.ly_emptyView.titleLabFont = UIFontWeightMediumSize(16);
         }
         
+//        {
+//            
+//            NSArray *classArray = @[
+//                                    DDCollectionViewCell_Style2.class,
+//                                    DDCollectionViewCell_Style3.class,
+//                                    DDCollectionViewCell_Style4.class,
+//                                    ];
+//            NSArray *sizeArray = @[
+//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style2 cellSizeWithModel:nil]],
+//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeWithModel:nil]],
+//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeWithModel:nil]]
+//                                   ];
+//            
+//            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:classArray
+//                                                                              cellSizeArray:sizeArray
+//                                                                         animatedCountArray:@[@(1),@(1),@(1)]];
+//            
+//            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+//                                                   viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeWithModel:nil]
+//                                                  toSection:0];
+//            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+//                                                   viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeWithModel:nil]
+//                                                  toSection:2];
+//            
+//            _collectionView.tabAnimated.containNestAnimation = YES;
+//            _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+//            _collectionView.tabAnimated.canLoadAgain = YES;
+//            [_collectionView tab_startAnimation];   // 开启动画
+//        }
+        
         [self.view addSubview:_collectionView];
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);

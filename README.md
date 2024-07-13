@@ -755,8 +755,6 @@ class BaseViewProtocol {
     +-(CGFloat)widthByData:(UIViewModel *_Nonnull)data;
     +-(CGFloat)heightByData:(UIViewModel *_Nonnull)data;
     +-(instancetype)initWithSize:(CGSize)thisViewSize;
-    +-(void)pullToRefresh;
-    +-(void)loadMoreRefresh;
     +-(UIViewModel *_Nullable)getViewModel;
     +-(UIView *_Nullable)makeViewOnTableViewHeaderFooterView:(UITableViewHeaderFooterView *)headerFooterView;
     +@property(nonatomic,strong,nullable)JobsReturnIDByIDBlock jobsBackBlock;
@@ -2959,6 +2957,36 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
             //  _collectionView.mj_header = self.lotAnimMJRefreshHeader;
             //}
           }
+        
+  //          {
+  //            
+  //            NSArray *classArray = @[
+  //                                    DDCollectionViewCell_Style2.class,
+  //                                    DDCollectionViewCell_Style3.class,
+  //                                    DDCollectionViewCell_Style4.class,
+  //                                    ];
+  //            NSArray *sizeArray = @[
+  //                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style2 cellSizeWithModel:nil]],
+  //                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeWithModel:nil]],
+  //                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeWithModel:nil]]
+  //                                   ];
+  //            
+  //            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:classArray
+  //                                                                              cellSizeArray:sizeArray
+  //                                                                         animatedCountArray:@[@(1),@(1),@(1)]];
+  //            
+  //            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+  //                                                   viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeWithModel:nil]
+  //                                                  toSection:0];
+  //            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+  //                                                   viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeWithModel:nil]
+  //                                                  toSection:2];
+  //            
+  //            _collectionView.tabAnimated.containNestAnimation = YES;
+  //            _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+  //            _collectionView.tabAnimated.canLoadAgain = YES;
+  //            [_collectionView tab_startAnimation];   // 开启动画
+  //        }
           
           [self addSubview:_collectionView];
           [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -2980,13 +3008,21 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   -(BaseTableView *)tableView{
       if (!_tableView) {
           @jobs_weakify(self)
-          _tableView = BaseTableView.new;
+          _tableView = BaseTableView.initWithStyleGrouped;
+          _tableView.ww_foldable = YES;
           [self dataLinkByTableView:_tableView];
-          _tableView.backgroundColor = UIColor.whiteColor;
-          _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+          _tableView.backgroundColor = JobsCor(@"#FFFFFF");
+          _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+          _tableView.separatorColor = HEXCOLOR(0xEEE2C8);
           _tableView.showsVerticalScrollIndicator = NO;
-          _tableView.tableFooterView = UIView.new;
-          _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+          _tableView.scrollEnabled = YES;
+          _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
+          _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
+          [_tableView registerHeaderFooterViewClass:MSCommentTableHeaderFooterView.class];
+          if(@available(iOS 11.0, *)) {
+              _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+          }
+          
           {
               MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
               refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
@@ -2996,46 +3032,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
               refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                   @jobs_strongify(self)
-                  [NSObject feedbackGenerator];//震动反馈
-                  if (self.dataMutArr.count) {
-                      [self.dataMutArr removeAllObjects];
-                  }
-                  /// 装载数据
-                  if ([self.viewModel.requestParams isKindOfClass:NSObject.class]) {
-                      NSObject *requestParams = (NSObject *)self.viewModel.requestParams;
-                      NSMutableArray <NSString *>*propertyList = requestParams.printPropertyList;
-                      for (NSString *propertyName in propertyList) {
-                          UIViewModel *viewModel = UIViewModel.new;
-                          NSString *text = propertyName;
-                          id subtext = requestParams.valueForKeyBlock(propertyName);
-                          /// 防崩溃处理：
-                          if([subtext isKindOfClass:NSString.class] &&
-                             [text isKindOfClass:NSString.class]){
-                              viewModel.textModel.text = propertyName;
-                              viewModel.subTextModel.text = requestParams.valueForKeyBlock(propertyName);
-                              viewModel.textModel.textCor = UIColor.blueColor;
-                              viewModel.textModel.textCor = UIColor.redColor;
-                              [self.dataMutArr addObject:viewModel];
-                          }
-                      }
-                  }
-                  self.isVisible = YES;
-                  if (self.dataMutArr.count) {
-                      [self endRefreshing:self.tableView];
-                  }else{
-                      [self endRefreshingWithNoMoreData:self.tableView];
-                  }
-                  /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
-                  @jobs_weakify(self)
-                  [self getMainQueue:^{
-                      @jobs_strongify(self)
-                      [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
-                                                animationBlock:nil
-                                               completionBlock:nil];
-                  }];
+                  [self feedbackGenerator];//震动反馈
                   return nil;
               };
-  
+              
               MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
               refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
               refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
@@ -3045,37 +3045,37 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                   return nil;
               };
-  
-              {
-                self.refreshConfigHeader = refreshConfigHeader;
-                self.refreshConfigFooter = refreshConfigFooter;
-  
-                _tableView.mj_header = self.mjRefreshNormalHeader;
-                _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
-              }
-            
-              // 如果需要支持lottie动画
-              //{
-              //               // 赋值
-              //  self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
-              //  self.refreshConfigFooter = refreshConfigFooter;//数据赋值
-              //  // 用值
-              //  _tableView.mj_header = self.lotAnimMJRefreshHeader;
-              //}
+              
+              self.refreshConfigHeader = refreshConfigHeader;
+              self.refreshConfigFooter = refreshConfigFooter;
+              
+              _tableView.mj_header = self.mjRefreshNormalHeader;
+              _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
           }
           
           {
-              _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"加载失败"
-                                                                  titleStr:JobsInternationalization(@"No Data")
+              _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
+                                                                  titleStr:JobsInternationalization(@"暂无数据")
                                                                  detailStr:JobsInternationalization(@"")];
               
               _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
-              _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
-              _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightMedium];
+              _tableView.ly_emptyView.contentViewOffset = JobsWidth(-180);
+              _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
           }
           
-          [self.view addSubview:_tableView];
-          [self fullScreenConstraintTargetView:_tableView topViewOffset:0];
+  //        {/// 设置tabAnimated相关属性
+  //            // 可以不进行手动初始化，将使用默认属性
+  //            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:MSCommentTBVCell.class
+  //                                                                  cellHeight:74.5];
+  //            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+  //            [_tableView tab_startAnimation];   // 开启动画
+  //        }
+  //
+          [self addSubview:_tableView];
+          [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.edges.equalTo(self);
+          }];
+  
       }return _tableView;
   }
   ```

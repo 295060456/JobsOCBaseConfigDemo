@@ -9,7 +9,7 @@
 
 @interface MSCommentView ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+@property(nonatomic,strong)BaseTableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <MSCommentModel *>*dataMutArr;
 
@@ -175,10 +175,10 @@ willDisplayHeaderView:(UIView *)view
     [self headerView:commentTableHeaderFooterView section:section];
 }
 #pragma mark —— lazyLoad
--(UITableView *)tableView{
+-(BaseTableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = UITableView.initWithStyleGrouped;
+        _tableView = BaseTableView.initWithStyleGrouped;
         _tableView.ww_foldable = YES;
         [self dataLinkByTableView:_tableView];
         _tableView.backgroundColor = JobsCor(@"#FFFFFF");
