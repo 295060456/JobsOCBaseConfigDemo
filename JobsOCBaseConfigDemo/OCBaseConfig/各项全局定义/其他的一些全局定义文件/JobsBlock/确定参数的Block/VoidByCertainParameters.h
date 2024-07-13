@@ -18,6 +18,7 @@ typedef void(^jobsByStringBlock)(NSString *_Nullable data);
 typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
 typedef void(^jobsByCorBlock)(UIColor *_Nullable data);
 typedef void(^jobsByFontBlock)(UIFont *_Nullable data);
+typedef void(^jobsByViewBlock)(UIView *_Nullable view);
 
 typedef void(^jobsByNSIntegerBlock)(NSInteger data);
 typedef void(^jobsByNSUIntegerBlock)(NSUInteger data);

@@ -49,8 +49,8 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
         config.imageUnselected = JobsIMG(@"tabbbar_home_normal");
         config.humpOffsetY = 0;
         config.lottieName = nil;
-        config.xOffset = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsWidth(200) :0;
-        config.tabBarItemWidth = JobsWidth(100);
+        config.xOffset = landscapeValue(JobsWidth(200));
+        config.tabBarItemWidth = landscapeValue(JobsWidth(100));
         config.spacing = JobsWidth(3);
         config.tag = ConfigMutArr.count + 1;
         [ConfigMutArr addObject:config];
@@ -64,8 +64,8 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
         config.imageUnselected = JobsIMG(@"tabbbar_weights_normal");
         config.humpOffsetY = 0;
         config.lottieName = nil;
-        config.xOffset = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsWidth(5):0;
-        config.tabBarItemWidth = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsWidth(100) :0;
+        config.xOffset = landscapeValue(JobsWidth(5));
+        config.tabBarItemWidth = landscapeValue(JobsWidth(100));
         config.spacing = JobsWidth(3);
         config.tag = ConfigMutArr.count + 1;
         [ConfigMutArr addObject:config];
@@ -79,8 +79,8 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
         config.imageUnselected = JobsIMG(@"tabbbar_pay_normal");
         config.humpOffsetY = 0;
         config.lottieName = nil;
-        config.xOffset = JobsWidth(5);
-        config.tabBarItemWidth = JobsWidth(50);
+        config.xOffset = landscapeValue(JobsWidth(5));
+        config.tabBarItemWidth = landscapeValue(JobsWidth(50));
         config.spacing = JobsWidth(3);
         config.tag = ConfigMutArr.count + 1;
         [ConfigMutArr addObject:config];
@@ -94,8 +94,8 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
         config.imageUnselected = JobsIMG(@"tabbbar_service_normal");
         config.humpOffsetY = 0;
         config.lottieName = nil;
-        config.xOffset = JobsWidth(5);
-        config.tabBarItemWidth = JobsWidth(50);
+        config.xOffset = landscapeValue(JobsWidth(5));
+        config.tabBarItemWidth = landscapeValue(JobsWidth(50));
         config.spacing = JobsWidth(3);
         config.tag = ConfigMutArr.count + 1;
         [ConfigMutArr addObject:config];
@@ -109,8 +109,9 @@ AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会
         config.imageUnselected = JobsIMG(@"tabbar_VIP_normal");
         config.humpOffsetY = 0;
         config.lottieName = nil;
-        config.xOffset = JobsWidth(5);
-        config.tabBarItemWidth = JobsWidth(50);
+        config.xOffset = landscapeValue(JobsWidth(5));
+        config.tabBarItemWidth = landscapeValue(JobsWidth(100));
+        config.spacing = JobsWidth(3);
         config.tag = ConfigMutArr.count + 1;
         [ConfigMutArr addObject:config];
     }
@@ -151,13 +152,13 @@ didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
     if(completionHandler) completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
 }
 /// 一进入App就横屏
-//- (UIInterfaceOrientationMask)application:(UIApplication *)application
-//  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-//    JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
-//    JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
-//    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
-//    return UIInterfaceOrientationMaskLandscape;
-//}
+- (UIInterfaceOrientationMask)application:(UIApplication *)application
+  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+    JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
+    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
+    return UIInterfaceOrientationMaskLandscape;
+}
 #pragma mark —— lazyLoad
 /// 仅仅为了iOS 13 版本向下兼容而存在
 -(UIWindow *)window{

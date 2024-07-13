@@ -18,37 +18,22 @@
     }
 }
 
--(void)addLottieImage:(NSUInteger)index
-              offsetY:(CGFloat)offsetY
-           lottieName:(nullable NSString *)lottieName {
-    @jobs_weakify(self)
-    dispatch_async(dispatch_get_main_queue(), ^{
-        @jobs_strongify(self)
-        // lottieName 存在才对LOTAnimationView及其相关控件进行创建
-        if (!lottieName.nullString) {
-            LOTAnimationView *lottieView = [LOTAnimationView animationNamed:lottieName];
-            
-            CGFloat totalW = UIScreen.mainScreen.bounds.size.width;
-            CGFloat singleW = totalW / self.items.count;
-            
-            CGFloat x = ceilf(index * singleW + (singleW - LOTAnimationViewWidth) / 2.0);
-
-            lottieView.userInteractionEnabled = NO;
-            lottieView.contentMode = UIViewContentModeScaleAspectFit;
-            lottieView.tag = 888 + index;
-            lottieView.frame = CGRectMake(x,
-                                          offsetY,
-                                          LOTAnimationViewWidth,
-                                          LOTAnimationViewHeight);
-            
-            [self addSubview:lottieView];
-        }
-    });
+-(LOTAnimationView *_Nullable)addLottieImage:(NSUInteger)index
+                                  lottieName:(NSString *_Nullable)lottieName{
+    // lottieName 存在才对LOTAnimationView及其相关控件进行创建
+    LOTAnimationView *lottieView = nil;
+    if (!lottieName.nullString && lottieName) {
+        lottieView = [LOTAnimationView animationNamed:lottieName];
+        [self addSubview:lottieView];
+        lottieView.userInteractionEnabled = NO;
+        lottieView.contentMode = UIViewContentModeScaleAspectFit;
+        lottieView.tag = 888 + index;
+        lottieView.backgroundColor = JobsYellowColor;
+    }return lottieView;
 }
 
 -(void)animationLottieImage:(NSInteger)index{
     [self stopAnimationAllLottieView];
-    
     LOTAnimationView *lottieView = [self viewWithTag:888 + index];
     if (lottieView && [lottieView isKindOfClass:LOTAnimationView.class]) {
         lottieView.animationProgress = 0;

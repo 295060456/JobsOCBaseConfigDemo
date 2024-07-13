@@ -10,6 +10,9 @@
 
 @interface JobsTabBar ()
 
+@property(nonatomic,strong)NSMutableArray <UIView *>*tabBarButtons;
+@property(nonatomic,strong)NSMutableArray <LOTAnimationView *>*lOTAnimationViews;
+
 @end
 
 @implementation JobsTabBar
@@ -27,38 +30,34 @@ UITabbarConfigProtocol_synthesize
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    NSMutableArray<UIView *> *tabBarButtons = NSMutableArray.array;
-    for (UIView *subview in self.subviews) {
-        if ([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
-//            subview.backgroundColor = JobsRandomColor;
-            [tabBarButtons addObject:subview];
+    for (UIView *view in self.tabBarButtons) {
+        for (UIView *subview in view.subviews) {
             UILabel *label = nil; /// TabBar的文字
             UIImageView *imageView = nil; /// TabBar的图片
-            for (UIView *subSubview in subview.subviews) {
-                if ([subSubview isKindOfClass:[UILabel class]]) {
-                    label = (UILabel *)subSubview;
-//                    label.backgroundColor = JobsRedColor;
-                    [label sizeToFit];
-                }
-                if ([subSubview isKindOfClass:[UIImageView class]]) {
-                    imageView = (UIImageView *)subSubview;
-                }
+            if ([subview isKindOfClass:UILabel.class]) {
+                label = (UILabel *)subview;
+                label.backgroundColor = JobsRedColor;
+                [label sizeToFit];
+            }
+            if ([subview isKindOfClass:UIImageView.class]) {
+                imageView = (UIImageView *)subview;
             }
             [self layoutIfNeeded];
             if (label && imageView) {
-                JobsTabBarCtrlConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[tabBarButtons.count - 1];
+                JobsTabBarCtrlConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[self.tabBarButtons.count - 1];
                 [self alignLabel:label
                        imageView:imageView
-                  inTabBarButton:subview
+                    tabBarButton:subview
                          spacing:tabBarControllerConfig.spacing];
             }
         }
-    }   
+    }
+
     CGFloat s = 0.f;
     for (int t = 0; t < self.tabBarControllerConfigMutArr.count ; t++) {
         JobsTabBarCtrlConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[t];
-        UIView *tabBarButton = tabBarButtons[t];
-        
+        LOTAnimationView *lOTAnimationView = self.lOTAnimationViews[t];
+        UIView *tabBarButton = self.tabBarButtons[t];
         if(tabBarControllerConfig.xOffset){
             if (t) {
                 tabBarButton.resetOriginX(s + tabBarControllerConfig.xOffset);
@@ -71,6 +70,7 @@ UITabbarConfigProtocol_synthesize
         if(tabBarControllerConfig.tabBarItemWidth){
             tabBarButton.resetWidth(tabBarControllerConfig.tabBarItemWidth);
         }
+        lOTAnimationView.frame = tabBarButton.frame;
     }
 }
 ///【覆写父类方法】自定义 TabBar 的高度
@@ -118,7 +118,7 @@ UITabbarConfigProtocol_synthesize
 #pragma mark —— 一些私有方法
 - (void)alignLabel:(UILabel *)label
          imageView:(UIImageView *)imageView
-    inTabBarButton:(UIView *)tabBarButton
+      tabBarButton:(UIView *)tabBarButton
            spacing:(CGFloat)spacing{
     CGFloat totalWidth = tabBarButton.bounds.size.width;
     CGFloat totalHeight = tabBarButton.bounds.size.height;
@@ -177,7 +177,7 @@ UITabbarConfigProtocol_synthesize
             }
 //            label.jobsLogFrame(@"打印的时候额外添加的标识字符.Frame");
 //            label.jobsLogPoint(@"打印的时候额外添加的标识字符.Point");
-            label.jobsLogSize(@"打印的时候额外添加的标识字符.Size");
+//            label.jobsLogSize(@"打印的时候额外添加的标识字符.Size");
             label.textAlignment = NSTextAlignmentCenter;
             break;
         }
@@ -197,11 +197,30 @@ UITabbarConfigProtocol_synthesize
         }
     }
 }
-
-//-(UIView *)hitTest:(CGPoint)point
-//         withEvent:(UIEvent *)event{
-//
-//}
 #pragma mark —— LazyLoad
+-(NSMutableArray<UIView *> *)tabBarButtons{
+    if(!_tabBarButtons){
+        _tabBarButtons = NSMutableArray.array;
+        for (UIView *subview in self.subviews) {
+            if([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]){
+                [_tabBarButtons addObject:subview];
+            }
+        }
+    }return _tabBarButtons;
+}
+
+-(NSMutableArray<LOTAnimationView *> *)lOTAnimationViews{
+    if(!_lOTAnimationViews){
+        _lOTAnimationViews = NSMutableArray.array;
+        for (int t = 0;
+             t < self.tabBarButtons.count;
+             t++) {
+            JobsTabBarCtrlConfig *config = (JobsTabBarCtrlConfig *)self.tabBarControllerConfigMutArr[t];
+//            -config.humpOffsetY / 2
+            /// 根据config.lottieName 方法-config.lottieName:offsetY:lottieName:内部做了判空处理
+            [_lOTAnimationViews addObject:[self addLottieImage:t lottieName:config.lottieName]];
+        }
+    }return _lOTAnimationViews;
+}
 
 @end

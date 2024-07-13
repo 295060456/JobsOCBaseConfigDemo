@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "MacroDef_Strong@Weak.h"
+#import "UIView+Measure.h"
 
 #if __has_include(<lottie-ios/Lottie.h>)
 #import <lottie-ios/Lottie.h>
@@ -22,9 +23,8 @@
 @interface UITabBar (Ex)
 
 -(void)deleteUITabBarButton;
--(void)addLottieImage:(NSUInteger)index
-              offsetY:(CGFloat)offsetY
-           lottieName:(nullable NSString *)lottieName;
+-(LOTAnimationView *_Nullable)addLottieImage:(NSUInteger)index
+                                  lottieName:(nullable NSString *)lottieName;
 -(void)animationLottieImage:(NSInteger)index;
 
 @end

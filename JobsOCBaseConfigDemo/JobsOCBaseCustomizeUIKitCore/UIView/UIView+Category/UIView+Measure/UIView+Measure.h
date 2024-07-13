@@ -14,9 +14,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 操作顺序，添加视图 再进行 布局
-typedef void(^EqualToView)(UIView *view);
-
 @interface UIView (Measure)<BaseViewProtocol>
 
 @property(nonatomic,assign)CGFloat x;
@@ -54,31 +51,31 @@ typedef void(^EqualToView)(UIView *view);
 /** centerX equal to View‘s centerX
  *  centerxEqualToView(superview/view)
  */
--(EqualToView)centerxEqualToView;
+-(jobsByViewBlock)centerxEqualToView;
 /** centerY equal to View‘s centerY
  *  centeryEqualToView(superview/view)
  */
--(EqualToView)centeryEqualToView;
+-(jobsByViewBlock)centeryEqualToView;
 /** center equal to View‘s center
  *  centerEqualToView(superview/view)
  */
--(EqualToView)centerEqualToView;
+-(jobsByViewBlock)centerEqualToView;
 /** left equal to View‘s left
  *  leftEqualToView(superview/view)
  */
--(EqualToView)leftEqualToView;
+-(jobsByViewBlock)leftEqualToView;
 /** right equal to View‘s right
  *  rightEqualToView(superview/view)
  */
--(EqualToView)rightEqualToView;
+-(jobsByViewBlock)rightEqualToView;
 /** top equal to View‘s top
  *  topEqualToView(superview/view)
  */
--(EqualToView)topEqualToView;
+-(jobsByViewBlock)topEqualToView;
 /** bottom equal to View‘s bottom
  *  bottomEqualToView(superview/view)
  */
--(EqualToView)bottomEqualToView;
+-(jobsByViewBlock)bottomEqualToView;
 
 @end
 

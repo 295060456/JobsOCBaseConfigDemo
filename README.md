@@ -1262,7 +1262,7 @@ NSObject <|-- BaseProtocol
     -(void)dealloc
     ```
 
-#### 22、其他
+### 22、其他
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 * <font color=red>不要在属性上加`__block`</font>。转而是在这个对象上使用`__block`

@@ -178,7 +178,7 @@
 }
 #pragma mark ——【UIView对齐方法扩充】 https://github.com/MisterZhouZhou/ZWUIViewExtension
 /// 设置水平方向对齐
--(EqualToView)centerxEqualToView{
+-(jobsByViewBlock)centerxEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -191,7 +191,7 @@
     };
 }
 /// 设置垂平方向对齐
--(EqualToView)centeryEqualToView{
+-(jobsByViewBlock)centeryEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -204,7 +204,7 @@
     };
 }
 /// 设置中心方向对齐
--(EqualToView)centerEqualToView{
+-(jobsByViewBlock)centerEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -217,7 +217,7 @@
     };
 }
 /// 设置左对齐
--(EqualToView)leftEqualToView{
+-(jobsByViewBlock)leftEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -231,7 +231,7 @@
     };
 }
 /// 设置右对齐
--(EqualToView)rightEqualToView{
+-(jobsByViewBlock)rightEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -245,7 +245,7 @@
     };
 }
 /// 设置顶部对齐
--(EqualToView)topEqualToView{
+-(jobsByViewBlock)topEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -259,7 +259,7 @@
     };
 }
 /// 设置底部对齐
--(EqualToView)bottomEqualToView{
+-(jobsByViewBlock)bottomEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);

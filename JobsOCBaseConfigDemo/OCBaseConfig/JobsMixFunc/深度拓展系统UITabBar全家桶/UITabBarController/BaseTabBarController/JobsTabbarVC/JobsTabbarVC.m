@@ -260,13 +260,6 @@ static JobsTabbarVC *static_tabbarVC = nil;
             [self.UITabBarButtonMutArr addObject:subView];
         }
     }
-    /// 根据config.lottieName 方法-config.lottieName:offsetY:lottieName:内部做了判空处理
-    for (int i = 0; i < self.childVCMutArr.count; i++) {
-        JobsTabBarCtrlConfig *config = (JobsTabBarCtrlConfig *)self.tabBarControllerConfigMutArr[i];
-        [self.tabBar addLottieImage:i
-                            offsetY:-config.humpOffsetY / 2
-                         lottieName:config.lottieName];
-    }
     /// 初始显示【具备Lottie播放条件才进行相关初始化操作】
     if (self.firstUI_selectedIndex < self.viewControllers.count) {
         self.selectedIndex = self.firstUI_selectedIndex;//初始显示哪个
