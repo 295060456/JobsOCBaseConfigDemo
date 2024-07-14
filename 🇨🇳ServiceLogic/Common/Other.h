@@ -11,7 +11,7 @@
 
 #import "JobsBlock.h"
 
-#import "JobsTabbarVC.h"
+#import "JobsTabBarVC.h"
 
 #import "JobsNoticePopupView.h"
 

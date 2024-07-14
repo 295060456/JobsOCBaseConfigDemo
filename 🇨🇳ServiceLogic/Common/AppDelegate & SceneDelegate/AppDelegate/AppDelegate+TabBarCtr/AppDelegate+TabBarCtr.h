@@ -10,7 +10,7 @@
 
 #import "NSObject+AppTools.h"
 
-#import "JobsTabbarVC.h"
+#import "JobsTabBarVC.h"
 #import "JobsCustomTabBarVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 配置数据源
 +(TFPopupParam *)makeTFPopupParameter;
 +(LZTabBarConfig *)makeLZTabBarConfig;
-+(JobsTabbarVC *)tabBarVC;
++(JobsTabBarVC *)tabBarVC;
 +(JobsCustomTabBarVC *)customTabBarVC;
 +(LZTabBarController *)makeLZTabBarCtrl;
 +(UINavigationController *)makeTabBarNavCtrl;

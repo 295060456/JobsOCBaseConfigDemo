@@ -83,23 +83,12 @@ willConnectToSession:(UISceneSession *)session
         _window = [UIWindow.alloc initWithWindowScene:self.windowScene];//UIScreen.mainScreen.bounds
         _window.frame = self.windowScene.coordinateSpace.bounds;
     }
-//    self.configMutArr = AppDelegate.makeTabBarItemConfigMutArr;
-    _window.rootViewController = RootViewController;
-//    _window.rootViewController = AppDelegate.makeLZTabBarNavCtrl;
-//    _window.rootViewController = AppDelegate.tabBarVC;
+//    _window.rootViewController = RootViewController;
+//    _window.rootViewController = AppDelegate.makeJobsTabBarNavCtrl;customTabBarVC
+//    _window.rootViewController = AppDelegate.makeLZTabBarNavCtrl;//makeLZTabBarCtrl
+    _window.rootViewController = AppDelegate.makeTabBarNavCtrl;//tabBarVC
     [_window makeKeyAndVisible];
     return _window;
-}
-
--(UIWindow *)windows{
-    if (!_window) {
-        _window = UIWindow.new;
-        _window.frame = UIScreen.mainScreen.bounds;
-//        self.configMutArr = AppDelegate.makeTabBarItemConfigMutArr;
-//        _window.rootViewController = RootViewController;
-//        [self.tabBarVC ppBadge:YES];
-        [_window makeKeyAndVisible];
-    }return _window;
 }
 
 @end

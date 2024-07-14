@@ -13,7 +13,7 @@
 static TFPopupParam *tfPopupParam = nil;
 static LZTabBarConfig *lZTabBarConfig = nil;
 /// TabBarCtrl
-static JobsTabbarVC *tabBarVC = nil;
+static JobsTabBarVC *tabBarVC = nil;
 static JobsCustomTabBarVC *customTabBarVC = nil;
 static LZTabBarController *lZTabBarCtrl = nil;
 /// NavCtrl
@@ -33,101 +33,107 @@ static NSMutableArray <UINavigationController *>*NavCtrByNormalVCMutArr = nil;
 static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
 
 +(TFPopupParam *)makeTFPopupParameter{
-    tfPopupParam = TFPopupParam.new;
-    tfPopupParam.duration = 0.3f;
-    tfPopupParam.showAnimationDelay = 0.1f;
-    tfPopupParam.hideAnimationDelay = 0.1f;
-    tfPopupParam.dragEnable = YES;
-    tfPopupParam.offset = CGPointMake(0,-JobsTabBarHeightByBottomSafeArea(tabBarVC));
-    tfPopupParam.disuseBackgroundTouchHide = YES;
-//    tfPopupParam.popupSize = [CasinoCustomerServiceView viewSizeWithModel:nil];
-    return tfPopupParam;
+    if(!tfPopupParam){
+        tfPopupParam = TFPopupParam.new;
+        tfPopupParam.duration = 0.3f;
+        tfPopupParam.showAnimationDelay = 0.1f;
+        tfPopupParam.hideAnimationDelay = 0.1f;
+        tfPopupParam.dragEnable = YES;
+        tfPopupParam.offset = CGPointMake(0,-JobsTabBarHeightByBottomSafeArea(tabBarVC));
+        tfPopupParam.disuseBackgroundTouchHide = YES;
+    //    tfPopupParam.popupSize = [CasinoCustomerServiceView viewSizeWithModel:nil];
+    }return tfPopupParam;
 }
 
 +(LZTabBarConfig *)makeLZTabBarConfig{
-    lZTabBarConfig = LZTabBarConfig.new;
-    lZTabBarConfig.viewControllers = AppDelegate.makeViewControllerMutArr;
-//    lZTabBarConfig.normalImages = @[@"tabbar_mainframe", @"tabbar_contacts", @"tabbar_discover",@"tabbar_me"];
-//    lZTabBarConfig.selectedImages = @[@"tabbar_mainframeHL", @"tabbar_contactsHL", @"tabbar_discoverHL",@"tabbar_meHL"];
-    lZTabBarConfig.titles = AppDelegate.makeTabBarItemTitleMutArr;
-    lZTabBarConfig.isNavigation = NO;
-    return lZTabBarConfig;
+    if(!lZTabBarConfig){
+        lZTabBarConfig = LZTabBarConfig.new;
+        lZTabBarConfig.viewControllers = AppDelegate.makeViewControllerMutArr;
+    //    lZTabBarConfig.normalImages = @[@"tabbar_mainframe", @"tabbar_contacts", @"tabbar_discover",@"tabbar_me"];
+    //    lZTabBarConfig.selectedImages = @[@"tabbar_mainframeHL", @"tabbar_contactsHL", @"tabbar_discoverHL",@"tabbar_meHL"];
+        lZTabBarConfig.titles = AppDelegate.makeTabBarItemTitleMutArr;
+        lZTabBarConfig.isNavigation = NO;
+    }return lZTabBarConfig;
 }
 
-+(JobsTabbarVC *)tabBarVC{
-    tabBarVC = JobsTabbarVC.sharedInstance;
-    tabBarVC.isAnimationAlert = YES;//OK
-    tabBarVC.isPlaySound = YES;
-    tabBarVC.isFeedbackGenerator = YES;
-    
-    tabBarVC.jumpIndexArr = @[@3];//小标为3的客服模块需要被跳开做另行处理
-    tabBarVC.needLoginArr = @[@1,@2,@4];
-    tabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优先级高于needLoginArr
-    
-//        TabBarVC.isShakerAnimation = YES;
-    tabBarVC.isOpenScrollTabbar = NO;
++(JobsTabBarVC *)tabBarVC{
+    if(!tabBarVC){
+        tabBarVC = JobsTabBarVC.sharedInstance;
+        tabBarVC.isAnimationAlert = YES;//OK
+        tabBarVC.isPlaySound = YES;
+        tabBarVC.isFeedbackGenerator = YES;
+        
+        tabBarVC.jumpIndexArr = @[@3];//小标为3的客服模块需要被跳开做另行处理
+        tabBarVC.needLoginArr = @[@1,@2,@4];
+        tabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优先级高于needLoginArr
+        
+    //    TabBarVC.isShakerAnimation = YES;
+        tabBarVC.isOpenScrollTabbar = NO;
+        
+        [tabBarVC actionReturnObjectBlock:^id(id data) {
+            if ([data isKindOfClass:NSNumber.class]) {
+                NSNumber *num = (NSNumber *)data;
 
-//        [self dataWithTabBarVC:TabBarVC];
-    
-//    [tabBarVC actionReturnObjectBlock:^id(id data) {
-//        if ([data isKindOfClass:NSNumber.class]) {
-//            NSNumber *num = (NSNumber *)data;
-//
-//            BOOL ok = NO;
-//            for (NSNumber *number in self.tabBarVC.jumpIndexArr) {
-//                if (num.unsignedIntegerValue == number.unsignedIntegerValue) {
-//                    ok = YES;
-//                    break;
-//                }
-//            }
-//            if (ok) {
-////                    if (self.customerContactModel.customerList.count) {
-////                        /// 单例模式防止重复添加
-////                        CasinoCustomerServiceView *customerServiceView = CasinoCustomerServiceView.sharedInstance;
-////                        [customerServiceView actionObjectBlock:^(id data) {
-////                            [customerServiceView tf_hide];
-////                        }];
-////                        customerServiceView.size = [CasinoCustomerServiceView viewSizeWithModel:self.hotLabelDataMutArr];
-////                        [customerServiceView richElementsInViewWithModel:self.hotLabelDataMutArr];
-////                        [customerServiceView tf_showSlide:jobsGetMainWindow()
-////                                                direction:PopupDirectionBottom
-////                                               popupParam:self.appDelegatePopupParameter];
-////                    }
-//            }return @(!ok);
-//        }return @(YES);
-//    }];
-
-    return tabBarVC;
+                BOOL ok = NO;
+                for (NSNumber *number in self.tabBarVC.jumpIndexArr) {
+                    if (num.unsignedIntegerValue == number.unsignedIntegerValue) {
+                        ok = YES;
+                        break;
+                    }
+                }
+                if (ok) {
+    //                if (self.customerContactModel.customerList.count) {
+    //                    /// 单例模式防止重复添加
+    //                    CasinoCustomerServiceView *customerServiceView = CasinoCustomerServiceView.sharedInstance;
+    //                    [customerServiceView actionObjectBlock:^(id data) {
+    //                        [customerServiceView tf_hide];
+    //                    }];
+    //                    customerServiceView.size = [CasinoCustomerServiceView viewSizeWithModel:self.hotLabelDataMutArr];
+    //                    [customerServiceView richElementsInViewWithModel:self.hotLabelDataMutArr];
+    //                    [customerServiceView tf_showSlide:jobsGetMainWindow()
+    //                                            direction:PopupDirectionBottom
+    //                                           popupParam:self.appDelegatePopupParameter];
+    //                }
+                }return @(!ok);
+            }return @(YES);
+        }];
+    }return tabBarVC;
 }
 
 +(JobsCustomTabBarVC *)customTabBarVC{
-    customTabBarVC = JobsCustomTabBarVC.sharedManager;
-    customTabBarVC.viewControllers = AppDelegate.makeViewControllerMutArr;
-    return customTabBarVC;
+    if(!customTabBarVC){
+        customTabBarVC = JobsCustomTabBarVC.sharedManager;
+        customTabBarVC.viewControllers = viewControllerMutArr.count ? viewControllerMutArr :AppDelegate.makeViewControllerMutArr;
+    }return customTabBarVC;
 }
 
 +(LZTabBarController *)makeLZTabBarCtrl{
-    return [LZTabBarController createTabBarController:^LZTabBarConfig *(LZTabBarConfig *config) {
-        return AppDelegate.makeLZTabBarConfig;
-    }];
+    if(!lZTabBarCtrl){
+        lZTabBarCtrl = [LZTabBarController createTabBarController:^LZTabBarConfig *(LZTabBarConfig *config) {
+            return AppDelegate.makeLZTabBarConfig;
+        }];
+    }return lZTabBarCtrl;
 }
 
 +(UINavigationController *)makeTabBarNavCtrl{
-    tabBarNavCtrl = [UINavigationController.alloc initWithRootViewController:AppDelegate.tabBarVC];
-    tabBarNavCtrl.hidesBottomBarWhenPushed = YES;
-    return tabBarNavCtrl;
+    if(!tabBarNavCtrl){
+        tabBarNavCtrl = [UINavigationController.alloc initWithRootViewController:tabBarVC ? : AppDelegate.tabBarVC];
+        tabBarNavCtrl.hidesBottomBarWhenPushed = YES;
+    }return tabBarNavCtrl;
 }
 
 +(UINavigationController *)makeJobsTabBarNavCtrl{
-    jobsTabBarNavCtrl = [UINavigationController.alloc initWithRootViewController:AppDelegate.customTabBarVC];
-    jobsTabBarNavCtrl.hidesBottomBarWhenPushed = YES;
-    return jobsTabBarNavCtrl;
+    if(!jobsTabBarNavCtrl){
+        jobsTabBarNavCtrl = [UINavigationController.alloc initWithRootViewController:customTabBarVC ? : AppDelegate.customTabBarVC];
+        jobsTabBarNavCtrl.hidesBottomBarWhenPushed = YES;
+    }return jobsTabBarNavCtrl;
 }
 
 +(UINavigationController *)makeLZTabBarNavCtrl{
-    lZTabBarNavCtrl = [UINavigationController.alloc initWithRootViewController:AppDelegate.makeLZTabBarCtrl];
-    lZTabBarNavCtrl.hidesBottomBarWhenPushed = YES;
-    return lZTabBarNavCtrl;
+    if(!lZTabBarNavCtrl){
+        lZTabBarNavCtrl = [UINavigationController.alloc initWithRootViewController:lZTabBarCtrl ? lZTabBarCtrl : AppDelegate.makeLZTabBarCtrl];
+        lZTabBarNavCtrl.hidesBottomBarWhenPushed = YES;
+    }return lZTabBarNavCtrl;
 }
 
 -(NSMutableArray <UIButton *>*)makeTabBarItems{
@@ -344,151 +350,163 @@ static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
 }
 
 +(NSMutableArray <UIViewController *>*)makeViewControllerMutArr{
-    viewControllerMutArr = NSMutableArray.array;
-    for (JobsTabBarItemConfig *tabBarCtrlConfig in self.makeTabBarItemConfigMutArr) {
-        [viewControllerMutArr addObject:tabBarCtrlConfig.vc];
+    if(!viewControllerMutArr){
+        viewControllerMutArr = NSMutableArray.array;
+        for (JobsTabBarItemConfig *tabBarCtrlConfig in self.makeTabBarItemConfigMutArr) {
+            [viewControllerMutArr addObject:tabBarCtrlConfig.vc];
+        }
     }return viewControllerMutArr;
 }
 
 +(NSMutableArray <NSString *>*)makeTabBarItemTitleMutArr{
-    tabBarItemTitleMutArr = NSMutableArray.array;
-    [tabBarItemTitleMutArr addObject:JobsInternationalization(@"首页")];
-    [tabBarItemTitleMutArr addObject:JobsInternationalization(@"戏码")];
-    [tabBarItemTitleMutArr addObject:JobsInternationalization(@"充值")];
-    [tabBarItemTitleMutArr addObject:JobsInternationalization(@"客服")];
-    [tabBarItemTitleMutArr addObject:JobsInternationalization(@"会员中心")];
-    return tabBarItemTitleMutArr;
+    if(!tabBarItemTitleMutArr){
+        tabBarItemTitleMutArr = NSMutableArray.array;
+        [tabBarItemTitleMutArr addObject:JobsInternationalization(@"首页")];
+        [tabBarItemTitleMutArr addObject:JobsInternationalization(@"戏码")];
+        [tabBarItemTitleMutArr addObject:JobsInternationalization(@"充值")];
+        [tabBarItemTitleMutArr addObject:JobsInternationalization(@"客服")];
+        [tabBarItemTitleMutArr addObject:JobsInternationalization(@"会员中心")];
+    }return tabBarItemTitleMutArr;
 }
 
 +(NSMutableArray <UIImage *>*)makeImageSelectedMutArr{
-    imageSelectedMutArr = NSMutableArray.array;
-    for (NSString *imageSelectedName in AppDelegate.makeImageSelectedNameMutArr) {
-        [imageSelectedMutArr addObject:JobsIMG(imageSelectedName)];
+    if(!imageSelectedMutArr){
+        imageSelectedMutArr = NSMutableArray.array;
+        for (NSString *imageSelectedName in AppDelegate.makeImageSelectedNameMutArr) {
+            [imageSelectedMutArr addObject:JobsIMG(imageSelectedName)];
+        }
     }return imageSelectedMutArr;
 }
 
 +(NSMutableArray <UIImage *>*)makeImageUnselectedMutArr{
-    imageUnSelectedMutArr = NSMutableArray.array;
-    for (NSString *imageUnSelectedName in AppDelegate.makeImageUnselectedNameMutArr) {
-        [imageUnSelectedMutArr addObject:JobsIMG(imageUnSelectedName)];
+    if(!imageUnSelectedMutArr){
+        imageUnSelectedMutArr = NSMutableArray.array;
+        for (NSString *imageUnSelectedName in AppDelegate.makeImageUnselectedNameMutArr) {
+            [imageUnSelectedMutArr addObject:JobsIMG(imageUnSelectedName)];
+        }
     }return imageUnSelectedMutArr;
 }
 
 +(NSMutableArray <NSString *>*)makeImageSelectedNameMutArr{
-    imageSelectedNameMutArr = NSMutableArray.array;
-    [imageSelectedNameMutArr addObject:@"tabbbar_home_seleteds"];
-    [imageSelectedNameMutArr addObject:@"tabbbar_weights_seleteds"];
-    [imageSelectedNameMutArr addObject:@"tabbbar_pay_seleteds"];
-    [imageSelectedNameMutArr addObject:@"tabbbar_service_seleteds"];
-    [imageSelectedNameMutArr addObject:@"tabbar_VIP_seleteds"];
-    return imageSelectedNameMutArr;
+    if(!imageSelectedNameMutArr){
+        imageSelectedNameMutArr = NSMutableArray.array;
+        [imageSelectedNameMutArr addObject:@"tabbbar_home_seleteds"];
+        [imageSelectedNameMutArr addObject:@"tabbbar_weights_seleteds"];
+        [imageSelectedNameMutArr addObject:@"tabbbar_pay_seleteds"];
+        [imageSelectedNameMutArr addObject:@"tabbbar_service_seleteds"];
+        [imageSelectedNameMutArr addObject:@"tabbar_VIP_seleteds"];
+    }return imageSelectedNameMutArr;
 }
 
 +(NSMutableArray <NSString *>*)makeImageUnselectedNameMutArr{
-    imageUnselectedNameMutArr = NSMutableArray.array;
-    [imageUnselectedNameMutArr addObject:@"tabbbar_home_normal"];
-    [imageUnselectedNameMutArr addObject:@"tabbbar_weights_normal"];
-    [imageUnselectedNameMutArr addObject:@"tabbbar_pay_normal"];
-    [imageUnselectedNameMutArr addObject:@"tabbbar_service_normal"];
-    [imageUnselectedNameMutArr addObject:@"tabbar_VIP_normal"];
-    return imageUnselectedNameMutArr;
+    if(!imageUnselectedNameMutArr){
+        imageUnselectedNameMutArr = NSMutableArray.array;
+        [imageUnselectedNameMutArr addObject:@"tabbbar_home_normal"];
+        [imageUnselectedNameMutArr addObject:@"tabbbar_weights_normal"];
+        [imageUnselectedNameMutArr addObject:@"tabbbar_pay_normal"];
+        [imageUnselectedNameMutArr addObject:@"tabbbar_service_normal"];
+        [imageUnselectedNameMutArr addObject:@"tabbar_VIP_normal"];
+    }return imageUnselectedNameMutArr;
 }
 
 +(NSMutableArray <UIViewController *>*)makeUIViewControllerMutArr{
-    UIViewControllerMutArr = NSMutableArray.array;
-    [UIViewControllerMutArr addObject:ViewController_5.new];
-    [UIViewControllerMutArr addObject:ViewController_1.new];
-    [UIViewControllerMutArr addObject:ViewController_2.new];
-    [UIViewControllerMutArr addObject:ViewController_3.new];
-    [UIViewControllerMutArr addObject:ViewController_4.new];
-    return UIViewControllerMutArr;
+    if(!UIViewControllerMutArr){
+        UIViewControllerMutArr = NSMutableArray.array;
+        [UIViewControllerMutArr addObject:ViewController_5.new];
+        [UIViewControllerMutArr addObject:ViewController_1.new];
+        [UIViewControllerMutArr addObject:ViewController_2.new];
+        [UIViewControllerMutArr addObject:ViewController_3.new];
+        [UIViewControllerMutArr addObject:ViewController_4.new];
+    }return UIViewControllerMutArr;
 }
 
 +(NSMutableArray <UINavigationController *>*)makeNavCtrByNormalVCMutArr{
-    NavCtrByNormalVCMutArr = NSMutableArray.array;
-    for (UIViewController *vc in AppDelegate.makeUIViewControllerMutArr) {
-        [NavCtrByNormalVCMutArr addObject:[UINavigationController.alloc initWithRootViewController:vc]];
+    if(!NavCtrByNormalVCMutArr){
+        NavCtrByNormalVCMutArr = NSMutableArray.array;
+        for (UIViewController *vc in AppDelegate.makeUIViewControllerMutArr) {
+            [NavCtrByNormalVCMutArr addObject:[UINavigationController.alloc initWithRootViewController:vc]];
+        }
     }return NavCtrByNormalVCMutArr;
 }
 
 +(NSMutableArray <JobsTabBarItemConfig *>*)makeTabBarItemConfigMutArr{
-    configMutArr = NSMutableArray.array;
-    {
-        JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
-        config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
-        config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
-        config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
-        config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
-        config.humpOffsetY = 0;
-        config.lottieName = nil;
-        config.xOffset = landscapeValue(JobsWidth(200));
-        config.tabBarItemWidth = landscapeValue(JobsWidth(100));
-        config.spacing = JobsWidth(3);
-        config.tag = configMutArr.count + 1;
-        [configMutArr addObject:config];
-    }
-    
-    {
-        JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
-        config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
-        config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
-        config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
-        config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
-        config.humpOffsetY = 0;
-        config.lottieName = nil;
-        config.xOffset = landscapeValue(JobsWidth(5));
-        config.tabBarItemWidth = landscapeValue(JobsWidth(100));
-        config.spacing = JobsWidth(3);
-        config.tag = configMutArr.count + 1;
-        [configMutArr addObject:config];
-    }
-    
-    {
-        JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
-        config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
-        config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
-        config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
-        config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
-        config.humpOffsetY = 0;
-        config.lottieName = nil;
-        config.xOffset = landscapeValue(JobsWidth(5));
-        config.tabBarItemWidth = landscapeValue(JobsWidth(50));
-        config.spacing = JobsWidth(3);
-        config.tag = configMutArr.count + 1;
-        [configMutArr addObject:config];
-    }
-    
-    {
-        JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
-        config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
-        config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
-        config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
-        config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
-        config.humpOffsetY = 0;
-        config.lottieName = nil;
-        config.xOffset = landscapeValue(JobsWidth(5));
-        config.tabBarItemWidth = landscapeValue(JobsWidth(50));
-        config.spacing = JobsWidth(3);
-        config.tag = configMutArr.count + 1;
-        [configMutArr addObject:config];
-    }
-    
-    {
-        JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
-        config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
-        config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
-        config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
-        config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
-        config.humpOffsetY = 0;
-        config.lottieName = nil;
-        config.xOffset = landscapeValue(JobsWidth(5));
-        config.tabBarItemWidth = landscapeValue(JobsWidth(100));
-        config.spacing = JobsWidth(3);
-        config.tag = configMutArr.count + 1;
-        [configMutArr addObject:config];
-    }
-    
-    return configMutArr;
+    if(!configMutArr){
+        configMutArr = NSMutableArray.array;
+        {
+            JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
+            config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
+            config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
+            config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
+            config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
+            config.humpOffsetY = 0;
+            config.lottieName = nil;
+            config.xOffset = landscapeValue(JobsWidth(200));
+            config.tabBarItemWidth = landscapeValue(JobsWidth(100));
+            config.spacing = JobsWidth(3);
+            config.tag = configMutArr.count + 1;
+            [configMutArr addObject:config];
+        }
+        
+        {
+            JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
+            config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
+            config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
+            config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
+            config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
+            config.humpOffsetY = 0;
+            config.lottieName = nil;
+            config.xOffset = landscapeValue(JobsWidth(5));
+            config.tabBarItemWidth = landscapeValue(JobsWidth(100));
+            config.spacing = JobsWidth(3);
+            config.tag = configMutArr.count + 1;
+            [configMutArr addObject:config];
+        }
+        
+        {
+            JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
+            config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
+            config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
+            config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
+            config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
+            config.humpOffsetY = 0;
+            config.lottieName = nil;
+            config.xOffset = landscapeValue(JobsWidth(5));
+            config.tabBarItemWidth = landscapeValue(JobsWidth(50));
+            config.spacing = JobsWidth(3);
+            config.tag = configMutArr.count + 1;
+            [configMutArr addObject:config];
+        }
+        
+        {
+            JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
+            config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
+            config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
+            config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
+            config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
+            config.humpOffsetY = 0;
+            config.lottieName = nil;
+            config.xOffset = landscapeValue(JobsWidth(5));
+            config.tabBarItemWidth = landscapeValue(JobsWidth(50));
+            config.spacing = JobsWidth(3);
+            config.tag = configMutArr.count + 1;
+            [configMutArr addObject:config];
+        }
+        
+        {
+            JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
+            config.vc = AppDelegate.makeUIViewControllerMutArr[configMutArr.count];
+            config.title = self.makeTabBarItemTitleMutArr[configMutArr.count];
+            config.imageSelected = self.makeImageSelectedMutArr[configMutArr.count];
+            config.imageUnselected = self.makeImageUnselectedMutArr[configMutArr.count];
+            config.humpOffsetY = 0;
+            config.lottieName = nil;
+            config.xOffset = landscapeValue(JobsWidth(5));
+            config.tabBarItemWidth = landscapeValue(JobsWidth(100));
+            config.spacing = JobsWidth(3);
+            config.tag = configMutArr.count + 1;
+            [configMutArr addObject:config];
+        }
+    }return configMutArr;
 }
 #pragma mark —— 一些私有方法
 #pragma mark —— 一些公有方法

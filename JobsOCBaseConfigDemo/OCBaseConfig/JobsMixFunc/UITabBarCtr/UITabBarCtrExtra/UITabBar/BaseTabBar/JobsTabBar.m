@@ -16,7 +16,7 @@
 @end
 
 @implementation JobsTabBar
-UITabbarConfigProtocol_synthesize
+
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.clipsToBounds = NO;//超出视图部分显示
@@ -44,7 +44,7 @@ UITabbarConfigProtocol_synthesize
             }
             [self layoutIfNeeded];
             if (label && imageView) {
-                JobsTabBarItemConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[self.tabBarButtons.count - 1];
+                JobsTabBarItemConfig *tabBarControllerConfig = AppDelegate.makeTabBarItemConfigMutArr[self.tabBarButtons.count - 1];
                 [self alignLabel:label
                        imageView:imageView
                     tabBarButton:subview
@@ -54,9 +54,12 @@ UITabbarConfigProtocol_synthesize
     }
 
     CGFloat s = 0.f;
-    for (int t = 0; t < self.tabBarControllerConfigMutArr.count ; t++) {
-        JobsTabBarItemConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[t];
-        LOTAnimationView *lOTAnimationView = self.lOTAnimationViews[t];
+    for (int t = 0; t < AppDelegate.makeTabBarItemConfigMutArr.count ; t++) {
+        JobsTabBarItemConfig *tabBarControllerConfig = AppDelegate.makeTabBarItemConfigMutArr[t];
+        LOTAnimationView *lOTAnimationView = nil;
+        if(self.lOTAnimationViews.count){
+            lOTAnimationView = self.lOTAnimationViews[t];
+        }
         UIView *tabBarButton = self.tabBarButtons[t];
         if(tabBarControllerConfig.xOffset){
             if (t) {
@@ -215,10 +218,13 @@ UITabbarConfigProtocol_synthesize
         for (int t = 0;
              t < self.tabBarButtons.count;
              t++) {
-            JobsTabBarItemConfig *config = (JobsTabBarItemConfig *)self.tabBarControllerConfigMutArr[t];
+            JobsTabBarItemConfig *config = (JobsTabBarItemConfig *)AppDelegate.makeTabBarItemConfigMutArr[t];
 //            -config.humpOffsetY / 2
             /// 根据config.lottieName 方法-config.lottieName:offsetY:lottieName:内部做了判空处理
-            [_lOTAnimationViews addObject:[self addLottieImage:t lottieName:config.lottieName]];
+            LOTAnimationView *lotAnimationView = [self addLottieImage:t lottieName:config.lottieName];
+            if (lotAnimationView) {
+                [_lOTAnimationViews addObject:lotAnimationView];
+            }
         }
     }return _lOTAnimationViews;
 }

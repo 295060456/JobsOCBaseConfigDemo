@@ -187,6 +187,8 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock block,
     NSLog(@"%@",[NSString stringWithFormat:@"%d",random100__200()]);
     if(class_getInstanceMethod([target class], sel)){
         NSLog(@"方法曾经已经被成功添加，再次添加会崩溃");
+        return nil;
+//        abort();
     }else{
         /// class_addMethod这个方法的实现会覆盖父类的方法实现，但不会取代本类中已存在的实现，如果本类中包含一个同名的实现，则函数会返回NO
         if (class_addMethod([target class],

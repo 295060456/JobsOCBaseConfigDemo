@@ -36,7 +36,7 @@
 		840F95FB27736427004979E9 /* green_lottie_tab_discover.json in Resources */ = {isa = PBXBuildFile; fileRef = 840F929927736425004979E9 /* green_lottie_tab_discover.json */; };
 		840F95FC27736427004979E9 /* record_change.json in Resources */ = {isa = PBXBuildFile; fileRef = 840F929A27736425004979E9 /* record_change.json */; };
 		840F95FD27736427004979E9 /* tab_message_animate.json in Resources */ = {isa = PBXBuildFile; fileRef = 840F929B27736425004979E9 /* tab_message_animate.json */; };
-		840F95FE27736427004979E9 /* JobsTabbarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F929F27736425004979E9 /* JobsTabbarVC.m */; };
+		840F95FE27736427004979E9 /* JobsTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F929F27736425004979E9 /* JobsTabBarVC.m */; };
 		840F960027736427004979E9 /* JobsPullListTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92A527736425004979E9 /* JobsPullListTBVCell.m */; };
 		840F960127736427004979E9 /* JobsPullListAutoSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92A727736425004979E9 /* JobsPullListAutoSizeView.m */; };
 		840F960227736427004979E9 /* TransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F92A927736425004979E9 /* TransitionAnimation.m */; };
@@ -999,8 +999,8 @@
 		840F929927736425004979E9 /* green_lottie_tab_discover.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = green_lottie_tab_discover.json; sourceTree = "<group>"; };
 		840F929A27736425004979E9 /* record_change.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = record_change.json; sourceTree = "<group>"; };
 		840F929B27736425004979E9 /* tab_message_animate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tab_message_animate.json; sourceTree = "<group>"; };
-		840F929E27736425004979E9 /* JobsTabbarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabbarVC.h; sourceTree = "<group>"; };
-		840F929F27736425004979E9 /* JobsTabbarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTabbarVC.m; sourceTree = "<group>"; };
+		840F929E27736425004979E9 /* JobsTabBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabBarVC.h; sourceTree = "<group>"; };
+		840F929F27736425004979E9 /* JobsTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTabBarVC.m; sourceTree = "<group>"; };
 		840F92A327736425004979E9 /* JobsPullListAutoSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsPullListAutoSizeView.h; sourceTree = "<group>"; };
 		840F92A527736425004979E9 /* JobsPullListTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsPullListTBVCell.m; sourceTree = "<group>"; };
 		840F92A627736425004979E9 /* JobsPullListTBVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsPullListTBVCell.h; sourceTree = "<group>"; };
@@ -2809,7 +2809,6 @@
 		CE86206F2C2C254B0009C664 /* libarclite_watchos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_watchos.a; sourceTree = "<group>"; };
 		CE8620702C2C254B0009C664 /* libarclite_watchsimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_watchsimulator.a; sourceTree = "<group>"; };
 		CE8620712C2C254B0009C664 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CE8C1A482C3BC75900928E88 /* UITabbarConfigProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITabbarConfigProtocol.h; sourceTree = "<group>"; };
 		CE8C1A4E2C3D021400928E88 /* JobsUserDefaultDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsUserDefaultDefine.h; sourceTree = "<group>"; };
 		CEAAD4702C32758A00349C11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CEAAD4722C32770A00349C11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -8070,7 +8069,6 @@
 		C59786D72BE3599600A56125 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				CE8C1A492C3BC99600928E88 /* UITabbarConfigProtocol <NSObject> */,
 				C59786CB2BE3599600A56125 /* BaseProtocol <NSObject> */,
 				C59786CD2BE3599600A56125 /* UITextModelProtocol <NSObject> */,
 				C59786D42BE3599600A56125 /* UIViewModelProtocol <NSObject> */,
@@ -11989,18 +11987,10 @@
 		CE8C1A432C3BAAA900928E88 /* JobsTabbarVC */ = {
 			isa = PBXGroup;
 			children = (
-				840F929E27736425004979E9 /* JobsTabbarVC.h */,
-				840F929F27736425004979E9 /* JobsTabbarVC.m */,
+				840F929E27736425004979E9 /* JobsTabBarVC.h */,
+				840F929F27736425004979E9 /* JobsTabBarVC.m */,
 			);
 			path = JobsTabbarVC;
-			sourceTree = "<group>";
-		};
-		CE8C1A492C3BC99600928E88 /* UITabbarConfigProtocol <NSObject> */ = {
-			isa = PBXGroup;
-			children = (
-				CE8C1A482C3BC75900928E88 /* UITabbarConfigProtocol.h */,
-			);
-			path = "UITabbarConfigProtocol <NSObject>";
 			sourceTree = "<group>";
 		};
 		CEAF7CFC2C3413B9007AE308 /* XWCountryCodeController.plist */ = {
@@ -13150,7 +13140,7 @@
 				C5978A0F2BE3599700A56125 /* NSObject+SYSAlertController.m in Sources */,
 				C52E5CE22AC07EE500FE5494 /* HTTPLogging.m in Sources */,
 				84CA5FC627897AFB00E46E71 /* JhtBannerScrollView.m in Sources */,
-				840F95FE27736427004979E9 /* JobsTabbarVC.m in Sources */,
+				840F95FE27736427004979E9 /* JobsTabBarVC.m in Sources */,
 				CE6B14172C2ED50D00A542A4 /* YTKRequestEventAccessory.m in Sources */,
 				840F971727736428004979E9 /* CheckMemFreeVC.m in Sources */,
 				C5A7C2E8285B5E8700F0F2BB /* TreeClassItemCell.m in Sources */,

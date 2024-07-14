@@ -20,7 +20,6 @@
 
 #import "JobsTabBarItem.h"
 
-#import "UITabbarConfigProtocol.h"
 #import "JobsTabBar.h"
 #import "UITabBar+Ex.h"
 #import "TLTabBarAnimation.h"
@@ -53,11 +52,10 @@
  */
 
 /// 此类仅仅对系统给出的 UITabBarController —— UITabBar做最大程度上的增加功能，并且解耦
-@interface JobsTabbarVC : UITabBarController
+@interface JobsTabBarVC : UITabBarController
 <
 UITabBarControllerDelegate,
-UIGestureRecognizerDelegate,
-UITabbarConfigProtocol
+UIGestureRecognizerDelegate
 >
 /// UI
 @property(nonatomic,strong,readonly)JobsTabBar *myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
@@ -72,7 +70,6 @@ UITabbarConfigProtocol
 @property(nonatomic,strong)NSArray <NSNumber *>*needLoginArr;/// 在某些页面强制弹出登录
 @property(nonatomic,strong)NSArray <NSNumber *>*noNeedLoginArr;/// 在某些页面不需要弹出登录，其优先级高于needLoginArr（也就是item点了没反应）
 @property(nonatomic,assign)BOOL isJumpToNextVC;/// 当需要跳开的item,是否是需要直接跳到下一个VC？默认NO
-
 #pragma mark —— 初始化方法
 ///【单例模式】使用内置默认的JobsTabBar
 +(instancetype)sharedInstance;

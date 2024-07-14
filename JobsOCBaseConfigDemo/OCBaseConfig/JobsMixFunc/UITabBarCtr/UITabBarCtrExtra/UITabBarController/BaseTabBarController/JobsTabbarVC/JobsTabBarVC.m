@@ -6,9 +6,9 @@
 //  Copyright © 2017年 xa. All rights reserved.
 //
 
-#import "JobsTabbarVC.h"
+#import "JobsTabBarVC.h"
 
-@interface JobsTabbarVC (){
+@interface JobsTabBarVC (){
     BOOL A;
 }
 /// UI
@@ -21,8 +21,7 @@
 
 @end
 
-@implementation JobsTabbarVC
-UITabbarConfigProtocol_synthesize
+@implementation JobsTabBarVC
 static dispatch_once_t onceToken;
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
@@ -30,7 +29,7 @@ static dispatch_once_t onceToken;
     onceToken = 0;
 }
 #pragma mark —— 初始化方法
-static JobsTabbarVC *static_tabbarVC = nil;
+static JobsTabBarVC *static_tabbarVC = nil;
 ///【单例模式】使用内置默认的JobsTabBar
 +(instancetype)sharedInstance{
     @synchronized(self){
@@ -91,8 +90,6 @@ static JobsTabbarVC *static_tabbarVC = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
     /// 手势左右滑动以切换TabbarControl挂载的ViewController
     if (self.isOpenScrollTabbar) {
         [self openPan];
@@ -100,10 +97,10 @@ static JobsTabbarVC *static_tabbarVC = nil;
     }
     self.myTabBar.alpha = 1;
 //    self.suspendBtn.alpha = 1;
-    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
-    DeviceOrientation d = self.getDeviceOrientation;
-    NSLog(@"");
+//    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+//    UIInterfaceOrientation s = self.getInterfaceOrientation;
+//    DeviceOrientation d = self.getDeviceOrientation;
+//    NSLog(@"");
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -116,18 +113,18 @@ static JobsTabbarVC *static_tabbarVC = nil;
         [self UISetting];//最高只能在viewWillAppear，在viewDidLoad不出效果 self.tabBar.subviews为空
 //        [self 添加长按手势];
     });
-    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
-    DeviceOrientation d = self.getDeviceOrientation;
-    NSLog(@"");
+//    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+//    UIInterfaceOrientation s = self.getInterfaceOrientation;
+//    DeviceOrientation d = self.getDeviceOrientation;
+//    NSLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
-    UIInterfaceOrientation s = self.getInterfaceOrientation;
-    DeviceOrientation d = self.getDeviceOrientation;
-    NSLog(@"");
+//    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
+//    UIInterfaceOrientation s = self.getInterfaceOrientation;
+//    DeviceOrientation d = self.getDeviceOrientation;
+//    NSLog(@"");
 }
 
 -(void)viewWillLayoutSubviews{
@@ -220,16 +217,16 @@ static JobsTabbarVC *static_tabbarVC = nil;
 /// @param index index
 -(BOOL)judgeLottieWithIndex:(NSInteger)index{
     JobsTabBarItemConfig *config = nil;
-    if(self.tabBarControllerConfigMutArr.count){
-        config = (JobsTabBarItemConfig *)self.tabBarControllerConfigMutArr[index];
+    if(AppDelegate.makeTabBarItemConfigMutArr.count){
+        config = (JobsTabBarItemConfig *)AppDelegate.makeTabBarItemConfigMutArr[index];
     }return ![NSString isNullString:config.lottieName];
 }
 /// ❤️关键方法❤️
 -(void)UISetting{
-    for (int i = 0; i < self.tabBarControllerConfigMutArr.count; i++) {
-        JobsTabBarItemConfig *config = (JobsTabBarItemConfig *)self.tabBarControllerConfigMutArr[i];
-        self.tabBarItem.title = config.title;
-        self.tabBarItem.image = config.imageUnselected;
+    for (int i = 0; i < AppDelegate.makeTabBarItemConfigMutArr.count; i++) {
+        JobsTabBarItemConfig *config = (JobsTabBarItemConfig *)AppDelegate.makeTabBarItemConfigMutArr[i];
+//        self.tabBarItem.title = config.title;
+//        self.tabBarItem.image = config.imageUnselected;
         // For Test
 //        if ([self judgeLottieWithIndex:i]) {
 //            [self addLottieImage:config.lottieName];// 有Lottie动画名，则优先创建Lottie动画
@@ -250,11 +247,11 @@ static JobsTabbarVC *static_tabbarVC = nil;
         }
 
         /// 用导航控制器包裹每一个控制器
-        if (![viewController isKindOfClass:UINavigationController.class]) {/// 防止UIImagePickerController崩
-            BaseNavigationVC *nav = [BaseNavigationVC.alloc initWithRootViewController:viewController];
-            nav.title = config.title;
-            [AppDelegate.makeUIViewControllerMutArr replaceObjectAtIndex:i withObject:nav];/// 替换元素，每个VC加Navigation
-        }
+//        if (![viewController isKindOfClass:UINavigationController.class]) {/// 防止UIImagePickerController崩
+//            BaseNavigationVC *nav = [BaseNavigationVC.alloc initWithRootViewController:viewController];
+//            nav.title = config.title;
+//            [AppDelegate.makeUIViewControllerMutArr replaceObjectAtIndex:i withObject:nav];/// 替换元素，每个VC加Navigation
+//        }
     }
     /// ❤️这句话走了以后 才会有self.tabBar
     self.viewControllers = AppDelegate.makeUIViewControllerMutArr;
@@ -281,7 +278,6 @@ static JobsTabbarVC *static_tabbarVC = nil;
     for (NSNumber *indexNUM in self.jumpIndexArr) {
         if (indexNUM.integerValue >= 0 ||
             indexNUM.integerValue <= self.tabBar.items.count - 1) {
-            
             {// 手势从左到右 和 手势从右到左 的两种触发方式
                 // 手势从左到右
                 if (self.selectedIndex == indexNUM.integerValue - 1) {
@@ -316,9 +312,7 @@ static JobsTabbarVC *static_tabbarVC = nil;
     }else if (translation.x < 0.f && self.selectedIndex + 1 < self.viewControllers.count) {
         self.selectedIndex ++;
     }else{}
-    
     [self forcedLoginIndex:self.selectedIndex];
-    
     NSLog(@"ToIndex = %lu",(unsigned long)self.selectedIndex);
 }
 #pragma mark —— TabBarItem的相关手势
@@ -384,29 +378,17 @@ static JobsTabbarVC *static_tabbarVC = nil;
             }
         }
         // Lottie 动画
-        if ([self judgeLottieWithIndex:self.selectedIndex]) {
-            [self.tabBar animationLottieImage:(int)index];
-        }
+        if ([self judgeLottieWithIndex:self.selectedIndex]) [self.tabBar animationLottieImage:(int)index];
         // 震动反馈
-        if (self.isFeedbackGenerator) {
-            [self feedbackGenerator];
-        }
+        if (self.isFeedbackGenerator) [self feedbackGenerator];
         // 点击声音
-        if (self.isPlaySound) {
-            [self playSoundWithFileName:@"Sound.wav"];
-        }
+        if (self.isPlaySound) [self playSoundWithFileName:@"Sound.wav"];
         // 重力弹跳动画效果
-        if (self.isShakerAnimation) {
-            [item.badgeView shakerAnimationWithDuration:2 height:20];
-        }
+        if (self.isShakerAnimation) [item.badgeView shakerAnimationWithDuration:2 height:20];
         // 点击增加标数
-        if (self.isOpenPPBadge) {
-            [item pp_increase];
-        }
+        if (self.isOpenPPBadge) [item pp_increase];
         // 图片从小放大
-        if (self.isAnimationAlert) {
-            [self.UITabBarButtonMutArr[index] animationAlert];
-        }
+        if (self.isAnimationAlert) [self.UITabBarButtonMutArr[index] animationAlert];
     }
 }
 #pragma mark - UITabBarControllerDelegate
@@ -475,10 +457,9 @@ shouldSelectViewController:(UIViewController *)viewController {
 -(JobsTabBar *)myTabBar{
     if (!_myTabBar) {
         _myTabBar = JobsTabBar.new;
-        _myTabBar.tabBarControllerConfigMutArr = self.tabBarControllerConfigMutArr;
         _myTabBar.alignmentType = ImageTopTitleBottom;
         [_myTabBar richElementsInViewWithModel:self.viewModel];
-        self.jobsKVC(@"tabBar",_myTabBar);/// KVC 进行替换
+        self.jobsKVC(@"tabBar",_myTabBar);/// ❤️KVC 进行替换❤️
     }return _myTabBar;
 }
 
@@ -486,12 +467,6 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (!_UITabBarButtonMutArr) {
         _UITabBarButtonMutArr = NSMutableArray.array;
     }return _UITabBarButtonMutArr;
-}
-
--(NSMutableArray<JobsTabBarItemConfig *> *)tabBarControllerConfigMutArr{
-    if (!_tabBarControllerConfigMutArr) {
-        _tabBarControllerConfigMutArr = NSMutableArray.array;
-    }return _tabBarControllerConfigMutArr;
 }
 
 -(NSMutableArray<UIViewModel *> *)pullListAutoSizeViewMutArr{

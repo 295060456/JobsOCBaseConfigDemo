@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#import "JobsTabbarVC.h"
+#import "JobsTabBarVC.h"
 #import "JobsCustomTabBarConfig.h"
 #import "LZTabBarController.h"
 
