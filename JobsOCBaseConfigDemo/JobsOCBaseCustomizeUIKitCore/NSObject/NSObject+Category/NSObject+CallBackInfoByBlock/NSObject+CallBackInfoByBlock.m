@@ -376,18 +376,18 @@ JobsKey(_returnCGFloatByIDBlock)
 -(void)actionReturnCGFloatByIDBlock:(JobsReturnCGFloatByIDBlock)returnCGFloatByIDBlock{
     self.returnCGFloatByIDBlock = returnCGFloatByIDBlock;
 }
-JobsKey(_returnBOOLByIDBlock)
-@dynamic returnBOOLByIDBlock;
--(JobsReturnBOOLByIDBlock)returnBOOLByIDBlock{
-    return Jobs_getAssociatedObject(_returnBOOLByIDBlock);
+JobsKey(_returnBoolByIDBlock)
+@dynamic returnBoolByIDBlock;
+-(JobsReturnBoolByIDBlock)returnBoolByIDBlock{
+    return Jobs_getAssociatedObject(_returnBoolByIDBlock);
 }
 
--(void)setReturnBOOLByIDBlock:(JobsReturnBOOLByIDBlock)returnBOOLByIDBlock{
-    Jobs_setAssociatedCOPY_NONATOMIC(_returnBOOLByIDBlock, returnBOOLByIDBlock);
+-(void)setReturnBoolByIDBlock:(JobsReturnBoolByIDBlock)returnBoolByIDBlock{
+    Jobs_setAssociatedCOPY_NONATOMIC(_returnBoolByIDBlock, returnBoolByIDBlock);
 }
 
--(void)actionReturnBOOLByIDBlock:(JobsReturnBOOLByIDBlock)returnBOOLByIDBlock{
-    self.returnBOOLByIDBlock = returnBOOLByIDBlock;
+-(void)actionReturnBoolByIDBlock:(JobsReturnBoolByIDBlock)returnBoolByIDBlock{
+    self.returnBoolByIDBlock = returnBoolByIDBlock;
 }
 JobsKey(_returnIntByIDBlock)
 @dynamic returnIntByIDBlock;
@@ -585,18 +585,31 @@ JobsKey(_returnCGFloatBlock)
 -(void)actionReturnCGFloatBlock:(JobsReturnByCGFloatBlock)returnCGFloatBlock{
     self.returnCGFloatBlock = returnCGFloatBlock;
 }
-JobsKey(_returnBOOLBlock)
-@dynamic returnBOOLBlock;
--(JobsReturnByBOOLBlock)returnBOOLBlock{
-    return Jobs_getAssociatedObject(_returnBOOLBlock);
+JobsKey(_returnBoolBlock)
+@dynamic returnBoolBlock;
+-(JobsReturnByBoolBlock)returnBoolBlock{
+    return Jobs_getAssociatedObject(_returnBoolBlock);
 }
 
--(void)setReturnBOOLBlock:(JobsReturnByBOOLBlock)returnBOOLBlock{
-    Jobs_setAssociatedCOPY_NONATOMIC(_returnBOOLBlock, returnBOOLBlock)
+-(void)setReturnBoolBlock:(JobsReturnByBoolBlock)returnBoolBlock{
+    Jobs_setAssociatedCOPY_NONATOMIC(_returnBoolBlock, returnBoolBlock)
 }
 
--(void)actionReturnBOOLBlock:(JobsReturnByBOOLBlock)returnBOOLBlock{
-    self.returnBOOLBlock = returnBOOLBlock;
+-(void)actionReturnBOOLBlock:(JobsReturnByBoolBlock)returnBoolBlock{
+    self.returnBoolBlock = returnBoolBlock;
+}
+JobsKey(_returnBoolByNSUIntegerBlock)
+@dynamic returnBoolByNSUIntegerBlock;
+-(JobsReturnBoolByNSUIntegerBlock)returnBoolByNSUIntegerBlock{
+    return Jobs_getAssociatedObject(_returnBoolByNSUIntegerBlock);
+}
+
+-(void)setReturnBoolByNSUIntegerBlock:(JobsReturnBoolByNSUIntegerBlock)returnBoolByNSUIntegerBlock{
+    Jobs_setAssociatedCOPY_NONATOMIC(_returnBoolByNSUIntegerBlock, returnBoolByNSUIntegerBlock)
+}
+
+-(void)actionReturnBoolByNSUIntegerBlock:(JobsReturnBoolByNSUIntegerBlock)returnBoolByNSUIntegerBlock{
+    self.returnBoolByNSUIntegerBlock = returnBoolByNSUIntegerBlock;
 }
 JobsKey(_returnIntBlock)
 @dynamic returnIntBlock;

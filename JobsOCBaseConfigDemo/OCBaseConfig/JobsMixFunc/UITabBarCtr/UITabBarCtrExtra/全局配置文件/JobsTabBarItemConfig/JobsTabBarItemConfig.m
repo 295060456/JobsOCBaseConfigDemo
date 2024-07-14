@@ -63,4 +63,10 @@ static dispatch_once_t JobsTabBarCtrlConfigOnceToken;
     }return _fontSelected;
 }
 
+-(BOOL)isNotNeedCheckLogin{
+    if (!_isNotNeedCheckLogin) {
+        _isNotNeedCheckLogin = YES;
+    }return _isNotNeedCheckLogin;
+}
+
 @end

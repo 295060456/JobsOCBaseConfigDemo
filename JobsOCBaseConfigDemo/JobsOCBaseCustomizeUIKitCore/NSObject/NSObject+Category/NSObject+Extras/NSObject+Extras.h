@@ -189,8 +189,8 @@ BaseProtocol
 -(JobsReturnIDByIDBlock _Nonnull)valueForKeyBlock;
 /// KVC 的二次封装
 -(jobsByKey_ValueBlock _Nonnull)jobsKVC;
--(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClassBlock;
--(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClassBlock;
+-(JobsReturnBoolByIDBlock _Nonnull)isKindOfClassBlock;
+-(JobsReturnBoolByIDBlock _Nonnull)isMemberOfClassBlock;
 -(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
                          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock;
 +(instancetype _Nonnull)jobsInitWithReuseIdentifier;

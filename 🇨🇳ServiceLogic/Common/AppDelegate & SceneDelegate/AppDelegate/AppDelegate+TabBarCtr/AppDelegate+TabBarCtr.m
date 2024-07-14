@@ -20,7 +20,6 @@ static LZTabBarController *lZTabBarCtrl = nil;
 static UINavigationController *tabBarNavCtrl = nil;
 static UINavigationController *jobsTabBarNavCtrl = nil;
 static UINavigationController *lZTabBarNavCtrl = nil;
-
 /// 容器
 static NSMutableArray <UIViewController *>*viewControllerMutArr = nil;
 static NSMutableArray <NSString *>*tabBarItemTitleMutArr = nil;
@@ -49,8 +48,8 @@ static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
     if(!lZTabBarConfig){
         lZTabBarConfig = LZTabBarConfig.new;
         lZTabBarConfig.viewControllers = AppDelegate.makeViewControllerMutArr;
-    //    lZTabBarConfig.normalImages = @[@"tabbar_mainframe", @"tabbar_contacts", @"tabbar_discover",@"tabbar_me"];
-    //    lZTabBarConfig.selectedImages = @[@"tabbar_mainframeHL", @"tabbar_contactsHL", @"tabbar_discoverHL",@"tabbar_meHL"];
+        lZTabBarConfig.normalImages = AppDelegate.makeImageUnselectedNameMutArr;
+        lZTabBarConfig.selectedImages = AppDelegate.makeImageSelectedNameMutArr;
         lZTabBarConfig.titles = AppDelegate.makeTabBarItemTitleMutArr;
         lZTabBarConfig.isNavigation = NO;
     }return lZTabBarConfig;
@@ -62,40 +61,15 @@ static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
         tabBarVC.isAnimationAlert = YES;//OK
         tabBarVC.isPlaySound = YES;
         tabBarVC.isFeedbackGenerator = YES;
-        
-        tabBarVC.jumpIndexArr = @[@3];//小标为3的客服模块需要被跳开做另行处理
-        tabBarVC.needLoginArr = @[@1,@2,@4];
-        tabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优先级高于needLoginArr
-        
-    //    TabBarVC.isShakerAnimation = YES;
         tabBarVC.isOpenScrollTabbar = NO;
-        
-        [tabBarVC actionReturnObjectBlock:^id(id data) {
-            if ([data isKindOfClass:NSNumber.class]) {
-                NSNumber *num = (NSNumber *)data;
-
-                BOOL ok = NO;
-                for (NSNumber *number in self.tabBarVC.jumpIndexArr) {
-                    if (num.unsignedIntegerValue == number.unsignedIntegerValue) {
-                        ok = YES;
-                        break;
-                    }
+    //    TabBarVC.isShakerAnimation = YES;
+        [tabBarVC actionReturnBoolByNSUIntegerBlock:^BOOL(NSUInteger data) {
+            for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.makeTabBarItemConfigMutArr) {
+                if(tabBarItemConfig.isNeedjump){
+                    toast(@"这个跳开");
+                    return NO;
                 }
-                if (ok) {
-    //                if (self.customerContactModel.customerList.count) {
-    //                    /// 单例模式防止重复添加
-    //                    CasinoCustomerServiceView *customerServiceView = CasinoCustomerServiceView.sharedInstance;
-    //                    [customerServiceView actionObjectBlock:^(id data) {
-    //                        [customerServiceView tf_hide];
-    //                    }];
-    //                    customerServiceView.size = [CasinoCustomerServiceView viewSizeWithModel:self.hotLabelDataMutArr];
-    //                    [customerServiceView richElementsInViewWithModel:self.hotLabelDataMutArr];
-    //                    [customerServiceView tf_showSlide:jobsGetMainWindow()
-    //                                            direction:PopupDirectionBottom
-    //                                           popupParam:self.appDelegatePopupParameter];
-    //                }
-                }return @(!ok);
-            }return @(YES);
+            }return YES;
         }];
     }return tabBarVC;
 }
@@ -352,7 +326,7 @@ static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
 +(NSMutableArray <UIViewController *>*)makeViewControllerMutArr{
     if(!viewControllerMutArr){
         viewControllerMutArr = NSMutableArray.array;
-        for (JobsTabBarItemConfig *tabBarCtrlConfig in self.makeTabBarItemConfigMutArr) {
+        for (JobsTabBarItemConfig *tabBarCtrlConfig in AppDelegate.makeTabBarItemConfigMutArr) {
             [viewControllerMutArr addObject:tabBarCtrlConfig.vc];
         }
     }return viewControllerMutArr;
@@ -444,6 +418,9 @@ static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
             config.tabBarItemWidth = landscapeValue(JobsWidth(100));
             config.spacing = JobsWidth(3);
             config.tag = configMutArr.count + 1;
+            config.isNeedCheckLogin = NO;
+            config.isNotNeedCheckLogin = YES;
+            config.isNeedjump = NO;
             [configMutArr addObject:config];
         }
         
@@ -459,6 +436,9 @@ static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
             config.tabBarItemWidth = landscapeValue(JobsWidth(100));
             config.spacing = JobsWidth(3);
             config.tag = configMutArr.count + 1;
+            config.isNeedCheckLogin = NO;
+            config.isNotNeedCheckLogin = YES;
+            config.isNeedjump = NO;
             [configMutArr addObject:config];
         }
         
@@ -474,6 +454,9 @@ static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
             config.tabBarItemWidth = landscapeValue(JobsWidth(50));
             config.spacing = JobsWidth(3);
             config.tag = configMutArr.count + 1;
+            config.isNeedCheckLogin = NO;
+            config.isNotNeedCheckLogin = YES;
+            config.isNeedjump = NO;
             [configMutArr addObject:config];
         }
         
@@ -489,6 +472,9 @@ static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
             config.tabBarItemWidth = landscapeValue(JobsWidth(50));
             config.spacing = JobsWidth(3);
             config.tag = configMutArr.count + 1;
+            config.isNeedCheckLogin = NO;
+            config.isNotNeedCheckLogin = YES;
+            config.isNeedjump = NO;
             [configMutArr addObject:config];
         }
         
@@ -504,6 +490,9 @@ static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
             config.tabBarItemWidth = landscapeValue(JobsWidth(100));
             config.spacing = JobsWidth(3);
             config.tag = configMutArr.count + 1;
+            config.isNeedCheckLogin = NO;
+            config.isNotNeedCheckLogin = YES;
+            config.isNeedjump = NO;
             [configMutArr addObject:config];
         }
     }return configMutArr;

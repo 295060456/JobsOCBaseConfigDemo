@@ -137,7 +137,7 @@
         @jobs_weakify(self)
         [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
             @jobs_strongify(self)
-            return self.returnBOOLByIDBlock ? self.returnBOOLByIDBlock(data) : YES;
+            return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(NSString *_Nullable x) {
             @jobs_strongify(self)
             NSLog(@"输入的字符为 = %@",x);

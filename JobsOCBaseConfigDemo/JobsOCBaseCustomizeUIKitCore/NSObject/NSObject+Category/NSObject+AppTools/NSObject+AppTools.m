@@ -9,20 +9,16 @@
 
 @implementation NSObject (AppTools)
 #pragma mark —— 一些私有化方法
-/// noNeedLoginArr
 -(NSMutableArray <Class>*_Nullable)makeDataArr{
     NSMutableArray <Class>*tempDataArr = NSMutableArray.array;
-    
-    for (UIViewController *viewController in AppDelegate.makeUIViewControllerMutArr) {
-        NSUInteger index = [AppDelegate.makeUIViewControllerMutArr indexOfObject:viewController];
-        
-        if ([AppDelegate.tabBarVC.noNeedLoginArr containsObject:@(index)]) {
+    for (int y = 0; y < AppDelegate.makeUIViewControllerMutArr.count; y++) {
+        UIViewController *viewController = AppDelegate.makeUIViewControllerMutArr[y];
+        JobsTabBarItemConfig *tabBarItemConfig = AppDelegate.makeTabBarItemConfigMutArr[y];
+        if(tabBarItemConfig.isNotNeedCheckLogin){
             Class cls = viewController.class;
             [tempDataArr addObject:cls];
         }
-    }
-//    [tempDataArr addObject:appDelegate.tabBarVC.class];
-    return tempDataArr;
+    }return tempDataArr;
 }
 #pragma mark —— BaseProtocol
 /// 【通知监听】国际化语言修改UI

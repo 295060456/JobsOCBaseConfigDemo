@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)UIButton *customSysClearBtn;
 /// RAC 回调封装
--(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBOOLByIDBlock)filterBlock
+-(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBoolByIDBlock)filterBlock
                              subscribeNextBlock:(jobsByIDBlock)subscribeNextBlock;
 /// 自定义系统的清除按钮
 -(void)modifyClearButtonWithImage:(UIImage *)image;

@@ -52,9 +52,6 @@ static dispatch_once_t AppDelegateOnceToken;
         [self simulateUserData];
     }return self;
 }
-
-
-
 #pragma mark —— 一些私有方法
 /// 模拟用户数据
 -(void)simulateUserData{

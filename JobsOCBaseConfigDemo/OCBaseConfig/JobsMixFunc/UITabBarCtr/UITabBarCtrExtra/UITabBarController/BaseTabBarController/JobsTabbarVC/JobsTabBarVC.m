@@ -208,9 +208,11 @@ static JobsTabBarVC *static_tabbarVC = nil;
 #pragma mark —— 一些私有方法
 /// 需要强制跳转登录的index。点击和手势滑动都需要共同调用
 -(BOOL)forcedLoginIndex:(NSUInteger)index{
-    if ([self.needLoginArr containsObject:@(index)]) {
-        [self forcedLogin];
-        return YES;
+    for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.makeTabBarItemConfigMutArr) {
+        if(tabBarItemConfig.isNeedCheckLogin){
+            [self forcedLogin];
+            return YES;
+        }
     }return NO;
 }
 /// 判别是否有Lottie
@@ -270,43 +272,45 @@ static JobsTabBarVC *static_tabbarVC = nil;
         }
     }
 }
-#pragma mark —— 手势左右滑动以切换TabbarControl挂载的ViewController
+/// 手势左右滑动以切换TabbarControl挂载的ViewController
 -(void)beginInteractiveTransitionIfPossible:(UIPanGestureRecognizer *)sender{
     CGPoint translation = [sender translationInView:self.view];
     NSLog(@"FromIndex = %lu",(unsigned long)self.selectedIndex);
     /// ❤️需要被跳开的item的逻辑❤️
-    for (NSNumber *indexNUM in self.jumpIndexArr) {
-        if (indexNUM.integerValue >= 0 ||
-            indexNUM.integerValue <= self.tabBar.items.count - 1) {
-            {// 手势从左到右 和 手势从右到左 的两种触发方式
-                // 手势从左到右
-                if (self.selectedIndex == indexNUM.integerValue - 1) {
-                    if (translation.x > 0.f && self.selectedIndex > 0) {
-                        self.selectedIndex --;
-                    }else{
-                        if (self.isJumpToNextVC) {
-                            self.selectedIndex += 2;
-                        }
-                        // 向外回调需要做的事
-                        if (self.returnObjectBlock) A = [self.returnObjectBlock(indexNUM) boolValue];
-                    }return;
-                }
-                // 手势从右到左
-                if (self.selectedIndex == indexNUM.integerValue + 1) {
-                    if (translation.x < 0.f && self.selectedIndex + 1 < self.viewControllers.count) {
-                        self.selectedIndex ++;
-                    }else{
-                        if (self.isJumpToNextVC) {
-                            self.selectedIndex -= 2;
-                        }
-                        // 向外回调需要做的事
-                        if (self.returnObjectBlock) A = [self.returnObjectBlock(indexNUM) boolValue];
-                    }return;
+    for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.makeTabBarItemConfigMutArr) {
+        if(tabBarItemConfig.isNeedjump){
+            NSUInteger d = [AppDelegate.makeTabBarItemConfigMutArr indexOfObject:tabBarItemConfig];
+            if (d <= self.tabBar.items.count - 1) {
+                {// 手势从左到右 和 手势从右到左 的两种触发方式
+                    // 手势从左到右
+                    if (self.selectedIndex == d - 1) {
+                        if (translation.x > 0.f && self.selectedIndex > 0) {
+                            self.selectedIndex --;
+                        }else{
+                            if (self.isJumpToNextVC) {
+                                self.selectedIndex += 2;
+                            }
+                            // 向外回调需要做的事
+                            if (self.returnBoolByNSUIntegerBlock) A = self.returnBoolByNSUIntegerBlock(d);
+                        }return;
+                    }
+                    // 手势从右到左
+                    if (self.selectedIndex == d + 1) {
+                        if (translation.x < 0.f && self.selectedIndex + 1 < self.viewControllers.count) {
+                            self.selectedIndex ++;
+                        }else{
+                            if (self.isJumpToNextVC) {
+                                self.selectedIndex -= 2;
+                            }
+                            // 向外回调需要做的事
+                            if (self.returnBoolByNSUIntegerBlock) A = self.returnBoolByNSUIntegerBlock(d);
+                        }return;
+                    }
                 }
             }
+
         }
     }
-    
     if (translation.x > 0.f && self.selectedIndex > 0) {
         self.selectedIndex --;
     }else if (translation.x < 0.f && self.selectedIndex + 1 < self.viewControllers.count) {
@@ -369,8 +373,8 @@ static JobsTabBarVC *static_tabbarVC = nil;
     if ([tabBar.items containsObject:item]) {
         NSUInteger index = [self.tabBar.items indexOfObject:item];
         NSLog(@"当前点击：%ld",(long)index);
-        for (NSNumber *indexNUM in self.jumpIndexArr) {
-            if (indexNUM.unsignedIntegerValue != index) {
+        for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.makeTabBarItemConfigMutArr) {
+            if(tabBarItemConfig.isNeedjump){
                 if (![self forcedLoginIndex:index]) {
                     /// 不需要进行强制登录的时候，才重新赋值刷新self.selectedIndex
                     self.selectedIndex = index;
@@ -410,7 +414,7 @@ shouldSelectViewController:(UIViewController *)viewController {
         [viewController lottieImagePlay];
     }
     
-    if (self.returnObjectBlock) A = [self.returnObjectBlock(@(index)) boolValue];
+    if (self.returnBoolByNSUIntegerBlock) A = self.returnBoolByNSUIntegerBlock(index);
     return [self forcedLoginIndex:index] ? (A && self.isLogin) : A;
 }
 

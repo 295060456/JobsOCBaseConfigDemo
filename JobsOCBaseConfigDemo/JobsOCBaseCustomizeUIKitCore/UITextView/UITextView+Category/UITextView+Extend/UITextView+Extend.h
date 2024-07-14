@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSString *resStr;
 
 -(RACDisposable *)jobsTextViewSubscribeNextBlock:(jobsByIDBlock)subscribeNextBlock;
--(RACDisposable *)jobsTextViewFilterBlock:(JobsReturnBOOLByIDBlock)filterBlock
+-(RACDisposable *)jobsTextViewFilterBlock:(JobsReturnBoolByIDBlock)filterBlock
                        subscribeNextBlock:(jobsByIDBlock)subscribeNextBlock;
 /**
  IOS UITextView内容垂直居中方法 https://www.jianshu.com/p/5e4cf8488bfd
