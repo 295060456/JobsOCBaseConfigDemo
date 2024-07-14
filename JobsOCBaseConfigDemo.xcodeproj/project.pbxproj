@@ -3112,10 +3112,8 @@
 			isa = PBXGroup;
 			children = (
 				840F92AA27736425004979E9 /* 功能性动效：手势横向滚动子VC联动Tabbar切换.md */,
-				840F92AD27736425004979E9 /* TransitionAnimation.h */,
-				840F92A927736425004979E9 /* TransitionAnimation.m */,
-				840F92AB27736425004979E9 /* TransitionController.h */,
-				840F92AC27736425004979E9 /* TransitionController.m */,
+				C54FCF702C4421C900802ECF /* TransitionController */,
+				C54FCF6F2C4421C000802ECF /* TransitionAnimation */,
 			);
 			path = "功能性动效：手势横向滚动子VC联动Tabbar切换";
 			sourceTree = "<group>";
@@ -3124,9 +3122,8 @@
 			isa = PBXGroup;
 			children = (
 				840F92B027736425004979E9 /* 功能性动效：Tabbaritem的点击动效.md */,
+				C54FCF712C4421DD00802ECF /* TLTabBarAnimation */,
 				840F92AF27736425004979E9 /* TLAnimationProtocol.h */,
-				840F92B127736425004979E9 /* TLTabBarAnimation.h */,
-				840F92B227736425004979E9 /* TLTabBarAnimation.m */,
 			);
 			path = "功能性动效：Tabbaritem的点击动效";
 			sourceTree = "<group>";
@@ -7200,6 +7197,33 @@
 				840F928327736425004979E9 /* JobsTabBarItemConfig.m */,
 			);
 			path = JobsTabBarItemConfig;
+			sourceTree = "<group>";
+		};
+		C54FCF6F2C4421C000802ECF /* TransitionAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				840F92AD27736425004979E9 /* TransitionAnimation.h */,
+				840F92A927736425004979E9 /* TransitionAnimation.m */,
+			);
+			path = TransitionAnimation;
+			sourceTree = "<group>";
+		};
+		C54FCF702C4421C900802ECF /* TransitionController */ = {
+			isa = PBXGroup;
+			children = (
+				840F92AB27736425004979E9 /* TransitionController.h */,
+				840F92AC27736425004979E9 /* TransitionController.m */,
+			);
+			path = TransitionController;
+			sourceTree = "<group>";
+		};
+		C54FCF712C4421DD00802ECF /* TLTabBarAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				840F92B127736425004979E9 /* TLTabBarAnimation.h */,
+				840F92B227736425004979E9 /* TLTabBarAnimation.m */,
+			);
+			path = TLTabBarAnimation;
 			sourceTree = "<group>";
 		};
 		C552242B2AC89A1E00668516 /* JobsCustomView */ = {

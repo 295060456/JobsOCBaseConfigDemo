@@ -18,7 +18,7 @@ static CGFloat lzTabBarHeight = 49.0;
 @end
 
 @implementation LZTabBarController
-
+//@synthesize selectedIndex = _selectedIndex;
 - (instancetype)initWithBlock:(tabBarBlock)block {
     if (self = [super init]) {
         LZTabBarConfig *config = LZTabBarConfig.new;
@@ -139,6 +139,8 @@ static CGFloat lzTabBarHeight = 49.0;
 - (void)tabBar:(LZTabBar *)tab 
  didSelectItem:(LZTabBarItem *)item 
        atIndex:(NSInteger)index {
+    self.selectedIndex = 88;
+    NSLog(@"SDFSA = %lu",(unsigned long)self.selectedIndex);
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:0];
     for (UIView *view in tab.subviews) {
         if ([view isKindOfClass:LZTabBarItem.class]) {
@@ -161,7 +163,18 @@ static CGFloat lzTabBarHeight = 49.0;
     if (self.config.titles.count > 0) {
         item.titleColor = self.config.selectedColor;
     }self.selectedIndex = index;
+    NSLog(@"SSS = %lu",(unsigned long)self.selectedIndex);
 }
+
+//-(void)setSelectedIndex:(NSUInteger)selectedIndex{
+//    _selectedIndex = selectedIndex;
+//}
+//
+//-(NSUInteger)selectedIndex{
+//    NSUInteger d = _selectedIndex;
+//    return _selectedIndex;
+//}
+
 // 屏幕旋转时调整tabbar
 - (void)viewWillTransitionToSize:(CGSize)size 
        withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
