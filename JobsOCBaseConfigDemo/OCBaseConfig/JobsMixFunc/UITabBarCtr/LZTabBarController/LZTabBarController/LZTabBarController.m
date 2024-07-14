@@ -137,10 +137,11 @@ static CGFloat lzTabBarHeight = 49.0;
 }
 #pragma mark —— LZTabBarDelegate
 - (void)tabBar:(LZTabBar *)tab 
- didSelectItem:(LZTabBarItem *)item atIndex:(NSInteger)index {
+ didSelectItem:(LZTabBarItem *)item 
+       atIndex:(NSInteger)index {
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:0];
     for (UIView *view in tab.subviews) {
-        if ([view isKindOfClass:[LZTabBarItem class]]) {
+        if ([view isKindOfClass:LZTabBarItem.class]) {
             [items addObject:view];
         }
     }

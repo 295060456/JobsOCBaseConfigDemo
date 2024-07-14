@@ -17,9 +17,9 @@
 
 #ifndef ROOT_VIEW_CONTROLLER_H
 #define ROOT_VIEW_CONTROLLER_H
-#define RootViewController AppDelegate.tabBarVC
+//#define RootViewController AppDelegate.tabBarVC
 //#define RootViewController AppDelegate.customTabBarVC
-//#define RootViewController AppDelegate.makeLZTabBarNavCtrl//no
+#define RootViewController AppDelegate.makeLZTabBarNavCtrl
 #endif // ROOT_VIEW_CONTROLLER_H
 
 #pragma clang diagnostic push

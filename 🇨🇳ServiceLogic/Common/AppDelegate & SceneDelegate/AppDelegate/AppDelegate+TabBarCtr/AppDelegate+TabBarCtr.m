@@ -387,10 +387,10 @@ static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
     if(!UIViewControllerMutArr){
         UIViewControllerMutArr = NSMutableArray.array;
         [UIViewControllerMutArr addObject:ViewController_5.new];
-        [UIViewControllerMutArr addObject:ViewController_1.new];
         [UIViewControllerMutArr addObject:ViewController_2.new];
         [UIViewControllerMutArr addObject:ViewController_3.new];
         [UIViewControllerMutArr addObject:ViewController_4.new];
+        [UIViewControllerMutArr addObject:ViewController_1.new];
     }return UIViewControllerMutArr;
 }
 
