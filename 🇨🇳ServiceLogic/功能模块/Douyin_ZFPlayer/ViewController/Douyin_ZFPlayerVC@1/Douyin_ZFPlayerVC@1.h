@@ -6,6 +6,7 @@
 //
 
 #import "BaseViewController.h"
+#import "AppDelegate+TabBarCtr.h"
 #import "LOTAnimationMJRefreshHeader.h"
 #import "JobsPlayerTBVCell.h"
 

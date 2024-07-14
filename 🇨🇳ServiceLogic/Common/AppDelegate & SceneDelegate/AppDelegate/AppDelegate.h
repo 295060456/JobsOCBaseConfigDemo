@@ -10,18 +10,22 @@
 
 #import "JobsTabbarVC.h"
 #import "JobsCustomTabBarConfig.h"
+#import "LZTabBarController.h"
+
 #import "Other.h"
 @import UserNotifications;/// 配置本地通知
 
 #ifndef ROOT_VIEW_CONTROLLER_H
 #define ROOT_VIEW_CONTROLLER_H
-//#define RootViewController appDelegate.tabBarVC
-#define RootViewController appDelegate.customTabBarVC
+//#define RootViewController AppDelegate.tabBarVC
+//#define RootViewController AppDelegate.customTabBarVC
+#define RootViewController AppDelegate.makeLZTabBarNavCtrl
 #endif // ROOT_VIEW_CONTROLLER_H
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunguarded-availability-new"
-/// AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
+/// 一个iOS应用程序App的生命周期里面，只有一个AppDelegate实例存在
+/// 但是可能有多个SceneDelegate实例存在
 @interface AppDelegate : UIResponder
 <
 UIApplicationDelegate
@@ -33,15 +37,8 @@ UIApplicationDelegate
 @property(readonly,strong)NSPersistentCloudKitContainer *persistentContainer;
 @property(nonatomic,assign)BOOL allowOrentitaionRotation;
 
-#pragma mark —— 配置数据源
-+(NSMutableArray <UIButton *>*)makeTabBarItems;
-+(JobsCustomTabBarConfig *)makeJobsCustomTabBarConfig;
-+(NSMutableArray <UIViewController *>*)makeViewControllerMutArr;
-+(NSMutableArray <NSString *>*)makeTabBarItemTitleMutArr;
-+(NSMutableArray <UIImage *>*)makeImageSelectedMutArr;
-+(NSMutableArray <UIImage *>*)makeImageUnselectedMutArr;
-+(NSMutableArray <UIViewController *>*)makeUIViewControllerMutArr;
-+(NSMutableArray <JobsTabBarCtrlConfig *>*)makeConfigMutArr;
++(instancetype)sharedManager;
++(void)destroyInstance;
 
 -(void)saveContext;
 

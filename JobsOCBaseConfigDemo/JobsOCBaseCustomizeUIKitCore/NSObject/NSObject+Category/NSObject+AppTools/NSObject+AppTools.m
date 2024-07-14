@@ -11,13 +11,12 @@
 #pragma mark —— 一些私有化方法
 /// noNeedLoginArr
 -(NSMutableArray <Class>*_Nullable)makeDataArr{
-    extern AppDelegate *appDelegate;
     NSMutableArray <Class>*tempDataArr = NSMutableArray.array;
     
-    for (UIViewController *viewController in appDelegate.tabBarVC.childVCMutArr) {
-        NSUInteger index = [appDelegate.tabBarVC.childVCMutArr indexOfObject:viewController];
+    for (UIViewController *viewController in AppDelegate.makeUIViewControllerMutArr) {
+        NSUInteger index = [AppDelegate.makeUIViewControllerMutArr indexOfObject:viewController];
         
-        if ([appDelegate.tabBarVC.noNeedLoginArr containsObject:@(index)]) {
+        if ([AppDelegate.tabBarVC.noNeedLoginArr containsObject:@(index)]) {
             Class cls = viewController.class;
             [tempDataArr addObject:cls];
         }
@@ -49,7 +48,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 -(void)changeTabBarItemTitle:(NSIndexPath *)indexPath{
     id appDelegate = getSysAppDelegate();
     if (!appDelegate) {
-        extern AppDelegate *appDelegate;
+        appDelegate = AppDelegate.sharedManager;
     }
     if ([appDelegate isKindOfClass:AppDelegate.class]) {
         AppDelegate *ad = (AppDelegate *)appDelegate;
@@ -75,9 +74,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 }
 /// 强制登录：没登录（本地用户数据为空）就去登录
 -(void)forcedLogin{
-    if (!self.isLogin) {
-        [self toLogin];
-    }
+    if (!self.isLogin) [self toLogin];
 }
 /// 去登录：有限制makeDataArr
 -(void)toLogin{
@@ -98,28 +95,23 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 #pragma mark —— <AppToolsProtocol> 关于 TabBar
 /// TabBar
 -(UITabBar *)getTabBar{
-    extern AppDelegate *appDelegate;
-    return appDelegate.tabBarVC.tabBar;
+    return AppDelegate.tabBarVC.tabBar;
 }
 /// 跳到首页
 -(void)jumpToHome{
-    extern AppDelegate *appDelegate;
-    appDelegate.tabBarVC.selectedIndex = 0;
+    AppDelegate.tabBarVC.selectedIndex = 0;
 }
 /// JobsTabbarVC 关闭手势
 -(void)tabBarClosePan{
-    AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
-    [appDelegate.tabBarVC closePan];
+    [AppDelegate.tabBarVC closePan];
 }
 /// JobsTabbarVC 打开手势
 -(void)tabBarOpenPan{
-    AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
-    [appDelegate.tabBarVC openPan];
+    [AppDelegate.tabBarVC openPan];
 }
 /// 获取Tabbar管理的，不含导航的根控制器
 -(NSMutableArray <UIViewController *>*)appRootVC{
-    AppDelegate *appDelegate = (AppDelegate *)getSysAppDelegate();
-    return appDelegate.getAppRootVC;
+    return AppDelegate.sharedManager.getAppRootVC;
 }
 /// 当前对象是否是 Tabbar管理的，不含导航的根控制器
 -(BOOL)isRootVC{
@@ -288,7 +280,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 -(UIView<BaseViewProtocol> *)jobsPopView:(Class<BaseViewProtocol> _Nullable)popViewClass
                                viewModel:(UIViewModel *_Nullable)viewModel{
     // 将方法内的变量进行单例化,避免重复创建
-    UIView<BaseViewProtocol> *popupView = popViewClass.class.sharedInstance;
+    UIView<BaseViewProtocol> *popupView = popViewClass.class.sharedManager;
     // 这里设置弹出框的尺寸（最好在View内部layoutSubviews里面进行设置，外界设置的话，在某些情况下会出现异常）
     // popupView.size = [popViewClass viewSizeWithModel:nil];
     [popupView richElementsInViewWithModel:viewModel ? : self.testPopViewData];

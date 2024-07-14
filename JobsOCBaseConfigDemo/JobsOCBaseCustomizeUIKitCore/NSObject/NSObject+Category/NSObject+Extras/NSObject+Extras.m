@@ -71,9 +71,7 @@
 /// 强制以Push的方式展现页面
 /// @param toPushVC 需要进行展现的页面
 /// @param requestParams 正向推页面传递的参数
-/// 如果想用AppDelegate的自定义TabbarVC：
-/// extern AppDelegate *appDelegate;
-/// (UIViewController *)appDelegate.tabBarVC;
+/// 如果想用AppDelegate的自定义TabbarVC：(UIViewController *)AppDelegate.sharedManager.tabBarVC;
 -(void)forceComingToPushVC:(UIViewController *_Nonnull)toPushVC
              requestParams:(id _Nullable)requestParams{
     UIViewController *viewController = self.jobsGetCurrentViewController;

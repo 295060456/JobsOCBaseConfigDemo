@@ -36,9 +36,8 @@
 -(void)popupshowSlideWithView:(UIView *_Nullable)view{
     if (!view) view = self.popupView;
     TFPopupParam *popupParameter = [self makeSlidePopupParameterByViewHeight:view.size.height];
-    extern AppDelegate *appDelegate;
-    if(appDelegate.tabBarVC){
-        [view tf_showSlide:appDelegate.tabBarVC.view
+    if(AppDelegate.tabBarVC){
+        [view tf_showSlide:AppDelegate.tabBarVC.view
                  direction:popupParameter.bubbleDirection
                 popupParam:popupParameter];
     }else{
@@ -51,9 +50,8 @@
 -(void)popupshowSlideWithView:(UIView *_Nullable)view
                popupParameter:(TFPopupParam *_Nullable)popupParameter{
     if(!popupParameter) popupParameter = [self makeSlidePopupParameterByViewHeight:view.height];
-    extern AppDelegate *appDelegate;
-    if(appDelegate.tabBarVC){
-        [view tf_showSlide:appDelegate.tabBarVC.view
+    if(AppDelegate.tabBarVC){
+        [view tf_showSlide:AppDelegate.tabBarVC.view
                  direction:popupParameter.bubbleDirection
                 popupParam:popupParameter];
     }else{

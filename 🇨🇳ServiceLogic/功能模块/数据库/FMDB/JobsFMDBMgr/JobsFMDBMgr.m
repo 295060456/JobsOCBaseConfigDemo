@@ -17,28 +17,28 @@
 
 static JobsFMDBMgr *JobsFMDBMgrInstance;
 static dispatch_once_t JobsFMDBMgrOnceToken;
-+ (instancetype)sharedManager {
++(instancetype)sharedManager {
     dispatch_once(&JobsFMDBMgrOnceToken, ^{
         JobsFMDBMgrInstance = self.new;
     });return JobsFMDBMgrInstance;
 }
 /// 单例的销毁
-+ (void)destroyInstance {
++(void)destroyInstance {
     JobsFMDBMgrOnceToken = 0;
     JobsFMDBMgrInstance = nil;
 }
 /// 防止外部使用 alloc/init 等创建新实例
-+ (instancetype)allocWithZone:(struct _NSZone *)zone {
++(instancetype)allocWithZone:(struct _NSZone *)zone {
     dispatch_once(&JobsFMDBMgrOnceToken, ^{
         JobsFMDBMgrInstance = [super allocWithZone:zone];
     });return JobsFMDBMgrInstance;
 }
 
-- (instancetype)copyWithZone:(NSZone *)zone {
+-(instancetype)copyWithZone:(NSZone *)zone {
     return self;
 }
 
-- (instancetype)mutableCopyWithZone:(NSZone *)zone {
+-(instancetype)mutableCopyWithZone:(NSZone *)zone {
     return self;
 }
 

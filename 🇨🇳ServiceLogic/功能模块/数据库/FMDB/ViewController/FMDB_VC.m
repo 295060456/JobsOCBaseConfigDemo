@@ -48,7 +48,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 
-    JobsFMDBMgr *dbManager = JobsFMDBMgr.sharedInstance;
+    JobsFMDBMgr *dbManager = JobsFMDBMgr.sharedManager;
     /// 插入用户
     [dbManager insertUserWithName:@"Alice" age:25];
     [dbManager insertUserWithName:@"Bob" age:30];

@@ -21,9 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface JobsFMDBMgr : NSObject
 
-+ (instancetype)sharedManager;
++(instancetype)sharedManager;
 /// 单例的销毁
-+ (void)destroyInstance;
++(void)destroyInstance;
 /// 建表
 - (void)createTable;
 /// 增加数据

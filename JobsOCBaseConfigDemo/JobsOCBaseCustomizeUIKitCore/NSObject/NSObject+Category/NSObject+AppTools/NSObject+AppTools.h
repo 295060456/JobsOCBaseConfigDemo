@@ -11,6 +11,7 @@
 #import "NSObject+UserInfo.h"
 #import "NSObject+Extras.h"
 #import "UIView+Extras.h"
+#import "AppDelegate+TabBarCtr.h"
 
 #import "AppDelegate.h"
 #import "JobsAppDoorVC.h"

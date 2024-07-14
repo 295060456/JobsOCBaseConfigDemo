@@ -148,20 +148,7 @@ static inline BOOL isiPhoneX_series(void) {
     }return iPhoneXSeries;
 }
 #pragma mark —— 获取 AppDelegate 和 SceneDelegate
-/**
-    1、该方法只能获取系统默认的AppDelegate；
-    2、如果要获取自定义的appDelegate，则需要：
- 
-     AppDelegate *appDelegate;//在类定义域和实现域之外暴露
-     
-     -(instancetype)init{
-         if (self = [super init]) {
-             appDelegate = self;
-         }return self;
-     }
-     
-     获取方式：extern AppDelegate *appDelegate;
- */
+/// AppDelegate.sharedManager
 static inline id<UIApplicationDelegate> _Nullable getSysAppDelegate(void){
     return UIApplication.sharedApplication.delegate;
 }

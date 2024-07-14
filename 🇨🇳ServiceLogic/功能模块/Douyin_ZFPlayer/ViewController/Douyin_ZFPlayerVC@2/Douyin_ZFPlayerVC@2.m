@@ -383,8 +383,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         
         _player.orientationWillChange = ^(ZFPlayerController * _Nonnull player,
                                           BOOL isFullScreen) {
-            extern AppDelegate *appDelegate;
-            appDelegate.allowOrentitaionRotation = isFullScreen;
+            AppDelegate.sharedManager.allowOrentitaionRotation = isFullScreen;
             @jobs_strongify(self)
             self->_player.controlView.hidden = YES;
         };

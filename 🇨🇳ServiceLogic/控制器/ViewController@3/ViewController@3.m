@@ -42,7 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = JobsRandomColor;
+    self.view.backgroundColor = JobsCyanColor;
     [self setGKNav];
     [self setGKNavBackBtn];
 }

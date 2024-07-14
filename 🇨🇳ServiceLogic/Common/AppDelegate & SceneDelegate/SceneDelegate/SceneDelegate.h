@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "NSObject+Extras.h"
+#import "AppDelegate+TabBarCtr.h"
 
 API_AVAILABLE(ios(13.0))
 

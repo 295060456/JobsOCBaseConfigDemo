@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsNoticePopupView.h"
+#import "AppDelegate+TabBarCtr.h"
 
 #if __has_include(<TFPopup/TFPopup.h>)
 #import <TFPopup/TFPopup.h>

@@ -6,14 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobsTabBarItemConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol UITabbarConfigProtocol <NSObject>
 
 @required
-@property(nonatomic,strong)NSMutableArray <UIViewController *>*childVCMutArr;/// 子控制器
-@property(nonatomic,strong)NSMutableArray <JobsTabBarCtrlConfig *>*tabBarControllerConfigMutArr;/// TabBar的配置数据源
+@property(nonatomic,strong)NSMutableArray <JobsTabBarItemConfig *>*tabBarControllerConfigMutArr;/// TabBar的配置数据源
 
 @end
 
@@ -22,7 +22,6 @@ NS_ASSUME_NONNULL_END
 #pragma mark —— @synthesize UITabbarConfigProtocol
 #ifndef UITabbarConfigProtocol_synthesize
 #define UITabbarConfigProtocol_synthesize \
-@synthesize childVCMutArr = _childVCMutArr;\
 @synthesize tabBarControllerConfigMutArr = _tabBarControllerConfigMutArr;\
 
 #endif
@@ -30,7 +29,6 @@ NS_ASSUME_NONNULL_END
 #pragma mark —— @dynamic UITextModelProtocol
 #ifndef UITabbarConfigProtocol_dynamic
 #define UITabbarConfigProtocol_dynamic \
-@dynamic childVCMutArr;\
 @dynamic tabBarControllerConfigMutArr;\
 
 #endif

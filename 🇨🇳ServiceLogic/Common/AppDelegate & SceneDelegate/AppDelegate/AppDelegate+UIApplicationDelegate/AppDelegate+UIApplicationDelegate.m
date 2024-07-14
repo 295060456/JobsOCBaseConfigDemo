@@ -28,21 +28,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 -(void)applicationDidBecomeActive:(UIApplication *)application{
     NSLog(@"---applicationDidBecomeActive----");//进入前台
 }
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Wmethod-signatures"
-//- (UIInterfaceOrientationMask)application:(UIApplication *)application
-//  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-//    //设置强制旋转屏幕
-//    if (self.cyl_isForceLandscape) {
-//        //只支持横屏
-//        return UIInterfaceOrientationMaskLandscape;
-//    } else {
-//        //只支持竖屏
-//        return UIInterfaceOrientationMaskPortrait;
-//    }
-//}
-//#pragma clang diagnostic pop
-
 /// UISceneSession lifecycle
 - (UISceneConfiguration *)application:(UIApplication *)application
 configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession

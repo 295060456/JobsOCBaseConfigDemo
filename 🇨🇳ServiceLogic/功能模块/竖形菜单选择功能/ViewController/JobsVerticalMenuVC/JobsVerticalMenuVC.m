@@ -7,7 +7,6 @@
 
 #import "JobsVerticalMenuVC.h"
 
-extern AppDelegate *appDelegate;
 @interface JobsVerticalMenuVC ()
 /// UI
 @property(nonatomic,strong)UITableView *tableView;///  左侧的标题
@@ -401,7 +400,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
         _tableView.frame = CGRectMake(0,
                                       JobsTopSafeAreaHeight() + JobsStatusBarHeight(),
                                       TableViewWidth,
-                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(appDelegate.tabBarVC) - EditBtnHeight);
+                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_tableView];

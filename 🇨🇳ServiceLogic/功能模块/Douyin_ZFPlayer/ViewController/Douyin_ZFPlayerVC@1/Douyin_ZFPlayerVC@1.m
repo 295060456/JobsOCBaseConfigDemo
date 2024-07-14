@@ -339,9 +339,8 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
             }else{
                 make.top.equalTo(self.view.mas_top);
             }
-
-            extern AppDelegate *appDelegate;
-            make.bottom.equalTo(self.view.mas_bottom).offset(appDelegate.tabBarVC.tabBar.isHidden ? 0 : -JobsTabBarHeightByBottomSafeArea(appDelegate.tabBarVC));
+            
+            make.bottom.equalTo(self.view.mas_bottom).offset(AppDelegate.tabBarVC.tabBar.isHidden ? 0 : -JobsTabBarHeightByBottomSafeArea(AppDelegate.tabBarVC));
         }];
     }return _tableView;
 }

@@ -55,7 +55,7 @@ BOOL ISLogin;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = JobsRandomColor;
+    self.view.backgroundColor = JobsRedColor;
     
     [self setGKNav];
     [self setGKNavBackBtn];

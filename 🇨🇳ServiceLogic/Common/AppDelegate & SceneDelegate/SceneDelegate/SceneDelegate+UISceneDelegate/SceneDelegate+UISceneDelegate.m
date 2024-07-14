@@ -16,7 +16,6 @@ willConnectToSession:(UISceneSession *)session
     if (@available(iOS 13.0, *)) {
         self.windowScene = (UIWindowScene *)scene;
         self.window.alpha = 1;
-        
         [AppDelegate launchFunc1];
     }
 }

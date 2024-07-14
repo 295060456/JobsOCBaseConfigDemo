@@ -8,8 +8,6 @@
 #ifndef JobsBaseCustomizeUIKitCoreHeader_h
 #define JobsBaseCustomizeUIKitCoreHeader_h
 
-#pragma mark —— AppDelegate
-#import "JobsAppDelegate.h"
 #pragma mark —— BaseProtocol
 #import "JobsBaseProtocolHeader.h"
 #pragma mark —— Debug

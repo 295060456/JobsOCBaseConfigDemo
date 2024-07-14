@@ -812,7 +812,7 @@ class BaseProtocol {
     +-(void)monitorAppLanguage;
     +-(void)languageSwitchNotification:(nonnull NSNotification *)notification;
     ++(void)destroySingleton;
-    ++(instancetype)sharedInstance;
+    ++(instancetype)sharedManager;
     +@property(nonatomic,assign)BOOL isLock;
     +@property(nonatomic,strong)RACDisposable *racDisposable;
     +@property(nonatomic,copy)JobsReturnIDByIDBlock keyboardUpNotificationBlock;
@@ -1208,9 +1208,9 @@ NSObject <|-- BaseProtocol
 * [**`FileFolderHandleModel`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/FileFolderHandleTool)：**文件夹操作**
 * [**`JobsLoadingImage`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIImage/JobsLoadingImage)：**图片存取**
 
-### 21、`View` 和 的区别 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 21、<font color=red>`View` 和 `ViewController`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 两者都是UI层
+* 两者都是属于UI层
 
 * 因为`ViewController`里面也包含了一部分数据层，不利于解耦。所以在Flutter中对UI层和数据层进行完全的剥离，即一个UI层带一个状态（State）
 
@@ -1262,11 +1262,86 @@ NSObject <|-- BaseProtocol
     -(void)dealloc
     ```
 
-### 22、其他
+### 22、<font color=red>**AppDelegate** 和 **SceneDelegate** </font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 在iOS 13及更高版本中，Apple引入了多窗口支持，这意味着一个应用程序可以拥有多个场景（Scene），每个场景都有自己的生命周期和界面
+
+* 这种多场景架构允许应用程序支持多窗口环境，特别是在iPad上，每个窗口可以有自己独立的生命周期和界面
+
+* 一个iOS应用程序App的生命周期里面，只有一个**AppDelegate**实例存在，但是可能有多个**SceneDelegate**实例存在
+
+  * **AppDelegate**：应用程序的委托对象。整个应用程序在其生命周期中只有一个`AppDelegate`实例，负责处理应用程序级别的事件，例如应用程序的启动、终止、后台和前台切换等
+  * **SceneDelegate**：场景的委托对象。每个场景都有一个`SceneDelegate`实例，负责处理该场景级别的事件，例如场景的连接、断开、后台和前台切换等。在多窗口应用程序中，可能有多个`SceneDelegate`实例，每个实例对应一个场景
+
+* <font color=red>故，**AppDelegate** 可以设计成为单例</font>
+
+  ```objective-c
+  static AppDelegate *AppDelegateInstance = nil;
+  static dispatch_once_t AppDelegateOnceToken;
+  +(instancetype)sharedManager{
+      dispatch_once(&AppDelegateOnceToken, ^{
+          AppDelegateInstance = [super allocWithZone:NULL].init;
+      });return AppDelegateInstance;
+  }
+  /// 单例的销毁
+  +(void)destroyInstance{
+      AppDelegateOnceToken = 0;
+      AppDelegateInstance = nil;
+  }
+  /// 防止外部使用 alloc/init 等创建新实例
+  +(instancetype)allocWithZone:(struct _NSZone *)zone{
+      dispatch_once(&AppDelegateOnceToken, ^{
+          AppDelegateInstance = [super allocWithZone:zone];
+      });return AppDelegateInstance;
+  }
+  
+  -(instancetype)copyWithZone:(NSZone *)zone{
+      return self;
+  }
+  
+  -(instancetype)mutableCopyWithZone:(NSZone *)zone{
+      return self;
+  }
+  
+  -(instancetype)init{
+      if (self = [super init]) {
+  
+      }return self;
+  }
+  ```
+
+* 关于 **UIWindow ***
+
+  * 每个`SceneDelegate`实例都有自己的`UIWindow`，而不再是通过`AppDelegate`共享一个单独的`UIWindow`实例
+  * 即便是单场景App， `SceneDelegate`和 `AppDelegate`都有各自的`UIWindow`
+  * `AppDelegate`中的`window`属性在多场景应用中实际上不再被使用。这是为了向后兼容一些现有代码，但在多场景环境下，`AppDelegate`不会处理任何具体的窗口
+  * 在多场景架构下，`SceneDelegate`中的`window`是实际显示和管理UI的窗口，而`AppDelegate`中的`window`只是为了兼容老的单窗口应用
+
+* 获取 **AppDelegate**
+
+  * ```objective-c
+    UIApplication.sharedApplication.delegate;
+    ```
+
+  * ```objective-c
+    AppDelegate.sharedManager;
+    ```
+
+* 获取 **SceneDelegate**
+
+  * ```objective-c
+    if (@available(iOS 13.0, *)) {
+    	sceneDelegate = UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
+    }
+    ```
+
+### 23、其他
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 * <font color=red>不要在属性上加`__block`</font>。转而是在这个对象上使用`__block`
 * <font color=red>属性化的`NSString *`可以用**assign**修饰，但是最好用**copy**</font>
+
+## 架构说明
 
 
 ## 四、代码讲解
@@ -2566,28 +2641,28 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```objective-c
   static JobsLaunchAdMgr *JobsLaunchAdMgrInstance = nil;
   static dispatch_once_t JobsLaunchAdMgrOnceToken;
-  + (instancetype)sharedManager {
+  +(instancetype)sharedManager{
       dispatch_once(&JobsLaunchAdMgrOnceToken, ^{
           JobsLaunchAdMgrInstance = [super allocWithZone:NULL].init;
       });return JobsLaunchAdMgrInstance;
   }
   /// 单例的销毁
-  + (void)destroyInstance {
+  +(void)destroyInstance{
       JobsLaunchAdMgrOnceToken = 0;
       JobsLaunchAdMgrInstance = nil;
   }
   /// 防止外部使用 alloc/init 等创建新实例
-  + (instancetype)allocWithZone:(struct _NSZone *)zone {
+  +(instancetype)allocWithZone:(struct _NSZone *)zone{
       dispatch_once(&JobsLaunchAdMgrOnceToken, ^{
           JobsLaunchAdMgrInstance = [super allocWithZone:zone];
       });return JobsLaunchAdMgrInstance;
   }
   
-  - (instancetype)copyWithZone:(NSZone *)zone {
+  -(instancetype)copyWithZone:(NSZone *)zone{
       return self;
   }
   
-  - (instancetype)mutableCopyWithZone:(NSZone *)zone {
+  -(instancetype)mutableCopyWithZone:(NSZone *)zone{
       return self;
   }
   ```
@@ -3141,6 +3216,33 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
+### 29、字符串写文件 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+```objective-c
+-(void)保留文字{
+    if (![NSString isNullString:self.inputDataString]) {
+        JobsUserModel.sharedManager.postDraftURLStr = [NSObject saveData:self.inputDataString
+                                                   withDocumentsChildDir:JobsInternationalization(@"发帖草稿数据临时文件夹")
+                                                            fileFullname:@"发帖草稿数据.txt"
+                                                                   error:nil];
+    }else{
+        [FileFolderHandleTool cleanFilesWithPath:JobsUserModel.sharedManager.postDraftURLStr];
+    }
+    NSLog(@"%@",JobsUserModel.sharedManager.postDraftURLStr);
+    [self.view hx_showLoadingHUDText:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BOOL success = [self.photoManager saveLocalModelsToFile];//保存图片
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.view hx_handleLoading];
+            if (success) {
+                [self back:nil];
+            }else {
+                [self.view hx_showImageHUDText:JobsInternationalization(@"保存失败")];
+            }
+        });
+    });
+}
+```
 
 ### Test <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
