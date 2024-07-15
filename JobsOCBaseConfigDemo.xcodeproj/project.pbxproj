@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
+		CE935F672C454387003EE92C /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE935F652C454387003EE92C /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		CECE788D2C4509E000764AF5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CECE788C2C4509E000764AF5 /* Base */; };
 		CECE78922C4509E200764AF5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CECE78912C4509E200764AF5 /* Base */; };
 		CECE78952C4509E200764AF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE78942C4509E200764AF5 /* main.m */; };
@@ -1063,7 +1064,6 @@
 		CECE89652C4519AE00764AF5 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CECE88B82C4519AD00764AF5 /* libstdc++.6.tbd */; };
 		CECE89662C4519AE00764AF5 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CECE88B92C4519AD00764AF5 /* libstdc++.dylib */; };
 		CECE89672C4519AE00764AF5 /* libstdc++.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE88BB2C4519AD00764AF5 /* libstdc++.md */; };
-		CECE896B2C4519DD00764AF5 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CECE89692C4519DD00764AF5 /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		D16B7B0D974F1991F2B39889 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -1092,6 +1092,7 @@
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
+		CE935F662C454387003EE92C /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		CECE787F2C4509E000764AF5 /* JobsOCBaseConfigDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobsOCBaseConfigDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECE788C2C4509E000764AF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CECE78912C4509E200764AF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -2994,7 +2995,6 @@
 		CECE88B82C4519AD00764AF5 /* libstdc++.6.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = "libstdc++.6.tbd"; sourceTree = "<group>"; };
 		CECE88B92C4519AD00764AF5 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libstdc++.dylib"; sourceTree = "<group>"; };
 		CECE88BB2C4519AD00764AF5 /* libstdc++.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libstdc++.md"; sourceTree = "<group>"; };
-		CECE896A2C4519DD00764AF5 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		F5DAEE19CC0B77742495EB1F /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE176E0EC1B036786E28E5E5 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -12314,7 +12314,7 @@
 		CECE89682C4519D000764AF5 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				CECE89692C4519DD00764AF5 /* JobsOCBaseConfigDemo.xcdatamodeld */,
+				CE935F652C454387003EE92C /* JobsOCBaseConfigDemo.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -13067,7 +13067,6 @@
 				CECE7C572C450C5000764AF5 /* JobsCommentPopUpView_viewForHeaderInSection.m in Sources */,
 				CECE7D422C450CCD00764AF5 /* DataManager.m in Sources */,
 				CECE80C72C4512BF00764AF5 /* UIScrollView+FDFullscreenPopGesture.m in Sources */,
-				CECE896B2C4519DD00764AF5 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */,
 				CECE87332C45140000764AF5 /* NSData+MIME.m in Sources */,
 				CECE85532C4513CE00764AF5 /* NSObject+PopViewToLogOut.m in Sources */,
 				CECE7D6A2C450DED00764AF5 /* AppDelegate+TabBarCtr.m in Sources */,
@@ -13188,6 +13187,7 @@
 				CECE810F2C4512BF00764AF5 /* JobsBitsMonitorSuspendLab.m in Sources */,
 				CECE85EF2C4513CE00764AF5 /* LOTAnimationMJRefreshFooter.m in Sources */,
 				CECE85D92C4513CE00764AF5 /* UIView+Animation.m in Sources */,
+				CE935F672C454387003EE92C /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */,
 				CECE7D382C450CCD00764AF5 /* JobsGetiOSNewestVersionModel.m in Sources */,
 				CECE7E952C450E5B00764AF5 /* KTVHCLog.m in Sources */,
 				CECE7C4A2C450C5000764AF5 /* GXCardViewDemoVC.m in Sources */,
@@ -14031,14 +14031,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		CECE89692C4519DD00764AF5 /* JobsOCBaseConfigDemo.xcdatamodeld */ = {
+		CE935F652C454387003EE92C /* JobsOCBaseConfigDemo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CECE896A2C4519DD00764AF5 /* JobsBaseConfig.xcdatamodel */,
+				CE935F662C454387003EE92C /* JobsBaseConfig.xcdatamodel */,
 			);
-			currentVersion = CECE896A2C4519DD00764AF5 /* JobsBaseConfig.xcdatamodel */;
+			currentVersion = CE935F662C454387003EE92C /* JobsBaseConfig.xcdatamodel */;
 			name = JobsOCBaseConfigDemo.xcdatamodeld;
-			path = "/Users/user/Desktop/JobsOCBaseConfigDemo/JobsOCBaseConfigDemo/其他/CoreData/JobsOCBaseConfigDemo.xcdatamodeld";
+			path = "/Users/user/Documents/GitLab/FM.iOS/JobsOCBaseConfigDemo/其他/CoreData/JobsOCBaseConfigDemo.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
