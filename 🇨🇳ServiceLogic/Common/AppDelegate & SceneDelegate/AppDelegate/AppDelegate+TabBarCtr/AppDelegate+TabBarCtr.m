@@ -316,7 +316,7 @@ static NSMutableArray <JobsTabBarItemConfig *>*configMutArr = nil;
     JobsCustomTabBarConfig *customTabBarConfig = JobsCustomTabBarConfig.sharedManager;
     customTabBarConfig.tabBarHeight = JobsWidth(80);
     customTabBarConfig.tabBarBackgroundColor = JobsCyanColor;
-    customTabBarConfig.tabBarBackgroundImage = JobsIMG(@"");
+    customTabBarConfig.tabBarBackgroundImage = nil;//JobsIMG(@"");
     customTabBarConfig.tabBarItems = self.makeTabBarItems;
     customTabBarConfig.viewControllers = AppDelegate.makeUIViewControllerMutArr;
 //    customTabBarConfig.tabBarItemYOffsets

@@ -35,15 +35,6 @@ SceneDelegate *sceneDelegate;
     }return self;
 }
 #pragma mark —— lazyLoad
--(UIWindow *)window{
-    if(!_window){
-        _window = [UIWindow.alloc initWithWindowScene:self.windowScene];//UIScreen.mainScreen.bounds
-        _window.frame = self.windowScene.coordinateSpace.bounds;
-    }
-    _window.rootViewController = RootViewController;
-    [_window makeKeyAndVisible];
-    return _window;
-}
 
 @end
 

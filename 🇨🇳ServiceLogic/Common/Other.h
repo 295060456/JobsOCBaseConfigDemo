@@ -28,7 +28,6 @@
 #import "ViewController@4.h"
 #import "ViewController@5.h"
 
-#import "NSObject+JobsCheck.h"// 数据检验
 #import "JobsOCBaseConfigPopupViewHeader.h"// 本App相关的自定义弹出框
 
 // 测试专用

@@ -6,12 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "AppDelegate.h"
-//#import "SceneDelegate.h"
-//#import "AppDelegate+TabBarCtr.h"
-
-//@import AppDelegate;
-//@import SceneDelegate;
 
 #ifndef JobsAppTool
 #define JobsAppTool JobsAppTools.sharedManager

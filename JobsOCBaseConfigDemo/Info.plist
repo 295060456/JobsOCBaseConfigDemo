@@ -37,8 +37,7 @@
         <!-- 开发区域的语言代码 -->
         <key>CFBundleDevelopmentRegion</key>
         <string>en</string>
-        <key>UILaunchStoryboardName</key>
-        <string>LaunchScreen</string>
+        <!-- 配置了 UILaunchStoryboardName，项目里面就必须将 Main.storyboard 包含到工程，进入编译期-->
         <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
         <key>UIViewControllerBasedStatusBarAppearance</key>
         <false/>
@@ -54,73 +53,8 @@
             <string>UIInterfaceOrientationLandscapeRight</string>
         </array>
         <!--❤️【UIApplicationSceneManifest】iOS 13 开始引入。支持多窗口应用程序，允许用户在 iPad 和 macOS 上运行多个实例的应用程序❤️-->
-        <key>UIApplicationSceneManifest</key>
-        <dict>
-            <!--【UIApplicationSupportsMultipleScenes】指示应用程序是否支持多场景（多窗口）。设置为 YES 表示支持多场景 -->
-            <key>UIApplicationSupportsMultipleScenes</key>
-            <false/>
-            <!-- 【UISceneConfigurations】定义不同场景的配置，包括每种场景的生命周期管理类和初始场景配置 -->
-            <key>UISceneConfigurations</key>
-            <dict>
-                <!-- 【UIWindowSceneSessionRoleApplication】在 iOS 的多窗口场景管理中，角色定义了场景的用途或类型。表示该场景是应用的主要窗口场景。 -->
-                <key>UIWindowSceneSessionRoleApplication</key>
-                <array>
-                    <dict>
-                        <!--【UISceneConfigurationName】指定了一个场景配置的名称，iOS 会使用这个名称来查找和加载相应的场景配置 -->
-                        <key>UISceneConfigurationName</key>
-                        <string>Default Configuration</string>
-                        <!--【UISceneDelegateClassName】用于指明哪个类将处理特定场景的生命周期事件 -->
-                        <key>UISceneDelegateClassName</key>
-                        <string>SceneDelegate</string>
-                        <!--【UISceneStoryboardFile】用来定义应用启动时应该加载的特定 Storyboard 文件 -->
-                        <key>UISceneStoryboardFile</key>
-                        <string>Main</string>
-                    </dict>
-                </array>
-            </dict>
-        </dict>
+        <!--TODO-->
         <!--❤️【CFBundleIcons】切换App图标专用❤️-->
-        <key>CFBundleIcons</key>
-        <dict>
-            <!--【CFBundlePrimaryIcon】用于定义应用的主要图标 -->
-            <key>CFBundlePrimaryIcon</key>
-            <dict>
-                <!--【CFBundleIconFiles】用于指定应用程序图标的文件名 -->
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>AppIcon</string>
-                </array>
-                <!--【UIPrerenderedIcon】如果设置为 true，iOS 将不会对图标应用任何默认的渲染效果，例如光泽效果和圆角 -->
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-            <!--【CFBundleAlternateIcons】用于配置应用的替代图标 -->
-            <key>CFBundleAlternateIcons</key>
-            <dict>
-                <key>AlternateIcon1</key>
-                <dict>
-                    <!--【CFBundleIconFiles】用于指定应用程序图标的文件名 -->
-                    <key>CFBundleIconFiles</key>
-                    <array>
-                        <string>AlternateIcon1</string>
-                    </array>
-                    <!--【UIPrerenderedIcon】如果设置为 true，iOS 将不会对图标应用任何默认的渲染效果，例如光泽效果和圆角 -->
-                    <key>UIPrerenderedIcon</key>
-                    <false/>
-                </dict>
-                <key>AlternateIcon2</key>
-                <dict>
-                    <!--【CFBundleIconFiles】用于指定应用程序图标的文件名 -->
-                    <key>CFBundleIconFiles</key>
-                    <array>
-                        <string>AlternateIcon2</string>
-                    </array>
-                    <!--【UIPrerenderedIcon】如果设置为 true，iOS 将不会对图标应用任何默认的渲染效果，例如光泽效果和圆角 -->
-                    <key>UIPrerenderedIcon</key>
-                    <false/>
-                </dict>
-            </dict>
-        </dict>
         <!--❤️UIUserInterfaceStyle 用于指定应用程序的用户界面风格：控制应用程序在系统的暗黑模式和亮模式之间的行为❤️-->
         <key>UIUserInterfaceStyle</key>
         <!-- 设置应用程序始终使用亮模式，不管系统的外观是暗黑模式还是亮模式。Dark：暗黑模式、Light：亮模式、Automatic：跟随系统外观设置，自动切换暗黑模式和亮模式-->

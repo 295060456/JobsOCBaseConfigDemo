@@ -53,11 +53,8 @@ static dispatch_once_t JobsAppToolsOnceToken;
 
 -(void)appDelegateWindowBlock:(jobsByWindowBlock _Nullable)appDelegateWindowBlock
      sceneDelegateWindowBlock:(jobsByWindowBlock _Nullable)sceneDelegateWindowBlock{
-    if (@available(iOS 13.0, *)) {
-        if (sceneDelegateWindowBlock) sceneDelegateWindowBlock(self.appDelegateWindow);
-    } else {
-        if (appDelegateWindowBlock) appDelegateWindowBlock(self.sceneDelegateWindow);
-    }
+    if (appDelegateWindowBlock) appDelegateWindowBlock(self.appDelegateWindow);
+    if (sceneDelegateWindowBlock) sceneDelegateWindowBlock(self.sceneDelegateWindow);
 }
 #pragma mark —— lazyLoad
 /// 仅仅为了iOS 13 版本向下兼容而存在
@@ -65,7 +62,7 @@ static dispatch_once_t JobsAppToolsOnceToken;
     if(!_appDelegateWindow){
         _appDelegateWindow = UIWindow.new;
         _appDelegateWindow.frame = UIScreen.mainScreen.bounds;
-        _appDelegateWindow.rootViewController = AppDelegate.makeLZTabBarNavCtrl;
+        _appDelegateWindow.rootViewController = RootViewController;
         [AppDelegate.tabBarVC ppBadge:YES];
         [_appDelegateWindow makeKeyAndVisible];
     }return _appDelegateWindow;
@@ -73,11 +70,11 @@ static dispatch_once_t JobsAppToolsOnceToken;
 
 -(UIWindow *)sceneDelegateWindow{
     if(!_sceneDelegateWindow){
-        SceneDelegate *sceneDelegate = (SceneDelegate *)getSysSceneDelegate();
-        _sceneDelegateWindow = [UIWindow.alloc initWithWindowScene:sceneDelegate.windowScene];
-        _sceneDelegateWindow.frame = sceneDelegate.windowScene.coordinateSpace.bounds;
-        _sceneDelegateWindow.rootViewController = RootViewController;
-        [_sceneDelegateWindow makeKeyAndVisible];
+//        SceneDelegate *sceneDelegate = (SceneDelegate *)getSysSceneDelegate();
+//        _sceneDelegateWindow = [UIWindow.alloc initWithWindowScene:sceneDelegate.windowScene];
+//        _sceneDelegateWindow.frame = sceneDelegate.windowScene.coordinateSpace.bounds;
+//        _sceneDelegateWindow.rootViewController = RootViewController;
+//        [_sceneDelegateWindow makeKeyAndVisible];
     }return _sceneDelegateWindow;
 }
 

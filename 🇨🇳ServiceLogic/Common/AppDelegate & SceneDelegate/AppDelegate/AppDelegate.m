@@ -10,6 +10,7 @@
 #import "AppDelegate+TabBarCtr.h"
 #import "AppDelegate+Func.h"
 #import "AppDelegate+UIApplicationDelegate.h"
+//#import "AppDelegate+UISceneSessionLifeCycle.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunguarded-availability-new"

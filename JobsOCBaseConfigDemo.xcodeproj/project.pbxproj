@@ -125,9 +125,7 @@
 		84432C12278C45C40028A27D /* 跳动的竖线.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84432C0C278C45C40028A27D /* 跳动的竖线.gif */; };
 		84432C13278C45C40028A27D /* 钱袋.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84432C0D278C45C40028A27D /* 钱袋.gif */; };
 		84432C14278C45C40028A27D /* Bt9h.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84432C0E278C45C40028A27D /* Bt9h.gif */; };
-		8443310F278D456A0028A27D /* NSObject+JobsCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8443310E278D456A0028A27D /* NSObject+JobsCheck.m */; };
 		844B02122764C8EE00B0513D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02112764C8EE00B0513D /* AppDelegate.m */; };
-		844B02152764C8EE00B0513D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02142764C8EE00B0513D /* SceneDelegate.m */; };
 		844B02182764C8EE00B0513D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02172764C8EE00B0513D /* ViewController.m */; };
 		844B02262764C8F000B0513D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B02252764C8F000B0513D /* main.m */; };
 		844B02302764C8F000B0513D /* JobsOCBaseConfigDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B022F2764C8F000B0513D /* JobsOCBaseConfigDemoTests.m */; };
@@ -173,7 +171,6 @@
 		8459CE1E2776DCCF00125782 /* 启动页_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 8459CE172776DCCF00125782 /* 启动页_04.png */; };
 		8459CE1F2776DCCF00125782 /* 启动页_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 8459CE182776DCCF00125782 /* 启动页_05.png */; };
 		8459CE202776DCCF00125782 /* JobsWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8459CE1A2776DCCF00125782 /* JobsWelcomeVC.m */; };
-		8459CE242776DD4000125782 /* SceneDelegate+UISceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8459CE222776DD4000125782 /* SceneDelegate+UISceneDelegate.m */; };
 		8459D6172779A6CC00125782 /* CasinoCustomerServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8459D6142779A6CC00125782 /* CasinoCustomerServiceView.m */; };
 		8459D6182779A6CC00125782 /* CasinoCustomerServiceView.png in Resources */ = {isa = PBXBuildFile; fileRef = 8459D6152779A6CC00125782 /* CasinoCustomerServiceView.png */; };
 		8459D61C2779A88A00125782 /* CasinoCustomerContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8459D61B2779A88900125782 /* CasinoCustomerContactModel.m */; };
@@ -923,12 +920,11 @@
 		CEAAD4712C32758A00349C11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD46F2C32758A00349C11 /* InfoPlist.strings */; };
 		CEAAD47D2C32804000349C11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD4762C327C7A00349C11 /* Localizable.strings */; };
 		CEB72E592C37C7B200E652CA /* JobsLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB72E582C37C7B200E652CA /* JobsLanguageManager.m */; };
-		CEB72FAD2C39079400E652CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB72FAB2C39079400E652CA /* Main.storyboard */; };
-		CEB72FAE2C39079400E652CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB72FAC2C39079400E652CA /* LaunchScreen.storyboard */; };
 		CEB72FE22C390AE500E652CA /* AppLanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB72FE12C390AE500E652CA /* AppLanguageVC.m */; };
 		CEB72FF72C3911CC00E652CA /* 6.59.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB72FF12C390F8100E652CA /* 6.59.png */; };
 		CEB72FFB2C393BE400E652CA /* JobsLaunchAdMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB72FFA2C393BE300E652CA /* JobsLaunchAdMgr.m */; };
-		CECE77352C44C7BB00764AF5 /* AppDelegate+UISceneSessionLifeCycle.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE77332C44C7BA00764AF5 /* AppDelegate+UISceneSessionLifeCycle.m */; };
+		CECE78742C45094100764AF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB72FAC2C39079400E652CA /* LaunchScreen.storyboard */; };
+		CECE78752C45094600764AF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB72FAB2C39079400E652CA /* Main.storyboard */; };
 		CED90E942C31954A008D9F68 /* 配置info.plist.md in Resources */ = {isa = PBXBuildFile; fileRef = CED90E912C31954A008D9F68 /* 配置info.plist.md */; };
 		CEDA46F92C428C8500C03CF9 /* JobsCustomTabBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA46F82C428C8500C03CF9 /* JobsCustomTabBarConfig.m */; };
 		CEDA46FE2C428CD100C03CF9 /* JobsCustomTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA46FD2C428CD100C03CF9 /* JobsCustomTabBarButton.m */; };
@@ -1171,8 +1167,6 @@
 		84432C0D278C45C40028A27D /* 钱袋.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "钱袋.gif"; sourceTree = "<group>"; };
 		84432C0E278C45C40028A27D /* Bt9h.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Bt9h.gif; sourceTree = "<group>"; };
 		84432C87278C4CD20028A27D /* JobsComment.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = JobsComment.md; sourceTree = "<group>"; };
-		8443310D278D456A0028A27D /* NSObject+JobsCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JobsCheck.h"; sourceTree = "<group>"; };
-		8443310E278D456A0028A27D /* NSObject+JobsCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JobsCheck.m"; sourceTree = "<group>"; };
 		844B020D2764C8EE00B0513D /* JobsOCBaseConfigDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobsOCBaseConfigDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844B02102764C8EE00B0513D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		844B02112764C8EE00B0513D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -2836,7 +2830,7 @@
 		CECE77322C44C7BA00764AF5 /* AppDelegate+UISceneSessionLifeCycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UISceneSessionLifeCycle.h"; sourceTree = "<group>"; };
 		CECE77332C44C7BA00764AF5 /* AppDelegate+UISceneSessionLifeCycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UISceneSessionLifeCycle.m"; sourceTree = "<group>"; };
 		CED90E912C31954A008D9F68 /* 配置info.plist.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "配置info.plist.md"; sourceTree = "<group>"; };
-		CED90E922C31954A008D9F68 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CED90E922C31954A008D9F68 /* 备份Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "备份Info.plist"; sourceTree = "<group>"; };
 		CEDA46F72C428C8500C03CF9 /* JobsCustomTabBarConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCustomTabBarConfig.h; sourceTree = "<group>"; };
 		CEDA46F82C428C8500C03CF9 /* JobsCustomTabBarConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCustomTabBarConfig.m; sourceTree = "<group>"; };
 		CEDA46FC2C428CD100C03CF9 /* JobsCustomTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCustomTabBarButton.h; sourceTree = "<group>"; };
@@ -3865,19 +3859,9 @@
 				C5932EBD282D26CD00B3B053 /* ☀️业务模块中公用的View */,
 				84CA653C2789CA8600E46E71 /* 网络请求 */,
 				844B02BD2764C95E00B0513D /* AppDelegate & SceneDelegate */,
-				8443310C278D456A0028A27D /* JobsCheck */,
 				84CA5CD32789596A00E46E71 /* Other.h */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		8443310C278D456A0028A27D /* JobsCheck */ = {
-			isa = PBXGroup;
-			children = (
-				8443310D278D456A0028A27D /* NSObject+JobsCheck.h */,
-				8443310E278D456A0028A27D /* NSObject+JobsCheck.m */,
-			);
-			path = JobsCheck;
 			sourceTree = "<group>";
 		};
 		8447CE802C035B5F004BD07D /* JobsMakeLocalNotification */ = {
@@ -3926,9 +3910,9 @@
 			isa = PBXGroup;
 			children = (
 				844B02242764C8F000B0513D /* Info.plist */,
+				CED90E932C31954A008D9F68 /* 配置info.plist */,
 				845A0B1B276DAC99008E75A5 /* JobsOCBaseConfigDemoPrefixHeader.pch */,
 				C59789E82BE3599600A56125 /* JobsOCBaseCustomizeUIKitCore */,
-				CED90E932C31954A008D9F68 /* 配置info.plist */,
 				844B03342764CB0000B0513D /* OCBaseConfig */,
 				844B02482764C93600B0513D /* Others */,
 			);
@@ -12072,7 +12056,7 @@
 			isa = PBXGroup;
 			children = (
 				CED90E912C31954A008D9F68 /* 配置info.plist.md */,
-				CED90E922C31954A008D9F68 /* Info.plist */,
+				CED90E922C31954A008D9F68 /* 备份Info.plist */,
 			);
 			path = "配置info.plist";
 			sourceTree = "<group>";
@@ -12136,7 +12120,7 @@
 				844B020A2764C8EE00B0513D /* Frameworks */,
 				844B020B2764C8EE00B0513D /* Resources */,
 				C5A06E3629003208002392AB /* ShellScript */,
-				94C7B0C1E8E9A0232A66F6D8 /* [CP] Copy Pods Resources */,
+				691542444C85705BAEC6858C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -12251,6 +12235,7 @@
 				C5C4805C284E21E5007916B3 /* NotoSansDisplay_Condensed-Italic.ttf in Resources */,
 				C59483362879846400EC655B /* refresh.png in Resources */,
 				84CA5E8027895BA400E46E71 /* Tabbar.xcassets in Resources */,
+				CECE78752C45094600764AF5 /* Main.storyboard in Resources */,
 				840F95FC27736427004979E9 /* record_change.json in Resources */,
 				C57A2038282CB59F0032156B /* gesture_normal@2x.png in Resources */,
 				84CA5FD827897AFB00E46E71 /* sortedNameCH.plist in Resources */,
@@ -12297,7 +12282,6 @@
 				84409F1827A007170089EE40 /* 放大镜.png in Resources */,
 				84A4920827904A970002A837 /* 右气泡@2x.png in Resources */,
 				C5C48058284E21E5007916B3 /* NotoSansDisplay_Condensed-Black.ttf in Resources */,
-				CEB72FAE2C39079400E652CA /* LaunchScreen.storyboard in Resources */,
 				84CA5DFF27895B4700E46E71 /* 开屏页面.bundle in Resources */,
 				C5C4805B284E21E5007916B3 /* NotoSansDisplay_Condensed-ExtraLightItalic.ttf in Resources */,
 				C520F8322AB39EDD00142DCC /* 320x480.png in Resources */,
@@ -12453,7 +12437,6 @@
 				84CA621D27899E2700E46E71 /* 1.jpeg in Resources */,
 				840F95EA27736427004979E9 /* 主页.json in Resources */,
 				84A491FD27904A970002A837 /* Check@2x.png in Resources */,
-				CEB72FAD2C39079400E652CA /* Main.storyboard in Resources */,
 				84CA5FB427897AFB00E46E71 /* 音律跳动.bundle in Resources */,
 				C5978AA02BE3599700A56125 /* WhiteRightArrow@2x.png in Resources */,
 				C5C48034284E21E5007916B3 /* NotoSans-Black.ttf in Resources */,
@@ -12503,6 +12486,7 @@
 				C5C48074284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-MediumItalic.ttf in Resources */,
 				8459CE1B2776DCCF00125782 /* 启动页_01.png in Resources */,
 				C57A203C282CB59F0032156B /* 橙色椭圆.png in Resources */,
+				CECE78742C45094100764AF5 /* LaunchScreen.storyboard in Resources */,
 				84CA5E0427895B4700E46E71 /* GIF大图.gif in Resources */,
 				840F961E27736427004979E9 /* 9@3x.png in Resources */,
 				C5C4806E284E21E5007916B3 /* NotoSansDisplay_ExtraCondensed-Regular.ttf in Resources */,
@@ -12560,7 +12544,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94C7B0C1E8E9A0232A66F6D8 /* [CP] Copy Pods Resources */ = {
+		691542444C85705BAEC6858C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -12801,7 +12785,6 @@
 				C57D1E3D2C398F060082EAE7 /* User_Realm.m in Sources */,
 				C5432D762ACB1CF6008F92B0 /* MSCommentView.m in Sources */,
 				C5B3AEA72853796A0052A4A9 /* BaiShaETProjVIPSubCVFooterView.m in Sources */,
-				8459CE242776DD4000125782 /* SceneDelegate+UISceneDelegate.m in Sources */,
 				844B083A2764CF4800B0513D /* JXCategoryTitleBackgroundCellModel.m in Sources */,
 				844B083C2764CF4800B0513D /* JXCategoryTitleBackgroundView.m in Sources */,
 				8424779B27C1147E00831270 /* NotifiView.m in Sources */,
@@ -12979,7 +12962,6 @@
 				C5978AB02BE3599700A56125 /* UITextView+Extend.m in Sources */,
 				84A4920D27904A970002A837 /* JobsIMListView.m in Sources */,
 				C5978A0B2BE3599700A56125 /* UIViewModel.m in Sources */,
-				8443310F278D456A0028A27D /* NSObject+JobsCheck.m in Sources */,
 				844B083D2764CF4800B0513D /* JXCategoryTimelineView.m in Sources */,
 				C5AA8B7E282CE2F00057EB84 /* JobsAppDoorInputViewBaseStyleModel.m in Sources */,
 				84A4920C27904A970002A837 /* JobsIMVC.m in Sources */,
@@ -13044,7 +13026,6 @@
 				C55226642AC89EF100668516 /* RequestTool.m in Sources */,
 				840F95E627736427004979E9 /* UITabBarItem+TLAnimation.m in Sources */,
 				842475AD27C0D67000831270 /* YTKAnimatingRequestAccessory.m in Sources */,
-				CECE77352C44C7BB00764AF5 /* AppDelegate+UISceneSessionLifeCycle.m in Sources */,
 				84562598278BF2780067ABB9 /* JobsPopUpVC.m in Sources */,
 				C52809E128608BE100654584 /* TestBaseLabelVC.m in Sources */,
 				C5978ABC2BE3599700A56125 /* UIView+Gesture.m in Sources */,
@@ -13266,7 +13247,6 @@
 				C52688522BDB8FC700872F26 /* NSData+MIME.m in Sources */,
 				8424744027C0CAEB00831270 /* YTKUrlArgumentsFilter.m in Sources */,
 				84868DA32779DDA50098BE7A /* ZMJCells.m in Sources */,
-				844B02152764C8EE00B0513D /* SceneDelegate.m in Sources */,
 				84CA5FB027897AFB00E46E71 /* XLChannelItem.m in Sources */,
 				C57A8ED22851A7DE00DD089E /* UIView+layout.m in Sources */,
 				C5C47D15284E1C95007916B3 /* JobsMsgDataModel.m in Sources */,

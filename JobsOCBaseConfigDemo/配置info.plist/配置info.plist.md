@@ -287,17 +287,54 @@
 <string>CFBundleDisplayName</string>
 ```
 
-## 10、其他
+## 10、App多场景的支持
 
- ```xml
- <!-- 应用程序是否需要持久的 Wi-Fi 连接才能运行。已废弃 -->
- <key>UIRequiresPersistentWiFi</key>
- <true/>
- <!-- 于启用应用程序中的摇动手势，通常与撤销/重做操作相关联 -->
- <key>UIApplicationSupportsShakeToEdit</key>
- <true/>
- <!-- Core Data -->
- <key>NSPersistentStoreTypeKey</key>
- <string>SQLite</string>
- ```
+```xml
+<!--❤️【UIApplicationSceneManifest】iOS 13 开始引入。支持多窗口应用程序，允许用户在 iPad 和 macOS 上运行多个实例的应用程序❤️-->
+<key>UIApplicationSceneManifest</key>
+<dict>
+    <!--【UIApplicationSupportsMultipleScenes】指示应用程序是否支持多场景（多窗口）。设置为 YES 表示支持多场景 -->
+    <key>UIApplicationSupportsMultipleScenes</key>
+    <false/>
+    <!-- 【UISceneConfigurations】定义不同场景的配置，包括每种场景的生命周期管理类和初始场景配置 -->
+    <key>UISceneConfigurations</key>
+    <dict>
+        <!-- 【UIWindowSceneSessionRoleApplication】在 iOS 的多窗口场景管理中，角色定义了场景的用途或类型。表示该场景是应用的主要窗口场景。 -->
+        <key>UIWindowSceneSessionRoleApplication</key>
+        <array>
+            <dict>
+                <!--【UISceneConfigurationName】指定了一个场景配置的名称，iOS 会使用这个名称来查找和加载相应的场景配置 -->
+                <key>UISceneConfigurationName</key>
+                <string>Default Configuration</string>
+                <!--【UISceneDelegateClassName】用于指明哪个类将处理特定场景的生命周期事件 -->
+                <key>UISceneDelegateClassName</key>
+                <string>SceneDelegate</string>
+                <!--【UISceneStoryboardFile】用来定义应用启动时应该加载的特定 Storyboard 文件 -->
+                <key>UISceneStoryboardFile</key>
+                <string>Main</string>
+            </dict>
+        </array>
+    </dict>
+</dict>
+```
+
+## 11、其他
+
+* ```xml
+  <!-- 配置 UILaunchStoryboardName，项目里面就必须将 Main.storyboard 包含到工程，进入编译期-->
+  <key>UILaunchStoryboardName</key>
+  <string>LaunchScreen</string>
+  ```
+
+* ```xml
+  <!-- 应用程序是否需要持久的 Wi-Fi 连接才能运行。已废弃 -->
+  <key>UIRequiresPersistentWiFi</key>
+  <true/>
+  <!-- 于启用应用程序中的摇动手势，通常与撤销/重做操作相关联 -->
+  <key>UIApplicationSupportsShakeToEdit</key>
+  <true/>
+  <!-- Core Data -->
+  <key>NSPersistentStoreTypeKey</key>
+  <string>SQLite</string>
+  ```
 
