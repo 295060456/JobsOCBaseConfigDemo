@@ -12,15 +12,13 @@
 - (void)scene:(UIScene *)scene
 willConnectToSession:(UISceneSession *)session
       options:(UISceneConnectionOptions *)connectionOptions {
+    self.windowScene = (UIWindowScene *)scene;
     @jobs_weakify(self)
-    [JobsAppTools.sharedManager appDelegateWindowBlock:^id _Nullable(id  _Nullable data) {
-        return nil;
-    } sceneDelegateWindowBlock:^id _Nullable(id  _Nullable data) {
+    [JobsAppTools.sharedManager appDelegateWindowBlock:nil
+                              sceneDelegateWindowBlock:^(id  _Nullable data) {
         @jobs_strongify(self);
-        self.windowScene = (UIWindowScene *)scene;
-        self.window = JobsAppTools.sharedManager.makeSceneDelegateWindow;
+        self.window = data;
         [AppDelegate launchFunc1];
-        return nil;
     }];
 }
 
@@ -48,8 +46,7 @@ willConnectToSession:(UISceneSession *)session
 - (void)sceneDidEnterBackground:(UIScene *)scene {
     NSLog(@"---applicationDidEnterBackground----"); //进入后台
     [(AppDelegate *)UIApplication.sharedApplication.delegate saveContext];
-    [NSNotificationCenter.defaultCenter postNotificationName:JobsEnterBackgroundStopPlayer
-                                                      object:nil];
+    JobsPostNotification(JobsEnterBackgroundStopPlayer, nil);
 }
 
 @end

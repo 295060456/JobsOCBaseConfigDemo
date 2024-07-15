@@ -17,7 +17,7 @@
 @implementation JobsMagicTextField
 
 -(void)dealloc{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsRemoveNotification(self);;
 }
 
 - (instancetype)init{

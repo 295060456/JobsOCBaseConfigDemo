@@ -41,7 +41,7 @@
 @implementation ZLGestureLockViewController
 
 - (void)dealloc{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsRemoveNotification(self);;
     [self.view endEditing:YES];
     if (JobsDebug) {
         [WHToast jobsToastMsg:[NSString stringWithFormat:@"成功销毁了控制器:%@",NSStringFromClass(self.class)]];

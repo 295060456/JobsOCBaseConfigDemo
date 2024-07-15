@@ -27,7 +27,7 @@
 @implementation PicToStrStoreSubVC
 
 - (void)dealloc{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsRemoveNotification(self);;
     NSLog(@"%@",JobsLocalFunc);
 }
 

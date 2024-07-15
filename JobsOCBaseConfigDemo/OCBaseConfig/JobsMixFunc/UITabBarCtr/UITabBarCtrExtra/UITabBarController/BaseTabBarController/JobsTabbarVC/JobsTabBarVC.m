@@ -25,7 +25,7 @@
 static dispatch_once_t onceToken;
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsRemoveNotification(self);;
     onceToken = 0;
 }
 #pragma mark —— 初始化方法

@@ -18,33 +18,32 @@ extern JobsNetworkingEnvir networkingEnvir;
 @implementation JobsBitsMonitorSuspendLab
 
 -(void)dealloc{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsRemoveNotification(self);;
 }
 
 -(instancetype)init{
     if (self = [super init]) {
-        
+        /// download
         [JobsNotificationCenter addObserverForName:GSDownloadNetworkSpeedNotificationKey
                                             object:nil
                                              queue:nil
                                         usingBlock:^(NSNotification * _Nonnull notification) {
-            /// download
+            
             NSLog(@"%@",notification.object);
         }];
-        
+        /// upload
         [JobsNotificationCenter addObserverForName:GSUploadNetworkSpeedNotificationKey
                                             object:nil
                                              queue:nil
                                         usingBlock:^(NSNotification * _Nonnull notification) {
-            /// upload
+            
             NSLog(@"%@",notification.object);
         }];
-        
+        /// UploadAndDownload
         [JobsNotificationCenter addObserverForName:GSUploadAndDownloadNetworkSpeedNotificationKey
                                             object:nil
                                              queue:nil
                                         usingBlock:^(NSNotification * _Nonnull notification) {
-            /// UploadAndDownload
             NSLog(@"%@",notification.object);
             self.text = notification.object;
             [self makeLabelByShowingType:UILabelShowingType_03];

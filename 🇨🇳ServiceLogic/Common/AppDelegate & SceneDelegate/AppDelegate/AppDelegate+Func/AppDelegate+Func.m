@@ -8,7 +8,6 @@
 #import "AppDelegate+Func.h"
 
 @implementation AppDelegate (Func)
--(void)reachabilityChanged:(NSNotification *)notify{}
 #pragma mark —— 启动调用功能
 +(void)launchFunc1{
     
@@ -189,15 +188,21 @@
     reach.reachableOnWWAN = NO;
     // Here we set up a NSNotification observer. The Reachability that caused the notification
     // is passed in the object parameter
+    @jobs_weakify(self)
     [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(reachabilityChanged:)
-                                               name:kReachabilityChangedNotification
-                                             object:nil];
+                                          selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
+                                                                                id  _Nullable arg) {
+       NSNotification *notification = (NSNotification *)arg;
+       @jobs_strongify(self)
+       NSLog(@"通知传递过来的 = %@",notification.object);
+       return nil;
+    }, nil, self)
+                                              name:kReachabilityChangedNotification
+                                            object:nil];
     [reach startNotifier];
     dispatch_async(dispatch_get_main_queue(), ^{
-         [NSNotificationCenter.defaultCenter postNotificationName:kReachabilityChangedNotification
-                                                           object:self];
-     });
+        JobsPostNotification(kReachabilityChangedNotification, self);
+    });
 }
 /// 适配各种机型的开屏图片
 -(NSString * _Nullable)imageNameOrURLString{

@@ -39,8 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 仅仅为了iOS 13 版本向下兼容而存在
 -(UIWindow *)makeAppDelegateWindow;
 -(UIWindow *)makeSceneDelegateWindow;
--(void)appDelegateWindowBlock:(JobsReturnIDByIDBlock _Nullable)appDelegateWindowBlock
-     sceneDelegateWindowBlock:(JobsReturnIDByIDBlock _Nullable)sceneDelegateWindowBlock;
+-(void)appDelegateWindowBlock:(jobsByWindowBlock _Nullable)appDelegateWindowBlock
+     sceneDelegateWindowBlock:(jobsByWindowBlock _Nullable)sceneDelegateWindowBlock;
 
 @end
 

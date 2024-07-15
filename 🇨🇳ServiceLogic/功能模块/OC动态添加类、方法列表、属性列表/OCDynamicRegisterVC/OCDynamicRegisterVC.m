@@ -23,7 +23,7 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    [NSNotificationCenter.defaultCenter removeObserver:self];
+    //    JobsRemoveNotification(self);;
     if (NSClassFromString(@"newClass")) objc_disposeClassPair(newClass);
 }
 

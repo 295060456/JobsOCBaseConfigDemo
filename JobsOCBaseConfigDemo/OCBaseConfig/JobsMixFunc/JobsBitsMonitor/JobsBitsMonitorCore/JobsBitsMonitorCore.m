@@ -12,17 +12,14 @@ NSString* const GSUploadNetworkSpeedNotificationKey = @"GSUploadNetworkSpeedNoti
 NSString* const GSUploadAndDownloadNetworkSpeedNotificationKey = @"GSUploadAndDownloadNetworkSpeedNotificationKey";
 
 @interface JobsBitsMonitorCore (){
-    
     //总网速
     uint32_t _iBytes;
     uint32_t _oBytes;
     uint32_t _allFlow;
-
     //wifi网速
     uint32_t _wifiIBytes;
     uint32_t _wifiOBytes;
     uint32_t _wifiFlow;
-
     //3G网速
     uint32_t _wwanIBytes;
     uint32_t _wwanOBytes;
@@ -135,19 +132,19 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
     freeifaddrs(ifa_list);
     if (_iBytes != 0) {
         self.downloadNetworkSpeed = [[self stringWithbytes:iBytes - _iBytes] stringByAppendingString:@"/s"];
-        [NSNotificationCenter.defaultCenter postNotificationName:GSDownloadNetworkSpeedNotificationKey
-                                                          object:self.downloadNetworkSpeed];
+        JobsPostNotification(GSDownloadNetworkSpeedNotificationKey, self.downloadNetworkSpeed);
         NSLog(@"self.downloadNetworkSpeed : %@",self.downloadNetworkSpeed);
     }
     _iBytes = iBytes;
     if (_oBytes != 0) {
         self.uploadNetworkSpeed = [[self stringWithbytes:oBytes - _oBytes] stringByAppendingString:@"/s"];
-        [NSNotificationCenter.defaultCenter postNotificationName:GSUploadNetworkSpeedNotificationKey
-                                                          object:self.uploadNetworkSpeed];
+        JobsPostNotification(GSUploadNetworkSpeedNotificationKey, self.uploadNetworkSpeed);
         NSLog(@"self.uploadNetworkSpeed  :%@",self.uploadNetworkSpeed);
     }
-    [NSNotificationCenter.defaultCenter postNotificationName:GSUploadAndDownloadNetworkSpeedNotificationKey
-                                                      object:[NSString stringWithFormat:@"↑%@ / ↓%@",JobsNonnullString(self.uploadNetworkSpeed, @"0b/s"),JobsNonnullString(self.downloadNetworkSpeed, @"0b/s")]];
+    
+    NSString *str = [NSString stringWithFormat:@"↑%@ / ↓%@",JobsNonnullString(self.uploadNetworkSpeed, @"0b/s"),JobsNonnullString(self.downloadNetworkSpeed, @"0b/s")];
+    JobsPostNotification(GSUploadAndDownloadNetworkSpeedNotificationKey, str);
+    
     _oBytes = oBytes;
 }
 //格式化数据输出

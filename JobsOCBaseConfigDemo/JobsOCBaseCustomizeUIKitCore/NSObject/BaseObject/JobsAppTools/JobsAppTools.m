@@ -51,12 +51,12 @@ static dispatch_once_t JobsAppToolsOnceToken;
     return self.sceneDelegateWindow;
 }
 
--(void)appDelegateWindowBlock:(JobsReturnIDByIDBlock _Nullable)appDelegateWindowBlock
-     sceneDelegateWindowBlock:(JobsReturnIDByIDBlock _Nullable)sceneDelegateWindowBlock{
+-(void)appDelegateWindowBlock:(jobsByWindowBlock _Nullable)appDelegateWindowBlock
+     sceneDelegateWindowBlock:(jobsByWindowBlock _Nullable)sceneDelegateWindowBlock{
     if (@available(iOS 13.0, *)) {
-        if (sceneDelegateWindowBlock) sceneDelegateWindowBlock(nil);
+        if (sceneDelegateWindowBlock) sceneDelegateWindowBlock(self.appDelegateWindow);
     } else {
-        if (appDelegateWindowBlock) appDelegateWindowBlock(nil);
+        if (appDelegateWindowBlock) appDelegateWindowBlock(self.sceneDelegateWindow);
     }
 }
 #pragma mark —— lazyLoad

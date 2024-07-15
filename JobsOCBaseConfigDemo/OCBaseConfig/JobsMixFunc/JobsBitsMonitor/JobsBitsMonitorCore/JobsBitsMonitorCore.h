@@ -13,12 +13,11 @@
 #include <net/if_dl.h>
 
 #import "NSTimerManager.h"
+#import "MacroDef_Notification.h"
 
 typedef enum : NSUInteger {
-    /// 自启动模式
-    BitsMonitorAutoRun = 0,
-    /// 手动启动模式
-    BitsMonitorManualRun = 1
+    BitsMonitorAutoRun = 0,/// 自启动模式
+    BitsMonitorManualRun = 1/// 手动启动模式
 } BitsMonitorRunMode;
 
 NS_ASSUME_NONNULL_BEGIN

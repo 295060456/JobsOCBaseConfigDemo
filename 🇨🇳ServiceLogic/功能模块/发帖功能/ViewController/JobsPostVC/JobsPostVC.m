@@ -39,7 +39,7 @@
 @implementation JobsPostVC
 UIViewModelProtocol_synthesize
 - (void)dealloc{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsRemoveNotification(self);;
     NSLog(@"%@",JobsLocalFunc);
 }
 

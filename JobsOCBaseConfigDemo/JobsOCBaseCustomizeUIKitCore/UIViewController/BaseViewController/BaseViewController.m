@@ -20,7 +20,7 @@ BaseViewProtocol_synthesize
 BaseViewControllerProtocol_synthesize
 
 - (void)dealloc{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsRemoveNotification(self);;
     [self.view endEditing:YES];
     if (JobsDebug) {
         toast([NSString stringWithFormat:@"%@%@",JobsInternationalization(@"成功销毁了控制器"),NSStringFromClass(self.class)]);

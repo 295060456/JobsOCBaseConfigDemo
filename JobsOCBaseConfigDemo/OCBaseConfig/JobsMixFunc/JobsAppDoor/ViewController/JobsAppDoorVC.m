@@ -39,7 +39,7 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsRemoveNotification(self);;
 }
 
 +(void)destroyAppDoorSingleton{
@@ -249,7 +249,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 //        }else{
 //            [self deleteUserName:account];
 //        }
-//        [NSNotificationCenter.defaultCenter postNotificationName:登录成功 object:@(YES)];
+//        JobsPostNotification(登录成功, @(YES));
 //        [self backBtnClickEvent:nil];
 //    } failureBlock:^(id data) {
 //        [DDNetworkingAPI handleError:data];

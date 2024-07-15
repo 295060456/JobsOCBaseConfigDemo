@@ -9,7 +9,6 @@
 #import "AppDelegate+UISceneSessionLifeCycle.h"
 
 @implementation AppDelegate (UIApplicationDelegate)
-
 #pragma mark —— UIApplicationDelegate
 /// 一进入App就横屏
 //- (UIInterfaceOrientationMask)application:(UIApplication *)application
@@ -26,16 +25,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self launchFunc2];
 
     @jobs_weakify(self)
-    [JobsAppTools.sharedManager appDelegateWindowBlock:^id _Nullable(id  _Nullable data) {
+    [JobsAppTools.sharedManager appDelegateWindowBlock:^(UIWindow * _Nullable data) {
         @jobs_strongify(self)
-        self.window = JobsAppTools.sharedManager.makeAppDelegateWindow;
+        self.window = data;
         [AppDelegate launchFunc1];
-        return nil;
-    } sceneDelegateWindowBlock:^id _Nullable(id  _Nullable data) {
-        @jobs_strongify(self)
-        return nil;
-    }];
-
+    } sceneDelegateWindowBlock:nil];
+    
 //    self.window = JobsAppTools.sharedManager.makeAppDelegateWindow;
 //    [AppDelegate launchFunc1];
     
@@ -44,6 +39,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidEnterBackground:(UIApplication *)application{
     NSLog(@"---applicationDidEnterBackground----");//进入后台
+    JobsPostNotification(JobsEnterBackgroundStopPlayer, nil);
     [NSNotificationCenter.defaultCenter postNotificationName:JobsEnterBackgroundStopPlayer object:nil];
 }
 /// 系统版本低于iOS13.0的设备

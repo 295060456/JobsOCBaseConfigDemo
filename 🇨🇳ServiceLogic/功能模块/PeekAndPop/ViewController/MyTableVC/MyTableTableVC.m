@@ -20,7 +20,7 @@
 @implementation MyTableTableVC
 
 - (void)dealloc{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsRemoveNotification(self);;
     NSLog(@"%@",JobsLocalFunc);
 }
 

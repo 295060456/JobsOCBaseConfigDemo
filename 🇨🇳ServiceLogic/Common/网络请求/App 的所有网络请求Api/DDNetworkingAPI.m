@@ -159,7 +159,6 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
             }break;
             case HTTPResponseCodeLoginDate:{// 登录已过期，请重新登录 DDResponseModel
                 JobsPostNotification(退出登录,@(NO));
-                [NSNotificationCenter.defaultCenter postNotificationName:退出登录 object:@(NO)];
             }break;
             case HTTPResponseCodeAuthorizationFailure:{// 授权失败
                 [WHToast jobsToastErrMsg:JobsInternationalization(@"Authorization failure")];

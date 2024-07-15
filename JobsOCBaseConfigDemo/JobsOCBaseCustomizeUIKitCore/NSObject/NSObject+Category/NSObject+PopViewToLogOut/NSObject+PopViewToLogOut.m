@@ -46,7 +46,7 @@ JobsKey(_logOutPopupView)
                 [WHToast jobsToastSuccessMsg:JobsInternationalization(@"Logout succeeded")];
                 extern BOOL ISLogin;
                 ISLogin = NO;
-                [NSNotificationCenter.defaultCenter postNotificationName:退出登录 object:@(NO)];
+                JobsPostNotification(退出登录, @(NO));
             }
             [LogOutPopupView tf_hide];
         }];

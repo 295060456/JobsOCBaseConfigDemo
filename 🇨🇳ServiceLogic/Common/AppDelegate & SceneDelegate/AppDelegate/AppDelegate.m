@@ -60,9 +60,8 @@ static dispatch_once_t AppDelegateOnceToken;
     userModel.userName = @"张三丰";
     userModel.phone = @"134****0000";
     [self saveUserInfo:userModel];
-    
-    id f = self.readUserInfo;
-    NSLog(@"");
+//    id f = self.readUserInfo;
+//    NSLog(@"");
 }
 #pragma mark —— 一些公有方法
 /// Core Data Saving support

@@ -46,7 +46,7 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
         [_bannerTimer invalidate];
         _bannerTimer = nil;
     }
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsRemoveNotification(self);
 }
 
 - (id)initWithFrame:(CGRect)frame {
