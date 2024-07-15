@@ -166,7 +166,7 @@ static inline id<UIApplicationDelegate> _Nullable getSysAppDelegate(void){
      
      获取方式：extern SceneDelegate *sceneDelegate;
  */
-static inline id _Nullable getSysSceneDelegate(void){
+static inline id<UIWindowSceneDelegate> _Nullable getSysSceneDelegate(void){
     id sceneDelegate = nil;
     if (@available(iOS 13.0, *)) {
         sceneDelegate = UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;

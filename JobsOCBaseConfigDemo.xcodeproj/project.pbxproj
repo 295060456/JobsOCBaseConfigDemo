@@ -928,6 +928,7 @@
 		CEB72FE22C390AE500E652CA /* AppLanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB72FE12C390AE500E652CA /* AppLanguageVC.m */; };
 		CEB72FF72C3911CC00E652CA /* 6.59.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB72FF12C390F8100E652CA /* 6.59.png */; };
 		CEB72FFB2C393BE400E652CA /* JobsLaunchAdMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB72FFA2C393BE300E652CA /* JobsLaunchAdMgr.m */; };
+		CECE77352C44C7BB00764AF5 /* AppDelegate+UISceneSessionLifeCycle.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE77332C44C7BA00764AF5 /* AppDelegate+UISceneSessionLifeCycle.m */; };
 		CED90E942C31954A008D9F68 /* 配置info.plist.md in Resources */ = {isa = PBXBuildFile; fileRef = CED90E912C31954A008D9F68 /* 配置info.plist.md */; };
 		CEDA46F92C428C8500C03CF9 /* JobsCustomTabBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA46F82C428C8500C03CF9 /* JobsCustomTabBarConfig.m */; };
 		CEDA46FE2C428CD100C03CF9 /* JobsCustomTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA46FD2C428CD100C03CF9 /* JobsCustomTabBarButton.m */; };
@@ -2832,6 +2833,8 @@
 		CEB72FF92C393BE300E652CA /* JobsLaunchAdMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsLaunchAdMgr.h; sourceTree = "<group>"; };
 		CEB72FFA2C393BE300E652CA /* JobsLaunchAdMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsLaunchAdMgr.m; sourceTree = "<group>"; };
 		CEB730022C39490400E652CA /* 牛逼标签效果 - SphereView👍.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "牛逼标签效果 - SphereView👍.md"; sourceTree = "<group>"; };
+		CECE77322C44C7BA00764AF5 /* AppDelegate+UISceneSessionLifeCycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UISceneSessionLifeCycle.h"; sourceTree = "<group>"; };
+		CECE77332C44C7BA00764AF5 /* AppDelegate+UISceneSessionLifeCycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UISceneSessionLifeCycle.m"; sourceTree = "<group>"; };
 		CED90E912C31954A008D9F68 /* 配置info.plist.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "配置info.plist.md"; sourceTree = "<group>"; };
 		CED90E922C31954A008D9F68 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEDA46F72C428C8500C03CF9 /* JobsCustomTabBarConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCustomTabBarConfig.h; sourceTree = "<group>"; };
@@ -4921,6 +4924,7 @@
 		84CA5CC92789587900E46E71 /* AppDelegate+UIApplicationDelegate */ = {
 			isa = PBXGroup;
 			children = (
+				CECE77342C44C7BA00764AF5 /* AppDelegate+UISceneSessionLifeCycle */,
 				84CA5CCB2789587900E46E71 /* AppDelegate+UIApplicationDelegate.h */,
 				84CA5CCA2789587900E46E71 /* AppDelegate+UIApplicationDelegate.m */,
 			);
@@ -12055,6 +12059,15 @@
 			path = "App开屏广告-JobsLaunchAdMgr";
 			sourceTree = "<group>";
 		};
+		CECE77342C44C7BA00764AF5 /* AppDelegate+UISceneSessionLifeCycle */ = {
+			isa = PBXGroup;
+			children = (
+				CECE77322C44C7BA00764AF5 /* AppDelegate+UISceneSessionLifeCycle.h */,
+				CECE77332C44C7BA00764AF5 /* AppDelegate+UISceneSessionLifeCycle.m */,
+			);
+			path = "AppDelegate+UISceneSessionLifeCycle";
+			sourceTree = "<group>";
+		};
 		CED90E932C31954A008D9F68 /* 配置info.plist */ = {
 			isa = PBXGroup;
 			children = (
@@ -13031,6 +13044,7 @@
 				C55226642AC89EF100668516 /* RequestTool.m in Sources */,
 				840F95E627736427004979E9 /* UITabBarItem+TLAnimation.m in Sources */,
 				842475AD27C0D67000831270 /* YTKAnimatingRequestAccessory.m in Sources */,
+				CECE77352C44C7BB00764AF5 /* AppDelegate+UISceneSessionLifeCycle.m in Sources */,
 				84562598278BF2780067ABB9 /* JobsPopUpVC.m in Sources */,
 				C52809E128608BE100654584 /* TestBaseLabelVC.m in Sources */,
 				C5978ABC2BE3599700A56125 /* UIView+Gesture.m in Sources */,

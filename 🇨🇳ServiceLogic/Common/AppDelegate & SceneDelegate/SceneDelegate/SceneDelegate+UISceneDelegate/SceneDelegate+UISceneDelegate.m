@@ -12,12 +12,16 @@
 - (void)scene:(UIScene *)scene
 willConnectToSession:(UISceneSession *)session
       options:(UISceneConnectionOptions *)connectionOptions {
-    /// 在这里手动创建新的window
-    if (@available(iOS 13.0, *)) {
+    @jobs_weakify(self)
+    [JobsAppTools.sharedManager appDelegateWindowBlock:^id _Nullable(id  _Nullable data) {
+        return nil;
+    } sceneDelegateWindowBlock:^id _Nullable(id  _Nullable data) {
+        @jobs_strongify(self);
         self.windowScene = (UIWindowScene *)scene;
-        self.window.alpha = 1;
+        self.window = JobsAppTools.sharedManager.makeSceneDelegateWindow;
         [AppDelegate launchFunc1];
-    }
+        return nil;
+    }];
 }
 
 - (void)sceneDidDisconnect:(UIScene *)scene {

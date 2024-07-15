@@ -6,18 +6,40 @@
 //
 
 #import "AppDelegate+UIApplicationDelegate.h"
+#import "AppDelegate+UISceneSessionLifeCycle.h"
 
 @implementation AppDelegate (UIApplicationDelegate)
 
 #pragma mark —— UIApplicationDelegate
+/// 一进入App就横屏
+//- (UIInterfaceOrientationMask)application:(UIApplication *)application
+//  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+//    JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+//    JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
+//    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
+//    return UIInterfaceOrientationMaskLandscape;
+//}
+
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self localNotifications];
     [self launchFunc2];
-    if (HDDeviceSystemVersion.floatValue < 13.0) {
-        self.window.alpha = 1;
+
+    @jobs_weakify(self)
+    [JobsAppTools.sharedManager appDelegateWindowBlock:^id _Nullable(id  _Nullable data) {
+        @jobs_strongify(self)
+        self.window = JobsAppTools.sharedManager.makeAppDelegateWindow;
         [AppDelegate launchFunc1];
-    }return YES;
+        return nil;
+    } sceneDelegateWindowBlock:^id _Nullable(id  _Nullable data) {
+        @jobs_strongify(self)
+        return nil;
+    }];
+
+//    self.window = JobsAppTools.sharedManager.makeAppDelegateWindow;
+//    [AppDelegate launchFunc1];
+    
+    return YES;
 }
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidEnterBackground:(UIApplication *)application{
@@ -27,22 +49,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidBecomeActive:(UIApplication *)application{
     NSLog(@"---applicationDidBecomeActive----");//进入前台
-}
-/// UISceneSession lifecycle
-- (UISceneConfiguration *)application:(UIApplication *)application
-configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession
-                              options:(UISceneConnectionOptions *)options {
-    // Called when a new scene session is being created.
-    // Use this method to select a configuration to create the new scene with.
-    return [UISceneConfiguration.alloc initWithName:@"Default Configuration"
-                                        sessionRole:connectingSceneSession.role];
-}
-
-- (void)application:(UIApplication *)application
-didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
-    // Called when the user discards a scene session.
-    // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-    // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
 - (void)application:(UIApplication *)application

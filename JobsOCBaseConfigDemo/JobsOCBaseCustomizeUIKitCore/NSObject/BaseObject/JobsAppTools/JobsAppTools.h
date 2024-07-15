@@ -6,10 +6,23 @@
 //
 
 #import <Foundation/Foundation.h>
+//#import "AppDelegate.h"
+//#import "SceneDelegate.h"
+//#import "AppDelegate+TabBarCtr.h"
+
+//@import AppDelegate;
+//@import SceneDelegate;
 
 #ifndef JobsAppTool
 #define JobsAppTool JobsAppTools.sharedManager
 #endif /* JobsAppTool */
+
+#ifndef ROOT_VIEW_CONTROLLER_H
+#define ROOT_VIEW_CONTROLLER_H
+//#define RootViewController AppDelegate.tabBarVC
+//#define RootViewController AppDelegate.customTabBarVC
+#define RootViewController AppDelegate.makeLZTabBarNavCtrl
+#endif // ROOT_VIEW_CONTROLLER_H
 
 NS_ASSUME_NONNULL_BEGIN
 /// 本类结合 NSObject+AppTools 是对整个App作用于全局的工具箱🧰
@@ -23,6 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedManager;
 + (void)destroyInstance;
+/// 仅仅为了iOS 13 版本向下兼容而存在
+-(UIWindow *)makeAppDelegateWindow;
+-(UIWindow *)makeSceneDelegateWindow;
+-(void)appDelegateWindowBlock:(JobsReturnIDByIDBlock _Nullable)appDelegateWindowBlock
+     sceneDelegateWindowBlock:(JobsReturnIDByIDBlock _Nullable)sceneDelegateWindowBlock;
 
 @end
 
