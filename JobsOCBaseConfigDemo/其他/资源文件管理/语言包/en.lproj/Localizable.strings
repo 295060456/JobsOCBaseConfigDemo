@@ -1,0 +1,73 @@
+/*
+  Localizable.strings
+  JobsOCBaseConfigDemo
+
+  Created by User on 7/1/24.
+  
+*/
+/// 多语言测试
+"App国际化之应用内部切换语言" = "App language switch";
+"跟随系统" = "By System";
+"中文" = "Chinese";
+"英文" = "English";
+"他加禄语" = "Tagalog";
+"6.59" = "6.59.png";
+/// 权限设置
+"App需要您的同意，才能访问您的面容识别功能，用于安全验证" = "NSFaceIDUsageDescription";
+"添加曲目到您的音乐库" = "NSAppleMusicUsageDescription";
+"若不允许，你将无法使用联机服务" = "NSBluetoothAlwaysUsageDescription";
+"若不允许，你将无法使用联机服务" = "NSBluetoothPeripheralUsageDescription";
+"若不允许，你将无法使用添加日历功能" = "NSCalendarsUsageDescription";
+"若不允许，你将无法使用拍照功能" = "NSCameraUsageDescription";
+"通讯录信息仅用于查找联系人，并会得到严格保密" = "NSContactsUsageDescription";
+"若不允许，你将无法参与运动排行榜活动" = "NSHealthShareUsageDescription";
+"若不允许，你将无法参与运动排行榜活动" = "NSHealthUpdateUsageDescription";
+"若不允许，你将无法使用智能家居服务" = "NSHomeKitUsageDescription";
+"我们需要获取你的定位权限以供完成查找附近商户功能" = "NSLocationAlwaysAndWhenInUseUsageDescription";
+"我们需要您的同意,您的位置信息将用于查看当前位置信息" = "NSLocationAlwaysUsageDescription";
+"我们需要获取你的定位权限以供完成查找附近商户功能" = "NSLocationWhenInUseUsageDescription";
+"我们需要获取你的麦克风权限以供完成语音搜索功能" = "NSMicrophoneUsageDescription";
+"我们需要获取你的运动权限以完成运动挑战赛功能" = "NSMotionUsageDescription";
+"我们需要获取你的相册权限以完成选择本地图片功能" = "NSPhotoLibraryAddUsageDescription";
+"我们需要获取你的相册权限以完成选择本地图片功能" = "NSPhotoLibraryUsageDescription";
+"我们需要获取你的提醒事项权限以供添加提醒事项" = "NSRemindersUsageDescription";
+"我们需要获取你的Siri权限以方便完成Siri建议功能" = "NSSiriUsageDescription";
+"我们需要获取你的语音识别功能已完成键盘语音识别输入功能" = "NSSpeechRecognitionUsageDescription";
+"我们需要获取你的TV权限" = "NSVideoSubscriberAccountUsageDescription";
+/// 加载刷新控件
+"下拉刷新" = "Pull down to refresh";
+"立即释放刷新" = "Release Refresh now";
+"刷新数据" = "Refreshing data";
+"暂无数据" = "NO data";
+/// TabBarItem
+"首页" = "Home";
+"洗码" = "XiMa";
+"充值" = "Recharge";
+"客服" = "CustomerService";
+"会员中心" = "MemberCenter";
+/// 登陆/注册/忘记密码
+"返\n回\n登\n录" = "B\na\nc\nk\nT\no\nL\no\ng\ni\nn";
+"新\n用\n户\n注\n册" = "L\no\ng\i\nn";
+"忘记密码" = "Forgot code";
+"返回首页" = "Back to HomePage";
+"保存用户名" = "Save the user name";
+"注册" = "Register";
+"登录" = "Login";
+"人工客服" = "Online Customer service";
+"获取验证码" = "Get";
+"您也可以通过以下方式联系客服" = "You can also contact customer service through the following ways";
+"以后" = "Later";
+/// 其他业务
+"用户名" = "User";
+"密码" = "Code";
+"确认密码" = "Confirm";
+"手机号码" = "Telephone";
+"手机验证码" = "Auth code";
+"洗码记录" = "Play Record";
+"我的洗码" = "My Play";
+"领取洗码" = "Draw it";
+///
+"秒" = "Sec";
+"在线客服" = "Online customer service";
+"您还可以通过以下方式联系客服" = "You can also contact customer service through the following ways";
+"后获取" = "Later";

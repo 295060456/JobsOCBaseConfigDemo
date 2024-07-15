@@ -1,0 +1,194 @@
+//
+//  CasinoFlowDetailsVC.m
+//  Casino
+//
+//  Created by Jobs on 2021/12/7.
+//
+
+#import "CasinoFlowDetailsVC.h"
+
+@interface CasinoFlowDetailsVC ()
+// UI
+@property(nonatomic,strong)SpreadsheetView *spreadsheetView;
+// Data
+@property(nonatomic,strong)NSMutableArray <CasinoFlowDetailsModel *>*dataMutArr;//记录每一行的数据
+
+@end
+
+@implementation CasinoFlowDetailsVC
+
+- (void)dealloc{
+    NSLog(@"%@",JobsLocalFunc);
+    //    JobsRemoveNotification(self);;
+}
+
+-(void)loadView{
+    [super loadView];
+    if ([self.requestParams isKindOfClass:UIViewModel.class]) {
+        self.viewModel = (UIViewModel *)self.requestParams;
+    }
+    self.setupNavigationBarHidden = YES;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = JobsYellowColor;
+    [self setGKNav];
+//    self.spreadsheetView.alpha = 1;
+    [self.spreadsheetView flashScrollIndicators];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    // 充值时间、充值类型、充值金额、需求打码、累计所需打码❤️
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
+#pragma mark —— SpreadsheetViewDelegate
+//- (BOOL)spreadsheetView:(SpreadsheetView *)spreadsheetView shouldHighlightItemAt:(NSIndexPath *)indexPath;
+//- (void)spreadsheetView:(SpreadsheetView *)spreadsheetView didHighlightItemAt:(NSIndexPath *)indexPath;
+//- (void)spreadsheetView:(SpreadsheetView *)spreadsheetView didUnhighlightItemAt:(NSIndexPath *)indexPath;
+//- (BOOL)spreadsheetView:(SpreadsheetView *)spreadsheetView shouldSelectItemAt:(NSIndexPath *)indexPath;
+//- (BOOL)spreadsheetView:(SpreadsheetView *)spreadsheetView shouldDeselectItemAt:(NSIndexPath *)indexPath;
+//- (void)spreadsheetView:(SpreadsheetView *)spreadsheetView didDeselectItemAt:(NSIndexPath *)indexPath;
+-(void)spreadsheetView:(SpreadsheetView *)spreadsheetView
+       didSelectItemAt:(NSIndexPath *)indexPath {
+    NSLog(@"Selected: (row: %ld, column: %ld)", (long)indexPath.row, (long)indexPath.column);
+}
+#pragma mark —— SpreadsheetViewDataSource
+//@required
+-(NSInteger)numberOfColumns:(SpreadsheetView *)spreadsheetView{
+    return self.dataMutArr[0].printPropertyList.count;
+}
+
+-(NSInteger)numberOfRows:(SpreadsheetView *)spreadsheetView{
+    return self.dataMutArr.count;
+}
+
+-(CGFloat)spreadsheetView:(SpreadsheetView *)spreadsheetView
+           widthForColumn:(NSInteger)column{
+    return JobsMainScreen_WIDTH() / self.dataMutArr.count;
+}
+
+-(CGFloat)spreadsheetView:(SpreadsheetView *)spreadsheetView
+             heightForRow:(NSInteger)row{
+    return JobsWidth(24.f);
+}
+
+-(ZMJCell *)spreadsheetView:(SpreadsheetView *)spreadsheetView
+              cellForItemAt:(NSIndexPath *)indexPath{
+    ZMJHeaderCell *Cell = (ZMJHeaderCell *)[spreadsheetView dequeueReusableCellWithReuseIdentifier:ZMJHeaderCell.description
+                                                                                      forIndexPath:indexPath];
+    [Cell.btn normalTitle:self.dataMutArr[indexPath.row].readModelPropertyValueByOrder[indexPath.column]];
+    
+    Cell.gridlines.left = [GridStyle style:GridStyle_default width:0 color:nil];
+    Cell.gridlines.right = [GridStyle borderStyleNone];
+    
+    Cell.backgroundColor = indexPath.row ? HEXCOLOR(0xFBF7E3) : HEXCOLOR(0xB6843B);
+    [Cell.btn normalTitleColor:indexPath.row ? HEXCOLOR(0x524740) : JobsBlackColor];
+    
+    return Cell;
+}
+//@optional
+//-(NSArray<ZMJCellRange *> *)mergedCells:(SpreadsheetView *)spreadsheetView{}
+
+-(NSInteger)frozenColumns:(SpreadsheetView *)spreadsheetView{
+    return 1;
+}
+
+-(NSInteger)frozenRows:(SpreadsheetView *)spreadsheetView{
+    return 1;
+}
+#pragma mark —— lazyLoad
+-(SpreadsheetView *)spreadsheetView{
+    if (!_spreadsheetView) {
+        _spreadsheetView = SpreadsheetView.new;
+        _spreadsheetView.dataSource = self;
+        _spreadsheetView.delegate   = self;
+        _spreadsheetView.scrollView.showsVerticalScrollIndicator = NO;
+        _spreadsheetView.scrollView.showsHorizontalScrollIndicator = NO;
+        [self.view addSubview:_spreadsheetView];
+        [_spreadsheetView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(200)));
+            make.center.equalTo(self.view);
+//            make.edges.equalTo(self.view);
+        }];
+        
+        [_spreadsheetView registerClass:ZMJHeaderCell.class
+             forCellWithReuseIdentifier:reuseIdentifier(ZMJHeaderCell)];
+        [_spreadsheetView registerClass:ZMJTextCell.class
+             forCellWithReuseIdentifier:reuseIdentifier(ZMJTextCell)];
+        [_spreadsheetView registerClass:ZMJTaskCell.class
+             forCellWithReuseIdentifier:reuseIdentifier(ZMJTaskCell)];
+        [_spreadsheetView registerClass:ZMJChartBarCell.class
+             forCellWithReuseIdentifier:reuseIdentifier(ZMJChartBarCell)];
+        
+    }return _spreadsheetView;
+}
+
+-(NSMutableArray<CasinoFlowDetailsModel *> *)dataMutArr{
+    if (!_dataMutArr) {
+        _dataMutArr = NSMutableArray.array;
+        
+        {
+            CasinoFlowDetailsModel *viewModel = CasinoFlowDetailsModel.new;
+            viewModel.title1 = JobsInternationalization(@"Prepaid Time");//充值时间2
+            viewModel.title2 = JobsInternationalization(@"Prepaid Style");//充值类型4
+            viewModel.title3 = JobsInternationalization(@"Top-up amount");//充值金额5
+            viewModel.title4 = JobsInternationalization(@"PlayDemand");//需求打码1
+            viewModel.title5 = JobsInternationalization(@"PlayCumulative");//累计所需打码3
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            CasinoFlowDetailsModel *viewModel = CasinoFlowDetailsModel.new;
+            viewModel.title1 = @"2021-08-25";
+            viewModel.title2 = @"活动赠送1";
+            viewModel.title3 = @"100.00";
+            viewModel.title4 = @"100";
+            viewModel.title5 = @"100";
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            CasinoFlowDetailsModel *viewModel = CasinoFlowDetailsModel.new;
+            viewModel.title1 = @"2021-08-26";
+            viewModel.title2 = @"活动赠送2";
+            viewModel.title3 = @"200.00";
+            viewModel.title4 = @"200";
+            viewModel.title5 = @"200";
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            CasinoFlowDetailsModel *viewModel = CasinoFlowDetailsModel.new;
+            viewModel.title1 = @"2021-08-27";
+            viewModel.title2 = @"活动赠送3";
+            viewModel.title3 = @"300.00";
+            viewModel.title4 = @"300";
+            viewModel.title5 = @"300";
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            CasinoFlowDetailsModel *viewModel = CasinoFlowDetailsModel.new;
+            viewModel.title1 = @"2021-08-28";
+            viewModel.title2 = @"活动赠送4";
+            viewModel.title3 = @"400.00";
+            viewModel.title4 = @"400";
+            viewModel.title5 = @"400";
+            [_dataMutArr addObject:viewModel];
+        }
+        
+    }return _dataMutArr;
+}
+
+@end

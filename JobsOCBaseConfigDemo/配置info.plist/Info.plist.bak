@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <!-- 是应用程序的唯一标识符，通常以反转的域名格式（例如：com.example.MyApp）表示。-->
+        <!-- Products文件夹下打包的App的名字将会命名为${CFBundleDisplayName}.app-->
+        <key>CFBundleIdentifier</key>
+        <string></string>
+        <!-- 应用程序的显示名称。会显示在设备的主屏幕上以及应用程序内的标题栏等位置-->
+        <!-- 可以是应用程序的短名称，用于显示给用户，不需要是全名-->
+        <!-- Products文件夹下打包的App的名字将会命名为${CFBundleDisplayName}.app-->
+        <key>CFBundleName</key>
+        <string>CFBundleDisplayName</string>
+        <!-- 应用程序的显示名称，用于在设备的主屏幕上显示。-->
+        <!-- Products文件夹下打包的App的名字将会命名为${工程项目名}.app-->
+        <key>CFBundleDisplayName</key>
+        <string>CFBundleDisplayName</string>
+        <!-- Core Data -->
+        <key>NSPersistentStoreTypeKey</key>
+        <string>SQLite</string>
+        <!-- 应用程序是否需要持久的 Wi-Fi 连接才能运行。已废弃 -->
+        <key>UIRequiresPersistentWiFi</key>
+        <true/>
+        <!-- 于启用应用程序中的摇动手势，通常与撤销/重做操作相关联 -->
+        <key>UIApplicationSupportsShakeToEdit</key>
+        <true/>
+        <!-- 用于指定应用程序的显示名称是否本地化 -->
+        <key>LSHasLocalizedDisplayName</key>
+        <true/>
+        <!-- 应用支持的所有语言代码，这些语言代码应该与您的本地化资源文件夹相匹配 -->
+        <key>CFBundleLocalizations</key>
+        <array>
+            <string>en</string>
+            <string>zh-Hans</string>
+            <string>fil-PH</string>
+        </array>
+        <!-- 开发区域的语言代码 -->
+        <key>CFBundleDevelopmentRegion</key>
+        <string>en</string>
+        <!-- 配置了UILaunchStoryboardName，项目里面就必须将 Main.storyboard 包含到工程，进入编译期-->
+        <key>UILaunchStoryboardName</key>
+        <string>LaunchScreen</string>
+        <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
+        <key>UIViewControllerBasedStatusBarAppearance</key>
+        <false/>
+        <!-- iOS 状态栏颜色的修改【全局设置】Status bar style : Light Content-->
+        <key>UIStatusBarStyle</key>
+        <string>UIStatusBarStyleLightContent</string>
+        <!--❤️屏幕旋转❤️-->
+        <key>UISupportedInterfaceOrientations</key>
+        <array>
+            <string>UIInterfaceOrientationPortrait</string>
+            <string>UIInterfaceOrientationPortraitUpsideDown</string>
+            <string>UIInterfaceOrientationLandscapeLeft</string>
+            <string>UIInterfaceOrientationLandscapeRight</string>
+        </array>
+        <!--❤️【UIApplicationSceneManifest】iOS 13 开始引入。支持多窗口应用程序，允许用户在 iPad 和 macOS 上运行多个实例的应用程序❤️-->
+        <key>UIApplicationSceneManifest</key>
+        <dict>
+            <!--【UIApplicationSupportsMultipleScenes】指示应用程序是否支持多场景（多窗口）。设置为 YES 表示支持多场景 -->
+            <key>UIApplicationSupportsMultipleScenes</key>
+            <false/>
+            <!-- 【UISceneConfigurations】定义不同场景的配置，包括每种场景的生命周期管理类和初始场景配置 -->
+            <key>UISceneConfigurations</key>
+            <dict>
+                <!-- 【UIWindowSceneSessionRoleApplication】在 iOS 的多窗口场景管理中，角色定义了场景的用途或类型。表示该场景是应用的主要窗口场景。 -->
+                <key>UIWindowSceneSessionRoleApplication</key>
+                <array>
+                    <dict>
+                        <!--【UISceneConfigurationName】指定了一个场景配置的名称，iOS 会使用这个名称来查找和加载相应的场景配置 -->
+                        <key>UISceneConfigurationName</key>
+                        <string>Default Configuration</string>
+                        <!--【UISceneDelegateClassName】用于指明哪个类将处理特定场景的生命周期事件 -->
+                        <key>UISceneDelegateClassName</key>
+                        <string>SceneDelegate</string>
+                        <!--【UISceneStoryboardFile】用来定义应用启动时应该加载的特定 Storyboard 文件 -->
+                        <key>UISceneStoryboardFile</key>
+                        <string>Main</string>
+                    </dict>
+                </array>
+            </dict>
+        </dict>
+        <!--❤️【CFBundleIcons】切换App图标专用❤️-->
+        <key>CFBundleIcons</key>
+        <dict>
+            <!--【CFBundlePrimaryIcon】用于定义应用的主要图标 -->
+            <key>CFBundlePrimaryIcon</key>
+            <dict>
+                <!--【CFBundleIconFiles】用于指定应用程序图标的文件名 -->
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>AppIcon</string>
+                </array>
+                <!--【UIPrerenderedIcon】如果设置为 true，iOS 将不会对图标应用任何默认的渲染效果，例如光泽效果和圆角 -->
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <!--【CFBundleAlternateIcons】用于配置应用的替代图标 -->
+            <key>CFBundleAlternateIcons</key>
+            <dict>
+                <key>AlternateIcon1</key>
+                <dict>
+                    <!--【CFBundleIconFiles】用于指定应用程序图标的文件名 -->
+                    <key>CFBundleIconFiles</key>
+                    <array>
+                        <string>AlternateIcon1</string>
+                    </array>
+                    <!--【UIPrerenderedIcon】如果设置为 true，iOS 将不会对图标应用任何默认的渲染效果，例如光泽效果和圆角 -->
+                    <key>UIPrerenderedIcon</key>
+                    <false/>
+                </dict>
+                <key>AlternateIcon2</key>
+                <dict>
+                    <!--【CFBundleIconFiles】用于指定应用程序图标的文件名 -->
+                    <key>CFBundleIconFiles</key>
+                    <array>
+                        <string>AlternateIcon2</string>
+                    </array>
+                    <!--【UIPrerenderedIcon】如果设置为 true，iOS 将不会对图标应用任何默认的渲染效果，例如光泽效果和圆角 -->
+                    <key>UIPrerenderedIcon</key>
+                    <false/>
+                </dict>
+            </dict>
+        </dict>
+        <!--❤️UIUserInterfaceStyle 用于指定应用程序的用户界面风格：控制应用程序在系统的暗黑模式和亮模式之间的行为❤️-->
+        <key>UIUserInterfaceStyle</key>
+        <!-- 设置应用程序始终使用亮模式，不管系统的外观是暗黑模式还是亮模式。Dark：暗黑模式、Light：亮模式、Automatic：跟随系统外观设置，自动切换暗黑模式和亮模式-->
+        <string>Light</string>
+        <!--❤️UIAppFonts 字体设置❤️-->
+        <key>UIAppFonts</key>
+        <array>
+            <string>NotoSans-Black.ttf</string>
+            <string>NotoSans-BlackItalic.ttf</string>
+            <string>NotoSans-Bold.ttf</string>
+            <string>NotoSans-BoldItalic.ttf</string>
+            <string>NotoSans-ExtraBold.ttf</string>
+            <string>NotoSans-ExtraBoldItalic.ttf</string>
+            <string>NotoSans-ExtraLight.ttf</string>
+            <string>NotoSans-ExtraLightItalic.ttf</string>
+            <string>NotoSans-Italic.ttf</string>
+            <string>NotoSans-Light.ttf</string>
+            <string>NotoSans-LightItalic.ttf</string>
+            <string>NotoSans-Medium.ttf</string>
+            <string>NotoSans-MediumItalic.ttf</string>
+            <string>NotoSans-Regular.ttf</string>
+            <string>NotoSans-SemiBold.ttf</string>
+            <string>NotoSans-SemiBoldItalic.ttf</string>
+            <string>NotoSans-Thin.ttf</string>
+            <string>NotoSans-ThinItalic.ttf</string>
+            <string>NotoSansDisplay-Italic-VariableFont_wdth,wght.ttf</string>
+            <string>NotoSansDisplay-VariableFont_wdth,wght.ttf</string>
+            <string>NotoSansDisplay-Black.ttf</string>
+            <string>NotoSansDisplay-BlackItalic.ttf</string>
+            <string>NotoSansDisplay-Bold.ttf</string>
+            <string>NotoSansDisplay-BoldItalic.ttf</string>
+            <string>NotoSansDisplay-ExtraBold.ttf</string>
+            <string>NotoSansDisplay-ExtraBoldItalic.ttf</string>
+            <string>NotoSansDisplay-ExtraLight.ttf</string>
+            <string>NotoSansDisplay-ExtraLightItalic.ttf</string>
+            <string>NotoSansDisplay-Italic.ttf</string>
+            <string>NotoSansDisplay-Light.ttf</string>
+            <string>NotoSansDisplay-LightItalic.ttf</string>
+            <string>NotoSansDisplay-Medium.ttf</string>
+            <string>NotoSansDisplay-MediumItalic.ttf</string>
+            <string>NotoSansDisplay-Regular.ttf</string>
+            <string>NotoSansDisplay-SemiBold.ttf</string>
+            <string>NotoSansDisplay-SemiBoldItalic.ttf</string>
+            <string>NotoSansDisplay-Thin.ttf</string>
+            <string>NotoSansDisplay-ThinItalic.ttf</string>
+            <string>NotoSansDisplay_Condensed-Black.ttf</string>
+            <string>NotoSansDisplay_Condensed-BlackItalic.ttf</string>
+            <string>NotoSansDisplay_Condensed-Bold.ttf</string>
+            <string>NotoSansDisplay_Condensed-BoldItalic.ttf</string>
+            <string>NotoSansDisplay_Condensed-ExtraBold.ttf</string>
+            <string>NotoSansDisplay_Condensed-ExtraBoldItalic.ttf</string>
+            <string>NotoSansDisplay_Condensed-ExtraLight.ttf</string>
+            <string>NotoSansDisplay_Condensed-ExtraLightItalic.ttf</string>
+            <string>NotoSansDisplay_Condensed-Italic.ttf</string>
+            <string>NotoSansDisplay_Condensed-Light.ttf</string>
+            <string>NotoSansDisplay_Condensed-LightItalic.ttf</string>
+            <string>NotoSansDisplay_Condensed-Medium.ttf</string>
+            <string>NotoSansDisplay_Condensed-MediumItalic.ttf</string>
+            <string>NotoSansDisplay_Condensed-Regular.ttf</string>
+            <string>NotoSansDisplay_Condensed-SemiBold.ttf</string>
+            <string>NotoSansDisplay_Condensed-SemiBoldItalic.ttf</string>
+            <string>NotoSansDisplay_Condensed-Thin.ttf</string>
+            <string>NotoSansDisplay_Condensed-ThinItalic.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-Black.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-BlackItalic.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-Bold.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-BoldItalic.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-ExtraBold.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-ExtraBoldItalic.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-ExtraLight.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-ExtraLightItalic.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-Italic.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-Light.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-LightItalic.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-Medium.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-MediumItalic.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-Regular.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-SemiBold.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-SemiBoldItalic.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-Thin.ttf</string>
+            <string>NotoSansDisplay_ExtraCondensed-ThinItalic.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-Black.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-BlackItalic.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-Bold.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-BoldItalic.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-ExtraBold.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-ExtraBoldItalic.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-ExtraLight.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-ExtraLightItalic.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-Italic.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-Light.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-LightItalic.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-Medium.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-MediumItalic.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-Regular.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-SemiBold.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-SemiBoldItalic.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-Thin.ttf</string>
+            <string>NotoSansDisplay_SemiCondensed-ThinItalic.ttf</string>
+        </array>
+        <!--❤️各种系统权限索取❤️-->
+        <!-- 如果要做多语言，这里必须是静态字符串。即，JobsInternationalization映射的桥接字符串 -->
+        <key>NSFaceIDUsageDescription</key>
+        <string>$(NSFaceIDUsageDescription)</string><!-- App需要您的同意，才能访问您的面容识别功能，用于安全验证 -->
+        <key>NSAppleMusicUsageDescription</key>
+        <string>$(NSAppleMusicUsageDescription)</string><!-- Add tracks to your music library. -->
+        <key>NSBluetoothAlwaysUsageDescription</key>
+        <string>$(NSBluetoothAlwaysUsageDescription)</string><!-- 若不允许，你将无法使用联机服务 -->
+        <key>NSBluetoothPeripheralUsageDescription</key>
+        <string>$(NSBluetoothPeripheralUsageDescription)</string><!-- 若不允许，你将无法使用联机服务 -->
+        <key>NSCalendarsUsageDescription</key>
+        <string>$(NSCalendarsUsageDescription)</string><!-- 若不允许，你将无法使用添加日历功能 -->
+        <key>NSCameraUsageDescription</key>
+        <string>$(NSCameraUsageDescription)</string><!-- 若不允许，你将无法使用拍照功能 -->
+        <key>NSContactsUsageDescription</key>
+        <string>$(NSContactsUsageDescription)</string><!-- 通讯录信息仅用于查找联系人，并会得到严格保密 -->
+        <key>NSHealthShareUsageDescription</key>
+        <string>$(NSHealthShareUsageDescription)</string><!-- 若不允许，你将无法参与运动排行榜活动 -->
+        <key>NSHealthUpdateUsageDescription</key>
+        <string>$(NSHealthUpdateUsageDescription)</string><!-- 若不允许，你将无法参与运动排行榜活动 -->
+        <key>NSHomeKitUsageDescription</key>
+        <string>$(NSHomeKitUsageDescription)</string><!-- 若不允许，你将无法使用智能家居服务 -->
+        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+        <string>$(NSLocationAlwaysAndWhenInUseUsageDescription)</string><!-- 我们需要获取你的定位权限以供完成查找附近商户功能 -->
+        <key>NSLocationAlwaysUsageDescription</key>
+        <string>$(NSLocationAlwaysUsageDescription)</string><!-- 我们需要您的同意,您的位置信息将用于查看当前位置信息 -->
+        <key>NSLocationWhenInUseUsageDescription</key>
+        <string>$(NSLocationWhenInUseUsageDescription)</string><!-- 我们需要获取你的定位权限以供完成查找附近商户功能 -->
+        <key>NSMicrophoneUsageDescription</key>
+        <string>$(NSMicrophoneUsageDescription)</string><!-- 我们需要获取你的麦克风权限以供完成语音搜索功能 -->
+        <key>NSMotionUsageDescription</key>
+        <string>$(NSMotionUsageDescription)</string><!-- 我们需要获取你的运动权限以完成运动挑战赛功能 -->
+        <key>NSPhotoLibraryAddUsageDescription</key>
+        <string>$(NSPhotoLibraryAddUsageDescription)</string><!-- 我们需要获取你的相册权限以完成选择本地图片功能 -->
+        <key>NSPhotoLibraryUsageDescription</key>
+        <string>$(NSPhotoLibraryUsageDescription)</string><!-- 我们需要获取你的相册权限以完成选择本地图片功能 -->
+        <key>NSRemindersUsageDescription</key>
+        <string>$(NSRemindersUsageDescription)</string><!-- 我们需要获取你的提醒事项权限以供添加提醒事项 -->
+        <key>NSSiriUsageDescription</key>
+        <string>$(NSSiriUsageDescription)</string><!-- 我们需要获取你的Siri权限以方便完成Siri建议功能 -->
+        <key>NSSpeechRecognitionUsageDescription</key>
+        <string>$(NSSpeechRecognitionUsageDescription)</string><!-- 我们需要获取你的语音识别功能已完成键盘语音识别输入功能 -->
+        <key>NSVideoSubscriberAccountUsageDescription</key>
+        <string>$(NSVideoSubscriberAccountUsageDescription)</string><!-- 我们需要获取你的TV权限 -->
+    </dict>
+</plist>
