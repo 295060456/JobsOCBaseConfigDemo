@@ -81,6 +81,35 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }
+#pragma mark —— 一些公有方法
+- (void)customSelectIndex:(NSUInteger)index {
+    if (index >= self.viewControllers.count) {
+        NSLog(@"Index out of bounds");
+        return;
+    }
+    
+    UIViewController *selectedVC = self.viewControllers[index];
+    
+    if (self.selectedViewController == selectedVC) {
+        return;
+    }
+
+    // Begin transition to new view controller
+    [self transitionFromViewController:self.selectedViewController
+                      toViewController:selectedVC
+                              duration:0.3
+                               options:UIViewAnimationOptionTransitionNone
+                            animations:nil
+                            completion:^(BOOL finished) {
+        if (finished) {
+            self.selectedIndex = index;
+            [self.tabBar setSelectedItem:self.tabBar.items[index]];
+        } else {
+            // Transition was not successful, revert to original selectedIndex
+            self.selectedViewController = self.viewControllers[self.selectedIndex];
+        }
+    }];
+}
 #pragma mark —— LazyLoad
 -(JobsCustomTabBar *)customTabBar{
     if(!_customTabBar){

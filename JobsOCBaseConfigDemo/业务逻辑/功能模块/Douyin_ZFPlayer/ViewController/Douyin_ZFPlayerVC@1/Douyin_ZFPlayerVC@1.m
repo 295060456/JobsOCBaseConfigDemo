@@ -338,7 +338,6 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
             }else{
                 make.top.equalTo(self.view.mas_top);
             }
-            
             make.bottom.equalTo(self.view.mas_bottom).offset(AppDelegate.tabBarVC.tabBar.isHidden ? 0 : -JobsTabBarHeightByBottomSafeArea(AppDelegate.tabBarVC));
         }];
     }return _tableView;

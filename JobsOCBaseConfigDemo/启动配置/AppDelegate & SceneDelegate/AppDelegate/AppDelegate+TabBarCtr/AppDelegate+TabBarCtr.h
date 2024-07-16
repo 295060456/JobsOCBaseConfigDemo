@@ -16,32 +16,31 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AppDelegate (TabBarCtr)
-#pragma mark —— 配置数据源
-+(TFPopupParam *)makeTFPopupParameter;
-+(LZTabBarConfig *)makeLZTabBarConfig;
-+(JobsTabBarVC *)tabBarVC;
-+(JobsCustomTabBarVC *)customTabBarVC;
-+(LZTabBarController *)makeLZTabBarCtrl;
-+(UINavigationController *)makeTabBarNavCtrl;
-+(UINavigationController *)makeJobsTabBarNavCtrl;
-+(UINavigationController *)makeLZTabBarNavCtrl;
--(NSMutableArray <UIButton *>*)makeTabBarItems;
--(JobsCustomTabBarConfig *)makeJobsCustomTabBarConfig;
-+(NSMutableArray <UIViewController *>*)makeViewControllerMutArr;
-+(NSMutableArray <NSString *>*)makeTabBarItemTitleMutArr;
-+(NSMutableArray <UIImage *>*)makeImageSelectedMutArr;
-+(NSMutableArray <UIImage *>*)makeImageUnselectedMutArr;
-+(NSMutableArray <NSString *>*)makeImageSelectedNameMutArr;
-+(NSMutableArray <NSString *>*)makeImageUnselectedNameMutArr;
-+(NSMutableArray <UIViewController *>*)makeUIViewControllerMutArr;
-+(NSMutableArray <UINavigationController *>*)makeNavCtrByNormalVCMutArr;
-+(NSMutableArray <JobsTabBarItemConfig *>*)makeTabBarItemConfigMutArr;
-#pragma mark —— 一些私有方法
+#pragma mark —— 配置一些普通的控制器
+@property(nonatomic,strong,class)JobsTabBarVC *tabBarVC;
+@property(nonatomic,strong,class)JobsCustomTabBarVC *jobsCustomTabBarVC;
+@property(nonatomic,strong,class)LZTabBarController *lZTabBarCtrl;
+#pragma mark —— 配置一些导航控制器
+@property(nonatomic,strong,class)UINavigationController *tabBarNavCtrl;
+@property(nonatomic,strong,class)UINavigationController *jobsTabBarNavCtrl;
+@property(nonatomic,strong,class)UINavigationController *lZTabBarNavCtrl;
+#pragma mark —— 数据源
+@property(nonatomic,strong,class)TFPopupParam *tfPopupParam;
+@property(nonatomic,strong,class)LZTabBarConfig *lZTabBarConfig;
+@property(nonatomic,strong,class)JobsCustomTabBarConfig *jobsCustomTabBarConfig;
+@property(nonatomic,strong,class)NSMutableArray <JobsTabBarItemConfig *>*tabBarItemConfigMutArr;
+@property(nonatomic,strong,class)NSMutableArray <__kindof UIButton *>*tabBarItemMutArr;
+@property(nonatomic,strong,class)NSMutableArray <__kindof NSString *>*tabBarItemTitleMutArr;
+@property(nonatomic,strong,class)NSMutableArray <__kindof NSString *>*imageSelectedNameMutArr;
+@property(nonatomic,strong,class)NSMutableArray <__kindof NSString *>*imageUnselectedNameMutArr;
+@property(nonatomic,strong,class)NSMutableArray <__kindof UIImage *>*imageSelectedMutArr;
+@property(nonatomic,strong,class)NSMutableArray <__kindof UIImage *>*imageUnSelectedMutArr;
+@property(nonatomic,strong,class)NSMutableArray <__kindof UIViewController *>*viewCtrlByTabBarCtrlConfigMutArr;///【从配置TabBarCtrl信息添加的】Tabbar管理的，不含导航的根控制器
+@property(nonatomic,strong,class)NSMutableArray <__kindof UIViewController *>*viewCtrlMutArr;///【手动添加的】Tabbar管理的，不含导航的根控制器
+@property(nonatomic,strong,class)NSMutableArray <__kindof UINavigationController *>*navCtrMutArr;
 #pragma mark —— 一些公有方法
 /// 刷新 TabBarTitle
 -(void)refreshTabBarTitle;
-/// 获取Tabbar管理的，不含导航的根控制器
--(NSMutableArray <UIViewController *>*)getAppRootVC;
 
 @end
 

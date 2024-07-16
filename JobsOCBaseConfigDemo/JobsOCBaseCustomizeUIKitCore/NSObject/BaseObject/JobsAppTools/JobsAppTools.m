@@ -57,7 +57,7 @@ static dispatch_once_t JobsAppToolsOnceToken;
     if (sceneDelegateWindowBlock) sceneDelegateWindowBlock(self.sceneDelegateWindow);
 }
 #pragma mark —— lazyLoad
-/// 仅仅为了iOS 13 版本向下兼容而存在
+/// 在使用sceneDelegate的情况下，仅仅为了iOS 13 版本向下兼容而存在
 -(UIWindow *)appDelegateWindow{
     if(!_appDelegateWindow){
         _appDelegateWindow = UIWindow.new;

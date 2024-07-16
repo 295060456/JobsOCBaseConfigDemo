@@ -14,8 +14,8 @@
 #ifndef ROOT_VIEW_CONTROLLER_H
 #define ROOT_VIEW_CONTROLLER_H
 //#define RootViewController AppDelegate.tabBarVC
-//#define RootViewController AppDelegate.customTabBarVC
-#define RootViewController AppDelegate.makeLZTabBarNavCtrl
+//#define RootViewController AppDelegate.jobsCustomTabBarVC
+#define RootViewController AppDelegate.lZTabBarCtrl
 #endif // ROOT_VIEW_CONTROLLER_H
 
 NS_ASSUME_NONNULL_BEGIN

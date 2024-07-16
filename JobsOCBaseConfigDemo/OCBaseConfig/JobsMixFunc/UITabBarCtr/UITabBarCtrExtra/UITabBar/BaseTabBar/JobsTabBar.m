@@ -44,7 +44,7 @@
             }
             [self layoutIfNeeded];
             if (label && imageView) {
-                JobsTabBarItemConfig *tabBarControllerConfig = AppDelegate.makeTabBarItemConfigMutArr[self.tabBarButtons.count - 1];
+                JobsTabBarItemConfig *tabBarControllerConfig = AppDelegate.tabBarItemConfigMutArr[self.tabBarButtons.count - 1];
                 [self alignLabel:label
                        imageView:imageView
                     tabBarButton:subview
@@ -54,8 +54,8 @@
     }
 
     CGFloat s = 0.f;
-    for (int t = 0; t < AppDelegate.makeTabBarItemConfigMutArr.count ; t++) {
-        JobsTabBarItemConfig *tabBarControllerConfig = AppDelegate.makeTabBarItemConfigMutArr[t];
+    for (int t = 0; t < AppDelegate.tabBarItemConfigMutArr.count ; t++) {
+        JobsTabBarItemConfig *tabBarControllerConfig = AppDelegate.tabBarItemConfigMutArr[t];
         LOTAnimationView *lOTAnimationView = nil;
         if(self.lOTAnimationViews.count){
             lOTAnimationView = self.lOTAnimationViews[t];
@@ -218,7 +218,7 @@
         for (int t = 0;
              t < self.tabBarButtons.count;
              t++) {
-            JobsTabBarItemConfig *config = (JobsTabBarItemConfig *)AppDelegate.makeTabBarItemConfigMutArr[t];
+            JobsTabBarItemConfig *config = (JobsTabBarItemConfig *)AppDelegate.tabBarItemConfigMutArr[t];
 //            -config.humpOffsetY / 2
             /// 根据config.lottieName 方法-config.lottieName:offsetY:lottieName:内部做了判空处理
             LOTAnimationView *lotAnimationView = [self addLottieImage:t lottieName:config.lottieName];

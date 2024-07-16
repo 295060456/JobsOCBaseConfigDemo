@@ -11,9 +11,9 @@
 #pragma mark —— 一些私有化方法
 -(NSMutableArray <Class>*_Nullable)makeDataArr{
     NSMutableArray <Class>*tempDataArr = NSMutableArray.array;
-    for (int y = 0; y < AppDelegate.makeUIViewControllerMutArr.count; y++) {
-        UIViewController *viewController = AppDelegate.makeUIViewControllerMutArr[y];
-        JobsTabBarItemConfig *tabBarItemConfig = AppDelegate.makeTabBarItemConfigMutArr[y];
+    for (int y = 0; y < AppDelegate.viewCtrlByTabBarCtrlConfigMutArr.count; y++) {
+        UIViewController *viewController = AppDelegate.viewCtrlByTabBarCtrlConfigMutArr[y];
+        JobsTabBarItemConfig *tabBarItemConfig = AppDelegate.tabBarItemConfigMutArr[y];
         if(tabBarItemConfig.isNotNeedCheckLogin){
             Class cls = viewController.class;
             [tempDataArr addObject:cls];
@@ -107,7 +107,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 }
 /// 获取Tabbar管理的，不含导航的根控制器
 -(NSMutableArray <UIViewController *>*)appRootVC{
-    return AppDelegate.sharedManager.getAppRootVC;
+    return AppDelegate.viewCtrlMutArr;
 }
 /// 当前对象是否是 Tabbar管理的，不含导航的根控制器
 -(BOOL)isRootVC{
