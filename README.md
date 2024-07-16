@@ -2734,7 +2734,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 以`GCD`的方式实现
 
-  `dispatch_once_t` 是 **GCD**（**G**rand **C**entral **D**ispatch）提供的一种机制，用于确保某段代码在应用程序的生命周期内只执行一次。它是线程安全的，适用于多线程环境
+  * `dispatch_once_t` 是 **GCD**（**G**rand **C**entral **D**ispatch）提供的一种机制，用于确保某段代码在应用程序的生命周期内只执行一次。它是线程安全的，适用于多线程环境
+  * `JobsCustomTabBarVCOnceToken`为0才会进`dispatch_once`
 
   ```objective-c
   static JobsCustomTabBarVC *JobsCustomTabBarVCInstance = nil;
