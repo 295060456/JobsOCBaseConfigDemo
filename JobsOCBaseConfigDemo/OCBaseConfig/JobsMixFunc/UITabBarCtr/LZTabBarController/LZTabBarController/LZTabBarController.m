@@ -54,44 +54,8 @@
 }
 #pragma mark —— 一些公有方法
 - (void)customSelectIndex:(NSUInteger)index {
-    if (index >= self.viewControllers.count) {
-        NSLog(@"Index out of bounds");
-        return;
-    }
-    
-    UIViewController *selectedVC = self.viewControllers[index];
-    
-    if (self.selectedViewController == selectedVC) {
-        return;
-    }
-    
-    UIViewController *currentVC = self.selectedViewController;
-
-    // Add the selected view controller to the parent
-    [self addChildViewController:selectedVC];
-    selectedVC.view.frame = self.view.bounds;
-
-    // Begin transition to new view controller
-    [self transitionFromViewController:currentVC
-                      toViewController:selectedVC
-                              duration:0.3
-                               options:UIViewAnimationOptionTransitionNone
-                            animations:nil
-                            completion:^(BOOL finished) {
-        if (finished) {
-            [selectedVC didMoveToParentViewController:self];
-            [currentVC willMoveToParentViewController:nil];
-            [currentVC removeFromParentViewController];
-//            self.selectedIndex = index;
-            [self.tabBar setSelectedItem:self.tabBar.items[index]];
-        } else {
-            // Transition was not successful, revert to original selectedIndex
-            [selectedVC willMoveToParentViewController:nil];
-            [selectedVC removeFromParentViewController];
-            [self addChildViewController:currentVC];
-            [currentVC didMoveToParentViewController:self];
-        }
-    }];
+    self.selectedIndex = index;
+    /// TODO 系统的 UITabBarController 的切换方法没有暴露出来，但是实际情况是最好监控这个方法的运行机制，所以期望有一个高仿系统 self.selectedIndex 切换的逻辑
 }
 
 - (void)hiddenTabBarWithAnimation:(BOOL)isAnimation {

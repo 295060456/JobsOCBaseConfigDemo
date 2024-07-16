@@ -30,7 +30,9 @@ static JobsCustomTabBarVC *JobsCustomTabBarVCInstance = nil;
 static dispatch_once_t JobsCustomTabBarVCOnceToken;
 +(instancetype)sharedManager{
     dispatch_once(&JobsCustomTabBarVCOnceToken, ^{
-        JobsCustomTabBarVCInstance = [super allocWithZone:NULL].init;
+        if(!JobsCustomTabBarVCInstance){
+            JobsCustomTabBarVCInstance = [super allocWithZone:NULL].init;
+        }
     });return JobsCustomTabBarVCInstance;
 }
 /// 单例的销毁
@@ -42,11 +44,11 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     return [self sharedManager];
 }
-
+/// 防止外部调用copy
 -(instancetype)copyWithZone:(NSZone *)zone{
     return self;
 }
-
+/// 防止外部调用mutableCopy
 -(instancetype)mutableCopyWithZone:(NSZone *)zone{
     return self;
 }
@@ -80,32 +82,8 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 }
 #pragma mark —— 一些公有方法
 - (void)customSelectIndex:(NSUInteger)index {
-    if (index >= self.viewControllers.count) {
-        NSLog(@"Index out of bounds");
-        return;
-    }
-    
-    UIViewController *selectedVC = self.viewControllers[index];
-    
-    if (self.selectedViewController == selectedVC) {
-        return;
-    }
-
-    // Begin transition to new view controller
-    [self transitionFromViewController:self.selectedViewController
-                      toViewController:selectedVC
-                              duration:0.3
-                               options:UIViewAnimationOptionTransitionNone
-                            animations:nil
-                            completion:^(BOOL finished) {
-        if (finished) {
-            self.selectedIndex = index;
-            [self.tabBar setSelectedItem:self.tabBar.items[index]];
-        } else {
-            // Transition was not successful, revert to original selectedIndex
-            self.selectedViewController = self.viewControllers[self.selectedIndex];
-        }
-    }];
+    self.selectedIndex = index;
+    /// TODO 系统的 UITabBarController 的切换方法没有暴露出来，但是实际情况是最好监控这个方法的运行机制，所以期望有一个高仿系统 self.selectedIndex 切换的逻辑
 }
 #pragma mark —— LazyLoad
 -(JobsCustomTabBar *)customTabBar{
@@ -115,7 +93,7 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
         [self.view addSubview:_customTabBar];
         [_customTabBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(self.view.width);
-            make.height.mas_equalTo(JobsCustomTabBarConfig.sharedManager.tabBarHeight);// AppDelegate.jobsCustomTabBarConfig;
+            make.height.mas_equalTo(AppDelegate.jobsCustomTabBarConfig.tabBarHeight);// 这里使用 JobsCustomTabBarConfig.sharedManager.tabBarHeight 会崩
             make.centerX.equalTo(self.view);
             make.bottom.equalTo(self.view);
         }];

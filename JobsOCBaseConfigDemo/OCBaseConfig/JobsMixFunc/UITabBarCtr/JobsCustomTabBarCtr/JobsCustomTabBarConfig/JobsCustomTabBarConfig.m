@@ -16,7 +16,9 @@ static JobsCustomTabBarConfig *JobsCustomTabBarConfigInstance = nil;
 static dispatch_once_t JobsCustomTabBarConfigOnceToken;
 +(instancetype)sharedManager {
     dispatch_once(&JobsCustomTabBarConfigOnceToken, ^{
-        JobsCustomTabBarConfigInstance = [super allocWithZone:NULL].init;
+        if(!JobsCustomTabBarConfigInstance){
+            JobsCustomTabBarConfigInstance = [super allocWithZone:NULL].init;
+        }
     });return JobsCustomTabBarConfigInstance;
 }
 /// 单例的销毁
@@ -30,11 +32,11 @@ static dispatch_once_t JobsCustomTabBarConfigOnceToken;
         JobsCustomTabBarConfigInstance = [super allocWithZone:zone];
     });return JobsCustomTabBarConfigInstance;
 }
-
+/// 防止外部调用copy
 -(instancetype)copyWithZone:(NSZone *)zone {
     return self;
 }
-
+/// 防止外部调用mutableCopy
 -(instancetype)mutableCopyWithZone:(NSZone *)zone {
     return self;
 }
@@ -47,8 +49,17 @@ static dispatch_once_t JobsCustomTabBarConfigOnceToken;
 
 -(CGFloat)tabBarHeight{
     if (!_tabBarHeight) {
-        _tabBarHeight = JobsTabBarHeightByBottomSafeArea(AppDelegate.jobsCustomTabBarVC);
+        _tabBarHeight = JobsTabBarHeightByBottomSafeArea(nil);
     }return _tabBarHeight;
+}
+
+-(NSMutableArray<__kindof NSNumber *> *)tabBarItemYOffsets{
+    if(!_tabBarItemYOffsets){
+        _tabBarItemYOffsets = NSMutableArray.array;
+        for (int d = 0; d < self.tabBarItems.count; d++) {
+            [_tabBarItemYOffsets addObject:@(0)];
+        }
+    }return _tabBarItemYOffsets;
 }
 
 @end

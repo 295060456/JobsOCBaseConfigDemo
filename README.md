@@ -2734,7 +2734,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 以`GCD`的方式实现
 
-  `dispatch_once_t` 是 **GCD**（**G**rand **C**entral **D**ispatch）提供的一种机制，用于确保某段代码在应用程序的生命周期内只执行一次。它是线程安全的，适用于多线程环境
+  * `dispatch_once_t` 是 **GCD**（**G**rand **C**entral **D**ispatch）提供的一种机制，用于确保某段代码在应用程序的生命周期内只执行一次。它是线程安全的，适用于多线程环境
+  * `JobsCustomTabBarVCOnceToken`为0才会进`dispatch_once`
 
   ```objective-c
   static JobsCustomTabBarVC *JobsCustomTabBarVCInstance = nil;
@@ -2742,9 +2743,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   
   + (instancetype)sharedManager {
       dispatch_once(&JobsCustomTabBarVCOnceToken, ^{
-          JobsCustomTabBarVCInstance = [[super allocWithZone:NULL] init];
-      });
-      return JobsCustomTabBarVCInstance;
+  				if(!JobsCustomTabBarVCInstance){
+              JobsCustomTabBarVCInstance = [super allocWithZone:NULL].init;
+          }
+      });return JobsCustomTabBarVCInstance;
   }
   
   + (void)destroyInstance {
@@ -2755,11 +2757,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   + (instancetype)allocWithZone:(struct _NSZone *)zone {
       return [self sharedManager];
   }
-  
+  /// 防止外部使用 alloc/init 等创建新实例
   - (instancetype)copyWithZone:(NSZone *)zone {
       return self;
   }
-  
+  /// 防止外部调用copy
   - (instancetype)mutableCopyWithZone:(NSZone *)zone {
       return self;
   }
@@ -2791,11 +2793,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   + (instancetype)allocWithZone:(struct _NSZone *)zone {
       return [self sharedManager];
   }
-  
+  /// 防止外部使用 alloc/init 等创建新实例
   - (instancetype)copyWithZone:(NSZone *)zone {
       return self;
   }
-  
+  /// 防止外部调用copy
   - (instancetype)mutableCopyWithZone:(NSZone *)zone {
       return self;
   }
@@ -3340,13 +3342,33 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 }
 ```
 
+### 30、关于`UITabBarController` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* <font color=red>`JobsTabBarVC`</font>：**`UITabBarController`**
+  * `JobsTabBarItemConfig`：**`NSObject`**
+  * **UITabBarItem**
+    * `JobsTabBarItem`：**`UITabBarItem`**
+    * `UITabBarItem+TLAnimation`
+  * **UITabBar**
+    * `UITabBar+Ex`
+    * `UITabBar+TLAnimation`
+    * `JobsTabBar`：**`UITabBar`**
+* <font color =red>`JobsCustomTabBarVC`</font>：**`UITabBarController`**
+  * `JobsCustomTabBarConfig`：**`NSObject`**
+  * `JobsCustomTabBar`：**`UIView`**
+  * `JobsCustomTabBarButton`：**`UIButton`**
+* <font color=red>`LZTabBarController`</font>：**`UITabBarController`**
+  * `LZTabBar`：**`UIView`**
+  * `LZTabBarConfig` ：**`NSObject`**
+  * `LZTabBarItem`：**`UIView`**
+
+#### 30.2、
+
 ### Test <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 <details id="Test">
  <summary><strong>点我了解详情</strong></summary>
 * [**OC代码实验室**](https://github.com/295060456/Jobs_ObjectiveC_Laboratory)
-
-
   ```objective-c
   /// TODO
   ```

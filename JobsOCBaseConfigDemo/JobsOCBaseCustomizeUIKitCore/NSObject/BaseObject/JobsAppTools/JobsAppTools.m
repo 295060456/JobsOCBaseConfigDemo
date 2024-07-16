@@ -18,26 +18,26 @@
 #pragma mark —— 初始化方法
 static JobsAppTools *JobsAppToolsInstance = nil;
 static dispatch_once_t JobsAppToolsOnceToken;
-+ (instancetype)sharedManager {
++(instancetype)sharedManager {
     dispatch_once(&JobsAppToolsOnceToken, ^{
         JobsAppToolsInstance = [super allocWithZone:NULL].init;
     });return JobsAppToolsInstance;
 }
 /// 单例的销毁
-+ (void)destroyInstance {
++(void)destroyInstance {
     JobsAppToolsOnceToken = 0;
     JobsAppToolsInstance = nil;
 }
 /// 防止外部使用 alloc/init 等创建新实例
-+ (instancetype)allocWithZone:(struct _NSZone *)zone {
++(instancetype)allocWithZone:(struct _NSZone *)zone{
     return [self sharedManager];
 }
-
-- (instancetype)copyWithZone:(NSZone *)zone {
+/// 防止外部调用copy
+-(instancetype)copyWithZone:(NSZone *)zone{
     return self;
 }
-
-- (instancetype)mutableCopyWithZone:(NSZone *)zone {
+/// 防止外部调用mutableCopy
+-(instancetype)mutableCopyWithZone:(NSZone *)zone{
     return self;
 }
 #pragma mark —— 一些公共方法

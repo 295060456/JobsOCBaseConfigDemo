@@ -17,7 +17,7 @@
 @end
 
 @implementation KTVHCDataUnitItem
-
+/// 防止外部调用copy
 - (id)copyWithZone:(NSZone *)zone
 {
     [self lock];

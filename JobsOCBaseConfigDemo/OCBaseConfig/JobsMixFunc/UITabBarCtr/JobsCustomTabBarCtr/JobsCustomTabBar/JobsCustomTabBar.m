@@ -31,23 +31,16 @@
 }
 
 - (void)setup {
-    JobsCustomTabBarConfig *config = JobsCustomTabBarConfig.sharedManager;
-    if (config.tabBarBackgroundImage) {
-        self.backgroundColor = [UIColor colorWithPatternImage:config.tabBarBackgroundImage];
-    } else {
-        self.backgroundColor = config.tabBarBackgroundColor;
-    }
-    
+    JobsCustomTabBarConfig *config = AppDelegate.jobsCustomTabBarConfig;/// 此时还没有初始化 JobsCustomTabBarConfig.sharedManager;
+    self.backgroundColor = config.tabBarBackgroundImage ? [UIColor colorWithPatternImage:config.tabBarBackgroundImage] :config.tabBarBackgroundColor;
     NSInteger itemCount = config.tabBarItems.count;
     CGFloat itemWidth = JobsMainScreen_WIDTH() / itemCount;
-    
     for (NSInteger index = 0; index < itemCount; index++) {
         UIView *item = config.tabBarItems[index];
         CGFloat xPosition = itemWidth * index;
         CGFloat yOffset = (index < config.tabBarItemYOffsets.count) ? [config.tabBarItemYOffsets[index] floatValue] : 0;
         item.frame = CGRectMake(xPosition, 
-//                                yOffset,
-                                0,
+                                yOffset,
                                 itemWidth,
                                 config.tabBarHeight);
         [self addSubview:item];
