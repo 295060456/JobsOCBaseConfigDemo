@@ -3342,13 +3342,33 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 }
 ```
 
+### 30、关于`UITabBarController` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* <font color=red>`JobsTabBarVC`</font>：**`UITabBarController`**
+  * `JobsTabBarItemConfig`：**`NSObject`**
+  * **UITabBarItem**
+    * `JobsTabBarItem`：**`UITabBarItem`**
+    * `UITabBarItem+TLAnimation`
+  * **UITabBar**
+    * `UITabBar+Ex`
+    * `UITabBar+TLAnimation`
+    * `JobsTabBar`：**`UITabBar`**
+* <font color =red>`JobsCustomTabBarVC`</font>：**`UITabBarController`**
+  * `JobsCustomTabBarConfig`：**`NSObject`**
+  * `JobsCustomTabBar`：**`UIView`**
+  * `JobsCustomTabBarButton`：**`UIButton`**
+* <font color=red>`LZTabBarController`</font>：**`UITabBarController`**
+  * `LZTabBar`：**`UIView`**
+  * `LZTabBarConfig` ：**`NSObject`**
+  * `LZTabBarItem`：**`UIView`**
+
+#### 30.2、
+
 ### Test <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 <details id="Test">
  <summary><strong>点我了解详情</strong></summary>
 * [**OC代码实验室**](https://github.com/295060456/Jobs_ObjectiveC_Laboratory)
-
-
   ```objective-c
   /// TODO
   ```
