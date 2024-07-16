@@ -141,7 +141,7 @@ static JobsCustomTabBarConfig *_jobsCustomTabBarConfig = nil;
     _jobsCustomTabBarConfig.tabBarBackgroundImage = nil;//JobsIMG(@"");
     _jobsCustomTabBarConfig.tabBarItems = self.tabBarItemMutArr;
     _jobsCustomTabBarConfig.viewControllers = self.viewCtrlByTabBarCtrlConfigMutArr;
-    _jobsCustomTabBarConfig.tabBarItemYOffsets = 0;
+    _jobsCustomTabBarConfig.tabBarItemYOffsets = nil;
     return _jobsCustomTabBarConfig;
 }
 

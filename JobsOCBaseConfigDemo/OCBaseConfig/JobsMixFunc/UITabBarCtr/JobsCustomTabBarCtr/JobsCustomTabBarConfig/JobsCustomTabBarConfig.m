@@ -53,4 +53,13 @@ static dispatch_once_t JobsCustomTabBarConfigOnceToken;
     }return _tabBarHeight;
 }
 
+-(NSMutableArray<__kindof NSNumber *> *)tabBarItemYOffsets{
+    if(!_tabBarItemYOffsets){
+        _tabBarItemYOffsets = NSMutableArray.array;
+        for (int d = 0; d < self.tabBarItems.count; d++) {
+            [_tabBarItemYOffsets addObject:@(0)];
+        }
+    }return _tabBarItemYOffsets;
+}
+
 @end
