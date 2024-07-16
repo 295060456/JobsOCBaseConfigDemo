@@ -22,39 +22,29 @@
 @end
 
 @implementation JobsTabBarVC
-static dispatch_once_t onceToken;
+
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    JobsRemoveNotification(self);;
-    onceToken = 0;
+    JobsRemoveNotification(self);
 }
 #pragma mark —— 初始化方法
-static JobsTabBarVC *static_tabbarVC = nil;
-///【单例模式】使用内置默认的JobsTabBar
-+(instancetype)sharedInstance{
-    @synchronized(self){
-        if (!static_tabbarVC) {
-            static_tabbarVC = [super allocWithZone:NULL].init;
-        }
-    }return static_tabbarVC;
+static JobsTabBarVC *JobsTabBarVCInstance = nil;
+static dispatch_once_t JobsTabBarVCOnceToken;
++ (instancetype)sharedManager {
+    dispatch_once(&JobsTabBarVCOnceToken, ^{
+        JobsTabBarVCInstance = [[super allocWithZone:NULL] init];
+    });return JobsTabBarVCInstance;
 }
 ///【单例模式】使用外界自定义的JobsTabBar
 +(instancetype)sharedInstanceWithJobsTabBar:(JobsTabBar *)tabBar{
-    @synchronized(self){
-        if (!static_tabbarVC) {
-            static_tabbarVC = [super allocWithZone:NULL].init;
-            static_tabbarVC.myTabBar = tabBar;
-        }
-    }return static_tabbarVC;
+    dispatch_once(&JobsTabBarVCOnceToken, ^{
+        JobsTabBarVCInstance = [[super allocWithZone:NULL] init];
+        JobsTabBarVCInstance.myTabBar = tabBar;
+    });return JobsTabBarVCInstance;
 }
-/// 在单例实现中，如果覆盖了 allocWithZone: 应该确保初始化方法也使用这个覆盖的方法进行实例化
+
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
-    @synchronized(self) {
-        if (!static_tabbarVC) {
-            static_tabbarVC = [super allocWithZone:zone];
-            return static_tabbarVC;
-        }
-    }return nil;
+    return [self sharedManager];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
@@ -71,10 +61,9 @@ static JobsTabBarVC *static_tabbarVC = nil;
     }return self;
 }
 #pragma mark —— 单例的销毁
-+ (void)destroyInstance{
-    @synchronized(self) {
-        static_tabbarVC = nil;
-    }
++ (void)destroyInstance {
+    JobsTabBarVCInstance = nil;
+    JobsTabBarVCOnceToken = 0;
 }
 #pragma mark —— ViewController的生命周期
 -(void)loadView{
@@ -131,7 +120,7 @@ static JobsTabBarVC *static_tabbarVC = nil;
     [super viewWillLayoutSubviews];
     NSLog(@"");
 }
-
+static dispatch_once_t onceToken;
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     dispatch_once(&onceToken, ^{

@@ -23,28 +23,27 @@
 
 static AppDelegate *AppDelegateInstance = nil;
 static dispatch_once_t AppDelegateOnceToken;
-+(instancetype)sharedManager{
++ (instancetype)sharedManager {
     dispatch_once(&AppDelegateOnceToken, ^{
-        AppDelegateInstance = [super allocWithZone:NULL].init;
-    });return AppDelegateInstance;
-}
-/// 单例的销毁
-+(void)destroyInstance{
-    AppDelegateOnceToken = 0;
-    AppDelegateInstance = nil;
-}
-/// 防止外部使用 alloc/init 等创建新实例
-+(instancetype)allocWithZone:(struct _NSZone *)zone{
-    dispatch_once(&AppDelegateOnceToken, ^{
-        AppDelegateInstance = [super allocWithZone:zone];
-    });return AppDelegateInstance;
+        AppDelegateInstance = [[super allocWithZone:NULL] init];
+    });
+    return AppDelegateInstance;
 }
 
--(instancetype)copyWithZone:(NSZone *)zone{
++ (void)destroyInstance {
+    AppDelegateInstance = nil;
+    AppDelegateOnceToken = 0;
+}
+/// 防止外部使用 alloc/init 等创建新实例
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+    return [self sharedManager];
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone {
     return self;
 }
 
--(instancetype)mutableCopyWithZone:(NSZone *)zone{
+- (instancetype)mutableCopyWithZone:(NSZone *)zone {
     return self;
 }
 

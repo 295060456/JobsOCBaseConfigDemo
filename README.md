@@ -2730,35 +2730,37 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 在单例实现中，如果覆盖了 `allocWithZone:`应该确保初始化方法也使用这个覆盖的方法进行实例化
 
+* 单例宏：关注文件 `MacroDef_Singleton.h`
+
 * 以`GCD`的方式实现
 
   `dispatch_once_t` 是 **GCD**（**G**rand **C**entral **D**ispatch）提供的一种机制，用于确保某段代码在应用程序的生命周期内只执行一次。它是线程安全的，适用于多线程环境
 
   ```objective-c
-  static JobsLaunchAdMgr *JobsLaunchAdMgrInstance = nil;
-  static dispatch_once_t JobsLaunchAdMgrOnceToken;
-  +(instancetype)sharedManager{
-      dispatch_once(&JobsLaunchAdMgrOnceToken, ^{
-          JobsLaunchAdMgrInstance = [super allocWithZone:NULL].init;
-      });return JobsLaunchAdMgrInstance;
-  }
-  /// 单例的销毁
-  +(void)destroyInstance{
-      JobsLaunchAdMgrOnceToken = 0;
-      JobsLaunchAdMgrInstance = nil;
-  }
-  /// 防止外部使用 alloc/init 等创建新实例
-  +(instancetype)allocWithZone:(struct _NSZone *)zone{
-      dispatch_once(&JobsLaunchAdMgrOnceToken, ^{
-          JobsLaunchAdMgrInstance = [super allocWithZone:zone];
-      });return JobsLaunchAdMgrInstance;
+  static JobsCustomTabBarVC *JobsCustomTabBarVCInstance = nil;
+  static dispatch_once_t JobsCustomTabBarVCOnceToken;
+  
+  + (instancetype)sharedManager {
+      dispatch_once(&JobsCustomTabBarVCOnceToken, ^{
+          JobsCustomTabBarVCInstance = [[super allocWithZone:NULL] init];
+      });
+      return JobsCustomTabBarVCInstance;
   }
   
-  -(instancetype)copyWithZone:(NSZone *)zone{
+  + (void)destroyInstance {
+      JobsCustomTabBarVCInstance = nil;
+      JobsCustomTabBarVCOnceToken = 0;
+  }
+  /// 防止外部使用 alloc/init 等创建新实例
+  + (instancetype)allocWithZone:(struct _NSZone *)zone {
+      return [self sharedManager];
+  }
+  
+  - (instancetype)copyWithZone:(NSZone *)zone {
       return self;
   }
   
-  -(instancetype)mutableCopyWithZone:(NSZone *)zone{
+  - (instancetype)mutableCopyWithZone:(NSZone *)zone {
       return self;
   }
   ```
@@ -2768,28 +2770,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   <font color=red>**`@synchronized`**</font>关键字用于实现线程安全,它确保一段代码在同一时间内只能被一个线程执行，从而防止多个线程同时访问和修改共享资源，避免数据竞争和不一致性问题
 
   ```objective-c
-  static JobsLaunchAdMgr *JobsLaunchAdMgrInstance = nil;
+  static JobsCustomTabBarVC *JobsCustomTabBarVCInstance = nil;
+  
   + (instancetype)sharedManager {
-      @synchronized(self) {
-          if (!JobsLaunchAdMgrInstance) {
-              JobsLaunchAdMgrInstance = [super allocWithZone:NULL].init;
+      @synchronized (self) {
+          if (JobsCustomTabBarVCInstance == nil) {
+              JobsCustomTabBarVCInstance = [[super allocWithZone:NULL] init];
           }
-      }return JobsLaunchAdMgrInstance;
+      }
+      return JobsCustomTabBarVCInstance;
   }
   
   + (void)destroyInstance {
-      @synchronized(self) {
-          JobsLaunchAdMgrInstance = nil;
+      @synchronized (self) {
+          JobsCustomTabBarVCInstance = nil;
       }
   }
   
+  /// 防止外部使用 alloc/init 等创建新实例
   + (instancetype)allocWithZone:(struct _NSZone *)zone {
-      @synchronized(self) {
-          if (!JobsLaunchAdMgrInstance) {
-              JobsLaunchAdMgrInstance = [super allocWithZone:zone];
-              return JobsLaunchAdMgrInstance;
-          }
-      }return nil;
+      return [self sharedManager];
   }
   
   - (instancetype)copyWithZone:(NSZone *)zone {

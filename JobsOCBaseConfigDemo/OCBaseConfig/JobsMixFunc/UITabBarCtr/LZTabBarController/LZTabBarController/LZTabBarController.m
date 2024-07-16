@@ -64,20 +64,32 @@
     if (self.selectedViewController == selectedVC) {
         return;
     }
+    
+    UIViewController *currentVC = self.selectedViewController;
+
+    // Add the selected view controller to the parent
+    [self addChildViewController:selectedVC];
+    selectedVC.view.frame = self.view.bounds;
 
     // Begin transition to new view controller
-    [self transitionFromViewController:self.selectedViewController
+    [self transitionFromViewController:currentVC
                       toViewController:selectedVC
                               duration:0.3
                                options:UIViewAnimationOptionTransitionNone
                             animations:nil
                             completion:^(BOOL finished) {
         if (finished) {
+            [selectedVC didMoveToParentViewController:self];
+            [currentVC willMoveToParentViewController:nil];
+            [currentVC removeFromParentViewController];
 //            self.selectedIndex = index;
             [self.tabBar setSelectedItem:self.tabBar.items[index]];
         } else {
             // Transition was not successful, revert to original selectedIndex
-            self.selectedViewController = self.viewControllers[self.selectedIndex];
+            [selectedVC willMoveToParentViewController:nil];
+            [selectedVC removeFromParentViewController];
+            [self addChildViewController:currentVC];
+            [currentVC didMoveToParentViewController:self];
         }
     }];
 }

@@ -30,9 +30,7 @@ static dispatch_once_t JobsAppToolsOnceToken;
 }
 /// 防止外部使用 alloc/init 等创建新实例
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
-    dispatch_once(&JobsAppToolsOnceToken, ^{
-        JobsAppToolsInstance = [super allocWithZone:zone];
-    });return JobsAppToolsInstance;
+    return [self sharedManager];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {

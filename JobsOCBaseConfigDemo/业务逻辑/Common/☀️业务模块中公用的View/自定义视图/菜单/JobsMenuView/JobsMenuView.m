@@ -39,9 +39,7 @@ static dispatch_once_t JobsMenuViewOnceToken;
 }
 /// 防止外部使用 alloc/init 等创建新实例
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
-    dispatch_once(&JobsMenuViewOnceToken, ^{
-        JobsMenuViewInstance = [super allocWithZone:zone];
-    });return JobsMenuViewInstance;
+    return [self sharedManager];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
