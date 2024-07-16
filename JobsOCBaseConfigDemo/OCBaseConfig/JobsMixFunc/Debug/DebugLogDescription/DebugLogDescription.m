@@ -50,7 +50,14 @@
     for (int i = 0; i<count; i++) {
         objc_property_t property = properties[i];
         NSString *name = @(property_getName(property));
-        id value = self.valueForKeyBlock(name) ? : @"nil";//默认值为nil字符串
+        id value = @"nil";
+        @try {
+            value = self.valueForKeyBlock(name) ?: @"nil"; //默认值为nil字符串
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Exception: %@", exception);
+            value = @"nil"; // or handle the exception as needed
+        }
         [dictionary setObject:value forKey:name];//装载到字典里
     }
     //释放

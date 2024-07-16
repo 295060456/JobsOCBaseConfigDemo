@@ -5,15 +5,16 @@
 //  Created by Artron_LQQ on 2016/12/12.
 //  Copyright © 2016年 Artup. All rights reserved.
 //
+
 /*
  底部tabBar自定义的tabBarController
  只需调用给出的类方法, 配置相关参数即可创建tabBarController实例对象
- 
  */
 
 #import <UIKit/UIKit.h>
 #import "LZTabBarConfig.h"
 #import "LZTabBar.h"
+#import "MacroDef_Size.h"
 
 typedef LZTabBarConfig*(^tabBarBlock)(LZTabBarConfig *config);
 
@@ -28,6 +29,8 @@ typedef LZTabBarConfig*(^tabBarBlock)(LZTabBarConfig *config);
 -(void)hiddenTabBarWithAnimation:(BOOL)isAnimation;
 /// 显示底部tabBar的方法
 -(void)showTabBarWithAnimation:(BOOL)isAnimation;
+
+-(void)customSelectIndex:(NSUInteger)index;
 
 @end
 

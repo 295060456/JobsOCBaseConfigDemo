@@ -606,7 +606,7 @@ TabBarVC.noNeedLoginArr = @[@0];// 在某些页面不需要弹出登录，其优
 * 使用分类的方式进行挂载
 
   ```objective-c
-  #define RootViewController appDelegate.tabBarVC
+  #define RootViewController AppDelegate.tabBarVC
   ```
 
   ```objective-c

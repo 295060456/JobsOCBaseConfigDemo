@@ -30,9 +30,7 @@ static dispatch_once_t JobsAppToolsOnceToken;
 }
 /// 防止外部使用 alloc/init 等创建新实例
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
-    dispatch_once(&JobsAppToolsOnceToken, ^{
-        JobsAppToolsInstance = [super allocWithZone:zone];
-    });return JobsAppToolsInstance;
+    return [self sharedManager];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
@@ -57,7 +55,7 @@ static dispatch_once_t JobsAppToolsOnceToken;
     if (sceneDelegateWindowBlock) sceneDelegateWindowBlock(self.sceneDelegateWindow);
 }
 #pragma mark —— lazyLoad
-/// 仅仅为了iOS 13 版本向下兼容而存在
+/// 在使用sceneDelegate的情况下，仅仅为了iOS 13 版本向下兼容而存在
 -(UIWindow *)appDelegateWindow{
     if(!_appDelegateWindow){
         _appDelegateWindow = UIWindow.new;

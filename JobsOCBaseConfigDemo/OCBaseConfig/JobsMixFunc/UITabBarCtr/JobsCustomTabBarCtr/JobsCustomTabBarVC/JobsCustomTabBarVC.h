@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(instancetype)sharedManager;
 +(void)destroyInstance;
 
+-(void)customSelectIndex:(NSUInteger)index;
+
 @end
 
 NS_ASSUME_NONNULL_END

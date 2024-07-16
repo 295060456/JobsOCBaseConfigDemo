@@ -8,8 +8,6 @@
 
 #import "LZTabBarController.h"
 
-static CGFloat lzTabBarHeight = 49.0;
-
 @interface LZTabBarController ()
 
 @property(nonatomic,strong)LZTabBar *customTabBar;
@@ -18,19 +16,9 @@ static CGFloat lzTabBarHeight = 49.0;
 @end
 
 @implementation LZTabBarController
-//@synthesize selectedIndex = _selectedIndex;
-- (instancetype)initWithBlock:(tabBarBlock)block {
-    if (self = [super init]) {
-        LZTabBarConfig *config = LZTabBarConfig.new;
-        NSAssert(block, @"Param 'block' in zhe function, can not be nil");
-        if (block) {
-            _config = block(config);
-        }
-        NSAssert(_config.viewControllers, @"Param 'viewControllers' in the 'config', can not be nil");
-        [self setupViewControllers];
-        [self setupTabBar];
-        _isAutoRotation = YES;
-    }return self;
+
++ (instancetype)defaultTabBarController {
+    return [LZTabBarController createTabBarController:nil];
 }
 
 + (instancetype)createTabBarController:(tabBarBlock)block {
@@ -41,8 +29,20 @@ static CGFloat lzTabBarHeight = 49.0;
     });return tabBar;
 }
 
-+ (instancetype)defaultTabBarController {
-    return [LZTabBarController createTabBarController:nil];
+- (instancetype)initWithBlock:(tabBarBlock)block {
+    if (self = [super init]) {
+        LZTabBarConfig *config = LZTabBarConfig.new;
+        NSAssert(block, @"Param 'block' in zhe function, can not be nil");
+        if (block) _config = block(config);
+        NSAssert(_config.viewControllers, @"Param 'viewControllers' in the 'config', can not be nil");
+        [self setupViewControllers];
+        [self setupTabBar];
+        _isAutoRotation = YES;
+    }return self;
+}
+
+-(void)loadView{
+    [super loadView];
 }
 
 - (void)viewDidLoad {
@@ -51,12 +51,55 @@ static CGFloat lzTabBarHeight = 49.0;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.selectedIndex = 3;
+}
+#pragma mark —— 一些公有方法
+- (void)customSelectIndex:(NSUInteger)index {
+    if (index >= self.viewControllers.count) {
+        NSLog(@"Index out of bounds");
+        return;
+    }
+    
+    UIViewController *selectedVC = self.viewControllers[index];
+    
+    if (self.selectedViewController == selectedVC) {
+        return;
+    }
+    
+    UIViewController *currentVC = self.selectedViewController;
+
+    // Add the selected view controller to the parent
+    [self addChildViewController:selectedVC];
+    selectedVC.view.frame = self.view.bounds;
+
+    // Begin transition to new view controller
+    [self transitionFromViewController:currentVC
+                      toViewController:selectedVC
+                              duration:0.3
+                               options:UIViewAnimationOptionTransitionNone
+                            animations:nil
+                            completion:^(BOOL finished) {
+        if (finished) {
+            [selectedVC didMoveToParentViewController:self];
+            [currentVC willMoveToParentViewController:nil];
+            [currentVC removeFromParentViewController];
+//            self.selectedIndex = index;
+            [self.tabBar setSelectedItem:self.tabBar.items[index]];
+        } else {
+            // Transition was not successful, revert to original selectedIndex
+            [selectedVC willMoveToParentViewController:nil];
+            [selectedVC removeFromParentViewController];
+            [self addChildViewController:currentVC];
+            [currentVC didMoveToParentViewController:self];
+        }
+    }];
 }
 
 - (void)hiddenTabBarWithAnimation:(BOOL)isAnimation {
     if (isAnimation) {
-        [UIView animateWithDuration:0.2 animations:^{
+        @jobs_weakify(self)
+        [UIView animateWithDuration:0.2
+                         animations:^{
+            @jobs_strongify(self)
             self.customTabBar.alpha = 0;
         }];
     } else {
@@ -66,7 +109,9 @@ static CGFloat lzTabBarHeight = 49.0;
 
 - (void)showTabBarWithAnimation:(BOOL)isAnimation {
     if (isAnimation) {
+        @jobs_weakify(self)
         [UIView animateWithDuration:0.2 animations:^{
+            @jobs_strongify(self)
             self.customTabBar.alpha = 1.0;
         }];
     } else {
@@ -129,18 +174,16 @@ static CGFloat lzTabBarHeight = 49.0;
     // 隐藏掉系统的tabBar
     self.tabBar.hidden = YES;
     self.customTabBar.items = items.copy;
-    self.customTabBar.frame = CGRectMake(0, 
-                                         CGRectGetHeight(self.view.frame) - lzTabBarHeight,
+    self.customTabBar.frame = CGRectMake(0,
+                                         CGRectGetHeight(self.view.frame) - JobsTabBarHeightByBottomSafeArea(self),
                                          CGRectGetWidth(self.view.frame),
-                                         lzTabBarHeight);
+                                         JobsTabBarHeightByBottomSafeArea(self));
     [self.view addSubview:self.customTabBar];
 }
 #pragma mark —— LZTabBarDelegate
 - (void)tabBar:(LZTabBar *)tab 
  didSelectItem:(LZTabBarItem *)item 
        atIndex:(NSInteger)index {
-    self.selectedIndex = 88;
-    NSLog(@"SDFSA = %lu",(unsigned long)self.selectedIndex);
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:0];
     for (UIView *view in tab.subviews) {
         if ([view isKindOfClass:LZTabBarItem.class]) {
@@ -162,27 +205,21 @@ static CGFloat lzTabBarHeight = 49.0;
     item.icon = self.config.selectedImages[index];
     if (self.config.titles.count > 0) {
         item.titleColor = self.config.selectedColor;
-    }self.selectedIndex = index;
+    }
+//    self.selectedIndex = index;
+    
+    [self customSelectIndex:index];
+    
     NSLog(@"SSS = %lu",(unsigned long)self.selectedIndex);
 }
-
-//-(void)setSelectedIndex:(NSUInteger)selectedIndex{
-//    _selectedIndex = selectedIndex;
-//}
-//
-//-(NSUInteger)selectedIndex{
-//    NSUInteger d = _selectedIndex;
-//    return _selectedIndex;
-//}
-
 // 屏幕旋转时调整tabbar
 - (void)viewWillTransitionToSize:(CGSize)size 
        withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     self.customTabBar.frame = CGRectMake(0, 
-                                         size.height - lzTabBarHeight,
+                                         size.height - JobsTabBarHeightByBottomSafeArea(self),
                                          size.width,
-                                         lzTabBarHeight);
+                                         JobsTabBarHeightByBottomSafeArea(self));
 }
 
 - (BOOL)shouldAutorotate {

@@ -45,4 +45,10 @@ static dispatch_once_t JobsCustomTabBarConfigOnceToken;
     }return self;
 }
 
+-(CGFloat)tabBarHeight{
+    if (!_tabBarHeight) {
+        _tabBarHeight = JobsTabBarHeightByBottomSafeArea(AppDelegate.jobsCustomTabBarVC);
+    }return _tabBarHeight;
+}
+
 @end

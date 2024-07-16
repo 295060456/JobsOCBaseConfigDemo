@@ -39,10 +39,8 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
     JobsCustomTabBarVCInstance = nil;
 }
 /// 防止外部使用 alloc/init 等创建新实例
-+(instancetype)allocWithZone:(struct _NSZone *)zone{
-    dispatch_once(&JobsCustomTabBarVCOnceToken, ^{
-        JobsCustomTabBarVCInstance = [super allocWithZone:zone];
-    });return JobsCustomTabBarVCInstance;
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+    return [self sharedManager];
 }
 
 -(instancetype)copyWithZone:(NSZone *)zone{
@@ -55,6 +53,7 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 
 -(void)loadView{
     [super loadView];
+    self.viewControllers = AppDelegate.viewCtrlMutArr;
 }
 
 - (void)viewDidLoad {
@@ -62,8 +61,6 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
     self.tabBar.hidden = YES;
     self.view.backgroundColor = JobsGreenColor;
     self.customTabBar.alpha = 1;
-    id f = JobsCustomTabBarConfig.sharedManager.viewControllers;
-    self.viewControllers = JobsCustomTabBarConfig.sharedManager.viewControllers;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -81,6 +78,35 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }
+#pragma mark —— 一些公有方法
+- (void)customSelectIndex:(NSUInteger)index {
+    if (index >= self.viewControllers.count) {
+        NSLog(@"Index out of bounds");
+        return;
+    }
+    
+    UIViewController *selectedVC = self.viewControllers[index];
+    
+    if (self.selectedViewController == selectedVC) {
+        return;
+    }
+
+    // Begin transition to new view controller
+    [self transitionFromViewController:self.selectedViewController
+                      toViewController:selectedVC
+                              duration:0.3
+                               options:UIViewAnimationOptionTransitionNone
+                            animations:nil
+                            completion:^(BOOL finished) {
+        if (finished) {
+            self.selectedIndex = index;
+            [self.tabBar setSelectedItem:self.tabBar.items[index]];
+        } else {
+            // Transition was not successful, revert to original selectedIndex
+            self.selectedViewController = self.viewControllers[self.selectedIndex];
+        }
+    }];
+}
 #pragma mark —— LazyLoad
 -(JobsCustomTabBar *)customTabBar{
     if(!_customTabBar){
@@ -89,14 +115,14 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
         [self.view addSubview:_customTabBar];
         [_customTabBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(self.view.width);
-            make.height.mas_equalTo(JobsCustomTabBarConfig.sharedManager.tabBarHeight);
+            make.height.mas_equalTo(JobsCustomTabBarConfig.sharedManager.tabBarHeight);// AppDelegate.jobsCustomTabBarConfig;
             make.centerX.equalTo(self.view);
             make.bottom.equalTo(self.view);
         }];
 //        _customTabBar.frame = CGRectMake(0,
-//                                         self.view.frame.size.height - JobsCustomTabBarConfig.sharedManager.tabBarHeight,
+//                                         self.view.frame.size.height - AppDelegate.jobsCustomTabBarConfig.tabBarHeight,
 //                                         self.view.frame.size.width,
-//                                         JobsCustomTabBarConfig.sharedManager.tabBarHeight);
+//                                         AppDelegate.jobsCustomTabBarConfig.tabBarHeight);
     }return _customTabBar;
 }
 

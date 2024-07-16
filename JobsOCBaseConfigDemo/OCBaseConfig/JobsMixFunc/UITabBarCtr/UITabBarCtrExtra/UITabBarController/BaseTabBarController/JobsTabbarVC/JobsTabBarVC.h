@@ -69,13 +69,13 @@ UIGestureRecognizerDelegate
 @property(nonatomic,assign)BOOL isJumpToNextVC;/// 当需要跳开的item,是否是需要直接跳到下一个VC？默认NO
 #pragma mark —— 初始化方法
 ///【单例模式】使用内置默认的JobsTabBar
-+(instancetype)sharedInstance;
++(instancetype)sharedManager;
 ///【单例模式】使用外界自定义的JobsTabBar
 +(instancetype)sharedInstanceWithJobsTabBar:(JobsTabBar *)tabBar;
 /// 一般的初始化模式
 -(instancetype)initWithJobsTabBar:(JobsTabBar *)tabBar;
 #pragma mark —— 单例的销毁
-+ (void)destroyInstance;
++(void)destroyInstance;
 #pragma mark —— 一些公有方法
 /// 需要强制跳转登录的index。点击和手势滑动都需要共同调用
 -(BOOL)forcedLoginIndex:(NSUInteger)index;

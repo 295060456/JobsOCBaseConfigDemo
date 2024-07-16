@@ -186,13 +186,20 @@
  // dataMutArr = self.createDataMutArr2; 这一段无效
  
  */
--(JobsReturnIDByIDBlock _Nonnull)valueForKeyBlock{
+- (JobsReturnIDByIDBlock)valueForKeyBlock {
     return ^(NSString *key) {
         id value = nil;
-        if([key isKindOfClass:NSString.class] &&
-           [self respondsToSelector:NSSelectorFromString(key)]){
-            value = [self valueForKey:key];
-        }return value;
+        if ([key isKindOfClass:NSString.class] &&
+            [self respondsToSelector:NSSelectorFromString(key)]) {
+            @try {
+                value = [self valueForKey:key];
+            }
+            @catch (NSException *exception) {
+                NSLog(@"Exception: %@", exception);
+                value = @"nil"; // or handle the exception as needed
+            }
+        }
+        return value;
     };
 }
 /// KVC 的二次封装

@@ -2,7 +2,7 @@
 //  JobsOCBaseConfigDemoUITests.m
 //  JobsOCBaseConfigDemoUITests
 //
-//  Created by Jobs on 2021/12/11.
+//  Created by User on 7/15/24.
 //
 
 #import <XCTest/XCTest.h>
@@ -31,7 +31,6 @@
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [app launch];
 
-    // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
 }
 

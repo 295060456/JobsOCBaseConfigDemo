@@ -11,8 +11,8 @@
 #pragma mark —— 转化
 /// 字符串中取数字
 -(long long)getDigits{
-    NSCharacterSet *nonDigits = [NSCharacterSet.decimalDigitCharacterSet invertedSet];
-    int remainSecond = [[self stringByTrimmingCharactersInSet:nonDigits] intValue];
+    NSCharacterSet *nonDigits = NSCharacterSet.decimalDigitCharacterSet.invertedSet;
+    int remainSecond = [self stringByTrimmingCharactersInSet:nonDigits].intValue;
     return (long long)remainSecond;
 }
 /// 读取本地JSON文件

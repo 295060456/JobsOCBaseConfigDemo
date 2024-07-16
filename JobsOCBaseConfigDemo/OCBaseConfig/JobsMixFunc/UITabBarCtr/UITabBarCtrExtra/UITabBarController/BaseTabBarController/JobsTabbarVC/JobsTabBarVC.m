@@ -22,39 +22,29 @@
 @end
 
 @implementation JobsTabBarVC
-static dispatch_once_t onceToken;
+
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    JobsRemoveNotification(self);;
-    onceToken = 0;
+    JobsRemoveNotification(self);
 }
 #pragma mark —— 初始化方法
-static JobsTabBarVC *static_tabbarVC = nil;
-///【单例模式】使用内置默认的JobsTabBar
-+(instancetype)sharedInstance{
-    @synchronized(self){
-        if (!static_tabbarVC) {
-            static_tabbarVC = [super allocWithZone:NULL].init;
-        }
-    }return static_tabbarVC;
+static JobsTabBarVC *JobsTabBarVCInstance = nil;
+static dispatch_once_t JobsTabBarVCOnceToken;
++ (instancetype)sharedManager {
+    dispatch_once(&JobsTabBarVCOnceToken, ^{
+        JobsTabBarVCInstance = [[super allocWithZone:NULL] init];
+    });return JobsTabBarVCInstance;
 }
 ///【单例模式】使用外界自定义的JobsTabBar
 +(instancetype)sharedInstanceWithJobsTabBar:(JobsTabBar *)tabBar{
-    @synchronized(self){
-        if (!static_tabbarVC) {
-            static_tabbarVC = [super allocWithZone:NULL].init;
-            static_tabbarVC.myTabBar = tabBar;
-        }
-    }return static_tabbarVC;
+    dispatch_once(&JobsTabBarVCOnceToken, ^{
+        JobsTabBarVCInstance = [[super allocWithZone:NULL] init];
+        JobsTabBarVCInstance.myTabBar = tabBar;
+    });return JobsTabBarVCInstance;
 }
-/// 在单例实现中，如果覆盖了 allocWithZone: 应该确保初始化方法也使用这个覆盖的方法进行实例化
+
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
-    @synchronized(self) {
-        if (!static_tabbarVC) {
-            static_tabbarVC = [super allocWithZone:zone];
-            return static_tabbarVC;
-        }
-    }return nil;
+    return [self sharedManager];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
@@ -71,10 +61,9 @@ static JobsTabBarVC *static_tabbarVC = nil;
     }return self;
 }
 #pragma mark —— 单例的销毁
-+ (void)destroyInstance{
-    @synchronized(self) {
-        static_tabbarVC = nil;
-    }
++ (void)destroyInstance {
+    JobsTabBarVCInstance = nil;
+    JobsTabBarVCOnceToken = 0;
 }
 #pragma mark —— ViewController的生命周期
 -(void)loadView{
@@ -131,7 +120,7 @@ static JobsTabBarVC *static_tabbarVC = nil;
     [super viewWillLayoutSubviews];
     NSLog(@"");
 }
-
+static dispatch_once_t onceToken;
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     dispatch_once(&onceToken, ^{
@@ -208,7 +197,7 @@ static JobsTabBarVC *static_tabbarVC = nil;
 #pragma mark —— 一些私有方法
 /// 需要强制跳转登录的index。点击和手势滑动都需要共同调用
 -(BOOL)forcedLoginIndex:(NSUInteger)index{
-    for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.makeTabBarItemConfigMutArr) {
+    for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.tabBarItemConfigMutArr) {
         if(tabBarItemConfig.isNeedCheckLogin){
             [self forcedLogin];
             return YES;
@@ -219,21 +208,21 @@ static JobsTabBarVC *static_tabbarVC = nil;
 /// @param index index
 -(BOOL)judgeLottieWithIndex:(NSInteger)index{
     JobsTabBarItemConfig *config = nil;
-    if(AppDelegate.makeTabBarItemConfigMutArr.count){
-        config = (JobsTabBarItemConfig *)AppDelegate.makeTabBarItemConfigMutArr[index];
+    if(AppDelegate.tabBarItemConfigMutArr.count){
+        config = (JobsTabBarItemConfig *)AppDelegate.tabBarItemConfigMutArr[index];
     }return ![NSString isNullString:config.lottieName];
 }
 /// ❤️关键方法❤️
 -(void)UISetting{
-    for (int i = 0; i < AppDelegate.makeTabBarItemConfigMutArr.count; i++) {
-        JobsTabBarItemConfig *config = (JobsTabBarItemConfig *)AppDelegate.makeTabBarItemConfigMutArr[i];
+    for (int i = 0; i < AppDelegate.tabBarItemConfigMutArr.count; i++) {
+        JobsTabBarItemConfig *config = (JobsTabBarItemConfig *)AppDelegate.tabBarItemConfigMutArr[i];
 //        self.tabBarItem.title = config.title;
 //        self.tabBarItem.image = config.imageUnselected;
         // For Test
 //        if ([self judgeLottieWithIndex:i]) {
 //            [self addLottieImage:config.lottieName];// 有Lottie动画名，则优先创建Lottie动画
 //        }
-        UIViewController *viewController = AppDelegate.makeUIViewControllerMutArr[i];
+        UIViewController *viewController = AppDelegate.viewCtrlByTabBarCtrlConfigMutArr[i];
         viewController.title = config.title;
         viewController.tabBarItem = [JobsTabBarItem.alloc initWithConfig:config];
         
@@ -256,7 +245,7 @@ static JobsTabBarVC *static_tabbarVC = nil;
 //        }
     }
     /// ❤️这句话走了以后 才会有self.tabBar
-    self.viewControllers = AppDelegate.makeUIViewControllerMutArr;
+    self.viewControllers = AppDelegate.viewCtrlByTabBarCtrlConfigMutArr;
     for (UIView *subView in self.tabBar.subviews) {
         if ([subView isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
             [subView animationAlert];/// 图片从小放大
@@ -267,7 +256,7 @@ static JobsTabBarVC *static_tabbarVC = nil;
     if (self.firstUI_selectedIndex < self.viewControllers.count) {
         self.selectedIndex = self.firstUI_selectedIndex;//初始显示哪个
         if ([self judgeLottieWithIndex:self.selectedIndex]) {
-            [AppDelegate.makeUIViewControllerMutArr[self.firstUI_selectedIndex] lottieImagePlay];
+            [AppDelegate.viewCtrlByTabBarCtrlConfigMutArr[self.firstUI_selectedIndex] lottieImagePlay];
             [self.tabBar animationLottieImage:self.firstUI_selectedIndex];
         }
     }
@@ -277,9 +266,9 @@ static JobsTabBarVC *static_tabbarVC = nil;
     CGPoint translation = [sender translationInView:self.view];
     NSLog(@"FromIndex = %lu",(unsigned long)self.selectedIndex);
     /// ❤️需要被跳开的item的逻辑❤️
-    for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.makeTabBarItemConfigMutArr) {
+    for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.tabBarItemConfigMutArr) {
         if(tabBarItemConfig.isNeedjump){
-            NSUInteger d = [AppDelegate.makeTabBarItemConfigMutArr indexOfObject:tabBarItemConfig];
+            NSUInteger d = [AppDelegate.tabBarItemConfigMutArr indexOfObject:tabBarItemConfig];
             if (d <= self.tabBar.items.count - 1) {
                 {// 手势从左到右 和 手势从右到左 的两种触发方式
                     // 手势从左到右
@@ -373,7 +362,7 @@ static JobsTabBarVC *static_tabbarVC = nil;
     if ([tabBar.items containsObject:item]) {
         NSUInteger index = [self.tabBar.items indexOfObject:item];
         NSLog(@"当前点击：%ld",(long)index);
-        for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.makeTabBarItemConfigMutArr) {
+        for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.tabBarItemConfigMutArr) {
             if(tabBarItemConfig.isNeedjump){
                 if (![self forcedLoginIndex:index]) {
                     /// 不需要进行强制登录的时候，才重新赋值刷新self.selectedIndex
@@ -408,7 +397,7 @@ static JobsTabBarVC *static_tabbarVC = nil;
  */
 - (BOOL)tabBarController:(UITabBarController *)tabBarController
 shouldSelectViewController:(UIViewController *)viewController {
-    NSInteger index = [AppDelegate.makeUIViewControllerMutArr indexOfObject:viewController];
+    NSInteger index = [AppDelegate.viewCtrlByTabBarCtrlConfigMutArr indexOfObject:viewController];
     if ([viewController isKindOfClass:UIViewController.class] &&
         [self judgeLottieWithIndex:index]) {
         [viewController lottieImagePlay];

@@ -1,6 +1,7 @@
 #  配置`info.plist`
 
-* 用Open As Source Code的方式，打开`info.plist`，并添加以下信息
+* 这个文件不需要包含进项目工程，系统通过自检（读取指定目录下的指定名的文件）读取，如果包含进项目，编译会出问题
+* 用**Open As Source Code**的方式，打开`info.plist`，并添加以下信息
 [toc]
 ## 1、App索取用户权限（做多语言化处理）
 ```xml
