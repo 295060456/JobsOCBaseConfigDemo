@@ -13,7 +13,7 @@
 static JobsTabBarVC *_tabBarVC = nil;
 +(JobsTabBarVC *)tabBarVC{
     if(!_tabBarVC){
-        _tabBarVC = JobsTabBarVC.sharedInstance;
+        _tabBarVC = JobsTabBarVC.sharedManager;
         _tabBarVC.isAnimationAlert = YES;//OK
         _tabBarVC.isPlaySound = YES;
         _tabBarVC.isFeedbackGenerator = YES;
