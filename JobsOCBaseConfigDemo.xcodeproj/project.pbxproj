@@ -2063,7 +2063,6 @@
 		CECE80492C4512BF00764AF5 /* JobsCustomTabBarConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsCustomTabBarConfig.m; sourceTree = "<group>"; };
 		CECE804B2C4512BF00764AF5 /* JobsCustomTabBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsCustomTabBarVC.h; sourceTree = "<group>"; };
 		CECE804C2C4512BF00764AF5 /* JobsCustomTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsCustomTabBarVC.m; sourceTree = "<group>"; };
-		CECE804E2C4512BF00764AF5 /* JobsCustomTabBarVC.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = JobsCustomTabBarVC.md; sourceTree = "<group>"; };
 		CECE80502C4512BF00764AF5 /* LZTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZTabBar.h; sourceTree = "<group>"; };
 		CECE80512C4512BF00764AF5 /* LZTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZTabBar.m; sourceTree = "<group>"; };
 		CECE80532C4512BF00764AF5 /* LZTabBarConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZTabBarConfig.h; sourceTree = "<group>"; };
@@ -2123,7 +2122,6 @@
 		CECE80A22C4512BF00764AF5 /* JobsTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTabBarItem.m; sourceTree = "<group>"; };
 		CECE80A42C4512BF00764AF5 /* UITabBarItem+TLAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+TLAnimation.h"; sourceTree = "<group>"; };
 		CECE80A52C4512BF00764AF5 /* UITabBarItem+TLAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+TLAnimation.m"; sourceTree = "<group>"; };
-		CECE80A92C4512BF00764AF5 /* JobsTabbarCtrl.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = JobsTabbarCtrl.md; sourceTree = "<group>"; };
 		CECE80AA2C4512BF00764AF5 /* JobsTabbarCtrlSysEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTabbarCtrlSysEx.h; sourceTree = "<group>"; };
 		CECE80AD2C4512BF00764AF5 /* ZMJCells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMJCells.h; sourceTree = "<group>"; };
 		CECE80AE2C4512BF00764AF5 /* ZMJCells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMJCells.m; sourceTree = "<group>"; };
@@ -2995,6 +2993,7 @@
 		CECE88B82C4519AD00764AF5 /* libstdc++.6.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = "libstdc++.6.tbd"; sourceTree = "<group>"; };
 		CECE88B92C4519AD00764AF5 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libstdc++.dylib"; sourceTree = "<group>"; };
 		CECE88BB2C4519AD00764AF5 /* libstdc++.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libstdc++.md"; sourceTree = "<group>"; };
+		CEDD37232C468AC7004E1780 /* 自定义 UITabBarController.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "自定义 UITabBarController.md"; path = "../../../../../../Github/JobsOCBaseConfig/文档和资料/自定义 UITabBarController.md/自定义 UITabBarController.md"; sourceTree = "<group>"; };
 		F5DAEE19CC0B77742495EB1F /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE176E0EC1B036786E28E5E5 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -7782,7 +7781,6 @@
 				CECE80472C4512BF00764AF5 /* JobsCustomTabBarButton */,
 				CECE804A2C4512BF00764AF5 /* JobsCustomTabBarConfig */,
 				CECE804D2C4512BF00764AF5 /* JobsCustomTabBarVC */,
-				CECE804E2C4512BF00764AF5 /* JobsCustomTabBarVC.md */,
 			);
 			path = JobsCustomTabBarCtr;
 			sourceTree = "<group>";
@@ -8088,7 +8086,6 @@
 				CECE809B2C4512BF00764AF5 /* UITabBar */,
 				CECE80A02C4512BF00764AF5 /* UITabBarController */,
 				CECE80A82C4512BF00764AF5 /* UITabBarItem */,
-				CECE80A92C4512BF00764AF5 /* JobsTabbarCtrl.md */,
 				CECE80AA2C4512BF00764AF5 /* JobsTabbarCtrlSysEx.h */,
 			);
 			path = UITabBarCtrExtra;
@@ -8097,6 +8094,7 @@
 		CECE80AC2C4512BF00764AF5 /* UITabBarCtr */ = {
 			isa = PBXGroup;
 			children = (
+				CEDD37232C468AC7004E1780 /* 自定义 UITabBarController.md */,
 				CECE804F2C4512BF00764AF5 /* JobsCustomTabBarCtr */,
 				CECE805C2C4512BF00764AF5 /* LZTabBarController */,
 				CECE80AB2C4512BF00764AF5 /* UITabBarCtrExtra */,
