@@ -49,7 +49,9 @@ static JobsCustomTabBarVC *_jobsCustomTabBarVC = nil;
 static LZTabBarController *_lZTabBarCtrl = nil;
 +(LZTabBarController *)lZTabBarCtrl{
     if(!_lZTabBarCtrl){
+        @jobs_weakify(self)
         _lZTabBarCtrl = [LZTabBarController createTabBarController:^LZTabBarConfig *(LZTabBarConfig *config) {
+            @jobs_strongify(self)
             return self.lZTabBarConfig;
         }];
     }return _lZTabBarCtrl;
@@ -83,7 +85,6 @@ static UINavigationController *_jobsTabBarNavCtrl = nil;
 +(void)setJobsTabBarNavCtrl:(UINavigationController *)jobsTabBarNavCtrl{
     _jobsTabBarNavCtrl = jobsTabBarNavCtrl;
 }
-
 @dynamic lZTabBarNavCtrl;
 static UINavigationController *_lZTabBarNavCtrl = nil;
 +(UINavigationController *)lZTabBarNavCtrl{

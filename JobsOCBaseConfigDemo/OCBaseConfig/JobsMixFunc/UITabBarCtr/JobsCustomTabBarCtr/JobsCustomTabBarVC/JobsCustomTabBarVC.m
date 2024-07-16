@@ -30,7 +30,9 @@ static JobsCustomTabBarVC *JobsCustomTabBarVCInstance = nil;
 static dispatch_once_t JobsCustomTabBarVCOnceToken;
 +(instancetype)sharedManager{
     dispatch_once(&JobsCustomTabBarVCOnceToken, ^{
-        JobsCustomTabBarVCInstance = [super allocWithZone:NULL].init;
+        if(!JobsCustomTabBarVCInstance){
+            JobsCustomTabBarVCInstance = [super allocWithZone:NULL].init;
+        }
     });return JobsCustomTabBarVCInstance;
 }
 /// 单例的销毁
@@ -42,11 +44,11 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     return [self sharedManager];
 }
-
+/// 防止外部调用copy
 -(instancetype)copyWithZone:(NSZone *)zone{
     return self;
 }
-
+/// 防止外部调用mutableCopy
 -(instancetype)mutableCopyWithZone:(NSZone *)zone{
     return self;
 }
@@ -115,7 +117,7 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
         [self.view addSubview:_customTabBar];
         [_customTabBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(self.view.width);
-            make.height.mas_equalTo(JobsCustomTabBarConfig.sharedManager.tabBarHeight);// AppDelegate.jobsCustomTabBarConfig;
+            make.height.mas_equalTo(AppDelegate.jobsCustomTabBarConfig.tabBarHeight);// 这里使用 JobsCustomTabBarConfig.sharedManager.tabBarHeight 会崩
             make.centerX.equalTo(self.view);
             make.bottom.equalTo(self.view);
         }];

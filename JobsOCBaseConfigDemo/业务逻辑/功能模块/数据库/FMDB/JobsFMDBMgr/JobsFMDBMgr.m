@@ -19,7 +19,9 @@ static JobsFMDBMgr *JobsFMDBMgrInstance;
 static dispatch_once_t JobsFMDBMgrOnceToken;
 +(instancetype)sharedManager {
     dispatch_once(&JobsFMDBMgrOnceToken, ^{
-        JobsFMDBMgrInstance = self.new;
+        if(!JobsFMDBMgrInstance){
+            JobsFMDBMgrInstance = self.new;
+        }
     });return JobsFMDBMgrInstance;
 }
 /// 单例的销毁
@@ -33,11 +35,11 @@ static dispatch_once_t JobsFMDBMgrOnceToken;
         JobsFMDBMgrInstance = [super allocWithZone:zone];
     });return JobsFMDBMgrInstance;
 }
-
+/// 防止外部调用copy
 -(instancetype)copyWithZone:(NSZone *)zone {
     return self;
 }
-
+/// 防止外部调用mutableCopy
 -(instancetype)mutableCopyWithZone:(NSZone *)zone {
     return self;
 }

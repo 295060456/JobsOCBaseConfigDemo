@@ -46,11 +46,11 @@ static dispatch_once_t JobsTabBarVCOnceToken;
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     return [self sharedManager];
 }
-
+/// 防止外部调用copy
 - (instancetype)copyWithZone:(NSZone *)zone {
     return self;
 }
-
+/// 防止外部调用mutableCopy
 - (instancetype)mutableCopyWithZone:(NSZone *)zone {
     return self;
 }

@@ -31,7 +31,7 @@
 }
 
 - (void)setup {
-    JobsCustomTabBarConfig *config = JobsCustomTabBarConfig.sharedManager;
+    JobsCustomTabBarConfig *config = AppDelegate.jobsCustomTabBarConfig;/// 此时还没有初始化 JobsCustomTabBarConfig.sharedManager;
     if (config.tabBarBackgroundImage) {
         self.backgroundColor = [UIColor colorWithPatternImage:config.tabBarBackgroundImage];
     } else {

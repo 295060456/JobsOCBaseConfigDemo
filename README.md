@@ -2742,9 +2742,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   
   + (instancetype)sharedManager {
       dispatch_once(&JobsCustomTabBarVCOnceToken, ^{
-          JobsCustomTabBarVCInstance = [[super allocWithZone:NULL] init];
-      });
-      return JobsCustomTabBarVCInstance;
+  				if(!JobsCustomTabBarVCInstance){
+              JobsCustomTabBarVCInstance = [super allocWithZone:NULL].init;
+          }
+      });return JobsCustomTabBarVCInstance;
   }
   
   + (void)destroyInstance {
@@ -2755,11 +2756,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   + (instancetype)allocWithZone:(struct _NSZone *)zone {
       return [self sharedManager];
   }
-  
+  /// 防止外部使用 alloc/init 等创建新实例
   - (instancetype)copyWithZone:(NSZone *)zone {
       return self;
   }
-  
+  /// 防止外部调用copy
   - (instancetype)mutableCopyWithZone:(NSZone *)zone {
       return self;
   }
@@ -2791,11 +2792,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   + (instancetype)allocWithZone:(struct _NSZone *)zone {
       return [self sharedManager];
   }
-  
+  /// 防止外部使用 alloc/init 等创建新实例
   - (instancetype)copyWithZone:(NSZone *)zone {
       return self;
   }
-  
+  /// 防止外部调用copy
   - (instancetype)mutableCopyWithZone:(NSZone *)zone {
       return self;
   }
