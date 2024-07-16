@@ -25,6 +25,12 @@ BOOL ISLogin;
     //    JobsRemoveNotification(self);;
 }
 
+- (instancetype)init{
+    if (self = [super init]) {
+        NSLog(@"");
+    }return self;
+}
+
 -(void)loadView{
     [super loadView];
     

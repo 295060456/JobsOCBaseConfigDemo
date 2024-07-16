@@ -14,7 +14,7 @@
 #endif /* LANDSCAPE_VALUE_H */
 
 NS_ASSUME_NONNULL_BEGIN
-/// 对单个的 TabBarItem 进行的配置
+/// 对单个的 TabBarItem 进行的配置。这个类不能用作单例
 @interface JobsTabBarItemConfig : NSObject
 
 @property(nonatomic,strong)UIViewController *vc;/// 子控制器
@@ -37,9 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL isNeedCheckLogin;
 @property(nonatomic,assign)BOOL isNotNeedCheckLogin;/// 优先级高于isNeedCheckLogin
 @property(nonatomic,assign)BOOL isNeedjump;/// 跳开处理，即不切控制器，而是做其他操作，比如弹一个提示框
-
-+(instancetype)sharedManager;
-+(void)destroyInstance;
 
 @end
 
