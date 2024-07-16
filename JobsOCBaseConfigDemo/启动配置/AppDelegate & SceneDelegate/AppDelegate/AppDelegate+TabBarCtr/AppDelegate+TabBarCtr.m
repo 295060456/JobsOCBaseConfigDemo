@@ -141,7 +141,7 @@ static JobsCustomTabBarConfig *_jobsCustomTabBarConfig = nil;
     _jobsCustomTabBarConfig.tabBarBackgroundImage = nil;//JobsIMG(@"");
     _jobsCustomTabBarConfig.tabBarItems = self.tabBarItemMutArr;
     _jobsCustomTabBarConfig.viewControllers = self.viewCtrlByTabBarCtrlConfigMutArr;
-//    _jobsCustomTabBarConfig.tabBarItemYOffsets
+    _jobsCustomTabBarConfig.tabBarItemYOffsets = 0;
     return _jobsCustomTabBarConfig;
 }
 
@@ -254,38 +254,38 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
     _tabBarItemMutArr = NSMutableArray.array;
     @jobs_weakify(self)
     [_tabBarItemMutArr addObject:[BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                              background:nil
-                                                          titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                           textAlignment:NSTextAlignmentCenter
-                                                        subTextAlignment:NSTextAlignmentCenter
-                                                             normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
-                                                          highlightImage:self.imageSelectedMutArr[_tabBarItemMutArr.count]
-                                                         attributedTitle:nil
-                                                 selectedAttributedTitle:nil
-                                                      attributedSubtitle:nil
-                                                                   title:AppDelegate.tabBarItemTitleMutArr[_tabBarItemMutArr.count]
-                                                                subTitle:nil
-                                                               titleFont:UIFontWeightBoldSize(18)
-                                                            subTitleFont:nil
-                                                                titleCor:JobsCor(@"#333333")
-                                                             subTitleCor:nil
-                                                      titleLineBreakMode:NSLineBreakByWordWrapping
-                                                   subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                     baseBackgroundColor:UIColor.whiteColor
-                                                            imagePadding:JobsWidth(0)
-                                                            titlePadding:JobsWidth(10)
-                                                          imagePlacement:NSDirectionalRectEdgeNone
-                                              contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                                contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                           contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                       cornerRadiusValue:JobsWidth(0)
-                                                         roundingCorners:UIRectCornerAllCorners
-                                                    roundingCornersRadii:CGSizeZero
-                                                          layerBorderCor:nil
-                                                             borderWidth:JobsWidth(0)
-                                                           primaryAction:nil
-                                              longPressGestureEventBlock:nil
-                                                         clickEventBlock:^id(BaseButton *x) {
+                                                                   background:nil
+                                                               titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                                textAlignment:NSTextAlignmentCenter
+                                                             subTextAlignment:NSTextAlignmentCenter
+                                                                  normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
+                                                               highlightImage:self.imageSelectedMutArr[_tabBarItemMutArr.count]
+                                                              attributedTitle:nil
+                                                      selectedAttributedTitle:nil
+                                                           attributedSubtitle:nil
+                                                                        title:AppDelegate.tabBarItemTitleMutArr[_tabBarItemMutArr.count]
+                                                                     subTitle:nil
+                                                                    titleFont:UIFontWeightBoldSize(18)
+                                                                 subTitleFont:nil
+                                                                     titleCor:JobsCor(@"#333333")
+                                                                  subTitleCor:nil
+                                                           titleLineBreakMode:NSLineBreakByWordWrapping
+                                                        subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                          baseBackgroundColor:UIColor.whiteColor
+                                                                 imagePadding:JobsWidth(0)
+                                                                 titlePadding:JobsWidth(10)
+                                                               imagePlacement:NSDirectionalRectEdgeNone
+                                                   contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                                     contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                                contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                            cornerRadiusValue:JobsWidth(0)
+                                                              roundingCorners:UIRectCornerAllCorners
+                                                         roundingCornersRadii:CGSizeZero
+                                                               layerBorderCor:nil
+                                                                  borderWidth:JobsWidth(0)
+                                                                primaryAction:nil
+                                                   longPressGestureEventBlock:nil
+                                                              clickEventBlock:^id(BaseButton *x) {
         @jobs_strongify(self)
         x.selected = !x.selected;
         NSLog(@"1");
@@ -295,38 +295,38 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         return nil;
     }]];
     [_tabBarItemMutArr addObject:[BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                              background:nil
-                                                          titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                           textAlignment:NSTextAlignmentCenter
-                                                        subTextAlignment:NSTextAlignmentCenter
-                                                             normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
-                                                          highlightImage:self.imageSelectedMutArr[_tabBarItemMutArr.count]
-                                                         attributedTitle:nil
-                                                 selectedAttributedTitle:nil
-                                                      attributedSubtitle:nil
-                                                                   title:AppDelegate.tabBarItemTitleMutArr[_tabBarItemMutArr.count]
-                                                                subTitle:nil
-                                                               titleFont:UIFontWeightBoldSize(18)
-                                                            subTitleFont:nil
-                                                                titleCor:JobsCor(@"#333333")
-                                                             subTitleCor:nil
-                                                      titleLineBreakMode:NSLineBreakByWordWrapping
-                                                   subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                     baseBackgroundColor:UIColor.whiteColor
-                                                            imagePadding:JobsWidth(0)
-                                                            titlePadding:JobsWidth(10)
-                                                          imagePlacement:NSDirectionalRectEdgeNone
-                                              contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                                contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                           contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                       cornerRadiusValue:JobsWidth(0)
-                                                         roundingCorners:UIRectCornerAllCorners
-                                                    roundingCornersRadii:CGSizeZero
-                                                          layerBorderCor:nil
-                                                             borderWidth:JobsWidth(0)
-                                                           primaryAction:nil
-                                              longPressGestureEventBlock:nil
-                                                         clickEventBlock:^id(BaseButton *x) {
+                                                                   background:nil
+                                                               titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                                textAlignment:NSTextAlignmentCenter
+                                                             subTextAlignment:NSTextAlignmentCenter
+                                                                  normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
+                                                                highlightImage:self.imageSelectedMutArr[_tabBarItemMutArr.count]
+                                                              attributedTitle:nil
+                                                      selectedAttributedTitle:nil
+                                                           attributedSubtitle:nil
+                                                                        title:AppDelegate.tabBarItemTitleMutArr[_tabBarItemMutArr.count]
+                                                                     subTitle:nil
+                                                                    titleFont:UIFontWeightBoldSize(18)
+                                                                 subTitleFont:nil
+                                                                     titleCor:JobsCor(@"#333333")
+                                                                  subTitleCor:nil
+                                                           titleLineBreakMode:NSLineBreakByWordWrapping
+                                                        subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                          baseBackgroundColor:UIColor.whiteColor
+                                                                 imagePadding:JobsWidth(0)
+                                                                 titlePadding:JobsWidth(10)
+                                                               imagePlacement:NSDirectionalRectEdgeNone
+                                                   contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                                     contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                                contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                            cornerRadiusValue:JobsWidth(0)
+                                                              roundingCorners:UIRectCornerAllCorners
+                                                         roundingCornersRadii:CGSizeZero
+                                                               layerBorderCor:nil
+                                                                  borderWidth:JobsWidth(0)
+                                                                primaryAction:nil
+                                                   longPressGestureEventBlock:nil
+                                                              clickEventBlock:^id(BaseButton *x) {
         @jobs_strongify(self)
         x.selected = !x.selected;
         NSLog(@"2");
@@ -334,38 +334,38 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         return nil;
     }]];
     [_tabBarItemMutArr addObject:[BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                              background:nil
-                                                          titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                           textAlignment:NSTextAlignmentCenter
-                                                        subTextAlignment:NSTextAlignmentCenter
-                                                             normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
-                                                          highlightImage:self.imageSelectedMutArr[_tabBarItemMutArr.count]
-                                                         attributedTitle:nil
-                                                 selectedAttributedTitle:nil
-                                                      attributedSubtitle:nil
-                                                                   title:AppDelegate.tabBarItemTitleMutArr[_tabBarItemMutArr.count]
-                                                                subTitle:nil
-                                                               titleFont:UIFontWeightBoldSize(18)
-                                                            subTitleFont:nil
-                                                                titleCor:JobsCor(@"#333333")
-                                                             subTitleCor:nil
-                                                      titleLineBreakMode:NSLineBreakByWordWrapping
-                                                   subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                     baseBackgroundColor:UIColor.whiteColor
-                                                            imagePadding:JobsWidth(0)
-                                                            titlePadding:JobsWidth(10)
-                                                          imagePlacement:NSDirectionalRectEdgeNone
-                                              contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                                contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                           contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                       cornerRadiusValue:JobsWidth(0)
-                                                         roundingCorners:UIRectCornerAllCorners
-                                                    roundingCornersRadii:CGSizeZero
-                                                          layerBorderCor:nil
-                                                             borderWidth:JobsWidth(0)
-                                                           primaryAction:nil
-                                              longPressGestureEventBlock:nil
-                                                         clickEventBlock:^id(BaseButton *x) {
+                                                                   background:nil
+                                                               titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                                textAlignment:NSTextAlignmentCenter
+                                                             subTextAlignment:NSTextAlignmentCenter
+                                                                  normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
+                                                               highlightImage:self.imageSelectedMutArr[_tabBarItemMutArr.count]
+                                                              attributedTitle:nil
+                                                      selectedAttributedTitle:nil
+                                                           attributedSubtitle:nil
+                                                                        title:AppDelegate.tabBarItemTitleMutArr[_tabBarItemMutArr.count]
+                                                                     subTitle:nil
+                                                                    titleFont:UIFontWeightBoldSize(18)
+                                                                 subTitleFont:nil
+                                                                     titleCor:JobsCor(@"#333333")
+                                                                  subTitleCor:nil
+                                                           titleLineBreakMode:NSLineBreakByWordWrapping
+                                                        subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                          baseBackgroundColor:UIColor.whiteColor
+                                                                 imagePadding:JobsWidth(0)
+                                                                 titlePadding:JobsWidth(10)
+                                                               imagePlacement:NSDirectionalRectEdgeNone
+                                                   contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                                     contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                                contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                            cornerRadiusValue:JobsWidth(0)
+                                                              roundingCorners:UIRectCornerAllCorners
+                                                         roundingCornersRadii:CGSizeZero
+                                                               layerBorderCor:nil
+                                                                  borderWidth:JobsWidth(0)
+                                                                primaryAction:nil
+                                                   longPressGestureEventBlock:nil
+                                                              clickEventBlock:^id(BaseButton *x) {
         @jobs_strongify(self)
         x.selected = !x.selected;
         NSLog(@"3");
@@ -373,38 +373,38 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         return nil;
     }]];
     [_tabBarItemMutArr addObject:[BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                              background:nil
-                                                          titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                           textAlignment:NSTextAlignmentCenter
-                                                        subTextAlignment:NSTextAlignmentCenter
-                                                             normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
-                                                               highlightImage:self.imageSelectedMutArr[_tabBarItemMutArr.count]
-                                                         attributedTitle:nil
-                                                 selectedAttributedTitle:nil
-                                                      attributedSubtitle:nil
-                                                                   title:AppDelegate.tabBarItemTitleMutArr[_tabBarItemMutArr.count]
-                                                                subTitle:nil
-                                                               titleFont:UIFontWeightBoldSize(18)
-                                                            subTitleFont:nil
-                                                                titleCor:JobsCor(@"#333333")
-                                                             subTitleCor:nil
-                                                      titleLineBreakMode:NSLineBreakByWordWrapping
-                                                   subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                     baseBackgroundColor:UIColor.whiteColor
-                                                            imagePadding:JobsWidth(0)
-                                                            titlePadding:JobsWidth(10)
-                                                          imagePlacement:NSDirectionalRectEdgeNone
-                                              contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                                contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                           contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                       cornerRadiusValue:JobsWidth(0)
-                                                         roundingCorners:UIRectCornerAllCorners
-                                                    roundingCornersRadii:CGSizeZero
-                                                          layerBorderCor:nil
-                                                             borderWidth:JobsWidth(0)
-                                                           primaryAction:nil
-                                              longPressGestureEventBlock:nil
-                                                         clickEventBlock:^id(BaseButton *x) {
+                                                                   background:nil
+                                                               titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                                textAlignment:NSTextAlignmentCenter
+                                                             subTextAlignment:NSTextAlignmentCenter
+                                                                  normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
+                                                                highlightImage:self.imageSelectedMutArr[_tabBarItemMutArr.count]
+                                                              attributedTitle:nil
+                                                      selectedAttributedTitle:nil
+                                                           attributedSubtitle:nil
+                                                                        title:AppDelegate.tabBarItemTitleMutArr[_tabBarItemMutArr.count]
+                                                                     subTitle:nil
+                                                                    titleFont:UIFontWeightBoldSize(18)
+                                                                 subTitleFont:nil
+                                                                     titleCor:JobsCor(@"#333333")
+                                                                  subTitleCor:nil
+                                                           titleLineBreakMode:NSLineBreakByWordWrapping
+                                                        subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                          baseBackgroundColor:UIColor.whiteColor
+                                                                 imagePadding:JobsWidth(0)
+                                                                 titlePadding:JobsWidth(10)
+                                                               imagePlacement:NSDirectionalRectEdgeNone
+                                                   contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                                     contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                                contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                            cornerRadiusValue:JobsWidth(0)
+                                                              roundingCorners:UIRectCornerAllCorners
+                                                         roundingCornersRadii:CGSizeZero
+                                                               layerBorderCor:nil
+                                                                  borderWidth:JobsWidth(0)
+                                                                primaryAction:nil
+                                                   longPressGestureEventBlock:nil
+                                                              clickEventBlock:^id(BaseButton *x) {
         @jobs_strongify(self)
         x.selected = !x.selected;
         NSLog(@"4");
@@ -412,38 +412,38 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         return nil;
     }]];
     [_tabBarItemMutArr addObject:[BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                              background:nil
-                                                          titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                           textAlignment:NSTextAlignmentCenter
-                                                        subTextAlignment:NSTextAlignmentCenter
-                                                             normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
-                                                          highlightImage:self.imageSelectedMutArr[_tabBarItemMutArr.count]
-                                                         attributedTitle:nil
-                                                 selectedAttributedTitle:nil
-                                                      attributedSubtitle:nil
-                                                                   title:AppDelegate.tabBarItemTitleMutArr[_tabBarItemMutArr.count]
-                                                                subTitle:nil
-                                                               titleFont:UIFontWeightBoldSize(18)
-                                                            subTitleFont:nil
-                                                                titleCor:JobsCor(@"#333333")
-                                                             subTitleCor:nil
-                                                      titleLineBreakMode:NSLineBreakByWordWrapping
-                                                   subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                     baseBackgroundColor:UIColor.whiteColor
-                                                            imagePadding:JobsWidth(0)
-                                                            titlePadding:JobsWidth(10)
-                                                          imagePlacement:NSDirectionalRectEdgeNone
-                                              contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                                contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                           contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                       cornerRadiusValue:JobsWidth(0)
-                                                         roundingCorners:UIRectCornerAllCorners
-                                                    roundingCornersRadii:CGSizeZero
-                                                          layerBorderCor:nil
-                                                             borderWidth:JobsWidth(0)
-                                                           primaryAction:nil
-                                              longPressGestureEventBlock:nil
-                                                         clickEventBlock:^id(BaseButton *x) {
+                                                                   background:nil
+                                                               titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                                textAlignment:NSTextAlignmentCenter
+                                                             subTextAlignment:NSTextAlignmentCenter
+                                                                  normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
+                                                               highlightImage:self.imageSelectedMutArr[_tabBarItemMutArr.count]
+                                                              attributedTitle:nil
+                                                      selectedAttributedTitle:nil
+                                                           attributedSubtitle:nil
+                                                                        title:AppDelegate.tabBarItemTitleMutArr[_tabBarItemMutArr.count]
+                                                                     subTitle:nil
+                                                                    titleFont:UIFontWeightBoldSize(18)
+                                                                 subTitleFont:nil
+                                                                     titleCor:JobsCor(@"#333333")
+                                                                  subTitleCor:nil
+                                                           titleLineBreakMode:NSLineBreakByWordWrapping
+                                                        subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                          baseBackgroundColor:UIColor.whiteColor
+                                                                 imagePadding:JobsWidth(0)
+                                                                 titlePadding:JobsWidth(10)
+                                                               imagePlacement:NSDirectionalRectEdgeNone
+                                                   contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                                     contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                                contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                            cornerRadiusValue:JobsWidth(0)
+                                                              roundingCorners:UIRectCornerAllCorners
+                                                         roundingCornersRadii:CGSizeZero
+                                                               layerBorderCor:nil
+                                                                  borderWidth:JobsWidth(0)
+                                                                primaryAction:nil
+                                                   longPressGestureEventBlock:nil
+                                                              clickEventBlock:^id(BaseButton *x) {
         @jobs_strongify(self)
         x.selected = !x.selected;
         NSLog(@"5");
