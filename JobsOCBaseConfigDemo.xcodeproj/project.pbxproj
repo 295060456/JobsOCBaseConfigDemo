@@ -6032,13 +6032,6 @@
 			path = "AppDelegate+Func";
 			sourceTree = "<group>";
 		};
-		CECE7D532C450DED00764AF5 /* AppDelegate+JobsLaunchAdMgr */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "AppDelegate+JobsLaunchAdMgr";
-			sourceTree = "<group>";
-		};
 		CECE7D562C450DED00764AF5 /* AppDelegate+TabBarCtr */ = {
 			isa = PBXGroup;
 			children = (
@@ -6071,7 +6064,6 @@
 			isa = PBXGroup;
 			children = (
 				CECE7D522C450DED00764AF5 /* AppDelegate+Func */,
-				CECE7D532C450DED00764AF5 /* AppDelegate+JobsLaunchAdMgr */,
 				CECE7D562C450DED00764AF5 /* AppDelegate+TabBarCtr */,
 				CECE7D5C2C450DED00764AF5 /* AppDelegate+UIApplicationDelegate */,
 				CECE7D5D2C450DED00764AF5 /* AppDelegate.h */,
@@ -12310,6 +12302,7 @@
 				CECE787B2C4509E000764AF5 /* Sources */,
 				CECE787C2C4509E000764AF5 /* Frameworks */,
 				CECE787D2C4509E000764AF5 /* Resources */,
+				EB64E356DD24C15BA5B0A417 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -12904,6 +12897,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB64E356DD24C15BA5B0A417 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

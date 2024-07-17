@@ -3455,6 +3455,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * **JobsPostVC**报错解决
 * **DebugLogDescription** 会崩溃：`id value = self.valueForKeyBlock(name) ? : @"nil";//默认值为nil字符串`
 * **lldb**的使用
+* fastlane 的使用
+* Gemfile的使用
+* .cocoapods_downloader 的使用
+* JobsLaunchAdMgr
 * 其他
 ## 六、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * 浏览器打开并输入 

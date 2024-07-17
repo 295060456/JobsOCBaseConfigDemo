@@ -156,6 +156,13 @@ BaseViewControllerProtocol_synthesize
     self.isRootVC ? [self tabBarOpenPan] : [self tabBarClosePan];
     [self UIViewControllerLifeCycle:JobsLocalFunc];
 //    self.menuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;
+//    self.menuView.alpha = 1;
+    
+//    JXCategoryViewVerticalShowVC *vc = JXCategoryViewVerticalShowVC.new;
+//    [self.view addSubview:vc.view];
+//    [vc.view transformByRadians:0.5];
+//    [self addChildViewController:vc];
+    
 #ifdef DEBUG
     /// 网络异步数据刷新UI会在viewDidAppear以后执行viewWillLayoutSubviews、viewDidLayoutSubviews
 //    [self ifEmptyData];

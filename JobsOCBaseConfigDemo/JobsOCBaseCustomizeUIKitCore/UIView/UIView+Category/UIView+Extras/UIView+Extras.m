@@ -449,12 +449,20 @@
     [self.class destroySingleton];
     if(self.objectBlock) self.objectBlock(object);
 }
-
+/// 顺时针旋转radians度
 -(void)transformByRadians:(CGFloat)radians{
     self.transform = CGAffineTransformMakeRotation(M_PI * radians);
-    // 使用:例如逆时针旋转40度
-    // [setTransform:40/180 forLable:label]
+//    [self transformByRadians:1.5f]; // 逆时针旋转 3 * 90度
 }
+
+-(void)transformByDegrees:(CGFloat)degrees{
+    // 将度数转换为弧度
+    CGFloat radians = degrees * (M_PI / 180.0);
+    // 应用旋转变换（radians为正数将逆时针旋转）
+    self.transform = CGAffineTransformMakeRotation(radians);
+//    [self transformByDegrees:45];// 逆时针旋转 45 度
+}
+
 
 -(UIImage *_Nullable)getImage{
     UIGraphicsBeginImageContextWithOptions(self.bounds.size,

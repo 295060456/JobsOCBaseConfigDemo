@@ -170,10 +170,10 @@ scrollingFromLeftIndex:(NSInteger)leftIndex
 toRightIndex:(NSInteger)rightIndex
 ratio:(CGFloat)ratio {
     NSLog(@"");
-    //    [self.listContainerView scrollingFromLeftIndex:leftIndex
-    //                                      toRightIndex:rightIndex
-    //                                             ratio:ratio
-    //                                     selectedIndex:categoryView.selectedIndex];
+//    [self.listContainerView scrollingFromLeftIndex:leftIndex
+//                                      toRightIndex:rightIndex
+//                                             ratio:ratio
+//                                     selectedIndex:categoryView.selectedIndex];
 }
 #pragma mark —— lazyLoad
 -(JXCategoryTitleView *)categoryView{
@@ -194,18 +194,23 @@ ratio:(CGFloat)ratio {
         _categoryView.contentScrollView = self.listContainerView.scrollView;//
         [self addSubview:_categoryView];
 
-        [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(0);
-            make.left.right.equalTo(self);
-            make.height.mas_equalTo(listContainerViewDefaultOffset);
-        }];
-        [self layoutIfNeeded];
+//        [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self).offset(0);
+//            make.left.right.equalTo(self);
+//            make.height.mas_equalTo(listContainerViewDefaultOffset);
+//        }];
+//        [self layoutIfNeeded];
         
         /// 本来的值
+        _categoryView.frame = CGRectMake(0,
+                                         0,
+                                         JobsMainScreen_HEIGHT(),
+                                         listContainerViewDefaultOffset);
 //        _categoryView.frame = CGRectMake(0,
 //                                         0,
-//                                         JobsMainScreen_HEIGHT(),
-//                                         listContainerViewDefaultOffset);
+//                                         listContainerViewDefaultOffset,
+//                                         JobsMainScreen_HEIGHT()
+//                                         );
         
        
     }return _categoryView;
@@ -235,6 +240,10 @@ ratio:(CGFloat)ratio {
 //        }];
 //        [self.view layoutIfNeeded];
         
+//        _listContainerView.frame = CGRectMake(0,
+//                                              listContainerViewDefaultOffset,
+//                                              JobsMainScreen_HEIGHT(),
+//                                              JobsMainScreen_WIDTH() - listContainerViewDefaultOffset);
         _listContainerView.frame = CGRectMake(0,
                                               listContainerViewDefaultOffset,
                                               JobsMainScreen_HEIGHT(),

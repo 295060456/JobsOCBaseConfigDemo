@@ -62,7 +62,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    /// 顺时针旋转 3 * 90度 = 逆时针旋转90度
     [self.view transformByRadians:1.5f];
+    /// 顺时针旋转90度
+//    [self.view transformByRadians:0.5f];
 }
 
 -(void)viewWillLayoutSubviews{
@@ -90,6 +93,7 @@
     NSLog(@"");
 
     for (UICollectionViewCell *cell in self.categoryView.collectionView.visibleCells) {
+        /// 顺时针旋转 90度
         [cell transformByRadians:0.5f];
     }
 }
