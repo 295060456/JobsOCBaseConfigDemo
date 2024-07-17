@@ -549,3 +549,8 @@ if (self.isOpenPPBadge) {
   ```
   
 * [如果要在`UITabBarController`里面自定义TabBar，那么**需要用KVC的方式进行替换**](#KVC.tabBar)
+
+* 相关阅读
+
+  * [**iOS Tabbar各种定制**](https://www.jianshu.com/p/a64348ba0b5b)
+  * [**UITabBarController的selectedIndex属性不起作用？**](https://blog.csdn.net/weixin_42012181/article/details/80846660)

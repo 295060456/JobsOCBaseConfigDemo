@@ -1,10 +1,39 @@
-# Uncomment the next line to define a global platform for your project
+# 通过 Bundler 运行 CocoaPods 命令
+# bundle exec pod update
+#begin
+#  require 'bundler/setup'
+#  Bundler.setup(:default)
+#  require 'cocoapods-downloader'
+#rescue LoadError => e
+#  puts 'cocoapods-downloader plugin could not be loaded'
+#  puts e.message
+#end
+#
+## 加速 CocoaPods 依赖下载的工具 https://github.com/CocoaPods/cocoapods-downloader
+## 使用前提：gem install cocoapods-downloader
+### 阿里云镜像源
+#plugin 'cocoapods-downloader', {
+#  'https://github.com/CocoaPods/Specs.git' => 'https://mirrors.aliyun.com/pods/specs.git'
+#}
+### 清华大学开源软件镜像站
+#plugin 'cocoapods-downloader', {
+#  'https://github.com/CocoaPods/Specs.git' => 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+#}
+### 腾讯云镜像
+#plugin 'cocoapods-downloader', {
+#  'https://github.com/CocoaPods/Specs.git' => 'https://mirrors.cloud.tencent.com/CocoaPods/Specs.git'
+#}
+### 科大镜像站
+#plugin 'cocoapods-downloader', {
+#  'https://github.com/CocoaPods/Specs.git' => 'https://mirrors.ustc.edu.cn/CocoaPods/Specs.git'
+#}
 
-# 下面两行是指明依赖库的来源地址
-# source 'https://github.com/CocoaPods/Specs.git'# 使用官方默认地址（默认）
-# source 'https://github.com/Artsy/Specs.git'# 使用其他来源地址
+# 指明依赖库的来源地址
+#source 'https://cdn.cocoapods.org/'
+#source 'https://github.com/CocoaPods/Specs.git'# 使用官方默认地址（默认）
+#source 'https://github.com/Artsy/Specs.git'# 使用其他来源地址
+
 # 需要特别说明的：在 post_install 时，为了一些版本的兼容，需要遍历所有 target，调整一部分库的版本；但是如果开启了 generate_multiple_pod_projects 的话，由于项目结构的变化，installer.pod_targets 就没办法获得所有 pods 引入的 target 了
-
 install! 'cocoapods',# install! 只走一次，多次使用只以最后一个标准执行
   :deterministic_uuids => false,# 【解决与私有库的冲突】用于控制生成的库的唯一标识符（UUID）是否是确定性的。UUID 是用于标识对象的唯一标识符，通常在构建软件时用于确保唯一性。当 deterministic_uuids 设置为 false 时，意味着 CocoaPods 将不会确保生成的库的 UUID 是确定性的。换句话说，每次构建时，生成的库的 UUID 可能会发生变化，即使源代码没有变化也可能如此。这可能会影响一些情况，例如在依赖库的版本控制方面。通常情况下，将 deterministic_uuids 设置为 true 会更安全，因为它可以确保每次构建生成的库都具有相同的 UUID，从而确保了可预测性和一致性。
   :generate_multiple_pod_projects => true,# ❤️可以让每个依赖都作为一个单独的项目引入（而不是文件夹的形式），大大增加了解析速度❤️；cocoapods 1.7 以后支持

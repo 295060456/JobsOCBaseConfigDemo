@@ -2993,7 +2993,6 @@
 		CECE88B82C4519AD00764AF5 /* libstdc++.6.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = "libstdc++.6.tbd"; sourceTree = "<group>"; };
 		CECE88B92C4519AD00764AF5 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libstdc++.dylib"; sourceTree = "<group>"; };
 		CECE88BB2C4519AD00764AF5 /* libstdc++.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libstdc++.md"; sourceTree = "<group>"; };
-		CEDD37232C468AC7004E1780 /* 自定义 UITabBarController.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "自定义 UITabBarController.md"; path = "../../../../../../Github/JobsOCBaseConfig/文档和资料/自定义 UITabBarController.md/自定义 UITabBarController.md"; sourceTree = "<group>"; };
 		F5DAEE19CC0B77742495EB1F /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE176E0EC1B036786E28E5E5 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -7002,21 +7001,6 @@
 			path = "广告或者公示弹出框";
 			sourceTree = "<group>";
 		};
-		CECE7F372C4512BF00764AF5 /* 一些需要单独列出来的功能性模块 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "一些需要单独列出来的功能性模块";
-			sourceTree = "<group>";
-		};
-		CECE7F382C4512BF00764AF5 /* 深度拓展系统UITabBar全家桶 */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7F372C4512BF00764AF5 /* 一些需要单独列出来的功能性模块 */,
-			);
-			path = "深度拓展系统UITabBar全家桶";
-			sourceTree = "<group>";
-		};
 		CECE7F3E2C4512BF00764AF5 /* 手势滑动返回 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8094,7 +8078,6 @@
 		CECE80AC2C4512BF00764AF5 /* UITabBarCtr */ = {
 			isa = PBXGroup;
 			children = (
-				CEDD37232C468AC7004E1780 /* 自定义 UITabBarController.md */,
 				CECE804F2C4512BF00764AF5 /* JobsCustomTabBarCtr */,
 				CECE805C2C4512BF00764AF5 /* LZTabBarController */,
 				CECE80AB2C4512BF00764AF5 /* UITabBarCtrExtra */,
@@ -8117,7 +8100,6 @@
 				CECE7F292C4512BF00764AF5 /* 播放器控制层 */,
 				CECE7F322C4512BF00764AF5 /* 分享弹窗 */,
 				CECE7F362C4512BF00764AF5 /* 广告或者公示弹出框 */,
-				CECE7F382C4512BF00764AF5 /* 深度拓展系统UITabBar全家桶 */,
 				CECE7F3E2C4512BF00764AF5 /* 手势滑动返回 */,
 				CECE7F412C4512BF00764AF5 /* 图形验证码 */,
 				CECE7F512C4512BF00764AF5 /* 网络请求 */,
@@ -12328,7 +12310,6 @@
 				CECE787B2C4509E000764AF5 /* Sources */,
 				CECE787C2C4509E000764AF5 /* Frameworks */,
 				CECE787D2C4509E000764AF5 /* Resources */,
-				276A338C61563F582B263E84 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -12859,21 +12840,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		276A338C61563F582B263E84 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		318C99851715EB107037E228 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

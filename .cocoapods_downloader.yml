@@ -1,0 +1,13 @@
+# ~/.cocoapods_downloader.yml
+# 加速 CocoaPods 依赖下载的工具 https://github.com/CocoaPods/cocoapods-downloader
+# 使用前提：gem install cocoapods-downloader
+# 如果此文件放置于项目根目录，则只会对当前目录有效
+# 如果此文件放置于 ~/.cocoapods 将会对全局CocoaPods有效
+
+mirrors:
+  'https://github.com/CocoaPods/Specs.git':
+    urls:
+      - 'https://mirrors.aliyun.com/pods/specs.git' # 阿里云镜像源
+      - 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git' # 清华大学开源软件镜像站
+      - 'https://mirrors.cloud.tencent.com/CocoaPods/Specs.git' # 腾讯云镜像
+      - 'https://mirrors.ustc.edu.cn/CocoaPods/Specs.git' # 科大镜像站
