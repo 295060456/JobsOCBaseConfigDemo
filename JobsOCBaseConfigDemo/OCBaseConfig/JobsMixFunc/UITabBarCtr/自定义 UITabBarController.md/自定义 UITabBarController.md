@@ -511,8 +511,13 @@ if (self.isOpenPPBadge) {
   ```objective-c
   #ifndef ROOT_VIEW_CONTROLLER_H
   #define ROOT_VIEW_CONTROLLER_H
-  #define RootViewController AppDelegate.tabBarVC
+  //#define RootViewController AppDelegate.tabBarNavCtrl
+  //#define RootViewController AppDelegate.tabBarVC
+  //
+  #define RootViewController AppDelegate.jobsTabBarNavCtrl
   //#define RootViewController AppDelegate.jobsCustomTabBarVC
+  //
+  //#define RootViewController AppDelegate.lZTabBarNavCtrl
   //#define RootViewController AppDelegate.lZTabBarCtrl
   #endif // ROOT_VIEW_CONTROLLER_H
   ```

@@ -51,13 +51,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setGKNav];
     [self setGKNavBackBtn];
-    
-    self.gk_navigationBar.jobsVisible = NO;
-    
-    self.categoryView.alpha = 1;
+    self.gk_navigationBar.jobsVisible = YES;
+//    self.categoryView.alpha = 1;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -165,23 +162,22 @@ ratio:(CGFloat)ratio {
         _categoryView.titleColorGradientEnabled = YES;
         _categoryView.indicators = @[self.lineView];//
         _categoryView.defaultSelectedIndex = 1;// 默认从第二个开始显示
-//        _categoryView.cellSpacing = JobsWidth(5);
+        _categoryView.cellSpacing = JobsWidth(15);
         // 关联cotentScrollView，关联之后才可以互相联动！！！
         _categoryView.contentScrollView = self.listContainerView.scrollView;//
         [self.view addSubview:_categoryView];
-//        _categoryView.frame = CGRectMake(0, 0, JobsMainScreen_WIDTH(), listContainerViewDefaultOffset);
-//        [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.view).offset(0);
-//            make.left.right.equalTo(self.view);
-//            make.height.mas_equalTo(listContainerViewDefaultOffset);
-//        }];
-//        [self.view layoutIfNeeded];
+        [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view).offset(self.gk_navigationBar.height);
+            make.left.right.equalTo(self.view);
+            make.height.mas_equalTo(listContainerViewDefaultOffset);
+        }];
+        [self.view layoutIfNeeded];
         
         /// 本来的值
-        _categoryView.frame = CGRectMake(0,
-                                         0,
-                                         JobsMainScreen_HEIGHT(),
-                                         listContainerViewDefaultOffset);
+//        _categoryView.frame = CGRectMake(0,
+//                                         self.gk_navigationBar.height,
+//                                         JobsMainScreen_WIDTH(),
+//                                         listContainerViewDefaultOffset);
         
        
     }return _categoryView;
@@ -203,18 +199,16 @@ ratio:(CGFloat)ratio {
                                                                     delegate:self];
         _listContainerView.defaultSelectedIndex = 1;// 默认从第二个开始显示
         [self.view addSubview:_listContainerView];
-//        [_listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//            make.top.equalTo(self.view).offset(listContainerViewDefaultOffset);
-//            make.left.right.bottom.equalTo(self.view);
-//
-//        }];
-//        [self.view layoutIfNeeded];
+        [_listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view).offset(listContainerViewDefaultOffset + self.gk_navigationBar.height);
+            make.left.right.bottom.equalTo(self.view);
+        }];
+        [self.view layoutIfNeeded];
         /// 本来的值
-        _listContainerView.frame = CGRectMake(0,
-                                              listContainerViewDefaultOffset,
-                                              JobsMainScreen_WIDTH(),
-                                              JobsMainScreen_HEIGHT() - listContainerViewDefaultOffset);
+//        _listContainerView.frame = CGRectMake(0,
+//                                              (listContainerViewDefaultOffset + self.gk_navigationBar.height),
+//                                              JobsMainScreen_WIDTH(),
+//                                              JobsMainScreen_HEIGHT() - (listContainerViewDefaultOffset + self.gk_navigationBar.height));
         
         /// ❤️在需要的地方写❤️
         NSNumber *currentIndex = [self.listContainerView valueForKey:@"currentIndex"];

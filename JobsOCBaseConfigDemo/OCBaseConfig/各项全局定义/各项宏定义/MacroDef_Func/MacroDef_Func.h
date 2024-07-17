@@ -188,7 +188,7 @@ static inline void toastErr(NSString *_Nullable msg){
 }
 #pragma mark —— 定义一些默认值
 #ifndef listContainerViewDefaultOffset
-#define listContainerViewDefaultOffset JobsWidth(80)
+#define listContainerViewDefaultOffset JobsWidth(40)
 #endif
 
 #ifndef JobsDefaultValue

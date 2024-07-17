@@ -135,9 +135,79 @@
     ```shell
     pod install
     ```
-### 3、xcode 配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 3、iOS模拟器 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-#### 3.1、新工程配置
+* 命令行唤起 iOS模拟器
+
+  ```shell
+  open -a Simulator
+  ```
+
+* 如果更新或者删除xcode，那么下载的iOS模拟器将会丢失
+
+* 模拟器文件通常存储在以下路径
+
+  ```shell
+  open ~/Library/Developer/CoreSimulator/Volumes/
+  ```
+
+* 备份iOS模拟器文件夹到桌面`Volumes`
+
+  脚本自动化：[**【MacOS】备份iOS模拟器.command**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%A4%87%E4%BB%BDiOS%E6%A8%A1%E6%8B%9F%E5%99%A8.command)
+
+  ```shell
+  #!/bin/bash
+  
+  # 创建桌面上的Volumes文件夹（如果不存在）
+  mkdir -p ~/Desktop/Volumes
+  # 使用rsync复制目录并显示进度
+  sudo rsync -avh --progress /Library/Developer/CoreSimulator/Volumes/ ~/Desktop/Volumes/
+  echo "Volumes文件夹已成功复制到桌面。"
+  ```
+
+* 还原iOS模拟器（执行完毕后，需要重启xcode）
+
+  脚本自动化：[**【MacOS】恢复iOS模拟器.command**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%81%A2%E5%A4%8DiOS%E6%A8%A1%E6%8B%9F%E5%99%A8.command)
+  
+  ```shell
+  #!/bin/bash
+  
+  # 确保目标目录存在
+  sudo mkdir -p /Library/Developer/CoreSimulator/Volumes
+  # 使用rsync复制目录并显示进度
+  sudo rsync -avh --progress ~/Desktop/Volumes/ /Library/Developer/CoreSimulator/Volumes/
+  echo "桌面的Volumes文件夹内容已成功复制到/Library/Developer/CoreSimulator/Volumes。"
+  ```
+
+### 4、`lldb` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+```shell
+(lldb) target list
+Current targets:
+* target #0: /Users/user/Library/Developer/CoreSimulator/Devices/E17E7DE8-7ADA-42FD-A743-A1A3A6CB7E42/data/Containers/Bundle/Application/C590303C-50A7-4BB2-826F-8598E5F3A66C/JobsOCBaseConfigDemo.app/JobsOCBaseConfigDemo ( arch=x86_64-apple-ios-simulator, platform=ios-simulator, pid=89318, state=stopped )
+(lldb) target select 0
+Current targets:
+* target #0: /Users/user/Library/Developer/CoreSimulator/Devices/E17E7DE8-7ADA-42FD-A743-A1A3A6CB7E42/data/Containers/Bundle/Application/C590303C-50A7-4BB2-826F-8598E5F3A66C/JobsOCBaseConfigDemo.app/JobsOCBaseConfigDemo ( arch=x86_64-apple-ios-simulator, platform=ios-simulator, pid=89318, state=stopped )
+```
+
+### 5、`Command Line Tools` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 查看`Command Line Tools`版本
+
+  ```shell
+  Last login: Wed Jul 10 09:58:40 on ttys003
+  ➜  Desktop pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+  
+  package-id: com.apple.pkg.CLTools_Executables
+  version: 15.3.0.0.1.1708646388
+  volume: /
+  location: /
+  install-time: 1719293997
+  ```
+
+### 6、xcode 配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+#### 6.1、新工程配置
 
 * <font id =Unknown_class_in_Interface_Builder_file>处理编译器警告：**`Unknown class in Interface Builder file`**</font>
 
@@ -146,7 +216,7 @@
 
   ![image-20240715141329097](./assets/image-20240715141329097.png)
 
-#### 3.2、`Arguments Passed On Launch`标签设置
+#### 6.2、`Arguments Passed On Launch`标签设置
 
 * 设置应用的语言环境
 
@@ -215,74 +285,15 @@
   -AppleTextDirection YES
   ```
 
-#### 3.3、`Environment Variables`标签
+#### 6.3、`Environment Variables`标签
 
 * 日志配置：添加一个新的环境变量。将 `Name` 设置为 `IDEPreferLogStreaming`，将 `Value` 设置为 `YES`
 
   ![image-20240629161626945](./assets/image-20240629161626945.png)
 
-### 4、iOS模拟器 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 7、打印 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 命令行唤起 iOS模拟器
-
-  ```shell
-  open -a Simulator
-  ```
-
-* 如果更新或者删除xcode，那么下载的iOS模拟器将会丢失
-
-* 模拟器文件通常存储在以下路径
-
-  ```shell
-  open ~/Library/Developer/CoreSimulator/Volumes/
-  ```
-
-* 备份iOS模拟器文件夹到桌面`Volumes`
-
-  脚本自动化：[**【MacOS】备份iOS模拟器.command**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%A4%87%E4%BB%BDiOS%E6%A8%A1%E6%8B%9F%E5%99%A8.command)
-
-  ```shell
-  #!/bin/bash
-  
-  # 创建桌面上的Volumes文件夹（如果不存在）
-  mkdir -p ~/Desktop/Volumes
-  # 使用rsync复制目录并显示进度
-  sudo rsync -avh --progress /Library/Developer/CoreSimulator/Volumes/ ~/Desktop/Volumes/
-  echo "Volumes文件夹已成功复制到桌面。"
-  ```
-
-* 还原iOS模拟器（执行完毕后，需要重启xcode）
-
-  脚本自动化：[**【MacOS】恢复iOS模拟器.command**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%81%A2%E5%A4%8DiOS%E6%A8%A1%E6%8B%9F%E5%99%A8.command)
-  
-  ```shell
-  #!/bin/bash
-  
-  # 确保目标目录存在
-  sudo mkdir -p /Library/Developer/CoreSimulator/Volumes
-  # 使用rsync复制目录并显示进度
-  sudo rsync -avh --progress ~/Desktop/Volumes/ /Library/Developer/CoreSimulator/Volumes/
-  echo "桌面的Volumes文件夹内容已成功复制到/Library/Developer/CoreSimulator/Volumes。"
-  ```
-
-### 5、`Command Line Tools` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
-
-* 查看`Command Line Tools`版本
-
-  ```shell
-  Last login: Wed Jul 10 09:58:40 on ttys003
-  ➜  Desktop pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
-  
-  package-id: com.apple.pkg.CLTools_Executables
-  version: 15.3.0.0.1.1708646388
-  volume: /
-  location: /
-  install-time: 1719293997
-  ```
-
-### 6、打印 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
-
-#### 6.1、重写打印输出
+#### 7.1、重写打印输出
 
 * 关注文件：[**MacroDef_Log.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Sys/MacroDef_Log.h)
 
@@ -354,7 +365,7 @@
     label.jobsLogSize(@"打印的时候额外添加的标识字符");
     ```
   
-#### 6.2、利用Runtime的机制打印类的内容
+#### 7.2、利用Runtime的机制打印类的内容
 
 * 返回并打印成员变量列表
 
@@ -381,12 +392,12 @@
   ```
 
 
-### 7、iOS xcode <font color=red>代码块</font>，提升编码效率必备之首选 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 8、iOS xcode <font color=red>代码块</font>，提升编码效率必备之首选 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/JobsKit/JobsCodeSnippets)
 * 脚本自动化：[**`【MacOS】安装JobsCodeSnippets.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%AE%89%E8%A3%85JobsCodeSnippets.command)
 
-### 8、**手动打包`*.ipa`流程 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
+### 9、**手动打包`*.ipa`流程 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
 
 * 电脑桌面新建文件夹，并重命名为`payload；`
 
@@ -404,132 +415,7 @@
 
 * 脚本自动化：[**`【MacOS】放在iOS项目工程根目录下，自动打包并输出为ipa文件.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%94%BE%E5%9C%A8iOS%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B9%B6%E8%BE%93%E5%87%BA%E4%B8%BAipa%E6%96%87%E4%BB%B6.command)
 
-### 9、项目架构说明 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
-
-* [**三种`TabBarController`可供切换使用**](#UITabBarController)
-
-  * 防止可能面对的各种自定义需求
-
-  ```objective-c
-  #ifndef ROOT_VIEW_CONTROLLER_H
-  #define ROOT_VIEW_CONTROLLER_H
-  #define RootViewController AppDelegate.tabBarVC
-  //#define RootViewController AppDelegate.jobsCustomTabBarVC
-  //#define RootViewController AppDelegate.lZTabBarCtrl
-  #endif // ROOT_VIEW_CONTROLLER_H
-  ```
-
-* 事实上`AppDelegate`是一个单例类，因为后期要支持多场景（`SceneDelegate`），每一个场景都会拥有一个属于自己的window，而各种控制器又是加载到各自的`Window `内部的`self.rootViewController`，所以不建议将各种控制器直接以属性的方式挂载到`AppDelegate`上。关注类：[**@interface AppDelegate (TabBarCtr)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE/AppDelegate%20%26%20SceneDelegate/AppDelegate/AppDelegate%2BTabBarCtr)。减少单例类的使用
-
-* 目前是不支持多场景（`SceneDelegate`），所以项目里面是删除了有关多场景相关代码的
-
-* 目前程序是做了中文、英文、菲律宾他加禄语的支持的
-
-* 目前程序是做了横屏支持的
-
-* 项目里面尽量减少对协议的使用，非必要不使用通知（系统级别需要），推荐使用Block
-
-* 单例模式需要写销毁方法，以防在特殊情况的调用
-
-* ...
-
-### 10、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
-
-* <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
-* <font color=red>不要在属性上加`__block`</font>。转而是在这个对象上使用`__block`
-* <font color=red>属性化的`NSString *`可以用**assign**修饰，但是最好用**copy**</font>
-
-## 四、纯代码 + 不使用多场景的配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
-
-### 1、[**不使用 Storyboard + 使用自定义的控制器（ViewController@1）**](#https://blog.csdn.net/htwhtw123/article/details/125348408) + **不使用多场景**
-
-* 给`AppDelegate.h`添加属性，作为渲染的window
-
-  ```objective-c
-  #import <UIKit/UIKit.h>
-  #import "ViewController@1.h"
-  
-  @interface AppDelegate : UIResponder <UIApplicationDelegate>
-  @property (strong, nonatomic) UIWindow *window;
-  @end
-  ```
-
-* `AppDelegate.m`
-
-  ```objective-c
-  - (BOOL)application:(UIApplication *)application
-  didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-      self.window = [UIWindow.alloc initWithFrame:UIScreen.mainScreen.bounds];
-      // 创建并设置初始视图控制器为登录界面
-      self.window.rootViewController = ViewController_1.new;
-      [self.window makeKeyAndVisible];
-      self.window.backgroundColor = UIColor.cyanColor;
-      NSLog(@"qwer");
-      return YES;
-  }
-  ```
-
-* 删除以下`AppDelegate`里面对多场景的支持代码
-
-  ```objective-c
-  #pragma mark - UISceneSession lifecycle
-  - (UISceneConfiguration *)application:(UIApplication *)application
-  configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession
-                                options:(UISceneConnectionOptions *)options {
-      // Called when a new scene session is being created.
-      // Use this method to select a configuration to create the new scene with.
-      return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
-  }
-  
-  
-  - (void)application:(UIApplication *)application
-  didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
-      // Called when the user discards a scene session.
-      // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-      // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-  }
-  ```
-
-* 删除`Info.plist`中，关于多场景的键值对
-
-  ```objective-c
-  <key>UIApplicationSceneManifest</key>
-  <dict>
-    <key>UIApplicationSupportsMultipleScenes</key>
-    <false/>
-    <key>UISceneConfigurations</key>
-    <dict>
-      <key>UIWindowSceneSessionRoleApplication</key>
-      <array>
-        <dict>
-          <key>UISceneConfigurationName</key>
-          <string>Default Configuration</string>
-          <key>UISceneDelegateClassName</key>
-          <string>SceneDelegate</string>
-          <key>UISceneStoryboardFile</key>
-          <string>Main</string>
-        </dict>
-      </array>
-    </dict>
-  </dict>
-  ```
-
-* 删除新建工程默认生成的`ViewController` (或者不包含进工程目录，防止进入编译期)
-
-  ![image-20240715150036945](./assets/image-20240715150036945.png)
-
-* 删除`SceneDelegate.h`和 `SceneDelegate.m`   (或者不包含进工程目录，防止进入编译期)
-
-  ![image-20240715145437169](./assets/image-20240715145437169.png)
-
-* [处理：**`Unknown class ViewController in Interface Builder file.`**](#Unknown_class_in_Interface_Builder_file)
-
-### 2、iOS新建应用使用多场景
-
-
-## 五、代码讲解
-
-### 1、[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 10、[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 背景意义：统一全局的Block定义，减少冗余代码
 
@@ -544,7 +430,7 @@
   * `【MacOS】Pod_Install（适用于IOS工程根目录）.command`
   * `【MacOS】Pod_Update（适用于IOS工程根目录）.command`
 
-### 2、[**<font color=red>`BaseProtocol` 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 11、[**<font color=red>`BaseProtocol` 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * **如果两个对象都继承了共同的协议，互相包含会造成编译器错误**
 
@@ -586,7 +472,7 @@ classDiagram
     }
 ```
 
-### 3、**`UIViewModelFamily`（持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
+### 12、**`UIViewModelFamily`（持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
@@ -943,7 +829,7 @@ class BaseProtocol {
 }
 NSObject <|-- BaseProtocol
 ```
-### 4、`JobsOCBaseCustomizeUIKitCore` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 13、`JobsOCBaseCustomizeUIKitCore` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 产生背景
   * OC的基类是单继承
@@ -952,7 +838,7 @@ NSObject <|-- BaseProtocol
   * 继承和分类应该结合使用，功能各有优劣
   * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用
 
-### 5、统一度量衡 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 14、度量衡 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注文件： [**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
 
@@ -1087,7 +973,7 @@ NSObject <|-- BaseProtocol
     }
     ```
 
-### 6、`NavigationBar` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 15、`NavigationBar` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 摒弃系统的，而转为使用第三方`GKNavigationBar`
 
@@ -1107,7 +993,7 @@ NSObject <|-- BaseProtocol
   * 关注实现类：[**`@interface BaseViewController : UIViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/BaseViewController)
   * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
 
-### 7、输入框 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 16、输入框 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 有4个`TextField`可供继承使用（具体使用方式，查询相关头文件定义）
   * `CJTextField`
@@ -1115,7 +1001,7 @@ NSObject <|-- BaseProtocol
   * `JobsMagicTextField`
   * `ZYTextField`
 
-### 8、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 17、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * [**寻找当前控制器 **](#寻找当前控制器 )
 
 * 获取**window**
@@ -1280,7 +1166,30 @@ NSObject <|-- BaseProtocol
   }
   ```
   
-### 9、iOS横竖屏切换 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 18、[**`JobsTabBarCtrl`-深层次自定义`UITabbar`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/%E6%B7%B1%E5%BA%A6%E6%8B%93%E5%B1%95%E7%B3%BB%E7%BB%9FUITabBar%E5%85%A8%E5%AE%B6%E6%A1%B6/JobsTabbarCtrl.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 背景介绍
+  * 完全继承自系统Api，最大化兼容系统特色
+  * 扩展系统的一些方法，丰富使用
+* 功能介绍
+  * 支持 `Tabbaritem` 在居中对齐的大前提下，图文相对位置的4个方向适配
+  * 自定义 `UITabBar`
+  * 支持单例模式
+  * 导航控制器包裹每一个子控制器，使得每一个子控制器具备`push`到其他控制器的能力
+  * 支持手势滑动切换子控制器。（等效于： `- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item`切换挂载的子控制器 ）
+  * 支持对某一特定的`Tabbaritem`向上凸起
+  * 支持自定义 `UITabBar`的高度
+  * `Tabbaritem`事件触发
+    * 支持长按手势
+      * 长按手势出菜单（高仿 **Telegram**）
+    * 一些动画效果（比如：图片从小放大）
+    * 点击震动
+    * 点击声音
+    * 支持`lottie`动画
+    * 支持`PPBadgeView`
+    * 支持强行自检跳转登录模块
+
+### 19、iOS横竖屏切换 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * [**相关文档：iOS 横竖屏切换**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md)
 * <font color=red>**相关经验总结**</font>
@@ -1301,14 +1210,14 @@ NSObject <|-- BaseProtocol
   * [**如果锚定`view.traitCollection.verticalSizeClass`**](#锚定`view.traitCollection.verticalSizeClass`)，则需要配置 `- (UIInterfaceOrientationMask)application:(UIApplication *)application
     supportedInterfaceOrientationsForWindow:(UIWindow *)window`，方可正常检测横竖屏
 
-### 10、<font color=red>**全局工具箱**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 20、<font color=red>**全局工具箱**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * [**JobsAppTools**]() （单例模式）
 * [**NSObject+AppTools**]() （分类模式）
 * [**`FileFolderHandleModel`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/FileFolderHandleTool)：**文件夹操作**
 * [**`JobsLoadingImage`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIImage/JobsLoadingImage)：**图片存取**
 
-### 11、<font color=red>`View` 和 `ViewController`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 21、<font color=red>`View` 和 `ViewController`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 两者都是属于UI层
 
@@ -1322,7 +1231,7 @@ NSObject <|-- BaseProtocol
 
 * 一般`View`不会独立存在，会依附于`ViewController`。<font color=red>就要求`ViewController`需要观察是否正常销毁</font>（即，退出页面是否执行`-(void)dealloc`方法）。<font color=blue>如果对象没有成功销毁，会影响数据的写入，且下一次新建对象的时候，会优先执行上一个对象的`-(void)dealloc`方法</font>
 
-#### 11.1、`ViewController`的生命周期
+#### 21.1、`ViewController`的生命周期
 
 * **初始化方法**`-(instancetype)init`：最早装载本页面数据的时机
     * `- (void)loadView`：**一般在此方法里面装载**本页面的固定数据和刷新的数据（比如网络请求的数据）
@@ -1336,7 +1245,7 @@ NSObject <|-- BaseProtocol
     * `-(void)viewDidDisappear:(BOOL)animated`
     * `-(void)dealloc`
 
-#### 11.2、`View`的生命周期
+#### 21.2、`View`的生命周期
 
 * **初始化方法**`-(instancetype)init`：最根本的初始化方法
 
@@ -1362,7 +1271,7 @@ NSObject <|-- BaseProtocol
     -(void)dealloc
     ```
 
-### 12、<font color=red>**AppDelegate** 和 **SceneDelegate** </font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 22、<font color=red>**AppDelegate** 和 **SceneDelegate** </font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 在iOS 13及更高版本中，Apple引入了多窗口支持，这意味着一个应用程序可以拥有多个场景（Scene），每个场景都有自己的生命周期和界面
 
@@ -1435,8 +1344,104 @@ NSObject <|-- BaseProtocol
     }
     ```
 
-### 13、**UIButton.UIButtonConfiguration** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 23、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+* <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
+* <font color=red>不要在属性上加`__block`</font>。转而是在这个对象上使用`__block`
+* <font color=red>属性化的`NSString *`可以用**assign**修饰，但是最好用**copy**</font>
+
+## 四、架构说明 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+### 1、[**不使用 Storyboard + 使用自定义的控制器（ViewController@1）**](#https://blog.csdn.net/htwhtw123/article/details/125348408) + **不使用多场景**
+
+* 给`AppDelegate.h`添加属性，作为渲染的window
+
+  ```objective-c
+  #import <UIKit/UIKit.h>
+  #import "ViewController@1.h"
+  
+  @interface AppDelegate : UIResponder <UIApplicationDelegate>
+  @property (strong, nonatomic) UIWindow *window;
+  @end
+  ```
+
+* `AppDelegate.m`
+
+  ```objective-c
+  - (BOOL)application:(UIApplication *)application
+  didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+      self.window = [UIWindow.alloc initWithFrame:UIScreen.mainScreen.bounds];
+      // 创建并设置初始视图控制器为登录界面
+      self.window.rootViewController = ViewController_1.new;
+      [self.window makeKeyAndVisible];
+      self.window.backgroundColor = UIColor.cyanColor;
+      NSLog(@"qwer");
+      return YES;
+  }
+  ```
+
+* 删除以下`AppDelegate`里面对多场景的支持代码
+
+  ```objective-c
+  #pragma mark - UISceneSession lifecycle
+  - (UISceneConfiguration *)application:(UIApplication *)application
+  configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession
+                                options:(UISceneConnectionOptions *)options {
+      // Called when a new scene session is being created.
+      // Use this method to select a configuration to create the new scene with.
+      return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
+  }
+  
+  
+  - (void)application:(UIApplication *)application
+  didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
+      // Called when the user discards a scene session.
+      // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
+      // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+  }
+  ```
+
+* 删除`Info.plist`中，关于多场景的键值对
+
+  ```objective-c
+  <key>UIApplicationSceneManifest</key>
+  <dict>
+    <key>UIApplicationSupportsMultipleScenes</key>
+    <false/>
+    <key>UISceneConfigurations</key>
+    <dict>
+      <key>UIWindowSceneSessionRoleApplication</key>
+      <array>
+        <dict>
+          <key>UISceneConfigurationName</key>
+          <string>Default Configuration</string>
+          <key>UISceneDelegateClassName</key>
+          <string>SceneDelegate</string>
+          <key>UISceneStoryboardFile</key>
+          <string>Main</string>
+        </dict>
+      </array>
+    </dict>
+  </dict>
+  ```
+
+* 删除新建工程默认生成的`ViewController` (或者不包含进工程目录，防止进入编译期)
+
+  ![image-20240715150036945](./assets/image-20240715150036945.png)
+
+* 删除`SceneDelegate.h`和 `SceneDelegate.m`   (或者不包含进工程目录，防止进入编译期)
+
+  ![image-20240715145437169](./assets/image-20240715145437169.png)
+
+* [处理：**`Unknown class ViewController in Interface Builder file.`**](#Unknown_class_in_Interface_Builder_file)
+
+
+### 2、iOS新建应用使用多场景
+
+
+## 五、代码讲解
+
+### 1、**UIButton.UIButtonConfiguration** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 <details id="UIButton">
 <summary><strong>点我了解详情</strong></summary>
 
@@ -1559,7 +1564,7 @@ NSObject <|-- BaseProtocol
 
  </details>
 
-### 14、倒计时按钮的封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 2、倒计时按钮的封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注实现类 [**@interface UIButton (Timer)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIButton/UIButton+Category/UIButton+Timer)
 
@@ -1696,7 +1701,7 @@ NSObject <|-- BaseProtocol
     * 因为是低频需求，所以目前只封装在主调用上进行呈现
     * `longPressGestureEventBlock:(JobsSelectorBlock _Nullable)longPressGestureEventBlock`参数
 
-### 15、**Masonry** 的一些使用技巧 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 3、**Masonry** 的一些使用技巧 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注实现类：[**@interface UIView (Masonry)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+Masonry)
 
@@ -1727,7 +1732,7 @@ NSObject <|-- BaseProtocol
 ```
 </details>
 
-### 16、退出`ViewController`的时候，需要做的操作 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 4、退出`ViewController`的时候，需要做的操作 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 <details id="退出ViewController的时候，需要做的操作">
  <summary><strong>点我了解详情</strong></summary>
@@ -1751,7 +1756,7 @@ NSObject <|-- BaseProtocol
 
 </details>
 
-### 17、实例对象的weak化，避免循环引用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 5、实例对象的weak化，避免循环引用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 <details id="相关定义">
 <summary><strong>点我了解详情：相关定义</strong></summary>
 
@@ -1820,7 +1825,7 @@ NSObject <|-- BaseProtocol
  ```
 </details>
 
-### 18、**使用block，对`@selector`的封装，避免方法割裂** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 6、**使用block，对`@selector`的封装，避免方法割裂** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 <details id="使用block，对selector的封装，避免方法割裂">
  <summary><strong>点我了解详情</strong></summary>
@@ -1888,9 +1893,9 @@ NSObject <|-- BaseProtocol
    ```
 </details>
 
-#### 18.1、[**对按钮点击事件的使用**](#用新Api（UIButtonConfiguration）创建一个带富文本的UIButton)
+#### 6.1、[**对按钮点击事件的使用**](#用新Api（UIButtonConfiguration）创建一个带富文本的UIButton)
 
-#### 18.2、对通知的使用
+#### 6.2、对通知的使用
 
 * 关注实现类：[**`MacroDef_Notification.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Notification.h)
 
@@ -1946,7 +1951,7 @@ NSObject <|-- BaseProtocol
   [NSNotificationCenter.defaultCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
   ```
 
-### 19、`UIViewModel`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 7、`UIViewModel`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 将数据束`UIViewModel`绑定到UI中，包括一些UI交互事件
 
@@ -2014,14 +2019,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 </details>
 
-### 20、统一注册全局的 `UICollectionViewCell` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 8、统一注册全局的 `UICollectionViewCell` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * 不注册相对应当UICollectionViewCell相关子类，使用时会崩溃
 * 系统注册UICollectionViewCell相关子类，是利用字符串作为桥梁进行操作
 * 注册不会开辟内存，只有当使用的时候才会开辟内存
 * 对全局进行统一的UICollectionViewCell相关子类注册是很有必要的，方便管理，防止崩溃
 * 关注实现类[<font color=blue>**`@implementation UICollectionView (JobsRegisterClass)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UICollectionView/UICollectionView+Category/UICollectionView+JobsRegisterClass)
 
-### 21、全局统一的提示弹出框（对`WHToast`的二次封装） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 9、全局统一的提示弹出框（对`WHToast`的二次封装） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * `Podfile`
 
@@ -2050,16 +2055,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 </details>
 
-### 22、关于`UIViewController`的一些配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 10、关于`UIViewController`的一些配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-####  22.1、`BaseViewController`
+####  10.1、`BaseViewController`
 
   * 为了方便管理，理论上，全局只应有一个`UIViewController`。开发者不应该创建过多的子控制器
   * 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行
   * 命名为`BaseViewController`也是充分考虑同业者的偏好习惯
   * 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`
 
-#### 22.2、推控制器
+#### 10.2、推控制器
 
   * 关注实现类：[**`@interface NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
 
@@ -2122,11 +2127,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                                   success:(jobsByIDBlock _Nullable)successBlock;
     ```
 
-  #### 22.3、[**`UIViewController`转场动画的使用方法**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition/UIViewController%2BXLBubbleTransition.md/UIViewController%2BXLBubbleTransition.md)
+  #### 10.3、[**`UIViewController`转场动画的使用方法**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition/UIViewController%2BXLBubbleTransition.md/UIViewController%2BXLBubbleTransition.md)
 
   * 关注实现类：[**@interface UIViewController (XLBubbleTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition)
 
-#### 22.4、<font color=red>**悬浮视图**</font>
+#### 10.4、<font color=red>**悬浮视图**</font>
 
   * 以分类的方式，定义在`view`层，针对全局所有的`UIView *`
 
@@ -2186,10 +2191,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       }
       ```
 
-####  22.5、防止过多的`presented`模态推出`UIViewController`
+####  10.5、防止过多的`presented`模态推出`UIViewController`
   * 关注实现类：[**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)
 
-#### 22.6、<font color=red id=寻找当前控制器>**寻找当前控制器**</font>
+#### 10.6、<font color=red id=寻找当前控制器>**寻找当前控制器**</font>
 
 * 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
 
@@ -2205,7 +2210,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   -(UIViewController *_Nullable)currentController;
   ```
 
-### 23、`KVC`的封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 11、`KVC`的封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
 
@@ -2231,7 +2236,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   UIImageView *headIcon = self.valueForKeyBlock(@"headIcon");/// 账户头像
   ```
 
-### 24、**键盘监听** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 12、**键盘监听** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注实现类：[**`@implementation NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
 
@@ -2276,7 +2281,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 25、iOS 状态栏颜色的修改 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 13、iOS 状态栏颜色的修改 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 全局修改
 
@@ -2323,9 +2328,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-### 26、对`NSUserDefaults.standardUserDefaults` 的二次封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 14、对`NSUserDefaults.standardUserDefaults` 的二次封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-#### 26.1、使用<font color=red>**宏定义**</font>对`NSUserDefaults.standardUserDefaults` 的二次封装
+#### 14.1、使用<font color=red>**宏定义**</font>对`NSUserDefaults.standardUserDefaults` 的二次封装
 
 * 关注实现类：[**`JobsUserDefaultDefine.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSUserDefaults/JobsUserDefaultDefine.h)
 
@@ -2437,7 +2442,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     JobsUserDefaultSynchronize
     ```
 
-#### 26.2、以<font color=red>**分类**</font>的形式对`NSUserDefaults.standardUserDefaults` 的二次封装
+#### 14.2、以<font color=red>**分类**</font>的形式对`NSUserDefaults.standardUserDefaults` 的二次封装
 
 * 关注实现类：[**`@interface NSUserDefaults (Manager)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSUserDefaults/NSUserDefaults+Category/NSUserDefaults+Manager)
 
@@ -2459,7 +2464,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   +(void)deleteWithKey:(NSString *)key;
   ```
 
-### 27、对小型本地化数据的读取（`NSUserDefaults`） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 15、对小型本地化数据的读取（`NSUserDefaults`） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
   * 产生背景：方便临时调试，避免打印输出
 
@@ -2476,7 +2481,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-### 28、视频播放器 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 16、视频播放器 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注实现类：[**@interface UIView (ZFPlayer)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+ZFPlayer)
 
@@ -2491,7 +2496,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    #  pod 'VIMediaCache' # https://github.com/vitoziv/VIMediaCache 边下边播
    ```
 
-### 29、动画相关 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 17、动画相关 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * `Podfile`
 
@@ -2501,7 +2506,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 关注实现类：[**@interface UIView (Animation)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BAnimation)
 
-### 30、手势封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 18、手势封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 因为手势传递是在view层。所以对其进行了一次封装。关注实现类：[**@interface UIView (Gesture)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BGesture)
 
@@ -2544,7 +2549,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       }
   }
   ```
-### 31、富文本 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 19、富文本 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 富文本的本质是告诉系统，某段文字的表达方式
 
@@ -2613,7 +2618,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 32、字符串定义 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 20、字符串定义 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 *  ```objective-c
    FOUNDATION_EXTERN NSString *const 皇冠符号;
@@ -2631,7 +2636,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   NSString *const UserDefaultKey_AppLanguage = @"AppLanguage";
   ```
 
-### 33、<font color=red>**万物回调**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 21、<font color=red>**万物回调**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 产生背景：点击事件的带参回调
 
@@ -2651,7 +2656,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }];
   ```
 
-### 34、系统相机相册调取 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 22、系统相机相册调取 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 借助第三方[**`HXPhotoPicker`**](https://github.com/SilenceLove/HXPhotoPicker)
 
@@ -2718,7 +2723,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }];
   ```
 
-### 35、完整的单例写法 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 23、完整的单例写法 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 在 **OC**中，`static` 关键字用于声明静态变量。这些变量在整个应用程序的生命周期内只会被初始化一次，并且它们的作用域仅限于定义它们的文件
 
@@ -2803,7 +2808,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 36、打开`URL` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 24、打开`URL` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注实现类：[**@interface NSObject (OpenURL)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+OpenURL)
 
@@ -2824,7 +2829,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               }];
   ```
 
-### 37、数据库 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 25、数据库 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * **FMDB**
 
@@ -3111,11 +3116,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     @end
     ```
 
-### 38、指纹识别 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 26、指纹识别 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注实现类：[**@interface  TouchID : NSObject**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/TouchID)
 
-### 39、创建`UICollectionView` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 27、创建`UICollectionView` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * ```objective-c
   @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
@@ -3225,7 +3230,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 40、创建`UITableView` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 28、创建`UITableView` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * ```objective-c
   /// UI
@@ -3308,7 +3313,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 41、字符串写文件 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 29、字符串写文件 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 ```objective-c
 -(void)保留文字{
@@ -3336,7 +3341,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 }
 ```
 
-### 42、[<font id=UITabBarController>**关于`UITabBarController`**</font>]() <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 30、关于`UITabBarController` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * <font color=red>`JobsTabBarVC`</font>：**`UITabBarController`**
   * `JobsTabBarItemConfig`：**`NSObject`**
@@ -3355,6 +3360,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * `LZTabBar`：**`UIView`**
   * `LZTabBarConfig` ：**`NSObject`**
   * `LZTabBarItem`：**`UIView`**
+
+#### 30.2、
 
 ### Test <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -3452,13 +3459,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * iOS.Widget
 * Demo里面有些因为Api升级而没有来得及对齐的，目前打开会崩溃
 * 对多场景**SceneDelegate**的深入研究和支持
-* **JobsPostVC**报错解决
-* **DebugLogDescription** 会崩溃：`id value = self.valueForKeyBlock(name) ? : @"nil";//默认值为nil字符串`
-* **lldb**的使用
-* fastlane 的使用
-* Gemfile的使用
-* .cocoapods_downloader 的使用
-* JobsLaunchAdMgr
+* JobsPostVC报错解决
+* DebugLogDescription 会崩溃：`id value = self.valueForKeyBlock(name) ? : @"nil";//默认值为nil字符串`
 * 其他
 ## 六、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * 浏览器打开并输入 
