@@ -32,7 +32,7 @@
 #import "MJRefresh.h"
 #endif
 
-#import "JXCategoryViewVerticalShowVC.h"
+//#import "JXCategoryViewVerticalShowVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

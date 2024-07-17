@@ -26,8 +26,7 @@ static dispatch_once_t AppDelegateOnceToken;
 + (instancetype)sharedManager {
     dispatch_once(&AppDelegateOnceToken, ^{
         AppDelegateInstance = [[super allocWithZone:NULL] init];
-    });
-    return AppDelegateInstance;
+    });return AppDelegateInstance;
 }
 
 + (void)destroyInstance {

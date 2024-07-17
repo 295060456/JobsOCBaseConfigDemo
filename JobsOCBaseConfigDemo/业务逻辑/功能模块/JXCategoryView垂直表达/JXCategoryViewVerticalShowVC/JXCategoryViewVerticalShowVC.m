@@ -24,7 +24,7 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    JobsRemoveNotification(self);;
+    //    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 -(void)loadView{
@@ -51,7 +51,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = JobsGreenColor;
+    
     [self setGKNav];
     [self setGKNavBackBtn];
     
@@ -62,10 +62,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    /// 顺时针旋转 3 * 90度 = 逆时针旋转90度
-    [self.view transformByRadians:1.5f];
-    /// 顺时针旋转90度
-//    [self.view transformByRadians:0.5f];
+//    [self.view transformByRadians:1.5f];
 }
 
 -(void)viewWillLayoutSubviews{
@@ -93,8 +90,7 @@
     NSLog(@"");
 
     for (UICollectionViewCell *cell in self.categoryView.collectionView.visibleCells) {
-        /// 顺时针旋转 90度
-        [cell transformByRadians:0.5f];
+//        [cell transformByRadians:0.5f];
     }
 }
 #pragma mark JXCategoryTitleViewDataSource
@@ -162,14 +158,14 @@ ratio:(CGFloat)ratio {
         _categoryView.backgroundColor = UIColor.cyanColor;
         _categoryView.titleSelectedColor = UIColor.redColor;
         _categoryView.titleColor = UIColor.redColor;
-        _categoryView.titleFont = notoSansRegular(16);
-        _categoryView.titleSelectedFont = notoSansBold(16);
+//        _categoryView.titleFont = notoSansRegular(16);
+//        _categoryView.titleSelectedFont = notoSansBold(16);
         _categoryView.delegate = self;
         _categoryView.titles = self.titleMutArr;
         _categoryView.titleColorGradientEnabled = YES;
         _categoryView.indicators = @[self.lineView];//
         _categoryView.defaultSelectedIndex = 1;// 默认从第二个开始显示
-        _categoryView.cellSpacing = JobsWidth(-20);
+//        _categoryView.cellSpacing = JobsWidth(5);
         // 关联cotentScrollView，关联之后才可以互相联动！！！
         _categoryView.contentScrollView = self.listContainerView.scrollView;//
         [self.view addSubview:_categoryView];
@@ -180,11 +176,14 @@ ratio:(CGFloat)ratio {
 //            make.height.mas_equalTo(listContainerViewDefaultOffset);
 //        }];
 //        [self.view layoutIfNeeded];
+        
         /// 本来的值
         _categoryView.frame = CGRectMake(0,
                                          0,
                                          JobsMainScreen_HEIGHT(),
                                          listContainerViewDefaultOffset);
+        
+       
     }return _categoryView;
 }
 
@@ -211,13 +210,16 @@ ratio:(CGFloat)ratio {
 //
 //        }];
 //        [self.view layoutIfNeeded];
+        /// 本来的值
         _listContainerView.frame = CGRectMake(0,
                                               listContainerViewDefaultOffset,
-                                              JobsMainScreen_HEIGHT(),
-                                              JobsMainScreen_WIDTH() - listContainerViewDefaultOffset);
+                                              JobsMainScreen_WIDTH(),
+                                              JobsMainScreen_HEIGHT() - listContainerViewDefaultOffset);
+        
         /// ❤️在需要的地方写❤️
         NSNumber *currentIndex = [self.listContainerView valueForKey:@"currentIndex"];
         NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
+        
     }return _listContainerView;
 }
 
@@ -241,5 +243,6 @@ ratio:(CGFloat)ratio {
         }
     }return _childVCMutArr;
 }
+
 
 @end
