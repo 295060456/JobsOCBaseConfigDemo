@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JXCategoryViewVerticalShowVC : UIViewController//BaseViewController
+@interface JXCategoryViewVerticalShowVC : BaseViewController
 <
 JXCategoryTitleViewDataSource
 ,JXCategoryListContainerViewDelegate
