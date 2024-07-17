@@ -1,37 +1,33 @@
-# 通过 Bundler 运行 CocoaPods 命令
-# bundle exec pod update
-#begin
-#  require 'bundler/setup'
-#  Bundler.setup(:default)
-#  require 'cocoapods-downloader'
-#rescue LoadError => e
-#  puts 'cocoapods-downloader plugin could not be loaded'
-#  puts e.message
-#end
-#
-## 加速 CocoaPods 依赖下载的工具 https://github.com/CocoaPods/cocoapods-downloader
-## 使用前提：gem install cocoapods-downloader
-### 阿里云镜像源
+## 通过 Bundler 运行 CocoaPods 命令
+## bundle exec pod update
+begin
+  require 'bundler/setup'
+  Bundler.setup(:default)
+  puts 'Bundler setup completed'
+  require 'cocoapods-downloader'
+  puts 'cocoapods-downloader plugin loaded'
+rescue LoadError => e
+  puts 'cocoapods-downloader plugin could not be loaded'
+  puts e.message
+end
+puts 'Podfile is being loaded...'
+# 加速 CocoaPods 依赖下载的工具 https://github.com/CocoaPods/cocoapods-downloader
+# 使用前提：gem install cocoapods-downloader
 #plugin 'cocoapods-downloader', {
-#  'https://github.com/CocoaPods/Specs.git' => 'https://mirrors.aliyun.com/pods/specs.git'
-#}
-### 清华大学开源软件镜像站
-#plugin 'cocoapods-downloader', {
-#  'https://github.com/CocoaPods/Specs.git' => 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
-#}
-### 腾讯云镜像
-#plugin 'cocoapods-downloader', {
-#  'https://github.com/CocoaPods/Specs.git' => 'https://mirrors.cloud.tencent.com/CocoaPods/Specs.git'
-#}
-### 科大镜像站
-#plugin 'cocoapods-downloader', {
-#  'https://github.com/CocoaPods/Specs.git' => 'https://mirrors.ustc.edu.cn/CocoaPods/Specs.git'
+#  'https://github.com/CocoaPods/Specs.git' => [
+#    'https://mirrors.aliyun.com/pods/specs.git',
+#    'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git',
+#    'https://mirrors.cloud.tencent.com/CocoaPods/Specs.git',
+#    'https://mirrors.ustc.edu.cn/CocoaPods/Specs.git'
+#  ]
 #}
 
-# 指明依赖库的来源地址
-#source 'https://cdn.cocoapods.org/'
-#source 'https://github.com/CocoaPods/Specs.git'# 使用官方默认地址（默认）
-#source 'https://github.com/Artsy/Specs.git'# 使用其他来源地址
+plugin 'cocoapods-repo-update'
+
+## 指明依赖库的来源地址
+source 'https://cdn.cocoapods.org/'
+source 'https://github.com/CocoaPods/Specs.git'# 使用官方默认地址（默认）
+source 'https://github.com/Artsy/Specs.git'# 使用其他来源地址
 
 # 需要特别说明的：在 post_install 时，为了一些版本的兼容，需要遍历所有 target，调整一部分库的版本；但是如果开启了 generate_multiple_pod_projects 的话，由于项目结构的变化，installer.pod_targets 就没办法获得所有 pods 引入的 target 了
 install! 'cocoapods',# install! 只走一次，多次使用只以最后一个标准执行
