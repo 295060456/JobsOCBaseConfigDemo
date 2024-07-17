@@ -12,6 +12,7 @@
 #import "MacroDef_SysWarning.h"
 #import "MacroDef_AppDeviceScreenSize.h"
 #import "UIDevice+XMUtils.h"
+#import "JobsAppTools.h"
 /// 资料来源：
 /// https://tommygirl.cn/2022/09/15/iPhone_dev_size/
 /// https://chatgpt.com/
@@ -272,21 +273,21 @@ static inline CGFloat JobsMainScreen_HEIGHT(void){
     return  JobsMainScreen().height;
 }
 /// 寻找真正的高
-static inline CGFloat SCREEN_MAX_LENGTH(void){
-    return MAX(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
+static inline CGFloat JobsRealHeight(void){
+    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_WIDTH() :JobsMainScreen_HEIGHT();
 }
 /// 寻找真正的宽
-static inline CGFloat SCREEN_MIN_LENGTH(void){
-    return MIN(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
+static inline CGFloat JobsRealWidth(void){
+    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_HEIGHT() :JobsMainScreen_WIDTH();
 }
 #pragma mark —— 【比例尺】屏幕像素标准转化：输入原型图上的宽和高，对外输出App对应的移动设备的真实宽高
 /// 宽转化 JobsWidth(1) == 0.85333333333...9
 static inline CGFloat JobsWidth(CGFloat width){
-    return (SCREEN_MIN_LENGTH() / 375) * width; //375 对应原型图的宽 在iph 12 pro max 此系数 = 1.1413333333333333
+    return (JobsRealWidth() / 375) * width; //375 对应原型图的宽 在iph 12 pro max 此系数 = 1.1413333333333333
 }
 /// 高转化 JobsHeight(1) == 0.93270524899057872
 static inline CGFloat JobsHeight(CGFloat height){
-    return (SCREEN_MAX_LENGTH() / 743) * height; //743 对应原型图的高
+    return (JobsRealHeight() / 743) * height; //743 对应原型图的高
 }
 #import "MacroDef_Func.h"/// 提到最前面，就会因为编译顺序的问题报错
 #pragma mark —— 安全区域

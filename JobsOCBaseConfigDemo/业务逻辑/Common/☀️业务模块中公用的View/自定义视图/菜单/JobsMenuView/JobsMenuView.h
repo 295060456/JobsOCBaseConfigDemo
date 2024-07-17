@@ -2,32 +2,20 @@
 //  JobsMenuView.h
 //  JobsOCBaseConfigDemo
 //
-//  Created by User on 7/10/24.
+//  Created by Jobs Hi on 2024/7/17.
 //
 
 #import "BaseView.h"
-#import "BaseViewProtocol.h"
+#import "LinkageMenuView.h"
 
-#if __has_include(<JXCategoryView/JXCategoryView.h>)
-#import <JXCategoryView/JXCategoryView.h>
-#else
-#import "JXCategoryView.h"
-#endif
-/**
-    因为
-    JobsMenuView : BaseView<BaseViewProtocol>
-    HomeMenuSubBaseVC : BaseViewController<BaseViewControllerProtocol<BaseViewProtocol>>
-    都共同继承自同一份协议BaseViewProtocol
-    所以这里进行 #import "HomeMenuSubBaseVC.h" 将会引起编译器错误
- */
+#import "JobsMenuSubView@1.h"
+#import "JobsMenuSubView@2.h"
+#import "JobsMenuSubView@3.h"
+#import "JobsMenuSubView@4.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsMenuView : BaseView
-<
-JXCategoryTitleViewDataSource
-,JXCategoryListContainerViewDelegate
-,JXCategoryViewDelegate
->
 
 @end
 

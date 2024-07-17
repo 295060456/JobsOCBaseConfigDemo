@@ -11,13 +11,13 @@
 @implementation AppDelegate (UIApplicationDelegate)
 #pragma mark —— UIApplicationDelegate
 /// 一进入App就横屏
-//- (UIInterfaceOrientationMask)application:(UIApplication *)application
-//  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-//    JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
-//    JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
-//    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
-//    return UIInterfaceOrientationMaskLandscape;
-//}
+- (UIInterfaceOrientationMask)application:(UIApplication *)application
+  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+    JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
+    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
+    return UIInterfaceOrientationMaskLandscape;
+}
 
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

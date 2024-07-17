@@ -15,7 +15,7 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);;
 }
 
 - (instancetype)init{
@@ -51,10 +51,14 @@
     self.view.backgroundColor = JobsGreenColor;
     [self setGKNav];
     [self setGKNavBackBtn];
+    NSLog(@"SSS = %ld",(long)self.getDeviceOrientation);
+    self.getMenuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;
+//    self.getMenuView.alpha = 1;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.isHiddenNavigationBar = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -70,9 +74,6 @@
     [super viewDidDisappear:animated];
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
-}
 #pragma mark —— lazyLoad
 
 @end

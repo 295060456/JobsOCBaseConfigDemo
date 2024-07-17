@@ -9,6 +9,8 @@
 
 @interface BaseViewController ()
 
+@property(nonatomic,strong)JobsMenuView *menuView;
+
 @end
 
 @implementation BaseViewController
@@ -155,13 +157,9 @@ BaseViewControllerProtocol_synthesize
     /// 只有是在Tabbar管理的，不含导航的根控制器才开启手势（点语法会有 Property access result unused警告）
     self.isRootVC ? [self tabBarOpenPan] : [self tabBarClosePan];
     [self UIViewControllerLifeCycle:JobsLocalFunc];
+//    NSLog(@"SSS = %ld",(long)self.getDeviceOrientation);
 //    self.menuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;
 //    self.menuView.alpha = 1;
-    
-//    JXCategoryViewVerticalShowVC *vc = JXCategoryViewVerticalShowVC.new;
-//    [self.view addSubview:vc.view];
-//    [vc.view transformByRadians:0.5];
-//    [self addChildViewController:vc];
     
 #ifdef DEBUG
     /// 网络异步数据刷新UI会在viewDidAppear以后执行viewWillLayoutSubviews、viewDidLayoutSubviews
@@ -234,6 +232,10 @@ BaseViewControllerProtocol_synthesize
 /// 设置进入界面默认支持的方向
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
     return [super preferredInterfaceOrientationForPresentation];
+}
+#pragma mark —— 一些公共方法
+-(JobsMenuView *)getMenuView{
+    return self.menuView;
 }
 #pragma mark —— 一些私有方法
 /// 用于检测UIViewController的生命周期
@@ -342,23 +344,20 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 -(JobsMenuView *)menuView{
     if(!_menuView){
         _menuView = JobsMenuView.new;
-        _menuView.isAllowDrag = YES;//悬浮效果必须要的参数
-        @jobs_weakify(self)
-        self.view.vc = weak_self;
-        [jobsGetMainWindow() addSubview:_menuView];
-        [_menuView richElementsInViewWithModel:nil];
+        _menuView.backgroundColor = JobsRedColor;
+        [self.view addSubview:_menuView];
         _menuView.frame = CGRectMake(0,
                                      0,
-                                     [_menuView viewSizeWithModel:nil].width,
-                                     [_menuView viewSizeWithModel:nil].height);
-        
-//        [_menuView transformByRadians:0];
-        
+                                     [JobsMenuView viewSizeWithModel:nil].width,
+                                     [JobsMenuView viewSizeWithModel:nil].height
+                                     );
 //        [_menuView mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.size.mas_equalTo([_menuView viewSizeWithModel:nil]);
 //            make.centerY.equalTo(self.view);
 //            make.left.equalTo(self.view);
 //        }];
+        [_menuView richElementsInViewWithModel:nil];
+        NSLog(@"");
     }return _menuView;
 }
 
