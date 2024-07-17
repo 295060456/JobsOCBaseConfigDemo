@@ -344,7 +344,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 -(JobsMenuView *)menuView{
     if(!_menuView){
         _menuView = JobsMenuView.new;
-        _menuView.backgroundColor = JobsRedColor;
+        _menuView.backgroundColor = JobsPurpleColor;
         [self.view addSubview:_menuView];
         _menuView.frame = CGRectMake(0,
                                      0,

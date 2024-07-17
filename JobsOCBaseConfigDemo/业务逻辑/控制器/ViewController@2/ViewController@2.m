@@ -51,14 +51,12 @@
     self.view.backgroundColor = JobsGreenColor;
     [self setGKNav];
     [self setGKNavBackBtn];
-    NSLog(@"SSS = %ld",(long)self.getDeviceOrientation);
-    self.getMenuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;
-//    self.getMenuView.alpha = 1;
+    self.getMenuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.isHiddenNavigationBar = YES;
+    self.gk_navigationBar.hidden = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated{

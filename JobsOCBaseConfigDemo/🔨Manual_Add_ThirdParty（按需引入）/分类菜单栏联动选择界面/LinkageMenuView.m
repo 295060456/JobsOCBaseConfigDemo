@@ -14,17 +14,18 @@
 #define ANIMATION_TIME 0.2  //菜单栏滚动的时间
 
 #define FULLVIEW_FOR6 667  //iPhone6(s)高度
-#define NAVIGATION_HEIGHT 64  //navigationbar高度
+//#define NAVIGATION_HEIGHT 64  //navigationbar高度
+#define NAVIGATION_HEIGHT 0  //navigationbar高度
 #define TABBAR_HEIGHT 49  //tabbar高度
 #define FUll_VIEW_WIDTH     ([[UIScreen mainScreen] bounds].size.width)
 #define FUll_VIEW_HEIGHT    ([[UIScreen mainScreen] bounds].size.height)
 
 @interface LinkageMenuView()
 
-@property (nonatomic, strong) UIScrollView *menuView;
-@property (nonatomic, strong) UIView *bottomView;
-@property (nonatomic, strong) UIView *lineView;
-@property (nonatomic, strong) UIView *rightview;
+@property(nonatomic,strong)UIScrollView *menuView;
+@property(nonatomic,strong)UIView *bottomView;
+@property(nonatomic,strong)UIView *lineView;
+@property(nonatomic,strong)UIView *rightview;
 
 @end
 
@@ -39,9 +40,10 @@
     CGFloat blankHeight;
     CGFloat half_blankHeight;
 }
-
 #pragma mark - Init Method
-- (instancetype)initWithFrame:(CGRect)frame WithMenu:(NSArray *)menu andViews:(NSArray *)views{
+- (instancetype)initWithFrame:(CGRect)frame 
+                     WithMenu:(NSArray *)menu
+                     andViews:(NSArray *)views{
     if (self = [super init]) {
         if (FUll_VIEW_HEIGHT < FULLVIEW_FOR6) {
             btnHeight = 43;
@@ -78,15 +80,14 @@
         [self addSubview:self.menuView];
         [self addSubview:self.lineView];
         [self addSubview:self.rightview];
-    }
-    return self;
+    }return self;
 }
-
 #pragma mark - Setter Method
 - (void)setSelectViewColor:(UIColor *)selectViewColor{
     _selectTextColor = selectViewColor;
     _bottomView.backgroundColor = _selectViewColor;
 }
+
 - (void)setTextColor:(UIColor *)textColor{
     _textColor = textColor;
     for (int i = 2; i <= menuArray.count; i++) {
@@ -94,11 +95,13 @@
         [button setTitleColor:textColor forState:UIControlStateNormal];
     }
 }
+
 - (void)setSelectTextColor:(UIColor *)selectTextColor{
     _selectTextColor = selectTextColor;
     UIButton *button = [self viewWithTag:1];
     [button setTitleColor:_selectTextColor forState:UIControlStateNormal];
 }
+
 - (void)setTextSize:(CGFloat)textSize{
     _textSize = textSize;
     for (int i = 1; i <= menuArray.count; i++) {
@@ -106,11 +109,13 @@
         button.titleLabel.font = [UIFont systemFontOfSize:textSize];
     }
 }
-
 #pragma mark - LazyLoad
 - (UIView *)lineView{
     if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(MENU_WIDTH, 0, LINEVIEW_WIDTH, self.frame.size.height)];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(MENU_WIDTH,
+                                                             0,
+                                                             LINEVIEW_WIDTH,
+                                                             self.frame.size.height)];
         _lineView.backgroundColor = [UIColor lightGrayColor];
     }
     return _lineView;
@@ -118,21 +123,28 @@
 
 - (UIView *)rightview{
     if (!_rightview) {
-        _rightview = [[UIView alloc] initWithFrame:CGRectMake(MENU_WIDTH + LINEVIEW_WIDTH, NAVIGATION_HEIGHT, FUll_VIEW_WIDTH - MENU_WIDTH + LINEVIEW_WIDTH, FUll_VIEW_HEIGHT)];
+        _rightview = [[UIView alloc] initWithFrame:CGRectMake(MENU_WIDTH + LINEVIEW_WIDTH,
+                                                              NAVIGATION_HEIGHT,
+                                                              FUll_VIEW_WIDTH - MENU_WIDTH + LINEVIEW_WIDTH,
+                                                              FUll_VIEW_HEIGHT)];
     }
     return _rightview;
 }
 
 - (UIScrollView *)menuView{
     if (!_menuView) {
-        _menuView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, MENU_WIDTH, self.frame.size.height)];
+        _menuView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,
+                                                                   0,
+                                                                   MENU_WIDTH,
+                                                                   self.frame.size.height)];
         _menuView.backgroundColor = [UIColor redColor];
         _menuView.scrollsToTop = NO;
         _menuView.showsVerticalScrollIndicator = NO;
-        
         _menuView.contentSize = CGSizeMake(0, titlesCount * btnHeight + blankHeight + 5.0);
-        
-        _bottomView = [[UIView alloc] initWithFrame:CGRectMake((MENU_WIDTH - BOTTOMVIEW_WIDTH) / 2.0, blankHeight + 1.0,BOTTOMVIEW_WIDTH , BOTTOMVIEW_HEIGHT)];
+        _bottomView = [[UIView alloc] initWithFrame:CGRectMake((MENU_WIDTH - BOTTOMVIEW_WIDTH) / 2.0, 
+                                                               blankHeight + 1.0,
+                                                               BOTTOMVIEW_WIDTH ,
+                                                               BOTTOMVIEW_HEIGHT)];
         _bottomView.layer.cornerRadius = BOTTOMVIEW_HEIGHT / 2.0;
         _bottomView.backgroundColor = _selectViewColor;
         [_menuView addSubview:_bottomView];
@@ -149,13 +161,14 @@
             }else{
                 [menuButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             }
-            [menuButton addTarget:self action:@selector(choseMenu:) forControlEvents:UIControlEventTouchUpInside];
+            [menuButton addTarget:self 
+                           action:@selector(choseMenu:)
+                 forControlEvents:UIControlEventTouchUpInside];
             [_menuView addSubview:menuButton];
         }
     }
     return _menuView;
 }
-
 #pragma mark - MenuButton Method
 - (void)choseMenu:(UIButton *)button{
     NSLog(@"%ld==%@",(long)button.tag,button.titleLabel.text);
@@ -170,32 +183,39 @@
         if (menuArray.count > DTScrollTag * 2.0) {
             if (button.tag <= DTScrollTag) {
                 [UIView animateWithDuration:ANIMATION_TIME animations:^{
-                    [_menuView setContentOffset:CGPointMake(0,- NAVIGATION_HEIGHT) animated:NO];
+                    [self->_menuView setContentOffset:CGPointMake(0,- NAVIGATION_HEIGHT) animated:NO];
                 }];
             }else if (button.tag > menuArray.count - DTScrollTag){
                 [UIView animateWithDuration:ANIMATION_TIME animations:^{
-                    [_menuView setContentOffset:CGPointMake(0, scroHeight) animated:NO];
+                    [self->_menuView setContentOffset:CGPointMake(0, scroHeight) animated:NO];
                 }];
             }else if(button.tag == DTScrollTag + 1){
                 [UIView animateWithDuration:ANIMATION_TIME animations:^{
-                    [_menuView setContentOffset:CGPointMake(0,- NAVIGATION_HEIGHT + blankHeight + 1.0) animated:NO];
+                    [self->_menuView setContentOffset:CGPointMake(0,- NAVIGATION_HEIGHT + self->blankHeight + 1.0) animated:NO];
                 }];
             }else if (button.tag > DTScrollTag + 1 && button.tag < menuArray.count - DTScrollTag){
                 [UIView animateWithDuration:ANIMATION_TIME animations:^{
-                    [_menuView setContentOffset:CGPointMake(0,- NAVIGATION_HEIGHT + blankHeight + 1.0 + button.frame.size.height * (button.tag - DTScrollTag - 1)) animated:NO];
+                    [self->_menuView setContentOffset:CGPointMake(0,- NAVIGATION_HEIGHT + self->blankHeight + 1.0 + button.frame.size.height * (button.tag - self->DTScrollTag - 1)) animated:NO];
                 }];
             }else if (button.tag == menuArray.count - DTScrollTag){
                 [UIView animateWithDuration:ANIMATION_TIME animations:^{
-                    [_menuView setContentOffset:CGPointMake(0, scroHeight - blankHeight - 5.0) animated:NO];
+                    [self->_menuView setContentOffset:CGPointMake(0, scroHeight - self->blankHeight - 5.0) animated:NO];
                 }];
             }
  
         }
 
-        [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-            _bottomView.frame = CGRectMake((MENU_WIDTH - BOTTOMVIEW_WIDTH) / 2.0,button.frame.origin.y +  half_blankHeight, BOTTOMVIEW_WIDTH, BOTTOMVIEW_HEIGHT);
+        [UIView animateWithDuration:0.3 
+                              delay:0
+             usingSpringWithDamping:0.8
+              initialSpringVelocity:0
+                            options:UIViewAnimationOptionAllowUserInteraction
+                         animations:^{
+            self->_bottomView.frame = CGRectMake((MENU_WIDTH - BOTTOMVIEW_WIDTH) / 2.0,button.frame.origin.y +  self->half_blankHeight, BOTTOMVIEW_WIDTH, BOTTOMVIEW_HEIGHT);
         } completion:nil];
-        [self performSelector:@selector(delayChangeTextColor) withObject:nil afterDelay:0.07];
+        [self performSelector:@selector(delayChangeTextColor) 
+                   withObject:nil
+                   afterDelay:0.07];
         
         for (UIView *view in [_rightview subviews]) {
             [view removeFromSuperview];
@@ -211,7 +231,6 @@
         [_rightview addSubview:rigView];
     }
 }
-
 #pragma mark - Delay Method
 - (void)delayChangeTextColor{
         UIButton *button = (UIButton *)[self viewWithTag:newChoseTag];

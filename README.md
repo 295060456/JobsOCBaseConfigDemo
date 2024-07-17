@@ -844,28 +844,26 @@ NSObject <|-- BaseProtocol
 
 * <font color=red>**当设备横竖屏切换的时候，设备宽高定义会互相反转**</font>
 
-* **当前设备是否是全面屏**：`static inline BOOL isFullScreen(void) ` 
-
-* 当前设备尺寸
-  
-  * 设备宽：定义x轴为宽
-  
-     ```objective-c
-     /// 横屏模式下，正常的宽高反转
-     static inline CGFloat JobsMainScreen_WIDTH(UIView * _Nullable view){
-         return JobsCheckLandscape(view) ? JobsMainScreen().height : JobsMainScreen().width;
-     }
-     ```
-  
-  * 设备高：定义y轴为高
-  
-    ```objective-c
-    /// 横屏模式下，正常的宽高反转
-    static inline CGFloat JobsMainScreen_HEIGHT(UIView * _Nullable view){
-        return JobsCheckLandscape(view) ? JobsMainScreen().width : JobsMainScreen().height;
+  * ```objective-c
+    static inline CGFloat JobsRealHeight(void){
+        return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_WIDTH() :JobsMainScreen_HEIGHT();
     }
     ```
-  
+
+  * ```objective-c
+    static inline CGFloat JobsRealWidth(void){
+        return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_HEIGHT() :JobsMainScreen_WIDTH();
+    }
+    ```
+
+* **当前设备是否是全面屏**：
+
+  * 关注实现类：[**@interface UIDevice (XMUtils)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIDevice/UIDevice%2BCategory/UIDevice%2BXMUtils) 和 [**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
+
+    ```objective-c
+    +(BOOL)isFullScreen;
+    ```
+
 * **全局比例尺**
   
   * ```objective-c
@@ -2063,6 +2061,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行
   * 命名为`BaseViewController`也是充分考虑同业者的偏好习惯
   * 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`
+  * <font color=red>禁用系统的`UINavigationBar`转而用 [**`gk_navigationBar`**](https://github.com/QuintGao/GKNavigationBar)进行替代 </font>。分类实现，无代码入侵
 
 #### 10.2、推控制器
 
