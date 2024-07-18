@@ -6,11 +6,22 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
+#import "JobsBlock.h"
+/// 单例工具箱
 #ifndef JobsAppTool
 #define JobsAppTool JobsAppTools.sharedManager
 #endif /* JobsAppTool */
-
+/// 屏幕方向
+#ifndef DeviceOrientation_typedef
+#define DeviceOrientation_typedef
+typedef NS_ENUM(NSInteger, DeviceOrientation) {
+  DeviceOrientationUnknown, /// 未知方向
+  DeviceOrientationPortrait,/// 竖屏
+  DeviceOrientationLandscape /// 横屏
+};
+#endif /* DeviceOrientation_typedef */
+/// 根控制器
 #ifndef ROOT_VIEW_CONTROLLER_H
 #define ROOT_VIEW_CONTROLLER_H
 //#define RootViewController AppDelegate.tabBarNavCtrl

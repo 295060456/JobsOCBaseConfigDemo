@@ -122,8 +122,11 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 -(void)setJobsVisible:(BOOL)jobsVisible;
 /// popView取消按钮常规处理方法
 -(void)cancelBtnActionForPopView:(id _Nullable)object;
-/// 顺时针旋转radians度
+/// 顺时针旋转radians度【依据中心点进行旋转】
 -(void)transformByRadians:(CGFloat)radians;
+/// 顺时针旋转degrees弧度【依据中心点进行旋转】
+-(void)transformByDegrees:(CGFloat)degrees;
+
 -(UIImage *_Nullable)getImage;
 /// iOS 阴影效果 添加了shadowPath后消除了离屏渲染问题 。特别提示：不能存在 -(void)drawRect:(CGRect)rect 或者在-(void)drawRect:(CGRect)rect里面写，否则无效
 /// @param targetShadowview 需要作用阴影效果的View

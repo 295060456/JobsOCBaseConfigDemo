@@ -41,7 +41,7 @@ UIGestureRecognizerDelegate
 ,BaseViewControllerProtocol
 >
 
-@property(nonatomic,strong)JobsMenuView *menuView;
+-(JobsMenuView *)getMenuView;
 
 @end
 

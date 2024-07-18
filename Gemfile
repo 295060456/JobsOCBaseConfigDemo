@@ -1,5 +1,6 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-#gem "fastlane"
+gem 'fastlane'
 gem 'cocoapods'
 gem 'cocoapods-downloader'
+gem 'cocoapods-repo-update'

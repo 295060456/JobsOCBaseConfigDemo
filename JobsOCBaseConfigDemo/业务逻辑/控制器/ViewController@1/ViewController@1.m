@@ -22,7 +22,7 @@ BOOL ISLogin;
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
 }
 
 - (instancetype)init{

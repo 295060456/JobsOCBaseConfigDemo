@@ -289,7 +289,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         @jobs_strongify(self)
         x.selected = !x.selected;
         NSLog(@"1");
-        [self.jobsCustomTabBarVC customSelectIndex:1];
+        [self.jobsCustomTabBarVC customSelectIndex:0];
         if (self.objectBlock) self.objectBlock(x);
         return nil;
     }]];
@@ -329,7 +329,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         @jobs_strongify(self)
         x.selected = !x.selected;
         NSLog(@"2");
-        [self.jobsCustomTabBarVC customSelectIndex:2];
+        [self.jobsCustomTabBarVC customSelectIndex:1];
         if (self.objectBlock) self.objectBlock(x);
         return nil;
     }]];
@@ -369,7 +369,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         @jobs_strongify(self)
         x.selected = !x.selected;
         NSLog(@"3");
-        [self.jobsCustomTabBarVC customSelectIndex:3];
+        [self.jobsCustomTabBarVC customSelectIndex:2];
         if (self.objectBlock) self.objectBlock(x);
         return nil;
     }]];
@@ -409,7 +409,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         @jobs_strongify(self)
         x.selected = !x.selected;
         NSLog(@"4");
-        [self.jobsCustomTabBarVC customSelectIndex:4];
+        [self.jobsCustomTabBarVC customSelectIndex:3];
         if (self.objectBlock) self.objectBlock(x);
         return nil;
     }]];
@@ -449,7 +449,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         @jobs_strongify(self)
         x.selected = !x.selected;
         NSLog(@"5");
-        [self.jobsCustomTabBarVC customSelectIndex:5];
+        [self.jobsCustomTabBarVC customSelectIndex:4];
         if (self.objectBlock) self.objectBlock(x);
         return nil;
     }]];return _tabBarItemMutArr;
@@ -554,10 +554,10 @@ static NSMutableArray <__kindof UIViewController *>*_viewCtrlMutArr = nil;
     if(!_viewCtrlMutArr){
         _viewCtrlMutArr = NSMutableArray.array;
         [_viewCtrlMutArr addObject:ViewController_1.new];
-        [_viewCtrlMutArr addObject:ViewController_5.new];
         [_viewCtrlMutArr addObject:ViewController_2.new];
         [_viewCtrlMutArr addObject:ViewController_3.new];
         [_viewCtrlMutArr addObject:ViewController_4.new];
+        [_viewCtrlMutArr addObject:ViewController_5.new];
     }return _viewCtrlMutArr;
 }
 
