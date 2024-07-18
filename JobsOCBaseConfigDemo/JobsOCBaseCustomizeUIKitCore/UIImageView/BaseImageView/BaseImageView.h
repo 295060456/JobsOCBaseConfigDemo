@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewProtocol.h"
+#import "BaseProtocol.h"
+#import "UIViewModelProtocol.h"
+#import "MacroDef_Notification.h"
 #import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseImageView : UIImageView<BaseViewProtocol>
+@interface BaseImageView : UIImageView
+<
+BaseViewProtocol
+,UIViewModelProtocol
+,BaseProtocol
+>
 
 @end
 
