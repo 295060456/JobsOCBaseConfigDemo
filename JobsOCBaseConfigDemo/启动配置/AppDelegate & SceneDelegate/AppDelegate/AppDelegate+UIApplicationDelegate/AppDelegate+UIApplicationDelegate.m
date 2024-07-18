@@ -24,7 +24,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self localNotifications];
     [self launchFunc2];
     [AppDelegate launchFunc1];
-    [AppDelegate launchFunc1];
 
     self.window = JobsAppTools.sharedManager.makeAppDelegateWindow;
     self.window.rootViewController = RootViewController;

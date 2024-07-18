@@ -161,14 +161,18 @@
 - (UIView *)rightview{
     if (!_rightview) {
         _rightview = UIView.new;
-//        _rightview.frame = CGRectMake(MENU_WIDTH + LINEVIEW_WIDTH,
-//                                      NAVIGATION_HEIGHT,
-//                                      JobsMainScreen_WIDTH - MENU_WIDTH + LINEVIEW_WIDTH,
-//                                      JobsMainScreen_HEIGHT);
-        _rightview.frame = CGRectMake(0,
-                                      0,
-                                      JobsMainScreen_HEIGHT(),
-                                      JobsMainScreen_WIDTH());
+
+        if(JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape){
+            _rightview.frame = CGRectMake(0,
+                                          0,
+                                          JobsMainScreen_HEIGHT(),
+                                          JobsMainScreen_WIDTH());
+        }else{
+            _rightview.frame = CGRectMake(MENU_WIDTH + LINEVIEW_WIDTH,
+                                          NAVIGATION_HEIGHT,
+                                          JobsMainScreen_WIDTH() - MENU_WIDTH + LINEVIEW_WIDTH,
+                                          JobsMainScreen_HEIGHT());
+        }
         
         if (viewArray.count < menuArray.count) {
             NSLog(@"Please Add More Views");
@@ -249,6 +253,7 @@
                 @jobs_strongify(self)
                 [self choseMenu:x];
                 if (self.objectBlock) self.objectBlock(x);
+                x.jobsResetBtnTitleCor(UIColor.yellowColor);
                 return nil;
             }];
             menuButton.tag = i;
