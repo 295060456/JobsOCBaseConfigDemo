@@ -55,53 +55,6 @@ BaseViewControllerProtocol_synthesize
         NSLog(@"退出页面的逻辑");
         return nil;
     };
-    
-    @jobs_weakify(self)
-    /// 语言切换
-    JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
-        NSNotification *notification = (NSNotification *)arg;
-        if([notification.object isKindOfClass:NSNumber.class]){
-            NSNumber *b = notification.object;
-            NSLog(@"SSS = %d",b.boolValue);
-        }
-        @jobs_strongify(self)
-        NSLog(@"通知传递过来的 = %@",notification.object);
-        return nil;
-    },nil, self),JobsLanguageSwitchNotification,nil);
-    /// 设备方向
-    JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
-        NSNotification *notification = (NSNotification *)arg;
-        if([notification.object isKindOfClass:NSNumber.class]){
-            NSNumber *b = notification.object;
-            NSLog(@"SSS = %d",b.boolValue);
-        }
-        @jobs_strongify(self)
-        NSLog(@"通知传递过来的 = %@",notification.object);
-        
-        switch (UIDevice.currentDevice.orientation) {
-                // 处理竖屏方向的逻辑
-            case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
-                NSLog(@"系统通知：↓");
-                break;
-            case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
-                NSLog(@"系统通知：↑");
-                break;
-                // 处理横屏方向的逻辑
-            case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
-                NSLog(@"系统通知：→");
-                break;
-            case UIDeviceOrientationLandscapeRight:/// 设备水平，Home 按钮在左侧
-                NSLog(@"系统通知：←");
-                break;
-            default:
-                break;
-        }return nil;
-    },nil, self),UIDeviceOrientationDidChangeNotification,nil);
-    
     [self UIViewControllerLifeCycle:JobsLocalFunc];
 }
 
@@ -237,6 +190,56 @@ BaseViewControllerProtocol_synthesize
 -(JobsMenuView *)getMenuView{
     return self.menuView;
 }
+
+-(void)语言切换的监听{
+    @jobs_weakify(self)
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        if([notification.object isKindOfClass:NSNumber.class]){
+            NSNumber *b = notification.object;
+            NSLog(@"SSS = %d",b.boolValue);
+        }
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        return nil;
+    },nil, self),JobsLanguageSwitchNotification,nil);
+}
+
+-(void)设备方向的监听{
+    @jobs_weakify(self)
+    JobsAddNotification(self,
+                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                              id _Nullable arg){
+        NSNotification *notification = (NSNotification *)arg;
+        if([notification.object isKindOfClass:NSNumber.class]){
+            NSNumber *b = notification.object;
+            NSLog(@"SSS = %d",b.boolValue);
+        }
+        @jobs_strongify(self)
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        
+        switch (UIDevice.currentDevice.orientation) {
+                // 处理竖屏方向的逻辑
+            case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
+                NSLog(@"系统通知：↓");
+                break;
+            case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
+                NSLog(@"系统通知：↑");
+                break;
+                // 处理横屏方向的逻辑
+            case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
+                NSLog(@"系统通知：→");
+                break;
+            case UIDeviceOrientationLandscapeRight:/// 设备水平，Home 按钮在左侧
+                NSLog(@"系统通知：←");
+                break;
+            default:
+                break;
+        }return nil;
+    },nil, self),UIDeviceOrientationDidChangeNotification,nil);
+}
 #pragma mark —— 一些私有方法
 /// 用于检测UIViewController的生命周期
 -(void)UIViewControllerLifeCycle:(NSString *)lifeCycle{
@@ -346,7 +349,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         _menuView = JobsMenuView.new;
         _menuView.backgroundColor = JobsPurpleColor;
         [self.view addSubview:_menuView];
-        _menuView.frame = CGRectMake(0,
+        _menuView.frame = CGRectMake(59,
                                      0,
                                      [JobsMenuView viewSizeWithModel:nil].width,
                                      [JobsMenuView viewSizeWithModel:nil].height

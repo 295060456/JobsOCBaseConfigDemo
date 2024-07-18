@@ -1109,6 +1109,7 @@
 		C525D4012C48040F003DAFD0 /* JobsMenuSubView@2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JobsMenuSubView@2.h"; sourceTree = "<group>"; };
 		C525D4032C480678003DAFD0 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		CE775D7C2C47BF5D004D39D0 /* 自定义 UITabBarController.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "自定义 UITabBarController.md"; path = "自定义 UITabBarController.md/自定义 UITabBarController.md"; sourceTree = "<group>"; };
+		CEC01CD82C4933A40069C91A /* 时间格式化.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "时间格式化.md"; sourceTree = "<group>"; };
 		CECE787F2C4509E000764AF5 /* JobsOCBaseConfigDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobsOCBaseConfigDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECE788C2C4509E000764AF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CECE78912C4509E200764AF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -9055,6 +9056,7 @@
 		CECE82EC2C4513CD00764AF5 /* NSObject+Time */ = {
 			isa = PBXGroup;
 			children = (
+				CEC01CD82C4933A40069C91A /* 时间格式化.md */,
 				CECE82EA2C4513CD00764AF5 /* NSObject+Time.h */,
 				CECE82EB2C4513CD00764AF5 /* NSObject+Time.m */,
 			);
