@@ -60,86 +60,86 @@
     return datePickerView;
 }
 /// 时间选择器
--(void)makeDatePickerDoneBlock:(BRDoneClickBlock)clickDoneBlock
-                   resultBlock:(BRDateResultBlock)clickResultBlock{
-    @jobs_weakify(self)
-    self.datePickerView.doneBlock = ^{
-        @jobs_strongify(self)
-        [self.datePickerView removePickerFromView:nil];
-        if (clickDoneBlock) clickDoneBlock();
-    };
-    self.datePickerView.resultBlock = ^(NSDate *selectDate,
-                                        NSString *selectValue) {
-        @jobs_strongify(self)
-        NSLog(@"选择的值：%@", selectValue);
-        if (clickResultBlock) clickResultBlock(selectDate,selectValue);
-    };
-    [self.datePickerView show];
-}
+//-(void)makeDatePickerDoneBlock:(BRDoneClickBlock)clickDoneBlock
+//                   resultBlock:(BRDateResultBlock)clickResultBlock{
+//    @jobs_weakify(self)
+//    self.datePickerView.doneBlock = ^{
+//        @jobs_strongify(self)
+//        [self.datePickerView removePickerFromView:nil];
+//        if (clickDoneBlock) clickDoneBlock();
+//    };
+//    self.datePickerView.resultBlock = ^(NSDate *selectDate,
+//                                        NSString *selectValue) {
+//        @jobs_strongify(self)
+//        NSLog(@"选择的值：%@", selectValue);
+//        if (clickResultBlock) clickResultBlock(selectDate,selectValue);
+//    };
+//    [self.datePickerView show];
+//}
 /// 地址选择器
--(void)makeAddressPickerViewDoneBlock:(BRDoneClickBlock)clickDoneBlock
-                          resultBlock:(BRAddressResultBlock)clickResultBlock{
-    @jobs_weakify(self)
-    self.addressPickerView.doneBlock = ^{
-        @jobs_strongify(self)
-        [self.addressPickerView removePickerFromView:nil];
-        if (clickDoneBlock) clickDoneBlock();
-    };
-    
-    self.addressPickerView.resultBlock = ^(BRProvinceModel *province,
-                                           BRCityModel *city,
-                                           BRAreaModel *area) {
-        @jobs_strongify(self)
-        NSLog(@"选择的值：%@", [NSString stringWithFormat:@"%@-%@-%@", province.name, city.name, area.name]);
-        if (clickResultBlock) clickResultBlock(province,city,area);
-    };
-//    self.addressPickerView.pickerMode = BRAddressPickerModeProvince;
-    [self.addressPickerView show];
-}
+//-(void)makeAddressPickerViewDoneBlock:(BRDoneClickBlock)clickDoneBlock
+//                          resultBlock:(BRAddressResultBlock)clickResultBlock{
+//    @jobs_weakify(self)
+//    self.addressPickerView.doneBlock = ^{
+//        @jobs_strongify(self)
+//        [self.addressPickerView removePickerFromView:nil];
+//        if (clickDoneBlock) clickDoneBlock();
+//    };
+//
+//    self.addressPickerView.resultBlock = ^(BRProvinceModel *province,
+//                                           BRCityModel *city,
+//                                           BRAreaModel *area) {
+//        @jobs_strongify(self)
+//        NSLog(@"选择的值：%@", [NSString stringWithFormat:@"%@-%@-%@", province.name, city.name, area.name]);
+//        if (clickResultBlock) clickResultBlock(province,city,area);
+//    };
+////    self.addressPickerView.pickerMode = BRAddressPickerModeProvince;
+//    [self.addressPickerView show];
+//}
 /// 自定义字符串选择器
--(void)makeStringPickerViewWithModel:(BRStringPickerViewModel *_Nullable)stringPickerViewModel
-                         pickerStyle:(BRPickerStyle *_Nullable)pickerStyle
-                           doneBlock:(BRDoneClickBlock)clickDoneBlock
-                         resultBlock:(jobsByIDBlock)clickResultBlock{
-    if (!stringPickerViewModel) {
-        stringPickerViewModel = BRStringPickerViewModel.new;
-        stringPickerViewModel.pickerMode = BRStringPickerComponentSingle;
-        stringPickerViewModel.title = JobsInternationalization(@"学历");
-        stringPickerViewModel.dataSourceArr = @[JobsInternationalization(@"大专以下"),
-                                                JobsInternationalization(@"大专"),
-                                                JobsInternationalization(@"本科"),
-                                                JobsInternationalization(@"硕士"),
-                                                JobsInternationalization(@"博士"),
-                                                JobsInternationalization(@"博士后")];
-        stringPickerViewModel.selectIndex = 2;
-    }
-    
-    self.stringPickerView.pickerMode = stringPickerViewModel.pickerMode;
-    self.stringPickerView.title = stringPickerViewModel.title;
-    self.stringPickerView.dataSourceArr = stringPickerViewModel.dataSourceArr;
-    self.stringPickerView.selectIndex = stringPickerViewModel.selectIndex;
-    self.stringPickerView.pickerStyle = pickerStyle ? : self.customStyle;
-    
-    @jobs_weakify(self)
-    self.stringPickerView.doneBlock = ^{
-        @jobs_strongify(self)
-        [self.stringPickerView removePickerFromView:nil];
-        if (clickDoneBlock) clickDoneBlock();
-    };
-    /** 选择结果的回调【单列】 */
-    self.stringPickerView.resultModelBlock = ^(BRResultModel *resultModel) {
-//            NSLog(@"选择的值：%@", resultModel.selectValue);
-        @jobs_strongify(self)
-        if (self.objectBlock) self.objectBlock(resultModel);
-    };
-    /** 选择结果的回调【多列】 */
-    self.stringPickerView.resultModelArrayBlock = ^(NSArray<BRResultModel *> * _Nullable resultModelArr) {
-        @jobs_strongify(self)
-        if (self.objectBlock) self.objectBlock(resultModelArr);
-    };
-    
-    [self.stringPickerView show];
-}
+//-(void)makeStringPickerViewWithModel:(BRStringPickerViewModel *_Nullable)stringPickerViewModel
+//                         pickerStyle:(BRPickerStyle *_Nullable)pickerStyle
+//                           doneBlock:(BRDoneClickBlock)clickDoneBlock
+//                         resultBlock:(jobsByIDBlock)clickResultBlock{
+//    if (!stringPickerViewModel) {
+//        stringPickerViewModel = BRStringPickerViewModel.new;
+//        stringPickerViewModel.pickerMode = BRStringPickerComponentSingle;
+//        stringPickerViewModel.title = JobsInternationalization(@"学历");
+//        stringPickerViewModel.dataSourceArr = @[JobsInternationalization(@"大专以下"),
+//                                                JobsInternationalization(@"大专"),
+//                                                JobsInternationalization(@"本科"),
+//                                                JobsInternationalization(@"硕士"),
+//                                                JobsInternationalization(@"博士"),
+//                                                JobsInternationalization(@"博士后")];
+//        stringPickerViewModel.selectIndex = 2;
+//    }
+//
+//    self.stringPickerView.pickerMode = stringPickerViewModel.pickerMode;
+//    self.stringPickerView.title = stringPickerViewModel.title;
+//    self.stringPickerView.dataSourceArr = stringPickerViewModel.dataSourceArr;
+//    self.stringPickerView.selectIndex = stringPickerViewModel.selectIndex;
+//    self.stringPickerView.pickerStyle = pickerStyle ? : self.customStyle;
+//
+//    @jobs_weakify(self)
+//    self.stringPickerView.doneBlock = ^{
+//        @jobs_strongify(self)
+//        [self.stringPickerView removePickerFromView:nil];
+//        if (clickDoneBlock) clickDoneBlock();
+//    };
+//    /** 选择结果的回调【单列】 */
+//    self.stringPickerView.resultModelBlock = ^(BRResultModel *resultModel) {
+////            NSLog(@"选择的值：%@", resultModel.selectValue);
+//        @jobs_strongify(self)
+//        if (self.objectBlock) self.objectBlock(resultModel);
+//    };
+//    /** 选择结果的回调【多列】 */
+//    self.stringPickerView.resultModelArrayBlock = ^(NSArray<BRResultModel *> * _Nullable resultModelArr) {
+//        @jobs_strongify(self)
+//        if (self.objectBlock) self.objectBlock(resultModelArr);
+//    };
+//
+//    [self.stringPickerView show];
+//}
 #pragma mark —— 一些私有方法
 -(void)change:(BRStringPickerViewModel *)stringPickerViewModel{
     if (stringPickerViewModel.dataSourceArr.count > 2) {
