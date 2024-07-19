@@ -17,6 +17,9 @@
 #import "BRPickerView.h"
 #endif
 
+#import "BRStringPickerView.h"
+#import "BRAddressPickerView.h"
+
 @class BRStringPickerViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -32,16 +35,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSMutableArray *BRStringPickerViewDataMutArr;
 @property(nonatomic,strong)BRPickerStyle *customStyle;
 /// 时间选择器
--(void)makeDatePickerDoneBlock:(BRDoneClickBlock)clickDoneBlock
-                   resultBlock:(BRDateResultBlock)clickResultBlock;
-/// 地址选择器
--(void)makeAddressPickerViewDoneBlock:(BRDoneClickBlock)clickDoneBlock
-                          resultBlock:(BRAddressResultBlock)clickResultBlock;
+//-(void)makeDatePickerDoneBlock:(BRDoneClickBlock)clickDoneBlock
+//                   resultBlock:(BRDateResultBlock)clickResultBlock;
+///// 地址选择器
+//-(void)makeAddressPickerViewDoneBlock:(BRDoneClickBlock)clickDoneBlock
+//                          resultBlock:(BRAddressResultBlock)clickResultBlock;
 /// 自定义字符串选择器
--(void)makeStringPickerViewWithModel:(BRStringPickerViewModel *_Nullable)stringPickerViewModel
-                         pickerStyle:(BRPickerStyle *_Nullable)pickerStyle
-                           doneBlock:(BRDoneClickBlock)clickDoneBlock
-                         resultBlock:(jobsByIDBlock)clickResultBlock;
+//-(void)makeStringPickerViewWithModel:(BRStringPickerViewModel *_Nullable)stringPickerViewModel
+//                         pickerStyle:(BRPickerStyle *_Nullable)pickerStyle
+//                           doneBlock:(BRDoneClickBlock)clickDoneBlock
+//                         resultBlock:(jobsByIDBlock)clickResultBlock;
 /// 以应对一个视图上面多个 BRStringPickerView的情况
 /// 关键代码：[self.pickerView1 addPickerToView:承接的视图1];只能一对一承接
 -(BRPickerStyle *)makeCustomStyle;
