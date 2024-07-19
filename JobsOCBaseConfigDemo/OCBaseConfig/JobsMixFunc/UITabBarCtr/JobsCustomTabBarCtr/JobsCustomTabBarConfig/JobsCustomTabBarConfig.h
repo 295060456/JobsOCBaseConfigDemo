@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JobsCustomTabBarConfig : NSObject
 
 @property(nonatomic,assign)CGFloat tabBarHeight;
+@property(nonatomic,assign)CGFloat tabBarWidth;
+@property(nonatomic,assign)CGFloat tabBarX;
+@property(nonatomic,assign)CGFloat tabBarY;
+@property(nonatomic,assign)CGSize tabBarSize;
+@property(nonatomic,assign)CGPoint tabBarOrigin;
+@property(nonatomic,assign)CGRect tabBarFrame;
 @property(nonatomic,strong,nullable)UIColor *tabBarBackgroundColor;
 @property(nonatomic,strong,nullable)UIImage *tabBarBackgroundImage;
 @property(nonatomic,strong)NSMutableArray <__kindof UIButton *>*tabBarItems;

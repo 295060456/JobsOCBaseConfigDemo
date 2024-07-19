@@ -7,12 +7,6 @@
 
 #import "JobsCustomTabBarVC.h"
 
-#import "ViewController@1.h"
-#import "ViewController@2.h"
-#import "ViewController@3.h"
-#import "ViewController@4.h"
-#import "ViewController@5.h"
-
 @interface JobsCustomTabBarVC ()
 
 @property(nonatomic,strong)JobsCustomTabBar *customTabBar;
@@ -22,7 +16,7 @@
 @implementation JobsCustomTabBarVC
 
 -(void)dealloc{
-    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
     NSLog(@"%@",JobsLocalFunc);
 }
 
@@ -61,7 +55,7 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBar.hidden = YES;
-    self.view.backgroundColor = JobsGreenColor;
+//    self.view.backgroundColor = JobsGreenColor;
     self.customTabBar.alpha = 1;
 }
 
@@ -85,22 +79,56 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
     self.selectedIndex = index;
     /// TODO 系统的 UITabBarController 的切换方法没有暴露出来，但是实际情况是最好监控这个方法的运行机制，所以期望有一个高仿系统 self.selectedIndex 切换的逻辑
 }
+
+-(JobsCustomTabBar *)getCustomTabBar{
+    return self.customTabBar;
+}
 #pragma mark —— LazyLoad
 -(JobsCustomTabBar *)customTabBar{
     if(!_customTabBar){
         _customTabBar = JobsCustomTabBar.new;
+//        _customTabBar.backgroundColor = JobsClearColor;
         _customTabBar.backgroundColor = JobsRedColor;
         [self.view addSubview:_customTabBar];
-        [_customTabBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(self.view.width);
-            make.height.mas_equalTo(AppDelegate.jobsCustomTabBarConfig.tabBarHeight);// 这里使用 JobsCustomTabBarConfig.sharedManager.tabBarHeight 会崩
-            make.centerX.equalTo(self.view);
-            make.bottom.equalTo(self.view);
-        }];
-//        _customTabBar.frame = CGRectMake(0,
-//                                         self.view.frame.size.height - AppDelegate.jobsCustomTabBarConfig.tabBarHeight,
-//                                         self.view.frame.size.width,
-//                                         AppDelegate.jobsCustomTabBarConfig.tabBarHeight);
+        
+        if(!jobsZeroRectValue(JobsCustomTabBarConfig_appDelegate.tabBarFrame)){
+            _customTabBar.frame = JobsCustomTabBarConfig_appDelegate.tabBarFrame;
+        }else{
+            [_customTabBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                if(JobsCustomTabBarConfig_appDelegate.tabBarX){
+                    make.left.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarX);
+                }else{
+                    make.centerX.equalTo(self.view);
+                }
+                
+                if (JobsCustomTabBarConfig_appDelegate.tabBarY) {
+                    make.top.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarY);
+                }else{
+                    make.bottom.equalTo(self.view);
+                }
+                
+                if (!jobsZeroPointValue(JobsCustomTabBarConfig_appDelegate.tabBarOrigin)) {
+                    make.left.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarOrigin.x);
+                    make.top.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarOrigin.y);
+                }
+                
+                if (!jobsZeroSizeValue(JobsCustomTabBarConfig_appDelegate.tabBarSize)) {
+                    make.size.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarSize);
+                }
+                
+                if(JobsCustomTabBarConfig_appDelegate.tabBarHeight){
+                    // 这里使用 JobsCustomTabBarConfig.sharedManager.tabBarHeight 会崩
+                    make.height.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarHeight);
+                }
+                
+                if(JobsCustomTabBarConfig_appDelegate.tabBarWidth){
+                    // 这里使用 JobsCustomTabBarConfig.sharedManager.tabBarWidth 会崩
+                    make.width.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarWidth);
+                }
+            }];
+            [self.view layoutIfNeeded];
+        }
     }return _customTabBar;
 }
 

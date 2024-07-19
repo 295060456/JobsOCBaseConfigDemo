@@ -136,7 +136,13 @@ static LZTabBarConfig *_lZTabBarConfig = nil;
 static JobsCustomTabBarConfig *_jobsCustomTabBarConfig = nil;
 +(JobsCustomTabBarConfig *)jobsCustomTabBarConfig{
     _jobsCustomTabBarConfig = JobsCustomTabBarConfig.sharedManager;
-    _jobsCustomTabBarConfig.tabBarHeight = JobsWidth(80);
+    _jobsCustomTabBarConfig.tabBarHeight = JobsWidth(52);
+    _jobsCustomTabBarConfig.tabBarWidth = JobsWidth(375);
+//    _jobsCustomTabBarConfig.tabBarX = JobsWidth(0);
+//    _jobsCustomTabBarConfig.tabBarY = JobsWidth(0);
+//    _jobsCustomTabBarConfig.tabBarSize = CGSizeMake(JobsWidth(0), JobsWidth(0));
+//    _jobsCustomTabBarConfig.tabBarOrigin = CGPointMake(JobsWidth(0), JobsWidth(0));
+//    _jobsCustomTabBarConfig.tabBarFrame = CGRectMake(JobsWidth(0), JobsWidth(0), JobsWidth(0), JobsWidth(0));
     _jobsCustomTabBarConfig.tabBarBackgroundColor = JobsCyanColor;
     _jobsCustomTabBarConfig.tabBarBackgroundImage = nil;//JobsIMG(@"");
     _jobsCustomTabBarConfig.tabBarItems = self.tabBarItemMutArr;

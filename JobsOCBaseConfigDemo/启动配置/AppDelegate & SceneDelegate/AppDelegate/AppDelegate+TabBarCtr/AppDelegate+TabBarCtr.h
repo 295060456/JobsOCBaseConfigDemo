@@ -13,6 +13,10 @@
 #import "JobsTabBarVC.h"
 #import "JobsCustomTabBarVC.h"
 
+#ifndef JobsCustomTabBarConfig_appDelegate
+#define JobsCustomTabBarConfig_appDelegate AppDelegate.jobsCustomTabBarConfig
+#endif /* JobsCustomTabBarConfig_appDelegate */
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AppDelegate (TabBarCtr)

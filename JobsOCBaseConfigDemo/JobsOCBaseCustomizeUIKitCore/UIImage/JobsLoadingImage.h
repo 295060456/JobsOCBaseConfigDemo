@@ -13,7 +13,10 @@
 /// 直接拖图片在项目文件夹，没用Bundle进行管理，也没有用Assets.xcassets
 /// @param imgName 文件可以不强制要求带后缀名，系统会自动识别png文件
 static inline UIImage *__nullable JobsIMG(NSString *__nonnull imgName){
-    return [UIImage imageNamed:imgName];
+    UIImage *image = [UIImage imageNamed:imgName];
+    if(!image && !imgName.nullString){
+        NSLog(@"文件名为%@的图片获取失败，请检查",imgName);
+    }return image;
 }
 /// 根据参数输出系统需要的文件路径
 /// @param blueFolderName 如果资源存在于【蓝色文件夹】下则blueFolderName是蓝色文件夹的名字，如果资源位于【黄色文件夹】下则不填（亦可以传@""）

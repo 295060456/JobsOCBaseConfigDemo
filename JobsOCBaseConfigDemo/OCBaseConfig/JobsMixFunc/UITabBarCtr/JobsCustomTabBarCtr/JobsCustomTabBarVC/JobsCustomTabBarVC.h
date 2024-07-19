@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "JobsCustomTabBar.h"
 #import "JobsCustomTabBarConfig.h"
+#import "MacroDef_Size.h"
 
 #import "UIView+Measure.h"
 
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)destroyInstance;
 
 -(void)customSelectIndex:(NSUInteger)index;
+-(JobsCustomTabBar *)getCustomTabBar;
 
 @end
 
