@@ -14,11 +14,8 @@
 #define ANIMATION_TIME 0.2  //菜单栏滚动的时间
 
 #define FULLVIEW_FOR6 667  //iPhone6(s)高度
-//#define NAVIGATION_HEIGHT 64  //navigationbar高度
-#define NAVIGATION_HEIGHT 0  //navigationbar高度
+#define NAVIGATION_HEIGHT 64  //navigationbar高度
 #define TABBAR_HEIGHT 49  //tabbar高度
-#define FUll_VIEW_WIDTH     ([[UIScreen mainScreen] bounds].size.width)
-#define FUll_VIEW_HEIGHT    ([[UIScreen mainScreen] bounds].size.height)
 
 @interface LinkageMenuView()
 
@@ -41,17 +38,17 @@
     CGFloat half_blankHeight;
 }
 #pragma mark - Init Method
-- (instancetype)initWithFrame:(CGRect)frame 
-                     WithMenu:(NSArray *)menu
+- (instancetype)initWithFrame:(CGRect)frame
+                     withMenu:(NSArray *)menu
                      andViews:(NSArray *)views{
     if (self = [super init]) {
-        if (FUll_VIEW_HEIGHT < FULLVIEW_FOR6) {
+        if (JobsMainScreen_HEIGHT() < FULLVIEW_FOR6) {
             btnHeight = 43;
             DTScrollTag = 5;
-        }else if (FUll_VIEW_HEIGHT == FULLVIEW_FOR6){
+        }else if (JobsMainScreen_HEIGHT() == FULLVIEW_FOR6){
             btnHeight = 44;
             DTScrollTag = 6;
-        }else if (FUll_VIEW_HEIGHT > FULLVIEW_FOR6){
+        }else if (JobsMainScreen_HEIGHT() > FULLVIEW_FOR6){
             btnHeight = 42.7;
             DTScrollTag = 7;
         }
@@ -61,163 +58,53 @@
         _selectTextColor = [UIColor whiteColor];
         _selectViewColor = [UIColor blackColor];
         
-        if (views.count < menu.count) {
-            NSLog(@"Please Add More Views");
-        }
-        for (int i = 0; i < views.count; i++) {
-            UIView *view = [views objectAtIndex:i];
-            view.frame = self.rightview.bounds;
-        }
-        [self.rightview addSubview:(UIView *)[views objectAtIndex:0]];
-        
         menuArray = menu;
         viewArray = views;
         titlesCount = menuArray.count;
         blankHeight = btnHeight - BOTTOMVIEW_HEIGHT;
         half_blankHeight = (btnHeight - BOTTOMVIEW_HEIGHT) / 2.0;
         choseTag = 1; //默认选中菜单栏第一个
+        
         self.frame = frame;
-        [self addSubview:self.menuView];
-        [self addSubview:self.lineView];
-        [self addSubview:self.rightview];
+
+        self.rightview.alpha = 1;
+        self.menuView.alpha = 1;
+        self.lineView.alpha = 1;
     }return self;
 }
-#pragma mark - Setter Method
-- (void)setSelectViewColor:(UIColor *)selectViewColor{
-    _selectTextColor = selectViewColor;
-    _bottomView.backgroundColor = _selectViewColor;
-}
-
-- (void)setTextColor:(UIColor *)textColor{
-    _textColor = textColor;
-    for (int i = 2; i <= menuArray.count; i++) {
-        UIButton *button = [self viewWithTag:i];
-        [button setTitleColor:textColor forState:UIControlStateNormal];
-    }
-}
-
-- (void)setSelectTextColor:(UIColor *)selectTextColor{
-    _selectTextColor = selectTextColor;
-    UIButton *button = [self viewWithTag:1];
-    [button setTitleColor:_selectTextColor forState:UIControlStateNormal];
-}
-
-- (void)setTextSize:(CGFloat)textSize{
-    _textSize = textSize;
-    for (int i = 1; i <= menuArray.count; i++) {
-        UIButton *button = [self viewWithTag:i];
-        button.titleLabel.font = [UIFont systemFontOfSize:textSize];
-    }
-}
-#pragma mark - LazyLoad
-- (UIView *)lineView{
-    if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(MENU_WIDTH,
-                                                             0,
-                                                             LINEVIEW_WIDTH,
-                                                             self.frame.size.height)];
-        _lineView.backgroundColor = [UIColor lightGrayColor];
-    }
-    return _lineView;
-}
-
-- (UIView *)rightview{
-    if (!_rightview) {
-        _rightview = [[UIView alloc] initWithFrame:CGRectMake(MENU_WIDTH + LINEVIEW_WIDTH,
-                                                              NAVIGATION_HEIGHT,
-                                                              FUll_VIEW_WIDTH - MENU_WIDTH + LINEVIEW_WIDTH,
-                                                              FUll_VIEW_HEIGHT)];
-    }
-    return _rightview;
-}
-
-- (UIScrollView *)menuView{
-    if (!_menuView) {
-        _menuView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,
-                                                                   0,
-                                                                   MENU_WIDTH,
-                                                                   self.frame.size.height)];
-        _menuView.backgroundColor = [UIColor redColor];
-        _menuView.scrollsToTop = NO;
-        _menuView.showsVerticalScrollIndicator = NO;
-        _menuView.contentSize = CGSizeMake(0, titlesCount * btnHeight + blankHeight + 5.0);
-        _bottomView = [[UIView alloc] initWithFrame:CGRectMake((MENU_WIDTH - BOTTOMVIEW_WIDTH) / 2.0, 
-                                                               blankHeight + 1.0,
-                                                               BOTTOMVIEW_WIDTH ,
-                                                               BOTTOMVIEW_HEIGHT)];
-        _bottomView.layer.cornerRadius = BOTTOMVIEW_HEIGHT / 2.0;
-        _bottomView.backgroundColor = _selectViewColor;
-        [_menuView addSubview:_bottomView];
-        
-        for (int i = 1; i <= menuArray.count; i++) {
-            UIButton *menuButton = [[UIButton alloc] init];
-            menuButton.tag = i;
-            menuButton.titleLabel.font = [UIFont systemFontOfSize:_textSize];
-            [menuButton setTitle:[menuArray objectAtIndex:(i - 1)] forState:UIControlStateNormal];
-            [menuButton setBackgroundColor:[UIColor clearColor]];
-            menuButton.frame = CGRectMake(0, btnHeight * (i - 1) + half_blankHeight + 1.0, MENU_WIDTH, btnHeight);
-            if (i == 1) {
-                [menuButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            }else{
-                [menuButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            }
-            [menuButton addTarget:self 
-                           action:@selector(choseMenu:)
-                 forControlEvents:UIControlEventTouchUpInside];
-            [_menuView addSubview:menuButton];
-        }
-    }
-    return _menuView;
-}
 #pragma mark - MenuButton Method
-- (void)choseMenu:(UIButton *)button{
+-(void)choseMenu:(UIButton *)button{
     NSLog(@"%ld==%@",(long)button.tag,button.titleLabel.text);
     newChoseTag = button.tag;
-    
     if (newChoseTag != choseTag) {
         UIButton *lastButton = (UIButton *)[self viewWithTag:choseTag];
-        [lastButton setTitleColor:_textColor forState:UIControlStateNormal];
-        
-        CGFloat scroHeight = _menuView.contentSize.height - FUll_VIEW_HEIGHT + TABBAR_HEIGHT;
-        
-        if (menuArray.count > DTScrollTag * 2.0) {
-            if (button.tag <= DTScrollTag) {
-                [UIView animateWithDuration:ANIMATION_TIME animations:^{
-                    [self->_menuView setContentOffset:CGPointMake(0,- NAVIGATION_HEIGHT) animated:NO];
-                }];
-            }else if (button.tag > menuArray.count - DTScrollTag){
-                [UIView animateWithDuration:ANIMATION_TIME animations:^{
-                    [self->_menuView setContentOffset:CGPointMake(0, scroHeight) animated:NO];
-                }];
-            }else if(button.tag == DTScrollTag + 1){
-                [UIView animateWithDuration:ANIMATION_TIME animations:^{
-                    [self->_menuView setContentOffset:CGPointMake(0,- NAVIGATION_HEIGHT + self->blankHeight + 1.0) animated:NO];
-                }];
-            }else if (button.tag > DTScrollTag + 1 && button.tag < menuArray.count - DTScrollTag){
-                [UIView animateWithDuration:ANIMATION_TIME animations:^{
-                    [self->_menuView setContentOffset:CGPointMake(0,- NAVIGATION_HEIGHT + self->blankHeight + 1.0 + button.frame.size.height * (button.tag - self->DTScrollTag - 1)) animated:NO];
-                }];
-            }else if (button.tag == menuArray.count - DTScrollTag){
-                [UIView animateWithDuration:ANIMATION_TIME animations:^{
-                    [self->_menuView setContentOffset:CGPointMake(0, scroHeight - self->blankHeight - 5.0) animated:NO];
-                }];
-            }
- 
-        }
-
-        [UIView animateWithDuration:0.3 
+        button.normalTitleColor = _textColor;
+        CGFloat scroHeight = self.menuView.contentSize.height - JobsMainScreen_HEIGHT() + TABBAR_HEIGHT;
+        @jobs_weakify(self)
+        [UIView animateWithDuration:0.3
                               delay:0
              usingSpringWithDamping:0.8
               initialSpringVelocity:0
                             options:UIViewAnimationOptionAllowUserInteraction
                          animations:^{
-            self->_bottomView.frame = CGRectMake((MENU_WIDTH - BOTTOMVIEW_WIDTH) / 2.0,button.frame.origin.y +  self->half_blankHeight, BOTTOMVIEW_WIDTH, BOTTOMVIEW_HEIGHT);
+            @jobs_strongify(self)
+            self.bottomView.frame = CGRectMake((MENU_WIDTH - BOTTOMVIEW_WIDTH) / 2.0,
+                                               button.frame.origin.y + self->half_blankHeight,
+                                               BOTTOMVIEW_WIDTH,
+                                               BOTTOMVIEW_HEIGHT);
         } completion:nil];
-        [self performSelector:@selector(delayChangeTextColor) 
+        [self performSelector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
+                                                           id  _Nullable arg) {
+            @jobs_strongify(self)
+            UIButton *button = (UIButton *)[self viewWithTag:self->newChoseTag];
+            button.normalTitleColor = self.selectTextColor;
+            self->choseTag = self->newChoseTag;
+            return nil;
+        }, nil, self)
                    withObject:nil
                    afterDelay:0.07];
         
-        for (UIView *view in [_rightview subviews]) {
+        for (UIView *view in [self.rightview subviews]) {
             [view removeFromSuperview];
         }
 
@@ -228,14 +115,157 @@
             viewtag = button.tag - 1;
         }
         UIView *rigView = [viewArray objectAtIndex:viewtag];
-        [_rightview addSubview:rigView];
+        [self.rightview addSubview:rigView];
     }
 }
-#pragma mark - Delay Method
-- (void)delayChangeTextColor{
-        UIButton *button = (UIButton *)[self viewWithTag:newChoseTag];
-        [button setTitleColor:_selectTextColor forState:UIControlStateNormal];
-        choseTag = newChoseTag;
+#pragma mark —— Setter Method
+-(void)setSelectViewColor:(UIColor *)selectViewColor{
+    _selectTextColor = selectViewColor;
+    _bottomView.backgroundColor = _selectViewColor;
+}
+
+-(void)setTextColor:(UIColor *)textColor{
+    _textColor = textColor;
+    for (int i = 2; i <= menuArray.count; i++) {
+        UIButton *button = [self viewWithTag:i];
+        button.normalTitleColor = textColor;
+    }
+}
+
+-(void)setSelectTextColor:(UIColor *)selectTextColor{
+    _selectTextColor = selectTextColor;
+    UIButton *button = [self viewWithTag:1];
+    button.normalTitleColor = _selectTextColor;
+}
+
+-(void)setTextSize:(CGFloat)textSize{
+    _textSize = textSize;
+    for (int i = 1; i <= menuArray.count; i++) {
+        UIButton *button = [self viewWithTag:i];
+        button.titleLabel.font = [UIFont systemFontOfSize:textSize];
+    }
+}
+#pragma mark —— LazyLoad
+- (UIView *)lineView{
+    if (!_lineView) {
+        _lineView = UIView.new;
+        _lineView.frame = CGRectMake(MENU_WIDTH,
+                                     0,
+                                     LINEVIEW_WIDTH,
+                                     self.frame.size.height);
+        _lineView.backgroundColor = UIColor.lightGrayColor;
+        [self addSubview:_lineView];
+    }return _lineView;
+}
+
+- (UIView *)rightview{
+    if (!_rightview) {
+        _rightview = UIView.new;
+
+        if(JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape){
+            _rightview.frame = CGRectMake(0,
+                                          0,
+                                          JobsMainScreen_HEIGHT(),
+                                          JobsMainScreen_WIDTH());
+        }else{
+            _rightview.frame = CGRectMake(MENU_WIDTH + LINEVIEW_WIDTH,
+                                          NAVIGATION_HEIGHT,
+                                          JobsMainScreen_WIDTH() - MENU_WIDTH + LINEVIEW_WIDTH,
+                                          JobsMainScreen_HEIGHT());
+        }
+        
+        if (viewArray.count < menuArray.count) {
+            NSLog(@"Please Add More Views");
+        }
+        for (int i = 0; i < viewArray.count; i++) {
+            UIView *view = [viewArray objectAtIndex:i];
+            view.frame = _rightview.bounds;
+        }
+        [_rightview addSubview:(UIView *)[viewArray objectAtIndex:0]];
+        
+        [self addSubview:_rightview];
+    }return _rightview;
+}
+
+-(UIView *)bottomView{
+    if(!_bottomView){
+        _bottomView = UIView.new;
+        _bottomView.frame = CGRectMake((MENU_WIDTH - BOTTOMVIEW_WIDTH) / 2.0,
+                                       blankHeight + 1.0,
+                                       BOTTOMVIEW_WIDTH ,
+                                       BOTTOMVIEW_HEIGHT);
+
+        _bottomView.layer.cornerRadius = BOTTOMVIEW_HEIGHT / 2.0;
+        _bottomView.backgroundColor = _selectViewColor;
+    }return _bottomView;
+}
+
+- (UIScrollView *)menuView{
+    if (!_menuView) {
+        _menuView = UIScrollView.new;
+        _menuView.frame = CGRectMake(0,
+                                     0,
+                                     MENU_WIDTH,
+                                     self.frame.size.height);
+        _menuView.backgroundColor = UIColor.redColor;
+        _menuView.scrollsToTop = NO;
+        _menuView.showsVerticalScrollIndicator = NO;
+        _menuView.contentSize = CGSizeMake(0, titlesCount * btnHeight + blankHeight + 5.0);
+        [_menuView addSubview:self.bottomView];
+        for (int i = 1; i <= menuArray.count; i++) {
+            @jobs_weakify(self)
+            UIButton *menuButton = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                                     background:nil
+                                                                 titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                                  textAlignment:NSTextAlignmentCenter
+                                                               subTextAlignment:NSTextAlignmentCenter
+                                                                    normalImage:nil
+                                                                 highlightImage:nil
+                                                                attributedTitle:nil
+                                                        selectedAttributedTitle:nil
+                                                             attributedSubtitle:nil
+                                                                          title:[menuArray objectAtIndex:(i - 1)]
+                                                                       subTitle:nil
+                                                                      titleFont:[UIFont systemFontOfSize:_textSize]
+                                                                   subTitleFont:nil
+                                                                       titleCor:JobsCor(@"#333333")
+                                                                    subTitleCor:nil
+                                                             titleLineBreakMode:NSLineBreakByWordWrapping
+                                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                            baseBackgroundColor:UIColor.clearColor
+                                                                   imagePadding:JobsWidth(0)
+                                                                   titlePadding:JobsWidth(10)
+                                                                 imagePlacement:NSDirectionalRectEdgeNone
+                                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                              cornerRadiusValue:JobsWidth(8)
+                                                                roundingCorners:UIRectCornerAllCorners
+                                                           roundingCornersRadii:CGSizeZero
+                                                                 layerBorderCor:nil
+                                                                    borderWidth:JobsWidth(0)
+                                                                  primaryAction:nil
+                                                     longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
+                                                                                  id _Nullable arg) {
+                NSLog(@"按钮的长按事件触发");
+            }
+                                                                clickEventBlock:^id(BaseButton *x) {
+                @jobs_strongify(self)
+                [self choseMenu:x];
+                if (self.objectBlock) self.objectBlock(x);
+                x.jobsResetBtnTitleCor(UIColor.yellowColor);
+                return nil;
+            }];
+            menuButton.tag = i;
+            menuButton.frame = CGRectMake(0,
+                                          btnHeight * (i - 1) + half_blankHeight + 10.0,
+                                          MENU_WIDTH,
+                                          btnHeight);
+            menuButton.normalTitleColor = i == 1 ? UIColor.whiteColor : UIColor.blackColor;
+            [_menuView addSubview:menuButton];
+        }
+        [self addSubview:_menuView];
+    }return _menuView;
 }
 
 @end

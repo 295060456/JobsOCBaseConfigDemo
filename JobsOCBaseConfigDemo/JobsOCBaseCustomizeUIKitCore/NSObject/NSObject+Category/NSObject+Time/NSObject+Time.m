@@ -11,8 +11,23 @@
 NSString *const App当日首次进入 = @"App当日首次进入";
 
 @implementation NSObject (Time)
-
+#pragma mark —— 时间戳
+/// 返回的是一串字符串数字
++(NSString *)currentUnixTimestampString{
+    NSTimeInterval timestamp = NSDate.date.timeIntervalSince1970;/// 获取 Unix 时间戳 ：1970 到 当前日期和时间
+    return [NSString stringWithFormat:@"%f", timestamp];/// 将时间戳转换为字符串
+}
+/// 返回带时间格式的时间
++(NSString *)currentTimestampString{
+    return [self.dateFormatter stringFromDate:NSDate.date];
+}
 #pragma mark —— 时间格式转换
+/// 时间格式
+-(NSDateFormatter *)dateFormatter{
+    NSDateFormatter *dateFormatter = NSDateFormatter.new;
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    return dateFormatter;
+}
 ///接受一个秒数，对这个秒数进行解析出：时、分、秒，存入JobsTimeModel，外层再对这个JobsTimeModel进行取值，对数据进行拼装
 -(JobsTimeModel *)HHMMSS:(NSInteger)TimeSec{
     JobsTimeModel *timeModel = JobsTimeModel.new;
@@ -66,9 +81,6 @@ NSString *const App当日首次进入 = @"App当日首次进入";
     
     NSString *timeSp = nil;
     if (intervalStyle == intervalBySec) {
-        
-//        [dateFormatter stringFromDate:date];
-        
         timeSp = [NSString stringWithFormat:@"%ld", (long)date.timeIntervalSince1970];
     }else if(intervalStyle == intervalByMilliSec){
         timeSp = [NSString stringWithFormat:@"%ld", (long)date.timeIntervalSince1970 * 1000];

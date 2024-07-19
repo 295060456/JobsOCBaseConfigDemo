@@ -283,11 +283,15 @@ static inline CGFloat JobsRealWidth(void){
 #pragma mark —— 【比例尺】屏幕像素标准转化：输入原型图上的宽和高，对外输出App对应的移动设备的真实宽高
 /// 宽转化 JobsWidth(1) == 0.85333333333...9
 static inline CGFloat JobsWidth(CGFloat width){
-    return (JobsRealWidth() / 375) * width; //375 对应原型图的宽 在iph 12 pro max 此系数 = 1.1413333333333333
+    //375 对应原型图的宽 在iph 12 pro max 此系数 = 1.1413333333333333
+    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ?
+    (JobsMainScreen_HEIGHT() / 743) * width : (JobsMainScreen_WIDTH() / 375) * width;
 }
 /// 高转化 JobsHeight(1) == 0.93270524899057872
 static inline CGFloat JobsHeight(CGFloat height){
-    return (JobsRealHeight() / 743) * height; //743 对应原型图的高
+    //743 对应原型图的高
+    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ?
+    (JobsMainScreen_WIDTH() / 375) * height : (JobsMainScreen_HEIGHT() / 743) * height;
 }
 #import "MacroDef_Func.h"/// 提到最前面，就会因为编译顺序的问题报错
 #pragma mark —— 安全区域

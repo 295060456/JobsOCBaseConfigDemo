@@ -42,6 +42,8 @@ UIGestureRecognizerDelegate
 >
 
 -(JobsMenuView *)getMenuView;
+-(void)语言切换的监听;
+-(void)设备方向的监听;
 
 @end
 

@@ -1433,7 +1433,6 @@ NSObject <|-- BaseProtocol
 
 * [处理：**`Unknown class ViewController in Interface Builder file.`**](#Unknown_class_in_Interface_Builder_file)
 
-
 ### 2、iOS新建应用使用多场景
 
 
@@ -3460,6 +3459,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 对多场景**SceneDelegate**的深入研究和支持
 * JobsPostVC报错解决
 * DebugLogDescription 会崩溃：`id value = self.valueForKeyBlock(name) ? : @"nil";//默认值为nil字符串`
+* 侧滑菜单：JXCategoryView垂直表达
 * 其他
 ## 六、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * 浏览器打开并输入 
