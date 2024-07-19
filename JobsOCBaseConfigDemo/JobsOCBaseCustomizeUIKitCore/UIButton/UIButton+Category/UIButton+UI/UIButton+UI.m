@@ -932,7 +932,11 @@ JobsKey(_normalTitleColor)
 }
 
 -(void)setNormalTitleColor:(UIColor *)normalTitleColor{
-    [self setTitleColor:normalTitleColor forState:UIControlStateNormal];
+    if (@available(iOS 16.0, *)) {
+        self.jobsResetBtnTitleCor(normalTitleColor);
+    } else {
+        [self setTitleColor:normalTitleColor forState:UIControlStateNormal];
+    }
     Jobs_setAssociatedRETAIN_NONATOMIC(_normalTitleColor, normalTitleColor);
 }
 #pragma mark —— @property(nonatomic,strong)UIColor *normalSubTitleColor;
@@ -948,6 +952,7 @@ JobsKey(_normalSubTitleColor)
 
 -(void)setNormalSubTitleColor:(UIColor *)normalSubTitleColor{
     [self setTitleColor:normalSubTitleColor forState:UIControlStateNormal];
+    self.jobsResetBtnTitleCor(normalSubTitleColor);
     Jobs_setAssociatedRETAIN_NONATOMIC(_normalSubTitleColor, normalSubTitleColor);
 }
 #pragma mark —— @property(nonatomic,strong)NSAttributedString *normalAttributedTitle;

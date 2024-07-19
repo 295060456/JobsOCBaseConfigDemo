@@ -991,13 +991,219 @@ NSObject <|-- BaseProtocol
   * 关注实现类：[**`@interface BaseViewController : UIViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/BaseViewController)
   * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
 
-### 16、输入框 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 16、输入框（UITextField） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 有4个`TextField`可供继承使用（具体使用方式，查询相关头文件定义）
-  * `CJTextField`
-  * `HQTextField`
-  * `JobsMagicTextField`
-  * `ZYTextField`
+#### 16.1、UITextFieldDelegate
+
+* 在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑。
+
+  ```objective-c
+  -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
+  ```
+
+* 文本字段已经开始编辑时调用。
+
+  ```objective-c
+  -(void)textFieldDidBeginEditing:(UITextField *)textField;
+  ```
+
+* 在文本字段即将结束编辑时调用。返回YES表示允许结束编辑，返回NO则表示不允许结束编辑。
+
+  ```objective-c
+  -(BOOL)textFieldShouldEndEditing:(UITextField *)textField;
+  ```
+
+* 文本字段已经结束编辑时调用。
+
+  ```objective-c
+  -(void)textFieldDidEndEditing:(UITextField *)textField 
+  reason:(UITextFieldDidEndEditingReason)reason API_AVAILABLE(ios(10.0));
+  ```
+
+* 文本字段结束编辑时调用，并带有结束原因。
+
+  ```objective-c
+  -(void)textFieldDidChangeSelection:(UITextField *)textField API_AVAILABLE(ios(13.0), tvos(13.0));
+  ```
+
+* 在文本字段的字符将要改变时调用，因为用户输入、删除或粘贴内容。返回YES允许更改，返回NO禁止更改。
+
+  ```objective-c
+  -(BOOL)textField:(UITextField *)textField 
+  shouldChangeCharactersInRange:(NSRange)range 
+  replacementString:(NSString *)string;
+  ```
+
+* 在文本字段的选中文本发生改变时调用。
+
+  ```objective-c
+  -(void)textFieldDidChangeSelection:(UITextField *)textField API_AVAILABLE(ios(13.0), tvos(13.0));
+  ```
+
+* 在清除文本字段内容之前调用。返回YES允许清除，返回NO禁止清除。
+
+  ```objective-c
+  -(BOOL)textFieldShouldClear:(UITextField *)textField;
+  ```
+
+* 在文本字段要展示编辑菜单时调用。可自定义菜单内容。
+
+  ```objective-c
+  -(nullable UIMenu *)textField:(UITextField *)textField 
+  editMenuForCharactersInRange:(NSRange)range suggestedActions:(NSArray<UIMenuElement *> *)suggestedActions API_AVAILABLE(ios(16.0));
+  ```
+
+* 在文本字段即将展示编辑菜单时调用。
+
+  ```objective-c
+  -(void)textField:(UITextField *)textField
+  willPresentEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos);
+  ```
+
+* 在文本字段即将消失编辑菜单时调用。
+
+  ```objective-c
+  -(void)textField:(UITextField *)textField
+  willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos);
+  ```
+
+#### 16.2、有4个`TextField`可供继承使用（具体使用方式，查询相关头文件定义）
+
+* `CJTextField`：**UITextField**
+
+* `HQTextField`：**CJTextField**：**UITextField**
+
+* `JobsMagicTextField`：**ZYTextField**：**UITextField**
+
+  ```objective-c
+  -(JobsMagicTextField *)textField{
+      if (!_textField) {
+          _textField = JobsMagicTextField.new;
+          _textField.delegate = self;
+          @jobs_weakify(self)
+          [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
+              @jobs_strongify(self)
+              return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
+          } subscribeNextBlock:^(id _Nullable x) {
+              @jobs_strongify(self)
+              NSLog(@"MMM = %@",x);
+              [self block:self->_textField
+                    value:x];
+          }];
+          [self addSubview:_textField];
+          [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.left.top.bottom.equalTo(self);
+              make.right.equalTo(self.imageCodeView.mas_left);
+          }];
+      }return _textField;
+  }
+  ```
+
+  ```objective-c
+  -(void)configTextField{
+      _textField.leftView = [UIImageView.alloc initWithImage:self.doorInputViewBaseStyleModel.leftViewIMG];
+      _textField.leftViewMode = self.doorInputViewBaseStyleModel.leftViewMode;
+      _textField.returnKeyType = self.doorInputViewBaseStyleModel.returnKeyType;
+      _textField.keyboardAppearance = self.doorInputViewBaseStyleModel.keyboardAppearance;
+      _textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
+      _textField.keyboardType = self.doorInputViewBaseStyleModel.keyboardType;
+      _textField.textColor = self.doorInputViewBaseStyleModel.titleStrCor;
+      _textField.useCustomClearButton = self.doorInputViewBaseStyleModel.useCustomClearButton;
+      _textField.isShowDelBtn = self.doorInputViewBaseStyleModel.isShowDelBtn;
+      _textField.rightViewOffsetX = self.doorInputViewBaseStyleModel.rightViewOffsetX ? : JobsWidth(8);// 删除按钮的偏移量
+      _textField.placeholderColor = self.doorInputViewBaseStyleModel.placeholderColor;
+      _textField.leftViewOffsetX = self.doorInputViewBaseStyleModel.leftViewOffsetX ? : JobsWidth(17);
+      _textField.placeholderFont = self.doorInputViewBaseStyleModel.placeholderFont;
+      _textField.requestParams = self.textFieldInputModel;
+      _textField.animationColor = self.doorInputViewBaseStyleModel.animationColor ? : Cor4;
+      _textField.placeHolderAlignment = self.doorInputViewBaseStyleModel.placeHolderAlignment ? : NSTextAlignmentLeft;
+      _textField.placeHolderOffset = self.doorInputViewBaseStyleModel.placeHolderOffset ? : JobsWidth(20);
+      _textField.moveDistance = self.doorInputViewBaseStyleModel.moveDistance ? : JobsWidth(40);
+      _textField.fieldEditorOffset = self.doorInputViewBaseStyleModel.fieldEditorOffset ? : JobsWidth(50);
+  }
+  ```
+
+* `ZYTextField`： **UITextField**
+
+  ```objective-c
+  -(ZYTextField *)textField{
+     if (!_textField) {
+         _textField = ZYTextField.new;
+         _textField.delegate = self;
+         _textField.textColor = JobsBlackColor;
+         _textField.backgroundColor = RGBA_COLOR(245, 245, 245, 1);
+         _textField.returnKeyType = UIReturnKeyDefault;
+         _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
+         _textField.keyboardType = UIKeyboardTypeDefault;
+         _textField.rightView = self.titleLab;
+         _textField.rightViewMode = UITextFieldViewModeAlways;
+         _textField.placeholder = JobsInternationalization(@"打赏的Mata值");
+         _textField.placeholderColor = JobsCor(@"#333333");
+         _textField.placeholderFont = UIFontWeightRegularSize(12);
+  
+         _textField.drawPlaceholderInRect = CGRectMake(0, 0, JobsWidth(255 - 20 - 40 - 5), JobsWidth(32));
+         _textField.rightViewRectForBounds = CGRectMake(JobsWidth(255 - 20 - 40), JobsWidth(10), JobsWidth(40), JobsWidth(12));
+         _textField.placeholderRectForBounds = CGRectMake(JobsWidth(10), JobsWidth(10), JobsWidth(255 - 20 - 40 - 5), JobsWidth(12));
+         _textField.textRectForBounds = CGRectMake(JobsWidth(10), 0, JobsWidth(255 - 20 - 40 - 10), 100);
+         _textField.editingRectForBounds = CGRectMake(JobsWidth(10), 0, JobsWidth(255 - 20 - 40 - 10), 100);
+  
+         @jobs_weakify(self)
+         [_textField jobsTextFieldEventFilterBlock:^BOOL(id data) {
+  //            @jobs_strongify(self)
+             return YES;
+         } subscribeNextBlock:^(NSString * _Nullable x) {
+             @jobs_strongify(self)
+             self.textField.text = x;
+             [self textFieldBlock:self.textField
+                   textFieldValue:x];
+         }];
+         [_textField cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+         [self addSubview:_textField];
+         [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.size.mas_equalTo(CGSizeMake(JobsWidth(255), JobsWidth(32)));
+             make.centerX.equalTo(self);
+             make.top.equalTo(self.titleView.mas_bottom).offset(JobsWidth(10));
+         }];
+     }return _textField;
+  }
+  ```
+
+#### 16.3、字符过滤
+
+* 一般情况下，如果要监控输入字符，需要实现相应的`UITextFieldDelegate`方法，某些情况下会比较繁琐，包括但不仅限于下列：
+
+  * 监控emoji字符（多个字符组成一个emoji字符，且emoji字符集还在随时扩充）
+  * 监控输入空格和删除操作
+
+* 目前最好的字符过滤解决方案：利用[**ReactiveCocoa**](https://github.com/ReactiveCocoa/ReactiveObjC)框架
+
+  * 对[**ReactiveCocoa**](https://github.com/ReactiveCocoa/ReactiveObjC)框架的二次封装，方便对[**ReactiveCocoa**](https://github.com/ReactiveCocoa/ReactiveObjC)框架不熟悉的使用者
+
+    ```objective-c
+    -(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBoolByIDBlock)filterBlock
+                                 subscribeNextBlock:(jobsByIDBlock)subscribeNextBlock{
+        return [[self.rac_textSignal filter:^BOOL(NSString * _Nullable value) {
+            return filterBlock ? filterBlock(value) : YES;
+        }] subscribeNext:^(NSString * _Nullable x) {
+            if (subscribeNextBlock) subscribeNextBlock(x);
+        }];
+    }
+    ```
+
+  * 最外层的调用方式
+
+    ```objective-c
+     @jobs_weakify(self)
+     [_textField jobsTextFieldEventFilterBlock:^BOOL(id data) {
+    //            @jobs_strongify(self)
+         return YES;
+     } subscribeNextBlock:^(NSString * _Nullable x) {
+         @jobs_strongify(self)
+         self.textField.text = x;
+         [self textFieldBlock:self.textField
+               textFieldValue:x];
+     }];
+    ```
 
 ### 17、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * [**寻找当前控制器 **](#寻找当前控制器 )

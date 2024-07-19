@@ -23,6 +23,7 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
+#warning 富文本兼容一切
 /// ⚠️当font描绘的文字,或者文字大于UIButton的frame,UIButton的Title将不会显现⚠️
 @interface UIButton (UI)<BaseProtocol,BaseButtonProtocol>
 #pragma mark —— 一些功能性
@@ -135,6 +136,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByCorBlock)jobsResetBtnTitleCor;
 /// 重设Btn主标题的背景颜色
 -(jobsByCorBlock)jobsResetBtnBgCor;
+#warning 因为Api 中只有设置主标题的文字颜色，而没有设置副标题文字的颜色。所以设置副标题文字颜色等，需要用到富文本。
 /**
  1、一一对应UIButtonConfiguration.h文件里面的属性
  2、只有通过UIButtonConfiguration创建的UIButton，这个UIbutton的configuration属性才不为空
