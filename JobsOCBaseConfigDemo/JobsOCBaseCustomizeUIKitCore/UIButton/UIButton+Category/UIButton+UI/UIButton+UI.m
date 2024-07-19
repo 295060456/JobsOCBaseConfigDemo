@@ -213,7 +213,8 @@
         if(roundingCorners == UIRectCornerAllCorners && jobsZeroSizeValue(roundingCornersRadii)){
             [btn cornerCutToCircleWithCornerRadius:cornerRadiusValue];/// 圆切角（四个角全部按照统一的标准切）
         }else{
-            [btn appointCornerCutToCircleByRoundingCorners:roundingCorners cornerRadii:roundingCornersRadii];/// 圆切角（指定某个角按照统一的标准Size切）
+            [btn appointCornerCutToCircleByRoundingCorners:roundingCorners 
+                                               cornerRadii:roundingCornersRadii];/// 圆切角（指定某个角按照统一的标准Size切）
         }
         /// 内容的对齐方式
         btn.contentVerticalAlignment = contentVerticalAlignment;
