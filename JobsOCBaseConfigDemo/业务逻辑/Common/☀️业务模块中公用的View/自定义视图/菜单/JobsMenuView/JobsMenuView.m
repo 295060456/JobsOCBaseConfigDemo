@@ -72,7 +72,7 @@
 -(LinkageMenuView *)menuView{
     if(!_menuView){
         _menuView = [LinkageMenuView.alloc initWithFrame:self.bounds
-                                                WithMenu:self.titleMutArr
+                                                withMenu:self.titleMutArr
                                                 andViews:self.subViewMutArr];
         [self addSubview:_menuView];
 

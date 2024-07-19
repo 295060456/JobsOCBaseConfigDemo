@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, DeviceOrientation) {
 //#define RootViewController AppDelegate.tabBarNavCtrl
 //#define RootViewController AppDelegate.tabBarVC
 //
-#define RootViewController AppDelegate.jobsTabBarNavCtrl
+#define RootViewController AppDelegate.jobsCustomTabBarNavCtrl
 //#define RootViewController AppDelegate.jobsCustomTabBarVC
 //
 //#define RootViewController AppDelegate.lZTabBarNavCtrl

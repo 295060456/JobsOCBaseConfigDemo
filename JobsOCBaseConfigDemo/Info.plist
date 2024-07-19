@@ -62,6 +62,7 @@
         <!--❤️UIAppFonts 字体设置❤️-->
         <key>UIAppFonts</key>
         <array>
+            <string>Bayon.ttf</string>
             <string>NotoSans-Black.ttf</string>
             <string>NotoSans-BlackItalic.ttf</string>
             <string>NotoSans-Bold.ttf</string>

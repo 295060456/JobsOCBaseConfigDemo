@@ -146,4 +146,8 @@ static inline UIFont *notoSansRegular(CGFloat fontSize){
     return fontName(@"NotoSans-Regular", JobsWidth(fontSize));
 }
 
+static inline UIFont *bayonRegular(CGFloat fontSize){
+    return fontName(@"Bayon-Regular", JobsWidth(fontSize));
+}
+
 #endif /* MacroDef_Font_h */

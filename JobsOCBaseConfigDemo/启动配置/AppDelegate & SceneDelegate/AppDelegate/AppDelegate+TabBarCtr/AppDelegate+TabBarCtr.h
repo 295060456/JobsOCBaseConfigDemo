@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,class)LZTabBarController *lZTabBarCtrl;
 #pragma mark —— 配置一些导航控制器
 @property(nonatomic,strong,class)UINavigationController *tabBarNavCtrl;
-@property(nonatomic,strong,class)UINavigationController *jobsTabBarNavCtrl;
+@property(nonatomic,strong,class)UINavigationController *jobsCustomTabBarNavCtrl;
 @property(nonatomic,strong,class)UINavigationController *lZTabBarNavCtrl;
 #pragma mark —— 数据源
 @property(nonatomic,strong,class)TFPopupParam *tfPopupParam;
