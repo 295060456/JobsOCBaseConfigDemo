@@ -809,6 +809,10 @@
     return [self backgroundImageForState:UIControlStateNormal];
 }
 
+-(nullable NSString *)titleForConfigurationAttributed{
+    return self.configuration.attributedTitle.string;
+}
+
 -(nullable NSString *)titleForNormalState{
     return [self titleForState:UIControlStateNormal];
 }

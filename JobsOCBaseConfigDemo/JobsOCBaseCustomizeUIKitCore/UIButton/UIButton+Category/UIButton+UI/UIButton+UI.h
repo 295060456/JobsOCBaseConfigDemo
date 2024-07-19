@@ -189,6 +189,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— UIButton.UIControlStateNormal.get
 -(nullable UIImage *)imageForNormalState;
 -(nullable UIImage *)backgroundImageForNormalState;
+-(nullable NSString *)titleForConfigurationAttributed;
 -(nullable NSString *)titleForNormalState;
 -(nullable UIColor *)titleColorForNormalState;
 -(nullable NSAttributedString *)attributedTitleForNormalState;
