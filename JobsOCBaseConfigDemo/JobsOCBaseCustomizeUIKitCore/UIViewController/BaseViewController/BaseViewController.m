@@ -336,7 +336,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 -(UIImageView *)bgImageView{
     if (!_bgImageView) {
         _bgImageView = UIImageView.new;
-        _bgImageView.frame = self.view.bounds;
+        _bgImageView.resetOrigin(CGPointMake(self.view.x, self.view.y));
+        _bgImageView.resetSize(CGSizeMake(JobsRealWidth(),JobsRealHeight()));
         _bgImageView.image = self.viewModel.bgImage;
         _bgImageView.userInteractionEnabled = YES;
 //        self.view = _bgImageView; // 有时候不正确
