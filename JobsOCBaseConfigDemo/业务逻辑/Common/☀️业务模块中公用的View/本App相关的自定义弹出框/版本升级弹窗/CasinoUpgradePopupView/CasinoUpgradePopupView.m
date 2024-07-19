@@ -34,7 +34,7 @@
 }
 #pragma mark —— BaseViewProtocol
 -(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-    self.backgroundColor = UIColor.whiteColor;
+    self.backgroundColor = JobsWhiteColor;
     self.imageView.alpha = 1;
     [self.upgradeContentView richElementsInViewWithModel:model];
 }

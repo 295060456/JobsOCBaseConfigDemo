@@ -279,6 +279,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                titleLineBreakMode:NSLineBreakByWordWrapping
                                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                               baseBackgroundColor:JobsClearColor
+                                                                  backgroundImage:nil
                                                                      imagePadding:JobsWidth(2)
                                                                      titlePadding:JobsWidth(0)
                                                                    imagePlacement:NSDirectionalRectEdgeTop
@@ -318,6 +319,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                titleLineBreakMode:NSLineBreakByWordWrapping
                                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                               baseBackgroundColor:JobsClearColor
+                                                                  backgroundImage:nil
                                                                      imagePadding:JobsWidth(2)
                                                                      titlePadding:JobsWidth(0)
                                                                    imagePlacement:NSDirectionalRectEdgeTop
@@ -357,6 +359,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                titleLineBreakMode:NSLineBreakByWordWrapping
                                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                               baseBackgroundColor:JobsClearColor
+                                                                  backgroundImage:nil
                                                                      imagePadding:JobsWidth(2)
                                                                      titlePadding:JobsWidth(0)
                                                                    imagePlacement:NSDirectionalRectEdgeTop
@@ -396,6 +399,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                titleLineBreakMode:NSLineBreakByWordWrapping
                                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                               baseBackgroundColor:JobsClearColor
+                                                                  backgroundImage:nil
                                                                      imagePadding:JobsWidth(2)
                                                                      titlePadding:JobsWidth(0)
                                                                    imagePlacement:NSDirectionalRectEdgeTop
@@ -435,6 +439,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                titleLineBreakMode:NSLineBreakByWordWrapping
                                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                               baseBackgroundColor:JobsClearColor
+                                                                  backgroundImage:nil
                                                                      imagePadding:JobsWidth(2)
                                                                      titlePadding:JobsWidth(0)
                                                                    imagePlacement:NSDirectionalRectEdgeTop

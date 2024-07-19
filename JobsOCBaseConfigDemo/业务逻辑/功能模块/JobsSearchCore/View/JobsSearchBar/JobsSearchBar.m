@@ -104,7 +104,7 @@
         _cancelBtn.size = CGSizeMake(JobsWidth(50), JobsWidth(30));
         _cancelBtn.x = JobsMainScreen_WIDTH() - _cancelBtn.size.width - JobsWidth(5);
         _cancelBtn.centerY = self.textField.centerY;
-        [_cancelBtn layerBorderCor:UIColor.whiteColor andBorderWidth:1];
+        [_cancelBtn layerBorderCor:JobsWhiteColor andBorderWidth:1];
         [_cancelBtn cornerCutToCircleWithCornerRadius:8];
         @jobs_weakify(self)
         [_cancelBtn jobsBtnClickEventBlock:^id(id data) {

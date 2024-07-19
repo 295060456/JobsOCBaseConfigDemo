@@ -50,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - titleLineBreakMode: 主标题换行模式
 ///   - subtitleLineBreakMode:（新Api才有的）副标题换行模式
 ///   - baseBackgroundColor: 背景颜色
+///   - backgroundImage:背景图片
 ///   - imagePadding: 图像与标题之间的间距
 ///   - titlePadding: 标题和副标题标签之间的距离
 ///   - imagePlacement: ❤️图片和文字的位置关系❤️
@@ -84,6 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
                        titleLineBreakMode:(NSLineBreakMode)titleLineBreakMode/// 对应老Api中的：UIButton.lineBreakMode
                     subtitleLineBreakMode:(NSLineBreakMode)subtitleLineBreakMode
                       baseBackgroundColor:(UIColor *_Nullable)baseBackgroundColor
+                          backgroundImage:(UIImage *_Nullable)backgroundImage
                              imagePadding:(CGFloat)imagePadding
                              titlePadding:(CGFloat)titlePadding
                            imagePlacement:(NSDirectionalRectEdge)imagePlacement/// 定义图文关系
@@ -256,7 +258,7 @@ NS_ASSUME_NONNULL_END
                                                        subTitleCor:nil
                                                 titleLineBreakMode:NSLineBreakByWordWrapping
                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.whiteColor
+                                               baseBackgroundColor:JobsWhiteColor
                                                       imagePadding:JobsWidth(0)
                                                       titlePadding:JobsWidth(10)
                                                     imagePlacement:NSDirectionalRectEdgeNone

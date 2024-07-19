@@ -35,7 +35,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = JobsWhiteColor;
         self.backgroundImageView.image = JobsIMG(@"测试弹窗的背景图");
     }return self;
 }
@@ -72,11 +72,12 @@ static dispatch_once_t static_testPopupViewOnceToken;
                                                              subTitle:self.viewModel.subTextModel.text.nullString ? JobsInternationalization(@"相关信息"): self.viewModel.textModel.text
                                                             titleFont:UIFontWeightBoldSize(20)
                                                          subTitleFont:nil
-                                                             titleCor:UIColor.redColor
+                                                             titleCor:JobsRedColor
                                                           subTitleCor:nil
                                                    titleLineBreakMode:NSLineBreakByWordWrapping
                                                 subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                  baseBackgroundColor:UIColor.whiteColor
+                                                  baseBackgroundColor:JobsWhiteColor
+                                                      backgroundImage:nil
                                                          imagePadding:JobsWidth(0)
                                                             titlePadding:JobsWidth(8)
                                                        imagePlacement:NSDirectionalRectEdgeNone

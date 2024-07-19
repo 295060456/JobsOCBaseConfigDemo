@@ -57,8 +57,8 @@ UIViewModelProtocol_synthesize
          [UITableViewCell tableView:tableView
          makeSectionFirstAndLastCell:cell
          atIndexPath:indexPath
-         cellBgCor:UIColor.whiteColor
-         bottomLineCor:UIColor.whiteColor
+         cellBgCor:JobsWhiteColor
+         bottomLineCor:JobsWhiteColor
          cellOutLineCor:HEXCOLOR(0xEEE2C8)
          roundCorner:JobsWidth(8)
          borderWidth:JobsWidth(1)

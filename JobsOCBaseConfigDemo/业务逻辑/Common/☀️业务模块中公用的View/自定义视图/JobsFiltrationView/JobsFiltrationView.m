@@ -40,19 +40,19 @@ static dispatch_once_t static_filtrationViewOnceToken;
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = JobsWhiteColor;
     }return self;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = JobsWhiteColor;
     }return self;
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = JobsWhiteColor;
     }return self;
 }
 

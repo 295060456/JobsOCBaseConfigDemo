@@ -42,7 +42,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    self.view.backgroundColor = UIColor.orangeColor;
+    self.view.backgroundColor = JobsOrangeColor;
 //    [self setGKNav];
 //    [self setGKNavBackBtn];
 //    self.gk_navRightBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.aboutBtn];

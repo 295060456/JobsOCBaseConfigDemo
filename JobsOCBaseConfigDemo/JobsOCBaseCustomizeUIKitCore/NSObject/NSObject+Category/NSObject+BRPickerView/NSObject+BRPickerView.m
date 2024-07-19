@@ -11,7 +11,7 @@
 #pragma mark 一些公有方法
 -(BRPickerStyle *)makeCustomStyle{
     BRPickerStyle *pickerStyle = BRPickerStyle.new;
-    pickerStyle.pickerColor = UIColor.whiteColor;
+    pickerStyle.pickerColor = JobsWhiteColor;
     pickerStyle.pickerTextColor = HEXCOLOR(0x3D4A58);
     pickerStyle.separatorColor = HEXCOLOR(0xEAEBED);
     pickerStyle.cancelBtnTitle = JobsInternationalization(@"取消");

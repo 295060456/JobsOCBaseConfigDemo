@@ -72,7 +72,8 @@
                                                       subTitleCor:nil
                                                titleLineBreakMode:NSLineBreakByWordWrapping
                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                              baseBackgroundColor:UIColor.whiteColor
+                                              baseBackgroundColor:JobsWhiteColor
+                                                  backgroundImage:nil
                                                      imagePadding:JobsWidth(0)
                                                      titlePadding:JobsWidth(0)
                                                    imagePlacement:NSDirectionalRectEdgeNone

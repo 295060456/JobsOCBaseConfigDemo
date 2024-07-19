@@ -153,7 +153,7 @@
                                      0,
                                      LINEVIEW_WIDTH,
                                      self.frame.size.height);
-        _lineView.backgroundColor = UIColor.lightGrayColor;
+        _lineView.backgroundColor = JobsLightGrayColor;
         [self addSubview:_lineView];
     }return _lineView;
 }
@@ -207,7 +207,7 @@
                                      0,
                                      MENU_WIDTH,
                                      self.frame.size.height);
-        _menuView.backgroundColor = UIColor.redColor;
+        _menuView.backgroundColor = JobsRedColor;
         _menuView.scrollsToTop = NO;
         _menuView.showsVerticalScrollIndicator = NO;
         _menuView.contentSize = CGSizeMake(0, titlesCount * btnHeight + blankHeight + 5.0);
@@ -233,6 +233,7 @@
                                                              titleLineBreakMode:NSLineBreakByWordWrapping
                                                           subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                             baseBackgroundColor:UIColor.clearColor
+                                                                backgroundImage:nil
                                                                    imagePadding:JobsWidth(0)
                                                                    titlePadding:JobsWidth(10)
                                                                  imagePlacement:NSDirectionalRectEdgeNone
@@ -253,7 +254,7 @@
                 @jobs_strongify(self)
                 [self choseMenu:x];
                 if (self.objectBlock) self.objectBlock(x);
-                x.jobsResetBtnTitleCor(UIColor.yellowColor);
+                x.jobsResetBtnTitleCor(JobsYellowColor);
                 return nil;
             }];
             menuButton.tag = i;
@@ -261,7 +262,7 @@
                                           btnHeight * (i - 1) + half_blankHeight + 10.0,
                                           MENU_WIDTH,
                                           btnHeight);
-            menuButton.normalTitleColor = i == 1 ? UIColor.whiteColor : UIColor.blackColor;
+            menuButton.normalTitleColor = i == 1 ? JobsWhiteColor : JobsBlackColor;
             [_menuView addSubview:menuButton];
         }
         [self addSubview:_menuView];

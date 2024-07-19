@@ -19,7 +19,7 @@ JobsKey(_logOutPopupVM)
         LogOutPopupVM.textModel.font = UIFontWeightRegularSize(14);
         LogOutPopupVM.textModel.textAlignment = NSTextAlignmentCenter;
         LogOutPopupVM.subTextModel.text = JobsInternationalization(@"");
-        LogOutPopupVM.bgCor = UIColor.whiteColor;
+        LogOutPopupVM.bgCor = JobsWhiteColor;
         Jobs_setAssociatedRETAIN_NONATOMIC(_logOutPopupVM, LogOutPopupVM)
     }return LogOutPopupVM;
 }

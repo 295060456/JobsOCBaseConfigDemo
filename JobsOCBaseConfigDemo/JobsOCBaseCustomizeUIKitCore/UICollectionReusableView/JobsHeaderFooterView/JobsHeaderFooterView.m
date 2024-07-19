@@ -72,6 +72,7 @@
                                               titleLineBreakMode:NSLineBreakByWordWrapping
                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
                                              baseBackgroundColor:nil
+                                                 backgroundImage:nil
                                                     imagePadding:JobsWidth(0)
                                                     titlePadding:JobsWidth(0)
                                                   imagePlacement:NSDirectionalRectEdgeNone
@@ -126,38 +127,39 @@
         _subTitleBtn = BaseButton.new;
         @jobs_weakify(self)
         _subTitleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                    background:nil
-                                                titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                 textAlignment:NSTextAlignmentCenter
-                                              subTextAlignment:NSTextAlignmentCenter
-                                                   normalImage:nil
-                                                highlightImage:nil
-                                               attributedTitle:nil
-                                       selectedAttributedTitle:nil
-                                            attributedSubtitle:nil
-                                                         title:nil
-                                                      subTitle:nil
-                                                     titleFont:nil
-                                                  subTitleFont:nil
-                                                      titleCor:nil
-                                                   subTitleCor:nil
-                                            titleLineBreakMode:NSLineBreakByWordWrapping
-                                         subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                         background:nil
+                                                     titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                      textAlignment:NSTextAlignmentCenter
+                                                   subTextAlignment:NSTextAlignmentCenter
+                                                        normalImage:nil
+                                                     highlightImage:nil
+                                                    attributedTitle:nil
+                                            selectedAttributedTitle:nil
+                                                 attributedSubtitle:nil
+                                                              title:nil
+                                                           subTitle:nil
+                                                          titleFont:nil
+                                                       subTitleFont:nil
+                                                           titleCor:nil
+                                                        subTitleCor:nil
+                                                 titleLineBreakMode:NSLineBreakByWordWrapping
+                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                 baseBackgroundColor:nil
-                                                  imagePadding:JobsWidth(0)
-                                                  titlePadding:JobsWidth(0)
-                                                imagePlacement:NSDirectionalRectEdgeNone
-                                    contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                      contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                 contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                             cornerRadiusValue:JobsWidth(0)
-                                               roundingCorners:UIRectCornerAllCorners
-                                          roundingCornersRadii:CGSizeZero
-                                                layerBorderCor:nil
-                                                   borderWidth:JobsWidth(0)
-                                                 primaryAction:nil
-                                    longPressGestureEventBlock:nil
-                                               clickEventBlock:^id(BaseButton *x) {
+                                                    backgroundImage:nil
+                                                       imagePadding:JobsWidth(0)
+                                                       titlePadding:JobsWidth(0)
+                                                     imagePlacement:NSDirectionalRectEdgeNone
+                                         contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                           contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                      contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                  cornerRadiusValue:JobsWidth(0)
+                                                    roundingCorners:UIRectCornerAllCorners
+                                               roundingCornersRadii:CGSizeZero
+                                                     layerBorderCor:nil
+                                                        borderWidth:JobsWidth(0)
+                                                      primaryAction:nil
+                                         longPressGestureEventBlock:nil
+                                                    clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
             if (self.objectBlock) self.objectBlock(x);

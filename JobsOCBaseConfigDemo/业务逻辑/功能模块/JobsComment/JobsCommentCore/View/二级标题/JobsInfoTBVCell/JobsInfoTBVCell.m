@@ -87,7 +87,8 @@ BaseProtocol_synthesize
                                                        subTitleCor:nil
                                                 titleLineBreakMode:NSLineBreakByWordWrapping
                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.whiteColor
+                                               baseBackgroundColor:JobsWhiteColor
+                                                   backgroundImage:nil
                                                       imagePadding:JobsWidth(3)
                                                       titlePadding:JobsWidth(0)
                                                     imagePlacement:NSDirectionalRectEdgeLeading

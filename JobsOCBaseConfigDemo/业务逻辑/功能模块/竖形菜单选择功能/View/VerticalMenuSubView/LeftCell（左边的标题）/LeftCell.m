@@ -53,7 +53,7 @@
               animated:animated];
     if (selected){
         self.bgView.backgroundColor = ThreeClassCellBgCor;
-        self.flagView.backgroundColor = UIColor.whiteColor;
+        self.flagView.backgroundColor = JobsWhiteColor;
         self.titleLabel.textColor = HEXCOLOR(0xAE8330);
         self.titleLabel.font = notoSansBold(14);
     }else{
@@ -68,7 +68,7 @@
               animated:(BOOL)animated{
     if (highlighted){
         self.bgView.backgroundColor = ThreeClassCellBgCor;
-        self.flagView.backgroundColor = UIColor.whiteColor;
+        self.flagView.backgroundColor = JobsWhiteColor;
         self.titleLabel.textColor = HEXCOLOR(0xB0B0B0);
         self.titleLabel.font = notoSansBold(14);
     }else{

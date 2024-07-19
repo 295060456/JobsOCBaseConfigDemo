@@ -19,7 +19,7 @@
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = JobsWhiteColor;
     }return self;
 }
 

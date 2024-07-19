@@ -27,7 +27,7 @@
          {// 一般的文字
              _btnConfig.title = JobsInternationalization(@"入职Mata");
              _btnConfig.subtitle = JobsInternationalization(@"");
-             _btnConfig.baseForegroundColor = UIColor.blackColor;// 前景颜色（= 文字颜色）
+             _btnConfig.baseForegroundColor = JobsBlackColor;// 前景颜色（= 文字颜色）
          }
          
          {// 富文本
@@ -36,15 +36,15 @@
                  NSMutableDictionary<NSAttributedStringKey, id> *newTextAttributes = textAttributes.mutableCopy;
                  [newTextAttributes addEntriesFromDictionary:@{
                      NSFontAttributeName:UIFontWeightRegularSize(14), // 替换为你想要的字体和大小
-                     NSForegroundColorAttributeName: UIColor.blackColor // 替换为你想要的文本颜色
+                     NSForegroundColorAttributeName: JobsBlackColor // 替换为你想要的文本颜色
                  }];
                  return newTextAttributes.copy;
              };
-             _btnConfig.attributedTitle = [NSAttributedString.alloc initWithString:JobsInternationalization(@"入职Mata") attributes:@{NSForegroundColorAttributeName:UIColor.blackColor}];
+             _btnConfig.attributedTitle = [NSAttributedString.alloc initWithString:JobsInternationalization(@"入职Mata") attributes:@{NSForegroundColorAttributeName:JobsBlackColor}];
          }
          
          {// 其他
-             _btnConfig.baseBackgroundColor = UIColor.whiteColor;// 背景颜色
+             _btnConfig.baseBackgroundColor = JobsWhiteColor;// 背景颜色
              _btnConfig.contentInsets = NSDirectionalEdgeInsetsMake(0, 0, 0, 0); // 内边距
          }
      }return _btnConfig;

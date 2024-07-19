@@ -233,7 +233,7 @@
         _scrollView = UIScrollView.new;
         _scrollView.delegate = self;
         _scrollView.frame = self.bounds;
-//        _scrollView.backgroundColor = UIColor.whiteColor;
+//        _scrollView.backgroundColor = JobsWhiteColor;
         _scrollView.contentSize = CGSizeMake(width, btnSize.height);
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;

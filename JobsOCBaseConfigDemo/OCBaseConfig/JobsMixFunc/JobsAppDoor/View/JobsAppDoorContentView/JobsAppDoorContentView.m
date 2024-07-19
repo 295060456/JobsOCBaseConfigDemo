@@ -533,7 +533,7 @@
             用户名.returnKeyType = UIReturnKeyDone;
             用户名.keyboardAppearance = UIKeyboardAppearanceAlert;
             用户名.leftViewMode = UITextFieldViewModeAlways;
-            用户名.placeholderColor = UIColor.whiteColor;
+            用户名.placeholderColor = JobsWhiteColor;
             用户名.rightViewOffsetX = JobsWidth(10);
             用户名.placeHolderOffset = JobsWidth(35);
             用户名.offset = JobsWidth(0);
@@ -556,7 +556,7 @@
             密码.returnKeyType = UIReturnKeyDone;
             密码.keyboardAppearance = UIKeyboardAppearanceAlert;
             密码.leftViewMode = UITextFieldViewModeAlways;
-            密码.placeholderColor = UIColor.whiteColor;
+            密码.placeholderColor = JobsWhiteColor;
             密码.rightViewOffsetX = -JobsWidth(8);
             密码.placeHolderOffset = JobsWidth(35);
             密码.offset = JobsWidth(0);
@@ -582,7 +582,7 @@
             用户名.keyboardAppearance = UIKeyboardAppearanceAlert;
             用户名.leftViewMode = UITextFieldViewModeAlways;
             用户名.inputStr = self.readUserInfo.userName;
-            用户名.placeholderColor = UIColor.whiteColor;
+            用户名.placeholderColor = JobsWhiteColor;
             用户名.rightViewOffsetX = -JobsWidth(25);
             用户名.placeHolderOffset = JobsWidth(35);
             用户名.offset = JobsWidth(0);
@@ -602,7 +602,7 @@
             密码.selectedSecurityBtnIMG = JobsIMG(@"codeEncode");//闭眼
             密码.unSelectedSecurityBtnIMG = JobsIMG(@"codeDecode");//开眼
             密码.leftViewMode = UITextFieldViewModeAlways;
-            密码.placeholderColor = UIColor.whiteColor;
+            密码.placeholderColor = JobsWhiteColor;
             密码.rightViewOffsetX = -JobsWidth(8);
             密码.placeHolderOffset = JobsWidth(35);
             密码.offset = JobsWidth(0);
@@ -622,7 +622,7 @@
             确认密码.selectedSecurityBtnIMG = JobsIMG(@"codeEncode");//闭眼
             确认密码.unSelectedSecurityBtnIMG = JobsIMG(@"codeDecode");//开眼
             确认密码.leftViewMode = UITextFieldViewModeAlways;
-            确认密码.placeholderColor = UIColor.whiteColor;
+            确认密码.placeholderColor = JobsWhiteColor;
             确认密码.rightViewOffsetX = -JobsWidth(8);
             确认密码.placeHolderOffset = JobsWidth(35);
             确认密码.offset = JobsWidth(0);
@@ -640,7 +640,7 @@
             手机号码.returnKeyType = UIReturnKeyDone;
             手机号码.keyboardAppearance = UIKeyboardAppearanceAlert;
             手机号码.leftViewMode = UITextFieldViewModeAlways;
-            手机号码.placeholderColor = UIColor.whiteColor;
+            手机号码.placeholderColor = JobsWhiteColor;
             手机号码.keyboardType = UIKeyboardTypePhonePad;
             手机号码.placeHolderOffset = JobsWidth(35);
             手机号码.offset = JobsWidth(0);
@@ -658,7 +658,7 @@
             手机验证码.returnKeyType = UIReturnKeyDone;
             手机验证码.keyboardAppearance = UIKeyboardAppearanceAlert;
             手机验证码.leftViewMode = UITextFieldViewModeAlways;
-            手机验证码.placeholderColor = UIColor.whiteColor;
+            手机验证码.placeholderColor = JobsWhiteColor;
 //            手机验证码.offset = JobsWidth(0);
 //            手机验证码.placeHolderOffset = JobsWidth(35);
             

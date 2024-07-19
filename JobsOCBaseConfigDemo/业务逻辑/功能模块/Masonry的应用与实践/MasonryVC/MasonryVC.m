@@ -100,7 +100,7 @@
     for (NSString *tagName in tagNames) {
         UILabel *tagLabel = UILabel.new;
         tagLabel.text = tagName;
-        tagLabel.backgroundColor = UIColor.lightGrayColor;
+        tagLabel.backgroundColor = JobsLightGrayColor;
         tagLabel.textAlignment = NSTextAlignmentCenter;
         tagLabel.layer.cornerRadius = 5.0;
         tagLabel.clipsToBounds = YES;

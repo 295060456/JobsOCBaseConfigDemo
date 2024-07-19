@@ -93,8 +93,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = [JobsBaseTableViewCell cellStyleValue1WithTableView:tableView];
     cell.detailTextLabel.numberOfLines = 0;
-    cell.detailTextLabel.textColor = UIColor.brownColor;
-    cell.textLabel.textColor = UIColor.blackColor;
+    cell.detailTextLabel.textColor = JobsBrownColor;
+    cell.textLabel.textColor = JobsBlackColor;
     [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
     return cell;
 }
@@ -110,7 +110,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = BaseTableView.new;
         [self dataLinkByTableView:_tableView];
-        _tableView.backgroundColor = UIColor.whiteColor;
+        _tableView.backgroundColor = JobsWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.tableFooterView = UIView.new;
@@ -142,7 +142,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                             viewModel.textModel.text = propertyName;
                             viewModel.subTextModel.text = requestParams.valueForKeyBlock(propertyName);
                             viewModel.textModel.textCor = UIColor.blueColor;
-                            viewModel.textModel.textCor = UIColor.redColor;
+                            viewModel.textModel.textCor = JobsRedColor;
                             [self.dataMutArr addObject:viewModel];
                         }
                     }

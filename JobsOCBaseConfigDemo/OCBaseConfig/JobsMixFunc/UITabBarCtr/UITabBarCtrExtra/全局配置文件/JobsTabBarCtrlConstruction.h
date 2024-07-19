@@ -78,7 +78,7 @@ static inline void setAnimation(UITabBarItem *item,
 static inline UIViewController *childViewController_SystemStyle(UIViewController *viewController,
                                                                 UITabBarSystemItem systemItem,
                                                                 NSUInteger tag){
-    viewController.view.backgroundColor = UIColor.whiteColor;
+    viewController.view.backgroundColor = JobsWhiteColor;
     viewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:systemItem
                                                                            tag:tag];
     setAnimation(viewController.tabBarItem, tag);//可选实现

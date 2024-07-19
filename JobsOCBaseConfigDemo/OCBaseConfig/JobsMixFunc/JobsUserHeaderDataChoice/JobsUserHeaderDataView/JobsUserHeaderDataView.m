@@ -36,7 +36,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = JobsWhiteColor;
 //        [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
 //                                            cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
     }return self;
@@ -51,7 +51,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = JobsWhiteColor;
 //        [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
 //                                            cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
     }return self;

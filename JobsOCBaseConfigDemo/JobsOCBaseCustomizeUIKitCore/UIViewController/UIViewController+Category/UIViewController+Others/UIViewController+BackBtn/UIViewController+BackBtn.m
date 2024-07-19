@@ -17,7 +17,7 @@
     UIButton *backBtnCategory = UIButton.new;
     backBtnCategory.titleFont = viewModel.backBtnTitleModel.font;
     backBtnCategory.normalTitle = viewModel.backBtnTitleModel.text;
-    backBtnCategory.normalTitleColor = viewModel.backBtnTitleModel.textCor ? : UIColor.blackColor;
+    backBtnCategory.normalTitleColor = viewModel.backBtnTitleModel.textCor ? : JobsBlackColor;
     [backBtnCategory layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
                                         imagePadding:JobsWidth(8)];
     [backBtnCategory makeBtnLabelByShowingType:UILabelShowingType_03];

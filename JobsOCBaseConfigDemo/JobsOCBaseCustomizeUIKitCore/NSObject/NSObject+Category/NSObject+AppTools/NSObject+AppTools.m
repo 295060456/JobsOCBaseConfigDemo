@@ -828,7 +828,7 @@ JobsKey(_connectionTipsTV)
         ConnectionTipsTV = UITextView.new;
         ConnectionTipsTV.userInteractionEnabled = YES;
         ConnectionTipsTV.linkTextAttributes = @{NSForegroundColorAttributeName: self.richTextConfigMutArr[1].textCor,/// 链接文字颜色
-                                                 NSUnderlineColorAttributeName: UIColor.lightGrayColor,
+                                                 NSUnderlineColorAttributeName: JobsLightGrayColor,
                                                  NSUnderlineStyleAttributeName: @(NSUnderlinePatternSolid)};
         
         ConnectionTipsTV.attributedText = self.attributedStringData;//

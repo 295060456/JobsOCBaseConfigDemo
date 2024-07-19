@@ -256,7 +256,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     if (!_headerViewModel) {
         _headerViewModel = JobsHeaderFooterViewModel.new;
 //        _headerViewModel.textModel.text = JobsInternationalization(@"独家情报");
-//        _headerViewModel.bgCor = UIColor.greenColor;
+//        _headerViewModel.bgCor = JobsGreenColor;
 /// 结构体虽然分配了空间，但是里面的成员的值是随机的，特别是如果里面有指针的话，如果不初始化而直接访问，则会造成读取非法的内存地址的错误。
         _headerViewModel.jobsSize = CGSizeZero;
         _headerViewModel.cellSize = CGSizeZero;

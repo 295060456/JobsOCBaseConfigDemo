@@ -154,7 +154,7 @@
         _sendBtn = UIButton.new;
         [_sendBtn normalTitle:Title6];
         _sendBtn.backgroundColor = [JobsSystemPinkColor colorWithAlphaComponent:0.7];
-        [_sendBtn normalTitleColor:UIColor.whiteColor];
+        [_sendBtn normalTitleColor:JobsWhiteColor];
         [_sendBtn titleFont:UIFontWeightRegularSize(16)];
         [_sendBtn buttonAutoWidthByFont];
         [_sendBtn jobsBtnClickEventBlock:^id(UIButton *x) {

@@ -127,8 +127,8 @@
     
     if (!CorDataMutArr) {
         CorDataMutArr = NSMutableArray.array;
-        [CorDataMutArr addObject:(id)UIColor.redColor.CGColor];
-        [CorDataMutArr addObject:(id)UIColor.greenColor.CGColor];
+        [CorDataMutArr addObject:(id)JobsRedColor.CGColor];
+        [CorDataMutArr addObject:(id)JobsGreenColor.CGColor];
     }else{
         for (int t = 0; t < CorDataMutArr.count; t++) {
             [CorDataMutArr replaceObjectAtIndex:t

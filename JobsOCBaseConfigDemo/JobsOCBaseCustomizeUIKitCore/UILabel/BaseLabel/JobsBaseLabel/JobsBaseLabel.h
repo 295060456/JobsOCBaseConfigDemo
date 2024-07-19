@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_END
          _titleLab = JobsBaseLabel.new;
          [_titleLab richElementsInViewWithModel:nil];
          _titleLab.getLabel.offsetY = JobsWidth(-2);
-         _titleLab.getLabel.textColor = UIColor.whiteColor;
+         _titleLab.getLabel.textColor = JobsWhiteColor;
          _titleLab.getLabel.font = notoSansRegular(12);
          _titleLab.getLabel.textAlignment = NSTextAlignmentCenter;
          [self.contentView addSubview:_titleLab];

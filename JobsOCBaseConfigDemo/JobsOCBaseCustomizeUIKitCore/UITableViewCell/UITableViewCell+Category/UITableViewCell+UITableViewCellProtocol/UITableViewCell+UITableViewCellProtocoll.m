@@ -63,9 +63,9 @@ UITableViewCellProtocol_dynamic
     tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     tableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
     /// 适配iOS 13夜间模式/深色外观(Dark Mode)
-    tableViewCell.backgroundColor = [UIColor xy_createWithLightColor:UIColor.whiteColor darkColor:UIColor.whiteColor];
-    tableViewCell.detailTextLabel.textColor = UIColor.brownColor;
-    tableViewCell.textLabel.textColor = UIColor.blackColor;
+    tableViewCell.backgroundColor = [UIColor xy_createWithLightColor:JobsWhiteColor darkColor:JobsWhiteColor];
+    tableViewCell.detailTextLabel.textColor = JobsBrownColor;
+    tableViewCell.textLabel.textColor = JobsBlackColor;
 }
 /// 获取这个UITableViewCell所承载的UITableView
 -(UITableView *)jobsGetCurrentTableView{
@@ -127,9 +127,9 @@ UITableViewCellProtocol_dynamic
                                          borderWidth:(CGFloat)borderWidth
                                                   dx:(CGFloat)dx
                                                   dy:(CGFloat)dy{
-    if (!cellBgCor) cellBgCor = UIColor.whiteColor;
-    if (!bottomLineCor) bottomLineCor = UIColor.whiteColor;
-    if (!cellOutLineCor) cellOutLineCor = UIColor.whiteColor;
+    if (!cellBgCor) cellBgCor = JobsWhiteColor;
+    if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
+    if (!cellOutLineCor) cellOutLineCor = JobsWhiteColor;
     CGRect bounds = [self dx:dx dy:dy];
     NSInteger numberOfRowsInSection = self.jobsGetCurrentNumberOfRowsInSection;
     NSIndexPath *indexPath = self.jobsGetCurrentIndexPath;
@@ -201,7 +201,7 @@ UITableViewCellProtocol_dynamic
                                 borderWidth:(CGFloat)borderWidth
                               bottomLineCor:(UIColor *_Nullable)bottomLineCor{
     if (!indexPath) return;
-    if (!bottomLineCor) bottomLineCor = UIColor.whiteColor;
+    if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
     if (indexPath.row != numberOfRowsInSection - 1) {
         UIBezierPath *linePath = UIBezierPath.bezierPath;
         // 起点
@@ -230,7 +230,7 @@ UITableViewCellProtocol_dynamic
                                bottomLineCor:(UIColor *_Nullable)bottomLineCor
                                  borderWidth:(CGFloat)borderWidth{
     if (!indexPath) return;
-    if (!bottomLineCor) bottomLineCor = UIColor.whiteColor;
+    if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
     if(indexPath.row){
         UIBezierPath *linePath = UIBezierPath.bezierPath;
         /// 起点

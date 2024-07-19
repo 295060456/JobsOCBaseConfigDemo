@@ -54,7 +54,7 @@
 }
 
 -(void)makeUI{
-    self.backgroundColor = UIColor.grayColor;
+    self.backgroundColor = JobsGrayColor;
     self.alpha = 0.7;
     [jobsGetMainWindow() addSubview:self];
     self.frame = jobsGetMainWindow().frame;

@@ -12,8 +12,8 @@
 - (instancetype)init {
     if (self = [super init]) {
         _isNavigation = YES;
-        _normalColor = UIColor.grayColor;
-        _selectedColor = UIColor.redColor;
+        _normalColor = JobsGrayColor;
+        _selectedColor = JobsRedColor;
     }return self;
 }
 

@@ -354,7 +354,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
 -(JobsTextView *)textView{
     if (!_textView) {
         _textView = JobsTextView.new;
-        _textView.backgroundColor = UIColor.whiteColor;
+        _textView.backgroundColor = JobsWhiteColor;
         [self.view addSubview:_textView];
         [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(10));

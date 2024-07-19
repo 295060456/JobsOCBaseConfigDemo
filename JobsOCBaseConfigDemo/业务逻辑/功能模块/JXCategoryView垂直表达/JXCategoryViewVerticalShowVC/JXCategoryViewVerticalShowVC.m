@@ -152,9 +152,9 @@ ratio:(CGFloat)ratio {
 -(JXCategoryTitleView *)categoryView{
     if (!_categoryView) {
         _categoryView = JXCategoryTitleView.new;
-        _categoryView.backgroundColor = UIColor.cyanColor;
-        _categoryView.titleSelectedColor = UIColor.redColor;
-        _categoryView.titleColor = UIColor.redColor;
+        _categoryView.backgroundColor = JobsCyanColor;
+        _categoryView.titleSelectedColor = JobsRedColor;
+        _categoryView.titleColor = JobsRedColor;
 //        _categoryView.titleFont = notoSansRegular(16);
 //        _categoryView.titleSelectedFont = notoSansBold(16);
         _categoryView.delegate = self;

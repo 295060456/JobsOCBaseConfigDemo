@@ -119,21 +119,21 @@
         config_01.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
         config_01.textCor = JobsBlueColor;
         config_01.targetString = @"编译器自动管理内存地址,\n";
-        config_01.textBgCor = UIColor.brownColor;
+        config_01.textBgCor = JobsBrownColor;
         config_01.paragraphStyle = self.paragtaphStyle;
         
         RichTextConfig *config_02 = RichTextConfig.new;
         config_02.font = [UIFont systemFontOfSize:JobsWidth(13) weight:UIFontWeightMedium];
         config_02.textCor = JobsWhiteColor;
         config_02.targetString = @"让程序员更加专注于\n";
-        config_02.textBgCor = UIColor.brownColor;
+        config_02.textBgCor = JobsBrownColor;
         config_02.paragraphStyle = self.paragtaphStyle;
         
         RichTextConfig *config_03 = RichTextConfig.new;
         config_03.font = [UIFont systemFontOfSize:JobsWidth(14) weight:UIFontWeightSemibold];
         config_03.textCor = JobsGreenColor;
         config_03.targetString = @"APP的业务。";
-        config_03.textBgCor = UIColor.brownColor;
+        config_03.textBgCor = JobsBrownColor;
         config_03.paragraphStyle = self.paragtaphStyle;
         
         [_richLabelDataStringsMutArr addObject:config_01];
@@ -186,7 +186,7 @@
 -(BaseLabel *)lab1{
     if (!_lab1) {
         _lab1 = BaseLabel.new;
-        _lab1.backgroundColor = UIColor.redColor;
+        _lab1.backgroundColor = JobsRedColor;
         _lab1.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。";
         [self.scrollView addSubview:_lab1];
         [_lab1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -200,7 +200,7 @@
 -(BaseLabel *)lab2{
     if (!_lab2) {
         _lab2 = BaseLabel.new;
-        _lab2.backgroundColor = UIColor.redColor;
+        _lab2.backgroundColor = JobsRedColor;
         _lab2.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。";
         [self.scrollView addSubview:_lab2];
         [_lab2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -214,7 +214,7 @@
 -(BaseLabel *)lab3{
     if (!_lab3) {
         _lab3 = BaseLabel.new;
-        _lab3.backgroundColor = UIColor.redColor;
+        _lab3.backgroundColor = JobsRedColor;
         _lab3.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。";
         [self.scrollView addSubview:_lab3];
         [_lab3 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -228,7 +228,7 @@
 -(BaseLabel *)lab4{
     if (!_lab4) {
         _lab4 = BaseLabel.new;
-        _lab4.backgroundColor = UIColor.redColor;
+        _lab4.backgroundColor = JobsRedColor;
         _lab4.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。";
         [self.scrollView addSubview:_lab4];
         [_lab4 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -242,7 +242,7 @@
 -(BaseLabel *)lab5{
     if (!_lab5) {
         _lab5 = BaseLabel.new;
-        _lab5.backgroundColor = UIColor.redColor;
+        _lab5.backgroundColor = JobsRedColor;
         _lab5.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。";
         [self.scrollView addSubview:_lab5];
         [_lab5 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -256,7 +256,7 @@
 -(BaseLabel *)lab6{
     if (!_lab6) {
         _lab6 = BaseLabel.new;
-        _lab6.backgroundColor = UIColor.redColor;
+        _lab6.backgroundColor = JobsRedColor;
         _lab6.text = @"编译器自动管理内存地址，\n让程序员更加专注于\nAPP的业务。";
         [self.scrollView addSubview:_lab6];
         [_lab6 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -270,7 +270,7 @@
 -(BaseLabel *)lab7{
     if (!_lab7) {
         _lab7 = BaseLabel.new;
-        _lab7.backgroundColor = UIColor.redColor;
+        _lab7.backgroundColor = JobsRedColor;
         _lab7.attributedText = self.attributedText;
         [self.scrollView addSubview:_lab7];
         [_lab7 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -285,7 +285,7 @@
 -(BaseButton *)btn1{
     if (!_btn1) {
         _btn1 = BaseButton.new;
-        _btn1.backgroundColor = UIColor.brownColor;
+        _btn1.backgroundColor = JobsBrownColor;
         [_btn1 normalTitle:@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"];
         [self.scrollView addSubview:_btn1];
         [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -299,7 +299,7 @@
 -(BaseButton *)btn2{
     if (!_btn2) {
         _btn2 = BaseButton.new;
-        _btn2.backgroundColor = UIColor.brownColor;
+        _btn2.backgroundColor = JobsBrownColor;
         [_btn2 normalTitle:@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"];
         [self.scrollView addSubview:_btn2];
         [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -313,7 +313,7 @@
 -(BaseButton *)btn3{
     if (!_btn3) {
         _btn3 = BaseButton.new;
-        _btn3.backgroundColor = UIColor.brownColor;
+        _btn3.backgroundColor = JobsBrownColor;
         [_btn3 normalTitle:@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"];
         [self.scrollView addSubview:_btn3];
         [_btn3 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -327,7 +327,7 @@
 -(BaseButton *)btn4{
     if (!_btn4) {
         _btn4 = BaseButton.new;
-        _btn4.backgroundColor = UIColor.brownColor;
+        _btn4.backgroundColor = JobsBrownColor;
         [_btn4 normalTitle:@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"];
         [self.scrollView addSubview:_btn4];
         [_btn4 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -341,7 +341,7 @@
 -(BaseButton *)btn5{
     if (!_btn5) {
         _btn5 = BaseButton.new;
-        _btn5.backgroundColor = UIColor.brownColor;
+        _btn5.backgroundColor = JobsBrownColor;
         [_btn5 normalTitle:@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"];
         _btn5.titleLabel.numberOfLines = 0;
         [_btn5 labelAutoWidthByFont];
@@ -357,7 +357,7 @@
 -(BaseButton *)btn6{
     if (!_btn6) {
         _btn6 = BaseButton.new;
-        _btn6.backgroundColor = UIColor.brownColor;
+        _btn6.backgroundColor = JobsBrownColor;
         [_btn6 normalTitle:@"编译器自动管理内存地址，\n让程序员更加专注于\nAPP的业务。"];
         _btn6.titleLabel.numberOfLines = 0;
         [_btn6 labelAutoWidthByFont];
@@ -376,7 +376,7 @@
         [_btn7 normalAttributedTitle:self.attributedText];
         /**
          【特别说明】
-         1、_btn7.backgroundColor = UIColor.brownColor;// 如果使用富文本，那么背景颜色这个属性无效
+         1、_btn7.backgroundColor = JobsBrownColor;// 如果使用富文本，那么背景颜色这个属性无效
          2、_btn7.titleLabel.numberOfLines = 0;//写不写都一样
          3、富文本以后的btn的frame要做出调整，btn是从中心向四周发散开的，这也就是下文的k位置为什么是40而不是20的原因
          4、定宽 > 富文本文字的真正所需宽度 => 富文本文字的真正所需宽度

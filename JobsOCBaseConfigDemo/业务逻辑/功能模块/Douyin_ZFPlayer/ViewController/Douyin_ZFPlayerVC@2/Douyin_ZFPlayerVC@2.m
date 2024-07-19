@@ -270,7 +270,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         _tableView = UITableView.new;
         _tableView.pagingEnabled = YES;
-        _tableView.backgroundColor = UIColor.lightGrayColor;
+        _tableView.backgroundColor = JobsLightGrayColor;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

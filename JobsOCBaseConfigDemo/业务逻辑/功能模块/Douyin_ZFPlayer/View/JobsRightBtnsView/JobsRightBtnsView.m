@@ -145,6 +145,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                 titleLineBreakMode:NSLineBreakByWordWrapping
                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                baseBackgroundColor:UIColor.clearColor
+                                                   backgroundImage:nil
                                                       imagePadding:JobsWidth(5)
                                                       titlePadding:JobsWidth(0)
                                                     imagePlacement:NSDirectionalRectEdgeTop
@@ -197,6 +198,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                 titleLineBreakMode:NSLineBreakByWordWrapping
                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                baseBackgroundColor:UIColor.clearColor
+                                                   backgroundImage:nil
                                                       imagePadding:JobsWidth(5)
                                                       titlePadding:JobsWidth(0)
                                                     imagePlacement:NSDirectionalRectEdgeTop
@@ -263,6 +265,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                               titleLineBreakMode:NSLineBreakByWordWrapping
                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
                                              baseBackgroundColor:UIColor.clearColor
+                                                 backgroundImage:nil
                                                     imagePadding:JobsWidth(5)
                                                     titlePadding:JobsWidth(0)
                                                   imagePlacement:NSDirectionalRectEdgeTop

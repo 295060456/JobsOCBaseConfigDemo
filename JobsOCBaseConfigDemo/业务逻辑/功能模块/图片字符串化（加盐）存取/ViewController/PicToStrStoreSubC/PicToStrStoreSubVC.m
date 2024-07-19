@@ -226,7 +226,8 @@
                                                   subTitleCor:nil
                                            titleLineBreakMode:NSLineBreakByWordWrapping
                                         subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                          baseBackgroundColor:UIColor.lightGrayColor
+                                          baseBackgroundColor:JobsLightGrayColor
+                                              backgroundImage:nil
                                                  imagePadding:JobsWidth(10)
                                                  titlePadding:JobsWidth(10)
                                                imagePlacement:NSDirectionalRectEdgeNone
@@ -294,7 +295,8 @@
                                                   subTitleCor:nil
                                            titleLineBreakMode:NSLineBreakByWordWrapping
                                         subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                          baseBackgroundColor:UIColor.lightGrayColor
+                                          baseBackgroundColor:JobsLightGrayColor
+                                              backgroundImage:nil
                                                  imagePadding:JobsWidth(10)
                                                  titlePadding:JobsWidth(10)
                                                imagePlacement:NSDirectionalRectEdgeNone

@@ -66,7 +66,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = JobsWhiteColor;
     
     self.headIcon.alpha = 1;
     self.nameLabel.alpha = 1;
@@ -238,7 +238,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         _statusLabel.textAlignment = NSTextAlignmentCenter;
         _statusLabel.text = JobsInternationalization(@"请绘制手势密码");
         _statusLabel.font = [UIFont systemFontOfSize:12];
-        _statusLabel.textColor = UIColor.redColor;
+        _statusLabel.textColor = JobsRedColor;
         [self.view addSubview:_statusLabel];
     }return _statusLabel;
 }
@@ -317,7 +317,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         _forgetPswBtn.backgroundColor = self.otherAcountBtn.backgroundColor;
         _forgetPswBtn.normalTitle = JobsInternationalization(@"忘记密码");
         _forgetPswBtn.titleFont = [UIFont systemFontOfSize:JobsWidth(12)];
-        _forgetPswBtn.normalTitleColor = UIColor.redColor;
+        _forgetPswBtn.normalTitleColor = JobsRedColor;
         [_forgetPswBtn jobsBtnClickEventBlock:^id(id data) {
             NSLog(@"点击忘记手势密码按钮");
             return nil;

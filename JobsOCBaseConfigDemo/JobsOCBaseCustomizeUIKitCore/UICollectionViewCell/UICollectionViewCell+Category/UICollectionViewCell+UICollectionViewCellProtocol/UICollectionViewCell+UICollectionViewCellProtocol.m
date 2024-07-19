@@ -56,7 +56,7 @@
                                                        dy:(CGFloat)dy{
     if(!cellBgCor) cellBgCor = JobsGreenColor;
     if(!borderWidth) borderWidth = 1.0f;
-    if (!bottomLineCor) bottomLineCor = UIColor.whiteColor;
+    if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
     CGRect bounds = [self dx:dx dy:dy];
     
     NSIndexPath *indexPath = self.jobsGetCurrentIndexPath;

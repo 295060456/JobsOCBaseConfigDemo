@@ -406,7 +406,7 @@ insetForSectionAtIndex:(NSInteger)section {
 -(UIView *)bgView{
     if (!_bgView) {
         _bgView = UIView.new;
-        _bgView.backgroundColor = UIColor.whiteColor;
+        _bgView.backgroundColor = JobsWhiteColor;
         [self addSubview:_bgView];
         [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake([BaiShaETProjPopupView10 viewSizeWithModel:nil].width, [BaiShaETProjPopupView10 viewSizeWithModel:nil].height - JobsWidth(44)));

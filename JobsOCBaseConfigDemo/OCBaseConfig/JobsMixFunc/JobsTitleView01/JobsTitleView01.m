@@ -37,7 +37,7 @@ static dispatch_once_t static_titleView01OnceToken;
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = JobsWhiteColor;
     }return self;
 }
 
@@ -49,7 +49,7 @@ static dispatch_once_t static_titleView01OnceToken;
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = JobsWhiteColor;
     }return self;
 }
 

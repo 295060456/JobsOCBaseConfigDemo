@@ -69,7 +69,7 @@
     if(!_cameraBtn){
         _cameraBtn = UIButton.new;
         _cameraBtn.normalTitle = JobsInternationalization(@"调取系统相机");
-        _cameraBtn.backgroundColor = UIColor.greenColor;
+        _cameraBtn.backgroundColor = JobsGreenColor;
         _cameraBtn.normalTitleColor = JobsWhiteColor;
         [self.view addSubview:_cameraBtn];
         [_cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {

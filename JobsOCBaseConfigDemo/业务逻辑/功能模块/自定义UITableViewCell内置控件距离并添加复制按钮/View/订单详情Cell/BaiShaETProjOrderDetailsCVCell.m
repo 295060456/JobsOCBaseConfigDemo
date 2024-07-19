@@ -142,7 +142,7 @@ heightForFooterInSection:(NSInteger)section{
         _tableView = UITableView.initWithStylePlain;
         [self dataLinkByTableView:_tableView];
         _tableView.scrollEnabled = NO;
-        _tableView.backgroundColor = UIColor.whiteColor;
+        _tableView.backgroundColor = JobsWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类

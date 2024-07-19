@@ -36,9 +36,9 @@ NS_ASSUME_NONNULL_END
          [self.view addSubview:_switcher];
          _switcher.selected = NO;// 读取系统记录
          _switcher.thumbTintColor = _switcher.selected ? self.cor : HEXCOLOR(0xB0B0B0);
-         _switcher.tintColor = UIColor.whiteColor;
+         _switcher.tintColor = JobsWhiteColor;
          _switcher.onTintColor = HEXCOLOR(0xFFFCF7);
-         _switcher.backgroundColor = UIColor.whiteColor;
+         _switcher.backgroundColor = JobsWhiteColor;
          [_switcher cornerCutToCircleWithCornerRadius:31 / 2];
          [_switcher mas_makeConstraints:^(MASConstraintMaker *make) {
  //            make.top.equalTo(self.titleLab);

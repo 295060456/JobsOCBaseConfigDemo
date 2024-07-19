@@ -17,10 +17,10 @@
     self.titleFont = [UIFont systemFontOfSize:JobsWidth(10) weight:UIFontWeightRegular];
     _timeTitleSelectedFont = [UIFont boldSystemFontOfSize:JobsWidth(15)];
     self.titleSelectedFont = [UIFont systemFontOfSize:JobsWidth(10) weight:UIFontWeightRegular];
-    _timeTitleNormalColor = UIColor.lightGrayColor;
-    self.titleColor = UIColor.lightGrayColor;
-    _timeTitleSelectedColor = UIColor.whiteColor;
-    self.titleSelectedColor = UIColor.whiteColor;
+    _timeTitleNormalColor = JobsLightGrayColor;
+    self.titleColor = JobsLightGrayColor;
+    _timeTitleSelectedColor = JobsWhiteColor;
+    self.titleSelectedColor = JobsWhiteColor;
 }
 //返回自定义的cell class
 -(Class)preferredCellClass{

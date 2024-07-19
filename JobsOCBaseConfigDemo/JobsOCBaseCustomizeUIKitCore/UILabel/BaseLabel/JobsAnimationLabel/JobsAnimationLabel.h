@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_END
  -(JobsAnimationLabel *)animationLab{
      if (!_animationLab) {
          _animationLab = JobsAnimationLabel.new;
-         _animationLab.textColor = UIColor.blackColor;
+         _animationLab.textColor = JobsBlackColor;
          
          _animationLab.text = @"12";
          _animationLab.value = 12;

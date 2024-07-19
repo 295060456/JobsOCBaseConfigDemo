@@ -32,7 +32,7 @@ static dispatch_once_t static_searchViewOnceToken;
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = JobsWhiteColor;
     }return self;
 }
 
@@ -52,14 +52,14 @@ static dispatch_once_t static_searchViewOnceToken;
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.redColor;
+        self.backgroundColor = JobsRedColor;
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
     self.viewModel = model ? : UIViewModel.new;
     MakeDataNull
-    self.backgroundColor = UIColor.redColor;
+    self.backgroundColor = JobsRedColor;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{

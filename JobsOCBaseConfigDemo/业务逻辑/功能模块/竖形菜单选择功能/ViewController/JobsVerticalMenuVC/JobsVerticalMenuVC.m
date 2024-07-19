@@ -300,7 +300,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                                      headerView.width - 20.f,
                                      17.f);
             label.font = [UIFont systemFontOfSize:12.f];
-            label.textColor = UIColor.grayColor;
+            label.textColor = JobsGrayColor;
             label.tag = 666;
             [headerView addSubview:label];
         }

@@ -12,7 +12,7 @@
 /// @param lottieImage LottieName
 -(void)addLottieImage:(NSString *)lottieImage{
     if (![NSString isNullString:lottieImage]) {
-//        self.view.backgroundColor = UIColor.lightGrayColor;
+//        self.view.backgroundColor = JobsLightGrayColor;
         LOTAnimationView *lottieView = [LOTAnimationView animationNamed:lottieImage];
         lottieView.frame = UIScreen.mainScreen.bounds;
         lottieView.contentMode = UIViewContentModeScaleAspectFit;

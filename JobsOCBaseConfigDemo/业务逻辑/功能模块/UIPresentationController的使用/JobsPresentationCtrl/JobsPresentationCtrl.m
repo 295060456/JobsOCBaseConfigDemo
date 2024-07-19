@@ -95,7 +95,7 @@
     {
         UIView *dimmingView = UIView.new;
         dimmingView.frame = self.containerView.bounds;
-        dimmingView.backgroundColor = UIColor.blackColor;
+        dimmingView.backgroundColor = JobsBlackColor;
         dimmingView.opaque = NO;
         dimmingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         

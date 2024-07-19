@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, JobsAppDoorBgType){
 #define Cor1 [JobsBlackColor colorWithAlphaComponent:0.9007f]
 #define Cor2 [JobsBlackColor colorWithAlphaComponent:0.5984f]
 #define Cor3 HEXCOLOR(0xE1CD62)
-#define Cor4 [UIColor.whiteColor colorWithAlphaComponent:0.9007f]
+#define Cor4 [JobsWhiteColor colorWithAlphaComponent:0.9007f]
 #define Cor5 HEXCOLOR(0x502600)
 
 #define ThingsHeight JobsWidth(50)//边角半圆形控件的高度

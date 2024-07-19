@@ -103,8 +103,8 @@
         _pageControl = UIPageControl.new;
         _pageControl.numberOfPages = 3;
         _pageControl.currentPage = 0;
-        _pageControl.currentPageIndicatorTintColor = UIColor.redColor;
-        _pageControl.pageIndicatorTintColor = UIColor.whiteColor;
+        _pageControl.currentPageIndicatorTintColor = JobsRedColor;
+        _pageControl.pageIndicatorTintColor = JobsWhiteColor;
         [self.view addSubview:_pageControl];
         [_pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.offset(0);

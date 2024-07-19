@@ -77,7 +77,7 @@
         _titleLab = JobsBaseLabel.new;
         [_titleLab richElementsInViewWithModel:nil];
         _titleLab.getLabel.jobsOffsetY = JobsWidth(-2);
-        _titleLab.getLabel.textColor = UIColor.whiteColor;
+        _titleLab.getLabel.textColor = JobsWhiteColor;
         _titleLab.getLabel.font = notoSansRegular(12);
         _titleLab.getLabel.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:_titleLab];
