@@ -868,13 +868,15 @@ NSObject <|-- BaseProtocol
   
   * ```objective-c
     static inline CGFloat JobsWidth(CGFloat width){
-        return (SCREEN_MIN_LENGTH() / 375) * width; 
+        //375 对应原型图的宽 在iph 12 pro max 此系数 = 1.1413333333333333
+        return (JobsMainScreen_WIDTH() / 375) * width;
     }
     ```
-  
+    
   * ```objective-c
     static inline CGFloat JobsHeight(CGFloat height){
-        return (SCREEN_MAX_LENGTH() / 743) * height; //743 对应原型图的高
+        //743 对应原型图的高
+        return (JobsMainScreen_HEIGHT() / 743) * height;
     }
     ```
   
