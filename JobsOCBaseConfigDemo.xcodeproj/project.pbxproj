@@ -15,6 +15,7 @@
 		C525D3F72C4803DE003DAFD0 /* JobsMenuSubView@2.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3F62C4803DE003DAFD0 /* JobsMenuSubView@2.m */; };
 		C525D3FB2C4803F0003DAFD0 /* JobsMenuSubView@3.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3FA2C4803F0003DAFD0 /* JobsMenuSubView@3.m */; };
 		C525D4002C480402003DAFD0 /* JobsMenuSubView@4.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3FF2C480402003DAFD0 /* JobsMenuSubView@4.m */; };
+		CE40B2922C4B628A00CB64B5 /* JobsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2902C4B628900CB64B5 /* JobsTextField.m */; };
 		CEC01DD32C4A38080069C91A /* Bayon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC01DD22C4A38080069C91A /* Bayon.ttf */; };
 		CEC01DD62C4A386A0069C91A /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEC01DD42C4A38690069C91A /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		CECE788D2C4509E000764AF5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CECE788C2C4509E000764AF5 /* Base */; };
@@ -751,7 +752,6 @@
 		CECE85D02C4513CE00764AF5 /* UITextField+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE846B2C4513CD00764AF5 /* UITextField+Animation.m */; };
 		CECE85D12C4513CE00764AF5 /* UITextField+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE846E2C4513CD00764AF5 /* UITextField+Extend.m */; };
 		CECE85D22C4513CE00764AF5 /* UITextField+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84712C4513CD00764AF5 /* UITextField+Placeholder.m */; };
-		CECE85D32C4513CE00764AF5 /* UITextField+ReRect.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84742C4513CD00764AF5 /* UITextField+ReRect.m */; };
 		CECE85D42C4513CE00764AF5 /* BaseTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE847A2C4513CD00764AF5 /* BaseTextView.m */; };
 		CECE85D52C4513CE00764AF5 /* UITextView+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE847D2C4513CD00764AF5 /* UITextView+Extend.m */; };
 		CECE85D62C4513CE00764AF5 /* UITextView+IndicateWordLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84802C4513CD00764AF5 /* UITextView+IndicateWordLimit.m */; };
@@ -1108,6 +1108,8 @@
 		C525D3FE2C480402003DAFD0 /* JobsMenuSubView@4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JobsMenuSubView@4.h"; sourceTree = "<group>"; };
 		C525D3FF2C480402003DAFD0 /* JobsMenuSubView@4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JobsMenuSubView@4.m"; sourceTree = "<group>"; };
 		C525D4012C48040F003DAFD0 /* JobsMenuSubView@2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JobsMenuSubView@2.h"; sourceTree = "<group>"; };
+		CE40B28F2C4B628900CB64B5 /* JobsTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTextField.h; sourceTree = "<group>"; };
+		CE40B2902C4B628900CB64B5 /* JobsTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTextField.m; sourceTree = "<group>"; };
 		CE775D7C2C47BF5D004D39D0 /* 自定义 UITabBarController.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "自定义 UITabBarController.md"; path = "自定义 UITabBarController.md/自定义 UITabBarController.md"; sourceTree = "<group>"; };
 		CEC01CD82C4933A40069C91A /* 时间格式化.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "时间格式化.md"; sourceTree = "<group>"; };
 		CEC01DD22C4A38080069C91A /* Bayon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bayon.ttf; sourceTree = "<group>"; };
@@ -2556,9 +2558,7 @@
 		CECE846E2C4513CD00764AF5 /* UITextField+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Extend.m"; sourceTree = "<group>"; };
 		CECE84702C4513CD00764AF5 /* UITextField+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Placeholder.h"; sourceTree = "<group>"; };
 		CECE84712C4513CD00764AF5 /* UITextField+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Placeholder.m"; sourceTree = "<group>"; };
-		CECE84732C4513CD00764AF5 /* UITextField+ReRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ReRect.h"; sourceTree = "<group>"; };
-		CECE84742C4513CD00764AF5 /* UITextField+ReRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ReRect.m"; sourceTree = "<group>"; };
-		CECE84772C4513CD00764AF5 /* JobsTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTextField.h; sourceTree = "<group>"; };
+		CECE84772C4513CD00764AF5 /* JobsTextFieldExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTextFieldExtra.h; sourceTree = "<group>"; };
 		CECE84792C4513CD00764AF5 /* BaseTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTextView.h; sourceTree = "<group>"; };
 		CECE847A2C4513CD00764AF5 /* BaseTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTextView.m; sourceTree = "<group>"; };
 		CECE847C2C4513CD00764AF5 /* UITextView+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extend.h"; sourceTree = "<group>"; };
@@ -3129,6 +3129,15 @@
 				C525D3FF2C480402003DAFD0 /* JobsMenuSubView@4.m */,
 			);
 			path = "JobsMenuSubView@4";
+			sourceTree = "<group>";
+		};
+		CE40B2912C4B628900CB64B5 /* JobsTextField */ = {
+			isa = PBXGroup;
+			children = (
+				CE40B28F2C4B628900CB64B5 /* JobsTextField.h */,
+				CE40B2902C4B628900CB64B5 /* JobsTextField.m */,
+			);
+			path = JobsTextField;
 			sourceTree = "<group>";
 		};
 		CECE78762C4509E000764AF5 = {
@@ -10458,6 +10467,7 @@
 		CECE84692C4513CD00764AF5 /* BaseTextField */ = {
 			isa = PBXGroup;
 			children = (
+				CE40B2912C4B628900CB64B5 /* JobsTextField */,
 				CECE845E2C4513CD00764AF5 /* CJTextField */,
 				CECE84612C4513CD00764AF5 /* HQTextField */,
 				CECE84642C4513CD00764AF5 /* JobsMagicTextField */,
@@ -10493,22 +10503,12 @@
 			path = "UITextField+Placeholder";
 			sourceTree = "<group>";
 		};
-		CECE84752C4513CD00764AF5 /* UITextField+ReRect */ = {
-			isa = PBXGroup;
-			children = (
-				CECE84732C4513CD00764AF5 /* UITextField+ReRect.h */,
-				CECE84742C4513CD00764AF5 /* UITextField+ReRect.m */,
-			);
-			path = "UITextField+ReRect";
-			sourceTree = "<group>";
-		};
 		CECE84762C4513CD00764AF5 /* UITextField+Category */ = {
 			isa = PBXGroup;
 			children = (
 				CECE846C2C4513CD00764AF5 /* UITextField+Animation */,
 				CECE846F2C4513CD00764AF5 /* UITextField+Extend */,
 				CECE84722C4513CD00764AF5 /* UITextField+Placeholder */,
-				CECE84752C4513CD00764AF5 /* UITextField+ReRect */,
 			);
 			path = "UITextField+Category";
 			sourceTree = "<group>";
@@ -10518,7 +10518,7 @@
 			children = (
 				CECE84692C4513CD00764AF5 /* BaseTextField */,
 				CECE84762C4513CD00764AF5 /* UITextField+Category */,
-				CECE84772C4513CD00764AF5 /* JobsTextField.h */,
+				CECE84772C4513CD00764AF5 /* JobsTextFieldExtra.h */,
 			);
 			path = UITextField;
 			sourceTree = "<group>";
@@ -13054,7 +13054,6 @@
 				CECE7EC02C450E5B00764AF5 /* TKPermissionPhoto.m in Sources */,
 				CECE858B2C4513CE00764AF5 /* JobsImageViewStyleCVCell.m in Sources */,
 				CECE80CA2C4512BF00764AF5 /* NSString+ZBUTF8Encoding.m in Sources */,
-				CECE85D32C4513CE00764AF5 /* UITextField+ReRect.m in Sources */,
 				CECE7C152C450C5000764AF5 /* RandomTestVC.m in Sources */,
 				CECE87582C45140000764AF5 /* GXCardItemDemoCell.m in Sources */,
 				CECE7C512C450C5000764AF5 /* JobsAppDoorRegisterContentView.m in Sources */,
@@ -13107,6 +13106,7 @@
 				CECE7C9D2C450C5000764AF5 /* JobsSearchShowHistoryDataTBVCell.m in Sources */,
 				CECE85932C4513CE00764AF5 /* LMHWaterFallLayout.m in Sources */,
 				CECE7EBB2C450E5B00764AF5 /* TKPermissionMedia.m in Sources */,
+				CE40B2922C4B628A00CB64B5 /* JobsTextField.m in Sources */,
 				CECE7C632C450C5000764AF5 /* JobsDropDownListVC.m in Sources */,
 				CECE7EA22C450E5B00764AF5 /* KTVHCDataUnit.m in Sources */,
 				CECE814A2C4512BF00764AF5 /* LZTabBar.m in Sources */,

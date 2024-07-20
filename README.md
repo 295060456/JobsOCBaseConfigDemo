@@ -995,79 +995,301 @@ NSObject <|-- BaseProtocol
 
 #### 16.1、UITextFieldDelegate
 
-* 在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑。
+* 在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑
 
   ```objective-c
-  -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
+  /// 用途：您可以使用此方法进行输入验证或单元格选择，以决定是否允许用户开始编辑。
+  -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+      return YES;
+  }
   ```
 
-* 文本字段已经开始编辑时调用。
+* 文本字段已经开始编辑时调用
 
   ```objective-c
-  -(void)textFieldDidBeginEditing:(UITextField *)textField;
+  /// 用途：在此方法中，您可以开始相应的操作，例如更新用户界面（UI），显示工具条等
+  -(void)textFieldDidBeginEditing:(UITextField *)textField{
+      
+  }
   ```
 
-* 在文本字段即将结束编辑时调用。返回YES表示允许结束编辑，返回NO则表示不允许结束编辑。
+* 在文本字段即将结束编辑时调用。返回YES表示允许结束编辑，返回NO则表示不允许结束编辑
 
   ```objective-c
-  -(BOOL)textFieldShouldEndEditing:(UITextField *)textField;
+  /// 用途：您可以在这里执行验证，例如检查用户输入的有效性
+  -(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+      return YES;
+  }
   ```
 
-* 文本字段已经结束编辑时调用。
+* 文本字段已经结束编辑时调用
 
   ```objective-c
-  -(void)textFieldDidEndEditing:(UITextField *)textField 
-  reason:(UITextFieldDidEndEditingReason)reason API_AVAILABLE(ios(10.0));
+  /// 用途：在此方法中，可以处理输入完成后的操作，例如更新数据模型或用户界面的状态
+  -(void)textFieldDidEndEditing:(UITextField *)textField{
+      
+  }
   ```
 
-* 文本字段结束编辑时调用，并带有结束原因。
+* 文本字段结束编辑时调用，并带有结束原因
 
   ```objective-c
-  -(void)textFieldDidChangeSelection:(UITextField *)textField API_AVAILABLE(ios(13.0), tvos(13.0));
+  /// 用途：可以根据不同的结束原因执行不同的操作
+  /// API_AVAILABLE(ios(10.0))
+  -(void)textFieldDidEndEditing:(UITextField *)textField
+                          reason:(UITextFieldDidEndEditingReason)reason{
+      
+  }
   ```
 
-* 在文本字段的字符将要改变时调用，因为用户输入、删除或粘贴内容。返回YES允许更改，返回NO禁止更改。
+* <font color=red id=textField的文本变化监控>**在文本字段的字符将要改变时调用，因为用户输入、删除或粘贴内容。返回YES允许更改，返回NO禁止更改**</font>
+
+  * 对于删除操作，此时的**string**是<u>长度为0个字符单位</u>的空字符
+  * 对于空格操作，此时的**string**是<u>长度为1个字符单位</u>的空字符
 
   ```objective-c
-  -(BOOL)textField:(UITextField *)textField 
-  shouldChangeCharactersInRange:(NSRange)range 
-  replacementString:(NSString *)string;
+  /// 用途：您可以用于限制输入的字符类型或长度，或实现某些格式化规则
+  -(BOOL)textField:(UITextField *)textField
+  shouldChangeCharactersInRange:(NSRange)range
+  replacementString:(NSString *)string{
+      return YES;
+  }
   ```
 
-* 在文本字段的选中文本发生改变时调用。
+* 在文本字段的选中文本发生改变时调用    <font color=red>**API_AVAILABLE(ios(13.0), tvos(13.0))**</font>
 
   ```objective-c
-  -(void)textFieldDidChangeSelection:(UITextField *)textField API_AVAILABLE(ios(13.0), tvos(13.0));
+  /// 用途：可以用于实时更新相关UI或执行某些操作
+  -(void)textFieldDidChangeSelection:(UITextField *)textField{
+      
+  }
   ```
 
-* 在清除文本字段内容之前调用。返回YES允许清除，返回NO禁止清除。
+* 在清除文本字段内容之前调用。返回YES允许清除，返回NO禁止清除
 
   ```objective-c
-  -(BOOL)textFieldShouldClear:(UITextField *)textField;
+  /// 用途：可以用于提示用户、确认清除操作或进行额外的验证。
+  -(BOOL)textFieldShouldClear:(UITextField *)textField{
+      return YES;
+  }
   ```
 
-* 在文本字段要展示编辑菜单时调用。可自定义菜单内容。
+* 在用户按下**Return**键时调用。返回YES表示处理当前输入（如关闭键盘），返回NO表示不处理
 
   ```objective-c
-  -(nullable UIMenu *)textField:(UITextField *)textField 
-  editMenuForCharactersInRange:(NSRange)range suggestedActions:(NSArray<UIMenuElement *> *)suggestedActions API_AVAILABLE(ios(16.0));
+  /// 用途：一般用于提交表单，关闭键盘，或进行下一步的输入
+  -(BOOL)textFieldShouldReturn:(UITextField *)textField{
+      return YES;
+  }
   ```
 
-* 在文本字段即将展示编辑菜单时调用。
+* 在文本字段要展示编辑菜单时调用。可自定义菜单内容    <font color=red>**API_AVAILABLE(ios(16.0))**</font>
 
   ```objective-c
+  /// 用途：可以提供自定义的剪切、复制、粘贴等操作选项
+  -(nullable UIMenu *)textField:(UITextField *)textField
+    editMenuForCharactersInRange:(NSRange)range
+                suggestedActions:(NSArray<UIMenuElement *> *)suggestedActions{
+      return nil;
+  }
+  ```
+
+* 在文本字段即将展示编辑菜单时调用    <font color=red>**API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos)**</font>
+
+  ```objective-c
+  /// 用途：可以在菜单展示前进行动画处理或其他UI调整
   -(void)textField:(UITextField *)textField
-  willPresentEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos);
+  willPresentEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
+      
+  }
   ```
 
-* 在文本字段即将消失编辑菜单时调用。
+* 在文本字段即将消失编辑菜单时调用
 
   ```objective-c
+  /// 用途：可以在菜单消失前进行相关清理或动画效果
+  /// API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos)
   -(void)textField:(UITextField *)textField
-  willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos);
+  willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
+      
+  }
   ```
 
-#### 16.2、有4个`TextField`可供继承使用（具体使用方式，查询相关头文件定义）
+#### 16.2、系统提供的修改接口（子类需要重写以下父类方法）
+
+* **当前文本框聚焦时就会调用**
+
+  ```objective-c
+  -(BOOL)becomeFirstResponder{
+      return [super becomeFirstResponder];
+  }
+  ```
+
+* **当前文本框失去焦点时就会调用**
+
+    ```objective-c
+    -(BOOL)resignFirstResponder{
+        return [super resignFirstResponder];
+    }
+    ```
+
+* **重写来重置clearButton位置,改变size可能导致button的图片失真**
+
+    ```objective-c
+    -(CGRect)clearButtonRectForBounds:(CGRect)bounds{
+    	return [super clearButtonRectForBounds:bounds];
+    }
+    ```
+
+* **leftView——Rect 【键盘弹起会调用此方法】**
+
+    ```objective-c
+    -(CGRect)leftViewRectForBounds:(CGRect)bounds{
+    	return [super leftViewRectForBounds:bounds];
+    }
+    ```
+
+* **rightView——Rect 【键盘弹起会调用此方法】**
+
+    ```objective-c
+    - (CGRect)rightViewRectForBounds:(CGRect)bounds{
+    	return [super rightViewRectForBounds:bounds];
+    }
+    ```
+
+* **重写改变绘制占位符属性。重写时调用super可以按默认图形属性绘制;若自己完全重写绘制函数，就不用调用super了**
+
+    ```objective-c
+    -(void)drawPlaceholderInRect:(CGRect)rect{
+    	return [super drawPlaceholderInRect:rect];
+    }
+    ```
+
+* **重写来重置边缘区域**
+
+    ```objective-c
+    -(CGRect)borderRectForBounds:(CGRect)bounds{
+        return [super borderRectForBounds:bounds];
+    }
+    ```
+
+* **重写来重置占位符区域 【键盘弹起会调用此方法】**
+
+    ```objective-c
+    -(CGRect)placeholderRectForBounds:(CGRect)bounds{
+        return [super placeholderRectForBounds:bounds];
+    }
+    ```
+
+* **重写来重置文字区域 【未编辑状态下光标的起始位置】【键盘弹起会调用此方法】**
+
+    ```objective-c
+    -(CGRect)textRectForBounds:(CGRect)bounds{
+        return [super textRectForBounds:bounds];
+    }
+    ```
+
+* **重写来重置编辑区域【编辑状态下的起始位置】、UIFieldEditor的位置大小【键盘弹起会调用此方法】**
+
+    ```objective-c
+    -(CGRect)editingRectForBounds:(CGRect)bounds{
+        return [super editingRectForBounds:bounds];
+    }
+    ```
+
+#### 16.3、有4+1个`TextField`可供继承使用（具体使用方式，查询相关头文件定义）
+
+##### 16.2.1、处理方式：将**UITextField**作为一个子视图加载到一个父容器视图
+
+* 产生背景
+
+  * iOS系统的 **UITextField** 内部其实还有若干子视图，对于这些子视图原则上是不希望我们进行直接访问的，所以在设计之初就没有提供更多的Api对外暴露给我们使用
+  * 然而，当我们需要自定义一些UI的时候，因为在`-(void)layoutSubviews`等生命周期方法中是过程值（不准确，不是我们想要的），这个过程值又UI的展开有关，很难定位终值，就会对我们的布局产生纠缠，至少增加思维量和代码厚度，加大接入难度
+  * <font color=red>**键盘的弹起和回收也会对这些子视图的frame产生影响**</font>。这让情况变得更加错综复杂
+  * 特别的，如果要<u>自定义光标的闪动位置</u>、<u>**TextField**.**leftView**.**frame**</u>、<u>**TextField**.**rightView**.**frame**</u>、<u>清除按钮的frame</u>等功能的话，就会变得很吃力，甚至不可为
+
+
+  * 现在的做法是将系统的**UITextField**作为一个整体，<u>不再去关心内部的子视图的实现及其布局调整</u>
+    * 外界传入的**leftView**替代系统的**TextField**.**leftView**
+    * 外界传入的**rightView**替代系统的**TextField**.**rightView**
+  * 对**textField**我们只关心2个值
+    * 当下输入的文本值
+    * 当前**textField**的文本值
+  * `placeholder`是针对普通文本。系统原则上不希望我们在这个属性上去过多纠缠文本字体、文本色号，转而考虑`attributedPlaceholder`。但如果一定要对`placeholder`的文本字体、文本色号进行定义，则关注`placeholderColor`、`placeholderFont`
+
+* <font color=red>`JobsTextField`</font>：**BaseView**
+
+  ```objective-c
+  -(JobsTextField *)textField{
+      if(!_textField){
+          _textField = JobsTextField.new;
+          _textField.backgroundColor = JobsRedColor;
+          // 只针对真实的textField配置
+          _textField.realTextFieldBgCor = JobsClearColor;
+          _textField.leftViewByOutLineOffset = JobsWidth(4);
+          _textField.leftViewByTextFieldOffset = JobsWidth(4);
+          _textField.rightViewByTextFieldOffset = JobsWidth(4);
+          _textField.rightViewByOutLineOffset = JobsWidth(4);
+          _textField.returnKeyType = UIReturnKeyDefault;
+          _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
+          _textField.keyboardType = UIKeyboardTypeDefault;
+          _textField.leftViewMode = UITextFieldViewModeNever;
+          _textField.rightViewMode = UITextFieldViewModeNever;
+          _textField.leftView = self.textFieldLeftView;
+          _textField.rightView = self.textFieldRightView;
+          _textField.placeholder = JobsInternationalization(@"wwe");
+          _textField.placeholderColor = JobsWhiteColor;
+          _textField.placeholderFont = UIFontWeightSemiboldSize(12);
+          _textField.attributedPlaceholder = nil;
+          _textField.layoutSubviewsRectCorner = UIRectCornerAllCorners;
+          _textField.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
+          // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
+          @jobs_weakify(self)
+          [_textField actionReturnObjectBlock:^id _Nullable(id _Nullable data) {
+              @jobs_strongify(self)
+              NSLog(@"ddf = %@",data);
+              return nil;
+          }];
+          [self addSubview:_textField];
+          [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.size.mas_equalTo(CGSizeMake(JobsWidth(148), JobsWidth(28)));
+              make.centerY.equalTo(self);
+              if (self.vipClassImageView.right >= self.userNameLab.right) {
+                  make.left.equalTo(self.vipClassImageView.mas_right).offset(JobsWidth(18));
+              }else{
+                  make.left.equalTo(self.userNameLab.mas_right).offset(JobsWidth(18));
+              }
+          }];
+          [_textField richElementsInViewWithModel:nil];
+          [self layoutIfNeeded];
+          // 最外层的UI-描边
+          [_textField layerBorderCor:JobsCor(@"#FFD8D8")
+                      andBorderWidth:JobsWidth(1)];
+          // 最外层的UI-切全角
+          [_textField cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+      }return _textField;
+  }
+  ```
+
+  ```objective-c
+  -(UIImageView *)textFieldLeftView{
+      if(!_textFieldLeftView){
+          _textFieldLeftView = UIImageView.new;
+          _textFieldLeftView.image = JobsIMG(@"UserLogoTextFieldLeftImage");
+          _textFieldLeftView.size = CGSizeMake(JobsWidth(15), JobsWidth(15));
+      }return _textFieldLeftView;
+  }
+  
+  -(UIImageView *)textFieldRightView{
+      if(!_textFieldRightView){
+          _textFieldRightView = UIImageView.new;
+          _textFieldRightView.image = JobsIMG(@"UserLogoTextFieldRightImage");
+          _textFieldLeftView.size = CGSizeMake(JobsWidth(16), JobsWidth(16));
+      }return _textFieldRightView;
+  }
+  ```
+
+##### 16.2.2、处理方式：**UITextField**的子类
 
 * `CJTextField`：**UITextField**
 
@@ -1172,8 +1394,8 @@ NSObject <|-- BaseProtocol
 
 * 一般情况下，如果要监控输入字符，需要实现相应的`UITextFieldDelegate`方法，某些情况下会比较繁琐，包括但不仅限于下列：
 
-  * 监控emoji字符（多个字符组成一个emoji字符，且emoji字符集还在随时扩充）
-  * 监控输入空格和删除操作
+  * 监控**emoji**字符（多个字符组成一个**emoji**字符，且**emoji**字符集还在随时扩充）
+  * [**监控输入空格和删除操作**](#textField的文本变化监控)
 
 * 目前最好的字符过滤解决方案：利用[**ReactiveCocoa**](https://github.com/ReactiveCocoa/ReactiveObjC)框架
 
