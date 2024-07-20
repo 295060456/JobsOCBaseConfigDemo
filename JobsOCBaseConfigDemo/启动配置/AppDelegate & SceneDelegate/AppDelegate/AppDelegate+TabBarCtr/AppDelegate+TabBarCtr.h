@@ -29,7 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,class)UINavigationController *jobsCustomTabBarNavCtrl;
 @property(nonatomic,strong,class)UINavigationController *lZTabBarNavCtrl;
 #pragma mark —— 数据源
-@property(nonatomic,strong,class)TFPopupParam *tfPopupParam;
 @property(nonatomic,strong,class)LZTabBarConfig *lZTabBarConfig;
 @property(nonatomic,strong,class)JobsCustomTabBarConfig *jobsCustomTabBarConfig;
 @property(nonatomic,strong,class)NSMutableArray <JobsTabBarItemConfig *>*tabBarItemConfigMutArr;

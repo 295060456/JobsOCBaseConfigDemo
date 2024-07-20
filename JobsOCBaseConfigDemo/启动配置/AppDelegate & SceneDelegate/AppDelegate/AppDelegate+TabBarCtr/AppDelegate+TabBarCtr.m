@@ -6,9 +6,8 @@
 //
 
 #import "AppDelegate+TabBarCtr.h"
-
+NSUInteger DefaultIndex = 2;
 @implementation AppDelegate (TabBarCtr)
-static NSUInteger DefaultIndex = 3;
 #pragma mark —— 配置一些普通的控制器
 @dynamic tabBarVC;
 static JobsTabBarVC *_tabBarVC = nil;
@@ -99,24 +98,6 @@ static UINavigationController *_lZTabBarNavCtrl = nil;
     _lZTabBarNavCtrl = lZTabBarNavCtrl;
 }
 #pragma mark —— 数据源
-@dynamic tfPopupParam;
-static TFPopupParam *_tfPopupParam = nil;
-+(TFPopupParam *)tfPopupParam{
-    if(!_tfPopupParam){
-        _tfPopupParam = TFPopupParam.new;
-        _tfPopupParam.duration = 0.3f;
-        _tfPopupParam.showAnimationDelay = 0.1f;
-        _tfPopupParam.hideAnimationDelay = 0.1f;
-        _tfPopupParam.dragEnable = YES;
-        _tfPopupParam.offset = CGPointMake(0,-JobsTabBarHeightByBottomSafeArea(_tabBarVC));
-        _tfPopupParam.disuseBackgroundTouchHide = YES;
-    //    _tfPopupParam.popupSize = [CasinoCustomerServiceView viewSizeWithModel:nil];
-    }return _tfPopupParam;
-}
-
-+(void)setTfPopupParam:(TFPopupParam *)tfPopupParam{
-    _tfPopupParam = tfPopupParam;
-}
 @dynamic lZTabBarConfig;
 static LZTabBarConfig *_lZTabBarConfig = nil;
 +(LZTabBarConfig *)lZTabBarConfig{

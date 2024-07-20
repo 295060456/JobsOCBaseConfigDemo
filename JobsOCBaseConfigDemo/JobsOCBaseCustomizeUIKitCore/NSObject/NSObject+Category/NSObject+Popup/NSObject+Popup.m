@@ -10,8 +10,8 @@
 @implementation NSObject (Popup)
 #pragma mark —— 创建缩放模式下的View
 /// 没有自定义 popupParam（缩放模式）
--(void)popupShowScaleWithView:(UIView *_Nullable)view{
-    if (!view) view = self.popupView;
+-(void)popupShowScaleWithView:(UIView *_Nonnull)view{
+    if (!view) return;
     if ([self isKindOfClass:UIViewController.class]) {
         UIViewController *vc = (UIViewController *)self;
         [view tf_showScale:vc.view offset:CGPointZero popupParam:self.popupParameter];
@@ -23,7 +23,7 @@
     }
 }
 /// 有自定义popupParam（缩放模式）
--(void)popupShowScaleWithView:(UIView *_Nullable)view
+-(void)popupShowScaleWithView:(UIView *_Nonnull)view
                popupParameter:(TFPopupParam *_Nullable)popupParameter{
     if (popupParameter) {
         [view tf_showNormal:jobsGetMainWindow() popupParam:popupParameter];
@@ -33,8 +33,8 @@
 }
 #pragma mark —— 创建滑动模式的View
 /// 没有自定义 popupParam（滑动模式）
--(void)popupshowSlideWithView:(UIView *_Nullable)view{
-    if (!view) view = self.popupView;
+-(void)popupshowSlideWithView:(UIView *_Nonnull)view{
+    if (!view) return;
     TFPopupParam *popupParameter = [self makeSlidePopupParameterByViewHeight:view.size.height];
     if(AppDelegate.tabBarVC){
         [view tf_showSlide:AppDelegate.tabBarVC.view
@@ -47,7 +47,7 @@
     }
 }
 /// 有自定义popupParam（滑动模式）
--(void)popupshowSlideWithView:(UIView *_Nullable)view
+-(void)popupshowSlideWithView:(UIView *_Nonnull)view
                popupParameter:(TFPopupParam *_Nullable)popupParameter{
     if(!popupParameter) popupParameter = [self makeSlidePopupParameterByViewHeight:view.height];
     if(AppDelegate.tabBarVC){
@@ -110,22 +110,14 @@ JobsKey(_popupParameter)
 -(void)setPopupParameter:(TFPopupParam *)popupParameter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_popupParameter, popupParameter)
 }
-#pragma mark —— @property(nonatomic,strong)NoticePopupView *popupView;
-JobsKey(_popupView)
-@dynamic popupView;
--(JobsNoticePopupView *)popupView{
-    JobsNoticePopupView *PopupView = Jobs_getAssociatedObject(_popupView);
-    if (!PopupView) {
-        PopupView = JobsNoticePopupView.new;
-        PopupView.size = CGSizeMake(JobsMainScreen_WIDTH() - 12 * 2, JobsMainScreen_HEIGHT() * 2 / 3);
-        [PopupView richElementsInViewWithModel:UIViewModel.new];
-        [self setPopupView:PopupView];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_popupView, PopupView)
-    }return PopupView;
-}
-
--(void)setPopupView:(JobsNoticePopupView *)popupView{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_popupView, popupView)
+#pragma mark —— PopView
+static JobsNoticePopupView *_noticePopupView = nil;
++(JobsNoticePopupView *)makeNoticePopupView{
+    if(!_noticePopupView){
+        _noticePopupView = JobsNoticePopupView.new;
+        _noticePopupView.size = [JobsNoticePopupView viewSizeWithModel:nil];
+        [_noticePopupView richElementsInViewWithModel:UIViewModel.new];
+    }return _noticePopupView;
 }
 
 @end

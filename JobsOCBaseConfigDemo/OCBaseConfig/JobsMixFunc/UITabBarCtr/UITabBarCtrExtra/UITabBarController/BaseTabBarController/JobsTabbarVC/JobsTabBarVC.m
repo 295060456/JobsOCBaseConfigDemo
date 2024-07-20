@@ -253,11 +253,12 @@ static dispatch_once_t onceToken;
         }
     }
     /// 初始显示【具备Lottie播放条件才进行相关初始化操作】
-    if (self.firstUI_selectedIndex < self.viewControllers.count) {
-        self.selectedIndex = self.firstUI_selectedIndex;//初始显示哪个
+    extern NSUInteger DefaultIndex;
+    if (DefaultIndex < self.viewControllers.count) {
+        self.selectedIndex = DefaultIndex; /// 初始显示的视图控制器
         if ([self judgeLottieWithIndex:self.selectedIndex]) {
-            [AppDelegate.viewCtrlByTabBarCtrlConfigMutArr[self.firstUI_selectedIndex] lottieImagePlay];
-            [self.tabBar animationLottieImage:self.firstUI_selectedIndex];
+            [AppDelegate.viewCtrlByTabBarCtrlConfigMutArr[DefaultIndex] lottieImagePlay];
+            [self.tabBar animationLottieImage:DefaultIndex];
         }
     }
 }
@@ -414,7 +415,7 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (self.view.panGR.state == UIGestureRecognizerStateBegan ||
         self.view.panGR.state == UIGestureRecognizerStateChanged) {
         NSArray *viewControllers = tabBarController.viewControllers;
-        return [TransitionAnimation.alloc initWithTargetEdge: 
+        return [TransitionAnimation.alloc initWithTargetEdge:
                 [viewControllers indexOfObject:toVC] > [viewControllers indexOfObject:fromVC] ? UIRectEdgeLeft : UIRectEdgeRight];
     }else return nil;
 }

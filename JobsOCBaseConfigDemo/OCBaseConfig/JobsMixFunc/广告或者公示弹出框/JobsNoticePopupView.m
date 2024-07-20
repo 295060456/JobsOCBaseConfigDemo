@@ -48,8 +48,8 @@
             _imageView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                      UITapGestureRecognizer *_Nullable arg) {
                 @jobs_strongify(self)
-                NSLog(@"%@",self.popupView);
-                [self.popupView tf_hide];
+                NSLog(@"%@",NSObject.makeNoticePopupView);
+                [NSObject.makeNoticePopupView tf_hide];
                 return nil;
             }];
             _imageView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行

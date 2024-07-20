@@ -16,7 +16,7 @@
 @implementation JobsCustomTabBarVC
 
 -(void)dealloc{
-    JobsRemoveNotification(self);
+    JobsRemoveNotification(self);;
     NSLog(@"%@",JobsLocalFunc);
 }
 
@@ -61,6 +61,8 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    extern NSUInteger DefaultIndex;
+    self.selectedIndex = DefaultIndex;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -87,8 +89,8 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 -(JobsCustomTabBar *)customTabBar{
     if(!_customTabBar){
         _customTabBar = JobsCustomTabBar.new;
-//        _customTabBar.backgroundColor = JobsClearColor;
-        _customTabBar.backgroundColor = JobsRedColor;
+        _customTabBar.backgroundColor = JobsClearColor;
+//        _customTabBar.backgroundColor = JobsRedColor;
         [self.view addSubview:_customTabBar];
         
         if(!jobsZeroRectValue(JobsCustomTabBarConfig_appDelegate.tabBarFrame)){
