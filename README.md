@@ -98,11 +98,11 @@
 
 ### 1、特别说明 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* xcode对中文的兼容性非常好，所以可以中文命名路径（比如文件夹）
+* xcode对中文的兼容性非常好，所以可以中文命名路径（比如文件夹名称）
 
-* 经实践证明，如果配置多语言化，那么xcode将会刷新`Info.plist`，导致里面的注释消失。正确的做法是，对`Info.plist`进行备份，随时进行替换
+* 经实践证明，如果配置多语言化，那么xcode将会刷新`Info.plist`，<u>导致里面的注释消失</u>。正确的做法是，对`Info.plist`进行备份，随时进行替换
 
-* 工程项目的`Info.plist`文件是对整个工程的配置说明，系统固定读取，所以必须在工程项目根目录的同名文件夹下。否则项目启动会出问题
+* 工程项目的`Info.plist`文件是对整个工程的配置说明，<u>系统固定读取</u>，所以必须在工程项目根目录的同名文件夹下。否则项目启动会出问题
 
   ![image-20240706113246025](./assets/image-20240706113246025.png)
 
@@ -179,7 +179,7 @@
   echo "桌面的Volumes文件夹内容已成功复制到/Library/Developer/CoreSimulator/Volumes。"
   ```
 
-### 4、`lldb` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 4、`lldb`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 ```shell
 (lldb) target list
@@ -399,7 +399,7 @@ Current targets:
 
 ### 9、**手动打包`*.ipa`流程 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
 
-* 电脑桌面新建文件夹，并重命名为`payload；`
+* 电脑桌面新建文件夹，并重命名为`payload`
 
 * 真机运行项目（不同设备，不同芯片组，底层指令集不一致）
 
@@ -417,7 +417,7 @@ Current targets:
 
 ### 10、[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 背景意义：统一全局的Block定义，减少冗余代码
+* 背景意义：**统一全局的Block定义，减少冗余代码**
 
 * ```ruby
   pod 'JobsBlock' # https://github.com/295060456/JobsBlock
@@ -842,7 +842,7 @@ NSObject <|-- BaseProtocol
 
 * 关注文件： [**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
 
-* <font color=red>**当设备横竖屏切换的时候，设备宽高定义会互相反转**</font>
+* <font color=red>**当设备横竖屏切换的时候，设备宽高定义会互相反转**</font>。即，此时（横屏）的屏幕宽即为垂直屏的高。同样的，此时（横屏）的屏幕高即为垂直屏的宽
 
   * ```objective-c
     static inline CGFloat JobsRealHeight(void){
@@ -1038,10 +1038,9 @@ NSObject <|-- BaseProtocol
   /// API_AVAILABLE(ios(10.0))
   -(void)textFieldDidEndEditing:(UITextField *)textField
                           reason:(UITextFieldDidEndEditingReason)reason{
-      
   }
   ```
-
+  
 * <font color=red id=textField的文本变化监控>**在文本字段的字符将要改变时调用，因为用户输入、删除或粘贴内容。返回YES允许更改，返回NO禁止更改**</font>
 
   * 对于删除操作，此时的**string**是<u>长度为0个字符单位</u>的空字符
@@ -1390,7 +1389,7 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-#### 16.3、字符过滤
+#### 16.4、字符过滤
 
 * 一般情况下，如果要监控输入字符，需要实现相应的`UITextFieldDelegate`方法，某些情况下会比较繁琐，包括但不仅限于下列：
 
@@ -1776,7 +1775,7 @@ NSObject <|-- BaseProtocol
 * <font color=red>不要在属性上加`__block`</font>。转而是在这个对象上使用`__block`
 * <font color=red>属性化的`NSString *`可以用**assign**修饰，但是最好用**copy**</font>
 
-## 四、架构说明 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+## 四、架构相关 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 ### 1、[**不使用 Storyboard + 使用自定义的控制器（ViewController@1）**](#https://blog.csdn.net/htwhtw123/article/details/125348408) + **不使用多场景**
 
@@ -1863,6 +1862,8 @@ NSObject <|-- BaseProtocol
 
 ### 2、iOS新建应用使用多场景
 
+* TODO
+
 
 ## 五、代码讲解
 
@@ -1881,6 +1882,44 @@ NSObject <|-- BaseProtocol
 
   * 得出的 UIButton 是没有约束的，需要自己在外界加
   * 关注实现类：[<font color=blue>**`@implementation UIButton (UI)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIButton/UIButton+Category/UIButton+UI)
+  
+* 配置文件
+
+  * ```objective-c
+    @interface UIButtonConfiguration : NSObject <NSCopying, NSSecureCoding>
+    ```
+  
+  * ```objective-c
+    @interface UIBackgroundConfiguration : NSObject <NSCopying, NSSecureCoding>
+    ```
+  
+  * ```objective-c
+    @interface UIImageConfiguration : NSObject <NSCopying, NSSecureCoding>
+    ```
+  
+    * ```objective-c
+      @interface UIImageSymbolConfiguration : UIImageConfiguration
+      ```
+  
+* 对配置文件的修改：<font color=red>**必须对配置文件`UIButtonConfiguration *configuration`进行整体的替换**</font>
+
+  * 无效的修改
+  
+    ```objective-c
+    id A = button.configuration.background.image;
+    button.configuration.background.image = nil;
+    [button updateConfiguration];
+    id B = button.configuration.background.image;
+    ```
+  
+  * 有效的修改
+  
+    ```objective-c
+    id A = button.configuration;
+    button.configuration = nil;
+    [button updateConfiguration];
+    id B = button.configuration;
+    ```
   
 * <font color=red id=用新Api（UIButtonConfiguration）创建一个带富文本的UIButton>**用新Api（UIButtonConfiguration）创建一个带富文本的UIButton**</font>
 
@@ -3769,6 +3808,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 30、关于`UITabBarController` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+#### 30.1、架构说明
+
 * <font color=red>`JobsTabBarVC`</font>：**`UITabBarController`**
   * `JobsTabBarItemConfig`：**`NSObject`**
   * **UITabBarItem**
@@ -3787,7 +3828,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * `LZTabBarConfig` ：**`NSObject`**
   * `LZTabBarItem`：**`UIView`**
 
-#### 30.2、
+#### 30.2、[自定义 UITabBarController](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/UITabBarCtr/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md)
 
 ### Test <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

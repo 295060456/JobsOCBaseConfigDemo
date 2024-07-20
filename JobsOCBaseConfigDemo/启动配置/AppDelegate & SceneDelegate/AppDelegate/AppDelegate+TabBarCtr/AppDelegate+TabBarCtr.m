@@ -8,6 +8,7 @@
 #import "AppDelegate+TabBarCtr.h"
 
 @implementation AppDelegate (TabBarCtr)
+static NSUInteger DefaultIndex = 3;
 #pragma mark —— 配置一些普通的控制器
 @dynamic tabBarVC;
 static JobsTabBarVC *_tabBarVC = nil;
@@ -136,7 +137,7 @@ static LZTabBarConfig *_lZTabBarConfig = nil;
 static JobsCustomTabBarConfig *_jobsCustomTabBarConfig = nil;
 +(JobsCustomTabBarConfig *)jobsCustomTabBarConfig{
     _jobsCustomTabBarConfig = JobsCustomTabBarConfig.sharedManager;
-    _jobsCustomTabBarConfig.tabBarHeight = JobsWidth(52);
+    _jobsCustomTabBarConfig.tabBarHeight = JobsWidth(60);
     _jobsCustomTabBarConfig.tabBarWidth = JobsWidth(375);
 //    _jobsCustomTabBarConfig.tabBarX = JobsWidth(0);
 //    _jobsCustomTabBarConfig.tabBarY = JobsWidth(0);
@@ -279,8 +280,8 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                titleLineBreakMode:NSLineBreakByWordWrapping
                                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                               baseBackgroundColor:JobsClearColor
-                                                                  backgroundImage:nil
-                                                                     imagePadding:JobsWidth(2)
+                                                                  backgroundImage:DefaultIndex == _tabBarItemMutArr.count ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）")
+                                                                     imagePadding:JobsWidth(0)
                                                                      titlePadding:JobsWidth(0)
                                                                    imagePlacement:NSDirectionalRectEdgeTop
                                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
@@ -296,7 +297,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                   clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            [self.jobsCustomTabBarVC customSelectIndex:0];
+            [AppDelegate button:x index:0];
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }]];
@@ -319,8 +320,8 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                titleLineBreakMode:NSLineBreakByWordWrapping
                                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                               baseBackgroundColor:JobsClearColor
-                                                                  backgroundImage:nil
-                                                                     imagePadding:JobsWidth(2)
+                                                                  backgroundImage:DefaultIndex == _tabBarItemMutArr.count ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）")
+                                                                     imagePadding:JobsWidth(0)
                                                                      titlePadding:JobsWidth(0)
                                                                    imagePlacement:NSDirectionalRectEdgeTop
                                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
@@ -336,7 +337,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                   clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            [self.jobsCustomTabBarVC customSelectIndex:1];
+            [AppDelegate button:x index:1];
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }]];
@@ -359,8 +360,8 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                titleLineBreakMode:NSLineBreakByWordWrapping
                                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                               baseBackgroundColor:JobsClearColor
-                                                                  backgroundImage:nil
-                                                                     imagePadding:JobsWidth(2)
+                                                                  backgroundImage:DefaultIndex == _tabBarItemMutArr.count ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）")
+                                                                     imagePadding:JobsWidth(0)
                                                                      titlePadding:JobsWidth(0)
                                                                    imagePlacement:NSDirectionalRectEdgeTop
                                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
@@ -376,7 +377,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                   clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            [self.jobsCustomTabBarVC customSelectIndex:2];
+            [AppDelegate button:x index:2];
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }]];
@@ -399,8 +400,8 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                titleLineBreakMode:NSLineBreakByWordWrapping
                                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                               baseBackgroundColor:JobsClearColor
-                                                                  backgroundImage:nil
-                                                                     imagePadding:JobsWidth(2)
+                                                                  backgroundImage:DefaultIndex == _tabBarItemMutArr.count ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）")
+                                                                     imagePadding:JobsWidth(0)
                                                                      titlePadding:JobsWidth(0)
                                                                    imagePlacement:NSDirectionalRectEdgeTop
                                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
@@ -416,7 +417,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                   clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            [self.jobsCustomTabBarVC customSelectIndex:3];
+            [AppDelegate button:x index:3];
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }]];
@@ -439,8 +440,8 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                titleLineBreakMode:NSLineBreakByWordWrapping
                                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                               baseBackgroundColor:JobsClearColor
-                                                                  backgroundImage:nil
-                                                                     imagePadding:JobsWidth(2)
+                                                                  backgroundImage:DefaultIndex == _tabBarItemMutArr.count ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）")
+                                                                     imagePadding:JobsWidth(0)
                                                                      titlePadding:JobsWidth(0)
                                                                    imagePlacement:NSDirectionalRectEdgeTop
                                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
@@ -456,7 +457,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                                                                   clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            [self.jobsCustomTabBarVC customSelectIndex:4];
+            [AppDelegate button:x index:4];
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }]];
@@ -587,6 +588,19 @@ static NSMutableArray <__kindof UINavigationController *>*_navCtrMutArr = nil;
     _navCtrMutArr = navCtrMutArr;
 }
 #pragma mark —— 一些私有方法
++(void)button:(UIButton *)button index:(NSUInteger)index{
+    int t = 0;
+    for (UIButton *btn in AppDelegate.tabBarItemMutArr) {
+        btn.jobsResetBtnImage(self.imageUnSelectedMutArr[t]);
+        btn.jobsResetBtnTitleCor(JobsCor(@"#FFFFFF"));
+        btn.jobsResetBtnBgImage(JobsIMG(@"TabBarItem选中的背景色（透明）"));
+        t+=1;
+    }
+    button.jobsResetBtnImage(self.imageSelectedMutArr[index]);
+    button.jobsResetBtnTitleCor(JobsCor(@"#FFF500"));
+    button.jobsResetBtnBgImage(JobsIMG(@"TabBarItem选中的背景色"));
+    [self.jobsCustomTabBarVC customSelectIndex:index];
+}
 #pragma mark —— 一些公有方法
 /// 刷新 TabBarTitle
 -(void)refreshTabBarTitle{

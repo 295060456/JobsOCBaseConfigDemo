@@ -213,7 +213,7 @@
         if(roundingCorners == UIRectCornerAllCorners && jobsZeroSizeValue(roundingCornersRadii)){
             [btn cornerCutToCircleWithCornerRadius:cornerRadiusValue];/// 圆切角（四个角全部按照统一的标准切）
         }else{
-            [btn appointCornerCutToCircleByRoundingCorners:roundingCorners 
+            [btn appointCornerCutToCircleByRoundingCorners:roundingCorners
                                                cornerRadii:roundingCornersRadii];/// 圆切角（指定某个角按照统一的标准Size切）
         }
         /// 内容的对齐方式
@@ -245,7 +245,7 @@
         NSMutableDictionary<NSAttributedStringKey, id> *newTextAttributes = textAttributes.mutableCopy;
         if(titleFont){
             [newTextAttributes addEntriesFromDictionary:@{
-                NSFontAttributeName:titleFont, /// 替换为你想要的字体和大小
+                NSFontAttributeName:titleFont /// 替换为你想要的字体和大小
             }];
         }
         
@@ -348,7 +348,10 @@
         if(self.deviceSystemVersion.floatValue < 15.0){
             self.layer.borderColor = layerBorderCor.CGColor;
         }else{
-            self.configuration.background.strokeColor = layerBorderCor;
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.background.strokeColor = layerBorderCor;
+            self.configuration = configuration;
+            [self updateConfiguration];
         }
     };
 }
@@ -360,7 +363,10 @@
         if(self.deviceSystemVersion.floatValue < 15.0){
             self.layer.borderWidth = borderWidth;
         }else{
-            self.configuration.background.strokeWidth = borderWidth;
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.background.strokeWidth = borderWidth;
+            self.configuration = configuration;
+            [self updateConfiguration];
         }
     };
 }
@@ -372,7 +378,10 @@
         if(self.deviceSystemVersion.floatValue < 15.0){
             [self cornerCutToCircleWithCornerRadius:cornerRadiusValue];
         }else{
-            self.configuration.background.cornerRadius = cornerRadiusValue;
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.background.cornerRadius = cornerRadiusValue;
+            self.configuration = configuration;
+            [self updateConfiguration];
         }
     };
 }
@@ -424,6 +433,18 @@
         }
     };
 }
+/// 重设Btn的背景图片
+-(jobsByImageBlock)jobsResetBtnBgImage{
+    @jobs_weakify(self)
+    return ^(UIImage *data) {
+        @jobs_strongify(self)
+        if (@available(iOS 16.0, *)) {
+            self.jobsResetBackgroundImage(data);
+        } else {
+            self.normalBackgroundImage = data;
+        }
+    };
+}
 /**
  1、一一对应UIButtonConfiguration.h文件里面的属性
  2、只有通过UIButtonConfiguration创建的UIButton，这个UIbutton的configuration属性才不为空
@@ -434,9 +455,22 @@
     @jobs_weakify(self)
     return ^(UIBackgroundConfiguration *data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.background = data;
         self.configuration = config;
+        [self updateConfiguration];
+        return self.configuration;
+    };
+}
+
+-(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetBackgroundImage API_AVAILABLE(ios(16.0)){
+    @jobs_weakify(self)
+    return ^(UIImage *data) {
+        @jobs_strongify(self)
+        UIButtonConfiguration *configuration = self.configuration.copy;
+        configuration.background.image = data;
+        self.configuration = configuration;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -445,9 +479,10 @@
     @jobs_weakify(self)
     return ^(UIButtonConfigurationCornerStyle data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.cornerStyle = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -456,9 +491,10 @@
     @jobs_weakify(self)
     return ^(UIButtonConfigurationSize data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.buttonSize = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -467,9 +503,10 @@
     @jobs_weakify(self)
     return ^(UIButtonConfigurationMacIdiomStyle data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.macIdiomStyle = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -478,13 +515,14 @@
     @jobs_weakify(self)
     return ^(UIColor *data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
-        UIBackgroundConfiguration *bgConfig = config.background;
-        
+        UIButtonConfiguration *config = self.configuration.copy;
+        UIBackgroundConfiguration *bgConfig = config.background.copy;
         config.baseBackgroundColor = data;
         bgConfig.backgroundColor = data;
-        
+        config.background = bgConfig;
         self.configuration = config;
+        [self updateConfiguration];
+        
         return self.configuration;
     };
 }
@@ -493,9 +531,10 @@
     @jobs_weakify(self)
     return ^(UIImage *data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.image = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -504,9 +543,10 @@
     @jobs_weakify(self)
     return ^(UIConfigurationColorTransformer data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.imageColorTransformer = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -515,9 +555,10 @@
     @jobs_weakify(self)
     return ^(UIImageSymbolConfiguration *data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.preferredSymbolConfigurationForImage = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -526,9 +567,10 @@
     @jobs_weakify(self)
     return ^(BOOL data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.showsActivityIndicator = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -537,9 +579,10 @@
     @jobs_weakify(self)
     return ^(UIConfigurationColorTransformer data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.activityIndicatorColorTransformer = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -548,9 +591,10 @@
     @jobs_weakify(self)
     return ^(NSString *data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.title = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -559,9 +603,10 @@
     @jobs_weakify(self)
     return ^(NSAttributedString *data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.attributedTitle = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -570,9 +615,10 @@
     @jobs_weakify(self)
     return ^(UIConfigurationTextAttributesTransformer data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.titleTextAttributesTransformer = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -581,9 +627,10 @@
     @jobs_weakify(self)
     return ^(NSLineBreakMode data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.titleLineBreakMode = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -592,9 +639,10 @@
     @jobs_weakify(self)
     return ^(NSLineBreakMode data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.subtitleLineBreakMode = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -603,9 +651,10 @@
     @jobs_weakify(self)
     return ^(NSString *data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.subtitle = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -614,9 +663,10 @@
     @jobs_weakify(self)
     return ^(NSAttributedString *data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.attributedSubtitle = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -625,9 +675,10 @@
     @jobs_weakify(self)
     return ^(UIConfigurationTextAttributesTransformer data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.subtitleTextAttributesTransformer = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -636,9 +687,10 @@
     @jobs_weakify(self)
     return ^(NSLineBreakMode data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.subtitleLineBreakMode = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -647,9 +699,10 @@
     @jobs_weakify(self)
     return ^(UIButtonConfigurationIndicator data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.indicator = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -658,9 +711,10 @@
     @jobs_weakify(self)
     return ^(UIConfigurationColorTransformer data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.indicatorColorTransformer = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -669,9 +723,10 @@
     @jobs_weakify(self)
     return ^(NSDirectionalEdgeInsets data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.contentInsets = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -680,9 +735,10 @@
     @jobs_weakify(self)
     return ^(NSDirectionalRectEdge data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.imagePlacement = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -691,9 +747,10 @@
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.imagePadding = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -702,9 +759,10 @@
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.titlePadding = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -713,9 +771,10 @@
     @jobs_weakify(self)
     return ^(UIButtonConfigurationTitleAlignment data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.titleAlignment = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -724,9 +783,10 @@
     @jobs_weakify(self)
     return ^(BOOL data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.automaticallyUpdateForSelection = data;
         self.configuration = config;
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -735,10 +795,11 @@
     @jobs_weakify(self)
     return ^(UIColor *data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
         config.baseForegroundColor = data;
         self.configuration = config;
         [self jobsSetBtnTitleFont:nil btnTitleCor:data];
+        [self updateConfiguration];
         return self.configuration;
     };
 }
@@ -747,11 +808,12 @@
     @jobs_weakify(self)
     return ^(UIColor *data) {
         @jobs_strongify(self)
-        UIButtonConfiguration *config = self.configuration;
+        UIButtonConfiguration *config = self.configuration.copy;
 #warning UIButtonConfiguration 没有对subTitle字体颜色的描述
 //        config.baseForegroundColor = data;
         self.configuration = config;
         [self jobsSetBtnSubTitleFont:nil btnSubTitleCor:data];
+        [self updateConfiguration];
         return self.configuration;
     };
 }

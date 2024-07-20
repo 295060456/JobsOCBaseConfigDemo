@@ -138,6 +138,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByCorBlock)jobsResetBtnTitleCor;
 /// 重设Btn主标题的背景颜色
 -(jobsByCorBlock)jobsResetBtnBgCor;
+/// 重设Btn的背景图片
+-(jobsByImageBlock)jobsResetBtnBgImage;
 #warning 因为Api 中只有设置主标题的文字颜色，而没有设置副标题文字的颜色。所以设置副标题文字颜色等，需要用到富文本。
 /**
  1、一一对应UIButtonConfiguration.h文件里面的属性
@@ -146,6 +148,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 #pragma mark —— UIButton.configuration的各项属性值的修改
 -(JobsReturnButtonConfigurationByBackgroundBlock _Nonnull)jobsResetBackground API_AVAILABLE(ios(16.0));
+-(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetBackgroundImage API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByCornerStyleBlock _Nonnull)jobsResetCornerStyle API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationBySizeBlock _Nonnull)jobsResetButtonSize API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByMacIdiomStyleBlock _Nonnull)jobsResetMacIdiomStyle API_AVAILABLE(ios(16.0));
