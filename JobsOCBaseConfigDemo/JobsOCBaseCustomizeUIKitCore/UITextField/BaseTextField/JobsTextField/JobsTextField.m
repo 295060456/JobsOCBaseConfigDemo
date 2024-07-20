@@ -83,7 +83,6 @@ UIViewModelProtocol_synthesize
 -(BOOL)textField:(UITextField *)textField
 shouldChangeCharactersInRange:(NSRange)range
 replacementString:(NSString *)string{
-    NSLog(@"DFDFDGD = %@",string);
     return YES;
 }
 /// 含义：在文本字段的选中文本发生改变时调用。
@@ -132,6 +131,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         make.centerY.equalTo(self);
         make.left.equalTo(self).offset(self.leftViewByOutLineOffset);
     }];
+    [self layoutIfNeeded];
 }
 
 -(void)setRightView:(UIView *)rightView{
@@ -141,6 +141,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         make.centerY.equalTo(self);
         make.right.equalTo(self).offset(-self.rightViewByOutLineOffset);
     }];
+    [self layoutIfNeeded];
 }
 #pragma mark —— lazyLoad
 -(UITextField *)realTextField{
