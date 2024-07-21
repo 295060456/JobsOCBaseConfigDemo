@@ -34,12 +34,12 @@
     JobsCustomTabBarConfig *config = AppDelegate.jobsCustomTabBarConfig;/// 此时还没有初始化 JobsCustomTabBarConfig.sharedManager;
     self.backgroundColor = config.tabBarBackgroundImage ? [UIColor colorWithPatternImage:config.tabBarBackgroundImage] :config.tabBarBackgroundColor;
     NSInteger itemCount = config.tabBarItems.count;
-    CGFloat itemWidth = JobsMainScreen_WIDTH() / itemCount;
+    CGFloat itemWidth = (config.tabBarWidth ? : JobsRealWidth()) / itemCount;
     for (NSInteger index = 0; index < itemCount; index++) {
         UIView *item = config.tabBarItems[index];
         CGFloat xPosition = itemWidth * index;
         CGFloat yOffset = (index < config.tabBarItemYOffsets.count) ? [config.tabBarItemYOffsets[index] floatValue] : 0;
-        item.frame = CGRectMake(xPosition, 
+        item.frame = CGRectMake(xPosition,
                                 yOffset,
                                 itemWidth,
                                 config.tabBarHeight);

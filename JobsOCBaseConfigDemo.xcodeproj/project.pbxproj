@@ -16,6 +16,8 @@
 		C525D3FB2C4803F0003DAFD0 /* JobsMenuSubView@3.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3FA2C4803F0003DAFD0 /* JobsMenuSubView@3.m */; };
 		C525D4002C480402003DAFD0 /* JobsMenuSubView@4.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3FF2C480402003DAFD0 /* JobsMenuSubView@4.m */; };
 		CE40B2922C4B628A00CB64B5 /* JobsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2902C4B628900CB64B5 /* JobsTextField.m */; };
+		CE94E83C2C4D1098001C3CCB /* JobsToggleBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94E8362C4D1098001C3CCB /* JobsToggleBaseView.m */; };
+		CE94E83D2C4D1098001C3CCB /* JobsToggleNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94E8392C4D1098001C3CCB /* JobsToggleNavView.m */; };
 		CEC01DD32C4A38080069C91A /* Bayon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC01DD22C4A38080069C91A /* Bayon.ttf */; };
 		CEC01DD62C4A386A0069C91A /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEC01DD42C4A38690069C91A /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		CECE788D2C4509E000764AF5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CECE788C2C4509E000764AF5 /* Base */; };
@@ -1111,6 +1113,10 @@
 		CE40B28F2C4B628900CB64B5 /* JobsTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTextField.h; sourceTree = "<group>"; };
 		CE40B2902C4B628900CB64B5 /* JobsTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTextField.m; sourceTree = "<group>"; };
 		CE775D7C2C47BF5D004D39D0 /* 自定义 UITabBarController.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "自定义 UITabBarController.md"; path = "自定义 UITabBarController.md/自定义 UITabBarController.md"; sourceTree = "<group>"; };
+		CE94E8352C4D1098001C3CCB /* JobsToggleBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsToggleBaseView.h; sourceTree = "<group>"; };
+		CE94E8362C4D1098001C3CCB /* JobsToggleBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsToggleBaseView.m; sourceTree = "<group>"; };
+		CE94E8382C4D1098001C3CCB /* JobsToggleNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsToggleNavView.h; sourceTree = "<group>"; };
+		CE94E8392C4D1098001C3CCB /* JobsToggleNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsToggleNavView.m; sourceTree = "<group>"; };
 		CEC01CD82C4933A40069C91A /* 时间格式化.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "时间格式化.md"; sourceTree = "<group>"; };
 		CEC01DD22C4A38080069C91A /* Bayon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bayon.ttf; sourceTree = "<group>"; };
 		CEC01DD52C4A386A0069C91A /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
@@ -3138,6 +3144,33 @@
 				CE40B2902C4B628900CB64B5 /* JobsTextField.m */,
 			);
 			path = JobsTextField;
+			sourceTree = "<group>";
+		};
+		CE94E8372C4D1098001C3CCB /* JobsToggleBaseView */ = {
+			isa = PBXGroup;
+			children = (
+				CE94E8352C4D1098001C3CCB /* JobsToggleBaseView.h */,
+				CE94E8362C4D1098001C3CCB /* JobsToggleBaseView.m */,
+			);
+			path = JobsToggleBaseView;
+			sourceTree = "<group>";
+		};
+		CE94E83A2C4D1098001C3CCB /* JobsToggleNavView */ = {
+			isa = PBXGroup;
+			children = (
+				CE94E8382C4D1098001C3CCB /* JobsToggleNavView.h */,
+				CE94E8392C4D1098001C3CCB /* JobsToggleNavView.m */,
+			);
+			path = JobsToggleNavView;
+			sourceTree = "<group>";
+		};
+		CE94E83B2C4D1098001C3CCB /* JobsToggleView */ = {
+			isa = PBXGroup;
+			children = (
+				CE94E8372C4D1098001C3CCB /* JobsToggleBaseView */,
+				CE94E83A2C4D1098001C3CCB /* JobsToggleNavView */,
+			);
+			path = JobsToggleView;
 			sourceTree = "<group>";
 		};
 		CECE78762C4509E000764AF5 = {
@@ -11909,6 +11942,7 @@
 		CECE87132C45140000764AF5 /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				CE94E83B2C4D1098001C3CCB /* JobsToggleView */,
 				C525D3E92C48017D003DAFD0 /* 分类菜单栏联动选择界面 */,
 				CECE86072C45140000764AF5 /* 电影倒计时特效 */,
 				CECE868C2C45140000764AF5 /* 加密体系 */,
@@ -13086,6 +13120,7 @@
 				CECE7CDD2C450C5000764AF5 /* JobsWalletVC.m in Sources */,
 				CECE7D372C450CCD00764AF5 /* CasinoUpgradePopupView.m in Sources */,
 				CECE872C2C45140000764AF5 /* UIImage+Base85.m in Sources */,
+				CE94E83D2C4D1098001C3CCB /* JobsToggleNavView.m in Sources */,
 				CECE858D2C4513CE00764AF5 /* UICollectionViewCell+ShakeAnimation.m in Sources */,
 				CECE85892C4513CE00764AF5 /* JobsBaseCollectionViewCell.m in Sources */,
 				CECE7D442C450CCD00764AF5 /* DDNetworkingAPI+DemoTestApi.m in Sources */,
@@ -13363,6 +13398,7 @@
 				CECE85962C4513CE00764AF5 /* UIColor+Other.m in Sources */,
 				CECE7CDA2C450C5000764AF5 /* CustomBtnVC.m in Sources */,
 				CECE7EE02C450E5B00764AF5 /* ZWPullMenuConfig.m in Sources */,
+				CE94E83C2C4D1098001C3CCB /* JobsToggleBaseView.m in Sources */,
 				CECE81122C4512BF00764AF5 /* JobsHotLabelWithMultiLine.m in Sources */,
 				CECE85E62C4513CE00764AF5 /* UIView+MJRefresh.m in Sources */,
 				CECE874F2C45140000764AF5 /* AESCrypt.m in Sources */,

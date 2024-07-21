@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)actionReturnNSIntegerByIDBlock:(JobsReturnNSIntegerByIDBlock)returnNSIntegerByIDBlock;
 -(void)actionReturnNSUIntegerByIDBlock:(JobsReturnNSUIntegerByIDBlock)returnNSUIntegerByIDBlock;
 -(void)actionReturnCGFloatByIDBlock:(JobsReturnCGFloatByIDBlock)returnCGFloatByIDBlock;
--(void)actionReturnBOOLByIDBlock:(JobsReturnBoolByIDBlock)returnBoolByIDBlock;
+-(void)actionReturnBoolByIDBlock:(JobsReturnBoolByIDBlock)returnBoolByIDBlock;
 -(void)actionReturnIntByIDBlock:(JobsReturnIntByIDBlock)returnIntByIDBlock;
 -(void)actionReturnUnsignedIntByIDBlock:(JobsReturnUnsignedIntByIDBlock)returnUnsignedIntByIDBlock;
 -(void)actionReturnFloatByIDBlock:(JobsReturnFloatByIDBlock)returnFloatByIDBlock;
@@ -146,3 +146,127 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#ifndef KindOfBtnCls
+#define KindOfBtnCls(data) [data isKindOfClass:UIButton.class]
+#endif /* KindOfBtnCls */
+
+#ifndef KindOfViewCls
+#define KindOfViewCls(data) [data isKindOfClass:UIView.class]
+#endif /* KindOfViewCls */
+
+#ifndef KindOfStrCls
+#define KindOfStrCls(data) [data isKindOfClass:NSString.class]
+#endif /* KindOfStrCls */
+
+#ifndef KindOfVCCls
+#define KindOfVCCls(data) [data isKindOfClass:UIViewController.class]
+#endif /* KindOfVCCls */
+
+#ifndef KindOfDataCls
+#define KindOfDataCls(data) [data isKindOfClass:NSData.class]
+#endif /* KindOfDataCls */
+
+#ifndef KindOfMutArrCls
+#define KindOfMutArrCls(data) [data isKindOfClass:NSMutableArray.class]
+#endif /* KindOfMutArrCls */
+
+#ifndef KindOfArrCls
+#define KindOfArrCls(data) [data isKindOfClass:NSArray.class]
+#endif /* KindOfArrCls */
+
+#ifndef KindOfMutDicCls
+#define KindOfMutDicCls(data) [data isKindOfClass:NSMutableDictionary.class]
+#endif /* KindOfMutDicCls */
+
+#ifndef KindOfDicCls
+#define KindOfDicCls(data) [data isKindOfClass:NSDictionary.class]
+#endif /* KindOfDicCls */
+
+#ifndef KindOfJSONerializationCls
+#define KindOfJSONerializationCls(data) [data isKindOfClass:NSJSONSerialization.class]
+#endif /* KindOfJSONerializationCls */
+
+#ifndef KindOfMutStrCls
+#define KindOfMutStrCls(data) [data isKindOfClass:NSMutableString.class]
+#endif /* KindOfMutStrCls */
+
+#ifndef KindOfImageCls
+#define KindOfImageCls(data) [data isKindOfClass:UIImage.class]
+#endif /* KindOfImageCls */
+
+#ifndef KindOfTabBarCtrlCls
+#define KindOfTabBarCtrlCls(data) [data isKindOfClass:UITabBarController.class]
+#endif /* KindOfTabBarCtrlCls */
+
+#ifndef KindOfNavCtrlCls
+#define KindOfNavCtrlCls(data) [data isKindOfClass:UINavigationController.class]
+#endif /* KindOfNavCtrlCls */
+
+#ifndef KindOfScrollViewCls
+#define KindOfScrollViewCls(data) [data isKindOfClass:UIScrollView.class]
+#endif /* KindOfScrollViewCls */
+    
+#ifndef KindOfNumberCls
+#define KindOfNumberCls(data) [data isKindOfClass:NSNumber.class]
+#endif /* KindOfNumberCls */
+   
+#ifndef KindOfSetCls
+#define KindOfSetCls(data) [data isKindOfClass:NSSet.class]
+#endif /* KindOfSetCls */
+    
+#ifndef KindOfMutSetCls
+#define KindOfMutSetCls(data) [data isKindOfClass:NSMutableSet.class]
+#endif /* KindOfMutSetCls */
+
+#ifndef KindOfViewModelCls
+#define KindOfViewModelCls(data) [data isKindOfClass:UIViewModel.class]
+#endif /* KindOfViewModelCls */
+    
+#ifndef KindOfLabCls
+#define KindOfLabCls(data) [data isKindOfClass:UILabel.class]
+#endif /* KindOfLabCls */
+    
+#ifndef KindOfCollectionViewCellCls
+#define KindOfCollectionViewCellCls(data) [data isKindOfClass:UICollectionViewCell.class]
+#endif /* KindOfCollectionViewCellCls */
+    
+#ifndef KindOfTableViewCellCls
+#define KindOfTableViewCellCls(data) [data isKindOfClass:UITableViewCell.class]
+#endif /* KindOfTableViewCellCls */
+    
+#ifndef KindOfTableViewCls
+#define KindOfTableViewCls(data) [data isKindOfClass:UITableView.class]
+#endif /* KindOfTableViewCls */
+
+#ifndef KindOfCollectionViewCls
+#define KindOfCollectionViewCls(data) [data isKindOfClass:UICollectionView.class]
+#endif /* KindOfCollectionViewCls */
+
+#ifndef KindOfErrorCls
+#define KindOfErrorCls(data) [data isKindOfClass:NSError.class]
+#endif /* KindOfErrorCls */
+
+#ifndef KindOfPHAssetCls
+#define KindOfPHAssetCls(data) [data isKindOfClass:PHAsset.class]
+#endif /* KindOfPHAssetCls */
+    
+#ifndef KindOfTextFieldCls
+#define KindOfTextFieldCls(data) [data isKindOfClass:UITextField.class]
+#endif /* KindOfTextFieldCls */
+    
+#ifndef KindOfLZTabBarItemCls
+#define KindOfLZTabBarItemCls(data) [data isKindOfClass:LZTabBarItem.class]
+#endif /* KindOfLZTabBarItemCls */
+    
+#ifndef KindOfCtrlCls
+#define KindOfCtrlCls(data) [data isKindOfClass:UIControl.class]
+#endif /* KindOfCtrlCls */
+    
+#ifndef KindOfYTKAnimatingRequestAccessoryCls
+#define KindOfYTKAnimatingRequestAccessoryCls(data) [data isKindOfClass:YTKAnimatingRequestAccessory.class]
+#endif /* KindOfYTKAnimatingRequestAccessoryCls */
+    
+#ifndef KindOfClsFromStr
+#define KindOfClsFromStr(data,ClsName) [data isKindOfClass:NSClassFromString(ClsName)]
+#endif /* KindOfClsFromStr */

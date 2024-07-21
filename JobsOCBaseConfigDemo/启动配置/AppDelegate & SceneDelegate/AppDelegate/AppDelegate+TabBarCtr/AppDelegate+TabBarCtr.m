@@ -119,7 +119,7 @@ static JobsCustomTabBarConfig *_jobsCustomTabBarConfig = nil;
 +(JobsCustomTabBarConfig *)jobsCustomTabBarConfig{
     _jobsCustomTabBarConfig = JobsCustomTabBarConfig.sharedManager;
     _jobsCustomTabBarConfig.tabBarHeight = JobsWidth(60);
-    _jobsCustomTabBarConfig.tabBarWidth = JobsWidth(375);
+    _jobsCustomTabBarConfig.tabBarWidth = JobsWidth(389);
 //    _jobsCustomTabBarConfig.tabBarX = JobsWidth(0);
 //    _jobsCustomTabBarConfig.tabBarY = JobsWidth(0);
 //    _jobsCustomTabBarConfig.tabBarSize = CGSizeMake(JobsWidth(0), JobsWidth(0));
