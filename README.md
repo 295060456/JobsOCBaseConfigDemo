@@ -1904,6 +1904,34 @@ NSObject <|-- BaseProtocol
     }
     ```
 
+### 26、`UIScrollView` 的滚动生命周期
+
+* 有2种方式驱动滚动效果
+
+  * 用户手动拖拽（拖拽过程的执行生命周期，由上至下。<font color=red>**只会执行一次**</font>）
+
+    * ```objective-c
+      -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
+      ```
+
+    * ```objective-c
+      -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView 
+                          withVelocity:(CGPoint)velocity
+                   targetContentOffset:(inout CGPoint *)targetContentOffset
+      ```
+
+    * ```objective-c
+      -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+                       willDecelerate:(BOOL)decelerate
+      ```
+
+  * 代码事件触发，改变`UIScrollView.contentOffset`
+
+* <font color=red>**`- (void)scrollViewDidScroll:(UIScrollView *)scrollView`**</font>
+
+  * 不管是哪种方式驱动的滚动效果，最终都会汇集到这个方法里面
+  * 只要在滚动，<font color=red>**这个方法一定会重复多次的调用**</font>
+
 ### 25、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>

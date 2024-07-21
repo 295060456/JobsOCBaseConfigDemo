@@ -73,14 +73,29 @@
 }
 #pragma mark —— scrollviewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+
+}
+
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+                    withVelocity:(CGPoint)velocity
+             targetContentOffset:(inout CGPoint *)targetContentOffset{
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+                 willDecelerate:(BOOL)decelerate{
     NSInteger selectedIndx = scrollView.contentOffset.x / self.bgScroll.width;
+    NSLog(@"当前滑动的index = %ld",(long)selectedIndx)
     [self.taggedNavView selectingOneTagWithIndex:selectedIndx];
 }
 #pragma mark —— lazyLoad
 -(JobsToggleNavView *)taggedNavView{
     if(!_taggedNavView){
         _taggedNavView = JobsToggleNavView.new;
-        _taggedNavView.frame = CGRectMake(0, 
+        _taggedNavView.frame = CGRectMake(0,
                                           0,
                                           [JobsToggleBaseView viewSizeWithModel:nil].width,
                                           self.taggedNavView_height);
@@ -98,10 +113,12 @@
         /// 联动
         [_taggedNavView actionObjectBlock:^(id _Nullable data) {
             @jobs_strongify(self)
-            if(KindOfBtnCls(data)){
-                UIButton *btn = (UIButton *)data;
-                self.bgScroll.contentOffset = CGPointMake(self.bgScroll.width * (btn.tag - 1000),
-                                                          0);
+            if(KindOfBaseButtonCls(data)){
+                BaseButton *btn = (BaseButton *)data;
+                /// 由 self.bgScroll 驱动
+                self.bgScroll.contentOffset = CGPointMake(self.bgScroll.width * btn.index,0);
+                NSLog(@"当前滑动的index = %ld",(long)btn.index);
+                [self.taggedNavView selectingOneTagWithIndex:btn.index];
             }
         }];
     }return _taggedNavView;

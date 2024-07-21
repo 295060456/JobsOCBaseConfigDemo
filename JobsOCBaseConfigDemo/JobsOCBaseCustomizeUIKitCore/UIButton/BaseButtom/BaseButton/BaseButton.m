@@ -12,6 +12,7 @@
 @end
 
 @implementation BaseButton
+@synthesize index = _index;
 #pragma mark —— Sys
 -(instancetype)init{
     if (self = [super init]) {

@@ -29,6 +29,8 @@
 @property(nonatomic,assign)CGFloat sliderW;
 /// 滑块高度
 @property(nonatomic,assign)CGFloat sliderH;
+/// 当前选择的 index
+@property(nonatomic,assign,readonly)NSUInteger current_index;
 /// 选择某一个标签
 -(void)selectingOneTagWithIndex:(NSInteger )index;
 

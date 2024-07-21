@@ -11,10 +11,15 @@
 #import "UIButton+UI.h"
 #import "UIView+Extras.h"
 #import "UILabel+Extra.h"
+#import "UIMarkProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseButton : UIButton<BaseButtonProtocol>
+@interface BaseButton : UIButton
+<
+BaseButtonProtocol
+,UIMarkProtocol
+>
 
 @end
 

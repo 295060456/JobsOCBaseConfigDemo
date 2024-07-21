@@ -20,6 +20,7 @@
 
 @property(nonatomic,strong)NSMutableArray <__kindof UIButton *>*buttonsArray;
 @property(nonatomic,strong)UIView *sliderView;
+@property(nonatomic,assign)NSUInteger current_index;
 
 @end
 
@@ -116,80 +117,51 @@
                                                          layerBorderCor:nil
                                                             borderWidth:JobsWidth(0)
                                                           primaryAction:nil
-                                             longPressGestureEventBlock:^(id  _Nullable weakSelf,
-                                                                          id  _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-        }
+                                             longPressGestureEventBlock:nil
                                                         clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
-            /// 跟随的指示器
-            [UIView animateWithDuration:0.2
-                             animations:^{
-                @jobs_strongify(self)
-                self.sliderView.resetCenterX(x.centerX);
-            }];
-            
-            {/// 按钮
-                for (UIButton *subButton in self.buttonsArray) {
-                    subButton.selected = NO;
-                    subButton.jobsResetTitleFont(UIFontSystemFontOfSize(self.tagTextFont_normal));
-                    subButton.jobsResetBtnTitleCor(self.tagTextColor_normal);
-                }
-                
-                x.selected = !x.selected;
-                x.jobsResetTitleFont(UIFontSystemFontOfSize(self.tagTextFont_selected));
-                x.jobsResetBtnTitleCor(self.tagTextColor_selected);
-            }
             /// 最外层的View联动
             if (self.objectBlock) self.objectBlock(x);
-
             return nil;
         }];
         button.frame = CGRectMake(i * self.buttonWidth,
                                   0,
                                   self.buttonWidth,
                                   self.height);
-        button.tag = 1000 + i;
+        button.index = self.buttonsArray.count;
+//        NSLog(@"sss = %ld",(long)button.index);
         [self.buttonsArray addObject:button];
         [self addSubview:button];
     }
+    self.current_index = 0;
     self.sliderView.alpha = 1;
 }
 #pragma mark —— 一些公有方法
-/// 选择某一个标签
+/// 核心方法：拖动和点击的逻辑，都归属于这个方法
 - (void)selectingOneTagWithIndex:(NSInteger)index{
-    NSInteger s_btnTagIndex = index + 1000;
+    NSLog(@"当前选择：%lu",(unsigned long)index);
+    if(index == self.current_index) return;
+    self.current_index = index;
+    /// 全部还原
     for (UIButton *subButton in self.buttonsArray) {
-        /// 此时的subButton，不是当前点击的subButton
-        if (s_btnTagIndex != subButton.tag) {
-            subButton.selected = NO;
-            subButton.titleLabel.font = UIFontSystemFontOfSize(self.tagTextFont_normal);
-        }
-        /// 此时的subButton，就是当前点击的subButton
-        else{
-            @jobs_weakify(self)
-            [UIView animateWithDuration:0.2
-                             animations:^{
-                @jobs_strongify(self)
-                NSLog(@"gsgsg");
-                self.sliderView.resetCenterX(subButton.centerX);
-            } completion:^(BOOL finished) {
-                subButton.selected = YES;
-                subButton.titleLabel.font = UIFontSystemFontOfSize(self.tagTextFont_selected);
-            }];
-        }
+        subButton.selected = NO;
+        subButton.jobsResetTitleFont(UIFontSystemFontOfSize(self.tagTextFont_normal));
+        subButton.jobsResetBtnTitleCor(self.tagTextColor_normal);
     }
+    UIButton *currentBtn = self.buttonsArray[index];
+    currentBtn.selected = YES;
+    
+    self.sliderView.resetCenterX(currentBtn.centerX);
+    currentBtn.jobsResetTitleFont(UIFontSystemFontOfSize(self.tagTextFont_selected));
+    currentBtn.jobsResetBtnTitleCor(self.tagTextColor_selected);
 }
 #pragma mark —— lazyLoad
 -(UIView *)sliderView{
     if(!_sliderView){
         _sliderView = UIView.new;
-        _sliderView.frame = CGRectMake(0,
-                                       self.height - self.sliderH,
-                                       self.sliderW,
-                                       self.sliderH);
-
-        _sliderView.centerX = self.buttonWidth / 2;
+        _sliderView.resetSize(CGSizeMake(self.sliderW, self.sliderH));
+        _sliderView.resetCenterX(self.buttonWidth / 2);
+        _sliderView.resetOriginY(self.height - self.sliderH);
         _sliderView.backgroundColor = self.sliderColor;
         [self addSubview:_sliderView];
     }return _sliderView;

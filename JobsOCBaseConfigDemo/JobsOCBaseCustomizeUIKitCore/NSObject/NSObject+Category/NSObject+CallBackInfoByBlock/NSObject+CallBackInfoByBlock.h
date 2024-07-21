@@ -151,6 +151,10 @@ NS_ASSUME_NONNULL_END
 #define KindOfBtnCls(data) [data isKindOfClass:UIButton.class]
 #endif /* KindOfBtnCls */
 
+#ifndef KindOfBaseButtonCls
+#define KindOfBaseButtonCls(data) [data isKindOfClass:BaseButton.class]
+#endif /* KindOfBaseButtonCls */
+
 #ifndef KindOfViewCls
 #define KindOfViewCls(data) [data isKindOfClass:UIView.class]
 #endif /* KindOfViewCls */
