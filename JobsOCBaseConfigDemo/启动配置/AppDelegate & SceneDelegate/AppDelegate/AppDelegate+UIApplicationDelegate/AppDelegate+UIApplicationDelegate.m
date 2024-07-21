@@ -10,17 +10,13 @@
 
 @implementation AppDelegate (UIApplicationDelegate)
 #pragma mark —— UIApplicationDelegate
-/// 一进入App就横屏
-- (UIInterfaceOrientationMask)application:(UIApplication *)application
-  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
     JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
     JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
-    return UIInterfaceOrientationMaskLandscape;
-}
-
-- (BOOL)application:(UIApplication *)application
-didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     [self localNotifications];
     [self launchFunc2];
     [AppDelegate launchFunc1];
@@ -31,6 +27,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self.window makeKeyAndVisible];
 
     return YES;
+}
+/// 一进入App就横屏 【此方法会执行多次】
+- (UIInterfaceOrientationMask)application:(UIApplication *)application
+  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return JobsAppTool.currentInterfaceOrientationMask;
 }
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidEnterBackground:(UIApplication *)application{

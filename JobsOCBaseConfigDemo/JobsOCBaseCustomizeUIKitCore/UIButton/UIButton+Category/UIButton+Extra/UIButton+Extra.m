@@ -9,7 +9,7 @@
 
 @implementation UIButton (Extra)
 
--(id)makeBtnLabelByShowingType:(UILabelShowingType)labelShowingType{
+-(void)makeBtnLabelByShowingType:(UILabelShowingType)labelShowingType{
     [self.superview layoutIfNeeded];
     self.titleLabel.labelShowingType = labelShowingType;
     switch (labelShowingType) {
@@ -44,7 +44,7 @@
             
         default:
             break;
-    }return self;
+    }
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat imageTitleSpace;
 JobsKey(_imageTitleSpace)

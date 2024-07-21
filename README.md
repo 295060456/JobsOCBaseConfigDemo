@@ -840,19 +840,41 @@ NSObject <|-- BaseProtocol
 
 ### 14、度量衡 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+* [**手机屏幕尺寸大全**](https://www.strerr.com/screen.html)
+
 * 关注文件： [**MacroDef_Size.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Size/MacroDef_Size.h)
 
-* <font color=red>**当设备横竖屏切换的时候，设备宽高定义会互相反转**</font>。即，此时（横屏）的屏幕宽即为垂直屏的高。同样的，此时（横屏）的屏幕高即为垂直屏的宽
+* <font color=red>**当设备横竖屏切换的时候，设备宽高定义会互相反转**</font>。 [即，**此时（横屏）的屏幕宽即为垂直屏的高。同样的，此时（横屏）的屏幕高即为垂直屏的宽**](#横屏的时候，较之于竖屏，宽高会互换)
 
-  * ```objective-c
-    static inline CGFloat JobsRealHeight(void){
-        return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_WIDTH() :JobsMainScreen_HEIGHT();
+  * 寻找此设备真正的高
+    
+    ```objective-c
+    static inline CGFloat JobsDeviceRealHeight(void){
+        return MAX(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
     }
     ```
+    
+  * 寻找此设备真正的宽
+    
+    ```objective-c
+    static inline CGFloat JobsDeviceRealWidth(void){
+        return MIN(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
+    }
+    ```
+    
+  * 寻找当前屏幕真正的高
+    
+    ```objective-c
+    static inline CGFloat JobsRealHeight(void){
+        return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsDeviceRealWidth() :JobsDeviceRealHeight();
+    }
+    ```
+    
+  * 寻找当前屏幕真正的宽
 
-  * ```objective-c
+    ```objective-c
     static inline CGFloat JobsRealWidth(void){
-        return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_HEIGHT() :JobsMainScreen_WIDTH();
+        return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsDeviceRealHeight() :JobsDeviceRealWidth();
     }
     ```
 
@@ -868,15 +890,13 @@ NSObject <|-- BaseProtocol
   
   * ```objective-c
     static inline CGFloat JobsWidth(CGFloat width){
-        //375 对应原型图的宽 在iph 12 pro max 此系数 = 1.1413333333333333
-        return (JobsMainScreen_WIDTH() / 375) * width;
+        return (JobsDeviceRealWidth() / 375) * width;
     }
     ```
     
   * ```objective-c
     static inline CGFloat JobsHeight(CGFloat height){
-        //743 对应原型图的高
-        return (JobsMainScreen_HEIGHT() / 743) * height;
+        return (JobsDeviceRealHeight() / 743) * height;
     }
     ```
   
@@ -973,7 +993,102 @@ NSObject <|-- BaseProtocol
     }
     ```
 
-### 15、`NavigationBar` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 15、字符串 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+#### 15.1、字符串转化
+
+* 关注头文件`JobsString.h`
+
+* 基本数据类型转化成字符串类型
+
+  ```objective-c
+  static inline NSString * _Nonnull toStringByInt(int i){
+      return [NSString stringWithFormat:@"%d",i];
+  }
+  
+  static inline NSString * _Nonnull toStringByFloat(float i){
+      return [NSString stringWithFormat:@"%f",i];
+  }
+  
+  static inline NSString * _Nonnull toStringByDouble(double i){
+      return [NSString stringWithFormat:@"%f",i];
+  }
+  
+  static inline NSString * _Nonnull toStringByNSInteger(NSInteger i){
+      return [NSString stringWithFormat:@"%ld",(long)i];
+  }
+  
+  static inline NSString * _Nonnull toStringByNSUInteger(NSUInteger i){
+      return [NSString stringWithFormat:@"%lu",(unsigned long)i];
+  }
+  
+  static inline NSString * _Nonnull toStringByLong(long i){
+      return [NSString stringWithFormat:@"%ld",i];
+  }
+  
+  static inline NSString * _Nonnull toStringByLongLong(long long i){
+      return [NSString stringWithFormat:@"%lld",i];
+  }
+  ```
+
+#### 15.2、更多...
+
+### 16、`UILabel`的自适应 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 影响范围：**`UILabe`** 和 **`UIButton`**
+
+* 关键代码
+
+  * ```objective-c
+    #ifndef JobsLabelDef_h
+    #define JobsLabelDef_h
+    typedef enum : NSInteger {
+        /// 一行显示。定宽、定高、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
+        UILabelShowingType_01 = 1,
+        /// 一行显示。定宽、定高、定字体。多余部分scrollerView
+        UILabelShowingType_02,
+        /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
+        UILabelShowingType_03,
+        /// 一行显示。定宽、定高。缩小字体方式全展示 【单行：ByWidth】
+        UILabelShowingType_04,
+        /// 多行显示。定宽、不定高、定字体 【多行：ByFont】
+        UILabelShowingType_05,
+    } UILabelShowingType;// UILabel的显示样式
+    #endif /* JobsLabelDef_h */
+    ```
+
+  * 作用于 `UILabe` <font color=red>**必须等`UILabe *`的Frame正确刷新加载以后，才可以使用以下方法**</font>
+
+    ```objective-c
+    -(void)makeLabelByShowingType:(UILabelShowingType)labelShowingType
+    ```
+
+  * 作用于 `UIButton` <font color=red>**必须等`UIButton *`的Frame正确刷新加载以后，才可以使用以下方法**</font>
+
+    ```objective-c
+    -(void)makeBtnLabelByShowingType:(UILabelShowingType)labelShowingType
+    ```
+
+* 示例
+
+  ```objective-c
+  -(UILabel *)titleLab{
+      if(!_titleLab){
+          _titleLab = UILabel.new;
+          _titleLab.text = JobsInternationalization(@"LOGIN");
+          _titleLab.font = bayonRegular(20);
+          _titleLab.textColor = JobsCor(@"FFC700");
+          [self addSubview:_titleLab];
+          [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.centerX.equalTo(self);
+              make.top.equalTo(self).offset(JobsWidth(13));
+          }];
+          [_titleLab makeLabelByShowingType:UILabelShowingType_03];
+      }return _titleLab;
+  }
+  ```
+
+### 17、`NavigationBar` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 摒弃系统的，而转为使用第三方`GKNavigationBar`
 
@@ -993,9 +1108,9 @@ NSObject <|-- BaseProtocol
   * 关注实现类：[**`@interface BaseViewController : UIViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/BaseViewController)
   * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
 
-### 16、输入框（UITextField） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 18、输入框（UITextField） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-#### 16.1、UITextFieldDelegate
+#### 18.1、UITextFieldDelegate
 
 * 在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑
 
@@ -1116,7 +1231,7 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-#### 16.2、系统提供的修改接口（子类需要重写以下父类方法）
+#### 18.2、系统提供的修改接口（子类需要重写以下父类方法）
 
 * **当前文本框聚焦时就会调用**
 
@@ -1198,9 +1313,9 @@ NSObject <|-- BaseProtocol
     }
     ```
 
-#### 16.3、有4+1个`TextField`可供继承使用（具体使用方式，查询相关头文件定义）
+#### 18.3、有4+1个`TextField`可供继承使用（具体使用方式，查询相关头文件定义）
 
-##### 16.2.1、处理方式：将**UITextField**作为一个子视图加载到一个父容器视图
+##### 18.3.1、处理方式：将**UITextField**作为一个子视图加载到一个父容器视图
 
 * 产生背景
 
@@ -1290,7 +1405,7 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-##### 16.2.2、处理方式：**UITextField**的子类
+##### 18.3.2、处理方式：**UITextField**的子类
 
 * `CJTextField`：**UITextField**
 
@@ -1391,7 +1506,7 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-#### 16.4、字符过滤
+#### 18.4、字符过滤
 
 * 一般情况下，如果要监控输入字符，需要实现相应的`UITextFieldDelegate`方法，某些情况下会比较繁琐，包括但不仅限于下列：
 
@@ -1428,7 +1543,7 @@ NSObject <|-- BaseProtocol
      }];
     ```
 
-### 17、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 19、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * [**寻找当前控制器 **](#寻找当前控制器 )
 
 * 获取**window**
@@ -1593,7 +1708,7 @@ NSObject <|-- BaseProtocol
   }
   ```
   
-### 18、[**`JobsTabBarCtrl`-深层次自定义`UITabbar`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/%E6%B7%B1%E5%BA%A6%E6%8B%93%E5%B1%95%E7%B3%BB%E7%BB%9FUITabBar%E5%85%A8%E5%AE%B6%E6%A1%B6/JobsTabbarCtrl.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 20、[**`JobsTabBarCtrl`-深层次自定义`UITabbar`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/%E6%B7%B1%E5%BA%A6%E6%8B%93%E5%B1%95%E7%B3%BB%E7%BB%9FUITabBar%E5%85%A8%E5%AE%B6%E6%A1%B6/JobsTabbarCtrl.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 背景介绍
   * 完全继承自系统Api，最大化兼容系统特色
@@ -1616,35 +1731,53 @@ NSObject <|-- BaseProtocol
     * 支持`PPBadgeView`
     * 支持强行自检跳转登录模块
 
-### 19、iOS横竖屏切换 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 21、iOS横竖屏切换 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * [**相关文档：iOS 横竖屏切换**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md)
+
 * <font color=red>**相关经验总结**</font>
+  
+  * <font id=横屏的时候，较之于竖屏，宽高会互换>**横屏的时候，较之于竖屏，宽高会互换**</font>
+  
+    ![image-20240721132456126](./assets/image-20240721132456126.png)
+  
   * 系统通知`UIDeviceOrientationDidChangeNotification`也是需要服从界面UI的生命周期，否则取值不成功
+  
   * 其实系统有2个维度来读取是否横屏
     * 设备真实的方向（定义手机横卧为横屏）
-    * 在`AppDelegate`里面，对`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`进行了配置。因为是强制性的横屏呈现，所以<font color=red>**优先级最高**</font>
-  * 如果配置了`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`为横屏模式（默认为竖屏模式），但是终值为竖屏，**则为错误读取**
-  * 如果不配置`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`为横屏模式（默认为竖屏模式），则以当前设备定位为准
+    * 在`AppDelegate`里面，对<font color=green>`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`</font>进行了配置。因为是强制性的横屏呈现，所以<font color=red>**优先级最高**</font>
+    
+  * <font color=red>`- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions`</font> 的执行早于<font color=green>`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`</font>
+  
+  * <font color=green>`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`</font> **会执行多次**
+  
+  * 如果配置了<font color=green>`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`</font>为横屏模式（默认为竖屏模式），但是终值为竖屏，**则为错误读取**
+  
+  * 如果不配置<font color=green>`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`</font>为横屏模式（默认为竖屏模式），则以当前设备定位为准
+  
   * 对于页面，因为需要自适应调整，那么以靠后的生命周期读取值为准。比如在**viewController**里面`-(void)viewDidAppear:(BOOL)animated`的值为最终系统在综合各种因素后调整后的值。<font color=red>**不要去关心中间值，以终值为准，这样方便定位我们从何时调用方法为有效调用**</font>
+  
   * **一般的架构是将`UITabBarController`及其子类作为根控制器，那么在呈现页面的时候，内部会去调整UI适配横竖屏。所以，`UITabBarController`及其子类以及挂载在上面的子控制器，均是需要在页面生命周期走完以后（即，`-(void)viewDidAppear:(BOOL)animated`以后）才能获取到正确的值**
+  
   * [**如果锚定`UIDevice.currentDevice.orientation`**](#锚定`UIDevice.currentDevice.orientation`)
     * `UIDevice.currentDevice.orientation`不是总是有效。在应用启动时，设备方向信息有时可能还没有完全初始化，这可能导致得到 `UIDeviceOrientationUnknown`
-    * <font color=red>不能配置 `- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window ` ，因为竖屏检测会失败</font>
+    * <font color=red>不能配置 </font> <font color=green>`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`</font> <font color=red>因为竖屏检测会失败 </font>
+    
     * 如果当前控制器为`UITabBarController`及其子类，`-(void)viewDidAppear:(BOOL)animated`生命周期以后（包含），方位数据才正常
     * 如果当前控制器为普通的`UIViewController`及其子类，则全部生命周期正常
+    
   * [**如果锚定场景方向`UIInterfaceOrientation`**](#锚定场景方向`UIInterfaceOrientation`)，则需要在相关控制器的`-(void)viewDidAppear:(BOOL)animated`生命周期（包含）以后，才会获取到真正的`UIInterfaceOrientation`
-  * [**如果锚定`view.traitCollection.verticalSizeClass`**](#锚定`view.traitCollection.verticalSizeClass`)，则需要配置 `- (UIInterfaceOrientationMask)application:(UIApplication *)application
-    supportedInterfaceOrientationsForWindow:(UIWindow *)window`，方可正常检测横竖屏
+  
+  * [**如果锚定`view.traitCollection.verticalSizeClass`**](#锚定`view.traitCollection.verticalSizeClass`)，则需要配置 <font color=green>`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`</font> 方可正常检测横竖屏
 
-### 20、<font color=red>**全局工具箱**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 22、<font color=red>**全局工具箱**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * [**JobsAppTools**]() （单例模式）
 * [**NSObject+AppTools**]() （分类模式）
 * [**`FileFolderHandleModel`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/FileFolderHandleTool)：**文件夹操作**
 * [**`JobsLoadingImage`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIImage/JobsLoadingImage)：**图片存取**
 
-### 21、<font color=red>`View` 和 `ViewController`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 23、<font color=red>`View` 和 `ViewController`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 两者都是属于UI层
 
@@ -1658,7 +1791,7 @@ NSObject <|-- BaseProtocol
 
 * 一般`View`不会独立存在，会依附于`ViewController`。<font color=red>就要求`ViewController`需要观察是否正常销毁</font>（即，退出页面是否执行`-(void)dealloc`方法）。<font color=blue>如果对象没有成功销毁，会影响数据的写入，且下一次新建对象的时候，会优先执行上一个对象的`-(void)dealloc`方法</font>
 
-#### 21.1、`ViewController`的生命周期
+#### 23.1、`ViewController`的生命周期
 
 * **初始化方法**`-(instancetype)init`：最早装载本页面数据的时机
     * `- (void)loadView`：**一般在此方法里面装载**本页面的固定数据和刷新的数据（比如网络请求的数据）
@@ -1672,7 +1805,7 @@ NSObject <|-- BaseProtocol
     * `-(void)viewDidDisappear:(BOOL)animated`
     * `-(void)dealloc`
 
-#### 21.2、`View`的生命周期
+#### 23.2、`View`的生命周期
 
 * **初始化方法**`-(instancetype)init`：最根本的初始化方法
 
@@ -1698,7 +1831,7 @@ NSObject <|-- BaseProtocol
     -(void)dealloc
     ```
 
-### 22、<font color=red>**AppDelegate** 和 **SceneDelegate** </font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 24、<font color=red>**AppDelegate** 和 **SceneDelegate** </font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 在iOS 13及更高版本中，Apple引入了多窗口支持，这意味着一个应用程序可以拥有多个场景（Scene），每个场景都有自己的生命周期和界面
 
@@ -1771,7 +1904,7 @@ NSObject <|-- BaseProtocol
     }
     ```
 
-### 23、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 25、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 * <font color=red>不要在属性上加`__block`</font>。转而是在这个对象上使用`__block`
@@ -2486,13 +2619,27 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 </details>
 
 ### 8、统一注册全局的 `UICollectionViewCell` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
-* 不注册相对应当UICollectionViewCell相关子类，使用时会崩溃
-* 系统注册UICollectionViewCell相关子类，是利用字符串作为桥梁进行操作
-* 注册不会开辟内存，只有当使用的时候才会开辟内存
-* 对全局进行统一的UICollectionViewCell相关子类注册是很有必要的，方便管理，防止崩溃
+* 不注册相对应当`UICollectionViewCell`相关子类，使用时会崩溃
+
+* 系统注册`UICollectionViewCell`相关子类，是利用字符串作为桥梁进行操作
+
+* <font color=red>**注册不会开辟内存，只有当使用的时候才会开辟内存**</font>
+
+* 对全局进行统一的`UICollectionViewCell`相关子类注册是很有必要的，方便管理，防止崩溃
+
 * 关注实现类[<font color=blue>**`@implementation UICollectionView (JobsRegisterClass)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UICollectionView/UICollectionView+Category/UICollectionView+JobsRegisterClass)
 
-### 9、全局统一的提示弹出框（对`WHToast`的二次封装） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+* 在每一个`_collectionView`创建的时候，加入以下这一段代码
+
+  ```objective-c
+  [_collectionView registerCollectionViewClass];
+  ```
+
+### 9、全局的弹出框 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+#### 9.1、全局统一的<font color=red>**提示弹出框**</font>
+
+* 本质是对[**`WHToast`**](https://github.com/remember17/WHToast)的二次封装
 
 * `Podfile`
 
@@ -2500,26 +2647,56 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   pod 'WHToast' # https://github.com/remember17/WHToast 一个轻量级的提示控件，没有任何依赖 NO_SMP
   ```
 
+* ```objective-c
+  #if __has_include(<WHToast/WHToast.h>)
+  #import <WHToast/WHToast.h>
+  #else
+  #import "WHToast.h"
+  #endif
+  ```
+
 * 关注实现类：[<font color=blue>**`@implementation NSObject (WHToast)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+WHToast)
 
-* 关注实现类：[**`MacroDef_Func.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h)
+* 接入方式：
 
-  ```objective-c
-  static inline void toast(NSString *_Nullable msg){
-      if(!msg || ![msg isKindOfClass:NSString.class]){
-          msg = JobsInternationalization(@"数据错误");
-      }
-      [NSObject jobsToastMsg:JobsInternationalization(msg)];
-  }
-  ```
+  * 关注实现类：[**`MacroDef_Func.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h)
   
-* 在每一个`_collectionView`创建的时候，加入这一段代码：
+    ```objective-c
+    static inline void toast(NSString *_Nullable msg){
+        if(!msg || ![msg isKindOfClass:NSString.class]){
+            msg = JobsInternationalization(@"数据错误");
+        }
+        [NSObject jobsToastMsg:JobsInternationalization(msg)];
+    }
+    ```
 
-  ```objective-c
-  [_collectionView registerCollectionViewClass];
+#### 9.2、[**TFPopup**](https://github.com/shmxybfq/TFPopup)
+
+* `Podfile`
+
+  ```ruby
+  pod 'TFPopup' # https://github.com/shmxybfq/TFPopup 不耦合view代码,可以为已创建过 / 未创建过的view添加弹出方式;只是一种弹出方式;
   ```
 
-</details>
+* ```objective-c
+  #if __has_include(<TFPopup/TFPopup.h>)
+  #import <TFPopup/TFPopup.h>
+  #else
+  #import "TFPopup.h"
+  #endif
+  ```
+
+* 对其二次封装，方便使用。关注实现类：[<font color=blue>**`@implementation NSObject (Popup)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BPopup)
+
+* 接入方式
+
+  ```objective-c
+  self.popupParameter.dragEnable = YES;
+  self.popupParameter.disuseBackgroundTouchHide = NO;
+  [NSObject.makePopLoginView tf_showSlide:jobsGetMainWindow()
+                                direction:PopupDirectionContainerCenter
+                               popupParam:self.popupParameter];
+  ```
 
 ### 10、关于`UIViewController`的一些配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

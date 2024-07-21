@@ -36,40 +36,43 @@ button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
    if(!_titleBtn){
        @jobs_weakify(self)
        _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                      background:nil
-                                                  titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                   textAlignment:NSTextAlignmentCenter
-                                                subTextAlignment:NSTextAlignmentCenter
-                                                     normalImage:nil
-                                                  highlightImage:nil
-                                                 attributedTitle:nil
-                                         selectedAttributedTitle:nil
-                                              attributedSubtitle:[self richTextWithDataConfigMutArr:self.richTextConfigMutArr]
-                                                           title:JobsInternationalization(@"请支付")
-                                                        subTitle:nil//JobsInternationalization(@"观看完整教学视频需支付99Mata值")
-                                                       titleFont:UIFontWeightBoldSize(18)
-                                                    subTitleFont:nil
-                                                        titleCor:JobsCor(@"#333333")
-                                                     subTitleCor:nil
-                                              titleLineBreakMode:NSLineBreakByWordWrapping
-                                           subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                             baseBackgroundColor:JobsWhiteColor
-                                                 backgroundImage:nil
-                                                    imagePadding:JobsWidth(0)
-                                                    titlePadding:JobsWidth(10)
-                                                  imagePlacement:NSDirectionalRectEdgeNone
-                                      contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                        contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                   contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                               cornerRadiusValue:JobsWidth(0)
-                                                 roundingCorners:UIRectCornerAllCorners
-                                            roundingCornersRadii:CGSizeZero
-                                                  layerBorderCor:nil
-                                                     borderWidth:JobsWidth(0)
-                                                   primaryAction:nil
-                                                 clickEventBlock:^id(BaseButton *x) {
+                                                     background:nil
+                                                 titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                  textAlignment:NSTextAlignmentCenter
+                                               subTextAlignment:NSTextAlignmentCenter
+                                                    normalImage:nil
+                                                 highlightImage:nil
+                                                attributedTitle:nil
+                                        selectedAttributedTitle:nil
+                                             attributedSubtitle:nil
+                                                          title:nil
+                                                       subTitle:nil
+                                                      titleFont:nil
+                                                   subTitleFont:nil
+                                                       titleCor:nil
+                                                    subTitleCor:nil
+                                             titleLineBreakMode:NSLineBreakByWordWrapping
+                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                            baseBackgroundColor:nil
+                                                backgroundImage:nil
+                                                   imagePadding:JobsWidth(0)
+                                                   titlePadding:JobsWidth(0)
+                                                 imagePlacement:NSDirectionalRectEdgeNone
+                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                              cornerRadiusValue:JobsWidth(0)
+                                                roundingCorners:UIRectCornerAllCorners
+                                           roundingCornersRadii:CGSizeZero
+                                                 layerBorderCor:nil
+                                                    borderWidth:JobsWidth(0)
+                                                  primaryAction:nil
+                                     longPressGestureEventBlock:^(id  _Nullable weakSelf,
+                                                                  id  _Nullable arg) {
+           NSLog(@"按钮的长按事件触发");
+       }
+                                                clickEventBlock:^id(BaseButton *x){
            @jobs_strongify(self)
-           x.selected = !x.selected;
            if (self.objectBlock) self.objectBlock(x);
            return nil;
        }];
@@ -82,7 +85,9 @@ button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
        [_titleBtn makeBtnLabelByShowingType:UILabelShowingType_03];
    }return _titleBtn;
 }
+```
 
+```objective-c
 -(NSMutableArray<NSString *> *)richTextMutArr{
    if (!_richTextMutArr) {
        _richTextMutArr = NSMutableArray.array;

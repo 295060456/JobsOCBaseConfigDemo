@@ -8,6 +8,34 @@
 #import <Foundation/Foundation.h>
 #import "NSString+Judgment.h"
 
+static inline NSString * _Nonnull toStringByInt(int i){
+    return [NSString stringWithFormat:@"%d",i];
+}
+
+static inline NSString * _Nonnull toStringByFloat(float i){
+    return [NSString stringWithFormat:@"%f",i];
+}
+
+static inline NSString * _Nonnull toStringByDouble(double i){
+    return [NSString stringWithFormat:@"%f",i];
+}
+
+static inline NSString * _Nonnull toStringByNSInteger(NSInteger i){
+    return [NSString stringWithFormat:@"%ld",(long)i];
+}
+
+static inline NSString * _Nonnull toStringByNSUInteger(NSUInteger i){
+    return [NSString stringWithFormat:@"%lu",(unsigned long)i];
+}
+
+static inline NSString * _Nonnull toStringByLong(long i){
+    return [NSString stringWithFormat:@"%ld",i];
+}
+
+static inline NSString * _Nonnull toStringByLongLong(long long i){
+    return [NSString stringWithFormat:@"%lld",i];
+}
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Conversion)

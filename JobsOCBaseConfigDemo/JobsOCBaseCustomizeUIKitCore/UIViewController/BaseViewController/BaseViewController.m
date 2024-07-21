@@ -326,6 +326,10 @@ BaseViewControllerProtocol_synthesize
 shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
 }
+
+-(void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
 #pragma mark —— lazyLoad
 - (UIView *)statusBar{
     if (!_statusBar) {

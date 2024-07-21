@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)CGFloat imageTitleSpace;
 
--(id)makeBtnLabelByShowingType:(UILabelShowingType)labelShowingType;
+-(void)makeBtnLabelByShowingType:(UILabelShowingType)labelShowingType;
 
 @end
 

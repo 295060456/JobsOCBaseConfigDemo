@@ -34,12 +34,6 @@
 #import "TABAnimated.h"
 #endif
 
-#if __has_include(<TFPopup/TFPopup.h>)
-#import <TFPopup/TFPopup.h>
-#else
-#import "TFPopup.h"
-#endif
-
 #import "JobsWelcomeVC.h"
 
 #if DEBUG

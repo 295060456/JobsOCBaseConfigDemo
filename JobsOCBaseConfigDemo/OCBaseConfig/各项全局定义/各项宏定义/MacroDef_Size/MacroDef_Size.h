@@ -265,6 +265,7 @@ static inline CGSize JobsMainScreen(void){
     return UIScreen.mainScreen.bounds.size;
 }
 #pragma mark ——  横屏判定
+#warning 横屏的时候，较之于竖屏，宽高会互换
 static inline CGFloat JobsMainScreen_WIDTH(void){
     return JobsMainScreen().width;
 }
@@ -272,35 +273,42 @@ static inline CGFloat JobsMainScreen_WIDTH(void){
 static inline CGFloat JobsMainScreen_HEIGHT(void){
     return  JobsMainScreen().height;
 }
-/// 寻找真正的高
-static inline CGFloat JobsRealHeight(void){
-    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_WIDTH() :JobsMainScreen_HEIGHT();
+/// 寻找此设备真正的高
+static inline CGFloat JobsDeviceRealHeight(void){
+    return MAX(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
 }
-/// 寻找真正的宽
+/// 寻找此设备真正的宽
+static inline CGFloat JobsDeviceRealWidth(void){
+    return MIN(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
+}
+/// 寻找当前屏幕真正的高
+static inline CGFloat JobsRealHeight(void){
+    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsDeviceRealWidth() :JobsDeviceRealHeight();
+}
+/// 寻找当前屏幕真正的宽
 static inline CGFloat JobsRealWidth(void){
-    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_HEIGHT() :JobsMainScreen_WIDTH();
+    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsDeviceRealHeight() :JobsDeviceRealWidth();
 }
 #pragma mark —— 【比例尺】屏幕像素标准转化：输入原型图上的宽和高，对外输出App对应的移动设备的真实宽高
-/// 苹果不管出的哪一款手机，它的宽高比，永远是9：19
-/// 宽转化 JobsWidth(1) == 0.85333333333...9
+/// https://www.strerr.com/screen.html
 static inline CGFloat JobsWidth(CGFloat width){
-    //375 对应原型图的宽 在iph 12 pro max 此系数 = 1.1413333333333333
-    return (JobsMainScreen_WIDTH() / 375) * width;
+    return (JobsDeviceRealWidth() / 375) * width;
 }
-/// 高转化 JobsHeight(1) == 0.93270524899057872
+
 static inline CGFloat JobsHeight(CGFloat height){
-    //743 对应原型图的高
-    return (JobsMainScreen_HEIGHT() / 743) * height;
+    return (JobsDeviceRealHeight() / 743) * height;
 }
 #import "MacroDef_Func.h"/// 提到最前面，就会因为编译顺序的问题报错
 #pragma mark —— 安全区域
-/// 顶部的安全距离
+///【竖屏】顶部的安全距离
+///【横屏】距离灵动岛左边10，距离灵动岛右边46，灵动岛高度36pt，灵动岛宽度120pt
 static inline CGFloat JobsTopSafeAreaHeight(void){
     if (@available(iOS 11.0, *)) {
         return jobsGetMainWindow().safeAreaInsets.top;
     } else return 0.f;
 }
-/// 底部的安全距离：全面屏手机为34pt，非全面屏手机为0pt
+///【竖屏】底部的安全距离：全面屏手机为34pt，非全面屏手机为0pt
+///【横屏】底部的安全距离：全面屏手机为0pt，非全面屏手机为0pt。距离横杠上部12，距离横杠下部8，横杠高度4
 static inline CGFloat JobsBottomSafeAreaHeight(void){
     if (@available(iOS 11.0, *)) {
         return jobsGetMainWindow().safeAreaInsets.bottom;
