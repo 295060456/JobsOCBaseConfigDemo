@@ -62,7 +62,7 @@
     {
         JobsLaunchAdMgr *adManager = JobsLaunchAdMgr.sharedManager;
         adManager.buttonTitle = JobsInternationalization(@"跳过广告");
-        adManager.buttonMode = SkipButtonModeCountdown;
+        adManager.buttonModel = SkipButtonModeCountdown;
         adManager.countdownDuration = 5;
         adManager.redirectURL = @"https://www.google.com";
         adManager.onSingleTap = ^{

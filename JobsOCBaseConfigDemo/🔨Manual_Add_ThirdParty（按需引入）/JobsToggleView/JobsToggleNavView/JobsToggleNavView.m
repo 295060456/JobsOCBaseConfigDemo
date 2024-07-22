@@ -86,39 +86,39 @@ JobsToggleNavViewProtocolSynthesize
     }
     for (int i = 0 ; i < self.dataArr.count ; i++) {
         @jobs_weakify(self)
-        UIButton *button = [BaseButton.alloc jobsInitBtnByConfiguration:self.buttonMode.btnConfiguration
-                                                             background:self.buttonMode.background
-                                                         titleAlignment:self.buttonMode.titleAlignment
-                                                          textAlignment:self.buttonMode.textAlignment
-                                                       subTextAlignment:self.buttonMode.subTextAlignment
-                                                            normalImage:self.buttonMode.normalImage
-                                                         highlightImage:self.buttonMode.highlightImage
-                                                        attributedTitle:self.buttonMode.attributedTitle
-                                                selectedAttributedTitle:self.buttonMode.selectedAttributedTitle
-                                                     attributedSubtitle:self.buttonMode.attributedSubtitle
+        UIButton *button = [BaseButton.alloc jobsInitBtnByConfiguration:self.buttonModel.btnConfiguration
+                                                             background:self.buttonModel.background
+                                                         titleAlignment:self.buttonModel.titleAlignment
+                                                          textAlignment:self.buttonModel.textAlignment
+                                                       subTextAlignment:self.buttonModel.subTextAlignment
+                                                            normalImage:self.buttonModel.normalImage
+                                                         highlightImage:self.buttonModel.highlightImage
+                                                        attributedTitle:self.buttonModel.attributedTitle
+                                                selectedAttributedTitle:self.buttonModel.selectedAttributedTitle
+                                                     attributedSubtitle:self.buttonModel.attributedSubtitle
                                                                   title:self.dataArr[i]
                                                                subTitle:nil
-                                                              titleFont:self.buttonMode.titleFont
-                                                           subTitleFont:self.buttonMode.subTitleFont
-                                                               titleCor:self.buttonMode.titleCor
-                                                            subTitleCor:self.buttonMode.subTitleCor
-                                                     titleLineBreakMode:self.buttonMode.titleLineBreakMode
-                                                  subtitleLineBreakMode:self.buttonMode.subtitleLineBreakMode
-                                                    baseBackgroundColor:self.buttonMode.baseBackgroundColor
-                                                        backgroundImage:self.buttonMode.backgroundImage
-                                                           imagePadding:self.buttonMode.imagePadding
-                                                           titlePadding:self.buttonMode.titlePadding
-                                                         imagePlacement:self.buttonMode.imagePlacement
-                                             contentHorizontalAlignment:self.buttonMode.contentHorizontalAlignment
-                                               contentVerticalAlignment:self.buttonMode.contentVerticalAlignment
-                                                          contentInsets:self.buttonMode.contentInsets
-                                                      cornerRadiusValue:self.buttonMode.cornerRadiusValue
-                                                        roundingCorners:self.buttonMode.roundingCorners
-                                                   roundingCornersRadii:self.buttonMode.roundingCornersRadii
-                                                         layerBorderCor:self.buttonMode.layerBorderCor
-                                                            borderWidth:self.buttonMode.borderWidth
-                                                          primaryAction:self.buttonMode.primaryAction
-                                             longPressGestureEventBlock:self.buttonMode.longPressGestureEventBlock
+                                                              titleFont:self.buttonModel.titleFont
+                                                           subTitleFont:self.buttonModel.subTitleFont
+                                                               titleCor:self.buttonModel.titleCor
+                                                            subTitleCor:self.buttonModel.subTitleCor
+                                                     titleLineBreakMode:self.buttonModel.titleLineBreakMode
+                                                  subtitleLineBreakMode:self.buttonModel.subtitleLineBreakMode
+                                                    baseBackgroundColor:self.buttonModel.baseBackgroundColor
+                                                        backgroundImage:self.buttonModel.backgroundImage
+                                                           imagePadding:self.buttonModel.imagePadding
+                                                           titlePadding:self.buttonModel.titlePadding
+                                                         imagePlacement:self.buttonModel.imagePlacement
+                                             contentHorizontalAlignment:self.buttonModel.contentHorizontalAlignment
+                                               contentVerticalAlignment:self.buttonModel.contentVerticalAlignment
+                                                          contentInsets:self.buttonModel.contentInsets
+                                                      cornerRadiusValue:self.buttonModel.cornerRadiusValue
+                                                        roundingCorners:self.buttonModel.roundingCorners
+                                                   roundingCornersRadii:self.buttonModel.roundingCornersRadii
+                                                         layerBorderCor:self.buttonModel.layerBorderCor
+                                                            borderWidth:self.buttonModel.borderWidth
+                                                          primaryAction:self.buttonModel.primaryAction
+                                             longPressGestureEventBlock:self.buttonModel.longPressGestureEventBlock
                                                         clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
             /// 最外层的View联动

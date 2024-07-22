@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 当前选择的标签按钮 index
 @property(nonatomic,assign,readonly)NSUInteger current_index;
 /// 标签按钮数据源
-@property(nonatomic,strong,null_resettable)UIButtonModel *buttonMode;
+@property(nonatomic,strong,null_resettable)UIButtonModel *buttonModel;
 
 @end
 
@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_END
 @synthesize sliderW = _sliderW;\
 @synthesize sliderH = _sliderH;\
 @synthesize current_index = _current_index;\
-@synthesize buttonMode = _buttonMode;\
+@synthesize buttonModel = _buttonMode;\
 
 #endif
 
@@ -61,6 +61,6 @@ NS_ASSUME_NONNULL_END
 @dynamic sliderW;\
 @dynamic sliderH;\
 @dynamic current_index;\
-@dynamic buttonMode;\
+@dynamic buttonModel;\
 
 #endif

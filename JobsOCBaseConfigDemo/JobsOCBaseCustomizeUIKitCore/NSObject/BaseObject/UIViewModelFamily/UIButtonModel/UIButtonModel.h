@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_END
 
 #ifndef INIT_BUTTON_MODE
 #define INIT_BUTTON_MODE \
--(UIButtonModel *)buttonMode{ \
+-(UIButtonModel *)buttonModel{ \
     if(!_buttonMode){ \
         _buttonMode = UIButtonModel.new; \
         _buttonMode.btnConfiguration = nil; \

@@ -61,9 +61,9 @@
     }
 }
 
-- (void)setupAdWithButtonTitle:(NSString *)buttonTitle buttonMode:(SkipButtonMode)buttonMode countdownDuration:(NSInteger)countdownDuration redirectURL:(NSString *)redirectURL {
+- (void)setupAdWithButtonTitle:(NSString *)buttonTitle buttonModel:(SkipButtonMode)buttonModel countdownDuration:(NSInteger)countdownDuration redirectURL:(NSString *)redirectURL {
     self.buttonTitle = buttonTitle;
-    self.buttonMode = buttonMode;
+    self.buttonModel = buttonModel;
     self.countdownDuration = countdownDuration;
     self.redirectURL = redirectURL;
 }
@@ -175,7 +175,7 @@
 }
 
 - (void)startCountdownIfNeeded {
-    if (self.buttonMode == SkipButtonModeCountdown) {
+    if (self.buttonModel == SkipButtonModeCountdown) {
         self.currentCountdown = self.countdownDuration;
         self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateCountdown) userInfo:nil repeats:YES];
     }

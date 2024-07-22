@@ -22,7 +22,7 @@ typedef void (^AdCompletionCallback)(void);
 
 @property (nonatomic, copy) NSString *buttonTitle;
 @property (nonatomic, assign) CGRect buttonFrame;
-@property (nonatomic, assign) SkipButtonMode buttonMode;
+@property (nonatomic, assign) SkipButtonMode buttonModel;
 @property (nonatomic, assign) NSInteger countdownDuration;
 @property (nonatomic, copy) NSString *redirectURL;
 @property (nonatomic, copy) AdInteractionCallback onDoubleTap;

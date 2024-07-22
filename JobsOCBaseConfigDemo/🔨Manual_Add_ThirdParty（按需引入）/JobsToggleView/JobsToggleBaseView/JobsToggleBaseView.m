@@ -106,7 +106,7 @@ JobsToggleNavViewProtocolSynthesize
                                           0,
                                           self.taggedNavView_width,
                                           self.taggedNavView_height);
-        _taggedNavView.buttonMode = self.buttonMode;
+        _taggedNavView.buttonModel = self.buttonModel;
         
         _taggedNavView.dataArr = self.taggedNavTitles;
         _taggedNavView.tagTextColor_normal = self.tagTextColor_normal;
