@@ -9,14 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "BaseView.h"
 #import "UIView+Measure.h"
-
 #import "JobsToggleNavView.h"
+#import "UIButtonModel.h"
+#import "JobsToggleNavViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsToggleBaseView : BaseView<UIScrollViewDelegate>
+@interface JobsToggleBaseView : BaseView
+<
+UIScrollViewDelegate,
+JobsToggleNavViewProtocol
+>
 /// Data
 @property(nonatomic,assign)CGFloat taggedNavView_height;
+@property(nonatomic,assign)CGFloat taggedNavView_width;
 @property(nonatomic,assign)CGFloat taggedNavView_bgScroll_offset;
 @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*scrollContentViews;
 @property(nonatomic,strong)NSMutableArray <NSString *>*taggedNavTitles;

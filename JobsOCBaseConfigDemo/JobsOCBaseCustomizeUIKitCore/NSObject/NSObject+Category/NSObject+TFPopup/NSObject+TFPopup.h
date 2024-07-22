@@ -14,11 +14,6 @@
 #import "TFPopup.h"
 #endif
 
-#import "LoginView.h" /// 登录
-#import "SignUpView.h" /// 注册
-#import "PwdSettingView.h" /// 密码重置-密码确认
-#import "PwdSettingByCodeView.h" /// 密码重置-手机验证码
-
 #pragma mark —— 创建数据源
 static inline TFPopupParam * _Nonnull makeSlidePopupParameterByViewHeight(CGFloat viewHeight){
     TFPopupParam *popupParameter = TFPopupParam.new;

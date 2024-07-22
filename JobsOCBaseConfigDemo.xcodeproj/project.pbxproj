@@ -1112,6 +1112,7 @@
 		C525D4012C48040F003DAFD0 /* JobsMenuSubView@2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JobsMenuSubView@2.h"; sourceTree = "<group>"; };
 		CE40B28F2C4B628900CB64B5 /* JobsTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTextField.h; sourceTree = "<group>"; };
 		CE40B2902C4B628900CB64B5 /* JobsTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTextField.m; sourceTree = "<group>"; };
+		CE73A5372C4E728C00B44795 /* JobsToggleNavViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsToggleNavViewProtocol.h; sourceTree = "<group>"; };
 		CE775D7C2C47BF5D004D39D0 /* 自定义 UITabBarController.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "自定义 UITabBarController.md"; path = "自定义 UITabBarController.md/自定义 UITabBarController.md"; sourceTree = "<group>"; };
 		CE94E8352C4D1098001C3CCB /* JobsToggleBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsToggleBaseView.h; sourceTree = "<group>"; };
 		CE94E8362C4D1098001C3CCB /* JobsToggleBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsToggleBaseView.m; sourceTree = "<group>"; };
@@ -3081,13 +3082,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C525D3E92C48017D003DAFD0 /* 分类菜单栏联动选择界面 */ = {
+		C525D3E92C48017D003DAFD0 /* JobsLinkageMenuView */ = {
 			isa = PBXGroup;
 			children = (
 				C525D3EB2C4801C1003DAFD0 /* JobsLinkageMenuView.h */,
 				C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */,
 			);
-			path = "分类菜单栏联动选择界面";
+			path = JobsLinkageMenuView;
 			sourceTree = "<group>";
 		};
 		C525D3F02C4803B6003DAFD0 /* JobsMenuSubViews */ = {
@@ -3167,6 +3168,7 @@
 		CE94E83B2C4D1098001C3CCB /* JobsToggleView */ = {
 			isa = PBXGroup;
 			children = (
+				CE73A5372C4E728C00B44795 /* JobsToggleNavViewProtocol.h */,
 				CE94E8372C4D1098001C3CCB /* JobsToggleBaseView */,
 				CE94E83A2C4D1098001C3CCB /* JobsToggleNavView */,
 			);
@@ -11943,7 +11945,7 @@
 			isa = PBXGroup;
 			children = (
 				CE94E83B2C4D1098001C3CCB /* JobsToggleView */,
-				C525D3E92C48017D003DAFD0 /* 分类菜单栏联动选择界面 */,
+				C525D3E92C48017D003DAFD0 /* JobsLinkageMenuView */,
 				CECE86072C45140000764AF5 /* 电影倒计时特效 */,
 				CECE868C2C45140000764AF5 /* 加密体系 */,
 				CECE86992C45140000764AF5 /* 卡片式滑动效果 */,

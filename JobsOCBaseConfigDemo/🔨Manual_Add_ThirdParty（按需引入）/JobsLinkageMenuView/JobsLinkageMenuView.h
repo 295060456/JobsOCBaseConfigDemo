@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIButton+UI.h"
+#import "UIButtonModel.h"
 
 @interface JobsLinkageMenuView : UIView
 
@@ -17,7 +18,6 @@
 @property(nonatomic,assign)CGFloat textSize;/// 标题字体大小
 
 -(instancetype)initWithFrame:(CGRect)frame
-                    withMenu:(NSArray *)menu
-                    andViews:(NSArray *)views;
+                   btnConfig:(UIButtonModel *)btnConfig;
 
 @end

@@ -25,6 +25,7 @@
 @end
 
 @implementation JobsToggleNavView
+JobsToggleNavViewProtocolSynthesize
 -(void)dealloc{
     NSLog(@"");
 }
@@ -85,39 +86,39 @@
     }
     for (int i = 0 ; i < self.dataArr.count ; i++) {
         @jobs_weakify(self)
-        UIButton *button = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                             background:nil
-                                                         titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                          textAlignment:NSTextAlignmentCenter
-                                                       subTextAlignment:NSTextAlignmentCenter
-                                                            normalImage:nil
-                                                         highlightImage:nil
-                                                        attributedTitle:nil
-                                                selectedAttributedTitle:nil
-                                                     attributedSubtitle:nil
+        UIButton *button = [BaseButton.alloc jobsInitBtnByConfiguration:self.buttonMode.btnConfiguration
+                                                             background:self.buttonMode.background
+                                                         titleAlignment:self.buttonMode.titleAlignment
+                                                          textAlignment:self.buttonMode.textAlignment
+                                                       subTextAlignment:self.buttonMode.subTextAlignment
+                                                            normalImage:self.buttonMode.normalImage
+                                                         highlightImage:self.buttonMode.highlightImage
+                                                        attributedTitle:self.buttonMode.attributedTitle
+                                                selectedAttributedTitle:self.buttonMode.selectedAttributedTitle
+                                                     attributedSubtitle:self.buttonMode.attributedSubtitle
                                                                   title:self.dataArr[i]
                                                                subTitle:nil
-                                                              titleFont:UIFontSystemFontOfSize(self.tagTextFont_normal)
-                                                           subTitleFont:nil
-                                                               titleCor:self.tagTextColor_normal
-                                                            subTitleCor:nil
-                                                     titleLineBreakMode:NSLineBreakByWordWrapping
-                                                  subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                    baseBackgroundColor:JobsWhiteColor
-                                                        backgroundImage:nil
-                                                           imagePadding:JobsWidth(0)
-                                                           titlePadding:JobsWidth(0)
-                                                         imagePlacement:NSDirectionalRectEdgeNone
-                                             contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                               contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                          contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                      cornerRadiusValue:JobsWidth(0)
-                                                        roundingCorners:UIRectCornerAllCorners
-                                                   roundingCornersRadii:CGSizeZero
-                                                         layerBorderCor:nil
-                                                            borderWidth:JobsWidth(0)
-                                                          primaryAction:nil
-                                             longPressGestureEventBlock:nil
+                                                              titleFont:self.buttonMode.titleFont
+                                                           subTitleFont:self.buttonMode.subTitleFont
+                                                               titleCor:self.buttonMode.titleCor
+                                                            subTitleCor:self.buttonMode.subTitleCor
+                                                     titleLineBreakMode:self.buttonMode.titleLineBreakMode
+                                                  subtitleLineBreakMode:self.buttonMode.subtitleLineBreakMode
+                                                    baseBackgroundColor:self.buttonMode.baseBackgroundColor
+                                                        backgroundImage:self.buttonMode.backgroundImage
+                                                           imagePadding:self.buttonMode.imagePadding
+                                                           titlePadding:self.buttonMode.titlePadding
+                                                         imagePlacement:self.buttonMode.imagePlacement
+                                             contentHorizontalAlignment:self.buttonMode.contentHorizontalAlignment
+                                               contentVerticalAlignment:self.buttonMode.contentVerticalAlignment
+                                                          contentInsets:self.buttonMode.contentInsets
+                                                      cornerRadiusValue:self.buttonMode.cornerRadiusValue
+                                                        roundingCorners:self.buttonMode.roundingCorners
+                                                   roundingCornersRadii:self.buttonMode.roundingCornersRadii
+                                                         layerBorderCor:self.buttonMode.layerBorderCor
+                                                            borderWidth:self.buttonMode.borderWidth
+                                                          primaryAction:self.buttonMode.primaryAction
+                                             longPressGestureEventBlock:self.buttonMode.longPressGestureEventBlock
                                                         clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
             /// 最外层的View联动
@@ -218,5 +219,5 @@
         _sliderW = DefaultSliderW;
     }return _sliderW;
 }
-
+INIT_BUTTON_MODE
 @end

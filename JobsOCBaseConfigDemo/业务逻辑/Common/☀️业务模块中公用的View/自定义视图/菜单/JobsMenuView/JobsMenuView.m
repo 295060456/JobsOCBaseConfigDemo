@@ -8,19 +8,23 @@
 #import "JobsMenuView.h"
 
 @interface JobsMenuView ()
-
+/// UI
 @property(nonatomic,strong)JobsLinkageMenuView *menuView;
+/// Data
 @property(nonatomic,strong)NSMutableArray <__kindof NSString *>*titleMutArr;
 @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*subViewMutArr;
 @property(nonatomic,strong)JobsMenuSubView_1 *menuSubView_1;
 @property(nonatomic,strong)JobsMenuSubView_2 *menuSubView_2;
 @property(nonatomic,strong)JobsMenuSubView_3 *menuSubView_3;
 @property(nonatomic,strong)JobsMenuSubView_4 *menuSubView_4;
+@property(nonatomic,strong)NSMutableArray <UIImage *>*normal_titleBgImageMutArr;
+@property(nonatomic,strong)NSMutableArray <UIImage *>*select_titleBgImageMutArr;
 
 @end
 
 @implementation JobsMenuView
 @synthesize viewModel = _viewModel;
+@synthesize buttonModel = _buttonModel;
 #pragma mark —— BaseProtocol
 
 #pragma mark —— SysMethod
@@ -72,21 +76,37 @@
 -(JobsLinkageMenuView *)menuView{
     if(!_menuView){
         _menuView = [JobsLinkageMenuView.alloc initWithFrame:self.bounds
-                                                withMenu:self.titleMutArr
-                                                andViews:self.subViewMutArr];
+                                                   btnConfig:self.buttonModel];
+        @jobs_weakify(self)
+        [_menuView actionObjectBlock:^(id  _Nullable x) {
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+        }];
         [self addSubview:_menuView];
-
-        
     }return _menuView;
 }
 
--(NSMutableArray<__kindof NSString *> *)titleMutArr{
+-(UIButtonModel *)buttonModel{
+    if(!_buttonModel){
+        _buttonModel = UIButtonModel.new;
+        _buttonModel.normal_titles = self.titleMutArr;
+        _buttonModel.titleCor = JobsClearColor;
+        _buttonModel.selected_titleCor = JobsClearColor;
+        _buttonModel.normal_backgroundImages = self.normal_titleBgImageMutArr;
+        _buttonModel.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
+        _buttonModel.data = self.subViewMutArr;
+    }return _buttonModel;
+}
+
+-(NSMutableArray<NSString *> *)titleMutArr{
     if(!_titleMutArr){
         _titleMutArr = NSMutableArray.array;
-        [_titleMutArr addObject:JobsInternationalization(@"四川")];
-        [_titleMutArr addObject:JobsInternationalization(@"重庆")];
-        [_titleMutArr addObject:JobsInternationalization(@"广西")];
-        [_titleMutArr addObject:JobsInternationalization(@"哈尔滨")];
+        [_titleMutArr addObject:JobsInternationalization(@"TOP GAMES")];
+        [_titleMutArr addObject:JobsInternationalization(@"SLOT GAMES")];
+        [_titleMutArr addObject:JobsInternationalization(@"LIVE CASINO")];
+        [_titleMutArr addObject:JobsInternationalization(@"TABLE GAMES")];
+        [_titleMutArr addObject:JobsInternationalization(@"SPORTS")];
+        [_titleMutArr addObject:JobsInternationalization(@"FISHING")];
     }return _titleMutArr;
 }
 
@@ -100,54 +120,28 @@
     }return _subViewMutArr;
 }
 
--(JobsMenuSubView_1 *)menuSubView_1{
-    if(!_menuSubView_1){
-        _menuSubView_1 = JobsMenuSubView_1.new;
-        NSLog(@"%f",self.width);
-        _menuSubView_1.frame = CGRectMake(0,
-                                          0,
-                                          self.width - 100,
-                                          self.height);
-        [_menuSubView_1 richElementsInViewWithModel:nil];
-    }return _menuSubView_1;
+-(NSMutableArray<UIImage *> *)normal_titleBgImageMutArr{
+    if(!_normal_titleBgImageMutArr){
+        _normal_titleBgImageMutArr = NSMutableArray.array;
+        [_normal_titleBgImageMutArr addObject:JobsIMG(@"Top_Games_menu")];
+        [_normal_titleBgImageMutArr addObject:JobsIMG(@"Slot_Games_menu")];
+        [_normal_titleBgImageMutArr addObject:JobsIMG(@"Live_Casino_menu")];
+        [_normal_titleBgImageMutArr addObject:JobsIMG(@"Table_Games_menu")];
+        [_normal_titleBgImageMutArr addObject:JobsIMG(@"Sport_Menu")];
+        [_normal_titleBgImageMutArr addObject:JobsIMG(@"Fishing_menu")];
+    }return _normal_titleBgImageMutArr;
 }
-
--(JobsMenuSubView_2 *)menuSubView_2{
-    if(!_menuSubView_2){
-        _menuSubView_2 = JobsMenuSubView_2.new;
-        NSLog(@"%f",self.width);
-        _menuSubView_2.frame = CGRectMake(0,
-                                          0,
-                                          self.width - 100,
-                                          self.height);
-        [_menuSubView_2 richElementsInViewWithModel:nil];
-    }return _menuSubView_2;
+// TODO
+-(NSMutableArray<UIImage *> *)select_titleBgImageMutArr{
+    if(!_select_titleBgImageMutArr){
+        _select_titleBgImageMutArr = NSMutableArray.array;
+        [_select_titleBgImageMutArr addObject:JobsIMG(@"Top_Games_menu")];
+        [_select_titleBgImageMutArr addObject:JobsIMG(@"Slot_Games_menu")];
+        [_select_titleBgImageMutArr addObject:JobsIMG(@"Live_Casino_menu")];
+        [_select_titleBgImageMutArr addObject:JobsIMG(@"Table_Games_menu")];
+        [_select_titleBgImageMutArr addObject:JobsIMG(@"Sport_Menu")];
+        [_select_titleBgImageMutArr addObject:JobsIMG(@"Fishing_menu")];
+    }return _select_titleBgImageMutArr;
 }
-
--(JobsMenuSubView_3 *)menuSubView_3{
-    if(!_menuSubView_3){
-        _menuSubView_3 = JobsMenuSubView_3.new;
-        NSLog(@"%f",self.width);
-        _menuSubView_3.frame = CGRectMake(0,
-                                          0,
-                                          self.width - 100,
-                                          self.height);
-        [_menuSubView_3 richElementsInViewWithModel:nil];
-    }return _menuSubView_3;
-}
-
--(JobsMenuSubView_4 *)menuSubView_4{
-    if(!_menuSubView_4){
-        _menuSubView_4 = JobsMenuSubView_4.new;
-        NSLog(@"%f",self.width);
-        _menuSubView_4.frame = CGRectMake(0,
-                                          0,
-                                          self.width - 100,
-                                          self.height);
-        [_menuSubView_4 richElementsInViewWithModel:nil];
-    }return _menuSubView_4;
-}
-
-
 
 @end

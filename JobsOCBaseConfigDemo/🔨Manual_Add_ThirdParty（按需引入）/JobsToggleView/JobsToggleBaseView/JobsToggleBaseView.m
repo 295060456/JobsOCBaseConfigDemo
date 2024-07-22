@@ -19,6 +19,7 @@
 @end
 
 @implementation JobsToggleBaseView
+JobsToggleNavViewProtocolSynthesize
 #pragma mark —— SysMethod
 -(void)dealloc{
     NSLog(@"");
@@ -103,16 +104,19 @@
         _taggedNavView = JobsToggleNavView.new;
         _taggedNavView.frame = CGRectMake(0,
                                           0,
-                                          [JobsToggleBaseView viewSizeWithModel:nil].width,
+                                          self.taggedNavView_width,
                                           self.taggedNavView_height);
+        _taggedNavView.buttonMode = self.buttonMode;
+        
         _taggedNavView.dataArr = self.taggedNavTitles;
-        _taggedNavView.tagTextColor_normal = JobsBlackColor;
-        _taggedNavView.tagTextColor_selected = JobsRedColor;
-        _taggedNavView.tagTextFont_normal = JobsWidth(15);
-        _taggedNavView.tagTextFont_selected = JobsWidth(22);
-        _taggedNavView.sliderColor = JobsRedColor;
-        _taggedNavView.sliderW = JobsWidth(30);
-        _taggedNavView.sliderH = JobsWidth(1);
+        _taggedNavView.tagTextColor_normal = self.tagTextColor_normal;
+        _taggedNavView.tagTextColor_selected = self.tagTextColor_selected;
+        _taggedNavView.tagTextFont_normal = self.tagTextFont_normal;
+        _taggedNavView.tagTextFont_selected = self.tagTextFont_selected;
+        _taggedNavView.sliderColor = self.sliderColor;
+        _taggedNavView.sliderW = self.sliderW;
+        _taggedNavView.sliderH = self.sliderH;
+        
         [self addSubview:_taggedNavView];
         [_taggedNavView richElementsInViewWithModel:nil];
         @jobs_weakify(self)
@@ -153,6 +157,12 @@
     if(!_scrollContentViews){
         _scrollContentViews = self.tempLabs;
     }return _scrollContentViews;
+}
+
+-(CGFloat)taggedNavView_width{
+    if(!_taggedNavView_width){
+        _taggedNavView_width = [JobsToggleBaseView viewSizeWithModel:nil].width;
+    }return _taggedNavView_width;
 }
 
 -(CGFloat)taggedNavView_height{
@@ -205,5 +215,5 @@
         }
     }return _taggedNavTitles;
 }
-
+INIT_BUTTON_MODE
 @end
