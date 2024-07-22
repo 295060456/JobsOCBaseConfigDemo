@@ -6,7 +6,7 @@
 //  Copyright © 2017年 EmotionV. All rights reserved.
 //  github: https://github.com/EmotionV/LinkageMenu
 
-#import "LinkageMenuView.h"
+#import "JobsLinkageMenuView.h"
 #define MENU_WIDTH 100  //左侧菜单栏宽度，默认100
 #define BOTTOMVIEW_HEIGHT 25  //滑块高度
 #define BOTTOMVIEW_WIDTH (MENU_WIDTH - 10)  //滑块宽度
@@ -17,7 +17,7 @@
 #define NAVIGATION_HEIGHT 64  //navigationbar高度
 #define TABBAR_HEIGHT 49  //tabbar高度
 
-@interface LinkageMenuView()
+@interface JobsLinkageMenuView()
 
 @property(nonatomic,strong)UIScrollView *menuView;
 @property(nonatomic,strong)UIView *bottomView;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation LinkageMenuView{
+@implementation JobsLinkageMenuView{
     NSArray *menuArray;
     NSArray *viewArray;
     NSInteger titlesCount; //菜单总数

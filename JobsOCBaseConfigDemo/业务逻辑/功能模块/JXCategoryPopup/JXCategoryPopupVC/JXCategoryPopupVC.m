@@ -20,7 +20,7 @@
 @property(nonatomic,weak)JXCategoryPopupSubVC *vc;
 // Data
 @property(nonatomic,strong)NSMutableArray <NSString *>*titleMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewController *>*childVCMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
 
 @end
 
@@ -209,7 +209,7 @@ ratio:(CGFloat)ratio {
     }return _titleMutArr;
 }
 
--(NSMutableArray<UIViewController *> *)childVCMutArr{
+-(NSMutableArray<__kindof UIViewController *> *)childVCMutArr{
     if (!_childVCMutArr) {
         _childVCMutArr = NSMutableArray.array;
         for (NSString *str in self.titleMutArr) {

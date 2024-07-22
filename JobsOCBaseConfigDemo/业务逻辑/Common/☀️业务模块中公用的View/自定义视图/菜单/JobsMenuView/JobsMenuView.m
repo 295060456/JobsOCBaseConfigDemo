@@ -9,7 +9,7 @@
 
 @interface JobsMenuView ()
 
-@property(nonatomic,strong)LinkageMenuView *menuView;
+@property(nonatomic,strong)JobsLinkageMenuView *menuView;
 @property(nonatomic,strong)NSMutableArray <__kindof NSString *>*titleMutArr;
 @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*subViewMutArr;
 @property(nonatomic,strong)JobsMenuSubView_1 *menuSubView_1;
@@ -69,9 +69,9 @@
     return [JobsMenuView viewSizeWithModel:model];
 }
 #pragma mark —— lazyLoad
--(LinkageMenuView *)menuView{
+-(JobsLinkageMenuView *)menuView{
     if(!_menuView){
-        _menuView = [LinkageMenuView.alloc initWithFrame:self.bounds
+        _menuView = [JobsLinkageMenuView.alloc initWithFrame:self.bounds
                                                 withMenu:self.titleMutArr
                                                 andViews:self.subViewMutArr];
         [self addSubview:_menuView];

@@ -6,7 +6,7 @@
 //
 
 #import "BaseView.h"
-#import "LinkageMenuView.h"
+#import "JobsLinkageMenuView.h"
 
 #import "JobsMenuSubView@1.h"
 #import "JobsMenuSubView@2.h"

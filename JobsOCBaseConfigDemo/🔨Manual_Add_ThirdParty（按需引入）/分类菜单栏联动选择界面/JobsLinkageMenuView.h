@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIButton+UI.h"
 
-@interface LinkageMenuView : UIView
+@interface JobsLinkageMenuView : UIView
 
 @property(nonatomic,strong)UIColor *selectViewColor;/// 滑块颜色
 @property(nonatomic,strong)UIColor *textColor;/// 标题颜色

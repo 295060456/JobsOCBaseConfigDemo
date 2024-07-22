@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
-		C525D3EC2C4801C1003DAFD0 /* LinkageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3EA2C4801C1003DAFD0 /* LinkageMenuView.m */; };
+		C525D3EC2C4801C1003DAFD0 /* JobsLinkageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */; };
 		C525D3EF2C48028C003DAFD0 /* JobsMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3EE2C48028C003DAFD0 /* JobsMenuView.m */; };
 		C525D3F32C4803CB003DAFD0 /* JobsMenuSubView@1.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3F22C4803CB003DAFD0 /* JobsMenuSubView@1.m */; };
 		C525D3F72C4803DE003DAFD0 /* JobsMenuSubView@2.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3F62C4803DE003DAFD0 /* JobsMenuSubView@2.m */; };
@@ -1098,8 +1098,8 @@
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
-		C525D3EA2C4801C1003DAFD0 /* LinkageMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkageMenuView.m; sourceTree = "<group>"; };
-		C525D3EB2C4801C1003DAFD0 /* LinkageMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkageMenuView.h; sourceTree = "<group>"; };
+		C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsLinkageMenuView.m; sourceTree = "<group>"; };
+		C525D3EB2C4801C1003DAFD0 /* JobsLinkageMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsLinkageMenuView.h; sourceTree = "<group>"; };
 		C525D3ED2C48028C003DAFD0 /* JobsMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsMenuView.h; sourceTree = "<group>"; };
 		C525D3EE2C48028C003DAFD0 /* JobsMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsMenuView.m; sourceTree = "<group>"; };
 		C525D3F12C4803CB003DAFD0 /* JobsMenuSubView@1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JobsMenuSubView@1.h"; sourceTree = "<group>"; };
@@ -3084,8 +3084,8 @@
 		C525D3E92C48017D003DAFD0 /* 分类菜单栏联动选择界面 */ = {
 			isa = PBXGroup;
 			children = (
-				C525D3EB2C4801C1003DAFD0 /* LinkageMenuView.h */,
-				C525D3EA2C4801C1003DAFD0 /* LinkageMenuView.m */,
+				C525D3EB2C4801C1003DAFD0 /* JobsLinkageMenuView.h */,
+				C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */,
 			);
 			path = "分类菜单栏联动选择界面";
 			sourceTree = "<group>";
@@ -13111,7 +13111,7 @@
 				CECE7C8E2C450C5000764AF5 /* JobsIMShowVC.m in Sources */,
 				CECE7CC92C450C5000764AF5 /* PreviewVC.m in Sources */,
 				CECE81522C4512BF00764AF5 /* TransitionAnimation.m in Sources */,
-				C525D3EC2C4801C1003DAFD0 /* LinkageMenuView.m in Sources */,
+				C525D3EC2C4801C1003DAFD0 /* JobsLinkageMenuView.m in Sources */,
 				CECE7C192C450C5000764AF5 /* RegisterApi.m in Sources */,
 				CECE85642C4513CE00764AF5 /* NSString+Decoration.m in Sources */,
 				CECE80B92C4512BF00764AF5 /* CasinoCustomerContactModel.m in Sources */,

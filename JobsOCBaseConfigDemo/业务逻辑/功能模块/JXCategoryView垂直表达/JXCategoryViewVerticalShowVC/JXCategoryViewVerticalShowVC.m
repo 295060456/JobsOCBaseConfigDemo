@@ -13,7 +13,7 @@
 @property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
 @property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
 /// Data
-@property(nonatomic,strong)NSMutableArray <UIViewController *>*childVCMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
 @property(nonatomic,strong)NSMutableArray <NSString *>*titleMutArr;
 //@property(nonatomic,strong)NSMutableArray <NSString *>*imageNames;
 //@property(nonatomic,strong)NSMutableArray <NSString *>*selectedImageNames;
@@ -229,7 +229,7 @@ ratio:(CGFloat)ratio {
     }return _titleMutArr;
 }
 
--(NSMutableArray<UIViewController *> *)childVCMutArr{
+-(NSMutableArray<__kindof UIViewController *> *)childVCMutArr{
     if (!_childVCMutArr) {
         _childVCMutArr = NSMutableArray.array;
         for (NSString *str in self.titleMutArr) {

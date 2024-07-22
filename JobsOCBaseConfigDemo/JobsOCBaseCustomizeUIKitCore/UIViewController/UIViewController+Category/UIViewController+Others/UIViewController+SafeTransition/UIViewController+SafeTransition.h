@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsRecordPresentedViewController : NSObject
 
-@property(nonatomic,strong)NSMutableArray <UIViewController *>*presentedVCMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UIViewController *>*presentedVCMutArr;
 
 +(instancetype)sharedInstance;
 

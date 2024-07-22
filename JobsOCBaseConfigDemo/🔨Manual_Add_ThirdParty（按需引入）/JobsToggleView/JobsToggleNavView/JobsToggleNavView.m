@@ -139,6 +139,10 @@
 #pragma mark —— 一些公有方法
 /// 核心方法：拖动和点击的逻辑，都归属于这个方法
 - (void)selectingOneTagWithIndex:(NSInteger)index{
+    /// 纠错
+    if(index > self.buttonsArray.count - 1) index = self.buttonsArray.count - 1;
+    if(index < 0) index = 0;
+    
     NSLog(@"当前选择：%lu",(unsigned long)index);
     if(index == self.current_index) return;
     self.current_index = index;

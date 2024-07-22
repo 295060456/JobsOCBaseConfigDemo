@@ -87,7 +87,13 @@
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                  willDecelerate:(BOOL)decelerate{
-    NSInteger selectedIndx = scrollView.contentOffset.x / self.bgScroll.width;
+    
+    CGFloat scrollView_contentOffset_x = scrollView.contentOffset.x;
+    if(scrollView_contentOffset_x < 0) scrollView_contentOffset_x = 0;
+    if(scrollView_contentOffset_x > scrollView.width * self.scrollContentViews.count - 1)
+        scrollView_contentOffset_x = scrollView.width * self.scrollContentViews.count - 1;
+    
+    NSInteger selectedIndx = round(scrollView_contentOffset_x / scrollView.width);
     NSLog(@"当前滑动的index = %ld",(long)selectedIndx)
     [self.taggedNavView selectingOneTagWithIndex:selectedIndx];
 }
