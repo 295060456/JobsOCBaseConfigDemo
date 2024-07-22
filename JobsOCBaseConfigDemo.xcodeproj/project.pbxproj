@@ -625,7 +625,7 @@
 		CECE854F2C4513CE00764AF5 /* NSObject+Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82C62C4513CD00764AF5 /* NSObject+Notification.m */; };
 		CECE85502C4513CE00764AF5 /* NSObject+NSMutableParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82C92C4513CD00764AF5 /* NSObject+NSMutableParagraphStyle.m */; };
 		CECE85512C4513CE00764AF5 /* NSObject+OpenURL.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82CC2C4513CD00764AF5 /* NSObject+OpenURL.m */; };
-		CECE85522C4513CE00764AF5 /* NSObject+Popup.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82CF2C4513CD00764AF5 /* NSObject+Popup.m */; };
+		CECE85522C4513CE00764AF5 /* NSObject+TFPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82CF2C4513CD00764AF5 /* NSObject+TFPopup.m */; };
 		CECE85532C4513CE00764AF5 /* NSObject+PopViewToLogOut.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82D22C4513CD00764AF5 /* NSObject+PopViewToLogOut.m */; };
 		CECE85542C4513CE00764AF5 /* NSObject+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82D52C4513CD00764AF5 /* NSObject+Random.m */; };
 		CECE85552C4513CE00764AF5 /* NSObject+RegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82D82C4513CD00764AF5 /* NSObject+RegularExpression.m */; };
@@ -2301,8 +2301,8 @@
 		CECE82C92C4513CD00764AF5 /* NSObject+NSMutableParagraphStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSMutableParagraphStyle.m"; sourceTree = "<group>"; };
 		CECE82CB2C4513CD00764AF5 /* NSObject+OpenURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+OpenURL.h"; sourceTree = "<group>"; };
 		CECE82CC2C4513CD00764AF5 /* NSObject+OpenURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+OpenURL.m"; sourceTree = "<group>"; };
-		CECE82CE2C4513CD00764AF5 /* NSObject+Popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Popup.h"; sourceTree = "<group>"; };
-		CECE82CF2C4513CD00764AF5 /* NSObject+Popup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Popup.m"; sourceTree = "<group>"; };
+		CECE82CE2C4513CD00764AF5 /* NSObject+TFPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+TFPopup.h"; sourceTree = "<group>"; };
+		CECE82CF2C4513CD00764AF5 /* NSObject+TFPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+TFPopup.m"; sourceTree = "<group>"; };
 		CECE82D12C4513CD00764AF5 /* NSObject+PopViewToLogOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PopViewToLogOut.h"; sourceTree = "<group>"; };
 		CECE82D22C4513CD00764AF5 /* NSObject+PopViewToLogOut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PopViewToLogOut.m"; sourceTree = "<group>"; };
 		CECE82D42C4513CD00764AF5 /* NSObject+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Random.h"; sourceTree = "<group>"; };
@@ -9015,13 +9015,13 @@
 			path = "NSObject+OpenURL";
 			sourceTree = "<group>";
 		};
-		CECE82D02C4513CD00764AF5 /* NSObject+Popup */ = {
+		CECE82D02C4513CD00764AF5 /* NSObject+TFPopup */ = {
 			isa = PBXGroup;
 			children = (
-				CECE82CE2C4513CD00764AF5 /* NSObject+Popup.h */,
-				CECE82CF2C4513CD00764AF5 /* NSObject+Popup.m */,
+				CECE82CE2C4513CD00764AF5 /* NSObject+TFPopup.h */,
+				CECE82CF2C4513CD00764AF5 /* NSObject+TFPopup.m */,
 			);
-			path = "NSObject+Popup";
+			path = "NSObject+TFPopup";
 			sourceTree = "<group>";
 		};
 		CECE82D32C4513CD00764AF5 /* NSObject+PopViewToLogOut */ = {
@@ -9178,7 +9178,7 @@
 				CECE82C72C4513CD00764AF5 /* NSObject+Notification */,
 				CECE82CA2C4513CD00764AF5 /* NSObject+NSMutableParagraphStyle */,
 				CECE82CD2C4513CD00764AF5 /* NSObject+OpenURL */,
-				CECE82D02C4513CD00764AF5 /* NSObject+Popup */,
+				CECE82D02C4513CD00764AF5 /* NSObject+TFPopup */,
 				CECE82D32C4513CD00764AF5 /* NSObject+PopViewToLogOut */,
 				CECE82D62C4513CD00764AF5 /* NSObject+Random */,
 				CECE82D92C4513CD00764AF5 /* NSObject+RegularExpression */,
@@ -13417,7 +13417,7 @@
 				CECE81532C4512BF00764AF5 /* TransitionController.m in Sources */,
 				CECE85B52C4513CE00764AF5 /* BaseTableView.m in Sources */,
 				CECE7CEC2C450C5000764AF5 /* JobsMsgDetailVC.m in Sources */,
-				CECE85522C4513CE00764AF5 /* NSObject+Popup.m in Sources */,
+				CECE85522C4513CE00764AF5 /* NSObject+TFPopup.m in Sources */,
 				CECE85B42C4513CE00764AF5 /* UISwitch+UI.m in Sources */,
 				CECE87622C45140000764AF5 /* ZHKeyChainManager.m in Sources */,
 				CECE85ED2C4513CE00764AF5 /* UIViewController+JXPagerViewListViewDelegate.m in Sources */,

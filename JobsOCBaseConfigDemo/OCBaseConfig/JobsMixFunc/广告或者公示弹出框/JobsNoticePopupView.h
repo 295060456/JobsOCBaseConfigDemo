@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewProtocol.h"
-#import "NSObject+Popup.h"
+#import "NSObject+TFPopup.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

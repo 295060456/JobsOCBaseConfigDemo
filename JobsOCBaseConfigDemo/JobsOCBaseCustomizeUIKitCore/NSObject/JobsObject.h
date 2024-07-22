@@ -55,7 +55,7 @@
 /// 本机设备信息
 #import "NSObject+CurrentDevice.h"
 /// 本地弹出View
-#import "NSObject+Popup.h"
+#import "NSObject+TFPopup.h"
 /// 本地推送通知封装
 #import "NSObject+UserNotifications.h"
 /// App更改图标

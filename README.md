@@ -2714,7 +2714,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   #endif
   ```
 
-* 对其二次封装，方便使用。关注实现类：[<font color=blue>**`@implementation NSObject (Popup)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BPopup)
+* 最底层承接的是一个**UIButton**
+
+* 对其二次封装，方便使用。关注实现类：[<font color=blue>**`@implementation NSObject (TFPopup)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BTFPopup)
 
 * 接入方式
 
