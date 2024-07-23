@@ -28,7 +28,7 @@
     if (self = [super init]) {
         _buttonTitle = @"跳过";
         _buttonFrame = CGRectZero;
-        _buttonMode = SkipButtonModeNormal;
+        _buttonModel = SkipButtonModeNormal;
         _countdownDuration = 5;
         _redirectURL = @"https://www.google.com";
         [self setupMotionManager];

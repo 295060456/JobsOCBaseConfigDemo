@@ -16,6 +16,7 @@
 		C525D3FB2C4803F0003DAFD0 /* JobsMenuSubView@3.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3FA2C4803F0003DAFD0 /* JobsMenuSubView@3.m */; };
 		C525D4002C480402003DAFD0 /* JobsMenuSubView@4.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3FF2C480402003DAFD0 /* JobsMenuSubView@4.m */; };
 		CE40B2922C4B628A00CB64B5 /* JobsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2902C4B628900CB64B5 /* JobsTextField.m */; };
+		CE7F37862C4F66AB00431A5D /* JobsLaunchAdMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE86BA2C45140000764AF5 /* JobsLaunchAdMgr.m */; };
 		CE94E83C2C4D1098001C3CCB /* JobsToggleBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94E8362C4D1098001C3CCB /* JobsToggleBaseView.m */; };
 		CE94E83D2C4D1098001C3CCB /* JobsToggleNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94E8392C4D1098001C3CCB /* JobsToggleNavView.m */; };
 		CEC01DD32C4A38080069C91A /* Bayon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC01DD22C4A38080069C91A /* Bayon.ttf */; };
@@ -862,7 +863,6 @@
 		CECE874D2C45140000764AF5 /* CountdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE86AD2C45140000764AF5 /* CountdownView.m */; };
 		CECE874E2C45140000764AF5 /* AESCrypt-ObjC.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE86AF2C45140000764AF5 /* AESCrypt-ObjC.md */; };
 		CECE874F2C45140000764AF5 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE86B12C45140000764AF5 /* AESCrypt.m */; };
-		CECE87522C45140000764AF5 /* JobsLaunchAdMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE86BA2C45140000764AF5 /* JobsLaunchAdMgr.m */; };
 		CECE87532C45140000764AF5 /* DDUploadingProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE86BD2C45140000764AF5 /* DDUploadingProgressView.m */; };
 		CECE87542C45140000764AF5 /* DDUploadingProgressView.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE86BE2C45140000764AF5 /* DDUploadingProgressView.md */; };
 		CECE87552C45140000764AF5 /* File in Resources */ = {isa = PBXBuildFile; fileRef = CECE86C02C45140000764AF5 /* File */; };
@@ -13118,7 +13118,6 @@
 				CECE85642C4513CE00764AF5 /* NSString+Decoration.m in Sources */,
 				CECE80B92C4512BF00764AF5 /* CasinoCustomerContactModel.m in Sources */,
 				CECE7E842C450E5B00764AF5 /* DDRange.m in Sources */,
-				CECE87522C45140000764AF5 /* JobsLaunchAdMgr.m in Sources */,
 				CECE7CDD2C450C5000764AF5 /* JobsWalletVC.m in Sources */,
 				CECE7D372C450CCD00764AF5 /* CasinoUpgradePopupView.m in Sources */,
 				CECE872C2C45140000764AF5 /* UIImage+Base85.m in Sources */,
@@ -13245,6 +13244,7 @@
 				CECE7EC82C450E5B00764AF5 /* WMZBannerFadeLayout.m in Sources */,
 				CECE7E942C450E5B00764AF5 /* KTVHCError.m in Sources */,
 				CECE85FA2C4513CE00764AF5 /* UIViewController+SafeTransition.m in Sources */,
+				CE7F37862C4F66AB00431A5D /* JobsLaunchAdMgr.m in Sources */,
 				CECE7EB52C450E5B00764AF5 /* TKPermissionContacts.m in Sources */,
 				CECE7C0B2C450C5000764AF5 /* BaiShaETProjSearchView.m in Sources */,
 				CECE7D3D2C450CCD00764AF5 /* JobsOCBaseConfigTestPopupView.m in Sources */,

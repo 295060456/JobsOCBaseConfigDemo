@@ -96,42 +96,42 @@ NS_ASSUME_NONNULL_END
 #ifndef INIT_BUTTON_MODE
 #define INIT_BUTTON_MODE \
 -(UIButtonModel *)buttonModel{ \
-    if(!_buttonMode){ \
-        _buttonMode = UIButtonModel.new; \
-        _buttonMode.btnConfiguration = nil; \
-        _buttonMode.background = nil; \
-        _buttonMode.titleAlignment = UIButtonConfigurationTitleAlignmentAutomatic; \
-        _buttonMode.textAlignment = NSTextAlignmentCenter; \
-        _buttonMode.subTextAlignment = NSTextAlignmentCenter; \
-        _buttonMode.normalImage = nil; \
-        _buttonMode.highlightImage = nil; \
-        _buttonMode.attributedTitle = nil; \
-        _buttonMode.selectedAttributedTitle = nil; \
-        _buttonMode.attributedSubtitle = nil; \
-        _buttonMode.title = nil; \
-        _buttonMode.subTitle = nil; \
-        _buttonMode.titleFont = UIFontSystemFontOfSize(self.tagTextFont_normal); \
-        _buttonMode.subTitleFont = nil; \
-        _buttonMode.titleCor = self.tagTextColor_normal; \
-        _buttonMode.subTitleCor = nil; \
-        _buttonMode.titleLineBreakMode = NSLineBreakByWordWrapping; \
-        _buttonMode.subtitleLineBreakMode = NSLineBreakByWordWrapping; \
-        _buttonMode.baseBackgroundColor = JobsWhiteColor; \
-        _buttonMode.backgroundImage = nil; \
-        _buttonMode.imagePadding = JobsWidth(0); \
-        _buttonMode.titlePadding = JobsWidth(0); \
-        _buttonMode.imagePlacement = NSDirectionalRectEdgeNone; \
-        _buttonMode.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter; \
-        _buttonMode.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter; \
-        _buttonMode.contentInsets = jobsSameDirectionalEdgeInsets(0); \
-        _buttonMode.cornerRadiusValue = JobsWidth(0); \
-        _buttonMode.roundingCorners = UIRectCornerAllCorners; \
-        _buttonMode.roundingCornersRadii = CGSizeZero; \
-        _buttonMode.layerBorderCor = nil; \
-        _buttonMode.borderWidth = JobsWidth(0); \
-        _buttonMode.primaryAction = nil; \
-        _buttonMode.longPressGestureEventBlock = nil; \
-        _buttonMode.clickEventBlock = nil; \
-    }return _buttonMode; \
+    if(!_buttonModel){ \
+        _buttonModel = UIButtonModel.new; \
+        _buttonModel.btnConfiguration = nil; \
+        _buttonModel.background = nil; \
+        _buttonModel.buttonConfigTitleAlignment = UIButtonConfigurationTitleAlignmentAutomatic; \
+        _buttonModel.textAlignment = NSTextAlignmentCenter; \
+        _buttonModel.subTextAlignment = NSTextAlignmentCenter; \
+        _buttonModel.normalImage = nil; \
+        _buttonModel.highlightImage = nil; \
+        _buttonModel.attributedTitle = nil; \
+        _buttonModel.selectedAttributedTitle = nil; \
+        _buttonModel.attributedSubtitle = nil; \
+        _buttonModel.title = nil; \
+        _buttonModel.subTitle = nil; \
+        _buttonModel.titleFont = bayonRegular(JobsWidth(16)); \
+        _buttonModel.subTitleFont = nil; \
+        _buttonModel.titleCor = JobsCor(@"#ABABAB"); \
+        _buttonModel.subTitleCor = nil; \
+        _buttonModel.titleLineBreakMode = NSLineBreakByWordWrapping; \
+        _buttonModel.subtitleLineBreakMode = NSLineBreakByWordWrapping; \
+        _buttonModel.baseBackgroundColor = JobsWhiteColor; \
+        _buttonModel.backgroundImage = nil; \
+        _buttonModel.imagePadding = JobsWidth(0); \
+        _buttonModel.titlePadding = JobsWidth(0); \
+        _buttonModel.imagePlacement = NSDirectionalRectEdgeNone; \
+        _buttonModel.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter; \
+        _buttonModel.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter; \
+        _buttonModel.contentInsets = jobsSameDirectionalEdgeInsets(0); \
+        _buttonModel.cornerRadiusValue = JobsWidth(0); \
+        _buttonModel.roundingCorners = UIRectCornerAllCorners; \
+        _buttonModel.roundingCornersRadii = CGSizeZero; \
+        _buttonModel.layerBorderCor = nil; \
+        _buttonModel.borderWidth = JobsWidth(0); \
+        _buttonModel.primaryAction = nil; \
+        _buttonModel.longPressGestureEventBlock = nil; \
+        _buttonModel.clickEventBlock = nil; \
+    }return _buttonModel; \
 }
 #endif /**INIT_BUTTON_MODE**/

@@ -27,7 +27,7 @@ JobsToggleNavViewProtocolSynthesize
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = JobsWhiteColor;
+//        self.backgroundColor = JobsWhiteColor;
     }return self;
 }
 
@@ -50,7 +50,7 @@ JobsToggleNavViewProtocolSynthesize
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
-        self.backgroundColor = JobsWhiteColor;
+//        self.backgroundColor = JobsWhiteColor;
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -58,6 +58,7 @@ JobsToggleNavViewProtocolSynthesize
 //    self.viewModel = model ? : UIViewModel.new;
 //    MakeDataNull
     self.taggedNavView.alpha = 1;
+    [self makeScrollContentViewsFrame];
     self.bgScroll.alpha = 1;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -71,6 +72,17 @@ JobsToggleNavViewProtocolSynthesize
 #pragma mark —— 一些公共方法
 -(JobsToggleNavView *)getToggleNavView{
     return self.taggedNavView;
+}
+#pragma mark —— 一些私有方法
+-(void)makeScrollContentViewsFrame{
+    int t = 0;
+    for (UIView *subView in self.scrollContentViews) {
+        subView.frame = CGRectMake([JobsToggleBaseView viewSizeWithModel:nil].width * t,
+                                 0,
+                                 self.bgScroll.width,
+                                 self.bgScroll.height);
+        t+=1;
+    }
 }
 #pragma mark —— scrollviewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -109,13 +121,9 @@ JobsToggleNavViewProtocolSynthesize
         _taggedNavView.buttonModel = self.buttonModel;
         
         _taggedNavView.dataArr = self.taggedNavTitles;
-        _taggedNavView.tagTextColor_normal = self.tagTextColor_normal;
-        _taggedNavView.tagTextColor_selected = self.tagTextColor_selected;
-        _taggedNavView.tagTextFont_normal = self.tagTextFont_normal;
-        _taggedNavView.tagTextFont_selected = self.tagTextFont_selected;
         _taggedNavView.sliderColor = self.sliderColor;
         _taggedNavView.sliderW = self.sliderW;
-        _taggedNavView.sliderH = self.sliderH;
+        _taggedNavView.sliderH = JobsWidth(1);
         
         [self addSubview:_taggedNavView];
         [_taggedNavView richElementsInViewWithModel:nil];
@@ -183,10 +191,6 @@ JobsToggleNavViewProtocolSynthesize
         int t = 0;
         for (NSString *title in self.tempTitles) {
             UILabel *label = UILabel.new;
-            label.frame = CGRectMake([JobsToggleBaseView viewSizeWithModel:nil].width * t,
-                                     0,
-                                     self.bgScroll.width,
-                                     self.bgScroll.height);
             label.backgroundColor = JobsRandomColor;
             label.text = [NSString stringWithFormat:@"%d\n%@",t,title];
             label.textAlignment = NSTextAlignmentCenter;

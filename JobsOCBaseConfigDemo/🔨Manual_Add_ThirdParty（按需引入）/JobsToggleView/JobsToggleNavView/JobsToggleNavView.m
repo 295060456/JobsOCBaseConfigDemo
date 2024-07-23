@@ -8,14 +8,6 @@
 //
 #import "JobsToggleNavView.h"
 
-#define DefaultTagTextColor_normal [UIColor blackColor]
-#define DefaultTagTextColor_selected [UIColor redColor]
-#define DefaultTagTextFont_normal 15
-#define DefaultTagTextFont_selected 22
-#define DefaultSliderColor [UIColor redColor]
-#define DefaultSliderH 1
-#define DefaultSliderW 30
-
 @interface JobsToggleNavView ()
 
 @property(nonatomic,strong)NSMutableArray <__kindof UIButton *>*buttonsArray;
@@ -33,7 +25,7 @@ JobsToggleNavViewProtocolSynthesize
 #pragma mark —— SysMethod
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = JobsWhiteColor;
+//        self.backgroundColor = JobsWhiteColor;
     }return self;
 }
 
@@ -56,7 +48,7 @@ JobsToggleNavViewProtocolSynthesize
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
-        self.backgroundColor = JobsWhiteColor;
+//        self.backgroundColor = JobsWhiteColor;
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -80,7 +72,7 @@ JobsToggleNavViewProtocolSynthesize
 }
 
 -(void)createUI{
-    self.backgroundColor = JobsWhiteColor;
+//    self.backgroundColor = JobsWhiteColor;
     if(self.buttonsArray.count){
         [self.buttonsArray removeAllObjects];
     }
@@ -88,7 +80,7 @@ JobsToggleNavViewProtocolSynthesize
         @jobs_weakify(self)
         UIButton *button = [BaseButton.alloc jobsInitBtnByConfiguration:self.buttonModel.btnConfiguration
                                                              background:self.buttonModel.background
-                                                         titleAlignment:self.buttonModel.titleAlignment
+                                                         titleAlignment:self.buttonModel.buttonConfigTitleAlignment
                                                           textAlignment:self.buttonModel.textAlignment
                                                        subTextAlignment:self.buttonModel.subTextAlignment
                                                             normalImage:self.buttonModel.normalImage
@@ -125,6 +117,7 @@ JobsToggleNavViewProtocolSynthesize
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }];
+
         button.frame = CGRectMake(i * self.buttonWidth,
                                   0,
                                   self.buttonWidth,
@@ -136,6 +129,10 @@ JobsToggleNavViewProtocolSynthesize
     }
     self.current_index = 0;
     self.sliderView.alpha = 1;
+    
+    self.buttonsArray[0].jobsResetTitleFont(self.buttonModel.selected_titleFont);
+    self.buttonsArray[0].jobsResetBtnTitleCor(self.buttonModel.selected_titleCor);
+    self.buttonsArray[0].selected = YES;
 }
 #pragma mark —— 一些公有方法
 /// 核心方法：拖动和点击的逻辑，都归属于这个方法
@@ -150,15 +147,15 @@ JobsToggleNavViewProtocolSynthesize
     /// 全部还原
     for (UIButton *subButton in self.buttonsArray) {
         subButton.selected = NO;
-        subButton.jobsResetTitleFont(UIFontSystemFontOfSize(self.tagTextFont_normal));
-        subButton.jobsResetBtnTitleCor(self.tagTextColor_normal);
+        subButton.jobsResetTitleFont(self.buttonModel.titleFont);
+        subButton.jobsResetBtnTitleCor(self.buttonModel.titleCor);
     }
     UIButton *currentBtn = self.buttonsArray[index];
     currentBtn.selected = YES;
     
     self.sliderView.resetCenterX(currentBtn.centerX);
-    currentBtn.jobsResetTitleFont(UIFontSystemFontOfSize(self.tagTextFont_selected));
-    currentBtn.jobsResetBtnTitleCor(self.tagTextColor_selected);
+    currentBtn.jobsResetTitleFont(self.buttonModel.selected_titleFont);
+    currentBtn.jobsResetBtnTitleCor(self.buttonModel.selected_titleCor);
 }
 #pragma mark —— lazyLoad
 -(UIView *)sliderView{
@@ -178,45 +175,21 @@ JobsToggleNavViewProtocolSynthesize
     }return _buttonsArray;
 }
 
--(UIColor *)tagTextColor_normal{
-    if(!_tagTextColor_normal){
-        _tagTextColor_normal = DefaultTagTextColor_normal;
-    }return _tagTextColor_normal;
-}
-
--(UIColor *)tagTextColor_selected{
-    if(!_tagTextColor_selected){
-        _tagTextColor_selected = DefaultTagTextColor_selected;
-    }return _tagTextColor_selected;
-}
-
--(CGFloat)tagTextFont_normal{
-    if(!_tagTextFont_normal){
-        _tagTextFont_normal = DefaultTagTextFont_normal;
-    }return _tagTextFont_normal;
-}
-
--(CGFloat)tagTextFont_selected{
-    if(!_tagTextFont_selected){
-        _tagTextFont_selected = DefaultTagTextFont_selected;
-    }return _tagTextFont_selected;
-}
-
 -(UIColor *)sliderColor{
     if(!_sliderColor){
-        _sliderColor = DefaultSliderColor;
+        _sliderColor = JobsRedColor;
     }return _sliderColor;
 }
 
 -(CGFloat)sliderH{
     if(!_sliderH){
-        _sliderH = DefaultSliderH;
+        _sliderH = JobsWidth(30);
     }return _sliderH;
 }
 
 -(CGFloat)sliderW{
     if(!_sliderW){
-        _sliderW = DefaultSliderW;
+        _sliderW = JobsWidth(1);
     }return _sliderW;
 }
 INIT_BUTTON_MODE
