@@ -1075,13 +1075,13 @@ NSObject <|-- BaseProtocol
   * 作用于 `UILabe` <font color=red>**必须等`UILabe *`的Frame正确刷新加载以后，才可以使用以下方法**</font>
 
     ```objective-c
-    -(void)makeLabelByShowingType:(UILabelShowingType)labelShowingType
+    -(jobsByNSIntegerBlock _Nonnull)makeLabelByShowingType;
     ```
 
   * 作用于 `UIButton` <font color=red>**必须等`UIButton *`的Frame正确刷新加载以后，才可以使用以下方法**</font>
 
     ```objective-c
-    -(void)makeBtnLabelByShowingType:(UILabelShowingType)labelShowingType
+    -(jobsByNSIntegerBlock _Nonnull)makeBtnLabelByShowingType;
     ```
 
 * 示例
@@ -1098,7 +1098,7 @@ NSObject <|-- BaseProtocol
               make.centerX.equalTo(self);
               make.top.equalTo(self).offset(JobsWidth(13));
           }];
-          [_titleLab makeLabelByShowingType:UILabelShowingType_03];
+          _titleLab.makeLabelByShowingType(UILabelShowingType_03);
       }return _titleLab;
   }
   ```
@@ -2160,7 +2160,7 @@ NSObject <|-- BaseProtocol
              make.top.equalTo(self).offset(JobsWidth(20));
              make.centerX.equalTo(self);
          }];
-         [_titleBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+         _titleBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
      }return _titleBtn;
   }
   
@@ -2206,6 +2206,83 @@ NSObject <|-- BaseProtocol
   }
   ```
   
+* 对按钮各项属性的设置
+
+  * ```objective-c
+    -(jobsByBOOLBlock _Nonnull)makeNewLineShows;
+    -(jobsByNSIntegerBlock _Nonnull)titleAlignment;
+    -(jobsByFontBlock _Nonnull)titleFont;
+    -(jobsByImageBlock _Nonnull)normalImage;
+    -(jobsByImageBlock _Nonnull)normalBackgroundImage;
+    -(jobsByStringBlock _Nonnull)normalTitle;
+    -(jobsByCorBlock _Nonnull)normalTitleColor;
+    -(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle;/// 富文本
+    ```
+  
+  * ```objective-c
+    -(jobsByImageBlock _Nonnull)selectedImage;
+    -(jobsByImageBlock _Nonnull)selectedBackgroundImage;
+    -(jobsByStringBlock _Nonnull)selectedTitle;
+    -(jobsByCorBlock _Nonnull)selectedTitleColor;
+    -(jobsByAttributedStringBlock _Nonnull)selectedAttributedTitle;/// 富文本
+    ```
+  
+  * ```objective-c
+    /// 重设Btn的描边：线宽和线段的颜色
+    -(jobsByColor_FloatBlock)jobsResetBtnlayerBorderCorAndWidth;
+    /// 重设Btn的描边线段的颜色
+    -(jobsByCorBlock)jobsResetBtnlayerBorderCor;
+    /// 重设Btn的描边线段的宽度
+    -(jobsByFloatBlock)jobsResetBtnlayerBorderWidth;
+    /// 重设Btn的圆切角
+    -(jobsByCGFloatBlock)jobsResetBtnCornerRadiusValue;
+    /// 重设Btn主标题的文字内容
+    -(jobsByStringBlock)jobsResetBtnTitle;
+    /// 重设Btn.Image
+    -(jobsByImageBlock)jobsResetBtnImage;
+    /// 重设Btn主标题的文字颜色
+    -(jobsByCorBlock)jobsResetBtnTitleCor;
+    /// 重设Btn主标题的背景颜色
+    -(jobsByCorBlock)jobsResetBtnBgCor;
+    /// 重设Btn的背景图片
+    -(jobsByImageBlock)jobsResetBtnBgImage;
+    ```
+  
+  * ```objective-c
+    -(JobsReturnButtonConfigurationByBackgroundBlock _Nonnull)jobsResetBackground API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetBackgroundImage API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByCornerStyleBlock _Nonnull)jobsResetCornerStyle API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationBySizeBlock _Nonnull)jobsResetButtonSize API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByMacIdiomStyleBlock _Nonnull)jobsResetMacIdiomStyle API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByBaseBackgroundColorBlock _Nonnull)jobsResetBaseBackgroundColor API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetImage API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByImageColorTransformerBlock _Nonnull)jobsResetImageColorTransformer API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByPreferredSymbolConfigurationForImageBlock _Nonnull)jobsResetPreferredSymbolConfigurationForImage API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByShowsActivityIndicatorBlock _Nonnull)jobsResetShowsActivityIndicator API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByActivityIndicatorColorTransformerBlock _Nonnull)jobsResetActivityIndicatorColorTransformer API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetTitle API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByAttributedTitleBlock _Nonnull)jobsResetAttributedTitle API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByTitleTextAttributesTransformerBlock _Nonnull)jobsResetTitleTextAttributesTransformer API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByTitleLineBreakModeBlock _Nonnull)jobsResetTitleLineBreakMode API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByTitleLineBreakModeBlock _Nonnull)jobsResetSubTitleLineBreakMode API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationBySubtitleBlock _Nonnull)jobsResetSubtitle API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByAttributedSubtitleBlock _Nonnull)jobsResetAttributedSubtitle API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationBySubtitleTextAttributesTransformerBlock _Nonnull)jobsResetSubtitleTextAttributesTransformer API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationBySubtitleLineBreakModeBlock _Nonnull)jobsResetSubtitleLineBreakMode API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByIndicatorBlock _Nonnull)jobsResetIndicator API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByIndicatorColorTransformerBlock _Nonnull)jobsResetIndicatorColorTransformer API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByContentInsetsBlock _Nonnull)jobsResetContentInsets API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByImagePaddingBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByTitlePaddingBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByTitleAlignmentBlock _Nonnull)jobsResetTitleAlignment API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock _Nonnull)jobsResetAutomaticallyUpdateForSelection API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetSubTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
+    -(jobsByFontBlock _Nonnull)jobsResetTitleFont API_AVAILABLE(ios(16.0));
+    -(jobsByFontBlock _Nonnull)jobsResetSubTitleFont API_AVAILABLE(ios(16.0));
+    ```
+  
 * 资料来源：
 
   * [**UIButtonConfiguration**](https://www.jianshu.com/p/12426709420e)
@@ -2241,7 +2318,7 @@ NSObject <|-- BaseProtocol
                 make.top.equalTo(self).offset(JobsWidth(20));
                 make.centerX.equalTo(self);
             }];
-            [_countDownBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+            _countDownBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
            /// 倒计时按钮点击事件
            [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
                [x startTimer];//选择时机、触发启动
@@ -4690,6 +4767,77 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           _fishingView.frame = self.bounds;
           [_fishingView richElementsInViewWithModel:nil];
       }return _fishingView;
+  }
+  ```
+
+### 32、切角 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 切整个View的4个角为统一的切角参数
+
+  ```objective-c
+  -(jobsByCGFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius{
+      @jobs_weakify(self)
+      return ^(CGFloat cornerRadiusValue) {
+          self.layer.cornerRadius = cornerRadiusValue;
+          self.layer.masksToBounds = YES;
+      };
+  }
+  ```
+
+* 指定圆切角（方法一）
+
+  ⚠️这种写法存在一定的弊端：如果在某个View上添加子View，并对这个View使用如下方法的圆切角，则这个View上的子视图不可见⚠️
+
+  ```objective-c
+  -(void)appointCornerCutToCircleByRoundingCorners:(UIRectCorner)corners
+                                       cornerRadii:(CGSize)cornerRadii{
+      // 设置切哪个直角
+      //    UIRectCornerTopLeft     = 1 << 0,  左上角
+      //    UIRectCornerTopRight    = 1 << 1,  右上角
+      //    UIRectCornerBottomLeft  = 1 << 2,  左下角
+      //    UIRectCornerBottomRight = 1 << 3,  右下角
+      //    UIRectCornerAllCorners  = ~0UL     全部角
+      if (CGSizeEqualToSize(cornerRadii, CGSizeZero)) {
+          cornerRadii = CGSizeMake(self.width / 2,self.height / 2);
+      }
+      /// 得到view的遮罩路径
+      UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                     byRoundingCorners:corners
+                                                           cornerRadii:cornerRadii];
+      /// 创建 layer
+      CAShapeLayer *maskLayer = CAShapeLayer.new;
+      maskLayer.frame = self.bounds;
+      /// 赋值
+      maskLayer.path = maskPath.CGPath;
+      self.layer.mask = maskLayer;
+  }
+  ```
+
+* 指定圆切角（方法二），避免了（方法一）的弊端
+
+  作用于需要切的View的子类里面的-(void)layoutSubviews方法
+
+  ```objective-c
+  -(void)layoutSubviewsCutCnrByRoundingCorners:(UIRectCorner)corners
+                                   cornerRadii:(CGSize)cornerRadii{
+      //    设置切哪个直角
+      //    UIRectCornerTopLeft     = 1 << 0,  左上角
+      //    UIRectCornerTopRight    = 1 << 1,  右上角
+      //    UIRectCornerBottomLeft  = 1 << 2,  左下角
+      //    UIRectCornerBottomRight = 1 << 3,  右下角
+      //    UIRectCornerAllCorners  = ~0UL     全部角
+      
+      if (CGSizeEqualToSize(cornerRadii, CGSizeZero)) {
+          cornerRadii = CGSizeMake(self.width / 2,self.height / 2);
+      }
+      
+      UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                     byRoundingCorners:corners
+                                                           cornerRadii:cornerRadii];
+      CAShapeLayer *maskLayer = CAShapeLayer.layer;
+      maskLayer.frame = self.bounds;
+      maskLayer.path = maskPath.CGPath;
+      self.layer.mask = maskLayer;
   }
   ```
 
