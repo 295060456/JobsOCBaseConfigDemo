@@ -4445,14 +4445,205 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * 点击了导航的按钮以后在`JobsToggleBaseView`的`scrollviewDelegate`实现滚动逻辑
   * <font color=red>点击和手动滑动最后都会触发`- (void)selectingOneTagWithIndex:(NSInteger)index`</font>
   * 点击和手动滑动最后都会进入`- (void)scrollViewDidScroll:(UIScrollView *)scrollView`，但是，因为`- (void)scrollViewDidScroll:(UIScrollView *)scrollView`要反复调用，<u>所以将视图手动滚动逻辑的生命周期提前到`-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate`</u>
+  
 * `JobsToggleNavView`
   * 上部的导航栏
   * 可点击部分由`UIButton`构成，并匹配了系统最新的Api，丰富使用
+  
+* 使用方式
+  
+  ```objective-c
+  @property(nonatomic,strong)JobsToggleBaseView *toggleBaseView;
+  @property(nonatomic,strong)Login_account_code_view *account_code_view;
+  @property(nonatomic,strong)Login_verification_code_view *verification_code_view;
+  ```
+  
+  ```objective-c
+  -(JobsToggleBaseView *)toggleBaseView{
+      if(!_toggleBaseView){
+          _toggleBaseView = JobsToggleBaseView.new;
+  //        _toggleBaseView.backgroundColor = JobsClearColor;
+          _toggleBaseView.buttonModel = self.buttonModel;
+          [self addSubview:_toggleBaseView];
+          [_toggleBaseView mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.size.mas_equalTo([JobsToggleBaseView viewSizeWithModel:nil]);
+              make.top.equalTo(self.titleLab.mas_bottom);
+              make.centerX.equalTo(self);
+          }];
+          _toggleBaseView.taggedNavTitles = (NSMutableArray *)@[JobsInternationalization(@"PHONE NO."),JobsInternationalization(@"ACCOUNT NAME")];
+          _toggleBaseView.scrollContentViews = (NSMutableArray *)@[self.verification_code_view,self.account_code_view];
+          _toggleBaseView.taggedNavView_width = [LoginView viewSizeWithModel:nil].width / 2;
+          [_toggleBaseView richElementsInViewWithModel:nil];
+          _toggleBaseView.getToggleNavView.backgroundColor = JobsClearColor;
+      }return _toggleBaseView;
+  }
+  
+  -(Login_verification_code_view *)verification_code_view{
+      if(!_verification_code_view){
+          _verification_code_view = Login_verification_code_view.new;
+          _verification_code_view.size = [_verification_code_view viewSizeWithModel:nil];
+          [_verification_code_view richElementsInViewWithModel:nil];
+      }return _verification_code_view;
+  }
+  
+  -(Login_account_code_view *)account_code_view{
+      if(!_account_code_view){
+          _account_code_view = Login_account_code_view.new;
+          _account_code_view.size = [_account_code_view viewSizeWithModel:nil];
+          [_account_code_view richElementsInViewWithModel:nil];
+      }return _account_code_view;
+  }
+  
+  -(UIButtonModel *)buttonModel{
+      if(!_buttonModel){
+          _buttonModel = UIButtonModel.new;
+          _buttonModel.selected_titleFont = bayonRegular(JobsWidth(16));
+          _buttonModel.titleFont = bayonRegular(JobsWidth(16));
+          _buttonModel.selected_titleFont = bayonRegular(JobsWidth(16));
+          _buttonModel.titleCor = JobsCor(@"#ABABAB");
+          _buttonModel.selected_titleCor = JobsCor(@"#FFFFFF");
+          _buttonModel.selected_backgroundImage = JobsIMG(@"按钮-8");
+          _buttonModel.backgroundImage = JobsIMG(@"透明图");
+          _buttonModel.baseBackgroundColor = JobsClearColor;
+          _buttonModel.roundingCorners = UIRectCornerAllCorners;
+      }return _buttonModel;
+  }
+  ```
 
 #### 31.3、[**`JobsLinkageMenuView`**]()优化自 [**`LinkageMenuView`**](https://github.com/EmotionV/LinkageMenu)
 
 * <font color=red>**这是一个纯视图**</font>
+
 * 可点击的部分是由`UIButton`实现的
+
+* 使用方式
+
+  ```objective-c
+  @property(nonatomic,strong)JobsLinkageMenuView *menuView;
+  ```
+
+  ```objective-c
+  -(JobsLinkageMenuView *)menuView{
+      if(!_menuView){
+          _menuView = [JobsLinkageMenuView.alloc initWithFrame:self.bounds 
+                                                     btnConfig:self.buttonModel];
+          @jobs_weakify(self)
+          [_menuView actionObjectBlock:^(id  _Nullable x) {
+              @jobs_strongify(self)
+              if (self.objectBlock) self.objectBlock(x);
+          }];
+          [self addSubview:_menuView];
+      }return _menuView;
+  }
+  
+  -(UIButtonModel *)buttonModel{
+      if(!_buttonModel){
+          _buttonModel = UIButtonModel.new;
+          _buttonModel.normal_titles = self.titleMutArr;
+          _buttonModel.titleCor = JobsClearColor;
+          _buttonModel.selected_titleCor = JobsClearColor;
+          _buttonModel.normal_backgroundImages = self.normal_titleBgImageMutArr;
+          _buttonModel.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
+          _buttonModel.data = self.subViewMutArr;
+      }return _buttonModel;
+  }
+  
+  -(NSMutableArray<NSString *> *)titleMutArr{
+      if(!_titleMutArr){
+          _titleMutArr = NSMutableArray.array;
+          [_titleMutArr addObject:JobsInternationalization(@"TOP GAMES")];
+          [_titleMutArr addObject:JobsInternationalization(@"SLOT GAMES")];
+          [_titleMutArr addObject:JobsInternationalization(@"LIVE CASINO")];
+          [_titleMutArr addObject:JobsInternationalization(@"TABLE GAMES")];
+          [_titleMutArr addObject:JobsInternationalization(@"SPORTS")];
+          [_titleMutArr addObject:JobsInternationalization(@"FISHING")];
+      }return _titleMutArr;
+  }
+  
+  -(NSMutableArray<__kindof UIView *> *)subViewMutArr{
+      if(!_subViewMutArr){
+          _subViewMutArr = NSMutableArray.array;
+          [_subViewMutArr addObject:self.topGamesView];
+          [_subViewMutArr addObject:self.slotGamesView];
+          [_subViewMutArr addObject:self.liveCasinoView];
+          [_subViewMutArr addObject:self.tableGamesView];
+          [_subViewMutArr addObject:self.sportsView];
+          [_subViewMutArr addObject:self.fishingView];
+      }return _subViewMutArr;
+  }
+  
+  -(NSMutableArray<UIImage *> *)normal_titleBgImageMutArr{
+      if(!_normal_titleBgImageMutArr){
+          _normal_titleBgImageMutArr = NSMutableArray.array;
+          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Top_Games_menu")];
+          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Slot_Games_menu")];
+          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Live_Casino_menu")];
+          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Table_Games_menu")];
+          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Sport_Menu")];
+          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Fishing_menu")];
+      }return _normal_titleBgImageMutArr;
+  }
+  // TODO
+  -(NSMutableArray<UIImage *> *)select_titleBgImageMutArr{
+      if(!_select_titleBgImageMutArr){
+          _select_titleBgImageMutArr = NSMutableArray.array;
+          [_select_titleBgImageMutArr addObject:JobsIMG(@"Top_Games_menu")];
+          [_select_titleBgImageMutArr addObject:JobsIMG(@"Slot_Games_menu")];
+          [_select_titleBgImageMutArr addObject:JobsIMG(@"Live_Casino_menu")];
+          [_select_titleBgImageMutArr addObject:JobsIMG(@"Table_Games_menu")];
+          [_select_titleBgImageMutArr addObject:JobsIMG(@"Sport_Menu")];
+          [_select_titleBgImageMutArr addObject:JobsIMG(@"Fishing_menu")];
+      }return _select_titleBgImageMutArr;
+  }
+  
+  -(TopGamesView *)topGamesView{
+      if(!_topGamesView){
+          _topGamesView = TopGamesView.new;
+          _topGamesView.frame = self.bounds;
+          [_topGamesView richElementsInViewWithModel:nil];
+      }return _topGamesView;
+  }
+  
+  -(SlotGamesView *)slotGamesView{
+      if(!_slotGamesView){
+          _slotGamesView = SlotGamesView.new;
+          _slotGamesView.frame = self.bounds;
+          [_slotGamesView richElementsInViewWithModel:nil];
+      }return _slotGamesView;
+  }
+  
+  -(LiveCasinoView *)liveCasinoView{
+      if(!_liveCasinoView){
+          _liveCasinoView = LiveCasinoView.new;
+          _liveCasinoView.frame = self.bounds;
+          [_liveCasinoView richElementsInViewWithModel:nil];
+      }return _liveCasinoView;
+  }
+  
+  -(TableGamesView *)tableGamesView{
+      if(!_tableGamesView){
+          _tableGamesView = TableGamesView.new;
+          _tableGamesView.frame = self.bounds;
+          [_tableGamesView richElementsInViewWithModel:nil];
+      }return _tableGamesView;
+  }
+  
+  -(SportsView *)sportsView{
+      if(!_sportsView){
+          _sportsView = SportsView.new;
+          _sportsView.frame = self.bounds;
+          [_sportsView richElementsInViewWithModel:nil];
+      }return _sportsView;
+  }
+  
+  -(FishingView *)fishingView{
+      if(!_fishingView){
+          _fishingView = FishingView.new;
+          _fishingView.frame = self.bounds;
+          [_fishingView richElementsInViewWithModel:nil];
+      }return _fishingView;
+  }
+  ```
 
 
 ### Test <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
