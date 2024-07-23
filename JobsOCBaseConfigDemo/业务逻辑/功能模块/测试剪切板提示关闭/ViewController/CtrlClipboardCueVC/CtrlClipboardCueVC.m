@@ -150,8 +150,8 @@
             make.centerX.equalTo(self.view);
             make.height.mas_equalTo(@80);
         }];
-        [_label cornerCutToCircleWithCornerRadius:JobsWidth(8)];
-        [_label makeLabelByShowingType:UILabelShowingType_03];
+        _label.cornerCutToCircleWithCornerRadius(JobsWidth(8));
+        _label.makeLabelByShowingType(UILabelShowingType_03);
     }return _label;
 }
 

@@ -155,10 +155,10 @@
 -(UIButton *)chooseBtn{
     if (!_chooseBtn) {
         _chooseBtn = UIButton.new;
-        _chooseBtn.normalImage = self.chooseBtnViewModel.image;
-        _chooseBtn.normalTitleColor = self.chooseBtnViewModel.textModel.textCor;
-        _chooseBtn.normalTitle = self.chooseBtnViewModel.textModel.text;
-        _chooseBtn.titleFont = self.chooseBtnViewModel.textModel.font;
+        _chooseBtn.normalImage(self.chooseBtnViewModel.image);
+        _chooseBtn.normalTitleColor(self.chooseBtnViewModel.textModel.textCor);
+        _chooseBtn.normalTitle(self.chooseBtnViewModel.textModel.text);
+        _chooseBtn.titleFont(self.chooseBtnViewModel.textModel.font);
         [self addSubview:_chooseBtn];
         [_chooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.leftIMGV.mas_right).offset(JobsWidth(20));
@@ -166,7 +166,6 @@
             make.height.mas_equalTo(JobsWidth(16));
 #warning 这里需要被修改
 //            make.width.mas_equalTo([UIView widthByData:self.jobsPageViewDataMutArr[0]]);
-            
         }];
         @jobs_weakify(self)
         [_chooseBtn jobsBtnClickEventBlock:^id(UIButton *x) {
@@ -182,7 +181,7 @@
                     @jobs_strongify(self)
                     NSLog(@"data = %@",data);
                     NSLog(@"data = %@",data.data);
-                    x.normalTitle = [data.textModel.text stringByAppendingString:data.subTextModel.text];
+                    x.normalTitle([data.textModel.text stringByAppendingString:data.subTextModel.text]);
                 }];
             }else{
                 [self->dropDownListView dropDownListViewDisappear:x];
@@ -199,7 +198,7 @@
         _chooseBtnViewModel.textModel.text = JobsInternationalization(@"請選擇區號");
         _chooseBtnViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
         _chooseBtnViewModel.textModel.textLineSpacing = 0;
-        _chooseBtnViewModel.textModel.font = notoSansRegular(14);
+        _chooseBtnViewModel.textModel.font = UIFontWeightRegularSize(14);
         _chooseBtnViewModel.bgCor = JobsClearColor;
         _chooseBtnViewModel.jobsWidth = self.chooseBtnSize.width;
         _chooseBtnViewModel.subTextModel.text = JobsInternationalization(@"");

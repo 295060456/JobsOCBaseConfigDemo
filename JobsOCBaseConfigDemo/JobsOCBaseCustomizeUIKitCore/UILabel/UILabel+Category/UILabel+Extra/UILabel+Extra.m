@@ -18,53 +18,56 @@
      */
     self.transformLayerDirectionType = directionType;
     [self.layer addSublayer:self.shapeLayer];
-    self.textColor = UIColor.clearColor;
+    self.textColor = JobsClearColor;
 }
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
 -(void)lbBackgroundImage:(UIImage *)bgImage{
     self.backgroundColor = [UIColor colorWithPatternImage:bgImage];
 }
 /// 设置UILabel的显示样式 【在Masonry以后拿到了frame】
--(void)makeLabelByShowingType:(UILabelShowingType)labelShowingType{
-    /// 先刷新得出Label的frame.及其Size
-    [self.superview layoutIfNeeded];
-    self.labelShowingType = labelShowingType;
-    switch (labelShowingType) {
-        case UILabelShowingType_01:{///  一行显示。定宽、定高、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
-            if (self.width && self.height) {
-                self.lineBreakMode = NSLineBreakByTruncatingMiddle;// NSLineBreakByTruncatingHead、NSLineBreakByTruncatingMiddle、NSLineBreakByTruncatingTail
-            }
-        }break;
-        case UILabelShowingType_02:{/// 一行显示。定宽、定高、定字体。多余部分scrollerView
-            /// 在不全局集成@implementation UILabel (AutoScroll)的前提下
-            /// 要求本类是 BaseLabel
-        }break;
-        case UILabelShowingType_03:{/// 一行显示。不定宽、不定高、定字体。宽高自适应 【单行：ByFont】 可以不要高
-            if (self.height) {
-                [self labelAutoWidthByFont];
-                if (self.width) {
-                    [self uninstall:NSLayoutAttributeWidth];//强制
+-(jobsByNSIntegerBlock _Nonnull)makeLabelByShowingType{
+    @jobs_weakify(self)
+    return ^(UILabelShowingType labelShowingType) {
+        /// 先刷新得出Label的frame.及其Size
+        [self.superview layoutIfNeeded];
+        self.labelShowingType = labelShowingType;
+        switch (labelShowingType) {
+            case UILabelShowingType_01:{///  一行显示。定宽、定高、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
+                if (self.width && self.height) {
+                    self.lineBreakMode = NSLineBreakByTruncatingMiddle;// NSLineBreakByTruncatingHead、NSLineBreakByTruncatingMiddle、NSLineBreakByTruncatingTail
                 }
-            }
-        }break;
-        case UILabelShowingType_04:{/// 一行显示。定宽、定高。缩小字体方式全展示 【单行：ByWidth】
-            if (self.width && self.height) {
-                [self labelAutoFontByWidth];
-            }
-        }break;
-        case UILabelShowingType_05:{/// 多行显示。定宽、不定高、定字体 【多行：ByFont】
-            if (self.width) {
-                self.numberOfLines = 0;
-                self.lineBreakMode = NSLineBreakByWordWrapping;/// 自动折行设置【默认】
+            }break;
+            case UILabelShowingType_02:{/// 一行显示。定宽、定高、定字体。多余部分scrollerView
+                /// 在不全局集成@implementation UILabel (AutoScroll)的前提下
+                /// 要求本类是 BaseLabel
+            }break;
+            case UILabelShowingType_03:{/// 一行显示。不定宽、不定高、定字体。宽高自适应 【单行：ByFont】 可以不要高
                 if (self.height) {
-                    [self uninstall:NSLayoutAttributeHeight];
+                    [self labelAutoWidthByFont];
+                    if (self.width) {
+                        [self uninstall:NSLayoutAttributeWidth];//强制
+                    }
                 }
-            }
-        }break;
-            
-        default:
-            break;
-    }
+            }break;
+            case UILabelShowingType_04:{/// 一行显示。定宽、定高。缩小字体方式全展示 【单行：ByWidth】
+                if (self.width && self.height) {
+                    [self labelAutoFontByWidth];
+                }
+            }break;
+            case UILabelShowingType_05:{/// 多行显示。定宽、不定高、定字体 【多行：ByFont】
+                if (self.width) {
+                    self.numberOfLines = 0;
+                    self.lineBreakMode = NSLineBreakByWordWrapping;/// 自动折行设置【默认】
+                    if (self.height) {
+                        [self uninstall:NSLayoutAttributeHeight];
+                    }
+                }
+            }break;
+                
+            default:
+                break;
+        }
+    };
 }
 #pragma mark —— @property(nonatomic,assign)UILabelShowingType labelShowingType;
 JobsKey(_labelShowingType)

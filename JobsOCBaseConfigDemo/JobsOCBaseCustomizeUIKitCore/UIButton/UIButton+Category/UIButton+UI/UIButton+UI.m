@@ -177,21 +177,20 @@
         if(self == [super init]){
             btn = self;
             /// 公共设置
-            self.normalImage = normalImage;
-            self.titleFont = titleFont;
+            self.normalImage(normalImage);
+            self.titleFont(titleFont);
             
             if(attributedTitle){
-                self.normalAttributedTitle = attributedTitle;
+                self.normalAttributedTitle(attributedTitle);
             }else{
-                self.normalTitle = title;
-                self.normalTitleColor = titleCor;
+                self.normalTitle(title);
+                self.normalTitleColor(titleCor);
             }
             SuppressWdeprecatedDeclarationsWarning(btn.contentEdgeInsets = UIEdgeInsetsMake(contentInsets.top,
                                                                                             contentInsets.leading,
                                                                                             contentInsets.bottom,
                                                                                             contentInsets.trailing););
-            if(selectedAttributedTitle) self.selectedAttributedTitle = selectedAttributedTitle;
-            
+            if(selectedAttributedTitle) self.selectedAttributedTitle(selectedAttributedTitle);
             /// 在按钮高亮状态变化时，使用 configurationUpdateHandler 来自定义图像样式
             self.configurationUpdateHandler = ^(UIButton * _Nonnull updatedButton) {
                 updatedButton.configuration.image = updatedButton.isHighlighted ? highlightImage : normalImage;
@@ -211,9 +210,9 @@
         }
         
         if(roundingCorners == UIRectCornerAllCorners && jobsZeroSizeValue(roundingCornersRadii)){
-            [btn cornerCutToCircleWithCornerRadius:cornerRadiusValue];/// 圆切角（四个角全部按照统一的标准切）
+            btn.cornerCutToCircleWithCornerRadius(cornerRadiusValue);/// 圆切角（四个角全部按照统一的标准切）
         }else{
-            [btn appointCornerCutToCircleByRoundingCorners:roundingCorners
+            [btn appointCornerCutToCircleByRoundingCorners:roundingCorners 
                                                cornerRadii:roundingCornersRadii];/// 圆切角（指定某个角按照统一的标准Size切）
         }
         /// 内容的对齐方式
@@ -327,7 +326,7 @@
     return ^(BOOL enabled) {
         @jobs_strongify(self)
         self.enabled = enabled;
-        self.normalTitleColor = self.enabled ? self.normalTitleColor : HEXCOLOR(0xB0B0B0);
+        self.normalTitleColor(self.enabled ? self.titleColorForNormalState : HEXCOLOR(0xB0B0B0));
     };
 }
 #pragma mark —— 一些通用修改（已做Api向下兼容）
@@ -376,7 +375,7 @@
     return ^(CGFloat cornerRadiusValue) {
         @jobs_strongify(self)
         if(self.deviceSystemVersion.floatValue < 15.0){
-            [self cornerCutToCircleWithCornerRadius:cornerRadiusValue];
+            self.cornerCutToCircleWithCornerRadius(cornerRadiusValue);
         }else{
             UIButtonConfiguration *configuration = self.configuration.copy;
             configuration.background.cornerRadius = cornerRadiusValue;
@@ -393,7 +392,7 @@
         if (@available(iOS 16.0, *)) {
             self.jobsResetTitle(data ? : JobsInternationalization(@"暂无数据"));
         } else {
-            self.normalTitle = data;
+            self.normalTitle(data);
         }
     };
 }
@@ -405,7 +404,7 @@
         if (@available(iOS 16.0, *)) {
             self.jobsResetImage(data);
         } else {
-            self.normalImage = data;
+            self.normalImage(data);
         }
     };
 }
@@ -417,7 +416,7 @@
         if (@available(iOS 16.0, *)) {
             self.jobsResetTitleBaseForegroundColor(data ? : JobsBlueColor);
         } else {
-            self.normalTitleColor = data;
+            self.normalTitleColor(data);
         }
     };
 }
@@ -441,7 +440,7 @@
         if (@available(iOS 16.0, *)) {
             self.jobsResetBackgroundImage(data);
         } else {
-            self.normalBackgroundImage = data;
+            self.normalBackgroundImage(data);
         }
     };
 }
@@ -833,38 +832,69 @@
         [self jobsSetBtnSubTitleFont:data btnSubTitleCor:nil];
     };
 }
-#pragma mark —— UIButton普通文本的通用设置
-/// 代码触发点击调用
--(void)titleFont:(UIFont *)font{
-    self.titleLabel.font = font;
-}
-
--(void)titleAlignment:(NSTextAlignment)textAlignment{
-    self.titleLabel.textAlignment = textAlignment;
-}
-/// 换行显示
--(void)makeNewLineShows:(BOOL)breakLine{
-    self.titleLabel.numberOfLines = !breakLine;
-}
 #pragma mark —— UIButton.UIControlStateNormal.set
--(void)normalImage:(UIImage *)image{
-    [self setImage:image forState:UIControlStateNormal];
+-(jobsByBOOLBlock _Nonnull)makeNewLineShows{
+    @jobs_weakify(self)
+    return ^(BOOL breakLine) {
+        @jobs_strongify(self)
+        self.titleLabel.numberOfLines = !breakLine;
+    };
 }
 
--(void)normalBackgroundImage:(UIImage *)backgroundImage{
-    [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+-(jobsByNSIntegerBlock _Nonnull)titleAlignment{
+    @jobs_weakify(self)
+    return ^(NSTextAlignment textAlignment) {
+        @jobs_strongify(self)
+        self.titleLabel.textAlignment = textAlignment;
+    };
 }
 
--(void)normalTitle:(NSString *)title{
-    [self setTitle:title forState:UIControlStateNormal];
+-(jobsByFontBlock _Nonnull)titleFont{
+    @jobs_weakify(self)
+    return ^(UIFont *_Nonnull font) {
+        @jobs_strongify(self)
+        self.titleLabel.font = font;
+    };
 }
 
--(void)normalTitleColor:(UIColor *)titleColor{
-    [self setTitleColor:titleColor forState:UIControlStateNormal];
+-(jobsByImageBlock _Nonnull)normalImage{
+    @jobs_weakify(self)
+    return ^(UIImage *_Nonnull image) {
+        @jobs_strongify(self)
+        [self setImage:image forState:UIControlStateNormal];
+    };
 }
 
--(void)normalAttributedTitle:(NSAttributedString *)title{
-    [self setAttributedTitle:title forState:UIControlStateNormal];
+-(jobsByImageBlock _Nonnull)normalBackgroundImage{
+    @jobs_weakify(self)
+    return ^(UIImage *_Nonnull backgroundImage) {
+        @jobs_strongify(self)
+        [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+    };
+}
+
+-(jobsByStringBlock _Nonnull)normalTitle{
+    @jobs_weakify(self)
+    return ^(NSString *_Nonnull title) {
+        @jobs_strongify(self)
+        [self setTitle:title forState:UIControlStateNormal];
+    };
+}
+
+-(jobsByCorBlock _Nonnull)normalTitleColor{
+    @jobs_weakify(self)
+    return ^(UIColor *_Nonnull titleColor) {
+        @jobs_strongify(self)
+        [self setTitleColor:titleColor forState:UIControlStateNormal];
+    };
+}
+/// 富文本
+-(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle{
+    @jobs_weakify(self)
+    return ^(NSAttributedString *_Nonnull title) {
+        @jobs_strongify(self)
+        [self setAttributedTitle:title forState:UIControlStateNormal];
+    };
 }
 #pragma mark —— UIButton.UIControlStateNormal.get
 -(nullable UIImage *)imageForNormalState{
@@ -891,24 +921,44 @@
     return [self attributedTitleForState:UIControlStateNormal];
 }
 #pragma mark —— UIButton.UIControlStateSelected.set
--(void)selectedImage:(UIImage *)image{
-    [self setImage:image forState:UIControlStateSelected];
+-(jobsByImageBlock _Nonnull)selectedImage{
+    @jobs_weakify(self)
+    return ^(UIImage *_Nonnull image) {
+        @jobs_strongify(self)
+        [self setImage:image forState:UIControlStateSelected];
+    };
 }
 
--(void)selectedBackgroundImage:(UIImage *)backgroundImage{
-    [self setBackgroundImage:backgroundImage forState:UIControlStateSelected];
+-(jobsByImageBlock _Nonnull)selectedBackgroundImage{
+    @jobs_weakify(self)
+    return ^(UIImage *_Nonnull backgroundImage) {
+        @jobs_strongify(self)
+        [self setBackgroundImage:backgroundImage forState:UIControlStateSelected];
+    };
 }
 
--(void)selectedTitle:(NSString *)title{
-    [self setTitle:title forState:UIControlStateSelected];
+-(jobsByStringBlock _Nonnull)selectedTitle{
+    @jobs_weakify(self)
+    return ^(NSString *_Nonnull title) {
+        @jobs_strongify(self)
+        [self setTitle:title forState:UIControlStateSelected];
+    };
 }
 
--(void)selectedTitleColor:(UIColor *)titleColor{
-    [self setTitleColor:titleColor forState:UIControlStateSelected];
+-(jobsByCorBlock _Nonnull)selectedTitleColor{
+    @jobs_weakify(self)
+    return ^(UIColor *_Nonnull titleColor) {
+        @jobs_strongify(self)
+        [self setTitleColor:titleColor forState:UIControlStateSelected];
+    };
 }
 /// 富文本
--(void)selectedAttributedTitle:(NSAttributedString *)title{
-    [self setAttributedTitle:title forState:UIControlStateSelected];
+-(jobsByAttributedStringBlock _Nonnull)selectedAttributedTitle{
+    @jobs_weakify(self)
+    return ^(NSAttributedString *_Nonnull title) {
+        @jobs_strongify(self)
+        [self setAttributedTitle:title forState:UIControlStateSelected];
+    };
 }
 #pragma mark —— UIButton.UIControlStateSelected.get
 -(nullable UIImage *)imageForSelectedState{
@@ -929,222 +979,6 @@
 
 -(nullable NSAttributedString *)attributedTitleForSelectedState{
     return [self attributedTitleForState:UIControlStateSelected];
-}
-#pragma mark —— @property(nonatomic,strong)UIFont *titleFont;
-JobsKey(_titleFont)
-@dynamic titleFont;
--(UIFont *)titleFont{
-    UIFont *TitleFont = Jobs_getAssociatedObject(_titleFont);
-    if (!TitleFont) {
-        TitleFont = UIFontWeightBoldSize(12);
-        self.titleLabel.font = TitleFont;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_titleFont, TitleFont);
-    }return TitleFont;
-}
-
--(void)setTitleFont:(UIFont *)titleFont{
-    self.titleLabel.font = titleFont;
-    Jobs_setAssociatedRETAIN_NONATOMIC(_titleFont, titleFont);
-}
-#pragma mark —— @property(nonatomic,strong)UIImage *normalImage;
-JobsKey(_normalImage)
-@dynamic normalImage;
--(UIImage *)normalImage{
-    return Jobs_getAssociatedObject(_normalImage);
-}
-
--(void)setNormalImage:(UIImage *)normalImage{
-    if (normalImage) [self setImage:normalImage forState:UIControlStateNormal];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_normalImage, normalImage)
-}
-#pragma mark —— @property(nonatomic,strong)UIImage *normalBackgroundImage;
-JobsKey(_normalBackgroundImage)
-@dynamic normalBackgroundImage;
--(UIImage *)normalBackgroundImage{
-    return Jobs_getAssociatedObject(_normalBackgroundImage);
-}
-
--(void)setNormalBackgroundImage:(UIImage *)normalBackgroundImage{
-    if (normalBackgroundImage) [self setBackgroundImage:normalBackgroundImage forState:UIControlStateNormal];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_normalBackgroundImage, normalBackgroundImage)
-}
-#pragma mark —— @property(nonatomic,strong)NSString *normalTitle;
-@dynamic normalTitle;
-JobsKey(_normalTitle)
--(NSString *)normalTitle{
-    return Jobs_getAssociatedObject(_normalTitle);
-}
-
--(void)setNormalTitle:(NSString *)normalTitle{
-    [self setTitle:normalTitle forState:UIControlStateNormal];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_normalTitle, normalTitle)
-}
-#pragma mark —— @property(nonatomic,strong)NSString *normalSubTitle
-@dynamic normalSubTitle;
-JobsKey(_normalSubTitle)
--(NSString *)normalSubTitle{
-    return Jobs_getAssociatedObject(_normalSubTitle);
-}
-
--(void)setNormalSubTitle:(NSString *)normalSubTitle{
-    [self setTitle:normalSubTitle forState:UIControlStateNormal];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_normalSubTitle, normalSubTitle)
-}
-#pragma mark —— @property(nonatomic,strong)UIColor *normalTitleColor;
-JobsKey(_normalTitleColor)
-@dynamic normalTitleColor;
--(UIColor *)normalTitleColor{
-    UIColor *NormalTitleColor = Jobs_getAssociatedObject(_normalTitleColor);
-    if (!NormalTitleColor) {
-        NormalTitleColor = JobsBlackColor;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_normalTitleColor, NormalTitleColor);
-    }return NormalTitleColor;
-}
-
--(void)setNormalTitleColor:(UIColor *)normalTitleColor{
-    if (@available(iOS 16.0, *)) {
-        self.jobsResetBtnTitleCor(normalTitleColor);
-    } else {
-        [self setTitleColor:normalTitleColor forState:UIControlStateNormal];
-    }
-    Jobs_setAssociatedRETAIN_NONATOMIC(_normalTitleColor, normalTitleColor);
-}
-#pragma mark —— @property(nonatomic,strong)UIColor *normalSubTitleColor;
-JobsKey(_normalSubTitleColor)
-@dynamic normalSubTitleColor;
--(UIColor *)normalSubTitleColor{
-    UIColor *NormalSubTitleColor = Jobs_getAssociatedObject(_normalSubTitleColor);
-    if (!NormalSubTitleColor) {
-        NormalSubTitleColor = JobsBlackColor;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_normalSubTitleColor, NormalSubTitleColor);
-    }return NormalSubTitleColor;
-}
-
--(void)setNormalSubTitleColor:(UIColor *)normalSubTitleColor{
-    [self setTitleColor:normalSubTitleColor forState:UIControlStateNormal];
-    self.jobsResetBtnTitleCor(normalSubTitleColor);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_normalSubTitleColor, normalSubTitleColor);
-}
-#pragma mark —— @property(nonatomic,strong)NSAttributedString *normalAttributedTitle;
-JobsKey(_normalAttributedTitle)
-@dynamic normalAttributedTitle;
--(NSAttributedString *)normalAttributedTitle{
-    return Jobs_getAssociatedObject(_normalAttributedTitle);
-}
-
--(void)setNormalAttributedTitle:(NSAttributedString *)normalAttributedTitle{
-    [self setAttributedTitle:normalAttributedTitle forState:UIControlStateNormal];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_normalAttributedTitle, normalAttributedTitle)
-}
-#pragma mark —— @property(nonatomic,strong)NSAttributedString *normalAttributedSubTitle;
-JobsKey(_normalAttributedSubTitle)
-@dynamic normalAttributedSubTitle;
--(NSAttributedString *)normalAttributedSubTitle{
-    return Jobs_getAssociatedObject(_normalAttributedSubTitle);
-}
-
--(void)setNormalAttributedSubTitle:(NSAttributedString *)normalAttributedSubTitle{
-    [self setAttributedTitle:normalAttributedSubTitle forState:UIControlStateNormal];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_normalAttributedSubTitle, normalAttributedSubTitle)
-}
-#pragma mark —— @property(nonatomic,strong)UIImage *selectedImage;
-JobsKey(_selectedImage)
-@dynamic selectedImage;
--(UIImage *)selectedImage{
-    return Jobs_getAssociatedObject(_selectedImage);
-}
-
--(void)setSelectedImage:(UIImage *)selectedImage{
-    [self setImage:selectedImage forState:UIControlStateSelected];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_selectedImage, selectedImage)
-}
-#pragma mark —— @property(nonatomic,strong)UIImage *selectedBackgroundImage;
-JobsKey(_selectedBackgroundImage)
-@dynamic selectedBackgroundImage;
--(UIImage *)selectedBackgroundImage{
-    return Jobs_getAssociatedObject(_selectedBackgroundImage);
-}
-
--(void)setSelectedBackgroundImage:(UIImage *)selectedBackgroundImage{
-    [self setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_selectedBackgroundImage, selectedBackgroundImage)
-}
-#pragma mark —— @property(nonatomic,strong)NSString *selectedTitle;
-JobsKey(_selectedTitle)
-@dynamic selectedTitle;
--(NSString *)selectedTitle{
-    return Jobs_getAssociatedObject(_selectedTitle);
-}
-
--(void)setSelectedTitle:(NSString *)selectedTitle{
-    [self setTitle:selectedTitle forState:UIControlStateSelected];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_selectedTitle, selectedTitle)
-}
-#pragma mark —— @property(nonatomic,strong)NSString *selectedSubTitle;
-JobsKey(_selectedSubTitle)
-@dynamic selectedSubTitle;
--(NSString *)selectedSubTitle{
-    return Jobs_getAssociatedObject(_selectedSubTitle);
-}
-
--(void)setSelectedSubTitle:(NSString *)selectedSubTitle{
-    [self setTitle:selectedSubTitle forState:UIControlStateSelected];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_selectedSubTitle, selectedSubTitle)
-}
-#pragma mark —— @property(nonatomic,strong)UIColor *selectedTitleColor;
-JobsKey(_selectedTitleColor)
-@dynamic selectedTitleColor;
--(UIColor *)selectedTitleColor{
-    return Jobs_getAssociatedObject(_selectedTitleColor);
-}
-
--(void)setSelectedTitleColor:(UIColor *)selectedTitleColor{
-    [self setTitleColor:selectedTitleColor forState:UIControlStateSelected];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_selectedTitleColor, selectedTitleColor)
-}
-#pragma mark —— @property(nonatomic,strong)UIColor *selectedSubTitleColor;
-JobsKey(_selectedSubTitleColor)
-@dynamic selectedSubTitleColor;
--(UIColor *)selectedSubTitleColor{
-    return Jobs_getAssociatedObject(_selectedSubTitleColor);
-}
-
--(void)setSelectedSubTitleColor:(UIColor *)selectedSubTitleColor{
-    [self setTitleColor:selectedSubTitleColor forState:UIControlStateSelected];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_selectedSubTitleColor, selectedSubTitleColor)
-}
-#pragma mark —— @property(nonatomic,strong)NSAttributedString *selectedAttributedTitle;
-JobsKey(_selectedAttributedTitle)
-@dynamic selectedAttributedTitle;
--(NSAttributedString *)selectedAttributedTitle{
-    return Jobs_getAssociatedObject(_selectedAttributedTitle);
-}
-
--(void)setSelectedAttributedTitle:(NSAttributedString *)selectedAttributedTitle{
-    [self setAttributedTitle:selectedAttributedTitle forState:UIControlStateSelected];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_selectedAttributedTitle, selectedAttributedTitle);
-}
-#pragma mark —— @property(nonatomic,strong)NSAttributedString *selectedAttributedSubTitle;
-JobsKey(_selectedAttributedSubTitle)
-@dynamic selectedAttributedSubTitle;
--(NSAttributedString *)selectedAttributedSubTitle{
-    return Jobs_getAssociatedObject(_selectedAttributedSubTitle);
-}
-
--(void)setSelectedAttributedSubTitle:(NSAttributedString *)selectedAttributedSubTitle{
-    [self setAttributedTitle:selectedAttributedSubTitle forState:UIControlStateSelected];
-    Jobs_setAssociatedRETAIN_NONATOMIC(_selectedAttributedSubTitle, selectedAttributedSubTitle);
-}
-#pragma mark —— @property(nonatomic,assign)NSTextAlignment titleAlignment;
-JobsKey(_titleAlignment)
-@dynamic titleAlignment;
--(NSTextAlignment)titleAlignment{
-    return [Jobs_getAssociatedObject(_titleAlignment) NSIntValue];;
-}
-
--(void)setTitleAlignment:(NSTextAlignment)titleAlignment{
-    self.titleLabel.textAlignment = titleAlignment;
-    Jobs_setAssociatedRETAIN_NONATOMIC(_titleAlignment, @(titleAlignment))
 }
 #pragma mark —— <BaseProtocol> @property(nonatomic,strong)RACDisposable *racDisposable;
 JobsKey(_racDisposable)

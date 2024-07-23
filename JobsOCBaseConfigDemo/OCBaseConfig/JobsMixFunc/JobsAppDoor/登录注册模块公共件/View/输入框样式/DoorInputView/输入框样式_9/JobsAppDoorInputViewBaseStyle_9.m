@@ -113,22 +113,22 @@
         /// 计时器未开始【静态值】
         _btnTimerConfigModel.readyPlayValue.layerBorderWidth = 1;
         _btnTimerConfigModel.readyPlayValue.layerCornerRadius = JobsWidth(18);
-        _btnTimerConfigModel.readyPlayValue.bgCor = UIColor.clearColor;
+        _btnTimerConfigModel.readyPlayValue.bgCor = JobsClearColor;
         _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsClearColor;
         _btnTimerConfigModel.readyPlayValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
         _btnTimerConfigModel.readyPlayValue.text = Title9;
         _btnTimerConfigModel.readyPlayValue.font = [UIFont systemFontOfSize:JobsWidth(14)
                                                                                weight:UIFontWeightMedium];
         /// 计时器进行中【动态值】
-        _btnTimerConfigModel.runningValue.bgCor = UIColor.clearColor;
+        _btnTimerConfigModel.runningValue.bgCor = JobsClearColor;
         _btnTimerConfigModel.runningValue.text = JobsInternationalization(Title12);
-        _btnTimerConfigModel.runningValue.layerBorderCor = UIColor.clearColor;
+        _btnTimerConfigModel.runningValue.layerBorderCor = JobsClearColor;
         _btnTimerConfigModel.runningValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
         _btnTimerConfigModel.runningValue.font = [UIFont systemFontOfSize:JobsWidth(14)
                                                                                weight:UIFontWeightMedium];
     
         /// 计时器结束【静态值】
-        _btnTimerConfigModel.endValue.bgCor = UIColor.clearColor;
+        _btnTimerConfigModel.endValue.bgCor = JobsClearColor;
         
     }return _btnTimerConfigModel;
 }

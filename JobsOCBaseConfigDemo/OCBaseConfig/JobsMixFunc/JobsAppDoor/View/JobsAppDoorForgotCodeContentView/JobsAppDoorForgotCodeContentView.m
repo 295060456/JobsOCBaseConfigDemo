@@ -68,7 +68,7 @@
         _titleLab.text = JobsInternationalization(Title10);
         _titleLab.textColor = JobsWhiteColor;
         _titleLab.font = UIFontWeightRegularSize(20);
-        [_titleLab makeLabelByShowingType:UILabelShowingType_03];
+        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
         [self addSubview:_titleLab];
         _titleLab.centerX = (self.width - self.backToLoginBtn.width) / 2;
         _titleLab.top = JobsWidth(20);
@@ -82,9 +82,9 @@
         _backToLoginBtn.backgroundColor = Cor1;
         _backToLoginBtn.titleLabel.font = UIFontWeightMediumSize(13);
         _backToLoginBtn.alpha = 0.7f;
-        _backToLoginBtn.normalTitleColor = Cor3;
-        _backToLoginBtn.normalTitle = Title1;
-        _backToLoginBtn.normalImage = JobsIMG(@"用户名称");
+        _backToLoginBtn.normalTitleColor(Cor3);
+        _backToLoginBtn.normalTitle(Title1);
+        _backToLoginBtn.normalImage(JobsIMG(@"用户名称"));
         [_backToLoginBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             [self endEditing:YES];
             if (self.objectBlock) self.objectBlock(x);
@@ -104,7 +104,7 @@
 -(UIButton *)contactCustomerServiceBtn{
     if (!_contactCustomerServiceBtn) {
         _contactCustomerServiceBtn = UIButton.new;
-        _contactCustomerServiceBtn.normalImage = JobsIMG(JobsInternationalization(@"zaixiankefu_en"));
+        _contactCustomerServiceBtn.normalImage(JobsIMG(JobsInternationalization(@"zaixiankefu_en")));
         @jobs_weakify(self)
         [_contactCustomerServiceBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             NSLog(@"返回登录");
@@ -136,7 +136,7 @@
         _subTitleLab.numberOfLines = 0;
         _subTitleLab.textColor = JobsWhiteColor;
         _subTitleLab.font = UIFontWeightMediumSize(12);
-        [_subTitleLab makeLabelByShowingType:UILabelShowingType_03];
+        _subTitleLab.makeLabelByShowingType(UILabelShowingType_03);
         [self addSubview:_subTitleLab];
         [_subTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.contactCustomerServiceBtn);

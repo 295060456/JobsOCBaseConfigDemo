@@ -140,7 +140,7 @@
             make.right.equalTo(self);
             make.centerY.equalTo(self.textField);
         }];
-        [_titleLab makeLabelByShowingType:UILabelShowingType_03];
+        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
     }return _titleLab;
 }
 

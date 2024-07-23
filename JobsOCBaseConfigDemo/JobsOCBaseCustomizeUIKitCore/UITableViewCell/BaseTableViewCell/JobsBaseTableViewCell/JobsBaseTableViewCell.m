@@ -417,7 +417,7 @@ UITableViewCellProtocol_synthesize
             self.detailTextLabel.textColor = self.viewModel.subTextModel.textCor;
             self.detailTextLabel.font = self.viewModel.subTextModel.font;
             self.detailTextLabel.width = UITableViewCellSubTitleWidth;
-            [self.detailTextLabel makeLabelByShowingType:UILabelShowingType_05];
+            self.detailTextLabel.makeLabelByShowingType(UILabelShowingType_05);
         }
         self.textLabel.numberOfLines = 0;
         self.detailTextLabel.numberOfLines = 0;

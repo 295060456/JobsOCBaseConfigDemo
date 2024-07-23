@@ -40,7 +40,7 @@
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(void)richElementsInViewWithModel:(id _Nullable)model{
-    self.backgroundColor = UIColor.clearColor;
+    self.backgroundColor = JobsClearColor;
     if ([model isKindOfClass:JobsFirstCommentModel.class]) {
         self.firstCommentModel = model;
         self.userInfoBtn.alpha = 1;
@@ -125,7 +125,7 @@
     _userInfoBtn.jobsResetAttributedSubtitle([NSMutableAttributedString.alloc initWithString:self.self.firstCommentModel.content
                                                                                   attributes:@{NSFontAttributeName: JobsCommentConfig.sharedInstance.subTitleFont,
                                                                                                NSForegroundColorAttributeName: JobsCommentConfig.sharedInstance.subTitleCor}]);
-    [_userInfoBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+    _userInfoBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
     return _userInfoBtn;
 }
 
@@ -195,7 +195,7 @@
     _likeBtn.jobsResetTitle([NSString stringWithFormat:@"%ld",_likeBtn.thumpNum]);
     _likeBtn.jobsResetBtnTitleCor(_likeBtn.selected ? JobsRedColor : JobsGrayColor);
     _likeBtn.jobsResetBtnImage(_likeBtn.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"));
-    [_likeBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+    _likeBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
     return _likeBtn;
 }
 

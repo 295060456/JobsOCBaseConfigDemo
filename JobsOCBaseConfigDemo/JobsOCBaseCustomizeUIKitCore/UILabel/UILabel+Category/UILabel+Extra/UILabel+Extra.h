@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
 -(void)lbBackgroundImage:(UIImage *)bgImage;
 /// 设置UILabel的显示样式 【在Masonry以后拿到了frame】
--(void)makeLabelByShowingType:(UILabelShowingType)labelShowingType;
+-(jobsByNSIntegerBlock _Nonnull)makeLabelByShowingType;
 
 @end
 

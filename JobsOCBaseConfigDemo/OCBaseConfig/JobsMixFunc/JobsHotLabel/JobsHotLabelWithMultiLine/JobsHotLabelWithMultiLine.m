@@ -88,9 +88,8 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
     JobsHotLabelWithMultiLineCVCell *cell = (JobsHotLabelWithMultiLineCVCell *)self.cvcellMutArr[indexPath.item];
     [cell richElementsInCellWithModel:self.dataModel.viewModelMutArr[indexPath.item]];
     CGSize itemSize = jobsZeroSizeValue(self.dataModel.cellSize) ? [JobsHotLabelWithMultiLineCVCell cellSizeWithModel:self.dataModel.viewModelMutArr[indexPath.item]] : self.dataModel.cellSize;
-    [cell cornerCutToCircleWithCornerRadius:itemSize.height / 2];
-    [cell.contentView cornerCutToCircleWithCornerRadius:itemSize.height / 2];
-    
+    cell.cornerCutToCircleWithCornerRadius(itemSize.height / 2);
+    cell.contentView.cornerCutToCircleWithCornerRadius(itemSize.height / 2);
     if (indexPath.section == 0 && indexPath.row == 0) {
         cell.getTextLab.textColor = HEXCOLOR(0xAE8330);
         cell.getTextLab.backgroundColor = HEXCOLOR(0xFFEABA);
@@ -272,7 +271,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     if (!_footerViewModel) {
         _footerViewModel = JobsHeaderFooterViewModel.new;
 //        _footerViewModel.textModel.text = JobsInternationalization(@"查看详情");
-//        _footerViewModel.bgCor = UIColor.blueColor;
+//        _footerViewModel.bgCor = JobsBlueColor;
 /// 结构体虽然分配了空间，但是里面的成员的值是随机的，特别是如果里面有指针的话，如果不初始化而直接访问，则会造成读取非法的内存地址的错误。
         _footerViewModel.jobsSize = CGSizeZero;
         _footerViewModel.cellSize = CGSizeZero;

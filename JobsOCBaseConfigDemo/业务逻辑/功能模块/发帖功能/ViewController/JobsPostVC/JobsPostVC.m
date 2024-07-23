@@ -341,7 +341,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
             return nil;
         }];
         [self.view addSubview:_releaseBtn];
-        [_releaseBtn cornerCutToCircleWithCornerRadius:_releaseBtn.height / 2];
+        _releaseBtn.cornerCutToCircleWithCornerRadius(_releaseBtn.height / 2);
     }return _releaseBtn;
 }
 
@@ -431,7 +431,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
             make.left.equalTo(self.view).offset(JobsWidth(14));
             make.top.equalTo(self.textView.mas_bottom).offset(JobsWidth(11));
         }];
-        [_tipsLab makeLabelByShowingType:UILabelShowingType_03];
+        _tipsLab.makeLabelByShowingType(UILabelShowingType_03);
     }return _tipsLab;
 }
 

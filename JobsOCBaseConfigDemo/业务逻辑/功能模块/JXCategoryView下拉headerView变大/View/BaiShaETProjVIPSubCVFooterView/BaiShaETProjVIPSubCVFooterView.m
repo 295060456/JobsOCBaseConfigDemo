@@ -38,7 +38,7 @@
     if (!_titleLab) {
         _titleLab = BaseLabel.new;
         _titleLab.text = self.viewModel.textModel.text;
-        _titleLab.font = self.viewModel.textModel.font ? : notoSansBold(14);
+        _titleLab.font = self.viewModel.textModel.font ? : UIFontWeightBoldSize(14);
         _titleLab.textColor = self.viewModel.textModel.textCor ? : HEXCOLOR(0xAE8330);
         _titleLab.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_titleLab];

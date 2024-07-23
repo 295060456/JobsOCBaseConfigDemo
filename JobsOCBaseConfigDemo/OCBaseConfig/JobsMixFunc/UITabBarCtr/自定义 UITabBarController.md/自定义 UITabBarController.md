@@ -440,7 +440,7 @@ if (self.isOpenPPBadge) {
       _titleBtn.jobsResetTitleBaseForegroundColor(self.titleModel.textModel.textCor);
       _titleBtn.jobsResetBtnBgCor((self.titleModel.bgCor));
       [_titleBtn jobsSetBtnTitleFont:self.titleModel.textModel.font btnTitleCor:self.titleModel.textModel.textCor];
-      [_titleBtn makeBtnLabelByShowingType:self.titleModel.textModel.labelShowingType];
+      _titleBtn.makeBtnLabelByShowingType(self.titleModel.textModel.labelShowingType);
   
       /// 富文本的优先级最高，不括起来上述的设置无效
       if(self.titleModel.textModel.attributedText){

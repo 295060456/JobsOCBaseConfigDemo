@@ -144,7 +144,7 @@ ratio:(CGFloat)ratio {
 -(JXCategoryTitleView *)categoryView{
     if (!_categoryView) {
         _categoryView = JXCategoryTitleView.new;
-        _categoryView.backgroundColor = UIColor.clearColor;
+        _categoryView.backgroundColor = JobsClearColor;
         _categoryView.titleSelectedColor = JobsRandomColor;
         _categoryView.titleColor = JobsRandomColor;
         _categoryView.titleFont = [UIFont systemFontOfSize:18 weight:UIFontWeightRegular];
@@ -221,16 +221,16 @@ ratio:(CGFloat)ratio {
 -(UIButton *)filterBtn{
     if (!_filterBtn) {
         _filterBtn = UIButton.new;
-        _filterBtn.normalTitle = JobsInternationalization(@"篩選");
-        _filterBtn.normalImage = JobsIMG(@"筛选箭头（向下）");
-        _filterBtn.titleFont = fontName(@"NotoSans-Bold", 12);
-        _filterBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
+        _filterBtn.normalTitle(JobsInternationalization(@"篩選"));
+        _filterBtn.normalImage(JobsIMG(@"筛选箭头（向下）"));
+        _filterBtn.titleFont(fontName(@"NotoSans-Bold", 12));
+        _filterBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
         [self.view addSubview:_filterBtn];
         [_filterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.view);
             make.top.bottom.equalTo(self.categoryView);
         }];
-        [_filterBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+        _filterBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
         [_filterBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTrailing 
                                        imagePadding:JobsWidth(6)];
         @jobs_weakify(self)
@@ -259,10 +259,10 @@ ratio:(CGFloat)ratio {
 -(UIButton *)customBtn{
     if (!_customBtn) {
         _customBtn = UIButton.new;
-        _customBtn.normalTitle = JobsInternationalization(@"自定义");
-        _customBtn.titleFont = fontName(@"NotoSans-Bold", 12);
-        _customBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
-        _customBtn.selectedTitleColor = HEXCOLOR(0xAE8330);
+        _customBtn.normalTitle(JobsInternationalization(@"自定义"));
+        _customBtn.titleFont(fontName(@"NotoSans-Bold", 12));
+        _customBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
+        _customBtn.selectedTitleColor(HEXCOLOR(0xAE8330));
         [self.view addSubview:_customBtn];
         [_customBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.filterBtn.mas_left).offset(JobsWidth(-8));

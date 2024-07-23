@@ -147,8 +147,8 @@
     [self.view addSubview:self.customTabBar];
 }
 #pragma mark —— LZTabBarDelegate
-- (void)tabBar:(LZTabBar *)tab
- didSelectItem:(LZTabBarItem *)item
+- (void)tabBar:(LZTabBar *)tab 
+ didSelectItem:(LZTabBarItem *)item 
        atIndex:(NSInteger)index {
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:0];
     for (UIView *view in tab.subviews) {
@@ -179,10 +179,10 @@
     NSLog(@"SSS = %lu",(unsigned long)self.selectedIndex);
 }
 // 屏幕旋转时调整tabbar
-- (void)viewWillTransitionToSize:(CGSize)size
+- (void)viewWillTransitionToSize:(CGSize)size 
        withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    self.customTabBar.frame = CGRectMake(0,
+    self.customTabBar.frame = CGRectMake(0, 
                                          size.height - JobsTabBarHeightByBottomSafeArea(self),
                                          size.width,
                                          JobsTabBarHeightByBottomSafeArea(self));

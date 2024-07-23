@@ -109,21 +109,21 @@
             make.edges.equalTo(self.contentView);
         }];
     }
-    _bgBtn.normalImage = self.viewModel.image;
-    _bgBtn.normalTitle = self.viewModel.textModel.text;
-    _bgBtn.normalBackgroundImage = self.viewModel.bgImage;
-    _bgBtn.normalAttributedTitle = self.viewModel.textModel.attributedText;
-    _bgBtn.normalTitleColor = self.viewModel.textModel.textCor;
+    _bgBtn.normalImage(self.viewModel.image);
+    _bgBtn.normalTitle(self.viewModel.textModel.text);
+    _bgBtn.normalBackgroundImage(self.viewModel.bgImage);
+    _bgBtn.normalAttributedTitle(self.viewModel.textModel.attributedText);
+    _bgBtn.normalTitleColor(self.viewModel.textModel.textCor);
     
-    _bgBtn.selectedImage = self.viewModel.selectedImage;
-    _bgBtn.selectedTitle = self.viewModel.textModel.selectedText;
-    _bgBtn.selectedBackgroundImage = self.viewModel.bgSelectedImage;
-    _bgBtn.selectedAttributedTitle = self.viewModel.textModel.selectedAttributedText;
-    _bgBtn.selectedTitleColor = self.viewModel.textModel.selectedTextCor;
+    _bgBtn.selectedImage(self.viewModel.selectedImage_);
+    _bgBtn.selectedTitle(self.viewModel.textModel.selectedText);
+    _bgBtn.selectedBackgroundImage(self.viewModel.bgSelectedImage);
+    _bgBtn.selectedAttributedTitle(self.viewModel.textModel.selectedAttributedText);
+    _bgBtn.selectedTitleColor(self.viewModel.textModel.selectedTextCor);
     
-    _bgBtn.titleFont = self.viewModel.textModel.font;
+    _bgBtn.titleFont(self.viewModel.textModel.font);
     _bgBtn.titleAlignment = self.viewModel.textModel.textAlignment;
-//        _bgBtn.makeNewLineShows = self.viewModel.textModel.lineBreakMode;
+//    _bgBtn.makeNewLineShows(self.viewModel.textModel.lineBreakMode);
     [_bgBtn layoutButtonWithEdgeInsetsStyle:self.viewModel.buttonEdgeInsetsStyle
                                imagePadding:self.viewModel.imageTitleSpace];
     return _bgBtn;

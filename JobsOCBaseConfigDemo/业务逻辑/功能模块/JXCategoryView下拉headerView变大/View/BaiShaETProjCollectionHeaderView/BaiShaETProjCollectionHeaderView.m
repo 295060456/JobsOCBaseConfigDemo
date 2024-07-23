@@ -126,21 +126,21 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UIButton *)userHeaderBtn{
     if (!_userHeaderBtn) {
         _userHeaderBtn = UIButton.new;
-        _userHeaderBtn.normalTitle = [self.readUserInfo.userName stringByAppendingString:JobsInternationalization(@"    VIP 0")];
+        _userHeaderBtn.normalTitle(self.readUserInfo.userName.add(JobsInternationalization(@"    VIP 0")));
         NSLog(@"%@",_userHeaderBtn.titleForNormalState);
-        _userHeaderBtn.normalImage = JobsIMG(@"默认头像");
-        _userHeaderBtn.normalTitleColor = HEXCOLOR(0xAE8330);
-        _userHeaderBtn.titleFont = notoSansBold(16);
+        _userHeaderBtn.normalImage(JobsIMG(@"默认头像"));
+        _userHeaderBtn.normalTitleColor(HEXCOLOR(0xAE8330));
+        _userHeaderBtn.titleFont(UIFontWeightBoldSize(16));
         [self addSubview:_userHeaderBtn];
         [_userHeaderBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.top.equalTo(self).offset(JobsWidth(43));
         }];
-        [_userHeaderBtn.imageView cornerCutToCircleWithCornerRadius:_userHeaderBtn.imageView.image.jobsHeight / 2];
+        _userHeaderBtn.imageView.cornerCutToCircleWithCornerRadius(_userHeaderBtn.imageView.image.jobsHeight / 2);
         [_userHeaderBtn.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
         
         _userHeaderBtn.imageTitleSpace = JobsWidth(12);
-        [_userHeaderBtn makeBtnLabelByShowingType:UILabelShowingType_05];
+        _userHeaderBtn.makeBtnLabelByShowingType(UILabelShowingType_05);
         [_userHeaderBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
                                            imagePadding:_userHeaderBtn.imageTitleSpace];
         
@@ -203,7 +203,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _leftLab = UILabel.new;
         _leftLab.text = JobsInternationalization(@"Lv 0");
         _leftLab.textColor = HEXCOLOR(0x757575);
-        _leftLab.font = notoSansRegular(12);
+        _leftLab.font = UIFontWeightRegularSize(12);
         _leftLab.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_leftLab];
         [_leftLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -211,7 +211,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             make.top.equalTo(self.animationLab.mas_bottom).offset(JobsWidth(22));
             make.height.mas_equalTo(JobsWidth(12));
         }];
-        [_leftLab makeLabelByShowingType:UILabelShowingType_03];
+        _leftLab.makeLabelByShowingType(UILabelShowingType_03);
     }return _leftLab;
 }
 
@@ -221,14 +221,14 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _rightLab.text = JobsInternationalization(@"Lv 1");
         _rightLab.textColor = HEXCOLOR(0x757575);
         _rightLab.textAlignment = NSTextAlignmentCenter;
-        _rightLab.font = notoSansRegular(12);
+        _rightLab.font = UIFontWeightRegularSize(12);
         [self addSubview:_rightLab];
         [_rightLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(JobsWidth(-16));
             make.top.equalTo(self.animationLab.mas_bottom).offset(JobsWidth(22));
             make.height.mas_equalTo(JobsWidth(12));
         }];
-        [_rightLab makeLabelByShowingType:UILabelShowingType_03];
+        _rightLab.makeLabelByShowingType(UILabelShowingType_03);
     }return _rightLab;
 }
 
@@ -279,19 +279,19 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _richTextConfigMutArr = NSMutableArray.array;
 
         RichTextConfig *config_01 = RichTextConfig.new;
-        config_01.font = notoSansRegular(12);
+        config_01.font = UIFontWeightRegularSize(12);
         config_01.textCor = HEXCOLOR(0x3D4A58);
         config_01.targetString = self.richTextMutArr[0];
         [_richTextConfigMutArr addObject:config_01];
 
         RichTextConfig *config_02 = RichTextConfig.new;
-        config_02.font = notoSansBold(18);
+        config_02.font = UIFontWeightBoldSize(18);
         config_02.textCor = HEXCOLOR(0x3D4A58);
         config_02.targetString = self.richTextMutArr[1];
         [_richTextConfigMutArr addObject:config_02];
         
         RichTextConfig *config_03 = RichTextConfig.new;
-        config_03.font = notoSansRegular(12);
+        config_03.font = UIFontWeightRegularSize(12);
         config_03.textCor = HEXCOLOR(0x3D4A58);
         config_03.targetString = self.richTextMutArr[2];
         [_richTextConfigMutArr addObject:config_03];
@@ -345,13 +345,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         {
             NSMutableArray *mutArr = NSMutableArray.array;
             RichTextConfig *config_01 = RichTextConfig.new;
-            config_01.font = notoSansRegular(12);
+            config_01.font = UIFontWeightRegularSize(12);
             config_01.textCor = HEXCOLOR(0x3D4A58);
             config_01.targetString = self.richTextMutArr2[0][0];
             [mutArr addObject:config_01];
 
             RichTextConfig *config_02 = RichTextConfig.new;
-            config_02.font = notoSansBold(12);
+            config_02.font = UIFontWeightBoldSize(12);
             config_02.textCor = HEXCOLOR(0x3D4A58);
             config_02.targetString = self.richTextMutArr2[0][1];
             [mutArr addObject:config_02];
@@ -362,13 +362,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         {
             NSMutableArray *mutArr = NSMutableArray.array;
             RichTextConfig *config_01 = RichTextConfig.new;
-            config_01.font = notoSansRegular(12);
+            config_01.font = UIFontWeightRegularSize(12);
             config_01.textCor = HEXCOLOR(0x3D4A58);
             config_01.targetString = self.richTextMutArr2[1][0];
             [mutArr addObject:config_01];
 
             RichTextConfig *config_02 = RichTextConfig.new;
-            config_02.font = notoSansBold(12);
+            config_02.font = UIFontWeightBoldSize(12);
             config_02.textCor = HEXCOLOR(0x3D4A58);
             config_02.targetString = self.richTextMutArr2[1][1];
             [mutArr addObject:config_02];

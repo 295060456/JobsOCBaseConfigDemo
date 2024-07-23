@@ -38,7 +38,7 @@
             [super drawRect:rect];
         }
         [self setTextLayerScroll];
-        [self normalTitle:JobsInternationalization(@"")];
+        self.normalTitle(JobsInternationalization(@""));
     }else{
         [super drawRect:rect];
     }

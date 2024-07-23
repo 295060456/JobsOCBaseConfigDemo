@@ -84,9 +84,8 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 -(void)layerBorderCor:(UIColor *_Nullable)layerBorderCor
        andBorderWidth:(CGFloat)borderWidth;
 #pragma mark —— 切角
-/// 切整个View的4个角为统一
-/// @param cornerRadiusValue 切角参数
--(void)cornerCutToCircleWithCornerRadius:(CGFloat)cornerRadiusValue;
+/// 切整个View的4个角为统一的切角参数
+-(jobsByCGFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius;
 /// 指定圆切角（方法一）
 /// ⚠️这种写法存在一定的弊端：如果在某个View上添加子View，并对这个View使用如下方法的圆切角，则这个View上的子视图不可见⚠️
 -(void)appointCornerCutToCircleByRoundingCorners:(UIRectCorner)corners

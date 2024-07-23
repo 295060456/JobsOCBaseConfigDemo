@@ -102,8 +102,10 @@ NS_ASSUME_NONNULL_BEGIN
                           clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock;
 /// UIButtonConfiguration 创建的UIbutton修改字体以及颜色的方法
 /// 注意⚠️因为UIConfigurationTextAttributesTransformer是没有办法直接获取到里面的字体的，只能从外面生成以后直接赋值，也就是每次修改需要给一个完整的UIConfigurationTextAttributesTransformer对象进UIButtonConfiguration
--(void)jobsSetBtnTitleFont:(UIFont *_Nullable)titleFont btnTitleCor:(UIColor *_Nullable)titleCor;
--(void)jobsSetBtnSubTitleFont:(UIFont *_Nullable)subTitleFont btnSubTitleCor:(UIColor *_Nullable)subTitleCor;
+-(void)jobsSetBtnTitleFont:(UIFont *_Nullable)titleFont
+               btnTitleCor:(UIColor *_Nullable)titleCor;
+-(void)jobsSetBtnSubTitleFont:(UIFont *_Nullable)subTitleFont
+               btnSubTitleCor:(UIColor *_Nullable)subTitleCor;
 /// @property (nonatomic, readwrite, assign) UIButtonConfigurationSize buttonSize; 这个属性，不是我们想要的UIFont。设置UIFont必须在富文本里面进行设置
 -(UIConfigurationTextAttributesTransformer)jobsSetConfigTextAttributesTransformerByTitleFont:(UIFont *_Nullable)titleFont
                                                                                  btnTitleCor:(UIColor *_Nullable)titleCor;
@@ -140,7 +142,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByCorBlock)jobsResetBtnBgCor;
 /// 重设Btn的背景图片
 -(jobsByImageBlock)jobsResetBtnBgImage;
-#warning 因为Api 中只有设置主标题的文字颜色，而没有设置副标题文字的颜色。所以设置副标题文字颜色等，需要用到富文本。
 /**
  1、一一对应UIButtonConfiguration.h文件里面的属性
  2、只有通过UIButtonConfiguration创建的UIButton，这个UIbutton的configuration属性才不为空
@@ -179,18 +180,15 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetSubTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
 -(jobsByFontBlock _Nonnull)jobsResetTitleFont API_AVAILABLE(ios(16.0));
 -(jobsByFontBlock _Nonnull)jobsResetSubTitleFont API_AVAILABLE(ios(16.0));
-#pragma mark —— UIButton普通文本的通用设置
-/// 代码触发点击调用
--(void)titleFont:(UIFont *)font;
--(void)titleAlignment:(NSTextAlignment)textAlignment;
-/// 换行显示
--(void)makeNewLineShows:(BOOL)breakLine;
 #pragma mark —— UIButton.UIControlStateNormal.set
--(void)normalImage:(UIImage *)image;
--(void)normalBackgroundImage:(UIImage *)backgroundImage;
--(void)normalTitle:(NSString *)title;
--(void)normalTitleColor:(UIColor *)titleColor;
--(void)normalAttributedTitle:(NSAttributedString *)title;
+-(jobsByBOOLBlock _Nonnull)makeNewLineShows;
+-(jobsByNSIntegerBlock _Nonnull)titleAlignment;
+-(jobsByFontBlock _Nonnull)titleFont;
+-(jobsByImageBlock _Nonnull)normalImage;
+-(jobsByImageBlock _Nonnull)normalBackgroundImage;
+-(jobsByStringBlock _Nonnull)normalTitle;
+-(jobsByCorBlock _Nonnull)normalTitleColor;
+-(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle;/// 富文本
 #pragma mark —— UIButton.UIControlStateNormal.get
 -(nullable UIImage *)imageForNormalState;
 -(nullable UIImage *)backgroundImageForNormalState;
@@ -199,12 +197,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(nullable UIColor *)titleColorForNormalState;
 -(nullable NSAttributedString *)attributedTitleForNormalState;
 #pragma mark —— UIButton.UIControlStateSelected.set
--(void)selectedImage:(UIImage *)image;
--(void)selectedBackgroundImage:(UIImage *)backgroundImage;
--(void)selectedTitle:(NSString *)title;
--(void)selectedTitleColor:(UIColor *)titleColor;
-/// 富文本
--(void)selectedAttributedTitle:(NSAttributedString *)title;
+-(jobsByImageBlock _Nonnull)selectedImage;
+-(jobsByImageBlock _Nonnull)selectedBackgroundImage;
+-(jobsByStringBlock _Nonnull)selectedTitle;
+-(jobsByCorBlock _Nonnull)selectedTitleColor;
+-(jobsByAttributedStringBlock _Nonnull)selectedAttributedTitle;/// 富文本
 #pragma mark —— UIButton.UIControlStateSelected.get
 -(nullable UIImage *)imageForSelectedState;
 -(nullable UIImage *)backgroundImageForSelectedState;
@@ -290,7 +287,7 @@ NS_ASSUME_NONNULL_END
              make.top.equalTo(self).offset(JobsWidth(20));
              make.centerX.equalTo(self);
          }];
-         [_titleBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+         _titleBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
      }return _titleBtn;
  }
 

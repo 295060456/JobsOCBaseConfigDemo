@@ -287,7 +287,7 @@ willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 
 -(void)setupRowActionView:(UIView *)rowActionView{
     // 切割圆角
-    [rowActionView cornerCutToCircleWithCornerRadius:20];
+    rowActionView.cornerCutToCircleWithCornerRadius(20);
     // 改变父 View 的frame，这句话是因为我在 contentView 里加了另一个 View，为了使划出的按钮能与其达到同一高度
     CGRect frame = rowActionView.frame;
     frame.origin.y += 7;
@@ -454,9 +454,9 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
         _shareBtn = UIButton.new;
         _shareBtn.width = JobsWidth(23);
         _shareBtn.height = JobsWidth(23);
-        _shareBtn.normalImage = JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"分享");
-        _shareBtn.normalTitleColor = JobsWhiteColor;
-        [_shareBtn cornerCutToCircleWithCornerRadius:23 / 2];
+        _shareBtn.normalImage(JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"分享"));
+        _shareBtn.normalTitleColor(JobsWhiteColor);
+        _shareBtn.cornerCutToCircleWithCornerRadius(23 / 2);
         [_shareBtn jobsBtnClickEventBlock:^id(id data) {
             toast(JobsInternationalization(@"正在研发中...敬请期待"));
             return nil;

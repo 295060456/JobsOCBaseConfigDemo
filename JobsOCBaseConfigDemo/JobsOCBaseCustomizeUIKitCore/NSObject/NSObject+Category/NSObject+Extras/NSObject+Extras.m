@@ -198,8 +198,7 @@
                 NSLog(@"Exception: %@", exception);
                 value = @"nil"; // or handle the exception as needed
             }
-        }
-        return value;
+        }return value;
     };
 }
 /// KVC 的二次封装
@@ -519,7 +518,7 @@
                     lab.text = JobsInternationalization(view.internationalizationKEY);
                 }else if ([view isKindOfClass:UIButton.class]){
                     UIButton *btn = (UIButton *)view;
-                    [btn normalTitle:JobsInternationalization(view.internationalizationKEY)];
+                    btn.normalTitle(JobsInternationalization(view.internationalizationKEY));
                 }else{}
             }
         }

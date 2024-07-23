@@ -115,9 +115,9 @@
         _backToLoginBtn.titleLabel.numberOfLines = 0;
         _backToLoginBtn.backgroundColor = Cor1;
         _backToLoginBtn.alpha = 0.7f;
-        _backToLoginBtn.titleFont = UIFontWeightMediumSize(13);
-        _backToLoginBtn.normalTitle = Title1;
-        _backToLoginBtn.normalImage = JobsIMG(@"用户名称");
+        _backToLoginBtn.titleFont(UIFontWeightMediumSize(13));
+        _backToLoginBtn.normalTitle(Title1);
+        _backToLoginBtn.normalImage(JobsIMG(@"用户名称"));
         @jobs_weakify(self)
         [_backToLoginBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
@@ -152,10 +152,10 @@
 -(UIButton *)sendBtn{
     if (!_sendBtn) {
         _sendBtn = UIButton.new;
-        [_sendBtn normalTitle:Title6];
+        _sendBtn.normalTitle(Title6);
         _sendBtn.backgroundColor = [JobsSystemPinkColor colorWithAlphaComponent:0.7];
-        [_sendBtn normalTitleColor:JobsWhiteColor];
-        [_sendBtn titleFont:UIFontWeightRegularSize(16)];
+        _sendBtn.normalTitleColor(JobsWhiteColor);
+        _sendBtn.titleFont(UIFontWeightRegularSize(16)) ;
         [_sendBtn buttonAutoWidthByFont];
         [_sendBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             toast(x.titleForNormalState);
@@ -164,7 +164,7 @@
         _sendBtn.x = self.backToLoginBtn.width + JobsWidth(20);
         _sendBtn.size = CGSizeMake(self.width - self.backToLoginBtn.width - JobsWidth(40), ThingsHeight);
         _sendBtn.bottom = JobsAppDoorContentViewRegisterHeight - JobsWidth(20);
-        [_sendBtn cornerCutToCircleWithCornerRadius:_sendBtn.height / 2];
+        _sendBtn.cornerCutToCircleWithCornerRadius(_sendBtn.height / 2);
         [self addSubview:_sendBtn];
     }return _sendBtn;
 }

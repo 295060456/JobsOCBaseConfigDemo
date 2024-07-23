@@ -55,12 +55,12 @@
         self.bgView.backgroundColor = ThreeClassCellBgCor;
         self.flagView.backgroundColor = JobsWhiteColor;
         self.titleLabel.textColor = HEXCOLOR(0xAE8330);
-        self.titleLabel.font = notoSansBold(14);
+        self.titleLabel.font = UIFontWeightBoldSize(14);
     }else{
         self.bgView.backgroundColor = HEXCOLOR(0xFCFBFB);
         self.flagView.backgroundColor = HEXCOLOR(0xFCFBFB);
         self.titleLabel.textColor = HEXCOLOR(0xB0B0B0);
-        self.titleLabel.font = notoSansRegular(14);
+        self.titleLabel.font = UIFontWeightRegularSize(14);
     }
 }
 
@@ -70,12 +70,12 @@
         self.bgView.backgroundColor = ThreeClassCellBgCor;
         self.flagView.backgroundColor = JobsWhiteColor;
         self.titleLabel.textColor = HEXCOLOR(0xB0B0B0);
-        self.titleLabel.font = notoSansBold(14);
+        self.titleLabel.font = UIFontWeightBoldSize(14);
     }else{
         self.bgView.backgroundColor = HEXCOLOR(0xFCFBFB);
         self.flagView.backgroundColor = HEXCOLOR(0xFCFBFB);
         self.titleLabel.textColor = HEXCOLOR(0xB0B0B0);
-        self.titleLabel.font = notoSansRegular(14);
+        self.titleLabel.font = UIFontWeightRegularSize(14);
     }
 }
 #pragma mark —— lazyLoad

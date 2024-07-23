@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_END
                                        JobsMainScreen_HEIGHT() - JobsTabBarHeightByBottomSafeArea(nil) - JobsWidth(100),
                                        JobsWidth(50),
                                        JobsWidth(50));
-         [SuspendBtn cornerCutToCircleWithCornerRadius:SuspendBtn.width / 2];
+         SuspendBtn.cornerCutToCircleWithCornerRadius(SuspendBtn.width / 2));
          Jobs_setAssociatedRETAIN_NONATOMIC(_suspendBtn, SuspendBtn)
      }return SuspendBtn;
  }

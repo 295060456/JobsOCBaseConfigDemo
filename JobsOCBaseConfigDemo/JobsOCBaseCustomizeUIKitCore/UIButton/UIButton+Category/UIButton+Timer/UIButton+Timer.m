@@ -92,10 +92,10 @@
                                                                                                  btnTitleCor:self.btnTimerConfig.readyPlayValue.textCor]);
     }else{
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.normalTitleColor = self.btnTimerConfig.readyPlayValue.textCor;//ok
-        self.titleFont = self.btnTimerConfig.readyPlayValue.font;//ok
+        self.normalTitleColor(self.btnTimerConfig.readyPlayValue.textCor);
+        self.titleFont(self.btnTimerConfig.readyPlayValue.font);//ok
     }
-    [self makeBtnLabelByShowingType:self.btnTimerConfig.labelShowingType];
+    self.makeBtnLabelByShowingType(self.btnTimerConfig.labelShowingType);
     [self extraWidth:JobsWidth(8)];
 }
 #pragma mark —— UI配置 2.1、【计时器进行中】设置Layer层 和 背景颜色
@@ -117,10 +117,10 @@
                                                                                                  btnTitleCor:self.btnTimerConfig.runningValue.textCor]);
     }else{
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleFont = self.btnTimerConfig.runningValue.font;
-        self.normalTitleColor = self.btnTimerConfig.runningValue.textCor;
+        self.titleFont(self.btnTimerConfig.runningValue.font);
+        self.normalTitleColor(self.btnTimerConfig.runningValue.textCor);
     }
-    [self makeBtnLabelByShowingType:self.btnTimerConfig.labelShowingType];
+    self.makeBtnLabelByShowingType(self.btnTimerConfig.labelShowingType);
     [self extraWidth:0];
 }
 #pragma mark —— UI配置 3.1、【计时器结束】设置Layer层 和 背景颜色
@@ -142,11 +142,11 @@
                                                                                                  btnTitleCor:self.btnTimerConfig.endValue.textCor]);
     }else{
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleFont = self.btnTimerConfig.endValue.font;
-        self.normalTitleColor = self.btnTimerConfig.endValue.textCor;
+        self.titleFont(self.btnTimerConfig.endValue.font);
+        self.normalTitleColor(self.btnTimerConfig.endValue.textCor);
     }
     self.titleLabel.numberOfLines = 1;//不加这一句会有UI异常
-    [self makeBtnLabelByShowingType:self.btnTimerConfig.labelShowingType];
+    self.makeBtnLabelByShowingType(self.btnTimerConfig.labelShowingType);
     [self extraWidth:JobsWidth(8)];
 }
 #pragma mark —— 设置普通标题或者富文本标题【计时器未开始】文字内容
@@ -154,9 +154,9 @@
     if (self.btnTimerConfig.readyPlayValue.titleAttributedDataMutArr.count ||
         self.btnTimerConfig.readyPlayValue.attributedText) {/// 富文本存在
         if (@available(iOS 16.0, *)) {
-            self.jobsResetAttributedTitle(self.normalAttributedTitle);
+            self.jobsResetAttributedTitle(self.attributedTitleForNormalState);
         }else{
-            self.normalAttributedTitle = self.btnTimerConfig.readyPlayValue.attributedText;
+            self.normalAttributedTitle(self.btnTimerConfig.readyPlayValue.attributedText);
         }
     }else{
         if (@available(iOS 16.0, *)) {
@@ -169,7 +169,7 @@
                                                                                      NSFontAttributeName:self.btnTimerConfig.readyPlayValue.font,
                                                                                      NSParagraphStyleAttributeName:[self jobsparagraphStyleByTextAlignment:NSTextAlignmentCenter]}]);
         }else{
-            self.normalTitle = self.btnTimerConfig.readyPlayValue.text;
+            self.normalTitle(self.btnTimerConfig.readyPlayValue.text);
         }
     }
 }
@@ -178,9 +178,9 @@
     if (self.btnTimerConfig.runningValue.titleAttributedDataMutArr.count ||
         self.btnTimerConfig.runningValue.attributedText) {/// 富文本存在
         if (@available(iOS 16.0, *)) {
-            self.jobsResetAttributedTitle(self.normalAttributedTitle);
+            self.jobsResetAttributedTitle(self.attributedTitleForNormalState);
         }else{
-            self.normalAttributedTitle = self.btnTimerConfig.runningValue.attributedText;
+            self.normalAttributedTitle(self.btnTimerConfig.runningValue.attributedText);
         }
     }else{
         if (@available(iOS 16.0, *)) {
@@ -193,7 +193,7 @@
                                                                                      NSFontAttributeName:self.btnTimerConfig.runningValue.font,
                                                                                      NSParagraphStyleAttributeName:[self jobsparagraphStyleByTextAlignment:NSTextAlignmentCenter]}]);
         }else{
-            self.normalTitle = self.btnTimerConfig.runningValue.text;
+            self.normalTitle(self.btnTimerConfig.runningValue.text);
         }
     }
 }
@@ -202,9 +202,9 @@
     if (self.btnTimerConfig.endValue.titleAttributedDataMutArr.count ||
         self.btnTimerConfig.endValue.attributedText) {/// 富文本存在
         if (@available(iOS 16.0, *)) {
-            self.jobsResetAttributedTitle(self.normalAttributedTitle);
+            self.jobsResetAttributedTitle(self.attributedTitleForNormalState);
         }else{
-            self.normalAttributedTitle = self.btnTimerConfig.endValue.attributedText;
+            self.normalAttributedTitle(self.btnTimerConfig.endValue.attributedText);
         }
     }else{
         if (@available(iOS 16.0, *)) {
@@ -217,7 +217,7 @@
                                                                                      NSFontAttributeName:self.btnTimerConfig.endValue.font,
                                                                                      NSParagraphStyleAttributeName:[self jobsparagraphStyleByTextAlignment:NSTextAlignmentCenter]}]);
         }else{
-            self.normalTitle = self.btnTimerConfig.endValue.text;
+            self.normalTitle(self.btnTimerConfig.endValue.text);
         }
     }
 }

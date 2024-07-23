@@ -338,14 +338,14 @@ referenceSizeForFooterInSection:(NSInteger)section{
 -(UIButton *)customerServiceBtn{
     if (!_customerServiceBtn) {
         _customerServiceBtn = UIButton.new;
-        _customerServiceBtn.normalImage = JobsIMG(@"人工客服");
+        _customerServiceBtn.normalImage(JobsIMG(@"人工客服"));
     }return _customerServiceBtn;
 }
 
 -(UIButton *)msgBtn{
     if (!_msgBtn) {
         _msgBtn = UIButton.new;
-        _msgBtn.normalImage = JobsIMG(@"消息");
+        _msgBtn.normalImage(JobsIMG(@"消息"));
     }return _msgBtn;
 }
 
@@ -366,10 +366,10 @@ referenceSizeForFooterInSection:(NSInteger)section{
     if (!_editBtn) {
         _editBtn = UIButton.new;
         _editBtn.backgroundColor = HEXCOLOR(0xFCFBFB);
-        _editBtn.normalTitle = JobsInternationalization(@"编辑");
-        _editBtn.normalTitleColor = HEXCOLOR(0xB0B0B0);
-        _editBtn.titleFont = notoSansRegular(12);
-        _editBtn.normalImage = JobsIMG(@"编辑");
+        _editBtn.normalTitle(JobsInternationalization(@"编辑"));
+        _editBtn.normalTitleColor(HEXCOLOR(0xB0B0B0));
+        _editBtn.titleFont(UIFontWeightRegularSize(12));
+        _editBtn.normalImage(JobsIMG(@"编辑"));
         [_editBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
                                      imagePadding:JobsWidth(5.75)];
         @jobs_weakify(self)

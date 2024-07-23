@@ -47,7 +47,7 @@ BaseProtocol_synthesize
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.imageView.size = JobsCommentConfig.sharedInstance.headerImageViewSize;//subTitleOffset
-    [self.imageView cornerCutToCircleWithCornerRadius:self.imageView.height / 2];
+    self.imageView.cornerCutToCircleWithCornerRadius(self.imageView.height / 2);
     self.textLabel.font = JobsCommentConfig.sharedInstance.titleFont;
     self.detailTextLabel.font = JobsCommentConfig.sharedInstance.subTitleFont;
     self.textLabel.textColor = JobsCommentConfig.sharedInstance.titleCor;
@@ -131,7 +131,7 @@ BaseProtocol_synthesize
     _likeBtn.thumpNum = self.childCommentModel.praiseNum;    _likeBtn.jobsResetTitle([NSString stringWithFormat:@"%ld",_likeBtn.thumpNum]);
     _likeBtn.jobsResetBtnTitleCor(_likeBtn.selected ? JobsRedColor : JobsGrayColor);
     _likeBtn.jobsResetBtnImage(_likeBtn.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"));
-    [_likeBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+    _likeBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
     return _likeBtn;
 }
 

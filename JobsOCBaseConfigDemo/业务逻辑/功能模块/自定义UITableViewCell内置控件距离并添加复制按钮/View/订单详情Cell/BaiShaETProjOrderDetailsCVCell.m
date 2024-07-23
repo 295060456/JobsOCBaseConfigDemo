@@ -37,7 +37,7 @@
     }
     
     cell.indexPath = indexPath;
-    [cell cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+    cell.cornerCutToCircleWithCornerRadius(JobsWidth(8));
     [cell layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:.5f];
     JobsCellCor(JobsWhiteColor);
     return cell;
@@ -89,9 +89,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         make.right.equalTo(cell.contentView).offset(JobsWidth(-12));
         make.height.mas_equalTo(JobsWidth(18));
     }];
-
-    [self.jobsCopyBtn makeBtnLabelByShowingType:UILabelShowingType_03];
-    [self.jobsCopyBtn cornerCutToCircleWithCornerRadius:JobsWidth(18 / 2)];
+    self.jobsCopyBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+    self.jobsCopyBtn.cornerCutToCircleWithCornerRadius(JobsWidth(18 / 2));
     @jobs_weakify(self)
     [self.jobsCopyBtn jobsBtnClickEventBlock:^id(id data) {
         @jobs_strongify(self)
@@ -100,9 +99,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         return nil;
     }];
     cell.textLabel.textColor = HEXCOLOR(0x757575);
-    cell.textLabel.font = notoSansRegular(12);
+    cell.textLabel.font = UIFontWeightRegularSize(12);
     cell.detailTextLabel.textColor = HEXCOLOR(0x3D4A58);
-    cell.detailTextLabel.font = notoSansBold(14);
+    cell.detailTextLabel.font = UIFontWeightBoldSize(14);
     
     return cell;
 }
@@ -130,9 +129,9 @@ heightForFooterInSection:(NSInteger)section{
 -(UIButton *)jobsCopyBtn{
     if (!_jobsCopyBtn) {
         _jobsCopyBtn = UIButton.new;
-        _jobsCopyBtn.normalTitle = JobsInternationalization(@"   複製  ");
-        _jobsCopyBtn.titleFont = notoSansBold(12);
-        _jobsCopyBtn.normalTitleColor = HEXCOLOR(0x757575);
+        _jobsCopyBtn.normalTitle(JobsInternationalization(@"   複製  "));
+        _jobsCopyBtn.titleFont(UIFontWeightBoldSize(12));
+        _jobsCopyBtn.normalTitleColor(HEXCOLOR(0x757575));
         _jobsCopyBtn.backgroundColor = HEXCOLOR(0xEAEBED);
     }return _jobsCopyBtn;
 }

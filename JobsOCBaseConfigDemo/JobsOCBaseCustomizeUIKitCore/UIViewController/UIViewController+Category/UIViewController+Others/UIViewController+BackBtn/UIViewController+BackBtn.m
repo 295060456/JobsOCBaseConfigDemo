@@ -15,12 +15,12 @@
 /// 【创建返回键】没有配置按钮的normalImage属性，也没有配置点击事件
 -(UIButton *)makeBackBtn:(UIViewModel *)viewModel{
     UIButton *backBtnCategory = UIButton.new;
-    backBtnCategory.titleFont = viewModel.backBtnTitleModel.font;
-    backBtnCategory.normalTitle = viewModel.backBtnTitleModel.text;
-    backBtnCategory.normalTitleColor = viewModel.backBtnTitleModel.textCor ? : JobsBlackColor;
+    backBtnCategory.titleFont(viewModel.backBtnTitleModel.font);
+    backBtnCategory.normalTitle(viewModel.backBtnTitleModel.text);
+    backBtnCategory.normalTitleColor(viewModel.backBtnTitleModel.textCor ? : JobsBlackColor);
     [backBtnCategory layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
                                         imagePadding:JobsWidth(8)];
-    [backBtnCategory makeBtnLabelByShowingType:UILabelShowingType_03];
+    backBtnCategory.makeBtnLabelByShowingType(UILabelShowingType_03);
     return backBtnCategory;
 }
 /// 配置返回键图片
@@ -51,7 +51,7 @@ JobsKey(_backBtnCategory)
     UIButton *BackBtnCategory = Jobs_getAssociatedObject(_backBtnCategory);
     if (!BackBtnCategory) {
         BackBtnCategory = [self makeBackBtn:self.viewModel];
-        BackBtnCategory.normalImage = self.makeBackBtnImage;
+        BackBtnCategory.normalImage(self.makeBackBtnImage);
         @jobs_weakify(self)
         [BackBtnCategory jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)

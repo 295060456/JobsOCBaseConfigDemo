@@ -78,7 +78,7 @@
         [_titleLab richElementsInViewWithModel:nil];
         _titleLab.getLabel.jobsOffsetY = JobsWidth(-2);
         _titleLab.getLabel.textColor = JobsWhiteColor;
-        _titleLab.getLabel.font = notoSansRegular(12);
+        _titleLab.getLabel.font = UIFontWeightRegularSize(12);
         _titleLab.getLabel.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:_titleLab];
         [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -100,7 +100,7 @@
     _titleLab.getLabel.text = JobsInternationalization(@" 真人           ");
     _titleLab.getBgImageView.image = JobsIMG(@"优惠活动背景图_真人");
     
-    [_titleLab.getLabel makeLabelByShowingType:UILabelShowingType_03];
+    _titleLab.getLabel.makeLabelByShowingType(UILabelShowingType_03);
     [_titleLab.getLabel appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
     return _titleLab;
 }

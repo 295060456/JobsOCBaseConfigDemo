@@ -84,7 +84,7 @@ static dispatch_once_t static_textViewOnceToken;
 -(void)updateWordCount:(NSInteger)count{
     if(count) self.textModel.curWordCount = count;
     self.countLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.textModel.curWordCount, self.textModel.maxWordCount];
-    [self.countLabel makeLabelByShowingType:UILabelShowingType_03];
+    self.countLabel.makeLabelByShowingType(UILabelShowingType_03);
 }
 #pragma mark —— lazyLoad
 - (SZTextView *)textView{

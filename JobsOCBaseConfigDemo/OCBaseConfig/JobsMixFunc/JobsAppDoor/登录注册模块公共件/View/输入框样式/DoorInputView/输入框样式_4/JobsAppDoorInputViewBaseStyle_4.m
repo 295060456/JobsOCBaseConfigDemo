@@ -115,7 +115,7 @@
             make.width.mas_equalTo(80);
         }];
         [self layoutIfNeeded];
-        [_imageCodeView cornerCutToCircleWithCornerRadius:20];
+        _imageCodeView.cornerCutToCircleWithCornerRadius(JobsWidth(20));
     }return _imageCodeView;
 }
 

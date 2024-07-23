@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_END
              make.bottom.equalTo(self.mas_bottom);
          }];
          [self layoutIfNeeded];
-         [_inputView cornerCutToCircleWithCornerRadius:JobsWidth(self.inputViewSize.height / 2)];
+         _inputView.cornerCutToCircleWithCornerRadius(JobsWidth(self.inputViewSize.height / 2));
      }return _inputView;
  }
 

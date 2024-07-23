@@ -60,7 +60,7 @@
             make.left.equalTo(self.contentView).offset(10);
             make.centerY.equalTo(self.contentView);
         }];
-        [_serialNumLab cornerCutToCircleWithCornerRadius:3];
+        _serialNumLab.cornerCutToCircleWithCornerRadius(3);
     }return _serialNumLab;
 }
 

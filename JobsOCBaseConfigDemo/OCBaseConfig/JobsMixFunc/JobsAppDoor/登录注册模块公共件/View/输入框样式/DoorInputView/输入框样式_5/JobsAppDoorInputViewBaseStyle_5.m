@@ -142,8 +142,8 @@
 -(UIButton *)securityModeBtn{
     if (!_securityModeBtn) {
         _securityModeBtn = UIButton.new;
-        _securityModeBtn.selectedImage = self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : [UIImage imageWithColor:JobsRedColor];
-        _securityModeBtn.normalImage = self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : [UIImage imageWithColor:JobsBlueColor];
+        _securityModeBtn.selectedImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : [UIImage imageWithColor:JobsRedColor]);
+        _securityModeBtn.normalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : [UIImage imageWithColor:JobsBlueColor]);
         @jobs_weakify(self)
         [_securityModeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
@@ -173,7 +173,7 @@
     }
     _titleLab.text = self.doorInputViewBaseStyleModel.titleLabStr;
     _titleLab.font = self.doorInputViewBaseStyleModel.titleStrFont;
-    [_titleLab makeLabelByShowingType:UILabelShowingType_03];
+    _titleLab.makeLabelByShowingType(UILabelShowingType_03);
     return _titleLab;
 }
 
@@ -182,7 +182,7 @@
         _authCodeBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
                            longPressGestureEventBlock:nil
                                       clickEventBlock:nil];
-        _authCodeBtn.normalTitle = JobsInternationalization(@"獲取驗證碼");
+        _authCodeBtn.normalTitle(JobsInternationalization(@"獲取驗證碼"));
 //        @jobs_weakify(self)
         [_authCodeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
 //            @jobs_strongify(self)
@@ -203,7 +203,7 @@
             make.size.mas_equalTo(self.btnTimerConfigModel.jobsSize);
         }];
         [self layoutIfNeeded];
-        [_authCodeBtn cornerCutToCircleWithCornerRadius:25 / 2];
+        _authCodeBtn.cornerCutToCircleWithCornerRadius(25 / 2);
 //        [_countDownBtn appointCornerCutToCircleByRoundingCorners:UIRectCornerTopRight | UIRectCornerBottomRight
 //                                                     cornerRadii:CGSizeMake(_countDownBtn.height / 2, _countDownBtn.height / 2)];
 
@@ -213,10 +213,10 @@
 -(UIButton *)chooseBtn{
     if (!_chooseBtn) {
         _chooseBtn = UIButton.new;
-        _chooseBtn.normalImage = self.chooseBtnViewModel.image;
-        _chooseBtn.normalTitleColor = self.chooseBtnViewModel.textModel.textCor;
-        _chooseBtn.normalTitle = self.chooseBtnViewModel.textModel.text;
-        _chooseBtn.titleFont = self.chooseBtnViewModel.textModel.font;
+        _chooseBtn.normalImage(self.chooseBtnViewModel.image);
+        _chooseBtn.normalTitleColor(self.chooseBtnViewModel.textModel.textCor);
+        _chooseBtn.normalTitle(self.chooseBtnViewModel.textModel.text);
+        _chooseBtn.titleFont(self.chooseBtnViewModel.textModel.font);
         [self addSubview:_chooseBtn];
         [_chooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self).offset(-JobsWidth(8));
@@ -237,7 +237,7 @@
                     @jobs_strongify(self)
                     NSLog(@"data = %@",data);
                     NSLog(@"data = %@",data.data);
-                    x.normalTitle = [data.textModel.text stringByAppendingString:data.subTextModel.text];
+                    x.normalTitle([data.textModel.text stringByAppendingString:data.subTextModel.text]);
                 }];
             }else{
                 [self->dropDownListView dropDownListViewDisappear:x];
@@ -293,7 +293,7 @@
         _chooseBtnViewModel.textModel.text = JobsInternationalization(@"請選擇區號");
         _chooseBtnViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
         _chooseBtnViewModel.textModel.textLineSpacing = 0;
-        _chooseBtnViewModel.textModel.font = notoSansRegular(14);
+        _chooseBtnViewModel.textModel.font = UIFontWeightRegularSize(14);
         _chooseBtnViewModel.bgCor = JobsClearColor;
         _chooseBtnViewModel.jobsWidth = self.chooseBtnSize.width;
         _chooseBtnViewModel.subTextModel.text = JobsInternationalization(@"");
@@ -310,7 +310,7 @@
             jobsPageViewModel.textModel.text = JobsInternationalization(@"+87");
             jobsPageViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
             jobsPageViewModel.textModel.textLineSpacing = 0;
-            jobsPageViewModel.textModel.font = notoSansRegular(14);
+            jobsPageViewModel.textModel.font = UIFontWeightRegularSize(14);
             jobsPageViewModel.bgCor = JobsClearColor;
             jobsPageViewModel.jobsWidth = self.chooseBtnSize.width;
             jobsPageViewModel.subTextModel.text = JobsInternationalization(@"");
@@ -323,7 +323,7 @@
             jobsPageViewModel.textModel.text = JobsInternationalization(@"+88");
             jobsPageViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
             jobsPageViewModel.textModel.textLineSpacing = 0;
-            jobsPageViewModel.textModel.font = notoSansRegular(14);
+            jobsPageViewModel.textModel.font = UIFontWeightRegularSize(14);
             jobsPageViewModel.bgCor = JobsClearColor;
             jobsPageViewModel.jobsWidth = self.chooseBtnSize.width;
             jobsPageViewModel.subTextModel.text = JobsInternationalization(@"");
@@ -352,7 +352,7 @@
         _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsClearColor;
         _btnTimerConfigModel.readyPlayValue.textCor = HEXCOLOR(0xAE8330);
         _btnTimerConfigModel.readyPlayValue.text = JobsInternationalization(@"獲取驗證碼");
-        _btnTimerConfigModel.readyPlayValue.font = notoSansBold(14);
+        _btnTimerConfigModel.readyPlayValue.font = UIFontWeightBoldSize(14);
         /// 计时器进行中【动态值】
         _btnTimerConfigModel.runningValue.bgCor = JobsClearColor;
         _btnTimerConfigModel.runningValue.layerBorderCor = JobsClearColor;

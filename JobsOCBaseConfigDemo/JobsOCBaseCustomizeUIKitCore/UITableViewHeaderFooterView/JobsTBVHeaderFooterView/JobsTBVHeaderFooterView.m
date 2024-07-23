@@ -61,7 +61,7 @@
         _titleLab.font = self.viewModel.textModel.font;
         _titleLab.textColor = self.viewModel.textModel.textCor;
         _titleLab.textAlignment = self.viewModel.textModel.textAlignment;
-        [_titleLab makeLabelByShowingType:self.viewModel.textModel.labelShowingType];/// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
+        _titleLab.makeLabelByShowingType(self.viewModel.textModel.labelShowingType);/// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
     }return _titleLab;
 }
 
@@ -75,23 +75,23 @@
         }];
     }
     
-    _subTitleBtn.normalImage = self.viewModel.image;
-    _subTitleBtn.normalBackgroundImage = self.viewModel.bgImage;
-    _subTitleBtn.normalTitle = self.viewModel.subTextModel.text;
-    _subTitleBtn.normalTitleColor = self.viewModel.subTextModel.textCor;
-    _subTitleBtn.normalAttributedTitle = self.viewModel.subTextModel.attributedText;
+    _subTitleBtn.normalImage(self.viewModel.image);
+    _subTitleBtn.normalBackgroundImage(self.viewModel.bgImage);
+    _subTitleBtn.normalTitle(self.viewModel.subTextModel.text);
+    _subTitleBtn.normalTitleColor(self.viewModel.subTextModel.textCor);
+    _subTitleBtn.normalAttributedTitle(self.viewModel.subTextModel.attributedText);
     
-    _subTitleBtn.selectedImage = self.viewModel.selectedImage;
-    _subTitleBtn.selectedBackgroundImage = self.viewModel.bgSelectedImage;
-    _subTitleBtn.selectedTitle = self.viewModel.subTextModel.text;
-    _subTitleBtn.selectedTitleColor = self.viewModel.subTextModel.textCor;
-    _subTitleBtn.selectedAttributedTitle = self.viewModel.subTextModel.attributedText;
+    _subTitleBtn.selectedImage(self.viewModel.selectedImage_);
+    _subTitleBtn.selectedBackgroundImage(self.viewModel.bgSelectedImage);
+    _subTitleBtn.selectedTitle(self.viewModel.subTextModel.text);
+    _subTitleBtn.selectedTitleColor(self.viewModel.subTextModel.textCor);
+    _subTitleBtn.selectedAttributedTitle(self.viewModel.subTextModel.attributedText);
     
-    _subTitleBtn.titleFont = self.viewModel.subTextModel.font;
+    _subTitleBtn.titleFont(self.viewModel.subTextModel.font);
     _subTitleBtn.titleAlignment = self.viewModel.subTextModel.textAlignment;
     _subTitleBtn.lineBreakMode = self.viewModel.subTextModel.lineBreakMode;
     
-    [_subTitleBtn makeBtnLabelByShowingType:self.viewModel.labelShowingType];
+    _subTitleBtn.makeBtnLabelByShowingType(self.viewModel.labelShowingType);
     [_subTitleBtn layoutButtonWithEdgeInsetsStyle:self.viewModel.buttonEdgeInsetsStyle
                                      imagePadding:self.viewModel.imageTitleSpace];
     return _subTitleBtn;

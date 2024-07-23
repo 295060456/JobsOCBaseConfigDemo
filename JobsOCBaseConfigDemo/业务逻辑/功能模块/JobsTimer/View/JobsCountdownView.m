@@ -122,7 +122,7 @@ static dispatch_once_t static_countdownViewOnceToken;
     if (!_titleLab) {
         _titleLab = UILabel.new;
         _titleLab.text = JobsInternationalization(@"支付時間還有");
-        _titleLab.font = notoSansRegular(14);
+        _titleLab.font = UIFontWeightRegularSize(14);
         _titleLab.textColor = HEXCOLOR(0x757575);
         [self addSubview:_titleLab];
         [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -130,7 +130,7 @@ static dispatch_once_t static_countdownViewOnceToken;
             make.top.equalTo(self).offset(JobsWidth(28));
             make.height.mas_equalTo(JobsWidth(14));
         }];
-        [_titleLab makeLabelByShowingType:UILabelShowingType_03];
+        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
     }return _titleLab;
 }
 
@@ -153,25 +153,25 @@ static dispatch_once_t static_countdownViewOnceToken;
 -(NSMutableArray<RichTextConfig *> *)richTextConfigMutArr{
     JobsMutableArray(_richTextConfigMutArr);
     RichTextConfig *config_01 = RichTextConfig.new;
-    config_01.font = notoSansBold(48);
+    config_01.font = UIFontWeightBoldSize(48);
     config_01.textCor = HEXCOLOR(0xAE8330);
     config_01.targetString = self.minutesStr;
     [_richTextConfigMutArr addObject:config_01];
 
     RichTextConfig *config_02 = RichTextConfig.new;
-    config_02.font = notoSansRegular(12);
+    config_02.font = UIFontWeightRegularSize(12);
     config_02.textCor = HEXCOLOR(0x757575);
     config_02.targetString = JobsInternationalization(@"分");
     [_richTextConfigMutArr addObject:config_02];
     
     RichTextConfig *config_03 = RichTextConfig.new;
-    config_03.font = notoSansBold(48);
+    config_03.font = UIFontWeightBoldSize(48);
     config_03.textCor = HEXCOLOR(0xAE8330);
     config_03.targetString = self.secondStr;
     [_richTextConfigMutArr addObject:config_03];
     
     RichTextConfig *config_04 = RichTextConfig.new;
-    config_04.font = notoSansRegular(12);
+    config_04.font = UIFontWeightRegularSize(12);
     config_04.textCor = HEXCOLOR(0x757575);
     config_04.targetString = JobsInternationalization(@"秒");
     [_richTextConfigMutArr addObject:config_04];

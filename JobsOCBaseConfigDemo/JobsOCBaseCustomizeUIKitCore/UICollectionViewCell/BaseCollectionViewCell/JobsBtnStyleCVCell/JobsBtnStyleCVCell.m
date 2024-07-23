@@ -124,8 +124,7 @@
     } else {
         // Fallback on earlier versions
     }
-    
-    [_btn cornerCutToCircleWithCornerRadius:self.viewModel.layerCornerRadius ? : JobsWidth(8)];
+    _btn.cornerCutToCircleWithCornerRadius(self.viewModel.layerCornerRadius ? : JobsWidth(8));
     return _btn;
 }
 

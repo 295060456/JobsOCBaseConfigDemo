@@ -15,7 +15,7 @@ JobsKey(_suspendBtn)
     JobsSuspendBtn *SuspendBtn = Jobs_getAssociatedObject(_suspendBtn);
     if (!SuspendBtn) {
         SuspendBtn = JobsSuspendBtn.new;
-        SuspendBtn.normalImage = JobsIMG(@"旋转");
+        SuspendBtn.normalImage(JobsIMG(@"旋转"));
         SuspendBtn.isAllowDrag = YES;//悬浮效果必须要的参数
         @jobs_weakify(self)
         [SuspendBtn jobsBtnClickEventBlock:^id(UIButton *x) {
@@ -32,7 +32,7 @@ JobsKey(_suspendBtn)
                                       JobsMainScreen_HEIGHT() - JobsTabBarHeightByBottomSafeArea(nil) - JobsWidth(100),
                                       JobsWidth(50),
                                       JobsWidth(50));
-        [SuspendBtn cornerCutToCircleWithCornerRadius:SuspendBtn.width / 2];
+        SuspendBtn.cornerCutToCircleWithCornerRadius(SuspendBtn.width / 2);
         Jobs_setAssociatedRETAIN_NONATOMIC(_suspendBtn, SuspendBtn)
     }return SuspendBtn;
 }

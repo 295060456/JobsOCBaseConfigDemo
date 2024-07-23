@@ -42,7 +42,7 @@ static dispatch_once_t static_popupView10OnceToken;
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.clearColor;
+        self.backgroundColor = JobsClearColor;
     }return self;
 }
 
@@ -85,13 +85,13 @@ cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
 
     if (indexPath.item == self.selectedIndex - 1) {
         cell.getBtn.backgroundColor = HEXCOLOR(0xFFEABA);
-        cell.getBtn.normalTitleColor = HEXCOLOR(0xAE8330);
+        cell.getBtn.normalTitleColor(HEXCOLOR(0xAE8330));
     }else{
         cell.getBtn.backgroundColor = HEXCOLOR(0xF3F3F3);
-        cell.getBtn.normalTitleColor = HEXCOLOR(0x757575);
+        cell.getBtn.normalTitleColor(HEXCOLOR(0x757575));
     }
     
-    [cell cornerCutToCircleWithCornerRadius:[JobsBtnStyleCVCell cellSizeWithModel:nil].height / 2];
+    cell.cornerCutToCircleWithCornerRadius([JobsBtnStyleCVCell cellSizeWithModel:nil].height / 2);
     return cell;
 }
 
@@ -333,7 +333,7 @@ insetForSectionAtIndex:(NSInteger)section {
 -(UIButton *)closeBtn{
     if (!_closeBtn) {
         _closeBtn = UIButton.new;
-        _closeBtn.normalBackgroundImage = JobsIMG(@"关闭");
+        _closeBtn.normalBackgroundImage(JobsIMG(@"关闭"));
         [self.titleLab addSubview:_closeBtn];
         [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(9.75f), JobsWidth(9.75f)));
@@ -355,11 +355,11 @@ insetForSectionAtIndex:(NSInteger)section {
 -(UIButton *)cancelBtn{
     if (!_cancelBtn) {
         _cancelBtn = UIButton.new;
-        _cancelBtn.normalBackgroundImage = JobsIMG(@"弹窗取消按钮");
-        _cancelBtn.selectedBackgroundImage = JobsIMG(@"弹窗取消按钮");
-        _cancelBtn.normalTitle = JobsInternationalization(@"恢复默认");
-        _cancelBtn.normalTitleColor = HEXCOLOR(0xB0B0B0);
-        _cancelBtn.titleFont = notoSansRegular(18);
+        _cancelBtn.normalBackgroundImage(JobsIMG(@"弹窗取消按钮"));
+        _cancelBtn.selectedBackgroundImage(JobsIMG(@"弹窗取消按钮"));
+        _cancelBtn.normalTitle(JobsInternationalization(@"恢复默认"));
+        _cancelBtn.normalTitleColor(HEXCOLOR(0xB0B0B0));
+        _cancelBtn.titleFont(UIFontWeightRegularSize(18));
         [self.bgView addSubview:_cancelBtn];
         [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(JobsWidth(-26));
@@ -381,11 +381,11 @@ insetForSectionAtIndex:(NSInteger)section {
 -(UIButton *)sureBtn{
     if (!_sureBtn) {
         _sureBtn = UIButton.new;
-        _sureBtn.normalBackgroundImage = JobsIMG(@"弹窗提交按钮");
-        _sureBtn.selectedBackgroundImage = JobsIMG(@"弹窗提交按钮");
-        _sureBtn.normalTitle = JobsInternationalization(@"完成");
-        _sureBtn.normalTitleColor = JobsBlackColor;
-        _sureBtn.titleFont = UIFontWeightRegularSize(18);
+        _sureBtn.normalBackgroundImage(JobsIMG(@"弹窗提交按钮"));
+        _sureBtn.selectedBackgroundImage(JobsIMG(@"弹窗提交按钮"));
+        _sureBtn.normalTitle(JobsInternationalization(@"完成"));
+        _sureBtn.normalTitleColor(JobsBlackColor);
+        _sureBtn.titleFont(UIFontWeightRegularSize(18));
         [self.bgView addSubview:_sureBtn];
         [_sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(JobsWidth(-26));

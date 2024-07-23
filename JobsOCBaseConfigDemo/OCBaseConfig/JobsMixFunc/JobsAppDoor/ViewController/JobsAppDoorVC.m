@@ -144,7 +144,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     Ivar ivar = class_getInstanceVariable(JobsAppDoorContentView.class, "_toRegisterBtn");//必须是下划线接属性
     UIButton *toRegisterBtn = object_getIvar(self->_jobsAppDoorContentView, ivar);
     toRegisterBtn.backgroundColor = Cor4;
-    [toRegisterBtn normalTitleColor:Cor1];
+    toRegisterBtn.normalTitleColor(Cor1);
     
     self.currentPage = CurrentPage_register;//注册页面
     self->_jobsAppDoorContentView.frame = CGRectMake(JobsAppDoorContentViewRegisterX,
@@ -367,7 +367,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
                 }else{}
             }
         }];
-        [_forgotCodeContentView cornerCutToCircleWithCornerRadius:8];
+        _forgotCodeContentView.cornerCutToCircleWithCornerRadius(8);
     }return _forgotCodeContentView;
 }
 
@@ -432,7 +432,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             }else{}
         }];
         [self.view addSubview:_jobsAppDoorContentView];
-        [_jobsAppDoorContentView cornerCutToCircleWithCornerRadius:8];
+        _jobsAppDoorContentView.cornerCutToCircleWithCornerRadius(8);
         [_jobsAppDoorContentView richElementsInViewWithModel:nil];
     }return _jobsAppDoorContentView;
 }
@@ -440,10 +440,9 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 -(UIButton *)customerServiceBtn{
     if (!_customerServiceBtn) {
         _customerServiceBtn = UIButton.new;
-        
         _customerServiceBtn.hidden = YES;//本版本需要进行屏蔽
-        _customerServiceBtn.normalTitle = Title8;
-        _customerServiceBtn.normalImage = JobsIMG(@"客服");
+        _customerServiceBtn.normalTitle(Title8);
+        _customerServiceBtn.normalImage(JobsIMG(@"客服"));
         [self.view addSubview:_customerServiceBtn];
         _customerServiceBtn.size = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsMainScreen_WIDTH() / 9);
         _customerServiceBtn.centerX = JobsMainScreen_WIDTH() / 2;
@@ -453,7 +452,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             NSLog(@"点击客服按钮");
             return nil;
         }];
-        [_customerServiceBtn cornerCutToCircleWithCornerRadius:_customerServiceBtn.height / 2];
+        _customerServiceBtn.cornerCutToCircleWithCornerRadius(_customerServiceBtn.height / 2);
         [_customerServiceBtn layerBorderCor:JobsWhiteColor andBorderWidth:2];
     }return _customerServiceBtn;
 }

@@ -28,14 +28,14 @@
 -(instancetype)init{
     if (self = [super init]) {
         self.tableView.alpha = 1;
-        self.backgroundColor = UIColor.clearColor;
+        self.backgroundColor = JobsClearColor;
     }return self;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.tableView.alpha = 1;
-        self.backgroundColor = UIColor.clearColor;
+        self.backgroundColor = JobsClearColor;
     }return self;
 }
 
@@ -43,7 +43,7 @@
     if (self = [super init]) {
         self.tbvCell_cls = tableViewClass;
         self.tableView.alpha = 1;
-        self.backgroundColor = UIColor.clearColor;
+        self.backgroundColor = JobsClearColor;
     }return self;
 }
 
@@ -111,7 +111,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.new;
-        _tableView.backgroundColor = UIColor.clearColor;
+        _tableView.backgroundColor = JobsClearColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.showsVerticalScrollIndicator = NO;
         [self dataLinkByTableView:_tableView];

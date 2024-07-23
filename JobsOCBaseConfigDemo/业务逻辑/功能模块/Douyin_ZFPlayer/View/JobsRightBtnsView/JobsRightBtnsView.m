@@ -115,9 +115,9 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
     self.loveBtn.selected = _isSelected;
     if (self.loveBtn.selected) {
         //特别重要，花了老子半个小时，mmp.只要改变选择状态都要进行刷新 走这一句
-        self.loveBtn.selectedTitle = JobsNonnullString(self.viewModel.textModel.text, JobsInternationalization(@"点赞"));
+        self.loveBtn.selectedTitle(JobsNonnullString(self.viewModel.textModel.text, JobsInternationalization(@"点赞")));
     }else{
-        self.loveBtn.normalTitle = JobsNonnullString(self.viewModel.textModel.text, JobsInternationalization(@"点赞"));;
+        self.loveBtn.normalTitle(JobsNonnullString(self.viewModel.textModel.text, JobsInternationalization(@"点赞")));
     }
     [self.loveBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
                                      imagePadding:JobsWidth(5)];
@@ -144,7 +144,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                        subTitleCor:nil
                                                 titleLineBreakMode:NSLineBreakByWordWrapping
                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.clearColor
+                                               baseBackgroundColor:JobsClearColor
                                                    backgroundImage:nil
                                                       imagePadding:JobsWidth(5)
                                                       titlePadding:JobsWidth(0)
@@ -197,7 +197,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                        subTitleCor:nil
                                                 titleLineBreakMode:NSLineBreakByWordWrapping
                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.clearColor
+                                               baseBackgroundColor:JobsClearColor
                                                    backgroundImage:nil
                                                       imagePadding:JobsWidth(5)
                                                       titlePadding:JobsWidth(0)
@@ -264,7 +264,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                      subTitleCor:nil
                                               titleLineBreakMode:NSLineBreakByWordWrapping
                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                             baseBackgroundColor:UIColor.clearColor
+                                             baseBackgroundColor:JobsClearColor
                                                  backgroundImage:nil
                                                     imagePadding:JobsWidth(5)
                                                     titlePadding:JobsWidth(0)

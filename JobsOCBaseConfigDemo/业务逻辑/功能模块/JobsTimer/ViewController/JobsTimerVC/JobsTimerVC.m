@@ -124,8 +124,7 @@
             make.height.mas_equalTo(JobsWidth(25));
             make.center.equalTo(self.view);
         }];
-        [_countDownBtn makeBtnLabelByShowingType:UILabelShowingType_03];
-        
+        _countDownBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
         [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             [x startTimer];//选择时机、触发启动
             NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
@@ -180,11 +179,11 @@
         _btnMutArr = NSMutableArray.array;
         for (NSString *title in self.btnTitleMutArr) {
             UIButton *btn = UIButton.new;
-            btn.normalTitle = title;
-            btn.normalTitleColor = JobsBlackColor;
-            btn.normalBackgroundImage = JobsIMG(@"弹窗取消按钮背景图");
-            btn.selectedBackgroundImage = JobsIMG(@"弹窗取消按钮背景图");
-            [btn cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+            btn.normalTitle(title);
+            btn.normalTitleColor(JobsBlackColor);
+            btn.normalBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
+            btn.selectedBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
+            btn.cornerCutToCircleWithCornerRadius(JobsWidth(8));
             [btn layerBorderCor:HEXCOLOR(0xAE8330) andBorderWidth:0.5f];
             [self.view addSubview:btn];
             [_btnMutArr addObject:btn];

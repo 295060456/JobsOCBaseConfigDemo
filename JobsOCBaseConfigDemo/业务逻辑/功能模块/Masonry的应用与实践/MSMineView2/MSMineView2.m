@@ -121,10 +121,10 @@ static dispatch_once_t static_mineView2OnceToken;
             _btn1 = [UIButton buttonWithConfiguration:self.btnConfig primaryAction:nil];
         }else{
             _btn1 = UIButton.new;
-            _btn1.normalImage = JobsIMG(@"入职Mata");
-            _btn1.titleFont = UIFontWeightRegularSize(14);
-            _btn1.normalTitle = JobsInternationalization(@"入职Mata");
-            _btn1.normalTitleColor = JobsBlackColor;
+            _btn1.normalImage(JobsIMG(@"入职Mata"));
+            _btn1.titleFont(UIFontWeightRegularSize(14));
+            _btn1.normalTitle(JobsInternationalization(@"入职Mata"));
+            _btn1.normalTitleColor(JobsBlackColor);
         }
         // 添加按钮到视图中
         [self addSubview:_btn1];
@@ -143,9 +143,9 @@ static dispatch_once_t static_mineView2OnceToken;
 -(UIButton *)btn2{
     if(!_btn2){
         _btn2 = UIButton.new;
-        _btn2.titleFont = UIFontWeightRegularSize(14);
-        _btn2.normalTitle = JobsInternationalization(@"立即进入");
-        _btn2.normalTitleColor = JobsWhiteColor;
+        _btn2.titleFont(UIFontWeightRegularSize(14));
+        _btn2.normalTitle(JobsInternationalization(@"立即进入"));
+        _btn2.normalTitleColor(JobsWhiteColor);
         _btn2.backgroundColor = JobsCor(@"#EA2918");
         [self addSubview:_btn2];
         [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -153,7 +153,7 @@ static dispatch_once_t static_mineView2OnceToken;
             make.centerY.equalTo(self);
             make.right.equalTo(self).offset(JobsWidth(-5));
         }];
-        [_btn2 cornerCutToCircleWithCornerRadius:JobsWidth(14)];
+        _btn2.cornerCutToCircleWithCornerRadius(JobsWidth(14));
         @jobs_weakify(self)
         [_btn2 jobsBtnClickEventBlock:^id(id data) {
             @jobs_strongify(self)

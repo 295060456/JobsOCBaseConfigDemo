@@ -24,7 +24,7 @@ BaseViewProtocol_synthesize
             NSLog(@"Hello Jobs");
             return nil;
         }]];
-        [self cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+        self.cornerCutToCircleWithCornerRadius(JobsWidth(8));
     }return self;
 }
 

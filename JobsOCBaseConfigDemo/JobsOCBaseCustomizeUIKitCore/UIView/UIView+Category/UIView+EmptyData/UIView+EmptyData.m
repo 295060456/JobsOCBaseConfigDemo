@@ -34,7 +34,7 @@ JobsKey(_tipsLab)
         TipsLab.textColor = self.backgroundColor == JobsBlueColor ? JobsRedColor : JobsBlueColor;// 防止某些VC在调试阶段，设置view.backgroundColor为随机色
         TipsLab.font = UIFontWeightBoldSize(20);
         TipsLab.numberOfLines = 0;
-        [TipsLab makeLabelByShowingType:UILabelShowingType_03];
+        TipsLab.makeLabelByShowingType(UILabelShowingType_03);
         [self addSubview:TipsLab];
         [TipsLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);

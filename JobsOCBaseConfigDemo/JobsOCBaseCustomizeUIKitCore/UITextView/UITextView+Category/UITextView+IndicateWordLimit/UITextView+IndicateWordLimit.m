@@ -19,7 +19,7 @@ JobsKey(_indicateWordLimitLab)
         IndicateWordLimitLab.textAlignment = NSTextAlignmentCenter;
         IndicateWordLimitLab.font = UIFontWeightMediumSize(10);
         IndicateWordLimitLab.text = [NSString stringWithFormat:@"   %ld / %ld   ",self.currentWordNum,self.wordLimitNum];
-        [IndicateWordLimitLab makeLabelByShowingType:UILabelShowingType_03];
+        IndicateWordLimitLab.makeLabelByShowingType(UILabelShowingType_03);
         [self addSubview:IndicateWordLimitLab];
         IndicateWordLimitLab.right = self.width - self.offsetX;
         IndicateWordLimitLab.bottom = self.height - self.offsetY;
@@ -39,7 +39,7 @@ JobsKey(_currentWordNum)
 
 -(void)setCurrentWordNum:(NSInteger)currentWordNum{
     self.indicateWordLimitLab.text = [NSString stringWithFormat:@"   %ld / %ld   ",currentWordNum,self.wordLimitNum];
-    [self.indicateWordLimitLab makeLabelByShowingType:UILabelShowingType_03];
+    self.indicateWordLimitLab.makeLabelByShowingType(UILabelShowingType_03);
     Jobs_setAssociatedRETAIN_NONATOMIC(_currentWordNum, @(currentWordNum))
 }
 #pragma mark —— @property(nonatomic,assign)NSInteger wordimitNum;//字符输入上限

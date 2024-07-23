@@ -171,7 +171,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_tableView) {
         @jobs_weakify(self)
         _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = UIColor.clearColor;
+        _tableView.backgroundColor = JobsClearColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.scrollEnabled = NO;

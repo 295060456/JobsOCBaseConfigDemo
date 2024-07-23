@@ -104,14 +104,14 @@ UIViewModelProtocol_synthesize
         }];
     }
     _leftBtn.data = self.viewModel;
-    _leftBtn.jobsResetBtnTitle(self.viewModel.buttonModel.normalTitle);
+    _leftBtn.jobsResetBtnTitle(self.viewModel.buttonModel.title);
     _leftBtn.selected = self.viewModel.buttonModel.jobsSelected;
-    _leftBtn.jobsResetBtnImage(_rightBtn.selected ? self.viewModel.buttonModel.selectedImage : self.viewModel.buttonModel.normalImage);
+    _leftBtn.jobsResetBtnImage(_rightBtn.selected ? self.viewModel.buttonModel.highlightImage : self.viewModel.buttonModel.normalImage);
     _leftBtn.jobsResetImagePlacement(NSDirectionalRectEdgeLeading);
     _leftBtn.jobsResetImagePadding(JobsWidth(5));
     _leftBtn.jobsResetTitleFont(self.viewModel.buttonModel.titleFont);
-    _leftBtn.jobsResetBtnTitleCor(self.viewModel.buttonModel.normalTitleColor);
-    [_leftBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+    _leftBtn.jobsResetBtnTitleCor(self.viewModel.buttonModel.titleCor);
+    _leftBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
     return _leftBtn;
 }
 
@@ -165,14 +165,14 @@ UIViewModelProtocol_synthesize
         }];
     }
     _rightBtn.data = self.viewModel;
-    _rightBtn.jobsResetBtnTitle(self.viewModel.subButtonModel.normalTitle);
+    _rightBtn.jobsResetBtnTitle(self.viewModel.subButtonModel.title);
     _rightBtn.selected = self.viewModel.subButtonModel.jobsSelected;
-    _rightBtn.jobsResetBtnImage(_rightBtn.selected ? self.viewModel.subButtonModel.selectedImage : self.viewModel.subButtonModel.normalImage);
+    _rightBtn.jobsResetBtnImage(_rightBtn.selected ? self.viewModel.subButtonModel.highlightImage : self.viewModel.subButtonModel.normalImage);
     _rightBtn.jobsResetImagePlacement(NSDirectionalRectEdgeLeading);
     _rightBtn.jobsResetImagePadding(JobsWidth(5));
     _rightBtn.jobsResetTitleFont(self.viewModel.subButtonModel.titleFont);
-    _rightBtn.jobsResetBtnTitleCor(self.viewModel.subButtonModel.normalTitleColor);
-    [_rightBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+    _rightBtn.jobsResetBtnTitleCor(self.viewModel.subButtonModel.titleCor);
+    _rightBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
     return _rightBtn;
 }
 

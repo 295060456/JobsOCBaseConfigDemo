@@ -226,7 +226,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
                 
             }else{}
         }];
-        [_loginContentView cornerCutToCircleWithCornerRadius:8];
+        _loginContentView.cornerCutToCircleWithCornerRadius(8);
     }return _loginContentView;
 }
 
@@ -263,7 +263,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
                 }else{}
             }
         }];
-        [_registerContentView cornerCutToCircleWithCornerRadius:8 ];
+        _registerContentView.cornerCutToCircleWithCornerRadius(8);
     }return _registerContentView;
 }
 
@@ -300,7 +300,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
                 }else{}
             }
         }];
-        [_forgotCodeContentView cornerCutToCircleWithCornerRadius:8];
+        _forgotCodeContentView.cornerCutToCircleWithCornerRadius(8);
     }return _forgotCodeContentView;
 }
 
@@ -321,8 +321,8 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
 -(UIButton *)customerServiceBtn{
     if (!_customerServiceBtn) {
         _customerServiceBtn = UIButton.new;
-        _customerServiceBtn.normalTitle = Title8;
-        _customerServiceBtn.normalImage = JobsIMG(@"客服");
+        _customerServiceBtn.normalTitle(Title8);
+        _customerServiceBtn.normalImage(JobsIMG(@"客服"));
         @jobs_weakify(self)
         [_customerServiceBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
@@ -338,7 +338,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         }];
         [self.view layoutIfNeeded];
         self.loginCustomerServiceBtnY = _customerServiceBtn.y;
-        [_customerServiceBtn cornerCutToCircleWithCornerRadius:_customerServiceBtn.height / 2];
+        _customerServiceBtn.cornerCutToCircleWithCornerRadius(_customerServiceBtn.height / 2);
         [_customerServiceBtn layerBorderCor:JobsWhiteColor andBorderWidth:2];
     }return _customerServiceBtn;
 }

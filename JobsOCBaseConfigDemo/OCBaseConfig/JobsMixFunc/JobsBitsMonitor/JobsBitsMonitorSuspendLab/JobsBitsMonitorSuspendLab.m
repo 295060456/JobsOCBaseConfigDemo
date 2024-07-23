@@ -46,7 +46,7 @@ extern JobsNetworkingEnvir networkingEnvir;
                                         usingBlock:^(NSNotification * _Nonnull notification) {
             NSLog(@"%@",notification.object);
             self.text = notification.object;
-            [self makeLabelByShowingType:UILabelShowingType_03];
+            self.makeLabelByShowingType(UILabelShowingType_03);
         }];
         
         {

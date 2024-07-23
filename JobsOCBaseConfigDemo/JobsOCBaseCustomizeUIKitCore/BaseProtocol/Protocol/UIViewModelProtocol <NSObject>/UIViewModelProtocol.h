@@ -70,7 +70,6 @@ NS_ASSUME_NONNULL_END
 @synthesize bgCor = _bgCor;\
 @synthesize backBtnIMG = _backBtnIMG;\
 @synthesize bgImageView = _bgImageView;\
-@synthesize selectedImage = _selectedimage;\
 @synthesize bgSelectedImage = _bgSelectedImage;\
 @synthesize selectedImageURLString = _selectedImageURLString;\
 @synthesize bgSelectedImageURLString = _bgSelectedImageURLString;\
@@ -142,23 +141,7 @@ NS_ASSUME_NONNULL_END
 @synthesize jobsDataMutArr = _jobsDataMutArr;\
 @synthesize jobsDataMutDic = _jobsDataMutDic;\
 \
-@synthesize titleFont = _titleFont;\
 @synthesize titleAlignment = _titleAlignment;\
-@synthesize normalImage = _normalImage;\
-@synthesize normalBackgroundImage = _normalBackgroundImage;\
-@synthesize normalTitle = _normalTitle;\
-@synthesize normalSubTitle = _normalSubTitle;\
-@synthesize normalTitleColor = _normalTitleColor;\
-@synthesize normalSubTitleColor = _normalSubTitleColor;\
-@synthesize normalAttributedTitle = _normalAttributedTitle;\
-@synthesize normalAttributedSubTitle = _normalAttributedSubTitle;\
-@synthesize selectedBackgroundImage = _selectedBackgroundImage;\
-@synthesize selectedTitle = _selectedTitle;\
-@synthesize selectedSubTitle = _selectedSubTitle;\
-@synthesize selectedTitleColor = _selectedTitleColor;\
-@synthesize selectedSubTitleColor = _selectedSubTitleColor;\
-@synthesize selectedAttributedTitle = _selectedAttributedTitle;\
-@synthesize selectedAttributedSubTitle = _selectedAttributedSubTitle;\
 @synthesize btnBackgroundColor = _btnBackgroundColor;\
 @synthesize imageSize = _imageSize;\
 @synthesize contentHorizontalAlignment = _contentHorizontalAlignment;\
@@ -230,7 +213,6 @@ NS_ASSUME_NONNULL_END
 @dynamic bgCor;\
 @dynamic backBtnIMG;\
 @dynamic bgImageView;\
-@dynamic selectedImage;\
 @dynamic bgSelectedImage;\
 @dynamic selectedImageURLString;\
 @dynamic bgSelectedImageURLString;\
@@ -302,23 +284,7 @@ NS_ASSUME_NONNULL_END
 @dynamic jobsDdataMutArr;\
 @dynamic jobsDataMutDic;\
 \
-@dynamic titleFont;\
 @dynamic titleAlignment;\
-@dynamic normalImage;\
-@dynamic normalBackgroundImage;\
-@dynamic normalTitle;\
-@dynamic normalSubTitle;\
-@dynamic normalTitleColor;\
-@dynamic normalSubTitleColor;\
-@dynamic normalAttributedTitle;\
-@dynamic normalAttributedSubTitle;\
-@dynamic selectedBackgroundImage;\
-@dynamic selectedTitle;\
-@dynamic selectedSubTitle;\
-@dynamic selectedTitleColor;\
-@dynamic selectedSubTitleColor;\
-@dynamic selectedAttributedTitle;\
-@dynamic selectedAttributedSubTitle;\
 @dynamic btnBackgroundColor;\
 @dynamic imageSize;\
 @dynamic contentHorizontalAlignment;\

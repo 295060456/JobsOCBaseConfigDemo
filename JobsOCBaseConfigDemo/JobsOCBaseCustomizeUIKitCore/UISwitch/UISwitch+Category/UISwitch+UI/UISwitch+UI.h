@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_END
          _switcher.tintColor = JobsWhiteColor;
          _switcher.onTintColor = HEXCOLOR(0xFFFCF7);
          _switcher.backgroundColor = JobsWhiteColor;
-         [_switcher cornerCutToCircleWithCornerRadius:31 / 2];
+         _switcher.cornerCutToCircleWithCornerRadius(31 / 2);
          [_switcher mas_makeConstraints:^(MASConstraintMaker *make) {
  //            make.top.equalTo(self.titleLab);
              make.right.equalTo(self.view).offset(JobsWidth(-16));

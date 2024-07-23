@@ -95,7 +95,7 @@
     if (!_titleLab) {
         _titleLab = UILabel.new;
         _titleLab.text = self.msgDataModel.textModel.text;
-        _titleLab.font = notoSansBold(16);
+        _titleLab.font = UIFontWeightBoldSize(16);
         _titleLab.textColor = HEXCOLOR(0x3D4A58);
         [self.view addSubview:_titleLab];
         [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -103,14 +103,14 @@
             make.left.equalTo(self.view).offset(JobsWidth(16));
             make.width.mas_equalTo(JobsWidth(217));
         }];
-        [_titleLab makeLabelByShowingType:UILabelShowingType_05];
+        _titleLab.makeLabelByShowingType(UILabelShowingType_05);
     }return _titleLab;
 }
 
 -(UILabel *)subTitleLab{
     if (!_subTitleLab) {
         _subTitleLab = UILabel.new;
-        _subTitleLab.font = notoSansRegular(12);
+        _subTitleLab.font = UIFontWeightRegularSize(12);
         _subTitleLab.text = self.msgDataModel.time;
         _subTitleLab.textColor = HEXCOLOR(0xB0B0B0);
         [self.view addSubview:_subTitleLab];
@@ -118,18 +118,18 @@
             make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(12));
             make.left.equalTo(self.titleLab);
         }];
-        [_subTitleLab makeLabelByShowingType:UILabelShowingType_01];
+        _subTitleLab.makeLabelByShowingType(UILabelShowingType_01);
     }return _subTitleLab;
 }
 
 -(UIButton *)drawBtn{
     if (!_drawBtn) {
         _drawBtn = UIButton.new;
-        _drawBtn.normalTitle = self.msgDataModel.isDraw ? JobsInternationalization(@"  已领取  ") : JobsInternationalization(@"  领取  ");
-        _drawBtn.normalTitleColor = HEXCOLOR(0xAE8330);
-        _drawBtn.selectedTitleColor = HEXCOLOR(0x757575);
+        _drawBtn.normalTitle(self.msgDataModel.isDraw ? JobsInternationalization(@" 已领取 ") : JobsInternationalization(@" 领取 "));
+        _drawBtn.normalTitleColor(HEXCOLOR(0xAE8330));
+        _drawBtn.selectedTitleColor(HEXCOLOR(0x757575));
         _drawBtn.backgroundColor = HEXCOLOR(0xFFEABA);
-        _drawBtn.titleFont = notoSansRegular(12);
+        _drawBtn.titleFont(UIFontWeightRegularSize(12));
         [self.view addSubview:_drawBtn];
         [_drawBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(40), JobsWidth(20)));
@@ -157,7 +157,7 @@
         _textView = UITextView.new;
         _textView.text = self.msgDataModel.subTextModel.text;
         _textView.textColor = HEXCOLOR(0xB0B0B0);
-        _textView.font = notoSansRegular(14);
+        _textView.font = UIFontWeightRegularSize(14);
         [self.view addSubview:_textView];
         [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
@@ -170,9 +170,9 @@
 -(UIButton *)deleteBtn{
     if (!_deleteBtn) {
         _deleteBtn = UIButton.new;
-        _deleteBtn.normalTitle = JobsInternationalization(@"删除");
-        _deleteBtn.titleFont = notoSansRegular(12);
-        _deleteBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
+        _deleteBtn.normalTitle(JobsInternationalization(@"删除"));
+        _deleteBtn.titleFont(UIFontWeightRegularSize(12));
+        _deleteBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
         @jobs_weakify(self)
         [_deleteBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)

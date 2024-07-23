@@ -68,7 +68,7 @@ static char *ZMJCell_CustomView_color = "ZMJCell_CustomView_color";
 -(UIColor *)color{
     UIColor *Color = objc_getAssociatedObject(self, ZMJCell_CustomView_color);
     if (!Color) {
-        Color = UIColor.blueColor;
+        Color = JobsBlueColor;
         objc_setAssociatedObject(self,
                                  ZMJCell_CustomView_color,
                                  Color,

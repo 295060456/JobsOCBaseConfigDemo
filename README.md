@@ -962,7 +962,8 @@ NSObject <|-- BaseProtocol
     }
     ```
   
-* **Tabbar高度**：全面屏手机比普通手机多34的安全区域
+* **TabBar高度**：全面屏手机比普通手机多34的安全区域
+  
   * ```objective-c
     static inline CGFloat JobsTabBarHeight(UITabBarController * _Nullable tabBarController){
         //因为tabbar可以自定义高度，所以这个地方返回系统默认的49像素的高度
@@ -1031,7 +1032,21 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-#### 15.2、更多...
+#### 15.2、<font color=red>**字符串拼接**</font>
+
+* ```objective-c
+  -(JobsReturnStringByStringBlock _Nonnull)add{
+      return ^(NSString *_Nonnull str) {
+          return [self stringByAppendingString:str];
+      };
+  }
+  ```
+
+  ```objective-c
+  config_01.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
+  ```
+
+#### 15.3、更多...
 
 ### 16、`UILabel`的自适应 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -3257,7 +3272,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   ```objective-c
   @property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richLabelDataStringsMutArr;
-  @property(nonatomic,strong,nullable)NSAttributedString __block *attributedText API_AVAILABLE(ios(6.0));
+  @property(nonatomic,strong,nullable)NSAttributedString *attributedText API_AVAILABLE(ios(6.0));
   ```
 
   ```objective-c
@@ -3298,6 +3313,39 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       if (!_attributedText) {
           _attributedText = [self richTextWithDataConfigMutArr:self.richLabelDataStringsMutArr];
       }return _attributedText;
+  }
+  
+  -(NSMutableParagraphStyle *)paragtaphStyle{
+      if (!_paragtaphStyle) {
+          _paragtaphStyle = NSMutableParagraphStyle.new;
+          _paragtaphStyle.alignment = NSTextAlignmentJustified;
+          _paragtaphStyle.paragraphSpacing = 0;//段距，取值 float
+          _paragtaphStyle.paragraphSpacingBefore = 0;//段首空间，取值 float
+          _paragtaphStyle.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+          _paragtaphStyle.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+          _paragtaphStyle.lineSpacing = 0;//行距，取值 float
+          
+  /**
+   
+   常见的属性及说明
+   alignment               对齐方式，取值枚举常量 NSTextAlignment
+   firstLineHeadIndent     首行缩进，取值 float
+   headIndent              缩进，取值 float
+   tailIndent              尾部缩进，取值 float
+   ineHeightMultiple       可变行高,乘因数，取值 float
+   maximumLineHeight       最大行高，取值 float
+   minimumLineHeight       最小行高，取值 float
+   lineSpacing             行距，取值 float
+   paragraphSpacing        段距，取值 float
+   paragraphSpacingBefore  段首空间，取值 float
+  
+   baseWritingDirection    句子方向，取值枚举常量 NSWritingDirection
+   lineBreakMode           断行方式，取值枚举常量 NSLineBreakMode
+   hyphenationFactor       连字符属性，在iOS，唯一支持的值分别为0和1
+   
+   */
+          
+      }return _paragtaphStyle;
   }
   ```
 

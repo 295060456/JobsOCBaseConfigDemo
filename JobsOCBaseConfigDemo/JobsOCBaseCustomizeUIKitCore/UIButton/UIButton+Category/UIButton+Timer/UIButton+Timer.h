@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_END
              make.top.equalTo(self).offset(JobsWidth(20));
              make.centerX.equalTo(self);
          }];
-         [_countDownBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+         _countDownBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
 
          /// 倒计时按钮点击事件（可以在其他地方实现）
          [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {

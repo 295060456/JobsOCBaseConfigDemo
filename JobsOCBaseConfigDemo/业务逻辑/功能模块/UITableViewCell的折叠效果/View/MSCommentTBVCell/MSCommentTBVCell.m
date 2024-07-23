@@ -68,7 +68,7 @@ UIViewModelProtocol_synthesize
          */
         cell.offsetXForEach = JobsWidth(7);
         cell.offsetYForEach = JobsWidth(3);
-        [cell cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+        cell.cornerCutToCircleWithCornerRadius(JobsWidth(8));
     }return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -105,7 +105,7 @@ UIViewModelProtocol_synthesize
         [_titileLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView).with.insets(UIEdgeInsetsMake(JobsWidth(5), JobsWidth(25), JobsWidth(5), JobsWidth(25)));
         }];
-        [_titileLab cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+        _titileLab.cornerCutToCircleWithCornerRadius(JobsWidth(8));
     }
     _titileLab.text = self.commentDetailModel.rowTitle;
     return _titileLab;

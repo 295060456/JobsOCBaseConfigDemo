@@ -160,6 +160,8 @@ existMethodWithName:(nullable NSString *)methodName{
 -(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock{
     return selectorBlocks(selectorBlock,nil,self);
 }
+// 定义一个全局字典来缓存已经添加的方法
+static NSMutableDictionary<NSString *, NSValue *> *methodCache;
 /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
 /// - Parameters:
 ///   - block: 最终的执行体
@@ -172,10 +174,20 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock block,
         toastErr(JobsInternationalization(@"方法不存在,请检查参数"));
         /// 【经常崩溃损伤硬件】 [NSException raise:JobsInternationalization(@"block can not be nil") format:@"%@ selectorBlock error", target];
     }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        methodCache = NSMutableDictionary.dictionary;
+    });
     /// 动态注册方法：对方法名进行拼接（加盐），以防止和当下的其他方法名引起冲突
-    NSString *selName = [NSString stringWithFormat:@"selector_%d_%@",random100__200(),selectorName];
+    NSString *selName = [NSString stringWithFormat:@"selector_%@_%@",NSObject.currentUnixTimestampString,selectorName];
     NSLog(@"selName = %@",selName);
     SEL sel = NSSelectorFromString(selName);
+    /// 检查缓存中是否已经存在该选择器
+    NSValue *cachedSelValue = methodCache[selName];
+    if (cachedSelValue) {
+        sel = cachedSelValue.pointerValue;
+        return sel;
+    }
     /**
      方法签名由方法名称和一个参数列表（方法的参数的顺序和类型）组成
      注意：方法签名不包括方法的返回类型。不包括返回值和访问修饰符
@@ -194,11 +206,13 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock block,
         if (class_addMethod([target class],
                             sel,
                             (IMP)selectorImp,
-                            "111")) {
+                            "v@:@")) {
             objc_setAssociatedObject(target,
                                      sel,
                                      block,
                                      OBJC_ASSOCIATION_COPY_NONATOMIC);
+            // 缓存该选择器
+            methodCache[selName] = [NSValue valueWithPointer:sel];
         }else{
             [NSException raise:JobsInternationalization(@"添加方法失败")
                         format:@"%@ selectorBlock error", target];

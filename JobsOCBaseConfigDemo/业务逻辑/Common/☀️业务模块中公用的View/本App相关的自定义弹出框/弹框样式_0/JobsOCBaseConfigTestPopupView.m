@@ -108,11 +108,11 @@ static dispatch_once_t static_testPopupViewOnceToken;
 -(UIButton *)testPopupViewSureBtn{
     if (!_testPopupViewSureBtn) {
         _testPopupViewSureBtn = UIButton.new;
-        _testPopupViewSureBtn.normalBackgroundImage = JobsIMG(@"测试弹窗的确定按钮");
-        _testPopupViewSureBtn.selectedBackgroundImage = JobsIMG(@"测试弹窗的确定按钮");
-        _testPopupViewSureBtn.normalTitle = JobsInternationalization(@"确定");
-        _testPopupViewSureBtn.normalTitleColor = JobsBlackColor;
-        _testPopupViewSureBtn.titleFont = UIFontWeightRegularSize(18);
+        _testPopupViewSureBtn.normalBackgroundImage(JobsIMG(@"测试弹窗的确定按钮"));
+        _testPopupViewSureBtn.selectedBackgroundImage(JobsIMG(@"测试弹窗的确定按钮"));
+        _testPopupViewSureBtn.normalTitle(JobsInternationalization(@"确定"));
+        _testPopupViewSureBtn.normalTitleColor(JobsBlackColor);
+        _testPopupViewSureBtn.titleFont(UIFontWeightRegularSize(18));
         [self addSubview:_testPopupViewSureBtn];
         [_testPopupViewSureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(JobsWidth(-15));

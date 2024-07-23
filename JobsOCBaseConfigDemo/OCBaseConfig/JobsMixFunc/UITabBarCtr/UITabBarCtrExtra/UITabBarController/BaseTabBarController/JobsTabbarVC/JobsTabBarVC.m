@@ -415,7 +415,7 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (self.view.panGR.state == UIGestureRecognizerStateBegan ||
         self.view.panGR.state == UIGestureRecognizerStateChanged) {
         NSArray *viewControllers = tabBarController.viewControllers;
-        return [TransitionAnimation.alloc initWithTargetEdge:
+        return [TransitionAnimation.alloc initWithTargetEdge: 
                 [viewControllers indexOfObject:toVC] > [viewControllers indexOfObject:fromVC] ? UIRectEdgeLeft : UIRectEdgeRight];
     }else return nil;
 }

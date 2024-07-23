@@ -270,7 +270,7 @@
             make.right.equalTo(self.view).offset(JobsWidth(-10));
             make.height.mas_equalTo(@200);
         }];
-        [_btn_1 makeBtnLabelByShowingType:UILabelShowingType_03];
+        _btn_1.makeBtnLabelByShowingType(UILabelShowingType_03);
     }return _btn_1;
 }
 
@@ -328,7 +328,7 @@
             make.right.equalTo(self.view).offset(JobsWidth(-10));
             make.height.mas_equalTo(@200);
         }];
-        [_btn_2 makeBtnLabelByShowingType:UILabelShowingType_03];
+        _btn_2.makeBtnLabelByShowingType(UILabelShowingType_03);
     }return _btn_2;
 }
 

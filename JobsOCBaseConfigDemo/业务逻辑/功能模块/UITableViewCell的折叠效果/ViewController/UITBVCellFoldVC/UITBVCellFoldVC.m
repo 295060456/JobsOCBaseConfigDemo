@@ -90,7 +90,7 @@
             make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(25));
             make.height.mas_equalTo(JobsWidth(20));
         }];
-        [_titleLab makeLabelByShowingType:UILabelShowingType_03];
+        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
     }return _titleLab;
 }
 

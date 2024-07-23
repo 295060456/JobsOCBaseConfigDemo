@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_END
          _配置验证码输入 = JobsAppDoorInputViewBaseStyleModel.new;
          _配置验证码输入.leftViewIMG = JobsIMG(@"安全");
          _配置验证码输入.placeHolderStr = JobsInternationalization(@"請輸入驗證碼");
-         _配置验证码输入.placeholderFont = notoSansRegular(JobsWidth(16));
+         _配置验证码输入.placeholderFont = UIFontWeightRegularSize(JobsWidth(16));
          _配置验证码输入.isShowDelBtn = YES;
          _配置验证码输入.isShowSecurityBtn = NO;
          _配置验证码输入.returnKeyType = UIReturnKeyDone;

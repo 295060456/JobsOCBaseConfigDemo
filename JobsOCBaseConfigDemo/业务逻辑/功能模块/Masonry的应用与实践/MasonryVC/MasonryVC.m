@@ -240,7 +240,7 @@
                 [self.view layoutIfNeeded]; // 让视图更新布局
             }];
         }];
-        [_view2 cornerCutToCircleWithCornerRadius:[MSMineView2 viewSizeWithModel:nil].height / 2];
+        _view2.cornerCutToCircleWithCornerRadius([MSMineView2 viewSizeWithModel:nil].height / 2);
     }return _view2;
 }
 

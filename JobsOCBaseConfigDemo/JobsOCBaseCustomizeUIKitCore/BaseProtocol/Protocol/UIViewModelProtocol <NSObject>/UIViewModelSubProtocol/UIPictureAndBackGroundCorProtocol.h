@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)UIImage *backBtnIMG;///【未选中状态】返回按钮的图标
 @property(nonatomic,strong,nullable)UIBackgroundConfiguration *bgConfig API_AVAILABLE(ios(14.0), tvos(14.0), watchos(7.0));
 /// 选中状态
-@property(nonatomic,strong,nullable)UIImage *selectedImage;///【选中状态】图片
+@property(nonatomic,strong,nullable)UIImage *selectedImage_;///【选中状态】图片
 @property(nonatomic,strong,nullable)UIImage *bgSelectedImage;///【选中状态】背景图片
 @property(nonatomic,strong,nullable)NSString *selectedImageURLString;///【选中状态】图片URL(字符串形式)
 @property(nonatomic,strong,nullable)NSString *bgSelectedImageURLString;///【选中状态】背景图片URL(字符串形式)
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_END
 @synthesize backBtnIMG = _backBtnIMG;\
 @synthesize bgImageView = _bgImageView;\
 \
-@synthesize selectedImage = _selectedimage;\
+@synthesize selectedImage_ = _selectedimage_;\
 @synthesize bgSelectedImage = _bgSelectedImage;\
 @synthesize selectedImageURLString = _selectedImageURLString;\
 @synthesize bgSelectedImageURLString = _bgSelectedImageURLString;\
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_END
 @dynamic backBtnIMG;\
 @dynamic bgImageView;\
 \
-@dynamic selectedImage;\
+@dynamic selectedImage_;\
 @dynamic bgSelectedImage;\
 @dynamic selectedImageURLString;\
 @dynamic bgSelectedImageURLString;\

@@ -67,7 +67,7 @@ JobsKey(_defaultAttributedDataForPlaceHolderMutArr)
             RichTextConfig *richTextConfig = RichTextConfig.new;
             richTextConfig.targetString = self.placeholder;
             richTextConfig.font = UIFontWeightRegularSize(10);
-            richTextConfig.textCor = UIColor.blueColor;
+            richTextConfig.textCor = JobsBlueColor;
     //        richTextConfig.underlineStyle;
     //        richTextConfig.paragraphStyle;
     //        richTextConfig.urlStr;

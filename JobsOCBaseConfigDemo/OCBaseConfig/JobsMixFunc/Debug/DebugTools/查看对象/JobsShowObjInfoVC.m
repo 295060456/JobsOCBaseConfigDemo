@@ -141,7 +141,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                            [text isKindOfClass:NSString.class]){
                             viewModel.textModel.text = propertyName;
                             viewModel.subTextModel.text = requestParams.valueForKeyBlock(propertyName);
-                            viewModel.textModel.textCor = UIColor.blueColor;
+                            viewModel.textModel.textCor = JobsBlueColor;
                             viewModel.textModel.textCor = JobsRedColor;
                             [self.dataMutArr addObject:viewModel];
                         }

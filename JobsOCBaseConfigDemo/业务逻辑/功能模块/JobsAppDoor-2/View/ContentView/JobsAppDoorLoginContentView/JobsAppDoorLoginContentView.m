@@ -103,12 +103,12 @@
 -(UIButton *)toRegisterBtn{
     if (!_toRegisterBtn) {
         _toRegisterBtn = UIButton.new;
-        [_toRegisterBtn makeNewLineShows:YES];
+        _toRegisterBtn.makeNewLineShows(YES);
         _toRegisterBtn.backgroundColor = JobsBlackColor;
-        _toRegisterBtn.titleFont = UIFontWeightMediumSize(13);
+        _toRegisterBtn.titleFont(UIFontWeightMediumSize(13));
         _toRegisterBtn.alpha = 0.7f;
-        _toRegisterBtn.normalTitle = Title2;
-        _toRegisterBtn.normalImage = JobsIMG(@"用户名称");
+        _toRegisterBtn.normalTitle(Title2);
+        _toRegisterBtn.normalImage(JobsIMG(@"用户名称"));
         @jobs_weakify(self)
         [_toRegisterBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
@@ -143,9 +143,9 @@
 -(UIButton *)abandonLoginBtn{
     if (!_abandonLoginBtn) {
         _abandonLoginBtn = UIButton.new;
-        _abandonLoginBtn.normalTitle = Title4;
-        _abandonLoginBtn.normalTitleColor = JobsWhiteColor;
-        _abandonLoginBtn.titleFont = UIFontWeightSemiboldSize(15);
+        _abandonLoginBtn.normalTitle(Title4);
+        _abandonLoginBtn.normalTitleColor(JobsWhiteColor);
+        _abandonLoginBtn.titleFont(UIFontWeightSemiboldSize(15));
         [_abandonLoginBtn buttonAutoWidthByFont];
         [self addSubview:_abandonLoginBtn];
         [_abandonLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -165,9 +165,9 @@
 -(UIButton *)sendBtn{
     if (!_sendBtn) {
         _sendBtn = UIButton.new;
-        _sendBtn.normalTitle = Title7;
-        _sendBtn.normalTitleColor = JobsWhiteColor;
-        _sendBtn.titleFont = UIFontWeightSemiboldSize(15);
+        _sendBtn.normalTitle(Title7);
+        _sendBtn.normalTitleColor(JobsWhiteColor);
+        _sendBtn.titleFont(UIFontWeightSemiboldSize(15));
         _sendBtn.backgroundColor = [JobsSystemPinkColor colorWithAlphaComponent:0.7];
         [self addSubview:_sendBtn];
         [_sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -176,7 +176,7 @@
             make.bottom.mas_equalTo(self).offset(-JobsWidth(60));
         }];
         [self layoutIfNeeded];
-        [_sendBtn cornerCutToCircleWithCornerRadius:_sendBtn.height / 2];
+        _sendBtn.cornerCutToCircleWithCornerRadius(_sendBtn.height / 2);
         [_sendBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             toast(x.titleForNormalState);
             return nil;
@@ -187,10 +187,10 @@
 -(UIButton *)storeCodeBtn{
     if (!_storeCodeBtn) {
         _storeCodeBtn = UIButton.new;
-        _storeCodeBtn.normalTitle = Title5;
-        _storeCodeBtn.titleFont = UIFontWeightRegularSize(12);
-        _storeCodeBtn.normalImage = JobsIMG(@"没有记住密码");
-        _storeCodeBtn.selectedImage = JobsIMG(@"记住密码");
+        _storeCodeBtn.normalTitle(Title5);
+        _storeCodeBtn.titleFont(UIFontWeightRegularSize(12));
+        _storeCodeBtn.normalImage(JobsIMG(@"没有记住密码"));
+        _storeCodeBtn.selectedImage(JobsIMG(@"记住密码"));
         _storeCodeBtn.selected = YES;// 默认记住密码
         _storeCodeBtn.titleLabel.textColor = JobsWhiteColor;
         [_storeCodeBtn buttonAutoWidthByFont];
@@ -217,9 +217,9 @@
 -(UIButton *)findCodeBtn{
     if (!_findCodeBtn) {
         _findCodeBtn = UIButton.new;
-        _findCodeBtn.normalTitle = Title3;
-        _findCodeBtn.titleFont = UIFontWeightRegularSize(12);
-        _findCodeBtn.normalTitleColor = JobsWhiteColor;
+        _findCodeBtn.normalTitle(Title3);
+        _findCodeBtn.titleFont(UIFontWeightRegularSize(12));
+        _findCodeBtn.normalTitleColor(Title3);
         [_findCodeBtn buttonAutoWidthByFont];
         [self addSubview:_findCodeBtn];
         [_findCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {

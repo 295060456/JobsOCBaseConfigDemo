@@ -13,7 +13,6 @@
 /// 富文本
 @property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richLabelDataStringsMutArr;
 @property(nonatomic,strong)NSMutableParagraphStyle *paragtaphStyle;
-
 /// UILabel
 @property(nonatomic,strong)BaseLabel *lab1;///【UILabelShowingType_01】 一行显示。定宽、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
 @property(nonatomic,strong)BaseLabel *lab2;///【UILabelShowingType_02】 一行显示普通文本。定宽、定字体。多余部分scrollerView ❤️集成@implementation UILabel (AutoScroll)❤️
@@ -70,21 +69,21 @@
     
     self.scrollView.alpha = 1;
     
-    [self.lab1 makeLabelByShowingType:UILabelShowingType_01];
-    [self.lab2 makeLabelByShowingType:UILabelShowingType_02];
-    [self.lab3 makeLabelByShowingType:UILabelShowingType_03];
-    [self.lab4 makeLabelByShowingType:UILabelShowingType_04];
-    [self.lab5 makeLabelByShowingType:UILabelShowingType_05];
-    [self.lab6 makeLabelByShowingType:UILabelShowingType_05];
-    [self.lab7 makeLabelByShowingType:UILabelShowingType_05];
+    self.lab1.makeLabelByShowingType(UILabelShowingType_01);
+    self.lab2.makeLabelByShowingType(UILabelShowingType_02);
+    self.lab3.makeLabelByShowingType(UILabelShowingType_03);
+    self.lab4.makeLabelByShowingType(UILabelShowingType_04);
+    self.lab5.makeLabelByShowingType(UILabelShowingType_05);
+    self.lab6.makeLabelByShowingType(UILabelShowingType_05);
+    self.lab7.makeLabelByShowingType(UILabelShowingType_05);
     
-    [self.btn1 makeBtnLabelByShowingType:UILabelShowingType_01];
-    [self.btn2 makeBtnLabelByShowingType:UILabelShowingType_02];
-    [self.btn3 makeBtnLabelByShowingType:UILabelShowingType_03];
-    [self.btn4 makeBtnLabelByShowingType:UILabelShowingType_04];
-    [self.btn5 makeBtnLabelByShowingType:UILabelShowingType_05];
-    [self.btn6 makeBtnLabelByShowingType:UILabelShowingType_05];
-    [self.btn7 makeBtnLabelByShowingType:UILabelShowingType_05];
+    self.btn1.makeBtnLabelByShowingType(UILabelShowingType_01);
+    self.btn2.makeBtnLabelByShowingType(UILabelShowingType_02);
+    self.btn3.makeBtnLabelByShowingType(UILabelShowingType_03);
+    self.btn4.makeBtnLabelByShowingType(UILabelShowingType_04);
+    self.btn5.makeBtnLabelByShowingType(UILabelShowingType_05);
+    self.btn6.makeBtnLabelByShowingType(UILabelShowingType_05);
+    self.btn7.makeBtnLabelByShowingType(UILabelShowingType_05);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -118,21 +117,22 @@
         RichTextConfig *config_01 = RichTextConfig.new;
         config_01.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
         config_01.textCor = JobsBlueColor;
-        config_01.targetString = @"编译器自动管理内存地址,\n";
+        
+        config_01.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
         config_01.textBgCor = JobsBrownColor;
         config_01.paragraphStyle = self.paragtaphStyle;
         
         RichTextConfig *config_02 = RichTextConfig.new;
         config_02.font = [UIFont systemFontOfSize:JobsWidth(13) weight:UIFontWeightMedium];
         config_02.textCor = JobsWhiteColor;
-        config_02.targetString = @"让程序员更加专注于\n";
+        config_02.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
         config_02.textBgCor = JobsBrownColor;
         config_02.paragraphStyle = self.paragtaphStyle;
         
         RichTextConfig *config_03 = RichTextConfig.new;
         config_03.font = [UIFont systemFontOfSize:JobsWidth(14) weight:UIFontWeightSemibold];
         config_03.textCor = JobsGreenColor;
-        config_03.targetString = @"APP的业务。";
+        config_03.targetString = JobsInternationalization(@"APP的业务。");
         config_03.textBgCor = JobsBrownColor;
         config_03.paragraphStyle = self.paragtaphStyle;
         
@@ -286,7 +286,7 @@
     if (!_btn1) {
         _btn1 = BaseButton.new;
         _btn1.backgroundColor = JobsBrownColor;
-        [_btn1 normalTitle:@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"];
+        _btn1.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
         [self.scrollView addSubview:_btn1];
         [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
@@ -300,7 +300,7 @@
     if (!_btn2) {
         _btn2 = BaseButton.new;
         _btn2.backgroundColor = JobsBrownColor;
-        [_btn2 normalTitle:@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"];
+        _btn2.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
         [self.scrollView addSubview:_btn2];
         [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
@@ -314,7 +314,7 @@
     if (!_btn3) {
         _btn3 = BaseButton.new;
         _btn3.backgroundColor = JobsBrownColor;
-        [_btn3 normalTitle:@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"];
+        _btn3.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
         [self.scrollView addSubview:_btn3];
         [_btn3 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
@@ -328,7 +328,7 @@
     if (!_btn4) {
         _btn4 = BaseButton.new;
         _btn4.backgroundColor = JobsBrownColor;
-        [_btn4 normalTitle:@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"];
+        _btn4.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
         [self.scrollView addSubview:_btn4];
         [_btn4 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
@@ -342,7 +342,7 @@
     if (!_btn5) {
         _btn5 = BaseButton.new;
         _btn5.backgroundColor = JobsBrownColor;
-        [_btn5 normalTitle:@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"];
+        _btn5.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
         _btn5.titleLabel.numberOfLines = 0;
         [_btn5 labelAutoWidthByFont];
         [self.scrollView addSubview:_btn5];
@@ -358,7 +358,7 @@
     if (!_btn6) {
         _btn6 = BaseButton.new;
         _btn6.backgroundColor = JobsBrownColor;
-        [_btn6 normalTitle:@"编译器自动管理内存地址，\n让程序员更加专注于\nAPP的业务。"];
+        _btn6.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，\n让程序员更加专注于\nAPP的业务。"));
         _btn6.titleLabel.numberOfLines = 0;
         [_btn6 labelAutoWidthByFont];
         [self.scrollView addSubview:_btn6];
@@ -373,7 +373,7 @@
 -(BaseButton *)btn7{
     if (!_btn7) {
         _btn7 = BaseButton.new;
-        [_btn7 normalAttributedTitle:self.attributedText];
+        _btn7.normalAttributedTitle(self.attributedText);
         /**
          【特别说明】
          1、_btn7.backgroundColor = JobsBrownColor;// 如果使用富文本，那么背景颜色这个属性无效

@@ -63,7 +63,7 @@ UILocationProtocol_UIViewModelSynthesize
         _logoImgView = UIImageView.new;
         _logoImgView.contentMode = UIViewContentModeScaleAspectFill;
         _logoImgView.clipsToBounds = YES;
-        [_logoImgView cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+        _logoImgView.cornerCutToCircleWithCornerRadius(JobsWidth(8));
         [self.contentView addSubview:_logoImgView];
         [_logoImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(self.imageWidth, self.imageWidth));
@@ -79,7 +79,7 @@ UILocationProtocol_UIViewModelSynthesize
     if (!_nameLabel) {
         _nameLabel = UILabel.new;
         _nameLabel.textAlignment= NSTextAlignmentCenter;
-        _nameLabel.font = notoSansRegular(12);
+        _nameLabel.font = UIFontWeightRegularSize(12);
         _nameLabel.textColor = JobsBlackColor;
         [self.contentView addSubview:_nameLabel];
         [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -95,10 +95,10 @@ UILocationProtocol_UIViewModelSynthesize
 -(UIButton *)btn{
     if (!_btn) {
         _btn = UIButton.new;
-        _btn.normalImage = JobsIMG(@"未点赞");
-        _btn.selectedImage = JobsIMG(@"已点赞");
-        _btn.titleFont = notoSansRegular(12);
-        _btn.normalTitleColor = HEXCOLOR(0xC4C4C4);
+        _btn.normalImage(JobsIMG(@"未点赞"));
+        _btn.selectedImage(JobsIMG(@"已点赞"));
+        _btn.titleFont(UIFontWeightRegularSize(12));
+        _btn.normalTitleColor(HEXCOLOR(0xC4C4C4));
         [self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(12));
@@ -107,8 +107,8 @@ UILocationProtocol_UIViewModelSynthesize
         }];
     }
     _btn.selected = self.dataModel.jobsSelected;
-    _btn.normalTitle =  self.dataModel.subTextModel.text;
-    [_btn makeBtnLabelByShowingType:UILabelShowingType_03];
+    _btn.normalTitle(self.dataModel.subTextModel.text);
+    _btn.makeBtnLabelByShowingType(UILabelShowingType_03);
     [_btn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
                              imagePadding:JobsWidth(5)];
     return _btn;

@@ -276,7 +276,7 @@ BaseViewControllerProtocol_synthesize
     } else {
         UIView *statusBar = [UIApplication.sharedApplication.valueForKeyBlock(@"statusBarWindow") valueForKey:@"statusBar"];
         if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-            statusBar.backgroundColor = UIColor.clearColor;;
+            statusBar.backgroundColor = JobsClearColor;;
         }
         // 手动触发 preferredStatusBarStyle 更新状态栏颜色
         [self setNeedsStatusBarAppearanceUpdate];
@@ -352,7 +352,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 -(JobsMenuView *)menuView{
     if(!_menuView){
         _menuView = JobsMenuView.new;
-        _menuView.backgroundColor = JobsPurpleColor;
+//        _menuView.backgroundColor = JobsPurpleColor;
         [self.view addSubview:_menuView];
         _menuView.frame = CGRectMake(59,
                                      0,
@@ -365,7 +365,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 //            make.left.equalTo(self.view);
 //        }];
         [_menuView richElementsInViewWithModel:nil];
-        NSLog(@"");
+//        @jobs_weakify(self)
+//        [_menuView actionObjectBlock:^(id  _Nullable x) {
+//            @jobs_strongify(self)
+//            if (self.objectBlock) self.objectBlock(x);
+//        }];
     }return _menuView;
 }
 

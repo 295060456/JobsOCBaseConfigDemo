@@ -26,7 +26,7 @@ JobsKey(_backgroundImageView)
         BackgroundImageView.userInteractionEnabled = YES;
         BackgroundImageView.contentMode = UIViewContentModeScaleToFill;
 
-        self.backgroundColor = UIColor.clearColor;
+        self.backgroundColor = JobsClearColor;
         if ([self isKindOfClass:UICollectionViewCell.class]) {
             UICollectionViewCell *cell = (UICollectionViewCell *)self;
             [cell.contentView addSubview:BackgroundImageView];

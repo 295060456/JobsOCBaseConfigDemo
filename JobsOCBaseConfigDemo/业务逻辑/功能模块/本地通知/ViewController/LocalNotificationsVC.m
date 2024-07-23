@@ -126,7 +126,7 @@
             make.center.equalTo(self.view);
             make.size.mas_equalTo(CGSizeMake(JobsWidth(80), JobsWidth(60)));
         }];
-        [_btn makeBtnLabelByShowingType:UILabelShowingType_03];
+        _btn.makeBtnLabelByShowingType(UILabelShowingType_03);
     }return _btn;
 }
 

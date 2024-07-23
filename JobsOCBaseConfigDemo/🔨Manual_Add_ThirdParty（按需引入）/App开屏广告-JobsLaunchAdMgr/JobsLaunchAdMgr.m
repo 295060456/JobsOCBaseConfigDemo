@@ -61,7 +61,10 @@
     }
 }
 
-- (void)setupAdWithButtonTitle:(NSString *)buttonTitle buttonModel:(SkipButtonMode)buttonModel countdownDuration:(NSInteger)countdownDuration redirectURL:(NSString *)redirectURL {
+- (void)setupAdWithButtonTitle:(NSString *)buttonTitle
+                   buttonModel:(SkipButtonMode)buttonModel
+             countdownDuration:(NSInteger)countdownDuration
+                   redirectURL:(NSString *)redirectURL {
     self.buttonTitle = buttonTitle;
     self.buttonModel = buttonModel;
     self.countdownDuration = countdownDuration;

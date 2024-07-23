@@ -16,27 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— UIButton + UI
 /// 为了迎合点语法而故意把下列方法属性化
 /// Common
-@property(nonatomic,strong)UIFont *titleFont;
 @property(nonatomic,assign)NSTextAlignment titleAlignment;
 @property(nonatomic,assign)BOOL jobsSelected;
-/// Normal
-@property(nonatomic,strong)UIImage *normalImage;
-@property(nonatomic,strong)UIImage *normalBackgroundImage;
-@property(nonatomic,strong)NSString *normalTitle;
-@property(nonatomic,strong)NSString *normalSubTitle;
-@property(nonatomic,strong)UIColor *normalTitleColor;
-@property(nonatomic,strong)UIColor *normalSubTitleColor;
-@property(nonatomic,strong)NSAttributedString *normalAttributedTitle;// 富文本
-@property(nonatomic,strong)NSAttributedString *normalAttributedSubTitle;// 富文本
-/// Selected
-@property(nonatomic,strong)UIImage *selectedImage;
-@property(nonatomic,strong)UIImage *selectedBackgroundImage;
-@property(nonatomic,strong)NSString *selectedTitle;
-@property(nonatomic,strong)NSString *selectedSubTitle;
-@property(nonatomic,strong)UIColor *selectedTitleColor;
-@property(nonatomic,strong)UIColor *selectedSubTitleColor;
-@property(nonatomic,strong)NSAttributedString *selectedAttributedTitle;// 富文本
-@property(nonatomic,strong)NSAttributedString *selectedAttributedSubTitle;// 富文本
 #pragma mark —— JobsBtnModel
 @property(nonatomic,strong)UIColor *btnBackgroundColor;
 @property(nonatomic,assign)CGSize imageSize;
@@ -111,25 +92,8 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseButtonProtocol_synthesize
 #define BaseButtonProtocol_synthesize \
 \
-@synthesize titleFont = _titleFont;\
 @synthesize titleAlignment = _titleAlignment;\
 @synthesize jobsSelected = _jobsSelected;\
-@synthesize normalImage = _normalImage;\
-@synthesize normalBackgroundImage = _normalBackgroundImage;\
-@synthesize normalTitle = _normalTitle;\
-@synthesize normalSubTitle = _normalSubTitle;\
-@synthesize normalTitleColor = _normalTitleColor;\
-@synthesize normalSubTitleColor = _normalSubTitleColor;\
-@synthesize normalAttributedTitle = _normalAttributedTitle;\
-@synthesize normalAttributedSubTitle = _normalAttributedSubTitle;\
-@synthesize selectedImage = _selectedImage;\
-@synthesize selectedBackgroundImage = _selectedBackgroundImage;\
-@synthesize selectedTitle = _selectedTitle;\
-@synthesize selectedSubTitle = _selectedSubTitle;\
-@synthesize selectedTitleColor = _selectedTitleColor;\
-@synthesize selectedSubTitleColor = _selectedSubTitleColor;\
-@synthesize selectedAttributedTitle = _selectedAttributedTitle;\
-@synthesize selectedAttributedSubTitle = _selectedAttributedSubTitle;\
 @synthesize btnBackgroundColor = _btnBackgroundColor;\
 @synthesize imageSize = _imageSize;\
 @synthesize contentHorizontalAlignment = _contentHorizontalAlignment;\
@@ -176,25 +140,8 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseButtonProtocol_dynamic
 #define BaseButtonProtocol_dynamic \
 \
-@dynamic titleFont;\
 @dynamic titleAlignment;\
 @dynamic jobsSelected;\
-@dynamic normalImage;\
-@dynamic normalBackgroundImage;\
-@dynamic normalTitle;\
-@dynamic normalSubTitle;\
-@dynamic normalTitleColor;\
-@dynamic normalSubTitleColor;\
-@dynamic normalAttributedTitle;\
-@dynamic normalAttributedSubTitle;\
-@dynamic selectedImage;\
-@dynamic selectedBackgroundImage;\
-@dynamic selectedTitle;\
-@dynamic selectedSubTitle;\
-@dynamic selectedTitleColor;\
-@dynamic selectedSubTitleColor;\
-@dynamic selectedAttributedTitle;\
-@dynamic selectedAttributedSubTitle;\
 @dynamic btnBackgroundColor;\
 @dynamic imageSize;\
 @dynamic contentHorizontalAlignment;\

@@ -138,14 +138,6 @@ static inline UIFont *fontName(NSString *fontName,CGFloat fontSize) {
     return [UIFont fontWithName:fontName size:JobsWidth(fontSize)];
 }
 
-static inline UIFont *notoSansBold(CGFloat fontSize){
-    return fontName(@"NotoSans-Bold", JobsWidth(fontSize));
-}
-
-static inline UIFont *notoSansRegular(CGFloat fontSize){
-    return fontName(@"NotoSans-Regular", JobsWidth(fontSize));
-}
-
 static inline UIFont *bayonRegular(CGFloat fontSize){
     return fontName(@"Bayon-Regular", JobsWidth(fontSize));
 }

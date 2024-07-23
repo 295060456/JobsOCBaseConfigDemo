@@ -44,7 +44,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.rowHeight = 44.0;
-    _tableView.backgroundColor = UIColor.clearColor;
+    _tableView.backgroundColor = JobsClearColor;
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
     //判断当前系统语言

@@ -155,8 +155,8 @@ ratio:(CGFloat)ratio {
         _categoryView.backgroundColor = JobsCyanColor;
         _categoryView.titleSelectedColor = JobsRedColor;
         _categoryView.titleColor = JobsRedColor;
-//        _categoryView.titleFont = notoSansRegular(16);
-//        _categoryView.titleSelectedFont = notoSansBold(16);
+//        _categoryView.titleFont = UIFontWeightRegularSize(16);
+//        _categoryView.titleSelectedFont = UIFontWeightBoldSize(16);
         _categoryView.delegate = self;
         _categoryView.titles = self.titleMutArr;
         _categoryView.titleColorGradientEnabled = YES;

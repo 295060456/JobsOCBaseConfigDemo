@@ -68,16 +68,16 @@
 -(UIButton *)cameraBtn{
     if(!_cameraBtn){
         _cameraBtn = UIButton.new;
-        _cameraBtn.normalTitle = JobsInternationalization(@"调取系统相机");
+        _cameraBtn.normalTitle(JobsInternationalization(@"调取系统相机"));
         _cameraBtn.backgroundColor = JobsGreenColor;
-        _cameraBtn.normalTitleColor = JobsWhiteColor;
+        _cameraBtn.normalTitleColor(JobsWhiteColor);
         [self.view addSubview:_cameraBtn];
         [_cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(50));
             make.left.equalTo(self.view).offset(JobsWidth(20));
             make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(100));
         }];
-        [_cameraBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+        _cameraBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
         @jobs_weakify(self)
         [_cameraBtn jobsBtnClickEventBlock:^id(id data) {
             /// 调取系统相机
@@ -95,16 +95,16 @@
 -(UIButton *)photoAlbumBtn{
     if(!_photoAlbumBtn){
         _photoAlbumBtn = UIButton.new;
-        _photoAlbumBtn.backgroundColor = UIColor.blueColor;
-        _photoAlbumBtn.normalTitleColor = JobsWhiteColor;
-        _photoAlbumBtn.normalTitle = JobsInternationalization(@"调取系统相机");
+        _photoAlbumBtn.backgroundColor = JobsBlueColor;
+        _photoAlbumBtn.normalTitleColor(JobsWhiteColor);
+        _photoAlbumBtn.normalTitle(JobsInternationalization(@"调取系统相机"));
         [self.view addSubview:_photoAlbumBtn];
         [_photoAlbumBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(50));
             make.right.equalTo(self.view).offset(JobsWidth(-20));
             make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(100));
         }];
-        [_photoAlbumBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+        _photoAlbumBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
         [_photoAlbumBtn jobsBtnClickEventBlock:^id(id data) {
             /// 调取系统相册
             @jobs_weakify(self)

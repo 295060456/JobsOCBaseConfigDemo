@@ -702,9 +702,9 @@ JobsKey(__立即注册)
     UIButton *_立即注册 = Jobs_getAssociatedObject(_立即注册);
     if ([self isKindOfClass:UIViewController.class] && !_立即注册 ) {
         _立即注册 = UIButton.new;
-        _立即注册.normalTitle = JobsInternationalization(@"立即注册");
-        _立即注册.normalTitleColor = HEXCOLOR(0x757575);
-        _立即注册.titleFont = UIFontWeightRegularSize(14);
+        _立即注册.normalTitle(JobsInternationalization(@"立即注册"));
+        _立即注册.normalTitleColor(HEXCOLOR(0x757575));
+        _立即注册.titleFont(UIFontWeightRegularSize(14));
         UIViewController *viewController = (UIViewController *)self;
         [viewController.bgImageView addSubview:_立即注册];
         [_立即注册 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -719,7 +719,7 @@ JobsKey(__立即注册)
 //            [self JobsTestPopView:@"立即注册"];
             return nil;
         }];
-        [_立即注册 makeBtnLabelByShowingType:UILabelShowingType_03];
+        _立即注册.makeBtnLabelByShowingType(UILabelShowingType_03);
         Jobs_setAssociatedRETAIN_NONATOMIC(__立即注册, _立即注册);
     }return _立即注册;
 }
@@ -734,9 +734,9 @@ JobsKey(__联系客服)
     UIButton *_联系客服 = Jobs_getAssociatedObject(__联系客服);
     if ([self isKindOfClass:UIViewController.class] && !_联系客服) {
         _联系客服 = UIButton.new;
-        _联系客服.normalTitle = JobsInternationalization(@"联系客服");
-        _联系客服.normalTitleColor = HEXCOLOR(0x757575);
-        _联系客服.titleFont = UIFontWeightRegularSize(14);
+        _联系客服.normalTitle(JobsInternationalization(@"联系客服"));
+        _联系客服.normalTitleColor(HEXCOLOR(0x757575));
+        _联系客服.titleFont(UIFontWeightRegularSize(14));
         UIViewController *viewController = (UIViewController *)self;
         [viewController.bgImageView addSubview:_联系客服];
         [_联系客服 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -751,7 +751,7 @@ JobsKey(__联系客服)
 //            [self JobsTestPopView:@"联系客服"];
             return nil;
         }];
-        [_联系客服 makeBtnLabelByShowingType:UILabelShowingType_03];
+        _联系客服.makeBtnLabelByShowingType(UILabelShowingType_03);
         Jobs_setAssociatedRETAIN_NONATOMIC(__联系客服, _联系客服)
     }return _联系客服;
 }

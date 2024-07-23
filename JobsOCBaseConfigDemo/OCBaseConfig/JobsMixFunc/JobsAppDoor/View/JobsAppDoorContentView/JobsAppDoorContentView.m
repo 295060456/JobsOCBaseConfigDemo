@@ -205,10 +205,9 @@
 }
 /// 返回首页
 -(void)initialAbandonLoginBtn{
-    
     self.abandonLoginBtn.height = JobsWidth(10);
-    [self.abandonLoginBtn normalTitle:Title4];
-    [self.abandonLoginBtn normalTitleColor:Cor3];
+    self.abandonLoginBtn.normalTitle(Title4);
+    self.abandonLoginBtn.normalTitleColor(Cor3);
     self.abandonLoginBtn.titleLabel.font = [UIFont systemFontOfSize:JobsWidth(12)
                                                              weight:UIFontWeightSemibold];
     [self.abandonLoginBtn.titleLabel sizeToFit];
@@ -224,7 +223,7 @@
 }
 
 -(void)initialToRegisterBtn{
-    [self.toRegisterBtn normalTitle:Title2];
+    self.toRegisterBtn.normalTitle(Title2);
     [self.toRegisterBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
                                            imagePadding:JobsWidth(20)];
 }
@@ -415,10 +414,10 @@
                                           0,
                                           RegisterBtnWidth,
                                           self.height);
-        [_toRegisterBtn normalImage:JobsIMG(@"用户名称")];
+        _toRegisterBtn.normalImage(JobsIMG(@"用户名称"));
         _toRegisterBtn.titleLabel.numberOfLines = 0;
         _toRegisterBtn.backgroundColor = Cor1;
-        [_toRegisterBtn normalTitleColor:Cor3];
+        _toRegisterBtn.normalTitleColor(Cor3);
         _toRegisterBtn.titleLabel.font = UIFontWeightMediumSize(13);
         @jobs_weakify(self)
         [_toRegisterBtn jobsBtnClickEventBlock:^id(UIButton *x) {
@@ -464,20 +463,20 @@
             return nil;
         }];
         [self addSubview:_sendBtn];
-        [_sendBtn cornerCutToCircleWithCornerRadius:_sendBtn.height / 2];
+        _sendBtn.cornerCutToCircleWithCornerRadius(_sendBtn.height / 2);
     }return _sendBtn;
 }
 /// 记住登录成功的账号和密码
 -(UIButton *)storeCodeBtn{
     if (!_storeCodeBtn) {
         _storeCodeBtn = UIButton.new;
-        _storeCodeBtn.normalTitle = Title5;
+        _storeCodeBtn.normalTitle(Title5);
         _storeCodeBtn.titleLabel.font = UIFontWeightRegularSize(10);
         _storeCodeBtn.selected = YES;// 默认记住密码
-        _storeCodeBtn.normalImage = JobsIMG(@"没有记住密码");
-        _storeCodeBtn.selectedImage = JobsIMG(@"记住密码");
-        _storeCodeBtn.normalTitleColor = Cor4;
-        [_storeCodeBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+        _storeCodeBtn.normalImage(JobsIMG(@"没有记住密码"));
+        _storeCodeBtn.selectedImage(JobsIMG(@"记住密码"));
+        _storeCodeBtn.normalTitleColor(Cor4);
+        _storeCodeBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
         _storeCodeBtn.titleLabel.adjustsFontForContentSizeCategory = YES;
         [self addSubview:_storeCodeBtn];
         [_storeCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -501,10 +500,10 @@
 -(UIButton *)findCodeBtn{
     if (!_findCodeBtn) {
         _findCodeBtn = UIButton.new;
-        _findCodeBtn.normalTitle = Title3;
+        _findCodeBtn.normalTitle(Title3);
         _findCodeBtn.titleLabel.font = UIFontWeightRegularSize(10);
-        _findCodeBtn.normalTitleColor = Cor3;
-        [_findCodeBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+        _findCodeBtn.normalTitleColor(Cor3);
+        _findCodeBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
         _findCodeBtn.titleLabel.adjustsFontForContentSizeCategory = YES;
         [self addSubview:_findCodeBtn];
         [_findCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {

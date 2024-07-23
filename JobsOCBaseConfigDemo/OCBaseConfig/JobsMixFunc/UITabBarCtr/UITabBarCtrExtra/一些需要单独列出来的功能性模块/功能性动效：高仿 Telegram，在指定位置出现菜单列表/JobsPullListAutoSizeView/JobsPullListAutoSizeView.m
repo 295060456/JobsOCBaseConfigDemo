@@ -95,7 +95,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_tableview) {
         _tableview = UITableView.new;
         _tableview.scrollEnabled = NO;
-        [_tableview cornerCutToCircleWithCornerRadius:JobsWidth(3)];//圆润
+        _tableview.cornerCutToCircleWithCornerRadius(JobsWidth(3));//圆润
         _tableview.delegate = self;
         _tableview.dataSource = self;
         [self addSubview:_tableview];

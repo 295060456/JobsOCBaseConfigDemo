@@ -164,15 +164,15 @@ static dispatch_once_t static_customViewOnceToken;
             make.top.equalTo(self.indicatorIMGV.mas_bottom).offset(JobsWidth(20));
             make.left.equalTo(self).offset(JobsWidth(19));
         }];
-        [_tipsLab makeLabelByShowingType:UILabelShowingType_03];
+        _tipsLab.makeLabelByShowingType(UILabelShowingType_03);
     }return _tipsLab;
 }
 
 -(UIButton *)cancelBtn{
     if (!_cancelBtn) {
         _cancelBtn = UIButton.new;
-        _cancelBtn.normalTitle = JobsInternationalization(@"取消");
-        _cancelBtn.normalTitleColor = HEXCOLOR(0xB0B0B0);
+        _cancelBtn.normalTitle(JobsInternationalization(@"取消"));
+        _cancelBtn.normalTitleColor(HEXCOLOR(0xB0B0B0));
         _cancelBtn.backgroundColor = self.cancelBtnBgCor;
         [self addSubview:_cancelBtn];
         [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -180,7 +180,7 @@ static dispatch_once_t static_customViewOnceToken;
             make.bottom.equalTo(self).offset(JobsWidth(-16));
             make.left.equalTo(self).offset(JobsWidth(16));
         }];
-        [_cancelBtn cornerCutToCircleWithCornerRadius:self.btnSize.height / 2];
+        _cancelBtn.cornerCutToCircleWithCornerRadius(self.btnSize.height / 2);
         [_cancelBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             toast(x.titleForNormalState);
             return nil;
@@ -191,8 +191,8 @@ static dispatch_once_t static_customViewOnceToken;
 -(UIButton *)sureBtn{
     if (!_sureBtn) {
         _sureBtn = UIButton.new;
-        _sureBtn.normalTitle = JobsInternationalization(@"确定");
-        _sureBtn.normalTitleColor = JobsBlackColor;
+        _sureBtn.normalTitle(JobsInternationalization(@"确定"));
+        _sureBtn.normalTitleColor(JobsBlackColor);
         _sureBtn.backgroundColor = self.sureBtnBgCor;
         [self addSubview:_sureBtn];
         [_sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -200,7 +200,7 @@ static dispatch_once_t static_customViewOnceToken;
             make.bottom.equalTo(self).offset(JobsWidth(-16));
             make.right.equalTo(self).offset(JobsWidth(-16));
         }];
-        [_sureBtn cornerCutToCircleWithCornerRadius:self.btnSize.height / 2];
+        _sureBtn.cornerCutToCircleWithCornerRadius(self.btnSize.height / 2);
         [_sureBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             toast(x.titleForNormalState);
             return nil;

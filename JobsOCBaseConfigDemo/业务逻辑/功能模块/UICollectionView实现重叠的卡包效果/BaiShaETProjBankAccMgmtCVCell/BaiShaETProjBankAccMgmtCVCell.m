@@ -24,7 +24,7 @@
     if (self == [super initWithFrame:frame]) {
 //        self.backgroundColor = JobsWhiteColor;
 //        self.contentView.backgroundColor = JobsRandomColor;
-        [self cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+        self.cornerCutToCircleWithCornerRadius(JobsWidth(8));
     }return self;
 }
 #pragma mark —— BaseCellProtocol
@@ -69,16 +69,16 @@
             make.centerY.equalTo(self.contentView);
         }];
     }
-    _titleBtn.normalTitle = self.viewModel.textModel.text;
-    _titleBtn.normalImage = self.viewModel.image;
-    _titleBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
-    _titleBtn.titleFont = notoSansBold(14);
+    _titleBtn.normalTitle(self.viewModel.textModel.text);
+    _titleBtn.normalImage(self.viewModel.image);
+    _titleBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
+    _titleBtn.titleFont(UIFontWeightBoldSize(14));
 
     _titleBtn.imageViewSize = CGSizeMake(JobsWidth(40), JobsWidth(40));
-    [_titleBtn.imageView cornerCutToCircleWithCornerRadius:JobsWidth(20)];
+    _titleBtn.imageView.cornerCutToCircleWithCornerRadius(JobsWidth(20));
     [_titleBtn.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
     
-    [_titleBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+    _titleBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
     [_titleBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
                                   imagePadding:JobsWidth(50)];
     
@@ -91,7 +91,7 @@
 -(UILabel *)detailLab{
     if (!_detailLab) {
         _detailLab = UILabel.new;
-        _detailLab.font = notoSansBold(18);
+        _detailLab.font = UIFontWeightBoldSize(18);
         _detailLab.textColor = HEXCOLOR(0x3D4A58);
         _detailLab.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:_detailLab];
@@ -101,7 +101,7 @@
         }];
     }
     _detailLab.text = self.viewModel.subTextModel.text;
-    [_detailLab makeLabelByShowingType:UILabelShowingType_03];
+    _detailLab.makeLabelByShowingType(UILabelShowingType_03);
     return _detailLab;
 }
 

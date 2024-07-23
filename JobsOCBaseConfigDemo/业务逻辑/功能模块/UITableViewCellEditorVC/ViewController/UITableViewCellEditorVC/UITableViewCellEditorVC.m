@@ -94,7 +94,7 @@
     self.msgEditBoardView.getDeleteBtn.enabledBlock(self.selectedDataMutArr.count);
     self.msgEditBoardView.getMarkToReadBtn.enabledBlock(self.selectedDataMutArr.count);
     self.editBtn.selected = NO;
-    self.editBtn.normalTitle = JobsInternationalization(@"編輯");
+    self.editBtn.normalTitle(JobsInternationalization(@"編輯"));
     [self.msgEditBoardView disappearByView:self.view];
 }
 /// 全选的实现
@@ -210,15 +210,15 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UIButton *)editBtn{
     if (!_editBtn) {
         _editBtn = UIButton.new;
-        _editBtn.normalTitle = JobsInternationalization(@"編輯");
-        _editBtn.titleFont = notoSansBold(12);
-        _editBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
+        _editBtn.normalTitle(JobsInternationalization(@"編輯"));
+        _editBtn.titleFont(UIFontWeightBoldSize(12));
+        _editBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
         @jobs_weakify(self)
         [_editBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
 //            toast(x.titleForNormalState);
             x.selected = !x.selected;
-            x.normalTitle = x.selected ? JobsInternationalization(@"完成") : JobsInternationalization(@"編輯");
+            x.normalTitle(x.selected ? JobsInternationalization(@"完成") : JobsInternationalization(@"編輯"));
             [self.tableView setEditing:x.selected animated:YES];
             x.selected ? [self.getMsgEditBoardView appearByView:self.view] : [self.getMsgEditBoardView disappearByView:self.view];
             return nil;

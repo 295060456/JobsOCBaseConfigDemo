@@ -15,6 +15,7 @@ typedef void(^jobsByIDBlock)(id _Nullable data);
 typedef void(^jobsByGestureRecognizerBlock)(UIGestureRecognizer *_Nullable data);
 typedef void(^jobsBySELBlock)(SEL _Nullable data);
 typedef void(^jobsByStringBlock)(NSString *_Nullable data);
+typedef void(^jobsByAttributedStringBlock)(NSAttributedString *_Nullable data);
 typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
 typedef void(^jobsByCorBlock)(UIColor *_Nullable data);
 typedef void(^jobsByFontBlock)(UIFont *_Nullable data);

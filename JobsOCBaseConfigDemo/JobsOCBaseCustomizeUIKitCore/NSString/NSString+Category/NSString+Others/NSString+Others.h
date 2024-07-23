@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Others)
 #pragma mark —— 其他
+/// 字符串拼接
+-(JobsReturnStringByStringBlock _Nonnull)add;
 /// 该文字是否是Debug定义的文字
 -(BOOL)isDebugText;
 /// 复制到系统剪切板

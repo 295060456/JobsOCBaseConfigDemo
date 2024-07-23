@@ -86,7 +86,7 @@
 //            if (self.NSIntegerBlock) self.NSIntegerBlock(data);
 //        }];
         
-        [_textField cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+        _textField.cornerCutToCircleWithCornerRadius(JobsWidth(8));
         [_textField layerBorderCor:JobsBlueColor andBorderWidth:.05f];
         
     }return _textField;
@@ -96,16 +96,16 @@
     if (!_cancelBtn) {
         _cancelBtn = UIButton.new;
         _cancelBtn.backgroundColor = JobsLightGrayColor;
-        _cancelBtn.normalTitle = JobsInternationalization(@"取消");
-        _cancelBtn.titleFont = UIFontWeightRegularSize(12);
-        _cancelBtn.normalTitleColor = HEXCOLOR(0x0F81FE);
+        _cancelBtn.normalTitle(JobsInternationalization(@"取消"));
+        _cancelBtn.titleFont(UIFontWeightRegularSize(12));
+        _cancelBtn.normalTitleColor(HEXCOLOR(0x0F81FE));
 //        [_cancelBtn buttonAutoWidthByFont]; // 无效
         [self addSubview:_cancelBtn];
         _cancelBtn.size = CGSizeMake(JobsWidth(50), JobsWidth(30));
         _cancelBtn.x = JobsMainScreen_WIDTH() - _cancelBtn.size.width - JobsWidth(5);
         _cancelBtn.centerY = self.textField.centerY;
         [_cancelBtn layerBorderCor:JobsWhiteColor andBorderWidth:1];
-        [_cancelBtn cornerCutToCircleWithCornerRadius:8];
+        _cancelBtn.cornerCutToCircleWithCornerRadius(8);
         @jobs_weakify(self)
         [_cancelBtn jobsBtnClickEventBlock:^id(id data) {
             @jobs_strongify(self)

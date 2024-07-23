@@ -131,9 +131,9 @@
 //        [btn selectedBackgroundImage:vm.bgSelectedImage];
 //    }
     
-    btn.normalTitle = vm.textModel.text;
-    btn.titleFont = vm.textModel.font;
-    btn.normalTitleColor = vm.textModel.textCor;
+    btn.normalTitle(vm.textModel.text);
+    btn.titleFont(vm.textModel.font);
+    btn.normalTitleColor(vm.textModel.textCor);
     @jobs_weakify(self)
     [btn jobsBtnClickEventBlock:^id(UIButton *x) {
         @jobs_strongify(self)
@@ -147,7 +147,7 @@
         [self.btnHeightMutArr addObject:data];
     }];
     btn.size = CGSizeMake((JobsMainScreen_WIDTH() - JobsWidth(15 * 5)) / 4, JobsWidth(30));
-    [btn makeBtnLabelByShowingType:self.labelShowingType];
+    btn.makeBtnLabelByShowingType(self.labelShowingType);
     return btn;
 }
 /// 取最大的高度值使用

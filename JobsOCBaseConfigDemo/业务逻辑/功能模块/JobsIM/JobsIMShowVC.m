@@ -118,9 +118,9 @@
         _shareBtn = UIButton.new;
         _shareBtn.width = JobsWidth(23);
         _shareBtn.height = JobsWidth(23);
-        _shareBtn.normalImage = JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"PLUS");
-        _shareBtn.normalTitleColor = JobsWhiteColor;
-        [_shareBtn cornerCutToCircleWithCornerRadius:23 / 2];
+        _shareBtn.normalImage(JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"PLUS"));
+        _shareBtn.normalTitleColor(JobsWhiteColor);
+        _shareBtn.cornerCutToCircleWithCornerRadius(23 / 2);
         [_shareBtn jobsBtnClickEventBlock:^id(id data) {
             toast(JobsInternationalization(@"此功能尚在开发中..."));
             return nil;

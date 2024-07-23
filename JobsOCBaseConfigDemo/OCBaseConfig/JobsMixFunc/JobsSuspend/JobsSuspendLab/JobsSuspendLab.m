@@ -27,7 +27,7 @@
     [super drawRect:rect];
     self.panRcognize.enabled = self.isAllowDrag;
     self.userInteractionEnabled = self.isAllowDrag;
-//    [self cornerCutToCircleWithCornerRadius:self.height / 2];
+    self.cornerCutToCircleWithCornerRadius(self.height / 2);
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches

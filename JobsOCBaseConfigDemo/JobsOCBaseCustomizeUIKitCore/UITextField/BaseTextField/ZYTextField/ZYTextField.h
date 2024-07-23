@@ -81,7 +81,7 @@
              [self textFieldBlock:self.textField
                    textFieldValue:x];
          }];
-         [_textField cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+         _textField.cornerCutToCircleWithCornerRadius(JobsWidth(8));
          [self addSubview:_textField];
          [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
              make.size.mas_equalTo(CGSizeMake(JobsWidth(255), JobsWidth(32)));

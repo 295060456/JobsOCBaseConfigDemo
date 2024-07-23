@@ -85,7 +85,7 @@
 //        [self.addressPickerView removePickerFromView:nil];
 //        if (clickDoneBlock) clickDoneBlock();
 //    };
-//
+//    
 //    self.addressPickerView.resultBlock = ^(BRProvinceModel *province,
 //                                           BRCityModel *city,
 //                                           BRAreaModel *area) {
@@ -113,13 +113,13 @@
 //                                                JobsInternationalization(@"博士后")];
 //        stringPickerViewModel.selectIndex = 2;
 //    }
-//
+//    
 //    self.stringPickerView.pickerMode = stringPickerViewModel.pickerMode;
 //    self.stringPickerView.title = stringPickerViewModel.title;
 //    self.stringPickerView.dataSourceArr = stringPickerViewModel.dataSourceArr;
 //    self.stringPickerView.selectIndex = stringPickerViewModel.selectIndex;
 //    self.stringPickerView.pickerStyle = pickerStyle ? : self.customStyle;
-//
+//    
 //    @jobs_weakify(self)
 //    self.stringPickerView.doneBlock = ^{
 //        @jobs_strongify(self)
@@ -137,7 +137,7 @@
 //        @jobs_strongify(self)
 //        if (self.objectBlock) self.objectBlock(resultModelArr);
 //    };
-//
+//    
 //    [self.stringPickerView show];
 //}
 #pragma mark —— 一些私有方法

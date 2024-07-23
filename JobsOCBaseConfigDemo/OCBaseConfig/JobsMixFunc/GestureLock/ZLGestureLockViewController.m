@@ -271,10 +271,10 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                           self.view.frame.size.height - JobsWidth(20) - btnH,
                                           btnW,
                                           btnH);
-        _otherAcountBtn.backgroundColor = [UIColor clearColor];
-        _otherAcountBtn.normalTitle = JobsInternationalization(@"其他账户");
-        _otherAcountBtn.titleFont = [UIFont systemFontOfSize:JobsWidth(12)];
-        _otherAcountBtn.normalTitleColor = RGBA_COLOR(102, 102, 102, 1);
+        _otherAcountBtn.backgroundColor = JobsClearColor;
+        _otherAcountBtn.normalTitle(JobsInternationalization(@"其他账户"));
+        _otherAcountBtn.titleFont([UIFont systemFontOfSize:JobsWidth(12)]);
+        _otherAcountBtn.normalTitleColor(RGBA_COLOR(102, 102, 102, 1));
         [_otherAcountBtn jobsBtnClickEventBlock:^id(id data) {
             NSLog(@"点击其他账号登陆按钮")
             return nil;
@@ -291,9 +291,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                         btnW,
                                         btnH);
         _resetPswBtn.backgroundColor = self.otherAcountBtn.backgroundColor;
-        _resetPswBtn.normalTitle = JobsInternationalization(@"重新绘制");
-        _resetPswBtn.titleFont = [UIFont systemFontOfSize:JobsWidth(12)];
-        _resetPswBtn.normalTitleColor = RGBA_COLOR(102, 102, 102, 1);
+        _resetPswBtn.normalTitle(JobsInternationalization(@"重新绘制"));
+        _resetPswBtn.titleFont([UIFont systemFontOfSize:JobsWidth(12)]);
+        _resetPswBtn.normalTitleColor(RGBA_COLOR(102, 102, 102, 1));
         @jobs_weakify(self)
         [_resetPswBtn jobsBtnClickEventBlock:^id(id data) {
             @jobs_strongify(self)
@@ -315,9 +315,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                          btnW,
                                          btnH);
         _forgetPswBtn.backgroundColor = self.otherAcountBtn.backgroundColor;
-        _forgetPswBtn.normalTitle = JobsInternationalization(@"忘记密码");
-        _forgetPswBtn.titleFont = [UIFont systemFontOfSize:JobsWidth(12)];
-        _forgetPswBtn.normalTitleColor = JobsRedColor;
+        _forgetPswBtn.normalTitle(JobsInternationalization(@"忘记密码"));
+        _forgetPswBtn.titleFont([UIFont systemFontOfSize:JobsWidth(12)]);
+        _forgetPswBtn.normalTitleColor(JobsRedColor);
         [_forgetPswBtn jobsBtnClickEventBlock:^id(id data) {
             NSLog(@"点击忘记手势密码按钮");
             return nil;

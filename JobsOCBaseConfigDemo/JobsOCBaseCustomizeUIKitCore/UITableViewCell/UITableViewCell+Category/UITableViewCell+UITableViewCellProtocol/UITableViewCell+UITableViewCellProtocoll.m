@@ -103,7 +103,7 @@ UITableViewCellProtocol_dynamic
 }
 
 -(void)setCellBgImage:(UIImage *)bgImage{
-    self.backgroundColor = self.contentView.backgroundColor = UIColor.clearColor;
+    self.backgroundColor = self.contentView.backgroundColor = JobsClearColor;
     self.backgroundImageView.image = bgImage;
 }
 

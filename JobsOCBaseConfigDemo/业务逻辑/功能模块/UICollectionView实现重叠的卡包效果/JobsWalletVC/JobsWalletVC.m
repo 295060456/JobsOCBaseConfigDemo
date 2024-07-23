@@ -240,7 +240,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
             {
                 UIViewModel *viewModel = UIViewModel.new;
                 viewModel.textModel.text = JobsInternationalization(@"＋添加新的銀行卡");
-                viewModel.textModel.font = notoSansRegular(16);
+                viewModel.textModel.font = UIFontWeightRegularSize(16);
                 viewModel.textModel.textCor = HEXCOLOR(0x757575);
                 [dataMutArr addObject:viewModel];
             }

@@ -62,11 +62,11 @@
         _sendBtn = UIButton.new;
         _sendBtn.userInteractionEnabled = NO;
         _sendBtn.enabled = NO;
-        _sendBtn.normalTitle = JobsInternationalization(@"发送");
-        _sendBtn.normalTitleColor = JobsWhiteColor;
+        _sendBtn.normalTitle(JobsInternationalization(@"发送"));
+        _sendBtn.normalTitleColor(JobsWhiteColor);
         [_sendBtn setTitleColor:JobsWhiteColor forState:UIControlStateDisabled];
-        _sendBtn.normalBackgroundImage = [UIImage imageWithColor:JobsCyanColor];
-        _sendBtn.selectedBackgroundImage = [UIImage imageWithColor:JobsLightGrayColor];
+        _sendBtn.normalBackgroundImage([UIImage imageWithColor:JobsCyanColor]);
+        _sendBtn.selectedBackgroundImage([UIImage imageWithColor:JobsLightGrayColor]);
         @jobs_weakify(self)
         [_sendBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
@@ -88,7 +88,7 @@
             make.right.equalTo(self).offset(-10);
             make.width.mas_equalTo(50);
         }];
-        [_sendBtn cornerCutToCircleWithCornerRadius:3];
+        _sendBtn.cornerCutToCircleWithCornerRadius(3);
     }return _sendBtn;
 }
 
@@ -116,7 +116,7 @@
 
         [self layoutIfNeeded];
         
-        [_inputTextField cornerCutToCircleWithCornerRadius:_inputTextField.mj_h / 2];
+        _inputTextField.cornerCutToCircleWithCornerRadius(_inputTextField.mj_h / 2);
         [_inputTextField layerBorderCor:JobsWhiteColor andBorderWidth:1];
         
         @jobs_weakify(self)

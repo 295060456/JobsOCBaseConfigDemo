@@ -25,7 +25,7 @@
         _label = UILabel.new;
         _label.text = @"输入的内容";
         _label.font = UIFontWeightBoldSize(20);
-        _label.textColor = UIColor.blueColor;
+        _label.textColor = JobsBlueColor;
         _label.frame = CGRectMake(100, 100, 100, 100);
         [self.view addSubview:_label];
     }return _label;

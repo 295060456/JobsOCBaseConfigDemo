@@ -93,7 +93,7 @@ JobsToggleNavViewProtocolSynthesize
 
 }
 
--(void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView 
                     withVelocity:(CGPoint)velocity
              targetContentOffset:(inout CGPoint *)targetContentOffset{
 }
@@ -103,7 +103,7 @@ JobsToggleNavViewProtocolSynthesize
     
     CGFloat scrollView_contentOffset_x = scrollView.contentOffset.x;
     if(scrollView_contentOffset_x < 0) scrollView_contentOffset_x = 0;
-    if(scrollView_contentOffset_x > scrollView.width * self.scrollContentViews.count - 1)
+    if(scrollView_contentOffset_x > scrollView.width * self.scrollContentViews.count - 1) 
         scrollView_contentOffset_x = scrollView.width * self.scrollContentViews.count - 1;
     
     NSInteger selectedIndx = round(scrollView_contentOffset_x / scrollView.width);
@@ -114,7 +114,7 @@ JobsToggleNavViewProtocolSynthesize
 -(JobsToggleNavView *)taggedNavView{
     if(!_taggedNavView){
         _taggedNavView = JobsToggleNavView.new;
-        _taggedNavView.frame = CGRectMake(0,
+        _taggedNavView.frame = CGRectMake(0, 
                                           0,
                                           self.taggedNavView_width,
                                           self.taggedNavView_height);

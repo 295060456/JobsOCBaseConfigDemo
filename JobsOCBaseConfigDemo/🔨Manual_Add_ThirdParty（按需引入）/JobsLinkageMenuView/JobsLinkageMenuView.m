@@ -95,7 +95,7 @@
                                                            id  _Nullable arg) {
             @jobs_strongify(self)
             UIButton *button = (UIButton *)[self viewWithTag:self.newChoseTag];
-            button.normalTitleColor = self.selectTextColor;
+            button.normalTitleColor(self.selectTextColor);
             self.choseTag = self.newChoseTag;
             return nil;
         }, nil, self)
@@ -121,7 +121,7 @@
     _textColor = textColor;
     for (int i = 2; i <= self.btnConfig.normal_titles.count; i++) {
         UIButton *button = [self viewWithTag:i];
-        button.normalTitleColor = textColor;
+        button.normalTitleColor(textColor);
     }
 }
 

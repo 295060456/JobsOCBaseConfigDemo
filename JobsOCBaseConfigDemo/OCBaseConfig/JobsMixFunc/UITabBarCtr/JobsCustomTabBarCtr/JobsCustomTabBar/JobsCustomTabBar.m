@@ -39,7 +39,7 @@
         UIView *item = config.tabBarItems[index];
         CGFloat xPosition = itemWidth * index;
         CGFloat yOffset = (index < config.tabBarItemYOffsets.count) ? [config.tabBarItemYOffsets[index] floatValue] : 0;
-        item.frame = CGRectMake(xPosition,
+        item.frame = CGRectMake(xPosition, 
                                 yOffset,
                                 itemWidth,
                                 config.tabBarHeight);

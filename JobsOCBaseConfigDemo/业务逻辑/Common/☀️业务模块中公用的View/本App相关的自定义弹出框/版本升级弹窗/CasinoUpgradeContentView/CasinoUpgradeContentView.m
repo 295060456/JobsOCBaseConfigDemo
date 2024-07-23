@@ -60,7 +60,7 @@
         _titleLab.text = JobsInternationalization(@"The existing new version needs to be updated. Are you sure to download it?");
         _titleLab.numberOfLines = 0;
         _titleLab.textAlignment = NSTextAlignmentCenter;
-        [_titleLab makeLabelByShowingType:UILabelShowingType_03];
+        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
         [self addSubview:_titleLab];
         [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
@@ -74,10 +74,10 @@
 -(UIButton *)cancelBtn{
     if (!_cancelBtn) {
         _cancelBtn = UIButton.new;
-        _cancelBtn.normalTitle = JobsInternationalization(@"Cancel");
-        _cancelBtn.normalTitleColor = HEXCOLOR(0x502600);
-        _cancelBtn.titleFont = UIFontWeightRegularSize(14);
-        _cancelBtn.normalBackgroundImage = JobsIMG(@"弹窗取消按钮背景图");
+        _cancelBtn.normalTitle(JobsInternationalization(@"Cancel"));
+        _cancelBtn.normalTitleColor(HEXCOLOR(0x502600));
+        _cancelBtn.titleFont(UIFontWeightRegularSize(14));
+        _cancelBtn.normalBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
         @jobs_weakify(self)
         [_cancelBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
@@ -96,10 +96,10 @@
 -(UIButton *)sureBtn{
     if (!_sureBtn) {
         _sureBtn = UIButton.new;
-        _sureBtn.normalTitle = JobsInternationalization(@"Sure");
-        _sureBtn.normalTitleColor = HEXCOLOR(0x502600);
-        _sureBtn.normalBackgroundImage = JobsIMG(@"弹窗确定按钮背景图");
-        _sureBtn.titleFont = UIFontWeightRegularSize(14);
+        _sureBtn.normalTitle(JobsInternationalization(@"Sure"));
+        _sureBtn.normalTitleColor(HEXCOLOR(0x502600));
+        _sureBtn.normalBackgroundImage(JobsIMG(@"弹窗确定按钮背景图"));
+        _sureBtn.titleFont(UIFontWeightRegularSize(14));
         @jobs_weakify(self)
         [_sureBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)

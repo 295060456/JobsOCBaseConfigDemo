@@ -335,7 +335,7 @@
                     break;
             }
         }];
-        [_timeLab cornerCutToCircleWithCornerRadius:20 / 2];
+        _timeLab.cornerCutToCircleWithCornerRadius(20 / 2);
     }return _timeLab;
 }
 

@@ -156,11 +156,11 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
 -(JXCategoryTitleView *)categoryView{
     if (!_categoryView) {
         _categoryView = JXCategoryTitleView.new;
-        _categoryView.backgroundColor = UIColor.clearColor;
+        _categoryView.backgroundColor = JobsClearColor;
         _categoryView.titleSelectedColor = HEXCOLOR(0xAE8330);
         _categoryView.titleColor = HEXCOLOR(0x757575);
-        _categoryView.titleFont = notoSansBold(12);
-        _categoryView.titleSelectedFont = notoSansBold(12);
+        _categoryView.titleFont = UIFontWeightBoldSize(12);
+        _categoryView.titleSelectedFont = UIFontWeightBoldSize(12);
         _categoryView.delegate = self;
         _categoryView.titles = self.titleMutArr;
         _categoryView.titleColorGradientEnabled = YES;
@@ -186,9 +186,9 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
 -(UIButton *)ruleBtn{
     if (!_ruleBtn) {
         _ruleBtn = UIButton.new;
-        _ruleBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
-        _ruleBtn.normalTitle = JobsInternationalization(@"VIP規則");
-        _ruleBtn.titleFont = notoSansRegular(12);
+        _ruleBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
+        _ruleBtn.normalTitle(JobsInternationalization(@"VIP規則"));
+        _ruleBtn.titleFont(UIFontWeightRegularSize(12));
         [_ruleBtn jobsBtnClickEventBlock:^id(id data) {
             toast(JobsInternationalization(@"VIP規則"));
             return nil;
@@ -200,7 +200,7 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
     if (!_titleMutArr) {
         _titleMutArr = NSMutableArray.array;
         for (int i = 0; i <= 5; i++) {
-            [_titleMutArr addObject:JobsInternationalization([@"Lv" stringByAppendingString:[NSString stringWithFormat:@"%d",i]])];
+            [_titleMutArr addObject:JobsInternationalization(@"Lv".add([NSString stringWithFormat:@"%d",i]))];
         }
     }return _titleMutArr;
 }

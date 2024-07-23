@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)NSTextAlignment textAlignment;
 @property(nonatomic,assign)NSTextAlignment subTextAlignment;
 @property(nonatomic,strong,nullable)UIImage *normalImage;
-@property(nonatomic,strong,nullable)UIImage *highlightImage;
+@property(nonatomic,strong,nullable)UIImage *highlightImage;// = selected_Image
 @property(nonatomic,strong,nullable)NSAttributedString *attributedTitle;
 @property(nonatomic,strong,nullable)NSAttributedString *selectedAttributedTitle;
 @property(nonatomic,strong,nullable)NSAttributedString *attributedSubtitle;

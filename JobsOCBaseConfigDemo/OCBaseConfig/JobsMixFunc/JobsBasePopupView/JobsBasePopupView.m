@@ -86,11 +86,11 @@
     if (!_btn1) {
         _btn1 = UIButton.new;
         _btn1.tag = 666;
-        _btn1.titleFont = UIFontWeightRegularSize(14);
-        _btn1.normalImage = self.viewModel.image;
-        _btn1.normalBackgroundImage = JobsIMG(@"弹窗取消按钮背景图");
-        _btn1.normalTitleColor = HEXCOLOR(0x502600);
-        _btn1.normalTitle = JobsInternationalization(@"Cancel");
+        _btn1.titleFont(UIFontWeightRegularSize(14));
+        _btn1.normalImage(self.viewModel.image);
+        _btn1.normalBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
+        _btn1.normalTitleColor(HEXCOLOR(0x502600));
+        _btn1.normalTitle(JobsInternationalization(@"Cancel"));
         @jobs_weakify(self)
         [_btn1 jobsBtnClickEventBlock:^id(id data) {
             @jobs_strongify(self)
@@ -110,13 +110,13 @@
     if (!_btn2) {
         _btn2 = UIButton.new;
         _btn2.tag = 999;
-        _btn2.titleFont = UIFontWeightRegularSize(14);
-        _btn2.normalImage = self.viewModel.image;
-        _btn2.normalBackgroundImage = JobsIMG(@"弹窗确定按钮背景图");
-        _btn2.normalTitleColor = HEXCOLOR(0x502600);
-        _btn2.normalTitle = JobsInternationalization(@"Sure");
+        _btn2.titleFont(UIFontWeightRegularSize(14));
+        _btn2.normalImage(self.viewModel.image);
+        _btn2.normalBackgroundImage(JobsIMG(@"弹窗确定按钮背景图"));
+        _btn2.normalTitleColor(HEXCOLOR(0x502600));
+        _btn2.normalTitle(JobsInternationalization(@"Sure"));
         [_btn2 jobsBtnClickEventBlock:^id(id data) {
-            if(self.objectBlock) self.objectBlock(self->_btn2);
+            if(self.objectBlock) self.objectBlock(self.btn2);
             return nil;
         }];
         [self addSubview:_btn2];

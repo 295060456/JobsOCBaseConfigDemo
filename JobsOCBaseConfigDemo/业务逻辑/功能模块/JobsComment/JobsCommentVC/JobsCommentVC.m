@@ -79,8 +79,8 @@
 -(UIButton *)contactCustomerServiceBtn{
     if (!_contactCustomerServiceBtn) {
         _contactCustomerServiceBtn = UIButton.new;
-        _contactCustomerServiceBtn.normalImage = JobsIMG(JobsInternationalization(@"zaixiankefu_en"));
-        _contactCustomerServiceBtn.selectedImage = JobsIMG(JobsInternationalization(@"zaixiankefu_en"));
+        _contactCustomerServiceBtn.normalImage(JobsIMG(JobsInternationalization(@"zaixiankefu_en")));
+        _contactCustomerServiceBtn.selectedImage(JobsIMG(JobsInternationalization(@"zaixiankefu_en")));
         @jobs_weakify(self)
         [_contactCustomerServiceBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)

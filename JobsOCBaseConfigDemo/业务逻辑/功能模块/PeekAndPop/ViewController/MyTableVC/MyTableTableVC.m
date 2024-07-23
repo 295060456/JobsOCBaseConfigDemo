@@ -295,7 +295,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = self.tbvCellMutArr[indexPath.row];
     [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
     cell.textLabel.textColor = HEXCOLOR(0x757575);
-    cell.textLabel.font = notoSansRegular(16);
+    cell.textLabel.font = UIFontWeightRegularSize(16);
     cell.textLabelFrameOffsetX = JobsWidth(16);
     cell.imageViewFrameOffsetX = JobsMainScreen_WIDTH() - JobsWidth(50);
     cell.imageView.image = JobsIMG(@"红色的对勾");
@@ -334,7 +334,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _tbvHeaderView.size = [BaiShaETProjChoiceStadiumTBVHeaderView viewSizeWithModel:nil];
         _tbvHeaderView.text = JobsInternationalization(@"選擇場館");
         _tbvHeaderView.textColor = HEXCOLOR(0x3D4A58);
-        _tbvHeaderView.font = notoSansBold(16);
+        _tbvHeaderView.font = UIFontWeightBoldSize(16);
         _tbvHeaderView.textAlignment = NSTextAlignmentCenter;
         
     }return _tbvHeaderView;

@@ -146,7 +146,7 @@
         // 导航栏标题颜色
         configure.titleColor = HEXCOLOR(0x3D4A58);
         // 导航栏标题字体
-        configure.titleFont = notoSansBold(16);
+        configure.titleFont = UIFontWeightBoldSize(16);
         // 导航栏返回按钮样式
         configure.backStyle = GKNavigationBarBackStyleBlack;
         // 导航栏左右item间距

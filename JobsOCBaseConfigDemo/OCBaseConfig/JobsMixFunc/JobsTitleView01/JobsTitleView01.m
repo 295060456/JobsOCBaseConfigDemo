@@ -85,7 +85,7 @@ static dispatch_once_t static_titleView01OnceToken;
         [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
         }];
-        [_titleLab makeLabelByShowingType:UILabelShowingType_03];
+        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
     }return _titleLab;
 }
 

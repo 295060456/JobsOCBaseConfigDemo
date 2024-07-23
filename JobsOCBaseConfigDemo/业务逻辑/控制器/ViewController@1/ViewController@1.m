@@ -163,8 +163,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UIButton *)userHeadBtn{
     if (!_userHeadBtn) {
         _userHeadBtn = UIButton.new;
-        _userHeadBtn.normalImage = JobsIMG(@"首页_头像");
-        _userHeadBtn.normalTitle = JobsInternationalization(@"");
+        _userHeadBtn.normalImage(JobsIMG(@"首页_头像"));
+        _userHeadBtn.normalTitle(JobsInternationalization(@""));
         @jobs_weakify(self)
         [_userHeadBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
@@ -267,7 +267,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableFooterView.textAlignment = NSTextAlignmentCenter;
         _tableFooterView.textColor = HEXCOLOR(0xB0B0B0);
 //        _tableFooterView.size = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(48));
-        [_tableFooterView makeLabelByShowingType:UILabelShowingType_03];
+        _tableFooterView.makeLabelByShowingType(UILabelShowingType_03);
     }return _tableFooterView;
 }
 

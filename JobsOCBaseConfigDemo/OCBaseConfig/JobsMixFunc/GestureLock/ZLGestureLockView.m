@@ -27,7 +27,7 @@
 }
 // 子视图初始化
 - (void)initSubviews {
-    self.backgroundColor = UIColor.clearColor;
+    self.backgroundColor = JobsClearColor;
 
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     [self addGestureRecognizer:pan];
@@ -37,8 +37,8 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.userInteractionEnabled = NO;
         
-        btn.normalImage = JobsIMG(@"灰色椭圆");
-        btn.selectedImage = JobsIMG(@"橙色椭圆");
+        btn.normalImage(JobsIMG(@"灰色椭圆"));
+        btn.selectedImage(JobsIMG(@"橙色椭圆"));
         [self addSubview:btn];
         btn.tag = i + 1;
     }
@@ -111,17 +111,17 @@
         switch (self.resultType) {
             case ResultKindTypeTrue:{
                 //正确
-                [UIColor.clearColor set];
+                [JobsClearColor set];
             }break;
             case ResultKindTypeFalse:{
                 //错误
                 [[UIColor redColor] set];
                 for (int i = 0; i < self.errorBtns.count; i++) {
                     UIButton *btn =  [self.errorBtns objectAtIndex:i];
-                    btn.normalImage = JobsIMG(@"红色椭圆");
+                    btn.normalImage(JobsIMG(@"红色椭圆"));
                 }break;
             case ResultKindTypeNoEnough:{
-                    [UIColor.clearColor set];
+                    [JobsClearColor set];
                 }break;
             case ResultKindTypeClear:{
                     
@@ -137,7 +137,7 @@
     
     // 设置路径属性
     path.lineWidth = 6;
-    path.lineJoinStyle = kCGLineCapRound;
+    path.lineJoinStyle = kCGLineJoinRound;
     path.lineCapStyle = kCGLineCapRound;
     // 渲染
     [path stroke];
@@ -147,8 +147,8 @@
     
     if (pan.state == UIGestureRecognizerStateBegan) {
         for (UIButton *btn in _errorBtns) {
-            btn.normalImage = JobsIMG(@"灰色椭圆");
-            btn.selectedImage = JobsIMG(@"橙色椭圆");
+            btn.normalImage(JobsIMG(@"灰色椭圆"));
+            btn.selectedImage(JobsIMG(@"橙色椭圆"));
         }
         [self.errorBtns removeAllObjects];
     }
@@ -226,10 +226,10 @@
         case ResultKindTypeNoEnough:
             break;
         case ResultKindTypeClear:{
-            [UIColor.clearColor set];
+            [JobsClearColor set];
             for (int i = 0; i < self.errorBtns.count; i++) {
                 UIButton *btn =  [self.errorBtns objectAtIndex:i];
-                btn.normalImage = JobsIMG(@"灰色椭圆");
+                btn.normalImage(JobsIMG(@"灰色椭圆"));
             }
             [self.errorBtns removeAllObjects];
         }

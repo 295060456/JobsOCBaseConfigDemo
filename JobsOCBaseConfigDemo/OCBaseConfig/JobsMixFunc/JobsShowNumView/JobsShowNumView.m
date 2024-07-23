@@ -36,7 +36,7 @@ static dispatch_once_t static_showNumViewOnceToken;
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = UIColor.clearColor;
+        self.backgroundColor = JobsClearColor;
 //        self.backgroundImageView.image = JobsIMG(@"弹框样式_03背景图");
     }return self;
 }
@@ -69,10 +69,10 @@ static dispatch_once_t static_showNumViewOnceToken;
     
     for (NSString *string in temp) {
         UIButton *btn = UIButton.new;
-        btn.normalBackgroundImage = JobsIMG(@"JobsShowNum");
-        btn.normalTitle = JobsInternationalization(string);
-        btn.titleFont = UIFontWeightBoldSize(40);
-        btn.normalTitleColor = HEXCOLOR(0xAE8330);
+        btn.normalBackgroundImage(JobsIMG(@"JobsShowNum"));
+        btn.normalTitle(JobsInternationalization(string));
+        btn.titleFont(UIFontWeightBoldSize(40));
+        btn.normalTitleColor(HEXCOLOR(0xAE8330));
         @jobs_weakify(self)
         [btn jobsBtnClickEventBlock:^id(id data) {
             @jobs_strongify(self)

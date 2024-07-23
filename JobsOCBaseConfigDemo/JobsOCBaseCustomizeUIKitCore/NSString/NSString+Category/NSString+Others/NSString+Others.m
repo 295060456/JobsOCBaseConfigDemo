@@ -9,6 +9,12 @@
 
 @implementation NSString (Others)
 #pragma mark —— 其他
+/// 字符串拼接
+-(JobsReturnStringByStringBlock _Nonnull)add{
+    return ^(NSString *_Nonnull str) {
+        return [self stringByAppendingString:str];
+    };
+}
 /// 该文字是否是Debug定义的文字
 -(BOOL)isDebugText{
     return self.isEqualToString(JobsInternationalization(TextModelDataString));

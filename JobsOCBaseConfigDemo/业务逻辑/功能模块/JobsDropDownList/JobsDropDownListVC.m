@@ -89,9 +89,9 @@
 -(UIButton *)btn{
     if (!_btn) {
         _btn = UIButton.new;
-        _btn.normalTitle = JobsInternationalization(@"点击按钮弹出下拉列表");
-        _btn.titleFont = UIFontWeightRegularSize(12);
-        _btn.normalTitleColor = JobsWhiteColor;
+        _btn.normalTitle(JobsInternationalization(@"点击按钮弹出下拉列表"));
+        _btn.titleFont(UIFontWeightRegularSize(12));
+        _btn.normalTitleColor(JobsWhiteColor);
         @jobs_weakify(self)
         [_btn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
@@ -118,7 +118,7 @@
             make.center.equalTo(self.view);
         }];
         [_btn layoutIfNeeded];
-        [_btn cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+        _btn.cornerCutToCircleWithCornerRadius(JobsWidth(8));
     }return _btn;
 }
 
@@ -131,7 +131,7 @@
         _switcher.tintColor = JobsWhiteColor;
         _switcher.onTintColor = HEXCOLOR(0xFFFCF7);
         _switcher.backgroundColor = JobsWhiteColor;
-        [_switcher cornerCutToCircleWithCornerRadius:31 / 2];
+        _switcher.cornerCutToCircleWithCornerRadius(31 / 2);
         [_switcher mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.gk_navigationBar.mas_bottom);
             make.left.equalTo(self.view).offset(JobsWidth(16));
@@ -147,7 +147,7 @@
             [x layerBorderCor:x.selected ? self.cor : HEXCOLOR(0xB0B0B0) andBorderWidth:JobsWidth(1)];
 //            toast(x.selected ? JobsInternationalization(@"打开解锁"):JobsInternationalization(@"关闭解锁"));
             self.dropDownListViewDirection = x.selected;
-            self->_btn.normalTitle = x.selected ? JobsInternationalization(@"点击按钮弹出上拉列表") : JobsInternationalization(@"点击按钮弹出下拉列表");
+            self.btn.normalTitle(x.selected ? JobsInternationalization(@"点击按钮弹出上拉列表") : JobsInternationalization(@"点击按钮弹出下拉列表"));
         }];
     }return _switcher;
 }

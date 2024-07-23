@@ -83,7 +83,7 @@
 -(UIButton *)rotation{
     if (!_rotation){
         _rotation = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rotation.normalImage = JobsIMG(@"zfplayer_rotaiton");
+        _rotation.normalImage(JobsIMG(@"zfplayer_rotaiton"));
         @jobs_weakify(self)
         [_rotation jobsBtnClickEventBlock:^id(__kindof UIControl * _Nullable x) {
             @jobs_strongify(self)
