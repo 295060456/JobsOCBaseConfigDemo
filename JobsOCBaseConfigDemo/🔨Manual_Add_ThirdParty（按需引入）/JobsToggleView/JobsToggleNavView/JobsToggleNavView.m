@@ -63,7 +63,7 @@ JobsToggleNavViewProtocolSynthesize
 }
 
 -(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(40), JobsWidth(40));
+    return [PwdSettingView viewSizeWithModel:nil];
 }
 #pragma mark —— 一些私有方法
 -(CGFloat)buttonWidth{
@@ -74,7 +74,7 @@ JobsToggleNavViewProtocolSynthesize
 //    self.backgroundColor = JobsWhiteColor;
     if(self.buttonsArray.count){
         [self.buttonsArray removeAllObjects];
-    }
+    }// selected_backgroundImage
     for (int i = 0 ; i < self.dataArr.count ; i++) {
         @jobs_weakify(self)
         UIButton *button = [BaseButton.alloc jobsInitBtnByConfiguration:self.buttonModel.btnConfiguration
@@ -96,7 +96,7 @@ JobsToggleNavViewProtocolSynthesize
                                                      titleLineBreakMode:self.buttonModel.titleLineBreakMode
                                                   subtitleLineBreakMode:self.buttonModel.subtitleLineBreakMode
                                                     baseBackgroundColor:self.buttonModel.baseBackgroundColor
-                                                        backgroundImage:self.buttonModel.backgroundImage
+                                                        backgroundImage:self.buttonModel.normal_backgroundImages[i]
                                                            imagePadding:self.buttonModel.imagePadding
                                                            titlePadding:self.buttonModel.titlePadding
                                                          imagePlacement:self.buttonModel.imagePlacement
@@ -131,6 +131,7 @@ JobsToggleNavViewProtocolSynthesize
     
     self.buttonsArray[0].jobsResetTitleFont(self.buttonModel.selected_titleFont);
     self.buttonsArray[0].jobsResetBtnTitleCor(self.buttonModel.selected_titleCor);
+    self.buttonsArray[0].jobsResetBtnBgImage(self.buttonModel.selected_backgroundImages[0]);
     self.buttonsArray[0].selected = YES;
 }
 #pragma mark —— 一些公有方法
@@ -144,10 +145,13 @@ JobsToggleNavViewProtocolSynthesize
     if(index == self.current_index) return;
     self.current_index = index;
     /// 全部还原
+    int t = 0;
     for (UIButton *subButton in self.buttonsArray) {
         subButton.selected = NO;
         subButton.jobsResetTitleFont(self.buttonModel.titleFont);
         subButton.jobsResetBtnTitleCor(self.buttonModel.titleCor);
+        subButton.jobsResetBtnBgImage(self.buttonModel.normal_backgroundImages[t]);
+        t+=1;
     }
     UIButton *currentBtn = self.buttonsArray[index];
     currentBtn.selected = YES;
@@ -155,6 +159,7 @@ JobsToggleNavViewProtocolSynthesize
     self.sliderView.resetCenterX(currentBtn.centerX);
     currentBtn.jobsResetTitleFont(self.buttonModel.selected_titleFont);
     currentBtn.jobsResetBtnTitleCor(self.buttonModel.selected_titleCor);
+    currentBtn.jobsResetBtnBgImage(self.buttonModel.selected_backgroundImages[index]);
 }
 #pragma mark —— lazyLoad
 -(UIView *)sliderView{

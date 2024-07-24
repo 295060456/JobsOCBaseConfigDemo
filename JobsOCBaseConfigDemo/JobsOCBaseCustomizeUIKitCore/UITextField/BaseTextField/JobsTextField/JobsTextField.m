@@ -48,7 +48,9 @@ UIViewModelProtocol_synthesize
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
+    self.leftView.alpha = 1;
     self.realTextField.alpha = 1;
+    self.rightView.alpha = 1;
 }
 #pragma mark —— UITextFieldDelegate
 /// 含义：在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑。
@@ -130,8 +132,18 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     [_leftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
         make.left.equalTo(self).offset(self.leftViewByOutLineOffset);
+        
+        if (_leftView.width) {
+            make.width.mas_equalTo(_leftView.width);
+        }
+        
+        if (_leftView.height) {
+            make.height.mas_equalTo(_leftView.height);
+        }
     }];
+    /// 会将之前设置的size值冲掉
     [self layoutIfNeeded];
+    NSLog(@"");
 }
 
 -(void)setRightView:(UIView *)rightView{
@@ -140,8 +152,18 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     [_rightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
         make.right.equalTo(self).offset(-self.rightViewByOutLineOffset);
+        
+        if (rightView.width) {
+            make.width.mas_equalTo(rightView.width);
+        }
+        
+        if (rightView.height) {
+            make.height.mas_equalTo(rightView.height);
+        }
     }];
+    /// 会将之前设置的size值冲掉
     [self layoutIfNeeded];
+    NSLog(@"");
 }
 #pragma mark —— lazyLoad
 -(UITextField *)realTextField{

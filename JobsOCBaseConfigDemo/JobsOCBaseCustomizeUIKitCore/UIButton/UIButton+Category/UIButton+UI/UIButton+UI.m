@@ -212,7 +212,7 @@
         if(roundingCorners == UIRectCornerAllCorners && jobsZeroSizeValue(roundingCornersRadii)){
             btn.cornerCutToCircleWithCornerRadius(cornerRadiusValue);/// 圆切角（四个角全部按照统一的标准切）
         }else{
-            [btn appointCornerCutToCircleByRoundingCorners:roundingCorners 
+            [btn appointCornerCutToCircleByRoundingCorners:roundingCorners
                                                cornerRadii:roundingCornersRadii];/// 圆切角（指定某个角按照统一的标准Size切）
         }
         /// 内容的对齐方式
@@ -869,7 +869,14 @@
     @jobs_weakify(self)
     return ^(UIImage *_Nonnull backgroundImage) {
         @jobs_strongify(self)
-        [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.background.image = backgroundImage;
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+        }
     };
 }
 
