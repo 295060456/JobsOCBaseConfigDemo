@@ -70,6 +70,8 @@ typedef CGRect (^_Nullable JobsReturnCGRectByCGPointBlock)(CGPoint data);
 typedef CGRect (^_Nullable JobsReturnCGRectByCGSizeBlock)(CGSize data);
 typedef CGRect (^_Nullable JobsReturnCGRectByCGFloatBlock)(CGFloat data);
 
+typedef UIColor *_Nonnull(^_Nullable JobsReturnColorByCGFloatBlock)(CGFloat data);
+
 typedef UIEdgeInsets(^_Nullable JobsReturnUIEdgeInsetsByVoidBlock)(void);
 typedef UIEdgeInsets(^_Nullable JobsReturnUIEdgeInsetsByIDBlock)(id _Nullable data);
 
