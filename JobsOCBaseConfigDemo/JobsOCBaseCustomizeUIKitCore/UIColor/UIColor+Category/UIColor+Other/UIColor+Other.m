@@ -8,7 +8,6 @@
 #import "UIColor+Other.h"
 
 @implementation UIColor (Other)
-
 #pragma mark —— 类方法
 /// 默认alpha值为1
 +(UIColor *)colorWithHexString:(NSString *)color{
@@ -199,6 +198,15 @@
             (int)(redCor * 255),
             (int)(greenCor * 255),
             (int)(blueCor * 255)];
+}
+/// iOS 父视图透明度影响到子视图
+/// https://blog.csdn.net/ios_xumin/article/details/114263960
+-(JobsReturnColorByCGFloatBlock)colorWithAlphaComponent{
+    @jobs_weakify(self)
+    return ^(CGFloat alpha) {
+        @jobs_strongify(self)
+        return [self colorWithAlphaComponent:alpha];
+    };
 }
 
 @end

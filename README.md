@@ -1952,8 +1952,25 @@ NSObject <|-- BaseProtocol
 ### 25、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
+
 * <font color=red>不要在属性上加`__block`</font>。转而是在这个对象上使用`__block`
+
 * <font color=red>属性化的`NSString *`可以用**assign**修饰，但是最好用**copy**</font>
+
+* [**iOS 父视图透明度影响到子视图**](https://blog.csdn.net/ios_xumin/article/details/114263960)
+
+  * 父视图的透明度会影响到其子视图。跟着一起变得半透明
+
+    ```objective-c
+    self.view.backgroundColor = UIColor.redColor;
+    self.view.alpha = 0.5f;
+    ```
+
+  * 避免以上的情况的写法
+
+    ```objective-c
+    self.view.backgroundColor = [UIColor.redColor colorWithAlphaComponent:0.5f];
+    ```
 
 ## 四、架构相关 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

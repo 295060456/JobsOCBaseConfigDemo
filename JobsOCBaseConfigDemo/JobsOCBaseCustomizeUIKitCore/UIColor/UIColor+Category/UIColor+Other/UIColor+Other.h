@@ -39,6 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *_Nonnull)rgbCorStr;
 /// 将一个确定的UIColor子类，翻译成十六进制格式的字符串值并对外输出
 -(NSString *_Nonnull)hexadecimalCorStr;
+/// iOS 父视图透明度影响到子视图
+/// https://blog.csdn.net/ios_xumin/article/details/114263960
+-(JobsReturnColorByCGFloatBlock)colorWithAlphaComponent;
 
 @end
 
