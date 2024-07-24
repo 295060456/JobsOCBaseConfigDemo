@@ -14,7 +14,6 @@
 		CE40B29B2C4BF78E00CB64B5 /* JobsToggleBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */; };
 		CE40B29C2C4BF78E00CB64B5 /* JobsToggleNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2982C4BF78E00CB64B5 /* JobsToggleNavView.m */; };
 		CE55CD222C4A5004002E1825 /* 临时的占位图.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE55CD212C4A4FEF002E1825 /* 临时的占位图.xcassets */; };
-		CE7F39552C4FD96400431A5D /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39532C4FD96400431A5D /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		CE7F395D2C4FDA1000431A5D /* JobsFMDBMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */; };
 		CE7F395E2C4FDA1000431A5D /* FMDB_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F395A2C4FDA1000431A5D /* FMDB_VC.m */; };
 		CE7F396F2C4FDAF900431A5D /* JobsMenuSubView@1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39602C4FDAF900431A5D /* JobsMenuSubView@1.m */; };
@@ -23,6 +22,8 @@
 		CE7F39722C4FDAF900431A5D /* JobsMenuSubView@4.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39692C4FDAF900431A5D /* JobsMenuSubView@4.m */; };
 		CE7F39732C4FDAF900431A5D /* JobsMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F396D2C4FDAF900431A5D /* JobsMenuView.m */; };
 		CE7F39772C4FDB9B00431A5D /* FMDatabase+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */; };
+		CE8877A92C50B3090085948C /* JobsRichTextConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877A72C50B3090085948C /* JobsRichTextConfig.m */; };
+		CE8877AC2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE8877AA2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		CEC01BDF2C48DF300069C91A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB32C48AFED0069C91A /* TabBar.xcassets */; };
 		CEC01BE02C48DF330069C91A /* CONTACT US.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */; };
 		CEC01BE12C48DF360069C91A /* INVITE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB22C48AFAD0069C91A /* INVITE.xcassets */; };
@@ -1116,7 +1117,6 @@
 		CE55CD212C4A4FEF002E1825 /* 临时的占位图.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "临时的占位图.xcassets"; sourceTree = "<group>"; };
 		CE73A5362C4E441D00B44795 /* JobsToggleNavViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsToggleNavViewProtocol.h; sourceTree = "<group>"; };
 		CE775D7C2C47BF5D004D39D0 /* 自定义 UITabBarController.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "自定义 UITabBarController.md"; path = "自定义 UITabBarController.md/自定义 UITabBarController.md"; sourceTree = "<group>"; };
-		CE7F39542C4FD96400431A5D /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		CE7F39562C4FDA1000431A5D /* JobsFMDBMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsFMDBMgr.h; sourceTree = "<group>"; };
 		CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsFMDBMgr.m; sourceTree = "<group>"; };
 		CE7F39592C4FDA1000431A5D /* FMDB_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB_VC.h; sourceTree = "<group>"; };
@@ -1133,6 +1133,9 @@
 		CE7F396D2C4FDAF900431A5D /* JobsMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsMenuView.m; sourceTree = "<group>"; };
 		CE7F39742C4FDB9B00431A5D /* FMDatabase+Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+Manager.h"; sourceTree = "<group>"; };
 		CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+Manager.m"; sourceTree = "<group>"; };
+		CE8877A62C50B3090085948C /* JobsRichTextConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsRichTextConfig.h; sourceTree = "<group>"; };
+		CE8877A72C50B3090085948C /* JobsRichTextConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsRichTextConfig.m; sourceTree = "<group>"; };
+		CE8877AB2C50B3DB0085948C /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "CONTACT US.xcassets"; sourceTree = "<group>"; };
 		CEC01AAE2C48AF7D0069C91A /* MY FAV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "MY FAV.xcassets"; sourceTree = "<group>"; };
 		CEC01AAF2C48AF950069C91A /* BANK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BANK.xcassets; sourceTree = "<group>"; };
@@ -3232,6 +3235,15 @@
 				CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */,
 			);
 			path = "FMDatabase+Manager";
+			sourceTree = "<group>";
+		};
+		CE8877A82C50B3090085948C /* JobsRichTextConfig */ = {
+			isa = PBXGroup;
+			children = (
+				CE8877A62C50B3090085948C /* JobsRichTextConfig.h */,
+				CE8877A72C50B3090085948C /* JobsRichTextConfig.m */,
+			);
+			path = JobsRichTextConfig;
 			sourceTree = "<group>";
 		};
 		CEC01AB42C48AFFE0069C91A /* old */ = {
@@ -9084,6 +9096,7 @@
 		CECE82DC2C4513CD00764AF5 /* NSObject+RichText */ = {
 			isa = PBXGroup;
 			children = (
+				CE8877A82C50B3090085948C /* JobsRichTextConfig */,
 				CECE82DA2C4513CD00764AF5 /* NSObject+RichText.h */,
 				CECE82DB2C4513CD00764AF5 /* NSObject+RichText.m */,
 			);
@@ -12405,7 +12418,7 @@
 		CECE89682C4519D000764AF5 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				CE7F39532C4FD96400431A5D /* JobsOCBaseConfigDemo.xcdatamodeld */,
+				CE8877AA2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -13177,6 +13190,7 @@
 				CECE7C272C450C5000764AF5 /* JobsShootingVC.m in Sources */,
 				CECE7EDF2C450E5B00764AF5 /* ZMJCell+CustomView.m in Sources */,
 				CECE7EDB2C450E5B00764AF5 /* YTKRequest.m in Sources */,
+				CE8877AC2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */,
 				CECE7C9D2C450C5000764AF5 /* JobsSearchShowHistoryDataTBVCell.m in Sources */,
 				CECE85932C4513CE00764AF5 /* LMHWaterFallLayout.m in Sources */,
 				CECE7EBB2C450E5B00764AF5 /* TKPermissionMedia.m in Sources */,
@@ -13587,7 +13601,6 @@
 				CECE7D462C450CCD00764AF5 /* NSObject+URLManager.m in Sources */,
 				CECE871A2C45140000764AF5 /* AES.m in Sources */,
 				CECE873E2C45140000764AF5 /* NSData+CommonCrypto.m in Sources */,
-				CE7F39552C4FD96400431A5D /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */,
 				CECE80FF2C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_9.m in Sources */,
 				CECE85262C4513CE00764AF5 /* CADisplayLink_TimerManager.m in Sources */,
 				CECE7C052C450C5000764AF5 /* JobsMembersSubsBaseVC.m in Sources */,
@@ -13645,6 +13658,7 @@
 				CECE85B72C4513CE00764AF5 /* UITableView+Expand.m in Sources */,
 				CECE87252C45140000764AF5 /* NSString+Base64.m in Sources */,
 				CECE816E2C4512BF00764AF5 /* UITabBar+Ex.m in Sources */,
+				CE8877A92C50B3090085948C /* JobsRichTextConfig.m in Sources */,
 				CECE7C8D2C450C5000764AF5 /* MGSwipeButtonModel.m in Sources */,
 				CECE80D12C4512BF00764AF5 /* CasinoCustomerServiceView.m in Sources */,
 				CECE7C0D2C450C5000764AF5 /* ThreeClassCell.m in Sources */,
@@ -14135,14 +14149,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		CE7F39532C4FD96400431A5D /* JobsOCBaseConfigDemo.xcdatamodeld */ = {
+		CE8877AA2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CE7F39542C4FD96400431A5D /* JobsBaseConfig.xcdatamodel */,
+				CE8877AB2C50B3DB0085948C /* JobsBaseConfig.xcdatamodel */,
 			);
-			currentVersion = CE7F39542C4FD96400431A5D /* JobsBaseConfig.xcdatamodel */;
+			currentVersion = CE8877AB2C50B3DB0085948C /* JobsBaseConfig.xcdatamodel */;
 			name = JobsOCBaseConfigDemo.xcdatamodeld;
-			path = "/Users/user/Desktop/JobsOCBaseConfigDemo/JobsOCBaseConfigDemo/其他/CoreData/JobsOCBaseConfigDemo.xcdatamodeld";
+			path = "/Users/user/Documents/Github/JobsOCBaseConfigDemo/JobsOCBaseConfigDemo/其他/CoreData/JobsOCBaseConfigDemo.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

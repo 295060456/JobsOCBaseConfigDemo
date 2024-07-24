@@ -115,7 +115,7 @@ UILocationProtocol_UIViewModelSynthesize
         _readyPlayValue.text = JobsInternationalization(@"准备开始");
         /// 富文本相关
         if (_readyPlayValue.titleAttributedDataMutArr.count) {
-            _readyPlayValue.attributedText = [self richTextWithDataConfigMutArr:_readyPlayValue.titleAttributedDataMutArr];
+            _readyPlayValue.attributedText = self.richTextWithDataConfigMutArr(_readyPlayValue.titleAttributedDataMutArr);
         }
         
     }return _readyPlayValue;
@@ -136,7 +136,7 @@ UILocationProtocol_UIViewModelSynthesize
         _runningValue.text = JobsInternationalization(@"    重新开始    ");
         /// 富文本相关
         if (_runningValue.titleAttributedDataMutArr.count) {
-            _runningValue.attributedText = [self richTextWithDataConfigMutArr:_runningValue.titleAttributedDataMutArr];
+            _runningValue.attributedText = self.richTextWithDataConfigMutArr(_runningValue.titleAttributedDataMutArr);
         }
     }return _runningValue;
 }
@@ -157,7 +157,7 @@ UILocationProtocol_UIViewModelSynthesize
         _endValue.text = JobsInternationalization(@"重新开始");
         /// 富文本相关
         if (_endValue.titleAttributedDataMutArr.count) {
-            _endValue.attributedText = [self richTextWithDataConfigMutArr:_endValue.titleAttributedDataMutArr];
+            _endValue.attributedText = self.richTextWithDataConfigMutArr(_endValue.titleAttributedDataMutArr);
         }
         
     }return _endValue;

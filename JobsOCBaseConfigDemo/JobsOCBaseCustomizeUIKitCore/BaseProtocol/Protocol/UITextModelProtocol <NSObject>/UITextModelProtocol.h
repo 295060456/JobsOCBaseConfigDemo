@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class RichTextConfig;
+@class JobsRichTextConfig;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,13 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)UIFont *font;
 @property(nonatomic,strong,nullable)UIColor *textCor;/// 主字体颜色
 @property(nonatomic,strong,nullable)NSAttributedString *attributedText API_AVAILABLE(ios(6.0));
-@property(nonatomic,strong)NSMutableArray <RichTextConfig *> *titleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
+@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *> *titleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
 /// Selected
 @property(nonatomic,strong,nullable)NSString *selectedText;
 @property(nonatomic,strong,nullable)UIFont *selectedFont;
 @property(nonatomic,strong,nullable)UIColor *selectedTextCor;/// 主字体颜色
 @property(nonatomic,strong,nullable)NSAttributedString *selectedAttributedText API_AVAILABLE(ios(6.0));
-@property(nonatomic,strong)NSMutableArray <RichTextConfig *> *selectedTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
+@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *> *selectedTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
 
 @end
 

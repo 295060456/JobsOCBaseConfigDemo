@@ -294,7 +294,7 @@
         // 富文本 每一次时间触发方法都刷新数据并赋值
         NSMutableArray *tempDataMutArr = NSMutableArray.array;
 
-        // 亟待补充 见 RichTextConfig 的使用示例
+        // 亟待补充 见 JobsRichTextConfig 的使用示例
         switch (self.btnTimerConfig.cequenceForShowTitleRuningStrType) {
             case CequenceForShowTitleRuningStrType_front:{
                 
@@ -305,7 +305,7 @@
             default:
                 break;
         }
-        self.btnTimerConfig.runningValue.attributedText = [self richTextWithDataConfigMutArr:tempDataMutArr];
+        self.btnTimerConfig.runningValue.attributedText = self.richTextWithDataConfigMutArr(tempDataMutArr);
     }
     
     [self setTitleRunning];// 核心方法

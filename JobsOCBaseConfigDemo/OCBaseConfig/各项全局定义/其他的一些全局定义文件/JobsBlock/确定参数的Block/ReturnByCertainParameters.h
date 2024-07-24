@@ -55,6 +55,8 @@ typedef UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock
 typedef UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
 
 typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString * _Nullable data);
+#import "JobsRichTextConfig.h"
+typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable data);
 typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString * _Nullable data);
 
 typedef CGPoint (^_Nullable JobsReturnCGPointByVoidBlock)(void);

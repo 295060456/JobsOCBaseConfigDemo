@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nullable,nonatomic,strong)NSString *placeHolderStr;
 @property(nonatomic,strong)UIColor *placeholderCor;
 @property(nonatomic,strong)UIFont *placeholderFont;
-@property(nonatomic,strong)NSMutableArray <RichTextConfig *>*defaultAttributedDataForPlaceHolderMutArr;
+@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*defaultAttributedDataForPlaceHolderMutArr;
 /// 关于输入的文本字符
 @property(nullable,nonatomic,strong)NSString *nickNamePlaceHolderStr;
 @property(nullable,nonatomic,strong)NSString *titleLabStr;

@@ -10,7 +10,7 @@
 @implementation UITextField (Placeholder)
 /// 修改Placeholder亦可以通过富文本来完成
 -(NSAttributedString *)defaultAttributedPlaceholder{
-    return [self richTextWithDataConfigMutArr:self.defaultAttributedDataForPlaceHolderMutArr];
+    return self.richTextWithDataConfigMutArr(self.defaultAttributedDataForPlaceHolderMutArr);
 }
 
 -(UILabel *)placeholderLabel{
@@ -55,16 +55,16 @@ JobsKey(_placeholderFont)
     self.placeholderLabel.font = placeholderFont;
     Jobs_setAssociatedRETAIN_NONATOMIC(_placeholderFont, placeholderFont)
 }
-#pragma mark —— @property(nonatomic,strong)NSMutableArray <RichTextConfig *>*defaultAttributedDataMutArr;
+#pragma mark —— @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*defaultAttributedDataMutArr;
 JobsKey(_defaultAttributedDataForPlaceHolderMutArr)
 @dynamic defaultAttributedDataForPlaceHolderMutArr;
--(NSMutableArray<RichTextConfig *> *)defaultAttributedDataForPlaceHolderMutArr{
+-(NSMutableArray<JobsRichTextConfig *> *)defaultAttributedDataForPlaceHolderMutArr{
     NSMutableArray *DefaultAttributedDataMutArr = Jobs_getAssociatedObject(_defaultAttributedDataForPlaceHolderMutArr);
     if (!DefaultAttributedDataMutArr) {
         DefaultAttributedDataMutArr = NSMutableArray.array;
         
         {
-            RichTextConfig *richTextConfig = RichTextConfig.new;
+            JobsRichTextConfig *richTextConfig = JobsRichTextConfig.new;
             richTextConfig.targetString = self.placeholder;
             richTextConfig.font = UIFontWeightRegularSize(10);
             richTextConfig.textCor = JobsBlueColor;
@@ -78,7 +78,7 @@ JobsKey(_defaultAttributedDataForPlaceHolderMutArr)
     }return DefaultAttributedDataMutArr;
 }
 
--(void)setDefaultAttributedDataForPlaceHolderMutArr:(NSMutableArray<RichTextConfig *> *)defaultAttributedDataMutArr{
+-(void)setDefaultAttributedDataForPlaceHolderMutArr:(NSMutableArray<JobsRichTextConfig *> *)defaultAttributedDataMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_defaultAttributedDataForPlaceHolderMutArr, defaultAttributedDataMutArr)
 }
 

@@ -765,7 +765,7 @@ JobsKey(_attributedStringData)
 -(NSMutableAttributedString *)attributedStringData{
     NSMutableAttributedString *AttributedStringData = Jobs_getAssociatedObject(_attributedStringData);
     if (!AttributedStringData) {
-        AttributedStringData = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr];
+        AttributedStringData = self.richTextWithDataConfigMutArr(self.richTextConfigMutArr);
         Jobs_setAssociatedRETAIN_NONATOMIC(_attributedStringData, AttributedStringData)
     }return AttributedStringData;
 }
@@ -790,21 +790,21 @@ JobsKey(_richTextMutArr)
 -(void)setRichTextMutArr:(NSMutableArray<NSString *> *)richTextMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_richTextMutArr, richTextMutArr)
 }
-#pragma mark —— @property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richTextConfigMutArr;
+#pragma mark —— @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 JobsKey(_richTextConfigMutArr)
 @dynamic richTextConfigMutArr;
--(NSMutableArray<RichTextConfig *> *)richTextConfigMutArr{
-    NSMutableArray <RichTextConfig *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextConfigMutArr);
+-(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
+    NSMutableArray <JobsRichTextConfig *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextConfigMutArr);
     if (!RichTextMutArr) {
         RichTextMutArr = NSMutableArray.array;
         
-        RichTextConfig *config_01 = RichTextConfig.new;
+        JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
         config_01.font = UIFontWeightRegularSize(12);
         config_01.textCor = HEXCOLOR(0x757575);
         config_01.targetString = self.richTextMutArr[0];
         [RichTextMutArr addObject:config_01];
 
-        RichTextConfig *config_02 = RichTextConfig.new;
+        JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
         config_02.font = UIFontWeightMediumSize(12);;
         config_02.textCor = HEXCOLOR(0xAE8330);
         config_02.targetString = self.richTextMutArr[1];
@@ -816,7 +816,7 @@ JobsKey(_richTextConfigMutArr)
     }return RichTextMutArr;
 }
 
--(void)setRichTextConfigMutArr:(NSMutableArray<RichTextConfig *> *)richTextConfigMutArr{
+-(void)setRichTextConfigMutArr:(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_richTextConfigMutArr, richTextConfigMutArr)
 }
 #pragma mark —— @property(nonatomic,strong)UITextView *connectionTipsTV;/// 承接富文本:如需幫助，請聯繫專屬客服

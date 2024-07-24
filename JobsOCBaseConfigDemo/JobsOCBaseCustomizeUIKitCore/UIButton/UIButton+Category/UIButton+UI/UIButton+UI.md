@@ -26,7 +26,7 @@ button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 ```objective-c
 @property(nonatomic,strong)BaseButton *titleBtn;
 @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
-@property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richTextConfigMutArr;
+@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 ```
 
 * <span style="color:red; font-weight:bold;">警告：</span>一旦采用**UIButtonConfiguration**创建的UIButton，其他用老式Api创建的UIButton会全部出现异常（例如：title不显示）因为全部渲染走**UIButtonConfiguration**。但是**UIButtonConfiguration**会很方便我们应对富文本的需求。
@@ -97,11 +97,11 @@ button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
    }return _richTextMutArr;
 }
 
--(NSMutableArray<RichTextConfig *> *)richTextConfigMutArr{
+-(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
    if (!_richTextConfigMutArr) {
        _richTextConfigMutArr = NSMutableArray.array;
        {
-           RichTextConfig *config_01 = RichTextConfig.new;
+           JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
            config_01.font = UIFontWeightRegularSize(14);
            config_01.textCor = JobsCor(@"#666666");
            config_01.targetString = self.richTextMutArr[0];
@@ -110,7 +110,7 @@ button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
        }
 
        {
-           RichTextConfig *config_02 = RichTextConfig.new;
+           JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
            config_02.font = UIFontWeightRegularSize(14);
            config_02.textCor = JobsCor(@"#BA9B77");
            config_02.targetString = self.richTextMutArr[1];
@@ -119,7 +119,7 @@ button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
        }
 
        {
-           RichTextConfig *config_03 = RichTextConfig.new;
+           JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
            config_03.font = UIFontWeightRegularSize(14);
            config_03.textCor = JobsCor(@"#666666");
            config_03.targetString = self.richTextMutArr[2];

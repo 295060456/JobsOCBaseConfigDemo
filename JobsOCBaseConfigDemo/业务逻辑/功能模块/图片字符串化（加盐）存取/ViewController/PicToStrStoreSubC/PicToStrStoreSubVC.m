@@ -17,7 +17,7 @@
 @property(nonatomic,strong)BaseButton *btn_1;
 @property(nonatomic,strong)BaseButton *btn_2;
 @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
-@property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richTextConfigMutArr;
+@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 @property(nonatomic,strong)UITextView *textView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIImage *>*photosImageMutArr;

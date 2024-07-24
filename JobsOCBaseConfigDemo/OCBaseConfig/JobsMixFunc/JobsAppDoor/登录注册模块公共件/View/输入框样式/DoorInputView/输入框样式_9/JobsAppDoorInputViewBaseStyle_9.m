@@ -16,7 +16,7 @@
 @property(nonatomic,strong)NSString *titleStr_2;
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 @property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
-//@property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richLabelDataStringsMutArr;
+//@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richLabelDataStringsMutArr;
 
 @end
 
@@ -166,16 +166,16 @@
     }return _countDownBtn;
 }
 
-//-(NSMutableArray<RichTextConfig *> *)richLabelDataStringsMutArr{
+//-(NSMutableArray<JobsRichTextConfig *> *)richLabelDataStringsMutArr{
 //    if (!_richLabelDataStringsMutArr) {
 //        _richLabelDataStringsMutArr = NSMutableArray.array;
 //
-//        RichTextConfig *config_01 = RichTextConfig.new;
+//        JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
 //        config_01.font = [UIFont systemFontOfSize:JobsWidth(14) weight:UIFontWeightMedium];
 //        config_01.cor = JobsBlueColor;
 //        config_01.targetString = self.titleStr_1;
 //
-//        RichTextConfig *config_02 = RichTextConfig.new;
+//        JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
 //        config_02.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightMedium];
 //        config_02.cor = JobsRedColor;
 //        config_02.targetString = self.titleStr_2;

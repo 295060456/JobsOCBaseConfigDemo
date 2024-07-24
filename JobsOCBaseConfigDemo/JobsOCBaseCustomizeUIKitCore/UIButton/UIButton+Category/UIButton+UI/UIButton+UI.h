@@ -235,7 +235,7 @@ NS_ASSUME_NONNULL_END
 
  @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
  
- @property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richTextConfigMutArr;
+ @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
  
  -(BaseButton *)titleBtn{
      if(!_titleBtn){
@@ -249,7 +249,7 @@ NS_ASSUME_NONNULL_END
                                                     highlightImage:nil
                                                    attributedTitle:nil
                                            selectedAttributedTitle:nil
-                                                attributedSubtitle:[self richTextWithDataConfigMutArr:self.richTextConfigMutArr]
+                                                attributedSubtitle:self.richTextWithDataConfigMutArr(self.richTextConfigMutArr)
                                                              title:JobsInternationalization(@"请支付")
                                                           subTitle:nil//JobsInternationalization(@"观看完整教学视频需支付99Mata值")
                                                          titleFont:UIFontWeightBoldSize(18)
@@ -300,11 +300,11 @@ NS_ASSUME_NONNULL_END
      }return _richTextMutArr;
  }
 
- -(NSMutableArray<RichTextConfig *> *)richTextConfigMutArr{
+ -(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
      if (!_richTextConfigMutArr) {
          _richTextConfigMutArr = NSMutableArray.array;
          {
-             RichTextConfig *config_01 = RichTextConfig.new;
+             JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
              config_01.font = UIFontWeightRegularSize(14);
              config_01.textCor = JobsCor(@"#666666");
              config_01.targetString = self.richTextMutArr[0];
@@ -313,7 +313,7 @@ NS_ASSUME_NONNULL_END
          }
          
          {
-             RichTextConfig *config_02 = RichTextConfig.new;
+             JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
              config_02.font = UIFontWeightRegularSize(14);
              config_02.textCor = JobsCor(@"#BA9B77");
              config_02.targetString = self.richTextMutArr[1];
@@ -322,7 +322,7 @@ NS_ASSUME_NONNULL_END
          }
          
          {
-             RichTextConfig *config_03 = RichTextConfig.new;
+             JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
              config_03.font = UIFontWeightRegularSize(14);
              config_03.textCor = JobsCor(@"#666666");
              config_03.targetString = self.richTextMutArr[2];

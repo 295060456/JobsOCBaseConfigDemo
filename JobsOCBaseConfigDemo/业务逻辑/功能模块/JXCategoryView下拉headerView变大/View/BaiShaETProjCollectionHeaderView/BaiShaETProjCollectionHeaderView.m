@@ -19,11 +19,11 @@
 @property(nonatomic,assign)CGRect imageViewFrame;
 @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
 @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
-@property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richTextConfigMutArr;
+@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
 @property(nonatomic,strong)NSMutableArray <NSMutableArray <NSString *>*>*richTextMutArr2;
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <RichTextConfig *>*>*richTextConfigMutArr2;
+@property(nonatomic,strong)NSMutableArray <NSMutableArray <JobsRichTextConfig *>*>*richTextConfigMutArr2;
 
 @end
 
@@ -274,23 +274,23 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _richTextMutArr;
 }
 
--(NSMutableArray<RichTextConfig *> *)richTextConfigMutArr{
+-(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
     if (!_richTextConfigMutArr) {
         _richTextConfigMutArr = NSMutableArray.array;
 
-        RichTextConfig *config_01 = RichTextConfig.new;
+        JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
         config_01.font = UIFontWeightRegularSize(12);
         config_01.textCor = HEXCOLOR(0x3D4A58);
         config_01.targetString = self.richTextMutArr[0];
         [_richTextConfigMutArr addObject:config_01];
 
-        RichTextConfig *config_02 = RichTextConfig.new;
+        JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
         config_02.font = UIFontWeightBoldSize(18);
         config_02.textCor = HEXCOLOR(0x3D4A58);
         config_02.targetString = self.richTextMutArr[1];
         [_richTextConfigMutArr addObject:config_02];
         
-        RichTextConfig *config_03 = RichTextConfig.new;
+        JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
         config_03.font = UIFontWeightRegularSize(12);
         config_03.textCor = HEXCOLOR(0x3D4A58);
         config_03.targetString = self.richTextMutArr[2];
@@ -339,18 +339,18 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _richTextMutArr2;
 }
 
--(NSMutableArray<NSMutableArray<RichTextConfig *> *> *)richTextConfigMutArr2{
+-(NSMutableArray<NSMutableArray<JobsRichTextConfig *> *> *)richTextConfigMutArr2{
     if (!_richTextConfigMutArr2) {
         _richTextConfigMutArr2 = NSMutableArray.array;
         {
             NSMutableArray *mutArr = NSMutableArray.array;
-            RichTextConfig *config_01 = RichTextConfig.new;
+            JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
             config_01.font = UIFontWeightRegularSize(12);
             config_01.textCor = HEXCOLOR(0x3D4A58);
             config_01.targetString = self.richTextMutArr2[0][0];
             [mutArr addObject:config_01];
 
-            RichTextConfig *config_02 = RichTextConfig.new;
+            JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
             config_02.font = UIFontWeightBoldSize(12);
             config_02.textCor = HEXCOLOR(0x3D4A58);
             config_02.targetString = self.richTextMutArr2[0][1];
@@ -361,13 +361,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         
         {
             NSMutableArray *mutArr = NSMutableArray.array;
-            RichTextConfig *config_01 = RichTextConfig.new;
+            JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
             config_01.font = UIFontWeightRegularSize(12);
             config_01.textCor = HEXCOLOR(0x3D4A58);
             config_01.targetString = self.richTextMutArr2[1][0];
             [mutArr addObject:config_01];
 
-            RichTextConfig *config_02 = RichTextConfig.new;
+            JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
             config_02.font = UIFontWeightBoldSize(12);
             config_02.textCor = HEXCOLOR(0x3D4A58);
             config_02.targetString = self.richTextMutArr2[1][1];

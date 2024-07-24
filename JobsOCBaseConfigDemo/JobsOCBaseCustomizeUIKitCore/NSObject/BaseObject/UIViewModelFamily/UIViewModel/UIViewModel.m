@@ -178,7 +178,7 @@ UIViewModelProtocol_synthesize
     }return _attributedText;
 }
 
--(NSMutableArray<RichTextConfig *> *)titleAttributedDataMutArr{
+-(NSMutableArray<JobsRichTextConfig *> *)titleAttributedDataMutArr{
     if(!_titleAttributedDataMutArr){
         
     }return _titleAttributedDataMutArr;
@@ -208,7 +208,7 @@ UIViewModelProtocol_synthesize
     }return _selectedAttributedText;
 }
 
--(NSMutableArray<RichTextConfig *> *)selectedTitleAttributedDataMutArr{
+-(NSMutableArray<JobsRichTextConfig *> *)selectedTitleAttributedDataMutArr{
     if(!_selectedTitleAttributedDataMutArr){
         
     }return _selectedTitleAttributedDataMutArr;

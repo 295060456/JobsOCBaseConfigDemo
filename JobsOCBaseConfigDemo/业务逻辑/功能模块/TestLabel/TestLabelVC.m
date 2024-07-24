@@ -11,7 +11,7 @@
 
 @property(nonatomic,strong)UIScrollView *scrollView;
 /// 富文本
-@property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richLabelDataStringsMutArr;
+@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richLabelDataStringsMutArr;
 @property(nonatomic,strong)NSMutableParagraphStyle *paragtaphStyle;
 /// UILabel
 @property(nonatomic,strong)BaseLabel *lab1;///【UILabelShowingType_01】 一行显示。定宽、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
@@ -110,11 +110,11 @@
     }return _scrollView;
 }
 #pragma mark —— 富文本
--(NSMutableArray<RichTextConfig *> *)richLabelDataStringsMutArr{
+-(NSMutableArray<JobsRichTextConfig *> *)richLabelDataStringsMutArr{
     if (!_richLabelDataStringsMutArr) {
         _richLabelDataStringsMutArr = NSMutableArray.array;
         
-        RichTextConfig *config_01 = RichTextConfig.new;
+        JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
         config_01.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
         config_01.textCor = JobsBlueColor;
         
@@ -122,14 +122,14 @@
         config_01.textBgCor = JobsBrownColor;
         config_01.paragraphStyle = self.paragtaphStyle;
         
-        RichTextConfig *config_02 = RichTextConfig.new;
+        JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
         config_02.font = [UIFont systemFontOfSize:JobsWidth(13) weight:UIFontWeightMedium];
         config_02.textCor = JobsWhiteColor;
         config_02.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
         config_02.textBgCor = JobsBrownColor;
         config_02.paragraphStyle = self.paragtaphStyle;
         
-        RichTextConfig *config_03 = RichTextConfig.new;
+        JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
         config_03.font = [UIFont systemFontOfSize:JobsWidth(14) weight:UIFontWeightSemibold];
         config_03.textCor = JobsGreenColor;
         config_03.targetString = JobsInternationalization(@"APP的业务。");
@@ -178,7 +178,7 @@
 @synthesize attributedText = _attributedText;
 -(NSAttributedString *)attributedText{
     if (!_attributedText) {
-        _attributedText = [self richTextWithDataConfigMutArr:self.richLabelDataStringsMutArr];
+        _attributedText = self.richTextWithDataConfigMutArr(self.richLabelDataStringsMutArr);
     }return _attributedText;
 }
 #pragma mark —— BaseLabel

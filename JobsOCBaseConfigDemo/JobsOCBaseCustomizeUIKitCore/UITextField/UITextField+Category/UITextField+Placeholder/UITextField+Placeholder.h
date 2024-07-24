@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)UIColor *placeholderColor;
 @property(nonatomic,strong)UIFont *placeholderFont;
-@property(nonatomic,strong)NSMutableArray <RichTextConfig *>*defaultAttributedDataForPlaceHolderMutArr;
+@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*defaultAttributedDataForPlaceHolderMutArr;
 
 -(UILabel *)placeholderLabel;
 

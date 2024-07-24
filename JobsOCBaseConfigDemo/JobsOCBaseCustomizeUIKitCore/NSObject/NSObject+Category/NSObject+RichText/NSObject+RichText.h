@@ -7,31 +7,20 @@
 
 #import <UIKit/UIKit.h>
 #import "MacroDef_Font.h"
+#import "JobsRichTextConfig.h"
+#import "JobsBlock.h"
+#import "NSString+Others.h"
 
 NS_ASSUME_NONNULL_BEGIN
-/// 富文本4要素：文字信息、文字颜色、段落、字体
-@interface RichTextConfig : NSObject
-
-@property(nonatomic,strong)NSString *targetString;/// 作用文字
-@property(nonatomic,strong)UIFont *font;/// 添加字体
-@property(nonatomic,strong)UIColor *textCor;/// 添加文字颜色
-@property(nonatomic,strong)UIColor *textBgCor;/// 添加文字背景颜色
-@property(nonatomic,assign)NSUnderlineStyle underlineStyle;/// 添加下划线
-@property(nonatomic,strong)NSMutableParagraphStyle *paragraphStyle;/// 添加段落样式
-@property(nonatomic,strong)NSString *urlStr;/// 添加链接可点击
-@property(nonatomic,assign)NSRange range;/// 设置作用域
-
-@end
 
 @interface NSObject (RichText)
 /// 整合输出富文本，作用于lable.attributedText
 /// @param richTextDataConfigMutArr 富文本的配置集合,对该纯文本字符串的释义
 /// @param paragraphStyle 段落样式
--(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <RichTextConfig *>*_Nonnull)richTextDataConfigMutArr
+-(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <JobsRichTextConfig *>*_Nonnull)richTextDataConfigMutArr
                                                      paragraphStyle:(NSMutableParagraphStyle *_Nullable)paragraphStyle;
-/// 利用 NSArray <RichTextConfig *>* 形成富文本
-/// @param richTextDataConfigMutArr 富文本的配置集合,对该纯文本字符串的释义
--(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <RichTextConfig *>*_Nonnull)richTextDataConfigMutArr;
+/// 利用 NSArray <JobsRichTextConfig *>* 形成富文本
+-(JobsReturnAttributedStringByRichTextConfigArrayBlock _Nonnull)richTextWithDataConfigMutArr;
 /// 字符串中划线
 -(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation;
 /// 字符串下划线
@@ -54,7 +43,7 @@ NS_ASSUME_NONNULL_END
  
  @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
  @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
- @property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richTextConfigMutArr;
+ @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
  
  -(UILabel *)connectionTipsLab{
      if (!_connectionTipsLab) {
@@ -89,7 +78,7 @@ NS_ASSUME_NONNULL_END
 
  -(NSMutableAttributedString *)attributedStringData{
      if (!_attributedStringData) {
-         _attributedStringData = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr];
+         _attributedStringData = self.richTextWithDataConfigMutArr(self.richTextConfigMutArr);
      }return _attributedStringData;
  }
 
@@ -101,17 +90,17 @@ NS_ASSUME_NONNULL_END
      }return _richTextMutArr;
  }
 
- -(NSMutableArray<RichTextConfig *> *)richTextConfigMutArr{
+ -(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
      if (!_richTextConfigMutArr) {
          _richTextConfigMutArr = NSMutableArray.array;
          
-         RichTextConfig *config_01 = RichTextConfig.new;
+         JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
          config_01.font = UIFontWeightRegularSize(14);
          config_01.textCor = HEXCOLOR(0x757575);
          config_01.targetString = self.richTextMutArr[0];
          [_richTextConfigMutArr addObject:config_01];
 
-         RichTextConfig *config_02 = RichTextConfig.new;
+         JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
          config_02.font = UIFontWeightRegularSize(14);
          config_02.textCor = HEXCOLOR(0xAE8330);
          config_02.targetString = self.richTextMutArr[1];
