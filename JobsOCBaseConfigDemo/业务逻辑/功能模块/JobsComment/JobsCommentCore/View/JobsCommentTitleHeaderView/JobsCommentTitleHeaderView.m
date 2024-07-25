@@ -56,7 +56,7 @@
         @jobs_weakify(self)
         _cancelBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                        background:nil
-                                                   titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
                                                     textAlignment:NSTextAlignmentCenter
                                                  subTextAlignment:NSTextAlignmentCenter
                                                       normalImage:JobsIMG(@"删除")

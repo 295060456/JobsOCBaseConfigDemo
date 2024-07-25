@@ -996,6 +996,31 @@ NSObject <|-- BaseProtocol
 
 ### 15、字符串 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+* 富文本字符串的优先级要高于普通字符串。也就意味着，如果调用了富文本字符串，即便将其设置为nil，普通字符串的设置依然不会奏效
+
+  ```objective-c
+  -(UILabel *)titleLab{
+      @jobs_weakify(self)
+      if(!_titleLab){
+          _titleLab = UILabel.new;
+          _titleLab.text = NavBarConfig.title;
+          if(NavBarConfig.attributedTitle){
+              _titleLab.attributedText = NavBarConfig.attributedTitle;
+          }
+          _titleLab.font = NavBarConfig.font;
+          _titleLab.textColor = NavBarConfig.titleCor;
+          [self addSubview:_titleLab];
+          [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.center.equalTo(self);
+              make.height.mas_equalTo(self.height);
+          }];
+          _titleLab.makeLabelByShowingType(UILabelShowingType_03);
+          [self layoutIfNeeded];
+          NSLog(@"");
+      }return _titleLab;
+  }
+  ```
+
 #### 15.1、字符串转化
 
 * 关注头文件`JobsString.h`
@@ -1103,25 +1128,50 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-### 17、`NavigationBar` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 17、导航栏`NavigationBar` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 摒弃系统的，而转为使用第三方`GKNavigationBar`
+* 针对控制器
 
-  ```ruby
-  pod 'GKNavigationBar' # https://github.com/QuintGao/GKNavigationBar NO_SMP
-  ```
+  * 摒弃系统的，而转为使用第三方[**`GKNavigationBar`**](https://github.com/QuintGao/GKNavigationBar)
 
-* 背景和原因
+  * ```ruby
+    pod 'GKNavigationBar' # https://github.com/QuintGao/GKNavigationBar NO_SMP
+    ```
 
-  * 系统原生的`NavigationBar`晦涩难懂不方便修改，很多人理解不深刻容易出问题
-  * 系统原生的`NavigationBar`有很多内部类（系统创建但不希望程序员进行直接访问的）。某些版本内部类的图层结构会用有所不同
-  * 第三方`GKNavigationBar`因为是分类实现，没有代码入侵性，更加的安全和方便
-  * 第三方`GKNavigationBar`更加契合国人的开发思维
-  
-* 应用层实现
-  
-  * 关注实现类：[**`@interface BaseViewController : UIViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/BaseViewController)
-  * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
+  * 背景和原因
+
+    * 系统原生的`NavigationBar`晦涩难懂不方便修改，很多人理解不深刻容易出问题
+    * 系统原生的`NavigationBar`有很多内部类（系统创建但不希望程序员进行直接访问的）。某些版本内部类的图层结构会用有所不同
+    * 第三方`GKNavigationBar`因为是分类实现，没有代码入侵性，更加的安全和方便
+    * 第三方`GKNavigationBar`更加契合国人的开发思维
+
+  * 应用层实现
+
+    * 关注实现类：[**`@interface BaseViewController : UIViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/BaseViewController)
+    * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
+
+* 针对纯视图
+
+  * [**JobsNavBar**]()
+
+  * 接入方式
+
+    ```objective-c
+    -(JobsNavBar *)navBar{
+        if(!_navBar){
+            _navBar = JobsNavBar.new;
+            _navBar.navBarConfig.title = JobsInternationalization(@"Password Setting/Changing");
+            [self addSubview:_navBar];
+            [_navBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.left.right.equalTo(self);
+                make.height.mas_equalTo(JobsWidth(40));
+            }];
+            [self layoutIfNeeded];
+            [_navBar richElementsInViewWithModel:nil];
+            
+        }return _navBar;
+    }
+    ```
 
 ### 18、输入框（UITextField） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -2135,7 +2185,7 @@ NSObject <|-- BaseProtocol
          @jobs_weakify(self)
          _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                         background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                    buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
                                                      textAlignment:NSTextAlignmentCenter
                                                   subTextAlignment:NSTextAlignmentCenter
                                                        normalImage:nil
@@ -2407,23 +2457,23 @@ NSObject <|-- BaseProtocol
       [self.countDownBtn startTimer];
       ```
     
-      * **暂停**
-      
-        ```objective-c
-        [self.countDownBtn timerSuspend];
-        ```
-      
-      * **继续**
-      
-        ```objective-c
-        [self.countDownBtn timerContinue];
-        ```
-      
-      * **结束**
-      
-        ```objective-c
-        [self.countDownBtn timerDestroy];
-        ```
+    * **暂停**
+
+      ```objective-c
+      [self.countDownBtn timerSuspend];
+      ```
+
+    * **继续**
+
+      ```objective-c
+      [self.countDownBtn timerContinue];
+      ```
+
+    * **结束**
+
+      ```objective-c
+      [self.countDownBtn timerDestroy];
+      ```
     
   * **正常的按钮点击事件**
     

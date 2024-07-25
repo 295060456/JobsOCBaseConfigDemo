@@ -55,8 +55,6 @@ typedef UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock
 typedef UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
 
 typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString * _Nullable data);
-#import "JobsRichTextConfig.h"
-typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable data);
 typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString * _Nullable data);
 
 typedef CGPoint (^_Nullable JobsReturnCGPointByVoidBlock)(void);
@@ -272,5 +270,9 @@ typedef CGPoint(^JobsReturnCGPointBySevenIDBlock)Jobs_7_Arguments;
 typedef CGPoint(^JobsReturnCGPointByEightIDBlock)Jobs_8_Arguments;
 typedef CGPoint(^JobsReturnCGPointByNineIDBlock)Jobs_9_Arguments;
 typedef CGPoint(^JobsReturnCGPointByTenIDBlock)Jobs_10_Arguments;
+
+#pragma mark —— 外源
+#import "JobsRichTextConfig.h"
+typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable data);
 
 #endif /* ReturnByCertainParameters_h */

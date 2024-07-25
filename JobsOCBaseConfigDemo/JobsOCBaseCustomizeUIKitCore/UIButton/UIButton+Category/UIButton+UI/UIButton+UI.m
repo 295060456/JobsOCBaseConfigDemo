@@ -15,7 +15,7 @@
 /// - Parameters:
 ///   - btnConfiguration: 来自新Api的配置文件。UIButtonConfiguration.filledButtonConfiguration;
 ///   - background: 自定义按钮背景的配置
-///   - titleAlignment: 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
+///   - buttonConfigTitleAlignment: 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
 ///   - textAlignment: 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】。也对应新Api里面的title的对齐方式
 ///   - subTextAlignment:也对应新Api里面的subTitle的对齐方式
 ///   - normalImage: 正常情况下的image
@@ -50,7 +50,7 @@
 ///   如果同时设置 clickEventBlock 和 primaryAction，会优先响应新的Api，再响应老的Api
 -(instancetype)jobsInitBtnByConfiguration:(UIButtonConfiguration *_Nullable)btnConfiguration
                                background:(UIBackgroundConfiguration *_Nullable)background
-                           titleAlignment:(UIButtonConfigurationTitleAlignment)titleAlignment/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
+               buttonConfigTitleAlignment:(UIButtonConfigurationTitleAlignment)buttonConfigTitleAlignment/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
                             textAlignment:(NSTextAlignment)textAlignment/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】
                          subTextAlignment:(NSTextAlignment)subTextAlignment
                               normalImage:(UIImage *_Nullable)normalImage
@@ -90,7 +90,7 @@
         btnConfiguration.subtitle = subTitle;
         btnConfiguration.titlePadding = titlePadding;
         btnConfiguration.baseForegroundColor = titleCor;/// 文本颜色
-        btnConfiguration.titleAlignment = titleAlignment;/// 文本的对齐方式
+        btnConfiguration.titleAlignment = buttonConfigTitleAlignment;/// 文本的对齐方式
         btnConfiguration.titleLineBreakMode = titleLineBreakMode;/// 主标题的提行方式
         btnConfiguration.subtitleLineBreakMode = subtitleLineBreakMode;/// 副标题的提行方式
         if(titleFont && titleCor){

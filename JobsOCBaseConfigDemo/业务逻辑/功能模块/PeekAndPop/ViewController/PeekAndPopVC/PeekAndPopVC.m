@@ -88,7 +88,7 @@
         @jobs_weakify(self)
         _switchBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                        background:nil
-                                                   titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
                                                     textAlignment:NSTextAlignmentCenter
                                                  subTextAlignment:NSTextAlignmentCenter
                                                       normalImage:nil

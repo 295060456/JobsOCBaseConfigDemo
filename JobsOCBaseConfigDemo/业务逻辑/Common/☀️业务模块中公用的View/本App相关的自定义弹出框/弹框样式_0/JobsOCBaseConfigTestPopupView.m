@@ -60,7 +60,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
         @jobs_weakify(self)
         _containerView = [BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                            background:nil
-                                                       titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                           buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
                                                         textAlignment:NSTextAlignmentCenter
                                                      subTextAlignment:NSTextAlignmentCenter
                                                           normalImage:nil

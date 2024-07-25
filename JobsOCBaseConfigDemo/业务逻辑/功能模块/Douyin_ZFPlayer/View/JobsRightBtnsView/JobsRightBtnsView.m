@@ -128,7 +128,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         @jobs_weakify(self)
         _loveBtn = [RBCLikeButton.alloc jobsInitBtnByConfiguration:nil
                                                         background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                        buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
                                                      textAlignment:NSTextAlignmentCenter
                                                   subTextAlignment:NSTextAlignmentCenter
                                                        normalImage:JobsIMG(@"视频未点赞")
@@ -181,7 +181,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         @jobs_weakify(self)
         _commentBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                         background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                        buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
                                                      textAlignment:NSTextAlignmentCenter
                                                   subTextAlignment:NSTextAlignmentCenter
                                                        normalImage:JobsIMG(@"视频评论")
@@ -248,7 +248,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         @jobs_weakify(self)
         _shareBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                       background:nil
-                                                  titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                      buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
                                                    textAlignment:NSTextAlignmentCenter
                                                 subTextAlignment:NSTextAlignmentCenter
                                                      normalImage:JobsIMG(@"分享")

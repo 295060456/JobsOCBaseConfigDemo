@@ -210,7 +210,7 @@
         @jobs_weakify(self)
         _btn_1 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                    background:nil
-                                               titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                   buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
                                                 textAlignment:NSTextAlignmentCenter
                                              subTextAlignment:NSTextAlignmentCenter
                                                   normalImage:_picBefore ? : JobsBuddleIMG(@"bundle",@"Others",nil,@"绿色加号")
@@ -279,7 +279,7 @@
         @jobs_weakify(self)
         _btn_2 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                    background:nil
-                                               titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                   buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
                                                 textAlignment:NSTextAlignmentCenter
                                              subTextAlignment:NSTextAlignmentCenter
                                                   normalImage:nil

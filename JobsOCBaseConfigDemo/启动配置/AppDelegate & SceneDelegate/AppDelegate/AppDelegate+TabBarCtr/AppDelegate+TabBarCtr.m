@@ -244,7 +244,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         @jobs_weakify(self)
         [_tabBarItemMutArr addObject:[BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                                        background:nil
-                                                                   titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
                                                                     textAlignment:NSTextAlignmentCenter
                                                                  subTextAlignment:NSTextAlignmentCenter
                                                                       normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
@@ -284,7 +284,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         }]];
         [_tabBarItemMutArr addObject:[BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                                        background:nil
-                                                                   titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
                                                                     textAlignment:NSTextAlignmentCenter
                                                                  subTextAlignment:NSTextAlignmentCenter
                                                                       normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
@@ -324,7 +324,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         }]];
         [_tabBarItemMutArr addObject:[BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                                        background:nil
-                                                                   titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
                                                                     textAlignment:NSTextAlignmentCenter
                                                                  subTextAlignment:NSTextAlignmentCenter
                                                                       normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
@@ -364,7 +364,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         }]];
         [_tabBarItemMutArr addObject:[BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                                        background:nil
-                                                                   titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
                                                                     textAlignment:NSTextAlignmentCenter
                                                                  subTextAlignment:NSTextAlignmentCenter
                                                                       normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]
@@ -404,7 +404,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         }]];
         [_tabBarItemMutArr addObject:[BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                                        background:nil
-                                                                   titleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
                                                                     textAlignment:NSTextAlignmentCenter
                                                                  subTextAlignment:NSTextAlignmentCenter
                                                                       normalImage:self.imageUnSelectedMutArr[_tabBarItemMutArr.count]

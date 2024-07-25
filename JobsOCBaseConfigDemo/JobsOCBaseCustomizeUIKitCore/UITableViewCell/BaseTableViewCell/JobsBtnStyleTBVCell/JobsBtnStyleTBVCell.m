@@ -59,7 +59,7 @@ UIViewModelProtocol_synthesize
         @jobs_weakify(self)
         _leftBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                      background:nil
-                                                 titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
                                                   textAlignment:NSTextAlignmentCenter
                                                subTextAlignment:NSTextAlignmentCenter
                                                     normalImage:nil
@@ -120,7 +120,7 @@ UIViewModelProtocol_synthesize
         @jobs_weakify(self)
         _rightBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                       background:nil
-                                                  titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                      buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
                                                    textAlignment:NSTextAlignmentCenter
                                                 subTextAlignment:NSTextAlignmentCenter
                                                      normalImage:nil

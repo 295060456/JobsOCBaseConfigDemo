@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseModel.h"
 #import "BaseButtonProtocol.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -59,33 +60,33 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)UIColor *selected_subtitleCor;
 #pragma mark —— 针对批量设置的UIButton的数据源
 /// 未选择状态的数据源
-@property(nonatomic,strong,nullable)NSArray <NSString *>*normal_titles;
-@property(nonatomic,strong,nullable)NSArray <UIFont *>*normal_titleFonts;
-@property(nonatomic,strong,nullable)NSArray <UIColor *>*normal_titleCors;
-@property(nonatomic,strong,nullable)NSArray <NSAttributedString *>*normal_attributedTitles;
+@property(nonatomic,strong,nullable)NSArray <NSString *>*normal_titles;// title
+@property(nonatomic,strong,nullable)NSArray <UIFont *>*normal_titleFonts;// titleFont
+@property(nonatomic,strong,nullable)NSArray <UIColor *>*normal_titleCors;// titleCor
+@property(nonatomic,strong,nullable)NSArray <NSAttributedString *>*normal_attributedTitles;// attributedTitle
 
-@property(nonatomic,strong,nullable)NSArray <NSString *>*normal_subTitles;
-@property(nonatomic,strong,nullable)NSArray <UIFont *>*normal_subTitleFonts;
-@property(nonatomic,strong,nullable)NSArray <UIColor *>*normal_subTitleCors;
-@property(nonatomic,strong,nullable)NSArray <NSAttributedString *>*normal_attributedSubtitles;
+@property(nonatomic,strong,nullable)NSArray <NSString *>*normal_subTitles;// subTitle
+@property(nonatomic,strong,nullable)NSArray <UIFont *>*normal_subTitleFonts;// subTitleFont
+@property(nonatomic,strong,nullable)NSArray <UIColor *>*normal_subTitleCors;// subTitleCor
+@property(nonatomic,strong,nullable)NSArray <NSAttributedString *>*normal_attributedSubtitles;// attributedSubtitle
 
-@property(nonatomic,strong,nullable)NSArray <UIColor *>*normal_baseBackgroundColors;
-@property(nonatomic,strong,nullable)NSArray <UIImage *>*normal_backgroundImages;
-@property(nonatomic,strong,nullable)NSArray <UIImage *>*normal_images;
+@property(nonatomic,strong,nullable)NSArray <UIColor *>*normal_baseBackgroundColors;// baseBackgroundColor
+@property(nonatomic,strong,nullable)NSArray <UIImage *>*normal_backgroundImages;// backgroundImage
+@property(nonatomic,strong,nullable)NSArray <UIImage *>*normal_images;// normalImage
 /// 已选择状态的数据源
-@property(nonatomic,strong,nullable)NSArray <NSString *>*selected_titles;
-@property(nonatomic,strong,nullable)NSArray <UIFont *>*selected_titleFonts;
-@property(nonatomic,strong,nullable)NSArray <UIColor *>*selected_titleCors;
-@property(nonatomic,strong,nullable)NSArray <NSAttributedString *>*selected_attributedTitles;
+@property(nonatomic,strong,nullable)NSArray <NSString *>*selected_titles;// selected_title
+@property(nonatomic,strong,nullable)NSArray <UIFont *>*selected_titleFonts;// selected_titleFont
+@property(nonatomic,strong,nullable)NSArray <UIColor *>*selected_titleCors;// selected_titleCor
+@property(nonatomic,strong,nullable)NSArray <NSAttributedString *>*selected_attributedTitles;// selected_attributedSubtitle
 
-@property(nonatomic,strong,nullable)NSArray <NSString *>*selected_subTitles;
-@property(nonatomic,strong,nullable)NSArray <UIFont *>*selected_subTitleFonts;
-@property(nonatomic,strong,nullable)NSArray <UIColor *>*selected_subTitleCors;
-@property(nonatomic,strong,nullable)NSArray <NSAttributedString *>*selected_attributedSubtitles;
+@property(nonatomic,strong,nullable)NSArray <NSString *>*selected_subTitles;// selected_subTitle
+@property(nonatomic,strong,nullable)NSArray <UIFont *>*selected_subTitleFonts;// selected_subTitleFont
+@property(nonatomic,strong,nullable)NSArray <UIColor *>*selected_subTitleCors;// selected_subtitleCor
+@property(nonatomic,strong,nullable)NSArray <NSAttributedString *>*selected_attributedSubtitles;// normal_attributedSubtitles
 
-@property(nonatomic,strong,nullable)NSArray <UIColor *>*selected_baseBackgroundColors;
-@property(nonatomic,strong,nullable)NSArray <UIImage *>*selected_backgroundImages;
-@property(nonatomic,strong,nullable)NSArray <UIImage *>*selected_Images;
+@property(nonatomic,strong,nullable)NSArray <UIColor *>*selected_baseBackgroundColors;// selected_baseBackgroundColor
+@property(nonatomic,strong,nullable)NSArray <UIImage *>*selected_backgroundImages;// selected_backgroundImage
+@property(nonatomic,strong,nullable)NSArray <UIImage *>*selected_Images;// highlightImage
 #pragma mark —— 按钮挂载的对象
 @property(nonatomic,strong,nullable)id data;
 

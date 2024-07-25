@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 为了迎合点语法而故意把下列方法属性化
 /// Common
 @property(nonatomic,assign)NSTextAlignment titleAlignment;
+@property(nonatomic,assign)UIButtonConfigurationTitleAlignment buttonConfigurationTitleAlignment;
 @property(nonatomic,assign)BOOL jobsSelected;
 #pragma mark —— JobsBtnModel
 @property(nonatomic,strong)UIColor *btnBackgroundColor;

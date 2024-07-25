@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// - Parameters:
 ///   - btnConfiguration: 来自新Api的配置文件。UIButtonConfiguration.filledButtonConfiguration;
 ///   - background: 自定义按钮背景的配置
-///   - titleAlignment: 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
+///   - buttonConfigTitleAlignment: 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
 ///   - textAlignment: 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】。也对应新Api里面的title的对齐方式
 ///   - subTextAlignment:也对应新Api里面的subTitle的对齐方式
 ///   - normalImage: 正常情况下的image
@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   如果同时设置 clickEventBlock 和 primaryAction，会优先响应新的Api，再响应老的Api
 -(instancetype)jobsInitBtnByConfiguration:(UIButtonConfiguration *_Nullable)btnConfiguration
                                background:(UIBackgroundConfiguration *_Nullable)background
-                           titleAlignment:(UIButtonConfigurationTitleAlignment)titleAlignment/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
+               buttonConfigTitleAlignment:(UIButtonConfigurationTitleAlignment)buttonConfigTitleAlignment/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
                             textAlignment:(NSTextAlignment)textAlignment/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】
                          subTextAlignment:(NSTextAlignment)subTextAlignment
                               normalImage:(UIImage *_Nullable)normalImage
@@ -241,41 +241,41 @@ NS_ASSUME_NONNULL_END
      if(!_titleBtn){
          @jobs_weakify(self)
          _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:self.richTextWithDataConfigMutArr(self.richTextConfigMutArr)
-                                                             title:JobsInternationalization(@"请支付")
-                                                          subTitle:nil//JobsInternationalization(@"观看完整教学视频需支付99Mata值")
-                                                         titleFont:UIFontWeightBoldSize(18)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsCor(@"#333333")
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:JobsWhiteColor
-                                                      imagePadding:JobsWidth(0)
-                                                      titlePadding:JobsWidth(10)
-                                                    imagePlacement:NSDirectionalRectEdgeNone
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(0)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                          longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
-                                                                       id _Nullable arg) {
-                                         NSLog(@"按钮的长按事件触发");
-                                         }
-                                                   clickEventBlock:^id(BaseButton *x) {
+                                                       background:nil
+                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                    textAlignment:NSTextAlignmentCenter
+                                                 subTextAlignment:NSTextAlignmentCenter
+                                                      normalImage:nil
+                                                   highlightImage:nil
+                                                  attributedTitle:nil
+                                          selectedAttributedTitle:nil
+                                               attributedSubtitle:self.richTextWithDataConfigMutArr(self.richTextConfigMutArr)
+                                                            title:JobsInternationalization(@"请支付")
+                                                         subTitle:nil//JobsInternationalization(@"观看完整教学视频需支付99Mata值")
+                                                        titleFont:UIFontWeightBoldSize(18)
+                                                     subTitleFont:nil
+                                                         titleCor:JobsCor(@"#333333")
+                                                      subTitleCor:nil
+                                               titleLineBreakMode:NSLineBreakByWordWrapping
+                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                              baseBackgroundColor:JobsWhiteColor
+                                                     imagePadding:JobsWidth(0)
+                                                     titlePadding:JobsWidth(10)
+                                                   imagePlacement:NSDirectionalRectEdgeNone
+                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                cornerRadiusValue:JobsWidth(0)
+                                                  roundingCorners:UIRectCornerAllCorners
+                                             roundingCornersRadii:CGSizeZero
+                                                   layerBorderCor:nil
+                                                      borderWidth:JobsWidth(0)
+                                                    primaryAction:nil
+                                       longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
+                                                                    id _Nullable arg) {
+             NSLog(@"按钮的长按事件触发");
+         }
+                                                  clickEventBlock:^id(BaseButton *x) {
              @jobs_strongify(self)
              x.selected = !x.selected;
              if (self.objectBlock) self.objectBlock(x);

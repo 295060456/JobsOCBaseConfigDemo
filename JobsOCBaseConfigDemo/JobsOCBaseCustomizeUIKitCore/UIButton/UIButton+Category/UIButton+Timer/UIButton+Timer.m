@@ -16,7 +16,7 @@
     @jobs_weakify(self)
     self = [UIButton.alloc jobsInitBtnByConfiguration:nil
                                            background:nil
-                                       titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                           buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
                                         textAlignment:NSTextAlignmentCenter
                                      subTextAlignment:NSTextAlignmentCenter
                                           normalImage:nil

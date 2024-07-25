@@ -79,7 +79,7 @@ JobsToggleNavViewProtocolSynthesize
         @jobs_weakify(self)
         UIButton *button = [BaseButton.alloc jobsInitBtnByConfiguration:self.buttonModel.btnConfiguration
                                                              background:self.buttonModel.background
-                                                         titleAlignment:self.buttonModel.buttonConfigTitleAlignment
+                                             buttonConfigTitleAlignment:self.buttonModel.buttonConfigTitleAlignment
                                                           textAlignment:self.buttonModel.textAlignment
                                                        subTextAlignment:self.buttonModel.subTextAlignment
                                                             normalImage:self.buttonModel.normalImage

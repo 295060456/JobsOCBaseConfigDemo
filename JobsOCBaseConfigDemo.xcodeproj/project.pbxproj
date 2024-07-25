@@ -24,6 +24,8 @@
 		CE7F39772C4FDB9B00431A5D /* FMDatabase+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */; };
 		CE8877A92C50B3090085948C /* JobsRichTextConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877A72C50B3090085948C /* JobsRichTextConfig.m */; };
 		CE8877AC2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE8877AA2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld */; };
+		CE8877BD2C51F1FF0085948C /* JobsNavBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */; };
+		CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877BB2C51F1FF0085948C /* JobsNavBar.m */; };
 		CEC01BDF2C48DF300069C91A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB32C48AFED0069C91A /* TabBar.xcassets */; };
 		CEC01BE02C48DF330069C91A /* CONTACT US.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */; };
 		CEC01BE12C48DF360069C91A /* INVITE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB22C48AFAD0069C91A /* INVITE.xcassets */; };
@@ -1136,6 +1138,10 @@
 		CE8877A62C50B3090085948C /* JobsRichTextConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsRichTextConfig.h; sourceTree = "<group>"; };
 		CE8877A72C50B3090085948C /* JobsRichTextConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsRichTextConfig.m; sourceTree = "<group>"; };
 		CE8877AB2C50B3DB0085948C /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
+		CE8877B72C51F1FF0085948C /* JobsNavBarConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNavBarConfig.h; sourceTree = "<group>"; };
+		CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNavBarConfig.m; sourceTree = "<group>"; };
+		CE8877BA2C51F1FF0085948C /* JobsNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNavBar.h; sourceTree = "<group>"; };
+		CE8877BB2C51F1FF0085948C /* JobsNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNavBar.m; sourceTree = "<group>"; };
 		CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "CONTACT US.xcassets"; sourceTree = "<group>"; };
 		CEC01AAE2C48AF7D0069C91A /* MY FAV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "MY FAV.xcassets"; sourceTree = "<group>"; };
 		CEC01AAF2C48AF950069C91A /* BANK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BANK.xcassets; sourceTree = "<group>"; };
@@ -3244,6 +3250,25 @@
 				CE8877A72C50B3090085948C /* JobsRichTextConfig.m */,
 			);
 			path = JobsRichTextConfig;
+			sourceTree = "<group>";
+		};
+		CE8877B92C51F1FF0085948C /* JobsNavBarConfig */ = {
+			isa = PBXGroup;
+			children = (
+				CE8877B72C51F1FF0085948C /* JobsNavBarConfig.h */,
+				CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */,
+			);
+			path = JobsNavBarConfig;
+			sourceTree = "<group>";
+		};
+		CE8877BC2C51F1FF0085948C /* JobsNavBar */ = {
+			isa = PBXGroup;
+			children = (
+				CE8877B92C51F1FF0085948C /* JobsNavBarConfig */,
+				CE8877BA2C51F1FF0085948C /* JobsNavBar.h */,
+				CE8877BB2C51F1FF0085948C /* JobsNavBar.m */,
+			);
+			path = JobsNavBar;
 			sourceTree = "<group>";
 		};
 		CEC01AB42C48AFFE0069C91A /* old */ = {
@@ -11985,6 +12010,7 @@
 		CECE87132C45140000764AF5 /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				CE8877BC2C51F1FF0085948C /* JobsNavBar */,
 				CE40B2962C4BF78200CB64B5 /* JobsToggleView */,
 				C525D3E92C48017D003DAFD0 /* JobsLinkageMenuView */,
 				CECE86072C45140000764AF5 /* 电影倒计时特效 */,
@@ -13250,6 +13276,7 @@
 				CECE85672C4513CE00764AF5 /* NSString+Judgment.m in Sources */,
 				CECE7C312C450C5000764AF5 /* BaiShaETProjOrderDetailsCVCell.m in Sources */,
 				CECE85282C4513CE00764AF5 /* Nanosecond_TimerManager.m in Sources */,
+				CE8877BD2C51F1FF0085948C /* JobsNavBarConfig.m in Sources */,
 				CECE87762C45140000764AF5 /* XWCountryCodeController.m in Sources */,
 				CECE85342C4513CE00764AF5 /* NSObject+SYSAlertController.m in Sources */,
 				CECE87732C45140000764AF5 /* XLSphereView.m in Sources */,
@@ -13374,6 +13401,7 @@
 				CECE7ED12C450E5B00764AF5 /* WMZCodeView.m in Sources */,
 				CECE7C012C450C5000764AF5 /* LandscapeSwitchVC.m in Sources */,
 				CECE80CB2C4512BF00764AF5 /* ZBCacheManager.m in Sources */,
+				CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */,
 				CECE7C282C450C5000764AF5 /* PKProtocolExtension.m in Sources */,
 				CECE85A02C4513CE00764AF5 /* UIImage+Tailor.m in Sources */,
 				CECE7C172C450C5000764AF5 /* GetImageApi.m in Sources */,

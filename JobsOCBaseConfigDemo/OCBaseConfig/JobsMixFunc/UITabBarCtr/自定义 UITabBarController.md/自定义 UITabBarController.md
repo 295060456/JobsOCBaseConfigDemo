@@ -385,7 +385,7 @@ if (self.isOpenPPBadge) {
           @jobs_weakify(self)
           _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
                                                         background:nil
-                                                    titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                        buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
                                                      textAlignment:NSTextAlignmentCenter
                                                   subTextAlignment:NSTextAlignmentCenter
                                                        normalImage:nil
