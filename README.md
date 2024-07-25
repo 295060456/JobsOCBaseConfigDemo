@@ -4679,11 +4679,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               make.top.equalTo(self);
               make.centerX.equalTo(self);
           }];
+   				[self layoutIfNeeded];
           _toggleBaseView.taggedNavTitles = (NSMutableArray *)@[JobsInternationalization(@"PHONE NO."),JobsInternationalization(@"ACCOUNT NAME")];
           _toggleBaseView.scrollContentViews = (NSMutableArray *)@[self.verification_code_view,self.account_code_view];
           _toggleBaseView.btn_each_offset = JobsWidth(10);
           _toggleBaseView.taggedNavView_height = JobsWidth(24);
           _toggleBaseView.taggedNavView_width = JobsWidth(180);
+          _toggleBaseView.toggleView_size = CGSizeMake(JobsWidth(400), JobsWidth(250));
           [_toggleBaseView richElementsInViewWithModel:nil];
           _toggleBaseView.getToggleNavView.backgroundColor = JobsClearColor;
       }return _toggleBaseView;

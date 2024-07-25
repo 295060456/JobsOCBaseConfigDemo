@@ -24,6 +24,7 @@ JobsToggleNavViewProtocol
 @property(nonatomic,assign)CGFloat taggedNavView_height;
 @property(nonatomic,assign)CGFloat taggedNavView_width;
 @property(nonatomic,assign)CGFloat taggedNavView_bgScroll_offset;
+@property(nonatomic,assign)CGSize toggleView_size;
 @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*scrollContentViews;
 @property(nonatomic,strong)NSMutableArray <NSString *>*taggedNavTitles;
 

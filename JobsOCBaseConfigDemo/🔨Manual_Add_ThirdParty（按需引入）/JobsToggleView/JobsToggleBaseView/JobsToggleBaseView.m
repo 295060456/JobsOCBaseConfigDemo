@@ -67,7 +67,7 @@ JobsToggleNavViewProtocolSynthesize
 }
 
 -(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return [JobsToggleBaseView viewSizeWithModel:nil];
+    return jobsEqualToZeroSize(self.toggleView_size) ? [JobsToggleBaseView viewSizeWithModel:nil] : self.toggleView_size;
 }
 #pragma mark —— 一些公共方法
 -(JobsToggleNavView *)getToggleNavView{
@@ -77,7 +77,7 @@ JobsToggleNavViewProtocolSynthesize
 -(void)makeScrollContentViewsFrame{
     int t = 0;
     for (UIView *subView in self.scrollContentViews) {
-        subView.frame = CGRectMake([JobsToggleBaseView viewSizeWithModel:nil].width * t,
+        subView.frame = CGRectMake([self viewSizeWithModel:nil].width * t,
                                  0,
                                  self.bgScroll.width,
                                  self.bgScroll.height);
@@ -148,8 +148,8 @@ JobsToggleNavViewProtocolSynthesize
         _bgScroll = UIScrollView.new;
         _bgScroll.frame = CGRectMake(0,
                                      self.taggedNavView_height + self.taggedNavView_bgScroll_offset,
-                                     [JobsToggleBaseView viewSizeWithModel:nil].width,
-                                     [JobsToggleBaseView viewSizeWithModel:nil].height - (self.taggedNavView_height + self.taggedNavView_bgScroll_offset));
+                                     [self viewSizeWithModel:nil].width,
+                                     [self viewSizeWithModel:nil].height - (self.taggedNavView_height + self.taggedNavView_bgScroll_offset));
         _bgScroll.contentSize = CGSizeMake(_bgScroll.width * self.scrollContentViews.count, 0);
         _bgScroll.delegate = self;
         _bgScroll.pagingEnabled = YES;
@@ -170,7 +170,7 @@ JobsToggleNavViewProtocolSynthesize
 
 -(CGFloat)taggedNavView_width{
     if(!_taggedNavView_width){
-        _taggedNavView_width = [JobsToggleBaseView viewSizeWithModel:nil].width;
+        _taggedNavView_width = [self viewSizeWithModel:nil].width;
     }return _taggedNavView_width;
 }
 
