@@ -7,15 +7,26 @@
 
 #import "JobsNavBar.h"
 
+#ifndef NavBarConfig
 #define NavBarConfig self.navBarConfig
+#endif /* NavBarConfig */
+
+#ifndef BackBtnModel
 #define BackBtnModel NavBarConfig.backBtnModel
+#endif /* BackBtnModel */
+
+#ifndef CloseBtnModel
 #define CloseBtnModel NavBarConfig.closeBtnModel
+#endif /* CloseBtnModel */
 
 @interface JobsNavBar ()
 /// UI
 @property(nonatomic,strong)BaseButton *backBtn;
 @property(nonatomic,strong)UILabel *titleLab;
 @property(nonatomic,strong)BaseButton *closeBtn;
+/// Data
+@property(nonatomic,copy)JobsNavBarBackBtnClickAction backBtnClickAction;
+@property(nonatomic,copy)JobsNavBarCloseBtnClickAction closeBtnClickAction;
 
 @end
 
@@ -31,7 +42,7 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-
+        
     }return self;
 }
 
@@ -42,8 +53,8 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     /// 内部指定圆切角
-//    [self layoutSubviewsCutCnrByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
-//                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+    //    [self layoutSubviewsCutCnrByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
+    //                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -53,8 +64,13 @@
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-//    self.viewModel = model ? : UIViewModel.new;
-//    MakeDataNull
+    //    self.viewModel = model ? : UIViewModel.new;
+    //    MakeDataNull
+    if (self.navBarConfig.bgImage) {
+        self.image = self.navBarConfig.bgImage;
+    }else{
+        self.backgroundColor = self.navBarConfig.bgCor;
+    }
     self.titleLab.alpha = 1;
     self.backBtn.alpha = 1;
     self.closeBtn.alpha = 1;
@@ -75,21 +91,22 @@
             if([data isKindOfClass:UIButton.class]){
                 UIButton *btn = (UIButton *)data;
                 if(btn.tag == 123){
-                    [self tf_hide];
+                    if(self.closeBtnClickAction)self.closeBtnClickAction(btn);
                 }else if (btn.tag == 456){
-                    [self tf_hide];
-                    self.popupParameter.dragEnable = YES;
-                    self.popupParameter.disuseBackgroundTouchHide = NO;
-                    [self.loginView tf_showSlide:jobsGetMainWindow()
-                                       direction:PopupDirectionContainerCenter
-                                      popupParam:self.popupParameter];
+                    if(self.backBtnClickAction)self.backBtnClickAction(btn);
                 }else{}
-                
             }
         }];
     }return _navBarConfig;
 }
 
+-(void)actionNavBarBackBtnClickBlock:(JobsNavBarBackBtnClickAction)objectBlock{
+    _backBtnClickAction = objectBlock;
+}
+    
+-(void)actionNavBarCloseBtnClickBlock:(JobsNavBarCloseBtnClickAction)objectBlock{
+    _closeBtnClickAction = objectBlock;
+}
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     @jobs_weakify(self)
@@ -205,6 +222,5 @@
         }];
     }return _closeBtn;
 }
-
 
 @end

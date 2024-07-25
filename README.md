@@ -1168,7 +1168,16 @@ NSObject <|-- BaseProtocol
             }];
             [self layoutIfNeeded];
             [_navBar richElementsInViewWithModel:nil];
-            
+            @jobs_weakify(self)
+            [_navBar actionNavBarBackBtnClickBlock:^(UIButton * _Nullable data) {
+                @jobs_strongify(self)
+                [self tf_hide];
+                self.show_view(self.loginView);
+            }];
+            [_navBar actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable data) {
+                @jobs_strongify(self)
+                [self tf_hide];
+            }];
         }return _navBar;
     }
     ```
@@ -2889,11 +2898,17 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```
 
   * ```objective-c
-    self.popupParameter.dragEnable = YES;
-    self.popupParameter.disuseBackgroundTouchHide = NO;
-    [NSObject.makePopLoginView tf_showSlide:jobsGetMainWindow()
-                                  direction:PopupDirectionContainerCenter
-                                 popupParam:self.popupParameter];
+    -(jobsByViewBlock _Nonnull)show_view{
+        @jobs_weakify(self)
+        return ^(UIView *_Nonnull view) {
+            @jobs_strongify(self)
+            self.popupParameter.dragEnable = YES;
+            self.popupParameter.disuseBackgroundTouchHide = NO;
+            [view tf_showSlide:jobsGetMainWindow()
+                     direction:PopupDirectionContainerCenter
+                    popupParam:self.popupParameter];
+        };
+    }
     ```
 
 ### 10、关于`UIViewController`的一些配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
