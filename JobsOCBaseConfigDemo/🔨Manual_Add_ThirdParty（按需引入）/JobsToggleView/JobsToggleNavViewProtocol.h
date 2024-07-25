@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol JobsToggleNavViewProtocol <NSObject>
 @optional
+/// 滑块之间的距离
+@property(nonatomic,assign)CGFloat btn_each_offset;
 /// 滑块颜色
 @property(nonatomic,strong)UIColor *sliderColor;
 /// 滑块宽度
@@ -30,6 +32,7 @@ NS_ASSUME_NONNULL_END
 /// 和 UIViewModel 重复定义的部分
 #ifndef JobsToggleNavViewProtocolSynthesize
 #define JobsToggleNavViewProtocolSynthesize \
+@synthesize btn_each_offset = _btn_each_offset;\
 @synthesize sliderColor = _sliderColor;\
 @synthesize sliderW = _sliderW;\
 @synthesize sliderH = _sliderH;\
@@ -41,6 +44,7 @@ NS_ASSUME_NONNULL_END
 #pragma mark —— @dynamic UITextModelProtocol
 #ifndef JobsToggleNavViewProtocol_dynamic
 #define JobsToggleNavViewProtocol_dynamic \
+@dynamic btn_each_offset;\
 @dynamic sliderColor;\
 @dynamic sliderW;\
 @dynamic sliderH;\

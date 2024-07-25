@@ -116,8 +116,7 @@ JobsToggleNavViewProtocolSynthesize
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }];
-
-        button.frame = CGRectMake(i * self.buttonWidth,
+        button.frame = CGRectMake(i * self.buttonWidth + (i ? self.btn_each_offset : 0),
                                   0,
                                   self.buttonWidth,
                                   self.height);
