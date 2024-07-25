@@ -2513,6 +2513,13 @@ NSObject <|-- BaseProtocol
 
 * 关注实现类：[**@interface UIView (Masonry)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+Masonry)
 
+* ```objective-c
+  [self.chatBubbleIMGV addSubview:_chatContentLab];
+  [_chatContentLab mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.edges.equalTo(self.chatBubbleIMGV).with.insets(UIEdgeInsetsMake(5, 5, 5, 5));
+  }];
+  ```
+
 <details id="Masonry约束动画<br>">
  <summary><strong>点我了解详情：Masonry约束动画<br></strong></summary>
 ```objective-c
