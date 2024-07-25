@@ -17,6 +17,7 @@
 #import "BaseProtocol.h"
 #import "UIViewModelProtocol.h"
 #import "JobsBlock.h"
+#import "JobsBlock_Ex.h"
 #import "MacroDef_Func.h"
 #import "MacroDef_SysWarning.h"
 #import "FileFolderHandleTool.h"

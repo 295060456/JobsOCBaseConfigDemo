@@ -1142,6 +1142,7 @@
 		CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNavBarConfig.m; sourceTree = "<group>"; };
 		CE8877BA2C51F1FF0085948C /* JobsNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNavBar.h; sourceTree = "<group>"; };
 		CE8877BB2C51F1FF0085948C /* JobsNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNavBar.m; sourceTree = "<group>"; };
+		CEA114BA2C522E00009D6FB3 /* JobsBaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseViewProtocol.h; sourceTree = "<group>"; };
 		CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "CONTACT US.xcassets"; sourceTree = "<group>"; };
 		CEC01AAE2C48AF7D0069C91A /* MY FAV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "MY FAV.xcassets"; sourceTree = "<group>"; };
 		CEC01AAF2C48AF950069C91A /* BANK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BANK.xcassets; sourceTree = "<group>"; };
@@ -8344,6 +8345,7 @@
 		CECE81F42C4513CD00764AF5 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				CEA114BA2C522E00009D6FB3 /* JobsBaseViewProtocol.h */,
 				CECE81E82C4513CD00764AF5 /* BaseProtocol <NSObject> */,
 				CECE81EA2C4513CD00764AF5 /* UITextModelProtocol <NSObject> */,
 				CECE81F12C4513CD00764AF5 /* UIViewModelProtocol <NSObject> */,

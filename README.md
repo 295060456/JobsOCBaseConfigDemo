@@ -419,6 +419,12 @@ Current targets:
 
 * 背景意义：**统一全局的Block定义，减少冗余代码**
 
+* <font color=blue>**特别说明**</font>：[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) 只对原生系统的类进行封装。如果有外源自定义的类，移步[<font color=red>**JobsBlock_Ex**</font>]()
+
+  * 因为外源自定义的类会引用[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
+  * 如果[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)再继续引用这些外源自定义类，就会导致循环引用，无法编译
+  * 同时，[<font color=red>**JobsBlock_Ex**</font>]()也不能被全局所包含。<u>在需要用的地方，单独的引入</u>
+
 * ```ruby
   pod 'JobsBlock' # https://github.com/295060456/JobsBlock
   ```
@@ -472,7 +478,7 @@ classDiagram
     }
 ```
 
-### 12、**`UIViewModelFamily`（持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
+### 12、**`UIViewModelFamily`（将持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>**
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>

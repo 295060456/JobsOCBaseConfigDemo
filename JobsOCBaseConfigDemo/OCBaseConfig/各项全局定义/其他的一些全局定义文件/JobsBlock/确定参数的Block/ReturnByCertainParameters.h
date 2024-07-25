@@ -7,36 +7,6 @@
 
 #ifndef ReturnByCertainParameters_h
 #define ReturnByCertainParameters_h
-/// 系统支持语言
-#ifndef APP_LANGUAGE_ENUM_DEFINED
-#define APP_LANGUAGE_ENUM_DEFINED
-typedef NS_ENUM(NSInteger, AppLanguage) {
-    AppLanguageBySys,/// App语言跟随当前系统
-    AppLanguageChineseSimplified, /// zh-Hans：简体中文
-    AppLanguageChineseTraditional,/// zh-Hant：繁体中文
-    AppLanguageEnglish,           /// en：标准英语
-    AppLanguageTagalog            /// tl：菲律宾他加禄语
-};
-#endif/* APP_LANGUAGE_ENUM_DEFINED */
-/// 屏幕方向
-#ifndef DeviceOrientation_typedef
-#define DeviceOrientation_typedef
-typedef NS_ENUM(NSInteger, DeviceOrientation) {
-    DeviceOrientationUnknown, /// 未知方向
-    DeviceOrientationPortrait,/// 竖屏
-    DeviceOrientationLandscape /// 横屏
-};
-#endif /* DeviceOrientation_typedef */
-/// 当前类型
-#ifndef MyEnums_h
-#define MyEnums_h
-typedef NS_ENUM(NSInteger, ComponentType) {
-    ComponentTypeUnknown,/// 其他
-    ComponentTypeView,/// 视图
-    ComponentTypeViewController/// 控制器
-};
-#endif /* MyEnums_h */
-
 ///【 确定入参个数 并且 有返回值的Block定义】
 #pragma mark —— 单形参
 typedef id _Nullable(^JobsReturnIDByVoidBlock)(void);
@@ -44,12 +14,7 @@ typedef id _Nullable(^JobsReturnIDByIDBlock)(id _Nullable data);
 typedef id _Nullable(^JobsReturnIDByStringBlock)(NSString * _Nullable data);
 typedef id _Nullable(^JobsReturnIDBySELBlock)(SEL _Nullable data);
 typedef id _Nullable(^JobsReturnIDByGestureRecognizerBlock)(UIGestureRecognizer * _Nullable data);
-typedef id _Nullable(^JobsReturnIDByAppLanguageBlock)(AppLanguage data);
-
-typedef ComponentType(^JobsReturnComponentTypeByVoidBlock)(void);
-typedef DeviceOrientation(^JobsReturnDeviceOrientationByVoidBlock)(void);
-typedef AppLanguage(^JobsReturnAppLanguageByVoidBlock)(void);
-typedef DeviceOrientation(^JobsReturnDeviceOrientationByViewBlock)(UIView *_Nullable data);
+typedef id _Nullable(^JobsReturnIDByCGSizeBlock)(CGSize data);
 
 typedef UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
 typedef UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
@@ -227,8 +192,6 @@ typedef id _Nullable(^JobsReturnIDBySelectorBlock)(id _Nullable weakSelf,
 typedef id _Nullable(^JobsReturnIDBySelectorBlock2)(id _Nullable weakSelf,
                                                     id _Nullable arg,
                                                     id _Nullable data);
-typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType componentType,
-                                                                 UIView *_Nullable data);
 typedef NSString *_Nullable(^JobsReturnStringByStringStringBlock)(NSString * _Nullable fontString,
                                                                   NSString * _Nullable tailString);
 typedef id _Nullable(^JobsReturnIDByTwoIDBlock)Jobs_2_Arguments;
@@ -270,9 +233,5 @@ typedef CGPoint(^JobsReturnCGPointBySevenIDBlock)Jobs_7_Arguments;
 typedef CGPoint(^JobsReturnCGPointByEightIDBlock)Jobs_8_Arguments;
 typedef CGPoint(^JobsReturnCGPointByNineIDBlock)Jobs_9_Arguments;
 typedef CGPoint(^JobsReturnCGPointByTenIDBlock)Jobs_10_Arguments;
-
-#pragma mark —— 外源
-#import "JobsRichTextConfig.h"
-typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable data);
 
 #endif /* ReturnByCertainParameters_h */

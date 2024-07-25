@@ -9,6 +9,7 @@
 #import "MacroDef_Font.h"
 #import "JobsRichTextConfig.h"
 #import "JobsBlock.h"
+#import "JobsBlock_Ex.h"
 #import "NSString+Others.h"
 
 NS_ASSUME_NONNULL_BEGIN

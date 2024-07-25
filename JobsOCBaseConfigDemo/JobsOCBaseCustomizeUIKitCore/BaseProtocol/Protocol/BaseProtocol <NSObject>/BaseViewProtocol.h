@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseProtocol.h"
+#import "JobsBlock.h"
+#import "VoidByCertainParameters.h"
 
 #if __has_include(<Masonry/Masonry.h>)
 #import <Masonry/Masonry.h>
