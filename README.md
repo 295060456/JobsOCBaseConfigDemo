@@ -2640,7 +2640,7 @@ NSObject <|-- BaseProtocol
  ```
 </details>
 
-### 6、**使用block，对`@selector`的封装，避免方法割裂** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 6、**使用block，对`@selector`的替代封装，避免方法割裂** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 <details id="使用block，对selector的封装，避免方法割裂">
  <summary><strong>点我了解详情</strong></summary>
@@ -4023,7 +4023,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 关注实现类：[**@interface  TouchID : NSObject**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/TouchID)
 
-### 27、创建`UICollectionView` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 27、<font id=创建UICollectionView>创建`UICollectionView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * ```objective-c
   @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
@@ -4133,7 +4133,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 28、创建`UITableView` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 28、<font id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * ```objective-c
   /// UI
@@ -4916,7 +4916,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 指定圆切角（方法二），避免了（方法一）的弊端
 
-  作用于需要切的View的子类里面的-(void)layoutSubviews方法
+  作用于需要切的View的子类里面的`-(void)layoutSubviews`方法
 
   ```objective-c
   -(void)layoutSubviewsCutCnrByRoundingCorners:(UIRectCorner)corners
@@ -4942,8 +4942,373 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
+### 33、刷新控件 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-### Test <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+* <font color=blue>都是锚定在其公共父类**UIScrollView**</font>
+
+#### 33.1、纵向的刷新 [**MJRefresh**](https://github.com/CoderMJLee/MJRefresh)
+
+* 集成方式
+  
+  ```ruby
+  pod 'MJRefresh' # https://github.com/CoderMJLee/MJRefresh NO_SMP 不支持横向刷新
+  ```
+  
+  ```objective-c
+  #if __has_include(<MJRefresh/MJRefresh.h>)
+  #import <MJRefresh/MJRefresh.h>
+  #else
+  #import "MJRefresh.h"
+  #endif
+  ```
+  
+*  使用方式
+  
+  * [**对`UITableView`的使用方式**](#创建UITableView) 
+  * [**对`UICollectionView`的使用方式**](#创建UICollectionView)
+
+#### 33.2、水平方向的刷新 [**XZMRefresh**](https://github.com/xiezhongmin/XZMRefresh)
+
+* 集成方式
+  
+  ```ruby
+  pod 'XZMRefresh' # https://github.com/xiezhongmin/XZMRefresh
+  ```
+  
+  ```objective-c
+  #if __has_include(<XZMRefresh/XZMRefresh.h>)
+  #import <XZMRefresh/XZMRefresh.h>
+  #else
+  #import "XZMRefresh.h"
+  #endif
+  ```
+  
+* <font color=red>**值得注意**</font>
+
+  * 需要在母控件正确得出Frame值以后，**XZMRefresh**方可生效。否则可能出现**xzm_header**或者**xzm_footer**的Frame值不正确（比如，高为0）
+
+    * ```objective-c
+      [self layoutIfNeeded];
+      ```
+  
+    * ```objective-c
+      [self.view layoutIfNeeded];
+      ```
+  
+  * 如果母控件是**`UICollectionView`**，需要使用<font color=red>**`XZMLayout`**</font>
+  
+    ```objective-c
+    #import <UIKit/UIKit.h>
+    @interface XZMLayout : UICollectionViewFlowLayout
+    @end
+    ```
+  
+    ```objective-c
+    @implementation XZMLayout
+    
+    -(instancetype)init{
+        if (self = [super init]) {
+            
+        }return self;
+    }
+    /**
+     * 当collectionView的显示范围发生改变的时候，是否需要重新刷新布局
+     * 一旦重新刷新布局，就会重新调用下面的方法：
+     1.prepareLayout
+     2.layoutAttributesForElementsInRect:方法
+     */
+    - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds{
+        return YES;
+    }
+    /// 用来做布局的初始化操作（不建议在init方法中进行布局的初始化操作）
+    - (void)prepareLayout{
+        [super prepareLayout];
+        // 水平滚动
+        self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        CGFloat inset = (self.collectionView.frame.size.width - self.itemSize.width) * 0.5;
+        /** 设置内边距 */
+        self.sectionInset = UIEdgeInsetsMake(0, inset, 0, inset);
+    }
+    /**
+     UICollectionViewLayoutAttributes *attrs;
+     1.一个cell对应一个UICollectionViewLayoutAttributes对象
+     2.UICollectionViewLayoutAttributes对象决定了cell的frame
+     */
+    /// 这个方法的返回值是一个数组（数组里面存放着rect范围内所有元素的布局属性）
+    /// 这个方法的返回值决定了rect范围内所有元素的排布（frame）
+    - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect{
+        // 获得super已经计算好的布局属性
+        NSArray *array = [super layoutAttributesForElementsInRect:rect];
+        // 计算collectionView最中心点的x值
+        CGFloat centerX = self.collectionView.contentOffset.x + self.collectionView.frame.size.width * 0.5;
+        // 在原有布局属性的基础上，进行微调
+        for (UICollectionViewLayoutAttributes *attrs in array) {
+            // cell的中心点x 和 collectionView最中心点的x值 的间距
+            CGFloat delta = ABS(attrs.center.x - centerX);
+            // 根据间距值 计算 cell的缩放比例
+            CGFloat scale = 1 - delta / self.collectionView.frame.size.width * 0.15;
+            // 设置缩放比例
+            attrs.transform = CGAffineTransformMakeScale(scale, scale);
+        }return array;
+    }
+    /// 这个方法的返回值，就决定了collectionView停止滚动时的偏移量
+    - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset
+                                     withScrollingVelocity:(CGPoint)velocity{
+        // 计算出最终显示的矩形框
+        CGRect rect;
+        rect.origin.y = 0;
+        rect.origin.x = proposedContentOffset.x;
+        rect.size = self.collectionView.frame.size;
+        // 获得super已经计算好的布局属性
+        NSArray *array = [super layoutAttributesForElementsInRect:rect];
+        // 计算collectionView最中心点的x值
+        CGFloat centerX = proposedContentOffset.x + self.collectionView.frame.size.width * 0.5;
+        // 存放最小的间距值
+        CGFloat minDelta = MAXFLOAT;
+        for (UICollectionViewLayoutAttributes *attrs in array) {
+            if (ABS(minDelta) > ABS(attrs.center.x - centerX)) {
+                minDelta = attrs.center.x - centerX;
+            }
+        }
+        // 修改原有的偏移量
+        proposedContentOffset.x += minDelta;
+        return proposedContentOffset;
+    }
+    
+    @end
+    ```
+  
+* 使用方式（以**UICollectionView**为例，**UITableView**同理）
+
+  * **`UICollectionView` + 默认刷新**
+
+    ```objective-c
+    -(void)example01{
+        @jobs_weakify(self)
+        [_collectionView xzm_addNormalHeaderWithTarget:self
+                                                action:selectorBlocks(^id(id target, id arg) {
+            NSLog(@"KKK加载新的数据，参数: %@", arg);
+            // 模拟延迟加载数据，因此2秒后才调用）
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                [self->_collectionView reloadData];
+                [self->_collectionView.xzm_header endRefreshing];// 结束刷新
+            });return nil;
+        }, nil, self)];
+    
+        [_collectionView xzm_addNormalFooterWithTarget:self
+                                                action:selectorBlocks(^id(id target, id arg) {
+            NSLog(@"SSSS加载新的数据，参数: %@", arg);
+            @jobs_strongify(self)
+            // 模拟延迟加载数据，因此2秒后才调用）
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                [self->_collectionView reloadData];
+                [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
+            });return nil;
+        }, nil, self)];
+    
+        [_collectionView.xzm_header beginRefreshing];
+    }
+    ```
+
+  * **`UICollectionView` + 隐藏时间**
+
+    ```objective-c
+    #pragma mark 
+    -(void)example02{
+        @jobs_weakify(self)
+        [_collectionView xzm_addNormalHeaderWithTarget:self
+                                                action:selectorBlocks(^id(id target, id arg) {
+            NSLog(@"KKK加载新的数据，参数: %@", arg);
+            // 模拟延迟加载数据，因此2秒后才调用）
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                [self->_collectionView reloadData];
+                [self->_collectionView.xzm_header endRefreshing];// 结束刷新
+            });return nil;
+        }, nil, self)];
+    
+        [_collectionView xzm_addNormalFooterWithTarget:self
+                                                action:selectorBlocks(^id(id target, id arg) {
+            NSLog(@"SSSS加载新的数据，参数: %@", arg);
+            @jobs_strongify(self)
+            // 模拟延迟加载数据，因此2秒后才调用）
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                [self->_collectionView reloadData];
+                [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
+            });return nil;
+        }, nil, self)];
+    
+        // 隐藏时间
+        _collectionView.xzm_header.updatedTimeHidden = YES;
+        [_collectionView.xzm_header beginRefreshing];
+    }
+    ```
+
+  * **`UICollectionView` + 动图刷新**
+
+    ```objective-c
+    -(void)example03{
+        @jobs_weakify(self)
+        [_collectionView xzm_addGifHeaderWithTarget:self
+                                             action:selectorBlocks(^id(id target, id arg) {
+            NSLog(@"KKK加载新的数据，参数: %@", arg);
+            // 模拟延迟加载数据，因此2秒后才调用）
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                [self->_collectionView reloadData];
+                [self->_collectionView.xzm_header endRefreshing];// 结束刷新
+            });return nil;
+        }, nil, self)];
+    
+        [_collectionView xzm_addGifFooterWithTarget:self
+                                             action:selectorBlocks(^id(id target, id arg) {
+            NSLog(@"SSSS加载新的数据，参数: %@", arg);
+            @jobs_strongify(self)
+            // 模拟延迟加载数据，因此2秒后才调用）
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                [self->_collectionView reloadData];
+                [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
+            });return nil;
+        }, nil, self)];
+    
+        // 设置普通状态的动画图片
+        NSMutableArray *idleImages = NSMutableArray.array;
+        for (NSUInteger i = 1; i<=60; i++) {
+            UIImage *image = JobsIMG([NSString stringWithFormat:@"dropdown_anim__000%zd", i]);
+            [idleImages addObject:image];
+        }
+        [_collectionView.xzm_gifHeader setImages:idleImages forState:XZMRefreshStateNormal];
+        [_collectionView.xzm_gifFooter setImages:idleImages forState:XZMRefreshStateNormal];
+        // 设置正在刷新状态的动画图片
+        NSMutableArray <UIImage *>*refreshingImages = NSMutableArray.array;
+        for (NSUInteger i = 1; i<=3; i++) {
+            UIImage *image = JobsIMG([NSString stringWithFormat:@"dropdown_loading_0%zd", i]);
+            [refreshingImages addObject:image];
+        }
+        [_collectionView.xzm_gifHeader setImages:refreshingImages forState:XZMRefreshStateRefreshing];
+        [_collectionView.xzm_gifFooter setImages:refreshingImages forState:XZMRefreshStateRefreshing];
+        // 马上进入刷新状态
+        [_collectionView.xzm_gifHeader beginRefreshing];
+    }
+    ```
+
+  * **`UICollectionView` + 动图刷新 + 隐藏文字**
+
+    ```objective-c
+    -(void)example04{
+        @jobs_weakify(self)
+        [_collectionView xzm_addGifHeaderWithTarget:self
+                                             action:selectorBlocks(^id(id target, id arg) {
+            NSLog(@"KKK加载新的数据，参数: %@", arg);
+            // 模拟延迟加载数据，因此2秒后才调用）
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                [self->_collectionView reloadData];
+                [self->_collectionView.xzm_header endRefreshing];// 结束刷新
+            });return nil;
+        }, nil, self)];
+    
+        [_collectionView xzm_addGifFooterWithTarget:self
+                                             action:selectorBlocks(^id(id target, id arg) {
+            NSLog(@"SSSS加载新的数据，参数: %@", arg);
+            @jobs_strongify(self)
+            // 模拟延迟加载数据，因此2秒后才调用）
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                [self->_collectionView reloadData];
+                [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
+            });return nil;
+        }, nil, self)];
+        // 隐藏时间
+        _collectionView.xzm_gifHeader.updatedTimeHidden = YES;
+        // 隐藏状态
+        _collectionView.xzm_gifHeader.stateHidden = YES;
+        _collectionView.xzm_gifFooter.stateHidden = YES;
+        // 设置普通状态的动画图片
+        NSMutableArray <UIImage *>*idleImages = NSMutableArray.array;
+        for (NSUInteger i = 1; i<=60; i++) {
+            UIImage *image = JobsIMG([NSString stringWithFormat:@"dropdown_anim__000%zd", i]);
+            [idleImages addObject:image];
+        }
+        [_collectionView.xzm_gifHeader setImages:idleImages forState:XZMRefreshStateNormal];
+        [_collectionView.xzm_gifFooter setImages:idleImages forState:XZMRefreshStateNormal];
+        // 设置正在刷新状态的动画图片
+        NSMutableArray <UIImage *>*refreshingImages = NSMutableArray.array;
+        for (NSUInteger i = 1; i<=3; i++) {
+            UIImage *image = JobsIMG([NSString stringWithFormat:@"dropdown_loading_0%zd", i]);
+            [refreshingImages addObject:image];
+        }
+        [_collectionView.xzm_gifHeader setImages:refreshingImages forState:XZMRefreshStateRefreshing];
+        [_collectionView.xzm_gifFooter setImages:refreshingImages forState:XZMRefreshStateRefreshing];
+        // 马上进入刷新状态
+        [_collectionView.xzm_gifHeader beginRefreshing];
+    }
+    ```
+
+  * **`UICollectionView` + 自定义文字**
+
+    ```objective-c
+    -(void)example05{
+        @jobs_weakify(self)
+        [_collectionView xzm_addNormalHeaderWithTarget:self
+                                                action:selectorBlocks(^id(id target, id arg) {
+            NSLog(@"KKK加载新的数据，参数: %@", arg);
+            // 模拟延迟加载数据，因此2秒后才调用）
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                [self->_collectionView reloadData];
+                [self->_collectionView.xzm_header endRefreshing];// 结束刷新
+            });return nil;
+        }, nil, self)];
+    
+        [_collectionView xzm_addNormalFooterWithTarget:self
+                                             action:selectorBlocks(^id(id target, id arg) {
+            NSLog(@"SSSS加载新的数据，参数: %@", arg);
+            @jobs_strongify(self)
+            // 模拟延迟加载数据，因此2秒后才调用）
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                [self->_collectionView reloadData];
+                [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
+            });return nil;
+        }, nil, self)];
+        // 设置header文字
+        [_collectionView.xzm_header setTitle:JobsInternationalization(@"滑动可以刷新") forState:XZMRefreshStateNormal];
+        [_collectionView.xzm_header setTitle:JobsInternationalization(@"释放立即刷新") forState:XZMRefreshStatePulling];
+        [_collectionView.xzm_header setTitle:JobsInternationalization(@"正在刷新中 ...") forState:XZMRefreshStateRefreshing];
+        // 设置字体
+        _collectionView.xzm_header.font = UIFontWeightRegularSize(15);
+        // 设置颜色
+        _collectionView.xzm_header.textColor = JobsRedColor;
+        // 设置footer文字
+        [_collectionView.xzm_footer setTitle:JobsInternationalization(@"滑动可以刷新") forState:XZMRefreshStateNormal];
+        [_collectionView.xzm_footer setTitle:JobsInternationalization(@"释放立即刷新") forState:XZMRefreshStatePulling];
+        [_collectionView.xzm_footer setTitle:JobsInternationalization(@"正在加载中数据 ...") forState:XZMRefreshStateRefreshing];
+        // 设置字体
+        _collectionView.xzm_footer.font = UIFontWeightRegularSize(17);
+        // 设置颜色
+        _collectionView.xzm_footer.textColor = JobsBlueColor;
+        // 自动刷新(一进入程序就下拉刷新)
+        [_collectionView.xzm_header beginRefreshing];
+    }
+    ```
+
+
+### Test  
 
 <details id="Test">
  <summary><strong>点我了解详情</strong></summary>

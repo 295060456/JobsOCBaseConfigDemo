@@ -71,7 +71,8 @@ def appCommon
   pod 'AFNetworking' # https://github.com/AFNetworking/AFNetworking YES_SMP ⚠️作者停止维护
   pod 'Reachability'  # https://github.com/tonymillion/Reachability 检查联网情况 NO_SMP
   pod 'ReactiveObjC' # https://github.com/ReactiveCocoa/ReactiveObjC NO_SMP
-  pod 'MJRefresh' # https://github.com/CoderMJLee/MJRefresh NO_SMP
+  pod 'XZMRefresh' # https://github.com/xiezhongmin/XZMRefresh
+  pod 'MJRefresh' # https://github.com/CoderMJLee/MJRefresh NO_SMP 不支持横向刷新
   pod 'MJExtension' # https://github.com/CoderMJLee/MJExtension NO_SMP
   pod 'SDWebImage' # https://github.com/SDWebImage/SDWebImage YES_SMP
 #  pod 'YYKit' # https://github.com/ibireme/YYKit NO_SMP

@@ -63,7 +63,7 @@ JobsToggleNavViewProtocolSynthesize
 }
 
 -(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return [PwdSettingView viewSizeWithModel:nil];
+    return CGSizeMake(JobsWidth(410), JobsWidth(280));
 }
 #pragma mark —— 一些私有方法
 -(CGFloat)buttonWidth{

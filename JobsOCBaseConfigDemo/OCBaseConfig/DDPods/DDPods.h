@@ -140,6 +140,12 @@
 #import "MJRefresh.h"
 #endif
 
+#if __has_include(<XZMRefresh/XZMRefresh.h>)
+#import <XZMRefresh/XZMRefresh.h>
+#else
+#import "XZMRefresh.h"
+#endif
+
 #if __has_include(<SPAlertController/SPAlertController.h>)
 #import <SPAlertController/SPAlertController.h>
 #else

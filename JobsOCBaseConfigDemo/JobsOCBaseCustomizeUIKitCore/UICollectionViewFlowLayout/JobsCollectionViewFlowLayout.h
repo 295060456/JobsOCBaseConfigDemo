@@ -14,5 +14,6 @@
 #import "LMHWaterFallLayout.h"
 #import "KFZShopCatoryFlowLayput.h"
 #import "HQCollectionViewFlowLayout.h"
+#import "XZMLayout.h"
 
 #endif /* JobsCollectionViewFlowLayout_h */

@@ -26,6 +26,7 @@
 		CE8877AC2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE8877AA2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		CE8877BD2C51F1FF0085948C /* JobsNavBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */; };
 		CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877BB2C51F1FF0085948C /* JobsNavBar.m */; };
+		CEA116222C5278F8009D6FB3 /* XZMLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA116202C5278F8009D6FB3 /* XZMLayout.m */; };
 		CEC01BDF2C48DF300069C91A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB32C48AFED0069C91A /* TabBar.xcassets */; };
 		CEC01BE02C48DF330069C91A /* CONTACT US.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */; };
 		CEC01BE12C48DF360069C91A /* INVITE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB22C48AFAD0069C91A /* INVITE.xcassets */; };
@@ -1143,6 +1144,9 @@
 		CE8877BA2C51F1FF0085948C /* JobsNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNavBar.h; sourceTree = "<group>"; };
 		CE8877BB2C51F1FF0085948C /* JobsNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNavBar.m; sourceTree = "<group>"; };
 		CEA114BA2C522E00009D6FB3 /* JobsBaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseViewProtocol.h; sourceTree = "<group>"; };
+		CEA1161F2C5278F8009D6FB3 /* XZMLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZMLayout.h; sourceTree = "<group>"; };
+		CEA116202C5278F8009D6FB3 /* XZMLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZMLayout.m; sourceTree = "<group>"; };
+		CEA116242C527BF5009D6FB3 /* JobsBlock_Ex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBlock_Ex.h; sourceTree = "<group>"; };
 		CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "CONTACT US.xcassets"; sourceTree = "<group>"; };
 		CEC01AAE2C48AF7D0069C91A /* MY FAV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "MY FAV.xcassets"; sourceTree = "<group>"; };
 		CEC01AAF2C48AF950069C91A /* BANK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BANK.xcassets; sourceTree = "<group>"; };
@@ -3270,6 +3274,23 @@
 				CE8877BB2C51F1FF0085948C /* JobsNavBar.m */,
 			);
 			path = JobsNavBar;
+			sourceTree = "<group>";
+		};
+		CEA116212C5278F8009D6FB3 /* XZMLayout */ = {
+			isa = PBXGroup;
+			children = (
+				CEA1161F2C5278F8009D6FB3 /* XZMLayout.h */,
+				CEA116202C5278F8009D6FB3 /* XZMLayout.m */,
+			);
+			path = XZMLayout;
+			sourceTree = "<group>";
+		};
+		CEA116232C527BEF009D6FB3 /* JobsBlock_Ex */ = {
+			isa = PBXGroup;
+			children = (
+				CEA116242C527BF5009D6FB3 /* JobsBlock_Ex.h */,
+			);
+			path = JobsBlock_Ex;
 			sourceTree = "<group>";
 		};
 		CEC01AB42C48AFFE0069C91A /* old */ = {
@@ -6994,6 +7015,7 @@
 		CECE7F0A2C4512BF00764AF5 /* 其他的一些全局定义文件 */ = {
 			isa = PBXGroup;
 			children = (
+				CEA116232C527BEF009D6FB3 /* JobsBlock_Ex */,
 				CECE7F072C4512BF00764AF5 /* JobsBlock */,
 				CECE7F082C4512BF00764AF5 /* APIKey.h */,
 				CECE7F092C4512BF00764AF5 /* JobsDefineAllEnumHeader.h */,
@@ -9816,6 +9838,7 @@
 		CECE839C2C4513CD00764AF5 /* BaseCollectionViewFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
+				CEA116212C5278F8009D6FB3 /* XZMLayout */,
 				CECE83932C4513CD00764AF5 /* HQCollectionViewFlowLayout */,
 				CECE83972C4513CD00764AF5 /* KFZShopCatoryFlowLayput */,
 				CECE839B2C4513CD00764AF5 /* LMHWaterFallLayout */,
@@ -13644,6 +13667,7 @@
 				CECE81082C4512BF00764AF5 /* JobsAppDoorContentView.m in Sources */,
 				CECE85202C4513CE00764AF5 /* JobsLanguageManager.m in Sources */,
 				CECE7E9C2C450E5B00764AF5 /* KTVHCDataNetworkSource.m in Sources */,
+				CEA116222C5278F8009D6FB3 /* XZMLayout.m in Sources */,
 				CECE7EB22C450E5B00764AF5 /* TKPermissionBluetooth.m in Sources */,
 				CECE81552C4512BF00764AF5 /* TLTabBarAnimation.m in Sources */,
 				CECE85102C4513CE00764AF5 /* CALayer+Anim.m in Sources */,
