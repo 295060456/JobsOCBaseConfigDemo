@@ -2044,7 +2044,36 @@ NSObject <|-- BaseProtocol
   * 如果开启了分页滚动，即：`UIScrollView.pagingEnabled = YES;`。如果`scrollView.contentOffset.x`为负，<u>最后在这个方法里面会被调整为0</u>
   * 因为这个方法会被反复调用多次，所以一般的逻辑处理，不建议在这里进行处理
 
-### 25、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 25、对象间传值比较（**通知**/**Block**/**协议**）<a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+#### 25.1、正向传值一般是通过初始化方法、属性等手段正向传入
+
+#### 25.2、一般重点关注对象的反向传值
+
+* **通知**
+  * 万能的上帝模式。但<font color=red>**不建议过分的使用**</font>
+  * 有一定的系统开销，在最开始的iOS版本里面，通知的使用是有上限的。后期版本可以无限制的使用
+  * 如果对象释放的时候，不手动对其通知进行释放，可能会造成对象内存的溢出。所以，在iOS7以后，即便不写移除通知，系统帮我们解决
+* **Block**
+  * C语言底层的API，执行效率高。但是<font color=red>**只能单项订阅**</font>，<u>后出现的Block实现会覆盖掉之前的Block实现</u>。即，如果需要多个地方接收到数据，则不行
+  * **Block不一定开异步线程**
+  * 可以实现类似于内部类的功能
+  * <font color=red>**如果数据的发出发和接收方之间存在若干对象，需要层层反向传值，比较冗余**</font>
+  * 依附于实例变量，需要关注循环引用的问题
+* **协议**
+  * **协议也可以提取公共的头文件，作为一个规范，而广泛遵守**
+  * 引申出一个中间对象：代理（**Delegate**）
+  * 依附于实例变量。**协议同样存在循环引用的问题**
+  * 可以多点订阅，解决Block的痛点
+  * 容易造成代码割裂。<u>如果修改协议方法的定义，对应的协议方法的实现不会有警告或者报错，会降格为普通方法，会造成代码业务逻辑的变更</u>
+
+#### 25.3、总结
+
+* 一般建议系统级别的用通知。例如：检测键盘、横竖屏...
+* 对象间传值一般的业务场景是：需要传值的对象之间至多有一个中间对象。此时建议用Block
+* 如果需要涉及到多点订阅，那么使用**通知**或者**协议**
+
+### 26、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 
@@ -3483,8 +3512,83 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 ### 19、富文本 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 富文本的本质是告诉系统，某段文字的表达方式
+* 富文本是告诉系统，某段文字的表达方式。<u>其本质是一个带配置信息的字符串</u>
 
+* 如果要实现富文本某段文字的点击事件的监听，此时的承接控件不能是**`UILabel`**，而应该换成**`UITextView`**，并实现其相应的**<UITextViewDelegate>**方法
+
+  * ```objective-c
+    -(UITextView *)tipsTextView{
+        if (!_tipsTextView) {
+            _tipsTextView = UITextView.new;
+            _tipsTextView.textContainer.lineFragmentPadding = 0;
+            _tipsTextView.layoutManager.allowsNonContiguousLayout = YES;
+            _tipsTextView.delegate = self;
+            _tipsTextView.editable = NO;/// 必须禁止输入，否则点击将会弹出输入键盘
+            _tipsTextView.scrollEnabled = NO;/// 可选的，视具体情况而定
+            _tipsTextView.linkTextAttributes = @{NSForegroundColorAttributeName:HEXCOLOR(0xCCB17E)};/// 链接文字颜色
+            _tipsTextView.attributedText = self.richTextWithDataConfigMutArr(self.richLabelDataStringsMutArr_2);
+            _tipsTextView.userInteractionEnabled = YES;
+            [self addSubview:_tipsTextView];
+            [_tipsTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self);
+                make.top.equalTo(self.toggleBaseView.mas_bottom).offset(JobsWidth(5));
+                make.height.mas_equalTo(JobsWidth(20));
+            }];
+        }return _tipsTextView;
+    }
+    ```
+  
+  * **UITextViewDelegate**
+  
+    * iOS 17 之后弃用
+  
+      ```objective-c
+      /// 点击事件监听
+      #pragma clang diagnostic push
+      #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+      -(BOOL)textView:(UITextView *)textView
+      shouldInteractWithURL:(NSURL *)URL
+      inRange:(NSRange)characterRange
+      interaction:(UITextItemInteraction)interaction {
+          [WHToast jobsToastMsg:JobsInternationalization(@"专属客服")];
+          return YES;
+      }
+      #pragma clang diagnostic pop
+      ```
+  
+    * iOS 17 之后使用
+  
+      ```objective-c
+      /// 如果你只需要在用户点击URL时执行一个动作，可以使用primaryActionForTextItem:方法。这个方法允许你为指定的文本项（如URL）提供自定义的操作。
+      - (nullable UIAction *)textView:(UITextView *)textView
+             primaryActionForTextItem:(UITextItem *)textItem
+                        defaultAction:(UIAction *)defaultAction {
+          if (KindOfTextItemCls(textItem) && [textItem.link isEqual:@"你的URL".jobsUrl]) {
+              return [UIAction actionWithTitle:@"专属客服"
+                                         image:nil
+                                    identifier:nil
+                                       handler:^(__kindof UIAction * _Nonnull action) {
+                  [WHToast jobsToastMsg:JobsInternationalization(@"专属客服")];
+              }];
+          }return defaultAction; // 默认行为
+      }
+      /// 如果你希望显示一个自定义菜单而不是直接执行一个动作，可以使用menuConfigurationForTextItem:方法。
+      - (nullable UITextItemMenuConfiguration *)textView:(UITextView *)textView
+                            menuConfigurationForTextItem:(UITextItem *)textItem
+                                             defaultMenu:(UIMenu *)defaultMenu {
+          if (KindOfTextItemCls(textItem) && [textItem.link isEqual:@"你的URL".jobsUrl]) {
+              UIAction *customAction = [UIAction actionWithTitle:@"专属客服"
+                                                           image:nil
+                                                      identifier:nil
+                                                         handler:^(__kindof UIAction * _Nonnull action) {
+                  [WHToast jobsToastMsg:JobsInternationalization(@"专属客服")];
+              }];
+              UIMenu *customMenu = [UIMenu menuWithTitle:@"" children:@[customAction]];
+              return [UITextItemMenuConfiguration configurationWithMenu:customMenu];
+          }return nil; // 默认菜单
+      }
+      ```
+  
 * 运行机制
 
   * 将根数据源：`RichTextConfig` 赋值后，装载到可变数组里面

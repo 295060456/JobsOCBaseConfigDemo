@@ -266,7 +266,11 @@ NS_ASSUME_NONNULL_END
 #ifndef KindOfCtrlCls
 #define KindOfCtrlCls(data) [data isKindOfClass:UIControl.class]
 #endif /* KindOfCtrlCls */
-    
+
+#ifndef KindOfTextItemCls
+#define KindOfTextItemCls(data) [data isKindOfClass:UITextItem.class]
+#endif /* KindOfTextItemCls */
+
 #ifndef KindOfYTKAnimatingRequestAccessoryCls
 #define KindOfYTKAnimatingRequestAccessoryCls(data) [data isKindOfClass:YTKAnimatingRequestAccessory.class]
 #endif /* KindOfYTKAnimatingRequestAccessoryCls */
