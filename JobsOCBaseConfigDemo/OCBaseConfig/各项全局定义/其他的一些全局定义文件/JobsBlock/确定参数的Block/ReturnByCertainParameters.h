@@ -19,6 +19,7 @@ typedef id _Nullable(^JobsReturnIDByCGSizeBlock)(CGSize data);
 typedef UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
 typedef UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
 
+typedef NSParagraphStyle *_Nullable(^_Nullable JobsReturnParagraphStyleByTextAlignmentBlock)(NSTextAlignment data);
 typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString * _Nullable data);
 typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString * _Nullable data);
 

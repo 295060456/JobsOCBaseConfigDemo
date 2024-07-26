@@ -1002,7 +1002,7 @@ NSObject <|-- BaseProtocol
 
 ### 15、字符串 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 富文本字符串的优先级要高于普通字符串。也就意味着，如果调用了富文本字符串，即便将其设置为nil，普通字符串的设置依然不会奏效
+* **富文本字符串的优先级要高于普通字符串。也就意味着，如果调用了富文本字符串，即便将其设置为nil，普通字符串的设置依然不会奏效**
 
   ```objective-c
   -(UILabel *)titleLab{
@@ -1075,6 +1075,36 @@ NSObject <|-- BaseProtocol
 
   ```objective-c
   config_01.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
+  ```
+
+#### 15.2、<font color=red>**字符串比较**</font>
+
+* **字符串相等**
+
+  ```objective-c
+  -(JobsReturnBoolByIDBlock)isEqualToString{
+      @jobs_weakify(self)
+      return ^(NSString *data){
+          @jobs_strongify(self)
+          if ([data isKindOfClass:NSString.class]) {
+              return [self isEqualToString:data];
+          }return NO;
+      };
+  }
+  ```
+
+* **字符串包含**
+
+  ```objective-c
+  -(JobsReturnBoolByIDBlock)containsString{
+      @jobs_weakify(self)
+      return ^(NSString *data){
+          @jobs_strongify(self)
+          if ([data isKindOfClass:NSString.class]) {
+              return [self containsString:data];
+          }return NO;
+      };
+  }
   ```
 
 #### 15.3、更多...
@@ -2167,6 +2197,38 @@ NSObject <|-- BaseProtocol
     * ```objective-c
       @interface UIImageSymbolConfiguration : UIImageConfiguration
       ```
+  
+* 新的Api（**UIButtonConfiguration**）不带状态。即以下的带状态的无法配置。全部由**UIButtonConfiguration**接管
+
+  * ```objective-c
+    typedef NS_OPTIONS(NSUInteger, UIControlState) {
+        UIControlStateNormal       = 0,
+        UIControlStateHighlighted  = 1 << 0,                  // used when UIControl isHighlighted is set
+        UIControlStateDisabled     = 1 << 1,
+        UIControlStateSelected     = 1 << 2,                  // flag usable by app (see below)
+        UIControlStateFocused API_AVAILABLE(ios(9.0)) = 1 << 3, // Applicable only when the screen supports focus
+        UIControlStateApplication  = 0x00FF0000,              // additional flags available for application use
+        UIControlStateReserved     = 0xFF000000               // flags reserved for internal framework use
+    };
+    ```
+  
+  * ```objective-c
+    - (void)setTitle:(nullable NSString *)title forState:(UIControlState)state;                     // default is nil. title is assumed to be single line
+    - (void)setTitleColor:(nullable UIColor *)color forState:(UIControlState)state UI_APPEARANCE_SELECTOR; // default is nil. use opaque white
+    - (void)setTitleShadowColor:(nullable UIColor *)color forState:(UIControlState)state UI_APPEARANCE_SELECTOR; // default is nil. use 50% black
+    - (void)setImage:(nullable UIImage *)image forState:(UIControlState)state;                      // default is nil. should be same size if different for different states
+    - (void)setBackgroundImage:(nullable UIImage *)image forState:(UIControlState)state UI_APPEARANCE_SELECTOR; // default is nil
+    - (void)setPreferredSymbolConfiguration:(nullable UIImageSymbolConfiguration *)configuration forImageInState:(UIControlState)state UI_APPEARANCE_SELECTOR API_AVAILABLE(ios(13.0), tvos(13.0), watchos(6.0));
+    - (void)setAttributedTitle:(nullable NSAttributedString *)title forState:(UIControlState)state API_AVAILABLE(ios(6.0)); // default is nil. title is assumed to be single line
+    
+    - (nullable NSString *)titleForState:(UIControlState)state;          // these getters only take a single state value
+    - (nullable UIColor *)titleColorForState:(UIControlState)state;
+    - (nullable UIColor *)titleShadowColorForState:(UIControlState)state;
+    - (nullable UIImage *)imageForState:(UIControlState)state;
+    - (nullable UIImage *)backgroundImageForState:(UIControlState)state;
+    - (nullable UIImageSymbolConfiguration *)preferredSymbolConfigurationForImageInState:(UIControlState)state API_AVAILABLE(ios(13.0), tvos(13.0), watchos(6.0));
+    - (nullable NSAttributedString *)attributedTitleForState:(UIControlState)state API_AVAILABLE(ios(6.0));
+    ```
   
 * 对配置文件的修改：<font color=red>**必须对配置文件`UIButtonConfiguration *configuration`进行整体的替换**</font>
 

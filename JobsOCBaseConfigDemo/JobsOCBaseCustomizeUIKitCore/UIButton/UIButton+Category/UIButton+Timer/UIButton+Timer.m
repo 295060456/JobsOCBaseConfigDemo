@@ -10,7 +10,7 @@
 @implementation UIButton (Timer)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
--(instancetype)initWithConfig:(nullable ButtonTimerConfigModel *)config 
+-(instancetype)initWithConfig:(nullable ButtonTimerConfigModel *)config
    longPressGestureEventBlock:(JobsSelectorBlock _Nullable)longPressGestureEventBlock
               clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
     @jobs_weakify(self)
@@ -167,7 +167,7 @@
             self.jobsResetAttributedTitle([NSAttributedString.alloc initWithString:self.btnTimerConfig.readyPlayValue.text
                                                                         attributes:@{NSForegroundColorAttributeName:self.btnTimerConfig.readyPlayValue.textCor,
                                                                                      NSFontAttributeName:self.btnTimerConfig.readyPlayValue.font,
-                                                                                     NSParagraphStyleAttributeName:[self jobsparagraphStyleByTextAlignment:NSTextAlignmentCenter]}]);
+                                                                                     NSParagraphStyleAttributeName:self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter)}]);
         }else{
             self.normalTitle(self.btnTimerConfig.readyPlayValue.text);
         }
@@ -191,7 +191,7 @@
             self.jobsResetAttributedTitle([NSAttributedString.alloc initWithString:self.btnTimerConfig.runningValue.text
                                                                         attributes:@{NSForegroundColorAttributeName:self.btnTimerConfig.runningValue.textCor,
                                                                                      NSFontAttributeName:self.btnTimerConfig.runningValue.font,
-                                                                                     NSParagraphStyleAttributeName:[self jobsparagraphStyleByTextAlignment:NSTextAlignmentCenter]}]);
+                                                                                     NSParagraphStyleAttributeName:self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter)}]);
         }else{
             self.normalTitle(self.btnTimerConfig.runningValue.text);
         }
@@ -215,7 +215,7 @@
             self.jobsResetAttributedTitle([NSAttributedString.alloc initWithString:self.btnTimerConfig.endValue.text
                                                                         attributes:@{NSForegroundColorAttributeName:self.btnTimerConfig.endValue.textCor,
                                                                                      NSFontAttributeName:self.btnTimerConfig.endValue.font,
-                                                                                     NSParagraphStyleAttributeName:[self jobsparagraphStyleByTextAlignment:NSTextAlignmentCenter]}]);
+                                                                                     NSParagraphStyleAttributeName:self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter)}]);
         }else{
             self.normalTitle(self.btnTimerConfig.endValue.text);
         }

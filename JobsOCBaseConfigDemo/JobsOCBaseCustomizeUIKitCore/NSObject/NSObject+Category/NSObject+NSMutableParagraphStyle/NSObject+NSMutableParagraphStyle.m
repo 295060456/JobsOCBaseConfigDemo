@@ -48,26 +48,30 @@
     return paragraphStyle;
 }
 /// 通过NSTextAlignment映射NSParagraphStyle *
--(NSParagraphStyle *)jobsparagraphStyleByTextAlignment:(NSTextAlignment)textAlignment{
-    switch (textAlignment) {
-        case NSTextAlignmentLeft:{
-            return (NSParagraphStyle *)self.jobsParagraphStyleLeft;
-        }break;
-        case NSTextAlignmentCenter:{
-            return (NSParagraphStyle *)self.jobsParagraphStyleCenter;
-        }break;
-        case NSTextAlignmentRight:{
-            return (NSParagraphStyle *)self.jobsParagraphStyleRight;
-        }break;
-        case NSTextAlignmentJustified:{
-            return (NSParagraphStyle *)self.jobsParagraphStyleJustified;
-        }break;
-        case NSTextAlignmentNatural:{
-            return (NSParagraphStyle *)self.jobsParagraphStyleNatural;
-        }break;
-        default:
-            break;
-    }
+-(JobsReturnParagraphStyleByTextAlignmentBlock)jobsparagraphStyleByTextAlignment{
+    @jobs_weakify(self)
+    return ^(NSTextAlignment textAlignment) {
+        @jobs_strongify(self)
+        switch (textAlignment) {
+            case NSTextAlignmentLeft:{
+                return (NSParagraphStyle *)self.jobsParagraphStyleLeft;
+            }break;
+            case NSTextAlignmentCenter:{
+                return (NSParagraphStyle *)self.jobsParagraphStyleCenter;
+            }break;
+            case NSTextAlignmentRight:{
+                return (NSParagraphStyle *)self.jobsParagraphStyleRight;
+            }break;
+            case NSTextAlignmentJustified:{
+                return (NSParagraphStyle *)self.jobsParagraphStyleJustified;
+            }break;
+            case NSTextAlignmentNatural:{
+                return (NSParagraphStyle *)self.jobsParagraphStyleNatural;
+            }break;
+            default:
+                break;
+        }
+    };
 }
 
 @end

@@ -123,7 +123,7 @@
                 btnConfiguration.attributedTitle = [NSAttributedString.alloc initWithString:title
                                                                                  attributes:@{NSForegroundColorAttributeName:titleCor,
                                                                                               NSFontAttributeName:titleFont,
-                                                                                              NSParagraphStyleAttributeName:[self jobsparagraphStyleByTextAlignment:textAlignment]}];
+                                                                                              NSParagraphStyleAttributeName:self.jobsparagraphStyleByTextAlignment(textAlignment)}];
             }
         }
         /// 设置按钮副标题的文本属性
@@ -135,7 +135,7 @@
                 btnConfiguration.attributedSubtitle = [NSAttributedString.alloc initWithString:subTitle
                                                                                  attributes:@{NSForegroundColorAttributeName:subTitleCor,
                                                                                               NSFontAttributeName:subTitleFont,
-                                                                                              NSParagraphStyleAttributeName:[self jobsparagraphStyleByTextAlignment:subTextAlignment]}];
+                                                                                              NSParagraphStyleAttributeName:self.jobsparagraphStyleByTextAlignment(subTextAlignment)}];
             }
         }
     }
@@ -845,7 +845,17 @@
     @jobs_weakify(self)
     return ^(NSTextAlignment textAlignment) {
         @jobs_strongify(self)
-        self.titleLabel.textAlignment = textAlignment;
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.attributedTitle = [NSAttributedString.alloc initWithString:self.titleForNormalState
+                                                                             attributes:@{NSForegroundColorAttributeName:self.normalTitleColor,
+                                                                                          NSFontAttributeName:self.titleFont,
+                                                                                          NSParagraphStyleAttributeName:self.jobsparagraphStyleByTextAlignment (textAlignment)}];
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            self.titleLabel.textAlignment = textAlignment;
+        }
     };
 }
 
@@ -853,7 +863,15 @@
     @jobs_weakify(self)
     return ^(UIFont *_Nonnull font) {
         @jobs_strongify(self)
-        self.titleLabel.font = font;
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.titleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:font
+                                                                                                       btnTitleCor:self.titleColorForNormalState];
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            self.titleLabel.font = font;
+        }
     };
 }
 
@@ -861,7 +879,14 @@
     @jobs_weakify(self)
     return ^(UIImage *_Nonnull image) {
         @jobs_strongify(self)
-        [self setImage:image forState:UIControlStateNormal];
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.image = image;
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            [self setImage:image forState:UIControlStateNormal];
+        }
     };
 }
 
@@ -884,7 +909,14 @@
     @jobs_weakify(self)
     return ^(NSString *_Nonnull title) {
         @jobs_strongify(self)
-        [self setTitle:title forState:UIControlStateNormal];
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.title = title;/// 文本颜色
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            [self setTitle:title forState:UIControlStateNormal];
+        }
     };
 }
 
@@ -892,7 +924,14 @@
     @jobs_weakify(self)
     return ^(UIColor *_Nonnull titleColor) {
         @jobs_strongify(self)
-        [self setTitleColor:titleColor forState:UIControlStateNormal];
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.baseForegroundColor = titleColor;/// 文本颜色
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            [self setTitleColor:titleColor forState:UIControlStateNormal];
+        }
     };
 }
 /// 富文本
@@ -900,34 +939,65 @@
     @jobs_weakify(self)
     return ^(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)
-        [self setAttributedTitle:title forState:UIControlStateNormal];
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.attributedTitle = title;
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            [self setAttributedTitle:title forState:UIControlStateNormal];
+        }
     };
 }
 #pragma mark —— UIButton.UIControlStateNormal.get
 -(nullable UIImage *)imageForNormalState{
-    return [self imageForState:UIControlStateNormal];
+    if (@available(iOS 16.0, *)) {
+        return self.configuration.image ? : [self imageForState:UIControlStateNormal];
+    } else {
+        return [self imageForState:UIControlStateNormal];
+    }
 }
 
 -(nullable UIImage *)backgroundImageForNormalState{
-    return [self backgroundImageForState:UIControlStateNormal];
+    if (@available(iOS 16.0, *)) {
+        return self.configuration.background.image ? : [self backgroundImageForState:UIControlStateNormal];
+    } else {
+        return [self backgroundImageForState:UIControlStateNormal];
+    }
 }
 
 -(nullable NSString *)titleForConfigurationAttributed{
-    return self.configuration.attributedTitle.string;
+    if (@available(iOS 16.0, *)) {
+        return self.configuration.attributedTitle.string ? : self.titleLabel.attributedText.string;
+    } else {
+        return self.titleLabel.attributedText.string;
+    }
 }
 
 -(nullable NSString *)titleForNormalState{
-    return [self titleForState:UIControlStateNormal];
+    if (@available(iOS 16.0, *)) {
+        return self.configuration.title ? : [self titleForState:UIControlStateNormal];
+    } else {
+        return [self titleForState:UIControlStateNormal];
+    }
 }
 
 -(nullable UIColor *)titleColorForNormalState{
-    return [self titleColorForState:UIControlStateNormal];
+    if (@available(iOS 16.0, *)) {
+        return self.configuration.baseForegroundColor ? : [self titleColorForState:UIControlStateNormal];
+    } else {
+        return [self titleColorForState:UIControlStateNormal];
+    }
 }
 
 -(nullable NSAttributedString *)attributedTitleForNormalState{
-    return [self attributedTitleForState:UIControlStateNormal];
+    if (@available(iOS 16.0, *)) {
+        return self.configuration.attributedTitle ? : [self attributedTitleForState:UIControlStateNormal];
+    } else {
+        return [self attributedTitleForState:UIControlStateNormal];
+    }
 }
-#pragma mark —— UIButton.UIControlStateSelected.set
+#pragma mark —— UIButton.带状态的image set/get
 -(jobsByImageBlock _Nonnull)selectedImage{
     @jobs_weakify(self)
     return ^(UIImage *_Nonnull image) {
@@ -936,6 +1006,10 @@
     };
 }
 
+-(nullable UIImage *)imageForSelectedState{
+    return [self imageForState:UIControlStateSelected];
+}
+#pragma mark —— UIButton.带状态的backgroundImage set/get
 -(jobsByImageBlock _Nonnull)selectedBackgroundImage{
     @jobs_weakify(self)
     return ^(UIImage *_Nonnull backgroundImage) {
@@ -944,6 +1018,10 @@
     };
 }
 
+-(nullable UIImage *)backgroundImageForSelectedState{
+    return [self backgroundImageForState:UIControlStateSelected];
+}
+#pragma mark —— UIButton.带状态的selectedTitle set/get
 -(jobsByStringBlock _Nonnull)selectedTitle{
     @jobs_weakify(self)
     return ^(NSString *_Nonnull title) {
@@ -952,6 +1030,10 @@
     };
 }
 
+-(nullable NSString *)titleForSelectedState{
+    return [self titleForState:UIControlStateSelected];
+}
+#pragma mark —— UIButton.带状态的selectedTitleColor set/get
 -(jobsByCorBlock _Nonnull)selectedTitleColor{
     @jobs_weakify(self)
     return ^(UIColor *_Nonnull titleColor) {
@@ -959,29 +1041,17 @@
         [self setTitleColor:titleColor forState:UIControlStateSelected];
     };
 }
-/// 富文本
+
+-(nullable UIColor *)titleColorForSelectedState{
+    return [self titleColorForState:UIControlStateSelected];
+}
+#pragma mark —— UIButton.带状态的富文本 set/get
 -(jobsByAttributedStringBlock _Nonnull)selectedAttributedTitle{
     @jobs_weakify(self)
     return ^(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)
         [self setAttributedTitle:title forState:UIControlStateSelected];
     };
-}
-#pragma mark —— UIButton.UIControlStateSelected.get
--(nullable UIImage *)imageForSelectedState{
-    return [self imageForState:UIControlStateSelected];
-}
-
--(nullable UIImage *)backgroundImageForSelectedState{
-    return [self backgroundImageForState:UIControlStateSelected];
-}
-
--(nullable NSString *)titleForSelectedState{
-    return [self titleForState:UIControlStateSelected];
-}
-
--(nullable UIColor *)titleColorForSelectedState{
-    return [self titleColorForState:UIControlStateSelected];
 }
 
 -(nullable NSAttributedString *)attributedTitleForSelectedState{
