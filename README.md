@@ -419,11 +419,11 @@ Current targets:
 
 * 背景意义：**统一全局的Block定义，减少冗余代码**
 
-* <font color=blue>**特别说明**</font>：[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) 只对原生系统的类进行封装。如果有外源自定义的类，移步[<font color=red>**JobsBlock_Ex**</font>]()
+* <font color=blue>**特别说明**</font>：[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) 只对原生系统的类进行封装。如果有外源自定义的类，移步[<font color=red>**JobsBlock_Ex**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%85%B6%E4%BB%96%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6/JobsBlock_Ex/JobsBlock_Ex.h)
 
   * 因为外源自定义的类会引用[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
   * 如果[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)再继续引用这些外源自定义类，就会导致循环引用，无法编译
-  * 同时，[<font color=red>**JobsBlock_Ex**</font>]()也不能被全局所包含。<u>在需要用的地方，单独的引入</u>
+  * 同时，[<font color=red>**JobsBlock_Ex**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%85%B6%E4%BB%96%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6/JobsBlock_Ex/JobsBlock_Ex.h)也不能被全局所包含。<u>在需要用的地方，单独的引入</u>
 
 * ```ruby
   pod 'JobsBlock' # https://github.com/295060456/JobsBlock
@@ -1830,8 +1830,8 @@ NSObject <|-- BaseProtocol
 
 ### 22、<font color=red>**全局工具箱**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* [**JobsAppTools**]() （单例模式）
-* [**NSObject+AppTools**]() （分类模式）
+* [**JobsAppTools**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/JobsAppTools) （单例模式）
+* [**NSObject+AppTools**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BAppTools) （分类模式）
 * [**`FileFolderHandleModel`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/FileFolderHandleTool)：**文件夹操作**
 * [**`JobsLoadingImage`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIImage/JobsLoadingImage)：**图片存取**
 
@@ -2152,7 +2152,7 @@ NSObject <|-- BaseProtocol
   * 得出的 UIButton 是没有约束的，需要自己在外界加
   * 关注实现类：[<font color=blue>**`@implementation UIButton (UI)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIButton/UIButton+Category/UIButton+UI)
   
-* [<font color=blue>**`@interface UIButtonModel : BaseModel<BaseButtonProtocol>`**</font>]()
+* [<font color=blue>**`@interface UIButtonModel : BaseModel<BaseButtonProtocol>`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/UIViewModelFamily/UIButtonModel)
 
   * 可以对单个的**UIButton**进行配置
   * 可以批量对**UIButton**进行配置（自带数据源）
@@ -2992,7 +2992,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 #### 10.2、导航栏
 
-#### 10.2.1、[**`GKNavigationBar`**](https://github.com/QuintGao/GKNavigationBar)
+##### 10.2.1、[**`GKNavigationBar`**](https://github.com/QuintGao/GKNavigationBar)
 
 * ```ruby
   pod 'GKNavigationBar' # https://github.com/QuintGao/GKNavigationBar NO_SMP
@@ -3025,12 +3025,41 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * 关注实现类：[**`@interface BaseViewController : UIViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/BaseViewController)
   * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
 
-#### 10.2.2、[**JobsNavBar**]()
+##### 10.2.2、[**JobsNavBar**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/JobsNavBar)
 
 * 适配横屏
-* 3个子控件：左按钮/中间的标题/右边的按钮
-* 可以自定义Bar的高度
+
+* 内部含3个子控件：左按钮/中间的标题/右边的按钮。如果右边希望多个子控件按钮，获取[**JobsNavBar**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/JobsNavBar)以后进行添加
+
+* 可以自定义**NavBar**的高度
+
 * 完全一个新的View，不涉及系统的**UINavigationBar**
+
+* 以分类的方式集成在**UIViewController**层。关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
+
+* 配置并使用
+
+  * ```objective-c
+    [self makeNavBarConfig];
+    self.navBar.alpha = 1;
+    ```
+
+    ```objective-c
+    -(UIButtonModel *)btnModel{
+        if(!_btnModel){
+            _btnModel = UIButtonModel.new;
+            _btnModel.backgroundImage = JobsIMG(@"联系我们");
+            _btnModel.roundingCorners = UIRectCornerAllCorners;
+            _btnModel.baseBackgroundColor = JobsClearColor;
+        }return _btnModel;
+    }
+    
+    -(void)makeNavBarConfig{
+        JobsNavBarConfig *_navBarConfig = JobsNavBarConfig.new;
+        _navBarConfig.closeBtnModel = self.btnModel;
+        self.navBarConfig = _navBarConfig;
+    }
+    ```
 
 #### 10.3、推控制器
 
@@ -4829,7 +4858,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-#### 31.2、[**`JobsToggleView`**]()优化自[**`RPTaggedNavView`**](https://github.com/RollingPin/RPTaggedNavView)
+#### 31.2、[**`JobsToggleView`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/JobsToggleView)优化自[**`RPTaggedNavView`**](https://github.com/RollingPin/RPTaggedNavView)
 
 * `JobsToggleBaseView`
   * <font color=red>**这是一个纯视图**</font> 对外调用这个视图容器
@@ -4909,7 +4938,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-#### 31.3、[**`JobsLinkageMenuView`**]()优化自 [**`LinkageMenuView`**](https://github.com/EmotionV/LinkageMenu)
+#### 31.3、[**`JobsLinkageMenuView`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/JobsLinkageMenuView)优化自 [**`LinkageMenuView`**](https://github.com/EmotionV/LinkageMenu)
 
 * <font color=red>**这是一个纯视图**</font>
 
