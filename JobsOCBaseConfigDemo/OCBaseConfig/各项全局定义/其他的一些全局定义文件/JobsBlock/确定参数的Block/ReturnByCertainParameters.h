@@ -33,6 +33,7 @@ typedef CGRect (^ _Nullable JobsReturnCGRectByIDBlock)(id _Nullable data);
 typedef CGRect (^_Nullable JobsReturnCGRectByCGPointBlock)(CGPoint data);
 typedef CGRect (^_Nullable JobsReturnCGRectByCGSizeBlock)(CGSize data);
 typedef CGRect (^_Nullable JobsReturnCGRectByCGFloatBlock)(CGFloat data);
+typedef CGRect (^_Nullable JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,UIView * _Nonnull superView);
 
 typedef UIColor *_Nonnull(^_Nullable JobsReturnColorByCGFloatBlock)(CGFloat data);
 

@@ -13,6 +13,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButtonModel : BaseModel<BaseButtonProtocol>
+#pragma mark —— 对方位
+@property(nonatomic,assign)CGFloat btn_x;
+@property(nonatomic,assign)CGFloat btn_y;
+@property(nonatomic,assign)CGFloat btn_offset_x;
+@property(nonatomic,assign)CGFloat btn_offset_y;
+@property(nonatomic,assign)CGFloat btn_width;
+@property(nonatomic,assign)CGFloat btn_height;
 #pragma mark —— #import "UIButton+UI.h" 针对初始化方法的统一配置
 @property(nonatomic,strong,nullable)UIButtonConfiguration *btnConfiguration;
 @property(nonatomic,strong,nullable)UIBackgroundConfiguration *background;

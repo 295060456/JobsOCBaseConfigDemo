@@ -30,8 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGPoint origin;
 #pragma mark —— 一些工具方法
 /// 重设Frame
+/// 重设Frame
 -(JobsReturnCGRectByCGFloatBlock _Nullable)resetOriginX;
+-(JobsReturnCGRectByCGFloatAndUIViewBlock _Nullable)resetRightX;
 -(JobsReturnCGRectByCGFloatBlock _Nullable)resetOriginY;
+-(JobsReturnCGRectByCGFloatAndUIViewBlock _Nullable)resetBottomY;
 -(JobsReturnCGRectByCGFloatBlock _Nullable)resetWidth;
 -(JobsReturnCGRectByCGFloatBlock _Nullable)resetHeight;
 -(JobsReturnCGRectByCGPointBlock _Nullable)resetOrigin;

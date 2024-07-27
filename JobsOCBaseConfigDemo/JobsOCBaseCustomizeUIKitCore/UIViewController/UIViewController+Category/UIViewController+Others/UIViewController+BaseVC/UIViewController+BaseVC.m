@@ -244,5 +244,40 @@ JobsKey(_jobsTag)
 -(void)setJobsTag:(NSUInteger)jobsTag{
     Jobs_setAssociatedRETAIN_NONATOMIC(_jobsTag, @(jobsTag))
 }
+#pragma mark —— @property(nonatomic,strong)JobsNavBar *navBar;
+JobsKey(_navBar)
+@dynamic navBar;
+-(void)setNavBar:(JobsNavBar *)navBar{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_navBar, navBar)
+}
+
+-(JobsNavBar *)navBar{
+    JobsNavBar *NavBar = Jobs_getAssociatedObject(_navBar);
+    if(!NavBar){
+        NavBar = JobsNavBar.new;
+        if(JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape){
+            NavBar.navBarConfig.backBtnModel.btn_offset_x = JobsWidth(40);
+            NavBar.navBarConfig.closeBtnModel.btn_offset_x = JobsWidth(40);
+        }
+        NavBar.navBarConfig.title = self.viewModel.backBtnTitleModel.text;
+        [self.view addSubview:NavBar];
+        [NavBar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.equalTo(self.view);
+            make.height.mas_equalTo(JobsWidth(40));
+        }];
+        [self.view layoutIfNeeded];
+        [NavBar richElementsInViewWithModel:nil];
+        [self.view layoutIfNeeded];
+        @jobs_weakify(self)
+        [NavBar actionNavBarBackBtnClickBlock:^(UIButton * _Nullable data) {
+            @jobs_strongify(self)
+            [self backBtnClickEvent:data];
+        }];
+        [NavBar actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable data) {
+            @jobs_strongify(self)
+        }];
+        Jobs_setAssociatedRETAIN_NONATOMIC(_navBar, NavBar)
+    }return NavBar;
+}
 
 @end

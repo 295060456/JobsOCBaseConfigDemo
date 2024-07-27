@@ -63,6 +63,8 @@ NS_ASSUME_NONNULL_END
 @synthesize jobsBlock = _jobsBlock;\
 @synthesize jobsBlockMutArr = _jobsBlockMutArr;\
 \
+@synthesize navBgImage = _navBgImage;\
+@synthesize navBgCor = _navBgCor;\
 @synthesize image = _image;\
 @synthesize bgImage = _bgImage;\
 @synthesize imageURLString = _imageURLString;\
@@ -206,6 +208,8 @@ NS_ASSUME_NONNULL_END
 @dynamic jobsBlock;\
 @dynamic jobsBlockMutArr;\
 \
+@dynamic navBgImage;\
+@dynamic navBgCor;\
 @dynamic image;\
 @dynamic bgImage;\
 @dynamic imageURLString;\

@@ -1164,59 +1164,7 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-### 17、导航栏`NavigationBar` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
-
-* 针对控制器
-
-  * 摒弃系统的，而转为使用第三方[**`GKNavigationBar`**](https://github.com/QuintGao/GKNavigationBar)
-
-  * ```ruby
-    pod 'GKNavigationBar' # https://github.com/QuintGao/GKNavigationBar NO_SMP
-    ```
-
-  * 背景和原因
-
-    * 系统原生的`NavigationBar`晦涩难懂不方便修改，很多人理解不深刻容易出问题
-    * 系统原生的`NavigationBar`有很多内部类（系统创建但不希望程序员进行直接访问的）。某些版本内部类的图层结构会用有所不同
-    * 第三方`GKNavigationBar`因为是分类实现，没有代码入侵性，更加的安全和方便
-    * 第三方`GKNavigationBar`更加契合国人的开发思维
-
-  * 应用层实现
-
-    * 关注实现类：[**`@interface BaseViewController : UIViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/BaseViewController)
-    * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
-
-* 针对纯视图
-
-  * [**JobsNavBar**]()
-
-  * 接入方式
-
-    ```objective-c
-    -(JobsNavBar *)navBar{
-        if(!_navBar){
-            _navBar = JobsNavBar.new;
-            _navBar.navBarConfig.title = JobsInternationalization(@"Password Setting/Changing");
-            [self addSubview:_navBar];
-            [_navBar mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.left.right.equalTo(self);
-                make.height.mas_equalTo(JobsWidth(40));
-            }];
-            [self layoutIfNeeded];
-            [_navBar richElementsInViewWithModel:nil];
-            @jobs_weakify(self)
-            [_navBar actionNavBarBackBtnClickBlock:^(UIButton * _Nullable data) {
-                @jobs_strongify(self)
-                [self tf_hide];
-                self.show_view(self.loginView);
-            }];
-            [_navBar actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable data) {
-                @jobs_strongify(self)
-                [self tf_hide];
-            }];
-        }return _navBar;
-    }
-    ```
+### 17、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 ### 18、输入框（UITextField） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -2659,6 +2607,24 @@ NSObject <|-- BaseProtocol
   ```objective-c
   -(void)backBtnClickEvent:(UIButton *_Nullable)sender;
   ```
+  
+  ```objective-c
+  ///【子类需要覆写 】创建返回键的点击事件
+  -(void)backBtnClickEvent:(UIButton *_Nullable)sender{
+      if (self.jobsBackBlock) self.jobsBackBlock(sender);
+      switch (self.pushOrPresent) {
+          case ComingStyle_PRESENT:{
+              [self dismissViewControllerAnimated:YES completion:nil];
+          }break;
+          case ComingStyle_PUSH:{
+              self.navigationController ? [self.navigationController popViewControllerAnimated:YES] : [self dismissViewControllerAnimated:YES completion:nil];
+          }break;
+              
+          default:
+              break;
+      }
+  }
+  ```
 
 </details>
 
@@ -3023,9 +2989,50 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行
   * 命名为`BaseViewController`也是充分考虑同业者的偏好习惯
   * 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`
-  * <font color=red>禁用系统的`UINavigationBar`转而用 [**`gk_navigationBar`**](https://github.com/QuintGao/GKNavigationBar)进行替代 </font>。分类实现，无代码入侵
 
-#### 10.2、推控制器
+#### 10.2、导航栏
+
+#### 10.2.1、[**`GKNavigationBar`**](https://github.com/QuintGao/GKNavigationBar)
+
+* ```ruby
+  pod 'GKNavigationBar' # https://github.com/QuintGao/GKNavigationBar NO_SMP
+  ```
+
+* 产生的背景和原因
+
+  * 系统原生的`NavigationBar`晦涩难懂不方便修改，很多人理解不深刻容易出问题
+  * 系统原生的`NavigationBar`有很多内部类（系统创建但不希望程序员进行直接访问的）。某些版本内部类的图层结构会用有所不同
+  * 第三方`GKNavigationBar`因为是分类实现，没有代码入侵性，更加的安全和方便
+  * 第三方`GKNavigationBar`更加契合国人的开发思维
+
+* 一般情况下，需要<font color=red>禁用系统的`UINavigationBar`转而用 [**`gk_navigationBar`**](https://github.com/QuintGao/GKNavigationBar)进行替代 </font>
+
+* 分类实现，无代码入侵
+
+* [**`gk_navigationBar`**](https://github.com/QuintGao/GKNavigationBar)没有做到对横屏模式的很好兼容，且没有办法自定义 [**`gk_navigationBar`**](https://github.com/QuintGao/GKNavigationBar)的高度
+
+* 对系统类做了扩充和兼容
+
+  * <font color=blue>**@interface UIBarButtonItem (GKNavigationBar)**</font>
+  * <font color=blue>**@interface UIImage (GKNavigationBar)**</font>
+  * <font color=blue>**@interface UINavigationController (GKNavigationBar)**</font>
+  * <font color=blue>**@interface UINavigationItem (GKNavigationBar)**</font>
+  * <font color=blue>**@interface UIViewController (GKNavigationBar)**</font>
+  * <font color=red>**@interface GKCustomNavigationBar : UINavigationBar**</font>
+
+* 在这个基础上进行的二次封装
+
+  * 关注实现类：[**`@interface BaseViewController : UIViewController`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/BaseViewController)
+  * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
+
+#### 10.2.2、[**JobsNavBar**]()
+
+* 适配横屏
+* 3个子控件：左按钮/中间的标题/右边的按钮
+* 可以自定义Bar的高度
+* 完全一个新的View，不涉及系统的**UINavigationBar**
+
+#### 10.3、推控制器
 
   * 关注实现类：[**`@interface NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
 
@@ -3088,11 +3095,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                                   success:(jobsByIDBlock _Nullable)successBlock;
     ```
 
-  #### 10.3、[**`UIViewController`转场动画的使用方法**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition/UIViewController%2BXLBubbleTransition.md/UIViewController%2BXLBubbleTransition.md)
+  #### 10.4、[**`UIViewController`转场动画的使用方法**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition/UIViewController%2BXLBubbleTransition.md/UIViewController%2BXLBubbleTransition.md)
 
   * 关注实现类：[**@interface UIViewController (XLBubbleTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition)
 
-#### 10.4、<font color=red>**悬浮视图**</font>
+#### 10.5、<font color=red>**悬浮视图**</font>
 
   * 以分类的方式，定义在`view`层，针对全局所有的`UIView *`
 
@@ -3152,10 +3159,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       }
       ```
 
-####  10.5、防止过多的`presented`模态推出`UIViewController`
+####  10.6、防止过多的`presented`模态推出`UIViewController`
   * 关注实现类：[**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)
 
-#### 10.6、<font color=red id=寻找当前控制器>**寻找当前控制器**</font>
+#### 10.7、<font color=red id=寻找当前控制器>**寻找当前控制器**</font>
 
 * 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
 

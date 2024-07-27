@@ -74,6 +74,7 @@
     self.titleLab.alpha = 1;
     self.backBtn.alpha = 1;
     self.closeBtn.alpha = 1;
+    [self layoutIfNeeded];
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 //+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
@@ -98,6 +99,18 @@
             }
         }];
     }return _navBarConfig;
+}
+
+-(BaseButton *)getBackBtn{
+    return self.backBtn;
+}
+
+-(UILabel *)getTitleLab{
+    return self.titleLab;
+}
+
+-(BaseButton *)getCloseBtn{
+    return self.closeBtn;
 }
 
 -(void)actionNavBarBackBtnClickBlock:(JobsNavBarBackBtnClickAction)objectBlock{
@@ -171,7 +184,7 @@
         [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(8), JobsWidth(18)));
             make.centerY.equalTo(self);
-            make.left.equalTo(self).offset(JobsWidth(20));
+            make.left.equalTo(self).offset(self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(20));
         }];
     }return _backBtn;
 }
@@ -218,7 +231,7 @@
         [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(18), JobsWidth(18)));
             make.centerY.equalTo(self);
-            make.right.equalTo(self).offset(JobsWidth(-15));
+            make.right.equalTo(self).offset(-(self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(15)));
         }];
     }return _closeBtn;
 }

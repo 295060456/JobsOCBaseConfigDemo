@@ -22,12 +22,34 @@
     };
 }
 
+-(JobsReturnCGRectByCGFloatAndUIViewBlock _Nullable)resetRightX{
+    @jobs_weakify(self)
+    return ^(CGFloat data,UIView *superView) {
+        @jobs_strongify(self)
+        CGRect frame = self.frame;
+        frame.origin.x = superView.width - data - self.width;
+        self.frame = frame;
+        return self.frame;
+    };
+}
+
 -(JobsReturnCGRectByCGFloatBlock _Nullable)resetOriginY{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.origin.y = data;
+        self.frame = frame;
+        return self.frame;
+    };
+}
+
+-(JobsReturnCGRectByCGFloatAndUIViewBlock _Nullable)resetBottomY{
+    @jobs_weakify(self)
+    return ^(CGFloat data,UIView *superView) {
+        @jobs_strongify(self)
+        CGRect frame = self.frame;
+        frame.origin.x = superView.height - data - self.height;
         self.frame = frame;
         return self.frame;
     };

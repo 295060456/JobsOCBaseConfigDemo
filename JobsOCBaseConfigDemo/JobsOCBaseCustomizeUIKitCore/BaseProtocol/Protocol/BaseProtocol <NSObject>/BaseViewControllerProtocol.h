@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewProtocol.h"
 #import "JobsBlock.h"
+#import "JobsNavBar.h"
 
 #if __has_include(<SPAlertController/SPAlertController.h>)
 #import <SPAlertController/SPAlertController.h>
@@ -51,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)ComingStyle pushOrPresent;
 @property(nonatomic,assign)BOOL setupNavigationBarHidden;
 @property(nonatomic,strong)UIView *statusBar;
+@property(nonatomic,strong)JobsNavBar *navBar;
 /// 更新状态栏颜色为自定义的颜色
 -(jobsByCorBlock _Nonnull)updateStatusBarCor;
 /// 恢复状态栏颜色

@@ -20,12 +20,11 @@ UIViewModelProtocol_synthesize
 BaseViewProtocol_synthesize
 #pragma mark —— BaseViewControllerProtocol
 BaseViewControllerProtocol_synthesize
-
 - (void)dealloc{
     JobsRemoveNotification(self);;
     [self.view endEditing:YES];
     if (JobsDebug) {
-        toast([NSString stringWithFormat:@"%@%@",JobsInternationalization(@"成功销毁了控制器"),NSStringFromClass(self.class)]);
+        toast(JobsInternationalization(@"成功销毁了控制器").add(NSStringFromClass(self.class)));
         NSLog(@"%@",JobsLocalFunc);
         PrintRetainCount(self)
     }
@@ -55,7 +54,7 @@ BaseViewControllerProtocol_synthesize
         NSLog(@"退出页面的逻辑");
         return nil;
     };
-    [self UIViewControllerLifeCycle:JobsLocalFunc];
+    self.UIViewControllerLifeCycle(JobsLocalFunc);
 }
 
 - (void)viewDidLoad {
@@ -93,7 +92,7 @@ BaseViewControllerProtocol_synthesize
  }
  */
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    [self UIViewControllerLifeCycle:JobsLocalFunc];
+    self.UIViewControllerLifeCycle(JobsLocalFunc);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -102,14 +101,14 @@ BaseViewControllerProtocol_synthesize
     NSLog(@"%d",self.setupNavigationBarHidden);
     self.isHiddenNavigationBar = self.setupNavigationBarHidden;
     [self.navigationController setNavigationBarHidden:self.setupNavigationBarHidden animated:animated];
-    [self UIViewControllerLifeCycle:JobsLocalFunc];
+    self.UIViewControllerLifeCycle(JobsLocalFunc);
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     /// 只有是在Tabbar管理的，不含导航的根控制器才开启手势（点语法会有 Property access result unused警告）
     self.isRootVC ? [self tabBarOpenPan] : [self tabBarClosePan];
-    [self UIViewControllerLifeCycle:JobsLocalFunc];
+    self.UIViewControllerLifeCycle(JobsLocalFunc);
 //    NSLog(@"SSS = %ld",(long)self.getDeviceOrientation);
 //    self.menuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;
 //    self.menuView.alpha = 1;
@@ -123,7 +122,7 @@ BaseViewControllerProtocol_synthesize
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 //    [self restoreStatusBarCor:nil];
-    [self UIViewControllerLifeCycle:JobsLocalFunc];
+    self.UIViewControllerLifeCycle(JobsLocalFunc);
     NSLog(@"%d",self.setupNavigationBarHidden);
     self.isHiddenNavigationBar = self.setupNavigationBarHidden;
     [self.navigationController setNavigationBarHidden:self.setupNavigationBarHidden animated:animated];
@@ -131,18 +130,18 @@ BaseViewControllerProtocol_synthesize
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self UIViewControllerLifeCycle:JobsLocalFunc];
+    self.UIViewControllerLifeCycle(JobsLocalFunc);
 }
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    [self UIViewControllerLifeCycle:JobsLocalFunc];
+    self.UIViewControllerLifeCycle(JobsLocalFunc);
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     self.view.mjRefreshTargetView.mj_footer.y = self.view.mjRefreshTargetView.contentSize.height;
-    [self UIViewControllerLifeCycle:JobsLocalFunc];
+    self.UIViewControllerLifeCycle(JobsLocalFunc);
 }
 /**
  iOS 状态栏颜色的修改
@@ -242,11 +241,15 @@ BaseViewControllerProtocol_synthesize
 }
 #pragma mark —— 一些私有方法
 /// 用于检测UIViewController的生命周期
--(void)UIViewControllerLifeCycle:(NSString *)lifeCycle{
-    UIViewModel *viewModel = UIViewModel.new;
-    viewModel.data = nil;
-    viewModel.requestParams = lifeCycle;
-    if(self.objectBlock) self.objectBlock(viewModel);
+-(jobsByStringBlock)UIViewControllerLifeCycle{
+    @jobs_weakify(self)
+    return ^(NSString *_Nullable lifeCycle) {
+        @jobs_strongify(self)
+        UIViewModel *viewModel = UIViewModel.new;
+        viewModel.data = nil;
+        viewModel.requestParams = lifeCycle;
+        if(self.objectBlock) self.objectBlock(viewModel);
+    };
 }
 /// 更新状态栏颜色为自定义的颜色
 -(jobsByCorBlock _Nonnull)updateStatusBarCor{
