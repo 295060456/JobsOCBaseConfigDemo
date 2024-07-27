@@ -1,9 +1,17 @@
 # <font color=red>iOS.OC靶场项目</font><基础配置的说明>
 <p align="left">
-  <img src="https://img.shields.io/badge/pod-1.15.2-brightgreen" alt="cocoapods" title="cocoapods"/>
-  <img src="https://img.shields.io/badge/OC-orange" alt="OC" title="OC"/>
-  <img src="https://img.shields.io/badge/xcode-15.4-blue" alt="xcode" title="xcode"/>
+  <a><img src="https://img.shields.io/badge/pod-1.15.2-brightgreen" alt="cocoapods" title="cocoapods"/></a>
+  <a><img src="https://img.shields.io/badge/OC-orange" alt="OC" title="OC"/></a>
+  <a><img src="https://img.shields.io/badge/xcode-15.4-blue" alt="xcode" title="xcode"/>  </a>
+  <a><img src="https://img.shields.io/badge/github-actions-black" alt="github actions" title="github actions"/></a>
+  <a href="https://github.com/295060456/JobsOCBaseConfigDemo"><img src="https://img.shields.io/github/license/295060456/JobsOCBaseConfigDemo?style=flat" alt="License" title="License"/></a>
+  <a href="https://github.com/295060456/JobsOCBaseConfigDemo"><img src="https://img.shields.io/badge/platform-iOS-lightgrey?style=flat" alt="Platform" title="Platform"/></a>
+
+
+
+
 </p>
+
 [toc]
 
 ## <font id=前言>前言</font>
