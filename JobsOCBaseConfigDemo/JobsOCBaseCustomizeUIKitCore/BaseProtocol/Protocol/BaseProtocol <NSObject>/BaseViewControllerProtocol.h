@@ -51,16 +51,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)ComingStyle pushOrPresent;
 @property(nonatomic,assign)BOOL setupNavigationBarHidden;
 @property(nonatomic,strong)UIView *statusBar;
-/// 更新状态栏颜色
-- (void)updateStatusBarCor:(UIColor *_Nullable)cor;
+/// 更新状态栏颜色为自定义的颜色
+-(jobsByCorBlock _Nonnull)updateStatusBarCor;
 /// 恢复状态栏颜色
--(void)restoreStatusBarCor:(UIColor *_Nullable)cor;
+-(jobsByCorBlock _Nonnull)restoreStatusBarCor;
 /// 查看用户数据
 -(void)showUserInfo;
 /// 配置GKNavigationBar
 -(void)setGKNav;
 /// 配置GKNavigationBar的返回按钮
--(void)setGKNavBackBtn;
+-(jobsByBtnBlock _Nonnull)setGKNavBackBtn;
 /// 铺满全屏展示的策略
 -(void)fullScreenConstraintTargetView:(nonnull __kindof UIView *)view
                         topViewOffset:(CGFloat)topViewOffset;

@@ -3276,6 +3276,13 @@
 			path = JobsNavBar;
 			sourceTree = "<group>";
 		};
+		CE9076C82C54B60F00CD902B /* 自定义视图 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "自定义视图";
+			sourceTree = "<group>";
+		};
 		CEA116212C5278F8009D6FB3 /* XZMLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -6109,21 +6116,11 @@
 			path = JobsFiltrationView;
 			sourceTree = "<group>";
 		};
-		CECE7D1F2C450CCD00764AF5 /* 自定义视图 */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7D4F2C450DED00764AF5 /* 菜单 */,
-				CECE7D1A2C450CCD00764AF5 /* JobsCustomView */,
-				CECE7D1E2C450CCD00764AF5 /* JobsFiltrationView */,
-			);
-			path = "自定义视图";
-			sourceTree = "<group>";
-		};
 		CECE7D202C450CCD00764AF5 /* ☀️业务模块中公用的View */ = {
 			isa = PBXGroup;
 			children = (
+				CE9076C82C54B60F00CD902B /* 自定义视图 */,
 				CECE7D162C450CCD00764AF5 /* 本App相关的自定义弹出框 */,
-				CECE7D1F2C450CCD00764AF5 /* 自定义视图 */,
 			);
 			path = "☀️业务模块中公用的View";
 			sourceTree = "<group>";
@@ -6204,13 +6201,13 @@
 			path = "网络请求";
 			sourceTree = "<group>";
 		};
-		CECE7D4F2C450DED00764AF5 /* 菜单 */ = {
+		CECE7D4F2C450DED00764AF5 /* JobsMenu */ = {
 			isa = PBXGroup;
 			children = (
 				CE7F396B2C4FDAF900431A5D /* JobsMenuSubViews */,
 				CE7F396E2C4FDAF900431A5D /* JobsMenuView */,
 			);
-			path = "菜单";
+			path = JobsMenu;
 			sourceTree = "<group>";
 		};
 		CECE7D522C450DED00764AF5 /* AppDelegate+Func */ = {
@@ -12035,6 +12032,9 @@
 		CECE87132C45140000764AF5 /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				CECE7D4F2C450DED00764AF5 /* JobsMenu */,
+				CECE7D1A2C450CCD00764AF5 /* JobsCustomView */,
+				CECE7D1E2C450CCD00764AF5 /* JobsFiltrationView */,
 				CE8877BC2C51F1FF0085948C /* JobsNavBar */,
 				CE40B2962C4BF78200CB64B5 /* JobsToggleView */,
 				C525D3E92C48017D003DAFD0 /* JobsLinkageMenuView */,

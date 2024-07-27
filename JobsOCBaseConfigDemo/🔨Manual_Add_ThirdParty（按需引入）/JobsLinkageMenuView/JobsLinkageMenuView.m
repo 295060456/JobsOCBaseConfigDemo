@@ -75,6 +75,14 @@
 #pragma mark —— MenuButton Method
 -(void)choseMenu:(UIButton *)button{
     NSLog(@"%ld==%@",(long)button.tag,button.titleLabel.text);
+    int d = 0;
+    for (UIButton *btn in self.btnMutArr) {
+        btn.jobsResetBtnTitleCor(self.btnConfig.titleCor);
+        btn.jobsResetBtnBgImage(self.btnConfig.normal_backgroundImages[d]);
+        d++;
+    }
+    button.jobsResetBtnTitleCor(self.btnConfig.selected_titleCor);
+    button.jobsResetBtnBgImage(self.btnConfig.selected_backgroundImages[button.tag - 1]);
     self.newChoseTag = button.tag;
     if (self.newChoseTag != self.choseTag) {
         @jobs_weakify(self)
@@ -241,10 +249,6 @@
                 @jobs_strongify(self)
                 [self choseMenu:x];
                 if (self.objectBlock) self.objectBlock(x);
-                for (UIButton *btn in self.btnMutArr) {
-                    btn.jobsResetBtnTitleCor(self.btnConfig.titleCor);
-                }
-                x.jobsResetBtnTitleCor(self.btnConfig.selected_titleCor);
                 return nil;
             }];
             

@@ -8,7 +8,6 @@
 #import "UIViewController+BaseVC.h"
 
 @implementation UIViewController (BaseVC)
-// BaseViewControllerProtocol_dynamic
 #pragma mark —— 一些功能性
 -(void)showUserInfo{
     if (JobsDebug) {
@@ -24,19 +23,23 @@
     self.gk_navTitle = self.viewModel.textModel.text;
     self.gk_navTitleColor = self.viewModel.textModel.textCor ? : HEXCOLOR(0xD3B698);
     self.gk_navTitleFont = self.viewModel.textModel.font ? : UIFontWeightRegularSize(18);
-    self.gk_navBackgroundColor = self.viewModel.bgCor;
-    self.gk_navBackgroundImage = self.viewModel.bgImage;
+    self.gk_navBackgroundColor = self.viewModel.navBgCor;
+    self.gk_navBackgroundImage = self.viewModel.navBgImage;
     self.gk_navLineHidden = YES;
     self.gk_navItemLeftSpace = JobsWidth(20);
     [self hideNavLine];
 }
 /// 配置GKNavigationBar的返回按钮
--(void)setGKNavBackBtn{
-    if (self.navigationController.viewControllers.count - 1) {//从上个页面推过来才有返回键，直接的个人中心是没有的
-        self.gk_backImage = JobsIMG(@"全局返回箭头");/// 设置返回按钮图片（优先级高于gk_backStyle）
-        self.gk_backStyle = GKNavigationBarBackStyleBlack;
-        self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.backBtnCategory];
-    }
+-(jobsByBtnBlock _Nonnull)setGKNavBackBtn{
+    @jobs_weakify(self)
+    return ^(UIButton *_Nullable btn) {
+        @jobs_strongify(self)
+        if (self.navigationController.viewControllers.count - 1) {//从上个页面推过来才有返回键，直接的个人中心是没有的
+            self.gk_backImage = JobsIMG(@"全局返回箭头");/// 设置返回按钮图片（优先级高于gk_backStyle）
+            self.gk_backStyle = GKNavigationBarBackStyleBlack;
+            self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:btn ? : self.backBtnCategory];
+        }
+    };
 }
 /// 铺满全屏展示的策略
 -(void)fullScreenConstraintTargetView:(nonnull __kindof UIView *)view

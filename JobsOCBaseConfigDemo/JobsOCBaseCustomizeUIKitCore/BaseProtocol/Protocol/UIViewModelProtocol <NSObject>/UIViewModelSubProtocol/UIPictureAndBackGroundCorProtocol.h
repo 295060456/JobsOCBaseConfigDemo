@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UIPictureAndBackGroundCorProtocol <NSObject>
 @optional
 #pragma mark —— 图片和背景颜色
+/// 关于导航栏的
+@property(nonatomic,strong,nullable)UIImage *navBgImage;
+@property(nonatomic,strong,nullable)UIColor *navBgCor;
 /// 未选中状态
 @property(nonatomic,strong,nullable)UIImage *image;///【未选中状态】图片
 @property(nonatomic,strong,nullable)UIImage *bgImage;///【未选中状态】背景图片
@@ -40,6 +43,8 @@ NS_ASSUME_NONNULL_END
 #ifndef UIPictureAndBackGroundCorProtocol_synthesize
 #define UIPictureAndBackGroundCorProtocol_synthesize \
 \
+@synthesize navBgImage = _navBgImage;\
+@synthesize navBgCor = _navBgCor;\
 @synthesize image = _image;\
 @synthesize bgImage = _bgImage;\
 @synthesize imageURLString = _imageURLString;\
@@ -62,6 +67,8 @@ NS_ASSUME_NONNULL_END
 #ifndef UIPictureAndBackGroundCorProtocol_dynamic
 #define UIPictureAndBackGroundCorProtocol_dynamic \
 \
+@dynamic navBgImage;\
+@dynamic navBgCor;\
 @dynamic image;\
 @dynamic bgImage;\
 @dynamic imageURLString;\
@@ -79,5 +86,3 @@ NS_ASSUME_NONNULL_END
 @dynamic bgSelectedConfig;\
 
 #endif
-
-

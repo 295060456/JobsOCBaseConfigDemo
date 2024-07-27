@@ -175,3 +175,49 @@ NS_ASSUME_NONNULL_END
                    completion:nil];
  
  */
+
+/**
+ -(void)configMenuView{
+     self.getMenuView.titleMutArr = self.titleMutArr;
+     self.getMenuView.subViewMutArr = self.subViewMutArr;
+     self.getMenuView.normal_titleBgImageMutArr = self.normal_titleBgImageMutArr;
+     self.getMenuView.select_titleBgImageMutArr = self.select_titleBgImageMutArr;
+     [self.getMenuView richElementsInViewWithModel:nil];
+     @jobs_weakify(self)
+     [self.getMenuView actionObjectBlock:^(id _Nullable x) {
+         @jobs_strongify(self)
+         if([x isKindOfClass:UIButton.class]){
+             UIButton *btn = (UIButton *)x;
+             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"TOP GAMES")]){
+                 self.bgImageView.image = JobsIMG(@"TOP GAMES");
+                 self.topImageView.image = JobsIMG(@"Top_Games");
+             }
+             
+             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"SLOT GAMES")]){
+                 self.bgImageView.image = JobsIMG(@"SLOT GAMES");
+                 self.topImageView.image = JobsIMG(@"Slot_Games");
+             }
+             
+             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"LIVE CASINO")]){
+                 self.bgImageView.image = JobsIMG(@"LIVE CASINO");
+                 self.topImageView.image = JobsIMG(@"Live_Casino");
+             }
+             
+             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"TABLE GAMES")]){
+                 self.bgImageView.image = JobsIMG(@"TABLE GAMES");
+                 self.topImageView.image = JobsIMG(@"Table_Games");
+             }
+             
+             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"SPORTS")]){
+                 self.bgImageView.image = JobsIMG(@"SPORTS");
+                 self.topImageView.image = JobsIMG(@"Sports");
+             }
+             
+             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"FINSHING")]){
+                 self.bgImageView.image = JobsIMG(@"FINSHING");
+                 self.topImageView.image = JobsIMG(@"Fishing");
+             }
+         }
+     }];
+ }
+ */

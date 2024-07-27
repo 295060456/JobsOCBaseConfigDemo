@@ -98,7 +98,7 @@ BaseViewControllerProtocol_synthesize
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [self updateStatusBarCor:JobsOrangeColor];/// 在具体子类实现，不要写在父类。父类只做提示
+//    self.updateStatusBarCor(JobsOrangeColor);/// 在具体子类实现，不要写在父类。父类只做提示
     NSLog(@"%d",self.setupNavigationBarHidden);
     self.isHiddenNavigationBar = self.setupNavigationBarHidden;
     [self.navigationController setNavigationBarHidden:self.setupNavigationBarHidden animated:animated];
@@ -249,38 +249,46 @@ BaseViewControllerProtocol_synthesize
     if(self.objectBlock) self.objectBlock(viewModel);
 }
 /// 更新状态栏颜色为自定义的颜色
-- (void)updateStatusBarCor:(UIColor *_Nullable)cor{
-    if(!cor)cor = JobsRedColor;
-    if (@available(iOS 13.0, *)) {
-        if (![self.view.subviews containsObject:self.statusBar]) {
-            [self.view addSubview:self.statusBar];
+-(jobsByCorBlock _Nonnull)updateStatusBarCor{
+    @jobs_weakify(self)
+    return ^(UIColor *_Nullable cor) {
+        @jobs_strongify(self)
+        if(!cor)cor = JobsRedColor;
+        if (@available(iOS 13.0, *)) {
+            if (![self.view.subviews containsObject:self.statusBar]) {
+                [self.view addSubview:self.statusBar];
+            }
+            self.statusBar.backgroundColor = cor;
+        } else {
+            UIView *statusBar = [UIApplication.sharedApplication.valueForKeyBlock(@"statusBarWindow") valueForKey:@"statusBar"];
+            if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+                statusBar.backgroundColor = cor;
+            }
+            // 手动触发 preferredStatusBarStyle 更新状态栏颜色
+            [self setNeedsStatusBarAppearanceUpdate];
         }
-        self.statusBar.backgroundColor = cor;
-    } else {
-        UIView *statusBar = [UIApplication.sharedApplication.valueForKeyBlock(@"statusBarWindow") valueForKey:@"statusBar"];
-        if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-            statusBar.backgroundColor = cor;
-        }
-        // 手动触发 preferredStatusBarStyle 更新状态栏颜色
-        [self setNeedsStatusBarAppearanceUpdate];
-    }
+    };
 }
 /// 恢复状态栏颜色
--(void)restoreStatusBarCor:(UIColor *_Nullable)cor{
-    if (@available(iOS 13.0, *)) {
-        if (![jobsGetMainWindow().subviews containsObject:self.statusBar]) {
-            [self.statusBar removeFromSuperview];
+-(jobsByCorBlock _Nonnull)restoreStatusBarCor{
+    @jobs_weakify(self)
+    return ^(UIColor *_Nullable cor) {
+        @jobs_strongify(self)
+        if (@available(iOS 13.0, *)) {
+            if (![jobsGetMainWindow().subviews containsObject:self.statusBar]) {
+                [self.statusBar removeFromSuperview];
+            }
+            if(!cor) cor = JobsWhiteColor;
+            self.statusBar.backgroundColor = cor;
+        } else {
+            UIView *statusBar = [UIApplication.sharedApplication.valueForKeyBlock(@"statusBarWindow") valueForKey:@"statusBar"];
+            if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+                statusBar.backgroundColor = JobsClearColor;;
+            }
+            // 手动触发 preferredStatusBarStyle 更新状态栏颜色
+            [self setNeedsStatusBarAppearanceUpdate];
         }
-        if(!cor) cor = JobsWhiteColor;
-        self.statusBar.backgroundColor = cor;
-    } else {
-        UIView *statusBar = [UIApplication.sharedApplication.valueForKeyBlock(@"statusBarWindow") valueForKey:@"statusBar"];
-        if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-            statusBar.backgroundColor = JobsClearColor;;
-        }
-        // 手动触发 preferredStatusBarStyle 更新状态栏颜色
-        [self setNeedsStatusBarAppearanceUpdate];
-    }
+    };
 }
 /// 在loadView或者之前的生命周期中定义背景图片或者底色
 -(void)setBackGround{
@@ -354,7 +362,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         _menuView = JobsMenuView.new;
 //        _menuView.backgroundColor = JobsPurpleColor;
         [self.view addSubview:_menuView];
-        _menuView.frame = CGRectMake(59,
+        _menuView.frame = CGRectMake(JobsWidth(59),
                                      0,
                                      [JobsMenuView viewSizeWithModel:nil].width,
                                      [JobsMenuView viewSizeWithModel:nil].height
@@ -364,7 +372,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 //            make.centerY.equalTo(self.view);
 //            make.left.equalTo(self.view);
 //        }];
-        [_menuView richElementsInViewWithModel:nil];
+//        [_menuView richElementsInViewWithModel:nil];
 //        @jobs_weakify(self)
 //        [_menuView actionObjectBlock:^(id  _Nullable x) {
 //            @jobs_strongify(self)

@@ -47,7 +47,7 @@
     self.view.backgroundColor = JobsWhiteColor;
     {
         [self setGKNav];
-        [self setGKNavBackBtn];
+        self.setGKNavBackBtn(nil);
         self.gk_navRightBarButtonItems = @[self.shareBtnItem];
     }
 

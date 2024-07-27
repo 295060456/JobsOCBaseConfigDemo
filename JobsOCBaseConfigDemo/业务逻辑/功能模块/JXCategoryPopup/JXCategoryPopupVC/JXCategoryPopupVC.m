@@ -47,7 +47,7 @@
     [super viewDidLoad];
     
     [self setGKNav];
-    [self setGKNavBackBtn];
+    self.setGKNavBackBtn(nil);
     
     self.categoryView.alpha = 1;
     self.filterBtn.alpha = 1;
