@@ -244,6 +244,21 @@ JobsKey(_jobsTag)
 -(void)setJobsTag:(NSUInteger)jobsTag{
     Jobs_setAssociatedRETAIN_NONATOMIC(_jobsTag, @(jobsTag))
 }
+
+#pragma mark —— @property(nonatomic,strong)JobsNavBarConfig *navBarConfig;
+JobsKey(_navBarConfig)
+@dynamic navBarConfig;
+-(void)setNavBarConfig:(JobsNavBarConfig *)navBarConfig{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_navBarConfig, navBarConfig)
+}
+
+-(JobsNavBarConfig *)navBarConfig{
+    JobsNavBarConfig *NavBarConfig = Jobs_getAssociatedObject(_navBarConfig);
+    if(!NavBarConfig){
+        NavBarConfig = JobsNavBarConfig.new;
+        Jobs_setAssociatedRETAIN_NONATOMIC(_navBarConfig, NavBarConfig)
+    }return NavBarConfig;
+}
 #pragma mark —— @property(nonatomic,strong)JobsNavBar *navBar;
 JobsKey(_navBar)
 @dynamic navBar;
@@ -256,10 +271,13 @@ JobsKey(_navBar)
     if(!NavBar){
         NavBar = JobsNavBar.new;
         if(JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape){
-            NavBar.navBarConfig.backBtnModel.btn_offset_x = JobsWidth(40);
-            NavBar.navBarConfig.closeBtnModel.btn_offset_x = JobsWidth(40);
+            self.navBarConfig.backBtnModel.btn_offset_x = self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(40);
+            self.navBarConfig.closeBtnModel.btn_offset_x = self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(40);
         }
-        NavBar.navBarConfig.title = self.viewModel.backBtnTitleModel.text;
+        NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
+        NSLog(@"%f",self.navBarConfig.closeBtnModel.btn_offset_x);
+        self.navBarConfig.title = self.viewModel.backBtnTitleModel.text;
+        NavBar.navBarConfig = self.navBarConfig;
         [self.view addSubview:NavBar];
         [NavBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(self.view);

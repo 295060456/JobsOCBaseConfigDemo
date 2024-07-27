@@ -52,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)ComingStyle pushOrPresent;
 @property(nonatomic,assign)BOOL setupNavigationBarHidden;
 @property(nonatomic,strong)UIView *statusBar;
+@property(nonatomic,strong)JobsNavBarConfig *navBarConfig;
 @property(nonatomic,strong)JobsNavBar *navBar;
 /// 更新状态栏颜色为自定义的颜色
 -(jobsByCorBlock _Nonnull)updateStatusBarCor;

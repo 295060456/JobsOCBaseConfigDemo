@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - contentVerticalAlignment: 针对内容的竖向对齐方式
 ///   - contentInsets: 定位内边距的方向
 ///   - cornerRadiusValue: 圆切角—作用于所有的角
-///   - roundingCorners: 圆切角—作用于指定的方位
+///   - roundingCorners: 圆切角—作用于指定的方位   ❤️这个属性如果不是UIRectCornerAllCorners，在某些情况下，按钮会不可见
 ///   - roundingCornersRadii: 圆切角—指定方位的Size大小
 ///   - layerBorderCor: 描边的颜色
 ///   - borderWidth: 描边线的宽度

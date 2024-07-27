@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)UIControlContentVerticalAlignment contentVerticalAlignment;
 @property(nonatomic,assign)NSDirectionalEdgeInsets contentInsets;
 @property(nonatomic,assign)CGFloat cornerRadiusValue;
-@property(nonatomic,assign)UIRectCorner roundingCorners;
+@property(nonatomic,assign)UIRectCorner roundingCorners;// ❤️这个属性如果不是UIRectCornerAllCorners，在某些情况下，按钮会不可见
 @property(nonatomic,assign)CGSize roundingCornersRadii;
 @property(nonatomic,strong,nullable)UIColor *layerBorderCor;
 @property(nonatomic,assign)CGFloat borderWidth;

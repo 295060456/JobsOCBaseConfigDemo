@@ -88,17 +88,17 @@
 -(JobsNavBarConfig *)navBarConfig{
     if(!_navBarConfig){
         _navBarConfig = JobsNavBarConfig.new;
-        [_navBarConfig actionObjectBlock:^(id _Nullable data) {
-            if([data isKindOfClass:UIButton.class]){
-                UIButton *btn = (UIButton *)data;
-                if(btn.tag == 123){
-                    if(self.closeBtnClickAction)self.closeBtnClickAction(btn);
-                }else if (btn.tag == 456){
-                    if(self.backBtnClickAction)self.backBtnClickAction(btn);
-                }else{}
-            }
-        }];
-    }return _navBarConfig;
+    }
+    [_navBarConfig actionObjectBlock:^(id _Nullable data) {
+        if([data isKindOfClass:UIButton.class]){
+            UIButton *btn = (UIButton *)data;
+            if(btn.tag == 123){
+                if(self.closeBtnClickAction)self.closeBtnClickAction(btn);
+            }else if (btn.tag == 456){
+                if(self.backBtnClickAction)self.backBtnClickAction(btn);
+            }else{}
+        }
+    }];return _navBarConfig;
 }
 
 -(BaseButton *)getBackBtn{
@@ -145,6 +145,8 @@
 -(BaseButton *)backBtn{
     if(!_backBtn){
         @jobs_weakify(self)
+        JobsNavBarConfig *navBarConfig = self.navBarConfig;
+        NSLog(@"%@",navBarConfig);
         _backBtn = [BaseButton.alloc jobsInitBtnByConfiguration:BackBtnModel.btnConfiguration
                                                      background:BackBtnModel.background
                                      buttonConfigTitleAlignment:BackBtnModel.buttonConfigTitleAlignment
@@ -184,6 +186,7 @@
         [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(8), JobsWidth(18)));
             make.centerY.equalTo(self);
+            NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
             make.left.equalTo(self).offset(self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(20));
         }];
     }return _backBtn;
@@ -192,6 +195,8 @@
 -(BaseButton *)closeBtn{
     if(!_closeBtn){
         @jobs_weakify(self)
+        JobsNavBarConfig *navBarConfig = self.navBarConfig;
+        NSLog(@"%@",navBarConfig);
         _closeBtn = [BaseButton.alloc jobsInitBtnByConfiguration:CloseBtnModel.btnConfiguration
                                                       background:CloseBtnModel.background
                                       buttonConfigTitleAlignment:CloseBtnModel.buttonConfigTitleAlignment
