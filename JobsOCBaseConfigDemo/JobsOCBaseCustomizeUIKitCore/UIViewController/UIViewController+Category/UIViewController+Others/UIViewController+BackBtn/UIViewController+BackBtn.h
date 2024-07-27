@@ -34,15 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— BaseVC+BackBtn
 @property(nonatomic,strong)UIButton *backBtnCategory;
 @property(nonatomic,strong)UIBarButtonItem *backBtnCategoryItem;
-/// 创建返回键，没有配置按钮的normalImage属性
--(UIButton *)makeBackBtn:(UIViewModel *)viewModel;
-/// 配置返回键图片
--(UIImage *)makeBackBtnImage;
-///【子类需要覆写 】创建返回键的点击事件 或者实现 jobsBackBlock
-/// self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
-///      NSLog(@"退出页面的逻辑");
-///      return nil;
-/// };
+
 -(void)backBtnClickEvent:(UIButton *_Nullable)sender;
 
 @end

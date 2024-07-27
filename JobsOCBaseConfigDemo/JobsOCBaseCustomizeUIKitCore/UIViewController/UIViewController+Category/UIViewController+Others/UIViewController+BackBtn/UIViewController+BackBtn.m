@@ -12,26 +12,9 @@
 -(void)backItemClick:(id)sender{
     [self backBtnClickEvent:sender];
 }
-/// 【创建返回键】没有配置按钮的normalImage属性，也没有配置点击事件
--(UIButton *)makeBackBtn:(UIViewModel *)viewModel{
-    UIButton *backBtnCategory = UIButton.new;
-    backBtnCategory.titleFont(viewModel.backBtnTitleModel.font);
-    backBtnCategory.normalTitle(viewModel.backBtnTitleModel.text);
-    backBtnCategory.normalTitleColor(viewModel.backBtnTitleModel.textCor ? : JobsBlackColor);
-    [backBtnCategory layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
-                                        imagePadding:JobsWidth(8)];
-    backBtnCategory.makeBtnLabelByShowingType(UILabelShowingType_03);
-    return backBtnCategory;
-}
-/// 配置返回键图片
--(UIImage *)makeBackBtnImage{
-    return self.viewModel.backBtnIMG ? : JobsBuddleIMG(nil,@"Frameworks/GKNavigationBar.framework/GKNavigationBar",nil,self.gk_backStyle == GKNavigationBarBackStyleBlack ? @"btn_back_black" : @"btn_back_white");
-}
 ///【子类需要覆写 】创建返回键的点击事件
 -(void)backBtnClickEvent:(UIButton *_Nullable)sender{
-    if (self.jobsBackBlock) {
-        self.jobsBackBlock(sender);
-    }
+    if (self.jobsBackBlock) self.jobsBackBlock(sender);
     switch (self.pushOrPresent) {
         case ComingStyle_PRESENT:{
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -50,11 +33,46 @@ JobsKey(_backBtnCategory)
 -(UIButton *)backBtnCategory{
     UIButton *BackBtnCategory = Jobs_getAssociatedObject(_backBtnCategory);
     if (!BackBtnCategory) {
-        BackBtnCategory = [self makeBackBtn:self.viewModel];
-        BackBtnCategory.normalImage(self.makeBackBtnImage);
         @jobs_weakify(self)
-        [BackBtnCategory jobsBtnClickEventBlock:^id(UIButton *x) {
+        BackBtnCategory = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                            background:nil
+                                            buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                         textAlignment:NSTextAlignmentCenter
+                                                      subTextAlignment:NSTextAlignmentCenter
+                                                           normalImage:self.viewModel.backBtnIMG ? : JobsBuddleIMG(nil,@"Frameworks/GKNavigationBar.framework/GKNavigationBar",nil,self.gk_backStyle == GKNavigationBarBackStyleBlack ? @"btn_back_black" : @"btn_back_white")
+                                                        highlightImage:nil
+                                                       attributedTitle:nil
+                                               selectedAttributedTitle:nil
+                                                    attributedSubtitle:nil
+                                                                 title:self.viewModel.backBtnTitleModel.text
+                                                              subTitle:nil
+                                                             titleFont:self.viewModel.backBtnTitleModel.font
+                                                          subTitleFont:nil
+                                                              titleCor:self.viewModel.backBtnTitleModel.textCor ? : JobsBlackColor
+                                                           subTitleCor:nil
+                                                    titleLineBreakMode:NSLineBreakByWordWrapping
+                                                 subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                   baseBackgroundColor:JobsClearColor.colorWithAlphaComponent(0)
+                                                       backgroundImage:nil
+                                                          imagePadding:JobsWidth(8)
+                                                          titlePadding:JobsWidth(0)
+                                                        imagePlacement:NSDirectionalRectEdgeLeading
+                                            contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                              contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                         contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                     cornerRadiusValue:JobsWidth(0)
+                                                       roundingCorners:UIRectCornerAllCorners
+                                                  roundingCornersRadii:CGSizeZero
+                                                        layerBorderCor:nil
+                                                           borderWidth:JobsWidth(0)
+                                                         primaryAction:nil
+                                            longPressGestureEventBlock:^(id  _Nullable weakSelf,
+                                                                         id  _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+        }
+                                                       clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             [self backBtnClickEvent:x];
             return nil;
         }];
