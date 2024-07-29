@@ -59,7 +59,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = JobsYellowColor;
-    [self setGKNav];
+    self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
 }
 

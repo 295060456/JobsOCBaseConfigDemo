@@ -81,7 +81,7 @@ UIViewModelProtocol_synthesize
     [super viewDidLoad];
     
     self.view.backgroundColor = JobsWhiteColor;
-    [self setGKNav];
+    self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
     self.gk_navigationBar.jobsVisible = YES;
     self.gk_navRightBarButtonItem = self.releaseBtnItem;
@@ -234,7 +234,7 @@ UIViewModelProtocol_synthesize
 -(void)releaseBtnState:(NSArray *)photoDataArr
        inputDataString:(NSString *)inputDataString{
     self.releaseBtn.enabled = photoDataArr.count || inputDataString.length;
-    self.releaseBtn.normalBackgroundImage = self.releaseBtn.enabled ? JobsIMG(@"发布") : JobsIMG(@"未发布");
+    self.releaseBtn.normalBackgroundImage(self.releaseBtn.enabled ? JobsIMG(@"发布") : JobsIMG(@"未发布"));
 }
 #pragma mark —— HXPhotoViewDelegate
 /// 在这里获取到点选的资料
@@ -329,10 +329,10 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
     if (!_releaseBtn) {
         _releaseBtn = UIButton.new;
         _releaseBtn.enabled = NO;
-        _releaseBtn.normalBackgroundImage = JobsIMG(@"未发布");
-        _releaseBtn.normalTitle = JobsInternationalization(@"发布");
-        _releaseBtn.normalTitleColor = JobsWhiteColor;
-        _releaseBtn.titleFont = UIFontWeightRegularSize(12.5);
+        _releaseBtn.normalBackgroundImage(JobsIMG(@"未发布"));
+        _releaseBtn.normalTitle(JobsInternationalization(@"发布"));
+        _releaseBtn.normalTitleColor(JobsWhiteColor);
+        _releaseBtn.titleFont(UIFontWeightRegularSize(12.5));
         _releaseBtn.width = JobsWidth(38);
         _releaseBtn.height = JobsWidth(23);
         @jobs_weakify(self)

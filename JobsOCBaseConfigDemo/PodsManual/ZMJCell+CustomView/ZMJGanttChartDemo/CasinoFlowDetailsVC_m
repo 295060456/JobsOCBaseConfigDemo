@@ -34,7 +34,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = JobsYellowColor;
-    [self setGKNav];
+    self.setGKNav(nil);
 //    self.spreadsheetView.alpha = 1;
     [self.spreadsheetView flashScrollIndicators];
 }

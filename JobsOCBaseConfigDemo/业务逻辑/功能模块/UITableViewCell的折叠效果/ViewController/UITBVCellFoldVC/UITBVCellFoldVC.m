@@ -49,7 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsWhiteColor;
-    [self setGKNav];
+    self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
     self.gk_navigationBar.jobsVisible = YES;
     self.titleLab.alpha = 1;

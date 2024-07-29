@@ -44,7 +44,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = JobsRandomColor;
-    [self setGKNav];
+    self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
 //    self.gk_navRightBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.aboutBtn];
 //    self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.aboutBtn];
@@ -73,7 +73,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    //    [self restoreStatusBarCor];
+//    self.restoreStatusBarCor(nil);
 }
 
 -(void)viewDidDisappear:(BOOL)animated{

@@ -52,7 +52,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.gk_navigationBar.jobsVisible = YES;
-    [self setGKNav];
+    self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
     self.view.backgroundColor = JobsRedColor;
     self.cardView.alpha = 1;

@@ -1,12 +1,12 @@
 //
-//  JobsTextView.h
+//  JobsTextViews.h
 //  Casino
 //
 //  Created by Jobs on 2021/12/9.
 //
 
-#ifndef JobsTextView_h
-#define JobsTextView_h
+#ifndef JobsTextViews_h
+#define JobsTextViews_h
 
 #pragma mark —— Base
 // TODO
@@ -15,5 +15,6 @@
 #import "UITextView+IndicateWordLimit.h"
 #pragma mark —— Base
 #import "BaseTextView.h"
+#import "JobsTextView.h"
 
-#endif /* JobsTextView_h */
+#endif /* JobsTextViews_h */

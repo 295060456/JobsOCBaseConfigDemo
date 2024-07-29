@@ -51,7 +51,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = JobsYellowColor;
     {
-        [self setGKNav];
+        self.setGKNav(nil);
         self.setGKNavBackBtn(nil);
         self.gk_navRightBarButtonItems = @[self.shareBtnItem];
     }

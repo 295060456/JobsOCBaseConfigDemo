@@ -50,7 +50,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = JobsRandomColor;
-    [self setGKNav];
+    self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
     self.gk_navigationBar.jobsVisible = YES;
 //    [self.bgImageView removeFromSuperview];
@@ -80,7 +80,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    [self restoreStatusBarCor];
+//    self.restoreStatusBarCor(nil);
     IQKeyboardManager.sharedManager.enable = YES;
     UIPasteboard.generalPasteboard.string = JobsInternationalization(@"");
 }

@@ -76,7 +76,7 @@
 #pragma mark —— UITextField
 #import "JobsTextFieldExtra.h"
 #pragma mark —— UITextView
-#import "JobsTextView.h"
+#import "JobsTextViews.h"
 #pragma mark —— UIView
 #import "JobsView.h"
 #pragma mark —— UIImageView

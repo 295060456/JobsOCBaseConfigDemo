@@ -49,7 +49,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = JobsYellowColor;
     
-    [self setGKNav];
+    self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
     
     self.progressView.alpha = 1;

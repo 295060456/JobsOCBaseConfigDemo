@@ -52,7 +52,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setGKNav];
+    self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
     
     self.gk_navRightBarButtonItems = @[[UIBarButtonItem.alloc initWithCustomView:self.editBtn]];

@@ -121,7 +121,7 @@ BaseViewControllerProtocol_synthesize
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    [self restoreStatusBarCor:nil];
+//    self.restoreStatusBarCor(nil);
     self.UIViewControllerLifeCycle(JobsLocalFunc);
     NSLog(@"%d",self.setupNavigationBarHidden);
     self.isHiddenNavigationBar = self.setupNavigationBarHidden;

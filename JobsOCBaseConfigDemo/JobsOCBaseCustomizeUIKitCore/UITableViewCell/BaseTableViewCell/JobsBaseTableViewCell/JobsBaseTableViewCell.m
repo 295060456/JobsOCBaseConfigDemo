@@ -107,16 +107,11 @@ UITableViewCellProtocol_synthesize
      willDisplayCell:(UITableViewCell *)cell
      forRowAtIndexPath:(NSIndexPath *)indexPath{
      
-     [UITableViewCell tableView:tableView
-     makeSectionFirstAndLastCell:cell
-     atIndexPath:indexPath
-     cellBgCor:JobsWhiteColor
-     bottomLineCor:JobsWhiteColor
-     cellOutLineCor:HEXCOLOR(0xEEE2C8)
-     roundCorner:JobsWidth(8)
-     borderWidth:JobsWidth(1)
-     dx:JobsWidth(0)
-     dy:0];
+     [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
+                                           bottomLineCor:HEXCOLOR(0xFFFFFF)
+                                          cellOutLineCor:HEXCOLOR(0xEEE2C8)
+                                        cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
+                                             borderWidth:JobsWidth(10) dx:JobsWidth(0) dy:JobsWidth(0)];
      }
      */
     if(!self.isSetTBVCellOffset){

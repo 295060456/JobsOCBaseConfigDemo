@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查看用户数据
 -(void)showUserInfo;
 /// 配置GKNavigationBar
--(void)setGKNav;
+-(jobsByViewModelBlock)setGKNav;
 /// 配置GKNavigationBar的返回按钮
 -(jobsByBtnBlock _Nonnull)setGKNavBackBtn;
 /// 铺满全屏展示的策略

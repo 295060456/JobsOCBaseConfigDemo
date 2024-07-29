@@ -19,15 +19,20 @@
     }
 }
 /// 配置GKNavigationBar
--(void)setGKNav{
-    self.gk_navTitle = self.viewModel.textModel.text;
-    self.gk_navTitleColor = self.viewModel.textModel.textCor ? : HEXCOLOR(0xD3B698);
-    self.gk_navTitleFont = self.viewModel.textModel.font ? : UIFontWeightRegularSize(18);
-    self.gk_navBackgroundColor = self.viewModel.navBgCor;
-    self.gk_navBackgroundImage = self.viewModel.navBgImage;
-    self.gk_navLineHidden = YES;
-    self.gk_navItemLeftSpace = JobsWidth(20);
-    [self hideNavLine];
+-(jobsByViewModelBlock)setGKNav{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable data) {
+        @jobs_strongify(self)
+        UIViewModel *viewModel = data ? : self.viewModel;
+        self.gk_navTitle = viewModel.textModel.text;
+        self.gk_navTitleColor = viewModel.textModel.textCor ? : HEXCOLOR(0xD3B698);
+        self.gk_navTitleFont = viewModel.textModel.font ? : UIFontWeightRegularSize(18);
+        self.gk_navBackgroundColor = viewModel.navBgCor;
+        self.gk_navBackgroundImage = viewModel.navBgImage;
+        self.gk_navLineHidden = YES;
+        self.gk_navItemLeftSpace = JobsWidth(20);
+        [self hideNavLine];
+    };
 }
 /// 配置GKNavigationBar的返回按钮
 -(jobsByBtnBlock _Nonnull)setGKNavBackBtn{
