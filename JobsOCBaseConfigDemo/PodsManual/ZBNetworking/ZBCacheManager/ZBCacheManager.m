@@ -55,22 +55,31 @@ static const CGFloat unit = 1000.0;
         _memoryCache.name = memoryNameSpace;
         
         [self initCachesfileWithName:zb_defaultCachePathName];
-  
-        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(clearMemory) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+#if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearMemory) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
         
-        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(automaticCleanCache) name:UIApplicationWillTerminateNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(automaticCleanCache) name:UIApplicationWillTerminateNotification object:nil];
         
-        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(backgroundCleanCache) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backgroundCleanCache) name:UIApplicationDidEnterBackgroundNotification object:nil];
+#endif
+#if  TARGET_OS_OSX
+        [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(applicationWillTerminate:) name:NSApplicationWillTerminateNotification object:nil];
+#endif
     }
     return self;
 }
 
 - (void)dealloc{
-    [NSNotificationCenter.defaultCenter removeObserver:self name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+#if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
     
-    [NSNotificationCenter.defaultCenter removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
     
-    [NSNotificationCenter.defaultCenter removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+#endif
+#if  TARGET_OS_OSX
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationWillTerminateNotification object:nil];
+#endif
 }
 
 #pragma mark - 获取沙盒目录
@@ -109,11 +118,12 @@ static const CGFloat unit = 1000.0;
     [self createDirectoryAtPath:self.diskCachePath];
 }
 
-- (void)createDirectoryAtPath:(NSString *)path{
+- (BOOL)createDirectoryAtPath:(NSString *)path{
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:NULL];
+        return [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:NULL];
     } else {
-        // NSLog(@"FileDir is exists.%@",path);
+        NSLog(@"FileDir is exists.%@",path);
+        return NO;
     }
 }
 
@@ -123,7 +133,7 @@ static const CGFloat unit = 1000.0;
 }
 
 - (BOOL)cacheExistsForKey:(NSString *)key inPath:(NSString *)path{
-    BOOL isInMemoryCache =  [self.memoryCache objectForKey:key];
+    id isInMemoryCache =  [self.memoryCache objectForKey:key];
     if (isInMemoryCache) {
         return YES;
     }
@@ -279,7 +289,7 @@ static const CGFloat unit = 1000.0;
     CC_MD5(str, (CC_LONG)strlen(str), r);
     NSString *filename = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%@",
                           r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10],
-                          r[11], r[12], r[13], r[14], r[15], [[key pathExtension] isEqualToString:JobsInternationalization(@"")] ? JobsInternationalization(@"") : [NSString stringWithFormat:@".%@", [key pathExtension]]];
+                          r[11], r[12], r[13], r[14], r[15], [[key pathExtension] isEqualToString:@""] ? @"" : [NSString stringWithFormat:@".%@", [key pathExtension]]];
     return filename;
 }
 # pragma mark - Mem Cache settings
@@ -398,7 +408,7 @@ static const CGFloat unit = 1000.0;
         }
     });
 }
-
+#if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH
 - (void)backgroundCleanCacheWithPath:(NSString *)path{
     Class UIApplicationClass = NSClassFromString(@"UIApplication");
     if(!UIApplicationClass || ![UIApplicationClass respondsToSelector:@selector(sharedApplication)]) {
@@ -417,6 +427,7 @@ static const CGFloat unit = 1000.0;
         bgTask = UIBackgroundTaskInvalid;
     }];
 }
+#endif
 
 - (void)backgroundCleanCache {
     [self backgroundCleanCacheWithPath:self.diskCachePath];

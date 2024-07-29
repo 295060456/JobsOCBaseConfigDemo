@@ -1188,7 +1188,64 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-### 17、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 17、文件介绍 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 各项宏定义
+
+  ```objective-c
+  #import "MacroDef_Size.h"
+  #import "MacroDef_App.h"
+  #import "MacroDef_Cor.h"
+  #import "MacroDef_Func.h"
+  #import "MacroDef_Sys.h"
+  #import "MacroDef_Font.h"
+  #import "MacroDef_String.h"
+  #import "MacroDef_Singleton.h"
+  #import "MacroDef_Time.h"
+  #import "MacroDef_QUEUE.h"
+  #import "JobsUserDefaultDefine.h"
+  #import "MacroDef_Strong@Weak.h"
+  #import "MacroDef_Notification.h"
+  #import "MacroDef_Log.h"
+  ```
+
+* 全局通知名字符串的管理
+
+  ```objective-c
+  #import "JobsOCBaseConfigNotificationManager.h"
+  ```
+
+* [**CocoaPods**](https://cocoapods.org/)的头文件管理
+
+  ```objective-c
+  #import "DDPods.h"
+  #import "DDPodsManual.h"
+  ```
+
+* 全局枚举定义
+
+  ```objective-c
+  #import "JobsDefineAllEnumHeader.h"
+  ```
+
+* **`.pch`**文件
+
+  ```objective-c
+  #import "FMPrefixHeader.pch"
+  #import "JobsOCBaseConfigDemoPrefixHeader.pch"
+  ```
+
+* 储存key值的文件：
+
+  ```objective-c
+  #import "APIKey.h"
+  ```
+
+* 网络请求的接口的文件
+
+  ```objective-c
+  #import "NSObject+URLManager.h
+  ```
 
 ### 18、输入框（UITextField） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -5554,6 +5611,534 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
+### 34、<font color=red>**网络请求框架**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* ```objective-c
+  -(void)基础的网络请求示例{
+     [AFHTTPSessionManager.manager GET:@"http://172.24.135.12/CommentData.json"
+                            parameters:nil
+                               headers:nil
+                              progress:^(NSProgress * _Nonnull downloadProgress) {
+     } success:^(NSURLSessionDataTask * _Nonnull task,
+                 id  _Nullable responseObject) {
+         NSLog(@"%@",responseObject);
+     } failure:^(NSURLSessionDataTask * _Nullable task,
+                 NSError * _Nonnull error) {
+         NSLog(@"%@",error);
+     }];
+  }
+  ```
+
+#### 34.1、[**猿题库的网络框架（强烈推荐使用）**](https://github.com/yuantiku/YTKNetwork)
+
+* 集成
+  
+  ```ruby
+  pod 'YTKNetwork' # https://github.com/yuantiku/YTKNetwork
+  ```
+  
+  ```objective-c
+  #if __has_include(<YTKNetwork/YTKNetwork.h>)
+  #import <YTKNetwork/YTKNetwork.h>
+  #else
+  #import "YTKNetwork.h"
+  #endif
+  ```
+  
+* 公共配置：下列配置一般体现在**AppDelegate**
+
+  ```objective-c
+  YTKNetworkConfig *config = YTKNetworkConfig.sharedConfig;
+  config.baseUrl = self.BaseUrl;
+  config.cdnUrl = JobsInternationalization(@"");
+  //config.urlFilters = nil;
+  //config.cacheDirPathFilters = nil;
+  config.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+  config.debugLogEnabled = YES;
+  config.sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration;
+  
+  YTKUrlArgumentsFilter *urlFilter = [YTKUrlArgumentsFilter filterWithArguments:@{@"version": self.appVersion}];
+  [config addUrlFilter:urlFilter];
+  ```
+
+* 请求的配置（<font color=blue>**请求的方式**</font>、<font color=blue>**请求的URL**</font>、是否使用CND...）
+
+  ```objective-c
+  @implementation GetImageApi {
+      NSDictionary *_Nullable _parameters;
+  }
+  
+  -(instancetype _Nullable)initWithParameters:(NSDictionary *_Nullable)parameters{
+      if (self = [super init]) {
+          _parameters = parameters;
+      }return self;
+  }
+  
+  -(NSString *)requestUrl{
+      return self.BaseUrl.add(@"");
+  }
+  /// 请求方式
+  -(YTKRequestMethod)requestMethod {
+      return YTKRequestMethodGET;
+  }
+  
+  //-(BOOL)useCDN{
+  //    return YES;
+  //}
+  
+  //-(NSString *)resumableDownloadPath{
+  //    NSString *libPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+  //    NSString *cachePath = [libPath stringByAppendingPathComponent:@"Caches"];
+  //    NSString *filePath = [cachePath stringByAppendingPathComponent:_imageId];
+  //    return filePath;
+  //}
+  
+  @end
+  ```
+
+* 请求方式
+
+  * **普通的单个请求**
+
+    ```objective-c
+    /// 普通的单个请求
+    -(void)loadCacheData{
+        GetCustomerContactApi *api = [GetCustomerContactApi.alloc initWithParameters:nil];
+        if ([api loadCacheWithError:nil]) {
+            NSDictionary *json = [api responseJSONObject];
+            NSLog(@"json = %@", json);
+            // show cached data
+        }
+    
+        api.animatingText = JobsInternationalization(@"正在加载");
+        api.animatingView = self.view;
+    
+        [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+            NSLog(@"update ui");
+            /// 以下是我们需要的值
+            request.responseObject;
+        } failure:^(YTKBaseRequest *request) {
+            NSLog(@"failed");
+        }];
+    }
+    ```
+
+  * **多请求**
+
+    * <font color=red>**同步请求**</font>
+
+      ```objective-c
+      /// 同步请求
+      -(void)sendBatchRequest{
+          GetImageApi *a = [GetImageApi.alloc initWithParameters:nil];
+          GetImageApi *b = [GetImageApi.alloc initWithParameters:nil];
+          GetImageApi *c = [GetImageApi.alloc initWithParameters:nil];
+          GetUserInfoApi *d = [GetUserInfoApi.alloc initWithParameters:nil];
+          
+          YTKBatchRequest *batchRequest = [YTKBatchRequest.alloc initWithRequestArray:@[a, b, c, d]];
+          [batchRequest startWithCompletionBlockWithSuccess:^(YTKBatchRequest *batchRequest) {
+              NSLog(@"succeed");
+              NSArray *requests = batchRequest.requestArray;
+              GetImageApi *a = (GetImageApi *)requests[0];
+              GetImageApi *b = (GetImageApi *)requests[1];
+              GetImageApi *c = (GetImageApi *)requests[2];
+              GetUserInfoApi *user = (GetUserInfoApi *)requests[3];
+              ///deal with requests result ...
+              NSLog(@"%@, %@, %@, %@", a, b, c, user);
+              
+              /// 以下是我们需要的值
+              a.responseObject;
+              b.responseObject;
+              c.responseObject;
+              user.responseObject;
+              
+          } failure:^(YTKBatchRequest *batchRequest) {
+              NSLog(@"failed");
+          }];
+      }
+      ```
+
+    * <font color=red>**链式请求**</font>
+
+      ```objective-c
+      /// 链式请求的结果集体现在<YTKChainRequestDelegate>
+      -(void)sendChainRequest{
+          RegisterApi *reg = [RegisterApi.alloc initWithParameters:nil];
+          YTKChainRequest *chainReq = YTKChainRequest.new;
+          @jobs_weakify(self)
+          [chainReq addRequest:reg
+                      callback:^(YTKChainRequest *chainRequest,
+                                 YTKBaseRequest *baseRequest) {
+              @jobs_strongify(self)
+              RegisterApi *result = (RegisterApi *)baseRequest;
+              /// 在链式请求中，下一个请求的参数来源于上一个请求的结果
+              GetUserInfoApi *api = [GetUserInfoApi.alloc initWithParameters:@{@"KKK":result.userId}];
+              [chainRequest addRequest:api callback:nil];
+          }];
+          chainReq.delegate = self;
+          [chainReq start];// start to send request
+      }
+      ```
+
+      链式请求的结果集体现在 **YTKChainRequestDelegate**
+
+      ```objective-c
+      #pragma mark —— YTKChainRequestDelegate
+      -(void)chainRequestFinished:(YTKChainRequest *)chainRequest{
+          NSLog(@"all requests are done");
+      }
+      
+      -(void)chainRequestFailed:(YTKChainRequest *)chainRequest
+              failedBaseRequest:(YTKBaseRequest*)request{
+          NSLog(@"some one of request is failed");
+      }
+      ```
+
+#### 34.2、[**ZBNetworking**](https://github.com/Suzhibin/ZBNetworking)
+
+* 集成
+
+  ```ruby
+  pod 'ZBNetworking', :git => 'https://github.com/Suzhibin/ZBNetworking.git'
+  ```
+
+  ```objective-c
+  #if __has_include(<ZBNetworking/ZBNetworking.h>)
+  #import <ZBNetworking/ZBNetworking.h>
+  #else
+  #import "ZBNetworking.h"
+  #endif
+  ```
+
+* 一些拓展
+
+  **JobsNetworkingAPI**
+
+  ```objective-c
+  @interface JobsNetworkingAPI : NSObject
+  #pragma mark —— 普通的网络请求
+  /// 【只有Body参数、不需要错误回调】
+  +(void)requestApi:(NSString *_Nonnull)requestApi
+         parameters:(id _Nullable)parameters
+       successBlock:(jobsByIDBlock _Nullable)successBlock;
+  ///【只有Body参数、需要错误回调的】
+  +(void)requestApi:(NSString *_Nonnull)requestApi
+         parameters:(id _Nullable)parameters
+       successBlock:(jobsByIDBlock _Nullable)successBlock
+       failureBlock:(jobsByIDBlock _Nullable)failureBlock;
+  #pragma mark —— 特殊的上传文件的网络请求
+  /// 上传【图片】文件的网络请求
+  +(void)requestApi:(NSString *_Nonnull)requestApi
+  uploadImagesParamArr:(NSArray *_Nullable)uploadImagesParamArr
+       successBlock:(jobsByIDBlock _Nullable)successBlock
+       failureBlock:(jobsByIDBlock _Nullable)failureBlock;
+  /// 上传【视频】文件的网络请求
+  +(void)requestApi:(NSString *_Nonnull)requestApi
+  uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
+       successBlock:(jobsByIDBlock _Nullable)successBlock
+       failureBlock:(jobsByIDBlock _Nullable)failureBlock;
+  /// 请求成功的处理代码
+  +(void)networkingSuccessHandleWithData:(JobsResponseModel *_Nullable)responseObject
+                                 request:(ZBURLRequest *_Nullable)request
+                            successBlock:(jobsByIDBlock _Nullable)successBlock
+                            failureBlock:(jobsByIDBlock _Nullable)failureBlock;
+  #pragma mark —— 错误处理
+  +(void)handleError:(id)error;
+  
+  @end
+  ```
+
+* 普通的请求（**POST**、**GET**）：<font color=blue>**请求方法配置在如下的单个的api里面**</font>
+
+  ```objective-c
+  NSString *appInterfaceTesting;
+  +(void)appInterfaceTesting:(id)parameters
+                successBlock:(jobsByIDBlock _Nullable)successBlock
+                failureBlock:(jobsByIDBlock _Nullable)failureBlock{
+  //    NSDictionary *parameterss = @{};
+  //    NSDictionary *headers = @{};
+      
+      [ZBRequestManager requestWithConfig:^(ZBURLRequest * _Nullable request) {
+  
+          request.server = self.BaseUrl;
+          request.url = request.server.add(self.appInterfaceTesting.url);
+          
+          NSLog(@"request.URLString = %@",request.url);
+          
+          request.methodType = ZBMethodTypeGET;//默认为GET
+          request.apiType = ZBRequestTypeRefresh;//（默认为ZBRequestTypeRefresh 不读取缓存，不存储缓存）
+          request.parameters = parameters;//与公共配置 Parameters 兼容
+  //        request.headers = headers;//与公共配置 Headers 兼容
+          request.retryCount = 1;//请求失败 单次请求 重新连接次数 优先级大于 全局设置，不影响其他请求设置
+          request.timeoutInterval = 10;//默认30 //优先级 高于 公共配置,不影响其他请求设置
+          if (!DataManager.sharedInstance.tag.nullString) {
+              request.userInfo = @{@"info":DataManager.sharedInstance.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
+          };//与公共配置 UserInfo 不兼容 优先级大于 公共配置
+          
+          {
+  //            request.filtrationCacheKey = @[JobsInternationalization(@"")];//与公共配置 filtrationCacheKey 兼容
+  //            request.requestSerializer = ZBJSONRequestSerializer; //单次请求设置 请求格式 默认JSON，优先级大于 公共配置，不影响其他请求设置
+  //            request.responseSerializer = ZBJSONResponseSerializer; //单次请求设置 响应格式 默认JSON，优先级大于 公共配置,不影响其他请求设置
+             
+              /**
+               多次请求同一个接口 保留第一次或最后一次请求结果 只在请求时有用  读取缓存无效果。默认ZBResponseKeepNone 什么都不做
+               使用场景是在 重复点击造成的 多次请求，如发帖，评论，搜索等业务
+               */
+  //            request.keepType=ZBResponseKeepNone;
+          }//一些临时的其他的配置
+          
+      }progress:^(NSProgress * _Nullable progress){
+          NSLog(@"进度 = %f",progress.fractionCompleted * 100);
+      }success:^(id  _Nullable responseObject,
+                 ZBURLRequest * _Nullable request){
+          [JobsNetworkingAPI networkingSuccessHandleWithData:responseObject
+                                                   request:request
+                                              successBlock:successBlock
+                                              failureBlock:failureBlock];
+      }failure:^(NSError * _Nullable error){
+          NSLog(@"error = %@",error);
+          if (failureBlock) {
+              failureBlock(error);
+          }
+      }finished:^(id  _Nullable responseObject,
+                  NSError * _Nullable error,
+                  ZBURLRequest * _Nullable request){
+          NSLog(@"请求完成 userInfo:%@",request.userInfo);
+      }];
+  }
+  ```
+
+* 调用示例
+
+  * 一般的网络请求，只带body参数，最多也就是自定义header
+
+    ```objective-c
+     -(void)networking_messageSecondClassListGET{
+         NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
+         DataManager.sharedInstance.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
+         [RequestTool setupPublicParameters];//公共配置、插件机制、证书设置
+         @jobs_weakify(self)
+         NSDictionary *parameters = @{};
+         [JobsNetworkingAPI requestApi:NSObject.messageSecondClassListGET.funcName
+                          parameters:parameters
+                        successBlock:^(id data) {
+             @jobs_strongify(self)
+         }failureBlock:^(id data) {
+             @jobs_strongify(self)
+         }];
+     }
+    ```
+
+    ```objective-c
+     /// 邀请好友
+     +(void)userInfoInviteFriendPOST:(id)parameters
+                        successBlock:(jobsByIDBlock _Nullable)successBlock{
+     //    NSDictionary *parameterss = @{};
+     //    NSDictionary *headers = @{};
+         
+         [ZBRequestManager requestWithConfig:^(ZBURLRequest * _Nullable request) {
+    
+             request.server = NSObject.BaseUrl;
+             request.url = [request.server stringByAppendingString:NSObject.userInfoInviteFriendPOST.url];
+             
+             NSLog(@"request.URLString = %@",request.url);
+             
+             request.methodType = ZBMethodTypePOST;//默认为GET
+             request.apiType = ZBRequestTypeRefresh;//（默认为ZBRequestTypeRefresh 不读取缓存，不存储缓存）
+             request.parameters = parameters;//与公共配置 Parameters 兼容
+     //        request.headers = headers;//与公共配置 Headers 兼容
+             request.retryCount = 1;//请求失败 单次请求 重新连接次数 优先级大于 全局设置，不影响其他请求设置
+             request.timeoutInterval = 10;//默认30 //优先级 高于 公共配置,不影响其他请求设置
+             if (!DataManager.sharedInstance.tag.nullString) {
+                 request.userInfo = @{@"info":DataManager.sharedInstance.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
+             };//与公共配置 UserInfo 不兼容 优先级大于 公共配置
+             
+             {
+     //            request.filtrationCacheKey = @[JobsInternationalization(@"")];//与公共配置 filtrationCacheKey 兼容
+     //            request.requestSerializer = ZBJSONRequestSerializer; //单次请求设置 请求格式 默认JSON，优先级大于 公共配置，不影响其他请求设置
+     //            request.responseSerializer = ZBJSONResponseSerializer; //单次请求设置 响应格式 默认JSON，优先级大于 公共配置,不影响其他请求设置
+                
+     /// 多次请求同一个接口 保留第一次或最后一次请求结果 只在请求时有用  读取缓存无效果。默认ZBResponseKeepNone 什么都不做。使用场景是在 重复点击造成的 多次请求，如发帖，评论，搜索等业务
+     //            request.keepType=ZBResponseKeepNone;
+             }//一些临时的其他的配置
+             
+         }progress:^(NSProgress * _Nullable progress){
+             NSLog(@"进度 = %f",progress.fractionCompleted * 100);
+         }success:^(id  _Nullable responseObject,
+                    ZBURLRequest * _Nullable request){
+             if (successBlock) {
+                 successBlock(responseObject);
+             }
+         }failure:^(NSError * _Nullable error){
+             NSLog(@"error = %@",error);
+         }finished:^(id  _Nullable responseObject,
+                     NSError * _Nullable error,
+                     ZBURLRequest * _Nullable request){
+             NSLog(@"请求完成 userInfo:%@",request.userInfo);
+         }];
+    }
+    ```
+
+  * 特殊的网络请求：可以body里面携带参数，也可以自定义header，并且表单模式post传输data数据
+
+    * **传输图片**
+
+      ```objective-c
+      -(void)networking_postUploadImagePOST{
+       NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
+       DataManager.sharedInstance.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
+      
+       [RequestTool setupPublicParameters];//公共配置、插件机制、证书设置
+       @jobs_weakify(self)
+       NSDictionary *parameters = @{};
+       [JobsNetworkingAPI requestApi:NSObject.postUploadImagePOST.funcName
+              uploadImagesParamArr:@[parameters,
+                                     self.photosImageMutArr]
+                      successBlock:^(id data) {
+           @jobs_strongify(self)
+           NSLog(@"data = %@",data);
+       }
+                      failureBlock:^(id data) {
+           @jobs_strongify(self)
+           NSLog(@"data = %@",data);
+       }];
+      }
+      ```
+
+      ```objective-c
+      +(void)postUploadImagePOST:(id)parameters
+             uploadImageDatas:(NSMutableArray<UIImage *> *)uploadImageDatas
+                 successBlock:(jobsByIDBlock _Nullable)successBlock
+                 failureBlock:(jobsByIDBlock _Nullable)failureBlock{
+       
+       NSMutableArray *uploadDatas = NSMutableArray.array;
+       for (int i = 0; i < uploadImageDatas.count; i++) {
+           UIImage *image = uploadImageDatas[i];
+           NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+           NSInteger time = NSDate.date.timeIntervalSince1970 * 1000;
+           NSString *fileName = [NSString stringWithFormat:@"%ld_%u.jpeg",time,arc4random() / 1000];
+           ZBUploadData *zbdata = [ZBUploadData formDataWithName:@"file"
+                                                        fileName:fileName
+                                                        mimeType:@"image/jpeg"
+                                                        fileData:imageData];
+           [uploadDatas addObject:zbdata];
+       }
+       [ZBRequestManager requestWithConfig:^(ZBURLRequest * request) {
+           request.server = NSObject.BaseUrl;
+           request.url = [request.server stringByAppendingString:NSObject.postUploadImagePOST.url];
+           NSLog(@"request.URLString = %@",request.url);
+           request.methodType = ZBMethodTypeUpload;
+           request.apiType = ZBRequestTypeRefresh;//（默认为ZBRequestTypeRefresh 不读取缓存，不存储缓存）
+      //        request.parameters = parameters;//与公共配置 Parameters 兼容
+      //        request.headers = headers;//与公共配置Headers 兼容
+           request.retryCount = 1;//请求失败 单次请求 重新连接次数 优先级大于 全局设置，不影响其他请求设置
+           request.timeoutInterval = 120;//默认30 //优先级 高于 公共配置,不影响其他请求设置
+           request.requestSerializer = ZBHTTPRequestSerializer;
+           request.uploadDatas = uploadDatas;
+           if (!DataManager.sharedInstance.tag.nullString) {
+               request.userInfo = @{@"info":DataManager.sharedInstance.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
+           };//与公共配置 UserInfo 不兼容 优先级大于 公共配置
+       } progress:^(NSProgress * _Nullable progress) {
+           NSLog(@"onProgress: %.2f", 100.f * progress.completedUnitCount/progress.totalUnitCount);
+       } success:^(id  responseObject,ZBURLRequest * request) {
+           NSLog(@"responseObject: %@", responseObject);
+           if (successBlock) {
+               successBlock(responseObject);
+           }
+       } failure:^(NSError * _Nullable error) {
+           NSLog(@"error: %@", error);
+           if (failureBlock) {
+               failureBlock(error);
+           }
+       }];
+      }
+      ```
+
+    * **传输视频**
+
+      ```objective-c
+      /// 帖子视频上传 POST
+      -(void)networking_postuploadVideoPOST{
+       NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
+       DataManager.sharedInstance.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
+      
+       [RequestTool setupPublicParameters];//公共配置、插件机制、证书设置
+       @jobs_weakify(self)
+       NSDictionary *parameters = @{};
+       
+       extern NSString *postuploadVideoPOST;
+       extern NSString *preproccess;
+       
+       [JobsNetworkingAPI requestApi:NSObject.postuploadVideoPOST.funcName
+              uploadVideosParamArr:@[parameters,
+                                     self.videosData]
+                      successBlock:^(id data) {
+           @jobs_strongify(self)
+           NSLog(@"data = %@",data);
+       }
+                      failureBlock:^(id data) {
+           @jobs_strongify(self)
+           NSLog(@"data = %@",data);
+       }];
+      }
+      ```
+
+      ```objective-c
+       NSString *postuploadVideoPOST;
+       +(void)postuploadVideoPOST:(id)parameters
+                      uploadVideo:(NSMutableArray <NSData *>*)videoDatas
+                     successBlock:(jobsByIDBlock _Nullable)successBlock
+                     failureBlock:(jobsByIDBlock _Nullable)failureBlock{
+           NSMutableArray *uploadDatas = NSMutableArray.array;
+           for (int i = 0; i < videoDatas.count; i++) {
+               NSInteger time = NSDate.date.timeIntervalSince1970 * 1000;
+               NSString *fileName = [NSString stringWithFormat:@"%ld_%u.mp4", time, arc4random() / 1000];
+      
+               ZBUploadData *zbdata = [ZBUploadData formDataWithName:@"file"
+                                                            fileName:fileName
+                                                            mimeType:@"video/mp4"
+                                                            fileData:videoDatas[i]];
+               
+           //    ZBUploadData *zbdata = [ZBUploadData formDataWithName:@"file"
+           //                                                 fileName:fileName
+           //                                                 mimeType:@"video/mp4"
+           //                                                  fileURL:videoURL];
+               [uploadDatas addObject:zbdata];
+           }
+           
+           [ZBRequestManager requestWithConfig:^(ZBURLRequest * request) {
+               request.server = NSObject.BaseUrl;
+               request.url = [request.server stringByAppendingString:NSObject.postuploadVideoPOST.url];
+               NSLog(@"request.URLString = %@",request.url);
+               request.methodType = ZBMethodTypeUpload;
+               request.apiType = ZBRequestTypeRefresh;//（默认为ZBRequestTypeRefresh 不读取缓存，不存储缓存）
+       //        request.parameters = parameters;//与公共配置 Parameters 兼容
+       //        request.headers = headers;//与公共配置Headers 兼容
+               request.retryCount = 1;//请求失败 单次请求 重新连接次数 优先级大于 全局设置，不影响其他请求设置
+               request.timeoutInterval = 120;//默认30 //优先级 高于 公共配置,不影响其他请求设置
+               request.requestSerializer = ZBHTTPRequestSerializer;
+               request.uploadDatas = uploadDatas;
+               if (!DataManager.sharedInstance.tag.nullString) {
+                   request.userInfo = @{@"info":DataManager.sharedInstance.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
+               };//与公共配置 UserInfo 不兼容 优先级大于 公共配置
+           } progress:^(NSProgress * _Nullable progress) {
+               NSLog(@"onProgress: %.2f", 100.f * progress.completedUnitCount/progress.totalUnitCount);
+               [WHToast toastLoadingMsg:@"视频上传中...请稍后"];
+           } success:^(id  responseObject,ZBURLRequest * request) {
+               NSLog(@"responseObject: %@", responseObject);
+               [WHToast toastHide];
+               if (successBlock) {
+                   successBlock(responseObject);
+               }
+           } failure:^(NSError * _Nullable error) {
+               NSLog(@"error: %@", error);
+               [WHToast toastHide];
+               if (failureBlock) {
+                   failureBlock(error);
+               }
+           }];
+       }
+      ```
 
 ### Test  
 

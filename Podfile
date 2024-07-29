@@ -68,7 +68,7 @@ def appCommon
   pod 'XYColorOC' # https://github.com/RayJiang16/XYColor 适配iOS 13夜间模式/深色外观(Dark Mode)
   pod 'IQKeyboardManager' # https://github.com/hackiftekhar/IQKeyboardManager Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more.
   pod 'Masonry' # https://github.com/SnapKit/Masonry NO_SMP
-  pod 'AFNetworking' # https://github.com/AFNetworking/AFNetworking YES_SMP ⚠️作者停止维护
+#  pod 'AFNetworking' # https://github.com/AFNetworking/AFNetworking YES_SMP ⚠️作者停止维护
   pod 'Reachability'  # https://github.com/tonymillion/Reachability 检查联网情况 NO_SMP
   pod 'ReactiveObjC' # https://github.com/ReactiveCocoa/ReactiveObjC NO_SMP
   pod 'XZMRefresh' # https://github.com/xiezhongmin/XZMRefresh
@@ -80,7 +80,8 @@ def appCommon
   pod 'OpenUDID'  # https://github.com/ylechelle/OpenUDID Open source initiative for a universal and persistent UDID solution for iOS
   pod 'TABAnimated' # https://github.com/tigerAndBull/TABAnimated
   pod 'HXRotationTool' # https://github.com/TheLittleBoy/HXRotationTool 屏幕旋转
-#  pod 'YTKNetwork' # https://github.com/yuantiku/YTKNetwork
+  pod 'YTKNetwork' # https://github.com/yuantiku/YTKNetwork
+#  pod 'ZBNetworking', :git => 'https://github.com/Suzhibin/ZBNetworking.git' # https://github.com/Suzhibin/ZBNetworking
 end
 ## GK一族
 def gk

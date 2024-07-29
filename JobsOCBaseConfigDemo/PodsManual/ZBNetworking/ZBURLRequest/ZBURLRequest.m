@@ -13,6 +13,9 @@
     if (!self) {
         return nil;
     }
+    _url=@"";
+    _server=@"";
+    _path=@"";
     _requestSerializer=ZBJSONRequestSerializer;
     _responseSerializer=ZBJSONResponseSerializer;
     _methodType=ZBMethodTypeGET;
@@ -36,6 +39,11 @@
     _isResponseSerializer=YES;
 }
 
+- (void)setMethodType:(ZBMethodType)methodType{
+    _methodType=methodType;
+    _isMethodType=YES;
+}
+
 - (void)cleanAllCallback{
     _successBlock = nil;
     _failureBlock = nil;
@@ -49,9 +57,9 @@
 }
 
 - (void)dealloc{
-#ifdef DEBUG
-    NSLog(@"%s",__func__);
-#endif
+    if (_consoleLog==YES) {
+        NSLog(@"%s",__func__);
+    }
 }
 
 #pragma mark - 上传请求参数
@@ -82,14 +90,6 @@
         _uploadDatas = [[NSMutableArray alloc]init];
     }
     return _uploadDatas;
-}
-
--(NSString *)server{
-    return _server.urlProtect;
-}
-
--(NSString *)url{
-    return _url.urlProtect;
 }
 
 @end
@@ -194,8 +194,8 @@
     _isResponseSerializer=YES;
 }
 
--(NSString *)baseServer{
-    return _baseServer.urlProtect;
+- (void)setDefaultMethodType:(ZBMethodType)defaultMethodType{
+    _defaultMethodType=defaultMethodType;
+    _isDefaultMethodType=YES;
 }
-
 @end

@@ -13,6 +13,11 @@
 		CE40B28E2C4B54A500CB64B5 /* JobsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */; };
 		CE40B29B2C4BF78E00CB64B5 /* JobsToggleBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */; };
 		CE40B29C2C4BF78E00CB64B5 /* JobsToggleNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2982C4BF78E00CB64B5 /* JobsToggleNavView.m */; };
+		CE410FE72C57B8B400AB9402 /* NSString+ZBURLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FD62C57B8B400AB9402 /* NSString+ZBURLEncoding.m */; };
+		CE410FE82C57B8B400AB9402 /* ZBCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FD92C57B8B400AB9402 /* ZBCacheManager.m */; };
+		CE410FE92C57B8B400AB9402 /* ZBRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDC2C57B8B400AB9402 /* ZBRequestEngine.m */; };
+		CE410FEA2C57B8B400AB9402 /* ZBRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDF2C57B8B400AB9402 /* ZBRequestManager.m */; };
+		CE410FEB2C57B8B400AB9402 /* ZBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */; };
 		CE55CD222C4A5004002E1825 /* 临时的占位图.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE55CD212C4A4FEF002E1825 /* 临时的占位图.xcassets */; };
 		CE706A402C5767CA00CB7B97 /* ExcelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE706A372C5767CA00CB7B97 /* ExcelVC.m */; };
 		CE706A412C5767CA00CB7B97 /* ZMJClassDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE706A3A2C5767CA00CB7B97 /* ZMJClassDataVC.m */; };
@@ -389,16 +394,6 @@
 		CECE7ECF2C450E5B00764AF5 /* B.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE7E4B2C450E5B00764AF5 /* B.png */; };
 		CECE7ED02C450E5B00764AF5 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE7E4C2C450E5B00764AF5 /* refresh.png */; };
 		CECE7ED12C450E5B00764AF5 /* WMZCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E4F2C450E5B00764AF5 /* WMZCodeView.m */; };
-		CECE7ED32C450E5B00764AF5 /* YTKBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E542C450E5B00764AF5 /* YTKBaseRequest.m */; };
-		CECE7ED42C450E5B00764AF5 /* YTKBatchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E562C450E5B00764AF5 /* YTKBatchRequest.m */; };
-		CECE7ED52C450E5B00764AF5 /* YTKBatchRequestAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E582C450E5B00764AF5 /* YTKBatchRequestAgent.m */; };
-		CECE7ED62C450E5B00764AF5 /* YTKChainRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E5A2C450E5B00764AF5 /* YTKChainRequest.m */; };
-		CECE7ED72C450E5B00764AF5 /* YTKChainRequestAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E5C2C450E5B00764AF5 /* YTKChainRequestAgent.m */; };
-		CECE7ED82C450E5B00764AF5 /* YTKNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E5F2C450E5B00764AF5 /* YTKNetworkAgent.m */; };
-		CECE7ED92C450E5B00764AF5 /* YTKNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E612C450E5B00764AF5 /* YTKNetworkConfig.m */; };
-		CECE7EDA2C450E5B00764AF5 /* YTKNetworkPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E632C450E5B00764AF5 /* YTKNetworkPrivate.m */; };
-		CECE7EDB2C450E5B00764AF5 /* YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E652C450E5B00764AF5 /* YTKRequest.m */; };
-		CECE7EDC2C450E5B00764AF5 /* YTKRequestEventAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E672C450E5B00764AF5 /* YTKRequestEventAccessory.m */; };
 		CECE7EDD2C450E5B00764AF5 /* CasinoFlowDetailsVC_h in Resources */ = {isa = PBXBuildFile; fileRef = CECE7E692C450E5B00764AF5 /* CasinoFlowDetailsVC_h */; };
 		CECE7EDE2C450E5B00764AF5 /* CasinoFlowDetailsVC_m in Resources */ = {isa = PBXBuildFile; fileRef = CECE7E6A2C450E5B00764AF5 /* CasinoFlowDetailsVC_m */; };
 		CECE7EDF2C450E5B00764AF5 /* ZMJCell+CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E6D2C450E5B00764AF5 /* ZMJCell+CustomView.m */; };
@@ -426,12 +421,6 @@
 		CECE80C62C4512BF00764AF5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F3B2C4512BF00764AF5 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		CECE80C72C4512BF00764AF5 /* UIScrollView+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F3D2C4512BF00764AF5 /* UIScrollView+FDFullscreenPopGesture.m */; };
 		CECE80C82C4512BF00764AF5 /* ImageCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F402C4512BF00764AF5 /* ImageCodeView.m */; };
-		CECE80C92C4512BF00764AF5 /* NSString+Check.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F432C4512BF00764AF5 /* NSString+Check.m */; };
-		CECE80CA2C4512BF00764AF5 /* NSString+ZBUTF8Encoding.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F452C4512BF00764AF5 /* NSString+ZBUTF8Encoding.m */; };
-		CECE80CB2C4512BF00764AF5 /* ZBCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F472C4512BF00764AF5 /* ZBCacheManager.m */; };
-		CECE80CC2C4512BF00764AF5 /* ZBRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F4B2C4512BF00764AF5 /* ZBRequestEngine.m */; };
-		CECE80CD2C4512BF00764AF5 /* ZBRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F4D2C4512BF00764AF5 /* ZBRequestManager.m */; };
-		CECE80CE2C4512BF00764AF5 /* ZBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F4F2C4512BF00764AF5 /* ZBURLRequest.m */; };
 		CECE80CF2C4512BF00764AF5 /* JobsScrollViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F532C4512BF00764AF5 /* JobsScrollViewVC.m */; };
 		CECE80D02C4512BF00764AF5 /* JobsScrollYView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F562C4512BF00764AF5 /* JobsScrollYView.m */; };
 		CECE80D12C4512BF00764AF5 /* CasinoCustomerServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F5A2C4512BF00764AF5 /* CasinoCustomerServiceView.m */; };
@@ -1126,6 +1115,18 @@
 		CE40B2982C4BF78E00CB64B5 /* JobsToggleNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsToggleNavView.m; sourceTree = "<group>"; };
 		CE40B2992C4BF78E00CB64B5 /* JobsToggleNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsToggleNavView.h; sourceTree = "<group>"; };
 		CE40B29A2C4BF78E00CB64B5 /* JobsToggleBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsToggleBaseView.h; sourceTree = "<group>"; };
+		CE410FD52C57B8B400AB9402 /* NSString+ZBURLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZBURLEncoding.h"; sourceTree = "<group>"; };
+		CE410FD62C57B8B400AB9402 /* NSString+ZBURLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZBURLEncoding.m"; sourceTree = "<group>"; };
+		CE410FD82C57B8B400AB9402 /* ZBCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBCacheManager.h; sourceTree = "<group>"; };
+		CE410FD92C57B8B400AB9402 /* ZBCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBCacheManager.m; sourceTree = "<group>"; };
+		CE410FDB2C57B8B400AB9402 /* ZBRequestEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBRequestEngine.h; sourceTree = "<group>"; };
+		CE410FDC2C57B8B400AB9402 /* ZBRequestEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBRequestEngine.m; sourceTree = "<group>"; };
+		CE410FDE2C57B8B400AB9402 /* ZBRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBRequestManager.h; sourceTree = "<group>"; };
+		CE410FDF2C57B8B400AB9402 /* ZBRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBRequestManager.m; sourceTree = "<group>"; };
+		CE410FE12C57B8B400AB9402 /* ZBURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBURLRequest.h; sourceTree = "<group>"; };
+		CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBURLRequest.m; sourceTree = "<group>"; };
+		CE410FE42C57B8B400AB9402 /* ZBNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBNetworking.h; sourceTree = "<group>"; };
+		CE410FE52C57B8B400AB9402 /* ZBRequestConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBRequestConst.h; sourceTree = "<group>"; };
 		CE55CD212C4A4FEF002E1825 /* 临时的占位图.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "临时的占位图.xcassets"; sourceTree = "<group>"; };
 		CE706A322C5767CA00CB7B97 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		CE706A342C5767CA00CB7B97 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -1848,27 +1849,6 @@
 		CECE7E4F2C450E5B00764AF5 /* WMZCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMZCodeView.m; sourceTree = "<group>"; };
 		CECE7E502C450E5B00764AF5 /* WMZCodeView.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = WMZCodeView.md; sourceTree = "<group>"; };
 		CECE7E512C450E5B00764AF5 /* WMZCodeViewDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMZCodeViewDefine.h; sourceTree = "<group>"; };
-		CECE7E532C450E5B00764AF5 /* YTKBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKBaseRequest.h; sourceTree = "<group>"; };
-		CECE7E542C450E5B00764AF5 /* YTKBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKBaseRequest.m; sourceTree = "<group>"; };
-		CECE7E552C450E5B00764AF5 /* YTKBatchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKBatchRequest.h; sourceTree = "<group>"; };
-		CECE7E562C450E5B00764AF5 /* YTKBatchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKBatchRequest.m; sourceTree = "<group>"; };
-		CECE7E572C450E5B00764AF5 /* YTKBatchRequestAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKBatchRequestAgent.h; sourceTree = "<group>"; };
-		CECE7E582C450E5B00764AF5 /* YTKBatchRequestAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKBatchRequestAgent.m; sourceTree = "<group>"; };
-		CECE7E592C450E5B00764AF5 /* YTKChainRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKChainRequest.h; sourceTree = "<group>"; };
-		CECE7E5A2C450E5B00764AF5 /* YTKChainRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKChainRequest.m; sourceTree = "<group>"; };
-		CECE7E5B2C450E5B00764AF5 /* YTKChainRequestAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKChainRequestAgent.h; sourceTree = "<group>"; };
-		CECE7E5C2C450E5B00764AF5 /* YTKChainRequestAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKChainRequestAgent.m; sourceTree = "<group>"; };
-		CECE7E5D2C450E5B00764AF5 /* YTKNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKNetwork.h; sourceTree = "<group>"; };
-		CECE7E5E2C450E5B00764AF5 /* YTKNetworkAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKNetworkAgent.h; sourceTree = "<group>"; };
-		CECE7E5F2C450E5B00764AF5 /* YTKNetworkAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKNetworkAgent.m; sourceTree = "<group>"; };
-		CECE7E602C450E5B00764AF5 /* YTKNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKNetworkConfig.h; sourceTree = "<group>"; };
-		CECE7E612C450E5B00764AF5 /* YTKNetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKNetworkConfig.m; sourceTree = "<group>"; };
-		CECE7E622C450E5B00764AF5 /* YTKNetworkPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKNetworkPrivate.h; sourceTree = "<group>"; };
-		CECE7E632C450E5B00764AF5 /* YTKNetworkPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKNetworkPrivate.m; sourceTree = "<group>"; };
-		CECE7E642C450E5B00764AF5 /* YTKRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKRequest.h; sourceTree = "<group>"; };
-		CECE7E652C450E5B00764AF5 /* YTKRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKRequest.m; sourceTree = "<group>"; };
-		CECE7E662C450E5B00764AF5 /* YTKRequestEventAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKRequestEventAccessory.h; sourceTree = "<group>"; };
-		CECE7E672C450E5B00764AF5 /* YTKRequestEventAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKRequestEventAccessory.m; sourceTree = "<group>"; };
 		CECE7E692C450E5B00764AF5 /* CasinoFlowDetailsVC_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CasinoFlowDetailsVC_h; sourceTree = "<group>"; };
 		CECE7E6A2C450E5B00764AF5 /* CasinoFlowDetailsVC_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CasinoFlowDetailsVC_m; sourceTree = "<group>"; };
 		CECE7E6C2C450E5B00764AF5 /* ZMJCell+CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZMJCell+CustomView.h"; sourceTree = "<group>"; };
@@ -1944,20 +1924,6 @@
 		CECE7F3D2C4512BF00764AF5 /* UIScrollView+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		CECE7F3F2C4512BF00764AF5 /* ImageCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCodeView.h; sourceTree = "<group>"; };
 		CECE7F402C4512BF00764AF5 /* ImageCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCodeView.m; sourceTree = "<group>"; };
-		CECE7F422C4512BF00764AF5 /* NSString+Check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Check.h"; sourceTree = "<group>"; };
-		CECE7F432C4512BF00764AF5 /* NSString+Check.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Check.m"; sourceTree = "<group>"; };
-		CECE7F442C4512BF00764AF5 /* NSString+ZBUTF8Encoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZBUTF8Encoding.h"; sourceTree = "<group>"; };
-		CECE7F452C4512BF00764AF5 /* NSString+ZBUTF8Encoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZBUTF8Encoding.m"; sourceTree = "<group>"; };
-		CECE7F462C4512BF00764AF5 /* ZBCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBCacheManager.h; sourceTree = "<group>"; };
-		CECE7F472C4512BF00764AF5 /* ZBCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBCacheManager.m; sourceTree = "<group>"; };
-		CECE7F482C4512BF00764AF5 /* ZBNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBNetworking.h; sourceTree = "<group>"; };
-		CECE7F492C4512BF00764AF5 /* ZBRequestConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBRequestConst.h; sourceTree = "<group>"; };
-		CECE7F4A2C4512BF00764AF5 /* ZBRequestEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBRequestEngine.h; sourceTree = "<group>"; };
-		CECE7F4B2C4512BF00764AF5 /* ZBRequestEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBRequestEngine.m; sourceTree = "<group>"; };
-		CECE7F4C2C4512BF00764AF5 /* ZBRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBRequestManager.h; sourceTree = "<group>"; };
-		CECE7F4D2C4512BF00764AF5 /* ZBRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBRequestManager.m; sourceTree = "<group>"; };
-		CECE7F4E2C4512BF00764AF5 /* ZBURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBURLRequest.h; sourceTree = "<group>"; };
-		CECE7F4F2C4512BF00764AF5 /* ZBURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBURLRequest.m; sourceTree = "<group>"; };
 		CECE7F522C4512BF00764AF5 /* JobsScrollViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsScrollViewVC.h; sourceTree = "<group>"; };
 		CECE7F532C4512BF00764AF5 /* JobsScrollViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsScrollViewVC.m; sourceTree = "<group>"; };
 		CECE7F552C4512BF00764AF5 /* JobsScrollYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsScrollYView.h; sourceTree = "<group>"; };
@@ -3181,6 +3147,65 @@
 				CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */,
 			);
 			path = JobsToggleBaseView;
+			sourceTree = "<group>";
+		};
+		CE410FD72C57B8B400AB9402 /* NSString+ZBURLEncoding */ = {
+			isa = PBXGroup;
+			children = (
+				CE410FD52C57B8B400AB9402 /* NSString+ZBURLEncoding.h */,
+				CE410FD62C57B8B400AB9402 /* NSString+ZBURLEncoding.m */,
+			);
+			path = "NSString+ZBURLEncoding";
+			sourceTree = "<group>";
+		};
+		CE410FDA2C57B8B400AB9402 /* ZBCacheManager */ = {
+			isa = PBXGroup;
+			children = (
+				CE410FD82C57B8B400AB9402 /* ZBCacheManager.h */,
+				CE410FD92C57B8B400AB9402 /* ZBCacheManager.m */,
+			);
+			path = ZBCacheManager;
+			sourceTree = "<group>";
+		};
+		CE410FDD2C57B8B400AB9402 /* ZBRequestEngine */ = {
+			isa = PBXGroup;
+			children = (
+				CE410FDB2C57B8B400AB9402 /* ZBRequestEngine.h */,
+				CE410FDC2C57B8B400AB9402 /* ZBRequestEngine.m */,
+			);
+			path = ZBRequestEngine;
+			sourceTree = "<group>";
+		};
+		CE410FE02C57B8B400AB9402 /* ZBRequestManager */ = {
+			isa = PBXGroup;
+			children = (
+				CE410FDE2C57B8B400AB9402 /* ZBRequestManager.h */,
+				CE410FDF2C57B8B400AB9402 /* ZBRequestManager.m */,
+			);
+			path = ZBRequestManager;
+			sourceTree = "<group>";
+		};
+		CE410FE32C57B8B400AB9402 /* ZBURLRequest */ = {
+			isa = PBXGroup;
+			children = (
+				CE410FE12C57B8B400AB9402 /* ZBURLRequest.h */,
+				CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */,
+			);
+			path = ZBURLRequest;
+			sourceTree = "<group>";
+		};
+		CE410FE62C57B8B400AB9402 /* ZBNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				CE410FD72C57B8B400AB9402 /* NSString+ZBURLEncoding */,
+				CE410FDA2C57B8B400AB9402 /* ZBCacheManager */,
+				CE410FDD2C57B8B400AB9402 /* ZBRequestEngine */,
+				CE410FE02C57B8B400AB9402 /* ZBRequestManager */,
+				CE410FE32C57B8B400AB9402 /* ZBURLRequest */,
+				CE410FE42C57B8B400AB9402 /* ZBNetworking.h */,
+				CE410FE52C57B8B400AB9402 /* ZBRequestConst.h */,
+			);
+			path = ZBNetworking;
 			sourceTree = "<group>";
 		};
 		CE706A332C5767CA00CB7B97 /* Model */ = {
@@ -6961,34 +6986,6 @@
 			path = WMZCodeView;
 			sourceTree = "<group>";
 		};
-		CECE7E682C450E5B00764AF5 /* YTKNetwork */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7E532C450E5B00764AF5 /* YTKBaseRequest.h */,
-				CECE7E542C450E5B00764AF5 /* YTKBaseRequest.m */,
-				CECE7E552C450E5B00764AF5 /* YTKBatchRequest.h */,
-				CECE7E562C450E5B00764AF5 /* YTKBatchRequest.m */,
-				CECE7E572C450E5B00764AF5 /* YTKBatchRequestAgent.h */,
-				CECE7E582C450E5B00764AF5 /* YTKBatchRequestAgent.m */,
-				CECE7E592C450E5B00764AF5 /* YTKChainRequest.h */,
-				CECE7E5A2C450E5B00764AF5 /* YTKChainRequest.m */,
-				CECE7E5B2C450E5B00764AF5 /* YTKChainRequestAgent.h */,
-				CECE7E5C2C450E5B00764AF5 /* YTKChainRequestAgent.m */,
-				CECE7E5D2C450E5B00764AF5 /* YTKNetwork.h */,
-				CECE7E5E2C450E5B00764AF5 /* YTKNetworkAgent.h */,
-				CECE7E5F2C450E5B00764AF5 /* YTKNetworkAgent.m */,
-				CECE7E602C450E5B00764AF5 /* YTKNetworkConfig.h */,
-				CECE7E612C450E5B00764AF5 /* YTKNetworkConfig.m */,
-				CECE7E622C450E5B00764AF5 /* YTKNetworkPrivate.h */,
-				CECE7E632C450E5B00764AF5 /* YTKNetworkPrivate.m */,
-				CECE7E642C450E5B00764AF5 /* YTKRequest.h */,
-				CECE7E652C450E5B00764AF5 /* YTKRequest.m */,
-				CECE7E662C450E5B00764AF5 /* YTKRequestEventAccessory.h */,
-				CECE7E672C450E5B00764AF5 /* YTKRequestEventAccessory.m */,
-			);
-			path = YTKNetwork;
-			sourceTree = "<group>";
-		};
 		CECE7E6B2C450E5B00764AF5 /* ZMJGanttChartDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -7042,6 +7039,7 @@
 		CECE7E7A2C450E5B00764AF5 /* PodsManual */ = {
 			isa = PBXGroup;
 			children = (
+				CE410FE62C57B8B400AB9402 /* ZBNetworking */,
 				CE7F39762C4FDB9B00431A5D /* FMDatabase+Manager */,
 				CECE7D812C450E5B00764AF5 /* JXCategoryView */,
 				CECE7DEE2C450E5B00764AF5 /* KTV */,
@@ -7051,7 +7049,6 @@
 				CECE7E3A2C450E5B00764AF5 /* TKPermissionKit */,
 				CECE7E482C450E5B00764AF5 /* WMZBanner */,
 				CECE7E522C450E5B00764AF5 /* WMZCodeView */,
-				CECE7E682C450E5B00764AF5 /* YTKNetwork */,
 				CECE7E6E2C450E5B00764AF5 /* ZMJCell+CustomView */,
 				CECE7E792C450E5B00764AF5 /* ZWPullMenuView */,
 			);
@@ -7334,35 +7331,6 @@
 				CECE7F402C4512BF00764AF5 /* ImageCodeView.m */,
 			);
 			path = "图形验证码";
-			sourceTree = "<group>";
-		};
-		CECE7F502C4512BF00764AF5 /* ZBNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7F422C4512BF00764AF5 /* NSString+Check.h */,
-				CECE7F432C4512BF00764AF5 /* NSString+Check.m */,
-				CECE7F442C4512BF00764AF5 /* NSString+ZBUTF8Encoding.h */,
-				CECE7F452C4512BF00764AF5 /* NSString+ZBUTF8Encoding.m */,
-				CECE7F462C4512BF00764AF5 /* ZBCacheManager.h */,
-				CECE7F472C4512BF00764AF5 /* ZBCacheManager.m */,
-				CECE7F482C4512BF00764AF5 /* ZBNetworking.h */,
-				CECE7F492C4512BF00764AF5 /* ZBRequestConst.h */,
-				CECE7F4A2C4512BF00764AF5 /* ZBRequestEngine.h */,
-				CECE7F4B2C4512BF00764AF5 /* ZBRequestEngine.m */,
-				CECE7F4C2C4512BF00764AF5 /* ZBRequestManager.h */,
-				CECE7F4D2C4512BF00764AF5 /* ZBRequestManager.m */,
-				CECE7F4E2C4512BF00764AF5 /* ZBURLRequest.h */,
-				CECE7F4F2C4512BF00764AF5 /* ZBURLRequest.m */,
-			);
-			path = ZBNetworking;
-			sourceTree = "<group>";
-		};
-		CECE7F512C4512BF00764AF5 /* 网络请求 */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7F502C4512BF00764AF5 /* ZBNetworking */,
-			);
-			path = "网络请求";
 			sourceTree = "<group>";
 		};
 		CECE7F542C4512BF00764AF5 /* JobsScrollViewVC */ = {
@@ -8421,7 +8389,6 @@
 				CECE7F362C4512BF00764AF5 /* 广告或者公示弹出框 */,
 				CECE7F3E2C4512BF00764AF5 /* 手势滑动返回 */,
 				CECE7F412C4512BF00764AF5 /* 图形验证码 */,
-				CECE7F512C4512BF00764AF5 /* 网络请求 */,
 				CECE7F582C4512BF00764AF5 /* 在指定的y区间内滑动视图 */,
 				CECE7F5C2C4512BF00764AF5 /* CustomerContactStyle */,
 				CECE7F682C4512BF00764AF5 /* Debug */,
@@ -13293,6 +13260,7 @@
 				CE706A5D2C57692200CB7B97 /* HeaderCell.m in Sources */,
 				CECE7C132C450C5000764AF5 /* User_Realm.m in Sources */,
 				CECE7CBA2C450C5000764AF5 /* JXCategoryViewWithHeaderViewSubVC.m in Sources */,
+				CE410FE72C57B8B400AB9402 /* NSString+ZBURLEncoding.m in Sources */,
 				CE7F395E2C4FDA1000431A5D /* FMDB_VC.m in Sources */,
 				CECE7CA22C450C5000764AF5 /* JobsTestVC.m in Sources */,
 				CECE7CF82C450C5000764AF5 /* ViewController@2.m in Sources */,
@@ -13324,23 +13292,20 @@
 				CECE85D42C4513CE00764AF5 /* BaseTextView.m in Sources */,
 				CECE85A92C4513CE00764AF5 /* UILabel+Gesture.m in Sources */,
 				CECE85E42C4513CE00764AF5 /* UIView+Masonry.m in Sources */,
+				CE410FE92C57B8B400AB9402 /* ZBRequestEngine.m in Sources */,
 				CECE85A42C4513CE00764AF5 /* BaseLabel.m in Sources */,
 				CECE7E802C450E5B00764AF5 /* JXCategoryTitleBackgroundCellModel.m in Sources */,
 				CECE7EAC2C450E5B00764AF5 /* KTVHTTPCache.m in Sources */,
 				CECE80C82C4512BF00764AF5 /* ImageCodeView.m in Sources */,
-				CECE7ED82C450E5B00764AF5 /* YTKNetworkAgent.m in Sources */,
 				CECE852F2C4513CE00764AF5 /* UITextModel.m in Sources */,
 				CECE80BB2C4512BF00764AF5 /* JobsResponseModel.m in Sources */,
 				CECE7EA42C450E5B00764AF5 /* KTVHCDataUnitPool.m in Sources */,
-				CECE80CD2C4512BF00764AF5 /* ZBRequestManager.m in Sources */,
 				CECE85C92C4513CE00764AF5 /* UITableViewHeaderFooterView+Attribute.m in Sources */,
 				CECE87262C45140000764AF5 /* UIImage+Base64.m in Sources */,
 				CECE7BF42C450C5000764AF5 /* LocalNotificationsVC.m in Sources */,
 				CECE85452C4513CE00764AF5 /* NSObject+HXPhotoPicker.m in Sources */,
-				CECE7ED32C450E5B00764AF5 /* YTKBaseRequest.m in Sources */,
 				CECE7EC02C450E5B00764AF5 /* TKPermissionPhoto.m in Sources */,
 				CECE858B2C4513CE00764AF5 /* JobsImageViewStyleCVCell.m in Sources */,
-				CECE80CA2C4512BF00764AF5 /* NSString+ZBUTF8Encoding.m in Sources */,
 				CECE7C152C450C5000764AF5 /* RandomTestVC.m in Sources */,
 				CECE87582C45140000764AF5 /* GXCardItemDemoCell.m in Sources */,
 				CE40B29B2C4BF78E00CB64B5 /* JobsToggleBaseView.m in Sources */,
@@ -13391,7 +13356,6 @@
 				CECE7C2B2C450C5000764AF5 /* ProtocolKitVC.m in Sources */,
 				CECE7C272C450C5000764AF5 /* JobsShootingVC.m in Sources */,
 				CECE7EDF2C450E5B00764AF5 /* ZMJCell+CustomView.m in Sources */,
-				CECE7EDB2C450E5B00764AF5 /* YTKRequest.m in Sources */,
 				CE8877AC2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */,
 				CECE7C9D2C450C5000764AF5 /* JobsSearchShowHistoryDataTBVCell.m in Sources */,
 				CECE85932C4513CE00764AF5 /* LMHWaterFallLayout.m in Sources */,
@@ -13470,7 +13434,6 @@
 				CECE85A12C4513CE00764AF5 /* UIImage+YBGIF.m in Sources */,
 				CECE7C472C450C5000764AF5 /* Douyin_ZFPlayerVC@2.m in Sources */,
 				CECE85AE2C4513CE00764AF5 /* UINavigationController+SafeTransition.m in Sources */,
-				CECE7ED52C450E5B00764AF5 /* YTKBatchRequestAgent.m in Sources */,
 				CECE855C2C4513CE00764AF5 /* NSObject+Time.m in Sources */,
 				CECE816F2C4512BF00764AF5 /* UITabBar+TLAnimation.m in Sources */,
 				CECE85C22C4513CE00764AF5 /* UITableViewCell+Margin.m in Sources */,
@@ -13479,6 +13442,7 @@
 				CECE80D02C4512BF00764AF5 /* JobsScrollYView.m in Sources */,
 				CECE7C1A2C450C5000764AF5 /* UploadImageApi.m in Sources */,
 				CECE7E7C2C450E5B00764AF5 /* JXCategoryTimelineCell.m in Sources */,
+				CE410FEA2C57B8B400AB9402 /* ZBRequestManager.m in Sources */,
 				CECE7C382C450C5000764AF5 /* NotifiViewFactory.m in Sources */,
 				CECE857E2C4513CE00764AF5 /* ButtonTimerConfigModel.m in Sources */,
 				CECE85462C4513CE00764AF5 /* KeychainHelper.m in Sources */,
@@ -13493,7 +13457,6 @@
 				CECE7E972C450E5B00764AF5 /* KTVHCDataCacheItem.m in Sources */,
 				CECE7EAB2C450E5B00764AF5 /* KTVHCURLTool.m in Sources */,
 				CECE851B2C4513CE00764AF5 /* NSNumber+Extra.m in Sources */,
-				CECE7ED92C450E5B00764AF5 /* YTKNetworkConfig.m in Sources */,
 				CECE85BF2C4513CE00764AF5 /* JobsBaseTableViewCell.m in Sources */,
 				CECE7C462C450C5000764AF5 /* Douyin_ZFPlayerVC@1.m in Sources */,
 				CECE7EC82C450E5B00764AF5 /* WMZBannerFadeLayout.m in Sources */,
@@ -13514,7 +13477,6 @@
 				CECE80BA2C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.m in Sources */,
 				CECE7EB62C450E5B00764AF5 /* TKPermissionFolders.m in Sources */,
 				CECE852A2C4513CE00764AF5 /* JobsTuple.m in Sources */,
-				CECE7EDA2C450E5B00764AF5 /* YTKNetworkPrivate.m in Sources */,
 				CECE85592C4513CE00764AF5 /* NSObject+Sound.m in Sources */,
 				CECE7D692C450DED00764AF5 /* AppDelegate+Func.m in Sources */,
 				CECE85482C4513CE00764AF5 /* NSObject+DeviceID.m in Sources */,
@@ -13542,7 +13504,6 @@
 				CECE87272C45140000764AF5 /* GTMBase64.m in Sources */,
 				CECE85B82C4513CE00764AF5 /* UITableView+RegisterClass.m in Sources */,
 				CE7F39712C4FDAF900431A5D /* JobsMenuSubView@3.m in Sources */,
-				CECE7EDC2C450E5B00764AF5 /* YTKRequestEventAccessory.m in Sources */,
 				CECE7E7F2C450E5B00764AF5 /* JXCategoryTitleBackgroundCell.m in Sources */,
 				CECE81372C4512BF00764AF5 /* JobsSuspendLab.m in Sources */,
 				CECE85EC2C4513CE00764AF5 /* UIViewController+JXCategoryListContentViewDelegate.m in Sources */,
@@ -13580,7 +13541,6 @@
 				CECE85D02C4513CE00764AF5 /* UITextField+Animation.m in Sources */,
 				CECE7ED12C450E5B00764AF5 /* WMZCodeView.m in Sources */,
 				CECE7C012C450C5000764AF5 /* LandscapeSwitchVC.m in Sources */,
-				CECE80CB2C4512BF00764AF5 /* ZBCacheManager.m in Sources */,
 				CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */,
 				CE706A5B2C57692200CB7B97 /* ZMJTextCell.m in Sources */,
 				CECE7C282C450C5000764AF5 /* PKProtocolExtension.m in Sources */,
@@ -13609,7 +13569,6 @@
 				CECE856E2C4513CE00764AF5 /* NSUserDefaults+Swizzle.m in Sources */,
 				CECE85D62C4513CE00764AF5 /* UITextView+IndicateWordLimit.m in Sources */,
 				CECE7C262C450C5000764AF5 /* PicToStrStoreVC.m in Sources */,
-				CECE80CC2C4512BF00764AF5 /* ZBRequestEngine.m in Sources */,
 				CECE85E02C4513CE00764AF5 /* UIView+Extras.m in Sources */,
 				CECE852B2C4513CE00764AF5 /* TouchID.m in Sources */,
 				CECE85B22C4513CE00764AF5 /* UIScrollView+Extra.m in Sources */,
@@ -13666,7 +13625,6 @@
 				CE40B29C2C4BF78E00CB64B5 /* JobsToggleNavView.m in Sources */,
 				CECE874F2C45140000764AF5 /* AESCrypt.m in Sources */,
 				CECE80D52C4512BF00764AF5 /* CheckMemFreeVC.m in Sources */,
-				CECE80CE2C4512BF00764AF5 /* ZBURLRequest.m in Sources */,
 				CECE80D42C4512BF00764AF5 /* JobsShowObjInfoVC.m in Sources */,
 				CECE7C562C450C5000764AF5 /* JobsLoadMoreTBVCell.m in Sources */,
 				CECE7CE72C450C5000764AF5 /* UITBVCellFoldVC.m in Sources */,
@@ -13717,7 +13675,6 @@
 				CECE7E9E2C450E5B00764AF5 /* KTVHCDataRequest.m in Sources */,
 				CECE858E2C4513CE00764AF5 /* UICollectionViewCell+UICollectionViewCellProtocol.m in Sources */,
 				CECE7C372C450C5000764AF5 /* NotifiOperation.m in Sources */,
-				CECE80C92C4512BF00764AF5 /* NSString+Check.m in Sources */,
 				CECE7BF72C450C5000764AF5 /* CtrlClipboardCueVC.m in Sources */,
 				CECE85A22C4513CE00764AF5 /* BaseImageView.m in Sources */,
 				CECE7C8C2C450C5000764AF5 /* JobsIMListDataModel.m in Sources */,
@@ -13750,6 +13707,7 @@
 				CECE813B2C4512BF00764AF5 /* JobsUserHeaderDataView.m in Sources */,
 				CECE7CE22C450C5000764AF5 /* MSCommentModel.m in Sources */,
 				CECE7CB22C450C5000764AF5 /* BaiShaETProjVIPSubCVCell_03.m in Sources */,
+				CE410FE82C57B8B400AB9402 /* ZBCacheManager.m in Sources */,
 				CECE80E12C4512BF00764AF5 /* JobsAdNoticeView.m in Sources */,
 				CECE85CF2C4513CE00764AF5 /* ZYTextField.m in Sources */,
 				CECE87702C45140000764AF5 /* XLChannelItem.m in Sources */,
@@ -13784,7 +13742,6 @@
 				CECE872B2C45140000764AF5 /* NSString+Base85.m in Sources */,
 				CECE85152C4513CE00764AF5 /* NSCache+Extra.m in Sources */,
 				CECE86032C4513CE00764AF5 /* XLBubbleTransition.m in Sources */,
-				CECE7ED72C450E5B00764AF5 /* YTKChainRequestAgent.m in Sources */,
 				CECE85232C4513CE00764AF5 /* JobsOnceExecutor.m in Sources */,
 				CECE81442C4512BF00764AF5 /* JobsWelcomeVC.m in Sources */,
 				CECE85FE2C4513CE00764AF5 /* UIViewController+TFPopupView.m in Sources */,
@@ -13883,7 +13840,6 @@
 				CECE85392C4513CE00764AF5 /* NSObject+ChangeAppicon.m in Sources */,
 				CECE7D452C450CCD00764AF5 /* JobsNetworkingAPI.m in Sources */,
 				CECE7ECC2C450E5B00764AF5 /* WMZBannerView.m in Sources */,
-				CECE7ED62C450E5B00764AF5 /* YTKChainRequest.m in Sources */,
 				CECE87212C45140000764AF5 /* UIImage+Base32.m in Sources */,
 				CECE80F32C4512BF00764AF5 /* AuthCodeLab.m in Sources */,
 				CECE7EB72C450E5B00764AF5 /* TKPermissionHealth.m in Sources */,
@@ -13895,12 +13851,12 @@
 				CECE7EAA2C450E5B00764AF5 /* KTVHCPathTool.m in Sources */,
 				CECE80DE2C4512BF00764AF5 /* ZLGestureLockIndicator.m in Sources */,
 				CECE85542C4513CE00764AF5 /* NSObject+Random.m in Sources */,
-				CECE7ED42C450E5B00764AF5 /* YTKBatchRequest.m in Sources */,
 				CECE81702C4512BF00764AF5 /* JobsTabBarVC.m in Sources */,
 				CECE85422C4513CE00764AF5 /* NSObject+DynamicInvoke.m in Sources */,
 				CECE7CE02C450C5000764AF5 /* JobsPresentedVC.m in Sources */,
 				CECE81462C4512BF00764AF5 /* JobsCustomTabBarButton.m in Sources */,
 				CECE85E52C4513CE00764AF5 /* UIView+Measure.m in Sources */,
+				CE410FEB2C57B8B400AB9402 /* ZBURLRequest.m in Sources */,
 				CECE7E912C450E5B00764AF5 /* HTTPMessage.m in Sources */,
 				CE7F39732C4FDAF900431A5D /* JobsMenuView.m in Sources */,
 				CECE85372C4513CE00764AF5 /* NSObject+BRPickerView.m in Sources */,

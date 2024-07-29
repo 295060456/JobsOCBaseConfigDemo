@@ -6,18 +6,8 @@
 //  Copyright © 2017年 Suzhibin. All rights reserved.
 //
 
-#import "ZBRequestConst.h"
-
-#if __has_include(<AFNetworking/AFNetworking.h>)
 #import <AFNetworking/AFNetworking.h>
-#elif __has_include("AFNetworking.h")
-#import "AFNetworking.h"
-#elif __has_include("AFNetworking-umbrella.h")
-#import "AFNetworking-umbrella.h"
-#else
-#error "AFNetworking header not found"
-#endif
-
+#import "ZBRequestConst.h"
 @class ZBConfig;
 
 @interface ZBRequestEngine : AFHTTPSessionManager
@@ -47,7 +37,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  公共基础配置与单个请求配置的兼容
  */
-- (void)configBaseWithRequest:(ZBURLRequest *)request progressBlock:(ZBRequestProgressBlock)progressBlock successBlock:(ZBRequestSuccessBlock)successBlock failureBlock:(ZBRequestFailureBlock)failureBlock finishedBlock:(ZBRequestFinishedBlock)finishedBlock target:(id<ZBURLRequestDelegate>)target;
+- (void)configBaseWithRequest:(ZBURLRequest *)request progressBlock:(ZBRequestProgressBlock)progressBlock successBlock:(ZBRequestSuccessBlock)successBlock failureBlock:(ZBRequestFailureBlock)failureBlock finishedBlock:(ZBRequestFinishedBlock)finishedBlock delegate:(id<ZBURLRequestDelegate>)delegate;
+
+/**
+    URL重新检验 
+ */
+- (void)reconfigureUrlWithRequest:(ZBURLRequest *)request;
 
 /**
  *  发起网络请求
@@ -80,12 +75,17 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return identifier             请求标识符
  */
 - (NSUInteger)downloadWithRequest:(ZBURLRequest *)request resumeData:(NSData *)resumeData savePath:(NSString *)savePath progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler;
-
+#if !TARGET_OS_WATCH
 /**
  *  当前网络的状态值，-1 表示 `Unknown`，0 表示 `NotReachable，1 表示 `WWAN`，2 表示 `WiFi`
  */
 - (NSInteger)networkReachability;
 
+/**
+ *  动态获取 当前网络的状态值，-1 表示 `Unknown`，0 表示 `NotReachable，1 表示 `WWAN`，2 表示 `WiFi`
+ */
+- (void)setReachabilityStatusChangeBlock:(void (^)(NSInteger status))block;
+#endif
 /**
  *  取消单个请求任务
  *  @param identifier        请求identifier
@@ -96,6 +96,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  取消所有请求任务
  */
 - (void)cancelAllRequest;
+
+/**
+ *  响应数据格式
+ */
+- (NSString *)responseStrWithRequest:(ZBURLRequest *)request;
 
 /**
  *  管理请求对象的生命周期

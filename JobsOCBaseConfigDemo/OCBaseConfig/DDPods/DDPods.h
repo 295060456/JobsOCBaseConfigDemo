@@ -52,6 +52,12 @@
 #import "YTKNetwork.h"
 #endif
 
+#if __has_include(<ZBNetworking/ZBNetworking.h>)
+#import <ZBNetworking/ZBNetworking.h>
+#else
+#import "ZBNetworking.h"
+#endif
+
 #if __has_include(<WMZCode/WMZCodeView.h>)
 #import <WMZCode/WMZCodeView.h>
 #else
