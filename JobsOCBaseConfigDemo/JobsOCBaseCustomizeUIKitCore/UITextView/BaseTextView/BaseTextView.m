@@ -15,6 +15,8 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         UIMenuController *menu = UIMenuController.sharedMenuController;
         @jobs_weakify(self)
         UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:JobsInternationalization(@"相应事件")
@@ -35,15 +37,16 @@
             SuppressWdeprecatedDeclarationsWarning([menu setTargetRect:self.bounds inView:self];
                                                    [menu setMenuVisible:YES animated:YES];);
         }
-        
+#pragma clang diagnostic pop
     }return self;
 }
 
 #pragma mark —— UIResponder
 -(BOOL)canPerformAction:(SEL)action
               withSender:(id)sender{
-_Pragma("clang diagnostic push")
-_Pragma("clang diagnostic ignored \"-Wundeclared-selector\"")
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if(!sender) return NO;
     if([sender isKindOfClass:UIMenuController.class] || [sender isKindOfClass:UIMenu.class]){// _UIImmutableKeyCommand
         if(action == @selector(cut:) ||/// 剪切
@@ -78,7 +81,7 @@ _Pragma("clang diagnostic ignored \"-Wundeclared-selector\"")
     }else {
         return YES;
     }
-_Pragma("clang diagnostic pop")
+#pragma clang diagnostic pop
 }
 
 @end

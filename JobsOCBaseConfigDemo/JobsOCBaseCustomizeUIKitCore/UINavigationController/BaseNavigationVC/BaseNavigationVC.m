@@ -111,11 +111,13 @@
     viewController.hidesBottomBarWhenPushed = self.viewControllers.count;//push 的时候把 tabBar 隐藏了
     [super pushViewController:viewController animated:animated];
 }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
 /// 在 UINavigationController 中适配横屏
 - (BOOL)shouldAutorotate {
-    return [self.topViewController shouldAutorotate];
+    return YES;
 }
-
+#pragma clang diagnostic pop
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [self.topViewController supportedInterfaceOrientations];
 }

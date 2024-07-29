@@ -178,10 +178,13 @@
         [self requestData];
     }
 }
-
--(BOOL)shouldAutorotate{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
+/// 决定当前界面是否开启自动转屏，如果返回NO，后面两个方法也不会被调用，只是会支持默认的方向
+- (BOOL)shouldAutorotate {
     return NO;
 }
+#pragma clang diagnostic pop
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;

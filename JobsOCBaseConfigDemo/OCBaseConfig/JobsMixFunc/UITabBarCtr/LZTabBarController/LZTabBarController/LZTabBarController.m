@@ -187,11 +187,13 @@
                                          size.width,
                                          JobsTabBarHeightByBottomSafeArea(self));
 }
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
+/// 适配横屏
 - (BOOL)shouldAutorotate {
     return self.isAutoRotation;
 }
-
+#pragma clang diagnostic pop
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     if (self.isAutoRotation) {
         return UIInterfaceOrientationMaskAllButUpsideDown;

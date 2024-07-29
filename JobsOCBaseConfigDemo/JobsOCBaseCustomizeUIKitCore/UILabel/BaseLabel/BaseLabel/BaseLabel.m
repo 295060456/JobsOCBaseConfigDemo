@@ -81,8 +81,9 @@ UILocationProtocol_UIViewModelSynthesize
 #pragma mark —— UIResponder
 -(BOOL)canPerformAction:(SEL)action
               withSender:(id)sender{
-_Pragma("clang diagnostic push")
-_Pragma("clang diagnostic ignored \"-Wundeclared-selector\"")
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if([sender isKindOfClass:UIMenuController.class]){
         if(action == @selector(cut:) ||/// 剪切
            action == @selector(copy:) ||/// 拷贝
@@ -110,13 +111,9 @@ _Pragma("clang diagnostic ignored \"-Wundeclared-selector\"")
             return NO;
         }else if ([NSStringFromSelector(action) containsString:@"copyText:"]){
             return YES;
-        }else{
-            return NO;
-        }
-    }else{
-        return YES;
-    }
-_Pragma("clang diagnostic pop")
+        }else return NO;
+    }else return YES;
+#pragma clang diagnostic pop
 }
 #pragma mark —— UIGestureRecognizerDelegate
 /// 解决 UITableViewCell和手势冲突 https://blog.csdn.net/FreeTourW/article/details/51911416

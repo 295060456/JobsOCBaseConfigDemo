@@ -106,6 +106,8 @@ UICollectionViewDataSource
     }];
 }
 #pragma mark —— 屏幕旋转相关 在 UIViewController 中定义，子类需复写
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
 /// 决定当前界面是否开启自动转屏，如果返回NO，后面两个方法也不会被调用，只是会支持默认的方向
 -(BOOL)shouldAutorotate {
     /**
@@ -141,6 +143,7 @@ UICollectionViewDataSource
      */
     return YES;
 }
+#pragma clang diagnostic pop
 /// 设置当前界面支持的所有方向
 /// iPad设备上，默认返回值UIInterfaceOrientationMaskAllButUpSideDwon
 /// iPhone设备上，默认返回值是UIInterfaceOrientationMaskAll

@@ -22,6 +22,10 @@ UIViewModelProtocol_synthesize
 BaseViewProtocol_synthesize
 #pragma mark —— BaseViewControllerProtocol
 BaseViewControllerProtocol_synthesize
+-(void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
 - (void)dealloc{
     JobsRemoveNotification(self);;
     [self.view endEditing:YES];
@@ -172,11 +176,94 @@ BaseViewControllerProtocol_synthesize
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
+#pragma mark —— BaseViewControllerProtocol
+-(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig{
+    @jobs_weakify(self)
+    return ^(UIButtonModel *_Nullable backBtnModel,
+             UIButtonModel *_Nullable closeBtnModel) {
+        @jobs_strongify(self)
+        JobsNavBarConfig *_navBarConfig = JobsNavBarConfig.new;
+        _navBarConfig.bgCor = self.viewModel.navBgCor;
+        _navBarConfig.bgImage = self.viewModel.navBgImage;
+        _navBarConfig.attributedTitle = self.viewModel.backBtnTitleModel.attributedText;
+        _navBarConfig.title = self.viewModel.textModel.text;
+        _navBarConfig.font = self.viewModel.textModel.font;
+        _navBarConfig.titleCor = self.viewModel.textModel.textCor;
+        _navBarConfig.backBtnModel = backBtnModel ? : self.backBtnModel;
+        _navBarConfig.closeBtnModel = closeBtnModel ? : self.closeBtnModel;
+        self.navBarConfig = _navBarConfig;
+        return _navBarConfig;
+    };
+}
+/// 更新状态栏颜色为自定义的颜色
+-(jobsByCorBlock _Nonnull)updateStatusBarCor{
+    @jobs_weakify(self)
+    return ^(UIColor *_Nullable cor) {
+        @jobs_strongify(self)
+        if(!cor)cor = JobsRedColor;
+        if (@available(iOS 13.0, *)) {
+            if (![self.view.subviews containsObject:self.statusBar]) {
+                [self.view addSubview:self.statusBar];
+            }
+            self.statusBar.backgroundColor = cor;
+        } else {
+            UIView *statusBar = [UIApplication.sharedApplication.valueForKeyBlock(@"statusBarWindow") valueForKey:@"statusBar"];
+            if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+                statusBar.backgroundColor = cor;
+            }
+            // 手动触发 preferredStatusBarStyle 更新状态栏颜色
+            [self setNeedsStatusBarAppearanceUpdate];
+        }
+    };
+}
+/// 恢复状态栏颜色
+-(jobsByCorBlock _Nonnull)restoreStatusBarCor{
+    @jobs_weakify(self)
+    return ^(UIColor *_Nullable cor) {
+        @jobs_strongify(self)
+        if (@available(iOS 13.0, *)) {
+            if (![jobsGetMainWindow().subviews containsObject:self.statusBar]) {
+                [self.statusBar removeFromSuperview];
+            }
+            if(!cor) cor = JobsWhiteColor;
+            self.statusBar.backgroundColor = cor;
+        } else {
+            UIView *statusBar = [UIApplication.sharedApplication.valueForKeyBlock(@"statusBarWindow") valueForKey:@"statusBar"];
+            if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+                statusBar.backgroundColor = JobsClearColor;;
+            }
+            // 手动触发 preferredStatusBarStyle 更新状态栏颜色
+            [self setNeedsStatusBarAppearanceUpdate];
+        }
+    };
+}
+#pragma mark —— UIContentContainer 自定义模态动画推出ViewController
+- (void)willTransitionToTraitCollection:(UITraitCollection *)newCollection
+              withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+    [super willTransitionToTraitCollection:newCollection withTransitionCoordinator:coordinator];
+    // When the current trait collection changes (e.g. the device rotates),
+    // update the preferredContentSize.
+    [self updatePreferredContentSizeWithTraitCollection:newCollection];
+}
+
+- (void)updatePreferredContentSizeWithTraitCollection:(UITraitCollection *)traitCollection{
+    NSLog(@"%f",self.presentUpHeight);
+    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width,
+                                           traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact ? 270 : self.presentUpHeight);/// 上升的高度
+}
+#pragma mark —— UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
 #pragma mark —— 在 当前控制器 中适配横屏
 /// 适配横屏
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
 - (BOOL)shouldAutorotate {
     return YES;
 }
+#pragma clang diagnostic pop
 /// 当前控制器支持的屏幕旋转方向（在具体的控制器子类进行覆写）
 /// iPad设备上，默认返回值UIInterfaceOrientationMaskAllButUpSideDwon
 /// iPhone设备上，默认返回值是UIInterfaceOrientationMaskAll
@@ -186,6 +273,43 @@ BaseViewControllerProtocol_synthesize
 /// 设置进入界面默认支持的方向
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
     return [super preferredInterfaceOrientationForPresentation];
+}
+#pragma mark —— 一些私有方法
+/// 用于检测UIViewController的生命周期
+-(jobsByStringBlock)UIViewControllerLifeCycle{
+    @jobs_weakify(self)
+    return ^(NSString *_Nullable lifeCycle) {
+        @jobs_strongify(self)
+        UIViewModel *viewModel = UIViewModel.new;
+        viewModel.data = nil;
+        viewModel.requestParams = lifeCycle;
+        if(self.objectBlock) self.objectBlock(viewModel);
+    };
+}
+/// 在loadView或者之前的生命周期中定义背景图片或者底色
+-(void)setBackGround{
+    /// 底图没有 + 底色没有
+    if(!self.viewModel.bgImage && !self.viewModel.bgCor){
+        self.view.backgroundColor = HEXCOLOR(0xFCFBFB);
+//        NSString *corStr = self.view.backgroundColor.rgbCorStr;
+        return;
+    }
+    /// 底图有 + 底色没有
+    if(self.viewModel.bgImage && !self.viewModel.bgCor){
+        self.bgImageView.alpha = 1;
+        return;
+    }
+    /// 底图没有 + 底色有
+    if(!self.viewModel.bgImage && self.viewModel.bgCor){
+        self.view.backgroundColor = self.viewModel.bgCor;
+//        NSString *corStr = self.view.backgroundColor.rgbCorStr;
+        return;
+    }
+    /// 底图有 + 底色有 = 优先使用底图数据
+    if(self.viewModel.bgImage && self.viewModel.bgCor){
+        self.bgImageView.alpha = 1;
+        return;
+    }
 }
 #pragma mark —— 一些公共方法
 -(JobsMenuView *)getMenuView{
@@ -240,127 +364,6 @@ BaseViewControllerProtocol_synthesize
                 break;
         }return nil;
     },nil, self),UIDeviceOrientationDidChangeNotification,nil);
-}
-
--(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig{
-    @jobs_weakify(self)
-    return ^(UIButtonModel *_Nullable backBtnModel,
-             UIButtonModel *_Nullable closeBtnModel) {
-        @jobs_strongify(self)
-        JobsNavBarConfig *_navBarConfig = JobsNavBarConfig.new;
-        _navBarConfig.bgCor = self.viewModel.navBgCor;
-        _navBarConfig.bgImage = self.viewModel.navBgImage;
-        _navBarConfig.attributedTitle = self.viewModel.backBtnTitleModel.attributedText;
-        _navBarConfig.title = self.viewModel.backBtnTitleModel.text;
-        _navBarConfig.font = self.viewModel.textModel.font;
-        _navBarConfig.titleCor = self.viewModel.textModel.textCor;
-        _navBarConfig.backBtnModel = backBtnModel ? : self.backBtnModel;
-        _navBarConfig.closeBtnModel = closeBtnModel ? : self.closeBtnModel;
-        self.navBarConfig = _navBarConfig;
-        return _navBarConfig;
-    };
-}
-#pragma mark —— 一些私有方法
-/// 用于检测UIViewController的生命周期
--(jobsByStringBlock)UIViewControllerLifeCycle{
-    @jobs_weakify(self)
-    return ^(NSString *_Nullable lifeCycle) {
-        @jobs_strongify(self)
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.data = nil;
-        viewModel.requestParams = lifeCycle;
-        if(self.objectBlock) self.objectBlock(viewModel);
-    };
-}
-/// 更新状态栏颜色为自定义的颜色
--(jobsByCorBlock _Nonnull)updateStatusBarCor{
-    @jobs_weakify(self)
-    return ^(UIColor *_Nullable cor) {
-        @jobs_strongify(self)
-        if(!cor)cor = JobsRedColor;
-        if (@available(iOS 13.0, *)) {
-            if (![self.view.subviews containsObject:self.statusBar]) {
-                [self.view addSubview:self.statusBar];
-            }
-            self.statusBar.backgroundColor = cor;
-        } else {
-            UIView *statusBar = [UIApplication.sharedApplication.valueForKeyBlock(@"statusBarWindow") valueForKey:@"statusBar"];
-            if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-                statusBar.backgroundColor = cor;
-            }
-            // 手动触发 preferredStatusBarStyle 更新状态栏颜色
-            [self setNeedsStatusBarAppearanceUpdate];
-        }
-    };
-}
-/// 恢复状态栏颜色
--(jobsByCorBlock _Nonnull)restoreStatusBarCor{
-    @jobs_weakify(self)
-    return ^(UIColor *_Nullable cor) {
-        @jobs_strongify(self)
-        if (@available(iOS 13.0, *)) {
-            if (![jobsGetMainWindow().subviews containsObject:self.statusBar]) {
-                [self.statusBar removeFromSuperview];
-            }
-            if(!cor) cor = JobsWhiteColor;
-            self.statusBar.backgroundColor = cor;
-        } else {
-            UIView *statusBar = [UIApplication.sharedApplication.valueForKeyBlock(@"statusBarWindow") valueForKey:@"statusBar"];
-            if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-                statusBar.backgroundColor = JobsClearColor;;
-            }
-            // 手动触发 preferredStatusBarStyle 更新状态栏颜色
-            [self setNeedsStatusBarAppearanceUpdate];
-        }
-    };
-}
-/// 在loadView或者之前的生命周期中定义背景图片或者底色
--(void)setBackGround{
-    /// 底图没有 + 底色没有
-    if(!self.viewModel.bgImage && !self.viewModel.bgCor){
-        self.view.backgroundColor = HEXCOLOR(0xFCFBFB);
-//        NSString *corStr = self.view.backgroundColor.rgbCorStr;
-        return;
-    }
-    /// 底图有 + 底色没有
-    if(self.viewModel.bgImage && !self.viewModel.bgCor){
-        self.bgImageView.alpha = 1;
-        return;
-    }
-    /// 底图没有 + 底色有
-    if(!self.viewModel.bgImage && self.viewModel.bgCor){
-        self.view.backgroundColor = self.viewModel.bgCor;
-//        NSString *corStr = self.view.backgroundColor.rgbCorStr;
-        return;
-    }
-    /// 底图有 + 底色有 = 优先使用底图数据
-    if(self.viewModel.bgImage && self.viewModel.bgCor){
-        self.bgImageView.alpha = 1;
-        return;
-    }
-}
-#pragma mark —— 自定义模态动画推出ViewController
-- (void)willTransitionToTraitCollection:(UITraitCollection *)newCollection
-              withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
-    [super willTransitionToTraitCollection:newCollection withTransitionCoordinator:coordinator];
-    // When the current trait collection changes (e.g. the device rotates),
-    // update the preferredContentSize.
-    [self updatePreferredContentSizeWithTraitCollection:newCollection];
-}
-
-- (void)updatePreferredContentSizeWithTraitCollection:(UITraitCollection *)traitCollection{
-    NSLog(@"%f",self.presentUpHeight);
-    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width,
-                                           traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact ? 270 : self.presentUpHeight);/// 上升的高度
-}
-#pragma mark —— UIGestureRecognizerDelegate
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
-
--(void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 #pragma mark —— lazyLoad
 - (UIView *)statusBar{

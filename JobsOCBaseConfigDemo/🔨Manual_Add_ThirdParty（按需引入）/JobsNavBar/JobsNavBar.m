@@ -85,22 +85,6 @@
     return CGSizeMake(JobsWidth(self.width), JobsWidth(35));
 }
 #pragma mark —— 一些公有方法
--(JobsNavBarConfig *)navBarConfig{
-    if(!_navBarConfig){
-        _navBarConfig = JobsNavBarConfig.new;
-    }
-    [_navBarConfig actionObjectBlock:^(id _Nullable data) {
-        if([data isKindOfClass:UIButton.class]){
-            UIButton *btn = (UIButton *)data;
-            if(btn.tag == 123){
-                if(self.closeBtnClickAction)self.closeBtnClickAction(btn);
-            }else if (btn.tag == 456){
-                if(self.backBtnClickAction)self.backBtnClickAction(btn);
-            }else{}
-        }
-    }];return _navBarConfig;
-}
-
 -(BaseButton *)getBackBtn{
     return self.backBtn;
 }
@@ -121,6 +105,22 @@
     _closeBtnClickAction = objectBlock;
 }
 #pragma mark —— lazyLoad
+-(JobsNavBarConfig *)navBarConfig{
+    if(!_navBarConfig){
+        _navBarConfig = JobsNavBarConfig.new;
+    }
+    [_navBarConfig actionObjectBlock:^(id _Nullable data) {
+        if([data isKindOfClass:UIButton.class]){
+            UIButton *btn = (UIButton *)data;
+            if(btn.tag == 123){
+                if(self.closeBtnClickAction)self.closeBtnClickAction(btn);
+            }else if (btn.tag == 456){
+                if(self.backBtnClickAction)self.backBtnClickAction(btn);
+            }else{}
+        }
+    }];return _navBarConfig;
+}
+
 -(UILabel *)titleLab{
     @jobs_weakify(self)
     if(!_titleLab){
