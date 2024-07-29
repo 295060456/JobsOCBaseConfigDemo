@@ -18,7 +18,7 @@
 }
 /// 请求Api
 -(NSString *)requestUrl{
-    return [self.BaseUrl stringByAppendingString:self.customerContactGET.url];
+    return self.BaseUrl.add(@"");
 }
 /// Body 参数
 -(id _Nullable)requestArgument{
