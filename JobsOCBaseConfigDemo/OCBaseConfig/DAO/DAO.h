@@ -9,7 +9,7 @@
 #define DAO_h
 
 #import "JobsUserModel.h"
-#import "DDResponseModel.h"
+#import "JobsResponseModel.h"
 #import "BaseModel.h"
 #import "URLManagerModel.h"
 #import "CasinoCustomerContactModel.h"

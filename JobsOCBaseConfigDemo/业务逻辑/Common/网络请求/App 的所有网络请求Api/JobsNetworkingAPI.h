@@ -1,5 +1,5 @@
 //
-//  DDNetworkingAPI.h
+//  JobsNetworkingAPI.h
 //  DouYin
 //
 //  Created by Jobs on 2020/9/24.
@@ -9,19 +9,19 @@
 #import "JobsBlock.h"
 #import "RequestTool.h"
 #import "NSObject+Extras.h"
-#import "DDResponseModel.h"
+#import "JobsResponseModel.h"
 
 /**
  公共配置
  插件机制
  证书设置
  */
-#define DDNetworkingPrepare NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],[ZBRequestManager networkReachability]);\
+#define JobsNetworkingPrepare NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],[ZBRequestManager networkReachability]);\
 DataManager.sharedInstance.tag = [NSString stringWithFormat:@"%@_%@",ReuseIdentifier,NSStringFromSelector(_cmd)];\
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDNetworkingAPI : NSObject
+@interface JobsNetworkingAPI : NSObject
 #pragma mark —— 普通的网络请求
 /// 【只有Body参数、不需要错误回调】
 +(void)requestApi:(NSString *_Nonnull)requestApi
@@ -44,7 +44,7 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
      successBlock:(jobsByIDBlock _Nullable)successBlock
      failureBlock:(jobsByIDBlock _Nullable)failureBlock;
 /// 请求成功的处理代码
-+(void)networkingSuccessHandleWithData:(DDResponseModel *_Nullable)responseObject
++(void)networkingSuccessHandleWithData:(JobsResponseModel *_Nullable)responseObject
                                request:(ZBURLRequest *_Nullable)request
                           successBlock:(jobsByIDBlock _Nullable)successBlock
                           failureBlock:(jobsByIDBlock _Nullable)failureBlock;
@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_END
      [RequestTool setupPublicParameters];//公共配置、插件机制、证书设置
      @jobs_weakify(self)
      NSDictionary *parameters = @{};
-     [DDNetworkingAPI requestApi:NSObject.messageSecondClassListGET.funcName
+     [JobsNetworkingAPI requestApi:NSObject.messageSecondClassListGET.funcName
                       parameters:parameters
                     successBlock:^(id data) {
          @jobs_strongify(self)
@@ -132,7 +132,7 @@ NS_ASSUME_NONNULL_END
  [RequestTool setupPublicParameters];//公共配置、插件机制、证书设置
  @jobs_weakify(self)
  NSDictionary *parameters = @{};
- [DDNetworkingAPI requestApi:NSObject.postUploadImagePOST.funcName
+ [JobsNetworkingAPI requestApi:NSObject.postUploadImagePOST.funcName
         uploadImagesParamArr:@[parameters,
                                self.photosImageMutArr]
                 successBlock:^(id data) {
@@ -208,7 +208,7 @@ NS_ASSUME_NONNULL_END
  extern NSString *postuploadVideoPOST;
  extern NSString *preproccess;
  
- [DDNetworkingAPI requestApi:NSObject.postuploadVideoPOST.funcName
+ [JobsNetworkingAPI requestApi:NSObject.postuploadVideoPOST.funcName
         uploadVideosParamArr:@[parameters,
                                self.videosData]
                 successBlock:^(id data) {
@@ -279,7 +279,7 @@ NS_ASSUME_NONNULL_END
 
 //if ([responseObject isKindOfClass:NSDictionary.class]) {
 //    NSDictionary *dataDic = (NSDictionary *)responseObject;
-//    DDResponseModel *model = [DDResponseModel mj_objectWithKeyValues:dataDic];
+//    JobsResponseModel *model = [JobsResponseModel mj_objectWithKeyValues:dataDic];
 //    // 公共请求错误直接抛出
 //    if (model.code != HTTPResponseCodeSuccess) {
 //        [WHToast jobsToastMsg:model.msg];

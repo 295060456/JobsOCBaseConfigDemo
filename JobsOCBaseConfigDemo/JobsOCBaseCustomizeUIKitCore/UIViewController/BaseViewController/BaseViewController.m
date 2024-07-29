@@ -10,6 +10,8 @@
 @interface BaseViewController ()
 
 @property(nonatomic,strong)JobsMenuView *menuView;
+@property(nonatomic,strong)UIButtonModel *closeBtnModel;
+@property(nonatomic,strong)UIButtonModel *backBtnModel;
 
 @end
 
@@ -239,6 +241,25 @@ BaseViewControllerProtocol_synthesize
         }return nil;
     },nil, self),UIDeviceOrientationDidChangeNotification,nil);
 }
+
+-(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig{
+    @jobs_weakify(self)
+    return ^(UIButtonModel *_Nullable backBtnModel,
+             UIButtonModel *_Nullable closeBtnModel) {
+        @jobs_strongify(self)
+        JobsNavBarConfig *_navBarConfig = JobsNavBarConfig.new;
+        _navBarConfig.bgCor = self.viewModel.navBgCor;
+        _navBarConfig.bgImage = self.viewModel.navBgImage;
+        _navBarConfig.attributedTitle = self.viewModel.backBtnTitleModel.attributedText;
+        _navBarConfig.title = self.viewModel.backBtnTitleModel.text;
+        _navBarConfig.font = self.viewModel.textModel.font;
+        _navBarConfig.titleCor = self.viewModel.textModel.textCor;
+        _navBarConfig.backBtnModel = backBtnModel ? : self.backBtnModel;
+        _navBarConfig.closeBtnModel = closeBtnModel ? : self.closeBtnModel;
+        self.navBarConfig = _navBarConfig;
+        return _navBarConfig;
+    };
+}
 #pragma mark —— 一些私有方法
 /// 用于检测UIViewController的生命周期
 -(jobsByStringBlock)UIViewControllerLifeCycle{
@@ -390,6 +411,24 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         _viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
         _viewModel.textModel.font = UIFontWeightRegularSize(16);
     }return _viewModel;
+}
+
+-(UIButtonModel *)closeBtnModel{
+    if(!_closeBtnModel){
+        _closeBtnModel = UIButtonModel.new;
+        _closeBtnModel.backgroundImage = JobsIMG(@"联系我们");
+        _closeBtnModel.roundingCorners = UIRectCornerAllCorners;
+        _closeBtnModel.baseBackgroundColor = JobsClearColor;
+    }return _closeBtnModel;
+}
+
+-(UIButtonModel *)backBtnModel{
+    if(!_backBtnModel){
+        _backBtnModel = UIButtonModel.new;
+        _backBtnModel.backgroundImage = JobsIMG(@"返回");
+        _backBtnModel.roundingCorners = UIRectCornerAllCorners;
+        _backBtnModel.baseBackgroundColor = JobsClearColor;
+    }return _backBtnModel;
 }
 
 @end

@@ -296,8 +296,8 @@
 		CECE7D412C450CCD00764AF5 /* JobsFiltrationView.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE7D1D2C450CCD00764AF5 /* JobsFiltrationView.png */; };
 		CECE7D422C450CCD00764AF5 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D222C450CCD00764AF5 /* DataManager.m */; };
 		CECE7D432C450CCD00764AF5 /* RequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D252C450CCD00764AF5 /* RequestTool.m */; };
-		CECE7D442C450CCD00764AF5 /* DDNetworkingAPI+DemoTestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D282C450CCD00764AF5 /* DDNetworkingAPI+DemoTestApi.m */; };
-		CECE7D452C450CCD00764AF5 /* DDNetworkingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D2B2C450CCD00764AF5 /* DDNetworkingAPI.m */; };
+		CECE7D442C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D282C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.m */; };
+		CECE7D452C450CCD00764AF5 /* JobsNetworkingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D2B2C450CCD00764AF5 /* JobsNetworkingAPI.m */; };
 		CECE7D462C450CCD00764AF5 /* NSObject+URLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D2F2C450CCD00764AF5 /* NSObject+URLManager.m */; };
 		CECE7D472C450CCD00764AF5 /* URLManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D322C450CCD00764AF5 /* URLManagerModel.m */; };
 		CECE7D692C450DED00764AF5 /* AppDelegate+Func.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D512C450DED00764AF5 /* AppDelegate+Func.m */; };
@@ -413,7 +413,7 @@
 		CECE80B82C4512BF00764AF5 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F102C4512BF00764AF5 /* BaseModel.m */; };
 		CECE80B92C4512BF00764AF5 /* CasinoCustomerContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F132C4512BF00764AF5 /* CasinoCustomerContactModel.m */; };
 		CECE80BA2C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F162C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.m */; };
-		CECE80BB2C4512BF00764AF5 /* DDResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F192C4512BF00764AF5 /* DDResponseModel.m */; };
+		CECE80BB2C4512BF00764AF5 /* JobsResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F192C4512BF00764AF5 /* JobsResponseModel.m */; };
 		CECE80BC2C4512BF00764AF5 /* JobsUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F1C2C4512BF00764AF5 /* JobsUserModel.m */; };
 		CECE80BD2C4512BF00764AF5 /* CustomZFPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F242C4512BF00764AF5 /* CustomZFPlayerControlView.m */; };
 		CECE80BE2C4512BF00764AF5 /* ZFCustomControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F272C4512BF00764AF5 /* ZFCustomControlView.m */; };
@@ -1645,11 +1645,11 @@
 		CECE7D222C450CCD00764AF5 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		CECE7D242C450CCD00764AF5 /* RequestTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestTool.h; sourceTree = "<group>"; };
 		CECE7D252C450CCD00764AF5 /* RequestTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestTool.m; sourceTree = "<group>"; };
-		CECE7D272C450CCD00764AF5 /* DDNetworkingAPI+DemoTestApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DDNetworkingAPI+DemoTestApi.h"; sourceTree = "<group>"; };
-		CECE7D282C450CCD00764AF5 /* DDNetworkingAPI+DemoTestApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DDNetworkingAPI+DemoTestApi.m"; sourceTree = "<group>"; };
-		CECE7D2A2C450CCD00764AF5 /* DDNetworkingAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNetworkingAPI.h; sourceTree = "<group>"; };
-		CECE7D2B2C450CCD00764AF5 /* DDNetworkingAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDNetworkingAPI.m; sourceTree = "<group>"; };
-		CECE7D2C2C450CCD00764AF5 /* DDNetworkingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNetworkingHeader.h; sourceTree = "<group>"; };
+		CECE7D272C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JobsNetworkingAPI+DemoTestApi.h"; sourceTree = "<group>"; };
+		CECE7D282C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JobsNetworkingAPI+DemoTestApi.m"; sourceTree = "<group>"; };
+		CECE7D2A2C450CCD00764AF5 /* JobsNetworkingAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNetworkingAPI.h; sourceTree = "<group>"; };
+		CECE7D2B2C450CCD00764AF5 /* JobsNetworkingAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNetworkingAPI.m; sourceTree = "<group>"; };
+		CECE7D2C2C450CCD00764AF5 /* JobsNetworkingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNetworkingHeader.h; sourceTree = "<group>"; };
 		CECE7D2E2C450CCD00764AF5 /* NSObject+URLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager.h"; sourceTree = "<group>"; };
 		CECE7D2F2C450CCD00764AF5 /* NSObject+URLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager.m"; sourceTree = "<group>"; };
 		CECE7D312C450CCD00764AF5 /* URLManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLManagerModel.h; sourceTree = "<group>"; };
@@ -1917,8 +1917,8 @@
 		CECE7F132C4512BF00764AF5 /* CasinoCustomerContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CasinoCustomerContactModel.m; sourceTree = "<group>"; };
 		CECE7F152C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasinoGetiOSNewestVersionModel.h; sourceTree = "<group>"; };
 		CECE7F162C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CasinoGetiOSNewestVersionModel.m; sourceTree = "<group>"; };
-		CECE7F182C4512BF00764AF5 /* DDResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDResponseModel.h; sourceTree = "<group>"; };
-		CECE7F192C4512BF00764AF5 /* DDResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDResponseModel.m; sourceTree = "<group>"; };
+		CECE7F182C4512BF00764AF5 /* JobsResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsResponseModel.h; sourceTree = "<group>"; };
+		CECE7F192C4512BF00764AF5 /* JobsResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsResponseModel.m; sourceTree = "<group>"; };
 		CECE7F1B2C4512BF00764AF5 /* JobsUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsUserModel.h; sourceTree = "<group>"; };
 		CECE7F1C2C4512BF00764AF5 /* JobsUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsUserModel.m; sourceTree = "<group>"; };
 		CECE7F1E2C4512BF00764AF5 /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
@@ -6289,8 +6289,8 @@
 		CECE7D292C450CCD00764AF5 /* App接口示例 */ = {
 			isa = PBXGroup;
 			children = (
-				CECE7D272C450CCD00764AF5 /* DDNetworkingAPI+DemoTestApi.h */,
-				CECE7D282C450CCD00764AF5 /* DDNetworkingAPI+DemoTestApi.m */,
+				CECE7D272C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.h */,
+				CECE7D282C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.m */,
 			);
 			path = "App接口示例";
 			sourceTree = "<group>";
@@ -6299,9 +6299,9 @@
 			isa = PBXGroup;
 			children = (
 				CECE7D292C450CCD00764AF5 /* App接口示例 */,
-				CECE7D2A2C450CCD00764AF5 /* DDNetworkingAPI.h */,
-				CECE7D2B2C450CCD00764AF5 /* DDNetworkingAPI.m */,
-				CECE7D2C2C450CCD00764AF5 /* DDNetworkingHeader.h */,
+				CECE7D2A2C450CCD00764AF5 /* JobsNetworkingAPI.h */,
+				CECE7D2B2C450CCD00764AF5 /* JobsNetworkingAPI.m */,
+				CECE7D2C2C450CCD00764AF5 /* JobsNetworkingHeader.h */,
 			);
 			path = "App 的所有网络请求Api";
 			sourceTree = "<group>";
@@ -7209,13 +7209,13 @@
 			path = CasinoGetiOSNewestVersionModel;
 			sourceTree = "<group>";
 		};
-		CECE7F1A2C4512BF00764AF5 /* DDResponseModel */ = {
+		CECE7F1A2C4512BF00764AF5 /* JobsResponseModel */ = {
 			isa = PBXGroup;
 			children = (
-				CECE7F182C4512BF00764AF5 /* DDResponseModel.h */,
-				CECE7F192C4512BF00764AF5 /* DDResponseModel.m */,
+				CECE7F182C4512BF00764AF5 /* JobsResponseModel.h */,
+				CECE7F192C4512BF00764AF5 /* JobsResponseModel.m */,
 			);
-			path = DDResponseModel;
+			path = JobsResponseModel;
 			sourceTree = "<group>";
 		};
 		CECE7F1D2C4512BF00764AF5 /* JobsUserModel */ = {
@@ -7233,7 +7233,7 @@
 				CECE7F112C4512BF00764AF5 /* BaseModel */,
 				CECE7F142C4512BF00764AF5 /* CasinoCustomerContactModel */,
 				CECE7F172C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel */,
-				CECE7F1A2C4512BF00764AF5 /* DDResponseModel */,
+				CECE7F1A2C4512BF00764AF5 /* JobsResponseModel */,
 				CECE7F1D2C4512BF00764AF5 /* JobsUserModel */,
 				CECE7F1E2C4512BF00764AF5 /* DAO.h */,
 			);
@@ -13330,7 +13330,7 @@
 				CECE80C82C4512BF00764AF5 /* ImageCodeView.m in Sources */,
 				CECE7ED82C450E5B00764AF5 /* YTKNetworkAgent.m in Sources */,
 				CECE852F2C4513CE00764AF5 /* UITextModel.m in Sources */,
-				CECE80BB2C4512BF00764AF5 /* DDResponseModel.m in Sources */,
+				CECE80BB2C4512BF00764AF5 /* JobsResponseModel.m in Sources */,
 				CECE7EA42C450E5B00764AF5 /* KTVHCDataUnitPool.m in Sources */,
 				CECE80CD2C4512BF00764AF5 /* ZBRequestManager.m in Sources */,
 				CECE85C92C4513CE00764AF5 /* UITableViewHeaderFooterView+Attribute.m in Sources */,
@@ -13376,7 +13376,7 @@
 				CECE872C2C45140000764AF5 /* UIImage+Base85.m in Sources */,
 				CECE858D2C4513CE00764AF5 /* UICollectionViewCell+ShakeAnimation.m in Sources */,
 				CECE85892C4513CE00764AF5 /* JobsBaseCollectionViewCell.m in Sources */,
-				CECE7D442C450CCD00764AF5 /* DDNetworkingAPI+DemoTestApi.m in Sources */,
+				CECE7D442C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.m in Sources */,
 				CECE7EB12C450E5B00764AF5 /* RACEXTRuntimeExtensions.m in Sources */,
 				CECE7C572C450C5000764AF5 /* JobsCommentPopUpView_viewForHeaderInSection.m in Sources */,
 				CECE7D422C450CCD00764AF5 /* DataManager.m in Sources */,
@@ -13881,7 +13881,7 @@
 				CECE872F2C45140000764AF5 /* NSData+HexadecimalData.m in Sources */,
 				CECE871C2C45140000764AF5 /* NSString+Base16.m in Sources */,
 				CECE85392C4513CE00764AF5 /* NSObject+ChangeAppicon.m in Sources */,
-				CECE7D452C450CCD00764AF5 /* DDNetworkingAPI.m in Sources */,
+				CECE7D452C450CCD00764AF5 /* JobsNetworkingAPI.m in Sources */,
 				CECE7ECC2C450E5B00764AF5 /* WMZBannerView.m in Sources */,
 				CECE7ED62C450E5B00764AF5 /* YTKChainRequest.m in Sources */,
 				CECE87212C45140000764AF5 /* UIImage+Base32.m in Sources */,

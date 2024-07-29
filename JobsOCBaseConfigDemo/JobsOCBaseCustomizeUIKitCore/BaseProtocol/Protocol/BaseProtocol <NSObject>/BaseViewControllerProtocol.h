@@ -60,8 +60,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByCorBlock _Nonnull)restoreStatusBarCor;
 /// 查看用户数据
 -(void)showUserInfo;
-/// 配置GKNavigationBar
+/// 配置 GKNavigationBar
 -(jobsByViewModelBlock)setGKNav;
+/// 配置 JobsNavBarConfig
+-(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig;
 /// 配置GKNavigationBar的返回按钮
 -(jobsByBtnBlock _Nonnull)setGKNavBackBtn;
 /// 铺满全屏展示的策略

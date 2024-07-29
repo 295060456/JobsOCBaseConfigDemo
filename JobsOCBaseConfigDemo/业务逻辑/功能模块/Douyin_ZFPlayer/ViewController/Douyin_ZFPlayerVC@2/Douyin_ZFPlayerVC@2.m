@@ -737,10 +737,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     @jobs_weakify(self)
     extern NSString *appInterfaceTesting;
-    [DDNetworkingAPI requestApi:NSObject.appInterfaceTesting.funcName
+    [JobsNetworkingAPI requestApi:NSObject.appInterfaceTesting.funcName
                      parameters:@{@"pageSize":@(self.pageSize),
                                   @"pageNum":@(self.currentPage)}
-                   successBlock:^(DDResponseModel *data) {
+                   successBlock:^(JobsResponseModel *data) {
         @jobs_strongify(self)
         NSLog(@"");
         if([data.data isKindOfClass:NSArray.class]){

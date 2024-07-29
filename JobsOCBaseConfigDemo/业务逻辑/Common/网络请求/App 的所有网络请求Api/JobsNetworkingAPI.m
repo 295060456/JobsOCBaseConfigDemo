@@ -5,12 +5,12 @@
 //  Created by Jobs on 2020/9/24.
 //
 
-#import "DDNetworkingHeader.h"
+#import "JobsNetworkingHeader.h"
 /*
  * 只定义successBlock处理我们想要的最正确的答案,并向外抛出
  * 错误在内部处理不向外抛出
  */
-@implementation DDNetworkingAPI
+@implementation JobsNetworkingAPI
 /// 【只有Body参数、不需要错误回调】
 +(void)requestApi:(NSString *_Nonnull)requestApi
        parameters:(id _Nullable)parameters
@@ -31,9 +31,9 @@
             [paramMutArr addObject:successBlock];
         }
 
-        NSString *funcName = [requestApi stringByAppendingString:@":successBlock:"];
+        NSString *funcName = requestApi.add(@":successBlock:");
         [NSObject methodName:funcName
-                   targetObj:(DDNetworkingAPI *)self
+                   targetObj:(JobsNetworkingAPI *)self
                  paramarrays:paramMutArr];
     }
 }
@@ -64,9 +64,9 @@
             [paramMutArr addObject:failureBlock];
         }
 
-        NSString *funcName = [requestApi stringByAppendingString:@":successBlock:failureBlock:"];
+        NSString *funcName = requestApi.add(@":successBlock:failureBlock:");
         [NSObject methodName:funcName
-                   targetObj:(DDNetworkingAPI *)self
+                   targetObj:(JobsNetworkingAPI *)self
                  paramarrays:paramMutArr];
     }
 }
@@ -93,9 +93,9 @@ uploadImagesParamArr:(NSArray *_Nullable)uploadImagesParamArr
         [paramMutArr addObject:failureBlock];
     }
     
-    NSString *funcName = [requestApi stringByAppendingString:@":uploadImageDatas:successBlock:failureBlock:"];
+    NSString *funcName = requestApi.add(@":uploadImageDatas:successBlock:failureBlock:");
     [NSObject methodName:funcName
-               targetObj:(DDNetworkingAPI *)self
+               targetObj:(JobsNetworkingAPI *)self
              paramarrays:paramMutArr];
 }
 /// 上传【视频】文件的网络请求 POST
@@ -120,28 +120,28 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
         [paramMutArr addObject:failureBlock];
     }
     
-    NSString *funcName = [requestApi stringByAppendingString:@":uploadVideo:successBlock:failureBlock:"];
+    NSString *funcName = requestApi.add(@":uploadVideo:successBlock:failureBlock:");;
     [NSObject methodName:funcName
-               targetObj:(DDNetworkingAPI *)self
+               targetObj:(JobsNetworkingAPI *)self
              paramarrays:paramMutArr];
 }
 /// 请求成功的处理代码
-+(void)networkingSuccessHandleWithData:(DDResponseModel *_Nullable)responseObject
++(void)networkingSuccessHandleWithData:(JobsResponseModel *_Nullable)responseObject
                                request:(ZBURLRequest *_Nullable)request
                           successBlock:(jobsByIDBlock _Nullable)successBlock
                           failureBlock:(jobsByIDBlock _Nullable)failureBlock{
 
-    if ([responseObject isKindOfClass:DDResponseModel.class]) {
+    if ([responseObject isKindOfClass:JobsResponseModel.class]) {
         // 公共请求错误直接抛出
         if (responseObject.code == HTTPResponseCodeSuccess) {
             NSLog(@"请求成功");
             if (successBlock) successBlock(responseObject);
         }else{// 请求成功但是因为未登录、被踢线下等涉及到用户token的原因导致的失败
-            [DDNetworkingAPI handleError:responseObject];
+            [JobsNetworkingAPI handleError:responseObject];
             if (failureBlock) failureBlock(responseObject);
         }
     }else{
-        NSLog(@"responseObject 不是 DDResponseModel类型");
+        NSLog(@"responseObject 不是 JobsResponseModel类型");
     }
 }
 #pragma mark —— 错误处理
@@ -150,14 +150,14 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
         NSError *err = (NSError *)error;
         NSLog(@"%@",err.description);
         [WHToast jobsToastErrMsg:err.description];
-    }else if ([error isKindOfClass:DDResponseModel.class]){
-        DDResponseModel *responseModel = (DDResponseModel *)error;
+    }else if ([error isKindOfClass:JobsResponseModel.class]){
+        JobsResponseModel *responseModel = (JobsResponseModel *)error;
         NSLog(@"code = %lu",(unsigned long)responseModel.code);
         switch (responseModel.code) {
             case HTTPResponseCodeServeError:{// 服务器异常
                 [WHToast jobsToastErrMsg:JobsInternationalization(@"Server Exception")];
             }break;
-            case HTTPResponseCodeLoginDate:{// 登录已过期，请重新登录 DDResponseModel
+            case HTTPResponseCodeLoginDate:{// 登录已过期，请重新登录 JobsResponseModel
                 JobsPostNotification(退出登录,@(NO));
             }break;
             case HTTPResponseCodeAuthorizationFailure:{// 授权失败
@@ -177,8 +177,8 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
             }break;
                 
             default:{
-                if ([error isKindOfClass:DDResponseModel.class]) {
-                    DDResponseModel *model = (DDResponseModel *)error;
+                if ([error isKindOfClass:JobsResponseModel.class]) {
+                    JobsResponseModel *model = (JobsResponseModel *)error;
                     [WHToast jobsToastErrMsg:model.msg];
                 }
             }break;

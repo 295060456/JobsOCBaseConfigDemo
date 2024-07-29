@@ -8,8 +8,6 @@
   <a href="https://github.com/295060456/JobsOCBaseConfigDemo"><img src="https://img.shields.io/badge/platform-iOS-lightgrey?style=flat" alt="Platform" title="Platform"/></a>
 
 
-
-
 </p>
 
 [toc]
@@ -1115,7 +1113,25 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-#### 15.3、更多...
+#### 15.3、字符串转`NSURL *`
+
+* ```objective-c
+  /**
+   问题：直接其他地方复制过来的中文字进行网页搜索、或者中文字识别排序等情况的，会出现搜索不到的情况。
+   解决方法：可能存在复制源里面的文字带了空白url编码%E2%80%8B，空白编码没有宽度，虽然看不到但是会影响结果无法正确匹配对应的中文字。可以把文字重新url编码即可。
+   */
+  -(NSString *)urlProtect{
+      if ([self containsString:@"\u200B"]) {
+          return [self stringByReplacingOccurrencesOfString:@"\u200B" withString:JobsInternationalization(@"")];
+      }else return self;
+  }
+  ```
+
+  ```objective-c
+  @"http://47.243.60.31:9200".urlProtect;
+  ```
+
+#### 15.4、更多...
 
 ### 16、`UILabel`的自适应 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -2994,9 +3010,30 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 ####  10.1、`BaseViewController`
 
   * 为了方便管理，理论上，全局只应有一个`UIViewController`。开发者不应该创建过多的子控制器
+
   * 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行
+
   * 命名为`BaseViewController`也是充分考虑同业者的偏好习惯
+
   * 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`
+
+  * 在 `BaseViewController` 里面对导航栏进行二选一的使用
+
+    ```objective-c
+    - (void)viewDidLoad {
+        [super viewDidLoad];
+        
+        self.view.backgroundColor = JobsRandomColor;
+    //    self.setGKNav(nil);
+    //    self.setGKNavBackBtn(nil);
+    //    self.gk_navigationBar.jobsVisible = NO;
+        
+        self.makeNavBarConfig(nil);
+        self.navBar.alpha = 1;
+        
+    //    [self.bgImageView removeFromSuperview];
+    }
+    ```
 
 #### 10.2、导航栏
 

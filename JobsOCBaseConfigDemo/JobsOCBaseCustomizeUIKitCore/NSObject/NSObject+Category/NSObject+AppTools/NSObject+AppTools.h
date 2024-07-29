@@ -19,7 +19,7 @@
 //#import "CasinoUpgradePopupView.h"
 #import "JobsHotLabelWithSingleLine.h"
 
-#import "DDNetworkingHeader.h"
+#import "JobsNetworkingHeader.h"
 #import "UIViewModel.h"
 
 #import "NSString+Judgment.h"

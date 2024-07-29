@@ -352,129 +352,129 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 #pragma mark —— 网络通讯方面的
 /// 获取客服联系方式
 -(void)getCustomerContact:(jobsByIDBlock _Nullable)block{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
-//    [DDNetworkingAPI requestApi:NSObject.customerContactGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.customerContactGET.funcName
 //                     parameters:nil
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        if (block) block(data);
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 银行列表
 -(void)getBankcardBanklist:(jobsByIDBlock _Nullable)block{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
-//    [DDNetworkingAPI requestApi:NSObject.bankcardBanklistGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.bankcardBanklistGET.funcName
 //                     parameters:nil
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        if (block) block(data);
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 获取文件服务器地址
 -(void)getDownloadStationGetFileServerUrl:(jobsByIDBlock _Nullable)block{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
-//    [DDNetworkingAPI requestApi:NSObject.downloadStationGetFileServerUrlGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.downloadStationGetFileServerUrlGET.funcName
 //                     parameters:nil
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        if (block) block(data);
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 检查平台维护开关
 -(void)checkPlatformMaintenanceSwitch:(jobsByIDBlock _Nullable)block{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
 //    @jobs_weakify(self)
-//    [DDNetworkingAPI requestApi:NSObject.platformConfigCheckPlatformMaintenanceSwitchGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.platformConfigCheckPlatformMaintenanceSwitchGET.funcName
 //                     parameters:nil
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        @jobs_strongify(self)
 //        if (block) block(data);
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 获取当前用户的基本信息(不包含 余额，打码量，可提现金额,洗码金额)
 -(void)getUserInfo:(jobsByIDBlock _Nullable)block{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
-//    [DDNetworkingAPI requestApi:NSObject.userInfoGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.userInfoGET.funcName
 //                     parameters:nil
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        if (block) block(data);
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 检查人人代开关
 -(void)getPlatformConfigCheckPeopleProxySwitch:(jobsByIDBlock _Nullable)block{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
-//    [DDNetworkingAPI requestApi:NSObject.platformConfigCheckPeopleProxySwitchGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.platformConfigCheckPeopleProxySwitchGET.funcName
 //                     parameters:nil
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        if (block) block(data);
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 获取当前用户的余额,打码量,可提现金额,洗码金额,分润金额
 -(void)getUserGetMoney:(jobsByIDBlock _Nullable)successBlock
           failureBlock:(jobsByIDBlock _Nullable)failureBlock{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
-//    [DDNetworkingAPI requestApi:NSObject.userGetMoneyGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.userGetMoneyGET.funcName
 //                     parameters:nil
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        if (successBlock) successBlock(data);
 //    } failureBlock:^(id data) {
 //        if (failureBlock) failureBlock(data);
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 查询当前登录用户WM余额
 -(void)getWmGetWmBalance:(jobsByIDBlock _Nullable)successBlock
             failureBlock:(jobsByIDBlock _Nullable)failureBlock{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
-//    [DDNetworkingAPI requestApi:NSObject.wmGetWmBalanceGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.wmGetWmBalanceGET.funcName
 //                     parameters:nil
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        if (successBlock) successBlock(data);
 //    } failureBlock:^(id data) {
 //        if (failureBlock) failureBlock(data);
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// iOS最新版本检查
 -(void)getDownloadStationGetIosNewestVersion:(jobsByIDBlock _Nullable)block{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //
 //    NSDictionary *parameters = @{
 //        @"versionNumber":self.appVersion// 版本号
@@ -483,9 +483,9 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = HTTPRequestHeaderLanguageCN;
 //    [RequestTool setupPublicParameters:config];
-//    [DDNetworkingAPI requestApi:NSObject.downloadStationGetIosNewestVersionGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.downloadStationGetIosNewestVersionGET.funcName
 //                     parameters:parameters
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //
 //        NSMutableArray <CasinoGetiOSNewestVersionModel *>*tags = [CasinoGetiOSNewestVersionModel mj_objectArrayWithKeyValuesArray:data.data];
 //
@@ -505,53 +505,53 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //        }
 //        if (block) block(iOSNewestVersionModel);
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 公告/活动
 -(void)getNoticeNewest:(jobsByIDBlock _Nullable)block{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
-//    [DDNetworkingAPI requestApi:NSObject.noticeNewestGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.noticeNewestGET.funcName
 //                     parameters:nil
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        if (block) block(data);
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 获取移动端logo
 -(void)getDownloadStationGetLogImageUrlApp:(jobsByIDBlock _Nullable)block{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
-//    [DDNetworkingAPI requestApi:NSObject.downloadStationGetLogImageUrlAppGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.downloadStationGetLogImageUrlAppGET.funcName
 //                     parameters:nil
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        if (block) block(data);
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 获取用户已绑定银行卡
 -(void)withdrawBanklist:(jobsByIDBlock)block{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
 //    [RequestTool setupPublicParameters:config];
 ////    @jobs_weakify(self)
-//    [DDNetworkingAPI requestApi:NSObject.withdrawBanklistGET.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.withdrawBanklistGET.funcName
 //                     parameters:nil
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 ////        @jobs_strongify(self)
 //        if (block) block(data);
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 #pragma mark —— 通过验证返回YES

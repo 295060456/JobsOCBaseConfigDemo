@@ -84,7 +84,7 @@
 #pragma mark —— 一些私有方法
 /// 真实的网络请求
 -(void)requestData:(BOOL)isLoadMore{
-    DDNetworkingPrepare
+    JobsNetworkingPrepare
     DataManager.sharedInstance.tag = ReuseIdentifier;
     /**
      公共配置
@@ -98,9 +98,9 @@
     NSDictionary *parameters = @{@"pageSize":@(10),
                                  @"pageNum":@(self.currentPage)};
 
-    [DDNetworkingAPI requestApi:NSObject.appInterfaceTesting.funcName
+    [JobsNetworkingAPI requestApi:NSObject.appInterfaceTesting.funcName
                      parameters:parameters
-                   successBlock:^(DDResponseModel *data) {
+                   successBlock:^(JobsResponseModel *data) {
         @jobs_strongify(self)
         NSLog(@"");
         if([data.data isKindOfClass:NSArray.class]){

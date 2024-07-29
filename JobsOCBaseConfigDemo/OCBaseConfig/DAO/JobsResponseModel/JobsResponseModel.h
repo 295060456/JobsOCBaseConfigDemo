@@ -1,5 +1,5 @@
 //
-//  DDResponseModel.h
+//  JobsResponseModel.h
 //  DouDong-II
 //
 //  Created by xxx on 2021/1/4.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDResponseModel : NSObject
+@interface JobsResponseModel : NSObject
 
 @property(nonatomic,assign)HTTPResponseCode code;
 @property(nonatomic,copy)NSString *msg;
@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_END
 //if (successBlock) {
 //    if ([responseObject isKindOfClass:NSDictionary.class]) {
 //        NSDictionary *dataDic = (NSDictionary *)responseObject;
-//        DDResponseModel *model = [DDResponseModel mj_objectWithKeyValues:dataDic];
+//        JobsResponseModel *model = [JobsResponseModel mj_objectWithKeyValues:dataDic];
 //        // 公共请求错误直接抛出
 //        if (model.code != HTTPResponseCodeSuccess) {
 //            [WHToast jobsToastMsg:model.msg];

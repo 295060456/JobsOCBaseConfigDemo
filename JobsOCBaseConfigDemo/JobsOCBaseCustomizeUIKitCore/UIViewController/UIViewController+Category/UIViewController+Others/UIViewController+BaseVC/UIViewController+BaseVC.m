@@ -281,7 +281,7 @@ JobsKey(_navBar)
         }
         NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
         NSLog(@"%f",self.navBarConfig.closeBtnModel.btn_offset_x);
-        self.navBarConfig.title = self.viewModel.backBtnTitleModel.text;
+//        if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
         NavBar.navBarConfig = self.navBarConfig;
         [self.view addSubview:NavBar];
         [NavBar mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -290,7 +290,6 @@ JobsKey(_navBar)
         }];
         [self.view layoutIfNeeded];
         [NavBar richElementsInViewWithModel:nil];
-        [self.view layoutIfNeeded];
         @jobs_weakify(self)
         [NavBar actionNavBarBackBtnClickBlock:^(UIButton * _Nullable data) {
             @jobs_strongify(self)

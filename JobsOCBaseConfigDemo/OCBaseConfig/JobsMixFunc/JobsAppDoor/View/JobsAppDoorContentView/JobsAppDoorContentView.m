@@ -59,7 +59,7 @@
 -(void)getCellPhoneVerificationCodeWithCountry:(NSString *)country
                                          phone:(NSString *)phone{
 //    if ([self checkTelePhoneNum:phone]) {
-//        DDNetworkingPrepare
+//        JobsNetworkingPrepare
 //        RequestTool *config = RequestTool.new;
 //        config.languageType = self.currentLanguageType;
 //        [RequestTool setupPublicParameters:config];
@@ -67,13 +67,13 @@
 //        NSDictionary *parameters = @{@"country":@"855",//暂时写死855
 //                                     @"phone":phone};
 //
-//        [DDNetworkingAPI requestApi:NSObject.authGetVerificationCodeGET.funcName
+//        [JobsNetworkingAPI requestApi:NSObject.authGetVerificationCodeGET.funcName
 //                         parameters:parameters
-//                       successBlock:^(DDResponseModel *data) {
+//                       successBlock:^(JobsResponseModel *data) {
 //            NSLog(@"用户获取短信验证码成功");
 //            [WHToast jobsToastSuccessMsg:JobsInternationalization(@"Verification send success")];
 //        } failureBlock:^(id data) {
-//            [DDNetworkingAPI handleError:data];
+//            [JobsNetworkingAPI handleError:data];
 //            JobsAppDoorInputViewBaseStyle_1 *手机验证码 = (JobsAppDoorInputViewBaseStyle_1 *)self.registerDoorInputViewBaseStyleMutArr[4];
 //            [手机验证码.getCountDownBtn timerDestroy];
 //        }];

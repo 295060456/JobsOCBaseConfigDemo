@@ -191,7 +191,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
                        phone:(NSString *_Nullable)phone
                    phoneCode:(NSString *_Nullable)phoneCode
                     validate:(NSString *_Nullable)validate{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
@@ -205,16 +205,16 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 //                                 @"phoneCode":[NSString ensureNonnullString:phoneCode replaceStr:JobsInternationalization(@"")],// 手机号验证码
 //                                 @"validate":[NSString ensureNonnullString:validate replaceStr:JobsInternationalization(@"")]};// 网易云盾
 //    @jobs_weakify(self)
-//    [DDNetworkingAPI requestApi:NSObject.authRegisterPOST.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.authRegisterPOST.funcName
 //                     parameters:parameters
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        @jobs_strongify(self)
 //        // 注册成功后返回登录
 //        if (data.code == HTTPResponseCodeSuccess) {
 //            [self->toRegisterBtn sendActionsForControlEvents:UIControlEventTouchUpInside];
 //        }
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 登录网络请求
@@ -222,7 +222,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
                  deviceId:(NSString *_Nullable)deviceId
                  password:(NSString *_Nullable)password
                  validate:(NSString *_Nullable)validate{
-//    DDNetworkingPrepare
+//    JobsNetworkingPrepare
 //
 //    RequestTool *config = RequestTool.new;
 //    config.languageType = self.currentLanguageType;
@@ -233,9 +233,9 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 //                                 @"password":[NSString ensureNonnullString:password replaceStr:JobsInternationalization(@"")],// 密码
 //                                 @"validate":[NSString ensureNonnullString:validate replaceStr:JobsInternationalization(@"")]};// 网易易顿
 //    @jobs_weakify(self)
-//    [DDNetworkingAPI requestApi:NSObject.authLoginAPOST.funcName
+//    [JobsNetworkingAPI requestApi:NSObject.authLoginAPOST.funcName
 //                     parameters:parameters
-//                   successBlock:^(DDResponseModel *data) {
+//                   successBlock:^(JobsResponseModel *data) {
 //        @jobs_strongify(self)
 //        NSLog(@"用户Token为:%@",data.data);
 //        JobsUserModel *userModel = JobsUserModel.new;
@@ -254,7 +254,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 //        JobsPostNotification(登录成功, @(YES));
 //        [self backBtnClickEvent:nil];
 //    } failureBlock:^(id data) {
-//        [DDNetworkingAPI handleError:data];
+//        [JobsNetworkingAPI handleError:data];
 //    }];
 }
 /// 网易云盾验证

@@ -56,5 +56,8 @@ typedef void(^jobsByViewModelBlock)(UIViewModel *_Nullable data);
 typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(UIViewModel *_Nullable data);
 typedef CGRect(^JobsReturnCGRectByViewModelBlock)(UIViewModel *_Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(UIViewModel *_Nullable data);
+#import "UIButtonModel.h"
+#import "JobsNavBarConfig.h"
+typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,UIButtonModel *_Nullable closeBtnModel);
 
 #endif /* JobsBlock_Ex_h */

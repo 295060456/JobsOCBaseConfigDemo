@@ -1,13 +1,13 @@
 //
-//  DDNetworkingAPI+DemoTestApi.m
+//  JobsNetworkingAPI+DemoTestApi.m
 //  DouYin
 //
 //  Created by Jobs on 2021/4/17.
 //
 
-#import "DDNetworkingAPI+DemoTestApi.h"
+#import "JobsNetworkingAPI+DemoTestApi.h"
 
-@implementation DDNetworkingAPI (DemoTestApi)
+@implementation JobsNetworkingAPI (DemoTestApi)
 
 NSString *appInterfaceTesting;
 +(void)appInterfaceTesting:(id)parameters
@@ -19,7 +19,7 @@ NSString *appInterfaceTesting;
     [ZBRequestManager requestWithConfig:^(ZBURLRequest * _Nullable request) {
 
         request.server = self.BaseUrl;
-        request.url = [request.server stringByAppendingString:self.appInterfaceTesting.url];
+        request.url = request.server.add(self.appInterfaceTesting.url);
         
         NSLog(@"request.URLString = %@",request.url);
         
@@ -49,7 +49,7 @@ NSString *appInterfaceTesting;
         NSLog(@"进度 = %f",progress.fractionCompleted * 100);
     }success:^(id  _Nullable responseObject,
                ZBURLRequest * _Nullable request){
-        [DDNetworkingAPI networkingSuccessHandleWithData:responseObject
+        [JobsNetworkingAPI networkingSuccessHandleWithData:responseObject
                                                  request:request
                                             successBlock:successBlock
                                             failureBlock:failureBlock];
