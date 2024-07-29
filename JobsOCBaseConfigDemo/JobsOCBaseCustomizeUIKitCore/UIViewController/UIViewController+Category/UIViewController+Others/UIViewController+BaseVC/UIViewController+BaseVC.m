@@ -291,9 +291,9 @@ JobsKey(_navBar)
         [self.view layoutIfNeeded];
         [NavBar richElementsInViewWithModel:nil];
         @jobs_weakify(self)
-        [NavBar actionNavBarBackBtnClickBlock:^(UIButton * _Nullable data) {
+        [NavBar actionNavBarBackBtnClickBlock:^(UIButton * _Nullable x) {
             @jobs_strongify(self)
-            [self backBtnClickEvent:data];
+            self.backBtnClickEvent(x);
         }];
         [NavBar actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable data) {
             @jobs_strongify(self)

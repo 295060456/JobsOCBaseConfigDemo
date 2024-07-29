@@ -34,8 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— BaseVC+BackBtn
 @property(nonatomic,strong)UIButton *backBtnCategory;
 @property(nonatomic,strong)UIBarButtonItem *backBtnCategoryItem;
-
--(void)backBtnClickEvent:(UIButton *_Nullable)sender;
+/// GKNavigationBar 返回按钮点击方法
+///【子类需要覆写 】创建返回键的点击事件
+-(jobsByBtnBlock _Nonnull)backBtnClickEvent;
 
 @end
 

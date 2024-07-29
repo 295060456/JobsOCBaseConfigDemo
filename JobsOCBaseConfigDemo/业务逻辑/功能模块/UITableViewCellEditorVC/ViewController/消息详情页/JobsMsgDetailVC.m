@@ -178,7 +178,7 @@
         @jobs_weakify(self)
         [_deleteBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
-            [self backBtnClickEvent:x];
+            self.backBtnClickEvent(x);
             if (self.objectBlock) self.objectBlock(self.msgDataModel);
             return nil;
         }];

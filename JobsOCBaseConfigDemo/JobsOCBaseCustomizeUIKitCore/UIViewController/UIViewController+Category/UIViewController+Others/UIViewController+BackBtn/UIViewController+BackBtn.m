@@ -9,23 +9,24 @@
 
 @implementation UIViewController (BackBtn)
 /// GKNavigationBar 返回按钮点击方法
--(void)backItemClick:(id)sender{
-    [self backBtnClickEvent:sender];
-}
 ///【子类需要覆写 】创建返回键的点击事件
--(void)backBtnClickEvent:(UIButton *_Nullable)sender{
-    if (self.jobsBackBlock) self.jobsBackBlock(sender);
-    switch (self.pushOrPresent) {
-        case ComingStyle_PRESENT:{
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }break;
-        case ComingStyle_PUSH:{
-            self.navigationController ? [self.navigationController popViewControllerAnimated:YES] : [self dismissViewControllerAnimated:YES completion:nil];
-        }break;
-            
-        default:
-            break;
-    }
+-(jobsByBtnBlock _Nonnull)backBtnClickEvent{
+    @jobs_weakify(self)
+    return ^(UIButton *_Nullable sender) {
+        @jobs_strongify(self)
+        if (self.jobsBackBlock) self.jobsBackBlock(sender);
+        switch (self.pushOrPresent) {
+            case ComingStyle_PRESENT:{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }break;
+            case ComingStyle_PUSH:{
+                self.navigationController ? [self.navigationController popViewControllerAnimated:YES] : [self dismissViewControllerAnimated:YES completion:nil];
+            }break;
+                
+            default:
+                break;
+        }
+    };
 }
 #pragma mark —— @property(nonatomic,strong)BackBtn *backBtnCategory;
 JobsKey(_backBtnCategory)
@@ -73,7 +74,7 @@ JobsKey(_backBtnCategory)
                                                        clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
-            [self backBtnClickEvent:x];
+            self.backBtnClickEvent(x);
             return nil;
         }];
         Jobs_setAssociatedRETAIN_NONATOMIC(_backBtnCategory, BackBtnCategory)

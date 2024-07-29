@@ -143,7 +143,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView.mj_header beginRefreshing];
 //    @jobs_weakify(self)
     /// 2秒后退出本页面
-//    DispathdDelaySth(2.0, [weak_self backBtnClickEvent:nil]);
+//    DispathdDelaySth(2.0, weak_self.backBtnClickEvent(nil));
 }
 
 - (NSInteger)tableView:(UITableView *)tableView

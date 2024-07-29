@@ -216,7 +216,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
                     self.customerServiceBtn.alpha = 0;
                     
                 }else if([btn.titleLabel.text isEqualToString:Title4]){
-                    [self backBtnClickEvent:btn];
+                    self.backBtnClickEvent(btn);
                 }else if([btn.titleLabel.text isEqualToString:Title3]){
                     // 忘记密码
                 }else{}

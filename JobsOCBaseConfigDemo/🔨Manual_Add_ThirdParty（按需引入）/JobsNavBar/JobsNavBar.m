@@ -184,11 +184,12 @@
         _backBtn.tag = 456;
         [self addSubview:_backBtn];
         [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(8), JobsWidth(18)));
+            make.height.mas_equalTo(JobsWidth(18));
             make.centerY.equalTo(self);
             NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
             make.left.equalTo(self).offset(self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(20));
         }];
+        _backBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
     }return _backBtn;
 }
 

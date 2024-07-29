@@ -6,8 +6,6 @@
   <a><img src="https://img.shields.io/badge/github-actions-black" alt="github actions" title="github actions"/></a>
   <a href="https://github.com/295060456/JobsOCBaseConfigDemo"><img src="https://img.shields.io/github/license/295060456/JobsOCBaseConfigDemo?style=flat" alt="License" title="License"/></a>
   <a href="https://github.com/295060456/JobsOCBaseConfigDemo"><img src="https://img.shields.io/badge/platform-iOS-lightgrey?style=flat" alt="Platform" title="Platform"/></a>
-
-
 </p>
 
 [toc]
@@ -3142,24 +3140,69 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 配置并使用
 
   * ```objective-c
-    [self makeNavBarConfig];
+    self.makeNavBarConfig(nil,nil);
     self.navBar.alpha = 1;
     ```
 
     ```objective-c
-    -(UIButtonModel *)btnModel{
-        if(!_btnModel){
-            _btnModel = UIButtonModel.new;
-            _btnModel.backgroundImage = JobsIMG(@"联系我们");
-            _btnModel.roundingCorners = UIRectCornerAllCorners;
-            _btnModel.baseBackgroundColor = JobsClearColor;
-        }return _btnModel;
+    -(UIButtonModel *)closeBtnModel{
+        if(!_closeBtnModel){
+            _closeBtnModel = UIButtonModel.new;
+            _closeBtnModel.backgroundImage = JobsIMG(@"联系我们");
+    //        _closeBtnModel.selected_backgroundImage = JobsIMG(@"联系我们");
+    //        _closeBtnModel.normalImage = JobsIMG(@"联系我们");
+    //        _closeBtnModel.highlightImage = JobsIMG(@"联系我们");
+    //        _closeBtnModel.imagePadding = JobsWidth(5);
+            _closeBtnModel.roundingCorners = UIRectCornerAllCorners;
+            _closeBtnModel.baseBackgroundColor = JobsClearColor;
+        }return _closeBtnModel;
     }
     
-    -(void)makeNavBarConfig{
-        JobsNavBarConfig *_navBarConfig = JobsNavBarConfig.new;
-        _navBarConfig.closeBtnModel = self.btnModel;
-        self.navBarConfig = _navBarConfig;
+    -(UIButtonModel *)backBtnModel{
+        if(!_backBtnModel){
+            _backBtnModel = UIButtonModel.new;
+    //        _backBtnModel.backgroundImage = JobsIMG(@"返回");
+    //        _backBtnModel.selected_backgroundImage = JobsIMG(@"返回");
+            _backBtnModel.normalImage = JobsIMG(@"返回");
+            _backBtnModel.highlightImage = JobsIMG(@"返回");
+            _backBtnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+            _backBtnModel.title = self.viewModel.backBtnTitleModel.text;
+            _backBtnModel.titleCor = JobsBlackColor;
+            _backBtnModel.selected_titleCor = JobsBlackColor;
+            _backBtnModel.roundingCorners = UIRectCornerAllCorners;
+            _backBtnModel.imagePlacement = NSDirectionalRectEdgeLeading;
+            _backBtnModel.imagePadding = JobsWidth(5);
+            @jobs_weakify(self)
+            _backBtnModel.longPressGestureEventBlock = ^(id  _Nullable weakSelf,
+                                                         id  _Nullable arg) {
+                NSLog(@"按钮的长按事件触发");
+            };
+            _backBtnModel.clickEventBlock = ^id(BaseButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                self.backBtnClickEvent(x);
+                return nil;
+            };
+        }return _backBtnModel;
+    }
+    
+    -(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig{
+        @jobs_weakify(self)
+        return ^(UIButtonModel *_Nullable backBtnModel,
+                 UIButtonModel *_Nullable closeBtnModel) {
+            @jobs_strongify(self)
+            JobsNavBarConfig *_navBarConfig = JobsNavBarConfig.new;
+            _navBarConfig.bgCor = self.viewModel.navBgCor;
+            _navBarConfig.bgImage = self.viewModel.navBgImage;
+            _navBarConfig.attributedTitle = self.viewModel.backBtnTitleModel.attributedText;
+            _navBarConfig.title = self.viewModel.textModel.text;
+            _navBarConfig.font = self.viewModel.textModel.font;
+            _navBarConfig.titleCor = self.viewModel.textModel.textCor;
+            _navBarConfig.backBtnModel = backBtnModel ? : self.backBtnModel;
+            _navBarConfig.closeBtnModel = closeBtnModel ? : self.closeBtnModel;
+            self.navBarConfig = _navBarConfig;
+            return _navBarConfig;
+        };
     }
     ```
 

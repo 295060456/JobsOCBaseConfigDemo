@@ -252,7 +252,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 //            [self deleteUserName:account];
 //        }
 //        JobsPostNotification(登录成功, @(YES));
-//        [self backBtnClickEvent:nil];
+//        self.backBtnClickEvent(nil);
 //    } failureBlock:^(id data) {
 //        [JobsNetworkingAPI handleError:data];
 //    }];
@@ -413,7 +413,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
                 }
                 else if ([btn.titleLabel.text isEqualToString:Title4]){// Title4 JobsInternationalization(@"Back to HomePage")
                     UIButton *abandonLoginBtn = (UIButton *)data;
-                    [self backBtnClickEvent:abandonLoginBtn];
+                    self.backBtnClickEvent(abandonLoginBtn);
                     [JobsAppDoorVC destroyAppDoorSingleton];
                 }
                 else if ([btn.titleLabel.text isEqualToString:Title5]){// Title5 JobsInternationalization(@"Save the user name")

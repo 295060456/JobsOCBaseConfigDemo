@@ -207,12 +207,16 @@ UIViewModelProtocol_synthesize
     } completionBlock:nil];
 }
 /// 返回按钮点击方法 【覆写父类方法】 // 清空草稿   [self.photoManager deleteLocalModelsInFile];
--(void)backBtnClickEvent:(UIButton *_Nullable)sender{
-    if (self.isUpload) return;
-    if (![self.photoManager.afterSelectedArray compareEqualArrElement:self.historyPhotoDataArr] ||//!d
-        ![NSString isEqualStrA:self.inputDataHistoryString strB:self.inputDataString]) {
-        [self saveDoc];
-    }else [self back:sender];
+-(jobsByBtnBlock _Nonnull)backBtnClickEvent{
+    @jobs_weakify(self)
+    return ^(UIButton *_Nullable sender) {
+        @jobs_strongify(self)
+        if (self.isUpload) return;
+        if (![self.photoManager.afterSelectedArray compareEqualArrElement:self.historyPhotoDataArr] ||//!d
+            ![NSString isEqualStrA:self.inputDataHistoryString strB:self.inputDataString]) {
+            [self saveDoc];
+        }else [self back:sender];
+    };
 }
 
 - (void)back:(id)sender{
