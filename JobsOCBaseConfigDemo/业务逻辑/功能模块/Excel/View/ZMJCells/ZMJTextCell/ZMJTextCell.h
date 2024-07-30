@@ -1,5 +1,5 @@
 //
-//  ZMJTaskCell.h
+//  ZMJTextCell.h
 //  FM
 //
 //  Created by User on 7/27/24.
@@ -15,7 +15,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZMJTaskCell : ZMJCell
+@interface ZMJTextCell : ZMJCell
+
+@property(nonatomic,strong)UILabel *label;
 
 @end
 

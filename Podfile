@@ -126,6 +126,7 @@ def alert
 end
 # UI相关
 def ui
+  pod 'ZMJTipView' # https://github.com/keshiim/ZMJTipView
   pod 'ZMJGanttChart' # https://github.com/keshiim/ZMJGanttChart excel
   pod 'LMJDropdownMenu' # https://github.com/JerryLMJ/LMJDropdownMenu 下拉菜单
 #  pod 'WMZBanner' # https://github.com/wwmz/WMZBanner 轻量级轮播图+卡片样式+自定义样式 ⚠️作者停止维护

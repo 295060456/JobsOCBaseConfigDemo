@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZMJHeaderCell : ZMJCell
 
+@property(nonatomic,strong)UILabel *label;
+
 @end
 
 NS_ASSUME_NONNULL_END
