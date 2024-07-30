@@ -59,8 +59,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsRandomColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+//    self.setGKNav(nil);
+//    self.setGKNavBackBtn(nil);
+//    self.gk_navigationBar.jobsVisible = NO;
+    
+    self.makeNavBarConfig(nil,nil);
+    self.navBar.alpha = 1;
     
     [self.spreadsheetView flashScrollIndicators];
 }
@@ -167,6 +171,10 @@
         [_spreadsheetView registerClass:HeaderCell.class forCellWithReuseIdentifier:NSStringFromClass(HeaderCell.class)];
         [_spreadsheetView registerClass:TextCell.class forCellWithReuseIdentifier:NSStringFromClass(TextCell.class)];
         [self.view addSubview:_spreadsheetView];
+        [_spreadsheetView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self.view);
+            make.top.equalTo(self.navBar.mas_bottom);
+        }];
         if (@available(iOS 11.0, *)) {
             _spreadsheetView.frame = self.view.safeAreaLayoutGuide.layoutFrame;
         } else {

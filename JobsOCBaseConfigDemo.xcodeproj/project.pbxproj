@@ -10,6 +10,11 @@
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		C525D3EC2C4801C1003DAFD0 /* JobsLinkageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */; };
+		CE0B74652C58F95500E32D46 /* ZMJTimeableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B74572C58F95500E32D46 /* ZMJTimeableVC.m */; };
+		CE0B74662C58F95500E32D46 /* ZMJScheduleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B745A2C58F95500E32D46 /* ZMJScheduleVC.m */; };
+		CE0B74672C58F95500E32D46 /* ZMJGanttListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B745D2C58F95500E32D46 /* ZMJGanttListVC.m */; };
+		CE0B74682C58F95500E32D46 /* ZMJClassDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B74602C58F95500E32D46 /* ZMJClassDataVC.m */; };
+		CE0B74692C58F95500E32D46 /* ExcelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B74632C58F95500E32D46 /* ExcelVC.m */; };
 		CE40B28E2C4B54A500CB64B5 /* JobsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */; };
 		CE40B29B2C4BF78E00CB64B5 /* JobsToggleBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */; };
 		CE40B29C2C4BF78E00CB64B5 /* JobsToggleNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2982C4BF78E00CB64B5 /* JobsToggleNavView.m */; };
@@ -19,8 +24,6 @@
 		CE410FEA2C57B8B400AB9402 /* ZBRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDF2C57B8B400AB9402 /* ZBRequestManager.m */; };
 		CE410FEB2C57B8B400AB9402 /* ZBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */; };
 		CE55CD222C4A5004002E1825 /* 临时的占位图.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE55CD212C4A4FEF002E1825 /* 临时的占位图.xcassets */; };
-		CE706A402C5767CA00CB7B97 /* ExcelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE706A372C5767CA00CB7B97 /* ExcelVC.m */; };
-		CE706A412C5767CA00CB7B97 /* ZMJClassDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE706A3A2C5767CA00CB7B97 /* ZMJClassDataVC.m */; };
 		CE706A422C57680500CB7B97 /* JobsPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE794C2C450C5000764AF5 /* JobsPostVC.m */; };
 		CE706A462C57682900CB7B97 /* data.tsv in Resources */ = {isa = PBXBuildFile; fileRef = CE706A432C57682900CB7B97 /* data.tsv */; };
 		CE706A5A2C57692200CB7B97 /* ZMJTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE706A492C57692100CB7B97 /* ZMJTaskCell.m */; };
@@ -1110,6 +1113,16 @@
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
 		C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsLinkageMenuView.m; sourceTree = "<group>"; };
 		C525D3EB2C4801C1003DAFD0 /* JobsLinkageMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsLinkageMenuView.h; sourceTree = "<group>"; };
+		CE0B74562C58F95500E32D46 /* ZMJTimeableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMJTimeableVC.h; sourceTree = "<group>"; };
+		CE0B74572C58F95500E32D46 /* ZMJTimeableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMJTimeableVC.m; sourceTree = "<group>"; };
+		CE0B74592C58F95500E32D46 /* ZMJScheduleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMJScheduleVC.h; sourceTree = "<group>"; };
+		CE0B745A2C58F95500E32D46 /* ZMJScheduleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMJScheduleVC.m; sourceTree = "<group>"; };
+		CE0B745C2C58F95500E32D46 /* ZMJGanttListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMJGanttListVC.h; sourceTree = "<group>"; };
+		CE0B745D2C58F95500E32D46 /* ZMJGanttListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMJGanttListVC.m; sourceTree = "<group>"; };
+		CE0B745F2C58F95500E32D46 /* ZMJClassDataVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMJClassDataVC.h; sourceTree = "<group>"; };
+		CE0B74602C58F95500E32D46 /* ZMJClassDataVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMJClassDataVC.m; sourceTree = "<group>"; };
+		CE0B74622C58F95500E32D46 /* ExcelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcelVC.h; sourceTree = "<group>"; };
+		CE0B74632C58F95500E32D46 /* ExcelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExcelVC.m; sourceTree = "<group>"; };
 		CE40B28C2C4B54A500CB64B5 /* JobsTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextField.h; sourceTree = "<group>"; };
 		CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextField.m; sourceTree = "<group>"; };
 		CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsToggleBaseView.m; sourceTree = "<group>"; };
@@ -1131,10 +1144,6 @@
 		CE55CD212C4A4FEF002E1825 /* 临时的占位图.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "临时的占位图.xcassets"; sourceTree = "<group>"; };
 		CE706A322C5767CA00CB7B97 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		CE706A342C5767CA00CB7B97 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		CE706A362C5767CA00CB7B97 /* ExcelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcelVC.h; sourceTree = "<group>"; };
-		CE706A372C5767CA00CB7B97 /* ExcelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExcelVC.m; sourceTree = "<group>"; };
-		CE706A392C5767CA00CB7B97 /* ZMJClassDataVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMJClassDataVC.h; sourceTree = "<group>"; };
-		CE706A3A2C5767CA00CB7B97 /* ZMJClassDataVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMJClassDataVC.m; sourceTree = "<group>"; };
 		CE706A432C57682900CB7B97 /* data.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.tsv; sourceTree = "<group>"; };
 		CE706A442C57682900CB7B97 /* TSV文件介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "TSV文件介绍.md"; sourceTree = "<group>"; };
 		CE706A482C57692100CB7B97 /* ZMJTaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMJTaskCell.h; sourceTree = "<group>"; };
@@ -3115,6 +3124,51 @@
 			path = JobsLinkageMenuView;
 			sourceTree = "<group>";
 		};
+		CE0B74582C58F95500E32D46 /* ZMJTimeableVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE0B74562C58F95500E32D46 /* ZMJTimeableVC.h */,
+				CE0B74572C58F95500E32D46 /* ZMJTimeableVC.m */,
+			);
+			path = ZMJTimeableVC;
+			sourceTree = "<group>";
+		};
+		CE0B745B2C58F95500E32D46 /* ZMJSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				CE0B74592C58F95500E32D46 /* ZMJScheduleVC.h */,
+				CE0B745A2C58F95500E32D46 /* ZMJScheduleVC.m */,
+			);
+			path = ZMJSchedule;
+			sourceTree = "<group>";
+		};
+		CE0B745E2C58F95500E32D46 /* ZMJGanttListVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE0B745C2C58F95500E32D46 /* ZMJGanttListVC.h */,
+				CE0B745D2C58F95500E32D46 /* ZMJGanttListVC.m */,
+			);
+			path = ZMJGanttListVC;
+			sourceTree = "<group>";
+		};
+		CE0B74612C58F95500E32D46 /* ZMJClassDataVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE0B745F2C58F95500E32D46 /* ZMJClassDataVC.h */,
+				CE0B74602C58F95500E32D46 /* ZMJClassDataVC.m */,
+			);
+			path = ZMJClassDataVC;
+			sourceTree = "<group>";
+		};
+		CE0B74642C58F95500E32D46 /* ExcelVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE0B74622C58F95500E32D46 /* ExcelVC.h */,
+				CE0B74632C58F95500E32D46 /* ExcelVC.m */,
+			);
+			path = ExcelVC;
+			sourceTree = "<group>";
+		};
 		CE40B28B2C4B544F00CB64B5 /* JobsTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -3227,29 +3281,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		CE706A382C5767CA00CB7B97 /* ExcelVC */ = {
-			isa = PBXGroup;
-			children = (
-				CE706A362C5767CA00CB7B97 /* ExcelVC.h */,
-				CE706A372C5767CA00CB7B97 /* ExcelVC.m */,
-			);
-			path = ExcelVC;
-			sourceTree = "<group>";
-		};
-		CE706A3B2C5767CA00CB7B97 /* ZMJClassDataVC */ = {
-			isa = PBXGroup;
-			children = (
-				CE706A392C5767CA00CB7B97 /* ZMJClassDataVC.h */,
-				CE706A3A2C5767CA00CB7B97 /* ZMJClassDataVC.m */,
-			);
-			path = ZMJClassDataVC;
-			sourceTree = "<group>";
-		};
 		CE706A3C2C5767CA00CB7B97 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CE706A382C5767CA00CB7B97 /* ExcelVC */,
-				CE706A3B2C5767CA00CB7B97 /* ZMJClassDataVC */,
+				CE0B74642C58F95500E32D46 /* ExcelVC */,
+				CE0B74612C58F95500E32D46 /* ZMJClassDataVC */,
+				CE0B745E2C58F95500E32D46 /* ZMJGanttListVC */,
+				CE0B745B2C58F95500E32D46 /* ZMJSchedule */,
+				CE0B74582C58F95500E32D46 /* ZMJTimeableVC */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -13315,6 +13354,7 @@
 				CECE7EA42C450E5B00764AF5 /* KTVHCDataUnitPool.m in Sources */,
 				CECE85C92C4513CE00764AF5 /* UITableViewHeaderFooterView+Attribute.m in Sources */,
 				CECE87262C45140000764AF5 /* UIImage+Base64.m in Sources */,
+				CE0B74682C58F95500E32D46 /* ZMJClassDataVC.m in Sources */,
 				CECE7BF42C450C5000764AF5 /* LocalNotificationsVC.m in Sources */,
 				CECE85452C4513CE00764AF5 /* NSObject+HXPhotoPicker.m in Sources */,
 				CECE7EC02C450E5B00764AF5 /* TKPermissionPhoto.m in Sources */,
@@ -13399,6 +13439,7 @@
 				CECE7C1B2C450C5000764AF5 /* BaseRequest.m in Sources */,
 				CECE87222C45140000764AF5 /* MF_Base32Codec.m in Sources */,
 				CECE85432C4513CE00764AF5 /* NSObject+Extras.m in Sources */,
+				CE0B74652C58F95500E32D46 /* ZMJTimeableVC.m in Sources */,
 				CECE87462C45140000764AF5 /* WGradientProgress.m in Sources */,
 				CECE87302C45140000764AF5 /* NSString+HexadecimalData.m in Sources */,
 				CECE80F62C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_6.m in Sources */,
@@ -13413,7 +13454,6 @@
 				CECE7C972C450C5000764AF5 /* JobsSearchShowHotwordsTBVCell.m in Sources */,
 				CECE7CE12C450C5000764AF5 /* JobsPresentingVC.m in Sources */,
 				CECE85C82C4513CE00764AF5 /* JobsTBVHeaderFooterView.m in Sources */,
-				CE706A412C5767CA00CB7B97 /* ZMJClassDataVC.m in Sources */,
 				CECE7EE12C450E5B00764AF5 /* ZWPullMenuModel.m in Sources */,
 				CECE7E902C450E5B00764AF5 /* HTTPLogging.m in Sources */,
 				CECE7C7A2C450C5000764AF5 /* JobsIMVC.m in Sources */,
@@ -13462,9 +13502,9 @@
 				CECE85462C4513CE00764AF5 /* KeychainHelper.m in Sources */,
 				CECE7C892C450C5000764AF5 /* JobsIMListView.m in Sources */,
 				CECE7CC72C450C5000764AF5 /* MyTableTableVC.m in Sources */,
+				CE0B74692C58F95500E32D46 /* ExcelVC.m in Sources */,
 				CECE7CBB2C450C5000764AF5 /* JXCategoryViewWithHeaderViewVC.m in Sources */,
 				CECE85B92C4513CE00764AF5 /* UITableView+WWFoldableTableView.m in Sources */,
-				CE706A402C5767CA00CB7B97 /* ExcelVC.m in Sources */,
 				CECE85E82C4513CE00764AF5 /* UIView+UIBackgroundConfig.m in Sources */,
 				CECE7E922C450E5B00764AF5 /* HTTPServer.m in Sources */,
 				CECE80E22C4512BF00764AF5 /* JobsAppDoorConfig.m in Sources */,
@@ -13550,6 +13590,7 @@
 				CECE85EB2C4513CE00764AF5 /* BaseViewController.m in Sources */,
 				CECE85862C4513CE00764AF5 /* UICollectionView+Func.m in Sources */,
 				CECE80E02C4512BF00764AF5 /* ZLGestureLockViewController.m in Sources */,
+				CE0B74672C58F95500E32D46 /* ZMJGanttListVC.m in Sources */,
 				CECE7CE82C450C5000764AF5 /* JobsMsgDataModel.m in Sources */,
 				CECE858A2C4513CE00764AF5 /* JobsBtnStyleCVCell.m in Sources */,
 				CECE85D02C4513CE00764AF5 /* UITextField+Animation.m in Sources */,
@@ -13798,6 +13839,7 @@
 				CECE7E9C2C450E5B00764AF5 /* KTVHCDataNetworkSource.m in Sources */,
 				CEA116222C5278F8009D6FB3 /* XZMLayout.m in Sources */,
 				CECE7EB22C450E5B00764AF5 /* TKPermissionBluetooth.m in Sources */,
+				CE0B74662C58F95500E32D46 /* ZMJScheduleVC.m in Sources */,
 				CECE81552C4512BF00764AF5 /* TLTabBarAnimation.m in Sources */,
 				CECE85102C4513CE00764AF5 /* CALayer+Anim.m in Sources */,
 				CECE87142C45140000764AF5 /* MovieCountDown.m in Sources */,

@@ -8,6 +8,9 @@
 #import "BaseViewController.h"
 
 #import "ZMJClassDataVC.h"
+#import "ZMJTimeableVC.h"
+#import "ZMJScheduleVC.h"
+#import "ZMJGanttListVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
