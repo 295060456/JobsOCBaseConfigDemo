@@ -4568,7 +4568,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-#### 28.2、关于<font id=UITableViewHeaderFooterView color=red>**UITableViewHeaderFooterView**</font>（**viewForHeaderInSection**）
+#### 28.2、关于<font id=UITableViewHeaderFooterView color=red>**`UITableViewHeaderFooterView`**</font>（**`viewForHeaderInSection`**）
+
+* **`UICollectionView`**没有类型相关的东西
+
+* <font color=red>如果需要在整个`TableView`的首尾出现一个大**View**，则用下面的代码。注意和**`viewForHeaderInSection`**进行区分</font>
+
+  ```objective-c
+  _tableView.tableHeaderView;
+  _tableView.tableFooterView;
+  ```
 
 * 注册（注册不开辟内存，通过全局唯一的字符串进行取值的时候才开辟内存）
 
@@ -4685,7 +4694,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    
    @end
    ```
-
 
 ### 29、字符串写文件 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
