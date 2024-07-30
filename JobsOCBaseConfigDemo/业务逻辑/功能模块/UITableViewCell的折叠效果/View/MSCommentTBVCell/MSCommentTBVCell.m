@@ -23,7 +23,7 @@ UIViewModelProtocol_synthesize
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
 +(instancetype)cellWithTableView:(UITableView *)tableView{
-    MSCommentTBVCell *cell = (MSCommentTBVCell *)[tableView tableViewCellClass:MSCommentTBVCell.class];
+    MSCommentTBVCell *cell = (MSCommentTBVCell *)tableView.tableViewCellClass(MSCommentTBVCell.class,@"");
     if (!cell) {
         cell = [MSCommentTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -14,7 +14,7 @@
 @implementation JobsPullListTBVCell
 
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsPullListTBVCell *cell = (JobsPullListTBVCell *)[tableView tableViewCellClass:JobsPullListTBVCell.class];
+    JobsPullListTBVCell *cell = (JobsPullListTBVCell *)tableView.tableViewCellClass(JobsPullListTBVCell.class,@"");
     if (!cell) {
         cell = [JobsPullListTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

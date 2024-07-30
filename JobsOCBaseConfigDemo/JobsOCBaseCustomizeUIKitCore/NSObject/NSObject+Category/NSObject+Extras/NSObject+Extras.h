@@ -194,8 +194,8 @@ BaseProtocol
 -(JobsReturnBoolByIDBlock _Nonnull)isMemberOfClassBlock;
 -(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
                          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock;
-+(instancetype _Nonnull)jobsInitWithReuseIdentifier;
--(instancetype _Nonnull)jobsInitWithReuseIdentifierClass:(Class _Nonnull)cls;
++(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier;/// 不能用于UITableViewHeaderFooterView
+-(JobsReturnIDByClsAndSaltStrBlock _Nonnull)jobsInitWithReuseIdentifierClass;/// 不能用于UITableViewHeaderFooterView
 /// 查询算法
 /// @param data 查询的数据源
 /// @param searchStrategy 查询策略

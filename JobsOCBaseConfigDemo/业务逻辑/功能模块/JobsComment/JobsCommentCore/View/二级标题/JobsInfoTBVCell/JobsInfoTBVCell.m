@@ -20,7 +20,7 @@
 BaseProtocol_synthesize
 #pragma mark —— UITableViewCellProtocol
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsInfoTBVCell *cell = (JobsInfoTBVCell *)[tableView tableViewCellClass:JobsInfoTBVCell.class];
+    JobsInfoTBVCell *cell = (JobsInfoTBVCell *)tableView.tableViewCellClass(JobsInfoTBVCell.class,@"");
     if (!cell) {
         cell = [JobsInfoTBVCell initTableViewCellWithStyle:UITableViewCellStyleSubtitle];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

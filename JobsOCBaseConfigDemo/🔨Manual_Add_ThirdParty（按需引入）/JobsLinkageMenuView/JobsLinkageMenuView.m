@@ -160,13 +160,13 @@
         if(JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape){
             _rightview.frame = CGRectMake(MENU_WIDTH + LINEVIEW_WIDTH,
                                           0,
-                                          JobsMainScreen_HEIGHT(),
-                                          JobsMainScreen_WIDTH());
+                                          JobsRealWidth(),
+                                          JobsRealHeight());
         }else{
             _rightview.frame = CGRectMake(MENU_WIDTH + LINEVIEW_WIDTH,
                                           NAVIGATION_HEIGHT,
-                                          JobsMainScreen_WIDTH() - MENU_WIDTH + LINEVIEW_WIDTH,
-                                          JobsMainScreen_HEIGHT());
+                                          JobsRealWidth() - MENU_WIDTH + LINEVIEW_WIDTH,
+                                          JobsRealHeight());
         }
         
         if (_viewArray.count < self.btnConfig.normal_titles.count) {

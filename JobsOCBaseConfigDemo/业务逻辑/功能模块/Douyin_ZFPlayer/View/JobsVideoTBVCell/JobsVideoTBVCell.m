@@ -21,7 +21,7 @@
 @implementation JobsVideoTBVCell
 @synthesize index = _index;
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsVideoTBVCell *cell = (JobsVideoTBVCell *)[tableView tableViewCellClass:JobsVideoTBVCell.class];
+    JobsVideoTBVCell *cell = (JobsVideoTBVCell *)tableView.tableViewCellClass(JobsVideoTBVCell.class,@"");
     if (!cell) {
         cell = [JobsVideoTBVCell initTableViewCellWithStyle:UITableViewCellStyleSubtitle];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

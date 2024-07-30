@@ -187,6 +187,9 @@ NS_ASSUME_NONNULL_END
 @synthesize text = _text;\
 @synthesize font = _font;\
 @synthesize textCor = _textCor;\
+@synthesize subText = _subText;\
+@synthesize subFont = _subFont;\
+@synthesize subTextCor = _subTextCor;\
 @synthesize attributedText = _attributedText;\
 @synthesize titleAttributedDataMutArr = _titleAttributedDataMutArr;\
 @synthesize selectedText = _selectedText;\
@@ -332,6 +335,9 @@ NS_ASSUME_NONNULL_END
 @dynamic text;\
 @dynamic font;\
 @dynamic textCor;\
+@dynamic subText;\
+@dynamic subFont;\
+@dynamic subTextCor;\
 @dynamic attributedText;\
 @dynamic titleAttributedDataMutArr;\
 @dynamic selectedText;\

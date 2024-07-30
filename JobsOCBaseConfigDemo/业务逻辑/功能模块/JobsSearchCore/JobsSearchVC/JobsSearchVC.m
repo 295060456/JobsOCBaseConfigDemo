@@ -303,7 +303,7 @@ heightForHeaderInSection:(NSInteger)section{
 
 -(nullable UIView *)tableView:(UITableView *)tableView
        viewForHeaderInSection:(NSInteger)section{
-    JobsSearchTableViewHeaderView *header = JobsSearchTableViewHeaderView.jobsInitWithReuseIdentifier;
+    JobsSearchTableViewHeaderView *header = tableView.tableViewHeaderFooterView(JobsSearchTableViewHeaderView.class,@"");
     [header richElementsInViewWithModel:self.sectionTitleMutArr[section]];
     if (section == 1) {
         header.getDelBtn.jobsVisible = YES;

@@ -44,16 +44,20 @@
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
     self.viewModel.bgImage = JobsIMG(@"新首页的底图");
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);/// self.gk_navBackgroundColor 和 self.view.backgroundColor
-    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+//    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = JobsRandomColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.gk_navigationBar.jobsVisible = NO;
+//    self.setGKNav(nil);
+//    self.setGKNavBackBtn(nil);
+//    self.gk_navigationBar.jobsVisible = NO;
+    
+    self.makeNavBarConfig(nil,nil);
+    self.navBar.alpha = 1;
+    
 //    [self.bgImageView removeFromSuperview];
     self.tableView.alpha = 1;
 }
@@ -98,7 +102,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (self.dataMutArr[indexPath.row].cls) {
+        [self comingToPushVC:self.dataMutArr[indexPath.row].cls.new
+               requestParams:self.dataMutArr[indexPath.row]];
+    }else{
+        [WHToast jobsToastMsg:JobsInternationalization(@"尚未接入此功能")];
+    }
 }
 /// 编辑模式下，点击取消左边已选中的cell的按钮
 - (void)tableView:(UITableView *)tableView
@@ -107,7 +116,7 @@ didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.tbvSectionRowCellMutArr.count;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
@@ -117,15 +126,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return self.tbvSectionRowCellMutArr[section].count;
+    return self.dataMutArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = [JobsBaseTableViewCell cellStyleDefaultWithTableView:tableView];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.indexPath = indexPath;
-    [cell richElementsInCellWithModel:nil];
+    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvCellMutArr[indexPath.row];
+    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
     return cell;
 }
 
@@ -142,7 +149,7 @@ heightForFooterInSection:(NSInteger)section{
 - (UIView *)tableView:(UITableView *)tableView
 viewForHeaderInSection:(NSInteger)section{
     if (self.viewModel.usesTableViewHeaderView) {
-        BaseTableViewHeaderFooterView *headerView = BaseTableViewHeaderFooterView.jobsInitWithReuseIdentifier;
+        BaseTableViewHeaderFooterView *headerView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
         headerView.section = section;// 不写这一句有悬浮
         [headerView richElementsInViewWithModel:nil];
         @jobs_weakify(self)
@@ -155,7 +162,7 @@ viewForHeaderInSection:(NSInteger)section{
 - (nullable UIView *)tableView:(UITableView *)tableView
         viewForFooterInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
-        BaseTableViewHeaderFooterView *tbvFooterView = BaseTableViewHeaderFooterView.jobsInitWithReuseIdentifier;
+        BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
         tbvFooterView.section = section;// 不写这一句有悬浮
         tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
         tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
@@ -232,7 +239,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
         _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
-        [_tableView registerHeaderFooterViewClass:MSCommentTableHeaderFooterView.class];
         [_tableView registerTableViewClass];
         if(@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -282,7 +288,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
+            make.left.right.bottom.equalTo(self.view);
+            make.top.equalTo(self.navBar.mas_bottom);
         }];
         
     }return _tableView;
@@ -291,10 +298,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(NSMutableArray<UITableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
         _tbvCellMutArr = NSMutableArray.array;
-        [_tbvCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-        [_tbvCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-        [_tbvCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-        [_tbvCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
+        for (UIViewModel *viewModel in self.dataMutArr) {
+            [_tbvCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
+        }
     }return _tbvCellMutArr;
 }
 
@@ -334,6 +340,35 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = NSMutableArray.array;
+        
+        {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJClassData")
+                                                           attributeSubTitle:JobsInternationalization(@"")];
+            viewModel.cls = ZMJClassDataVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJTimeable")
+                                                           attributeSubTitle:JobsInternationalization(@"")];
+            viewModel.cls = ZMJTimeableVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJSchedule")
+                                                           attributeSubTitle:JobsInternationalization(@"")];
+            viewModel.cls = ZMJScheduleVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJGanttList")
+                                                           attributeSubTitle:JobsInternationalization(@"")];
+            viewModel.cls = ZMJGanttListVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
     }return _dataMutArr;
 }
 

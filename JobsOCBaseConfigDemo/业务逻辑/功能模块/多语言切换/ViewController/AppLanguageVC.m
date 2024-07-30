@@ -174,7 +174,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派 生类
 - (nullable UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{
-    BaseTableViewHeaderFooterView *headerView = BaseTableViewHeaderFooterView.jobsInitWithReuseIdentifier;
+    BaseTableViewHeaderFooterView *headerView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
     headerView.headerFooterViewStyle = JobsHeaderViewStyle;
     headerView.section = section;
     /// headerView.backgroundColor 和  headerView.contentView.backgroundColor 均是无效操作❌

@@ -24,7 +24,7 @@ UITableViewCellProtocol_dynamic
 /// 4种UITableViewCell系统样式类型
 /// UITableViewCellStyleDefault = 左边：imageView＋textLabel
 +(instancetype)cellStyleDefaultWithTableView:(UITableView *)tableView{
-    UITableViewCell *cell = (UITableViewCell *)[tableView tableViewCellClass:self.class];
+    UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
     if (!cell) {
         cell = [self initTableViewCell:self
                              withStyle:UITableViewCellStyleDefault];
@@ -33,7 +33,7 @@ UITableViewCellProtocol_dynamic
 }
 /// UITableViewCellStyleValue1 = 左边：imageView＋textLabel；右边：detailTextLabel
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    UITableViewCell *cell = (UITableViewCell *)[tableView tableViewCellClass:self.class];
+    UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
     if (!cell) {
         cell = [self initTableViewCell:self
                              withStyle:UITableViewCellStyleValue1];
@@ -42,7 +42,7 @@ UITableViewCellProtocol_dynamic
 }
 /// UITableViewCellStyleValue2 = 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
 +(instancetype)cellStyleValue2WithTableView:(UITableView *)tableView{
-    UITableViewCell *cell = (UITableViewCell *)[tableView tableViewCellClass:self.class];
+    UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
     if (!cell) {
         cell = [self initTableViewCell:self
                              withStyle:UITableViewCellStyleValue2];
@@ -51,7 +51,7 @@ UITableViewCellProtocol_dynamic
 }
 /// UITableViewCellStyleSubtitle = 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
 +(instancetype)cellStyleSubtitleWithTableView:(UITableView *)tableView{
-    UITableViewCell *cell = (UITableViewCell *)[tableView tableViewCellClass:self.class];
+    UITableViewCell *cell = (UITableViewCell *)tableView.tableViewCellClass(self.class,@"");
     if (!cell) {
         cell = [self initTableViewCell:self
                              withStyle:UITableViewCellStyleSubtitle];

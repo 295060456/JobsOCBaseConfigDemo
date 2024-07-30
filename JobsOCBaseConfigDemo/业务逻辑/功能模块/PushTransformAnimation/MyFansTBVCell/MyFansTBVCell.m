@@ -15,7 +15,7 @@
 @implementation MyFansTBVCell
 
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    MyFansTBVCell *cell = (MyFansTBVCell *)[tableView tableViewCellClass:MyFansTBVCell.class];
+    MyFansTBVCell *cell = (MyFansTBVCell *)tableView.tableViewCellClass(MyFansTBVCell.class,@"");
     if (!cell) {
         cell = [MyFansTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.offsetXForEach = 10;

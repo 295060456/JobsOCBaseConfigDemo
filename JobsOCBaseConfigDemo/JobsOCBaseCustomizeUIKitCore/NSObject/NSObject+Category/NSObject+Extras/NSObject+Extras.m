@@ -236,13 +236,21 @@
                                                name:notificationName
                                              object:nil];
 }
-
-+(instancetype _Nonnull)jobsInitWithReuseIdentifier{
-    return [self.class.alloc initWithReuseIdentifier:NSStringFromClass(self.class)];
+/// 不能用于UITableViewHeaderFooterView
++(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier{
+    @jobs_weakify(self)
+    return ^(NSString * _Nullable salt) {
+        @jobs_strongify(self)
+        return [self.class.alloc initWithReuseIdentifier:NSStringFromClass(self.class).add(salt)];
+    };
 }
-
--(instancetype _Nonnull)jobsInitWithReuseIdentifierClass:(Class _Nonnull)cls{
-    return [cls.alloc initWithReuseIdentifier:NSStringFromClass(cls)];
+/// 不能用于UITableViewHeaderFooterView
+-(JobsReturnIDByClsAndSaltStrBlock _Nonnull)jobsInitWithReuseIdentifierClass{
+    @jobs_weakify(self)
+    return ^(Class _Nonnull cls,NSString * _Nullable salt) {
+        @jobs_strongify(self)
+        return [cls.alloc initWithReuseIdentifier:NSStringFromClass(cls).add(salt)];
+    };
 }
 /// 查询算法
 /// @param data 查询的数据源

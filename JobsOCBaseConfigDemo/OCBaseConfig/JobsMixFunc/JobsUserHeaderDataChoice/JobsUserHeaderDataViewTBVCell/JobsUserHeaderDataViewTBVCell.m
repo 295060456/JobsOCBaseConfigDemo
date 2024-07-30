@@ -14,13 +14,11 @@
 @end
 
 @implementation JobsUserHeaderDataViewTBVCell
-
 @synthesize viewModel = _viewModel;
-
 #pragma mark —— UITableViewCellProtocol
 /// UITableViewCell
 +(instancetype)cellStyleDefaultWithTableView:(UITableView *)tableView{
-    JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)[tableView tableViewCellClass:JobsUserHeaderDataViewTBVCell.class];
+    JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)tableView.tableViewCellClass(JobsUserHeaderDataViewTBVCell.class,@"");
     if (!cell) {
         cell = [JobsUserHeaderDataViewTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -29,21 +27,21 @@
 }
 /// 左边：imageView＋textLabel；右边：detailTextLabel。
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)[tableView tableViewCellClass:JobsUserHeaderDataViewTBVCell.class];
+    JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)tableView.tableViewCellClass(JobsUserHeaderDataViewTBVCell.class,@"");
     if (!cell) {
         cell = [JobsUserHeaderDataViewTBVCell initTableViewCellWithStyle:UITableViewCellStyleValue1];
     }return cell;
 }
 /// 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
 +(instancetype)cellStyleValue2WithTableView:(UITableView *)tableView{
-    JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)[tableView tableViewCellClass:JobsUserHeaderDataViewTBVCell.class];
+    JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)tableView.tableViewCellClass(JobsUserHeaderDataViewTBVCell.class,@"");
     if (!cell) {
         cell = [JobsUserHeaderDataViewTBVCell initTableViewCellWithStyle:UITableViewCellStyleValue2];
     }return cell;
 }
 /// 左边：imageView；左上：textLabel；左下：detailTextLabel。主标题字体大且加黑，副标题字体小在主标题下边。
 +(instancetype)cellStyleSubtitleWithTableView:(UITableView *)tableView{
-    JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)[tableView tableViewCellClass:JobsUserHeaderDataViewTBVCell.class];
+    JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)tableView.tableViewCellClass(JobsUserHeaderDataViewTBVCell.class,@"");
     if (!cell) {
         cell = [JobsUserHeaderDataViewTBVCell initTableViewCellWithStyle:UITableViewCellStyleSubtitle];
     }return cell;

@@ -54,7 +54,7 @@
 }
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsIMChatInfoTBVCell *cell = (JobsIMChatInfoTBVCell *)[tableView tableViewCellClass:JobsIMChatInfoTBVCell.class];
+    JobsIMChatInfoTBVCell *cell = (JobsIMChatInfoTBVCell *)tableView.tableViewCellClass(JobsIMChatInfoTBVCell.class,@"");
     if (!cell) {
         cell = [JobsIMChatInfoTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

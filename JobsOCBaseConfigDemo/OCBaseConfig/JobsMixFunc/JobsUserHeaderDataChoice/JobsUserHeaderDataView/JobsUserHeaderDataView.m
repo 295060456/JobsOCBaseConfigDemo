@@ -16,9 +16,7 @@
 @end
 
 @implementation JobsUserHeaderDataView
-
 @synthesize viewModel = _viewModel;
-
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{
@@ -155,7 +153,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 - (nullable UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{
     if (self.viewModel.usesTableViewHeaderView) {
-        JobsUserHeaderDataViewForHeaderInSection *headerView = JobsUserHeaderDataViewForHeaderInSection.jobsInitWithReuseIdentifier;
+        JobsUserHeaderDataViewForHeaderInSection *headerView = tableView.tableViewHeaderFooterView(JobsUserHeaderDataViewForHeaderInSection.class,@"");
         headerView.section = section;
         [headerView richElementsInViewWithModel:nil];
         @jobs_weakify(self)
@@ -181,7 +179,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
 //        _tableView.contentInset = UIEdgeInsetsMake(JobsWidth(20), 0, 0, 0);
 //        [_tableView registerTableViewClass];
-        [_tableView registerHeaderFooterViewClass:JobsUserHeaderDataViewForHeaderInSection.class];
+        _tableView.registerHeaderFooterViewClass(JobsUserHeaderDataViewForHeaderInSection.class,@"");
         [self addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);

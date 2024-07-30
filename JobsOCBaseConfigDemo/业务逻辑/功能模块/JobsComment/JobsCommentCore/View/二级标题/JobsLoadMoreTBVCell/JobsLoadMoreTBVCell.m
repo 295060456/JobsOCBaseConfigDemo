@@ -18,7 +18,7 @@
 
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsLoadMoreTBVCell *cell = (JobsLoadMoreTBVCell *)[tableView tableViewCellClass:JobsLoadMoreTBVCell.class];
+    JobsLoadMoreTBVCell *cell = (JobsLoadMoreTBVCell *)tableView.tableViewCellClass(JobsLoadMoreTBVCell.class,@"");
     if (!cell) {
         cell = [JobsLoadMoreTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.contentView.backgroundColor = JobsCommentConfig.sharedInstance.bgCor;

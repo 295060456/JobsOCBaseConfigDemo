@@ -24,7 +24,7 @@ UITableViewCellProtocol_synthesize
 /// 4种UITableViewCell系统样式类型
 /// UITableViewCellStyleDefault ：左边有一个显示图片的imageView和一个标题textLabel。
 +(instancetype)cellStyleDefaultWithTableView:(UITableView *)tableView{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)[tableView tableViewCellClass:JobsBaseTableViewCell.class];
+    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(JobsBaseTableViewCell.class,@"");
     if (!cell) {
         cell = [self initTableViewCell:self
                              withStyle:UITableViewCellStyleDefault];
@@ -33,7 +33,7 @@ UITableViewCellProtocol_synthesize
 }
 /// UITableViewCellStyleValue1 ：左边显示图片的imageView和一个主标题textLabel，右边一个副标题detailTextLabel。
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)[tableView tableViewCellClass:JobsBaseTableViewCell.class];
+    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(JobsBaseTableViewCell.class,@"");
     if (!cell) {
         cell = [self initTableViewCell:self
                              withStyle:UITableViewCellStyleValue1];
@@ -42,7 +42,7 @@ UITableViewCellProtocol_synthesize
 }
 /// UITableViewCellStyleValue2 ：左边一个主标题textLabel字体偏小，右边一个副标题detailTextLabel。
 +(instancetype)cellStyleValue2WithTableView:(UITableView *)tableView{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)[tableView tableViewCellClass:JobsBaseTableViewCell.class];
+    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(JobsBaseTableViewCell.class,@"");
     if (!cell) {
         cell = [self initTableViewCell:self
                              withStyle:UITableViewCellStyleValue2];
@@ -51,7 +51,7 @@ UITableViewCellProtocol_synthesize
 }
 /// UITableViewCellStyleSubtitle ：左边还是一个显示图片的imageView，不同的是上边有一个主标题textLabel和一个副标题detailTextLabel。主标题字体大且加黑，副标题字体小在主标题下边。
 +(instancetype)cellStyleSubtitleWithTableView:(UITableView *)tableView{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)[tableView tableViewCellClass:JobsBaseTableViewCell.class];
+    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(JobsBaseTableViewCell.class,@"");
     if (!cell) {
         cell = [self initTableViewCell:self
                              withStyle:UITableViewCellStyleSubtitle];

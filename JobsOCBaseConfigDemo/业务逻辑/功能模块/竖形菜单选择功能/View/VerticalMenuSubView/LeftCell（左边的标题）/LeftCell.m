@@ -21,7 +21,7 @@
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
 +(instancetype)cellStyleDefaultWithTableView:(UITableView *)tableView{
-    LeftCell *cell = (LeftCell *)[tableView tableViewCellClass:LeftCell.class];
+    LeftCell *cell = (LeftCell *)tableView.tableViewCellClass(LeftCell.class,@"");
     if (!cell) {
         cell = [LeftCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

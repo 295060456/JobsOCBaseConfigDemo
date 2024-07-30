@@ -113,7 +113,7 @@ heightForFooterInSection:(NSInteger)section{
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (nullable UIView *)tableView:(UITableView *)tableView
         viewForFooterInSection:(NSInteger)section{
-    BaseTableViewHeaderFooterView *tbvFooterView = BaseTableViewHeaderFooterView.jobsInitWithReuseIdentifier;
+    BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
     tbvFooterView.headerFooterViewStyle = JobsFooterViewStyle;
     tbvFooterView.section = section;// 不写这一句有悬浮
     /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作❌

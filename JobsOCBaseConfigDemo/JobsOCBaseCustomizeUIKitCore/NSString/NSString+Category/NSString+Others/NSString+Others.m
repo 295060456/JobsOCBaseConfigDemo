@@ -12,6 +12,7 @@
 /// 字符串拼接
 -(JobsReturnStringByStringBlock _Nonnull)add{
     return ^(NSString *_Nonnull str) {
+        if(!str) str = @"";
         return [self stringByAppendingString:str];
     };
 }

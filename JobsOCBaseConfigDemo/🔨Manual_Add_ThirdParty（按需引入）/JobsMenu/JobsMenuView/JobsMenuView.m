@@ -56,7 +56,8 @@
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsRealWidth() / 2, JobsRealHeight());
+    return CGSizeMake(JobsRealWidth() - 59,
+                      JobsRealHeight() - AppDelegate.jobsCustomTabBarConfig.tabBarHeight - [TopBar viewSizeWithModel:nil].height + JobsBottomSafeAreaHeight());
 }
 
 -(CGSize)viewSizeWithModel:(id _Nullable)model{
@@ -67,6 +68,7 @@
     if(!_menuView){
         _menuView = [JobsLinkageMenuView.alloc initWithFrame:self.bounds
                                                    btnConfig:self.buttonModel];
+//        _menuView.backgroundColor = JobsRedColor;
         @jobs_weakify(self)
         [_menuView actionObjectBlock:^(id  _Nullable x) {
             @jobs_strongify(self)

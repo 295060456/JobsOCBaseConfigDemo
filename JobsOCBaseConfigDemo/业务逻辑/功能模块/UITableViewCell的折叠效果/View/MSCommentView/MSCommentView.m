@@ -139,7 +139,7 @@ heightForFooterInSection:(NSInteger)section{
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (UIView *)tableView:(UITableView *)tableView
 viewForHeaderInSection:(NSInteger)section{
-    MSCommentTableHeaderFooterView *header = [tableView tableViewHeaderFooterView:MSCommentTableHeaderFooterView.class];
+    MSCommentTableHeaderFooterView *header = (MSCommentTableHeaderFooterView *)tableView.tableViewHeaderFooterView(MSCommentTableHeaderFooterView.class,@"");
     if(!header){
         header = [MSCommentTableHeaderFooterView.alloc initWithReuseIdentifier:MSCommentTableHeaderFooterView.class.description];
     }
@@ -168,7 +168,7 @@ viewForHeaderInSection:(NSInteger)section{
     return header;
 }
 
-- (void)tableView:(UITableView *)tableView 
+- (void)tableView:(UITableView *)tableView
 willDisplayHeaderView:(UIView *)view
        forSection:(NSInteger)section{
     MSCommentTableHeaderFooterView *commentTableHeaderFooterView = (MSCommentTableHeaderFooterView *)view;
@@ -188,7 +188,7 @@ willDisplayHeaderView:(UIView *)view
         _tableView.scrollEnabled = YES;
         _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
         _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
-        [_tableView registerHeaderFooterViewClass:MSCommentTableHeaderFooterView.class];
+        _tableView.registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,@"");
         if(@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }

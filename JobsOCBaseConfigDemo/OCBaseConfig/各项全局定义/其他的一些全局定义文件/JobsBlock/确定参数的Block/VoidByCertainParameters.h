@@ -22,6 +22,8 @@ typedef void(^jobsByFontBlock)(UIFont *_Nullable data);
 typedef void(^jobsByViewBlock)(UIView *_Nullable view);
 typedef void(^jobsByBtnBlock)(UIButton *_Nullable btn);
 typedef void(^jobsByWindowBlock)(UIWindow *_Nullable data);
+typedef void(^jobsByClassBlock)(Class _Nonnull cls);
+typedef void(^jobsByClassAndSaltStrBlock)(Class _Nonnull cls,NSString * _Nullable salt);
 
 typedef void(^jobsByNSIntegerBlock)(NSInteger data);
 typedef void(^jobsByNSUIntegerBlock)(NSUInteger data);

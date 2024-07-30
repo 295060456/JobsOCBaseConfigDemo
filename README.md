@@ -4480,18 +4480,22 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 28、<font id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 28、<font color=red id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* ```objective-c
+#### 28.1、关于<font color=red>`UITableView`</font>
+
+* **`UITableView`** 可以不用像**`UICollectionView`**一样执行注册机制。注册机制的生命周期有别于普通的生命周期
+  
+  ```objective-c
   /// UI
   @property(nonatomic,strong)BaseTableView *tableView;
   ```
-
+  
   ```objective-c
   -(BaseTableView *)tableView{
       if (!_tableView) {
           @jobs_weakify(self)
-          _tableView = BaseTableView.initWithStyleGrouped;
+          _tableView = BaseTableView.initWithStyleGrouped;/// 一般用 initWithStylePlain。Grouped会自己预留一块空间
           _tableView.ww_foldable = YES;
           [self dataLinkByTableView:_tableView];
           _tableView.backgroundColor = JobsCor(@"#FFFFFF");
@@ -4501,6 +4505,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           _tableView.scrollEnabled = YES;
           _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
           _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
+          _tableView.ww_foldable = YES;//设置可折叠 见 @interface UITableView (WWFoldableTableView)
           [_tableView registerHeaderFooterViewClass:MSCommentTableHeaderFooterView.class];
           if(@available(iOS 11.0, *)) {
               _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -4562,6 +4567,125 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       }return _tableView;
   }
   ```
+
+#### 28.2、关于<font id=UITableViewHeaderFooterView color=red>**UITableViewHeaderFooterView**</font>（**viewForHeaderInSection**）
+
+* 注册（注册不开辟内存，通过全局唯一的字符串进行取值的时候才开辟内存）
+
+  ```objective-c
+  _tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView1.class,@"");
+  _tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView2.class,@"");
+  ```
+
+* 这里涉及到复用机制，`return`出去的是**`UITableViewHeaderFooterView`**的派生类
+
+  ```objective-c
+  - (UIView *)tableView:(UITableView *)tableView
+  viewForHeaderInSection:(NSInteger)section{
+      if(section == 0){
+          FMTBVHeaderFooterView1 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@"");
+          if(!headerView){
+  //            headerView = FMTBVHeaderFooterView1.jobsInitWithReuseIdentifier(@"");// 不要用这个
+              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView1.class,@"");
+              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@"");
+          }
+          headerView.backgroundColor = JobsRedColor;
+          headerView.section = section;// 不写这一句有悬浮
+          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+          @jobs_weakify(self)
+          [headerView actionObjectBlock:^(id data) {
+              @jobs_strongify(self)
+          }];return headerView;
+      }else if (section == 1){
+          FMTBVHeaderFooterView2 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+          if(!headerView){
+  //            headerView = FMTBVHeaderFooterView2.jobsInitWithReuseIdentifier(@"");// 不要用这个
+              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView2.class,@"");
+              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+          }
+          headerView.backgroundColor = JobsBlueColor;
+          headerView.section = section;// 不写这一句有悬浮
+          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+          @jobs_weakify(self)
+          [headerView actionObjectBlock:^(id data) {
+              @jobs_strongify(self)
+          }];return headerView;
+      }else if (section == 2){
+          FMTBVHeaderFooterView2 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+          if(!headerView){
+  //            headerView = FMTBVHeaderFooterView2.jobsInitWithReuseIdentifier(@"");// 不要用这个
+              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView2.class,@"");
+              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+          }
+          headerView.backgroundColor = JobsYellowColor;
+          headerView.section = section;// 不写这一句有悬浮
+          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+          @jobs_weakify(self)
+          [headerView actionObjectBlock:^(id data) {
+              @jobs_strongify(self)
+          }];return headerView;
+      }else return UIView.new;
+  }
+  ```
+
+  ```objective-c
+  - (CGFloat)tableView:(UITableView *)tableView
+  heightForHeaderInSection:(NSInteger)section{
+      return JobsWidth(36);
+  }
+  ```
+
+ * **`UITableViewHeaderFooterView`**的子类
+
+   ```objective-c
+   #import "BaseViewProtocol.h"
+   #import "UIViewModelOthersProtocol.h"
+   
+   NS_ASSUME_NONNULL_BEGIN
+   
+   @interface FMTBVHeaderFooterView1 : UITableViewHeaderFooterView
+   <BaseViewProtocol,UIViewModelOthersProtocol>
+   @end
+   
+   NS_ASSUME_NONNULL_END
+   ```
+
+   ```objective-c
+   #import "FMTBVHeaderFooterView1.h"
+   
+   @interface FMTBVHeaderFooterView1 ()
+   /// UI
+   @property(nonatomic,strong)UILabel *titleLab;
+   
+   @end
+   
+   @implementation FMTBVHeaderFooterView1
+   @synthesize viewModel = _viewModel;
+   /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+   -(void)richElementsInViewWithModel:(id _Nullable)model{
+       self.contentView.backgroundColor = self.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+       if([model isKindOfClass:UIViewModel.class]){
+           self.viewModel = (UIViewModel *)model;
+       }
+       self.titleLab.alpha = 1;
+   }
+   #pragma mark —— lazyLoad
+   -(UILabel *)titleLab{
+       if(!_titleLab){
+           _titleLab = UILabel.new;
+           _titleLab.text = self.viewModel.text;
+           _titleLab.font = self.viewModel.font;
+           _titleLab.textColor = self.viewModel.textCor;
+           [self.contentView addSubview:_titleLab];
+           [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+               make.edges.equalTo(self.contentView);
+           }];
+       }return _titleLab;
+   }
+   
+   @end
+   ```
+
 
 ### 29、字符串写文件 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

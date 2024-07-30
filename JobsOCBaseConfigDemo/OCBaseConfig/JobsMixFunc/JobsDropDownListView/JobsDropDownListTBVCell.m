@@ -17,7 +17,7 @@ UITableViewCellProtocol_synthesize
 UITableViewCell_UIViewModelProtocolSynthesize
 #pragma mark —— UITableViewCellProtocol
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsDropDownListTBVCell *cell = (JobsDropDownListTBVCell *)[tableView tableViewCellClass:JobsDropDownListTBVCell.class];
+    JobsDropDownListTBVCell *cell = (JobsDropDownListTBVCell *)tableView.tableViewCellClass(JobsDropDownListTBVCell.class,@"");
     if (!cell) {
         cell = [JobsDropDownListTBVCell initTableViewCellWithStyle:UITableViewCellStyleValue1];
     }return cell;

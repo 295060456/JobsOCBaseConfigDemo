@@ -16,7 +16,7 @@
 @implementation JobsSearchResultDataListTBVCell
 
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsSearchResultDataListTBVCell *cell = (JobsSearchResultDataListTBVCell *)[tableView tableViewCellClass:JobsSearchResultDataListTBVCell.class];
+    JobsSearchResultDataListTBVCell *cell = (JobsSearchResultDataListTBVCell *)tableView.tableViewCellClass(JobsSearchResultDataListTBVCell.class,@"");
     if (!cell) {
         cell = [JobsSearchResultDataListTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -16,12 +16,10 @@
 @end
 
 @implementation JobsSearchTBVCell
-
 UIViewModelProtocol_synthesize
-
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsSearchTBVCell *cell = (JobsSearchTBVCell *)[tableView tableViewCellClass:JobsSearchTBVCell.class];
+    JobsSearchTBVCell *cell = (JobsSearchTBVCell *)tableView.tableViewCellClass(JobsSearchTBVCell.class,@"");
     if (!cell) {
         cell = [JobsSearchTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -17,7 +17,7 @@
 
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsSearchShowHotwordsTBVCell *cell = (JobsSearchShowHotwordsTBVCell *)[tableView tableViewCellClass:JobsSearchShowHotwordsTBVCell.class];
+    JobsSearchShowHotwordsTBVCell *cell = (JobsSearchShowHotwordsTBVCell *)tableView.tableViewCellClass(JobsSearchShowHotwordsTBVCell.class,@"");
     if (!cell) {
         cell = [JobsSearchShowHotwordsTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

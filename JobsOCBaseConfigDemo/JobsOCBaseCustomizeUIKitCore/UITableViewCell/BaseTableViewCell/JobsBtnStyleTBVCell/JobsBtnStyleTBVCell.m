@@ -20,7 +20,7 @@ UIViewModelProtocol_synthesize
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
 +(instancetype)cellStyleDefaultWithTableView:(UITableView *)tableView{
-    JobsBtnStyleTBVCell *cell = (JobsBtnStyleTBVCell *)[tableView tableViewCellClass:JobsBtnStyleTBVCell.class];
+    JobsBtnStyleTBVCell *cell = (JobsBtnStyleTBVCell *)tableView.tableViewCellClass(JobsBtnStyleTBVCell.class,@"");
     if (!cell) {
         cell = [JobsBtnStyleTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

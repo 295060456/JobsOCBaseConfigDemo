@@ -24,7 +24,7 @@
 @implementation JobsIMListTBVCell
 
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsIMListTBVCell *cell = (JobsIMListTBVCell *)[tableView tableViewCellClass:JobsIMListTBVCell.class];
+    JobsIMListTBVCell *cell = (JobsIMListTBVCell *)tableView.tableViewCellClass(JobsIMListTBVCell.class,@"");
     if (!cell) {
         cell = [JobsIMListTBVCell initTableViewCellWithStyle:UITableViewCellStyleSubtitle];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -42,7 +42,7 @@
 }
 
 +(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsPlayerTBVCell *cell = (JobsPlayerTBVCell *)[tableView tableViewCellClass:JobsPlayerTBVCell.class];
+    JobsPlayerTBVCell *cell = (JobsPlayerTBVCell *)tableView.tableViewCellClass(JobsPlayerTBVCell.class,@"");
     if (!cell) {
         cell = [JobsPlayerTBVCell initTableViewCellWithStyle:UITableViewCellStyleSubtitle];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

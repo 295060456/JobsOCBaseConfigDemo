@@ -17,7 +17,7 @@
 @implementation JobsPageTBVCell
 #pragma mark —— UITableViewCellProtocol
 +(instancetype)cellStyleSubtitleWithTableView:(UITableView *)tableView{
-    JobsPageTBVCell *cell = (JobsPageTBVCell *)[tableView tableViewCellClass:JobsPageTBVCell.class];
+    JobsPageTBVCell *cell = (JobsPageTBVCell *)tableView.tableViewCellClass(JobsPageTBVCell.class,@"");
     if (!cell) {
         cell = [JobsPageTBVCell initTableViewCellWithStyle:UITableViewCellStyleSubtitle];
 //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
