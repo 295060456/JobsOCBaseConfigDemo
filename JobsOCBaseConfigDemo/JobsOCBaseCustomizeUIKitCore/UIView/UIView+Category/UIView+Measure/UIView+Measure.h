@@ -14,8 +14,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (Measure)<BaseViewProtocol>
-
+@interface UIView (Measure)
+<BaseViewProtocol>
+#pragma mark —— 简捷获得控件坐标
 @property(nonatomic,assign)CGFloat x;
 @property(nonatomic,assign)CGFloat y;
 @property(nonatomic,assign)CGFloat width;
@@ -28,8 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat bottom;
 @property(nonatomic,assign)CGSize size;
 @property(nonatomic,assign)CGPoint origin;
-#pragma mark —— 一些工具方法
-/// 重设Frame
+#pragma mark —— UIView
 /// 重设Frame
 -(JobsReturnCGRectByCGFloatBlock _Nullable)resetOriginX;
 -(JobsReturnCGRectByCGFloatAndUIViewBlock _Nullable)resetRightX;
@@ -48,37 +48,57 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnCGRectByCGFloatBlock _Nullable)resetByOffsetHeight;
 -(JobsReturnCGRectByCGPointBlock _Nullable)resetByOffsetOrigin;
 -(JobsReturnCGRectByCGSizeBlock _Nullable)resetByOffsetSize;
-/// 依据偏移量重塑Frame
--(void)offsetForView:(UIViewModel *)viewModel;
-#pragma mark ——【UIView对齐方法扩充】 https://github.com/MisterZhouZhou/ZWUIViewExtension
-/** centerX equal to View‘s centerX
- *  centerxEqualToView(superview/view)
- */
+#pragma mark —— UIView对齐方法扩充 https://github.com/MisterZhouZhou/ZWUIViewExtension
+/// 设置水平方向对齐
 -(jobsByViewBlock)centerxEqualToView;
-/** centerY equal to View‘s centerY
- *  centeryEqualToView(superview/view)
- */
+/// 设置垂平方向对齐
 -(jobsByViewBlock)centeryEqualToView;
-/** center equal to View‘s center
- *  centerEqualToView(superview/view)
- */
+/// 设置中心方向对齐
 -(jobsByViewBlock)centerEqualToView;
-/** left equal to View‘s left
- *  leftEqualToView(superview/view)
- */
+/// 设置左对齐
 -(jobsByViewBlock)leftEqualToView;
-/** right equal to View‘s right
- *  rightEqualToView(superview/view)
- */
+/// 设置右对齐
 -(jobsByViewBlock)rightEqualToView;
-/** top equal to View‘s top
- *  topEqualToView(superview/view)
- */
+/// 设置顶部对齐
 -(jobsByViewBlock)topEqualToView;
-/** bottom equal to View‘s bottom
- *  bottomEqualToView(superview/view)
- */
+/// 设置底部对齐
 -(jobsByViewBlock)bottomEqualToView;
+#pragma mark —— UIScrollView.contentSize
+-(jobsBySizeBlock _Nullable)resetContentSize;
+-(jobsByCGFloatBlock _Nullable)resetContentSizeWidth;
+-(jobsByCGFloatBlock _Nullable)resetContentSizeHeight;
+-(jobsByCGFloatBlock _Nullable)resetContentSizeOffsetWidth;
+-(jobsByCGFloatBlock _Nullable)resetContentSizeOffsetHeight;
+#pragma mark —— UIScrollView.contentOffset
+-(jobsByPointBlock _Nullable)resetContentOffset;
+-(jobsByCGFloatBlock _Nullable)resetContentX;
+-(jobsByCGFloatBlock _Nullable)resetContentY;
+-(jobsByCGFloatBlock _Nullable)resetContentOffsetX;
+-(jobsByCGFloatBlock _Nullable)resetContentOffsetY;
+#pragma mark —— UIScrollView.contentInset
+-(jobsByEdgeInsetBlock _Nullable)resetContentInset;
+-(jobsByCGFloatBlock _Nullable)resetContentInsetTop;
+-(jobsByCGFloatBlock _Nullable)resetContentInsetLeft;
+-(jobsByCGFloatBlock _Nullable)resetContentInsetBottom;
+-(jobsByCGFloatBlock _Nullable)resetContentInsetRight;
+-(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetTop;
+-(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetLeft;
+-(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetBottom;
+-(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetRight;
+#pragma mark —— 依据UIViewModel所携带的偏移量重塑Frame
+-(void)offsetForView:(UIViewModel *)viewModel;
+#pragma mark —— 拉升和平移
+@property(nonatomic,readonly)CGFloat maxX;
+@property(nonatomic,readonly)CGFloat maxY;
+@property(nonatomic,readonly)CGPoint boundCenter;
+/// [平移]这个view, 让view.maxX = maxX
+- (void)setMaxXByShift:(CGFloat)maxX;
+/// [拉伸]这个view, 让view.maxX = maxX
+- (void)setMaxXByStretch:(CGFloat)maxX;
+/// [平移]这个view, 让view.maxY = maxY
+- (void)setMaxYByShift:(CGFloat)maxY;
+/// [拉伸]这个view, 让view.maxY = maxY
+- (void)setMaxYByStretch:(CGFloat)maxY;
 
 @end
 

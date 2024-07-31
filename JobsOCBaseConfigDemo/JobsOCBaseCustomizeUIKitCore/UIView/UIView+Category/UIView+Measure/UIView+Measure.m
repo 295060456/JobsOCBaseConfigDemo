@@ -9,8 +9,7 @@
 #import "UIView+Measure.h"
 /* ❤️【优先级】 @implementation UIView (Measure) > Masonry,因为Masonry刷新后才有frame ❤️*/
 @implementation UIView (Measure)
-#pragma mark —— 一些工具方法
-/// 重设Frame
+#pragma mark —— UIView
 -(JobsReturnCGRectByCGFloatBlock _Nullable)resetOriginX{
     @jobs_weakify(self)
     return ^(CGFloat data) {
@@ -189,16 +188,6 @@
         return self.frame;
     };
 }
-/// 依据偏移量重塑Frame
--(void)offsetForView:(UIViewModel *)viewModel{
-    CGRect viewFrame = self.frame;
-    viewFrame.origin.x += viewModel.offsetXForEach;
-    viewFrame.origin.y += viewModel.offsetYForEach;
-    viewFrame.size.width += viewModel.offsetWidth;
-    viewFrame.size.height += viewModel.offsetHeight;
-    self.frame = viewFrame;
-}
-#pragma mark ——【UIView对齐方法扩充】 https://github.com/MisterZhouZhou/ZWUIViewExtension
 /// 设置水平方向对齐
 -(jobsByViewBlock)centerxEqualToView{
     @jobs_weakify(self);
@@ -293,6 +282,281 @@
             self.height = view.height;
         }
     };
+}
+#pragma mark —— UIScrollView.contentSize
+-(jobsBySizeBlock _Nullable)resetContentSize{
+    @jobs_weakify(self)
+    return ^(CGSize data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentSize = data;
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentSizeWidth{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentSize = CGSizeMake(data,scrollView.contentSize.height);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentSizeHeight{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentSize = CGSizeMake(scrollView.contentSize.width,data);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentSizeOffsetWidth{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentSize = CGSizeMake(scrollView.contentSize.width + data,
+                                                scrollView.contentSize.height);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentSizeOffsetHeight{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentSize = CGSizeMake(scrollView.contentSize.width,
+                                                scrollView.contentSize.height + data);
+        }
+    };
+}
+#pragma mark —— UIScrollView.contentOffset
+-(jobsByPointBlock _Nullable)resetContentOffset{
+    @jobs_weakify(self)
+    return ^(CGPoint data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentOffset = data;
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentX{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentSize = CGSizeMake(data,scrollView.contentOffset.y);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentY{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentSize = CGSizeMake(scrollView.contentOffset.x,data);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentOffsetX{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentSize = CGSizeMake(scrollView.contentOffset.x + data,
+                                                scrollView.contentOffset.y);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentOffsetY{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentSize = CGSizeMake(scrollView.contentOffset.x,
+                                                scrollView.contentOffset.y + data);
+        }
+    };
+}
+#pragma mark —— UIScrollView.contentInset
+-(jobsByEdgeInsetBlock _Nullable)resetContentInset{
+    @jobs_weakify(self)
+    return ^(UIEdgeInsets data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentInset = data;
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentInsetTop{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentInset = UIEdgeInsetsMake(data,
+                                                       scrollView.contentInset.left,
+                                                       scrollView.contentInset.bottom,
+                                                       scrollView.contentInset.right);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentInsetLeft{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentInset = UIEdgeInsetsMake(scrollView.contentInset.top,
+                                                       data,
+                                                       scrollView.contentInset.bottom,
+                                                       scrollView.contentInset.right);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentInsetBottom{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentInset = UIEdgeInsetsMake(scrollView.contentInset.top,
+                                                       scrollView.contentInset.left,
+                                                       data,
+                                                       scrollView.contentInset.right);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentInsetRight{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentInset = UIEdgeInsetsMake(scrollView.contentInset.top,
+                                                       scrollView.contentInset.left,
+                                                       scrollView.contentInset.bottom,
+                                                       data);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetTop{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentInset = UIEdgeInsetsMake(scrollView.contentInset.top + data,
+                                                       scrollView.contentInset.left,
+                                                       scrollView.contentInset.bottom,
+                                                       scrollView.contentInset.right);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetLeft{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentInset = UIEdgeInsetsMake(scrollView.contentInset.top,
+                                                       scrollView.contentInset.left + data,
+                                                       scrollView.contentInset.bottom,
+                                                       scrollView.contentInset.right);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetBottom{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentInset = UIEdgeInsetsMake(scrollView.contentInset.top,
+                                                       scrollView.contentInset.left,
+                                                       scrollView.contentInset.bottom + data,
+                                                       scrollView.contentInset.right);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetRight{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentInset = UIEdgeInsetsMake(scrollView.contentInset.top,
+                                                       scrollView.contentInset.left,
+                                                       scrollView.contentInset.bottom,
+                                                       scrollView.contentInset.right + data);
+        }
+    };
+}
+/// 依据偏移量重塑Frame
+-(void)offsetForView:(UIViewModel *)viewModel{
+    CGRect viewFrame = self.frame;
+    viewFrame.origin.x += viewModel.offsetXForEach;
+    viewFrame.origin.y += viewModel.offsetYForEach;
+    viewFrame.size.width += viewModel.offsetWidth;
+    viewFrame.size.height += viewModel.offsetHeight;
+    self.frame = viewFrame;
+}
+
+- (CGFloat)maxX {
+    return self.x + self.width;
+}
+
+- (CGFloat)maxY {
+    return self.y + self.height;
+}
+
+- (void)setMaxXByShift:(CGFloat)maxX {
+    self.x = maxX - self.width;
+}
+
+- (void)setMaxYByShift:(CGFloat)maxY {
+    self.y = maxY - self.height;
+}
+
+- (void)setMaxXByStretch:(CGFloat)maxX {
+    self.width = maxX - self.x;
+}
+
+- (void)setMaxYByStretch:(CGFloat)maxY {
+    self.height = maxY - self.y;
+}
+
+- (CGPoint)boundCenter {
+    return CGPointMake(self.bounds.size.width / 2,
+                       self.bounds.size.height / 2);
 }
 /// 简捷获得控件坐标
 #pragma mark —— @property(nonatomic,assign)CGFloat x
