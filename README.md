@@ -369,7 +369,7 @@ Current targets:
     label.jobsLogSize(@"打印的时候额外添加的标识字符");
     ```
   
-#### 7.2、利用Runtime的机制打印类的内容
+#### 7.2、利用**Runtime**的机制打印类的内容
 
 * 返回并打印成员变量列表
 
@@ -1033,7 +1033,7 @@ NSObject <|-- BaseProtocol
 
 #### 15.1、字符串转化
 
-* 关注头文件`JobsString.h`
+* 关注头文件[**`JobsString.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSString/JobsString.h)
 
 * 基本数据类型转化成字符串类型
 
@@ -1129,7 +1129,35 @@ NSObject <|-- BaseProtocol
   @"http://47.243.60.31:9200".urlProtect;
   ```
 
-#### 15.4、更多...
+#### 15.4、<font color=red>**字符串写文件**</font>
+
+```objective-c
+-(void)保留文字{
+    if (![NSString isNullString:self.inputDataString]) {
+        JobsUserModel.sharedManager.postDraftURLStr = [NSObject saveData:self.inputDataString
+                                                   withDocumentsChildDir:JobsInternationalization(@"发帖草稿数据临时文件夹")
+                                                            fileFullname:@"发帖草稿数据.txt"
+                                                                   error:nil];
+    }else{
+        [FileFolderHandleTool cleanFilesWithPath:JobsUserModel.sharedManager.postDraftURLStr];
+    }
+    NSLog(@"%@",JobsUserModel.sharedManager.postDraftURLStr);
+    [self.view hx_showLoadingHUDText:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BOOL success = [self.photoManager saveLocalModelsToFile];//保存图片
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.view hx_handleLoading];
+            if (success) {
+                [self back:nil];
+            }else {
+                [self.view hx_showImageHUDText:JobsInternationalization(@"保存失败")];
+            }
+        });
+    });
+}
+```
+
+#### 15.5、更多...
 
 ### 16、`UILabel`的自适应 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -1245,9 +1273,9 @@ NSObject <|-- BaseProtocol
   #import "NSObject+URLManager.h
   ```
 
-### 18、输入框（UITextField） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 18、输入框（**`UITextField`**） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-#### 18.1、UITextFieldDelegate
+#### 18.1、**`UITextFieldDelegate`**
 
 * 在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑
 
@@ -1542,13 +1570,13 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-##### 18.3.2、处理方式：**UITextField**的子类
+##### 18.3.2、处理方式：**`UITextField`**的子类
 
-* `CJTextField`：**UITextField**
+* `CJTextField`：**`UITextField`**
 
-* `HQTextField`：**CJTextField**：**UITextField**
+* `HQTextField`：**`CJTextField`**：**`UITextField`**
 
-* `JobsMagicTextField`：**ZYTextField**：**UITextField**
+* `JobsMagicTextField`：**`ZYTextField`**：**`UITextField`**
 
   ```objective-c
   -(JobsMagicTextField *)textField{
@@ -1910,8 +1938,23 @@ NSObject <|-- BaseProtocol
 ### 22、<font color=red>**全局工具箱**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * [**JobsAppTools**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/JobsAppTools) （单例模式）
+
 * [**NSObject+AppTools**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BAppTools) （分类模式）
+
 * [**`FileFolderHandleModel`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/FileFolderHandleTool)：**文件夹操作**
+
+  * ```ruby
+    pod 'TXFileOperation' # 文件夹操作 https://github.com/xtzPioneer/TXFileOperation
+    ```
+
+    ```
+    #if __has_include(<TXFileOperation/TXFileOperation.h>)
+    #import <TXFileOperation/TXFileOperation.h>
+    #else
+    #import "TXFileOperation.h"
+    #endif
+    ```
+
 * [**`JobsLoadingImage`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIImage/JobsLoadingImage)：**图片存取**
 
 ### 23、<font color=red>`View` 和 `ViewController`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
@@ -4482,20 +4525,270 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 28、<font color=red id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-#### 28.1、关于<font color=red>`UITableView`</font>
+#### 28.1、关于<font color=red>**`UITableView`**</font>
 
-* **`UITableView`** 可以不用像**`UICollectionView`**一样执行注册机制。注册机制的生命周期有别于普通的生命周期
+* <font color=red>**`UITableView`**的生命周期</font>
+
+  * <u>**`UITableView`** 可以不用像**`UICollectionView`**一样执行注册机制</u>。注册机制的生命周期有别于普通的生命周期
+
+  * 对于"三问一答"，如果**`UITableViewCell`**的高度为0，压根就不会执行**`UITableViewCell`**的绘制，即：`- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath`。所以利用这一点，我们在进数据源的时候，可以在`- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath`这里面对数据源所需的高度进行计算和反馈
+
+  * 在**`UITableViewCell`**将要出现的时候，进行最后的绘制
+
+    ```objective-c
+    - (void)tableView:(UITableView *)tableView
+      willDisplayCell:(UITableViewCell *)cell
+    forRowAtIndexPath:(NSIndexPath *)indexPath{
+        
+        [tableView hideSeparatorLineAtLast:indexPath
+                                      cell:cell];
+        cell.img = JobsIMG(@"向右的箭头（大）");
+        @jobs_weakify(self)
+        [cell customAccessoryView:^(id data) {
+            @jobs_strongify(self)
+            JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
+            NSLog(@"MMM - %ld",cell.index);
+        }];
+    
+        [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
+                                              bottomLineCor:HEXCOLOR(0xFFFFFF) 
+                                             cellOutLineCor:HEXCOLOR(0xEEE2C8)
+                                           cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
+                                                borderWidth:JobsWidth(10)
+                                                         dx:JobsWidth(0)
+                                                         dy:JobsWidth(0)];
+    }
+    ```
+
+* **`UITableView`** 的初始化方法
+
+  * ```objective-c
+    BaseTableView.initWithStylePlain;
+    ```
+
+  * 会在每个`section`分组的时候，自动产生组与组之间的距离
+
+    ```objective-c
+    BaseTableView.initWithStyleGrouped;
+    ```
+
+* 增加**`UITableView`** 的可滚动区域
+
+  * ```objective-c
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
+    ```
+
+* **`UITableView`** 的可折叠效果。第三方分类实现，关注：[**@interface UITableView (WWFoldableTableView)**]()
+
+  * ```objective-c
+    _tableView.ww_foldable = YES;
+    ```
+
+* **`UITableView`**的无数据占位方案
+
+  * 静态图 [**LYEmptyView**](https://github.com/dev-liyang/LYEmptyView)
+
+    ```objective-c
+    pod 'LYEmptyView' # https://github.com/dev-liyang/LYEmptyView iOS一行代码集成空白页面占位图(无数据、无网络占位图)
+    ```
+
+    ```objective-c
+    #if __has_include(<LYEmptyView/LYEmptyViewHeader.h>)
+    #import <LYEmptyView/LYEmptyViewHeader.h>
+    #else
+    #import "LYEmptyViewHeader.h"
+    #endif
+    ```
+
+    ```objective-c
+    _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
+                                                        titleStr:JobsInternationalization(@"暂无数据")
+                                                       detailStr:JobsInternationalization(@"")];
+    
+    _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
+    _tableView.ly_emptyView.contentViewOffset = JobsWidth(-180);
+    _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
+    ```
+
+  * 动画 [**TABAnimated**](https://github.com/tigerAndBull/TABAnimated)
+
+    ```ruby
+    pod 'TABAnimated' # https://github.com/tigerAndBull/TABAnimated
+    ```
+
+    ```objective-c
+    #if __has_include(<TABAnimated/TABAnimated.h>)
+    #import <TABAnimated/TABAnimated.h>
+    #else
+    #import "TABAnimated.h"
+    #endif
+    ```
+
+    ```objective-c
+    // 可以不进行手动初始化，将使用默认属性
+    _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
+                                                          cellHeight:[JobsBaseTableViewCell cellHeightWithModel:nil]];
+    _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+    [_tableView tab_startAnimation];   // 开启动画
+    ```
+
+* 垂直方向的：上拉加载和下拉刷新 [**MJRefresh**](https://github.com/CoderMJLee/MJRefresh)
+
+  ```ruby
+  pod 'MJRefresh' # https://github.com/CoderMJLee/MJRefresh NO_SMP 不支持横向刷新
+  ```
+
+  ```objective-c
+  #if __has_include(<MJRefresh/MJRefresh.h>)
+  #import <MJRefresh/MJRefresh.h>
+  #else
+  #import "MJRefresh.h"
+  #endif
+  ```
+
+  ```objective-c
+  MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+  refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+  refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+  refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+  refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+  refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+  refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+      @jobs_strongify(self)
+      [self feedbackGenerator];//震动反馈
+      return nil;
+  };
   
+  MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+  refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+  refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+  refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+  refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+  refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+  refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+      return nil;
+  };
+  
+  self.refreshConfigHeader = refreshConfigHeader;
+  self.refreshConfigFooter = refreshConfigFooter;
+  
+  _tableView.mj_header = self.mjRefreshNormalHeader;
+  _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+  ```
+
+* 水平方向的：左拉加载和右拉刷新 [**XZMRefresh**](https://github.com/xiezhongmin/XZMRefresh)
+
+  ```ruby
+  pod 'XZMRefresh' # https://github.com/xiezhongmin/XZMRefresh
+  ```
+
+  ```objective-c
+  #if __has_include(<XZMRefresh/XZMRefresh.h>)
+  #import <XZMRefresh/XZMRefresh.h>
+  #else
+  #import "XZMRefresh.h"
+  #endif
+  ```
+
+  ```objective-c
+  @jobs_weakify(self)
+  [_tableView xzm_addNormalHeaderWithTarget:self
+                                          action:selectorBlocks(^id(id target, id arg) {
+      NSLog(@"KKK加载新的数据，参数: %@", arg);
+      // 模拟延迟加载数据，因此2秒后才调用）
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
+                     dispatch_get_main_queue(), ^{
+          @jobs_strongify(self)
+          [self->_tableView reloadData];
+          [self->_tableView.xzm_header endRefreshing];// 结束刷新
+      });return nil;
+  }, nil, self)];
+  
+  [_tableView xzm_addNormalFooterWithTarget:self
+                                          action:selectorBlocks(^id(id target, id arg) {
+      NSLog(@"SSSS加载新的数据，参数: %@", arg);
+      @jobs_strongify(self)
+      // 模拟延迟加载数据，因此2秒后才调用）
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
+                     dispatch_get_main_queue(), ^{
+          @jobs_strongify(self)
+          [self->_tableView reloadData];
+          [self->_tableView.xzm_footer endRefreshing];// 结束刷新
+      });return nil;
+  }, nil, self)];
+  
+  [_tableView.xzm_header beginRefreshing];
+  ```
+
+* 切角
+
+  * [**关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E5%85%B6%E4%BB%96.md/%E5%85%B3%E4%BA%8EUITableViewCell%E5%92%8CUICollectionViewCell%E5%9C%86%E5%88%87%E8%A7%92%2BCell%E7%9A%84%E5%81%8F%E7%A7%BB%E9%87%8F.md)
+
+  * 以section为单位，每个section的第一行和最后一行的`UITableViewCell`圆角化处理【`UITableViewCell`之间没有分割线】
+
+    作用于：`- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath`
+
+    ```objective-c
+    [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
+                                          bottomLineCor:HEXCOLOR(0xFFFFFF) 
+                                         cellOutLineCor:HEXCOLOR(0xEEE2C8)
+                                       cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
+                                            borderWidth:JobsWidth(10)
+                                                     dx:JobsWidth(0)
+                                                     dy:JobsWidth(0)];
+    ```
+
+* 其他
+
+  * 隐藏最后一个单元格的分界线
+
+    ```objective-c
+    -(void)hideSeparatorLineAtLast:(NSIndexPath *)indexPath
+                              cell:(UITableViewCell *)cell{
+        /// 判断是否是该 section 的最后一行
+        if (indexPath.row == [self numberOfRowsInSection:indexPath.section] - 1){
+            cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width);
+        }
+    }
+    ```
+
+  * 自定义**`UITableViewCell`**的箭头
+
+    使用前提：必须`UITableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; `打开后才可以启用
+
+    作用于：`- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath`
+
+    ```objective-c
+    -(void)customAccessoryView:(jobsByIDBlock)customAccessoryViewBlock{
+        /// 不用系统自带的箭头
+        if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator) {
+            UIButton *btn = UIButton.new;
+            /// 特比注意:如果这个地方是纯view（UIView、UIIMageView...）就可以不用加size，UIButton是因为受到了UIControl，需要接收一个size，否则显示不出来
+            btn.size = self.size;
+            btn.normalBackgroundImage(self.img);
+            @jobs_weakify(self)
+            [btn jobsBtnClickEventBlock:^id(id data) {
+                @jobs_strongify(self)
+                if (customAccessoryViewBlock) customAccessoryViewBlock(self);
+                return nil;
+            }];
+            self.accessoryView = btn;
+        }
+    }
+    ```
+
+* 完整调用
+
   ```objective-c
   /// UI
   @property(nonatomic,strong)BaseTableView *tableView;
   ```
-  
+
   ```objective-c
   -(BaseTableView *)tableView{
       if (!_tableView) {
           @jobs_weakify(self)
-          _tableView = BaseTableView.initWithStyleGrouped;/// 一般用 initWithStylePlain。Grouped会自己预留一块空间
+          _tableView = BaseTableView.initWithStyleGrouped;/// 一般用 initWithStylePlain.Grouped会自己预留一块空间
           _tableView.ww_foldable = YES;
           [self dataLinkByTableView:_tableView];
           _tableView.backgroundColor = JobsCor(@"#FFFFFF");
@@ -4506,6 +4799,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
           _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
           _tableView.ww_foldable = YES;//设置可折叠 见 @interface UITableView (WWFoldableTableView)
+          _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);/// 增加tableView的可滚动区域
           [_tableView registerHeaderFooterViewClass:MSCommentTableHeaderFooterView.class];
           if(@available(iOS 11.0, *)) {
               _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -4540,6 +4834,35 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               _tableView.mj_header = self.mjRefreshNormalHeader;
               _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
           }
+        
+        	{
+              [_tableView xzm_addNormalHeaderWithTarget:self
+                                                      action:selectorBlocks(^id(id target, id arg) {
+                  NSLog(@"KKK加载新的数据，参数: %@", arg);
+                  // 模拟延迟加载数据，因此2秒后才调用）
+                  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
+                                 dispatch_get_main_queue(), ^{
+                      @jobs_strongify(self)
+                      [self->_tableView reloadData];
+                      [self->_tableView.xzm_header endRefreshing];// 结束刷新
+                  });return nil;
+              }, nil, self)];
+  
+              [_tableView xzm_addNormalFooterWithTarget:self
+                                                      action:selectorBlocks(^id(id target, id arg) {
+                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
+                  @jobs_strongify(self)
+                  // 模拟延迟加载数据，因此2秒后才调用）
+                  dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
+                                 dispatch_get_main_queue(), ^{
+                      @jobs_strongify(self)
+                      [self->_tableView reloadData];
+                      [self->_tableView.xzm_footer endRefreshing];// 结束刷新
+                  });return nil;
+              }, nil, self)];
+  
+              [_tableView.xzm_header beginRefreshing];
+          }
           
           {
               _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
@@ -4571,6 +4894,42 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 #### 28.2、关于<font id=UITableViewHeaderFooterView color=red>**`UITableViewHeaderFooterView`**</font>（**`viewForHeaderInSection`**）
 
 * **`UICollectionView`**没有类型相关的东西
+
+* <font color=red>**`UITableView`** 取消`viewForHeaderInSection` 产生的悬停效果</font>
+
+  * 如果使用`BaseTableView.initWithStylePlain;`则会产生悬停效果
+
+    * 方法一：`viewForHeaderInSection` 有值有高度 <font color=red>**强烈推荐**</font>
+
+      假设 `viewForHeaderInSection` 的高度为 `JobsWidth(36)`，需要实现如下父类协议<UIScrollViewDelegate>关闭悬停效果
+
+      ```objective-c
+      #pragma mark - UIScrollViewDelegate
+      - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+          // 关闭悬停效果
+          CGFloat sectionHeaderHeight = JobsWidth(36); // 假设 header 的高度为 JobsWidth(36)
+          if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0) {
+              scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+          } else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
+              scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+          }
+      }
+      ```
+
+    * 方法二：取巧，不推荐
+
+      ```objective-c
+      #pragma mark - UITableViewDelegate
+      - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+          return CGFLOAT_MIN; // 设置 header 高度为非常小的值
+      }
+      
+      - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+          return UIView.new; // 返回一个空的 UIView
+      }
+      ```
+
+  * 如果使用`BaseTableView.initWithStyleGrouped;`，则不会产生悬停效果
 
 * <font color=red>如果需要在整个`TableView`的首尾出现一个大**View**，则用下面的代码。注意和**`viewForHeaderInSection`**进行区分</font>
 
@@ -4644,6 +5003,25 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
+ * [<font color=red>对 **UITableView**.**section**的header和footer高度设置</font>](https://www.jianshu.com/p/65425a9d98e3)
+
+   * 不实现 footer、header 设置方法，默认无 header、footer
+   * footer 设置同 header 设置 
+   * iOS 11 设置 header 高度必须同时实现 `viewForHeaderInSection` 和 `heightForHeaderInSection` 
+   * iOS 11 之前版本只设置 `heightForHeaderInSection` 即可设置 header 高度，只是在 `UITableViewStyleGrouped` 时无法设置 header 高度为0，设置0时高度为系统默认高度
+   
+   |                    UITableViewStylePlain                     |               iOS 11               |             < iOS 11             |
+   | :----------------------------------------------------------: | :--------------------------------: | :------------------------------: |
+   |                   `viewForHeaderInSection`                   | 只实现此方法 header 高度为系统默认 |   只实现此方法 header 设置无效   |
+   |                  `heightForHeaderInSection`                  |    只实现此方法 header 设置无效    | 只实现此方法 header 高度设置有效 |
+   | 同时实现 `viewForHeaderInSection` 和 `heightForHeaderInSection` |        header 高度设置有效         |       header 高度设置有效        |
+   
+   |                   UITableViewStyleGrouped                    |               iOS 11               |                < iOS 11                 |
+   | :----------------------------------------------------------: | :--------------------------------: | :-------------------------------------: |
+   |                   `viewForHeaderInSection`                   | 只实现此方法 header 高度为系统默认 |   只实现此方法 header 高度为系统默认    |
+   |                  `heightForHeaderInSection`                  | 只实现此方法 header 高度为系统默认 | 实现此方法 header 高度设置有效，不可为0 |
+   | 同时实现 `viewForHeaderInSection` 和 `heightForHeaderInSection` |        header 高度设置有效         |           header 高度设置有效           |
+   
  * **`UITableViewHeaderFooterView`**的子类
 
    ```objective-c
@@ -4695,33 +5073,41 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    @end
    ```
 
-### 29、字符串写文件 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+#### 28.3、`UITableViewCell`
 
-```objective-c
--(void)保留文字{
-    if (![NSString isNullString:self.inputDataString]) {
-        JobsUserModel.sharedManager.postDraftURLStr = [NSObject saveData:self.inputDataString
-                                                   withDocumentsChildDir:JobsInternationalization(@"发帖草稿数据临时文件夹")
-                                                            fileFullname:@"发帖草稿数据.txt"
-                                                                   error:nil];
-    }else{
-        [FileFolderHandleTool cleanFilesWithPath:JobsUserModel.sharedManager.postDraftURLStr];
-    }
-    NSLog(@"%@",JobsUserModel.sharedManager.postDraftURLStr);
-    [self.view hx_showLoadingHUDText:nil];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BOOL success = [self.photoManager saveLocalModelsToFile];//保存图片
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.view hx_handleLoading];
-            if (success) {
-                [self back:nil];
-            }else {
-                [self.view hx_showImageHUDText:JobsInternationalization(@"保存失败")];
-            }
-        });
-    });
-}
-```
+* 编辑模式
+
+  ```objective-c
+  - (void)tableView:(UITableView *)tableView
+  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+  forRowAtIndexPath:(NSIndexPath *)indexPath{
+      
+  }
+  ```
+
+  ```objective-c
+  /// 编辑模式下，点击取消左边已选中的cell的按钮
+  - (void)tableView:(UITableView *)tableView
+  didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+      
+  }
+  ```
+
+* [**MGSwipeTableCell**](https://github.com/MortimerGoro/MGSwipeTableCell) 滑动的**TableViewCell**
+
+  ```ruby
+  pod 'MGSwipeTableCell' # https://github.com/MortimerGoro/MGSwipeTableCell 滑动tableViewCell
+  ```
+
+  ```objective-c
+  #if __has_include(<MGSwipeTableCell/MGSwipeTableCell.h>)
+  #import <MGSwipeTableCell/MGSwipeTableCell.h>
+  #else
+  #import "MGSwipeTableCell.h"
+  #endif
+  ```
+
+### 29、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 ### 30、关于`UITabBarController` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -4745,7 +5131,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * `LZTabBarConfig` ：**`NSObject`**
   * `LZTabBarItem`：**`UIView`**
 
-#### 30.2、[自定义 UITabBarController](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/UITabBarCtr/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md)
+#### 30.2、[自定义 **`UITabBarController`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/UITabBarCtr/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md)
 
 ### 31、联动视图的解决方案 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

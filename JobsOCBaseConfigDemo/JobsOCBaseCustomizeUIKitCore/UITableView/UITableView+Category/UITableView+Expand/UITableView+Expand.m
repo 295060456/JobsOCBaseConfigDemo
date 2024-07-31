@@ -9,8 +9,10 @@
 
 @implementation UITableView (Expand)
 /// 更多，参见： 关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量.md
+/// 隐藏最后一个单元格的分界线
 -(void)hideSeparatorLineAtLast:(NSIndexPath *)indexPath
                           cell:(UITableViewCell *)cell{
+    /// 判断是否是该 section 的最后一行
     if (indexPath.row == [self numberOfRowsInSection:indexPath.section] - 1){
         cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width);
     }
