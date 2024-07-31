@@ -4413,7 +4413,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 关注实现类：[**@interface  TouchID : NSObject**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/TouchID)
 
-### 27、<font id=创建UICollectionView>创建`UICollectionView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 27、<font id=创建UICollectionView color=red>创建`UICollectionView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * ```objective-c
   @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
@@ -4539,9 +4539,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     - (void)tableView:(UITableView *)tableView
       willDisplayCell:(UITableViewCell *)cell
     forRowAtIndexPath:(NSIndexPath *)indexPath{
-        
+        /// 隐藏最后一个单元格的分界线
         [tableView hideSeparatorLineAtLast:indexPath
                                       cell:cell];
+        /// 自定义 UITableViewCell 的箭头
         cell.img = JobsIMG(@"向右的箭头（大）");
         @jobs_weakify(self)
         [cell customAccessoryView:^(id data) {
@@ -4549,7 +4550,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
             JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
             NSLog(@"MMM - %ld",cell.index);
         }];
-    
+        /// 以section为单位，每个section的第一行和最后一行的 UITableViewCell 圆角化处理
         [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
                                               bottomLineCor:HEXCOLOR(0xFFFFFF) 
                                              cellOutLineCor:HEXCOLOR(0xEEE2C8)
@@ -4572,17 +4573,50 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BaseTableView.initWithStyleGrouped;
     ```
 
-* 增加**`UITableView`** 的可滚动区域
+* 对父类**`UIScrollView`**三要素（**`contentOffset`**、**`contentSize`**、**`contentInset`**）的封装设置。关注实现类[**@interface UIView (Measure)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BMeasure)
 
-  * ```objective-c
-    _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
-    ```
+  ```objective-c
+  #pragma mark —— UIScrollView.contentSize
+  -(jobsBySizeBlock _Nullable)resetContentSize;
+  -(jobsByCGFloatBlock _Nullable)resetContentSizeWidth;
+  -(jobsByCGFloatBlock _Nullable)resetContentSizeHeight;
+  -(jobsByCGFloatBlock _Nullable)resetContentSizeOffsetWidth;
+  -(jobsByCGFloatBlock _Nullable)resetContentSizeOffsetHeight;
+  ```
 
-* **`UITableView`** 的可折叠效果。第三方分类实现，关注：[**@interface UITableView (WWFoldableTableView)**]()
+  ```objective-c
+  #pragma mark —— UIScrollView.contentOffset
+  -(jobsByPointBlock _Nullable)resetContentOffset;
+  -(jobsByCGFloatBlock _Nullable)resetContentX;
+  -(jobsByCGFloatBlock _Nullable)resetContentY;
+  -(jobsByCGFloatBlock _Nullable)resetContentOffsetX;
+  -(jobsByCGFloatBlock _Nullable)resetContentOffsetY;
+  ```
 
-  * ```objective-c
-    _tableView.ww_foldable = YES;
-    ```
+  ```objective-c
+  #pragma mark —— UIScrollView.contentInset
+  -(jobsByEdgeInsetBlock _Nullable)resetContentInset;
+  -(jobsByCGFloatBlock _Nullable)resetContentInsetTop;
+  -(jobsByCGFloatBlock _Nullable)resetContentInsetLeft;
+  -(jobsByCGFloatBlock _Nullable)resetContentInsetBottom;
+  -(jobsByCGFloatBlock _Nullable)resetContentInsetRight;
+  -(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetTop;
+  -(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetLeft;
+  -(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetBottom;
+  -(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetRight;
+  ```
+
+* 增加**`UITableView`** 的可滚动区域（`contentInset`）
+
+  ```objective-c
+  _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
+  ```
+
+* **`UITableView`** 的可折叠效果。第三方分类实现，关注：[**@interface UITableView (WWFoldableTableView)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UITableView/UITableView+Category/UITableView+WWFoldableTableView)
+
+  ```objective-c
+  _tableView.ww_foldable = YES;
+  ```
 
 * **`UITableView`**的无数据占位方案
 
@@ -4776,14 +4810,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         }
     }
     ```
-
-* 完整调用
-
-  ```objective-c
-  /// UI
-  @property(nonatomic,strong)BaseTableView *tableView;
-  ```
-
+  
+* <details id="UITableView的完整调用">
+   <summary><strong>UITableView的完整调用</strong></summary>
+   
+   ```objective-c
+   /// UI
+   @property(nonatomic,strong)BaseTableView *tableView;
+   ```
+  
+  
   ```objective-c
   -(BaseTableView *)tableView{
       if (!_tableView) {
@@ -4799,7 +4835,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
           _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
           _tableView.ww_foldable = YES;//设置可折叠 见 @interface UITableView (WWFoldableTableView)
-          _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);/// 增加tableView的可滚动区域
+          _tableView.resetContentInsetOffsetBottom(200);/// 增加tableView的可滚动区域
           [_tableView registerHeaderFooterViewClass:MSCommentTableHeaderFooterView.class];
           if(@available(iOS 11.0, *)) {
               _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -4874,14 +4910,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
           }
           
-  //        {/// 设置tabAnimated相关属性
-  //            // 可以不进行手动初始化，将使用默认属性
-  //            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:MSCommentTBVCell.class
-  //                                                                  cellHeight:74.5];
-  //            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
-  //            [_tableView tab_startAnimation];   // 开启动画
-  //        }
-  //
+            /// 设置tabAnimated相关属性
+          {
+              // 可以不进行手动初始化，将使用默认属性
+              _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:MSCommentTBVCell.class
+                                                                    cellHeight:74.5];
+              _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+              [_tableView tab_startAnimation];   // 开启动画
+          }
+  
           [self addSubview:_tableView];
           [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
               make.edges.equalTo(self);
@@ -4890,7 +4927,136 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       }return _tableView;
   }
   ```
-
+  
+  ```objective-c
+  #pragma mark —— UITableViewDelegate,UITableViewDataSource
+  - (void)tableView:(UITableView *)tableView
+  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+  forRowAtIndexPath:(NSIndexPath *)indexPath{
+      
+  }
+  /// 编辑模式下，点击取消左边已选中的cell的按钮
+  - (void)tableView:(UITableView *)tableView
+  didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+      
+  }
+  
+  - (void)tableView:(UITableView *)tableView
+  didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+      
+  }
+  
+  - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+      return self.tbvSectionRowCellMutArr.count;
+  }
+  
+  - (CGFloat)tableView:(UITableView *)tableView
+  heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+      return JobsWidth(36);
+  }
+  
+  - (NSInteger)tableView:(UITableView *)tableView
+   numberOfRowsInSection:(NSInteger)section{
+      return self.tbvSectionRowCellMutArr[section].count;
+  }
+  
+  - (UITableViewCell *)tableView:(UITableView *)tableView
+           cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+      JobsBaseTableViewCell *cell = self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
+      cell.accessoryType = UITableViewCellAccessoryNone;
+      cell.indexPath = indexPath;
+      [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section][indexPath.row]];
+      return cell;
+  }
+  
+  - (CGFloat)tableView:(UITableView *)tableView
+  heightForHeaderInSection:(NSInteger)section{
+      return JobsWidth(36);
+  }
+  /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
+  - (UIView *)tableView:(UITableView *)tableView
+  viewForHeaderInSection:(NSInteger)section{
+      if(section == 0){
+          FMTBVHeaderFooterView1 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@"");
+          if(!headerView){
+  //            headerView = FMTBVHeaderFooterView1.jobsInitWithReuseIdentifier(@"");// 不要用这个
+              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView1.class,@"");
+              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@"");
+          }
+          headerView.backgroundColor = JobsRedColor;
+          headerView.section = section;// 不写这一句有悬浮
+          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+          @jobs_weakify(self)
+          [headerView actionObjectBlock:^(id data) {
+              @jobs_strongify(self)
+          }];return headerView;
+      }else if (section == 1){
+          FMTBVHeaderFooterView2 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+          if(!headerView){
+  //            headerView = FMTBVHeaderFooterView2.jobsInitWithReuseIdentifier(@"");// 不要用这个
+              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView2.class,@"");
+              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+          }
+          headerView.backgroundColor = JobsBlueColor;
+          headerView.section = section;// 不写这一句有悬浮
+          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+          @jobs_weakify(self)
+          [headerView actionObjectBlock:^(id data) {
+              @jobs_strongify(self)
+          }];return headerView;
+      }else if (section == 2){
+          FMTBVHeaderFooterView2 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+          if(!headerView){
+  //            headerView = FMTBVHeaderFooterView2.jobsInitWithReuseIdentifier(@"");// 不要用这个
+              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView2.class,@"");
+              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+          }
+          headerView.backgroundColor = JobsYellowColor;
+          headerView.section = section;// 不写这一句有悬浮
+          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+          @jobs_weakify(self)
+          [headerView actionObjectBlock:^(id data) {
+              @jobs_strongify(self)
+          }];return headerView;
+      }else return UIView.new;
+  }
+  
+  - (void)tableView:(UITableView *)tableView
+    willDisplayCell:(UITableViewCell *)cell
+  forRowAtIndexPath:(NSIndexPath *)indexPath{
+      /// 隐藏最后一个单元格的分界线
+      [tableView hideSeparatorLineAtLast:indexPath
+                                    cell:cell];
+      /// 自定义 UITableViewCell 的箭头
+      cell.img = JobsIMG(@"向右的箭头（大）");
+      @jobs_weakify(self)
+      [cell customAccessoryView:^(id data) {
+          @jobs_strongify(self)
+          JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
+          NSLog(@"MMM - %ld",cell.index);
+      }];
+      /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
+      [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
+                                            bottomLineCor:HEXCOLOR(0xFFFFFF) 
+                                           cellOutLineCor:HEXCOLOR(0xEEE2C8)
+                                         cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
+                                              borderWidth:JobsWidth(10)
+                                                       dx:JobsWidth(0)
+                                                       dy:JobsWidth(0)];
+  }
+  #pragma mark —— UIScrollViewDelegate
+  - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+      /// 关闭悬停效果
+      CGFloat sectionHeaderHeight = JobsWidth(36); /// header的高度
+      if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0) {
+          scrollView.resetContentInsetTop(-scrollView.contentOffset.y);
+      } else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
+          scrollView.resetContentInsetTop(-sectionHeaderHeight);
+      }
+      scrollView.resetContentInsetOffsetBottom(200);/// 额外增加的可滑动区域距离
+  }
+  ```
+  </details>
 #### 28.2、关于<font id=UITableViewHeaderFooterView color=red>**`UITableViewHeaderFooterView`**</font>（**`viewForHeaderInSection`**）
 
 * **`UICollectionView`**没有类型相关的东西
@@ -4906,13 +5072,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       ```objective-c
       #pragma mark - UIScrollViewDelegate
       - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-          // 关闭悬停效果
-          CGFloat sectionHeaderHeight = JobsWidth(36); // 假设 header 的高度为 JobsWidth(36)
+          /// 关闭悬停效果
+          CGFloat sectionHeaderHeight = JobsWidth(36); /// header的高度
           if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0) {
-              scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+              scrollView.resetContentInsetTop(-scrollView.contentOffset.y);
           } else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
-              scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+              scrollView.resetContentInsetTop(-sectionHeaderHeight);
           }
+          scrollView.resetContentInsetOffsetBottom(200);/// 额外增加的可滑动区域距离
       }
       ```
 
@@ -6710,9 +6877,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   /// TODO
   ```
 
- </details>
+</details>
 
-## 五、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+## 六、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 ### 1、配置相关
 * [**解决xcode出现：SDK does not contain 'libarclite' 错误**](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E8%A7%A3%E5%86%B3Xcode%E5%87%BA%E7%8E%B0%EF%BC%9ASDK%20does%20not%20contain%20'libarclite'%20%E9%94%99%E8%AF%AF)
 * [**通过SSH连接到GitHub**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub.md)
@@ -6801,7 +6968,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * DebugLogDescription 会崩溃：`id value = self.valueForKeyBlock(name) ? : @"nil";//默认值为nil字符串`
 * 侧滑菜单：JXCategoryView垂直表达
 * 其他
-## 六、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+## 七、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * 浏览器打开并输入 
   ```html
   feedbackassistant://
