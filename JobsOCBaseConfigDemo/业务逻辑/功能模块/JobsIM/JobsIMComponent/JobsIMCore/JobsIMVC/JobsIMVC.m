@@ -380,7 +380,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
         _tableView.pagingEnabled = YES;//这个属性为YES会使得Tableview一格一格的翻动
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
-        [self dataLinkByTableView:_tableView];
+        _tableView.dataLink(self);
         [self.view insertSubview:_tableView belowSubview:self.inputview];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             if (self.gk_navBarAlpha && !self.gk_navigationBar.hidden) {//显示

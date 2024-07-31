@@ -235,7 +235,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.separatorColor = HEXCOLOR(0xEEE2C8);
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.scrollEnabled = YES;
-        [self dataLinkByTableView:_tableView];
+        _tableView.dataLink(self);
         _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
         _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);

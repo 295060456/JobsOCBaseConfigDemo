@@ -264,7 +264,7 @@ insetForSectionAtIndex:(NSInteger)section {
         _collectionView = [BaseCollectionView.alloc initWithFrame:CGRectZero
                                              collectionViewLayout:self.layout];
         _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
-        [self dataLinkByCollectionView:_collectionView];
+        _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.bounces = NO;

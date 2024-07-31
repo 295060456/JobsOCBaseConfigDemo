@@ -180,7 +180,7 @@ willDisplayHeaderView:(UIView *)view
         @jobs_weakify(self)
         _tableView = BaseTableView.initWithStyleGrouped;
         _tableView.ww_foldable = YES;
-        [self dataLinkByTableView:_tableView];
+        _tableView.dataLink(self);
         _tableView.backgroundColor = JobsCor(@"#FFFFFF");
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.separatorColor = HEXCOLOR(0xEEE2C8);

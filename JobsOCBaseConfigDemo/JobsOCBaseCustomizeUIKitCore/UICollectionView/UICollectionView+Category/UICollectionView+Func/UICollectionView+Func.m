@@ -9,6 +9,15 @@
 
 @implementation UICollectionView (Func)
 
+-(jobsByIDBlock _Nonnull)dataLink{
+    @jobs_weakify(self)
+    return ^(id _Nonnull target) {
+        @jobs_strongify(self)
+        self.delegate = target;
+        self.dataSource = target;
+    };
+}
+
 -(UICollectionViewCell *)didSelectItemAtIndexPath:(NSIndexPath *)indexPath
                           collectionViewCellClass:(Class _Nullable)collectionViewCellClass{
     NSLog(@"%s", __FUNCTION__);

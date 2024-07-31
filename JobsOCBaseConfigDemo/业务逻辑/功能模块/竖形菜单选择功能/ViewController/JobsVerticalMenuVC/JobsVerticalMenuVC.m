@@ -398,7 +398,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
     if (!_tableView){
         _tableView = UITableView.initWithStylePlain;
         _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
-        [self dataLinkByTableView:_tableView];
+        _tableView.dataLink(self);
         _tableView.frame = CGRectMake(0,
                                       JobsTopSafeAreaHeight() + JobsStatusBarHeight(),
                                       TableViewWidth,
@@ -423,7 +423,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                                                                            JobsMainScreen_WIDTH() - self.tableView.width,
                                                                            self.tableView.height + EditBtnHeight)
                                            collectionViewLayout:self.flowLayout];
-        [self dataLinkByCollectionView:_collectionView];
+        _collectionView.dataLink(self);
         _collectionView.backgroundColor = ThreeClassCellBgCor;
         _collectionView.alwaysBounceVertical = YES;
         [_collectionView registerCollectionViewClass];

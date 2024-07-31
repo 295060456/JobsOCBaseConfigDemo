@@ -4434,7 +4434,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           _collectionView = [BaseCollectionView.alloc initWithFrame:CGRectZero
                                                collectionViewLayout:self.layout];
           _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
-          [self dataLinkByCollectionView:_collectionView];
+          _collectionView.dataLink(self);
           _collectionView.showsVerticalScrollIndicator = NO;
           _collectionView.showsHorizontalScrollIndicator = NO;
           _collectionView.bounces = NO;
@@ -4818,244 +4818,244 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    /// UI
    @property(nonatomic,strong)BaseTableView *tableView;
    ```
-  
-  
-  ```objective-c
-  -(BaseTableView *)tableView{
-      if (!_tableView) {
-          @jobs_weakify(self)
-          _tableView = BaseTableView.initWithStyleGrouped;/// 一般用 initWithStylePlain.Grouped会自己预留一块空间
-          _tableView.ww_foldable = YES;
-          [self dataLinkByTableView:_tableView];
-          _tableView.backgroundColor = JobsCor(@"#FFFFFF");
-          _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-          _tableView.separatorColor = HEXCOLOR(0xEEE2C8);
-          _tableView.showsVerticalScrollIndicator = NO;
-          _tableView.scrollEnabled = YES;
-          _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
-          _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
-          _tableView.ww_foldable = YES;//设置可折叠 见 @interface UITableView (WWFoldableTableView)
-          _tableView.resetContentInsetOffsetBottom(200);/// 增加tableView的可滚动区域
-          [_tableView registerHeaderFooterViewClass:MSCommentTableHeaderFooterView.class];
-          if(@available(iOS 11.0, *)) {
-              _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-          }
-          
-          {
-              MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-              refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-              refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-              refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-              refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-              refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-              refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
-                  @jobs_strongify(self)
-                  [self feedbackGenerator];//震动反馈
-                  return nil;
-              };
-              
-              MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-              refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-              refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
-              refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
-              refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
-              refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
-              refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
-                  return nil;
-              };
-              
-              self.refreshConfigHeader = refreshConfigHeader;
-              self.refreshConfigFooter = refreshConfigFooter;
-              
-              _tableView.mj_header = self.mjRefreshNormalHeader;
-              _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
-          }
-        
-        	{
-              [_tableView xzm_addNormalHeaderWithTarget:self
-                                                      action:selectorBlocks(^id(id target, id arg) {
-                  NSLog(@"KKK加载新的数据，参数: %@", arg);
-                  // 模拟延迟加载数据，因此2秒后才调用）
-                  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
-                                 dispatch_get_main_queue(), ^{
-                      @jobs_strongify(self)
-                      [self->_tableView reloadData];
-                      [self->_tableView.xzm_header endRefreshing];// 结束刷新
-                  });return nil;
-              }, nil, self)];
-  
-              [_tableView xzm_addNormalFooterWithTarget:self
-                                                      action:selectorBlocks(^id(id target, id arg) {
-                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
-                  @jobs_strongify(self)
-                  // 模拟延迟加载数据，因此2秒后才调用）
-                  dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
-                                 dispatch_get_main_queue(), ^{
-                      @jobs_strongify(self)
-                      [self->_tableView reloadData];
-                      [self->_tableView.xzm_footer endRefreshing];// 结束刷新
-                  });return nil;
-              }, nil, self)];
-  
-              [_tableView.xzm_header beginRefreshing];
-          }
-          
-          {
-              _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
-                                                                  titleStr:JobsInternationalization(@"暂无数据")
-                                                                 detailStr:JobsInternationalization(@"")];
-              
-              _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
-              _tableView.ly_emptyView.contentViewOffset = JobsWidth(-180);
-              _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
-          }
-          
-            /// 设置tabAnimated相关属性
-          {
-              // 可以不进行手动初始化，将使用默认属性
-              _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:MSCommentTBVCell.class
-                                                                    cellHeight:74.5];
-              _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
-              [_tableView tab_startAnimation];   // 开启动画
-          }
-  
-          [self addSubview:_tableView];
-          [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.edges.equalTo(self);
-          }];
-  
-      }return _tableView;
-  }
-  ```
-  
-  ```objective-c
-  #pragma mark —— UITableViewDelegate,UITableViewDataSource
-  - (void)tableView:(UITableView *)tableView
-  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-  forRowAtIndexPath:(NSIndexPath *)indexPath{
-      
-  }
-  /// 编辑模式下，点击取消左边已选中的cell的按钮
-  - (void)tableView:(UITableView *)tableView
-  didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-      
-  }
-  
-  - (void)tableView:(UITableView *)tableView
-  didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-      
-  }
-  
-  - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-      return self.tbvSectionRowCellMutArr.count;
-  }
-  
-  - (CGFloat)tableView:(UITableView *)tableView
-  heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-      return JobsWidth(36);
-  }
-  
-  - (NSInteger)tableView:(UITableView *)tableView
-   numberOfRowsInSection:(NSInteger)section{
-      return self.tbvSectionRowCellMutArr[section].count;
-  }
-  
-  - (UITableViewCell *)tableView:(UITableView *)tableView
-           cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-      JobsBaseTableViewCell *cell = self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
-      cell.accessoryType = UITableViewCellAccessoryNone;
-      cell.indexPath = indexPath;
-      [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section][indexPath.row]];
-      return cell;
-  }
-  
-  - (CGFloat)tableView:(UITableView *)tableView
-  heightForHeaderInSection:(NSInteger)section{
-      return JobsWidth(36);
-  }
-  /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
-  - (UIView *)tableView:(UITableView *)tableView
-  viewForHeaderInSection:(NSInteger)section{
-      if(section == 0){
-          FMTBVHeaderFooterView1 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@"");
-          if(!headerView){
-  //            headerView = FMTBVHeaderFooterView1.jobsInitWithReuseIdentifier(@"");// 不要用这个
-              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView1.class,@"");
-              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@"");
-          }
-          headerView.backgroundColor = JobsRedColor;
-          headerView.section = section;// 不写这一句有悬浮
-          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
-          @jobs_weakify(self)
-          [headerView actionObjectBlock:^(id data) {
-              @jobs_strongify(self)
-          }];return headerView;
-      }else if (section == 1){
-          FMTBVHeaderFooterView2 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
-          if(!headerView){
-  //            headerView = FMTBVHeaderFooterView2.jobsInitWithReuseIdentifier(@"");// 不要用这个
-              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView2.class,@"");
-              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
-          }
-          headerView.backgroundColor = JobsBlueColor;
-          headerView.section = section;// 不写这一句有悬浮
-          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
-          @jobs_weakify(self)
-          [headerView actionObjectBlock:^(id data) {
-              @jobs_strongify(self)
-          }];return headerView;
-      }else if (section == 2){
-          FMTBVHeaderFooterView2 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
-          if(!headerView){
-  //            headerView = FMTBVHeaderFooterView2.jobsInitWithReuseIdentifier(@"");// 不要用这个
-              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView2.class,@"");
-              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
-          }
-          headerView.backgroundColor = JobsYellowColor;
-          headerView.section = section;// 不写这一句有悬浮
-          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
-          @jobs_weakify(self)
-          [headerView actionObjectBlock:^(id data) {
-              @jobs_strongify(self)
-          }];return headerView;
-      }else return UIView.new;
-  }
-  
-  - (void)tableView:(UITableView *)tableView
-    willDisplayCell:(UITableViewCell *)cell
-  forRowAtIndexPath:(NSIndexPath *)indexPath{
-      /// 隐藏最后一个单元格的分界线
-      [tableView hideSeparatorLineAtLast:indexPath
-                                    cell:cell];
-      /// 自定义 UITableViewCell 的箭头
-      cell.img = JobsIMG(@"向右的箭头（大）");
-      @jobs_weakify(self)
-      [cell customAccessoryView:^(id data) {
-          @jobs_strongify(self)
-          JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
-          NSLog(@"MMM - %ld",cell.index);
-      }];
-      /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
-      [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
-                                            bottomLineCor:HEXCOLOR(0xFFFFFF) 
-                                           cellOutLineCor:HEXCOLOR(0xEEE2C8)
-                                         cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
-                                              borderWidth:JobsWidth(10)
-                                                       dx:JobsWidth(0)
-                                                       dy:JobsWidth(0)];
-  }
-  #pragma mark —— UIScrollViewDelegate
-  - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-      /// 关闭悬停效果
-      CGFloat sectionHeaderHeight = JobsWidth(36); /// header的高度
-      if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0) {
-          scrollView.resetContentInsetTop(-scrollView.contentOffset.y);
-      } else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
-          scrollView.resetContentInsetTop(-sectionHeaderHeight);
-      }
-      scrollView.resetContentInsetOffsetBottom(200);/// 额外增加的可滑动区域距离
-  }
-  ```
+   
+   ```objective-c
+   -(BaseTableView *)tableView{
+       if (!_tableView) {
+           @jobs_weakify(self)
+           _tableView = BaseTableView.initWithStyleGrouped;/// 一般用 initWithStylePlain.Grouped会自己预留一块空间
+           _tableView.ww_foldable = YES;
+           _tableView.dataLink(self);
+           _tableView.backgroundColor = JobsCor(@"#FFFFFF");
+           _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+           _tableView.separatorColor = HEXCOLOR(0xEEE2C8);
+           _tableView.showsVerticalScrollIndicator = NO;
+           _tableView.scrollEnabled = YES;
+           _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
+           _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
+           _tableView.ww_foldable = YES;//设置可折叠 见 @interface UITableView (WWFoldableTableView)
+           _tableView.resetContentInsetOffsetBottom(200);/// 增加tableView的可滚动区域
+           [_tableView registerHeaderFooterViewClass:MSCommentTableHeaderFooterView.class];
+           if(@available(iOS 11.0, *)) {
+               _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+           }
+           
+           {
+               MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+               refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+               refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+               refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+               refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+               refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+               refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                   @jobs_strongify(self)
+                   [self feedbackGenerator];//震动反馈
+                   return nil;
+               };
+               
+               MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+               refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+               refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+               refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+               refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+               refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+               refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                   return nil;
+               };
+               
+               self.refreshConfigHeader = refreshConfigHeader;
+               self.refreshConfigFooter = refreshConfigFooter;
+               
+               _tableView.mj_header = self.mjRefreshNormalHeader;
+               _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+           }
+         
+         	{
+               [_tableView xzm_addNormalHeaderWithTarget:self
+                                                       action:selectorBlocks(^id(id target, id arg) {
+                   NSLog(@"KKK加载新的数据，参数: %@", arg);
+                   // 模拟延迟加载数据，因此2秒后才调用）
+                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
+                                  dispatch_get_main_queue(), ^{
+                       @jobs_strongify(self)
+                       [self->_tableView reloadData];
+                       [self->_tableView.xzm_header endRefreshing];// 结束刷新
+                   });return nil;
+               }, nil, self)];
+   
+               [_tableView xzm_addNormalFooterWithTarget:self
+                                                       action:selectorBlocks(^id(id target, id arg) {
+                   NSLog(@"SSSS加载新的数据，参数: %@", arg);
+                   @jobs_strongify(self)
+                   // 模拟延迟加载数据，因此2秒后才调用）
+                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
+                                  dispatch_get_main_queue(), ^{
+                       @jobs_strongify(self)
+                       [self->_tableView reloadData];
+                       [self->_tableView.xzm_footer endRefreshing];// 结束刷新
+                   });return nil;
+               }, nil, self)];
+   
+               [_tableView.xzm_header beginRefreshing];
+           }
+           
+           {
+               _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
+                                                                   titleStr:JobsInternationalization(@"暂无数据")
+                                                                  detailStr:JobsInternationalization(@"")];
+               
+               _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
+               _tableView.ly_emptyView.contentViewOffset = JobsWidth(-180);
+               _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
+           }
+           
+             /// 设置tabAnimated相关属性
+           {
+               // 可以不进行手动初始化，将使用默认属性
+               _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:MSCommentTBVCell.class
+                                                                     cellHeight:74.5];
+               _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+               [_tableView tab_startAnimation];   // 开启动画
+           }
+   
+           [self addSubview:_tableView];
+           [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+               make.edges.equalTo(self);
+           }];
+   
+       }return _tableView;
+   }
+   ```
+   
+   ```objective-c
+   #pragma mark —— UITableViewDelegate,UITableViewDataSource
+   - (void)tableView:(UITableView *)tableView
+   commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+   forRowAtIndexPath:(NSIndexPath *)indexPath{
+       
+   }
+   /// 编辑模式下，点击取消左边已选中的cell的按钮
+   - (void)tableView:(UITableView *)tableView
+   didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+       
+   }
+   
+   - (void)tableView:(UITableView *)tableView
+   didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+       
+   }
+   
+   - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+       return self.tbvSectionRowCellMutArr.count;
+   }
+   
+   - (CGFloat)tableView:(UITableView *)tableView
+   heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+       return JobsWidth(36);
+   }
+   
+   - (NSInteger)tableView:(UITableView *)tableView
+    numberOfRowsInSection:(NSInteger)section{
+       return self.tbvSectionRowCellMutArr[section].count;
+   }
+   
+   - (UITableViewCell *)tableView:(UITableView *)tableView
+            cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+       JobsBaseTableViewCell *cell = self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
+       cell.accessoryType = UITableViewCellAccessoryNone;
+       cell.indexPath = indexPath;
+       [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section][indexPath.row]];
+       return cell;
+   }
+   
+   - (CGFloat)tableView:(UITableView *)tableView
+   heightForHeaderInSection:(NSInteger)section{
+       return JobsWidth(36);
+   }
+   /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
+   - (UIView *)tableView:(UITableView *)tableView
+   viewForHeaderInSection:(NSInteger)section{
+       if(section == 0){
+           FMTBVHeaderFooterView1 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@"");
+           if(!headerView){
+   //            headerView = FMTBVHeaderFooterView1.jobsInitWithReuseIdentifier(@"");// 不要用这个
+               tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView1.class,@"");
+               headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@"");
+           }
+           headerView.backgroundColor = JobsRedColor;
+           headerView.section = section;// 不写这一句有悬浮
+           [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+           @jobs_weakify(self)
+           [headerView actionObjectBlock:^(id data) {
+               @jobs_strongify(self)
+           }];return headerView;
+       }else if (section == 1){
+           FMTBVHeaderFooterView2 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+           if(!headerView){
+   //            headerView = FMTBVHeaderFooterView2.jobsInitWithReuseIdentifier(@"");// 不要用这个
+               tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView2.class,@"");
+               headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+           }
+           headerView.backgroundColor = JobsBlueColor;
+           headerView.section = section;// 不写这一句有悬浮
+           [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+           @jobs_weakify(self)
+           [headerView actionObjectBlock:^(id data) {
+               @jobs_strongify(self)
+           }];return headerView;
+       }else if (section == 2){
+           FMTBVHeaderFooterView2 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+           if(!headerView){
+   //            headerView = FMTBVHeaderFooterView2.jobsInitWithReuseIdentifier(@"");// 不要用这个
+               tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView2.class,@"");
+               headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
+           }
+           headerView.backgroundColor = JobsYellowColor;
+           headerView.section = section;// 不写这一句有悬浮
+           [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+           @jobs_weakify(self)
+           [headerView actionObjectBlock:^(id data) {
+               @jobs_strongify(self)
+           }];return headerView;
+       }else return UIView.new;
+   }
+   
+   - (void)tableView:(UITableView *)tableView
+     willDisplayCell:(UITableViewCell *)cell
+   forRowAtIndexPath:(NSIndexPath *)indexPath{
+       /// 隐藏最后一个单元格的分界线
+       [tableView hideSeparatorLineAtLast:indexPath
+                                     cell:cell];
+       /// 自定义 UITableViewCell 的箭头
+       cell.img = JobsIMG(@"向右的箭头（大）");
+       @jobs_weakify(self)
+       [cell customAccessoryView:^(id data) {
+           @jobs_strongify(self)
+           JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
+           NSLog(@"MMM - %ld",cell.index);
+       }];
+       /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
+       [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
+                                             bottomLineCor:HEXCOLOR(0xFFFFFF) 
+                                            cellOutLineCor:HEXCOLOR(0xEEE2C8)
+                                          cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
+                                               borderWidth:JobsWidth(10)
+                                                        dx:JobsWidth(0)
+                                                        dy:JobsWidth(0)];
+   }
+   #pragma mark —— UIScrollViewDelegate
+   - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+       /// 关闭悬停效果
+       CGFloat sectionHeaderHeight = JobsWidth(36); /// header的高度
+       if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0) {
+           scrollView.resetContentInsetTop(-scrollView.contentOffset.y);
+       } else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
+           scrollView.resetContentInsetTop(-sectionHeaderHeight);
+       }
+       scrollView.resetContentInsetOffsetBottom(200);/// 额外增加的可滑动区域距离
+   }
+   ```
+
   </details>
 #### 28.2、关于<font id=UITableViewHeaderFooterView color=red>**`UITableViewHeaderFooterView`**</font>（**`viewForHeaderInSection`**）
 
@@ -5274,7 +5274,83 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   #endif
   ```
 
-### 29、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 29、**`JobsStepView`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+![image-20240731172006610](./assets/image-20240731172006610.png)
+
+* ```objective-c
+  @property(nonatomic,strong)JobsStepView *stepView;
+  @property(nonatomic,strong)NSMutableArray <UIButtonModel *>*btnModelMutArr;
+  ```
+
+  ```objective-c
+  -(JobsStepView *)stepView{
+      if(!_stepView){
+          _stepView = JobsStepView.new;
+          _stepView.backgroundColor = JobsRedColor;
+          [self addSubview:_stepView];
+          [_stepView mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.center.equalTo(self);
+              make.size.mas_equalTo([_stepView viewSizeWithModel:nil]);
+          }];
+          [_stepView richElementsInViewWithModel:self.btnModelMutArr];
+      }return _stepView;
+  }
+  
+  -(NSMutableArray<UIButtonModel *> *)btnModelMutArr{
+      if(!_btnModelMutArr){
+          _btnModelMutArr = NSMutableArray.array;
+          {
+              UIButtonModel *buttonModel = UIButtonModel.new;
+              buttonModel.title = JobsInternationalization(@"第一步");
+              buttonModel.titleCor = JobsWhiteColor;
+              buttonModel.titleFont = UIFontWeightRegularSize(14);
+              buttonModel.normalImage = JobsIMG(@"正在进行第一步");
+              buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
+              buttonModel.imagePadding = JobsWidth(10);
+              buttonModel.roundingCorners = UIRectCornerAllCorners;
+              buttonModel.leftViewWidth = JobsWidth(80);
+              buttonModel.rightViewWidth = JobsWidth(80);
+              buttonModel.selected = YES;
+              [_btnModelMutArr addObject:buttonModel];
+          }
+          
+          {
+              UIButtonModel *buttonModel = UIButtonModel.new;
+              buttonModel.title = JobsInternationalization(@"第二步");
+              buttonModel.titleCor = JobsWhiteColor;
+              buttonModel.titleFont = UIFontWeightRegularSize(14);
+              buttonModel.normalImage = JobsIMG(@"还未进行第二步");
+              buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
+              buttonModel.imagePadding = JobsWidth(10);
+              buttonModel.roundingCorners = UIRectCornerAllCorners;
+              buttonModel.leftViewWidth = JobsWidth(80);
+              buttonModel.rightViewWidth = JobsWidth(80);
+              buttonModel.selected = YES;
+              [_btnModelMutArr addObject:buttonModel];
+          }
+          
+          {
+              UIButtonModel *buttonModel = UIButtonModel.new;
+              buttonModel.title = JobsInternationalization(@"第三步");
+              buttonModel.titleCor = JobsWhiteColor;
+              buttonModel.titleFont = UIFontWeightRegularSize(14);
+              buttonModel.normalImage = JobsIMG(@"还未进行第三步");
+              buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
+              buttonModel.imagePadding = JobsWidth(10);
+              buttonModel.roundingCorners = UIRectCornerAllCorners;
+              buttonModel.leftViewWidth = JobsWidth(80);
+              buttonModel.rightViewWidth = JobsWidth(80);
+              buttonModel.selected = YES;
+              [_btnModelMutArr addObject:buttonModel];
+          }
+      }return _btnModelMutArr;
+  }
+  ```
+
+  
+
+* 
 
 ### 30、关于`UITabBarController` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

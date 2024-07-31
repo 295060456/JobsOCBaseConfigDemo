@@ -8,6 +8,15 @@
 #import "UITableView+Expand.h"
 
 @implementation UITableView (Expand)
+
+-(jobsByIDBlock _Nonnull)dataLink{
+    @jobs_weakify(self)
+    return ^(id _Nonnull target) {
+        @jobs_strongify(self)
+        self.delegate = target;
+        self.dataSource = target;
+    };
+}
 /// 更多，参见： 关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量.md
 /// 隐藏最后一个单元格的分界线
 -(void)hideSeparatorLineAtLast:(NSIndexPath *)indexPath

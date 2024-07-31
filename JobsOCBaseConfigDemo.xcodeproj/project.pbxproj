@@ -57,6 +57,7 @@
 		CE8877BD2C51F1FF0085948C /* JobsNavBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */; };
 		CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877BB2C51F1FF0085948C /* JobsNavBar.m */; };
 		CEA116222C5278F8009D6FB3 /* XZMLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA116202C5278F8009D6FB3 /* XZMLayout.m */; };
+		CEB4B1722C5A39EA00831085 /* JobsStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB4B16F2C5A39EA00831085 /* JobsStepView.m */; };
 		CEC01BDF2C48DF300069C91A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB32C48AFED0069C91A /* TabBar.xcassets */; };
 		CEC01BE02C48DF330069C91A /* CONTACT US.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */; };
 		CEC01BE12C48DF360069C91A /* INVITE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB22C48AFAD0069C91A /* INVITE.xcassets */; };
@@ -1222,6 +1223,9 @@
 		CEA1161F2C5278F8009D6FB3 /* XZMLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZMLayout.h; sourceTree = "<group>"; };
 		CEA116202C5278F8009D6FB3 /* XZMLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZMLayout.m; sourceTree = "<group>"; };
 		CEA116242C527BF5009D6FB3 /* JobsBlock_Ex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBlock_Ex.h; sourceTree = "<group>"; };
+		CEB4B16D2C5A39EA00831085 /* JobsStepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsStepView.h; sourceTree = "<group>"; };
+		CEB4B16E2C5A39EA00831085 /* JobsStepView.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JobsStepView.jpg; sourceTree = "<group>"; };
+		CEB4B16F2C5A39EA00831085 /* JobsStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsStepView.m; sourceTree = "<group>"; };
 		CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "CONTACT US.xcassets"; sourceTree = "<group>"; };
 		CEC01AAE2C48AF7D0069C91A /* MY FAV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "MY FAV.xcassets"; sourceTree = "<group>"; };
 		CEC01AAF2C48AF950069C91A /* BANK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BANK.xcassets; sourceTree = "<group>"; };
@@ -3674,6 +3678,16 @@
 				CEA116242C527BF5009D6FB3 /* JobsBlock_Ex.h */,
 			);
 			path = JobsBlock_Ex;
+			sourceTree = "<group>";
+		};
+		CEB4B1702C5A39EA00831085 /* JobsStepView */ = {
+			isa = PBXGroup;
+			children = (
+				CEB4B16D2C5A39EA00831085 /* JobsStepView.h */,
+				CEB4B16E2C5A39EA00831085 /* JobsStepView.jpg */,
+				CEB4B16F2C5A39EA00831085 /* JobsStepView.m */,
+			);
+			path = JobsStepView;
 			sourceTree = "<group>";
 		};
 		CEC01AB42C48AFFE0069C91A /* old */ = {
@@ -8579,6 +8593,7 @@
 		CECE80B12C4512BF00764AF5 /* JobsMixFunc */ = {
 			isa = PBXGroup;
 			children = (
+				CEB4B1702C5A39EA00831085 /* JobsStepView */,
 				CECE7F292C4512BF00764AF5 /* 播放器控制层 */,
 				CECE7F322C4512BF00764AF5 /* 分享弹窗 */,
 				CECE7F362C4512BF00764AF5 /* 广告或者公示弹出框 */,
@@ -14032,6 +14047,7 @@
 				CECE7E8A2C450E5B00764AF5 /* HTTPDynamicFileResponse.m in Sources */,
 				CECE7E892C450E5B00764AF5 /* HTTPDataResponse.m in Sources */,
 				CECE87342C45140000764AF5 /* NSString+MIME.m in Sources */,
+				CEB4B1722C5A39EA00831085 /* JobsStepView.m in Sources */,
 				CECE85CB2C4513CE00764AF5 /* CJTextField.m in Sources */,
 				CECE855B2C4513CE00764AF5 /* NSObject+Swizzling.m in Sources */,
 				CECE85B72C4513CE00764AF5 /* UITableView+Expand.m in Sources */,

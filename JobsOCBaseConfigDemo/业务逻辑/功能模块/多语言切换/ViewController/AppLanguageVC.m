@@ -192,7 +192,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_tableView) {
         @jobs_weakify(self)
         _tableView = UITableView.new;
-        [self dataLinkByTableView:_tableView];
+        _tableView.dataLink(self);
         _tableView.backgroundColor = JobsWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.showsVerticalScrollIndicator = NO;

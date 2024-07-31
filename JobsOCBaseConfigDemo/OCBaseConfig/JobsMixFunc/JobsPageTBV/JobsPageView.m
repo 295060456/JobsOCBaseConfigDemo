@@ -79,7 +79,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.scrollEnabled = NO;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
-        [self dataLinkByTableView:_tableView];
+        _tableView.dataLink(self);
         _tableView.tableFooterView = UIView.new;
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         

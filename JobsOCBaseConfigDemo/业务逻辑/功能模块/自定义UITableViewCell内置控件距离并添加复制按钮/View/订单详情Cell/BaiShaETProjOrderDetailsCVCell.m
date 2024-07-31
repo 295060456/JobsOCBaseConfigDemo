@@ -139,7 +139,7 @@ heightForFooterInSection:(NSInteger)section{
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.initWithStylePlain;
-        [self dataLinkByTableView:_tableView];
+        _tableView.dataLink(self);
         _tableView.scrollEnabled = NO;
         _tableView.backgroundColor = JobsWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

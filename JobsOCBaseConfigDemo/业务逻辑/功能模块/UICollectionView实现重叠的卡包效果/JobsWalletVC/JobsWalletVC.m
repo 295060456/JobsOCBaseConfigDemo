@@ -189,7 +189,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                        withReuseIdentifier:NSStringFromClass(TMSWalletCollectionReusableView.class)];
         }
 
-        [self dataLinkByCollectionView:_collectionView];
+        _collectionView.dataLink(self);
         if (@available(iOS 11.0, *)) {
             _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }

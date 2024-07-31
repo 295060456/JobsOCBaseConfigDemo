@@ -12,15 +12,6 @@
 
 @implementation NSObject (DataBinding)
 
--(void)dataLinkByTableView:(UITableView *)tableView{
-    tableView.delegate = self;
-    tableView.dataSource = self;
-}
-
--(void)dataLinkByCollectionView:(UICollectionView *)collectionView{
-    collectionView.delegate = self;
-    collectionView.dataSource = self;
-}
 #pragma mark —— UIViewModelOthersProtocol// requestParams
 #pragma mark —— @property(nonatomic,strong,nullable)id __block data;/// 绑定的数据源，数据类型id
 JobsKey(_data)

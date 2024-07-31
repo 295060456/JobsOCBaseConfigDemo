@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_END
      _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero
                                           collectionViewLayout:self.layout];
      _collectionView.backgroundColor = self.bgCor;
-     [self dataLinkByCollectionView:_collectionView];
+     _collectionView.dataLink(self);
      _collectionView.showsVerticalScrollIndicator = NO;
      
      [_collectionView RegisterClass];
@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_END
          _tableView.showsVerticalScrollIndicator = NO;
          _tableView.delegate = self;
          _tableView.dataSource = self;
-         [self dataLinkByTableView:_tableView];
+         _tableView.dataLink(self);
          _tableView.mj_header = self.mjRefreshGifHeader;
          _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
          _tableView.mj_footer = self.mjRefreshAutoGifFooter;

@@ -22,9 +22,6 @@ UITableViewDelegate
 ,UIViewModelOthersProtocol
 >
 
--(void)dataLinkByTableView:(UITableView *)tableView;
--(void)dataLinkByCollectionView:(UICollectionView *)collectionView;
-
 @end
 
 NS_ASSUME_NONNULL_END

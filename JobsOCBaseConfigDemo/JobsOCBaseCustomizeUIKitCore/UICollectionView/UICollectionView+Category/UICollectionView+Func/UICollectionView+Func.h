@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UICollectionView (Func)
 
+-(jobsByIDBlock _Nonnull)dataLink;
 -(UICollectionViewCell *)didSelectItemAtIndexPath:(NSIndexPath *)indexPath
                           collectionViewCellClass:(Class _Nullable)collectionViewCellClass;
 -(UICollectionViewCell *)didDeselectItemAtIndexPath:(NSIndexPath *)indexPath

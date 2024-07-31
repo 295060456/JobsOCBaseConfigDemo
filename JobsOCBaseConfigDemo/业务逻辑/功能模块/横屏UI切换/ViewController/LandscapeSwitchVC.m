@@ -290,7 +290,7 @@ insetForSectionAtIndex:(NSInteger)section {
         _collectionView.backgroundColor = JobsGreenColor;//RGB_SAMECOLOR(246);
         _collectionView.layoutSubviewsRectCorner = UIRectCornerTopLeft | UIRectCornerTopRight;
         _collectionView.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(20), JobsWidth(20));
-        [self dataLinkByCollectionView:_collectionView];
+        _collectionView.dataLink(self);
         
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;

@@ -208,7 +208,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
         // UITableViewStyleGrouped 取消悬停效果
         _tableView = UITableView.initWithStylePlain;
         _tableView.backgroundColor = HEXCOLOR(0x242A37);
-        [self dataLinkByTableView:_tableView];
+        _tableView.dataLink(self);
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.estimatedSectionFooterHeight = 0;
