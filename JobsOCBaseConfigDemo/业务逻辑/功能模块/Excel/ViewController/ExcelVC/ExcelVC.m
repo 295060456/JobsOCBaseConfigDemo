@@ -343,28 +343,28 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJClassData")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(@"正常")];
             viewModel.cls = ZMJClassDataVC.class;
             [_dataMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJTimeable")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(@"正常")];
             viewModel.cls = ZMJTimeableVC.class;
             [_dataMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJSchedule")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(@"正常")];
             viewModel.cls = ZMJScheduleVC.class;
             [_dataMutArr addObject:viewModel];
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJGanttList")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
+                                                           attributeSubTitle:JobsInternationalization(@"有崩溃，需要修复")];
             viewModel.cls = ZMJGanttListVC.class;
             [_dataMutArr addObject:viewModel];
         }

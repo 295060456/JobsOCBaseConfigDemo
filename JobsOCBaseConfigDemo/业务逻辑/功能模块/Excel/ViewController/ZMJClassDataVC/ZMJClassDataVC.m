@@ -65,8 +65,7 @@
     
     self.makeNavBarConfig(nil,nil);
     self.navBar.alpha = 1;
-    
-    [self.spreadsheetView flashScrollIndicators];
+    self.spreadsheetView.alpha = 1;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -175,11 +174,12 @@
             make.left.right.bottom.equalTo(self.view);
             make.top.equalTo(self.navBar.mas_bottom);
         }];
-        if (@available(iOS 11.0, *)) {
-            _spreadsheetView.frame = self.view.safeAreaLayoutGuide.layoutFrame;
-        } else {
-            _spreadsheetView.frame = self.view.bounds;
-        }
+//        if (@available(iOS 11.0, *)) {
+//            _spreadsheetView.frame = self.view.safeAreaLayoutGuide.layoutFrame;
+//        } else {
+//            _spreadsheetView.frame = self.view.bounds;
+//        }
+        [_spreadsheetView flashScrollIndicators];
     }return _spreadsheetView;
 }
 
@@ -215,6 +215,5 @@
         }].mutableCopy;
     }return _original_excelData;
 }
-
 
 @end
