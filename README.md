@@ -4464,113 +4464,411 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 27、<font id=创建UICollectionView color=red>创建`UICollectionView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* ```objective-c
-  @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
-  @property(nonatomic,strong)BaseCollectionView *collectionView;
-  ```
-
+* 设置为NO，使得`UICollectionView`只能上拉，不能下拉
+  
   ```objective-c
-  -(UICollectionViewFlowLayout *)layout{
-      if (!_layout) {
-          _layout = UICollectionViewFlowLayout.new;
-          _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-      }return _layout;
-  }
-  
-  -(BaseCollectionView *)collectionView{
-      if (!_collectionView) {
-          @jobs_weakify(self)
-          _collectionView = [BaseCollectionView.alloc initWithFrame:CGRectZero
-                                               collectionViewLayout:self.layout];
-          _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
-          _collectionView.dataLink(self);
-          _collectionView.showsVerticalScrollIndicator = NO;
-          _collectionView.showsHorizontalScrollIndicator = NO;
-          _collectionView.bounces = NO;
-          
-          [_collectionView registerCollectionViewClass];
-          [_collectionView registerCollectionViewCellClass:MSMineView6CVCell.class];
-          
-          {
-              MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-              refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-              refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-              refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-              refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-              refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-              refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
-                  @jobs_strongify(self)
-                  [self feedbackGenerator];//震动反馈
-                  return nil;
-              };
-  
-              MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-              refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-              refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
-              refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
-              refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
-              refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
-              refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
-                  @jobs_strongify(self)
-                  return nil;
-              };
-  
-              {
-                self.refreshConfigHeader = refreshConfigHeader;
-                self.refreshConfigFooter = refreshConfigFooter;
-  
-                _collectionView.mj_header = self.mjRefreshNormalHeader;
-                _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
-              }
-  
-            // 如果需要支持lottie动画
-            //{
-            //               // 赋值
-            //  self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
-            //  self.refreshConfigFooter = refreshConfigFooter;//数据赋值
-            //  // 用值
-            //  _collectionView.mj_header = self.lotAnimMJRefreshHeader;
-            //}
-          }
-        
-  //          {
-  //            
-  //            NSArray *classArray = @[
-  //                                    DDCollectionViewCell_Style2.class,
-  //                                    DDCollectionViewCell_Style3.class,
-  //                                    DDCollectionViewCell_Style4.class,
-  //                                    ];
-  //            NSArray *sizeArray = @[
-  //                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style2 cellSizeWithModel:nil]],
-  //                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeWithModel:nil]],
-  //                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeWithModel:nil]]
-  //                                   ];
-  //            
-  //            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:classArray
-  //                                                                              cellSizeArray:sizeArray
-  //                                                                         animatedCountArray:@[@(1),@(1),@(1)]];
-  //            
-  //            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
-  //                                                   viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeWithModel:nil]
-  //                                                  toSection:0];
-  //            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
-  //                                                   viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeWithModel:nil]
-  //                                                  toSection:2];
-  //            
-  //            _collectionView.tabAnimated.containNestAnimation = YES;
-  //            _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
-  //            _collectionView.tabAnimated.canLoadAgain = YES;
-  //            [_collectionView tab_startAnimation];   // 开启动画
-  //        }
-          
-          [self addSubview:_collectionView];
-          [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.top.left.right.equalTo(self);
-              make.height.mas_equalTo(JobsWidth(102));
-          }];
-      }return _collectionView;
-  }
+  _collectionView.bounces = NO;
   ```
+  
+* `UICollectionView`必须执行注册机制。当且仅当用字符串获取`UICollectionViewCell`的时候才开辟内存
+  
+  ```objective-c
+  [_collectionView registerCollectionViewClass];
+  [_collectionView registerCollectionViewCellClass:MSMineView6CVCell.class];
+  ```
+  
+* 增加**`UICollectionView`** 的可滚动区域（`contentInset`）
+  
+  ```objective-c
+  _collectionView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
+  ```
+  
+* 支持水平方向的<u>左拉加载</u>和<u>右拉刷新</u> [**XZMRefresh**](https://github.com/xiezhongmin/XZMRefresh)
+  
+    ```ruby
+    pod 'XZMRefresh' # https://github.com/xiezhongmin/XZMRefresh
+    ```
+  
+    ```objective-c
+    #if __has_include(<XZMRefresh/XZMRefresh.h>)
+    #import <XZMRefresh/XZMRefresh.h>
+    #else
+    #import "XZMRefresh.h"
+    #endif
+    ```
+  
+  ```objective-c
+  [self layoutIfNeeded];
+  @jobs_weakify(self)
+  [_collectionView xzm_addNormalHeaderWithTarget:self
+                                          action:selectorBlocks(^id(id target, id arg) {
+      NSLog(@"KKK加载新的数据，参数: %@", arg);
+      // 模拟延迟加载数据，因此2秒后才调用）
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
+                     dispatch_get_main_queue(), ^{
+          @jobs_strongify(self)
+          [self->_collectionView reloadData];
+          [self->_collectionView.xzm_header endRefreshing];// 结束刷新
+      });return nil;
+  }, nil, self)];
+  
+  [_collectionView xzm_addNormalFooterWithTarget:self
+                                          action:selectorBlocks(^id(id target, id arg) {
+      NSLog(@"SSSS加载新的数据，参数: %@", arg);
+      @jobs_strongify(self)
+      // 模拟延迟加载数据，因此2秒后才调用）
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
+                     dispatch_get_main_queue(), ^{
+          @jobs_strongify(self)
+          [self->_collectionView reloadData];
+          [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
+      });return nil;
+  }, nil, self)];
+  
+  [_collectionView.xzm_header beginRefreshing];
+  ```
+  
+* 支持垂直方向上的<u>上拉加载</u>和<u>下拉刷新</u> [**MJRefresh**](https://github.com/CoderMJLee/MJRefresh) 
+  
+  ```objective-c
+  pod 'MJRefresh' # https://github.com/CoderMJLee/MJRefresh
+  ```
+  
+  ```objective-c
+  MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+  refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+  refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+  refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+  refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+  refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+  @jobs_weakify(self)
+  refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+      @jobs_strongify(self)
+      [self feedbackGenerator];//震动反馈
+      return nil;
+  };
+  ```
+  
+  ```objective-c
+  MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+  refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+  refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+  refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+  refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+  refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+  @jobs_weakify(self)
+  refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+      @jobs_strongify(self)
+      return nil;
+  };
+  ```
+  
+  ```objective-c
+  self.refreshConfigHeader = refreshConfigHeader;
+  self.refreshConfigFooter = refreshConfigFooter;
+  
+  _collectionView.mj_header = self.mjRefreshNormalHeader;
+  _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+  ```
+  
+* 支持[**lottie**](https://github.com/airbnb/lottie-ios)动画
+  
+  ```ruby
+  pod 'lottie-ios', '~> 2.5.3' # 这是OC终极版本 https://github.com/airbnb/lottie-ios
+  ```
+  
+  ```objective-c
+  #if __has_include(<lottie-ios/Lottie.h>)
+  #import <lottie-ios/Lottie.h>
+  #else
+  #import "Lottie.h"
+  #endif
+  ```
+  
+  ```objective-c
+  self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
+  self.refreshConfigFooter = refreshConfigFooter;//数据赋值
+  _collectionView.mj_header = self.lotAnimMJRefreshHeader;
+  ```
+  
+* **`UICollectionView`**的无数据占位方案
+  
+  * 静态图 [**LYEmptyView**](https://github.com/dev-liyang/LYEmptyView)
+  
+    ```ruby
+    pod 'LYEmptyView' # https://github.com/dev-liyang/LYEmptyView iOS一行代码集成空白页面占位图(无数据、无网络占位图)
+    ```
+  
+    ```objective-c
+    #if __has_include(<LYEmptyView/LYEmptyViewHeader.h>)
+    #import <LYEmptyView/LYEmptyViewHeader.h>
+    #else
+    #import "LYEmptyViewHeader.h"
+    #endif
+    ```
+  
+    ```objective-c
+    _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
+                                                             titleStr:JobsInternationalization(@"暂无数据")
+                                                            detailStr:JobsInternationalization(@"")];
+    
+    _collectionView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
+    _collectionView.ly_emptyView.contentViewOffset = JobsWidth(-180);
+    _collectionView.ly_emptyView.titleLabFont = UIFontWeightMediumSize(16);
+    ```
+  
+  * 动画 [**TABAnimated**](https://github.com/tigerAndBull/TABAnimated)
+  
+    ```ruby
+    pod 'TABAnimated' # https://github.com/tigerAndBull/TABAnimated
+    ```
+  
+    ```objective-c
+    #if __has_include(<TABAnimated/TABAnimated.h>)
+    #import <TABAnimated/TABAnimated.h>
+    #else
+    #import "TABAnimated.h"
+    #endif
+    ```
+  
+    ```objective-c
+    NSArray *classArray = @[
+                            DDCollectionViewCell_Style2.class,
+                            DDCollectionViewCell_Style3.class,
+                            DDCollectionViewCell_Style4.class,
+                            ];
+    NSArray *sizeArray = @[
+                           [NSValue valueWithCGSize:[DDCollectionViewCell_Style2 cellSizeWithModel:nil]],
+                           [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeWithModel:nil]],
+                           [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeWithModel:nil]]
+                           ];
+    
+    _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:classArray
+                                                                      cellSizeArray:sizeArray
+                                                                 animatedCountArray:@[@(1),@(1),@(1)]];
+    
+    [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+                                           viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeWithModel:nil]
+                                          toSection:0];
+    [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+                                           viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeWithModel:nil]
+                                          toSection:2];
+    
+    _collectionView.tabAnimated.containNestAnimation = YES;
+    _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+    _collectionView.tabAnimated.canLoadAgain = YES;
+    [_collectionView tab_startAnimation];   // 开启动画
+    ```
+  
+* 关于**`UICollectionViewFlowLayout`**
+
+  * `UICollectionView` 的一个布局对象，用于定义网格布局
+
+  * ```objective-c
+    UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;  // 设置滚动方向
+    layout.itemSize = CGSizeMake(100, 100);  // 设置单元格尺寸
+    layout.minimumLineSpacing = 10;  // 设置行间距
+    layout.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
+    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
+    ```
+
+  * 在`UICollectionViewFlowLayout`和`UICollectionViewDelegateFlowLayout`协议方法中设置布局属性时，<font color=red>**`UICollectionViewDelegateFlowLayout`协议方法的优先级更高**</font>。也就是说，如果你同时在`UICollectionViewFlowLayout`对象和`UICollectionViewDelegateFlowLayout`方法中设置了布局属性，集合视图将优先使用`UICollectionViewDelegateFlowLayout`方法中提供的值
+
+* <details id="UICollectionView的完整调用">
+   <summary><strong>UICollectionView的完整调用</strong></summary>
+   
+   ```objective-c
+   @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
+   @property(nonatomic,strong)BaseCollectionView *collectionView;
+   ```
+   
+   ```objective-c
+   -(BaseCollectionView *)collectionView{
+       if (!_collectionView) {
+           @jobs_weakify(self)
+           _collectionView = [BaseCollectionView.alloc initWithFrame:CGRectZero
+                                                collectionViewLayout:self.layout];
+           _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
+           _collectionView.dataLink(self);
+           _collectionView.showsVerticalScrollIndicator = NO;
+           _collectionView.showsHorizontalScrollIndicator = NO;
+           _collectionView.bounces = NO;
+           
+           [_collectionView registerCollectionViewClass];
+           [_collectionView registerCollectionViewCellClass:MSMineView6CVCell.class];
+           
+           {
+               MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+               refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+               refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+               refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+               refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+               refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+               refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+                   @jobs_strongify(self)
+                   [self feedbackGenerator];//震动反馈
+                   return nil;
+               };
+   
+               MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+               refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
+               refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
+               refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
+               refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
+               refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
+               refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+                   @jobs_strongify(self)
+                   return nil;
+               };
+   
+               {
+                   self.refreshConfigHeader = refreshConfigHeader;
+                   self.refreshConfigFooter = refreshConfigFooter;
+   
+                   _collectionView.mj_header = self.mjRefreshNormalHeader;
+                   _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+               }
+   
+              /// 如果需要支持lottie动画
+               {
+                   self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
+                   self.refreshConfigFooter = refreshConfigFooter;//数据赋值
+                   _collectionView.mj_header = self.lotAnimMJRefreshHeader;
+               }
+           }
+         
+           {
+               NSArray *classArray = @[
+                                       DDCollectionViewCell_Style2.class,
+                                       DDCollectionViewCell_Style3.class,
+                                       DDCollectionViewCell_Style4.class,
+                                       ];
+               NSArray *sizeArray = @[
+                                      [NSValue valueWithCGSize:[DDCollectionViewCell_Style2 cellSizeWithModel:nil]],
+                                      [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeWithModel:nil]],
+                                      [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeWithModel:nil]]
+                                      ];
+   
+               _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:classArray
+                                                                                 cellSizeArray:sizeArray
+                                                                            animatedCountArray:@[@(1),@(1),@(1)]];
+   
+               [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+                                                      viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeWithModel:nil]
+                                                     toSection:0];
+               [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+                                                      viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeWithModel:nil]
+                                                     toSection:2];
+   
+               _collectionView.tabAnimated.containNestAnimation = YES;
+               _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+               _collectionView.tabAnimated.canLoadAgain = YES;
+               [_collectionView tab_startAnimation];   // 开启动画
+           }
+           
+           [self addSubview:_collectionView];
+           [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+               make.top.left.right.equalTo(self);
+               make.height.mas_equalTo(JobsWidth(102));
+           }];
+       }return _collectionView;
+   }
+   ```
+   
+   ```objective-c
+   UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
+   layout.scrollDirection = UICollectionViewScrollDirectionVertical;  // 设置滚动方向
+   layout.itemSize = CGSizeMake(100, 100);  // 设置单元格尺寸
+   layout.minimumLineSpacing = 10;  // 设置行间距
+   layout.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
+   layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
+   ```
+   
+   ```objective-c
+   #pragma mark - UICollectionViewDataSource
+   - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+       return 1;
+   }
+   
+   - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
+                                      cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+       JobsImageNumberViewCVCell *cell = [JobsImageNumberViewCVCell cellWithCollectionView:collectionView
+                                                                      forIndexPath:indexPath];
+       [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
+       return cell;
+   }
+   
+   - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
+        numberOfItemsInSection:(NSInteger)section {
+       return self.dataMutArr.count;
+   }
+   #pragma mark —— UICollectionViewDelegate
+   //允许选中时，高亮
+   -(BOOL)collectionView:(UICollectionView *)collectionView
+   shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+       NSLog(@"%s", __FUNCTION__);
+       return YES;
+   }
+   // 高亮完成后回调
+   -(void)collectionView:(UICollectionView *)collectionView
+   didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+       NSLog(@"%s", __FUNCTION__);
+   }
+   // 由高亮转成非高亮完成时的回调
+   -(void)collectionView:(UICollectionView *)collectionView
+   didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+       NSLog(@"%s", __FUNCTION__);
+   }
+   // 设置是否允许选中
+   -(BOOL)collectionView:(UICollectionView *)collectionView
+   shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+       NSLog(@"%s", __FUNCTION__);
+       return YES;
+   }
+   // 设置是否允许取消选中
+   -(BOOL)collectionView:(UICollectionView *)collectionView
+   shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+       NSLog(@"%s", __FUNCTION__);
+       return YES;
+   }
+   // 选中操作
+   - (void)collectionView:(UICollectionView *)collectionView
+   didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+       NSLog(@"%s", __FUNCTION__);
+   }
+   // 取消选中操作
+   -(void)collectionView:(UICollectionView *)collectionView
+   didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+       NSLog(@"%s", __FUNCTION__);
+   }
+   #pragma mark —— UICollectionViewDelegateFlowLayout
+   - (CGSize)collectionView:(UICollectionView *)collectionView
+                     layout:(UICollectionViewLayout *)collectionViewLayout
+     sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+       return [JobsImageNumberViewCVCell cellSizeWithModel:self.dataMutArr[indexPath.row]];
+   }
+   /// 定义的是元素垂直之间的间距
+   - (CGFloat)collectionView:(UICollectionView *)collectionView
+                      layout:(UICollectionViewLayout *)collectionViewLayout
+   minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+       return 0;
+   }
+   /// 定义的是元素水平之间的间距。Api自动计算一行的Cell个数，只有当间距小于此定义的最小值时才会换行，最小执行单元是Section（每个section里面的样式是统一的）
+   - (CGFloat)collectionView:(UICollectionView *)collectionView
+                      layout:(UICollectionViewLayout *)collectionViewLayout
+   minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+       return 0;
+   }
+   ///内间距
+   -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                          layout:(UICollectionViewLayout*)collectionViewLayout
+          insetForSectionAtIndex:(NSInteger)section {
+       return UIEdgeInsetsMake(0, 0, 0, 0);
+   }
+   ```
+   
+   </details>
 
 ### 28、<font color=red id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -4715,7 +5013,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [_tableView tab_startAnimation];   // 开启动画
     ```
 
-* 垂直方向的：上拉加载和下拉刷新 [**MJRefresh**](https://github.com/CoderMJLee/MJRefresh)
+* 支持垂直方向的<u>上拉加载</u>和<u>下拉刷新</u> [**MJRefresh**](https://github.com/CoderMJLee/MJRefresh)
 
   ```ruby
   pod 'MJRefresh' # https://github.com/CoderMJLee/MJRefresh NO_SMP 不支持横向刷新
@@ -4759,7 +5057,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
   ```
 
-* 水平方向的：左拉加载和右拉刷新 [**XZMRefresh**](https://github.com/xiezhongmin/XZMRefresh)
+* 支持水平方向的<u>左拉加载</u>和<u>右拉刷新</u> [**XZMRefresh**](https://github.com/xiezhongmin/XZMRefresh)
 
   ```ruby
   pod 'XZMRefresh' # https://github.com/xiezhongmin/XZMRefresh
@@ -4774,6 +5072,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 
   ```objective-c
+  [self layoutIfNeeded];
   @jobs_weakify(self)
   [_tableView xzm_addNormalHeaderWithTarget:self
                                           action:selectorBlocks(^id(id target, id arg) {
@@ -5443,6 +5742,74 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    ```
 
 #### 28.3、`UITableViewCell`
+
+* `UITableViewCell`.<font color=red>**registerClass**</font>
+
+  * 使用`registerClass`注册`UITableViewCell`与直接创建`UITableViewCell`实例之间的**主要区别在于单元格的重用机制**
+
+  * **生命周期**
+
+    * **注册阶段**
+
+      当调用 `registerClass` 方法时，`UITableView` 会提前为指定的重用标识符（`CellIdentifier`）注册一个 `UITableViewCell` 类。这样，当需要显示单元格时，`UITableView` 可以快速创建单元格实例。
+
+      ```objective-c
+      [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"CellIdentifier"];
+      ```
+
+    * **创建阶段**
+
+      ```objective-c
+      UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier"];
+      if (cell == nil) {
+          cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellIdentifier"];
+      ```
+
+      - 在 `tableView:cellForRowAtIndexPath:` 方法中，当需要显示某一行时，调用 `dequeueReusableCellWithIdentifier:` 方法
+      - 如果有可重用的单元格存在（即之前已经创建并离开屏幕的单元格），则返回该重用单元格
+      - 如果没有可重用的单元格存在，`UITableView` 会使用 `registerClass` 注册的类来创建一个新的单元格实例
+
+    * **配置阶段**
+
+      - 调用 `cellForRowAtIndexPath:` 方法时，获取重用或新创建的单元格实例，并配置其内容
+
+    * **显示阶段**
+
+      - 将配置好的单元格显示在屏幕上
+
+    * **重用阶段**
+
+      - 当单元格滑出屏幕时，系统会将其放入重用队列，以便后续使用
+
+* 示例代码
+
+  * 使用 **registerClass** 注册 **`UITableViewCell`**
+
+    ```objective-c
+    - (void)viewDidLoad {
+        [super viewDidLoad];
+        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
+    }
+    
+    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+        cell.textLabel.text = [NSString stringWithFormat:@"Row %ld", (long)indexPath.row];
+        return cell;
+    }
+    ```
+
+  * 不使用 **registerClass** 直接创建 **`UITableViewCell`**
+
+    ```objective-c
+    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellIdentifier"];
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"Row %ld", (long)indexPath.row];
+        return cell;
+    }
+    ```
 
 * 编辑模式
 
