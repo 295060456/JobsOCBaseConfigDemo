@@ -391,31 +391,36 @@ UITableViewCellProtocol_synthesize
     if (model) {
         self.viewModel = model;
         /**
-         - NSString -
+         将某个字符串进行限定字符个数，二次包装以后对外输出。【截取完了以后添加替换字符】
          -(NSString *)omitByReplaceStr:(NSString *_Nullable)replaceStr
                        replaceStrLenth:(NSInteger)replaceStrLenth
                          lineBreakMode:(NSLineBreakMode)lineBreakMode
                                  limit:(NSInteger)limit;
          */
-        if (model.textModel.attributedText) {
-            self.textLabel.attributedText = model.textModel.attributedText;
-        }else{
-            self.textLabel.text = [NSString stringWithFormat:@"%@",model.textModel.text];
-            self.textLabel.textColor = self.viewModel.textModel.textCor;
-            self.textLabel.font = self.viewModel.textModel.font;
+        if(self.textLabel){
+            if (model.textModel.attributedText) {
+                self.textLabel.attributedText = model.textModel.attributedText;
+            }else{
+                self.textLabel.text = [NSString stringWithFormat:@"%@",model.textModel.text];
+                self.textLabel.textColor = self.viewModel.textModel.textCor;
+                self.textLabel.font = self.viewModel.textModel.font;
+            }
+            self.textLabel.numberOfLines = 0;
         }
         
-        if (model.subTextModel.attributedText) {
-            self.detailTextLabel.attributedText = model.subTextModel.attributedText;
-        }else{
-            self.detailTextLabel.text = [NSString stringWithFormat:@"%@",model.subTextModel.text];
-            self.detailTextLabel.textColor = self.viewModel.subTextModel.textCor;
-            self.detailTextLabel.font = self.viewModel.subTextModel.font;
-            self.detailTextLabel.width = UITableViewCellSubTitleWidth;
-            self.detailTextLabel.makeLabelByShowingType(UILabelShowingType_05);
+        if(self.detailTextLabel){
+            if (model.subTextModel.attributedText) {
+                self.detailTextLabel.attributedText = model.subTextModel.attributedText;
+            }else{
+                self.detailTextLabel.text = [NSString stringWithFormat:@"%@",model.subTextModel.text];
+                self.detailTextLabel.textColor = self.viewModel.subTextModel.textCor;
+                self.detailTextLabel.font = self.viewModel.subTextModel.font;
+                self.detailTextLabel.width = UITableViewCellSubTitleWidth;
+                self.detailTextLabel.makeLabelByShowingType(UILabelShowingType_05);
+            }
+            self.detailTextLabel.numberOfLines = 0;
         }
-        self.textLabel.numberOfLines = 0;
-        self.detailTextLabel.numberOfLines = 0;
+        
         self.imageView.image = self.viewModel.image;
     }
 }

@@ -51,7 +51,6 @@
 		CE7F39722C4FDAF900431A5D /* JobsMenuSubView@4.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39692C4FDAF900431A5D /* JobsMenuSubView@4.m */; };
 		CE7F39732C4FDAF900431A5D /* JobsMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F396D2C4FDAF900431A5D /* JobsMenuView.m */; };
 		CE7F39772C4FDB9B00431A5D /* FMDatabase+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */; };
-		CE85079B2C58F53300FA4DFC /* JobsMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8507992C58F53200FA4DFC /* JobsMutableArray.m */; };
 		CE8877A92C50B3090085948C /* JobsRichTextConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877A72C50B3090085948C /* JobsRichTextConfig.m */; };
 		CE8877AC2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE8877AA2C50B3DB0085948C /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		CE8877BD2C51F1FF0085948C /* JobsNavBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */; };
@@ -1210,8 +1209,6 @@
 		CE7F396D2C4FDAF900431A5D /* JobsMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsMenuView.m; sourceTree = "<group>"; };
 		CE7F39742C4FDB9B00431A5D /* FMDatabase+Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+Manager.h"; sourceTree = "<group>"; };
 		CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+Manager.m"; sourceTree = "<group>"; };
-		CE8507982C58F53200FA4DFC /* JobsMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsMutableArray.h; sourceTree = "<group>"; };
-		CE8507992C58F53200FA4DFC /* JobsMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsMutableArray.m; sourceTree = "<group>"; };
 		CE8877A62C50B3090085948C /* JobsRichTextConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsRichTextConfig.h; sourceTree = "<group>"; };
 		CE8877A72C50B3090085948C /* JobsRichTextConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsRichTextConfig.m; sourceTree = "<group>"; };
 		CE8877AB2C50B3DB0085948C /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
@@ -3617,15 +3614,6 @@
 				CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */,
 			);
 			path = "FMDatabase+Manager";
-			sourceTree = "<group>";
-		};
-		CE85079A2C58F53200FA4DFC /* JobsMutableArray */ = {
-			isa = PBXGroup;
-			children = (
-				CE8507982C58F53200FA4DFC /* JobsMutableArray.h */,
-				CE8507992C58F53200FA4DFC /* JobsMutableArray.m */,
-			);
-			path = JobsMutableArray;
 			sourceTree = "<group>";
 		};
 		CE8877A82C50B3090085948C /* JobsRichTextConfig */ = {
@@ -8867,7 +8855,6 @@
 		CECE821F2C4513CD00764AF5 /* NSMutableArray */ = {
 			isa = PBXGroup;
 			children = (
-				CE85079A2C58F53200FA4DFC /* JobsMutableArray */,
 				CECE821E2C4513CD00764AF5 /* NSMutableArray+Extra */,
 			);
 			path = NSMutableArray;
@@ -13650,7 +13637,6 @@
 				CECE7C472C450C5000764AF5 /* Douyin_ZFPlayerVC@2.m in Sources */,
 				CECE85AE2C4513CE00764AF5 /* UINavigationController+SafeTransition.m in Sources */,
 				CECE855C2C4513CE00764AF5 /* NSObject+Time.m in Sources */,
-				CE85079B2C58F53300FA4DFC /* JobsMutableArray.m in Sources */,
 				CECE816F2C4512BF00764AF5 /* UITabBar+TLAnimation.m in Sources */,
 				CECE85C22C4513CE00764AF5 /* UITableViewCell+Margin.m in Sources */,
 				CECE816D2C4512BF00764AF5 /* JobsTabBar.m in Sources */,

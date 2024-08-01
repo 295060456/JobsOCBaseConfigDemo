@@ -125,52 +125,42 @@
         
         if(self.btnMutArr.count){
             if (f == self.btnModelMutArr.count - 1){
-                UILabel *leftLab = UILabel.new;
-                leftLab.backgroundColor = JobsBlackColor;
-                [self addSubview:leftLab];
-                [leftLab mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(btn).offset([self viewSizeWithModel:nil].height / 2);
-                    make.right.equalTo(btn.mas_left);
-                    make.height.mas_equalTo(1);
-                    make.width.mas_equalTo(buttonModel.leftViewWidth);
-                }];
+                [self makeLeftLab:btn buttonModel:buttonModel];
             }else{
-                UILabel *leftLab = UILabel.new;
-                leftLab.backgroundColor = JobsBlackColor;
-                [self addSubview:leftLab];
-                [leftLab mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(btn).offset([self viewSizeWithModel:nil].height / 2);
-                    make.right.equalTo(btn.mas_left);
-                    make.height.mas_equalTo(1);
-                    make.width.mas_equalTo(buttonModel.leftViewWidth);
-                }];
-                
-                UILabel *rightLab = UILabel.new;
-                rightLab.backgroundColor = JobsBlackColor;
-                [self addSubview:rightLab];
-                [rightLab mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(btn).offset([self viewSizeWithModel:nil].height / 2);
-                    make.left.equalTo(btn.mas_right);
-                    make.height.mas_equalTo(1);
-                    make.width.mas_equalTo(buttonModel.rightViewWidth);
-                }];
+                [self makeLeftLab:btn buttonModel:buttonModel];
+                [self makeRightLab:btn buttonModel:buttonModel];
             }
         }else{
-            UILabel *rightLab = UILabel.new;
-            rightLab.backgroundColor = JobsBlackColor;
-            [self addSubview:rightLab];
-            [rightLab mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(btn).offset([self viewSizeWithModel:nil].height / 2);
-                make.left.equalTo(btn.mas_right);
-                make.height.mas_equalTo(1);
-                make.width.mas_equalTo(buttonModel.rightViewWidth);
-            }];
+            [self makeRightLab:btn buttonModel:buttonModel];
         }
-        
         
         [self.btnMutArr addObject:btn];
         f++;
     }
+}
+#pragma mark —— 一些私有方法
+-(void)makeRightLab:(UIButton *)btn buttonModel:(UIButtonModel *)buttonModel{
+    UILabel *rightLab = UILabel.new;
+    rightLab.backgroundColor = self.rightLabBgCor;
+    [self addSubview:rightLab];
+    [rightLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(btn.imageView);
+        make.left.equalTo(btn.mas_right);
+        make.height.mas_equalTo(1);
+        make.width.mas_equalTo(buttonModel.rightViewWidth);
+    }];
+}
+
+-(void)makeLeftLab:(UIButton *)btn buttonModel:(UIButtonModel *)buttonModel{
+    UILabel *leftLab = UILabel.new;
+    leftLab.backgroundColor = self.leftLabBgCor;
+    [self addSubview:leftLab];
+    [leftLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(btn.imageView);
+        make.right.equalTo(btn.mas_left);
+        make.height.mas_equalTo(1);
+        make.width.mas_equalTo(buttonModel.leftViewWidth);
+    }];
 }
 #pragma mark —— lazyLoad
 -(NSMutableArray<BaseButton *> *)btnMutArr{
@@ -185,5 +175,16 @@
     }return _btnModelMutArr;
 }
 
+-(UIColor *)leftLabBgCor{
+    if(!_leftLabBgCor){
+        _leftLabBgCor = JobsWhiteColor;
+    }return _leftLabBgCor;
+}
+
+-(UIColor *)rightLabBgCor{
+    if(!_rightLabBgCor){
+        _rightLabBgCor = JobsWhiteColor;
+    }return _rightLabBgCor;
+}
 
 @end

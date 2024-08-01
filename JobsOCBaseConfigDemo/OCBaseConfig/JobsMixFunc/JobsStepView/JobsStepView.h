@@ -11,6 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsStepView : BaseView
 
+@property(nonatomic,strong,null_resettable)UIColor *leftLabBgCor;
+@property(nonatomic,strong,null_resettable)UIColor *rightLabBgCor;
+
 @end
 
 NS_ASSUME_NONNULL_END

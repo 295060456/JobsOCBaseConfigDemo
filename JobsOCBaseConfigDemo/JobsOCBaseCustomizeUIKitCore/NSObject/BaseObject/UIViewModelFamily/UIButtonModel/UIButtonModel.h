@@ -21,40 +21,40 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat btn_width;
 @property(nonatomic,assign)CGFloat btn_height;
 #pragma mark —— #import "UIButton+UI.h" 针对初始化方法的统一配置
-@property(nonatomic,strong,nullable)UIButtonConfiguration *btnConfiguration;
-@property(nonatomic,strong,nullable)UIBackgroundConfiguration *background;
-@property(nonatomic,assign)UIButtonConfigurationTitleAlignment buttonConfigTitleAlignment;
-@property(nonatomic,assign)NSTextAlignment textAlignment;
-@property(nonatomic,assign)NSTextAlignment subTextAlignment;
-@property(nonatomic,strong,nullable)UIImage *normalImage;
-@property(nonatomic,strong,nullable)UIImage *highlightImage;// = selected_Image
-@property(nonatomic,strong,nullable)NSAttributedString *attributedTitle;
-@property(nonatomic,strong,nullable)NSAttributedString *selectedAttributedTitle;
-@property(nonatomic,strong,nullable)NSAttributedString *attributedSubtitle;
-@property(nonatomic,copy,nullable)NSString *title;
-@property(nonatomic,copy,nullable)NSString *subTitle;
-@property(nonatomic,strong,nullable)UIFont *titleFont;
-@property(nonatomic,strong,nullable)UIFont *subTitleFont;
-@property(nonatomic,strong,nullable)UIColor *titleCor;
-@property(nonatomic,strong,nullable)UIColor *subTitleCor;
-@property(nonatomic,assign)NSLineBreakMode titleLineBreakMode;
-@property(nonatomic,assign)NSLineBreakMode subtitleLineBreakMode;
-@property(nonatomic,strong,nullable)UIColor *baseBackgroundColor;
-@property(nonatomic,strong,nullable)UIImage *backgroundImage;
-@property(nonatomic,assign)CGFloat imagePadding;
-@property(nonatomic,assign)CGFloat titlePadding;
-@property(nonatomic,assign)NSDirectionalRectEdge imagePlacement;
-@property(nonatomic,assign)UIControlContentHorizontalAlignment contentHorizontalAlignment;
-@property(nonatomic,assign)UIControlContentVerticalAlignment contentVerticalAlignment;
-@property(nonatomic,assign)NSDirectionalEdgeInsets contentInsets;
-@property(nonatomic,assign)CGFloat cornerRadiusValue;
-@property(nonatomic,assign)UIRectCorner roundingCorners;// ❤️这个属性如果不是UIRectCornerAllCorners，在某些情况下，按钮会不可见
-@property(nonatomic,assign)CGSize roundingCornersRadii;
-@property(nonatomic,strong,nullable)UIColor *layerBorderCor;
-@property(nonatomic,assign)CGFloat borderWidth;
-@property(nonatomic,strong,nullable)UIAction *primaryAction;
-@property(nonatomic,copy,nullable)JobsSelectorBlock longPressGestureEventBlock;
-@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock clickEventBlock;
+@property(nonatomic,strong,nullable)UIButtonConfiguration *btnConfiguration;/// 来自新Api的配置文件。UIButtonConfiguration.filledButtonConfiguration;
+@property(nonatomic,strong,nullable)UIBackgroundConfiguration *background;/// 自定义按钮背景的配置
+@property(nonatomic,assign)UIButtonConfigurationTitleAlignment buttonConfigTitleAlignment;/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
+@property(nonatomic,assign)NSTextAlignment textAlignment;/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】。也对应新Api里面的title的对齐方式
+@property(nonatomic,assign)NSTextAlignment subTextAlignment;/// 也对应新Api里面的subTitle的对齐方式
+@property(nonatomic,strong,nullable)UIImage *normalImage;/// 正常情况下的image
+@property(nonatomic,strong,nullable)UIImage *highlightImage;/// = selected_Image 高亮情况下的image
+@property(nonatomic,strong,nullable)NSAttributedString *attributedTitle;/// 主标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
+@property(nonatomic,strong,nullable)NSAttributedString *selectedAttributedTitle;///（只限于老Api，新Api里面没有）UIControlStateSelected状态下的标题富文本。设置富文本，请关注：#import "NSObject+RichText.h"
+@property(nonatomic,strong,nullable)NSAttributedString *attributedSubtitle;///（新Api才有的）副标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
+@property(nonatomic,copy,nullable)NSString *title;/// 主标题
+@property(nonatomic,copy,nullable)NSString *subTitle;///（新Api才有的）副标题
+@property(nonatomic,strong,nullable)UIFont *titleFont;/// 主标题字体
+@property(nonatomic,strong,nullable)UIFont *subTitleFont;///（新Api才有的）副标题字体
+@property(nonatomic,strong,nullable)UIColor *titleCor;/// 主标题文字颜色
+@property(nonatomic,strong,nullable)UIColor *subTitleCor;/// 副标题文字颜色
+@property(nonatomic,assign)NSLineBreakMode titleLineBreakMode;/// 主标题换行模式
+@property(nonatomic,assign)NSLineBreakMode subtitleLineBreakMode;/// （新Api才有的）副标题换行模式
+@property(nonatomic,strong,nullable)UIColor *baseBackgroundColor;/// 背景颜色
+@property(nonatomic,strong,nullable)UIImage *backgroundImage;/// 背景图片
+@property(nonatomic,assign)CGFloat imagePadding;/// 图像与标题之间的间距
+@property(nonatomic,assign)CGFloat titlePadding;/// 标题和副标题标签之间的距离
+@property(nonatomic,assign)NSDirectionalRectEdge imagePlacement;/// ❤️图片和文字的位置关系❤️
+@property(nonatomic,assign)UIControlContentHorizontalAlignment contentHorizontalAlignment;/// 针对内容的横向对齐方式
+@property(nonatomic,assign)UIControlContentVerticalAlignment contentVerticalAlignment;/// 针对内容的竖向对齐方式
+@property(nonatomic,assign)NSDirectionalEdgeInsets contentInsets;/// 定位内边距的方向
+@property(nonatomic,assign)CGFloat cornerRadiusValue;/// 圆切角—作用于所有的角
+@property(nonatomic,assign)UIRectCorner roundingCorners;/// ❤️这个属性如果不是UIRectCornerAllCorners，在某些情况下，按钮会不可见 圆切角—作用于指定的方位   ❤️这个属性如果不是UIRectCornerAllCorners，在某些情况下，按钮会不可见
+@property(nonatomic,assign)CGSize roundingCornersRadii;/// 圆切角—指定方位的Size大小
+@property(nonatomic,strong,nullable)UIColor *layerBorderCor;/// 描边的颜色
+@property(nonatomic,assign)CGFloat borderWidth;/// 描边线的宽度
+@property(nonatomic,strong,nullable)UIAction *primaryAction;/// 新Api的点击事件
+@property(nonatomic,copy,nullable)JobsSelectorBlock longPressGestureEventBlock;/// 按钮的长按事件
+@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
 #pragma mark —— 对系统方法的补充
 @property(nonatomic,copy,nullable)NSString *selected_title;
 @property(nonatomic,copy,nullable)NSString *selected_subTitle;
@@ -96,6 +96,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)NSArray <UIImage *>*selected_Images;// highlightImage
 #pragma mark —— 按钮挂载的对象
 @property(nonatomic,strong,nullable)id data;
+#pragma mark —— 点击的状态
+@property(nonatomic,assign)BOOL selected;
+#pragma mark —— 其他
+@property(nonatomic,assign)CGFloat leftViewWidth;
+@property(nonatomic,assign)CGFloat rightViewWidth;
 
 @end
 
