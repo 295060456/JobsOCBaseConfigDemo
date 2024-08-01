@@ -4027,6 +4027,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 调取系统相册
 
   ```objective-c
+  @property(nonatomic,strong)NSMutableArray <UIImage *>*photosImageMutArr;
+  ```
+
+  ```objective-c
   [_photoAlbumBtn jobsBtnClickEventBlock:^id(id data) {
       /// 调取系统相册
       @jobs_weakify(self)
@@ -4864,6 +4868,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    @property(nonatomic,strong)BaseTableView *tableView;
    @property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
    @property(nonatomic,strong)NSMutableArray <__kindof UITableViewHeaderFooterView *>*tbvHeaderFooterViewMutArr;
+   @property(nonatomic,strong)FMTableHeaderView1 *tableHeaderView;
    /// Data
    @property(nonatomic,strong)NSMutableArray <NSMutableArray <UIViewModel *>*>*dataMutArr;
    ```
@@ -4880,7 +4885,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
            _tableView.showsVerticalScrollIndicator = NO;
            _tableView.scrollEnabled = YES;
            _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
-           _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
+           _tableView.tableHeaderView = self.tableHeaderView;/// 这里接入的就是一个UIView的派生类
            _tableView.ww_foldable = YES;//设置可折叠 见 @interface UITableView (WWFoldableTableView)
            _tableView.resetContentInsetOffsetBottom(200);/// 增加tableView的可滚动区域
            [_tableView registerHeaderFooterViewClass:MSCommentTableHeaderFooterView.class];
@@ -4979,6 +4984,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    
        }return _tableView;
    }
+   
+   -(FMTableHeaderView1 *)tableHeaderView{
+       if(!_tableHeaderView){
+           _tableHeaderView = FMTableHeaderView1.new;
+           _tableHeaderView.size = [FMTableHeaderView1 viewSizeWithModel:nil];
+           [_tableHeaderView richElementsInViewWithModel:nil];
+       }return _tableHeaderView;
+   }
+   ```
+   
+   ```objective-c
+   #import "BaseView.h"
+   
+   NS_ASSUME_NONNULL_BEGIN
+   
+   @interface FMTableHeaderView1 : BaseView
+   
+   @end
+   
+   NS_ASSUME_NONNULL_END
    ```
    
    ```objective-c
@@ -5084,31 +5109,31 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                    viewModel.font = UIFontWeightRegularSize(14);
                    [temp addObject:viewModel];
                }
-               
-               [_dataMutArr addObject:temp];
-           }
-           {
-               NSMutableArray <UIViewModel *>*temp = NSMutableArray.array;
-               {
-                   UIViewModel *viewModel = UIViewModel.new;
-                   viewModel.text = JobsInternationalization(@"Current Address");
-                   viewModel.textCor = JobsCor(@"#FFC700");
-                   viewModel.font = bayonRegular(JobsWidth(20));
-                   temp.data = viewModel;
-               }
-               
-               {
-                   UIViewModel *viewModel = UIViewModel.new;
-                   viewModel.text = JobsInternationalization(@"Province/City");
-                   viewModel.textCor = JobsCor(@"#FFFFFF");
-                   viewModel.font = UIFontWeightRegularSize(14);
-                   [temp addObject:viewModel];
-               }
-               {
+              
+              [_dataMutArr addObject:temp];
+          }
+          {
+              NSMutableArray <UIViewModel *>*temp = NSMutableArray.array;
+              {
+                  UIViewModel *viewModel = UIViewModel.new;
+                  viewModel.text = JobsInternationalization(@"Current Address");
+                  viewModel.textCor = JobsCor(@"#FFC700");
+                  viewModel.font = bayonRegular(JobsWidth(20));
+                  temp.data = viewModel;
+              }
+              
+              {
+                  UIViewModel *viewModel = UIViewModel.new;
+                  viewModel.text = JobsInternationalization(@"Province/City");
+                  viewModel.textCor = JobsCor(@"#FFFFFF");
+                  viewModel.font = UIFontWeightRegularSize(14);
+                  [temp addObject:viewModel];
+              }
+              {
                   UIViewModel *viewModel = UIViewModel.new;
                   [temp addObject:viewModel];
               }
-  
+    
               [_dataMutArr addObject:temp];
           }
           {
@@ -5132,7 +5157,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                   UIViewModel *viewModel = UIViewModel.new;
                   [temp addObject:viewModel];
               }
-  
+    
               [_dataMutArr addObject:temp];
           }
           
@@ -5453,7 +5478,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 29、**`JobsStepView`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-![image-20240731172006610](./assets/image-20240731172006610.png)
+![Xnip2024-08-01_15-38-18](./assets/Xnip2024-08-01_15-38-18.jpg)
 
 * ```objective-c
   @property(nonatomic,strong)JobsStepView *stepView;
@@ -5525,9 +5550,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-  
-
-* 
 
 ### 30、关于`UITabBarController` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -7121,6 +7143,50 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
        }
       ```
 
+### 35、数据容器 = 数组 + 字典 + 集合
+
+* 从底层开始，有且只有如下的容器类
+
+  * 数组（**`NSArray`**、**`NSMutableArray`**）
+
+    ```objective-c
+    /// 阻止向可变数组添加空元素
+    -(JobsReturnIDByIDBlock _Nonnull)jobsAddObject{
+        @jobs_weakify(self)
+        return ^id (id _Nullable data) {
+            @jobs_strongify(self)
+            if(data){
+                /// 向数组加入nil会崩
+                [self addObject:data];
+            }else{
+                NSLog(@"数组被添加了一个空元素");
+            }return self;
+        };
+    }
+    /// 向数组加入一个从来没有没有过的元素，以保证数组元素的单一性
+    -(JobsReturnIDByIDBlock _Nonnull)jobsAddSoleObject{
+        @jobs_weakify(self)
+        return ^id (id _Nullable data) {
+            @jobs_strongify(self)
+            if(data){
+                if (![self containsObject:data]) {
+                    [self addObject:data];
+                }
+            }else{
+                NSLog(@"数组被添加了一个空元素");
+            }return self;
+        };
+    }
+    ```
+
+  * 字典（**`NSDictionary`**、**`NSMutableDictionary`**）
+
+    * <font color=red>**在php语言中，没有字典的概念，转而用数组进行替代。即，数组下标做为key进行存取**</font>
+
+  * 集合（**`NSSet`**、**`NSMutableSet`**）
+
+* **原则上，是不希望在数据容器上用继承关系的。因为这样可能会导致一些未知错误的发生。**但是可以用分类的方式，定义一些算法方面的方法，减少应用层的负担
+
 ### Test  
 
 <details id="Test">
@@ -7129,7 +7195,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```objective-c
   /// TODO
   ```
-
 </details>
 
 ## 六、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

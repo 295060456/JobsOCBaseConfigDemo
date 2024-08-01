@@ -23,6 +23,10 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
+/**
+ NSLineBreakByWordWrapping：这是默认的换行模式，会在单词边界换行。适用于希望保留单词完整性的场合。例如，如果单词太长而无法放入当前行，那么该单词将移动到下一行。
+ NSLineBreakByCharWrapping：在字符边界处换行，而不是单词边界。适用于需要最大限度地利用行宽的场合，即使这意味着单词会被拆分。
+ */
 #warning 富文本兼容一切
 /// ⚠️当font描绘的文字,或者文字大于UIButton的frame,UIButton的Title将不会显现⚠️
 @interface UIButton (UI)<BaseProtocol,BaseButtonProtocol>
@@ -51,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - subtitleLineBreakMode:（新Api才有的）副标题换行模式
 ///   - baseBackgroundColor: 背景颜色
 ///   - backgroundImage:背景图片
-///   - imagePadding: 图像与标题之间的间距
+///   - imagePadding: ❤️图像与标题之间的间距❤️
 ///   - titlePadding: 标题和副标题标签之间的距离
 ///   - imagePlacement: ❤️图片和文字的位置关系❤️
 ///   - contentHorizontalAlignment: 针对内容的横向对齐方式

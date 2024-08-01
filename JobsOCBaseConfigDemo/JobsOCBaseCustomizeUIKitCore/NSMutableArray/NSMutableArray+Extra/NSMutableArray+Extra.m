@@ -9,18 +9,31 @@
 
 @implementation NSMutableArray (Extra)
 /// 阻止向可变数组添加空元素
--(void)jobsSecureAddObject:(id)object{
-    if(object){
-        [self addObject:object];
-    }else{
-        NSAssert(NO, @"数组被添加了一个空元素");
-    }
+-(JobsReturnIDByIDBlock _Nonnull)jobsAddObject{
+    @jobs_weakify(self)
+    return ^id (id _Nullable data) {
+        @jobs_strongify(self)
+        if(data){
+            /// 向数组加入nil会崩
+            [self addObject:data];
+        }else{
+            NSLog(@"数组被添加了一个空元素");
+        }return self;
+    };
 }
 /// 向数组加入一个从来没有没有过的元素，以保证数组元素的单一性
-- (void)jobsAddObject:(id)anObject{
-    if (![self containsObject:anObject]) {
-        [self addObject:anObject];
-    }
+-(JobsReturnIDByIDBlock _Nonnull)jobsAddSoleObject{
+    @jobs_weakify(self)
+    return ^id (id _Nullable data) {
+        @jobs_strongify(self)
+        if(data){
+            if (![self containsObject:data]) {
+                [self addObject:data];
+            }
+        }else{
+            NSLog(@"数组被添加了一个空元素");
+        }return self;
+    };
 }
 /// 将数组里的某个元素移动到原数组的某个位
 -(NSMutableArray *_Nullable)moveElementFromIndex:(NSInteger)fromIndex
@@ -38,11 +51,15 @@
     }return nil;
 }
 /// 将数组里的元素复制times次
--(NSMutableArray *)copyElementBytimes:(NSInteger)times{
-    NSMutableArray *tempMutArr = NSMutableArray.array;
-    for (int i = 0; i < times; times++) {
-        [tempMutArr addObjectsFromArray:self];
-    }return tempMutArr;
+-(JobsReturnMutableArrayByIntegerBlock)copyElementBytimes{
+    @jobs_weakify(self)
+    return ^NSMutableArray *(NSInteger times) {
+        @jobs_strongify(self)
+        NSMutableArray *tempMutArr = NSMutableArray.array;
+        for (int i = 0; i < times; times++) {
+            [tempMutArr addObjectsFromArray:self];
+        }return self;
+    };
 }
 
 @end
