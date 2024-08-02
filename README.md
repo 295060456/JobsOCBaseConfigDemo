@@ -7596,7 +7596,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * **原则上，是不希望在数据容器上用继承关系的。因为这样可能会导致一些未知错误的发生。**但是可以用分类的方式，定义一些算法方面的方法，减少应用层的负担
 
-## 36、[网易验证码](https://github.com/yidun/NTESVerifyCode)的二次封装
+### 36、[网易验证码](https://github.com/yidun/NTESVerifyCode)的二次封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * ```ruby
   pod 'NTESVerifyCode' # 网易验证码 https://github.com/yidun/NTESVerifyCode https://support.dun.163.com/documents/15588062143475712?docId=150442931089756160
@@ -7617,7 +7617,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-* 关注实现类 [**@interface NSObject (NTESVerifyCodeManager)<NTESVerifyCodeManagerDelegate>**]()
+* 关注实现类 [**@interface NSObject (NTESVerifyCodeManager)<NTESVerifyCodeManagerDelegate>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BNTESVerifyCodeManager)
 
 ### Test  
 
