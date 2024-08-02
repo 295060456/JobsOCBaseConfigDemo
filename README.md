@@ -3225,6 +3225,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 以分类的方式集成在**UIViewController**层。关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+BaseVC)
 
+* 以继承的方式集成在**UIView**层。关注实现类：[**`@interface BaseView : UIView`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/BaseView)
+
 * 配置并使用
 
   * ```objective-c
@@ -3421,7 +3423,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       }
       ```
 
-####  10.6、防止过多的`presented`模态推出`UIViewController`
+####  10.6、<font color=blue>**防止过多的`presented`模态推出`UIViewController`**</font>
   * 关注实现类：[**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)
 
 #### 10.7、<font color=red id=寻找当前控制器>**寻找当前控制器**</font>
@@ -3429,9 +3431,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
 
   ```objective-c
-  -(UIViewController *_Nullable)getCurrentViewControllerFromRootVC:(UIViewController *_Nullable)rootVC;
+  /// 从一个视图（UIView）出发，获取它所在的视图控制器（UIViewController）
+  -(JobsReturnVCByView _Nonnull)getViewControllerByView;
+  /// 获得当前的控制器。对getCurrentViewController的再次封装
+  -(UIViewController *_Nullable)jobsGetCurrentViewController;
+  /// 获得当前的控制器
   -(UIViewController *_Nullable)getCurrentViewController;
-  -(UIViewController *_Nullable)jobsGetCurrentViewController
+  /// 获得当前控制器的根控制器
+  -(JobsReturnVCByVC _Nullable )getCurrentViewControllerByRootVC;
   ```
 
 * 关注实现类：[**@interface UIView (ViewController)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BViewController)
@@ -7066,6 +7073,17 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   @end
   ```
 
+* 打印**`YTKBaseRequest`**
+
+  ```objective-c
+  -(void)checkRequest:(YTKBaseRequest *_Nonnull)request{
+      NSLog(@"request.error = %@\n",request.error);
+      NSLog(@"request.requestArgument = %@\n",request.requestArgument);
+      NSLog(@"request.requestUrl = %@\n",request.requestUrl);
+      NSLog(@"request.baseUrl = %@\n",request.baseUrl);
+  }
+  ```
+  
 * 请求方式
 
   * **普通的单个请求**

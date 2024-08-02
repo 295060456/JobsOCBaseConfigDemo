@@ -221,7 +221,7 @@ BaseViewProtocol_synthesize
         @jobs_weakify(self)
         [_navBar actionNavBarBackBtnClickBlock:^(UIButton * _Nullable x) {
             @jobs_strongify(self)
-//            self.backBtnClickEvent(x);
+            self.jobsBackBtnClickEvent(x);
             if(self.backBtnClickAction) self.backBtnClickAction(x);
         }];
         [_navBar actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable x) {
@@ -266,7 +266,7 @@ BaseViewProtocol_synthesize
         _backBtnModel.clickEventBlock = ^id(BaseButton *x){
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
-//            self.backBtnClickEvent(x);
+            self.jobsBackBtnClickEvent(x);
             return nil;
         };
     }return _backBtnModel;

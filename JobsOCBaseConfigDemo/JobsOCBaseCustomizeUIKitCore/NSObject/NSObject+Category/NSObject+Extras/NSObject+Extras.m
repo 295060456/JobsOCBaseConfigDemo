@@ -42,31 +42,48 @@
                                              nil);
 }
 #pragma mark —— ViewController
+/// 从一个视图（UIView）出发，获取它所在的视图控制器（UIViewController）
+-(JobsReturnVCByView _Nonnull)getViewControllerByView{
+    @jobs_weakify(self)
+    return ^(UIView *_Nonnull view) {
+        @jobs_strongify(self)
+        UIResponder *responder = view;
+        while (responder) {
+            if (KindOfVCCls(responder)) {
+                return (UIViewController *)responder;
+            }responder = responder.nextResponder;
+        }return (UIViewController *)nil;
+    };
+}
+/// 获得当前的控制器。对getCurrentViewController的再次封装
 -(UIViewController *_Nullable)jobsGetCurrentViewController{
-    return [self isKindOfClass:UIViewController.class] ? (UIViewController *)self : self.getCurrentViewController;
+    return KindOfVCCls(self) ? (UIViewController *)self : self.getCurrentViewController;
 }
-
+/// 获得当前的控制器
 -(UIViewController *_Nullable)getCurrentViewController{
-    return [self getCurrentViewControllerFromRootVC:jobsGetMainWindow().rootViewController];
+    return self.getCurrentViewControllerByRootVC(jobsGetMainWindow().rootViewController);
 }
-
--(UIViewController *_Nullable)getCurrentViewControllerFromRootVC:(UIViewController *_Nullable)rootVC{
-    UIViewController *currentVC;
-    if (rootVC.presentedViewController) {
-        /// 视图是被presented出来的
-        currentVC = rootVC.presentedViewController;
-    }
-
-    if ([rootVC isKindOfClass:UITabBarController.class]) {
-        /// 根视图为UITabBarController
-        currentVC = [self getCurrentViewControllerFromRootVC:[(UITabBarController *)rootVC selectedViewController]];
-    } else if ([rootVC isKindOfClass:UINavigationController.class]){
-        /// 根视图为UINavigationController
-        currentVC = [self getCurrentViewControllerFromRootVC:[(UINavigationController *)rootVC visibleViewController]];
-    } else {
-        /// 根视图为非导航类
-        currentVC = rootVC;
-    }return currentVC;
+/// 获得当前控制器的根控制器
+-(JobsReturnVCByVC _Nullable)getCurrentViewControllerByRootVC{
+    @jobs_weakify(self)
+    return ^(UIViewController *_Nonnull rootVC) {
+        @jobs_strongify(self)
+        UIViewController *currentVC;
+        if (rootVC.presentedViewController) {
+            /// 视图是被presented出来的
+            currentVC = rootVC.presentedViewController;
+        }
+        if (KindOfTabBarCtrlCls(rootVC)) {
+            /// 根视图为UITabBarController
+            currentVC = self.getCurrentViewControllerByRootVC([(UITabBarController *)rootVC selectedViewController]);
+        } else if (KindOfNavCtrlCls(rootVC)){
+            /// 根视图为UINavigationController
+            currentVC = self.getCurrentViewControllerByRootVC([(UINavigationController *)rootVC visibleViewController]);
+        } else {
+            /// 根视图为非导航类
+            currentVC = rootVC;
+        }return currentVC;
+    };
 }
 /// 强制以Push的方式展现页面
 /// @param toPushVC 需要进行展现的页面
@@ -90,7 +107,7 @@
 -(void)forceComingToPresentVC:(UIViewController *_Nonnull)toPresentVC
                 requestParams:(id _Nullable)requestParams
                    completion:(void (^ __nullable)(void))completion{
-    UIViewController *viewController = [self isKindOfClass:UIViewController.class] ? (UIViewController *)self : self.jobsGetCurrentViewController;
+    UIViewController *viewController = KindOfVCCls(self) ? (UIViewController *)self : self.jobsGetCurrentViewController;
     [viewController presentViewController:toPresentVC
                                   animated:YES
                                 completion:completion];
@@ -130,6 +147,34 @@
                     context:nil];
 }
 #pragma mark —— 功能性的
+/// GKNavigationBar 返回按钮点击方法
+///【子类需要覆写 】创建返回键的点击事件
+-(jobsByBtnBlock _Nonnull)jobsBackBtnClickEvent{
+    @jobs_weakify(self)
+    return ^(UIButton *_Nullable sender) {
+        @jobs_strongify(self)
+        if (self.jobsBackBlock) self.jobsBackBlock(sender);
+        UIViewController *vc = nil;
+        if (KindOfVCCls(self)) {
+            vc = (UIViewController *)self;
+        }else if (KindOfViewCls(self)){
+            UIView *view = (UIView *)self;
+            vc = self.getViewControllerByView(view);
+        }else return;
+        
+        switch (self.pushOrPresent) {
+            case ComingStyle_PRESENT:{
+                [vc dismissViewControllerAnimated:YES completion:nil];
+            }break;
+            case ComingStyle_PUSH:{
+                vc.navigationController ? [vc.navigationController popViewControllerAnimated:YES] : [vc dismissViewControllerAnimated:YES completion:nil];
+            }break;
+                
+            default:
+                break;
+        }
+    };
+}
 /// 打印YTKBaseRequest
 -(void)checkRequest:(YTKBaseRequest *_Nonnull)request{
     NSLog(@"request.error = %@\n",request.error);
@@ -148,7 +193,8 @@
     }
 }
 /// 此功能的必要性：如果外界传入的数组是空，那么拿到的count是0，做-1操作就是-1，直接用for循环就会进入死循环
--(void)jobsSafetyCycleFunc:(int)ceiling cycleBlock:(jobsByIntBlock _Nullable)cycleBlock{
+-(void)jobsSafetyCycleFunc:(int)ceiling
+                cycleBlock:(jobsByIntBlock _Nullable)cycleBlock{
     if (ceiling > 0) {
         for (int i = 0 ; i < ceiling; i++) {
             NSLog(@"Jobs_%d",i);

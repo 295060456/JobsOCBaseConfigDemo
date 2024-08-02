@@ -16,6 +16,7 @@
 #import "NSObject+Class.h"
 #import "BaseProtocol.h"
 #import "UIViewModelProtocol.h"
+#import "BaseViewControllerProtocol.h"
 #import "JobsBlock.h"
 #import "JobsBlock_Ex.h"
 #import "MacroDef_Func.h"
@@ -116,6 +117,7 @@ static inline NSObject *_Nullable idToObject(id _Nullable data){
 <
 BaseProtocol
 ,UIViewModelProtocol
+,BaseViewControllerProtocol
 >
 #pragma mark —— 宏
 /// App 国际化相关系统宏二次封装 + 设置缺省值
@@ -130,9 +132,14 @@ BaseProtocol
                              inBundle:(nullable NSBundle *)bundle
                          defaultValue:(nullable NSString *)defaultValue;
 #pragma mark —— ViewController
+/// 从一个视图（UIView）出发，获取它所在的视图控制器（UIViewController）
+-(JobsReturnVCByView _Nonnull)getViewControllerByView;
+/// 获得当前的控制器。对getCurrentViewController的再次封装
 -(UIViewController *_Nullable)jobsGetCurrentViewController;
+/// 获得当前的控制器
 -(UIViewController *_Nullable)getCurrentViewController;
--(UIViewController *_Nullable)getCurrentViewControllerFromRootVC:(UIViewController *_Nullable)rootVC;
+/// 获得当前控制器的根控制器
+-(JobsReturnVCByVC _Nullable )getCurrentViewControllerByRootVC;
 /// 强制以Push的方式展现页面
 /// @param toPushVC 需要进行展现的页面
 /// @param requestParams 正向推页面传递的参数
@@ -170,6 +177,9 @@ BaseProtocol
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
 #pragma mark —— 功能性的
+/// GKNavigationBar 返回按钮点击方法
+///【子类需要覆写 】创建返回键的点击事件
+-(jobsByBtnBlock _Nonnull)jobsBackBtnClickEvent;
 /// 打印YTKBaseRequest
 -(void)checkRequest:(YTKBaseRequest *_Nonnull)request;
 /// 判空【是空返回YES】

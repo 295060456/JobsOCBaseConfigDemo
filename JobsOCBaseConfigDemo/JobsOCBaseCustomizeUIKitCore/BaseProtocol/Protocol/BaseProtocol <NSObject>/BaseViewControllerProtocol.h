@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewProtocol.h"
 #import "JobsBlock.h"
+#import "JobsBlock_Ex.h"
 #import "JobsNavBar.h"
 
 #if __has_include(<SPAlertController/SPAlertController.h>)
@@ -44,7 +45,6 @@ typedef NS_ENUM(NSUInteger, UIViewControllerLifeCycle) {
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseViewControllerProtocol<BaseViewProtocol>
-
 @optional
 /// UI
 @property(nonatomic,weak)UIViewController *fromVC;

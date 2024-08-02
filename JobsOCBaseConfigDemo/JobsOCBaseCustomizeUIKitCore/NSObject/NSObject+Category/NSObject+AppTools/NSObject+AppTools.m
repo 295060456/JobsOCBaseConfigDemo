@@ -54,7 +54,6 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 #pragma mark —— <AppToolsProtocol> 关于注册登录
 /// 去登录？去注册？
 -(void)toLoginOrRegister:(CurrentPage)appDoorContentType{
-    
     // 登录页 不推出 登录页
     UIViewController *viewController = self.getCurrentViewController;
     if ([viewController isKindOfClass:JobsAppDoorVC.class]) return;
@@ -261,9 +260,9 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //    [testPopupView actionObjectBlock:^(UIButton *data) {
 //        @jobs_strongify(popupView)
 //        if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Cancel")]) {
-//            
+//
 //        }else if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Sure")]){
-//            
+//
 //        }else{}
 //        [testPopupView tf_hide];
 //        [JobsOCBaseConfigTestPopupView destroySingleton];

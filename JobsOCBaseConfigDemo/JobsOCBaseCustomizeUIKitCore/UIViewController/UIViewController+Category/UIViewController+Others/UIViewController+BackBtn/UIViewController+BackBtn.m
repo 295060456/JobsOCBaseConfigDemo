@@ -14,18 +14,7 @@
     @jobs_weakify(self)
     return ^(UIButton *_Nullable sender) {
         @jobs_strongify(self)
-        if (self.jobsBackBlock) self.jobsBackBlock(sender);
-        switch (self.pushOrPresent) {
-            case ComingStyle_PRESENT:{
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }break;
-            case ComingStyle_PUSH:{
-                self.navigationController ? [self.navigationController popViewControllerAnimated:YES] : [self dismissViewControllerAnimated:YES completion:nil];
-            }break;
-                
-            default:
-                break;
-        }
+        self.jobsBackBtnClickEvent(sender);
     };
 }
 #pragma mark —— @property(nonatomic,strong)BackBtn *backBtnCategory;
