@@ -163,7 +163,7 @@ def videoFunc
 end
 # 一些功能性
 def func
-#  pod 'NTESVerifyCode' # 网易验证码 https://github.com/yidun/NTESVerifyCode https://support.dun.163.com/documents/15588062143475712?docId=150442931089756160
+  pod 'NTESVerifyCode' # 网易验证码 https://github.com/yidun/NTESVerifyCode https://support.dun.163.com/documents/15588062143475712?docId=150442931089756160
   pod 'TXFileOperation' # 文件夹操作 https://github.com/xtzPioneer/TXFileOperation
   pod 'HXPhotoPicker' # 相册选择 https://github.com/SilenceLove/HXPhotoPicker
   pod 'BMLongPressDragCellCollectionView' # https://github.com/liangdahong/BMLongPressDragCellCollectionView

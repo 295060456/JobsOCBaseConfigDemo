@@ -10,6 +10,7 @@
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		C525D3EC2C4801C1003DAFD0 /* JobsLinkageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */; };
+		CE1F24EA2C5CD50100324198 /* NSObject+NTESVerifyCodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F24E82C5CD50000324198 /* NSObject+NTESVerifyCodeManager.m */; };
 		CE40B28E2C4B54A500CB64B5 /* JobsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */; };
 		CE40B29B2C4BF78E00CB64B5 /* JobsToggleBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */; };
 		CE40B29C2C4BF78E00CB64B5 /* JobsToggleNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2982C4BF78E00CB64B5 /* JobsToggleNavView.m */; };
@@ -1124,6 +1125,8 @@
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
 		C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsLinkageMenuView.m; sourceTree = "<group>"; };
 		C525D3EB2C4801C1003DAFD0 /* JobsLinkageMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsLinkageMenuView.h; sourceTree = "<group>"; };
+		CE1F24E72C5CD50000324198 /* NSObject+NTESVerifyCodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NTESVerifyCodeManager.h"; sourceTree = "<group>"; };
+		CE1F24E82C5CD50000324198 /* NSObject+NTESVerifyCodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NTESVerifyCodeManager.m"; sourceTree = "<group>"; };
 		CE40B28C2C4B54A500CB64B5 /* JobsTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextField.h; sourceTree = "<group>"; };
 		CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextField.m; sourceTree = "<group>"; };
 		CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsToggleBaseView.m; sourceTree = "<group>"; };
@@ -1948,8 +1951,8 @@
 		CECE7F1B2C4512BF00764AF5 /* JobsUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsUserModel.h; sourceTree = "<group>"; };
 		CECE7F1C2C4512BF00764AF5 /* JobsUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsUserModel.m; sourceTree = "<group>"; };
 		CECE7F1E2C4512BF00764AF5 /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
-		CECE7F202C4512BF00764AF5 /* DDPods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPods.h; sourceTree = "<group>"; };
-		CECE7F212C4512BF00764AF5 /* DDPodsManual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPodsManual.h; sourceTree = "<group>"; };
+		CECE7F202C4512BF00764AF5 /* JobsPods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsPods.h; sourceTree = "<group>"; };
+		CECE7F212C4512BF00764AF5 /* JobsPodsManual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsPodsManual.h; sourceTree = "<group>"; };
 		CECE7F232C4512BF00764AF5 /* CustomZFPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomZFPlayerControlView.h; sourceTree = "<group>"; };
 		CECE7F242C4512BF00764AF5 /* CustomZFPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomZFPlayerControlView.m; sourceTree = "<group>"; };
 		CECE7F262C4512BF00764AF5 /* ZFCustomControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFCustomControlView.h; sourceTree = "<group>"; };
@@ -3156,6 +3159,15 @@
 				C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */,
 			);
 			path = JobsLinkageMenuView;
+			sourceTree = "<group>";
+		};
+		CE1F24E92C5CD50000324198 /* NSObject+NTESVerifyCodeManager */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F24E72C5CD50000324198 /* NSObject+NTESVerifyCodeManager.h */,
+				CE1F24E82C5CD50000324198 /* NSObject+NTESVerifyCodeManager.m */,
+			);
+			path = "NSObject+NTESVerifyCodeManager";
 			sourceTree = "<group>";
 		};
 		CE40B28B2C4B544F00CB64B5 /* JobsTextField */ = {
@@ -7449,13 +7461,13 @@
 			path = DAO;
 			sourceTree = "<group>";
 		};
-		CECE7F222C4512BF00764AF5 /* DDPods */ = {
+		CECE7F222C4512BF00764AF5 /* JobsPods */ = {
 			isa = PBXGroup;
 			children = (
-				CECE7F202C4512BF00764AF5 /* DDPods.h */,
-				CECE7F212C4512BF00764AF5 /* DDPodsManual.h */,
+				CECE7F202C4512BF00764AF5 /* JobsPods.h */,
+				CECE7F212C4512BF00764AF5 /* JobsPodsManual.h */,
 			);
-			path = DDPods;
+			path = JobsPods;
 			sourceTree = "<group>";
 		};
 		CECE7F252C4512BF00764AF5 /* CustomZFPlayerControlView */ = {
@@ -8617,7 +8629,7 @@
 			children = (
 				CECE7F0E2C4512BF00764AF5 /* 各项全局定义 */,
 				CECE7F1F2C4512BF00764AF5 /* DAO */,
-				CECE7F222C4512BF00764AF5 /* DDPods */,
+				CECE7F222C4512BF00764AF5 /* JobsPods */,
 				CECE80B12C4512BF00764AF5 /* JobsMixFunc */,
 			);
 			path = OCBaseConfig;
@@ -9558,6 +9570,7 @@
 		CECE82FD2C4513CD00764AF5 /* NSObject+Category */ = {
 			isa = PBXGroup;
 			children = (
+				CE1F24E92C5CD50000324198 /* NSObject+NTESVerifyCodeManager */,
 				CECE82722C4513CD00764AF5 /* NSObject+AFNReachability */,
 				CECE82792C4513CD00764AF5 /* NSObject+Alert */,
 				CECE827D2C4513CD00764AF5 /* NSObject+AppTools */,
@@ -13794,6 +13807,7 @@
 				CECE7CB62C450C5000764AF5 /* BaiShaETProjVIPSubCVCell_05.m in Sources */,
 				CECE87472C45140000764AF5 /* WGradientProgressView.m in Sources */,
 				CECE852E2C4513CE00764AF5 /* UIButtonModel.m in Sources */,
+				CE1F24EA2C5CD50100324198 /* NSObject+NTESVerifyCodeManager.m in Sources */,
 				CECE85142C4513CE00764AF5 /* NSAttributedString+Extra.m in Sources */,
 				CECE85772C4513CE00764AF5 /* RBCLikeButton.m in Sources */,
 				CECE813D2C4512BF00764AF5 /* JobsUserHeaderDataViewTBVCell.m in Sources */,

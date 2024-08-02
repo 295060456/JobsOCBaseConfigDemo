@@ -1547,7 +1547,7 @@ NSObject <|-- BaseProtocol
           [_textField layerBorderCor:JobsCor(@"#FFD8D8")
                       andBorderWidth:JobsWidth(1)];
           // 最外层的UI-切全角
-          [_textField cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+          _textField.cornerCutToCircleWithCornerRadius:JobsWidth(8);
       }return _textField;
   }
   ```
@@ -2084,7 +2084,7 @@ NSObject <|-- BaseProtocol
     }
     ```
 
-### 26、`UIScrollView` 的滚动生命周期
+### 26、`UIScrollView` 的滚动生命周期 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 有2种方式驱动滚动效果
 
@@ -2143,7 +2143,21 @@ NSObject <|-- BaseProtocol
 * 对象间传值一般的业务场景是：需要传值的对象之间至多有一个中间对象。此时建议用Block
 * 如果需要涉及到多点订阅，那么使用**通知**或者**协议**
 
-### 26、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 26、数据解析 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 对待data是数组
+
+  ```objective-c
+  NSMutableArray *tags = [VideoTagModel mj_objectArrayWithKeyValuesArray:model.data];
+  ```
+
+* 对待data是字典
+
+  ```objective-c
+  DDMyVipModel *myVipModel = [DDMyVipModel mj_objectWithKeyValues:data]; 
+  ```
+
+### 27、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 
@@ -2151,6 +2165,18 @@ NSObject <|-- BaseProtocol
 
 * <font color=red>属性化的`NSString *`可以用**assign**修饰，但是最好用**copy**</font>
 
+* ```objective-c
+  /// 获取 GKPhotoBrowser 类的 layoutSubviews 方法。
+  Method method = class_getInstanceMethod(GKPhotoBrowser.class, sel_registerName("layoutSubviews"));
+  /// 获取到的方法实现转换为一个函数指针 super_func，并指定了函数的参数类型为 (id, SEL)。
+  void (*super_func)(id,SEL) = (void *)method_getImplementation(method);
+  /// 检查 super_func 是否为非空，即是否成功获取到 layoutSubviews 方法的实现。
+  /// 如果 super_func 不为空，它执行 super_func 函数，传递 self 和 sel_registerName("layoutSubviews") 作为参数，从而调用了 GKPhotoBrowser 类的 layoutSubviews 方法。
+  if (super_func) super_func(self, sel_registerName("layoutSubviews"));
+  
+  [super layoutSubviews];
+  ```
+  
 * [**iOS 父视图透明度影响到子视图**](https://blog.csdn.net/ios_xumin/article/details/114263960)
 
   * 父视图的透明度会影响到其子视图。跟着一起变得半透明
@@ -7526,7 +7552,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
        }
       ```
 
-### 35、数据容器 = 数组 + 字典 + 集合
+### 35、数据容器 = 数组 + 字典 + 集合 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 从底层开始，有且只有如下的容器类
 
@@ -7569,6 +7595,29 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * 集合（**`NSSet`**、**`NSMutableSet`**）
 
 * **原则上，是不希望在数据容器上用继承关系的。因为这样可能会导致一些未知错误的发生。**但是可以用分类的方式，定义一些算法方面的方法，减少应用层的负担
+
+## 36、[网易验证码](https://github.com/yidun/NTESVerifyCode)的二次封装
+
+* ```ruby
+  pod 'NTESVerifyCode' # 网易验证码 https://github.com/yidun/NTESVerifyCode https://support.dun.163.com/documents/15588062143475712?docId=150442931089756160
+  ```
+
+  ```objective-c
+  #if __has_include(<VerifyCode/NTESVerifyCodeManager.h>)
+  #import <VerifyCode/NTESVerifyCodeManager.h>
+  #else
+  #import "NTESVerifyCodeManager.h"
+  #endif
+  ```
+
+  ```objective-c
+  -(void)verifyCode_simpleCall{
+      // 显示验证码
+      [self.verifyCodeManager openVerifyCodeView:nil];
+  }
+  ```
+
+* 关注实现类 [**@interface NSObject (NTESVerifyCodeManager)<NTESVerifyCodeManagerDelegate>**]()
 
 ### Test  
 

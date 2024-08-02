@@ -1,12 +1,12 @@
 //
-//  DDPodsManual.h
+//  JobsPodsManual.h
 //  Casino
 //
 //  Created by Jobs on 2021/12/9.
 //
 
-#ifndef DDPodsManual_h
-#define DDPodsManual_h
+#ifndef JobsPodsManual_h
+#define JobsPodsManual_h
 
 // 极大程度上尊重作者，不去污染源代码的基础上，用分类去实现一些功能
 
@@ -44,4 +44,4 @@
 #import "KTVHTTPCache.h"
 #endif
 
-#endif /* DDPodsManual_h */
+#endif /* JobsPodsManual_h */

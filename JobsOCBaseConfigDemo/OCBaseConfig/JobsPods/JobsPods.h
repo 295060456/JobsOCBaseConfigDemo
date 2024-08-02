@@ -1,13 +1,13 @@
 //
-//  Pods.h
+//  JobsPods.h
 //  My_BaseProj
 //
 //  Created by Jobs on 2019/9/26.
 //  Copyright © 2019 Corp. All rights reserved.
 //
 
-#ifndef Pods_h
-#define Pods_h
+#ifndef JobsPods_h
+#define JobsPods_h
 
 /// 以下是 Debug 区段
 #if DEBUG
@@ -62,6 +62,12 @@
 #import <WMZCode/WMZCodeView.h>
 #else
 #import "WMZCodeView.h"
+#endif
+
+#if __has_include(<VerifyCode/NTESVerifyCodeManager.h>)
+#import <VerifyCode/NTESVerifyCodeManager.h>
+#else
+#import "NTESVerifyCodeManager.h"
 #endif
 
 #if __has_include(<FSCalendar/FSCalendar.h>)
@@ -404,4 +410,4 @@
 //#import "PINOperation.h"
 //#import "PINRemoteImage.h"//支持带标记的图片后处理。对于同一张图片，当需要不同的后处理方式时（a 界面需要正圆角，b 界面需要小幅度的圆角），尤为有用 https://juejin.im/post/5a96a9b4f265da4e7f35d24e#heading-4
 
-#endif /* Pods_h */
+#endif /* JobsPods_h */

@@ -113,5 +113,8 @@
 #import "NSObject+BRPickerView.h"
 /// 图片查看器
 #import "NSObject+GKPhotoBrowser.h"
+/// 对 NTESVerifyCodeManager 的二次封装
+/// https://github.com/yidun/NTESVerifyCode
+#import "NSObject+NTESVerifyCodeManager.h"
 
 #endif /* JobsObject_h */
