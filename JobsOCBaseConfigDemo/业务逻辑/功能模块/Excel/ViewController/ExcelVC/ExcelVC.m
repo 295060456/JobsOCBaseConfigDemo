@@ -13,8 +13,6 @@
 /// Data
 @property(nonatomic,strong)NSMutableArray <UITableViewCell *>*tbvCellMutArr;
 @property(nonatomic,strong)NSMutableArray <NSMutableArray <UITableViewCell *>*>*tbvSectionRowCellMutArr;
-
-
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
