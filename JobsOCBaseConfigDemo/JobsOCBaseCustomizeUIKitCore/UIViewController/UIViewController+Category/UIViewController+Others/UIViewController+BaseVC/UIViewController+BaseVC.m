@@ -249,7 +249,6 @@ JobsKey(_jobsTag)
 -(void)setJobsTag:(NSUInteger)jobsTag{
     Jobs_setAssociatedRETAIN_NONATOMIC(_jobsTag, @(jobsTag))
 }
-
 #pragma mark —— @property(nonatomic,strong)JobsNavBarConfig *navBarConfig;
 JobsKey(_navBarConfig)
 @dynamic navBarConfig;
@@ -295,7 +294,7 @@ JobsKey(_navBar)
             @jobs_strongify(self)
             self.backBtnClickEvent(x);
         }];
-        [NavBar actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable data) {
+        [NavBar actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable x) {
             @jobs_strongify(self)
         }];
         Jobs_setAssociatedRETAIN_NONATOMIC(_navBar, NavBar)

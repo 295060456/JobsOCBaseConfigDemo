@@ -9,6 +9,11 @@
 #import "BaseView.h"
 
 @interface BaseView ()
+/// Data
+@property(nonatomic,strong)UIButtonModel *closeBtnModel;
+@property(nonatomic,strong)UIButtonModel *backBtnModel;
+@property(nonatomic,copy)JobsNavBarBackBtnClickAction backBtnClickAction;
+@property(nonatomic,copy)JobsNavBarCloseBtnClickAction closeBtnClickAction;
 
 @end
 
@@ -166,6 +171,105 @@ BaseViewProtocol_synthesize
 /// 数据（字符串）定高
 -(CGFloat)heightByData:(UIViewModel *_Nonnull)data{
     return 0.0f;
+}
+#pragma mark —— 一些公有方法
+-(void)actionNavBarBackBtnClickBlock:(JobsNavBarBackBtnClickAction)objectBlock{
+    self.backBtnClickAction = objectBlock;
+}
+    
+-(void)actionNavBarCloseBtnClickBlock:(JobsNavBarCloseBtnClickAction)objectBlock{
+    self.closeBtnClickAction = objectBlock;
+}
+#pragma mark —— lazyLoad
+-(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig{
+    @jobs_weakify(self)
+    return ^(UIButtonModel *_Nullable backBtnModel,
+             UIButtonModel *_Nullable closeBtnModel) {
+        @jobs_strongify(self)
+        JobsNavBarConfig *_navBarConfig = JobsNavBarConfig.new;
+        _navBarConfig.bgCor = self.viewModel.navBgCor;
+        _navBarConfig.bgImage = self.viewModel.navBgImage;
+        _navBarConfig.attributedTitle = self.viewModel.backBtnTitleModel.attributedText;
+        _navBarConfig.title = self.viewModel.textModel.text;
+        _navBarConfig.font = self.viewModel.textModel.font;
+        _navBarConfig.titleCor = self.viewModel.textModel.textCor;
+        _navBarConfig.backBtnModel = backBtnModel ? : self.backBtnModel;
+        _navBarConfig.closeBtnModel = closeBtnModel ? : self.closeBtnModel;
+        self.navBarConfig = _navBarConfig;
+        return _navBarConfig;
+    };
+}
+
+-(JobsNavBar *)navBar{
+    if(!_navBar){
+        _navBar = JobsNavBar.new;
+        if(JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape){
+            self.navBarConfig.backBtnModel.btn_offset_x = self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(40);
+            self.navBarConfig.closeBtnModel.btn_offset_x = self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(40);
+        }
+        NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
+        NSLog(@"%f",self.navBarConfig.closeBtnModel.btn_offset_x);
+//        if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
+        _navBar.navBarConfig = self.navBarConfig;
+        [self addSubview:_navBar];
+        [_navBar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.equalTo(self);
+            make.height.mas_equalTo(JobsWidth(40));
+        }];
+        [self layoutIfNeeded];
+        [_navBar richElementsInViewWithModel:nil];
+        @jobs_weakify(self)
+        [_navBar actionNavBarBackBtnClickBlock:^(UIButton * _Nullable x) {
+            @jobs_strongify(self)
+//            self.backBtnClickEvent(x);
+            if(self.backBtnClickAction) self.backBtnClickAction(x);
+        }];
+        [_navBar actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable x) {
+            @jobs_strongify(self)
+            if(self.closeBtnClickAction)self.closeBtnClickAction(x);
+        }];
+    }return _navBar;
+}
+
+-(UIButtonModel *)closeBtnModel{
+    if(!_closeBtnModel){
+        _closeBtnModel = UIButtonModel.new;
+        _closeBtnModel.backgroundImage = JobsIMG(@"联系我们");
+//        _closeBtnModel.selected_backgroundImage = JobsIMG(@"联系我们");
+//        _closeBtnModel.normalImage = JobsIMG(@"联系我们");
+//        _closeBtnModel.highlightImage = JobsIMG(@"联系我们");
+//        _closeBtnModel.imagePadding = JobsWidth(5);
+        _closeBtnModel.roundingCorners = UIRectCornerAllCorners;
+        _closeBtnModel.baseBackgroundColor = JobsClearColor;
+    }return _closeBtnModel;
+}
+
+-(UIButtonModel *)backBtnModel{
+    if(!_backBtnModel){
+        _backBtnModel = UIButtonModel.new;
+//        _backBtnModel.backgroundImage = JobsIMG(@"返回");
+//        _backBtnModel.selected_backgroundImage = JobsIMG(@"返回");
+        _backBtnModel.normalImage = JobsIMG(@"返回");
+        _backBtnModel.highlightImage = JobsIMG(@"返回");
+        _backBtnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        _backBtnModel.title = self.viewModel.backBtnTitleModel.text;
+        _backBtnModel.titleCor = JobsBlackColor;
+        _backBtnModel.selected_titleCor = JobsBlackColor;
+        _backBtnModel.roundingCorners = UIRectCornerAllCorners;
+        _backBtnModel.imagePlacement = NSDirectionalRectEdgeLeading;
+        _backBtnModel.imagePadding = JobsWidth(5);
+        @jobs_weakify(self)
+        _backBtnModel.longPressGestureEventBlock = ^(id  _Nullable weakSelf,
+                                                     id  _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+        };
+        _backBtnModel.clickEventBlock = ^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+//            self.backBtnClickEvent(x);
+            return nil;
+        };
+    }return _backBtnModel;
 }
 
 @end

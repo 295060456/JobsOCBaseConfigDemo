@@ -644,7 +644,6 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     telNum.length <= 20 &&// 长度小于20位
     telNum.isContainBlank;// 不包含空格
 }
-
 #pragma mark —— @property(nonatomic,strong)NSMutableArray<UIViewModel *> *hotLabelDataMutArr;
 JobsKey(_hotLabelDataMutArr)
 @dynamic hotLabelDataMutArr;

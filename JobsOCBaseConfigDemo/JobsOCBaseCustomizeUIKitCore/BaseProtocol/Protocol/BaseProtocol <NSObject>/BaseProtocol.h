@@ -18,7 +18,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseProtocol <NSObject>
-
 @optional
 @property(nonatomic,assign)BOOL isLock;
 @property(nonatomic,strong)RACDisposable *racDisposable;

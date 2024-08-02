@@ -98,11 +98,11 @@
 }
 
 -(void)actionNavBarBackBtnClickBlock:(JobsNavBarBackBtnClickAction)objectBlock{
-    _backBtnClickAction = objectBlock;
+    self.backBtnClickAction = objectBlock;
 }
     
 -(void)actionNavBarCloseBtnClickBlock:(JobsNavBarCloseBtnClickAction)objectBlock{
-    _closeBtnClickAction = objectBlock;
+    self.closeBtnClickAction = objectBlock;
 }
 #pragma mark —— lazyLoad
 -(JobsNavBarConfig *)navBarConfig{

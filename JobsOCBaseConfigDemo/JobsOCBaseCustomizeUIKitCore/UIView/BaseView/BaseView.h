@@ -12,6 +12,7 @@
 #import "BaseViewProtocol.h"
 #import "UIViewModelProtocol.h"
 #import "MacroDef_Notification.h"
+#import "JobsNavBar.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +22,14 @@ UIViewModelProtocol
 ,BaseProtocol
 ,BaseViewProtocol
 >
+@property(nonatomic,strong)JobsNavBarConfig *_Nullable navBarConfig;
+@property(nonatomic,strong)JobsNavBar * _Nullable navBar;
+
+-(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig;
+// 返回按钮的回调
+-(void)actionNavBarBackBtnClickBlock:(JobsNavBarBackBtnClickAction)objectBlock;
+// 关闭按钮的回调
+-(void)actionNavBarCloseBtnClickBlock:(JobsNavBarCloseBtnClickAction)objectBlock;
 
 @end
 

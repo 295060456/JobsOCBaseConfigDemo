@@ -29,7 +29,6 @@ typedef NS_ENUM(NSInteger, JobsHeaderFooterViewStyle) {
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseViewProtocol <BaseProtocol>
-
 @optional
 /// 是否允许托拽手势
 @property(nonatomic,assign)BOOL isAllowDrag;
