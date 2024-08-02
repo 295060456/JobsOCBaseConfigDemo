@@ -8595,7 +8595,7 @@
 		CECE80B12C4512BF00764AF5 /* JobsMixFunc */ = {
 			isa = PBXGroup;
 			children = (
-				CEB4B1702C5A39EA00831085 /* JobsStepView */,
+				CECE80B02C4512BF00764AF5 /* JobsMixFunc.h */,
 				CECE7F292C4512BF00764AF5 /* 播放器控制层 */,
 				CECE7F322C4512BF00764AF5 /* 分享弹窗 */,
 				CECE7F362C4512BF00764AF5 /* 广告或者公示弹出框 */,
@@ -8609,17 +8609,23 @@
 				CECE7FD42C4512BF00764AF5 /* JobsAppDoor */,
 				CECE7FD82C4512BF00764AF5 /* JobsBasePopupView */,
 				CECE7FE02C4512BF00764AF5 /* JobsBitsMonitor */,
+				CECE7D1A2C450CCD00764AF5 /* JobsCustomView */,
 				CECE7FE52C4512BF00764AF5 /* JobsDropDownListView */,
+				CECE7D1E2C450CCD00764AF5 /* JobsFiltrationView */,
 				CECE7FF02C4512BF00764AF5 /* JobsHotLabel */,
 				CECE80102C4512BF00764AF5 /* JobsImageNumberView */,
+				C525D3E92C48017D003DAFD0 /* JobsLinkageMenuView */,
+				CECE7D4F2C450DED00764AF5 /* JobsMenu */,
+				CE8877BC2C51F1FF0085948C /* JobsNavBar */,
 				CECE80162C4512BF00764AF5 /* JobsPageTBV */,
 				CECE801D2C4512BF00764AF5 /* JobsShowNumView */,
+				CEB4B1702C5A39EA00831085 /* JobsStepView */,
 				CECE80282C4512BF00764AF5 /* JobsSuspend */,
 				CECE802C2C4512BF00764AF5 /* JobsTitleView01 */,
+				CE40B2962C4BF78200CB64B5 /* JobsToggleView */,
 				CECE80382C4512BF00764AF5 /* JobsUserHeaderDataChoice */,
 				CECE80412C4512BF00764AF5 /* JobsWelcomeVC */,
 				CECE80AC2C4512BF00764AF5 /* UITabBarCtr */,
-				CECE80B02C4512BF00764AF5 /* JobsMixFunc.h */,
 			);
 			path = JobsMixFunc;
 			sourceTree = "<group>";
@@ -12359,12 +12365,6 @@
 		CECE87132C45140000764AF5 /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
-				CECE7D4F2C450DED00764AF5 /* JobsMenu */,
-				CECE7D1A2C450CCD00764AF5 /* JobsCustomView */,
-				CECE7D1E2C450CCD00764AF5 /* JobsFiltrationView */,
-				CE8877BC2C51F1FF0085948C /* JobsNavBar */,
-				CE40B2962C4BF78200CB64B5 /* JobsToggleView */,
-				C525D3E92C48017D003DAFD0 /* JobsLinkageMenuView */,
 				CECE86072C45140000764AF5 /* 电影倒计时特效 */,
 				CECE868C2C45140000764AF5 /* 加密体系 */,
 				CECE86992C45140000764AF5 /* 卡片式滑动效果 */,

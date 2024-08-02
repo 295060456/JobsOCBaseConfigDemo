@@ -4495,6 +4495,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 27、<font id=创建UICollectionView color=red>创建`UICollectionView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+#### 27.1、关于`UICollectionView`
+
 * 设置为NO，使得`UICollectionView`只能上拉，不能下拉
   
   ```objective-c
@@ -4691,10 +4693,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [_collectionView tab_startAnimation];   // 开启动画
     ```
   
-* 关于**`UICollectionViewFlowLayout`**
+#### 27.2、关于**`UICollectionViewFlowLayout`**
 
   * `UICollectionView` 的一个布局对象，用于定义网格布局
-
+  
   * ```objective-c
     UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;  // 设置滚动方向
@@ -4703,17 +4705,23 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     layout.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
     layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
     ```
-
+  
   * 在`UICollectionViewFlowLayout`和`UICollectionViewDelegateFlowLayout`协议方法中设置布局属性时，<font color=red>**`UICollectionViewDelegateFlowLayout`协议方法的优先级更高**</font>。也就是说，如果你同时在`UICollectionViewFlowLayout`对象和`UICollectionViewDelegateFlowLayout`方法中设置了布局属性，集合视图将优先使用`UICollectionViewDelegateFlowLayout`方法中提供的值
+
+#### 27.3、[<font color=red>**`UICollectionView`实现重叠的卡包效果**</font>](https://github.com/TMMMMMS/TMSWalletLayout)
+
+* [**@interface TMSCollectionViewLayout : UICollectionViewLayout**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/WalletLayout/TMSCollectionViewLayout)
+* [**@interface TMSWalletCollectionReusableView : UICollectionReusableView<BaseViewProtocol,BaseProtocol>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/WalletLayout/TMSWalletCollectionReusableView)
+* [**@interface TMSWalletCollectionViewCell : UICollectionViewCell<BaseViewProtocol>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/WalletLayout/TMSWalletCollectionViewCell)
 
 * <details id="UICollectionView的完整调用">
    <summary><strong>UICollectionView的完整调用</strong></summary>
-   
+
    ```objective-c
    @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
    @property(nonatomic,strong)BaseCollectionView *collectionView;
    ```
-   
+
    ```objective-c
    -(BaseCollectionView *)collectionView{
        if (!_collectionView) {
@@ -4806,7 +4814,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
        }return _collectionView;
    }
    ```
-   
+
    ```objective-c
    UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
    layout.scrollDirection = UICollectionViewScrollDirectionVertical;  // 设置滚动方向
@@ -4815,7 +4823,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    layout.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
    ```
-   
+
    ```objective-c
    #pragma mark - UICollectionViewDataSource
    - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -4898,7 +4906,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
        return UIEdgeInsetsMake(0, 0, 0, 0);
    }
    ```
-   
+
    </details>
 
 ### 28、<font color=red id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

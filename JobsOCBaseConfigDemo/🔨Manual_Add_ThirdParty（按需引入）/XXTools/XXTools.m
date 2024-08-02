@@ -16,7 +16,12 @@
 @end
 
 @implementation XXTools
-
+/// 创建一个左上角的显示标记的markLabel
+/// - Parameters:
+///   - text: 要展示的文字
+///   - width: 斜边宽度
+///   - superView:  父视图
+///   - cornerRadius: 圆角弧度
 - (NSArray *)addMarkLabelWithText:(NSString *)text
                          maxWidth:(CGFloat)width
                         superView:(UIView *)superView
