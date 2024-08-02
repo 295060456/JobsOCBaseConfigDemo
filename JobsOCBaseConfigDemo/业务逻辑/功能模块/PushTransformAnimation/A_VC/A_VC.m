@@ -87,9 +87,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIViewModel *viewModel = UIViewModel.new;
     viewModel.image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld.jpeg",indexPath.row]];
     viewModel.backBtnTitleModel.text = @"B_VC";
-    
-    [self comingToPushVC:b
-           requestParams:viewModel];
+    self.comingToPushVCByRequestParams(b,viewModel);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView

@@ -73,9 +73,7 @@
 //            @jobs_strongify(self)
         NSLog(@"您点击了关注");
     }];
-
-    [self comingToPresentVC:jobsCommentCoreVC
-              requestParams:JobsInternationalization(@"")];
+    self.comingToPresentVCByRequestParams(jobsCommentCoreVC,JobsInternationalization(@""));
 }
 #pragma mark —— lazyLoad
 -(UIButton *)contactCustomerServiceBtn{

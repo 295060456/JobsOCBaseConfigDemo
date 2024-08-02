@@ -89,10 +89,6 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }
-
-//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    [self comingToPushVC:ViewController1.new];
-//}
 #pragma mark —— SpreadsheetViewDataSource
 - (NSInteger)numberOfColumns:(SpreadsheetView *)spreadsheetView {
     return self.channels.count + 1;
@@ -147,7 +143,7 @@
     }];return mergedCells;
 }
 
-- (ZMJCell *)spreadsheetView:(SpreadsheetView *)spreadsheetView 
+- (ZMJCell *)spreadsheetView:(SpreadsheetView *)spreadsheetView
                cellForItemAt:(NSIndexPath *)indexPath {
     if (indexPath.column == 0 && indexPath.row == 0) {
         return nil;

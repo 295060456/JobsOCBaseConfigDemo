@@ -3323,16 +3323,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```objective-c
     #pragma mark —— present
     /// 简洁版强制present展现一个控制器页面【不需要正向传参】
-    -(void)comingToPresentVC:(UIViewController *_Nonnull)viewController;
+    -(jobsByVCBlock)comingToPresentVC;
     /// 简洁版强制present展现一个控制器页面【需要正向传参】
-    -(void)comingToPresentVC:(UIViewController *_Nonnull)viewController
-               requestParams:(id _Nullable)requestParams;
+    -(jobsByVCAndDataBlock)comingToPresentVCByRequestParams;
     #pragma mark —— push
-    /// 简洁版强制展现一个控制器页面【不需要正向传参】
-    -(void)comingToPushVC:(UIViewController *_Nonnull)viewController;
-    /// 简洁版强制展现一个控制器页面【需要正向传参】
-    -(void)comingToPushVC:(UIViewController *_Nonnull)viewController
-            requestParams:(id _Nullable)requestParams;
+    /// 简洁版强制push展现一个控制器页面【不需要正向传参】
+    -(jobsByVCBlock)comingToPushVC;
+    /// 简洁版强制push展现一个控制器页面【需要正向传参】
+    -(jobsByVCAndDataBlock)comingToPushVCByRequestParams;
     ```
     
     ```objective-c

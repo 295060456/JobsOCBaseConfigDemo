@@ -101,8 +101,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataMutArr[indexPath.row].cls) {
-        [self comingToPushVC:self.dataMutArr[indexPath.row].cls.new
-               requestParams:self.dataMutArr[indexPath.row]];
+        self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.row].cls.new,self.dataMutArr[indexPath.row]);
     }else{
         [WHToast jobsToastMsg:JobsInternationalization(@"尚未接入此功能")];
     }

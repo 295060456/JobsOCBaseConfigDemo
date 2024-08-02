@@ -172,9 +172,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
             [self.dataMutArr removeObject:data];
             [self.tableView reloadData];
         }];
-        
-        [self comingToPushVC:msgDetailVC
-               requestParams:viewModel];
+        self.comingToPushVCByRequestParams(msgDetailVC,viewModel);
     }
 }
 /// 编辑模式下，点击取消左边已选中的cell的按钮

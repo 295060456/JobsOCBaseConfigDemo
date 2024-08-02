@@ -80,7 +80,7 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
-    [self comingToPushVC:MyTableTableVC.new];
+    self.comingToPushVC(MyTableTableVC.new);
 }
 #pragma mark —— 一些私有方法
 
@@ -127,7 +127,7 @@
                                                   clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
-            [self comingToPushVC:MyCollectionVC.new];
+            self.comingToPushVC(MyCollectionVC.new);
             return nil;
         }];
         [self.view addSubview:_switchBtn];

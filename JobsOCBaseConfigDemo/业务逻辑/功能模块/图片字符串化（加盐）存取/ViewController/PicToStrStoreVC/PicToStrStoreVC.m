@@ -107,8 +107,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.dataMutArr[indexPath.row].requestParams isKindOfClass:NSNumber.class]) {
-        [self comingToPushVC:PicToStrStoreSubVC.new
-               requestParams:self.dataMutArr[indexPath.row]];
+        self.comingToPushVCByRequestParams(PicToStrStoreSubVC.new,self.dataMutArr[indexPath.row]);
     }else{
         [WHToast jobsToastMsg:JobsInternationalization(@"尚未接入此功能")];
     }

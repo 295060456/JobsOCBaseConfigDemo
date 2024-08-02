@@ -70,53 +70,69 @@
     }];
 }
 #pragma mark —— present
-#define JobsPresentationStyle UIDevice.currentDevice.systemVersion.doubleValue >= 13.0 ? UIModalPresentationAutomatic : UIModalPresentationFullScreen
+#ifndef JobsPresentationStyle
+#define JobsPresentationStyle (UIDevice.currentDevice.systemVersion.doubleValue >= 13.0 ? UIModalPresentationAutomatic : UIModalPresentationFullScreen)
+#endif
 /// 简洁版强制present展现一个控制器页面【不需要正向传参】
--(void)comingToPresentVC:(UIViewController *_Nonnull)viewController{
-    [UIViewController comingFromVC:self
-                              toVC:viewController
-                       comingStyle:ComingStyle_PRESENT
-                 presentationStyle:JobsPresentationStyle
-                     requestParams:nil
-          hidesBottomBarWhenPushed:YES
-                          animated:YES
-                           success:nil];
+-(jobsByVCBlock)comingToPresentVC{
+    @jobs_weakify(self)
+    return ^(UIViewController *_Nonnull viewController) {
+        @jobs_strongify(self)
+        [UIViewController comingFromVC:self
+                                  toVC:viewController
+                           comingStyle:ComingStyle_PRESENT
+                     presentationStyle:JobsPresentationStyle
+                         requestParams:nil
+              hidesBottomBarWhenPushed:YES
+                              animated:YES
+                               success:nil];
+    };
 }
 /// 简洁版强制present展现一个控制器页面【需要正向传参】
--(void)comingToPresentVC:(UIViewController *_Nonnull)viewController
-           requestParams:(id _Nullable)requestParams{
-    [UIViewController comingFromVC:self
-                              toVC:viewController
-                       comingStyle:ComingStyle_PRESENT
-                 presentationStyle:JobsPresentationStyle
-                     requestParams:requestParams
-          hidesBottomBarWhenPushed:YES
-                          animated:YES
-                           success:nil];
+-(jobsByVCAndDataBlock)comingToPresentVCByRequestParams{
+    @jobs_weakify(self)
+    return ^(UIViewController * _Nullable viewController,id _Nullable requestParams) {
+        @jobs_strongify(self)
+        [UIViewController comingFromVC:self
+                                  toVC:viewController
+                           comingStyle:ComingStyle_PRESENT
+                     presentationStyle:JobsPresentationStyle
+                         requestParams:requestParams
+              hidesBottomBarWhenPushed:YES
+                              animated:YES
+                               success:nil];
+    };
 }
 #pragma mark —— push
 /// 简洁版强制push展现一个控制器页面【不需要正向传参】
--(void)comingToPushVC:(UIViewController *_Nonnull)viewController{
-    [UIViewController comingFromVC:self
-                              toVC:viewController
-                       comingStyle:ComingStyle_PUSH
-                 presentationStyle:JobsPresentationStyle
-                     requestParams:nil
-          hidesBottomBarWhenPushed:YES
-                          animated:YES
-                           success:nil];
+-(jobsByVCBlock)comingToPushVC{
+    @jobs_weakify(self)
+    return ^(UIViewController *_Nonnull viewController) {
+        @jobs_strongify(self)
+        [UIViewController comingFromVC:self
+                                  toVC:viewController
+                           comingStyle:ComingStyle_PUSH
+                     presentationStyle:JobsPresentationStyle
+                         requestParams:nil
+              hidesBottomBarWhenPushed:YES
+                              animated:YES
+                               success:nil];
+    };
 }
 /// 简洁版强制push展现一个控制器页面【需要正向传参】
--(void)comingToPushVC:(UIViewController *_Nonnull)viewController
-        requestParams:(id _Nullable)requestParams{
-    [UIViewController comingFromVC:self
-                              toVC:viewController
-                       comingStyle:ComingStyle_PUSH
-                 presentationStyle:JobsPresentationStyle
-                     requestParams:requestParams
-          hidesBottomBarWhenPushed:YES
-                          animated:YES
-                           success:nil];
+-(jobsByVCAndDataBlock)comingToPushVCByRequestParams{
+    @jobs_weakify(self)
+    return ^(UIViewController * _Nullable viewController,id _Nullable requestParams) {
+        @jobs_strongify(self)
+        [UIViewController comingFromVC:self
+                                  toVC:viewController
+                           comingStyle:ComingStyle_PUSH
+                     presentationStyle:JobsPresentationStyle
+                         requestParams:requestParams
+              hidesBottomBarWhenPushed:YES
+                              animated:YES
+                               success:nil];
+    };
 }
 /**
  ❤️【强制推控制器】❤️

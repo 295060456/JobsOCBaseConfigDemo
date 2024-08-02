@@ -94,8 +94,7 @@
         [_listView richElementsInViewWithModel:nil];
         [_listView actionObjectBlock:^(JobsIMListDataModel *data) {
             @jobs_strongify(self)
-            [self comingToPushVC:JobsIMVC.new
-                   requestParams:[self makeData:data]];
+            self.comingToPushVCByRequestParams(JobsIMVC.new,[self makeData:data]);
         }];
         [self.view addSubview:_listView];
         [_listView mas_makeConstraints:^(MASConstraintMaker *make) {

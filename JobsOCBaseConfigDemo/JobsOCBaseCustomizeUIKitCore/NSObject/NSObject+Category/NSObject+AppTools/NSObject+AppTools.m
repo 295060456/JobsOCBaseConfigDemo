@@ -64,8 +64,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     
     UIViewModel *viewModel = UIViewModel.new;
     viewModel.requestParams = @(JobsAppDoorBgType_video);
-    [viewController comingToPresentVC:JobsAppDoorVC.new
-                        requestParams:viewModel];
+    viewController.comingToPresentVCByRequestParams(JobsAppDoorVC.new,viewModel);
 }
 /// 强制登录：没登录（本地用户数据为空）就去登录
 -(void)forcedLogin{

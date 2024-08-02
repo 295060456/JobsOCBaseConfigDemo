@@ -93,8 +93,7 @@
              requestParams:(id _Nullable)requestParams{
     UIViewController *viewController = self.jobsGetCurrentViewController;
     if (viewController) {
-        [viewController comingToPushVC:toPushVC
-                         requestParams:requestParams];
+        viewController.comingToPushVCByRequestParams(toPushVC,requestParams);
     }else{
         NSLog(@"%@强制展现页面%@失败,携带的参数%@",viewController,toPushVC,requestParams);
         [WHToast jobsToastErrMsg:@"强制展现页面失败,请检查控制台"];

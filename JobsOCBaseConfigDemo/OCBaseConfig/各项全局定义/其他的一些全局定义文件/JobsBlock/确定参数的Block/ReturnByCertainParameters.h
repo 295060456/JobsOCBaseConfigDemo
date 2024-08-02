@@ -36,22 +36,22 @@ typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Class _Nonnull cls,NSStri
 
 typedef UICollectionViewCell __kindof * _Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
 
-typedef CGPoint (^_Nullable JobsReturnCGPointByVoidBlock)(void);
-typedef CGPoint (^_Nullable JobsReturnCGPointByIDBlock)(id _Nullable data);
-typedef CGSize (^_Nullable JobsReturnCGSizeByVoidBlock)(void);
-typedef CGSize(^_Nullable JobsReturnCGSizeByIDBlock)(id _Nullable data);
+typedef CGPoint (^JobsReturnCGPointByVoidBlock)(void);
+typedef CGPoint (^JobsReturnCGPointByIDBlock)(id _Nullable data);
+typedef CGSize (^JobsReturnCGSizeByVoidBlock)(void);
+typedef CGSize(^JobsReturnCGSizeByIDBlock)(id _Nullable data);
 
 typedef CGRect (^JobsReturnCGRectByVoidBlock)(void);
-typedef CGRect (^ _Nullable JobsReturnCGRectByIDBlock)(id _Nullable data);
-typedef CGRect (^_Nullable JobsReturnCGRectByCGPointBlock)(CGPoint data);
-typedef CGRect (^_Nullable JobsReturnCGRectByCGSizeBlock)(CGSize data);
-typedef CGRect (^_Nullable JobsReturnCGRectByCGFloatBlock)(CGFloat data);
-typedef CGRect (^_Nullable JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,UIView * _Nonnull superView);
+typedef CGRect (^JobsReturnCGRectByIDBlock)(id _Nullable data);
+typedef CGRect (^JobsReturnCGRectByCGPointBlock)(CGPoint data);
+typedef CGRect (^JobsReturnCGRectByCGSizeBlock)(CGSize data);
+typedef CGRect (^JobsReturnCGRectByCGFloatBlock)(CGFloat data);
+typedef CGRect (^JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,UIView * _Nonnull superView);
 
-typedef UIColor *_Nonnull(^_Nullable JobsReturnColorByCGFloatBlock)(CGFloat data);
+typedef UIColor *_Nonnull(^JobsReturnColorByCGFloatBlock)(CGFloat data);
 
-typedef UIEdgeInsets(^_Nullable JobsReturnUIEdgeInsetsByVoidBlock)(void);
-typedef UIEdgeInsets(^_Nullable JobsReturnUIEdgeInsetsByIDBlock)(id _Nullable data);
+typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByVoidBlock)(void);
+typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByIDBlock)(id _Nullable data);
 
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByBackgroundBlock)(UIBackgroundConfiguration *_Nullable data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByCornerStyleBlock)(UIButtonConfigurationCornerStyle data) API_AVAILABLE(ios(16.0));

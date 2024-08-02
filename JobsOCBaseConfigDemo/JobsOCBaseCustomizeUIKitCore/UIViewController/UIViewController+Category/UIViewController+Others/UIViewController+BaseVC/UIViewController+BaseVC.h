@@ -52,16 +52,14 @@ BaseViewControllerProtocol
 
 #pragma mark —— present
 /// 简洁版强制present展现一个控制器页面【不需要正向传参】
--(void)comingToPresentVC:(UIViewController *_Nonnull)viewController;
+-(jobsByVCBlock)comingToPresentVC;
 /// 简洁版强制present展现一个控制器页面【需要正向传参】
--(void)comingToPresentVC:(UIViewController *_Nonnull)viewController
-           requestParams:(id _Nullable)requestParams;
+-(jobsByVCAndDataBlock)comingToPresentVCByRequestParams;
 #pragma mark —— push
-/// 简洁版强制展现一个控制器页面【不需要正向传参】
--(void)comingToPushVC:(UIViewController *_Nonnull)viewController;
-/// 简洁版强制展现一个控制器页面【需要正向传参】
--(void)comingToPushVC:(UIViewController *_Nonnull)viewController
-        requestParams:(id _Nullable)requestParams;
+/// 简洁版强制push展现一个控制器页面【不需要正向传参】
+-(jobsByVCBlock)comingToPushVC;
+/// 简洁版强制push展现一个控制器页面【需要正向传参】
+-(jobsByVCAndDataBlock)comingToPushVCByRequestParams;
 /**
  ❤️【强制推控制器】❤️
  1、自定义是PUSH还是PRESENT展现控制器，如果自定义PUSH但是navigationController不存在，则换用PRESENT展现控制器
