@@ -23,7 +23,7 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    JobsRemoveNotification(self);;
+//    JobsRemoveNotification(self);;
     [self endDropDownListView];
 }
 

@@ -10,7 +10,7 @@
 
 [toc]
 
-## <font id=前言>前言</font>
+#### <font id=前言>前言</font>
 
 * **工欲善其事必先利其器**
 * **面向信仰编程**
@@ -2295,7 +2295,7 @@ NSObject <|-- BaseProtocol
 
 ## 五、代码讲解
 
-### 1、**UIButton.UIButtonConfiguration** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 1、**`UIButton.UIButtonConfiguration`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 <details id="UIButton">
 <summary><strong>点我了解详情</strong></summary>
 
@@ -2707,7 +2707,19 @@ NSObject <|-- BaseProtocol
     * 因为是低频需求，所以目前只封装在主调用上进行呈现
     * `longPressGestureEventBlock:(JobsSelectorBlock _Nullable)longPressGestureEventBlock`参数
 
-### 3、**Masonry** 的一些使用技巧 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 3、[**`Masonry`**](https://github.com/SnapKit/Masonry) 的一些使用技巧 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* ```ruby
+  pod 'Masonry' # https://github.com/SnapKit/Masonry NO_SMP
+  ```
+
+  ```objective-c
+  #if __has_include(<Masonry/Masonry.h>)
+  #import <Masonry/Masonry.h>
+  #else
+  #import "Masonry.h"
+  #endif
+  ```
 
 * 关注实现类：[**@interface UIView (Masonry)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+Masonry)
 
@@ -3147,7 +3159,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-#### 9.2、[**TFPopup**](https://github.com/shmxybfq/TFPopup)
+#### 9.2、[**`TFPopup`**](https://github.com/shmxybfq/TFPopup)
 
 * 最底层承接的是一个**UIButton**
 
@@ -5879,7 +5891,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-* [**MGSwipeTableCell**](https://github.com/MortimerGoro/MGSwipeTableCell) 滑动的**TableViewCell**
+* [**MGSwipeTableCell**](https://github.com/MortimerGoro/MGSwipeTableCell) 滑动的**`TableViewCell`**
 
   ```ruby
   pod 'MGSwipeTableCell' # https://github.com/MortimerGoro/MGSwipeTableCell 滑动tableViewCell
@@ -5891,6 +5903,90 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   #else
   #import "MGSwipeTableCell.h"
   #endif
+  ```
+
+#### 28.4、锚定点击的控件下方（动画）出现的下拉菜单[**`JobsDropDownListView`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsDropDownListView)
+
+![image-20240803101851035](./assets/image-20240803101851035.png)
+
+* 内部用**`UITableView`**创建
+
+* ```objective-c
+  - (void)dealloc{
+      NSLog(@"%@",JobsLocalFunc);
+  //    JobsRemoveNotification(self);;
+      [self endDropDownListView];
+  }
+  ```
+
+  ```objective-c
+  -(UIButton *)btn{
+      if(!_btn){
+          @jobs_weakify(self)
+          _btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                   background:nil
+                                   buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                textAlignment:NSTextAlignmentCenter
+                                             subTextAlignment:NSTextAlignmentCenter
+                                                  normalImage:nil
+                                               highlightImage:nil
+                                              attributedTitle:nil
+                                      selectedAttributedTitle:nil
+                                           attributedSubtitle:nil
+                                                        title:JobsInternationalization(@"点击按钮弹出下拉列表")
+                                                     subTitle:nil
+                                                    titleFont:UIFontWeightRegularSize(12)
+                                                 subTitleFont:nil
+                                                     titleCor:JobsWhiteColor
+                                                  subTitleCor:nil
+                                           titleLineBreakMode:NSLineBreakByWordWrapping
+                                        subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                          baseBackgroundColor:JobsOrangeColor
+                                              backgroundImage:nil
+                                                 imagePadding:JobsWidth(0)
+                                                 titlePadding:JobsWidth(0)
+                                               imagePlacement:NSDirectionalRectEdgeNone
+                                   contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                     contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                            cornerRadiusValue:JobsWidth(8)
+                                              roundingCorners:UIRectCornerAllCorners
+                                         roundingCornersRadii:CGSizeZero
+                                               layerBorderCor:nil
+                                                  borderWidth:JobsWidth(1)
+                                                primaryAction:nil
+                                   longPressGestureEventBlock:^(id  _Nullable weakSelf,
+                                                                id  _Nullable arg) {
+              NSLog(@"按钮的长按事件触发");
+       }
+                                              clickEventBlock:^id(BaseButton *x){
+              @jobs_strongify(self)
+              if (self.objectBlock) self.objectBlock(x);
+              NSLog(@"AAA = %@",self.dropDownListView);
+              x.selected = !x.selected;
+              if (x.selected) {
+                  /// ❤️只能让它执行一次❤️
+                  self.dropDownListView = [self motivateFromView:x
+                                   jobsDropDownListViewDirection:self.dropDownListViewDirection
+                                                            data:self.listViewData
+                                              motivateViewOffset:JobsWidth(5)
+                                                     finishBlock:^(UIViewModel *data) {
+                      NSLog(@"data = %@",data);
+                  }];
+              }else{
+                  [self endDropDownListView];
+              }return nil;
+           return nil;
+          }];
+          [self.view addSubview:_btn];
+          [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.center.equalTo(self.view);
+  //            make.size.mas_equalTo(CGSizeMake(JobsWidth(120), JobsWidth(25)));
+              make.height.mas_equalTo(JobsWidth(30));
+          }];
+          _btn.makeBtnLabelByShowingType(UILabelShowingType_03);
+      }return _btn;
+  }
   ```
 
 ### 29、**`JobsStepView`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

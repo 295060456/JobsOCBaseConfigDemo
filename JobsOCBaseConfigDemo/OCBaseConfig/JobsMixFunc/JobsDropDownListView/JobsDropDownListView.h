@@ -33,35 +33,72 @@ NS_ASSUME_NONNULL_END
 
 /**
  【用法与用量】
- -(UIButton *)btn1{
-     if (!_btn1) {
-         _btn1 = UIButton.new;
-         [_btn1 normalTitle:[@"2388 3788 8907 8890 8888" stringByAppendingString:@"  建设银行"]];
-         [_btn1 normalTitleColor:HEXCOLOR(0x524740)];
-         [_btn1 normalBackgroundImage:JobsIMG(@"全局输入框背景图")];
-         [_btn1 titleFont:[UIFont systemFontOfSize:JobsWidth(14) weight:UIFontWeightRegular]];
-         BtnClickEvent(_btn1, {
-             NSLog(@"%@",self->dropDownListView);
+ -(UIButton *)btn{
+     if(!_btn){
+         @jobs_weakify(self)
+         _btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                  background:nil
+                                  buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                               textAlignment:NSTextAlignmentCenter
+                                            subTextAlignment:NSTextAlignmentCenter
+                                                 normalImage:nil
+                                              highlightImage:nil
+                                             attributedTitle:nil
+                                     selectedAttributedTitle:nil
+                                          attributedSubtitle:nil
+                                                       title:JobsInternationalization(@"点击按钮弹出下拉列表")
+                                                    subTitle:nil
+                                                   titleFont:UIFontWeightRegularSize(12)
+                                                subTitleFont:nil
+                                                    titleCor:JobsWhiteColor
+                                                 subTitleCor:nil
+                                          titleLineBreakMode:NSLineBreakByWordWrapping
+                                       subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                         baseBackgroundColor:JobsOrangeColor
+                                             backgroundImage:nil
+                                                imagePadding:JobsWidth(0)
+                                                titlePadding:JobsWidth(0)
+                                              imagePlacement:NSDirectionalRectEdgeNone
+                                  contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                    contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                               contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                           cornerRadiusValue:JobsWidth(8)
+                                             roundingCorners:UIRectCornerAllCorners
+                                        roundingCornersRadii:CGSizeZero
+                                              layerBorderCor:nil
+                                                 borderWidth:JobsWidth(1)
+                                               primaryAction:nil
+                                  longPressGestureEventBlock:^(id  _Nullable weakSelf,
+                                                               id  _Nullable arg) {
+             NSLog(@"按钮的长按事件触发");
+      }
+                                             clickEventBlock:^id(BaseButton *x){
+             @jobs_strongify(self)
+             if (self.objectBlock) self.objectBlock(x);
+             NSLog(@"AAA = %@",self.dropDownListView);
              x.selected = !x.selected;
              if (x.selected) {
-                 self->dropDownListView = [self motivateFromView:x
-                                                            data:nil
-                                              motivateViewOffset:JobsWidth(5)
-                                                     finishBlock:^(UIViewModel *data) {
+                 /// ❤️只能让它执行一次❤️
+                 self.dropDownListView = [self motivateFromView:x
+                                  jobsDropDownListViewDirection:self.dropDownListViewDirection
+                                                           data:self.listViewData
+                                             motivateViewOffset:JobsWidth(5)
+                                                    finishBlock:^(UIViewModel *data) {
                      NSLog(@"data = %@",data);
-                     [x normalTitle:data.text];
                  }];
              }else{
-                 [self->dropDownListView dropDownListViewDisappear];
-             }
-         });
-         [self.view addSubview:_btn1];
-         [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.size.mas_equalTo(CGSizeMake(JobsWidth(305), JobsWidth(36)));
-             make.top.equalTo(self.titleLab3.mas_bottom).offset(JobsWidth(4));
-             make.left.equalTo(self.titleLab1);
+                 [self endDropDownListView];
+             }return nil;
+          return nil;
          }];
-     }return _btn1;
+         [self.view addSubview:_btn];
+         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.center.equalTo(self.view);
+ //            make.size.mas_equalTo(CGSizeMake(JobsWidth(120), JobsWidth(25)));
+             make.height.mas_equalTo(JobsWidth(30));
+         }];
+         _btn.makeBtnLabelByShowingType(UILabelShowingType_03);
+     }return _btn;
  }
  
  */
