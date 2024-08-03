@@ -168,5 +168,4 @@ BaseViewProtocol_synthesize
     return 0.0f;
 }
 
-
 @end

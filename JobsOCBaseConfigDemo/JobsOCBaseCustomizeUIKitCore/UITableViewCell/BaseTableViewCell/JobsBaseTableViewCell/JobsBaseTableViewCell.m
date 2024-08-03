@@ -401,7 +401,7 @@ UITableViewCellProtocol_synthesize
             if (model.textModel.attributedText) {
                 self.textLabel.attributedText = model.textModel.attributedText;
             }else{
-                self.textLabel.text = [NSString stringWithFormat:@"%@",model.textModel.text];
+                self.textLabel.text = model.textModel.text;
                 self.textLabel.textColor = self.viewModel.textModel.textCor;
                 self.textLabel.font = self.viewModel.textModel.font;
             }
@@ -412,7 +412,7 @@ UITableViewCellProtocol_synthesize
             if (model.subTextModel.attributedText) {
                 self.detailTextLabel.attributedText = model.subTextModel.attributedText;
             }else{
-                self.detailTextLabel.text = [NSString stringWithFormat:@"%@",model.subTextModel.text];
+                self.detailTextLabel.text = model.subTextModel.text;
                 self.detailTextLabel.textColor = self.viewModel.subTextModel.textCor;
                 self.detailTextLabel.font = self.viewModel.subTextModel.font;
                 self.detailTextLabel.width = UITableViewCellSubTitleWidth;

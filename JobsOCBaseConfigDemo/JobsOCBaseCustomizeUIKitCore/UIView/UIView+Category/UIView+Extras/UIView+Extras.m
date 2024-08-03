@@ -392,6 +392,14 @@
     
     return shouldScroll;
 }
+/// 数据（字符串）定宽
++(CGFloat)widthByData:(UIViewModel *_Nonnull)data{
+    return 0;
+}
+/// 数据（字符串）定高
++(CGFloat)heightByData:(UIViewModel *_Nonnull)data{
+    return 0;
+}
 #pragma mark —— 其他
 /// 针对数据源是UIImage  *的GKPhotoBrowser
 -(void)viewTapGRSavePicsWithImageDataMutArr:(NSMutableArray <UIImage *>* _Nonnull)imageDataMutArr

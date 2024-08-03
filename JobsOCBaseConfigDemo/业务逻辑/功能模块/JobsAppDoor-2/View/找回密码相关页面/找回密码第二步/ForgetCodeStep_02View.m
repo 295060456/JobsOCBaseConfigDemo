@@ -13,7 +13,6 @@
 @end
 
 @implementation ForgetCodeStep_02View
-
 /**
  BaseViewProtocol
  

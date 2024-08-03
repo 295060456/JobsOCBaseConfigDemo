@@ -8,7 +8,6 @@
 #import "UITextModel.h"
 
 @implementation UITextModel
-
 UITextModelProtocol_synthesize
 UITextModelProtocol_UIViewModelSynthesize
 UILocationProtocol_UIViewModelSynthesize

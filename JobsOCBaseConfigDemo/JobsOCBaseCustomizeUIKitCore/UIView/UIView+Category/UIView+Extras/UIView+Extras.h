@@ -18,6 +18,7 @@
 #import "NSObject+GKPhotoBrowser.h"
 #import "MacroDef_Notification.h"
 #import "NSObject+DynamicInvoke.h"
+#import "BaseViewProtocol.h"
 
 #ifndef ShadowDirection_h
 #define ShadowDirection_h
@@ -45,7 +46,7 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 };
 #endif /* UIBorderSideType_h */
 
-@interface UIView (Extras)
+@interface UIView (Extras)<BaseViewProtocol>
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame;
 -(jobsByStringBlock _Nonnull)jobsLogPoint;

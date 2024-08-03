@@ -54,4 +54,6 @@ UITableViewCell_UIViewModelProtocolSynthesize
     return [UIView heightByData:model ? : vm] + JobsWidth(20);
 }
 
+//jobsTextHeightWithFont
+
 @end

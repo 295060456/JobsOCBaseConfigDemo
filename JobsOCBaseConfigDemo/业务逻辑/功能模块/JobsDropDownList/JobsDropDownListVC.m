@@ -89,14 +89,47 @@
 }
 #pragma mark —— lazyLoad
 -(UIButton *)btn{
-    if (!_btn) {
-        _btn = UIButton.new;
-        _btn.normalTitle(JobsInternationalization(@"点击按钮弹出下拉列表"));
-        _btn.titleFont(UIFontWeightRegularSize(12));
-        _btn.normalTitleColor(JobsWhiteColor);
+    if(!_btn){
         @jobs_weakify(self)
-        [_btn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                 background:nil
+                                 buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                              textAlignment:NSTextAlignmentCenter
+                                           subTextAlignment:NSTextAlignmentCenter
+                                                normalImage:nil
+                                             highlightImage:nil
+                                            attributedTitle:nil
+                                    selectedAttributedTitle:nil
+                                         attributedSubtitle:nil
+                                                      title:JobsInternationalization(@"点击按钮弹出下拉列表")
+                                                   subTitle:nil
+                                                  titleFont:UIFontWeightRegularSize(12)
+                                               subTitleFont:nil
+                                                   titleCor:JobsWhiteColor
+                                                subTitleCor:nil
+                                         titleLineBreakMode:NSLineBreakByWordWrapping
+                                      subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                        baseBackgroundColor:JobsOrangeColor
+                                            backgroundImage:nil
+                                               imagePadding:JobsWidth(0)
+                                               titlePadding:JobsWidth(0)
+                                             imagePlacement:NSDirectionalRectEdgeNone
+                                 contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                   contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                              contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                          cornerRadiusValue:JobsWidth(8)
+                                            roundingCorners:UIRectCornerAllCorners
+                                       roundingCornersRadii:CGSizeZero
+                                             layerBorderCor:nil
+                                                borderWidth:JobsWidth(1)
+                                              primaryAction:nil
+                                 longPressGestureEventBlock:^(id  _Nullable weakSelf,
+                                                              id  _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+     }
+                                            clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             NSLog(@"AAA = %@",self.dropDownListView);
             x.selected = !x.selected;
             if (x.selected) {
@@ -111,29 +144,28 @@
             }else{
                 [self endDropDownListView];
             }return nil;
+         return nil;
         }];
-        _btn.backgroundColor = JobsOrangeColor;
-        [_btn buttonAutoWidthByFont];
-
         [self.view addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.view);
+//            make.size.mas_equalTo(CGSizeMake(JobsWidth(120), JobsWidth(25)));
+            make.height.mas_equalTo(JobsWidth(30));
         }];
-        [_btn layoutIfNeeded];
-        _btn.cornerCutToCircleWithCornerRadius(JobsWidth(8));
+        _btn.makeBtnLabelByShowingType(UILabelShowingType_03);
     }return _btn;
 }
 
 -(UISwitch *)switcher{
     if (!_switcher) {
         _switcher = UISwitch.new;
-        [self.view addSubview:_switcher];
         _switcher.selected = NO;
         _switcher.thumbTintColor = _switcher.selected ? self.cor : HEXCOLOR(0xB0B0B0);
         _switcher.tintColor = JobsWhiteColor;
         _switcher.onTintColor = HEXCOLOR(0xFFFCF7);
         _switcher.backgroundColor = JobsWhiteColor;
         _switcher.cornerCutToCircleWithCornerRadius(31 / 2);
+        [self.view addSubview:_switcher];
         [_switcher mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.gk_navigationBar.mas_bottom);
             make.left.equalTo(self.view).offset(JobsWidth(16));
@@ -147,9 +179,9 @@
             [self endDropDownListView];
             x.thumbTintColor = x.selected ? self.cor : HEXCOLOR(0xB0B0B0);
             [x layerBorderCor:x.selected ? self.cor : HEXCOLOR(0xB0B0B0) andBorderWidth:JobsWidth(1)];
-//            toast(x.selected ? JobsInternationalization(@"打开解锁"):JobsInternationalization(@"关闭解锁"));
+            toast(x.selected ? JobsInternationalization(@"打开解锁"):JobsInternationalization(@"关闭解锁"));
             self.dropDownListViewDirection = x.selected;
-            self.btn.normalTitle(x.selected ? JobsInternationalization(@"点击按钮弹出上拉列表") : JobsInternationalization(@"点击按钮弹出下拉列表"));
+            self.btn.jobsResetBtnTitle(x.selected ? JobsInternationalization(@"点击按钮弹出上拉列表") : JobsInternationalization(@"点击按钮弹出下拉列表"));
         }];
     }return _switcher;
 }
@@ -167,15 +199,12 @@
 -(NSMutableArray<UIViewModel *> *)listViewData{
     if (!_listViewData) {
         _listViewData = NSMutableArray.new;
-
-        for (int i = 1; i <= 9; i++) {
+        for (int i = 1; i <= 3; i++) {
             UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization([NSString stringWithFormat:@"0%d",i]);
-            viewModel.subTextModel.text = JobsInternationalization([NSString stringWithFormat:@"00%d",i]);
-            
+            viewModel.textModel.text = @"0".add(toStringByInt(i));
+            viewModel.subTextModel.text = @"00".add(toStringByInt(i));
             [_listViewData addObject:viewModel];
         }
-        
     }return _listViewData;
 }
 

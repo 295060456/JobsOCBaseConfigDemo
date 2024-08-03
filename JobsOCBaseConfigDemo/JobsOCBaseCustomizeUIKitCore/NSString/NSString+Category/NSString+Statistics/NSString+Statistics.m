@@ -46,7 +46,7 @@
             // 计算文本的高度
             CGSize maxSize = CGSizeMake(controlWidth, CGFLOAT_MAX);
             CGRect boundingRect = [attributedText boundingRectWithSize:maxSize
-                                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                                context:nil];
             CGFloat textHeight = ceil(CGRectGetHeight(boundingRect));
             
@@ -85,7 +85,7 @@
             // 计算文本的宽度
             CGSize maxSize = CGSizeMake(CGFLOAT_MAX, controlHeight);
             CGRect boundingRect = [attributedText boundingRectWithSize:maxSize
-                                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                                context:nil];
 
             CGFloat textWidth = ceil(CGRectGetWidth(boundingRect));
