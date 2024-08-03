@@ -153,14 +153,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     TMSWalletCollectionReusableView *reusableView = nil;
     reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass(TMSWalletCollectionReusableView.class) forIndexPath:indexPath];
     if (kind == TMSCollectionViewSectionHeader) {
-
         UIViewModel *viewModel = self.sectionHeaderDataSource[indexPath.section];
         viewModel.textModel.text = [NSString stringWithFormat:@"Section Header:%zd-%zd", indexPath.section, indexPath.item];
         [reusableView richElementsInViewWithModel:viewModel];
     }
 
     if (kind == TMSCollectionViewSectionFooter) {
-        
         UIViewModel *viewModel = self.sectionFooterDataSource[indexPath.section];
         viewModel.textModel.text = [NSString stringWithFormat:@"Section Header:%zd-%zd", indexPath.section, indexPath.item];
         [reusableView richElementsInViewWithModel:viewModel];
@@ -174,19 +172,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         _collectionView.backgroundColor = JobsClearColor;
         
         {
-//            [_collectionView registerCollectionElementKindSectionHeaderClass:TMSWalletCollectionReusableView.class];
-//            [_collectionView registerCollectionElementKindSectionFooterClass:TMSWalletCollectionReusableView.class];
-//            [_collectionView registerCollectionViewCellClass:TMSWalletCollectionViewCell.class];
+            _collectionView.registerCollectionViewClass();
             
-            [_collectionView registerCollectionViewClass];
-            [_collectionView registerCollectionViewCellClass:BaiShaETProjBankAccMgmtCVCell.class];
-          
-            [_collectionView registerClass:TMSWalletCollectionReusableView.class
-                forSupplementaryViewOfKind:TMSCollectionViewSectionHeader
-                       withReuseIdentifier:NSStringFromClass(TMSWalletCollectionReusableView.class)];
-            [_collectionView registerClass:TMSWalletCollectionReusableView.class
-                forSupplementaryViewOfKind:TMSCollectionViewSectionFooter
-                       withReuseIdentifier:NSStringFromClass(TMSWalletCollectionReusableView.class)];
+            _collectionView.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class);
+            _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class);
+            
+            _collectionView.registerCollectionViewCellClass(TMSWalletCollectionViewCell.class);
+            _collectionView.registerCollectionViewCellClass(BaiShaETProjBankAccMgmtCVCell.class);
+            
         }
 
         _collectionView.dataLink(self);

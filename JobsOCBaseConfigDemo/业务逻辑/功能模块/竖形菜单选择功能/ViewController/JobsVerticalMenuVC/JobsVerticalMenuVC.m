@@ -426,10 +426,10 @@ referenceSizeForFooterInSection:(NSInteger)section{
         _collectionView.dataLink(self);
         _collectionView.backgroundColor = ThreeClassCellBgCor;
         _collectionView.alwaysBounceVertical = YES;
-        [_collectionView registerCollectionViewClass];
-//        [_collectionView registerCollectionViewCellClass:ThreeClassCell.class];
-//        [_collectionView registerCollectionElementKindSectionHeaderClass:UICollectionReusableView.class];
-//        [_collectionView registerCollectionElementKindSectionFooterClass:UICollectionReusableView.class];
+        _collectionView.registerCollectionViewClass();
+        _collectionView.registerCollectionViewCellClass(TreeClassItemCell.class);
+        _collectionView.registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class);
+        _collectionView.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
         [self.view addSubview:_collectionView];
     }return _collectionView;
 }

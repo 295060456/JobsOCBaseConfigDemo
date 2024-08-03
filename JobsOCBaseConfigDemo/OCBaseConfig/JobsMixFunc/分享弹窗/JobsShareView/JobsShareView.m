@@ -269,8 +269,8 @@ insetForSectionAtIndex:(NSInteger)section {
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.bounces = NO;
         
-        [_collectionView registerCollectionViewClass];
-        [_collectionView registerCollectionViewCellClass:MSMineView6CVCell.class];
+        _collectionView.registerCollectionViewClass();
+        _collectionView.registerCollectionViewCellClass(MSMineView6CVCell.class);
         
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;

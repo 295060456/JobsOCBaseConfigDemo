@@ -26,7 +26,7 @@
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     MSMineView6CVCell *cell = (MSMineView6CVCell *)[collectionView collectionViewCellClass:MSMineView6CVCell.class forIndexPath:indexPath];
     if (!cell) {
-        [collectionView registerCollectionViewCellClass:MSMineView6CVCell.class];
+        collectionView.registerCollectionViewCellClass(MSMineView6CVCell.class);
         cell = (MSMineView6CVCell *)[collectionView collectionViewCellClass:MSMineView6CVCell.class forIndexPath:indexPath];
     }
     

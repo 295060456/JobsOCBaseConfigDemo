@@ -50,6 +50,7 @@
   * [x] [**时间管理：`JobsTimerVC`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsTimer/ViewController/JobsTimerVC)<br>
   * [x] [**悬浮模块：`JobsSuspend`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsSuspend)<br>
   * [x] [**下载流量监控：`JobsBitsMonitor`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsBitsMonitor)<br>
+  * [x] [让 **`UIView`**像 **`UINavigationController`**一样支持 push 和 pop](#UIView支持push和pop)
   * [x] [**下拉列表：`JobsDropDownListVC`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/%F0%9F%87%A8%F0%9F%87%B3ServiceLogic/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/JobsDropDownList)<br>
 * UI层封装
   * [x] 对悬浮层的封装<br>
@@ -1480,25 +1481,25 @@ NSObject <|-- BaseProtocol
 
 #### 18.3、有4+1个`TextField`可供继承使用（具体使用方式，查询相关头文件定义）
 
-##### 18.3.1、处理方式：将**UITextField**作为一个子视图加载到一个父容器视图
+##### 18.3.1、处理方式：将**`UITextField`**作为一个子视图加载到一个父容器视图
 
 * 产生背景
 
-  * iOS系统的 **UITextField** 内部其实还有若干子视图，对于这些子视图原则上是不希望我们进行直接访问的，所以在设计之初就没有提供更多的Api对外暴露给我们使用
+  * iOS系统的 **`UITextField`** 内部其实还有若干子视图，对于这些子视图原则上是不希望我们进行直接访问的，所以在设计之初就没有提供更多的Api对外暴露给我们使用
   * 然而，当我们需要自定义一些UI的时候，因为在`-(void)layoutSubviews`等生命周期方法中是过程值（不准确，不是我们想要的），这个过程值又UI的展开有关，很难定位终值，就会对我们的布局产生纠缠，至少增加思维量和代码厚度，加大接入难度
   * <font color=red>**键盘的弹起和回收也会对这些子视图的frame产生影响**</font>。这让情况变得更加错综复杂
   * 特别的，如果要<u>自定义光标的闪动位置</u>、<u>**TextField**.**leftView**.**frame**</u>、<u>**TextField**.**rightView**.**frame**</u>、<u>清除按钮的frame</u>等功能的话，就会变得很吃力，甚至不可为
 
 
   * 现在的做法是将系统的**UITextField**作为一个整体，<u>不再去关心内部的子视图的实现及其布局调整</u>
-    * 外界传入的**leftView**替代系统的**TextField**.**leftView**
-    * 外界传入的**rightView**替代系统的**TextField**.**rightView**
-  * 对**textField**我们只关心2个值
+    * 外界传入的**leftView**替代系统的**`TextField`**.**leftView**
+    * 外界传入的**rightView**替代系统的**`TextField`**.**rightView**
+  * 对**`textField`**我们只关心2个值
     * 当下输入的文本值
-    * 当前**textField**的文本值
+    * 当前**`textField`**的文本值
   * `placeholder`是针对普通文本。系统原则上不希望我们在这个属性上去过多纠缠文本字体、文本色号，转而考虑`attributedPlaceholder`。但如果一定要对`placeholder`的文本字体、文本色号进行定义，则关注`placeholderColor`、`placeholderFont`
 
-* <font color=red>`JobsTextField`</font>：**BaseView**
+* <font color=red>`JobsTextField`</font>：**`BaseView`**
 
   ```objective-c
   -(JobsTextField *)textField{
@@ -4528,10 +4529,19 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   
 * `UICollectionView`必须执行注册机制。当且仅当用字符串获取`UICollectionViewCell`的时候才开辟内存
   
-  ```objective-c
-  [_collectionView registerCollectionViewClass];
-  [_collectionView registerCollectionViewCellClass:MSMineView6CVCell.class];
-  ```
+  * ```objective-c
+    _collectionView.registerCollectionViewClass();
+    ```
+  
+  * ```objective-c
+    _collectionView.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class);
+    _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class);
+    ```
+  
+  * ```objective-c
+    _collectionView.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class);
+    _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class);
+    ```
   
 * 增加**`UICollectionView`** 的可滚动区域（`contentInset`）
   
@@ -7734,7 +7744,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 关注实现类 [**@interface NSObject (NTESVerifyCodeManager)<NTESVerifyCodeManagerDelegate>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BNTESVerifyCodeManager)
 
-## 37、<font color=red>让 **`UIView`**像 **`UINavigationController`**一样支持 push 和 pop</font>
+##### 37、<font color=red id=UIView支持push和pop>让 **`UIView`**像 **`UINavigationController`**一样支持 push 和 pop</font>
 
 * <font color=blue size=5>发起点为**`UIViewController *`**，在**`UIView *`**中进行push 和 pop</font>
 

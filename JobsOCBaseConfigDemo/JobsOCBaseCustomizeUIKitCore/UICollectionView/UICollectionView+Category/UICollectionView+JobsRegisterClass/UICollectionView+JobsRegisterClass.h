@@ -10,6 +10,7 @@
 #import "JobsHeaderFooterView.h"
 
 #import "JobsBaseCollectionViewCell.h"
+#import "BaseCollectionViewCell.h"
 #import "JobsSearchDataCVCell.h"
 #import "JobsHotLabelWithMultiLineCVCell.h"
 #import "JobsBtnStyleCVCell.h"
@@ -30,13 +31,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UICollectionView (JobsRegisterClass)
 /// 注册的时候不开辟内存，只有当用字符串进行取值的时候才开辟内存
--(void)registerCollectionViewClass;
+-(jobsByVoidBlock)registerCollectionViewClass;
 /// 注册 UICollectionViewCell 及其子类
--(void)registerCollectionViewCellClass:(Class)cls;
+-(jobsByClassBlock _Nonnull)registerCollectionViewCellClass;
 /// 注册 UICollectionElementKindSectionHeader 及其子类
--(void)registerCollectionElementKindSectionHeaderClass:(Class)cls;
+-(jobsByClassBlock _Nonnull)registerCollectionElementKindSectionHeaderClass;
 /// 注册 UICollectionElementKindSectionFooter 及其子类
--(void)registerCollectionElementKindSectionFooterClass:(Class)cls;
+-(jobsByClassBlock _Nonnull)registerCollectionElementKindSectionFooterClass;
 /// 依据字符串取UICollectionElementKindSectionHeader
 -(__kindof UICollectionReusableView *)UICollectionElementKindSectionHeaderClass:(Class)cls
                                                                    forIndexPath:(NSIndexPath *)indexPath;

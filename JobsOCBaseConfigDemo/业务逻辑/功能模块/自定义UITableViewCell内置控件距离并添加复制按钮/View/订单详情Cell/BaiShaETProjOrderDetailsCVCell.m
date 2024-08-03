@@ -32,7 +32,7 @@
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     BaiShaETProjOrderDetailsCVCell *cell = (BaiShaETProjOrderDetailsCVCell *)[collectionView collectionViewCellClass:BaiShaETProjOrderDetailsCVCell.class forIndexPath:indexPath];
     if (!cell) {
-        [collectionView registerCollectionViewCellClass:BaiShaETProjOrderDetailsCVCell.class];
+        collectionView.registerCollectionViewCellClass(BaiShaETProjOrderDetailsCVCell.class);
         cell = (BaiShaETProjOrderDetailsCVCell *)[collectionView collectionViewCellClass:BaiShaETProjOrderDetailsCVCell.class forIndexPath:indexPath];
     }
     

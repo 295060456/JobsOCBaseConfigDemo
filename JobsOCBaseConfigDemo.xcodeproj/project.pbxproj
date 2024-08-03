@@ -62,6 +62,7 @@
 		CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877BB2C51F1FF0085948C /* JobsNavBar.m */; };
 		CEA116222C5278F8009D6FB3 /* XZMLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA116202C5278F8009D6FB3 /* XZMLayout.m */; };
 		CEB4B1722C5A39EA00831085 /* JobsStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB4B16F2C5A39EA00831085 /* JobsStepView.m */; };
+		CEBA44102C5E316200F0042D /* BaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */; };
 		CEC01BDF2C48DF300069C91A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB32C48AFED0069C91A /* TabBar.xcassets */; };
 		CEC01BE02C48DF330069C91A /* CONTACT US.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */; };
 		CEC01BE12C48DF360069C91A /* INVITE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB22C48AFAD0069C91A /* INVITE.xcassets */; };
@@ -1239,6 +1240,8 @@
 		CEB4B16D2C5A39EA00831085 /* JobsStepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsStepView.h; sourceTree = "<group>"; };
 		CEB4B16E2C5A39EA00831085 /* JobsStepView.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JobsStepView.jpg; sourceTree = "<group>"; };
 		CEB4B16F2C5A39EA00831085 /* JobsStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsStepView.m; sourceTree = "<group>"; };
+		CEBA440D2C5E316200F0042D /* BaseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewCell.h; sourceTree = "<group>"; };
+		CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewCell.m; sourceTree = "<group>"; };
 		CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "CONTACT US.xcassets"; sourceTree = "<group>"; };
 		CEC01AAE2C48AF7D0069C91A /* MY FAV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "MY FAV.xcassets"; sourceTree = "<group>"; };
 		CEC01AAF2C48AF950069C91A /* BANK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BANK.xcassets; sourceTree = "<group>"; };
@@ -3765,6 +3768,15 @@
 				CEB4B16F2C5A39EA00831085 /* JobsStepView.m */,
 			);
 			path = JobsStepView;
+			sourceTree = "<group>";
+		};
+		CEBA440F2C5E316200F0042D /* BaseCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEBA440D2C5E316200F0042D /* BaseCollectionViewCell.h */,
+				CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */,
+			);
+			path = BaseCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		CEC01AB42C48AFFE0069C91A /* old */ = {
@@ -10166,6 +10178,7 @@
 		CECE83862C4513CD00764AF5 /* BaseCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				CEBA440F2C5E316200F0042D /* BaseCollectionViewCell */,
 				CECE837C2C4513CD00764AF5 /* JobsBaseCollectionViewCell */,
 				CECE837F2C4513CD00764AF5 /* JobsBtnStyleCVCell */,
 				CECE83822C4513CD00764AF5 /* JobsImageViewStyleCVCell */,
@@ -13958,6 +13971,7 @@
 				CECE81392C4512BF00764AF5 /* JobsTitleView01.m in Sources */,
 				CECE7C9B2C450C5000764AF5 /* JobsSearchResultDataListTBVCell.m in Sources */,
 				CECE7EBD2C450E5B00764AF5 /* TKPermissionMotion.m in Sources */,
+				CEBA44102C5E316200F0042D /* BaseCollectionViewCell.m in Sources */,
 				CECE85D52C4513CE00764AF5 /* UITextView+Extend.m in Sources */,
 				CECE85DE2C4513CE00764AF5 /* UIView+Chain.m in Sources */,
 				CECE7C532C450C5000764AF5 /* JobsCommentConfig.m in Sources */,

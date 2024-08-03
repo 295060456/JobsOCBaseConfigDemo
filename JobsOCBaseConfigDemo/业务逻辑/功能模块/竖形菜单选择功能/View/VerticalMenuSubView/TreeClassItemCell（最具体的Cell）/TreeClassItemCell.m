@@ -26,7 +26,7 @@ UILocationProtocol_UIViewModelSynthesize
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     TreeClassItemCell *cell = (TreeClassItemCell *)[collectionView collectionViewCellClass:TreeClassItemCell.class forIndexPath:indexPath];
     if (!cell) {
-        [collectionView registerCollectionViewCellClass:TreeClassItemCell.class];
+        collectionView.registerCollectionViewCellClass(TreeClassItemCell.class);
         cell = (TreeClassItemCell *)[collectionView collectionViewCellClass:TreeClassItemCell.class forIndexPath:indexPath];
     }
     cell.indexPath = indexPath;

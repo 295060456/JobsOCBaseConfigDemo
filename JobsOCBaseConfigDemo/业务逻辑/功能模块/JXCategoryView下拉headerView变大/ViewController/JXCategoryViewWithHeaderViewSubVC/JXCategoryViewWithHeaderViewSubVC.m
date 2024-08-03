@@ -315,7 +315,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight() + JobsTabBarHeight(nil), 0);
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;
-        [_collectionView registerCollectionViewClass];
+        _collectionView.registerCollectionViewClass();
         [self.scrollView addSubview:_collectionView];
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);

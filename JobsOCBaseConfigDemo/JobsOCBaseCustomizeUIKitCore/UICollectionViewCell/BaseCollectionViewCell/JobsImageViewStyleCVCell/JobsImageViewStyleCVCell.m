@@ -30,7 +30,7 @@
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     JobsImageViewStyleCVCell *cell = (JobsImageViewStyleCVCell *)[collectionView collectionViewCellClass:JobsImageViewStyleCVCell.class forIndexPath:indexPath];
     if (!cell) {
-        [collectionView registerCollectionViewCellClass:JobsImageViewStyleCVCell.class];
+        collectionView.registerCollectionViewCellClass(JobsImageViewStyleCVCell.class);
         cell = (JobsImageViewStyleCVCell *)[collectionView collectionViewCellClass:JobsImageViewStyleCVCell.class forIndexPath:indexPath];
     }
     

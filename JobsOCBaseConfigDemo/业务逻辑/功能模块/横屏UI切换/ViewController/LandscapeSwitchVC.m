@@ -301,11 +301,11 @@ insetForSectionAtIndex:(NSInteger)section {
         //_collectionView.contentOffset = CGPointMake(0, -JobsWidth(250));//
         [_collectionView setContentOffset:CGPointMake(0, -400) animated:YES];// 这句最快在 viewWillLayoutSubviews 有效
         
-        [_collectionView registerCollectionViewClass];
+        _collectionView.registerCollectionViewClass();
         
-        [_collectionView registerCollectionViewCellClass:TMSWalletCollectionViewCell.class];
-        [_collectionView registerCollectionElementKindSectionHeaderClass:TMSWalletCollectionReusableView.class];
-        [_collectionView registerCollectionElementKindSectionFooterClass:TMSWalletCollectionReusableView.class];
+        _collectionView.registerCollectionViewCellClass(TMSWalletCollectionViewCell.class);
+        _collectionView.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class);
+        _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class);
         
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;

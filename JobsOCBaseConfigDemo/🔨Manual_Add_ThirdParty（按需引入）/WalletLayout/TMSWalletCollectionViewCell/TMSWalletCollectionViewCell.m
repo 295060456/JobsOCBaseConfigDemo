@@ -30,7 +30,7 @@
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     TMSWalletCollectionViewCell *cell = (TMSWalletCollectionViewCell *)[collectionView collectionViewCellClass:TMSWalletCollectionViewCell.class forIndexPath:indexPath];
     if (!cell) {
-        [collectionView registerCollectionViewCellClass:TMSWalletCollectionViewCell.class];
+        collectionView.registerCollectionViewCellClass(TMSWalletCollectionViewCell.class);
         cell = (TMSWalletCollectionViewCell *)[collectionView collectionViewCellClass:TMSWalletCollectionViewCell.class forIndexPath:indexPath];
     }
     cell.indexPath = indexPath;

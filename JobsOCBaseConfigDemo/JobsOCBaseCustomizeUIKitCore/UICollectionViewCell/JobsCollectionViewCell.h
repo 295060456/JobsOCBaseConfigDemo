@@ -12,6 +12,7 @@
 #import "UICollectionViewCell+ShakeAnimation.h"
 #import "UICollectionViewCell+UICollectionViewCellProtocol.h"
 #pragma mark —— Base
+#import "BaseCollectionViewCell.h"
 #import "JobsBaseCollectionViewCell.h"
 #import "JobsBtnStyleCVCell.h"
 #import "JobsImageViewStyleCVCell.h"

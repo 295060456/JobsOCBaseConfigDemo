@@ -227,7 +227,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.scrollEnabled = NO;
         
-        [_collectionView registerCollectionViewClass];
+        _collectionView.registerCollectionViewClass();
         
         [self addSubview:_collectionView];
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {

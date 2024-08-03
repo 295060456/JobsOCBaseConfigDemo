@@ -35,7 +35,7 @@
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     JobsHotLabelWithMultiLineCVCell *cell = (JobsHotLabelWithMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelWithMultiLineCVCell.class forIndexPath:indexPath];
     if (!cell) {
-        [collectionView registerCollectionViewCellClass:JobsHotLabelWithMultiLineCVCell.class];
+        collectionView.registerCollectionViewCellClass(JobsHotLabelWithMultiLineCVCell.class);
         cell = (JobsHotLabelWithMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelWithMultiLineCVCell.class forIndexPath:indexPath];
     }
     

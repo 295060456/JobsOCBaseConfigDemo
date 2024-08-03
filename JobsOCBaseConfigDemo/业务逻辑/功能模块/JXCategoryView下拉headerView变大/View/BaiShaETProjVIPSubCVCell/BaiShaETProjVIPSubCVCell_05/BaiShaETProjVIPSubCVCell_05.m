@@ -29,7 +29,7 @@
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     BaiShaETProjVIPSubCVCell_05 *cell = (BaiShaETProjVIPSubCVCell_05 *)[collectionView collectionViewCellClass:BaiShaETProjVIPSubCVCell_05.class forIndexPath:indexPath];
     if (!cell) {
-        [collectionView registerCollectionViewCellClass:BaiShaETProjVIPSubCVCell_05.class];
+        collectionView.registerCollectionViewCellClass(BaiShaETProjVIPSubCVCell_05.class);
         cell = (BaiShaETProjVIPSubCVCell_05 *)[collectionView collectionViewCellClass:BaiShaETProjVIPSubCVCell_05.class forIndexPath:indexPath];
     }
     cell.indexPath = indexPath;
