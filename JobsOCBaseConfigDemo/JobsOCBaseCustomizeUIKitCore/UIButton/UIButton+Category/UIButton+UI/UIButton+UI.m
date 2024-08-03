@@ -258,6 +258,34 @@
         }return newTextAttributes;
     };
 }
+/// 通过 Transformer 得到 字体
+-(JobsReturnFontByConfigurationTextAttributesTransformerBlock)getTitleFontFromTransformer{
+    @jobs_weakify(self)
+    return ^(UIConfigurationTextAttributesTransformer transformer) {
+        @jobs_strongify(self)
+        // 创建一个示例的 textAttributes 字典
+        NSDictionary<NSAttributedStringKey, id> *exampleAttributes = @{};
+        // 获取 transformer 转换后的属性字典
+        NSDictionary<NSAttributedStringKey, id> *newTextAttributes = transformer(exampleAttributes);
+        // 从新的字典中提取 titleFont
+        UIFont *titleFont = newTextAttributes[NSFontAttributeName];
+        return titleFont;
+    };
+}
+/// 通过 Transformer 得到 文字颜色
+-(JobsReturnColorByConfigurationTextAttributesTransformerBlock)getTitleColorFromTransformer{
+    @jobs_weakify(self)
+    return ^(UIConfigurationTextAttributesTransformer transformer) {
+        @jobs_strongify(self)
+        // 创建一个示例的 textAttributes 字典
+        NSDictionary<NSAttributedStringKey, id> *exampleAttributes = @{};
+        // 获取 transformer 转换后的属性字典
+        NSDictionary<NSAttributedStringKey, id> *newTextAttributes = transformer(exampleAttributes);
+        // 从新的字典中提取 titleCor
+        UIColor *titleCor = newTextAttributes[NSForegroundColorAttributeName];
+        return titleCor;
+    };
+}
 /// RAC 点击事件2次封装
 -(RACDisposable *)jobsBtnClickEventBlock:(JobsReturnIDByIDBlock)subscribeNextBlock{
     return [[self rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIButton * _Nullable x) {
@@ -396,6 +424,18 @@
             self.jobsResetTitle(data ? : JobsInternationalization(@"暂无数据"));
         } else {
             self.normalTitle(data);
+        }
+    };
+}
+/// 重设Btn副标题的文字内容
+-(jobsByStringBlock)jobsResetBtnSubTitle{
+    @jobs_weakify(self)
+    return ^(NSString *data) {
+        @jobs_strongify(self)
+        if (@available(iOS 16.0, *)) {
+            self.jobsResetTitle(data ? : JobsInternationalization(@"暂无数据"));
+        } else {
+            /// 没有这个属性
         }
     };
 }
@@ -601,6 +641,18 @@
     };
 }
 
+-(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetSubTitle API_AVAILABLE(ios(16.0)){
+    @jobs_weakify(self)
+    return ^(NSString *data) {
+        @jobs_strongify(self)
+        UIButtonConfiguration *config = self.configuration.copy;
+        config.subtitle = data;
+        self.configuration = config;
+        [self updateConfiguration];
+        return self.configuration;
+    };
+}
+
 -(JobsReturnButtonConfigurationByAttributedTitleBlock _Nonnull)jobsResetAttributedTitle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^(NSAttributedString *data) {
@@ -800,7 +852,7 @@
         UIButtonConfiguration *config = self.configuration.copy;
         config.baseForegroundColor = data;
         self.configuration = config;
-        [self jobsSetBtnTitleFont:nil btnTitleCor:data];
+        self.jobsResetTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:nil btnTitleCor:data]);
         [self updateConfiguration];
         return self.configuration;
     };
@@ -814,7 +866,7 @@
 #warning UIButtonConfiguration 没有对subTitle字体颜色的描述
 //        config.baseForegroundColor = data;
         self.configuration = config;
-        [self jobsSetBtnSubTitleFont:nil btnSubTitleCor:data];
+        self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:nil btnTitleCor:data]);
         [self updateConfiguration];
         return self.configuration;
     };
@@ -824,7 +876,7 @@
     @jobs_weakify(self)
     return ^(UIFont *data) {
         @jobs_strongify(self)
-        [self jobsSetBtnTitleFont:data btnTitleCor:nil];
+        self.jobsResetTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:data btnTitleCor:nil]);
     };
 }
 
@@ -832,7 +884,7 @@
     @jobs_weakify(self)
     return ^(UIFont *data) {
         @jobs_strongify(self)
-        [self jobsSetBtnSubTitleFont:data btnSubTitleCor:nil];
+        self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:data btnTitleCor:nil]);
     };
 }
 #pragma mark —— UIButton.UIControlStateNormal.set
@@ -868,8 +920,22 @@
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             UIButtonConfiguration *configuration = self.configuration.copy;
-            configuration.titleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:font
-                                                                                                       btnTitleCor:self.titleColorForNormalState];
+            configuration.titleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:font btnTitleCor:self.titleColorForNormalState];
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            self.titleLabel.font = font;
+        }
+    };
+}
+
+-(jobsByFontBlock _Nonnull)subTitleFont{
+    @jobs_weakify(self)
+    return ^(UIFont *_Nonnull font) {
+        @jobs_strongify(self)
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.subtitleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:font btnTitleCor:self.getTitleColorFromTransformer(configuration.subtitleTextAttributesTransformer)];
             self.configuration = configuration;
             [self updateConfiguration];
         } else {
@@ -914,7 +980,7 @@
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             UIButtonConfiguration *configuration = self.configuration.copy;
-            configuration.title = title;/// 文本颜色
+            configuration.title = title;
             self.configuration = configuration;
             [self updateConfiguration];
         } else {
@@ -934,6 +1000,21 @@
             [self updateConfiguration];
         } else {
             [self setTitleColor:titleColor forState:UIControlStateNormal];
+        }
+    };
+}
+
+-(jobsByCorBlock _Nonnull)subTitleColor{
+    @jobs_weakify(self)
+    return ^(UIColor *_Nonnull color) {
+        @jobs_strongify(self)
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.subtitleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:self.getTitleFontFromTransformer(configuration.subtitleTextAttributesTransformer) btnTitleCor:color];
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            self.titleLabel.textColor = color;
         }
     };
 }

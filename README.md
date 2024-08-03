@@ -4543,6 +4543,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class);
     ```
   
+* 滚动到指定位置
+  
+  * ```objective-c
+    _collectionView.contentOffset = CGPointMake(0,-100);
+    ```
+  
+  * ```objective-c
+    [_collectionView setContentOffset:CGPointMake(0, -200) animated:YES];// 只有在viewDidAppear周期 或者 手动触发才有效
+    ```
+  
 * 增加**`UICollectionView`** 的可滚动区域（`contentInset`）
   
   ```objective-c
@@ -4926,7 +4936,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    minimumLineSpacingForSectionAtIndex:(NSInteger)section {
        return 0;
    }
-   /// 定义的是元素水平之间的间距。Api自动计算一行的Cell个数，只有当间距小于此定义的最小值时才会换行，最小执行单元是Section（每个section里面的样式是统一的）
+   /// 定义的是UICollectionViewScrollDirectionVertical下，元素水平之间的间距。
+   /// UICollectionViewScrollDirectionHorizontal下，垂直和水平正好相反
+   /// Api自动计算一行的Cell个数，只有当间距小于此定义的最小值时才会换行，最小执行单元是Section（每个section里面的样式是统一的）
    - (CGFloat)collectionView:(UICollectionView *)collectionView
                       layout:(UICollectionViewLayout *)collectionViewLayout
    minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
@@ -4939,7 +4951,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
        return UIEdgeInsetsMake(0, 0, 0, 0);
    }
    ```
-
+   
    </details>
 
 ### 28、<font color=red id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

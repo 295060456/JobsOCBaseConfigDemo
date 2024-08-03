@@ -16,6 +16,7 @@
 
 @implementation JobsBtnStyleCVCell
 @synthesize viewModel = _viewModel;
+@synthesize buttonModel = _buttonModel;
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
@@ -45,13 +46,19 @@
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
-    self.viewModel = model;
+-(void)richElementsInCellWithModel:(id _Nullable)model{
+    if(KindOfViewModelCls(model)){
+        self.viewModel = model;
+    }
+    if(KindOfButtonModelCls(model)){
+        self.buttonModel = model;
+    }
+    
     self.btn.alpha = 1;
     self.btn.data = model;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)cellSizeWithModel:(UIViewModel *_Nullable)model{
++(CGSize)cellSizeWithModel:(id _Nullable)model{
     return CGSizeMake(JobsWidth(106), JobsWidth(30));
 }
 #pragma mark —— 一些公有方法
@@ -106,26 +113,68 @@
             make.edges.equalTo(self.contentView);
         }];
     }
-    _btn.selected = self.viewModel.jobsSelected;
-
-    _btn.jobsResetBtnTitle(self.viewModel.textModel.text);
-    _btn.jobsResetImage(self.viewModel.image);
-    _btn.jobsResetBtnTitleCor(self.viewModel.textModel.textCor);
-    _btn.jobsResetBtnBgCor(self.viewModel.bgCor);
-    [_btn jobsSetBtnTitleFont:self.viewModel.textModel.font ? : UIFontWeightSemiboldSize(12)
-                  btnTitleCor: self.viewModel.textModel.textCor ? : JobsBlueColor];
-    if (@available(iOS 16.0, *)) {
-        _btn.jobsResetImagePadding(self.viewModel.imageTitleSpace);
-    } else {
-        // Fallback on earlier versions
+    
+    if(self.viewModel){
+        _btn.selected = self.viewModel.jobsSelected;
+        /// 主标题
+        _btn.jobsResetBtnTitle(self.viewModel.textModel.text);
+        _btn.jobsResetBtnTitleCor(self.viewModel.textModel.textCor);
+        [_btn jobsSetBtnTitleFont:self.viewModel.textModel.font ? : UIFontWeightSemiboldSize(12)
+                      btnTitleCor: self.viewModel.textModel.textCor ? : JobsBlueColor];
+        /// 子标题
+        _btn.jobsResetSubTitle(self.viewModel.subTextModel.text);
+        [_btn jobsSetBtnSubTitleFont:self.viewModel.subTextModel.font ? : UIFontWeightSemiboldSize(12)
+                      btnSubTitleCor: self.viewModel.subTextModel.textCor ? : JobsBlueColor];
+        /// 按钮图
+        _btn.jobsResetImage(self.viewModel.image);
+        /// 背景色
+        _btn.jobsResetBtnBgCor(self.viewModel.bgCor);
+        /// 图文间距
+        if (@available(iOS 16.0, *)) {
+            _btn.jobsResetImagePadding(self.viewModel.imageTitleSpace);
+        } else {
+            // Fallback on earlier versions
+        }
+        /// 图文相对位置关系
+        if (@available(iOS 16.0, *)) {
+            _btn.jobsResetImagePlacement(self.viewModel.buttonEdgeInsetsStyle);
+        } else {
+            // Fallback on earlier versions
+        }
+        /// 圆切角
+        _btn.cornerCutToCircleWithCornerRadius(self.viewModel.layerCornerRadius ? : JobsWidth(8));
     }
-    if (@available(iOS 16.0, *)) {
-        _btn.jobsResetImagePlacement(self.viewModel.buttonEdgeInsetsStyle);
-    } else {
-        // Fallback on earlier versions
-    }
-    _btn.cornerCutToCircleWithCornerRadius(self.viewModel.layerCornerRadius ? : JobsWidth(8));
-    return _btn;
+    
+    if(self.buttonModel){
+        _btn.selected = self.buttonModel.jobsSelected;
+        /// 背景色
+        _btn.jobsResetBtnBgCor(self.buttonModel.baseBackgroundColor);
+        /// 背景图
+        _btn.jobsResetBtnBgImage(self.buttonModel.backgroundImage);
+        /// 主标题
+        _btn.jobsResetBtnTitle(self.buttonModel.title);
+        _btn.jobsResetBtnTitleCor(self.buttonModel.titleCor);
+        /// 按钮图
+        _btn.jobsResetImage(self.buttonModel.normalImage);
+        /// 子标题
+        _btn.jobsResetSubTitle(self.buttonModel.subTitle);
+        [_btn jobsSetBtnSubTitleFont:self.buttonModel.subTitleFont ? : UIFontWeightSemiboldSize(12)
+                      btnSubTitleCor: self.buttonModel.subTitleCor ? : JobsBlueColor];
+        /// 图文间距
+        if (@available(iOS 16.0, *)) {
+            _btn.jobsResetImagePadding(self.buttonModel.imagePadding);
+        } else {
+            // Fallback on earlier versions
+        }
+        /// 图文相对位置关系
+        if (@available(iOS 16.0, *)) {
+            _btn.jobsResetImagePlacement(self.buttonModel.imagePlacement);
+        } else {
+            // Fallback on earlier versions
+        }
+        /// 圆切角
+        _btn.cornerCutToCircleWithCornerRadius(self.buttonModel.cornerRadiusValue ? : JobsWidth(8));
+    }return _btn;
 }
 
 @end

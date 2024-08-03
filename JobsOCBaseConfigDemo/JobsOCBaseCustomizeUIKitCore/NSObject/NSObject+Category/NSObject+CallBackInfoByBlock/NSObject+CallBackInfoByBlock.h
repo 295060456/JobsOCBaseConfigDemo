@@ -226,6 +226,10 @@ NS_ASSUME_NONNULL_END
 #ifndef KindOfViewModelCls
 #define KindOfViewModelCls(data) [data isKindOfClass:UIViewModel.class]
 #endif /* KindOfViewModelCls */
+
+#ifndef KindOfButtonModelCls
+#define KindOfButtonModelCls(data) [data isKindOfClass:UIButtonModel.class]
+#endif /* KindOfButtonModelCls */
     
 #ifndef KindOfLabCls
 #define KindOfLabCls(data) [data isKindOfClass:UILabel.class]

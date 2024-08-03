@@ -113,6 +113,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @property (nonatomic, readwrite, assign) UIButtonConfigurationSize buttonSize; 这个属性，不是我们想要的UIFont。设置UIFont必须在富文本里面进行设置
 -(UIConfigurationTextAttributesTransformer)jobsSetConfigTextAttributesTransformerByTitleFont:(UIFont *_Nullable)titleFont
                                                                                  btnTitleCor:(UIColor *_Nullable)titleCor;
+/// 通过 Transformer 得到 字体
+-(JobsReturnFontByConfigurationTextAttributesTransformerBlock)getTitleFontFromTransformer;
+/// 通过 Transformer 得到 文字颜色
+-(JobsReturnColorByConfigurationTextAttributesTransformerBlock)getTitleColorFromTransformer;
 /// RAC 点击事件2次封装
 -(RACDisposable *)jobsBtnClickEventBlock:(JobsReturnIDByIDBlock)subscribeNextBlock;
 /// 设置按钮的长按手势
@@ -138,6 +142,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByCGFloatBlock)jobsResetBtnCornerRadiusValue;
 /// 重设Btn主标题的文字内容
 -(jobsByStringBlock)jobsResetBtnTitle;
+/// 重设Btn副标题的文字内容
+-(jobsByStringBlock)jobsResetBtnSubTitle;
 /// 重设Btn.Image
 -(jobsByImageBlock)jobsResetBtnImage;
 /// 重设Btn主标题的文字颜色
@@ -164,6 +170,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnButtonConfigurationByShowsActivityIndicatorBlock _Nonnull)jobsResetShowsActivityIndicator API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByActivityIndicatorColorTransformerBlock _Nonnull)jobsResetActivityIndicatorColorTransformer API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetTitle API_AVAILABLE(ios(16.0));
+-(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetSubTitle API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByAttributedTitleBlock _Nonnull)jobsResetAttributedTitle API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByTitleTextAttributesTransformerBlock _Nonnull)jobsResetTitleTextAttributesTransformer API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByTitleLineBreakModeBlock _Nonnull)jobsResetTitleLineBreakMode API_AVAILABLE(ios(16.0));
@@ -188,10 +195,12 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByBOOLBlock _Nonnull)makeNewLineShows;
 -(jobsByNSIntegerBlock _Nonnull)titleAlignment;
 -(jobsByFontBlock _Nonnull)titleFont;
+-(jobsByFontBlock _Nonnull)subTitleFont;
 -(jobsByImageBlock _Nonnull)normalImage;
 -(jobsByImageBlock _Nonnull)normalBackgroundImage;
 -(jobsByStringBlock _Nonnull)normalTitle;
 -(jobsByCorBlock _Nonnull)normalTitleColor;
+-(jobsByCorBlock _Nonnull)subTitleColor;
 -(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle;/// 富文本
 #pragma mark —— UIButton.UIControlStateNormal.get
 -(nullable UIImage *)imageForNormalState;

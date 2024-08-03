@@ -23,6 +23,9 @@ typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByString
 typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString * _Nullable data);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIntegerBlock)(NSInteger data);
 
+typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
+typedef UIColor *_Nullable(^JobsReturnColorByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
+
 typedef UITableViewHeaderFooterView __kindof * _Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Class _Nonnull cls,NSString * _Nullable salt);
 typedef UITableViewCell __kindof * _Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
 typedef UITableViewCell __kindof * _Nullable(^JobsReturnTableViewCellByClsBlock)(Class _Nonnull cls);

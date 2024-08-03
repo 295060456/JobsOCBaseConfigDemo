@@ -21,12 +21,7 @@
         self.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
         self.registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class);
         self.registerCollectionElementKindSectionFooterClass(JobsHeaderFooterView.class);
-        self.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
-        self.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
-        self.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
-        self.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
 #pragma mark —— CollectionViewCell
-        self.registerCollectionViewCellClass(UICollectionReusableView.class);
         self.registerCollectionViewCellClass(BaseCollectionViewCell.class);
         self.registerCollectionViewCellClass(JobsBaseCollectionViewCell.class);
         self.registerCollectionViewCellClass(JobsHotLabelWithMultiLineCVCell.class);
@@ -34,7 +29,6 @@
         self.registerCollectionViewCellClass(JobsBtnStyleCVCell.class);
         self.registerCollectionViewCellClass(JobsImageViewStyleCVCell.class);
         self.registerCollectionViewCellClass(JobsTextFieldStyleCVCell.class);
-        self.registerCollectionViewCellClass(UICollectionReusableView.class);
         self.registerCollectionViewCellClass(ThreeClassCell.class);
     };
 }
