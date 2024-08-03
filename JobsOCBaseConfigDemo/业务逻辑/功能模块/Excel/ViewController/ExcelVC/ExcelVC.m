@@ -18,6 +18,7 @@
 @end
 
 @implementation ExcelVC
+
 - (void)dealloc{
     [NSNotificationCenter.defaultCenter removeObserver:self];
     NSLog(@"%@",JobsLocalFunc);

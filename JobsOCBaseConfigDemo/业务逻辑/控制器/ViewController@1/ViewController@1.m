@@ -287,6 +287,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _dataMutArr = NSMutableArray.array;
         
         {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsViewNavigatorTestVC")
+                                                           attributeSubTitle:JobsInternationalization(@"让 UIView 像 UINavigationController 一样支持 push 和 pop")];
+
+            viewModel.cls = JobsViewNavigatorTestVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"Excel")
                                                            attributeSubTitle:JobsInternationalization(@"Excel")];
 

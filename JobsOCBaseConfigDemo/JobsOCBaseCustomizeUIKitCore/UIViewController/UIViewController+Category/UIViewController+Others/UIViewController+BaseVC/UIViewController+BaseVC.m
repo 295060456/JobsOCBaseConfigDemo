@@ -9,6 +9,17 @@
 
 @implementation UIViewController (BaseVC)
 #pragma mark —— 一些功能性
+-(jobsByView2Block _Nonnull)configViewNavigatorBySuperviewAndView{
+    @jobs_weakify(self)
+    return ^(UIView *_Nullable superview,
+             UIView *_Nullable view) {
+        @jobs_strongify(self)
+        self.view.navigator.frame = view.bounds;
+        view.navigator = superview.navigator;
+        [superview addSubview:self.view.navigator];
+    };
+}
+
 -(void)showUserInfo{
     if (JobsDebug) {
         UIViewModel *viewModel = [self configViewModelWithTitle:JobsInternationalization(@"用户信息展示(开发测试专用)") subTitle:nil];

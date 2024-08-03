@@ -10,7 +10,7 @@
 @interface JobsDropDownListVC ()
 /// UI
 @property(nonatomic,strong)JobsDropDownListView *dropDownListView;
-@property(nonatomic,strong)UIButton *btn;
+@property(nonatomic,strong)BaseButton *btn;
 @property(nonatomic,strong)UISwitch *switcher;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*listViewData;
@@ -88,7 +88,7 @@
     _dropDownListView = nil;
 }
 #pragma mark —— lazyLoad
--(UIButton *)btn{
+-(BaseButton *)btn{
     if(!_btn){
         @jobs_weakify(self)
         _btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil

@@ -81,6 +81,7 @@
 #import "CtrlClipboardCueVC.h"
 #import "LocalNotificationsVC.h"
 #import "ExcelVC.h"
+#import "JobsViewNavigatorTestVC.h"
 #import "CompressStrVC.h"
 #import "AppIconSwitchingVC.h"
 #import "PeekAndPopVC.h"

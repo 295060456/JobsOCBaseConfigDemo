@@ -27,6 +27,7 @@
 #import "UINavigationController+FDFullscreenPopGesture.h"/// 手势滑动返回
 #import "JobsShareView.h"
 #import "JobsLinkageMenuView.h"
+#import "JobsViewNavigator.h"
 /// FOR TEST
 #import "JobsShowObjInfoVC.h"
 

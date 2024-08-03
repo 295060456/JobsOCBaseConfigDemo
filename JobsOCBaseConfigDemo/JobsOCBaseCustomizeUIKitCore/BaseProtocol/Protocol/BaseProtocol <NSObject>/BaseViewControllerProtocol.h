@@ -58,6 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByCorBlock _Nonnull)updateStatusBarCor;
 /// 恢复状态栏颜色
 -(jobsByCorBlock _Nonnull)restoreStatusBarCor;
+/// 让 UIView 像 UINavigationController 一样支持 push 和 pop
+-(jobsByView2Block _Nonnull)configViewNavigatorBySuperviewAndView;
 /// 查看用户数据
 -(void)showUserInfo;
 /// 配置 GKNavigationBar

@@ -12,23 +12,25 @@
 typedef void(^jobsByVoidBlock)(void);
 
 typedef void(^jobsByIDBlock)(id _Nullable data);
-typedef void(^jobsByGestureRecognizerBlock)(UIGestureRecognizer *_Nullable data);
+typedef void(^jobsByGestureRecognizerBlock)(UIGestureRecognizer __kindof *_Nullable data);
 typedef void(^jobsBySELBlock)(SEL _Nullable data);
 typedef void(^jobsByStringBlock)(NSString *_Nullable data);
 typedef void(^jobsByAttributedStringBlock)(NSAttributedString *_Nullable data);
 typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
 typedef void(^jobsByCorBlock)(UIColor *_Nullable data);
 typedef void(^jobsByFontBlock)(UIFont *_Nullable data);
-typedef void(^jobsByViewBlock)(UIView *_Nullable view);
-typedef void(^jobsByBtnBlock)(UIButton *_Nullable btn);
-typedef void(^jobsByWindowBlock)(UIWindow *_Nullable data);
+typedef void(^jobsByViewBlock)(UIView __kindof * _Nullable view);
+typedef void(^jobsByBtnBlock)(UIButton __kindof * _Nullable btn);
+typedef void(^jobsByWindowBlock)(UIWindow __kindof * _Nullable data);
 typedef void(^jobsByClassBlock)(Class _Nonnull cls);
 typedef void(^jobsByClassAndSaltStrBlock)(Class _Nonnull cls,NSString * _Nullable salt);
 typedef void(^jobsByPointBlock)(CGPoint data);
 typedef void(^jobsBySizeBlock)(CGSize data);
 typedef void(^jobsByEdgeInsetBlock)(UIEdgeInsets data);
-typedef void(^jobsByVCBlock)(UIViewController * _Nullable data);
-typedef void(^jobsByVCAndDataBlock)(UIViewController * _Nullable viewController,id _Nullable data);
+typedef void(^jobsByVCBlock)(UIViewController __kindof * _Nullable data);
+typedef void(^jobsByVCAndDataBlock)(UIViewController __kindof * _Nullable viewController,id _Nullable data);
+typedef void(^jobsByViewAndAnimatedBlock)(UIView __kindof * _Nullable view,BOOL animated);
+typedef void(^jobsByView2Block)(UIView __kindof * _Nullable superview,UIView __kindof * _Nullable view);
 
 typedef void(^jobsByNSIntegerBlock)(NSInteger data);
 typedef void(^jobsByNSUIntegerBlock)(NSUInteger data);

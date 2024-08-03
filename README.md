@@ -2157,7 +2157,7 @@ NSObject <|-- BaseProtocol
   DDMyVipModel *myVipModel = [DDMyVipModel mj_objectWithKeyValues:data]; 
   ```
 
-#### 27、<font color=blue>**竖形菜单**</font>方案 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 27、<font color=blue>**竖形菜单**</font>方案 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * [**`JobsMenuView`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsMenu/JobsMenuView/JobsMenuView.m)
   * 整体是一个大View
@@ -7733,6 +7733,161 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 
 * 关注实现类 [**@interface NSObject (NTESVerifyCodeManager)<NTESVerifyCodeManagerDelegate>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BNTESVerifyCodeManager)
+
+## 37、<font color=red>让 **`UIView`**像 **`UINavigationController`**一样支持 push 和 pop</font>
+
+* <font color=blue size=5>发起点为**`UIViewController *`**，在**`UIView *`**中进行push 和 pop</font>
+
+  * 在**`UIViewController *`**中的配置（以下几种操作等价）
+
+    * ```objective-c
+      /// 一些必要配置
+      JobsViewNavigator *navigator = JobsViewNavigator.new;
+      navigator.frame = self.view.bounds;
+      self.pushView.navigator = navigator;
+      [self.view addSubview:navigator];
+      /// push 页面
+      navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.view.configViewNavigatorByPushview(self.pushView);
+      /// push 页面
+      self.view.navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.pushView.configViewNavigatorBySuperview(self.view);
+      /// push 页面
+      self.view.navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.configViewNavigatorBySuperviewAndView(self.view,self.pushView);
+      /// push 页面
+      self.view.navigator.pushView(self.pushView,YES);
+      ```
+
+  * 在**`UIView *`**中的配置（以下几种操作等价）
+
+    * ```objective-c
+      /// 一些必要配置
+      /// 完全新的一个 navigator
+      JobsViewNavigator *navigator = JobsViewNavigator.new;
+      navigator.frame = self.bounds;
+      self.pushView.navigator = navigator;
+      [self addSubview:navigator];
+      /// push 页面
+      navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.navigator.frame = self.bounds;
+      self.pushView.navigator = self.navigator;// 承接的上个控制器页面带来的 navigator
+      /// push 页面
+      self.navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.configViewNavigatorByPushview_(self.pushView);//（内含）承接的上个控制器页面带来的 navigator
+      /// push 页面
+      self.navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.pushView.configViewNavigatorBySuperview_(self);//（内含）承接的上个控制器页面带来的 navigator
+      /// push 页面
+      self.navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.configViewNavigatorBySuperviewAndView_(self,self.pushView);//（内含）承接的上个控制器页面带来的 navigator
+      /// push 页面
+      self.navigator.pushView(self.pushView,YES);
+      ```
+
+* <font color=blue size=5>发起点为**`UIView *`**，在**`UIView *`**中进行push 和 pop</font>
+
+  * 在发起点**`UIView *`**中的配置
+
+    * ```objective-c
+      /// 一些必要配置
+      JobsViewNavigator *navigator = JobsViewNavigator.new;
+      navigator.frame = self.bounds;
+      self.pushView.navigator = navigator;
+      [self addSubview:navigator];
+      /// push 页面
+      navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.configViewNavigatorByPushview(self.pushView);
+      /// push 页面
+      self.navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.pushView.configViewNavigatorBySuperview(self);
+      /// push 页面
+      self.navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.configViewNavigatorBySuperviewAndView(self,self.pushView);
+      /// push 页面
+      self.navigator.pushView(self.pushView,YES);
+      ```
+
+  * 在`push`的**`UIView *`**中的配置（以下几种操作等价）
+
+    * ```objective-c
+      /// 一些必要配置
+      /// 完全新的一个 navigator
+      JobsViewNavigator *navigator = JobsViewNavigator.new;
+      navigator.frame = self.bounds;
+      self.pushView.navigator = navigator;
+      [self addSubview:navigator];
+      /// push 页面
+      navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.navigator.frame = self.bounds;
+      self.pushView.navigator = self.navigator;// 承接的上个页面带来的 navigator
+      /// push 页面
+      self.navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.configViewNavigatorByPushview_(self.pushView);//（内含）承接的上个页面带来的 navigator
+      /// push 页面
+      self.navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      /// 一些必要配置
+      self.pushView.configViewNavigatorBySuperview_(self);//（内含）承接的上个页面带来的 navigator
+      /// push 页面
+      self.navigator.pushView(self.pushView,YES);
+      ```
+
+    * ```objective-c
+      self.configViewNavigatorBySuperviewAndView_(self,self.pushView);//（内含）承接的上个页面带来的 navigator
+      /// push 页面
+      self.navigator.pushView(self.pushView,YES);
+      ```
 
 ### Test  
 

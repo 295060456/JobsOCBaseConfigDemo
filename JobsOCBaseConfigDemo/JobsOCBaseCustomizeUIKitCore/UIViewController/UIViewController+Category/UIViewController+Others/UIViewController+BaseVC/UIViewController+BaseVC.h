@@ -16,6 +16,7 @@
 #import "UIViewModel.h"
 #import "AppToolsProtocol.h"
 #import "NSObject+UserInfo.h"
+#import "JobsViewNavigator.h"
 
 #if __has_include(<ReactiveObjC/RACmetamacros.h>)
 #import <ReactiveObjC/RACmetamacros.h>

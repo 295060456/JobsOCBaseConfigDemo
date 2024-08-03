@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_END
 
 /**
  【用法与用量】
- -(UIButton *)btn{
+ -(BaseButton *)btn{
      if(!_btn){
          @jobs_weakify(self)
          _btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil

@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsNavBarConfig : NSObject
+
+@property(nonatomic,strong)UIColor *bgCor;
+@property(nonatomic,strong)UIImage *bgImage;
 #pragma mark —— backBtn 的配置
 @property(nonatomic,strong,null_resettable)UIButtonModel *backBtnModel;
 #pragma mark —— 对标题的设置
