@@ -93,10 +93,8 @@
         _excelView.backgroundColor = JobsYellowColor;
         [self.view addSubview:_excelView];
         [_excelView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view).offset(260);
-            make.left.equalTo(self.view).offset(15);
-            make.right.equalTo(self.view).offset(-15);
-            make.height.mas_equalTo(200);
+            make.center.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(JobsRealWidth() / 2, JobsRealHeight() / 2));
         }];
     }return _excelView;
 }

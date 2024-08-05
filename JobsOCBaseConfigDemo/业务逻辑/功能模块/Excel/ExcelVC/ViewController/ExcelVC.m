@@ -134,12 +134,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{
-    return section ? [BaseTableViewHeaderFooterView heightForHeaderInSection:nil] : JobsWidth(10);
+    return JobsWidth(10);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForFooterInSection:(NSInteger)section{
-    return section ? [BaseTableViewHeaderFooterView heightForFooterInSection:nil] : JobsWidth(10);
+    return JobsWidth(10);
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (UIView *)tableView:(UITableView *)tableView
@@ -225,7 +225,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 #pragma mark —— lazyLoad
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.initWithStyleGrouped;
+        _tableView = UITableView.initWithStylePlain;
         _tableView.backgroundColor = JobsBlueColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.separatorColor = HEXCOLOR(0xEEE2C8);
@@ -355,7 +355,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             
             {
                 UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"XZExcel")
-                                                               attributeSubTitle:JobsInternationalization(@"XZExcel + SDAutoLayout")];
+                                                               attributeSubTitle:JobsInternationalization(@"XZExcel")];
                 viewModel.cls = XZExcelVC.class;
                 [rowMutArr addObject:viewModel];
             }

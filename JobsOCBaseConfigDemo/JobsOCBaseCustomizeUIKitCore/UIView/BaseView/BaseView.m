@@ -213,7 +213,12 @@ BaseViewProtocol_synthesize
         _navBar.navBarConfig = self.navBarConfig;
         [self addSubview:_navBar];
         [_navBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.right.equalTo(self);
+            if(JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape){
+                make.top.equalTo(self);
+            }else{
+                make.top.equalTo(self).offset(JobsStatusBarHeight());
+            }
+            make.left.right.equalTo(self);
             make.height.mas_equalTo(JobsWidth(40));
         }];
         [self layoutIfNeeded];

@@ -13,12 +13,6 @@
 #import "TopHeadView.h"
 #import "XZExcelContentView.h"
 
-//#if __has_include(<SDAutoLayout/SDAutoLayout.h>)
-//#import <SDAutoLayout/SDAutoLayout.h>
-//#else
-//#import "SDAutoLayout.h"
-//#endif
-
 @interface XZExcelView : UIView
 
 @end

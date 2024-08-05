@@ -311,7 +311,12 @@ JobsKey(_navBar)
         NavBar.navBarConfig = self.navBarConfig;
         [self.view addSubview:NavBar];
         [NavBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.right.equalTo(self.view);
+            if(JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape){
+                make.top.equalTo(self.view);
+            }else{
+                make.top.equalTo(self.view).offset(JobsStatusBarHeight());
+            }
+            make.left.right.equalTo(self.view);
             make.height.mas_equalTo(JobsWidth(40));
         }];
         [self.view layoutIfNeeded];

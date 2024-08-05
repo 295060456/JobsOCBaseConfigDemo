@@ -9,12 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BindViewModelProtocol.h"
 
-//#if __has_include(<SDAutoLayout/SDAutoLayout.h>)
-//#import <SDAutoLayout/SDAutoLayout.h>
-//#else
-//#import "SDAutoLayout.h"
-//#endif
-
 #import "XZExcelConfigureViewModel.h"
 #import "MainTableViewCell.h"
 #import "TableModel.h"
