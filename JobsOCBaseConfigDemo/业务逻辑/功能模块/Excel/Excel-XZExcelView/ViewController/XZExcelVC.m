@@ -10,7 +10,6 @@
 @interface XZExcelVC ()
 
 @property(nonatomic,strong)XZExcelView *excelView;
-@property (nonatomic, strong)XZExcelView *mainV;
 
 @end
 
