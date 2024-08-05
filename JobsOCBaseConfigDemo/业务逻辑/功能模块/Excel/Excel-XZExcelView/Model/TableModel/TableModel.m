@@ -11,7 +11,7 @@
 @implementation TableModel
 
 #pragma mark —— lazyLoad
-- (NSMutableArray *)itemArr{
+-(NSMutableArray<ItemModel *> *)itemArr{
     if (!_itemArr) {
         _itemArr = NSMutableArray.array;
     }return _itemArr;

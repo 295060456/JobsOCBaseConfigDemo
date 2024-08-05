@@ -16,7 +16,7 @@
 @property(nonatomic,strong)TableModel *model;
 @property(nonatomic,strong)UIBezierPath *linePath;
 @property(nonatomic,strong)CAShapeLayer *lineLayer;
-
+@property(nonatomic,strong)UIImageView *bgImageView;
 
 @end
 
@@ -35,6 +35,7 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style
              reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.bgImageView.alpha = 1;
         self.titleL.alpha = 1;
     }return self;
 }
@@ -68,12 +69,25 @@
     [self.contentView.layer addSublayer:self.lineLayer];
 }
 #pragma mark —— lazyLoad
+-(UIImageView *)bgImageView{
+    if(!_bgImageView){
+        _bgImageView = UIImageView.new;
+        _bgImageView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+//        _bgImageView.image = JobsIMG(@"投注记录");
+        [self.contentView addSubview:_bgImageView];
+        [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        }];
+    }return _bgImageView;
+}
+
 - (UILabel *)titleL{
     if (!_titleL) {
         _titleL = UILabel.new;
+        _titleL.textColor = JobsWhiteColor;
         _titleL.font = [UIFont systemFontOfSize:15];
         _titleL.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:_titleL];
+        [self.bgImageView addSubview:_titleL];
         [_titleL mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];

@@ -45,13 +45,13 @@
                         context:nil];
 }
 #pragma mark —— KVO 监听
-- (void)observeValueForKeyPath:(NSString *)keyPath 
+- (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
-                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    
-    XZExcelConfigureViewModel *viewModel=(XZExcelConfigureViewModel *)object;
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context{
+    XZExcelConfigureViewModel *viewModel = (XZExcelConfigureViewModel *)object;
     if ([keyPath isEqualToString:VerticalScrollBegin]) {
-        self.tableV.contentOffset=viewModel.VerticalScrollValue.CGPointValue;
+        self.tableV.contentOffset = viewModel.VerticalScrollValue.CGPointValue;
     }else if ([keyPath isEqualToString:HorizontalScrollBegin]){
        [self configureContentOffSet:viewModel.HorizontalScrollValue.CGPointValue];
     }
@@ -64,8 +64,8 @@
 #pragma mark —— UITableView 代理
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    MainTableViewCell *cell=[MainTableViewCell dequeneCellWithTableView:tableView];
+    MainTableViewCell *cell = [MainTableViewCell dequeneCellWithTableView:tableView];
+    cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
     return cell;
 }
 
@@ -80,7 +80,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     TableModel *model=self.viewModel.contentArr[indexPath.row];
     [showCell cellBindModel:model];
 }
-#pragma mark —— scroller 代理
+#pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView == self.tableV) {
         [self.viewModel setValue:[NSValue valueWithCGPoint:scrollView.contentOffset]
@@ -88,7 +88,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         [self configureContentOffSet:self.contentOffenset];
     }
 }
-#pragma mark ——  mainCell 代理
+#pragma mark ——  MianTableViewCellDelegate
 - (void)mianTableViewCellScrollerDid:(UIScrollView *)scrollview{
     if (scrollview.contentOffset.y != 0) {
         scrollview.contentOffset = CGPointMake(scrollview.contentOffset.x, 0);
@@ -111,6 +111,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 - (UITableView *)tableV{
     if (!_tableV) {
         _tableV = [UITableView.alloc initWithFrame:self.bounds style:UITableViewStylePlain];
+        _tableV.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
         _tableV.delegate = self;
         _tableV.dataSource = self;
         _tableV.rowHeight = self.viewModel.itemH;
@@ -119,7 +120,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         [_tableV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
-
     }return _tableV;
 }
 

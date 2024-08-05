@@ -12,7 +12,7 @@
 
 @property(nonatomic,strong)XZExcelConfigureViewModel *viewModel;
 @property(nonatomic,assign)CGSize size;
-@property(nonatomic,strong)UILabel*titleL;
+@property(nonatomic,strong)UILabel *titleL;
 @property(nonatomic,strong)ItemModel *model;
 @property(nonatomic,strong)CATextLayer *textLayer;
 @property(nonatomic,strong)UIBezierPath *linePath;
@@ -61,6 +61,7 @@
 - (UILabel *)titleL{
     if (!_titleL) {
         _titleL = UILabel.new;
+        _titleL.textColor = JobsWhiteColor;
         _titleL.font = [UIFont systemFontOfSize:15];
         _titleL.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:_titleL];

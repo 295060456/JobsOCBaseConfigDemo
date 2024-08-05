@@ -29,9 +29,9 @@
     }return cell;
 }
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style 
+-(instancetype)initWithStyle:(UITableViewCellStyle)style
              reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithStyle:style 
+    if (self = [super initWithStyle:style
                     reuseIdentifier:reuseIdentifier]) {
         self.cellCollectionV.alpha = 1;
     }return self;
@@ -55,14 +55,15 @@
     }
 }
 #pragma mark —— lazyLoadUICollectionView 代理和数据源
-- (NSInteger)collectionView:(UICollectionView *)collectionView 
+- (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section{
     return self.model.itemArr.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                           cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     MainTableViewCellITem *item = [collectionView dequeueReusableCellWithReuseIdentifier:@"MainTableViewCellITem" forIndexPath:indexPath];
+    item.contentView.backgroundColor = item.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
     return item;
 }
 
@@ -70,14 +71,14 @@
        willDisplayCell:(UICollectionViewCell *)cell
     forItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    MainTableViewCellITem *showItem=(MainTableViewCellITem *)cell;
+    MainTableViewCellITem *showItem = (MainTableViewCellITem *)cell;
     [showItem cellBindViewModel:self.viewModel];
     
-    ItemModel *model=self.model.itemArr[indexPath.row];
+    ItemModel *model = self.model.itemArr[indexPath.row];
     [showItem cellBindModel:model];
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView 
+- (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(self.viewModel.itemW, self.viewModel.itemH);
@@ -86,7 +87,7 @@
 - (UICollectionView *)cellCollectionV{
     if (!_cellCollectionV) {
         _cellCollectionV = [UICollectionView.alloc initWithFrame:self.bounds collectionViewLayout:self.layout];
-        _cellCollectionV.backgroundColor = JobsWhiteColor;
+        _cellCollectionV.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
         _cellCollectionV.delegate = self;
         _cellCollectionV.dataSource = self;
         _cellCollectionV.showsVerticalScrollIndicator = NO;

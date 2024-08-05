@@ -233,7 +233,7 @@
                                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
                                                               baseBackgroundColor:JobsClearColor
                                                                   backgroundImage:nil
-                                                                     imagePadding:JobsWidth(0)
+                                                                     imagePadding:self.btnConfig.imagePadding
                                                                      titlePadding:JobsWidth(10)
                                                                    imagePlacement:self.btnConfig.imagePlacement
                                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter

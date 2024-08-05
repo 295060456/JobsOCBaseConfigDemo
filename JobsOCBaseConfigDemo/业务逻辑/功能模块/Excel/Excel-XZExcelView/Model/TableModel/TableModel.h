@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TableModel : NSObject
+@interface ItemModel : NSObject
 
-@property (nonatomic, copy)NSString *rowTitle;
-@property (nonatomic, copy)NSMutableArray *itemArr;
+@property(nonatomic,copy)NSString *contentStr;
 
 @end
 
-@interface ItemModel : NSObject
+@interface TableModel : NSObject
 
-@property (nonatomic, copy)NSString *contentStr;
+@property(nonatomic,copy)NSString *rowTitle;
+@property(nonatomic,copy)NSMutableArray <ItemModel *>*itemArr;
 
 @end

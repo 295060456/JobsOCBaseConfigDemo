@@ -14,6 +14,7 @@
 @property(nonatomic,strong)LeftListView *leftListView;
 @property(nonatomic,strong)TopHeadView *headView;
 @property(nonatomic,strong)XZExcelContentView *contentView;
+@property(nonatomic,strong)UIImageView *bgImageView;
 /// Data
 @property(nonatomic,strong)XZExcelConfigureViewModel *viewModel;
 
@@ -25,10 +26,11 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.viewModel=[XZExcelConfigureViewModel new];
+        self.viewModel = [XZExcelConfigureViewModel new];
         
         itemW = self.viewModel.itemW;
         
+        self.bgImageView.alpha = 1;
         self.titleL.alpha = 1;
         self.headView.alpha = 1;
         self.leftListView.alpha = 1;
@@ -36,21 +38,35 @@
     }return self;
 }
 #pragma mark —— lazyLoad
+-(UIImageView *)bgImageView{
+    if(!_bgImageView){
+        _bgImageView = UIImageView.new;
+        _bgImageView.image = JobsIMG(@"投注记录");
+        [self addSubview:_bgImageView];
+        [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self);
+            make.left.equalTo(self);
+            make.width.mas_equalTo(itemW);
+            make.height.mas_equalTo(self.viewModel.itemH);
+        }];
+    }return _bgImageView;
+}
+
 - (UILabel *)titleL{
     if (!_titleL) {
         _titleL = UILabel.new;
         _titleL.text = @"楼层";
+        _titleL.textColor = JobsWhiteColor;
         _titleL.textAlignment = NSTextAlignmentCenter;
-        _titleL.backgroundColor = JobsRedColor;
-        [self addSubview:_titleL];
+        _titleL.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        [self.bgImageView addSubview:_titleL];
         [_titleL mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self);
             make.left.equalTo(self);
             make.width.mas_equalTo(itemW);
             make.height.mas_equalTo(self.viewModel.itemH);
         }];
-    }
-    return _titleL;
+    }return _titleL;
 }
 
 - (LeftListView *)leftListView{
@@ -64,8 +80,7 @@
             make.bottom.equalTo(self);
         }];
         [_leftListView viewBindViewModel:self.viewModel];
-    }
-    return _leftListView;
+    }return _leftListView;
 }
 
 - (TopHeadView *)headView{
@@ -79,8 +94,7 @@
             make.height.equalTo(self.titleL);
         }];
         [_headView viewBindViewModel:self.viewModel];
-    }
-    return _headView;
+    }return _headView;
 }
 
 - (XZExcelContentView *)contentView{
@@ -94,8 +108,7 @@
             make.bottom.equalTo(self);
         }];
         [_contentView viewBindViewModel:self.viewModel];
-    }
-    return _contentView;
+    }return _contentView;
 }
 
 @end

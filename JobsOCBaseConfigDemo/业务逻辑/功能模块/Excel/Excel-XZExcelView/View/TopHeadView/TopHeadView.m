@@ -41,7 +41,7 @@
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
                        context:(void *)context{
     
-    XZExcelConfigureViewModel *viewModel=(XZExcelConfigureViewModel *)object;
+    XZExcelConfigureViewModel *viewModel = (XZExcelConfigureViewModel *)object;
     if ([keyPath isEqualToString:HorizontalScrollBegin]) {
         self.headTitleV.contentOffset = viewModel.HorizontalScrollValue.CGPointValue;
     }
@@ -68,7 +68,7 @@
     [showItem cellBindModel:title];
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView 
+- (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(self.viewModel.itemW, self.viewModel.itemH);

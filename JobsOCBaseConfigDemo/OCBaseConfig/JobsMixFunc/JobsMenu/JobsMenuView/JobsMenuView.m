@@ -88,6 +88,7 @@
         _buttonModel.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
         _buttonModel.normal_images = self.normal_titleImageMutArr;
         _buttonModel.data = self.subViewMutArr;
+        _buttonModel.imagePadding = JobsWidth(10);
         _buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
     }return _buttonModel;
 }

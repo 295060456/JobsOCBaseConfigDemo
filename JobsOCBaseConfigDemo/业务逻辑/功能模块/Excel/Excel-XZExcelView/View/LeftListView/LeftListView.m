@@ -31,7 +31,6 @@
 - (void)viewBindViewModel:(XZExcelConfigureViewModel *)viewModel{
     self.viewModel = viewModel;
     self.tableV.rowHeight = viewModel.itemH;
-    
     [self.viewModel addObserver:self
                      forKeyPath:VerticalScrollBegin
                         options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
@@ -42,32 +41,29 @@
                       ofObject:(id)object
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
                        context:(void *)context{
-    XZExcelConfigureViewModel *viewModel=(XZExcelConfigureViewModel *)object;
+    XZExcelConfigureViewModel *viewModel = (XZExcelConfigureViewModel *)object;
     if ([keyPath isEqualToString:VerticalScrollBegin]) {
         self.tableV.contentOffset=viewModel.VerticalScrollValue.CGPointValue;
     }
 }
 #pragma mark —— UITableView 数据源
-- (NSInteger)tableView:(UITableView *)tableView 
+- (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
     return  self.viewModel.rowNumber;
 }
 #pragma mark —— UITableView 代理
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    TableViewOneCell *cell=[TableViewOneCell dequeneCellWithTableView:tableView];
+    TableViewOneCell *cell = [TableViewOneCell dequeneCellWithTableView:tableView];
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView 
+- (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     TableViewOneCell *showCell = (TableViewOneCell *)cell;
-    showCell.backgroundColor = JobsCyanColor;
+    showCell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
     [showCell cellBindViewModel:self.viewModel];
-    
     TableModel *model = self.viewModel.contentArr[indexPath.row];
     [showCell cellBindModel:model];
 }
@@ -79,6 +75,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 - (UITableView *)tableV{
     if (!_tableV) {
         _tableV = [UITableView.alloc initWithFrame:self.bounds style:UITableViewStylePlain];
+        _tableV.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
         _tableV.delegate = self;
         _tableV.dataSource = self;
         _tableV.separatorStyle = UITableViewCellSeparatorStyleNone;

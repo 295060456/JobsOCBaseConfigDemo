@@ -19,7 +19,7 @@ const CGFloat LineWidth=2;
 @implementation XZExcelConfigureViewModel
 
 - (instancetype)init{
-    if (self=[super init]) {
+    if (self = [super init]) {
         [self configureData];
     }return self;
 }
