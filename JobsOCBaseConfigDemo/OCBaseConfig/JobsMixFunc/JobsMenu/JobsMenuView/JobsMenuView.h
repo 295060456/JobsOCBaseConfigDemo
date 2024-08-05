@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*subViewMutArr;
 @property(nonatomic,strong)NSMutableArray <UIImage *>*normal_titleBgImageMutArr;
 @property(nonatomic,strong)NSMutableArray <UIImage *>*select_titleBgImageMutArr;
+@property(nonatomic,strong)NSMutableArray <UIImage *>*normal_titleImageMutArr;
 
 @end
 

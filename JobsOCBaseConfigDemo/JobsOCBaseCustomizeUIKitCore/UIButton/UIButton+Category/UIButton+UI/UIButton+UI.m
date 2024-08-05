@@ -418,7 +418,7 @@
 /// 重设Btn主标题的文字内容
 -(jobsByStringBlock)jobsResetBtnTitle{
     @jobs_weakify(self)
-    return ^(NSString *data) {
+    return ^(NSString *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetTitle(data ? : JobsInternationalization(@"暂无数据"));
@@ -430,7 +430,7 @@
 /// 重设Btn副标题的文字内容
 -(jobsByStringBlock)jobsResetBtnSubTitle{
     @jobs_weakify(self)
-    return ^(NSString *data) {
+    return ^(NSString *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetTitle(data ? : JobsInternationalization(@"暂无数据"));
@@ -442,7 +442,7 @@
 /// 重设Btn.Image
 -(jobsByImageBlock)jobsResetBtnImage{
     @jobs_weakify(self)
-    return ^(UIImage *data) {
+    return ^(UIImage *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetImage(data);
@@ -454,7 +454,7 @@
 /// 重设Btn主标题的文字颜色
 -(jobsByCorBlock)jobsResetBtnTitleCor{
     @jobs_weakify(self)
-    return ^(UIColor *data) {
+    return ^(UIColor *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetTitleBaseForegroundColor(data ? : JobsBlueColor);
@@ -466,7 +466,7 @@
 /// 重设Btn主标题的背景颜色
 -(jobsByCorBlock)jobsResetBtnBgCor{
     @jobs_weakify(self)
-    return ^(UIColor *data) {
+    return ^(UIColor *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetBaseBackgroundColor(data ? : JobsYellowColor);
@@ -478,7 +478,7 @@
 /// 重设Btn的背景图片
 -(jobsByImageBlock)jobsResetBtnBgImage{
     @jobs_weakify(self)
-    return ^(UIImage *data) {
+    return ^(UIImage *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetBackgroundImage(data);

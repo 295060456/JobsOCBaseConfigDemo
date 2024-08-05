@@ -8,7 +8,7 @@
 
 #import "JobsLinkageMenuView.h"
 
-#define MENU_WIDTH 100  //左侧菜单栏宽度，默认100
+#define MENU_WIDTH 136  //左侧菜单栏宽度，默认136
 #define BOTTOMVIEW_HEIGHT 25  //滑块高度
 #define BOTTOMVIEW_WIDTH (MENU_WIDTH - 10)  //滑块宽度
 #define LINEVIEW_WIDTH 1.0  //分割线宽度
@@ -66,10 +66,8 @@
         self.rightview.alpha = 1;
         self.menuView.alpha = 1;
         self.lineView.alpha = 1;
-        
-        UIButton *btn = self.btnMutArr[0];
-        btn.jobsResetBtnTitleCor(self.btnConfig.titleCor);
-        
+        /// 默认显示
+        [self choseMenu:self.btnMutArr[0]];
     }return self;
 }
 #pragma mark —— MenuButton Method
@@ -78,11 +76,17 @@
     int d = 0;
     for (UIButton *btn in self.btnMutArr) {
         btn.jobsResetBtnTitleCor(self.btnConfig.titleCor);
-        btn.jobsResetBtnBgImage(self.btnConfig.normal_backgroundImages[d]);
+        btn.jobsResetBtnImage(self.btnConfig.normal_images[d]);
+        btn.jobsResetBtnBgImage(nil);
+//        button.jobsResetBtnTitle(self.btnConfig.normal_titles[d]);
+//        btn.jobsResetBtnBgImage(self.btnConfig.normal_backgroundImages[d]);
         d++;
     }
+    
     button.jobsResetBtnTitleCor(self.btnConfig.selected_titleCor);
+    button.jobsResetBtnImage(nil);
     button.jobsResetBtnBgImage(self.btnConfig.selected_backgroundImages[button.tag - 1]);
+    
     self.newChoseTag = button.tag;
     if (self.newChoseTag != self.choseTag) {
         @jobs_weakify(self)
@@ -209,47 +213,47 @@
         [_menuView addSubview:self.bottomView];
         for (int i = 1; i <= self.btnConfig.normal_titles.count; i++) {
             @jobs_weakify(self)
-            UIButton *menuButton = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                                     background:nil
-                                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                                  textAlignment:NSTextAlignmentCenter
-                                                               subTextAlignment:NSTextAlignmentCenter
-                                                                    normalImage:nil
-                                                                 highlightImage:nil
-                                                                attributedTitle:nil
-                                                        selectedAttributedTitle:nil
-                                                             attributedSubtitle:nil
-                                                                          title:[self.btnConfig.normal_titles objectAtIndex:(i - 1)]
-                                                                       subTitle:nil
-                                                                      titleFont:[UIFont systemFontOfSize:self.textSize]
-                                                                   subTitleFont:nil
-                                                                       titleCor:self.btnConfig.titleCor
-                                                                    subTitleCor:nil
-                                                             titleLineBreakMode:NSLineBreakByWordWrapping
-                                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                            baseBackgroundColor:JobsClearColor
-                                                                backgroundImage:self.btnConfig.normal_backgroundImages[(i - 1)]
-                                                                   imagePadding:JobsWidth(0)
-                                                                   titlePadding:JobsWidth(10)
-                                                                 imagePlacement:NSDirectionalRectEdgeNone
-                                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                              cornerRadiusValue:JobsWidth(8)
-                                                                roundingCorners:UIRectCornerAllCorners
-                                                           roundingCornersRadii:CGSizeZero
-                                                                 layerBorderCor:nil
-                                                                    borderWidth:JobsWidth(0)
-                                                                  primaryAction:nil
-                                                     longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
-                                                                                  id _Nullable arg) {
-                NSLog(@"按钮的长按事件触发");
-            }
-                                                                clickEventBlock:^id(BaseButton *x) {
-                @jobs_strongify(self)
-                [self choseMenu:x];
-                if (self.objectBlock) self.objectBlock(x);
-                return nil;
+            BaseButton *menuButton = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                                       background:nil
+                                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
+                                                                    textAlignment:NSTextAlignmentCenter
+                                                                 subTextAlignment:NSTextAlignmentCenter
+                                                                      normalImage:[self.btnConfig.normal_images objectAtIndex:(i - 1)]
+                                                                   highlightImage:nil
+                                                                  attributedTitle:nil
+                                                          selectedAttributedTitle:nil
+                                                               attributedSubtitle:nil
+                                                                            title:[self.btnConfig.normal_titles objectAtIndex:(i - 1)]
+                                                                         subTitle:nil
+                                                                        titleFont:[UIFont systemFontOfSize:self.textSize]
+                                                                     subTitleFont:nil
+                                                                         titleCor:self.btnConfig.titleCor
+                                                                      subTitleCor:nil
+                                                               titleLineBreakMode:NSLineBreakByWordWrapping
+                                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                              baseBackgroundColor:JobsClearColor
+                                                                  backgroundImage:nil
+                                                                     imagePadding:JobsWidth(0)
+                                                                     titlePadding:JobsWidth(10)
+                                                                   imagePlacement:self.btnConfig.imagePlacement
+                                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                                cornerRadiusValue:JobsWidth(8)
+                                                                  roundingCorners:UIRectCornerAllCorners
+                                                             roundingCornersRadii:CGSizeZero
+                                                                   layerBorderCor:nil
+                                                                      borderWidth:JobsWidth(0)
+                                                                    primaryAction:nil
+                                                       longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
+                                                                                    id _Nullable arg) {
+                  NSLog(@"按钮的长按事件触发");
+              }
+                                                                  clickEventBlock:^id(BaseButton *x) {
+                  @jobs_strongify(self)
+                  [self choseMenu:x];
+                  if (self.objectBlock) self.objectBlock(x);
+                  return nil;
             }];
             
             menuButton.tag = i;
@@ -257,7 +261,7 @@
                                           self.btnHeight * (i - 1) + self.half_blankHeight,
                                           MENU_WIDTH,
                                           self.btnHeight);
-            [self.btnMutArr addObject:menuButton];
+            self.btnMutArr.jobsAddObject(menuButton);
             [_menuView addSubview:menuButton];
         }
         [self addSubview:_menuView];

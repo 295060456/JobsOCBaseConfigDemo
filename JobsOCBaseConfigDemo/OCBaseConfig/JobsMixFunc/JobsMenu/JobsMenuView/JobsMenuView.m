@@ -56,7 +56,8 @@
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsRealWidth() - 59,JobsWidth(100));
+    return CGSizeMake(JobsRealWidth(),
+                      JobsRealHeight() - AppDelegate.jobsCustomTabBarConfig.tabBarHeight - [TopBar viewSizeWithModel:nil].height + JobsBottomSafeAreaHeight());
 }
 
 -(CGSize)viewSizeWithModel:(id _Nullable)model{
@@ -81,11 +82,13 @@
     if(!_buttonModel){
         _buttonModel = UIButtonModel.new;
         _buttonModel.normal_titles = self.titleMutArr;
-        _buttonModel.titleCor = JobsClearColor;
+        _buttonModel.titleCor = JobsWhiteColor;
         _buttonModel.selected_titleCor = JobsClearColor;
         _buttonModel.normal_backgroundImages = self.normal_titleBgImageMutArr;
         _buttonModel.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
+        _buttonModel.normal_images = self.normal_titleImageMutArr;
         _buttonModel.data = self.subViewMutArr;
+        _buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
     }return _buttonModel;
 }
 
