@@ -352,36 +352,13 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentX{
-    @jobs_weakify(self)
-    return ^(CGFloat data) {
-        @jobs_strongify(self)
-        if([self isKindOfClass:UIScrollView.class]){
-            UIScrollView *scrollView = (UIScrollView *)self;
-            scrollView.contentSize = CGSizeMake(data,scrollView.contentOffset.y);
-        }
-    };
-}
-
--(jobsByCGFloatBlock _Nullable)resetContentY{
-    @jobs_weakify(self)
-    return ^(CGFloat data) {
-        @jobs_strongify(self)
-        if([self isKindOfClass:UIScrollView.class]){
-            UIScrollView *scrollView = (UIScrollView *)self;
-            scrollView.contentSize = CGSizeMake(scrollView.contentOffset.x,data);
-        }
-    };
-}
-
 -(jobsByCGFloatBlock _Nullable)resetContentOffsetX{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
-            scrollView.contentSize = CGSizeMake(scrollView.contentOffset.x + data,
-                                                scrollView.contentOffset.y);
+            scrollView.contentOffset = CGPointMake(data, scrollView.contentOffset.y);
         }
     };
 }
@@ -392,7 +369,30 @@
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
-            scrollView.contentSize = CGSizeMake(scrollView.contentOffset.x,
+            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, data);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentOffsetX_offset{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x + data,
+                                                scrollView.contentOffset.y);
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nullable)resetContentOffsetY_offset{
+    @jobs_weakify(self)
+    return ^(CGFloat data) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UIScrollView.class]){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x,
                                                 scrollView.contentOffset.y + data);
         }
     };

@@ -71,10 +71,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByCGFloatBlock _Nullable)resetContentSizeOffsetHeight;
 #pragma mark —— UIScrollView.contentOffset
 -(jobsByPointBlock _Nullable)resetContentOffset;
--(jobsByCGFloatBlock _Nullable)resetContentX;
--(jobsByCGFloatBlock _Nullable)resetContentY;
 -(jobsByCGFloatBlock _Nullable)resetContentOffsetX;
 -(jobsByCGFloatBlock _Nullable)resetContentOffsetY;
+-(jobsByCGFloatBlock _Nullable)resetContentOffsetX_offset;
+-(jobsByCGFloatBlock _Nullable)resetContentOffsetY_offset;
 #pragma mark —— UIScrollView.contentInset
 -(jobsByEdgeInsetBlock _Nullable)resetContentInset;
 -(jobsByCGFloatBlock _Nullable)resetContentInsetTop;

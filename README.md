@@ -4523,9 +4523,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 关注实现类：[**@interface  TouchID : NSObject**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/TouchID)
 
-### 27、<font id=创建UICollectionView color=red>创建`UICollectionView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 27、<font id=创建UICollectionView color=red>创建**`UICollectionView`**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-#### 27.1、关于`UICollectionView`
+#### 27.1、关于**`UICollectionView`**
 
 * 设置为NO，使得`UICollectionView`只能上拉，不能下拉
   
@@ -5650,7 +5650,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   </details>
 #### 28.2、关于<font id=UITableViewHeaderFooterView color=red>**`UITableViewHeaderFooterView`**</font>（**`viewForHeaderInSection`**）
 
-* **`UICollectionView`**没有类型相关的东西
+* **`UICollectionView`**没有类型相关的东西，有如下替代方案
+
+  * 使用 `UICollectionReusableView` 作为头视图
 
 * <font color=red>**`UITableView`** 取消`viewForHeaderInSection` 产生的悬停效果</font>
 
@@ -5831,7 +5833,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    @end
    ```
 
-#### 28.3、`UITableViewCell`
+#### 28.3、**`UITableViewCell`**
 
 * `UITableViewCell`.<font color=red>**registerClass**</font>
 
@@ -6092,7 +6094,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 
 
-### 30、关于`UITabBarController` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 30、关于**`UITabBarController`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 #### 30.1、架构说明
 
@@ -7917,15 +7919,153 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       self.navigator.pushView(self.pushView,YES);
       ```
 
+### 38、轮播图 [**WMZBanner**](https://github.com/wwmz/WMZBanner) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 作者停止维护
+
+* 文字过长会出现问题。跑马灯功能需要另辟蹊径
+
+* <details id="WMZBanner的完整调用">
+     <summary><strong>WMZBanner的完整调用</strong></summary>
+
+  ```ruby
+  pod 'WMZBanner' # https://github.com/wwmz/WMZBanner 轻量级轮播图+卡片样式+自定义样式 ⚠️作者停止维护
+  ```
+
+  ```objective-c
+  #if __has_include(<WMZBanner/WMZBannerView.h>)
+  #import <WMZBanner/WMZBannerView.h>
+  #else
+  #import "WMZBannerView.h"
+  #endif
+  ```
+
+  ```objective-c
+  /// UI
+  @property(nonatomic,strong)WMZBannerView *bannerView;
+  /// Data
+  @property(nonatomic,strong)WMZBannerParam *bannerParam;
+  @property(nonatomic,strong)NSMutableArray <UIImage *>*dataMutArr;
+  ```
+
+  ```objective-c
+  self.bannerView.alpha = 1;
+  
+  -(WMZBannerView *)bannerView{
+      if (!_bannerView) {
+          _bannerView = [WMZBannerView.alloc initConfigureWithModel:self.bannerParam];
+          [self.scrollView addSubview:_bannerView];
+          [_bannerView updateUI];
+      }return _bannerView;
+  }
+  
+  -(WMZBannerParam *)bannerParam{
+      if (!_bannerParam) {
+          _bannerParam = BannerParam()
+          //自定义视图必传
+          .wMyCellClassNameSet(JobsBaseCollectionViewCell.class.description)
+          .wMyCellSet(^UICollectionViewCell *(NSIndexPath *indexPath,
+                                              UICollectionView *collectionView,
+                                              id model,
+                                              UIImageView *bgImageView,
+                                              NSArray *dataArr) {
+              //自定义视图
+              JobsBaseCollectionViewCell *cell = [JobsBaseCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
+              cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+              NSString *urlStr = @"";
+  //            if (![NSString isNullString:self.dataArr[indexPath.item].url] &&
+  //                ![NSString isNullString:self.readUserInfo.resourcesAddress] ) {
+  //                urlStr = [self.readUserInfo.resourcesAddress stringByAppendingString:self.dataArr[indexPath.item].url];
+  //            }
+              
+              [cell.backgroundImageView sd_setImageWithURL:urlStr.jobsUrl
+                                          placeholderImage:self.dataMutArr[indexPath.item]];
+              return cell;
+          })
+          .wEventClickSet(^(id anyID, NSInteger index) {
+              NSLog(@"点击 %@ %ld",anyID,index);
+          })
+          .wEventCenterClickSet(^(id anyID,
+                                  NSInteger index,
+                                  BOOL isCenter,
+                                  UICollectionViewCell *cell) {
+              NSLog(@"判断居中点击");
+          })
+          .wFrameSet(CGRectMake(0,
+                                0,
+                                JobsWidth(280),
+                                JobsWidth(250)))
+          //图片铺满
+          .wImageFillSet(YES)
+          //循环滚动
+          .wRepeatSet(YES)
+          //自动滚动时间
+          .wAutoScrollSecondSet(5)
+          //自动滚动
+          .wAutoScrollSet(YES)
+          //cell的位置
+          .wPositionSet(BannerCellPositionCenter)
+          //分页按钮的选中的颜色
+          .wBannerControlSelectColorSet(JobsWhiteColor)
+          //分页按钮的未选中的颜色
+          .wBannerControlColorSet(JobsLightGrayColor)
+          //分页按钮的圆角
+          .wBannerControlImageRadiusSet(5)
+          //自定义圆点间距
+          .wBannerControlSelectMarginSet(3)
+          //隐藏分页按钮
+          .wHideBannerControlSet(NO)
+          //能否拖动
+          .wCanFingerSlidingSet(YES);
+          
+          _bannerParam.wDataSet(self.dataMutArr);
+      }return _bannerParam;
+  }
+  
+  -(NSMutableArray<UIImage *> *)dataMutArr{
+      if (!_dataMutArr) {
+          _dataMutArr = NSMutableArray.array;
+          _dataMutArr.jobsAddObject(JobsIMG(@"狮子"));
+          _dataMutArr.jobsAddObject(JobsIMG(@"金猪"));
+          _dataMutArr.jobsAddObject(JobsIMG(@"美女荷官"));
+          _dataMutArr.jobsAddObject(JobsIMG(@"棋牌美女"));
+          _dataMutArr.jobsAddObject(JobsIMG(@"篮球运动员"));
+          _dataMutArr.jobsAddObject(JobsIMG(@"捕鱼"));
+      }return _dataMutArr;
+  }
+  ```
+  </details>
+
+### 39、**`UIScrollView`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 如果需要将**`UIScrollView`**拖动到某个地方，就不能拖动了，需要配置其**contentSize**属性
+
+  ```objective-c
+  -(UIScrollView *)scrollView{
+      if (!_scrollView) {
+          _scrollView = UIScrollView.new;
+          _scrollView.delegate = self;
+          _scrollView.frame = self.bounds;
+          _scrollView.resetContentSizeWidth(1000);
+          _scrollView.showsVerticalScrollIndicator = NO;
+          _scrollView.showsHorizontalScrollIndicator = NO;
+          [self addSubview:_scrollView];
+      }return _scrollView;
+  }
+  ```
+
+* 要获取 **`UIScrollView`** 滑动的距离，你可以使用 `contentOffset` 属性。`contentOffset` 表示 `UIScrollView` 的内容视图的原点相对于 **`UIScrollView`**自身边界的偏移量。
+
 ### Test  
 
 <details id="Test">
  <summary><strong>点我了解详情</strong></summary>
+
 * [**OC代码实验室**](https://github.com/295060456/Jobs_ObjectiveC_Laboratory)
   ```objective-c
   /// TODO
   ```
-</details>
+  </details>
 
 ## 六、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 ### 1、配置相关

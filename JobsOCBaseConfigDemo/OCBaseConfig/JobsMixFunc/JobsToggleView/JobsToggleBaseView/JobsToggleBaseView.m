@@ -86,7 +86,7 @@ JobsToggleNavViewProtocolSynthesize
 }
 #pragma mark —— scrollviewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
+    NSLog(@"");
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
@@ -100,7 +100,6 @@ JobsToggleNavViewProtocolSynthesize
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                  willDecelerate:(BOOL)decelerate{
-    
     CGFloat scrollView_contentOffset_x = scrollView.contentOffset.x;
     if(scrollView_contentOffset_x < 0) scrollView_contentOffset_x = 0;
     if(scrollView_contentOffset_x > scrollView.width * self.scrollContentViews.count - 1)
@@ -146,6 +145,7 @@ JobsToggleNavViewProtocolSynthesize
 -(UIScrollView *)bgScroll{
     if(!_bgScroll){
         _bgScroll = UIScrollView.new;
+        _bgScroll.scrollEnabled = NO;
         _bgScroll.frame = CGRectMake(0,
                                      self.taggedNavView_height + self.taggedNavView_bgScroll_offset,
                                      [self viewSizeWithModel:nil].width,
