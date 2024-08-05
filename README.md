@@ -8056,12 +8056,76 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 要获取 **`UIScrollView`** 滑动的距离，你可以使用 `contentOffset` 属性。`contentOffset` 表示 `UIScrollView` 的内容视图的原点相对于 **`UIScrollView`**自身边界的偏移量。
 
+### 40、自动布局
+
+* **SDAutoLayout** 和 **Masonry** 一起使用时可能会导致冲突
+
+* 一个工程项目用一个自动布局框架即可
+
+* 等价
+
+  * ```objective-c
+    self.mainV.sd_layout
+    .topSpaceToView(self.view,260)
+    .leftSpaceToView(self.view,15)
+    .rightSpaceToView(self.view,15)
+    .heightIs(200);
+    
+    [self.mainV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(260);
+        make.left.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-15);
+        make.height.mas_equalTo(200);
+    }];
+    ```
+
+  * ```objective-c
+    _tableV.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
+    
+    [_tableV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];  
+    ```
+
+#### 40.1、[**Masonry**](https://github.com/SnapKit/Masonry)
+
+* 基于自动布局的轻量级封装，允许通过链式语法设置约束
+
+  ```ruby
+  pod 'Masonry' # https://github.com/SnapKit/Masonry NO_SMP
+  ```
+
+  ```objective-c
+  #if __has_include(<Masonry/Masonry.h>)
+  #import <Masonry/Masonry.h>
+  #else
+  #import "Masonry.h"
+  #endif
+  ```
+
+#### 40.2、[**SDAutoLayout**](https://github.com/gsdios/SDAutoLayout)
+
+* 基于链式语法的简单自动布局框架
+
+  ```ruby
+  pod 'SDAutoLayout' # https://github.com/gsdios/SDAutoLayout
+  ```
+
+  ```objective-c
+  #if __has_include(<SDAutoLayout/SDAutoLayout.h>)
+  #import <SDAutoLayout/SDAutoLayout.h>
+  #else
+  #import "SDAutoLayout.h"
+  #endif
+  ```
+
 ### Test  
 
 <details id="Test">
  <summary><strong>点我了解详情</strong></summary>
 
 * [**OC代码实验室**](https://github.com/295060456/Jobs_ObjectiveC_Laboratory)
+  
   ```objective-c
   /// TODO
   ```

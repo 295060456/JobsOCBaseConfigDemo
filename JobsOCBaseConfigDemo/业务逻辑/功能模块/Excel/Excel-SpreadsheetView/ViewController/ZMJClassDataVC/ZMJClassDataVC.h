@@ -42,10 +42,7 @@ typedef struct SortedColumn {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZMJClassDataVC : BaseViewController
-<
-SpreadsheetViewDelegate
-,SpreadsheetViewDataSource
->
+<SpreadsheetViewDelegate, SpreadsheetViewDataSource>
 
 @end
 

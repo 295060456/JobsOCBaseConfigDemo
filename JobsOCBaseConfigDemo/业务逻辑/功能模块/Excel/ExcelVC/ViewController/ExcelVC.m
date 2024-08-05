@@ -11,14 +11,12 @@
 /// UI
 @property(nonatomic,strong)UITableView *tableView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UITableViewCell *>*tbvCellMutArr;
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <UITableViewCell *>*>*tbvSectionRowCellMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
+@property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
+@property(nonatomic,strong)NSMutableArray <NSMutableArray <UIViewModel *>*>*dataMutArr;
 
 @end
 
 @implementation ExcelVC
-
 - (void)dealloc{
     [NSNotificationCenter.defaultCenter removeObserver:self];
     NSLog(@"%@",JobsLocalFunc);
@@ -101,8 +99,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.dataMutArr[indexPath.row].cls) {
-        self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.row].cls.new,self.dataMutArr[indexPath.row]);
+    if (self.dataMutArr[indexPath.section][indexPath.row].cls) {
+        self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.section][indexPath.row].cls.new,self.dataMutArr[indexPath.section][indexPath.row]);
     }else{
         [WHToast jobsToastMsg:JobsInternationalization(@"尚未接入此功能")];
     }
@@ -114,7 +112,7 @@ didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.dataMutArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
@@ -124,13 +122,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return self.dataMutArr.count;
+    return self.dataMutArr[section].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvCellMutArr[indexPath.row];
-    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
+    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
+    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section][indexPath.row]];
     return cell;
 }
 
@@ -293,20 +291,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _tableView;
 }
 
--(NSMutableArray<UITableViewCell *> *)tbvCellMutArr{
-    if (!_tbvCellMutArr) {
-        _tbvCellMutArr = NSMutableArray.array;
-        for (UIViewModel *viewModel in self.dataMutArr) {
-            [_tbvCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-        }
-    }return _tbvCellMutArr;
-}
-
--(NSMutableArray<NSMutableArray<UITableViewCell *> *> *)tbvSectionRowCellMutArr{
+-(NSMutableArray<NSMutableArray<__kindof UITableViewCell *> *> *)tbvSectionRowCellMutArr{
     if(!_tbvSectionRowCellMutArr){
         _tbvSectionRowCellMutArr = NSMutableArray.array;
         {
-            NSMutableArray *rowCellMutArr = NSMutableArray.array;
+            NSMutableArray <UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
             [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
             [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
             [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
@@ -315,58 +304,64 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
-            NSMutableArray *rowCellMutArr = NSMutableArray.array;
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
+            NSMutableArray <UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
             [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
             [_tbvSectionRowCellMutArr addObject:rowCellMutArr];
         }
-        
-        {
-            NSMutableArray *rowCellMutArr = NSMutableArray.array;
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-            [_tbvSectionRowCellMutArr addObject:rowCellMutArr];
-        }
-        
     }return _tbvSectionRowCellMutArr;
 }
 
--(NSMutableArray<UIViewModel *> *)dataMutArr{
+-(NSMutableArray<NSMutableArray<UIViewModel *> *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = NSMutableArray.array;
         
         {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJClassData")
-                                                           attributeSubTitle:JobsInternationalization(@"正常")];
-            viewModel.cls = ZMJClassDataVC.class;
-            [_dataMutArr addObject:viewModel];
+            NSMutableArray <UIViewModel *>*rowMutArr = NSMutableArray.array;
+            
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJClassData")
+                                                               attributeSubTitle:JobsInternationalization(@"正常")];
+                viewModel.cls = ZMJClassDataVC.class;
+                
+                rowMutArr.jobsAddObject(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJTimeable")
+                                                               attributeSubTitle:JobsInternationalization(@"正常")];
+                viewModel.cls = ZMJTimeableVC.class;
+                rowMutArr.jobsAddObject(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJSchedule")
+                                                               attributeSubTitle:JobsInternationalization(@"正常")];
+                viewModel.cls = ZMJScheduleVC.class;
+                rowMutArr.jobsAddObject(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJGanttList")
+                                                               attributeSubTitle:JobsInternationalization(@"有崩溃，需要修复")];
+                viewModel.cls = ZMJGanttListVC.class;
+                rowMutArr.jobsAddObject(viewModel);
+            }
+            
+            _dataMutArr.jobsAddObject(rowMutArr);
         }
         
         {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJTimeable")
-                                                           attributeSubTitle:JobsInternationalization(@"正常")];
-            viewModel.cls = ZMJTimeableVC.class;
-            [_dataMutArr addObject:viewModel];
+            NSMutableArray <UIViewModel *>*rowMutArr = NSMutableArray.array;
+            
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"XZExcel")
+                                                               attributeSubTitle:JobsInternationalization(@"XZExcel + SDAutoLayout")];
+                viewModel.cls = XZExcelVC.class;
+                [rowMutArr addObject:viewModel];
+            }
+            
+            _dataMutArr.jobsAddObject(rowMutArr);
         }
-        
-        {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJSchedule")
-                                                           attributeSubTitle:JobsInternationalization(@"正常")];
-            viewModel.cls = ZMJScheduleVC.class;
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJGanttList")
-                                                           attributeSubTitle:JobsInternationalization(@"有崩溃，需要修复")];
-            viewModel.cls = ZMJGanttListVC.class;
-            [_dataMutArr addObject:viewModel];
-        }
-        
     }return _dataMutArr;
 }
 

@@ -143,7 +143,7 @@
     }];return mergedCells;
 }
 
-- (ZMJCell *)spreadsheetView:(SpreadsheetView *)spreadsheetView
+- (ZMJCell *)spreadsheetView:(SpreadsheetView *)spreadsheetView 
                cellForItemAt:(NSIndexPath *)indexPath {
     if (indexPath.column == 0 && indexPath.row == 0) {
         return nil;

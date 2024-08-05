@@ -12,6 +12,8 @@
 #import "ZMJScheduleVC.h"
 #import "ZMJGanttListVC.h"
 
+#import "XZExcelVC.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ExcelVC : BaseViewController

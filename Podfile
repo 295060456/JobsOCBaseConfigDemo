@@ -68,6 +68,7 @@ def appCommon
   pod 'XYColorOC' # https://github.com/RayJiang16/XYColor 适配iOS 13夜间模式/深色外观(Dark Mode)
   pod 'IQKeyboardManager' # https://github.com/hackiftekhar/IQKeyboardManager Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more.
   pod 'Masonry' # https://github.com/SnapKit/Masonry NO_SMP
+#  pod 'SDAutoLayout' # https://github.com/gsdios/SDAutoLayout
 #  pod 'AFNetworking' # https://github.com/AFNetworking/AFNetworking YES_SMP ⚠️作者停止维护
   pod 'Reachability'  # https://github.com/tonymillion/Reachability 检查联网情况 NO_SMP
   pod 'ReactiveObjC' # https://github.com/ReactiveCocoa/ReactiveObjC NO_SMP
