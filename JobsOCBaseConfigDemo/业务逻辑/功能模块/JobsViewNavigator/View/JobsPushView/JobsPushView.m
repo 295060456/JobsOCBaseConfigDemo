@@ -143,7 +143,7 @@
                                                 clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"%@",self.navigator);// <JobsViewNavigator: 0x7f7e59fe1ac0; frame = (0 0; 812 375); layer = <CALayer: 0x6000011f70c0>>
+            NSLog(@"%@",self.navigator);
             if(self.navigator) self.navigator.popViewAnimated(YES);
             return nil;
         }];

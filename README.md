@@ -7764,8 +7764,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 关注实现类 [**@interface NSObject (NTESVerifyCodeManager)<NTESVerifyCodeManagerDelegate>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BNTESVerifyCodeManager)
 
-### 37、<font color=red id=UIView支持push和pop>让 **`UIView`**像 **`UINavigationController`**一样支持 push 和 pop</font>
+### 37、<font color=red id=UIView支持push和pop>让 **`UIView`**像 **`UINavigationController`**一样支持 push 和 pop</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+* <font color=green size=5>**pop**</font>
+
+  ```objective-c
+  if(self.navigator) self.navigator.popViewAnimated(YES);
+  ```
+  
 * <font color=blue size=5>发起点为**`UIViewController *`**，在**`UIView *`**中进行push 和 pop</font>
 
   * 在**`UIViewController *`**中的配置（以下几种操作等价）
@@ -8102,6 +8108,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   #import "Masonry.h"
   #endif
   ```
+  
+* 所有的约束必须依托于
+
+  ```objective-c
+  - (void)addSubview:(UIView *)view;
+  - (void)insertSubview:(UIView *)view belowSubview:(UIView *)siblingSubview;
+  - (void)insertSubview:(UIView *)view aboveSubview:(UIView *)siblingSubview;
+  ```
+  
+  * 也就意味着：<font color=red>如果执行`- (void)removeFromSuperview;`即便之后再将这些子视图加载到父视图，约束也需要重新加载，否则约束会有问题</font>
 
 #### 40.2、[**SDAutoLayout**](https://github.com/gsdios/SDAutoLayout)
 
