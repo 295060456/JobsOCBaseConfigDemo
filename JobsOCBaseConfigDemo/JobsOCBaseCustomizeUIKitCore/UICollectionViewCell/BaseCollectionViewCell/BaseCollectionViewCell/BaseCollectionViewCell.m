@@ -28,7 +28,7 @@
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     BaseCollectionViewCell *cell = (BaseCollectionViewCell *)[collectionView collectionViewCellClass:BaseCollectionViewCell.class forIndexPath:indexPath];
     if (!cell) {
-        collectionView.registerCollectionViewCellClass(BaseCollectionViewCell.class);
+        collectionView.registerCollectionViewCellClass(BaseCollectionViewCell.class,@"");
         cell = (BaseCollectionViewCell *)[collectionView collectionViewCellClass:BaseCollectionViewCell.class forIndexPath:indexPath];
     }
     

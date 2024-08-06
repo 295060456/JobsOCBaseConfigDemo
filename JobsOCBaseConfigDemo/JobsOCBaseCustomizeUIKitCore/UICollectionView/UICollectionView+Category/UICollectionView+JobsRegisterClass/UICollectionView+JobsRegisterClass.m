@@ -16,57 +16,60 @@
     return ^(void) {
         @jobs_strongify(self)
 #pragma mark —— CollectionReusableView-Header
-        self.registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class);
-        self.registerCollectionElementKindSectionHeaderClass(BaseCollectionReusableView.class);
-        self.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class);
+        self.registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class,@"");
+        self.registerCollectionElementKindSectionHeaderClass(BaseCollectionReusableView.class,@"");
+        self.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class,@"");
 #pragma mark —— CollectionReusableView—Footer
-        self.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
-        self.registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class);
-        self.registerCollectionElementKindSectionFooterClass(JobsHeaderFooterView.class);
+        self.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class,@"");
+        self.registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@"");
+        self.registerCollectionElementKindSectionFooterClass(JobsHeaderFooterView.class,@"");
 #pragma mark —— CollectionViewCell
-        self.registerCollectionViewCellClass(BaseCollectionViewCell.class);
-        self.registerCollectionViewCellClass(JobsBaseCollectionViewCell.class);
-        self.registerCollectionViewCellClass(JobsHotLabelWithMultiLineCVCell.class);
-        self.registerCollectionViewCellClass(JobsSearchDataCVCell.class);
-        self.registerCollectionViewCellClass(JobsBtnStyleCVCell.class);
-        self.registerCollectionViewCellClass(JobsImageViewStyleCVCell.class);
-        self.registerCollectionViewCellClass(JobsTextFieldStyleCVCell.class);
-        self.registerCollectionViewCellClass(ThreeClassCell.class);
+        self.registerCollectionViewCellClass(BaseCollectionViewCell.class,@"");
+        self.registerCollectionViewCellClass(JobsBaseCollectionViewCell.class,@"");
+        self.registerCollectionViewCellClass(JobsHotLabelWithMultiLineCVCell.class,@"");
+        self.registerCollectionViewCellClass(JobsSearchDataCVCell.class,@"");
+        self.registerCollectionViewCellClass(JobsBtnStyleCVCell.class,@"");
+        self.registerCollectionViewCellClass(JobsImageViewStyleCVCell.class,@"");
+        self.registerCollectionViewCellClass(JobsTextFieldStyleCVCell.class,@"");
+        self.registerCollectionViewCellClass(ThreeClassCell.class,@"");
     };
 }
 /// 注册 UICollectionViewCell 及其子类
--(jobsByClassBlock _Nonnull)registerCollectionViewCellClass{
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls) {
+    return ^(Class _Nonnull cls,
+             NSString * _Nullable salt) {
         @jobs_strongify(self)
-        [self registerClass:cls forCellWithReuseIdentifier:cls.description];
+        [self registerClass:cls forCellWithReuseIdentifier:cls.description.add(salt)];
     };
 }
 /// 注册 UICollectionElementKindSectionHeader 及其子类
--(jobsByClassBlock _Nonnull)registerCollectionElementKindSectionHeaderClass{
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls) {
+    return ^(Class _Nonnull cls,
+             NSString * _Nullable salt) {
         @jobs_strongify(self)
         [self registerClass:cls
         forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-        withReuseIdentifier:cls.description];
+        withReuseIdentifier:cls.description.add(salt)];
     };
 }
 /// 注册 UICollectionElementKindSectionFooter 及其子类
--(jobsByClassBlock _Nonnull)registerCollectionElementKindSectionFooterClass{
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls) {
+    return ^(Class _Nonnull cls,
+             NSString * _Nullable salt) {
         @jobs_strongify(self)
         [self registerClass:cls
         forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
-        withReuseIdentifier:cls.description];
+        withReuseIdentifier:cls.description.add(salt)];
     };
 }
 #pragma mark —— 依据字符串取值
 /// 依据字符串取UICollectionElementKindSectionHeader
 -(__kindof UICollectionReusableView *)UICollectionElementKindSectionHeaderClass:(Class)cls
                                                                    forIndexPath:(NSIndexPath *)indexPath{
-    self.registerCollectionElementKindSectionHeaderClass(cls);
+    self.registerCollectionElementKindSectionHeaderClass(cls,@"");
     UICollectionReusableView *collectionReusableView = [self dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                                 withReuseIdentifier:cls.description
                                                                                        forIndexPath:indexPath];
@@ -81,7 +84,7 @@
 /// 依据字符串取UICollectionElementKindSectionFooter
 -(__kindof UICollectionReusableView *)UICollectionElementKindSectionFooterClass:(Class)cls
                                                                    forIndexPath:(NSIndexPath *)indexPath{
-    self.registerCollectionElementKindSectionFooterClass(cls);
+    self.registerCollectionElementKindSectionFooterClass(cls,@"");
     UICollectionReusableView *collectionReusableView = [self dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
                                                                                 withReuseIdentifier:cls.description
                                                                                        forIndexPath:indexPath];

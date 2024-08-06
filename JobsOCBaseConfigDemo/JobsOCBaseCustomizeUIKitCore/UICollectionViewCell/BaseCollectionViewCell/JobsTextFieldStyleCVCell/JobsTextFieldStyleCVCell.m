@@ -30,7 +30,7 @@
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     JobsTextFieldStyleCVCell *cell = (JobsTextFieldStyleCVCell *)[collectionView collectionViewCellClass:JobsTextFieldStyleCVCell.class forIndexPath:indexPath];
     if (!cell) {
-        collectionView.registerCollectionViewCellClass(JobsTextFieldStyleCVCell.class);
+        collectionView.registerCollectionViewCellClass(JobsTextFieldStyleCVCell.class,@"");
         cell = (JobsTextFieldStyleCVCell *)[collectionView collectionViewCellClass:JobsTextFieldStyleCVCell.class forIndexPath:indexPath];
     }
     

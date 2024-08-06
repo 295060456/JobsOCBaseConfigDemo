@@ -32,7 +32,7 @@
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     JobsBaseCollectionViewCell *cell = (JobsBaseCollectionViewCell *)[collectionView collectionViewCellClass:JobsBaseCollectionViewCell.class forIndexPath:indexPath];
     if (!cell) {
-        collectionView.registerCollectionViewCellClass(JobsBaseCollectionViewCell.class);
+        collectionView.registerCollectionViewCellClass(JobsBaseCollectionViewCell.class,@"");
         cell = (JobsBaseCollectionViewCell *)[collectionView collectionViewCellClass:JobsBaseCollectionViewCell.class forIndexPath:indexPath];
     }
     

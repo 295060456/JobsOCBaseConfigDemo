@@ -34,11 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 注册的时候不开辟内存，只有当用字符串进行取值的时候才开辟内存
 -(jobsByVoidBlock)registerCollectionViewClass;
 /// 注册 UICollectionViewCell 及其子类
--(jobsByClassBlock _Nonnull)registerCollectionViewCellClass;
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass;
 /// 注册 UICollectionElementKindSectionHeader 及其子类
--(jobsByClassBlock _Nonnull)registerCollectionElementKindSectionHeaderClass;
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass;
 /// 注册 UICollectionElementKindSectionFooter 及其子类
--(jobsByClassBlock _Nonnull)registerCollectionElementKindSectionFooterClass;
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass;
 #pragma mark —— 依据字符串取值
 /// 依据字符串取UICollectionElementKindSectionHeader
 -(__kindof UICollectionReusableView *)UICollectionElementKindSectionHeaderClass:(Class)cls

@@ -270,7 +270,7 @@ insetForSectionAtIndex:(NSInteger)section {
         _collectionView.bounces = NO;
         
         _collectionView.registerCollectionViewClass();
-        _collectionView.registerCollectionViewCellClass(MSMineView6CVCell.class);
+        _collectionView.registerCollectionViewCellClass(MSMineView6CVCell.class,@"");
         
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;

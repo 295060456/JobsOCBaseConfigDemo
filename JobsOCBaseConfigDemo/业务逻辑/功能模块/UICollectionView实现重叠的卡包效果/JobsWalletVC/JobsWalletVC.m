@@ -174,11 +174,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         {
             _collectionView.registerCollectionViewClass();
             
-            _collectionView.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class);
-            _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class);
+            _collectionView.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class,@"");
+            _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class,@"");
             
-            _collectionView.registerCollectionViewCellClass(TMSWalletCollectionViewCell.class);
-            _collectionView.registerCollectionViewCellClass(BaiShaETProjBankAccMgmtCVCell.class);
+            _collectionView.registerCollectionViewCellClass(TMSWalletCollectionViewCell.class,@"");
+            _collectionView.registerCollectionViewCellClass(BaiShaETProjBankAccMgmtCVCell.class,@"");
             
         }
 

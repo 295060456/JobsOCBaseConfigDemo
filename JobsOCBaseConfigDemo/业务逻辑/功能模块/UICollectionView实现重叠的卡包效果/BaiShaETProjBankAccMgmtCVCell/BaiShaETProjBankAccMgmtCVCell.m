@@ -32,7 +32,7 @@
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     BaiShaETProjBankAccMgmtCVCell *cell = (BaiShaETProjBankAccMgmtCVCell *)[collectionView collectionViewCellClass:BaiShaETProjBankAccMgmtCVCell.class forIndexPath:indexPath];
     if (!cell) {
-        collectionView.registerCollectionViewCellClass(BaiShaETProjBankAccMgmtCVCell.class);
+        collectionView.registerCollectionViewCellClass(BaiShaETProjBankAccMgmtCVCell.class,@"");
         cell = (BaiShaETProjBankAccMgmtCVCell *)[collectionView collectionViewCellClass:BaiShaETProjBankAccMgmtCVCell.class forIndexPath:indexPath];
     }
     cell.indexPath = indexPath;

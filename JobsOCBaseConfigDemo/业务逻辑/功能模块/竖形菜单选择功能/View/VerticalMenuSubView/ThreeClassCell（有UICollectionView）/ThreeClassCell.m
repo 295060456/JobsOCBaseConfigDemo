@@ -33,7 +33,7 @@
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     ThreeClassCell *cell = (ThreeClassCell *)[collectionView collectionViewCellClass:ThreeClassCell.class forIndexPath:indexPath];
     if (!cell) {
-        collectionView.registerCollectionViewCellClass(ThreeClassCell.class);
+        collectionView.registerCollectionViewCellClass(ThreeClassCell.class,@"");
         cell = (ThreeClassCell *)[collectionView collectionViewCellClass:ThreeClassCell.class forIndexPath:indexPath];
     }
     cell.indexPath = indexPath;
@@ -110,7 +110,7 @@
         _collectionView.layer.shadowRadius = JobsWidth(5);
         _collectionView.layer.masksToBounds = NO;
         _collectionView.contentInset = UIEdgeInsetsMake(JobsWidth(10), 0, 0, 0);
-        _collectionView.registerCollectionViewCellClass(TreeClassItemCell.class);
+        _collectionView.registerCollectionViewCellClass(TreeClassItemCell.class,@"");
         [self.contentView addSubview:_collectionView];
     }return _collectionView;
 }

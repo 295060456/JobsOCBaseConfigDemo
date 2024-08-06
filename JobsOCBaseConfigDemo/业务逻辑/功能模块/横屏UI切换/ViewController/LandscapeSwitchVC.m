@@ -303,9 +303,9 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         
         _collectionView.registerCollectionViewClass();
         
-        _collectionView.registerCollectionViewCellClass(TMSWalletCollectionViewCell.class);
-        _collectionView.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class);
-        _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class);
+        _collectionView.registerCollectionViewCellClass(TMSWalletCollectionViewCell.class,@"");
+        _collectionView.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class,@"");
+        _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class,@"");
         
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
