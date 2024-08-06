@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
  referenceSizeForHeaderInSection:(NSInteger)section;
     4.2、设置尾部视图高度
  - (CGSize)collectionView:(UICollectionView *)collectionView
-                   layout:(UICollectionViewLayout*)collectionViewLayout
+                   layout:(UICollectionViewLayout *)collectionViewLayout
  referenceSizeForFooterInSection:(NSInteger)section;
  
  */

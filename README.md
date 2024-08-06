@@ -7927,7 +7927,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 38、轮播图 [**WMZBanner**](https://github.com/wwmz/WMZBanner) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 作者停止维护
+* <font color=red>**作者停止维护**</font>
 
 * 文字过长会出现问题。跑马灯功能需要另辟蹊径
 

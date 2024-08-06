@@ -176,13 +176,13 @@ UICollectionViewDataSource
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
-numberOfItemsInSection:(NSInteger)section {
+     numberOfItemsInSection:(NSInteger)section {
     return self.dataMutArr.count;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
-viewForSupplementaryElementOfKind:(NSString *)kind
-atIndexPath:(NSIndexPath *)indexPath {
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath {
     if (kind.isEqualToString(UICollectionElementKindSectionHeader)) {
         ReturnBaseCollectionReusableHeaderView
     }else if (kind.isEqualToString(UICollectionElementKindSectionFooter)) {
@@ -243,20 +243,20 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 }
 /// Footer 大小
 - (CGSize)collectionView:(UICollectionView *)collectionView
-layout:(UICollectionViewLayout*)collectionViewLayout
+                  layout:(UICollectionViewLayout *)collectionViewLayout
 referenceSizeForFooterInSection:(NSInteger)section{
     return [JobsHeaderFooterView collectionReusableViewSizeWithModel:nil];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
-layout:(UICollectionViewLayout *)collectionViewLayout
-sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(JobsMainScreen_WIDTH() / 2 - 20, JobsMainScreen_WIDTH() / 2 - 20);
 //    return CGSizeMake(JobsMainScreen_WIDTH() / 3 - 20 * 2, JobsMainScreen_WIDTH() / 3 - 20 * 2);
 }
 /// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView
-layout:(UICollectionViewLayout *)collectionViewLayout
+                   layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return 12;
 }
@@ -264,14 +264,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 /// UICollectionViewScrollDirectionHorizontal下，垂直和水平正好相反
 /// Api自动计算一行的Cell个数，只有当间距小于此定义的最小值时才会换行，最小执行单元是Section（每个section里面的样式是统一的）
 - (CGFloat)collectionView:(UICollectionView *)collectionView
-layout:(UICollectionViewLayout *)collectionViewLayout
+                   layout:(UICollectionViewLayout *)collectionViewLayout
 minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return 10;
 }
 /// 内间距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-layout:(UICollectionViewLayout *)collectionViewLayout
-insetForSectionAtIndex:(NSInteger)section {
+                       layout:(UICollectionViewLayout *)collectionViewLayout
+       insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 #pragma mark —— lazyLoad
