@@ -10,7 +10,7 @@
 
 [toc]
 
-#### <font id=前言>前言</font>
+## <font id=前言>前言</font>
 
 * **工欲善其事必先利其器**
 * **面向信仰编程**
@@ -34,7 +34,8 @@
   * [x] 统一数据源的封装：[**<font color=red>UIViewModel</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/UIViewModelFamily/UIViewModel)<br>
   * [x] UIButton兼容最新Api：**UIButtonConfiguration**<br>
   * [x] 统一的UI组件库**JobsOCBaseCustomizeUIKitCore**<br>
-  * [x] 统一注册全局的 **UICollectionViewCell**<br>
+  * [x] 统一注册全局的 **UICollectionViewCell**、**CollectionReusableView-Header**、**CollectionReusableView—Footer**<br>
+  * [x] [<font color=red>不注册也可以使用**UICollectionViewCell**、**CollectionReusableView-Header**、**CollectionReusableView—Footer**</font>](#关于UICollectionView的注册机制)<br>
   * [x] 对**UITabBarController**和**UITabBar**的封装<br>
   * [x] **UserDefaults**数据存储封装<br>
   * [x] 对打开**URL**的兼容性封装<br>
@@ -4528,57 +4529,57 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 #### 27.1、关于**`UICollectionView`**
 
 * 设置为NO，使得`UICollectionView`只能上拉，不能下拉
-  
+
   ```objective-c
   _collectionView.bounces = NO;
   ```
-  
+
 * `UICollectionView`必须执行注册机制。当且仅当用字符串获取`UICollectionViewCell`的时候才开辟内存
-  
+
   * ```objective-c
     _collectionView.registerCollectionViewClass();
     ```
-  
+
   * ```objective-c
     _collectionView.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class);
     _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class);
     ```
-  
+
   * ```objective-c
     _collectionView.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class);
     _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class);
     ```
-  
+
 * 滚动到指定位置
-  
+
   * ```objective-c
     _collectionView.contentOffset = CGPointMake(0,-100);
     ```
-  
+
   * ```objective-c
     [_collectionView setContentOffset:CGPointMake(0, -200) animated:YES];// 只有在viewDidAppear周期 或者 手动触发才有效
     ```
-  
+
 * 增加**`UICollectionView`** 的可滚动区域（`contentInset`）
-  
+
   ```objective-c
   _collectionView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
   ```
-  
+
 * 支持水平方向的<u>左拉加载</u>和<u>右拉刷新</u> [**XZMRefresh**](https://github.com/xiezhongmin/XZMRefresh)
-  
-    ```ruby
-    pod 'XZMRefresh' # https://github.com/xiezhongmin/XZMRefresh
-    ```
-  
-    ```objective-c
-    #if __has_include(<XZMRefresh/XZMRefresh.h>)
-    #import <XZMRefresh/XZMRefresh.h>
-    #else
-    #import "XZMRefresh.h"
-    #endif
-    ```
-  
+
+  ```ruby
+  pod 'XZMRefresh' # https://github.com/xiezhongmin/XZMRefresh
+  ```
+
+  ```objective-c
+  #if __has_include(<XZMRefresh/XZMRefresh.h>)
+  #import <XZMRefresh/XZMRefresh.h>
+  #else
+  #import "XZMRefresh.h"
+  #endif
+  ```
+
   ```objective-c
   [self layoutIfNeeded];
   @jobs_weakify(self)
@@ -4609,13 +4610,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   
   [_collectionView.xzm_header beginRefreshing];
   ```
-  
+
 * 支持垂直方向上的<u>上拉加载</u>和<u>下拉刷新</u> [**MJRefresh**](https://github.com/CoderMJLee/MJRefresh) 
-  
+
   ```objective-c
   pod 'MJRefresh' # https://github.com/CoderMJLee/MJRefresh
   ```
-  
+
   ```objective-c
   MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
   refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
@@ -4630,7 +4631,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       return nil;
   };
   ```
-  
+
   ```objective-c
   MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
   refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
@@ -4644,7 +4645,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       return nil;
   };
   ```
-  
+
   ```objective-c
   self.refreshConfigHeader = refreshConfigHeader;
   self.refreshConfigFooter = refreshConfigFooter;
@@ -4652,13 +4653,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   _collectionView.mj_header = self.mjRefreshNormalHeader;
   _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
   ```
-  
+
 * 支持[**lottie**](https://github.com/airbnb/lottie-ios)动画
-  
+
   ```ruby
   pod 'lottie-ios', '~> 2.5.3' # 这是OC终极版本 https://github.com/airbnb/lottie-ios
   ```
-  
+
   ```objective-c
   #if __has_include(<lottie-ios/Lottie.h>)
   #import <lottie-ios/Lottie.h>
@@ -4666,21 +4667,21 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   #import "Lottie.h"
   #endif
   ```
-  
+
   ```objective-c
   self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
   self.refreshConfigFooter = refreshConfigFooter;//数据赋值
   _collectionView.mj_header = self.lotAnimMJRefreshHeader;
   ```
-  
+
 * **`UICollectionView`**的无数据占位方案
-  
+
   * 静态图 [**LYEmptyView**](https://github.com/dev-liyang/LYEmptyView)
-  
+
     ```ruby
     pod 'LYEmptyView' # https://github.com/dev-liyang/LYEmptyView iOS一行代码集成空白页面占位图(无数据、无网络占位图)
     ```
-  
+
     ```objective-c
     #if __has_include(<LYEmptyView/LYEmptyViewHeader.h>)
     #import <LYEmptyView/LYEmptyViewHeader.h>
@@ -4688,7 +4689,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     #import "LYEmptyViewHeader.h"
     #endif
     ```
-  
+
     ```objective-c
     _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
                                                              titleStr:JobsInternationalization(@"暂无数据")
@@ -4698,13 +4699,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     _collectionView.ly_emptyView.contentViewOffset = JobsWidth(-180);
     _collectionView.ly_emptyView.titleLabFont = UIFontWeightMediumSize(16);
     ```
-  
+
   * 动画 [**TABAnimated**](https://github.com/tigerAndBull/TABAnimated)
-  
+
     ```ruby
     pod 'TABAnimated' # https://github.com/tigerAndBull/TABAnimated
     ```
-  
+
     ```objective-c
     #if __has_include(<TABAnimated/TABAnimated.h>)
     #import <TABAnimated/TABAnimated.h>
@@ -4712,7 +4713,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     #import "TABAnimated.h"
     #endif
     ```
-  
+
     ```objective-c
     NSArray *classArray = @[
                             DDCollectionViewCell_Style2.class,
@@ -4741,7 +4742,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     _collectionView.tabAnimated.canLoadAgain = YES;
     [_collectionView tab_startAnimation];   // 开启动画
     ```
-  
+
+
 #### 27.2、关于**`UICollectionViewFlowLayout`**
 
   * `UICollectionView` 的一个布局对象，用于定义网格布局
@@ -4763,9 +4765,18 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * [**@interface TMSWalletCollectionReusableView : UICollectionReusableView<BaseViewProtocol,BaseProtocol>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/WalletLayout/TMSWalletCollectionReusableView)
 * [**@interface TMSWalletCollectionViewCell : UICollectionViewCell<BaseViewProtocol>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/WalletLayout/TMSWalletCollectionViewCell)
 
-* <details id="UICollectionView的完整调用">
-   <summary><strong>UICollectionView的完整调用</strong></summary>
+#### 27.4、<font color=red id=关于UICollectionView的注册机制>关于**`UICollectionView`**的注册机制</font>
 
+* 注册的时候不开辟内存，只有当用字符串进行取值的时候才开辟内存
+* **`UICollectionView`** 本身并没有直接提供公开的 API 来检查某个 **reuseIdentifier** 是否已经注册。如果通过字符串索取不到**`UICollectionView`**（未注册），会直接崩溃
+* <font color=red>可以用方法交换去插入一个自定义标志位（**`NSMutableSet`**），如果没有在集合里面的即为未注册的**`UICollectionView`**，此时进入注册流程</font>。关注实现类：[**@implementation UICollectionView (JobsRegisterClass)**]()
+
+#### 27.5、**`UICollectionView`**的完整调用
+
+
+* <details id="UICollectionView的完整调用">
+   <summary><strong>点我查看</strong></summary>
+   
    ```objective-c
    @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
    @property(nonatomic,strong)BaseCollectionView *collectionView;
@@ -4957,7 +4968,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
        return UIEdgeInsetsMake(0, 0, 0, 0);
    }
    ```
-   
+
    </details>
 
 ### 28、<font color=red id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

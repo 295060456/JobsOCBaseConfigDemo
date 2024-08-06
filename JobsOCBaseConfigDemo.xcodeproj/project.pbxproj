@@ -72,6 +72,8 @@
 		CEAF25502C60FE050056570C /* XZExcelContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF25272C60FE040056570C /* XZExcelContentView.m */; };
 		CEAF25512C60FE050056570C /* XZExcelView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF252A2C60FE040056570C /* XZExcelView.m */; };
 		CEAF25522C60FE050056570C /* XZExcelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF252E2C60FE040056570C /* XZExcelVC.m */; };
+		CEAF27042C62508F0056570C /* NSMutableSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF27012C62508F0056570C /* NSMutableSet+Extra.m */; };
+		CEAF27082C6251100056570C /* UICollectionView+RegistrationTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF27062C6251100056570C /* UICollectionView+RegistrationTracking.m */; };
 		CEB4B1722C5A39EA00831085 /* JobsStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB4B16F2C5A39EA00831085 /* JobsStepView.m */; };
 		CEBA44102C5E316200F0042D /* BaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */; };
 		CEC01BDF2C48DF300069C91A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB32C48AFED0069C91A /* TabBar.xcassets */; };
@@ -1267,6 +1269,10 @@
 		CEAF252A2C60FE040056570C /* XZExcelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZExcelView.m; sourceTree = "<group>"; };
 		CEAF252D2C60FE040056570C /* XZExcelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZExcelVC.h; sourceTree = "<group>"; };
 		CEAF252E2C60FE040056570C /* XZExcelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZExcelVC.m; sourceTree = "<group>"; };
+		CEAF27002C62508F0056570C /* NSMutableSet+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+Extra.h"; sourceTree = "<group>"; };
+		CEAF27012C62508F0056570C /* NSMutableSet+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+Extra.m"; sourceTree = "<group>"; };
+		CEAF27052C6251100056570C /* UICollectionView+RegistrationTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+RegistrationTracking.h"; sourceTree = "<group>"; };
+		CEAF27062C6251100056570C /* UICollectionView+RegistrationTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+RegistrationTracking.m"; sourceTree = "<group>"; };
 		CEB4B16D2C5A39EA00831085 /* JobsStepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsStepView.h; sourceTree = "<group>"; };
 		CEB4B16E2C5A39EA00831085 /* JobsStepView.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JobsStepView.jpg; sourceTree = "<group>"; };
 		CEB4B16F2C5A39EA00831085 /* JobsStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsStepView.m; sourceTree = "<group>"; };
@@ -3915,6 +3921,32 @@
 				CEAF252F2C60FE040056570C /* ViewController */,
 			);
 			path = "Excel-XZExcelView";
+			sourceTree = "<group>";
+		};
+		CEAF27022C62508F0056570C /* NSMutableSet+Category */ = {
+			isa = PBXGroup;
+			children = (
+				CEAF27002C62508F0056570C /* NSMutableSet+Extra.h */,
+				CEAF27012C62508F0056570C /* NSMutableSet+Extra.m */,
+			);
+			path = "NSMutableSet+Category";
+			sourceTree = "<group>";
+		};
+		CEAF27032C62508F0056570C /* NSMutableSet */ = {
+			isa = PBXGroup;
+			children = (
+				CEAF27022C62508F0056570C /* NSMutableSet+Category */,
+			);
+			path = NSMutableSet;
+			sourceTree = "<group>";
+		};
+		CEAF27072C6251100056570C /* UICollectionView+RegistrationTracking */ = {
+			isa = PBXGroup;
+			children = (
+				CEAF27052C6251100056570C /* UICollectionView+RegistrationTracking.h */,
+				CEAF27062C6251100056570C /* UICollectionView+RegistrationTracking.m */,
+			);
+			path = "UICollectionView+RegistrationTracking";
 			sourceTree = "<group>";
 		};
 		CEB4B1702C5A39EA00831085 /* JobsStepView */ = {
@@ -10260,6 +10292,7 @@
 		CECE83772C4513CD00764AF5 /* UICollectionView+Category */ = {
 			isa = PBXGroup;
 			children = (
+				CEAF27072C6251100056570C /* UICollectionView+RegistrationTracking */,
 				CECE83722C4513CD00764AF5 /* UICollectionView+Func */,
 				CECE83762C4513CD00764AF5 /* UICollectionView+JobsRegisterClass */,
 			);
@@ -11711,6 +11744,7 @@
 		CECE850E2C4513CD00764AF5 /* JobsOCBaseCustomizeUIKitCore */ = {
 			isa = PBXGroup;
 			children = (
+				CECE850D2C4513CD00764AF5 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				CECE81F72C4513CD00764AF5 /* BaseProtocol */,
 				CECE82002C4513CD00764AF5 /* CALayer */,
 				CECE82092C4513CD00764AF5 /* NSArray */,
@@ -11720,6 +11754,7 @@
 				CECE821B2C4513CD00764AF5 /* NSData */,
 				CECE821F2C4513CD00764AF5 /* NSMutableArray */,
 				CECE82262C4513CD00764AF5 /* NSMutableDictionary */,
+				CEAF27032C62508F0056570C /* NSMutableSet */,
 				CECE822B2C4513CD00764AF5 /* NSNotificationCenter */,
 				CECE82302C4513CD00764AF5 /* NSNumber */,
 				CECE82FF2C4513CD00764AF5 /* NSObject */,
@@ -11754,7 +11789,6 @@
 				CECE84C22C4513CD00764AF5 /* UIView */,
 				CECE85092C4513CD00764AF5 /* UIViewController */,
 				CECE850C2C4513CD00764AF5 /* UIWindow */,
-				CECE850D2C4513CD00764AF5 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 			);
 			path = JobsOCBaseCustomizeUIKitCore;
 			sourceTree = "<group>";
@@ -13738,6 +13772,7 @@
 				CECE876F2C45140000764AF5 /* XLChannelHeader.m in Sources */,
 				CECE85852C4513CE00764AF5 /* BaseCollectionView.m in Sources */,
 				CECE85D42C4513CE00764AF5 /* BaseTextView.m in Sources */,
+				CEAF27082C6251100056570C /* UICollectionView+RegistrationTracking.m in Sources */,
 				CECE85A92C4513CE00764AF5 /* UILabel+Gesture.m in Sources */,
 				CECE85E42C4513CE00764AF5 /* UIView+Masonry.m in Sources */,
 				CE410FE92C57B8B400AB9402 /* ZBRequestEngine.m in Sources */,
@@ -13910,6 +13945,7 @@
 				CECE85B92C4513CE00764AF5 /* UITableView+WWFoldableTableView.m in Sources */,
 				CECE85E82C4513CE00764AF5 /* UIView+UIBackgroundConfig.m in Sources */,
 				CECE7E922C450E5B00764AF5 /* HTTPServer.m in Sources */,
+				CEAF27042C62508F0056570C /* NSMutableSet+Extra.m in Sources */,
 				CECE80E22C4512BF00764AF5 /* JobsAppDoorConfig.m in Sources */,
 				CE1F257C2C5DDABB00324198 /* UIView+Navigator.m in Sources */,
 				CECE7E972C450E5B00764AF5 /* KTVHCDataCacheItem.m in Sources */,

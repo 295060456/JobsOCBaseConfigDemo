@@ -200,8 +200,8 @@ BaseProtocol
 -(JobsReturnIDByIDBlock _Nonnull)valueForKeyBlock;
 /// KVC 的二次封装
 -(jobsByKey_ValueBlock _Nonnull)jobsKVC;
--(JobsReturnBoolByIDBlock _Nonnull)isKindOfClassBlock;
--(JobsReturnBoolByIDBlock _Nonnull)isMemberOfClassBlock;
+-(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClassBlock;
+-(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClassBlock;
 -(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
                          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock;
 +(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier;/// 不能用于UITableViewHeaderFooterView

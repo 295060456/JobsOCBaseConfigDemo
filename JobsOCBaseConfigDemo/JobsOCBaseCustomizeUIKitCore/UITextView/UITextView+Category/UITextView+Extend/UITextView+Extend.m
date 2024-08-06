@@ -15,7 +15,7 @@
     }];
 }
 
--(RACDisposable *)jobsTextViewFilterBlock:(JobsReturnBoolByIDBlock)filterBlock
+-(RACDisposable *)jobsTextViewFilterBlock:(JobsReturnBOOLByIDBlock)filterBlock
                        subscribeNextBlock:(jobsByIDBlock)subscribeNextBlock{
     return [[self.rac_textSignal filter:^BOOL(NSString * _Nullable value) {
         return filterBlock ? filterBlock(value) : YES;

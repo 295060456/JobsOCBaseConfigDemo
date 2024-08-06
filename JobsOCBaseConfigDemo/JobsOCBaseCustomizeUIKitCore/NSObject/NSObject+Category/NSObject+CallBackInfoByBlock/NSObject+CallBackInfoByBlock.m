@@ -378,15 +378,15 @@ JobsKey(_returnCGFloatByIDBlock)
 }
 JobsKey(_returnBoolByIDBlock)
 @dynamic returnBoolByIDBlock;
--(JobsReturnBoolByIDBlock)returnBoolByIDBlock{
+-(JobsReturnBOOLByIDBlock)returnBoolByIDBlock{
     return Jobs_getAssociatedObject(_returnBoolByIDBlock);
 }
 
--(void)setReturnBoolByIDBlock:(JobsReturnBoolByIDBlock)returnBoolByIDBlock{
+-(void)setReturnBoolByIDBlock:(JobsReturnBOOLByIDBlock)returnBoolByIDBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_returnBoolByIDBlock, returnBoolByIDBlock);
 }
 
--(void)actionReturnBoolByIDBlock:(JobsReturnBoolByIDBlock)returnBoolByIDBlock{
+-(void)actionReturnBoolByIDBlock:(JobsReturnBOOLByIDBlock)returnBoolByIDBlock{
     self.returnBoolByIDBlock = returnBoolByIDBlock;
 }
 JobsKey(_returnIntByIDBlock)
@@ -587,28 +587,28 @@ JobsKey(_returnCGFloatBlock)
 }
 JobsKey(_returnBoolBlock)
 @dynamic returnBoolBlock;
--(JobsReturnByBoolBlock)returnBoolBlock{
+-(JobsReturnByBOOLBlock)returnBoolBlock{
     return Jobs_getAssociatedObject(_returnBoolBlock);
 }
 
--(void)setReturnBoolBlock:(JobsReturnByBoolBlock)returnBoolBlock{
+-(void)setReturnBoolBlock:(JobsReturnByBOOLBlock)returnBoolBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_returnBoolBlock, returnBoolBlock)
 }
 
--(void)actionReturnBOOLBlock:(JobsReturnByBoolBlock)returnBoolBlock{
+-(void)actionReturnBOOLBlock:(JobsReturnByBOOLBlock)returnBoolBlock{
     self.returnBoolBlock = returnBoolBlock;
 }
 JobsKey(_returnBoolByNSUIntegerBlock)
 @dynamic returnBoolByNSUIntegerBlock;
--(JobsReturnBoolByNSUIntegerBlock)returnBoolByNSUIntegerBlock{
+-(JobsReturnBOOLByNSUIntegerBlock)returnBoolByNSUIntegerBlock{
     return Jobs_getAssociatedObject(_returnBoolByNSUIntegerBlock);
 }
 
--(void)setReturnBoolByNSUIntegerBlock:(JobsReturnBoolByNSUIntegerBlock)returnBoolByNSUIntegerBlock{
+-(void)setReturnBoolByNSUIntegerBlock:(JobsReturnBOOLByNSUIntegerBlock)returnBoolByNSUIntegerBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_returnBoolByNSUIntegerBlock, returnBoolByNSUIntegerBlock)
 }
 
--(void)actionReturnBoolByNSUIntegerBlock:(JobsReturnBoolByNSUIntegerBlock)returnBoolByNSUIntegerBlock{
+-(void)actionReturnBoolByNSUIntegerBlock:(JobsReturnBOOLByNSUIntegerBlock)returnBoolByNSUIntegerBlock{
     self.returnBoolByNSUIntegerBlock = returnBoolByNSUIntegerBlock;
 }
 JobsKey(_returnIntBlock)

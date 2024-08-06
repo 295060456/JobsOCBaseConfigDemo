@@ -30,9 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// KVC-Block
 -(JobsReturnIDByIDBlock _Nonnull)valueForKeyBlock;
 /// isKindOfClass-Block
--(JobsReturnBoolByIDBlock _Nonnull)isKindOfClassBlock;
+-(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClassBlock;
 /// isMemberOfClass-Block
--(JobsReturnBoolByIDBlock _Nonnull)isMemberOfClassBlock;
+-(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClassBlock;
 #pragma mark —— iOS 通知
 ///【监听所有通知】
 ///【监听所有通知】用 selector

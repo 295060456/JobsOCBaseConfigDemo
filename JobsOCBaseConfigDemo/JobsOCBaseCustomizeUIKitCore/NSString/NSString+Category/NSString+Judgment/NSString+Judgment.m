@@ -74,7 +74,7 @@
 
 @implementation NSString (Judgment)
 
--(JobsReturnBoolByIDBlock)isEqualToString{
+-(JobsReturnBOOLByIDBlock)isEqualToString{
     @jobs_weakify(self)
     return ^(NSString *data){
         @jobs_strongify(self)
@@ -84,7 +84,7 @@
     };
 }
 
--(JobsReturnBoolByIDBlock)containsString{
+-(JobsReturnBOOLByIDBlock)containsString{
     @jobs_weakify(self)
     return ^(NSString *data){
         @jobs_strongify(self)

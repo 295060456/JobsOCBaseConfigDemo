@@ -9,6 +9,8 @@
 
 @implementation UICollectionView (JobsRegisterClass)
 /// 注册的时候不开辟内存，只有当用字符串进行取值的时候才开辟内存
+/// UICollectionView 本身并没有直接提供公开的 API 来检查某个 reuseIdentifier 是否已经注册
+/// 可以用方法交换去插入一个自定义标志位（NSMutableSet）
 -(jobsByVoidBlock)registerCollectionViewClass{
     @jobs_weakify(self)
     return ^(void) {
@@ -60,6 +62,7 @@
         withReuseIdentifier:cls.description];
     };
 }
+#pragma mark —— 依据字符串取值
 /// 依据字符串取UICollectionElementKindSectionHeader
 -(__kindof UICollectionReusableView *)UICollectionElementKindSectionHeaderClass:(Class)cls
                                                                    forIndexPath:(NSIndexPath *)indexPath{
@@ -90,16 +93,17 @@
     collectionReusableView.indexPath = indexPath;
     return collectionReusableView;
 }
-/// 先用UICollectionViewLayout生成CollectionView。frame后面设置
-+(instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout{
-    return [self.alloc initWithFrame:CGRectZero
-                collectionViewLayout:layout];
-}
 /// 一种用字符串取UICollectionViewCell及其子类的方法❤️复用字符串是目标类的类名❤️
 -(__kindof UICollectionViewCell *)collectionViewCellClass:(Class)cls
                                              forIndexPath:(NSIndexPath *)indexPath{
     return [self dequeueReusableCellWithReuseIdentifier:cls.description
                                            forIndexPath:indexPath];
+}
+#pragma mark ——
+/// 先用UICollectionViewLayout生成CollectionView。frame后面设置
++(instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout{
+    return [self.alloc initWithFrame:CGRectZero
+                collectionViewLayout:layout];
 }
 
 @end
