@@ -3175,6 +3175,20 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 对其二次封装，方便使用。关注实现类：[<font color=blue>**`@implementation NSObject (TFPopup)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BTFPopup)
 
+  * ```objective-c
+    -(jobsByViewBlock _Nonnull)show_view{
+        @jobs_weakify(self)
+        return ^(UIView *_Nonnull view) {
+            @jobs_strongify(self)
+            self.popupParameter.dragEnable = YES;
+            self.popupParameter.disuseBackgroundTouchHide = NO;
+            [view tf_showSlide:jobsGetMainWindow()
+                     direction:PopupDirectionContainerCenter
+                    popupParam:self.popupParameter];
+        };
+    }
+    ```
+
 * 接入方式
 
   * `Podfile`
@@ -3191,18 +3205,27 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     #endif
     ```
 
-  * ```objective-c
-    -(jobsByViewBlock _Nonnull)show_view{
-        @jobs_weakify(self)
-        return ^(UIView *_Nonnull view) {
-            @jobs_strongify(self)
-            self.popupParameter.dragEnable = YES;
-            self.popupParameter.disuseBackgroundTouchHide = NO;
-            [view tf_showSlide:jobsGetMainWindow()
-                     direction:PopupDirectionContainerCenter
-                    popupParam:self.popupParameter];
-        };
+  * **出现**
+    
+    ```objective-c
+    self.show_view(self.deleteAccountView);
+    ```
+    
+    ```objective-c
+    -(DeleteAccountView *)deleteAccountView{
+        if(!_deleteAccountView){
+            _deleteAccountView = DeleteAccountView.new;
+            _deleteAccountView.accountStyle = AccountStyle_GCCash;
+            _deleteAccountView.size = [_deleteAccountView viewSizeWithModel:nil];
+            [_deleteAccountView richElementsInViewWithModel:nil];
+        }return _deleteAccountView;
     }
+    ```
+  
+  * **消失**
+  
+    ```objective-c
+    [self tf_hide];
     ```
 
 ### 10、关于`UIViewController`的一些配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
@@ -4768,8 +4791,33 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 #### 27.4、<font color=red id=关于UICollectionView的注册机制>关于**`UICollectionView`**的注册机制</font>
 
 * 注册的时候不开辟内存，只有当用字符串进行取值的时候才开辟内存
+
 * **`UICollectionView`** 本身并没有直接提供公开的 API 来检查某个 **reuseIdentifier** 是否已经注册。如果通过字符串索取不到**`UICollectionView`**（未注册），会直接崩溃
-* <font color=red>可以用方法交换去插入一个自定义标志位（**`NSMutableSet`**），如果没有在集合里面的即为未注册的**`UICollectionView`**，此时进入注册流程</font>。关注实现类：[**@implementation UICollectionView (JobsRegisterClass)**]()
+
+* <font color=red>可以用方法交换去插入一个自定义标志位（**`NSMutableSet`**），如果没有在集合里面的即为未注册的**`UICollectionView`**，此时进入注册流程</font>。关注实现类：[**@interface UICollectionView (RegistrationTracking)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UICollectionView/UICollectionView%2BCategory/UICollectionView%2BRegistrationTracking)
+
+  *  正常情况下，如果用字符串无法取**`UICollectionViewCell`**会直接崩溃，即`collectionViewCellClass`无意义。但是添加了上述的方法交换以后这里不会崩溃，其作用机制是：<font color=red>**利用方法交换，在进行复用时候，先检测标志位里面是否包含已经注册的对象索引，如果没有即进行注册，再进行复用**</font>。所以第一步得到的**Cell**一定会存在，不会出现<font color=red>**nil**</font>的情况。而保留`!cell`写法的作用更多是向下兼容，同时方便代码的阅读。同时，这个字符串是根据需要注册的cell的类名字符串化得到的，为了避免可能得命名冲突，保证全局的唯一性，在必要的时候，可以通过"<u>**加盐**</u>"的形式进行字符串拼接。（注意在用字符串进行索取的时候，也对应需要"<u>**加盐**</u>"）
+
+    ```objective-c
+    +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
+                             forIndexPath:(nonnull NSIndexPath *)indexPath{
+        JobsBtnStyleCVCell *cell = (JobsBtnStyleCVCell *)[collectionView collectionViewCellClass:JobsBtnStyleCVCell.class forIndexPath:indexPath];
+        if (!cell) {
+            collectionView.registerCollectionViewCellClass(JobsBtnStyleCVCell.class,@"");
+            cell = (JobsBtnStyleCVCell *)[collectionView collectionViewCellClass:JobsBtnStyleCVCell.class forIndexPath:indexPath];
+        }
+        
+        // UICollectionViewCell圆切角
+    //    cell.contentView.layer.cornerRadius = cell.layer.cornerRadius = JobsWidth(8);
+    //    cell.contentView.layer.borderWidth = cell.layer.borderWidth = JobsWidth(1);
+    //    cell.contentView.layer.borderColor = cell.layer.borderColor = RGBA_COLOR(255, 225, 144, 1).CGColor;
+    //    cell.contentView.layer.masksToBounds = cell.layer.masksToBounds = YES;
+    
+        cell.indexPath = indexPath;
+        
+        return cell;
+    }
+    ```
 
 #### 27.5、**`UICollectionView`**的完整调用
 
