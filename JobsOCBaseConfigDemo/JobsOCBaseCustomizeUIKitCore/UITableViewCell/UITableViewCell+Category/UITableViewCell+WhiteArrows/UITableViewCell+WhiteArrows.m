@@ -13,16 +13,52 @@
 -(void)customAccessoryView:(jobsByIDBlock)customAccessoryViewBlock{
     /// 不用系统自带的箭头
     if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator) {
-        UIButton *btn = UIButton.new;
+        @jobs_weakify(self)
+        BaseButton *btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                            background:nil
+                                            buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                         textAlignment:NSTextAlignmentCenter
+                                                      subTextAlignment:NSTextAlignmentCenter
+                                                           normalImage:nil
+                                                        highlightImage:nil
+                                                       attributedTitle:nil
+                                               selectedAttributedTitle:nil
+                                                    attributedSubtitle:nil
+                                                                 title:nil
+                                                              subTitle:nil
+                                                             titleFont:nil
+                                                          subTitleFont:nil
+                                                              titleCor:nil
+                                                           subTitleCor:nil
+                                                    titleLineBreakMode:NSLineBreakByWordWrapping
+                                                 subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                   baseBackgroundColor:JobsClearColor.colorWithAlphaComponent(0)
+                                                       backgroundImage:self.img
+                                                          imagePadding:JobsWidth(0)
+                                                          titlePadding:JobsWidth(0)
+                                                        imagePlacement:NSDirectionalRectEdgeNone
+                                            contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                              contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                         contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                     cornerRadiusValue:JobsWidth(0)
+                                                       roundingCorners:UIRectCornerAllCorners
+                                                  roundingCornersRadii:CGSizeZero
+                                                        layerBorderCor:nil
+                                                           borderWidth:JobsWidth(0)
+                                                         primaryAction:nil
+                                            longPressGestureEventBlock:^(id  _Nullable weakSelf,
+                                                                         id  _Nullable arg) {
+              NSLog(@"按钮的长按事件触发");
+          }
+                                                       clickEventBlock:^id(BaseButton *x){
+              @jobs_strongify(self)
+              if (self.objectBlock) self.objectBlock(x);
+              if (customAccessoryViewBlock) customAccessoryViewBlock(self);
+              return nil;
+          }]
         /// 特比注意:如果这个地方是纯view（UIView、UIIMageView...）就可以不用加size，UIButton是因为受到了UIControl，需要接收一个size，否则显示不出来
         btn.size = self.size;
-        btn.normalBackgroundImage(self.img);
-        @jobs_weakify(self)
-        [btn jobsBtnClickEventBlock:^id(id data) {
-            @jobs_strongify(self)
-            if (customAccessoryViewBlock) customAccessoryViewBlock(self);
-            return nil;
-        }];
+        btn.resetByOffsetWidth(JobsWidth(5));
         self.accessoryView = btn;
     }
 }
