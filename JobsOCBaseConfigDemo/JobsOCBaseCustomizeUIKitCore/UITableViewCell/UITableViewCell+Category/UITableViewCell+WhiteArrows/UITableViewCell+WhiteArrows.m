@@ -48,14 +48,14 @@
                                                          primaryAction:nil
                                             longPressGestureEventBlock:^(id  _Nullable weakSelf,
                                                                          id  _Nullable arg) {
-              NSLog(@"按钮的长按事件触发");
+            NSLog(@"按钮的长按事件触发");
           }
                                                        clickEventBlock:^id(BaseButton *x){
-              @jobs_strongify(self)
-              if (self.objectBlock) self.objectBlock(x);
-              if (customAccessoryViewBlock) customAccessoryViewBlock(self);
-              return nil;
-          }]
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            if (customAccessoryViewBlock) customAccessoryViewBlock(self);
+            return nil;
+        }];
         /// 特比注意:如果这个地方是纯view（UIView、UIIMageView...）就可以不用加size，UIButton是因为受到了UIControl，需要接收一个size，否则显示不出来
         btn.size = self.size;
         btn.resetByOffsetWidth(JobsWidth(5));
