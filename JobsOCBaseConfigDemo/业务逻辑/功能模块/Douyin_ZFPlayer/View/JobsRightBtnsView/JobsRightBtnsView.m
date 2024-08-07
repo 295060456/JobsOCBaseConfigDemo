@@ -288,8 +288,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                 
                 JobsShareView *shareView = JobsShareView.new;
                 [shareView richElementsInViewWithModel:nil];
-                [self popupshowSlideWithView:shareView];
-                
+                self.popupshowSlideWithView(shareView);
                 if (self.objectBlock) self.objectBlock(self->_shareBtn);
             }];return nil;
         }];

@@ -38,6 +38,17 @@ static inline TFPopupParam *_Nonnull makeNormalPopupParameter(void){
     return popupParameter;
 }
 
+static inline TFPopupParam *_Nonnull makeNormalTipsParameter(void){
+    TFPopupParam *popupParameter = TFPopupParam.new;
+    popupParameter.duration = 0.3;
+    popupParameter.showAnimationDelay = 0;
+    popupParameter.hideAnimationDelay = 0;
+    popupParameter.autoDissmissDuration = 1;
+    popupParameter.dragEnable = NO;
+    popupParameter.disuseBackgroundTouchHide = YES;
+    return popupParameter;
+}
+
 static inline TFPopupParam *_Nonnull makeSlidePopupParameterByViewSize(CGSize viewSize){
     TFPopupParam *popupParameter = TFPopupParam.new;
     popupParameter.bubbleDirection = PopupDirectionBottom;
@@ -54,19 +65,28 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (TFPopup)
 /// Data
 @property(nonatomic,strong)TFPopupParam *popupParameter;
-#pragma mark —— 创建缩放模式的View
+@property(nonatomic,strong)TFPopupParam *tipsParameter;
+#pragma mark —— 弹出提示框
+-(jobsByStringBlock _Nonnull)toastMsg;
+#pragma mark —— 创建缩放模式下的View
 /// 没有自定义 popupParam（缩放模式）
--(void)popupShowScaleWithView:(UIView *_Nonnull)view;
+-(jobsByViewBlock _Nonnull)popupShowScaleWithView;
 /// 有自定义popupParam（缩放模式）
--(void)popupShowScaleWithView:(UIView *_Nonnull)view
-               popupParameter:(TFPopupParam *_Nullable)popupParam;
+-(void)popupShowScaleWithView:(UIView __kindof *_Nonnull)view
+               popupParameter:(TFPopupParam *_Nullable)popupParameter;
 #pragma mark —— 创建滑动模式的View
 /// 没有自定义 popupParam（滑动模式）
--(void)popupshowSlideWithView:(UIView *_Nonnull)view;
+-(jobsByViewBlock _Nonnull)popupshowSlideWithView;
 /// 有自定义popupParam（滑动模式）
--(void)popupshowSlideWithView:(UIView *_Nonnull)view
-               popupParameter:(TFPopupParam *_Nullable)popupParam;
+-(void)popupshowSlideWithView:(UIView __kindof *_Nonnull)view
+               popupParameter:(TFPopupParam *_Nullable)popupParameter;
 #pragma mark —— PopView
+/// 出现的弹窗需要手动触发关闭
+-(jobsByViewBlock _Nonnull)show_view;
+/// 出现的弹窗自动触发关闭
+-(jobsByViewBlock _Nonnull)show_tips;
+#warning 这样写的目的是方便在其他地方调用
+/// 公告
 -(JobsNoticePopupView *)noticePopupView;
 
 @end
