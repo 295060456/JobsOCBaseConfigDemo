@@ -521,13 +521,15 @@
     };
 }
 /// 依据偏移量重塑Frame
--(void)offsetForView:(UIViewModel *)viewModel{
-    CGRect viewFrame = self.frame;
-    viewFrame.origin.x += viewModel.offsetXForEach;
-    viewFrame.origin.y += viewModel.offsetYForEach;
-    viewFrame.size.width += viewModel.offsetWidth;
-    viewFrame.size.height += viewModel.offsetHeight;
-    self.frame = viewFrame;
+-(jobsByViewModelBlock)offsetForView{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable viewModel) {
+        @jobs_strongify(self)
+        self.resetByOffsetOriginX(viewModel.offsetXForEach);
+        self.resetByOffsetOriginY(viewModel.offsetYForEach);
+        self.resetByOffsetWidth(viewModel.offsetWidth);
+        self.resetByOffsetHeight(viewModel.offsetHeight);
+    };
 }
 
 - (CGFloat)maxX {

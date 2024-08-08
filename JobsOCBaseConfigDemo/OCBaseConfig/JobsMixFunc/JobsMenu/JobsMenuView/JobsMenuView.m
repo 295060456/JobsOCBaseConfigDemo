@@ -41,6 +41,10 @@
     [self layoutSubviewsCutCnrByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
                                     cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
+#pragma mark —— 一些公有方法
+-(JobsLinkageMenuView *)getLinkageMenuView{
+    return self.menuView;
+}
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
@@ -67,8 +71,10 @@
 -(JobsLinkageMenuView *)menuView{
     if(!_menuView){
         _menuView = [JobsLinkageMenuView.alloc initWithFrame:self.bounds
-                                                   btnConfig:self.buttonModel];
+                                                   btnConfig:self.buttonModel
+                                       linkageMenuViewConfig:self.linkageMenuViewConfig];
 //        _menuView.backgroundColor = JobsRedColor;
+        [_menuView richElementsInViewWithModel:nil];
         @jobs_weakify(self)
         [_menuView actionObjectBlock:^(id  _Nullable x) {
             @jobs_strongify(self)
@@ -88,9 +94,15 @@
         _buttonModel.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
         _buttonModel.normal_images = self.normal_titleImageMutArr;
         _buttonModel.data = self.subViewMutArr;
-        _buttonModel.imagePadding = JobsWidth(10);
+        _buttonModel.imagePaddings = self.imagePaddings;
         _buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
     }return _buttonModel;
+}
+
+-(JobsLinkageMenuViewConfig *)linkageMenuViewConfig{
+    if(!_linkageMenuViewConfig){
+        _linkageMenuViewConfig = JobsLinkageMenuViewConfig.new;
+    }return _linkageMenuViewConfig;
 }
 
 @end

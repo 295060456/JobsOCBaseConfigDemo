@@ -12,6 +12,7 @@
 #import "UIView+Extras.h"
 #import "UILabel+Extra.h"
 #import "UIMarkProtocol.h"
+#import "UIView+Measure.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

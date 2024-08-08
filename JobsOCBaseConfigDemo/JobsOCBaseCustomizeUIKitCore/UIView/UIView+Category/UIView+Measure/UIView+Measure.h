@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetBottom;
 -(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetRight;
 #pragma mark —— 依据UIViewModel所携带的偏移量重塑Frame
--(void)offsetForView:(UIViewModel *)viewModel;
+-(jobsByViewModelBlock)offsetForView;
 #pragma mark —— 拉升和平移
 @property(nonatomic,readonly)CGFloat maxX;
 @property(nonatomic,readonly)CGFloat maxY;

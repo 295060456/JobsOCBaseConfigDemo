@@ -6,12 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JobsBlock_Ex.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol JobsBaseViewProtocol <NSObject>
-
 @optional
 -(jobsByViewModelBlock _Nonnull)jobsRichViewWithModel;
 #pragma mark —— 用类方法定义

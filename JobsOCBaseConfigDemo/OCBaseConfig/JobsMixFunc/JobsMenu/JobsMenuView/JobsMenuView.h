@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSMutableArray <UIImage *>*normal_titleBgImageMutArr;
 @property(nonatomic,strong)NSMutableArray <UIImage *>*select_titleBgImageMutArr;
 @property(nonatomic,strong)NSMutableArray <UIImage *>*normal_titleImageMutArr;
+@property(nonatomic,strong)NSMutableArray <NSNumber *>*imagePaddings;
+
+@property(nonatomic,strong)JobsLinkageMenuViewConfig *linkageMenuViewConfig;
 
 @end
 

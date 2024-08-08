@@ -13,6 +13,7 @@
 #import "UIViewModelProtocol.h"
 #import "MacroDef_Func.h"
 #import "UIViewModel.h"
+#import "UIView+Measure.h"
 
 #if __has_include(<XYColorOC/XYColorOC.h>)
 #import <XYColorOC/XYColorOC.h>

@@ -80,6 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)NSArray <UIColor *>*normal_baseBackgroundColors;// baseBackgroundColor
 @property(nonatomic,strong,nullable)NSArray <UIImage *>*normal_backgroundImages;// backgroundImage
 @property(nonatomic,strong,nullable)NSArray <UIImage *>*normal_images;// normalImage
+@property(nonatomic,strong,nullable)NSArray <NSNumber *>*imagePaddings;// imagePadding 图像与标题之间的间距
 /// 已选择状态的数据源
 @property(nonatomic,strong,nullable)NSArray <NSString *>*selected_titles;// selected_title
 @property(nonatomic,strong,nullable)NSArray <UIFont *>*selected_titleFonts;// selected_titleFont
@@ -94,6 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)NSArray <UIColor *>*selected_baseBackgroundColors;// selected_baseBackgroundColor
 @property(nonatomic,strong,nullable)NSArray <UIImage *>*selected_backgroundImages;// selected_backgroundImage
 @property(nonatomic,strong,nullable)NSArray <UIImage *>*selected_Images;// highlightImage
+@property(nonatomic,strong,nullable)NSArray <NSNumber *>*selected_imagePaddings;// imagePadding 图像与标题之间的间距
 #pragma mark —— 按钮挂载的对象
 @property(nonatomic,strong,nullable)id data;
 #pragma mark —— 点击的状态

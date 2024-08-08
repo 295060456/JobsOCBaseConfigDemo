@@ -425,11 +425,7 @@ Current targets:
 
 * 背景意义：**统一全局的Block定义，减少冗余代码**
 
-* <font color=blue>**特别说明**</font>：[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) 只对原生系统的类进行封装。如果有外源自定义的类，移步[<font color=red>**JobsBlock_Ex**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%85%B6%E4%BB%96%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6/JobsBlock_Ex/JobsBlock_Ex.h)
-
-  * 因为外源自定义的类会引用[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)
-  * 如果[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)再继续引用这些外源自定义类，就会导致循环引用，无法编译
-  * 同时，[<font color=red>**JobsBlock_Ex**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%85%B6%E4%BB%96%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6/JobsBlock_Ex/JobsBlock_Ex.h)也不能被全局所包含。<u>在需要用的地方，单独的引入</u>
+* <font color=blue>**特别说明**</font>：如果有外源（非系统Api）类参与到Block的定义，此时<u>不能使用</u><font color=red>`#import`</font>，因为会产生编译错误。此时正确的做法是使用<font color=red>**`@class`**</font>
 
 * ```ruby
   pod 'JobsBlock' # https://github.com/295060456/JobsBlock
@@ -441,6 +437,47 @@ Current targets:
 
   * `【MacOS】Pod_Install（适用于IOS工程根目录）.command`
   * `【MacOS】Pod_Update（适用于IOS工程根目录）.command`
+  
+* <font color=blue>不定参数Block【 使用示例】</font>
+
+  ```objective-c
+  [self GettingPicBlock:^(id firstArg, ...)NS_REQUIRES_NIL_TERMINATION{
+      @jobs_strongify(self)
+      if (firstArg) {
+          // 取出第一个参数
+          NSLog(@"%@", firstArg);
+          // 定义一个指向个数可变的参数列表指针；
+          va_list args;
+          // 用于存放取出的参数
+          id arg = nil;
+          // 初始化变量刚定义的va_list变量，这个宏的第二个参数是第一个可变参数的前一个参数，是一个固定的参数
+          va_start(args, firstArg);
+          // 遍历全部参数 va_arg返回可变的参数(a_arg的第二个参数是你要返回的参数的类型)
+          if ([firstArg isKindOfClass:NSNumber.class]) {
+              NSNumber *num = (NSNumber *)firstArg;
+              for (int i = 0; i < num.intValue; i++) {
+                  arg = va_arg(args, id);
+  //                    NSLog(@"KKK = %@", arg);
+                  if ([arg isKindOfClass:UIImage.class]) {
+                      NSLog(@"");
+                  }else if ([arg isKindOfClass:PHAsset.class]){
+                      NSLog(@"");
+                  }else if ([arg isKindOfClass:NSString.class]){
+                      NSLog(@"");
+                  }else if ([arg isKindOfClass:NSArray.class]){
+                      NSLog(@"");
+                  }else{
+                      NSLog(@"");
+                  }
+              }
+          }else{
+              NSLog(@"");
+          }
+          // 清空参数列表，并置参数指针args无效
+          va_end(args);
+      }
+  }];
+  ```
 
 ### 11、[**<font color=red>`BaseProtocol` 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

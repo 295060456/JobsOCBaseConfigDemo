@@ -1201,7 +1201,6 @@
 		CEA114BA2C522E00009D6FB3 /* JobsBaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseViewProtocol.h; sourceTree = "<group>"; };
 		CEA1161F2C5278F8009D6FB3 /* XZMLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZMLayout.h; sourceTree = "<group>"; };
 		CEA116202C5278F8009D6FB3 /* XZMLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZMLayout.m; sourceTree = "<group>"; };
-		CEA116242C527BF5009D6FB3 /* JobsBlock_Ex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBlock_Ex.h; sourceTree = "<group>"; };
 		CEAF24C32C60FE040056570C /* ExcelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcelVC.h; sourceTree = "<group>"; };
 		CEAF24C42C60FE040056570C /* ExcelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExcelVC.m; sourceTree = "<group>"; };
 		CEAF24C72C60FE040056570C /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
@@ -3513,14 +3512,6 @@
 				CEA116202C5278F8009D6FB3 /* XZMLayout.m */,
 			);
 			path = XZMLayout;
-			sourceTree = "<group>";
-		};
-		CEA116232C527BEF009D6FB3 /* JobsBlock_Ex */ = {
-			isa = PBXGroup;
-			children = (
-				CEA116242C527BF5009D6FB3 /* JobsBlock_Ex.h */,
-			);
-			path = JobsBlock_Ex;
 			sourceTree = "<group>";
 		};
 		CEAF24C52C60FE040056570C /* ViewController */ = {
@@ -7633,7 +7624,6 @@
 		CECE7F0A2C4512BF00764AF5 /* 其他的一些全局定义文件 */ = {
 			isa = PBXGroup;
 			children = (
-				CEA116232C527BEF009D6FB3 /* JobsBlock_Ex */,
 				CECE7F072C4512BF00764AF5 /* JobsBlock */,
 				CECE7F082C4512BF00764AF5 /* APIKey.h */,
 				CECE7F092C4512BF00764AF5 /* JobsDefineAllEnumHeader.h */,

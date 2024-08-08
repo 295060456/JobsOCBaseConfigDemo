@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewProtocol.h"
 #import "JobsBlock.h"
-#import "JobsBlock_Ex.h"
 #import "JobsNavBar.h"
 
 #if __has_include(<SPAlertController/SPAlertController.h>)

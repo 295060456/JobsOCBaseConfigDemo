@@ -176,97 +176,62 @@ UITableViewCellProtocol_synthesize
         if (!jobsZeroRectValue(self.imageViewFrame)) {
             self.imageView.frame = self.imageViewFrame;
         }
-        
-        if (!jobsZeroRectValue(self.textLabelFrame) ||
-            !jobsZeroRectValue(self.detailTextLabelFrame) ||
-            !jobsZeroRectValue(self.imageViewFrame)) return;
     }
     
     {///【组 2】UITableViewCell单独自定义设置系统自带控件的Size【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、3属性互斥❤️
         if (!jobsZeroSizeValue(self.textLabelSize)) {
-            CGRect textLabelFrame = self.textLabel.frame;
-            textLabelFrame.size = self.textLabelSize;
-            textLabelFrame.origin.x += self.textLabelFrameOffsetX;
-            textLabelFrame.origin.y += self.textLabelFrameOffsetY;
-            self.textLabel.frame = textLabelFrame;
+            self.textLabel.resetSize(self.textLabelSize);
+            self.textLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
+            self.textLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
         }
         
         if (!jobsZeroSizeValue(self.detailTextLabelSize)) {
-            CGRect detailTextLabelFrame = self.detailTextLabel.frame;
-            detailTextLabelFrame.size = self.detailTextLabelSize;
-            detailTextLabelFrame.origin.x += self.detailTextLabelOffsetX;
-            detailTextLabelFrame.origin.y += self.detailTextLabelOffsetY;
-            self.detailTextLabel.frame = detailTextLabelFrame;
+            self.detailTextLabel.resetSize(self.detailTextLabelSize);
+            self.detailTextLabel.resetByOffsetOriginX(self.detailTextLabelOffsetX);
+            self.detailTextLabel.resetByOffsetOriginY(self.detailTextLabelOffsetY);
         }
         
         if (!jobsZeroSizeValue(self.imageViewSize)) {
-            CGRect imageViewFrame = self.imageView.frame;
-            imageViewFrame.size = self.imageViewSize;
-            imageViewFrame.origin.x += self.imageViewFrameOffsetX;
-            imageViewFrame.origin.y += self.imageViewFrameOffsetY;
-            self.imageView.frame = imageViewFrame;
+            self.imageView.resetSize(self.imageViewSize);
+            self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
+            self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
         }
-        
-        if (!jobsZeroSizeValue(self.textLabelSize) ||
-            !jobsZeroSizeValue(self.detailTextLabelSize) ||
-            !jobsZeroSizeValue(self.imageViewSize)) return;
     }
     
     {///【组 3】UITableViewCell单独自定义设置系统自带控件的宽高【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、2属性互斥❤️
-        if (self.textLabelWidth) {
-            CGRect textLabelFrame = self.textLabel.frame;
-            textLabelFrame.size.width = self.textLabelWidth;
-            textLabelFrame.origin.x += self.textLabelFrameOffsetX;
-            textLabelFrame.origin.y += self.textLabelFrameOffsetY;
-            self.textLabel.frame = textLabelFrame;
+       
+        {
+            if (self.textLabelWidth) {
+                self.textLabel.resetWidth(self.textLabelWidth);
+            }
+            if (self.textLabelHeight) {
+                self.detailTextLabel.resetHeight(self.textLabelHeight);
+            }
+            self.textLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
+            self.textLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
         }
         
-        if (self.textLabelHeight) {
-            CGRect textLabelFrame = self.textLabel.frame;
-            textLabelFrame.size.height = self.textLabelHeight;
-            textLabelFrame.origin.x += self.textLabelFrameOffsetX;
-            textLabelFrame.origin.y += self.textLabelFrameOffsetY;
-            self.detailTextLabel.frame = textLabelFrame;
+        {
+            if (self.detailTextLabelWidth) {
+                self.detailTextLabel.resetWidth(self.detailTextLabelWidth);
+            }
+            if (self.detailTextLabelHeight) {
+                self.detailTextLabel.resetHeight(self.detailTextLabelHeight);
+            }
+            self.detailTextLabel.resetByOffsetOriginX(self.detailTextLabelOffsetX);
+            self.detailTextLabel.resetByOffsetOriginY(self.detailTextLabelOffsetY);
         }
         
-        if (self.detailTextLabelWidth) {
-            CGRect detailTextLabelFrame = self.detailTextLabel.frame;
-            detailTextLabelFrame.size.width = self.detailTextLabelWidth;
-            detailTextLabelFrame.origin.x += self.detailTextLabelOffsetX;
-            detailTextLabelFrame.origin.y += self.detailTextLabelOffsetY;
-            self.detailTextLabel.frame = detailTextLabelFrame;
+        {
+            if (self.imageViewWidth) {
+                self.imageView.resetWidth(self.imageViewWidth);
+            }
+            if (self.imageViewHeight) {
+                self.imageView.resetHeight(self.imageViewHeight);
+            }
+            self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
+            self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
         }
-        
-        if (self.detailTextLabelHeight) {
-            CGRect detailTextLabelFrame = self.detailTextLabel.frame;
-            detailTextLabelFrame.size.height = self.detailTextLabelHeight;
-            detailTextLabelFrame.origin.x += self.detailTextLabelOffsetX;
-            detailTextLabelFrame.origin.y += self.detailTextLabelOffsetY;
-            self.detailTextLabel.frame = detailTextLabelFrame;
-        }
-        
-        if (self.imageViewWidth) {
-            CGRect imageViewFrame = self.imageView.frame;
-            imageViewFrame.size.width = self.imageViewWidth;
-            imageViewFrame.origin.x += self.imageViewFrameOffsetX;
-            imageViewFrame.origin.y += self.imageViewFrameOffsetY;
-            self.imageView.frame = imageViewFrame;
-        }
-        
-        if (self.imageViewHeight) {
-            CGRect imageViewFrame = self.imageView.frame;
-            imageViewFrame.size.height = self.imageViewHeight;
-            imageViewFrame.origin.x += self.imageViewFrameOffsetX;
-            imageViewFrame.origin.y += self.imageViewFrameOffsetY;
-            self.imageView.frame = imageViewFrame;
-        }
-        
-        if (self.textLabelWidth ||
-            self.textLabelHeight ||
-            self.detailTextLabelWidth ||
-            self.detailTextLabelHeight ||
-            self.imageViewWidth ||
-            self.imageViewHeight)  return;
     }
     
     {/// 【组 4】UITableViewCell单独自定义设置系统自带控件的偏移量
@@ -276,8 +241,7 @@ UITableViewCellProtocol_synthesize
             viewModel.offsetYForEach = self.textLabelFrameOffsetY;
             viewModel.offsetWidth = self.textLabelFrameOffsetWidth;
             viewModel.offsetHeight = self.textLabelFrameOffsetHeight;
-            
-            [self.textLabel offsetForView:viewModel];
+            self.textLabel.offsetForView(viewModel);
         }
         
         {
@@ -286,8 +250,7 @@ UITableViewCellProtocol_synthesize
             viewModel.offsetYForEach = self.detailTextLabelOffsetY;
             viewModel.offsetWidth = self.detailTextLabelOffsetWidth;
             viewModel.offsetHeight = self.detailTextLabelOffsetHeight;
-            
-            [self.detailTextLabel offsetForView:viewModel];
+            self.detailTextLabel.offsetForView(viewModel);
         }
         {
             UIViewModel *viewModel = UIViewModel.new;
@@ -295,8 +258,7 @@ UITableViewCellProtocol_synthesize
             viewModel.offsetYForEach = self.imageViewFrameOffsetY;
             viewModel.offsetWidth = self.imageViewFrameOffsetWidth;
             viewModel.offsetHeight = self.imageViewFrameOffsetHeight;
-            
-            [self.imageView offsetForView:viewModel];
+            self.imageView.offsetForView(viewModel);
         }
     }
 }
@@ -320,7 +282,8 @@ UITableViewCellProtocol_synthesize
 #pragma mark —— 子类重写父类方法
 - (void)setSelected:(BOOL)selected
            animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+    [super setSelected:selected
+              animated:animated];
 }
 /// CXB 所言 全局只有在cellForRowAtIndexPath里面才能设置真正的selected值。而didSelectRowAtIndexPath不行
 -(void)setSelected:(BOOL)selected{
@@ -370,8 +333,7 @@ UITableViewCellProtocol_synthesize
         frame.origin.y += self.offsetYForEach;
         frame.size.height -= self.offsetYForEach * 2;
         frame.size.width -= self.offsetXForEach * 2;
-    }
-    [super setFrame:frame];
+    }[super setFrame:frame];
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -387,7 +349,7 @@ UITableViewCellProtocol_synthesize
     return _viewModel;
 }
 #pragma mark —— BaseCellProtocol
--(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
+-(void)richElementsInCellWithModel:(UIViewModel __kindof *_Nullable)model{
     if (model) {
         self.viewModel = model;
         /**
@@ -425,7 +387,7 @@ UITableViewCellProtocol_synthesize
     }
 }
 
-+(CGFloat)cellHeightWithModel:(UIViewModel *_Nullable)model{
++(CGFloat)cellHeightWithModel:(UIViewModel __kindof *_Nullable)model{
     if(model){
         UIViewModel *vm = UIViewModel.new;
         NSString *title = JobsInternationalization(@"");

@@ -48,6 +48,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat subTextLabelHeight;
 @property(nonatomic,assign)CGFloat imageViewHeight;
 /// UIButton 单独自定义设置系统自带控件的偏移量 ❤️与其他组属性不互斥❤️
+@property(nonatomic,assign)CGFloat textLabelFrameResetX;
+@property(nonatomic,assign)CGFloat textLabelFrameResetY;
+@property(nonatomic,assign)CGFloat subTextLabelFrameResetWidth;
+@property(nonatomic,assign)CGFloat subTextLabelFrameResetHeight;
 // 关于 textLabel 的偏移
 @property(nonatomic,assign)CGFloat textLabelFrameOffsetX;
 @property(nonatomic,assign)CGFloat textLabelFrameOffsetY;
@@ -120,6 +124,11 @@ NS_ASSUME_NONNULL_END
 @synthesize subTextLabelHeight = _subTextLabelHeight;\
 @synthesize imageViewHeight = _imageViewHeight;\
 \
+@synthesize textLabelFrameResetX = _textLabelFrameResetX;\
+@synthesize textLabelFrameResetY = _textLabelFrameResetY;\
+@synthesize subTextLabelFrameResetWidth = _subTextLabelFrameResetWidth;\
+@synthesize subTextLabelFrameResetHeight = _subTextLabelFrameResetHeight;\
+\
 @synthesize textLabelFrameOffsetX = _textLabelFrameOffsetX;\
 @synthesize textLabelFrameOffsetY = _textLabelFrameOffsetY;\
 @synthesize textLabelFrameOffsetWidth = _textLabelFrameOffsetWidth;\
@@ -167,6 +176,11 @@ NS_ASSUME_NONNULL_END
 @dynamic textLabelHeight;\
 @dynamic subTextLabelHeight;\
 @dynamic imageViewHeight;\
+\
+@dynamic textLabelFrameResetX;\
+@dynamic textLabelFrameResetY;\
+@dynamic subTextLabelFrameResetWidth;\
+@dynamic subTextLabelFrameResetHeight;\
 \
 @dynamic textLabelFrameOffsetX;\
 @dynamic textLabelFrameOffsetY;\

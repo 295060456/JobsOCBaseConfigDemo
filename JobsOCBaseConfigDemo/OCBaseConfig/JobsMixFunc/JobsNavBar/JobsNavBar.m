@@ -235,7 +235,7 @@
         _closeBtn.tag = 123;
         [self addSubview:_closeBtn];
         [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(18), JobsWidth(18)));
+            make.size.mas_equalTo(CGSizeMake(JobsWidth(22), JobsWidth(22)));
             make.centerY.equalTo(self);
             make.right.equalTo(self).offset(-(self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(15)));
         }];
