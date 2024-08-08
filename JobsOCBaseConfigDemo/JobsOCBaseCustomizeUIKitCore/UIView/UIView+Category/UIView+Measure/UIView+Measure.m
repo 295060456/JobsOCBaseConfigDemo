@@ -525,10 +525,18 @@
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
-        self.resetByOffsetOriginX(viewModel.offsetXForEach);
-        self.resetByOffsetOriginY(viewModel.offsetYForEach);
-        self.resetByOffsetWidth(viewModel.offsetWidth);
-        self.resetByOffsetHeight(viewModel.offsetHeight);
+        if(viewModel.offsetXForEach){
+            self.resetByOffsetOriginX(viewModel.offsetXForEach);
+        }
+        if(viewModel.offsetYForEach){
+            self.resetByOffsetOriginY(viewModel.offsetYForEach);
+        }
+        if(viewModel.offsetWidth){
+            self.resetByOffsetWidth(viewModel.offsetWidth);
+        }
+        if(viewModel.offsetHeight){
+            self.resetByOffsetHeight(viewModel.offsetHeight);
+        }
     };
 }
 

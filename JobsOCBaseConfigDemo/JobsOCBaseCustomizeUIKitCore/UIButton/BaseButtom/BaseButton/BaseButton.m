@@ -83,22 +83,74 @@
     }
     
     {/// 【组 2】UIButton 单独自定义设置系统自带控件的Size ❤️与组1、3属性互斥❤️
-        if (!jobsZeroSizeValue(self.textLabelSize)) {
-            self.titleLabel.resetSize(self.textLabelSize);
+        {
+            if (!jobsZeroSizeValue(self.textLabelSize)) {
+                self.titleLabel.resetSize(self.textLabelSize);
+            }
             self.titleLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
             self.titleLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
         }
-        if (!jobsZeroSizeValue(self.subTextLabelSize)) {
+        
+        {
             if (@available(iOS 15.0, *)) {
-                self.subtitleLabel.resetSize(self.subTextLabelSize);
+                if(!jobsZeroSizeValue(self.subTextLabelSize)){
+                    self.subtitleLabel.resetSize(self.subTextLabelSize);
+                }
                 self.subtitleLabel.resetByOffsetOriginX(self.subTextLabelFrameOffsetX);
                 self.subtitleLabel.resetByOffsetOriginY(self.subTextLabelFrameOffsetY);
             }
         }
-        if (!jobsZeroSizeValue(self.imageViewSize)) {
-            self.imageView.resetSize(self.imageViewSize);
+        
+        {
+            if (!jobsZeroSizeValue(self.imageViewSize)) {
+                self.imageView.resetSize(self.imageViewSize);
+            }
             self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
             self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
+        }
+    }
+    
+    {/// 【组 2】UIButton 单独自定义设置系统自带控件的Size ❤️与组1、3属性互斥❤️
+        {
+            if (!jobsZeroSizeValue(self.textLabelSize)) {
+                self.titleLabel.resetSize(self.textLabelSize);
+            }
+            if(self.textLabelFrameResetX){
+                self.titleLabel.resetOriginX(self.textLabelFrameResetX);
+            }
+            if(self.textLabelFrameResetY){
+                self.titleLabel.resetOriginY(self.textLabelFrameResetY);
+            }
+        }
+        
+        {
+            if (!jobsZeroSizeValue(self.subTextLabelSize)) {
+                if (@available(iOS 15.0, *)) {
+                    self.subtitleLabel.resetSize(self.subTextLabelSize);
+                }
+            }
+            if(self.subTextLabelFrameResetX){
+                if (@available(iOS 15.0, *)) {
+                    self.subtitleLabel.resetOriginX(self.subTextLabelFrameResetX);
+                }
+            }
+            if(self.subTextLabelFrameResetY){
+                if (@available(iOS 15.0, *)) {
+                    self.subtitleLabel.resetOriginY(self.subTextLabelFrameResetY);
+                }
+            }
+        }
+
+        {
+            if (!jobsZeroSizeValue(self.imageViewSize)) {
+                self.imageView.resetSize(self.imageViewSize);
+            }
+            if (self.imageViewFrameResetX) {
+                self.imageView.resetOriginX(self.imageViewFrameResetX);
+            }
+            if (self.imageViewFrameResetY) {
+                self.imageView.resetOriginY(self.imageViewFrameResetY);
+            }
         }
     }
     

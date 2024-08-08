@@ -2361,6 +2361,53 @@ NSObject <|-- BaseProtocol
   * 可以对单个的**UIButton**进行配置
   * 可以批量对**UIButton**进行配置（自带数据源）
   
+* 对以**`UIButton`**为基底，里面的子控件进行配置（在创建后立即调用）
+
+  * **BaseButtonProtocol.h**
+  
+    ```
+    /// ⚠️执行return的顺序依照下列👇🏻属性的排序⚠️
+    ///【组 1】UIButton 单独自定义设置系统自带控件的Frame【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️
+    @property(nonatomic,assign)CGRect textLabelFrame;
+    @property(nonatomic,assign)CGRect subTextLabelFrame;
+    @property(nonatomic,assign)CGRect imageViewFrame;
+    ///【组 2】UIButton 单独自定义设置系统自带控件的Size【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、3属性互斥❤️
+    @property(nonatomic,assign)CGSize textLabelSize;
+    @property(nonatomic,assign)CGFloat textLabelFrameResetX;
+    @property(nonatomic,assign)CGFloat textLabelFrameResetY;
+    
+    @property(nonatomic,assign)CGSize subTextLabelSize;
+    @property(nonatomic,assign)CGFloat subTextLabelFrameResetX;
+    @property(nonatomic,assign)CGFloat subTextLabelFrameResetY;
+    
+    @property(nonatomic,assign)CGSize imageViewSize;
+    @property(nonatomic,assign)CGFloat imageViewFrameResetX;
+    @property(nonatomic,assign)CGFloat imageViewFrameResetY;
+    ///【组 3】UIButton 单独自定义设置系统自带控件的长宽【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、2属性互斥❤️
+    @property(nonatomic,assign)CGFloat textLabelWidth;
+    @property(nonatomic,assign)CGFloat subTextLabelWidth;
+    @property(nonatomic,assign)CGFloat imageViewWidth;
+    @property(nonatomic,assign)CGFloat textLabelHeight;
+    @property(nonatomic,assign)CGFloat subTextLabelHeight;
+    @property(nonatomic,assign)CGFloat imageViewHeight;
+    /// UIButton 单独自定义设置系统自带控件的偏移量 ❤️与其他组属性不互斥❤️
+    // 关于 textLabel 的偏移
+    @property(nonatomic,assign)CGFloat textLabelFrameOffsetX;
+    @property(nonatomic,assign)CGFloat textLabelFrameOffsetY;
+    @property(nonatomic,assign)CGFloat textLabelFrameOffsetWidth;
+    @property(nonatomic,assign)CGFloat textLabelFrameOffsetHeight;
+    // 关于 subTextLabel 的偏移
+    @property(nonatomic,assign)CGFloat subTextLabelFrameOffsetX;
+    @property(nonatomic,assign)CGFloat subTextLabelFrameOffsetY;
+    @property(nonatomic,assign)CGFloat subTextLabelFrameOffsetWidth;
+    @property(nonatomic,assign)CGFloat subTextLabelFrameOffsetHeight;
+    // 关于 imageView 的偏移
+    @property(nonatomic,assign)CGFloat imageViewFrameOffsetX;
+    @property(nonatomic,assign)CGFloat imageViewFrameOffsetY;
+    @property(nonatomic,assign)CGFloat imageViewFrameOffsetWidth;
+    @property(nonatomic,assign)CGFloat imageViewFrameOffsetHeight;
+    ```
+  
 * 系统配置文件
 
   * ```objective-c
@@ -2479,6 +2526,7 @@ NSObject <|-- BaseProtocol
              if (self.objectBlock) self.objectBlock(x);
              return nil;
          }];
+       	 _titleBtn.imageViewFrameResetX = 0;
          [self addSubview:_titleBtn];
          [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
              make.height.mas_equalTo(JobsWidth(72));

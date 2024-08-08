@@ -269,7 +269,7 @@
                   return nil;
             }];
             
-            menuButton.textLabelFrameResetX = 0;
+            menuButton.imageViewFrameResetX = 0;
             
             menuButton.tag = i;
             menuButton.frame = CGRectMake(0,

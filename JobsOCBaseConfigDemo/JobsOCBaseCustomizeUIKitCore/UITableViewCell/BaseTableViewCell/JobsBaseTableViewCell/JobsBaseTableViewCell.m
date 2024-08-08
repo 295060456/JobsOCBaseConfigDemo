@@ -169,7 +169,7 @@ UITableViewCellProtocol_synthesize
             self.textLabel.frame = self.textLabelFrame;
         }
         
-        if (!jobsZeroRectValue(self.detailTextLabelFrame)) {
+        if (!jobsZeroRectValue(self.detailTextLabelFrame) && self.detailTextLabel) {
             self.detailTextLabel.frame = self.detailTextLabelFrame;
         }
 
@@ -179,22 +179,40 @@ UITableViewCellProtocol_synthesize
     }
     
     {///【组 2】UITableViewCell单独自定义设置系统自带控件的Size【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、3属性互斥❤️
-        if (!jobsZeroSizeValue(self.textLabelSize)) {
-            self.textLabel.resetSize(self.textLabelSize);
-            self.textLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
-            self.textLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
+        {
+            if (!jobsZeroSizeValue(self.textLabelSize)) {
+                self.textLabel.resetSize(self.textLabelSize);
+            }
+            if(self.textLabelFrameOffsetX){
+                self.textLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
+            }
+            if(self.textLabelFrameOffsetY){
+                self.textLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
+            }
         }
         
-        if (!jobsZeroSizeValue(self.detailTextLabelSize)) {
-            self.detailTextLabel.resetSize(self.detailTextLabelSize);
-            self.detailTextLabel.resetByOffsetOriginX(self.detailTextLabelOffsetX);
-            self.detailTextLabel.resetByOffsetOriginY(self.detailTextLabelOffsetY);
+        {
+            if (!jobsZeroSizeValue(self.detailTextLabelSize) && self.detailTextLabel) {
+                self.detailTextLabel.resetSize(self.detailTextLabelSize);
+            }
+            if(self.detailTextLabelOffsetX && self.detailTextLabel){
+                self.detailTextLabel.resetByOffsetOriginX(self.detailTextLabelOffsetX);
+            }
+            if(self.detailTextLabelOffsetY && self.detailTextLabel){
+                self.detailTextLabel.resetByOffsetOriginY(self.detailTextLabelOffsetY);
+            }
         }
-        
-        if (!jobsZeroSizeValue(self.imageViewSize)) {
-            self.imageView.resetSize(self.imageViewSize);
-            self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
-            self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
+
+        {
+            if (!jobsZeroSizeValue(self.imageViewSize)) {
+                self.imageView.resetSize(self.imageViewSize);
+            }
+            if(self.imageViewFrameOffsetX){
+                self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
+            }
+            if(self.imageViewFrameOffsetY){
+                self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
+            }
         }
     }
     
@@ -204,22 +222,30 @@ UITableViewCellProtocol_synthesize
             if (self.textLabelWidth) {
                 self.textLabel.resetWidth(self.textLabelWidth);
             }
-            if (self.textLabelHeight) {
+            if (self.textLabelHeight && self.detailTextLabel) {
                 self.detailTextLabel.resetHeight(self.textLabelHeight);
             }
-            self.textLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
-            self.textLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
+            if(self.textLabelFrameOffsetX){
+                self.textLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
+            }
+            if(self.textLabelFrameOffsetY){
+                self.textLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
+            }
         }
         
         {
-            if (self.detailTextLabelWidth) {
+            if (self.detailTextLabelWidth && self.detailTextLabel) {
                 self.detailTextLabel.resetWidth(self.detailTextLabelWidth);
             }
-            if (self.detailTextLabelHeight) {
+            if (self.detailTextLabelHeight && self.detailTextLabel) {
                 self.detailTextLabel.resetHeight(self.detailTextLabelHeight);
             }
-            self.detailTextLabel.resetByOffsetOriginX(self.detailTextLabelOffsetX);
-            self.detailTextLabel.resetByOffsetOriginY(self.detailTextLabelOffsetY);
+            if(self.detailTextLabelOffsetX && self.detailTextLabel){
+                self.detailTextLabel.resetByOffsetOriginX(self.detailTextLabelOffsetX);
+            }
+            if(self.detailTextLabelOffsetY && self.detailTextLabel){
+                self.detailTextLabel.resetByOffsetOriginY(self.detailTextLabelOffsetY);
+            }
         }
         
         {
@@ -229,8 +255,12 @@ UITableViewCellProtocol_synthesize
             if (self.imageViewHeight) {
                 self.imageView.resetHeight(self.imageViewHeight);
             }
-            self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
-            self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
+            if(self.imageViewFrameOffsetX){
+                self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
+            }
+            if(self.imageViewFrameOffsetY){
+                self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
+            }
         }
     }
     
@@ -244,7 +274,7 @@ UITableViewCellProtocol_synthesize
             self.textLabel.offsetForView(viewModel);
         }
         
-        {
+        if (self.detailTextLabel) {
             UIViewModel *viewModel = UIViewModel.new;
             viewModel.offsetXForEach = self.detailTextLabelOffsetX;
             viewModel.offsetYForEach = self.detailTextLabelOffsetY;
@@ -252,6 +282,7 @@ UITableViewCellProtocol_synthesize
             viewModel.offsetHeight = self.detailTextLabelOffsetHeight;
             self.detailTextLabel.offsetForView(viewModel);
         }
+        
         {
             UIViewModel *viewModel = UIViewModel.new;
             viewModel.offsetXForEach = self.imageViewFrameOffsetX;

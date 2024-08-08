@@ -11,7 +11,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseButtonProtocol <BaseViewProtocol>
-
 @optional
 #pragma mark —— UIButton + UI
 /// 为了迎合点语法而故意把下列方法属性化
@@ -38,8 +37,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGRect imageViewFrame;
 ///【组 2】UIButton 单独自定义设置系统自带控件的Size【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、3属性互斥❤️
 @property(nonatomic,assign)CGSize textLabelSize;
+@property(nonatomic,assign)CGFloat textLabelFrameResetX;
+@property(nonatomic,assign)CGFloat textLabelFrameResetY;
+
 @property(nonatomic,assign)CGSize subTextLabelSize;
+@property(nonatomic,assign)CGFloat subTextLabelFrameResetX;
+@property(nonatomic,assign)CGFloat subTextLabelFrameResetY;
+
 @property(nonatomic,assign)CGSize imageViewSize;
+@property(nonatomic,assign)CGFloat imageViewFrameResetX;
+@property(nonatomic,assign)CGFloat imageViewFrameResetY;
 ///【组 3】UIButton 单独自定义设置系统自带控件的长宽【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、2属性互斥❤️
 @property(nonatomic,assign)CGFloat textLabelWidth;
 @property(nonatomic,assign)CGFloat subTextLabelWidth;
@@ -48,10 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat subTextLabelHeight;
 @property(nonatomic,assign)CGFloat imageViewHeight;
 /// UIButton 单独自定义设置系统自带控件的偏移量 ❤️与其他组属性不互斥❤️
-@property(nonatomic,assign)CGFloat textLabelFrameResetX;
-@property(nonatomic,assign)CGFloat textLabelFrameResetY;
-@property(nonatomic,assign)CGFloat subTextLabelFrameResetWidth;
-@property(nonatomic,assign)CGFloat subTextLabelFrameResetHeight;
 // 关于 textLabel 的偏移
 @property(nonatomic,assign)CGFloat textLabelFrameOffsetX;
 @property(nonatomic,assign)CGFloat textLabelFrameOffsetY;
@@ -67,7 +70,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat imageViewFrameOffsetY;
 @property(nonatomic,assign)CGFloat imageViewFrameOffsetWidth;
 @property(nonatomic,assign)CGFloat imageViewFrameOffsetHeight;
-
 //具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(void)richElementsInButtonWithModel:(id _Nullable)model;
 #pragma mark —— 用类方法定义
@@ -114,8 +116,14 @@ NS_ASSUME_NONNULL_END
 @synthesize imageViewFrame = _imageViewFrame;\
 \
 @synthesize textLabelSize = _textLabelSize;\
+@synthesize textLabelFrameResetX = _textLabelFrameResetX;\
+@synthesize textLabelFrameResetY = _textLabelFrameResetY;\
 @synthesize subTextLabelSize = _subTextLabelSize;\
+@synthesize subTextLabelFrameResetX = _subTextLabelFrameResetX;\
+@synthesize subTextLabelFrameResetY = _subTextLabelFrameResetY;\
 @synthesize imageViewSize = _imageViewSize;\
+@synthesize imageViewFrameResetX = _imageViewFrameResetX;\
+@synthesize imageViewFrameResetY = _imageViewFrameResetY;\
 \
 @synthesize textLabelWidth = _textLabelWidth;\
 @synthesize subTextLabelWidth = _subTextLabelWidth;\
@@ -123,11 +131,6 @@ NS_ASSUME_NONNULL_END
 @synthesize textLabelHeight = _textLabelHeight;\
 @synthesize subTextLabelHeight = _subTextLabelHeight;\
 @synthesize imageViewHeight = _imageViewHeight;\
-\
-@synthesize textLabelFrameResetX = _textLabelFrameResetX;\
-@synthesize textLabelFrameResetY = _textLabelFrameResetY;\
-@synthesize subTextLabelFrameResetWidth = _subTextLabelFrameResetWidth;\
-@synthesize subTextLabelFrameResetHeight = _subTextLabelFrameResetHeight;\
 \
 @synthesize textLabelFrameOffsetX = _textLabelFrameOffsetX;\
 @synthesize textLabelFrameOffsetY = _textLabelFrameOffsetY;\
@@ -167,8 +170,14 @@ NS_ASSUME_NONNULL_END
 @dynamic imageViewFrame;\
 \
 @dynamic textLabelSize;\
+@dynamic textLabelFrameResetX;\
+@dynamic textLabelFrameResetY;\
 @dynamic subTextLabelSize;\
+@dynamic subTextLabelFrameResetX;\
+@dynamic subTextLabelFrameResetY;\
 @dynamic imageViewSize;\
+@dynamic imageViewFrameResetX;\
+@dynamic imageViewFrameResetY;\
 \
 @dynamic textLabelWidth;\
 @dynamic subTextLabelWidth;\
@@ -176,11 +185,6 @@ NS_ASSUME_NONNULL_END
 @dynamic textLabelHeight;\
 @dynamic subTextLabelHeight;\
 @dynamic imageViewHeight;\
-\
-@dynamic textLabelFrameResetX;\
-@dynamic textLabelFrameResetY;\
-@dynamic subTextLabelFrameResetWidth;\
-@dynamic subTextLabelFrameResetHeight;\
 \
 @dynamic textLabelFrameOffsetX;\
 @dynamic textLabelFrameOffsetY;\
