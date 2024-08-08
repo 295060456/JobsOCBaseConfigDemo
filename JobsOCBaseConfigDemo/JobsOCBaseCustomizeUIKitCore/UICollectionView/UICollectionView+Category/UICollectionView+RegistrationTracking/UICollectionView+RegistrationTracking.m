@@ -24,7 +24,7 @@
     });
 }
 // Swizzled method for dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (UICollectionViewCell *)swizzled_dequeueReusableCellWithReuseIdentifier:(NSString *)identifier 
+- (UICollectionViewCell *)swizzled_dequeueReusableCellWithReuseIdentifier:(NSString *)identifier
                                                              forIndexPath:(NSIndexPath *)indexPath {
     if (![self.registeredIdentifiers containsObject:identifier]) {
         // 如果未注册，则进行注册
@@ -34,9 +34,13 @@
 }
 
 // Swizzled method for dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:
-- (UICollectionReusableView *)swizzled_dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind 
+- (UICollectionReusableView *)swizzled_dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind
                                                           withReuseIdentifier:(NSString *)identifier
                                                                  forIndexPath:(NSIndexPath *)indexPath {
+    if(!identifier || [identifier isEqualToString:@"_UIEditMenuListViewSeparator"]){
+        return [self swizzled_dequeueReusableSupplementaryViewOfKind:elementKind withReuseIdentifier:identifier forIndexPath:indexPath];
+    }
+    
     if (![self.registeredIdentifiers containsObject:identifier]) {
         // 如果未注册，则进行注册
         [self registerClass:NSClassFromString(identifier)
