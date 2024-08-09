@@ -5886,6 +5886,33 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   * 使用 `UICollectionReusableView` 作为头视图
 
+* **系统默认布局**
+
+  * 如果同时设置了`sectionHeaderHeight`和`sectionFooterHeight` ，=> 那么在每一个`sectionHeader`距离上一组的尾部，总会有一段距离（这个距离是22）
+
+    ![image-20240809204830509](./assets/image-20240809204830509.png)
+
+  * 如果只设置`sectionHeaderHeight`（<u>或者不管这个值设置的有多小</u>），而不设置`sectionFooterHeight` ，=> 那么在每一个`sectionHeader`距离上一组的尾部，总会有一段距离（这个距离是22）
+
+    ![image-20240809204646831](./assets/image-20240809204646831.png)
+
+  * 如果不设置`sectionHeaderHeight`，只设置`sectionFooterHeight` ，=> <font color=red>**那么每个组之间无缝隙丝滑相接**</font>
+  ![image-20240809204521742](./assets/image-20240809204521742.png)
+
+* 高度的优先级 => <font color=red>**协议方法的优先级 > 属性的优先级**</font>
+
+  * 如果同时实现，则协议方法会覆盖属性配置
+
+     ```objective-c
+     - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
+     - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section;
+     ```
+
+    ```objective-c
+    _tableView.sectionFooterHeight;
+    _tableView.sectionHeaderHeight;
+    ```
+
 * **`UITableViewHeaderFooterView`** 的背景色
 
   * 默认情况下，**`UITableViewHeaderFooterView`**.**`backgroundView`** 是 <font color=red>nil</font>
