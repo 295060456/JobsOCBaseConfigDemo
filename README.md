@@ -5428,6 +5428,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
            _tableView.showsVerticalScrollIndicator = NO;
            _tableView.scrollEnabled = YES;
            _tableView.tableHeaderView = self.tableHeaderView;/// 这里接入的就是一个UIView的派生类
+           _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
            _tableView.ww_foldable = YES;//设置可折叠 见 @interface UITableView (WWFoldableTableView)
            _tableView.resetContentInsetOffsetBottom(200);/// 增加tableView的可滚动区域
            _tableView.registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,@"");
@@ -5715,8 +5716,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               {
                   UIViewModel *viewModel = UIViewModel.new;
                   temp.jobsAddObject(viewModel);
-              }
-  
+             }
+     
               _dataMutArr.jobsAddObject(temp);
           }
           {
@@ -5742,7 +5743,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               }
               _dataMutArr.jobsAddObject(temp);
           }
-      }return _dataMutArr;
+     }return _dataMutArr;
   }
   
   -(NSMutableArray<UIViewModel *> *)rowDataMutArr{
@@ -5900,7 +5901,53 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       }
       ```
 
-    * 方法二：取巧，不推荐
+    * 方法二：<font color=red>**强烈推荐**</font>
+
+      * <font color=green>**用了方法二，就可以不用方法一**</font>
+      
+      * [**资料来源**](https://github.com/Zydhjx/HeaderDemo)
+      
+      * 继承自基类**`BaseTableViewHeaderFooterView`**
+      
+        * <font color=red>**只能在基类实现。不可在分类实现**</font>
+      
+          ```objective-c
+          /**
+           #import "UITableViewHeaderFooterView+Attribute.h"
+           在具体的子类实现，实现控制UITableViewHeaderFooterView是否悬停
+           资料来源：https://github.com/Zydhjx/HeaderDemo
+           */
+          - (void)setFrame:(CGRect)frame {
+              if (self.headerFooterViewStyle == JobsHeaderViewStyle) {
+                  [super setFrame:[self.tableView rectForHeaderInSection:self.section]];
+              }else if (self.headerFooterViewStyle == JobsFooterViewStyle){
+                  [super setFrame:[self.tableView rectForFooterInSection:self.section]];
+              }else{}
+          }
+          ```
+      
+      * 关注实现类：[**@interface BaseTableViewHeaderFooterView : UITableViewHeaderFooterView**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UITableViewHeaderFooterView/BaseTableViewHeaderFooterView) + [**@interface UITableViewHeaderFooterView (Attribute)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UITableViewHeaderFooterView/BaseTableViewHeaderFooterView)
+      
+      * ```objective-c
+        /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
+        - (UIView *)tableView:(UITableView *)tableView
+        viewForHeaderInSection:(NSInteger)section{
+            UITableViewHeaderFooterView *headerView = self.tbvHeaderFooterViewMutArr[section];
+            {
+                // 不写这两句有悬浮
+                headerView.tableView = tableView;
+                headerView.section = section;
+            }
+            
+            [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+            @jobs_weakify(self)
+            [headerView actionObjectBlock:^(id data) {
+                @jobs_strongify(self)
+            }];return headerView;
+        }
+        ```
+      
+    * 方法三：取巧，不推荐
 
       ```objective-c
       #pragma mark - UITableViewDelegate
@@ -5956,7 +6003,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
           }
           headerView.backgroundColor = JobsBlueColor;
-          headerView.section = section;// 不写这一句有悬浮
+          {
+         		 // 不写这两句有悬浮
+         		 headerView.tableView = tableView;
+         		 headerView.section = section;
+    		  }
           [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
           @jobs_weakify(self)
           [headerView actionObjectBlock:^(id data) {
@@ -5978,12 +6029,38 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           }];return headerView;
       }else return UIView.new;
   }
+  
+  /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
+  - (nullable UIView *)tableView:(UITableView *)tableView
+          viewForFooterInSection:(NSInteger)section{
+      if(self.viewModel.usesTableViewFooterView){
+          BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
+          {
+              // 不写这两句有悬浮
+              tbvFooterView.tableView = tableView;
+              tbvFooterView.section = section;
+          }
+          tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
+          tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
+          
+          [tbvFooterView richElementsInViewWithModel:nil];
+          @jobs_weakify(self)
+          [tbvFooterView actionObjectBlock:^(id data) {
+              @jobs_strongify(self)
+          }];return tbvFooterView;
+      }return nil;
+  }
   ```
 
   ```objective-c
   - (CGFloat)tableView:(UITableView *)tableView
   heightForHeaderInSection:(NSInteger)section{
       return JobsWidth(36);
+  }
+  
+  - (CGFloat)tableView:(UITableView *)tableView
+  heightForFooterInSection:(NSInteger)section{
+      return JobsWidth(10);
   }
   ```
 

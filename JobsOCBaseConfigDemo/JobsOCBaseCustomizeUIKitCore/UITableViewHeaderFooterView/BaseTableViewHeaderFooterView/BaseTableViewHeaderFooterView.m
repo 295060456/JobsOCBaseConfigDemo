@@ -22,7 +22,11 @@ BaseViewProtocol_synthesize
         self.backgroundView = [UIView.alloc initWithFrame:self.bounds];
     }return self;
 }
-/// 在具体的子类实现，实现控制UITableViewHeaderFooterView是否悬停
+/**
+ #import "UITableViewHeaderFooterView+Attribute.h"
+ 在具体的子类实现，实现控制UITableViewHeaderFooterView是否悬停
+ 资料来源：https://github.com/Zydhjx/HeaderDemo
+ */
 - (void)setFrame:(CGRect)frame {
     if (self.headerFooterViewStyle == JobsHeaderViewStyle) {
         [super setFrame:[self.tableView rectForHeaderInSection:self.section]];
