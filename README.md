@@ -5886,6 +5886,65 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   * 使用 `UICollectionReusableView` 作为头视图
 
+* **`UITableViewHeaderFooterView`** 的背景色
+
+  * 默认情况下，**`UITableViewHeaderFooterView`**.**`backgroundView`** 是 <font color=red>nil</font>
+
+  * ```objective-c
+    self.backgroundColor 
+      和 
+    self.contentView.backgroundColor 
+      
+    均是无效操作❌
+    ```
+
+  * ```objective-c
+    只有 
+    self.backgroundView.backgroundColor 
+    是有效操作✅
+    ```
+
+* 视图结构
+
+  * 悬浮的时候：**UITableViewHeaderFooterView**→`_UISystemBackgroundView`(系统内部类)→<font color=red>`UIVisualEffectView`</font>(系统内部类)→<font color=red>`_UIVisualEffectBackdropView`</font>（系统内部类）→<font color=red>`_UIVisualEffectContentView`</font>（系统内部类）→`_UITableViewHeaderFooterContentView`（系统内部类）
+
+  * 未悬浮的时候：**UITableViewHeaderFooterView**→`_UISystemBackgroundView`（系统内部类） →`UIView`→`_UITableViewHeaderFooterContentView`（系统内部类）
+
+  * 结论
+
+    * `_UIVisualEffectBackdropView`带背景色
+
+    * <font color=red>**悬浮的时候，视图结构会发生变化**</font>。关注点：<u>新产生的视图的背景色</u>
+
+    * 也就意味着，当视图内部进行调整的时候，会执行
+
+      ```objective-c
+      - (void)layoutSubviews{
+          [super layoutSubviews];
+          NSLog(@"");
+      }
+      ```
+
+  * 解决方案
+
+    * 在具体的`UITableViewHeaderFooterView *`子类，执行
+
+      **此时，设置背景色是无效的**
+
+      ```objective-c
+      - (void)layoutSubviews{
+          [super layoutSubviews];
+          NSLog(@"");
+          // 遍历子视图，找到UIVisualEffectView
+            for (UIView *subview in self.subviews) {
+                if([subview isKindOfClass:NSClassFromString(@"_UISystemBackgroundView")]){
+                    // subview.backgroundColor = JobsClearColor; 设置成透明色，无效
+                    subview.jobsVisible = NO;
+                }
+            }
+      }
+      ```
+
 * <font color=red>**`UITableView`** 取消`viewForHeaderInSection` 产生的悬停效果</font>
 
   * 如果使用`BaseTableView.initWithStylePlain;`则会产生悬停效果

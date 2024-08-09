@@ -22,6 +22,14 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.textLabel.y = JobsWidth(15);
+    // 解决当UITableViewHeaderFooterView悬浮的时候背景白色的问题（设置成透明色）
+    // 遍历子视图，找到UIVisualEffectView
+    for (UIView *subview in self.subviews) {
+        if([subview isKindOfClass:NSClassFromString(@"_UISystemBackgroundView")]){
+            // subview.backgroundColor = JobsClearColor; 设置成透明色，无效
+            subview.jobsVisible = NO;
+        }
+    }
 }
 #pragma mark —— BaseViewProtocol
 /// 由具体的子类进行覆写

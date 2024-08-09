@@ -35,6 +35,18 @@ BaseViewProtocol_synthesize
     }else{}
 }
 
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    // 解决当UITableViewHeaderFooterView悬浮的时候背景白色的问题（设置成透明色）
+    // 遍历子视图，找到UIVisualEffectView
+    for (UIView *subview in self.subviews) {
+        if([subview isKindOfClass:NSClassFromString(@"_UISystemBackgroundView")]){
+            // subview.backgroundColor = JobsClearColor; 设置成透明色，无效
+            subview.jobsVisible = NO;
+        }
+    }
+}
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
     if (self.objectBlock) self.objectBlock(@1);
