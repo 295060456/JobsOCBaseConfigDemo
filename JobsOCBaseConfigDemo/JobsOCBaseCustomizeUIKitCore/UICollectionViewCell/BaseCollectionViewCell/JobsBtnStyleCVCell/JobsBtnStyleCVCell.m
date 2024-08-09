@@ -95,7 +95,7 @@
                                  contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
                                    contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
                                               contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                          cornerRadiusValue:JobsWidth(0)
+                                          cornerRadiusValue:JobsWidth(8)
                                             roundingCorners:UIRectCornerAllCorners
                                        roundingCornersRadii:CGSizeZero
                                              layerBorderCor:nil
@@ -142,7 +142,7 @@
             // Fallback on earlier versions
         }
         /// 圆切角
-        _btn.cornerCutToCircleWithCornerRadius(self.viewModel.layerCornerRadius ? : JobsWidth(8));
+        _btn.resetCornerRadius(self.viewModel.layerCornerRadius ? : JobsWidth(8));
     }
     
     if(self.buttonModel){
@@ -173,7 +173,7 @@
             // Fallback on earlier versions
         }
         /// 圆切角
-        _btn.cornerCutToCircleWithCornerRadius(self.buttonModel.cornerRadiusValue ? : JobsWidth(8));
+        _btn.resetCornerRadius(self.buttonModel.cornerRadiusValue ? : JobsWidth(8));
     }return _btn;
 }
 

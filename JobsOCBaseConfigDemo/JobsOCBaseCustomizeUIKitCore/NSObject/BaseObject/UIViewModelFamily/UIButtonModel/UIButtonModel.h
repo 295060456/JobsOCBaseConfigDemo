@@ -8,11 +8,12 @@
 #import <Foundation/Foundation.h>
 #import "BaseModel.h"
 #import "BaseButtonProtocol.h"
+#import "UIViewModelProtocol.h"
 #import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIButtonModel : BaseModel<BaseButtonProtocol>
+@interface UIButtonModel : BaseModel<BaseButtonProtocol,UIViewModelProtocol>
 #pragma mark —— 对方位
 @property(nonatomic,assign)CGFloat btn_x;
 @property(nonatomic,assign)CGFloat btn_y;
@@ -65,6 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)UIColor *selected_baseBackgroundColor;
 @property(nonatomic,strong,nullable)UIColor *selected_titleCor;
 @property(nonatomic,strong,nullable)UIColor *selected_subtitleCor;
+@property(nonatomic,strong,nullable)UIColor *selected_layerBorderCor;/// 描边的颜色
+@property(nonatomic,assign)CGFloat selected_borderWidth;/// 描边线的宽度
 #pragma mark —— 针对批量设置的UIButton的数据源
 /// 未选择状态的数据源
 @property(nonatomic,strong,nullable)NSArray <NSString *>*normal_titles;// title

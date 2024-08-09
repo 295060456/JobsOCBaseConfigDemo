@@ -1033,6 +1033,51 @@
         }
     };
 }
+
+-(jobsByCGFloatBlock _Nonnull)resetCornerRadius{
+    @jobs_weakify(self)
+    return ^(CGFloat cornerRadiusValue) {
+        @jobs_strongify(self)
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.background.cornerRadius = cornerRadiusValue;
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            self.cornerCutToCircleWithCornerRadius(cornerRadiusValue);
+        }
+    };
+}
+
+-(jobsByCorBlock _Nonnull)resetLayerBorderCor{
+    @jobs_weakify(self)
+    return ^(UIColor *_Nullable layerBorderCor) {
+        @jobs_strongify(self)
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.background.strokeColor = layerBorderCor;
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            self.layer.borderColor = layerBorderCor.CGColor;
+        }
+    };
+}
+
+-(jobsByCGFloatBlock _Nonnull)resetBorderWidth{
+    @jobs_weakify(self)
+    return ^(CGFloat borderWidth) {
+        @jobs_strongify(self)
+        if (@available(iOS 16.0, *)) {
+            UIButtonConfiguration *configuration = self.configuration.copy;
+            configuration.background.strokeWidth = borderWidth;
+            self.configuration = configuration;
+            [self updateConfiguration];
+        } else {
+            self.layer.borderWidth = borderWidth;
+        }
+    };
+}
 #pragma mark —— UIButton.UIControlStateNormal.get
 -(nullable UIImage *)imageForNormalState{
     if (@available(iOS 16.0, *)) {

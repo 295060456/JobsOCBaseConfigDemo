@@ -202,6 +202,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByCorBlock _Nonnull)normalTitleColor;
 -(jobsByCorBlock _Nonnull)subTitleColor;
 -(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle;/// 富文本
+-(jobsByCGFloatBlock _Nonnull)resetCornerRadius;
+-(jobsByCorBlock _Nonnull)resetLayerBorderCor;
+-(jobsByCGFloatBlock _Nonnull)resetBorderWidth;
 #pragma mark —— UIButton.UIControlStateNormal.get
 -(nullable UIImage *)imageForNormalState;
 -(nullable UIImage *)backgroundImageForNormalState;

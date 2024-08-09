@@ -2590,8 +2590,11 @@ NSObject <|-- BaseProtocol
     -(jobsByStringBlock _Nonnull)normalTitle;
     -(jobsByCorBlock _Nonnull)normalTitleColor;
     -(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle;/// 富文本
+    -(jobsByCGFloatBlock _Nonnull)resetCornerRadius;
+    -(jobsByCorBlock _Nonnull)resetLayerBorderCor;
+    -(jobsByCGFloatBlock _Nonnull)resetBorderWidth;
     ```
-  
+    
   * ```objective-c
     -(jobsByImageBlock _Nonnull)selectedImage;
     -(jobsByImageBlock _Nonnull)selectedBackgroundImage;
@@ -5009,14 +5012,18 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    ```
 
    ```objective-c
-   UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
-   layout.scrollDirection = UICollectionViewScrollDirectionVertical;  // 设置滚动方向
-   layout.itemSize = CGSizeMake(100, 100);  // 设置单元格尺寸
-   layout.minimumLineSpacing = 10;  // 设置行间距
-   layout.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
-   layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
+   -(UICollectionViewFlowLayout *)layout{
+       if(!_layout){
+           _layout = UICollectionViewFlowLayout.new;
+           _layout.scrollDirection = UICollectionViewScrollDirectionVertical;  // 设置滚动方向
+           _layout.itemSize = CGSizeMake(100, 100);  // 设置单元格尺寸
+           _layout.minimumLineSpacing = 10;  // 设置行间距
+           _layout.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
+           _layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
+       }return _layout;
+   }
    ```
-
+   
    ```objective-c
    #pragma mark - UICollectionViewDataSource
    - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -5101,7 +5108,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
        return UIEdgeInsetsMake(0, 0, 0, 0);
    }
    ```
-
+   
    </details>
 
 ### 28、<font color=red id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
