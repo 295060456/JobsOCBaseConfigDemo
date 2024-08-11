@@ -59,7 +59,7 @@ BOOL ISLogin;
     /// json生成器 ： https://www.site24x7.com/zhcn/tools/json-generator.html
     NSDictionary *dic = @"UserData".readLocalFileWithName;
     JobsUserModel *userModel = [JobsUserModel mj_objectWithKeyValues:dic];
-    [self saveUserInfo:userModel];// 保存全局唯一的一份用户档案
+    self.saveUserInfo(userModel);// 保存全局唯一的一份用户档案
 }
 
 - (void)viewDidLoad {
@@ -277,7 +277,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_tbvCellMutArr) {
         _tbvCellMutArr = NSMutableArray.array;
         for (UIViewModel *viewModel in self.dataMutArr) {
-            [_tbvCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
+            _tbvCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
         }
     }return _tbvCellMutArr;
 }

@@ -20,13 +20,15 @@
 
 @implementation JobsVideoTBVCell
 @synthesize index = _index;
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsVideoTBVCell *cell = (JobsVideoTBVCell *)tableView.tableViewCellClass(JobsVideoTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsVideoTBVCell initTableViewCellWithStyle:UITableViewCellStyleSubtitle];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.contentView.backgroundColor = JobsRandomColor;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        JobsVideoTBVCell *cell = (JobsVideoTBVCell *)tableView.tableViewCellClass(JobsVideoTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsVideoTBVCell.initTableViewCellWithStyle(UITableViewCellStyleSubtitle);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.contentView.backgroundColor = JobsRandomColor;
+        }return cell;
+    };
 }
 
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{

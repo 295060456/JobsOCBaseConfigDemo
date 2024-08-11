@@ -338,7 +338,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _tbvHeaderView.textColor = HEXCOLOR(0x3D4A58);
         _tbvHeaderView.font = UIFontWeightBoldSize(16);
         _tbvHeaderView.textAlignment = NSTextAlignmentCenter;
-        
     }return _tbvHeaderView;
 }
 
@@ -352,7 +351,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_tbvCellMutArr) {
         _tbvCellMutArr = NSMutableArray.array;
         for (UIViewModel *viewModel in self.dataMutArr) {
-            [_tbvCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
+            _tbvCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
         }
     }return _tbvCellMutArr;
 }

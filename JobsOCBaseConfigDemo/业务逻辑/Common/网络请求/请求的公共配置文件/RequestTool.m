@@ -9,7 +9,6 @@
 #import "RequestTool.h"
 
 @implementation RequestTool
-
 /** 写在前面
  *  1、所有请求都需要在headers里面添加处理过的userAgent
  
@@ -21,7 +20,7 @@
      基础配置
      需要在请求之前配置，设置后所有请求都会带上 此基础配置
      */
-    JobsUserModel *f = self.readUserInfo;
+    JobsUserModel *f = self.readUserInfo();
     NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
     NSString *timeString = [NSString stringWithFormat:@"%.2f",NSDate.date.timeIntervalSince1970];
     parameters[@"timeString"] = timeString;//时间戳

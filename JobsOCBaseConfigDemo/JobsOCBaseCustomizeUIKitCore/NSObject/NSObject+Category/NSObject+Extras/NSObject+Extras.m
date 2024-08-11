@@ -108,8 +108,8 @@
                    completion:(void (^ __nullable)(void))completion{
     UIViewController *viewController = KindOfVCCls(self) ? (UIViewController *)self : self.jobsGetCurrentViewController;
     [viewController presentViewController:toPresentVC
-                                  animated:YES
-                                completion:completion];
+                                 animated:YES
+                               completion:completion];
 }
 /// 获取Storyboard里面的单独控制器
 -(UIViewController *_Nullable)vcByStoryboardWithName:(NSString *_Nonnull)storyboardWithName
@@ -128,14 +128,14 @@
  
  在 self里面实现下列方法：实现监听
  -(void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary*)change
-                       context:(void *)context{
-     if ([object isKindOfClass:UIScrollView.class]) {
-         UIScrollView *scrollView = (UIScrollView *)object;
-         CGPoint point = [((NSValue *)[scrollView valueForKey:@"contentOffset"]) CGPointValue];
-         NSLog(@"point.x = %f,point.y = %f",point.x,point.y);
-     }
+ ofObject:(id)object
+ change:(NSDictionary*)change
+ context:(void *)context{
+ if ([object isKindOfClass:UIScrollView.class]) {
+ UIScrollView *scrollView = (UIScrollView *)object;
+ CGPoint point = [((NSValue *)[scrollView valueForKey:@"contentOffset"]) CGPointValue];
+ NSLog(@"point.x = %f,point.y = %f",point.x,point.y);
+ }
  }
  */
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
@@ -398,10 +398,10 @@
 /**
  ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
  -(ScrollDirection)judgementScrollDirectionByPoint:(CGPoint)point;
-                    和
+ 和
  -(CGFloat)scrollOffsetByDirectionXPoint:(CGPoint)point；
  -(CGFloat)scrollOffsetByDirectionYPoint:(CGPoint)point;
-                   互斥
+ 互斥
  * 因为 全局是用唯一变量lastPoint进行保存和判定
  * 而不断地滚动会不断地对lastPoint这个值进行冲刷
  * 而这两个方法都会依赖同一个lastPoint，所以会出现偏差
@@ -492,7 +492,7 @@
         [dropDownListView dropDownListViewDisappear:nil];
     }];
     
-//    dropDownListView.backgroundColor = JobsRedColor;
+    //    dropDownListView.backgroundColor = JobsRedColor;
     CGRect f = [self getWindowFrameByView:motivateFromView];
     if (!data) {
         data = NSMutableArray.array;
@@ -549,7 +549,7 @@
     CGRect rect = [view convertRect:view.bounds toView:jobsGetMainWindow()];
     return rect;
     /**
-      类似的：
+     类似的：
      // 将像素point由point所在视图转换到目标视图view中，返回在目标视图view中的像素值
      - (CGPoint)convertPoint:(CGPoint)point toView:(UIView *)view;
      // 将像素point从view中转换到当前视图中，返回在当前视图中的像素值
@@ -588,10 +588,10 @@
         NSLog(@"请求头信息:%@\n",task.originalRequest.allHTTPHeaderFields);
         // 请求正文信息
         NSLog(@"请求正文信息:%@\n",[NSString.alloc initWithData:task.originalRequest.HTTPBody encoding:NSUTF8StringEncoding]);
-    //    // 请求响应时间
-    //    NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:NSDate.date];
-    //    NSLog(@"请求响应时间:%@\n",@(time));
-    //    NSLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",task.originalRequest.URL,task.originalRequest.HTTPMethod,task.originalRequest.allHTTPHeaderFields,[[NSString alloc] initWithData:task.originalRequest.HTTPBody encoding:NSUTF8StringEncoding],@(time));
+        //    // 请求响应时间
+        //    NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:NSDate.date];
+        //    NSLog(@"请求响应时间:%@\n",@(time));
+        //    NSLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",task.originalRequest.URL,task.originalRequest.HTTPMethod,task.originalRequest.allHTTPHeaderFields,[[NSString alloc] initWithData:task.originalRequest.HTTPBody encoding:NSUTF8StringEncoding],@(time));
     }else{
         NSLog(@"NSURLSessionDataTask *task 为空,请检查");
     }
@@ -608,7 +608,13 @@
 -(BOOL)isTodayAppFirstLaunch{
     NSString *recordToday = JobsUserDefaults.valueForKeyBlock(@"TodayAppFirstLaunch");
     JobsTimeModel *timeModel = JobsTimeModel.new;
-    NSString *today = [NSString stringWithFormat:@"%ld-%ld-%ld-%ld",timeModel.currentEra,timeModel.currentYear,timeModel.currentMonth,timeModel.currentDay];
+    NSString *today = toStringByLong(timeModel.currentEra).add(@"-")
+                                                          .add(toStringByLong(timeModel.currentYear))
+                                                          .add(@"-")
+                                                          .add(toStringByLong(timeModel.currentMonth))
+                                                          .add(@"-")
+                                                          .add(toStringByLong(timeModel.currentDay))
+                                                          .add(@"-");
     if ([recordToday isEqualToString:today]) {
         NSLog(@"今天已经启动过");
     }else{
@@ -618,79 +624,90 @@
     }return ![recordToday isEqualToString:today];
 }
 /// 震动特效反馈
--(void)feedbackGenerator{
-    if (@available(iOS 10.0, *)) {
-        UIImpactFeedbackGenerator *generator = [UIImpactFeedbackGenerator.alloc initWithStyle:UIImpactFeedbackStyleMedium];
-        [generator prepare];
-        [generator impactOccurred];
-    } else {
-        AudioServicesPlaySystemSound(1520);
-    }
+-(jobsByVoidBlock _Nonnull)feedbackGenerator{
+    return ^() {
+        if (@available(iOS 10.0, *)) {
+            UIImpactFeedbackGenerator *generator = [UIImpactFeedbackGenerator.alloc initWithStyle:UIImpactFeedbackStyleMedium];
+            [generator prepare];
+            [generator impactOccurred];
+        } else {
+            AudioServicesPlaySystemSound(1520);
+        }
+    };
 }
 /// 检测用户是否锁屏：根据屏幕光线来进行判定，而不是系统通知
--(BOOL)didUserPressLockButton{
-    /// 获取屏幕亮度
-    CGFloat oldBrightness = UIScreen.mainScreen.brightness;
-    /// 以较小的数量改变屏幕亮度
-    UIScreen.mainScreen.brightness = oldBrightness + (oldBrightness <= 0.01 ? (0.01) : (-0.01));
-    CGFloat newBrightness = UIScreen.mainScreen.brightness;
-    /// 恢复屏幕亮度
-    UIScreen.mainScreen.brightness = oldBrightness;
-    /// 判断屏幕亮度是否能够被改变
-    return oldBrightness != newBrightness;
+-(JobsReturnBOOLByVoidBlock _Nonnull)didUserPressLockButton{
+    return ^BOOL() {
+        /// 获取屏幕亮度
+        CGFloat oldBrightness = UIScreen.mainScreen.brightness;
+        /// 以较小的数量改变屏幕亮度
+        UIScreen.mainScreen.brightness = oldBrightness + (oldBrightness <= 0.01 ? (0.01) : (-0.01));
+        CGFloat newBrightness = UIScreen.mainScreen.brightness;
+        /// 恢复屏幕亮度
+        UIScreen.mainScreen.brightness = oldBrightness;
+        /// 判断屏幕亮度是否能够被改变
+        return oldBrightness != newBrightness;
+    };
 }
 /// iOS 限制自动锁屏 lockSwitch:YES(关闭自动锁屏)
--(void)autoLockedScreen:(BOOL)lockSwitch{
-    UIApplication.sharedApplication.idleTimerDisabled = lockSwitch;
+-(jobsByBOOLBlock _Nonnull)autoLockedScreen{
+    return ^(BOOL lockSwitch) {
+        UIApplication.sharedApplication.idleTimerDisabled = lockSwitch;
+    };
 }
 
--(void)savePic:(GKPhotoBrowser *_Nonnull)browser{
-    if (browser) {
-        GKPhoto *photo = browser.photos[browser.currentIndex];
-        NSData *imageData = nil;
-        if ([photo.image isKindOfClass:SDAnimatedImage.class]) {
-            imageData = [(SDAnimatedImage *)photo.image animatedImageData];
-        }else if ([photo.image isKindOfClass:YYImage.class]) {
-            imageData = [(YYImage *)photo.image animatedImageData];
-        }else {
-            imageData = photo.image.sd_imageData;
+-(jobsByGKPhotoBrowserBlock _Nonnull)savePic{
+    @jobs_weakify(self)
+    return ^(GKPhotoBrowser *_Nonnull browser) {
+        @jobs_strongify(self)
+        if (browser) {
+            GKPhoto *photo = browser.photos[browser.currentIndex];
+            NSData *imageData = nil;
+            if ([photo.image isKindOfClass:SDAnimatedImage.class]) {
+                imageData = [(SDAnimatedImage *)photo.image animatedImageData];
+            }else if ([photo.image isKindOfClass:YYImage.class]) {
+                imageData = [(YYImage *)photo.image animatedImageData];
+            }else {
+                imageData = photo.image.sd_imageData;
+            }
+            if (!imageData) return;
+            self.saveImageData(imageData);
+        }else{
+            NSLog(@"GKPhotoBrowser * 为空");
+        }
+    };
+}
+
+-(jobsByDataBlock _Nonnull)saveImageData{
+    return ^(NSData *_Nullable imageData) {
+        /// OC 是强类型、弱语法的语言，所以这里需要进行过滤判定保证安全性
+        if ([imageData isKindOfClass:UIImage.class]){
+            imageData = UIImagePNGRepresentation((UIImage *)imageData);
         }
         
-        if (!imageData) return;
-        [self saveImageData:imageData];
-    }else{
-        NSLog(@"GKPhotoBrowser * 为空");
-    }
-}
-
--(void)saveImageData:(NSData *_Nonnull)imageData{
-    /// OC 是强类型、弱语法的语言，所以这里需要进行过滤判定保证安全性
-    if ([imageData isKindOfClass:UIImage.class]){
-        imageData = UIImagePNGRepresentation((UIImage *)imageData);
-    }
-    
-    if ([imageData isKindOfClass:NSData.class]) {
-        [PHPhotoLibrary.sharedPhotoLibrary performChanges:^{
-            if (@available(iOS 9, *)) {
-                PHAssetCreationRequest *request = PHAssetCreationRequest.creationRequestForAsset;
-                [request addResourceWithType:PHAssetResourceTypePhoto
-                                        data:imageData
-                                     options:nil];
-                request.creationDate = NSDate.date;
-            }
-        } completionHandler:^(BOOL success,
-                              NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (success) {
-                    NSLog(@"保存照片成功");
-                    toast(JobsInternationalization(@"图片保存成功"));
-                } else if (error) {
-                    NSLog(@"保存照片出错:%@",error.localizedDescription);
-                    toastErr(JobsInternationalization(@"保存保存失败"));
+        if ([imageData isKindOfClass:NSData.class]) {
+            [PHPhotoLibrary.sharedPhotoLibrary performChanges:^{
+                if (@available(iOS 9, *)) {
+                    PHAssetCreationRequest *request = PHAssetCreationRequest.creationRequestForAsset;
+                    [request addResourceWithType:PHAssetResourceTypePhoto
+                                            data:imageData
+                                         options:nil];
+                    request.creationDate = NSDate.date;
                 }
-            });
-        }];
-    }else return;
+            } completionHandler:^(BOOL success,
+                                  NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (success) {
+                        NSLog(@"保存照片成功");
+                        toast(JobsInternationalization(@"图片保存成功"));
+                    } else if (error) {
+                        NSLog(@"保存照片出错:%@",error.localizedDescription);
+                        toastErr(JobsInternationalization(@"保存保存失败"));
+                    }
+                });
+            }];
+        }else return;
+    };
 }
 /// 将基本数据类型（先统一默认视作浮点数）转化为图片进行显示。使用前提，图片的名字命令为0~9，方便进行映射
 /// @param inputData 需要进行转换映射的基本数据类型数据
@@ -702,7 +719,7 @@
         bitNum = 2;//默认保存小数点后2位
     }
 
-    NSString *format = [@"%." stringByAppendingString:[NSString stringWithFormat:@"%ldf",bitNum]];
+    NSString *format = @"%.".add([NSString stringWithFormat:@"%ldf",bitNum]);
     NSString *str = [NSString stringWithFormat:format,inputData];
     
     NSMutableArray <NSString *>*resultMutArr = NSMutableArray.array;// For test
@@ -716,27 +733,29 @@
     for(int i = 0; i < len; i++) {
         NSLog(@"%C", buffer[i]);
         NSString *temp = [NSString stringWithFormat:@"%C",buffer[i]];
-        [resultMutArr addObject:temp];
+        resultMutArr.jobsAddObject(temp);
         // 数字映射图片
         if ([temp isEqualToString:@"."]) {
             temp = @"小数点";
         }
-        [resultIMGMutArr addObject:JobsIMG(temp)];
+        resultIMGMutArr.jobsAddObject(JobsIMG(temp));
     }
     NSLog(@"resultMutArr【For Test】 = %@",resultMutArr);
     return resultIMGMutArr;
 }
 /// 读取本地的plist文件到内存  【 plist ——> NSDictionary * 】
-/// @param fileName Plist文件名
--(nullable NSDictionary *)readLocalPlistWithFileName:(nullable NSString *)fileName{
-    NSString *filePath = JobsPathForResource(nil,
-                                            fileName,
-                                            nil,
-                                            @"plist");
-    
-    if ([FileFolderHandleTool isExistsAtPath:filePath]) {
-        return [NSDictionary.alloc initWithContentsOfFile:filePath];
-    }return nil;
+-(JobsReturnDicByStringBlock)readLocalPlistWithFileName{
+    /// fileName Plist文件名
+    return ^(NSString * _Nullable fileName) {
+        NSString *filePath = JobsPathForResource(nil,
+                                                fileName,
+                                                nil,
+                                                @"plist");
+        
+        if ([FileFolderHandleTool isExistsAtPath:filePath]) {
+            return [NSDictionary.alloc initWithContentsOfFile:filePath];
+        }return (NSDictionary *)nil;
+    };
 }
 /// 监听程序被杀死前的时刻，进行一些需要异步的操作：磁盘读写、网络请求...
 -(void)terminalCheck:(jobsByIDBlock _Nullable)checkBlock{

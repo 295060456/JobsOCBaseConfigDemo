@@ -19,13 +19,15 @@
 @implementation JobsInfoTBVCell
 BaseProtocol_synthesize
 #pragma mark —— UITableViewCellProtocol
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsInfoTBVCell *cell = (JobsInfoTBVCell *)tableView.tableViewCellClass(JobsInfoTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsInfoTBVCell initTableViewCellWithStyle:UITableViewCellStyleSubtitle];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.contentView.backgroundColor = JobsCommentConfig.sharedInstance.bgCor;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        JobsInfoTBVCell *cell = (JobsInfoTBVCell *)tableView.tableViewCellClass(JobsInfoTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsInfoTBVCell.initTableViewCellWithStyle(UITableViewCellStyleSubtitle);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.contentView.backgroundColor = JobsCommentConfig.sharedInstance.bgCor;
+        }return cell;
+    };
 }
 #pragma mark —— BaseCellProtocol
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{

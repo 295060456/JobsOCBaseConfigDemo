@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "UserDefaultModel.h"
 #import "JobsUserDefaultDefine.h"
+#import "JobsBlock.h"
 
 #if __has_include(<MJExtension/MJExtension.h>)
 #import <MJExtension/MJExtension.h>
@@ -18,12 +19,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSUserDefaults (Manager)
-/// 存数据
-+(void)updateWithModel:(UserDefaultModel *)userDefaultModel;
+/// CRUD（create, read, update, delete）
+/// 存数据（包括父类直到NSObject的所有属性）
++(jobsByUserDefaultModelBlock)updateWithModel;
 /// 读取数据
-+(id _Nullable)readWithKey:(NSString *)key;
++(JobsReturnIDByStringBlock)readWithKey;
 /// 删除数据
-+(void)deleteWithKey:(NSString *)key;
++(jobsByStringBlock)deleteWithKey;
 
 @end
 

@@ -41,13 +41,17 @@
     }return self;
 }
 
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsPlayerTBVCell *cell = (JobsPlayerTBVCell *)tableView.tableViewCellClass(JobsPlayerTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsPlayerTBVCell initTableViewCellWithStyle:UITableViewCellStyleSubtitle];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.contentView.backgroundColor = JobsRandomColor;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    @jobs_weakify(self)
+    return ^(UITableView * _Nonnull tableView) {
+        @jobs_strongify(self)
+        JobsPlayerTBVCell *cell = (JobsPlayerTBVCell *)tableView.tableViewCellClass(JobsPlayerTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsPlayerTBVCell.initTableViewCellWithStyle(UITableViewCellStyleSubtitle);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.contentView.backgroundColor = JobsRandomColor;
+        }return cell;
+    };
 }
 #pragma mark —— BaseCellProtocol
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{

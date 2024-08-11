@@ -15,9 +15,7 @@
 @end
 
 @implementation BaiShaETProjOrderDetailsCVCell
-
 @synthesize viewModel = _viewModel;
-
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
@@ -73,7 +71,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = [JobsBaseTableViewCell cellStyleValue1WithTableView:tableView];
+    JobsBaseTableViewCell *cell = JobsBaseTableViewCell.cellStyleValue1WithTableView(tableView);
     
     cell.textLabelFrameOffsetY = JobsWidth(-2);/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
     cell.detailTextLabelOffsetY = JobsWidth(-2);/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
@@ -115,7 +113,11 @@ heightForFooterInSection:(NSInteger)section{
         viewForFooterInSection:(NSInteger)section{
     BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
     tbvFooterView.headerFooterViewStyle = JobsFooterViewStyle;
-    tbvFooterView.section = section;// 不写这一句有悬浮
+    {
+        // 不写这两句有悬浮
+        tbvFooterView.tableView = tableView;
+        tbvFooterView.section = section;
+    }
     /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作❌
     /// 只有 tbvFooterView.backgroundView.backgroundColor 是有效操作✅
     tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xFFFFFF);

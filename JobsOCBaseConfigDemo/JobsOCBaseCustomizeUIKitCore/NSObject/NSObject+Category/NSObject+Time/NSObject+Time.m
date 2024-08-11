@@ -550,7 +550,7 @@ NSString *const App当日首次进入 = @"App当日首次进入";
 /// 判断是否当日第一次启动App
 -(BOOL)isFirstLaunchApp{
     BOOL flag;
-    NSDate *oldDate = (NSDate *)[NSUserDefaults readWithKey:App当日首次进入];
+    NSDate *oldDate = (NSDate *)NSUserDefaults.readWithKey(App当日首次进入);
     if (oldDate) {
         flag = ![self isToday:oldDate];
     }else{
@@ -562,7 +562,7 @@ NSString *const App当日首次进入 = @"App当日首次进入";
     userDefaultModel.key = App当日首次进入;
     userDefaultModel.obj = NSDate.date;
     
-    [NSUserDefaults updateWithModel:userDefaultModel];
+    NSUserDefaults.updateWithModel(userDefaultModel);
     return flag;
 }
 /// 判断某个时间是否为  今天（系统时区）

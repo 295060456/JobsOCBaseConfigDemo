@@ -6,7 +6,6 @@
 //
 
 #import "JobsIMChatInfoTBVCell.h"
-#import "JobsIMChatInfoModel.h"
 
 @interface JobsIMChatInfoTBVCell ()
 /// UI
@@ -53,14 +52,16 @@
     }return self;
 }
 #pragma mark —— BaseCellProtocol
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsIMChatInfoTBVCell *cell = (JobsIMChatInfoTBVCell *)tableView.tableViewCellClass(JobsIMChatInfoTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsIMChatInfoTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.contentView.backgroundColor = JobsClearColor;
-        cell.backgroundColor = JobsClearColor;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        JobsIMChatInfoTBVCell *cell = (JobsIMChatInfoTBVCell *)tableView.tableViewCellClass(JobsIMChatInfoTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsIMChatInfoTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.contentView.backgroundColor = JobsClearColor;
+            cell.backgroundColor = JobsClearColor;
+        }return cell;
+    };
 }
 
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{

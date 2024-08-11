@@ -12,6 +12,7 @@
 typedef void(^jobsByVoidBlock)(void);
 
 typedef void(^jobsByIDBlock)(id _Nullable data);
+typedef void(^jobsByDataBlock)(NSData *_Nullable data);
 typedef void(^jobsByGestureRecognizerBlock)(UIGestureRecognizer __kindof *_Nullable data);
 typedef void(^jobsBySELBlock)(SEL _Nullable data);
 typedef void(^jobsByStringBlock)(NSString *_Nullable data);
@@ -31,6 +32,7 @@ typedef void(^jobsByVCBlock)(UIViewController __kindof * _Nullable data);
 typedef void(^jobsByVCAndDataBlock)(UIViewController __kindof * _Nullable viewController,id _Nullable data);
 typedef void(^jobsByViewAndAnimatedBlock)(UIView __kindof * _Nullable view,BOOL animated);
 typedef void(^jobsByView2Block)(UIView __kindof * _Nullable superview,UIView __kindof * _Nullable view);
+typedef void(^jobsByTableViewCellBlock)(UITableViewCell __kindof * _Nullable data);
 
 typedef void(^jobsByNSIntegerBlock)(NSInteger data);
 typedef void(^jobsByNSUIntegerBlock)(NSUInteger data);

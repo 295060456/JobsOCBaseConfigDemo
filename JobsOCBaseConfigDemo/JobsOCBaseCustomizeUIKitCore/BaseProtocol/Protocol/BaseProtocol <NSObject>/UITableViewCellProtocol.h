@@ -7,11 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseCellProtocol.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol UITableViewCellProtocol <BaseCellProtocol>
-
 @optional
 /// ⚠️执行return的顺序依照下列👇🏻属性的排序⚠️
 ///【组 1】 UITableViewCell单独自定义设置系统自带控件的Frame 【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️
@@ -46,20 +46,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat imageViewFrameOffsetHeight;/// 负值缩小，正值放大
 #pragma mark —— 初始化方法
 /// @implementation UITableViewCell (BaseCellProtocol)
-+(instancetype)initTableViewCellWithStyle:(UITableViewCellStyle)style;
++(JobsReturnTableViewCellByTableViewCellStyleBlock)initTableViewCellWithStyle;
 +(instancetype)initTableViewCell:(Class)tableViewCellClass
                        withStyle:(UITableViewCellStyle)style;
 /// 4种UITableViewCell系统样式类型
 /// 资料来源：https://www.jianshu.com/p/62ac18f8cf69
 /// 具体子类实现
 /// UITableViewCellStyleDefault ：左边有一个显示图片的imageView和一个标题textLabel。
-+(instancetype)cellStyleDefaultWithTableView:(UITableView *)tableView;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView;
 /// UITableViewCellStyleValue1 = 左边：imageView＋textLabel；右边：detailTextLabel
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView;
 /// UITableViewCellStyleValue2 = 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
-+(instancetype)cellStyleValue2WithTableView:(UITableView *)tableView;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView;
 /// UITableViewCellStyleSubtitle = 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
-+(instancetype)cellStyleSubtitleWithTableView:(UITableView *)tableView;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView;
 /// UITableViewCell 的横向和纵向的缩进
 /// 在具体的子类，去覆盖-(void)setFrame:(CGRect)frame方法
 /// - Parameters:
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
                        cellOffsetX:(CGFloat)offsetX
                        cellOffsetY:(CGFloat)offsetY;
 /// UITableViewCell的一些默认样式设置
-+(void)settingForTableViewCell:(UITableViewCell *)tableViewCell;
+-(jobsByVoidBlock _Nonnull)settingForTableViewCell;
 /// 获取这个UITableViewCell所承载的UITableView
 -(UITableView *)jobsGetCurrentTableView;
 /// 获取当前的UITableViewCell对应的indexPath

@@ -11,10 +11,9 @@
 /// UI
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UILabel *tableFooterView;
-@property(nonatomic,strong)UIButton *userHeadBtn;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UITableViewCell *>*tbvCellMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
 
 @end
 
@@ -221,16 +220,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _tableFooterView;
 }
 
--(NSMutableArray<UITableViewCell *> *)tbvCellMutArr{
+-(NSMutableArray<__kindof UITableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
         _tbvCellMutArr = NSMutableArray.array;
         for (UIViewModel *viewModel in self.dataMutArr) {
-            [_tbvCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
+            _tbvCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
         }
     }return _tbvCellMutArr;
 }
 
--(NSMutableArray<UIViewModel *> *)dataMutArr{
+-(NSMutableArray<__kindof UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = NSMutableArray.array;
 

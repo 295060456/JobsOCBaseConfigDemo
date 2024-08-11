@@ -81,6 +81,16 @@ typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(UIViewModel *_Nullable data)
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,
                                                                                UIButtonModel *_Nullable closeBtnModel);
 
+@class GKPhotoBrowser;
+typedef void(^jobsByGKPhotoBrowserBlock)(GKPhotoBrowser *_Nonnull data);
+
+@class JobsUserModel;
+typedef JobsUserModel *_Nullable(^JobsReturnUserModelByVoidBlock)(void);
+typedef void(^jobsByUserModelBlock)(JobsUserModel <NSCoding> *_Nullable userModel);
+
+@class UserDefaultModel;
+typedef void(^jobsByUserDefaultModelBlock)(UserDefaultModel *_Nonnull data);
+
 #endif /* JobsBlock_h */
 /*
 

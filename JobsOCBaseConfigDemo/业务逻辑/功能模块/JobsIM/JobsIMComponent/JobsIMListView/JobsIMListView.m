@@ -52,7 +52,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsIMListTBVCell *cell = [JobsIMListTBVCell cellStyleValue1WithTableView:tableView];
+    JobsIMListTBVCell *cell = JobsIMListTBVCell.cellStyleValue1WithTableView(tableView);
     cell.indexPath = indexPath;
     cell.delegate = self;
     cell.allowsMultipleSwipe = YES;

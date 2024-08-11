@@ -17,9 +17,9 @@ NSString *const 用户名数组 = @"用户名数组";
   【return】 YES(已经登录)、NO（未登录）
  */
 -(BOOL)isLogin{
-    UserDefaultModel *obj = (UserDefaultModel *)[NSUserDefaults readWithKey:用户信息];
+    UserDefaultModel *obj = (UserDefaultModel *)NSUserDefaults.readWithKey(用户信息);
     if (obj) {
-        return ![NSString isNullString:self.readUserInfo.token];
+        return ![NSString isNullString:self.readUserInfo().token];
     }return obj;
 }
 #pragma mark —— 全局的用户数据(存、取、清)[全局唯一一份用户档案]
@@ -28,15 +28,21 @@ NSString *const 用户名数组 = @"用户名数组";
     [self deleteUserInfoByUserName:用户信息];
 }
 /// 保存用户数据（用 NSUserDefaults ）
--(void)saveUserInfo:(JobsUserModel <NSCoding>*)userModel{
-    UserDefaultModel *userDefaultModel = UserDefaultModel.new;
-    userDefaultModel.obj = userModel;
-    userDefaultModel.key = 用户信息;
-    [NSUserDefaults updateWithModel:userDefaultModel];
+-(jobsByUserModelBlock)saveUserInfo{
+    return ^(JobsUserModel <NSCoding> *_Nullable userModel) {
+        UserDefaultModel *userDefaultModel = UserDefaultModel.new;
+        userDefaultModel.obj = userModel;
+        userDefaultModel.key = 用户信息;
+        NSUserDefaults.updateWithModel(userDefaultModel);
+    };
 }
 /// 读取用户信息
--(JobsUserModel *)readUserInfo{
-    return [self readUserInfoByUserName:用户信息];
+-(JobsReturnUserModelByVoidBlock)readUserInfo{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        return [self readUserInfoByUserName:用户信息];
+    };
 }
 #pragma mark —— 保存特定的用户数据（不随登出清空数据）[全局多份用户档案]
 ///【通过特定的用户名】 保存（更新）用户的本地资料（用 NSUserDefaults ）
@@ -44,11 +50,11 @@ NSString *const 用户名数组 = @"用户名数组";
     UserDefaultModel *userDefaultModel = UserDefaultModel.new;
     userDefaultModel.obj = userModel;
     userDefaultModel.key = userModel.userName;
-    [NSUserDefaults updateWithModel:userDefaultModel];
+    NSUserDefaults.updateWithModel(userDefaultModel);
 }
 ///【通过特定的用户名】 读取用户的本地资料
 -(JobsUserModel *)readUserInfoByUserName:(NSString *)userName{
-    NSData *archivedData = [NSUserDefaults readWithKey:userName];
+    NSData *archivedData = NSUserDefaults.readWithKey(userName);
     if(HDDeviceSystemVersion.floatValue < 12.0){
         SuppressWdeprecatedDeclarationsWarning(return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];);
     }else{
@@ -73,7 +79,7 @@ NSString *const 用户名数组 = @"用户名数组";
 }
 ///【通过特定的用户名】 删除该用户的本地资料
 -(void)deleteUserInfoByUserName:(NSString *)userName{
-    [NSUserDefaults deleteWithKey:userName];
+    NSUserDefaults.deleteWithKey(userName);
 }
 #pragma mark —— 全局保存和删除已经登录成功的用户名
 /// 全局保存已经登录成功 且 并未删除的用户名组

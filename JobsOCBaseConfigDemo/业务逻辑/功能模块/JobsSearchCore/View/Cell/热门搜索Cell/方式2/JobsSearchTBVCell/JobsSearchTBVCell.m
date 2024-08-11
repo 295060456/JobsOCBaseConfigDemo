@@ -18,12 +18,14 @@
 @implementation JobsSearchTBVCell
 UIViewModelProtocol_synthesize
 #pragma mark —— BaseCellProtocol
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsSearchTBVCell *cell = (JobsSearchTBVCell *)tableView.tableViewCellClass(JobsSearchTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsSearchTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        JobsSearchTBVCell *cell = (JobsSearchTBVCell *)tableView.tableViewCellClass(JobsSearchTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsSearchTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }return cell;
+    };
 }
 
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{

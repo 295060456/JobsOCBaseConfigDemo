@@ -17,6 +17,7 @@
 #endif
 
 #import "MGSwipeButtonModel.h"
+#import "JobsIMChatInfoModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

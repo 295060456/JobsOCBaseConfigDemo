@@ -61,7 +61,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsPageTBVCell *cell = [JobsPageTBVCell cellStyleSubtitleWithTableView:tableView];
+    JobsPageTBVCell *cell = JobsPageTBVCell.cellStyleSubtitleWithTableView(tableView);
     [cell richElementsInCellWithModel:self.dataArr[indexPath.row]];
 #warning 这里需要被修改
 //    UIViewModel *viewModel = self.dataArr[indexPath.row];

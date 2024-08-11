@@ -60,7 +60,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-//    
+//
 //    NSError *error = nil;
 //    [KTVHTTPCache proxyStart:&error];
     
@@ -185,7 +185,6 @@
     return NO;
 }
 #pragma clang diagnostic pop
-
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
@@ -240,7 +239,7 @@ numberOfRowsInSection:(NSInteger)section {
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     self.indexPath = indexPath;
-    JobsVideoTBVCell *cell = [JobsVideoTBVCell cellStyleValue1WithTableView:tableView];
+    JobsVideoTBVCell *cell = JobsVideoTBVCell.cellStyleValue1WithTableView(tableView);
     cell.delegate = self;
     cell.index = indexPath.row;
     [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];

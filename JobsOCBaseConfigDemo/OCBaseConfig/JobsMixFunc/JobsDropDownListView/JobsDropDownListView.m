@@ -14,8 +14,8 @@
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)Class <UITableViewCellProtocol>tbvCell_cls;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UITableViewCell *>*tbvCellMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
 
 @end
 
@@ -64,7 +64,7 @@
     [self removeFromSuperview];
 }
 
--(void)richElementsInViewWithModel:(NSMutableArray <UIViewModel *>*_Nullable)model{
+-(void)richElementsInViewWithModel:(NSMutableArray <__kindof UIViewModel *>*_Nullable)model{
     if ([model isKindOfClass:NSArray.class]) {
         self.dataMutArr = model;
         self.tableView.alpha = 1;
@@ -125,7 +125,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _tableView;
 }
 
--(NSMutableArray<UITableViewCell *> *)tbvCellMutArr{
+-(NSMutableArray<__kindof UITableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
         _tbvCellMutArr = NSMutableArray.array;
         NSInteger dataMutArrCount = self.dataMutArr.count;

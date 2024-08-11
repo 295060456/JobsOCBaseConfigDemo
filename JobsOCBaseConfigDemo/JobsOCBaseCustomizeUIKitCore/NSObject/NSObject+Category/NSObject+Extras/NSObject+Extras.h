@@ -271,23 +271,22 @@ BaseProtocol
 /// 判断是否是App今日的首次启动
 -(BOOL)isTodayAppFirstLaunch;
 /// 震动特效反馈
--(void)feedbackGenerator;
+-(jobsByVoidBlock _Nonnull)feedbackGenerator;
 /// 检测用户是否锁屏：根据屏幕光线来进行判定，而不是系统通知
--(BOOL)didUserPressLockButton;
+-(JobsReturnBOOLByVoidBlock _Nonnull)didUserPressLockButton;
 /// iOS 限制自动锁屏 lockSwitch:YES(关闭自动锁屏)
--(void)autoLockedScreen:(BOOL)lockSwitch;
+-(jobsByBOOLBlock _Nonnull)autoLockedScreen;
 
--(void)savePic:(GKPhotoBrowser *_Nonnull)browser;
+-(jobsByGKPhotoBrowserBlock _Nonnull)savePic;
 
--(void)saveImageData:(NSData *_Nonnull)imageData;
+-(jobsByDataBlock _Nonnull)saveImageData;
 /// 将基本数据类型（先统一默认视作浮点数）转化为图片进行显示。使用前提，图片的名字命令为0~9，方便进行映射
 /// @param inputData 需要进行转换映射的基本数据类型数据
 /// @param bitNum 如果操作对象是浮点数，那么小数点后需要保留的位数
 -(nonnull NSMutableArray <UIImage *>*)translateToArr:(CGFloat)inputData
                                    saveBitAfterPoint:(NSInteger)bitNum;
 /// 读取本地的plist文件到内存  【 plist ——> NSDictionary * 】
-/// @param fileName Plist文件名
--(nullable NSDictionary *)readLocalPlistWithFileName:(nullable NSString *)fileName;
+-(JobsReturnDicByStringBlock _Nonnull)readLocalPlistWithFileName;
 /// 监听程序被杀死前的时刻，进行一些需要异步的操作：磁盘读写、网络请求...
 -(void)terminalCheck:(jobsByIDBlock _Nullable)checkBlock;
 /// Object转换为NSData

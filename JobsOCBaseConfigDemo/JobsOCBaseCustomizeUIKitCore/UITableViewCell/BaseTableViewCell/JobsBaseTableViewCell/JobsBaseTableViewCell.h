@@ -29,8 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsBaseTableViewCell : UITableViewCell
 <
-BaseCellProtocol
-,UITableViewCellProtocol
+UITableViewCellProtocol
 ,UIViewModelProtocol
 >
 

@@ -113,7 +113,7 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MyFansTBVCell *cell = [MyFansTBVCell cellStyleValue1WithTableView:tableView];
+    MyFansTBVCell *cell = MyFansTBVCell.cellStyleValue1WithTableView(tableView);
     [cell richElementsInCellWithModel:@(indexPath.row % 4)];
     return cell;
 }
@@ -121,8 +121,7 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.new;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
+        _tableView.dataLink(self);
         _tableView.backgroundColor = JobsWhiteColor;//[UIColor colorWithHexString:@"050013"];
         _tableView.pagingEnabled = YES;//这个属性为YES会使得Tableview一格一格的翻动
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

@@ -246,7 +246,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         case 0:{/// 热门搜索
             switch (self.hotSearchStyle) {
                 case HotSearchStyle_1:{
-                    JobsSearchShowHotwordsTBVCell *cell = [JobsSearchShowHotwordsTBVCell cellStyleValue1WithTableView:tableView];
+                    JobsSearchShowHotwordsTBVCell *cell = JobsSearchShowHotwordsTBVCell.cellStyleValue1WithTableView(tableView);
                     cell.indexPath = indexPath;
                     [cell richElementsInCellWithModel:self.hotSearchMutArr];
                     /// 点击的哪个btn？
@@ -257,7 +257,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                     }];return cell;
                 }break;
                 case HotSearchStyle_2:{
-                    JobsSearchTBVCell *cell = [JobsSearchTBVCell cellStyleValue1WithTableView:tableView];
+                    JobsSearchTBVCell *cell = JobsSearchTBVCell.cellStyleValue1WithTableView(tableView);
                     cell.indexPath = indexPath;
                     [cell richElementsInCellWithModel:self.hotSearchMutArr];
                     [cell actionObjectBlock:^(UIViewModel *data) {
@@ -281,7 +281,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
             }
         }break;
         case 1:{/// 搜索历史
-            JobsSearchShowHistoryDataTBVCell *cell = [JobsSearchShowHistoryDataTBVCell cellStyleValue1WithTableView:tableView];
+            JobsSearchShowHistoryDataTBVCell *cell = JobsSearchShowHistoryDataTBVCell.cellStyleValue1WithTableView(tableView);
             cell.indexPath = indexPath;
             [cell richElementsInCellWithModel:self.listViewData[indexPath.row]];
             return cell;
@@ -320,7 +320,7 @@ heightForHeaderInSection:(NSInteger)section{
 //            userDefaultModel.key = JobsSearchHistoryData;
 //            userDefaultModel.obj = self.historySearchMutArr;
 //
-//            [NSUserDefaults updateWithModel:userDefaultModel];
+//            NSUserDefaults.updateWithModel(userDefaultModel);
 //
 //            if (self.historySearchMutArr.count == 0) {
 //                [self.sectionTitleMutArr removeAllObjects];

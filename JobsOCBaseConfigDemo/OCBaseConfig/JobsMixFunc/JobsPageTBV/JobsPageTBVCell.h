@@ -6,6 +6,7 @@
 //
 
 #import "JobsBaseTableViewCell.h"
+#import "NSObject+Extras.h"
 #import "UIViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN

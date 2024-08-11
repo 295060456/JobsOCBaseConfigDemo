@@ -238,7 +238,7 @@ numberOfRowsInSection:(NSInteger)section{
 
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LeftCell *cell = [LeftCell cellStyleValue1WithTableView:tableView];
+    LeftCell *cell = LeftCell.cellStyleValue1WithTableView(tableView);
     UIViewModel *viewModel = UIViewModel.new;
     viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
     [cell richElementsInCellWithModel:viewModel];
@@ -427,9 +427,9 @@ referenceSizeForFooterInSection:(NSInteger)section{
         _collectionView.backgroundColor = ThreeClassCellBgCor;
         _collectionView.alwaysBounceVertical = YES;
         _collectionView.registerCollectionViewClass();
-        _collectionView.registerCollectionViewCellClass(TreeClassItemCell.class,@"");
-        _collectionView.registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class,@"");
-        _collectionView.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class,@"");
+//        collectionView.registerCollectionViewCellClass(ThreeClassCell.class);
+//        collectionView.registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class);
+//        collectionView.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
         [self.view addSubview:_collectionView];
     }return _collectionView;
 }

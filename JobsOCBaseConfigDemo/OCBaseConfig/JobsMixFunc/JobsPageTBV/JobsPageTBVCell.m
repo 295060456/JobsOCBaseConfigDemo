@@ -6,7 +6,6 @@
 //
 
 #import "JobsPageTBVCell.h"
-#import "NSObject+Extras.h"
 
 @interface JobsPageTBVCell ()
 
@@ -16,14 +15,16 @@
 
 @implementation JobsPageTBVCell
 #pragma mark —— UITableViewCellProtocol
-+(instancetype)cellStyleSubtitleWithTableView:(UITableView *)tableView{
-    JobsPageTBVCell *cell = (JobsPageTBVCell *)tableView.tableViewCellClass(JobsPageTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsPageTBVCell initTableViewCellWithStyle:UITableViewCellStyleSubtitle];
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        JobsPageTBVCell *cell = (JobsPageTBVCell *)tableView.tableViewCellClass(JobsPageTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsPageTBVCell.initTableViewCellWithStyle(UITableViewCellStyleSubtitle);
+    //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor;
+        }return cell;
+    };
 }
 #pragma mark —— BaseCellProtocol
 -(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{

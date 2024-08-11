@@ -16,16 +16,17 @@
 @end
 
 @implementation LeftCell
-
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
-+(instancetype)cellStyleDefaultWithTableView:(UITableView *)tableView{
-    LeftCell *cell = (LeftCell *)tableView.tableViewCellClass(LeftCell.class,@"");
-    if (!cell) {
-        cell = [LeftCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        LeftCell *cell = (LeftCell *)tableView.tableViewCellClass(LeftCell.class,@"");
+        if (!cell) {
+            cell = LeftCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }return cell;
+    };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{

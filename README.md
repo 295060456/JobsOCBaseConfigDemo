@@ -1885,7 +1885,7 @@ NSObject <|-- BaseProtocol
     getSysSceneDelegate();
     ```
   
-* 读取用户信息
+* <font color=red>**读写用户信息**</font>
 
   ```objective-c
   /// 模拟用户数据
@@ -1894,7 +1894,7 @@ NSObject <|-- BaseProtocol
       userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
       userModel.userName = @"张三丰";
       userModel.phone = @"134****0000";
-      [self saveUserInfo:userModel];
+      self.saveUserInfo(userModel);
       
       id f = self.readUserInfo;
       NSLog(JobsInternationalization(@""));
@@ -1905,9 +1905,9 @@ NSObject <|-- BaseProtocol
       userModel.token = @"12345";
       userModel.uid = @"54321";
       
-      [self saveUserInfo:userModel];
+      self.saveUserInfo(userModel);
       NSLog(JobsInternationalization(@""));
-      JobsUserModel *f = [self readUserInfo];
+      JobsUserModel *f = self.readUserInfo();
       NSLog(JobsInternationalization(@""));
   }
   ```
@@ -3852,19 +3852,19 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 存数据（包括父类直到`NSObject`的所有属性）。<font color=red>**将数据封装到对象`UserDefaultModel`里面进行存取**</font>
 
   ```objective-c
-  +(void)updateWithModel:(UserDefaultModel *)userDefaultModel;
+  +(jobsByUserDefaultModelBlock)updateWithModel;
   ```
 
 * 读取数据
 
   ```objective-c
-  +(id _Nullable)readWithKey:(NSString *)key;
+  +(JobsReturnIDByStringBlock)readWithKey;
   ```
 
 * 删除数据
 
   ```objective-c
-  +(void)deleteWithKey:(NSString *)key;
+  +(jobsByStringBlock)deleteWithKey;
   ```
 
 ### 15、对小型本地化数据的读取（`NSUserDefaults`） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
@@ -3879,8 +3879,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
     ```objective-c
     /// 读取用户信息
-    -(JobsUserModel *)readUserInfo{
-        return [self readUserInfoByUserName:用户信息];
+    -(JobsReturnUserModelByVoidBlock)readUserInfo{
+        @jobs_weakify(self)
+        return ^() {
+            @jobs_strongify(self)
+            return [self readUserInfoByUserName:用户信息];
+        };
     }
     ```
 
@@ -5427,7 +5431,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    -(BaseTableView *)tableView{
        if (!_tableView) {
            @jobs_weakify(self)
-           _tableView = BaseTableView.initWithStyleGrouped;/// 一般用 initWithStylePlain.Grouped会自己预留一块空间
+           _tableView = BaseTableView.initWithStyleGrouped;/// 一般用 initWithStylePlain。initWithStyleGrouped会自己预留一块空间
            _tableView.dataLink(self);
            _tableView.backgroundColor = JobsCor(@"#FFFFFF");
            _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -6237,6 +6241,84 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    ```
 
 #### 28.3、**`UITableViewCell`**
+
+* **`UITableViewCell`**的自带样式。关注实现类：[**@implementation UITableViewCell (UITableViewCellProtocol)**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UITableViewCell/UITableViewCell%2BCategory/UITableViewCell%2BUITableViewCellProtocol/UITableViewCell%2BUITableViewCellProtocoll.m)
+
+  * <font color=blue>**UITableViewCellStyleDefault**</font>
+
+    ```objective-c
+    +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
+        @jobs_weakify(self)
+        return ^(UITableView * _Nonnull tableView) {
+            @jobs_strongify(self)
+            UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
+            if (!cell) {
+                cell = [self initTableViewCell:self
+                                     withStyle:UITableViewCellStyleDefault];
+                cell.settingForTableViewCell();
+            }return cell;
+        };
+    }
+    ```
+
+    ![image-20240809204521742](./assets/UITableViewCellStyleDefault.png)
+
+  * <font color=blue>**UITableViewCellStyleSubtitle**</font>
+
+    ```objective-c
+    +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
+        @jobs_weakify(self)
+        return ^(UITableView * _Nonnull tableView) {
+            @jobs_strongify(self)
+            UITableViewCell *cell = (UITableViewCell *)tableView.tableViewCellClass(self.class,@"");
+            if (!cell) {
+                cell = [self initTableViewCell:self
+                                     withStyle:UITableViewCellStyleSubtitle];
+                cell.settingForTableViewCell();
+            }return cell;
+        };
+    }
+    ```
+
+    ![image-20240809204521742](./assets/UITableViewCellStyleSubtitle.png)
+
+  * <font color=blue>**UITableViewCellStyleValue1**</font>
+
+    ```objective-c
+    +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+        @jobs_weakify(self)
+        return ^(UITableView * _Nonnull tableView) {
+            @jobs_strongify(self)
+            UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
+            if (!cell) {
+                cell = [self initTableViewCell:self
+                                     withStyle:UITableViewCellStyleValue1];
+                cell.settingForTableViewCell();
+            }return cell;
+        };
+    }
+    ```
+
+    ![image-20240809204521742](./assets/UITableViewCellStyleValue1.png)
+
+  * <font color=blue>**UITableViewCellStyleValue2**</font>
+
+    ```objective-c
+    +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView{
+        @jobs_weakify(self)
+        return ^(UITableView * _Nonnull tableView) {
+            @jobs_strongify(self)
+            UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
+            if (!cell) {
+                cell = [self initTableViewCell:self
+                                     withStyle:UITableViewCellStyleValue2];
+                cell.settingForTableViewCell();
+            }return cell;
+        };
+    }
+    ```
+
+    ![image-20240809204521742](./assets/UITableViewCellStyleValue2.png)
 
 * `UITableViewCell`.<font color=red>**registerClass**</font>
 

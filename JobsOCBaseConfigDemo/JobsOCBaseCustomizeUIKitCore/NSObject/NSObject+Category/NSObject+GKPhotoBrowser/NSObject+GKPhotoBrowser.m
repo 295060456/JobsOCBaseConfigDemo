@@ -18,8 +18,7 @@
         GKPhoto *photo = GKPhoto.new;
         photo.image = obj;
         photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
-        
-        [photosArray addObject:photo];
+        photosArray.jobsAddObject(photo);
     }];
     GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photosArray
                                                         currentIndex:indexPath.row];
@@ -43,7 +42,7 @@
     NSMutableArray *photosArray = [NSMutableArray arrayWithCapacity:imageUrlMutArr.count];
     
     
-    [imageUrlMutArr enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj, 
+    [imageUrlMutArr enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj,
                                                  NSUInteger idx,
                                                  BOOL * _Nonnull stop) {
         GKPhoto *photo = GKPhoto.new;
@@ -104,34 +103,34 @@
     
 }
 /// 选择photoView时回调
--(void)photoBrowser:(GKPhotoBrowser *)browser 
+-(void)photoBrowser:(GKPhotoBrowser *)browser
    didSelectAtIndex:(NSInteger)index{
     
 }
 /// 单击事件
--(void)photoBrowser:(GKPhotoBrowser *)browser 
+-(void)photoBrowser:(GKPhotoBrowser *)browser
  singleTapWithIndex:(NSInteger)index{
     
 }
 /// 双击事件
 -(void)photoBrowser:(GKPhotoBrowser *)browser
  doubleTapWithIndex:(NSInteger)index{
-    [self savePic:browser];
+    self.savePic(browser);
 }
 /// 长按事件
 -(void)photoBrowser:(GKPhotoBrowser *)browser
  longPressWithIndex:(NSInteger)index{
-    [self savePic:browser];
+    self.savePic(browser);
 }
 /// 旋转事件
 -(void)photoBrowser:(GKPhotoBrowser *)browser
-onDeciceChangedWithIndex:(NSInteger)index 
+onDeciceChangedWithIndex:(NSInteger)index
         isLandscape:(BOOL)isLandscape{
     
 }
 /// 缩放事件
--(void)photoBrowser:(GKPhotoBrowser *)browser 
- zoomEndedWithIndex:(NSInteger)index 
+-(void)photoBrowser:(GKPhotoBrowser *)browser
+ zoomEndedWithIndex:(NSInteger)index
           zoomScale:(CGFloat)scale{
     
 }
@@ -154,18 +153,18 @@ onDeciceChangedWithIndex:(NSInteger)index
     
 }
 /// 结束滑动时 disappear：是否消失
--(void)photoBrowser:(GKPhotoBrowser *)browser 
+-(void)photoBrowser:(GKPhotoBrowser *)browser
   panEndedWithIndex:(NSInteger)index
       willDisappear:(BOOL)disappear{
     
 }
 /// 布局子视图
--(void)photoBrowser:(GKPhotoBrowser *)browser 
+-(void)photoBrowser:(GKPhotoBrowser *)browser
  willLayoutSubViews:(NSInteger)index{
     
 }
 /// browser完全消失回调
--(void)photoBrowser:(GKPhotoBrowser *)browser 
+-(void)photoBrowser:(GKPhotoBrowser *)browser
 didDisappearAtIndex:(NSInteger)index{
     
 }
@@ -177,17 +176,17 @@ didDisappearAtIndex:(NSInteger)index{
     
 }
 /// browser加载失败自定义弹窗
--(void)photoBrowser:(GKPhotoBrowser *)browser 
+-(void)photoBrowser:(GKPhotoBrowser *)browser
   loadFailedAtIndex:(NSInteger)index error:(NSError *)error{
     
 }
 /// 自定义单个图片的加载失败文字，优先级高于failureText
--(NSString *)photoBrowser:(GKPhotoBrowser *)browser 
+-(NSString *)photoBrowser:(GKPhotoBrowser *)browser
         failedTextAtIndex:(NSInteger)index{
     return JobsInternationalization(@"图片加载失败");
 }
 /// 自定义单个图片的加载失败图片，优先级高于failureImage
--(UIImage *)photoBrowser:(GKPhotoBrowser *)browser 
+-(UIImage *)photoBrowser:(GKPhotoBrowser *)browser
       failedImageAtIndex:(NSInteger)index{
     return JobsIMG(JobsInternationalization(@""));
 }
@@ -198,8 +197,8 @@ videoStateChangeWithPhotoView:(GKPhotoView *)photoView
     
 }
 /// 视频播放进度回调
--(void)photoBrowser:(GKPhotoBrowser *)browser 
-videoTimeChangeWithPhotoView:(GKPhotoView *)photoView 
+-(void)photoBrowser:(GKPhotoBrowser *)browser
+videoTimeChangeWithPhotoView:(GKPhotoView *)photoView
         currentTime:(NSTimeInterval)currentTime
           totalTime:(NSTimeInterval)totalTime{
     

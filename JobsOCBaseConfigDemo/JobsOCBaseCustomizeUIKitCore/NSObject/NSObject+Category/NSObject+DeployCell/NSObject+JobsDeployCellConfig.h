@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// UITableView
 #ifndef ReturnJobsBaseTableViewCell
 #define ReturnJobsBaseTableViewCell \
-    return [JobsBaseTableViewCell cellStyleDefaultWithTableView:tableView];
+    return JobsBaseTableViewCell.cellStyleDefaultWithTableView(tableView);
 #endif
 /// UICollectionView
 #ifndef ReturnRichJobsBaseCollectionViewCell

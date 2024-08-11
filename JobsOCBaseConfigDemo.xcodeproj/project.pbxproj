@@ -15,6 +15,12 @@
 		CE1F25742C5DD2AA00324198 /* JobsViewNavigatorTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F25732C5DD2AA00324198 /* JobsViewNavigatorTestVC.m */; };
 		CE1F25772C5DD37000324198 /* JobsPushView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F25762C5DD37000324198 /* JobsPushView.m */; };
 		CE1F257C2C5DDABB00324198 /* UIView+Navigator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F257B2C5DDABB00324198 /* UIView+Navigator.m */; };
+		CE2E873A2C689F9100260207 /* JobsBtnStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87262C689F8F00260207 /* JobsBtnStyleTBVCell.m */; };
+		CE2E873F2C689F9100260207 /* JobsTextStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E872E2C689F9000260207 /* JobsTextStyleTBVCell.m */; };
+		CE2E87402C689F9100260207 /* JobsBtnsStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87312C689F9000260207 /* JobsBtnsStyleTBVCell.m */; };
+		CE2E87412C689F9100260207 /* JobsBtnStyleTBVCell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE2E87322C689F9000260207 /* JobsBtnStyleTBVCell.jpg */; };
+		CE2E87422C689F9100260207 /* JobsImageStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87352C689F9000260207 /* JobsImageStyleTBVCell.m */; };
+		CE2E87432C689F9100260207 /* JobsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */; };
 		CE40B28E2C4B54A500CB64B5 /* JobsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */; };
 		CE40B29B2C4BF78E00CB64B5 /* JobsToggleBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */; };
 		CE40B29C2C4BF78E00CB64B5 /* JobsToggleNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2982C4BF78E00CB64B5 /* JobsToggleNavView.m */; };
@@ -772,13 +778,6 @@
 		CECE85B82C4513CE00764AF5 /* UITableView+RegisterClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84292C4513CD00764AF5 /* UITableView+RegisterClass.m */; };
 		CECE85B92C4513CE00764AF5 /* UITableView+WWFoldableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE842C2C4513CD00764AF5 /* UITableView+WWFoldableTableView.m */; };
 		CECE85BA2C4513CE00764AF5 /* UITableView+WWFoldableTableView.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE842D2C4513CD00764AF5 /* UITableView+WWFoldableTableView.md */; };
-		CECE85BB2C4513CE00764AF5 /* UITableViewCellStyleDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE84322C4513CD00764AF5 /* UITableViewCellStyleDefault.png */; };
-		CECE85BC2C4513CE00764AF5 /* UITableViewCellStyleSubtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE84332C4513CD00764AF5 /* UITableViewCellStyleSubtitle.png */; };
-		CECE85BD2C4513CE00764AF5 /* UITableViewCellStyleValue1.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE84342C4513CD00764AF5 /* UITableViewCellStyleValue1.png */; };
-		CECE85BE2C4513CE00764AF5 /* UITableViewCellStyleValue2.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE84352C4513CD00764AF5 /* UITableViewCellStyleValue2.png */; };
-		CECE85BF2C4513CE00764AF5 /* JobsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84382C4513CD00764AF5 /* JobsBaseTableViewCell.m */; };
-		CECE85C02C4513CE00764AF5 /* JobsBtnStyleTBVCell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CECE843B2C4513CD00764AF5 /* JobsBtnStyleTBVCell.jpg */; };
-		CECE85C12C4513CE00764AF5 /* JobsBtnStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE843C2C4513CD00764AF5 /* JobsBtnStyleTBVCell.m */; };
 		CECE85C22C4513CE00764AF5 /* UITableViewCell+Margin.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84402C4513CD00764AF5 /* UITableViewCell+Margin.m */; };
 		CECE85C32C4513CE00764AF5 /* UITableViewCell+UITableViewCellProtocoll.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84432C4513CD00764AF5 /* UITableViewCell+UITableViewCellProtocoll.m */; };
 		CECE85C42C4513CE00764AF5 /* UITableViewCell+WhiteArrows.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84462C4513CD00764AF5 /* UITableViewCell+WhiteArrows.m */; };
@@ -1152,6 +1151,21 @@
 		CE1F25762C5DD37000324198 /* JobsPushView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsPushView.m; sourceTree = "<group>"; };
 		CE1F257A2C5DDABB00324198 /* UIView+Navigator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Navigator.h"; sourceTree = "<group>"; };
 		CE1F257B2C5DDABB00324198 /* UIView+Navigator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Navigator.m"; sourceTree = "<group>"; };
+		CE2E87252C689F8F00260207 /* JobsBtnStyleTBVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBtnStyleTBVCell.h; sourceTree = "<group>"; };
+		CE2E87262C689F8F00260207 /* JobsBtnStyleTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsBtnStyleTBVCell.m; sourceTree = "<group>"; };
+		CE2E87282C689F8F00260207 /* UITableViewCellStyleDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellStyleDefault.png; sourceTree = "<group>"; };
+		CE2E87292C689F8F00260207 /* UITableViewCellStyleSubtitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellStyleSubtitle.png; sourceTree = "<group>"; };
+		CE2E872A2C689F8F00260207 /* UITableViewCellStyleValue1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellStyleValue1.png; sourceTree = "<group>"; };
+		CE2E872B2C689F8F00260207 /* UITableViewCellStyleValue2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellStyleValue2.png; sourceTree = "<group>"; };
+		CE2E872D2C689F9000260207 /* JobsTextStyleTBVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTextStyleTBVCell.h; sourceTree = "<group>"; };
+		CE2E872E2C689F9000260207 /* JobsTextStyleTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTextStyleTBVCell.m; sourceTree = "<group>"; };
+		CE2E87302C689F9000260207 /* JobsBtnsStyleTBVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBtnsStyleTBVCell.h; sourceTree = "<group>"; };
+		CE2E87312C689F9000260207 /* JobsBtnsStyleTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsBtnsStyleTBVCell.m; sourceTree = "<group>"; };
+		CE2E87322C689F9000260207 /* JobsBtnStyleTBVCell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JobsBtnStyleTBVCell.jpg; sourceTree = "<group>"; };
+		CE2E87342C689F9000260207 /* JobsImageStyleTBVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsImageStyleTBVCell.h; sourceTree = "<group>"; };
+		CE2E87352C689F9000260207 /* JobsImageStyleTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsImageStyleTBVCell.m; sourceTree = "<group>"; };
+		CE2E87372C689F9100260207 /* JobsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBaseTableViewCell.h; sourceTree = "<group>"; };
+		CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsBaseTableViewCell.m; sourceTree = "<group>"; };
 		CE40B28C2C4B54A500CB64B5 /* JobsTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextField.h; sourceTree = "<group>"; };
 		CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextField.m; sourceTree = "<group>"; };
 		CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsToggleBaseView.m; sourceTree = "<group>"; };
@@ -2624,15 +2638,6 @@
 		CECE842C2C4513CD00764AF5 /* UITableView+WWFoldableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+WWFoldableTableView.m"; sourceTree = "<group>"; };
 		CECE842D2C4513CD00764AF5 /* UITableView+WWFoldableTableView.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "UITableView+WWFoldableTableView.md"; sourceTree = "<group>"; };
 		CECE84302C4513CD00764AF5 /* JobsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTableView.h; sourceTree = "<group>"; };
-		CECE84322C4513CD00764AF5 /* UITableViewCellStyleDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellStyleDefault.png; sourceTree = "<group>"; };
-		CECE84332C4513CD00764AF5 /* UITableViewCellStyleSubtitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellStyleSubtitle.png; sourceTree = "<group>"; };
-		CECE84342C4513CD00764AF5 /* UITableViewCellStyleValue1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellStyleValue1.png; sourceTree = "<group>"; };
-		CECE84352C4513CD00764AF5 /* UITableViewCellStyleValue2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellStyleValue2.png; sourceTree = "<group>"; };
-		CECE84372C4513CD00764AF5 /* JobsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBaseTableViewCell.h; sourceTree = "<group>"; };
-		CECE84382C4513CD00764AF5 /* JobsBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsBaseTableViewCell.m; sourceTree = "<group>"; };
-		CECE843A2C4513CD00764AF5 /* JobsBtnStyleTBVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBtnStyleTBVCell.h; sourceTree = "<group>"; };
-		CECE843B2C4513CD00764AF5 /* JobsBtnStyleTBVCell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JobsBtnStyleTBVCell.jpg; sourceTree = "<group>"; };
-		CECE843C2C4513CD00764AF5 /* JobsBtnStyleTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsBtnStyleTBVCell.m; sourceTree = "<group>"; };
 		CECE843F2C4513CD00764AF5 /* UITableViewCell+Margin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Margin.h"; sourceTree = "<group>"; };
 		CECE84402C4513CD00764AF5 /* UITableViewCell+Margin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Margin.m"; sourceTree = "<group>"; };
 		CECE84422C4513CD00764AF5 /* UITableViewCell+UITableViewCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+UITableViewCellProtocol.h"; sourceTree = "<group>"; };
@@ -3261,6 +3266,63 @@
 				CE1F257D2C5DF44000324198 /* JobsPushView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CE2E87272C689F8F00260207 /* JobsBtnStyleTBVCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E87252C689F8F00260207 /* JobsBtnStyleTBVCell.h */,
+				CE2E87262C689F8F00260207 /* JobsBtnStyleTBVCell.m */,
+			);
+			path = JobsBtnStyleTBVCell;
+			sourceTree = "<group>";
+		};
+		CE2E872C2C689F8F00260207 /* iOS UITableView中Cell的自带样式 */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E87282C689F8F00260207 /* UITableViewCellStyleDefault.png */,
+				CE2E87292C689F8F00260207 /* UITableViewCellStyleSubtitle.png */,
+				CE2E872A2C689F8F00260207 /* UITableViewCellStyleValue1.png */,
+				CE2E872B2C689F8F00260207 /* UITableViewCellStyleValue2.png */,
+			);
+			path = "iOS UITableView中Cell的自带样式";
+			sourceTree = "<group>";
+		};
+		CE2E872F2C689F9000260207 /* JobsTextStyleTBVCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E872D2C689F9000260207 /* JobsTextStyleTBVCell.h */,
+				CE2E872E2C689F9000260207 /* JobsTextStyleTBVCell.m */,
+			);
+			path = JobsTextStyleTBVCell;
+			sourceTree = "<group>";
+		};
+		CE2E87332C689F9000260207 /* JobsBtnsStyleTBVCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E87302C689F9000260207 /* JobsBtnsStyleTBVCell.h */,
+				CE2E87312C689F9000260207 /* JobsBtnsStyleTBVCell.m */,
+				CE2E87322C689F9000260207 /* JobsBtnStyleTBVCell.jpg */,
+			);
+			path = JobsBtnsStyleTBVCell;
+			sourceTree = "<group>";
+		};
+		CE2E87362C689F9000260207 /* JobsImageStyleTBVCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E87342C689F9000260207 /* JobsImageStyleTBVCell.h */,
+				CE2E87352C689F9000260207 /* JobsImageStyleTBVCell.m */,
+			);
+			path = JobsImageStyleTBVCell;
+			sourceTree = "<group>";
+		};
+		CE2E87392C689F9100260207 /* JobsBaseTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E87372C689F9100260207 /* JobsBaseTableViewCell.h */,
+				CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */,
+			);
+			path = JobsBaseTableViewCell;
 			sourceTree = "<group>";
 		};
 		CE40B28B2C4B544F00CB64B5 /* JobsTextField */ = {
@@ -10987,42 +11049,15 @@
 			path = UITableView;
 			sourceTree = "<group>";
 		};
-		CECE84362C4513CD00764AF5 /* iOS UITableView中Cell的自带样式 */ = {
-			isa = PBXGroup;
-			children = (
-				CECE84322C4513CD00764AF5 /* UITableViewCellStyleDefault.png */,
-				CECE84332C4513CD00764AF5 /* UITableViewCellStyleSubtitle.png */,
-				CECE84342C4513CD00764AF5 /* UITableViewCellStyleValue1.png */,
-				CECE84352C4513CD00764AF5 /* UITableViewCellStyleValue2.png */,
-			);
-			path = "iOS UITableView中Cell的自带样式";
-			sourceTree = "<group>";
-		};
-		CECE84392C4513CD00764AF5 /* JobsBaseTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				CECE84372C4513CD00764AF5 /* JobsBaseTableViewCell.h */,
-				CECE84382C4513CD00764AF5 /* JobsBaseTableViewCell.m */,
-			);
-			path = JobsBaseTableViewCell;
-			sourceTree = "<group>";
-		};
-		CECE843D2C4513CD00764AF5 /* JobsBtnStyleTBVCell */ = {
-			isa = PBXGroup;
-			children = (
-				CECE843A2C4513CD00764AF5 /* JobsBtnStyleTBVCell.h */,
-				CECE843B2C4513CD00764AF5 /* JobsBtnStyleTBVCell.jpg */,
-				CECE843C2C4513CD00764AF5 /* JobsBtnStyleTBVCell.m */,
-			);
-			path = JobsBtnStyleTBVCell;
-			sourceTree = "<group>";
-		};
 		CECE843E2C4513CD00764AF5 /* BaseTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				CECE84362C4513CD00764AF5 /* iOS UITableView中Cell的自带样式 */,
-				CECE84392C4513CD00764AF5 /* JobsBaseTableViewCell */,
-				CECE843D2C4513CD00764AF5 /* JobsBtnStyleTBVCell */,
+				CE2E872C2C689F8F00260207 /* iOS UITableView中Cell的自带样式 */,
+				CE2E87392C689F9100260207 /* JobsBaseTableViewCell */,
+				CE2E87332C689F9000260207 /* JobsBtnsStyleTBVCell */,
+				CE2E87272C689F8F00260207 /* JobsBtnStyleTBVCell */,
+				CE2E87362C689F9000260207 /* JobsImageStyleTBVCell */,
+				CE2E872F2C689F9000260207 /* JobsTextStyleTBVCell */,
 			);
 			path = BaseTableViewCell;
 			sourceTree = "<group>";
@@ -13185,7 +13220,6 @@
 				CECE88C62C4519AD00764AF5 /* 热度.gif in Resources */,
 				CECE80C32C4512BF00764AF5 /* 登录弹窗@3x.png in Resources */,
 				CECE88DE2C4519AD00764AF5 /* 1284x2778.png in Resources */,
-				CECE85C02C4513CE00764AF5 /* JobsBtnStyleTBVCell.jpg in Resources */,
 				CECE87322C45140000764AF5 /* HexadecimalData.md in Resources */,
 				CECE890D2C4519AD00764AF5 /* NotoSansDisplay-ThinItalic.ttf in Resources */,
 				CECE88F92C4519AD00764AF5 /* NotoSans-ThinItalic.ttf in Resources */,
@@ -13219,6 +13253,7 @@
 				CECE88E52C4519AD00764AF5 /* Assets.xcassets in Resources */,
 				CECE87172C45140000764AF5 /* 凯撒加密解密.md in Resources */,
 				CECE81332C4512BF00764AF5 /* JobsShowNum@3x.png in Resources */,
+				CE2E87412C689F9100260207 /* JobsBtnStyleTBVCell.jpg in Resources */,
 				CECE89432C4519AD00764AF5 /* NotoSansDisplay_SemiCondensed-ThinItalic.ttf in Resources */,
 				CECE81642C4512BF00764AF5 /* music_animation.json in Resources */,
 				CECE7C7B2C450C5000764AF5 /* JobsIM【Outlines 01】.png in Resources */,
@@ -13234,7 +13269,6 @@
 				CECE89342C4519AD00764AF5 /* NotoSansDisplay_SemiCondensed-Bold.ttf in Resources */,
 				CECE894F2C4519AD00764AF5 /* Localizable.strings in Resources */,
 				CECE89112C4519AD00764AF5 /* NotoSansDisplay_Condensed-BoldItalic.ttf in Resources */,
-				CECE85BB2C4513CE00764AF5 /* UITableViewCellStyleDefault.png in Resources */,
 				CECE88F12C4519AD00764AF5 /* NotoSans-Light.ttf in Resources */,
 				CECE7C722C450C5000764AF5 /* Check@2x.png in Resources */,
 				CECE873C2C45140000764AF5 /* SHA.md in Resources */,
@@ -13396,14 +13430,12 @@
 				CECE89182C4519AD00764AF5 /* NotoSansDisplay_Condensed-LightItalic.ttf in Resources */,
 				CECE81602C4512BF00764AF5 /* green_lottie_tab_mine.json in Resources */,
 				CECE88CB2C4519AD00764AF5 /* 开屏页面.bundle in Resources */,
-				CECE85BE2C4513CE00764AF5 /* UITableViewCellStyleValue2.png in Resources */,
 				CECE7ECD2C450E5B00764AF5 /* A.png in Resources */,
 				CECE850F2C4513CE00764AF5 /* BaseProtocol.md in Resources */,
 				CECE7CEF2C450C5000764AF5 /* image-20240622130050640.png in Resources */,
 				CECE88E72C4519AD00764AF5 /* Tabbar.xcassets in Resources */,
 				CECE81172C4512BF00764AF5 /* 1@2x.png in Resources */,
 				CECE87552C45140000764AF5 /* File in Resources */,
-				CECE85BC2C4513CE00764AF5 /* UITableViewCellStyleSubtitle.png in Resources */,
 				CECE87642C45140000764AF5 /* LongPressToDeleteImageView.md in Resources */,
 				CECE7C962C450C5000764AF5 /* 方式1.png in Resources */,
 				CECE7CF02C450C5000764AF5 /* image-20240622130146666.png in Resources */,
@@ -13452,7 +13484,6 @@
 				CECE85222C4513CE00764AF5 /* JobsMonitorNetwoking.md in Resources */,
 				CECE89252C4519AD00764AF5 /* NotoSansDisplay_ExtraCondensed-ExtraBoldItalic.ttf in Resources */,
 				CECE81572C4512BF00764AF5 /* 任务.json in Resources */,
-				CECE85BD2C4513CE00764AF5 /* UITableViewCellStyleValue1.png in Resources */,
 				CECE80D72C4512BF00764AF5 /* 红色椭圆.png in Resources */,
 				CECE81672C4512BF00764AF5 /* tab_me_animate.json in Resources */,
 				CECE87752C45140000764AF5 /* sortedNameEN.plist in Resources */,
@@ -13882,6 +13913,7 @@
 				CECE7C972C450C5000764AF5 /* JobsSearchShowHotwordsTBVCell.m in Sources */,
 				CECE7CE12C450C5000764AF5 /* JobsPresentingVC.m in Sources */,
 				CECE85C82C4513CE00764AF5 /* JobsTBVHeaderFooterView.m in Sources */,
+				CE2E873F2C689F9100260207 /* JobsTextStyleTBVCell.m in Sources */,
 				CECE7EE12C450E5B00764AF5 /* ZWPullMenuModel.m in Sources */,
 				CECE7E902C450E5B00764AF5 /* HTTPLogging.m in Sources */,
 				CECE7C7A2C450C5000764AF5 /* JobsIMVC.m in Sources */,
@@ -13933,6 +13965,7 @@
 				CECE7CC72C450C5000764AF5 /* MyTableTableVC.m in Sources */,
 				CECE7CBB2C450C5000764AF5 /* JXCategoryViewWithHeaderViewVC.m in Sources */,
 				CECE85B92C4513CE00764AF5 /* UITableView+WWFoldableTableView.m in Sources */,
+				CE2E87422C689F9100260207 /* JobsImageStyleTBVCell.m in Sources */,
 				CECE85E82C4513CE00764AF5 /* UIView+UIBackgroundConfig.m in Sources */,
 				CECE7E922C450E5B00764AF5 /* HTTPServer.m in Sources */,
 				CEAF27042C62508F0056570C /* NSMutableSet+Extra.m in Sources */,
@@ -13941,7 +13974,6 @@
 				CECE7E972C450E5B00764AF5 /* KTVHCDataCacheItem.m in Sources */,
 				CECE7EAB2C450E5B00764AF5 /* KTVHCURLTool.m in Sources */,
 				CECE851B2C4513CE00764AF5 /* NSNumber+Extra.m in Sources */,
-				CECE85BF2C4513CE00764AF5 /* JobsBaseTableViewCell.m in Sources */,
 				CECE7C462C450C5000764AF5 /* Douyin_ZFPlayerVC@1.m in Sources */,
 				CEAF253D2C60FE050056570C /* ZMJChartBarCell.m in Sources */,
 				CECE7EC82C450E5B00764AF5 /* WMZBannerFadeLayout.m in Sources */,
@@ -14011,6 +14043,7 @@
 				CECE85DC2C4513CE00764AF5 /* UIView+BackgroundImage.m in Sources */,
 				CECE81452C4512BF00764AF5 /* JobsCustomTabBar.m in Sources */,
 				CECE85552C4513CE00764AF5 /* NSObject+RegularExpression.m in Sources */,
+				CE2E873A2C689F9100260207 /* JobsBtnStyleTBVCell.m in Sources */,
 				CECE81072C4512BF00764AF5 /* BaseContentView.m in Sources */,
 				CECE7CC82C450C5000764AF5 /* PeekAndPopVC.m in Sources */,
 				CECE857C2C4513CE00764AF5 /* UIButton+ImageTitleSpacing.m in Sources */,
@@ -14057,6 +14090,7 @@
 				CECE85D62C4513CE00764AF5 /* UITextView+IndicateWordLimit.m in Sources */,
 				CECE7C262C450C5000764AF5 /* PicToStrStoreVC.m in Sources */,
 				CEAF25422C60FE050056570C /* ZMJTaskView.m in Sources */,
+				CE2E87432C689F9100260207 /* JobsBaseTableViewCell.m in Sources */,
 				CECE85E02C4513CE00764AF5 /* UIView+Extras.m in Sources */,
 				CECE852B2C4513CE00764AF5 /* TouchID.m in Sources */,
 				CECE85B22C4513CE00764AF5 /* UIScrollView+Extra.m in Sources */,
@@ -14079,6 +14113,7 @@
 				CECE852E2C4513CE00764AF5 /* UIButtonModel.m in Sources */,
 				CE1F24EA2C5CD50100324198 /* NSObject+NTESVerifyCodeManager.m in Sources */,
 				CECE85142C4513CE00764AF5 /* NSAttributedString+Extra.m in Sources */,
+				CE2E87402C689F9100260207 /* JobsBtnsStyleTBVCell.m in Sources */,
 				CECE85772C4513CE00764AF5 /* RBCLikeButton.m in Sources */,
 				CECE813D2C4512BF00764AF5 /* JobsUserHeaderDataViewTBVCell.m in Sources */,
 				CECE85AD2C4513CE00764AF5 /* UINavigationController+Extra.m in Sources */,
@@ -14161,7 +14196,6 @@
 				CECE7EA52C450E5B00764AF5 /* KTVHCDataUnitQueue.m in Sources */,
 				CECE7C9F2C450C5000764AF5 /* JobsSearchBar.m in Sources */,
 				CECE85982C4513CE00764AF5 /* UIControl+XY.m in Sources */,
-				CECE85C12C4513CE00764AF5 /* JobsBtnStyleTBVCell.m in Sources */,
 				CECE7C042C450C5000764AF5 /* HotRefreshVC.m in Sources */,
 				CECE7C3D2C450C5000764AF5 /* UIView+layout.m in Sources */,
 				CECE85CC2C4513CE00764AF5 /* HQTextField.m in Sources */,

@@ -84,7 +84,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsPullListTBVCell *cell = [JobsPullListTBVCell cellStyleDefaultWithTableView:tableView];
+    JobsPullListTBVCell *cell = JobsPullListTBVCell.cellStyleDefaultWithTableView(tableView);
     cell.contentView.backgroundColor = self.bgColorListTBV;
     cell.indexPath = indexPath;
     [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];

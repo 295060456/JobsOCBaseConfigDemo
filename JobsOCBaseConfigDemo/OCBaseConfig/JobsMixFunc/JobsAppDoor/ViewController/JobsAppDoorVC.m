@@ -244,7 +244,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 //        userModel.deviceId = deviceId;
 //        userModel.validate = validate;
 //        userModel.token = data.data;
-//        [self saveUserInfo:userModel];// 保存全局唯一的一份用户档案
+//        self.saveUserInfo(userModel);// 保存全局唯一的一份用户档案
 //
 //        if (self.jobsAppDoorContentView.getStoreCodeBtn.selected) {
 //            [self saveUserName:account];

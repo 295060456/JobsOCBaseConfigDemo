@@ -15,15 +15,17 @@
 
 @implementation JobsSearchResultDataListTBVCell
 
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsSearchResultDataListTBVCell *cell = (JobsSearchResultDataListTBVCell *)tableView.tableViewCellClass(JobsSearchResultDataListTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsSearchResultDataListTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.contentView.backgroundColor = JobsRandomColor;
-        cell.imageView.image = JobsIMG(@"放大镜");
-        cell.tapGR.enabled = YES;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        JobsSearchResultDataListTBVCell *cell = (JobsSearchResultDataListTBVCell *)tableView.tableViewCellClass(JobsSearchResultDataListTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsSearchResultDataListTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //        cell.contentView.backgroundColor = JobsRandomColor;
+            cell.imageView.image = JobsIMG(@"放大镜");
+            cell.tapGR.enabled = YES;
+        }return cell;
+    };
 }
 
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{

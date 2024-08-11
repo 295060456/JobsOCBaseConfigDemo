@@ -34,11 +34,11 @@ typedef NS_ENUM(NSUInteger, HotSearchStyle) {
 #endif /* HOT_SEARCH_STYLE_ENUM_DEFINED */
 /// 取数据
 static inline NSArray *_Nullable JobsSearchReadData(void){
-    return (NSArray *)[NSUserDefaults readWithKey:StorageID];
+    return (NSArray *)NSUserDefaults.readWithKey(StorageID);
 }
 /// 存数据
 static inline void JobsSearchStorageData(_Nonnull id data){
-    NSArray *arr = (NSArray *)[NSUserDefaults readWithKey:StorageID];
+    NSArray *arr = (NSArray *)NSUserDefaults.readWithKey(StorageID);
     UserDefaultModel *userDefaultModel = UserDefaultModel.new;
 
     if ([arr containsObject:data]) return;
@@ -47,7 +47,7 @@ static inline void JobsSearchStorageData(_Nonnull id data){
     userDefaultModel.obj = mutArr;
     userDefaultModel.key = StorageID;
 
-    [NSUserDefaults updateWithModel:userDefaultModel];
+    NSUserDefaults.updateWithModel(userDefaultModel);
 }
 
 #endif /* JobsSearchConfig_h */

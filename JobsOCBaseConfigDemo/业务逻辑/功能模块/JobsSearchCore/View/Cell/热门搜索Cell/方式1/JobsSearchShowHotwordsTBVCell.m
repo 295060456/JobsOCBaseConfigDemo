@@ -16,12 +16,14 @@
 @implementation JobsSearchShowHotwordsTBVCell
 
 #pragma mark —— BaseCellProtocol
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsSearchShowHotwordsTBVCell *cell = (JobsSearchShowHotwordsTBVCell *)tableView.tableViewCellClass(JobsSearchShowHotwordsTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsSearchShowHotwordsTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        JobsSearchShowHotwordsTBVCell *cell = (JobsSearchShowHotwordsTBVCell *)tableView.tableViewCellClass(JobsSearchShowHotwordsTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsSearchShowHotwordsTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }return cell;
+    };
 }
 
 +(CGFloat)cellHeightWithModel:(NSMutableArray <UIViewModel *>* _Nullable)model{

@@ -23,14 +23,16 @@
 
 @implementation JobsIMListTBVCell
 
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsIMListTBVCell *cell = (JobsIMListTBVCell *)tableView.tableViewCellClass(JobsIMListTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsIMListTBVCell initTableViewCellWithStyle:UITableViewCellStyleSubtitle];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.contentView.backgroundColor = JobsWhiteColor;
-        cell.backgroundColor = JobsWhiteColor;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        JobsIMListTBVCell *cell = (JobsIMListTBVCell *)tableView.tableViewCellClass(JobsIMListTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsIMListTBVCell.initTableViewCellWithStyle(UITableViewCellStyleSubtitle);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.contentView.backgroundColor = JobsWhiteColor;
+            cell.backgroundColor = JobsWhiteColor;
+        }return cell;
+    };
 }
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style

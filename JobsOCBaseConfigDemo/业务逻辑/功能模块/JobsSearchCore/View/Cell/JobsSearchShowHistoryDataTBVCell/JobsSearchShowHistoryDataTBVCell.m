@@ -14,15 +14,17 @@
 
 @implementation JobsSearchShowHistoryDataTBVCell
 #pragma mark —— BaseCellProtocol
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsSearchShowHistoryDataTBVCell *cell = (JobsSearchShowHistoryDataTBVCell *)tableView.tableViewCellClass(JobsSearchShowHistoryDataTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsSearchShowHistoryDataTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//        cell.contentView.backgroundColor = JobsRandomColor;
-        cell.imageView.image = JobsIMG(@"时钟");
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        JobsSearchShowHistoryDataTBVCell *cell = (JobsSearchShowHistoryDataTBVCell *)tableView.tableViewCellClass(JobsSearchShowHistoryDataTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsSearchShowHistoryDataTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //        cell.contentView.backgroundColor = JobsRandomColor;
+            cell.imageView.image = JobsIMG(@"时钟");
+        }return cell;
+    };
 }
 
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{

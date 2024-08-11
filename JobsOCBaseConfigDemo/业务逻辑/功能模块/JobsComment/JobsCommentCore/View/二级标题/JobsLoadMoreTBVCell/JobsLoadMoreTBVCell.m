@@ -15,14 +15,15 @@
 @end
 
 @implementation JobsLoadMoreTBVCell
-
 #pragma mark —— BaseCellProtocol
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsLoadMoreTBVCell *cell = (JobsLoadMoreTBVCell *)tableView.tableViewCellClass(JobsLoadMoreTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsLoadMoreTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
-        cell.contentView.backgroundColor = JobsCommentConfig.sharedInstance.bgCor;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        JobsLoadMoreTBVCell *cell = (JobsLoadMoreTBVCell *)tableView.tableViewCellClass(JobsLoadMoreTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsLoadMoreTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
+            cell.contentView.backgroundColor = JobsCommentConfig.sharedInstance.bgCor;
+        }return cell;
+    };
 }
 
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{

@@ -107,17 +107,16 @@
     JobsUserModel *userModel = JobsUserModel.new;
     userModel.token = @"12345";
     userModel.uid = @"54321";
-    
-    [self saveUserInfo:userModel];
+    self.saveUserInfo(userModel);
     NSLog(@"");
-    JobsUserModel *f = [self readUserInfo];
+    JobsUserModel *f = self.readUserInfo();
     NSLog(@"");
 }
 #pragma mark —— 读取Plist配置文件
 -(void)readPlistConfig{
     static dispatch_once_t readPlistConfigDispatchOnce;
     dispatch_once(&readPlistConfigDispatchOnce, ^{
-        id plistConfig = [self readLocalPlistWithFileName:@"MetaData"];
+        id plistConfig = self.readLocalPlistWithFileName(@"MetaData");
         NSLog(@"plistConfig = %@",plistConfig);
     });
 }

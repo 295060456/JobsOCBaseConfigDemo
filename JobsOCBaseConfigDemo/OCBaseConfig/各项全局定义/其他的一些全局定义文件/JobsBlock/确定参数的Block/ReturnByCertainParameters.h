@@ -12,6 +12,7 @@
 typedef id _Nullable(^JobsReturnIDByVoidBlock)(void);
 typedef id _Nullable(^JobsReturnIDByIDBlock)(id _Nullable data);
 typedef id _Nullable(^JobsReturnIDByStringBlock)(NSString * _Nullable data);
+typedef id _Nonnull(^JobsReturnIDBySaltStrBlock)(NSString * _Nullable salt);
 typedef id _Nullable(^JobsReturnIDBySELBlock)(SEL _Nullable data);
 typedef id _Nullable(^JobsReturnIDByGestureRecognizerBlock)(UIGestureRecognizer * _Nullable data);
 typedef id _Nullable(^JobsReturnIDByCGSizeBlock)(CGSize data);
@@ -27,6 +28,10 @@ typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransforme
 typedef UIColor *_Nullable(^JobsReturnColorByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
 
 typedef UITableViewHeaderFooterView __kindof * _Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Class _Nonnull cls,NSString * _Nullable salt);
+
+
+typedef UITableViewCell __kindof * _Nullable(^JobsReturnTableViewCellByTableViewCellStyleBlock)(UITableViewCellStyle tableViewCellStyle);
+typedef UITableViewCell __kindof * _Nullable(^JobsReturnTableViewCellByTableViewBlock)(UITableView * _Nonnull tableView);
 typedef UITableViewCell __kindof * _Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
 typedef UITableViewCell __kindof * _Nullable(^JobsReturnTableViewCellByClsBlock)(Class _Nonnull cls);
 typedef UITableViewCell __kindof * _Nullable(^JobsReturnTableViewCellByClsAndSaltStrBlock)(Class _Nonnull cls,
@@ -34,7 +39,8 @@ typedef UITableViewCell __kindof * _Nullable(^JobsReturnTableViewCellByClsAndSal
 typedef UITableViewCell __kindof * _Nullable(^JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block)(Class _Nonnull cls,
                                                                                                     NSString * _Nullable salt,
                                                                                                     NSIndexPath * _Nonnull indexPath);
-typedef id _Nonnull(^JobsReturnIDBySaltStrBlock)(NSString * _Nullable salt);
+
+typedef NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(NSString * _Nullable data);
 typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Class _Nonnull cls,NSString * _Nullable salt);
 
 typedef UICollectionViewCell __kindof * _Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);

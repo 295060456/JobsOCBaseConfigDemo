@@ -20,7 +20,6 @@
 @end
 
 @implementation AppDelegate
-
 static AppDelegate *AppDelegateInstance = nil;
 static dispatch_once_t AppDelegateOnceToken;
 + (instancetype)sharedManager {
@@ -58,8 +57,8 @@ static dispatch_once_t AppDelegateOnceToken;
     userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
     userModel.userName = @"张三丰";
     userModel.phone = @"134****0000";
-    [self saveUserInfo:userModel];
-//    id f = self.readUserInfo;
+    self.saveUserInfo(userModel);
+//    id f = self.readUserInfo();
 //    NSLog(@"");
 }
 #pragma mark —— 一些公有方法

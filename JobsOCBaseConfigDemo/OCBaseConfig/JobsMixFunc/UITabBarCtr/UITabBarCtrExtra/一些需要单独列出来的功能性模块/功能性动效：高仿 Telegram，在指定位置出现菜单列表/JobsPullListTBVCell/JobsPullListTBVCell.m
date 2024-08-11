@@ -13,12 +13,16 @@
 
 @implementation JobsPullListTBVCell
 
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    JobsPullListTBVCell *cell = (JobsPullListTBVCell *)tableView.tableViewCellClass(JobsPullListTBVCell.class,@"");
-    if (!cell) {
-        cell = [JobsPullListTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    @jobs_weakify(self)
+    return ^(UITableView * _Nonnull tableView) {
+        @jobs_strongify(self)
+        JobsPullListTBVCell *cell = (JobsPullListTBVCell *)tableView.tableViewCellClass(JobsPullListTBVCell.class,@"");
+        if (!cell) {
+            cell = JobsPullListTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }return cell;
+    };
 }
 
 -(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{

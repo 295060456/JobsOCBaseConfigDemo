@@ -99,8 +99,8 @@
                                  @"pageNum":@(self.currentPage)};
 
     [JobsNetworkingAPI requestApi:NSObject.appInterfaceTesting.funcName
-                     parameters:parameters
-                   successBlock:^(JobsResponseModel *data) {
+                       parameters:parameters
+                     successBlock:^(JobsResponseModel *data) {
         @jobs_strongify(self)
         NSLog(@"");
         if([data.data isKindOfClass:NSArray.class]){
@@ -203,7 +203,7 @@ numberOfRowsInSection:(NSInteger)section{
 
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsPlayerTBVCell *cell = [JobsPlayerTBVCell cellStyleValue1WithTableView:tableView];
+    JobsPlayerTBVCell *cell = JobsPlayerTBVCell.cellStyleValue1WithTableView(tableView);
     cell.index = indexPath.row;
     
     UIViewModel *viewModel = UIViewModel.new;

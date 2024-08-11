@@ -8,7 +8,6 @@
 #import "JobsIMVC.h"
 
 @interface JobsIMVC ()
-
 /// UI
 @property(nonatomic,strong)JobsIMInputview *inputview;
 @property(nonatomic,strong)UITableView *tableView;//显示数据
@@ -135,7 +134,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsIMChatInfoTBVCell *cell = [JobsIMChatInfoTBVCell cellStyleValue1WithTableView:tableView];
+    JobsIMChatInfoTBVCell *cell = JobsIMChatInfoTBVCell.cellStyleValue1WithTableView(tableView);
     cell.isShowChatUserName = YES;
     cell.indexPath = indexPath;
     cell.delegate = self;

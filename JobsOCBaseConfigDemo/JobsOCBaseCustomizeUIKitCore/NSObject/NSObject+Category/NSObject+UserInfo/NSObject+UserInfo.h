@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "NSUserDefaults+Manager.h"
 #import "JobsUserModel.h"
+#import "JobsBlock.h"
 
 FOUNDATION_EXTERN NSString * _Nonnull const 用户信息;
 FOUNDATION_EXTERN NSString * _Nonnull const 用户名数组;
@@ -25,9 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 登出清空用户数据
 -(void)logOut;
 /// 保存用户数据（用 NSUserDefaults ）
--(void)saveUserInfo:(JobsUserModel *)userModel;
+-(jobsByUserModelBlock)saveUserInfo;
 /// 读取用户信息
--(JobsUserModel *)readUserInfo;
+-(JobsReturnUserModelByVoidBlock)readUserInfo;
 #pragma mark —— 保存特定的用户数据（不随登出清空数据）
 ///【通过特定的用户名】 保存（更新）用户的本地资料（用 NSUserDefaults ）
 -(void)userNameToSaveUserInfo:(JobsUserModel <NSCoding>*)userModel;
@@ -53,9 +54,9 @@ NS_ASSUME_NONNULL_END
      userModel.token = @"12345";
      userModel.uid = @"54321";
      
-     [self saveUserInfo:userModel];
+     self.saveUserInfo(userModel);
      NSLog(@"");
-     JobsAppDoorVC *f = [self readUserInfo];
+     JobsAppDoorVC *f = self.readUserInfo();
      NSLog(@"");
  }
  

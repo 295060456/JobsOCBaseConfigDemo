@@ -14,24 +14,26 @@
 
 @implementation MyFansTBVCell
 
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    MyFansTBVCell *cell = (MyFansTBVCell *)tableView.tableViewCellClass(MyFansTBVCell.class,@"");
-    if (!cell) {
-        cell = [MyFansTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
-        cell.offsetXForEach = 10;
-        cell.offsetYForEach = 20;
-        //加阴影立体效果
-        [UIView makeTargetShadowview:cell
-                           superView:nil
-                     shadowDirection:ShadowDirection_rightDown
-                   shadowWithOffsetX:5
-                             offsetY:5
-                        cornerRadius:8
-                        shadowOffset:JobsDefaultSize
-                       shadowOpacity:1
-                    layerShadowColor:JobsDefaultObj
-                   layerShadowRadius:JobsDefaultValue];
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        MyFansTBVCell *cell = (MyFansTBVCell *)tableView.tableViewCellClass(MyFansTBVCell.class,@"");
+        if (!cell) {
+            cell = MyFansTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
+            cell.offsetXForEach = 10;
+            cell.offsetYForEach = 20;
+            //加阴影立体效果
+            [UIView makeTargetShadowview:cell
+                               superView:nil
+                         shadowDirection:ShadowDirection_rightDown
+                       shadowWithOffsetX:5
+                                 offsetY:5
+                            cornerRadius:8
+                            shadowOffset:JobsDefaultSize
+                           shadowOpacity:1
+                        layerShadowColor:JobsDefaultObj
+                       layerShadowRadius:JobsDefaultValue];
+        }return cell;
+    };
 }
 
 -(void)drawRect:(CGRect)rect{

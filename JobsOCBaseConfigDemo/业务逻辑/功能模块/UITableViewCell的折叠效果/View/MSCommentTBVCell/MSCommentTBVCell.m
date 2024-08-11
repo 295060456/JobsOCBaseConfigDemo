@@ -25,7 +25,7 @@ UIViewModelProtocol_synthesize
 +(instancetype)cellWithTableView:(UITableView *)tableView{
     MSCommentTBVCell *cell = (MSCommentTBVCell *)tableView.tableViewCellClass(MSCommentTBVCell.class,@"");
     if (!cell) {
-        cell = [MSCommentTBVCell initTableViewCellWithStyle:UITableViewCellStyleDefault];
+        cell = MSCommentTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = cell.contentView.backgroundColor = JobsWhiteColor;
         /**

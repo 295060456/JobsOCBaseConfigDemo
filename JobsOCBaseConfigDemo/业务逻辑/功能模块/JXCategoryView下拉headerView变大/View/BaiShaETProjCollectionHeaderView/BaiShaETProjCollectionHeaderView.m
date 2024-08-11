@@ -16,7 +16,6 @@
 @property(nonatomic,strong)JobsAnimationLabel *animationLab;
 @property(nonatomic,strong)UITableView *tableView;
 /// Data
-@property(nonatomic,assign)CGRect imageViewFrame;
 @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
 @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
 @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
@@ -28,9 +27,8 @@
 @end
 
 @implementation BaiShaETProjCollectionHeaderView
-
 @synthesize viewModel = _viewModel;
-
+@synthesize imageViewFrame = _imageViewFrame;
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{
@@ -113,7 +111,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)[JobsBaseTableViewCell cellStyleValue1WithTableView:tableView];
+    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)JobsBaseTableViewCell.cellStyleValue1WithTableView(tableView);
     
     cell.textLabelFrameOffsetY -= JobsWidth(2);
     cell.detailTextLabelOffsetY -= JobsWidth(2);
@@ -126,7 +124,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UIButton *)userHeaderBtn{
     if (!_userHeaderBtn) {
         _userHeaderBtn = UIButton.new;
-        _userHeaderBtn.normalTitle(self.readUserInfo.userName.add(JobsInternationalization(@"    VIP 0")));
+        _userHeaderBtn.normalTitle(self.readUserInfo().userName.add(JobsInternationalization(@"    VIP 0")));
         NSLog(@"%@",_userHeaderBtn.titleForNormalState);
         _userHeaderBtn.normalImage(JobsIMG(@"默认头像"));
         _userHeaderBtn.normalTitleColor(HEXCOLOR(0xAE8330));

@@ -115,7 +115,7 @@ numberOfRowsInSection:(NSInteger)section{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
 cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MSCommentTBVCell *cell = [MSCommentTBVCell cellStyleDefaultWithTableView:tableView];
+    MSCommentTBVCell *cell = MSCommentTBVCell.cellStyleDefaultWithTableView(tableView);
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.indexPath = indexPath;
     [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section].commentDataMutArr[indexPath.row]];

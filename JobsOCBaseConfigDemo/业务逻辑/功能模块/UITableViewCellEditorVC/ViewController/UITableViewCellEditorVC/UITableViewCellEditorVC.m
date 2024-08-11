@@ -203,7 +203,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = (UITableViewCell *)[UITableViewCell cellStyleValue1WithTableView:tableView];
+    UITableViewCell *cell = UITableViewCell.cellStyleValue1WithTableView(tableView);
     return cell;
 }
 #pragma mark —— lazyLoad

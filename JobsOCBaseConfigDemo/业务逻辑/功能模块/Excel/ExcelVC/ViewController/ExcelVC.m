@@ -12,7 +12,7 @@
 @property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <UIViewModel *>*>*dataMutArr;
+@property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutArr;
 
 @end
 
@@ -146,7 +146,16 @@ heightForFooterInSection:(NSInteger)section{
 viewForHeaderInSection:(NSInteger)section{
     if (self.viewModel.usesTableViewHeaderView) {
         BaseTableViewHeaderFooterView *headerView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
-        headerView.section = section;// 不写这一句有悬浮
+//        {
+//            /**
+//             如果不是继承自BaseTableViewHeaderFooterView，那么在UITableViewHeaderFooterView的派生类中，添加：
+//             @synthesize headerFooterViewStyle = _headerFooterViewStyle;
+//             */
+//            // 不写这三句有悬浮
+//            headerView.headerFooterViewStyle = JobsHeaderViewStyle;
+//            headerView.tableView = tableView;
+//            headerView.section = section;
+//        }
         [headerView richElementsInViewWithModel:nil];
         @jobs_weakify(self)
         [headerView actionObjectBlock:^(id data) {
@@ -159,7 +168,11 @@ viewForHeaderInSection:(NSInteger)section{
         viewForFooterInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
         BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
-        tbvFooterView.section = section;// 不写这一句有悬浮
+        {
+            // 不写这两句有悬浮
+            tbvFooterView.tableView = tableView;
+            tbvFooterView.section = section;
+        }
         tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
         tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
         
@@ -295,34 +308,33 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(!_tbvSectionRowCellMutArr){
         _tbvSectionRowCellMutArr = NSMutableArray.array;
         {
-            NSMutableArray <UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-            [_tbvSectionRowCellMutArr addObject:rowCellMutArr];
+            NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
+            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            _tbvSectionRowCellMutArr.jobsAddObject(rowCellMutArr);
         }
         
         {
-            NSMutableArray <UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-            [rowCellMutArr addObject:[JobsBaseTableViewCell cellStyleValue1WithTableView:self.tableView]];
-            [_tbvSectionRowCellMutArr addObject:rowCellMutArr];
+            NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
+            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            _tbvSectionRowCellMutArr.jobsAddObject(rowCellMutArr);
         }
     }return _tbvSectionRowCellMutArr;
 }
 
--(NSMutableArray<NSMutableArray<UIViewModel *> *> *)dataMutArr{
+-(NSMutableArray<NSMutableArray<__kindof UIViewModel *> *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = NSMutableArray.array;
         
         {
-            NSMutableArray <UIViewModel *>*rowMutArr = NSMutableArray.array;
+            NSMutableArray <__kindof UIViewModel *>*rowMutArr = NSMutableArray.array;
             
             {
                 UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJClassData")
                                                                attributeSubTitle:JobsInternationalization(@"正常")];
                 viewModel.cls = ZMJClassDataVC.class;
-                
                 rowMutArr.jobsAddObject(viewModel);
             }
             
@@ -351,7 +363,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
-            NSMutableArray <UIViewModel *>*rowMutArr = NSMutableArray.array;
+            NSMutableArray <__kindof UIViewModel *>*rowMutArr = NSMutableArray.array;
             
             {
                 UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"XZExcel")

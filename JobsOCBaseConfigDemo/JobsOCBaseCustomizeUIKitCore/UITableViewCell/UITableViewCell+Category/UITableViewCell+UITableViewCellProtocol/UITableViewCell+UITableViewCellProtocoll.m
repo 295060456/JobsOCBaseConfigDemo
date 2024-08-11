@@ -11,9 +11,13 @@
 #pragma mark —— @dynamic UITableViewCellProtocol
 UITableViewCellProtocol_dynamic
 #pragma mark —— UITableViewCellProtocol
-+(instancetype)initTableViewCellWithStyle:(UITableViewCellStyle)style{
-    return [self.alloc initWithStyle:style
-                     reuseIdentifier:self.class.description];
++(JobsReturnTableViewCellByTableViewCellStyleBlock)initTableViewCellWithStyle{
+    @jobs_weakify(self)
+    return ^(UITableViewCellStyle tableViewCellStyle) {
+        @jobs_strongify(self)
+        return [self.alloc initWithStyle:tableViewCellStyle
+                         reuseIdentifier:self.class.description];
+    };
 }
 
 +(instancetype)initTableViewCell:(Class)tableViewCellClass
@@ -23,49 +27,69 @@ UITableViewCellProtocol_dynamic
 }
 /// 4种UITableViewCell系统样式类型
 /// UITableViewCellStyleDefault = 左边：imageView＋textLabel
-+(instancetype)cellStyleDefaultWithTableView:(UITableView *)tableView{
-    UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
-    if (!cell) {
-        cell = [self initTableViewCell:self
-                             withStyle:UITableViewCellStyleDefault];
-        [self settingForTableViewCell:cell];
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
+    @jobs_weakify(self)
+    return ^(UITableView * _Nonnull tableView) {
+        @jobs_strongify(self)
+        UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
+        if (!cell) {
+            cell = [self initTableViewCell:self
+                                 withStyle:UITableViewCellStyleDefault];
+            cell.settingForTableViewCell();
+        }return cell;
+    };
 }
 /// UITableViewCellStyleValue1 = 左边：imageView＋textLabel；右边：detailTextLabel
-+(instancetype)cellStyleValue1WithTableView:(UITableView *)tableView{
-    UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
-    if (!cell) {
-        cell = [self initTableViewCell:self
-                             withStyle:UITableViewCellStyleValue1];
-        [self settingForTableViewCell:cell];
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    @jobs_weakify(self)
+    return ^(UITableView * _Nonnull tableView) {
+        @jobs_strongify(self)
+        UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
+        if (!cell) {
+            cell = [self initTableViewCell:self
+                                 withStyle:UITableViewCellStyleValue1];
+            cell.settingForTableViewCell();
+        }return cell;
+    };
 }
 /// UITableViewCellStyleValue2 = 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
-+(instancetype)cellStyleValue2WithTableView:(UITableView *)tableView{
-    UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
-    if (!cell) {
-        cell = [self initTableViewCell:self
-                             withStyle:UITableViewCellStyleValue2];
-        [self settingForTableViewCell:cell];
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView{
+    @jobs_weakify(self)
+    return ^(UITableView * _Nonnull tableView) {
+        @jobs_strongify(self)
+        UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
+        if (!cell) {
+            cell = [self initTableViewCell:self
+                                 withStyle:UITableViewCellStyleValue2];
+            cell.settingForTableViewCell();
+        }return cell;
+    };
 }
 /// UITableViewCellStyleSubtitle = 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
-+(instancetype)cellStyleSubtitleWithTableView:(UITableView *)tableView{
-    UITableViewCell *cell = (UITableViewCell *)tableView.tableViewCellClass(self.class,@"");
-    if (!cell) {
-        cell = [self initTableViewCell:self
-                             withStyle:UITableViewCellStyleSubtitle];
-        [self settingForTableViewCell:cell];
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
+    @jobs_weakify(self)
+    return ^(UITableView * _Nonnull tableView) {
+        @jobs_strongify(self)
+        UITableViewCell *cell = (UITableViewCell *)tableView.tableViewCellClass(self.class,@"");
+        if (!cell) {
+            cell = [self initTableViewCell:self
+                                 withStyle:UITableViewCellStyleSubtitle];
+            cell.settingForTableViewCell();
+        }return cell;
+    };
 }
 /// UITableViewCell的一些默认样式设置
-+(void)settingForTableViewCell:(UITableViewCell *)tableViewCell{
-    tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    tableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    /// 适配iOS 13夜间模式/深色外观(Dark Mode)
-    tableViewCell.backgroundColor = [UIColor xy_createWithLightColor:JobsWhiteColor darkColor:JobsWhiteColor];
-    tableViewCell.detailTextLabel.textColor = JobsBrownColor;
-    tableViewCell.textLabel.textColor = JobsBlackColor;
+-(jobsByVoidBlock _Nonnull)settingForTableViewCell{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        /// 适配iOS 13夜间模式/深色外观(Dark Mode)
+        self.backgroundColor = [UIColor xy_createWithLightColor:JobsWhiteColor darkColor:JobsWhiteColor];
+        self.detailTextLabel.textColor = JobsBrownColor;
+        self.textLabel.textColor = JobsBlackColor;
+    };
 }
 /// 获取这个UITableViewCell所承载的UITableView
 -(UITableView *)jobsGetCurrentTableView{
