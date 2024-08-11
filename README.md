@@ -6027,11 +6027,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         viewForHeaderInSection:(NSInteger)section{
             UITableViewHeaderFooterView *headerView = self.tbvHeaderFooterViewMutArr[section];
             {
-                // 不写这两句有悬浮
+                /**
+                 如果不是继承自BaseTableViewHeaderFooterView，那么在UITableViewHeaderFooterView的派生类中，添加：
+                 @synthesize headerFooterViewStyle = _headerFooterViewStyle;
+                 */
+                // 不写这三句有悬浮
+                headerView.headerFooterViewStyle = JobsHeaderViewStyle;
                 headerView.tableView = tableView;
                 headerView.section = section;
             }
-            
             [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
             @jobs_weakify(self)
             [headerView actionObjectBlock:^(id data) {
@@ -6097,10 +6101,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           }
           headerView.backgroundColor = JobsBlueColor;
           {
-         		 // 不写这两句有悬浮
-         		 headerView.tableView = tableView;
-         		 headerView.section = section;
-    		  }
+              /**
+               如果不是继承自BaseTableViewHeaderFooterView，那么在UITableViewHeaderFooterView的派生类中，添加：
+               @synthesize headerFooterViewStyle = _headerFooterViewStyle;
+               */
+              // 不写这三句有悬浮
+              headerView.headerFooterViewStyle = JobsHeaderViewStyle;
+              headerView.tableView = tableView;
+              headerView.section = section;
+          }
           [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
           @jobs_weakify(self)
           [headerView actionObjectBlock:^(id data) {
