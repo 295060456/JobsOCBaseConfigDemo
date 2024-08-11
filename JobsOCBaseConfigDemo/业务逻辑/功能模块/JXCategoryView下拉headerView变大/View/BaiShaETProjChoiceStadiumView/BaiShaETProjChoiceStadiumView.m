@@ -198,7 +198,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = self.tbvCellMutArr[indexPath.row];
-    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
+    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     cell.textLabel.textColor = HEXCOLOR(0x757575);
     cell.textLabel.font = UIFontWeightRegularSize(16);
     cell.textLabelFrameOffsetX = JobsWidth(16);
@@ -235,11 +235,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self feedbackGenerator];//震动反馈
+                NSObject.feedbackGenerator();//震动反馈
             //    if (data.count) {
-            //        [self endRefreshing:self.tableView];
+            //        self.endRefreshing(self->_tableView);
             //    }else{
-            //        [self endRefreshingWithNoMoreData:self.tableView];
+            //        self.endRefreshingWithNoMoreData(self->_tableView);
             //    }
                 return nil;
             };
@@ -252,7 +252,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self endRefreshing:self.tableView];
+                self.endRefreshing(self->_tableView);
                 return nil;
             };
             

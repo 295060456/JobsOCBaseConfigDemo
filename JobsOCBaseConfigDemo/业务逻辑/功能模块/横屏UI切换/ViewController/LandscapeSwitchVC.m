@@ -8,11 +8,6 @@
 #import "LandscapeSwitchVC.h"
 
 @interface LandscapeSwitchVC ()
-<
-UICollectionViewDataSource
-,UICollectionViewDelegate
-,UICollectionViewDelegateFlowLayout
->
 /// UI
 @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)BaseCollectionView *collectionView;
@@ -170,19 +165,19 @@ UICollectionViewDataSource
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     JobsBaseCollectionViewCell *cell = [JobsBaseCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.item]];
+    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.item]);
     cell.contentView.backgroundColor = JobsRandomColor;
     return cell;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
-     numberOfItemsInSection:(NSInteger)section {
+numberOfItemsInSection:(NSInteger)section {
     return self.dataMutArr.count;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
-           viewForSupplementaryElementOfKind:(NSString *)kind
-                                 atIndexPath:(NSIndexPath *)indexPath {
+viewForSupplementaryElementOfKind:(NSString *)kind
+atIndexPath:(NSIndexPath *)indexPath {
     if (kind.isEqualToString(UICollectionElementKindSectionHeader)) {
         ReturnBaseCollectionReusableHeaderView
     }else if (kind.isEqualToString(UICollectionElementKindSectionFooter)) {
@@ -237,7 +232,7 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark —— UICollectionViewDelegateFlowLayout
 /// header 大小
 - (CGSize)collectionView:(UICollectionView *)collectionView
-layout:(UICollectionViewLayout *)collectionViewLayout
+                  layout:(UICollectionViewLayout *)collectionViewLayout
 referenceSizeForHeaderInSection:(NSInteger)section {
     return [JobsHeaderFooterView collectionReusableViewSizeWithModel:nil];
 }
@@ -316,13 +311,13 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self feedbackGenerator];//震动反馈
+                NSObject.feedbackGenerator();//震动反馈
                 [self withdrawBanklist:^(NSArray *data) {
                     @jobs_strongify(self)
                     if (data.count) {
-                        [self endRefreshing:self.collectionView];
+                        self.endRefreshing(self->_collectionView);
                     }else{
-                        [self endRefreshingWithNoMoreData:self.collectionView];
+                        self.endRefreshingWithNoMoreData(self->_collectionView);
                     }
                     /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
                     @jobs_weakify(self)
@@ -342,7 +337,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self endRefreshing:self.collectionView];
+                self.endRefreshing(self->_collectionView);
                 return nil;
             };
             self.refreshConfigHeader = refreshConfigHeader;
@@ -365,7 +360,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         }
         
 //        {
-//            
+//
 //            NSArray *classArray = @[
 //                                    DDCollectionViewCell_Style2.class,
 //                                    DDCollectionViewCell_Style3.class,
@@ -376,18 +371,18 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 //                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeWithModel:nil]],
 //                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeWithModel:nil]]
 //                                   ];
-//            
+//
 //            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:classArray
 //                                                                              cellSizeArray:sizeArray
 //                                                                         animatedCountArray:@[@(1),@(1),@(1)]];
-//            
+//
 //            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
 //                                                   viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeWithModel:nil]
 //                                                  toSection:0];
 //            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
 //                                                   viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeWithModel:nil]
 //                                                  toSection:2];
-//            
+//
 //            _collectionView.tabAnimated.containNestAnimation = YES;
 //            _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
 //            _collectionView.tabAnimated.canLoadAgain = YES;

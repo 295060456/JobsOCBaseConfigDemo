@@ -151,7 +151,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvCellMutArr[indexPath.row];
-    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
+    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     return cell;
 }
 
@@ -172,7 +172,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             @jobs_strongify(self)
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:@"用户信息展示(开发测试专用)" attributeSubTitle:nil];
             viewModel.cls = JobsShowObjInfoVC.class;
-            viewModel.requestParams = self.readUserInfo;
+            viewModel.requestParams = self.readUserInfo();
             [self forceComingToPushVC:viewModel.cls.new
                         requestParams:viewModel];// 测试专用
             return nil;
@@ -208,8 +208,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
                 /// 下拉刷新
-                [self feedbackGenerator];//震动反馈
-                [self endRefreshing:self.tableView];
+                NSObject.feedbackGenerator();//震动反馈
+                self.endRefreshing(self->_tableView);
                 return nil;
             };
             
@@ -221,7 +221,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data){
                 @jobs_strongify(self)
-                [self endRefreshing:self.tableView];
+                self.endRefreshing(self->_tableView);
                 return nil;
             };
             

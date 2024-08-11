@@ -26,25 +26,30 @@
     }return self;
 }
 #pragma mark —— BaseCellProtocol
--(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
-    self.serialStr = [NSString stringWithFormat:@"%ld",self.indexPath.row + 1];
-    self.viewModel = model;
-    switch (self.indexPath.row) {
-        case 0:{
-            self.serialNumLabBGCor = RGB_COLOR(245, 58, 50);
-        }break;
-        case 1:{
-            self.serialNumLabBGCor = RGB_COLOR(255, 115, 38);
-        }break;
-        case 2:{
-            self.serialNumLabBGCor = RGB_COLOR(253, 198, 48);
-        }break;
-        default:{
-            self.serialNumLabBGCor = RGB_COLOR(232, 232, 232);
-        }break;
-    }
-    self.serialNumLab.alpha = 1;
-    self.contentLab.alpha = 1;
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.serialStr = toStringByLong(self.indexPath.row + 1);
+        self.viewModel = model;
+        switch (self.indexPath.row) {
+            case 0:{
+                self.serialNumLabBGCor = RGB_COLOR(245, 58, 50);
+            }break;
+            case 1:{
+                self.serialNumLabBGCor = RGB_COLOR(255, 115, 38);
+            }break;
+            case 2:{
+                self.serialNumLabBGCor = RGB_COLOR(253, 198, 48);
+            }break;
+            default:{
+                self.serialNumLabBGCor = RGB_COLOR(232, 232, 232);
+            }break;
+        }
+        self.serialNumLab.alpha = 1;
+        self.contentLab.alpha = 1;
+    };
 }
 #pragma mark —— lazyLoad
 -(UILabel *)serialNumLab{

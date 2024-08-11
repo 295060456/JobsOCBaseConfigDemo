@@ -14,9 +14,7 @@
 @implementation JobsPullListTBVCell
 
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
-    @jobs_weakify(self)
     return ^(UITableView * _Nonnull tableView) {
-        @jobs_strongify(self)
         JobsPullListTBVCell *cell = (JobsPullListTBVCell *)tableView.tableViewCellClass(JobsPullListTBVCell.class,@"");
         if (!cell) {
             cell = JobsPullListTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
@@ -24,10 +22,14 @@
         }return cell;
     };
 }
-
--(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
-    self.textLabel.text = model.textModel.text;
-    self.imageView.image = model.image;
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.textLabel.text = model.textModel.text;
+        self.imageView.image = model.image;
+    };
 }
 
 @end

@@ -76,13 +76,13 @@
 -(void)setMJModel:(JobsCommentModel *)mjModel{
     self.mjModel = mjModel;
     [self dataSource:self.mjModel.listDataArr contentView:self.tableView];
-    [self endRefreshing:self.tableView];
+    self.endRefreshing(self->_tableView);
 }
 
 -(void)setYYModel:(JobsCommentModel *)yyModel{
     self.yyModel = yyModel;
     [self dataSource:self.yyModel.listDataArr contentView:self.tableView];
-    [self endRefreshing:self.tableView];
+    self.endRefreshing(self->_tableView);
 }
 
 -(JobsCommentTitleHeaderView *)getJobsCommentTitleHeaderView{
@@ -138,7 +138,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (customCofigModel.isFullShow) {
         JobsInfoTBVCell *cell = JobsInfoTBVCell.cellStyleValue1WithTableView(tableView);
-        [cell richElementsInCellWithModel:childCommentModel];
+        cell.richElementsInCellWithModel(childCommentModel);
 //        @jobs_weakify(self)
         [cell actionObjectBlock:^(id data) {
 //            @jobs_strongify(self)
@@ -147,7 +147,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         if (indexPath.row <= customCofigModel.firstShowNum) {
             // 二级评论展示...
             JobsInfoTBVCell *cell = JobsInfoTBVCell.cellStyleValue1WithTableView(tableView);
-            [cell richElementsInCellWithModel:childCommentModel];
+            cell.richElementsInCellWithModel(childCommentModel);
 //            @jobs_weakify(self)
             [cell actionObjectBlock:^(id data) {
 //                @jobs_strongify(self)
@@ -155,7 +155,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         }else{
             // 加载更多...
             JobsLoadMoreTBVCell *cell = JobsLoadMoreTBVCell.cellStyleValue1WithTableView(tableView);
-            [cell richElementsInCellWithModel:nil];
+            cell.richElementsInCellWithModel(nil);
             return cell;
         }
     }
@@ -241,7 +241,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
 
                 NSLog(@"self.mjModel = %@",self.mjModel);
                 [self dataSource:self.mjModel.listDataArr contentView:self.tableView];
-                [self endRefreshing:self.tableView];
+                self.endRefreshing(self->_tableView);
                 // 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
                 self.tableView.pagingEnabled = NO;
                 self.tableView.mj_footer.state = MJRefreshStateIdle;
@@ -260,7 +260,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
                 NSLog(@"上拉加载更多");
-                [self endRefreshing:self.tableView];
+                self.endRefreshing(self->_tableView);
                 return nil;
             };
             // 赋值

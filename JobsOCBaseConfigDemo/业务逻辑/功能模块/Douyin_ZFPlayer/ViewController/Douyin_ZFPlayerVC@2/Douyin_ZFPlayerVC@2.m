@@ -129,7 +129,7 @@
         [self playTheVideoAtIndexPath:indexPath];
     }];
     
-    [self endRefreshing:self.tableView];
+    self.endRefreshing(self.tableView);
 //    [self endRefreshingWithNoMoreData:self.tableView];
 }
 /**
@@ -242,7 +242,7 @@ numberOfRowsInSection:(NSInteger)section {
     JobsVideoTBVCell *cell = JobsVideoTBVCell.cellStyleValue1WithTableView(tableView);
     cell.delegate = self;
     cell.index = indexPath.row;
-    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
+    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     return cell;
 }
 
@@ -747,7 +747,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         NSLog(@"");
         if([data.data isKindOfClass:NSArray.class]){
             NSArray *tempDataArr = (NSArray *)data.data;
-            
             {// 数据组装
                 /**
                     上拉加载更多
@@ -769,9 +768,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 if (isLoadMore) {
                     if (tempDataArr.count) {
                         [self.dataMutArr addObjectsFromArray:tempDataArr];
-                        [self endRefreshing:self.tableView];//上拉加载更多
+                        self.endRefreshing(self->_tableView);//上拉加载更多
                     }else{
-                        [self endRefreshingWithNoMoreData:self.tableView];//没有更多数据了
+                        self.endRefreshingWithNoMoreData(self->_tableView);//没有更多数据了
                     }
                 }
             }
@@ -781,7 +780,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 @jobs_strongify(self)
                 [self playTheVideoAtIndexPath:indexPath];
             }];
-            
         }
     }failureBlock:^(id data) {
         @jobs_strongify(self)

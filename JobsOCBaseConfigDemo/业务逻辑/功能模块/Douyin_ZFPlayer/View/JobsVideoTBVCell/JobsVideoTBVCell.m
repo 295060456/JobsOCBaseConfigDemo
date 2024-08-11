@@ -37,19 +37,23 @@
         return tbv.mj_h;
     }return JobsMainScreen_HEIGHT();
 }
-
--(void)richElementsInCellWithModel:(VideoModel_Core *_Nullable)model{
-    if ([model isKindOfClass:VideoModel_Core.class]) {
-        self.data = (VideoModel_Core *)model;
-        self.label.text = [NSString stringWithFormat:@"%ld",(long)self.index];
-        self.rotation.alpha = 1;
-        [self.coverImageView setImageWithURLString:self.data.videoImg
-                                       placeholder:JobsIMG(@"视频封面")];
-        self.rbView.alpha = 1;
-        self.textLabel.text = self.data.videoTitle;
-        self.textLabel.textColor = JobsRedColor;
-//        self.rotation.hidden;// 宽大于高 = 横屏视频，才支持旋转
-    }
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(VideoModel_Core *_Nullable model) {
+        @jobs_strongify(self)
+        if ([model isKindOfClass:VideoModel_Core.class]) {
+            self.data = (VideoModel_Core *)model;
+            self.label.text = [NSString stringWithFormat:@"%ld",(long)self.index];
+            self.rotation.alpha = 1;
+            [self.coverImageView setImageWithURLString:self.data.videoImg
+                                           placeholder:JobsIMG(@"视频封面")];
+            self.rbView.alpha = 1;
+            self.textLabel.text = self.data.videoTitle;
+            self.textLabel.textColor = JobsRedColor;
+    //        self.rotation.hidden;// 宽大于高 = 横屏视频，才支持旋转
+        }
+    };
 }
 #pragma mark —— lazyLoad
 -(UIImageView *)coverImageView{

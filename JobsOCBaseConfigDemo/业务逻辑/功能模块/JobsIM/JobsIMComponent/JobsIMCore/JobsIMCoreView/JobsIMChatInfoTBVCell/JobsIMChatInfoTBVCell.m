@@ -79,48 +79,52 @@
         return 0;
     }
 }
-
--(void)richElementsInCellWithModel:(JobsIMChatInfoModel *_Nullable)model{
-    if ([model isKindOfClass:JobsIMChatInfoModel.class]) {
-        JobsIMChatInfoModel *chatInfoModel = (JobsIMChatInfoModel *)model;
-        if ([chatInfoModel.identification isEqualToString:@"我是服务器"]) {//对方发的消息
-            self.infoLocation = InfoLocation_Left;
-        }else if ([chatInfoModel.identification isEqualToString:@"我是我自己"]){//自己发的消息
-            self.infoLocation = InfoLocation_Right;
-        }else{
-            self.infoLocation = InfoLocation_Unknown;
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        if ([model isKindOfClass:JobsIMChatInfoModel.class]) {
+            JobsIMChatInfoModel *chatInfoModel = (JobsIMChatInfoModel *)model;
+            if ([chatInfoModel.identification isEqualToString:@"我是服务器"]) {//对方发的消息
+                self.infoLocation = InfoLocation_Left;
+            }else if ([chatInfoModel.identification isEqualToString:@"我是我自己"]){//自己发的消息
+                self.infoLocation = InfoLocation_Right;
+            }else{
+                self.infoLocation = InfoLocation_Unknown;
+            }
+            
+            self.senderChatTextStr = chatInfoModel.chatTextStr;
+            self.senderChatTextTimeStr = chatInfoModel.chatTextTimeStr;
+            self.senderChatUserIconIMG = chatInfoModel.userIconIMG;
+            self.senderUserNameStr = chatInfoModel.userNameStr;
+            self.identification = chatInfoModel.identification;
+            
+    #warning 这里需要被修改
+            //先定宽，再定高
+    //        CGFloat contentWidthTemp = [self.senderChatTextStr getContentHeightOrWidthWithParagraphStyleLineSpacing:0
+    //                                                                                          calcLabelHeight_Width:CalcLabelWidth
+    //                                                                                                           font:NULL
+    //                                                                                   boundingRectWithHeight_Width:JobsIMChatInfoTBVDefaultCellHeight()];
+    //        //保证最小宽度 且 小于最大宽度
+    //        self.contentWidth = MIN(JobsIMChatInfoTBVChatContentLabWidth(), MAX(JobsIMChatInfoTBVChatContentLabDefaultWidth(), contentWidthTemp));
+    //
+    //        self.contentHeight = [self.senderChatTextStr getContentHeightOrWidthWithParagraphStyleLineSpacing:0
+    //                                                                                    calcLabelHeight_Width:CalcLabelHeight
+    //                                                                                                     font:NULL
+    //                                                                             boundingRectWithHeight_Width:self.contentWidth];
+            
+            NSLog(@"contentHeight = %f",self.contentHeight);
+            NSLog(@"contentWidth = %f",self.contentWidth);
+            
+            [self.iconIMGV sd_setImageWithURL:[NSURL URLWithString:chatInfoModel.userIconURLStr]
+                             placeholderImage:chatInfoModel.userIconIMG];
+            self.chatUserNameLab.alpha = self.isShowChatUserName;
+            self.chatBubbleIMGV.alpha = 1;
+            self.chatContentLab.alpha = 1;
+            self.timeLab.alpha= 1;
         }
-        
-        self.senderChatTextStr = chatInfoModel.chatTextStr;
-        self.senderChatTextTimeStr = chatInfoModel.chatTextTimeStr;
-        self.senderChatUserIconIMG = chatInfoModel.userIconIMG;
-        self.senderUserNameStr = chatInfoModel.userNameStr;
-        self.identification = chatInfoModel.identification;
-        
-#warning 这里需要被修改
-        //先定宽，再定高
-//        CGFloat contentWidthTemp = [self.senderChatTextStr getContentHeightOrWidthWithParagraphStyleLineSpacing:0
-//                                                                                          calcLabelHeight_Width:CalcLabelWidth
-//                                                                                                           font:NULL
-//                                                                                   boundingRectWithHeight_Width:JobsIMChatInfoTBVDefaultCellHeight()];
-//        //保证最小宽度 且 小于最大宽度
-//        self.contentWidth = MIN(JobsIMChatInfoTBVChatContentLabWidth(), MAX(JobsIMChatInfoTBVChatContentLabDefaultWidth(), contentWidthTemp));
-//
-//        self.contentHeight = [self.senderChatTextStr getContentHeightOrWidthWithParagraphStyleLineSpacing:0
-//                                                                                    calcLabelHeight_Width:CalcLabelHeight
-//                                                                                                     font:NULL
-//                                                                             boundingRectWithHeight_Width:self.contentWidth];
-        
-        NSLog(@"contentHeight = %f",self.contentHeight);
-        NSLog(@"contentWidth = %f",self.contentWidth);
-        
-        [self.iconIMGV sd_setImageWithURL:[NSURL URLWithString:chatInfoModel.userIconURLStr]
-                         placeholderImage:chatInfoModel.userIconIMG];
-        self.chatUserNameLab.alpha = self.isShowChatUserName;
-        self.chatBubbleIMGV.alpha = 1;
-        self.chatContentLab.alpha = 1;
-        self.timeLab.alpha= 1;
-    }
+    };
 }
 #pragma mark —— 一些私有化方法
 -(NSArray *)createLeftButtons{

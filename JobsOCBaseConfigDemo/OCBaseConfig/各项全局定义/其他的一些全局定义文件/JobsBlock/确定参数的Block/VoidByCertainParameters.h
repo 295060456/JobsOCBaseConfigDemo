@@ -21,6 +21,7 @@ typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
 typedef void(^jobsByCorBlock)(UIColor *_Nullable data);
 typedef void(^jobsByFontBlock)(UIFont *_Nullable data);
 typedef void(^jobsByViewBlock)(UIView __kindof * _Nullable view);
+typedef void(^jobsByScrollViewBlock)(UIScrollView * _Nullable data);
 typedef void(^jobsByBtnBlock)(UIButton __kindof * _Nullable btn);
 typedef void(^jobsByWindowBlock)(UIWindow __kindof * _Nullable data);
 typedef void(^jobsByClassBlock)(Class _Nonnull cls);
@@ -33,6 +34,7 @@ typedef void(^jobsByVCAndDataBlock)(UIViewController __kindof * _Nullable viewCo
 typedef void(^jobsByViewAndAnimatedBlock)(UIView __kindof * _Nullable view,BOOL animated);
 typedef void(^jobsByView2Block)(UIView __kindof * _Nullable superview,UIView __kindof * _Nullable view);
 typedef void(^jobsByTableViewCellBlock)(UITableViewCell __kindof * _Nullable data);
+typedef void(^jobsByURLSessionDataTaskBlock)(NSURLSessionDataTask __kindof * _Nullable data);
 
 typedef void(^jobsByNSIntegerBlock)(NSInteger data);
 typedef void(^jobsByNSUIntegerBlock)(NSUInteger data);

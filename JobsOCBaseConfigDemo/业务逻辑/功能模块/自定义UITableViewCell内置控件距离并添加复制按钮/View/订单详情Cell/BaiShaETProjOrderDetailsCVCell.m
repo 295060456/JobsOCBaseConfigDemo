@@ -41,9 +41,13 @@
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
-    self.viewModel = model ? : UIViewModel.new;
-    self.tableView.alpha = 1;
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.viewModel = model ? : UIViewModel.new;
+        self.tableView.alpha = 1;
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)cellSizeWithModel:(UIViewModel *_Nullable)model{
@@ -78,7 +82,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.textLabelFrameOffsetX = JobsWidth(-13);/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
     cell.detailTextLabelOffsetX = JobsWidth(-65);/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
 
-    [cell richElementsInCellWithModel:self.viewModel.jobsDataMutArr[indexPath.row]];
+    cell.richElementsInCellWithModel(self.viewModel.jobsDataMutArr[indexPath.row]);
     
     _jobsCopyBtn = nil;/// ❤️ 关键。[self layoutIfNeeded];会出现异常
     [cell.contentView addSubview:self.jobsCopyBtn];

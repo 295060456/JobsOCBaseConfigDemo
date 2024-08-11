@@ -775,7 +775,8 @@ class UITableViewCellProtocol {
 BaseCellProtocol <|-- UITableViewCellProtocol
 
 class BaseCellProtocol {
-    +-(void)richElementsInCellWithModel:(id _Nullable)model;
+    +-(jobsByIDBlock _Nonnull)richElementsInCellWithModel;
+    +-(jobsByIDBlock _Nonnull)richElementsInCellWithModel2;
     ++(CGFloat)cellHeightWithModel:(id _Nullable)model;
     ++(CGSize)cellSizeWithModel:(id _Nullable)model;
     +-(void)setCellBgImage:(UIImage *)bgImage;
@@ -5038,7 +5039,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                                       cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
        JobsImageNumberViewCVCell *cell = [JobsImageNumberViewCVCell cellWithCollectionView:collectionView
                                                                       forIndexPath:indexPath];
-       [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
+       cell.richElementsInCellWithModel(self.dataMutArr[indexPath.row]);
        return cell;
    }
    
@@ -5827,7 +5828,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       JobsBaseTableViewCell *cell = self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       cell.indexPath = indexPath;
-      [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section][indexPath.row]];
+      cell.richElementsInCellWithModel(self.dataMutArr[indexPath.section][indexPath.row]);
       return cell;
   }
   
@@ -6320,7 +6321,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
     ![image-20240809204521742](./assets/UITableViewCellStyleValue2.png)
 
-* `UITableViewCell`.<font color=red>**registerClass**</font>
+* 一些用做基类的**`UITableViewCell`**
+
+  * **`JobsBaseTableViewCell`**：用于内部子控件的重定义Frame
+  * **`JobsBtnStyleTBVCell`**：将一个按钮整体覆盖在`TableViewCell`之上，利用按钮内部图文进行布局
+    * **`JobsImageStyleTBVCell`**：将一个图像整体覆盖在`TableViewCell`之上
+  * **`JobsTextStyleTBVCell`**：将一个文本整体覆盖在`TableViewCell`之上
+    * **`JobsBtnsStyleTBVCell`**：左右两边各有一个`UIButton`
+
+* **`UITableViewCell`**.<font color=red>**registerClass**</font>
 
   * 使用`registerClass`注册`UITableViewCell`与直接创建`UITableViewCell`实例之间的**主要区别在于单元格的重用机制**
 

@@ -29,7 +29,7 @@ UITableViewCell_UIViewModelProtocolSynthesize
               reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style
                     reuseIdentifier:reuseIdentifier]) {
-        [self richElementsInCellWithModel:nil];
+        self.richElementsInCellWithModel(nil);
         self.selectionStyle = UITableViewCellSelectionStyleNone;// 取消点击效果 【不能在cellStyleValue1WithTableView里面写】
         self.backgroundColor = self.contentView.backgroundColor = HEXCOLOR(0xFBF7E3);
         self.selectedBackgroundView = [UIView.alloc initWithFrame:self.frame];// 这句不可省略
@@ -37,12 +37,16 @@ UITableViewCell_UIViewModelProtocolSynthesize
     }return self;
 }
 
--(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
-    if (model) {
-        self.viewModel = model;
-        self.textLabel.text = [NSString stringWithFormat:@"%@",model.textModel.text];
-        self.detailTextLabel.text = [NSString stringWithFormat:@"%@",model.subTextModel.text];
-    }
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        if (model) {
+            self.viewModel = model;
+            self.textLabel.text = [NSString stringWithFormat:@"%@",model.textModel.text];
+            self.detailTextLabel.text = [NSString stringWithFormat:@"%@",model.subTextModel.text];
+        }
+    };
 }
 
 +(CGFloat)cellHeightWithModel:(UIViewModel *_Nullable)model{

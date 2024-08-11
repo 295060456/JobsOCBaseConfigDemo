@@ -80,9 +80,8 @@ static dispatch_once_t static_popupView10OnceToken;
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
 cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     JobsBtnStyleCVCell *cell = [JobsBtnStyleCVCell cellWithCollectionView:collectionView
-                                             forIndexPath:indexPath];
-    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.item]];
-
+                                                             forIndexPath:indexPath];
+    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.item]);
     if (indexPath.item == self.selectedIndex - 1) {
         cell.getBtn.backgroundColor = HEXCOLOR(0xFFEABA);
         cell.getBtn.normalTitleColor(HEXCOLOR(0xAE8330));

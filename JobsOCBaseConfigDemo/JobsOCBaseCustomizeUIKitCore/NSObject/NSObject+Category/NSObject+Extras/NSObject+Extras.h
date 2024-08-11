@@ -265,13 +265,13 @@ BaseProtocol
 /// 依据View上铆定的internationalizationKEY来全局更改文字以适配国际化
 -(void)languageSwitch;
 /// 打印请求体
--(void)printRequestMessage:(NSURLSessionDataTask *_Nonnull)task;
+-(jobsByURLSessionDataTaskBlock _Nonnull)printRequestMessage;
 /// 判断是否是此版本App的首次启动
 -(BOOL)isAppFirstLaunch;
 /// 判断是否是App今日的首次启动
 -(BOOL)isTodayAppFirstLaunch;
 /// 震动特效反馈
--(jobsByVoidBlock _Nonnull)feedbackGenerator;
++(jobsByVoidBlock _Nonnull)feedbackGenerator;
 /// 检测用户是否锁屏：根据屏幕光线来进行判定，而不是系统通知
 -(JobsReturnBOOLByVoidBlock _Nonnull)didUserPressLockButton;
 /// iOS 限制自动锁屏 lockSwitch:YES(关闭自动锁屏)
@@ -445,15 +445,15 @@ BaseProtocol
 -(void)keyboard;
 #pragma mark —— 刷新
 /// 停止刷新【可能还有数据的情况，状态为：MJRefreshStateIdle】
--(void)endRefreshing:(UIScrollView *_Nonnull)targetScrollView;
+-(jobsByScrollViewBlock _Nonnull)endRefreshing;
 /// 停止刷新【没有数据的情况，状态为：MJRefreshStateNoMoreData】
--(void)endRefreshingWithNoMoreData:(UIScrollView *_Nonnull)targetScrollView;
+-(jobsByScrollViewBlock _Nonnull)endRefreshingWithNoMoreData;
 /// 停止MJHeader的刷新
--(void)endMJHeaderRefreshing:(UIScrollView *_Nonnull)targetScrollView;
+-(jobsByScrollViewBlock _Nonnull)endMJHeaderRefreshing;
 /// 停止MJFooter的刷新【没有数据的情况，状态为：MJRefreshStateNoMoreData】
--(void)endMJFooterRefreshingWithNoMoreData:(UIScrollView *_Nonnull)targetScrollView;
+-(jobsByScrollViewBlock _Nonnull)endMJFooterRefreshingWithNoMoreData;
 /// 停止MJFooter刷新【可能还有数据的情况，状态为：MJRefreshStateIdle】
--(void)endMJFooterRefreshingWithMoreData:(UIScrollView *_Nonnull)targetScrollView;
+-(jobsByScrollViewBlock _Nonnull)endMJFooterRefreshingWithMoreData;
 /// 根据数据源【数组】是否有值进行判定：占位图 和 mj_footer 的显隐性
 -(void)dataSource:(NSArray *_Nonnull)dataSource
       contentView:(UIScrollView *_Nonnull)contentView;

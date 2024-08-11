@@ -99,7 +99,7 @@ static dispatch_once_t static_shareViewOnceToken;
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MSMineView6CVCell *cell = [MSMineView6CVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
+    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     return cell;
 }
 
@@ -281,8 +281,8 @@ insetForSectionAtIndex:(NSInteger)section {
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self feedbackGenerator];//震动反馈
-                [self endRefreshing:self.collectionView];
+                NSObject.feedbackGenerator();//震动反馈
+                self.endRefreshing(self->_collectionView);
                 return nil;
             };
 
@@ -294,7 +294,7 @@ insetForSectionAtIndex:(NSInteger)section {
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self endRefreshing:self.collectionView];
+                self.endRefreshing(self->_collectionView);
                 return nil;
             };
 

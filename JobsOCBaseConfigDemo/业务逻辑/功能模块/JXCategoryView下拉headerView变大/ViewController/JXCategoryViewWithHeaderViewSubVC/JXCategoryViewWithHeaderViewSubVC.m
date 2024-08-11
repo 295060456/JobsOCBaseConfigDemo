@@ -152,27 +152,27 @@
                           block1:^{
         @jobs_strongify(self)
         self->cell01 = (BaiShaETProjVIPSubCVCell_01 *)self.cvcellMutArr[indexPath.section][indexPath.item];
-        [self->cell01 richElementsInCellWithModel:nil];
+        self->cell01.richElementsInCellWithModel(nil);
         return self->cell01;
     }block2:^{
         @jobs_strongify(self)
         self->cell02 = (BaiShaETProjVIPSubCVCell_02 *)self.cvcellMutArr[indexPath.section][indexPath.item];
-        [self->cell02 richElementsInCellWithModel:nil];
+        self->cell02.richElementsInCellWithModel(nil);
         return self->cell02;
     }block3:^{
         @jobs_strongify(self)
         self->cell03 = (BaiShaETProjVIPSubCVCell_03 *)self.cvcellMutArr[indexPath.section][indexPath.item];
-        [self->cell03 richElementsInCellWithModel:nil];
+        self->cell03.richElementsInCellWithModel(nil);
         return self->cell03;
     }block4:^{
         @jobs_strongify(self)
         self->cell04 = (BaiShaETProjVIPSubCVCell_04 *)self.cvcellMutArr[indexPath.section][indexPath.item];
-        [self->cell04 richElementsInCellWithModel:nil];
+        self->cell04.richElementsInCellWithModel(nil);
         return self->cell04;
     }block5:^id{
         @jobs_strongify(self)
         self->cell05 = (BaiShaETProjVIPSubCVCell_05 *)self.cvcellMutArr[indexPath.section][indexPath.item];
-        [self->cell05 richElementsInCellWithModel:nil];
+        self->cell05.richElementsInCellWithModel(nil);
         return self->cell05;
     }];
 }

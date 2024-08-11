@@ -127,9 +127,9 @@
                 if (isLoadMore) {
                     if (tempDataArr.count) {
                         [self.dataMutArr addObjectsFromArray:tempDataArr];
-                        [self endRefreshing:self.tableView];//上拉加载更多
+                        self.endRefreshing(self->_tableView);//上拉加载更多
                     }else{
-                        [self endRefreshingWithNoMoreData:self.tableView];//没有更多数据了
+                        self.endRefreshingWithNoMoreData(self->_tableView);//没有更多数据了
                     }
                 }
             }
@@ -210,7 +210,7 @@ numberOfRowsInSection:(NSInteger)section{
     viewModel.row = indexPath.row;
     viewModel.data = self.dataMutArr[indexPath.row];
     
-    [cell richElementsInCellWithModel:viewModel];
+    cell.richElementsInCellWithModel(viewModel);
     
     self.index = indexPath.row;
     @jobs_weakify(self)
@@ -285,7 +285,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
                 NSLog(@"下拉刷新");
                 self.currentPage = 1;
                 @"data".readLocalFileWithName;/// 获取本地的数据
-                [self endRefreshing:self.tableView];
+                self.endRefreshing(self->_tableView);
                 return nil;
             };
             
@@ -307,7 +307,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
             //    [self performSelector:@selector(delayMethods) withObject:nil afterDelay:2];
                 
                 @"data".readLocalFileWithName;/// 获取本地的数据
-                [self endRefreshing:self.tableView];
+                self.endRefreshing(self->_tableView);
                 return nil;
             };
             // 赋值

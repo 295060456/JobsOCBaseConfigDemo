@@ -56,12 +56,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.indexPath = indexPath;
     cell.delegate = self;
     cell.allowsMultipleSwipe = YES;
-    [cell richElementsInCellWithModel:self.jobsIMListMutArr[indexPath.row]];
+    cell.richElementsInCellWithModel(self.jobsIMListMutArr[indexPath.row]);
     return cell;
 }
 #pragma mark —— MGSwipeTableCellDelegate
 -(void)swipeTableCellWillBeginSwiping:(nonnull MGSwipeTableCell *)cell{
-    [self feedbackGenerator];//震动反馈
+    NSObject.feedbackGenerator();//震动反馈
 }
 /// 点击了第几个滑动出现的按钮？
 -(BOOL)swipeTableCell:(MGSwipeTableCell *)cell
@@ -115,7 +115,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
                 NSLog(@"下拉刷新");
-                [self endRefreshing:self.tableView];
+                self.endRefreshing(self->_tableView);
                 return nil;
             };
             
@@ -129,11 +129,11 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 @jobs_strongify(self)
                 NSLog(@"上拉加载更多");
                 // 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
-                self.tableView.pagingEnabled = NO;
-                self.tableView.mj_footer.state = MJRefreshStateIdle;
-                self.tableView.mj_footer.hidden = YES;
-                self.tableView.pagingEnabled = YES;
-                [self endRefreshing:self.tableView];
+                self->_tableView.pagingEnabled = NO;
+                self->_tableView.mj_footer.state = MJRefreshStateIdle;
+                self->_tableView.mj_footer.hidden = YES;
+                self->_tableView.pagingEnabled = YES;
+                self.endRefreshing(self->_tableView);
                 return nil;
             };
             // 赋值

@@ -79,7 +79,7 @@ UITableViewCellProtocol_synthesize
               reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style
                     reuseIdentifier:reuseIdentifier]) {
-//        [self richElementsInCellWithModel:nil];
+//        self.richElementsInCellWithModel(nil);
         self.selectionStyle = UITableViewCellSelectionStyleNone;// 取消点击效果 【不能在cellStyleValue1WithTableView里面写】
         /// 适配iOS 13夜间模式/深色外观(Dark Mode)
         self.backgroundColor = JobsWhiteColor;
@@ -396,42 +396,46 @@ UITableViewCellProtocol_synthesize
     return _viewModel;
 }
 #pragma mark —— BaseCellProtocol
--(void)richElementsInCellWithModel:(UIViewModel __kindof *_Nullable)model{
-    if (model) {
-        self.viewModel = model;
-        /**
-         将某个字符串进行限定字符个数，二次包装以后对外输出。【截取完了以后添加替换字符】
-         -(NSString *)omitByReplaceStr:(NSString *_Nullable)replaceStr
-                       replaceStrLenth:(NSInteger)replaceStrLenth
-                         lineBreakMode:(NSLineBreakMode)lineBreakMode
-                                 limit:(NSInteger)limit;
-         */
-        if(self.textLabel){
-            if (model.textModel.attributedText) {
-                self.textLabel.attributedText = model.textModel.attributedText;
-            }else{
-                self.textLabel.text = model.textModel.text;
-                self.textLabel.textColor = self.viewModel.textModel.textCor;
-                self.textLabel.font = self.viewModel.textModel.font;
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel __kindof *_Nullable model) {
+        @jobs_strongify(self)
+        if (model) {
+            self.viewModel = model;
+            /**
+             将某个字符串进行限定字符个数，二次包装以后对外输出。【截取完了以后添加替换字符】
+             -(NSString *)omitByReplaceStr:(NSString *_Nullable)replaceStr
+                           replaceStrLenth:(NSInteger)replaceStrLenth
+                             lineBreakMode:(NSLineBreakMode)lineBreakMode
+                                     limit:(NSInteger)limit;
+             */
+            if(self.textLabel){
+                if (model.textModel.attributedText) {
+                    self.textLabel.attributedText = model.textModel.attributedText;
+                }else{
+                    self.textLabel.text = model.textModel.text;
+                    self.textLabel.textColor = self.viewModel.textModel.textCor;
+                    self.textLabel.font = self.viewModel.textModel.font;
+                }
+                self.textLabel.numberOfLines = 0;
             }
-            self.textLabel.numberOfLines = 0;
-        }
-        
-        if(self.detailTextLabel){
-            if (model.subTextModel.attributedText) {
-                self.detailTextLabel.attributedText = model.subTextModel.attributedText;
-            }else{
-                self.detailTextLabel.text = model.subTextModel.text;
-                self.detailTextLabel.textColor = self.viewModel.subTextModel.textCor;
-                self.detailTextLabel.font = self.viewModel.subTextModel.font;
-                self.detailTextLabel.width = UITableViewCellSubTitleWidth;
-                self.detailTextLabel.makeLabelByShowingType(UILabelShowingType_05);
+            
+            if(self.detailTextLabel){
+                if (model.subTextModel.attributedText) {
+                    self.detailTextLabel.attributedText = model.subTextModel.attributedText;
+                }else{
+                    self.detailTextLabel.text = model.subTextModel.text;
+                    self.detailTextLabel.textColor = self.viewModel.subTextModel.textCor;
+                    self.detailTextLabel.font = self.viewModel.subTextModel.font;
+                    self.detailTextLabel.width = UITableViewCellSubTitleWidth;
+                    self.detailTextLabel.makeLabelByShowingType(UILabelShowingType_05);
+                }
+                self.detailTextLabel.numberOfLines = 0;
             }
-            self.detailTextLabel.numberOfLines = 0;
+            
+            self.imageView.image = self.viewModel.image;
         }
-        
-        self.imageView.image = self.viewModel.image;
-    }
+    };
 }
 
 +(CGFloat)cellHeightWithModel:(UIViewModel __kindof *_Nullable)model{

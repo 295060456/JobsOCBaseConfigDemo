@@ -57,27 +57,31 @@
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{
     return 50;
 }
-
--(void)richElementsInCellWithModel:(id _Nullable)model{
-    if ([model isKindOfClass:JobsIMListDataModel.class]) {
-        JobsIMListDataModel *listDataModel = (JobsIMListDataModel *)model;
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(id _Nullable model) {
+        @jobs_strongify(self)
+        if ([model isKindOfClass:JobsIMListDataModel.class]) {
+            JobsIMListDataModel *listDataModel = (JobsIMListDataModel *)model;
+            
+            self.usernameStr = listDataModel.usernameStr;
+            self.contentStr = listDataModel.contentStr;
+            self.userHeaderIMG = listDataModel.userHeaderIMG;
+            self.timeStr = listDataModel.timeStr;
+        }else{
+            self.usernameStr = @"数据异常";
+            self.contentStr = @"数据异常";
+            self.userHeaderIMG = nil;
+            self.timeStr = @"数据异常";
+        }
         
-        self.usernameStr = listDataModel.usernameStr;
-        self.contentStr = listDataModel.contentStr;
-        self.userHeaderIMG = listDataModel.userHeaderIMG;
-        self.timeStr = listDataModel.timeStr;
-    }else{
-        self.usernameStr = @"数据异常";
-        self.contentStr = @"数据异常";
-        self.userHeaderIMG = nil;
-        self.timeStr = @"数据异常";
-    }
-    
-    self.textLabel.text = self.usernameStr;
-    self.detailTextLabel.text = self.contentStr;
-    self.detailTextLabel.textColor = JobsLightGrayColor;
-    self.imageView.image = self.userHeaderIMG;
-    self.timeLab.alpha = 1;
+        self.textLabel.text = self.usernameStr;
+        self.detailTextLabel.text = self.contentStr;
+        self.detailTextLabel.textColor = JobsLightGrayColor;
+        self.imageView.image = self.userHeaderIMG;
+        self.timeLab.alpha = 1;
+    };
 }
 
 -(NSArray *)createLeftButtons{

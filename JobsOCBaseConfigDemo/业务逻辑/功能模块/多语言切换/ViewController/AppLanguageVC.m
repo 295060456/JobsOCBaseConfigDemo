@@ -155,7 +155,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = UITableViewCell.cellStyleValue1WithTableView(tableView);
     cell.accessoryType = self.dataMutArr[indexPath.row].appLanguage == JobsLanguageManager.language ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    [cell richElementsInCellWithModel2:self.dataMutArr[indexPath.row]];
+    cell.richElementsInCellWithModel2(self.dataMutArr[indexPath.row]);
     return cell;
 }
 
@@ -215,9 +215,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 }
                 self.isVisible = YES;
                 if (self.dataMutArr.count) {
-                    [self endRefreshing:self.tableView];
+                    self.endRefreshing(self->_tableView);
                 }else{
-                    [self endRefreshingWithNoMoreData:self.tableView];
+                    self.endRefreshingWithNoMoreData(self->_tableView);
                 }
                 /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
                 @jobs_weakify(self)
@@ -237,7 +237,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self endRefreshing:self.tableView];
+                self.endRefreshing(self->_tableView);
                 return nil;
             };
 

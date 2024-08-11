@@ -27,14 +27,18 @@
     };
 }
 #pragma mark —— BaseCellProtocol
--(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
-    if (model) {
-        self.textLab.textColor = model.textModel.textCor;
-        self.textLab.text = model.textModel.text;
-        self.textLab.font = model.textModel.font;
-        self.textLab.backgroundColor = model.bgCor;
-    //    self.imageView.image = (UIImage *)model[@"image"];
-    }
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        if (model) {
+            self.textLab.textColor = model.textModel.textCor;
+            self.textLab.text = model.textModel.text;
+            self.textLab.font = model.textModel.font;
+            self.textLab.backgroundColor = model.bgCor;
+        //    self.imageView.image = (UIImage *)model[@"image"];
+        }
+    };
 }
 
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{

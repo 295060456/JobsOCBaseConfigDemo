@@ -33,16 +33,18 @@ UIViewModelProtocol_synthesize
     int rowNum = ceilf(arr.count / listNum);
     return rowNum * JobsSearchShowHotwordsTBVCellHeight;
 }
-
--(void)richElementsInCellWithModel:(NSMutableArray <UIViewModel *>*_Nullable)model{
-    
-    [_collectionView removeFromSuperview];
-    _collectionView = nil;
-    
-    if (model) {
-        self.viewModelMutArr = (NSMutableArray *)model;
-        self.collectionView.alpha = 1;
-    }
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        [self.collectionView removeFromSuperview];
+        self->_collectionView = nil;
+        if (model) {
+            self.viewModelMutArr = (NSMutableArray *)model;
+            self.collectionView.alpha = 1;
+        }
+    };
 }
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -51,12 +53,10 @@ UIViewModelProtocol_synthesize
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-
     JobsSearchDataCVCell *cell = [JobsSearchDataCVCell cellWithCollectionView:collectionView
                                                                  forIndexPath:indexPath];
-
     cell.indexPath = indexPath;
-    [cell richElementsInCellWithModel:self.viewModelMutArr[indexPath.row]];
+    cell.richElementsInCellWithModel(self.viewModelMutArr[indexPath.row]);
     return cell;
 }
 

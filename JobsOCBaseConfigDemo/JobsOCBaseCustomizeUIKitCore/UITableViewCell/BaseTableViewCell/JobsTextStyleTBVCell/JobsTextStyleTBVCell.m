@@ -22,9 +22,7 @@ UIViewModelProtocol_synthesize
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
-    @jobs_weakify(self)
     return ^(UITableView * _Nonnull tableView) {
-        @jobs_strongify(self)
         JobsTextStyleTBVCell *cell = (JobsTextStyleTBVCell *)tableView.tableViewCellClass(JobsTextStyleTBVCell.class,@"");
         if (!cell) {
             cell = JobsTextStyleTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
@@ -33,9 +31,12 @@ UIViewModelProtocol_synthesize
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
-    self.viewModel = model;
-
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.viewModel = model;
+    };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGFloat)cellHeightWithModel:(UIViewModel *_Nullable)model{

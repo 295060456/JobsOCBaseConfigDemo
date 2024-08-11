@@ -40,11 +40,15 @@ UILocationProtocol_UIViewModelSynthesize
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInCellWithModel:(GoodsClassModel *_Nullable)model{
-    self.dataModel = model;
-    self.logoImgView.alpha = 1;
-    self.nameLabel.alpha = 1;
-    self.btn.alpha = 1;
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(GoodsClassModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.dataModel = model;
+        self.logoImgView.alpha = 1;
+        self.nameLabel.alpha = 1;
+        self.btn.alpha = 1;
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)cellSizeWithModel:(UIViewModel *_Nullable)model{

@@ -41,7 +41,7 @@
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     JobsImageNumberViewCVCell *cell = [JobsImageNumberViewCVCell cellWithCollectionView:collectionView
                                                                    forIndexPath:indexPath];
-    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
+    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     return cell;
 }
 

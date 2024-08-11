@@ -248,18 +248,17 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                 case HotSearchStyle_1:{
                     JobsSearchShowHotwordsTBVCell *cell = JobsSearchShowHotwordsTBVCell.cellStyleValue1WithTableView(tableView);
                     cell.indexPath = indexPath;
-                    [cell richElementsInCellWithModel:self.hotSearchMutArr];
+                    cell.richElementsInCellWithModel(self.hotSearchMutArr);
                     /// 点击的哪个btn？
                     [cell actionObjectBlock:^(JobsHotLabelWithMultiLineCVCell *cell) {
                         @jobs_strongify(self)
                         self.jobsSearchBar.getTextField.text = cell.getViewModel.textModel.text;
-
                     }];return cell;
                 }break;
                 case HotSearchStyle_2:{
                     JobsSearchTBVCell *cell = JobsSearchTBVCell.cellStyleValue1WithTableView(tableView);
                     cell.indexPath = indexPath;
-                    [cell richElementsInCellWithModel:self.hotSearchMutArr];
+                    cell.richElementsInCellWithModel(self.hotSearchMutArr);
                     [cell actionObjectBlock:^(UIViewModel *data) {
                         @jobs_strongify(self)
                         self.jobsSearchBar.getTextField.text = data.textModel.text;
@@ -271,8 +270,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                             [self.listViewData addObject:data];
                         }
                         [self endDropDownListView];
-                    }];
-                    return cell;
+                    }];return cell;
                 }break;
                     
                 default:{
@@ -283,7 +281,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         case 1:{/// 搜索历史
             JobsSearchShowHistoryDataTBVCell *cell = JobsSearchShowHistoryDataTBVCell.cellStyleValue1WithTableView(tableView);
             cell.indexPath = indexPath;
-            [cell richElementsInCellWithModel:self.listViewData[indexPath.row]];
+            cell.richElementsInCellWithModel(self.listViewData[indexPath.row]);
             return cell;
         }break;
         default:
@@ -376,9 +374,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self feedbackGenerator];//震动反馈
-                [self endRefreshing:self.tableView];
-            //    [self endRefreshingWithNoMoreData:self.tableView];
+                NSObject.feedbackGenerator();//震动反馈
+                self.endRefreshing(self->_tableView);
+//                self.endRefreshingWithNoMoreData(self->_tableView);
                 return nil;
             };
 
@@ -390,7 +388,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self endRefreshing:self.tableView];
+                self.endRefreshing(self->_tableView);
                 return nil;
             };
 

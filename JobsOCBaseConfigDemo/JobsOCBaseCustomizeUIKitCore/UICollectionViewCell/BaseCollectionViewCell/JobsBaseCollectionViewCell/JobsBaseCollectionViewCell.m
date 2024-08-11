@@ -15,12 +15,10 @@
 @end
 
 @implementation JobsBaseCollectionViewCell
-
 @synthesize viewModel = _viewModel;
-
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-//        [self richElementsInCellWithModel:nil];
+//        self.richElementsInCellWithModel(nil);
     }return self;
 }
 
@@ -64,23 +62,27 @@
     return CGSizeMake(JobsWidth(351), JobsWidth(200));
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
-    self.viewModel = model;
-    /// 如果有图片则只显示这个图片，并铺满
-    BOOL A = model.bgImage || model.image;
-    BOOL B = (![model.textModel.text isEqualToString:JobsInternationalization(TextModelDataString)] && model.textModel.text) || model.textModel.attributedText;
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.viewModel = model;
+        /// 如果有图片则只显示这个图片，并铺满
+        BOOL A = model.bgImage || model.image;
+        BOOL B = (![model.textModel.text isEqualToString:JobsInternationalization(TextModelDataString)] && model.textModel.text) || model.textModel.attributedText;
 
-    if (A || self.forceUseBgBtn) {
-        self.bgBtn.jobsVisible = A || self.forceUseBgBtn;
-        return;
-    }
-    /// 如果有文字（普通文本 或者富文本）则只显示这个文字（普通文本 或者富文本），并铺满
-    if (B || self.forceUsetextView) {
-        /// ❤️textView 和 bgBtn不能共存❤️
-        self.bgBtn.jobsVisible = !B || self.forceUsetextView;
-        self.textView.jobsVisible = B || self.forceUsetextView;
-        return;
-    }
+        if (A || self.forceUseBgBtn) {
+            self.bgBtn.jobsVisible = A || self.forceUseBgBtn;
+            return;
+        }
+        /// 如果有文字（普通文本 或者富文本）则只显示这个文字（普通文本 或者富文本），并铺满
+        if (B || self.forceUsetextView) {
+            /// ❤️textView 和 bgBtn不能共存❤️
+            self.bgBtn.jobsVisible = !B || self.forceUsetextView;
+            self.textView.jobsVisible = B || self.forceUsetextView;
+            return;
+        }
+    };
 }
 #pragma mark —— <UIViewModelProtocol> 协议属性合成set & get方法
 @synthesize indexPath = _indexPath;

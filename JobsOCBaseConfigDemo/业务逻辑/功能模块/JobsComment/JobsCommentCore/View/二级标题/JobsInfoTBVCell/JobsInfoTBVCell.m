@@ -33,17 +33,21 @@ BaseProtocol_synthesize
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{
     return JobsCommentConfig.sharedInstance.cellHeight;
 }
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(id _Nullable model) {
+        @jobs_strongify(self)
+        if ([model isKindOfClass:JobsChildCommentModel.class]) {
+            self.childCommentModel = (JobsChildCommentModel *)model;
+            self.likeBtn.alpha = 1;
 
-- (void)richElementsInCellWithModel:(id _Nullable)model{
-    if ([model isKindOfClass:JobsChildCommentModel.class]) {
-        self.childCommentModel = (JobsChildCommentModel *)model;
-        self.likeBtn.alpha = 1;
-
-        self.textLabel.text = self.childCommentModel.nickname;
-        self.detailTextLabel.text = self.childCommentModel.content;
-        [self.imageView sd_setImageWithURL:self.childCommentModel.headImg.jobsUrl
-                          placeholderImage:[UIImage animatedGIFNamed:@"动态头像 尺寸126"] ? : JobsIMG(@"用户默认头像")];
-    }
+            self.textLabel.text = self.childCommentModel.nickname;
+            self.detailTextLabel.text = self.childCommentModel.content;
+            [self.imageView sd_setImageWithURL:self.childCommentModel.headImg.jobsUrl
+                              placeholderImage:[UIImage animatedGIFNamed:@"动态头像 尺寸126"] ? : JobsIMG(@"用户默认头像")];
+        }
+    };
 }
 #pragma mark —— 复写系统父类方法
 - (void)layoutSubviews {

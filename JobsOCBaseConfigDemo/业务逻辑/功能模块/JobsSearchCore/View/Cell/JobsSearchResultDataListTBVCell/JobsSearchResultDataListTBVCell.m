@@ -31,11 +31,15 @@
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{
     return 50;
 }
-
--(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
-    if ([model isKindOfClass:UIViewModel.class]) {
-        self.textLabel.text = model.textModel.text;
-    }
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        if ([model isKindOfClass:UIViewModel.class]) {
+            self.textLabel.text = model.textModel.text;
+        }
+    };
 }
 #pragma mark —— UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{

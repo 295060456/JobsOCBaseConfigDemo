@@ -333,7 +333,7 @@ static dispatch_once_t onceToken;
                 }break;
                 case UIGestureRecognizerStateBegan:{
                     if (self.isFeedbackGenerator) {
-                        [self feedbackGenerator];/// 震动反馈
+                        NSObject.feedbackGenerator();/// 震动反馈
                     }
                     /// 长按手势出菜单（高仿 Telegram）
                     [JobsPullListAutoSizeView initWithTargetView:self.UITabBarButtonMutArr[longPressGR.view.tag]
@@ -377,7 +377,7 @@ static dispatch_once_t onceToken;
         // Lottie 动画
         if ([self judgeLottieWithIndex:self.selectedIndex]) [self.tabBar animationLottieImage:(int)index];
         // 震动反馈
-        if (self.isFeedbackGenerator) [self feedbackGenerator];
+        if (self.isFeedbackGenerator) NSObject.feedbackGenerator();
         // 点击声音
         if (self.isPlaySound) [self playSoundWithFileName:@"Sound.wav"];
         // 重力弹跳动画效果
@@ -418,7 +418,7 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (self.view.panGR.state == UIGestureRecognizerStateBegan ||
         self.view.panGR.state == UIGestureRecognizerStateChanged) {
         NSArray *viewControllers = tabBarController.viewControllers;
-        return [TransitionAnimation.alloc initWithTargetEdge: 
+        return [TransitionAnimation.alloc initWithTargetEdge:
                 [viewControllers indexOfObject:toVC] > [viewControllers indexOfObject:fromVC] ? UIRectEdgeLeft : UIRectEdgeRight];
     }else return nil;
 }

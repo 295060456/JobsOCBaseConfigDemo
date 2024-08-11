@@ -39,25 +39,28 @@
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
-    self.viewModel = model ? : UIViewModel.new;
-    self.titleBtn.alpha = 1;
-    self.detailLab.alpha = 1;
-    
-    switch (self.indexPath.item) {
-        case 0:
-            JobsCellSelfCor(self.cor1);
-            break;
-        case 1:
-            JobsCellSelfCor(self.cor2);
-            break;
-        case 2:
-            JobsCellSelfCor(self.cor3);
-            break;
-        default:
-            JobsCellSelfCor(JobsWhiteColor);
-            break;
-    } 
+-(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.viewModel = model ? : UIViewModel.new;
+        self.titleBtn.alpha = 1;
+        self.detailLab.alpha = 1;
+        switch (self.indexPath.item) {
+            case 0:
+                JobsCellSelfCor(self.cor1);
+                break;
+            case 1:
+                JobsCellSelfCor(self.cor2);
+                break;
+            case 2:
+                JobsCellSelfCor(self.cor3);
+                break;
+            default:
+                JobsCellSelfCor(JobsWhiteColor);
+                break;
+        }
+    };
 }
 #pragma mark —— lazyLoad
 -(BaseButton *)titleBtn{

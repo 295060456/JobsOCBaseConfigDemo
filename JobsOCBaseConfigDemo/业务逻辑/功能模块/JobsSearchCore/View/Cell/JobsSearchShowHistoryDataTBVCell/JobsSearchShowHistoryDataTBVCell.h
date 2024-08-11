@@ -8,6 +8,7 @@
 #import "BaseCellProtocol.h"
 #import "UIViewModelProtocol.h"
 #import "UITableViewCell+Margin.h"
+#import "UITableViewCell+WhiteArrows.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

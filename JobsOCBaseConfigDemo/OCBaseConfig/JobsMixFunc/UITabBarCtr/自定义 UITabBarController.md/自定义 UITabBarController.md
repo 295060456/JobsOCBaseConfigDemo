@@ -47,9 +47,9 @@
   #pragma clang diagnostic ignored "-Wdeprecated-implementations"
   /// 决定当前界面是否开启自动转屏，如果返回NO，后面两个方法也不会被调用，只是会支持默认的方向
   - (BOOL)shouldAutorotate {
-     return YES;
+      return YES;
   }
-  #pragma clang diagnostic pop
+#pragma clang diagnostic pop
   /// 当前控制器支持的屏幕旋转方向（在具体的控制器子类进行覆写）
   /// iPad设备上，默认返回值UIInterfaceOrientationMaskAllButUpSideDwon
   /// iPhone设备上，默认返回值是UIInterfaceOrientationMaskAll
@@ -145,7 +145,7 @@
                   }break;
                   case UIGestureRecognizerStateBegan:{
                       if (self.isFeedbackGenerator) {
-                          [self feedbackGenerator];/// 震动反馈
+                          NSObject.feedbackGenerator();/// 震动反馈
                       }
                       /// 长按手势出菜单（高仿 Telegram）
                       [JobsPullListAutoSizeView initWithTargetView:self.UITabBarButtonMutArr[longPressGR.view.tag]
@@ -199,7 +199,7 @@ pod 'PPBadgeView' # https://github.com/jkpang/PPBadgeView iOS自定义Badge组�
 
 ```objective-c
 if (self.isOpenPPBadge) {
-		[item pp_increase];
+        [item pp_increase];
  }
 ```
 

@@ -118,7 +118,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MSCommentTBVCell *cell = MSCommentTBVCell.cellStyleDefaultWithTableView(tableView);
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.indexPath = indexPath;
-    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section].commentDataMutArr[indexPath.row]];
+    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.section].commentDataMutArr[indexPath.row]);
     
     CGRect cellFrame = cell.frame;
     cellFrame.size.width -= JobsWidth(15 * 2);
@@ -202,7 +202,7 @@ willDisplayHeaderView:(UIView *)view
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self feedbackGenerator];//震动反馈
+                NSObject.feedbackGenerator();//震动反馈
                 return nil;
             };
             
@@ -214,7 +214,7 @@ willDisplayHeaderView:(UIView *)view
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                [self endRefreshing:self.tableView];
+                self.endRefreshing(self->_tableView);
                 return nil;
             };
             

@@ -8,32 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <ImageIO/ImageIO.h>
+#import "NSMutableArray+Extra.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (YBGIF)
-/**
- 根据图片名字创建gif图片
-
- @param name 图片名字
- @return UIImage*
- */
+/// 根据NSData* 创建gif图片
++(JobsReturnImageByDataBlock)animatedGIFWithData;
+/// 根据图片名字创建gif图片
 + (UIImage *)animatedGIFNamed:(NSString *)name;
-
-/**
- 根据NSData* 创建gif图片
-
- @param data NSData *
- @return UIImage *
- */
-+ (UIImage *)animatedGIFWithData:(NSData *)data;
-
-/**
- 根据大小裁剪图片
-
- @param size 裁剪大小
- @return UIImage*
- */
+/// 根据大小裁剪图片
 - (UIImage *)animatedImageByScalingAndCroppingToSize:(CGSize)size;//貌似废弃了，不管用，再研究
 
 @end
