@@ -130,9 +130,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tbvCellMutArr = NSMutableArray.array;
         NSInteger dataMutArrCount = self.dataMutArr.count;
         do {
-            UITableViewCell *tableViewCell = (UITableViewCell *)[NSObject methodName:@"cellStyleValue1WithTableView:"
-                                                                           targetObj:self.tbvCell_cls ? self.tbvCell_cls.class : JobsDropDownListTBVCell.class
-                                                                         paramarrays:@[self.tableView]];
+            UITableViewCell *tableViewCell = [self.tableView tableViewCellClass:self.tbvCell_cls ? : JobsDropDownListTBVCell.class
+                                                   tableViewCellStyleValue1Salt:@""];
             _tbvCellMutArr.jobsAddObject(tableViewCell);
             dataMutArrCount -= 1;
         } while (dataMutArrCount);

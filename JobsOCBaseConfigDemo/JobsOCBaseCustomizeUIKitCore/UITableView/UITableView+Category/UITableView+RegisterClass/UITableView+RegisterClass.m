@@ -10,7 +10,8 @@
 @implementation UITableView (RegisterClass)
 #pragma mark —— 注册
 -(void)registerTableViewClass{
-    [self registerClass:UITableViewCell.class forCellReuseIdentifier:UITableViewCell.class.description.add(@"")];
+    [self registerClass:UITableViewCell.class
+ forCellReuseIdentifier:UITableViewCell.class.description.add(@"")];
     /// 以此类推
 }
 /// 注册 HeaderFooterView 及其子类 jobsByClassBlock
@@ -18,6 +19,7 @@
     @jobs_weakify(self)
     return ^(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
+        if(!cls) cls = UITableViewCell.class;
         [self registerClass:cls forHeaderFooterViewReuseIdentifier:cls.description.add(salt)];
     };
 }
@@ -26,6 +28,7 @@
     @jobs_weakify(self)
     return ^(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
+        if(!cls) cls = UITableViewCell.class;
         [self registerClass:cls forCellReuseIdentifier:cls.description.add(salt)];
     };
 }
@@ -35,6 +38,7 @@
     @jobs_weakify(self)
     return ^(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
+        if(!cls) cls = UITableViewCell.class;
         return [self dequeueReusableCellWithIdentifier:cls.description.add(salt)];
     };
 }
@@ -45,6 +49,7 @@
              NSString * _Nullable salt,
              NSIndexPath * _Nonnull indexPath) {
         @jobs_strongify(self)
+        if(!cls) cls = UITableViewCell.class;
         UITableViewCell *tableViewCell = [self dequeueReusableCellWithIdentifier:cls.description.add(salt) forIndexPath:indexPath];
         if(!tableViewCell){
             self.registerTableViewCellClass(cls,salt);
@@ -57,6 +62,7 @@
     @jobs_weakify(self)
     return ^(Class _Nonnull cls, NSString * _Nullable salt) {
         @jobs_strongify(self)
+        if(!cls) cls = UITableViewHeaderFooterView.class;
         UITableViewHeaderFooterView *tableViewHeaderFooterView = [self dequeueReusableHeaderFooterViewWithIdentifier:cls.description.add(salt)];
         if(!tableViewHeaderFooterView){
             self.registerHeaderFooterViewClass(cls,salt);

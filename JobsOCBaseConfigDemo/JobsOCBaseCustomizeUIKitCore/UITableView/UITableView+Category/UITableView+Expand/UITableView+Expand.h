@@ -10,26 +10,33 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UITableView (Expand)
-
+#pragma mark —— 数据源
 -(jobsByIDBlock _Nonnull)dataLink;
+#pragma mark —— UITableView
++(instancetype)initWithStylePlain;/// 一般用这个
++(instancetype)initWithStyleGrouped;/// 会在section之间自己预留一块空间
++(instancetype)initWithStyleInsetGrouped API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos);
+#pragma mark —— UITableViewCell
+-(UITableViewCell __kindof *)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+                                  tableViewCellClass:(Class _Nullable)tableViewCellClass;
+-(UITableViewCell __kindof *)didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+                                    tableViewCellClass:(Class _Nullable)tableViewCellClass;
+-(UITableViewCell __kindof *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
+                   tableViewCellStyleValue1Salt:(NSString * _Nullable)salt;
+-(UITableViewCell __kindof *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
+                  tableViewCellStyleDefaultSalt:(NSString * _Nullable)salt;
+-(UITableViewCell __kindof *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
+                   tableViewCellStyleValue2Salt:(NSString * _Nullable)salt;
+-(UITableViewCell __kindof *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
+                 tableViewCellStyleSubtitleSalt:(NSString * _Nullable)salt;
+#pragma mark —— 其他
 /// 更多，参见： 关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量.md
 /// 隐藏最后一个单元格的分界线
 -(void)hideSeparatorLineAtLast:(NSIndexPath *)indexPath
-                          cell:(UITableViewCell *)cell;
--(UITableViewCell *)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-                         tableViewCellClass:(Class _Nullable)tableViewCellClass;
--(UITableViewCell *)didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-                           tableViewCellClass:(Class _Nullable)tableViewCellClass;
-
-+(instancetype)initWithStylePlain;
-+(instancetype)initWithStyleGrouped;
-+(instancetype)initWithStyleInsetGrouped API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos);
-
+                          cell:(UITableViewCell __kindof *)cell;
 @end
 
 NS_ASSUME_NONNULL_END
-
-
 /**
 
  ❤️UITableViewStylePlain ❤️
