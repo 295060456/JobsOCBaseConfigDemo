@@ -8,7 +8,6 @@
 
 #ifndef JobsDefineAllEnumHeader_h
 #define JobsDefineAllEnumHeader_h
-
 #pragma mark —— 系统相关
 /// 开发环境
 #ifndef JOBS_NETWORKING_ENVIR_ENUM_DEFINED
@@ -297,6 +296,14 @@ typedef NS_ENUM(NSInteger, JobsOrderType) {
     JobsOrderType_All
 };
 #endif /* JOBS_ORDER_TYPE_ENUM_DEFINED */
+/// 存取款
+#ifndef BankStyle_Def
+#define BankStyle_Def
+typedef NS_ENUM(NSInteger, BankStyle) {
+    Deposit,/// 存款
+    Withdraw, /// 提款
+};
+#endif/* BankStyle_Def */
 /// 订单状态
 #ifndef JOBS_ORDER_STATE_ENUM_DEFINED
 #define JOBS_ORDER_STATE_ENUM_DEFINED

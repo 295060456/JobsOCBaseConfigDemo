@@ -28,6 +28,7 @@
 -(jobsByNSIntegerBlock _Nonnull)makeLabelByShowingType{
     @jobs_weakify(self)
     return ^(UILabelShowingType labelShowingType) {
+        @jobs_strongify(self)
         /// 先刷新得出Label的frame.及其Size
         [self.superview layoutIfNeeded];
         self.labelShowingType = labelShowingType;

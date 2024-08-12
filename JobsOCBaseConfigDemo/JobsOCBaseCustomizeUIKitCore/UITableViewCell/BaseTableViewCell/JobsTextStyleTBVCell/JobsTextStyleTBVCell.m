@@ -58,6 +58,8 @@ UIViewModelProtocol_synthesize
     if(!_lab){
         _lab = UILabel.new;
         _lab.text = self.viewModel.text;
+        _lab.numberOfLines = 0;
+        _lab.lineBreakMode = NSLineBreakByWordWrapping;
         _lab.textAlignment = self.viewModel.textAlignment;
         _lab.textColor = self.viewModel.textCor;
         _lab.font = self.viewModel.font;
