@@ -1748,6 +1748,33 @@ NSObject <|-- BaseProtocol
      }];
     ```
 
+#### 18.5、禁止编辑
+
+* `isUserInteractionEnabled`：设置为 `false` 后，用户将无法与 `UITextField` 进行任何交互，包括无法选择文本、无法点击光标等
+
+  ```objective-c
+  UITextField *textField = UITextField.new;
+  textField.isUserInteractionEnabled = NO;
+  ```
+
+* `enabled`：设置为 `false` 后，`UITextField` 将变成白色，用户无法输入文字，但仍然可以选择和复制文本
+
+  ```objective-c
+  UITextField *textField = UITextField.new;
+  textField.enabled = NO;
+  ```
+
+#### 18.6、阻止键盘弹起（而是转向其他的操作）
+
+* ```objective-c
+  // 实现代理方法
+  - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+      // 在这里执行其他操作
+      NSLog(@"TextField 被点击了，但不会弹出键盘");
+      return NO; // 返回 NO，阻止键盘弹出
+  }
+  ```
+
 ### 19、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * [**寻找当前控制器 **](#寻找当前控制器 )
 

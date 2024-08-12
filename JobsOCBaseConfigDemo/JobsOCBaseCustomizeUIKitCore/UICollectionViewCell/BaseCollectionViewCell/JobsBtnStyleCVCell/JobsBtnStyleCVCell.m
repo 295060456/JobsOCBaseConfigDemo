@@ -66,9 +66,7 @@
     return CGSizeMake(JobsWidth(106), JobsWidth(30));
 }
 #pragma mark —— 一些公有方法
--(UIButton *)getBtn{
-    return self.btn;
-}
+
 #pragma mark —— lazyLoad
 -(UIButton *)btn{
     if(!_btn){

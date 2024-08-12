@@ -215,6 +215,7 @@
 -(jobsByCGFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius{
     @jobs_weakify(self)
     return ^(CGFloat cornerRadiusValue) {
+        @jobs_strongify(self)
         self.layer.cornerRadius = cornerRadiusValue;
         self.layer.masksToBounds = YES;
     };

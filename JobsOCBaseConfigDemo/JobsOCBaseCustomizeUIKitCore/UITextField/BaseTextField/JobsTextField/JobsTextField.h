@@ -35,6 +35,7 @@ UITextFieldDelegate
 @property(nonatomic,assign)CGFloat rightViewByOutLineOffset;
 @property(nonatomic,assign)CGFloat rightViewByTextFieldOffset;
 @property(nonatomic,strong,null_resettable)UIColor *realTextFieldBgCor;
+@property(nonatomic,strong,null_resettable)UIColor *textColor;
 @property(nonatomic,strong,null_resettable)UIColor *placeholderColor;
 @property(nonatomic,strong,null_resettable)UIFont *placeholderFont;
 @property(nonatomic,assign)UIReturnKeyType returnKeyType;
@@ -42,8 +43,11 @@ UITextFieldDelegate
 @property(nonatomic,assign)UIKeyboardType keyboardType;
 @property(nonatomic,assign)UITextFieldViewMode leftViewMode;
 @property(nonatomic,assign)UITextFieldViewMode rightViewMode;
+@property(nonatomic,assign)BOOL isPreventKeyBoardPopup;
 @property(nullable,nonatomic,copy)NSString *placeholder;
 @property(nullable,nonatomic,copy)NSAttributedString *attributedPlaceholder API_AVAILABLE(ios(6.0));
+
+-(void)otherActionBlock:(JobsReturnIDByIDBlock)otherActionBlock;
 
 @end
 

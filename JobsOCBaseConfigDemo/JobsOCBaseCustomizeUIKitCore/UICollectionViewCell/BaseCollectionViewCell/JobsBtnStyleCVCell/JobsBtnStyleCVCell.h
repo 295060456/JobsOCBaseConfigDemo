@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JobsBtnStyleCVCell : JobsBaseCollectionViewCell
 
 #pragma mark —— 一些公有方法
--(UIButton *)getBtn;
+-(UIButton *)btn;
 
 @end
 

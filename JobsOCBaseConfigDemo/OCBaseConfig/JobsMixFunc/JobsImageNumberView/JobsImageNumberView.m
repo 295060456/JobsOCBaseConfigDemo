@@ -50,7 +50,7 @@
     return self.dataMutArr.count;
 }
 #pragma mark —— UICollectionViewDelegate
-//允许选中时，高亮
+// 允许选中时，高亮
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __FUNCTION__);

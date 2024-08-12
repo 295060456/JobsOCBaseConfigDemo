@@ -9,6 +9,8 @@
 
 @interface JobsTextField ()
 
+@property(nonatomic,strong,nullable)JobsReturnIDByIDBlock otherActionBlock;
+
 @end
 
 @implementation JobsTextField
@@ -40,6 +42,10 @@ UIViewModelProtocol_synthesize
     [self layoutSubviewsCutCnrByRoundingCorners:self.layoutSubviewsRectCorner
                                     cornerRadii:self.layoutSubviewsRectCornerSize];
 }
+#pragma mark —— 一些公有方法
+-(void)otherActionBlock:(JobsReturnIDByIDBlock)otherActionBlock{
+    self.otherActionBlock = otherActionBlock;
+}
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
@@ -56,7 +62,9 @@ UIViewModelProtocol_synthesize
 /// 含义：在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑。
 /// 用途：您可以使用此方法进行输入验证或单元格选择，以决定是否允许用户开始编辑。
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    return YES;
+    if(self.isPreventKeyBoardPopup){
+        if(self.otherActionBlock) self.otherActionBlock(textField);
+    }return !self.isPreventKeyBoardPopup;
 }
 /// 含义：文本字段已经开始编辑时调用。
 /// 用途：在此方法中，您可以开始相应的操作，例如更新用户界面（UI），显示工具条等。
@@ -180,6 +188,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     if(!_realTextField){
         _realTextField = UITextField.new;
         _realTextField.text = self.text;
+        _realTextField.textColor = self.textColor;
         _realTextField.delegate = self;
         _realTextField.backgroundColor = self.realTextFieldBgCor;
         _realTextField.returnKeyType = self.returnKeyType;
@@ -194,12 +203,16 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         @jobs_weakify(self)
         [_realTextField jobsTextFieldEventFilterBlock:^BOOL(id data) {
 //            @jobs_strongify(self)
+            NSLog(@"");
             return YES;
         } subscribeNextBlock:^(NSString * _Nullable x) {
             @jobs_strongify(self)
             self.realTextField.text = x;
             if (self.jobsBlock) self.jobsBlock(x);
         }];
+        
+
+        
         [self addSubview:_realTextField];
         [_realTextField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(self);
@@ -207,6 +220,12 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
             make.right.equalTo(self.rightView ? self.rightView.mas_left : self).offset(-self.rightViewByTextFieldOffset);
         }];
     }return _realTextField;
+}
+
+-(UIColor *)textColor{
+    if(!_textColor){
+        _textColor = JobsBlackColor;
+    }return _textColor;
 }
 
 -(UIColor *)realTextFieldBgCor{
