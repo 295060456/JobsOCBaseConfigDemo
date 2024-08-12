@@ -23,6 +23,7 @@
 		CE2E87432C689F9100260207 /* JobsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */; };
 		CE2E88C42C69DECC00260207 /* JobsCountriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */; };
 		CE2E88C62C69DF3100260207 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = CE2E88C52C69DF3100260207 /* countries.json */; };
+		CE2E88CD2C69E14100260207 /* PopListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E88C92C69E14100260207 /* PopListBaseView.m */; };
 		CE40B28E2C4B54A500CB64B5 /* JobsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */; };
 		CE40B29B2C4BF78E00CB64B5 /* JobsToggleBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */; };
 		CE40B29C2C4BF78E00CB64B5 /* JobsToggleNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2982C4BF78E00CB64B5 /* JobsToggleNavView.m */; };
@@ -1171,6 +1172,9 @@
 		CE2E88C22C69DECC00260207 /* JobsCountriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsCountriesModel.h; sourceTree = "<group>"; };
 		CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsCountriesModel.m; sourceTree = "<group>"; };
 		CE2E88C52C69DF3100260207 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		CE2E88C72C69E14100260207 /* 全局统一的下拉选择器改为屏幕中部弹出的列表.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "全局统一的下拉选择器改为屏幕中部弹出的列表.jpg"; sourceTree = "<group>"; };
+		CE2E88C82C69E14100260207 /* PopListBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopListBaseView.h; sourceTree = "<group>"; };
+		CE2E88C92C69E14100260207 /* PopListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopListBaseView.m; sourceTree = "<group>"; };
 		CE40B28C2C4B54A500CB64B5 /* JobsTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextField.h; sourceTree = "<group>"; };
 		CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextField.m; sourceTree = "<group>"; };
 		CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsToggleBaseView.m; sourceTree = "<group>"; };
@@ -3337,6 +3341,24 @@
 				CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */,
 			);
 			path = JobsCountriesModel;
+			sourceTree = "<group>";
+		};
+		CE2E88CA2C69E14100260207 /* PopListBaseView */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E88C72C69E14100260207 /* 全局统一的下拉选择器改为屏幕中部弹出的列表.jpg */,
+				CE2E88C82C69E14100260207 /* PopListBaseView.h */,
+				CE2E88C92C69E14100260207 /* PopListBaseView.m */,
+			);
+			path = PopListBaseView;
+			sourceTree = "<group>";
+		};
+		CE2E88CB2C69E14100260207 /* 全局统一的下拉选择器改为屏幕中部弹出的列表 */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E88CA2C69E14100260207 /* PopListBaseView */,
+			);
+			path = "全局统一的下拉选择器改为屏幕中部弹出的列表";
 			sourceTree = "<group>";
 		};
 		CE40B28B2C4B544F00CB64B5 /* JobsTextField */ = {
@@ -6805,6 +6827,7 @@
 		CECE7D162C450CCD00764AF5 /* 本App相关的自定义弹出框 */ = {
 			isa = PBXGroup;
 			children = (
+				CE2E88CB2C69E14100260207 /* 全局统一的下拉选择器改为屏幕中部弹出的列表 */,
 				CECE7D0C2C450CCD00764AF5 /* 版本升级弹窗 */,
 				CECE7D142C450CCD00764AF5 /* 弹框样式_0 */,
 				CECE7D152C450CCD00764AF5 /* JobsOCBaseConfigPopupViewHeader.h */,
@@ -14146,6 +14169,7 @@
 				CECE78952C4509E200764AF5 /* main.m in Sources */,
 				CECE80E52C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_1.m in Sources */,
 				CE7F396F2C4FDAF900431A5D /* JobsMenuSubView@1.m in Sources */,
+				CE2E88CD2C69E14100260207 /* PopListBaseView.m in Sources */,
 				CECE7C392C450C5000764AF5 /* CutomView.m in Sources */,
 				CECE7CD12C450C5000764AF5 /* MyFansTBVCell.m in Sources */,
 				CECE7EA72C450E5B00764AF5 /* KTVHCHTTPConnection.m in Sources */,

@@ -165,10 +165,21 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     [self layoutIfNeeded];
     NSLog(@"");
 }
+
+-(void)setPlaceholder:(NSString *)placeholder{
+    _placeholder = placeholder;
+    _realTextField.placeholder = _placeholder;
+}
+
+-(void)setText:(NSString *)text{
+    _text = text;
+    _realTextField.text = _text;
+}
 #pragma mark —— lazyLoad
 -(UITextField *)realTextField{
     if(!_realTextField){
         _realTextField = UITextField.new;
+        _realTextField.text = self.text;
         _realTextField.delegate = self;
         _realTextField.backgroundColor = self.realTextFieldBgCor;
         _realTextField.returnKeyType = self.returnKeyType;
