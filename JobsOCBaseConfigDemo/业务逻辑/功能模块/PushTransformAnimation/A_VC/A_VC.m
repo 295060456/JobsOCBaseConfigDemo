@@ -122,7 +122,7 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_tableView) {
         _tableView = UITableView.new;
         _tableView.dataLink(self);
-        _tableView.backgroundColor = JobsWhiteColor;//[UIColor colorWithHexString:@"050013"];
+        _tableView.backgroundColor = JobsWhiteColor;
         _tableView.pagingEnabled = YES;//这个属性为YES会使得Tableview一格一格的翻动
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;

@@ -11,7 +11,10 @@
 
 #import "TableModel.h"
 
-#define LineColor  [UIColor grayColor] /// 表格线的颜色
+#ifndef LineColor
+#define LineColor   UIColor.grayColor /// 表格线的颜色
+#endif
+
 UIKIT_EXTERN const CGFloat LineWidth;
 
 @interface XZExcelConfigureViewModel : NSObject

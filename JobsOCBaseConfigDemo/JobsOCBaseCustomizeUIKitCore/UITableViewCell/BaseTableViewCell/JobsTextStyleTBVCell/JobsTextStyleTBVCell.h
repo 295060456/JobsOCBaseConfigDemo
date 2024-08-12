@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 将一个文本整个覆盖到TableViewCell上面
 @interface JobsTextStyleTBVCell : JobsBaseTableViewCell
 
+-(UILabel *)lab;
+
 @end
 
 NS_ASSUME_NONNULL_END

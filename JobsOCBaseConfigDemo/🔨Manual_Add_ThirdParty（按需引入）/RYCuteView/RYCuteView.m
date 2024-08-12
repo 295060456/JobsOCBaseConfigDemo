@@ -40,7 +40,7 @@ static NSString *kY = @"curveY";
                   context:nil];
         [self addObserver:self
                forKeyPath:kY
-                  options:NSKeyValueObservingOptionNew 
+                  options:NSKeyValueObservingOptionNew
                   context:nil];
         [self configShapeLayer];
         [self configCurveView];
@@ -76,7 +76,7 @@ static NSString *kY = @"curveY";
 
 - (void)configShapeLayer{
     _shapeLayer = CAShapeLayer.layer;
-    _shapeLayer.fillColor = [UIColor colorWithHexString:@"#37A6F0"].CGColor;
+    _shapeLayer.fillColor = UIColor.colorWithHexString(@"#37A6F0").CGColor;
     [self.layer addSublayer:_shapeLayer];
 }
 

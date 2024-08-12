@@ -5806,7 +5806,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   
   - (void)tableView:(UITableView *)tableView
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-      
+  		UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+      for (UITableViewCell *visibleCell in tableView.visibleCells) {
+          
+      }
   }
   
   - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

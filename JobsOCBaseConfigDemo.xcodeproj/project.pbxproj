@@ -21,6 +21,8 @@
 		CE2E87412C689F9100260207 /* JobsBtnStyleTBVCell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE2E87322C689F9000260207 /* JobsBtnStyleTBVCell.jpg */; };
 		CE2E87422C689F9100260207 /* JobsImageStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87352C689F9000260207 /* JobsImageStyleTBVCell.m */; };
 		CE2E87432C689F9100260207 /* JobsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */; };
+		CE2E88C42C69DECC00260207 /* JobsCountriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */; };
+		CE2E88C62C69DF3100260207 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = CE2E88C52C69DF3100260207 /* countries.json */; };
 		CE40B28E2C4B54A500CB64B5 /* JobsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */; };
 		CE40B29B2C4BF78E00CB64B5 /* JobsToggleBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */; };
 		CE40B29C2C4BF78E00CB64B5 /* JobsToggleNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2982C4BF78E00CB64B5 /* JobsToggleNavView.m */; };
@@ -1166,6 +1168,9 @@
 		CE2E87352C689F9000260207 /* JobsImageStyleTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsImageStyleTBVCell.m; sourceTree = "<group>"; };
 		CE2E87372C689F9100260207 /* JobsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBaseTableViewCell.h; sourceTree = "<group>"; };
 		CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsBaseTableViewCell.m; sourceTree = "<group>"; };
+		CE2E88C22C69DECC00260207 /* JobsCountriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsCountriesModel.h; sourceTree = "<group>"; };
+		CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsCountriesModel.m; sourceTree = "<group>"; };
+		CE2E88C52C69DF3100260207 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		CE40B28C2C4B54A500CB64B5 /* JobsTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextField.h; sourceTree = "<group>"; };
 		CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextField.m; sourceTree = "<group>"; };
 		CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsToggleBaseView.m; sourceTree = "<group>"; };
@@ -3323,6 +3328,15 @@
 				CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */,
 			);
 			path = JobsBaseTableViewCell;
+			sourceTree = "<group>";
+		};
+		CE2E88C12C69DEC300260207 /* JobsCountriesModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E88C22C69DECC00260207 /* JobsCountriesModel.h */,
+				CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */,
+			);
+			path = JobsCountriesModel;
 			sourceTree = "<group>";
 		};
 		CE40B28B2C4B544F00CB64B5 /* JobsTextField */ = {
@@ -7760,6 +7774,7 @@
 		CECE7F1F2C4512BF00764AF5 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				CE2E88C12C69DEC300260207 /* JobsCountriesModel */,
 				CECE7F112C4512BF00764AF5 /* BaseModel */,
 				CECE7F142C4512BF00764AF5 /* CasinoCustomerContactModel */,
 				CECE7F172C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel */,
@@ -12987,6 +13002,7 @@
 			isa = PBXGroup;
 			children = (
 				CECE889E2C4519AD00764AF5 /* 【MacOS】启动JSON_SERVER.command */,
+				CE2E88C52C69DF3100260207 /* countries.json */,
 				CECE889F2C4519AD00764AF5 /* 假数据.json */,
 				CECE88A02C4519AD00764AF5 /* CommentData.json */,
 				CECE88A12C4519AD00764AF5 /* data.json */,
@@ -13387,6 +13403,7 @@
 				CECE88BE2C4519AD00764AF5 /* 非iph_X.mp4 in Resources */,
 				CECE85C52C4513CE00764AF5 /* WhiteRightArrow@2x.png in Resources */,
 				CECE872D2C45140000764AF5 /* Base85.md in Resources */,
+				CE2E88C62C69DF3100260207 /* countries.json in Resources */,
 				CECE81352C4512BF00764AF5 /* JobsShowNumView.png in Resources */,
 				CECE85362C4513CE00764AF5 /* NSObject+AppTools.md in Resources */,
 				CECE88F52C4519AD00764AF5 /* NotoSans-Regular.ttf in Resources */,
@@ -14304,6 +14321,7 @@
 				CECE873E2C45140000764AF5 /* NSData+CommonCrypto.m in Sources */,
 				CECE80FF2C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_9.m in Sources */,
 				CECE85262C4513CE00764AF5 /* CADisplayLink_TimerManager.m in Sources */,
+				CE2E88C42C69DECC00260207 /* JobsCountriesModel.m in Sources */,
 				CECE7C052C450C5000764AF5 /* JobsMembersSubsBaseVC.m in Sources */,
 				CECE7EB82C450E5B00764AF5 /* TKPermissionHome.m in Sources */,
 				CECE85B32C4513CE00764AF5 /* UISlider+Extra.m in Sources */,

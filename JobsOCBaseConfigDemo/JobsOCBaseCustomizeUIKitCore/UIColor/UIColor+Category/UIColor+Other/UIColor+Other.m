@@ -9,15 +9,55 @@
 
 @implementation UIColor (Other)
 #pragma mark —— 类方法
-/// 默认alpha值为1
-+(UIColor *)colorWithHexString:(NSString *)color{
-    return [self colorWithHexString:color
-                              alpha:1.0f];
+/// 十六进制字符串 => UIColor *
++(JobsReturnColorByStringBlock _Nonnull)jobsCor{
+    return ^UIColor * _Nullable(NSString *_Nonnull hexCorString) {
+        if (!hexCorString) return (UIColor *)nil;
+        /// 去除收尾可能含有的空格字符串
+        hexCorString = [hexCorString stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
+        // 移除可能的 '#' 前缀
+        if ([hexCorString hasPrefix:@"#"]) {
+            hexCorString = [hexCorString substringFromIndex:1];
+        }
+        // 检查是否是有效的十六进制颜色字符串
+        if (hexCorString.length != 6) {
+            return nil; // 无效的颜色字符串
+        }
+        // 将十六进制字符串转换为整数值
+        NSScanner *scanner = [NSScanner scannerWithString:hexCorString];
+        unsigned int hexValue;
+        if (![scanner scanHexInt:&hexValue]) {
+            return nil; // 转换失败
+        }
+        // 分解颜色分量
+        CGFloat red = ((hexValue & 0xFF0000) >> 16) / 255.0;
+        CGFloat green = ((hexValue & 0x00FF00) >> 8) / 255.0;
+        CGFloat blue = (hexValue & 0x0000FF) / 255.0;
+        
+        return [UIColor colorWithRed:red
+                               green:green
+                                blue:blue
+                               alpha:1.0];
+    };
 }
-/// 十六进制格式的字符串翻译成UIColor *
-+(UIColor *)colorWithHexString:(NSString *)color
-                         alpha:(CGFloat)alpha{
-    //删除字符串中的空格
+/// uint32_t 颜色的RGB数值 + 透明度 => UIColor *
++(JobsReturnColorByHexAlphaBlock _Nonnull)jobsColorByHexAlpha {
+    return ^UIColor * _Nullable(uint32_t hexValue, CGFloat alpha) {
+        return [UIColor colorWithRed:((float)((hexValue & 0xFF0000) >> 16)) / 255.0
+                               green:((float)((hexValue & 0xFF00) >> 8)) / 255.0
+                                blue:((float)(hexValue & 0xFF)) / 255.0
+                               alpha:alpha];
+    };
+}
+/// uint32_t 颜色的RGB数值  => UIColor *
++(JobsReturnColorByHexBlock _Nonnull)jobsColorByHex {
+    return ^UIColor * _Nullable(uint32_t hexValue) {
+        return UIColor.jobsColorByHexAlpha(hexValue,1);
+    };
+}
+/// 十六进制字符串 + 透明度 => UIColor *
++(UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha{
+    // 删除字符串中的空格
     NSString *cString = [color stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet].uppercaseString;
     // String should be 6 or 8 characters
     if ([cString length] < 6){
@@ -35,7 +75,6 @@
     if ([cString length] != 6){
         return JobsClearColor;
     }
-    
     // Separate into r, g, b substrings
     NSRange range;
     range.location = 0;
@@ -58,47 +97,29 @@
                             blue:((float)b / 255.0f)
                            alpha:alpha];
 }
-/// 将#格式的十六进制字符串转换为UIColor* 对外输出
-/// 使用示例：UIColor *color = [UIColor colorFromHexString:@"#EA0000"];
-+(UIColor *)colorFromHexString:(NSString *)hexString{
-    NSString *cleanedString = [hexString stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
-    // 移除可能的 '#' 前缀
-    if ([cleanedString hasPrefix:@"#"]) {
-        cleanedString = [cleanedString substringFromIndex:1];
-    }
-    // 检查是否是有效的十六进制颜色字符串
-    if (cleanedString.length != 6) {
-        return nil; // 无效的颜色字符串
-    }
-    // 将十六进制字符串转换为整数值
-    NSScanner *scanner = [NSScanner scannerWithString:cleanedString];
-    unsigned int hexValue;
-    if (![scanner scanHexInt:&hexValue]) {
-        return nil; // 转换失败
-    }
-    // 分解颜色分量
-    CGFloat red = ((hexValue & 0xFF0000) >> 16) / 255.0;
-    CGFloat green = ((hexValue & 0x00FF00) >> 8) / 255.0;
-    CGFloat blue = (hexValue & 0x0000FF) / 255.0;
-    
-    return [UIColor colorWithRed:red
-                           green:green
-                            blue:blue
-                           alpha:1.0];
+/// 十六进制字符串 （默认透明度为1） => UIColor *
++(JobsReturnColorByStringBlock _Nonnull)colorWithHexString{
+    @jobs_weakify(self)
+    return ^UIColor * _Nullable(NSString *_Nonnull hexCorString) {
+        return [self colorWithHexString:hexCorString alpha:1.0f];
+    };
 }
-/// 颜色转换为背景图片
-+(UIImage *)imageWithColor:(UIColor *)color{
-    CGRect rect = CGRectMake(0.0f,
-                             0.0f,
-                             1.0f,
-                             1.0f);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, color.CGColor);
-    CGContextFillRect(context, rect);
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
+/// UIColor * => UIImage *
++(JobsReturnImageByCorBlock)imageWithColor{
+    @jobs_weakify(self)
+    return ^UIImage * _Nullable(UIColor * _Nullable cor) {
+        CGRect rect = CGRectMake(0.0f,
+                                 0.0f,
+                                 1.0f,
+                                 1.0f);
+        UIGraphicsBeginImageContext(rect.size);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, cor.CGColor);
+        CGContextFillRect(context, rect);
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return image;
+    };
 }
 /// 生成的渐变图像
 /// - Parameters:
@@ -168,36 +189,51 @@
 #pragma mark —— 实例方法
 /// 将一个确定的UIColor子类，翻译成RGB格式的字符串值并对外输出【可能因为四舍五入的问题影响末位精度，误差在±1】
 /// 资料来源  https://blog.csdn.net/thanklife/article/details/25784879
--(NSString *_Nonnull)rgbCorStr{
-    /// 获得RGB值描述
-    NSString *RGBValue = [NSString stringWithFormat:@"%@",self];
-    /// 将RGB值描述分隔成字符串
-    NSArray *RGBArr = [RGBValue componentsSeparatedByString:@" "];
-    /// 获取红色值
-    int r = [[RGBArr objectAtIndex:1] floatValue] * 255;
-    NSString *redStr = [NSString stringWithFormat:@"%d",r];
-    /// 获取绿色值
-    int g = [[RGBArr objectAtIndex:2] floatValue] * 255;
-    NSString *greenStr = [NSString stringWithFormat:@"%d",g];
-    /// 获取蓝色值
-    int b = [[RGBArr objectAtIndex:3] floatValue] * 255;
-    NSString *blueStr = [NSString stringWithFormat:@"%d",b];
-
-    return [NSString stringWithFormat:@"红色:%@,绿色%@,蓝色%@",redStr,greenStr,blueStr];
+-(JobsReturnStrByCorBlock)rgbCorStr{
+    @jobs_weakify(self)
+    return ^NSString *_Nullable(UIColor * _Nullable data) {
+        @jobs_strongify(self)
+        /// 获得RGB值描述
+        NSString *RGBValue = [NSString stringWithFormat:@"%@",self];
+        /// 将RGB值描述分隔成字符串
+        NSArray *RGBArr = [RGBValue componentsSeparatedByString:@" "];
+        /// 获取红色值
+        int r = [[RGBArr objectAtIndex:1] floatValue] * 255;
+        NSString *redStr = toStringByInt(r);
+        /// 获取绿色值
+        int g = [[RGBArr objectAtIndex:2] floatValue] * 255;
+        NSString *greenStr = toStringByInt(g);
+        /// 获取蓝色值
+        int b = [[RGBArr objectAtIndex:3] floatValue] * 255;
+        NSString *blueStr = toStringByInt(b);
+        return JobsInternationalization(@"红色")
+            .add(@":")
+            .add(redStr)
+            .add(JobsInternationalization(@"绿色"))
+            .add(@":")
+            .add(greenStr)
+            .add(JobsInternationalization(@"蓝色"))
+            .add(@":")
+            .add(blueStr);
+    };
 }
 /// 将一个确定的UIColor子类，翻译成十六进制格式的字符串值并对外输出
--(NSString *_Nonnull)hexadecimalCorStr{
-    // 获取颜色组件
-    const CGFloat *components = CGColorGetComponents(self.CGColor);
-    // 提取RGB值
-    CGFloat redCor = components[0];
-    CGFloat greenCor = components[1];
-    CGFloat blueCor = components[2];
-    // 将RGB值转换为十六进制字符串
-    return [NSString stringWithFormat:@"#%02X%02X%02X",
-            (int)(redCor * 255),
-            (int)(greenCor * 255),
-            (int)(blueCor * 255)];
+-(JobsReturnStrByCorBlock)hexadecimalCorStr{
+    @jobs_weakify(self)
+    return ^NSString *_Nullable(UIColor * _Nullable data) {
+        @jobs_strongify(self)
+        // 获取颜色组件
+        const CGFloat *components = CGColorGetComponents(self.CGColor);
+        // 提取RGB值
+        CGFloat redCor = components[0];
+        CGFloat greenCor = components[1];
+        CGFloat blueCor = components[2];
+        // 将RGB值转换为十六进制字符串
+        return [NSString stringWithFormat:@"#%02X%02X%02X",
+                (int)(redCor * 255),
+                (int)(greenCor * 255),
+                (int)(blueCor * 255)];
+    };
 }
 /// iOS 父视图透明度影响到子视图
 /// https://blog.csdn.net/ios_xumin/article/details/114263960

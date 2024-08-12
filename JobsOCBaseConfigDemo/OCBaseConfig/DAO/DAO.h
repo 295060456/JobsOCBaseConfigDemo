@@ -14,5 +14,6 @@
 #import "URLManagerModel.h"
 #import "CasinoCustomerContactModel.h"
 #import "CasinoGetiOSNewestVersionModel.h"
+#import "JobsCountriesModel.h"
 
 #endif /* DAO_h */

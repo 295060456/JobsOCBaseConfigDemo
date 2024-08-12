@@ -8,13 +8,21 @@
 
 #import "ZMJTaskView.h"
 
-#define TitleColor [UIColor colorWithHexString:@"999999"]
-#define ValueColor [UIColor colorWithHexString:@"666666"]
-#define LineColor  [UIColor colorWithHexString:@"DBDBDB"]
+#ifndef TitleColor
+#define TitleColor  UIColor.colorWithHexString(@"999999")
+#endif
+
+#ifndef ValueColor
+#define ValueColor  UIColor.colorWithHexString(@"666666")
+#endif
+
+#ifndef LineColor
+#define LineColor   UIColor.colorWithHexString(@"DBDBDB")
+#endif
 
 #define DateTitleWidth 45.f
 
-@interface ZMJTaskView () 
+@interface ZMJTaskView ()
 
 @property(nonatomic,strong)UILabel *taskTitleLabel;
 @property(nonatomic,strong)UILabel *startTimeTitleLabel;
@@ -28,26 +36,19 @@
 
 @implementation ZMJTaskView
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
+- (instancetype)initWithCoder:(NSCoder *)coder{
+    if (self = [super initWithCoder:coder]) {
         [self setupViews];
-    }
-    return self;
+    }return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
         [self setupViews];
-    }
-    return self;
+    }return self;
 }
 
 - (void)setupViews {
-
     self.taskTitleLabel = ({
         UILabel *label = [UILabel new];
         label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
@@ -177,4 +178,5 @@
     _endTime = endTime;
     self.endTimeLabel.text = endTime;
 }
+
 @end
