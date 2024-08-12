@@ -70,9 +70,7 @@ JobsToggleNavViewProtocolSynthesize
     return jobsEqualToZeroSize(self.toggleView_size) ? [JobsToggleBaseView viewSizeWithModel:nil] : self.toggleView_size;
 }
 #pragma mark —— 一些公共方法
--(JobsToggleNavView *)getToggleNavView{
-    return self.taggedNavView;
-}
+
 #pragma mark —— 一些私有方法
 -(void)makeScrollContentViewsFrame{
     int t = 0;
@@ -131,6 +129,7 @@ JobsToggleNavViewProtocolSynthesize
         /// 联动
         [_taggedNavView actionObjectBlock:^(id _Nullable data) {
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(data);
             if(KindOfBaseButtonCls(data)){
                 BaseButton *btn = (BaseButton *)data;
                 /// 由 self.bgScroll 驱动

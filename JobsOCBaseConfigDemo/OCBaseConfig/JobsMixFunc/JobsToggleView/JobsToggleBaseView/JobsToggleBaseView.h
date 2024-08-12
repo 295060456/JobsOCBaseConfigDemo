@@ -28,7 +28,8 @@ JobsToggleNavViewProtocol
 @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*scrollContentViews;
 @property(nonatomic,strong)NSMutableArray <NSString *>*taggedNavTitles;
 
--(JobsToggleNavView *)getToggleNavView;
+-(JobsToggleNavView *)taggedNavView;
+-(UIScrollView *)bgScroll;
 
 @end
 
