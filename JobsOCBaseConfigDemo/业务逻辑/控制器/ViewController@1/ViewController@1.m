@@ -357,6 +357,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"幸运轮盘")
+                                                           attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
+            
+            viewModel.cls = LotteryVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"iOS Widget")
                                                            attributeSubTitle:JobsInternationalization(@"")];
             

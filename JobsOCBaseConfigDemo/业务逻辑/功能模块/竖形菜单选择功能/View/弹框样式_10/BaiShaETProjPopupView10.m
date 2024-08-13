@@ -83,11 +83,11 @@ cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
                                                              forIndexPath:indexPath];
     cell.richElementsInCellWithModel(self.dataMutArr[indexPath.item]);
     if (indexPath.item == self.selectedIndex - 1) {
-        cell.getBtn.backgroundColor = HEXCOLOR(0xFFEABA);
-        cell.getBtn.normalTitleColor(HEXCOLOR(0xAE8330));
+        cell.btn.backgroundColor = HEXCOLOR(0xFFEABA);
+        cell.btn.normalTitleColor(HEXCOLOR(0xAE8330));
     }else{
-        cell.getBtn.backgroundColor = HEXCOLOR(0xF3F3F3);
-        cell.getBtn.normalTitleColor(HEXCOLOR(0x757575));
+        cell.btn.backgroundColor = HEXCOLOR(0xF3F3F3);
+        cell.btn.normalTitleColor(HEXCOLOR(0x757575));
     }
     
     cell.cornerCutToCircleWithCornerRadius([JobsBtnStyleCVCell cellSizeWithModel:nil].height / 2);

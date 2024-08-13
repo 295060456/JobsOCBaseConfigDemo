@@ -24,6 +24,10 @@
 		CE2E88C42C69DECC00260207 /* JobsCountriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */; };
 		CE2E88C62C69DF3100260207 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = CE2E88C52C69DF3100260207 /* countries.json */; };
 		CE2E88CD2C69E14100260207 /* PopListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E88C92C69E14100260207 /* PopListBaseView.m */; };
+		CE2E8ACC2C6AF7C900260207 /* 幸运转盘.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2E8ACB2C6AF7B800260207 /* 幸运转盘.xcassets */; };
+		CE2E8AD42C6AFB2F00260207 /* LuckyDiskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E8ACE2C6AF7FB00260207 /* LuckyDiskVC.m */; };
+		CE2E8ADE2C6B032A00260207 /* LuckyRollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E8ADD2C6B032A00260207 /* LuckyRollVC.m */; };
+		CE2E8AE12C6B051900260207 /* LotteryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E8AE02C6B051900260207 /* LotteryVC.m */; };
 		CE40B28E2C4B54A500CB64B5 /* JobsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */; };
 		CE40B29B2C4BF78E00CB64B5 /* JobsToggleBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */; };
 		CE40B29C2C4BF78E00CB64B5 /* JobsToggleNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2982C4BF78E00CB64B5 /* JobsToggleNavView.m */; };
@@ -32,7 +36,6 @@
 		CE410FE92C57B8B400AB9402 /* ZBRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDC2C57B8B400AB9402 /* ZBRequestEngine.m */; };
 		CE410FEA2C57B8B400AB9402 /* ZBRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDF2C57B8B400AB9402 /* ZBRequestManager.m */; };
 		CE410FEB2C57B8B400AB9402 /* ZBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */; };
-		CE55CD222C4A5004002E1825 /* 临时的占位图.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE55CD212C4A4FEF002E1825 /* 临时的占位图.xcassets */; };
 		CE706A422C57680500CB7B97 /* JobsPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE794C2C450C5000764AF5 /* JobsPostVC.m */; };
 		CE706A462C57682900CB7B97 /* data.tsv in Resources */ = {isa = PBXBuildFile; fileRef = CE706A432C57682900CB7B97 /* data.tsv */; };
 		CE7F395D2C4FDA1000431A5D /* JobsFMDBMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */; };
@@ -86,11 +89,6 @@
 		CEB4B1722C5A39EA00831085 /* JobsStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB4B16F2C5A39EA00831085 /* JobsStepView.m */; };
 		CEBA44102C5E316200F0042D /* BaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */; };
 		CEC01BDF2C48DF300069C91A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB32C48AFED0069C91A /* TabBar.xcassets */; };
-		CEC01BE02C48DF330069C91A /* CONTACT US.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */; };
-		CEC01BE12C48DF360069C91A /* INVITE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB22C48AFAD0069C91A /* INVITE.xcassets */; };
-		CEC01BE22C48DF390069C91A /* INCENTIVE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB12C48AFAA0069C91A /* INCENTIVE.xcassets */; };
-		CEC01BE32C48DF3B0069C91A /* BANK.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AAF2C48AF950069C91A /* BANK.xcassets */; };
-		CEC01BE42C48DF3E0069C91A /* MY FAV.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AAE2C48AF7D0069C91A /* MY FAV.xcassets */; };
 		CEC01BE62C48E20F0069C91A /* Bayon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC01BE52C48E20F0069C91A /* Bayon.ttf */; };
 		CECE788D2C4509E000764AF5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CECE788C2C4509E000764AF5 /* Base */; };
 		CECE78922C4509E200764AF5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CECE78912C4509E200764AF5 /* Base */; };
@@ -985,7 +983,6 @@
 		CECE88E42C4519AD00764AF5 /* AppDoor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CECE881A2C4519AD00764AF5 /* AppDoor.xcassets */; };
 		CECE88E52C4519AD00764AF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CECE881B2C4519AD00764AF5 /* Assets.xcassets */; };
 		CECE88E62C4519AD00764AF5 /* Customer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CECE881C2C4519AD00764AF5 /* Customer.xcassets */; };
-		CECE88E72C4519AD00764AF5 /* Tabbar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CECE881D2C4519AD00764AF5 /* Tabbar.xcassets */; };
 		CECE88E82C4519AD00764AF5 /* NotoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CECE88202C4519AD00764AF5 /* NotoSans-Black.ttf */; };
 		CECE88E92C4519AD00764AF5 /* NotoSans-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CECE88212C4519AD00764AF5 /* NotoSans-BlackItalic.ttf */; };
 		CECE88EA2C4519AD00764AF5 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CECE88222C4519AD00764AF5 /* NotoSans-Bold.ttf */; };
@@ -1175,6 +1172,14 @@
 		CE2E88C72C69E14100260207 /* 全局统一的下拉选择器改为屏幕中部弹出的列表.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "全局统一的下拉选择器改为屏幕中部弹出的列表.jpg"; sourceTree = "<group>"; };
 		CE2E88C82C69E14100260207 /* PopListBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopListBaseView.h; sourceTree = "<group>"; };
 		CE2E88C92C69E14100260207 /* PopListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopListBaseView.m; sourceTree = "<group>"; };
+		CE2E8ACB2C6AF7B800260207 /* 幸运转盘.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "幸运转盘.xcassets"; sourceTree = "<group>"; };
+		CE2E8ACE2C6AF7FB00260207 /* LuckyDiskVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyDiskVC.m; sourceTree = "<group>"; };
+		CE2E8ACF2C6AF7FB00260207 /* LuckyDiskVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuckyDiskVC.h; sourceTree = "<group>"; };
+		CE2E8AD32C6AF97100260207 /* 转盘.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "转盘.PNG"; sourceTree = "<group>"; };
+		CE2E8ADC2C6B032A00260207 /* LuckyRollVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuckyRollVC.h; sourceTree = "<group>"; };
+		CE2E8ADD2C6B032A00260207 /* LuckyRollVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyRollVC.m; sourceTree = "<group>"; };
+		CE2E8ADF2C6B051900260207 /* LotteryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryVC.h; sourceTree = "<group>"; };
+		CE2E8AE02C6B051900260207 /* LotteryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryVC.m; sourceTree = "<group>"; };
 		CE40B28C2C4B54A500CB64B5 /* JobsTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextField.h; sourceTree = "<group>"; };
 		CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextField.m; sourceTree = "<group>"; };
 		CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsToggleBaseView.m; sourceTree = "<group>"; };
@@ -1193,7 +1198,6 @@
 		CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBURLRequest.m; sourceTree = "<group>"; };
 		CE410FE42C57B8B400AB9402 /* ZBNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBNetworking.h; sourceTree = "<group>"; };
 		CE410FE52C57B8B400AB9402 /* ZBRequestConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBRequestConst.h; sourceTree = "<group>"; };
-		CE55CD212C4A4FEF002E1825 /* 临时的占位图.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "临时的占位图.xcassets"; sourceTree = "<group>"; };
 		CE706A432C57682900CB7B97 /* data.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.tsv; sourceTree = "<group>"; };
 		CE706A442C57682900CB7B97 /* TSV文件介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "TSV文件介绍.md"; sourceTree = "<group>"; };
 		CE73A5362C4E441D00B44795 /* JobsToggleNavViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsToggleNavViewProtocol.h; sourceTree = "<group>"; };
@@ -1300,11 +1304,6 @@
 		CEB4B16F2C5A39EA00831085 /* JobsStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsStepView.m; sourceTree = "<group>"; };
 		CEBA440D2C5E316200F0042D /* BaseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewCell.h; sourceTree = "<group>"; };
 		CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewCell.m; sourceTree = "<group>"; };
-		CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "CONTACT US.xcassets"; sourceTree = "<group>"; };
-		CEC01AAE2C48AF7D0069C91A /* MY FAV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "MY FAV.xcassets"; sourceTree = "<group>"; };
-		CEC01AAF2C48AF950069C91A /* BANK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BANK.xcassets; sourceTree = "<group>"; };
-		CEC01AB12C48AFAA0069C91A /* INCENTIVE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = INCENTIVE.xcassets; sourceTree = "<group>"; };
-		CEC01AB22C48AFAD0069C91A /* INVITE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = INVITE.xcassets; sourceTree = "<group>"; };
 		CEC01AB32C48AFED0069C91A /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
 		CEC01BE52C48E20F0069C91A /* Bayon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bayon.ttf; sourceTree = "<group>"; };
 		CEC01CD72C49334D0069C91A /* 时间格式化.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "时间格式化.md"; sourceTree = "<group>"; };
@@ -2998,7 +2997,6 @@
 		CECE881A2C4519AD00764AF5 /* AppDoor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppDoor.xcassets; sourceTree = "<group>"; };
 		CECE881B2C4519AD00764AF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CECE881C2C4519AD00764AF5 /* Customer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Customer.xcassets; sourceTree = "<group>"; };
-		CECE881D2C4519AD00764AF5 /* Tabbar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Tabbar.xcassets; sourceTree = "<group>"; };
 		CECE88202C4519AD00764AF5 /* NotoSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Black.ttf"; sourceTree = "<group>"; };
 		CECE88212C4519AD00764AF5 /* NotoSans-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-BlackItalic.ttf"; sourceTree = "<group>"; };
 		CECE88222C4519AD00764AF5 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -3361,6 +3359,82 @@
 			path = "全局统一的下拉选择器改为屏幕中部弹出的列表";
 			sourceTree = "<group>";
 		};
+		CE2E8AD62C6B02E900260207 /* 抽奖轮盘 */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E8AE32C6B054900260207 /* Model */,
+				CE2E8AE42C6B054900260207 /* View */,
+				CE2E8AE22C6B053100260207 /* ViewController */,
+			);
+			path = "抽奖轮盘";
+			sourceTree = "<group>";
+		};
+		CE2E8AD92C6B02F500260207 /* LuckyRollVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E8ADC2C6B032A00260207 /* LuckyRollVC.h */,
+				CE2E8ADD2C6B032A00260207 /* LuckyRollVC.m */,
+			);
+			path = LuckyRollVC;
+			sourceTree = "<group>";
+		};
+		CE2E8AE22C6B053100260207 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E8AED2C6B083A00260207 /* LuckyDiskVC */,
+				CE2E8AEC2C6B082D00260207 /* LotteryVC */,
+				CE2E8AD92C6B02F500260207 /* LuckyRollVC */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CE2E8AE32C6B054900260207 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE2E8AE42C6B054900260207 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE2E8AE52C6B055000260207 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE2E8AE62C6B055000260207 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE2E8AEC2C6B082D00260207 /* LotteryVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E8AD32C6AF97100260207 /* 转盘.PNG */,
+				CE2E8ADF2C6B051900260207 /* LotteryVC.h */,
+				CE2E8AE02C6B051900260207 /* LotteryVC.m */,
+			);
+			path = LotteryVC;
+			sourceTree = "<group>";
+		};
+		CE2E8AED2C6B083A00260207 /* LuckyDiskVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E8ACF2C6AF7FB00260207 /* LuckyDiskVC.h */,
+				CE2E8ACE2C6AF7FB00260207 /* LuckyDiskVC.m */,
+			);
+			path = LuckyDiskVC;
+			sourceTree = "<group>";
+		};
 		CE40B28B2C4B544F00CB64B5 /* JobsTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -3624,6 +3698,8 @@
 		CEAF24C62C60FE040056570C /* ExcelVC */ = {
 			isa = PBXGroup;
 			children = (
+				CE2E8AE62C6B055000260207 /* Model */,
+				CE2E8AE52C6B055000260207 /* View */,
 				CEAF24C52C60FE040056570C /* ViewController */,
 			);
 			path = ExcelVC;
@@ -4055,20 +4131,6 @@
 				CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */,
 			);
 			path = BaseCollectionViewCell;
-			sourceTree = "<group>";
-		};
-		CEC01AB42C48AFFE0069C91A /* old */ = {
-			isa = PBXGroup;
-			children = (
-				CECE88172C4519AD00764AF5 /* 临时的占位图.xcassets */,
-				CECE88182C4519AD00764AF5 /* 视频模块.xcassets */,
-				CECE88192C4519AD00764AF5 /* 相册选取图片和视频.xcassets */,
-				CECE881A2C4519AD00764AF5 /* AppDoor.xcassets */,
-				CECE881B2C4519AD00764AF5 /* Assets.xcassets */,
-				CECE881C2C4519AD00764AF5 /* Customer.xcassets */,
-				CECE881D2C4519AD00764AF5 /* Tabbar.xcassets */,
-			);
-			path = old;
 			sourceTree = "<group>";
 		};
 		CECE78762C4509E000764AF5 = {
@@ -6626,6 +6688,7 @@
 		CECE7BDE2C450C5000764AF5 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				CE2E8AD62C6B02E900260207 /* 抽奖轮盘 */,
 				CE1F256D2C5DD23000324198 /* JobsViewNavigator */,
 				CE706A3D2C5767CA00CB7B97 /* Excel */,
 				CECE79322C450C5000764AF5 /* 本地通知 */,
@@ -12831,14 +12894,14 @@
 		CECE881E2C4519AD00764AF5 /* xcassets */ = {
 			isa = PBXGroup;
 			children = (
-				CEC01AB42C48AFFE0069C91A /* old */,
-				CE55CD212C4A4FEF002E1825 /* 临时的占位图.xcassets */,
+				CECE88172C4519AD00764AF5 /* 临时的占位图.xcassets */,
+				CE2E8ACB2C6AF7B800260207 /* 幸运转盘.xcassets */,
+				CECE88182C4519AD00764AF5 /* 视频模块.xcassets */,
+				CECE88192C4519AD00764AF5 /* 相册选取图片和视频.xcassets */,
+				CECE881A2C4519AD00764AF5 /* AppDoor.xcassets */,
+				CECE881B2C4519AD00764AF5 /* Assets.xcassets */,
+				CECE881C2C4519AD00764AF5 /* Customer.xcassets */,
 				CEC01AB32C48AFED0069C91A /* TabBar.xcassets */,
-				CEC01AAD2C48AF6F0069C91A /* CONTACT US.xcassets */,
-				CEC01AB22C48AFAD0069C91A /* INVITE.xcassets */,
-				CEC01AB12C48AFAA0069C91A /* INCENTIVE.xcassets */,
-				CEC01AAF2C48AF950069C91A /* BANK.xcassets */,
-				CEC01AAE2C48AF7D0069C91A /* MY FAV.xcassets */,
 			);
 			path = xcassets;
 			sourceTree = "<group>";
@@ -13265,7 +13328,6 @@
 				CECE87742C45140000764AF5 /* sortedNameCH.plist in Resources */,
 				CECE7C642C450C5000764AF5 /* 右气泡@2x.png in Resources */,
 				CECE873A2C45140000764AF5 /* SHA-384.md in Resources */,
-				CE55CD222C4A5004002E1825 /* 临时的占位图.xcassets in Resources */,
 				CECE890A2C4519AD00764AF5 /* NotoSansDisplay-SemiBold.ttf in Resources */,
 				CECE7C842C450C5000764AF5 /* JobsIM【Outlines 10】.png in Resources */,
 				CECE88CC2C4519AD00764AF5 /* 空白图.png in Resources */,
@@ -13385,7 +13447,6 @@
 				CECE87402C45140000764AF5 /* HASH.md in Resources */,
 				CECE890B2C4519AD00764AF5 /* NotoSansDisplay-SemiBoldItalic.ttf in Resources */,
 				CECE80EC2C4512BF00764AF5 /* 输入框样式_4.png in Resources */,
-				CEC01BE12C48DF360069C91A /* INVITE.xcassets in Resources */,
 				CECE812A2C4512BF00764AF5 /* 小数点@3x.png in Resources */,
 				CECE7C092C450C5000764AF5 /* 弹框样式_10.png in Resources */,
 				CECE85762C4513CE00764AF5 /* RBCLikeButton.bundle in Resources */,
@@ -13473,7 +13534,6 @@
 				CECE7ECD2C450E5B00764AF5 /* A.png in Resources */,
 				CECE850F2C4513CE00764AF5 /* BaseProtocol.md in Resources */,
 				CECE7CEF2C450C5000764AF5 /* image-20240622130050640.png in Resources */,
-				CECE88E72C4519AD00764AF5 /* Tabbar.xcassets in Resources */,
 				CECE81172C4512BF00764AF5 /* 1@2x.png in Resources */,
 				CECE87552C45140000764AF5 /* File in Resources */,
 				CECE87642C45140000764AF5 /* LongPressToDeleteImageView.md in Resources */,
@@ -13512,7 +13572,6 @@
 				CECE88F02C4519AD00764AF5 /* NotoSans-Italic.ttf in Resources */,
 				CECE80E32C4512BF00764AF5 /* 输入框样式_1.png in Resources */,
 				CECE80D82C4512BF00764AF5 /* 灰色椭圆.png in Resources */,
-				CEC01BE22C48DF390069C91A /* INCENTIVE.xcassets in Resources */,
 				CECE892F2C4519AD00764AF5 /* NotoSansDisplay_ExtraCondensed-SemiBoldItalic.ttf in Resources */,
 				CECE87662C45140000764AF5 /* RYCuteView.md in Resources */,
 				CECE7EDD2C450E5B00764AF5 /* CasinoFlowDetailsVC_h in Resources */,
@@ -13520,7 +13579,6 @@
 				CECE7D3B2C450CCD00764AF5 /* 测试弹窗的确定按钮@2x.png in Resources */,
 				CECE88C02C4519AD00764AF5 /* welcome_video.mp4 in Resources */,
 				CECE89052C4519AD00764AF5 /* NotoSansDisplay-Light.ttf in Resources */,
-				CEC01BE42C48DF3E0069C91A /* MY FAV.xcassets in Resources */,
 				CECE85222C4513CE00764AF5 /* JobsMonitorNetwoking.md in Resources */,
 				CECE89252C4519AD00764AF5 /* NotoSansDisplay_ExtraCondensed-ExtraBoldItalic.ttf in Resources */,
 				CECE81572C4512BF00764AF5 /* 任务.json in Resources */,
@@ -13540,7 +13598,6 @@
 				CECE89162C4519AD00764AF5 /* NotoSansDisplay_Condensed-Italic.ttf in Resources */,
 				CECE81152C4512BF00764AF5 /* 0@2x.png in Resources */,
 				CECE81412C4512BF00764AF5 /* 启动页_03.png in Resources */,
-				CEC01BE32C48DF3B0069C91A /* BANK.xcassets in Resources */,
 				CECE88E32C4519AD00764AF5 /* 相册选取图片和视频.xcassets in Resources */,
 				CECE894D2C4519AD00764AF5 /* Localizable.strings in Resources */,
 				CECE811D2C4512BF00764AF5 /* 4@2x.png in Resources */,
@@ -13569,6 +13626,7 @@
 				CECE7C862C450C5000764AF5 /* JobsIM【Outlines 12】.png in Resources */,
 				CECE7C072C450C5000764AF5 /* 设置手势密码.png in Resources */,
 				CECE890F2C4519AD00764AF5 /* NotoSansDisplay_Condensed-BlackItalic.ttf in Resources */,
+				CE2E8ACC2C6AF7C900260207 /* 幸运转盘.xcassets in Resources */,
 				CECE811F2C4512BF00764AF5 /* 5@2x.png in Resources */,
 				CECE89042C4519AD00764AF5 /* NotoSansDisplay-Italic.ttf in Resources */,
 				CECE88DD2C4519AD00764AF5 /* 1242x2688.png in Resources */,
@@ -13614,7 +13672,6 @@
 				CECE81322C4512BF00764AF5 /* JobsShowNum@2x.png in Resources */,
 				CECE7CC22C450C5000764AF5 /* 4767245-ce0c1c26ef2ab354.png in Resources */,
 				CECE7D392C450CCD00764AF5 /* 测试弹窗的背景图@2x.png in Resources */,
-				CEC01BE02C48DF330069C91A /* CONTACT US.xcassets in Resources */,
 				CECE7C752C450C5000764AF5 /* Fav@3x.png in Resources */,
 				CECE89002C4519AD00764AF5 /* NotoSansDisplay-ExtraBold.ttf in Resources */,
 				CECE7ECE2C450E5B00764AF5 /* A60FD1B7CBF08631A978DC3E57B4F221.png in Resources */,
@@ -14166,6 +14223,7 @@
 				CECE85AB2C4513CE00764AF5 /* BaseNavigationBar.m in Sources */,
 				CECE814D2C4512BF00764AF5 /* LZTabBarItem.m in Sources */,
 				CECE871D2C45140000764AF5 /* UIImage+Base16.m in Sources */,
+				CE2E8ADE2C6B032A00260207 /* LuckyRollVC.m in Sources */,
 				CECE78952C4509E200764AF5 /* main.m in Sources */,
 				CECE80E52C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_1.m in Sources */,
 				CE7F396F2C4FDAF900431A5D /* JobsMenuSubView@1.m in Sources */,
@@ -14260,6 +14318,7 @@
 				CECE80B72C4512BF00764AF5 /* JobsOCBaseConfigNotificationManager.m in Sources */,
 				CECE7EA82C450E5B00764AF5 /* KTVHCHTTPResponse.m in Sources */,
 				CEAF25402C60FE050056570C /* ZMJTextCell.m in Sources */,
+				CE2E8AE12C6B051900260207 /* LotteryVC.m in Sources */,
 				CECE87412C45140000764AF5 /* JhtBannerCardView.m in Sources */,
 				CECE87352C45140000764AF5 /* UIImage+MIME.m in Sources */,
 				CECE85682C4513CE00764AF5 /* NSString+Others.m in Sources */,
@@ -14323,6 +14382,7 @@
 				CECE7C202C450C5000764AF5 /* YTKRequest+Custom.m in Sources */,
 				CECE854F2C4513CE00764AF5 /* NSObject+Notification.m in Sources */,
 				CECE7CD02C450C5000764AF5 /* B_VC.m in Sources */,
+				CE2E8AD42C6AFB2F00260207 /* LuckyDiskVC.m in Sources */,
 				CECE7CB02C450C5000764AF5 /* BaiShaETProjVIPSubCVCell_02.m in Sources */,
 				CECE80B82C4512BF00764AF5 /* BaseModel.m in Sources */,
 				CECE85252C4513CE00764AF5 /* JobsTimeModel.m in Sources */,

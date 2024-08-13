@@ -1,22 +1,22 @@
 //
-//  ExcelVC.m
-//  JobsOCBaseConfig
+//  LotteryVC.m
+//  JobsOCBaseConfigDemo
 //
-//  Created by Jobs on 2024/4/26.
+//  Created by User on 8/13/24.
 //
 
-#import "ExcelVC.h"
+#import "LotteryVC.h"
 
-@interface ExcelVC ()
+@interface LotteryVC ()
 /// UI
 @property(nonatomic,strong)UITableView *tableView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvSectionRowCellMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
 
 @end
 
-@implementation ExcelVC
+@implementation LotteryVC
 
 - (void)dealloc{
     [NSNotificationCenter.defaultCenter removeObserver:self];
@@ -33,7 +33,7 @@
     
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = JobsInternationalization(@"消息详情页");
+    self.viewModel.textModel.text = JobsInternationalization(@"幸运轮盘");
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -100,8 +100,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.dataMutArr[indexPath.section][indexPath.row].cls) {
-        self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.section][indexPath.row].cls.new,self.dataMutArr[indexPath.section][indexPath.row]);
+    if (self.dataMutArr[indexPath.row].cls) {
+        self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.row].cls.new,self.dataMutArr[indexPath.row]);
     }else{
         [WHToast jobsToastMsg:JobsInternationalization(@"尚未接入此功能")];
     }
@@ -113,7 +113,7 @@ didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.dataMutArr.count;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
@@ -123,13 +123,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return self.dataMutArr[section].count;
+    return self.dataMutArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
-    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.section][indexPath.row]);
+    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvSectionRowCellMutArr[indexPath.row];
+    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     return cell;
 }
 
@@ -305,75 +305,29 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _tableView;
 }
 
--(NSMutableArray<NSMutableArray<__kindof UITableViewCell *> *> *)tbvSectionRowCellMutArr{
+-(NSMutableArray<__kindof UITableViewCell *> *)tbvSectionRowCellMutArr{
     if(!_tbvSectionRowCellMutArr){
         _tbvSectionRowCellMutArr = NSMutableArray.array;
-        {
-            NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            _tbvSectionRowCellMutArr.jobsAddObject(rowCellMutArr);
-        }
-        
-        {
-            NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            _tbvSectionRowCellMutArr.jobsAddObject(rowCellMutArr);
-        }
+        _tbvSectionRowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+        _tbvSectionRowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
     }return _tbvSectionRowCellMutArr;
 }
 
--(NSMutableArray<NSMutableArray<__kindof UIViewModel *> *> *)dataMutArr{
+-(NSMutableArray<__kindof UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = NSMutableArray.array;
-        
         {
-            NSMutableArray <__kindof UIViewModel *>*rowMutArr = NSMutableArray.array;
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJClassData")
-                                                               attributeSubTitle:JobsInternationalization(@"正常")];
-                viewModel.cls = ZMJClassDataVC.class;
-                rowMutArr.jobsAddObject(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJTimeable")
-                                                               attributeSubTitle:JobsInternationalization(@"正常")];
-                viewModel.cls = ZMJTimeableVC.class;
-                rowMutArr.jobsAddObject(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJSchedule")
-                                                               attributeSubTitle:JobsInternationalization(@"正常")];
-                viewModel.cls = ZMJScheduleVC.class;
-                rowMutArr.jobsAddObject(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJGanttList")
-                                                               attributeSubTitle:JobsInternationalization(@"有崩溃，需要修复")];
-                viewModel.cls = ZMJGanttListVC.class;
-                rowMutArr.jobsAddObject(viewModel);
-            }
-            
-            _dataMutArr.jobsAddObject(rowMutArr);
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"方形转盘抽奖")
+                                                           attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
+            viewModel.cls = LuckyDiskVC.class;
+            _dataMutArr.jobsAddObject(viewModel);
         }
         
         {
-            NSMutableArray <__kindof UIViewModel *>*rowMutArr = NSMutableArray.array;
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"XZExcel")
-                                                               attributeSubTitle:JobsInternationalization(@"XZExcel")];
-                viewModel.cls = XZExcelVC.class;
-                [rowMutArr addObject:viewModel];
-            }
-            
-            _dataMutArr.jobsAddObject(rowMutArr);
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"圆形抽奖轮盘")
+                                                           attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
+            viewModel.cls = LuckyRollVC.class;
+            _dataMutArr.jobsAddObject(viewModel);
         }
     }return _dataMutArr;
 }

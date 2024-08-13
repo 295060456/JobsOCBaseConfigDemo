@@ -3990,7 +3990,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 如果要实现富文本某段文字的点击事件的监听，此时的承接控件不能是**`UILabel`**，而应该换成**`UITextView`**，并实现其相应的**<UITextViewDelegate>**方法
 
-  * ```objective-c
+  * <font color=red>注意：**`UITextView`**不像**`UITextField`**一样有<u>Placeholder</u>，为了延续使用习惯则引入[**第三方**](https://github.com/devxoul/UITextView-Placeholder)</font>
+    
+    ```ruby
+    pod 'UITextView+Placeholder' # https://github.com/devxoul/UITextView-Placeholder A missing placeholder for UITextView.
+    #import "UITextView+Placeholder.h"
+    ```
+    
+    ```objective-c
     -(UITextView *)tipsTextView{
         if (!_tipsTextView) {
             _tipsTextView = UITextView.new;
@@ -4011,7 +4018,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         }return _tipsTextView;
     }
     ```
-  
+    
   * **UITextViewDelegate**
   
     * iOS 17 之后弃用
@@ -8671,7 +8678,18 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
   </details>
 
-## 六、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+## 六、<font color=red>**马甲包**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+### 1、相关资料
+
+* https://github.com/520coding/confuse/blob/master/README_ZH.md
+
+### 2、相关工具
+
+* [**confuse**](https://github.com/520coding/confuse)
+
+## 七、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
 ### 1、配置相关
 * [**解决xcode出现：SDK does not contain 'libarclite' 错误**](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E8%A7%A3%E5%86%B3Xcode%E5%87%BA%E7%8E%B0%EF%BC%9ASDK%20does%20not%20contain%20'libarclite'%20%E9%94%99%E8%AF%AF)
 * [**通过SSH连接到GitHub**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub.md)
@@ -8743,6 +8761,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 5、其他研究
 * [**LYM的研究成果**](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E2%9D%A4%EF%B8%8FLYM%E7%9A%84%E7%A0%94%E7%A9%B6%E6%88%90%E6%9E%9C%E2%9D%A4%EF%B8%8F)
+* [**iOS项目常用的第三方框架**](https://www.cnblogs.com/sundaysgarden/articles/14208764.html)
+* [**滚动数字显示**](https://github.com/lf19940514/LFScrollNumberDemo)
+* https://github.com/SeongBrave/Swift__OC/blob/master/README.md?plain=1
+* [**iOS圆盘转动引导图的简单实现**](https://blog.csdn.net/hmxhh/article/details/42145049)
 ### 6、课外阅读
   * [**FFmpeg**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/FFmpeg/FFmpeg.md)
   * [**优秀的关于音视频处理的文献资料**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E4%BC%98%E7%A7%80%E7%9A%84%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86%E7%9A%84%E6%96%87%E7%8C%AE%E8%B5%84%E6%96%99.md)
@@ -8760,7 +8782,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * DebugLogDescription 会崩溃：`id value = self.valueForKeyBlock(name) ? : @"nil";//默认值为nil字符串`
 * 侧滑菜单：JXCategoryView垂直表达
 * 其他
-## 七、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+## 八、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * 浏览器打开并输入 
   ```html
   feedbackassistant://

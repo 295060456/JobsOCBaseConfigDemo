@@ -91,5 +91,6 @@
 #import "AppLanguageVC.h"// 国际化
 #import "FMDB_VC.h"
 #import "Realm_VC.h"
+#import "LotteryVC.h"
 
 #endif /* Other_h */
