@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 /// 文本前面有个小圆点
-@interface PointLabView : BaseView
+@interface PointLabBaseView : BaseView
 
 -(UIView *)pointView;
 -(UILabel *)label;

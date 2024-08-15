@@ -365,6 +365,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"文本前有小圆点")
+                                                           attributeSubTitle:JobsInternationalization(@"包括对齐")];
+            
+            viewModel.cls = PointLabTestVC.class;
+            [_dataMutArr addObject:viewModel];
+        }
+        
+        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"iOS Widget")
                                                            attributeSubTitle:JobsInternationalization(@"")];
             

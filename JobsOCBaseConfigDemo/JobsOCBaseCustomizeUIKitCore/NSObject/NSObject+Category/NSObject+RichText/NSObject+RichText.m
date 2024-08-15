@@ -109,7 +109,7 @@
     };
 }
 /// 字符串中划线
--(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation{
+-(JobsReturnMutAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation{
     @jobs_weakify(self)
     return ^(NSString *data) {
         @jobs_strongify(self)
@@ -118,7 +118,7 @@
     };
 }
 /// 字符串下划线
--(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation{
+-(JobsReturnMutAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation{
     @jobs_weakify(self)
     return ^(NSString *data) {
         @jobs_strongify(self)

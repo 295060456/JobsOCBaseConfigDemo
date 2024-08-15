@@ -1,13 +1,13 @@
 //
-//  NSAttributedString+Extra.m
+//  NSMutableAttributedString+Extra.m
 //  JobsOCBaseConfig
 //
 //  Created by Jobs on 2024/4/26.
 //
 
-#import "NSAttributedString+Extra.h"
+#import "NSMutableAttributedString+Extra.h"
 
-@implementation NSAttributedString (Extra)
+@implementation NSMutableAttributedString (Extra)
 /// 获取 NSAttributedString.文本字体
 -(UIFont *)attributedStringFont{
     return [self attribute:NSFontAttributeName atIndex:0 effectiveRange:NULL];
@@ -22,6 +22,14 @@
     NSDictionary *attributes = [self attributesAtIndex:0 effectiveRange:&range];
     NSParagraphStyle *paragraphStyle = attributes[NSParagraphStyleAttributeName];
     return paragraphStyle;
+}
+/// OC富文本字符串拼接
+-(JobsReturnMutAttributedStringByAttributedStringBlock _Nonnull)add{
+    return ^NSMutableAttributedString * _Nullable(NSAttributedString * _Nonnull data) {
+        if(!data) data = [NSAttributedString.alloc initWithString:@""];
+        [self appendAttributedString:data];
+        return self;
+    };
 }
 
 @end

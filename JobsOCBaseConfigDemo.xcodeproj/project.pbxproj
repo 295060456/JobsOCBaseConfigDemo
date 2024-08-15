@@ -36,6 +36,8 @@
 		CE410FE92C57B8B400AB9402 /* ZBRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDC2C57B8B400AB9402 /* ZBRequestEngine.m */; };
 		CE410FEA2C57B8B400AB9402 /* ZBRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDF2C57B8B400AB9402 /* ZBRequestManager.m */; };
 		CE410FEB2C57B8B400AB9402 /* ZBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */; };
+		CE4B42522C6E05CB00FDCB0F /* PointLabTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B42512C6E05CB00FDCB0F /* PointLabTestVC.m */; };
+		CE4B42562C6E138D00FDCB0F /* NSAttributedString+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B42542C6E138D00FDCB0F /* NSAttributedString+Extra.m */; };
 		CE706A422C57680500CB7B97 /* JobsPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE794C2C450C5000764AF5 /* JobsPostVC.m */; };
 		CE706A462C57682900CB7B97 /* data.tsv in Resources */ = {isa = PBXBuildFile; fileRef = CE706A432C57682900CB7B97 /* data.tsv */; };
 		CE7F395D2C4FDA1000431A5D /* JobsFMDBMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */; };
@@ -612,7 +614,7 @@
 		CECE85112C4513CE00764AF5 /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE81FC2C4513CD00764AF5 /* CALayer+Transition.m */; };
 		CECE85122C4513CE00764AF5 /* NSArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82022C4513CD00764AF5 /* NSArray+Safety.m */; };
 		CECE85132C4513CE00764AF5 /* NSArray+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82052C4513CD00764AF5 /* NSArray+Tools.m */; };
-		CECE85142C4513CE00764AF5 /* NSAttributedString+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE820B2C4513CD00764AF5 /* NSAttributedString+Extra.m */; };
+		CECE85142C4513CE00764AF5 /* NSMutableAttributedString+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE820B2C4513CD00764AF5 /* NSMutableAttributedString+Extra.m */; };
 		CECE85152C4513CE00764AF5 /* NSCache+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82122C4513CD00764AF5 /* NSCache+Extra.m */; };
 		CECE85162C4513CE00764AF5 /* NSData+Other.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82182C4513CD00764AF5 /* NSData+Other.m */; };
 		CECE85172C4513CE00764AF5 /* NSMutableArray+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE821D2C4513CD00764AF5 /* NSMutableArray+Extra.m */; };
@@ -1111,7 +1113,7 @@
 		CECE89662C4519AE00764AF5 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CECE88B92C4519AD00764AF5 /* libstdc++.dylib */; };
 		CECE89672C4519AE00764AF5 /* libstdc++.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE88BB2C4519AD00764AF5 /* libstdc++.md */; };
 		CEFA816F2C6DEB1E00751B1F /* philippines.json in Resources */ = {isa = PBXBuildFile; fileRef = CEFA816E2C6DEB1E00751B1F /* philippines.json */; };
-		CEFA81772C6E016F00751B1F /* PointLabView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFA81752C6E016F00751B1F /* PointLabView.m */; };
+		CEFA81772C6E016F00751B1F /* PointLabBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFA81752C6E016F00751B1F /* PointLabBaseView.m */; };
 		D16B7B0D974F1991F2B39889 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -1199,6 +1201,15 @@
 		CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBURLRequest.m; sourceTree = "<group>"; };
 		CE410FE42C57B8B400AB9402 /* ZBNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBNetworking.h; sourceTree = "<group>"; };
 		CE410FE52C57B8B400AB9402 /* ZBRequestConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBRequestConst.h; sourceTree = "<group>"; };
+		CE4B42482C6E04B200FDCB0F /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		CE4B42492C6E04B500FDCB0F /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		CE4B424C2C6E04D400FDCB0F /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		CE4B424E2C6E04D400FDCB0F /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		CE4B42502C6E05CB00FDCB0F /* PointLabTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointLabTestVC.h; sourceTree = "<group>"; };
+		CE4B42512C6E05CB00FDCB0F /* PointLabTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PointLabTestVC.m; sourceTree = "<group>"; };
+		CE4B42532C6E138D00FDCB0F /* NSAttributedString+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extra.h"; sourceTree = "<group>"; };
+		CE4B42542C6E138D00FDCB0F /* NSAttributedString+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extra.m"; sourceTree = "<group>"; };
+		CE4B425D2C6E181000FDCB0F /* PointLabBaseView.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PointLabBaseView.jpg; sourceTree = "<group>"; };
 		CE706A432C57682900CB7B97 /* data.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.tsv; sourceTree = "<group>"; };
 		CE706A442C57682900CB7B97 /* TSV文件介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "TSV文件介绍.md"; sourceTree = "<group>"; };
 		CE73A5362C4E441D00B44795 /* JobsToggleNavViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsToggleNavViewProtocol.h; sourceTree = "<group>"; };
@@ -2299,8 +2310,8 @@
 		CECE82042C4513CD00764AF5 /* NSArray+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Tools.h"; sourceTree = "<group>"; };
 		CECE82052C4513CD00764AF5 /* NSArray+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Tools.m"; sourceTree = "<group>"; };
 		CECE82082C4513CD00764AF5 /* JobsArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsArray.h; sourceTree = "<group>"; };
-		CECE820A2C4513CD00764AF5 /* NSAttributedString+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extra.h"; sourceTree = "<group>"; };
-		CECE820B2C4513CD00764AF5 /* NSAttributedString+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extra.m"; sourceTree = "<group>"; };
+		CECE820A2C4513CD00764AF5 /* NSMutableAttributedString+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Extra.h"; sourceTree = "<group>"; };
+		CECE820B2C4513CD00764AF5 /* NSMutableAttributedString+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Extra.m"; sourceTree = "<group>"; };
 		CECE820F2C4513CD00764AF5 /* JobsBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBundle.h; sourceTree = "<group>"; };
 		CECE82112C4513CD00764AF5 /* NSCache+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCache+Extra.h"; sourceTree = "<group>"; };
 		CECE82122C4513CD00764AF5 /* NSCache+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCache+Extra.m"; sourceTree = "<group>"; };
@@ -3126,8 +3137,8 @@
 		CECE88B92C4519AD00764AF5 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libstdc++.dylib"; sourceTree = "<group>"; };
 		CECE88BB2C4519AD00764AF5 /* libstdc++.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libstdc++.md"; sourceTree = "<group>"; };
 		CEFA816E2C6DEB1E00751B1F /* philippines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = philippines.json; sourceTree = "<group>"; };
-		CEFA81742C6E016F00751B1F /* PointLabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointLabView.h; sourceTree = "<group>"; };
-		CEFA81752C6E016F00751B1F /* PointLabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointLabView.m; sourceTree = "<group>"; };
+		CEFA81742C6E016F00751B1F /* PointLabBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointLabBaseView.h; sourceTree = "<group>"; };
+		CEFA81752C6E016F00751B1F /* PointLabBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointLabBaseView.m; sourceTree = "<group>"; };
 		CEFB9A212C60DFF0000285F1 /* YYFPSLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
 		CEFB9A222C60DFF0000285F1 /* YYFPSLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		F5DAEE19CC0B77742495EB1F /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3365,8 +3376,8 @@
 		CE2E8AD62C6B02E900260207 /* 抽奖轮盘 */ = {
 			isa = PBXGroup;
 			children = (
-				CE2E8AE32C6B054900260207 /* Model */,
-				CE2E8AE42C6B054900260207 /* View */,
+				CE4B42472C6E04AC00FDCB0F /* View */,
+				CE4B42462C6E04A800FDCB0F /* Model */,
 				CE2E8AE22C6B053100260207 /* ViewController */,
 			);
 			path = "抽奖轮盘";
@@ -3384,25 +3395,11 @@
 		CE2E8AE22C6B053100260207 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CE2E8AED2C6B083A00260207 /* LuckyDiskVC */,
 				CE2E8AEC2C6B082D00260207 /* LotteryVC */,
+				CE2E8AED2C6B083A00260207 /* LuckyDiskVC */,
 				CE2E8AD92C6B02F500260207 /* LuckyRollVC */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		CE2E8AE32C6B054900260207 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		CE2E8AE42C6B054900260207 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		CE2E8AE52C6B055000260207 /* View */ = {
@@ -3532,6 +3529,66 @@
 				CE410FE52C57B8B400AB9402 /* ZBRequestConst.h */,
 			);
 			path = ZBNetworking;
+			sourceTree = "<group>";
+		};
+		CE4B42462C6E04A800FDCB0F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE4B42492C6E04B500FDCB0F /* .gitkeep */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE4B42472C6E04AC00FDCB0F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE4B42482C6E04B200FDCB0F /* .gitkeep */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE4B424A2C6E04BE00FDCB0F /* 文字前面小圆点 */ = {
+			isa = PBXGroup;
+			children = (
+				CE4B424F2C6E04D900FDCB0F /* ViewController */,
+				CE4B424B2C6E04D400FDCB0F /* View */,
+				CE4B424D2C6E04D400FDCB0F /* Model */,
+			);
+			path = "文字前面小圆点";
+			sourceTree = "<group>";
+		};
+		CE4B424B2C6E04D400FDCB0F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE4B424C2C6E04D400FDCB0F /* .gitkeep */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE4B424D2C6E04D400FDCB0F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE4B424E2C6E04D400FDCB0F /* .gitkeep */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE4B424F2C6E04D900FDCB0F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE4B42502C6E05CB00FDCB0F /* PointLabTestVC.h */,
+				CE4B42512C6E05CB00FDCB0F /* PointLabTestVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CE4B42552C6E138D00FDCB0F /* NSAttributedString+Category */ = {
+			isa = PBXGroup;
+			children = (
+				CE4B42532C6E138D00FDCB0F /* NSAttributedString+Extra.h */,
+				CE4B42542C6E138D00FDCB0F /* NSAttributedString+Extra.m */,
+			);
+			path = "NSAttributedString+Category";
 			sourceTree = "<group>";
 		};
 		CE706A3D2C5767CA00CB7B97 /* Excel */ = {
@@ -6691,6 +6748,7 @@
 		CECE7BDE2C450C5000764AF5 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				CE4B424A2C6E04BE00FDCB0F /* 文字前面小圆点 */,
 				CE2E8AD62C6B02E900260207 /* 抽奖轮盘 */,
 				CE1F256D2C5DD23000324198 /* JobsViewNavigator */,
 				CE706A3D2C5767CA00CB7B97 /* Excel */,
@@ -9200,19 +9258,20 @@
 			path = NSArray;
 			sourceTree = "<group>";
 		};
-		CECE820C2C4513CD00764AF5 /* NSAttributedString+Category */ = {
+		CECE820C2C4513CD00764AF5 /* NSMutableAttributedString+Category */ = {
 			isa = PBXGroup;
 			children = (
-				CECE820A2C4513CD00764AF5 /* NSAttributedString+Extra.h */,
-				CECE820B2C4513CD00764AF5 /* NSAttributedString+Extra.m */,
+				CECE820A2C4513CD00764AF5 /* NSMutableAttributedString+Extra.h */,
+				CECE820B2C4513CD00764AF5 /* NSMutableAttributedString+Extra.m */,
 			);
-			path = "NSAttributedString+Category";
+			path = "NSMutableAttributedString+Category";
 			sourceTree = "<group>";
 		};
 		CECE820D2C4513CD00764AF5 /* NSAttributedString */ = {
 			isa = PBXGroup;
 			children = (
-				CECE820C2C4513CD00764AF5 /* NSAttributedString+Category */,
+				CE4B42552C6E138D00FDCB0F /* NSAttributedString+Category */,
+				CECE820C2C4513CD00764AF5 /* NSMutableAttributedString+Category */,
 			);
 			path = NSAttributedString;
 			sourceTree = "<group>";
@@ -10842,7 +10901,7 @@
 		CECE83E22C4513CD00764AF5 /* BaseLabel */ = {
 			isa = PBXGroup;
 			children = (
-				CEFA81762C6E016F00751B1F /* PointLab */,
+				CEFA81762C6E016F00751B1F /* PointLabBaseView */,
 				CECE83DA2C4513CD00764AF5 /* BaseLabel */,
 				CECE83DD2C4513CD00764AF5 /* JobsAnimationLabel */,
 				CECE83E02C4513CD00764AF5 /* JobsBaseLabel */,
@@ -13195,13 +13254,14 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		CEFA81762C6E016F00751B1F /* PointLab */ = {
+		CEFA81762C6E016F00751B1F /* PointLabBaseView */ = {
 			isa = PBXGroup;
 			children = (
-				CEFA81742C6E016F00751B1F /* PointLabView.h */,
-				CEFA81752C6E016F00751B1F /* PointLabView.m */,
+				CE4B425D2C6E181000FDCB0F /* PointLabBaseView.jpg */,
+				CEFA81742C6E016F00751B1F /* PointLabBaseView.h */,
+				CEFA81752C6E016F00751B1F /* PointLabBaseView.m */,
 			);
-			path = PointLab;
+			path = PointLabBaseView;
 			sourceTree = "<group>";
 		};
 		CEFB9A232C60DFF0000285F1 /* YYFPSLabel */ = {
@@ -13999,7 +14059,7 @@
 				CECE7C4F2C450C5000764AF5 /* FindCodeFlowChartView.m in Sources */,
 				CECE7E8D2C450E5B00764AF5 /* HTTPRedirectResponse.m in Sources */,
 				CECE85C72C4513CE00764AF5 /* BaseTableViewHeaderFooterView.m in Sources */,
-				CEFA81772C6E016F00751B1F /* PointLabView.m in Sources */,
+				CEFA81772C6E016F00751B1F /* PointLabBaseView.m in Sources */,
 				CECE7D432C450CCD00764AF5 /* RequestTool.m in Sources */,
 				CECE7C3B2C450C5000764AF5 /* CoreTextLearningVC.m in Sources */,
 				CECE7C1D2C450C5000764AF5 /* YTKBaseRequest+AnimatingAccessory.m in Sources */,
@@ -14110,6 +14170,7 @@
 				CECE85482C4513CE00764AF5 /* NSObject+DeviceID.m in Sources */,
 				CECE852D2C4513CE00764AF5 /* JobsHeaderFooterViewModel.m in Sources */,
 				CECE80BF2C4512BF00764AF5 /* JobsShareView.m in Sources */,
+				CE4B42562C6E138D00FDCB0F /* NSAttributedString+Extra.m in Sources */,
 				CECE7C0C2C450C5000764AF5 /* LeftCell.m in Sources */,
 				CECE85562C4513CE00764AF5 /* NSObject+RichText.m in Sources */,
 				CECE7E982C450E5B00764AF5 /* KTVHCDataCacheItemZone.m in Sources */,
@@ -14223,7 +14284,7 @@
 				CECE87472C45140000764AF5 /* WGradientProgressView.m in Sources */,
 				CECE852E2C4513CE00764AF5 /* UIButtonModel.m in Sources */,
 				CE1F24EA2C5CD50100324198 /* NSObject+NTESVerifyCodeManager.m in Sources */,
-				CECE85142C4513CE00764AF5 /* NSAttributedString+Extra.m in Sources */,
+				CECE85142C4513CE00764AF5 /* NSMutableAttributedString+Extra.m in Sources */,
 				CE2E87402C689F9100260207 /* JobsBtnsStyleTBVCell.m in Sources */,
 				CECE85772C4513CE00764AF5 /* RBCLikeButton.m in Sources */,
 				CECE813D2C4512BF00764AF5 /* JobsUserHeaderDataViewTBVCell.m in Sources */,
@@ -14286,6 +14347,7 @@
 				CECE814E2C4512BF00764AF5 /* JobsTabBarItemConfig.m in Sources */,
 				CECE856C2C4513CE00764AF5 /* NSURL+Others.m in Sources */,
 				CECE81132C4512BF00764AF5 /* JobsHotLabelWithMultiLineCVCell.m in Sources */,
+				CE4B42522C6E05CB00FDCB0F /* PointLabTestVC.m in Sources */,
 				CECE7C522C450C5000764AF5 /* JobsAppDoorVC_Style2.m in Sources */,
 				CECE85172C4513CE00764AF5 /* NSMutableArray+Extra.m in Sources */,
 				CECE80E82C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_2.m in Sources */,

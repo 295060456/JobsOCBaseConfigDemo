@@ -22,9 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 利用 NSArray <JobsRichTextConfig *>* 形成富文本
 -(JobsReturnAttributedStringByRichTextConfigArrayBlock _Nonnull)richTextWithDataConfigMutArr;
 /// 字符串中划线
--(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation;
+-(JobsReturnMutAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation;
 /// 字符串下划线
--(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation;
+-(JobsReturnMutAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation;
 
 @end
 

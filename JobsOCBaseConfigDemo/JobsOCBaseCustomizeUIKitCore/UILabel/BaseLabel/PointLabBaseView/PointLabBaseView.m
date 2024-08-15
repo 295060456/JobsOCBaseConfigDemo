@@ -5,16 +5,16 @@
 //  Created by User on 8/15/24.
 //
 
-#import "PointLabView.h"
+#import "PointLabBaseView.h"
 
-@interface PointLabView ()
+@interface PointLabBaseView ()
 /// UI
 @property(nonatomic,strong)UIView *pointView;
 @property(nonatomic,strong)UILabel *label;
 
 @end
 
-@implementation PointLabView
+@implementation PointLabBaseView
 @synthesize viewModel = _viewModel;
 #pragma mark —— SysMethod
 -(instancetype)init{

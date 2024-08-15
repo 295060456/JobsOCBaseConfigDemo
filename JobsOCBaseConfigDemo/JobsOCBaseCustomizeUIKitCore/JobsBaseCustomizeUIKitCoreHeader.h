@@ -39,6 +39,7 @@
 #pragma mark —— NSNotificationCenter
 #import "NSNotificationCenter.h"
 #pragma mark —— NSAttributedString
+#import "NSMutableAttributedString+Extra.h"
 #import "NSAttributedString+Extra.h"
 #pragma mark —— NSData
 #import "JobsData.h"
