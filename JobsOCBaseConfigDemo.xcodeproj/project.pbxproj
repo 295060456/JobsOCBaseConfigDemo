@@ -1111,6 +1111,7 @@
 		CECE89662C4519AE00764AF5 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CECE88B92C4519AD00764AF5 /* libstdc++.dylib */; };
 		CECE89672C4519AE00764AF5 /* libstdc++.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE88BB2C4519AD00764AF5 /* libstdc++.md */; };
 		CEFA816F2C6DEB1E00751B1F /* philippines.json in Resources */ = {isa = PBXBuildFile; fileRef = CEFA816E2C6DEB1E00751B1F /* philippines.json */; };
+		CEFA81772C6E016F00751B1F /* PointLabView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFA81752C6E016F00751B1F /* PointLabView.m */; };
 		D16B7B0D974F1991F2B39889 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -3125,6 +3126,8 @@
 		CECE88B92C4519AD00764AF5 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libstdc++.dylib"; sourceTree = "<group>"; };
 		CECE88BB2C4519AD00764AF5 /* libstdc++.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libstdc++.md"; sourceTree = "<group>"; };
 		CEFA816E2C6DEB1E00751B1F /* philippines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = philippines.json; sourceTree = "<group>"; };
+		CEFA81742C6E016F00751B1F /* PointLabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointLabView.h; sourceTree = "<group>"; };
+		CEFA81752C6E016F00751B1F /* PointLabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointLabView.m; sourceTree = "<group>"; };
 		CEFB9A212C60DFF0000285F1 /* YYFPSLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
 		CEFB9A222C60DFF0000285F1 /* YYFPSLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		F5DAEE19CC0B77742495EB1F /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -10839,6 +10842,7 @@
 		CECE83E22C4513CD00764AF5 /* BaseLabel */ = {
 			isa = PBXGroup;
 			children = (
+				CEFA81762C6E016F00751B1F /* PointLab */,
 				CECE83DA2C4513CD00764AF5 /* BaseLabel */,
 				CECE83DD2C4513CD00764AF5 /* JobsAnimationLabel */,
 				CECE83E02C4513CD00764AF5 /* JobsBaseLabel */,
@@ -13191,6 +13195,15 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		CEFA81762C6E016F00751B1F /* PointLab */ = {
+			isa = PBXGroup;
+			children = (
+				CEFA81742C6E016F00751B1F /* PointLabView.h */,
+				CEFA81752C6E016F00751B1F /* PointLabView.m */,
+			);
+			path = PointLab;
+			sourceTree = "<group>";
+		};
 		CEFB9A232C60DFF0000285F1 /* YYFPSLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -13986,6 +13999,7 @@
 				CECE7C4F2C450C5000764AF5 /* FindCodeFlowChartView.m in Sources */,
 				CECE7E8D2C450E5B00764AF5 /* HTTPRedirectResponse.m in Sources */,
 				CECE85C72C4513CE00764AF5 /* BaseTableViewHeaderFooterView.m in Sources */,
+				CEFA81772C6E016F00751B1F /* PointLabView.m in Sources */,
 				CECE7D432C450CCD00764AF5 /* RequestTool.m in Sources */,
 				CECE7C3B2C450C5000764AF5 /* CoreTextLearningVC.m in Sources */,
 				CECE7C1D2C450C5000764AF5 /* YTKBaseRequest+AnimatingAccessory.m in Sources */,

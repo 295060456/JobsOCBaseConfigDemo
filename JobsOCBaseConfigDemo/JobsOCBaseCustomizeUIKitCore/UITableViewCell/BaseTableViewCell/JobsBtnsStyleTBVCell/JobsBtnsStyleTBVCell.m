@@ -190,8 +190,8 @@ UIViewModelProtocol_synthesize
         [self.contentView addSubview:_rightBtn];
         [_rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.contentView);
-            make.right.equalTo(self.contentView).offset(JobsWidth(-15));
-            make.height.mas_equalTo(JobsWidth(50));
+            make.right.equalTo(self.contentView).offset(-self.rightBtnVM.btn_offset_x);
+            make.height.mas_equalTo(self.rightBtnVM.btn_height);
         }];
     }
     

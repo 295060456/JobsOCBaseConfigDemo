@@ -2856,6 +2856,32 @@ NSObject <|-- BaseProtocol
   }];
   ```
   
+* 将以前的约束全部清除，用最新的`mas_remakeConstraints`
+  
+* 如果在已有的约束基础上，再更新约束`mas_updateConstraints`
+  
+  ```objective-c
+  -(UIView *)pointView{
+      if(!_pointView){
+          _pointView = UIView.new;
+          [self addSubview:_pointView];
+          [_pointView mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.size.mas_equalTo(CGSizeMake(JobsWidth(8), JobsWidth(8)));
+              make.top.equalTo(self);
+              make.left.equalTo(self);
+          }];
+      }return _pointView;
+  }
+  
+  -(void)updatePointViewPositionWithOffsetY:(CGFloat)y{
+      [self.pointView mas_updateConstraints:^(MASConstraintMaker *make) {
+          make.top.equalTo(self).offset(y);
+      }];
+      [self setNeedsLayout];
+      [self layoutIfNeeded];
+  }
+  ```
+  
 * [**【开发笔记】Masonry 的 distributeViewsAlongAxis 方法**](https://juejin.cn/post/6935778993320755214)
   
   * 横向拉伸以均分
