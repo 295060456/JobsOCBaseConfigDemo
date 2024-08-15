@@ -79,13 +79,13 @@
     self.lab6.makeLabelByShowingType(UILabelShowingType_05);
     self.lab7.makeLabelByShowingType(UILabelShowingType_05);
     
-    self.btn1.makeBtnLabelByShowingType(UILabelShowingType_01);
-    self.btn2.makeBtnLabelByShowingType(UILabelShowingType_02);
-    self.btn3.makeBtnLabelByShowingType(UILabelShowingType_03);
-    self.btn4.makeBtnLabelByShowingType(UILabelShowingType_04);
-    self.btn5.makeBtnLabelByShowingType(UILabelShowingType_05);
-    self.btn6.makeBtnLabelByShowingType(UILabelShowingType_05);
-    self.btn7.makeBtnLabelByShowingType(UILabelShowingType_05);
+    self.btn1.makeBtnTitleByShowingType(UILabelShowingType_01);
+    self.btn2.makeBtnTitleByShowingType(UILabelShowingType_02);
+    self.btn3.makeBtnTitleByShowingType(UILabelShowingType_03);
+    self.btn4.makeBtnTitleByShowingType(UILabelShowingType_04);
+    self.btn5.makeBtnTitleByShowingType(UILabelShowingType_05);
+    self.btn6.makeBtnTitleByShowingType(UILabelShowingType_05);
+    self.btn7.makeBtnTitleByShowingType(UILabelShowingType_05);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -138,9 +138,9 @@
         config_03.textBgCor = JobsBrownColor;
         config_03.paragraphStyle = self.paragtaphStyle;
         
-        [_richLabelDataStringsMutArr addObject:config_01];
-        [_richLabelDataStringsMutArr addObject:config_02];
-        [_richLabelDataStringsMutArr addObject:config_03];
+        _richLabelDataStringsMutArr.jobsAddObject(config_01);
+        _richLabelDataStringsMutArr.jobsAddObject(config_02);
+        _richLabelDataStringsMutArr.jobsAddObject(config_03);
         
     }return _richLabelDataStringsMutArr;
 }
@@ -189,7 +189,7 @@
     if (!_lab1) {
         _lab1 = BaseLabel.new;
         _lab1.backgroundColor = JobsRedColor;
-        _lab1.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。";
+        _lab1.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
         [self.scrollView addSubview:_lab1];
         [_lab1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
@@ -203,7 +203,7 @@
     if (!_lab2) {
         _lab2 = BaseLabel.new;
         _lab2.backgroundColor = JobsRedColor;
-        _lab2.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。";
+        _lab2.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
         [self.scrollView addSubview:_lab2];
         [_lab2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
@@ -217,7 +217,7 @@
     if (!_lab3) {
         _lab3 = BaseLabel.new;
         _lab3.backgroundColor = JobsRedColor;
-        _lab3.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。";
+        _lab3.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
         [self.scrollView addSubview:_lab3];
         [_lab3 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(20);
@@ -231,7 +231,7 @@
     if (!_lab4) {
         _lab4 = BaseLabel.new;
         _lab4.backgroundColor = JobsRedColor;
-        _lab4.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。";
+        _lab4.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
         [self.scrollView addSubview:_lab4];
         [_lab4 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
@@ -245,7 +245,7 @@
     if (!_lab5) {
         _lab5 = BaseLabel.new;
         _lab5.backgroundColor = JobsRedColor;
-        _lab5.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。";
+        _lab5.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
         [self.scrollView addSubview:_lab5];
         [_lab5 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(100);
@@ -259,7 +259,11 @@
     if (!_lab6) {
         _lab6 = BaseLabel.new;
         _lab6.backgroundColor = JobsRedColor;
-        _lab6.text = @"编译器自动管理内存地址，\n让程序员更加专注于\nAPP的业务。";
+        _lab6.text = JobsInternationalization(@"编译器自动管理内存地址")
+            .add(@"，\n")
+            .add(JobsInternationalization(@"让程序员更加专注于"))
+            .add(@"\n")
+            .add(@"APP的业务。");
         [self.scrollView addSubview:_lab6];
         [_lab6 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(JobsMainScreen_WIDTH());

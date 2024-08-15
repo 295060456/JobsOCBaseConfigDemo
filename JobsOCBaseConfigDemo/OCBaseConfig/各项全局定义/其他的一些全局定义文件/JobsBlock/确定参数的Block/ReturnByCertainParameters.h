@@ -23,6 +23,7 @@ typedef UIViewController __kindof *_Nullable(^JobsReturnVCByView)(UIView __kindo
 typedef UIViewController __kindof *_Nullable(^JobsReturnVCByVC)(UIViewController __kindof * _Nonnull vc);
 typedef NSParagraphStyle *_Nullable(^_Nullable JobsReturnParagraphStyleByTextAlignmentBlock)(NSTextAlignment data);
 typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString * _Nullable data);
+typedef NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
 typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString * _Nullable data);
 typedef NSString *_Nullable(^JobsReturnStrByCorBlock)(UIColor * _Nullable data);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIntegerBlock)(NSInteger data);

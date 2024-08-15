@@ -10,41 +10,56 @@
 @implementation UIView (AutoSelfAdaptionSize)
 #pragma mark —— UILabel
 /// 确定Label的字体大小，使其宽度自适应
--(void)labelAutoWidthByFont{
-    if ([self isKindOfClass:UILabel.class]) {
-        UILabel *label = (UILabel *)self;
-        [label sizeToFit];// 必须有text，然后根据text来进行约束计算和布局
-    }
+-(jobsByVoidBlock _Nonnull)labelAutoWidthByFont{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        if ([self isKindOfClass:UILabel.class]) {
+            UILabel *label = (UILabel *)self;
+            [label sizeToFit];// 必须有text，然后根据text来进行约束计算和布局
+        }
+    };
 }
 /// 确定Label的宽度，使字体大小自适应
--(void)labelAutoFontByWidth{
-    if ([self isKindOfClass:UILabel.class]) {
-        UILabel *label = (UILabel *)self;
-        label.adjustsFontSizeToFitWidth = YES;// 必须有text，然后根据text来进行约束计算和布局
-    }
+-(jobsByVoidBlock _Nonnull)labelAutoFontByWidth{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        if ([self isKindOfClass:UILabel.class]) {
+            UILabel *label = (UILabel *)self;
+            label.adjustsFontSizeToFitWidth = YES;// 必须有text，然后根据text来进行约束计算和布局
+        }
+    };
 }
 #pragma mark —— UIButton
 /// 确定Button的字体大小，使其宽度自适应
--(void)buttonAutoWidthByFont{
-    if ([self isKindOfClass:UIButton.class]) {
-        UIButton *btn = (UIButton *)self;
-        /// 必须有text，然后根据text来进行约束计算和布局
-        [btn.titleLabel sizeToFit];
-        [btn sizeToFit];
-    }
+-(jobsByVoidBlock _Nonnull)buttonAutoWidthByFont{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        if ([self isKindOfClass:UIButton.class]) {
+            UIButton *btn = (UIButton *)self;
+            /// 必须有text，然后根据text来进行约束计算和布局
+            [btn.titleLabel sizeToFit];
+            [btn sizeToFit];
+        }
+    };
 }
 /// 确定Button的宽度，使字体大小自适应
--(void)buttonAutoFontByWidth{
-    if ([self isKindOfClass:UIButton.class]) {
-        UIButton *btn = (UIButton *)self;
-        [btn.titleLabel sizeToFit];
-        btn.titleLabel.adjustsFontSizeToFitWidth = YES;
-    }
+-(jobsByVoidBlock _Nonnull)buttonAutoFontByWidth{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        if ([self isKindOfClass:UIButton.class]) {
+            UIButton *btn = (UIButton *)self;
+            [btn.titleLabel sizeToFit];
+            btn.titleLabel.adjustsFontSizeToFitWidth = YES;
+        }
+    };
 }
 /// 自适应宽度
 -(CGRect)getFrameWithFreeWidth:(CGPoint)origin
                       maxHight:(CGFloat)maxHight{
-    
     CGRect frame = CGRectZero;
     if ([self isKindOfClass:UILabel.class]) {
         UILabel *label = (UILabel *)self;

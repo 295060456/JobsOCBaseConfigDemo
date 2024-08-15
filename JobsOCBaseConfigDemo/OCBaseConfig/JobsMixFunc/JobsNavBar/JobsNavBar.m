@@ -189,7 +189,7 @@
             NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
             make.left.equalTo(self).offset(self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(20));
         }];
-        _backBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+        _backBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _backBtn;
 }
 

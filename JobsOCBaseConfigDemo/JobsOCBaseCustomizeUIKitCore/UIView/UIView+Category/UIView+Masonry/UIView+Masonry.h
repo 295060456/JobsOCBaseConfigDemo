@@ -13,13 +13,15 @@
 #import "Masonry.h"
 #endif
 
+#import "JobsBlock.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (Masonry)
 /// 卸载当前view上的某个方向的约束
--(void)uninstall:(NSLayoutAttribute)layoutAttribute;
+-(jobsByLayoutAttributeBlock _Nonnull)uninstall;
 /// 卸载当前view上的全部约束
--(void)uninstallAllLayoutAttribute;
+-(jobsByVoidBlock _Nonnull)uninstallAllLayoutAttribute;
 /// Masonry约束动画
 /// - Parameters:
 ///   - masonryBeforeBlock: 最初的约束

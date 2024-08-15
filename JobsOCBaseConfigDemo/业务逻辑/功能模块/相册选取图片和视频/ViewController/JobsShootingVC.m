@@ -79,7 +79,7 @@
             make.left.equalTo(self.view).offset(JobsWidth(20));
             make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(100));
         }];
-        _cameraBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+        _cameraBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
         @jobs_weakify(self)
         [_cameraBtn jobsBtnClickEventBlock:^id(id data) {
             /// 调取系统相机
@@ -106,7 +106,7 @@
             make.right.equalTo(self.view).offset(JobsWidth(-20));
             make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(100));
         }];
-        _photoAlbumBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+        _photoAlbumBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
         [_photoAlbumBtn jobsBtnClickEventBlock:^id(id data) {
             /// 调取系统相册
             @jobs_weakify(self)

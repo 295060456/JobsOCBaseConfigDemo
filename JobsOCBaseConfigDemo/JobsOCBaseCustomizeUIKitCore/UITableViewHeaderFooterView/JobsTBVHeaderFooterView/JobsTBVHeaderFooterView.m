@@ -91,7 +91,7 @@
     _subTitleBtn.titleAlignment = self.viewModel.subTextModel.textAlignment;
     _subTitleBtn.lineBreakMode = self.viewModel.subTextModel.lineBreakMode;
     
-    _subTitleBtn.makeBtnLabelByShowingType(self.viewModel.labelShowingType);
+    _subTitleBtn.makeBtnTitleByShowingType(self.viewModel.labelShowingType);
     [_subTitleBtn layoutButtonWithEdgeInsetsStyle:self.viewModel.buttonEdgeInsetsStyle
                                      imagePadding:self.viewModel.imageTitleSpace];
     return _subTitleBtn;

@@ -97,7 +97,7 @@
             make.center.equalTo(self);
             make.height.mas_equalTo(JobsWidth(30));
         }];
-        _push_btn.makeBtnLabelByShowingType(UILabelShowingType_03);
+        _push_btn.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _push_btn;
 }
 
@@ -154,7 +154,7 @@
             make.left.equalTo(self.push_btn.mas_right).offset(JobsWidth(10));
             make.height.mas_equalTo(JobsWidth(30));
         }];
-        _pop_btn.makeBtnLabelByShowingType(UILabelShowingType_03);
+        _pop_btn.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _pop_btn;
 }
 

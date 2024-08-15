@@ -138,7 +138,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         [_userHeaderBtn.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
         
         _userHeaderBtn.imageTitleSpace = JobsWidth(12);
-        _userHeaderBtn.makeBtnLabelByShowingType(UILabelShowingType_05);
+        _userHeaderBtn.makeBtnTitleByShowingType(UILabelShowingType_05);
         [_userHeaderBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
                                            imagePadding:_userHeaderBtn.imageTitleSpace];
         

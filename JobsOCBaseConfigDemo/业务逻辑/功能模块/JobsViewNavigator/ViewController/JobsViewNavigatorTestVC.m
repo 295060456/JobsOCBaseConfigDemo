@@ -165,7 +165,7 @@
             make.center.equalTo(self.view);
             make.height.mas_equalTo(JobsWidth(30));
         }];
-        _btn.makeBtnLabelByShowingType(UILabelShowingType_03);
+        _btn.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _btn;
 }
 

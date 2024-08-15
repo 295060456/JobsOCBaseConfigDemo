@@ -122,7 +122,6 @@
             btnConfiguration.attributedTitle = attributedTitle;
         }else{
             if(titleFont && titleCor && title){
-#warning 想办法去重置:textAlignment
                 btnConfiguration.attributedTitle = [NSAttributedString.alloc initWithString:title
                                                                                  attributes:@{NSForegroundColorAttributeName:titleCor,
                                                                                               NSFontAttributeName:titleFont,
@@ -134,7 +133,6 @@
             btnConfiguration.attributedSubtitle = attributedSubtitle;
         }else{
             if(subTitleFont && subTitleCor && subTitle){
-#warning 想办法去重置:subTextAlignment
                 btnConfiguration.attributedSubtitle = [NSAttributedString.alloc initWithString:subTitle
                                                                                  attributes:@{NSForegroundColorAttributeName:subTitleCor,
                                                                                               NSFontAttributeName:subTitleFont,

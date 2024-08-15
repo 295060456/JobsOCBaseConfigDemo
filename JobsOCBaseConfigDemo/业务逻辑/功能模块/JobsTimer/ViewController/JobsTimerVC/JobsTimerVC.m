@@ -126,7 +126,7 @@
             make.height.mas_equalTo(JobsWidth(25));
             make.center.equalTo(self.view);
         }];
-        _countDownBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+        _countDownBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
         [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             [x startTimer];//选择时机、触发启动
             NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");

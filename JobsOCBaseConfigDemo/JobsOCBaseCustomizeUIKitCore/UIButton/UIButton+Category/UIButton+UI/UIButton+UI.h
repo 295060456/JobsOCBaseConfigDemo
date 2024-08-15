@@ -303,7 +303,7 @@ NS_ASSUME_NONNULL_END
              make.top.equalTo(self).offset(JobsWidth(20));
              make.centerX.equalTo(self);
          }];
-         _titleBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+         _titleBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
      }return _titleBtn;
  }
 

@@ -185,7 +185,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
             make.right.equalTo(self).offset(JobsWidth(-18));
             make.height.mas_equalTo(JobsWidth(14));
         }];
-        _deleteBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+        _deleteBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
         @jobs_weakify(self)
         [_deleteBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)

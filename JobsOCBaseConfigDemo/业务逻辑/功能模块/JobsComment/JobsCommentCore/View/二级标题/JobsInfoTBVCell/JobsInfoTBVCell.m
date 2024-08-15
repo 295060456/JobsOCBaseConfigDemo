@@ -137,7 +137,7 @@ BaseProtocol_synthesize
     _likeBtn.thumpNum = self.childCommentModel.praiseNum;    _likeBtn.jobsResetTitle([NSString stringWithFormat:@"%ld",_likeBtn.thumpNum]);
     _likeBtn.jobsResetBtnTitleCor(_likeBtn.selected ? JobsRedColor : JobsGrayColor);
     _likeBtn.jobsResetBtnImage(_likeBtn.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"));
-    _likeBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+    _likeBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     return _likeBtn;
 }
 

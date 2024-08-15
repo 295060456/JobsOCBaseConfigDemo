@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)UIFont *titleFont;/// 主标题字体
 @property(nonatomic,strong,nullable)UIFont *subTitleFont;///（新Api才有的）副标题字体
 @property(nonatomic,strong,nullable)UIColor *titleCor;/// 主标题文字颜色
+@property(nonatomic,assign)UILabelShowingType titleShowingType;/// 主标题的显示方式
+@property(nonatomic,assign)UILabelShowingType subTitleShowingType;/// 副标题的显示方式
 @property(nonatomic,strong,nullable)UIColor *subTitleCor;/// 副标题文字颜色
 @property(nonatomic,assign)NSLineBreakMode titleLineBreakMode;/// 主标题换行模式
 @property(nonatomic,assign)NSLineBreakMode subtitleLineBreakMode;/// （新Api才有的）副标题换行模式

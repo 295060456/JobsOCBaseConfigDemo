@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIView+Measure.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)CGFloat imageTitleSpace;
 
--(jobsByNSIntegerBlock _Nonnull)makeBtnLabelByShowingType;
+-(jobsByNSIntegerBlock _Nonnull)makeBtnTitleByShowingType;
+-(jobsByNSIntegerBlock _Nonnull)makeBtnSubTitleByShowingType;
 
 @end
 

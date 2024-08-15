@@ -18,6 +18,7 @@
 @end
 
 @implementation JobsHeaderFooterView
+
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
@@ -110,7 +111,7 @@
     _titleBtn.jobsResetTitleBaseForegroundColor(self.titleModel.textModel.textCor);
     _titleBtn.jobsResetBtnBgCor((self.titleModel.bgCor));
     [_titleBtn jobsSetBtnTitleFont:self.titleModel.textModel.font btnTitleCor:self.titleModel.textModel.textCor];
-    _titleBtn.makeBtnLabelByShowingType(self.titleModel.textModel.labelShowingType);
+    _titleBtn.makeBtnTitleByShowingType(self.titleModel.textModel.labelShowingType);
 
     /// 富文本的优先级最高，不括起来上述的设置无效
     if(self.titleModel.textModel.attributedText){
@@ -183,7 +184,7 @@
     _subTitleBtn.jobsResetTitleBaseForegroundColor(self.subTitleModel.textModel.textCor);
     _subTitleBtn.jobsResetBtnBgCor((self.subTitleModel.bgCor));
     [_subTitleBtn jobsSetBtnTitleFont:self.subTitleModel.textModel.font btnTitleCor:self.subTitleModel.textModel.textCor];
-    _subTitleBtn.makeBtnLabelByShowingType(self.subTitleModel.textModel.labelShowingType);
+    _subTitleBtn.makeBtnTitleByShowingType(self.subTitleModel.textModel.labelShowingType);
     /// 富文本的优先级最高，不括起来上述的设置无效
     if(self.subTitleModel.textModel.attributedText){
         _subTitleBtn.jobsResetAttributedTitle(self.subTitleModel.textModel.attributedText);

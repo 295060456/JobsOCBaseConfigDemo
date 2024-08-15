@@ -147,7 +147,7 @@
         [self.btnHeightMutArr addObject:data];
     }];
     btn.size = CGSizeMake((JobsMainScreen_WIDTH() - JobsWidth(15 * 5)) / 4, JobsWidth(30));
-    btn.makeBtnLabelByShowingType(self.labelShowingType);
+    btn.makeBtnTitleByShowingType(self.labelShowingType);
     return btn;
 }
 /// 取最大的高度值使用

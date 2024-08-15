@@ -231,7 +231,7 @@
 -(void)selectTitleLab{
     self.titleLab.text = Title6;
     self.titleLab.centerX = (self.width + self.toRegisterBtn.width) / 2;
-    [self.titleLab labelAutoWidthByFont];
+    self.titleLab.labelAutoWidthByFont();
 }
 
 -(void)selectSendBtn{
@@ -476,7 +476,7 @@
         _storeCodeBtn.normalImage(JobsIMG(@"没有记住密码"));
         _storeCodeBtn.selectedImage(JobsIMG(@"记住密码"));
         _storeCodeBtn.normalTitleColor(Cor4);
-        _storeCodeBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+        _storeCodeBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
         _storeCodeBtn.titleLabel.adjustsFontForContentSizeCategory = YES;
         [self addSubview:_storeCodeBtn];
         [_storeCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -503,7 +503,7 @@
         _findCodeBtn.normalTitle(Title3);
         _findCodeBtn.titleLabel.font = UIFontWeightRegularSize(10);
         _findCodeBtn.normalTitleColor(Cor3);
-        _findCodeBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+        _findCodeBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
         _findCodeBtn.titleLabel.adjustsFontForContentSizeCategory = YES;
         [self addSubview:_findCodeBtn];
         [_findCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {

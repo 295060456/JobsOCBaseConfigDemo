@@ -1088,7 +1088,6 @@
 		CECE894E2C4519AD00764AF5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECE88982C4519AD00764AF5 /* Localizable.strings */; };
 		CECE894F2C4519AD00764AF5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECE889A2C4519AD00764AF5 /* Localizable.strings */; };
 		CECE89502C4519AD00764AF5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECE889C2C4519AD00764AF5 /* Localizable.strings */; };
-		CECE89512C4519AD00764AF5 /* 【MacOS】启动JSON_SERVER.command in Resources */ = {isa = PBXBuildFile; fileRef = CECE889E2C4519AD00764AF5 /* 【MacOS】启动JSON_SERVER.command */; };
 		CECE89522C4519AD00764AF5 /* 假数据.json in Resources */ = {isa = PBXBuildFile; fileRef = CECE889F2C4519AD00764AF5 /* 假数据.json */; };
 		CECE89532C4519AD00764AF5 /* CommentData.json in Resources */ = {isa = PBXBuildFile; fileRef = CECE88A02C4519AD00764AF5 /* CommentData.json */; };
 		CECE89542C4519AD00764AF5 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = CECE88A12C4519AD00764AF5 /* data.json */; };
@@ -1111,6 +1110,7 @@
 		CECE89652C4519AE00764AF5 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CECE88B82C4519AD00764AF5 /* libstdc++.6.tbd */; };
 		CECE89662C4519AE00764AF5 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CECE88B92C4519AD00764AF5 /* libstdc++.dylib */; };
 		CECE89672C4519AE00764AF5 /* libstdc++.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE88BB2C4519AD00764AF5 /* libstdc++.md */; };
+		CEFA816F2C6DEB1E00751B1F /* philippines.json in Resources */ = {isa = PBXBuildFile; fileRef = CEFA816E2C6DEB1E00751B1F /* philippines.json */; };
 		D16B7B0D974F1991F2B39889 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -3102,7 +3102,6 @@
 		CECE88972C4519AD00764AF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CECE88992C4519AD00764AF5 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CECE889B2C4519AD00764AF5 /* fil-PH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fil-PH"; path = "fil-PH.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		CECE889E2C4519AD00764AF5 /* 【MacOS】启动JSON_SERVER.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "【MacOS】启动JSON_SERVER.command"; sourceTree = "<group>"; };
 		CECE889F2C4519AD00764AF5 /* 假数据.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "假数据.json"; sourceTree = "<group>"; };
 		CECE88A02C4519AD00764AF5 /* CommentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CommentData.json; sourceTree = "<group>"; };
 		CECE88A12C4519AD00764AF5 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
@@ -3125,6 +3124,7 @@
 		CECE88B82C4519AD00764AF5 /* libstdc++.6.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = "libstdc++.6.tbd"; sourceTree = "<group>"; };
 		CECE88B92C4519AD00764AF5 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libstdc++.dylib"; sourceTree = "<group>"; };
 		CECE88BB2C4519AD00764AF5 /* libstdc++.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libstdc++.md"; sourceTree = "<group>"; };
+		CEFA816E2C6DEB1E00751B1F /* philippines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = philippines.json; sourceTree = "<group>"; };
 		CEFB9A212C60DFF0000285F1 /* YYFPSLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
 		CEFB9A222C60DFF0000285F1 /* YYFPSLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		F5DAEE19CC0B77742495EB1F /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -13087,7 +13087,7 @@
 		CECE88A32C4519AD00764AF5 /* Json文件 */ = {
 			isa = PBXGroup;
 			children = (
-				CECE889E2C4519AD00764AF5 /* 【MacOS】启动JSON_SERVER.command */,
+				CEFA816E2C6DEB1E00751B1F /* philippines.json */,
 				CE2E88C52C69DF3100260207 /* countries.json */,
 				CECE889F2C4519AD00764AF5 /* 假数据.json */,
 				CECE88A02C4519AD00764AF5 /* CommentData.json */,
@@ -13384,7 +13384,6 @@
 				CECE81282C4512BF00764AF5 /* 9@3x.png in Resources */,
 				CECE88DB2C4519AD00764AF5 /* 1179x2556.png in Resources */,
 				CECE7D3A2C450CCD00764AF5 /* 测试弹窗的背景图@3x.png in Resources */,
-				CECE89512C4519AD00764AF5 /* 【MacOS】启动JSON_SERVER.command in Resources */,
 				CECE88F62C4519AD00764AF5 /* NotoSans-SemiBold.ttf in Resources */,
 				CECE7CC32C450C5000764AF5 /* objc_property_attribute_t.png in Resources */,
 				CECE859A2C4513CE00764AF5 /* iOS 获取手机型号、系统版本.png in Resources */,
@@ -13685,6 +13684,7 @@
 				CECE81232C4512BF00764AF5 /* 7@2x.png in Resources */,
 				CECE89402C4519AD00764AF5 /* NotoSansDisplay_SemiCondensed-SemiBold.ttf in Resources */,
 				CECE892B2C4519AD00764AF5 /* NotoSansDisplay_ExtraCondensed-Medium.ttf in Resources */,
+				CEFA816F2C6DEB1E00751B1F /* philippines.json in Resources */,
 				CECE81592C4512BF00764AF5 /* 社区.json in Resources */,
 				CECE87592C45140000764AF5 /* GXCardItemDemoCell.xib in Resources */,
 				CECE7C762C450C5000764AF5 /* Menu@2x.png in Resources */,

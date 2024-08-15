@@ -44,15 +44,15 @@
             }break;
             case UILabelShowingType_03:{/// 一行显示。不定宽、不定高、定字体。宽高自适应 【单行：ByFont】 可以不要高
                 if (self.height) {
-                    [self labelAutoWidthByFont];
+                    self.labelAutoWidthByFont();
                     if (self.width) {
-                        [self uninstall:NSLayoutAttributeWidth];//强制
+                        self.uninstall(NSLayoutAttributeWidth);// 强制
                     }
                 }
             }break;
             case UILabelShowingType_04:{/// 一行显示。定宽、定高。缩小字体方式全展示 【单行：ByWidth】
                 if (self.width && self.height) {
-                    [self labelAutoFontByWidth];
+                    self.labelAutoFontByWidth();
                 }
             }break;
             case UILabelShowingType_05:{/// 多行显示。定宽、不定高、定字体 【多行：ByFont】
@@ -60,7 +60,7 @@
                     self.numberOfLines = 0;
                     self.lineBreakMode = NSLineBreakByWordWrapping;/// 自动折行设置【默认】
                     if (self.height) {
-                        [self uninstall:NSLayoutAttributeHeight];
+                        self.uninstall(NSLayoutAttributeHeight);
                     }
                 }
             }break;

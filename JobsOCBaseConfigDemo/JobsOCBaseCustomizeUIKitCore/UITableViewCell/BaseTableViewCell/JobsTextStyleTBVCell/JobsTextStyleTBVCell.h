@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JobsTextStyleTBVCell : JobsBaseTableViewCell
 
 -(UILabel *)lab;
+/// 获取绑定的数据源
+-(UIViewModel *)getViewModel;
 
 @end
 

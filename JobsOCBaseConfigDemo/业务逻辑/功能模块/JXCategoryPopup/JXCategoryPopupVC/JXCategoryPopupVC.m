@@ -230,7 +230,7 @@ ratio:(CGFloat)ratio {
             make.right.equalTo(self.view);
             make.top.bottom.equalTo(self.categoryView);
         }];
-        _filterBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+        _filterBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
         [_filterBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTrailing 
                                        imagePadding:JobsWidth(6)];
         @jobs_weakify(self)

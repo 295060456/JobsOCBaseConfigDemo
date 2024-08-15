@@ -112,7 +112,7 @@ UILocationProtocol_UIViewModelSynthesize
     }
     _btn.selected = self.dataModel.jobsSelected;
     _btn.normalTitle(self.dataModel.subTextModel.text);
-    _btn.makeBtnLabelByShowingType(UILabelShowingType_03);
+    _btn.makeBtnTitleByShowingType(UILabelShowingType_03);
     [_btn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
                              imagePadding:JobsWidth(5)];
     return _btn;

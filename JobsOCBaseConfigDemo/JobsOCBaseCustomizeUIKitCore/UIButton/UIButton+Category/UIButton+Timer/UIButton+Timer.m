@@ -95,7 +95,7 @@
         self.normalTitleColor(self.btnTimerConfig.readyPlayValue.textCor);
         self.titleFont(self.btnTimerConfig.readyPlayValue.font);//ok
     }
-    self.makeBtnLabelByShowingType(self.btnTimerConfig.labelShowingType);
+    self.makeBtnTitleByShowingType(self.btnTimerConfig.labelShowingType);
     [self extraWidth:JobsWidth(8)];
 }
 #pragma mark —— UI配置 2.1、【计时器进行中】设置Layer层 和 背景颜色
@@ -120,7 +120,7 @@
         self.titleFont(self.btnTimerConfig.runningValue.font);
         self.normalTitleColor(self.btnTimerConfig.runningValue.textCor);
     }
-    self.makeBtnLabelByShowingType(self.btnTimerConfig.labelShowingType);
+    self.makeBtnTitleByShowingType(self.btnTimerConfig.labelShowingType);
     [self extraWidth:0];
 }
 #pragma mark —— UI配置 3.1、【计时器结束】设置Layer层 和 背景颜色
@@ -146,7 +146,7 @@
         self.normalTitleColor(self.btnTimerConfig.endValue.textCor);
     }
     self.titleLabel.numberOfLines = 1;//不加这一句会有UI异常
-    self.makeBtnLabelByShowingType(self.btnTimerConfig.labelShowingType);
+    self.makeBtnTitleByShowingType(self.btnTimerConfig.labelShowingType);
     [self extraWidth:JobsWidth(8)];
 }
 #pragma mark —— 设置普通标题或者富文本标题【计时器未开始】文字内容

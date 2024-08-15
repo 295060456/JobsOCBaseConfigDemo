@@ -16,8 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 字符串替换
 ///  有时候我们加载的URL中可能会出现中文,需要我们手动进行转码,但是同时又要保证URL中的特殊字符保持不变,那么我们就可以使用下面的方法
 -(NSURL *)Url_Chinese;
-/// 替换相关的字符为暂位符 example
--(NSString *)numberSuitScanf;
+/// 替换某个字符串中间的字符为replacement
+/// @param replacement 用来替换的字符（通常为 *）
+/// @param count 需要替换的字符数量
+- (NSString *)replaceMiddleCharactersWithReplacement:(NSString *)replacement
+                                               count:(NSInteger)count;
 /// 每隔num个字符添加一个空格的字符串算法
 /// @param num 默认值是4
 -(NSString *)dealWithString:(NSInteger)num;

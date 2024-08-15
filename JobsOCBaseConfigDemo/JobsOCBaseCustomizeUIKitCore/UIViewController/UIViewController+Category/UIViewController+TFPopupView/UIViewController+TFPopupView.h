@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_END
              make.right.equalTo(self.view);
              make.top.bottom.equalTo(categoryView);
          }];
-         _filterBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+         _filterBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
          [_filterBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTrailing imagePadding:JobsWidth(6)];
 
          BtnClickEvent(_filterBtn, {

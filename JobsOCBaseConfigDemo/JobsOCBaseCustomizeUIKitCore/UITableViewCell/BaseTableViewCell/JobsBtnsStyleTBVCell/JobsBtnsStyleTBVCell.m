@@ -9,8 +9,11 @@
 
 @interface JobsBtnsStyleTBVCell ()
 /// UI
-@property(nonatomic,strong)UIButton *leftBtn;
-@property(nonatomic,strong)UIButton *rightBtn;
+@property(nonatomic,strong)BaseButton *leftBtn;
+@property(nonatomic,strong)BaseButton *rightBtn;
+/// Data
+@property(nonatomic,strong)UIButtonModel *leftBtnVM;
+@property(nonatomic,strong)UIButtonModel *rightBtnVM;
 
 @end
 
@@ -37,6 +40,9 @@ UIViewModelProtocol_synthesize
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model;
+        self.leftBtnVM = self.viewModel.data;
+        self.rightBtnVM = self.viewModel.requestParams;
+        
         self.leftBtn.alpha = 1;
         self.rightBtn.alpha = 1;
     };
@@ -49,21 +55,13 @@ UIViewModelProtocol_synthesize
 -(CGFloat)cellHeightWithModel:(UIViewModel *_Nullable)model{
     return [self.class cellHeightWithModel:model];
 }
-
--(UIButton *)getLeftBtn{
-    return self.leftBtn;
-}
-
--(UIButton *)getRightBtn{
-    return self.rightBtn;
-}
 #pragma mark —— BaseViewProtocol
 /// 获取绑定的数据源
 -(UIViewModel *)getViewModel{
     return _viewModel;
 }
 #pragma mark —— lazyLoad
--(UIButton *)leftBtn{
+-(BaseButton *)leftBtn{
     if(!_leftBtn){
         @jobs_weakify(self)
         _leftBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
@@ -108,23 +106,46 @@ UIViewModelProtocol_synthesize
         [self.contentView addSubview:_leftBtn];
         [_leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.contentView);
-            make.left.equalTo(self.contentView).offset(JobsWidth(15));
-            make.height.mas_equalTo(JobsWidth(50));
+            make.left.equalTo(self.contentView).offset(self.leftBtnVM.btn_offset_x);
+            make.height.mas_equalTo(self.leftBtnVM.btn_height);
         }];
     }
-    _leftBtn.data = self.viewModel;
-    _leftBtn.jobsResetBtnTitle(self.viewModel.buttonModel.title);
-    _leftBtn.selected = self.viewModel.buttonModel.jobsSelected;
-    _leftBtn.jobsResetBtnImage(_rightBtn.selected ? self.viewModel.buttonModel.highlightImage : self.viewModel.buttonModel.normalImage);
-    _leftBtn.jobsResetImagePlacement(NSDirectionalRectEdgeLeading);
-    _leftBtn.jobsResetImagePadding(JobsWidth(5));
-    _leftBtn.jobsResetTitleFont(self.viewModel.buttonModel.titleFont);
-    _leftBtn.jobsResetBtnTitleCor(self.viewModel.buttonModel.titleCor);
-    _leftBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+    
+    _leftBtn.data = self.leftBtnVM;
+    if(self.leftBtnVM.attributedTitle){
+        _leftBtn.jobsResetAttributedTitle(self.leftBtnVM.attributedTitle);
+    }else{
+        if(self.leftBtnVM.title){
+            _leftBtn.jobsResetBtnTitle(self.leftBtnVM.title);
+            _leftBtn.jobsResetTitleFont(self.leftBtnVM.titleFont);
+            _leftBtn.jobsResetBtnTitleCor(self.leftBtnVM.titleCor);
+        }
+    }
+    
+    if(self.leftBtnVM.attributedSubtitle){
+        _leftBtn.jobsResetAttributedTitle(self.leftBtnVM.attributedSubtitle);
+    }else{
+        if(self.leftBtnVM.subTitle){
+            _leftBtn.jobsResetBtnTitle(self.leftBtnVM.subTitle);
+            _leftBtn.jobsResetTitleFont(self.leftBtnVM.subTitleFont);
+            _leftBtn.jobsResetBtnTitleCor(self.leftBtnVM.subTitleCor);
+        }
+    }
+    
+    _leftBtn.selected = self.leftBtnVM.jobsSelected;
+    
+    if(self.leftBtnVM.normalImage){
+        _leftBtn.jobsResetBtnImage(_rightBtn.selected ? self.leftBtnVM.highlightImage : self.leftBtnVM.normalImage);
+        _leftBtn.jobsResetImagePlacement(NSDirectionalRectEdgeLeading);
+        _leftBtn.jobsResetImagePadding(JobsWidth(5));
+    }
+    _leftBtn.makeBtnTitleByShowingType(self.leftBtnVM.titleShowingType);
+    _leftBtn.jobsResetBtnBgCor(self.leftBtnVM.baseBackgroundColor);
+    
     return _leftBtn;
 }
 
--(UIButton *)rightBtn{
+-(BaseButton *)rightBtn{
     if(!_rightBtn){
         @jobs_weakify(self)
         _rightBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
@@ -173,15 +194,39 @@ UIViewModelProtocol_synthesize
             make.height.mas_equalTo(JobsWidth(50));
         }];
     }
-    _rightBtn.data = self.viewModel;
-    _rightBtn.jobsResetBtnTitle(self.viewModel.subButtonModel.title);
-    _rightBtn.selected = self.viewModel.subButtonModel.jobsSelected;
-    _rightBtn.jobsResetBtnImage(_rightBtn.selected ? self.viewModel.subButtonModel.highlightImage : self.viewModel.subButtonModel.normalImage);
-    _rightBtn.jobsResetImagePlacement(NSDirectionalRectEdgeLeading);
-    _rightBtn.jobsResetImagePadding(JobsWidth(5));
-    _rightBtn.jobsResetTitleFont(self.viewModel.subButtonModel.titleFont);
-    _rightBtn.jobsResetBtnTitleCor(self.viewModel.subButtonModel.titleCor);
-    _rightBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+    
+    _rightBtn.data = self.rightBtnVM;
+    if(self.rightBtnVM.attributedTitle){
+        _rightBtn.jobsResetAttributedTitle(self.rightBtnVM.attributedTitle);
+    }else{
+        if(self.rightBtnVM.title){
+            _rightBtn.jobsResetBtnTitle(self.rightBtnVM.title);
+            _rightBtn.jobsResetTitleFont(self.rightBtnVM.titleFont);
+            _rightBtn.jobsResetBtnTitleCor(self.rightBtnVM.titleCor);
+        }
+    }
+    
+    if(self.rightBtnVM.attributedSubtitle){
+        _rightBtn.jobsResetAttributedTitle(self.rightBtnVM.attributedSubtitle);
+    }else{
+        if(self.rightBtnVM.subTitle){
+            _rightBtn.jobsResetBtnTitle(self.rightBtnVM.subTitle);
+            _rightBtn.jobsResetTitleFont(self.rightBtnVM.subTitleFont);
+            _rightBtn.jobsResetBtnTitleCor(self.rightBtnVM.subTitleCor);
+        }
+    }
+    
+    _rightBtn.selected = self.rightBtnVM.jobsSelected;
+    
+    if(self.rightBtnVM.normalImage){
+        _rightBtn.jobsResetBtnImage(_rightBtn.selected ? self.rightBtnVM.highlightImage : self.rightBtnVM.normalImage);
+        _rightBtn.jobsResetImagePlacement(NSDirectionalRectEdgeLeading);
+        _rightBtn.jobsResetImagePadding(JobsWidth(5));
+    }
+    
+    _rightBtn.makeBtnTitleByShowingType(self.rightBtnVM.titleShowingType);
+    _rightBtn.jobsResetBtnBgCor(self.rightBtnVM.baseBackgroundColor);
+    
     return _rightBtn;
 }
 

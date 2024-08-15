@@ -662,12 +662,12 @@ class UITextModelProtocol {
     +@property(nonatomic,strong,nullable)UIFont __block *font;
     +@property(nonatomic,strong,nullable)UIColor __block *textCor;
     +@property(nonatomic,strong,nullable)NSAttributedString __block *attributedText API_AVAILABLE(ios(6.0));
-    +@property(nonatomic,strong)NSMutableArray <RichTextConfig *>__block *titleAttributedDataMutArr;
+    +@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>__block *titleAttributedDataMutArr;
     +@property(nonatomic,strong,nullable)NSString __block *selectedText;
     +@property(nonatomic,strong,nullable)UIFont __block *selectedFont;
     +@property(nonatomic,strong,nullable)UIColor __block *selectedTextCor;
     +@property(nonatomic,strong,nullable)NSAttributedString __block *selectedAttributedText API_AVAILABLE(ios(6.0));
-    +@property(nonatomic,strong)NSMutableArray <RichTextConfig *>__block *selectedTitleAttributedDataMutArr;
+    +@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>__block *selectedTitleAttributedDataMutArr;
 }
 NSObject <|-- UITextModelProtocol
 
@@ -2511,7 +2511,7 @@ NSObject <|-- BaseProtocol
   ```objective-c
   @property(nonatomic,strong)BaseButton *titleBtn;
   @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
-  @property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richTextConfigMutArr;
+  @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*JobsRichTextConfigMutArr;
   
   -(BaseButton *)titleBtn{
      if(!_titleBtn){
@@ -2525,7 +2525,7 @@ NSObject <|-- BaseProtocol
                                                     highlightImage:nil
                                                    attributedTitle:nil
                                            selectedAttributedTitle:nil
-                                                attributedSubtitle:[self richTextWithDataConfigMutArr:self.richTextConfigMutArr]
+                                            attributedSubtitle:self.richTextWithDataConfigMutArr(self.JobsRichTextConfigMutArr)
                                                              title:JobsInternationalization(@"请支付")
                                                           subTitle:nil//Internationalization(@"观看完整教学视频需支付99Mata值")
                                                          titleFont:UIFontWeightBoldSize(18)
@@ -2574,36 +2574,36 @@ NSObject <|-- BaseProtocol
      }return _richTextMutArr;
   }
   
-  -(NSMutableArray<RichTextConfig *> *)richTextConfigMutArr{
-     if (!_richTextConfigMutArr) {
-         _richTextConfigMutArr = NSMutableArray.array;
+  -(NSMutableArray<JobsRichTextConfig *> *)JobsRichTextConfigMutArr{
+     if (!_JobsRichTextConfigMutArr) {
+         _JobsRichTextConfigMutArr = NSMutableArray.array;
          {
-             RichTextConfig *config_01 = RichTextConfig.new;
+             JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
              config_01.font = UIFontWeightRegularSize(14);
              config_01.textCor = JobsCor(@"#666666");
              config_01.targetString = self.richTextMutArr[0];
              config_01.paragraphStyle = self.jobsParagraphStyleCenter;
-             [_richTextConfigMutArr addObject:config_01];
+             [_JobsRichTextConfigMutArr addObject:config_01];
          }
   
          {
-             RichTextConfig *config_02 = RichTextConfig.new;
+             JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
              config_02.font = UIFontWeightRegularSize(14);
              config_02.textCor = JobsCor(@"#BA9B77");
              config_02.targetString = self.richTextMutArr[1];
              config_02.paragraphStyle = self.jobsParagraphStyleCenter;
-             [_richTextConfigMutArr addObject:config_02];
+             [_JobsRichTextConfigMutArr addObject:config_02];
          }
   
          {
-             RichTextConfig *config_03 = RichTextConfig.new;
+             JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
              config_03.font = UIFontWeightRegularSize(14);
              config_03.textCor = JobsCor(@"#666666");
              config_03.targetString = self.richTextMutArr[2];
              config_03.paragraphStyle = self.jobsParagraphStyleCenter;
-             [_richTextConfigMutArr addObject:config_03];
+             [_JobsRichTextConfigMutArr addObject:config_03];
          }
-     }return _richTextConfigMutArr;
+     }return _JobsRichTextConfigMutArr;
   }
   ```
   
@@ -4072,7 +4072,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   
 * 运行机制
 
-  * 将根数据源：`RichTextConfig` 赋值后，装载到可变数组里面
+  * 将根数据源：`JobsRichTextConfig` 赋值后，装载到可变数组里面
 
   * 关注实现类：[**@interface NSObject (RichText)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+RichText)。<font color=red>**最终输出`NSMutableAttributedString *`供系统解析使用**</font>
 
@@ -4080,57 +4080,58 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     /// 整合输出富文本，作用于lable.attributedText
     /// @param richTextDataConfigMutArr 富文本的配置集合,对该纯文本字符串的释义
     /// @param paragraphStyle 段落样式
-    -(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <RichTextConfig *>*_Nonnull)richTextDataConfigMutArr
+    -(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <JobsRichTextConfig *>*_Nonnull)richTextDataConfigMutArr
                                                          paragraphStyle:(NSMutableParagraphStyle *_Nullable)paragraphStyle;
-    /// 利用 NSArray <RichTextConfig *>* 形成富文本
+    /// 利用 NSArray <JobsRichTextConfig *>* 形成富文本
     /// @param richTextDataConfigMutArr 富文本的配置集合,对该纯文本字符串的释义
-    -(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <RichTextConfig *>*_Nonnull)richTextDataConfigMutArr;
+    -(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <JobsRichTextConfig *>*_Nonnull)richTextDataConfigMutArr;
     ```
 
 * 调用示例
 
   ```objective-c
-  @property(nonatomic,strong)NSMutableArray <RichTextConfig *>*richLabelDataStringsMutArr;
+  @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richLabelDataStringsMutArr;
+  @property(nonatomic,strong)NSMutableParagraphStyle *paragtaphStyle;
   @property(nonatomic,strong,nullable)NSAttributedString *attributedText API_AVAILABLE(ios(6.0));
   ```
-
+  
   ```objective-c
   #pragma mark —— lazyLoad
-  -(NSMutableArray<RichTextConfig *> *)richLabelDataStringsMutArr{
+  -(NSMutableArray<JobsJobsRichTextConfig *> *)richLabelDataStringsMutArr{
       if (!_richLabelDataStringsMutArr) {
           _richLabelDataStringsMutArr = NSMutableArray.array;
           
-          RichTextConfig *config_01 = RichTextConfig.new;
+          JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
           config_01.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
           config_01.textCor = JobsBlueColor;
           config_01.targetString = @"编译器自动管理内存地址,\n";
-          config_01.textBgCor = UIColor.brownColor;
+          config_01.textBgCor = JobsCor(@"#FFC700");
           config_01.paragraphStyle = self.paragtaphStyle;
           
-          RichTextConfig *config_02 = RichTextConfig.new;
+          JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
           config_02.font = [UIFont systemFontOfSize:JobsWidth(13) weight:UIFontWeightMedium];
           config_02.textCor = JobsWhiteColor;
           config_02.targetString = @"让程序员更加专注于\n";
-          config_02.textBgCor = UIColor.brownColor;
+          config_02.textBgCor = JobsBlueColor;
           config_02.paragraphStyle = self.paragtaphStyle;
           
-          RichTextConfig *config_03 = RichTextConfig.new;
+          JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
           config_03.font = [UIFont systemFontOfSize:JobsWidth(14) weight:UIFontWeightSemibold];
-          config_03.textCor = JobsGreenColor;
+          config_03.textCor = JobsWhiteColor;
           config_03.targetString = @"APP的业务。";
-          config_03.textBgCor = UIColor.brownColor;
+          config_03.textBgCor = JobsRedColor;
           config_03.paragraphStyle = self.paragtaphStyle;
-          
-          [_richLabelDataStringsMutArr addObject:config_01];
-          [_richLabelDataStringsMutArr addObject:config_02];
-          [_richLabelDataStringsMutArr addObject:config_03];
+        
+          _richLabelDataStringsMutArr.jobsAddObject(config_01);
+          _richLabelDataStringsMutArr.jobsAddObject(config_02);
+          _richLabelDataStringsMutArr.jobsAddObject(config_03);
           
       }return _richLabelDataStringsMutArr;
   }
   
   -(NSAttributedString *)attributedText{
       if (!_attributedText) {
-          _attributedText = [self richTextWithDataConfigMutArr:self.richLabelDataStringsMutArr];
+          _attributedText = self.richTextWithDataConfigMutArr(self.richLabelDataStringsMutArr);
       }return _attributedText;
   }
   

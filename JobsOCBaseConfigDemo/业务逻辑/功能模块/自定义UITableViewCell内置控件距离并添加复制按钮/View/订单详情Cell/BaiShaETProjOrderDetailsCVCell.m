@@ -91,7 +91,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         make.right.equalTo(cell.contentView).offset(JobsWidth(-12));
         make.height.mas_equalTo(JobsWidth(18));
     }];
-    self.jobsCopyBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+    self.jobsCopyBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     self.jobsCopyBtn.cornerCutToCircleWithCornerRadius(JobsWidth(18 / 2));
     @jobs_weakify(self)
     [self.jobsCopyBtn jobsBtnClickEventBlock:^id(id data) {

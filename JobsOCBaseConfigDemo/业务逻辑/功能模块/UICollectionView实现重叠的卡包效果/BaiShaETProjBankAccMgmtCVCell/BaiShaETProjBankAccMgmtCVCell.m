@@ -81,7 +81,7 @@
     _titleBtn.imageView.cornerCutToCircleWithCornerRadius(JobsWidth(20));
     [_titleBtn.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
     
-    _titleBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
+    _titleBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     [_titleBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
                                   imagePadding:JobsWidth(50)];
     

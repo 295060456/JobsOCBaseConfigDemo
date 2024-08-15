@@ -34,11 +34,29 @@ UIViewModelProtocol_synthesize
 
 -(JobsSelectorBlock)longPressGestureEventBlock{
     if(!_longPressGestureEventBlock){
-        _longPressGestureEventBlock = ^(id  _Nullable weakSelf,
-                                        id  _Nullable arg) {
+        _longPressGestureEventBlock = ^(id _Nullable weakSelf,
+                                        id _Nullable arg) {
            NSLog(@"按钮的长按事件触发");
         };
     }return _longPressGestureEventBlock;
+}
+
+-(UIImage *)highlightImage{
+    if(!_highlightImage){
+        _highlightImage = self.normalImage;
+    }return _highlightImage;
+}
+/// 主标题的显示方式
+-(UILabelShowingType)titleShowingType{
+    if(!_titleShowingType){
+        _titleShowingType = UILabelShowingType_03;
+    }return _titleShowingType;
+}
+/// 副标题的显示方式
+-(UILabelShowingType)subTitleShowingType{
+    if(!_subTitleShowingType){
+        _subTitleShowingType = UILabelShowingType_03;
+    }return _subTitleShowingType;
 }
 
 @end

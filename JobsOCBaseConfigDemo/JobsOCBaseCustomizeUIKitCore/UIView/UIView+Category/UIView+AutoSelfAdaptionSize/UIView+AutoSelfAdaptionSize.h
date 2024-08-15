@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
+#import "JobsBlock.h"
 /**
  资料来源：
  https://github.com/zhuchenglong/LabelDemo
@@ -18,14 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIView (AutoSelfAdaptionSize)
 #pragma mark —— UILabel
 /// 确定Label的字体大小，使其宽度自适应
--(void)labelAutoWidthByFont;
+-(jobsByVoidBlock _Nonnull)labelAutoWidthByFont;
 /// 确定Label的宽度，使字体大小自适应
--(void)labelAutoFontByWidth;
+-(jobsByVoidBlock _Nonnull)labelAutoFontByWidth;
 #pragma mark —— UIButton
 /// 确定Button的字体大小，使其宽度自适应
--(void)buttonAutoWidthByFont;
+-(jobsByVoidBlock _Nonnull)buttonAutoWidthByFont;
 /// 确定Button的宽度，使字体大小自适应
--(void)buttonAutoFontByWidth;
+-(jobsByVoidBlock _Nonnull)buttonAutoFontByWidth;
 /// 自适应宽度
 -(CGRect)getFrameWithFreeWidth:(CGPoint)origin
                       maxHight:(CGFloat)maxHight;
