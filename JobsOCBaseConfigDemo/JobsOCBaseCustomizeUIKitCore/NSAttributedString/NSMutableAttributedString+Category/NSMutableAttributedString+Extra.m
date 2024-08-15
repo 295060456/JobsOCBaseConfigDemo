@@ -26,7 +26,7 @@
 /// OC富文本字符串拼接
 -(JobsReturnMutAttributedStringByAttributedStringBlock _Nonnull)add{
     return ^NSMutableAttributedString * _Nullable(NSAttributedString * _Nonnull data) {
-        if(!data) data = [NSAttributedString.alloc initWithString:@""];
+        if(!data) data = JobsAttributedString(@"");
         [self appendAttributedString:data];
         return self;
     };

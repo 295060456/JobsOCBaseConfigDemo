@@ -2275,6 +2275,16 @@ NSObject <|-- BaseProtocol
     ```objective-c
     self.view.backgroundColor = [UIColor.redColor colorWithAlphaComponent:0.5f];
     ```
+  
+* <font color=red>**nil**</font> vs <font color=red>**NULL**</font>
+
+  * ```objective-c
+  NSObject *object = nil; // object 是一个空指针，不指向任何对象。
+    ```
+  
+  * ```c
+    int *ptr = NULL; // ptr 是一个空指针，不指向任何内存地址。
+  ```
 
 ## 四、架构相关 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
