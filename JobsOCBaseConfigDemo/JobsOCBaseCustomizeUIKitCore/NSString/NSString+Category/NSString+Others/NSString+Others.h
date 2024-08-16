@@ -10,6 +10,11 @@
 #import "NSObject+Extras.h"
 #import "JobsBlock.h"
 
+static inline NSMutableString * _Nonnull JobsMutableString(NSString * _Nonnull str){
+    if(!str) str = @"";
+    return [NSMutableString stringWithString:str];
+}
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Others)
@@ -27,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 对象转OC字符串
 +(JobsReturnStringByIDBlock)toString;
 /// OC字符串拼接
--(JobsReturnStringByStringBlock _Nonnull)add;
+-(JobsReturnMutableStringByStringBlock _Nonnull)add;
 /// OC字符串数组 转 OC字符串
 +(NSString *_Nonnull)toStrByStringArr:(NSArray <NSString *>*_Nonnull)arr;
 #pragma mark —— 自定义替换、裁剪

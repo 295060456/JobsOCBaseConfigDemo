@@ -30,6 +30,7 @@ typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(
 typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString * _Nonnull data);
 typedef NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
 typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString * _Nullable data);
+typedef NSMutableString *_Nullable(^JobsReturnMutableStringByStringBlock)(NSString * _Nullable data);
 typedef NSString *_Nullable(^JobsReturnStrByCorBlock)(UIColor * _Nullable data);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIntegerBlock)(NSInteger data);
 

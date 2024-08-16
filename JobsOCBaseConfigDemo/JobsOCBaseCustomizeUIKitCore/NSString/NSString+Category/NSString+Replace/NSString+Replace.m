@@ -24,19 +24,17 @@
 /// @param count 需要替换的字符数量
 - (NSString *)replaceMiddleCharactersWithReplacement:(NSString *)replacement
                                                count:(NSInteger)count{
-    if (self.length <= count || count <= 0) {
-        return self; // 字符串长度小于等于替换长度，或替换长度无效，直接返回原字符串
-    }
-    
+    if (self.length <= count || count <= 0) return self; // 字符串长度小于等于替换长度，或替换长度无效，直接返回原字符串
+        
     NSInteger start = (self.length - count) / 2;
     NSString *prefix = [self substringToIndex:start];
     NSString *suffix = [self substringFromIndex:start + count];
     
-    NSMutableString *result = [NSMutableString stringWithString:prefix];
+    NSMutableString *result = JobsMutableString(prefix);
     for (NSInteger i = 0; i < count; i++) {
-        result.add(replacement);
+        result = result.add(replacement);
     }
-    result.add(suffix);
+    result = result.add(suffix);
     return result;
 }
 /// 每隔num个字符添加一个空格的字符串算法
@@ -47,7 +45,7 @@
     int count = 0;
     for (int i = 0; i < self.length; i++) {
         count++;
-        doneTitle = [doneTitle stringByAppendingString:[self substringWithRange:NSMakeRange(i, 1)]];
+        doneTitle = doneTitle.add([self substringWithRange:NSMakeRange(i, 1)]);
         if (count == num) {
             doneTitle = doneTitle.add(@" ");
             count = 0;

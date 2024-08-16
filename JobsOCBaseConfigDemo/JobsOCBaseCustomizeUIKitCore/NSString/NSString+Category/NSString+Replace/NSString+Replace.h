@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "MacroDef_SysWarning.h"
 #import "NSNumber+Extra.h"
+#import "NSString+Others.h"
 #import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN

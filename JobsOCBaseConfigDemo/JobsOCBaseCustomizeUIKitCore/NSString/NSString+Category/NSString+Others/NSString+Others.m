@@ -34,11 +34,11 @@
     };
 }
 /// OC字符串拼接
--(JobsReturnStringByStringBlock _Nonnull)add{
-    return ^(NSString *_Nonnull str) {
+-(JobsReturnMutableStringByStringBlock _Nonnull)add{
+    return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
         if(!str) str = @"";
         // 系统的stringByAppendingString方法在参数为nil的时候会崩溃
-        return [self stringByAppendingString:str];
+        return JobsMutableString([self stringByAppendingString:str]);/// 原始字符串不会改变，输出一个新的字符串
     };
 }
 /// OC字符串数组 转 OC字符串
