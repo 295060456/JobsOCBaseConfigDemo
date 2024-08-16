@@ -7,32 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
-#pragma mark —— 创建不可变富文本
-static inline NSAttributedString * _Nonnull JobsAttributedString(NSString * _Nonnull data) {
-    if (!data) data = @"";
-    return [NSAttributedString.alloc initWithString:data];
-}
 
-static inline NSAttributedString * _Nonnull JobsAttributedStringByTextAttachment(NSTextAttachment * _Nonnull data) {
-    if (!data) data = NSTextAttachment.alloc.init;
-    return [NSAttributedString attributedStringWithAttachment:data];
-}
-#pragma mark —— 创建可变富文本
-static inline NSMutableAttributedString * _Nonnull toMutAttributedString(NSAttributedString * _Nonnull data) {
-    if(!data) data = JobsAttributedString(@"");
-    return [NSMutableAttributedString.alloc initWithAttributedString:data];
-}
-
-static inline NSMutableAttributedString * _Nonnull JobsMutAttributedString(NSString * _Nonnull data) {
-    if (!data) data = @"";
-    return toMutAttributedString(JobsAttributedString(data));
-}
-
-static inline NSMutableAttributedString * _Nonnull JobsMutAttributedStringByTextAttachment(NSTextAttachment * _Nonnull data) {
-    if (!data) data = NSTextAttachment.alloc.init;
-    return toMutAttributedString(JobsAttributedStringByTextAttachment(data));
-}
 NS_ASSUME_NONNULL_BEGIN
+/// NSMutableAttributedString 用于设置段落样式，包括行间距、段间距、对齐方式等
 @interface NSMutableAttributedString (Extra)
 /// OC富文本字符串拼接
 -(JobsReturnMutAttributedStringByAttributedStringBlock _Nonnull)add;

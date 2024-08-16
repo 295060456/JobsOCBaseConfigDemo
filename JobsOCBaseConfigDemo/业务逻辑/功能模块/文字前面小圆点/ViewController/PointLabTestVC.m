@@ -16,6 +16,7 @@
 @property(nonatomic,strong)NSMutableAttributedString *attributedString2;
 @property(nonatomic,strong)NSMutableParagraphStyle *paragraphStyle;
 @property(nonatomic,strong)NSTextAttachment *bulletAttachment;
+@property(nonatomic,strong)NSMutableArray<NSString *> *items;
 @property(nonatomic,copy)NSString *dot;
 
 @end
@@ -36,6 +37,7 @@
 -(UILabel *)label{
     if(!_label){
         _label = UILabel.new;
+        _label.backgroundColor = JobsRandomColor;
         _label.attributedText = self.attributedString;
         _label.numberOfLines = 0;
         [self.view addSubview:_label];
@@ -51,6 +53,7 @@
 -(UILabel *)label2{
     if(!_label2){
         _label2 = UILabel.new;
+        _label2.backgroundColor = JobsRandomColor;
         _label2.attributedText = self.attributedString2;
         _label2.numberOfLines = 0;
         [self.view addSubview:_label2];
@@ -63,33 +66,6 @@
         [self.view addSubview:_label2];
     }return _label2;
 }
-
--(NSMutableAttributedString *)attributedString{
-    if(!_attributedString){
-        _attributedString = NSMutableAttributedString.new;
-        _attributedString.add(JobsAttributedString(self.dot
-                                                       .add(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人")
-                                                       .add(@"\n")));
-                                                       
-        _attributedString.add(JobsAttributedString(self.dot
-                                                       .add(@"你是日本人你是日本人你是日本人你是日本人你是日本人你是日本人")
-                                                       .add(@"\n")));
-
-        /// 设置段落
-        [_attributedString addAttribute:NSParagraphStyleAttributeName
-                                  value:self.paragraphStyle
-                                  range:NSMakeRange(0, self.attributedString.length)];
-        /// 设置小圆点的颜色
-        [_attributedString addAttribute:NSForegroundColorAttributeName
-                                  value:JobsRedColor
-                                  range:NSMakeRange(0, 1)]; // 第一个圆点
-        [_attributedString addAttribute:NSForegroundColorAttributeName
-                                  value:JobsYellowColor
-                                  range:NSMakeRange(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人".add(@"\n").length + 1, 1)]; // 第二个圆点
-        
-    }return _attributedString;
-}
-
 
 -(NSString *)dot{
     if(!_dot){
@@ -119,15 +95,63 @@
     }return _bulletAttachment;
 }
 
+-(NSMutableAttributedString *)attributedString{
+    if(!_attributedString){
+        _attributedString = NSMutableAttributedString.new;
+        _attributedString.add(JobsAttributedString(self.dot
+                                                       .add(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人")
+                                                       .add(@"\n")));
+                                                       
+        _attributedString.add(JobsAttributedString(self.dot
+                                                       .add(@"你是日本人你是日本人你是日本人你是日本人你是日本人你是日本人")
+                                                       .add(@"\n")));
+
+        /// 设置段落
+        [_attributedString addAttribute:NSParagraphStyleAttributeName
+                                  value:self.paragraphStyle
+                                  range:NSMakeRange(0, self.attributedString.length)];
+        /// 设置小圆点的颜色
+        [_attributedString addAttribute:NSForegroundColorAttributeName
+                                  value:JobsRedColor
+                                  range:NSMakeRange(0, 1)]; // 第一个圆点
+        [_attributedString addAttribute:NSForegroundColorAttributeName
+                                  value:JobsYellowColor
+                                  range:NSMakeRange(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人".add(@"\n").length + 1, 1)]; // 第二个圆点
+        
+    }return _attributedString;
+}
+
 -(NSMutableAttributedString *)attributedString2{
     if(!_attributedString2){
-        _attributedString2 = JobsMutAttributedStringByTextAttachment(self.bulletAttachment);
-        _attributedString2.add(JobsAttributedString(@"今天是一个好日子"))
-                          .add(JobsAttributedString(@"明天同样是一个好日子"));
+        _attributedString2 = JobsMutAttributedString(@"");
+        // 通过循环来创建每一行的富文本
+        for (NSString *item in self.items) {
+            // 添加小圆点
+            NSAttributedString *bulletPoint = JobsAttributedStringByTextAttachment(self.bulletAttachment);
+            _attributedString2.add(bulletPoint);
+            // 添加空格后再添加文本
+            NSAttributedString *space = JobsAttributedString(@" ");
+            _attributedString2.add(space);
+            // 添加对应的文本
+            NSAttributedString *text = JobsAttributedString(item);
+            _attributedString2.add(text);
+            // 添加换行符
+            NSAttributedString *newline = JobsAttributedString(@"\n");
+            _attributedString2.add(newline);
+        }
         [_attributedString2 addAttribute:NSParagraphStyleAttributeName
                                    value:self.paragraphStyle
                                    range:NSMakeRange(0, _attributedString2.length)];
     }return _attributedString2;
+}
+
+-(NSMutableArray<NSString *> *)items{
+    if(!_items){
+        _items = NSMutableArray.array;
+        _items.jobsAddObject(@"Your deposit will be successfully credited to your wallet once the transaction completed.");
+        _items.jobsAddObject(@"In case you meet any problem in deposit, please contact our CS.");
+        _items.jobsAddObject(@"Additional information can be found on our website.");
+    }return _items;
 }
 
 @end

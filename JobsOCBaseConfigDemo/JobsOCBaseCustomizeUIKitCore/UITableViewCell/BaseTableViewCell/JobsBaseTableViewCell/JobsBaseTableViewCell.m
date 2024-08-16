@@ -445,8 +445,8 @@ UITableViewCellProtocol_synthesize
         NSString *subtitle = @"";
         if(model.textModel.attributedText.string.length){
             title = model.textModel.attributedText.string;
-            vm.textModel.font = model.textModel.attributedText.attributedStringFont ? : UIFontWeightRegularSize(14);
-            vm.textModel.textLineSpacing = model.textModel.attributedText.attributedStringParagraphStyle.lineSpacing;
+            vm.textModel.font = model.textModel.attributedText.attributedStringFont() ? : UIFontWeightRegularSize(14);
+            vm.textModel.textLineSpacing = model.textModel.attributedText.attributedStringParagraphStyle().lineSpacing;
         }else{
             title = model.textModel.text;
             vm.textModel.font = model.textModel.font ? : UIFontWeightRegularSize(14);
@@ -455,8 +455,8 @@ UITableViewCellProtocol_synthesize
         
         if(model.subTextModel.attributedText.string.length){
             subtitle = model.subTextModel.attributedText.string;
-            vm.textModel.font = model.subTextModel.attributedText.attributedStringFont ? : UIFontWeightRegularSize(14);
-            vm.textModel.textLineSpacing = model.subTextModel.attributedText.attributedStringParagraphStyle.lineSpacing;
+            vm.textModel.font = model.subTextModel.attributedText.attributedStringFont() ? : UIFontWeightRegularSize(14);
+            vm.textModel.textLineSpacing = model.subTextModel.attributedText.attributedStringParagraphStyle().lineSpacing;
         }else{
             subtitle = model.subTextModel.text;
             vm.textModel.font = model.subTextModel.font ? : UIFontWeightRegularSize(14);

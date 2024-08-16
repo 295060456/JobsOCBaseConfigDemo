@@ -1210,6 +1210,7 @@
 		CE4B42532C6E138D00FDCB0F /* NSAttributedString+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extra.h"; sourceTree = "<group>"; };
 		CE4B42542C6E138D00FDCB0F /* NSAttributedString+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extra.m"; sourceTree = "<group>"; };
 		CE4B425D2C6E181000FDCB0F /* PointLabBaseView.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PointLabBaseView.jpg; sourceTree = "<group>"; };
+		CE4B42682C6EF3A400FDCB0F /* JobsAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsAttributedString.h; sourceTree = "<group>"; };
 		CE706A432C57682900CB7B97 /* data.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.tsv; sourceTree = "<group>"; };
 		CE706A442C57682900CB7B97 /* TSV文件介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "TSV文件介绍.md"; sourceTree = "<group>"; };
 		CE73A5362C4E441D00B44795 /* JobsToggleNavViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsToggleNavViewProtocol.h; sourceTree = "<group>"; };
@@ -9272,6 +9273,7 @@
 			children = (
 				CE4B42552C6E138D00FDCB0F /* NSAttributedString+Category */,
 				CECE820C2C4513CD00764AF5 /* NSMutableAttributedString+Category */,
+				CE4B42682C6EF3A400FDCB0F /* JobsAttributedString.h */,
 			);
 			path = NSAttributedString;
 			sourceTree = "<group>";

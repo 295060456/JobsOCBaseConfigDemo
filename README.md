@@ -4024,6 +4024,141 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 富文本是告诉系统，某段文字的表达方式。<u>其本质是一个带配置信息的字符串</u>
 
+* 关注实现类 [**@interface  NSMutableAttributedString (Extra)**]()、[**@interface NSAttributedString (Extra)**]()
+
+* 富文本实现文本前面有个小圆点的效果
+
+  * 公共部分
+
+    ```objective-c
+    @property(nonatomic,strong)UILabel *label;
+    @property(nonatomic,strong)NSMutableParagraphStyle *paragraphStyle;
+    ```
+
+    ```objective-c
+    -(UILabel *)label{
+        if(!_label){
+            _label = UILabel.new;
+            _label.backgroundColor = JobsRandomColor;
+            _label.attributedText = self.attributedString;
+            _label.numberOfLines = 0;
+            [self.view addSubview:_label];
+            [_label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(200);
+                make.center.equalTo(self.view);
+            }];
+            _label.makeLabelByShowingType(UILabelShowingType_05);
+            [self.view addSubview:_label];
+        }return _label;
+    }
+    
+    -(NSMutableParagraphStyle *)paragraphStyle{
+        if(!_paragraphStyle){
+            _paragraphStyle = NSMutableParagraphStyle.new;
+            _paragraphStyle.headIndent = 10; // 设置文本的缩进，使其与圆点对齐
+            _paragraphStyle.firstLineHeadIndent = 0; // 第一行不缩进
+        }return _paragraphStyle;
+    }
+    ```
+  
+  * 方法1：不能定义点的尺寸大小
+  
+    ```objective-c
+    @property(nonatomic,strong)NSMutableAttributedString *attributedString;
+    @property(nonatomic,copy)NSString *dot;
+    ```
+  
+    ```objective-c
+    -(NSMutableAttributedString *)attributedString{
+        if(!_attributedString){
+            _attributedString = NSMutableAttributedString.new;
+            _attributedString.add(JobsAttributedString(self.dot
+                                                           .add(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人")
+                                                           .add(@"\n")));
+                                                           
+            _attributedString.add(JobsAttributedString(self.dot
+                                                           .add(@"你是日本人你是日本人你是日本人你是日本人你是日本人你是日本人")
+                                                           .add(@"\n")));
+    
+            /// 设置段落
+            [_attributedString addAttribute:NSParagraphStyleAttributeName
+                                      value:self.paragraphStyle
+                                      range:NSMakeRange(0, self.attributedString.length)];
+            /// 设置小圆点的颜色
+            [_attributedString addAttribute:NSForegroundColorAttributeName
+                                      value:JobsRedColor
+                                      range:NSMakeRange(0, 1)]; // 第一个圆点
+            [_attributedString addAttribute:NSForegroundColorAttributeName
+                                      value:JobsYellowColor
+                                      range:NSMakeRange(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人".add(@"\n").length + 1, 1)]; // 第二个圆点
+            
+        }return _attributedString;
+    }
+    
+    -(NSString *)dot{
+        if(!_dot){
+            _dot = @"\u2022";// @"⚫";
+        }return _dot;
+    }
+    ```
+  
+  * 方法2：利用`NSTextAttachment *`，可以定义圆点的大小
+  
+    ```objective-c
+    @property(nonatomic,strong)NSMutableAttributedString *attributedString2;
+    @property(nonatomic,strong)NSTextAttachment *bulletAttachment;
+    @property(nonatomic,strong)NSMutableArray<NSString *> *items;/// 数据源
+    ```
+  
+    ```objective-c
+    -(NSMutableAttributedString *)attributedString2{
+        if(!_attributedString2){
+            _attributedString2 = JobsMutAttributedString(@"");
+            // 通过循环来创建每一行的富文本
+            for (NSString *item in self.items) {
+                // 添加小圆点
+                NSAttributedString *bulletPoint = JobsAttributedStringByTextAttachment(self.bulletAttachment);
+                _attributedString2.add(bulletPoint);
+                // 添加空格后再添加文本
+                NSAttributedString *space = JobsAttributedString(@" ");
+                _attributedString2.add(space);
+                // 添加对应的文本
+                NSAttributedString *text = JobsAttributedString(item);
+                _attributedString2.add(text);
+                // 添加换行符
+                NSAttributedString *newline = JobsAttributedString(@"\n");
+                _attributedString2.add(newline);
+            }
+            [_attributedString2 addAttribute:NSParagraphStyleAttributeName
+                                       value:self.paragraphStyle
+                                       range:NSMakeRange(0, _attributedString2.length)];
+        }return _attributedString2;
+    }
+    
+    -(NSTextAttachment *)bulletAttachment{
+        if(!_bulletAttachment){
+            _bulletAttachment = NSTextAttachment.new;
+            _bulletAttachment.bounds = CGRectMake(0, 0, 10, 10); // 设置圆点的大小和位置
+            
+            UIGraphicsBeginImageContextWithOptions(_bulletAttachment.bounds.size, NO, 0);
+            [JobsRedColor setFill];// 设置圆点的颜色
+            [[UIBezierPath bezierPathWithOvalInRect:_bulletAttachment.bounds] fill];
+            _bulletAttachment.image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+        }return _bulletAttachment;
+    }
+    
+    -(NSMutableArray<NSString *> *)items{
+        if(!_items){
+            _items = NSMutableArray.array;
+            _items.jobsAddObject(@"Your deposit will be successfully credited to your wallet once the transaction completed.");
+            _items.jobsAddObject(@"In case you meet any problem in deposit, please contact our CS.");
+            _items.jobsAddObject(@"Additional information can be found on our website.");
+        }return _items;
+    }
+    ```
+  
 * 如果要实现富文本某段文字的点击事件的监听，此时的承接控件不能是**`UILabel`**，而应该换成**`UITextView`**，并实现其相应的**<UITextViewDelegate>**方法
 
   * <font color=red>注意：**`UITextView`**不像**`UITextField`**一样有<u>Placeholder</u>，为了延续使用习惯则引入[**第三方**](https://github.com/devxoul/UITextView-Placeholder)</font>
