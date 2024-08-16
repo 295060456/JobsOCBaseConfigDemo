@@ -36,6 +36,10 @@ typedef void(^jobsByViewAndAnimatedBlock)(UIView __kindof * _Nullable view,BOOL 
 typedef void(^jobsByView2Block)(UIView __kindof * _Nullable superview,UIView __kindof * _Nullable view);
 typedef void(^jobsByTableViewCellBlock)(UITableViewCell __kindof * _Nullable data);
 typedef void(^jobsByURLSessionDataTaskBlock)(NSURLSessionDataTask __kindof * _Nullable data);
+typedef void(^jobsByTextAlignmentBlock)(NSTextAlignment data);
+typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
+
+typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
 
 typedef void(^jobsByNSIntegerBlock)(NSInteger data);
 typedef void(^jobsByNSUIntegerBlock)(NSUInteger data);

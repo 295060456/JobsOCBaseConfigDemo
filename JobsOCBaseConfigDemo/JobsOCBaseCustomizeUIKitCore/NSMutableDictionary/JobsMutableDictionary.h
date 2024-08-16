@@ -12,5 +12,6 @@
 // TODO
 #pragma mark —— Category
 #import "NSMutableDictionary+Ordered.h"
+#import "NSMutableDictionary+Extra.h"
 
 #endif /* JobsMutableDictionary_h */

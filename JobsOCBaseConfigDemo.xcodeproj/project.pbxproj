@@ -38,6 +38,7 @@
 		CE410FEB2C57B8B400AB9402 /* ZBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */; };
 		CE4B42522C6E05CB00FDCB0F /* PointLabTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B42512C6E05CB00FDCB0F /* PointLabTestVC.m */; };
 		CE4B42562C6E138D00FDCB0F /* NSAttributedString+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B42542C6E138D00FDCB0F /* NSAttributedString+Extra.m */; };
+		CE4B43712C6F450600FDCB0F /* NSMutableDictionary+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B436F2C6F450500FDCB0F /* NSMutableDictionary+Extra.m */; };
 		CE706A422C57680500CB7B97 /* JobsPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE794C2C450C5000764AF5 /* JobsPostVC.m */; };
 		CE706A462C57682900CB7B97 /* data.tsv in Resources */ = {isa = PBXBuildFile; fileRef = CE706A432C57682900CB7B97 /* data.tsv */; };
 		CE7F395D2C4FDA1000431A5D /* JobsFMDBMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */; };
@@ -1211,6 +1212,8 @@
 		CE4B42542C6E138D00FDCB0F /* NSAttributedString+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extra.m"; sourceTree = "<group>"; };
 		CE4B425D2C6E181000FDCB0F /* PointLabBaseView.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PointLabBaseView.jpg; sourceTree = "<group>"; };
 		CE4B42682C6EF3A400FDCB0F /* JobsAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsAttributedString.h; sourceTree = "<group>"; };
+		CE4B436E2C6F450500FDCB0F /* NSMutableDictionary+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Extra.h"; sourceTree = "<group>"; };
+		CE4B436F2C6F450500FDCB0F /* NSMutableDictionary+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Extra.m"; sourceTree = "<group>"; };
 		CE706A432C57682900CB7B97 /* data.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.tsv; sourceTree = "<group>"; };
 		CE706A442C57682900CB7B97 /* TSV文件介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "TSV文件介绍.md"; sourceTree = "<group>"; };
 		CE73A5362C4E441D00B44795 /* JobsToggleNavViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsToggleNavViewProtocol.h; sourceTree = "<group>"; };
@@ -3590,6 +3593,15 @@
 				CE4B42542C6E138D00FDCB0F /* NSAttributedString+Extra.m */,
 			);
 			path = "NSAttributedString+Category";
+			sourceTree = "<group>";
+		};
+		CE4B43702C6F450500FDCB0F /* NSMutableDictionary+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				CE4B436E2C6F450500FDCB0F /* NSMutableDictionary+Extra.h */,
+				CE4B436F2C6F450500FDCB0F /* NSMutableDictionary+Extra.m */,
+			);
+			path = "NSMutableDictionary+Extra";
 			sourceTree = "<group>";
 		};
 		CE706A3D2C5767CA00CB7B97 /* Excel */ = {
@@ -9376,6 +9388,7 @@
 		CECE82262C4513CD00764AF5 /* NSMutableDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				CE4B43702C6F450500FDCB0F /* NSMutableDictionary+Extra */,
 				CECE82242C4513CD00764AF5 /* NSMutableDictionary+Category */,
 				CECE82252C4513CD00764AF5 /* JobsMutableDictionary.h */,
 			);
@@ -13962,6 +13975,7 @@
 				CECE7CD62C450C5000764AF5 /* TestBaseLabelVC.m in Sources */,
 				CECE7EC32C450E5B00764AF5 /* TKPermissionReminder.m in Sources */,
 				CECE7CB42C450C5000764AF5 /* BaiShaETProjVIPSubCVCell_04.m in Sources */,
+				CE4B43712C6F450600FDCB0F /* NSMutableDictionary+Extra.m in Sources */,
 				CECE876F2C45140000764AF5 /* XLChannelHeader.m in Sources */,
 				CECE85852C4513CE00764AF5 /* BaseCollectionView.m in Sources */,
 				CECE85D42C4513CE00764AF5 /* BaseTextView.m in Sources */,

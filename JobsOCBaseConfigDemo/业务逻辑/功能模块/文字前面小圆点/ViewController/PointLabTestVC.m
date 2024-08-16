@@ -117,7 +117,14 @@
         [_attributedString addAttribute:NSForegroundColorAttributeName
                                   value:JobsYellowColor
                                   range:NSMakeRange(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人".add(@"\n").length + 1, 1)]; // 第二个圆点
-        
+        /// 设置文本颜色
+        [_attributedString addAttribute:NSForegroundColorAttributeName
+                                  value:JobsCor(@"#D0D0D0")
+                                  range:NSMakeRange(1, _attributedString.length - 1)];
+        /// 设置字体
+        [_attributedString addAttribute:NSFontAttributeName
+                                  value:UIFontWeightRegularSize(JobsWidth(12))
+                                  range:NSMakeRange(0, _attributedString.length)];
     }return _attributedString;
 }
 
@@ -133,7 +140,13 @@
             NSAttributedString *space = JobsAttributedString(@" ");
             _attributedString2.add(space);
             // 添加对应的文本
-            NSAttributedString *text = JobsAttributedString(item);
+            NSMutableAttributedString *text = JobsMutAttributedString(item);
+            [text addAttribute:NSFontAttributeName
+                         value:UIFontWeightRegularSize(JobsWidth(12))
+                         range:NSMakeRange(0, text.length)];
+            [text addAttribute:NSForegroundColorAttributeName
+                         value:JobsCor(@"#D0D0D0")
+                         range:NSMakeRange(0, text.length)];
             _attributedString2.add(text);
             // 添加换行符
             NSAttributedString *newline = JobsAttributedString(@"\n");

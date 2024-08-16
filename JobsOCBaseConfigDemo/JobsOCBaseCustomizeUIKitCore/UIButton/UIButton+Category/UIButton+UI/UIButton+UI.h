@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIButton (UI)<BaseProtocol,BaseButtonProtocol>
 #pragma mark —— 一些功能性
 /// 为了兼容新的Api，批量设定UIButton
-///  新Api较老的Api，增加了subTitle
+/// 新Api较老的Api，增加了subTitle
 /// 资料来源：https://www.jianshu.com/p/12426709420e
 /// - Parameters:
 ///   - btnConfiguration: 来自新Api的配置文件。UIButtonConfiguration.filledButtonConfiguration;
@@ -108,6 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 注意⚠️因为UIConfigurationTextAttributesTransformer是没有办法直接获取到里面的字体的，只能从外面生成以后直接赋值，也就是每次修改需要给一个完整的UIConfigurationTextAttributesTransformer对象进UIButtonConfiguration
 -(void)jobsSetBtnTitleFont:(UIFont *_Nullable)titleFont
                btnTitleCor:(UIColor *_Nullable)titleCor;
+
 -(void)jobsSetBtnSubTitleFont:(UIFont *_Nullable)subTitleFont
                btnSubTitleCor:(UIColor *_Nullable)subTitleCor;
 /// @property (nonatomic, readwrite, assign) UIButtonConfigurationSize buttonSize; 这个属性，不是我们想要的UIFont。设置UIFont必须在富文本里面进行设置
@@ -126,11 +127,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// 方法名字符串（不带参数）、作用对象
 -(JobsReturnIDByTwoIDBlock)btnClickActionWithMethodName;
 /// 代码触发点击调用
--(void)actionByCode;
+-(jobsByVoidBlock _Nonnull)actionByCode;
 /// UIButton 上的 image 旋转一定的角度angle
 -(void)changeAction:(CGFloat)angle;
 /// 当Button不可用的时候，需要做些什么
 -(jobsByBOOLBlock _Nonnull)enabledBlock;
+/// 重设UIButtonConfiguration并使之生效  JobsReturnButtonConfigurationByButtonConfigurationBlock
+-(void)jobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock)configurationBlock;
+-(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock)configurationBlock;
 #pragma mark —— 一些通用修改（已做Api向下兼容）
 /// 重设Btn的描边：线宽和线段的颜色
 -(jobsByColor_FloatBlock)jobsResetBtnlayerBorderCorAndWidth;
@@ -143,15 +147,46 @@ NS_ASSUME_NONNULL_BEGIN
 /// 重设Btn主标题的文字内容
 -(jobsByStringBlock)jobsResetBtnTitle;
 /// 重设Btn副标题的文字内容
--(jobsByStringBlock)jobsResetBtnSubTitle;
+-(jobsByStringBlock)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
+/// 修改主标题的对齐方式
+-(jobsByTextAlignmentBlock _Nonnull)jobsResetTitleTextAlignment API_AVAILABLE(ios(16.0));
+/// 修改副标题的对齐方式
+-(jobsByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0));
 /// 重设Btn.Image
 -(jobsByImageBlock)jobsResetBtnImage;
 /// 重设Btn主标题的文字颜色
 -(jobsByCorBlock)jobsResetBtnTitleCor;
+/// 重设Btn副标题的文字颜色
+-(jobsByCorBlock)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
 /// 重设Btn主标题的背景颜色
 -(jobsByCorBlock)jobsResetBtnBgCor;
 /// 重设Btn的背景图片
 -(jobsByImageBlock)jobsResetBtnBgImage;
+-(jobsByBOOLBlock _Nonnull)makeNewLineShows;
+-(jobsByNSIntegerBlock _Nonnull)titleAlignment;
+-(jobsByFontBlock _Nonnull)titleFont;
+-(jobsByFontBlock _Nonnull)subTitleFont;
+-(jobsByImageBlock _Nonnull)normalImage;
+-(jobsByImageBlock _Nonnull)normalBackgroundImage;
+-(jobsByStringBlock _Nonnull)normalTitle;
+-(jobsByCorBlock _Nonnull)normalTitleColor;
+-(jobsByCorBlock _Nonnull)subTitleColor;
+/// 富文本
+-(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle;
+-(jobsByCGFloatBlock _Nonnull)resetCornerRadius;
+-(jobsByCorBlock _Nonnull)resetLayerBorderCor;
+-(jobsByCGFloatBlock _Nonnull)resetBorderWidth;
+#pragma mark —— UIButton.带状态 set
+/// 设置 UIButton 已选择状态下的 按钮图片
+-(jobsByImageBlock _Nonnull)selectedImage;
+/// 设置 UIButton 已选择状态下的 按钮背景图片
+-(jobsByImageBlock _Nonnull)selectedBackgroundImage;
+/// 设置 UIButton 已选择状态下的 按钮主标题
+-(jobsByStringBlock _Nonnull)selectedTitle;
+/// 设置 UIButton 已选择状态下的 按钮主标题的颜色
+-(jobsByCorBlock _Nonnull)selectedTitleColor;
+/// 设置 UIButton 已选择状态下的 按钮主标题的富文本内容
+-(jobsByAttributedStringBlock _Nonnull)selectedAttributedTitle;
 /**
  1、一一对应UIButtonConfiguration.h文件里面的属性
  2、只有通过UIButtonConfiguration创建的UIButton，这个UIbutton的configuration属性才不为空
@@ -191,20 +226,17 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetSubTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
 -(jobsByFontBlock _Nonnull)jobsResetTitleFont API_AVAILABLE(ios(16.0));
 -(jobsByFontBlock _Nonnull)jobsResetSubTitleFont API_AVAILABLE(ios(16.0));
-#pragma mark —— UIButton.UIControlStateNormal.set
--(jobsByBOOLBlock _Nonnull)makeNewLineShows;
--(jobsByNSIntegerBlock _Nonnull)titleAlignment;
--(jobsByFontBlock _Nonnull)titleFont;
--(jobsByFontBlock _Nonnull)subTitleFont;
--(jobsByImageBlock _Nonnull)normalImage;
--(jobsByImageBlock _Nonnull)normalBackgroundImage;
--(jobsByStringBlock _Nonnull)normalTitle;
--(jobsByCorBlock _Nonnull)normalTitleColor;
--(jobsByCorBlock _Nonnull)subTitleColor;
--(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle;/// 富文本
--(jobsByCGFloatBlock _Nonnull)resetCornerRadius;
--(jobsByCorBlock _Nonnull)resetLayerBorderCor;
--(jobsByCGFloatBlock _Nonnull)resetBorderWidth;
+#pragma mark —— UIButton.带状态的 get
+/// 获取 UIButton 已选择状态下的按钮图片
+-(nullable UIImage *)imageForSelectedState;
+/// 获取 UIButton 已选择状态下的背景图片
+-(nullable UIImage *)backgroundImageForSelectedState;
+/// 获取 UIButton 已选择状态下的 主标题的文本内容
+-(nullable NSString *)titleForSelectedState;
+/// 获取 UIButton 已选择状态下的 主标题的文本颜色
+-(nullable UIColor *)titleColorForSelectedState;
+/// 获取 UIButton 已选择状态下的 主标题的富文本内容
+-(nullable NSAttributedString *)attributedTitleForSelectedState;
 #pragma mark —— UIButton.UIControlStateNormal.get
 -(nullable UIImage *)imageForNormalState;
 -(nullable UIImage *)backgroundImageForNormalState;
@@ -212,18 +244,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(nullable NSString *)titleForNormalState;
 -(nullable UIColor *)titleColorForNormalState;
 -(nullable NSAttributedString *)attributedTitleForNormalState;
-#pragma mark —— UIButton.UIControlStateSelected.set
--(jobsByImageBlock _Nonnull)selectedImage;
--(jobsByImageBlock _Nonnull)selectedBackgroundImage;
--(jobsByStringBlock _Nonnull)selectedTitle;
--(jobsByCorBlock _Nonnull)selectedTitleColor;
--(jobsByAttributedStringBlock _Nonnull)selectedAttributedTitle;/// 富文本
-#pragma mark —— UIButton.UIControlStateSelected.get
--(nullable UIImage *)imageForSelectedState;
--(nullable UIImage *)backgroundImageForSelectedState;
--(nullable NSString *)titleForSelectedState;
--(nullable UIColor *)titleColorForSelectedState;
--(nullable NSAttributedString *)attributedTitleForSelectedState;
 
 @end
 

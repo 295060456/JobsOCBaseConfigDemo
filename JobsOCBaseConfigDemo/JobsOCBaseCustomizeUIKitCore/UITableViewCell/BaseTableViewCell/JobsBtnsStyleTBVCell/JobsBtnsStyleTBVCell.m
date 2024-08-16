@@ -210,11 +210,13 @@ UIViewModelProtocol_synthesize
         _rightBtn.jobsResetAttributedTitle(self.rightBtnVM.attributedSubtitle);
     }else{
         if(self.rightBtnVM.subTitle){
-            _rightBtn.jobsResetBtnTitle(self.rightBtnVM.subTitle);
-            _rightBtn.jobsResetTitleFont(self.rightBtnVM.subTitleFont);
-            _rightBtn.jobsResetBtnTitleCor(self.rightBtnVM.subTitleCor);
+            _rightBtn.jobsResetBtnSubTitle(self.rightBtnVM.subTitle);
+            _rightBtn.jobsResetSubTitleFont(self.rightBtnVM.subTitleFont);
+            _rightBtn.jobsResetSubTitleBaseForegroundColor(self.rightBtnVM.subTitleCor);
         }
     }
+    
+    _rightBtn.jobsResetSubTitleTextAlignment(NSTextAlignmentRight);
     
     _rightBtn.selected = self.rightBtnVM.jobsSelected;
     
