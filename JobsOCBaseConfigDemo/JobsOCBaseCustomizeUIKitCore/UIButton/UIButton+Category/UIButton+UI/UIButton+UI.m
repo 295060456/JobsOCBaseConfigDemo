@@ -254,6 +254,7 @@
 /// 通过 Transformer 得到 字体
 -(JobsReturnFontByConfigurationTextAttributesTransformerBlock)getTitleFontFromTransformer{
     return ^(UIConfigurationTextAttributesTransformer transformer) {
+        if(!transformer) return (UIFont *)nil;
         // 创建一个示例的 textAttributes 字典
         NSDictionary<NSAttributedStringKey, id> *exampleAttributes = @{};
         // 获取 transformer 转换后的属性字典
@@ -266,6 +267,7 @@
 /// 通过 Transformer 得到 文字颜色
 -(JobsReturnColorByConfigurationTextAttributesTransformerBlock)getTitleColorFromTransformer{
     return ^(UIConfigurationTextAttributesTransformer transformer) {
+        if(!transformer) return (UIColor *)nil;
         // 创建一个示例的 textAttributes 字典
         NSDictionary<NSAttributedStringKey, id> *exampleAttributes = @{};
         // 获取 transformer 转换后的属性字典
@@ -445,12 +447,14 @@
         @jobs_weakify(self)
         [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             @jobs_strongify(self)
-            NSMutableDictionary <NSAttributedStringKey, id>*mutDic = NSMutableDictionary.dictionary;
-            mutDic.add(NSForegroundColorAttributeName,self.getTitleColorFromTransformer(config.titleTextAttributesTransformer));
-            mutDic.add(NSFontAttributeName,self.getTitleFontFromTransformer(config.titleTextAttributesTransformer));
-            mutDic.add(NSParagraphStyleAttributeName,self.jobsparagraphStyleByTextAlignment(data));
-            config.attributedSubtitle = [NSAttributedString.alloc initWithString:config.subtitle
-                                                                      attributes:mutDic];
+            if(config.subtitle){
+                NSMutableDictionary <NSAttributedStringKey, id>*mutDic = NSMutableDictionary.dictionary;
+                mutDic.add(NSForegroundColorAttributeName,self.getTitleColorFromTransformer(config.titleTextAttributesTransformer));
+                mutDic.add(NSFontAttributeName,self.getTitleFontFromTransformer(config.titleTextAttributesTransformer));
+                mutDic.add(NSParagraphStyleAttributeName,self.jobsparagraphStyleByTextAlignment(data));
+                config.attributedSubtitle = [NSAttributedString.alloc initWithString:config.subtitle
+                                                                          attributes:mutDic];
+            }
         }];
     };
 }
@@ -460,12 +464,14 @@
         @jobs_weakify(self)
         [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             @jobs_strongify(self)
-            NSMutableDictionary <NSAttributedStringKey, id>*mutDic = NSMutableDictionary.dictionary;
-            mutDic.add(NSForegroundColorAttributeName,self.getTitleColorFromTransformer(config.subtitleTextAttributesTransformer));
-            mutDic.add(NSFontAttributeName,self.getTitleFontFromTransformer(config.subtitleTextAttributesTransformer));
-            mutDic.add(NSParagraphStyleAttributeName,self.jobsparagraphStyleByTextAlignment(data));
-            config.attributedSubtitle = [NSAttributedString.alloc initWithString:config.subtitle
-                                                                      attributes:mutDic];
+            if(config.subtitle){
+                NSMutableDictionary <NSAttributedStringKey, id>*mutDic = NSMutableDictionary.dictionary;
+                mutDic.add(NSForegroundColorAttributeName,self.getTitleColorFromTransformer(config.subtitleTextAttributesTransformer));
+                mutDic.add(NSFontAttributeName,self.getTitleFontFromTransformer(config.subtitleTextAttributesTransformer));
+                mutDic.add(NSParagraphStyleAttributeName,self.jobsparagraphStyleByTextAlignment(data));
+                config.attributedSubtitle = [NSAttributedString.alloc initWithString:config.subtitle
+                                                                          attributes:mutDic];
+            }
         }];
     };
 }
@@ -1020,10 +1026,13 @@
     @jobs_weakify(self)
     return ^(UIColor *data) {
         @jobs_strongify(self)
-        return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+        [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.baseForegroundColor = data;
-            self.jobsResetTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:nil btnTitleCor:data]);
+            self.configuration = config;
         }];
+        self.jobsResetTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:nil btnTitleCor:data]);
+        [self updateConfiguration];
+        return self.configuration;
     };
 }
 
@@ -1031,12 +1040,14 @@
     @jobs_weakify(self)
     return ^(UIColor *data) {
         @jobs_strongify(self)
-        return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+        [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
 #warning UIButtonConfiguration 没有对subTitle字体颜色的描述
-//            config.baseForegroundColor = data;
+            config.baseForegroundColor = data;
             self.configuration = config;
-            self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:nil btnTitleCor:data]);
         }];
+        self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:nil btnTitleCor:data]);
+        [self updateConfiguration];
+        return self.configuration;
     };
 }
 

@@ -311,10 +311,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         return;
     }
 }
-#pragma mark —— 一些公共方法
--(JobsMenuView *)getMenuView{
-    return self.menuView;
-}
 
 -(void)语言切换的监听{
     @jobs_weakify(self)

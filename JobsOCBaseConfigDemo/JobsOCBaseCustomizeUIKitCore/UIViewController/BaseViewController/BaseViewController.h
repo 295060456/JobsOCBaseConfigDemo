@@ -41,7 +41,7 @@ UIGestureRecognizerDelegate
 ,BaseViewControllerProtocol
 >
 
--(JobsMenuView *)getMenuView;
+-(JobsMenuView *)menuView;
 -(void)语言切换的监听;
 -(void)设备方向的监听;
 
@@ -178,13 +178,13 @@ NS_ASSUME_NONNULL_END
 
 /**
  -(void)configMenuView{
-     self.getMenuView.titleMutArr = self.titleMutArr;
-     self.getMenuView.subViewMutArr = self.subViewMutArr;
-     self.getMenuView.normal_titleBgImageMutArr = self.normal_titleBgImageMutArr;
-     self.getMenuView.select_titleBgImageMutArr = self.select_titleBgImageMutArr;
-     [self.getMenuView richElementsInViewWithModel:nil];
+     self.menuView.titleMutArr = self.titleMutArr;
+     self.menuView.subViewMutArr = self.subViewMutArr;
+     self.menuView.normal_titleBgImageMutArr = self.normal_titleBgImageMutArr;
+     self.menuView.select_titleBgImageMutArr = self.select_titleBgImageMutArr;
+     [self.menuView richElementsInViewWithModel:nil];
      @jobs_weakify(self)
-     [self.getMenuView actionObjectBlock:^(id _Nullable x) {
+     [self.menuView actionObjectBlock:^(id _Nullable x) {
          @jobs_strongify(self)
          if([x isKindOfClass:UIButton.class]){
              UIButton *btn = (UIButton *)x;

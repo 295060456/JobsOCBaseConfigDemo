@@ -53,7 +53,7 @@
     self.view.backgroundColor = JobsGreenColor;
     self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
-    self.getMenuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
+    self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
