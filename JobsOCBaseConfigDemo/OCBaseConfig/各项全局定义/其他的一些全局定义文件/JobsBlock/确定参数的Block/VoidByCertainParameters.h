@@ -57,10 +57,10 @@ typedef void(^jobsByLongBlock)(long data);
 typedef void(^jobsByUnsignedLongBlock)(unsigned long data);
 typedef void(^jobsByUnsignedLongLongBlock)(unsigned long long data);
 #pragma mark —— 多形参
-typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,
-                                      float borderWidth);
-typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,
-                                    id _Nullable value);
+typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
+typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
+typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
+
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;
 typedef void(^jobsByThreeIDBlock)Jobs_3_Arguments;
 typedef void(^jobsByFourIDBlock)Jobs_4_Arguments;

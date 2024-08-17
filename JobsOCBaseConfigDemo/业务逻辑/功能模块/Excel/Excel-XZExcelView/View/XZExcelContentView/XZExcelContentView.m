@@ -49,7 +49,7 @@
     };
 }
 #pragma mark —— KVO 监听
-- (void)observeValueForKeyPath:(NSString *)keyPath 
+- (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
                        context:(void *)context{
@@ -102,7 +102,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     [self configureContentOffSet:scrollview.contentOffset];
 }
 
-- (void)configureContentOffSet:(CGPoint )point{
+- (void)configureContentOffSet:(CGPoint)point{
     [self.tableView.visibleCells enumerateObjectsUsingBlock:^(__kindof MainTableViewCell * _Nonnull cell,
                                                               NSUInteger idx,
                                                               BOOL * _Nonnull stop) {

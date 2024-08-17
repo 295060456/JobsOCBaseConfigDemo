@@ -176,11 +176,13 @@ BaseProtocol
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
 #pragma mark —— 功能性的
+/// 代理检测和回调
+-(jobsDelegateBlock _Nullable)jobsDelegate;
 /// GKNavigationBar 返回按钮点击方法
 ///【子类需要覆写 】创建返回键的点击事件
 -(jobsByBtnBlock _Nonnull)jobsBackBtnClickEvent;
 /// 打印YTKBaseRequest
--(void)checkRequest:(YTKBaseRequest *_Nonnull)request;
+-(jobsByYTKBaseRequestBlock _Nullable)checkRequest;
 /// 判空【是空返回YES】
 -(BOOL)nullString;
 /// 此功能的必要性：如果外界传入的数组是空，那么拿到的count是0，做-1操作就是-1，直接用for循环就会进入死循环

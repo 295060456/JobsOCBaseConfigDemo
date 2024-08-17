@@ -2195,17 +2195,39 @@ NSObject <|-- BaseProtocol
   * 万能的上帝模式。但<font color=red>**不建议过分的使用**</font>
   * 有一定的系统开销，在最开始的iOS版本里面，通知的使用是有上限的。后期版本可以无限制的使用
   * 如果对象释放的时候，不手动对其通知进行释放，可能会造成对象内存的溢出。所以，在iOS7以后，即便不写移除通知，系统帮我们解决
+  
 * **Block**
   * C语言底层的API，执行效率高。但是<font color=red>**只能单项订阅**</font>，<u>后出现的Block实现会覆盖掉之前的Block实现</u>。即，如果需要多个地方接收到数据，则不行
   * **Block不一定开异步线程**
   * 可以实现类似于内部类的功能
   * <font color=red>**如果数据的发出发和接收方之间存在若干对象，需要层层反向传值，比较冗余**</font>
   * 依附于实例变量，需要关注循环引用的问题
+  
 * **协议**
+  
   * **协议也可以提取公共的头文件，作为一个规范，而广泛遵守**
-  * 引申出一个中间对象：代理（**Delegate**）
+  
+  * 引申出一个中间对象：代理（**Delegate**）。对<font color=red>**代理检测和回调**</font>的封装
+  
+    * ```objective-c
+      /// 代理用weak修饰，因为要调用NSObject层分类封装的方法，所以不能是id类型
+      @property(nonatomic,weak)NSObject <MianTableViewCellDelegate>*delegate;
+      ```
+  
+    * **@implementation NSObject (Extras)**
+  
+      ```objective-c
+      @jobs_weakify(self)
+      self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
+      		@jobs_strongify(self)
+          [self.delegate mianTableViewCellScrollerDid:scrollView];
+      });
+      ```
+  
   * 依附于实例变量。**协议同样存在循环引用的问题**
+  
   * 可以多点订阅，解决Block的痛点
+  
   * 容易造成代码割裂。<u>如果修改协议方法的定义，对应的协议方法的实现不会有警告或者报错，会降格为普通方法，会造成代码业务逻辑的变更</u>
 
 #### 25.3、总结

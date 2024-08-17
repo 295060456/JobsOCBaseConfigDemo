@@ -34,9 +34,9 @@
     };
 }
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style 
+-(instancetype)initWithStyle:(UITableViewCellStyle)style
              reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithStyle:style 
+    if (self = [super initWithStyle:style
                     reuseIdentifier:reuseIdentifier]) {
         self.cellCollectionV.alpha = 1;
     }return self;
@@ -63,12 +63,14 @@
 }
 #pragma mark —— lazyLoadscrollerViwe 代理
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if ([self.delegate respondsToSelector:@selector(mianTableViewCellScrollerDid:)]) {
+    @jobs_weakify(self)
+    self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
+        @jobs_strongify(self)
         [self.delegate mianTableViewCellScrollerDid:scrollView];
-    }
+    });
 }
 #pragma mark —— lazyLoadUICollectionView 代理和数据源
-- (NSInteger)collectionView:(UICollectionView *)collectionView 
+- (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section{
     return self.model.itemArr.count;
 }
@@ -92,7 +94,7 @@
     showItem.jobsRichElementsInCellWithModel2(model);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView 
+- (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(self.viewModel_.itemW, self.viewModel_.itemH);

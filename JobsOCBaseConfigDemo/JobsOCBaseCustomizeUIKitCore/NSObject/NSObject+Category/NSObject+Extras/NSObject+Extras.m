@@ -146,6 +146,16 @@
                     context:nil];
 }
 #pragma mark —— 功能性的
+/// 代理检测和回调
+-(jobsDelegateBlock _Nullable)jobsDelegate{
+    @jobs_weakify(self)
+    return ^(NSString *_Nullable data,jobsByVoidBlock block) {
+        @jobs_strongify(self)
+        if ([self respondsToSelector:NSSelectorFromString(data)]) {
+            if(block) block();
+        }
+    };
+}
 /// GKNavigationBar 返回按钮点击方法
 ///【子类需要覆写 】创建返回键的点击事件
 -(jobsByBtnBlock _Nonnull)jobsBackBtnClickEvent{
@@ -175,11 +185,13 @@
     };
 }
 /// 打印YTKBaseRequest
--(void)checkRequest:(YTKBaseRequest *_Nonnull)request{
-    NSLog(@"request.error = %@\n",request.error);
-    NSLog(@"request.requestArgument = %@\n",request.requestArgument);
-    NSLog(@"request.requestUrl = %@\n",request.requestUrl);
-    NSLog(@"request.baseUrl = %@\n",request.baseUrl);
+-(jobsByYTKBaseRequestBlock _Nullable)checkRequest{
+    return ^(YTKBaseRequest *_Nonnull request) {
+        NSLog(@"request.error = %@\n",request.error);
+        NSLog(@"request.requestArgument = %@\n",request.requestArgument);
+        NSLog(@"request.requestUrl = %@\n",request.requestUrl);
+        NSLog(@"request.baseUrl = %@\n",request.baseUrl);
+    };
 }
 /// 判空【是空返回YES】
 -(BOOL)nullString{
@@ -291,9 +303,7 @@
 }
 /// 不能用于UITableViewHeaderFooterView
 -(JobsReturnIDByClsAndSaltStrBlock _Nonnull)jobsInitWithReuseIdentifierClass{
-    @jobs_weakify(self)
     return ^(Class _Nonnull cls,NSString * _Nullable salt) {
-        @jobs_strongify(self)
         return [cls.alloc initWithReuseIdentifier:NSStringFromClass(cls).add(salt)];
     };
 }

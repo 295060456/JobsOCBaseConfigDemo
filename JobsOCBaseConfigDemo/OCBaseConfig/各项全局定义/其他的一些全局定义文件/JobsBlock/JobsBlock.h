@@ -70,6 +70,9 @@ typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType c
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);
 
+@class YTKBaseRequest;
+typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
+
 @class JobsRichTextConfig;
 typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable data);
 

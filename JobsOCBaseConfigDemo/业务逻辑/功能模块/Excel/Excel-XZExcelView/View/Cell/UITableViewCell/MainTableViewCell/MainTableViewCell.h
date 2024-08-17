@@ -15,9 +15,7 @@
 #import "TableModel.h"
 
 @protocol MianTableViewCellDelegate <NSObject>
-
-- (void)mianTableViewCellScrollerDid:(UIScrollView *)scrollview;
-
+-(void)mianTableViewCellScrollerDid:(UIScrollView *)scrollview;
 @end
 
 @interface MainTableViewCell : JobsBaseTableViewCell
@@ -28,8 +26,8 @@ UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout
 >
 
-@property(nonatomic,weak)id<MianTableViewCellDelegate>delegate;
+@property(nonatomic,weak)NSObject <MianTableViewCellDelegate>*delegate;
 
-- (void)scrollerItemWithContentOffset:(CGPoint )contentOffset;
+-(void)scrollerItemWithContentOffset:(CGPoint )contentOffset;
 
 @end
