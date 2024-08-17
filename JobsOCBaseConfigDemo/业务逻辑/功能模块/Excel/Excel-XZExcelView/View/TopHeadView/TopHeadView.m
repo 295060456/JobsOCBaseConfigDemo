@@ -60,19 +60,14 @@
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     TopViewITem *cell = [TopViewITem cellWithCollectionView:collectionView
                                                forIndexPath:indexPath];
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView
-       willDisplayCell:(UICollectionViewCell *)cell
-    forItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    TopViewITem *showItem = (TopViewITem *)cell;
-    showItem.backgroundColor = JobsBlueColor;
-    showItem.jobsRichElementsInCellWithModel(self.viewModel);
+    cell.backgroundColor = JobsBlueColor;
+    cell.jobsRichElementsInCellWithModel(self.viewModel);
     
     NSString *title = self.viewModel.titleArr[indexPath.row];
-    showItem.jobsRichElementsInCellWithModel2(title);
+    cell.jobsRichElementsInCellWithModel2(title);
+    
+    return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView

@@ -25,14 +25,11 @@ const CGFloat LineWidth = 2;
 }
 
 - (void)configureData{
-    for (int i = 0; i < 100; i++) {
+    for (int i = 1; i <= 100; i++) {/// y
         self.titleArr.jobsAddObject(toStringByInt(i).add(JobsInternationalization(@"行")));
-    }
-    
-    for (int i = 0; i < 100; i++) {
         TableModel *model = TableModel.new;
         model.rowTitle = toStringByInt(i).add(JobsInternationalization(@"楼"));
-        for (int j = 0; j < 100; j++) {
+        for (int j = 1; j <= 100; j++) {
             ItemModel *itemM = ItemModel.new;
             itemM.contentStr = toStringByInt(i*j);
             model.itemArr.jobsAddObject(itemM);
@@ -43,6 +40,7 @@ const CGFloat LineWidth = 2;
     self.itemW = 60;
     self.rowNumber = self.titleArr.count;
     self.colNumber = self.contentArr.count;
+    NSLog(@"");
 }
 #pragma mark —— lazyLoad
 /// 第一（水平）行，除了第一个格子的，水平方向的数据

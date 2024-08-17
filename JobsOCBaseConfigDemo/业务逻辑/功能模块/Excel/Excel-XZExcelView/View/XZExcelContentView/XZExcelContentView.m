@@ -70,19 +70,14 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MainTableViewCell *cell = MainTableViewCell.cellStyleValue1WithTableView(tableView);
     cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView
-  willDisplayCell:(UITableViewCell *)cell
-forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    MainTableViewCell *showCell = (MainTableViewCell *)cell;
-    showCell.delegate = self;
-    showCell.jobsRichElementsInCellWithModel(self.viewModel);
+    cell.delegate = self;
+    cell.jobsRichElementsInCellWithModel(self.viewModel);
     
     TableModel *model = self.viewModel.contentArr[indexPath.row];
-    showCell.jobsRichElementsInCellWithModel2(model);
+    cell.jobsRichElementsInCellWithModel2(model);
+    
+    return cell;
 }
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{

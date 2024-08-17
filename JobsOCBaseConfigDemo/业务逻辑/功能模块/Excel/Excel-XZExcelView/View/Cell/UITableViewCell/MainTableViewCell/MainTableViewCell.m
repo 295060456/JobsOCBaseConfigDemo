@@ -28,7 +28,7 @@
                                  withStyle:UITableViewCellStyleValue1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = JobsWhiteColor;
-            cell.cellCollectionV.alpha = 1;
+            cell.collectionView.alpha = 1;
         }return cell;
     };
 }
@@ -50,7 +50,7 @@
 }
 
 - (void)scrollerItemWithContentOffset:(CGPoint )contentOffset{
-    self.cellCollectionV.contentOffset = contentOffset;
+    self.collectionView.contentOffset = contentOffset;
 }
 #pragma mark —— lazyLoadscrollerViwe 代理
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -76,18 +76,12 @@
     MainTableViewCellITem *cell = [MainTableViewCellITem cellWithCollectionView:collectionView
                                                                    forIndexPath:indexPath];
     cell.contentView.backgroundColor = cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView
-       willDisplayCell:(UICollectionViewCell *)cell
-    forItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    MainTableViewCellITem *showItem = (MainTableViewCellITem *)cell;
-    showItem.jobsRichElementsInCellWithModel(self.viewModel_);
-    
+    cell.jobsRichElementsInCellWithModel(self.viewModel_);
     ItemModel *model = self.model.itemArr[indexPath.row];
-    showItem.jobsRichElementsInCellWithModel2(model);
+    cell.jobsRichElementsInCellWithModel2(model);
+    
+    return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -96,23 +90,19 @@
     return CGSizeMake(self.viewModel_.itemW, self.viewModel_.itemH);
 }
 #pragma mark —— lazyLoad
-- (UICollectionView *)cellCollectionV{
-    if (!_cellCollectionV) {
-        _cellCollectionV = [UICollectionView.alloc initWithFrame:self.bounds collectionViewLayout:self.layout];
-        _cellCollectionV.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-        _cellCollectionV.delegate = self;
-        _cellCollectionV.dataSource = self;
-        _cellCollectionV.showsVerticalScrollIndicator = NO;
-        _cellCollectionV.showsHorizontalScrollIndicator = NO;
+- (UICollectionView *)collectionView{
+    if (!_collectionView) {
+        _collectionView = [UICollectionView.alloc initWithFrame:self.bounds collectionViewLayout:self.layout];
+        _collectionView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        _collectionView.dataLink(self);
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
         
-        [_cellCollectionV registerClass:MainTableViewCellITem.class
-             forCellWithReuseIdentifier:NSStringFromClass(MainTableViewCellITem.class)];
-        
-        [self.contentView addSubview:_cellCollectionV];
-        [_cellCollectionV mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView addSubview:_collectionView];
+        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
-    }return _cellCollectionV;
+    }return _collectionView;
 }
 
 -(UICollectionViewFlowLayout *)layout{

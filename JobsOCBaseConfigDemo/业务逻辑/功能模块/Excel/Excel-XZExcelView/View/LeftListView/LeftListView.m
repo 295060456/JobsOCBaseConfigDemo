@@ -54,25 +54,20 @@
 #pragma mark —— UITableView 数据源
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return  self.viewModel.rowNumber;
+    return self.viewModel.rowNumber;
 }
 #pragma mark —— UITableView 代理
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TableViewOneCell *cell = TableViewOneCell.cellStyleValue1WithTableView(tableView);
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView
-  willDisplayCell:(UITableViewCell *)cell
-forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    TableViewOneCell *showCell = (TableViewOneCell *)cell;
-    showCell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
-    showCell.jobsRichElementsInCellWithModel(self.viewModel);
+    cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
+    cell.jobsRichElementsInCellWithModel(self.viewModel);
     
     TableModel *model = self.viewModel.contentArr[indexPath.row];
-    showCell.jobsRichElementsInCellWithModel2(model);
+    cell.jobsRichElementsInCellWithModel2(model);
+    
+    return cell;
 }
 #pragma mark —— scrollerView代理
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
