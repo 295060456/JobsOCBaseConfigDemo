@@ -9,8 +9,6 @@
 #import "MainTableViewCell.h"
 
 @interface MainTableViewCell()
-/// UI
-@property(nonatomic,strong)UICollectionView *cellCollectionV;
 /// Data
 @property(nonatomic,strong)XZExcelConfigureViewModel *viewModel_;
 @property(nonatomic,strong)TableModel *model;
@@ -24,22 +22,15 @@
     @jobs_weakify(self)
     return ^(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
-        JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(self.class,@"");
+        MainTableViewCell *cell = (MainTableViewCell *)tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
             cell = [self initTableViewCell:self
                                  withStyle:UITableViewCellStyleValue1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = JobsWhiteColor;
+            cell.cellCollectionV.alpha = 1;
         }return cell;
     };
-}
-
--(instancetype)initWithStyle:(UITableViewCellStyle)style
-             reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithStyle:style
-                    reuseIdentifier:reuseIdentifier]) {
-        self.cellCollectionV.alpha = 1;
-    }return self;
 }
 #pragma mark —— BaseCellProtocol
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
@@ -59,15 +50,20 @@
 }
 
 - (void)scrollerItemWithContentOffset:(CGPoint )contentOffset{
-    self.cellCollectionV.contentOffset=contentOffset;
+    self.cellCollectionV.contentOffset = contentOffset;
 }
 #pragma mark —— lazyLoadscrollerViwe 代理
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    @jobs_weakify(self)
-    self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
-        @jobs_strongify(self)
-        [self.delegate mianTableViewCellScrollerDid:scrollView];
-    });
+    /// 防止在初始情况下，无意义的往右拉动
+    if (scrollView.contentOffset.x >= 0) {
+        @jobs_weakify(self)
+        self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
+            @jobs_strongify(self)
+            [self.delegate mianTableViewCellScrollerDid:scrollView];
+        });
+    }else{
+        scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
+    }
 }
 #pragma mark —— lazyLoadUICollectionView 代理和数据源
 - (NSInteger)collectionView:(UICollectionView *)collectionView

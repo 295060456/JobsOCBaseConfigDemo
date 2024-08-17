@@ -52,7 +52,7 @@
     }
 }
 #pragma mark —— UITableView 数据源
-- (NSInteger)tableView:(UITableView *)tableView 
+- (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
     return  self.viewModel.rowNumber;
 }
@@ -63,7 +63,7 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView 
+- (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -76,7 +76,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 #pragma mark —— scrollerView代理
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
+    /// 防止在初始情况下，无意义的往下拉动
+    if (scrollView.contentOffset.y < 0) {
+        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
+    }else{
+        self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
+    }
 }
 #pragma mark —— lazyLoad
 - (UITableView *)tableView{

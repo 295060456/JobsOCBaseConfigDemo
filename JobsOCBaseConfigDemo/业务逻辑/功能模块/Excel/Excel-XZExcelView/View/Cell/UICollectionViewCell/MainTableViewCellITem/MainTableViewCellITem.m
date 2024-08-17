@@ -23,12 +23,6 @@
 
 @implementation MainTableViewCellITem
 
-- (instancetype)initWithFrame:(CGRect)frame{
-    if (self = [super initWithFrame:frame]) {
-
-    }return self;
-}
-
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     MainTableViewCellITem *cell = (MainTableViewCellITem *)[collectionView collectionViewCellClass:MainTableViewCellITem.class forIndexPath:indexPath];

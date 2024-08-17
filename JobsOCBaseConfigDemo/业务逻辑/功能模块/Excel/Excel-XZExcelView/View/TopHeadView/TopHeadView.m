@@ -75,7 +75,7 @@
     showItem.jobsRichElementsInCellWithModel2(title);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView 
+- (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(self.viewModel.itemW, self.viewModel.itemH);
@@ -83,6 +83,10 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     self.viewModel.jobsKVC(HorizontalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
+    /// 防止在初始情况下，无意义的往右拉动
+    if (scrollView.contentOffset.x < 0) {
+        scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
+    }
 }
 #pragma mark —— getter and setter
 -(UICollectionViewFlowLayout *)layout{
@@ -97,7 +101,7 @@
 
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [UICollectionView.alloc initWithFrame:self.bounds 
+        _collectionView = [UICollectionView.alloc initWithFrame:self.bounds
                                            collectionViewLayout:self.layout];
         _collectionView.backgroundColor = JobsWhiteColor;
         _collectionView.dataLink(self);

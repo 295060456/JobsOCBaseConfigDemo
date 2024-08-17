@@ -25,7 +25,9 @@ UICollectionViewDelegate,
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout
 >
-
+/// UI
+@property(nonatomic,strong)UICollectionView *cellCollectionV;
+/// Data
 @property(nonatomic,weak)NSObject <MianTableViewCellDelegate>*delegate;
 
 -(void)scrollerItemWithContentOffset:(CGPoint )contentOffset;

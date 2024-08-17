@@ -45,16 +45,23 @@ const CGFloat LineWidth = 2;
     self.colNumber = self.contentArr.count;
 }
 #pragma mark —— lazyLoad
+/// 第一（水平）行，除了第一个格子的，水平方向的数据
 -(NSMutableArray<NSString *> *)titleArr{
     if (!_titleArr) {
         _titleArr = NSMutableArray.array;
     }return _titleArr;
 }
-
+/// 每一（水平）行的数据
 -(NSMutableArray<TableModel *> *)contentArr{
     if(!_contentArr){
         _contentArr = NSMutableArray.array;
     }return _contentArr;
+}
+
+-(NSString *)contentStr_00{
+    if(!_contentStr_00){
+        _contentStr_00 = JobsInternationalization(@"楼层");
+    }return _contentStr_00;
 }
 
 @end

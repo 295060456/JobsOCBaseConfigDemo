@@ -53,7 +53,7 @@
 - (UILabel *)titleL{
     if (!_titleL) {
         _titleL = UILabel.new;
-        _titleL.text = @"楼层";
+        _titleL.text = self.viewModel_.contentStr_00;
         _titleL.textColor = JobsWhiteColor;
         _titleL.textAlignment = NSTextAlignmentCenter;
         _titleL.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
