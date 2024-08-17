@@ -53,19 +53,16 @@
 #pragma mark —— UICollectionView 代理和数据源
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section{
-    return self.viewModel.colNumber;
+    return self.viewModel.rowNumber;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     TopViewITem *cell = [TopViewITem cellWithCollectionView:collectionView
                                                forIndexPath:indexPath];
-    
     cell.backgroundColor = JobsBlueColor;
     cell.jobsRichElementsInCellWithModel(self.viewModel);
-    
-    NSString *title = self.viewModel.titleArr[indexPath.row];
-    cell.jobsRichElementsInCellWithModel2(title);
+    cell.jobsRichElementsInCellWithModel2(self.viewModel.topHeaderDatas[indexPath.row]);
     
     return cell;
 }

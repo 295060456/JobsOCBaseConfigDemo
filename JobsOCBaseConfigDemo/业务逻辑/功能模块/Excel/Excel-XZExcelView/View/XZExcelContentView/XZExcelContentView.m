@@ -70,13 +70,10 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MainTableViewCell *cell = MainTableViewCell.cellStyleValue1WithTableView(tableView);
     cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
-    
     cell.delegate = self;
     cell.jobsRichElementsInCellWithModel(self.viewModel);
-    
-    TableModel *model = self.viewModel.contentArr[indexPath.row];
-    cell.jobsRichElementsInCellWithModel2(model);
-    
+    NSMutableArray <UITextModel *>*dataArr = self.viewModel.contentArr[indexPath.row];
+    cell.jobsRichElementsInCellWithModel2(dataArr);
     return cell;
 }
 #pragma mark —— UIScrollViewDelegate

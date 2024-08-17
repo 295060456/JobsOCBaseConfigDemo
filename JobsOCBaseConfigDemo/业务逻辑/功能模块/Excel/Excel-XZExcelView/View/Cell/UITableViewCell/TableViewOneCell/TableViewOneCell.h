@@ -11,7 +11,6 @@
 
 #import "UICollectionViewCellProtocol.h"
 #import "XZExcelConfigureViewModel.h"
-#import "TableModel.h"
 
 @interface TableViewOneCell : JobsBaseTableViewCell<UICollectionViewCellProtocol>
 

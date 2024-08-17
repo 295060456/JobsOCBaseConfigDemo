@@ -11,8 +11,8 @@
 @interface MainTableViewCell()
 /// Data
 @property(nonatomic,strong)XZExcelConfigureViewModel *viewModel_;
-@property(nonatomic,strong)TableModel *model;
 @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
+@property(nonatomic,strong)NSMutableArray <UITextModel *>*model;
 
 @end
 
@@ -43,7 +43,7 @@
 
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
     @jobs_weakify(self)
-    return ^(TableModel *_Nullable model) {
+    return ^(NSMutableArray <UITextModel *>*_Nullable model) {
         @jobs_strongify(self)
         self.model = model;
     };
@@ -68,7 +68,7 @@
 #pragma mark —— lazyLoadUICollectionView 代理和数据源
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section{
-    return self.model.itemArr.count;
+    return self.model.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -76,11 +76,8 @@
     MainTableViewCellITem *cell = [MainTableViewCellITem cellWithCollectionView:collectionView
                                                                    forIndexPath:indexPath];
     cell.contentView.backgroundColor = cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
-    
     cell.jobsRichElementsInCellWithModel(self.viewModel_);
-    ItemModel *model = self.model.itemArr[indexPath.row];
-    cell.jobsRichElementsInCellWithModel2(model);
-    
+    cell.jobsRichElementsInCellWithModel2(self.model[indexPath.row]);
     return cell;
 }
 

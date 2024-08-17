@@ -15,7 +15,7 @@ const CGFloat LineWidth = 2;
 @interface XZExcelConfigureViewModel()
 
 @end
-
+// toStringByInt(i*j).add(JobsInternationalization(@"楼"));
 @implementation XZExcelConfigureViewModel
 
 - (instancetype)init{
@@ -25,32 +25,23 @@ const CGFloat LineWidth = 2;
 }
 
 - (void)configureData{
-    for (int i = 1; i <= 100; i++) {/// y
-        self.titleArr.jobsAddObject(toStringByInt(i).add(JobsInternationalization(@"行")));
-        TableModel *model = TableModel.new;
-        model.rowTitle = toStringByInt(i).add(JobsInternationalization(@"楼"));
-        for (int j = 1; j <= 100; j++) {
-            ItemModel *itemM = ItemModel.new;
-            itemM.contentStr = toStringByInt(i*j);
-            model.itemArr.jobsAddObject(itemM);
-        }self.contentArr.jobsAddObject(model);
+    for (int i = 1; i <= 50; i++) {/// y
+        NSMutableArray <UITextModel *>*row = NSMutableArray.array;
+        for (int j = 1; j <= 30; j++){/// x
+            UITextModel *model = UITextModel.new;
+            model.text = toStringByInt(i*j);
+            row.jobsAddObject(model);/// 一行的数据
+        }self.contentArr.jobsAddObject(row);
     }
     
     self.itemH = 35;
     self.itemW = 60;
-    self.rowNumber = self.titleArr.count;
+    self.rowNumber = self.contentArr[0].count;
     self.colNumber = self.contentArr.count;
     NSLog(@"");
 }
 #pragma mark —— lazyLoad
-/// 第一（水平）行，除了第一个格子的，水平方向的数据
--(NSMutableArray<NSString *> *)titleArr{
-    if (!_titleArr) {
-        _titleArr = NSMutableArray.array;
-    }return _titleArr;
-}
-/// 每一（水平）行的数据
--(NSMutableArray<TableModel *> *)contentArr{
+-(NSMutableArray<NSMutableArray<UITextModel *> *> *)contentArr{
     if(!_contentArr){
         _contentArr = NSMutableArray.array;
     }return _contentArr;
@@ -60,6 +51,28 @@ const CGFloat LineWidth = 2;
     if(!_contentStr_00){
         _contentStr_00 = JobsInternationalization(@"楼层");
     }return _contentStr_00;
+}
+
+-(NSMutableArray<UITextModel *> *)topHeaderDatas{
+    if(!_topHeaderDatas){
+        _topHeaderDatas = NSMutableArray.array;
+        for (int y = 1; y <= self.contentArr[0].count ; y++) {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = toStringByInt(y).add(JobsInternationalization(@"行"));
+            _topHeaderDatas.jobsAddObject(textModel);
+        }
+    }return _topHeaderDatas;
+}
+
+-(NSMutableArray<UITextModel *> *)leftListDatas{
+    if(!_leftListDatas){
+        _leftListDatas = NSMutableArray.array;
+        for (int y = 1; y <= self.contentArr.count ; y++) {
+            UITextModel *textModel = UITextModel.new;
+            textModel.text = toStringByInt(y).add(JobsInternationalization(@"楼"));
+            _leftListDatas.jobsAddObject(textModel);
+        }
+    }return _leftListDatas;
 }
 
 @end

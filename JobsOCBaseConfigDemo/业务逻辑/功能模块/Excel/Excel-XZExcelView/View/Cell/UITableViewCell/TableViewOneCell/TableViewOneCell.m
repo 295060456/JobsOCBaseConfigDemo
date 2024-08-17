@@ -17,7 +17,6 @@
 /// Data
 @property(nonatomic,strong)XZExcelConfigureViewModel *viewModel_;
 @property(nonatomic,assign)CGSize size;
-@property(nonatomic,strong)TableModel *model;
 
 @end
 
@@ -54,10 +53,9 @@
 
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
     @jobs_weakify(self)
-    return ^(TableModel *_Nullable model) {
+    return ^(UITextModel *_Nullable model) {
         @jobs_strongify(self)
-        self.model = model;
-        self.titleL.text = model.rowTitle;
+        self.titleL.text = model.text;
     };
 }
 

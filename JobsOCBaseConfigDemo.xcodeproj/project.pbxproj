@@ -91,7 +91,6 @@
 		CECA79892C707C57003BCEF9 /* TopHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA79762C707B8A003BCEF9 /* TopHeadView.m */; };
 		CECA798A2C707C5A003BCEF9 /* XZExcelContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA79792C707B8A003BCEF9 /* XZExcelContentView.m */; };
 		CECA798B2C707C5D003BCEF9 /* XZExcelView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA797C2C707B8A003BCEF9 /* XZExcelView.m */; };
-		CECA798C2C707C63003BCEF9 /* TableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA795C2C707B8A003BCEF9 /* TableModel.m */; };
 		CECA798D2C707C65003BCEF9 /* XZExcelConfigureViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA795F2C707B8A003BCEF9 /* XZExcelConfigureViewModel.m */; };
 		CECE788D2C4509E000764AF5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CECE788C2C4509E000764AF5 /* Base */; };
 		CECE78922C4509E200764AF5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CECE78912C4509E200764AF5 /* Base */; };
@@ -1300,8 +1299,6 @@
 		CEC01AB32C48AFED0069C91A /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
 		CEC01BE52C48E20F0069C91A /* Bayon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bayon.ttf; sourceTree = "<group>"; };
 		CEC01CD72C49334D0069C91A /* 时间格式化.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "时间格式化.md"; sourceTree = "<group>"; };
-		CECA795B2C707B8A003BCEF9 /* TableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableModel.h; sourceTree = "<group>"; };
-		CECA795C2C707B8A003BCEF9 /* TableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableModel.m; sourceTree = "<group>"; };
 		CECA795E2C707B8A003BCEF9 /* XZExcelConfigureViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZExcelConfigureViewModel.h; sourceTree = "<group>"; };
 		CECA795F2C707B8A003BCEF9 /* XZExcelConfigureViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZExcelConfigureViewModel.m; sourceTree = "<group>"; };
 		CECA79632C707B8A003BCEF9 /* MainTableViewCellITem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewCellITem.h; sourceTree = "<group>"; };
@@ -4063,15 +4060,6 @@
 			path = BaseCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		CECA795D2C707B8A003BCEF9 /* TableModel */ = {
-			isa = PBXGroup;
-			children = (
-				CECA795B2C707B8A003BCEF9 /* TableModel.h */,
-				CECA795C2C707B8A003BCEF9 /* TableModel.m */,
-			);
-			path = TableModel;
-			sourceTree = "<group>";
-		};
 		CECA79602C707B8A003BCEF9 /* XZExcelConfigureViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -4084,7 +4072,6 @@
 		CECA79622C707B8A003BCEF9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CECA795D2C707B8A003BCEF9 /* TableModel */,
 				CECA79602C707B8A003BCEF9 /* XZExcelConfigureViewModel */,
 			);
 			path = Model;
@@ -14598,7 +14585,6 @@
 				CECE80DE2C4512BF00764AF5 /* ZLGestureLockIndicator.m in Sources */,
 				CECA79892C707C57003BCEF9 /* TopHeadView.m in Sources */,
 				CECE85542C4513CE00764AF5 /* NSObject+Random.m in Sources */,
-				CECA798C2C707C63003BCEF9 /* TableModel.m in Sources */,
 				CECE81702C4512BF00764AF5 /* JobsTabBarVC.m in Sources */,
 				CECE85422C4513CE00764AF5 /* NSObject+DynamicInvoke.m in Sources */,
 				CECE7CE02C450C5000764AF5 /* JobsPresentedVC.m in Sources */,

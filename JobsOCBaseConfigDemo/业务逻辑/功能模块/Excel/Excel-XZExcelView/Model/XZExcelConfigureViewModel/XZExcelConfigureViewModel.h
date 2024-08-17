@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-#import "TableModel.h"
+#import "UITextModel.h"
 
 #ifndef LineColor
 #define LineColor   UIColor.grayColor /// 表格线的颜色
@@ -25,8 +23,9 @@ UIKIT_EXTERN const CGFloat LineWidth;
 @property(nonatomic,assign)NSInteger colNumber;/// 列数
 #pragma mark —— 值
 @property(nonatomic,copy)NSString *contentStr_00;/// 起始格子的数据
-@property(nonatomic,strong)NSMutableArray <NSString *>*titleArr;/// 第一（水平）行，除了第一个格子的，水平方向的数据
-@property(nonatomic,strong)NSMutableArray <TableModel *>*contentArr;/// 垂直方向的数据
+@property(nonatomic,strong)NSMutableArray <NSMutableArray <UITextModel *>*>*contentArr;
+@property(nonatomic,strong)NSMutableArray <UITextModel *>*topHeaderDatas;
+@property(nonatomic,strong)NSMutableArray <UITextModel *>*leftListDatas;
 @property(nonatomic,strong)NSValue *VerticalScrollValue;/// 垂直滚动
 @property(nonatomic,strong)NSValue *HorizontalScrollValue;/// 水平滚动
 

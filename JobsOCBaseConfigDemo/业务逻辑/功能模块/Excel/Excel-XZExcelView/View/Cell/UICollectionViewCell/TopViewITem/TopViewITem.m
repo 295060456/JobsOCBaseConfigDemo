@@ -58,9 +58,9 @@
 
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
     @jobs_weakify(self)
-    return ^(NSString *_Nullable model) {
+    return ^(UITextModel *_Nullable model) {
         @jobs_strongify(self)
-        self.titleL.text = model;
+        self.titleL.text = model.text;
     };
 }
 

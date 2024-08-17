@@ -10,7 +10,6 @@
 #import "UICollectionViewCellProtocol.h"
 
 #import "XZExcelConfigureViewModel.h"
-#import "TableModel.h"
 
 @interface MainTableViewCellITem : UICollectionViewCell<UICollectionViewCellProtocol>
 

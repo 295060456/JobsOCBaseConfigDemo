@@ -12,7 +12,6 @@
 
 #import "BaseCellProtocol.h"
 #import "XZExcelConfigureViewModel.h"
-#import "TableModel.h"
 
 @protocol MianTableViewCellDelegate <NSObject>
 -(void)mianTableViewCellScrollerDid:(UIScrollView *)scrollview;
@@ -26,7 +25,7 @@ UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout
 >
 /// UI
-@property(nonatomic,strong)UICollectionView *cellCollectionV;
+@property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,weak)NSObject <MianTableViewCellDelegate>*delegate;
 
