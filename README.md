@@ -1566,7 +1566,6 @@ NSObject <|-- BaseProtocol
           _textField.leftViewByTextFieldOffset = JobsWidth(10);
           _textField.layoutSubviewsRectCorner = UIRectCornerAllCorners;
           _textField.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
-          _textField.isPreventKeyBoardPopup = YES;
           @jobs_weakify(self)
           [_textField otherActionBlock:^id _Nullable(id  _Nullable data) {
               @jobs_strongify(self)
@@ -1578,12 +1577,6 @@ NSObject <|-- BaseProtocol
           [_textField actionReturnObjectBlock:^id _Nullable(id _Nullable data) {
               @jobs_strongify(self)
               NSLog(@"data = %@",data);
-              return nil;
-          }];
-          [_textField otherActionBlock:^id _Nullable(id  _Nullable data) {
-              @jobs_strongify(self)
-              NSLog(@"data = %@",data);
-              self.show_view(self.select_promo_popListView);
               return nil;
           }];
           [(self.contentView ? : self) addSubview:_textField];
