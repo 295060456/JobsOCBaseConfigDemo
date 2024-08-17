@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BindViewModelProtocol.h"
+#import "JobsBaseTableViewCell.h"
 
+#import "UICollectionViewCellProtocol.h"
 #import "XZExcelConfigureViewModel.h"
 #import "TableModel.h"
 
-@interface TableViewOneCell : UITableViewCell<BindViewModelProtocol>
-
-+(TableViewOneCell*)dequeneCellWithTableView:(UITableView*)tableView;
+@interface TableViewOneCell : JobsBaseTableViewCell<UICollectionViewCellProtocol>
 
 @end

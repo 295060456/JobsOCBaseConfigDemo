@@ -58,17 +58,17 @@ typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Class _Nonnull cls,NSStri
 
 typedef UICollectionViewCell __kindof * _Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
 
-typedef CGPoint (^JobsReturnCGPointByVoidBlock)(void);
-typedef CGPoint (^JobsReturnCGPointByIDBlock)(id _Nullable data);
-typedef CGSize (^JobsReturnCGSizeByVoidBlock)(void);
+typedef CGPoint(^JobsReturnCGPointByVoidBlock)(void);
+typedef CGPoint(^JobsReturnCGPointByIDBlock)(id _Nullable data);
+typedef CGSize(^JobsReturnCGSizeByVoidBlock)(void);
 typedef CGSize(^JobsReturnCGSizeByIDBlock)(id _Nullable data);
 
-typedef CGRect (^JobsReturnCGRectByVoidBlock)(void);
-typedef CGRect (^JobsReturnCGRectByIDBlock)(id _Nullable data);
-typedef CGRect (^JobsReturnCGRectByCGPointBlock)(CGPoint data);
-typedef CGRect (^JobsReturnCGRectByCGSizeBlock)(CGSize data);
-typedef CGRect (^JobsReturnCGRectByCGFloatBlock)(CGFloat data);
-typedef CGRect (^JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,UIView * _Nonnull superView);
+typedef CGRect(^JobsReturnCGRectByVoidBlock)(void);
+typedef CGRect(^JobsReturnCGRectByIDBlock)(id _Nullable data);
+typedef CGRect(^JobsReturnCGRectByCGPointBlock)(CGPoint data);
+typedef CGRect(^JobsReturnCGRectByCGSizeBlock)(CGSize data);
+typedef CGRect(^JobsReturnCGRectByCGFloatBlock)(CGFloat data);
+typedef CGRect(^JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,UIView * _Nonnull superView);
 
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByVoidBlock)(void);
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByIDBlock)(id _Nullable data);
@@ -219,11 +219,11 @@ typedef CGPoint(^JobsReturnCGPointByUnsignedLongLongBlock)(unsigned long long da
 /// weakSelf 方便使用，用来打破循环引用。使用时需要改成实际类型，否则没有代码提示
 /// selector 实际调用的方法
 /// arg 事件默认传递的对象，比如`NSNotification`，`UIButton`
-typedef void (^_Nullable JobsSelectorBlock)(id _Nullable weakSelf,
-                                            id _Nullable arg);
-typedef void (^_Nullable JobsSelectorBlock1)(id _Nullable weakSelf,
-                                             id _Nullable arg,
-                                             id _Nullable data);
+typedef void(^_Nullable JobsSelectorBlock)(id _Nullable weakSelf,
+                                           id _Nullable arg);
+typedef void(^_Nullable JobsSelectorBlock1)(id _Nullable weakSelf,
+                                            id _Nullable arg,
+                                            id _Nullable data);
 typedef id _Nullable(^JobsReturnIDBySelectorBlock)(id _Nullable weakSelf,
                                                    id _Nullable arg);
 typedef id _Nullable(^JobsReturnIDBySelectorBlock2)(id _Nullable weakSelf,

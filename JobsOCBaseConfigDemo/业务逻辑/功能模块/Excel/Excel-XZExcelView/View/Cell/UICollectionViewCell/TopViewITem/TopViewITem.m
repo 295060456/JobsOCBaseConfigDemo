@@ -9,36 +9,59 @@
 #import "TopViewITem.h"
 
 @interface TopViewITem()
-
-@property(nonatomic,strong)XZExcelConfigureViewModel *viewModel;
-@property(nonatomic,assign)CGSize size;
+/// UI
 @property(nonatomic,strong)UILabel *titleL;
 @property(nonatomic,strong)UIBezierPath *linePath;
 @property(nonatomic,strong)CAShapeLayer *lineLayer;
 @property(nonatomic,strong)UIImageView *bgImageView;
+/// Data
+@property(nonatomic,strong)XZExcelConfigureViewModel *viewModel_;
+@property(nonatomic,assign)CGSize size;
 
 @end
 
 @implementation TopViewITem
 
-- (instancetype)initWithFrame:(CGRect)frame{
-    if (self = [super initWithFrame:frame]) {
++(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
+                         forIndexPath:(nonnull NSIndexPath *)indexPath{
+    TopViewITem *cell = (TopViewITem *)[collectionView collectionViewCellClass:TopViewITem.class forIndexPath:indexPath];
+    if (!cell) {
+        collectionView.registerCollectionViewCellClass(TopViewITem.class,@"");
+        cell = (TopViewITem *)[collectionView collectionViewCellClass:TopViewITem.class forIndexPath:indexPath];
+    }
+    
+    // UICollectionViewCell圆切角
+//    cell.contentView.layer.cornerRadius = cell.layer.cornerRadius = JobsWidth(8);
+//    cell.contentView.layer.borderWidth = cell.layer.borderWidth = JobsWidth(1);
+//    cell.contentView.layer.borderColor = cell.layer.borderColor = RGBA_COLOR(255, 225, 144, 1).CGColor;
+//    cell.contentView.layer.masksToBounds = cell.layer.masksToBounds = YES;
+
+    cell.indexPath = indexPath;
+    
+    return cell;
+}
+#pragma mark —— BaseCellProtocol
+-(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(XZExcelConfigureViewModel *_Nullable viewModel) {
+        @jobs_strongify(self)
+        self.viewModel_ = viewModel;
         self.bgImageView.alpha = 1;
         self.titleL.alpha = 1;
-    }return self;
-}
-#pragma mark —— BindViewModelProtocol
-- (void)cellBindViewModel:(XZExcelConfigureViewModel *)viewModel{
-    self.viewModel = viewModel;
-    CGSize size = CGSizeMake(viewModel.itemW, viewModel.itemH);
-    if (!CGSizeEqualToSize(self.size, size)) {
-        self.size = size;
-        [self drawLineWithSize:size];
-    }
+        CGSize size = CGSizeMake(viewModel.itemW, viewModel.itemH);
+        if (!CGSizeEqualToSize(self.size, size)) {
+            self.size = size;
+            [self drawLineWithSize:size];
+        }
+    };
 }
 
-- (void)cellBindModel:(NSString *)model{
-    self.titleL.text = model;
+-(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
+    @jobs_weakify(self)
+    return ^(NSString *_Nullable model) {
+        @jobs_strongify(self)
+        self.titleL.text = model;
+    };
 }
 
 - (void)drawLineWithSize:(CGSize)size{
@@ -50,8 +73,7 @@
     UIGraphicsBeginImageContext(size);
     [self.linePath stroke];
     UIGraphicsEndImageContext();
-    
-    [self.contentView.layer addSublayer:self.lineLayer];
+    self.lineLayer.hidden = NO;
 }
 #pragma mark —— lazyLoad
 -(UIImageView *)bgImageView{
@@ -81,8 +103,7 @@
 -(UIBezierPath *)linePath{
     if(!_linePath){
         _linePath = UIBezierPath.bezierPath;
-        // 起点
-        [_linePath moveToPoint:CGPointMake(0, 0)];
+        [_linePath moveToPoint:CGPointMake(0, 0)];// 起点
     }return _linePath;
 }
 
@@ -93,6 +114,7 @@
         _lineLayer.strokeColor = LineColor.CGColor;
         _lineLayer.path = self.linePath.CGPath;
         _lineLayer.fillColor = nil; // 默认为blackColor
+        [self.contentView.layer addSublayer:_lineLayer];
     }return _lineLayer;
 }
 

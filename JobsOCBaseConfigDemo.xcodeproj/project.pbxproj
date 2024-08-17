@@ -76,23 +76,23 @@
 		CEAF25442C60FE050056570C /* ZMJGanttListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF25002C60FE040056570C /* ZMJGanttListVC.m */; };
 		CEAF25452C60FE050056570C /* ZMJScheduleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF25032C60FE040056570C /* ZMJScheduleVC.m */; };
 		CEAF25462C60FE050056570C /* ZMJTimeableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF25062C60FE040056570C /* ZMJTimeableVC.m */; };
-		CEAF25472C60FE050056570C /* TableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF250B2C60FE040056570C /* TableModel.m */; };
-		CEAF25482C60FE050056570C /* XZExcelConfigureViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF250E2C60FE040056570C /* XZExcelConfigureViewModel.m */; };
-		CEAF254A2C60FE050056570C /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF25142C60FE040056570C /* MainTableViewCell.m */; };
-		CEAF254B2C60FE050056570C /* MainTableViewCellITem.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF25172C60FE040056570C /* MainTableViewCellITem.m */; };
-		CEAF254C2C60FE050056570C /* TableViewOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF251A2C60FE040056570C /* TableViewOneCell.m */; };
-		CEAF254D2C60FE050056570C /* TopViewITem.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF251D2C60FE040056570C /* TopViewITem.m */; };
-		CEAF254E2C60FE050056570C /* LeftListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF25212C60FE040056570C /* LeftListView.m */; };
-		CEAF254F2C60FE050056570C /* TopHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF25242C60FE040056570C /* TopHeadView.m */; };
-		CEAF25502C60FE050056570C /* XZExcelContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF25272C60FE040056570C /* XZExcelContentView.m */; };
-		CEAF25512C60FE050056570C /* XZExcelView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF252A2C60FE040056570C /* XZExcelView.m */; };
-		CEAF25522C60FE050056570C /* XZExcelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF252E2C60FE040056570C /* XZExcelVC.m */; };
 		CEAF27042C62508F0056570C /* NSMutableSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF27012C62508F0056570C /* NSMutableSet+Extra.m */; };
 		CEAF27082C6251100056570C /* UICollectionView+RegistrationTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF27062C6251100056570C /* UICollectionView+RegistrationTracking.m */; };
 		CEB4B1722C5A39EA00831085 /* JobsStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB4B16F2C5A39EA00831085 /* JobsStepView.m */; };
 		CEBA44102C5E316200F0042D /* BaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */; };
 		CEC01BDF2C48DF300069C91A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB32C48AFED0069C91A /* TabBar.xcassets */; };
 		CEC01BE62C48E20F0069C91A /* Bayon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC01BE52C48E20F0069C91A /* Bayon.ttf */; };
+		CECA79832C707C35003BCEF9 /* XZExcelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA79802C707B8A003BCEF9 /* XZExcelVC.m */; };
+		CECA79842C707C3C003BCEF9 /* TableViewOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA796E2C707B8A003BCEF9 /* TableViewOneCell.m */; };
+		CECA79852C707C3F003BCEF9 /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA796B2C707B8A003BCEF9 /* MainTableViewCell.m */; };
+		CECA79862C707C43003BCEF9 /* TopViewITem.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA79672C707B8A003BCEF9 /* TopViewITem.m */; };
+		CECA79872C707C46003BCEF9 /* MainTableViewCellITem.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA79642C707B8A003BCEF9 /* MainTableViewCellITem.m */; };
+		CECA79882C707C53003BCEF9 /* LeftListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA79732C707B8A003BCEF9 /* LeftListView.m */; };
+		CECA79892C707C57003BCEF9 /* TopHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA79762C707B8A003BCEF9 /* TopHeadView.m */; };
+		CECA798A2C707C5A003BCEF9 /* XZExcelContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA79792C707B8A003BCEF9 /* XZExcelContentView.m */; };
+		CECA798B2C707C5D003BCEF9 /* XZExcelView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA797C2C707B8A003BCEF9 /* XZExcelView.m */; };
+		CECA798C2C707C63003BCEF9 /* TableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA795C2C707B8A003BCEF9 /* TableModel.m */; };
+		CECA798D2C707C65003BCEF9 /* XZExcelConfigureViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECA795F2C707B8A003BCEF9 /* XZExcelConfigureViewModel.m */; };
 		CECE788D2C4509E000764AF5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CECE788C2C4509E000764AF5 /* Base */; };
 		CECE78922C4509E200764AF5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CECE78912C4509E200764AF5 /* Base */; };
 		CECE78952C4509E200764AF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE78942C4509E200764AF5 /* main.m */; };
@@ -1288,29 +1288,6 @@
 		CEAF25032C60FE040056570C /* ZMJScheduleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMJScheduleVC.m; sourceTree = "<group>"; };
 		CEAF25052C60FE040056570C /* ZMJTimeableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMJTimeableVC.h; sourceTree = "<group>"; };
 		CEAF25062C60FE040056570C /* ZMJTimeableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMJTimeableVC.m; sourceTree = "<group>"; };
-		CEAF250A2C60FE040056570C /* TableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableModel.h; sourceTree = "<group>"; };
-		CEAF250B2C60FE040056570C /* TableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableModel.m; sourceTree = "<group>"; };
-		CEAF250D2C60FE040056570C /* XZExcelConfigureViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZExcelConfigureViewModel.h; sourceTree = "<group>"; };
-		CEAF250E2C60FE040056570C /* XZExcelConfigureViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZExcelConfigureViewModel.m; sourceTree = "<group>"; };
-		CEAF25112C60FE040056570C /* BindViewModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindViewModelProtocol.h; sourceTree = "<group>"; };
-		CEAF25132C60FE040056570C /* MainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewCell.h; sourceTree = "<group>"; };
-		CEAF25142C60FE040056570C /* MainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
-		CEAF25162C60FE040056570C /* MainTableViewCellITem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewCellITem.h; sourceTree = "<group>"; };
-		CEAF25172C60FE040056570C /* MainTableViewCellITem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCellITem.m; sourceTree = "<group>"; };
-		CEAF25192C60FE040056570C /* TableViewOneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewOneCell.h; sourceTree = "<group>"; };
-		CEAF251A2C60FE040056570C /* TableViewOneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewOneCell.m; sourceTree = "<group>"; };
-		CEAF251C2C60FE040056570C /* TopViewITem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewITem.h; sourceTree = "<group>"; };
-		CEAF251D2C60FE040056570C /* TopViewITem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewITem.m; sourceTree = "<group>"; };
-		CEAF25202C60FE040056570C /* LeftListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftListView.h; sourceTree = "<group>"; };
-		CEAF25212C60FE040056570C /* LeftListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftListView.m; sourceTree = "<group>"; };
-		CEAF25232C60FE040056570C /* TopHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopHeadView.h; sourceTree = "<group>"; };
-		CEAF25242C60FE040056570C /* TopHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopHeadView.m; sourceTree = "<group>"; };
-		CEAF25262C60FE040056570C /* XZExcelContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZExcelContentView.h; sourceTree = "<group>"; };
-		CEAF25272C60FE040056570C /* XZExcelContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZExcelContentView.m; sourceTree = "<group>"; };
-		CEAF25292C60FE040056570C /* XZExcelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZExcelView.h; sourceTree = "<group>"; };
-		CEAF252A2C60FE040056570C /* XZExcelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZExcelView.m; sourceTree = "<group>"; };
-		CEAF252D2C60FE040056570C /* XZExcelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZExcelVC.h; sourceTree = "<group>"; };
-		CEAF252E2C60FE040056570C /* XZExcelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZExcelVC.m; sourceTree = "<group>"; };
 		CEAF27002C62508F0056570C /* NSMutableSet+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+Extra.h"; sourceTree = "<group>"; };
 		CEAF27012C62508F0056570C /* NSMutableSet+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+Extra.m"; sourceTree = "<group>"; };
 		CEAF27052C6251100056570C /* UICollectionView+RegistrationTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+RegistrationTracking.h"; sourceTree = "<group>"; };
@@ -1323,6 +1300,28 @@
 		CEC01AB32C48AFED0069C91A /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
 		CEC01BE52C48E20F0069C91A /* Bayon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bayon.ttf; sourceTree = "<group>"; };
 		CEC01CD72C49334D0069C91A /* 时间格式化.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "时间格式化.md"; sourceTree = "<group>"; };
+		CECA795B2C707B8A003BCEF9 /* TableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableModel.h; sourceTree = "<group>"; };
+		CECA795C2C707B8A003BCEF9 /* TableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableModel.m; sourceTree = "<group>"; };
+		CECA795E2C707B8A003BCEF9 /* XZExcelConfigureViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZExcelConfigureViewModel.h; sourceTree = "<group>"; };
+		CECA795F2C707B8A003BCEF9 /* XZExcelConfigureViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZExcelConfigureViewModel.m; sourceTree = "<group>"; };
+		CECA79632C707B8A003BCEF9 /* MainTableViewCellITem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewCellITem.h; sourceTree = "<group>"; };
+		CECA79642C707B8A003BCEF9 /* MainTableViewCellITem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCellITem.m; sourceTree = "<group>"; };
+		CECA79662C707B8A003BCEF9 /* TopViewITem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopViewITem.h; sourceTree = "<group>"; };
+		CECA79672C707B8A003BCEF9 /* TopViewITem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopViewITem.m; sourceTree = "<group>"; };
+		CECA796A2C707B8A003BCEF9 /* MainTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewCell.h; sourceTree = "<group>"; };
+		CECA796B2C707B8A003BCEF9 /* MainTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
+		CECA796D2C707B8A003BCEF9 /* TableViewOneCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewOneCell.h; sourceTree = "<group>"; };
+		CECA796E2C707B8A003BCEF9 /* TableViewOneCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewOneCell.m; sourceTree = "<group>"; };
+		CECA79722C707B8A003BCEF9 /* LeftListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeftListView.h; sourceTree = "<group>"; };
+		CECA79732C707B8A003BCEF9 /* LeftListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeftListView.m; sourceTree = "<group>"; };
+		CECA79752C707B8A003BCEF9 /* TopHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopHeadView.h; sourceTree = "<group>"; };
+		CECA79762C707B8A003BCEF9 /* TopHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopHeadView.m; sourceTree = "<group>"; };
+		CECA79782C707B8A003BCEF9 /* XZExcelContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZExcelContentView.h; sourceTree = "<group>"; };
+		CECA79792C707B8A003BCEF9 /* XZExcelContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZExcelContentView.m; sourceTree = "<group>"; };
+		CECA797B2C707B8A003BCEF9 /* XZExcelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZExcelView.h; sourceTree = "<group>"; };
+		CECA797C2C707B8A003BCEF9 /* XZExcelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZExcelView.m; sourceTree = "<group>"; };
+		CECA797F2C707B8A003BCEF9 /* XZExcelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZExcelVC.h; sourceTree = "<group>"; };
+		CECA79802C707B8A003BCEF9 /* XZExcelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZExcelVC.m; sourceTree = "<group>"; };
 		CECE787F2C4509E000764AF5 /* JobsOCBaseConfigDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobsOCBaseConfigDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECE788C2C4509E000764AF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CECE78912C4509E200764AF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -3608,7 +3607,7 @@
 			isa = PBXGroup;
 			children = (
 				CEAF25092C60FE040056570C /* Excel-SpreadsheetView */,
-				CEAF25302C60FE040056570C /* Excel-XZExcelView */,
+				CECA79822C707B8A003BCEF9 /* Excel-XZExcelView */,
 				CEAF24C62C60FE040056570C /* ExcelVC */,
 			);
 			path = Excel;
@@ -4019,148 +4018,6 @@
 			path = "Excel-SpreadsheetView";
 			sourceTree = "<group>";
 		};
-		CEAF250C2C60FE040056570C /* TableModel */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF250A2C60FE040056570C /* TableModel.h */,
-				CEAF250B2C60FE040056570C /* TableModel.m */,
-			);
-			path = TableModel;
-			sourceTree = "<group>";
-		};
-		CEAF250F2C60FE040056570C /* XZExcelConfigureViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF250D2C60FE040056570C /* XZExcelConfigureViewModel.h */,
-				CEAF250E2C60FE040056570C /* XZExcelConfigureViewModel.m */,
-			);
-			path = XZExcelConfigureViewModel;
-			sourceTree = "<group>";
-		};
-		CEAF25122C60FE040056570C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF250C2C60FE040056570C /* TableModel */,
-				CEAF250F2C60FE040056570C /* XZExcelConfigureViewModel */,
-				CEAF25112C60FE040056570C /* BindViewModelProtocol.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		CEAF25152C60FE040056570C /* MainTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF25132C60FE040056570C /* MainTableViewCell.h */,
-				CEAF25142C60FE040056570C /* MainTableViewCell.m */,
-			);
-			path = MainTableViewCell;
-			sourceTree = "<group>";
-		};
-		CEAF25182C60FE040056570C /* MainTableViewCellITem */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF25162C60FE040056570C /* MainTableViewCellITem.h */,
-				CEAF25172C60FE040056570C /* MainTableViewCellITem.m */,
-			);
-			path = MainTableViewCellITem;
-			sourceTree = "<group>";
-		};
-		CEAF251B2C60FE040056570C /* TableViewOneCell */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF25192C60FE040056570C /* TableViewOneCell.h */,
-				CEAF251A2C60FE040056570C /* TableViewOneCell.m */,
-			);
-			path = TableViewOneCell;
-			sourceTree = "<group>";
-		};
-		CEAF251E2C60FE040056570C /* TopViewITem */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF251C2C60FE040056570C /* TopViewITem.h */,
-				CEAF251D2C60FE040056570C /* TopViewITem.m */,
-			);
-			path = TopViewITem;
-			sourceTree = "<group>";
-		};
-		CEAF251F2C60FE040056570C /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF25152C60FE040056570C /* MainTableViewCell */,
-				CEAF25182C60FE040056570C /* MainTableViewCellITem */,
-				CEAF251B2C60FE040056570C /* TableViewOneCell */,
-				CEAF251E2C60FE040056570C /* TopViewITem */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		CEAF25222C60FE040056570C /* LeftListView */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF25202C60FE040056570C /* LeftListView.h */,
-				CEAF25212C60FE040056570C /* LeftListView.m */,
-			);
-			path = LeftListView;
-			sourceTree = "<group>";
-		};
-		CEAF25252C60FE040056570C /* TopHeadView */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF25232C60FE040056570C /* TopHeadView.h */,
-				CEAF25242C60FE040056570C /* TopHeadView.m */,
-			);
-			path = TopHeadView;
-			sourceTree = "<group>";
-		};
-		CEAF25282C60FE040056570C /* XZExcelContentView */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF25262C60FE040056570C /* XZExcelContentView.h */,
-				CEAF25272C60FE040056570C /* XZExcelContentView.m */,
-			);
-			path = XZExcelContentView;
-			sourceTree = "<group>";
-		};
-		CEAF252B2C60FE040056570C /* XZExcelView */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF25292C60FE040056570C /* XZExcelView.h */,
-				CEAF252A2C60FE040056570C /* XZExcelView.m */,
-			);
-			path = XZExcelView;
-			sourceTree = "<group>";
-		};
-		CEAF252C2C60FE040056570C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF251F2C60FE040056570C /* Cell */,
-				CEAF25222C60FE040056570C /* LeftListView */,
-				CEAF25252C60FE040056570C /* TopHeadView */,
-				CEAF25282C60FE040056570C /* XZExcelContentView */,
-				CEAF252B2C60FE040056570C /* XZExcelView */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		CEAF252F2C60FE040056570C /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF252D2C60FE040056570C /* XZExcelVC.h */,
-				CEAF252E2C60FE040056570C /* XZExcelVC.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		CEAF25302C60FE040056570C /* Excel-XZExcelView */ = {
-			isa = PBXGroup;
-			children = (
-				CEAF25122C60FE040056570C /* Model */,
-				CEAF252C2C60FE040056570C /* View */,
-				CEAF252F2C60FE040056570C /* ViewController */,
-			);
-			path = "Excel-XZExcelView";
-			sourceTree = "<group>";
-		};
 		CEAF27022C62508F0056570C /* NSMutableSet+Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -4204,6 +4061,163 @@
 				CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */,
 			);
 			path = BaseCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		CECA795D2C707B8A003BCEF9 /* TableModel */ = {
+			isa = PBXGroup;
+			children = (
+				CECA795B2C707B8A003BCEF9 /* TableModel.h */,
+				CECA795C2C707B8A003BCEF9 /* TableModel.m */,
+			);
+			path = TableModel;
+			sourceTree = "<group>";
+		};
+		CECA79602C707B8A003BCEF9 /* XZExcelConfigureViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CECA795E2C707B8A003BCEF9 /* XZExcelConfigureViewModel.h */,
+				CECA795F2C707B8A003BCEF9 /* XZExcelConfigureViewModel.m */,
+			);
+			path = XZExcelConfigureViewModel;
+			sourceTree = "<group>";
+		};
+		CECA79622C707B8A003BCEF9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CECA795D2C707B8A003BCEF9 /* TableModel */,
+				CECA79602C707B8A003BCEF9 /* XZExcelConfigureViewModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CECA79652C707B8A003BCEF9 /* MainTableViewCellITem */ = {
+			isa = PBXGroup;
+			children = (
+				CECA79632C707B8A003BCEF9 /* MainTableViewCellITem.h */,
+				CECA79642C707B8A003BCEF9 /* MainTableViewCellITem.m */,
+			);
+			path = MainTableViewCellITem;
+			sourceTree = "<group>";
+		};
+		CECA79682C707B8A003BCEF9 /* TopViewITem */ = {
+			isa = PBXGroup;
+			children = (
+				CECA79662C707B8A003BCEF9 /* TopViewITem.h */,
+				CECA79672C707B8A003BCEF9 /* TopViewITem.m */,
+			);
+			path = TopViewITem;
+			sourceTree = "<group>";
+		};
+		CECA79692C707B8A003BCEF9 /* UICollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CECA79652C707B8A003BCEF9 /* MainTableViewCellITem */,
+				CECA79682C707B8A003BCEF9 /* TopViewITem */,
+			);
+			path = UICollectionViewCell;
+			sourceTree = "<group>";
+		};
+		CECA796C2C707B8A003BCEF9 /* MainTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CECA796A2C707B8A003BCEF9 /* MainTableViewCell.h */,
+				CECA796B2C707B8A003BCEF9 /* MainTableViewCell.m */,
+			);
+			path = MainTableViewCell;
+			sourceTree = "<group>";
+		};
+		CECA796F2C707B8A003BCEF9 /* TableViewOneCell */ = {
+			isa = PBXGroup;
+			children = (
+				CECA796D2C707B8A003BCEF9 /* TableViewOneCell.h */,
+				CECA796E2C707B8A003BCEF9 /* TableViewOneCell.m */,
+			);
+			path = TableViewOneCell;
+			sourceTree = "<group>";
+		};
+		CECA79702C707B8A003BCEF9 /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CECA796C2C707B8A003BCEF9 /* MainTableViewCell */,
+				CECA796F2C707B8A003BCEF9 /* TableViewOneCell */,
+			);
+			path = UITableViewCell;
+			sourceTree = "<group>";
+		};
+		CECA79712C707B8A003BCEF9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CECA79692C707B8A003BCEF9 /* UICollectionViewCell */,
+				CECA79702C707B8A003BCEF9 /* UITableViewCell */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		CECA79742C707B8A003BCEF9 /* LeftListView */ = {
+			isa = PBXGroup;
+			children = (
+				CECA79722C707B8A003BCEF9 /* LeftListView.h */,
+				CECA79732C707B8A003BCEF9 /* LeftListView.m */,
+			);
+			path = LeftListView;
+			sourceTree = "<group>";
+		};
+		CECA79772C707B8A003BCEF9 /* TopHeadView */ = {
+			isa = PBXGroup;
+			children = (
+				CECA79752C707B8A003BCEF9 /* TopHeadView.h */,
+				CECA79762C707B8A003BCEF9 /* TopHeadView.m */,
+			);
+			path = TopHeadView;
+			sourceTree = "<group>";
+		};
+		CECA797A2C707B8A003BCEF9 /* XZExcelContentView */ = {
+			isa = PBXGroup;
+			children = (
+				CECA79782C707B8A003BCEF9 /* XZExcelContentView.h */,
+				CECA79792C707B8A003BCEF9 /* XZExcelContentView.m */,
+			);
+			path = XZExcelContentView;
+			sourceTree = "<group>";
+		};
+		CECA797D2C707B8A003BCEF9 /* XZExcelView */ = {
+			isa = PBXGroup;
+			children = (
+				CECA797B2C707B8A003BCEF9 /* XZExcelView.h */,
+				CECA797C2C707B8A003BCEF9 /* XZExcelView.m */,
+			);
+			path = XZExcelView;
+			sourceTree = "<group>";
+		};
+		CECA797E2C707B8A003BCEF9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CECA79712C707B8A003BCEF9 /* Cell */,
+				CECA79742C707B8A003BCEF9 /* LeftListView */,
+				CECA79772C707B8A003BCEF9 /* TopHeadView */,
+				CECA797A2C707B8A003BCEF9 /* XZExcelContentView */,
+				CECA797D2C707B8A003BCEF9 /* XZExcelView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CECA79812C707B8A003BCEF9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CECA797F2C707B8A003BCEF9 /* XZExcelVC.h */,
+				CECA79802C707B8A003BCEF9 /* XZExcelVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CECA79822C707B8A003BCEF9 /* Excel-XZExcelView */ = {
+			isa = PBXGroup;
+			children = (
+				CECA79622C707B8A003BCEF9 /* Model */,
+				CECA797E2C707B8A003BCEF9 /* View */,
+				CECA79812C707B8A003BCEF9 /* ViewController */,
+			);
+			path = "Excel-XZExcelView";
 			sourceTree = "<group>";
 		};
 		CECE78762C4509E000764AF5 = {
@@ -13954,6 +13968,7 @@
 				CECE7CF82C450C5000764AF5 /* ViewController@2.m in Sources */,
 				CECE85A72C4513CE00764AF5 /* UILabel+AutoScroll.m in Sources */,
 				CECE85F02C4513CE00764AF5 /* LOTAnimationMJRefreshHeader.m in Sources */,
+				CECA79862C707C43003BCEF9 /* TopViewITem.m in Sources */,
 				CECE872A2C45140000764AF5 /* NSData+Base85.m in Sources */,
 				CECE7E882C450E5B00764AF5 /* HTTPAsyncFileResponse.m in Sources */,
 				CECE86042C4513CE00764AF5 /* UIWindow+Extra.m in Sources */,
@@ -13981,6 +13996,7 @@
 				CECE85D42C4513CE00764AF5 /* BaseTextView.m in Sources */,
 				CEAF27082C6251100056570C /* UICollectionView+RegistrationTracking.m in Sources */,
 				CECE85A92C4513CE00764AF5 /* UILabel+Gesture.m in Sources */,
+				CECA79832C707C35003BCEF9 /* XZExcelVC.m in Sources */,
 				CECE85E42C4513CE00764AF5 /* UIView+Masonry.m in Sources */,
 				CE410FE92C57B8B400AB9402 /* ZBRequestEngine.m in Sources */,
 				CECE85A42C4513CE00764AF5 /* BaseLabel.m in Sources */,
@@ -14012,7 +14028,6 @@
 				CECE85F82C4513CE00764AF5 /* UIViewController+JPImageresizerView.m in Sources */,
 				CECE7C442C450C5000764AF5 /* JobsVideoTBVCell.m in Sources */,
 				CECE7C142C450C5000764AF5 /* Realm_VC.m in Sources */,
-				CEAF25502C60FE050056570C /* XZExcelContentView.m in Sources */,
 				CECE812E2C4512BF00764AF5 /* JobsImageNumberViewCVCell.m in Sources */,
 				CECE7E8E2C450E5B00764AF5 /* HTTPAuthenticationRequest.m in Sources */,
 				CECE7EB32C450E5B00764AF5 /* TKPermissionCalendar.m in Sources */,
@@ -14022,7 +14037,6 @@
 				CECE7E852C450E5B00764AF5 /* MultipartFormDataParser.m in Sources */,
 				CECE81382C4512BF00764AF5 /* JobsSuspendView.m in Sources */,
 				CECE7C8E2C450C5000764AF5 /* JobsIMShowVC.m in Sources */,
-				CEAF254C2C60FE050056570C /* TableViewOneCell.m in Sources */,
 				CECE7CC92C450C5000764AF5 /* PreviewVC.m in Sources */,
 				CECE81522C4512BF00764AF5 /* TransitionAnimation.m in Sources */,
 				C525D3EC2C4801C1003DAFD0 /* JobsLinkageMenuView.m in Sources */,
@@ -14044,7 +14058,6 @@
 				CECE7D422C450CCD00764AF5 /* DataManager.m in Sources */,
 				CECE80C72C4512BF00764AF5 /* UIScrollView+FDFullscreenPopGesture.m in Sources */,
 				CECE87332C45140000764AF5 /* NSData+MIME.m in Sources */,
-				CEAF25472C60FE050056570C /* TableModel.m in Sources */,
 				CECE85532C4513CE00764AF5 /* NSObject+PopViewToLogOut.m in Sources */,
 				CE7F39722C4FDAF900431A5D /* JobsMenuSubView@4.m in Sources */,
 				CECE7D6A2C450DED00764AF5 /* AppDelegate+TabBarCtr.m in Sources */,
@@ -14081,6 +14094,7 @@
 				CECE7C1D2C450C5000764AF5 /* YTKBaseRequest+AnimatingAccessory.m in Sources */,
 				CECE85412C4513CE00764AF5 /* DynamicInvoke.m in Sources */,
 				CECE85572C4513CE00764AF5 /* NSObject+RunrtimeGet.m in Sources */,
+				CECA798D2C707C65003BCEF9 /* XZExcelConfigureViewModel.m in Sources */,
 				CECE7E8C2C450E5B00764AF5 /* HTTPFileResponse.m in Sources */,
 				CECE7C552C450C5000764AF5 /* JobsInfoTBVCell.m in Sources */,
 				CECE7C1B2C450C5000764AF5 /* BaseRequest.m in Sources */,
@@ -14102,6 +14116,7 @@
 				CECE85C82C4513CE00764AF5 /* JobsTBVHeaderFooterView.m in Sources */,
 				CE2E873F2C689F9100260207 /* JobsTextStyleTBVCell.m in Sources */,
 				CECE7EE12C450E5B00764AF5 /* ZWPullMenuModel.m in Sources */,
+				CECA798A2C707C5A003BCEF9 /* XZExcelContentView.m in Sources */,
 				CECE7E902C450E5B00764AF5 /* HTTPLogging.m in Sources */,
 				CECE7C7A2C450C5000764AF5 /* JobsIMVC.m in Sources */,
 				CECE7C182C450C5000764AF5 /* GetUserInfoApi.m in Sources */,
@@ -14115,7 +14130,6 @@
 				CEAF253C2C60FE050056570C /* TimeTitleCell.m in Sources */,
 				CECE7C252C450C5000764AF5 /* PicToStrStoreSubVC.m in Sources */,
 				CECE7EE32C450E5B00764AF5 /* ZWPullMenuView.m in Sources */,
-				CEAF254A2C60FE050056570C /* MainTableViewCell.m in Sources */,
 				CEAF25452C60FE050056570C /* ZMJScheduleVC.m in Sources */,
 				CECE85672C4513CE00764AF5 /* NSString+Judgment.m in Sources */,
 				CECE7C312C450C5000764AF5 /* BaiShaETProjOrderDetailsCVCell.m in Sources */,
@@ -14221,7 +14235,6 @@
 				CECE85442C4513CE00764AF5 /* NSObject+GKPhotoBrowser.m in Sources */,
 				CECE7CDF2C450C5000764AF5 /* JobsPresentationCtrl.m in Sources */,
 				CECE875E2C45140000764AF5 /* TBCityIconFont.m in Sources */,
-				CEAF25482C60FE050056570C /* XZExcelConfigureViewModel.m in Sources */,
 				CECE85832C4513CE00764AF5 /* BaseCollectionReusableView.m in Sources */,
 				CECE7C792C450C5000764AF5 /* JobsIMInputview.m in Sources */,
 				CECE858F2C4513CE00764AF5 /* HQCollectionViewFlowLayout.m in Sources */,
@@ -14237,7 +14250,6 @@
 				CECE857C2C4513CE00764AF5 /* UIButton+ImageTitleSpacing.m in Sources */,
 				CECE80F92C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_7.m in Sources */,
 				CECE7C0F2C450C5000764AF5 /* JobsVerticalMenuVC.m in Sources */,
-				CEAF25522C60FE050056570C /* XZExcelVC.m in Sources */,
 				CECE85EA2C4513CE00764AF5 /* UIView+ZFPlayer.m in Sources */,
 				CECE7EBF2C450E5B00764AF5 /* TKPermissionNotification.m in Sources */,
 				CECE85D12C4513CE00764AF5 /* UITextField+Extend.m in Sources */,
@@ -14309,7 +14321,6 @@
 				CECE7CAC2C450C5000764AF5 /* BaiShaETProjCollectionHeaderView.m in Sources */,
 				CECE856A2C4513CE00764AF5 /* NSString+Replace.m in Sources */,
 				CECE87612C45140000764AF5 /* JobsMakeLocalNotification.m in Sources */,
-				CEAF254E2C60FE050056570C /* LeftListView.m in Sources */,
 				CECE853B2C4513CE00764AF5 /* NSObject+CurrentDevice.m in Sources */,
 				CECE85AB2C4513CE00764AF5 /* BaseNavigationBar.m in Sources */,
 				CECE814D2C4512BF00764AF5 /* LZTabBarItem.m in Sources */,
@@ -14357,6 +14368,7 @@
 				CECE85B52C4513CE00764AF5 /* BaseTableView.m in Sources */,
 				CECE7CEC2C450C5000764AF5 /* JobsMsgDetailVC.m in Sources */,
 				CECE85522C4513CE00764AF5 /* NSObject+TFPopup.m in Sources */,
+				CECA79872C707C46003BCEF9 /* MainTableViewCellITem.m in Sources */,
 				CECE85B42C4513CE00764AF5 /* UISwitch+UI.m in Sources */,
 				CECE87622C45140000764AF5 /* ZHKeyChainManager.m in Sources */,
 				CECE85ED2C4513CE00764AF5 /* UIViewController+JXPagerViewListViewDelegate.m in Sources */,
@@ -14381,6 +14393,7 @@
 				CECE7CAE2C450C5000764AF5 /* BaiShaETProjVIPSubCVCell_01.m in Sources */,
 				CECE85DD2C4513CE00764AF5 /* UIView+BackgroundLabel.m in Sources */,
 				CECE85E92C4513CE00764AF5 /* UIView+ViewController.m in Sources */,
+				CECA798B2C707C5D003BCEF9 /* XZExcelView.m in Sources */,
 				CECE81142C4512BF00764AF5 /* JobsHotLabelWithSingleLine.m in Sources */,
 				CECE7EAE2C450E5B00764AF5 /* LMJDropdownMenu+Extra.m in Sources */,
 				CECE854E2C4513CE00764AF5 /* NSObject+Measure.m in Sources */,
@@ -14435,7 +14448,6 @@
 				CECE87702C45140000764AF5 /* XLChannelItem.m in Sources */,
 				CECE80C12C4512BF00764AF5 /* MSMineView6CVCell.m in Sources */,
 				CECE85842C4513CE00764AF5 /* JobsHeaderFooterView.m in Sources */,
-				CEAF254F2C60FE050056570C /* TopHeadView.m in Sources */,
 				CECE7CF92C450C5000764AF5 /* ViewController@3.m in Sources */,
 				CECE7D472C450CCD00764AF5 /* URLManagerModel.m in Sources */,
 				CECE7CF72C450C5000764AF5 /* ViewController@1.m in Sources */,
@@ -14450,7 +14462,6 @@
 				CECE81092C4512BF00764AF5 /* JobsAppDoorForgotCodeContentView.m in Sources */,
 				CECE80DF2C4512BF00764AF5 /* ZLGestureLockView.m in Sources */,
 				CECE875C2C45140000764AF5 /* HAHandleDemoView.m in Sources */,
-				CEAF254D2C60FE050056570C /* TopViewITem.m in Sources */,
 				CECE85AA2C4513CE00764AF5 /* UILabel+Measure.m in Sources */,
 				CECE81722C4512BF00764AF5 /* UITabBarItem+TLAnimation.m in Sources */,
 				CECE81052C4512BF00764AF5 /* JobsAppDoorLogoContentView.m in Sources */,
@@ -14472,16 +14483,17 @@
 				CECE85FE2C4513CE00764AF5 /* UIViewController+TFPopupView.m in Sources */,
 				CECE874D2C45140000764AF5 /* CountdownView.m in Sources */,
 				CECE7C202C450C5000764AF5 /* YTKRequest+Custom.m in Sources */,
+				CECA79882C707C53003BCEF9 /* LeftListView.m in Sources */,
 				CECE854F2C4513CE00764AF5 /* NSObject+Notification.m in Sources */,
 				CECE7CD02C450C5000764AF5 /* B_VC.m in Sources */,
 				CE2E8AD42C6AFB2F00260207 /* LuckyDiskVC.m in Sources */,
 				CECE7CB02C450C5000764AF5 /* BaiShaETProjVIPSubCVCell_02.m in Sources */,
 				CECE80B82C4512BF00764AF5 /* BaseModel.m in Sources */,
+				CECA79842C707C3C003BCEF9 /* TableViewOneCell.m in Sources */,
 				CECE85252C4513CE00764AF5 /* JobsTimeModel.m in Sources */,
 				CECE80F22C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_5.m in Sources */,
 				CECE85F42C4513CE00764AF5 /* UIViewController+BaseNavigationBar.m in Sources */,
 				CECE7C5A2C450C5000764AF5 /* JobsPopUpVC.m in Sources */,
-				CEAF25512C60FE050056570C /* XZExcelView.m in Sources */,
 				CECE854A2C4513CE00764AF5 /* NSObject+IDFV.m in Sources */,
 				CECE7CA62C450C5000764AF5 /* JXCategoryPopupVC.m in Sources */,
 				CECE7CE92C450C5000764AF5 /* MsgEditBoardView.m in Sources */,
@@ -14498,6 +14510,7 @@
 				CECE80FF2C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_9.m in Sources */,
 				CECE85262C4513CE00764AF5 /* CADisplayLink_TimerManager.m in Sources */,
 				CE2E88C42C69DECC00260207 /* JobsCountriesModel.m in Sources */,
+				CECA79852C707C3F003BCEF9 /* MainTableViewCell.m in Sources */,
 				CECE7C052C450C5000764AF5 /* JobsMembersSubsBaseVC.m in Sources */,
 				CECE7EB82C450E5B00764AF5 /* TKPermissionHome.m in Sources */,
 				CECE85B32C4513CE00764AF5 /* UISlider+Extra.m in Sources */,
@@ -14521,7 +14534,6 @@
 				CECE85272C4513CE00764AF5 /* DispatchTimerManager.m in Sources */,
 				CECE7C102C450C5000764AF5 /* CoreDataVC.m in Sources */,
 				CECE7C322C450C5000764AF5 /* CustomTableViewCellVC.m in Sources */,
-				CEAF254B2C60FE050056570C /* MainTableViewCellITem.m in Sources */,
 				CECE85712C4513CE00764AF5 /* BaseButton.m in Sources */,
 				CECE7D3E2C450CCD00764AF5 /* JobsCustomView.m in Sources */,
 				CECE7C362C450C5000764AF5 /* NotifiManager.m in Sources */,
@@ -14584,7 +14596,9 @@
 				CECE85162C4513CE00764AF5 /* NSData+Other.m in Sources */,
 				CECE7EAA2C450E5B00764AF5 /* KTVHCPathTool.m in Sources */,
 				CECE80DE2C4512BF00764AF5 /* ZLGestureLockIndicator.m in Sources */,
+				CECA79892C707C57003BCEF9 /* TopHeadView.m in Sources */,
 				CECE85542C4513CE00764AF5 /* NSObject+Random.m in Sources */,
+				CECA798C2C707C63003BCEF9 /* TableModel.m in Sources */,
 				CECE81702C4512BF00764AF5 /* JobsTabBarVC.m in Sources */,
 				CECE85422C4513CE00764AF5 /* NSObject+DynamicInvoke.m in Sources */,
 				CECE7CE02C450C5000764AF5 /* JobsPresentedVC.m in Sources */,

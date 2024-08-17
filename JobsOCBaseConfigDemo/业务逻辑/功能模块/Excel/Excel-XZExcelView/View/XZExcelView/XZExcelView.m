@@ -16,7 +16,7 @@
 @property(nonatomic,strong)XZExcelContentView *contentView;
 @property(nonatomic,strong)UIImageView *bgImageView;
 /// Data
-@property(nonatomic,strong)XZExcelConfigureViewModel *viewModel;
+@property(nonatomic,strong)XZExcelConfigureViewModel *viewModel_;
 
 @end
 
@@ -26,9 +26,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.viewModel = [XZExcelConfigureViewModel new];
-        
-        itemW = self.viewModel.itemW;
+        itemW = self.viewModel_.itemW;
         
         self.bgImageView.alpha = 1;
         self.titleL.alpha = 1;
@@ -47,7 +45,7 @@
             make.top.equalTo(self);
             make.left.equalTo(self);
             make.width.mas_equalTo(itemW);
-            make.height.mas_equalTo(self.viewModel.itemH);
+            make.height.mas_equalTo(self.viewModel_.itemH);
         }];
     }return _bgImageView;
 }
@@ -64,7 +62,7 @@
             make.top.equalTo(self);
             make.left.equalTo(self);
             make.width.mas_equalTo(itemW);
-            make.height.mas_equalTo(self.viewModel.itemH);
+            make.height.mas_equalTo(self.viewModel_.itemH);
         }];
     }return _titleL;
 }
@@ -79,7 +77,7 @@
             make.width.mas_equalTo(itemW);
             make.bottom.equalTo(self);
         }];
-        [_leftListView viewBindViewModel:self.viewModel];
+        _leftListView.jobsRichElementsInViewWithModel(self.viewModel_);
     }return _leftListView;
 }
 
@@ -93,7 +91,7 @@
             make.right.equalTo(self);
             make.height.equalTo(self.titleL);
         }];
-        [_headView viewBindViewModel:self.viewModel];
+        _headView.jobsRichElementsInViewWithModel(self.viewModel_);
     }return _headView;
 }
 
@@ -107,8 +105,14 @@
             make.right.equalTo(self);
             make.bottom.equalTo(self);
         }];
-        [_contentView viewBindViewModel:self.viewModel];
+        _contentView.jobsRichElementsInViewWithModel(self.viewModel_);
     }return _contentView;
+}
+
+-(XZExcelConfigureViewModel *)viewModel_{
+    if(!_viewModel_){
+        _viewModel_ = XZExcelConfigureViewModel.new;
+    }return _viewModel_;
 }
 
 @end

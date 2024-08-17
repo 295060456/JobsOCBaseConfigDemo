@@ -34,7 +34,7 @@ UIViewModelProtocol_synthesize
     return rowNum * JobsSearchShowHotwordsTBVCellHeight;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -56,7 +56,7 @@ UIViewModelProtocol_synthesize
     JobsSearchDataCVCell *cell = [JobsSearchDataCVCell cellWithCollectionView:collectionView
                                                                  forIndexPath:indexPath];
     cell.indexPath = indexPath;
-    cell.richElementsInCellWithModel(self.viewModelMutArr[indexPath.row]);
+    cell.jobsRichElementsInCellWithModel(self.viewModelMutArr[indexPath.row]);
     return cell;
 }
 

@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BindViewModelProtocol.h"
+#import "UICollectionViewCellProtocol.h"
 
 #import "XZExcelConfigureViewModel.h"
 #import "TableModel.h"
 
-@interface MainTableViewCellITem : UICollectionViewCell<BindViewModelProtocol>
+@interface MainTableViewCellITem : UICollectionViewCell<UICollectionViewCellProtocol>
 
 @end

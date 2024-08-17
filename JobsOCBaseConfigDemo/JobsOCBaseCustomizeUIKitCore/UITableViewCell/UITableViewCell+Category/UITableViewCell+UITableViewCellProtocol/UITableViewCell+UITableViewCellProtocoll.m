@@ -108,7 +108,7 @@ UITableViewCellProtocol_dynamic
     return [self.jobsGetCurrentTableView numberOfRowsInSection:self.jobsGetCurrentIndexPath.section];
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -121,7 +121,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(void)richElementsInCellWithModel2:(UIViewModel *_Nullable)model{
+-(void)jobsRichElementsInCellWithModel2:(UIViewModel *_Nullable)model{
     if ([model isKindOfClass:UIViewModel.class]) {
         self.textLabel.textColor = model.textCor;
         self.textLabel.font = model.font;

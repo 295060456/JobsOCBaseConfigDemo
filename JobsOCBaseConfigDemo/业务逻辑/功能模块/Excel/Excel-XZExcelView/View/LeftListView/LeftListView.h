@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BindViewModelProtocol.h"
+#import "BaseViewProtocol.h"
 
 #import "XZExcelConfigureViewModel.h"
 #import "TableViewOneCell.h"
 #import "TableModel.h"
 
 @interface LeftListView : UIView
-<UITableViewDelegate,UITableViewDataSource,BindViewModelProtocol>
+<
+UITableViewDelegate
+,UITableViewDataSource
+,BaseViewProtocol
+>
 
 @end

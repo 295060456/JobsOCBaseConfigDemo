@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BindViewModelProtocol.h"
-
+#import "JobsBaseTableViewCell.h"
 #import "MainTableViewCellITem.h"
+
+#import "BaseCellProtocol.h"
 #import "XZExcelConfigureViewModel.h"
 #import "TableModel.h"
 
@@ -19,17 +20,15 @@
 
 @end
 
-@interface MainTableViewCell : UITableViewCell
+@interface MainTableViewCell : JobsBaseTableViewCell
 <
-BindViewModelProtocol,
+BaseCellProtocol,
 UICollectionViewDelegate,
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout
 >
 
 @property(nonatomic,weak)id<MianTableViewCellDelegate>delegate;
-
-+(MainTableViewCell*)dequeneCellWithTableView:(UITableView*)tableView;
 
 - (void)scrollerItemWithContentOffset:(CGPoint )contentOffset;
 

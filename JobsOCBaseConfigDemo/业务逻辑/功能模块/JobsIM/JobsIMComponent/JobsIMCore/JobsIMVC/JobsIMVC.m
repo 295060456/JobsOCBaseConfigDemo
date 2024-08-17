@@ -139,7 +139,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.indexPath = indexPath;
     cell.delegate = self;
     cell.allowsMultipleSwipe = YES;
-    cell.richElementsInCellWithModel(self.chatInfoModelMutArr[indexPath.row]);
+    cell.jobsRichElementsInCellWithModel(self.chatInfoModelMutArr[indexPath.row]);
     return cell;
 }
 #if isAllowSysEdit

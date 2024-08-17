@@ -117,7 +117,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.detailTextLabelOffsetY -= JobsWidth(2);
     
     cell.contentView.backgroundColor = cell.backgroundColor = HEXCOLOR(0xFFFCF7);
-    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     return cell;
 }
 #pragma mark —— lazyLoad

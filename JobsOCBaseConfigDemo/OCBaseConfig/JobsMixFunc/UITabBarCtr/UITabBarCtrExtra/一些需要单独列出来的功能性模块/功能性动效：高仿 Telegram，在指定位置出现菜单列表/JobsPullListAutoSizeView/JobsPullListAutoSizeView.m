@@ -87,7 +87,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsPullListTBVCell *cell = JobsPullListTBVCell.cellStyleDefaultWithTableView(tableView);
     cell.contentView.backgroundColor = self.bgColorListTBV;
     cell.indexPath = indexPath;
-    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     return cell;
 }
 #pragma mark —— lazyLoad

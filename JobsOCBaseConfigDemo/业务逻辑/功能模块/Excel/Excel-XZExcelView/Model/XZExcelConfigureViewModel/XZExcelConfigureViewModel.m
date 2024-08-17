@@ -10,7 +10,7 @@
 
 NSString *const VerticalScrollBegin = @"VerticalScrollValue";
 NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
-const CGFloat LineWidth=2;
+const CGFloat LineWidth = 2;
 
 @interface XZExcelConfigureViewModel()
 
@@ -36,7 +36,7 @@ const CGFloat LineWidth=2;
             ItemModel *itemM = ItemModel.new;
             itemM.contentStr = toStringByInt(i*j);
             model.itemArr.jobsAddObject(itemM);
-        }[self.contentArr addObject:model];
+        }self.contentArr.jobsAddObject(model);
     }
     
     self.itemH = 35;

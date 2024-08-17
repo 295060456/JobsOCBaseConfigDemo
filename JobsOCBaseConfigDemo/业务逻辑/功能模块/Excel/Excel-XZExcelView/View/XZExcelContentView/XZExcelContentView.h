@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BindViewModelProtocol.h"
+#import "BaseViewProtocol.h"
 
 #import "XZExcelConfigureViewModel.h"
 #import "MainTableViewCell.h"
@@ -18,7 +18,7 @@
 UITableViewDelegate,
 UITableViewDataSource,
 MianTableViewCellDelegate,
-BindViewModelProtocol
+BaseViewProtocol
 >
 
 @end

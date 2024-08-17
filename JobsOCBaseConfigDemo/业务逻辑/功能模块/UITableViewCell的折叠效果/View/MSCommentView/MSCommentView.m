@@ -118,7 +118,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MSCommentTBVCell *cell = MSCommentTBVCell.cellStyleDefaultWithTableView(tableView);
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.indexPath = indexPath;
-    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.section].commentDataMutArr[indexPath.row]);
+    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.section].commentDataMutArr[indexPath.row]);
     
     CGRect cellFrame = cell.frame;
     cellFrame.size.width -= JobsWidth(15 * 2);

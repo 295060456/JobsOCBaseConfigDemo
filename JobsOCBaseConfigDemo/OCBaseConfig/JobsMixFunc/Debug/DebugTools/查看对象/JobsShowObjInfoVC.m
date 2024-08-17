@@ -97,7 +97,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.textColor = JobsBrownColor;
     cell.textLabel.textColor = JobsBlackColor;
-    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     return cell;
 }
 

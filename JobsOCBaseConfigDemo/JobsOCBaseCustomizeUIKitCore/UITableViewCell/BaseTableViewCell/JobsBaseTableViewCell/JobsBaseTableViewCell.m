@@ -79,7 +79,7 @@ UITableViewCellProtocol_synthesize
               reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style
                     reuseIdentifier:reuseIdentifier]) {
-//        self.richElementsInCellWithModel(nil);
+//        self.jobsRichElementsInCellWithModel(nil);
         self.selectionStyle = UITableViewCellSelectionStyleNone;// 取消点击效果 【不能在cellStyleValue1WithTableView里面写】
         /// 适配iOS 13夜间模式/深色外观(Dark Mode)
         self.backgroundColor = JobsWhiteColor;
@@ -396,7 +396,7 @@ UITableViewCellProtocol_synthesize
     return _viewModel;
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)richElementsInCellWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
     @jobs_weakify(self)
     return ^(UIViewModel __kindof *_Nullable model) {
         @jobs_strongify(self)

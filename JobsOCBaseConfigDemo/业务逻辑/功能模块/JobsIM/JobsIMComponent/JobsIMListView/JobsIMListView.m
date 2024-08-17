@@ -56,7 +56,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.indexPath = indexPath;
     cell.delegate = self;
     cell.allowsMultipleSwipe = YES;
-    cell.richElementsInCellWithModel(self.jobsIMListMutArr[indexPath.row]);
+    cell.jobsRichElementsInCellWithModel(self.jobsIMListMutArr[indexPath.row]);
     return cell;
 }
 #pragma mark —— MGSwipeTableCellDelegate

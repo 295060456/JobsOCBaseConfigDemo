@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BindViewModelProtocol.h"
-
+#import "UICollectionViewCellProtocol.h"
 #import "XZExcelConfigureViewModel.h"
 
-@interface TopViewITem : UICollectionViewCell<BindViewModelProtocol>
+@interface TopViewITem : UICollectionViewCell<UICollectionViewCellProtocol>
 
 @end

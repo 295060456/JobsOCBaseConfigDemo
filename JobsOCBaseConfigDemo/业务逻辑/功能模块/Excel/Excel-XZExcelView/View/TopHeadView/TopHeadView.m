@@ -10,7 +10,7 @@
 
 @interface TopHeadView()
 
-@property(nonatomic,strong)UICollectionView *headTitleV;
+@property(nonatomic,strong)UICollectionView *collectionView;
 @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)XZExcelConfigureViewModel *viewModel;
 
@@ -24,16 +24,20 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.headTitleV.alpha = 1;
+        self.collectionView.alpha = 1;
     }return self;
 }
-
-- (void)viewBindViewModel:(XZExcelConfigureViewModel *)viewModel{
-    self.viewModel=viewModel;
-    [self.viewModel addObserver:self
-                     forKeyPath:HorizontalScrollBegin
-                        options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                        context:nil];
+#pragma mark —— BaseViewProtocol
+-(jobsByIDBlock _Nonnull)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(XZExcelConfigureViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.viewModel = model;
+        [self.viewModel addObserver:self
+                         forKeyPath:HorizontalScrollBegin
+                            options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                            context:nil];
+    };
 }
 #pragma mark —— KVO 监听
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -43,7 +47,7 @@
     
     XZExcelConfigureViewModel *viewModel = (XZExcelConfigureViewModel *)object;
     if ([keyPath isEqualToString:HorizontalScrollBegin]) {
-        self.headTitleV.contentOffset = viewModel.HorizontalScrollValue.CGPointValue;
+        self.collectionView.contentOffset = viewModel.HorizontalScrollValue.CGPointValue;
     }
 }
 #pragma mark —— UICollectionView 代理和数据源
@@ -54,54 +58,56 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    TopViewITem *item = [collectionView dequeueReusableCellWithReuseIdentifier:@"TopViewITem" forIndexPath:indexPath];
-    return item;
+    TopViewITem *cell = [TopViewITem cellWithCollectionView:collectionView
+                                               forIndexPath:indexPath];
+    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView
        willDisplayCell:(UICollectionViewCell *)cell
     forItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     TopViewITem *showItem = (TopViewITem *)cell;
     showItem.backgroundColor = JobsBlueColor;
-    [showItem cellBindViewModel:self.viewModel];
+    showItem.jobsRichElementsInCellWithModel(self.viewModel);
+    
     NSString *title = self.viewModel.titleArr[indexPath.row];
-    [showItem cellBindModel:title];
+    showItem.jobsRichElementsInCellWithModel2(title);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView
+- (CGSize)collectionView:(UICollectionView *)collectionView 
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(self.viewModel.itemW, self.viewModel.itemH);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.viewModel setValue:[NSValue valueWithCGPoint:scrollView.contentOffset] forKey:HorizontalScrollBegin];
+    self.viewModel.jobsKVC(HorizontalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
 }
 #pragma mark —— getter and setter
 -(UICollectionViewFlowLayout *)layout{
     if(!_layout){
         _layout = UICollectionViewFlowLayout.new;
-        _layout.itemSize=CGSizeMake(self.viewModel.itemW, self.viewModel.itemH);
+        _layout.itemSize = CGSizeMake(self.viewModel.itemW, self.viewModel.itemH);
         _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _layout.minimumLineSpacing = 0;
         _layout.minimumInteritemSpacing = 0;
     }return _layout;
 }
 
-- (UICollectionView *)headTitleV{
-    if (!_headTitleV) {
-        _headTitleV = [UICollectionView.alloc initWithFrame:self.bounds collectionViewLayout:self.layout];
-        _headTitleV.backgroundColor = JobsWhiteColor;
-        _headTitleV.delegate = self;
-        _headTitleV.dataSource = self;
-        _headTitleV.showsVerticalScrollIndicator = NO;
-        _headTitleV.showsHorizontalScrollIndicator = NO;
-        [_headTitleV registerClass:TopViewITem.class forCellWithReuseIdentifier:NSStringFromClass(TopViewITem.class)];
-        [self addSubview:_headTitleV];
-        [_headTitleV mas_makeConstraints:^(MASConstraintMaker *make) {
+- (UICollectionView *)collectionView{
+    if (!_collectionView) {
+        _collectionView = [UICollectionView.alloc initWithFrame:self.bounds 
+                                           collectionViewLayout:self.layout];
+        _collectionView.backgroundColor = JobsWhiteColor;
+        _collectionView.dataLink(self);
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        [self addSubview:_collectionView];
+        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
-    }return _headTitleV;
+    }return _collectionView;
 }
 
 @end

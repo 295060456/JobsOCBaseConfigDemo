@@ -295,7 +295,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = self.tbvCellMutArr[indexPath.row];
-    cell.richElementsInCellWithModel(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     cell.textLabel.textColor = HEXCOLOR(0x757575);
     cell.textLabel.font = UIFontWeightRegularSize(16);
     cell.textLabelFrameOffsetX = JobsWidth(16);

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BindViewModelProtocol.h"
+#import "BaseViewProtocol.h"
 
 #import "TopViewITem.h"
 #import "XZExcelConfigureViewModel.h"
@@ -17,7 +17,7 @@
 UICollectionViewDelegate,
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout,
-BindViewModelProtocol
+BaseViewProtocol
 >
 
 @end

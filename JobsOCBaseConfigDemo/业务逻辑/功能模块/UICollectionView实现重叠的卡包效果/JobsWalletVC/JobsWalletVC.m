@@ -115,11 +115,11 @@ resuableFooterViewHeightForIndexPath:(NSIndexPath *)indexPath {
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == self.dataSourceMutArr.count - 1) {
         JobsBtnStyleCVCell *cell = [collectionView collectionViewCellClass:JobsBtnStyleCVCell.class forIndexPath:indexPath];
-        cell.richElementsInCellWithModel(self.dataSourceMutArr[indexPath.section][indexPath.item]);
+        cell.jobsRichElementsInCellWithModel(self.dataSourceMutArr[indexPath.section][indexPath.item]);
         return cell;
     }else{
         BaiShaETProjBankAccMgmtCVCell *cell = [collectionView collectionViewCellClass:BaiShaETProjBankAccMgmtCVCell.class forIndexPath:indexPath];
-        cell.richElementsInCellWithModel(self.dataSourceMutArr[indexPath.section][indexPath.item]);
+        cell.jobsRichElementsInCellWithModel(self.dataSourceMutArr[indexPath.section][indexPath.item]);
         return cell;
     }
 }

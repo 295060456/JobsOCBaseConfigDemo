@@ -9,9 +9,10 @@
 #import "MainTableViewCell.h"
 
 @interface MainTableViewCell()
-
+/// UI
 @property(nonatomic,strong)UICollectionView *cellCollectionV;
-@property(nonatomic,strong)XZExcelConfigureViewModel *viewModel;
+/// Data
+@property(nonatomic,strong)XZExcelConfigureViewModel *viewModel_;
 @property(nonatomic,strong)TableModel *model;
 @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 
@@ -19,30 +20,42 @@
 
 @implementation MainTableViewCell
 
-+ (MainTableViewCell*)dequeneCellWithTableView:(UITableView *)tableView{
-    static NSString *ID = @"MainTableViewCell";
-    MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [MainTableViewCell.alloc initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = JobsWhiteColor;
-    }return cell;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
+    @jobs_weakify(self)
+    return ^(UITableView * _Nonnull tableView) {
+        @jobs_strongify(self)
+        JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(self.class,@"");
+        if (!cell) {
+            cell = [self initTableViewCell:self
+                                 withStyle:UITableViewCellStyleValue1];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = JobsWhiteColor;
+        }return cell;
+    };
 }
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style
+-(instancetype)initWithStyle:(UITableViewCellStyle)style 
              reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithStyle:style
+    if (self = [super initWithStyle:style 
                     reuseIdentifier:reuseIdentifier]) {
         self.cellCollectionV.alpha = 1;
     }return self;
 }
-
-- (void)cellBindViewModel:(XZExcelConfigureViewModel *)viewModel{
-    self.viewModel = viewModel;
+#pragma mark —— BaseCellProtocol
+-(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
+    @jobs_weakify(self)
+    return ^(XZExcelConfigureViewModel *_Nullable viewModel) {
+        @jobs_strongify(self)
+        self.viewModel_ = viewModel;
+    };
 }
 
-- (void)cellBindModel:(TableModel *)model{
-    self.model = model;
+-(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
+    @jobs_weakify(self)
+    return ^(TableModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.model = model;
+    };
 }
 
 - (void)scrollerItemWithContentOffset:(CGPoint )contentOffset{
@@ -55,16 +68,17 @@
     }
 }
 #pragma mark —— lazyLoadUICollectionView 代理和数据源
-- (NSInteger)collectionView:(UICollectionView *)collectionView
+- (NSInteger)collectionView:(UICollectionView *)collectionView 
      numberOfItemsInSection:(NSInteger)section{
     return self.model.itemArr.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                            cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    MainTableViewCellITem *item = [collectionView dequeueReusableCellWithReuseIdentifier:@"MainTableViewCellITem" forIndexPath:indexPath];
-    item.contentView.backgroundColor = item.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
-    return item;
+    MainTableViewCellITem *cell = [MainTableViewCellITem cellWithCollectionView:collectionView
+                                                                   forIndexPath:indexPath];
+    cell.contentView.backgroundColor = cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
+    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView
@@ -72,16 +86,16 @@
     forItemAtIndexPath:(NSIndexPath *)indexPath{
     
     MainTableViewCellITem *showItem = (MainTableViewCellITem *)cell;
-    [showItem cellBindViewModel:self.viewModel];
+    showItem.jobsRichElementsInCellWithModel(self.viewModel_);
     
     ItemModel *model = self.model.itemArr[indexPath.row];
-    [showItem cellBindModel:model];
+    showItem.jobsRichElementsInCellWithModel2(model);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView
+- (CGSize)collectionView:(UICollectionView *)collectionView 
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(self.viewModel.itemW, self.viewModel.itemH);
+    return CGSizeMake(self.viewModel_.itemW, self.viewModel_.itemH);
 }
 #pragma mark —— lazyLoad
 - (UICollectionView *)cellCollectionV{
@@ -106,8 +120,8 @@
 -(UICollectionViewFlowLayout *)layout{
     if(!_layout){
         _layout = UICollectionViewFlowLayout.new;
-        _layout.itemSize=CGSizeMake(self.viewModel.itemW,
-                                    self.viewModel.itemH);
+        _layout.itemSize = CGSizeMake(self.viewModel_.itemW,
+                                      self.viewModel_.itemH);
         _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _layout.minimumLineSpacing = 0;
         _layout.minimumInteritemSpacing = 0;
