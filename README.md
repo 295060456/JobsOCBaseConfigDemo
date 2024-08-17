@@ -1544,54 +1544,65 @@ NSObject <|-- BaseProtocol
   -(JobsTextField *)textField{
       if(!_textField){
           _textField = JobsTextField.new;
-          _textField.backgroundColor = JobsRedColor;
+          _textField.backgroundColor = JobsBlackColor.colorWithAlphaComponent(0.5f);
+          _textField.alpha = 0.5f;
           // 只针对真实的textField配置
+          _textField.textColor = JobsWhiteColor;
           _textField.realTextFieldBgCor = JobsClearColor;
           _textField.leftViewByOutLineOffset = JobsWidth(4);
           _textField.leftViewByTextFieldOffset = JobsWidth(4);
           _textField.rightViewByTextFieldOffset = JobsWidth(4);
-          _textField.rightViewByOutLineOffset = JobsWidth(4);
+          _textField.rightViewByOutLineOffset = JobsWidth(14);
           _textField.returnKeyType = UIReturnKeyDefault;
           _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
           _textField.keyboardType = UIKeyboardTypeDefault;
           _textField.leftViewMode = UITextFieldViewModeNever;
           _textField.rightViewMode = UITextFieldViewModeNever;
-          _textField.leftView = self.textFieldLeftView;
-          _textField.rightView = self.textFieldRightView;
-          _textField.placeholder = JobsInternationalization(@"wwe");
-          _textField.placeholderColor = JobsWhiteColor;
-          _textField.placeholderFont = UIFontWeightSemiboldSize(12);
+          _textField.rightView = self.rightBtn;
+          _textField.placeholder = self.viewModel.placeholder;
+          _textField.placeholderColor = JobsCor(@"#6A6A6A");
+          _textField.placeholderFont = UIFontWeightSemiboldSize(10);
           _textField.attributedPlaceholder = nil;
+          _textField.leftViewByTextFieldOffset = JobsWidth(10);
           _textField.layoutSubviewsRectCorner = UIRectCornerAllCorners;
           _textField.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
-          // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
+          _textField.isPreventKeyBoardPopup = YES;
           @jobs_weakify(self)
-          [_textField actionReturnObjectBlock:^id _Nullable(id _Nullable data) {
+          [_textField otherActionBlock:^id _Nullable(id  _Nullable data) {
               @jobs_strongify(self)
-              NSLog(@"ddf = %@",data);
+              NSLog(@"data = %@",data);
+              self.show_view(self.select_promo_popListView);
               return nil;
           }];
-          [self addSubview:_textField];
+          // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
+          [_textField actionReturnObjectBlock:^id _Nullable(id _Nullable data) {
+              @jobs_strongify(self)
+              NSLog(@"data = %@",data);
+              return nil;
+          }];
+          [_textField otherActionBlock:^id _Nullable(id  _Nullable data) {
+              @jobs_strongify(self)
+              NSLog(@"data = %@",data);
+              self.show_view(self.select_promo_popListView);
+              return nil;
+          }];
+          [(self.contentView ? : self) addSubview:_textField];
           [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.size.mas_equalTo(CGSizeMake(JobsWidth(148), JobsWidth(28)));
-              make.centerY.equalTo(self);
-              if (self.vipClassImageView.right >= self.userNameLab.right) {
-                  make.left.equalTo(self.vipClassImageView.mas_right).offset(JobsWidth(18));
-              }else{
-                  make.left.equalTo(self.userNameLab.mas_right).offset(JobsWidth(18));
-              }
+              make.right.equalTo(self.contentView ? : self);
+              make.top.equalTo(self.contentView ? : self).offset(JobsWidth(7));
+              make.bottom.equalTo(self.contentView ? : self).offset(JobsWidth(-7));
+              make.width.mas_equalTo(self.textField_width ? : JobsWidth(300));
           }];
           [_textField richElementsInViewWithModel:nil];
-          [self layoutIfNeeded];
           // 最外层的UI-描边
-          [_textField layerBorderCor:JobsCor(@"#FFD8D8")
-                      andBorderWidth:JobsWidth(1)];
+          [_textField layerBorderCor:JobsCor(@"#FFC700")
+                               andBorderWidth:JobsWidth(1)];
           // 最外层的UI-切全角
-          _textField.cornerCutToCircleWithCornerRadius:JobsWidth(8);
+          _textField.cornerCutToCircleWithCornerRadius(JobsWidth(8));
       }return _textField;
   }
   ```
-
+  
   ```objective-c
   -(UIImageView *)textFieldLeftView{
       if(!_textFieldLeftView){

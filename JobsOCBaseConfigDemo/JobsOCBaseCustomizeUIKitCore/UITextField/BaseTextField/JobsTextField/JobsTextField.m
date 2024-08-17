@@ -210,9 +210,6 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
             self.realTextField.text = x;
             if (self.jobsBlock) self.jobsBlock(x);
         }];
-        
-
-        
         [self addSubview:_realTextField];
         [_realTextField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(self);
