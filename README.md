@@ -786,7 +786,7 @@ class BaseCellProtocol {
 BaseViewProtocol <|-- BaseCellProtocol
 
 class BaseViewProtocol {
-    +-(void)richElementsInViewWithModel:(id _Nullable)model;
+    +-(jobsByIDBlock _Nonnull)jobsRichElementsInViewWithModel;
     ++(CGFloat)viewWidthWithModel:(id _Nullable)model;
     ++(CGFloat)viewHeightWithModel:(id _Nullable)model;
     ++(CGFloat)heightForFooterInSection:(id _Nullable)model;
@@ -1586,7 +1586,7 @@ NSObject <|-- BaseProtocol
               make.bottom.equalTo(self.contentView ? : self).offset(JobsWidth(-7));
               make.width.mas_equalTo(self.textField_width ? : JobsWidth(300));
           }];
-          [_textField richElementsInViewWithModel:nil];
+          _textField.jobsRichElementsInViewWithModel(nil);
           // 最外层的UI-描边
           [_textField layerBorderCor:JobsCor(@"#FFC700")
                                andBorderWidth:JobsWidth(1)];
@@ -2962,11 +2962,12 @@ NSObject <|-- BaseProtocol
 
 <details id="Masonry约束动画<br>">
  <summary><strong>点我了解详情：Masonry约束动画<br></strong></summary>
+
 ```objective-c
 -(MSMineView2 *)view2{
     if(!_view2){
         _view2 = MSMineView2.new;
-        [_view2 richElementsInViewWithModel:nil];
+        _view2.jobsRichElementsInViewWithModel(nil);
         [self addSubview:_view2];
         [_view2 jobsMasonryBeforeBlock:^(MASConstraintMaker * _Nonnull make) {
             // 添加第一个 _view2 的约束
@@ -2985,6 +2986,7 @@ NSObject <|-- BaseProtocol
     }return _view2;
 }
 ```
+
 
 </details>
 
@@ -3395,7 +3397,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
             _deleteAccountView = DeleteAccountView.new;
             _deleteAccountView.accountStyle = AccountStyle_GCCash;
             _deleteAccountView.size = [_deleteAccountView viewSizeWithModel:nil];
-            [_deleteAccountView richElementsInViewWithModel:nil];
+            _deleteAccountView.jobsRichElementsInViewWithModel(nil);
         }return _deleteAccountView;
     }
     ```
@@ -5833,7 +5835,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
        if(!_tableHeaderView){
            tableHeaderView = FMTableHeaderView1.new;
            _tableHeaderView.size = [FMTableHeaderView1 viewSizeWithModel:nil];
-           [_tableHeaderView richElementsInViewWithModel:nil];
+           _tableHeaderView.jobsRichElementsInViewWithModel(nil);
        }return _tableHeaderView;
    }
    ```
@@ -6132,8 +6134,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   - (UIView *)tableView:(UITableView *)tableView
   viewForHeaderInSection:(NSInteger)section{
       UITableViewHeaderFooterView *headerView = self.tbvHeaderFooterViewMutArr[section];
-      headerView.section = section;// 不写这一句有悬浮
-      [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+      // 不写这三句有悬浮
+      headerView.headerFooterViewStyle = JobsHeaderViewStyle;
+      headerView.tableView = tableView;
+      headerView.section = section;
+      headerView.jobsRichElementsInViewWithModel(self.dataMutArr[section].data);
       @jobs_weakify(self)
       [headerView actionObjectBlock:^(id data) {
           @jobs_strongify(self)
@@ -6333,7 +6338,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 headerView.tableView = tableView;
                 headerView.section = section;
             }
-            [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+            headerView.jobsRichElementsInViewWithModel(self.dataMutArr[section].data);
             @jobs_weakify(self)
             [headerView actionObjectBlock:^(id data) {
                 @jobs_strongify(self)
@@ -6383,8 +6388,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@"");
           }
           headerView.backgroundColor = JobsRedColor;
-          headerView.section = section;// 不写这一句有悬浮
-          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+          // 不写这三句有悬浮
+          headerView.headerFooterViewStyle = JobsHeaderViewStyle;
+          headerView.tableView = tableView;
+          headerView.section = section;
+          headerView.jobsRichElementsInViewWithModel(self.dataMutArr[section].data);
           @jobs_weakify(self)
           [headerView actionObjectBlock:^(id data) {
               @jobs_strongify(self)
@@ -6407,7 +6415,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               headerView.tableView = tableView;
               headerView.section = section;
           }
-          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+          headerView.jobsRichElementsInViewWithModel(self.dataMutArr[section].data);
           @jobs_weakify(self)
           [headerView actionObjectBlock:^(id data) {
               @jobs_strongify(self)
@@ -6420,8 +6428,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
           }
           headerView.backgroundColor = JobsYellowColor;
-          headerView.section = section;// 不写这一句有悬浮
-          [headerView richElementsInViewWithModel:self.dataMutArr[section].data];
+          // 不写这三句有悬浮
+          headerView.headerFooterViewStyle = JobsHeaderViewStyle;
+          headerView.tableView = tableView;
+          headerView.section = section;
+          headerView.jobsRichElementsInViewWithModel(self.dataMutArr[section].data)
           @jobs_weakify(self)
           [headerView actionObjectBlock:^(id data) {
               @jobs_strongify(self)
@@ -6435,14 +6446,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       if(self.viewModel.usesTableViewFooterView){
           BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
           {
-              // 不写这两句有悬浮
-              tbvFooterView.tableView = tableView;
-              tbvFooterView.section = section;
+              // 不写这三句有悬浮
+   						tbvFooterView.headerFooterViewStyle = JobsHeaderViewStyle;
+        		  tbvFooterView.tableView = tableView;
+         		  tbvFooterView.section = section;
           }
           tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
           tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
-          
-          [tbvFooterView richElementsInViewWithModel:nil];
+          tbvFooterView.jobsRichElementsInViewWithModel(nil);
           @jobs_weakify(self)
           [tbvFooterView actionObjectBlock:^(id data) {
               @jobs_strongify(self)
@@ -6509,12 +6520,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    @implementation FMTBVHeaderFooterView1
    @synthesize viewModel = _viewModel;
    /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-   -(void)richElementsInViewWithModel:(id _Nullable)model{
-       self.contentView.backgroundColor = self.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-       if([model isKindOfClass:UIViewModel.class]){
-           self.viewModel = (UIViewModel *)model;
-       }
-       self.titleLab.alpha = 1;
+   -(jobsByIDBlock)jobsRichElementsInViewWithModel{
+       @jobs_weakify(self)
+       return ^(id _Nullable model) {
+           @jobs_strongify(self)
+     		  self.contentView.backgroundColor = self.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+           if([model isKindOfClass:UIViewModel.class]){
+              self.viewModel = (UIViewModel *)model;
+       }self.titleLab.alpha = 1;
+     };
    }
    #pragma mark —— lazyLoad
    -(UILabel *)titleLab{
@@ -6824,7 +6838,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               make.center.equalTo(self);
               make.size.mas_equalTo([_stepView viewSizeWithModel:nil]);
           }];
-          [_stepView richElementsInViewWithModel:self.btnModelMutArr];
+          _stepView.jobsRichElementsInViewWithModel(self.btnModelMutArr);
       }return _stepView;
   }
   
@@ -7335,7 +7349,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           _toggleBaseView.taggedNavView_height = JobsWidth(24);
           _toggleBaseView.taggedNavView_width = JobsWidth(180);
           _toggleBaseView.toggleView_size = CGSizeMake(JobsWidth(400), JobsWidth(250));
-          [_toggleBaseView richElementsInViewWithModel:nil];
+          _toggleBaseView.jobsRichElementsInViewWithModel(nil);
           _toggleBaseView.getToggleNavView.backgroundColor = JobsClearColor;
       }return _toggleBaseView;
   }
@@ -7344,7 +7358,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       if(!_verification_code_view){
           _verification_code_view = Login_verification_code_view.new;
           _verification_code_view.size = [_verification_code_view viewSizeWithModel:nil];
-          [_verification_code_view richElementsInViewWithModel:nil];
+          _verification_code_view.jobsRichElementsInViewWithModel(nil);
       }return _verification_code_view;
   }
   
@@ -7352,7 +7366,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       if(!_account_code_view){
           _account_code_view = Login_account_code_view.new;
           _account_code_view.size = [_account_code_view viewSizeWithModel:nil];
-          [_account_code_view richElementsInViewWithModel:nil];
+          _account_code_view.jobsRichElementsInViewWithModel(nil);
       }return _account_code_view;
   }
   
@@ -7462,7 +7476,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       if(!_topGamesView){
           _topGamesView = TopGamesView.new;
           _topGamesView.frame = self.bounds;
-          [_topGamesView richElementsInViewWithModel:nil];
+          _topGamesView.jobsRichElementsInViewWithModel(nil);
       }return _topGamesView;
   }
   
@@ -7470,7 +7484,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       if(!_slotGamesView){
           _slotGamesView = SlotGamesView.new;
           _slotGamesView.frame = self.bounds;
-          [_slotGamesView richElementsInViewWithModel:nil];
+          _slotGamesView.jobsRichElementsInViewWithModel(nil);
       }return _slotGamesView;
   }
   
@@ -7478,7 +7492,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       if(!_liveCasinoView){
           _liveCasinoView = LiveCasinoView.new;
           _liveCasinoView.frame = self.bounds;
-          [_liveCasinoView richElementsInViewWithModel:nil];
+          _liveCasinoView.jobsRichElementsInViewWithModel(nil);
       }return _liveCasinoView;
   }
   
@@ -7486,7 +7500,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       if(!_tableGamesView){
           _tableGamesView = TableGamesView.new;
           _tableGamesView.frame = self.bounds;
-          [_tableGamesView richElementsInViewWithModel:nil];
+          _tableGamesView.jobsRichElementsInViewWithModel(nil);
       }return _tableGamesView;
   }
   
@@ -7494,7 +7508,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       if(!_sportsView){
           _sportsView = SportsView.new;
           _sportsView.frame = self.bounds;
-          [_sportsView richElementsInViewWithModel:nil];
+          _sportsView.jobsRichElementsInViewWithModel(nil);
       }return _sportsView;
   }
   
@@ -7502,7 +7516,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       if(!_fishingView){
           _fishingView = FishingView.new;
           _fishingView.frame = self.bounds;
-          [_fishingView richElementsInViewWithModel:nil];
+          _fishingView.jobsRichElementsInViewWithModel(nil);
       }return _fishingView;
   }
   ```
