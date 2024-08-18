@@ -10,7 +10,7 @@
 
 @interface JobsExcelView()
 /// UI
-@property(nonatomic,strong)UILabel *titleL;
+@property(nonatomic,strong)BaseButton *titleBtn;
 @property(nonatomic,strong)JobsExcelLeftListView *leftListView;
 @property(nonatomic,strong)JobsExcelTopHeadView *headView;
 @property(nonatomic,strong)JobsExcelContentView *contentView;
@@ -46,12 +46,13 @@
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock)jobsRichElementsInViewWithModel{
     @jobs_weakify(self)
-    return ^(id _Nullable data) {
+    return ^(JobsExcelConfigureViewModel *_Nullable data) {
         @jobs_strongify(self)
+        if(data) self.viewModel_ = data;
         self->itemW = self.viewModel_.itemW;
         
         self.bgImageView.alpha = 1;
-        self.titleL.alpha = 1;
+        self.titleBtn.alpha = 1;
         self.headView.alpha = 1;
         self.leftListView.alpha = 1;
         self.contentView.alpha = 1;
@@ -80,21 +81,58 @@
     }return _bgImageView;
 }
 
-- (UILabel *)titleL{
-    if (!_titleL) {
-        _titleL = UILabel.new;
-        _titleL.text = self.viewModel_.textModel_00.text;
-        _titleL.textColor = JobsWhiteColor;
-        _titleL.textAlignment = NSTextAlignmentCenter;
-        _titleL.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-        [self.bgImageView addSubview:_titleL];
-        [_titleL mas_makeConstraints:^(MASConstraintMaker *make) {
+-(BaseButton *)titleBtn{
+    if(!_titleBtn){
+        @jobs_weakify(self)
+        _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                      background:nil
+                                      buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                   textAlignment:NSTextAlignmentCenter
+                                                subTextAlignment:NSTextAlignmentCenter
+                                                     normalImage:nil
+                                                  highlightImage:nil
+                                                 attributedTitle:nil
+                                         selectedAttributedTitle:nil
+                                              attributedSubtitle:nil
+                                                           title:self.viewModel_.data_00.title
+                                                        subTitle:nil
+                                                       titleFont:nil
+                                                    subTitleFont:nil
+                                                        titleCor:JobsWhiteColor
+                                                     subTitleCor:nil
+                                              titleLineBreakMode:NSLineBreakByWordWrapping
+                                           subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                             baseBackgroundColor:JobsClearColor.colorWithAlphaComponent(0)
+                                                 backgroundImage:nil
+                                                    imagePadding:JobsWidth(0)
+                                                    titlePadding:JobsWidth(0)
+                                                  imagePlacement:NSDirectionalRectEdgeNone
+                                      contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                        contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                   contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                               cornerRadiusValue:JobsWidth(0)
+                                                 roundingCorners:UIRectCornerAllCorners
+                                            roundingCornersRadii:CGSizeZero
+                                                  layerBorderCor:nil
+                                                     borderWidth:JobsWidth(0)
+                                                   primaryAction:nil
+                                      longPressGestureEventBlock:^(id  _Nullable weakSelf,
+                                                                   id  _Nullable arg) {
+              NSLog(@"按钮的长按事件触发");
+          }
+                                                 clickEventBlock:^id(BaseButton *x){
+              @jobs_strongify(self)
+              if (self.objectBlock) self.objectBlock(x);
+              return nil;
+        }];
+        [self.bgImageView addSubview:_titleBtn];
+        [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self);
             make.left.equalTo(self);
             make.width.mas_equalTo(itemW);
             make.height.mas_equalTo(self.viewModel_.itemH);
         }];
-    }return _titleL;
+    }return _titleBtn;
 }
 
 - (JobsExcelLeftListView *)leftListView{
@@ -102,7 +140,7 @@
         _leftListView = JobsExcelLeftListView.new;
         [self addSubview:_leftListView];
         [_leftListView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleL.mas_bottom).offset(0);
+            make.top.equalTo(self.titleBtn.mas_bottom).offset(0);
             make.left.equalTo(self);
             make.width.mas_equalTo(itemW);
             make.bottom.equalTo(self);
@@ -116,10 +154,10 @@
         _headView = JobsExcelTopHeadView.new;
         [self addSubview:_headView];
         [_headView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleL);
-            make.left.equalTo(self.titleL.mas_right).offset(0);
+            make.top.equalTo(self.titleBtn);
+            make.left.equalTo(self.titleBtn.mas_right).offset(0);
             make.right.equalTo(self);
-            make.height.equalTo(self.titleL);
+            make.height.equalTo(self.titleBtn);
         }];
         _headView.jobsRichElementsInViewWithModel(self.viewModel_);
     }return _headView;

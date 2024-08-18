@@ -59,7 +59,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     JobsTopViewItem *cell = [JobsTopViewItem cellWithCollectionView:collectionView
-                                               forIndexPath:indexPath];
+                                                       forIndexPath:indexPath];
     cell.backgroundColor = JobsBlueColor;
     cell.jobsRichElementsInCellWithModel(self.viewModel);
     cell.jobsRichElementsInCellWithModel2(self.viewModel.topHeaderDatas[indexPath.row]);
@@ -72,7 +72,7 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(self.viewModel.itemW, self.viewModel.itemH);
 }
-
+#pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     self.viewModel.jobsKVC(HorizontalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
     /// 防止在初始情况下，无意义的往右拉动

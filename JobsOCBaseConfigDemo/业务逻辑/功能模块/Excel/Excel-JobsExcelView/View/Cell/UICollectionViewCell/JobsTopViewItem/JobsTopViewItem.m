@@ -10,7 +10,6 @@
 
 @interface JobsTopViewItem()
 /// UI
-@property(nonatomic,strong)UILabel *titleL;
 @property(nonatomic,strong)UIBezierPath *linePath;
 @property(nonatomic,strong)CAShapeLayer *lineLayer;
 @property(nonatomic,strong)UIImageView *bgImageView;
@@ -47,7 +46,6 @@
         @jobs_strongify(self)
         self.viewModel_ = viewModel;
         self.bgImageView.alpha = 1;
-        self.titleL.alpha = 1;
         CGSize size = CGSizeMake(viewModel.itemW, viewModel.itemH);
         if (!CGSizeEqualToSize(self.size, size)) {
             self.size = size;
@@ -57,10 +55,8 @@
 }
 
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
-    @jobs_weakify(self)
-    return ^(UITextModel *_Nullable model) {
-        @jobs_strongify(self)
-        self.titleL.text = model.text;
+    return ^(UIButtonModel *_Nullable model) {
+        super.jobsRichElementsInCellWithModel(model);
     };
 }
 
@@ -85,19 +81,6 @@
             make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
     }return _bgImageView;
-}
-
-- (UILabel *)titleL{
-    if (!_titleL) {
-        _titleL = UILabel.new;
-        _titleL.textColor = JobsWhiteColor;
-        _titleL.font = [UIFont systemFontOfSize:15];
-        _titleL.textAlignment = NSTextAlignmentCenter;
-        [self.bgImageView addSubview:_titleL];
-        [_titleL mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-        }];
-    }return _titleL;
 }
 
 -(UIBezierPath *)linePath{

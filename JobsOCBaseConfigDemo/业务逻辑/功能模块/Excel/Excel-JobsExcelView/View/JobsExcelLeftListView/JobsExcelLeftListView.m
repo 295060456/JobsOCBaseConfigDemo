@@ -64,12 +64,12 @@
     cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
     cell.jobsRichElementsInCellWithModel(self.viewModel);
     
-    UITextModel *model = self.viewModel.leftListDatas[indexPath.row];
+    UIButtonModel *model = (UIButtonModel *)self.viewModel.leftListDatas[indexPath.row];
     cell.jobsRichElementsInCellWithModel2(model);
     
     return cell;
 }
-#pragma mark —— scrollerView代理
+#pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSLog(@"KKK3 = %f",scrollView.contentOffset.y);
     /// 防止在初始情况下，无意义的往下拉动

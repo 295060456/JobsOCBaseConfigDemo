@@ -12,6 +12,7 @@
 
 #import "BaseCellProtocol.h"
 #import "JobsExcelConfigureViewModel.h"
+@class UIButtonModel;
 
 @protocol MianTableViewCellDelegate <NSObject>
 -(void)mianTableViewCellScrollerDid:(UIScrollView *)scrollview;

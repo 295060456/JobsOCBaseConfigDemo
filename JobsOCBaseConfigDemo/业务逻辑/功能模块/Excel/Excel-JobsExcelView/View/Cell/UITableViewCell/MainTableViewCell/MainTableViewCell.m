@@ -12,7 +12,7 @@
 /// Data
 @property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel_;
 @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
-@property(nonatomic,strong)NSMutableArray <UITextModel *>*model;
+@property(nonatomic,strong)NSMutableArray <UIButtonModel *>*model;
 
 @end
 
@@ -43,7 +43,7 @@
 
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
     @jobs_weakify(self)
-    return ^(NSMutableArray <UITextModel *>*_Nullable model) {
+    return ^(NSMutableArray <UIButtonModel *>*_Nullable model) {
         @jobs_strongify(self)
         self.model = model;
         [self.collectionView reloadData];
@@ -53,7 +53,7 @@
 - (void)scrollerItemWithContentOffset:(CGPoint)contentOffset{
     self.collectionView.contentOffset = contentOffset;
 }
-#pragma mark —— lazyLoadscrollerViwe 代理
+#pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     /// 防止在初始情况下，无意义的往右拉动
     NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)// 1242

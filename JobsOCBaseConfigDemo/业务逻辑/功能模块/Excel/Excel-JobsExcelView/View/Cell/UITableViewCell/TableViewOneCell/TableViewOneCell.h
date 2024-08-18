@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "JobsBaseTableViewCell.h"
+#import "JobsBtnStyleTBVCell.h"
 
 #import "UICollectionViewCellProtocol.h"
 #import "JobsExcelConfigureViewModel.h"
+@class UIButtonModel;
 
-@interface TableViewOneCell : JobsBaseTableViewCell<UICollectionViewCellProtocol>
+@interface TableViewOneCell : JobsBtnStyleTBVCell<UICollectionViewCellProtocol>
 
 @end

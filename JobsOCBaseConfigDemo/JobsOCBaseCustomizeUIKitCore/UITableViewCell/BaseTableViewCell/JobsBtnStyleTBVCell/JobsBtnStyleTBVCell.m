@@ -34,11 +34,17 @@ UIViewModelProtocol_synthesize
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
+    return ^(id _Nullable model) {
         @jobs_strongify(self)
-        self.viewModel = model;
-    //    self.viewModel.buttonModel;
+        if(KindOfViewModelCls(model)){
+            self.viewModel = model;
+        }
+        if(KindOfButtonModelCls(model)){
+            self.buttonModel = model;
+        }
+        
         self.btn.alpha = 1;
+        self.btn.data = model;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -56,53 +62,113 @@ UIViewModelProtocol_synthesize
 }
 #pragma mark —— lazyLoad
 -(BaseButton *)btn{
-    @jobs_weakify(self)
     if(!_btn){
-        _btn = [BaseButton.alloc jobsInitBtnByConfiguration:self.viewModel.buttonModel.btnConfiguration
-                                                 background:self.viewModel.buttonModel.background
-                                 buttonConfigTitleAlignment:self.viewModel.buttonModel.buttonConfigTitleAlignment
-                                              textAlignment:self.viewModel.buttonModel.textAlignment
-                                           subTextAlignment:self.viewModel.buttonModel.subTextAlignment
-                                                normalImage:self.viewModel.buttonModel.normalImage
-                                             highlightImage:self.viewModel.buttonModel.highlightImage
-                                            attributedTitle:self.viewModel.buttonModel.attributedTitle
-                                    selectedAttributedTitle:self.viewModel.buttonModel.selectedAttributedTitle
-                                         attributedSubtitle:self.viewModel.buttonModel.attributedSubtitle
-                                                      title:self.viewModel.buttonModel.title
-                                                   subTitle:self.viewModel.buttonModel.subTitle
-                                                  titleFont:self.viewModel.buttonModel.titleFont
-                                               subTitleFont:self.viewModel.buttonModel.subTitleFont
-                                                   titleCor:self.viewModel.buttonModel.titleCor
-                                                subTitleCor:self.viewModel.buttonModel.subTitleCor
-                                         titleLineBreakMode:self.viewModel.buttonModel.titleLineBreakMode
-                                      subtitleLineBreakMode:self.viewModel.buttonModel.subtitleLineBreakMode
-                                        baseBackgroundColor:self.viewModel.buttonModel.baseBackgroundColor
-                                            backgroundImage:self.viewModel.buttonModel.backgroundImage
-                                               imagePadding:self.viewModel.buttonModel.imagePadding
-                                               titlePadding:self.viewModel.buttonModel.titlePadding
-                                             imagePlacement:self.viewModel.buttonModel.imagePlacement
-                                 contentHorizontalAlignment:self.viewModel.buttonModel.contentHorizontalAlignment
-                                   contentVerticalAlignment:self.viewModel.buttonModel.contentVerticalAlignment
-                                              contentInsets:self.viewModel.buttonModel.contentInsets
-                                          cornerRadiusValue:self.viewModel.buttonModel.cornerRadiusValue
-                                            roundingCorners:self.viewModel.buttonModel.roundingCorners
-                                       roundingCornersRadii:self.viewModel.buttonModel.roundingCornersRadii
-                                             layerBorderCor:self.viewModel.buttonModel.layerBorderCor
-                                                borderWidth:self.viewModel.buttonModel.borderWidth
-                                              primaryAction:self.viewModel.buttonModel.primaryAction
-                                 longPressGestureEventBlock:self.viewModel.buttonModel.longPressGestureEventBlock ? : ^(id  _Nullable weakSelf,
-                                                                                                                        id  _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-        }
-                                            clickEventBlock:self.viewModel.buttonModel.clickEventBlock ? : ^id(BaseButton *x){
+        @jobs_weakify(self)
+        _btn = [BaseButton.alloc jobsInitBtnByConfiguration:UIButtonConfiguration.plainButtonConfiguration
+                                                 background:nil
+                                 buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                              textAlignment:NSTextAlignmentCenter
+                                           subTextAlignment:NSTextAlignmentCenter
+                                                normalImage:nil
+                                             highlightImage:nil
+                                            attributedTitle:nil
+                                    selectedAttributedTitle:nil
+                                         attributedSubtitle:nil
+                                                      title:nil
+                                                   subTitle:nil
+                                                  titleFont:nil
+                                               subTitleFont:nil
+                                                   titleCor:nil
+                                                subTitleCor:nil
+                                         titleLineBreakMode:NSLineBreakByWordWrapping
+                                      subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                        baseBackgroundColor:nil
+                                            backgroundImage:nil
+                                               imagePadding:JobsWidth(0)
+                                               titlePadding:JobsWidth(0)
+                                             imagePlacement:NSDirectionalRectEdgeTop
+                                 contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                   contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                              contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                          cornerRadiusValue:JobsWidth(8)
+                                            roundingCorners:UIRectCornerAllCorners
+                                       roundingCornersRadii:CGSizeZero
+                                             layerBorderCor:nil
+                                                borderWidth:JobsWidth(0)
+                                              primaryAction:nil
+                                 longPressGestureEventBlock:nil
+                                            clickEventBlock:^id(BaseButton *x) {
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }];
+        _btn.enabled = NO;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
         [self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView);
         }];
+    }
+    
+    if(self.viewModel){
+        _btn.selected = self.viewModel.jobsSelected;
+        /// 主标题
+        _btn.jobsResetBtnTitle(self.viewModel.textModel.text);
+        _btn.jobsResetBtnTitleCor(self.viewModel.textModel.textCor);
+        [_btn jobsSetBtnTitleFont:self.viewModel.textModel.font ? : UIFontWeightSemiboldSize(12)
+                      btnTitleCor: self.viewModel.textModel.textCor ? : JobsBlueColor];
+        /// 子标题
+        _btn.jobsResetSubTitle(self.viewModel.subTextModel.text);
+        [_btn jobsSetBtnSubTitleFont:self.viewModel.subTextModel.font ? : UIFontWeightSemiboldSize(12)
+                      btnSubTitleCor: self.viewModel.subTextModel.textCor ? : JobsBlueColor];
+        /// 按钮图
+        _btn.jobsResetImage(self.viewModel.image);
+        /// 背景色
+        _btn.jobsResetBtnBgCor(self.viewModel.bgCor);
+        /// 图文间距
+        if (@available(iOS 16.0, *)) {
+            _btn.jobsResetImagePadding(self.viewModel.imageTitleSpace);
+        } else {
+            // Fallback on earlier versions
+        }
+        /// 图文相对位置关系
+        if (@available(iOS 16.0, *)) {
+            _btn.jobsResetImagePlacement(self.viewModel.buttonEdgeInsetsStyle);
+        } else {
+            // Fallback on earlier versions
+        }
+        /// 圆切角
+        _btn.resetCornerRadius(self.viewModel.layerCornerRadius ? : JobsWidth(8));
+    }
+    
+    if(self.buttonModel){
+        _btn.selected = self.buttonModel.jobsSelected;
+        /// 背景色
+        _btn.jobsResetBtnBgCor(self.buttonModel.baseBackgroundColor);
+        /// 背景图
+        _btn.jobsResetBtnBgImage(self.buttonModel.backgroundImage);
+        /// 主标题
+        _btn.jobsResetBtnTitle(self.buttonModel.title);
+        _btn.jobsResetBtnTitleCor(self.buttonModel.titleCor);
+        /// 按钮图
+        _btn.jobsResetImage(self.buttonModel.normalImage);
+        /// 子标题
+        _btn.jobsResetSubTitle(self.buttonModel.subTitle);
+        [_btn jobsSetBtnSubTitleFont:self.buttonModel.subTitleFont ? : UIFontWeightSemiboldSize(12)
+                      btnSubTitleCor: self.buttonModel.subTitleCor ? : JobsBlueColor];
+        /// 图文间距
+        if (@available(iOS 16.0, *)) {
+            _btn.jobsResetImagePadding(self.buttonModel.imagePadding);
+        } else {
+            // Fallback on earlier versions
+        }
+        /// 图文相对位置关系
+        if (@available(iOS 16.0, *)) {
+            _btn.jobsResetImagePlacement(self.buttonModel.imagePlacement);
+        } else {
+            // Fallback on earlier versions
+        }
+        /// 圆切角
+        _btn.resetCornerRadius(self.buttonModel.cornerRadiusValue ? : JobsWidth(8));
     }return _btn;
 }
 

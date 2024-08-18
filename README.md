@@ -2262,16 +2262,16 @@ NSObject <|-- BaseProtocol
   * 右侧的菜单内容是**`UICollectionView`** 
 * [**`JXCategoryView`**](https://github.com/pujiaxin33/JXCategoryView)的垂直表达
 
-### 28、Excel方案：[**JobsExcelView**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/Excel/Excel-JobsExcelView/View/JobsExcelView)
+### 28、Excel方案：[**JobsExcelView**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/Excel/Excel-JobsExcelView/View/JobsExcelView) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 框架介绍
+*  框架介绍
 
   * 一横行用**`UITableViewCell`**、每一个单元小格是**`UICollectionViewCell`**
 
   * 起始格子
 
     * UI：**`JobsExcelView`** .**`titleL`**
-    * 数据 :**`JobsExcelConfigureViewModel`**.**`contentStr_00`**
+    * 数据：**`JobsExcelConfigureViewModel`**.**`contentStr_00`**
 
   * 其他格子
 
@@ -2308,24 +2308,6 @@ NSObject <|-- BaseProtocol
      }
      ```
 
-    **JobsExcelLeftListView**
-
-    ```objective-c
-    #pragma mark —— UIScrollViewDelegate
-    - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-        NSLog(@"KKK3 = %f",scrollView.contentOffset.y);
-        /// 防止在初始情况下，无意义的往下拉动
-        if (scrollView.contentOffset.y < 0) {
-            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
-        }else{
-            CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH) - self.viewModel.itemH * 2 - 4;
-            if(scrollView.contentOffset.y > d){
-                scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
-            }else self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
-        }
-    }
-    ```
-
     **JobsExcelTopHeadView**
 
     ```objective-c
@@ -2339,6 +2321,25 @@ NSObject <|-- BaseProtocol
         NSLog(@"JobsExcelTopHeadView - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)// 1242
         if(scrollView.contentOffset.x > 1242){
             scrollView.contentOffset = CGPointMake(1242, scrollView.contentOffset.y);
+        }
+    }
+    ```
+    
+    **JobsExcelLeftListView**
+    
+    ```objective-c
+    
+    #pragma mark —— UIScrollViewDelegate
+    - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+        NSLog(@"KKK3 = %f",scrollView.contentOffset.y);
+        /// 防止在初始情况下，无意义的往下拉动
+        if (scrollView.contentOffset.y < 0) {
+            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
+        }else{
+            CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH) - self.viewModel.itemH * 2 - 4;
+            if(scrollView.contentOffset.y > d){
+                scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
+            }else self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
         }
     }
     ```
@@ -5270,7 +5271,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * **`BaseCollectionViewCell`**
 * **`JobsBaseCollectionViewCell`**
-* **`JobsBtnStyleCVCell`**：只在**`BaseCollectionViewCell`**完整的盖一个**`Button`**，其目的是利用Button丰富的图文展示效果
+* **`JobsBtnStyleCVCell`**：只在**`BaseCollectionViewCell`**完整的盖一个**`Button`**，其目的是利用**`Button`**丰富的图文展示效果
 * **`JobsBtnsStyleCVCell`**：左右两边各有一个**`Button`**
 * **`JobsImageViewStyleCVCell`**：只在**`BaseCollectionViewCell`**完整的盖一个**`ImageView`**
 * **`JobsTextFieldStyleCVCell`**：只在**`BaseCollectionViewCell`**完整的盖一个**`TextField`**

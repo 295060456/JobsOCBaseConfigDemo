@@ -73,7 +73,7 @@
     cell.delegate = self;
     cell.indexPath = indexPath;
     cell.jobsRichElementsInCellWithModel(self.viewModel);
-    NSMutableArray <UITextModel *>*dataArr = self.viewModel.contentArr[indexPath.row];
+    NSMutableArray <UIButtonModel *>*dataArr = self.viewModel.contentArr[indexPath.row];
     NSLog(@"KKK0 = %ld-%@",(long)indexPath.row + 1,dataArr[0].text);
     cell.jobsRichElementsInCellWithModel2(dataArr);
     return cell;

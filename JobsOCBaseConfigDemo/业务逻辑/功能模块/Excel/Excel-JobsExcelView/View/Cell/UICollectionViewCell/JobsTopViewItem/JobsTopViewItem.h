@@ -7,9 +7,12 @@
 //  特别鸣谢 https://github.com/Mephsito23/iOS-Excel-
 
 #import <UIKit/UIKit.h>
+#import "JobsBtnStyleCVCell.h"
+
 #import "UICollectionViewCellProtocol.h"
 #import "JobsExcelConfigureViewModel.h"
+@class UIButtonModel;
 
-@interface JobsTopViewItem : UICollectionViewCell<UICollectionViewCellProtocol>
+@interface JobsTopViewItem : JobsBtnStyleCVCell<UICollectionViewCellProtocol>
 
 @end

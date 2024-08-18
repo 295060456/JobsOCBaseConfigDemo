@@ -11,6 +11,7 @@
 
 #import "JobsExcelConfigureViewModel.h"
 #import "MainTableViewCell.h"
+@class UIButtonModel;
 
 @interface JobsExcelContentView : UIView
 <

@@ -10,7 +10,6 @@
 
 @interface MainTableViewCellItem()
 /// UI
-@property(nonatomic,strong)UILabel *titleL;
 @property(nonatomic,strong)CATextLayer *textLayer;
 @property(nonatomic,strong)UIBezierPath *linePath;
 @property(nonatomic,strong)CAShapeLayer *lineLayer;
@@ -24,10 +23,12 @@
 
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    MainTableViewCellItem *cell = (MainTableViewCellItem *)[collectionView collectionViewCellClass:MainTableViewCellItem.class forIndexPath:indexPath];
+    MainTableViewCellItem *cell = (MainTableViewCellItem *)[collectionView collectionViewCellClass:MainTableViewCellItem.class
+                                                                                      forIndexPath:indexPath];
     if (!cell) {
         collectionView.registerCollectionViewCellClass(MainTableViewCellItem.class,@"");
-        cell = (MainTableViewCellItem *)[collectionView collectionViewCellClass:MainTableViewCellItem.class forIndexPath:indexPath];
+        cell = (MainTableViewCellItem *)[collectionView collectionViewCellClass:MainTableViewCellItem.class
+                                                                   forIndexPath:indexPath];
     }
     cell.indexPath = indexPath;
     return cell;
@@ -40,7 +41,6 @@
         @jobs_strongify(self)
         self.viewModel_ = viewModel;
         self.backgroundColor = JobsWhiteColor;
-        self.titleL.alpha = 1;
         CGSize size = CGSizeMake(viewModel.itemW - 1.0f, viewModel.itemH - 1.0f);
         if (!CGSizeEqualToSize(self.size, size)) {
             self.size = size;
@@ -52,9 +52,9 @@
 
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
     @jobs_weakify(self)
-    return ^(UITextModel *_Nullable model) {
+    return ^(UIButtonModel *_Nullable model) {
         @jobs_strongify(self)
-        self.titleL.text = model.text;
+        super.jobsRichElementsInCellWithModel(model);
     };
 }
 
@@ -72,19 +72,6 @@
     [self.contentView.layer addSublayer:self.lineLayer];
 }
 #pragma mark —— lazyLoad
-- (UILabel *)titleL{
-    if (!_titleL) {
-        _titleL = UILabel.new;
-        _titleL.textColor = JobsWhiteColor;
-        _titleL.font = UIFontWeightRegularSize(JobsWidth(15));
-        _titleL.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:_titleL];
-        [_titleL mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-        }];
-    }return _titleL;
-}
-
 -(UIBezierPath *)linePath{
     if(!_linePath){
         _linePath = UIBezierPath.bezierPath;
