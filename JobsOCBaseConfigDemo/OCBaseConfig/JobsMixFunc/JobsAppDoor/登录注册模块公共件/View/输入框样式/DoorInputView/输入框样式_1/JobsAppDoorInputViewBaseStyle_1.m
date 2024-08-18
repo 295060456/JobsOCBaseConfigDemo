@@ -9,10 +9,10 @@
 #import "JobsAppDoorInputViewBaseStyle_1.h"
 
 @interface JobsAppDoorInputViewBaseStyle_1 ()
-//UI
+/// UI
 @property(nonatomic,strong)UIButton *countDownBtn;
 @property(nonatomic,strong)JobsMagicTextField *textField;
-//Data
+/// Data
 @property(nonatomic,strong)NSString *titleStr_1;
 @property(nonatomic,strong)NSString *titleStr_2;
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
@@ -22,14 +22,12 @@
 @end
 
 @implementation JobsAppDoorInputViewBaseStyle_1
-
 @synthesize thisViewSize = _thisViewSize;
-
 - (instancetype)init{
     if (self = [super init]) {
 //        self.backgroundColor = JobsRedColor;
-        self.titleStr_1 = @"点击";
-        self.titleStr_2 = @"发送验证码";
+        self.titleStr_1 = JobsInternationalization(@"点击");
+        self.titleStr_2 = JobsInternationalization(@"发送验证码");
         [self layerBorderCor:JobsWhiteColor andBorderWidth:1];
     }return self;
 }

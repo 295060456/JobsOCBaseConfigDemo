@@ -8,12 +8,12 @@
 #import "JobsBasePopupView.h"
 
 @interface JobsBasePopupView ()
-// UI
+/// UI
 @property(nonatomic,strong)UILabel *titleLab;
 @property(nonatomic,strong)UILabel *subTitleLab;
 @property(nonatomic,strong)UIButton *btn1;
 @property(nonatomic,strong)UIButton *btn2;
-// Data
+/// Data
 
 @end
 
@@ -30,7 +30,7 @@
         
     }return self;
 }
-//具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock)jobsRichElementsInViewWithModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
@@ -53,7 +53,7 @@
         }
     };
 }
-//具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(id _Nullable)model{
     return CGSizeMake(JobsMainScreen_WIDTH() - JobsWidth(30), JobsWidth(210));
 }

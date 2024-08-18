@@ -14,7 +14,7 @@
     UIButton *toRegisterBtn;
     UITextField *lastEditTextField;// 上一次处于编辑状态的TextField
 }
-//UI
+/// UI
 @property(nonatomic,strong)JobsAppDoorLogoContentView *logoContentView;
 @property(nonatomic,strong)JobsAppDoorContentView *jobsAppDoorContentView;/// 登录和注册
 @property(nonatomic,strong,nullable)JobsAppDoorForgotCodeContentView *forgotCodeContentView;/// 忘记密码
@@ -23,7 +23,7 @@
 @property(nonatomic,strong,nullable)ZFPlayerController *player;
 @property(nonatomic,strong,nullable)ZFAVPlayerManager *playerManager;
 @property(nonatomic,strong,nullable)CustomZFPlayerControlView *customPlayerControlView;
-//Data
+/// Data
 @property(nonatomic,assign)BOOL registerDoorInputEditing;
 @property(nonatomic,assign)CGFloat logoContentViewY;/// 初始高度
 @property(nonatomic,assign)CGFloat forgotCodeContentViewY;/// 初始高度

@@ -9,11 +9,11 @@
 #import "JobsAppDoorInputViewBaseStyle_8.h"
 
 @interface JobsAppDoorInputViewBaseStyle_8 ()
-//UI
+/// UI
 @property(nonatomic,strong)UIButton *securityModeBtn;
 @property(nonatomic,strong)ZYTextField *textField;
 @property(nonatomic,strong)UILabel *titleLab;
-//Data
+/// Data
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 
 @end

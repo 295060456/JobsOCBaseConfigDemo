@@ -26,9 +26,7 @@
 @end
 
 @implementation JobsCustomView
-
 @synthesize viewModel = _viewModel;
-
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{

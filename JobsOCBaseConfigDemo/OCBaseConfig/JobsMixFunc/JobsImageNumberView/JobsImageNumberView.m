@@ -8,10 +8,10 @@
 #import "JobsImageNumberView.h"
 
 @interface JobsImageNumberView ()
-// UI
+/// UI
 @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)BaseCollectionView *collectionView;
-// Data
+/// Data
 @property(nonatomic,strong)NSArray <UIImage *>*dataMutArr;
 
 @end

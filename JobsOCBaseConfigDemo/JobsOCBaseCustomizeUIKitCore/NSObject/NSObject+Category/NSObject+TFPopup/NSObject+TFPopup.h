@@ -76,9 +76,9 @@ NS_ASSUME_NONNULL_BEGIN
                popupParameter:(TFPopupParam *_Nullable)popupParameter;
 #pragma mark —— 创建滑动模式的View
 /// 没有自定义 popupParam（滑动模式）
--(jobsByViewBlock _Nonnull)popupshowSlideWithView;
+-(jobsByViewBlock _Nonnull)popupShowSlideWithView;
 /// 有自定义popupParam（滑动模式）
--(void)popupshowSlideWithView:(UIView __kindof *_Nonnull)view
+-(void)popupShowSlideWithView:(UIView __kindof *_Nonnull)view
                popupParameter:(TFPopupParam *_Nullable)popupParameter;
 #pragma mark —— PopView
 /// 出现的弹窗需要手动触发关闭

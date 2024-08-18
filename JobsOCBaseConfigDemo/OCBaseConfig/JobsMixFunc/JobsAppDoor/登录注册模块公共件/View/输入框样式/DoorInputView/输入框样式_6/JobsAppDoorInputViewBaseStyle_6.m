@@ -8,10 +8,10 @@
 #import "JobsAppDoorInputViewBaseStyle_6.h"
 
 @interface JobsAppDoorInputViewBaseStyle_6 ()
-//UI
+/// UI
 @property(nonatomic,strong)JobsMagicTextField *textField;
 @property(nonatomic,strong)AuthCodeLab *authCodeLab;
-//Data
+/// Data
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 
 @end

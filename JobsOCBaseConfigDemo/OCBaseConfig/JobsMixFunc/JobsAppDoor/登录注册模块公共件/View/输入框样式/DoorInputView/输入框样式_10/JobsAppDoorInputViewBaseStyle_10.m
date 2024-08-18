@@ -8,10 +8,10 @@
 #import "JobsAppDoorInputViewBaseStyle_10.h"
 
 @interface JobsAppDoorInputViewBaseStyle_10 ()
-//UI
+/// UI
 @property(nonatomic,strong)ZYTextField *textField;
 @property(nonatomic,strong)UILabel *titleLab;
-//Data
+/// Data
 @property(nonatomic,strong)NSString *titleStr_1;
 @property(nonatomic,strong)NSString *titleStr_2;
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
@@ -21,7 +21,6 @@
 @end
 
 @implementation JobsAppDoorInputViewBaseStyle_10
-
 @synthesize thisViewSize = _thisViewSize;
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{

@@ -21,7 +21,6 @@
 @end
 
 @implementation JobsAppDoorInputViewBaseStyle_9
-
 @synthesize thisViewSize = _thisViewSize;
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{

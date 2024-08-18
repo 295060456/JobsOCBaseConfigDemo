@@ -10,13 +10,13 @@
 @class JobsAppDoorDoorInputViewBaseStyle;
 
 @interface JobsAppDoorForgotCodeContentView ()
-// UI
+/// UI
 @property(nonatomic,strong)UILabel *titleLab;// 标题
 @property(nonatomic,strong)UIButton *backToLoginBtn;// 返回登录
 @property(nonatomic,strong)UIButton *contactCustomerServiceBtn;// 联系客服按钮
 @property(nonatomic,strong)UILabel *subTitleLab;// 副标题
 @property(nonatomic,strong)JobsHotLabelWithSingleLine *hl;
-// Data
+/// Data
 //@property(nonatomic,strong)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
 //@property(nonatomic,strong)BaiShaETProjCustomerContactModel *customerContactModel;
 

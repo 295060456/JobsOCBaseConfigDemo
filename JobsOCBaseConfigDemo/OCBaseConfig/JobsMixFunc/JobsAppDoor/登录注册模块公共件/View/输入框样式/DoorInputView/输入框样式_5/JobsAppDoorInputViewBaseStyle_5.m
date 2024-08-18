@@ -26,7 +26,6 @@
 @end
 
 @implementation JobsAppDoorInputViewBaseStyle_5
-
 @synthesize thisViewSize = _thisViewSize;
 -(void)dealloc{
     [_authCodeBtn timerDestroy];

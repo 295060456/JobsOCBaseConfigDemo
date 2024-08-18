@@ -10,15 +10,13 @@
 @interface JobsShowNumView ()
 /// UI
 /// Data
-@property(nonatomic,strong)NSMutableArray <UIButton *>*btnMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UIButton *>*btnMutArr;
 
 @end
 
 @implementation JobsShowNumView
-
 @synthesize viewModel = _viewModel;
 @synthesize thisViewSize = _thisViewSize;
-
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{

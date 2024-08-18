@@ -18,9 +18,7 @@
 @end
 
 @implementation JobsAppDoorInputViewBaseStyle_3
-
 @synthesize thisViewSize = _thisViewSize;
-
 - (instancetype)init{
     if (self = [super init]) {
 //        self.backgroundColor = JobsRedColor;

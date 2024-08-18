@@ -9,18 +9,16 @@
 #import "JobsAppDoorInputViewBaseStyle_4.h"
 
 @interface JobsAppDoorInputViewBaseStyle_4 ()
-//UI
+/// UI
 @property(nonatomic,strong)ImageCodeView *imageCodeView;
 @property(nonatomic,strong)JobsMagicTextField *textField;
-//Data
+/// Data
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 
 @end
 
 @implementation JobsAppDoorInputViewBaseStyle_4
-
 @synthesize thisViewSize = _thisViewSize;
-
 - (instancetype)init{
     if (self = [super init]) {
 //        self.backgroundColor = JobsRedColor;

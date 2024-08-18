@@ -10,9 +10,7 @@
 @implementation NSObject (TFPopup)
 #pragma mark —— 弹出提示框
 -(jobsByStringBlock _Nonnull)toastMsg{
-    @jobs_weakify(self)
     return ^(NSString *_Nullable msg) {
-        @jobs_strongify(self)
         [TFPopupToast tf_show:jobsGetMainWindow()
                           msg:msg
                 animationType:TFAnimationTypeScale];
@@ -52,10 +50,8 @@
 }
 #pragma mark —— 创建滑动模式的View
 /// 没有自定义 popupParam（滑动模式）
--(jobsByViewBlock _Nonnull)popupshowSlideWithView{
-    @jobs_weakify(self)
+-(jobsByViewBlock _Nonnull)popupShowSlideWithView{
     return ^(UIView __kindof * _Nullable view) {
-        @jobs_strongify(self)
         if (!view) return;
         TFPopupParam *popupParameter = makeSlidePopupParameterByViewHeight(view.size.height);
         if(AppDelegate.tabBarVC){
@@ -70,7 +66,7 @@
     };
 }
 /// 有自定义popupParam（滑动模式）
--(void)popupshowSlideWithView:(UIView __kindof *_Nonnull)view
+-(void)popupShowSlideWithView:(UIView __kindof *_Nonnull)view
                popupParameter:(TFPopupParam *_Nullable)popupParameter{
     if(!popupParameter) popupParameter = makeSlidePopupParameterByViewHeight(view.height);
     if(AppDelegate.tabBarVC){
