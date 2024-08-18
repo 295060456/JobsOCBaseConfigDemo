@@ -63,7 +63,7 @@
 #pragma mark —— UITableView 数据源
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return self.viewModel.rowNumber;
+    return self.viewModel.colNumber;
 }
 #pragma mark —— UITableView 代理
 - (UITableViewCell *)tableView:(UITableView *)tableView

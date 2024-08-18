@@ -15,7 +15,7 @@ const CGFloat LineWidth = 2;
 @interface XZExcelConfigureViewModel()
 
 @end
-// toStringByInt(i*j).add(JobsInternationalization(@"楼"));
+
 @implementation XZExcelConfigureViewModel
 
 - (instancetype)init{
@@ -26,18 +26,19 @@ const CGFloat LineWidth = 2;
 
 - (void)configureData{
     for (int i = 1; i <= 50; i++) {/// y
-        NSMutableArray <UITextModel *>*row = NSMutableArray.array;
+        NSMutableArray <UITextModel *>*row = NSMutableArray.array;//30
         for (int j = 1; j <= 30; j++){/// x
             UITextModel *model = UITextModel.new;
             model.text = toStringByInt(i*j);
             row.jobsAddObject(model);/// 一行的数据
-        }self.contentArr.jobsAddObject(row);
+        }
+        self.contentArr.jobsAddObject(row);//50
     }
     
     self.itemH = 35;
     self.itemW = 60;
-    self.rowNumber = self.contentArr[0].count;
-    self.colNumber = self.contentArr.count;
+    self.rowNumber = self.contentArr[0].count;// 30
+    self.colNumber = self.contentArr.count;// 50
     NSLog(@"");
 }
 #pragma mark —— lazyLoad

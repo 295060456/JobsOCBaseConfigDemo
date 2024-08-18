@@ -79,6 +79,10 @@
     if (scrollView.contentOffset.x < 0) {
         scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
     }
+    NSLog(@"TopHeadView - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)// 1242
+    if(scrollView.contentOffset.x > 1242){
+        scrollView.contentOffset = CGPointMake(1242, scrollView.contentOffset.y);
+    }
 }
 #pragma mark —— getter and setter
 -(UICollectionViewFlowLayout *)layout{

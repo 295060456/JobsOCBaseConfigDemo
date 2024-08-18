@@ -49,18 +49,24 @@
     };
 }
 
-- (void)scrollerItemWithContentOffset:(CGPoint )contentOffset{
+- (void)scrollerItemWithContentOffset:(CGPoint)contentOffset{
     self.collectionView.contentOffset = contentOffset;
 }
 #pragma mark —— lazyLoadscrollerViwe 代理
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     /// 防止在初始情况下，无意义的往右拉动
+    NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)// 1242
     if (scrollView.contentOffset.x >= 0) {
-        @jobs_weakify(self)
-        self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
-            @jobs_strongify(self)
-            [self.delegate mianTableViewCellScrollerDid:scrollView];
-        });
+        /// 防止在数据拉完的情况下，无意义的往左拉动
+        if(scrollView.contentOffset.x <= 1242){
+            @jobs_weakify(self)
+            self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
+                @jobs_strongify(self)
+                [self.delegate mianTableViewCellScrollerDid:scrollView];
+            });
+        }else{
+            scrollView.contentOffset = CGPointMake(1242, scrollView.contentOffset.y);
+        }
     }else{
         scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
     }
