@@ -46,6 +46,7 @@
     return ^(NSMutableArray <UITextModel *>*_Nullable model) {
         @jobs_strongify(self)
         self.model = model;
+        [self.collectionView reloadData];
     };
 }
 
@@ -64,12 +65,8 @@
                 @jobs_strongify(self)
                 [self.delegate mianTableViewCellScrollerDid:scrollView];
             });
-        }else{
-            scrollView.contentOffset = CGPointMake(1242, scrollView.contentOffset.y);
-        }
-    }else{
-        scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
-    }
+        }else scrollView.contentOffset = CGPointMake(1242, scrollView.contentOffset.y);
+    }else scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
 }
 #pragma mark —— lazyLoadUICollectionView 代理和数据源
 - (NSInteger)collectionView:(UICollectionView *)collectionView
@@ -82,6 +79,7 @@
     MainTableViewCellITem *cell = [MainTableViewCellITem cellWithCollectionView:collectionView
                                                                    forIndexPath:indexPath];
     cell.contentView.backgroundColor = cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
+    NSLog(@"KKK1 = %ld-%@",self.indexPath.row + 1,self.model[0].text);
     cell.jobsRichElementsInCellWithModel(self.viewModel_);
     cell.jobsRichElementsInCellWithModel2(self.model[indexPath.row]);
     return cell;

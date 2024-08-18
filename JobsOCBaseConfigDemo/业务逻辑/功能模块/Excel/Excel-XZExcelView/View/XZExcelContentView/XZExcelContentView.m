@@ -71,8 +71,10 @@
     MainTableViewCell *cell = MainTableViewCell.cellStyleValue1WithTableView(tableView);
     cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
     cell.delegate = self;
+    cell.indexPath = indexPath;
     cell.jobsRichElementsInCellWithModel(self.viewModel);
     NSMutableArray <UITextModel *>*dataArr = self.viewModel.contentArr[indexPath.row];
+    NSLog(@"KKK0 = %ld-%@",(long)indexPath.row + 1,dataArr[0].text);
     cell.jobsRichElementsInCellWithModel2(dataArr);
     return cell;
 }
