@@ -9,15 +9,14 @@
 #import "JobsAppDoorLoginContentView.h"
 
 @interface JobsAppDoorLoginContentView ()
-
-// UI
+/// UI
 @property(nonatomic,strong)UIButton *toRegisterBtn;/// 去注册
 @property(nonatomic,strong)UILabel *titleLab;/// 标题
 @property(nonatomic,strong)UIButton *abandonLoginBtn;/// 返回首页按钮
 @property(nonatomic,strong)UIButton *sendBtn;/// 登录
 @property(nonatomic,strong)UIButton *storeCodeBtn;/// 记住密码
 @property(nonatomic,strong)UIButton *findCodeBtn;/// 忘记密码
-// Data
+/// Data
 @property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
 @property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*loginDoorInputViewBaseStyleMutArr;
 

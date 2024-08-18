@@ -16,9 +16,7 @@
 @end
 
 @implementation JobsOCBaseConfigTestPopupView
-
 @synthesize viewModel = _viewModel;
-
 #pragma mark —— 单例化和销毁
 +(void)destroySingleton{
     static_testPopupViewOnceToken = 0;

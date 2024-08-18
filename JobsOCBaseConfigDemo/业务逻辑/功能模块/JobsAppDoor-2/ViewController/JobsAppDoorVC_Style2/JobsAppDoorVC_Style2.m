@@ -8,7 +8,7 @@
 #import "JobsAppDoorVC_Style2.h"
 
 @interface JobsAppDoorVC_Style2 ()
-//UI
+/// UI
 @property(nonatomic,strong)UIImageView *bgImgV;
 @property(nonatomic,strong)UIButton *customerServiceBtn;
 @property(nonatomic,strong)ZFPlayerController *player;
@@ -18,7 +18,7 @@
 @property(nonatomic,strong,nullable)JobsAppDoorRegisterContentView *registerContentView;/// 注册页面
 @property(nonatomic,strong,nullable)JobsAppDoorForgotCodeContentView *forgotCodeContentView;/// 忘记密码
 @property(nonatomic,strong,nullable)JobsAppDoorLogoContentView *logoContentView;
-//Data
+/// Data
 @property(nonatomic,assign)CGFloat logoContentViewY;/// 初始高度
 @property(nonatomic,assign)CGFloat loginContentViewY;/// 初始高度
 @property(nonatomic,assign)CGFloat registerContentViewY;/// 初始高度
