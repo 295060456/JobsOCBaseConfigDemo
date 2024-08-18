@@ -2261,7 +2261,120 @@ NSObject <|-- BaseProtocol
   * 右侧的菜单内容是**`UICollectionView`** 
 * [**`JXCategoryView`**](https://github.com/pujiaxin33/JXCategoryView)的垂直表达
 
-### 28、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+#### 28、Excel方案：[**JobsExcelView**]()
+
+* 框架介绍
+
+  * 一横行用**`UITableViewCell`**、每一个单元小格是**`UICollectionViewCell`**
+
+  * 起始格子
+
+    * UI：**`JobsExcelView`** .**`titleL`**
+    * 数据 :**`JobsExcelConfigureViewModel`**.**`contentStr_00`**
+
+  * 其他格子
+
+    * 左边第一竖排的标题：**`JobsExcelLeftListView`**，内含一个**`UITableView`**，其中包含<font color=green>**`TableViewOneCell`**</font>
+    * 顶部第一横行的标题：**`JobsExcelTopHeadView`**，内含一个**`UICollectionView`**，其中包含<font color=green>**`JobsTopViewItem`**</font>
+    * （中部的）内容数据：**`JobsExcelContentView`**，内含一个**`UITableView`**，其中包含**`MainTableViewCell`**
+      * **`MainTableViewCell`**内含一个**`UICollectionView`**，其中包含<font color=green>**`MainTableViewCellItem`**</font>
+
+  * 数据源
+
+    * Excel表格的总数据源：**`JobsExcelConfigureViewModel`**
+    * 对单个的小格子的数据源用**`UITextModel`**
+
+  * 一些人性化进阶设置
+
+    **MainTableViewCell**
+
+     ```objective-c
+     #pragma mark —— UIScrollViewDelegate
+     - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+         /// 防止在初始情况下，无意义的往右拉动
+         NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)// 1242
+         if (scrollView.contentOffset.x >= 0) {
+             /// 防止在数据拉完的情况下，无意义的往左拉动
+             CGFloat d = (self.viewModel_.rowNumber * self.viewModel_.itemW - self.viewModel_.XZExcelW) - self.viewModel_.itemW * 2 + 10;
+             if(scrollView.contentOffset.x <= d){
+                 @jobs_weakify(self)
+                 self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
+                     @jobs_strongify(self)
+                     [self.delegate mianTableViewCellScrollerDid:scrollView];
+                 });
+             }else scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
+         }else scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
+     }
+     ```
+
+    **JobsExcelLeftListView**
+
+    ```objective-c
+    #pragma mark —— UIScrollViewDelegate
+    - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+        NSLog(@"KKK3 = %f",scrollView.contentOffset.y);
+        /// 防止在初始情况下，无意义的往下拉动
+        if (scrollView.contentOffset.y < 0) {
+            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
+        }else{
+            CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH) - self.viewModel.itemH * 2 - 4;
+            if(scrollView.contentOffset.y > d){
+                scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
+            }else self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
+        }
+    }
+    ```
+
+    **JobsExcelTopHeadView**
+
+    ```objective-c
+    #pragma mark —— UIScrollViewDelegate
+    - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+        self.viewModel.jobsKVC(HorizontalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
+        /// 防止在初始情况下，无意义的往右拉动
+        if (scrollView.contentOffset.x < 0) {
+            scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
+        }
+        NSLog(@"JobsExcelTopHeadView - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)// 1242
+        if(scrollView.contentOffset.x > 1242){
+            scrollView.contentOffset = CGPointMake(1242, scrollView.contentOffset.y);
+        }
+    }
+    ```
+
+* 完整调用
+
+  ```objective-c
+  /// UI
+  @property(nonatomic,strong)JobsExcelView *excelView;
+  /// Data
+  @property(nonatomic,strong)JobsExcelConfigureViewModel *excelData;
+  ```
+
+  ```objective-c
+  -(JobsExcelView *)excelView{
+      if(!_excelView){
+          _excelView = JobsExcelView.new;
+          _excelView.backgroundColor = JobsYellowColor;
+          [self.view addSubview:_excelView];
+          [_excelView mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.center.equalTo(self.view);
+              make.size.mas_equalTo([JobsExcelView viewSizeWithModel:nil]);
+          }];
+          _excelView.jobsRichElementsInViewWithModel(self.excelData);
+      }return _excelView;
+  }
+  
+  -(JobsExcelConfigureViewModel *)excelData{
+      if(!_excelData){
+          _excelData = JobsExcelConfigureViewModel.new;
+          _excelData.XZExcelH = [JobsExcelView viewSizeWithModel:nil].height;
+          _excelData.XZExcelW = [JobsExcelView viewSizeWithModel:nil].width;
+      }return _excelData;
+  }
+  ```
+
+### 29、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 

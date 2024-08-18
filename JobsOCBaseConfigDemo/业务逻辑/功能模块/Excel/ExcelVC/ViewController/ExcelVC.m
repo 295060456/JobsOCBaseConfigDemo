@@ -366,9 +366,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             NSMutableArray <__kindof UIViewModel *>*rowMutArr = NSMutableArray.array;
             
             {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"XZExcel")
-                                                               attributeSubTitle:JobsInternationalization(@"XZExcel")];
-                viewModel.cls = XZExcelVC.class;
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsExcel")
+                                                               attributeSubTitle:JobsInternationalization(@"JobsExcel")];
+                viewModel.cls = JobsExcelVC.class;
                 [rowMutArr addObject:viewModel];
             }
             
