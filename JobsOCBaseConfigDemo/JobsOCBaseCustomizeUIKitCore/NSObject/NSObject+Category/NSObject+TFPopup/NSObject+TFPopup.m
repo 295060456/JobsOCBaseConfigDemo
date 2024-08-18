@@ -111,7 +111,7 @@
 -(JobsNoticePopupView *)noticePopupView{
     JobsNoticePopupView *_noticePopupView = JobsNoticePopupView.new;
     _noticePopupView.size = [JobsNoticePopupView viewSizeWithModel:nil];
-    [_noticePopupView richElementsInViewWithModel:UIViewModel.new];
+    _noticePopupView.jobsRichElementsInViewWithModel(UIViewModel.new);
     return _noticePopupView;
 }
 #pragma mark —— @property(nonatomic,strong)TFPopupParam *popupParameter;

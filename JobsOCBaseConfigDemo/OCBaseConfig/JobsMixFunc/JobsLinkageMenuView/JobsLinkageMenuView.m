@@ -58,30 +58,34 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(UIViewModel __kindof *_Nullable)model{
-    if (JobsMainScreen_HEIGHT() < FULLVIEW_FOR6) {
-        self.btnHeight = 43;
-        self.DTScrollTag = 5;
-    }else if (JobsMainScreen_HEIGHT() == FULLVIEW_FOR6){
-        self.btnHeight = 44;
-        self.DTScrollTag = 6;
-    }else if (JobsMainScreen_HEIGHT() > FULLVIEW_FOR6){
-        self.btnHeight = 42.7;
-        self.DTScrollTag = 7;
-    }
-    
-    self.textSize = 14.0;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel __kindof *_Nullable model) {
+        @jobs_strongify(self)
+        if (JobsMainScreen_HEIGHT() < FULLVIEW_FOR6) {
+            self.btnHeight = 43;
+            self.DTScrollTag = 5;
+        }else if (JobsMainScreen_HEIGHT() == FULLVIEW_FOR6){
+            self.btnHeight = 44;
+            self.DTScrollTag = 6;
+        }else if (JobsMainScreen_HEIGHT() > FULLVIEW_FOR6){
+            self.btnHeight = 42.7;
+            self.DTScrollTag = 7;
+        }
+        
+        self.textSize = 14.0;
 
-    self.selectViewColor = JobsWhiteColor;
-    self.blankHeight = self.btnHeight - self.BOTTOMVIEW_HEIGHT;
-    self.half_blankHeight = (self.btnHeight - self.BOTTOMVIEW_HEIGHT) / 2.0;
-    self.choseTag = 1; //默认选中菜单栏第一个
-    
-    self.rightview.alpha = 1;
-    self.menuView.alpha = 1;
-    self.lineView.alpha = 1;
-    /// 默认显示
-    [self choseMenu:self.btnMutArr[0]];
+        self.selectViewColor = JobsWhiteColor;
+        self.blankHeight = self.btnHeight - self.BOTTOMVIEW_HEIGHT;
+        self.half_blankHeight = (self.btnHeight - self.BOTTOMVIEW_HEIGHT) / 2.0;
+        self.choseTag = 1; //默认选中菜单栏第一个
+        
+        self.rightview.alpha = 1;
+        self.menuView.alpha = 1;
+        self.lineView.alpha = 1;
+        /// 默认显示
+        [self choseMenu:self.btnMutArr[0]];
+    };
 }
 #pragma mark —— MenuButton Method
 -(void)choseMenu:(UIButton __kindof *)button{

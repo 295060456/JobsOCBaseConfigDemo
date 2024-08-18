@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_END
          [_inputView mas_makeConstraints:^(MASConstraintMaker *make) {
              make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, JobsWidth(16), 0, JobsWidth(-16)));
          }];
-         [_inputView richElementsInViewWithModel:self.inputViewStyleModel];
+         _inputView.jobsRichElementsInViewWithModel(self.inputViewStyleModel);
          @jobs_weakify(self)
          [_inputView actionObjectBlock:^(id data) {
              @jobs_strongify(self)

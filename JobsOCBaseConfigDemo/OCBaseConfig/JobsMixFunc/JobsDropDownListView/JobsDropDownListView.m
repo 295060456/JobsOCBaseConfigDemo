@@ -64,11 +64,15 @@
     [self removeFromSuperview];
 }
 
--(void)richElementsInViewWithModel:(NSMutableArray <__kindof UIViewModel *>*_Nullable)model{
-    if ([model isKindOfClass:NSArray.class]) {
-        self.dataMutArr = model;
-        self.tableView.alpha = 1;
-    }
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(NSMutableArray <__kindof UIViewModel *>*_Nullable model) {
+        @jobs_strongify(self)
+        if ([model isKindOfClass:NSArray.class]) {
+            self.dataMutArr = model;
+            self.tableView.alpha = 1;
+        }
+    };
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

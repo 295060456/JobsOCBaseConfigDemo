@@ -82,11 +82,16 @@
     return CGSizeMake(JobsWidth(345), JobsWidth(30));
 }
 
--(void)richElementsInViewWithModel:(JobsAppDoorInputViewBaseStyleModel *_Nullable)doorInputViewBaseStyleModel{
-    self.doorInputViewBaseStyleModel = doorInputViewBaseStyleModel;
-    self.imageCodeView.alpha = 1;
-    self.textField.alpha = 1;
-    [self configTextField];
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(JobsAppDoorInputViewBaseStyleModel *_Nullable data) {
+        @jobs_strongify(self)
+        self.doorInputViewBaseStyleModel = data;
+        self.imageCodeView.alpha = 1;
+        self.textField.alpha = 1;
+        [self configTextField];
+
+    };
 }
 #pragma mark —— JobsDoorInputViewProtocol
 -(void)changeTextFieldAnimationColor:(BOOL)toRegisterBtnSelected{

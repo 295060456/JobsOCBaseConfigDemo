@@ -250,11 +250,10 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //}
 ///// 在外层进行调用，[ 需要被展现的视图 popupShowScaleWithView:popupView];
 //-(JobsOCBaseConfigTestPopupView *)jobsTestPopView:(UIViewModel *_Nullable)viewModel{
-//
 //#ifdef DEBUG
 //    JobsOCBaseConfigTestPopupView *testPopupView = JobsOCBaseConfigTestPopupView.sharedInstance;
 //    testPopupView.size = [CasinoUpgradePopupView viewSizeWithModel:nil];
-//    [testPopupView richElementsInViewWithModel:viewModel ? : self.testPopViewData];
+//    testPopupView.jobsRichElementsInViewWithModel(viewModel ? : self.testPopViewData);
 //    @jobs_weakify(popupView)
 //    [testPopupView actionObjectBlock:^(UIButton *data) {
 //        @jobs_strongify(popupView)
@@ -277,7 +276,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     UIView<BaseViewProtocol> *popupView = popViewClass.class.sharedManager;
     // 这里设置弹出框的尺寸（最好在View内部layoutSubviews里面进行设置，外界设置的话，在某些情况下会出现异常）
     // popupView.size = [popViewClass viewSizeWithModel:nil];
-    [popupView richElementsInViewWithModel:viewModel ? : self.testPopViewData];
+    popupView.jobsRichElementsInViewWithModel(viewModel ? : self.testPopViewData);
     @jobs_weakify(popupView)
     [popupView actionObjectBlock:^(UIButton *data) {
         @jobs_strongify(popupView)
@@ -298,8 +297,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
              cancelBlock:(jobsByIDBlock _Nullable)cancelBlock{
 //    CasinoUpgradePopupView *upgradePopupView = CasinoUpgradePopupView.new;
 //    upgradePopupView.size = [CasinoUpgradePopupView viewSizeWithModel:nil];
-//    [upgradePopupView richElementsInViewWithModel:updateData];
-//
+//    upgradePopupView.jobsRichElementsInViewWithModel(updateData);
 //    [upgradePopupView actionObjectBlock:^(UIButton *data) {
 //        if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Cancel")]) {
 //            if (cancelBlock) cancelBlock(@1);

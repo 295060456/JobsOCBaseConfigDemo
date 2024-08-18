@@ -536,7 +536,7 @@
             [data addObject:viewModel];
         }
     }
-    [dropDownListView richElementsInViewWithModel:data];
+    dropDownListView.jobsRichElementsInViewWithModel(data);
     
     if (jobsDropDownListViewDirection) {
         dropDownListView.frame = CGRectMake(f.origin.x,

@@ -182,7 +182,7 @@ NS_ASSUME_NONNULL_END
      self.menuView.subViewMutArr = self.subViewMutArr;
      self.menuView.normal_titleBgImageMutArr = self.normal_titleBgImageMutArr;
      self.menuView.select_titleBgImageMutArr = self.select_titleBgImageMutArr;
-     [self.menuView richElementsInViewWithModel:nil];
+     self.menuView.jobsRichElementsInViewWithModel(nil);
      @jobs_weakify(self)
      [self.menuView actionObjectBlock:^(id _Nullable x) {
          @jobs_strongify(self)

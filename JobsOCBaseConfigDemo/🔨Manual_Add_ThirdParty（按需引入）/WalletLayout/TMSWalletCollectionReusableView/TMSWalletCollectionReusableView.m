@@ -26,9 +26,13 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 由具体的子类进行覆写
--(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-    self.viewModel = model ? : UIViewModel.new;
-    self.label.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.viewModel = model ? : UIViewModel.new;
+        self.label.alpha = 1;
+    };
 }
 #pragma mark —— lazyLoad
 -(UILabel *)label{

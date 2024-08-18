@@ -395,7 +395,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 //            make.centerY.equalTo(self.view);
 //            make.left.equalTo(self.view);
 //        }];
-//        [_menuView richElementsInViewWithModel:nil];
+//        _menuView.jobsRichElementsInViewWithModel(nil);
 //        @jobs_weakify(self)
 //        [_menuView actionObjectBlock:^(id  _Nullable x) {
 //            @jobs_strongify(self)

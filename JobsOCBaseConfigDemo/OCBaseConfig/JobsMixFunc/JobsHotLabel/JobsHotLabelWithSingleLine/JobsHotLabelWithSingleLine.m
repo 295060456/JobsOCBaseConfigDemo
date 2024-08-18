@@ -44,11 +44,15 @@
     return CGSizeMake(JobsWidth(46 * 3 + 59 * 2), [model lineNum:3] * JobsWidth(46 + 7));
 }
 /// 进数据
--(void)richElementsInViewWithModel:(NSMutableArray <UIViewModel *>*_Nullable)model{
-    if (model.count) {
-        self.viewModelDataArr = model;
-        [self createHotLabelWithArr:self.viewModelDataArr];
-    }
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(NSMutableArray <UIViewModel *>*_Nullable model) {
+        @jobs_strongify(self)
+        if (model.count) {
+            self.viewModelDataArr = model;
+            [self createHotLabelWithArr:self.viewModelDataArr];
+        }
+    };
 }
 #pragma mark —— 一些私有方法
 /// 参考 Demo：https://github.com/PhonixYing/HorizontalScrollStackView
@@ -89,7 +93,13 @@
 /**
  配置按钮
  如果在外层进行自定义化调用，那么他的调用时机要早于:
- <BaseViewProtocol> -(void)richElementsInViewWithModel:(NSMutableArray <UIViewModel *>*_Nullable)model
+ <BaseViewProtocol>
+ -(jobsByIDBlock)jobsRichElementsInViewWithModel{
+     @jobs_weakify(self)
+     return ^(NSMutableArray <UIViewModel *>*_Nullable model) {
+         @jobs_strongify(self)
+     };
+ }
  */
 -(UIButton *)configBtn:(UIViewModel *)vm{
     UIButton *btn = UIButton.new;

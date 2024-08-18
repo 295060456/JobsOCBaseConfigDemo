@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_END
              
          }];
          [self.view layoutIfNeeded];
-         [_hl richElementsInViewWithModel:self.hotLabelDataMutArr];
+          _hl.jobsRichElementsInViewWithModel(self.hotLabelDataMutArr);
      }return _hl;
  }
 

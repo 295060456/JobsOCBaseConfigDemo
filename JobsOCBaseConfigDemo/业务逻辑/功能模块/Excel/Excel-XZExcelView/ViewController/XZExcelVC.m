@@ -93,8 +93,9 @@
         [self.view addSubview:_excelView];
         [_excelView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.view);
-            make.size.mas_equalTo(CGSizeMake(JobsRealWidth() / 2, JobsRealHeight() / 2));
+            make.size.mas_equalTo([XZExcelView viewSizeWithModel:nil]);
         }];
+        _excelView.jobsRichElementsInViewWithModel(nil);
     }return _excelView;
 }
 

@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_END
              make.size.mas_equalTo(inputViewSize);
              make.top.equalTo(self).offset(JobsWidth(3));
          }];
-         [_inputView richElementsInViewWithModel:self.配置金额输入框];
+         _inputView.jobsRichElementsInViewWithModel(配置金额输入框);
          [self layoutIfNeeded];
          [_inputView setBorderWithColor:HEXCOLOR(0xEAEBED)
                             borderWidth:JobsWidth(1)

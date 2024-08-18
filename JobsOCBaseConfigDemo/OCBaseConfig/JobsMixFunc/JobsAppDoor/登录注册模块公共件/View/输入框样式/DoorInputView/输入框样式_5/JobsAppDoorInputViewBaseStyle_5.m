@@ -98,33 +98,37 @@
     return CGSizeMake(JobsWidth(305), JobsWidth(14 + 36 + 4));
 }
 /// 外层数据渲染
--(void)richElementsInViewWithModel:(JobsAppDoorInputViewBaseStyleModel *_Nullable)doorInputViewBaseStyleModel{
-    self.doorInputViewBaseStyleModel = doorInputViewBaseStyleModel ? : JobsAppDoorInputViewBaseStyleModel.new;
-    [self registerNotification];
-#warning 这里需要被修改
-//    self.chooseBtnSize = CGSizeMake([UIView widthByData:self.chooseBtnViewModel] + JobsWidth(10), JobsWidth(16));
-    if (self.doorInputViewBaseStyleModel) {
-        self.titleLab.alpha = 1;
-        switch (self.style_5) {
-            /// 带发送验证码按钮
-            case InputViewStyle_5_1:{
-                self.authCodeBtn.alpha = 1;
-            }break;
-            /// 没有额外的UI控件
-            case InputViewStyle_5_2:{
-                
-            }break;
-            /// 电话号码区号选择器
-            case InputViewStyle_5_3:{
-                self.chooseBtn.alpha = 1;
-                self.textField.alpha = 1;
-            }break;
-            default:
-                break;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(JobsAppDoorInputViewBaseStyleModel *_Nullable doorInputViewBaseStyleModel) {
+        @jobs_strongify(self)
+        self.doorInputViewBaseStyleModel = doorInputViewBaseStyleModel ? : JobsAppDoorInputViewBaseStyleModel.new;
+        [self registerNotification];
+    #warning 这里需要被修改
+    //    self.chooseBtnSize = CGSizeMake([UIView widthByData:self.chooseBtnViewModel] + JobsWidth(10), JobsWidth(16));
+        if (self.doorInputViewBaseStyleModel) {
+            self.titleLab.alpha = 1;
+            switch (self.style_5) {
+                /// 带发送验证码按钮
+                case InputViewStyle_5_1:{
+                    self.authCodeBtn.alpha = 1;
+                }break;
+                /// 没有额外的UI控件
+                case InputViewStyle_5_2:{
+                    
+                }break;
+                /// 电话号码区号选择器
+                case InputViewStyle_5_3:{
+                    self.chooseBtn.alpha = 1;
+                    self.textField.alpha = 1;
+                }break;
+                default:
+                    break;
+            }
+            self.textField.isShowDelBtn = self.doorInputViewBaseStyleModel.isShowDelBtn;/// ❎
+            [self configTextField];
         }
-        self.textField.isShowDelBtn = self.doorInputViewBaseStyleModel.isShowDelBtn;/// ❎
-        [self configTextField];
-    }
+    };
 }
 #pragma mark —— JobsDoorInputViewProtocol
 -(ZYTextField *_Nullable)getTextField{

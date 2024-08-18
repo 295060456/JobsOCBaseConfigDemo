@@ -30,17 +30,22 @@
     return CGSizeZero;
 }
 /// 由具体的子类进行覆写
--(void)richElementsInViewWithModel:(NSMutableArray <UIViewModel *>*_Nullable)model{
-    if(model.count){
-        self.titleModel = model[0];
-    }
-    
-    if(model.count >= 2){
-        self.subTitleModel = model[1];
-    }
-    
-    if(self.titleModel) self.titleBtn.alpha = 1;
-    if(self.subTitleModel) self.subTitleBtn.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(NSMutableArray <UIViewModel *>*_Nullable model) {
+        @jobs_strongify(self)
+        if(model.count){
+            self.titleModel = model[0];
+        }
+        
+        if(model.count >= 2){
+            self.subTitleModel = model[1];
+        }
+        
+        if(self.titleModel) self.titleBtn.alpha = 1;
+        if(self.subTitleModel) self.subTitleBtn.alpha = 1;
+
+    };
 }
 #pragma mark —— 一些公共方法
 -(BaseButton *)getTitleBtn{

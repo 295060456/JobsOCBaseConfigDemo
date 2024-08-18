@@ -45,10 +45,14 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-    self.jobsResetBtnImage(JobsBuddleIMG(@"bundle",@"Others",nil,@"加号.png"));
-    [self addLongPressGestureRecognizer];
-    self.iconBtn.hidden = YES;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.jobsResetBtnImage(JobsBuddleIMG(@"bundle",@"Others",nil,@"加号.png"));
+        [self addLongPressGestureRecognizer];
+        self.iconBtn.hidden = YES;
+    };
 }
 #pragma mark —— 一些私有方法
 /// 添加长按手势

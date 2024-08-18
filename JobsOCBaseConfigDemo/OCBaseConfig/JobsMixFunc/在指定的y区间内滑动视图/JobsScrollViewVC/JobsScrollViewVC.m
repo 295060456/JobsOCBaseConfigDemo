@@ -45,8 +45,7 @@
         _scrollYView.x = 0;
         _scrollYView.y = 初始位置;// 锚点1（最低点）
         _scrollYView.size = [_scrollYView viewSizeWithModel:nil];
-        [_scrollYView richElementsInViewWithModel:nil];
-        
+        _scrollYView.jobsRichElementsInViewWithModel(nil);
         @jobs_weakify(self)
         [_scrollYView actionObjectBlock:^(JobsScrollYView *data) {
             NSLog(@"sss = %f",self->_scrollYView.y);

@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_END
              make.center.equalTo(self);
              make.size.mas_equalTo([_stepView viewSizeWithModel:nil]);
          }];
-         [_stepView richElementsInViewWithModel:self.btnModelMutArr];
+        _stepView.jobsRichElementsInViewWithModel(self.btnModelMutArr);
      }return _stepView;
  }
 

@@ -48,7 +48,12 @@ BaseViewProtocol_synthesize
     [super layoutIfNeeded];
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(id _Nullable)model{}
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(id _Nullable data) {
+        @jobs_strongify(self)
+    };
+}
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGFloat)viewWidthWithModel:(id _Nullable)model{
     return 0;

@@ -17,7 +17,7 @@
 @synthesize viewModel = _viewModel;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-//        [self richElementsInViewWithModel:nil];
+        self.jobsRichElementsInViewWithModel(nil);
     }return self;
 }
 
@@ -27,9 +27,13 @@
     if (self.objectBlock) self.objectBlock(weak_self);
 }
 /// 由具体的子类进行覆写
--(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-    self.viewModel = model;
-    self.bgImageView.jobsVisible = model.bgImage;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.viewModel = model;
+        self.bgImageView.jobsVisible = model.bgImage;
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 /// UICollectionViewDelegateFlowLayout

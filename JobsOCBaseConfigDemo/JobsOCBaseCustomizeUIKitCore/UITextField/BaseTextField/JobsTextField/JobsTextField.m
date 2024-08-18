@@ -53,10 +53,14 @@ UIViewModelProtocol_synthesize
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-    self.leftView.alpha = 1;
-    self.realTextField.alpha = 1;
-    self.rightView.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.leftView.alpha = 1;
+        self.realTextField.alpha = 1;
+        self.rightView.alpha = 1;
+    };
 }
 #pragma mark —— UITextFieldDelegate
 /// 含义：在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑。

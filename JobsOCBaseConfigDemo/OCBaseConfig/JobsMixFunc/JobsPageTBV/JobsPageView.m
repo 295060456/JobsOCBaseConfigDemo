@@ -30,14 +30,18 @@
 }
 #pragma mark —— BaseViewProtocol
 //具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(NSArray <UIViewModel *>*_Nullable)model{
-    self.dataArr = model;
-    self.tableView.alpha = 1;
-//    self.backgroundImageView.image = JobsIMG(@"抖动钱包抖币用途");
-//    self.imageView_1.alpha = 1;
-//    self.imageView_2.alpha = 1;
-//    self.valueLab.text = model.goldNumber;
-//    self.btn.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(NSArray <UIViewModel *>*_Nullable model) {
+        @jobs_strongify(self)
+        self.dataArr = model;
+        self.tableView.alpha = 1;
+    //    self.backgroundImageView.image = JobsIMG(@"抖动钱包抖币用途");
+    //    self.imageView_1.alpha = 1;
+    //    self.imageView_2.alpha = 1;
+    //    self.valueLab.text = model.goldNumber;
+    //    self.btn.alpha = 1;
+    };
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

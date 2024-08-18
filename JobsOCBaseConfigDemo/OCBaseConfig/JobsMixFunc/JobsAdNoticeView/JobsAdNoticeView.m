@@ -26,8 +26,12 @@
     [super drawRect:rect];
 }
 #pragma mark —— BaseViewProtocol
--(void)richElementsInViewWithModel:(id _Nullable)model{
-    self.adNoticeLab.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(id _Nullable model) {
+        @jobs_strongify(self)
+        self.adNoticeLab.alpha = 1;
+    };
 }
 
 +(CGSize)viewSizeWithModel:(id _Nullable)model{

@@ -50,12 +50,16 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
 }
 #pragma mark —— BaseCellProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(JobsHotLabelWithMultiLineModel * _Nullable)model{
-    self.dataModel = model;
-    self.backgroundColor = self.dataModel.bgCor;
-    if (self.dataModel.viewModelMutArr.count) {
-        [self.collectionView reloadData];
-    }
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(JobsHotLabelWithMultiLineModel * _Nullable) {
+        @jobs_strongify(self)
+        self.dataModel = model;
+        self.backgroundColor = self.dataModel.bgCor;
+        if (self.dataModel.viewModelMutArr.count) {
+            [self.collectionView reloadData];
+        }
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(JobsHotLabelWithMultiLineModel * _Nullable)model{
@@ -107,12 +111,12 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
     if (kind == UICollectionElementKindSectionHeader) {
         JobsHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHeaderFooterView.class
                                                                                                        forIndexPath:indexPath];
-        [headerView richElementsInViewWithModel:self.dataModel.headerViewModel];
+        headerView.jobsRichElementsInViewWithModel(self.dataModel.headerViewModel);
         return headerView;
     }else if (kind == UICollectionElementKindSectionFooter) {
         JobsHeaderFooterView *footerView = [collectionView UICollectionElementKindSectionFooterClass:JobsHeaderFooterView.class
                                                                                                        forIndexPath:indexPath];
-        [footerView richElementsInViewWithModel:self.dataModel.footerViewModel];
+        footerView.jobsRichElementsInViewWithModel(self.dataModel.footerViewModel);
         return footerView;
     }else ReturnBaseCollectionReusableHeaderView;
 }

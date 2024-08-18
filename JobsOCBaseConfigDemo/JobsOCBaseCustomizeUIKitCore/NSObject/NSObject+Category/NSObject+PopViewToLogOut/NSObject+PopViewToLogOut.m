@@ -35,7 +35,7 @@ JobsKey(_logOutPopupView)
     if (!LogOutPopupView) {
         LogOutPopupView = JobsBasePopupView.new;
         LogOutPopupView.size = [JobsBasePopupView viewSizeWithModel:nil];
-        [LogOutPopupView richElementsInViewWithModel:self.logOutPopupVM];
+        LogOutPopupView.jobsRichElementsInViewWithModel(self.logOutPopupVM]);
         @jobs_weakify(self)
         [LogOutPopupView actionObjectBlock:^(UIButton *data) {
             @jobs_strongify(self)

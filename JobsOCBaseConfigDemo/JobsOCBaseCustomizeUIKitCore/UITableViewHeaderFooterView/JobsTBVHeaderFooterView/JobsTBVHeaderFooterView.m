@@ -25,11 +25,15 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 由具体的子类进行覆写
--(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-    self.viewModel = model ? : UIViewModel.new;
-    self.titleLab.alpha = 1;
-    self.subTitleBtn.alpha = 1;
-    self.contentView.backgroundColor = self.viewModel.bgCor;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.viewModel = model ? : UIViewModel.new;
+        self.titleLab.alpha = 1;
+        self.subTitleBtn.alpha = 1;
+        self.contentView.backgroundColor = self.viewModel.bgCor;
+    };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGFloat)heightForHeaderInSection:(id _Nullable)model{

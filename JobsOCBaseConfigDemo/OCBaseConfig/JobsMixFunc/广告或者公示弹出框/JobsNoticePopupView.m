@@ -25,10 +25,14 @@
     [super drawRect:rect];
 }
 //外层数据渲染
--(void)richElementsInViewWithModel:(id _Nullable)model{
-    self.viewModel = model ? : UIViewModel.new;
-    MakeDataNull
-    self.imageView.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(id _Nullable model) {
+        @jobs_strongify(self)
+        self.viewModel = model ? : UIViewModel.new;
+        MakeDataNull
+        self.imageView.alpha = 1;
+    };
 }
 
 -(UIImageView *)imageView{

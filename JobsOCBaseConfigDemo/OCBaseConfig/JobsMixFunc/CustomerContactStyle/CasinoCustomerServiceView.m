@@ -50,19 +50,22 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
     [super drawRect:rect];
 }
 // BaseViewProtocol
--(void)richElementsInViewWithModel:(NSMutableArray <UIViewModel *>*_Nullable)model{
-    
-    self.titleLab.alpha = 1;
-    self.contactCustomerServiceBtn.alpha = 1;
-    self.closeBtn.alpha = 1;
-    self.subTitleLab.alpha = 1;
-    self.leftIMGV.alpha = 1;
-    self.rightIMGV.alpha = 1;
-    
-    self.hotLabelDataMutArr = model;
-    if (self.hotLabelDataMutArr.count) {
-        self.hl.alpha = 1;
-    }
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(NSMutableArray <UIViewModel *>*_Nullable model) {
+        @jobs_strongify(self)
+        self.titleLab.alpha = 1;
+        self.contactCustomerServiceBtn.alpha = 1;
+        self.closeBtn.alpha = 1;
+        self.subTitleLab.alpha = 1;
+        self.leftIMGV.alpha = 1;
+        self.rightIMGV.alpha = 1;
+        
+        self.hotLabelDataMutArr = model;
+        if (self.hotLabelDataMutArr.count) {
+            self.hl.alpha = 1;
+        }
+    };
 }
 
 +(CGSize)viewSizeWithModel:(NSArray <UIViewModel *>* _Nullable)model{
@@ -170,7 +173,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
             make.size.mas_equalTo([JobsHotLabelWithSingleLine viewSizeWithModel:self.hotLabelDataMutArr]);
         }];
         [self layoutIfNeeded];
-        [_hl richElementsInViewWithModel:self.hotLabelDataMutArr];
+        _hl.jobsRichElementsInViewWithModel(self.hotLabelDataMutArr);
     }return _hl;
 }
 

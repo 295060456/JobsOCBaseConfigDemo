@@ -90,13 +90,16 @@
     return CGSizeMake(JobsWidth(303), JobsWidth(36));
 }
 
--(void)richElementsInViewWithModel:(JobsAppDoorInputViewBaseStyleModel *_Nullable)doorInputViewBaseStyleModel{
-    self.doorInputViewBaseStyleModel = doorInputViewBaseStyleModel ? : JobsAppDoorInputViewBaseStyleModel.new;
-    self.titleLab.alpha = 1;
-    self.textField.alpha = 1;
-    [self configTextField];
-    self.userInteractionEnabled = YES;
-    
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(JobsAppDoorInputViewBaseStyleModel *_Nullable doorInputViewBaseStyleModel) {
+        @jobs_strongify(self)
+        self.doorInputViewBaseStyleModel = doorInputViewBaseStyleModel ? : JobsAppDoorInputViewBaseStyleModel.new;
+        self.titleLab.alpha = 1;
+        self.textField.alpha = 1;
+        [self configTextField];
+        self.userInteractionEnabled = YES;
+    };
 }
 #pragma mark —— JobsDoorInputViewProtocol
 -(ZYTextField *_Nullable)getTextField{

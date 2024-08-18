@@ -52,11 +52,15 @@
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-//    self.viewModel = model ? : UIViewModel.new;
-//    MakeDataNull
-//    self.backgroundColor = JobsRedColor;
-    self.menuView.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+//        self.viewModel = model ? : UIViewModel.new;
+//        MakeDataNull
+//        self.backgroundColor = JobsRedColor;
+        self.menuView.alpha = 1;
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
@@ -74,7 +78,7 @@
                                                    btnConfig:self.buttonModel
                                        linkageMenuViewConfig:self.linkageMenuViewConfig];
 //        _menuView.backgroundColor = JobsRedColor;
-        [_menuView richElementsInViewWithModel:nil];
+        _menuView.jobsRichElementsInViewWithModel(nil);
         @jobs_weakify(self)
         [_menuView actionObjectBlock:^(id  _Nullable x) {
             @jobs_strongify(self)

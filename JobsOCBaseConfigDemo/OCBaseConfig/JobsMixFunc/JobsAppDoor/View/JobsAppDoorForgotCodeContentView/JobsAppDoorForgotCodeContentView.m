@@ -44,17 +44,20 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 外层数据渲染
--(void)richElementsInViewWithModel:(id _Nullable)contentViewModel{
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
     @jobs_weakify(self)
-    [self customerContact:^(CasinoCustomerContactModel *data) {
+    return ^(id _Nullable data) {
         @jobs_strongify(self)
-        self.backToLoginBtn.alpha = 1;
-        self.titleLab.alpha = 1;
-        self.contactCustomerServiceBtn.alpha = 1;
-        if (self.hotLabelDataMutArr.count) {
-            self.hl.alpha = 1;
-        }
-    }];
+        [self customerContact:^(CasinoCustomerContactModel *data) {
+            @jobs_strongify(self)
+            self.backToLoginBtn.alpha = 1;
+            self.titleLab.alpha = 1;
+            self.contactCustomerServiceBtn.alpha = 1;
+            if (self.hotLabelDataMutArr.count) {
+                self.hl.alpha = 1;
+            }
+        }];
+    };
 }
 #pragma mark —— 网络请求
 /// 获取客服联系方式
@@ -160,7 +163,7 @@
             make.size.mas_equalTo(CGSizeMake(JobsWidth(250), JobsWidth(50)));
         }];
         [self layoutIfNeeded];
-        [_hl richElementsInViewWithModel:self.hotLabelDataMutArr];
+        _hl.jobsRichElementsInViewWithModel(self.hotLabelDataMutArr);
     }return _hl;
 }
 /**
