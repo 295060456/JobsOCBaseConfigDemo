@@ -125,7 +125,7 @@ heightForFooterInSection:(NSInteger)section{
     /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作❌
     /// 只有 tbvFooterView.backgroundView.backgroundColor 是有效操作✅
     tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xFFFFFF);
-    [tbvFooterView richElementsInViewWithModel:nil];
+    tbvFooterView.jobsRichElementsInViewWithModel(nil);
     @jobs_weakify(self)
     [tbvFooterView actionObjectBlock:^(id data) {
         @jobs_strongify(self)

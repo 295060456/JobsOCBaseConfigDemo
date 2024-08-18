@@ -79,12 +79,16 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-    self.viewModel = model;
-    self.loveBtn.alpha = 1;
-    self.commentBtn.alpha = 1;
-    self.shareBtn.alpha = 1;
-    [self 子视图垂直等间距排列];
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.viewModel = model;
+        self.loveBtn.alpha = 1;
+        self.commentBtn.alpha = 1;
+        self.shareBtn.alpha = 1;
+        [self 子视图垂直等间距排列];
+    };
 }
 #pragma mark —— 一些公有方法
 -(NSMutableArray <UIButton *>*)getButtonArr{
@@ -285,9 +289,8 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
             [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
                 @jobs_strongify(self)
                 self->_shareBtn.tag = MKRightBtnViewBtnType_shareBtn;//写在block外部，此值异常
-                
                 JobsShareView *shareView = JobsShareView.new;
-                [shareView richElementsInViewWithModel:nil];
+                shareView.jobsRichElementsInViewWithModel(nil);
                 self.popupshowSlideWithView(shareView);
                 if (self.objectBlock) self.objectBlock(self->_shareBtn);
             }];return nil;

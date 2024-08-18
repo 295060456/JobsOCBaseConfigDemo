@@ -60,11 +60,15 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 外层数据渲染
--(void)richElementsInViewWithModel:(id _Nullable)contentViewModel{
-    self.backToLoginBtn.alpha = 1;
-    self.titleLab.alpha = 1;
-    [self makeInputView];
-    self.sendBtn.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(id _Nullable model) {
+        @jobs_strongify(self)
+        self.backToLoginBtn.alpha = 1;
+        self.titleLab.alpha = 1;
+        [self makeInputView];
+        self.sendBtn.alpha = 1;
+    };
 }
 #pragma mark —— 一些私有化方法
 -(void)makeInputView{
@@ -80,8 +84,7 @@
             }
             
         }
-        
-        [inputViewBaseStyle richElementsInViewWithModel:self.registerDoorInputViewBaseStyleModelMutArr[i]];//进数据
+        inputViewBaseStyle.jobsRichElementsInViewWithModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);//进数据
         [self addSubview:inputViewBaseStyle];
         inputViewBaseStyle.size = CGSizeMake(self.width - RegisterBtnWidth - JobsWidth(40), ThingsHeight);
         inputViewBaseStyle.centerX = self.titleLab.centerX;

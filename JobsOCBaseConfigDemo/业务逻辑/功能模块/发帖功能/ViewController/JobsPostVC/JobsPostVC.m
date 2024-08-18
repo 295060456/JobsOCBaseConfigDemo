@@ -307,7 +307,7 @@ gestureRecognizerBegan:(UILongPressGestureRecognizer *)longPgr
 gestureRecognizerChange:(UILongPressGestureRecognizer *)longPgr
         indexPath:(NSIndexPath *)indexPath {
     CGPoint point = [longPgr locationInView:self.view];
-    [self.postDelView richElementsInViewWithModel:@(point.y >= self.postDelView.hx_y)];
+    self.postDelView.jobsRichElementsInViewWithModel(@(point.y >= self.postDelView.hx_y));
 }
 
 - (void)photoView:(HXPhotoView *)photoView
@@ -325,7 +325,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         self.postDelView.y = JobsMainScreen_HEIGHT();
     } completion:^(BOOL finished) {
         @jobs_strongify(self)
-        [self.postDelView richElementsInViewWithModel:@(NO)];
+        self.postDelView.jobsRichElementsInViewWithModel(@(NO));
     }];
 }
 #pragma mark —— lazyLoad
@@ -368,7 +368,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
             make.right.equalTo(self.view).offset(JobsWidth(-0));
             make.height.mas_equalTo(JobsWidth(101));
         }];
-        [_textView richElementsInViewWithModel:self.textModel];
+        _textView.jobsRichElementsInViewWithModel(self.textModel);
         @jobs_weakify(self)
         [_textView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
@@ -421,7 +421,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         _postDelView = JobsPostDelView.new;
         [self.view addSubview:_postDelView];
         _postDelView.frame = [JobsPostDelView viewFrameWithModel:nil];
-        [_postDelView richElementsInViewWithModel:nil];
+        _postDelView.jobsRichElementsInViewWithModel(nil);
     }return _postDelView;
 }
 

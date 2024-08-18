@@ -213,7 +213,7 @@
 -(MSMineView2 *)view2{
     if(!_view2){
         _view2 = MSMineView2.new;
-        [_view2 richElementsInViewWithModel:nil];
+        _view2.jobsRichElementsInViewWithModel(nil);
         [self.view addSubview:_view2];
         // 移除第一个 _view2 的约束
         [self.view2 mas_remakeConstraints:^(MASConstraintMaker *make) {

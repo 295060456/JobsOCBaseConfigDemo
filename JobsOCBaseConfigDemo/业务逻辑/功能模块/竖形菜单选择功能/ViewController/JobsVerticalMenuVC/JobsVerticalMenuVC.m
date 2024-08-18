@@ -354,7 +354,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
 -(BaiShaETProjSearchView *)searchView{
     if (!_searchView) {
         _searchView = [BaiShaETProjSearchView.alloc initWithSize:CGSizeZero];
-        [_searchView richElementsInViewWithModel:nil];
+        _searchView.jobsRichElementsInViewWithModel(nil);
         [self.gk_navigationBar addSubview:_searchView];
         [_searchView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo([BaiShaETProjSearchView viewSizeWithModel:nil]);
@@ -536,7 +536,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
     viewModel.index = self.thisIndex;
     viewModel.data = self.popupViewDataMutArr;
     
-    [_popupView richElementsInViewWithModel:viewModel];
+    _popupView.jobsRichElementsInViewWithModel(viewModel);
     return _popupView;
 }
 

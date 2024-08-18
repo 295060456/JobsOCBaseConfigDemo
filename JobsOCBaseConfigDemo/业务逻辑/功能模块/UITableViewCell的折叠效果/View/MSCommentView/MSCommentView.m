@@ -74,7 +74,7 @@ static dispatch_once_t static_commentViewOnceToken;
     viewModel.textModel.text = self.dataMutArr[section].sectionTitle;
     viewModel.textModel.font = UIFontWeightBoldSize(16);
     viewModel.textModel.textCor = JobsCor(@"#333333");
-    [headerView richElementsInViewWithModel:viewModel];
+    headerView.jobsRichElementsInViewWithModel(viewModel);
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -83,8 +83,12 @@ static dispatch_once_t static_commentViewOnceToken;
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-    self.tableView.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.tableView.alpha = 1;
+    };
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (void)tableView:(UITableView *)tableView

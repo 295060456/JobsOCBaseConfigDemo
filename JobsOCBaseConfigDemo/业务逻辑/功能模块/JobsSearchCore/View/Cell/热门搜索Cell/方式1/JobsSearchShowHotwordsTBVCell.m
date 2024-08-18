@@ -51,7 +51,7 @@
         @jobs_strongify(self)
         self.viewModelMutArr = model;
         if (self.viewModelMutArr.count) {
-            [self.jobsHotLabel richElementsInViewWithModel:self.viewModelMutArr];
+            self.jobsHotLabel.jobsRichElementsInViewWithModel(self.viewModelMutArr);
         }
     };
 }

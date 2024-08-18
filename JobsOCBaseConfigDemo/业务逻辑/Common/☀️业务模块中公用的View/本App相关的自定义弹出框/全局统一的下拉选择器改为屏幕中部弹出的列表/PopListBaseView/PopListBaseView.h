@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_END
      if(!_nationalPopListView){
          _nationalPopListView = PopListBaseView.new;
          _nationalPopListView.size = [_nationalPopListView viewSizeWithModel:nil];
-         [_nationalPopListView richElementsInViewWithModel:self.nationalPopList_dataMutArr];
+         _nationalPopListView.jobsRichElementsInViewWithModel(self.nationalPopList_dataMutArr);
      }return _nationalPopListView;
  }
 

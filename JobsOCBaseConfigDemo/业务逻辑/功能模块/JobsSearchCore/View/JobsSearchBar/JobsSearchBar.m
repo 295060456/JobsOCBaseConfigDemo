@@ -28,9 +28,13 @@
     [super drawRect:rect];
 }
 #pragma mark —— BaseViewProtocol
--(void)richElementsInViewWithModel:(id _Nullable)model{
-    self.textField.alpha = 1;
-//    self.cancelBtn.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.textField.alpha = 1;
+    //    self.cancelBtn.alpha = 1;
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(id _Nullable)model{
@@ -126,7 +130,7 @@
     if (!_adNoticeView) {
         _adNoticeView = JobsAdNoticeView.new;
         _adNoticeView.size = [JobsAdNoticeView viewSizeWithModel:nil];
-        [_adNoticeView richElementsInViewWithModel:nil];
+        _adNoticeView.jobsRichElementsInViewWithModel(nil);
     }return _adNoticeView;
 }
 

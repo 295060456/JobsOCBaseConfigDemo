@@ -51,16 +51,20 @@ static dispatch_once_t static_popupView10OnceToken;
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(UIViewModel *)model{
-    self.dataMutArr = model.data;
-    self.selectedIndex = model.index;
-    MakeDataNull
-    self.titleLab.alpha = 1;
-    self.closeBtn.alpha = 1;
-    self.bgView.alpha = 1;
-    self.cancelBtn.alpha = 1;
-    self.sureBtn.alpha = 1;
-    [self.collectionView reloadData];
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.dataMutArr = model.data;
+        self.selectedIndex = model.index;
+        MakeDataNull
+        self.titleLab.alpha = 1;
+        self.closeBtn.alpha = 1;
+        self.bgView.alpha = 1;
+        self.cancelBtn.alpha = 1;
+        self.sureBtn.alpha = 1;
+        [self.collectionView reloadData];
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
@@ -109,8 +113,7 @@ atIndexPath:(NSIndexPath *)indexPath {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"拖動按鈕迸行位置調整");
         viewModel.subTextModel.text = JobsInternationalization(@"");
-        
-        [headerView richElementsInViewWithModel:viewModel];
+        headerView.jobsRichElementsInViewWithModel(viewModel);
         headerView.backgroundColor = HEXCOLOR(0xFFFCF7);
         
         [headerView.getTitleBtn mas_remakeConstraints:^(MASConstraintMaker *make) {

@@ -30,11 +30,15 @@
     [super layoutSubviews];
 }
 #pragma mark —— BaseViewProtocol
--(void)richElementsInViewWithModel:(id _Nullable)model{
-    [super richElementsInViewWithModel:model];
-    self.backgroundColor = JobsWhiteColor;
-    self.titleLab.alpha = 1;
-    self.cancelBtn.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        super.jobsRichElementsInViewWithModel(model);
+        self.backgroundColor = JobsWhiteColor;
+        self.titleLab.alpha = 1;
+        self.cancelBtn.alpha = 1;
+    };
 }
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{

@@ -72,11 +72,15 @@ static dispatch_once_t static_postDelViewOnceToken;
     }return self;
 }
 
--(void)richElementsInViewWithModel:(NSNumber *)model{
-    self.backgroundColor = JobsRedColor;
-    self.imageView.highlighted = model;
-    self.imageView.image = model.boolValue ? JobsIMG(@"hx_photo_edit_trash_open") : JobsIMG(@"hx_photo_edit_trash_close");
-    self.titleLab.text = model.boolValue ? JobsInternationalization(@"松手即可删除") : JobsInternationalization(@"拖动到此处删除");
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(NSNumber *_Nullable model) {
+        @jobs_strongify(self)
+        self.backgroundColor = JobsRedColor;
+        self.imageView.highlighted = model;
+        self.imageView.image = model.boolValue ? JobsIMG(@"hx_photo_edit_trash_open") : JobsIMG(@"hx_photo_edit_trash_close");
+        self.titleLab.text = model.boolValue ? JobsInternationalization(@"松手即可删除") : JobsInternationalization(@"拖动到此处删除");
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{

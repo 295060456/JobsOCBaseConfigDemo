@@ -77,7 +77,7 @@
 -(JobsBaseLabel *)titleLab{
     if (!_titleLab) {
         _titleLab = JobsBaseLabel.new;
-        [_titleLab richElementsInViewWithModel:nil];
+        _titleLab.jobsRichElementsInViewWithModel(nil);
         _titleLab.getLabel.jobsOffsetY = JobsWidth(-2);
         _titleLab.getLabel.textColor = JobsWhiteColor;
         _titleLab.getLabel.font = UIFontWeightRegularSize(12);

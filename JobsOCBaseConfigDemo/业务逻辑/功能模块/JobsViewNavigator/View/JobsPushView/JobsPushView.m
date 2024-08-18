@@ -23,9 +23,13 @@
     NSLog(@"%@",JobsLocalFunc);
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(id _Nullable)model{
-    self.push_btn.alpha = 1;
-    self.pop_btn.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.push_btn.alpha = 1;
+        self.pop_btn.alpha = 1;
+    };
 }
 #pragma mark —— lazyLoad
 -(BaseButton *)push_btn{
@@ -163,7 +167,7 @@
         _pushView = JobsPushView.new;
         _pushView.frame = self.bounds;
         _pushView.backgroundColor = JobsRandomColor;
-        [_pushView richElementsInViewWithModel:nil];
+        _pushView.jobsRichElementsInViewWithModel(nil);
     }return _pushView;
 }
 

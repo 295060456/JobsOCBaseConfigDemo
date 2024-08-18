@@ -175,7 +175,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
 - (nullable UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{
     JobsCommentPopUpView_viewForHeaderInSection *header = JobsCommentPopUpView_viewForHeaderInSection.new;
-    [header richElementsInViewWithModel:self.mjModel.listDataArr[section]];//一级评论数据 展示在viewForHeaderInSection
+    header.jobsRichElementsInViewWithModel(self.mjModel.listDataArr[section]);/// 一级评论数据 展示在viewForHeaderInSection
     @jobs_weakify(self)
     // 一级标题点击事件
     [header actionObjectBlock:^(id data) {
@@ -187,7 +187,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
 -(JobsCommentTitleHeaderView *)titleHeaderView{
     if (!_titleHeaderView) {
         _titleHeaderView = JobsCommentTitleHeaderView.new;
-        [_titleHeaderView richElementsInViewWithModel:nil];
+        _titleHeaderView.jobsRichElementsInViewWithModel(nil);
         @jobs_weakify(self)
         [_titleHeaderView actionObjectBlock:^(id data) {
             @jobs_strongify(self)

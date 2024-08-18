@@ -302,7 +302,7 @@ heightForHeaderInSection:(NSInteger)section{
 -(nullable UIView *)tableView:(UITableView *)tableView
        viewForHeaderInSection:(NSInteger)section{
     JobsSearchTableViewHeaderView *header = tableView.tableViewHeaderFooterView(JobsSearchTableViewHeaderView.class,@"");
-    [header richElementsInViewWithModel:self.sectionTitleMutArr[section]];
+    header.jobsRichElementsInViewWithModel(self.sectionTitleMutArr[section]);
     if (section == 1) {
         header.getDelBtn.jobsVisible = YES;
         @jobs_weakify(self)
@@ -431,7 +431,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!_jobsSearchBar) {
         _jobsSearchBar = JobsSearchBar.new;
         _jobsSearchBar.size = [JobsSearchBar viewSizeWithModel:nil];
-        [_jobsSearchBar richElementsInViewWithModel:nil];
+        _jobsSearchBar.jobsRichElementsInViewWithModel(nil);
         @jobs_weakify(self)
         [_jobsSearchBar actionObjectBlock:^(NSString *data) {
             @jobs_strongify(self)

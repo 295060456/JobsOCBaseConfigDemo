@@ -299,7 +299,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_msgEditBoardView) {
         _msgEditBoardView = MsgEditBoardView.new;
         _msgEditBoardView.frame = [MsgEditBoardView viewFrameWithModel:nil];
-        [_msgEditBoardView richElementsInViewWithModel:nil];
+        _msgEditBoardView.jobsRichElementsInViewWithModel(nil);
         _msgEditBoardView.getDeleteBtn.enabledBlock(self.selectedDataMutArr.count);
         @jobs_weakify(self)
         [_msgEditBoardView actionObjectBlock:^(id data) {
@@ -337,7 +337,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             viewModel.time = JobsInternationalization(@"05-13 18:20");
             viewModel.isDraw = NO;
             viewModel.isRead = NO;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.jobsAddObject(viewModel);
         }
         
         {
@@ -348,7 +348,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             viewModel.time = JobsInternationalization(@"05-13 18:20");
             viewModel.isDraw = YES;
             viewModel.isRead = YES;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.jobsAddObject(viewModel);
         }
         
         {
@@ -359,7 +359,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             viewModel.time = JobsInternationalization(@"05-13 18:20");
             viewModel.isDraw = NO;
             viewModel.isRead = NO;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.jobsAddObject(viewModel);
         }
         
         {
@@ -370,7 +370,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             viewModel.time = JobsInternationalization(@"05-13 18:20");
             viewModel.isDraw = YES;
             viewModel.isRead = YES;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.jobsAddObject(viewModel);
         }
     }return _dataMutArr;
 }

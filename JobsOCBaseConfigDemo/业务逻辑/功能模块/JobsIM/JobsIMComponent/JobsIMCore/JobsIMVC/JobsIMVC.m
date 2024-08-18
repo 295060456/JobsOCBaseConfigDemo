@@ -367,7 +367,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             NSLog(@"%f",JobsBottomSafeAreaHeight());
             make.bottom.equalTo(self.view).offset(-JobsBottomSafeAreaHeight());
         }];
-        [_inputview richElementsInViewWithModel:nil];
+        _inputview.jobsRichElementsInViewWithModel(nil);
     }return _inputview;
 }
 

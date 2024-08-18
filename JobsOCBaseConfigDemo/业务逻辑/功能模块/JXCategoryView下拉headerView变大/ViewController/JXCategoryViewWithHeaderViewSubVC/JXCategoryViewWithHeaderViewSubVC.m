@@ -192,8 +192,8 @@
             
             UIViewModel *viewModel = UIViewModel.new;
             viewModel.textModel.text = JobsInternationalization(@"查看VIP規則");
-            
-            [footerView richElementsInViewWithModel:viewModel];
+        
+            footerView.jobsRichElementsInViewWithModel(viewModel);
             
             return footerView;
         }else return nil;
@@ -298,7 +298,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     if (!_choiceStadiumView) {
         _choiceStadiumView = BaiShaETProjChoiceStadiumView.new;
         _choiceStadiumView.size = [BaiShaETProjChoiceStadiumView viewSizeWithModel:nil];
-        [_choiceStadiumView richElementsInViewWithModel:nil];
+        _choiceStadiumView.jobsRichElementsInViewWithModel(nil);
     }return _choiceStadiumView;
 }
 

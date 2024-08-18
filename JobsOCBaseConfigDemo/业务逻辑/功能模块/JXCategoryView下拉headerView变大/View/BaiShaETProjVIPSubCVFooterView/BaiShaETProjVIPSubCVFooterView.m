@@ -23,10 +23,14 @@
     }return self;
 }
 /// 由具体的子类进行覆写
--(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-    self.viewModel = model;
-    self.backgroundColor = HEXCOLOR(0xFCFBFB);
-    self.titleLab.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.viewModel = model;
+        self.backgroundColor = HEXCOLOR(0xFCFBFB);
+        self.titleLab.alpha = 1;
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 /// UICollectionViewDelegateFlowLayout

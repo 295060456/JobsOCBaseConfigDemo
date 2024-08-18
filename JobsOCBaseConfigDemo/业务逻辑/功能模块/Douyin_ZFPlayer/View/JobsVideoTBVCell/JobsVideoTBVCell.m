@@ -72,7 +72,7 @@
 -(JobsRightBtnsView *)rbView{
     if (!_rbView) {
         _rbView = JobsRightBtnsView.new;
-        [_rbView richElementsInViewWithModel:nil];
+        _rbView.jobsRichElementsInViewWithModel(nil);
 //        @jobs_weakify(self)
         [_rbView actionObjectBlock:^(id data) {
 //            @jobs_strongify(self)

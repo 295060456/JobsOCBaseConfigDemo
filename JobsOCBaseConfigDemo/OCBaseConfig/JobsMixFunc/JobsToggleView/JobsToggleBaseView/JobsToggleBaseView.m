@@ -54,12 +54,16 @@ JobsToggleNavViewProtocolSynthesize
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
-//    self.viewModel = model ? : UIViewModel.new;
-//    MakeDataNull
-    self.taggedNavView.alpha = 1;
-    [self makeScrollContentViewsFrame];
-    self.bgScroll.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+//        self.viewModel = model ? : UIViewModel.new;
+//        MakeDataNull
+        self.taggedNavView.alpha = 1;
+        [self makeScrollContentViewsFrame];
+        self.bgScroll.alpha = 1;
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
@@ -124,7 +128,7 @@ JobsToggleNavViewProtocolSynthesize
         _taggedNavView.sliderH = JobsWidth(1);
         
         [self addSubview:_taggedNavView];
-        [_taggedNavView richElementsInViewWithModel:nil];
+        _taggedNavView.jobsRichElementsInViewWithModel(nil);
         @jobs_weakify(self)
         /// 联动
         [_taggedNavView actionObjectBlock:^(id _Nullable data) {

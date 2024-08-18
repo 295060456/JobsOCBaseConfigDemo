@@ -61,7 +61,7 @@
     for (int i = 0; i < self.loginDoorInputViewBaseStyleModelMutArr.count; i++) {
         JobsAppDoorInputViewBaseStyle_3 *inputView = JobsAppDoorInputViewBaseStyle_3.new;
         [self.loginDoorInputViewBaseStyleMutArr addObject:inputView];
-        [inputView richElementsInViewWithModel:self.loginDoorInputViewBaseStyleModelMutArr[i]];
+        inputView.jobsRichElementsInViewWithModel(self.loginDoorInputViewBaseStyleModelMutArr[i]);
         @jobs_weakify(self)
         [inputView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
@@ -89,15 +89,18 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 外层数据渲染
--(void)richElementsInViewWithModel:(id _Nullable)contentViewModel{
-   
-    self.toRegisterBtn.alpha = 1;
-    self.titleLab.alpha = 1;
-    [self makeInputView];
-    self.abandonLoginBtn.alpha = 1;
-    self.sendBtn.alpha = 1;
-    self.storeCodeBtn.alpha = 1;
-    self.findCodeBtn.alpha = 1;
+-(jobsByIDBlock)jobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^(id _Nullable model) {
+        @jobs_strongify(self)
+        self.toRegisterBtn.alpha = 1;
+        self.titleLab.alpha = 1;
+        [self makeInputView];
+        self.abandonLoginBtn.alpha = 1;
+        self.sendBtn.alpha = 1;
+        self.storeCodeBtn.alpha = 1;
+        self.findCodeBtn.alpha = 1;
+    };
 }
 #pragma mark —— lazyLoad
 -(UIButton *)toRegisterBtn{

@@ -12,7 +12,7 @@
 @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UICollectionViewCell *>*cvcellMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UICollectionViewCell *>*cvcellMutArr;
 @property(nonatomic,strong)JobsHotLabelWithMultiLineModel *dataModel;
 
 @end
@@ -52,7 +52,7 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock)jobsRichElementsInViewWithModel{
     @jobs_weakify(self)
-    return ^(JobsHotLabelWithMultiLineModel * _Nullable) {
+    return ^(JobsHotLabelWithMultiLineModel * _Nullable model) {
         @jobs_strongify(self)
         self.dataModel = model;
         self.backgroundColor = self.dataModel.bgCor;

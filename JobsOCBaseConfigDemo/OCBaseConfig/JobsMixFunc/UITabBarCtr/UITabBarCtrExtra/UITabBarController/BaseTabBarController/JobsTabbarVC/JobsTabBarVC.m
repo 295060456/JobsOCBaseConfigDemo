@@ -455,7 +455,7 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (!_myTabBar) {
         _myTabBar = JobsTabBar.new;
         _myTabBar.alignmentType = ImageTopTitleBottom;
-        [_myTabBar richElementsInViewWithModel:self.viewModel];
+        _myTabBar.jobsRichElementsInViewWithModel(self.viewModel);
         self.jobsKVC(@"tabBar",_myTabBar);/// ❤️KVC 进行替换❤️
     }return _myTabBar;
 }

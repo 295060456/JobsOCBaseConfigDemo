@@ -99,7 +99,7 @@
 -(MSCommentView *)commentView{
     if(!_commentView){
         _commentView = MSCommentView.new;
-        [_commentView richElementsInViewWithModel:nil];
+        _commentView.jobsRichElementsInViewWithModel(nil);
         [self.view addSubview:_commentView];
         [_commentView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.titleLab.mas_bottom);

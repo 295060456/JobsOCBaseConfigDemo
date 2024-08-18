@@ -151,7 +151,7 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
                                                  [BaiShaETProjCollectionHeaderView viewSizeWithModel:nil].width,
                                                  [BaiShaETProjCollectionHeaderView viewSizeWithModel:nil].height);
         _collectionHeaderView.isZoom = YES;
-        [_collectionHeaderView richElementsInViewWithModel:nil];
+        _collectionHeaderView.jobsRichElementsInViewWithModel(nil);
     }return _collectionHeaderView;
 }
 

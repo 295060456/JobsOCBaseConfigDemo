@@ -181,7 +181,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     /// 只有 headerView.backgroundView.backgroundColor 是有效操作✅
     headerView.backgroundView.backgroundColor = JobsCyanColor;
     [self makeViewOnTableViewHeaderFooterView:headerView].alpha = 1;
-    [headerView richElementsInViewWithModel:UIViewModel.new];
+    headerView.jobsRichElementsInViewWithModel(UIViewModel.new);
 //        @jobs_weakify(self)
     [headerView actionObjectBlock:^(id data) {
 //            @jobs_strongify(self)

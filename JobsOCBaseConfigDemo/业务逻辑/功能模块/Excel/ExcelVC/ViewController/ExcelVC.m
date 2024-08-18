@@ -157,7 +157,7 @@ viewForHeaderInSection:(NSInteger)section{
 //            headerView.tableView = tableView;
 //            headerView.section = section;
 //        }
-        [headerView richElementsInViewWithModel:nil];
+        headerView.jobsRichElementsInViewWithModel(nil);
         @jobs_weakify(self)
         [headerView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
@@ -176,8 +176,7 @@ viewForHeaderInSection:(NSInteger)section{
         }
         tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
         tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
-        
-        [tbvFooterView richElementsInViewWithModel:nil];
+        tbvFooterView.jobsRichElementsInViewWithModel(nil);
         @jobs_weakify(self)
         [tbvFooterView actionObjectBlock:^(id data) {
             @jobs_strongify(self)

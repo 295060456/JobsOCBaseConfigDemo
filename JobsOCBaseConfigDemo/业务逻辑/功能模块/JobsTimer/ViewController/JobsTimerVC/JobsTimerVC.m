@@ -196,17 +196,17 @@
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
         _btnTitleMutArr = NSMutableArray.array;
-        [_btnTitleMutArr addObject:JobsInternationalization(@"开始")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"暂停")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"继续")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"结束")];
+        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"开始"));
+        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"暂停"));
+        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"继续"));
+        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"结束"));
     }return _btnTitleMutArr;
 }
 
 -(JobsCountdownView *)countdownView{
     if (!_countdownView) {
         _countdownView = JobsCountdownView.new;
-        [_countdownView richElementsInViewWithModel:nil];
+        _countdownView.jobsRichElementsInViewWithModel(nil);
         [self.view addSubview:_countdownView];
         [_countdownView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.view);
