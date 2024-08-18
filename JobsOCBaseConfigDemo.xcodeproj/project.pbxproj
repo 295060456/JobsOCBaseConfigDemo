@@ -1144,6 +1144,8 @@
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
 		C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsLinkageMenuView.m; sourceTree = "<group>"; };
 		C525D3EB2C4801C1003DAFD0 /* JobsLinkageMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsLinkageMenuView.h; sourceTree = "<group>"; };
+		CE0614EC2C71ED41001F0360 /* JobsBtnsStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBtnsStyleCVCell.h; sourceTree = "<group>"; };
+		CE0614ED2C71ED41001F0360 /* JobsBtnsStyleCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBtnsStyleCVCell.m; sourceTree = "<group>"; };
 		CE1F24E72C5CD50000324198 /* NSObject+NTESVerifyCodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NTESVerifyCodeManager.h"; sourceTree = "<group>"; };
 		CE1F24E82C5CD50000324198 /* NSObject+NTESVerifyCodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NTESVerifyCodeManager.m"; sourceTree = "<group>"; };
 		CE1F256E2C5DD25900324198 /* JobsViewNavigator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsViewNavigator.h; sourceTree = "<group>"; };
@@ -3217,6 +3219,15 @@
 				C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */,
 			);
 			path = JobsLinkageMenuView;
+			sourceTree = "<group>";
+		};
+		CE0614EE2C71ED41001F0360 /* JobsBtnsStyleCVCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE0614EC2C71ED41001F0360 /* JobsBtnsStyleCVCell.h */,
+				CE0614ED2C71ED41001F0360 /* JobsBtnsStyleCVCell.m */,
+			);
+			path = JobsBtnsStyleCVCell;
 			sourceTree = "<group>";
 		};
 		CE1F24E92C5CD50000324198 /* NSObject+NTESVerifyCodeManager */ = {
@@ -10581,6 +10592,7 @@
 			children = (
 				CEBA440F2C5E316200F0042D /* BaseCollectionViewCell */,
 				CECE837C2C4513CD00764AF5 /* JobsBaseCollectionViewCell */,
+				CE0614EE2C71ED41001F0360 /* JobsBtnsStyleCVCell */,
 				CECE837F2C4513CD00764AF5 /* JobsBtnStyleCVCell */,
 				CECE83822C4513CD00764AF5 /* JobsImageViewStyleCVCell */,
 				CECE83852C4513CD00764AF5 /* JobsTextFieldStyleCVCell */,

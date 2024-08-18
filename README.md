@@ -13,6 +13,7 @@
 ## <font id=前言>前言</font>
 
 * **工欲善其事必先利其器**
+* **站在巨人的肩膀上，才能看得更远**
 * **面向信仰编程**
 
 ## 一、目的
@@ -2261,7 +2262,7 @@ NSObject <|-- BaseProtocol
   * 右侧的菜单内容是**`UICollectionView`** 
 * [**`JXCategoryView`**](https://github.com/pujiaxin33/JXCategoryView)的垂直表达
 
-#### 28、Excel方案：[**JobsExcelView**]()
+### 28、Excel方案：[**JobsExcelView**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/Excel/Excel-JobsExcelView/View/JobsExcelView)
 
 * 框架介绍
 
@@ -5265,11 +5266,20 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-#### 27.5、**`UICollectionView`**的完整调用
+#### 27.5、一些用做基类的**`UICollectionViewCell`**
 
+* **`BaseCollectionViewCell`**
+* **`JobsBaseCollectionViewCell`**
+* **`JobsBtnStyleCVCell`**：只在**`BaseCollectionViewCell`**完整的盖一个**`Button`**，其目的是利用Button丰富的图文展示效果
+* **`JobsBtnsStyleCVCell`**：左右两边各有一个**`Button`**
+* **`JobsImageViewStyleCVCell`**：只在**`BaseCollectionViewCell`**完整的盖一个**`ImageView`**
+* **`JobsTextFieldStyleCVCell`**：只在**`BaseCollectionViewCell`**完整的盖一个**`TextField`**
+
+#### 27.6、**`UICollectionView`**的完整调用
 
 * <details id="UICollectionView的完整调用">
    <summary><strong>点我查看</strong></summary>
+   
    ```objective-c
    @interface JobsImageNumberViewCVCell ()
    
