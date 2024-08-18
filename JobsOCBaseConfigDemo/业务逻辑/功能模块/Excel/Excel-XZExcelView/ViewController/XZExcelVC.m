@@ -8,8 +8,10 @@
 #import "XZExcelVC.h"
 
 @interface XZExcelVC ()
-
+/// UI
 @property(nonatomic,strong)XZExcelView *excelView;
+/// Data
+@property(nonatomic,strong)XZExcelConfigureViewModel *excelData;
 
 @end
 
@@ -95,8 +97,16 @@
             make.center.equalTo(self.view);
             make.size.mas_equalTo([XZExcelView viewSizeWithModel:nil]);
         }];
-        _excelView.jobsRichElementsInViewWithModel(nil);
+        _excelView.jobsRichElementsInViewWithModel(self.excelData);
     }return _excelView;
+}
+
+-(XZExcelConfigureViewModel *)excelData{
+    if(!_excelData){
+        _excelData = XZExcelConfigureViewModel.new;
+        _excelData.XZExcelH = [XZExcelView viewSizeWithModel:nil].height;
+        _excelData.XZExcelW = [XZExcelView viewSizeWithModel:nil].width;
+    }return _excelData;
 }
 
 @end

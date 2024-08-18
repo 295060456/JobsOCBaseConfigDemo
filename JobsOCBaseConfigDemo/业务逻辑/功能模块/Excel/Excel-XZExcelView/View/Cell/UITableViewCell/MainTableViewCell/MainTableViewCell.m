@@ -59,13 +59,14 @@
     NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)// 1242
     if (scrollView.contentOffset.x >= 0) {
         /// 防止在数据拉完的情况下，无意义的往左拉动
-        if(scrollView.contentOffset.x <= 1242){
+        CGFloat d = (self.viewModel_.rowNumber * self.viewModel_.itemW - self.viewModel_.XZExcelW) - self.viewModel_.itemW * 2 + 10;
+        if(scrollView.contentOffset.x <= d){
             @jobs_weakify(self)
             self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
                 @jobs_strongify(self)
                 [self.delegate mianTableViewCellScrollerDid:scrollView];
             });
-        }else scrollView.contentOffset = CGPointMake(1242, scrollView.contentOffset.y);
+        }else scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
     }else scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
 }
 #pragma mark —— lazyLoadUICollectionView 代理和数据源

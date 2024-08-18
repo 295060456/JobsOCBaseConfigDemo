@@ -71,11 +71,15 @@
 }
 #pragma mark —— scrollerView代理
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"KKK3 = %f",scrollView.contentOffset.y);
     /// 防止在初始情况下，无意义的往下拉动
     if (scrollView.contentOffset.y < 0) {
         scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
     }else{
-        self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
+        CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH) - self.viewModel.itemH * 2 - 4;
+        if(scrollView.contentOffset.y > d){
+            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
+        }else self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
     }
 }
 #pragma mark —— lazyLoad

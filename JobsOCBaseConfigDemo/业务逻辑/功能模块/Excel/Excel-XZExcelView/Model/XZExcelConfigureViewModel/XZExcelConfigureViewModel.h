@@ -17,8 +17,10 @@ UIKIT_EXTERN const CGFloat LineWidth;
 
 @interface XZExcelConfigureViewModel : NSObject
 #pragma mark —— 表格设置
-@property(nonatomic,assign)CGFloat itemW;/// 表格宽度
-@property(nonatomic,assign)CGFloat itemH;/// 表格高度
+@property(nonatomic,assign)CGFloat XZExcelW;/// 整张Excel表的宽度
+@property(nonatomic,assign)CGFloat XZExcelH;/// 整张Excel表的高度
+@property(nonatomic,assign)CGFloat itemW;/// 单个表格宽度
+@property(nonatomic,assign)CGFloat itemH;/// 单个表格高度
 @property(nonatomic,assign)NSInteger rowNumber;/// 行数
 @property(nonatomic,assign)NSInteger colNumber;/// 列数
 #pragma mark —— 值

@@ -76,4 +76,16 @@ const CGFloat LineWidth = 2;
     }return _leftListDatas;
 }
 
+-(CGFloat)XZExcelW{
+    if(!_XZExcelW){
+        _XZExcelW = [XZExcelView viewSizeWithModel:nil].width;
+    }return _XZExcelW;
+}
+
+-(CGFloat)XZExcelH{
+    if(!_XZExcelH){
+        _XZExcelH = [XZExcelView viewSizeWithModel:nil].height;
+    }return _XZExcelH;
+}
+
 @end
