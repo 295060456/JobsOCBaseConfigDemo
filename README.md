@@ -5245,6 +5245,34 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   *  正常情况下，如果用字符串无法取**`UICollectionViewCell`**会直接崩溃，即`collectionViewCellClass`无意义。但是添加了上述的方法交换以后这里不会崩溃，其作用机制是：<font color=red>**利用方法交换，在进行复用时候，先检测标志位里面是否包含已经注册的对象索引，如果没有即进行注册，再进行复用**</font>。所以第一步得到的**Cell**一定会存在，不会出现<font color=red>**nil**</font>的情况。而保留`!cell`写法的作用更多是向下兼容，同时方便代码的阅读。同时，这个字符串是根据需要注册的cell的类名字符串化得到的，为了避免可能得命名冲突，保证全局的唯一性，在必要的时候，可以通过"<u>**加盐**</u>"的形式进行字符串拼接。（注意在用字符串进行索取的时候，也对应需要"<u>**加盐**</u>"）
 
+  *  <font color=red>**涉及到的方法交换**</font>
+  
+    ```objective-c
+    + (void)load {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+    #pragma mark —— registerClass:forCellWithReuseIdentifier:
+            Method originalMethod = class_getInstanceMethod(self,
+                @selector(registerClass:forCellWithReuseIdentifier:));
+            Method swizzledMethod = class_getInstanceMethod(self,
+                @selector(swizzled_registerClass:forCellWithReuseIdentifier:));
+            method_exchangeImplementations(originalMethod, swizzledMethod);
+    #pragma mark —— registerClass:forSupplementaryViewOfKind:withReuseIdentifier:
+            Method originalSupplementaryMethod = class_getInstanceMethod(self, @selector(registerClass:forSupplementaryViewOfKind:withReuseIdentifier:));
+            Method swizzledSupplementaryMethod = class_getInstanceMethod(self, @selector(swizzled_registerClass:forSupplementaryViewOfKind:withReuseIdentifier:));
+            method_exchangeImplementations(originalSupplementaryMethod, swizzledSupplementaryMethod);
+    #pragma mark —— dequeueReusableCellWithReuseIdentifier:forIndexPath:
+            Method originalMethod1 = class_getInstanceMethod(self.class, @selector(dequeueReusableCellWithReuseIdentifier:forIndexPath:));
+            Method swizzledMethod1 = class_getInstanceMethod(self.class, @selector(swizzled_dequeueReusableCellWithReuseIdentifier:forIndexPath:));
+            method_exchangeImplementations(originalMethod1, swizzledMethod1);
+    #pragma mark —— dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:
+            Method originalMethod2 = class_getInstanceMethod(self.class, @selector(dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:));
+            Method swizzledMethod2 = class_getInstanceMethod(self.class, @selector(swizzled_dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:));
+            method_exchangeImplementations(originalMethod2, swizzledMethod2);
+        });
+    }
+    ```
+    
     ```objective-c
     +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                              forIndexPath:(nonnull NSIndexPath *)indexPath{

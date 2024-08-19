@@ -33,12 +33,15 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 注册 CollectionReusableView-Header、CollectionReusableView—Footer、CollectionViewCell
 /// 注册的时候不开辟内存，只有当用字符串进行取值的时候才开辟内存
 -(jobsByVoidBlock)registerCollectionViewClass;
-/// 注册 UICollectionViewCell 及其子类
+#pragma mark —— 注册 UICollectionViewCell 及其子类
 -(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass;
-/// 注册 UICollectionElementKindSectionHeader 及其子类
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass_;
+#pragma mark —— 注册 UICollectionElementKindSectionHeader 及其子类
 -(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass;
-/// 注册 UICollectionElementKindSectionFooter 及其子类
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass_;
+#pragma mark —— 注册 UICollectionElementKindSectionFooter 及其子类
 -(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass;
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass_;
 #pragma mark —— 依据字符串取值
 /// 依据字符串取UICollectionElementKindSectionHeader
 -(__kindof UICollectionReusableView *)UICollectionElementKindSectionHeaderClass:(Class)cls

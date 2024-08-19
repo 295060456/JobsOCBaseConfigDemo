@@ -32,11 +32,17 @@ UIKIT_EXTERN NSString * const HorizontalScrollBegin;/// 水平滚动键值
 @property(nonatomic,strong)NSMutableArray <UIButtonModel *>*leftListDatas;
 @property(nonatomic,strong)NSValue *VerticalScrollValue;/// 垂直滚动
 @property(nonatomic,strong)NSValue *HorizontalScrollValue;/// 水平滚动
+/// 颜色设置
 @property(nonatomic,strong)UIColor *cor0;/// 第一行、第一列格子的背景颜色
 @property(nonatomic,strong)UIColor *cor1;/// 奇数行的背景颜色
 @property(nonatomic,strong)UIColor *cor2;/// 偶数行的背景颜色
 @property(nonatomic,strong)UIColor *cor3;/// 第一行的背景颜色
 @property(nonatomic,strong)UIColor *cor4;/// 第一行的主文字颜色
 @property(nonatomic,strong)UIColor *cor5;/// 其他行的主文字颜色
+/// 背景图片设置
+@property(nonatomic,strong)UIImage *image0;/// 第一行、第一列格子的背景图片
+@property(nonatomic,strong)UIImage *image1;/// 奇数行的背景图片
+@property(nonatomic,strong)UIImage *image2;/// 偶数行的背景图片
+@property(nonatomic,strong)UIImage *image3;/// 第一行的背景图片
 
 @end

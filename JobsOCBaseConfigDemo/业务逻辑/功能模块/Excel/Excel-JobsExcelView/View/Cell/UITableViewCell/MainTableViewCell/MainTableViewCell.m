@@ -101,7 +101,7 @@
         _collectionView.showsHorizontalScrollIndicator = NO;
         [self.contentView addSubview:_collectionView];
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
     }return _collectionView;
 }

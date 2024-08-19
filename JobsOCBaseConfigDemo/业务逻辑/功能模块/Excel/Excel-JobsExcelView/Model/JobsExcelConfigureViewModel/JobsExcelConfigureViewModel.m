@@ -58,8 +58,9 @@ const CGFloat LineWidth = 2;
     if(!_data_00){
         _data_00 = UIButtonModel.new;
         _data_00.title = JobsInternationalization(@"楼层");
+        _data_00.titleCor = self.cor4;
         _data_00.baseBackgroundColor = self.cor0;
-        _data_00.titleCor = JobsWhiteColor;
+        _data_00.backgroundImage = self.imag0;
     }return _data_00;
 }
 
@@ -70,7 +71,9 @@ const CGFloat LineWidth = 2;
             UIButtonModel *btnModel = UIButtonModel.new;
             btnModel.title = toStringByInt(y).add(JobsInternationalization(@"层"));
             btnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-            btnModel.titleCor = JobsWhiteColor;
+            btnModel.titleCor = self.cor4;
+            btnModel.baseBackgroundColor = self.cor3;
+            btnModel.backgroundImage = self.image3;
             _topHeaderDatas.jobsAddObject(btnModel);
         }
     }return _topHeaderDatas;
@@ -84,6 +87,8 @@ const CGFloat LineWidth = 2;
             btnModel.title = toStringByInt(y).add(JobsInternationalization(@"楼"));
             btnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
             btnModel.titleCor = JobsWhiteColor;
+            btnModel.baseBackgroundColor = y % 2 ? self.cor2 : self.cor1;
+            btnModel.backgroundImage = y % 2 ? self.image2 : self.image1;
             _leftListDatas.jobsAddObject(btnModel);
         }
     }return _leftListDatas;
@@ -109,13 +114,13 @@ const CGFloat LineWidth = 2;
 /// 奇数行的背景颜色
 -(UIColor *)cor1{
     if(!_cor1){
-        _cor1 = JobsRedColor;
+        _cor1 = JobsCor(@"#7900B2");
     }return _cor1;
 }
 /// 偶数行的背景颜色
 -(UIColor *)cor2{
     if(!_cor2){
-        _cor2 = JobsGreenColor;
+        _cor2 = JobsCor(@"#4B00AB");
     }return _cor2;
 }
 /// 第一行的背景颜色
@@ -135,6 +140,30 @@ const CGFloat LineWidth = 2;
     if(!_cor5){
         _cor5 = JobsWhiteColor;
     }return _cor5;
+}
+/// 第一行、第一列格子的背景图片
+-(UIImage *)imag0{
+    if(!_image0){
+        _image0 = JobsIMG(@"");
+    }return _image0;
+}
+/// 奇数行的背景图片
+-(UIImage *)image1{
+    if(!_image1){
+        _image1 = JobsIMG(@"");
+    }return _image1;
+}
+/// 偶数行的背景图片
+-(UIImage *)image2{
+    if(!_image2){
+        _image2 = JobsIMG(@"");
+    }return _image2;
+}
+/// 第一行的背景图片
+-(UIImage *)image3{
+    if(!_image3){
+        _image3 = JobsIMG(@"");
+    }return _image3;
 }
 
 @end

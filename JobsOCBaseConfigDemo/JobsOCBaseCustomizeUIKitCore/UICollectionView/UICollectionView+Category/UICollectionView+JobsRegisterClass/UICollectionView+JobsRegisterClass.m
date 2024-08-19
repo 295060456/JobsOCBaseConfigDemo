@@ -15,15 +15,14 @@
     @jobs_weakify(self)
     return ^(void) {
         @jobs_strongify(self)
-#pragma mark —— CollectionReusableView-Header
-        self.registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class,@"");
-        self.registerCollectionElementKindSectionHeaderClass(BaseCollectionReusableView.class,@"");
-        self.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class,@"");
-#pragma mark —— CollectionReusableView—Footer
         self.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class,@"");
         self.registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@"");
+#pragma mark —— CollectionReusableView-Header
+        self.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class,@"");
+#pragma mark —— CollectionReusableView—Footer
         self.registerCollectionElementKindSectionFooterClass(JobsHeaderFooterView.class,@"");
 #pragma mark —— CollectionViewCell
+        self.registerCollectionViewCellClass(UICollectionViewCell.class,@"");
         self.registerCollectionViewCellClass(BaseCollectionViewCell.class,@"");
         self.registerCollectionViewCellClass(JobsBaseCollectionViewCell.class,@"");
         self.registerCollectionViewCellClass(JobsHotLabelWithMultiLineCVCell.class,@"");
@@ -34,35 +33,62 @@
         self.registerCollectionViewCellClass(ThreeClassCell.class,@"");
     };
 }
-/// 注册 UICollectionViewCell 及其子类
+#pragma mark —— 注册 UICollectionViewCell 及其子类
 -(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass{
     @jobs_weakify(self)
     return ^(Class _Nonnull cls,
              NSString * _Nullable salt) {
         @jobs_strongify(self)
-        [self registerClass:cls forCellWithReuseIdentifier:cls.description.add(salt)];
+        self.registerCollectionViewCellClass_(cls,cls.description.add(salt));
     };
 }
-/// 注册 UICollectionElementKindSectionHeader 及其子类
+
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass_{
+    @jobs_weakify(self)
+    return ^(Class _Nonnull cls,
+             NSString * _Nullable reuseIdentifier) {
+        @jobs_strongify(self)
+        [self registerClass:cls forCellWithReuseIdentifier:reuseIdentifier];
+    };
+}
+#pragma mark —— 注册 UICollectionElementKindSectionHeader 及其子类
 -(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass{
     @jobs_weakify(self)
     return ^(Class _Nonnull cls,
              NSString * _Nullable salt) {
         @jobs_strongify(self)
-        [self registerClass:cls
-        forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-        withReuseIdentifier:cls.description.add(salt)];
+        self.registerCollectionElementKindSectionHeaderClass_(cls,cls.description.add(salt));
     };
 }
-/// 注册 UICollectionElementKindSectionFooter 及其子类
+
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass_{
+    @jobs_weakify(self)
+    return ^(Class _Nonnull cls,
+             NSString * _Nullable reuseIdentifier) {
+        @jobs_strongify(self)
+        [self registerClass:cls
+        forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+        withReuseIdentifier:reuseIdentifier];
+    };
+}
+#pragma mark —— 注册 UICollectionElementKindSectionFooter 及其子类
 -(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass{
     @jobs_weakify(self)
     return ^(Class _Nonnull cls,
              NSString * _Nullable salt) {
         @jobs_strongify(self)
+        self.registerCollectionElementKindSectionFooterClass_(cls,cls.description.add(salt));
+    };
+}
+
+-(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass_{
+    @jobs_weakify(self)
+    return ^(Class _Nonnull cls,
+             NSString * _Nullable reuseIdentifier) {
+        @jobs_strongify(self)
         [self registerClass:cls
         forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
-        withReuseIdentifier:cls.description.add(salt)];
+        withReuseIdentifier:reuseIdentifier];
     };
 }
 #pragma mark —— 依据字符串取值

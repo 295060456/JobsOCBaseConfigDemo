@@ -79,7 +79,7 @@
 //        _bgImageView_.image = JobsIMG(@"投注记录");
         [self.contentView addSubview:_bgImageView_];
         [_bgImageView_ mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
     }return _bgImageView_;
 }

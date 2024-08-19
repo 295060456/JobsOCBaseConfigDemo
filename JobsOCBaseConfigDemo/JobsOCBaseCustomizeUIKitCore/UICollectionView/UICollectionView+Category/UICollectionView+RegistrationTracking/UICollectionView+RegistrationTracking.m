@@ -12,18 +12,43 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        // Swizzle dequeueReusableCellWithReuseIdentifier:forIndexPath:
+#pragma mark —— registerClass:forCellWithReuseIdentifier:
+        Method originalMethod = class_getInstanceMethod(self,
+            @selector(registerClass:forCellWithReuseIdentifier:));
+        Method swizzledMethod = class_getInstanceMethod(self,
+            @selector(swizzled_registerClass:forCellWithReuseIdentifier:));
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+#pragma mark —— registerClass:forSupplementaryViewOfKind:withReuseIdentifier:
+        Method originalSupplementaryMethod = class_getInstanceMethod(self, @selector(registerClass:forSupplementaryViewOfKind:withReuseIdentifier:));
+        Method swizzledSupplementaryMethod = class_getInstanceMethod(self, @selector(swizzled_registerClass:forSupplementaryViewOfKind:withReuseIdentifier:));
+        method_exchangeImplementations(originalSupplementaryMethod, swizzledSupplementaryMethod);
+#pragma mark —— dequeueReusableCellWithReuseIdentifier:forIndexPath:
         Method originalMethod1 = class_getInstanceMethod(self.class, @selector(dequeueReusableCellWithReuseIdentifier:forIndexPath:));
         Method swizzledMethod1 = class_getInstanceMethod(self.class, @selector(swizzled_dequeueReusableCellWithReuseIdentifier:forIndexPath:));
         method_exchangeImplementations(originalMethod1, swizzledMethod1);
-
-        // Swizzle dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:
+#pragma mark —— dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:
         Method originalMethod2 = class_getInstanceMethod(self.class, @selector(dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:));
         Method swizzledMethod2 = class_getInstanceMethod(self.class, @selector(swizzled_dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:));
         method_exchangeImplementations(originalMethod2, swizzledMethod2);
     });
 }
-// Swizzled method for dequeueReusableCellWithReuseIdentifier:forIndexPath:
+
+- (void)swizzled_registerClass:(Class)cellClass
+    forCellWithReuseIdentifier:(NSString *)identifier {
+    [self swizzled_registerClass:cellClass
+      forCellWithReuseIdentifier:identifier];
+    self.registeredIdentifiers.jobsAddObject(identifier);
+}
+
+- (void)swizzled_registerClass:(Class)viewClass 
+    forSupplementaryViewOfKind:(NSString *)elementKind
+           withReuseIdentifier:(NSString *)identifier {
+    [self swizzled_registerClass:viewClass
+      forSupplementaryViewOfKind:elementKind
+             withReuseIdentifier:identifier];
+    self.registeredIdentifiers.jobsAddObject(identifier);
+}
+
 - (UICollectionViewCell *)swizzled_dequeueReusableCellWithReuseIdentifier:(NSString *)identifier
                                                              forIndexPath:(NSIndexPath *)indexPath {
     if (![self.registeredIdentifiers containsObject:identifier]) {
@@ -33,7 +58,6 @@
     }return [self swizzled_dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath]; // 调用原方法
 }
 
-// Swizzled method for dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:
 - (UICollectionReusableView *)swizzled_dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind
                                                           withReuseIdentifier:(NSString *)identifier
                                                                  forIndexPath:(NSIndexPath *)indexPath {

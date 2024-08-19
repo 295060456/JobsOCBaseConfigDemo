@@ -222,12 +222,12 @@ ratio:(CGFloat)ratio {
 -(NSMutableArray<NSString *> *)titleMutArr{
     if (!_titleMutArr) {
         _titleMutArr = NSMutableArray.array;
-        [_titleMutArr addObject:JobsInternationalization(@"豆花")];
-        [_titleMutArr addObject:JobsInternationalization(@"莲子羹")];
-        [_titleMutArr addObject:JobsInternationalization(@"蒸肉")];
-        [_titleMutArr addObject:JobsInternationalization(@"排骨")];
-        [_titleMutArr addObject:JobsInternationalization(@"美女")];
-        [_titleMutArr addObject:JobsInternationalization(@"豪车")];
+        _titleMutArr.jobsAddObject(JobsInternationalization(@"豆花"));
+        _titleMutArr.jobsAddObject(JobsInternationalization(@"莲子羹"));
+        _titleMutArr.jobsAddObject(JobsInternationalization(@"蒸肉"));
+        _titleMutArr.jobsAddObject(JobsInternationalization(@"排骨"));
+        _titleMutArr.jobsAddObject(JobsInternationalization(@"美女"));
+        _titleMutArr.jobsAddObject(JobsInternationalization(@"豪车"));
     }return _titleMutArr;
 }
 
@@ -235,10 +235,9 @@ ratio:(CGFloat)ratio {
     if (!_childVCMutArr) {
         _childVCMutArr = NSMutableArray.array;
         for (NSString *str in self.titleMutArr) {
-            [_childVCMutArr addObject:JXCategoryViewVerticalShowSubBaseVC.new];
+            _childVCMutArr.jobsAddObject(JXCategoryViewVerticalShowSubBaseVC.new);
         }
     }return _childVCMutArr;
 }
-
 
 @end
