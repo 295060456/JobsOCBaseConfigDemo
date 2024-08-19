@@ -56,6 +56,15 @@
  numberOfRowsInSection:(NSInteger)section{
     return self.viewModel.colNumber;
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return self.viewModel.itemH;
+}
 #pragma mark —— UITableView 代理
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{

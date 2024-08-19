@@ -283,11 +283,11 @@ static inline CGFloat JobsDeviceRealWidth(void){
 }
 /// 寻找当前屏幕真正的高
 static inline CGFloat JobsRealHeight(void){
-    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsDeviceRealWidth() :JobsDeviceRealHeight();
+    return JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape ? JobsDeviceRealWidth() :JobsDeviceRealHeight();
 }
 /// 寻找当前屏幕真正的宽
 static inline CGFloat JobsRealWidth(void){
-    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsDeviceRealHeight() :JobsDeviceRealWidth();
+    return JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape ? JobsDeviceRealHeight() :JobsDeviceRealWidth();
 }
 #pragma mark —— 【比例尺】屏幕像素标准转化：输入原型图上的宽和高，对外输出App对应的移动设备的真实宽高
 /// https://www.strerr.com/screen.html

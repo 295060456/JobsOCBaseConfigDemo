@@ -178,7 +178,7 @@
     if (!_rightview) {
         _rightview = UIView.new;
         
-        if(JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape){
+        if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
             _rightview.frame = CGRectMake(self.MENU_WIDTH + self.LINEVIEW_WIDTH,
                                           0,
                                           JobsRealWidth(),

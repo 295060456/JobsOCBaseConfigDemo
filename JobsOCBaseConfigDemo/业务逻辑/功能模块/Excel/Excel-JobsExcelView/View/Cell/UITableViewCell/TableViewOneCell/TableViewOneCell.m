@@ -50,9 +50,9 @@
 }
 
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
-    @jobs_weakify(self)
+//    @jobs_weakify(self)
     return ^(UIButtonModel *_Nullable model) {
-        @jobs_strongify(self)
+//        @jobs_strongify(self)
         super.jobsRichElementsInCellWithModel(model);
     };
 }
@@ -83,19 +83,6 @@
         }];
     }return _bgImageView_;
 }
-
-//- (UILabel *)titleL{
-//    if (!_titleL) {
-//        _titleL = UILabel.new;
-//        _titleL.textColor = JobsWhiteColor;
-//        _titleL.font = UIFontWeightRegularSize(JobsWidth(15));
-//        _titleL.textAlignment = NSTextAlignmentCenter;
-//        [self.bgImageView_ addSubview:_titleL];
-//        [_titleL mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-//        }];
-//    }return _titleL;
-//}
 
 -(UIBezierPath *)linePath{
     if(!_linePath){

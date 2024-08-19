@@ -80,8 +80,9 @@
         scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
     }
     NSLog(@"JobsExcelTopHeadView - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)// 1242
-    if(scrollView.contentOffset.x > 1242){
-        scrollView.contentOffset = CGPointMake(1242, scrollView.contentOffset.y);
+    CGFloat d = 1446;//(self.viewModel.rowNumber * self.viewModel.itemW - self.viewModel.XZExcelW) - self.viewModel.itemW * 2;
+    if(scrollView.contentOffset.x > d){
+        scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
     }
 }
 #pragma mark —— getter and setter

@@ -206,7 +206,7 @@ BaseViewProtocol_synthesize
 -(JobsNavBar *)navBar{
     if(!_navBar){
         _navBar = JobsNavBar.new;
-        if(JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape){
+        if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
             self.navBarConfig.backBtnModel.btn_offset_x = self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(40);
             self.navBarConfig.closeBtnModel.btn_offset_x = self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(40);
         }
@@ -216,7 +216,7 @@ BaseViewProtocol_synthesize
         _navBar.navBarConfig = self.navBarConfig;
         [self addSubview:_navBar];
         [_navBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape){
+            if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
                 make.top.equalTo(self);
             }else{
                 make.top.equalTo(self).offset(JobsStatusBarHeight());

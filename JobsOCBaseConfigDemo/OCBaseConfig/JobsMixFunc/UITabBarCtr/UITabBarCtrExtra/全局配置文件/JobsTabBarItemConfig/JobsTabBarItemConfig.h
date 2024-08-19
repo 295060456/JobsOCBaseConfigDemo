@@ -10,7 +10,7 @@
 
 #ifndef LANDSCAPE_VALUE_H
 #define LANDSCAPE_VALUE_H
-#define landscapeValue(s) (JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? (s) : 0)
+#define landscapeValue(s) (JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape ? (s) : 0)
 #endif /* LANDSCAPE_VALUE_H */
 
 NS_ASSUME_NONNULL_BEGIN

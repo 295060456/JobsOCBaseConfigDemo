@@ -12,7 +12,7 @@ BOOL ISLogin;
 /// UI
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UILabel *tableFooterView;
-@property(nonatomic,strong)UIButton *userHeadBtn;
+@property(nonatomic,strong)BaseButton *userHeadBtn;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UITableViewCell *>*tbvCellMutArr;
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -66,7 +66,7 @@ BOOL ISLogin;
     [super viewDidLoad];
     self.view.backgroundColor = JobsRedColor;
     
-    self.setGKNav(nil);
+    self.setGKNav(nil);/// GK 不支持横屏啊
     self.setGKNavBackBtn(nil);
     self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.userHeadBtn];
     self.tableView.alpha = 1;
@@ -117,7 +117,7 @@ BOOL ISLogin;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
     UIInterfaceOrientation s = self.getInterfaceOrientation;
     DeviceOrientation d = self.getDeviceOrientation;
-//    self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
+//    self.menuView.alpha = JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -162,14 +162,48 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                   cell:cell];
 }
 #pragma mark —— lazyLoad
--(UIButton *)userHeadBtn{
+-(BaseButton *)userHeadBtn{
+    @jobs_weakify(self)
     if (!_userHeadBtn) {
-        _userHeadBtn = UIButton.new;
-        _userHeadBtn.normalImage(JobsIMG(@"首页_头像"));
-        _userHeadBtn.normalTitle(JobsInternationalization(@""));
-        @jobs_weakify(self)
-        [_userHeadBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _userHeadBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                         background:nil
+                                         buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                      textAlignment:NSTextAlignmentCenter
+                                                   subTextAlignment:NSTextAlignmentCenter
+                                                        normalImage:JobsIMG(@"首页_头像")
+                                                     highlightImage:nil
+                                                    attributedTitle:nil
+                                            selectedAttributedTitle:nil
+                                                 attributedSubtitle:nil
+                                                              title:nil
+                                                           subTitle:nil
+                                                          titleFont:nil
+                                                       subTitleFont:nil
+                                                           titleCor:nil
+                                                        subTitleCor:nil
+                                                 titleLineBreakMode:NSLineBreakByWordWrapping
+                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                baseBackgroundColor:JobsClearColor
+                                                    backgroundImage:nil
+                                                       imagePadding:JobsWidth(0)
+                                                       titlePadding:JobsWidth(0)
+                                                     imagePlacement:NSDirectionalRectEdgeNone
+                                         contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                           contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                      contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                  cornerRadiusValue:JobsWidth(0)
+                                                    roundingCorners:UIRectCornerAllCorners
+                                               roundingCornersRadii:CGSizeZero
+                                                     layerBorderCor:nil
+                                                        borderWidth:JobsWidth(0)
+                                                      primaryAction:nil
+                                         longPressGestureEventBlock:^(id  _Nullable weakSelf,
+                                                                      id  _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+        }
+                                                    clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:@"用户信息展示(开发测试专用)" attributeSubTitle:nil];
             viewModel.cls = JobsShowObjInfoVC.class;
             viewModel.requestParams = self.readUserInfo();

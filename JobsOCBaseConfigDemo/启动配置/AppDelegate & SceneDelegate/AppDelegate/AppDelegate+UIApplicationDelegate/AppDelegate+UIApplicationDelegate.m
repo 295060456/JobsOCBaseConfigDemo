@@ -15,7 +15,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
     JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
-//    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
+    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
+    
+//    JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
     
     [self localNotifications];
     [self launchFunc2];
@@ -29,10 +31,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     return YES;
 }
 /// 一进入App就横屏 【此方法会执行多次】
-//- (UIInterfaceOrientationMask)application:(UIApplication *)application
-//  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-//    return JobsAppTool.currentInterfaceOrientationMask;
-//}
+- (UIInterfaceOrientationMask)application:(UIApplication *)application
+  supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape ? JobsAppTool.currentInterfaceOrientationMask : UIInterfaceOrientationMaskPortrait;
+}
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidEnterBackground:(UIApplication *)application{
     NSLog(@"---applicationDidEnterBackground----");//进入后台

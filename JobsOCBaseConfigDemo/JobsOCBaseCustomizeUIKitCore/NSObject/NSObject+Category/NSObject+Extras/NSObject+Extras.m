@@ -44,9 +44,7 @@
 #pragma mark —— ViewController
 /// 从一个视图（UIView）出发，获取它所在的视图控制器（UIViewController）
 -(JobsReturnVCByView _Nonnull)getViewControllerByView{
-    @jobs_weakify(self)
     return ^(UIView *_Nonnull view) {
-        @jobs_strongify(self)
         UIResponder *responder = view;
         while (responder) {
             if (KindOfVCCls(responder)) {
@@ -1034,11 +1032,11 @@
 #pragma mark —— 检测当前设备屏幕方向
 //https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md
 -(CGFloat)jobsMainScreen_HEIGHT{
-    return  JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_WIDTH() : JobsMainScreen_HEIGHT();
+    return JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape ? JobsMainScreen_WIDTH() : JobsMainScreen_HEIGHT();
 }
 
 -(CGFloat)jobsMainScreen_WIDTH{
-    return  JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsMainScreen_HEIGHT() : JobsMainScreen_WIDTH();
+    return JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape ? JobsMainScreen_HEIGHT() : JobsMainScreen_WIDTH();
 }
 
 -(UIView *_Nullable)getView{
