@@ -59,6 +59,12 @@ UIViewModelProtocol_synthesize
     }return _subTitleShowingType;
 }
 
+-(UIRectCorner)roundingCorners{
+    if(!_roundingCorners){
+        _roundingCorners = UIRectCornerAllCorners;
+    }return _roundingCorners;
+}
+
 -(JobsReturnRACDisposableByReturnIDByIDBlock _Nullable)jobsReturnedTestBlock{
     if(!_jobsReturnedTestBlock){
         _jobsReturnedTestBlock = ^RACDisposable *_Nonnull(JobsReturnIDByIDBlock _Nullable data) {

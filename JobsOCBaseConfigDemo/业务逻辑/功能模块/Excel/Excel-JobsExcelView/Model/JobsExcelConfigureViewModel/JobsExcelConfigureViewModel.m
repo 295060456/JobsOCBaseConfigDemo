@@ -29,8 +29,8 @@ const CGFloat LineWidth = 2;
         NSMutableArray <UIButtonModel *>*row = NSMutableArray.array;//30
         for (int j = 1; j <= 30; j++){/// x
             UIButtonModel *model = UIButtonModel.new;
-            model.title = toStringByInt(i*j);
-            model.baseBackgroundColor = j % 2 ? JobsCyanColor: JobsGreenColor;
+            model.title = toStringByInt(i * j);
+            model.baseBackgroundColor = i % 2 ? self.cor2: self.cor1;
             model.titleCor = JobsWhiteColor;
 //            model.jobsTestBlock();
 //            model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
@@ -58,7 +58,7 @@ const CGFloat LineWidth = 2;
     if(!_data_00){
         _data_00 = UIButtonModel.new;
         _data_00.title = JobsInternationalization(@"楼层");
-        _data_00.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        _data_00.baseBackgroundColor = self.cor0;
         _data_00.titleCor = JobsWhiteColor;
     }return _data_00;
 }
@@ -99,6 +99,42 @@ const CGFloat LineWidth = 2;
     if(!_XZExcelH){
         _XZExcelH = [JobsExcelView viewSizeWithModel:nil].height;
     }return _XZExcelH;
+}
+/// 第一行、第一列格子的背景颜色
+-(UIColor *)cor0{
+    if(!_cor0){
+        _cor0 = self.cor1;
+    }return _cor0;
+}
+/// 奇数行的背景颜色
+-(UIColor *)cor1{
+    if(!_cor1){
+        _cor1 = JobsRedColor;
+    }return _cor1;
+}
+/// 偶数行的背景颜色
+-(UIColor *)cor2{
+    if(!_cor2){
+        _cor2 = JobsGreenColor;
+    }return _cor2;
+}
+/// 第一行的背景颜色
+-(UIColor *)cor3{
+    if(!_cor3){
+        _cor3 = self.cor1;
+    }return _cor3;
+}
+/// 第一行的主文字颜色
+-(UIColor *)cor4{
+    if(!_cor4){
+        _cor4 = JobsBlackColor;
+    }return _cor4;
+}
+/// 其他行的主文字颜色
+-(UIColor *)cor5{
+    if(!_cor5){
+        _cor5 = JobsWhiteColor;
+    }return _cor5;
 }
 
 @end

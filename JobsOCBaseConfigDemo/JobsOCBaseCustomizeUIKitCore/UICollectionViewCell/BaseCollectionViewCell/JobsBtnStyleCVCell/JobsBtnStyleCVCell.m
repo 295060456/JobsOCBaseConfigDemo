@@ -89,7 +89,7 @@
                                                 subTitleCor:nil
                                          titleLineBreakMode:NSLineBreakByWordWrapping
                                       subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                        baseBackgroundColor:JobsYellowColor
+                                        baseBackgroundColor:nil
                                             backgroundImage:nil
                                                imagePadding:JobsWidth(0)
                                                titlePadding:JobsWidth(0)

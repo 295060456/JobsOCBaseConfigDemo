@@ -29,8 +29,7 @@
         collectionView.registerCollectionViewCellClass(MainTableViewCellItem.class,@"");
         cell = (MainTableViewCellItem *)[collectionView collectionViewCellClass:MainTableViewCellItem.class
                                                                    forIndexPath:indexPath];
-    }
-    cell.indexPath = indexPath;
+    }cell.indexPath = indexPath;
     return cell;
 }
 #pragma mark —— BaseCellProtocol

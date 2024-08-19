@@ -509,7 +509,7 @@
     return ^(UIColor *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            self.jobsResetBaseBackgroundColor(data ? : JobsYellowColor);
+            self.jobsResetBaseBackgroundColor(data ? : JobsCyanColor);
         } else self.backgroundColor = data;
     };
 }

@@ -60,7 +60,7 @@
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     JobsTopViewItem *cell = [JobsTopViewItem cellWithCollectionView:collectionView
                                                        forIndexPath:indexPath];
-    cell.backgroundColor = JobsBlueColor;
+    cell.backgroundColor = self.viewModel.cor3;
     cell.jobsRichElementsInCellWithModel(self.viewModel);
     cell.jobsRichElementsInCellWithModel2(self.viewModel.topHeaderDatas[indexPath.row]);
     

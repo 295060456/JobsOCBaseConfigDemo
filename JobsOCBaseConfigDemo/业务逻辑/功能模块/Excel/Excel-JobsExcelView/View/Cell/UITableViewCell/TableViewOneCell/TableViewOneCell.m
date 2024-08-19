@@ -69,7 +69,7 @@
     [self.linePath stroke];
     UIGraphicsEndImageContext();
 
-    [self.contentView.layer addSublayer:self.lineLayer];
+    [self.btn.layer addSublayer:self.lineLayer];
 }
 #pragma mark —— lazyLoad
 -(UIImageView *)bgImageView_{

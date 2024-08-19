@@ -97,7 +97,7 @@
         _lineLayer.strokeColor = LineColor.CGColor;
         _lineLayer.path = self.linePath.CGPath;
         _lineLayer.fillColor = nil; // 默认为blackColor
-        [self.contentView.layer addSublayer:_lineLayer];
+        [self.btn.layer addSublayer:_lineLayer];
     }return _lineLayer;
 }
 

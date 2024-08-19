@@ -70,7 +70,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TableViewOneCell *cell = TableViewOneCell.cellStyleValue1WithTableView(tableView);
     
-    cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
+    cell.backgroundColor = indexPath.row % 2 ? self.viewModel.cor1 : self.viewModel.cor2;
     cell.jobsRichElementsInCellWithModel(self.viewModel);
     
     UIButtonModel *model = (UIButtonModel *)self.viewModel.leftListDatas[indexPath.row];
