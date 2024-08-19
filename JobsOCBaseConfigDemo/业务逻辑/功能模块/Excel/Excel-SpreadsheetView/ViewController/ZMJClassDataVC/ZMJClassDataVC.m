@@ -59,12 +59,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsRandomColor;
-//    self.setGKNav(nil);
-//    self.setGKNavBackBtn(nil);
-//    self.gk_navigationBar.jobsVisible = NO;
+
+    if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+        self.makeNavBarConfig(nil,nil);
+        self.navBar.alpha = 1;
+    }else{
+        self.setGKNav(nil);
+        self.setGKNavBackBtn(nil);
+        self.gk_navigationBar.jobsVisible = NO;
+    }
     
-    self.makeNavBarConfig(nil,nil);
-    self.navBar.alpha = 1;
     self.spreadsheetView.alpha = 1;
 }
 

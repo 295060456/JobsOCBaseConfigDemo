@@ -8,6 +8,7 @@
 #import "ZMJGanttListVC.h"
 
 @interface ZMJGanttListVC ()
+
 @property(nonatomic,strong)NSDate *startDate;
 @property(nonatomic,strong)NSDate *endDate;
 @property(nonatomic,strong)NSMutableArray<NSDate *> *years;
@@ -55,15 +56,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = JobsRandomColor;
-//    self.setGKNav(nil);
-//    self.setGKNavBackBtn(nil);
-//    self.gk_navigationBar.jobsVisible = NO;
-//    [self.bgImageView removeFromSuperview];
     
-    self.makeNavBarConfig(nil,nil);
-    self.navBar.alpha = 1;
+    if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+        self.makeNavBarConfig(nil,nil);
+        self.navBar.alpha = 1;
+    }else{
+        self.setGKNav(nil);
+        self.setGKNavBackBtn(nil);
+        self.gk_navigationBar.jobsVisible = NO;
+    }
+    
+//    [self.bgImageView removeFromSuperview];
     self.spreadsheetView.alpha = 1;
 }
 
