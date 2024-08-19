@@ -459,37 +459,35 @@ referenceSizeForFooterInSection:(NSInteger)section{
 -(NSMutableArray<UIImage *> *)imageDataMutArr{
     if (_imageDataMutArr) {
         [_imageDataMutArr removeAllObjects];
-    }else{
-        _imageDataMutArr = NSMutableArray.array;
-    }
+    }else _imageDataMutArr = NSMutableArray.array;
     /// 装载假数据
     if (self.thisIndex == 0) {
         for (int i = 1; i < 10; i++) {
-            [_imageDataMutArr addObject:JobsIMG([@"体育" stringByAppendingString:[NSString stringWithFormat:@"0%d",i]])];
+            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }else if (self.thisIndex == 1){
         for (int i = 1; i < 10; i++) {
-            [_imageDataMutArr addObject:JobsIMG([@"真人" stringByAppendingString:[NSString stringWithFormat:@"0%d",i]])];
+            _imageDataMutArr.jobsAddObject(@"真人".add(@"0").add(toStringByInt(i)));
         }
     }else if (self.thisIndex == 2){
         for (int i = 1; i < 10; i++) {
-            [_imageDataMutArr addObject:JobsIMG([@"体育" stringByAppendingString:[NSString stringWithFormat:@"0%d",i]])];
+            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }else if (self.thisIndex == 3){
         for (int i = 1; i < 10; i++) {
-            [_imageDataMutArr addObject:JobsIMG([@"体育" stringByAppendingString:[NSString stringWithFormat:@"0%d",i]])];
+            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }else if (self.thisIndex == 4){
         for (int i = 1; i < 10; i++) {
-            [_imageDataMutArr addObject:JobsIMG([@"体育" stringByAppendingString:[NSString stringWithFormat:@"0%d",i]])];
+            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }else if (self.thisIndex == 5){
         for (int i = 1; i < 10; i++) {
-            [_imageDataMutArr addObject:JobsIMG([@"体育" stringByAppendingString:[NSString stringWithFormat:@"0%d",i]])];
+            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }else{
         for (int i = 1; i < 10; i++) {
-            [_imageDataMutArr addObject:JobsIMG([@"体育" stringByAppendingString:[NSString stringWithFormat:@"0%d",i]])];
+            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }return _imageDataMutArr;
 }
@@ -502,19 +500,19 @@ referenceSizeForFooterInSection:(NSInteger)section{
         [_popupView tf_observerDelegateProcess:^(UIView *pop, DelegateProcess pro) {
             @strongify(self)
             if (pro == DelegateProcessWillHide) {
-                [self.popupView shakeCell:NO];
+                self.popupView.shakeCell(NO);
             }
         }];
         [_popupView actionObjectBlock:^(id data) {
             @strongify(self)
             if ([data isKindOfClass:NSMutableArray.class]) {
-                NSMutableArray *dataMutArr = NSMutableArray.array;
-                [dataMutArr addObject:self.titleMutArr[0]];
+                NSMutableArray <UIViewModel *>*dataMutArr = NSMutableArray.array;
+                dataMutArr.jobsAddObject(self.titleMutArr[0]);
                 [dataMutArr addObjectsFromArray:(NSMutableArray *)data];
 #ifdef DEBUG
-                NSMutableArray *mutArr = NSMutableArray.array;
+                NSMutableArray <NSString *>*mutArr = NSMutableArray.array;
                 for (UIViewModel *viewModel in dataMutArr) {
-                    [mutArr addObject:viewModel.textModel.text];
+                    mutArr.jobsAddObject(viewModel.textModel.text);
                 }
                 NSLog(@"%@",mutArr);
 #endif

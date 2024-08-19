@@ -17,7 +17,7 @@ UICollectionViewDataSource
 ,UICollectionViewDelegateFlowLayout
 >
 #pragma mark —— 一些公有方法
--(void)shakeCell:(BOOL)start;
+-(jobsByBOOLBlock)shakeCell;
 
 @end
 

@@ -14,7 +14,6 @@ typedef void(^jobsByVoidBlock)(void);
 typedef void(^jobsByLayoutAttributeBlock)(NSLayoutAttribute data);
 typedef void(^jobsByIDBlock)(id _Nullable data);
 typedef void(^jobsByDataBlock)(NSData *_Nullable data);
-typedef void(^jobsByGestureRecognizerBlock)(UIGestureRecognizer __kindof *_Nullable data);
 typedef void(^jobsBySELBlock)(SEL _Nullable data);
 typedef void(^jobsByStringBlock)(NSString *_Nullable data);
 typedef void(^jobsByAttributedStringBlock)(NSAttributedString *_Nullable data);
@@ -38,6 +37,15 @@ typedef void(^jobsByTableViewCellBlock)(UITableViewCell __kindof * _Nullable dat
 typedef void(^jobsByURLSessionDataTaskBlock)(NSURLSessionDataTask __kindof * _Nullable data);
 typedef void(^jobsByTextAlignmentBlock)(NSTextAlignment data);
 typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
+
+typedef void(^jobsByGestureRecognizerBlock)(UIGestureRecognizer __kindof *_Nullable data);
+typedef void(^jobsByPanGestureRecognizerBlock)(UIPanGestureRecognizer __kindof *_Nullable data);
+typedef void(^jobsByTapGestureRecognizerBlock)(UITapGestureRecognizer __kindof *_Nullable data);
+typedef void(^jobsByLongPressGestureRecognizerBlock)(UILongPressGestureRecognizer __kindof *_Nullable data);
+typedef void(^jobsBySwipeGestureRecognizerBlock)(UISwipeGestureRecognizer __kindof *_Nullable data);
+typedef void(^jobsByPinchGestureRecognizerBlock)(UIPinchGestureRecognizer __kindof *_Nullable data);
+typedef void(^jobsByRotationGestureRecognizerBlock)(UIRotationGestureRecognizer __kindof *_Nullable data);
+typedef void(^jobsByScreenEdgePanGestureRecognizerBlock)(UIScreenEdgePanGestureRecognizer __kindof *_Nullable data);
 
 typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
 

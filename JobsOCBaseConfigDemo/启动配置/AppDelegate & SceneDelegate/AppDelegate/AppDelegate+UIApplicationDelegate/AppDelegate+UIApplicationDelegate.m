@@ -17,7 +17,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
     JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
     
-//    JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
+    JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
     
     [self localNotifications];
     [self launchFunc2];
@@ -25,7 +25,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     self.window = JobsAppTools.sharedManager.makeAppDelegateWindow;
     self.window.rootViewController = RootViewController;
-    [AppDelegate.tabBarVC ppBadge:YES];
+    AppDelegate.tabBarVC.ppBadge(YES);
     [self.window makeKeyAndVisible];
 
     return YES;

@@ -100,9 +100,9 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     [super viewDidLoad];
     [self keyboard];
 
-    [self.jobsAppDoorContentView animationAlert];
-    [self.logoContentView animationAlert];
-    [self.customerServiceBtn animationAlert];
+    self.jobsAppDoorContentView.图片从小放大();
+    self.logoContentView.图片从小放大();
+    self.customerServiceBtn.图片从小放大();
 }
 
 - (void)viewWillAppear:(BOOL)animated {

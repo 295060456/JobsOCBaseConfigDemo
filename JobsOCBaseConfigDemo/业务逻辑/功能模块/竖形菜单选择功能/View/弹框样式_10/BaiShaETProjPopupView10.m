@@ -71,10 +71,14 @@ static dispatch_once_t static_popupView10OnceToken;
     return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(322));
 }
 #pragma mark —— 一些公有方法
--(void)shakeCell:(BOOL)start{
-    for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
-        [cell 抖动动画:start];
-    }
+-(jobsByBOOLBlock)shakeCell{
+    @jobs_weakify(self)
+    return ^(BOOL start) {
+        @jobs_strongify(self)
+        for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
+            cell.抖动动画(start);
+        }
+    };
 }
 #pragma mark —— UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -98,14 +102,14 @@ cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     return cell;
 }
 
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
+- (NSInteger)collectionView:(nonnull __kindof UICollectionView *)collectionView
 numberOfItemsInSection:(NSInteger)section {
     return self.dataMutArr.count;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
-viewForSupplementaryElementOfKind:(NSString *)kind
-atIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionReusableView *)collectionView:(__kindof UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath {
     if (kind.isEqualToString(UICollectionElementKindSectionHeader)) {
         JobsHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHeaderFooterView.class
                                                                                                        forIndexPath:indexPath];
@@ -125,35 +129,35 @@ atIndexPath:(NSIndexPath *)indexPath {
 }
 #pragma mark —— UICollectionViewDelegate
 /// 允许选中时，高亮
--(BOOL)collectionView:(UICollectionView *)collectionView
+-(BOOL)collectionView:(__kindof UICollectionView *)collectionView
 shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 高亮完成后回调
--(void)collectionView:(UICollectionView *)collectionView
+-(void)collectionView:(__kindof UICollectionView *)collectionView
 didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __FUNCTION__);
 }
 /// 由高亮转成非高亮完成时的回调
--(void)collectionView:(UICollectionView *)collectionView
+-(void)collectionView:(__kindof UICollectionView *)collectionView
 didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __FUNCTION__);
 }
 /// 设置是否允许选中
--(BOOL)collectionView:(UICollectionView *)collectionView
+-(BOOL)collectionView:(__kindof UICollectionView *)collectionView
 shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 设置是否允许取消选中
--(BOOL)collectionView:(UICollectionView *)collectionView
+-(BOOL)collectionView:(__kindof UICollectionView *)collectionView
 shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 选中操作
-- (void)collectionView:(UICollectionView *)collectionView
+- (void)collectionView:(__kindof UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __FUNCTION__);
     /**
@@ -163,41 +167,41 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      */
 }
 /// 取消选中操作
--(void)collectionView:(UICollectionView *)collectionView
+-(void)collectionView:(__kindof UICollectionView *)collectionView
 didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __FUNCTION__);
 }
 #pragma mark —— UICollectionViewDelegateFlowLayout
 /// header 大小
-- (CGSize)collectionView:(UICollectionView *)collectionView
+- (CGSize)collectionView:(__kindof UICollectionView *)collectionView
 layout:(UICollectionViewLayout *)collectionViewLayout
 referenceSizeForHeaderInSection:(NSInteger)section {
     return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(16 + 12 + 8));
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView
+- (CGSize)collectionView:(__kindof UICollectionView *)collectionView
 layout:(UICollectionViewLayout *)collectionViewLayout
 sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(JobsWidth(106), JobsWidth(30));
 }
 /// 定义的是元素垂直之间的间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-layout:(UICollectionViewLayout *)collectionViewLayout
-minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+- (CGFloat)collectionView:(__kindof UICollectionView *)collectionView
+                   layout:(__kindof UICollectionViewLayout *)collectionViewLayout
+    minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return JobsWidth(10);
 }
 /// 定义的是UICollectionViewScrollDirectionVertical下，元素水平之间的间距。
 /// UICollectionViewScrollDirectionHorizontal下，垂直和水平正好相反
 /// Api自动计算一行的Cell个数，只有当间距小于此定义的最小值时才会换行，最小执行单元是Section（每个section里面的样式是统一的）
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-layout:(UICollectionViewLayout *)collectionViewLayout
-minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+- (CGFloat)collectionView:(__kindof UICollectionView *)collectionView
+                   layout:(__kindof UICollectionViewLayout *)collectionViewLayout
+    minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return JobsWidth(6);
 }
 /// 内间距
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-layout:(UICollectionViewLayout *)collectionViewLayout
-insetForSectionAtIndex:(NSInteger)section {
+-(UIEdgeInsets)collectionView:(__kindof UICollectionView *)collectionView
+                       layout:(UICollectionViewLayout *)collectionViewLayout
+       insetForSectionAtIndex:(NSInteger)section {
     return jobsSameEdgeInset(JobsWidth(16));
 }
 #pragma mark ——  iOS9的新特性实现UICollectionViewCell拖拽
@@ -218,11 +222,11 @@ insetForSectionAtIndex:(NSInteger)section {
     
 }
 /// 在开始移动的时候会调用这个方法，如果有特殊的单元格不想被移动可以return NO， 如果没有限制就返回YES
--(BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath{
+-(BOOL)collectionView:(__kindof UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
 /// 移动结束的时候会调用此datasource，想要拖拽完成之后数据正确必须实现此方法，使用新的路径更新数据源，如果不实现此方法，刚刚移动cell中的数据不会重新排列
--(void)collectionView:(UICollectionView *)collectionView
+-(void)collectionView:(__kindof UICollectionView *)collectionView
   moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath
           toIndexPath:(NSIndexPath *)destinationIndexPath{
     /**
@@ -233,9 +237,9 @@ insetForSectionAtIndex:(NSInteger)section {
     [self.dataMutArr removeObject:viewModel];
     [self.dataMutArr insertObject:viewModel atIndex:destinationIndexPath.item];
 #ifdef DEBUG
-    NSMutableArray *mutArr = NSMutableArray.array;
+    NSMutableArray <UIViewModel *>*mutArr = NSMutableArray.array;
     for (UIViewModel *viewModel in self.dataMutArr) {
-        [mutArr addObject:viewModel.textModel.text];
+        mutArr.jobsAddObject(viewModel.textModel.text);
     }
     NSLog(@"%@",mutArr);
 #endif
@@ -275,9 +279,11 @@ insetForSectionAtIndex:(NSInteger)section {
             _collectionView.allowableMovement = 1;
             _collectionView.userInteractionEnabled = YES;
             _collectionView.target = self;
+            @jobs_weakify(self)
             _collectionView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                                 UILongPressGestureRecognizer *_Nullable arg) {
-                [self shakeCell:YES];
+                @jobs_strongify(self)
+                self.shakeCell(YES);
                 /// 获取此次点击的坐标，根据坐标获取cell对应的indexPath
                 BaiShaETProjPopupView10 *popupView = (BaiShaETProjPopupView10 *)target;
                 CGPoint point = [arg locationInView:popupView.collectionView];
@@ -290,15 +296,15 @@ insetForSectionAtIndex:(NSInteger)section {
                             [popupView.collectionView beginInteractiveMovementForItemAtIndexPath:indexPath];
                         } break;// 当没有点击到cell的时候不进行处理
                     case UIGestureRecognizerStateChanged:
-                    /// 移动过程中更新位置坐标
+                        /// 移动过程中更新位置坐标
                         [popupView.collectionView updateInteractiveMovementTargetPosition:point];
                         break;
                     case UIGestureRecognizerStateEnded:
-                    /// 停止移动调用此方法
+                        /// 停止移动调用此方法
                         [popupView.collectionView endInteractiveMovement];
                         break;
                     default:
-                    /// 取消移动
+                        /// 取消移动
                         [popupView.collectionView cancelInteractiveMovement];
                         break;
                 }return nil;
@@ -307,10 +313,10 @@ insetForSectionAtIndex:(NSInteger)section {
             _collectionView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
                                                                                           id  _Nullable arg) {
                 NSLog(@"");
-                [self shakeCell:NO];
+                @jobs_strongify(self)
+                self.shakeCell(NO);
                 return nil;
-            }];
-            _collectionView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+            }];_collectionView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
         }
     }return _collectionView;
 }
@@ -350,7 +356,7 @@ insetForSectionAtIndex:(NSInteger)section {
             @jobs_strongify(self)
             x.selected = !x.selected;
             [self cancelBtnActionForPopView:x];
-            [self shakeCell:NO];
+            self.shakeCell(NO);
             return nil;
         }];
     }return _closeBtn;
@@ -376,7 +382,7 @@ insetForSectionAtIndex:(NSInteger)section {
             NSLog(@"恢复默认");
             x.selected = !x.selected;
             [self cancelBtnActionForPopView:x];
-            [self shakeCell:NO];
+            self.shakeCell(NO);
             return nil;
         }];
     }return _cancelBtn;
@@ -401,7 +407,7 @@ insetForSectionAtIndex:(NSInteger)section {
             @jobs_strongify(self)
             x.selected = !x.selected;
             [self cancelBtnActionForPopView:self.dataMutArr];
-            [self shakeCell:NO];
+            self.shakeCell(NO);
             return nil;
         }];
     }return _sureBtn;
@@ -431,10 +437,3 @@ insetForSectionAtIndex:(NSInteger)section {
 }
 
 @end
-
-
-
-
-
-
-

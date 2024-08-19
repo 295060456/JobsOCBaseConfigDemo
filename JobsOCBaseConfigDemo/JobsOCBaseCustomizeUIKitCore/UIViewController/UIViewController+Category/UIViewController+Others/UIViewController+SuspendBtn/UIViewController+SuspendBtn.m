@@ -22,7 +22,7 @@ JobsKey(_suspendBtn)
             @jobs_strongify(self)
             x.selected = !x.selected;
             NSLog(@"%@",x.selected ? JobsInternationalization(@"开始旋转") : JobsInternationalization(@"停止旋转"));
-//            [x rotateAnimation:x.selected];
+//            x.旋转动画(x.selected);
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }];

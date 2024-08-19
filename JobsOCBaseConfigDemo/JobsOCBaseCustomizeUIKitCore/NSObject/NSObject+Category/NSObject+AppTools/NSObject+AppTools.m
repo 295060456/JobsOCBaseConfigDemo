@@ -16,7 +16,7 @@
         JobsTabBarItemConfig *tabBarItemConfig = AppDelegate.tabBarItemConfigMutArr[y];
         if(tabBarItemConfig.isNotNeedCheckLogin){
             Class cls = viewController.class;
-            [tempDataArr addObject:cls];
+            tempDataArr.jobsAddObject(cls);
         }
     }return tempDataArr;
 }

@@ -58,7 +58,7 @@ UITabBarControllerDelegate,
 UIGestureRecognizerDelegate
 >
 /// UI
-@property(nonatomic,strong,readonly)JobsTabBar *myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
+@property(nonatomic,strong,readonly)JobsTabBar * _Nonnull myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
 /// Data
 @property(nonatomic,assign)BOOL isOpenScrollTabbar;/// 是否开启手势横向滚动子VC联动Tabbar切换，默认开启
 @property(nonatomic,assign)BOOL isAnimationAlert;/// 图片从小放大
@@ -68,21 +68,21 @@ UIGestureRecognizerDelegate
 @property(nonatomic,assign)BOOL isJumpToNextVC;/// 当需要跳开的item,是否是需要直接跳到下一个VC？默认NO
 #pragma mark —— 初始化方法
 ///【单例模式】使用内置默认的JobsTabBar
-+(instancetype)sharedManager;
++(instancetype _Nonnull)sharedManager;
 ///【单例模式】使用外界自定义的JobsTabBar
-+(instancetype)sharedInstanceWithJobsTabBar:(JobsTabBar *)tabBar;
++(instancetype _Nonnull)sharedInstanceWithJobsTabBar:(JobsTabBar *_Nullable)tabBar;
 /// 一般的初始化模式
--(instancetype)initWithJobsTabBar:(JobsTabBar *)tabBar;
+-(instancetype _Nonnull)initWithJobsTabBar:(JobsTabBar *_Nonnull)tabBar;
 #pragma mark —— 单例的销毁
 +(void)destroyInstance;
 #pragma mark —— 一些公有方法
 /// 需要强制跳转登录的index。点击和手势滑动都需要共同调用
--(BOOL)forcedLoginIndex:(NSUInteger)index;
+-(JobsReturnBOOLByNSUIntegerBlock _Nullable)forcedLoginIndex;
 /// 关闭手势
--(void)closePan;
+-(jobsByVoidBlock _Nullable)closePan;
 /// 打开手势
--(void)openPan;
+-(jobsByVoidBlock _Nullable)openPan;
 /// 开启/关闭 PPBadgeView的效果,至少在viewDidLayoutSubviews后有效
--(void)ppBadge:(BOOL)open;
+-(jobsByBOOLBlock _Nonnull)ppBadge;
 
 @end

@@ -124,6 +124,7 @@ typedef CGFloat(^JobsReturnByCGFloatBlock)(CGFloat data);
 typedef BOOL(^JobsReturnBOOLByStringBlock)(NSString * _Nullable data);
 typedef BOOL(^JobsReturnByBOOLBlock)(BOOL data);
 typedef BOOL(^JobsReturnBOOLByNSUIntegerBlock)(NSUInteger data);
+typedef BOOL(^JobsReturnBOOLByNSIntegerBlock)(NSInteger data);
 typedef int(^JobsReturnByIntBlock)(int data);
 typedef unsigned int(^JobsReturnByUnsignedIntBlock)(unsigned int data);
 typedef float(^JobsReturnByFloatBlock)(float data);

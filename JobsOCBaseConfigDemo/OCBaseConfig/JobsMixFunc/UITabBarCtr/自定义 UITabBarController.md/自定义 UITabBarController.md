@@ -181,19 +181,25 @@ pod 'PPBadgeView' # https://github.com/jkpang/PPBadgeView iOS自定义Badge组�
 
 ```objective-c
 /// 开启/关闭 PPBadgeView的效果,至少在viewDidLayoutSubviews后有效
--(void)ppBadge:(BOOL)open{
-    self.isOpenPPBadge = open;
-    if (open) {
-        for (UITabBarItem *item in self.tabBar.items) {
-            if ([item.title isEqualToString:@"首页"]) {
-                [item pp_addBadgeWithText:@"919+"];
+-(jobsByBOOLBlock _Nonnull)ppBadge{
+    @jobs_weakify(self)
+    return ^(BOOL open) {
+        @jobs_strongify(self)
+        if (@available(iOS 16.0, *)) {
+            self.isOpenPPBadge = open;
+            if (open) {
+                for (UITabBarItem *item in self.tabBar.items) {
+                    if ([item.title isEqualToString:JobsInternationalization(@"首页")]) {
+                        [item pp_addBadgeWithText:@"919+"];
 #pragma mark —— 动画
-                [item.badgeView animationAlert];//图片从小放大
-                [item.badgeView shakerAnimationWithDuration:2 height:20];//重力弹跳动画效果
-    //            [UIView 视图上下一直来回跳动的动画:item.badgeView];
+                        item.badgeView.图片从小放大();
+                        [item.badgeView shakerAnimationWithDuration:2 height:20];//重力弹跳动画效果
+                        item.badgeView.视图上下一直来回跳动的动画();
+                    }
+                }
             }
         }
-    }
+    };
 }
 ```
 
@@ -552,7 +558,7 @@ if (self.isOpenPPBadge) {
   didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
       self.window = JobsAppTools.sharedManager.makeAppDelegateWindow;
       self.window.rootViewController = RootViewController;
-      [AppDelegate.tabBarVC ppBadge:YES];
+      AppDelegate.tabBarVC.ppBadge(YES);
       [self.window makeKeyAndVisible];
       return YES;
   }

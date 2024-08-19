@@ -46,14 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL __block isStopRotateAnimation;//默认值为NO（一直旋转）
 @property(nonatomic,strong)CAKeyframeAnimation *__block shakeAnim;
 #pragma mark —— 一些功能方法
-/// 抖动动画
--(void)抖动动画:(BOOL)open;
-/// 旋转动画
--(void)rotateAnimation:(BOOL)start;
-/// 图片从小放大
--(void)animationAlert;
-/// 视图上下一直来回跳动的动画
--(void)视图上下一直来回跳动的动画;
+-(jobsByBOOLBlock)抖动动画;
+-(jobsByBOOLBlock)旋转动画;
+-(jobsByVoidBlock)图片从小放大;
+-(jobsByVoidBlock)视图上下一直来回跳动的动画;
 /// 点击放大再缩小
 -(void)addViewAnimationWithCompletionBlock:(jobsByIDBlock _Nullable)completionBlock;
 /// 逐渐显示

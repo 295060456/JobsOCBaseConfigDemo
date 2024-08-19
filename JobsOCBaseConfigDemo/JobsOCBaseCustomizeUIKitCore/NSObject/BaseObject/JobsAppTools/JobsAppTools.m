@@ -61,7 +61,7 @@ static dispatch_once_t JobsAppToolsOnceToken;
         _appDelegateWindow = UIWindow.new;
         _appDelegateWindow.frame = UIScreen.mainScreen.bounds;
         _appDelegateWindow.rootViewController = RootViewController;
-        [AppDelegate.tabBarVC ppBadge:YES];
+        AppDelegate.tabBarVC.ppBadge(YES);
         [_appDelegateWindow makeKeyAndVisible];
     }return _appDelegateWindow;
 }

@@ -82,11 +82,11 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    [self.loginContentView animationAlert];
-    [self.registerContentView animationAlert];
-    [self.logoContentView animationAlert];
-    [self.customerServiceBtn animationAlert];
+
+    self.loginContentView.图片从小放大();
+    self.registerContentView.图片从小放大();
+    self.logoContentView.图片从小放大();
+    self.customerServiceBtn.图片从小放大();
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
