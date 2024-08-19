@@ -2293,10 +2293,10 @@ NSObject <|-- BaseProtocol
      #pragma mark —— UIScrollViewDelegate
      - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
          /// 防止在初始情况下，无意义的往右拉动
-         NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)// 1242
+         CGFloat d = (self.viewModel_.rowNumber * self.viewModel_.itemW - self.viewModel_.XZExcelW) + self.viewModel_.itemW;
+         NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)
          if (scrollView.contentOffset.x >= 0) {
              /// 防止在数据拉完的情况下，无意义的往左拉动
-             CGFloat d = (self.viewModel_.rowNumber * self.viewModel_.itemW - self.viewModel_.XZExcelW) - self.viewModel_.itemW * 2 + 10;
              if(scrollView.contentOffset.x <= d){
                  @jobs_weakify(self)
                  self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
@@ -2318,17 +2318,17 @@ NSObject <|-- BaseProtocol
         if (scrollView.contentOffset.x < 0) {
             scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
         }
-        NSLog(@"JobsExcelTopHeadView - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)// 1242
-        if(scrollView.contentOffset.x > 1242){
-            scrollView.contentOffset = CGPointMake(1242, scrollView.contentOffset.y);
+        NSLog(@"JobsExcelTopHeadView - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)
+        CGFloat d = (self.viewModel.rowNumber * self.viewModel.itemW - self.viewModel.XZExcelW) + self.viewModel.itemW;
+        if(scrollView.contentOffset.x > d){
+            scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
         }
     }
     ```
-    
+
     **JobsExcelLeftListView**
-    
+
     ```objective-c
-    
     #pragma mark —— UIScrollViewDelegate
     - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
         NSLog(@"KKK3 = %f",scrollView.contentOffset.y);
@@ -2336,7 +2336,7 @@ NSObject <|-- BaseProtocol
         if (scrollView.contentOffset.y < 0) {
             scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
         }else{
-            CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH) - self.viewModel.itemH * 2 - 4;
+            CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH);
             if(scrollView.contentOffset.y > d){
                 scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
             }else self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);

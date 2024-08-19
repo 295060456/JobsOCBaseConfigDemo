@@ -171,6 +171,7 @@ viewForHeaderInSection:(NSInteger)section{
         BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
         {
             // 不写这两句有悬浮
+            tbvFooterView.headerFooterViewStyle = JobsHeaderViewStyle;
             tbvFooterView.tableView = tableView;
             tbvFooterView.section = section;
         }
@@ -217,7 +218,6 @@ viewForHeaderInSection:(NSInteger)section{
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     [tableView hideSeparatorLineAtLast:indexPath
                                   cell:cell];
     cell.img = JobsIMG(@"向右的箭头（大）");
@@ -227,13 +227,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
         NSLog(@"MMM - %ld",cell.index);
     }];
-    
+    cell.accessoryView.resetWidth(10);
     [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
                                           bottomLineCor:HEXCOLOR(0xFFFFFF)
                                          cellOutLineCor:HEXCOLOR(0xEEE2C8)
                                        cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
-                                            borderWidth:JobsWidth(10) dx:JobsWidth(0) dy:JobsWidth(0)];
-    
+                                            borderWidth:JobsWidth(10) 
+                                                     dx:JobsWidth(0)
+                                                     dy:JobsWidth(0)];
 }
 #pragma mark —— lazyLoad
 -(UITableView *)tableView{

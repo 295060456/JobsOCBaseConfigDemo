@@ -56,8 +56,8 @@
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     /// 防止在初始情况下，无意义的往右拉动
-    CGFloat d = 1446;//(self.viewModel_.rowNumber * self.viewModel_.itemW - self.viewModel_.XZExcelW) - self.viewModel_.itemW * 2;
-    NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)// 1242 1446 964
+    CGFloat d = (self.viewModel_.rowNumber * self.viewModel_.itemW - self.viewModel_.XZExcelW) + self.viewModel_.itemW;
+    NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)
     if (scrollView.contentOffset.x >= 0) {
         /// 防止在数据拉完的情况下，无意义的往左拉动
         if(scrollView.contentOffset.x <= d){

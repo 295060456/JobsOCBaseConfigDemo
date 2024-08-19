@@ -85,7 +85,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (scrollView.contentOffset.y < 0) {
         scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
     }else{
-        CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH) - self.viewModel.itemH * 2 - 4;
+        CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH);
         if(scrollView.contentOffset.y > d){
             scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
         }else self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
