@@ -11,9 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 只在BaseCollectionViewCell完整的盖一个Button
 /// 其目的是利用Button丰富的图文展示效果
 @interface JobsBtnStyleCVCell : JobsBaseCollectionViewCell
-
 #pragma mark —— 一些公有方法
--(UIButton *)btn;
+-(BaseButton *)btn;
 
 @end
 

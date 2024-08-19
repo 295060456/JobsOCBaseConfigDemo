@@ -17,7 +17,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
     JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;
     
-//    JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
+    JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
     
     [self localNotifications];
     [self launchFunc2];

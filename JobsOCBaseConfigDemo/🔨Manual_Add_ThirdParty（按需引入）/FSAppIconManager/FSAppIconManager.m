@@ -7,13 +7,12 @@
 //
 
 #import "FSAppIconManager.h"
-#import "AppDelegate.h"
 
 @implementation FSAppIconManager
 
 + (NSString *)getCurrentAppIconName {
     if (@available(iOS 10.3, *)) {
-        return ([UIApplication sharedApplication].alternateIconName.length == 0) ? JobsInternationalization(@"") : [UIApplication sharedApplication].alternateIconName;
+        return (UIApplication.sharedApplication.alternateIconName.length == 0) ? JobsInternationalization(@"") : UIApplication. sharedApplication.alternateIconName;
     } else {
         // Fallback on earlier versions
         return JobsInternationalization(@"");
@@ -22,7 +21,7 @@
 
 + (BOOL)canChangeAppIcon {
     if (@available(iOS 10.3, *)) {
-        return [[UIApplication sharedApplication] supportsAlternateIcons];
+        return UIApplication.sharedApplication.supportsAlternateIcons;
     } else {
         // Fallback on earlier versions
         return NO;
@@ -32,13 +31,9 @@
 + (void)changeAppIconWithIconName:(NSString *)iconName
                 completionHandler:(void (^)(NSError * _Nullable))completionHandler {
     if (@available(iOS 10.3, *)) {
-        [[UIApplication sharedApplication] setAlternateIconName:iconName
-                                              completionHandler:^(NSError * _Nullable error) {
-            if (!error) {
-                completionHandler(nil);
-            } else {
-                completionHandler(error);
-            }
+        [UIApplication.sharedApplication setAlternateIconName:iconName
+                                            completionHandler:^(NSError * _Nullable error) {
+            completionHandler(error);
         }];
     } else {
         // Fallback on earlier versions
@@ -53,4 +48,5 @@
         completionHandler(error);
     }
 }
+
 @end

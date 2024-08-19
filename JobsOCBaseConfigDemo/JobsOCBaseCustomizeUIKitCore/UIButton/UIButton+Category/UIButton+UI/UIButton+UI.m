@@ -171,7 +171,7 @@
      }];
      */
     }else{
-        if(self == [super init]){
+        if(self == [UIButton buttonWithType:UIButtonTypeSystem]){
             btn = self;
             /// 公共设置
             self.normalImage(normalImage);

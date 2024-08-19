@@ -40,7 +40,6 @@
     return ^(JobsExcelConfigureViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
         self.viewModel_ = viewModel;
-        self.backgroundColor = JobsWhiteColor;
         CGSize size = CGSizeMake(viewModel.itemW - 1.0f, viewModel.itemH - 1.0f);
         if (!CGSizeEqualToSize(self.size, size)) {
             self.size = size;
@@ -51,9 +50,9 @@
 }
 
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
-    @jobs_weakify(self)
+//    @jobs_weakify(self)
     return ^(UIButtonModel *_Nullable model) {
-        @jobs_strongify(self)
+//        @jobs_strongify(self)
         super.jobsRichElementsInCellWithModel(model);
     };
 }
@@ -69,7 +68,7 @@
     [self.linePath stroke];
     UIGraphicsEndImageContext();
     
-    [self.contentView.layer addSublayer:self.lineLayer];
+    [self.btn.layer addSublayer:self.lineLayer];
 }
 #pragma mark —— lazyLoad
 -(UIBezierPath *)linePath{

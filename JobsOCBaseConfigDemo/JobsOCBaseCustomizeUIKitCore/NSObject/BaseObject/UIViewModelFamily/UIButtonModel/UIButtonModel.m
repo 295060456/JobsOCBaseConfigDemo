@@ -59,4 +59,21 @@ UIViewModelProtocol_synthesize
     }return _subTitleShowingType;
 }
 
+-(JobsReturnRACDisposableByReturnIDByIDBlock _Nullable)jobsReturnedTestBlock{
+    if(!_jobsReturnedTestBlock){
+        _jobsReturnedTestBlock = ^RACDisposable *_Nonnull(JobsReturnIDByIDBlock _Nullable data) {
+            NSLog(@"JobsTestBlock");
+            return nil;
+        };
+    }return _jobsReturnedTestBlock;
+}
+
+-(jobsByVoidBlock _Nullable)jobsTestBlock{
+    if (!_jobsTestBlock) {
+        _jobsTestBlock = ^{
+            NSLog(@"jobsTestBlock");
+        };
+    }return _jobsTestBlock;
+}
+
 @end

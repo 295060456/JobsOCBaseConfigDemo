@@ -69,7 +69,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MainTableViewCell *cell = MainTableViewCell.cellStyleValue1WithTableView(tableView);
-    cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
+//    cell.backgroundColor = indexPath.row % 2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
     cell.delegate = self;
     cell.indexPath = indexPath;
     cell.jobsRichElementsInCellWithModel(self.viewModel);

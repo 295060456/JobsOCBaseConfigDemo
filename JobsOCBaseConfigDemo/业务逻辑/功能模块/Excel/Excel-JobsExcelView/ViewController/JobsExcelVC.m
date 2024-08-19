@@ -92,7 +92,7 @@
 -(JobsExcelView *)excelView{
     if(!_excelView){
         _excelView = JobsExcelView.new;
-        _excelView.backgroundColor = JobsYellowColor;
+        _excelView.backgroundColor = JobsRedColor;
         [self.view addSubview:_excelView];
         [_excelView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.view);

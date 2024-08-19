@@ -30,8 +30,12 @@ const CGFloat LineWidth = 2;
         for (int j = 1; j <= 30; j++){/// x
             UIButtonModel *model = UIButtonModel.new;
             model.title = toStringByInt(i*j);
-            model.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+            model.baseBackgroundColor = j % 2 ? JobsCyanColor: JobsGreenColor;
             model.titleCor = JobsWhiteColor;
+//            model.jobsTestBlock();
+//            model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
+//                return nil;
+//            });
             row.jobsAddObject(model);/// 一行的数据
         }
         self.contentArr.jobsAddObject(row);//50

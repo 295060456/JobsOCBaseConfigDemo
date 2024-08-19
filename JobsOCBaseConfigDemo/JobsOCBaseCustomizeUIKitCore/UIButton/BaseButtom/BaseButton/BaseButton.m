@@ -48,6 +48,12 @@
     [super layoutSubviews];
 //    [self printValue];
     [self resetSubViews];
+    
+    for (UIView *subview in self.subviews) {
+        if ([subview isKindOfClass:NSClassFromString(@"_UISystemBackgroundView")]) {
+            subview.frame = self.bounds;
+        }
+    }
 }
 
 -(void)setFrame:(CGRect)frame{

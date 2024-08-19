@@ -108,6 +108,9 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 其他
 @property(nonatomic,assign)CGFloat leftViewWidth;
 @property(nonatomic,assign)CGFloat rightViewWidth;
+#pragma mark —— 保留字段
+@property(nonatomic,copy,nullable)JobsReturnRACDisposableByReturnIDByIDBlock jobsReturnedTestBlock;
+@property(nonatomic,copy,nullable)jobsByVoidBlock jobsTestBlock;
 
 @end
 

@@ -10,7 +10,7 @@
 @interface JobsBaseCollectionViewCell ()
 /// UI
 @property(nonatomic,strong)UITextView *textView;
-@property(nonatomic,strong)UIButton *bgBtn;
+@property(nonatomic,strong)BaseButton *bgBtn;
 
 @end
 
@@ -102,13 +102,54 @@
     _index = index;
 }
 #pragma mark —— lazyLoad
--(UIButton *)bgBtn{
+-(BaseButton *)bgBtn{
     if (!_bgBtn) {
-        _bgBtn = UIButton.new;
+        @jobs_weakify(self)
+        _bgBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                   background:nil
+                                   buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                textAlignment:NSTextAlignmentCenter
+                                             subTextAlignment:NSTextAlignmentCenter
+                                                  normalImage:nil
+                                               highlightImage:nil
+                                              attributedTitle:nil
+                                      selectedAttributedTitle:nil
+                                           attributedSubtitle:nil
+                                                        title:nil
+                                                     subTitle:nil
+                                                    titleFont:nil
+                                                 subTitleFont:nil
+                                                     titleCor:nil
+                                                  subTitleCor:nil
+                                           titleLineBreakMode:NSLineBreakByWordWrapping
+                                        subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                          baseBackgroundColor:nil
+                                              backgroundImage:nil
+                                                 imagePadding:JobsWidth(0)
+                                                 titlePadding:JobsWidth(0)
+                                               imagePlacement:NSDirectionalRectEdgeNone
+                                   contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                     contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                            cornerRadiusValue:JobsWidth(0)
+                                              roundingCorners:UIRectCornerAllCorners
+                                         roundingCornersRadii:CGSizeZero
+                                               layerBorderCor:nil
+                                                  borderWidth:JobsWidth(0)
+                                                primaryAction:nil
+                                   longPressGestureEventBlock:^(id  _Nullable weakSelf,
+                                                                id  _Nullable arg) {
+           NSLog(@"按钮的长按事件触发");
+       }
+                                              clickEventBlock:^id(BaseButton *x){
+           @jobs_strongify(self)
+           if (self.objectBlock) self.objectBlock(x);
+           return nil;
+        }];
         _bgBtn.userInteractionEnabled = NO;
         [self.contentView addSubview:_bgBtn];
         [_bgBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
+            make.edges.equalTo(self);
         }];
     }
     _bgBtn.normalImage(self.viewModel.image);
@@ -125,7 +166,7 @@
     
     _bgBtn.titleFont(self.viewModel.textModel.font);
     _bgBtn.titleAlignment = self.viewModel.textModel.textAlignment;
-//    _bgBtn.makeNewLineShows(self.viewModel.textModel.lineBreakMode);
+    _bgBtn.makeNewLineShows(self.viewModel.textModel.lineBreakMode);
     [_bgBtn layoutButtonWithEdgeInsetsStyle:self.viewModel.buttonEdgeInsetsStyle
                                imagePadding:self.viewModel.imageTitleSpace];
     return _bgBtn;

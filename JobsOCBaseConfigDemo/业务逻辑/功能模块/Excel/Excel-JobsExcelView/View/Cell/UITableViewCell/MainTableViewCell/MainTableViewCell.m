@@ -27,7 +27,7 @@
             cell = [self initTableViewCell:self
                                  withStyle:UITableViewCellStyleValue1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = JobsWhiteColor;
+            cell.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
             cell.collectionView.alpha = 1;
         }return cell;
     };
@@ -79,7 +79,7 @@
                            cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     MainTableViewCellItem *cell = [MainTableViewCellItem cellWithCollectionView:collectionView
                                                                    forIndexPath:indexPath];
-    cell.contentView.backgroundColor = cell.backgroundColor = indexPath.row %2 ? JobsCor(@"#000000").colorWithAlphaComponent(.3f) : JobsCor(@"#4B00AB").colorWithAlphaComponent(.3f);
+    cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
     NSLog(@"KKK1 = %ld-%@",self.indexPath.row + 1,self.model[0].text);
     cell.jobsRichElementsInCellWithModel(self.viewModel_);
     cell.jobsRichElementsInCellWithModel2(self.model[indexPath.row]);

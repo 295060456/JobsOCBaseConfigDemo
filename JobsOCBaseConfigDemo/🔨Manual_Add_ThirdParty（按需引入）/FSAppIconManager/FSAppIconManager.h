@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 
 @interface FSAppIconManager : NSObject
-
 /**
  Returns the name of the icon currently in use.
 
@@ -17,14 +17,12 @@
  @return IconName
  */
 + (NSString *_Nullable)getCurrentAppIconName;
-
 /**
  Check whether the current device supports changing icon
 
  @return result, YES or NO
  */
 + (BOOL)canChangeAppIcon;
-
 /**
  Change the icon
 
@@ -50,5 +48,4 @@
      }];
  }
 
- 
  */
