@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UIButtonModel.h"
+#import "JobsBlock.h"
 
 UIKIT_EXTERN NSString * const VerticalScrollBegin;/// 垂直滚动键值
 UIKIT_EXTERN NSString * const HorizontalScrollBegin;/// 水平滚动键值
@@ -42,5 +43,9 @@ UIKIT_EXTERN NSString * const HorizontalScrollBegin;/// 水平滚动键值
 @property(nonatomic,strong)NSValue *HorizontalScrollValue;/// 水平滚动
 @property(nonatomic,assign,readonly)NSInteger rowNumber;/// 行数
 @property(nonatomic,assign,readonly)NSInteger colNumber;/// 列数
+@property(nonatomic,strong)NSMutableArray <NSString *>*topHeaderTitles;
+@property(nonatomic,strong)NSMutableArray <NSString *>*leftTitles;
+
+@property(nonatomic,copy)jobsByVoidBlock configureData;
 
 @end

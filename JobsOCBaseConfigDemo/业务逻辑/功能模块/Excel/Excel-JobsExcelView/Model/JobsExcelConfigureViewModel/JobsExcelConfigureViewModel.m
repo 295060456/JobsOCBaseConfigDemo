@@ -22,36 +22,55 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
 
 - (instancetype)init{
     if (self = [super init]) {
-        [self configureData];
+
     }return self;
 }
-
-- (void)configureData{
-    for (int i = 1; i <= 50; i++) {/// y
-        NSMutableArray <UIButtonModel *>*row = NSMutableArray.array;//30
-        for (int j = 1; j <= 30; j++){/// x
-            UIButtonModel *model = UIButtonModel.new;
-            model.title = toStringByInt(i * j);
-            model.baseBackgroundColor = i % 2 ? self.cor2: self.cor1;
-            model.backgroundImage = i % 2 ? self.image2: self.image1;
-            model.titleCor = JobsWhiteColor;
-            model.titleFont = UIFontWeightRegularSize(JobsWidth(10));
-//            model.jobsTestBlock();
-//            model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
-//                return nil;
-//            });
-            row.jobsAddObject(model);/// 一行的数据
-        }
-        self.contentArr.jobsAddObject(row);//50
-    }
-    
-    self.itemH = 35;
-    self.itemW = 60;
-    self.rowNumber = self.contentArr[0].count;// 30
-    self.colNumber = self.contentArr.count;// 50
-    NSLog(@"");
-}
 #pragma mark —— lazyLoad
+-(jobsByVoidBlock)configureData{
+    @jobs_weakify(self)
+    if(!_configureData){
+        _configureData = ^() {
+            @jobs_strongify(self)
+            for (int i = 1; i <= 50; i++) {/// y
+                NSMutableArray <UIButtonModel *>*row = NSMutableArray.array;//30
+                for (int j = 1; j <= (self.topHeaderTitles.count ? : 30) ; j++){/// x
+                    UIButtonModel *model = UIButtonModel.new;
+                    
+                    if(j == 1){
+                        model.title = self.topHeaderTitles[j];
+                    }else{
+                        model.title = toStringByInt(i * j);
+                    }
+
+                    if(j == 2){
+                        model.imagePlacement = NSDirectionalRectEdgeTrailing;
+                        model.imagePadding = JobsWidth(8);
+                        model.normalImage = JobsIMG(@"复制图标");
+                    }
+                    
+                    model.baseBackgroundColor = i % 2 ? self.cor2: self.cor1;
+                    model.backgroundImage = i % 2 ? self.image2: self.image1;
+                    model.titleCor = JobsWhiteColor;
+                    model.titleFont = UIFontWeightRegularSize(JobsWidth(10));
+                    
+        //            model.jobsTestBlock();
+        //            model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
+        //                return nil;
+        //            });
+                    row.jobsAddObject(model);/// 一行的数据
+                }
+                self.contentArr.jobsAddObject(row);//50
+            }
+            
+            self.itemH = 35;
+            self.itemW = 60;
+            self.rowNumber = self.contentArr[0].count;// 30
+            self.colNumber = self.contentArr.count;// 50
+            NSLog(@"");
+        };
+    }return _configureData;
+}
+
 -(NSMutableArray<NSMutableArray<UIButtonModel *> *> *)contentArr{
     if(!_contentArr){
         _contentArr = NSMutableArray.array;
@@ -61,7 +80,7 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
 -(UIButtonModel *)data_00{
     if(!_data_00){
         _data_00 = UIButtonModel.new;
-        _data_00.title = JobsInternationalization(@"楼层");
+        _data_00.title = self.topHeaderTitles[0] ? : JobsInternationalization(@"楼层");
         _data_00.titleCor = self.cor4;
         _data_00.baseBackgroundColor = self.cor0;
         _data_00.backgroundImage = self.imag0;
@@ -180,6 +199,18 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
     if(!_image3){
         _image3 = JobsIMG(@"Excel表头的背景图");
     }return _image3;
+}
+
+-(NSMutableArray<NSString *> *)topHeaderTitles{
+    if(!_topHeaderTitles){
+        _topHeaderTitles = NSMutableArray.array;
+    }return _topHeaderTitles;
+}
+
+-(NSMutableArray<NSString *> *)leftTitles{
+    if(!_leftTitles){
+        _leftTitles = NSMutableArray.array;
+    }return _leftTitles;
 }
 
 @end

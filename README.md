@@ -2282,9 +2282,9 @@ NSObject <|-- BaseProtocol
 
   * 数据源
 
-    * Excel表格的总数据源：**`JobsExcelConfigureViewModel`**
-    * 对单个的小格子的数据源用**`UITextModel`**
-    * 如果要设置Excel表的宽高，一定要在**`JobsExcelView`**里面的**`viewSizeWithModel`**方法里面进行设置
+    * **Excel**表格的总数据源：**`JobsExcelConfigureViewModel`**
+    * 对单个的小格子的数据源用：**`UITextModel`**
+    * 如果要设置**Excel**表的宽高，一定要在**`JobsExcelView`**里面的**`viewSizeWithModel`**方法里面进行设置
 
   * 一些人性化进阶设置
 
@@ -2373,6 +2373,15 @@ NSObject <|-- BaseProtocol
           _excelData = JobsExcelConfigureViewModel.new;
           _excelData.XZExcelH = [JobsExcelView viewSizeWithModel:nil].height;
           _excelData.XZExcelW = [JobsExcelView viewSizeWithModel:nil].width;
+          
+          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Order Time"));
+          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Order No."));
+          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Transaction Type"));
+          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Amount"));
+          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Method"));
+          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Status"));
+          
+          _excelData.configureData();
       }return _excelData;
   }
   ```

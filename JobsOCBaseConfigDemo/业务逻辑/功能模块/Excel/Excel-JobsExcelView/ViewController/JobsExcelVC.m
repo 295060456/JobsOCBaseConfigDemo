@@ -107,6 +107,15 @@
         _excelData = JobsExcelConfigureViewModel.new;
         _excelData.XZExcelH = [JobsExcelView viewSizeWithModel:nil].height;
         _excelData.XZExcelW = [JobsExcelView viewSizeWithModel:nil].width;
+        
+        _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Order Time"));
+        _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Order No."));
+        _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Transaction Type"));
+        _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Amount"));
+        _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Method"));
+        _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Status"));
+        
+        _excelData.configureData();
     }return _excelData;
 }
 
