@@ -158,7 +158,7 @@
         @jobs_weakify(self)
         [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
-            [x startTimer];//选择时机、触发启动
+            x.startTimer();//选择时机、触发启动
 //            NSLog(@"SSSSS = 获取验证码");
             if (self.objectBlock) self.objectBlock(x);
             return nil;

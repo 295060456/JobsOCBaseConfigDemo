@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_END
 
          /// 倒计时按钮点击事件（可以在其他地方实现）
          [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-             [x startTimer];//选择时机、触发启动
+             x.startTimer();//选择时机、触发启动
              NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
              return nil;
          }];
@@ -134,9 +134,9 @@ NS_ASSUME_NONNULL_END
      }return _btnTimerConfigModel;
  }
  
- /// 开始   [self.countDownBtn startTimer];
- /// 暂停 [self.countDownBtn timerSuspend];
- /// 继续 [self.countDownBtn timerContinue];
- /// 结束 [self.countDownBtn timerDestroy];
+ /// 开始 self.countDownBtn.startTimer();
+ /// 暂停 self.countDownBtn.timerSuspend();
+ /// 继续 self.countDownBtn.timerContinue();
+ /// 结束 self.countDownBtn.timerDestroy();
 
  */

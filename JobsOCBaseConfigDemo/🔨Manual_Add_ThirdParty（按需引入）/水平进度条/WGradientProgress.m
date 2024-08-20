@@ -31,16 +31,16 @@
 
 -(void)makeTimer_color{
     //启动方式——1
-    [self.nsTimerManager_color nsTimeStartWithRunLoop:nil];
+    self.nsTimerManager_color.nsTimeStartWithRunLoop(nil);
     //启动方式——2
-//    [self.nsTimerManager nsTimeStartSysAutoInRunLoop];
+//    self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
 }
 
 -(void)makeTimer_length{
     //启动方式——1
-    [self.nsTimerManager_length nsTimeStartWithRunLoop:nil];
+    self.nsTimerManager_length.nsTimeStartWithRunLoop(nil);
     //启动方式——2
-//    [self.nsTimerManager nsTimeStartSysAutoInRunLoop];
+//    self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
 }
 
 -(void)showOnParent{

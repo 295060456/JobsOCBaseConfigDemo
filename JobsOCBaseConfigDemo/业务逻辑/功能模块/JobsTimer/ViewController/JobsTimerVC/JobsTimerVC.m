@@ -23,7 +23,7 @@
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
     //    JobsRemoveNotification(self);;
-    [self.countDownBtn timerDestroy];
+    self.countDownBtn.timerDestroy();
 }
 
 -(void)loadView{
@@ -65,32 +65,32 @@
     /// 开始
     [self.btnMutArr[0] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
-        [self.countDownBtn startTimer];
+        self.countDownBtn.startTimer();
         return nil;
     }];
     /// 暂停
     [self.btnMutArr[1] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
-        [self.countDownBtn timerSuspend];
+        self.countDownBtn.timerSuspend();
         return nil;
     }];
     /// 继续
     [self.btnMutArr[2] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
-        [self.countDownBtn timerContinue];
+        self.countDownBtn.timerContinue();
         return nil;
     }];
     /// 结束
     [self.btnMutArr[3] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
-        [self.countDownBtn timerDestroy];
+        self.countDownBtn.timerDestroy();
         return nil;
     }];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.countDownBtn timerContinue];
+    self.countDownBtn.timerContinue();
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -99,7 +99,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.countDownBtn timerSuspend];
+    self.countDownBtn.timerSuspend();
 }
 #pragma mark —— 一些私有方法
 -(void)test_masonry_horizontal_fixSpace {
@@ -128,7 +128,7 @@
         }];
         _countDownBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
         [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            [x startTimer];//选择时机、触发启动
+            x.startTimer();//选择时机、触发启动
             NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
             return nil;
         }];

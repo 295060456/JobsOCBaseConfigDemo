@@ -11,10 +11,10 @@
 #pragma mark —— 单形参
 typedef void(^jobsByVoidBlock)(void);
 
+typedef void(^jobsByRunLoopBlock)(NSRunLoop * _Nullable data);
 typedef void(^jobsByLayoutAttributeBlock)(NSLayoutAttribute data);
 typedef void(^jobsByIDBlock)(id _Nullable data);
 typedef void(^jobsByDataBlock)(NSData *_Nullable data);
-typedef void(^jobsBySELBlock)(SEL _Nullable data);
 typedef void(^jobsByStringBlock)(NSString *_Nullable data);
 typedef void(^jobsByAttributedStringBlock)(NSAttributedString *_Nullable data);
 typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
@@ -24,20 +24,15 @@ typedef void(^jobsByViewBlock)(UIView __kindof * _Nullable view);
 typedef void(^jobsByScrollViewBlock)(UIScrollView * _Nullable data);
 typedef void(^jobsByBtnBlock)(UIButton __kindof * _Nullable btn);
 typedef void(^jobsByWindowBlock)(UIWindow __kindof * _Nullable data);
-typedef void(^jobsByClassBlock)(Class _Nonnull cls);
 typedef void(^jobsByClassAndSaltStrBlock)(Class _Nonnull cls,NSString * _Nullable salt);
-typedef void(^jobsByPointBlock)(CGPoint data);
-typedef void(^jobsBySizeBlock)(CGSize data);
-typedef void(^jobsByEdgeInsetBlock)(UIEdgeInsets data);
 typedef void(^jobsByVCBlock)(UIViewController __kindof * _Nullable data);
 typedef void(^jobsByVCAndDataBlock)(UIViewController __kindof * _Nullable viewController,id _Nullable data);
 typedef void(^jobsByViewAndAnimatedBlock)(UIView __kindof * _Nullable view,BOOL animated);
 typedef void(^jobsByView2Block)(UIView __kindof * _Nullable superview,UIView __kindof * _Nullable view);
 typedef void(^jobsByTableViewCellBlock)(UITableViewCell __kindof * _Nullable data);
 typedef void(^jobsByURLSessionDataTaskBlock)(NSURLSessionDataTask __kindof * _Nullable data);
-typedef void(^jobsByTextAlignmentBlock)(NSTextAlignment data);
 typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
-
+/// 关于手势
 typedef void(^jobsByGestureRecognizerBlock)(UIGestureRecognizer __kindof *_Nullable data);
 typedef void(^jobsByPanGestureRecognizerBlock)(UIPanGestureRecognizer __kindof *_Nullable data);
 typedef void(^jobsByTapGestureRecognizerBlock)(UITapGestureRecognizer __kindof *_Nullable data);
@@ -49,6 +44,12 @@ typedef void(^jobsByScreenEdgePanGestureRecognizerBlock)(UIScreenEdgePanGestureR
 
 typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
 
+typedef void(^jobsBySELBlock)(SEL _Nullable data);
+typedef void(^jobsByClassBlock)(Class _Nonnull cls);
+typedef void(^jobsByPointBlock)(CGPoint data);
+typedef void(^jobsBySizeBlock)(CGSize data);
+typedef void(^jobsByEdgeInsetBlock)(UIEdgeInsets data);
+typedef void(^jobsByTextAlignmentBlock)(NSTextAlignment data);
 typedef void(^jobsByNSIntegerBlock)(NSInteger data);
 typedef void(^jobsByNSUIntegerBlock)(NSUInteger data);
 typedef void(^jobsByCGFloatBlock)(CGFloat data);

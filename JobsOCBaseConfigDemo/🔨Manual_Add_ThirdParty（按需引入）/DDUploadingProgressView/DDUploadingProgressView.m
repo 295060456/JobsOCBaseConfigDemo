@@ -61,7 +61,7 @@ static DDUploadingProgressView *static_uploadingProgressView = nil;
     if (self.nsTimerManager.timerCurrentStatus == NSTimerCurrentStatusPause) {
         [self.nsTimerManager nsTimecontinue];
     }else{
-        [self.nsTimerManager nsTimeStartSysAutoInRunLoop];
+        self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
     }
     [self starAnimation];
 }

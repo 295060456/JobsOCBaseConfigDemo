@@ -47,21 +47,21 @@
                                           borderWidth:JobsWidth(0)
                                         primaryAction:nil
                            longPressGestureEventBlock:^id(BaseButton *_Nullable weakSelf,
-                                                        id _Nullable arg) {
+                                                          id _Nullable arg) {
         NSLog(@"按钮的长按事件触发");
         if (longPressGestureEventBlock) longPressGestureEventBlock(weakSelf,arg);
         return nil;
     }
-                                      clickEventBlock:^id(UIButton *x) {
+                                      clickEventBlock:^id(__kindof UIButton *x) {
 //        @jobs_strongify(self)
         x.selected = !x.selected;
         if(clickEventBlock)clickEventBlock(x);
         return nil;
     }];
     self.btnTimerConfig = config;// 为空则加载默认配置，self.btnTimerConfig 有容错机制
-    [self setLayerConfigReadyPlay];// UI配置 1.1、【计时器未开始】设置Layer层 和 背景颜色
-    [self setTitleReadyPlay];// 设置普通标题或者富文本标题【计时器未开始】文字内容
-    [self setTitleLabelConfigReadyPlay];// UI配置 1.2、【计时器未开始】设置普通文字的对齐方式、文字颜色、文字字体、UILabel的显示样式
+    self.setLayerConfigReadyPlay();// UI配置 1.1、【计时器未开始】设置Layer层 和 背景颜色
+    self.setTitleReadyPlay();// 设置普通标题或者富文本标题【计时器未开始】文字内容
+    self.setTitleLabelConfigReadyPlay();// UI配置 1.2、【计时器未开始】设置普通文字的对齐方式、文字颜色、文字字体、UILabel的显示样式
     return self;
 }
 #pragma clang diagnostic pop
@@ -173,6 +173,17 @@
     };
 }
 #pragma mark —— 设置普通标题或者富文本标题【计时器未开始】文字内容
+-(jobsByButtonTimerProcessValueModelBlock)toSetTitle{
+    @jobs_weakify(self)
+    return ^(ButtonTimerProcessValueModel *_Nullable data) {
+        @jobs_strongify(self)
+        self.jobsResetAttributedTitle([NSAttributedString.alloc initWithString:data.text
+                                                                    attributes:@{NSForegroundColorAttributeName:data.textCor,
+                                                                                 NSFontAttributeName:data.font,
+                                                                                 NSParagraphStyleAttributeName:self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter)}]);
+    };
+}
+
 -(jobsByVoidBlock _Nonnull)setTitleReadyPlay{
     @jobs_weakify(self)
     return ^(void) {
@@ -235,17 +246,6 @@
         }
     };
 }
-
--(jobsByButtonTimerProcessValueModelBlock)toSetTitle{
-    @jobs_weakify(self)
-    return ^(ButtonTimerProcessValueModel *_Nullable data) {
-        @jobs_strongify(self)
-        self.jobsResetAttributedTitle([NSAttributedString.alloc initWithString:data.text
-                                                                    attributes:@{NSForegroundColorAttributeName:data.textCor,
-                                                                                 NSFontAttributeName:data.font,
-                                                                                 NSParagraphStyleAttributeName:self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter)}]);
-    };
-}
 #pragma mark —— 时间相关方法【开启定时器】
 /// 1、开启计时【用初始化时间】
 -(jobsByVoidBlock _Nonnull)startTimer{
@@ -260,14 +260,14 @@
     @jobs_weakify(self)
     return ^(NSInteger timeCount) {
         @jobs_strongify(self)
-        [self setTitleReadyPlay];
-        [self setLayerConfigReadyPlay];
-        [self setTitleLabelConfigReadyPlay];
+        self.setTitleReadyPlay();
+        self.setLayerConfigReadyPlay();
+        self.setTitleLabelConfigReadyPlay();
         self.btnTimerConfig.count = timeCount;
         //启动方式——1
-    //    [self.nsTimerManager nsTimeStartWithRunLoop:nil];
+//        self.btnTimerConfig.timerManager.nsTimeStartWithRunLoop(nil);
         //启动方式——2
-        [self.btnTimerConfig.timerManager nsTimeStartSysAutoInRunLoop];
+        self.btnTimerConfig.timerManager.nsTimeStartSysAutoInRunLoop();
         self.preData();
     };
 }
@@ -341,13 +341,12 @@
                 }break;
                 default:
                     break;
-            }
-            self.btnTimerConfig.runningValue.attributedText = self.richTextWithDataConfigMutArr(tempDataMutArr);
+            }self.btnTimerConfig.runningValue.attributedText = self.richTextWithDataConfigMutArr(tempDataMutArr);
         }
         
         self.setTitleRunning();// 核心方法
-        [self setLayerConfigRunning];
-        [self setTitleLabelConfigRunning];
+        self.setLayerConfigRunning();
+        self.setTitleLabelConfigRunning();
     };
 }
 #pragma mark —— 时间相关方法【定时器暂停】
@@ -373,9 +372,9 @@
         @jobs_strongify(self)
         self.enabled = YES;
         NSLog(@"self.btnTimerConfig.titleEndStr = %@",self.btnTimerConfig.endValue.text);
-        [self setTitleEnd];
-        [self setTitleLabelConfigEnd];
-        [self setLayerConfigEnd];
+        self.setTitleEnd();
+        self.setTitleLabelConfigEnd();
+        self.setLayerConfigEnd();
 
         if(@available(iOS 16.0, *)){
             self.jobsResetBaseBackgroundColor(self.btnTimerConfig.endValue.bgCor);

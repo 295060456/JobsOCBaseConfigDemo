@@ -62,28 +62,28 @@
     [self.btnMutArr[0] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
         [self reloadBtn:data];
-        [self.nsTimerManager nsTimeStartSysAutoInRunLoop];
+        self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
         return nil;
     }];
     /// 暂停
     [self.btnMutArr[1] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
         [self reloadBtn:data];
-        [self.nsTimerManager nsTimePause];
+        self.nsTimerManager.nsTimePause();
         return nil;
     }];
     /// 继续
     [self.btnMutArr[2] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
         [self reloadBtn:data];
-        [self.nsTimerManager nsTimecontinue];
+        self.nsTimerManager.nsTimecontinue();
         return nil;
     }];
     /// 结束
     [self.btnMutArr[3] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
         [self reloadBtn:data];
-        [self.nsTimerManager nsTimeDestroy];
+        self.nsTimerManager.nsTimeDestroy();
         self.nsTimerManager = nil;
         self.valueLab.text = JobsInternationalization(@"");
         return nil;
@@ -113,8 +113,7 @@
 -(void)reloadBtn:(UIButton *)button{
     for (UIButton *btn in self.btnMutArr) {
         btn.selected = NO;
-    }
-    button.selected = !button.selected;
+    }button.selected = !button.selected;
 }
 
 -(void)test_masonry_horizontal_fixSpace {
@@ -181,7 +180,7 @@
             btn.cornerCutToCircleWithCornerRadius(JobsWidth(8));
             [btn layerBorderCor:HEXCOLOR(0xAE8330) andBorderWidth:0.5f];
             [self.view addSubview:btn];
-            [_btnMutArr addObject:btn];
+            _btnMutArr.jobsAddObject(btn);
         }
     }return _btnMutArr;
 }
@@ -189,10 +188,10 @@
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
         _btnTitleMutArr = NSMutableArray.array;
-        [_btnTitleMutArr addObject:JobsInternationalization(@"开始")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"暂停")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"继续")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"结束")];
+        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"开始"));
+        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"暂停"));
+        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"继续"));
+        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"结束"));
     }return _btnTitleMutArr;
 }
 

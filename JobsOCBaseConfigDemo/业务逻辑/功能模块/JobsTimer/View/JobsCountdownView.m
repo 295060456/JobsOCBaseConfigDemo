@@ -78,7 +78,7 @@ static dispatch_once_t static_countdownViewOnceToken;
         @jobs_strongify(self)
         self.viewModel = model ? : UIViewModel.new;
         MakeDataNull
-        [self.nsTimerManager nsTimeStartSysAutoInRunLoop];
+        self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
         self.titleLab.alpha = 1;
         self.countdownTimeLab.alpha = 1;
     };

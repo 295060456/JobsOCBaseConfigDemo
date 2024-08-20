@@ -17,6 +17,7 @@ typedef id _Nullable(^JobsReturnIDBySELBlock)(SEL _Nullable data);
 typedef id _Nullable(^JobsReturnIDByGestureRecognizerBlock)(UIGestureRecognizer * _Nullable data);
 typedef id _Nullable(^JobsReturnIDByCGSizeBlock)(CGSize data);
 
+typedef NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
 typedef UIImage *_Nullable(^JobsReturnImageByCorBlock)(UIColor * _Nullable data);
 typedef UIImage *_Nullable(^JobsReturnImageByDataBlock)(NSData * _Nullable data);
 typedef UIViewController __kindof *_Nullable(^JobsReturnVCByView)(UIView __kindof * _Nonnull view);
@@ -73,7 +74,7 @@ typedef CGRect(^JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,UIView * _
 
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByVoidBlock)(void);
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByIDBlock)(id _Nullable data);
-
+/// 关于按钮配置信息
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByBackgroundBlock)(UIBackgroundConfiguration *_Nullable data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByCornerStyleBlock)(UIButtonConfigurationCornerStyle data) API_AVAILABLE(ios(16.0));

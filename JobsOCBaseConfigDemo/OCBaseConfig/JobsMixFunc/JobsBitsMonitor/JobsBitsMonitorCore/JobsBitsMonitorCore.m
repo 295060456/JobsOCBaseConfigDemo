@@ -65,24 +65,24 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
 
 -(void)autoMakeTimer{
     //启动方式——2 定时器启动 系统自动添加到RunLoop
-    [self.nsTimerManager nsTimeStartSysAutoInRunLoop];
+    self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
 }
 //【手动】开始监听
 -(void)start{
     //启动方式——1 定时器启动 手动添加定时器到RunLoop
-    [self.nsTimerManager nsTimeStartWithRunLoop:nil];
+    self.nsTimerManager.nsTimeStartWithRunLoop(nil);
 }
 //【手动】停止监听
 -(void)stop{
-    [self.nsTimerManager nsTimeDestroy];
+    self.nsTimerManager.nsTimeDestroy();
 }
 //【手动】暂停监听
 -(void)pause{
-    [self.nsTimerManager nsTimePause];
+    self.nsTimerManager.nsTimePause();
 }
 //【手动】暂停以后继续监听
 -(void)continues{
-    [self.nsTimerManager nsTimecontinue];
+    self.nsTimerManager.nsTimecontinue();
 }
 
 -(void)bitsSpeedMonitor{

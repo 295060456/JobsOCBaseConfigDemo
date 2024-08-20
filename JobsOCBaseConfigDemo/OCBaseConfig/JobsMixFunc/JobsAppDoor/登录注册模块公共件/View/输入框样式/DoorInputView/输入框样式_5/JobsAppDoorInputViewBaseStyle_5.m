@@ -28,7 +28,7 @@
 @implementation JobsAppDoorInputViewBaseStyle_5
 @synthesize thisViewSize = _thisViewSize;
 -(void)dealloc{
-    [_authCodeBtn timerDestroy];
+    _authCodeBtn.timerDestroy();
     [dropDownListView dropDownListViewDisappear:nil];
 }
 #pragma mark —— BaseViewProtocol
@@ -189,7 +189,7 @@
 //        @jobs_weakify(self)
         [_authCodeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
 //            @jobs_strongify(self)
-            [x startTimer];
+            x.startTimer();
             return nil;
         }];
         [_authCodeBtn actionObjectBlock:^(id data) {

@@ -32,9 +32,9 @@
 -(void)makeTimer{
     self.nsTimerManager.anticlockwiseTime = self.countDownTime;
     //启动方式——1
-    [self.nsTimerManager nsTimeStartWithRunLoop:nil];
+    self.nsTimerManager.nsTimeStartWithRunLoop(nil);
     //启动方式——2
-    //    [self.nsTimerManager nsTimeStartSysAutoInRunLoop];
+//    self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
 }
 
 -(void)secountDown{
