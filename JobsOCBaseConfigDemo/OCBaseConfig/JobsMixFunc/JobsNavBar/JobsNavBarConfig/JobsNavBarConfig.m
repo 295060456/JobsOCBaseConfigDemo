@@ -18,9 +18,10 @@
         _backBtnModel.titleCor = JobsClearColor;
         _backBtnModel.selected_titleCor = JobsClearColor;
         _backBtnModel.roundingCorners = UIRectCornerAllCorners;
-        _backBtnModel.longPressGestureEventBlock = ^(id  _Nullable weakSelf,
-                                                     id  _Nullable arg) {
+        _backBtnModel.longPressGestureEventBlock = ^id (id _Nullable weakSelf,
+                                                        id _Nullable arg) {
             NSLog(@"按钮的长按事件触发");
+            return nil;
         };
         @jobs_weakify(self)
         _backBtnModel.clickEventBlock = ^id(BaseButton *x){
@@ -40,9 +41,10 @@
         _closeBtnModel.titleCor = JobsClearColor;
         _closeBtnModel.selected_titleCor = JobsClearColor;
         _closeBtnModel.roundingCorners = UIRectCornerAllCorners;
-        _closeBtnModel.longPressGestureEventBlock = ^(id  _Nullable weakSelf,
-                                                     id  _Nullable arg) {
+        _closeBtnModel.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
+                                                        id _Nullable arg) {
             NSLog(@"按钮的长按事件触发");
+            return nil;
         };
         @jobs_weakify(self)
         _closeBtnModel.clickEventBlock = ^id(BaseButton *x){
@@ -71,6 +73,10 @@
     }return _titleCor;
 }
 
-
+-(UIColor *)bgCor{
+    if(!_bgCor){
+        _bgCor = JobsClearColor;
+    }return _bgCor;
+}
 
 @end

@@ -28,6 +28,7 @@ typedef NSMutableAttributedString *_Nullable(^JobsReturnMutAttributedStringByStr
 typedef NSMutableAttributedString *_Nullable(^JobsReturnMutAttributedStringByAttributedStringBlock)(NSAttributedString * _Nonnull data);
 typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString * _Nullable data);
 typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString * _Nonnull data);
+typedef NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
 typedef NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
 typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString * _Nullable data);
 typedef NSMutableString *_Nullable(^JobsReturnMutableStringByStringBlock)(NSString * _Nullable data);

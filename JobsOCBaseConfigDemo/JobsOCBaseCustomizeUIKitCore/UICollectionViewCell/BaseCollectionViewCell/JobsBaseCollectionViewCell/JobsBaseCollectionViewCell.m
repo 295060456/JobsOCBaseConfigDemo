@@ -137,19 +137,20 @@
                                                layerBorderCor:nil
                                                   borderWidth:JobsWidth(0)
                                                 primaryAction:nil
-                                   longPressGestureEventBlock:^(id  _Nullable weakSelf,
-                                                                id  _Nullable arg) {
-           NSLog(@"按钮的长按事件触发");
-       }
+                                   longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
                                               clickEventBlock:^id(BaseButton *x){
-           @jobs_strongify(self)
-           if (self.objectBlock) self.objectBlock(x);
-           return nil;
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
         }];
         _bgBtn.userInteractionEnabled = NO;
         [self.contentView addSubview:_bgBtn];
         [_bgBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+            make.edges.equalTo(self.contentView);
         }];
     }
     _bgBtn.normalImage(self.viewModel.image);

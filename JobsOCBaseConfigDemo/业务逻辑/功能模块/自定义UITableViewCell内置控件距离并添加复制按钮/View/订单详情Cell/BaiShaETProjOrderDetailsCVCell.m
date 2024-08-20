@@ -97,7 +97,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.jobsCopyBtn jobsBtnClickEventBlock:^id(id data) {
         @jobs_strongify(self)
         UIViewModel *viewModel = (UIViewModel *)self.viewModel.jobsDataMutArr[indexPath.row];
-        [viewModel.subTextModel.text pasteboard];
+        viewModel.subTextModel.text.pasteboard();
         return nil;
     }];
     cell.textLabel.textColor = HEXCOLOR(0x757575);

@@ -17,6 +17,17 @@ static inline NSAttributedString * _Nonnull JobsAttributedString(NSString * _Non
     return [NSAttributedString.alloc initWithString:data];
 }
 
+static inline NSAttributedString * _Nonnull JobsAttributedStringByAttributes(NSString * _Nonnull data,
+                                                                             NSDictionary<NSAttributedStringKey, id> * _Nullable attrs){
+    if (!data) data = @"";
+    return [NSAttributedString.alloc initWithString:data attributes:attrs];
+}
+
+static inline NSAttributedString * _Nonnull JobsAttributedStringByAttributeString(NSAttributedString *_Nullable data){
+    if (!data) data = JobsAttributedString(@"");
+    return [NSAttributedString.alloc initWithAttributedString:data];
+}
+
 static inline NSAttributedString * _Nonnull JobsAttributedStringByTextAttachment(NSTextAttachment * _Nonnull data) {
     if (!data) data = NSTextAttachment.alloc.init;
     return [NSAttributedString attributedStringWithAttachment:data];

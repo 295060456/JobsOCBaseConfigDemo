@@ -116,14 +116,15 @@
                                                   layerBorderCor:self.viewModel_.data_00.layerBorderCor
                                                      borderWidth:self.viewModel_.data_00.borderWidth
                                                    primaryAction:self.viewModel_.data_00.primaryAction
-                                      longPressGestureEventBlock:^(id  _Nullable weakSelf,
-                                                                   id  _Nullable arg) {
-              NSLog(@"按钮的长按事件触发");
-          }
+                                      longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                     id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
                                                  clickEventBlock:^id(BaseButton *x){
-              @jobs_strongify(self)
-              if (self.objectBlock) self.objectBlock(x);
-              return nil;
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
         }];
         [self.bgImageView addSubview:_titleBtn];
         [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {

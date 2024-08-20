@@ -68,9 +68,10 @@ NS_ASSUME_NONNULL_END
                                               layerBorderCor:nil
                                                  borderWidth:JobsWidth(1)
                                                primaryAction:nil
-                                  longPressGestureEventBlock:^(id  _Nullable weakSelf,
+                                  longPressGestureEventBlock:^id(id  _Nullable weakSelf,
                                                                id  _Nullable arg) {
              NSLog(@"按钮的长按事件触发");
+             return nil;
       }
                                              clickEventBlock:^id(BaseButton *x){
              @jobs_strongify(self)

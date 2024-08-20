@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
                            layerBorderCor:(UIColor *_Nullable)layerBorderCor
                               borderWidth:(CGFloat)borderWidth
                             primaryAction:(UIAction *_Nullable)primaryAction
-               longPressGestureEventBlock:(JobsSelectorBlock _Nullable)longPressGestureEventBlock
+               longPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock
                           clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock;
 /// UIButtonConfiguration 创建的UIbutton修改字体以及颜色的方法
 /// 注意⚠️因为UIConfigurationTextAttributesTransformer是没有办法直接获取到里面的字体的，只能从外面生成以后直接赋值，也就是每次修改需要给一个完整的UIConfigurationTextAttributesTransformer对象进UIButtonConfiguration
@@ -121,7 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// RAC 点击事件2次封装
 -(RACDisposable *)jobsBtnClickEventBlock:(JobsReturnIDByIDBlock)subscribeNextBlock;
 /// 设置按钮的长按手势
--(void)jobsBtnLongPressGestureEventBlock:(JobsSelectorBlock)longPressGestureEventBlock;
+-(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDBySelectorBlock)longPressGestureEventBlock;
 /// 方法名字符串（带参数、参数之间用"："隔开）、作用对象、参数
 -(JobsReturnIDByThreeIDBlock)btnClickActionWithParamarrays;
 /// 方法名字符串（不带参数）、作用对象
@@ -310,6 +310,7 @@ NS_ASSUME_NONNULL_END
                                        longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
                                                                     id _Nullable arg) {
              NSLog(@"按钮的长按事件触发");
+             return nil;
          }
                                                   clickEventBlock:^id(BaseButton *x) {
              @jobs_strongify(self)

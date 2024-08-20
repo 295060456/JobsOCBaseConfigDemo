@@ -32,11 +32,12 @@ UIViewModelProtocol_synthesize
     }return _clickEventBlock;
 }
 
--(JobsSelectorBlock)longPressGestureEventBlock{
+-(JobsReturnIDBySelectorBlock)longPressGestureEventBlock{
     if(!_longPressGestureEventBlock){
-        _longPressGestureEventBlock = ^(id _Nullable weakSelf,
-                                        id _Nullable arg) {
-           NSLog(@"按钮的长按事件触发");
+        _longPressGestureEventBlock = ^id(id _Nullable weakSelf,
+                                          id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
         };
     }return _longPressGestureEventBlock;
 }

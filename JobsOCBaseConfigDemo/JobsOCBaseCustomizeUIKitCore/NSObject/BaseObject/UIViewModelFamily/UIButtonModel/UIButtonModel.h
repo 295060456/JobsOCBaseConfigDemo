@@ -55,9 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGSize roundingCornersRadii;/// 圆切角—指定方位的Size大小
 @property(nonatomic,strong,nullable)UIColor *layerBorderCor;/// 描边的颜色
 @property(nonatomic,assign)CGFloat borderWidth;/// 描边线的宽度
-@property(nonatomic,strong,nullable)UIAction *primaryAction;/// 新Api的点击事件
-@property(nonatomic,copy,nullable)JobsSelectorBlock longPressGestureEventBlock;/// 按钮的长按事件
-@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
 #pragma mark —— 对系统方法的补充
 @property(nonatomic,copy,nullable)NSString *selected_title;
 @property(nonatomic,copy,nullable)NSString *selected_subTitle;
@@ -103,8 +100,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)NSArray <NSNumber *>*selected_imagePaddings;// imagePadding 图像与标题之间的间距
 #pragma mark —— 按钮挂载的对象
 @property(nonatomic,strong,nullable)id data;
-#pragma mark —— 点击的状态
+#pragma mark —— 点击
 @property(nonatomic,assign)BOOL selected;
+@property(nonatomic,assign)BOOL enabled;
+@property(nonatomic,strong,nullable)UIAction *primaryAction;/// 新Api的点击事件
+@property(nonatomic,copy,nullable)JobsReturnIDBySelectorBlock longPressGestureEventBlock;/// 按钮的长按事件
+@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
 #pragma mark —— 其他
 @property(nonatomic,assign)CGFloat leftViewWidth;
 @property(nonatomic,assign)CGFloat rightViewWidth;

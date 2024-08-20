@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
                                 limit:(NSInteger)limit;
 #pragma mark —— 一些功能性的
 /// 复制到系统剪切板
--(NSString *_Nonnull)pasteboard;
+-(JobsReturnStringByVoidBlock _Nonnull)pasteboard;
 /// 根据字符串生成二维码图像
 -(UIImage *_Nonnull)createQRcode;
 /// 获取到最后一个字符

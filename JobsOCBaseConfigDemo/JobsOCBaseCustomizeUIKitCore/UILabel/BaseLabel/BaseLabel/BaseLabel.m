@@ -31,7 +31,7 @@ UILocationProtocol_UIViewModelSynthesize
             self.userInteractionEnabled = YES;
             @jobs_weakify(self)
             self.longPressGR_SelImp.selector = selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                             UILongPressGestureRecognizer *_Nullable arg) {
+                                                                            UILongPressGestureRecognizer *_Nullable arg) {
                 @jobs_strongify(self)
                 if (self.returnObjectByGestureRecognizerBlock) self.returnObjectByGestureRecognizerBlock(arg);
                 return nil;
@@ -51,7 +51,7 @@ UILocationProtocol_UIViewModelSynthesize
 #pragma mark —— 一些公有方法
 /// UILabel文字的复制
 -(void)copyText:(NSString *)text{
-    [text pasteboard];
+    text.pasteboard();
     NSLog(@"%@%@",JobsInternationalization(@"复制的文字："),text);
 }
 /// 弹出系统菜单控件
@@ -60,8 +60,8 @@ UILocationProtocol_UIViewModelSynthesize
     UIMenuController *menu = UIMenuController.sharedMenuController;
     @jobs_weakify(self)
     UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:JobsInternationalization(@"请复制")
-                                                    action:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
-                                                                                        id  _Nullable arg) {
+                                                    action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                                                        id _Nullable arg) {
         @jobs_strongify(self)
         if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
         [self copyText:text];
@@ -129,17 +129,13 @@ UILocationProtocol_UIViewModelSynthesize
             [super drawRect:rect];
         }
         [self setTextLayerScroll];
-    }else{
-        [super drawRect:rect];
-    }
+    }else [super drawRect:rect];
 }
 
 -(void)setFrame:(CGRect)frame{
     if (self.labelShowingType == UILabelShowingType_02) {
         [self setTextLayerScroll];
-    }else{
-        [super setFrame:frame];
-    }
+    }else [super setFrame:frame];
 }
 /// 修改绘制文字的区域，edgeInsets增加bounds
 - (CGRect)textRectForBounds:(CGRect)bounds
@@ -160,10 +156,10 @@ UILocationProtocol_UIViewModelSynthesize
     
     if (self.text && ![self.text isEqualToString:JobsInternationalization(@"")]) {
         [super drawTextInRect:UIEdgeInsetsInsetRect(newRect, self.edgeInsets)];
-        self.hidden = NO;
+        self.isVisible = YES;
     } else {
         [super drawTextInRect:UIEdgeInsetsInsetRect(newRect, UIEdgeInsetsZero)];
-        self.hidden = YES;
+        self.isVisible = NO;
     }
 }
 #pragma mark —— LazyLoad

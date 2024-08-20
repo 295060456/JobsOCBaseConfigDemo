@@ -101,6 +101,7 @@ NS_ASSUME_NONNULL_END
 \
 @synthesize titleAlignment = _titleAlignment;\
 @synthesize jobsSelected = _jobsSelected;\
+@synthesize jobsEnabled = _jobsEnabled;\
 @synthesize btnBackgroundColor = _btnBackgroundColor;\
 @synthesize imageSize = _imageSize;\
 @synthesize contentHorizontalAlignment = _contentHorizontalAlignment;\
@@ -154,6 +155,7 @@ NS_ASSUME_NONNULL_END
 #define BaseButtonProtocol_dynamic \
 \
 @dynamic titleAlignment;\
+@dynamic jobsEnabled;\
 @dynamic jobsSelected;\
 @dynamic btnBackgroundColor;\
 @dynamic imageSize;\

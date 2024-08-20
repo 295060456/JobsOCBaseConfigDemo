@@ -9,6 +9,7 @@
 #import "JobsBlock.h"
 #import "NSObject+Time.h"
 #import "NSObject+RichText.h"//富文本
+#import "NSString+Others.h"
 #import "NSObject+Extras.h"
 #import "JobsTimerManager.h"//时间管理
 #import "ButtonTimerDefStructure.h"
@@ -35,20 +36,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfig;
 
 #pragma mark —— 时间相关方法【开启定时器】
--(void)startTimer;/// 开启计时【用初始化时间】
--(void)startTimer:(NSInteger)timeCount;/// 开启计时【从某个时间】
+-(jobsByVoidBlock _Nonnull)startTimer;/// 开启计时【用初始化时间】
+-(jobsByNSIntegerBlock _Nonnull)startFromTimer;/// 开启计时【从某个时间】
 #pragma mark —— 时间相关方法【定时器暂停】
--(void)timerSuspend;
+-(jobsByVoidBlock _Nonnull)timerSuspend;
 #pragma mark —— 时间相关方法【定时器继续】
--(void)timerContinue;
+-(jobsByVoidBlock _Nonnull)timerContinue;
 #pragma mark —— 时间相关方法【定时器销毁】
--(void)timerDestroy;/// 可以不结束直接掐死
+-(jobsByVoidBlock _Nonnull)timerDestroy;/// 可以不结束直接掐死
 /// - Parameters:
 ///   - config: 倒计时按钮配置的数据源
 ///   - longPressGestureEventBlock: 长按回掉
 ///   - clickEventBlock: 点击回掉
 -(instancetype)initWithConfig:(nullable ButtonTimerConfigModel *)config
-   longPressGestureEventBlock:(JobsSelectorBlock _Nullable)longPressGestureEventBlock
+   longPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock
               clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock;
 
 @end

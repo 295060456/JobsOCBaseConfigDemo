@@ -56,9 +56,10 @@ JobsKey(_backBtnCategory)
                                                         layerBorderCor:nil
                                                            borderWidth:JobsWidth(0)
                                                          primaryAction:nil
-                                            longPressGestureEventBlock:^(id  _Nullable weakSelf,
-                                                                         id  _Nullable arg) {
+                                            longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                         id _Nullable arg) {
             NSLog(@"按钮的长按事件触发");
+            return nil;
         }
                                                        clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)

@@ -82,6 +82,9 @@ typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(UIViewModel *_Nullable data);
 typedef CGRect(^JobsReturnCGRectByViewModelBlock)(UIViewModel *_Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(UIViewModel *_Nullable data);
 
+@class ButtonTimerProcessValueModel;
+typedef void(^jobsByButtonTimerProcessValueModelBlock)(ButtonTimerProcessValueModel *_Nullable data);
+
 @class UIButtonModel;
 @class JobsNavBarConfig;
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,

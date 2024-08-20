@@ -46,6 +46,12 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
                         model.imagePlacement = NSDirectionalRectEdgeTrailing;
                         model.imagePadding = JobsWidth(8);
                         model.normalImage = JobsIMG(@"复制图标");
+                        model.clickEventBlock = ^id _Nullable(UIButton *_Nullable data) {
+                            data.titleForNormalState.pasteboard();
+                            return nil;
+                        };
+                        model.enabled = YES;
+                        
                     }
                     
                     model.baseBackgroundColor = i % 2 ? self.cor2: self.cor1;

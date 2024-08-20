@@ -626,28 +626,30 @@ class AppToolsProtocol {
 BaseProtocol <|-- AppToolsProtocol
 
 class UIViewModelOthersProtocol {
-    +-(BOOL)jobsVisible;
-    +-(void)setJobsVisible:(BOOL)jobsVisible;
-    +@property(nonatomic,assign)AppLanguage appLanguage;
-    +@property(nonatomic,strong,nullable)Class __block cls;
-    +@property(nonatomic,strong,nullable)UIViewModel __block *viewModel;
-    +@property(nonatomic,strong,nullable)NSMutableArray <UIViewModel *> __block *viewModelMutArr;
-    +@property(nonatomic,strong,nullable)RACSignal __block *reqSignal;
-    +@property(nonatomic,strong,nullable)NSString __block *internationalizationKEY;
-    +@property(nonatomic,assign)NSUInteger __block jobsTag;
-    +@property(nonatomic,assign)BOOL __block jobsSelected;
-    +@property(nonatomic,assign)BOOL __block isMultiLineShows;
-    +@property(nonatomic,assign)BOOL __block isTranslucent;
-    +@property(nonatomic,assign)BOOL __block isVisible;
+    +@property(nonatomic,strong,nullable)UIColor *layerBorderCor;
+    +@property(nonatomic,assign)CGFloat layerBorderWidth;
+    +@property(nonatomic,assign)CGFloat layerCornerRadius;
+    +@property(nonatomic,assign)BOOL isTranslucent;
+    +@property(nonatomic,assign)BOOL isVisible;(BOOL)jobsVisible;
+    +@property(nonatomic,assign)BOOL isMultiLineShows;
     +@property(nonatomic,assign)UILabelShowingType labelShowingType;
-    +@property(nonatomic,strong,nullable)id __block data;
-    +@property(nonatomic,strong,nullable)id __block requestParams;
-    +@property(nonatomic,strong,nullable)NSMutableSet __block *jobsDataMutSet;
-    +@property(nonatomic,strong,nullable)NSMutableArray __block *jobsDataMutArr;
-    +@property(nonatomic,strong,nullable)NSMutableDictionary __block *jobsDataMutDic;
-    +@property(nonatomic,strong,nullable)UIColor __block *layerBorderCor;
-    +@property(nonatomic,assign)CGFloat __block layerBorderWidth;
-    +@property(nonatomic,assign)CGFloat __block layerCornerRadius;
+    +@property(nonatomic,assign)AppLanguage appLanguage;
+    +@property(nonatomic,strong,nullable)NSString *internationalizationKEY;
+    +@property(nonatomic,strong,nullable)NSMutableSet *jobsDataMutSet;
+    +@property(nonatomic,strong,nullable)NSMutableArray *jobsDataMutArr;
+    +@property(nonatomic,strong,nullable)NSMutableArray <UIViewModel *> *viewModelMutArr;
+    +@property(nonatomic,strong,nullable)NSMutableDictionary *jobsDataMutDic;
+    +@property(nonatomic,strong,nullable)Class cls;
+    +@property(nonatomic,strong,nullable)RACSignal *reqSignal;
+    +@property(nonatomic,strong,nullable)id data;
+    +@property(nonatomic,strong,nullable)id requestParams;
+    +@property(nonatomic,strong,nullable)UIViewModel *viewModel;
+    +@property(nonatomic,assign)NSUInteger jobsTag;
+    +@property(nonatomic,assign)BOOL jobsSelected;
+    +@property(nonatomic,assign)BOOL jobsEnabled;
+    +@property(nonatomic,strong,nullable)UIAction *primaryAction;
+    +@property(nonatomic,copy,nullable)JobsReturnIDBySelectorBlock longPressGestureEventBlock;
+    +@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock clickEventBlock;
 }
 NSObject <|-- UIViewModelOthersProtocol
 

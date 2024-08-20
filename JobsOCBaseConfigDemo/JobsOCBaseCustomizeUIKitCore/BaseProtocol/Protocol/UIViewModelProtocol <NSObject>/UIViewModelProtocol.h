@@ -122,26 +122,30 @@ NS_ASSUME_NONNULL_END
 @synthesize isMark = _isMark;\
 @synthesize presentUpHeight = _presentUpHeight;\
 \
-@synthesize appLanguage = _appLanguage;\
-@synthesize cls = _cls;\
-@synthesize viewModel = _viewModel;\
-@synthesize viewModelMutArr = _viewModelMutArr;\
-@synthesize reqSignal = _reqSignal;\
-@synthesize internationalizationKEY = _internationalizationKEY;\
-@synthesize jobsTag = _jobsTag;\
-@synthesize jobsSelected = _jobsSelected;\
-@synthesize isMultiLineShows = _isMultiLineShows;\
-@synthesize isTranslucent = _isTranslucent;\
-@synthesize isVisible = _isVisible;\
-@synthesize labelShowingType = _labelShowingType;\
-@synthesize layerBorderCor = _layerBorderColour;\
+@synthesize layerBorderCor = _layerBorderCor;\
 @synthesize layerBorderWidth = _layerBorderWidth;\
 @synthesize layerCornerRadius = _layerCornerRadius;\
-@synthesize data = _data;\
-@synthesize requestParams = _requestParams;\
+@synthesize isTranslucent = _isTranslucent;\
+@synthesize isVisible = _isVisible;\
+@synthesize isMultiLineShows = _isMultiLineShows;\
+@synthesize labelShowingType = _labelShowingType;\
+@synthesize appLanguage = _appLanguage;\
+@synthesize internationalizationKEY = _internationalizationKEY;\
 @synthesize jobsDataMutSet = _jobsDataMutSet;\
 @synthesize jobsDataMutArr = _jobsDataMutArr;\
+@synthesize viewModelMutArr = _viewModelMutArr;\
 @synthesize jobsDataMutDic = _jobsDataMutDic;\
+@synthesize cls = _cls;\
+@synthesize reqSignal = _reqSignal;\
+@synthesize data = _data;\
+@synthesize requestParams = _requestParams;\
+@synthesize viewModel = _viewModel;\
+@synthesize jobsTag = _jobsTag;\
+@synthesize jobsSelected = _jobsSelected;\
+@synthesize jobsEnabled = _jobsEnabled;\
+@synthesize primaryAction = _primaryAction;\
+@synthesize longPressGestureEventBlock = _longPressGestureEventBlock;\
+@synthesize clickEventBlock = _clickEventBlock;\
 \
 @synthesize titleAlignment = _titleAlignment;\
 @synthesize btnBackgroundColor = _btnBackgroundColor;\
@@ -270,26 +274,30 @@ NS_ASSUME_NONNULL_END
 @dynamic isMark;\
 @dynamic presentUpHeight;\
 \
-@dynamic appLanguage;\
-@dynamic cls;\
-@dynamic viewModel;\
-@dynamic viewModelMutArr;\
-@dynamic reqSignal;\
-@dynamic internationalizationKEY;\
-@dynamic jobsTag;\
-@dynamic jobsSelected;\
-@dynamic isMultiLineShows;\
-@dynamic isTranslucent;\
-@dynamic isVisible;\
-@dynamic labelShowingType;\
 @dynamic layerBorderCor;\
 @dynamic layerBorderWidth;\
 @dynamic layerCornerRadius;\
+@dynamic isTranslucent;\
+@dynamic isVisible;\
+@dynamic isMultiLineShows;\
+@dynamic labelShowingType;\
+@dynamic appLanguage;\
+@dynamic internationalizationKEY;\
+@dynamic jobsDataMutSet;\
+@dynamic jobsDataMutArr;\
+@dynamic viewModelMutArr;\
+@dynamic jobsDataMutDic;\
+@dynamic cls;\
+@dynamic reqSignal;\
 @dynamic data;\
 @dynamic requestParams;\
-@dynamic jobsDataMutSet;\
-@dynamic jobsDdataMutArr;\
-@dynamic jobsDataMutDic;\
+@dynamic viewModel;\
+@dynamic jobsTag;\
+@dynamic jobsSelected;\
+@dynamic jobsEnabled;\
+@dynamic primaryAction;\
+@dynamic longPressGestureEventBlock;\
+@dynamic clickEventBlock;\
 \
 @dynamic titleAlignment;\
 @dynamic btnBackgroundColor;\

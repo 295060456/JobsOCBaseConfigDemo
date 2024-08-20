@@ -69,8 +69,8 @@
 
 #pragma mark —— lazyLoad
 -(BaseButton *)btn{
+    @jobs_weakify(self)
     if(!_btn){
-        @jobs_weakify(self)
         _btn = [BaseButton.alloc jobsInitBtnByConfiguration:UIButtonConfiguration.plainButtonConfiguration
                                                  background:nil
                                  buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
@@ -104,12 +104,8 @@
                                                 borderWidth:JobsWidth(0)
                                               primaryAction:nil
                                  longPressGestureEventBlock:nil
-                                            clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
-        _btn.enabled = NO;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
+                                            clickEventBlock:nil];
+
         [self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
@@ -118,6 +114,7 @@
     
     if(self.viewModel){
         _btn.selected = self.viewModel.jobsSelected;
+        _btn.enabled = self.viewModel.jobsEnabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
         /// 主标题
         _btn.jobsResetBtnTitle(self.viewModel.textModel.text);
         _btn.jobsResetBtnTitleCor(self.viewModel.textModel.textCor);
@@ -127,6 +124,19 @@
         _btn.jobsResetSubTitle(self.viewModel.subTextModel.text);
         [_btn jobsSetBtnSubTitleFont:self.viewModel.subTextModel.font ? : UIFontWeightSemiboldSize(12)
                       btnSubTitleCor:self.viewModel.subTextModel.textCor ? : JobsBlueColor];
+        
+        [_btn jobsBtnClickEventBlock:self.viewModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        }];
+        
+        [_btn jobsBtnLongPressGestureEventBlock:self.viewModel.longPressGestureEventBlock ? : ^id(id _Nullable weakSelf,
+                                                                                                  id _Nullable arg) {
+            @jobs_strongify(self)
+            return nil;
+        }];
+        
         /// 按钮图
         _btn.jobsResetImage(self.viewModel.image);
         /// 背景色
@@ -150,6 +160,7 @@
     
     if(self.buttonModel){
         _btn.selected = self.buttonModel.jobsSelected;
+        _btn.enabled = self.buttonModel.enabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
         /// 背景色
         _btn.jobsResetBtnBgCor(self.buttonModel.baseBackgroundColor);
 //        _btn.backgroundColor = self.buttonModel.baseBackgroundColor;
@@ -164,6 +175,19 @@
         _btn.jobsResetSubTitle(self.buttonModel.subTitle);
         [_btn jobsSetBtnSubTitleFont:self.buttonModel.subTitleFont ? : UIFontWeightSemiboldSize(12)
                       btnSubTitleCor:self.buttonModel.subTitleCor ? : JobsBlueColor];
+        
+        [_btn jobsBtnClickEventBlock:self.buttonModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        }];
+        
+        [_btn jobsBtnLongPressGestureEventBlock:self.buttonModel.longPressGestureEventBlock ? : ^id(id _Nullable weakSelf,
+                                                                                                    id _Nullable arg) {
+            @jobs_strongify(self)
+            return nil;
+        }];
+        
         /// 图文间距
         if (@available(iOS 16.0, *)) {
             _btn.jobsResetImagePadding(self.buttonModel.imagePadding);

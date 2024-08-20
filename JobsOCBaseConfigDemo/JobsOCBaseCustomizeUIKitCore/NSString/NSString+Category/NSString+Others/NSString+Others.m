@@ -107,11 +107,15 @@
 }
 #pragma mark —— 一些功能性的
 /// 复制到系统剪切板
--(NSString *_Nonnull)pasteboard{
-    UIPasteboard *pasteboard = UIPasteboard.generalPasteboard;
-    pasteboard.string = self;
-    [WHToast jobsToastSuccessMsg:JobsInternationalization(@"复制成功")];
-    return pasteboard.string;
+-(JobsReturnStringByVoidBlock _Nonnull)pasteboard{
+    @jobs_weakify(self)
+    return ^(void) {
+        @jobs_strongify(self)
+        UIPasteboard *pasteboard = UIPasteboard.generalPasteboard;
+        pasteboard.string = self;
+        [WHToast jobsToastSuccessMsg:JobsInternationalization(@"复制成功")];
+        return pasteboard.string;
+    };
 }
 /// 根据字符串生成二维码图像
 -(UIImage *_Nonnull)createQRcode{

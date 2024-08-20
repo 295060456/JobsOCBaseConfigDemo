@@ -267,9 +267,10 @@ BaseViewProtocol_synthesize
         _backBtnModel.imagePlacement = NSDirectionalRectEdgeLeading;
         _backBtnModel.imagePadding = JobsWidth(5);
         @jobs_weakify(self)
-        _backBtnModel.longPressGestureEventBlock = ^(id  _Nullable weakSelf,
-                                                     id  _Nullable arg) {
+        _backBtnModel.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
+                                                       id _Nullable arg) {
             NSLog(@"按钮的长按事件触发");
+            return nil;
         };
         _backBtnModel.clickEventBlock = ^id(BaseButton *x){
             @jobs_strongify(self)

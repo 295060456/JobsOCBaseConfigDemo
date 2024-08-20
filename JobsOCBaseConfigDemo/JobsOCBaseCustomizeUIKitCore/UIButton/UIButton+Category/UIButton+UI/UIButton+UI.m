@@ -83,7 +83,7 @@
                            layerBorderCor:(UIColor *_Nullable)layerBorderCor
                               borderWidth:(CGFloat)borderWidth
                             primaryAction:(UIAction *_Nullable)primaryAction
-               longPressGestureEventBlock:(JobsSelectorBlock _Nullable)longPressGestureEventBlock
+               longPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock
                           clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
     if(!btnConfiguration) btnConfiguration = UIButtonConfiguration.filledButtonConfiguration;
     if(!background) background = UIBackgroundConfiguration.clearConfiguration;
@@ -284,7 +284,7 @@
     }];
 }
 /// 设置按钮的长按手势
--(void)jobsBtnLongPressGestureEventBlock:(JobsSelectorBlock)longPressGestureEventBlock{
+-(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDBySelectorBlock)longPressGestureEventBlock{
     @jobs_weakify(self)
     if(longPressGestureEventBlock){
         self.userInteractionEnabled = YES;
@@ -300,8 +300,7 @@
                 if(longPressGestureEventBlock) longPressGestureEventBlock(weakSelf,arg);
                 return nil;
             }];
-        }
-        self.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+        }self.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
     }
 }
 /// 方法名字符串（带参数、参数之间用"："隔开）、作用对象、参数

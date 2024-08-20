@@ -94,6 +94,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.initWithStylePlain;
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
         _tableView.dataLink(self);
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
