@@ -19,8 +19,16 @@
                           completion:^(BOOL granted) {
         @jobs_strongify(self)
         if (granted) {
-            if ([self isKindOfClass:UIViewController.class]) {
-                UIViewController *viewController = (UIViewController *)self;
+            UIViewController *viewController = nil;
+            if([self isKindOfClass:UIViewController.class]){
+                viewController = (UIViewController *)self;
+            }
+            if([self isKindOfClass:UIView.class]){
+                UIView *view = (UIView *)self;
+                viewController = (UIViewController *)self.getViewControllerByView(view);
+            }
+            
+            if(viewController){
                 [viewController hx_presentSelectPhotoControllerWithManager:self.photoManager
                                                                    didDone:^(NSArray<HXPhotoModel *> *allList,
                                                                              NSArray<HXPhotoModel *> *photoList,
@@ -45,9 +53,7 @@
                     if (failBlock) failBlock(photoPickerModel);
                 }];
             }
-        }else{
-            [self jobsToastMsg:@"保存图片需要过去您的相册权限,请前往设置打开"];
-        }
+        }else [self jobsToastMsg:@"保存图片需要过去您的相册权限,请前往设置打开"];
     }];
 }
 /// 调取系统相机进行拍摄
@@ -60,8 +66,16 @@
                                completion:^(BOOL granted) {
             @jobs_strongify(self)
             if (granted) {
-                if ([self isKindOfClass:UIViewController.class]) {
-                    UIViewController *viewController = (UIViewController *)self;
+                UIViewController *viewController = nil;
+                if([self isKindOfClass:UIViewController.class]){
+                    viewController = (UIViewController *)self;
+                }
+                if([self isKindOfClass:UIView.class]){
+                    UIView *view = (UIView *)self;
+                    viewController = (UIViewController *)self.getViewControllerByView(view);
+                }
+                
+                if(viewController){
                     [viewController hx_presentCustomCameraViewControllerWithManager:self.photoManager
                                                                                done:^(HXPhotoModel *model,
                                                                                       HXCustomCameraViewController *viewController) {
@@ -78,13 +92,9 @@
                         if (failBlock) failBlock(photoPickerModel);
                     }];
                 }
-            }else{
-                [self jobsToastMsg:JobsInternationalization(@"授权失败,无法使用相机.请在设置-隐私-相机中允许访问相机")];
-            }
+            }else [self jobsToastMsg:JobsInternationalization(@"授权失败,无法使用相机.请在设置-隐私-相机中允许访问相机")];
         }];
-    }else{
-        [self jobsToastMsg:JobsInternationalization(@"此设备不支持相机!")];
-    }
+    }else [self jobsToastMsg:JobsInternationalization(@"此设备不支持相机!")];
 }
 #pragma mark —— @property(nonatomic,strong)HXPhotoManager *photoManager;//选取图片的数据管理类
 JobsKey(_photoManager)
@@ -93,7 +103,7 @@ JobsKey(_photoManager)
     HXPhotoManager *PhotoManager = Jobs_getAssociatedObject(_photoManager);
     if (!PhotoManager) {
         PhotoManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
-        PhotoManager.configuration.localFileName = [self.appDisplayName stringByAppendingString:@"Models"];
+        PhotoManager.configuration.localFileName = self.appDisplayName.add(@"Models");
         PhotoManager.configuration.type = HXConfigurationTypeWXChat;
         PhotoManager.configuration.showOriginalBytes = YES;
         PhotoManager.configuration.showOriginalBytesLoading = YES;

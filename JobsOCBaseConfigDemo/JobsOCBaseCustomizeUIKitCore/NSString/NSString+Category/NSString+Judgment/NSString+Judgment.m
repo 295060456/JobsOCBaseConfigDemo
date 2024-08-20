@@ -18,9 +18,7 @@
     NSCharacterSet *blank = NSCharacterSet.whitespaceAndNewlineCharacterSet;
     for (NSInteger i = 0; i < self.length; ++i) {
         unichar c = [self characterAtIndex:i];
-        if (![blank characterIsMember:c]) {
-            return YES;
-        }
+        if (![blank characterIsMember:c]) return YES;
     }return NO;
 }
 /**
@@ -50,9 +48,7 @@
     unichar c;
     for (int i = 0; i < self.length; i++) {
         c = [self characterAtIndex:i];
-        if (!isblank(c)) {
-            return NO;
-        }
+        if (!isblank(c)) return NO;
     }return YES;
 }
 /// 判断是否是空格(space、\t、\r、\n)
@@ -60,9 +56,7 @@
     unichar c;
     for (int i = 0; i < self.length; i++) {
         c = [self characterAtIndex:i];
-        if (!isspace(c)) {
-            return NO;
-        }
+        if (!isspace(c)) return NO;
     }return YES;
 }
 /// 判断字符串是否包含空格：返回YES【没有空格】
@@ -76,7 +70,7 @@
 
 -(JobsReturnBOOLByIDBlock)isEqualToString{
     @jobs_weakify(self)
-    return ^(NSString *data){
+    return ^BOOL(NSString *data){
         @jobs_strongify(self)
         if ([data isKindOfClass:NSString.class]) {
             return [self isEqualToString:data];
@@ -86,7 +80,7 @@
 
 -(JobsReturnBOOLByIDBlock)containsString{
     @jobs_weakify(self)
-    return ^(NSString *data){
+    return ^BOOL(NSString *data){
         @jobs_strongify(self)
         if ([data isKindOfClass:NSString.class]) {
             return [self containsString:data];
@@ -98,15 +92,14 @@
 /// @param standardChar 执行标准
 -(BOOL)isAllSameCharWithStandardChar:(char)standardChar{
     if (self.length) {
-        NSMutableArray* carries = [NSMutableArray array];
+        NSMutableArray <NSString *>*carries = NSMutableArray.array;
         for (int i = 0; i < self.length; i++) {
             char s = [self characterAtIndex:i];
             if(s == standardChar){
                 NSString *tempString = [NSString stringWithUTF8String:&s];
-                [carries addObject:tempString];
+                carries.jobsAddObject(tempString);
             }
-        }
-        return carries.count == self.length;
+        }return carries.count == self.length;
     }return NO;
 }
 /// 是否是系统自带九宫格输入 yes-是 no-不是
@@ -123,30 +116,26 @@
               strB:(NSString *)stringB{
     if ([NSString isNullString:stringA] && [NSString isNullString:stringB]) {//双方都是null
         return YES;
-    }else{
-        return [stringA isEqualToString:stringB];
-    }
+    }else return stringA.isEqualToString(stringB);
 }
 /// 判断是否为整形
 -(BOOL)isPureInt{
     NSScanner *scan = [NSScanner scannerWithString:self];
     int val;
-    return [scan scanInt:&val] && [scan isAtEnd];
+    return [scan scanInt:&val] && scan.isAtEnd;
 }
 /// 判断是否为浮点形
 -(BOOL)isPureFloat{
     NSScanner* scan = [NSScanner scannerWithString:self];
     float val;
-    return[scan scanFloat:&val] && [scan isAtEnd];
+    return[scan scanFloat:&val] && scan.isAtEnd;
 }
 /// 判断是否是数字字母结合
 -(BOOL)isAlnum{
     unichar c;
     for (int i = 0; i < self.length; i++) {
         c = [self characterAtIndex:i];
-        if (!isalnum(c)) {
-            return NO;
-        }
+        if (!isalnum(c)) return NO;
     }return YES;
 }
 /// 判断是否是ASCII码的控制字符
@@ -154,9 +143,7 @@
     unichar c;
     for (int i = 0; i < self.length; i++) {
         c = [self characterAtIndex:i];
-        if (!iscntrl(c)) {
-            return NO;
-        }
+        if (!iscntrl(c)) return NO;
     }return YES;
 }
 /// 判断是否是为可打印字符(不包含空格)
@@ -164,9 +151,7 @@
     unichar c;
     for (int i = 0; i < self.length; i++) {
         c = [self characterAtIndex:i];
-        if (!isgraph(c)) {
-            return NO;
-        }
+        if (!isgraph(c)) return NO;
     }return YES;
 }
 /// 判断字符是否为可打印字符（含空格）
@@ -174,9 +159,7 @@
     unichar c;
     for (int i = 0; i < self.length; i++) {
         c = [self characterAtIndex:i];
-        if (!isprint(c)) {
-            return NO;
-        }
+        if (!isprint(c)) return NO;
     }return YES;
 }
 /// 判断是否是小写的英文字母
@@ -184,9 +167,7 @@
     unichar c;
     for (int i = 0; i < self.length; i++) {
         c = [self characterAtIndex:i];
-        if (!islower(c)) {
-            return NO;
-        }
+        if (!islower(c)) return NO;
     }return YES;
 }
 /// 判断字符是否为大写英文字母
@@ -194,9 +175,7 @@
     unichar c;
     for (int i = 0; i < self.length; i++) {
         c = [self characterAtIndex:i];
-        if (!isupper(c)) {
-            return NO;
-        }
+        if (!isupper(c)) return NO;
     }return YES;
 }
 /// 判断字符是否为16进制数字
@@ -204,9 +183,7 @@
     unichar c;
     for (int i = 0; i < self.length; i++) {
         c = [self characterAtIndex:i];
-        if (!isxdigit(c)) {
-            return NO;
-        }
+        if (!isxdigit(c)) return NO;
     }return YES;
 }
 /// 判断字符是否为标点符号或特殊字符
@@ -214,9 +191,7 @@
     unichar c;
     for (int i = 0; i < self.length; i++) {
         c = [self characterAtIndex:i];
-        if (!ispunct(c)) {
-            return NO;
-        }
+        if (!ispunct(c)) return NO;
     }return YES;
 }
 /// 是否全是字母（26个英文字母）

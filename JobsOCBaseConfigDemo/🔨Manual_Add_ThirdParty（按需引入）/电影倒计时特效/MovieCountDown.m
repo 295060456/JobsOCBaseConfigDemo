@@ -44,7 +44,7 @@
 }
 
 -(void)getCuntDown:(NSInteger)second{
-    self.countDown.text = [NSString stringWithFormat:@"%ld",(long)second];
+    self.countDown.text = toStringByLong(second);
     self.countDown.alpha = 1;
     self.aphView.alpha = 0;
     @jobs_weakify(self)

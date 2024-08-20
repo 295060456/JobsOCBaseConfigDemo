@@ -2727,9 +2727,9 @@ NSObject <|-- BaseProtocol
   -(NSMutableArray<NSString *> *)richTextMutArr{
      if (!_richTextMutArr) {
          _richTextMutArr = NSMutableArray.array;
-         [_richTextMutArr addObject:Internationalization(@"观看完整教学视频需支付")];
-         [_richTextMutArr addObject:Internationalization(@"99")];
-         [_richTextMutArr addObject:Internationalization(@"Mata值")];
+         _richTextMutArr.jobsAddObject(JobsInternationalization(@"观看完整教学视频需支付"));
+         _richTextMutArr.jobsAddObject(JobsInternationalization(@"99"));
+         _richTextMutArr.jobsAddObject(JobsInternationalization(@"Mata值"));
      }return _richTextMutArr;
   }
   
@@ -2884,7 +2884,7 @@ NSObject <|-- BaseProtocol
             _countDownBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
            /// 倒计时按钮点击事件
            [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-               [x startTimer];//选择时机、触发启动
+               x.startTimer();//选择时机、触发启动
                NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
                return nil;
            }];
@@ -2950,25 +2950,25 @@ NSObject <|-- BaseProtocol
     * **开始**
     
       ```objective-c
-      [self.countDownBtn startTimer];
+      self.countDownBtn.startTimer();
       ```
     
     * **暂停**
 
       ```objective-c
-      [self.countDownBtn timerSuspend];
+      self.countDownBtn.timerSuspend();
       ```
 
     * **继续**
 
       ```objective-c
-      [self.countDownBtn timerContinue];
+      self.countDownBtn.timerContinue();
       ```
 
     * **结束**
 
       ```objective-c
-      [self.countDownBtn timerDestroy];
+      self.countDownBtn.timerDestroy();
       ```
     
   * **正常的按钮点击事件**
@@ -2979,7 +2979,7 @@ NSObject <|-- BaseProtocol
     
       ```objective-c
       [self.countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-         [x startTimer];//选择时机、触发启动
+         x.startTimer();//选择时机、触发启动
          NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
          return nil;
       }];
@@ -4601,8 +4601,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           self.imageView.image = data.photoModel.previewPhoto;
       } failBlock:^(HXPhotoPickerModel *data) {
           @jobs_strongify(self)
-      }];
-      return nil;
+      }];return nil;
   }];
   ```
 
