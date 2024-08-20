@@ -81,14 +81,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSLog(@"KKK3 = %f",scrollView.contentOffset.y);
-    /// 防止在初始情况下，无意义的往下拉动
-    if (scrollView.contentOffset.y < 0) {
-        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
-    }else{
-        CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH);
-        if(scrollView.contentOffset.y > d){
-            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
-        }else self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
+    /// 防止在初始情况下，无意义的往下拉动👇🏻
+    if (scrollView.contentOffset.y < 0) scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
+    if (scrollView.contentOffset.y >= 0) {
+        /// 防止在初始情况下，无意义的往上拉动👆🏻
+        CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH) + self.viewModel.scrollOffsetY;
+        if(scrollView.contentOffset.y > d) scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
+        if(scrollView.contentOffset.y <= d) self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
     }
 }
 #pragma mark —— lazyLoad

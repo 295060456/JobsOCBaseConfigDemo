@@ -55,19 +55,20 @@
 }
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    /// 防止在初始情况下，无意义的往右拉动
-    CGFloat d = (self.viewModel_.rowNumber * self.viewModel_.itemW - self.viewModel_.XZExcelW) + self.viewModel_.itemW;
-    NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)
+    NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x);
+    /// 防止在数据拉完的情况下，无意义的往右拉动👉🏻
+    if (scrollView.contentOffset.x < 0) scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
     if (scrollView.contentOffset.x >= 0) {
-        /// 防止在数据拉完的情况下，无意义的往左拉动
-        if(scrollView.contentOffset.x <= d){
-            @jobs_weakify(self)
-            self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
-                @jobs_strongify(self)
-                [self.delegate mianTableViewCellScrollerDid:scrollView];
-            });
-        }else scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
-    }else scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
+        /// 防止在数据拉完的情况下，无意义的往左拉动👈🏻
+        CGFloat d = (self.viewModel_.rowNumber * self.viewModel_.itemW - self.viewModel_.XZExcelW) + self.viewModel_.itemW + self.viewModel_.scrollOffsetX;
+        
+        if(scrollView.contentOffset.x > d) scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
+        @jobs_weakify(self)
+        self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
+            @jobs_strongify(self)
+            [self.delegate mianTableViewCellScrollerDid:scrollView];
+        });
+    }
 }
 #pragma mark —— lazyLoadUICollectionView 代理和数据源
 - (NSInteger)collectionView:(UICollectionView *)collectionView

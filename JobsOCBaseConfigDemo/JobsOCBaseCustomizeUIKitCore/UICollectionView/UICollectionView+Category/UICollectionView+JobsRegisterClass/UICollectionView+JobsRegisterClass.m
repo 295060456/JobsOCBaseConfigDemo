@@ -11,7 +11,7 @@
 /// 注册的时候不开辟内存，只有当用字符串进行取值的时候才开辟内存
 /// UICollectionView 本身并没有直接提供公开的 API 来检查某个 reuseIdentifier 是否已经注册
 /// 可以用方法交换去插入一个自定义标志位（NSMutableSet）
--(jobsByVoidBlock)registerCollectionViewClass{
+-(jobsByVoidBlock _Nonnull)registerCollectionViewClass{
     @jobs_weakify(self)
     return ^(void) {
         @jobs_strongify(self)

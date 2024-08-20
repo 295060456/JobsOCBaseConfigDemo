@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UICollectionView (JobsRegisterClass)
 #pragma mark —— 注册 CollectionReusableView-Header、CollectionReusableView—Footer、CollectionViewCell
 /// 注册的时候不开辟内存，只有当用字符串进行取值的时候才开辟内存
--(jobsByVoidBlock)registerCollectionViewClass;
+-(jobsByVoidBlock _Nonnull)registerCollectionViewClass;
 #pragma mark —— 注册 UICollectionViewCell 及其子类
 -(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass;
 -(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass_;

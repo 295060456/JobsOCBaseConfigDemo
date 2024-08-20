@@ -75,15 +75,12 @@
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     self.viewModel.jobsKVC(HorizontalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
-    /// 防止在初始情况下，无意义的往右拉动
-    if (scrollView.contentOffset.x < 0) {
-        scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
-    }
     NSLog(@"JobsExcelTopHeadView - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)
-    CGFloat d = (self.viewModel.rowNumber * self.viewModel.itemW - self.viewModel.XZExcelW) + self.viewModel.itemW;
-    if(scrollView.contentOffset.x > d){
-        scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
-    }
+    /// 防止在初始情况下，无意义的往右拉动👉🏻
+    if (scrollView.contentOffset.x < 0) scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
+    /// 防止在初始情况下，无意义的往左拉动👈🏻
+    CGFloat d = (self.viewModel.rowNumber * self.viewModel.itemW - self.viewModel.XZExcelW) + self.viewModel.itemW + self.viewModel.scrollOffsetX;
+    if(scrollView.contentOffset.x > d) scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
 }
 #pragma mark —— getter and setter
 -(UICollectionViewFlowLayout *)layout{

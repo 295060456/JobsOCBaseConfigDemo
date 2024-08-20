@@ -2264,7 +2264,7 @@ NSObject <|-- BaseProtocol
 
 ### 28、Excel方案：[**JobsExcelView**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/Excel/Excel-JobsExcelView/View/JobsExcelView) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-*  框架介绍
+* 框架介绍
 
   * 一横行用**`UITableViewCell`**、每一个单元小格是**`UICollectionViewCell`**
 
@@ -2293,54 +2293,51 @@ NSObject <|-- BaseProtocol
      ```objective-c
      #pragma mark —— UIScrollViewDelegate
      - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-         /// 防止在初始情况下，无意义的往右拉动
-         CGFloat d = (self.viewModel_.rowNumber * self.viewModel_.itemW - self.viewModel_.XZExcelW) + self.viewModel_.itemW;
-         NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)
+         NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x);
+         /// 防止在数据拉完的情况下，无意义的往右拉动👉🏻
+         if (scrollView.contentOffset.x < 0) scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
          if (scrollView.contentOffset.x >= 0) {
-             /// 防止在数据拉完的情况下，无意义的往左拉动
-             if(scrollView.contentOffset.x <= d){
-                 @jobs_weakify(self)
-                 self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
-                     @jobs_strongify(self)
-                     [self.delegate mianTableViewCellScrollerDid:scrollView];
-                 });
-             }else scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
-         }else scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
+             /// 防止在数据拉完的情况下，无意义的往左拉动👈🏻
+             CGFloat d = (self.viewModel_.rowNumber * self.viewModel_.itemW - self.viewModel_.XZExcelW) + self.viewModel_.itemW + self.viewModel_.scrollOffsetX;
+             
+             if(scrollView.contentOffset.x > d) scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
+             @jobs_weakify(self)
+             self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
+                 @jobs_strongify(self)
+                 [self.delegate mianTableViewCellScrollerDid:scrollView];
+             });
+         }
      }
      ```
-
+    
     **JobsExcelTopHeadView**
-
+    
     ```objective-c
     #pragma mark —— UIScrollViewDelegate
     - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
         self.viewModel.jobsKVC(HorizontalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
-        /// 防止在初始情况下，无意义的往右拉动
-        if (scrollView.contentOffset.x < 0) {
-            scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
-        }
         NSLog(@"JobsExcelTopHeadView - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)
-        CGFloat d = (self.viewModel.rowNumber * self.viewModel.itemW - self.viewModel.XZExcelW) + self.viewModel.itemW;
-        if(scrollView.contentOffset.x > d){
-            scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
-        }
+        /// 防止在初始情况下，无意义的往右拉动👉🏻
+        if (scrollView.contentOffset.x < 0) scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
+        /// 防止在初始情况下，无意义的往左拉动👈🏻
+        CGFloat d = (self.viewModel.rowNumber * self.viewModel.itemW - self.viewModel.XZExcelW) + self.viewModel.itemW + self.viewModel.scrollOffsetX;
+        if(scrollView.contentOffset.x > d) scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
     }
     ```
-
+    
     **JobsExcelLeftListView**
 
     ```objective-c
     #pragma mark —— UIScrollViewDelegate
     - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
         NSLog(@"KKK3 = %f",scrollView.contentOffset.y);
-        /// 防止在初始情况下，无意义的往下拉动
-        if (scrollView.contentOffset.y < 0) {
-            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
-        }else{
-            CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH);
-            if(scrollView.contentOffset.y > d){
-                scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
-            }else self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
+        /// 防止在初始情况下，无意义的往下拉动👇🏻
+        if (scrollView.contentOffset.y < 0) scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
+        if (scrollView.contentOffset.y >= 0) {
+            /// 防止在初始情况下，无意义的往上拉动👆🏻
+            CGFloat d = ((self.viewModel.colNumber + 1) * self.viewModel.itemH - self.viewModel.XZExcelH) + self.viewModel.scrollOffsetY;
+            if(scrollView.contentOffset.y > d) scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
+            if(scrollView.contentOffset.y <= d) self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
         }
     }
     ```

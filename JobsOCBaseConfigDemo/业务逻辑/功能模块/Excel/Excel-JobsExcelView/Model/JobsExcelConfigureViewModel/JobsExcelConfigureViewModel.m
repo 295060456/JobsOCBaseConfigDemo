@@ -31,9 +31,9 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
     if(!_configureData){
         _configureData = ^() {
             @jobs_strongify(self)
-            for (int i = 1; i <= 50; i++) {/// y
-                NSMutableArray <UIButtonModel *>*row = NSMutableArray.array;//30
-                for (int j = 1; j <= (self.topHeaderTitles.count ? : 30) ; j++){/// x
+            for (int i = 1; i < 50; i++) {/// y
+                NSMutableArray <UIButtonModel *>*row = NSMutableArray.array;
+                for (int j = 1; j < (self.topHeaderTitles.count ? : 30) ; j++){/// x
                     UIButtonModel *model = UIButtonModel.new;
                     
                     if(j == 1){
@@ -59,13 +59,11 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
         //            });
                     row.jobsAddObject(model);/// 一行的数据
                 }
-                self.contentArr.jobsAddObject(row);//50
+                self.contentArr.jobsAddObject(row);
             }
             
-            self.itemH = 35;
-            self.itemW = 60;
-            self.rowNumber = self.contentArr[0].count;// 30
-            self.colNumber = self.contentArr.count;// 50
+            self.rowNumber = self.contentArr[0].count;
+            self.colNumber = self.contentArr.count;
             NSLog(@"");
         };
     }return _configureData;
@@ -83,7 +81,7 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
         _data_00.title = self.topHeaderTitles[0] ? : JobsInternationalization(@"楼层");
         _data_00.titleCor = self.cor4;
         _data_00.baseBackgroundColor = self.cor0;
-        _data_00.backgroundImage = self.imag0;
+        _data_00.backgroundImage = self.image0;
     }return _data_00;
 }
 
@@ -92,7 +90,7 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
         _topHeaderDatas = NSMutableArray.array;
         for (int y = 1; y <= self.contentArr[0].count ; y++) {
             UIButtonModel *btnModel = UIButtonModel.new;
-            btnModel.title = toStringByInt(y).add(JobsInternationalization(@"层"));
+            btnModel.title = self.topHeaderTitles[y] ? : toStringByInt(y).add(JobsInternationalization(@"层"));
             btnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
             btnModel.titleCor = self.cor4;
             btnModel.baseBackgroundColor = self.cor3;
@@ -177,7 +175,7 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
     }return _cor6;
 }
 /// 第一行、第一列格子的背景图片
--(UIImage *)imag0{
+-(UIImage *)image0{
     if(!_image0){
         _image0 = JobsIMG(@"Excel表头的背景图");
     }return _image0;
@@ -211,6 +209,18 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
     if(!_leftTitles){
         _leftTitles = NSMutableArray.array;
     }return _leftTitles;
+}
+
+-(CGFloat)itemH{
+    if(!_itemH){
+        _itemH = JobsWidth(35);
+    }return _itemH;
+}
+
+-(CGFloat)itemW{
+    if(!_itemW){
+        _itemW = JobsWidth(60);
+    }return _itemW;
 }
 
 @end
