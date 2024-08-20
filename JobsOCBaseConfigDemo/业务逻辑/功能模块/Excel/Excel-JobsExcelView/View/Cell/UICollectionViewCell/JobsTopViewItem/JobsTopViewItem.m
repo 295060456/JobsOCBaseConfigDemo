@@ -93,10 +93,10 @@
 -(CAShapeLayer *)lineLayer{
     if(!_lineLayer){
         _lineLayer = CAShapeLayer.layer;
-        _lineLayer.lineWidth = LineWidth;
-        _lineLayer.strokeColor = LineColor.CGColor;
+        _lineLayer.lineWidth = self.viewModel_.LineWidth;
+        _lineLayer.strokeColor = self.viewModel_.cor6.CGColor;
         _lineLayer.path = self.linePath.CGPath;
-        _lineLayer.fillColor = nil; // 默认为blackColor
+        _lineLayer.fillColor = JobsClearColor.CGColor; // 默认为blackColor
         [self.btn.layer addSublayer:_lineLayer];
     }return _lineLayer;
 }

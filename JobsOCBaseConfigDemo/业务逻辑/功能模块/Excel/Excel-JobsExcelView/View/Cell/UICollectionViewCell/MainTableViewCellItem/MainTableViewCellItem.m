@@ -42,7 +42,7 @@
         CGSize size = CGSizeMake(viewModel.itemW - 1.0f, viewModel.itemH - 1.0f);
         if (!CGSizeEqualToSize(self.size, size)) {
             self.size = size;
-//            [self drawLineWithSize:size];
+            [self drawLineWithSize:size];
             self.textLayer.frame = CGRectMake(0, size.height*0.5, size.width, size.height);
         }
     };
@@ -56,35 +56,35 @@
     };
 }
 
-//- (void)drawLineWithSize:(CGSize)size{
-//    // 其他点
-//    [self.linePath addLineToPoint:CGPointMake(size.width, 0)];
-//    [self.linePath addLineToPoint:CGPointMake(size.width, size.height)];
-//    [self.linePath addLineToPoint:CGPointMake(0, size.height)];
-//   
-//    UIGraphicsBeginImageContext(size);
-//    [self.linePath closePath];
-//    [self.linePath stroke];
-//    UIGraphicsEndImageContext();
-//    
-//    [self.btn.layer addSublayer:self.lineLayer];
-//}
+- (void)drawLineWithSize:(CGSize)size{
+    // 其他点
+    [self.linePath addLineToPoint:CGPointMake(size.width, 0)];
+    [self.linePath addLineToPoint:CGPointMake(size.width, size.height)];
+    [self.linePath addLineToPoint:CGPointMake(0, size.height)];
+   
+    UIGraphicsBeginImageContext(size);
+    [self.linePath closePath];
+    [self.linePath stroke];
+    UIGraphicsEndImageContext();
+    
+    [self.btn.layer addSublayer:self.lineLayer];
+}
 #pragma mark —— lazyLoad
-//-(UIBezierPath *)linePath{
-//    if(!_linePath){
-//        _linePath = UIBezierPath.bezierPath;
-//        [_linePath moveToPoint:CGPointMake(0, 0)]; // 起点
-//    }return _linePath;
-//}
-//
-//-(CAShapeLayer *)lineLayer{
-//    if(!_lineLayer){
-//        _lineLayer = CAShapeLayer.layer;
-//        _lineLayer.lineWidth = LineWidth;
-//        _lineLayer.strokeColor = LineColor.CGColor;
-//        _lineLayer.path = self.linePath.CGPath;
-//        _lineLayer.fillColor = JobsOrangeColor.CGColor; // 默认为blackColor
-//    }return _lineLayer;
-//}
+-(UIBezierPath *)linePath{
+    if(!_linePath){
+        _linePath = UIBezierPath.bezierPath;
+        [_linePath moveToPoint:CGPointMake(0, 0)]; // 起点
+    }return _linePath;
+}
+
+-(CAShapeLayer *)lineLayer{
+    if(!_lineLayer){
+        _lineLayer = CAShapeLayer.layer;
+        _lineLayer.lineWidth = self.viewModel_.LineWidth;
+        _lineLayer.strokeColor = self.viewModel_.cor6.CGColor;
+        _lineLayer.path = self.linePath.CGPath;
+        _lineLayer.fillColor = JobsClearColor.CGColor; // 默认为blackColor
+    }return _lineLayer;
+}
 
 @end

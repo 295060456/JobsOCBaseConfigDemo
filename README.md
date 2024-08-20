@@ -2284,6 +2284,7 @@ NSObject <|-- BaseProtocol
 
     * Excel表格的总数据源：**`JobsExcelConfigureViewModel`**
     * 对单个的小格子的数据源用**`UITextModel`**
+    * 如果要设置Excel表的宽高，一定要在**`JobsExcelView`**里面的**`viewSizeWithModel`**方法里面进行设置
 
   * 一些人性化进阶设置
 

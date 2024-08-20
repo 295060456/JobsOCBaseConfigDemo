@@ -10,9 +10,11 @@
 
 NSString *const VerticalScrollBegin = @"VerticalScrollValue";
 NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
-const CGFloat LineWidth = 2;
 
 @interface JobsExcelConfigureViewModel()
+
+@property(nonatomic,assign)NSInteger rowNumber;/// 行数
+@property(nonatomic,assign)NSInteger colNumber;/// 列数
 
 @end
 
@@ -31,7 +33,9 @@ const CGFloat LineWidth = 2;
             UIButtonModel *model = UIButtonModel.new;
             model.title = toStringByInt(i * j);
             model.baseBackgroundColor = i % 2 ? self.cor2: self.cor1;
+            model.backgroundImage = i % 2 ? self.image2: self.image1;
             model.titleCor = JobsWhiteColor;
+            model.titleFont = UIFontWeightRegularSize(JobsWidth(10));
 //            model.jobsTestBlock();
 //            model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
 //                return nil;
@@ -93,17 +97,23 @@ const CGFloat LineWidth = 2;
         }
     }return _leftListDatas;
 }
-
+/// 整张Excel表的宽度
 -(CGFloat)XZExcelW{
     if(!_XZExcelW){
         _XZExcelW = [JobsExcelView viewSizeWithModel:nil].width;
     }return _XZExcelW;
 }
-
+/// 整张Excel表的高度
 -(CGFloat)XZExcelH{
     if(!_XZExcelH){
         _XZExcelH = [JobsExcelView viewSizeWithModel:nil].height;
     }return _XZExcelH;
+}
+/// 线宽
+-(CGFloat)LineWidth{
+    if(!_LineWidth){
+        _LineWidth = 1;
+    }return _LineWidth;
 }
 /// 第一行、第一列格子的背景颜色
 -(UIColor *)cor0{
@@ -141,10 +151,16 @@ const CGFloat LineWidth = 2;
         _cor5 = JobsWhiteColor;
     }return _cor5;
 }
+/// 表格线的颜色
+-(UIColor *)cor6{
+    if(!_cor6){
+        _cor6 = JobsGrayColor;
+    }return _cor6;
+}
 /// 第一行、第一列格子的背景图片
 -(UIImage *)imag0{
     if(!_image0){
-        _image0 = JobsIMG(@"");
+        _image0 = JobsIMG(@"Excel表头的背景图");
     }return _image0;
 }
 /// 奇数行的背景图片
@@ -162,7 +178,7 @@ const CGFloat LineWidth = 2;
 /// 第一行的背景图片
 -(UIImage *)image3{
     if(!_image3){
-        _image3 = JobsIMG(@"");
+        _image3 = JobsIMG(@"Excel表头的背景图");
     }return _image3;
 }
 
