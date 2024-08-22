@@ -79,7 +79,7 @@
                                                                   animationType:config.animationType];
         }break;
         default:
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"参数配置错误，请检查")];
+            self.jobsToastErrMsg(JobsInternationalization(@"参数配置错误，请检查"));
             return nil;
             break;
     }
@@ -95,21 +95,18 @@
                                                              style:config.alertActionStyleArr[i].integerValue
                                                            handler:^(SPAlertAction * _Nonnull action) {
 //                @strongify(config);
-                if (!config.funcInWhere) {
-                    config.funcInWhere = config.targetVC;
-                }
+                if (!config.funcInWhere) config.funcInWhere = config.targetVC;
                 NSLog(@"DDD = %ld",action.index);
                 // 核心方法:截取最后2个字符，如果是“：”则进行参数拼接
                 NSString *methodName = config.alertBtnActionArr[i];
                 if ([NSString isNullString:methodName]) {
-                    if (alertVCBlock) {
-                        alertVCBlock(vc,mutArr);
-                    }return;
+                    if (alertVCBlock) alertVCBlock(vc,mutArr);
+                    return;
                 }
-                NSMutableArray *parameters = NSMutableArray.array;
+                NSMutableArray <SPAlertAction *>*parameters = NSMutableArray.array;
                 if (config.parametersArr.count) {
-                    if ([[methodName substringFromIndex:methodName.length - 1] isEqualToString:@":"]) {
-                        [parameters addObject:action];
+                    if ([methodName substringFromIndex:methodName.length - 1].isEqualToString(@":")) {
+                        parameters.add(action);
                     }
                 }
                 
@@ -121,12 +118,12 @@
             action.index = i;//做记号
             NSLog(@"DDD = %ld",action.index);
             [vc addAction:action];
-            [mutArr addObject:action];
+            mutArr.add(action);
         }
         
         if (alertVCBlock) alertVCBlock(vc,mutArr);
     }else{
-        [WHToast jobsToastErrMsg:JobsInternationalization(@"参数配置错误，请检查")];
+        self.jobsToastErrMsg(JobsInternationalization(@"参数配置错误，请检查"));
         return nil;
     }
     
