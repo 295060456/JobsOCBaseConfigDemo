@@ -196,10 +196,10 @@
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
         _btnTitleMutArr = NSMutableArray.array;
-        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"开始"));
-        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"暂停"));
-        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"继续"));
-        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"结束"));
+        _btnTitleMutArr.add(JobsInternationalization(@"开始"));
+        _btnTitleMutArr.add(JobsInternationalization(@"暂停"));
+        _btnTitleMutArr.add(JobsInternationalization(@"继续"));
+        _btnTitleMutArr.add(JobsInternationalization(@"结束"));
     }return _btnTitleMutArr;
 }
 

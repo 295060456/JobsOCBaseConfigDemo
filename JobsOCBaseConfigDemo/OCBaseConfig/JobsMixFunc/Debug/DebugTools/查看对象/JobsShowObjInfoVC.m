@@ -83,7 +83,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIPasteboard.generalPasteboard.string = self.dataMutArr[indexPath.row].subTextModel.text;
-    [WHToast jobsToastMsg:[NSString stringWithFormat:@"%@%@%@",JobsInternationalization(@"复制"),self.dataMutArr[indexPath.row].textModel.text,JobsInternationalization(@"成功")]];
+    self.jobsToastMsg(JobsInternationalization(@"复制").add(self.dataMutArr[indexPath.row].textModel.text).add(JobsInternationalization(@"成功")));
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -91,8 +91,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.dataMutArr.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = JobsBaseTableViewCell.cellStyleValue1WithTableView(tableView);
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.textColor = JobsBrownColor;

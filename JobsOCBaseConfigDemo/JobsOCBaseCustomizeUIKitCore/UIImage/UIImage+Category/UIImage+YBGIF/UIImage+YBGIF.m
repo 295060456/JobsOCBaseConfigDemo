@@ -29,7 +29,7 @@
                    continue;
                }
                duration += [self frameDurationAtIndex:i source:source];
-               images.jobsAddObject([UIImage imageWithCGImage:image
+               images.add([UIImage imageWithCGImage:image
                                                         scale:UIScreen.mainScreen.scale
                                                   orientation:UIImageOrientationUp]);
                CGImageRelease(image);
@@ -125,7 +125,7 @@
                                     scaledSize.width,
                                     scaledSize.height)];
        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-       scaledImages.jobsAddObject(newImage);
+       scaledImages.add(newImage);
        UIGraphicsEndImageContext();
    }return [UIImage animatedImageWithImages:scaledImages duration:self.duration];
 }

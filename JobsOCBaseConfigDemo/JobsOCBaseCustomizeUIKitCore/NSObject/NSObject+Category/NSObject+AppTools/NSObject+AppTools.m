@@ -16,7 +16,7 @@
         JobsTabBarItemConfig *tabBarItemConfig = AppDelegate.tabBarItemConfigMutArr[y];
         if(tabBarItemConfig.isNotNeedCheckLogin){
             Class cls = viewController.class;
-            tempDataArr.jobsAddObject(cls);
+            tempDataArr.add(cls);
         }
     }return tempDataArr;
 }
@@ -116,18 +116,22 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 #pragma mark —— 关于图片编解码
 /// 图片base64编码，再固定50字符的位置加入固定盐。盐码（盐需大写、长度 16位）：RRU4JZTV5WZXPCVZ
 /// 编码
--(NSString *)encodePicStr:(NSString *)picStr{
-    // 将NSString转换为NSMutableString，以便修改
-    NSMutableString *modifiedString = picStr.mutableCopy;
-    // 在指定位置插入字符串
-    [modifiedString insertString:PicSalt atIndex:50];
-    return modifiedString;
+-(JobsReturnStringByStringBlock _Nonnull)encodePicStr{
+    return ^(NSString * _Nullable picStr) {
+        // 将NSString转换为NSMutableString，以便修改
+        NSMutableString *modifiedString = picStr.mutableCopy;
+        // 在指定位置插入字符串
+        [modifiedString insertString:PicSalt atIndex:50];
+        return modifiedString;
+    };
 }
 /// 解码
--(NSString *)decodePicStr:(NSString *)encodePicStr{
-    // 删除字符串
-    NSString *modifiedString = [encodePicStr stringByReplacingOccurrencesOfString:PicSalt withString:JobsInternationalization(@"")];
-    return modifiedString;
+-(JobsReturnStringByStringBlock _Nonnull)decodePicStr{
+    return ^(NSString * _Nullable encodePicStr) {
+        // 删除字符串
+        NSString *modifiedString = [encodePicStr stringByReplacingOccurrencesOfString:PicSalt withString:JobsInternationalization(@"")];
+        return modifiedString;
+    };
 }
 #pragma mark —— <AppToolsProtocol> 其他
 /// 设置普通文本
@@ -332,11 +336,11 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //                }break;
 //                case CustomerContactStyle_手机号码:{
 ////                            [NSObject openURL:JobsInternationalization(@"")];
-//                    [WHToast jobsToastMsg:@"打开手机号码未配置"];
+//                    self.jobsToastMsg(@"打开手机号码未配置");
 //                }break;
 //                case CustomerContactStyle_onlineURL:{
 ////                            [NSObject openURL:JobsInternationalization(@"")];
-//                    [WHToast jobsToastMsg:@"打开onlineURL未配置"];
+//                    self.jobsToastMsg(@"打开onlineURL未配置");
 //                }break;
 //
 //                default:
@@ -574,15 +578,15 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     }else{
         if (model.userName.nullString &&
             model.password.nullString) {
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please complete the login information")];
+            self.jobsToastErrMsg(JobsInternationalization(@"Please complete the login information"));
         }else if (!model.userName.nullString &&
                   model.password.nullString){
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter your password")];
+            self.jobsToastErrMsg(JobsInternationalization(@"Please enter your password"));
         }else if (model.userName.nullString &&
                   !model.password.nullString){
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter a user name")];
+            self.jobsToastErrMsg(JobsInternationalization(@"Please enter a user name"));
         }else{
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"The password consists of 6 to 15 characters and can only be letters and numbers")];
+            self.jobsToastErrMsg(JobsInternationalization(@"The password consists of 6 to 15 characters and can only be letters and numbers"));
         }return NO;
     }
 }
@@ -600,38 +604,36 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                   !model.confirmPassword.nullString &&
                   !model.tel.nullString &&
                   !model.verificationCode.nullString){
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter a user name")];
+            self.jobsToastErrMsg(@"Please enter a user name");
         }else if (!model.userName.nullString &&
                   model.password.nullString &&
                   !model.confirmPassword.nullString &&
                   !model.tel.nullString &&
                   !model.verificationCode.nullString){
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter your password")];
+            self.jobsToastErrMsg(@"Please enter your password");
         }else if (!model.userName.nullString &&
                   !model.password.nullString &&
                   model.confirmPassword.nullString &&
                   !model.tel.nullString &&
                   !model.verificationCode.nullString){
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please confirm your password")];
+            self.jobsToastErrMsg(@"Please confirm your password");
         }else if (!model.userName.nullString &&
                   !model.password.nullString &&
                   !model.confirmPassword.nullString &&
                   model.tel.nullString &&
                   !model.verificationCode.nullString){
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter your mobile phone number")];
+            self.jobsToastErrMsg(@"Please enter your mobile phone number");
         }else if (!model.userName.nullString &&
                   !model.password.nullString &&
                   !model.confirmPassword.nullString &&
                   !model.tel.nullString &&
                   model.verificationCode.nullString){
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please enter the verification code")];
+            self.jobsToastErrMsg(@"Please enter the verification code");
         }else if ([self checkUserName:model.userName] ||
                   [self checkUserPassword:model.password] ||
                   [self checkUserPassword:model.confirmPassword]){
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"The password consists of 6 to 15 characters and can only be letters and numbers")];
-        }else{
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"Please complete the registration information")];
-        }
+            self.jobsToastErrMsg(@"The password consists of 6 to 15 characters and can only be letters and numbers");
+        }else self.jobsToastErrMsg(@"Please complete the registration information");
     }return NO;
 }
 /// 电话号码可以最多20位数，超过后无法输入，且电话号码中无法包含特殊字符或者空格

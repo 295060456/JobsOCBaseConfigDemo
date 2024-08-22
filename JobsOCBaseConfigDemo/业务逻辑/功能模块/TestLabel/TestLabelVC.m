@@ -138,9 +138,9 @@
         config_03.textBgCor = JobsBrownColor;
         config_03.paragraphStyle = self.paragtaphStyle;
         
-        _richLabelDataStringsMutArr.jobsAddObject(config_01);
-        _richLabelDataStringsMutArr.jobsAddObject(config_02);
-        _richLabelDataStringsMutArr.jobsAddObject(config_03);
+        _richLabelDataStringsMutArr.add(config_01);
+        _richLabelDataStringsMutArr.add(config_02);
+        _richLabelDataStringsMutArr.add(config_03);
         
     }return _richLabelDataStringsMutArr;
 }

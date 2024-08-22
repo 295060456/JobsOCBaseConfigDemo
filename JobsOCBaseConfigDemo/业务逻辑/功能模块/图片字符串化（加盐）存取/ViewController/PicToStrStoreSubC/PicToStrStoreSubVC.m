@@ -131,48 +131,44 @@
         _showStr = [NSString stringWithFormat:@"目标图片对应的字符串编码为（只列举一部分）前面几位都是一样的：%@", _showStr];
         _showStr = [_showStr stringByAppendingString:@"...后面还有很多，就不一一列举了（渲染UI会撑爆内存，最终导致程序崩溃）"];
         self.textView.text = _showStr;
-    }else{
-        [WHToast jobsToastMsg:JobsInternationalization(@"暂无编码数据！！！")];
-    }return string;
+    }else self.jobsToastMsg(JobsInternationalization(@"暂无编码数据！！！"));
+    return string;
 }
 /// 输出图片到Btn_1
 -(void)dataForBtn1ImageView:(UIImage *)image{
     if(image){
         _picBefore = image;
         self.btn_1.jobsResetBtnImage(_picBefore);
-    }else{
-        [WHToast jobsToastMsg:JobsInternationalization(@"字符串解码转换失败")];
-    }
+    }else self.jobsToastMsg(JobsInternationalization(@"字符串解码转换失败"));
 }
 /// 输出图片到Btn_2
 -(UIImage *)dataForBtn2ImageView:(UIImage *)image{
     if(image){
         _picAfter = image;
         self.btn_2.jobsResetBtnImage(image);
-    }else{
-        [WHToast jobsToastMsg:JobsInternationalization(@"字符串解码转换失败")];
-    }return _picAfter;
+    }else self.jobsToastMsg(JobsInternationalization(@"字符串解码转换失败"));
+    return _picAfter;
 }
 #pragma mark —— 图片（图片数据Data）=编码=> 字符串(加盐)
 -(NSString *)strForPic:(UIImage *)pic{
     switch ([self.viewModel.requestParams intValue]) {
         case PicToStrStyle_Hexadecimal:{
-            _resultStr = [self dataForTextView:[self encodePicStr:pic.hexStr]];
+            _resultStr = [self dataForTextView:self.encodePicStr(pic.hexStr)];
         }break;
         case PicToStrStyle_Base16:{
-            _resultStr = [self dataForTextView:[self encodePicStr:pic.base16Str]];
+            _resultStr = [self dataForTextView:self.encodePicStr(pic.base16Str)];
         }break;
         case PicToStrStyle_Base32:{
-            _resultStr = [self dataForTextView:[self encodePicStr:pic.base32Str]];
+            _resultStr = [self dataForTextView:self.encodePicStr(pic.base32Str)];
         }break;
         case PicToStrStyle_Base64:{
-            _resultStr = [self dataForTextView:[self encodePicStr:pic.base64Str]];
+            _resultStr = [self dataForTextView:self.encodePicStr(pic.base64Str)];
         }break;
         case PicToStrStyle_Base85:{
-            _resultStr = [self dataForTextView:[self encodePicStr:pic.base85Str]];
+            _resultStr = [self dataForTextView:self.encodePicStr(pic.base85Str)];
         }break;
         case PicToStrStyle_MIME:{
-            _resultStr = [self dataForTextView:[self encodePicStr:pic.MIMEStr]];
+            _resultStr = [self dataForTextView:self.encodePicStr(pic.MIMEStr)];
         }break;
         default:
             break;
@@ -182,25 +178,25 @@
 -(UIImage *)picForStr:(NSString *)str{
     _picAfter = nil;
     if(!str.isNotBlank) return nil;
-    
+
     switch ([self.viewModel.requestParams intValue]) {
         case PicToStrStyle_Hexadecimal:{
-            return [self dataForBtn2ImageView:[self decodePicStr:str].imageByHexString];
+            return [self dataForBtn2ImageView:self.decodePicStr(str).imageByHexString];
         }break;
         case PicToStrStyle_Base16:{
-            return [self dataForBtn2ImageView:[self decodePicStr:str].imageByBase16String];
+            return [self dataForBtn2ImageView:self.decodePicStr(str).imageByBase16String];
         }break;
         case PicToStrStyle_Base32:{
-            return [self dataForBtn2ImageView:[self decodePicStr:str].imageByBase32String];
+            return [self dataForBtn2ImageView:self.decodePicStr(str).imageByBase32String];
         }break;
         case PicToStrStyle_Base64:{
-            return [self dataForBtn2ImageView:[self decodePicStr:str].imageByBase64String];
+            return [self dataForBtn2ImageView:self.decodePicStr(str).imageByBase64String];
         }break;
         case PicToStrStyle_Base85:{
-            return [self dataForBtn2ImageView:[self decodePicStr:str].imageByBase85String];
+            return [self dataForBtn2ImageView:self.decodePicStr(str).imageByBase85String];
         }break;
         case PicToStrStyle_MIME:{
-            return [self dataForBtn2ImageView:[self decodePicStr:str].imageByMIMEString];
+            return [self dataForBtn2ImageView:self.decodePicStr(str).imageByMIMEString];
         }break;
         default:
             break;
@@ -249,7 +245,7 @@
             if (self.objectBlock) self.objectBlock(x);
             /// 调取系统相册
             @jobs_weakify(self)
-            [self invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
+            [self hx_invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
                 self.photoManager = data.photoManager;
                 [data.photoList hx_requestImageWithOriginal:NO
                                                  completion:^(NSArray<UIImage *> * _Nullable imageArray,
@@ -319,9 +315,8 @@
             if([self->_resultStr isNotBlank]){
                 /// 存在于内存里面的编码，转变成图像对外进行输出
                 [self picForStr:self->_resultStr];
-            }else{
-                [WHToast jobsToastMsg:JobsInternationalization(@"请先编码图片")];
-            }return nil;
+            }else self.jobsToastMsg(JobsInternationalization(@"请先编码图片"));
+            return nil;
         }];
         [self.view addSubview:_btn_2];
         [_btn_2 mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -77,10 +77,8 @@ extern JobsNetworkingEnvir networkingEnvir;
         NSLog(@"action----->%ld",(long)menuRow);
         networkingEnvir = menuRow;
         if (menuRow + 1 <= self.operationEnvironMutArr.count) {
-            [WHToast jobsToastMsg:[JobsInternationalization(@"当前环境") stringByAppendingString:self.operationEnvironMutArr[menuRow]]];
-        }else{
-            [WHToast jobsToastErrMsg:JobsInternationalization(@"切换环境出现错误")];
-        }
+            self.jobsToastMsg(JobsInternationalization(@"当前环境").add(self.operationEnvironMutArr[menuRow]));
+        }else self.jobsToastErrMsg(JobsInternationalization(@"切换环境出现错误"));
     };
 }
 #pragma mark —— BaseViewProtocol
@@ -95,13 +93,13 @@ extern JobsNetworkingEnvir networkingEnvir;
 -(NSMutableArray<NSString *> *)operationEnvironMutArr{
     if (!_operationEnvironMutArr) {
         _operationEnvironMutArr = NSMutableArray.array;
-        [_operationEnvironMutArr addObject:JobsInternationalization(@"开发环境_01")];
-        [_operationEnvironMutArr addObject:JobsInternationalization(@"开发环境_02")];
-        [_operationEnvironMutArr addObject:JobsInternationalization(@"开发环境_03")];
-        [_operationEnvironMutArr addObject:JobsInternationalization(@"开发环境_04")];
-        [_operationEnvironMutArr addObject:JobsInternationalization(@"测试环境")];
-        [_operationEnvironMutArr addObject:JobsInternationalization(@"UAT环境")];
-        [_operationEnvironMutArr addObject:JobsInternationalization(@"生产环境")];
+        _operationEnvironMutArr.add(JobsInternationalization(@"开发环境_01"));
+        _operationEnvironMutArr.add(JobsInternationalization(@"开发环境_02"));
+        _operationEnvironMutArr.add(JobsInternationalization(@"开发环境_03"));
+        _operationEnvironMutArr.add(JobsInternationalization(@"开发环境_04"));
+        _operationEnvironMutArr.add(JobsInternationalization(@"测试环境"));
+        _operationEnvironMutArr.add(JobsInternationalization(@"UAT环境"));
+        _operationEnvironMutArr.add(JobsInternationalization(@"生产环境"));
     }return _operationEnvironMutArr;
 }
 

@@ -76,74 +76,8 @@
             }else{
                 make.top.equalTo(self.view).offset(topViewOffset);
             }
-        }
-        make.left.right.bottom.equalTo(self.view);
+        }make.left.right.bottom.equalTo(self.view);
     }];
-}
-#pragma mark —— present
-#ifndef JobsPresentationStyle
-#define JobsPresentationStyle (UIDevice.currentDevice.systemVersion.doubleValue >= 13.0 ? UIModalPresentationAutomatic : UIModalPresentationFullScreen)
-#endif
-/// 简洁版强制present展现一个控制器页面【不需要正向传参】
--(jobsByVCBlock)comingToPresentVC{
-    @jobs_weakify(self)
-    return ^(UIViewController *_Nonnull viewController) {
-        @jobs_strongify(self)
-        [UIViewController comingFromVC:self
-                                  toVC:viewController
-                           comingStyle:ComingStyle_PRESENT
-                     presentationStyle:JobsPresentationStyle
-                         requestParams:nil
-              hidesBottomBarWhenPushed:YES
-                              animated:YES
-                               success:nil];
-    };
-}
-/// 简洁版强制present展现一个控制器页面【需要正向传参】
--(jobsByVCAndDataBlock)comingToPresentVCByRequestParams{
-    @jobs_weakify(self)
-    return ^(UIViewController * _Nullable viewController,id _Nullable requestParams) {
-        @jobs_strongify(self)
-        [UIViewController comingFromVC:self
-                                  toVC:viewController
-                           comingStyle:ComingStyle_PRESENT
-                     presentationStyle:JobsPresentationStyle
-                         requestParams:requestParams
-              hidesBottomBarWhenPushed:YES
-                              animated:YES
-                               success:nil];
-    };
-}
-#pragma mark —— push
-/// 简洁版强制push展现一个控制器页面【不需要正向传参】
--(jobsByVCBlock)comingToPushVC{
-    @jobs_weakify(self)
-    return ^(UIViewController *_Nonnull viewController) {
-        @jobs_strongify(self)
-        [UIViewController comingFromVC:self
-                                  toVC:viewController
-                           comingStyle:ComingStyle_PUSH
-                     presentationStyle:JobsPresentationStyle
-                         requestParams:nil
-              hidesBottomBarWhenPushed:YES
-                              animated:YES
-                               success:nil];
-    };
-}
-/// 简洁版强制push展现一个控制器页面【需要正向传参】
--(jobsByVCAndDataBlock)comingToPushVCByRequestParams{
-    @jobs_weakify(self)
-    return ^(UIViewController * _Nullable viewController,id _Nullable requestParams) {
-        @jobs_strongify(self)
-        [UIViewController comingFromVC:self
-                                  toVC:viewController
-                           comingStyle:ComingStyle_PUSH
-                     presentationStyle:JobsPresentationStyle
-                         requestParams:requestParams
-              hidesBottomBarWhenPushed:YES
-                              animated:YES
-                               success:nil];
-    };
 }
 /**
  ❤️【强制推控制器】❤️
@@ -208,9 +142,7 @@
                 NSLog(@"错误的推进方式");
                 break;
         }return toVC;
-    }else{
-        return nil;// 为了防止多次推VC
-    }
+    }else return nil;// 为了防止多次推VC
 }
 #pragma mark —— <BaseViewControllerProtocol> @property(nonatomic,weak)UIViewController *fromVC;
 JobsKey(_fromVC)

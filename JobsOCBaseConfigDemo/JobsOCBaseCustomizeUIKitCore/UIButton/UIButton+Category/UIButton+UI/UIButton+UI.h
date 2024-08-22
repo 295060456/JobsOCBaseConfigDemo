@@ -331,9 +331,9 @@ NS_ASSUME_NONNULL_END
  -(NSMutableArray<NSString *> *)richTextMutArr{
      if (!_richTextMutArr) {
          _richTextMutArr = NSMutableArray.array;
-         _richTextMutArr.jobsAddObject(JobsInternationalization(@"观看完整教学视频需支付"));
-         _richTextMutArr.jobsAddObject(JobsInternationalization(@"99"));
-         _richTextMutArr.jobsAddObject(JobsInternationalization(@"Mata值"));
+         _richTextMutArr.add(JobsInternationalization(@"观看完整教学视频需支付"));
+         _richTextMutArr.add(JobsInternationalization(@"99"));
+         _richTextMutArr.add(JobsInternationalization(@"Mata值"));
      }return _richTextMutArr;
  }
 

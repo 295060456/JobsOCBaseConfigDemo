@@ -21,14 +21,12 @@
             [UIApplication.sharedApplication setAlternateIconName:iconName
                                                 completionHandler:^(NSError * _Nullable error) {
                 if (error) {
-                    [WHToast jobsToastErrMsg:[@"更换app图标发生错误了 ：" stringByAppendingString:error.description]];
+                    self.jobsToastErrMsg(JobsInternationalization(@"更换app图标发生错误了 ：").add(error.description));
                     NSLog(@"更换app图标发生错误了 ： %@",error);
                 }
             }];
         }
-    }else{
-        [WHToast jobsToastErrMsg:@"请升级系统到10.3以上版本,方可支持切换App图标"];
-    }
+    }else self.jobsToastErrMsg(JobsInternationalization(@"请升级系统到10.3以上版本,方可支持切换App图标"));
 }
 
 @end

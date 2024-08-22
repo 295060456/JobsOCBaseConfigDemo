@@ -113,8 +113,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.dataMutArr.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)JobsBaseTableViewCell.cellStyleValue1WithTableView(tableView);
     
     cell.textLabelFrameOffsetY -= JobsWidth(2);

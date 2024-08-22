@@ -189,64 +189,64 @@
 -(NSMutableArray<NSString *> *)dates{
     if(!_dates){
         _dates = NSMutableArray.array;
-        _dates.jobsAddObject(@"7/10/2017");
-        _dates.jobsAddObject(@"7/11/2017");
-        _dates.jobsAddObject(@"7/12/2017");
-        _dates.jobsAddObject(@"7/13/2017");
-        _dates.jobsAddObject(@"7/14/2017");
-        _dates.jobsAddObject(@"7/15/2017");
-        _dates.jobsAddObject(@"7/16/2017");
+        _dates.add(@"7/10/2017");
+        _dates.add(@"7/11/2017");
+        _dates.add(@"7/12/2017");
+        _dates.add(@"7/13/2017");
+        _dates.add(@"7/14/2017");
+        _dates.add(@"7/15/2017");
+        _dates.add(@"7/16/2017");
     }return _dates;
 }
 
 -(NSMutableArray<NSString *> *)days{
     if(!_days){
         _days = NSMutableArray.array;
-        _days.jobsAddObject(@"MONDAY");
-        _days.jobsAddObject(@"TUESDAY");
-        _days.jobsAddObject(@"WEDNSDAY");
-        _days.jobsAddObject(@"THURSDAY");
-        _days.jobsAddObject(@"FRIDAY");
-        _days.jobsAddObject(@"SATURDAY");
-        _days.jobsAddObject(@"SUNDAY");
+        _days.add(@"MONDAY");
+        _days.add(@"TUESDAY");
+        _days.add(@"WEDNSDAY");
+        _days.add(@"THURSDAY");
+        _days.add(@"FRIDAY");
+        _days.add(@"SATURDAY");
+        _days.add(@"SUNDAY");
     }return _days;
 }
 
 -(NSMutableArray<UIColor *> *)dayColors{
     if(!_dayColors){
         _dayColors = NSMutableArray.array;
-        _dayColors.jobsAddObject([UIColor colorWithRed:0.918 green:0.224 blue:0.153 alpha:1]);
-        _dayColors.jobsAddObject([UIColor colorWithRed:0.106 green:0.541 blue:0.827 alpha:1]);
-        _dayColors.jobsAddObject([UIColor colorWithRed:0.200 green:0.620 blue:0.565 alpha:1]);
-        _dayColors.jobsAddObject([UIColor colorWithRed:0.953 green:0.498 blue:0.098 alpha:1]);
-        _dayColors.jobsAddObject([UIColor colorWithRed:0.400 green:0.584 blue:0.141 alpha:1]);
-        _dayColors.jobsAddObject([UIColor colorWithRed:0.835 green:0.655 blue:0.051 alpha:1]);
-        _dayColors.jobsAddObject([UIColor colorWithRed:0.153 green:0.569 blue:0.835 alpha:1]);
+        _dayColors.add([UIColor colorWithRed:0.918 green:0.224 blue:0.153 alpha:1]);
+        _dayColors.add([UIColor colorWithRed:0.106 green:0.541 blue:0.827 alpha:1]);
+        _dayColors.add([UIColor colorWithRed:0.200 green:0.620 blue:0.565 alpha:1]);
+        _dayColors.add([UIColor colorWithRed:0.953 green:0.498 blue:0.098 alpha:1]);
+        _dayColors.add([UIColor colorWithRed:0.400 green:0.584 blue:0.141 alpha:1]);
+        _dayColors.add([UIColor colorWithRed:0.835 green:0.655 blue:0.051 alpha:1]);
+        _dayColors.add([UIColor colorWithRed:0.153 green:0.569 blue:0.835 alpha:1]);
     }return _dayColors;
 }
 
 -(NSMutableArray<NSString *> *)hours{
     if(!_hours){
         _hours = NSMutableArray.array;
-        _hours.jobsAddObject(@"6:00 AM");
-        _hours.jobsAddObject(@"7:00 AM");
-        _hours.jobsAddObject(@"8:00 AM");
-        _hours.jobsAddObject(@"9:00 AM");
-        _hours.jobsAddObject(@"10:00 AM");
-        _hours.jobsAddObject(@"11:00 AM");
-        _hours.jobsAddObject(@"12:00 AM");
-        _hours.jobsAddObject(@"13:00 AM");
-        _hours.jobsAddObject(@"14:00 AM");
-        _hours.jobsAddObject(@"15:00 AM");
-        _hours.jobsAddObject(@"16:00 AM");
-        _hours.jobsAddObject(@"17:00 AM");
-        _hours.jobsAddObject(@"18:00 AM");
-        _hours.jobsAddObject(@"19:00 AM");
-        _hours.jobsAddObject(@"20:00 AM");
-        _hours.jobsAddObject(@"21:00 AM");
-        _hours.jobsAddObject(@"22:00 AM");
-        _hours.jobsAddObject(@"23:00 AM");
-        _hours.jobsAddObject(@"24:00 AM");
+        _hours.add(@"6:00 AM");
+        _hours.add(@"7:00 AM");
+        _hours.add(@"8:00 AM");
+        _hours.add(@"9:00 AM");
+        _hours.add(@"10:00 AM");
+        _hours.add(@"11:00 AM");
+        _hours.add(@"12:00 AM");
+        _hours.add(@"13:00 AM");
+        _hours.add(@"14:00 AM");
+        _hours.add(@"15:00 AM");
+        _hours.add(@"16:00 AM");
+        _hours.add(@"17:00 AM");
+        _hours.add(@"18:00 AM");
+        _hours.add(@"19:00 AM");
+        _hours.add(@"20:00 AM");
+        _hours.add(@"21:00 AM");
+        _hours.add(@"22:00 AM");
+        _hours.add(@"23:00 AM");
+        _hours.add(@"24:00 AM");
     }return _hours;
 }
 
@@ -265,13 +265,13 @@
 -(NSMutableArray<NSArray<NSString *> *> *)datas{
     if(!_datas){
         _datas = NSMutableArray.array;
-        _datas.jobsAddObject(@[@"", @"", @"Take medicine", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"Movie with family", @"", @"", @"", @"", @"", @""]);
-        _datas.jobsAddObject(@[@"Leave for cabin", @"", @"", @"", @"", @"Lunch with Tim", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @""]);
-        _datas.jobsAddObject(@[@"", @"", @"", @"", @"Downtown parade", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @""]);
-        _datas.jobsAddObject(@[@"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"Fireworks show", @"", @"", @""]);
-        _datas.jobsAddObject(@[@"", @"", @"", @"", @"", @"Family BBQ", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @""]);
-        _datas.jobsAddObject(@[@"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @""]);
-        _datas.jobsAddObject(@[@"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"Return home", @"", @"", @"", @"", @"", @""]);
+        _datas.add(@[@"", @"", @"Take medicine", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"Movie with family", @"", @"", @"", @"", @"", @""]);
+        _datas.add(@[@"Leave for cabin", @"", @"", @"", @"", @"Lunch with Tim", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @""]);
+        _datas.add(@[@"", @"", @"", @"", @"Downtown parade", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @""]);
+        _datas.add(@[@"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"Fireworks show", @"", @"", @""]);
+        _datas.add(@[@"", @"", @"", @"", @"", @"Family BBQ", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @""]);
+        _datas.add(@[@"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @""]);
+        _datas.add(@[@"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"Return home", @"", @"", @"", @"", @"", @""]);
     }return _datas;
 }
 

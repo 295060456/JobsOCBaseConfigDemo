@@ -73,8 +73,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.viewModel.jobsDataMutArr.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = JobsBaseTableViewCell.cellStyleValue1WithTableView(tableView);
     
     cell.textLabelFrameOffsetY = JobsWidth(-2);/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
@@ -113,8 +113,8 @@ heightForFooterInSection:(NSInteger)section{
     return [BaseTableViewHeaderFooterView heightForFooterInSection:nil];
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
-- (nullable UIView *)tableView:(UITableView *)tableView
-        viewForFooterInSection:(NSInteger)section{
+- (nullable __kindof UIView *)tableView:(UITableView *)tableView
+                 viewForFooterInSection:(NSInteger)section{
     BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
     tbvFooterView.headerFooterViewStyle = JobsFooterViewStyle;
     {

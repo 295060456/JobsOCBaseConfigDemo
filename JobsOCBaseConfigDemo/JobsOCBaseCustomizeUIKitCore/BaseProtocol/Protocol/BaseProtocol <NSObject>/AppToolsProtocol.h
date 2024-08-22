@@ -15,12 +15,9 @@
 @class JobsHotLabelWithSingleLine;
 
 NS_ASSUME_NONNULL_BEGIN
-
 /// App工具协议
 @protocol AppToolsProtocol <BaseProtocol>
-
 @optional
-
 #pragma mark —— <AppToolsProtocol> 关于注册登录
 /// 去登录？去注册？
 -(void)toLoginOrRegister:(CurrentPage)appDoorContentType;
@@ -49,9 +46,9 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 关于图片编解码
 /// 图片base64编码，再固定50字符的位置加入固定盐。盐码（盐需大写、长度 16位）：RRU4JZTV5WZXPCVZ
 /// 编码
--(NSString *)encodePicStr:(NSString *)picStr;
+-(JobsReturnStringByStringBlock _Nonnull)encodePicStr;
 /// 解码
--(NSString *)decodePicStr:(NSString *)encodePicStr;
+-(JobsReturnStringByStringBlock _Nonnull)decodePicStr;
 #pragma mark —— <AppToolsProtocol> 其他
 /// 设置普通文本
 -(UIViewModel *)configViewModelWithTitle:(NSString *_Nullable)title

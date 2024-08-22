@@ -9,6 +9,15 @@
 #import "NSArray+Tools.h"
 
 @implementation NSArray (Tools)
+/// 数组里面是否包含某个元素
+-(JobsReturnBOOLByIDBlock)contains{
+    @jobs_weakify(self)
+    return ^BOOL(id _Nullable data) {
+        @jobs_strongify(self)
+        if(!data) return NO;
+        return [self containsObject:data];
+    };
+}
 /// 数组转字符串
 -(NSString *)string{
     if(!self

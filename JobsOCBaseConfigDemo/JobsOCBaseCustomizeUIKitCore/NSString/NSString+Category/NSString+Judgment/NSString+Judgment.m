@@ -97,7 +97,7 @@
             char s = [self characterAtIndex:i];
             if(s == standardChar){
                 NSString *tempString = [NSString stringWithUTF8String:&s];
-                carries.jobsAddObject(tempString);
+                carries.add(tempString);
             }
         }return carries.count == self.length;
     }return NO;

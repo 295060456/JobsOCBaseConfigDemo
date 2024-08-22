@@ -37,7 +37,7 @@
     forCellWithReuseIdentifier:(NSString *)identifier {
     [self swizzled_registerClass:cellClass
       forCellWithReuseIdentifier:identifier];
-    self.registeredIdentifiers.jobsAddObject(identifier);
+    self.registeredIdentifiers.add(identifier);
 }
 
 - (void)swizzled_registerClass:(Class)viewClass 
@@ -46,7 +46,7 @@
     [self swizzled_registerClass:viewClass
       forSupplementaryViewOfKind:elementKind
              withReuseIdentifier:identifier];
-    self.registeredIdentifiers.jobsAddObject(identifier);
+    self.registeredIdentifiers.add(identifier);
 }
 
 - (UICollectionViewCell *)swizzled_dequeueReusableCellWithReuseIdentifier:(NSString *)identifier
@@ -54,7 +54,7 @@
     if (![self.registeredIdentifiers containsObject:identifier]) {
         // 如果未注册，则进行注册
         [self registerClass:NSClassFromString(identifier) forCellWithReuseIdentifier:identifier];
-        self.registeredIdentifiers.jobsAddObject(identifier);
+        self.registeredIdentifiers.add(identifier);
     }return [self swizzled_dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath]; // 调用原方法
 }
 
@@ -70,7 +70,7 @@
         [self registerClass:NSClassFromString(identifier)
  forSupplementaryViewOfKind:elementKind
         withReuseIdentifier:identifier];
-        self.registeredIdentifiers.jobsAddObject(identifier);
+        self.registeredIdentifiers.add(identifier);
     }return [self swizzled_dequeueReusableSupplementaryViewOfKind:elementKind
                                               withReuseIdentifier:identifier
                                                      forIndexPath:indexPath]; // 调用原方法

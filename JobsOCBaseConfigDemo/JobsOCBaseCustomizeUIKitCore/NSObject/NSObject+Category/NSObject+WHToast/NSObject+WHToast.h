@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobsBlock.h"
 
 #if __has_include(<WHToast/WHToast.h>)
 #import <WHToast/WHToast.h>
@@ -23,23 +24,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (WHToast)
 #pragma mark —— 仅文字，展示在屏幕中间
--(void)jobsToastMsg:(NSString *)msg;
-+(void)jobsToastMsg:(NSString *)msg;
++(jobsByStringBlock _Nonnull)jobsToastMsg;
+-(jobsByStringBlock _Nonnull)jobsToastMsg;
 #pragma mark —— 成功图标和文字，展示在屏幕中间
--(void)jobsToastSuccessMsg:(NSString *)successMsg;
-+(void)jobsToastSuccessMsg:(NSString *)successMsg;
++(jobsByStringBlock _Nonnull)jobsToastSuccessMsg;
+-(jobsByStringBlock _Nonnull)jobsToastSuccessMsg;
 #pragma mark —— 失败图标和文字，展示在屏幕中间
--(void)jobsToastErrMsg:(NSString *)errMsg;
-+(void)jobsToastErrMsg:(NSString *)errMsg;
++(jobsByStringBlock _Nonnull)jobsToastErrMsg;
+-(jobsByStringBlock _Nonnull)jobsToastErrMsg;
 #pragma mark —— 延时操作
--(void)jobsToastLoadingMsg:(NSString *)errMsg;
-+(void)jobsToastLoadingMsg:(NSString *)errMsg;
++(jobsByStringBlock _Nonnull)jobsToastLoadingMsg;
+-(jobsByStringBlock _Nonnull)jobsToastLoadingMsg;
 #pragma mark —— 手动关闭WHToast，在主线程
--(void)jobsToastHide;
-+(void)jobsToastHide;
-#pragma mark —— 当前进度
--(void)jobsToastLoadSchedule:(CGFloat)Schedule;
-+(void)jobsToastLoadSchedule:(CGFloat)Schedule;
++(jobsByVoidBlock _Nonnull)jobsToastHide;
+-(jobsByVoidBlock _Nonnull)jobsToastHide;
 
 @end
 

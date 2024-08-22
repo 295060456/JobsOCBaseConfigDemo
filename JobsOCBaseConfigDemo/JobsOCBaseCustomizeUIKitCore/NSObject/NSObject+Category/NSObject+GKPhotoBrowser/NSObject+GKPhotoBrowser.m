@@ -11,14 +11,14 @@
 /// 针对数据源是UIImage  *的GKPhotoBrowser
 -(GKPhotoBrowser *)tapImageWithIndexPath:(NSIndexPath *)indexPath
                          imageDataMutArr:(NSMutableArray <UIImage *>*)imageDataMutArr{
-    NSMutableArray *photosArray = [NSMutableArray arrayWithCapacity:imageDataMutArr.count];
+    NSMutableArray <GKPhoto *>*photosArray = [NSMutableArray arrayWithCapacity:imageDataMutArr.count];
     [imageDataMutArr enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj,
                                                   NSUInteger idx,
                                                   BOOL * _Nonnull stop) {
         GKPhoto *photo = GKPhoto.new;
         photo.image = obj;
         photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
-        photosArray.jobsAddObject(photo);
+        photosArray.add(photo);
     }];
     GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photosArray
                                                         currentIndex:indexPath.row];
@@ -39,7 +39,7 @@
 /// 针对数据源是NSURL  *的GKPhotoBrowser
 -(GKPhotoBrowser *)tapImageWithIndexPath:(NSIndexPath *)indexPath
                           imageUrlMutArr:(NSMutableArray <NSURL *>*)imageUrlMutArr{
-    NSMutableArray *photosArray = [NSMutableArray arrayWithCapacity:imageUrlMutArr.count];
+    NSMutableArray <GKPhoto *>*photosArray = [NSMutableArray arrayWithCapacity:imageUrlMutArr.count];
     
     
     [imageUrlMutArr enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj,
@@ -48,7 +48,7 @@
         GKPhoto *photo = GKPhoto.new;
         photo.url = obj;
         photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
-        [photosArray addObject:photo];
+        photosArray.add(photo);
     }];
 
     GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photosArray
@@ -70,14 +70,14 @@
 /// 针对数据源是NSString  *的GKPhotoBrowser
 -(GKPhotoBrowser *)tapImageWithIndexPath:(NSIndexPath *)indexPath
                        imageUrlStrMutArr:(NSMutableArray <NSString *>*)imageUrlStrMutArr{
-    NSMutableArray *photosArray = [NSMutableArray arrayWithCapacity:imageUrlStrMutArr.count];
+    NSMutableArray <GKPhoto *>*photosArray = [NSMutableArray arrayWithCapacity:imageUrlStrMutArr.count];
     [imageUrlStrMutArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj,
                                                     NSUInteger idx,
                                                     BOOL * _Nonnull stop) {
         GKPhoto *photo = GKPhoto.new;
         photo.url = obj.jobsUrl;
         photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
-        [photosArray addObject:photo];
+        photosArray.add(photo);
     }];
 
     GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photosArray

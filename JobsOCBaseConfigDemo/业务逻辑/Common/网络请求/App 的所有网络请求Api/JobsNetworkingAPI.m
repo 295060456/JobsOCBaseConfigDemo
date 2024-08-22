@@ -21,15 +21,9 @@
     {
         NSMutableArray *paramMutArr = NSMutableArray.array;
         
-        if (!parameters) {
-            parameters = NSDictionary.dictionary;
-        }
-        
-        [paramMutArr addObject:parameters];
-        
-        if (successBlock) {
-            [paramMutArr addObject:successBlock];
-        }
+        if (!parameters) parameters = NSDictionary.dictionary;
+        paramMutArr.add(parameters);
+        if (successBlock) paramMutArr.add(successBlock);
 
         NSString *funcName = requestApi.add(@":successBlock:");
         [NSObject methodName:funcName
@@ -48,22 +42,11 @@
     {
         NSMutableArray *paramMutArr = NSMutableArray.array;
         
-        if (!parameters) {
-            parameters = NSDictionary.dictionary;
-        }
+        if (!parameters) parameters = NSDictionary.dictionary;
+        if (parameters) paramMutArr.add(parameters);
+        if (successBlock) paramMutArr.add(successBlock);
+        if (failureBlock) paramMutArr.add(failureBlock);
         
-        if (parameters) {
-            [paramMutArr addObject:parameters];
-        }
-        
-        if (successBlock) {
-            [paramMutArr addObject:successBlock];
-        }
-        
-        if (failureBlock) {
-            [paramMutArr addObject:failureBlock];
-        }
-
         NSString *funcName = requestApi.add(@":successBlock:failureBlock:");
         [NSObject methodName:funcName
                    targetObj:(JobsNetworkingAPI *)self
@@ -81,17 +64,10 @@ uploadImagesParamArr:(NSArray *_Nullable)uploadImagesParamArr
     
     if (uploadImagesParamArr) {
         paramMutArr = [NSMutableArray arrayWithArray:uploadImagesParamArr];
-    }else{
-        paramMutArr = NSMutableArray.array;
-    }
+    }else paramMutArr = NSMutableArray.array;
     
-    if (successBlock) {
-        [paramMutArr addObject:successBlock];
-    }
-    
-    if (failureBlock) {
-        [paramMutArr addObject:failureBlock];
-    }
+    if (successBlock) paramMutArr.add(successBlock);
+    if (failureBlock) paramMutArr.add(failureBlock);
     
     NSString *funcName = requestApi.add(@":uploadImageDatas:successBlock:failureBlock:");
     [NSObject methodName:funcName
@@ -108,17 +84,10 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
     
     if (uploadVideosParamArr) {
         paramMutArr = [NSMutableArray arrayWithArray:uploadVideosParamArr];
-    }else{
-        paramMutArr = NSMutableArray.array;
-    }
+    }else paramMutArr = NSMutableArray.array;
     
-    if (successBlock) {
-        [paramMutArr addObject:successBlock];
-    }
-    
-    if (failureBlock) {
-        [paramMutArr addObject:failureBlock];
-    }
+    if (successBlock) paramMutArr.add(successBlock);
+    if (failureBlock) paramMutArr.add(failureBlock);
     
     NSString *funcName = requestApi.add(@":uploadVideo:successBlock:failureBlock:");;
     [NSObject methodName:funcName
@@ -140,37 +109,35 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
             [JobsNetworkingAPI handleError:responseObject];
             if (failureBlock) failureBlock(responseObject);
         }
-    }else{
-        NSLog(@"responseObject 不是 JobsResponseModel类型");
-    }
+    }else NSLog(@"responseObject 不是 JobsResponseModel类型");
 }
 #pragma mark —— 错误处理
 +(void)handleError:(id)error{
     if ([error isKindOfClass:NSError.class]) {
         NSError *err = (NSError *)error;
         NSLog(@"%@",err.description);
-        [WHToast jobsToastErrMsg:err.description];
+        self.jobsToastErrMsg(err.description);
     }else if ([error isKindOfClass:JobsResponseModel.class]){
         JobsResponseModel *responseModel = (JobsResponseModel *)error;
         NSLog(@"code = %lu",(unsigned long)responseModel.code);
         switch (responseModel.code) {
             case HTTPResponseCodeServeError:{// 服务器异常
-                [WHToast jobsToastErrMsg:JobsInternationalization(@"Server Exception")];
+                self.jobsToastErrMsg(JobsInternationalization(@"Server Exception"));
             }break;
             case HTTPResponseCodeLoginDate:{// 登录已过期，请重新登录 JobsResponseModel
                 JobsPostNotification(退出登录,@(NO));
             }break;
             case HTTPResponseCodeAuthorizationFailure:{// 授权失败
-                [WHToast jobsToastErrMsg:JobsInternationalization(@"Authorization failure")];
+                self.jobsToastErrMsg(JobsInternationalization(@"Authorization failure"));
             }break;
             case HTTPResponseCodeLeakTime:{// 限定时间内超过请求次数
-                [WHToast jobsToastErrMsg:JobsInternationalization(@"The requests exceeded within a specified time")];
+                self.jobsToastErrMsg(JobsInternationalization(@"The requests exceeded within a specified time"));
             }break;
             case HTTPResponseCodeRiskOperation:{// 风险操作
-                [WHToast jobsToastErrMsg:JobsInternationalization(@"Risk operation")];
+                self.jobsToastErrMsg(JobsInternationalization(@"Risk operation"));
             }break;
             case HTTPResponseCodeNoSettingTransactionPassword:{// 未设置交易密码
-                [WHToast jobsToastErrMsg:JobsInternationalization(@"No transaction password is set")];
+                self.jobsToastErrMsg(JobsInternationalization(@"No transaction password is set"));
             }break;
             case HTTPResponseCodeOffline:{// 帐号已在其他设备登录
                 
@@ -179,7 +146,7 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
             default:{
                 if ([error isKindOfClass:JobsResponseModel.class]) {
                     JobsResponseModel *model = (JobsResponseModel *)error;
-                    [WHToast jobsToastErrMsg:model.msg];
+                    self.jobsToastErrMsg(model.msg);
                 }
             }break;
         }

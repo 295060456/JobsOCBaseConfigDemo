@@ -98,8 +98,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.dataMutArr.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvCellMutArr[indexPath.row];
     cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     return cell;
@@ -136,7 +136,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         do {
             UITableViewCell *tableViewCell = [self.tableView tableViewCellClass:self.tbvCell_cls ? : JobsDropDownListTBVCell.class
                                                    tableViewCellStyleValue1Salt:@""];
-            _tbvCellMutArr.jobsAddObject(tableViewCell);
+            _tbvCellMutArr.add(tableViewCell);
             dataMutArrCount -= 1;
         } while (dataMutArrCount);
     }return _tbvCellMutArr;

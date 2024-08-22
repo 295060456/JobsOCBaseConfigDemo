@@ -27,7 +27,7 @@
         @jobs_strongify(self)
         if (!view) return;
         UIView *currentTopView = self.viewStack.lastObject;
-        self.viewStack.jobsAddObject(view);
+        self.viewStack.add(view);
         [self addSubview:view];
         
         CGRect offScreenRight = CGRectOffset(self.bounds,

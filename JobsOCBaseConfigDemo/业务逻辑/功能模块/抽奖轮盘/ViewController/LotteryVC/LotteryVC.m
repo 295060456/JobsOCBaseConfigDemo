@@ -105,9 +105,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataMutArr[indexPath.row].cls) {
         self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.row].cls.new,self.dataMutArr[indexPath.row]);
-    }else{
-        [WHToast jobsToastMsg:JobsInternationalization(@"尚未接入此功能")];
-    }
+    }else self.jobsToastMsg(JobsInternationalization(@"尚未接入此功能"));
 }
 /// 编辑模式下，点击取消左边已选中的cell的按钮
 - (void)tableView:(UITableView *)tableView
@@ -129,8 +127,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.dataMutArr.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvSectionRowCellMutArr[indexPath.row];
     cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     return cell;
@@ -168,8 +166,8 @@ viewForHeaderInSection:(NSInteger)section{
     }return nil;
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
-- (nullable UIView *)tableView:(UITableView *)tableView
-        viewForFooterInSection:(NSInteger)section{
+- (nullable __kindof UIView *)tableView:(UITableView *)tableView
+                 viewForFooterInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
         BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
         {
@@ -310,8 +308,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(NSMutableArray<__kindof UITableViewCell *> *)tbvSectionRowCellMutArr{
     if(!_tbvSectionRowCellMutArr){
         _tbvSectionRowCellMutArr = NSMutableArray.array;
-        _tbvSectionRowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-        _tbvSectionRowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+        _tbvSectionRowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+        _tbvSectionRowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
     }return _tbvSectionRowCellMutArr;
 }
 
@@ -322,14 +320,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"方形转盘抽奖")
                                                            attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
             viewModel.cls = LuckyDiskVC.class;
-            _dataMutArr.jobsAddObject(viewModel);
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"圆形抽奖轮盘")
                                                            attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
             viewModel.cls = LuckyRollVC.class;
-            _dataMutArr.jobsAddObject(viewModel);
+            _dataMutArr.add(viewModel);
         }
     }return _dataMutArr;
 }

@@ -83,7 +83,7 @@
         @jobs_weakify(self)
         [_cameraBtn jobsBtnClickEventBlock:^id(id data) {
             /// 调取系统相机
-            [self invokeSysCameraSuccessBlock:^(HXPhotoPickerModel *data) {
+            [self hx_invokeSysCameraSuccessBlock:^(HXPhotoPickerModel *data) {
                 @jobs_strongify(self)
                 self.imageView.image = data.photoModel.previewPhoto;
             } failBlock:^(HXPhotoPickerModel *data) {
@@ -110,7 +110,7 @@
         [_photoAlbumBtn jobsBtnClickEventBlock:^id(id data) {
             /// 调取系统相册
             @jobs_weakify(self)
-            [self invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
+            [self hx_invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
                 self.photoManager = data.photoManager;
                 [data.photoList hx_requestImageWithOriginal:NO
                                                  completion:^(NSArray<UIImage *> * _Nullable imageArray,

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableSet (Extra)
 /// 阻止向可变集合添加空元素
--(JobsReturnIDByIDBlock _Nonnull)jobsAddObject;
+-(JobsReturnIDByIDBlock _Nonnull)add;
 
 @end
 

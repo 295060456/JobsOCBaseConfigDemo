@@ -281,7 +281,7 @@
                                           self.btnHeight * (i - 1) + self.half_blankHeight,
                                           self.MENU_WIDTH,
                                           self.btnHeight);
-            self.btnMutArr.jobsAddObject(menuButton);
+            self.btnMutArr.add(menuButton);
             [_menuView addSubview:menuButton];
         }
         [self addSubview:_menuView];

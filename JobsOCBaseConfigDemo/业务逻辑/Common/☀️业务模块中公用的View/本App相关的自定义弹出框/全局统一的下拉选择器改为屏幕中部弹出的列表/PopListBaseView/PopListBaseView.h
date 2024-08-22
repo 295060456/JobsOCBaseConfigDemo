@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_END
              viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
              viewModel.bgCor = JobsCor(@"#1F1F1F");
              viewModel.textAlignment = NSTextAlignmentCenter;
-             _nationalPopList_dataMutArr.jobsAddObject(viewModel);
+             _nationalPopList_dataMutArr.add(viewModel);
              
          }
      }return _nationalPopList_dataMutArr;

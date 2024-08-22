@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobsBlock.h"
 
 @interface NSArray (Tools)
+/// 数组里面是否包含某个元素
+-(JobsReturnBOOLByIDBlock)contains;
 /// 数组转字符串
 -(NSString *)string;
 /// 数组比较

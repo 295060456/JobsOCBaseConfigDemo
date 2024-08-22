@@ -239,7 +239,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 #ifdef DEBUG
     NSMutableArray <UIViewModel *>*mutArr = NSMutableArray.array;
     for (UIViewModel *viewModel in self.dataMutArr) {
-        mutArr.jobsAddObject(viewModel.textModel.text);
+        mutArr.add(viewModel.textModel.text);
     }
     NSLog(@"%@",mutArr);
 #endif

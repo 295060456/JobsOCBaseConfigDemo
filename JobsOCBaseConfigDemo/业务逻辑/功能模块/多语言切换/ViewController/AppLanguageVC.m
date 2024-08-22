@@ -151,8 +151,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.dataMutArr.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = UITableViewCell.cellStyleValue1WithTableView(tableView);
     cell.accessoryType = self.dataMutArr[indexPath.row].appLanguage == JobsLanguageManager.language ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     cell.jobsRichElementsInCellWithModel2(self.dataMutArr[indexPath.row]);
@@ -172,7 +172,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                   cell:cell];
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派 生类
-- (nullable UIView *)tableView:(UITableView *)tableView
+- (nullable __kindof UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{
     BaseTableViewHeaderFooterView *headerView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
     headerView.headerFooterViewStyle = JobsHeaderViewStyle;

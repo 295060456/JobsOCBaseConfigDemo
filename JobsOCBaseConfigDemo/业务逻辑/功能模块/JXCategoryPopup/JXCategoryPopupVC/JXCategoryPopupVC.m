@@ -237,14 +237,12 @@ ratio:(CGFloat)ratio {
         [_filterBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-//            [WHToast jobsToastMsg:JobsInternationalization(@"篩選")];
+            self.jobsToastMsg(JobsInternationalization(@"篩選"));
             [x changeAction:x.selected];
             self.currentIndex = self.listContainerView.valueForKeyBlock(@"currentIndex");
             NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
             self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
-            
             [self.vc hidePopupView:self.popUpCustomView];
-            
             if (x.selected) {
                 self.customBtn.selected = NO;
                 self.popUpFiltrationView = self.vc.popUpFiltrationView;
@@ -273,15 +271,13 @@ ratio:(CGFloat)ratio {
         [_customBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-//            [WHToast jobsToastMsg:JobsInternationalization(@"自定义")];
+            self.jobsToastMsg(JobsInternationalization(@"自定义"));
             self.currentIndex = self.listContainerView.valueForKeyBlock(@"currentIndex");
             NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
             self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
             self.popUpFiltrationView = self.vc.popUpFiltrationView;
             [self.vc hidePopupView:self.popUpFiltrationView];
-            
             [self.filterBtn changeAction:self.filterBtn.selected];
-            
             if (x.selected) {
                 self.filterBtn.selected = NO;
                 self.popUpCustomView = self.vc.popUpCustomView;

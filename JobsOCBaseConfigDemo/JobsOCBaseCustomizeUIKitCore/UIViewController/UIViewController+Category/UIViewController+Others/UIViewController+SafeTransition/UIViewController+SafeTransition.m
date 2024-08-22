@@ -18,7 +18,7 @@ static JobsRecordPresentedViewController *static_JobsRecordPresentedVC = nil;
     }return static_JobsRecordPresentedVC;
 }
 #pragma mark —— lazyLoad
--(NSMutableArray<UIViewController *> *)presentedVCMutArr{
+-(NSMutableArray<__kindof UIViewController *> *)presentedVCMutArr{
     if (!_presentedVCMutArr) {
         _presentedVCMutArr = NSMutableArray.array;
     }return _presentedVCMutArr;
@@ -56,11 +56,11 @@ static JobsRecordPresentedViewController *static_JobsRecordPresentedVC = nil;
         UIImagePickerController *imgPicker = (UIImagePickerController *)vc;
         if (imgPicker.sourceType == UIImagePickerControllerSourceTypeCamera) {
             completion = ^{
-                completion();
+                if(completion) completion();
                 AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
                 if (status == AVAuthorizationStatusDenied ||
                     status == AVAuthorizationStatusRestricted) {
-                    [WHToast jobsToastMsg:JobsInternationalization(@"请在iPhone的“设置-隐私-相机”选项中，允许App访问您的相机。")];
+                    self.jobsToastMsg(JobsInternationalization(@"请在iPhone的“设置-隐私-相机”选项中，允许App访问您的相机。"));
                 }
             };
         }
@@ -84,9 +84,7 @@ static JobsRecordPresentedViewController *static_JobsRecordPresentedVC = nil;
  */
 -(BOOL)checkPresented:(UIViewController *)viewController{
     for (UIViewController *vc in JobsRecordPresentedViewController.sharedInstance.presentedVCMutArr) {
-        if ([viewController isKindOfClass:vc.class]) {
-            return NO;
-        }
+        if ([viewController isKindOfClass:vc.class]) return NO;
     }return YES;
 }
 

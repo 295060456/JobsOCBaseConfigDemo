@@ -5574,7 +5574,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   * <u>**`UITableView`** 可以不用像**`UICollectionView`**一样执行注册机制</u>。注册机制的生命周期有别于普通的生命周期
 
-  * 对于"三问一答"，如果**`UITableViewCell`**的高度为0，压根就不会执行**`UITableViewCell`**的绘制，即：`- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath`。所以利用这一点，我们在进数据源的时候，可以在`- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath`这里面对数据源所需的高度进行计算和反馈
+  * 对于"三问一答"，如果**`UITableViewCell`**的高度为0，压根就不会执行**`UITableViewCell`**的绘制，即：`- (__kindof UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath`。所以利用这一点，我们在进数据源的时候，可以在`- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath`这里面对数据源所需的高度进行计算和反馈
 
   * 在**`UITableViewCell`**将要出现的时候，进行最后的绘制
 
@@ -6276,8 +6276,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       return self.tbvSectionRowCellMutArr[section].count;
   }
   
-  - (UITableViewCell *)tableView:(UITableView *)tableView
-           cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+  - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+               	    cellForRowAtIndexPath:(NSIndexPath *)indexPath{
       JobsBaseTableViewCell *cell = self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       cell.indexPath = indexPath;
@@ -6842,7 +6842,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
     }
     
-    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    - (__kindof UITableViewCell *)tableView:(UITableView *)tableView 
+                      cellForRowAtIndexPath:(NSIndexPath *)indexPath{
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
         cell.textLabel.text = [NSString stringWithFormat:@"Row %ld", (long)indexPath.row];
         return cell;
@@ -6852,7 +6853,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * 不使用 **registerClass** 直接创建 **`UITableViewCell`**
 
     ```objective-c
-    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                      cellForRowAtIndexPath:(NSIndexPath *)indexPath{
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellIdentifier"];

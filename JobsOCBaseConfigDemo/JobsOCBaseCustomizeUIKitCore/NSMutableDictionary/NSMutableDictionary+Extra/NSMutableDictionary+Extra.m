@@ -23,9 +23,7 @@
             return;
         }
         
-        if(key && value){
-            [self setObject:value forKey:key];
-        }
+        if(key && value) [self setObject:value forKey:key];
     };
 }
 

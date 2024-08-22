@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HXPhotoPickerModel : NSObject
 
-@property(nonatomic,strong)UIViewController *vc;
+@property(nonatomic,strong)__kindof UIViewController *vc;
 @property(nonatomic,strong)HXCustomCameraViewController *customCameraVC;
 @property(nonatomic,strong)HXPhotoManager *photoManager;
 @property(nonatomic,strong)HXPhotoModel *photoModel;
@@ -41,18 +41,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface NSObject (HXPhotoPicker)<HXCustomNavigationControllerDelegate>
+@interface NSObject (HXPhotoPicker)
+<
+HXCustomNavigationControllerDelegate
+,UIImagePickerControllerDelegate
+,UINavigationControllerDelegate
+>
 
 @property(nonatomic,strong)HXPhotoManager *photoManager;//选取图片的数据管理类
-@property(nonatomic,strong)NSMutableArray <HXPhotoModel *>*__block historyPhotoDataMutArr;//与之相对应的是self.photoManager.afterSelectedArray
-@property(nonatomic,strong)NSMutableArray <HXPhotoModel *>*__block photosDataMutArr;
-@property(nonatomic,strong)NSMutableArray <HXPhotoModel *>*__block videosDataMutArr;
-/// 弹出系统相册选择页面
--(void)invokeSysPhotoAlbumSuccessBlock:(jobsByIDBlock _Nullable)successBlock
-                             failBlock:(jobsByIDBlock _Nullable)failBlock;
+@property(nonatomic,strong)NSMutableArray <HXPhotoModel *>*historyPhotoDataMutArr;//与之相对应的是self.photoManager.afterSelectedArray
+@property(nonatomic,strong)NSMutableArray <HXPhotoModel *>*photosDataMutArr;
+@property(nonatomic,strong)NSMutableArray <HXPhotoModel *>*videosDataMutArr;
+/// HXPhotoPicker 弹出系统相册选择页面
+-(void)hx_invokeSysPhotoAlbumSuccessBlock:(jobsByIDBlock _Nullable)successBlock
+                                failBlock:(jobsByIDBlock _Nullable)failBlock;
+/// HXPhotoPicker 调取系统相机进行拍摄
+-(void)hx_invokeSysCameraSuccessBlock:(jobsByIDBlock _Nullable)successBlock
+                            failBlock:(jobsByIDBlock _Nullable)failBlock;
 /// 调取系统相机进行拍摄
--(void)invokeSysCameraSuccessBlock:(jobsByIDBlock _Nullable)successBlock
-                         failBlock:(jobsByIDBlock _Nullable)failBlock;
+-(jobsByVoidBlock _Nonnull)invokeSysCamera;
 
 @end
 

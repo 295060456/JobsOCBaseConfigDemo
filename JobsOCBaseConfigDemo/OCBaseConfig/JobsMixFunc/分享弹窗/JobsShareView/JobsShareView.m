@@ -144,7 +144,7 @@ shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 - (void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     UIViewModel *viewModel = self.dataMutArr[indexPath.item];
-    [self jobsToastMsg:viewModel.textModel.text];
+    self.jobsToastMsg(viewModel.textModel.text);
 
     {
         if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"个人资料"))){

@@ -136,7 +136,7 @@
     for (NSInteger i = 1; i <= dayCount; i++) {
         NSString *sr = str.add(str).add(@"-").add(toStringByNSInteger(i));
         NSDate *suDate = [formatter dateFromString:sr];
-        allDaysArray.jobsAddObject([NSString stringWithFormat:@"%02ld %@", i, [self getweekDayWithDate:suDate]]);
+        allDaysArray.add([NSString stringWithFormat:@"%02ld %@", i, [self getweekDayWithDate:suDate]]);
     }
     NSLog(@"allDaysArray %@",allDaysArray);
     return allDaysArray.copy;
@@ -198,7 +198,7 @@
                     if ([sums.lastObject isEqualToString:sum]){
                         continue;
                     }
-                }sums.jobsAddObject(sum);
+                }sums.add(sum);
             }
         }
         NSString *sumStr = [sums componentsJoinedByString:@""];
@@ -243,7 +243,7 @@
     while (currentDate <= aRightDate) {
         NSDate *tDate = [gregorian dateFromComponents:components];
         currentDate = tDate;
-        results.jobsAddObject(tDate);
+        results.add(tDate);
         components.day = components.day + 1;
     }return results.copy;
 }
@@ -356,7 +356,7 @@ NSInteger getMinIndex(NSInteger begin, NSInteger offset) {
                     toLocation = [Location locationWithRow:row column:[self.days indexOfObject:date] - 1];
                 }
                 if (fromLocation && toLocation) {
-                    _monthCellRanges.jobsAddObject([ZMJCellRange cellRangeFrom:fromLocation to:toLocation]);
+                    _monthCellRanges.add([ZMJCellRange cellRangeFrom:fromLocation to:toLocation]);
                     toLocation   = nil;
                 }
                 fromLocation = [Location locationWithRow:row column:[self.days indexOfObject:date]];
@@ -385,7 +385,7 @@ NSInteger getMinIndex(NSInteger begin, NSInteger offset) {
                 }
                 BOOL addFlag = NO;
                 if (fromLocation && toLocation) {
-                    _weekCellRanges.jobsAddObject([ZMJCellRange cellRangeFrom:fromLocation to:toLocation]);
+                    _weekCellRanges.add([ZMJCellRange cellRangeFrom:fromLocation to:toLocation]);
                     toLocation = nil;
                     addFlag    = YES;
                 }
@@ -710,23 +710,23 @@ NSInteger getMinIndex(NSInteger begin, NSInteger offset) {
 -(NSMutableArray<ZMJTask *> *)tasks{
     if(!_tasks){
         _tasks = NSMutableArray.array;
-        _tasks.jobsAddObject([ZMJTask taskWithName:@"Office itinerancy" startDate:dateFromString(@"2017-12-7") endDate:dateFromString(@"2017-12-15")]);
-        _tasks.jobsAddObject([ZMJTask taskWithName:@"Office facingy" startDate:dateFromString(@"2017-12-8") endDate:dateFromString(@"2017-12-12")]);
-        _tasks.jobsAddObject([ZMJTask taskWithName:@"Office itinerancy" startDate:dateFromString(@"2017-12-10") endDate:dateFromString(@"2017-12-12")]);
-        _tasks.jobsAddObject([ZMJTask taskWithName:@"Interior office" startDate:dateFromString(@"2018-1-1") endDate:dateFromString(@"2018-1-3")]);
-        _tasks.jobsAddObject([ZMJTask taskWithName:@"Air condition check" startDate:dateFromString(@"2017-12-7") endDate:dateFromString(@"2017-12-19")]);
-        _tasks.jobsAddObject([ZMJTask taskWithName:@"Office itinerancy" startDate:dateFromString(@"2017-12-24") endDate:dateFromString(@"2017-12-30")]);
-        _tasks.jobsAddObject([ZMJTask taskWithName:@"Office facingy" startDate:dateFromString(@"2017-12-18") endDate:dateFromString(@"2018-1-2")]);
-        _tasks.jobsAddObject([ZMJTask taskWithName:@"Office facingy" startDate:nil endDate:dateFromString(@"2017-12-8")]);
+        _tasks.add([ZMJTask taskWithName:@"Office itinerancy" startDate:dateFromString(@"2017-12-7") endDate:dateFromString(@"2017-12-15")]);
+        _tasks.add([ZMJTask taskWithName:@"Office facingy" startDate:dateFromString(@"2017-12-8") endDate:dateFromString(@"2017-12-12")]);
+        _tasks.add([ZMJTask taskWithName:@"Office itinerancy" startDate:dateFromString(@"2017-12-10") endDate:dateFromString(@"2017-12-12")]);
+        _tasks.add([ZMJTask taskWithName:@"Interior office" startDate:dateFromString(@"2018-1-1") endDate:dateFromString(@"2018-1-3")]);
+        _tasks.add([ZMJTask taskWithName:@"Air condition check" startDate:dateFromString(@"2017-12-7") endDate:dateFromString(@"2017-12-19")]);
+        _tasks.add([ZMJTask taskWithName:@"Office itinerancy" startDate:dateFromString(@"2017-12-24") endDate:dateFromString(@"2017-12-30")]);
+        _tasks.add([ZMJTask taskWithName:@"Office facingy" startDate:dateFromString(@"2017-12-18") endDate:dateFromString(@"2018-1-2")]);
+        _tasks.add([ZMJTask taskWithName:@"Office facingy" startDate:nil endDate:dateFromString(@"2017-12-8")]);
     }return _tasks;
 }
 
 -(NSMutableArray<UIColor *> *)colors{
     if(!_colors){
         _colors = NSMutableArray.array;
-        _colors.jobsAddObject([UIColor colorWithRed:72/255.f green:194/255.f blue:169/255.f alpha:1]);
-        _colors.jobsAddObject([UIColor colorWithRed:255/255.f green:121/255.f blue:121/255.f alpha:1]);
-        _colors.jobsAddObject([UIColor colorWithRed:204/255.f green:204/255.f blue:204/255.f alpha:1]);
+        _colors.add([UIColor colorWithRed:72/255.f green:194/255.f blue:169/255.f alpha:1]);
+        _colors.add([UIColor colorWithRed:255/255.f green:121/255.f blue:121/255.f alpha:1]);
+        _colors.add([UIColor colorWithRed:204/255.f green:204/255.f blue:204/255.f alpha:1]);
     }return _colors;
 }
 

@@ -134,11 +134,13 @@ BaseProtocol
 /// 从一个视图（UIView）出发，获取它所在的视图控制器（UIViewController）
 -(JobsReturnVCByView _Nonnull)getViewControllerByView;
 /// 获得当前的控制器。对getCurrentViewController的再次封装
--(UIViewController *_Nullable)jobsGetCurrentViewController;
+-(__kindof UIViewController *_Nullable)jobsGetCurrentViewControllerWithNavCtrl;
+/// 获得当前的控制器。对getCurrentViewController的再次封装
+-(__kindof UIViewController *_Nullable)jobsGetCurrentViewController;
 /// 获得当前的控制器
--(UIViewController *_Nullable)getCurrentViewController;
+-(__kindof UIViewController *_Nullable)getCurrentViewController;
 /// 获得当前控制器的根控制器
--(JobsReturnVCByVC _Nullable )getCurrentViewControllerByRootVC;
+-(JobsReturnVCByVC _Nullable)getCurrentViewControllerByRootVC;
 /// 强制以Push的方式展现页面
 /// @param toPushVC 需要进行展现的页面
 /// @param requestParams 正向推页面传递的参数
@@ -176,6 +178,16 @@ BaseProtocol
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
 #pragma mark —— 功能性的
+/// present
+/// 简洁版强制present展现一个控制器页面【不需要正向传参】
+-(jobsByVCBlock _Nullable)comingToPresentVC;
+/// 简洁版强制present展现一个控制器页面【需要正向传参】
+-(jobsByVCAndDataBlock _Nullable)comingToPresentVCByRequestParams;
+/// push
+/// 简洁版强制push展现一个控制器页面【不需要正向传参】
+-(jobsByVCBlock _Nullable)comingToPushVC;
+/// 简洁版强制push展现一个控制器页面【需要正向传参】
+-(jobsByVCAndDataBlock _Nullable)comingToPushVCByRequestParams;
 /// 代理检测和回调
 -(jobsDelegateBlock _Nullable)jobsDelegate;
 /// GKNavigationBar 返回按钮点击方法

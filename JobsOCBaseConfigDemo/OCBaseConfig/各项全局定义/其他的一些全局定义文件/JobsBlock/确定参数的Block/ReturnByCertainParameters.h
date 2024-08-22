@@ -22,6 +22,7 @@ typedef UIImage *_Nullable(^JobsReturnImageByCorBlock)(UIColor * _Nullable data)
 typedef UIImage *_Nullable(^JobsReturnImageByDataBlock)(NSData * _Nullable data);
 typedef UIViewController __kindof *_Nullable(^JobsReturnVCByView)(UIView __kindof * _Nonnull view);
 typedef UIViewController __kindof *_Nullable(^JobsReturnVCByVC)(UIViewController __kindof * _Nonnull vc);
+typedef UINavigationController __kindof *_Nullable(^JobsReturnNavCtrByVC)(UIViewController __kindof * _Nonnull vc);
 
 typedef NSParagraphStyle *_Nullable(^_Nullable JobsReturnParagraphStyleByVoidBlock)(void);
 typedef NSParagraphStyle *_Nullable(^_Nullable JobsReturnParagraphStyleByTextAlignmentBlock)(NSTextAlignment data);

@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_END
 
          BtnClickEvent(_filterBtn, {
              x.selected = !x.selected;
- //            [WHToast jobsToastMsg:JobsInternationalization(@"篩選")];
+             // self.jobsToastMsg(JobsInternationalization(@"篩選"));
              [x changeAction:x.selected];
              self.currentIndex = [self->listContainerView valueForKey:@"currentIndex"];
              NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
@@ -104,7 +104,7 @@ NS_ASSUME_NONNULL_END
 
          BtnClickEvent(_customBtn, {
              x.selected = !x.selected;
- //            [WHToast jobsToastMsg:JobsInternationalization(@"自定义")];
+             /// self.jobsToastMsg(JobsInternationalization(@"自定义"));
              self.currentIndex = [self->listContainerView valueForKey:@"currentIndex"];
              NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
              self.vc = (BaiShaETProjAlreadySettledSubBaseVC *)self.childVCMutArr[self.currentIndex.intValue];

@@ -463,31 +463,31 @@ referenceSizeForFooterInSection:(NSInteger)section{
     /// 装载假数据
     if (self.thisIndex == 0) {
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }else if (self.thisIndex == 1){
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.jobsAddObject(@"真人".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(@"真人".add(@"0").add(toStringByInt(i)));
         }
     }else if (self.thisIndex == 2){
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }else if (self.thisIndex == 3){
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }else if (self.thisIndex == 4){
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }else if (self.thisIndex == 5){
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }else{
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.jobsAddObject(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
         }
     }return _imageDataMutArr;
 }
@@ -507,12 +507,12 @@ referenceSizeForFooterInSection:(NSInteger)section{
             @strongify(self)
             if ([data isKindOfClass:NSMutableArray.class]) {
                 NSMutableArray <UIViewModel *>*dataMutArr = NSMutableArray.array;
-                dataMutArr.jobsAddObject(self.titleMutArr[0]);
+                dataMutArr.add(self.titleMutArr[0]);
                 [dataMutArr addObjectsFromArray:(NSMutableArray *)data];
 #ifdef DEBUG
                 NSMutableArray <NSString *>*mutArr = NSMutableArray.array;
                 for (UIViewModel *viewModel in dataMutArr) {
-                    mutArr.jobsAddObject(viewModel.textModel.text);
+                    mutArr.add(viewModel.textModel.text);
                 }
                 NSLog(@"%@",mutArr);
 #endif

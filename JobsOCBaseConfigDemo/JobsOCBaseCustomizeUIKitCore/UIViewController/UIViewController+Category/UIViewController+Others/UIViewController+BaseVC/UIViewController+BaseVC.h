@@ -42,6 +42,10 @@
 //#import "RACEXTRuntimeExtensions.h"
 //#endif
 
+/// 用导航控制器进行包装
+static inline __kindof UINavigationController * _Nullable JobsNavCtrl(UIViewController __kindof * _Nonnull viewController){
+    return viewController.navigationController ? viewController : [UINavigationController.alloc initWithRootViewController:viewController];
+}
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (BaseVC)
@@ -50,17 +54,6 @@ BaseViewControllerProtocol
 ,UIViewModelProtocol
 ,AppToolsProtocol
 >
-
-#pragma mark —— present
-/// 简洁版强制present展现一个控制器页面【不需要正向传参】
--(jobsByVCBlock)comingToPresentVC;
-/// 简洁版强制present展现一个控制器页面【需要正向传参】
--(jobsByVCAndDataBlock)comingToPresentVCByRequestParams;
-#pragma mark —— push
-/// 简洁版强制push展现一个控制器页面【不需要正向传参】
--(jobsByVCBlock)comingToPushVC;
-/// 简洁版强制push展现一个控制器页面【需要正向传参】
--(jobsByVCAndDataBlock)comingToPushVCByRequestParams;
 /**
  ❤️【强制推控制器】❤️
  1、自定义是PUSH还是PRESENT展现控制器，如果自定义PUSH但是navigationController不存在，则换用PRESENT展现控制器

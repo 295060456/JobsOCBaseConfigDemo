@@ -282,14 +282,14 @@ NS_ASSUME_NONNULL_END
 //    JobsResponseModel *model = [JobsResponseModel mj_objectWithKeyValues:dataDic];
 //    // 公共请求错误直接抛出
 //    if (model.code != HTTPResponseCodeSuccess) {
-//        [WHToast jobsToastMsg:model.msg];
+//        self.jobsToastMsg(model.msg);
 //    }else{
 //        if (successBlock) {
 //            successBlock(model);
 //        }
 //    }
 //}else{
-//    [WHToast jobsToastMsg:[@"异常接口" stringByAppendingString:NSObject.userInfoSelectVideoCountPOST.funcName]];
+//        self.jobsToastMsg(JobsInternationalization(@"异常接口").add(NSObject.userInfoSelectVideoCountPOST.funcName));
 //}
 
 /**

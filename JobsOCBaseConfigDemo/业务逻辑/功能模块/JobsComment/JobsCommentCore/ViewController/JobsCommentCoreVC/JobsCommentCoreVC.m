@@ -94,11 +94,11 @@
 }
 #pragma mark —— 一些私有方法
 -(void)一级标题点击事件{
-    [self jobsToastMsg:JobsInternationalization(@"一级标题点击事件")];
+    self.jobsToastMsg(JobsInternationalization(@"一级标题点击事件"));
 }
 
 -(void)二级标题点击事件{
-    [self jobsToastMsg:JobsInternationalization(@"二级标题点击事件")];
+    self.jobsToastMsg(JobsInternationalization(@"二级标题点击事件"));
 }
 #pragma mark —————————— UITableViewDelegate,UITableViewDataSource ——————————
 -(CGFloat)tableView:(UITableView *)tableView
@@ -111,8 +111,8 @@ heightForFooterInSection:(NSInteger)section{
     return 0.0f;
 }
 
--(nullable UIView *)tableView:(UITableView *)tableView
-        viewForFooterInSection:(NSInteger)section{
+-(nullable __kindof UIView *)tableView:(UITableView *)tableView
+                viewForFooterInSection:(NSInteger)section{
     return nil;
 }
 
@@ -129,8 +129,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     return customCofigModel.firstShowNum;
 }
 /// 二级评论数据 展示在cellForRowAtIndexPath
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsFirstCommentModel *firstCommentModel = (JobsFirstCommentModel *)self.mjModel.listDataArr[indexPath.section];//一级评论数据 展示在viewForHeaderInSection
     JobsChildCommentModel *childCommentModel = firstCommentModel.childDataArr[indexPath.row];//二级评论数据 展示在cellForRowAtIndexPath
     JobsFirstCommentCustomCofigModel *customCofigModel = JobsFirstCommentCustomCofigModel.new;
@@ -172,7 +172,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
 }
 /// 一级评论数据 展示在viewForHeaderInSection
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
-- (nullable UIView *)tableView:(UITableView *)tableView
+- (nullable __kindof UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{
     JobsCommentPopUpView_viewForHeaderInSection *header = JobsCommentPopUpView_viewForHeaderInSection.new;
     header.jobsRichElementsInViewWithModel(self.mjModel.listDataArr[section]);/// 一级评论数据 展示在viewForHeaderInSection

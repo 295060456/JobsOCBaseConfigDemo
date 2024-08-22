@@ -201,8 +201,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.dataMutArr.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = UITableViewCell.cellStyleValue1WithTableView(tableView);
     return cell;
 }
@@ -337,7 +337,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             viewModel.time = JobsInternationalization(@"05-13 18:20");
             viewModel.isDraw = NO;
             viewModel.isRead = NO;
-            _dataMutArr.jobsAddObject(viewModel);
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -348,7 +348,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             viewModel.time = JobsInternationalization(@"05-13 18:20");
             viewModel.isDraw = YES;
             viewModel.isRead = YES;
-            _dataMutArr.jobsAddObject(viewModel);
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -359,7 +359,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             viewModel.time = JobsInternationalization(@"05-13 18:20");
             viewModel.isDraw = NO;
             viewModel.isRead = NO;
-            _dataMutArr.jobsAddObject(viewModel);
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -370,7 +370,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             viewModel.time = JobsInternationalization(@"05-13 18:20");
             viewModel.isDraw = YES;
             viewModel.isRead = YES;
-            _dataMutArr.jobsAddObject(viewModel);
+            _dataMutArr.add(viewModel);
         }
     }return _dataMutArr;
 }

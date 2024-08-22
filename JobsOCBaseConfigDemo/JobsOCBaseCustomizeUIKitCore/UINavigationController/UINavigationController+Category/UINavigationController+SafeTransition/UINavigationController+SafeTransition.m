@@ -51,11 +51,7 @@
 #pragma mark - Intercept Pop, Push, PopToRootVC
 - (NSArray *)safePopToRootViewControllerAnimated:(BOOL)animated {
     if (self.viewTransitionInProgress) return nil;
-    
-    if (animated) {
-        self.viewTransitionInProgress = YES;
-    }
-    
+    if (animated) self.viewTransitionInProgress = YES;
     NSArray *viewControllers = [self safePopToRootViewControllerAnimated:animated];
     if (viewControllers.count == 0) {
         self.viewTransitionInProgress = NO;
@@ -65,13 +61,8 @@
 - (NSArray *)safePopToViewController:(UIViewController *)viewController
                             animated:(BOOL)animated {
     if (self.viewTransitionInProgress) return nil;
-    
-    if (animated){
-        self.viewTransitionInProgress = YES;
-    }
-    
-    NSArray *viewControllers = [self safePopToViewController:viewController
-                                                    animated:animated];
+    if (animated) self.viewTransitionInProgress = YES;
+    NSArray *viewControllers = [self safePopToViewController:viewController animated:animated];
     if (viewControllers.count == 0) {
         self.viewTransitionInProgress = NO;
     }return viewControllers;
@@ -79,29 +70,19 @@
 
 - (UIViewController *)safePopViewControllerAnimated:(BOOL)animated {
     if (self.viewTransitionInProgress) return nil;
-    
-    if (animated) {
-        self.viewTransitionInProgress = YES;
-    }
-    
+    if (animated) self.viewTransitionInProgress = YES;
     UIViewController *viewController = [self safePopViewControllerAnimated:animated];
-    if (viewController == nil) {
-        self.viewTransitionInProgress = NO;
-    }return viewController;
+    if (!viewController) self.viewTransitionInProgress = NO;
+    return viewController;
 }
 
 - (void)safePushViewController:(UIViewController *)viewController
                       animated:(BOOL)animated {
     // 如果当前controller已经在栈里了，则不要继续push
-    if([self.childViewControllers containsObject:viewController]){
-        return;
-    }
+    if(self.childViewControllers.contains(viewController)) return;
     if (self.viewTransitionInProgress == NO) {
         [self safePushViewController:viewController animated:animated];
-        
-        if (animated) {
-            self.viewTransitionInProgress = YES;
-        }
+        if (animated) self.viewTransitionInProgress = YES;
     }
 }
 
@@ -109,9 +90,7 @@
     if (!animated) {
         NSArray *list = @[self.childViewControllers.firstObject];
         [self setViewControllers:list animated:animated];
-    }else{
-        [self ty_popToRootViewControllerBySetControllersAnimated:animated];
-    }
+    }else [self ty_popToRootViewControllerBySetControllersAnimated:animated];
 }
 
 @end

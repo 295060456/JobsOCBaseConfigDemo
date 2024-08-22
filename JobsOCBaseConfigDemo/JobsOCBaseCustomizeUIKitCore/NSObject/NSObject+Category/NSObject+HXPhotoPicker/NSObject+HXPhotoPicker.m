@@ -9,9 +9,9 @@
 
 @implementation NSObject (HXPhotoPicker)
 #pragma mark —— 一些公有方法
-/// 弹出系统相册选择页面
--(void)invokeSysPhotoAlbumSuccessBlock:(jobsByIDBlock _Nullable)successBlock
-                             failBlock:(jobsByIDBlock _Nullable)failBlock{
+/// HXPhotoPicker 弹出系统相册选择页面
+-(void)hx_invokeSysPhotoAlbumSuccessBlock:(jobsByIDBlock _Nullable)successBlock
+                                failBlock:(jobsByIDBlock _Nullable)failBlock{
     /// 请求相册权限
     @jobs_weakify(self)
     [TKPermissionPhoto authWithAlert:YES
@@ -53,12 +53,12 @@
                     if (failBlock) failBlock(photoPickerModel);
                 }];
             }
-        }else [self jobsToastMsg:@"保存图片需要过去您的相册权限,请前往设置打开"];
+        }else self.jobsToastMsg(@"保存图片需要过去您的相册权限,请前往设置打开");
     }];
 }
-/// 调取系统相机进行拍摄
--(void)invokeSysCameraSuccessBlock:(jobsByIDBlock _Nullable)successBlock
-                         failBlock:(jobsByIDBlock _Nullable)failBlock{
+/// HXPhotoPicker 调取系统相机进行拍摄
+-(void)hx_invokeSysCameraSuccessBlock:(jobsByIDBlock _Nullable)successBlock
+                            failBlock:(jobsByIDBlock _Nullable)failBlock{
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         /// 请求相机📷权限
         @jobs_weakify(self)
@@ -92,9 +92,40 @@
                         if (failBlock) failBlock(photoPickerModel);
                     }];
                 }
-            }else [self jobsToastMsg:JobsInternationalization(@"授权失败,无法使用相机.请在设置-隐私-相机中允许访问相机")];
+            }else self.jobsToastMsg(JobsInternationalization(@"授权失败,无法使用相机.请在设置-隐私-相机中允许访问相机"));
         }];
-    }else [self jobsToastMsg:JobsInternationalization(@"此设备不支持相机!")];
+    }else self.jobsToastMsg(JobsInternationalization(@"此设备不支持相机!"));
+}
+
+-(jobsByVoidBlock _Nonnull)invokeSysCamera{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        // 检查设备是否支持相机功能
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            UIImagePickerController *imagePickerController = UIImagePickerController.new;
+            imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            imagePickerController.delegate = self;
+            imagePickerController.allowsEditing = YES;  // 如果需要用户可以编辑照片，设为YES
+            // 显示相机界面
+            self.comingToPresentVC(imagePickerController);
+        } else self.jobsToastMsg(JobsInternationalization(@"此设备不支持相机!"));
+    };
+}
+#pragma mark —— UIImagePickerControllerDelegate
+/// 当用户拍照完成后，这个方法会被调用
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    // 获取编辑后的图片（如果 allowsEditing 为 NO，则获取原图）
+    UIImage *selectedImage = info[UIImagePickerControllerEditedImage] ? : info[UIImagePickerControllerOriginalImage];
+    // 在此处处理拍照得到的图片，例如保存到相册或显示在界面上
+    if(self.jobsBlock) self.jobsBlock(selectedImage);
+    // 关闭相机界面
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+/// 用户取消拍照时调用这个方法
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark —— @property(nonatomic,strong)HXPhotoManager *photoManager;//选取图片的数据管理类
 JobsKey(_photoManager)
@@ -131,7 +162,7 @@ JobsKey(_photoManager)
 #pragma mark —— @property(nonatomic,strong)NSMutableArray <HXPhotoModel *>*__block historyPhotoDataMutArr;//与之相对应的是self.photoManager.afterSelectedArray
 JobsKey(_historyPhotoDataMutArr)
 @dynamic historyPhotoDataMutArr;
--(NSMutableArray<HXPhotoModel *> *)historyPhotoDataMutArr{
+-(NSMutableArray <HXPhotoModel *>*)historyPhotoDataMutArr{
     NSMutableArray <HXPhotoModel *>*HistoryPhotoDataMutArr = Jobs_getAssociatedObject(_historyPhotoDataMutArr);
     if (!HistoryPhotoDataMutArr) {
         /// < 保存本地的方法 >

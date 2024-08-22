@@ -138,9 +138,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataMutArr[indexPath.row].cls) {
         self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.row].cls.new,self.dataMutArr[indexPath.row]);
-    }else{
-        [WHToast jobsToastMsg:JobsInternationalization(@"尚未接入此功能")];
-    }
+    }else self.jobsToastMsg(JobsInternationalization(@"尚未接入此功能"));
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -148,8 +146,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.dataMutArr.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvCellMutArr[indexPath.row];
     cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.row]);
     return cell;
@@ -312,7 +310,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_tbvCellMutArr) {
         _tbvCellMutArr = NSMutableArray.array;
         for (UIViewModel *viewModel in self.dataMutArr) {
-            _tbvCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            _tbvCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
         }
     }return _tbvCellMutArr;
 }

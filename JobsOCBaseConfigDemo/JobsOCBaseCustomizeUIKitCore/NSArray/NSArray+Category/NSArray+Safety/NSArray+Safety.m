@@ -51,6 +51,7 @@
             NSLog(@"不可数组越界了");
             return nil;
         } @finally {
+            
         }
     }else return [self newObjectAtIndexedSubscript:index];
 }
@@ -76,6 +77,7 @@
             NSLog(@"可变数组越界了");
             return nil;
         } @finally {
+            
         }
     }else return [self newMutableObjectAtIndexedSubscript:index];
 }

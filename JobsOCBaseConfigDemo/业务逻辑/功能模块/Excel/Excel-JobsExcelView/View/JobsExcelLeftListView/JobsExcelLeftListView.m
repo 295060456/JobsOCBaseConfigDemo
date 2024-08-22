@@ -66,8 +66,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.viewModel.itemH;
 }
 #pragma mark —— UITableView 代理
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TableViewOneCell *cell = TableViewOneCell.cellStyleValue1WithTableView(tableView);
     
     cell.backgroundColor = indexPath.row % 2 ? self.viewModel.cor1 : self.viewModel.cor2;

@@ -96,8 +96,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.tbvCellMutArr.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsTextStyleTBVCell *cell = JobsTextStyleTBVCell.cellStyleDefaultWithTableView(tableView);
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.indexPath = indexPath;
@@ -131,7 +131,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_tbvCellMutArr) {
         _tbvCellMutArr = NSMutableArray.array;
         for (int d = 0; d < self.dataMutArr.count; d++) {
-            _tbvCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            _tbvCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
         }
     }return _tbvCellMutArr;
 }
@@ -148,7 +148,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
             viewModel.bgCor = JobsCor(@"#1F1F1F");
             viewModel.textAlignment = NSTextAlignmentCenter;
-            _dataMutArr.jobsAddObject(viewModel);
+            _dataMutArr.add(viewModel);
         }
         {
             UIViewModel *viewModel = UIViewModel.new;
@@ -159,7 +159,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
             viewModel.bgCor = JobsCor(@"#1F1F1F");
             viewModel.textAlignment = NSTextAlignmentCenter;
-            _dataMutArr.jobsAddObject(viewModel);
+            _dataMutArr.add(viewModel);
         }
         {
             UIViewModel *viewModel = UIViewModel.new;
@@ -170,7 +170,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
             viewModel.bgCor = JobsCor(@"#1F1F1F");
             viewModel.textAlignment = NSTextAlignmentCenter;
-            _dataMutArr.jobsAddObject(viewModel);
+            _dataMutArr.add(viewModel);
         }
     }return _dataMutArr;
 }

@@ -58,14 +58,17 @@ callingMethodWithName:(nullable NSString *)methodName{
     if (!signature) {
         // 处理方式一：
         {
-            [WHToast jobsToastErrMsg:@"方法不存在,请检查参数"];
+            self.jobsToastErrMsg(JobsInternationalization(@"方法不存在,请检查参数"));
             return nil;
         }
         // 处理方式二：【经常崩溃损伤硬件】
 //        {
 //            //传入的方法不存在 就抛异常
-//            NSString *info = [NSString stringWithFormat:@"-[%@ %@]:unrecognized selector sent to instance",self.class,NSStringFromSelector(selector)];
-//            @throw [[NSException alloc] initWithName:@"方法不存在"
+//            NSString *info = toStringByID(self.class)
+//                                .add(@":")
+//                                .add(toStringByID(NSStringFromSelector(selector)))
+//                                .add(JobsInternationalization(@"unrecognized selector sent to instance"));
+//            @throw [NSException.alloc initWithName:JobsInternationalization(@"方法不存在")
 //                                              reason:info
 //                                            userInfo:nil];
 //        }

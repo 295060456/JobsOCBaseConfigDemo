@@ -12,17 +12,17 @@
 #define CURR_LANG ([[NSLocale preferredLanguages] objectAtIndex:0])
 #define LanguageIsEnglish ([CURR_LANG isEqualToString:@"en-US"] || [CURR_LANG isEqualToString:@"en-CA"] || [CURR_LANG isEqualToString:@"en-GB"] || [CURR_LANG isEqualToString:@"en-CN"] || [CURR_LANG isEqualToString:@"en"])
 
-@interface XWCountryCodeController () <UITableViewDataSource,UITableViewDelegate,UISearchResultsUpdating> {
+@interface XWCountryCodeController () {
     UITableView *_tableView;
     //    UISearchController *_searchController;
     NSDictionary *_sortedNameDict;
     NSArray *_indexArray;
     NSMutableArray *_results;
 }
+
 @end
 
 @implementation XWCountryCodeController
-
 #pragma mark - system
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,10 +35,7 @@
 //创建子视图
 - (void)creatSubviews{
     _results = [NSMutableArray arrayWithCapacity:1];
-    
     float top = isiPhoneX_series() ? 84 : 44;
-    
-    
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, top, self.view.bounds.size.width, self.view.bounds.size.height-top) style:UITableViewStyleGrouped];
     [self.view addSubview:_tableView];
     _tableView.delegate = self;
@@ -144,7 +141,8 @@
     //    }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView 
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *identifier = @"identifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {

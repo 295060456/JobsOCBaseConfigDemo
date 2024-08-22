@@ -7,7 +7,7 @@
 
 #import "PointLabTestVC.h"
 
-@interface PointLabTestVC ()
+@interface PointLabTestVC ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 /// UI
 @property(nonatomic,strong)UILabel *label;
 @property(nonatomic,strong)UILabel *label2;
@@ -32,6 +32,10 @@
     [super viewDidLoad];
     self.label.alpha = 1;
     self.label2.alpha = 1;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    self.invokeSysCamera();
 }
 #pragma mark —— lazyLoad
 -(UILabel *)label{
@@ -161,9 +165,9 @@
 -(NSMutableArray<NSString *> *)items{
     if(!_items){
         _items = NSMutableArray.array;
-        _items.jobsAddObject(@"Your deposit will be successfully credited to your wallet once the transaction completed.");
-        _items.jobsAddObject(@"In case you meet any problem in deposit, please contact our CS.");
-        _items.jobsAddObject(@"Additional information can be found on our website.");
+        _items.add(@"Your deposit will be successfully credited to your wallet once the transaction completed.");
+        _items.add(@"In case you meet any problem in deposit, please contact our CS.");
+        _items.add(@"Additional information can be found on our website.");
     }return _items;
 }
 

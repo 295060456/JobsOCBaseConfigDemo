@@ -16,9 +16,7 @@
         [self.jobsGetCurrentViewController forceComingToPresentVC:mailComposeVC
                                                     requestParams:nil
                                                        completion:completionHandlerBlock];
-    }else{
-        [self jobsToastMsg:JobsInternationalization(@"打开邮件失败,请确保设备上至少启用了一个电子邮件帐户！")];
-    }
+    }else self.jobsToastMsg(JobsInternationalization(@"打开邮件失败,请确保设备上至少启用了一个电子邮件帐户！"));
 }
 #pragma mark —— MFMessageComposeViewControllerDelegate
 /// 推出页面的方式用presentViewController，pushViewController可能会崩溃
@@ -111,22 +109,22 @@ failCompletionHandlerBlock:(jobsByVoidBlock _Nullable)failCompletionHandlerBlock
     if ([URL isKindOfClass:NSString.class]) {
         NSString *url = (NSString *)URL;
         if ([NSString isNullString:url]) {
-            [self jobsToastMsg:JobsInternationalization(@"URL为空，请检查！")];
+            self.jobsToastMsg(JobsInternationalization(@"URL为空，请检查！"));
             return NO;
         }else{
             if (!url.jobsCanOpenUrl) {
-                [self jobsToastMsg:[NSString stringWithFormat:JobsInternationalization(@"打开%@失败，请检查"),url]];
+                self.jobsToastMsg(JobsInternationalization(@"打开").add(url).add(@"失败，请检查"));
                 return url.jobsCanOpenUrl;
             }
         }
     }else if ([URL isKindOfClass:NSURL.class]){
         NSURL *url = (NSURL *)URL;
         if (!url.jobsCanOpenUrl) {
-            [self jobsToastMsg:[NSString stringWithFormat:JobsInternationalization(@"打开%@失败，请检查"),url.absoluteString]];
+            self.jobsToastMsg(@"打开".add(url.absoluteString).add(@"失败，请检查"));
             return url.jobsCanOpenUrl;
         }
     }else{
-        [self jobsToastMsg:JobsInternationalization(@"URL类型不匹配，请检查")];
+        self.jobsToastMsg(JobsInternationalization(@"URL类型不匹配，请检查"));
         return NO;
     }
 

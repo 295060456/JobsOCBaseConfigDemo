@@ -66,8 +66,8 @@
     return self.viewModel.colNumber;
 }
 #pragma mark —— UITableView 代理
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MainTableViewCell *cell = MainTableViewCell.cellStyleValue1WithTableView(tableView);
     cell.delegate = self;
     cell.indexPath = indexPath;

@@ -119,7 +119,7 @@
 - (NSArray<ZMJCellRange *> *)mergedCells:(SpreadsheetView *)spreadsheetView {
     __block NSMutableArray<ZMJCellRange *> *mergedCells = NSMutableArray.array;
     for (int row = 0; row < 24; row++) {
-        mergedCells.jobsAddObject([ZMJCellRange cellRangeFrom:[Location locationWithRow:60 * row + 1 column:0]
+        mergedCells.add([ZMJCellRange cellRangeFrom:[Location locationWithRow:60 * row + 1 column:0]
                                                            to:[Location locationWithRow:60 * (row + 1) column:0]]);
     }
     NSArray<NSNumber *> *seeds = @[@5, @10, @20, @20, @30, @30, @30, @30, @40, @40, @50, @50, @60, @60, @60, @60, @90, @90, @90, @90, @120, @120, @120];
@@ -132,13 +132,13 @@
         while (minutes < 24 * 60) {
             NSInteger duration = seeds[arc4random_uniform((uint32_t)seeds.count)].integerValue;
             if (minutes + duration + 1 >= weak_self.numberOfRows) {
-                mergedCells.jobsAddObject([ZMJCellRange cellRangeFrom:[Location locationWithRow:minutes + 1 column:index + 1]
+                mergedCells.add([ZMJCellRange cellRangeFrom:[Location locationWithRow:minutes + 1 column:index + 1]
                                                                    to:[Location locationWithRow:weak_self.numberOfRows - 1 column:index + 1]]);
                 break;
             }
             ZMJCellRange *cellRange = [ZMJCellRange cellRangeFrom:[Location locationWithRow:minutes + 1 column:index + 1]
                                                                to:[Location locationWithRow:minutes + duration + 1 column:index + 1]];
-            mergedCells.jobsAddObject(cellRange);
+            mergedCells.add(cellRange);
             [weak_self.slotInfo setObject:@[@(minutes), @(duration)] forKey:[NSIndexPath indexPathWithRow:cellRange.from.row column:cellRange.from.column]];
             minutes += duration + 1;
         }
@@ -189,26 +189,26 @@
 -(NSMutableArray<NSString *> *)channels{
     if(!_channels){
         _channels = NSMutableArray.array;
-        _channels.jobsAddObject(@"ABC");
-        _channels.jobsAddObject(@"NNN");
-        _channels.jobsAddObject(@"BBC");
-        _channels.jobsAddObject(@"J-Sports");
-        _channels.jobsAddObject(@"OK News");
-        _channels.jobsAddObject(@"SSS");
-        _channels.jobsAddObject(@"Apple");
-        _channels.jobsAddObject(@"CUK");
-        _channels.jobsAddObject(@"KKR");
-        _channels.jobsAddObject(@"APAR");
-        _channels.jobsAddObject(@"SU");
-        _channels.jobsAddObject(@"CCC");
-        _channels.jobsAddObject(@"Game");
-        _channels.jobsAddObject(@"Anime");
-        _channels.jobsAddObject(@"Tokyo NX");
-        _channels.jobsAddObject(@"NYC");
-        _channels.jobsAddObject(@"SAN");
-        _channels.jobsAddObject(@"Drama");
-        _channels.jobsAddObject(@"Hobby");
-        _channels.jobsAddObject(@"Music");
+        _channels.add(@"ABC");
+        _channels.add(@"NNN");
+        _channels.add(@"BBC");
+        _channels.add(@"J-Sports");
+        _channels.add(@"OK News");
+        _channels.add(@"SSS");
+        _channels.add(@"Apple");
+        _channels.add(@"CUK");
+        _channels.add(@"KKR");
+        _channels.add(@"APAR");
+        _channels.add(@"SU");
+        _channels.add(@"CCC");
+        _channels.add(@"Game");
+        _channels.add(@"Anime");
+        _channels.add(@"Tokyo NX");
+        _channels.add(@"NYC");
+        _channels.add(@"SAN");
+        _channels.add(@"Drama");
+        _channels.add(@"Hobby");
+        _channels.add(@"Music");
     }return _channels;
 }
 

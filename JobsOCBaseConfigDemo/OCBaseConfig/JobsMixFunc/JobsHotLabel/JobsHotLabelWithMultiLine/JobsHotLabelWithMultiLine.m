@@ -154,8 +154,7 @@ shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __FUNCTION__);
     JobsHotLabelWithMultiLineCVCell *_cell = (JobsHotLabelWithMultiLineCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//    [WHToast jobsToastSuccessMsg:_cell.getViewModel.textModel.text];
-    
+//    self.jobsToastSuccessMsg(_cell.getViewModel.textModel.text);
     for (JobsHotLabelWithMultiLineCVCell *cell in collectionView.visibleCells) {
         cell.getTextLab.backgroundColor = HEXCOLOR(0xF3F3F3);
         cell.getTextLab.textColor = HEXCOLOR(0x757575);

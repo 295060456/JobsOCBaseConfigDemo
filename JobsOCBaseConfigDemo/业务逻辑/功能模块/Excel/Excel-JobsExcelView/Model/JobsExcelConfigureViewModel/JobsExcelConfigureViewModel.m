@@ -63,9 +63,9 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
         //            model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
         //                return nil;
         //            });
-                    row.jobsAddObject(model);/// 一行的数据
+                    row.add(model);/// 一行的数据
                 }
-                self.contentArr.jobsAddObject(row);
+                self.contentArr.add(row);
             }
             
             self.rowNumber = self.contentArr[0].count;
@@ -101,7 +101,7 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
             btnModel.titleCor = self.cor4;
             btnModel.baseBackgroundColor = self.cor3;
             btnModel.backgroundImage = self.image3;
-            _topHeaderDatas.jobsAddObject(btnModel);
+            _topHeaderDatas.add(btnModel);
         }
     }return _topHeaderDatas;
 }
@@ -116,7 +116,7 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
             btnModel.titleCor = JobsWhiteColor;
             btnModel.baseBackgroundColor = y % 2 ? self.cor2 : self.cor1;
             btnModel.backgroundImage = y % 2 ? self.image2 : self.image1;
-            _leftListDatas.jobsAddObject(btnModel);
+            _leftListDatas.add(btnModel);
         }
     }return _leftListDatas;
 }

@@ -59,7 +59,7 @@
         char s = [self characterAtIndex:i];
         s = '*';
         NSString *tempString = [NSString stringWithUTF8String:&s];
-        carries.jobsAddObject(tempString);
+        carries.add(tempString);
     }
     NSString *string = [carries componentsJoinedByString:@""];
     NSString *anonymousString = [self stringByReplacingCharactersInRange:NSMakeRange(1, self.length - 2)
@@ -113,7 +113,7 @@
         @jobs_strongify(self)
         UIPasteboard *pasteboard = UIPasteboard.generalPasteboard;
         pasteboard.string = self;
-        [WHToast jobsToastSuccessMsg:JobsInternationalization(@"复制成功")];
+        self.jobsToastSuccessMsg(JobsInternationalization(@"复制成功"));
         return pasteboard.string;
     };
 }

@@ -54,11 +54,15 @@
     };
 }
 /// 获得当前的控制器。对getCurrentViewController的再次封装
--(UIViewController *_Nullable)jobsGetCurrentViewController{
+-(__kindof UIViewController *_Nullable)jobsGetCurrentViewControllerWithNavCtrl{
+    return JobsNavCtrl(self.jobsGetCurrentViewController);
+}
+/// 获得当前的控制器。对getCurrentViewController的再次封装
+-(__kindof UIViewController *_Nullable)jobsGetCurrentViewController{
     return KindOfVCCls(self) ? (UIViewController *)self : self.getCurrentViewController;
 }
 /// 获得当前的控制器
--(UIViewController *_Nullable)getCurrentViewController{
+-(__kindof UIViewController *_Nullable)getCurrentViewController{
     return self.getCurrentViewControllerByRootVC(jobsGetMainWindow().rootViewController);
 }
 /// 获得当前控制器的根控制器
@@ -94,7 +98,7 @@
         viewController.comingToPushVCByRequestParams(toPushVC,requestParams);
     }else{
         NSLog(@"%@强制展现页面%@失败,携带的参数%@",viewController,toPushVC,requestParams);
-        [WHToast jobsToastErrMsg:@"强制展现页面失败,请检查控制台"];
+        self.jobsToastErrMsg(JobsInternationalization(@"强制展现页面失败,请检查控制台"));
     }
 }
 /// 强制以Present的方式展现页面
@@ -144,6 +148,71 @@
                     context:nil];
 }
 #pragma mark —— 功能性的
+/// present
+#ifndef JobsPresentationStyle
+#define JobsPresentationStyle (UIDevice.currentDevice.systemVersion.doubleValue >= 13.0 ? UIModalPresentationAutomatic : UIModalPresentationFullScreen)
+#endif
+/// 简洁版强制present展现一个控制器页面【不需要正向传参】
+-(jobsByVCBlock _Nullable)comingToPresentVC{
+    @jobs_weakify(self)
+    return ^(UIViewController *_Nonnull viewController) {
+        @jobs_strongify(self)
+        [UIViewController comingFromVC:self.jobsGetCurrentViewController
+                                  toVC:viewController
+                           comingStyle:ComingStyle_PRESENT
+                     presentationStyle:JobsPresentationStyle
+                         requestParams:nil
+              hidesBottomBarWhenPushed:YES
+                              animated:YES
+                               success:nil];
+    };
+}
+/// 简洁版强制present展现一个控制器页面【需要正向传参】
+-(jobsByVCAndDataBlock _Nullable)comingToPresentVCByRequestParams{
+    @jobs_weakify(self)
+    return ^(UIViewController * _Nullable viewController,id _Nullable requestParams) {
+        @jobs_strongify(self)
+        [UIViewController comingFromVC:self.jobsGetCurrentViewController
+                                  toVC:viewController
+                           comingStyle:ComingStyle_PRESENT
+                     presentationStyle:JobsPresentationStyle
+                         requestParams:requestParams
+              hidesBottomBarWhenPushed:YES
+                              animated:YES
+                               success:nil];
+    };
+}
+#pragma mark —— push
+/// 简洁版强制push展现一个控制器页面【不需要正向传参】
+-(jobsByVCBlock _Nullable)comingToPushVC{
+    @jobs_weakify(self)
+    return ^(UIViewController *_Nonnull viewController) {
+        @jobs_strongify(self)
+        [UIViewController comingFromVC:self.jobsGetCurrentViewController
+                                  toVC:viewController
+                           comingStyle:ComingStyle_PUSH
+                     presentationStyle:JobsPresentationStyle
+                         requestParams:nil
+              hidesBottomBarWhenPushed:YES
+                              animated:YES
+                               success:nil];
+    };
+}
+/// 简洁版强制push展现一个控制器页面【需要正向传参】
+-(jobsByVCAndDataBlock _Nullable)comingToPushVCByRequestParams{
+    @jobs_weakify(self)
+    return ^(UIViewController * _Nullable viewController,id _Nullable requestParams) {
+        @jobs_strongify(self)
+        [UIViewController comingFromVC:self.jobsGetCurrentViewController
+                                  toVC:viewController
+                           comingStyle:ComingStyle_PUSH
+                     presentationStyle:JobsPresentationStyle
+                         requestParams:requestParams
+              hidesBottomBarWhenPushed:YES
+                              animated:YES
+                               success:nil];
+    };
+}
 /// 代理检测和回调
 -(jobsDelegateBlock _Nullable)jobsDelegate{
     @jobs_weakify(self)
@@ -743,12 +812,12 @@
     for(int i = 0; i < len; i++) {
         NSLog(@"%C", buffer[i]);
         NSString *temp = [NSString stringWithFormat:@"%C",buffer[i]];
-        resultMutArr.jobsAddObject(temp);
+        resultMutArr.add(temp);
         // 数字映射图片
         if ([temp isEqualToString:@"."]) {
             temp = @"小数点";
         }
-        resultIMGMutArr.jobsAddObject(JobsIMG(temp));
+        resultIMGMutArr.add(JobsIMG(temp));
     }
     NSLog(@"resultMutArr【For Test】 = %@",resultMutArr);
     return resultIMGMutArr;

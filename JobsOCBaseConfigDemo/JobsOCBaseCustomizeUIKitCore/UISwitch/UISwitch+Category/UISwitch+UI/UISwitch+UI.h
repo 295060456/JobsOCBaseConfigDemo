@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_END
          [_switcher layerBorderCor:_switcher.selected ? self.cor : HEXCOLOR(0xB0B0B0) andBorderWidth:JobsWidth(1)];
          [_switcher jobsSwitchClickEventBlock:^(UISwitch *x) {
              x.selected = !x.selected;
-             [WHToast jobsToastMsg:x.selected ? JobsInternationalization(@"打开解锁"):JobsInternationalization(@"关闭解锁")];
+             self.jobsToastMsg(x.selected ? JobsInternationalization(@"打开解锁"):JobsInternationalization(@"关闭解锁"));
              x.thumbTintColor = x.selected ? self.cor : HEXCOLOR(0xB0B0B0);
              [x layerBorderCor:x.selected ? self.cor : HEXCOLOR(0xB0B0B0) andBorderWidth:JobsWidth(1)];
          }];

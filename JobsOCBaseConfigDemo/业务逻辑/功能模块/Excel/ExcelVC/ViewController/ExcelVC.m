@@ -104,9 +104,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataMutArr[indexPath.section][indexPath.row].cls) {
         self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.section][indexPath.row].cls.new,self.dataMutArr[indexPath.section][indexPath.row]);
-    }else{
-        [WHToast jobsToastMsg:JobsInternationalization(@"尚未接入此功能")];
-    }
+    }else self.jobsToastMsg(JobsInternationalization(@"尚未接入此功能"));
 }
 /// 编辑模式下，点击取消左边已选中的cell的按钮
 - (void)tableView:(UITableView *)tableView
@@ -128,8 +126,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.dataMutArr[section].count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
     cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.section][indexPath.row]);
     return cell;
@@ -167,8 +165,8 @@ viewForHeaderInSection:(NSInteger)section{
     }return nil;
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
-- (nullable UIView *)tableView:(UITableView *)tableView
-        viewForFooterInSection:(NSInteger)section{
+- (nullable __kindof UIView *)tableView:(UITableView *)tableView
+                 viewForFooterInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
         BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
         {
@@ -312,17 +310,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tbvSectionRowCellMutArr = NSMutableArray.array;
         {
             NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            _tbvSectionRowCellMutArr.jobsAddObject(rowCellMutArr);
+            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            _tbvSectionRowCellMutArr.add(rowCellMutArr);
         }
         
         {
             NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-            rowCellMutArr.jobsAddObject(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            _tbvSectionRowCellMutArr.jobsAddObject(rowCellMutArr);
+            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            _tbvSectionRowCellMutArr.add(rowCellMutArr);
         }
     }return _tbvSectionRowCellMutArr;
 }
@@ -338,31 +336,31 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJClassData")
                                                                attributeSubTitle:JobsInternationalization(@"正常")];
                 viewModel.cls = ZMJClassDataVC.class;
-                rowMutArr.jobsAddObject(viewModel);
+                rowMutArr.add(viewModel);
             }
             
             {
                 UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJTimeable")
                                                                attributeSubTitle:JobsInternationalization(@"正常")];
                 viewModel.cls = ZMJTimeableVC.class;
-                rowMutArr.jobsAddObject(viewModel);
+                rowMutArr.add(viewModel);
             }
             
             {
                 UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJSchedule")
                                                                attributeSubTitle:JobsInternationalization(@"正常")];
                 viewModel.cls = ZMJScheduleVC.class;
-                rowMutArr.jobsAddObject(viewModel);
+                rowMutArr.add(viewModel);
             }
             
             {
                 UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJGanttList")
                                                                attributeSubTitle:JobsInternationalization(@"有崩溃，需要修复")];
                 viewModel.cls = ZMJGanttListVC.class;
-                rowMutArr.jobsAddObject(viewModel);
+                rowMutArr.add(viewModel);
             }
             
-            _dataMutArr.jobsAddObject(rowMutArr);
+            _dataMutArr.add(rowMutArr);
         }
         
         {
@@ -375,7 +373,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 [rowMutArr addObject:viewModel];
             }
             
-            _dataMutArr.jobsAddObject(rowMutArr);
+            _dataMutArr.add(rowMutArr);
         }
     }return _dataMutArr;
 }

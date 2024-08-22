@@ -9,7 +9,7 @@
 
 @implementation NSMutableArray (Extra)
 /// 阻止向可变数组添加空元素
--(JobsReturnIDByIDBlock _Nonnull)jobsAddObject{
+-(JobsReturnIDByIDBlock _Nonnull)add{
     @jobs_weakify(self)
     return ^id (id _Nullable data) {
         @jobs_strongify(self)

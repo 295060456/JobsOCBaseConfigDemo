@@ -180,7 +180,7 @@
             btn.cornerCutToCircleWithCornerRadius(JobsWidth(8));
             [btn layerBorderCor:HEXCOLOR(0xAE8330) andBorderWidth:0.5f];
             [self.view addSubview:btn];
-            _btnMutArr.jobsAddObject(btn);
+            _btnMutArr.add(btn);
         }
     }return _btnMutArr;
 }
@@ -188,10 +188,10 @@
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
         _btnTitleMutArr = NSMutableArray.array;
-        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"开始"));
-        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"暂停"));
-        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"继续"));
-        _btnTitleMutArr.jobsAddObject(JobsInternationalization(@"结束"));
+        _btnTitleMutArr.add(JobsInternationalization(@"开始"));
+        _btnTitleMutArr.add(JobsInternationalization(@"暂停"));
+        _btnTitleMutArr.add(JobsInternationalization(@"继续"));
+        _btnTitleMutArr.add(JobsInternationalization(@"结束"));
     }return _btnTitleMutArr;
 }
 

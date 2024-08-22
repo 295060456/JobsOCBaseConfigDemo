@@ -56,7 +56,7 @@ BaseViewProtocol_synthesize
  在这个方法里：
  传入：UITableViewHeaderFooterView *
  对外返回：创建需要覆盖在UITableViewHeaderFooterView *的在View
- 再在- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section方法里面：
+ 再在- (nullable __kindof UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section方法里面：
  [self makeViewOnTableViewHeaderFooterView:headerView].alpha = 1; /// 进行一句话进行调用
  */
 -(UIView *_Nullable)makeViewOnTableViewHeaderFooterView:(UITableViewHeaderFooterView *)headerFooterView{

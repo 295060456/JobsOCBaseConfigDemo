@@ -8,6 +8,10 @@
 #import <Foundation/Foundation.h>
 #import "NSString+Judgment.h"
 
+static inline NSString * _Nonnull toStringByID(id _Nullable i){
+    return [NSString stringWithFormat:@"%@",i];
+}
+
 static inline NSString * _Nonnull toStringByInt(int i){
     return [NSString stringWithFormat:@"%d",i];
 }

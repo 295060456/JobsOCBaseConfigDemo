@@ -111,8 +111,8 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
     }];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyFansTBVCell *cell = MyFansTBVCell.cellStyleValue1WithTableView(tableView);
     cell.jobsRichElementsInCellWithModel(@(indexPath.row % 4));
     return cell;

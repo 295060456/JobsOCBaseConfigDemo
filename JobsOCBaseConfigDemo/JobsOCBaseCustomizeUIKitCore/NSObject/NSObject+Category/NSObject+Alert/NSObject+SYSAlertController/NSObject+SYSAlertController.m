@@ -55,12 +55,8 @@
             }];
             [alertController addAction:okAction];
         }
-    }else{
-        [WHToast jobsToastMsg:JobsInternationalization(@"参数配置错误，请检查")];
-    }
-    if (alertVCBlock) {
-        alertVCBlock(alertController);
-    }
+    }else self.jobsToastMsg(JobsInternationalization(@"参数配置错误，请检查"));
+    if (alertVCBlock) alertVCBlock(alertController);
     [config.targetVC presentViewController:alertController
                                   animated:config.animated
                                 completion:completionBlock];
@@ -83,22 +79,19 @@
                                                                style:config.isSeparateStyle ? (i == config.alertBtnActionArr.count - 1 ? UIAlertActionStyleCancel : UIAlertActionStyleDefault) : UIAlertActionStyleDefault
                                                              handler:^(UIAlertAction * _Nonnull action) {
 //                @strongify(config)
-                if (!config.funcInWhere) {
-                    config.funcInWhere = config.targetVC;
-                }
+                if (!config.funcInWhere) config.funcInWhere = config.targetVC;
 
                 // 核心方法:截取最后2个字符，如果是“：”则进行参数拼接
                 NSString *methodName = config.alertBtnActionArr[i];
                 if ([NSString isNullString:methodName]) {
-                    if (alertVCBlock) {
-                        alertVCBlock(alertController);
-                    }return;
+                    if (alertVCBlock) alertVCBlock(alertController);
+                    return;
                 }
-                NSMutableArray *parameters = nil;
+                NSMutableArray <UIAlertAction *>*parameters = nil;
                 if (config.parametersArr.count) {
                     parameters = config.parametersArr[i];
-                    if ([[methodName substringFromIndex:methodName.length - 1] isEqualToString:@":"]) {
-                        [parameters addObject:action];
+                    if ([methodName substringFromIndex:methodName.length - 1].isEqualToString(@":")) {
+                        parameters.add(action);
                     }
                 }
                 
@@ -108,13 +101,8 @@
             }];
             [alertController addAction:okAction];
         }
-    }else{
-        [WHToast jobsToastMsg:JobsInternationalization(@"参数配置错误，请检查")];
-    }
-
-    if (alertVCBlock) {
-        alertVCBlock(alertController);
-    }
+    }else self.jobsToastMsg(JobsInternationalization(@"参数配置错误，请检查"));
+    if (alertVCBlock) alertVCBlock(alertController);
     UIPopoverPresentationController *popover = alertController.popoverPresentationController;
     if (popover){
         popover.sourceView = config.sender;
