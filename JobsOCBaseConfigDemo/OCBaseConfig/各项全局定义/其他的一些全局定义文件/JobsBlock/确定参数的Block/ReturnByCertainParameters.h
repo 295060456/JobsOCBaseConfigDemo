@@ -32,8 +32,9 @@ typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(
 typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString * _Nonnull data);
 typedef NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
 typedef NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
-typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString * _Nullable data);
-typedef NSMutableString *_Nullable(^JobsReturnMutableStringByStringBlock)(NSString * _Nullable data);
+typedef NSString *_Nullable(^JobsReturnStringByNumberBlock)(NSNumber *_Nullable data);
+typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString *_Nullable data);
+typedef NSMutableString *_Nullable(^JobsReturnMutableStringByStringBlock)(NSString *_Nullable data);
 typedef NSString *_Nullable(^JobsReturnStrByCorBlock)(UIColor * _Nullable data);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIntegerBlock)(NSInteger data);
 
@@ -49,17 +50,17 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByTableViewHeaderFooterViewBlo
 
 typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Class _Nonnull cls,NSString * _Nullable salt);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewCellStyleBlock)(UITableViewCellStyle tableViewCellStyle);
-typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewBlock)(UITableView * _Nonnull tableView);
+typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewBlock)(UITableView *_Nonnull tableView);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsBlock)(Class _Nonnull cls);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsAndSaltStrBlock)(Class _Nonnull cls,
                                                                                            NSString * _Nullable salt);
 typedef UITableViewCell __kindof *_Nullable(^JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block)(Class _Nonnull cls,
-                                                                                                    NSString * _Nullable salt,
-                                                                                                    NSIndexPath * _Nonnull indexPath);
+                                                                                                    NSString *_Nullable salt,
+                                                                                                    NSIndexPath *_Nonnull indexPath);
 
-typedef NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(NSString * _Nullable data);
-typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Class _Nonnull cls,NSString * _Nullable salt);
+typedef NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(NSString *_Nullable data);
+typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
 
 typedef UICollectionViewCell __kindof *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
 
@@ -73,7 +74,7 @@ typedef CGRect(^JobsReturnCGRectByIDBlock)(id _Nullable data);
 typedef CGRect(^JobsReturnCGRectByCGPointBlock)(CGPoint data);
 typedef CGRect(^JobsReturnCGRectByCGSizeBlock)(CGSize data);
 typedef CGRect(^JobsReturnCGRectByCGFloatBlock)(CGFloat data);
-typedef CGRect(^JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,UIView * _Nonnull superView);
+typedef CGRect(^JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,__kindof UIView *_Nonnull superView);
 
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByVoidBlock)(void);
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByIDBlock)(id _Nullable data);

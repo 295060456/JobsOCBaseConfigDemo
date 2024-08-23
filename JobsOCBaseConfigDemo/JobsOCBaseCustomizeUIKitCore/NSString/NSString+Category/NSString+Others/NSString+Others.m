@@ -30,7 +30,7 @@
 /// 对象转OC字符串
 +(JobsReturnStringByIDBlock)toString{
     return ^NSString *_Nullable (id _Nullable data) {
-        return [NSString stringWithFormat:@"%@",data];
+        return toStringByID(data);
     };
 }
 /// OC字符串拼接

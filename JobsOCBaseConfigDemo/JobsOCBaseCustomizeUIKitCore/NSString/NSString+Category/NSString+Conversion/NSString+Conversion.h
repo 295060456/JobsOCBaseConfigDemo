@@ -8,36 +8,52 @@
 #import <Foundation/Foundation.h>
 #import "NSString+Judgment.h"
 
-static inline NSString * _Nonnull toStringByID(id _Nullable i){
+static inline NSString *_Nonnull toStringByID(id _Nullable i){
     return [NSString stringWithFormat:@"%@",i];
 }
 
-static inline NSString * _Nonnull toStringByInt(int i){
+static inline NSString *_Nonnull toStringByInt(int i){
     return [NSString stringWithFormat:@"%d",i];
 }
 
-static inline NSString * _Nonnull toStringByFloat(float i){
+static inline NSString *_Nonnull toStringByFloat(float i){
     return [NSString stringWithFormat:@"%f",i];
 }
 
-static inline NSString * _Nonnull toStringByDouble(double i){
+static inline NSString *_Nonnull toStringByDouble(double i){
     return [NSString stringWithFormat:@"%f",i];
 }
 
-static inline NSString * _Nonnull toStringByNSInteger(NSInteger i){
+static inline NSString *_Nonnull toStringByShort(short i){
+    return [NSString stringWithFormat:@"%c",i];
+}
+
+static inline NSString *_Nonnull toStringByUnsignedShort(unsigned short i){
+    return [NSString stringWithFormat:@"%c",i];
+}
+
+static inline NSString *_Nonnull toStringByNSInteger(NSInteger i){
     return [NSString stringWithFormat:@"%ld",(long)i];
 }
 
-static inline NSString * _Nonnull toStringByNSUInteger(NSUInteger i){
+static inline NSString *_Nonnull toStringByNSUInteger(NSUInteger i){
     return [NSString stringWithFormat:@"%lu",(unsigned long)i];
 }
 
-static inline NSString * _Nonnull toStringByLong(long i){
+static inline NSString *_Nonnull toStringByLong(long i){
     return [NSString stringWithFormat:@"%ld",i];
 }
 
-static inline NSString * _Nonnull toStringByLongLong(long long i){
+static inline NSString *_Nonnull toStringByLongLong(long long i){
     return [NSString stringWithFormat:@"%lld",i];
+}
+
+static inline NSString *_Nonnull toStringByChar(char i){
+    return [NSString stringWithFormat:@"%c",i];
+}
+
+static inline NSString *_Nonnull toStringByUnsignedChar(unsigned char i){
+    return [NSString stringWithFormat:@"%c",i];
 }
 
 NS_ASSUME_NONNULL_BEGIN

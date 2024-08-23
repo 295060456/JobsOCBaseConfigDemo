@@ -115,7 +115,7 @@
         return str.length == 0 ? replaceString : str;
     }else if ([nullableString isKindOfClass:NSNumber.class]){
         NSNumber *b = (NSNumber *)nullableString;
-        return [b toString:nil].nullString ? replaceString : [b toString:nil];
+        return b.toString(nil).nullString ? replaceString : b.toString(nil);
     }else return replaceString;
 }
 
