@@ -85,6 +85,10 @@ typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(UIViewModel *_Nullable data)
 @class ButtonTimerProcessValueModel;
 typedef void(^jobsByButtonTimerProcessValueModelBlock)(ButtonTimerProcessValueModel *_Nullable data);
 
+@class JobsCorModel;
+typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(UIColor *_Nullable data);
+typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);
+
 @class UIButtonModel;
 @class JobsNavBarConfig;
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,

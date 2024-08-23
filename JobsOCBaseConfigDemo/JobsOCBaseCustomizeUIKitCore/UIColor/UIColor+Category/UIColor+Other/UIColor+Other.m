@@ -101,12 +101,12 @@
 +(JobsReturnColorByStringBlock _Nonnull)colorWithHexString{
     @jobs_weakify(self)
     return ^UIColor * _Nullable(NSString *_Nonnull hexCorString) {
+        @jobs_strongify(self)
         return [self colorWithHexString:hexCorString alpha:1.0f];
     };
 }
 /// UIColor * => UIImage *
 +(JobsReturnImageByCorBlock)imageWithColor{
-    @jobs_weakify(self)
     return ^UIImage * _Nullable(UIColor * _Nullable cor) {
         CGRect rect = CGRectMake(0.0f,
                                  0.0f,
@@ -194,7 +194,7 @@
     return ^NSString *_Nullable(UIColor * _Nullable data) {
         @jobs_strongify(self)
         /// 获得RGB值描述
-        NSString *RGBValue = [NSString stringWithFormat:@"%@",self];
+        NSString *RGBValue = toStringByID(self);
         /// 将RGB值描述分隔成字符串
         NSArray *RGBArr = [RGBValue componentsSeparatedByString:@" "];
         /// 获取红色值
@@ -218,9 +218,9 @@
     };
 }
 /// 将一个确定的UIColor子类，翻译成十六进制格式的字符串值并对外输出
--(JobsReturnStrByCorBlock)hexadecimalCorStr{
+-(JobsReturnCorModelByVoidBlock)hexadecimalCorStr{
     @jobs_weakify(self)
-    return ^NSString *_Nullable(UIColor * _Nullable data) {
+    return ^JobsCorModel *_Nullable(void) {
         @jobs_strongify(self)
         // 获取颜色组件
         const CGFloat *components = CGColorGetComponents(self.CGColor);
@@ -229,10 +229,11 @@
         CGFloat greenCor = components[1];
         CGFloat blueCor = components[2];
         // 将RGB值转换为十六进制字符串
-        return [NSString stringWithFormat:@"#%02X%02X%02X",
-                (int)(redCor * 255),
-                (int)(greenCor * 255),
-                (int)(blueCor * 255)];
+        JobsCorModel *corModel = JobsCorModel.new;
+        corModel.red = (redCor * 255);
+        corModel.green = (greenCor * 255);
+        corModel.blue = (blueCor * 255);
+        return corModel;
     };
 }
 /// iOS 父视图透明度影响到子视图

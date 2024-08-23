@@ -1112,6 +1112,7 @@
 		CECE89652C4519AE00764AF5 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CECE88B82C4519AD00764AF5 /* libstdc++.6.tbd */; };
 		CECE89662C4519AE00764AF5 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CECE88B92C4519AD00764AF5 /* libstdc++.dylib */; };
 		CECE89672C4519AE00764AF5 /* libstdc++.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE88BB2C4519AD00764AF5 /* libstdc++.md */; };
+		CEE403072C788F2B0085C23C /* JobsCorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE403052C7887960085C23C /* JobsCorModel.m */; };
 		CEFA816F2C6DEB1E00751B1F /* philippines.json in Resources */ = {isa = PBXBuildFile; fileRef = CEFA816E2C6DEB1E00751B1F /* philippines.json */; };
 		CEFA81772C6E016F00751B1F /* PointLabBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFA81752C6E016F00751B1F /* PointLabBaseView.m */; };
 		D16B7B0D974F1991F2B39889 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */; };
@@ -3138,6 +3139,8 @@
 		CECE88B82C4519AD00764AF5 /* libstdc++.6.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = "libstdc++.6.tbd"; sourceTree = "<group>"; };
 		CECE88B92C4519AD00764AF5 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libstdc++.dylib"; sourceTree = "<group>"; };
 		CECE88BB2C4519AD00764AF5 /* libstdc++.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libstdc++.md"; sourceTree = "<group>"; };
+		CEE403042C7887960085C23C /* JobsCorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCorModel.h; sourceTree = "<group>"; };
+		CEE403052C7887960085C23C /* JobsCorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCorModel.m; sourceTree = "<group>"; };
 		CEFA816E2C6DEB1E00751B1F /* philippines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = philippines.json; sourceTree = "<group>"; };
 		CEFA81742C6E016F00751B1F /* PointLabBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointLabBaseView.h; sourceTree = "<group>"; };
 		CEFA81752C6E016F00751B1F /* PointLabBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointLabBaseView.m; sourceTree = "<group>"; };
@@ -10708,6 +10711,7 @@
 		CECE83A52C4513CD00764AF5 /* UIColor */ = {
 			isa = PBXGroup;
 			children = (
+				CEE403062C7887960085C23C /* JobsCorModel */,
 				CECE83A32C4513CD00764AF5 /* UIColor+Category */,
 				CECE83A42C4513CD00764AF5 /* JobsColor.h */,
 			);
@@ -13282,6 +13286,15 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		CEE403062C7887960085C23C /* JobsCorModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEE403042C7887960085C23C /* JobsCorModel.h */,
+				CEE403052C7887960085C23C /* JobsCorModel.m */,
+			);
+			path = JobsCorModel;
+			sourceTree = "<group>";
+		};
 		CEFA81762C6E016F00751B1F /* PointLabBaseView */ = {
 			isa = PBXGroup;
 			children = (
@@ -14060,6 +14073,7 @@
 				CECE85532C4513CE00764AF5 /* NSObject+PopViewToLogOut.m in Sources */,
 				CE7F39722C4FDAF900431A5D /* JobsMenuSubView@4.m in Sources */,
 				CECE7D6A2C450DED00764AF5 /* AppDelegate+TabBarCtr.m in Sources */,
+				CEE403072C788F2B0085C23C /* JobsCorModel.m in Sources */,
 				CECE7CDE2C450C5000764AF5 /* UILabelWordRotatingVC.m in Sources */,
 				CECE876D2C45140000764AF5 /* XLChannelControl.m in Sources */,
 				CECE85AC2C4513CE00764AF5 /* BaseNavigationVC.m in Sources */,

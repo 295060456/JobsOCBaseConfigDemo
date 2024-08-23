@@ -9,7 +9,7 @@
 #define JobsColor_h
 
 #pragma mark —— Base
-/// TODO
+#import "JobsCorModel.h"
 #pragma mark —— Category
 #import "UIColor+Other.h"
 
