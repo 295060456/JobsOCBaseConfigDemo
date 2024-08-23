@@ -111,9 +111,9 @@ NS_ASSUME_NONNULL_BEGIN
  传入：UITableViewHeaderFooterView *
  对外返回：创建需要覆盖在UITableViewHeaderFooterView *的在View
  再在- (nullable __kindof UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section方法里面：
- [self makeViewOnTableViewHeaderFooterView:headerView].alpha = 1; /// 进行一句话进行调用
+ self.makeViewOnTableViewHeaderFooterView(headerView).alpha = 1; /// 进行一句话进行调用
  */
--(__kindof UIView *_Nullable)makeViewOnTableViewHeaderFooterView:(__kindof UITableViewHeaderFooterView *)headerFooterView;
+-(JobsReturnViewByTableViewHeaderFooterViewBlock)makeViewOnTableViewHeaderFooterView;
 
 @end
 

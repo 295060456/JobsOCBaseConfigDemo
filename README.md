@@ -818,7 +818,7 @@ class BaseViewProtocol {
     +-(CGFloat)heightByData:(UIViewModel *_Nonnull)data;
     +-(instancetype)initWithSize:(CGSize)thisViewSize;
     +-(UIViewModel *_Nullable)getViewModel;
-    +-(UIView *_Nullable)makeViewOnTableViewHeaderFooterView:(UITableViewHeaderFooterView *)headerFooterView;
+    +-(JobsReturnViewByTableViewHeaderFooterViewBlock)makeViewOnTableViewHeaderFooterView;
     +@property(nonatomic,strong,nullable)JobsReturnIDByIDBlock jobsBackBlock;
     +@property(nonatomic,assign)UIRectCorner layoutSubviewsRectCorner;
     +@property(nonatomic,assign)CGSize layoutSubviewsRectCornerSize;

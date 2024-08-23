@@ -99,22 +99,21 @@
     [super viewWillDisappear:animated];
 }
 #pragma mark —— BaseViewProtocol
--(UIView *)makeViewOnTableViewHeaderFooterView:(UITableViewHeaderFooterView *)headerFooterView{
-    /// 清除缓存以确保新图片被加载
-    [SDImageCache.sharedImageCache clearMemory];
-    [SDImageCache.sharedImageCache clearDiskOnCompletion:nil];
-    
-    UIImageView *imageView = UIImageView.new;
-    imageView.image = JobsIMG(JobsInternationalization(@"6.59"));
-    id dd = JobsIMG(JobsInternationalization(@"6.59"));
-    id f = JobsIMG(NSLocalizedString(@"6.59", nil));
-//    imageView.backgroundColor = JobsYellowColor;
-    [headerFooterView addSubview:imageView];
-    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(headerFooterView);
-        make.size.mas_equalTo(CGSizeMake([BaseTableViewHeaderFooterView heightForHeaderInSection:nil],
-                                         [BaseTableViewHeaderFooterView heightForHeaderInSection:nil]));
-    }];return imageView;
+-(JobsReturnViewByTableViewHeaderFooterViewBlock)makeViewOnTableViewHeaderFooterView{
+    return ^__kindof UIView *_Nullable (__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView) {
+        /// 清除缓存以确保新图片被加载
+        [SDImageCache.sharedImageCache clearMemory];
+        [SDImageCache.sharedImageCache clearDiskOnCompletion:nil];
+        
+        UIImageView *imageView = UIImageView.new;
+        imageView.image = JobsIMG(JobsInternationalization(@"6.59"));
+        [headerFooterView addSubview:imageView];
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(headerFooterView);
+            make.size.mas_equalTo(CGSizeMake([BaseTableViewHeaderFooterView heightForHeaderInSection:nil],
+                                             [BaseTableViewHeaderFooterView heightForHeaderInSection:nil]));
+        }];return imageView;
+    };
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -180,7 +179,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     /// headerView.backgroundColor 和  headerView.contentView.backgroundColor 均是无效操作❌
     /// 只有 headerView.backgroundView.backgroundColor 是有效操作✅
     headerView.backgroundView.backgroundColor = JobsCyanColor;
-    [self makeViewOnTableViewHeaderFooterView:headerView].alpha = 1;
+    self.makeViewOnTableViewHeaderFooterView(headerView).alpha = 1;
     headerView.jobsRichElementsInViewWithModel(UIViewModel.new);
 //        @jobs_weakify(self)
     [headerView actionObjectBlock:^(id data) {

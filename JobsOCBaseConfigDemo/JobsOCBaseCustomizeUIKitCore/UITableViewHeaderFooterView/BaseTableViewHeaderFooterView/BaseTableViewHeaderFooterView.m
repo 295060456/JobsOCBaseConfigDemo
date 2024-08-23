@@ -57,12 +57,16 @@ BaseViewProtocol_synthesize
  传入：UITableViewHeaderFooterView *
  对外返回：创建需要覆盖在UITableViewHeaderFooterView *的在View
  再在- (nullable __kindof UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section方法里面：
- [self makeViewOnTableViewHeaderFooterView:headerView].alpha = 1; /// 进行一句话进行调用
+ self.makeViewOnTableViewHeaderFooterView(headerView).alpha = 1; /// 进行一句话进行调用
  */
--(UIView *_Nullable)makeViewOnTableViewHeaderFooterView:(UITableViewHeaderFooterView *)headerFooterView{
-    /// headerFooterView.backgroundColor 和  headerFooterView.contentView.backgroundColor 均是无效操作❌
-    /// 只有 headerFooterView.backgroundView.backgroundColor 是有效操作✅
-    return nil;
+-(JobsReturnViewByTableViewHeaderFooterViewBlock)makeViewOnTableViewHeaderFooterView{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable (__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView) {
+        @jobs_strongify(self)
+        /// headerFooterView.backgroundColor 和  headerFooterView.contentView.backgroundColor 均是无效操作❌
+        /// 只有 headerFooterView.backgroundView.backgroundColor 是有效操作✅
+        return nil;
+    };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock)jobsRichElementsInViewWithModel{
