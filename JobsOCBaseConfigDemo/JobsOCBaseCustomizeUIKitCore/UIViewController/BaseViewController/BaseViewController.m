@@ -82,7 +82,7 @@ BaseViewControllerProtocol_synthesize
      当设置为 NO 时，视图控制器的布局会忽略不透明栏的影响，内容会延伸到整个视图控制器的边界，包括被不透明栏遮挡的部分。
      */
     self.extendedLayoutIncludesOpaqueBars = YES;
-    [self setBackGround];
+    self.setBackGround();
 //    self.gk_navRightBarButtonItems = @[[UIBarButtonItem.alloc initWithCustomView:self.msgBtn],
 //                                       [UIBarButtonItem.alloc initWithCustomView:self.customerServiceBtn]];
 //    self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.userHeadBtn];
@@ -287,79 +287,88 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     };
 }
 /// 在loadView或者之前的生命周期中定义背景图片或者底色
--(void)setBackGround{
-    /// 底图没有 + 底色没有
-    if(!self.viewModel.bgImage && !self.viewModel.bgCor){
-        self.view.backgroundColor = HEXCOLOR(0xFCFBFB);
-//        NSString *corStr = self.view.backgroundColor.rgbCorStr;
-        return;
-    }
-    /// 底图有 + 底色没有
-    if(self.viewModel.bgImage && !self.viewModel.bgCor){
-        self.bgImageView.alpha = 1;
-        return;
-    }
-    /// 底图没有 + 底色有
-    if(!self.viewModel.bgImage && self.viewModel.bgCor){
-        self.view.backgroundColor = self.viewModel.bgCor;
-//        NSString *corStr = self.view.backgroundColor.rgbCorStr;
-        return;
-    }
-    /// 底图有 + 底色有 = 优先使用底图数据
-    if(self.viewModel.bgImage && self.viewModel.bgCor){
-        self.bgImageView.alpha = 1;
-        return;
-    }
+-(jobsByVoidBlock _Nonnull)setBackGround{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        /// 底图没有 + 底色没有
+        if(!self.viewModel.bgImage && !self.viewModel.bgCor){
+            self.view.backgroundColor = HEXCOLOR(0xFCFBFB);
+    //        NSString *corStr = self.view.backgroundColor.rgbCorStr;
+            return;
+        }
+        /// 底图有 + 底色没有
+        if(self.viewModel.bgImage && !self.viewModel.bgCor){
+            self.bgImageView.alpha = 1;
+            return;
+        }
+        /// 底图没有 + 底色有
+        if(!self.viewModel.bgImage && self.viewModel.bgCor){
+            self.view.backgroundColor = self.viewModel.bgCor;
+    //        NSString *corStr = self.view.backgroundColor.rgbCorStr;
+            return;
+        }
+        /// 底图有 + 底色有 = 优先使用底图数据
+        if(self.viewModel.bgImage && self.viewModel.bgCor){
+            self.bgImageView.alpha = 1;
+            return;
+        }
+    };
 }
 
--(void)语言切换的监听{
+-(jobsByVoidBlock _Nonnull)语言切换的监听{
     @jobs_weakify(self)
-    JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
-        NSNotification *notification = (NSNotification *)arg;
-        if([notification.object isKindOfClass:NSNumber.class]){
-            NSNumber *b = notification.object;
-            NSLog(@"SSS = %d",b.boolValue);
-        }
+    return ^() {
         @jobs_strongify(self)
-        NSLog(@"通知传递过来的 = %@",notification.object);
-        return nil;
-    },nil, self),JobsLanguageSwitchNotification,nil);
+        JobsAddNotification(self,
+                        selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                  id _Nullable arg){
+            NSNotification *notification = (NSNotification *)arg;
+            if([notification.object isKindOfClass:NSNumber.class]){
+                NSNumber *b = notification.object;
+                NSLog(@"SSS = %d",b.boolValue);
+            }
+            NSLog(@"通知传递过来的 = %@",notification.object);
+            return nil;
+        },nil, self),JobsLanguageSwitchNotification,nil);
+
+    };
 }
 
--(void)设备方向的监听{
+-(jobsByVoidBlock _Nonnull)设备方向的监听{
     @jobs_weakify(self)
-    JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
-        NSNotification *notification = (NSNotification *)arg;
-        if([notification.object isKindOfClass:NSNumber.class]){
-            NSNumber *b = notification.object;
-            NSLog(@"SSS = %d",b.boolValue);
-        }
+    return ^() {
         @jobs_strongify(self)
-        NSLog(@"通知传递过来的 = %@",notification.object);
-        
-        switch (UIDevice.currentDevice.orientation) {
-                // 处理竖屏方向的逻辑
-            case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
-                NSLog(@"系统通知：↓");
-                break;
-            case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
-                NSLog(@"系统通知：↑");
-                break;
-                // 处理横屏方向的逻辑
-            case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
-                NSLog(@"系统通知：→");
-                break;
-            case UIDeviceOrientationLandscapeRight:/// 设备水平，Home 按钮在左侧
-                NSLog(@"系统通知：←");
-                break;
-            default:
-                break;
-        }return nil;
-    },nil, self),UIDeviceOrientationDidChangeNotification,nil);
+        JobsAddNotification(self,
+                        selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                  id _Nullable arg){
+            NSNotification *notification = (NSNotification *)arg;
+            if([notification.object isKindOfClass:NSNumber.class]){
+                NSNumber *b = notification.object;
+                NSLog(@"SSS = %d",b.boolValue);
+            }
+            NSLog(@"通知传递过来的 = %@",notification.object);
+            switch (UIDevice.currentDevice.orientation) {
+                    // 处理竖屏方向的逻辑
+                case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
+                    NSLog(@"系统通知：↓");
+                    break;
+                case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
+                    NSLog(@"系统通知：↑");
+                    break;
+                    // 处理横屏方向的逻辑
+                case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
+                    NSLog(@"系统通知：→");
+                    break;
+                case UIDeviceOrientationLandscapeRight:/// 设备水平，Home 按钮在左侧
+                    NSLog(@"系统通知：←");
+                    break;
+                default:
+                    break;
+            }return nil;
+        },nil, self),UIDeviceOrientationDidChangeNotification,nil);
+
+    };
 }
 #pragma mark —— lazyLoad
 - (UIView *)statusBar{

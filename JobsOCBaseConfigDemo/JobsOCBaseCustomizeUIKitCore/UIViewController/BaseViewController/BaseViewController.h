@@ -42,8 +42,8 @@ UIGestureRecognizerDelegate
 >
 
 -(JobsMenuView *)menuView;
--(void)语言切换的监听;
--(void)设备方向的监听;
+-(jobsByVoidBlock _Nonnull)语言切换的监听;
+-(jobsByVoidBlock _Nonnull)设备方向的监听;
 
 @end
 
@@ -177,6 +177,19 @@ NS_ASSUME_NONNULL_END
  */
 
 /**
+ 
+ - (void)viewDidLoad {
+     [super viewDidLoad];
+     self.setGKNav(nil);
+     self.setGKNavBackBtn(nil);
+ 
+     self.menuView.resetOriginY([TopBar viewSizeWithModel:nil].height);
+     self.menuView.linkageMenuViewConfig.MENU_WIDTH = JobsWidth(139);
+     self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
+
+     [self configMenuView];
+ }
+ 
  -(void)configMenuView{
      self.menuView.titleMutArr = self.titleMutArr;
      self.menuView.subViewMutArr = self.subViewMutArr;

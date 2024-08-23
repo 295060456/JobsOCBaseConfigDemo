@@ -402,6 +402,11 @@
     return 0;
 }
 #pragma mark —— 其他
+-(jobsByViewBlock _Nullable)addSubview{
+    return ^(__kindof UIView *_Nullable subView) {
+        [self addSubview:subView];
+    };
+}
 /// 针对数据源是UIImage  *的GKPhotoBrowser
 -(void)viewTapGRSavePicsWithImageDataMutArr:(NSMutableArray <UIImage *>* _Nonnull)imageDataMutArr
                                 atIndexPath:(NSIndexPath * _Nonnull)indexPath
