@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
  再在- (nullable __kindof UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section方法里面：
  [self makeViewOnTableViewHeaderFooterView:headerView].alpha = 1; /// 进行一句话进行调用
  */
--(UIView *_Nullable)makeViewOnTableViewHeaderFooterView:(UITableViewHeaderFooterView *)headerFooterView;
+-(__kindof UIView *_Nullable)makeViewOnTableViewHeaderFooterView:(__kindof UITableViewHeaderFooterView *)headerFooterView;
 
 @end
 

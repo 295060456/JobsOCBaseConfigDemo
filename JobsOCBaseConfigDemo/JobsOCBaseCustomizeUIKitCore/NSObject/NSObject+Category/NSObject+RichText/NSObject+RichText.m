@@ -66,7 +66,7 @@
             }
         }
         NSLog(@"resultString = %@",resultString);
-        NSMutableAttributedString *attrString = [NSMutableAttributedString.alloc initWithString:resultString];
+        NSMutableAttributedString *attrString = JobsMutAttributedString(resultString);
         if (!richTextDataConfigMutArr || !richTextDataConfigMutArr.count) return attrString;
         ///  因为NSArray <JobsRichTextConfig *>* 是动态。进方法以后为固定，那么以此计算真正的range
         NSUInteger currentFrontLocation = 0;//当前位置（前）
@@ -110,20 +110,16 @@
 }
 /// 字符串中划线
 -(JobsReturnMutAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation{
-    @jobs_weakify(self)
-    return ^(NSString *data) {
-        @jobs_strongify(self)
-        return [NSMutableAttributedString.alloc initWithString:data
-                                                    attributes:@{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]}];
+    return ^NSMutableAttributedString *(NSString *data) {
+        return JobsMutAttributedStringByAttributes(data,
+                                             @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]});
     };
 }
 /// 字符串下划线
 -(JobsReturnMutAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation{
-    @jobs_weakify(self)
-    return ^(NSString *data) {
-        @jobs_strongify(self)
-        return [NSMutableAttributedString.alloc initWithString:data
-                                                    attributes:@{NSUnderlineStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]}];
+    return ^NSMutableAttributedString *(NSString *data) {
+        return JobsMutAttributedStringByAttributes(data,
+                                                   @{NSUnderlineStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]});
     };
 }
 

@@ -3459,14 +3459,31 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
   * 关注实现类：[<font color=blue>**`@implementation NSObject (WHToast)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+WHToast)
   
+    ```objective-c
+    #pragma mark —— 仅文字，展示在屏幕中间
+    +(jobsByStringBlock _Nonnull)jobsToastMsg;
+    -(jobsByStringBlock _Nonnull)jobsToastMsg;
+    #pragma mark —— 成功图标和文字，展示在屏幕中间
+    +(jobsByStringBlock _Nonnull)jobsToastSuccessMsg;
+    -(jobsByStringBlock _Nonnull)jobsToastSuccessMsg;
+    #pragma mark —— 失败图标和文字，展示在屏幕中间
+    +(jobsByStringBlock _Nonnull)jobsToastErrMsg;
+    -(jobsByStringBlock _Nonnull)jobsToastErrMsg;
+    #pragma mark —— 延时操作
+    +(jobsByStringBlock _Nonnull)jobsToastLoadingMsg;
+    -(jobsByStringBlock _Nonnull)jobsToastLoadingMsg;
+    #pragma mark —— 手动关闭WHToast，在主线程
+    +(jobsByVoidBlock _Nonnull)jobsToastHide;
+    -(jobsByVoidBlock _Nonnull)jobsToastHide;
+    ```
+    
     关注实现类：[<font color=blue>**`MacroDef_Func.h`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h)
     
     ```objective-c
     static inline void toast(NSString *_Nullable msg){
         if(!msg || ![msg isKindOfClass:NSString.class]){
             msg = JobsInternationalization(@"数据错误");
-        }
-        [NSObject jobsToastMsg:JobsInternationalization(msg)];
+        }NSObject.jobsToastMsg(JobsInternationalization(msg));
     }
     ```
 
@@ -3479,15 +3496,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 对其二次封装，方便使用。关注实现类：[<font color=blue>**`@implementation NSObject (TFPopup)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BTFPopup)
 
   * ```objective-c
+    /// 出现的弹窗需要手动触发关闭
     -(jobsByViewBlock _Nonnull)show_view{
         @jobs_weakify(self)
         return ^(UIView *_Nonnull view) {
             @jobs_strongify(self)
             self.popupParameter.dragEnable = YES;
-            self.popupParameter.disuseBackgroundTouchHide = NO;
+            self.popupParameter.disuseBackgroundTouchHide = YES;/// 禁止点击背景消失弹框
             [view tf_showSlide:jobsGetMainWindow()
                      direction:PopupDirectionContainerCenter
                     popupParam:self.popupParameter];
+        };
+    }
+    /// 出现的弹窗自动触发关闭
+    -(jobsByViewBlock _Nonnull)show_tips{
+        @jobs_weakify(self)
+        return ^(UIView *_Nonnull view) {
+            @jobs_strongify(self)
+            [view tf_showSlide:jobsGetMainWindow()
+                     direction:PopupDirectionContainerCenter
+                    popupParam:self.tipsParameter];
         };
     }
     ```
@@ -4359,7 +4387,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       shouldInteractWithURL:(NSURL *)URL
       inRange:(NSRange)characterRange
       interaction:(UITextItemInteraction)interaction {
-          [WHToast jobsToastMsg:JobsInternationalization(@"专属客服")];
+          self.jobsToastMsg(JobsInternationalization(@"专属客服"));
           return YES;
       }
       #pragma clang diagnostic pop
@@ -4377,7 +4405,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                                          image:nil
                                     identifier:nil
                                        handler:^(__kindof UIAction * _Nonnull action) {
-                  [WHToast jobsToastMsg:JobsInternationalization(@"专属客服")];
+                  self.jobsToastMsg(JobsInternationalization(@"专属客服"));
               }];
           }return defaultAction; // 默认行为
       }
@@ -4386,11 +4414,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                             menuConfigurationForTextItem:(UITextItem *)textItem
                                              defaultMenu:(UIMenu *)defaultMenu {
           if (KindOfTextItemCls(textItem) && [textItem.link isEqual:@"你的URL".jobsUrl]) {
-              UIAction *customAction = [UIAction actionWithTitle:@"专属客服"
+              UIAction *customAction = [UIAction actionWithTitle:JobsInternationalization(@"专属客服")
                                                            image:nil
                                                       identifier:nil
                                                          handler:^(__kindof UIAction * _Nonnull action) {
-                  [WHToast jobsToastMsg:JobsInternationalization(@"专属客服")];
+                  self.jobsToastMsg(JobsInternationalization(@"专属客服"));
               }];
               UIMenu *customMenu = [UIMenu menuWithTitle:@"" children:@[customAction]];
               return [UITextItemMenuConfiguration configurationWithMenu:customMenu];

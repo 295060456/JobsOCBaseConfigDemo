@@ -159,7 +159,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     UIViewModel *viewModel = UIViewModel.new;
     
     {
-        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:JobsInternationalization(title)];
+        NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(title));
         [attributedText addAttribute:NSFontAttributeName
                                value:UITextModel.new.font
                                range:NSMakeRange(0, JobsInternationalization(title).length)];
@@ -176,7 +176,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     }
     
     {
-        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle)];
+        NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle));
         [attributedText addAttribute:NSFontAttributeName
                                value:UITextModel.new.font
                                range:NSMakeRange(0, JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle).length)];
@@ -777,8 +777,8 @@ JobsKey(_richTextMutArr)
     NSMutableArray <NSString *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextMutArr);
     if (!RichTextMutArr) {
         RichTextMutArr = NSMutableArray.array;
-        [RichTextMutArr addObject:JobsInternationalization(@"如需帮助，请联系")];
-        [RichTextMutArr addObject:JobsInternationalization(@"专属客服")];
+        RichTextMutArr.add(JobsInternationalization(@"如需帮助，请联系"));
+        RichTextMutArr.add(JobsInternationalization(@"专属客服"));
         [self setRichTextMutArr:RichTextMutArr];
         Jobs_setAssociatedRETAIN_NONATOMIC(_richTextMutArr, RichTextMutArr)
     }return RichTextMutArr;

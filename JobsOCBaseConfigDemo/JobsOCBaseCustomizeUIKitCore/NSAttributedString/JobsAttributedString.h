@@ -12,38 +12,42 @@
 #import "NSAttributedString+Extra.h"
 
 #pragma mark —— 创建不可变富文本
-static inline NSAttributedString * _Nonnull JobsAttributedString(NSString * _Nonnull data) {
+static inline NSAttributedString *_Nonnull JobsAttributedString(NSString *_Nonnull data) {
     if (!data) data = @"";
     return [NSAttributedString.alloc initWithString:data];
 }
 
-static inline NSAttributedString * _Nonnull JobsAttributedStringByAttributes(NSString * _Nonnull data,
-                                                                             NSDictionary<NSAttributedStringKey, id> * _Nullable attrs){
+static inline NSAttributedString *_Nonnull JobsAttributedStringByAttributes(NSString *_Nonnull data,
+                                                                             NSDictionary<NSAttributedStringKey, id> *_Nullable attrs){
     if (!data) data = @"";
     return [NSAttributedString.alloc initWithString:data attributes:attrs];
 }
 
-static inline NSAttributedString * _Nonnull JobsAttributedStringByAttributeString(NSAttributedString *_Nullable data){
+static inline NSAttributedString *_Nonnull JobsAttributedStringByAttributeString(NSAttributedString *_Nullable data){
     if (!data) data = JobsAttributedString(@"");
     return [NSAttributedString.alloc initWithAttributedString:data];
 }
 
-static inline NSAttributedString * _Nonnull JobsAttributedStringByTextAttachment(NSTextAttachment * _Nonnull data) {
+static inline NSAttributedString *_Nonnull JobsAttributedStringByTextAttachment(NSTextAttachment *_Nonnull data) {
     if (!data) data = NSTextAttachment.alloc.init;
     return [NSAttributedString attributedStringWithAttachment:data];
 }
 #pragma mark —— 创建可变富文本
-static inline NSMutableAttributedString * _Nonnull toMutAttributedString(NSAttributedString * _Nonnull data) {
+static inline NSMutableAttributedString *_Nonnull toMutAttributedString(NSAttributedString *_Nonnull data) {
     if(!data) data = JobsAttributedString(@"");
     return [NSMutableAttributedString.alloc initWithAttributedString:data];
 }
 
-static inline NSMutableAttributedString * _Nonnull JobsMutAttributedString(NSString * _Nonnull data) {
-    if (!data) data = @"";
+static inline NSMutableAttributedString *_Nonnull JobsMutAttributedStringByAttributes(NSString *_Nonnull data,
+                                                                             NSDictionary<NSAttributedStringKey, id> * _Nullable attrs){
+    return toMutAttributedString(JobsAttributedStringByAttributes(data,attrs));
+}
+
+static inline NSMutableAttributedString *_Nonnull JobsMutAttributedString(NSString *_Nonnull data) {
     return toMutAttributedString(JobsAttributedString(data));
 }
 
-static inline NSMutableAttributedString * _Nonnull JobsMutAttributedStringByTextAttachment(NSTextAttachment * _Nonnull data) {
+static inline NSMutableAttributedString *_Nonnull JobsMutAttributedStringByTextAttachment(NSTextAttachment *_Nonnull data) {
     if (!data) data = NSTextAttachment.alloc.init;
     return toMutAttributedString(JobsAttributedStringByTextAttachment(data));
 }
