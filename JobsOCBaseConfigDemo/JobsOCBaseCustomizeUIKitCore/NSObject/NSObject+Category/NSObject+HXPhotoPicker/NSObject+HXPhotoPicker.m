@@ -56,7 +56,7 @@
         }else self.jobsToastMsg(@"保存图片需要过去您的相册权限,请前往设置打开");
     }];
 }
-/// HXPhotoPicker 调取系统相机进行拍摄
+/// HXPhotoPicker 调取系统相机进行拍摄（没有兼容横屏）
 -(void)hx_invokeSysCameraSuccessBlock:(jobsByIDBlock _Nullable)successBlock
                             failBlock:(jobsByIDBlock _Nullable)failBlock{
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -96,7 +96,7 @@
         }];
     }else self.jobsToastMsg(JobsInternationalization(@"此设备不支持相机!"));
 }
-
+/// 完全意义上的调用系统的相机拍照功能
 -(jobsByVoidBlock _Nonnull)invokeSysCamera{
     @jobs_weakify(self)
     return ^() {
@@ -119,12 +119,12 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     // 获取编辑后的图片（如果 allowsEditing 为 NO，则获取原图）
     UIImage *selectedImage = info[UIImagePickerControllerEditedImage] ? : info[UIImagePickerControllerOriginalImage];
     // 在此处处理拍照得到的图片，例如保存到相册或显示在界面上
-    if(self.jobsBlock) self.jobsBlock(selectedImage);
+    if(self.objectBlock) self.objectBlock(selectedImage);
     // 关闭相机界面
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 /// 用户取消拍照时调用这个方法
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark —— @property(nonatomic,strong)HXPhotoManager *photoManager;//选取图片的数据管理类

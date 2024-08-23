@@ -4618,12 +4618,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }];
   ```
 
-* 调取系统相机
+* 调取系统相机（没有兼容横屏）
 
   ```objective-c
   @jobs_weakify(self)
   [_cameraBtn jobsBtnClickEventBlock:^id(id data) {
-      /// 调取系统相机
+      /// 调取系统相机（没有兼容横屏）
       [self invokeSysCameraSuccessBlock:^(HXPhotoPickerModel *data) {
           @jobs_strongify(self)
           self.imageView.image = data.photoModel.previewPhoto;
