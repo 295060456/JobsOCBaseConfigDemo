@@ -10,7 +10,6 @@
 #import "RequestTool.h"
 #import "NSObject+Extras.h"
 #import "JobsResponseModel.h"
-
 /**
  公共配置
  插件机制

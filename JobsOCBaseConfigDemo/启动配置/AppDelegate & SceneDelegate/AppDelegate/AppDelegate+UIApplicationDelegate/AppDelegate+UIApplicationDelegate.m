@@ -19,9 +19,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
     
-    [self localNotifications];
-    [self launchFunc2];
-    [AppDelegate launchFunc1];
+    self.localNotifications();
+    self.launchFunc2();
+    AppDelegate.launchFunc1();
 
     self.window = JobsAppTools.sharedManager.makeAppDelegateWindow;
     self.window.rootViewController = RootViewController;

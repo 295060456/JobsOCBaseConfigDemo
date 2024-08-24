@@ -8,6 +8,10 @@
 
 #import "NSObject+URLManager.h"
 
+#ifndef JobsURL
+#define JobsURL(URL) [NSObject url:(URL) funcName:NSStringFromSelector(_cmd)];
+#endif
+
 //JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_DevEnviron_Cambodia_Main;/// 柬埔寨（主要）开发环境
 JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_DevEnviron_Cambodia_Minor;/// 柬埔寨（次要）开发环境
 //JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_DevEnviron_China_Mainland;/// 中国大陆开发环境
@@ -84,19 +88,17 @@ JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_DevEnviron_Cambodia_Mi
 }
 #pragma mark —— App接口示例
 -(URLManagerModel *)appInterfaceTesting{
-    return [NSObject url:@"http://172.24.135.14:8000/Downloads/CommentData.json"//@"http://172.24.135.12/CommentData.json"
-                funcName:NSStringFromSelector(_cmd)];
+    /// @"http://172.24.135.12/CommentData.json"
+    return JobsURL(@"http://172.24.135.14:8000/Downloads/CommentData.json")
 }
 #pragma mark —— GoldenF游戏厅
 /// 查询当前登录用户PG/CQ9余额
 -(URLManagerModel *)goldenFGetBalanceGET{
-    return [NSObject url:@"​/golednf​/getBalance".urlProtect
-                funcName:NSStringFromSelector(_cmd)];
+    return JobsURL(@"​/golednf​/getBalance")
 }
 /// 查询WM,PG,CQ9维护状态的游戏
 -(URLManagerModel *)goldenFMaintenanceGameListGET{
-    return [NSObject url:@"​​​/golednf​/maintenanceGameList".urlProtect
-                funcName:NSStringFromSelector(_cmd)];
+    return JobsURL(@"​​​/golednf​/maintenanceGameList");
 }
 
 @end

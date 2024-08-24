@@ -3545,6 +3545,15 @@
 			path = ZBNetworking;
 			sourceTree = "<group>";
 		};
+		CE475C732C79BE0200CF1143 /* JobsNetworkingAPI */ = {
+			isa = PBXGroup;
+			children = (
+				CECE7D2A2C450CCD00764AF5 /* JobsNetworkingAPI.h */,
+				CECE7D2B2C450CCD00764AF5 /* JobsNetworkingAPI.m */,
+			);
+			path = JobsNetworkingAPI;
+			sourceTree = "<group>";
+		};
 		CE4B42462C6E04A800FDCB0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -7046,9 +7055,8 @@
 		CECE7D2D2C450CCD00764AF5 /* App 的所有网络请求Api */ = {
 			isa = PBXGroup;
 			children = (
+				CE475C732C79BE0200CF1143 /* JobsNetworkingAPI */,
 				CECE7D292C450CCD00764AF5 /* App接口示例 */,
-				CECE7D2A2C450CCD00764AF5 /* JobsNetworkingAPI.h */,
-				CECE7D2B2C450CCD00764AF5 /* JobsNetworkingAPI.m */,
 				CECE7D2C2C450CCD00764AF5 /* JobsNetworkingHeader.h */,
 			);
 			path = "App 的所有网络请求Api";

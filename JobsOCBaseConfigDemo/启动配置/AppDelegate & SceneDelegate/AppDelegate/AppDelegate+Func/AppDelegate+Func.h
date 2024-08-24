@@ -9,6 +9,7 @@
 //#import "SceneDelegate.h"
 #import "MacroDef_Func.h"
 #import "NSObject+UserInfo.h"
+#import "JobsBlock.h"
 
 #if __has_include(<Reachability/Reachability.h>)
 #import <Reachability/Reachability.h>
@@ -51,26 +52,32 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AppDelegate (Func)
 
 #pragma mark —— 启动调用功能
-+(void)launchFunc1;
--(void)launchFunc2;
-#pragma mark —— 欢迎引导页面
--(void)guide;
-#pragma mark —— 存取用户信息Demo
--(void)saveAndReadUserInfoDemo;
-#pragma mark —— 读取Plist配置文件
--(void)readPlistConfig;
-#pragma mark —— 全局配置 TABAnimated
--(void)makeTABAnimatedConfig;
-#pragma mark —— 全局配置键盘
--(void)makeIQKeyboardManagerConfig;
-#pragma mark —— 全局配置GKNavigationBar
--(void)makeGKNavigationBarConfig;
-#pragma mark —— 本地推送通知
--(void)localNotifications;
-#pragma mark —— 网络环境监测
--(void)makeReachabilityConfig;
++(jobsByVoidBlock _Nonnull)launchFunc1;
+-(jobsByVoidBlock _Nonnull)launchFunc2;
 #pragma mark —— 开屏广告
--(void)makeJobsLaunchAdConfig;
+-(jobsByVoidBlock _Nonnull)makeJobsLaunchAdConfig;
+#pragma mark —— YTKNetworkConfig
+-(jobsByVoidBlock _Nonnull)YTKNetworkConfig;
+#pragma mark —— 欢迎引导页面
+-(jobsByVoidBlock _Nonnull)guide;
+#pragma mark —— 存取用户信息Demo
+-(jobsByVoidBlock _Nonnull)saveAndReadUserInfoDemo;
+#pragma mark —— 读取Plist配置文件
+-(jobsByVoidBlock _Nonnull)readPlistConfig;
+#pragma mark —— 全局配置 TABAnimated
+-(jobsByVoidBlock _Nonnull)makeTABAnimatedConfig;
+#pragma mark —— 全局配置键盘
+-(jobsByVoidBlock _Nonnull)makeIQKeyboardManagerConfig;
+#pragma mark —— 全局配置GKNavigationBar
+-(jobsByVoidBlock _Nonnull)makeGKNavigationBarConfig;
+#pragma mark —— 本地推送通知
+-(jobsByVoidBlock _Nonnull)localNotifications;
+#pragma mark —— 网络环境监测
+-(jobsByVoidBlock _Nonnull)makeReachabilityConfig;
+/// 适配各种机型的开屏图片
+-(NSString * _Nullable)imageNameOrURLString;
+/// 适配各种机型的开屏视频
+-(NSString * _Nullable)videoNameOrURLString;
 
 @end
 

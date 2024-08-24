@@ -15,10 +15,10 @@ willConnectToSession:(UISceneSession *)session
     self.windowScene = (UIWindowScene *)scene;
     @jobs_weakify(self)
     [JobsAppTools.sharedManager appDelegateWindowBlock:nil
-                              sceneDelegateWindowBlock:^(id  _Nullable data) {
+                              sceneDelegateWindowBlock:^(id _Nullable data) {
         @jobs_strongify(self);
         self.window = data;
-        [AppDelegate launchFunc1];
+        AppDelegate.launchFunc1();
     }];
 }
 
