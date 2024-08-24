@@ -107,6 +107,7 @@
         _excelData = JobsExcelConfigureViewModel.new;
         _excelData.XZExcelH = [JobsExcelView viewSizeWithModel:nil].height;
         _excelData.XZExcelW = [JobsExcelView viewSizeWithModel:nil].width;
+        _excelData.itemW = JobsWidth(80);
         
         _excelData.topHeaderTitles.add(JobsInternationalization(@"Order Time"));
         _excelData.topHeaderTitles.add(JobsInternationalization(@"Order No."));

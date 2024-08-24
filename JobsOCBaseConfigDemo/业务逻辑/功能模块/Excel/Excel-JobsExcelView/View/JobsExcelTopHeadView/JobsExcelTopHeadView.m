@@ -44,7 +44,6 @@
                       ofObject:(id)object
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
                        context:(void *)context{
-    
     JobsExcelConfigureViewModel *viewModel = (JobsExcelConfigureViewModel *)object;
     if ([keyPath isEqualToString:HorizontalScrollBegin]) {
         self.collectionView.contentOffset = viewModel.HorizontalScrollValue.CGPointValue;
@@ -97,7 +96,7 @@
     if (!_collectionView) {
         _collectionView = [UICollectionView.alloc initWithFrame:self.bounds
                                            collectionViewLayout:self.layout];
-        _collectionView.backgroundColor = JobsWhiteColor;
+        _collectionView.backgroundColor = JobsClearColor;
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;

@@ -9124,6 +9124,20 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   #endif
   ```
 
+#### 41、颜色透明度
+
+* 手动提取颜色的 RGB 分量并创建一个新的颜色对象，这样可以更加灵活地控制颜色的生成过程
+
+  ```objective-c
+  JobsBlackCor(0.5);
+  ```
+
+* 调用 `UIColor` 自带的方法，不改变颜色的 RGB 值，只调整透明度
+
+  ```objective-c
+  JobsBlackColor.colorWithAlphaComponent(0.5f);
+  ```
+
 ### Test  
 
 <details id="Test">

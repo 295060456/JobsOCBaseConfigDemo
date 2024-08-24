@@ -224,15 +224,29 @@
         @jobs_strongify(self)
         // 获取颜色组件
         const CGFloat *components = CGColorGetComponents(self.CGColor);
-        // 提取RGB值
-        CGFloat redCor = components[0];
-        CGFloat greenCor = components[1];
-        CGFloat blueCor = components[2];
+        size_t numberOfComponents = CGColorGetNumberOfComponents(self.CGColor);
+        CGFloat redCor, greenCor, blueCor;
+
+        if (numberOfComponents == 4) {
+            // RGBA颜色空间
+            redCor = components[0];
+            greenCor = components[1];
+            blueCor = components[2];
+        } else if (numberOfComponents == 2) {
+            // 灰度颜色空间
+            redCor = greenCor = blueCor = components[0];
+        } else {
+            // 其他情况（不支持的颜色空间）
+            return nil;
+        }
+
         // 将RGB值转换为十六进制字符串
         JobsCorModel *corModel = JobsCorModel.new;
         corModel.red = (redCor * 255);
         corModel.green = (greenCor * 255);
         corModel.blue = (blueCor * 255);
+        corModel.alpha = CGColorGetAlpha(self.CGColor);
+
         return corModel;
     };
 }

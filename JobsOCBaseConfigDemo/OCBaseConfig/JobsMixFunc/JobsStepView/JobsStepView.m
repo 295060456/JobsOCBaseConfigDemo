@@ -111,7 +111,7 @@
         [self addSubview:btn];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
-            make.height.mas_equalTo([self viewSizeWithModel:nil].height + JobsWidth(10));
+            make.height.mas_equalTo([self viewSizeWithModel:nil].height);
         }];
         [self layoutIfNeeded];
         NSLog(@"");

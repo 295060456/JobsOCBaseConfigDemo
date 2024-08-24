@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)int red;
 @property(nonatomic,assign)int green;
 @property(nonatomic,assign)int blue;
+@property(nonatomic,assign)CGFloat alpha;
 @property(nonatomic,strong)NSString *corStr;/// 十六进制字符串
 
 @end
