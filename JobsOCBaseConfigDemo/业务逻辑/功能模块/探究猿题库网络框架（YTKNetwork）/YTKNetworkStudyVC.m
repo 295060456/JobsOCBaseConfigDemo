@@ -93,9 +93,10 @@
         api.animatingView = self.view;
 
         [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-            NSLog(@"update ui");
-            /// 以下是我们需要的值
-            request.responseObject;
+            JobsResponseModel *responseModel = [JobsResponseModel mj_objectWithKeyValues:request.responseObject];
+            if(responseModel.code == HTTPResponseCodeSuccess){
+                NSLog(@"update ui");
+            }
         } failure:^(YTKBaseRequest *request) {
             NSLog(@"failed");
         }];

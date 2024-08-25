@@ -81,6 +81,7 @@ typedef void(^jobsByViewModelBlock)(UIViewModel *_Nullable data);
 typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(UIViewModel *_Nullable data);
 typedef CGRect(^JobsReturnCGRectByViewModelBlock)(UIViewModel *_Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(UIViewModel *_Nullable data);
+typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByArrBlock)(__kindof NSArray *_Nullable data);
 
 @class ButtonTimerProcessValueModel;
 typedef void(^jobsByButtonTimerProcessValueModelBlock)(ButtonTimerProcessValueModel *_Nullable data);

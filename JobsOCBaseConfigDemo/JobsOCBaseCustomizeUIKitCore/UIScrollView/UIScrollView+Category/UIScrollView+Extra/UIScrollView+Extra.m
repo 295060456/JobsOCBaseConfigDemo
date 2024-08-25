@@ -13,6 +13,17 @@
     return [self judgementScrollDirectionByPoint:self.contentOffset];
 }
 #pragma mark —— 一些公共方法
+-(jobsByVoidBlock)reloadDatas{
+    return ^(){
+        if ([self isKindOfClass:UICollectionView.class]) {
+            UICollectionView *collectionView = (UICollectionView *)self;
+            [collectionView reloadData];
+        }else if ([self isKindOfClass:UITableView.class]){
+            UITableView *tableView = (UITableView *)self;
+            [tableView reloadData];
+        }else{}
+    };
+}
 /// 得到visibleCells
 -(NSArray <UIView *> * _Nullable)scrollViewCells{
     NSArray <UIView *>*cells = nil;

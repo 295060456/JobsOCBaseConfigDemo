@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— BaseURL
 -(NSString *)BaseUrl;
 -(NSString *)BaseUrl_H5;
+-(NSString *)BaseUrl_Image;
 #pragma mark —— App接口示例
 -(URLManagerModel *)appInterfaceTesting;
 #pragma mark —— GoldenF游戏厅

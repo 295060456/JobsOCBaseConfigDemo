@@ -59,6 +59,34 @@ JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_DevEnviron_Cambodia_Mi
     }
 }
 
+-(NSString *)BaseUrl_Image{
+    switch (networkingEnvir) {
+        case JobsNetworkingEnvir_DevEnviron_Cambodia_Main:{
+            /// 柬埔寨（主要）开发环境
+            return @"https://p.bzpicx.com".urlProtect;
+        }break;
+        case JobsNetworkingEnvir_DevEnviron_Cambodia_Minor:{
+            /// 柬埔寨的开发环境(次要)，因为某些代码未合并，柬埔寨的开发环境临时用测试环境替代
+            return @"https://p.bzpicx.com".urlProtect;
+        }break;
+        case JobsNetworkingEnvir_DevEnviron_China_Mainland:{
+            /// 中国大陆开发环境
+            return @"https://p.bzpicx.com".urlProtect;
+        }break;
+        case JobsNetworkingEnvir_TestEnviron:{
+            /// 测试环境
+            return @"https://p.bzpicx.com".urlProtect;
+        }break;
+        case JobsNetworkingEnvir_ProductEnviron:{
+            /// 生产环境
+            return @"https://p.bzpicx.com".urlProtect;
+        }break;
+        default:
+            return @"https://p.bzpicx.com".urlProtect;
+            break;
+    }
+}
+
 -(NSString *)BaseUrl_H5{
     switch (networkingEnvir) {
         case JobsNetworkingEnvir_DevEnviron_Cambodia_Main:{

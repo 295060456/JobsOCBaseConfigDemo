@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 在 UIScrollViewDelegate协议方法 -(void)scrollViewDidScroll:(UIScrollView *)scrollView里进行调用
 -(ScrollDirection)scrolldirectionWhenScrollViewDidScroll;
 #pragma mark —— 一些公共方法
+-(jobsByVoidBlock)reloadDatas;
 /// 得到visibleCells
 -(NSArray <UIView *> * _Nullable)scrollViewCells;
 /// 依据index得到cell

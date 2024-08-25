@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)RACSignal *reqSignal;
 @property(nonatomic,strong,nullable)id data;/// 绑定的数据源，数据类型id
 @property(nonatomic,strong,nullable)id requestParams;/// 绑定的数据源，数据类型id
+@property(nonatomic,strong)NSURL *url;
 @property(nonatomic,strong,nullable)UIViewModel *viewModel;
 #pragma mark —— 定位
 @property(nonatomic,assign)NSUInteger jobsTag;
@@ -77,6 +78,7 @@ NS_ASSUME_NONNULL_END
 @synthesize reqSignal = _reqSignal;\
 @synthesize data = _data;\
 @synthesize requestParams = _requestParams;\
+@synthesize url = _url;\
 @synthesize viewModel = _viewModel;\
 @synthesize jobsTag = _jobsTag;\
 @synthesize jobsSelected = _jobsSelected;\
@@ -108,6 +110,7 @@ NS_ASSUME_NONNULL_END
 @dynamic reqSignal;\
 @dynamic data;\
 @dynamic requestParams;\
+@dynamic url;\
 @dynamic viewModel;\
 @dynamic jobsTag;\
 @dynamic jobsSelected;\
