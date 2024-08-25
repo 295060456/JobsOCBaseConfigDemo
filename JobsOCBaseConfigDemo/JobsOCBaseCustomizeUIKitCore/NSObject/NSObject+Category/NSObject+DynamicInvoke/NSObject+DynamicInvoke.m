@@ -182,7 +182,7 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock block,
         methodCache = NSMutableDictionary.dictionary;
     });
     /// 动态注册方法：对方法名进行拼接（加盐），以防止和当下的其他方法名引起冲突
-    NSString *selName = [NSString stringWithFormat:@"selector_%@_%@",NSObject.currentUnixTimestampString,selectorName];
+    NSString *selName = @"selector".add(@"_").add(NSObject.currentUnixTimestampString).add(@"_").add(selectorName);
     NSLog(@"selName = %@",selName);
     SEL sel = NSSelectorFromString(selName);
     /// 检查缓存中是否已经存在该选择器

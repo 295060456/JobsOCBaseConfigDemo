@@ -294,13 +294,12 @@
         self.numberOfTouchesRequired = 1;
         self.allowableMovement = 1;
         self.target = weak_self;/// ⚠️注意：任何手势这一句都要写
+        NSLog(@"%@",NSStringFromSelector(self.longPressGR_SelImp.selector));
         if (!NSStringFromSelector(self.longPressGR_SelImp.selector)) {
-            self.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
-                                                                                     UILongPressGestureRecognizer *  _Nullable arg) {
-                if(longPressGestureEventBlock) longPressGestureEventBlock(weakSelf,arg);
-                return nil;
-            }];
-        }self.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+            self.longPressGR_SelImp.selector = [self jobsSelectorBlock:longPressGestureEventBlock];
+        }
+        NSLog(@"%@",NSStringFromSelector(self.longPressGR_SelImp.selector));
+        self.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
     }
 }
 /// 方法名字符串（带参数、参数之间用"："隔开）、作用对象、参数

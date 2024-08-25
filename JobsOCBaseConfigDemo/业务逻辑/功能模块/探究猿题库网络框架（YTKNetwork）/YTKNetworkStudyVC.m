@@ -133,14 +133,15 @@
 }
 /// 多请求の链式请求。链式请求的结果集体现在<YTKChainRequestDelegate>
 -(jobsByVoidBlock)sendChainRequest{
+    @jobs_weakify(self)
     return ^(){
+        @jobs_strongify(self)
         RegisterApi *reg = [RegisterApi.alloc initWithParameters:nil];
         YTKChainRequest *chainReq = YTKChainRequest.new;
-        @jobs_weakify(self)
         [chainReq addRequest:reg
                     callback:^(YTKChainRequest *chainRequest,
                                YTKBaseRequest *baseRequest) {
-            @jobs_strongify(self)
+            
             RegisterApi *result = (RegisterApi *)baseRequest;
             /// 在链式请求中，下一个请求的参数来源于上一个请求的结果
             GetUserInfoApi *api = [GetUserInfoApi.alloc initWithParameters:@{@"KKK":result.userId}];

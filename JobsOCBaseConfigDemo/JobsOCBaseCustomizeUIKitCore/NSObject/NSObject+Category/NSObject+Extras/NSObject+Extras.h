@@ -279,7 +279,8 @@ BaseProtocol
 /// 依据View上铆定的internationalizationKEY来全局更改文字以适配国际化
 -(void)languageSwitch;
 /// 打印请求体
--(jobsByURLSessionDataTaskBlock _Nonnull)printRequestMessage;
+-(jobsByURLSessionDataTaskBlock _Nonnull)printURLSessionRequestMessage;
+-(jobsByURLRequestBlock _Nonnull)printRequestMessage;
 /// 判断是否是此版本App的首次启动
 -(BOOL)isAppFirstLaunch;
 /// 判断是否是App今日的首次启动

@@ -655,23 +655,33 @@
     }
 }
 /// 打印请求体
--(jobsByURLSessionDataTaskBlock _Nonnull)printRequestMessage{
-    return ^(NSURLSessionDataTask __kindof * _Nullable task) {
+-(jobsByURLSessionDataTaskBlock _Nonnull)printURLSessionRequestMessage{
+    return ^(__kindof NSURLSessionDataTask *_Nullable task) {
         if (task) {
-            // 请求URL
-            NSLog(@"请求URL:%@\n",task.originalRequest.URL);
-            // 请求方式
-            NSLog(@"请求方式:%@\n",task.originalRequest.HTTPMethod);
-            // 请求头信息
-            NSLog(@"请求头信息:%@\n",task.originalRequest.allHTTPHeaderFields);
-            // 请求正文信息
-            NSLog(@"请求正文信息:%@\n",[NSString.alloc initWithData:task.originalRequest.HTTPBody encoding:NSUTF8StringEncoding]);
-            //    // 请求响应时间
-            //    NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:NSDate.date];
-            //    NSLog(@"请求响应时间:%@\n",@(time));
-            //    NSLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",task.originalRequest.URL,task.originalRequest.HTTPMethod,task.originalRequest.allHTTPHeaderFields,[[NSString alloc] initWithData:task.originalRequest.HTTPBody encoding:NSUTF8StringEncoding],@(time));
+            self.printRequestMessage(task.originalRequest);
         }else{
             NSLog(@"NSURLSessionDataTask *task 为空,请检查");
+        }
+    };
+}
+
+-(jobsByURLRequestBlock _Nonnull)printRequestMessage{
+    return ^(__kindof NSURLRequest *_Nullable data) {
+        if (data) {
+            // 请求URL
+            NSLog(@"请求URL:%@\n",data.URL);
+            // 请求方式
+            NSLog(@"请求方式:%@\n",data.HTTPMethod);
+            // 请求头信息
+            NSLog(@"请求头信息:%@\n",data.allHTTPHeaderFields);
+            // 请求正文信息
+            NSLog(@"请求正文信息:%@\n",[NSString.alloc initWithData:data.HTTPBody encoding:NSUTF8StringEncoding]);
+            // 请求响应时间
+            NSTimeInterval time = [NSDate.date timeIntervalSinceDate:NSDate.date];
+            NSLog(@"请求响应时间:%@\n",@(time));
+            NSLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",data.URL,data.HTTPMethod,data.allHTTPHeaderFields,[NSString.alloc initWithData:data.HTTPBody encoding:NSUTF8StringEncoding],@(time));
+        }else{
+            NSLog(@"NSURLRequest *data 为空,请检查");
         }
     };
 }

@@ -198,10 +198,10 @@ typedef NS_ENUM(NSUInteger, MKRightBtnViewBtnType) {
 #ifndef MOVE_DIRECTION_ENUM_DEFINED
 #define MOVE_DIRECTION_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, MoveDirection){
-    MoveDirection_vertical_up = 0, // 垂直方向(向上)滑动
-    MoveDirection_vertical_down,   // 垂直方向(向下)滑动
-    MoveDirection_horizont_left,   // 水平方向(向左)滑动
-    MoveDirection_horizont_right   // 水平方向(向右)滑动
+    MoveDirection_vertical_up = 0, /// 垂直方向(向上)滑动
+    MoveDirection_vertical_down,   /// 垂直方向(向下)滑动
+    MoveDirection_horizont_left,   /// 水平方向(向左)滑动
+    MoveDirection_horizont_right   /// 水平方向(向右)滑动
 };
 #endif /* MOVE_DIRECTION_ENUM_DEFINED */
 

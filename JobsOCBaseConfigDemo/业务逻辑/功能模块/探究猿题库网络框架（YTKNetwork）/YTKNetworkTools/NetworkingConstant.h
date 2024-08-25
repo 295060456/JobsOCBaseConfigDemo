@@ -8,45 +8,37 @@
 #ifndef NetworkingConstant_h
 #define NetworkingConstant_h
 /// BaseURL
-#ifndef SERVER_URL_DEFINED
-#define SERVER_URL_DEFINED
-#define server_URL NSObject.BaseUrl
+#ifndef SERVER_URL
+#define SERVER_URL NSObject.BaseUrl
 #endif /* SERVER_URL_DEFINED */
 /// 服务器相关
-#ifndef HTTP_REQUEST_TOKEN_KEY_DEFINED
-#define HTTP_REQUEST_TOKEN_KEY_DEFINED
+#ifndef HTTPRequestTokenKey
 #define HTTPRequestTokenKey @"token"
-#endif /* HTTP_REQUEST_TOKEN_KEY_DEFINED */
+#endif /* HTTPRequestTokenKey */
 /// 签名key
-#ifndef HTTP_SERVICE_SIGN_KEY_DEFINED
-#define HTTP_SERVICE_SIGN_KEY_DEFINED
+#ifndef HTTPServiceSignKey
 #define HTTPServiceSignKey @"sign"
-#endif /* HTTP_SERVICE_SIGN_KEY_DEFINED */
+#endif /* HTTPServiceSignKey */
 /// 私钥key
-#ifndef HTTP_SERVICE_KEY_DEFINED
-#define HTTP_SERVICE_KEY_DEFINED
+#ifndef HTTPServiceKey
 #define HTTPServiceKey @"privatekey"
-#endif /* HTTP_SERVICE_KEY_DEFINED */
+#endif /* HTTPServiceKey */
 /// 私钥Value
-#ifndef HTTP_SERVICE_KEY_VALUE_DEFINED
-#define HTTP_SERVICE_KEY_VALUE_DEFINED
+#ifndef HTTPServiceKeyValue
 #define HTTPServiceKeyValue @"/** 你的私钥 **/"
-#endif /* HTTP_SERVICE_KEY_VALUE_DEFINED */
+#endif /* HTTPServiceKeyValue */
 /// 状态码key
-#ifndef HTTP_SERVICE_RESPONSE_CODE_KEY_DEFINED
-#define HTTP_SERVICE_RESPONSE_CODE_KEY_DEFINED
+#ifndef HTTPServiceResponseCodeKey
 #define HTTPServiceResponseCodeKey @"code"
-#endif /* HTTP_SERVICE_RESPONSE_CODE_KEY_DEFINED */
+#endif /* HTTPServiceResponseCodeKey */
 /// 消息key
-#ifndef HTTP_SERVICE_RESPONSE_MSG_KEY_DEFINED
-#define HTTP_SERVICE_RESPONSE_MSG_KEY_DEFINED
+#ifndef HTTPServiceResponseMsgKey
 #define HTTPServiceResponseMsgKey @"msg"
-#endif /* HTTP_SERVICE_RESPONSE_MSG_KEY_DEFINED */
+#endif /* HTTPServiceResponseMsgKey */
 /// 数据data
-#ifndef HTTP_SERVICE_RESPONSE_DATA_KEY_DEFINED
-#define HTTP_SERVICE_RESPONSE_DATA_KEY_DEFINED
+#ifndef HTTPServiceResponseDataKey
 #define HTTPServiceResponseDataKey @"data"
-#endif /* HTTP_SERVICE_RESPONSE_DATA_KEY_DEFINED */
+#endif /* HTTPServiceResponseDataKey */
 /**
  后台定义：
  

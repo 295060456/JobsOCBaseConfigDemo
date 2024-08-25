@@ -31,6 +31,7 @@ typedef void(^jobsByViewAndAnimatedBlock)(__kindof UIView *_Nullable view,BOOL a
 typedef void(^jobsByView2Block)(__kindof UIView *_Nullable superview,UIView *_Nullable view);
 typedef void(^jobsByTableViewCellBlock)(__kindof UITableViewCell *_Nullable data);
 typedef void(^jobsByURLSessionDataTaskBlock)(__kindof NSURLSessionDataTask *_Nullable data);
+typedef void(^jobsByURLRequestBlock)(__kindof NSURLRequest *_Nullable data);
 typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
 /// 关于手势
 typedef void(^jobsByGestureRecognizerBlock)(__kindof UIGestureRecognizer *_Nullable data);

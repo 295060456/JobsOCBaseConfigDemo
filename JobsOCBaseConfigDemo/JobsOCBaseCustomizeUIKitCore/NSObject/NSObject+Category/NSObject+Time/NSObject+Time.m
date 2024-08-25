@@ -7,18 +7,16 @@
 //
 
 #import "NSObject+Time.h"
-
 NSString *const App当日首次进入 = @"App当日首次进入";
-
 @implementation NSObject (Time)
 #pragma mark —— 时间戳
 /// 返回的是一串字符串数字
-+(NSString *)currentUnixTimestampString{
+-(NSString *)currentUnixTimestampString{
     NSTimeInterval timestamp = NSDate.date.timeIntervalSince1970;/// 获取 Unix 时间戳 ：1970 到 当前日期和时间
-    return [NSString stringWithFormat:@"%f", timestamp];/// 将时间戳转换为字符串
+    return toStringByFloat(timestamp);/// 将时间戳转换为字符串
 }
 /// 返回带时间格式的时间
-+(NSString *)currentTimestampString{
+-(NSString *)currentTimestampString{
     return [self.dateFormatter stringFromDate:NSDate.date];
 }
 #pragma mark —— 时间格式转换
@@ -530,22 +528,19 @@ NSString *const App当日首次进入 = @"App当日首次进入";
     
     if ([NSString isNullString:timeFormatter]) {
         formatter.dateFormat = @"YYYY-MM-dd HH";
-    }else{
-        formatter.dateFormat = timeFormatter;
-    }
+    }else formatter.dateFormat = timeFormatter;
 
     NSDateComponents *components = [calender components:NSCalendarUnitYear|
                                                        NSCalendarUnitMonth|
                                                          NSCalendarUnitDay|
                                                         NSCalendarUnitHour
                                                fromDate:minDate];
-    NSInteger thisYear = components.year;
-    NSInteger thisMonth = components.month;
-    NSInteger thisDay = components.day;
-    NSInteger thisHour = components.hour;
-    NSString *DateTime = [NSString stringWithFormat:@"%ld-%ld-%ld-%ld",(long)thisYear,(long)thisMonth,(long)thisDay,(long)thisHour];
-    NSArray *array = [DateTime componentsSeparatedByString:@"-"];
-    return array;
+    NSMutableArray *arr = NSMutableArray.array;
+    arr.add(toStringByLong(components.year));
+    arr.add(toStringByLong(components.month));
+    arr.add(toStringByLong(components.day));
+    arr.add(toStringByLong(components.hour));
+    return arr;
 }
 /// 判断是否当日第一次启动App
 -(BOOL)isFirstLaunchApp{
