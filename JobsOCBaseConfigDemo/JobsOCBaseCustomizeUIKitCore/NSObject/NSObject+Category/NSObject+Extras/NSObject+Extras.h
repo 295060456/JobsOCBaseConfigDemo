@@ -479,34 +479,32 @@ BaseProtocol
  
  接受通知：
 @jobs_weakify(self)
-[NSNotificationCenter.defaultCenter addObserver:self
-                                    selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
-                                                                          id  _Nullable arg) {
- NSNotification *notification = (NSNotification *)arg;
- if([notification.object isKindOfClass:NSNumber.class]){
-     NSNumber *b = notification.object;
-     NSLog(@"SSS = %d",b.boolValue);
- }
- @jobs_strongify(self)
- NSLog(@"通知传递过来的 = %@",notification.object);
- return nil;
-}, nil, self)
-                                        name:JobsLanguageSwitchNotification
-                                      object:nil];
- 或者：
- @jobs_weakify(self)
- JobsAddNotification(self,
-                 selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                           id _Nullable arg){
+ [NSNotificationCenter.defaultCenter addObserver:self
+                                        selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                    id _Nullable arg) {
      NSNotification *notification = (NSNotification *)arg;
      if([notification.object isKindOfClass:NSNumber.class]){
          NSNumber *b = notification.object;
          NSLog(@"SSS = %d",b.boolValue);
      }
-     @jobs_strongify(self)
      NSLog(@"通知传递过来的 = %@",notification.object);
      return nil;
- },nil, self),JobsLanguageSwitchNotification,nil);
+ } selectorName:nil target:self]
+                                            name:JobsLanguageSwitchNotification
+                                          object:nil];
+ 或者：
+ @jobs_weakify(self)
+ JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                             id _Nullable arg) {
+     NSNotification *notification = (NSNotification *)arg;
+     if([notification.object isKindOfClass:NSNumber.class]){
+         NSNumber *b = notification.object;
+         NSLog(@"SSS = %d",b.boolValue);
+     }
+     NSLog(@"通知传递过来的 = %@",notification.object);
+     return nil;
+ } selectorName:nil target:self],JobsLanguageSwitchNotification,nil);
+};
  ======================================================================================
  发通知：
  [NSNotificationCenter.defaultCenter postNotificationName:JobsLanguageSwitchNotification object:@(NO)];

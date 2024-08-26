@@ -30,19 +30,19 @@ UILocationProtocol_UIViewModelSynthesize
             self.target = self;
             self.userInteractionEnabled = YES;
             @jobs_weakify(self)
-            self.longPressGR_SelImp.selector = selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                            UILongPressGestureRecognizer *_Nullable arg) {
+            self.longPressGR_SelImp.selector = [self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                  id _Nullable arg) {
                 @jobs_strongify(self)
                 if (self.returnObjectByGestureRecognizerBlock) self.returnObjectByGestureRecognizerBlock(arg);
                 return nil;
-            }, nil, self) ;
+            } selectorName:nil target:self];
         
-            self.tapGR_SelImp.selector = selectorBlocks(^id _Nullable(id _Nullable target,
-                                                                      UITapGestureRecognizer *_Nullable arg) {
+            self.tapGR_SelImp.selector = [self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                            id _Nullable arg) {
                 @jobs_strongify(self)
                 if (self.returnObjectByGestureRecognizerBlock) self.returnObjectByGestureRecognizerBlock(arg);
                 return nil;
-            },nil, self);
+            } selectorName:nil target:self];
         }
     }return self;
 }
@@ -60,13 +60,13 @@ UILocationProtocol_UIViewModelSynthesize
     UIMenuController *menu = UIMenuController.sharedMenuController;
     @jobs_weakify(self)
     UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:JobsInternationalization(@"请复制")
-                                                    action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                                        id _Nullable arg) {
+                                                    action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                              id _Nullable arg) {
         @jobs_strongify(self)
         if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
         [self copyText:text];
         return nil;
-    }, NSStringFromSelector(@selector(copyText:)),self)];
+    } selectorName:NSStringFromSelector(@selector(copyText:)) target:self]];
     
     [menu setMenuItems:@[copyItem]];
     [menu update];

@@ -23,15 +23,14 @@ SceneDelegate *sceneDelegate;
     if (self = [super init]) {
         sceneDelegate = self;
         @jobs_weakify(self)
-        JobsAddNotification(self,
-                        selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                  id _Nullable arg){
+        JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
             NSNotification *notification = (NSNotification *)arg;
             @jobs_strongify(self)
             NSLog(@"通知传递过来的 = %@",notification.object);
             self.windowScene = notification.object;
             return nil;
-        },nil, self),UISceneWillConnectNotification,nil);
+        } selectorName:nil target:self],UISceneWillConnectNotification,nil);
     }return self;
 }
 #pragma mark —— lazyLoad

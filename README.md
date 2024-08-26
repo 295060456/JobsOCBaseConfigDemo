@@ -3322,10 +3322,11 @@ NSObject <|-- BaseProtocol
 
    ```objective-c
  typedef id _Nullable(^JobsReturnIDBySelectorBlock)(id _Nullable weakSelf, id _Nullable arg);
- /// 用block来代替selector
- -(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock{
-    return selectorBlocks(selectorBlock,nil,self);
- }
+-(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock{
+    return [self selectorBlocks:selectorBlock
+                   selectorName:nil
+                         target:self];
+}
    ```
 
    ```objective-c
@@ -3334,17 +3335,29 @@ NSObject <|-- BaseProtocol
    ///   - block: 最终的执行体
    ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
    ///   - target: 执行目标
-   SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock block,
-                                NSString *_Nullable selectorName,
-                                id _Nullable target){
+   -(SEL _Nullable)selectorBlocks:(JobsReturnIDBySelectorBlock)block
+                     selectorName:(NSString *_Nullable)selectorName
+                           target:(id _Nullable)target{
        if (!block) {
            toastErr(JobsInternationalization(@"方法不存在,请检查参数"));
            /// 【经常崩溃损伤硬件】 [NSException raise:JobsInternationalization(@"block can not be nil") format:@"%@ selectorBlock error", target];
        }
        /// 动态注册方法：对方法名进行拼接（加盐），以防止和当下的其他方法名引起冲突
-       NSString *selName = [NSString stringWithFormat:@"selector_%d_%@",random100__200(),selectorName];
-       NSLog(@"selName = %@",selName);
+       NSString *selName = @"selector".add(@"_")
+           .add(self.currentTimestampString)
+           .add(@"_")
+           .add(toStringByInt(random100__200()))
+           .add(@"_")
+           .add(selectorName);
+       
+       NSLog(@"selName = %@",selName);//selector_2024-08-26 16:34:32_196_
        SEL sel = NSSelectorFromString(selName);
+       /// 检查缓存中是否已经存在该选择器
+       NSValue *cachedSelValue = self.methodCache[selName];
+       if (cachedSelValue) {
+           sel = cachedSelValue.pointerValue;
+           return sel;
+       }
        /**
         方法签名由方法名称和一个参数列表（方法的参数的顺序和类型）组成
         注意：方法签名不包括方法的返回类型。不包括返回值和访问修饰符
@@ -3353,19 +3366,22 @@ NSObject <|-- BaseProtocol
         第三个参数是所添加方法的函数实现的指针IMP
         第四个参数是所添加方法的签名
         */
-       NSLog(@"%@",[NSString stringWithFormat:@"%d",random100__200()]);
        if(class_getInstanceMethod([target class], sel)){
            NSLog(@"方法曾经已经被成功添加，再次添加会崩溃");
+           return sel;
+   //        abort();
        }else{
            /// class_addMethod这个方法的实现会覆盖父类的方法实现，但不会取代本类中已存在的实现，如果本类中包含一个同名的实现，则函数会返回NO
            if (class_addMethod([target class],
                                sel,
                                (IMP)selectorImp,
-                               "111")) {
+                               "v@:@")) {
                objc_setAssociatedObject(target,
                                         sel,
                                         block,
                                         OBJC_ASSOCIATION_COPY_NONATOMIC);
+               // 缓存该选择器
+               self.methodCache[selName] = [NSValue valueWithPointer:sel];
            }else{
                [NSException raise:JobsInternationalization(@"添加方法失败")
                            format:@"%@ selectorBlock error", target];
@@ -3403,38 +3419,35 @@ NSObject <|-- BaseProtocol
 
   ```objective-c
   @jobs_weakify(self)
-  [NSNotificationCenter.defaultCenter addObserver:self
-                                        selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
-                                                                              id  _Nullable arg) {
-     NSNotification *notification = (NSNotification *)arg;
-     if([notification.object isKindOfClass:NSNumber.class]){
-         NSNumber *b = notification.object;
-         NSLog(@"SSS = %d",b.boolValue);
-     }
-     @jobs_strongify(self)
-     NSLog(@"通知传递过来的 = %@",notification.object);
-     return nil;
-  }, nil, self)
-                                            name:JobsLanguageSwitchNotification
-                                          object:nil];
+   [NSNotificationCenter.defaultCenter addObserver:self
+                                          selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                      id _Nullable arg) {
+       NSNotification *notification = (NSNotification *)arg;
+       if([notification.object isKindOfClass:NSNumber.class]){
+           NSNumber *b = notification.object;
+           NSLog(@"SSS = %d",b.boolValue);
+       }
+       NSLog(@"通知传递过来的 = %@",notification.object);
+       return nil;
+   } selectorName:nil target:self]
+                                              name:JobsLanguageSwitchNotification
+                                            object:nil];
   ```
-
+  
   ```objective-c
   @jobs_weakify(self)
-  JobsAddNotification(self,
-                  selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                            id _Nullable arg){
+  JobsAddNotification(targetView,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
       NSNotification *notification = (NSNotification *)arg;
       if([notification.object isKindOfClass:NSNumber.class]){
           NSNumber *b = notification.object;
           NSLog(@"SSS = %d",b.boolValue);
       }
-      @jobs_strongify(self)
       NSLog(@"通知传递过来的 = %@",notification.object);
       return nil;
-  },nil, self),JobsLanguageSwitchNotification,nil);
+  } selectorName:nil target:self],JobsLanguageSwitchNotification,nil);
   ```
-
+  
 * 发通知：
 
   ```objective-c
@@ -3978,15 +3991,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 关注实现类：[**`@implementation NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
 
   ```objective-c
-  /// 加入键盘通知的监听者
   -(void)keyboard{
       @jobs_weakify(self)
       /// 键盘的弹出
-      JobsAddNotification(self,
-                      selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                id _Nullable arg){
-          NSNotification *notification = (NSNotification *)arg;
+      JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                  id _Nullable arg) {
           @jobs_strongify(self)
+          NSNotification *notification = (NSNotification *)arg;
           NSLog(@"通知传递过来的 = %@",notification.object);
           NSNotificationKeyboardModel *notificationKeyboardModel = NSNotificationKeyboardModel.new;
           notificationKeyboardModel.userInfo = notification.userInfo;
@@ -4005,16 +4016,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           }else{
               NSLog(@"键盘");
           }return nil;
-      },nil, self),UIKeyboardWillChangeFrameNotification,nil);
+      } selectorName:nil target:self],UIKeyboardWillChangeFrameNotification,nil);
       /// 键盘的回收
-      JobsAddNotification(self,
-                      selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                id _Nullable arg){
+      JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                  id _Nullable arg) {
           NSNotification *notification = (NSNotification *)arg;
-          @jobs_strongify(self)
           NSLog(@"通知传递过来的 = %@",notification.object);
           return nil;
-      },nil, self),UIKeyboardDidChangeFrameNotification,nil);
+      } selectorName:nil target:self],UIKeyboardDidChangeFrameNotification,nil);
   }
   ```
 
@@ -5180,8 +5189,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```objective-c
   [self layoutIfNeeded];
   @jobs_weakify(self)
-  [_collectionView xzm_addNormalHeaderWithTarget:self
-                                          action:selectorBlocks(^id(id target, id arg) {
+  [_collectionView xzm_addNormalHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                id _Nullable arg) {
       NSLog(@"KKK加载新的数据，参数: %@", arg);
       // 模拟延迟加载数据，因此2秒后才调用）
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
@@ -5190,10 +5199,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           [self->_collectionView reloadData];
           [self->_collectionView.xzm_header endRefreshing];// 结束刷新
       });return nil;
-  }, nil, self)];
+  } selectorName:nil target:self]];
   
-  [_collectionView xzm_addNormalFooterWithTarget:self
-                                          action:selectorBlocks(^id(id target, id arg) {
+  [_collectionView xzm_addNormalFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                id _Nullable arg) {
       NSLog(@"SSSS加载新的数据，参数: %@", arg);
       @jobs_strongify(self)
       // 模拟延迟加载数据，因此2秒后才调用）
@@ -5203,7 +5212,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           [self->_collectionView reloadData];
           [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
       });return nil;
-  }, nil, self)];
+  } selectorName:nil target:self]];
   
   [_collectionView.xzm_header beginRefreshing];
   ```
@@ -5892,29 +5901,31 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   [self layoutIfNeeded];
   @jobs_weakify(self)
   [_tableView xzm_addNormalHeaderWithTarget:self
-                                          action:selectorBlocks(^id(id target, id arg) {
+                                     action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                               id _Nullable arg) {
       NSLog(@"KKK加载新的数据，参数: %@", arg);
       // 模拟延迟加载数据，因此2秒后才调用）
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
-                     dispatch_get_main_queue(), ^{
-          @jobs_strongify(self)
-          [self->_tableView reloadData];
-          [self->_tableView.xzm_header endRefreshing];// 结束刷新
-      });return nil;
-  }, nil, self)];
+  			dispatch_get_main_queue(), ^{
+        @jobs_strongify(self)
+        [self->_tableView reloadData];
+        [self->_tableView.xzm_header endRefreshing];// 结束刷新
+        });return nil;
+  } selectorName:nil target:self]];
   
   [_tableView xzm_addNormalFooterWithTarget:self
-                                          action:selectorBlocks(^id(id target, id arg) {
+  																	 action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                               id _Nullable arg) {
       NSLog(@"SSSS加载新的数据，参数: %@", arg);
       @jobs_strongify(self)
       // 模拟延迟加载数据，因此2秒后才调用）
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
-                     dispatch_get_main_queue(), ^{
-          @jobs_strongify(self)
-          [self->_tableView reloadData];
-          [self->_tableView.xzm_footer endRefreshing];// 结束刷新
-      });return nil;
-  }, nil, self)];
+  			dispatch_get_main_queue(), ^{
+        @jobs_strongify(self)
+        [self->_tableView reloadData];
+        [self->_tableView.xzm_footer endRefreshing];// 结束刷新
+        });return nil;
+  } selectorName:nil target:self]];
   
   [_tableView.xzm_header beginRefreshing];
   ```
@@ -6054,8 +6065,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
            }
          
          	{
-               [_tableView xzm_addNormalHeaderWithTarget:self
-                                                       action:selectorBlocks(^id(id target, id arg) {
+                [_tableView xzm_addNormalHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                         id _Nullable arg) {
                    NSLog(@"KKK加载新的数据，参数: %@", arg);
                    // 模拟延迟加载数据，因此2秒后才调用）
                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
@@ -6064,10 +6075,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                        [self->_tableView reloadData];
                        [self->_tableView.xzm_header endRefreshing];// 结束刷新
                    });return nil;
-               }, nil, self)];
+               } selectorName:nil target:self]];
    
-               [_tableView xzm_addNormalFooterWithTarget:self
-                                                       action:selectorBlocks(^id(id target, id arg) {
+               [_tableView xzm_addNormalFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                        id _Nullable arg) {
                    NSLog(@"SSSS加载新的数据，参数: %@", arg);
                    @jobs_strongify(self)
                    // 模拟延迟加载数据，因此2秒后才调用）
@@ -6077,7 +6088,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                        [self->_tableView reloadData];
                        [self->_tableView.xzm_footer endRefreshing];// 结束刷新
                    });return nil;
-               }, nil, self)];
+               } selectorName:nil target:self]];
    
                [_tableView.xzm_header beginRefreshing];
            }
@@ -8015,8 +8026,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```objective-c
     -(void)example01{
         @jobs_weakify(self)
-        [_collectionView xzm_addNormalHeaderWithTarget:self
-                                                action:selectorBlocks(^id(id target, id arg) {
+        [_collectionView xzm_addNormalHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                      id _Nullable arg) {
             NSLog(@"KKK加载新的数据，参数: %@", arg);
             // 模拟延迟加载数据，因此2秒后才调用）
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
@@ -8025,10 +8036,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 [self->_collectionView reloadData];
                 [self->_collectionView.xzm_header endRefreshing];// 结束刷新
             });return nil;
-        }, nil, self)];
+        } selectorName:nil target:self]];
     
-        [_collectionView xzm_addNormalFooterWithTarget:self
-                                                action:selectorBlocks(^id(id target, id arg) {
+        [_collectionView xzm_addNormalFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                      id _Nullable arg) {
             NSLog(@"SSSS加载新的数据，参数: %@", arg);
             @jobs_strongify(self)
             // 模拟延迟加载数据，因此2秒后才调用）
@@ -8038,7 +8049,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 [self->_collectionView reloadData];
                 [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
             });return nil;
-        }, nil, self)];
+        } selectorName:nil target:self]];
     
         [_collectionView.xzm_header beginRefreshing];
     }
@@ -8050,8 +8061,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     #pragma mark 
     -(void)example02{
         @jobs_weakify(self)
-        [_collectionView xzm_addNormalHeaderWithTarget:self
-                                                action:selectorBlocks(^id(id target, id arg) {
+        [_collectionView xzm_addNormalHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                      id _Nullable arg) {
             NSLog(@"KKK加载新的数据，参数: %@", arg);
             // 模拟延迟加载数据，因此2秒后才调用）
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
@@ -8060,10 +8071,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 [self->_collectionView reloadData];
                 [self->_collectionView.xzm_header endRefreshing];// 结束刷新
             });return nil;
-        }, nil, self)];
+        } selectorName:nil target:self]];
     
-        [_collectionView xzm_addNormalFooterWithTarget:self
-                                                action:selectorBlocks(^id(id target, id arg) {
+        [_collectionView xzm_addNormalFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                      id _Nullable arg) {
             NSLog(@"SSSS加载新的数据，参数: %@", arg);
             @jobs_strongify(self)
             // 模拟延迟加载数据，因此2秒后才调用）
@@ -8073,7 +8084,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 [self->_collectionView reloadData];
                 [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
             });return nil;
-        }, nil, self)];
+        } selectorName:nil target:self]];
     
         // 隐藏时间
         _collectionView.xzm_header.updatedTimeHidden = YES;
@@ -8085,9 +8096,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
     ```objective-c
     -(void)example03{
-        @jobs_weakify(self)
-        [_collectionView xzm_addGifHeaderWithTarget:self
-                                             action:selectorBlocks(^id(id target, id arg) {
+        @jobs_weakify(self)  
+        [_collectionView xzm_addGifHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                   id _Nullable arg) {
             NSLog(@"KKK加载新的数据，参数: %@", arg);
             // 模拟延迟加载数据，因此2秒后才调用）
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
@@ -8096,10 +8107,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 [self->_collectionView reloadData];
                 [self->_collectionView.xzm_header endRefreshing];// 结束刷新
             });return nil;
-        }, nil, self)];
+        } selectorName:nil target:self]];
     
-        [_collectionView xzm_addGifFooterWithTarget:self
-                                             action:selectorBlocks(^id(id target, id arg) {
+        [_collectionView xzm_addGifFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                   id _Nullable arg) {
             NSLog(@"SSSS加载新的数据，参数: %@", arg);
             @jobs_strongify(self)
             // 模拟延迟加载数据，因此2秒后才调用）
@@ -8109,7 +8120,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 [self->_collectionView reloadData];
                 [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
             });return nil;
-        }, nil, self)];
+        } selectorName:nil target:self]];
     
         // 设置普通状态的动画图片
         NSMutableArray *idleImages = NSMutableArray.array;
@@ -8137,8 +8148,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```objective-c
     -(void)example04{
         @jobs_weakify(self)
-        [_collectionView xzm_addGifHeaderWithTarget:self
-                                             action:selectorBlocks(^id(id target, id arg) {
+        [_collectionView xzm_addGifHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                   id _Nullable arg) {
             NSLog(@"KKK加载新的数据，参数: %@", arg);
             // 模拟延迟加载数据，因此2秒后才调用）
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
@@ -8147,10 +8158,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 [self->_collectionView reloadData];
                 [self->_collectionView.xzm_header endRefreshing];// 结束刷新
             });return nil;
-        }, nil, self)];
+        } selectorName:nil target:self]];
     
-        [_collectionView xzm_addGifFooterWithTarget:self
-                                             action:selectorBlocks(^id(id target, id arg) {
+        [_collectionView xzm_addGifFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                   id _Nullable arg) {
             NSLog(@"SSSS加载新的数据，参数: %@", arg);
             @jobs_strongify(self)
             // 模拟延迟加载数据，因此2秒后才调用）
@@ -8160,7 +8171,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 [self->_collectionView reloadData];
                 [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
             });return nil;
-        }, nil, self)];
+        } selectorName:nil target:self]];
         // 隐藏时间
         _collectionView.xzm_gifHeader.updatedTimeHidden = YES;
         // 隐藏状态
@@ -8192,8 +8203,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```objective-c
     -(void)example05{
         @jobs_weakify(self)
-        [_collectionView xzm_addNormalHeaderWithTarget:self
-                                                action:selectorBlocks(^id(id target, id arg) {
+        [_collectionView xzm_addNormalHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                      id _Nullable arg) {
             NSLog(@"KKK加载新的数据，参数: %@", arg);
             // 模拟延迟加载数据，因此2秒后才调用）
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
@@ -8202,10 +8213,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 [self->_collectionView reloadData];
                 [self->_collectionView.xzm_header endRefreshing];// 结束刷新
             });return nil;
-        }, nil, self)];
+        } selectorName:nil target:self]];
     
-        [_collectionView xzm_addNormalFooterWithTarget:self
-                                             action:selectorBlocks(^id(id target, id arg) {
+        [_collectionView xzm_addNormalFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                      id _Nullable arg) {
             NSLog(@"SSSS加载新的数据，参数: %@", arg);
             @jobs_strongify(self)
             // 模拟延迟加载数据，因此2秒后才调用）
@@ -8215,7 +8226,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 [self->_collectionView reloadData];
                 [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
             });return nil;
-        }, nil, self)];
+        } selectorName:nil target:self]];
+      
         // 设置header文字
         [_collectionView.xzm_header setTitle:JobsInternationalization(@"滑动可以刷新") forState:XZMRefreshStateNormal];
         [_collectionView.xzm_header setTitle:JobsInternationalization(@"释放立即刷新") forState:XZMRefreshStatePulling];

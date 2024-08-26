@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (DynamicInvoke)
 
 @property(nonatomic,strong)JobsSEL_IMP *selImp;
+@property(nonatomic,strong)NSMutableDictionary <NSString *, NSValue *>*methodCache;/// 定义一个全局字典来缓存已经添加的方法
 #pragma mark —— 参数 和 相关调用
 /// 如果某个实例对象存在某个【不带参数的方法】，则对其调用执行
 /// @param targetObj 靶点，方法在哪里
@@ -52,9 +53,9 @@ existMethodWithName:(nullable NSString *)methodName;
 ///   - block: 最终的执行体
 ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
 ///   - target: 执行目标
-SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock,
-                             NSString *_Nullable selectorName,
-                             id _Nullable target);
+-(SEL _Nullable)selectorBlocks:(JobsReturnIDBySelectorBlock)block
+                  selectorName:(NSString *_Nullable)selectorName
+                        target:(id _Nullable)target;
 
 @end
 

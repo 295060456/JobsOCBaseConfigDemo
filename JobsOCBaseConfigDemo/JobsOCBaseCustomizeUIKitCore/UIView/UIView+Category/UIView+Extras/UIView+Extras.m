@@ -30,32 +30,27 @@
 #pragma mark —— 键盘事件
 /// 监听键盘事件
 -(void)monitorKeyboardAction{
-    @jobs_weakify(self)
-    JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
+    JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
             NSLog(@"SSS = %d",b.boolValue);
         }
-        @jobs_strongify(self)
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
-    },nil, self),UIKeyboardWillShowNotification,nil);
+    } selectorName:nil target:self],UIKeyboardWillShowNotification,nil);
     
-    JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
+    JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
             NSLog(@"SSS = %d",b.boolValue);
         }
-        @jobs_strongify(self)
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
-    },nil, self),UIKeyboardWillHideNotification,nil);
+    } selectorName:nil target:self],UIKeyboardWillHideNotification,nil);
 }
 #pragma mark —— 截屏
 /*

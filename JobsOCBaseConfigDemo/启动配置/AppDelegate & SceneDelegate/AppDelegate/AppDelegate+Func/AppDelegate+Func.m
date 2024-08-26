@@ -231,14 +231,14 @@
         // Here we set up a NSNotification observer. The Reachability that caused the notification
         // is passed in the object parameter
         [NSNotificationCenter.defaultCenter addObserver:self
-                                              selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
-                                                                                    id  _Nullable arg) {
-           NSNotification *notification = (NSNotification *)arg;
-           NSLog(@"通知传递过来的 = %@",notification.object);
-           return nil;
-        }, nil, self)
-                                                  name:kReachabilityChangedNotification
-                                                object:nil];
+                                               selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                           id _Nullable arg) {
+            NSNotification *notification = (NSNotification *)arg;
+            NSLog(@"通知传递过来的 = %@",notification.object);
+            return nil;
+        } selectorName:nil target:self]
+                                                   name:kReachabilityChangedNotification
+                                                 object:nil];
         [reach startNotifier];
         dispatch_async(dispatch_get_main_queue(), ^{
             JobsPostNotification(kReachabilityChangedNotification, self);

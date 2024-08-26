@@ -41,19 +41,16 @@ static dispatch_once_t static_textViewOnceToken;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        @jobs_weakify(self)
-        JobsAddNotification(self,
-                        selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                  id _Nullable arg){
+        JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
                 NSLog(@"SSS = %d",b.boolValue);
             }
-            @jobs_strongify(self)
             NSLog(@"通知传递过来的 = %@",notification.object);
             return nil;
-        },nil, self),JobsLanguageSwitchNotification,nil);
+        } selectorName:nil target:self],JobsLanguageSwitchNotification,nil);
     }return self;
 }
 

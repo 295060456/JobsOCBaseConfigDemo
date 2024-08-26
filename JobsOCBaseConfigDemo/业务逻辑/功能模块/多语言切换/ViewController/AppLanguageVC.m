@@ -45,24 +45,20 @@
         self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
     }
     
-    @jobs_weakify(self)
     JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
+                        [self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                           id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
             NSLog(@"SSS = %d",b.boolValue);
         }
-        @jobs_strongify(self)
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
-    },nil, self),JobsLanguageSwitchNotification,nil);
+    } selectorName:nil target:self],JobsLanguageSwitchNotification,nil);
     
     self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
-        @jobs_strongify(self)
         NSLog(@"退出页面的逻辑");
-        
         return nil;
     };
 }

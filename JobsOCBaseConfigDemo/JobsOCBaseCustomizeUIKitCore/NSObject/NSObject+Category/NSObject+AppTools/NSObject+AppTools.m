@@ -26,19 +26,16 @@
 /// @param aSelector 相关逻辑
 +(void)targetView:(UIView *)targetView
 languageSwitchNotificationWithSelector:(SEL)aSelector{
-    @jobs_weakify(self)
-    JobsAddNotification(targetView,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
+    JobsAddNotification(targetView,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                      id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
             NSLog(@"SSS = %d",b.boolValue);
         }
-        @jobs_strongify(self)
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
-    },nil, self),JobsLanguageSwitchNotification,nil);
+    } selectorName:nil target:self],JobsLanguageSwitchNotification,nil);
 }
 /// 【App语言国际化】更改UITabBarItem的标题
 -(void)changeTabBarItemTitle:(NSIndexPath *)indexPath{
@@ -159,7 +156,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     UIViewModel *viewModel = UIViewModel.new;
     
     {
-        NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(title));
+        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:JobsInternationalization(title)];
         [attributedText addAttribute:NSFontAttributeName
                                value:UITextModel.new.font
                                range:NSMakeRange(0, JobsInternationalization(title).length)];
@@ -176,7 +173,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     }
     
     {
-        NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle));
+        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle)];
         [attributedText addAttribute:NSFontAttributeName
                                value:UITextModel.new.font
                                range:NSMakeRange(0, JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle).length)];

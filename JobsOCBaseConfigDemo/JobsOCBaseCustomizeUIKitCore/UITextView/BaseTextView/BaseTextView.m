@@ -20,13 +20,12 @@
         UIMenuController *menu = UIMenuController.sharedMenuController;
         @jobs_weakify(self)
         UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:JobsInternationalization(@"相应事件")
-                                                        action:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
-                                                                                            id  _Nullable arg) {
+                                                        action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                                  id _Nullable arg) {
             @jobs_strongify(self)
             if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
-            
             return nil;
-        }, nil,self)];
+        } selectorName:nil target:self]];
         
         [menu setMenuItems:@[copyItem]];
         [menu update];

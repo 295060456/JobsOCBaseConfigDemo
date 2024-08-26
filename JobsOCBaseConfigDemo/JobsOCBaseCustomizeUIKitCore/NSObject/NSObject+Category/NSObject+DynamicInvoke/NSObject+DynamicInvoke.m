@@ -161,32 +161,36 @@ existMethodWithName:(nullable NSString *)methodName{
 }
 /// 用block来代替selector
 -(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock{
-    return selectorBlocks(selectorBlock,nil,self);
+    return [self selectorBlocks:selectorBlock
+                   selectorName:nil
+                         target:self];
 }
-// 定义一个全局字典来缓存已经添加的方法
-static NSMutableDictionary<NSString *, NSValue *> *methodCache;
 /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
 /// - Parameters:
 ///   - block: 最终的执行体
 ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
 ///   - target: 执行目标
-SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock block,
-                             NSString *_Nullable selectorName,
-                             id _Nullable target){
+///
+///
+-(SEL _Nullable)selectorBlocks:(JobsReturnIDBySelectorBlock)block
+                  selectorName:(NSString *_Nullable)selectorName
+                        target:(id _Nullable)target{
     if (!block) {
         toastErr(JobsInternationalization(@"方法不存在,请检查参数"));
         /// 【经常崩溃损伤硬件】 [NSException raise:JobsInternationalization(@"block can not be nil") format:@"%@ selectorBlock error", target];
     }
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        methodCache = NSMutableDictionary.dictionary;
-    });
     /// 动态注册方法：对方法名进行拼接（加盐），以防止和当下的其他方法名引起冲突
-    NSString *selName = @"selector".add(@"_").add(NSObject.currentUnixTimestampString).add(@"_").add(selectorName);
-    NSLog(@"selName = %@",selName);
+    NSString *selName = @"selector".add(@"_")
+        .add(self.currentTimestampString)
+        .add(@"_")
+        .add(toStringByInt(random100__200()))
+        .add(@"_")
+        .add(selectorName);
+    
+    NSLog(@"selName = %@",selName);//selector_2024-08-26 16:34:32_196_
     SEL sel = NSSelectorFromString(selName);
     /// 检查缓存中是否已经存在该选择器
-    NSValue *cachedSelValue = methodCache[selName];
+    NSValue *cachedSelValue = self.methodCache[selName];
     if (cachedSelValue) {
         sel = cachedSelValue.pointerValue;
         return sel;
@@ -199,10 +203,9 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock block,
      第三个参数是所添加方法的函数实现的指针IMP
      第四个参数是所添加方法的签名
      */
-    NSLog(@"%@",[NSString stringWithFormat:@"%d",random100__200()]);
     if(class_getInstanceMethod([target class], sel)){
         NSLog(@"方法曾经已经被成功添加，再次添加会崩溃");
-        return nil;
+        return sel;
 //        abort();
     }else{
         /// class_addMethod这个方法的实现会覆盖父类的方法实现，但不会取代本类中已存在的实现，如果本类中包含一个同名的实现，则函数会返回NO
@@ -215,7 +218,7 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock block,
                                      block,
                                      OBJC_ASSOCIATION_COPY_NONATOMIC);
             // 缓存该选择器
-            methodCache[selName] = [NSValue valueWithPointer:sel];
+            self.methodCache[selName] = [NSValue valueWithPointer:sel];
         }else{
             [NSException raise:JobsInternationalization(@"添加方法失败")
                         format:@"%@ selectorBlock error", target];
@@ -244,6 +247,20 @@ JobsKey(_selImp)
 
 -(void)setSelImp:(JobsSEL_IMP *)selImp{
     Jobs_setAssociatedRETAIN_NONATOMIC(_selImp, selImp)
+}
+#pragma mark —— @property(nonatomic,strong)NSMutableDictionary *methodCache;
+JobsKey(_methodCache)
+@dynamic methodCache;
+-(NSMutableDictionary<NSString *,NSValue *> *)methodCache{
+    NSMutableDictionary *MethodCache = Jobs_getAssociatedObject(_methodCache);
+    if (!MethodCache) {
+        MethodCache = NSMutableDictionary.dictionary;
+        Jobs_setAssociatedRETAIN_NONATOMIC(_methodCache, MethodCache)
+    }return MethodCache;
+}
+
+-(void)setMethodCache:(NSMutableDictionary<NSString *,NSValue *> *)methodCache{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_methodCache, methodCache)
 }
 
 @end

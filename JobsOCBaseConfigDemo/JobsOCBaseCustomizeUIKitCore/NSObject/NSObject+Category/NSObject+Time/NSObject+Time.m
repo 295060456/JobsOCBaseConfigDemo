@@ -9,13 +9,11 @@
 #import "NSObject+Time.h"
 NSString *const App当日首次进入 = @"App当日首次进入";
 @implementation NSObject (Time)
-#pragma mark —— 时间戳
-/// 返回的是一串字符串数字
--(NSString *)currentUnixTimestampString{
-    NSTimeInterval timestamp = NSDate.date.timeIntervalSince1970;/// 获取 Unix 时间戳 ：1970 到 当前日期和时间
-    return toStringByFloat(timestamp);/// 将时间戳转换为字符串
+/// 返回的是（Double）时间戳
+-(NSTimeInterval)currentUnixTimeStamp{
+    return NSDate.date.timeIntervalSince1970;/// 获取 Unix 时间戳 ：1970 到 当前日期和时间
 }
-/// 返回带时间格式的时间
+/// 返回带时间格式的时间字符串
 -(NSString *)currentTimestampString{
     return [self.dateFormatter stringFromDate:NSDate.date];
 }

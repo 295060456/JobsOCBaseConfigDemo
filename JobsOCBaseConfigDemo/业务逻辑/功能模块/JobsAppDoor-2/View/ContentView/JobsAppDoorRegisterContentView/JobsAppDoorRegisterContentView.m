@@ -30,19 +30,16 @@
 -(instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = Cor1;
-        @jobs_weakify(self)
-        JobsAddNotification(self,
-                        selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                  id _Nullable arg){
+        JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:UITextField.class]){
                 UITextField *b = notification.object;
                 NSLog(@"木头 = %@",b.requestParams);
             }
-            @jobs_strongify(self)
             NSLog(@"通知传递过来的 = %@",notification.object);
             return nil;
-        },nil, self),@"textFieldTag",nil);
+        } selectorName:nil target:self],@"textFieldTag",nil);
     }return self;
 }
 

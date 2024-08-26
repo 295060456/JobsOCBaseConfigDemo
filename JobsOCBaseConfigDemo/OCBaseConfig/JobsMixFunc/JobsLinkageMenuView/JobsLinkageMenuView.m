@@ -120,14 +120,14 @@
                                                self.BOTTOMVIEW_HEIGHT);
         } completion:nil];
         
-        [self performSelector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
-                                                           id  _Nullable arg) {
+        [self performSelector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                 id _Nullable arg) {
             @jobs_strongify(self)
             UIButton *button = (UIButton *)[self viewWithTag:self.newChoseTag];
             button.normalTitleColor(self.selectTextColor);
             self.choseTag = self.newChoseTag;
             return nil;
-        }, nil, self)
+        } selectorName:nil target:self]
                    withObject:nil
                    afterDelay:0.07];
         
@@ -293,7 +293,7 @@
         _btnMutArr = NSMutableArray.array;
     }return _btnMutArr;
 }
-/// 左侧菜单栏宽度，默认136
+/// 左侧菜单栏宽度（即，按钮的宽度），默认136
 -(CGFloat)MENU_WIDTH{
     if(!_MENU_WIDTH){
         _MENU_WIDTH = JobsWidth(136);

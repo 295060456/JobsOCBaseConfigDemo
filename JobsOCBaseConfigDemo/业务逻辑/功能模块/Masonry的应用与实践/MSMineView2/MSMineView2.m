@@ -40,19 +40,16 @@ static dispatch_once_t static_mineView2OnceToken;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        @jobs_weakify(self)
-        JobsAddNotification(self,
-                        selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                  id _Nullable arg){
+        JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
                 NSLog(@"SSS = %d",b.boolValue);
             }
-            @jobs_strongify(self)
             NSLog(@"通知传递过来的 = %@",notification.object);
             return nil;
-        },nil, self),JobsLanguageSwitchNotification,nil);
+        } selectorName:nil target:self],JobsLanguageSwitchNotification,nil);
     }return self;
 }
 
@@ -138,7 +135,7 @@ static dispatch_once_t static_mineView2OnceToken;
             make.left.equalTo(self).offset(JobsWidth(6));
         }];
         if(self.deviceSystemVersion.floatValue < 15.0){
-            [_btn1 layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading 
+            [_btn1 layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
                                       imagePadding:JobsWidth(8)];
         }
     }return _btn1;

@@ -19,9 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXTERN NSString * _Nonnull const App当日首次进入;
 @interface NSObject (Time)
 #pragma mark —— 时间戳
-/// 返回的是一串字符串数字
--(NSString *)currentUnixTimestampString;
-/// 返回带时间格式的时间
+/// 返回的是（Double）时间戳
+-(NSTimeInterval)currentUnixTimeStamp;
+/// 返回带时间格式的时间字符串
 -(NSString *)currentTimestampString;
 #pragma mark —— 时间格式转换
 ///接受一个秒数，对这个秒数进行解析出：时、分、秒，存入JobsTimeModel，外层再对这个JobsTimeModel进行取值，对数据进行拼装

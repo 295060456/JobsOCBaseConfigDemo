@@ -296,9 +296,15 @@
         self.target = weak_self;/// ⚠️注意：任何手势这一句都要写
         NSLog(@"%@",NSStringFromSelector(self.longPressGR_SelImp.selector));
         if (!NSStringFromSelector(self.longPressGR_SelImp.selector)) {
-            self.longPressGR_SelImp.selector = [self jobsSelectorBlock:longPressGestureEventBlock];
+            SEL d = [self selectorBlocks:longPressGestureEventBlock
+                            selectorName:nil
+                                  target:self];// selector_2147483647_146_
+            self.longPressGR_SelImp.selector = [self selectorBlocks:longPressGestureEventBlock
+                                                       selectorName:nil
+                                                             target:self];
+            [self jobsSelectorBlock:longPressGestureEventBlock];
         }
-        NSLog(@"%@",NSStringFromSelector(self.longPressGR_SelImp.selector));
+        NSLog(@"%@",NSStringFromSelector(self.longPressGR_SelImp.selector));//
         self.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
     }
 }

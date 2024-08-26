@@ -320,9 +320,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     @jobs_weakify(self)
     return ^() {
         @jobs_strongify(self)
-        JobsAddNotification(self,
-                        selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                  id _Nullable arg){
+        JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
@@ -330,8 +329,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             }
             NSLog(@"通知传递过来的 = %@",notification.object);
             return nil;
-        },nil, self),JobsLanguageSwitchNotification,nil);
-
+        } selectorName:nil target:self],JobsLanguageSwitchNotification,nil);
     };
 }
 
@@ -339,9 +337,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     @jobs_weakify(self)
     return ^() {
         @jobs_strongify(self)
-        JobsAddNotification(self,
-                        selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                  id _Nullable arg){
+        JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
@@ -366,7 +363,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                 default:
                     break;
             }return nil;
-        },nil, self),UIDeviceOrientationDidChangeNotification,nil);
+        } selectorName:nil target:self],UIDeviceOrientationDidChangeNotification,nil);
 
     };
 }

@@ -54,8 +54,8 @@
 -(void)registerNotification{
     @weakify(self)
     [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                                 id _Nullable arg){
+                                           selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                       id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
@@ -65,7 +65,7 @@
         if (self.style_5 == InputViewStyle_5_3) {
             [self->dropDownListView dropDownListViewDisappear:self.chooseBtn];
         }return nil;
-    }, nil,self)
+    } selectorName:nil target:self]
                                                name:@"关闭电话号码区号选择器"
                                              object:nil];
 }

@@ -347,8 +347,8 @@
 -(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
                          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock{
     [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:selectorBlocks(^id  _Nullable(id  _Nullable weakSelf,
-                                                                                  id  _Nullable arg){
+                                           selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                       id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
@@ -356,7 +356,7 @@
         }
         if (selectorBlock) selectorBlock(weakSelf,arg);
         return nil;
-    },nil,self)
+    } selectorName:nil target:self]
                                                name:notificationName
                                              object:nil];
 }
@@ -677,9 +677,8 @@
             // 请求正文信息
             NSLog(@"请求正文信息:%@\n",[NSString.alloc initWithData:data.HTTPBody encoding:NSUTF8StringEncoding]);
             // 请求响应时间
-            NSTimeInterval time = [NSDate.date timeIntervalSinceDate:NSDate.date];
-            NSLog(@"请求响应时间:%@\n",@(time));
-            NSLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",data.URL,data.HTTPMethod,data.allHTTPHeaderFields,[NSString.alloc initWithData:data.HTTPBody encoding:NSUTF8StringEncoding],@(time));
+            NSLog(@"请求响应时间:%@\n",self.currentTimestampString);
+            NSLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",data.URL,data.HTTPMethod,data.allHTTPHeaderFields,[NSString.alloc initWithData:data.HTTPBody encoding:NSUTF8StringEncoding],self.currentTimestampString);
         }else{
             NSLog(@"NSURLRequest *data 为空,请检查");
         }
@@ -849,8 +848,8 @@
 /// 监听程序被杀死前的时刻，进行一些需要异步的操作：磁盘读写、网络请求...
 -(void)terminalCheck:(jobsByIDBlock _Nullable)checkBlock{
     [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                                  id _Nullable arg){
+                                           selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                                       id _Nullable arg) {
         //进行埋点操作
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
@@ -860,7 +859,7 @@
             [NSThread sleepForTimeInterval:60];
             NSLog(@"程序被杀死");
         });return nil;
-    }, nil,self)
+    } selectorName:nil target:self]
                                                name:@"UIApplicationWillTerminateNotification"
                                              object:nil];
 }
@@ -1198,9 +1197,7 @@
 /// 横屏通知的监听
 -(void)横屏通知的监听:(JobsSelectorBlock1)block{
     @jobs_weakify(self)
-    JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
+    JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id  _Nullable weakSelf, id  _Nullable arg) {
         switch (UIDevice.currentDevice.orientation) {
             case UIDeviceOrientationFaceUp:
                 NSLog(@"屏幕朝上平躺");
@@ -1241,7 +1238,7 @@
             }
         if(block)block(weakSelf,arg,@( JobsAppTool.jobsDeviceOrientation));
         return nil;
-    },nil, self),UIDeviceOrientationDidChangeNotification,nil);
+    } selectorName:nil target:self],UIDeviceOrientationDidChangeNotification,nil);
 }
 #pragma mark —— 键盘⌨️
 /**
@@ -1276,11 +1273,10 @@
 -(void)keyboard{
     @jobs_weakify(self)
     /// 键盘的弹出
-    JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
-        NSNotification *notification = (NSNotification *)arg;
+    JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                id _Nullable arg) {
         @jobs_strongify(self)
+        NSNotification *notification = (NSNotification *)arg;
         NSLog(@"通知传递过来的 = %@",notification.object);
         NSNotificationKeyboardModel *notificationKeyboardModel = NSNotificationKeyboardModel.new;
         notificationKeyboardModel.userInfo = notification.userInfo;
@@ -1299,16 +1295,14 @@
         }else{
             NSLog(@"键盘");
         }return nil;
-    },nil, self),UIKeyboardWillChangeFrameNotification,nil);
+    } selectorName:nil target:self],UIKeyboardWillChangeFrameNotification,nil);
     /// 键盘的回收
-    JobsAddNotification(self,
-                    selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                              id _Nullable arg){
+    JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
-        @jobs_strongify(self)
         NSLog(@"通知传递过来的 = %@",notification.object);
         return nil;
-    },nil, self),UIKeyboardDidChangeFrameNotification,nil);
+    } selectorName:nil target:self],UIKeyboardDidChangeFrameNotification,nil);
 }
 
 -(void)actionkeyboardUpNotificationBlock:(JobsReturnIDByIDBlock _Nullable)keyboardUpNotificationBlock{
