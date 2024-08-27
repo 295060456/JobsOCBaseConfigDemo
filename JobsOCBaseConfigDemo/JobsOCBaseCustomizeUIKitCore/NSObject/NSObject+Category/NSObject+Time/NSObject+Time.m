@@ -13,6 +13,10 @@ NSString *const App当日首次进入 = @"App当日首次进入";
 -(NSTimeInterval)currentUnixTimeStamp{
     return NSDate.date.timeIntervalSince1970;/// 获取 Unix 时间戳 ：1970 到 当前日期和时间
 }
+/// 返回的是（uint64_t）时间戳
+-(uint64_t)currentUnixTimeStampInMilliseconds{
+    return NSDate.date.timeIntervalSince1970 * 1000;/// 获取 Unix 时间戳 ：1970 到 当前日期和时间。将秒数转换为毫秒数
+}
 /// 返回带时间格式的时间字符串
 -(NSString *)currentTimestampString{
     return [self.dateFormatter stringFromDate:NSDate.date];

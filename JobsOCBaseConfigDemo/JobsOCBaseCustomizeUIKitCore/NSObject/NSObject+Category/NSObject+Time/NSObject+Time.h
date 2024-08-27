@@ -21,6 +21,8 @@ FOUNDATION_EXTERN NSString * _Nonnull const App当日首次进入;
 #pragma mark —— 时间戳
 /// 返回的是（Double）时间戳
 -(NSTimeInterval)currentUnixTimeStamp;
+/// 返回的是（uint64_t）时间戳
+-(uint64_t)currentUnixTimeStampInMilliseconds;
 /// 返回带时间格式的时间字符串
 -(NSString *)currentTimestampString;
 #pragma mark —— 时间格式转换

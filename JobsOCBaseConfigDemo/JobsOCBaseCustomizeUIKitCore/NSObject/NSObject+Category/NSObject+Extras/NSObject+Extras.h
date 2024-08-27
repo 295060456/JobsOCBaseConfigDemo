@@ -23,6 +23,7 @@
 #import "FileFolderHandleTool.h"
 #import "JobsDefineAllEnumHeader.h"
 #import "JobsAppTools.h"
+#import "JobsSnowflake.h"
 
 #if __has_include(<WHToast/WHToast.h>)
 #import <WHToast/WHToast.h>
@@ -178,6 +179,7 @@ BaseProtocol
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
 #pragma mark —— 功能性的
+-(NSNumber *_Nonnull)makeSnowflake;
 /// present
 /// 简洁版强制present展现一个控制器页面【不需要正向传参】
 -(jobsByVCBlock _Nullable)comingToPresentVC;

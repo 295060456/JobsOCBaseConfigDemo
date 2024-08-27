@@ -148,6 +148,17 @@
                     context:nil];
 }
 #pragma mark —— 功能性的
+-(NSNumber *_Nonnull)makeSnowflake{
+    JobsSnowflake *snowflake = [JobsSnowflake.alloc initWithPublishMillisecond:self.currentUnixTimeStampInMilliseconds
+                                                                         IDCID:1
+                                                                     machineID:1];
+    NSNumber *snowflakeID = snowflake.nextID;
+    if (snowflakeID){
+        NSLog(@"Generated Snowflake ID: %@", snowflakeID);
+    }else{
+        NSLog(@"Failed to generate Snowflake ID.");
+    }return snowflakeID;
+}
 /// present
 #ifndef JobsPresentationStyle
 #define JobsPresentationStyle (UIDevice.currentDevice.systemVersion.doubleValue >= 13.0 ? UIModalPresentationAutomatic : UIModalPresentationFullScreen)

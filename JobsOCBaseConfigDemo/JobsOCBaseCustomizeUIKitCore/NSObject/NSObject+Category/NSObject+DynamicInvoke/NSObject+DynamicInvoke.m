@@ -181,9 +181,7 @@ existMethodWithName:(nullable NSString *)methodName{
     }
     /// 动态注册方法：对方法名进行拼接（加盐），以防止和当下的其他方法名引起冲突
     NSString *selName = @"selector".add(@"_")
-        .add(self.currentTimestampString)
-        .add(@"_")
-        .add(toStringByInt(random100__200()))
+        .add(toStringByID(self.makeSnowflake))
         .add(@"_")
         .add(selectorName);
     

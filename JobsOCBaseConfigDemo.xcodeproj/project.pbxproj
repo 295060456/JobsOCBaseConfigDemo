@@ -29,6 +29,7 @@
 		CE2E8AD42C6AFB2F00260207 /* LuckyDiskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E8ACE2C6AF7FB00260207 /* LuckyDiskVC.m */; };
 		CE2E8ADE2C6B032A00260207 /* LuckyRollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E8ADD2C6B032A00260207 /* LuckyRollVC.m */; };
 		CE2E8AE12C6B051900260207 /* LotteryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E8AE02C6B051900260207 /* LotteryVC.m */; };
+		CE3466502C7DA76D00177010 /* JobsSnowflake.m in Sources */ = {isa = PBXBuildFile; fileRef = CE34664E2C7DA76500177010 /* JobsSnowflake.m */; };
 		CE40B28E2C4B54A500CB64B5 /* JobsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */; };
 		CE40B29B2C4BF78E00CB64B5 /* JobsToggleBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */; };
 		CE40B29C2C4BF78E00CB64B5 /* JobsToggleNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40B2982C4BF78E00CB64B5 /* JobsToggleNavView.m */; };
@@ -1187,6 +1188,8 @@
 		CE2E8ADD2C6B032A00260207 /* LuckyRollVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyRollVC.m; sourceTree = "<group>"; };
 		CE2E8ADF2C6B051900260207 /* LotteryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryVC.h; sourceTree = "<group>"; };
 		CE2E8AE02C6B051900260207 /* LotteryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryVC.m; sourceTree = "<group>"; };
+		CE34664D2C7DA76500177010 /* JobsSnowflake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsSnowflake.h; sourceTree = "<group>"; };
+		CE34664E2C7DA76500177010 /* JobsSnowflake.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsSnowflake.m; sourceTree = "<group>"; };
 		CE40B28C2C4B54A500CB64B5 /* JobsTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextField.h; sourceTree = "<group>"; };
 		CE40B28D2C4B54A500CB64B5 /* JobsTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextField.m; sourceTree = "<group>"; };
 		CE40B2972C4BF78E00CB64B5 /* JobsToggleBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsToggleBaseView.m; sourceTree = "<group>"; };
@@ -3447,6 +3450,15 @@
 				CE2E8ACE2C6AF7FB00260207 /* LuckyDiskVC.m */,
 			);
 			path = LuckyDiskVC;
+			sourceTree = "<group>";
+		};
+		CE34664F2C7DA76500177010 /* 雪花算法 */ = {
+			isa = PBXGroup;
+			children = (
+				CE34664D2C7DA76500177010 /* JobsSnowflake.h */,
+				CE34664E2C7DA76500177010 /* JobsSnowflake.m */,
+			);
+			path = "雪花算法";
 			sourceTree = "<group>";
 		};
 		CE40B28B2C4B544F00CB64B5 /* JobsTextField */ = {
@@ -9646,6 +9658,7 @@
 		CECE826F2C4513CD00764AF5 /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
+				CE34664F2C7DA76500177010 /* 雪花算法 */,
 				CECE82342C4513CD00764AF5 /* FileFolderHandleTool */,
 				CECE82372C4513CD00764AF5 /* JobsAppTools */,
 				CECE823A2C4513CD00764AF5 /* JobsFormatTime */,
@@ -14553,6 +14566,7 @@
 				CECE7C8B2C450C5000764AF5 /* JobsIMChatInfoModel.m in Sources */,
 				CECE80BC2C4512BF00764AF5 /* JobsUserModel.m in Sources */,
 				CECE85272C4513CE00764AF5 /* DispatchTimerManager.m in Sources */,
+				CE3466502C7DA76D00177010 /* JobsSnowflake.m in Sources */,
 				CECE7C102C450C5000764AF5 /* CoreDataVC.m in Sources */,
 				CECE7C322C450C5000764AF5 /* CustomTableViewCellVC.m in Sources */,
 				CECE85712C4513CE00764AF5 /* BaseButton.m in Sources */,

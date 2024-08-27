@@ -2476,6 +2476,183 @@ NSObject <|-- BaseProtocol
   }
   ```
 
+### 30、雪花算法（Snowflake ID或Snowflake Algorithm） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+#### 30.1、什么是雪花算法
+
+* 是一种分布式ID生成算法
+* 由Twitter在2010年开源
+* 主要用于在分布式系统中生成唯一的、时间排序的ID
+* 这种算法生成的ID是一个64位的整数，保证了全局唯一性和高性能，适用于分布式系统的需要
+
+#### 30.2、雪花算法的特点
+
+* **唯一性**：生成的每一个ID都是唯一的，没有重复。
+* **时间有序性**：根据时间戳的增长，生成的ID也会按时间顺序递增，具有时间排序的特性。
+* **高效率**：生成ID的过程非常快，能够每秒生成数百万个ID。
+* **分布式**：支持在多个节点上并行生成ID，不会因为网络延迟等问题导致冲突。
+
+#### 30.3、雪花算法的ID结构
+
+雪花算法生成的ID是一个64位的整数，具体结构如下：![twitter](./assets/twitter.png)
+
+```scss
+| 1 bit (符号位) | 41 bits (时间戳) | 10 bits (机器ID) | 12 bits (序列号) |
+```
+
+* **1 bit 符号位**：永远为0，不使用。
+* **41 bits 时间戳**：存储当前时间与一个初始时间的差值（通常是1970-01-01的时间戳起点），单位为毫秒。41位可以表示大约69年的时间。
+* **10 bits 机器ID**：用来区分不同的机器或节点。10位可以表示1024个不同的节点（5位工作节点ID + 5位数据中心ID）。
+* **12 bits 序列号**：在同一毫秒内生成多个ID的情况下，用于区分这些ID。12位可以表示4096个不同的序列号。
+
+#### 30.4、雪花算法的工作原理
+
+* **时间戳生成**：每次生成ID时获取当前时间戳，减去一个初始时间（纪元）得到相对时间戳。
+* **机器ID**：每个节点有唯一的机器ID，通过配置或计算获得。
+* **序列号**：在同一毫秒内生成多个ID时，序列号递增，最多支持4096个序列号；当序列号用尽时，等待下一毫秒再生成ID。
+* **组合ID**：将时间戳、机器ID和序列号组合成一个64位的整数，形成唯一ID。
+
+#### 30.5、雪花算法的评价
+
+*  <font color=red>**高效性**</font>：在本地内存中生成ID，不需要数据库等集中式服务的支持。
+* <font color=red>**可扩展性**</font>：支持多个节点并行生成ID，无需担心ID冲突。
+* <font color=red>**稳定性**</font>：不受网络环境的影响，即使在网络分区的情况下，仍能生成唯一的ID。
+* <font color=green>**时间依赖**</font>：依赖于机器的时间戳，如果服务器的时间不准确或者发生了时间回拨，可能导致生成的ID不唯一或重复。
+* <font color=green>**配置复杂**</font>：需要配置和管理机器ID，确保每个节点的ID是唯一的。
+
+#### 30.6、雪花算法的使用场景
+
+* 数据库主键ID生成
+* 消息队列ID生成
+* 分布式存储系统中的对象ID生成
+* OC方法签名
+* ...
+
+#### 30.7、雪花算法的OC实现（及使用示例）
+
+*  通过ChatGPT 翻译自 https://github.com/DamonHu/SnowflakeSwift
+
+```objective-c
+#import <Foundation/Foundation.h>
+#include <unistd.h>
+
+@interface JobsSnowflake : NSObject
+
+-(instancetype _Nonnull)initWithPublishMillisecond:(uint64_t)publishMillisecond
+                                             IDCID:(uint32_t)IDC
+                                         machineID:(uint32_t)machine;
+-(nullable NSNumber *)nextID;
+-(uint64_t)timeWithID:(uint64_t)id;
+-(uint32_t)IDCWithID:(uint64_t)id;
+-(uint32_t)machineWithID:(uint64_t)id;
+
+@end
+```
+
+```objective-c
+#import "JobsSnowflake.h"
+
+static const uint32_t kSymbolBits = 1;
+static const uint32_t kTimeBits = 41;
+static const uint32_t kIDCBits = 5;
+static const uint32_t kMachineBits = 5;
+static const uint32_t kSequenceBits = 12;
+
+@interface JobsSnowflake ()
+
+@property(nonatomic,assign)uint32_t machine;
+@property(nonatomic,assign)uint32_t IDC;
+@property(nonatomic,assign)uint32_t sequence;
+@property(nonatomic,assign)uint64_t publishMillisecond;
+@property(nonatomic,assign)uint64_t lastGeneralMillisecond;
+
+@end
+
+@implementation JobsSnowflake
+/// 初始化方法
+/// - Parameters:
+///   - publishMillisecond: 表示雪花算法开始生成 ID 的时间戳（以毫秒为单位）。这是生成 ID 时使用的基准时间。此参数设置生成雪花 ID 的起始时间点。例如，如果你希望雪花 ID 从某个特定的日期和时间开始生成，你需要提供该时刻的时间戳。
+///   - IDC: 表示 IDC（数据中心）的标识符。用于唯一标识运行雪花算法的特定数据中心或集群。此参数帮助标识哪个数据中心或集群生成了某个雪花 ID。它允许你在多个数据中心中扩展 ID 生成而不会发生冲突。IDC 的值必须在算法配置允许的范围内（由 kIDCBits 定义）。
+///   - machine: 表示数据中心内的机器或服务器的标识符。用于唯一标识生成雪花 ID 的特定机器或服务器。此参数帮助区分同一数据中心内不同机器生成的 ID。即使多台机器在生成 ID，每台机器生成的 ID 也将保持唯一。机器 ID 的值必须在算法配置允许的范围内（由 kMachineBits 定义）。
+-(instancetype _Nonnull)initWithPublishMillisecond:(uint64_t)publishMillisecond
+                                             IDCID:(uint32_t)IDC
+                                         machineID:(uint32_t)machine{
+    if (self = [super init]) {
+        NSAssert(publishMillisecond <= ((uint64_t)1 << kTimeBits), @"time is too big");
+        NSAssert(IDC <= ((uint32_t)1 << kIDCBits), @"IDC id is too big");
+        NSAssert(machine <= ((uint32_t)1 << kMachineBits), @"machine id is too big");
+        
+        self.publishMillisecond = publishMillisecond;
+        self.lastGeneralMillisecond = publishMillisecond;
+        self.IDC = IDC & ((1 << kIDCBits) - 1);
+        self.machine = machine & ((1 << kMachineBits) - 1);
+        self.sequence = 0;
+    }return self;
+}
+
+-(nullable NSNumber *)nextID{
+    uint64_t currentTime = (uint64_t)NSDate.date.timeIntervalSince1970 * 1000;
+    if (self.lastGeneralMillisecond < currentTime) {
+        self.lastGeneralMillisecond = currentTime;
+        self.sequence = 0;
+    } else if (self.lastGeneralMillisecond == currentTime) {
+        self.sequence = (self.sequence + 1) & ((1 << kSequenceBits) - 1);
+        if (self.sequence == 0) {
+            usleep(1000);
+            currentTime = (uint64_t)NSDate.date.timeIntervalSince1970 * 1000;
+            self.lastGeneralMillisecond = currentTime;
+        }
+    } else {
+        // Clock rollback, should handle according to business logic
+        return nil;
+    }
+    
+    uint64_t timeParameter = self.lastGeneralMillisecond - self.publishMillisecond;
+    uint64_t timeOffset = kIDCBits + kMachineBits + kSequenceBits;
+    
+    uint64_t idcParameter = self.IDC;
+    uint64_t idcOffset = kMachineBits + kSequenceBits;
+    
+    uint64_t machineParameter = self.machine;
+    uint64_t machineOffset = kSequenceBits;
+    
+    uint64_t result = (timeParameter << timeOffset) | (idcParameter << idcOffset) | (machineParameter << machineOffset) | self.sequence;
+    return @(result);  // Return as NSNumber
+}
+
+- (uint64_t)timeWithID:(uint64_t)id {
+    uint64_t timeOffset = kIDCBits + kMachineBits + kSequenceBits;
+    return (id >> timeOffset) + self.publishMillisecond;
+}
+
+- (uint32_t)IDCWithID:(uint64_t)id {
+    uint64_t step1 = id << (kTimeBits + kSymbolBits);
+    return (uint32_t)(step1 >> (kTimeBits + kMachineBits + kSequenceBits + kSymbolBits));
+}
+
+- (uint32_t)machineWithID:(uint64_t)id {
+    uint64_t step1 = id << (kTimeBits + kIDCBits + kSymbolBits);
+    return (uint32_t)(step1 >> (kIDCBits + kTimeBits + kSequenceBits + kSymbolBits));
+}
+
+@end
+```
+
+```objective-c
+ // 使用示例
+-(NSNumber *_Nonnull)makeSnowflake{
+    JobsSnowflake *snowflake = [JobsSnowflake.alloc initWithPublishMillisecond:self.currentUnixTimeStampInMilliseconds
+                                                                         IDCID:1
+                                                                     machineID:1];
+    NSNumber *snowflakeID = snowflake.nextID;
+    if (snowflakeID){
+        NSLog(@"Generated Snowflake ID: %@", snowflakeID);
+    }else{
+        NSLog(@"Failed to generate Snowflake ID.");
+    }return snowflakeID;
+}
+```
+
 ### 29、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
