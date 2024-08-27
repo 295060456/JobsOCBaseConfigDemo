@@ -47,19 +47,21 @@ static dispatch_once_t AppDelegateOnceToken;
 
 -(instancetype)init{
     if (self = [super init]) {
-        [self simulateUserData];
+//        self.simulateUserData();
     }return self;
 }
 #pragma mark —— 一些私有方法
 /// 模拟用户数据
--(void)simulateUserData{
-    JobsUserModel *userModel = JobsUserModel.new;
-    userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
-    userModel.userName = @"张三丰";
-    userModel.phone = @"134****0000";
-    self.saveUserInfo(userModel);
-//    id f = self.readUserInfo();
-//    NSLog(@"");
+-(jobsByVoidBlock)simulateUserData{
+    return ^(){
+        JobsUserModel *userModel = JobsUserModel.new;
+        userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
+        userModel.userName = @"张三丰";
+        userModel.phone = @"134****0000";
+        self.saveUserInfo(userModel);
+        id f = self.readUserInfo();
+        NSLog(@"");
+    };
 }
 #pragma mark —— 一些公有方法
 /// Core Data Saving support

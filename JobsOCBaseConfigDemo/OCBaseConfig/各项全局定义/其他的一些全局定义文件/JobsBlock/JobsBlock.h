@@ -99,8 +99,10 @@ typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(U
 typedef void(^jobsByGKPhotoBrowserBlock)(GKPhotoBrowser *_Nonnull data);
 
 @class JobsUserModel;
-typedef JobsUserModel *_Nullable(^JobsReturnUserModelByVoidBlock)(void);
-typedef void(^jobsByUserModelBlock)(JobsUserModel <NSCoding> *_Nullable userModel);
+typedef JobsUserModel<NSCoding> *_Nullable(^JobsReturnUserModelByVoidBlock)(void);
+typedef JobsUserModel<NSCoding> *_Nullable(^JobsReturnUserModelByKeyBlock)(NSString *_Nullable key);
+typedef void(^jobsByUserModelBlock)(JobsUserModel <NSCoding>*_Nullable userModel);
+typedef void(^jobsByIDAndKeyBlock)(NSObject <NSCoding> *_Nonnull userModel,NSString *_Nullable key);
 
 @class UserDefaultModel;
 typedef void(^jobsByUserDefaultModelBlock)(UserDefaultModel *_Nonnull data);

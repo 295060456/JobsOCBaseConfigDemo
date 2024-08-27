@@ -60,7 +60,7 @@ typedef UITableViewCell __kindof *_Nullable(^JobsReturnTableViewCellByCls_SaltSt
                                                                                                     NSIndexPath *_Nonnull indexPath);
 
 typedef NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(NSString *_Nullable data);
-typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
+typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Class _Nullable cls,NSString *_Nullable salt);
 
 typedef UICollectionViewCell __kindof *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
 

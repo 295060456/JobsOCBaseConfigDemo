@@ -247,9 +247,9 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 //        self.saveUserInfo(userModel);// 保存全局唯一的一份用户档案
 //
 //        if (self.jobsAppDoorContentView.getStoreCodeBtn.selected) {
-//            [self saveUserName:account];
+//            self.saveUserName(account);
 //        }else{
-//            [self deleteUserName:account];
+//            self.deleteUserName(account);
 //        }
 //        JobsPostNotification(登录成功, @(YES));
 //        self.backBtnClickEvent(nil);

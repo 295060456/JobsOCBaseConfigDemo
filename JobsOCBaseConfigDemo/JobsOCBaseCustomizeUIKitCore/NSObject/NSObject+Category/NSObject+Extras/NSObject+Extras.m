@@ -398,7 +398,7 @@
             if ([obj isKindOfClass:NSNumber.class] ||
                 [obj isKindOfClass:NSString.class]) {
                 if ([[obj stringValue] containsString:keywords]) {
-                    [resMutSet addObject:obj];
+                    resMutSet.add(obj);
                 }
             }else{// 自定义的对象
                 NSObject *customObj = (NSObject *)obj;
@@ -408,13 +408,13 @@
                         case JobsSearchStrategy_Accurate:{
                             /// 精确查询
                             if ([[customObj.valueForKeyBlock(str) stringValue].lowercaseString containsString:keywords.lowercaseString]) {
-                                [resMutSet addObject:customObj];
+                                resMutSet.add(customObj);
                             }
                         }break;
                         case JobsSearchStrategy_Fuzzy:{
                             /// 模糊查询
                             if ([[customObj.valueForKeyBlock(str) stringValue] containsString:keywords]) {
-                                [resMutSet addObject:customObj];
+                                resMutSet.add(customObj);
                             }
                         }break;
                         default:
@@ -427,9 +427,9 @@
     
     if ([data isKindOfClass:NSDictionary.class]){
         NSDictionary *dataDic = (NSDictionary *)data;
-        [dataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key,
-                                                     id  _Nonnull obj,
-                                                     BOOL * _Nonnull stop) {
+        [dataDic enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key,
+                                                     id _Nonnull obj,
+                                                     BOOL *_Nonnull stop) {
             /// Key-Value，value包含关键词则存储对外输出
             if ([[obj stringValue] containsString:keywords]) {
                 /// 用Set保证对外输出的唯一性

@@ -1947,6 +1947,49 @@ NSObject <|-- BaseProtocol
   }
   ```
   
+  ```objective-c
+  -(jobsByVoidBlock)loginByAccAndPwd{
+      return ^(){
+          FM_loginByVerificationCode_api *api = [FM_loginByVerificationCode_api.alloc initWithParameters:@{
+              @"captcha_id": @"",
+              @"captcha_key": @"",
+              @"captcha_output": @"",
+              @"countryCode": @"CN",/// 国家编码两位码(中国CN、越南VN)-国家的ISO 3166-1 Alpha-2代码
+              @"domain": @"",
+              @"gen_time": @"",
+              @"inviteCode": @"",/// 代理邀请码
+              @"lot_number": @"",
+              @"mobile": @"09668536375",/// 手机号
+              @"pass_token": @"",
+              @"password": @"",/// 密码
+              @"referCode": @"",
+              @"smsCode": @"888",/// 短信验证码
+              @"userName": @""/// 用户名
+          }];
+          if ([api loadCacheWithError:nil]) {
+              NSDictionary *json = api.responseJSONObject;
+              NSLog(@"json = %@", json);
+              // show cached data
+          }
+  
+          api.animatingText = JobsInternationalization(@"正在登录");
+          api.animatingView = self;
+  
+          [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+              JobsResponseModel *responseModel = [JobsResponseModel mj_objectWithKeyValues:request.responseObject];
+              if(responseModel.code == HTTPResponseCodeSuccess){
+                  NSLog(@"登录成功");
+                  FMLoginModel *model = [FMLoginModel mj_objectWithKeyValues:responseModel.data];
+                  self.jobsSaveUserInfo(model,FM用户数据);
+                  id f = self.readUserInfoByUserName(FMLoginModel.class,FM用户数据);
+                  if (self.objectBlock) self.objectBlock(self.login_btn);
+              }
+          } failure:^(YTKBaseRequest *request) {
+              NSLog(@"failed");
+          }];
+      };
+  }
+  ```
 ### 20、[**`JobsTabBarCtrl`-深层次自定义`UITabbar`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/%E6%B7%B1%E5%BA%A6%E6%8B%93%E5%B1%95%E7%B3%BB%E7%BB%9FUITabBar%E5%85%A8%E5%AE%B6%E6%A1%B6/JobsTabbarCtrl.md) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 背景介绍
@@ -2476,23 +2519,23 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-### 30、雪花算法（Snowflake ID或Snowflake Algorithm） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 29、雪花算法（Snowflake ID或Snowflake Algorithm） <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-#### 30.1、什么是雪花算法
+#### 29.1、什么是雪花算法
 
 * 是一种分布式ID生成算法
 * 由Twitter在2010年开源
 * 主要用于在分布式系统中生成唯一的、时间排序的ID
 * 这种算法生成的ID是一个64位的整数，保证了全局唯一性和高性能，适用于分布式系统的需要
 
-#### 30.2、雪花算法的特点
+#### 29.2、雪花算法的特点
 
 * **唯一性**：生成的每一个ID都是唯一的，没有重复。
 * **时间有序性**：根据时间戳的增长，生成的ID也会按时间顺序递增，具有时间排序的特性。
 * **高效率**：生成ID的过程非常快，能够每秒生成数百万个ID。
 * **分布式**：支持在多个节点上并行生成ID，不会因为网络延迟等问题导致冲突。
 
-#### 30.3、雪花算法的ID结构
+#### 29.3、雪花算法的ID结构
 
 雪花算法生成的ID是一个64位的整数，具体结构如下：![twitter](./assets/twitter.png)
 
@@ -2505,14 +2548,14 @@ NSObject <|-- BaseProtocol
 * **10 bits 机器ID**：用来区分不同的机器或节点。10位可以表示1024个不同的节点（5位工作节点ID + 5位数据中心ID）。
 * **12 bits 序列号**：在同一毫秒内生成多个ID的情况下，用于区分这些ID。12位可以表示4096个不同的序列号。
 
-#### 30.4、雪花算法的工作原理
+#### 29.4、雪花算法的工作原理
 
 * **时间戳生成**：每次生成ID时获取当前时间戳，减去一个初始时间（纪元）得到相对时间戳。
 * **机器ID**：每个节点有唯一的机器ID，通过配置或计算获得。
 * **序列号**：在同一毫秒内生成多个ID时，序列号递增，最多支持4096个序列号；当序列号用尽时，等待下一毫秒再生成ID。
 * **组合ID**：将时间戳、机器ID和序列号组合成一个64位的整数，形成唯一ID。
 
-#### 30.5、雪花算法的评价
+#### 29.5、雪花算法的评价
 
 *  <font color=red>**高效性**</font>：在本地内存中生成ID，不需要数据库等集中式服务的支持。
 * <font color=red>**可扩展性**</font>：支持多个节点并行生成ID，无需担心ID冲突。
@@ -2520,7 +2563,7 @@ NSObject <|-- BaseProtocol
 * <font color=green>**时间依赖**</font>：依赖于机器的时间戳，如果服务器的时间不准确或者发生了时间回拨，可能导致生成的ID不唯一或重复。
 * <font color=green>**配置复杂**</font>：需要配置和管理机器ID，确保每个节点的ID是唯一的。
 
-#### 30.6、雪花算法的使用场景
+#### 29.6、雪花算法的使用场景
 
 * 数据库主键ID生成
 * 消息队列ID生成
@@ -2528,7 +2571,7 @@ NSObject <|-- BaseProtocol
 * OC方法签名
 * ...
 
-#### 30.7、雪花算法的OC实现（及使用示例）
+#### 29.7、雪花算法的OC实现（及使用示例）
 
 *  通过ChatGPT 翻译自 https://github.com/DamonHu/SnowflakeSwift
 
@@ -2653,7 +2696,174 @@ static const uint32_t kSequenceBits = 12;
 }
 ```
 
-### 29、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 30、数据的归档和解档
+
+#### 30.1、数据的序列化
+
+* **数据的序列化**是指将数据结构或对象状态转换为一种可以存储或传输的格式的过程。
+* 序列化后的数据可以保存在文件、内存、数据库中，或者通过网络进行传输。
+* 当数据需要恢复成原来的数据结构或对象状态时，**反序列化**（即反序列化过程）就会将数据从序列化格式恢复为其原始状态。
+* 序列化的必要性
+  * 持久化存储
+  * 网络传输
+  * 缓存
+  * 跨语言互操作性：不同编程语言之间的数据交换需要统一的格式。通过序列化，数据可以转换为一种标准化的格式（如 JSON、XML、Protocol Buffers 等），从而实现跨语言的互操作性
+  * 复制和传递对象
+
+#### 30.2、iOS.OC 的数据<u>归档/解档</u>
+
+* 需要<u>归档/解档</u>的类必须遵守<NSCoding>编码协议 和  <NSSecureCoding>解码协议
+
+* 在需要<u>归档/解档</u>的类的实现加入：
+
+  ```objective-c
+  #pragma mark —— NSSecureCoding
+  /**
+   方法的目的是告诉系统该类是否支持安全编码（NSSecureCoding）。
+   通常情况下，为了确保数据的安全性，特别是在跨应用程序或跨设备之间传输数据时，您应该将其设置为 YES。这样可以确保在归档和解档过程中，只有指定的类可以被解档，从而防止潜在的安全风险。
+   */
+  +(BOOL)supportsSecureCoding{
+      return YES;
+  }
+  ```
+
+* 实现<NSCoding>编码协议
+
+  * 对每个属性进行单独的处理
+
+    ```objective-c
+    @property(nonatomic,copy)NSString *accessToken;
+    @property(nonatomic,copy)NSString *expireTime;
+    ```
+
+    ```objective-c
+    /// 解档
+    - (nullable instancetype)initWithCoder:(NSCoder *)coder {
+        if (self = [super init]) {
+            _accessToken = [coder decodeObjectOfClass:NSString.class forKey:@"accessToken"];
+            _expireTime = [coder decodeObjectOfClass:NSString.class forKey:@"expireTime"];
+            // 解码更多属性
+        }return self;
+    }
+    /// 归档
+    - (void)encodeWithCoder:(NSCoder *)coder {
+        [coder encodeObject:self.accessToken forKey:@"accessToken"];
+        [coder encodeObject:self.expireTime forKey:@"expireTime"];
+        // 编码更多属性
+    }
+    ```
+
+  * 如果不希望对每个属性进行单独的处理，可以用以下的方法。但是控制台会有警告⚠️出现
+
+    ```objective-c
+    /// 解档
+    - (nullable instancetype)initWithCoder:(NSCoder *)decoder {
+    //    _img = [coder decodeObjectOfClass:UIImage.class forKey:@"img"];
+        if (self = [super initWithCoder:decoder]) {
+            
+            NSMutableSet <Class>*allowedClasses = NSMutableSet.set;
+            allowedClasses.add(self.class);
+            allowedClasses.add(NSString.class);
+            allowedClasses.add(NSNumber.class);
+            allowedClasses.add(NSArray.class);
+            allowedClasses.add(NSDictionary.class);
+            allowedClasses.add(UIImage.class);
+            
+            for (NSString *key in printPropertyListByClass(self.class)) {
+                if ([self respondsToSelector:NSSelectorFromString(key)]) {
+                    id value = [decoder decodeObjectOfClasses:allowedClasses forKey:key];
+                    if (value) self.jobsKVC(key,value);
+                }
+            }
+        }return self;
+    }
+    /// 归档
+    -(void)encodeWithCoder:(NSCoder *)encoder{
+        [super encodeWithCoder:encoder];
+        // 获取对象的属性列表
+        NSLog(@"printPropertyListByClass = %@",printPropertyListByClass(self.class));
+        for (NSString *key in printPropertyListByClass(self.class)) {
+            // 检查是否实现了协议中的属性对应的setter方法
+            NSLog(@"key.jobsCapitalCaseString = %@",@"set".add(key.jobsCapitalCaseString).add(@":"));
+            NSLog(@"key = %@",key);
+            if ([self respondsToSelector:NSSelectorFromString(@"set".add(key.jobsCapitalCaseString).add(@":"))]) {
+                id value = [self valueForKey:key];
+                [encoder encodeObject:value forKey:key];
+            }
+        }
+    }
+    ```
+
+* 最外层调用归档
+
+  ```objective-c
+  +(jobsByUserDefaultModelBlock)updateWithModel{
+      return ^(UserDefaultModel *_Nonnull userDefaultModel) {
+          if (![NSString isNullString:userDefaultModel.key]) {
+              if (userDefaultModel.obj && ![userDefaultModel.obj isKindOfClass:NSNull.class]) {
+                  // 步骤1: 将NSObject对象归档为二进制数据
+                  NSError *error = nil;
+                  NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:userDefaultModel.obj
+                                                               requiringSecureCoding:YES
+                                                                               error:&error];
+                  if (error) {
+                      NSLog(@"归档失败: %@", error.localizedDescription);
+                  } else {
+                      // 步骤2: 将归档数据存储到NSUserDefaults
+                      JobsSetUserDefaultKeyWithObject(userDefaultModel.key, archivedData);
+                      JobsUserDefaultSynchronize;
+                      NSLog(@"%@",NSString.userDefaultsDir);
+                      return;
+                  }
+              }
+              
+              if (userDefaultModel.booLValue) {
+                  JobsSetUserBoolKeyWithBool(userDefaultModel.key, userDefaultModel.booLValue);
+                  JobsUserDefaultSynchronize;
+                  NSLog(@"%@",NSString.userDefaultsDir);
+                  return;
+              }
+          }
+      };
+  }
+  ```
+
+* 最外层调用解档。需要加入需要进行<u>归档/解档</u>的类。否则解档出来为<font color=red>**nil**</font>
+
+  如果没有加入需要进行<u>归档/解档</u>的类，那么需要进行<u>归档/解档</u>的目标类只会执行`-(void)encodeWithCoder:(NSCoder *)encoder`而不会执行`- (nullable instancetype)initWithCoder:(NSCoder *)decoder`
+
+  ```objective-c
+  -(JobsReturnIDByClsAndSaltStrBlock)readUserInfoByUserName{
+      return ^id _Nullable(Class _Nonnull cls,NSString *_Nullable userName){
+          NSData *archivedData = NSUserDefaults.readWithKey(userName);
+          if(HDDeviceSystemVersion.floatValue < 12.0){
+              SuppressWdeprecatedDeclarationsWarning(return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];);
+          }else{
+              NSError *error = nil;
+              /// 如果 JobsUserModel 中包含更多自定义类型或者你需要解码其他基本类型（例如 NSArray 或 NSDictionary），需要将这些类也加入到 allowedClasses 集合中。
+              /// 确保在解码所有需要的类时，将其包含在 allowedClasses 集合中以避免警告和潜在的解码失败。例如
+              NSMutableSet *allowedClasses = NSMutableSet.set;
+              allowedClasses.add(JobsUserModel.class);
+              allowedClasses.add(NSString.class);
+              allowedClasses.add(NSNumber.class);
+              allowedClasses.add(NSArray.class);
+              allowedClasses.add(NSDictionary.class);
+              allowedClasses.add(UIImage.class);
+              allowedClasses.add(NSArray.class);
+              allowedClasses.add(cls);
+              
+              id userModel = [NSKeyedUnarchiver unarchivedObjectOfClasses:allowedClasses
+                                                                 fromData:archivedData
+                                                                    error:&error];
+              if (!userModel) {
+                  NSLog(@"解档失败: %@", error.localizedDescription);
+              }return userModel;
+          }
+      };
+  }
+  ```
+
+### 31、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 
