@@ -42,7 +42,7 @@
 #pragma mark —— lazyLoad
 -(UIColor *)cor{
     if (!_cor) {
-        _cor = [UIColor colorWithPatternImage:JobsIMG(@"选择场馆上拉列表背景")];// 用@2x@3x会有偏移异常
+        _cor = self.byPatternImage(JobsIMG(@"选择场馆上拉列表背景"));/// 用@2x@3x会有偏移异常
         /// 👇🏻下面有偏移
 //        [UIColor gradientCorDataMutArr:[NSMutableArray arrayWithArray:@[HEXCOLOR(0xF2CD7A),HEXCOLOR(0xFFEABA)]]
 //                            startPoint:CGPointMake(100, 100)

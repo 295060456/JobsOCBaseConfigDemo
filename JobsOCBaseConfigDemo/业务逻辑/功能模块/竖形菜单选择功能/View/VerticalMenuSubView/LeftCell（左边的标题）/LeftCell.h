@@ -9,11 +9,11 @@
 #import "JobsVerticalMenuDefineHeader.h"
 #import "UILocationProtocol.h"
 #import "GoodsClassModel.h"
-#import "JobsBaseTableViewCell.h"
+#import "UITableViewCellProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LeftCell : JobsBaseTableViewCell
+@interface LeftCell : UITableViewCell<UITableViewCellProtocol>
 
 @end
 

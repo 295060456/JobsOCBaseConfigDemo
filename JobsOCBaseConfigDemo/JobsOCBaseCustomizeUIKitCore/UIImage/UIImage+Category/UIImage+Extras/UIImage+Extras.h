@@ -14,20 +14,11 @@
 #import <AVFoundation/AVTime.h>
 
 #import "UIView+Measure.h"
+#import "NSObject+Extras.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (Extras)
-
-/// 根据颜色生成图片
-+(UIImage *)imageWithColor:(UIColor *)color;
-/// 根据颜色生成图片
-/// @param color 颜色
-/// @param rect 大小
-+(UIImage *)imageWithColor:(UIColor *)color
-                      rect:(CGRect)rect;
-/// UIColor 转 UIImage
-+(UIImage *)createImageWithColor:(UIColor *)color;
 /// NSString 转 UIImage
 /// @param string 准备转换的字符串
 /// @param font 该字符串的字号
@@ -35,24 +26,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param textAlignment 字符串位置
 /// @param backGroundColor 背景色
 /// @param textColor 字体颜色
-+(UIImage *)imageWithString:(NSString *)string
-                       font:(UIFont *)font
-                      width:(CGFloat)width
-              textAlignment:(NSTextAlignment)textAlignment
-            backGroundColor:(UIColor *)backGroundColor
-                  textColor:(UIColor *)textColor;
++ (UIImage *)imageWithString:(NSString *)string
+                        font:(UIFont *)font
+                       width:(CGFloat)width
+               textAlignment:(NSTextAlignment)textAlignment
+             backGroundColor:(UIColor *)backGroundColor
+                   textColor:(UIColor *)textColor;
 /// NSString 转 UIImage
 /// @param string 准备转换的字符串
 /// @param size 字符串的尺寸
 +(UIImage *)createNonInterpolatedUIImageFormString:(NSString *)string
                                           withSize:(CGFloat)size;
-
-+(UIImage *)imageResize:(UIImage*)img
-            andResizeTo:(CGSize)newSize;
-// 获取视频第一帧
-+(UIImage *)getVideoPreViewImage:(AVURLAsset *)asset;
-// 截图
-+(UIImage *)rendImageWithView:(UIView *)view;
+/// 对UIImage对象进行缩放，并返回一个指定尺寸的新图像
+-(JobsReturnImageByCGSizeBlock)imageResize;
 
 @end
 

@@ -13,16 +13,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol JobsDoorInputViewProtocol <NSObject>
-
 @optional
 
 -(void)changeTextFieldAnimationColor:(BOOL)toRegisterBtnSelected;
--(UILabel *_Nullable)getTextLab;
--(UIButton *_Nullable)getSecurityModeBtn;
--(UITextField *_Nullable)getTextField;
--(NSString *_Nullable)getTextFieldValue;
--(UIViewModel *_Nullable)getViewModel;
--(NSMutableArray<JobsAppDoorInputViewBaseStyle *> *_Nullable)getAppDoorInputViewBaseStyle;
+-(__kindof UILabel *_Nullable)textLab;
+-(__kindof UIButton *_Nullable)securityModelBtn;
+-(__kindof UITextField *_Nullable)textField;
+-(NSString *_Nullable)textFieldValue;
+-(NSMutableArray<JobsAppDoorInputViewBaseStyle *> *_Nullable)appDoorInputViewBaseStyle;
 
 @end
 

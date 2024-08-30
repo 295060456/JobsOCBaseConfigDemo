@@ -71,6 +71,22 @@
     UIGraphicsEndImageContext();
     return image;
 }
+/// 截图
+-(JobsReturnImageByViewBlock _Nonnull)rendImage{
+    return ^UIImage *_Nonnull(__kindof UIView *_Nonnull data){
+        /// 1、开始位图上下文
+        UIGraphicsBeginImageContext(CGSizeMake(self.width,self.height - 80));
+        /// 2、获取上下文
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        /// 3、截图
+        [self.layer renderInContext:ctx];
+        /// 4、获取图片
+        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        /// 5、关闭上下文
+        UIGraphicsEndImageContext() ;
+        return newImage;
+    };
+}
 /// 获取启动页的截图
 -(UIImage *_Nullable)lanuchScreenShot{
     NSString *name = NSBundle.mainBundle.infoDictionary.valueForKeyBlock(@"UILaunchStoryboardName");

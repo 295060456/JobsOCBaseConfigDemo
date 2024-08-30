@@ -9,6 +9,8 @@
 #define JobsObject_h
 
 #pragma mark —— Base
+/// 完整的文件名 = 文件名 + 后缀名
+#import "FileNameModel.h"
 /// 只执行一次
 #import "JobsOnceExecutor.h"
 /// 作用于全局的工具类（单例模式）

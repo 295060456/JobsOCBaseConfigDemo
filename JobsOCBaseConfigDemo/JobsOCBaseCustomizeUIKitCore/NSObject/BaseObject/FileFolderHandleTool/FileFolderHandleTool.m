@@ -730,7 +730,8 @@ didFinishSavingWithError:(NSError *)error
             fileFolderHandleModel.audioMix = audioMix;
             fileFolderHandleModel.info = info;
             fileFolderHandleModel.data = [FileFolderHandleTool AVAssetToData:asset];
-            fileFolderHandleModel.image = [UIImage getVideoPreViewImage:urlAsset];
+            fileFolderHandleModel.image = urlAsset.videoPreViewImage;
+//            [UIImage getVideoPreViewImage:urlAsset];
             if (completeBlock) completeBlock(fileFolderHandleModel);
         }];
     }

@@ -19,6 +19,7 @@
 #import "MacroDef_Notification.h"
 #import "NSObject+DynamicInvoke.h"
 #import "BaseViewProtocol.h"
+#import "JobsBlock.h"
 
 #ifndef ShadowDirection_h
 #define ShadowDirection_h
@@ -63,6 +64,8 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
  */
 /// 获取屏幕截图
 -(UIImage *_Nullable)screenShot;
+/// 截图
+-(JobsReturnImageByViewBlock _Nonnull)rendImage;
 /// 获取启动页的截图
 -(UIImage *_Nullable)lanuchScreenShot;
 /// 获取某个view 上的截图

@@ -297,7 +297,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     index = 0;
     
     for (JobsAppDoorInputViewBaseStyle *inputView in currentPageDataMutArr(self.currentPage)) {
-        UITextField *textField = inputView.getTextField;
+        UITextField *textField = inputView.textField;
         if (textField.isEditing) {
             NSLog(@"当前被激活的输入框的index = %ld",index);
             self.lastTimeActivateTFIndex = self.currentActivateTFIndex;

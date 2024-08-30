@@ -95,8 +95,8 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
     cell.cornerCutToCircleWithCornerRadius(itemSize.height / 2);
     cell.contentView.cornerCutToCircleWithCornerRadius(itemSize.height / 2);
     if (indexPath.section == 0 && indexPath.row == 0) {
-        cell.getTextLab.textColor = HEXCOLOR(0xAE8330);
-        cell.getTextLab.backgroundColor = HEXCOLOR(0xFFEABA);
+        cell.textLab.textColor = HEXCOLOR(0xAE8330);
+        cell.textLab.backgroundColor = HEXCOLOR(0xFFEABA);
     }return cell;
 }
 
@@ -156,11 +156,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     JobsHotLabelWithMultiLineCVCell *_cell = (JobsHotLabelWithMultiLineCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
 //    self.jobsToastSuccessMsg(_cell.getViewModel.textModel.text);
     for (JobsHotLabelWithMultiLineCVCell *cell in collectionView.visibleCells) {
-        cell.getTextLab.backgroundColor = HEXCOLOR(0xF3F3F3);
-        cell.getTextLab.textColor = HEXCOLOR(0x757575);
+        cell.textLab.backgroundColor = HEXCOLOR(0xF3F3F3);
+        cell.textLab.textColor = HEXCOLOR(0x757575);
     }
-    _cell.getTextLab.textColor = HEXCOLOR(0xAE8330);
-    _cell.getTextLab.backgroundColor = HEXCOLOR(0xFFEABA);
+    _cell.textLab.textColor = HEXCOLOR(0xAE8330);
+    _cell.textLab.backgroundColor = HEXCOLOR(0xFFEABA);
     
     if (self.objectBlock) self.objectBlock(_cell);
 }

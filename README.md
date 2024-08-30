@@ -9621,7 +9621,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   #endif
   ```
 
-#### 41、颜色透明度
+### 41、颜色透明度
 
 * 手动提取颜色的 RGB 分量并创建一个新的颜色对象，这样可以更加灵活地控制颜色的生成过程
 

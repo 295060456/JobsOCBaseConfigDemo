@@ -148,6 +148,14 @@
                     context:nil];
 }
 #pragma mark —— 功能性的
+/// 使用指定的图像（UIImage）作为颜色的填充图案。
+/// 这个方法的作用是生成一个基于图像的颜色，这个颜色在视图或图层上会以平铺的方式重复显示指定的图像。
+-(JobsReturnColorByImageBlock _Nonnull)byPatternImage{
+    return ^UIColor *_Nullable(UIImage *_Nonnull image){
+        return [UIColor colorWithPatternImage:image];
+    };
+}
+/// 雪花算法
 -(NSNumber *_Nonnull)makeSnowflake{
     JobsSnowflake *snowflake = [JobsSnowflake.alloc initWithPublishMillisecond:self.currentUnixTimeStampInMilliseconds
                                                                          IDCID:1

@@ -20,11 +20,7 @@
 
     }return self;
 }
-#pragma mark —— JobsDoorInputViewProtocol
--(UILabel *_Nullable)getTextLab{
-    return self.textLab;
-}
-
+#pragma mark —— BaseViewProtocol
 -(UIViewModel *_Nullable)getViewModel{
     return self.viewModel;
 }

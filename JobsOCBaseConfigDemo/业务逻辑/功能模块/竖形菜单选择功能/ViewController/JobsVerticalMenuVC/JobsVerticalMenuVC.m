@@ -12,11 +12,11 @@
 @property(nonatomic,strong)UITableView *tableView;///  左侧的标题
 @property(nonatomic,strong)UICollectionView *collectionView; /// 右侧的内容
 @property(nonatomic,strong)UICollectionViewFlowLayout *flowLayout;
-@property(nonatomic,strong)UIButton *customerServiceBtn;
-@property(nonatomic,strong)UIButton *msgBtn;
-@property(nonatomic,strong)UIButton *editBtn;
+@property(nonatomic,strong)BaseButton *customerServiceBtn;
+@property(nonatomic,strong)BaseButton *msgBtn;
+@property(nonatomic,strong)BaseButton *editBtn;
 @property(nonatomic,strong)ThreeClassCell *tempCell;
-@property(nonatomic,strong)BaiShaETProjSearchView *searchView;
+@property(nonatomic,strong)JobsSearchBar *searchView;
 @property(nonatomic,strong)BaiShaETProjPopupView10 *popupView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*titleMutArr;
@@ -112,11 +112,11 @@
 }
 /// 最初默认的数据
 -(NSMutableArray<UIViewModel *> *)makeTitleMutArr{
-    NSMutableArray *titleMutArr = NSMutableArray.array;
+    NSMutableArray <UIViewModel *>*titleMutArr = NSMutableArray.array;
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"收藏");
-        [titleMutArr addObject:viewModel];
+        titleMutArr.add(viewModel);
     }
     
     [titleMutArr addObjectsFromArray:self.makePopViewDataMutArr];
@@ -124,36 +124,36 @@
 }
 
 -(NSMutableArray<UIViewModel *> *)makePopViewDataMutArr{
-    NSMutableArray *titleMutArr = NSMutableArray.array;
+    NSMutableArray <UIViewModel *>*titleMutArr = NSMutableArray.array;
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"真人");
-        [titleMutArr addObject:viewModel];
+        titleMutArr.add(viewModel);
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"体育");
-        [titleMutArr addObject:viewModel];
+        titleMutArr.add(viewModel);
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"电子");
-        [titleMutArr addObject:viewModel];
+        titleMutArr.add(viewModel);
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"棋牌");
-        [titleMutArr addObject:viewModel];
+        titleMutArr.add(viewModel);
     }
     
     {
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"彩票");
-        [titleMutArr addObject:viewModel];
+        titleMutArr.add(viewModel);
     }return titleMutArr;
 }
 
@@ -185,7 +185,7 @@
     [self.rightDataArray removeAllObjects];
     /// 每个子页面的section个数
     for (int i = 0; i < self.imageDataMutArr.count; i++){
-        [self.rightDataArray addObject:[self createTwoModel:i]];
+        self.rightDataArray.add([self createTwoModel:i]);
     }
     [self.collectionView reloadData];
     if (self.rightDataArray.count){
@@ -197,26 +197,26 @@
 
 -(GoodsClassModel *)createOneModel:(int)iflag{
     GoodsClassModel *model = GoodsClassModel.new;
-    model.idField = [NSString stringWithFormat:@"%d", iflag];
+    model.idField = toStringByInt(iflag);
     model.pid = @"0";
-    model.name = [NSString stringWithFormat:@"一级目录 %d", iflag];
+    model.name = JobsInternationalization(@"一级目录").add(toStringByInt(iflag));
     model.textModel.text = self.titleMutArr[iflag].textModel.text;
     return model;
 }
 
 -(GoodsClassModel *)createTwoModel:(int)iFlag{
     GoodsClassModel *model = GoodsClassModel.new;
-    model.idField = [NSString stringWithFormat:@"%d", iFlag];
-    model.pid = [NSString stringWithFormat:@"%d", iFlag];
-    model.name = [NSString stringWithFormat:@"随机-%d", iFlag];
+    model.idField = toStringByInt(iFlag);
+    model.pid = toStringByInt(iFlag);
+    model.name = JobsInternationalization(@"随机").add(@"-").add(toStringByInt(iFlag));
     model.textModel.text = @"1234";
-    model.subTextModel.text = JobsInternationalization([NSString stringWithFormat:@"%d球桌球",iFlag]);
+    model.subTextModel.text = toStringByInt(iFlag).add(JobsInternationalization(@"球桌球"));
     model.bgImage = self.imageDataMutArr[iFlag];
     NSLog(@"%@",model.bgImage);
-    NSMutableArray *arr = NSMutableArray.array;
+    NSMutableArray <GoodsClassModel *>*arr = NSMutableArray.array;
     /// 每个section里面的item数量
     for (int i = 0; i < 9; i++){
-        [arr addObject:[self createThreeModel:i]];
+        arr.add([self createThreeModel:i]);
     }
     model.childrenList = arr;
     NSLog(@"LKL = %ld",model.childrenList.count);
@@ -225,9 +225,9 @@
 
 -(GoodsClassModel *)createThreeModel:(int)iflag{
     GoodsClassModel *model = GoodsClassModel.new;
-    model.idField = [NSString stringWithFormat:@"%d", iflag];
-    model.pid = [NSString stringWithFormat:@"%d", iflag];
-    model.name = [NSString stringWithFormat:@"三级目录 %d", iflag];
+    model.idField = toStringByInt(iflag);
+    model.pid = toStringByInt(iflag);
+    model.name = JobsInternationalization(@"三级目录").add(toStringByInt(iflag));
     return model;
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
@@ -236,13 +236,12 @@ numberOfRowsInSection:(NSInteger)section{
     return self.titleMutArr.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView
-        cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LeftCell *cell = LeftCell.cellStyleValue1WithTableView(tableView);
+-(__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                 cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    LeftCell *cell = LeftCell.cellStyleDefaultWithTableView(tableView);
     UIViewModel *viewModel = UIViewModel.new;
     viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
     cell.jobsRichElementsInCellWithModel(viewModel);
-
     return cell;
 }
 
@@ -264,8 +263,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.collectionView setContentOffset:CGPointMake(0, JobsWidth(-5)) animated:YES];
 }
 #pragma mark —— UICollectionViewDelegate,UICollectionViewDataSource ThreeTopBannerCell
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                 cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+-(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                          cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ThreeClassCell *cell = [ThreeClassCell cellWithCollectionView:collectionView forIndexPath:indexPath];
     self.rightViewCurrentSelectModel = [self.rightDataArray objectAtIndex:indexPath.section];
     [cell getCollectionHeight:(NSMutableArray *)self.rightViewCurrentSelectModel.childrenList];
@@ -288,9 +287,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     return 1;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
-           viewForSupplementaryElementOfKind:(NSString *)kind
-                                 atIndexPath:(NSIndexPath *)indexPath{
+- (__kindof UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+                    viewForSupplementaryElementOfKind:(NSString *)kind
+                                          atIndexPath:(NSIndexPath *)indexPath{
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]){
         UICollectionReusableView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:UICollectionReusableView.class
                                                                                             forIndexPath:indexPath];
@@ -337,46 +336,187 @@ referenceSizeForFooterInSection:(NSInteger)section{
     return CGSizeMake(self.collectionView.width, [self getCellHeight:(NSMutableArray *)[self.rightDataArray objectAtIndex:indexPath.section].childrenList]);
 }
 #pragma mark —— lazyLoad
--(UIButton *)customerServiceBtn{
+-(BaseButton *)customerServiceBtn{
     if (!_customerServiceBtn) {
-        _customerServiceBtn = UIButton.new;
-        _customerServiceBtn.normalImage(JobsIMG(@"人工客服"));
+        @jobs_weakify(self)
+        _customerServiceBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                                background:nil
+                                                buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                             textAlignment:NSTextAlignmentCenter
+                                                          subTextAlignment:NSTextAlignmentCenter
+                                                               normalImage:JobsIMG(@"人工客服")
+                                                            highlightImage:nil
+                                                           attributedTitle:nil
+                                                   selectedAttributedTitle:nil
+                                                        attributedSubtitle:nil
+                                                                     title:nil
+                                                                  subTitle:nil
+                                                                 titleFont:nil
+                                                              subTitleFont:nil
+                                                                  titleCor:nil
+                                                               subTitleCor:nil
+                                                        titleLineBreakMode:NSLineBreakByWordWrapping
+                                                     subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                       baseBackgroundColor:nil
+                                                           backgroundImage:nil
+                                                              imagePadding:JobsWidth(0)
+                                                              titlePadding:JobsWidth(0)
+                                                            imagePlacement:NSDirectionalRectEdgeNone
+                                                contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                                  contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                             contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                         cornerRadiusValue:JobsWidth(0)
+                                                           roundingCorners:UIRectCornerAllCorners
+                                                      roundingCornersRadii:CGSizeZero
+                                                            layerBorderCor:nil
+                                                               borderWidth:JobsWidth(0)
+                                                             primaryAction:nil
+                                                longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                               id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                           clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        }];
     }return _customerServiceBtn;
 }
 
--(UIButton *)msgBtn{
+-(BaseButton *)msgBtn{
     if (!_msgBtn) {
-        _msgBtn = UIButton.new;
-        _msgBtn.normalImage(JobsIMG(@"消息"));
+        @jobs_weakify(self)
+        _msgBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                    background:nil
+                                    buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                 textAlignment:NSTextAlignmentCenter
+                                              subTextAlignment:NSTextAlignmentCenter
+                                                   normalImage:JobsIMG(@"消息")
+                                                highlightImage:nil
+                                               attributedTitle:nil
+                                       selectedAttributedTitle:nil
+                                            attributedSubtitle:nil
+                                                         title:nil
+                                                      subTitle:nil
+                                                     titleFont:nil
+                                                  subTitleFont:nil
+                                                      titleCor:nil
+                                                   subTitleCor:nil
+                                            titleLineBreakMode:NSLineBreakByWordWrapping
+                                         subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                           baseBackgroundColor:nil
+                                               backgroundImage:nil
+                                                  imagePadding:JobsWidth(0)
+                                                  titlePadding:JobsWidth(0)
+                                                imagePlacement:NSDirectionalRectEdgeNone
+                                    contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                      contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                 contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                             cornerRadiusValue:JobsWidth(0)
+                                               roundingCorners:UIRectCornerAllCorners
+                                          roundingCornersRadii:CGSizeZero
+                                                layerBorderCor:nil
+                                                   borderWidth:JobsWidth(0)
+                                                 primaryAction:nil
+                                    longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                   id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                               clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        }];
     }return _msgBtn;
 }
 
--(BaiShaETProjSearchView *)searchView{
+-(JobsSearchBar *)searchView{
     if (!_searchView) {
-        _searchView = [BaiShaETProjSearchView.alloc initWithSize:CGSizeZero];
+        _searchView = JobsSearchBar.new;
+        _searchView.size = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
         _searchView.jobsRichElementsInViewWithModel(nil);
+//        @jobs_weakify(self)
+        [_searchView actionObjectBlock:^(NSString *data) {
+//            @jobs_strongify(self)
+
+        }];
+        
         [self.gk_navigationBar addSubview:_searchView];
         [_searchView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo([BaiShaETProjSearchView viewSizeWithModel:nil]);
-            make.left.equalTo(self.gk_navigationBar).offset(JobsWidth(16));
-            make.bottom.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(-5));
+            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
+            make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
+            make.centerY.equalTo(self.gk_navigationBar);
         }];
+        
+//        [_jobsSearchBar actionNSIntegerBlock:^(UITextFieldFocusType data) {
+//            @jobs_strongify(self)
+//            switch (data) {
+//                case UITextFieldGetFocus:{/// 输入框获得焦点
+//                    if (self.listViewData.count) {
+//                        /// 必须先移除，否则反复添加无法正常移除
+//                        self.dropDownListView = [self motivateFromView:weak_self.jobsSearchBar
+//                                                                  data:self.listViewData
+//                                                    motivateViewOffset:JobsWidth(5)
+//                                                           finishBlock:^(UIViewModel *data) {
+//                            NSLog(@"data = %@",data);
+//                        }];
+//                    }
+//                }break;
+//                case UITextFieldLoseFocus:{/// 输入框失去焦点
+//                    [self endDropDownListView];
+//                }break;
+//                default:
+//                    break;
+//            }
+//        }];
     }return _searchView;
 }
 
--(UIButton *)editBtn{
+-(BaseButton *)editBtn{
     if (!_editBtn) {
-        _editBtn = UIButton.new;
-        _editBtn.backgroundColor = HEXCOLOR(0xFCFBFB);
-        _editBtn.normalTitle(JobsInternationalization(@"编辑"));
-        _editBtn.normalTitleColor(HEXCOLOR(0xB0B0B0));
-        _editBtn.titleFont(UIFontWeightRegularSize(12));
-        _editBtn.normalImage(JobsIMG(@"编辑"));
-        [_editBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
-                                     imagePadding:JobsWidth(5.75)];
         @jobs_weakify(self)
-        [_editBtn jobsBtnClickEventBlock:^id(id data) {
+        _editBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                     background:nil
+                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                  textAlignment:NSTextAlignmentCenter
+                                               subTextAlignment:NSTextAlignmentCenter
+                                                    normalImage:JobsIMG(@"编辑")
+                                                 highlightImage:nil
+                                                attributedTitle:nil
+                                        selectedAttributedTitle:nil
+                                             attributedSubtitle:nil
+                                                          title:JobsInternationalization(@"编辑")
+                                                       subTitle:nil
+                                                      titleFont:UIFontWeightRegularSize(12)
+                                                   subTitleFont:nil
+                                                       titleCor:HEXCOLOR(0xB0B0B0)
+                                                    subTitleCor:nil
+                                             titleLineBreakMode:NSLineBreakByWordWrapping
+                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                            baseBackgroundColor:HEXCOLOR(0xFCFBFB)
+                                                backgroundImage:nil
+                                                   imagePadding:JobsWidth(5.75)
+                                                   titlePadding:JobsWidth(0)
+                                                 imagePlacement:NSDirectionalRectEdgeLeading
+                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                              cornerRadiusValue:JobsWidth(0)
+                                                roundingCorners:UIRectCornerAllCorners
+                                           roundingCornersRadii:CGSizeZero
+                                                 layerBorderCor:nil
+                                                    borderWidth:JobsWidth(0)
+                                                  primaryAction:nil
+                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
 //            toast(JobsInternationalization(@"编辑"));
             self.popupParameter.dragEnable = YES;
             self.popupParameter.disuseBackgroundTouchHide = NO;
@@ -400,7 +540,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
         _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
         _tableView.dataLink(self);
         _tableView.frame = CGRectMake(0,
-                                      JobsTopSafeAreaHeight() + JobsStatusBarHeight(),
+                                      JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
                                       TableViewWidth,
                                       JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
         _tableView.showsVerticalScrollIndicator = NO;
@@ -437,6 +577,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
 -(ThreeClassCell *)tempCell{
     if (!_tempCell){
         _tempCell = ThreeClassCell.new;
+        _tempCell.backgroundColor = JobsRedColor;
         _tempCell.frame = CGRectMake(0,
                                      0,
                                      [ThreeClassCell cellSizeWithModel:nil].width,
@@ -463,31 +604,31 @@ referenceSizeForFooterInSection:(NSInteger)section{
     /// 装载假数据
     if (self.thisIndex == 0) {
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else if (self.thisIndex == 1){
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.add(@"真人".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else if (self.thisIndex == 2){
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else if (self.thisIndex == 3){
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else if (self.thisIndex == 4){
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else if (self.thisIndex == 5){
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else{
         for (int i = 1; i < 10; i++) {
-            _imageDataMutArr.add(@"体育".add(@"0").add(toStringByInt(i)));
+            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }return _imageDataMutArr;
 }
@@ -519,7 +660,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                 self.titleMutArr = dataMutArr;
             }else if ([data isKindOfClass:UIButton.class]){
                 UIButton *btn = (UIButton *)data;
-                if ([btn.titleForNormalState isEqualToString:JobsInternationalization(@"恢复默认")]) {
+                if (btn.titleForNormalState.isEqualToString(JobsInternationalization(@"恢复默认"))) {
                     self.titleMutArr = self.makeTitleMutArr;
                 }
             }else{}

@@ -22,7 +22,7 @@
 }
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
 -(void)lbBackgroundImage:(UIImage *)bgImage{
-    self.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+    self.backgroundColor = self.byPatternImage(bgImage);
 }
 /// 设置UILabel的显示样式 【在Masonry以后拿到了frame】
 -(jobsByNSIntegerBlock _Nonnull)makeLabelByShowingType{

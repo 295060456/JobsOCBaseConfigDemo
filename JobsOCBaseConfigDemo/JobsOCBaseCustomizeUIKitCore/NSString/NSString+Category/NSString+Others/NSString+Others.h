@@ -9,6 +9,7 @@
 #import "UIBezierPath+TextPath.h"
 #import "NSObject+Extras.h"
 #import "JobsBlock.h"
+#import "FileNameModel.h"
 
 static inline NSMutableString * _Nonnull JobsMutableString(NSString * _Nonnull str){
     if(!str) str = @"";
@@ -50,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
                         lineBreakMode:(NSLineBreakMode)lineBreakMode
                                 limit:(NSInteger)limit;
 #pragma mark —— 一些功能性的
+/// 完整的文件名提取普通文件名和文件后缀名
+-(JobsReturnFileNameModelByFileFullNameStringBlock)byFileFullName;
 /// 复制到系统剪切板
 -(JobsReturnStringByVoidBlock _Nonnull)pasteboard;
 /// 根据字符串生成二维码图像

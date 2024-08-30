@@ -146,186 +146,7 @@ UITableViewCellProtocol_synthesize
 //                          cellOffsetY:self.offsetYForEach];
 //}
 #pragma mark —— 一些私有方法
-/// 值打印
--(void)printValue{
-    NSLog(@"self.textLabelFrame = %@",NSStringFromCGRect(self.textLabelFrame));
-    NSLog(@"self.detailTextLabelFrame = %@",NSStringFromCGRect(self.detailTextLabelFrame));
-    NSLog(@"self.imageViewFrame = %@",NSStringFromCGRect(self.imageViewFrame));
-    
-    NSLog(@"self.textLabelSize = %@",NSStringFromCGSize(self.textLabelSize));
-    NSLog(@"self.detailTextLabelSize = %@",NSStringFromCGSize(self.detailTextLabelSize));
-    NSLog(@"self.imageViewSize = %@",NSStringFromCGSize(self.imageViewSize));
-    
-    NSLog(@"self.textLabelWidth = %f",self.textLabelWidth);
-    NSLog(@"self.textLabelHeight = %f",self.textLabelHeight);
-    NSLog(@"self.detailTextLabelWidth = %f",self.detailTextLabelWidth);
-    NSLog(@"elf.detailTextLabelHeight = %f",self.detailTextLabelHeight);
-    NSLog(@"self.imageViewWidth = %f",self.imageViewWidth);
-    NSLog(@"self.imageViewHeight = %f",self.imageViewHeight);
-    
-    NSLog(@"self.textLabelFrameOffsetX = %f",self.textLabelFrameOffsetX);
-    NSLog(@"self.textLabelFrameOffsetY = %f",self.textLabelFrameOffsetY);
-    NSLog(@"self.textLabelFrameOffsetWidth = %f",self.textLabelFrameOffsetWidth);
-    NSLog(@"self.textLabelFrameOffsetHeight = %f",self.textLabelFrameOffsetHeight);
-    
-    NSLog(@"self.detailTextLabelOffsetX = %f",self.detailTextLabelOffsetX);
-    NSLog(@"self.detailTextLabelOffsetY = %f",self.detailTextLabelOffsetY);
-    NSLog(@"self.detailTextLabelOffsetWidth = %f",self.detailTextLabelOffsetWidth);
-    NSLog(@"self.detailTextLabelOffsetHeight = %f",self.detailTextLabelOffsetHeight);
-    
-    NSLog(@"self.imageViewFrameOffsetX = %f",self.imageViewFrameOffsetX);
-    NSLog(@"self.imageViewFrameOffsetY = %f",self.imageViewFrameOffsetY);
-    NSLog(@"self.imageViewFrameOffsetWidth = %f",self.imageViewFrameOffsetWidth);
-    NSLog(@"self.imageViewFrameOffsetHeight = %f",self.imageViewFrameOffsetHeight);
-}
-/// 修改 UITableViewCell 中默认子控件的frame 【方法一】
--(void)modifySysChildViewFrame1{
-    {///【组 1】 UITableViewCell单独自定义设置系统自带控件的Frame 【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️
-        if (!jobsZeroRectValue(self.textLabelFrame)) {
-            self.textLabel.frame = self.textLabelFrame;
-        }
-        
-        if (!jobsZeroRectValue(self.detailTextLabelFrame) && self.detailTextLabel) {
-            self.detailTextLabel.frame = self.detailTextLabelFrame;
-        }
 
-        if (!jobsZeroRectValue(self.imageViewFrame)) {
-            self.imageView.frame = self.imageViewFrame;
-        }
-    }
-    
-    {///【组 2】UITableViewCell单独自定义设置系统自带控件的Size【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、3属性互斥❤️
-        {
-            if (!jobsZeroSizeValue(self.textLabelSize)) {
-                self.textLabel.resetSize(self.textLabelSize);
-            }
-            if(self.textLabelFrameOffsetX){
-                self.textLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
-            }
-            if(self.textLabelFrameOffsetY){
-                self.textLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
-            }
-        }
-        
-        {
-            if (!jobsZeroSizeValue(self.detailTextLabelSize) && self.detailTextLabel) {
-                self.detailTextLabel.resetSize(self.detailTextLabelSize);
-            }
-            if(self.detailTextLabelOffsetX && self.detailTextLabel){
-                self.detailTextLabel.resetByOffsetOriginX(self.detailTextLabelOffsetX);
-            }
-            if(self.detailTextLabelOffsetY && self.detailTextLabel){
-                self.detailTextLabel.resetByOffsetOriginY(self.detailTextLabelOffsetY);
-            }
-        }
-
-        {
-            if (!jobsZeroSizeValue(self.imageViewSize)) {
-                self.imageView.resetSize(self.imageViewSize);
-            }
-            if(self.imageViewFrameOffsetX){
-                self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
-            }
-            if(self.imageViewFrameOffsetY){
-                self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
-            }
-        }
-    }
-    
-    {///【组 3】UITableViewCell单独自定义设置系统自带控件的宽高【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、2属性互斥❤️
-       
-        {
-            if (self.textLabelWidth) {
-                self.textLabel.resetWidth(self.textLabelWidth);
-            }
-            if (self.textLabelHeight && self.detailTextLabel) {
-                self.detailTextLabel.resetHeight(self.textLabelHeight);
-            }
-            if(self.textLabelFrameOffsetX){
-                self.textLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
-            }
-            if(self.textLabelFrameOffsetY){
-                self.textLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
-            }
-        }
-        
-        {
-            if (self.detailTextLabelWidth && self.detailTextLabel) {
-                self.detailTextLabel.resetWidth(self.detailTextLabelWidth);
-            }
-            if (self.detailTextLabelHeight && self.detailTextLabel) {
-                self.detailTextLabel.resetHeight(self.detailTextLabelHeight);
-            }
-            if(self.detailTextLabelOffsetX && self.detailTextLabel){
-                self.detailTextLabel.resetByOffsetOriginX(self.detailTextLabelOffsetX);
-            }
-            if(self.detailTextLabelOffsetY && self.detailTextLabel){
-                self.detailTextLabel.resetByOffsetOriginY(self.detailTextLabelOffsetY);
-            }
-        }
-        
-        {
-            if (self.imageViewWidth) {
-                self.imageView.resetWidth(self.imageViewWidth);
-            }
-            if (self.imageViewHeight) {
-                self.imageView.resetHeight(self.imageViewHeight);
-            }
-            if(self.imageViewFrameOffsetX){
-                self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
-            }
-            if(self.imageViewFrameOffsetY){
-                self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
-            }
-        }
-    }
-    
-    {/// 【组 4】UITableViewCell单独自定义设置系统自带控件的偏移量
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.offsetXForEach = self.textLabelFrameOffsetX;
-            viewModel.offsetYForEach = self.textLabelFrameOffsetY;
-            viewModel.offsetWidth = self.textLabelFrameOffsetWidth;
-            viewModel.offsetHeight = self.textLabelFrameOffsetHeight;
-            self.textLabel.offsetForView(viewModel);
-        }
-        
-        if (self.detailTextLabel) {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.offsetXForEach = self.detailTextLabelOffsetX;
-            viewModel.offsetYForEach = self.detailTextLabelOffsetY;
-            viewModel.offsetWidth = self.detailTextLabelOffsetWidth;
-            viewModel.offsetHeight = self.detailTextLabelOffsetHeight;
-            self.detailTextLabel.offsetForView(viewModel);
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.offsetXForEach = self.imageViewFrameOffsetX;
-            viewModel.offsetYForEach = self.imageViewFrameOffsetY;
-            viewModel.offsetWidth = self.imageViewFrameOffsetWidth;
-            viewModel.offsetHeight = self.imageViewFrameOffsetHeight;
-            self.imageView.offsetForView(viewModel);
-        }
-    }
-}
-/// 修改 UITableViewCell 中默认子控件的frame 【方法二】
--(void)modifySysChildViewFrame2{
-    self.textLabelFrameOffsetX = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetOriginX(JobsWidth(0));
-    self.textLabelFrameOffsetY = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetOriginY(JobsWidth(0));
-    self.textLabelFrameOffsetWidth = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetWidth(JobsWidth(0));
-    self.textLabelFrameOffsetHeight = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetHeight(JobsWidth(0));
-    
-    self.detailTextLabelOffsetX = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetOriginX(JobsWidth(0));
-    self.detailTextLabelOffsetY = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetOriginY(JobsWidth(0));
-    self.detailTextLabelOffsetWidth = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetWidth(JobsWidth(0));
-    self.detailTextLabelOffsetHeight = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetHeight(JobsWidth(0));
-    
-    self.imageViewFrameOffsetX = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetOriginX(JobsWidth(0));
-    self.imageViewFrameOffsetY = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetOriginY(JobsWidth(0));
-    self.imageViewFrameOffsetWidth = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetWidth(JobsWidth(0));
-    self.imageViewFrameOffsetHeight = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetHeight(JobsWidth(0));
-}
 #pragma mark —— 子类重写父类方法
 - (void)setSelected:(BOOL)selected
            animated:(BOOL)animated {
@@ -349,23 +170,13 @@ UITableViewCellProtocol_synthesize
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    [self printValue];
+    self.printValue();
     /// 取内部类UITableViewCellEditControl,对编辑状态的Cell的点击按钮进行替换成自定义的
-    for (UIControl *control in self.subviews){
-        if ([control isMemberOfClass:NSClassFromString(@"UITableViewCellEditControl")]){
-            for (UIView *view in control.subviews){
-                if ([view isKindOfClass:UIImageView.class]) {
-                    UIImageView *img = (UIImageView *)view;
-                    if (JobsIMG(@"按钮已选中") && JobsIMG(@"按钮未选中")) {
-                        img.image = self.selected ? JobsIMG(@"按钮已选中") : JobsIMG(@"按钮未选中");
-                    }
-                }
-            }
-        }
-    }
-    [self modifySysChildViewFrame1];
+    self.customCellEditStateImage();
+    
+    self.modifySysChildViewFrame1();
     // 或者
-    [self modifySysChildViewFrame2];
+    self.modifySysChildViewFrame2();
 }
 /**
  1、-(void)setFrame:(CGRect)frame 此方法仅限于具体的 UITableViewCell子类使用
@@ -438,7 +249,7 @@ UITableViewCellProtocol_synthesize
     };
 }
 
-+(CGFloat)cellHeightWithModel:(UIViewModel __kindof *_Nullable)model{
++(CGFloat)cellHeightWithModel:(__kindof UIViewModel *_Nullable)model{
     if(model){
         UIViewModel *vm = UIViewModel.new;
         NSString *title = @"";

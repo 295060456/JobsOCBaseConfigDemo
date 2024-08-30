@@ -11,17 +11,17 @@
 
 #import "UIControl+XY.h"
 #import "NSString+Others.h"
+#import "FileNameModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (Sound)
-/**
- 播放自定义本地声音
- @param fileName 文件名 包含后缀
- */
--(void)playSoundWithFileName:(NSString *)fileName;
--(void)playSoundEffect:(NSString*)name
-                  type:(NSString*)type;
+/// 播放自定义本地声音
+/// fileName 文件名 包含后缀
+-(jobsByStringBlock)playSoundWithFileName;
+/// 播放自定义本地声音
+/// fileName 全文件名 包含后缀
+-(jobsByStringBlock)playSoundEffect;
 
 @end
 

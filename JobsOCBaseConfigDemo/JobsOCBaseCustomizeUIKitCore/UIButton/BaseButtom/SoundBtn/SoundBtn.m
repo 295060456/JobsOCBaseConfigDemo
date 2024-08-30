@@ -8,9 +8,7 @@
 
 #import "SoundBtn.h"
 
-@interface SoundBtn (){
-
-}
+@interface SoundBtn ()
 
 @end
 
@@ -24,8 +22,7 @@
 
 - (void)touchesBegan:(NSSet *)touches
            withEvent:(UIEvent*)event{
-    [NSObject playSoundEffect:@"Sound"
-                          type:@"wav"];
+    self.playSoundEffect(@"Sound.wav");
     [super touchesBegan:touches
               withEvent:event];
 }

@@ -12,15 +12,13 @@
 @end
 
 @implementation BaiShaETProjVIPSubCVCell_02
-
 @synthesize viewModel = _viewModel;
-
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.contentView.backgroundColor = JobsBlueColor;
     }return self;
 }
-#pragma mark —— JobsDoorInputViewProtocol
+#pragma mark —— BaseViewProtocol
 -(UIViewModel *_Nullable)getViewModel{
     return self.viewModel;
 }

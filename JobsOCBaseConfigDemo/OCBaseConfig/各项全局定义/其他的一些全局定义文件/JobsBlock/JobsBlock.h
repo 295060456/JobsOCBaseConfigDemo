@@ -59,28 +59,22 @@ typedef NS_ENUM(NSInteger, ComponentType) {
 };
 #endif /* MyEnums_h */
 
+#pragma mark —— 涉及到自定义类的Block定义
 typedef ComponentType(^JobsReturnComponentTypeByVoidBlock)(void);
 typedef DeviceOrientation(^JobsReturnDeviceOrientationByVoidBlock)(void);
 typedef AppLanguage(^JobsReturnAppLanguageByVoidBlock)(void);
-typedef DeviceOrientation(^JobsReturnDeviceOrientationByViewBlock)(UIView *_Nullable data);
+typedef DeviceOrientation(^JobsReturnDeviceOrientationByViewBlock)(__kindof UIView *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByAppLanguageBlock)(AppLanguage data);
 typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType componentType,
-                                                                 UIView *_Nullable data);
-
-@class RACDisposable;
-typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);
-
-@class YTKBaseRequest;
-typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
-
+                                                                 __kindof UIView *_Nullable data);
 @class JobsRichTextConfig;
 typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable data);
 
 @class UIViewModel;
-typedef void(^jobsByViewModelBlock)(UIViewModel *_Nullable data);
-typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(UIViewModel *_Nullable data);
-typedef CGRect(^JobsReturnCGRectByViewModelBlock)(UIViewModel *_Nullable data);
-typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(UIViewModel *_Nullable data);
+typedef void(^jobsByViewModelBlock)(__kindof UIViewModel *_Nullable data);
+typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(__kindof UIViewModel *_Nullable data);
+typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullable data);
+typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByArrBlock)(__kindof NSArray *_Nullable data);
 
 @class ButtonTimerProcessValueModel;
@@ -94,18 +88,28 @@ typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);
 @class JobsNavBarConfig;
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,
                                                                                UIButtonModel *_Nullable closeBtnModel);
-
-@class GKPhotoBrowser;
-typedef void(^jobsByGKPhotoBrowserBlock)(GKPhotoBrowser *_Nonnull data);
+@class FileNameModel;
+typedef FileNameModel *_Nonnull(^JobsReturnFileNameModelByFileFullNameStringBlock)(NSString *_Nullable FileFullName);
 
 @class JobsUserModel;
-typedef JobsUserModel<NSCoding> *_Nullable(^JobsReturnUserModelByVoidBlock)(void);
-typedef JobsUserModel<NSCoding> *_Nullable(^JobsReturnUserModelByKeyBlock)(NSString *_Nullable key);
-typedef void(^jobsByUserModelBlock)(JobsUserModel <NSCoding>*_Nullable userModel);
-typedef void(^jobsByIDAndKeyBlock)(NSObject <NSCoding> *_Nonnull userModel,NSString *_Nullable key);
+typedef __kindof JobsUserModel<NSCoding> *_Nullable(^JobsReturnUserModelByVoidBlock)(void);
+typedef __kindof JobsUserModel<NSCoding> *_Nullable(^JobsReturnUserModelByKeyBlock)(NSString *_Nullable key);
+typedef void(^jobsByUserModelBlock)(__kindof JobsUserModel <NSCoding>*_Nullable userModel);
+typedef void(^jobsByIDAndKeyBlock)(NSObject <NSCoding> *_Nonnull userModel,
+                                   NSString *_Nullable key);
 
 @class UserDefaultModel;
 typedef void(^jobsByUserDefaultModelBlock)(UserDefaultModel *_Nonnull data);
+
+#pragma mark —— 涉及到第三方类的Block定义
+@class RACDisposable;
+typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);
+
+@class YTKBaseRequest;
+typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
+
+@class GKPhotoBrowser;
+typedef void(^jobsByGKPhotoBrowserBlock)(GKPhotoBrowser *_Nonnull data);
 
 #endif /* JobsBlock_h */
 /*

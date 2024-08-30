@@ -221,7 +221,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [self.view endEditing:YES];
     JobsSearchShowHistoryDataTBVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    self.jobsSearchBar.getTextField.text = cell.textLabel.text;
+    self.jobsSearchBar.textField.text = cell.textLabel.text;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView
@@ -252,7 +252,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                     /// 点击的哪个btn？
                     [cell actionObjectBlock:^(JobsHotLabelWithMultiLineCVCell *cell) {
                         @jobs_strongify(self)
-                        self.jobsSearchBar.getTextField.text = cell.getViewModel.textModel.text;
+                        self.jobsSearchBar.textField.text = cell.getViewModel.textModel.text;
                     }];return cell;
                 }break;
                 case HotSearchStyle_2:{
@@ -261,7 +261,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                     cell.jobsRichElementsInCellWithModel(self.hotSearchMutArr);
                     [cell actionObjectBlock:^(UIViewModel *data) {
                         @jobs_strongify(self)
-                        self.jobsSearchBar.getTextField.text = data.textModel.text;
+                        self.jobsSearchBar.textField.text = data.textModel.text;
                         /// 点选了推荐，则映入输入框＋存入历史
                         /// 防止相同的元素存入
                         if (![self filtrationData:data
@@ -475,7 +475,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 -(UIColor *)bgColour{
     if (!_bgColour) {
-        _bgColour = [UIColor colorWithPatternImage:JobsBuddleIMG(nil, @"Telegram",nil, @"1")];
+        _bgColour = self.byPatternImage(JobsBuddleIMG(nil, @"Telegram",nil, @"1"));
     }return _bgColour;
 }
 

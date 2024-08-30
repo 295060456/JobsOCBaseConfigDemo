@@ -10,7 +10,7 @@
 
 @interface JobsAppDoorInputViewBaseStyle_8 ()
 /// UI
-@property(nonatomic,strong)UIButton *securityModeBtn;
+@property(nonatomic,strong)UIButton *securityModelBtn;
 @property(nonatomic,strong)ZYTextField *textField;
 @property(nonatomic,strong)UILabel *titleLab;
 /// Data
@@ -91,7 +91,7 @@
         self.doorInputViewBaseStyleModel = doorInputViewBaseStyleModel ? : JobsAppDoorInputViewBaseStyleModel.new;
         
         self.titleLab.alpha = 1;
-        self.securityModeBtn.alpha = 1;
+        self.securityModelBtn.alpha = 1;
         self.textField.alpha = 1;
         [self configTextField];
     };
@@ -101,36 +101,68 @@
     return _textField;
 }
 
--(NSString *_Nullable)getTextFieldValue{
+-(NSString *_Nullable)textFieldValue{
     return _textField.text;
 }
-
--(UIButton *)getSecurityModeBtn{
-    return _securityModeBtn;
-}
 #pragma mark —— lazyLoad
--(UIButton *)securityModeBtn{
-    if (!_securityModeBtn) {
-        _securityModeBtn = UIButton.new;
-        _securityModeBtn.selectedImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : [UIImage imageWithColor:JobsRedColor]);
-        _securityModeBtn.normalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : [UIImage imageWithColor:JobsBlueColor]);
+-(UIButton *)securityModelBtn{
+    if (!_securityModelBtn) {
         @jobs_weakify(self)
-        [_securityModeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _securityModelBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                              background:nil
+                                              buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                           textAlignment:NSTextAlignmentCenter
+                                                        subTextAlignment:NSTextAlignmentCenter
+                                                             normalImage:self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image
+                                                          highlightImage:nil
+                                                         attributedTitle:nil
+                                                 selectedAttributedTitle:nil
+                                                      attributedSubtitle:nil
+                                                                   title:nil
+                                                                subTitle:nil
+                                                               titleFont:nil
+                                                            subTitleFont:nil
+                                                                titleCor:nil
+                                                             subTitleCor:nil
+                                                      titleLineBreakMode:NSLineBreakByWordWrapping
+                                                   subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                     baseBackgroundColor:nil
+                                                         backgroundImage:nil
+                                                            imagePadding:JobsWidth(0)
+                                                            titlePadding:JobsWidth(0)
+                                                          imagePlacement:NSDirectionalRectEdgeNone
+                                              contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                                contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                           contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                       cornerRadiusValue:JobsWidth(0)
+                                                         roundingCorners:UIRectCornerAllCorners
+                                                    roundingCornersRadii:CGSizeZero
+                                                          layerBorderCor:nil
+                                                             borderWidth:JobsWidth(0)
+                                                           primaryAction:nil
+                                              longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                             id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                         clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             x.selected = !x.selected;
+            x.normalImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
             self.textField.secureTextEntry = x.selected;
             if (x.selected && !self.textField.isEditing) {
                 self.textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
             }return nil;
         }];
-
-        [self addSubview:_securityModeBtn];
-        [_securityModeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        [self addSubview:_securityModelBtn];
+        [_securityModelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.equalTo(self);
             make.width.mas_equalTo(40);
             make.bottom.equalTo(self.titleLab.mas_top);
         }];
-    }return _securityModeBtn;
+    }return _securityModelBtn;
 }
 
 -(ZYTextField *)textField{
@@ -144,7 +176,7 @@
         } subscribeNextBlock:^(NSString *_Nullable x) {
             @jobs_strongify(self)
             NSLog(@"输入的字符为 = %@",x);
-            self.securityModeBtn.jobsVisible = !x.nullString && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
+            self.securityModelBtn.jobsVisible = !x.nullString && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
             if ([x isContainsSpecialSymbolsString:nil]) {
                 self.jobsToastMsg(JobsInternationalization(@"Do not enter special characters"));
             }else{

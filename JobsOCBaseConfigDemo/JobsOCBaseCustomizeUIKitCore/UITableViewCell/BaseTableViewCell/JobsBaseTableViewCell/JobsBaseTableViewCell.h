@@ -14,6 +14,7 @@
 #import "MacroDef_Func.h"
 #import "UIViewModel.h"
 #import "UIView+Measure.h"
+#import "UITableViewCell+Margin.h"
 
 #if __has_include(<XYColorOC/XYColorOC.h>)
 #import <XYColorOC/XYColorOC.h>

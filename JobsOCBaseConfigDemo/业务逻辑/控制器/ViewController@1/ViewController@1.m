@@ -320,11 +320,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _dataMutArr = NSMutableArray.array;
         
         {
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsVerticalMenuVC")
+                                                           attributeSubTitle:JobsInternationalization(@"竖形菜单选择功能")];
+            viewModel.cls = JobsVerticalMenuVC.class;
+            _dataMutArr.add(viewModel);
+        }
+        
+        {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsViewNavigatorTestVC")
                                                            attributeSubTitle:JobsInternationalization(@"让 UIView 像 UINavigationController 一样支持 push 和 pop")];
 
             viewModel.cls = JobsViewNavigatorTestVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -332,21 +339,21 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"Excel")];
 
             viewModel.cls = ExcelVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JXCategoryViewVerticalShowVC")
                                                            attributeSubTitle:JobsInternationalization(@"JXCategoryView垂直表达")];
             viewModel.cls = JXCategoryViewVerticalShowVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"发帖（图文）功能")
                                                            attributeSubTitle:JobsInternationalization(@"相册获取资源+存/取未完成字符串")];
             viewModel.cls = JobsPostVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -354,7 +361,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"一种图片加密的手段，简单而粗暴.")];
             
             viewModel.cls = PicToStrStoreVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -362,7 +369,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"")];
             
             viewModel.cls = HotRefreshVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -370,7 +377,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"")];
             
             viewModel.cls = AppLanguageVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -378,7 +385,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"增删查改")];
             
             viewModel.cls = FMDB_VC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -386,7 +393,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"增删查改")];
             
             viewModel.cls = Realm_VC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -394,7 +401,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
             
             viewModel.cls = LotteryVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -402,7 +409,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"包括对齐")];
             
             viewModel.cls = PointLabTestVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -410,7 +417,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"")];
             
             viewModel.cls = WidgetVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -418,7 +425,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"全局设定")];
             
             viewModel.cls = LandscapeSwitchVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -426,7 +433,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"本地推送通知")];
             
             viewModel.cls = LocalNotificationsVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -434,7 +441,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"字符串解压缩")];
             
             viewModel.cls = CompressStrVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -442,7 +449,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"只能跑真机，模拟器编译报错，且iOS 10.3 或更高版本")];
 
             viewModel.cls = AppIconSwitchingVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -450,7 +457,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"PeekAndPop")];
 
             viewModel.cls = PeekAndPopVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -458,7 +465,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"尝试控制粘贴提示")];
             
             viewModel.cls = CtrlClipboardCueVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -466,7 +473,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"登录注册的第一种表现形式")];
             viewModel.cls = JobsAppDoorVC.class;
             viewModel.requestParams = @(JobsAppDoorBgType_video);
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
@@ -474,252 +481,245 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                            attributeSubTitle:JobsInternationalization(@"登录注册的第二种表现形式")];
             viewModel.cls = JobsAppDoorVC_Style2.class;
             viewModel.requestParams = @(JobsAppDoorBgType_video);
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
 
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"Douyin_ZFPlayer_1")
                                                            attributeSubTitle:JobsInternationalization(@"播放效果 1")];
             viewModel.cls = Douyin_ZFPlayerVC_1.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"Douyin_ZFPlayer_2")
                                                            attributeSubTitle:JobsInternationalization(@"播放效果 2")];
             viewModel.cls = Douyin_ZFPlayerVC_2.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"TransparentRegion")
                                                            attributeSubTitle:JobsInternationalization(@"镂空特效")];
             viewModel.cls = TransparentRegionVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsComment")
                                                            attributeSubTitle:JobsInternationalization(@"📃评论功能")];
             viewModel.cls = JobsCommentVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
     
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsSearch")
                                                            attributeSubTitle:JobsInternationalization(@"🔍搜索功能")];
             viewModel.cls = JobsSearchVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ShadowTBVCell")
                                                            attributeSubTitle:nil];
 //            viewModel.cls =
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"相册选取图片和视频")
                                                            attributeSubTitle:JobsInternationalization(@"")];
             viewModel.cls = JobsShootingVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"DynamicView")
                                                            attributeSubTitle:JobsInternationalization(@"Gif图片读取")];
             viewModel.cls = DynamicViewTestVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"Progress")
                                                            attributeSubTitle:JobsInternationalization(@"进度条")];
             viewModel.cls = JobsProgressVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"IrregularView")
                                                            attributeSubTitle:JobsInternationalization(@"不规则的按钮")];
             viewModel.cls = TestIrregularViewTestVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsTimer")
                                                            attributeSubTitle:JobsInternationalization(@"☀️时间模块")];
             viewModel.cls = JobsTimerVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"NSTimerManagerTestVC")
                                                            attributeSubTitle:JobsInternationalization(@"🌛NSTimerManager模块测试")];
             viewModel.cls = NSTimerManagerTestVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsIMShowVC")
                                                            attributeSubTitle:JobsInternationalization(@"IM模块")];
             viewModel.cls = JobsIMShowVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"TestLabelVC")
                                                            attributeSubTitle:JobsInternationalization(@"Label的科学管理")];
             viewModel.cls = TestLabelVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsDropDownListVC")
                                                            attributeSubTitle:JobsInternationalization(@"👇🏻下拉列表")];
             viewModel.cls = JobsDropDownListVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"YTKNetworkStudyVC")
                                                            attributeSubTitle:JobsInternationalization(@"探究猿题库网络框架（YTKNetwork）")];
             viewModel.cls = YTKNetworkStudyVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"CoreTextLearningVC")
                                                            attributeSubTitle:JobsInternationalization(@"探究CoreText")];
             viewModel.cls = CoreTextLearningVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JXCategoryPopupVC")
                                                            attributeSubTitle:JobsInternationalization(@"JXCategoryView+PopupView")];
             viewModel.cls = JXCategoryPopupVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"UITableViewCellEditorVC")
                                                            attributeSubTitle:JobsInternationalization(@"替换系统UITableViewCell编辑状态下前面的按钮UI样式，及其一部分逻辑")];
             viewModel.cls = UITableViewCellEditorVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsSettingGestureVC")
                                                            attributeSubTitle:JobsInternationalization(@"设置手势密码")];
             viewModel.cls = JobsSettingGestureVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsTestVC")
                                                            attributeSubTitle:JobsInternationalization(@"进行测试的一个控制器")];
             viewModel.cls = JobsTestVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"CXBVC")
                                                            attributeSubTitle:JobsInternationalization(@"CXB自研科技")];
             viewModel.cls = CXBVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"OCDynamicRegisterVC")
                                                            attributeSubTitle:JobsInternationalization(@"OC动态添加类、方法列表、属性列表")];
             viewModel.cls = OCDynamicRegisterVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JXCategoryViewWithHeaderViewVC")
                                                            attributeSubTitle:JobsInternationalization(@"JXCategoryView下拉放大头部视图")];
             viewModel.cls = JXCategoryViewWithHeaderViewVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"UILabelWordRotatingVC")
                                                            attributeSubTitle:JobsInternationalization(@"UILabel文字旋转")];
             viewModel.cls = UILabelWordRotatingVC.class;
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsVerticalMenuVC")
-                                                           attributeSubTitle:JobsInternationalization(@"竖形菜单选择功能")];
-            viewModel.cls = JobsVerticalMenuVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"TestBaseLabelVC")
                                                            attributeSubTitle:JobsInternationalization(@"测试 -BaseLabel-")];
             viewModel.cls = TestBaseLabelVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"RandomTestVC")
                                                            attributeSubTitle:JobsInternationalization(@"随机数测试模块")];
             viewModel.cls = RandomTestVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"CustomTableViewCellVC")
                                                            attributeSubTitle:JobsInternationalization(@"自定义UITableViewCell内置控件距离并添加复制按钮")];
             viewModel.cls = CustomTableViewCellVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"CustomBtnVC")
                                                            attributeSubTitle:JobsInternationalization(@"自定义UIButton子控件的排布")];
             viewModel.cls = CustomBtnVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"GXCardViewDemoVC")
                                                            attributeSubTitle:JobsInternationalization(@"卡片式布局(探探附近/QQ配对)，可以设置卡片堆叠效果，可以设置循环效果")];
             viewModel.cls = GXCardViewDemoVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsWalletVC")
                                                            attributeSubTitle:JobsInternationalization(@"UICollectionView实现重叠的卡包效果")];
             viewModel.cls = JobsWalletVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsScrollViewVC")
                                                            attributeSubTitle:JobsInternationalization(@"在指定的y区间内滑动视图(带吸边效果)")];
             viewModel.cls = JobsScrollViewVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"转场动画探究")
                                                            attributeSubTitle:JobsInternationalization(@"UIPresentationController的使用")];
             viewModel.cls = JobsPresentingVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"Masonry的应用与实践")
                                                            attributeSubTitle:JobsInternationalization(@"UIPresentationController的使用")];
             viewModel.cls = MasonryVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         
@@ -727,14 +727,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:@"UITBVCellFoldVC"
                                                            attributeSubTitle:JobsInternationalization(@"UITableViewCell的折叠效果")];
             viewModel.cls = UITBVCellFoldVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
         {
             UIViewModel *viewModel = [self configViewModelWithAttributeTitle:@"ProtocolKitVC"
                                                            attributeSubTitle:JobsInternationalization(@"Objective-C中实现协议扩展")];
             viewModel.cls = ProtocolKitVC.class;
-            [_dataMutArr addObject:viewModel];
+            _dataMutArr.add(viewModel);
         }
         
     }return _dataMutArr;

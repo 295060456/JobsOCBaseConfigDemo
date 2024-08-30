@@ -471,7 +471,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
 
 -(UIColor *)bgColour{
     if (!_bgColour) {
-        _bgColour = [UIColor colorWithPatternImage:JobsBuddleIMG(@"⚽️PicResource", @"Telegram",nil, @"1")];
+        _bgColour = self.byPatternImage(JobsBuddleIMG(@"⚽️PicResource", @"Telegram",nil, @"1"));
     }return _bgColour;
 }
 

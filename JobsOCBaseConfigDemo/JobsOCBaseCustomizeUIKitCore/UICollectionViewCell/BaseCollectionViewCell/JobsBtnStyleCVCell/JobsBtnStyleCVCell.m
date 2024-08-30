@@ -22,7 +22,7 @@
         
     }return self;
 }
-#pragma mark —— JobsDoorInputViewProtocol
+#pragma mark —— BaseViewProtocol
 -(UIViewModel *_Nullable)getViewModel{
     return self.viewModel;
 }

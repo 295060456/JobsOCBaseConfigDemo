@@ -9,13 +9,14 @@
 
 @interface LeftCell()
 /// UI
-@property(nonatomic,strong)UIView *bgView;
 @property(nonatomic,strong)UIView *flagView;
 @property(nonatomic,strong)UILabel *titleLabel;
 
 @end
 
 @implementation LeftCell
+UITableViewCellProtocol_synthesize
+UITableViewCell_UIViewModelProtocolSynthesize
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
@@ -34,8 +35,7 @@
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model ? : UIViewModel.new;
-        
-        self.bgView.alpha = 1;
+
         self.titleLabel.alpha = 1;
         self.flagView.alpha = 1;
     };
@@ -51,18 +51,33 @@
                     reuseIdentifier:reuseIdentifier]){
     }return self;
 }
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    self.printValue();
+    /// 取内部类UITableViewCellEditControl,对编辑状态的Cell的点击按钮进行替换成自定义的
+    self.customCellEditStateImage();
+    
+    self.modifySysChildViewFrame1();
+    // 或者
+    self.modifySysChildViewFrame2();
+    
+    if(self.accessoryView){
+        self.accessoryView.resetByOffsetOriginX(20);
+    }
+}
 #pragma mark —— 一些私有方法
 - (void)setSelected:(BOOL)selected
            animated:(BOOL)animated{
     [super setSelected:selected
               animated:animated];
     if (selected){
-        self.bgView.backgroundColor = ThreeClassCellBgCor;
+        self.contentView.backgroundColor = ThreeClassCellBgCor;
         self.flagView.backgroundColor = JobsWhiteColor;
         self.titleLabel.textColor = HEXCOLOR(0xAE8330);
         self.titleLabel.font = UIFontWeightBoldSize(14);
     }else{
-        self.bgView.backgroundColor = HEXCOLOR(0xFCFBFB);
+        self.contentView.backgroundColor = HEXCOLOR(0xFCFBFB);
         self.flagView.backgroundColor = HEXCOLOR(0xFCFBFB);
         self.titleLabel.textColor = HEXCOLOR(0xB0B0B0);
         self.titleLabel.font = UIFontWeightRegularSize(14);
@@ -72,30 +87,18 @@
 - (void)setHighlighted:(BOOL)highlighted
               animated:(BOOL)animated{
     if (highlighted){
-        self.bgView.backgroundColor = ThreeClassCellBgCor;
+        self.contentView.backgroundColor = ThreeClassCellBgCor;
         self.flagView.backgroundColor = JobsWhiteColor;
         self.titleLabel.textColor = HEXCOLOR(0xB0B0B0);
         self.titleLabel.font = UIFontWeightBoldSize(14);
     }else{
-        self.bgView.backgroundColor = HEXCOLOR(0xFCFBFB);
+        self.contentView.backgroundColor = HEXCOLOR(0xFCFBFB);
         self.flagView.backgroundColor = HEXCOLOR(0xFCFBFB);
         self.titleLabel.textColor = HEXCOLOR(0xB0B0B0);
         self.titleLabel.font = UIFontWeightRegularSize(14);
     }
 }
 #pragma mark —— lazyLoad
--(UIView *)bgView{
-    if (!_bgView) {
-        _bgView = UIView.new;
-        _bgView.frame = CGRectMake(0,
-                                   0,
-                                   LeftCell_Width,
-                                   LeftCell_Height);
-        _bgView.backgroundColor = HEXCOLOR(0xFCFBFB);
-        [self.contentView addSubview:_bgView];
-    }return _bgView;
-}
-
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = UILabel.new;

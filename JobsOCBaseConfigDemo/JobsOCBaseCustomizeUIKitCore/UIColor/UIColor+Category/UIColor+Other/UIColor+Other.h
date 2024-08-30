@@ -47,6 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// iOS 父视图透明度影响到子视图
 /// https://blog.csdn.net/ios_xumin/article/details/114263960
 -(JobsReturnColorByCGFloatBlock)colorWithAlphaComponent;
+/// 根据颜色生成图片
+-(UIImage *)image;
 
 @end
 

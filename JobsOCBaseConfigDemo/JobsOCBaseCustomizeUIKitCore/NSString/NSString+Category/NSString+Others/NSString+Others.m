@@ -106,6 +106,22 @@
     }return resultStr;
 }
 #pragma mark —— 一些功能性的
+/// 完整的文件名提取普通文件名和文件后缀名
+-(JobsReturnFileNameModelByFileFullNameStringBlock)byFileFullName{
+    return ^FileNameModel *_Nonnull(NSString *_Nullable fileFullName){
+        FileNameModel *fileNameModel = FileNameModel.new;
+        /// 使用"."分割文件名，获取文件名和文件类型
+        NSArray<NSString *> *components = [fileFullName componentsSeparatedByString:@"."];
+        if (components.count != 2) {
+            NSLog(@"文件名格式错误: %@", fileFullName);
+            return fileNameModel;
+        }
+        
+        fileNameModel.name = components[0];
+        fileNameModel.type = components[1];
+        return fileNameModel;
+    };
+}
 /// 复制到系统剪切板
 -(JobsReturnStringByVoidBlock _Nonnull)pasteboard{
     @jobs_weakify(self)

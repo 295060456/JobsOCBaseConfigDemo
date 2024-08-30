@@ -45,6 +45,13 @@ typedef UIColor *_Nullable(^JobsReturnColorByStringBlock)(NSString *_Nonnull cor
 typedef UIColor *_Nullable(^JobsReturnColorByHexAlphaBlock)(uint32_t hexValue, CGFloat alpha);
 typedef UIColor *_Nullable(^JobsReturnColorByHexBlock)(uint32_t hexValue);
 typedef UIColor *_Nonnull(^JobsReturnColorByCGFloatBlock)(CGFloat data);
+typedef UIColor *_Nullable(^JobsReturnColorByImageBlock)(UIImage *_Nonnull cor);
+
+typedef UIImage *_Nonnull(^JobsReturnImageByVoidBlock)(void);
+typedef UIImage *_Nonnull(^JobsReturnImageByCGRectBlock)(CGRect data);
+typedef UIImage *_Nonnull(^JobsReturnImageByCGSizeBlock)(CGSize data);
+typedef UIImage *_Nonnull(^JobsReturnImageByAVURLAssetBlock)(AVURLAsset * _Nonnull data);
+typedef UIImage *_Nonnull(^JobsReturnImageByViewBlock)(__kindof UIView * _Nonnull data);
 
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTableViewHeaderFooterViewBlock)(__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView);
 

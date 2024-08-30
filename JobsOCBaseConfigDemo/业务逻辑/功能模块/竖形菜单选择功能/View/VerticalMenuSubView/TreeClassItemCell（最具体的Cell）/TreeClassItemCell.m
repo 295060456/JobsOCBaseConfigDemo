@@ -11,7 +11,7 @@
 /// UI
 @property(nonatomic,strong)UIImageView *logoImgView;
 @property(nonatomic,strong)UILabel *nameLabel;
-@property(nonatomic,strong)UIButton *btn;
+@property(nonatomic,strong)BaseButton *btn;
 /// Data
 @property(nonatomic,assign)CGFloat imageWidth;
 @property(nonatomic,strong)GoodsClassModel *dataModel;
@@ -75,8 +75,12 @@ UILocationProtocol_UIViewModelSynthesize
             make.top.equalTo(self.contentView);
         }];
     }
-    _logoImgView.image = self.dataModel.bgImage;
-    return _logoImgView;
+    
+    if(self.dataModel.bgImage){
+        _logoImgView.image = self.dataModel.bgImage;
+    }else{
+        _logoImgView.backgroundColor = JobsRandomCor(.5f);
+    }return _logoImgView;
 }
 
 -(UILabel *)nameLabel{
@@ -96,13 +100,57 @@ UILocationProtocol_UIViewModelSynthesize
     return _nameLabel;
 }
 
--(UIButton *)btn{
+-(BaseButton *)btn{
     if (!_btn) {
-        _btn = UIButton.new;
-        _btn.normalImage(JobsIMG(@"未点赞"));
-        _btn.selectedImage(JobsIMG(@"已点赞"));
-        _btn.titleFont(UIFontWeightRegularSize(12));
-        _btn.normalTitleColor(HEXCOLOR(0xC4C4C4));
+        @jobs_weakify(self)
+        _btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                 background:nil
+                                 buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                              textAlignment:NSTextAlignmentCenter
+                                           subTextAlignment:NSTextAlignmentCenter
+                                                normalImage:JobsIMG(@"未点赞")
+                                             highlightImage:nil
+                                            attributedTitle:nil
+                                    selectedAttributedTitle:nil
+                                         attributedSubtitle:nil
+                                                      title:self.dataModel.subTextModel.text
+                                                   subTitle:nil
+                                                  titleFont:UIFontWeightRegularSize(12)
+                                               subTitleFont:nil
+                                                   titleCor:HEXCOLOR(0xC4C4C4)
+                                                subTitleCor:nil
+                                         titleLineBreakMode:NSLineBreakByWordWrapping
+                                      subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                        baseBackgroundColor:JobsClearColor
+                                            backgroundImage:nil
+                                               imagePadding:JobsWidth(5)
+                                               titlePadding:JobsWidth(0)
+                                             imagePlacement:NSDirectionalRectEdgeLeading
+                                 contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                   contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                              contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                          cornerRadiusValue:JobsWidth(0)
+                                            roundingCorners:UIRectCornerAllCorners
+                                       roundingCornersRadii:CGSizeZero
+                                             layerBorderCor:nil
+                                                borderWidth:JobsWidth(0)
+                                              primaryAction:nil
+                                 longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                            clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            x.selected = !x.selected;
+            if(x.selected){
+                x.jobsResetBtnImage(JobsIMG(@"已点赞"));
+                self.dataModel.jobsSelected = x.selected;
+            }
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        }];
+
         [self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(12));
@@ -111,10 +159,7 @@ UILocationProtocol_UIViewModelSynthesize
         }];
     }
     _btn.selected = self.dataModel.jobsSelected;
-    _btn.normalTitle(self.dataModel.subTextModel.text);
     _btn.makeBtnTitleByShowingType(UILabelShowingType_03);
-    [_btn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
-                             imagePadding:JobsWidth(5)];
     return _btn;
 }
 

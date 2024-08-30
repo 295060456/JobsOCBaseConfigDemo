@@ -10,7 +10,7 @@
 @interface JobsSearchBar ()
 /// UI
 @property(nonatomic,strong)ZYTextField *textField;
-@property(nonatomic,strong)UIButton *cancelBtn;
+@property(nonatomic,strong)BaseButton *cancelBtn;
 @property(nonatomic,strong)UIImageView *imgView;
 @property(nonatomic,strong)JobsAdNoticeView *adNoticeView;
 
@@ -20,7 +20,7 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = HEXCOLOR(0xF9F9F9);
+        self.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
     }return self;
 }
 
@@ -33,16 +33,12 @@
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.textField.alpha = 1;
-    //    self.cancelBtn.alpha = 1;
+        self.cancelBtn.alpha = 1;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)viewSizeWithModel:(id _Nullable)model{
     return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(60));
-}
-#pragma mark —— JobsDoorInputViewProtocol
--(UITextField *_Nullable)getTextField{
-    return _textField;
 }
 #pragma mark —— 一些私有化方法
 
@@ -50,7 +46,7 @@
 -(ZYTextField *)textField{
     if (!_textField) {
         _textField = ZYTextField.new;
-        _textField.placeholder = @"请输入搜索内容";
+        _textField.placeholder = JobsInternationalization(@"请输入搜索内容");
         _textField.delegate = self;
         _textField.leftView = self.imgView;
         _textField.textColor = JobsPurpleColor;
@@ -63,15 +59,12 @@
         _textField.leftViewOffsetX = JobsWidth(5);
         _textField.offset = JobsWidth(3);
         [self addSubview:_textField];
-        _textField.frame = CGRectMake(10,
-                               10,
-                               JobsMainScreen_WIDTH() - 20,
-                               self.mj_h - 20);
-        _textField.x = JobsWidth(10);
-        _textField.y = JobsWidth(10);
-        CGFloat TextFieldWidth = JobsMainScreen_WIDTH() - JobsWidth(20);
-        _textField.size = CGSizeMake(TextFieldWidth,
-                                     self.mj_h - JobsWidth(30));
+        CGFloat TextFieldWidth = self.mj_w - JobsWidth(80);
+        [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(TextFieldWidth,self.mj_h - JobsWidth(15)));
+            make.centerY.equalTo(self);
+            make.left.equalTo(self);
+        }];
         @jobs_weakify(self)
         [[_textField.rac_textSignal filter:^BOOL(NSString * _Nullable value) {
             @jobs_strongify(self)
@@ -84,33 +77,63 @@
             NSLog(@"输入的字符为 = %@",x);
             if (self.objectBlock) self.objectBlock(x);
         }];
-        
-//        [_textField actionNSIntegerBlock:^(UITextFieldFocusType data) {
-//            NSLog(@"%ld",(long)data);
-//            if (self.NSIntegerBlock) self.NSIntegerBlock(data);
-//        }];
-        
         _textField.cornerCutToCircleWithCornerRadius(JobsWidth(8));
         [_textField layerBorderCor:JobsBlueColor andBorderWidth:.05f];
-        
     }return _textField;
 }
 
--(UIButton *)cancelBtn{
+-(BaseButton *)cancelBtn{
     if (!_cancelBtn) {
-        _cancelBtn = UIButton.new;
-        _cancelBtn.backgroundColor = JobsLightGrayColor;
-        _cancelBtn.normalTitle(JobsInternationalization(@"取消"));
-        _cancelBtn.titleFont(UIFontWeightRegularSize(12));
-        _cancelBtn.normalTitleColor(HEXCOLOR(0x0F81FE));
-//        [_cancelBtn buttonAutoWidthByFont]; // 无效
-        [self addSubview:_cancelBtn];
-        _cancelBtn.size = CGSizeMake(JobsWidth(50), JobsWidth(30));
-        _cancelBtn.x = JobsMainScreen_WIDTH() - _cancelBtn.size.width - JobsWidth(5);
-        _cancelBtn.centerY = self.textField.centerY;
-        [_cancelBtn layerBorderCor:JobsWhiteColor andBorderWidth:1];
-        _cancelBtn.cornerCutToCircleWithCornerRadius(8);
         @jobs_weakify(self)
+        _cancelBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                       background:nil
+                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                    textAlignment:NSTextAlignmentCenter
+                                                 subTextAlignment:NSTextAlignmentCenter
+                                                      normalImage:nil
+                                                   highlightImage:nil
+                                                  attributedTitle:nil
+                                          selectedAttributedTitle:nil
+                                               attributedSubtitle:nil
+                                                            title:JobsInternationalization(@"取消")
+                                                         subTitle:nil
+                                                        titleFont:UIFontWeightRegularSize(12)
+                                                     subTitleFont:nil
+                                                         titleCor:HEXCOLOR(0x0F81FE)
+                                                      subTitleCor:nil
+                                               titleLineBreakMode:NSLineBreakByWordWrapping
+                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                              baseBackgroundColor:JobsLightGrayColor
+                                                  backgroundImage:nil
+                                                     imagePadding:JobsWidth(0)
+                                                     titlePadding:JobsWidth(0)
+                                                   imagePlacement:NSDirectionalRectEdgeNone
+                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                cornerRadiusValue:JobsWidth(8)
+                                                  roundingCorners:UIRectCornerAllCorners
+                                             roundingCornersRadii:CGSizeZero
+                                                   layerBorderCor:JobsWhiteColor
+                                                      borderWidth:JobsWidth(1)
+                                                    primaryAction:nil
+                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                      id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                  clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        }];
+        [self addSubview:_cancelBtn];
+        [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(JobsWidth(50), JobsWidth(30)));
+            make.centerY.equalTo(self.textField);
+//            make.right.equalTo(self);
+            make.left.equalTo(self.textField.mas_right).offset(JobsWidth(5));
+        }];
         [_cancelBtn jobsBtnClickEventBlock:^id(id data) {
             @jobs_strongify(self)
             [self.textField resignFirstResponder];

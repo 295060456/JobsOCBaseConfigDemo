@@ -425,7 +425,7 @@
         }
     };
 }
-/// 重设Btn主标题的文字内容
+/// 重设Btn主标题的文字内容 优先级高于jobsResetTitle 和 normalTitle
 -(jobsByStringBlock)jobsResetBtnTitle{
     @jobs_weakify(self)
     return ^(NSString *_Nullable data) {

@@ -12,12 +12,13 @@
 @end
 
 @implementation MSMineView6CVCell
+
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
     }return self;
 }
-#pragma mark —— JobsDoorInputViewProtocol
+#pragma mark —— BaseViewProtocol
 -(UIViewModel *_Nullable)getViewModel{
     return self.viewModel;
 }

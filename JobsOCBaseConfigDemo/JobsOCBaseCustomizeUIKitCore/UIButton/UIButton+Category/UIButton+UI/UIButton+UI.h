@@ -144,7 +144,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByFloatBlock)jobsResetBtnlayerBorderWidth;
 /// 重设Btn的圆切角
 -(jobsByCGFloatBlock)jobsResetBtnCornerRadiusValue;
-/// 重设Btn主标题的文字内容
+/// 重设Btn主标题的文字内容 ❤️优先级高于jobsResetTitle 和 normalTitle❤️
 -(jobsByStringBlock)jobsResetBtnTitle;
 /// 重设Btn副标题的文字内容
 -(jobsByStringBlock)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));

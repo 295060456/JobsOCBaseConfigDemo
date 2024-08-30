@@ -125,14 +125,14 @@
 /// 除了传入的textfield，其他的全部放弃第一响应者
 -(void)allRise:(UITextField *)textfield{
     for (JobsAppDoorInputViewBaseStyle *appDoorInputViewBaseStyle in self.loginDoorInputViewBaseStyleMutArr) {
-        if (textfield != appDoorInputViewBaseStyle.getTextField) {
-            [appDoorInputViewBaseStyle.getTextField resignFirstResponder];
+        if (textfield != appDoorInputViewBaseStyle.textField) {
+            [appDoorInputViewBaseStyle.textField resignFirstResponder];
         }
     }
     
     for (JobsAppDoorInputViewBaseStyle *appDoorInputViewBaseStyle in self.registerDoorInputViewBaseStyleMutArr) {
-        if (textfield != appDoorInputViewBaseStyle.getTextField) {
-            [appDoorInputViewBaseStyle.getTextField resignFirstResponder];
+        if (textfield != appDoorInputViewBaseStyle.textField) {
+            [appDoorInputViewBaseStyle.textField resignFirstResponder];
         }
     }
 }
@@ -346,7 +346,7 @@
                     [self allRise:data];
                 }else if ([data isKindOfClass:UIButton.class]){
                     [self getCellPhoneVerificationCodeWithCountry:nil
-                                                            phone:self->inputView_7.getTextFieldValue];
+                                                            phone:self->inputView_7.textFieldValue];
                 }else{}
             }];
         }else{}

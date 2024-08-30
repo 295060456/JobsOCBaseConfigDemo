@@ -42,8 +42,7 @@ static DDUploadingProgressView *static_uploadingProgressView = nil;
         [jobsGetMainWindow() addSubview:self];
         [jobsGetMainWindow() bringSubviewToFront:self];
         self.imge = JobsIMG(@"icon_upload_imge");
-        self.strokeColor = [UIColor colorWithPatternImage:[UIImage imageResize:JobsIMG(@"gradualColor")
-                                                                   andResizeTo:CGSizeMake(50, 25)]]; //圆环底色
+        self.strokeColor = self.byPatternImage(JobsIMG(@"gradualColor").imageResize(CGSizeMake(50, 25)));; //圆环底色
         self.radius = 34;
 
         self.hidden = YES;

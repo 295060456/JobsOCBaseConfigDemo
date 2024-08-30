@@ -98,5 +98,7 @@
 #import "JobsNavigationBar.h"
 #pragma mark —— UIWindow
 #import "UIWindow+Extra.h"
+#pragma mark —— AVURLAsset
+#import "AVURLAsset+Extra.h"
 
 #endif /* JobsBaseCustomizeUIKitCoreHeader_h */

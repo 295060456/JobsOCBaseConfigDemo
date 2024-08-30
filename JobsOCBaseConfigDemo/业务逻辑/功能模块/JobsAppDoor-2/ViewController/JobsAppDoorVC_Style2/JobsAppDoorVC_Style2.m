@@ -116,9 +116,9 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     NSMutableArray * (^currentPageDataMutArr)(CurrentPage currentPage) = ^(CurrentPage currentPage){
         @jobs_strongify(self)
         if (currentPage == CurrentPage_login) {
-            return self.loginContentView.getAppDoorInputViewBaseStyle;
+            return self.loginContentView.appDoorInputViewBaseStyle;
         }else{
-            return self.registerContentView.getAppDoorInputViewBaseStyle;
+            return self.registerContentView.appDoorInputViewBaseStyle;
         }
     };
 

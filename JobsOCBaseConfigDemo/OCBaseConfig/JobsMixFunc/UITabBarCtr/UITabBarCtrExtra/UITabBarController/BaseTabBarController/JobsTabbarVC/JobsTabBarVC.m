@@ -399,7 +399,7 @@ static dispatch_once_t onceToken;
         // 震动反馈
         if (self.isFeedbackGenerator) NSObject.feedbackGenerator();
         // 点击声音
-        if (self.isPlaySound) [self playSoundWithFileName:@"Sound.wav"];
+        if (self.isPlaySound) self.playSoundWithFileName(@"Sound.wav");
         // 重力弹跳动画效果
         if (self.isShakerAnimation) [item.badgeView shakerAnimationWithDuration:2 height:20];
         // 点击增加标数

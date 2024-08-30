@@ -33,7 +33,7 @@
     if (!_textFieldInputModel) {
         _textFieldInputModel = JobsAppDoorInputViewTFModel.new;
         _textFieldInputModel.resString = JobsInternationalization(@"");
-        _textFieldInputModel.PlaceHolder = self.getTextField.placeholder;
+        _textFieldInputModel.PlaceHolder = self.textField.placeholder;
     }return _textFieldInputModel;
 }
 

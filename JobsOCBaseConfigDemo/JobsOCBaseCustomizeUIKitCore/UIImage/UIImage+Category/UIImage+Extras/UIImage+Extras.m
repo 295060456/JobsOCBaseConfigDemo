@@ -8,49 +8,6 @@
 #import "UIImage+Extras.h"
 
 @implementation UIImage (Extras)
-/// 根据颜色生成图片
-+ (UIImage *)imageWithColor:(UIColor *)color {
-    // 描述矩形
-    CGRect rect = CGRectMake(0.0f,
-                             0.0f,
-                             1.0f,
-                             1.0f);
-    return [self imageWithColor:color
-                           rect:rect];
-}
-/// 根据颜色生成图片
-/// @param color 颜色
-/// @param rect 大小
-+ (UIImage *)imageWithColor:(UIColor *)color
-                       rect:(CGRect)rect{
-    /// 开启位图上下文
-    UIGraphicsBeginImageContext(rect.size);
-    /// 获取位图上下文
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    /// 使用color演示填充上下文
-    CGContextSetFillColorWithColor(context, color.CGColor);
-    /// 渲染上下文
-    CGContextFillRect(context, rect);
-    /// 从上下文中获取图片
-    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
-    /// 结束上下文
-    UIGraphicsEndImageContext();
-    return theImage;
-}
-/// UIColor 转 UIImage
-+(UIImage*)createImageWithColor:(UIColor *)color{
-    CGRect rect=CGRectMake(0.0f,
-                           0.0f,
-                           1.0f,
-                           1.0f);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context,color.CGColor);
-    CGContextFillRect(context, rect);
-    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return theImage;
-}
 /// NSString 转 UIImage
 /// @param string 准备转换的字符串
 /// @param font 该字符串的字号
@@ -89,9 +46,9 @@
     NSMutableParagraphStyle *paragraph = NSMutableParagraphStyle.new;
     paragraph.alignment = textAlignment;
     NSDictionary *attributes = @ {
-    NSForegroundColorAttributeName:textColor,
-    NSFontAttributeName:font,
-    NSParagraphStyleAttributeName:paragraph
+        NSForegroundColorAttributeName:textColor,
+        NSFontAttributeName:font,
+        NSParagraphStyleAttributeName:paragraph
     };
     [string drawInRect:rect
         withAttributes:attributes];
@@ -104,20 +61,20 @@
 /// @param size 字符串的尺寸
 +(UIImage *)createNonInterpolatedUIImageFormString:(NSString *)string
                                           withSize:(CGFloat)size{
-    //二维码滤镜
+    /// 二维码滤镜
     CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
-    //恢复滤镜的默认属性
+    /// 恢复滤镜的默认属性
     [filter setDefaults];
-    //将字符串转换成NSData
+    /// 将字符串转换成NSData
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    //通过KVO设置滤镜inputmessage数据
-    [filter setValue:data forKey:@"inputMessage"];
-    //获得滤镜输出的图像
-    CIImage *outputImage = [filter outputImage];
-    //将CIImage转换成UIImage,并放大显示
+    /// 通过KVO设置滤镜inputmessage数据
+    filter.jobsKVC(@"inputMessage",data);
+    /// 获得滤镜输出的图像
+    CIImage *outputImage = filter.outputImage;
+    /// 将CIImage转换成UIImage,并放大显示
     CGRect extent = CGRectIntegral(outputImage.extent);
     CGFloat scale = MIN(size / CGRectGetWidth(extent), size / CGRectGetHeight(extent));
-    // 创建bitmap;
+    /// 创建bitmap;
     size_t width = CGRectGetWidth(extent) * scale;
     size_t height = CGRectGetHeight(extent) * scale;
     CGColorSpaceRef cs = CGColorSpaceCreateDeviceGray();
@@ -138,54 +95,26 @@
     CGContextDrawImage(bitmapRef,
                        extent,
                        bitmapImage);
-    // 保存bitmap到图片
+    /// 保存bitmap到图片
     CGImageRef scaledImage = CGBitmapContextCreateImage(bitmapRef);
     CGContextRelease(bitmapRef);
     CGImageRelease(bitmapImage);
     return [UIImage imageWithCGImage:scaledImage];
 }
-
-+(UIImage *)imageResize:(UIImage*)img
-            andResizeTo:(CGSize)newSize{
-    CGFloat scale = UIScreen.mainScreen.scale;
-    
-    //UIGraphicsBeginImageContext(newSize);
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, scale);
-    [img drawInRect:CGRectMake(0,
-                               0,
-                               newSize.width,
-                               newSize.height)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-// 获取视频第一帧
-+(UIImage *)getVideoPreViewImage:(AVURLAsset *)asset{
-    AVAssetImageGenerator *assetGen = [AVAssetImageGenerator.alloc initWithAsset:asset];
-    assetGen.appliesPreferredTrackTransform = YES;
-    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
-    NSError *error = nil;
-    CMTime actualTime;
-    CGImageRef image = [assetGen copyCGImageAtTime:time
-                                        actualTime:&actualTime
-                                             error:&error];
-    UIImage *videoImage = [UIImage.alloc initWithCGImage:image];
-    CGImageRelease(image);
-    return videoImage;
-}
-// 截图
-+(UIImage *)rendImageWithView:(UIView *)view{
-//  1、开始位图上下文
-    UIGraphicsBeginImageContext(CGSizeMake(view.width,view.height - 80));
-//  2、获取上下文
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-//  3、截图
-    [view.layer renderInContext:ctx];
-//  4、获取图片
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-//  5、关闭上下文
-    UIGraphicsEndImageContext() ;
-    return newImage;
+/// 对UIImage对象进行缩放，并返回一个指定尺寸的新图像
+-(JobsReturnImageByCGSizeBlock)imageResize{
+    return ^UIImage *_Nonnull(CGSize newSize){
+        CGFloat scale = UIScreen.mainScreen.scale;
+        //UIGraphicsBeginImageContext(newSize);
+        UIGraphicsBeginImageContextWithOptions(newSize, NO, scale);
+        [self drawInRect:CGRectMake(0,
+                                    0,
+                                    newSize.width,
+                                    newSize.height)];
+        UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return newImage;
+    };
 }
 
 @end

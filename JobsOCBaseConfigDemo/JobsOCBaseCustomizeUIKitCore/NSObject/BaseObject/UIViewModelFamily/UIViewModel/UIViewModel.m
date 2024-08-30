@@ -47,13 +47,13 @@ UIViewModelProtocol_synthesize
 
 -(UIImage *)image{
     if (!_image) {
-//        _image = [UIImage imageWithColor:JobsRandomColor];
+//        _image = JobsRandomColor.image;
     }return _image;
 }
 
 -(UIImage *)bgImage{
     if (!_bgImage) {
-//        _bgImage = [UIImage imageWithColor:JobsRandomColor];
+//        _bgImage = JobsRandomColor.image;
     }return _bgImage;
 }
 

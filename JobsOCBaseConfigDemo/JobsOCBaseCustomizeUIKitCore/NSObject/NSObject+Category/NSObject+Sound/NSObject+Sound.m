@@ -8,31 +8,40 @@
 #import "NSObject+Sound.h"
 
 @implementation NSObject (Sound)
-/**
- 播放自定义本地声音
- @param fileName 文件名 包含后缀
- */
--(void)playSoundWithFileName:(NSString *)fileName{
-    SystemSoundID soundID;
-    NSURL *url = [NSBundle.mainBundle URLForResource:fileName withExtension:nil];
-    OSStatus errorCode = AudioServicesCreateSystemSoundID((__bridge CFURLRef)(url) , &soundID);
-    if (errorCode) {
-        NSLog(@"create sound failed");
-    }else{
+/// 播放自定义本地声音
+/// fileName 文件名 包含后缀
+-(jobsByStringBlock)playSoundWithFileName{
+    return ^(NSString *_Nullable fileName){
+        SystemSoundID soundID;
+        /// 得到音效文件的地址
+        NSURL *url = [NSBundle.mainBundle URLForResource:fileName withExtension:nil];
+        /// 生成系统音效id
+        OSStatus errorCode = AudioServicesCreateSystemSoundID((__bridge CFURLRef)(url) , &soundID);
+        if (errorCode) {
+            NSLog(@"create sound failed");
+            return;
+        }
+        /// 播放系统音效
         AudioServicesPlaySystemSound(soundID);
-    }
+    };
 }
-
--(void)playSoundEffect:(NSString*)name
-                   type:(NSString*)type{
-    SystemSoundID soundFileObject;
-    /// 得到音效文件的地址
-    NSString *soundFilePath = [NSBundle.mainBundle pathForResource:name
-                                                            ofType:type];
-    /// 生成系统音效id
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundFilePath.jobsUrl, &soundFileObject);
-    /// 播放系统音效
-    AudioServicesPlaySystemSound(soundFileObject);
+/// 播放自定义本地声音
+/// fileName 全文件名 包含后缀
+-(jobsByStringBlock)playSoundEffect{
+    return ^(NSString *_Nullable fileFullName){
+        FileNameModel *fileNameModel = fileFullName.byFileFullName(fileFullName);
+        SystemSoundID soundID;
+        /// 得到音效文件的地址
+        NSString *soundFilePath = [NSBundle.mainBundle pathForResource:fileNameModel.name ofType:fileNameModel.type];
+        /// 生成系统音效id
+        OSStatus errorCode = AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundFilePath.jobsUrl, &soundID);
+        if (errorCode) {
+            NSLog(@"create sound failed");
+            return;
+        }
+        /// 播放系统音效
+        AudioServicesPlaySystemSound(soundID);
+    };
 }
 
 @end

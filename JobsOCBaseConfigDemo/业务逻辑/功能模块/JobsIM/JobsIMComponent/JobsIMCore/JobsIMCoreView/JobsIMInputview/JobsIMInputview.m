@@ -11,7 +11,7 @@
 /// UI
 @property(nonatomic,strong)UIImageView *imgView;
 @property(nonatomic,strong)JobsAdNoticeView *adNoticeView;
-@property(nonatomic,strong)UIButton *sendBtn;
+@property(nonatomic,strong)BaseButton *sendBtn;
 /// Data
 
 @end
@@ -61,30 +61,65 @@
     return YES;
 }
 #pragma mark —— lazyLoad
--(UIButton *)sendBtn{
+-(BaseButton *)sendBtn{
     if (!_sendBtn) {
-        _sendBtn = UIButton.new;
+        @jobs_weakify(self)
+        _sendBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                     background:nil
+                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                  textAlignment:NSTextAlignmentCenter
+                                               subTextAlignment:NSTextAlignmentCenter
+                                                    normalImage:nil
+                                                 highlightImage:nil
+                                                attributedTitle:nil
+                                        selectedAttributedTitle:nil
+                                             attributedSubtitle:nil
+                                                          title:JobsInternationalization(@"发送")
+                                                       subTitle:nil
+                                                      titleFont:nil
+                                                   subTitleFont:nil
+                                                       titleCor:JobsWhiteColor
+                                                    subTitleCor:nil
+                                             titleLineBreakMode:NSLineBreakByWordWrapping
+                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                            baseBackgroundColor:nil
+                                                backgroundImage:JobsCyanColor.image
+                                                   imagePadding:JobsWidth(0)
+                                                   titlePadding:JobsWidth(0)
+                                                 imagePlacement:NSDirectionalRectEdgeNone
+                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                              cornerRadiusValue:JobsWidth(3)
+                                                roundingCorners:UIRectCornerAllCorners
+                                           roundingCornersRadii:CGSizeZero
+                                                 layerBorderCor:nil
+                                                    borderWidth:JobsWidth(0)
+                                                  primaryAction:nil
+                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
+                NSLog(@"按钮的长按事件触发");
+                return nil;
+        }
+                                                clickEventBlock:^id(BaseButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                x.normalBackgroundImage(JobsLightGrayColor.image);
+                if (self.objectBlock) self.objectBlock(x);
+                [self endEditing:YES];
+                if (!self.inputTextField.text.nullString) {
+                    self.playSoundEffect(@"Sound.wav");
+                    if (self.objectBlock) self.objectBlock(self.inputTextField);
+                }
+                self.inputTextField.text = JobsInternationalization(@"");
+                x.enabled = NO;
+                return nil;
+        }];
+
         _sendBtn.userInteractionEnabled = NO;
         _sendBtn.enabled = NO;
-        _sendBtn.normalTitle(JobsInternationalization(@"发送"));
-        _sendBtn.normalTitleColor(JobsWhiteColor);
         [_sendBtn setTitleColor:JobsWhiteColor forState:UIControlStateDisabled];
-        _sendBtn.normalBackgroundImage([UIImage imageWithColor:JobsCyanColor]);
-        _sendBtn.selectedBackgroundImage([UIImage imageWithColor:JobsLightGrayColor]);
-        @jobs_weakify(self)
-        [_sendBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            [self endEditing:YES];
-            if (!self.inputTextField.text.nullString) {
-                [NSObject playSoundEffect:@"Sound"
-                                     type:@"wav"];
-                if (self.objectBlock) self.objectBlock(self.inputTextField);
-            }
-            self.inputTextField.text = JobsInternationalization(@"");
-            x.enabled = NO;
-            return nil;
-        }];
-        
+
         [self addSubview:_sendBtn];
         [_sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(11);
@@ -92,7 +127,6 @@
             make.right.equalTo(self).offset(-10);
             make.width.mas_equalTo(50);
         }];
-        _sendBtn.cornerCutToCircleWithCornerRadius(3);
     }return _sendBtn;
 }
 
@@ -100,7 +134,7 @@
     if (!_inputTextField) {
         _inputTextField = ZYTextField.new;
         _inputTextField.placeHolderAlignment = NSTextAlignmentCenter;
-        _inputTextField.placeholder = @"在此输入需要发送的信息";
+        _inputTextField.placeholder = JobsInternationalization(@"在此输入需要发送的信息");
         _inputTextField.delegate = self;
         _inputTextField.leftView = self.imgView;
         _inputTextField.leftViewOffsetX = 20;

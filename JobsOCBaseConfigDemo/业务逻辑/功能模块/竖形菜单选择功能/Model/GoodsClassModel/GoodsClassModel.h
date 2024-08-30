@@ -18,14 +18,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GoodsClassModel : UIViewModel
 
-@property(nonatomic,strong)NSString *idField;
-@property(nonatomic,strong)NSString *pid;
-@property(nonatomic,strong)NSString *name;
-@property(nonatomic,strong)NSString *level;
-@property(nonatomic,strong)NSString *indexs;
-@property(nonatomic,strong)NSString *iconUrl;
-@property(nonatomic,strong)NSString *showUrl;
-@property(nonatomic,strong)NSString *productUrl;
+@property(nonatomic,copy)NSString *idField;
+@property(nonatomic,copy)NSString *pid;
+@property(nonatomic,copy)NSString *name;
+@property(nonatomic,copy)NSString *level;
+@property(nonatomic,copy)NSString *indexs;
+@property(nonatomic,copy)NSString *iconUrl;
+@property(nonatomic,copy)NSString *showUrl;
+@property(nonatomic,copy)NSString *productUrl;
 @property(nonatomic,strong)NSMutableArray<GoodsClassModel *> *childrenList;
 
 @end

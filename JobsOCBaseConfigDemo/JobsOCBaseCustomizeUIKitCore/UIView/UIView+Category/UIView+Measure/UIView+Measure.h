@@ -14,8 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (Measure)
-<BaseViewProtocol>
+@interface UIView (Measure) <BaseViewProtocol>
 #pragma mark —— 简捷获得控件坐标
 @property(nonatomic,assign)CGFloat x;
 @property(nonatomic,assign)CGFloat y;

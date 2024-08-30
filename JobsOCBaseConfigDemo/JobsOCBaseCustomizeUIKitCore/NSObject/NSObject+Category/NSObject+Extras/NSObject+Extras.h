@@ -179,6 +179,10 @@ BaseProtocol
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
 #pragma mark —— 功能性的
+/// 使用指定的图像（UIImage）作为颜色的填充图案。
+/// 这个方法的作用是生成一个基于图像的颜色，这个颜色在视图或图层上会以平铺的方式重复显示指定的图像。
+-(JobsReturnColorByImageBlock _Nonnull)byPatternImage;
+/// 雪花算法
 -(NSNumber *_Nonnull)makeSnowflake;
 /// present
 /// 简洁版强制present展现一个控制器页面【不需要正向传参】

@@ -106,7 +106,7 @@
     return _textField;
 }
 
--(NSString *_Nullable)getTextFieldValue{
+-(NSString *_Nullable)textFieldValue{
     return _textField.text;
 }
 
@@ -122,8 +122,8 @@
 -(UIButton *)securityModeBtn{
     if (!_securityModeBtn) {
         _securityModeBtn = UIButton.new;
-        _securityModeBtn.selectedImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : [UIImage imageWithColor:JobsRedColor]);
-        _securityModeBtn.normalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : [UIImage imageWithColor:JobsBlueColor]);
+        _securityModeBtn.selectedImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
+        _securityModeBtn.normalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image);
         @jobs_weakify(self)
         [_securityModeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)

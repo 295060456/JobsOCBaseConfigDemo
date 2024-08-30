@@ -100,7 +100,7 @@
     return _textField;
 }
 
--(NSString *_Nullable)getTextFieldValue{
+-(NSString *_Nullable)textFieldValue{
     return _textField.text;
 }
 #pragma mark —— lazyLoad
