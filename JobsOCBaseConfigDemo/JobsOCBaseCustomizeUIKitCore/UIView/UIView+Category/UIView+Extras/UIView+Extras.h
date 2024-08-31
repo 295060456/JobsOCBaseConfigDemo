@@ -108,7 +108,8 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 /// 判断是否需要滚动
 -(BOOL)shouldAutoScroll;
 #pragma mark —— 其他
--(jobsByViewBlock _Nullable)addSubview;
+-(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;
+-(jobsByViewBlock _Nonnull)addSubview;
 /// 针对数据源是UIImage  *的GKPhotoBrowser
 -(void)viewTapGRSavePicsWithImageDataMutArr:(NSMutableArray <UIImage *>* _Nonnull)imageDataMutArr
                                 atIndexPath:(NSIndexPath *_Nonnull)indexPath

@@ -413,7 +413,13 @@
     return 0;
 }
 #pragma mark —— 其他
--(jobsByViewBlock _Nullable)addSubview{
+-(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem{
+    return ^__kindof UIBarButtonItem *_Nullable(){
+        return [UIBarButtonItem.alloc initWithCustomView:self];
+    };
+}
+
+-(jobsByViewBlock _Nonnull)addSubview{
     return ^(__kindof UIView *_Nullable subView) {
         [self addSubview:subView];
     };

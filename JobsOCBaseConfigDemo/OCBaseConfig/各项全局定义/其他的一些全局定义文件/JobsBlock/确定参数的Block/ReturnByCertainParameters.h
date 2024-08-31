@@ -17,6 +17,8 @@ typedef id _Nullable(^JobsReturnIDBySELBlock)(SEL _Nullable data);
 typedef id _Nullable(^JobsReturnIDByGestureRecognizerBlock)(UIGestureRecognizer *_Nullable data);
 
 typedef __kindof UIBarButtonItem *_Nullable(^JobsReturnBarButtonItemByViewBlock)(__kindof UIView *_Nullable view);
+typedef __kindof UIBarButtonItem *_Nullable(^JobsReturnBarButtonItemByVoidBlock)(void);
+
 typedef NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
 typedef UIImage *_Nullable(^JobsReturnImageByCorBlock)(UIColor *_Nullable data);
 typedef UIImage *_Nullable(^JobsReturnImageByDataBlock)(NSData *_Nullable data);
