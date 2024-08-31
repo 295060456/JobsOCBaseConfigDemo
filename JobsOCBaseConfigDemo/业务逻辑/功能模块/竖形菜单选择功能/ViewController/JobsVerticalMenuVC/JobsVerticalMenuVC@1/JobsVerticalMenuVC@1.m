@@ -18,7 +18,6 @@
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*titleMutArr;
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*leftDataArray;/// 左边的数据源
 @property(nonatomic,strong)UIViewModel *leftViewCurrentSelectModel;
-@property(nonatomic,assign)NSUInteger thisIndex;
 
 @end
 
@@ -120,10 +119,6 @@
         [self.view addSubview:viewController.view];
         [viewController didMoveToParentViewController:self];
     };
-}
-
--(NSUInteger)thisIndex{
-    return self.leftViewCurrentSelectModel ? [self.leftDataArray indexOfObject:self.leftViewCurrentSelectModel] : 0;
 }
 /// 最初默认的数据
 -(NSMutableArray<UIViewModel *> *)makeTitleMutArr{
@@ -321,7 +316,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //        @jobs_weakify(self)
         [_searchView actionObjectBlock:^(NSString *data) {
 //            @jobs_strongify(self)
-
         }];
         
         [self.gk_navigationBar addSubview:_searchView];
