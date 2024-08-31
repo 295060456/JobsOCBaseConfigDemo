@@ -55,12 +55,11 @@
     self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
     
-    self.gk_navRightBarButtonItems = @[[UIBarButtonItem.alloc initWithCustomView:self.editBtn]];
+    self.barButtonItems.add(self.editBtn);
+    self.gk_navRightBarButtonItems = self.barButtonItems;
     
     self.tableView.alpha = 1;
     self.msgEditBoardView.jobsVisible = YES;
-    
-
 }
 
 -(void)viewWillAppear:(BOOL)animated{

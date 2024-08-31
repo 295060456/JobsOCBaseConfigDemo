@@ -11,31 +11,31 @@
 #pragma mark —— 单形参
 typedef id _Nullable(^JobsReturnIDByVoidBlock)(void);
 typedef id _Nullable(^JobsReturnIDByIDBlock)(id _Nullable data);
-typedef id _Nullable(^JobsReturnIDByStringBlock)(NSString * _Nullable data);
-typedef id _Nonnull(^JobsReturnIDBySaltStrBlock)(NSString * _Nullable salt);
+typedef id _Nullable(^JobsReturnIDByStringBlock)(NSString *_Nullable data);
+typedef id _Nonnull(^JobsReturnIDBySaltStrBlock)(NSString *_Nullable salt);
 typedef id _Nullable(^JobsReturnIDBySELBlock)(SEL _Nullable data);
-typedef id _Nullable(^JobsReturnIDByGestureRecognizerBlock)(UIGestureRecognizer * _Nullable data);
-typedef id _Nullable(^JobsReturnIDByCGSizeBlock)(CGSize data);
+typedef id _Nullable(^JobsReturnIDByGestureRecognizerBlock)(UIGestureRecognizer *_Nullable data);
 
+typedef __kindof UIBarButtonItem *_Nullable(^JobsReturnBarButtonItemByViewBlock)(__kindof UIView *_Nullable view);
 typedef NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
-typedef UIImage *_Nullable(^JobsReturnImageByCorBlock)(UIColor * _Nullable data);
-typedef UIImage *_Nullable(^JobsReturnImageByDataBlock)(NSData * _Nullable data);
+typedef UIImage *_Nullable(^JobsReturnImageByCorBlock)(UIColor *_Nullable data);
+typedef UIImage *_Nullable(^JobsReturnImageByDataBlock)(NSData *_Nullable data);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByView)(__kindof UIView *_Nonnull view);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByVC)(__kindof UIViewController *_Nonnull vc);
 typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByVC)(__kindof UIViewController *_Nonnull vc);
 
 typedef NSParagraphStyle *_Nullable(^_Nullable JobsReturnParagraphStyleByVoidBlock)(void);
 typedef NSParagraphStyle *_Nullable(^_Nullable JobsReturnParagraphStyleByTextAlignmentBlock)(NSTextAlignment data);
-typedef NSMutableAttributedString *_Nullable(^JobsReturnMutAttributedStringByStringBlock)(NSString * _Nullable data);
-typedef NSMutableAttributedString *_Nullable(^JobsReturnMutAttributedStringByAttributedStringBlock)(NSAttributedString * _Nonnull data);
-typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString * _Nullable data);
+typedef NSMutableAttributedString *_Nullable(^JobsReturnMutAttributedStringByStringBlock)(NSString *_Nullable data);
+typedef NSMutableAttributedString *_Nullable(^JobsReturnMutAttributedStringByAttributedStringBlock)(NSAttributedString *_Nonnull data);
+typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString *_Nullable data);
 typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString * _Nonnull data);
 typedef NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
 typedef NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
 typedef NSString *_Nullable(^JobsReturnStringByNumberBlock)(NSNumber *_Nullable data);
 typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString *_Nullable data);
 typedef NSMutableString *_Nullable(^JobsReturnMutableStringByStringBlock)(NSString *_Nullable data);
-typedef NSString *_Nullable(^JobsReturnStrByCorBlock)(UIColor * _Nullable data);
+typedef NSString *_Nullable(^JobsReturnStrByCorBlock)(UIColor *_Nullable data);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIntegerBlock)(NSInteger data);
 
 typedef UIFont *_Nullable(^JobsReturnFontByVoidBlock)(void);
@@ -50,8 +50,8 @@ typedef UIColor *_Nullable(^JobsReturnColorByImageBlock)(UIImage *_Nonnull cor);
 typedef UIImage *_Nonnull(^JobsReturnImageByVoidBlock)(void);
 typedef UIImage *_Nonnull(^JobsReturnImageByCGRectBlock)(CGRect data);
 typedef UIImage *_Nonnull(^JobsReturnImageByCGSizeBlock)(CGSize data);
-typedef UIImage *_Nonnull(^JobsReturnImageByAVURLAssetBlock)(AVURLAsset * _Nonnull data);
-typedef UIImage *_Nonnull(^JobsReturnImageByViewBlock)(__kindof UIView * _Nonnull data);
+typedef UIImage *_Nonnull(^JobsReturnImageByAVURLAssetBlock)(AVURLAsset *_Nonnull data);
+typedef UIImage *_Nonnull(^JobsReturnImageByViewBlock)(__kindof UIView *_Nonnull data);
 
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTableViewHeaderFooterViewBlock)(__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView);
 
@@ -61,7 +61,7 @@ typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewB
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsBlock)(Class _Nonnull cls);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsAndSaltStrBlock)(Class _Nonnull cls,
-                                                                                           NSString * _Nullable salt);
+                                                                                           NSString *_Nullable salt);
 typedef UITableViewCell __kindof *_Nullable(^JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block)(Class _Nonnull cls,
                                                                                                     NSString *_Nullable salt,
                                                                                                     NSIndexPath *_Nonnull indexPath);
@@ -86,7 +86,7 @@ typedef CGRect(^JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,__kindof U
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByVoidBlock)(void);
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByIDBlock)(id _Nullable data);
 /// 关于按钮配置信息
-typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
+typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByButtonConfigurationBlock)(UIButtonConfiguration *_Nullable config);
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByBackgroundBlock)(UIBackgroundConfiguration *_Nullable data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByCornerStyleBlock)(UIButtonConfigurationCornerStyle data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationBySizeBlock)(UIButtonConfigurationSize data) API_AVAILABLE(ios(16.0));
@@ -243,8 +243,8 @@ typedef id _Nullable(^JobsReturnIDBySelectorBlock)(id _Nullable weakSelf,
 typedef id _Nullable(^JobsReturnIDBySelectorBlock2)(id _Nullable weakSelf,
                                                     id _Nullable arg,
                                                     id _Nullable data);
-typedef NSString *_Nullable(^JobsReturnStringByStringStringBlock)(NSString * _Nullable fontString,
-                                                                  NSString * _Nullable tailString);
+typedef NSString *_Nullable(^JobsReturnStringByStringStringBlock)(NSString *_Nullable fontString,
+                                                                  NSString *_Nullable tailString);
 typedef id _Nullable(^JobsReturnIDByTwoIDBlock)Jobs_2_Arguments;
 typedef id _Nullable(^JobsReturnIDByThreeIDBlock)Jobs_3_Arguments;
 typedef id _Nullable(^JobsReturnIDByFourIDBlock)Jobs_4_Arguments;

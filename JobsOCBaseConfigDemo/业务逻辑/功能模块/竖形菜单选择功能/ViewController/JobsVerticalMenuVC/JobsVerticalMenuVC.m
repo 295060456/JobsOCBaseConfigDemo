@@ -69,8 +69,9 @@
     self.setGKNavBackBtn(nil);
     
     self.gk_navigationBar.jobsVisible = YES;
-    self.gk_navRightBarButtonItems = @[[UIBarButtonItem.alloc initWithCustomView:self.msgBtn],
-                                       [UIBarButtonItem.alloc initWithCustomView:self.customerServiceBtn]];
+    self.barButtonItems.add(self.msgBtn);
+    self.barButtonItems.add(self.customerServiceBtn);
+    self.gk_navRightBarButtonItems = self.barButtonItems;
     
     self.searchView.alpha = 1;
     self.tableView.alpha = 1;

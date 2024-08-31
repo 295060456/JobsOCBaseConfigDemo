@@ -17,6 +17,7 @@
 		CE1F257C2C5DDABB00324198 /* UIView+Navigator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F257B2C5DDABB00324198 /* UIView+Navigator.m */; };
 		CE207E552C8185E500AD9FFB /* FileNameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E542C8185E500AD9FFB /* FileNameModel.m */; };
 		CE207E592C818E9A00AD9FFB /* AVURLAsset+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E582C818E9A00AD9FFB /* AVURLAsset+Extra.m */; };
+		CE207E6D2C82BADC00AD9FFB /* UIBarButtonItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E6B2C82BAD700AD9FFB /* UIBarButtonItem+Extra.m */; };
 		CE28FCF82C7194FF00AAADA3 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE28FCF62C7194FF00AAADA3 /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		CE2E873A2C689F9100260207 /* JobsBtnStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87262C689F8F00260207 /* JobsBtnStyleTBVCell.m */; };
 		CE2E873F2C689F9100260207 /* JobsTextStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E872E2C689F9000260207 /* JobsTextStyleTBVCell.m */; };
@@ -1163,6 +1164,8 @@
 		CE207E542C8185E500AD9FFB /* FileNameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileNameModel.m; sourceTree = "<group>"; };
 		CE207E572C818E9A00AD9FFB /* AVURLAsset+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVURLAsset+Extra.h"; sourceTree = "<group>"; };
 		CE207E582C818E9A00AD9FFB /* AVURLAsset+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVURLAsset+Extra.m"; sourceTree = "<group>"; };
+		CE207E6A2C82BAD700AD9FFB /* UIBarButtonItem+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extra.h"; sourceTree = "<group>"; };
+		CE207E6B2C82BAD700AD9FFB /* UIBarButtonItem+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extra.m"; sourceTree = "<group>"; };
 		CE28FCF72C7194FF00AAADA3 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		CE2E87252C689F8F00260207 /* JobsBtnStyleTBVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBtnStyleTBVCell.h; sourceTree = "<group>"; };
 		CE2E87262C689F8F00260207 /* JobsBtnStyleTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsBtnStyleTBVCell.m; sourceTree = "<group>"; };
@@ -3327,6 +3330,15 @@
 				CE207E582C818E9A00AD9FFB /* AVURLAsset+Extra.m */,
 			);
 			path = AVURLAsset;
+			sourceTree = "<group>";
+		};
+		CE207E6C2C82BAD700AD9FFB /* UIBarButtonItem */ = {
+			isa = PBXGroup;
+			children = (
+				CE207E6A2C82BAD700AD9FFB /* UIBarButtonItem+Extra.h */,
+				CE207E6B2C82BAD700AD9FFB /* UIBarButtonItem+Extra.m */,
+			);
+			path = UIBarButtonItem;
 			sourceTree = "<group>";
 		};
 		CE2E87272C689F8F00260207 /* JobsBtnStyleTBVCell */ = {
@@ -12011,6 +12023,7 @@
 			isa = PBXGroup;
 			children = (
 				CECE850D2C4513CD00764AF5 /* JobsBaseCustomizeUIKitCoreHeader.h */,
+				CE207E6C2C82BAD700AD9FFB /* UIBarButtonItem */,
 				CE207E562C818E7F00AD9FFB /* AVURLAsset */,
 				CECE81F72C4513CD00764AF5 /* BaseProtocol */,
 				CECE82002C4513CD00764AF5 /* CALayer */,
@@ -14546,6 +14559,7 @@
 				CECA79882C707C53003BCEF9 /* JobsExcelLeftListView.m in Sources */,
 				CECE854F2C4513CE00764AF5 /* NSObject+Notification.m in Sources */,
 				CECE7CD02C450C5000764AF5 /* B_VC.m in Sources */,
+				CE207E6D2C82BADC00AD9FFB /* UIBarButtonItem+Extra.m in Sources */,
 				CE2E8AD42C6AFB2F00260207 /* LuckyDiskVC.m in Sources */,
 				CECE7CB02C450C5000764AF5 /* BaiShaETProjVIPSubCVCell_02.m in Sources */,
 				CECE80B82C4512BF00764AF5 /* BaseModel.m in Sources */,

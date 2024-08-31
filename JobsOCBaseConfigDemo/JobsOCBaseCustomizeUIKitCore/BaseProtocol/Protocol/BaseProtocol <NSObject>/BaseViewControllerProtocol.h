@@ -50,9 +50,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)SPAlertController *alertController;
 @property(nonatomic,assign)ComingStyle pushOrPresent;
 @property(nonatomic,assign)BOOL setupNavigationBarHidden;
-@property(nonatomic,strong)UIView *statusBar;
+@property(nonatomic,strong)__kindof UIView *statusBar;
 @property(nonatomic,strong)JobsNavBarConfig *navBarConfig;
 @property(nonatomic,strong)JobsNavBar *navBar;
+@property(nonatomic,strong)NSMutableArray<__kindof UIBarButtonItem *> *barButtonItems;/// UIBarButtonItem 数组
+@property(nonatomic,strong)NSMutableArray<__kindof UIViewController *> *viewControllers;/// 子视图控制器 数组
 /// 更新状态栏颜色为自定义的颜色
 -(jobsByCorBlock _Nonnull)updateStatusBarCor;
 /// 恢复状态栏颜色
@@ -62,9 +64,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查看用户数据
 -(void)showUserInfo;
 /// 配置 GKNavigationBar
--(jobsByViewModelBlock)setGKNav;
+-(jobsByViewModelBlock _Nonnull)setGKNav;
 /// 配置 JobsNavBarConfig
--(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig;
+-(JobsReturnNavBarConfigByButtonModelBlock _Nonnull)makeNavBarConfig;
 /// 配置GKNavigationBar的返回按钮
 -(jobsByBtnBlock _Nonnull)setGKNavBackBtn;
 /// 铺满全屏展示的策略
@@ -82,6 +84,10 @@ NS_ASSUME_NONNULL_END
 @synthesize pushOrPresent = _pushOrPresent;\
 @synthesize setupNavigationBarHidden = _setupNavigationBarHidden;\
 @synthesize statusBar = _statusBar;\
+@synthesize barButtonItems = _barButtonItems;\
+@synthesize navBarConfig = _navBarConfig;\
+@synthesize navBar = _navBar;\
+@synthesize viewControllers = _viewControllers;\
 
 #endif
 
@@ -93,5 +99,9 @@ NS_ASSUME_NONNULL_END
 @dynamic pushOrPresent;\
 @dynamic setupNavigationBarHidden;\
 @dynamic statusBar;\
+dynamic barButtonItems;\
+@dynamic navBarConfig;\
+@dynamic navBar;\
+@dynamic viewControllers;\
 
 #endif

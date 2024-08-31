@@ -47,7 +47,8 @@
     {
         self.setGKNav(nil);
         self.setGKNavBackBtn(nil);
-        self.gk_navRightBarButtonItems = @[self.shareBtnItem];
+        self.barButtonItems.add(self.shareBtnItem);
+        self.gk_navRightBarButtonItems = self.barButtonItems;
     }
 
     self.inputview.alpha = 1;

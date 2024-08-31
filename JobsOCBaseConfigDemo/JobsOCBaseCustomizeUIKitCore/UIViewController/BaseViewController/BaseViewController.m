@@ -83,9 +83,9 @@ BaseViewControllerProtocol_synthesize
      */
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.setBackGround();
-//    self.gk_navRightBarButtonItems = @[[UIBarButtonItem.alloc initWithCustomView:self.msgBtn],
-//                                       [UIBarButtonItem.alloc initWithCustomView:self.customerServiceBtn]];
-//    self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.userHeadBtn];
+//    self.barButtonItems.add(self.msgBtn);
+//    self.barButtonItems.add(self.customerServiceBtn);
+//    self.gk_navRightBarButtonItems = self.barButtonItems;
     self.gk_statusBarHidden = NO;
 /*
  *  #pragma mark —— 全局配置 GKNavigationBar -(void)makeGKNavigationBarConfigure
@@ -177,6 +177,18 @@ BaseViewControllerProtocol_synthesize
     return UIStatusBarStyleLightContent;
 }
 #pragma mark —— BaseViewControllerProtocol
+-(NSMutableArray<__kindof UIViewController *> *)viewControllers{
+    if(!_viewControllers){
+        _viewControllers = NSMutableArray.array;
+    }return _viewControllers;
+}
+
+-(NSMutableArray<__kindof UIBarButtonItem *> *)barButtonItems{
+    if(!_barButtonItems){
+        _barButtonItems = NSMutableArray.array;
+    }return _barButtonItems;
+}
+
 -(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig{
     @jobs_weakify(self)
     return ^(UIButtonModel *_Nullable backBtnModel,

@@ -57,7 +57,8 @@
 
     self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
-    self.gk_navRightBarButtonItems = @[[UIBarButtonItem.alloc initWithCustomView:self.deleteBtn]];
+    self.barButtonItems.add(self.deleteBtn);
+    self.gk_navRightBarButtonItems = self.barButtonItems;
     
     self.titleLab.alpha = 1;
     self.subTitleLab.alpha = 1;

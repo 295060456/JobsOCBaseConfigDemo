@@ -55,7 +55,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.gk_navItemRightSpace = JobsWidth(16);
-    self.gk_navRightBarButtonItems = @[[UIBarButtonItem.alloc initWithCustomView:self.ruleBtn]];
+    self.barButtonItems.add(self.ruleBtn);
+    self.gk_navRightBarButtonItems = self.barButtonItems;
+    
     self.topLineLab.alpha = 0;
     self.categoryView.alpha = 1;
 }
