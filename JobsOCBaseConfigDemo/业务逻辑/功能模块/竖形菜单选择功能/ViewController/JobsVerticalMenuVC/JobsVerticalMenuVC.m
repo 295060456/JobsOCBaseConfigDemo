@@ -186,7 +186,7 @@
 }
 /// 根据一级目录的id 获取二三级的分类数据
 -(void)getGoodsClassWithPid:(NSString *)pId{
-    [self.rightDataArray removeAllObjects];
+    self.rightDataArray.clean();
     /// 每个子页面的section个数
     for (int i = 0; i < self.imageDataMutArr.count; i++){
         self.rightDataArray.add([self createTwoModel:i]);
@@ -235,12 +235,12 @@
     return model;
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
--(NSInteger)tableView:(UITableView *)tableView
+-(NSInteger)tableView:(__kindof UITableView *)tableView
 numberOfRowsInSection:(NSInteger)section{
     return self.titleMutArr.count;
 }
 
--(__kindof UITableViewCell *)tableView:(UITableView *)tableView
+-(__kindof UITableViewCell *)tableView:(__kindof UITableView *)tableView
                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LeftCell *cell = LeftCell.cellStyleDefaultWithTableView(tableView);
     UIViewModel *viewModel = UIViewModel.new;
@@ -249,12 +249,12 @@ numberOfRowsInSection:(NSInteger)section{
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView
+-(CGFloat)tableView:(__kindof UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [LeftCell cellHeightWithModel:nil];
 }
 
--(void)tableView:(UITableView *)tableView
+-(void)tableView:(__kindof UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     if (self.rightDataArray.count) {
@@ -267,7 +267,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.collectionView setContentOffset:CGPointMake(0, JobsWidth(-5)) animated:YES];
 }
 #pragma mark —— UICollectionViewDelegate,UICollectionViewDataSource ThreeTopBannerCell
--(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+-(__kindof UICollectionViewCell *)collectionView:(__kindof UICollectionView *)collectionView
                           cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ThreeClassCell *cell = [ThreeClassCell cellWithCollectionView:collectionView forIndexPath:indexPath];
     self.rightViewCurrentSelectModel = [self.rightDataArray objectAtIndex:indexPath.section];
@@ -282,16 +282,16 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     }];return cell;
 }
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+-(NSInteger)numberOfSectionsInCollectionView:(__kindof UICollectionView *)collectionView{
     return self.rightDataArray.count;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView
+- (NSInteger)collectionView:(__kindof UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section{
     return 1;
 }
 
-- (__kindof UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+- (__kindof UICollectionReusableView *)collectionView:(__kindof UICollectionView *)collectionView
                     viewForSupplementaryElementOfKind:(NSString *)kind
                                           atIndexPath:(NSIndexPath *)indexPath{
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]){
@@ -322,20 +322,20 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     }return nil;
 }
 
-- (CGSize)collectionView:(UICollectionView*)collectionView
+- (CGSize)collectionView:(__kindof UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
 referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(self.collectionView.width, JobsWidth(40.f));
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout*)collectionViewLayout
+- (CGSize)collectionView:(__kindof UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
 referenceSizeForFooterInSection:(NSInteger)section{
     return section == self.rightDataArray.count ? CGSizeMake(CGRectGetWidth(self.collectionView.frame), JobsWidth(40.f)) : CGSizeZero;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout*)collectionViewLayout
+- (CGSize)collectionView:(__kindof UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(self.collectionView.width, [self getCellHeight:(NSMutableArray *)[self.rightDataArray objectAtIndex:indexPath.section].childrenList]);
 }
@@ -603,35 +603,35 @@ referenceSizeForFooterInSection:(NSInteger)section{
 
 -(NSMutableArray<UIImage *> *)imageDataMutArr{
     if (_imageDataMutArr) {
-        [_imageDataMutArr removeAllObjects];
+        _imageDataMutArr.clean();
     }else _imageDataMutArr = NSMutableArray.array;
     /// 装载假数据
     if (self.thisIndex == 0) {
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 9; i++) {
             _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else if (self.thisIndex == 1){
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 8; i++) {
             _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else if (self.thisIndex == 2){
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 7; i++) {
             _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else if (self.thisIndex == 3){
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 6; i++) {
             _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else if (self.thisIndex == 4){
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 5; i++) {
             _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else if (self.thisIndex == 5){
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 4; i++) {
             _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }else{
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 3; i++) {
             _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
         }
     }return _imageDataMutArr;

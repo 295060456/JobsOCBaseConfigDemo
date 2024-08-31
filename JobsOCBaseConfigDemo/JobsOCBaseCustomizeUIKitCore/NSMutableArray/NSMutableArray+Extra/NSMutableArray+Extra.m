@@ -8,6 +8,12 @@
 #import "NSMutableArray+Extra.h"
 
 @implementation NSMutableArray (Extra)
+/// 清除数组元素
+-(jobsByVoidBlock _Nonnull)clean{
+    return ^(){
+        [self removeAllObjects];
+    };
+}
 /// 阻止向可变数组添加空元素
 -(JobsReturnIDByIDBlock _Nonnull)add{
     @jobs_weakify(self)
