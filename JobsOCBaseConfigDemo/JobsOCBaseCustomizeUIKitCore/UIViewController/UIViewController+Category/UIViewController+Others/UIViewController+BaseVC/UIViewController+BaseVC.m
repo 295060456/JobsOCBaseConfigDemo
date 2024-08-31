@@ -53,7 +53,7 @@
         if (self.navigationController.viewControllers.count - 1) {//从上个页面推过来才有返回键，直接的个人中心是没有的
             self.gk_backImage = JobsIMG(@"全局返回箭头");/// 设置返回按钮图片（优先级高于gk_backStyle）
             self.gk_backStyle = GKNavigationBarBackStyleBlack;
-            self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:btn ? : self.backBtnCategory];
+            self.gk_navLeftBarButtonItem = JobsBarButtonItem(btn ? : self.backBtnCategory);
         }
     };
 }

@@ -16,7 +16,6 @@
 @property(nonatomic,strong)JobsPostDelView *postDelView;/// 长按拖动的删除区域
 @property(nonatomic,strong)JobsTextView *textView;
 @property(nonatomic,strong)UIButton *releaseBtn;
-@property(nonatomic,strong)UIBarButtonItem *releaseBtnItem;
 @property(nonatomic,strong)UILabel *tipsLab;
 /// Data
 @property(nonatomic,strong)NSArray <HXPhotoModel *>*historyPhotoDataArr;/// 与之相对应的是self.photoManager.afterSelectedArray
@@ -84,7 +83,7 @@ UIViewModelProtocol_synthesize
     self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
     self.gk_navigationBar.jobsVisible = YES;
-    self.gk_navRightBarButtonItem = self.releaseBtnItem;
+    self.gk_navRightBarButtonItem = JobsBarButtonItem(self.releaseBtn);
     
     self.textView.alpha = 1;
     self.tipsLab.alpha = 1;
@@ -331,30 +330,56 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
 #pragma mark —— lazyLoad
 -(UIButton *)releaseBtn{
     if (!_releaseBtn) {
-        _releaseBtn = UIButton.new;
-        _releaseBtn.enabled = NO;
-        _releaseBtn.normalBackgroundImage(JobsIMG(@"未发布"));
-        _releaseBtn.normalTitle(JobsInternationalization(@"发布"));
-        _releaseBtn.normalTitleColor(JobsWhiteColor);
-        _releaseBtn.titleFont(UIFontWeightRegularSize(12.5));
-        _releaseBtn.width = JobsWidth(38);
-        _releaseBtn.height = JobsWidth(23);
         @jobs_weakify(self)
-        [_releaseBtn jobsBtnClickEventBlock:^id(id data) {
+        _releaseBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                        background:nil
+                                        buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                     textAlignment:NSTextAlignmentCenter
+                                                  subTextAlignment:NSTextAlignmentCenter
+                                                       normalImage:nil
+                                                    highlightImage:nil
+                                                   attributedTitle:nil
+                                           selectedAttributedTitle:nil
+                                                attributedSubtitle:nil
+                                                             title:JobsInternationalization(@"发布")
+                                                          subTitle:nil
+                                                         titleFont:UIFontWeightRegularSize(12.5)
+                                                      subTitleFont:nil
+                                                          titleCor:JobsWhiteColor
+                                                       subTitleCor:nil
+                                                titleLineBreakMode:NSLineBreakByWordWrapping
+                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                               baseBackgroundColor:nil
+                                                   backgroundImage:JobsIMG(@"未发布")
+                                                      imagePadding:JobsWidth(0)
+                                                      titlePadding:JobsWidth(0)
+                                                    imagePlacement:NSDirectionalRectEdgeNone
+                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                 cornerRadiusValue:JobsWidth(23 / 2)
+                                                   roundingCorners:UIRectCornerAllCorners
+                                              roundingCornersRadii:CGSizeZero
+                                                    layerBorderCor:nil
+                                                       borderWidth:JobsWidth(0)
+                                                     primaryAction:nil
+                                        longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                       id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                   clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             [self.view endEditing:YES];
             [self networking_checkHadRoleGET];
             return nil;
         }];
+        _releaseBtn.enabled = NO;
+        _releaseBtn.width = JobsWidth(38);
+        _releaseBtn.height = JobsWidth(23);
         [self.view addSubview:_releaseBtn];
-        _releaseBtn.cornerCutToCircleWithCornerRadius(_releaseBtn.height / 2);
     }return _releaseBtn;
-}
-
--(UIBarButtonItem *)releaseBtnItem{
-    if (!_releaseBtnItem) {
-        _releaseBtnItem = [UIBarButtonItem.alloc initWithCustomView:self.releaseBtn];
-    }return _releaseBtnItem;
 }
 
 -(JobsTextView *)textView{

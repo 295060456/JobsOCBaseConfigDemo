@@ -85,9 +85,9 @@ NS_ASSUME_NONNULL_END
 @synthesize setupNavigationBarHidden = _setupNavigationBarHidden;\
 @synthesize statusBar = _statusBar;\
 @synthesize barButtonItems = _barButtonItems;\
-@synthesize navBarConfig = _navBarConfig;\
-@synthesize navBar = _navBar;\
 @synthesize viewControllers = _viewControllers;\
+//@synthesize navBar = _navBar;\ 在 @implementation UIViewController (BaseVC) 实现。这里不写
+//@synthesize navBarConfig = _navBarConfig;\ 在 @implementation UIViewController (BaseVC) 实现。这里不写
 
 #endif
 
@@ -99,7 +99,7 @@ NS_ASSUME_NONNULL_END
 @dynamic pushOrPresent;\
 @dynamic setupNavigationBarHidden;\
 @dynamic statusBar;\
-dynamic barButtonItems;\
+@dynamic barButtonItems;\
 @dynamic navBarConfig;\
 @dynamic navBar;\
 @dynamic viewControllers;\

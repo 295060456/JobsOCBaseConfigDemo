@@ -9,7 +9,7 @@
 
 @interface UITableViewCellEditorVC ()
 /// UI
-@property(nonatomic,strong)UIButton *editBtn;
+@property(nonatomic,strong)BaseButton *editBtn;
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)MsgEditBoardView *msgEditBoardView;
 /// Data
@@ -54,8 +54,7 @@
     
     self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
-    
-    self.barButtonItems.add(self.editBtn);
+    self.barButtonItems.add(JobsBarButtonItem(self.editBtn));
     self.gk_navRightBarButtonItems = self.barButtonItems;
     
     self.tableView.alpha = 1;
@@ -206,21 +205,55 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return cell;
 }
 #pragma mark —— lazyLoad
--(UIButton *)editBtn{
+-(BaseButton *)editBtn{
     if (!_editBtn) {
-        _editBtn = UIButton.new;
-        _editBtn.normalTitle(JobsInternationalization(@"編輯"));
-        _editBtn.titleFont(UIFontWeightBoldSize(12));
-        _editBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
         @jobs_weakify(self)
-        [_editBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _editBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                     background:nil
+                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                  textAlignment:NSTextAlignmentCenter
+                                               subTextAlignment:NSTextAlignmentCenter
+                                                    normalImage:nil
+                                                 highlightImage:nil
+                                                attributedTitle:nil
+                                        selectedAttributedTitle:nil
+                                             attributedSubtitle:nil
+                                                          title:JobsInternationalization(@"編輯")
+                                                       subTitle:nil
+                                                      titleFont:UIFontWeightBoldSize(12)
+                                                   subTitleFont:nil
+                                                       titleCor:HEXCOLOR(0x3D4A58)
+                                                    subTitleCor:nil
+                                             titleLineBreakMode:NSLineBreakByWordWrapping
+                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                            baseBackgroundColor:nil
+                                                backgroundImage:nil
+                                                   imagePadding:JobsWidth(0)
+                                                   titlePadding:JobsWidth(0)
+                                                 imagePlacement:NSDirectionalRectEdgeNone
+                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                              cornerRadiusValue:JobsWidth(0)
+                                                roundingCorners:UIRectCornerAllCorners
+                                           roundingCornersRadii:CGSizeZero
+                                                 layerBorderCor:nil
+                                                    borderWidth:JobsWidth(0)
+                                                  primaryAction:nil
+                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
 //            toast(x.titleForNormalState);
             x.selected = !x.selected;
             x.normalTitle(x.selected ? JobsInternationalization(@"完成") : JobsInternationalization(@"編輯"));
             [self.tableView setEditing:x.selected animated:YES];
             x.selected ? [self.getMsgEditBoardView appearByView:self.view] : [self.getMsgEditBoardView disappearByView:self.view];
-            return nil;
+             return nil;
         }];
     }return _editBtn;
 }

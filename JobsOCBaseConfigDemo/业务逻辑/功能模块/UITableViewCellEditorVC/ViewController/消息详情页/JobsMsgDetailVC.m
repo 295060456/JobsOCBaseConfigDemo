@@ -14,7 +14,7 @@
 @property(nonatomic,strong)UIButton *drawBtn;
 @property(nonatomic,strong)UILabel *lineLab;
 @property(nonatomic,strong)UITextView *textView;
-@property(nonatomic,strong)UIButton *deleteBtn;
+@property(nonatomic,strong)BaseButton *deleteBtn;
 /// Data
 @property(nonatomic,strong)JobsMsgDataModel *msgDataModel;
 
@@ -57,7 +57,7 @@
 
     self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
-    self.barButtonItems.add(self.deleteBtn);
+    self.barButtonItems.add(JobsBarButtonItem(self.deleteBtn));
     self.gk_navRightBarButtonItems = self.barButtonItems;
     
     self.titleLab.alpha = 1;
@@ -170,14 +170,47 @@
     }return _textView;
 }
 
--(UIButton *)deleteBtn{
+-(BaseButton *)deleteBtn{
     if (!_deleteBtn) {
-        _deleteBtn = UIButton.new;
-        _deleteBtn.normalTitle(JobsInternationalization(@"删除"));
-        _deleteBtn.titleFont(UIFontWeightRegularSize(12));
-        _deleteBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
         @jobs_weakify(self)
-        [_deleteBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _deleteBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                       background:nil
+                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                    textAlignment:NSTextAlignmentCenter
+                                                 subTextAlignment:NSTextAlignmentCenter
+                                                      normalImage:nil
+                                                   highlightImage:nil
+                                                  attributedTitle:nil
+                                          selectedAttributedTitle:nil
+                                               attributedSubtitle:nil
+                                                            title:JobsInternationalization(@"删除")
+                                                         subTitle:nil
+                                                        titleFont:UIFontWeightRegularSize(12)
+                                                     subTitleFont:nil
+                                                         titleCor:HEXCOLOR(0x3D4A58)
+                                                      subTitleCor:nil
+                                               titleLineBreakMode:NSLineBreakByWordWrapping
+                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                              baseBackgroundColor:nil
+                                                  backgroundImage:nil
+                                                     imagePadding:JobsWidth(0)
+                                                     titlePadding:JobsWidth(0)
+                                                   imagePlacement:NSDirectionalRectEdgeNone
+                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                cornerRadiusValue:JobsWidth(0)
+                                                  roundingCorners:UIRectCornerAllCorners
+                                             roundingCornersRadii:CGSizeZero
+                                                   layerBorderCor:nil
+                                                      borderWidth:JobsWidth(0)
+                                                    primaryAction:nil
+                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                      id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                  clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
             self.backBtnClickEvent(x);
             if (self.objectBlock) self.objectBlock(self.msgDataModel);

@@ -93,12 +93,16 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     AppDelegate.tabBarVC.selectedIndex = 0;
 }
 /// JobsTabbarVC 关闭手势
--(void)tabBarClosePan{
-    [AppDelegate.tabBarVC closePan];
+-(jobsByVoidBlock)tabBarClosePan{
+    return ^(){
+        AppDelegate.tabBarVC.closePan();
+    };
 }
 /// JobsTabbarVC 打开手势
--(void)tabBarOpenPan{
-    [AppDelegate.tabBarVC openPan];
+-(jobsByVoidBlock)tabBarOpenPan{
+    return ^(){
+        AppDelegate.tabBarVC.openPan();
+    };
 }
 /// 获取Tabbar管理的，不含导航的根控制器
 -(NSMutableArray <UIViewController *>*)appRootVC{

@@ -68,7 +68,7 @@ BOOL ISLogin;
     
     self.setGKNav(nil);/// GK 不支持横屏啊
     self.setGKNavBackBtn(nil);
-    self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.userHeadBtn];
+    self.gk_navLeftBarButtonItem = JobsBarButtonItem(self.userHeadBtn);
     self.tableView.alpha = 1;
     self.suspendBtn.alpha = 1;
     @jobs_weakify(self)

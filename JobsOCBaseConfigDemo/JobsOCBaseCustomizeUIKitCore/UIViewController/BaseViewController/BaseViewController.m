@@ -83,8 +83,8 @@ BaseViewControllerProtocol_synthesize
      */
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.setBackGround();
-//    self.barButtonItems.add(self.msgBtn);
-//    self.barButtonItems.add(self.customerServiceBtn);
+//    self.barButtonItems.add(JobsBarButtonItem(self.msgBtn));
+//    self.barButtonItems.add(JobsBarButtonItem(self.customerServiceBtn));
 //    self.gk_navRightBarButtonItems = self.barButtonItems;
     self.gk_statusBarHidden = NO;
 /*
@@ -113,7 +113,7 @@ BaseViewControllerProtocol_synthesize
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     /// 只有是在Tabbar管理的，不含导航的根控制器才开启手势（点语法会有 Property access result unused警告）
-    self.isRootVC ? [self tabBarOpenPan] : [self tabBarClosePan];
+    self.isRootVC ? self.tabBarOpenPan() : self.tabBarClosePan();
     self.UIViewControllerLifeCycle(JobsLocalFunc);
 //    NSLog(@"SSS = %ld",(long)self.getDeviceOrientation);
 //    self.menuView.alpha = self.getDeviceOrientation == DeviceOrientationLandscape;

@@ -69,8 +69,8 @@
     self.setGKNavBackBtn(nil);
     
     self.gk_navigationBar.jobsVisible = YES;
-    self.barButtonItems.add(self.msgBtn);
-    self.barButtonItems.add(self.customerServiceBtn);
+    self.barButtonItems.add(JobsBarButtonItem(self.msgBtn));
+    self.barButtonItems.add(JobsBarButtonItem(self.customerServiceBtn));
     self.gk_navRightBarButtonItems = self.barButtonItems;
     
     self.searchView.alpha = 1;

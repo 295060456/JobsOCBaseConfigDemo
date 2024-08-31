@@ -34,9 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// TabBar
 -(UITabBar *)getTabBar;
 /// JobsTabbarVC 关闭手势
--(void)tabBarClosePan;
+-(jobsByVoidBlock)tabBarClosePan;
 /// JobsTabbarVC 打开手势
--(void)tabBarOpenPan;
+-(jobsByVoidBlock)tabBarOpenPan;
 /// 跳到首页
 -(void)jumpToHome;
 /// 获取Tabbar管理的，不含导航的根控制器

@@ -11,8 +11,7 @@
 /// UI
 @property(nonatomic,strong)JobsIMInputview *inputview;
 @property(nonatomic,strong)UITableView *tableView;//显示数据
-@property(nonatomic,strong)UIBarButtonItem *shareBtnItem;
-@property(nonatomic,strong)UIButton *shareBtn;
+@property(nonatomic,strong)BaseButton *shareBtn;
 @property(nonatomic,strong)UIColor *bgColour;
 /// data
 @property(nonatomic,strong)NSMutableArray <JobsIMChatInfoModel *>*chatInfoModelMutArr;//聊天信息
@@ -47,7 +46,7 @@
     {
         self.setGKNav(nil);
         self.setGKNavBackBtn(nil);
-        self.barButtonItems.add(self.shareBtnItem);
+        self.barButtonItems.add(JobsBarButtonItem(self.shareBtn));
         self.gk_navRightBarButtonItems = self.barButtonItems;
     }
 
@@ -449,25 +448,55 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     }return _tableView;
 }
 
--(UIButton *)shareBtn{
+-(BaseButton *)shareBtn{
     if (!_shareBtn) {
-        _shareBtn = UIButton.new;
-        _shareBtn.width = JobsWidth(23);
-        _shareBtn.height = JobsWidth(23);
-        _shareBtn.normalImage(JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"分享"));
-        _shareBtn.normalTitleColor(JobsWhiteColor);
-        _shareBtn.cornerCutToCircleWithCornerRadius(23 / 2);
-        [_shareBtn jobsBtnClickEventBlock:^id(id data) {
+        @jobs_weakify(self)
+        _shareBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                      background:nil
+                                      buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                   textAlignment:NSTextAlignmentCenter
+                                                subTextAlignment:NSTextAlignmentCenter
+                                                     normalImage:JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"分享")
+                                                  highlightImage:nil
+                                                 attributedTitle:nil
+                                         selectedAttributedTitle:nil
+                                              attributedSubtitle:nil
+                                                           title:nil
+                                                        subTitle:nil
+                                                       titleFont:nil
+                                                    subTitleFont:nil
+                                                        titleCor:JobsWhiteColor
+                                                     subTitleCor:nil
+                                              titleLineBreakMode:NSLineBreakByWordWrapping
+                                           subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                             baseBackgroundColor:nil
+                                                 backgroundImage:nil
+                                                    imagePadding:JobsWidth(0)
+                                                    titlePadding:JobsWidth(0)
+                                                  imagePlacement:NSDirectionalRectEdgeNone
+                                      contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                        contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                   contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                               cornerRadiusValue:JobsWidth(23 / 2)
+                                                 roundingCorners:UIRectCornerAllCorners
+                                            roundingCornersRadii:CGSizeZero
+                                                  layerBorderCor:nil
+                                                     borderWidth:JobsWidth(0)
+                                                   primaryAction:nil
+                                      longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                     id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                 clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             toast(JobsInternationalization(@"正在研发中...敬请期待"));
             return nil;
         }];
+        _shareBtn.width = JobsWidth(23);
+        _shareBtn.height = JobsWidth(23);
     }return _shareBtn;
-}
-
--(UIBarButtonItem *)shareBtnItem{
-    if (!_shareBtnItem) {
-        _shareBtnItem = [UIBarButtonItem.alloc initWithCustomView:self.shareBtn];
-    }return _shareBtnItem;
 }
 
 -(UIColor *)bgColour{

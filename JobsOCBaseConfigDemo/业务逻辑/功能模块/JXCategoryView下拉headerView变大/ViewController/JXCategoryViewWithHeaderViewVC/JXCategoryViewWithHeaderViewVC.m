@@ -9,7 +9,7 @@
 
 @interface JXCategoryViewWithHeaderViewVC ()
 /// UI
-@property(nonatomic,strong)UIButton *ruleBtn;
+@property(nonatomic,strong)BaseButton *ruleBtn;
 @property(nonatomic,strong)JXCategoryTitleView *categoryView;/// 文字
 @property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
 @property(nonatomic,strong)JXPagerView *pagerView;
@@ -55,9 +55,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.gk_navItemRightSpace = JobsWidth(16);
-    self.barButtonItems.add(self.ruleBtn);
+    self.barButtonItems.add(JobsBarButtonItem(self.ruleBtn));
     self.gk_navRightBarButtonItems = self.barButtonItems;
-    
     self.topLineLab.alpha = 0;
     self.categoryView.alpha = 1;
 }
@@ -108,7 +107,7 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
     
     [self.collectionHeaderView scrollViewDidScrollWithContentOffsetY:scrollView.contentOffset.y];
 }
-/// 
+///
 - (NSUInteger)tableHeaderViewHeightInPagerView:(JXPagerView *)pagerView {
     return JobsStatusBarHeight()
 //    + self.gk_navigationBar.height
@@ -187,13 +186,49 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
     }return _lineView;
 }
 
--(UIButton *)ruleBtn{
+-(BaseButton *)ruleBtn{
     if (!_ruleBtn) {
-        _ruleBtn = UIButton.new;
-        _ruleBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
-        _ruleBtn.normalTitle(JobsInternationalization(@"VIP規則"));
-        _ruleBtn.titleFont(UIFontWeightRegularSize(12));
-        [_ruleBtn jobsBtnClickEventBlock:^id(id data) {
+        @jobs_weakify(self)
+        _ruleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                     background:nil
+                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                  textAlignment:NSTextAlignmentCenter
+                                               subTextAlignment:NSTextAlignmentCenter
+                                                    normalImage:nil
+                                                 highlightImage:nil
+                                                attributedTitle:nil
+                                        selectedAttributedTitle:nil
+                                             attributedSubtitle:nil
+                                                          title:JobsInternationalization(@"VIP規則")
+                                                       subTitle:nil
+                                                      titleFont:UIFontWeightRegularSize(12)
+                                                   subTitleFont:nil
+                                                       titleCor:HEXCOLOR(0x3D4A58)
+                                                    subTitleCor:nil
+                                             titleLineBreakMode:NSLineBreakByWordWrapping
+                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                            baseBackgroundColor:nil
+                                                backgroundImage:nil
+                                                   imagePadding:JobsWidth(0)
+                                                   titlePadding:JobsWidth(0)
+                                                 imagePlacement:NSDirectionalRectEdgeNone
+                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                              cornerRadiusValue:JobsWidth(0)
+                                                roundingCorners:UIRectCornerAllCorners
+                                           roundingCornersRadii:CGSizeZero
+                                                 layerBorderCor:nil
+                                                    borderWidth:JobsWidth(0)
+                                                  primaryAction:nil
+                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             toast(JobsInternationalization(@"VIP規則"));
             return nil;
         }];
@@ -204,7 +239,7 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
     if (!_titleMutArr) {
         _titleMutArr = NSMutableArray.array;
         for (int i = 0; i <= 5; i++) {
-            [_titleMutArr addObject:JobsInternationalization(@"Lv".add([NSString stringWithFormat:@"%d",i]))];
+            _titleMutArr.add(JobsInternationalization(@"Lv".add(toStringByInt(i))));
         }
     }return _titleMutArr;
 }

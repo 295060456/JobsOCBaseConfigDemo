@@ -46,8 +46,8 @@ NSLog(@"%@",JobsLocalFunc);
     self.view.backgroundColor = JobsRandomColor;
     self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
-//    self.gk_navRightBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.aboutBtn];
-//    self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.aboutBtn];
+//    self.gk_navRightBarButtonItem = JobsBarButtonItem(self.aboutBtn);
+//    self.gk_navLeftBarButtonItem = JobsBarButtonItem(self.aboutBtn);
     self.gk_navigationBar.jobsVisible = NO;
     //    [self.bgImageView removeFromSuperview];
 }

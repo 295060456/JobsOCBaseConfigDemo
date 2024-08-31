@@ -80,7 +80,7 @@ JobsKey(_backBtnCategoryItem)
 -(UIBarButtonItem *)backBtnCategoryItem{
     UIBarButtonItem *BackBtnCategoryItem = Jobs_getAssociatedObject(_backBtnCategoryItem);
     if (!BackBtnCategoryItem) {
-        BackBtnCategoryItem = [UIBarButtonItem.alloc initWithCustomView:self.backBtnCategory];
+        BackBtnCategoryItem = JobsBarButtonItem(self.backBtnCategory);
         Jobs_setAssociatedRETAIN_NONATOMIC(_backBtnCategoryItem, BackBtnCategoryItem)
     }return BackBtnCategoryItem;
 }

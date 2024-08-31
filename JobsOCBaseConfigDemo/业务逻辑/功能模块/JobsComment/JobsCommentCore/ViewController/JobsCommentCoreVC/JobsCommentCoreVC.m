@@ -45,8 +45,8 @@
     self.view.backgroundColor = JobsOrangeColor;
 //    self.setGKNav(nil);
 //    self.setGKNavBackBtn(nil);
-//    self.gk_navRightBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.aboutBtn];
-//    self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.aboutBtn];
+//    self.gk_navRightBarButtonItem = JobsBarButtonItem(self.aboutBtn);
+//    self.gk_navLeftBarButtonItem = JobsBarButtonItem(self.aboutBtn);
     self.isHiddenNavigationBar = YES;//禁用系统的导航栏
     self.gk_statusBarHidden = YES;
     self.gk_navigationBar.jobsVisible = YES;

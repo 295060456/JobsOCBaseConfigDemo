@@ -67,7 +67,7 @@
     [super viewDidLoad];
     self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
-    self.gk_navRightBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.scanBtn];
+    self.gk_navRightBarButtonItem = JobsBarButtonItem(self.scanBtn);
     self.getTabBar.hidden = YES;
     self.tableView.alpha = 1;
 }
