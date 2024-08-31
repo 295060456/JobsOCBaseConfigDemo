@@ -102,15 +102,15 @@ UITableViewCell_UIViewModelProtocolSynthesize
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = UILabel.new;
-        _titleLabel.text = self.viewModel.textModel.text;
-        _titleLabel.frame = CGRectMake(5,
-                                       JobsWidth(20),
-                                       LeftCell_Width - 10.f,
-                                       17.f);
         _titleLabel.textColor = HEXCOLOR(0xB0B0B0);
-        _titleLabel.font = [UIFont systemFontOfSize:12.f];
+        _titleLabel.font = bayonRegular(JobsWidth(14));
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:_titleLabel];
+        [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).offset(JobsWidth(5));
+            make.centerY.equalTo(self.contentView);
+        }];
+        _titleLabel.makeLabelByShowingType(UILabelShowingType_03);
     }
     _titleLabel.text = self.viewModel.textModel.text;
     return _titleLabel;

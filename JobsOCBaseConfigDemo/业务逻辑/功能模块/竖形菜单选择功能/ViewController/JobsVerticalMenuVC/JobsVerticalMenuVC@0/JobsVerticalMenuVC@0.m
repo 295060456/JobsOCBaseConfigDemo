@@ -14,7 +14,7 @@
 @property(nonatomic,strong)BaseButton *msgBtn;
 @property(nonatomic,strong)BaseButton *editBtn;
 @property(nonatomic,strong)JobsSearchBar *searchView;
-@property(nonatomic,strong)NSMutableArray <UIView *>*rightViewArray; /// 右侧的视图数组
+@property(nonatomic,strong)NSMutableArray <__kindof UIView *>*rightViewArray; /// 右侧的视图数组
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*titleMutArr;
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*leftDataArray; /// 左边的数据源
@@ -202,12 +202,12 @@
     return cell;
 }
 
-- (CGFloat)tableView:(__kindof UITableView *)tableView 
+- (CGFloat)tableView:(__kindof UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [LeftCell cellHeightWithModel:nil];
 }
 
-- (void)tableView:(__kindof UITableView *)tableView 
+- (void)tableView:(__kindof UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.displayView(self.rightViewArray[indexPath.row]);
 }
@@ -437,7 +437,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     }return _leftViewCurrentSelectModel;
 }
 
-- (NSMutableArray<UIView *> *)rightViewArray {
+- (NSMutableArray<__kindof UIView *> *)rightViewArray {
     if (!_rightViewArray) {
         _rightViewArray = NSMutableArray.array;
     }return _rightViewArray;

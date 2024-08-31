@@ -271,7 +271,7 @@ static inline CGFloat JobsMainScreen_WIDTH(void){
 }
 
 static inline CGFloat JobsMainScreen_HEIGHT(void){
-    return  JobsMainScreen().height;
+    return JobsMainScreen().height;
 }
 /// 寻找此设备真正的高
 static inline CGFloat JobsDeviceRealHeight(void){
