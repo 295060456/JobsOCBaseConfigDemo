@@ -320,9 +320,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _dataMutArr = NSMutableArray.array;
         
         {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsVerticalMenuVC")
+            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsVerticalMenuMainVC")
                                                            attributeSubTitle:JobsInternationalization(@"竖形菜单选择功能")];
-            viewModel.cls = JobsVerticalMenuVC.class;
+            viewModel.cls = JobsVerticalMenuMainVC.class;
             _dataMutArr.add(viewModel);
         }
         

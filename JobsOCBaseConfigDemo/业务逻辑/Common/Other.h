@@ -63,7 +63,7 @@
 #import "JXCategoryViewWithHeaderViewVC.h"
 #import "UILabelWordRotatingVC.h"
 #import "JXCategoryViewVerticalShowVC.h"
-#import "JobsVerticalMenuVC.h"
+#import "JobsVerticalMenuMainVC.h"
 #import "TestBaseLabelVC.h"
 #import "RandomTestVC.h"
 #import "NSTimerManagerTestVC.h"

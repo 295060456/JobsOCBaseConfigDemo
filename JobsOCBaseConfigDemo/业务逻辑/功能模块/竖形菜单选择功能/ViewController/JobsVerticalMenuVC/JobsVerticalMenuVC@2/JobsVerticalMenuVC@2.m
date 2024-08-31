@@ -1,13 +1,13 @@
 //
-//  JobsVerticalMenuVC.m
-//  JobsOCBaseConfig
+//  JobsVerticalMenuVC@2.m
+//  JobsOCBaseConfigDemo
 //
-//  Created by Jobs on 2022/6/15.
+//  Created by User on 8/31/24.
 //
 
-#import "JobsVerticalMenuVC.h"
+#import "JobsVerticalMenuVC@2.h"
 
-@interface JobsVerticalMenuVC ()
+@interface JobsVerticalMenuVC_2 ()
 /// UI
 @property(nonatomic,strong)UITableView *tableView;///  左侧的标题
 @property(nonatomic,strong)UICollectionView *collectionView; /// 右侧的内容
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation JobsVerticalMenuVC
+@implementation JobsVerticalMenuVC_2
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
