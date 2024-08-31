@@ -8117,48 +8117,48 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   -(NSMutableArray<NSString *> *)titleMutArr{
       if(!_titleMutArr){
           _titleMutArr = NSMutableArray.array;
-          [_titleMutArr addObject:JobsInternationalization(@"TOP GAMES")];
-          [_titleMutArr addObject:JobsInternationalization(@"SLOT GAMES")];
-          [_titleMutArr addObject:JobsInternationalization(@"LIVE CASINO")];
-          [_titleMutArr addObject:JobsInternationalization(@"TABLE GAMES")];
-          [_titleMutArr addObject:JobsInternationalization(@"SPORTS")];
-          [_titleMutArr addObject:JobsInternationalization(@"FISHING")];
+          _titleMutArr.add(JobsInternationalization(@"TOP GAMES").add(@"       "));
+          _titleMutArr.add(JobsInternationalization(@"SLOT GAMES").add(@"      "));
+          _titleMutArr.add(JobsInternationalization(@"LIVE CASINO".add(@"       ")));
+          _titleMutArr.add(JobsInternationalization(@"TABLE GAMES").add(@"     "));
+          _titleMutArr.add(JobsInternationalization(@"SPORTS").add(@"                   "));
+          _titleMutArr.add(JobsInternationalization(@"FISHING").add(@"                  "));
       }return _titleMutArr;
   }
   
   -(NSMutableArray<__kindof UIView *> *)subViewMutArr{
       if(!_subViewMutArr){
           _subViewMutArr = NSMutableArray.array;
-          [_subViewMutArr addObject:self.topGamesView];
-          [_subViewMutArr addObject:self.slotGamesView];
-          [_subViewMutArr addObject:self.liveCasinoView];
-          [_subViewMutArr addObject:self.tableGamesView];
-          [_subViewMutArr addObject:self.sportsView];
-          [_subViewMutArr addObject:self.fishingView];
+          _subViewMutArr.add(self.topGamesView);
+          _subViewMutArr.add(self.slotGamesView);
+          _subViewMutArr.add(self.liveCasinoView);
+          _subViewMutArr.add(self.tableGamesView);
+          _subViewMutArr.add(self.sportsView);
+          _subViewMutArr.add(self.fishingView);
       }return _subViewMutArr;
   }
   
   -(NSMutableArray<UIImage *> *)normal_titleBgImageMutArr{
       if(!_normal_titleBgImageMutArr){
           _normal_titleBgImageMutArr = NSMutableArray.array;
-          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Top_Games_menu")];
-          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Slot_Games_menu")];
-          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Live_Casino_menu")];
-          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Table_Games_menu")];
-          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Sport_Menu")];
-          [_normal_titleBgImageMutArr addObject:JobsIMG(@"Fishing_menu")];
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Top_Games_menu_未点击"));
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Slot_Games_menu_未点击"));
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Live_Casino_menu_未点击"));
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Table_Games_menu_未点击"));
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Sport_Menu_未点击"));
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Fishing_menu_未点击"));
       }return _normal_titleBgImageMutArr;
   }
-  // TODO
+  
   -(NSMutableArray<UIImage *> *)select_titleBgImageMutArr{
       if(!_select_titleBgImageMutArr){
           _select_titleBgImageMutArr = NSMutableArray.array;
-          [_select_titleBgImageMutArr addObject:JobsIMG(@"Top_Games_menu")];
-          [_select_titleBgImageMutArr addObject:JobsIMG(@"Slot_Games_menu")];
-          [_select_titleBgImageMutArr addObject:JobsIMG(@"Live_Casino_menu")];
-          [_select_titleBgImageMutArr addObject:JobsIMG(@"Table_Games_menu")];
-          [_select_titleBgImageMutArr addObject:JobsIMG(@"Sport_Menu")];
-          [_select_titleBgImageMutArr addObject:JobsIMG(@"Fishing_menu")];
+          _select_titleBgImageMutArr.add(JobsIMG(@"Top_Games_menu_已点击"));
+          _select_titleBgImageMutArr.add(JobsIMG(@"Slot_Games_menu_已点击"));
+          _select_titleBgImageMutArr.add(JobsIMG(@"Live_Casino_menu_已点击"));
+          _select_titleBgImageMutArr.add(JobsIMG(@"Table_Games_menu_已点击"));
+          _select_titleBgImageMutArr.add(JobsIMG(@"Sport_Menu_已点击"));
+          _select_titleBgImageMutArr.add(JobsIMG(@"Fishing_menu_已点击"));
       }return _select_titleBgImageMutArr;
   }
   
