@@ -6,6 +6,8 @@
 //
 
 #import "BaseViewController.h"
+
+#import "JobsVerticalMenuVC@0.h"
 #import "JobsVerticalMenuVC@1.h"
 #import "JobsVerticalMenuVC@2.h"
 

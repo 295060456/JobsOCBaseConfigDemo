@@ -2389,14 +2389,26 @@ NSObject <|-- BaseProtocol
 
 ### 27、<font color=blue>**竖形菜单**</font>方案 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+#### 27.1、左边的目录是UITableView，右边的内容是<font color=purper>UIView</font>
+
 * [**`JobsMenuView`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsMenu/JobsMenuView/JobsMenuView.m)
-  * 整体是一个大View
-  * 左侧菜单标题是按钮
+
+  * <font color=green>**整体是一个大View**</font>
+
+  * 左侧菜单标题是**`UIButton`**
   * 右侧的菜单内容是**`UIScrollView`**
-* [**`JobsVerticalMenuVC`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/%E7%AB%96%E5%BD%A2%E8%8F%9C%E5%8D%95%E9%80%89%E6%8B%A9%E5%8A%9F%E8%83%BD/ViewController/JobsVerticalMenuVC)
+
+* [**`JobsVerticalMenuVC@0`**]() <font color=red>**强烈推荐**</font>
+
+* [**`JobsVerticalMenuVC@2`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/%E7%AB%96%E5%BD%A2%E8%8F%9C%E5%8D%95%E9%80%89%E6%8B%A9%E5%8A%9F%E8%83%BD/ViewController/JobsVerticalMenuVC)
+
   * 左侧的菜单标题是**`UITableView`**
   * 右侧的菜单内容是**`UICollectionView`** 
-* [**`JXCategoryView`**](https://github.com/pujiaxin33/JXCategoryView)的垂直表达
+
+#### 27.2、左边的目录是UITableView，右边的内容是<font color=purper>UIViewController</font>
+
+* [**`JobsVerticalMenuVC@1`**]() <font color=red>**强烈推荐**</font>
+* [**`JXCategoryView`**](https://github.com/pujiaxin33/JXCategoryView)的垂直表达（<u>目前没有做到很好的支持，只能通过取巧</u>）<font color=red>**不推荐**</font>
 
 ### 28、Excel方案：[**JobsExcelView**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/Excel/Excel-JobsExcelView/View/JobsExcelView) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

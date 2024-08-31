@@ -22,6 +22,8 @@
 		CE207E762C82ED7C00AD9FFB /* JobsVerticalMenuVC@1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E752C82ED7C00AD9FFB /* JobsVerticalMenuVC@1.m */; };
 		CE207E7A2C82ED9200AD9FFB /* JobsVerticalMenuVC@2.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E792C82ED9200AD9FFB /* JobsVerticalMenuVC@2.m */; };
 		CE207E7F2C82EE9E00AD9FFB /* JobsVerticalMenuMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E7E2C82EE9E00AD9FFB /* JobsVerticalMenuMainVC.m */; };
+		CE207E902C82F49000AD9FFB /* JobsVerticalMenuVC@0.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E8F2C82F49000AD9FFB /* JobsVerticalMenuVC@0.m */; };
+		CE207E942C82F52B00AD9FFB /* JobsVerticalMenuSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E932C82F52B00AD9FFB /* JobsVerticalMenuSubView.m */; };
 		CE28FCF82C7194FF00AAADA3 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE28FCF62C7194FF00AAADA3 /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		CE2E873A2C689F9100260207 /* JobsBtnStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87262C689F8F00260207 /* JobsBtnStyleTBVCell.m */; };
 		CE2E873F2C689F9100260207 /* JobsTextStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E872E2C689F9000260207 /* JobsTextStyleTBVCell.m */; };
@@ -1177,6 +1179,10 @@
 		CE207E792C82ED9200AD9FFB /* JobsVerticalMenuVC@2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JobsVerticalMenuVC@2.m"; sourceTree = "<group>"; };
 		CE207E7D2C82EE9E00AD9FFB /* JobsVerticalMenuMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsVerticalMenuMainVC.h; sourceTree = "<group>"; };
 		CE207E7E2C82EE9E00AD9FFB /* JobsVerticalMenuMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsVerticalMenuMainVC.m; sourceTree = "<group>"; };
+		CE207E8E2C82F49000AD9FFB /* JobsVerticalMenuVC@0.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JobsVerticalMenuVC@0.h"; sourceTree = "<group>"; };
+		CE207E8F2C82F49000AD9FFB /* JobsVerticalMenuVC@0.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JobsVerticalMenuVC@0.m"; sourceTree = "<group>"; };
+		CE207E922C82F52B00AD9FFB /* JobsVerticalMenuSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsVerticalMenuSubView.h; sourceTree = "<group>"; };
+		CE207E932C82F52B00AD9FFB /* JobsVerticalMenuSubView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsVerticalMenuSubView.m; sourceTree = "<group>"; };
 		CE28FCF72C7194FF00AAADA3 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		CE2E87252C689F8F00260207 /* JobsBtnStyleTBVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBtnStyleTBVCell.h; sourceTree = "<group>"; };
 		CE2E87262C689F8F00260207 /* JobsBtnStyleTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsBtnStyleTBVCell.m; sourceTree = "<group>"; };
@@ -3386,6 +3392,24 @@
 			path = JobsVerticalMenuMainVC;
 			sourceTree = "<group>";
 		};
+		CE207E8D2C82F47300AD9FFB /* JobsVerticalMenuVC@0 */ = {
+			isa = PBXGroup;
+			children = (
+				CE207E8E2C82F49000AD9FFB /* JobsVerticalMenuVC@0.h */,
+				CE207E8F2C82F49000AD9FFB /* JobsVerticalMenuVC@0.m */,
+			);
+			path = "JobsVerticalMenuVC@0";
+			sourceTree = "<group>";
+		};
+		CE207E912C82F51400AD9FFB /* JobsVerticalMenuSubView */ = {
+			isa = PBXGroup;
+			children = (
+				CE207E922C82F52B00AD9FFB /* JobsVerticalMenuSubView.h */,
+				CE207E932C82F52B00AD9FFB /* JobsVerticalMenuSubView.m */,
+			);
+			path = JobsVerticalMenuSubView;
+			sourceTree = "<group>";
+		};
 		CE2E87272C689F8F00260207 /* JobsBtnStyleTBVCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -4720,6 +4744,7 @@
 		CECE797E2C450C5000764AF5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE207E912C82F51400AD9FFB /* JobsVerticalMenuSubView */,
 				CECE79702C450C5000764AF5 /* 弹框样式_10 */,
 				CECE79732C450C5000764AF5 /* BaiShaETProjSearchView */,
 				CECE797D2C450C5000764AF5 /* VerticalMenuSubView */,
@@ -4730,6 +4755,7 @@
 		CECE79812C450C5000764AF5 /* JobsVerticalMenuVC */ = {
 			isa = PBXGroup;
 			children = (
+				CE207E8D2C82F47300AD9FFB /* JobsVerticalMenuVC@0 */,
 				CE207E772C82ED8400AD9FFB /* JobsVerticalMenuVC@1 */,
 				CE207E7B2C82ED9700AD9FFB /* JobsVerticalMenuVC@2 */,
 			);
@@ -14223,6 +14249,7 @@
 				CECE7C452C450C5000764AF5 /* ZFDouYinControlView.m in Sources */,
 				CECE7CE32C450C5000764AF5 /* MSCommentTableHeaderFooterView.m in Sources */,
 				CECE81712C4512BF00764AF5 /* JobsTabBarItem.m in Sources */,
+				CE207E902C82F49000AD9FFB /* JobsVerticalMenuVC@0.m in Sources */,
 				CECE7C992C450C5000764AF5 /* JobsSearchTBVCell.m in Sources */,
 				CECE7EC22C450E5B00764AF5 /* TKPermissionPublic.m in Sources */,
 				CECE85292C4513CE00764AF5 /* NSTimerManager.m in Sources */,
@@ -14597,6 +14624,7 @@
 				CECE7CBC2C450C5000764AF5 /* MasonryVC.m in Sources */,
 				CECE813C2C4512BF00764AF5 /* JobsUserHeaderDataViewForHeaderInSection.m in Sources */,
 				CECE85192C4513CE00764AF5 /* NSMutableDictionary+Ordered.m in Sources */,
+				CE207E942C82F52B00AD9FFB /* JobsVerticalMenuSubView.m in Sources */,
 				CECE872B2C45140000764AF5 /* NSString+Base85.m in Sources */,
 				CECE85152C4513CE00764AF5 /* NSCache+Extra.m in Sources */,
 				CECE86032C4513CE00764AF5 /* XLBubbleTransition.m in Sources */,

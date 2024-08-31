@@ -1,5 +1,5 @@
 //
-//  JobsVerticalMenuVC@1.h
+//  JobsVerticalMenuVC@0.h
 //  JobsOCBaseConfigDemo
 //
 //  Created by User on 8/31/24.
@@ -13,14 +13,14 @@
 #import "JobsSearchBar.h"
 #import "BaiShaETProjPopupView10.h"
 
-#import "JobsVerticalMenuSubVC.h"
+#import "JobsVerticalMenuSubView.h" // 新的自定义UIView类
 
 NS_ASSUME_NONNULL_BEGIN
-/// 左边的目录是UITableView，右边的内容是UIViewController
-@interface JobsVerticalMenuVC_1 : BaseViewController
+/// 左边的目录是UITableView，右边的内容是UIView
+@interface JobsVerticalMenuVC_0 : BaseViewController
 <
-UITableViewDelegate
-,UITableViewDataSource
+UITableViewDelegate,
+UITableViewDataSource
 >
 
 @end

@@ -352,10 +352,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             NSMutableArray <__kindof UIViewModel *>*rowMutArr = NSMutableArray.array;
             
             {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsExcel")
-                                                               attributeSubTitle:JobsInternationalization(@"JobsExcel")];
-                viewModel.cls = JobsExcelVC.class;
-                [rowMutArr addObject:viewModel];
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsVerticalMenuVC_0")
+                                                               attributeSubTitle:JobsInternationalization(@"JobsVerticalMenuVC_0")];
+                viewModel.cls = JobsVerticalMenuVC_0.class;
+                rowMutArr.add(viewModel);
             }
             
             _dataMutArr.add(rowMutArr);
