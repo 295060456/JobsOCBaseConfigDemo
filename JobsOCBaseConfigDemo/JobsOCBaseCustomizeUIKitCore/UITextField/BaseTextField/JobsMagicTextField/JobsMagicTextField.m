@@ -17,7 +17,7 @@
 @implementation JobsMagicTextField
 
 -(void)dealloc{
-    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
 }
 
 - (instancetype)init{

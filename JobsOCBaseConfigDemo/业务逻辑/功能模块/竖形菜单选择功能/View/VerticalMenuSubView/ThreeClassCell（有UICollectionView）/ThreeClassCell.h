@@ -12,7 +12,7 @@
 #import "JobsBaseCollectionViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
-/// 这个类用于计算，不用于显示
+/// 右边内容的最底层视图
 @interface ThreeClassCell : JobsBaseCollectionViewCell
 <
 UICollectionViewDelegate

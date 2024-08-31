@@ -24,7 +24,7 @@
 
 -(void)dealloc {
     NSLog(@"%@",JobsLocalFunc);
-    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
 
     /*
      dispatch_suspend 和 dispatch_resume 应该是成对出现的。

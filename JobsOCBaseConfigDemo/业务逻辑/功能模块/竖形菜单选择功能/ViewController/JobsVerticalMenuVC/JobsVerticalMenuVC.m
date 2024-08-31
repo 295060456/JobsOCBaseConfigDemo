@@ -34,7 +34,7 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
 }
 
 -(void)loadView{
@@ -59,7 +59,7 @@
         self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
     }
     
-    [self loadData];
+    self.loadData();
 }
 
 - (void)viewDidLoad {
@@ -76,7 +76,7 @@
     self.tableView.alpha = 1;
     self.editBtn.alpha = 1;
     self.collectionView.alpha = 1;
-    [self refreshLeftView];
+    self.refreshLeftView();
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -104,11 +104,13 @@
     return self.leftViewCurrentSelectModel ? [self.leftDataArray indexOfObject:self.leftViewCurrentSelectModel] : 0;
 }
 
--(void)loadData{
-    /// 这里可以调用接口去获取一级目录分类的数据
-    for (int i = 0; i < self.titleMutArr.count; i++){
-        [self.leftDataArray addObject:[self createOneModel:i]];
-    }
+-(jobsByVoidBlock)loadData{
+    return ^(){
+        /// 这里可以调用接口去获取一级目录分类的数据
+        for (int i = 0; i < self.titleMutArr.count; i++){
+            self.leftDataArray.add([self createOneModel:i]);
+        }
+    };
 }
 /// 最初默认的数据
 -(NSMutableArray<UIViewModel *> *)makeTitleMutArr{
@@ -157,23 +159,25 @@
     }return titleMutArr;
 }
 
--(void)refreshLeftView{
-    [self.tableView reloadData];
-    if (self.leftDataArray.count){
-        @jobs_weakify(self)
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)),
-                       dispatch_get_main_queue(), ^{
-            @jobs_strongify(self)
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.tableView selectRowAtIndexPath:indexPath
-                                        animated:NO
-                                  scrollPosition:UITableViewScrollPositionNone];
-            if ([self.tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]){
-                [self.tableView.delegate tableView:self.tableView
-                           didSelectRowAtIndexPath:indexPath];
-            }
-        });
-    }
+-(jobsByVoidBlock)refreshLeftView{
+    return ^(){
+        [self.tableView reloadData];
+        if (self.leftDataArray.count){
+            @jobs_weakify(self)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                [self.tableView selectRowAtIndexPath:indexPath
+                                            animated:NO
+                                      scrollPosition:UITableViewScrollPositionNone];
+                if ([self.tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]){
+                    [self.tableView.delegate tableView:self.tableView
+                               didSelectRowAtIndexPath:indexPath];
+                }
+            });
+        }
+    };
 }
 /// 预算高度
 -(CGFloat)getCellHeight:(NSMutableArray *)dataArray{
@@ -564,7 +568,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                                                                            self.tableView.height + EditBtnHeight)
                                            collectionViewLayout:self.flowLayout];
         _collectionView.dataLink(self);
-        _collectionView.backgroundColor = ThreeClassCellBgCor;
+        _collectionView.backgroundColor = JobsRandomColor;// ThreeClassCellBgCor;
         _collectionView.alwaysBounceVertical = YES;
         _collectionView.registerCollectionViewClass();
 //        collectionView.registerCollectionViewCellClass(ThreeClassCell.class);

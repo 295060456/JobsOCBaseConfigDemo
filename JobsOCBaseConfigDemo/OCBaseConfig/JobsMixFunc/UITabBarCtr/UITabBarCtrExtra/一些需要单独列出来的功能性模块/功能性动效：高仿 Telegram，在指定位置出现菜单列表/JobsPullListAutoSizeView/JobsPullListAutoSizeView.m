@@ -20,7 +20,7 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
 }
 
 + (instancetype)initWithTargetView:(UIView *__nonnull)targetView

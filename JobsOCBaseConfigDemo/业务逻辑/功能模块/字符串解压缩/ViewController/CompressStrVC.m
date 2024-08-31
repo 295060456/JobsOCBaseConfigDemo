@@ -14,7 +14,7 @@
 @implementation CompressStrVC
 
 - (void)dealloc{
-    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
     NSLog(@"%@",JobsLocalFunc);
 }
 

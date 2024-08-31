@@ -15,7 +15,7 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    JobsRemoveNotification(self);;
+    //    JobsRemoveNotification(self);
 }
 
 -(void)loadView{

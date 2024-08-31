@@ -14,7 +14,7 @@
 @implementation JobsPresentingVC
 
 - (void)dealloc{
-    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
     NSLog(@"%@",JobsLocalFunc);
 }
 

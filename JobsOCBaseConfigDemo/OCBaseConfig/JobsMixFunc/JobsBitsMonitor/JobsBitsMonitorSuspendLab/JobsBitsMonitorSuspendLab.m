@@ -18,7 +18,7 @@ extern JobsNetworkingEnvir networkingEnvir;
 @implementation JobsBitsMonitorSuspendLab
 
 -(void)dealloc{
-    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
 }
 
 -(instancetype)init{

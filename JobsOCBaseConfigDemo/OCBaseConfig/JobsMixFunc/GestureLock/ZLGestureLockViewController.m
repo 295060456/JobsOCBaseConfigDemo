@@ -41,7 +41,7 @@
 @implementation ZLGestureLockViewController
 
 - (void)dealloc{
-    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
     [self.view endEditing:YES];
     if (JobsDebug) {
         self.jobsToastMsg(JobsInternationalization(@"成功销毁了控制器:").add(NSStringFromClass(self.class)));

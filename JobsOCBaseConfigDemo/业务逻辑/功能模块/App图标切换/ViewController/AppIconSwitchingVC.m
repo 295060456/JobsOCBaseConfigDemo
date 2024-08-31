@@ -16,7 +16,7 @@
 @implementation AppIconSwitchingVC
 
 - (void)dealloc{
-    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
     NSLog(@"%@",JobsLocalFunc);
 }
 

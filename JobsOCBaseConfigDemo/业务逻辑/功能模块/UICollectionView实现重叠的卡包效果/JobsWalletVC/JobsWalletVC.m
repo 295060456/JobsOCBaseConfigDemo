@@ -21,7 +21,7 @@
 @implementation JobsWalletVC
 
 - (void)dealloc{
-    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
     NSLog(@"%@",JobsLocalFunc);
 }
 

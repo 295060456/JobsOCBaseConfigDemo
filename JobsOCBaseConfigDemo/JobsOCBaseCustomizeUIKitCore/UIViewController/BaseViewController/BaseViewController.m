@@ -27,7 +27,7 @@ BaseViewControllerProtocol_synthesize
 }
 
 - (void)dealloc{
-    JobsRemoveNotification(self);;
+    JobsRemoveNotification(self);
     [self.view endEditing:YES];
     if (JobsDebug) {
         toast(JobsInternationalization(@"成功销毁了控制器").add(NSStringFromClass(self.class)));

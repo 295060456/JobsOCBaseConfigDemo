@@ -23,7 +23,7 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    JobsRemoveNotification(self);;
+    //    JobsRemoveNotification(self);
     if (NSClassFromString(@"newClass")) objc_disposeClassPair(newClass);
 }
 

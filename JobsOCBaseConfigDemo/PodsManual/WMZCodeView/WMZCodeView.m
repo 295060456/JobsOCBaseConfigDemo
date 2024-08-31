@@ -41,7 +41,7 @@
     if (timer) {
         dispatch_source_cancel(timer);
     }
-//    JobsRemoveNotification(self);;
+//    JobsRemoveNotification(self);
 }
 /// 单例化和销毁
 +(void)destroySingleton{
