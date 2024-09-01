@@ -168,6 +168,21 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.displayView(self.rightViewArray[indexPath.row]);
 }
 #pragma mark —— lazyLoad
+-(UITableView *)tableView{
+    if (!_tableView){
+        _tableView = UITableView.initWithStylePlain;
+        _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
+        _tableView.dataLink(self);
+        _tableView.frame = CGRectMake(0,
+                                      JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
+                                      TableViewWidth,
+                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self.view addSubview:_tableView];
+    }return _tableView;
+}
+
 - (BaseButton *)customerServiceBtn {
     if (!_customerServiceBtn) {
         @jobs_weakify(self)
@@ -303,21 +318,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //            }
 //        }];
     }return _searchView;
-}
-
--(UITableView *)tableView{
-    if (!_tableView){
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
-        _tableView.dataLink(self);
-        _tableView.frame = CGRectMake(0,
-                                      JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
-                                      TableViewWidth,
-                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self.view addSubview:_tableView];
-    }return _tableView;
 }
 
 - (BaseButton *)editBtn{

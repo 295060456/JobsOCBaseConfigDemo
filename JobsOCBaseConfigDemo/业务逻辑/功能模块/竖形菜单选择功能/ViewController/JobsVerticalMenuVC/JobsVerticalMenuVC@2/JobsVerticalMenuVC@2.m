@@ -102,7 +102,7 @@
 }
 #pragma mark —— 一些私有方法
 -(NSUInteger)thisIndex{
-    return self.leftViewCurrentSelectModel ? [self.leftDataArray indexOfObject:self.leftViewCurrentSelectModel] : 0;
+    return self.leftViewCurrentSelectModel ? self.leftDataArray.indexBy(self.leftViewCurrentSelectModel) : 0;
 }
 
 -(jobsByVoidBlock)loadData{
@@ -259,10 +259,10 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     if (self.rightDataArray.count) {
-        self.rightViewCurrentSelectModel = [self.rightDataArray objectAtIndex:indexPath.row];
+        self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(indexPath.row);
     }
     if (self.leftDataArray.count) {
-        self.leftViewCurrentSelectModel = [self.leftDataArray objectAtIndex:indexPath.row];
+        self.leftViewCurrentSelectModel = self.leftDataArray.objectAt(indexPath.row);
     }
     [self getGoodsClassWithPid:self.rightViewCurrentSelectModel.idField];
     [self.collectionView setContentOffset:CGPointMake(0, JobsWidth(-5)) animated:YES];
@@ -271,7 +271,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 -(__kindof UICollectionViewCell *)collectionView:(__kindof UICollectionView *)collectionView
                           cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ThreeClassCell *cell = [ThreeClassCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-    self.rightViewCurrentSelectModel = [self.rightDataArray objectAtIndex:indexPath.section];
+    self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(indexPath.section);
     [cell getCollectionHeight:(NSMutableArray *)self.rightViewCurrentSelectModel.childrenList];
     cell.jobsRichElementsInCellWithModel(self.rightDataArray);
     [cell reloadData];
@@ -341,6 +341,57 @@ referenceSizeForFooterInSection:(NSInteger)section{
     return CGSizeMake(self.collectionView.width, [self getCellHeight:(NSMutableArray *)[self.rightDataArray objectAtIndex:indexPath.section].childrenList]);
 }
 #pragma mark —— lazyLoad
+-(UITableView *)tableView{
+    if (!_tableView){
+        _tableView = UITableView.initWithStylePlain;
+        _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
+        _tableView.dataLink(self);
+        _tableView.frame = CGRectMake(0,
+                                      JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
+                                      TableViewWidth,
+                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self.view addSubview:_tableView];
+    }return _tableView;
+}
+
+-(UICollectionViewFlowLayout *)flowLayout{
+    if (!_flowLayout) {
+        _flowLayout = UICollectionViewFlowLayout.new;
+        _flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    }return _flowLayout;
+}
+
+-(UICollectionView *)collectionView{
+    if (!_collectionView){
+        _collectionView = [UICollectionView.alloc initWithFrame:CGRectMake(self.tableView.right,
+                                                                           self.tableView.top,
+                                                                           JobsMainScreen_WIDTH() - self.tableView.width,
+                                                                           self.tableView.height + EditBtnHeight)
+                                           collectionViewLayout:self.flowLayout];
+        _collectionView.dataLink(self);
+        _collectionView.backgroundColor = JobsRandomColor;// ThreeClassCellBgCor;
+        _collectionView.alwaysBounceVertical = YES;
+        _collectionView.registerCollectionViewClass();
+//        collectionView.registerCollectionViewCellClass(ThreeClassCell.class);
+//        collectionView.registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class);
+//        collectionView.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
+        [self.view addSubview:_collectionView];
+    }return _collectionView;
+}
+
+-(ThreeClassCell *)tempCell{
+    if (!_tempCell){
+        _tempCell = ThreeClassCell.new;
+        _tempCell.backgroundColor = JobsRedColor;
+        _tempCell.frame = CGRectMake(0,
+                                     0,
+                                     [ThreeClassCell cellSizeWithModel:nil].width,
+                                     [ThreeClassCell cellSizeWithModel:nil].height);
+    }return _tempCell;
+}
+
 -(BaseButton *)customerServiceBtn{
     if (!_customerServiceBtn) {
         @jobs_weakify(self)
@@ -537,57 +588,6 @@ referenceSizeForFooterInSection:(NSInteger)section{
             make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));
         }];
     }return _editBtn;
-}
-
--(UITableView *)tableView{
-    if (!_tableView){
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
-        _tableView.dataLink(self);
-        _tableView.frame = CGRectMake(0,
-                                      JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
-                                      TableViewWidth,
-                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self.view addSubview:_tableView];
-    }return _tableView;
-}
-
--(UICollectionViewFlowLayout *)flowLayout{
-    if (!_flowLayout) {
-        _flowLayout = UICollectionViewFlowLayout.new;
-        _flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    }return _flowLayout;
-}
-
--(UICollectionView *)collectionView{
-    if (!_collectionView){
-        _collectionView = [UICollectionView.alloc initWithFrame:CGRectMake(self.tableView.right,
-                                                                           self.tableView.top,
-                                                                           JobsMainScreen_WIDTH() - self.tableView.width,
-                                                                           self.tableView.height + EditBtnHeight)
-                                           collectionViewLayout:self.flowLayout];
-        _collectionView.dataLink(self);
-        _collectionView.backgroundColor = JobsRandomColor;// ThreeClassCellBgCor;
-        _collectionView.alwaysBounceVertical = YES;
-        _collectionView.registerCollectionViewClass();
-//        collectionView.registerCollectionViewCellClass(ThreeClassCell.class);
-//        collectionView.registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class);
-//        collectionView.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
-        [self.view addSubview:_collectionView];
-    }return _collectionView;
-}
-
--(ThreeClassCell *)tempCell{
-    if (!_tempCell){
-        _tempCell = ThreeClassCell.new;
-        _tempCell.backgroundColor = JobsRedColor;
-        _tempCell.frame = CGRectMake(0,
-                                     0,
-                                     [ThreeClassCell cellSizeWithModel:nil].width,
-                                     [ThreeClassCell cellSizeWithModel:nil].height);
-    }return _tempCell;
 }
 
 -(NSMutableArray<UIViewModel *> *)leftDataArray{

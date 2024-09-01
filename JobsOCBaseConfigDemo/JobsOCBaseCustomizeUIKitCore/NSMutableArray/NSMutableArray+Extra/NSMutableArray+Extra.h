@@ -13,8 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSMutableArray (Extra)
 /// 清除数组元素
 -(jobsByVoidBlock _Nonnull)clean;
-/// 数组取值
+/// 数组取值（无法关联数组的泛型）
 -(JobsReturnIDByUIntegerBlock _Nonnull)objectAt;
+/// 数组取下标
+-(JobsReturnNSUIntegerByIDBlock)indexBy;
 /// 阻止向可变数组添加空元素
 -(JobsReturnIDByIDBlock _Nonnull)add;
 /// 向数组加入一个从来没有没有过的元素，以保证数组元素的单一性

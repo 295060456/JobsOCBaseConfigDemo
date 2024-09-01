@@ -16,12 +16,20 @@
         [self removeAllObjects];
     };
 }
-/// 数组取值
+/// 数组取值（无法关联数组的泛型）
 -(JobsReturnIDByUIntegerBlock _Nonnull)objectAt{
     @jobs_weakify(self)
     return ^id _Nullable(NSUInteger data){
         @jobs_strongify(self)
         return [self objectAtIndex:data];
+    };
+}
+/// 数组取下标
+-(JobsReturnNSUIntegerByIDBlock)indexBy{
+    @jobs_weakify(self)
+    return ^NSUInteger(id _Nullable data){
+        @jobs_strongify(self)
+        return [self indexOfObject:data];
     };
 }
 /// 阻止向可变数组添加空元素

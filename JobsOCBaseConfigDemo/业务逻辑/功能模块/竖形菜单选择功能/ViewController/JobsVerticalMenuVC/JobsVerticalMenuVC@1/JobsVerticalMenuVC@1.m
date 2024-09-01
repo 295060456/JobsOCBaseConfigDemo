@@ -208,6 +208,21 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.displayViewController(self.viewControllers[indexPath.row]);
 }
 #pragma mark —— lazyLoad
+-(UITableView *)tableView{
+    if (!_tableView){
+        _tableView = UITableView.initWithStylePlain;
+        _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
+        _tableView.dataLink(self);
+        _tableView.frame = CGRectMake(0,
+                                      JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
+                                      TableViewWidth,
+                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self.view addSubview:_tableView];
+    }return _tableView;
+}
+
 -(BaseButton *)customerServiceBtn{
     if (!_customerServiceBtn) {
         @jobs_weakify(self)
@@ -398,21 +413,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
             make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));
         }];
     }return _editBtn;
-}
-
--(UITableView *)tableView{
-    if (!_tableView){
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
-        _tableView.dataLink(self);
-        _tableView.frame = CGRectMake(0,
-                                      JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
-                                      TableViewWidth,
-                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self.view addSubview:_tableView];
-    }return _tableView;
 }
 
 -(NSMutableArray<UIViewModel *> *)leftDataArray{
