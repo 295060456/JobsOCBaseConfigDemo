@@ -17,11 +17,11 @@
         self.jobsBackBtnClickEvent(sender);
     };
 }
-#pragma mark —— @property(nonatomic,strong)BackBtn *backBtnCategory;
+#pragma mark —— @property(nonatomic,strong)BaseButton *backBtnCategory;
 JobsKey(_backBtnCategory)
 @dynamic backBtnCategory;
--(UIButton *)backBtnCategory{
-    UIButton *BackBtnCategory = Jobs_getAssociatedObject(_backBtnCategory);
+-(BaseButton *)backBtnCategory{
+    BaseButton *BackBtnCategory = Jobs_getAssociatedObject(_backBtnCategory);
     if (!BackBtnCategory) {
         @jobs_weakify(self)
         BackBtnCategory = [BaseButton.alloc jobsInitBtnByConfiguration:nil
