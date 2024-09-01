@@ -41,7 +41,6 @@ UIGestureRecognizerDelegate
 ,BaseViewControllerProtocol
 >
 
--(JobsMenuView *)menuView;
 -(jobsByVoidBlock _Nonnull)语言切换的监听;
 -(jobsByVoidBlock _Nonnull)设备方向的监听;
 
@@ -174,63 +173,4 @@ NS_ASSUME_NONNULL_END
                 requestParams:JobsInternationalization(@"")
                    completion:nil];
  
- */
-
-/**
- 
- - (void)viewDidLoad {
-     [super viewDidLoad];
-     self.setGKNav(nil);
-     self.setGKNavBackBtn(nil);
- 
-     self.menuView.resetOriginY([TopBar viewSizeWithModel:nil].height);
-     self.menuView.linkageMenuViewConfig.MENU_WIDTH = JobsWidth(139);
-     self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
-
-     [self configMenuView];
- }
- 
- -(void)configMenuView{
-     self.menuView.titleMutArr = self.titleMutArr;
-     self.menuView.subViewMutArr = self.subViewMutArr;
-     self.menuView.normal_titleBgImageMutArr = self.normal_titleBgImageMutArr;
-     self.menuView.select_titleBgImageMutArr = self.select_titleBgImageMutArr;
-     self.menuView.jobsRichElementsInViewWithModel(nil);
-     @jobs_weakify(self)
-     [self.menuView actionObjectBlock:^(id _Nullable x) {
-         @jobs_strongify(self)
-         if([x isKindOfClass:UIButton.class]){
-             UIButton *btn = (UIButton *)x;
-             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"TOP GAMES")]){
-                 self.bgImageView.image = JobsIMG(@"TOP GAMES");
-                 self.topImageView.image = JobsIMG(@"Top_Games");
-             }
-             
-             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"SLOT GAMES")]){
-                 self.bgImageView.image = JobsIMG(@"SLOT GAMES");
-                 self.topImageView.image = JobsIMG(@"Slot_Games");
-             }
-             
-             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"LIVE CASINO")]){
-                 self.bgImageView.image = JobsIMG(@"LIVE CASINO");
-                 self.topImageView.image = JobsIMG(@"Live_Casino");
-             }
-             
-             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"TABLE GAMES")]){
-                 self.bgImageView.image = JobsIMG(@"TABLE GAMES");
-                 self.topImageView.image = JobsIMG(@"Table_Games");
-             }
-             
-             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"SPORTS")]){
-                 self.bgImageView.image = JobsIMG(@"SPORTS");
-                 self.topImageView.image = JobsIMG(@"Sports");
-             }
-             
-             if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"FINSHING")]){
-                 self.bgImageView.image = JobsIMG(@"FINSHING");
-                 self.topImageView.image = JobsIMG(@"Fishing");
-             }
-         }
-     }];
- }
  */

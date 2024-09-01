@@ -2396,9 +2396,493 @@ NSObject <|-- BaseProtocol
   * <font color=green>**整体是一个大View**</font>
 
   * 左侧菜单标题是**`UIButton`**
+
   * 右侧的菜单内容是**`UIScrollView`**
 
+    ```objective-c
+    @property(nonatomic,strong)JobsMenuView *menuView;
+    
+    -(JobsMenuView *)menuView{
+        if(!_menuView){
+            _menuView = JobsMenuView.new;
+    //        _menuView.backgroundColor = JobsPurpleColor;
+            [self.view addSubview:_menuView];
+            _menuView.frame = CGRectMake(JobsWidth(59),
+                                         0,
+                                         [JobsMenuView viewSizeWithModel:nil].width,
+                                         [JobsMenuView viewSizeWithModel:nil].height
+                                         );
+    //        [_menuView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //            make.size.mas_equalTo([_menuView viewSizeWithModel:nil]);
+    //            make.centerY.equalTo(self.view);
+    //            make.left.equalTo(self.view);
+    //        }];
+    //        _menuView.jobsRichElementsInViewWithModel(nil);
+    //        @jobs_weakify(self)
+    //        [_menuView actionObjectBlock:^(id  _Nullable x) {
+    //            @jobs_strongify(self)
+    //            if (self.objectBlock) self.objectBlock(x);
+    //        }];
+        }return _menuView;
+    }
+    
+     - (void)viewDidLoad {
+         [super viewDidLoad];
+         self.setGKNav(nil);
+         self.setGKNavBackBtn(nil);
+     
+         self.menuView.resetOriginY([TopBar viewSizeWithModel:nil].height);
+         self.menuView.linkageMenuViewConfig.MENU_WIDTH = JobsWidth(139);
+         self.menuView.alpha = JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape;
+    //     self.menuView.alpha = JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape;
+         [self configMenuView];
+     }
+     
+     -(void)configMenuView{
+         self.menuView.titleMutArr = self.titleMutArr;
+         self.menuView.subViewMutArr = self.subViewMutArr;
+         self.menuView.normal_titleBgImageMutArr = self.normal_titleBgImageMutArr;
+         self.menuView.select_titleBgImageMutArr = self.select_titleBgImageMutArr;
+         self.menuView.jobsRichElementsInViewWithModel(nil);
+         @jobs_weakify(self)
+         [self.menuView actionObjectBlock:^(id _Nullable x) {
+             @jobs_strongify(self)
+             if([x isKindOfClass:UIButton.class]){
+                 UIButton *btn = (UIButton *)x;
+                 if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"TOP GAMES")]){
+                     self.bgImageView.image = JobsIMG(@"TOP GAMES");
+                     self.topImageView.image = JobsIMG(@"Top_Games");
+                 }
+                 
+                 if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"SLOT GAMES")]){
+                     self.bgImageView.image = JobsIMG(@"SLOT GAMES");
+                     self.topImageView.image = JobsIMG(@"Slot_Games");
+                 }
+                 
+                 if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"LIVE CASINO")]){
+                     self.bgImageView.image = JobsIMG(@"LIVE CASINO");
+                     self.topImageView.image = JobsIMG(@"Live_Casino");
+                 }
+                 
+                 if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"TABLE GAMES")]){
+                     self.bgImageView.image = JobsIMG(@"TABLE GAMES");
+                     self.topImageView.image = JobsIMG(@"Table_Games");
+                 }
+                 
+                 if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"SPORTS")]){
+                     self.bgImageView.image = JobsIMG(@"SPORTS");
+                     self.topImageView.image = JobsIMG(@"Sports");
+                 }
+                 
+                 if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"FINSHING")]){
+                     self.bgImageView.image = JobsIMG(@"FINSHING");
+                     self.topImageView.image = JobsIMG(@"Fishing");
+                 }
+             }
+         }];
+     }
+    ```
+
 * [**`JobsVerticalMenuVC@0`**]() <font color=red>**强烈推荐**</font>
+
+  ```objective-c
+  #import "BaseViewController.h"
+  
+  #import "TopBar.h"
+  #import "JobsHotRecommendView.h"
+  
+  #import "FMMenuTBVCell.h"
+  
+  #import "TopGamesView.h"
+  #import "SlotGamesView.h"
+  #import "LiveCasinoView.h"
+  #import "TableGamesView.h"
+  #import "SportsView.h"
+  #import "FishingView.h"
+  
+  NS_ASSUME_NONNULL_BEGIN
+  
+  @interface IncentiveVC : BaseViewController
+  <
+  UITableViewDelegate,
+  UITableViewDataSource
+  >
+  
+  @end
+  ```
+
+  ```objective-c
+  #import "IncentiveVC.h"
+  
+  #define MenuWidth JobsWidth(159)
+  
+  @interface IncentiveVC ()
+  /// UI
+  @property(nonatomic,strong)UITableView *tableView; /// 左侧的标题
+  @property(nonatomic,strong)JobsHotRecommendView *hotRecommendView;
+  @property(nonatomic,strong)TopBar *topBar;
+  @property(nonatomic,strong)UIImageView *topImageView;
+  @property(nonatomic,strong)UIImageView *tabBarCoverImageView;
+  @property(nonatomic,strong)TopGamesView *topGamesView;
+  @property(nonatomic,strong)SlotGamesView *slotGamesView;
+  @property(nonatomic,strong)LiveCasinoView *liveCasinoView;
+  @property(nonatomic,strong)TableGamesView *tableGamesView;
+  @property(nonatomic,strong)SportsView *sportsView;
+  @property(nonatomic,strong)FishingView *fishingView;
+  /// Data
+  @property(nonatomic,strong)NSMutableArray <UIViewModel *>*titleMutArr;
+  @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*subViewMutArr;/// 右侧的视图数组
+  @property(nonatomic,strong)NSMutableArray <UIImage *>*normal_titleBgImageMutArr;
+  @property(nonatomic,strong)NSMutableArray <UIImage *>*normal_titleImageMutArr;
+  @property(nonatomic,strong)NSMutableArray <UIImage *>*select_titleBgImageMutArr;
+  
+  @end
+  
+  @implementation IncentiveVC
+  
+  - (void)dealloc{
+      NSLog(@"%@",JobsLocalFunc);
+      JobsRemoveNotification(self);
+  }
+  
+  - (instancetype)init{
+      if (self = [super init]) {
+          NSLog(@"");
+      }return self;
+  }
+  
+  -(void)loadView{
+      [super loadView];
+      
+      if ([self.requestParams isKindOfClass:UIViewModel.class]) {
+          self.viewModel = (UIViewModel *)self.requestParams;
+      }
+      self.setupNavigationBarHidden = YES;
+      
+      {
+          self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+          self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
+          self.viewModel.textModel.text = JobsInternationalization(@"相关功能列表");
+          self.viewModel.textModel.font = UIFontWeightRegularSize(16);
+          
+          // 使用原则：底图有 + 底色有 = 优先使用底图数据
+          // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
+          // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+          self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
+      //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+          self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
+          self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+      }
+  }
+  
+  - (void)viewDidLoad {
+      [super viewDidLoad];
+      self.setGKNav(nil);
+      self.setGKNavBackBtn(nil);
+      self.bgImageView.image = JobsIMG(@"TOP GAMES");
+      self.topImageView.alpha = 1;
+      self.topBar.alpha = 1;
+      
+      self.tableView.alpha = 1;
+      self.hotRecommendView.alpha = 1;
+      self.tabBarCoverImageView.alpha = 1;
+      
+      self.displayView(self.subViewMutArr[0]);
+  }
+  
+  -(void)viewWillAppear:(BOOL)animated{
+      [super viewWillAppear:animated];
+      self.gk_navigationBar.hidden = YES;
+  }
+  
+  -(void)viewDidAppear:(BOOL)animated{
+      [super viewDidAppear:animated];
+  }
+  
+  -(void)viewWillDisappear:(BOOL)animated{
+      [super viewWillDisappear:animated];
+  }
+  
+  - (void)viewDidDisappear:(BOOL)animated{
+      [super viewDidDisappear:animated];
+  }
+  #pragma mark —— UITableViewDelegate, UITableViewDataSource
+  - (NSInteger)tableView:(__kindof UITableView *)tableView
+   numberOfRowsInSection:(NSInteger)section {
+      return self.titleMutArr.count;
+  }
+  
+  - (__kindof UITableViewCell *)tableView:(__kindof UITableView *)tableView
+                    cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+      FMMenuTBVCell *cell = FMMenuTBVCell.cellStyleDefaultWithTableView(tableView);
+      UIViewModel *viewModel = UIViewModel.new;
+      viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
+      if(indexPath.row == 0){
+          viewModel.bgImage = self.select_titleBgImageMutArr[indexPath.row];
+      }
+      cell.jobsRichElementsInCellWithModel(viewModel);
+      return cell;
+  }
+  
+  - (CGFloat)tableView:(__kindof UITableView *)tableView
+  heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+      return [FMMenuTBVCell cellHeightWithModel:nil];
+  }
+  
+  - (void)tableView:(__kindof UITableView *)tableView
+  didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+      self.displayView(self.subViewMutArr[indexPath.row]);
+      FMMenuTBVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+      int t = 0;
+      for (FMMenuTBVCell *cell in tableView.visibleCells) {
+          UIViewModel *viewModel = UIViewModel.new;
+          viewModel.textModel.text = self.titleMutArr[t].textModel.text;
+          cell.jobsRichElementsInCellWithModel(viewModel);
+          t++;
+      }
+      
+      UIViewModel *viewModel = UIViewModel.new;
+      viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
+      viewModel.bgImage = self.select_titleBgImageMutArr[indexPath.row];
+      cell.jobsRichElementsInCellWithModel(viewModel);
+  }
+  #pragma mark —— 一些私有方法
+  -(JobsReturnViewByClassBlock)makeSubViews{
+      return ^UIView *_Nullable(Class _Nonnull cls){
+          UIView *view = cls.new;
+          view.frame = CGRectMake(MenuWidth,
+                                  0,
+                                  JobsRealWidth() - MenuWidth,
+                                  JobsRealHeight());
+          view.jobsRichElementsInViewWithModel(nil);
+          return view;
+      };
+  }
+  /// 显示指定的右侧视图
+  - (jobsByViewBlock)displayView {
+      @jobs_weakify(self)
+      return ^(__kindof UIView *subview) {
+          @jobs_strongify(self)
+          /// 移除当前显示的视图
+          for (UIView *subView in self.view.subviews) {
+              if ([subView isKindOfClass:JobsVerticalMenuSubView.class]) {
+                  [subView removeFromSuperview];
+              }
+          }
+          /// 添加新的视图
+  //        view.frame = CGRectMake(self.tableView.width,
+  //                                0,
+  //                                self.view.width - self.tableView.width,
+  //                                self.view.height);
+          [self.view addSubview:subview];
+          [subview mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.top.equalTo(self.tableView);
+              make.bottom.equalTo(self.tableView);
+              make.right.equalTo(self.view);
+              make.width.mas_equalTo(JobsRealWidth() - MenuWidth);
+          }];
+          [self.view layoutIfNeeded];
+      };
+  }
+  #pragma mark —— lazyLoad
+  -(UITableView *)tableView{
+      if (!_tableView){
+          _tableView = UITableView.initWithStylePlain;
+          _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+          _tableView.dataLink(self);
+          _tableView.showsVerticalScrollIndicator = NO;
+          _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+          [self.view addSubview:_tableView];
+          [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.left.equalTo(self.view);
+              make.top.equalTo(self.topBar.mas_bottom);
+              make.bottom.equalTo(self.view);
+              make.width.mas_equalTo(MenuWidth);
+          }];
+      }return _tableView;
+  }
+  /// 屏幕右下角的热门推荐
+  -(JobsHotRecommendView *)hotRecommendView{
+      if(!_hotRecommendView){
+          _hotRecommendView = JobsHotRecommendView.new;
+          [self.view addSubview:_hotRecommendView];
+          [_hotRecommendView mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.size.mas_equalTo([_hotRecommendView viewSizeWithModel:nil]);
+              make.bottom.equalTo(self.view);
+              make.right.equalTo(self.view);
+          }];
+          _hotRecommendView.jobsRichElementsInViewWithModel(nil);
+      }return _hotRecommendView;
+  }
+  /// 屏幕顶部的Bar
+  -(TopBar *)topBar{
+      if(!_topBar){
+          _topBar = TopBar.new;
+          _topBar.backgroundColor = JobsClearColor;
+          [self.view addSubview:_topBar];
+          [_topBar mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.size.mas_equalTo([TopBar viewSizeWithModel:nil]);
+              make.top.left.equalTo(self.view);
+          }];
+          _topBar.jobsRichElementsInViewWithModel(nil);
+      }return _topBar;
+  }
+  
+  -(UIImageView *)topImageView{
+      if(!_topImageView){
+          _topImageView = UIImageView.new;
+          _topImageView.image = JobsIMG(@"Top_Games");
+          [self.bgImageView addSubview:_topImageView];
+          [_topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.top.equalTo(self.view);
+              make.centerX.equalTo(self.view);
+              make.size.mas_equalTo(CGSizeMake(JobsWidth(182), JobsWidth(65)));
+          }];
+      }return _topImageView;
+  }
+  
+  -(UIImageView *)tabBarCoverImageView{
+      if(!_tabBarCoverImageView){
+          _tabBarCoverImageView = UIImageView.new;
+          _tabBarCoverImageView.image = JobsIMG(@"TabBarCoverImage");
+          [self.view addSubview:_tabBarCoverImageView];
+          [_tabBarCoverImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.size.mas_equalTo(CGSizeMake(JobsRealWidth(),
+                                               [self.hotRecommendView viewSizeWithModel:nil].height + JobsWidth(7)));
+              make.left.equalTo(self.view);
+              make.bottom.equalTo(self.view);
+          }];
+      }return _tabBarCoverImageView;
+  }
+  
+  - (NSMutableArray<UIViewModel *> *)titleMutArr {
+      if (!_titleMutArr) {
+          /// 最初默认的数据
+          _titleMutArr = NSMutableArray.array;
+          {
+              UIViewModel *viewModel = UIViewModel.new;
+              viewModel.textModel.text = JobsInternationalization(@"TOP GAMES");
+              _titleMutArr.add(viewModel);
+          }
+  
+          {
+              UIViewModel *viewModel = UIViewModel.new;
+              viewModel.textModel.text = JobsInternationalization(@"SLOT GAMES");
+              _titleMutArr.add(viewModel);
+          }
+  
+          {
+              UIViewModel *viewModel = UIViewModel.new;
+              viewModel.textModel.text = JobsInternationalization(@"LIVE CASINO");
+              _titleMutArr.add(viewModel);
+          }
+  
+          {
+              UIViewModel *viewModel = UIViewModel.new;
+              viewModel.textModel.text = JobsInternationalization(@"TABLE GAMES");
+              _titleMutArr.add(viewModel);
+          }
+  
+          {
+              UIViewModel *viewModel = UIViewModel.new;
+              viewModel.textModel.text = JobsInternationalization(@"SPORTS");
+              _titleMutArr.add(viewModel);
+          }
+          
+          {
+              UIViewModel *viewModel = UIViewModel.new;
+              viewModel.textModel.text = JobsInternationalization(@"FISHING");
+              _titleMutArr.add(viewModel);
+          }
+      }return _titleMutArr;
+  }
+  
+  -(NSMutableArray<__kindof UIView *> *)subViewMutArr{
+      if(!_subViewMutArr){
+          _subViewMutArr = NSMutableArray.array;
+          _subViewMutArr.add(self.topGamesView);
+          _subViewMutArr.add(self.slotGamesView);
+          _subViewMutArr.add(self.liveCasinoView);
+          _subViewMutArr.add(self.tableGamesView);
+          _subViewMutArr.add(self.sportsView);
+          _subViewMutArr.add(self.fishingView);
+      }return _subViewMutArr;
+  }
+  
+  -(NSMutableArray<UIImage *> *)normal_titleBgImageMutArr{
+      if(!_normal_titleBgImageMutArr){
+          _normal_titleBgImageMutArr = NSMutableArray.array;
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Top_Games_menu_未点击"));
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Slot_Games_menu_未点击"));
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Live_Casino_menu_未点击"));
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Table_Games_menu_未点击"));
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Sport_Menu_未点击"));
+          _normal_titleBgImageMutArr.add(JobsIMG(@"Fishing_menu_未点击"));
+      }return _normal_titleBgImageMutArr;
+  }
+  
+  -(NSMutableArray<UIImage *> *)normal_titleImageMutArr{
+      if(!_normal_titleImageMutArr){
+          _normal_titleImageMutArr = NSMutableArray.array;
+          _normal_titleImageMutArr.add(JobsIMG(@"Top_Games_小图标_未点击"));
+          _normal_titleImageMutArr.add(JobsIMG(@"Slot_Games_小图标_未点击"));
+          _normal_titleImageMutArr.add(JobsIMG(@"Live_Casino_小图标_未点击"));
+          _normal_titleImageMutArr.add(JobsIMG(@"Table_Games_小图标_未点击"));
+          _normal_titleImageMutArr.add(JobsIMG(@"Sport_小图标_未点击"));
+          _normal_titleImageMutArr.add(JobsIMG(@"Fishing_小图标_未点击"));
+      }return _normal_titleImageMutArr;
+  }
+  
+  -(NSMutableArray<UIImage *> *)select_titleBgImageMutArr{
+      if(!_select_titleBgImageMutArr){
+          _select_titleBgImageMutArr = NSMutableArray.array;
+          _select_titleBgImageMutArr.add(JobsIMG(@"Top_Games_menu_已点击"));
+          _select_titleBgImageMutArr.add(JobsIMG(@"Slot_Games_menu_已点击"));
+          _select_titleBgImageMutArr.add(JobsIMG(@"Live_Casino_menu_已点击"));
+          _select_titleBgImageMutArr.add(JobsIMG(@"Table_Games_menu_已点击"));
+          _select_titleBgImageMutArr.add(JobsIMG(@"Sport_Menu_已点击"));
+          _select_titleBgImageMutArr.add(JobsIMG(@"Fishing_menu_已点击"));
+      }return _select_titleBgImageMutArr;
+  }
+  
+  -(TopGamesView *)topGamesView{
+      if(!_topGamesView){
+          _topGamesView = self.makeSubViews(TopGamesView.class);
+      }return _topGamesView;
+  }
+  
+  -(SlotGamesView *)slotGamesView{
+      if(!_slotGamesView){
+          _slotGamesView = self.makeSubViews(SlotGamesView.class);
+      }return _slotGamesView;
+  }
+  
+  -(LiveCasinoView *)liveCasinoView{
+      if(!_liveCasinoView){
+          _liveCasinoView = self.makeSubViews(LiveCasinoView.class);
+      }return _liveCasinoView;
+  }
+  
+  -(TableGamesView *)tableGamesView{
+      if(!_tableGamesView){
+          _tableGamesView = self.makeSubViews(TableGamesView.class);
+      }return _tableGamesView;
+  }
+  
+  -(SportsView *)sportsView{
+      if(!_sportsView){
+          _sportsView = self.makeSubViews(SportsView.class);
+      }return _sportsView;
+  }
+  
+  -(FishingView *)fishingView{
+      if(!_fishingView){
+          _fishingView = self.makeSubViews(FishingView.class);
+      }return _fishingView;
+  }
+  
+  @end
+  ```
 
 * [**`JobsVerticalMenuVC@2`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/%E7%AB%96%E5%BD%A2%E8%8F%9C%E5%8D%95%E9%80%89%E6%8B%A9%E5%8A%9F%E8%83%BD/ViewController/JobsVerticalMenuVC)
 

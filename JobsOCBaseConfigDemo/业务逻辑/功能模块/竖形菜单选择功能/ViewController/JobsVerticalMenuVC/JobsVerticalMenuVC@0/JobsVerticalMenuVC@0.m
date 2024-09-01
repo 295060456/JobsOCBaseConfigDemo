@@ -103,6 +103,18 @@
         }
     };
 }
+
+//-(JobsReturnViewByClassBlock)makeSubViews{
+//    return ^UIView *_Nullable(Class _Nonnull cls){
+//        UIView *view = cls.new;
+//        view.frame = CGRectMake(MenuWidth,
+//                                0,
+//                                JobsRealWidth() - MenuWidth,
+//                                JobsRealHeight());
+//        view.jobsRichElementsInViewWithModel(nil);
+//        return view;
+//    };
+//}
 /// 显示指定的右侧视图
 - (jobsByViewBlock)displayView {
     @jobs_weakify(self)

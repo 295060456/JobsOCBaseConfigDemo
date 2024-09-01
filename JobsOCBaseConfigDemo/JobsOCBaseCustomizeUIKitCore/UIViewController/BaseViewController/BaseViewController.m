@@ -9,7 +9,6 @@
 
 @interface BaseViewController ()
 
-@property(nonatomic,strong)JobsMenuView *menuView;
 @property(nonatomic,strong)UIButtonModel *closeBtnModel;
 @property(nonatomic,strong)UIButtonModel *backBtnModel;
 
@@ -83,8 +82,8 @@ BaseViewControllerProtocol_synthesize
      */
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.setBackGround();
-//    self.barButtonItems.add(JobsBarButtonItem(self.msgBtn));
-//    self.barButtonItems.add(JobsBarButtonItem(self.customerServiceBtn));
+//    self.barButtonItems.add(self.msgBtn);
+//    self.barButtonItems.add(self.customerServiceBtn);
 //    self.gk_navRightBarButtonItems = self.barButtonItems;
     self.gk_statusBarHidden = NO;
 /*
@@ -396,30 +395,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 //        self.view = _bgImageView; // 有时候不正确
         [self.view insertSubview:_bgImageView atIndex:0];
     }return _bgImageView;
-}
-
--(JobsMenuView *)menuView{
-    if(!_menuView){
-        _menuView = JobsMenuView.new;
-//        _menuView.backgroundColor = JobsPurpleColor;
-        [self.view addSubview:_menuView];
-        _menuView.frame = CGRectMake(JobsWidth(59),
-                                     0,
-                                     [JobsMenuView viewSizeWithModel:nil].width,
-                                     [JobsMenuView viewSizeWithModel:nil].height
-                                     );
-//        [_menuView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.size.mas_equalTo([_menuView viewSizeWithModel:nil]);
-//            make.centerY.equalTo(self.view);
-//            make.left.equalTo(self.view);
-//        }];
-//        _menuView.jobsRichElementsInViewWithModel(nil);
-//        @jobs_weakify(self)
-//        [_menuView actionObjectBlock:^(id  _Nullable x) {
-//            @jobs_strongify(self)
-//            if (self.objectBlock) self.objectBlock(x);
-//        }];
-    }return _menuView;
 }
 
 -(UIViewModel *)viewModel{
