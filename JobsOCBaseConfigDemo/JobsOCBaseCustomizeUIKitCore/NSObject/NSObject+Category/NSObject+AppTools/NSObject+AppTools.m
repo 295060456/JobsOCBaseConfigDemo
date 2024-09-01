@@ -207,23 +207,23 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 }
 
 -(NSString *)currentLanguage{
-    if ([NSBundle.currentLanguage containsString:@"zh-Hans"]) {
+    if ([currentLanguage() containsString:@"zh-Hans"]) {
         return @"简体中文";
-    }else if ([NSBundle.currentLanguage containsString:@"en"]){
+    }else if ([currentLanguage() containsString:@"en"]){
         return @"English";
     }else{
-        NSLog(@"%@",NSBundle.currentLanguage);
+        NSLog(@"%@",currentLanguage());
         return @"其他语言";
     }
 }
 
 -(HTTPRequestHeaderLanguageType)currentLanguageType{
-    if(NSBundle.currentLanguage.containsString(@"zh-Hans")){
+    if(currentLanguage().containsString(@"zh-Hans")){
         return HTTPRequestHeaderLanguageCN;
-    }else if (NSBundle.currentLanguage.containsString(@"en")){
+    }else if (currentLanguage().containsString(@"en")){
         return HTTPRequestHeaderLanguageEn;
     }else{
-        NSLog(@"%@",NSBundle.currentLanguage);
+        NSLog(@"%@",currentLanguage());
         return HTTPRequestHeaderLanguageOther;
     }
 }

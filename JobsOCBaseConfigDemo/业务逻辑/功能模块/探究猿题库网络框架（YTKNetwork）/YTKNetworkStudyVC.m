@@ -158,7 +158,7 @@
 }
 
 -(void)chainRequestFailed:(YTKChainRequest *)chainRequest
-        failedBaseRequest:(YTKBaseRequest*)request{
+        failedBaseRequest:(YTKBaseRequest *)request{
     NSLog(@"some one of request is failed");
 }
 #pragma mark —— lazyLoad

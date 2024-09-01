@@ -26,6 +26,8 @@
 #import "NSMutableSet+Extra.h"
 #pragma mark —— NSBundle
 #import "JobsBundle.h"
+#pragma mark —— NSLocale
+#import "JobsLocale.h"
 #pragma mark —— NSObject
 #import "JobsObject.h"
 #pragma mark —— NSNumber

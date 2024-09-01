@@ -2485,6 +2485,8 @@ NSObject <|-- BaseProtocol
 
 * [**`JobsVerticalMenuVC@0`**]() <font color=red>**强烈推荐**</font>
 
+  * 右边点选进行切换的子View一定要继承自 JobsVerticalMenuSubView，否则点选的时候无法移除。
+
   ```objective-c
   #import "BaseViewController.h"
   
@@ -2493,12 +2495,12 @@ NSObject <|-- BaseProtocol
   
   #import "FMMenuTBVCell.h"
   
-  #import "TopGamesView.h"
-  #import "SlotGamesView.h"
-  #import "LiveCasinoView.h"
-  #import "TableGamesView.h"
-  #import "SportsView.h"
-  #import "FishingView.h"
+  #import "TopGamesView.h" /// 一定要继承自 JobsVerticalMenuSubView。否则点选的时候无法移除
+  #import "SlotGamesView.h" /// 一定要继承自 JobsVerticalMenuSubView。否则点选的时候无法移除
+  #import "LiveCasinoView.h" /// 一定要继承自 JobsVerticalMenuSubView。否则点选的时候无法移除
+  #import "TableGamesView.h" /// 一定要继承自 JobsVerticalMenuSubView。否则点选的时候无法移除
+  #import "SportsView.h" /// 一定要继承自 JobsVerticalMenuSubView。否则点选的时候无法移除
+  #import "FishingView.h" /// 一定要继承自 JobsVerticalMenuSubView。否则点选的时候无法移除
   
   NS_ASSUME_NONNULL_BEGIN
   
@@ -9185,13 +9187,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 请求的配置（<font color=blue>**请求的方式**</font>、<font color=blue>**请求的URL**</font>、是否使用CND...）
 
   ```objective-c
-  @implementation GetImageApi {
-      NSDictionary *_Nullable _parameters;
-  }
-  
   -(instancetype _Nullable)initWithParameters:(NSDictionary *_Nullable)parameters{
       if (self = [super init]) {
-          _parameters = parameters;
+          self.parameters = parameters;
       }return self;
   }
   
@@ -9201,6 +9199,32 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   /// 请求方式
   -(YTKRequestMethod)requestMethod {
       return YTKRequestMethodGET;
+  }
+  /// 设置自定义的 HTTP Header
+  - (NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
+      // 在这里添加你想要的 HTTP header
+      JobsUserModel *loginModel = self.readUserInfo();
+      return @{
+          @"Content-Type": @"application/json", // 设置 Content-Type
+          @"Authorization": loginModel.token // 设置 Authorization
+      };
+  }
+  /// 如果当前请求是GET，下列方法不可用
+  - (NSURLRequest *)buildCustomUrlRequest{
+      if(self.requestMethod == YTKRequestMethodGET) return nil;
+      NSError *parseError = nil;
+      NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.parameters
+                                                         options:NSJSONWritingPrettyPrinted
+                                                           error:&parseError];
+      NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.requestUrl.jobsUrl
+                                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                         timeoutInterval:30];
+      [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+      [request setHTTPMethod:@"GET"];//GET请求
+      [request setHTTPBody:jsonData];//body 数据
+      self.printRequestMessage(request);
+      NSLog(@"");
+      return request;
   }
   
   //-(BOOL)useCDN{
@@ -9213,8 +9237,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   //    NSString *filePath = [cachePath stringByAppendingPathComponent:_imageId];
   //    return filePath;
   //}
-  
-  @end
   ```
 
 * 打印**`YTKBaseRequest`**

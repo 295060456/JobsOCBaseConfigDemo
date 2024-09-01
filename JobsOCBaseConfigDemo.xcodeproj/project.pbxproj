@@ -10,6 +10,7 @@
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		C525D3EC2C4801C1003DAFD0 /* JobsLinkageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */; };
+		CE08701A2C8458F3003D8CCF /* NSLocale+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0870162C8458EC003D8CCF /* NSLocale+Extra.m */; };
 		CE1F24EA2C5CD50100324198 /* NSObject+NTESVerifyCodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F24E82C5CD50000324198 /* NSObject+NTESVerifyCodeManager.m */; };
 		CE1F25702C5DD25900324198 /* JobsViewNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F256F2C5DD25900324198 /* JobsViewNavigator.m */; };
 		CE1F25742C5DD2AA00324198 /* JobsViewNavigatorTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F25732C5DD2AA00324198 /* JobsViewNavigatorTestVC.m */; };
@@ -1155,6 +1156,12 @@
 		C525D3EB2C4801C1003DAFD0 /* JobsLinkageMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsLinkageMenuView.h; sourceTree = "<group>"; };
 		CE0614EC2C71ED41001F0360 /* JobsBtnsStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBtnsStyleCVCell.h; sourceTree = "<group>"; };
 		CE0614ED2C71ED41001F0360 /* JobsBtnsStyleCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBtnsStyleCVCell.m; sourceTree = "<group>"; };
+		CE0870152C8458EC003D8CCF /* NSLocale+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSLocale+Extra.h"; sourceTree = "<group>"; };
+		CE0870162C8458EC003D8CCF /* NSLocale+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSLocale+Extra.m"; sourceTree = "<group>"; };
+		CE0870182C8458EC003D8CCF /* JobsLocale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsLocale.h; sourceTree = "<group>"; };
+		CE08701B2C845917003D8CCF /* JobsBundle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBundle.h; sourceTree = "<group>"; };
+		CE08701F2C845B12003D8CCF /* NSBundle+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Extra.h"; sourceTree = "<group>"; };
+		CE0870202C845B12003D8CCF /* NSBundle+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Extra.m"; sourceTree = "<group>"; };
 		CE1F24E72C5CD50000324198 /* NSObject+NTESVerifyCodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NTESVerifyCodeManager.h"; sourceTree = "<group>"; };
 		CE1F24E82C5CD50000324198 /* NSObject+NTESVerifyCodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NTESVerifyCodeManager.m"; sourceTree = "<group>"; };
 		CE1F256E2C5DD25900324198 /* JobsViewNavigator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsViewNavigator.h; sourceTree = "<group>"; };
@@ -2341,7 +2348,6 @@
 		CECE82082C4513CD00764AF5 /* JobsArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsArray.h; sourceTree = "<group>"; };
 		CECE820A2C4513CD00764AF5 /* NSMutableAttributedString+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Extra.h"; sourceTree = "<group>"; };
 		CECE820B2C4513CD00764AF5 /* NSMutableAttributedString+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Extra.m"; sourceTree = "<group>"; };
-		CECE820F2C4513CD00764AF5 /* JobsBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBundle.h; sourceTree = "<group>"; };
 		CECE82112C4513CD00764AF5 /* NSCache+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCache+Extra.h"; sourceTree = "<group>"; };
 		CECE82122C4513CD00764AF5 /* NSCache+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCache+Extra.m"; sourceTree = "<group>"; };
 		CECE82152C4513CD00764AF5 /* JobsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsCache.h; sourceTree = "<group>"; };
@@ -3257,6 +3263,42 @@
 				CE0614ED2C71ED41001F0360 /* JobsBtnsStyleCVCell.m */,
 			);
 			path = JobsBtnsStyleCVCell;
+			sourceTree = "<group>";
+		};
+		CE0870172C8458EC003D8CCF /* NSLocale+Category */ = {
+			isa = PBXGroup;
+			children = (
+				CE0870152C8458EC003D8CCF /* NSLocale+Extra.h */,
+				CE0870162C8458EC003D8CCF /* NSLocale+Extra.m */,
+			);
+			path = "NSLocale+Category";
+			sourceTree = "<group>";
+		};
+		CE0870192C8458EC003D8CCF /* NSLocale */ = {
+			isa = PBXGroup;
+			children = (
+				CE0870172C8458EC003D8CCF /* NSLocale+Category */,
+				CE0870182C8458EC003D8CCF /* JobsLocale.h */,
+			);
+			path = NSLocale;
+			sourceTree = "<group>";
+		};
+		CE08701C2C845917003D8CCF /* NSBundle */ = {
+			isa = PBXGroup;
+			children = (
+				CE08701E2C845B08003D8CCF /* NSBundle+Category */,
+				CE08701B2C845917003D8CCF /* JobsBundle.h */,
+			);
+			path = NSBundle;
+			sourceTree = "<group>";
+		};
+		CE08701E2C845B08003D8CCF /* NSBundle+Category */ = {
+			isa = PBXGroup;
+			children = (
+				CE08701F2C845B12003D8CCF /* NSBundle+Extra.h */,
+				CE0870202C845B12003D8CCF /* NSBundle+Extra.m */,
+			);
+			path = "NSBundle+Category";
 			sourceTree = "<group>";
 		};
 		CE1F24E92C5CD50000324198 /* NSObject+NTESVerifyCodeManager */ = {
@@ -9433,22 +9475,6 @@
 			path = NSAttributedString;
 			sourceTree = "<group>";
 		};
-		CECE820E2C4513CD00764AF5 /* NSBundle+Category */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "NSBundle+Category";
-			sourceTree = "<group>";
-		};
-		CECE82102C4513CD00764AF5 /* NSBundle */ = {
-			isa = PBXGroup;
-			children = (
-				CECE820E2C4513CD00764AF5 /* NSBundle+Category */,
-				CECE820F2C4513CD00764AF5 /* JobsBundle.h */,
-			);
-			path = NSBundle;
-			sourceTree = "<group>";
-		};
 		CECE82132C4513CD00764AF5 /* NSCache+Extra */ = {
 			isa = PBXGroup;
 			children = (
@@ -12096,13 +12122,14 @@
 			isa = PBXGroup;
 			children = (
 				CECE850D2C4513CD00764AF5 /* JobsBaseCustomizeUIKitCoreHeader.h */,
+				CE08701C2C845917003D8CCF /* NSBundle */,
+				CE0870192C8458EC003D8CCF /* NSLocale */,
 				CE207E6C2C82BAD700AD9FFB /* UIBarButtonItem */,
 				CE207E562C818E7F00AD9FFB /* AVURLAsset */,
 				CECE81F72C4513CD00764AF5 /* BaseProtocol */,
 				CECE82002C4513CD00764AF5 /* CALayer */,
 				CECE82092C4513CD00764AF5 /* NSArray */,
 				CECE820D2C4513CD00764AF5 /* NSAttributedString */,
-				CECE82102C4513CD00764AF5 /* NSBundle */,
 				CECE82162C4513CD00764AF5 /* NSCache */,
 				CECE821B2C4513CD00764AF5 /* NSData */,
 				CECE821F2C4513CD00764AF5 /* NSMutableArray */,
@@ -14527,6 +14554,7 @@
 				CE4B42522C6E05CB00FDCB0F /* PointLabTestVC.m in Sources */,
 				CECE7C522C450C5000764AF5 /* JobsAppDoorVC_Style2.m in Sources */,
 				CECE85172C4513CE00764AF5 /* NSMutableArray+Extra.m in Sources */,
+				CE08701A2C8458F3003D8CCF /* NSLocale+Extra.m in Sources */,
 				CECE80E82C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_2.m in Sources */,
 				CECE85352C4513CE00764AF5 /* NSObject+AppTools.m in Sources */,
 				CECE855D2C4513CE00764AF5 /* NSObject+UIScrollViewDelegate.m in Sources */,
