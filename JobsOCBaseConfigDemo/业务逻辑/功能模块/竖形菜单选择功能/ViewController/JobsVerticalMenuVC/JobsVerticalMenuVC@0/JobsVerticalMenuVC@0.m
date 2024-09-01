@@ -14,8 +14,8 @@
 @property(nonatomic,strong)BaseButton *msgBtn;
 @property(nonatomic,strong)BaseButton *editBtn;
 @property(nonatomic,strong)JobsSearchBar *searchView;
-@property(nonatomic,strong)NSMutableArray <__kindof UIView *>*rightViewArray; /// 右侧的视图数组
 /// Data
+@property(nonatomic,strong)NSMutableArray <__kindof UIView *>*rightViewArray; /// 右侧的视图数组
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*titleMutArr;
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*leftDataArray; /// 左边的数据源
 @property(nonatomic,strong)UIViewModel *leftViewCurrentSelectModel;
@@ -106,7 +106,7 @@
 /// 显示指定的右侧视图
 - (jobsByViewBlock)displayView {
     @jobs_weakify(self)
-    return ^(UIView *view) {
+    return ^(UIView *subview) {
         @jobs_strongify(self)
         /// 移除当前显示的视图
         for (UIView *subView in self.view.subviews) {
@@ -115,56 +115,12 @@
             }
         }
         /// 添加新的视图
-        view.frame = CGRectMake(self.tableView.frame.size.width, 0, self.view.frame.size.width - self.tableView.frame.size.width, self.view.frame.size.height);
-        [self.view addSubview:view];
+        subview.frame = CGRectMake(self.tableView.frame.size.width,
+                                0,
+                                self.view.frame.size.width - self.tableView.frame.size.width,
+                                self.view.frame.size.height);
+        [self.view addSubview:subview];
     };
-}
-/// 最初默认的数据
-- (NSMutableArray<UIViewModel *> *)makeTitleMutArr {
-    NSMutableArray<UIViewModel *> *titleMutArr = NSMutableArray.array;
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"收藏");
-        titleMutArr.add(viewModel);
-    }
-
-    [titleMutArr addObjectsFromArray:self.makePopViewDataMutArr];
-    return titleMutArr;
-}
-
-- (NSMutableArray<UIViewModel *> *)makePopViewDataMutArr {
-    NSMutableArray<UIViewModel *> *titleMutArr = NSMutableArray.array;
-
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"真人");
-        titleMutArr.add(viewModel);
-    }
-
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"体育");
-        titleMutArr.add(viewModel);
-    }
-
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"电子");
-        titleMutArr.add(viewModel);
-    }
-
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"棋牌");
-        titleMutArr.add(viewModel);
-    }
-
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"彩票");
-        titleMutArr.add(viewModel);
-    }
-    return titleMutArr;
 }
 
 - (jobsByVoidBlock)refreshLeftView {
@@ -421,7 +377,43 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (NSMutableArray<UIViewModel *> *)titleMutArr {
     if (!_titleMutArr) {
-        _titleMutArr = self.makeTitleMutArr;
+        /// 最初默认的数据
+        _titleMutArr = NSMutableArray.array;
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"收藏");
+            _titleMutArr.add(viewModel);
+        }
+        
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"真人");
+            _titleMutArr.add(viewModel);
+        }
+
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"体育");
+            _titleMutArr.add(viewModel);
+        }
+
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"电子");
+            _titleMutArr.add(viewModel);
+        }
+
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"棋牌");
+            _titleMutArr.add(viewModel);
+        }
+
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"彩票");
+            _titleMutArr.add(viewModel);
+        }
     }return _titleMutArr;
 }
 

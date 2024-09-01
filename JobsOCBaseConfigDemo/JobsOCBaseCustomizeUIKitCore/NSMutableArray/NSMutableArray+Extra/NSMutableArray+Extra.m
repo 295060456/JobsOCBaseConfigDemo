@@ -10,8 +10,18 @@
 @implementation NSMutableArray (Extra)
 /// 清除数组元素
 -(jobsByVoidBlock _Nonnull)clean{
+    @jobs_weakify(self)
     return ^(){
+        @jobs_strongify(self)
         [self removeAllObjects];
+    };
+}
+/// 数组取值
+-(JobsReturnIDByUIntegerBlock _Nonnull)objectAt{
+    @jobs_weakify(self)
+    return ^id _Nullable(NSUInteger data){
+        @jobs_strongify(self)
+        return [self objectAtIndex:data];
     };
 }
 /// 阻止向可变数组添加空元素
@@ -20,8 +30,7 @@
     return ^id (id _Nullable data) {
         @jobs_strongify(self)
         if(data){
-            /// 向数组加入nil会崩
-            [self addObject:data];
+            [self addObject:data];/// 向数组加入nil会崩
         }else{
             NSLog(@"数组被添加了一个空元素");
         }return self;

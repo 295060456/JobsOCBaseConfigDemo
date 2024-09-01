@@ -8,7 +8,6 @@
 #import <UIKit/UIKit.h>
 #import "JobsVerticalMenuDefineHeader.h"
 #import "UILocationProtocol.h"
-#import "GoodsClassModel.h"
 #import "UITableViewCellProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN

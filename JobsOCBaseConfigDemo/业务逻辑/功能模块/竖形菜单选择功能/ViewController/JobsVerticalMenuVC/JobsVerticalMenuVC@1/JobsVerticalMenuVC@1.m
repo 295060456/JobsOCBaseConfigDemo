@@ -120,51 +120,47 @@
         [viewController didMoveToParentViewController:self];
     };
 }
-/// 最初默认的数据
--(NSMutableArray<UIViewModel *> *)makeTitleMutArr{
-    NSMutableArray <UIViewModel *>*titleMutArr = NSMutableArray.array;
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"收藏");
-        titleMutArr.add(viewModel);
-    }
-    
-    [titleMutArr addObjectsFromArray:self.makePopViewDataMutArr];
-    return titleMutArr;
-}
 
--(NSMutableArray<UIViewModel *> *)makePopViewDataMutArr{
-    NSMutableArray <UIViewModel *>*titleMutArr = NSMutableArray.array;
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"真人");
-        titleMutArr.add(viewModel);
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"体育");
-        titleMutArr.add(viewModel);
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"电子");
-        titleMutArr.add(viewModel);
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"棋牌");
-        titleMutArr.add(viewModel);
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"彩票");
-        titleMutArr.add(viewModel);
-    }return titleMutArr;
+-(NSMutableArray<UIViewModel *> *)titleMutArr{
+    if (!_titleMutArr) {
+        /// 最初默认的数据
+        _titleMutArr = NSMutableArray.array;
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"收藏");
+            _titleMutArr.add(viewModel);
+        }
+        
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"真人");
+            _titleMutArr.add(viewModel);
+        }
+        
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"体育");
+            _titleMutArr.add(viewModel);
+        }
+        
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"电子");
+            _titleMutArr.add(viewModel);
+        }
+        
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"棋牌");
+            _titleMutArr.add(viewModel);
+        }
+        
+        {
+            UIViewModel *viewModel = UIViewModel.new;
+            viewModel.textModel.text = JobsInternationalization(@"彩票");
+            _titleMutArr.add(viewModel);
+        }
+    }return _titleMutArr;
 }
 
 -(jobsByVoidBlock)refreshLeftView{
@@ -423,12 +419,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_leftDataArray) {
         _leftDataArray = NSMutableArray.array;
     }return _leftDataArray;
-}
-
--(NSMutableArray<UIViewModel *> *)titleMutArr{
-    if (!_titleMutArr) {
-        _titleMutArr = self.makeTitleMutArr;
-    }return _titleMutArr;
 }
 
 @end
