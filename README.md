@@ -1074,7 +1074,41 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-#### 15.1、字符串转化
+#### 15.1、<font color=red>**字符串判空**</font>
+
+* 判空（因为nil是不能唤起方法的，为了防止字符串是nil，所以此方法必须是类方法或者是内敛函数）
+
+  ```objective-c
+  static inline BOOL isNull(NSString * _Nullable string){
+      if(string == nil) return YES;
+      if(string == NULL) return YES;
+      if((NSNull *)string == NSNull.null) return YES;
+      if([string isKindOfClass:NSNull.class]) return YES;
+      if([string isKindOfClass:NSString.class]){
+          NSString *str = (NSString *)string;
+          if([str isEqualToString:@"(null)"]) return YES;
+          if([str isEqualToString:@"null"]) return YES;
+          if([str isEqualToString:@"<null>"]) return YES;
+          if([str isEqualToString:@""]) return YES;
+          /// 去掉两端的空格
+          return ![str stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet].length;
+      }else{
+          NSString *str = [NSString stringWithFormat:@"%@",string];
+          /// 去掉两端的空格
+          return ![str stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet].length;
+      }return NO;
+  }
+  ```
+
+ * 有价值的字符串：`nil`、`NSNull`、`@”“`、`@”   “`均为无意义的字符串
+
+   ```objective-c
+   static inline BOOL isValue(NSString * _Nullable string){
+       return !isNull(string);
+   }
+   ```
+
+#### 15.2、字符串转化
 
 * 关注头文件[**`JobsString.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSString/JobsString.h)
 
@@ -1110,7 +1144,7 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-#### 15.2、<font color=red>**字符串拼接**</font>
+#### 15.3、<font color=red>**字符串拼接**</font>
 
 * ```objective-c
   -(JobsReturnStringByStringBlock _Nonnull)add{
@@ -1124,12 +1158,12 @@ NSObject <|-- BaseProtocol
   config_01.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
   ```
 
-#### 15.2、<font color=red>**字符串比较**</font>
+#### 15.4、<font color=red>**字符串比较**</font>
 
 * **字符串相等**
 
   ```objective-c
-  -(JobsReturnBoolByIDBlock)isEqualToString{
+  -(JobsReturnBOOLByIDBlock)isEqualToString{
       @jobs_weakify(self)
       return ^(NSString *data){
           @jobs_strongify(self)
@@ -1143,7 +1177,7 @@ NSObject <|-- BaseProtocol
 * **字符串包含**
 
   ```objective-c
-  -(JobsReturnBoolByIDBlock)containsString{
+  -(JobsReturnBOOLByIDBlock)containsString{
       @jobs_weakify(self)
       return ^(NSString *data){
           @jobs_strongify(self)
@@ -1154,25 +1188,29 @@ NSObject <|-- BaseProtocol
   }
   ```
 
-#### 15.3、字符串转`NSURL *`
+#### 15.5、字符串转`NSURL *`
 
 * ```objective-c
   /**
    问题：直接其他地方复制过来的中文字进行网页搜索、或者中文字识别排序等情况的，会出现搜索不到的情况。
    解决方法：可能存在复制源里面的文字带了空白url编码%E2%80%8B，空白编码没有宽度，虽然看不到但是会影响结果无法正确匹配对应的中文字。可以把文字重新url编码即可。
    */
-  -(NSString *)urlProtect{
+  -(NSString *_Nonnull)urlProtect{
       if ([self containsString:@"\u200B"]) {
           return [self stringByReplacingOccurrencesOfString:@"\u200B" withString:JobsInternationalization(@"")];
       }else return self;
   }
+  /// 返回文件路径相关的NSURL *
+  -(NSURL *_Nonnull)jobsFileUrl{
+      return [NSURL fileURLWithPath:self];
+  }
   ```
-
+  
   ```objective-c
   @"http://47.243.60.31:9200".urlProtect;
   ```
 
-#### 15.4、<font color=red>**字符串写文件**</font>
+#### 15.6、<font color=red>**字符串写文件**</font>
 
 ```objective-c
 -(void)保留文字{
@@ -1182,7 +1220,7 @@ NSObject <|-- BaseProtocol
                                                             fileFullname:@"发帖草稿数据.txt"
                                                                    error:nil];
     }else{
-        [FileFolderHandleTool cleanFilesWithPath:JobsUserModel.sharedManager.postDraftURLStr];
+        FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedManager.postDraftURLStr);
     }
     NSLog(@"%@",JobsUserModel.sharedManager.postDraftURLStr);
     [self.view hx_showLoadingHUDText:nil];
@@ -1200,7 +1238,7 @@ NSObject <|-- BaseProtocol
 }
 ```
 
-#### 15.5、更多...
+#### 15.7、更多...
 
 ### 16、`UILabel`的自适应 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -1730,7 +1768,7 @@ NSObject <|-- BaseProtocol
   * 对[**ReactiveCocoa**](https://github.com/ReactiveCocoa/ReactiveObjC)框架的二次封装，方便对[**ReactiveCocoa**](https://github.com/ReactiveCocoa/ReactiveObjC)框架不熟悉的使用者
 
     ```objective-c
-    -(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBoolByIDBlock)filterBlock
+    -(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBOOLByIDBlock)filterBlock
                                  subscribeNextBlock:(jobsByIDBlock)subscribeNextBlock{
         return [[self.rac_textSignal filter:^BOOL(NSString * _Nullable value) {
             return filterBlock ? filterBlock(value) : YES;
