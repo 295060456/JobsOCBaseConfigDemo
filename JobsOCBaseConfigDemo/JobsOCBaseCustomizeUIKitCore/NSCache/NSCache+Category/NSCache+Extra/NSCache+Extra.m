@@ -17,7 +17,7 @@
         // 获取该目录下的文件，计算其大小
         NSArray *childrenFile = [manager subpathsAtPath:path];
         for (NSString *fileName in childrenFile) {
-            NSString *absolutePath = [path stringByAppendingPathComponent:fileName];
+            NSString *absolutePath = path.addPathComponent(fileName);
             size += [manager attributesOfItemAtPath:absolutePath
                                               error:nil].fileSize;
         }
@@ -33,15 +33,15 @@
 }
 /// 根据路径删除文件
 +(void)cleanCacheByPath:(NSString *)path{
-    // 利用NSFileManager实现对文件的管理
+    /// 利用NSFileManager实现对文件的管理
     NSFileManager *fileManager = NSFileManager.defaultManager;
     if ([fileManager fileExistsAtPath:path]) {
-        // 获取该路径下面的文件名
+        /// 获取该路径下面的文件名
         NSArray *childrenFiles = [fileManager subpathsAtPath:path];
         for (NSString *fileName in childrenFiles) {
-            // 拼接路径
-            NSString *absolutePath = [path stringByAppendingPathComponent:fileName];
-            // 将文件删除
+            /// 拼接路径
+            NSString *absolutePath = path.addPathComponent(fileName);
+            /// 将文件删除
             [fileManager removeItemAtPath:absolutePath
                                     error:nil];
         }

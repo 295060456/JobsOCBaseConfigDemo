@@ -9,9 +9,13 @@
 
 @implementation NSString (Others)
 #pragma mark —— URL相关
-/// 返回NSURL *
+/// 返回网址相关的NSURL *
 -(NSURL *_Nonnull)jobsUrl{
     return [NSURL URLWithString:self];
+}
+/// 返回文件路径相关的NSURL *
+-(NSURL *_Nonnull)jobsFileUrl{
+    return [NSURL fileURLWithPath:self];
 }
 ///  能否正常打开Url
 -(BOOL)jobsCanOpenUrl{
@@ -39,6 +43,14 @@
         if(!str) str = @"";
         // 系统的stringByAppendingString方法在参数为nil的时候会崩溃
         return JobsMutableString([self stringByAppendingString:str]);/// 原始字符串不会改变，输出一个新的字符串
+    };
+}
+/// OC字符串路径拼接
+-(JobsReturnMutableStringByStringBlock _Nonnull)addPathComponent{
+    return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
+        if(!str) str = @"";
+        // 系统的stringByAppendingString方法在参数为nil的时候会崩溃
+        return JobsMutableString([self stringByAppendingPathComponent:str]);/// 自动处理（加上"/"）
     };
 }
 /// OC字符串数组 转 OC字符串
@@ -80,7 +92,7 @@
                         lineBreakMode:(NSLineBreakMode)lineBreakMode
                                 limit:(NSInteger)limit{
     if (!replaceStrLenth) replaceStrLenth = 3;
-    if ([NSString isNullString:replaceStr]) replaceStr = @".";
+    if (isNull(replaceStr)) replaceStr = @".";
     /// limit 是不包括省略号的实际的限制字数
     NSString *resultStr = self;
     NSRange range;

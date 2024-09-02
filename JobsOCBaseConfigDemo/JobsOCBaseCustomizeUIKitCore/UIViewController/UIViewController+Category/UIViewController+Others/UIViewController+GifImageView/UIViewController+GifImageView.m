@@ -33,7 +33,7 @@ JobsKey(_path)
 @dynamic path;
 -(NSString *)path{
     NSString *Path = Jobs_getAssociatedObject(_path);
-    if (![NSString isNullString:Path]) {
+    if (isValue(Path)) {
         Path = [NSBundle.mainBundle pathForResource:@"GIF大图" ofType:@"gif"];
         Jobs_setAssociatedRETAIN_NONATOMIC(_path, Path)
     }return Path;

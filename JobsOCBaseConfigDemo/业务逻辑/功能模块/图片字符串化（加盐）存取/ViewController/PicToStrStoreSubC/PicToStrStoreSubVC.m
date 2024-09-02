@@ -177,7 +177,7 @@
 #pragma mark —— 字符串（加盐）=解码=> 图片
 -(UIImage *)picForStr:(NSString *)str{
     _picAfter = nil;
-    if(!str.isNotBlank) return nil;
+    if(isNull(str)) return nil;
 
     switch ([self.viewModel.requestParams intValue]) {
         case PicToStrStyle_Hexadecimal:{
@@ -312,7 +312,7 @@
             @jobs_strongify(self)
             x.selected = !x.selected;
             if (self.objectBlock) self.objectBlock(x);
-            if([self->_resultStr isNotBlank]){
+            if(isNull(self->_resultStr)){
                 /// 存在于内存里面的编码，转变成图像对外进行输出
                 [self picForStr:self->_resultStr];
             }else self.jobsToastMsg(JobsInternationalization(@"请先编码图片"));

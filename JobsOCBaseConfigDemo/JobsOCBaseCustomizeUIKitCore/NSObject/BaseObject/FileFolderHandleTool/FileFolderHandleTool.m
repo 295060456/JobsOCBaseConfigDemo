@@ -12,7 +12,7 @@
 #pragma mark —— 禁止App系统文件夹document同步
 /// 因为它会同步。苹果要求：可重复产生的数据不得进行同步,什么叫做可重复数据？这里最好禁止，否则会影响上架，被拒！
 +(void)banSysDocSynchronization{
-    NSURL *URL = [NSURL fileURLWithPath:NSString.documentsDir];
+    NSURL *URL = NSString.documentsDir.jobsFileUrl;
     [URL setResourceValue:@(YES)
                    forKey:NSURLIsExcludedFromBackupKey
                     error:nil];
@@ -25,17 +25,17 @@
                             fileEx:(NSString * __nullable)fileNameEx{
     NSString *folderName = JobsTimeModel.new.currentTimestampStr;
     NSString *cachePath;
-    if ([NSString isNullString:folderNameEx]){
+    if (isNull(folderNameEx)){
         // Library/Caches/时间戳
-        cachePath = [NSString.cachesDir stringByAppendingPathComponent:folderName];
+        cachePath = NSString.cachesDir.addPathComponent(folderName);
     }else{
-        if ([NSString isNullString:fileNameEx]){
+        if (isNull(fileNameEx)){
             // Library/Caches/folderNameEx/时间戳
-            cachePath = [NSString.cachesDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",folderNameEx,folderName]];
+            cachePath = NSString.cachesDir.addPathComponent(folderNameEx).addPathComponent(folderName);
         }else{
             // Library/Caches/folderNameEx/时间戳.fileNameEx
-            NSString *FolderName = [folderName stringByAppendingString:fileNameEx];
-            cachePath = [NSString.cachesDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",folderNameEx,FolderName]];
+            NSString *FolderName = folderName.add(fileNameEx);
+            cachePath = NSString.cachesDir.addPathComponent(folderNameEx).addPathComponent(FolderName);
         }
     }return cachePath;
 }
@@ -43,7 +43,7 @@
 /// 软性 仅仅是创建文件夹：返回是否创建成功
 +(BOOL)createDirectoryAtPath:(NSString *)path
                        error:(NSError *__autoreleasing *)error{
-    NSFileManager *manager = [NSFileManager defaultManager];
+    NSFileManager *manager = NSFileManager.defaultManager;
     /* createDirectoryAtPath:withIntermediateDirectories:attributes:error:
      * 参数1：创建的文件夹的路径
      * 参数2：是否创建媒介的布尔值，一般为YES
@@ -85,9 +85,9 @@
              
              返回 创建文件是(YES)否(NO)成功？
              */
-             return [[NSFileManager defaultManager] createFileAtPath:path//文件的路径
-                                                            contents:contentsData//文件的二进制内容（NSData）
-                                                          attributes:nil];//文件的属性
+             return [NSFileManager.defaultManager createFileAtPath:path /// 文件的路径
+                                                          contents:contentsData /// 文件的二进制内容（NSData）
+                                                        attributes:nil]; /// 文件的属性
         }
     }return NO;
 }
@@ -98,10 +98,10 @@
  */
 +(BOOL)createFolderByFileUrl:(NSString *)file_url
                        error:(NSError *__autoreleasing *)error{
-    //删除最后一个路径节点，提取父文件夹的路径
+    /// 删除最后一个路径节点，提取父文件夹的路径
     NSString *directoryPath = [FileFolderHandleTool directoryAtPath:file_url];
-    //创建目录
-    //如果文件夹路径不存在，那么先创建文件夹
+    /// 创建目录
+    /// 如果文件夹路径不存在，那么先创建文件夹
     return [FileFolderHandleTool createFoldByFolderUrl:directoryPath
                                                  error:error];
 }
@@ -112,29 +112,26 @@
 */
 +(BOOL)createFoldByFolderUrl:(NSString *)folder_url
                        error:(NSError *__autoreleasing *)error{
-    //创建目录
-    //如果文件夹路径不存在，那么先创建文件夹
+    /// 创建目录
+    /// 如果文件夹路径不存在，那么先创建文件夹
     if (![FileFolderHandleTool isExistsAtPath:folder_url]){
-        // 创建文件夹，返回文件夹是否创建成功：先有文件夹再有文件，没有文件夹就没有文件
-        if (![FileFolderHandleTool createDirectoryAtPath:folder_url
-                                   error:error]){
-            return NO;
-        }return YES;
+        /// 创建文件夹，返回文件夹是否创建成功：先有文件夹再有文件，没有文件夹就没有文件
+        return [FileFolderHandleTool createDirectoryAtPath:folder_url error:error];
     }return YES;
 }
 /// 获取文件创建的时间
 +(NSDate *)creationDateOfItemAtPath:(NSString *)path
                               error:(NSError *__autoreleasing *)error{
     return (NSDate *)[FileFolderHandleTool attributeOfItemAtPath:path
-                                          forKey:NSFileCreationDate
-                                           error:error];
+                                                          forKey:NSFileCreationDate
+                                                           error:error];
 }
 /// 获取文件修改的时间
 +(NSDate *)modificationDateOfItemAtPath:(NSString *)path
                                   error:(NSError *__autoreleasing *)error{
     return (NSDate *)[FileFolderHandleTool attributeOfItemAtPath:path
-                                          forKey:NSFileModificationDate
-                                           error:error];
+                                                          forKey:NSFileModificationDate
+                                                           error:error];
 }
 #pragma mark —— 读取文件内容
 /// 给定一个NSBundle地址和文件类型，获取返回里面的一个实体文件 默认是以本App mainBundle 为路径
@@ -145,22 +142,20 @@
 bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
        fileType:(FileType)fileType{
     NSString *bundlePath = NSString.bundlePath;//获取bundle路径
-    if (![NSString isNullString:bundleFileName]){
-        bundlePath = [bundlePath stringByAppendingString:[NSString stringWithFormat:@"/%@%@",bundleFileName,@".bundle"]];
+    if (isValue(bundleFileName)){
+        bundlePath = bundlePath.add(@"/").add(bundleFileName).add(@".bundle");
     }
     
-    if (![NSString isNullString:bundleFileSuffix]){
-        bundlePath = [bundlePath stringByAppendingString:bundleFileSuffix];
+    if (isValue(bundleFileSuffix)){
+        bundlePath = bundlePath.add(bundleFileSuffix);
     }
-    return [FileFolderHandleTool filePath:bundlePath
-                                 fileType:fileType];
+    return [FileFolderHandleTool filePath:bundlePath fileType:fileType];
 }
 /// 给定一个地址读取内容
 /// @param filePath 文件全路径
 /// @param fileType 获取的文件类型 因为要以不同的方式解析出数据
-+(id)filePath:(NSString *__nonnull)filePath
-     fileType:(FileType)fileType{
-    if ([NSString isNullString:filePath]){
++(id)filePath:(NSString *__nonnull)filePath fileType:(FileType)fileType{
+    if (isNull(filePath)){
         NSLog(@"文件路径不存在");
         return nil;
     }else{
@@ -180,12 +175,12 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
                 return movieData;
             }break;
             case SOUND:{
-                AVURLAsset *mp3Asset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:filePath] options:nil];
+                AVURLAsset *mp3Asset = [AVURLAsset URLAssetWithURL:filePath.jobsFileUrl options:nil];
                 NSData *mp3Data = [NSData dataWithContentsOfURL:mp3Asset.URL];
                 return mp3Data;
             }break;
             case PLIST:{
-                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+                NSDictionary *dic = [NSDictionary.alloc initWithContentsOfFile:filePath];
                 return dic;
             }break;
                 
@@ -207,26 +202,25 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
         localFileSuffix:(NSString *__nonnull)LocalFileSuffix
                fileType:(FileType)fileType
                   error:(NSError *__autoreleasing *)error{
-    //获取bundle路径
+    /// 获取bundle路径
     id content = [FileFolderHandleTool bundleFile:bundleFileName
                                  bundleFileSuffix:LocalFileSuffix
                                          fileType:fileType];
     
-    //图片、文本、plist（字典）、视频、声音
-    NSString *fileFolderPathStr = [FileFolderHandleTool createCacheFolderPath:nil
-                                                                       fileEx:nil];
-    //写文件之前一定要 有空白文件可写。
-    //文件全名 带后缀
-    NSString *localFileFullNameStr = [NSString stringWithFormat:@"/%@.%@",LocalFileName,LocalFileSuffix];
+    /// 图片、文本、plist（字典）、视频、声音
+    NSString *fileFolderPathStr = [FileFolderHandleTool createCacheFolderPath:nil fileEx:nil];
+    /// 写文件之前一定要 有空白文件可写。
+    /// 文件全名 带后缀
+    NSString *localFileFullNameStr = @"/".add(LocalFileName).add(@".").add(LocalFileSuffix);
     //先创建空白文件
-    bool b = [FileFolderHandleTool createFileWithFolderAtPath:[fileFolderPathStr stringByAppendingString:localFileFullNameStr]
+    bool b = [FileFolderHandleTool createFileWithFolderAtPath:fileFolderPathStr.add(localFileFullNameStr)
                                                  contentsData:nil
                                                     overwrite:YES
                                                         error:error];
     bool d = NO;
     if (b){
-        //写文件。
-        NSString *ff = [NSString stringWithFormat:@"%@%@",fileFolderPathStr,localFileFullNameStr];
+        /// 写文件。
+        NSString *ff = fileFolderPathStr.add(localFileFullNameStr);
         d = [FileFolderHandleTool writeFileAtPath:ff
                                           content:content
                                             error:error];
@@ -239,12 +233,12 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
 +(BOOL)writeFileAtPath:(NSString *)path
                content:(NSObject *)content
                  error:(NSError *__autoreleasing *)error{
-    //判断文件内容是否为空
+    /// 判断文件内容是否为空
     if (!content){
         [NSException raise:@"非法的文件内容" format:@"文件内容不能为nil"];
         return NO;
     }
-    //判断文件(夹)是否存在
+    /// 判断文件(夹)是否存在
     if ([FileFolderHandleTool isExistsAtPath:path]){
         if ([content isKindOfClass:NSMutableArray.class]){//文件内容为可变数组
             return [(NSMutableArray *)content writeToFile:path atomically:YES];
@@ -299,10 +293,10 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
     while ((filename = [e nextObject])){
         if (extension){
             if ([filename.pathExtension hasPrefix:extension]){
-                [fileManager removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:filename] error:error];
+                [fileManager removeItemAtPath:documentsDirectory.addPathComponent(filename) error:error];
             }
         }else{
-            [fileManager removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:filename] error:error];
+            [fileManager removeItemAtPath:documentsDirectory.addPathComponent(filename) error:error];
         }
     }
 }
@@ -334,7 +328,7 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
     BOOL isSuccess = YES;
 
     for (NSString *file in subFiles){
-        NSString *absolutePath = [NSString.cachesDir stringByAppendingPathComponent:file];
+        NSString *absolutePath = NSString.cachesDir.addPathComponent(file);
         isSuccess &= [TXFileOperation removeItemAtPath:absolutePath];
     }return isSuccess;
 }
@@ -343,7 +337,7 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
     NSArray *subFiles = [TXFileOperation listFilesInTmpDirectoryByDeep:NO];
     BOOL isSuccess = YES;
     for (NSString *file in subFiles){
-        NSString *absolutePath = [NSString.tmpDir stringByAppendingPathComponent:file];
+        NSString *absolutePath = NSString.tmpDir.addPathComponent(file);
         isSuccess &= [TXFileOperation removeItemAtPath:absolutePath];
     }return isSuccess;
 }
@@ -358,13 +352,13 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
                toPath:(NSString *)toPath
             overwrite:(BOOL)overwrite
                 error:(NSError *__autoreleasing *)error{
-    // 先要保证源文件路径存在，不然抛出异常
+    /// 先要保证源文件路径存在，不然抛出异常
     if (![FileFolderHandleTool isExistsAtPath:path]){
         [NSException raise:@"非法的源文件路径"
                     format:@"源文件路径%@不存在，请检查源文件路径", path];
         return NO;
     }
-    //获得目标文件的上级目录
+    /// 获得目标文件的上级目录
     NSString *toDirPath = [FileFolderHandleTool directoryAtPath:toPath];
     if (![FileFolderHandleTool isExistsAtPath:toDirPath]){
         // 创建复制路径
@@ -373,18 +367,16 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
             return NO;
         }
     }
-    // 如果覆盖，那么先删掉原文件
+    /// 如果覆盖，那么先删掉原文件
     if (overwrite){
         if ([FileFolderHandleTool isExistsAtPath:toPath]){
-            [FileFolderHandleTool removeItemAtPath:toPath
-                                             error:error];
+            [FileFolderHandleTool removeItemAtPath:toPath error:error];
         }
     }
-    // 复制文件，如果不覆盖且文件已存在则会复制失败
-    BOOL isSuccess = [[NSFileManager defaultManager] copyItemAtPath:path
-                                                             toPath:toPath
-                                                              error:error];
-    return isSuccess;
+    /// 复制文件，如果不覆盖且文件已存在则会复制失败
+    return [NSFileManager.defaultManager copyItemAtPath:path
+                                                 toPath:toPath
+                                                  error:error];
 }
 #pragma mark —— 移动文件（夹）
 /// 移动文件(夹) 依据源文件的路径移动到目标路径：
@@ -423,9 +415,9 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
         }
     }
     // 移动文件，当要移动到的文件路径文件存在，会移动失败
-    BOOL isSuccess = [[NSFileManager defaultManager] moveItemAtPath:path
-                                                             toPath:toPath
-                                                              error:error];
+    BOOL isSuccess = [NSFileManager.defaultManager moveItemAtPath:path
+                                                           toPath:toPath
+                                                            error:error];
     return isSuccess;
 }
 #pragma mark —— 根据URL获取文件名
@@ -506,7 +498,7 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
         unsigned long long int folderSize = 0;
         
         while (file = [contentsEnumurator nextObject]){
-            NSDictionary *fileAttributes = [NSFileManager.defaultManager attributesOfItemAtPath:[path stringByAppendingPathComponent:file]
+            NSDictionary *fileAttributes = [NSFileManager.defaultManager attributesOfItemAtPath:path.addPathComponent(file)
                                                                                           error:nil];
             folderSize += [[fileAttributes objectForKey:NSFileSize] intValue];
         }
@@ -557,36 +549,29 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
     NSError *error;
     NSFileManager *manager = NSFileManager.defaultManager;
     if (deep){
-        // 深遍历
-        NSArray *deepArr = [manager subpathsOfDirectoryAtPath:path
-                                                        error:&error];
+        /// 深遍历
+        NSArray *deepArr = [manager subpathsOfDirectoryAtPath:path error:&error];
         if (!error){
             listArr = deepArr;
-        }else{
-            listArr = nil;
-        }
+        }else listArr = nil;
     }else{
-        // 浅遍历
-        NSArray *shallowArr = [manager contentsOfDirectoryAtPath:path
-                                                           error:&error];
+        /// 浅遍历
+        NSArray *shallowArr = [manager contentsOfDirectoryAtPath:path error:&error];
         if (!error){
             listArr = shallowArr;
-        }else{
-            listArr = nil;
-        }
+        }else listArr = nil;
     }return listArr;
 }
 #pragma mark —— 系统相册相关
 /// 获取相册最新加载（录制、拍摄）的资源
 +(PHAsset *)gettingLastResource:(NSString *)Key{
-    //获取所有资源的集合，并按资源的创建时间排序
+    /// 获取所有资源的集合，并按资源的创建时间排序
     PHFetchOptions *options = PHFetchOptions.new;
-    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:Key
-                                                              ascending:NO]];
+    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:Key ascending:NO]];
     PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
-    //这里取得的结果 assetsFetchResults 其实可以当做一个数组。
-    //获取最新一张照片
-    PHAsset *d = [assetsFetchResults firstObject];
+    /// 这里取得的结果 assetsFetchResults 其实可以当做一个数组。
+    /// 获取最新一张照片
+    PHAsset *d = assetsFetchResults.firstObject;
     return d;
 }
 /// 相册
@@ -596,8 +581,7 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
     if (![FileFolderHandleTool isExistFolder:folderName]){
         [PHPhotoLibrary.sharedPhotoLibrary performChanges:^{
             [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:folderName];
-        } completionHandler:^(BOOL success,
-                              NSError * _Nullable error){
+        } completionHandler:^(BOOL success,NSError * _Nullable error){
             if (completionBlock) completionBlock(@(success),error);
         }];
     }else{
@@ -610,16 +594,15 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
     if (![FileFolderHandleTool isExistFolder:folderName]){
         [PHPhotoLibrary.sharedPhotoLibrary performChanges:^{
             [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:folderName];
-        } completionHandler:^(BOOL success,
-                              NSError * _Nullable error){
+        } completionHandler:^(BOOL success,NSError * _Nullable error){
             if (success){
                 NSLog(@"创建相册文件夹成功!");
-                [FileFolderHandleTool saveRes:[NSURL URLWithString:pathStr]];
+                [FileFolderHandleTool saveRes:pathStr.jobsUrl];
             } else{
                 NSLog(@"创建相册文件夹失败:%@", error);
             }
         }];
-    }else [FileFolderHandleTool saveRes:[NSURL URLWithString:pathStr]];
+    }else [FileFolderHandleTool saveRes:pathStr.jobsUrl];
 }
 /// 保存视频资源文件到指定的相册路径，这里是整个App名字的相册
 +(void)saveRes:(NSURL *)movieURL{
@@ -630,15 +613,15 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
                                                   BOOL *stop){//对获取到集合进行遍历
         PHAssetCollection *assetCollection = obj;
         NSLog(@"LLL %@",assetCollection.localizedTitle);
-        if ([assetCollection.localizedTitle isEqualToString:HDAppDisplayName]){
+        if (assetCollection.localizedTitle.isEqualToString(HDAppDisplayName)){
             [PHPhotoLibrary.sharedPhotoLibrary performChanges:^{
-                //请求创建一个Asset
+                /// 请求创建一个Asset
                 PHAssetChangeRequest *assetRequest = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:movieURL];
-                //请求编辑相册
+                /// 请求编辑相册
                 PHAssetCollectionChangeRequest *collectonRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:assetCollection];
-                //为Asset创建一个占位符，放到相册编辑请求中
+                /// 为Asset创建一个占位符，放到相册编辑请求中
                 PHObjectPlaceholder *placeHolder = assetRequest.placeholderForCreatedAsset;
-                //相册中添加视频
+                /// 相册中添加视频
                 [collectonRequest addAssets:@[placeHolder]];
                 localIdentifier = placeHolder.localIdentifier;
             } completionHandler:^(BOOL success,
@@ -665,7 +648,7 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
                                                   NSUInteger idx,
                                                   BOOL *stop){
         PHAssetCollection *assetCollection = obj;
-        if ([assetCollection.localizedTitle isEqualToString:folderName]){
+        if (assetCollection.localizedTitle.isEqualToString(folderName)){
             isExisted = YES;
         }
     }];return isExisted;
@@ -681,8 +664,8 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
 }
 /// 保存完成后调用的方法
 +(void)savedPhotoImage:(UIImage*)image
-didFinishSavingWithError: (NSError *)error
-            contextInfo: (void *)contextInfo{
+didFinishSavingWithError:(NSError *)error
+            contextInfo:(void *)contextInfo{
     if (error){
         NSLog(@"保存图片出错%@",error.localizedDescription);
     }else{
@@ -801,8 +784,7 @@ didFinishSavingWithError:(NSError *)error
 ///获取文件属性集合:
 +(NSDictionary *)attributesOfItemAtPath:(NSString *)path
                                    error:(NSError *__autoreleasing *)error{
-    return [[NSFileManager defaultManager] attributesOfItemAtPath:path
-                                                            error:error];
+    return [NSFileManager.defaultManager attributesOfItemAtPath:path error:error];
 }
 
 @end

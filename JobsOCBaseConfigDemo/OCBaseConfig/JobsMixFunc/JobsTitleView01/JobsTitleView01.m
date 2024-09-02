@@ -81,7 +81,7 @@ static dispatch_once_t static_titleView01OnceToken;
 -(UILabel *)titleLab{
     if (!_titleLab) {
         _titleLab = UILabel.new;
-        _titleLab.text = self.viewModel.textModel.text.nullString ? JobsInternationalization(@"我是标题") : self.viewModel.textModel.text;
+        _titleLab.text = isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"我是标题") : self.viewModel.textModel.text;
         _titleLab.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
         _titleLab.textColor = HEXCOLOR(0xAE8330);
         _titleLab.textAlignment = NSTextAlignmentCenter;

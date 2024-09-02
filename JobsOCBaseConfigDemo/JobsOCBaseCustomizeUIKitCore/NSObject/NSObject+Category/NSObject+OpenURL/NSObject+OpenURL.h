@@ -47,7 +47,7 @@ MFMessageComposeViewControllerDelegate
 #pragma mark —— 安全打开URL
 /// 软性打开URL：【不会处理打开成功和打开失败两种情况】如果URL有误则无法打开
 /// 可以接受NSString * 和 URL *
--(void)jobsOpenURL:(id _Nullable)URLStr;
+-(jobsByIDBlock)jobsOpenURL;
 /// 软性打开URL：【只处理打开成功的情况】
 /// 可以接受NSString * 和 URL *
 -(void)jobsOpenURL:(id _Nullable)URLStr

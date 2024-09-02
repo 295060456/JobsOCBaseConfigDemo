@@ -279,16 +279,6 @@
         NSLog(@"request.baseUrl = %@\n",request.baseUrl);
     };
 }
-/// 判空【是空返回YES】
--(BOOL)nullString{
-    if (self.isKindOfClassBlock(NSString.class)) {
-        NSString *string = (NSString *)self;
-        return [NSString isNullString:string];
-    }else{
-        NSCAssert(self.isKindOfClassBlock(NSString.class), JobsInternationalization(@"目标对象不是字符串类型"));
-        return YES;
-    }
-}
 /// 此功能的必要性：如果外界传入的数组是空，那么拿到的count是0，做-1操作就是-1，直接用for循环就会进入死循环
 -(void)jobsSafetyCycleFunc:(int)ceiling
                 cycleBlock:(jobsByIntBlock _Nullable)cycleBlock{
@@ -661,7 +651,7 @@
     UIView *v = self.getView;
     if (v) {
         for (UIView *view in v.subviews) {
-            if (![NSString isNullString:view.internationalizationKEY]) {
+            if (isValue(view.internationalizationKEY)) {
                 if ([view isKindOfClass:UILabel.class]) {
                     UILabel *lab = (UILabel *)view;
                     lab.text = JobsInternationalization(view.internationalizationKEY);

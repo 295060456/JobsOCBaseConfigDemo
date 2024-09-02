@@ -20,7 +20,7 @@ NSString *const FM用户数据 = @"FM用户数据";
 -(BOOL)isLogin{
     UserDefaultModel *obj = (UserDefaultModel *)NSUserDefaults.readWithKey(用户信息);
     if (obj) {
-        return ![NSString isNullString:self.readUserInfo().token];
+        return isValue(self.readUserInfo().token);
     }return obj;
 }
 #pragma mark —— 全局的用户数据(存、取、清)[全局唯一一份用户档案]
@@ -97,6 +97,8 @@ NSString *const FM用户数据 = @"FM用户数据";
                                                                   error:&error];
             if (!userModel) {
                 NSLog(@"解档失败: %@", error.localizedDescription);
+                /// 没取到用户数据，就直接跳登录
+//                self.show_view(self.loginView);
             }return userModel;
         }
     };
@@ -111,7 +113,7 @@ NSString *const FM用户数据 = @"FM用户数据";
 /// 全局保存已经登录成功 且 并未删除的用户名组
 -(jobsByStringBlock)saveUserName{
     return ^(NSString *_Nullable userName){
-        if ([NSString isNullString:userName]) return;
+        if (isNull(userName)) return;
         NSMutableArray <NSString *>*userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKeyBlock(用户名数组)];//取出来的实际上是个不可变数组，所以需要向可变数组进行转化
         if (!userNameMutArr) {
             userNameMutArr = NSMutableArray.array;
@@ -132,7 +134,7 @@ NSString *const FM用户数据 = @"FM用户数据";
 -(jobsByStringBlock)deleteUserName{
     return ^(NSString *_Nullable userName){
         NSMutableArray <NSString *>*userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKeyBlock(用户名数组)];
-        if (userNameMutArr && ![NSString isNullString:userName]) {
+        if (userNameMutArr && isValue(userName)) {
             [userNameMutArr removeObject:userName];
             JobsSetUserDefaultKeyWithObject(用户名数组, userNameMutArr);
             JobsUserDefaultSynchronize;

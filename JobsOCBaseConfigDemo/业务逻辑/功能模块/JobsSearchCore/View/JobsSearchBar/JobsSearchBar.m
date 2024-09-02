@@ -68,10 +68,10 @@
         @jobs_weakify(self)
         [[_textField.rac_textSignal filter:^BOOL(NSString * _Nullable value) {
             @jobs_strongify(self)
-            if (!self.textField.text.nullString) {
+            if (isValue(self.textField.text)) {
                 self.cancelBtn.alpha = 1;
                 self.textField.width = TextFieldWidth - (self.cancelBtn.size.width + JobsWidth(5));
-            }return !value.nullString;
+            }return isValue(value);
         }] subscribeNext:^(NSString * _Nullable x) {
             @jobs_strongify(self)
             NSLog(@"输入的字符为 = %@",x);

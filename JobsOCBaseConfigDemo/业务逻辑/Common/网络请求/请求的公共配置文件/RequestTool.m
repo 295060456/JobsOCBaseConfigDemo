@@ -48,7 +48,7 @@
     }
 #pragma mark —— Token
     
-    if (!JobsInternationalization(@"").nullString) {
+    if (isValue(f.token)) {
         [AFHTTPSessionManager.manager.requestSerializer setValue:f.token
                                               forHTTPHeaderField:@"authorization"];
     }

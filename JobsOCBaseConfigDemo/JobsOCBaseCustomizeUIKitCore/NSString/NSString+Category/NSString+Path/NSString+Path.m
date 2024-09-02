@@ -51,7 +51,7 @@
 }
 /// 获取沙盒中Libarary/Preferences的目录路径：
 +(NSString *)preferencesDir{
-    return [NSString.libraryDir stringByAppendingPathComponent:@"Preferences"];
+    return NSString.libraryDir.addPathComponent(@"Preferences");
 }
 /// 获取沙盒中Library/Caches的目录路径：
 +(NSString *)cachesDir{

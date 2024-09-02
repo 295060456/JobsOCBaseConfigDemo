@@ -70,8 +70,8 @@ static dispatch_once_t static_testPopupViewOnceToken;
                                                       attributedTitle:nil
                                               selectedAttributedTitle:nil
                                                    attributedSubtitle:nil
-                                                                title:self.viewModel.textModel.text.nullString ? JobsInternationalization(@"测试弹窗"): self.viewModel.textModel.text
-                                                             subTitle:self.viewModel.subTextModel.text.nullString ? JobsInternationalization(@"相关信息"): self.viewModel.textModel.text
+                                                                title:isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"测试弹窗"): self.viewModel.textModel.text
+                                                             subTitle:isNull(self.viewModel.subTextModel.text) ? JobsInternationalization(@"相关信息"): self.viewModel.textModel.text
                                                             titleFont:UIFontWeightBoldSize(20)
                                                          subTitleFont:nil
                                                              titleCor:JobsRedColor

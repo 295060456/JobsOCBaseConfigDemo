@@ -146,7 +146,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         viewModel.textModel = textModel;
         
         UITextModel *subTextModel = UITextModel.new;
-        subTextModel.text = JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle);
+        subTextModel.text = JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle);
         viewModel.subTextModel = subTextModel;
         
         UITextModel *backBtnTitleModel = UITextModel.new;
@@ -177,10 +177,10 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     }
     
     {
-        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle)];
+        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle)];
         [attributedText addAttribute:NSFontAttributeName
                                value:UITextModel.new.font
-                               range:NSMakeRange(0, JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle).length)];
+                               range:NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length)];
 
         NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
         paragraphStyle.lineSpacing = 0;
@@ -188,7 +188,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
         [attributedText addAttribute:NSParagraphStyleAttributeName
                                value:paragraphStyle
-                               range:NSMakeRange(0, JobsInternationalization([NSString isNullString:subTitle] ? @"点击查看" : subTitle).length)];
+                               range:NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length)];
         
         viewModel.subTextModel.attributedText = attributedText;
     }
@@ -249,7 +249,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //-(JobsOCBaseConfigTestPopupView *)JobsTestPopView:(NSString *)string{
 //    UIViewModel *viewModel = UIViewModel.new;
 //    UITextModel *textModel = UITextModel.new;
-//    textModel.text = [NSString isNullString:string] ? JobsInternationalization(@"登入按钮") : string;
+//    textModel.text = isNull(string) ? JobsInternationalization(@"登入按钮") : string;
 //    viewModel.textModel = textModel;
 //    return [self jobsTestPopView:viewModel];
 //}
@@ -315,8 +315,8 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //    [self popupWithView:upgradePopupView];
 }
 
--(void)actionForHotLabel:(JobsHotLabelWithSingleLine *)hl{
-//    @jobs_weakify(self)
+//-(void)actionForHotLabel:(JobsHotLabelWithSingleLine *)hl{
+////    @jobs_weakify(self)
 //    [hl actionObjectBlock:^(UIButton *btn) {
 ////        @jobs_strongify(self)
 //        if([btn.requestParams isKindOfClass:CasinoCustomerContactElementModel.class]){
@@ -324,23 +324,21 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //
 //            switch (customerContactElementModel.customerMark) {
 //                case CustomerContactStyle_QQ:{
-//                    [NSObject openURL:[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",customerContactElementModel.customerAccount]];
+//                    self.jobsOpenURL(@"mqq://im/chat?chat_type=wpa&uin=".add(customerContactElementModel.customerAccount).add(@"&version=1&src_type=web"));
 //                }break;
 //                case CustomerContactStyle_Skype:{
-//                    [NSObject openURL:[NSString stringWithFormat:@"skype://%@?chat",customerContactElementModel.customerAccount]];
+//                    self.jobsOpenURL(@"skype://".add(customerContactElementModel.customerAccount).add(@"?chat"));
 //                }break;
 //                case CustomerContactStyle_Telegram:{
-//                    [NSObject openURL:[NSString stringWithFormat:@"https://t.me/%@",customerContactElementModel.customerAccount]];
+//                    self.jobsOpenURL(@"https://t.me/".add(customerContactElementModel.customerAccount));
 //                }break;
 //                case CustomerContactStyle_whatsApp:{
-//                    [NSObject openURL:[NSString stringWithFormat:@"https://wa.me/%@",customerContactElementModel.customerAccount]];
+//                    self.jobsOpenURL(@"https://wa.me/".add(customerContactElementModel.customerAccount));
 //                }break;
 //                case CustomerContactStyle_手机号码:{
-////                            [NSObject openURL:JobsInternationalization(@"")];
 //                    self.jobsToastMsg(@"打开手机号码未配置");
 //                }break;
 //                case CustomerContactStyle_onlineURL:{
-////                            [NSObject openURL:JobsInternationalization(@"")];
 //                    self.jobsToastMsg(@"打开onlineURL未配置");
 //                }break;
 //
@@ -349,7 +347,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //            }
 //        }
 //    }];
-}
+//}
 #pragma mark —— 网络通讯方面的
 /// 获取客服联系方式
 -(void)getCustomerContact:(jobsByIDBlock _Nullable)block{
@@ -577,14 +575,14 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         [self checkUserPassword:model.password]) {
         return YES;
     }else{
-        if (model.userName.nullString &&
-            model.password.nullString) {
+        if (isNull(model.userName) &&
+            isNull(model.password)) {
             self.jobsToastErrMsg(JobsInternationalization(@"Please complete the login information"));
-        }else if (!model.userName.nullString &&
-                  model.password.nullString){
+        }else if (isValue(model.userName) &&
+                  isNull(model.password)){
             self.jobsToastErrMsg(JobsInternationalization(@"Please enter your password"));
-        }else if (model.userName.nullString &&
-                  !model.password.nullString){
+        }else if (isNull(model.userName) &&
+                  isValue(model.password)){
             self.jobsToastErrMsg(JobsInternationalization(@"Please enter a user name"));
         }else{
             self.jobsToastErrMsg(JobsInternationalization(@"The password consists of 6 to 15 characters and can only be letters and numbers"));
@@ -596,39 +594,39 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     if ([self checkUserName:model.userName] &&
         [self checkUserPassword:model.password] &&
         [self checkUserPassword:model.confirmPassword] &&
-        !model.verificationCode.nullString &&
-        !model.tel.nullString) {
+        isValue(model.verificationCode) &&
+        isValue(model.tel)) {
         return YES;
     }else{
-        if (model.userName.nullString &&
-                  !model.password.nullString &&
-                  !model.confirmPassword.nullString &&
-                  !model.tel.nullString &&
-                  !model.verificationCode.nullString){
+        if (isNull(model.userName) &&
+            isValue(model.password) &&
+            isValue(model.confirmPassword) &&
+            isValue(model.tel) &&
+            isValue(model.verificationCode)){
             self.jobsToastErrMsg(@"Please enter a user name");
-        }else if (!model.userName.nullString &&
-                  model.password.nullString &&
-                  !model.confirmPassword.nullString &&
-                  !model.tel.nullString &&
-                  !model.verificationCode.nullString){
+        }else if (isValue(model.userName) &&
+                  isNull(model.password) &&
+                  isValue(model.confirmPassword) &&
+                  isValue(model.tel) &&
+                  !isValue(model.verificationCode)){
             self.jobsToastErrMsg(@"Please enter your password");
-        }else if (!model.userName.nullString &&
-                  !model.password.nullString &&
-                  model.confirmPassword.nullString &&
-                  !model.tel.nullString &&
-                  !model.verificationCode.nullString){
+        }else if (isValue(model.userName) &&
+                  isValue(model.password) &&
+                  isNull(model.confirmPassword) &&
+                  isValue(model.tel) &&
+                  isValue(model.verificationCode)){
             self.jobsToastErrMsg(@"Please confirm your password");
-        }else if (!model.userName.nullString &&
-                  !model.password.nullString &&
-                  !model.confirmPassword.nullString &&
-                  model.tel.nullString &&
-                  !model.verificationCode.nullString){
+        }else if (isValue(model.userName) &&
+                  isValue(model.password) &&
+                  isValue(model.confirmPassword) &&
+                  isNull(model.tel) &&
+                  isValue(model.verificationCode)){
             self.jobsToastErrMsg(@"Please enter your mobile phone number");
-        }else if (!model.userName.nullString &&
-                  !model.password.nullString &&
-                  !model.confirmPassword.nullString &&
-                  !model.tel.nullString &&
-                  model.verificationCode.nullString){
+        }else if (isValue(model.userName) &&
+                  isValue(model.password) &&
+                  isValue(model.confirmPassword) &&
+                  isValue(model.tel) &&
+                  isNull(model.verificationCode)){
             self.jobsToastErrMsg(@"Please enter the verification code");
         }else if ([self checkUserName:model.userName] ||
                   [self checkUserPassword:model.password] ||

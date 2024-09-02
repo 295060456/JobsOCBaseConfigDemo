@@ -12,8 +12,8 @@
 @interface JobsAppDoorForgotCodeContentView ()
 /// UI
 @property(nonatomic,strong)UILabel *titleLab;// 标题
-@property(nonatomic,strong)UIButton *backToLoginBtn;// 返回登录
-@property(nonatomic,strong)UIButton *contactCustomerServiceBtn;// 联系客服按钮
+@property(nonatomic,strong)BaseButton *backToLoginBtn;// 返回登录
+@property(nonatomic,strong)BaseButton *contactCustomerServiceBtn;// 联系客服按钮
 @property(nonatomic,strong)UILabel *subTitleLab;// 副标题
 @property(nonatomic,strong)JobsHotLabelWithSingleLine *hl;
 /// Data
@@ -78,41 +78,108 @@
     }return _titleLab;
 }
 
--(UIButton *)backToLoginBtn{
+-(BaseButton *)backToLoginBtn{
     if (!_backToLoginBtn) {
-        _backToLoginBtn = UIButton.new;
-        _backToLoginBtn.titleLabel.numberOfLines = 0;
-        _backToLoginBtn.backgroundColor = Cor1;
-        _backToLoginBtn.titleLabel.font = UIFontWeightMediumSize(13);
-        _backToLoginBtn.alpha = 0.7f;
-        _backToLoginBtn.normalTitleColor(Cor3);
-        _backToLoginBtn.normalTitle(Title1);
-        _backToLoginBtn.normalImage(JobsIMG(@"用户名称"));
-        [_backToLoginBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        @jobs_weakify(self)
+        _backToLoginBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                            background:nil
+                                            buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                         textAlignment:NSTextAlignmentCenter
+                                                      subTextAlignment:NSTextAlignmentCenter
+                                                           normalImage:JobsIMG(@"用户名称")
+                                                        highlightImage:nil
+                                                       attributedTitle:nil
+                                               selectedAttributedTitle:nil
+                                                    attributedSubtitle:nil
+                                                                 title:Title1
+                                                              subTitle:nil
+                                                             titleFont:UIFontWeightMediumSize(13)
+                                                          subTitleFont:nil
+                                                              titleCor:Cor3
+                                                           subTitleCor:nil
+                                                    titleLineBreakMode:NSLineBreakByWordWrapping
+                                                 subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                   baseBackgroundColor:Cor1
+                                                       backgroundImage:nil
+                                                          imagePadding:JobsWidth(8)
+                                                          titlePadding:JobsWidth(0)
+                                                        imagePlacement:NSDirectionalRectEdgeTop
+                                            contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                              contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                         contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                     cornerRadiusValue:JobsWidth(0)
+                                                       roundingCorners:UIRectCornerAllCorners
+                                                  roundingCornersRadii:CGSizeZero
+                                                        layerBorderCor:nil
+                                                           borderWidth:JobsWidth(0)
+                                                         primaryAction:nil
+                                            longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                           id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                       clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
             [self endEditing:YES];
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }];
+        _backToLoginBtn.alpha = 0.7f;
         [self addSubview:_backToLoginBtn];
         [_backToLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.bottom.equalTo(self);
             make.width.mas_equalTo(btnWidth);
         }];
         [self layoutIfNeeded];
-        [_backToLoginBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
-                                            imagePadding:JobsWidth(8)];
+        _backToLoginBtn.makeBtnTitleByShowingType(UILabelShowingType_05);
     }return _backToLoginBtn;
 }
 
--(UIButton *)contactCustomerServiceBtn{
+-(BaseButton *)contactCustomerServiceBtn{
     if (!_contactCustomerServiceBtn) {
-        _contactCustomerServiceBtn = UIButton.new;
-        _contactCustomerServiceBtn.normalImage(JobsIMG(JobsInternationalization(@"zaixiankefu_en")));
         @jobs_weakify(self)
-        [_contactCustomerServiceBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            NSLog(@"返回登录");
+        _contactCustomerServiceBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                                       background:nil
+                                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                                    textAlignment:NSTextAlignmentCenter
+                                                                 subTextAlignment:NSTextAlignmentCenter
+                                                                      normalImage:JobsIMG(@"zaixiankefu_en")
+                                                                   highlightImage:nil
+                                                                  attributedTitle:nil
+                                                          selectedAttributedTitle:nil
+                                                               attributedSubtitle:nil
+                                                                            title:nil
+                                                                         subTitle:nil
+                                                                        titleFont:nil
+                                                                     subTitleFont:nil
+                                                                         titleCor:nil
+                                                                      subTitleCor:nil
+                                                               titleLineBreakMode:NSLineBreakByWordWrapping
+                                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                              baseBackgroundColor:nil
+                                                                  backgroundImage:nil
+                                                                     imagePadding:JobsWidth(0)
+                                                                     titlePadding:JobsWidth(0)
+                                                                   imagePlacement:NSDirectionalRectEdgeNone
+                                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                                cornerRadiusValue:JobsWidth(0)
+                                                                  roundingCorners:UIRectCornerAllCorners
+                                                             roundingCornersRadii:CGSizeZero
+                                                                   layerBorderCor:nil
+                                                                      borderWidth:JobsWidth(0)
+                                                                    primaryAction:nil
+                                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                                      id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                                  clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
-//            if (self.customerContactModel.onlineUrl.customerAccount.nullString) {
+            if (self.objectBlock) self.objectBlock(x);
+            NSLog(@"返回登录");
+//            if (isNull(self.customerContactModel.onlineUrl.customerAccount)) {
 //                [self customerContact:nil];
 //            }else{
 //                [NSObject openURL:self.customerContactModel.onlineUrl.customerAccount];

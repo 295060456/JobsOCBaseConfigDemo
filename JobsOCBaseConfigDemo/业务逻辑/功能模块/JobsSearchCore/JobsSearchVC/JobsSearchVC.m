@@ -67,7 +67,7 @@
     [super viewDidLoad];
     self.setGKNav(nil);
     self.setGKNavBackBtn(nil);
-    self.gk_navRightBarButtonItem = JobsBarButtonItem(self.scanBtn);
+//    self.gk_navRightBarButtonItem = JobsBarButtonItem(self.scanBtn);
     self.getTabBar.hidden = YES;
     self.tableView.alpha = 1;
 }
@@ -143,7 +143,7 @@
 }
 
 -(void)cancelBtnEvent{
-    if (!self.titleStr.nullString) {
+    if (isValue(self.titleStr)) {
         if (self.tableView.mj_y == self.gk_navigationBar.mj_y) {
             [self goUpAndDown:NO];
         }
@@ -173,7 +173,7 @@
                      animations:^{
         @jobs_strongify(self)
         if (isUpAndDown) {//顶上去
-            if (!self.titleStr.nullString) {
+            if (isValue(self.titleStr)) {
                 self.gk_navigationBar.mj_h = 0;
                 self.gk_navBarAlpha = 0;
                 
@@ -182,7 +182,7 @@
                 self.tableView.mj_y = 0;
             }
         }else{//正常状态
-            if (!self.titleStr.nullString) {
+            if (isValue(self.titleStr)) {
                 self.gk_navigationBar.alpha = 1;
                 self.gk_navigationBar.mj_h = self.gk_navigationBarHeight;
             }
@@ -415,7 +415,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             make.left.right.equalTo(self.view);
             if (self.gk_navBarAlpha &&
                 !self.gk_navigationBar.hidden &&
-                self.titleStr.nullString) {//显示
+                isNull(self.titleStr)) {//显示
                 make.top.equalTo(self.gk_navigationBar.mas_bottom);
             }else{
                 make.top.equalTo(self.view);

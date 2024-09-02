@@ -22,7 +22,7 @@
                                   lottieName:(NSString *_Nullable)lottieName{
     // lottieName 存在才对LOTAnimationView及其相关控件进行创建
     LOTAnimationView *lottieView = nil;
-    if (!lottieName.nullString && lottieName) {
+    if (isValue(lottieName) && lottieName) {
         lottieView = [LOTAnimationView animationNamed:lottieName];
         [self addSubview:lottieView];
         lottieView.userInteractionEnabled = NO;

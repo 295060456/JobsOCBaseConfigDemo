@@ -11,9 +11,7 @@
 /// 依据路径创建数据库
 -(FMDatabase *)createDataBaseWithPath:(NSString *_Nullable)dbPath{
     // 数据库访问路径
-    if (dbPath.nullString) {
-        dbPath = [NSString.documentsDir stringByAppendingPathComponent:@"test.db"];
-    }
+    if (isNull(dbPath)) dbPath = NSString.documentsDir.addPathComponent(@"test.db");
     NSLog(@"!!!dbPath = %@",dbPath);
     // 创建对应路径下数据库
     return [FMDatabase databaseWithPath:dbPath];

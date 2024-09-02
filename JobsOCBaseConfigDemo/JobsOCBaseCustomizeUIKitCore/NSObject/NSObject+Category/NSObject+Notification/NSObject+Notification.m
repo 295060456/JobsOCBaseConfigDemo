@@ -11,9 +11,7 @@
 ///【监听所有通知】用 selector
 -(void)monitorNotification:(nonnull NSString *)notificationName
               withSelector:(nonnull SEL)selector{
-    if ([NSString isNullString:notificationName]) {
-        return;
-    }
+    if (isNull(notificationName)) return;
     JobsAddNotification(self,
                     @selector(selector),
                     notificationName,
@@ -22,7 +20,7 @@
 ///【监听所有通知】用 Block
 -(void)monitorNotification:(nonnull NSString *)notificationName
                  withBlock:(nonnull JobsReturnIDBySelectorBlock)actionBlock{
-    if ([NSString isNullString:notificationName]) return;
+    if (isNull(notificationName)) return;
     JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                 id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;

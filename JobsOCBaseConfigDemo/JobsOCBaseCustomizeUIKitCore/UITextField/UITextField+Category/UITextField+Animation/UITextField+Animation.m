@@ -17,7 +17,7 @@
 }
 /// 输入的为空，抖动动画
 -(void)isEmptyText{
-    if ([NSString isNullString:self.text]) {
+    if (isNull(self.text)) {
         [self shakeAnimationForView];
     }
 }

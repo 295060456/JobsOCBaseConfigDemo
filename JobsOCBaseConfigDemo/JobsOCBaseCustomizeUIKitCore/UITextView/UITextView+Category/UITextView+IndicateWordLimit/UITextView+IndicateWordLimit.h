@@ -72,8 +72,7 @@ NS_ASSUME_NONNULL_END
      
      NSString *resString = nil;
      //textField.text 有值 && string无值 ————> 删除操作
-     if (![NSString isNullString:textView.text] && [NSString isNullString:text]) {
-         
+     if (isValue(textView.text) && isNull(text)) {
          if (textView.text.length == 1) {
              resString = JobsInternationalization(@"");
          }else{
@@ -81,17 +80,20 @@ NS_ASSUME_NONNULL_END
          }
      }
      //textField.text 无值 && string有值 ————> 首字符输入
-     if ([NSString isNullString:textView.text] && ![NSString isNullString:text]) {
+ 
+     if (isNull(textView.text) && isValue(text)) {
          resString = text;
      }
      //textField.text 有值 && string有值 ————> 非首字符输入
-     if (![NSString isNullString:textView.text] && ![NSString isNullString:text]) {
+ 
+     if (isValue(textView.text) && isValue(text)) {
          resString = [textView.text stringByAppendingString:text];
      }
 
      NSLog(@"SSSresString = %@",resString);
      self.textView.currentWordNum = resString.length;//关键代码
-     if ([NSString isNullString:resString]) {
+ 
+     if (isNull(resString)) {
          [self.submitBtn setBackgroundImage:JobsIMG(@"填写邀请码——不可提交") forState:UIControlStateNormal];
          self.submitBtn.userInteractionEnabled = NO;
      }else{

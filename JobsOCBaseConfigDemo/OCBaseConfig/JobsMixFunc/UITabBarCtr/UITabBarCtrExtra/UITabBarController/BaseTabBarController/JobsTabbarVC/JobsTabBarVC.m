@@ -230,7 +230,7 @@ static dispatch_once_t onceToken;
         JobsTabBarItemConfig *config = nil;
         if(AppDelegate.tabBarItemConfigMutArr.count){
             config = (JobsTabBarItemConfig *)AppDelegate.tabBarItemConfigMutArr[index];
-        }return ![NSString isNullString:config.lottieName];
+        }return isValue(config.lottieName);
     };
 }
 /// ❤️关键方法❤️

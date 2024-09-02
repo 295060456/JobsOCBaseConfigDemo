@@ -152,7 +152,7 @@ callingMethodWithName:(nullable NSString *)methodName{
 /// 判断某个实例对象是否存在某个【不带参数的方法】
 +(BOOL)judgementObj:(nonnull NSObject *)obj
 existMethodWithName:(nullable NSString *)methodName{
-    if (!obj || [NSString isNullString:methodName]) {
+    if (!obj || isNull(methodName)) {
         return NO;
     }else{
         SEL sel = NSSelectorFromString(methodName);

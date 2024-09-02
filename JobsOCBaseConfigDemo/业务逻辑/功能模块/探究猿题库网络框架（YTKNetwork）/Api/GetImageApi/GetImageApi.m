@@ -56,8 +56,8 @@
 
 //-(NSString *)resumableDownloadPath{
 //    NSString *libPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-//    NSString *cachePath = [libPath stringByAppendingPathComponent:@"Caches"];
-//    NSString *filePath = [cachePath stringByAppendingPathComponent:_imageId];
+//    NSString *cachePath = libPath.addPathComponent(@"Caches");
+//    NSString *filePath = cachePath.addPathComponent(_imageId);
 //    return filePath;
 //}
 

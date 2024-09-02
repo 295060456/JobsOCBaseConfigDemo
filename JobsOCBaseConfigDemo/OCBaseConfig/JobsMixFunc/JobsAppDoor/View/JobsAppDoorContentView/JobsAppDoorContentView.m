@@ -117,7 +117,7 @@
 /// 手机验证码验证
 -(BOOL)checkTelePhoneNum:(NSString *)phone{
     /// 不为空且全为整数
-    if (!phone.nullString &&
+    if (isValue(phone) &&
         [phone isPureInt]) {
         return YES;
     }return NO;

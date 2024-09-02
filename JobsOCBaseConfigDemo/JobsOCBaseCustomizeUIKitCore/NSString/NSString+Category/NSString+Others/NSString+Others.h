@@ -20,8 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Others)
 #pragma mark —— URL相关
-/// 返回NSURL *
+/// 返回网址相关的NSURL *
 -(NSURL *_Nonnull)jobsUrl;
+/// 返回文件路径相关的NSURL *
+-(NSURL *_Nonnull)jobsFileUrl;
 ///  能否正常打开Url
 -(BOOL)jobsCanOpenUrl;
 /**
@@ -34,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(JobsReturnStringByIDBlock)toString;
 /// OC字符串拼接
 -(JobsReturnMutableStringByStringBlock _Nonnull)add;
+/// OC字符串路径拼接
+-(JobsReturnMutableStringByStringBlock _Nonnull)addPathComponent;
 /// OC字符串数组 转 OC字符串
 +(NSString *_Nonnull)toStrByStringArr:(NSArray <NSString *>*_Nonnull)arr;
 #pragma mark —— 自定义替换、裁剪

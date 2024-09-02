@@ -96,27 +96,22 @@
 /// @param replaceString 进行替换的备用文字资源
 +(NSString *)nullableString:(id)nullableString
               replaceString:(NSString *)replaceString{
+    
+    if (isNull(replaceString)) replaceString = JobsInternationalization(@"No Data");
+    if (isNull(nullableString)) nullableString = replaceString;
+    
     /// 只有NSNumber 和 NSString 这两种情况
-    /// 过滤特殊字符：空格
-    NSCharacterSet *whitespace = NSCharacterSet.whitespaceAndNewlineCharacterSet;
-    replaceString = [replaceString stringByTrimmingCharactersInSet:whitespace];//有空格，去除空格
-    if (replaceString == nil ||
-        replaceString == Nil ||
-        replaceString.length == 0) {
-        replaceString = JobsInternationalization(@"No Data");
-    }
-    if (nullableString == nil ||
-        nullableString == NULL ||
-        [nullableString isKindOfClass:NSNull.class]) {//判断空 或者 空对象
-        return replaceString;
-    }else if([nullableString isKindOfClass:NSString.class]){
+    if([nullableString isKindOfClass:NSString.class]){
         NSString *str = (NSString *)nullableString;
-        str = [str stringByTrimmingCharactersInSet:whitespace];//有空格，去除空格
+        /// 过滤特殊字符：空格
+        str = [str stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];//有空格，去除空格
         return str.length == 0 ? replaceString : str;
-    }else if ([nullableString isKindOfClass:NSNumber.class]){
-        NSNumber *b = (NSNumber *)nullableString;
-        return b.toString(nil).nullString ? replaceString : b.toString(nil);
-    }else return replaceString;
+    }
+    
+    if([nullableString isKindOfClass:NSNumber.class])
+        return isNull(toStringByID(nullableString)) ? replaceString : toStringByID(nullableString);
+    
+    return replaceString;
 }
 
 @end

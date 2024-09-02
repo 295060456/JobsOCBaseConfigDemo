@@ -47,7 +47,7 @@ static dispatch_once_t JobsFMDBMgrOnceToken;
 - (instancetype)init {
     if (self = [super init]) {
         NSString *docsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSString *dbPath = [docsPath stringByAppendingPathComponent:@"users.db"];
+        NSString *dbPath = docsPath.addPathComponent(@"users.db");
         self.databaseQueue = [FMDatabaseQueue databaseQueueWithPath:dbPath];
         [self createTable];
     }return self;

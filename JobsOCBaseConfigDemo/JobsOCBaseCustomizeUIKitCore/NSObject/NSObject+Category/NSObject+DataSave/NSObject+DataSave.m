@@ -17,23 +17,23 @@
          withDocumentsChildDir:(NSString *_Nullable)documentsChildDir
                   fileFullname:(NSString *_Nonnull)fileFullname
                          error:(NSError *__autoreleasing *)error{
-    // 文件夹路径
-    if ([NSString isNullString:documentsChildDir]) {
+    /// 文件夹路径
+    if (isNull(documentsChildDir)) {
         documentsChildDir = JobsInternationalization(@"");
     }
-    NSString *folderPath = [NSString stringWithFormat:@"%@/%@",NSString.documentsDir,documentsChildDir];
-    // 创建文件夹
+    NSString *folderPath = NSString.documentsDir.add(@"/").add(documentsChildDir);
+    /// 创建文件夹
     [FileFolderHandleTool createFoldByFolderUrl:folderPath error:error];
-    // 文件全名带后缀路径
-    NSString *localFileFullNameStr = [NSString stringWithFormat:@"%@/%@",folderPath,fileFullname];
-    // 在此文件夹下创建空白文件
+    /// 文件全名带后缀路径
+    NSString *localFileFullNameStr = folderPath.add(@"/").add(fileFullname);
+    /// 在此文件夹下创建空白文件
     BOOL k = [FileFolderHandleTool createFileWithFolderAtPath:localFileFullNameStr
                                                  contentsData:nil
                                                     overwrite:YES
                                                         error:error];
     BOOL Q = NO;
     if (k) {
-        //写文件。
+        /// 写文件。
         Q = [FileFolderHandleTool writeFileAtPath:localFileFullNameStr
                                           content:data
                                             error:error];

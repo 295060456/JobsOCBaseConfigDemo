@@ -14,7 +14,7 @@
 /// @param imgName 文件可以不强制要求带后缀名，系统会自动识别png文件
 static inline UIImage *__nullable JobsIMG(NSString *__nonnull imgName){
     UIImage *image = [UIImage imageNamed:imgName];
-    if(!image && !imgName.nullString){
+    if(!image && isValue(imgName)){
         NSLog(@"文件名为%@的图片获取失败，请检查",imgName);
     }return image;
 }
@@ -28,12 +28,12 @@ static inline NSString *__nullable JobsPathForResource(NSString *__nullable blue
                                                        NSString *__nullable bundle_folderName,
                                                        NSString *__nullable ofType){
     NSString *filePath = nil;
-    if ([NSString isNullString:blueFolderName]) {// 最外层是蓝色文件夹
+    if (isNull(blueFolderName)) {// 最外层是蓝色文件夹
         filePath = [NSBundle.mainBundle pathForResource:pathForResource
                                                  ofType:ofType
                                             inDirectory:blueFolderName];//蓝色文件夹下是bundle
         
-        if ([NSString isNullString:filePath]) {//蓝色文件夹下是蓝色文件夹
+        if (isNull(filePath)) {//蓝色文件夹下是蓝色文件夹
             filePath = blueFolderName;
         }
     }else{// 最外层是黄色文件夹
@@ -41,8 +41,8 @@ static inline NSString *__nullable JobsPathForResource(NSString *__nullable blue
                                                  ofType:ofType];
     }
     
-    if (![NSString isNullString:bundle_folderName]) {
-        filePath = [filePath stringByAppendingPathComponent:bundle_folderName];
+    if (isValue(bundle_folderName)) {
+        filePath = filePath.addPathComponent(bundle_folderName);
     }
     
     return filePath;
@@ -62,10 +62,9 @@ static inline NSString *__nullable JobsPathForBuddleIMG(NSString *__nullable blu
                                              @"bundle");
     //容错处理
     if (![fileFullNameWithSuffix containsString:@"."]) {//如果是其他格式资源请自带后缀名
-        fileFullNameWithSuffix = [fileFullNameWithSuffix stringByAppendingString:@".png"];
+        fileFullNameWithSuffix = fileFullNameWithSuffix.add(@".png");
     }
-    
-    filePath = [filePath stringByAppendingPathComponent:fileFullNameWithSuffix];
+    filePath = filePath.addPathComponent(fileFullNameWithSuffix);
     return filePath;
 }
 /// 读取自定义Bundle文件里面的图片 输出 UIImage *

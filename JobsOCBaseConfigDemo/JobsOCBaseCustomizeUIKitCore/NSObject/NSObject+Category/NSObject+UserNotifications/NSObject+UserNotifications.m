@@ -154,7 +154,7 @@
         notificationTrigger = [self notificationTriggerWithTimeInterval:10 repeats:NO];
     }
     
-    if ([NSString isNullString:identifier]) {
+    if (isNull(identifier)) {
         identifier = @"my_notification";
     }
     
@@ -176,7 +176,7 @@
         notificationCenter = self.notificationCenter;
     }
     
-    if ([NSString isNullString:identifier]) {
+    if (isNull(identifier)) {
         identifier = @"my_notification";
     }
     

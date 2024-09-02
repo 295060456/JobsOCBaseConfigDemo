@@ -43,7 +43,7 @@
         failCompletionHandlerBlock:(jobsByIDBlock _Nullable)failCompletionHandlerBlock{
     /// WKWebView默认禁止了跳转到appStore, 拨打电话, 唤起邮箱等一系列操作
     NSString *tel = dialFinishBackToApp ? @"telprompt://" : @"tel://";
-    [NSObject jobsOpenURL:[tel stringByAppendingString:telephoneNumber]
+    [NSObject jobsOpenURL:tel.add(telephoneNumber)
                   options:@{}
 successCompletionHandlerBlock:^{
         if (successCompletionHandlerBlock) successCompletionHandlerBlock(@1);
@@ -56,15 +56,17 @@ failCompletionHandlerBlock:^{
 /// 在iOS10更新后，跳转到系统设置的具体的子页面被禁用，只能跳转到系统设置根目录
 /// 但是苹果又更新了URLscheme，亲测不可用
 -(void)jobsPushToSysConfig{
-    [self jobsOpenURL:UIApplicationOpenSettingsURLString];
+    self.jobsOpenURL(UIApplicationOpenSettingsURLString);
 }
 #pragma mark —— 安全打开URL
 /// 软性打开URL：【不会处理打开成功和打开失败两种情况】如果URL有误则无法打开
--(void)jobsOpenURL:(id _Nullable)URLStr{
-    [self jobsOpenURL:URLStr
-              options:@{}
-successCompletionHandlerBlock:nil
-failCompletionHandlerBlock:nil];
+-(jobsByIDBlock)jobsOpenURL{
+    return ^(id _Nullable URLStr){
+        [self jobsOpenURL:URLStr
+                  options:@{}
+    successCompletionHandlerBlock:nil
+    failCompletionHandlerBlock:nil];
+    };
 }
 /// 软性打开URL：【只处理打开成功的情况】
 -(void)jobsOpenURL:(id _Nullable)URLStr
@@ -108,7 +110,7 @@ failCompletionHandlerBlock:(jobsByVoidBlock _Nullable)failCompletionHandlerBlock
 
     if ([URL isKindOfClass:NSString.class]) {
         NSString *url = (NSString *)URL;
-        if ([NSString isNullString:url]) {
+        if (isNull(url)) {
             self.jobsToastMsg(JobsInternationalization(@"URL为空，请检查！"));
             return NO;
         }else{

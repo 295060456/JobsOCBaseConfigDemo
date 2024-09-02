@@ -36,16 +36,15 @@
 
                 // 核心方法:截取最后2个字符，如果是“：”则进行参数拼接
                 NSString *methodName = config.alertBtnActionArr[i];
-                if ([NSString isNullString:methodName]) {
-                    if (alertVCBlock) {
-                        alertVCBlock(alertController);
-                    }return;
+                if (isNull(methodName)) {
+                    if (alertVCBlock) alertVCBlock(alertController);
+                    return;
                 }
                 NSMutableArray *parameters = nil;
                 if (config.parametersArr.count) {
                     parameters = config.parametersArr[i];
-                    if ([[methodName substringFromIndex:methodName.length - 1] isEqualToString:@":"]) {
-                        [parameters addObject:action];
+                    if ([methodName substringFromIndex:methodName.length - 1].isEqualToString(@":")) {
+                        parameters.add(action);
                     }
                 }
                 
@@ -83,7 +82,7 @@
 
                 // 核心方法:截取最后2个字符，如果是“：”则进行参数拼接
                 NSString *methodName = config.alertBtnActionArr[i];
-                if ([NSString isNullString:methodName]) {
+                if (isNull(methodName)) {
                     if (alertVCBlock) alertVCBlock(alertController);
                     return;
                 }

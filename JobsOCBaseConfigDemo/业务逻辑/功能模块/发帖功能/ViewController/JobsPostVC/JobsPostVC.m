@@ -68,7 +68,7 @@ UIViewModelProtocol_synthesize
     {
         JobsPostDelViewHeight =[JobsPostDelView viewSizeWithModel:nil].height;
         self.historyPhotoDataArr = [self.photoManager getLocalModelsInFileWithAddData:YES];
-        if (![NSString isNullString:JobsUserModel.sharedManager.postDraftURLStr]) {
+        if (isValue(JobsUserModel.sharedManager.postDraftURLStr)) {
             self.inputDataHistoryString = [FileFolderHandleTool filePath:JobsUserModel.sharedManager.postDraftURLStr
                                                                 fileType:TXT];
         }
@@ -142,7 +142,7 @@ UIViewModelProtocol_synthesize
 -(void)networking_checkHadRoleGET{}
 
 -(void)保留文字{
-    if (![NSString isNullString:self.inputDataString]) {
+    if (isValue(self.inputDataString)) {
         JobsUserModel.sharedManager.postDraftURLStr = [NSObject saveData:self.inputDataString
                                                    withDocumentsChildDir:JobsInternationalization(@"发帖草稿数据临时文件夹")
                                                             fileFullname:@"发帖草稿数据.txt"

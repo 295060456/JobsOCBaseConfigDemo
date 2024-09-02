@@ -28,15 +28,11 @@
         }return image;
     };
     
-    if ([NSString isNullString:name]) {
-        if (UIImageBlock_2) {
-            return UIImageBlock_2();
-        }return nil;
+    if (isNull(name)) {
+        if (UIImageBlock_2) return UIImageBlock_2();
     }else{
-        if (UIImageBlock_1) {
-           return UIImageBlock_1(name);
-        }return nil;
-    }
+        if (UIImageBlock_1) return UIImageBlock_1(name);
+    }return nil;
 }
 
 /*

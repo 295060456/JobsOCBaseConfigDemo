@@ -28,9 +28,7 @@
 }
 /// JSON 转 NSDictionary
 -(NSDictionary *)dictionaryWithJsonString{
-    if ([NSString isNullString:self]) {
-        return nil;
-    }
+    if (isNull(self)) return nil;
 //  https://www.wynter.wang/2019/02/15/ios%20%20%E5%A4%84%E7%90%86%E5%AF%BC%E8%87%B4json%E8%A7%A3%E6%9E%90%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6/
 //  特殊字符会导致解析失败
     NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
@@ -85,7 +83,7 @@
 ///【实例方法】解压缩字符串
 -(NSData *)compress{
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data 
+    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data
                                                    requiringSecureCoding:NO
                                                                    error:nil];
     return compressedData;
@@ -93,7 +91,7 @@
 ///【类方法】压缩字符串成NSData
 +(NSData *)compressString:(NSString *)string{
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data 
+    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data
                                                    requiringSecureCoding:NO
                                                                    error:nil];
     return compressedData;

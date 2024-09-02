@@ -51,7 +51,7 @@ JobsKey(_tipsTitle)
 @dynamic tipsTitle;
 -(NSString *)tipsTitle{
     NSString *TipsTitle = Jobs_getAssociatedObject(_tipsTitle);
-    if ([NSString isNullString:TipsTitle]) {
+    if (isNull(TipsTitle)) {
         TipsTitle = JobsInternationalization(@"快来将我填满吧");
         Jobs_setAssociatedRETAIN_NONATOMIC(_tipsTitle, TipsTitle)
     }return TipsTitle;

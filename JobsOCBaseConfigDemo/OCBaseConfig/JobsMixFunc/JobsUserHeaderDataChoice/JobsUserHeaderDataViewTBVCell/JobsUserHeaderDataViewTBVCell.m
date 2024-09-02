@@ -75,7 +75,7 @@
 -(UILabel *)titleLab{
     if (!_titleLab) {
         _titleLab = UILabel.new;
-        _titleLab.text = self.viewModel.textModel.text.nullString ? JobsInternationalization(@"请设置标题") : self.viewModel.textModel.text;
+        _titleLab.text = isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"请设置标题") : self.viewModel.textModel.text;
         _titleLab.textColor = self.viewModel.textModel.textCor;
         _titleLab.font = self.viewModel.textModel.font;
         _titleLab.textAlignment = NSTextAlignmentCenter;

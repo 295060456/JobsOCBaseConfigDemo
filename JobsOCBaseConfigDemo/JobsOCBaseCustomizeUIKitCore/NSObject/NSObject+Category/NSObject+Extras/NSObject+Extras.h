@@ -201,8 +201,6 @@ BaseProtocol
 -(jobsByBtnBlock _Nonnull)jobsBackBtnClickEvent;
 /// 打印YTKBaseRequest
 -(jobsByYTKBaseRequestBlock _Nullable)checkRequest;
-/// 判空【是空返回YES】
--(BOOL)nullString;
 /// 此功能的必要性：如果外界传入的数组是空，那么拿到的count是0，做-1操作就是-1，直接用for循环就会进入死循环
 -(void)jobsSafetyCycleFunc:(int)ceiling
                 cycleBlock:(jobsByIntBlock _Nullable)cycleBlock;
