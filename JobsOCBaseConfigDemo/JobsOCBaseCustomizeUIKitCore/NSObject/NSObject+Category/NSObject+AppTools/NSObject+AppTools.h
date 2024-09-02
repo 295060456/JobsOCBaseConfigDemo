@@ -34,8 +34,8 @@ AppToolsProtocol
 ,UITextViewDelegate
 >
 /// UI
-@property(nonatomic,strong)UIButton *联系客服;
-@property(nonatomic,strong)UIButton *立即注册;
+@property(nonatomic,strong)BaseButton *联系客服;
+@property(nonatomic,strong)BaseButton *立即注册;
 @property(nonatomic,strong)UILabel *separateLab;/// 分割线
 @property(nonatomic,strong)UITextView *connectionTipsTV;/// 承接富文本:如需幫助，請聯繫專屬客服
 /// Data

@@ -12,7 +12,7 @@
 /// 存数据（包括父类直到NSObject的所有属性）
 +(jobsByUserDefaultModelBlock)updateWithModel{
     return ^(UserDefaultModel *_Nonnull userDefaultModel) {
-        if (!isNull(userDefaultModel.key)) {
+        if (isValue(userDefaultModel.key)) {
             if (userDefaultModel.obj && ![userDefaultModel.obj isKindOfClass:NSNull.class]) {
                 // 步骤1: 将NSObject对象归档为二进制数据
                 NSError *error = nil;

@@ -42,17 +42,15 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface FileFolderHandleTool : NSObject
-
 /*
  1.Documents:只有用户生成的文件、其他数据及其他程序不能重新创建的文件，应该保存在/Documents目录下面，并将通过iCloud自动备份。
  2.Library:可以重新下载或者重新生成的数据应该保存在/Library /caches目录下面。举个例子，比如杂志、新闻、地图应用使用的数据库缓存文件和可下载内容应该保存到这个文件夹。
  3.tmp:只是临时使用的数据应该保存在/ tmp 文件夹，tmp目录不是你程序退出的时候就清空，是在你内存不足的情况系统会给你清空，看是网络缓存的数据还是本地存储的，如果本地存储你可以放在doc目录。
  尽管iCloud不会备份这些文件，但在应用使用完这些数据之后要注意随时删除，避免占用用户设备的空间。
  */
-
 #pragma mark —— 禁止App系统文件夹document同步
 /// 因为它会同步。苹果要求：可重复产生的数据不得进行同步,什么叫做可重复数据？这里最好禁止，否则会影响上架，被拒！
-+(void)banSysDocSynchronization;
++(jobsByVoidBlock)banSysDocSynchronization;
 #pragma mark - 创建Library/Caches下的文件夹📂路径 还未真正创建
 /// 以当前时间戳生成缓存路径 Library/Caches：存放缓存文件，iTunes不会备份此目录，此目录下文件不会在应用退出删除。一般存放体积比较大，不是特别重要的资源。
 /// @param folderNameEx 中间层自定义的文件夹
@@ -61,8 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
                             fileEx:(NSString * __nullable)fileNameEx;
 #pragma mark —— 创建文件（夹）
 /// 软性 仅仅是创建文件夹：返回是否创建成功
-+(BOOL)createDirectoryAtPath:(NSString *)path
-                       error:(NSError *__autoreleasing *)error;
++(BOOL)createDirectoryAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 /// 创建带文件夹的文件 返回是否创建带文件夹的文件成功状态
 /// @param path 文件创建的路径
 /// @param contentsData 写入文件的内容
@@ -77,21 +74,17 @@ NS_ASSUME_NONNULL_BEGIN
  * 不管他是否存在与否，强制性的创建出来
  * file_url是文件的全路径。外层拼接好，如果返回YES则file_url可用
  */
-+(BOOL)createFolderByFileUrl:(NSString *)file_url
-                       error:(NSError *__autoreleasing *)error;
++(BOOL)createFolderByFileUrl:(NSString *)file_url error:(NSError *__autoreleasing *)error;
 /* 硬性创建文件夹
 * 给定一个具体的精确到文件夹📂的路径地址
 * 不管他是否存在与否，强制性的创建出来
 * file_url是文件的全路径。外层拼接好，如果返回YES则file_url可用
 */
-+(BOOL)createFoldByFolderUrl:(NSString *)folder_url
-                       error:(NSError *__autoreleasing *)error;
++(BOOL)createFoldByFolderUrl:(NSString *)folder_url error:(NSError *__autoreleasing *)error;
 /// 获取文件创建的时间
-+(NSDate *)creationDateOfItemAtPath:(NSString *)path
-                              error:(NSError *__autoreleasing *)error;
++(NSDate *)creationDateOfItemAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 /// 获取文件修改的时间
-+(NSDate *)modificationDateOfItemAtPath:(NSString *)path
-                                  error:(NSError *__autoreleasing *)error;
++(NSDate *)modificationDateOfItemAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 #pragma mark —— 读取文件内容
 /// 给定一个NSBundle地址和文件类型，获取返回里面的一个实体文件 默认是以本App mainBundle 为路径
 /// @param bundleFileName 本App的mainBundle之下的Bundle实体名字
@@ -132,10 +125,9 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
     fileSuffix:(NSString *_Nullable)fileSuffix
          error:(NSError *__autoreleasing *)error;
 /// 删除文件（夹）
-+(BOOL)removeItemAtPath:(NSString *)path
-                  error:(NSError *__autoreleasing *)error;
++(BOOL)removeItemAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 /// 给定一个路径，删除旗下所有东西
-+(void)cleanFilesWithPath:(NSString *)PathStr;
++(jobsByStringBlock)cleanFilesWithPath;
 /// 清空Cashes文件夹
 +(BOOL)clearCachesDirectory;
 /// 清空temp文件夹
@@ -158,8 +150,8 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
 /// @param overwrite 当要移动到的文件路径文件存在，会移动失败，这里传入是否覆盖
 /// @param error 错误信息抛出
 +(BOOL)moveItemAtPath:(NSString *)path
-                toPath:(NSString *)toPath
-             overwrite:(BOOL)overwrite
+               toPath:(NSString *)toPath
+            overwrite:(BOOL)overwrite
                 error:(NSError *__autoreleasing *)error;
 #pragma mark —— 根据URL获取文件名
 /*参数1：文件路径
@@ -168,42 +160,35 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
 +(NSString *)fileNameAtPath:(NSString *)path
                      suffix:(BOOL)suffix;
 /// 获取文件所在的文件夹路径：删除最后一个路径节点
-+(NSString *)directoryAtPath:(NSString *)path;
++(JobsReturnStringByStringBlock)directoryAtPath;
 /// 根据文件路径获取文件扩展类型:
-+(NSString *)suffixAtPath:(NSString *)path;
++(JobsReturnStringByStringBlock)suffixAtPath;
 #pragma mark —— 判断文件（夹）是否存在
 /// 判断文件路径是否存在:
-+(BOOL)isExistsAtPath:(NSString *)path;
++(JobsReturnBOOLByStringBlock)isExistsAtPath;
 /// 判断路径是否为空（判空条件是文件大小为0，或者是文件夹下没有子文件）:
-+(BOOL)isEmptyItemAtPath:(NSString *)path
-                   error:(NSError *__autoreleasing *)error;
++(BOOL)isEmptyItemAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 /// 判断目录是否是文件夹：
-+(BOOL)isDirectoryAtPath:(NSString *)path
-                   error:(NSError *__autoreleasing *)error;
++(BOOL)isDirectoryAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 /// 判断目录是否是文件:
-+(BOOL)isFileAtPath:(NSString *)path
-              error:(NSError *__autoreleasing *)error;
-/// 判断目录是否可以执行:
-+(BOOL)isExecutableItemAtPath:(NSString *)path;
-/// 判断目录是否可读:
-+(BOOL)isReadableItemAtPath:(NSString *)path;
-/// 判断目录是否可写:
-+(BOOL)isWritableItemAtPath:(NSString *)path;
++(BOOL)isFileAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
+/// 判断目录是否可以执行
++(JobsReturnBOOLByStringBlock)isExecutableItemAtPath;
+/// 判断目录是否可读
++(JobsReturnBOOLByStringBlock)isReadableItemAtPath;
+/// 判断目录是否可写
++(JobsReturnBOOLByStringBlock)isWritableItemAtPath;
 #pragma mark —— 获取文件（夹）大小
 /// 获取文件大小（NSNumber）:
-+(NSNumber *)sizeOfItemAtPath:(NSString *)path
-                        error:(NSError *__autoreleasing *)error;
++(NSNumber *)sizeOfItemAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 ///获取文件夹大小（NSNumber）:
-+(NSNumber *)sizeOfDirectoryAtPath:(NSString *)path
-                             error:(NSError *__autoreleasing *)error;
++(NSNumber *)sizeOfDirectoryAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 ///获取文件大小（单位为字节）:
-+(NSString *)sizeFormattedOfItemAtPath:(NSString *)path
-                                 error:(NSError *__autoreleasing *)error;
++(NSString *)sizeFormattedOfItemAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 ///将文件大小格式化为字节
 +(NSString *)sizeFormatted:(NSNumber *)size;
 ///获取文件夹大小（单位为字节）:
-+(NSString *)sizeFormattedOfDirectoryAtPath:(NSString *)path
-                                      error:(NSError *__autoreleasing *)error;
++(NSString *)sizeFormattedOfDirectoryAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 #pragma mark —— 遍历文件夹(分为深遍历和浅遍历：)
 /**
  文件遍历
@@ -211,11 +196,10 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
  参数2：是否深遍历 (1. 浅遍历：返回当前目录下的所有文件和文件夹；
  2. 深遍历：返回当前目录下及子目录下的所有文件和文件夹)
  */
-+ (NSArray *)listFilesInDirectoryAtPath:(NSString *)path
-                                   deep:(BOOL)deep;
++(NSArray *)listFilesInDirectoryAtPath:(NSString *)path deep:(BOOL)deep;
 #pragma mark —— 系统相册相关
 /// 获取相册最新加载（录制、拍摄）的资源
-+(PHAsset *)gettingLastResource:(NSString *)Key;
++(JobsReturnAssetByStrBlock)gettingLastResource;
 /// 相册
 +(void)createAlbumFolder:(NSString *)folderName
        ifExitFolderBlock:(jobsByIDBlock)ifExitFolderBlock
@@ -224,15 +208,15 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
 +(void)createAlbumFolder:(NSString *)folderName
                     path:(NSString *)pathStr;
 /// 保存视频资源文件到指定的相册路径，这里是整个App名字的相册
-+(void)saveRes:(NSURL *)movieURL;
++(jobsByURLBlock)saveRes;
 /// 是否存在此相册判断逻辑依据 注意和 isExistsAtPath进行区分
-+(BOOL)isExistFolder:(NSString *)folderName;
++(JobsReturnBOOLByStringBlock)isExistFolder;
 /// 保存文件到系统默认的相册，image是要保存的图片
-+(void)saveImage:(UIImage *)image;
++(jobsByImageBlock)saveImage;
 /// 保存完成后调用的方法
 +(void)savedPhotoImage:(UIImage*)image
-didFinishSavingWithError: (NSError *)error
-           contextInfo: (void *)contextInfo;
+didFinishSavingWithError:(NSError *)error
+           contextInfo:(void *)contextInfo;
 /// 保存文件到系统默认的相册，videoPath为视频下载到本地之后的本地路径
 +(void)saveVideo:(NSString *)videoPath;
 /// 保存视频完成之后的回调
@@ -249,14 +233,13 @@ didFinishSavingWithError:(NSError *)error
 +(void)getAudioFromPHAsset:(PHAsset *)phAsset
                   complete:(jobsByIDBlock)completeBlock;
 /// AVAsset 转 NSData
-+(NSData *)AVAssetToData:(AVAsset *)asset;
++(JobsReturnDataByAssetBlock)AVAssetToData;
 #pragma mark —— 获取文件属性
 +(id)attributeOfItemAtPath:(NSString *)path
-                      forKey:(NSString *)key
+                    forKey:(NSString *)key
                      error:(NSError *__autoreleasing *)error;
 ///获取文件属性集合:
-+(NSDictionary *)attributesOfItemAtPath:(NSString *)path
-                                  error:(NSError *__autoreleasing *)error;
++(NSDictionary *)attributesOfItemAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 @end
 
 NS_ASSUME_NONNULL_END

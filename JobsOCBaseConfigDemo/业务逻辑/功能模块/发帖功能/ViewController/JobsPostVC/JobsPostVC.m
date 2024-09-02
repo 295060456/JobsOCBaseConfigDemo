@@ -15,7 +15,7 @@
 @property(nonatomic,strong)HXPhotoManager *photoManager;/// 选取图片的数据管理类
 @property(nonatomic,strong)JobsPostDelView *postDelView;/// 长按拖动的删除区域
 @property(nonatomic,strong)JobsTextView *textView;
-@property(nonatomic,strong)UIButton *releaseBtn;
+@property(nonatomic,strong)BaseButton *releaseBtn;
 @property(nonatomic,strong)UILabel *tipsLab;
 /// Data
 @property(nonatomic,strong)NSArray <HXPhotoModel *>*historyPhotoDataArr;/// 与之相对应的是self.photoManager.afterSelectedArray
@@ -148,7 +148,7 @@ UIViewModelProtocol_synthesize
                                                             fileFullname:@"发帖草稿数据.txt"
                                                                    error:nil];
     }else{
-        [FileFolderHandleTool cleanFilesWithPath:JobsUserModel.sharedManager.postDraftURLStr];
+        FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedManager.postDraftURLStr);
     }
     NSLog(@"%@",JobsUserModel.sharedManager.postDraftURLStr);
     [self.view hx_showLoadingHUDText:nil];
@@ -166,7 +166,7 @@ UIViewModelProtocol_synthesize
 }
 
 -(void)不保留文字{
-    [FileFolderHandleTool cleanFilesWithPath:JobsUserModel.sharedManager.postDraftURLStr];
+    FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedManager.postDraftURLStr);
     [self.photoManager deleteLocalModelsInFile];
     [self back:nil];
 }
@@ -328,7 +328,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
     }];
 }
 #pragma mark —— lazyLoad
--(UIButton *)releaseBtn{
+-(BaseButton *)releaseBtn{
     if (!_releaseBtn) {
         @jobs_weakify(self)
         _releaseBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil

@@ -15,6 +15,7 @@ typedef id _Nullable(^JobsReturnIDByStringBlock)(NSString *_Nullable data);
 typedef id _Nonnull(^JobsReturnIDBySaltStrBlock)(NSString *_Nullable salt);
 typedef id _Nullable(^JobsReturnIDBySELBlock)(SEL _Nullable data);
 typedef id _Nullable(^JobsReturnIDByGestureRecognizerBlock)(UIGestureRecognizer *_Nullable data);
+typedef id _Nullable(^JobsReturnIDByDicBlock)(NSDictionary  *_Nullable data);
 
 typedef __kindof UIView *_Nullable(^JobsReturnViewByVoidBlock)(void);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByClassBlock)(Class _Nonnull cls);
@@ -41,6 +42,10 @@ typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString *_Nullable 
 typedef NSMutableString *_Nullable(^JobsReturnMutableStringByStringBlock)(NSString *_Nullable data);
 typedef NSString *_Nullable(^JobsReturnStrByCorBlock)(UIColor *_Nullable data);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIntegerBlock)(NSInteger data);
+typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByVoidBlock)(void);
+
+typedef NSData *_Nullable(^JobsReturnDataByAssetBlock)(AVAsset *_Nullable asset);
+typedef PHAsset *_Nullable(^JobsReturnAssetByStrBlock)(NSString *_Nullable Key);
 
 typedef UIFont *_Nullable(^JobsReturnFontByVoidBlock)(void);
 typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);

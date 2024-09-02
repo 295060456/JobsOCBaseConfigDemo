@@ -848,8 +848,7 @@
                                                 fileName,
                                                 nil,
                                                 @"plist");
-        
-        if ([FileFolderHandleTool isExistsAtPath:filePath]) {
+        if (FileFolderHandleTool.isExistsAtPath(filePath)) {
             return [NSDictionary.alloc initWithContentsOfFile:filePath];
         }return (NSDictionary *)nil;
     };

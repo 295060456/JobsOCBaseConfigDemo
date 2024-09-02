@@ -6,13 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIFont (Extras)
-
-+(NSMutableArray *)getAvailableFont;/// 打印全员字体
-+(NSMutableArray <NSString *>*)foreignAidFontName;/// 打印外援字体
+/// 打印全员字体
++(JobsReturnMutableArrayByVoidBlock _Nonnull)getAvailableFont;
+/// 打印外援字体
++(JobsReturnMutableArrayByVoidBlock _Nonnull)foreignAidFontName;
 
 @end
 

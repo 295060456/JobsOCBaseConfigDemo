@@ -15,8 +15,8 @@
  插件机制
  证书设置
  */
-#define JobsNetworkingPrepare NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],[ZBRequestManager networkReachability]);\
-DataManager.sharedInstance.tag = [NSString stringWithFormat:@"%@_%@",ReuseIdentifier,NSStringFromSelector(_cmd)];\
+#define JobsNetworkingPrepare NSLog(@"当前是否有网：%d 状态：%ld",ZBRequestManager.isNetworkReachable,ZBRequestManager.networkReachability);\
+DataManager.sharedInstance.tag = ReuseIdentifier.add(@"_").add(NSStringFromSelector(_cmd));\
 
 NS_ASSUME_NONNULL_BEGIN
 

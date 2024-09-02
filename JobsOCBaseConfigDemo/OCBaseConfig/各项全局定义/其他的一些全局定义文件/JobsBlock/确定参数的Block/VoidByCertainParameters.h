@@ -11,7 +11,8 @@
 #pragma mark —— 单形参
 typedef void(^jobsByVoidBlock)(void);
 
-typedef void(^jobsByRunLoopBlock)(NSRunLoop * _Nullable data);
+typedef void(^jobsByURLBlock)(NSURL *_Nullable data);
+typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);
 typedef void(^jobsByLayoutAttributeBlock)(NSLayoutAttribute data);
 typedef void(^jobsByIDBlock)(id _Nullable data);
 typedef void(^jobsByDataBlock)(NSData *_Nullable data);

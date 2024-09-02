@@ -10,7 +10,7 @@
 
 @interface JobsAppDoorInputViewBaseStyle_8 ()
 /// UI
-@property(nonatomic,strong)UIButton *securityModelBtn;
+@property(nonatomic,strong)BaseButton *securityModelBtn;
 @property(nonatomic,strong)ZYTextField *textField;
 @property(nonatomic,strong)UILabel *titleLab;
 /// Data
@@ -105,7 +105,7 @@
     return _textField.text;
 }
 #pragma mark —— lazyLoad
--(UIButton *)securityModelBtn{
+-(BaseButton *)securityModelBtn{
     if (!_securityModelBtn) {
         @jobs_weakify(self)
         _securityModelBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil

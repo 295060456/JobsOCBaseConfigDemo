@@ -1176,7 +1176,7 @@ NSObject <|-- BaseProtocol
 
 ```objective-c
 -(void)保留文字{
-    if (![NSString isNullString:self.inputDataString]) {
+    if (isValue(self.inputDataString)) {
         JobsUserModel.sharedManager.postDraftURLStr = [NSObject saveData:self.inputDataString
                                                    withDocumentsChildDir:JobsInternationalization(@"发帖草稿数据临时文件夹")
                                                             fileFullname:@"发帖草稿数据.txt"
@@ -3297,7 +3297,7 @@ static const uint32_t kSequenceBits = 12;
   ```objective-c
   +(jobsByUserDefaultModelBlock)updateWithModel{
       return ^(UserDefaultModel *_Nonnull userDefaultModel) {
-          if (![NSString isNullString:userDefaultModel.key]) {
+          if (isValue(userDefaultModel.key)) {
               if (userDefaultModel.obj && ![userDefaultModel.obj isKindOfClass:NSNull.class]) {
                   // 步骤1: 将NSObject对象归档为二进制数据
                   NSError *error = nil;
@@ -9983,10 +9983,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               JobsBaseCollectionViewCell *cell = [JobsBaseCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
               cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
               NSString *urlStr = @"";
-  //            if (![NSString isNullString:self.dataArr[indexPath.item].url] &&
-  //                ![NSString isNullString:self.readUserInfo.resourcesAddress] ) {
-  //                urlStr = [self.readUserInfo.resourcesAddress stringByAppendingString:self.dataArr[indexPath.item].url];
-  //            }
               
               [cell.backgroundImageView sd_setImageWithURL:urlStr.jobsUrl
                                           placeholderImage:self.dataMutArr[indexPath.item]];
