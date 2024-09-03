@@ -960,7 +960,7 @@ NSObject <|-- BaseProtocol
     ```objective-c
     static inline CGFloat JobsTopSafeAreaHeight(void){
         if (@available(iOS 11.0, *)) {
-            return jobsGetMainWindow().safeAreaInsets.top;
+            return NSObject.mainWindow().safeAreaInsets.top;
         } else return 0.f;
     }
     ```
@@ -970,7 +970,7 @@ NSObject <|-- BaseProtocol
     ```objective-c
     static inline CGFloat JobsBottomSafeAreaHeight(void){
         if (@available(iOS 11.0, *)) {
-            return jobsGetMainWindow().safeAreaInsets.bottom;
+            return NSObject.mainWindow().safeAreaInsets.bottom;
         } else return 0.f;
     }
     ```
@@ -983,7 +983,7 @@ NSObject <|-- BaseProtocol
     static inline CGFloat JobsRectOfStatusbar(void){
         SuppressWdeprecatedDeclarationsWarning(
             if (@available(iOS 13.0, *)){
-                UIStatusBarManager *statusBarManager = jobsGetMainWindow().windowScene.statusBarManager;
+                UIStatusBarManager *statusBarManager = NSObject.mainWindow().windowScene.statusBarManager;
                 return statusBarManager.statusBarHidden ? 0 : statusBarManager.statusBarFrame.size.height;
             }else return UIApplication.sharedApplication.statusBarFrame.size.height;);
     }
@@ -992,7 +992,7 @@ NSObject <|-- BaseProtocol
   * ```objective-c
     static inline CGFloat JobsStatusBarHeight(void){
         if (@available(iOS 11.0, *)) {
-            return jobsGetMainWindow().safeAreaInsets.top;
+            return NSObject.mainWindow().safeAreaInsets.top;
         } else return JobsRectOfStatusbar();
     }
     ```
@@ -1846,10 +1846,6 @@ NSObject <|-- BaseProtocol
     }
     ```
 
-    ```objective-c
-    static inline UIWindow *_Nullable jobsGetMainWindowBefore13(void);
-    ```
-
   * 获取<font color=blue>**iOS 13**</font>之后的 **window**
 
     ```objective-c
@@ -1875,20 +1871,23 @@ NSObject <|-- BaseProtocol
     }
     ```
 
-    ```objective-c
-    static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void);
-    ```
-
   * 获取全系统是的 **window**
 
-    ```objective-c
-    static inline UIWindow *_Nullable jobsGetMainWindow(void){
-        return UIDevice.currentDevice.systemVersion.floatValue >= 13.0 ? jobsGetMainWindowAfter13() : jobsGetMainWindowBefore13();
-    }
-    ```
+    `@implementation NSObject (Extras)`
 
     ```objective-c
-    static inline UIWindow *_Nullable jobsGetMainWindow(void);
+    +(JobsReturnWindowByVoidBlock _Nonnull)mainWindow{
+        return ^__kindof UIWindow *_Nullable(){
+            UIWindow *mainWindowBefore13 = jobsGetMainWindowBefore13().landscape;
+            UIWindow *mainWindowAfter13 = jobsGetMainWindowAfter13().landscape;
+            UIWindow *resultWindow = UIDevice.currentDevice.systemVersion.floatValue >= 13.0 ? mainWindowAfter13 : mainWindowBefore13;
+            
+            if(resultWindow) return resultWindow;
+            if(mainWindowBefore13) return mainWindowBefore13;
+            if(mainWindowAfter13) return mainWindowAfter13;
+            return nil;
+        };
+    }
     ```
 
   * 获取一个有Size的 **window**
@@ -1896,13 +1895,9 @@ NSObject <|-- BaseProtocol
     ```objective-c
     static inline UIWindow *_Nullable jobsGetMainWindowWithSize(void){
         UIWindow *window = nil;
-        window = jobsGetMainWindow();
+        window = NSObject.mainWindow();
         return CGSizeEqualToSize(CGSizeZero, window.size) ? jobsGetMainWindowBefore13() : window;
     }
-    ```
-
-    ```objective-c
-    static inline UIWindow *_Nullable jobsGetMainWindowWithSize(void);
     ```
 
   * 获取 **keyWindowScene**<font color=blue>**iOS 13**</font>版本后可用
@@ -1916,9 +1911,6 @@ NSObject <|-- BaseProtocol
     }
     ```
     
-    ```objective-c
-    static inline UIWindowScene *_Nullable jobsGetkeyWindowScene(void);
-    ```
 
 * 寻找**AppDelegate**
 
@@ -1928,17 +1920,13 @@ NSObject <|-- BaseProtocol
     }
     ```
 
-    ```objective-c
-    getSysAppDelegate();
-    ```
-
   * ```objective-c
     AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会崩溃
     @interface AppDelegate ()
-    
+  
     @end
     ```
-
+  
     ```c
     extern AppDelegate *appDelegate;
     ```
@@ -1952,10 +1940,6 @@ NSObject <|-- BaseProtocol
             sceneDelegate = UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
         }return sceneDelegate;
     }
-    ```
-  
-    ```objective-c
-    getSysSceneDelegate();
     ```
   
 * <font color=red>**读写用户信息**</font>
@@ -4530,7 +4514,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
             @jobs_strongify(self)
             self.popupParameter.dragEnable = YES;
             self.popupParameter.disuseBackgroundTouchHide = YES;/// 禁止点击背景消失弹框
-            [view tf_showSlide:jobsGetMainWindow()
+            [view tf_showSlide:NSObject.mainWindow()
                      direction:PopupDirectionContainerCenter
                     popupParam:self.popupParameter];
         };
@@ -4540,7 +4524,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         return ^(UIView *_Nonnull view) {
             @jobs_strongify(self)
-            [view tf_showSlide:jobsGetMainWindow()
+            [view tf_showSlide:NSObject.mainWindow()
                      direction:PopupDirectionContainerCenter
                     popupParam:self.tipsParameter];
         };
