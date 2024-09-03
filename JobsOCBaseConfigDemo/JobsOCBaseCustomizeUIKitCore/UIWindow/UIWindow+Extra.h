@@ -10,6 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIWindow (Extra)
+/// 横屏模式下的Window（宽高互换）
+-(__kindof UIWindow *)landscape;
 
 @end
 

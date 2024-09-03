@@ -126,7 +126,7 @@
     _userInfoBtn.jobsResetAttributedTitle([NSMutableAttributedString.alloc initWithString:self.firstCommentModel.nickname
                                                                                attributes:@{NSFontAttributeName: JobsCommentConfig.sharedInstance.titleFont,
                                                                                             NSForegroundColorAttributeName: JobsCommentConfig.sharedInstance.titleCor}]);
-    _userInfoBtn.jobsResetAttributedSubtitle([NSMutableAttributedString.alloc initWithString:self.self.firstCommentModel.content
+    _userInfoBtn.jobsResetAttributedSubtitle([NSMutableAttributedString.alloc initWithString:self.firstCommentModel.content
                                                                                   attributes:@{NSFontAttributeName: JobsCommentConfig.sharedInstance.subTitleFont,
                                                                                                NSForegroundColorAttributeName: JobsCommentConfig.sharedInstance.subTitleCor}]);
     _userInfoBtn.makeBtnTitleByShowingType(UILabelShowingType_03);

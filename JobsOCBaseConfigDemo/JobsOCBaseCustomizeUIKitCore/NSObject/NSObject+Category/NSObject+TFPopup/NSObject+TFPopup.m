@@ -11,7 +11,7 @@
 #pragma mark —— 弹出提示框
 -(jobsByStringBlock _Nonnull)toastMsg{
     return ^(NSString *_Nullable msg) {
-        [TFPopupToast tf_show:jobsGetMainWindow()
+        [TFPopupToast tf_show:NSObject.mainWindow()
                           msg:msg
                 animationType:TFAnimationTypeScale];
     };
@@ -34,7 +34,7 @@
                         offset:CGPointZero
                     popupParam:self.popupParameter];
         }else{
-            [view tf_showNormal:jobsGetMainWindow()
+            [view tf_showNormal:NSObject.mainWindow()
                        animated:YES];
         }
     };
@@ -43,7 +43,7 @@
 -(void)popupShowScaleWithView:(UIView __kindof *_Nonnull)view
                popupParameter:(TFPopupParam *_Nullable)popupParameter{
     if (popupParameter) {
-        [view tf_showNormal:jobsGetMainWindow() popupParam:popupParameter];
+        [view tf_showNormal:NSObject.mainWindow() popupParam:popupParameter];
     }else{
         self.popupShowScaleWithView(view);
     }
@@ -59,7 +59,7 @@
                      direction:popupParameter.bubbleDirection
                     popupParam:popupParameter];
         }else{
-            [view tf_showSlide:jobsGetMainWindow()
+            [view tf_showSlide:NSObject.mainWindow()
                      direction:popupParameter.bubbleDirection
                     popupParam:popupParameter];
         }
@@ -74,7 +74,7 @@
                  direction:popupParameter.bubbleDirection
                 popupParam:popupParameter];
     }else{
-        [view tf_showSlide:jobsGetMainWindow()
+        [view tf_showSlide:NSObject.mainWindow()
                  direction:popupParameter.bubbleDirection
                 popupParam:popupParameter];
     }
@@ -87,7 +87,7 @@
         @jobs_strongify(self)
         self.popupParameter.dragEnable = YES;
         self.popupParameter.disuseBackgroundTouchHide = YES;/// 禁止点击背景消失弹框
-        [view tf_showSlide:jobsGetMainWindow()
+        [view tf_showSlide:NSObject.mainWindow()
                  direction:PopupDirectionContainerCenter
                 popupParam:self.popupParameter];
     };
@@ -97,7 +97,7 @@
     @jobs_weakify(self)
     return ^(UIView *_Nonnull view) {
         @jobs_strongify(self)
-        [view tf_showSlide:jobsGetMainWindow()
+        [view tf_showSlide:NSObject.mainWindow()
                  direction:PopupDirectionContainerCenter
                 popupParam:self.tipsParameter];
     };

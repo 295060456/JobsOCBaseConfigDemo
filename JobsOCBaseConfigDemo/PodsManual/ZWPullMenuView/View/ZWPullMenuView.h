@@ -7,65 +7,49 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "NSObject+Extras.h"
+
+#import "ZWPullMenuCell.h"
 #import "ZWPullMenuModel.h"
 #import "ZWPullMenuConfig.h"
+
 NS_ASSUME_NONNULL_BEGIN
-//selected
-typedef void(^BlockSelectedMenu)(NSInteger menuRow);
+
+typedef void(^BlockSelectedMenu)(NSInteger menuRow);//selected
+
 @interface ZWPullMenuView : UIView
-/**
- *  文字
- */
+<
+UITableViewDelegate,
+UITableViewDataSource
+>
+/// 文字
 @property (nonatomic, copy) NSArray *titleArray;
-/**
- *  图片
- */
+/// 图片
 @property (nonatomic, copy) NSArray *imageArray;
-/** 
- *  图文Model
- */
+/// 图文Model
 @property (nonatomic, copy) NSArray<ZWPullMenuModel *> *menuArray;
-/**
- *  相关配置
- */
+/// 相关配置
 @property (nonatomic, strong) ZWPullMenuConfig *zw_menuConfg;
-/**
- *  蒙层背景color
- */
+/// 蒙层背景color
 @property (nonatomic, strong) UIColor *coverBgColor;
-/**
- *  主样式color
- */
+/// 主样式color
 @property (nonatomic, strong) UIColor *menuBgColor;
-/**
- *  线条颜色
- */
+/// 线条颜色
 @property (nonatomic, strong) UIColor *lineColor;
-/**
- *  cel高度
- */
+/// cell高度
 @property (nonatomic, assign) CGFloat menuCellHeight;
-/**
- *  table最大高度限制
- *  默认：5 * cellHeight
- */
+/// table最大高度限制
+/// 默认：5 * cellHeight
 @property (nonatomic, assign) CGFloat menuMaxHeight;
-/** 
- *  小三角高度
- *  45°等腰三角形
- */
+/// 小三角高度
+/// 45°等腰三角形
 @property (nonatomic, assign) CGFloat triangleHeight;
-/**
- *  调整使下拉优先 当向下偏转屏幕距离足够，优先向下偏转
- */
+/// 调整使下拉优先 当向下偏转屏幕距离足够，优先向下偏转
 @property (nonatomic, assign) BOOL zw_adjustPullDown;
-/** 
- *  pullMenu样式
- */
+/// pullMenu样式
 @property (nonatomic, assign) ZWPullMenuStyle zwPullMenuStyle;
-/**
- *  click
- */
+/// click
 @property (nonatomic, copy) BlockSelectedMenu blockSelectedMenu;
 /**
  *  anchorView：下拉依赖视图[推荐初始化]
@@ -91,5 +75,7 @@ typedef void(^BlockSelectedMenu)(NSInteger menuRow);
 + (instancetype)pullMenuAnchorPoint:(CGPoint)anchorPoint titleArray:(nullable NSArray *)titleArray;
 + (instancetype)pullMenuAnchorPoint:(CGPoint)anchorPoint titleArray:(nullable NSArray *)titleArray imageArray:(nullable NSArray *)imageArray;
 + (instancetype)pullMenuAnchorPoint:(CGPoint)anchorPoint menuArray:(nullable NSArray<ZWPullMenuModel *> *)menuArray;
+
 @end
+
 NS_ASSUME_NONNULL_END

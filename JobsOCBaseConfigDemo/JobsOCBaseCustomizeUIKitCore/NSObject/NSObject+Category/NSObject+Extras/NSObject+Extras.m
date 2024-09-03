@@ -63,7 +63,7 @@
 }
 /// 获得当前的控制器
 -(__kindof UIViewController *_Nullable)getCurrentViewController{
-    return self.getCurrentViewControllerByRootVC(jobsGetMainWindow().rootViewController);
+    return self.getCurrentViewControllerByRootVC(NSObject.mainWindow().rootViewController);
 }
 /// 获得当前控制器的根控制器
 -(JobsReturnVCByVC _Nullable)getCurrentViewControllerByRootVC{
@@ -148,6 +148,29 @@
                     context:nil];
 }
 #pragma mark —— 功能性的
+/**
+ 注意：有些时候UIApplication.sharedApplication.keyWindow获取到的window有frame，而windowScene.windows.firstObject获取到的window没有frame
+ 
+ 在某些情况下，UIApplication.sharedApplication.keyWindow和windowScene.windows.firstObject获取到的窗口可能会表现出不同的行为，其中一个有frame属性，而另一个没有，这可能涉及到应用程序的窗口层次结构和窗口的状态。
+
+ UIApplication.sharedApplication.keyWindow是老的方式来获取主窗口，通常在单窗口应用程序中使用。这个方法返回的窗口通常是一个UIWindow的实例，并且它在应用程序的整个生命周期内都是可用的，因此它通常具有frame属性，用来表示窗口的位置和大小。
+
+ windowScene.windows.firstObject用于在多窗口应用程序中获取主窗口或当前窗口。由于多窗口应用程序具有更复杂的窗口管理，不同的窗口可能处于不同的状态，有些窗口可能在某些情况下没有frame属性。这可能是因为窗口尚未完成初始化或还没有显示在屏幕上。在这种情况下，您可以等到窗口完成初始化并显示后再访问其frame属性。
+
+ 总之，要处理多窗口应用程序中窗口的不同状态，您应该确保在访问窗口属性之前进行适当的检查，以确保窗口已经准备好并且具有所需的属性。这可以通过在适当的时机监听窗口的状态变化来实现。
+ */
++(JobsReturnWindowByVoidBlock _Nonnull)mainWindow{
+    return ^__kindof UIWindow *_Nullable(){
+        UIWindow *mainWindowBefore13 = jobsGetMainWindowBefore13().landscape;
+        UIWindow *mainWindowAfter13 = jobsGetMainWindowAfter13().landscape;
+        UIWindow *resultWindow = UIDevice.currentDevice.systemVersion.floatValue >= 13.0 ? mainWindowAfter13 : mainWindowBefore13;
+        
+        if(resultWindow) return resultWindow;
+        if(mainWindowBefore13) return mainWindowBefore13;
+        if(mainWindowAfter13) return mainWindowAfter13;
+        return nil;
+    };
+}
 /// 使用指定的图像（UIImage）作为颜色的填充图案。
 /// 这个方法的作用是生成一个基于图像的颜色，这个颜色在视图或图层上会以平铺的方式重复显示指定的图像。
 -(JobsReturnColorByImageBlock _Nonnull)byPatternImage{
@@ -395,7 +418,7 @@
         for (id obj in data) {// 系统Api提供的基础对象元素
             if ([obj isKindOfClass:NSNumber.class] ||
                 [obj isKindOfClass:NSString.class]) {
-                if ([[obj stringValue] containsString:keywords]) {
+                if ([obj stringValue].containsString(keywords)) {
                     resMutSet.add(obj);
                 }
             }else{// 自定义的对象
@@ -405,13 +428,13 @@
                     switch (searchStrategy) {
                         case JobsSearchStrategy_Accurate:{
                             /// 精确查询
-                            if ([[customObj.valueForKeyBlock(str) stringValue].lowercaseString containsString:keywords.lowercaseString]) {
+                            if ([customObj.valueForKeyBlock(str) stringValue].lowercaseString.containsString(keywords.lowercaseString)) {
                                 resMutSet.add(customObj);
                             }
                         }break;
                         case JobsSearchStrategy_Fuzzy:{
                             /// 模糊查询
-                            if ([[customObj.valueForKeyBlock(str) stringValue] containsString:keywords]) {
+                            if ([customObj.valueForKeyBlock(str) stringValue].containsString(keywords)) {
                                 resMutSet.add(customObj);
                             }
                         }break;
@@ -431,7 +454,7 @@
             /// Key-Value，value包含关键词则存储对外输出
             if ([[obj stringValue] containsString:keywords]) {
                 /// 用Set保证对外输出的唯一性
-                [resMutSet addObject:obj];
+                resMutSet.add(obj);
             }
         }];
     }else if([data isKindOfClass:NSArray.class] ||
@@ -626,13 +649,13 @@
                                             data.count * [JobsDropDownListTBVCell cellHeightWithModel:Nil]);
     }
     
-    [jobsGetMainWindow() addSubview:dropDownListView];
+    [NSObject.mainWindow() addSubview:dropDownListView];
     return dropDownListView;
 }
 /// iOS 获取任意控件在屏幕中的坐标
 -(CGRect)getWindowFrameByView:(UIView *_Nonnull)view{
     // 将rect由rect所在视图转换到目标视图view中，返回在目标视图view中的rect
-    CGRect rect = [view convertRect:view.bounds toView:jobsGetMainWindow()];
+    CGRect rect = [view convertRect:view.bounds toView:NSObject.mainWindow()];
     return rect;
     /**
      类似的：

@@ -17,6 +17,7 @@ typedef id _Nullable(^JobsReturnIDBySELBlock)(SEL _Nullable data);
 typedef id _Nullable(^JobsReturnIDByGestureRecognizerBlock)(UIGestureRecognizer *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByDicBlock)(NSDictionary  *_Nullable data);
 
+typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByVoidBlock)(void);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByVoidBlock)(void);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByClassBlock)(Class _Nonnull cls);
 typedef __kindof UIBarButtonItem *_Nullable(^JobsReturnBarButtonItemByViewBlock)(__kindof UIView *_Nullable view);
@@ -87,6 +88,7 @@ typedef CGSize(^JobsReturnCGSizeByIDBlock)(id _Nullable data);
 
 typedef CGRect(^JobsReturnCGRectByVoidBlock)(void);
 typedef CGRect(^JobsReturnCGRectByIDBlock)(id _Nullable data);
+typedef CGRect(^JobsReturnRectByViewBlock)(__kindof UIView *_Nonnull data);
 typedef CGRect(^JobsReturnCGRectByCGPointBlock)(CGPoint data);
 typedef CGRect(^JobsReturnCGRectByCGSizeBlock)(CGSize data);
 typedef CGRect(^JobsReturnCGRectByCGFloatBlock)(CGFloat data);

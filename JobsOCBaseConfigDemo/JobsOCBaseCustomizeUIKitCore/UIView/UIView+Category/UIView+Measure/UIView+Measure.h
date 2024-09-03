@@ -12,6 +12,18 @@
 
 @class UIViewModel;
 
+static inline CGRect exchangeWidthAndHeight(CGRect frame){
+    CGFloat width = frame.size.width;
+    CGFloat height = frame.size.height;
+    return CGRectMake(frame.origin.x, frame.origin.y, height, width);
+}
+
+static inline CGRect exchangeXAndY(CGRect frame){
+    CGFloat x = frame.origin.x;
+    CGFloat y = frame.origin.y;
+    return CGRectMake(y, x, frame.size.width, frame.size.height);
+}
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (Measure) <BaseViewProtocol>
@@ -28,6 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat bottom;
 @property(nonatomic,assign)CGSize size;
 @property(nonatomic,assign)CGPoint origin;
+#pragma mark —— 交换宽高
+-(JobsReturnCGRectByVoidBlock)exchangeWidthAndHeight;
+#pragma mark —— 交换 X 和 Y
+-(JobsReturnCGRectByVoidBlock)exchangeXAndY;
 #pragma mark —— UIView
 /// 重设Frame
 -(JobsReturnCGRectByCGFloatBlock _Nullable)resetOriginX;

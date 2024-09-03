@@ -7,12 +7,9 @@
 //
 
 #import "ZWPullMenuView.h"
-#import "ZWPullMenuCell.h"
-#import "ZWPullMenuModel.h"
+
 
 @interface ZWPullMenuView ()
-<UITableViewDelegate,
-UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *contentView;
 /** list*/
@@ -21,13 +18,13 @@ UITableViewDataSource>
 @property (nonatomic, assign) CGRect anchorRect;
 
 @end
+
 @implementation ZWPullMenuView
+
 -(instancetype)init{
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         [self configUI];
-    }
-    return self;
+    }return self;
 }
 #pragma mark - config
 - (void)configUI{
@@ -51,9 +48,11 @@ UITableViewDataSource>
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.menuArray.count;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.menuCellHeight;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZWPullMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZWPullMenuCell"
                                                             forIndexPath:indexPath];
@@ -65,6 +64,7 @@ UITableViewDataSource>
     cell.isFinalCell = indexPath.row == (self.menuArray.count - 1);
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //取消点击效果
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -73,6 +73,7 @@ UITableViewDataSource>
     }
     [self animateRemoveView];
 }
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self animateRemoveView];
 }
@@ -94,6 +95,7 @@ UITableViewDataSource>
         [self removeFromSuperview];
     }];
 }
+
 - (CGFloat)cacuateCellWidth{
     __block CGFloat maxTitleWidth = 0;
     [self.menuArray enumerateObjectsUsingBlock:^(ZWPullMenuModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -107,6 +109,7 @@ UITableViewDataSource>
     }];
     return maxTitleWidth + self.zw_menuConfg.zw_menuContentMargin * 2;
 }
+
 - (void)handleMenuModelArray:(NSArray *)array{
     NSMutableArray *tempArray = [NSMutableArray array];
     [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -233,12 +236,14 @@ UITableViewDataSource>
 + (instancetype)pullMenuAnchorView:(UIView *)anchorView{
     return [self pullMenuAnchorView:anchorView titleArray:nil];
 }
+
 + (instancetype)pullMenuAnchorView:(UIView *)anchorView
                         titleArray:(NSArray *)titleArray{
     return [self pullMenuAnchorView:anchorView
                          titleArray:titleArray
                          imageArray:nil];
 }
+
 + (instancetype)pullMenuAnchorView:(UIView *)anchorView
                         titleArray:(NSArray *)titleArray
                         imageArray:(NSArray *)imageArray{
@@ -247,9 +252,10 @@ UITableViewDataSource>
     menuView.imageArray = imageArray;
     return menuView;
 }
+
 + (instancetype)pullMenuAnchorView:(UIView *)anchorView
                          menuArray:(NSArray<ZWPullMenuModel *> *)menuArray{
-    UIWindow * window = jobsGetMainWindow();
+    UIWindow * window = NSObject.mainWindow();
     ZWPullMenuView *menuView = [[ZWPullMenuView alloc] init];
     menuView.frame = [UIScreen mainScreen].bounds;
     [window addSubview:menuView];
@@ -268,9 +274,11 @@ UITableViewDataSource>
 + (instancetype)pullMenuAnchorPoint:(CGPoint)anchorPoint{
     return [self pullMenuAnchorPoint:anchorPoint titleArray:nil];
 }
+
 + (instancetype)pullMenuAnchorPoint:(CGPoint)anchorPoint titleArray:(NSArray *)titleArray{
     return [self pullMenuAnchorPoint:anchorPoint titleArray:titleArray imageArray:nil];
 }
+
 + (instancetype)pullMenuAnchorPoint:(CGPoint)anchorPoint
                          titleArray:(NSArray *)titleArray
                          imageArray:(NSArray *)imageArray{
@@ -279,9 +287,10 @@ UITableViewDataSource>
     menuView.imageArray = imageArray;
     return menuView;
 }
+
 + (instancetype)pullMenuAnchorPoint:(CGPoint)anchorPoint
                           menuArray:(NSArray<ZWPullMenuModel *> *)menuArray{
-    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+    UIWindow * window = NSObject.mainWindow();
     ZWPullMenuView *menuView = [[ZWPullMenuView alloc] init];
     menuView.frame = [UIScreen mainScreen].bounds;
     [window addSubview:menuView];
@@ -289,7 +298,6 @@ UITableViewDataSource>
     menuView.menuArray = menuArray;
     return menuView;
 }
-
 #pragma mark - layzing
 - (UITableView *)mTable{
     if (!_mTable) {
@@ -344,6 +352,7 @@ UITableViewDataSource>
     }
     [self handleMenuModelArray:imageArray];
 }
+
 -(void)setZwPullMenuStyle:(ZWPullMenuStyle)zwPullMenuStyle{
     _zwPullMenuStyle = zwPullMenuStyle;
     switch (zwPullMenuStyle) {
@@ -372,17 +381,21 @@ UITableViewDataSource>
     self.mTable.backgroundColor = self.menuBgColor;
     [self refreshUI];
 }
+
 -(void)setAnchorRect:(CGRect)anchorRect{
     _anchorRect = anchorRect;
 }
+
 - (void)setLineColor:(UIColor *)lineColor {
     _lineColor = lineColor;
     [self refreshUI];
 }
+
 - (void)setMenuCellHeight:(CGFloat)menuCellHeight {
     _menuCellHeight = menuCellHeight;
     [self refreshUI];
 }
+
 - (void)setZw_adjustPullDown:(BOOL)zw_adjustPullDown {
     _zw_adjustPullDown = zw_adjustPullDown;
     [self refreshUI];

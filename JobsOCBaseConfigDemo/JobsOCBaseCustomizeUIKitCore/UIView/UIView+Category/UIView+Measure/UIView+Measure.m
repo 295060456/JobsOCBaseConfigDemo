@@ -9,6 +9,24 @@
 #import "UIView+Measure.h"
 /* ❤️【优先级】 @implementation UIView (Measure) > Masonry,因为Masonry刷新后才有frame ❤️*/
 @implementation UIView (Measure)
+#pragma mark —— 交换宽高
+-(JobsReturnCGRectByVoidBlock)exchangeWidthAndHeight{
+    return ^CGRect(){
+        return CGRectMake(self.x,
+                          self.y,
+                          self.height,
+                          self.width);
+    };
+}
+#pragma mark —— 交换 X 和 Y
+-(JobsReturnCGRectByVoidBlock)exchangeXAndY{
+    return ^CGRect(){
+        return CGRectMake(self.y,
+                          self.x,
+                          self.width,
+                          self.height);
+    };
+}
 #pragma mark —— UIView
 -(JobsReturnCGRectByCGFloatBlock _Nullable)resetOriginX{
     @jobs_weakify(self)

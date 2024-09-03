@@ -66,7 +66,7 @@
     UIGraphicsBeginImageContextWithOptions(size,
                                            YES,
                                            scale);
-    [jobsGetMainWindow().layer renderInContext:UIGraphicsGetCurrentContext()];
+    [NSObject.mainWindow().layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
@@ -94,7 +94,7 @@
     UIViewController *vc = [self vcByStoryboardWithName:name storyboardBundle:nil];
     if(vc){
         UIView *view = vc.view;
-        UIWindow *window = jobsGetMainWindow();
+        UIWindow *window = NSObject.mainWindow();
         view.frame = window.bounds;
         [window addSubview:view];
         [window layoutIfNeeded];

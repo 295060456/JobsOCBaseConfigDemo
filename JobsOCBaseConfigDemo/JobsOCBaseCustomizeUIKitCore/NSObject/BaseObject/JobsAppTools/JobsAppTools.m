@@ -66,14 +66,14 @@ static dispatch_once_t JobsAppToolsOnceToken;
     }return _appDelegateWindow;
 }
 
--(UIWindow *)sceneDelegateWindow{
-    if(!_sceneDelegateWindow){
+//-(UIWindow *)sceneDelegateWindow{
+//    if(!_sceneDelegateWindow){
 //        SceneDelegate *sceneDelegate = (SceneDelegate *)getSysSceneDelegate();
 //        _sceneDelegateWindow = [UIWindow.alloc initWithWindowScene:sceneDelegate.windowScene];
 //        _sceneDelegateWindow.frame = sceneDelegate.windowScene.coordinateSpace.bounds;
 //        _sceneDelegateWindow.rootViewController = RootViewController;
 //        [_sceneDelegateWindow makeKeyAndVisible];
-    }return _sceneDelegateWindow;
-}
+//    }return _sceneDelegateWindow;
+//}
 
 @end
