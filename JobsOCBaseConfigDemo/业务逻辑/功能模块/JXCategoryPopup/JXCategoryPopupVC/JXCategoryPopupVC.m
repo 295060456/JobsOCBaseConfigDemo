@@ -8,17 +8,17 @@
 #import "JXCategoryPopupVC.h"
 
 @interface JXCategoryPopupVC ()
-// UI
+/// UI
 @property(nonatomic,strong)JXCategoryTitleView *categoryView;
 @property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
 @property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
-@property(nonatomic,strong)UIButton *filterBtn;
-@property(nonatomic,strong)UIButton *customBtn;
+@property(nonatomic,strong)BaseButton *filterBtn;
+@property(nonatomic,strong)BaseButton *customBtn;
 @property(nonatomic,weak)UIView *popUpFiltrationView;
 @property(nonatomic,weak)UIView *popUpCustomView;
 @property(nonatomic,weak)NSNumber *currentIndex;
 @property(nonatomic,weak)JXCategoryPopupSubVC *vc;
-// Data
+/// Data
 @property(nonatomic,strong)NSMutableArray <NSString *>*titleMutArr;
 @property(nonatomic,strong)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
 
@@ -189,23 +189,21 @@ ratio:(CGFloat)ratio {
             make.left.right.bottom.equalTo(self.view);
         }];
         [self.view layoutIfNeeded];
-        
         /// ❤️在需要的地方写❤️
-        NSNumber *currentIndex = self.listContainerView.valueForKeyBlock(@"currentIndex");
+        NSNumber *currentIndex = self.listContainerView.valueForKey(@"currentIndex");
         NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
-        
     }return _listContainerView;
 }
 
 -(NSMutableArray<NSString *> *)titleMutArr{
     if (!_titleMutArr) {
         _titleMutArr = NSMutableArray.array;
-        [_titleMutArr addObject:JobsInternationalization(@"全部游戏")];
-        [_titleMutArr addObject:JobsInternationalization(@"真人")];
-        [_titleMutArr addObject:JobsInternationalization(@"体育")];
-        [_titleMutArr addObject:JobsInternationalization(@"电子")];
-        [_titleMutArr addObject:JobsInternationalization(@"棋牌")];
-        [_titleMutArr addObject:JobsInternationalization(@"彩票")];
+        _titleMutArr.add(JobsInternationalization(@"全部游戏"));
+        _titleMutArr.add(JobsInternationalization(@"真人"));
+        _titleMutArr.add(JobsInternationalization(@"体育"));
+        _titleMutArr.add(JobsInternationalization(@"电子"));
+        _titleMutArr.add(JobsInternationalization(@"棋牌"));
+        _titleMutArr.add(JobsInternationalization(@"彩票"));
     }return _titleMutArr;
 }
 
@@ -213,33 +211,58 @@ ratio:(CGFloat)ratio {
     if (!_childVCMutArr) {
         _childVCMutArr = NSMutableArray.array;
         for (NSString *str in self.titleMutArr) {
-            [_childVCMutArr addObject:JXCategoryPopupSubVC.new];//
+            _childVCMutArr.add(JXCategoryPopupSubVC.new);
         }
     }return _childVCMutArr;
 }
 
--(UIButton *)filterBtn{
+-(BaseButton *)filterBtn{
     if (!_filterBtn) {
-        _filterBtn = UIButton.new;
-        _filterBtn.normalTitle(JobsInternationalization(@"篩選"));
-        _filterBtn.normalImage(JobsIMG(@"筛选箭头（向下）"));
-        _filterBtn.titleFont(fontName(@"NotoSans-Bold", 12));
-        _filterBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
-        [self.view addSubview:_filterBtn];
-        [_filterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.view);
-            make.top.bottom.equalTo(self.categoryView);
-        }];
-        _filterBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-        [_filterBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTrailing 
-                                       imagePadding:JobsWidth(6)];
         @jobs_weakify(self)
-        [_filterBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _filterBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                       background:nil
+                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                    textAlignment:NSTextAlignmentCenter
+                                                 subTextAlignment:NSTextAlignmentCenter
+                                                      normalImage:JobsIMG(@"筛选箭头（向下）")
+                                                   highlightImage:nil
+                                                  attributedTitle:nil
+                                          selectedAttributedTitle:nil
+                                               attributedSubtitle:nil
+                                                            title:JobsInternationalization(@"篩選")
+                                                         subTitle:nil
+                                                        titleFont:fontName(@"NotoSans-Bold", 12)
+                                                     subTitleFont:nil
+                                                         titleCor:HEXCOLOR(0x3D4A58)
+                                                      subTitleCor:nil
+                                               titleLineBreakMode:NSLineBreakByWordWrapping
+                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                              baseBackgroundColor:nil
+                                                  backgroundImage:nil
+                                                     imagePadding:JobsWidth(6)
+                                                     titlePadding:JobsWidth(0)
+                                                   imagePlacement:NSDirectionalRectEdgeTrailing
+                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                cornerRadiusValue:JobsWidth(0)
+                                                  roundingCorners:UIRectCornerAllCorners
+                                             roundingCornersRadii:CGSizeZero
+                                                   layerBorderCor:nil
+                                                      borderWidth:JobsWidth(0)
+                                                    primaryAction:nil
+                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                      id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                  clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             x.selected = !x.selected;
             self.jobsToastMsg(JobsInternationalization(@"篩選"));
             [x changeAction:x.selected];
-            self.currentIndex = self.listContainerView.valueForKeyBlock(@"currentIndex");
+            self.currentIndex = self.listContainerView.valueForKey(@"currentIndex");
             NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
             self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
             [self.vc hidePopupView:self.popUpCustomView];
@@ -250,29 +273,64 @@ ratio:(CGFloat)ratio {
             }else{
                 [self.vc hidePopupView:self.popUpFiltrationView];
             }return nil;
+               return nil;
         }];
+        [self.view addSubview:_filterBtn];
+        [_filterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.view);
+            make.top.bottom.equalTo(self.categoryView);
+        }];
+        _filterBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _filterBtn;
 }
 
--(UIButton *)customBtn{
+-(BaseButton *)customBtn{
     if (!_customBtn) {
-        _customBtn = UIButton.new;
-        _customBtn.normalTitle(JobsInternationalization(@"自定义"));
-        _customBtn.titleFont(fontName(@"NotoSans-Bold", 12));
-        _customBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
-        _customBtn.selectedTitleColor(HEXCOLOR(0xAE8330));
-        [self.view addSubview:_customBtn];
-        [_customBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.filterBtn.mas_left).offset(JobsWidth(-8));
-            make.top.bottom.equalTo(self.categoryView);
-            make.left.equalTo(self.categoryView.mas_right);
-        }];
         @jobs_weakify(self)
-        [_customBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _customBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                       background:nil
+                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                    textAlignment:NSTextAlignmentCenter
+                                                 subTextAlignment:NSTextAlignmentCenter
+                                                      normalImage:nil
+                                                   highlightImage:nil
+                                                  attributedTitle:nil
+                                          selectedAttributedTitle:nil
+                                               attributedSubtitle:nil
+                                                            title:JobsInternationalization(@"自定义")
+                                                         subTitle:nil
+                                                        titleFont:fontName(@"NotoSans-Bold", 12)
+                                                     subTitleFont:nil
+                                                         titleCor:HEXCOLOR(0x3D4A58)
+                                                      subTitleCor:nil
+                                               titleLineBreakMode:NSLineBreakByWordWrapping
+                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                              baseBackgroundColor:nil
+                                                  backgroundImage:nil
+                                                     imagePadding:JobsWidth(0)
+                                                     titlePadding:JobsWidth(0)
+                                                   imagePlacement:NSDirectionalRectEdgeNone
+                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                cornerRadiusValue:JobsWidth(0)
+                                                  roundingCorners:UIRectCornerAllCorners
+                                             roundingCornersRadii:CGSizeZero
+                                                   layerBorderCor:nil
+                                                      borderWidth:JobsWidth(0)
+                                                    primaryAction:nil
+                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                      id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                  clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             x.selected = !x.selected;
+            x.jobsResetBtnTitleCor(x.selected ? HEXCOLOR(0xAE8330) : HEXCOLOR(0x3D4A58));
             self.jobsToastMsg(JobsInternationalization(@"自定义"));
-            self.currentIndex = self.listContainerView.valueForKeyBlock(@"currentIndex");
+            self.currentIndex = self.listContainerView.valueForKey(@"currentIndex");
             NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
             self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
             self.popUpFiltrationView = self.vc.popUpFiltrationView;
@@ -285,6 +343,13 @@ ratio:(CGFloat)ratio {
             }else{
                 [self.vc hidePopupView:self.popUpCustomView];
             }return nil;
+        }];
+        _customBtn.selectedTitleColor(HEXCOLOR(0xAE8330));
+        [self.view addSubview:_customBtn];
+        [_customBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.filterBtn.mas_left).offset(JobsWidth(-8));
+            make.top.bottom.equalTo(self.categoryView);
+            make.left.equalTo(self.categoryView.mas_right);
         }];
     }return _customBtn;
 }

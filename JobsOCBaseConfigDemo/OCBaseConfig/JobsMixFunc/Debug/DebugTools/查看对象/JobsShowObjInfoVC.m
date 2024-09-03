@@ -137,12 +137,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     for (NSString *propertyName in propertyList) {
                         UIViewModel *viewModel = UIViewModel.new;
                         NSString *text = propertyName;
-                        id subtext = requestParams.valueForKeyBlock(propertyName);
+                        id subtext = requestParams.valueForKey(propertyName);
                         /// 防崩溃处理：
                         if([subtext isKindOfClass:NSString.class] &&
                            [text isKindOfClass:NSString.class]){
                             viewModel.textModel.text = propertyName;
-                            viewModel.subTextModel.text = requestParams.valueForKeyBlock(propertyName);
+                            viewModel.subTextModel.text = requestParams.valueForKey(propertyName);
                             viewModel.textModel.textCor = JobsBlueColor;
                             viewModel.textModel.textCor = JobsRedColor;
                             [self.dataMutArr addObject:viewModel];

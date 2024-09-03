@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(JobsReturnStringByIDBlock)toString;
 /// OC字符串拼接
 -(JobsReturnMutableStringByStringBlock _Nonnull)add;
+/// OC字符串转NSDate
+-(JobsReturnDateByDateFormatterBlock)dataByDateFormatter;
 /// OC字符串路径拼接
 -(JobsReturnMutableStringByStringBlock _Nonnull)addPathComponent;
 /// OC字符串数组 转 OC字符串

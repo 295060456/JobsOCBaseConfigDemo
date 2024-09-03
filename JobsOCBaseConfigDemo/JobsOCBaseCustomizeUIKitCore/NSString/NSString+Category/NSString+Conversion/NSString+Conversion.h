@@ -15,6 +15,10 @@ static inline NSString *_Nonnull toStringByID(id _Nullable i){
 static inline NSString *_Nonnull toStringByInt(int i){
     return [NSString stringWithFormat:@"%d",i];
 }
+/// 保留？位小数点有效值
+static inline NSString *_Nonnull toStringByFloatDecimalPlaces(float i, NSUInteger decimalPlaces){
+    return [NSString stringWithFormat:[NSString stringWithFormat:@"%%.%luf", (unsigned long)decimalPlaces], i];
+}
 
 static inline NSString *_Nonnull toStringByFloat(float i){
     return [NSString stringWithFormat:@"%f",i];

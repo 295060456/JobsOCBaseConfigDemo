@@ -45,6 +45,12 @@
         return JobsMutableString([self stringByAppendingString:str]);/// 原始字符串不会改变，输出一个新的字符串
     };
 }
+/// OC字符串转NSDate
+-(JobsReturnDateByDateFormatterBlock)dataByDateFormatter{
+    return ^NSDate *_Nullable(NSDateFormatter *_Nullable data){
+        return [data dateFromString:self];;
+    };
+}
 /// OC字符串路径拼接
 -(JobsReturnMutableStringByStringBlock _Nonnull)addPathComponent{
     return ^NSMutableString *_Nullable(NSString *_Nonnull str) {

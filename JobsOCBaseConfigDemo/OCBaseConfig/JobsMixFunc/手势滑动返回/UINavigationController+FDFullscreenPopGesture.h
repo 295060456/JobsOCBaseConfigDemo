@@ -32,7 +32,7 @@
 ///
 /// Adding the implementation file of this category to your target will
 /// automatically patch UINavigationController with this feature.
-@interface UINavigationController (FDFullscreenPopGesture)
+@interface UINavigationController (FDFullscreenPopGesture)<UIGestureRecognizerDelegate>
 
 /// The gesture recognizer that actually handles interactive pop.
 @property (nonatomic, strong, readonly) UIPanGestureRecognizer *fd_fullscreenPopGestureRecognizer;

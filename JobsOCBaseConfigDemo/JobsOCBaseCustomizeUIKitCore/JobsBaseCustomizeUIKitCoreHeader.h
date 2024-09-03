@@ -14,7 +14,6 @@
 #import "JobsDebug.h"
 #pragma mark —— CALayer
 #import "JobsCALayer.h"
-
 #pragma mark —— NSCache
 #import "JobsCache.h"
 #pragma mark —— NSMutableDictionary
@@ -103,6 +102,8 @@
 #pragma mark —— AVURLAsset
 #import "AVURLAsset+Extra.h"
 #pragma mark —— UIBarButtonItem
-#import "UIBarButtonItem+Extra.h"
+#import "JobsBarButtonItem.h"
+#pragma mark —— NSFormatter
+#import "JobsFormatter.h"
 
 #endif /* JobsBaseCustomizeUIKitCoreHeader_h */

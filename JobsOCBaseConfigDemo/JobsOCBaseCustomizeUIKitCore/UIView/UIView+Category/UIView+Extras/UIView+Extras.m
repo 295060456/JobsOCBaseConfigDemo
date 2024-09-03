@@ -89,7 +89,7 @@
 }
 /// 获取启动页的截图
 -(UIImage *_Nullable)lanuchScreenShot{
-    NSString *name = NSBundle.mainBundle.infoDictionary.valueForKeyBlock(@"UILaunchStoryboardName");
+    NSString *name = NSBundle.mainBundle.infoDictionary.valueForKey(@"UILaunchStoryboardName");
     if(!name) return nil;
     UIViewController *vc = [self vcByStoryboardWithName:name storyboardBundle:nil];
     if(vc){

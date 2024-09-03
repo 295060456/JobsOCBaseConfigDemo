@@ -26,7 +26,7 @@
     }
     
     NSString *identifier = NSUUID.UUID.UUIDString;
-    NSValue *onceTokenValue = onceTokens.valueForKeyBlock(identifier);
+    NSValue *onceTokenValue = onceTokens.valueForKey(identifier);
     dispatch_once_t *onceTokenPointer;
     
     if (!onceTokenValue) {

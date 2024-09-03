@@ -219,18 +219,18 @@ BaseProtocol
 -(NSMutableArray <ImageModel *>*_Nonnull)changeGifToImage:(NSData *_Nonnull)gifData;
 /**
  
- NSMutableArray <UIViewModel *>*dataMutArr = popupView.valueForKeyBlock(@"dataMutArr");
+ NSMutableArray <UIViewModel *>*dataMutArr = popupView.valueForKey(@"dataMutArr");
  [dataMutArr removeAllObjects];
  [dataMutArr addObjectsFromArray:self.createDataMutArr2];
  
  // dataMutArr = self.createDataMutArr2; 这一段无效
  
  */
--(JobsReturnIDByIDBlock _Nonnull)valueForKeyBlock;
+-(JobsReturnIDByIDBlock _Nonnull)valueForKey;
 /// KVC 的二次封装
 -(jobsByKey_ValueBlock _Nonnull)jobsKVC;
--(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClassBlock;
--(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClassBlock;
+-(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClass;
+-(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClass;
 -(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
                          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock;
 +(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier;/// 不能用于UITableViewHeaderFooterView

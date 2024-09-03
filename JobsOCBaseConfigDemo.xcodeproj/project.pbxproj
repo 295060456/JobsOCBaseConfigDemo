@@ -19,7 +19,6 @@
 		CE1F257C2C5DDABB00324198 /* UIView+Navigator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F257B2C5DDABB00324198 /* UIView+Navigator.m */; };
 		CE207E552C8185E500AD9FFB /* FileNameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E542C8185E500AD9FFB /* FileNameModel.m */; };
 		CE207E592C818E9A00AD9FFB /* AVURLAsset+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E582C818E9A00AD9FFB /* AVURLAsset+Extra.m */; };
-		CE207E6D2C82BADC00AD9FFB /* UIBarButtonItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E6B2C82BAD700AD9FFB /* UIBarButtonItem+Extra.m */; };
 		CE207E732C82EA6A00AD9FFB /* JobsVerticalMenuSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E702C82EA5700AD9FFB /* JobsVerticalMenuSubVC.m */; };
 		CE207E762C82ED7C00AD9FFB /* JobsVerticalMenuVC@1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E752C82ED7C00AD9FFB /* JobsVerticalMenuVC@1.m */; };
 		CE207E7A2C82ED9200AD9FFB /* JobsVerticalMenuVC@2.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E792C82ED9200AD9FFB /* JobsVerticalMenuVC@2.m */; };
@@ -65,6 +64,8 @@
 		CE8877A92C50B3090085948C /* JobsRichTextConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877A72C50B3090085948C /* JobsRichTextConfig.m */; };
 		CE8877BD2C51F1FF0085948C /* JobsNavBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */; };
 		CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877BB2C51F1FF0085948C /* JobsNavBar.m */; };
+		CEA018B62C86F9BF006F06CF /* UIBarButtonItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA018B32C86F94C006F06CF /* UIBarButtonItem+Extra.m */; };
+		CEA018B72C86F9C8006F06CF /* NSString+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA018B02C86F922006F06CF /* NSString+Time.m */; };
 		CEA116222C5278F8009D6FB3 /* XZMLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA116202C5278F8009D6FB3 /* XZMLayout.m */; };
 		CEAF25312C60FE050056570C /* ExcelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF24C42C60FE040056570C /* ExcelVC.m */; };
 		CEAF25322C60FE050056570C /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF24C82C60FE040056570C /* ChannelCell.m */; };
@@ -1176,8 +1177,6 @@
 		CE207E542C8185E500AD9FFB /* FileNameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileNameModel.m; sourceTree = "<group>"; };
 		CE207E572C818E9A00AD9FFB /* AVURLAsset+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVURLAsset+Extra.h"; sourceTree = "<group>"; };
 		CE207E582C818E9A00AD9FFB /* AVURLAsset+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVURLAsset+Extra.m"; sourceTree = "<group>"; };
-		CE207E6A2C82BAD700AD9FFB /* UIBarButtonItem+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extra.h"; sourceTree = "<group>"; };
-		CE207E6B2C82BAD700AD9FFB /* UIBarButtonItem+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extra.m"; sourceTree = "<group>"; };
 		CE207E6F2C82EA5700AD9FFB /* JobsVerticalMenuSubVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsVerticalMenuSubVC.h; sourceTree = "<group>"; };
 		CE207E702C82EA5700AD9FFB /* JobsVerticalMenuSubVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsVerticalMenuSubVC.m; sourceTree = "<group>"; };
 		CE207E742C82ED7C00AD9FFB /* JobsVerticalMenuVC@1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JobsVerticalMenuVC@1.h"; sourceTree = "<group>"; };
@@ -1278,6 +1277,14 @@
 		CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNavBarConfig.m; sourceTree = "<group>"; };
 		CE8877BA2C51F1FF0085948C /* JobsNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNavBar.h; sourceTree = "<group>"; };
 		CE8877BB2C51F1FF0085948C /* JobsNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNavBar.m; sourceTree = "<group>"; };
+		CEA018AA2C86F909006F06CF /* NSFormatter+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFormatter+Extra.h"; sourceTree = "<group>"; };
+		CEA018AB2C86F909006F06CF /* NSFormatter+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFormatter+Extra.m"; sourceTree = "<group>"; };
+		CEA018AD2C86F909006F06CF /* JobsFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsFormatter.h; sourceTree = "<group>"; };
+		CEA018AF2C86F922006F06CF /* NSString+Time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Time.h"; sourceTree = "<group>"; };
+		CEA018B02C86F922006F06CF /* NSString+Time.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Time.m"; sourceTree = "<group>"; };
+		CEA018B22C86F94C006F06CF /* UIBarButtonItem+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extra.h"; sourceTree = "<group>"; };
+		CEA018B32C86F94C006F06CF /* UIBarButtonItem+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extra.m"; sourceTree = "<group>"; };
+		CEA018B52C86F94C006F06CF /* JobsBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBarButtonItem.h; sourceTree = "<group>"; };
 		CEA114BA2C522E00009D6FB3 /* JobsBaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseViewProtocol.h; sourceTree = "<group>"; };
 		CEA1161F2C5278F8009D6FB3 /* XZMLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZMLayout.h; sourceTree = "<group>"; };
 		CEA116202C5278F8009D6FB3 /* XZMLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZMLayout.m; sourceTree = "<group>"; };
@@ -3392,8 +3399,8 @@
 		CE207E6C2C82BAD700AD9FFB /* UIBarButtonItem */ = {
 			isa = PBXGroup;
 			children = (
-				CE207E6A2C82BAD700AD9FFB /* UIBarButtonItem+Extra.h */,
-				CE207E6B2C82BAD700AD9FFB /* UIBarButtonItem+Extra.m */,
+				CEA018B52C86F94C006F06CF /* JobsBarButtonItem.h */,
+				CEA018B42C86F94C006F06CF /* UIBarButtonItem+Category */,
 			);
 			path = UIBarButtonItem;
 			sourceTree = "<group>";
@@ -3925,6 +3932,42 @@
 			children = (
 			);
 			path = "自定义视图";
+			sourceTree = "<group>";
+		};
+		CEA018AC2C86F909006F06CF /* NSFormatter+Category */ = {
+			isa = PBXGroup;
+			children = (
+				CEA018AA2C86F909006F06CF /* NSFormatter+Extra.h */,
+				CEA018AB2C86F909006F06CF /* NSFormatter+Extra.m */,
+			);
+			path = "NSFormatter+Category";
+			sourceTree = "<group>";
+		};
+		CEA018AE2C86F909006F06CF /* NSFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				CEA018AC2C86F909006F06CF /* NSFormatter+Category */,
+				CEA018AD2C86F909006F06CF /* JobsFormatter.h */,
+			);
+			path = NSFormatter;
+			sourceTree = "<group>";
+		};
+		CEA018B12C86F922006F06CF /* NSString+Time */ = {
+			isa = PBXGroup;
+			children = (
+				CEA018AF2C86F922006F06CF /* NSString+Time.h */,
+				CEA018B02C86F922006F06CF /* NSString+Time.m */,
+			);
+			path = "NSString+Time";
+			sourceTree = "<group>";
+		};
+		CEA018B42C86F94C006F06CF /* UIBarButtonItem+Category */ = {
+			isa = PBXGroup;
+			children = (
+				CEA018B22C86F94C006F06CF /* UIBarButtonItem+Extra.h */,
+				CEA018B32C86F94C006F06CF /* UIBarButtonItem+Extra.m */,
+			);
+			path = "UIBarButtonItem+Category";
 			sourceTree = "<group>";
 		};
 		CEA116212C5278F8009D6FB3 /* XZMLayout */ = {
@@ -10371,6 +10414,7 @@
 		CECE831B2C4513CD00764AF5 /* NSString+Category */ = {
 			isa = PBXGroup;
 			children = (
+				CEA018B12C86F922006F06CF /* NSString+Time */,
 				CECE83022C4513CD00764AF5 /* NSString+Conversion */,
 				CECE83052C4513CD00764AF5 /* NSString+Decoration */,
 				CECE83082C4513CD00764AF5 /* NSString+Eomji */,
@@ -12122,6 +12166,7 @@
 			isa = PBXGroup;
 			children = (
 				CECE850D2C4513CD00764AF5 /* JobsBaseCustomizeUIKitCoreHeader.h */,
+				CEA018AE2C86F909006F06CF /* NSFormatter */,
 				CE08701C2C845917003D8CCF /* NSBundle */,
 				CE0870192C8458EC003D8CCF /* NSLocale */,
 				CE207E6C2C82BAD700AD9FFB /* UIBarButtonItem */,
@@ -14297,6 +14342,7 @@
 				CECE7C162C450C5000764AF5 /* GetCustomerContactApi.m in Sources */,
 				CECE857F2C4513CE00764AF5 /* UIButton+Timer.m in Sources */,
 				CECE81472C4512BF00764AF5 /* JobsCustomTabBarConfig.m in Sources */,
+				CEA018B72C86F9C8006F06CF /* NSString+Time.m in Sources */,
 				CEAF253C2C60FE050056570C /* TimeTitleCell.m in Sources */,
 				CECE7C252C450C5000764AF5 /* PicToStrStoreSubVC.m in Sources */,
 				CECE7EE32C450E5B00764AF5 /* ZWPullMenuView.m in Sources */,
@@ -14504,6 +14550,7 @@
 				CECE80E52C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_1.m in Sources */,
 				CE7F396F2C4FDAF900431A5D /* JobsMenuSubView@1.m in Sources */,
 				CE2E88CD2C69E14100260207 /* PopListBaseView.m in Sources */,
+				CEA018B62C86F9BF006F06CF /* UIBarButtonItem+Extra.m in Sources */,
 				CECE7C392C450C5000764AF5 /* CutomView.m in Sources */,
 				CECE7CD12C450C5000764AF5 /* MyFansTBVCell.m in Sources */,
 				CECE7EA72C450E5B00764AF5 /* KTVHCHTTPConnection.m in Sources */,
@@ -14664,7 +14711,6 @@
 				CECA79882C707C53003BCEF9 /* JobsExcelLeftListView.m in Sources */,
 				CECE854F2C4513CE00764AF5 /* NSObject+Notification.m in Sources */,
 				CECE7CD02C450C5000764AF5 /* B_VC.m in Sources */,
-				CE207E6D2C82BADC00AD9FFB /* UIBarButtonItem+Extra.m in Sources */,
 				CE2E8AD42C6AFB2F00260207 /* LuckyDiskVC.m in Sources */,
 				CECE7CB02C450C5000764AF5 /* BaiShaETProjVIPSubCVCell_02.m in Sources */,
 				CECE80B82C4512BF00764AF5 /* BaseModel.m in Sources */,

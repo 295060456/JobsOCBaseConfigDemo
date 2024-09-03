@@ -335,14 +335,14 @@
 }
 /**
  
- NSMutableArray <UIViewModel *>*dataMutArr = popupView.valueForKeyBlock(@"dataMutArr");
+ NSMutableArray <UIViewModel *>*dataMutArr = popupView.valueForKey(@"dataMutArr");
  [dataMutArr removeAllObjects];
  [dataMutArr addObjectsFromArray:self.createDataMutArr2];
  
  // dataMutArr = self.createDataMutArr2; 这一段无效
  
  */
-- (JobsReturnIDByIDBlock)valueForKeyBlock {
+- (JobsReturnIDByIDBlock)valueForKey{
     return ^(NSString *key) {
         id value = nil;
         if ([key isKindOfClass:NSString.class] &&
@@ -364,13 +364,13 @@
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClassBlock{
+-(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClass{
     return ^(Class cls) {
         return [self isKindOfClass:cls];
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClassBlock{
+-(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClass{
     return ^(Class cls) {
         return [self isKindOfClass:cls];
     };
@@ -428,13 +428,13 @@
                     switch (searchStrategy) {
                         case JobsSearchStrategy_Accurate:{
                             /// 精确查询
-                            if ([customObj.valueForKeyBlock(str) stringValue].lowercaseString.containsString(keywords.lowercaseString)) {
+                            if ([customObj.valueForKey(str) stringValue].lowercaseString.containsString(keywords.lowercaseString)) {
                                 resMutSet.add(customObj);
                             }
                         }break;
                         case JobsSearchStrategy_Fuzzy:{
                             /// 模糊查询
-                            if ([customObj.valueForKeyBlock(str) stringValue].containsString(keywords)) {
+                            if ([customObj.valueForKey(str) stringValue].containsString(keywords)) {
                                 resMutSet.add(customObj);
                             }
                         }break;
@@ -468,7 +468,7 @@
 -(id _Nullable)checkTargetObj:(NSObject *_Nullable)obj
                  propertyName:(NSString *_Nullable)propertyName{
     if ([obj.printPropertyList containsObject:propertyName]) {
-        return obj.valueForKeyBlock(propertyName);
+        return obj.valueForKey(propertyName);
     }return nil;
 }
 /// 版本号比较 版本号的格式：数字中间由点隔开
@@ -726,7 +726,7 @@
 }
 /// 判断是否是App今日的首次启动
 -(BOOL)isTodayAppFirstLaunch{
-    NSString *recordToday = JobsUserDefaults.valueForKeyBlock(@"TodayAppFirstLaunch");
+    NSString *recordToday = JobsUserDefaults.valueForKey(@"TodayAppFirstLaunch");
     JobsTimeModel *timeModel = JobsTimeModel.new;
     NSString *today = toStringByLong(timeModel.currentEra).add(@"-")
                                                           .add(toStringByLong(timeModel.currentYear))

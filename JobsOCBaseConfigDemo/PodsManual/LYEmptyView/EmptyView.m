@@ -33,7 +33,7 @@
     self.autoShowEmptyView = NO; //如果想要DemoEmptyView的效果都不是自动显隐的，这里统一设置为NO，初始化时就不必再一一去写了
     self.titleLabFont = [UIFont systemFontOfSize:JobsWidth(18) weight:UIFontWeightRegular];
     
-    UILabel *label = self.valueForKeyBlock(@"titleLabel");
+    UILabel *label = self.valueForKey(@"titleLabel");
     UIColor *cor = [UIColor gradientCorDataMutArr:[NSMutableArray arrayWithArray:@[RGB_COLOR(247, 131, 97),RGB_COLOR(245, 75, 100)]]
                                        startPoint:CGPointZero
                                          endPoint:CGPointZero

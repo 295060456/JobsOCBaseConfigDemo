@@ -8,7 +8,13 @@
 #import "ZMJGanttListVC.h"
 
 @interface ZMJGanttListVC ()
-
+/// UI
+@property(nonatomic,strong)SpreadsheetView *spreadsheetView;
+@property(nonatomic,strong)ZMJTipView *tipView;
+@property(nonatomic,strong)ZMJPreferences *preferences;
+@property(nonatomic,strong)ZMJTaskView *taskView;
+/// Data
+@property(nonatomic,assign)ZMJDisplayMode displayMode;
 @property(nonatomic,strong)NSDate *startDate;
 @property(nonatomic,strong)NSDate *endDate;
 @property(nonatomic,strong)NSMutableArray<NSDate *> *years;
@@ -17,11 +23,6 @@
 @property(nonatomic,strong)NSMutableArray<NSDate *> *days;
 @property(nonatomic,strong)NSMutableArray<ZMJTask *> *tasks;
 @property(nonatomic,strong)NSMutableArray<UIColor *> *colors;
-@property(nonatomic,strong)SpreadsheetView *spreadsheetView;
-@property(nonatomic,assign)ZMJDisplayMode displayMode;
-@property(nonatomic,strong)ZMJTipView *tipView;
-@property(nonatomic,strong)ZMJPreferences *preferences;
-@property(nonatomic,strong)ZMJTaskView *taskView;
 
 @end
 
@@ -173,7 +174,7 @@
             return @"十";
         }else{
             NSString *subStr1 = [arabicNumStr substringWithRange:NSMakeRange(1, 1)];
-            NSString *a1 = dictionary.valueForKeyBlock(subStr1);
+            NSString *a1 = dictionary.valueForKey(subStr1);
             NSString *chinese1 = @"十".add(a1);
             return chinese1;
         }
@@ -181,7 +182,7 @@
         NSMutableArray *sums = NSMutableArray.array;
         for (int i = 0; i < arabicNumStr.length; i ++){
             NSString *substr = [arabicNumStr substringWithRange:NSMakeRange(i, 1)];
-            NSString *a = dictionary.valueForKeyBlock(substr);
+            NSString *a = dictionary.valueForKey(substr);
             NSString *b = digits[arabicNumStr.length -i-1];
             if(a){
                 NSString *sum = a.add(b);
@@ -378,7 +379,7 @@ NSInteger getMinIndex(NSInteger begin, NSInteger offset) {
     for (NSDate *fristDayOfWeek in self.weeks) {
         for (NSDate *date in self.days) {
             if ([date isEqualToDate:fristDayOfWeek] ||
-                ([date isEqualToDate:self.days.lastObject] && 
+                ([date isEqualToDate:self.days.lastObject] &&
                  [fristDayOfWeek isEqualToDate:self.weeks.lastObject])) {
                 if ([self.days indexOfObject:date] > 0) {
                     toLocation = [Location locationWithRow:row column:[self.days indexOfObject:date] - 1];
@@ -497,7 +498,7 @@ NSInteger getMinIndex(NSInteger begin, NSInteger offset) {
             NSArray<ZMJCellRange *> *titleHeader      = [self yearCellRangesWithRow:0];
             NSArray<ZMJCellRange *> *monthTitleHeader = [self monthCellRangesWithRow:1];
             @jobs_weakify(self)
-            NSArray<ZMJCellRange *> *charts = [self.tasks wbg_mapWithIndex:^id _Nullable(ZMJTask * _Nonnull task, 
+            NSArray<ZMJCellRange *> *charts = [self.tasks wbg_mapWithIndex:^id _Nullable(ZMJTask * _Nonnull task,
                                                                                          NSUInteger index) {
                 @jobs_strongify(self)
                 ZMJCellRange *cellRange = nil;
@@ -528,7 +529,7 @@ NSInteger getMinIndex(NSInteger begin, NSInteger offset) {
     }return result.copy;
 }
 
-- (ZMJCell *)spreadsheetView:(SpreadsheetView *)spreadsheetView 
+- (ZMJCell *)spreadsheetView:(SpreadsheetView *)spreadsheetView
                cellForItemAt:(NSIndexPath *)indexPath {
     NSInteger column = indexPath.column;
     NSInteger row    = indexPath.row;

@@ -17,7 +17,7 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    JobsRemoveNotification(self);
+//    JobsRemoveNotification(self);
 }
 
 -(void)loadView{
@@ -72,12 +72,12 @@
 }
 #pragma mark —— 私有方法
 -(void)重定义父类控件的距离{
-    UIImageView *headIcon = self.valueForKeyBlock(@"headIcon");/// 账户头像
-    ZLGestureLockIndicator *gestureLockIndicator = self.valueForKeyBlock(@"gestureLockIndicator");
-    UILabel *statusLabel = self.valueForKeyBlock(@"statusLabel");
-    UILabel *nameLabel = self.valueForKeyBlock(@"nameLabel");/// 账户名
-    UIButton *otherAcountBtn = self.valueForKeyBlock(@"otherAcountBtn");/// 其他账户登录按钮
-    UIButton *forgetPswBtn = self.valueForKeyBlock(@"forgetPswBtn");/// 忘记手势密码按钮
+    UIImageView *headIcon = self.valueForKey(@"headIcon");/// 账户头像
+    ZLGestureLockIndicator *gestureLockIndicator = self.valueForKey(@"gestureLockIndicator");
+    UILabel *statusLabel = self.valueForKey(@"statusLabel");
+    UILabel *nameLabel = self.valueForKey(@"nameLabel");/// 账户名
+    UIButton *otherAcountBtn = self.valueForKey(@"otherAcountBtn");/// 其他账户登录按钮
+    UIButton *forgetPswBtn = self.valueForKey(@"forgetPswBtn");/// 忘记手势密码按钮
     
     nameLabel.jobsVisible = NO;
     headIcon.jobsVisible = NO;

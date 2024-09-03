@@ -137,6 +137,14 @@ static dispatch_once_t static_userModelOnceToken;
 +(BOOL)supportsSecureCoding{
     return YES;
 }
+#pragma mark —— 自动补全
+-(void)setExpireTime:(NSString *)expireTime{
+    _expireTime = expireTime;
+    self.tokenExpireTime = [_expireTime timeStampByTimeFormatter:nil
+                                                    timeZoneType:TimeZoneTypeCSTChina
+                                                   intervalStyle:intervalBySec];
+    NSLog(@"Token 的过期时间是:%@",self.tokenExpireTime);
+}
 #pragma mark —— 默认值设置
 //-(NSString *)userName{
 //    if (!_userName) {

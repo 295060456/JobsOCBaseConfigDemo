@@ -35,17 +35,25 @@ typedef NSParagraphStyle *_Nullable(^_Nullable JobsReturnParagraphStyleByTextAli
 typedef NSMutableAttributedString *_Nullable(^JobsReturnMutAttributedStringByStringBlock)(NSString *_Nullable data);
 typedef NSMutableAttributedString *_Nullable(^JobsReturnMutAttributedStringByAttributedStringBlock)(NSAttributedString *_Nonnull data);
 typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString *_Nullable data);
-typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString * _Nonnull data);
+typedef NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString *_Nonnull data);
 typedef NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
 typedef NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
+typedef NSString *_Nullable(^JobsReturnStringByDateBlock)(NSDate *_Nullable date);
 typedef NSString *_Nullable(^JobsReturnStringByNumberBlock)(NSNumber *_Nullable data);
 typedef NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString *_Nullable data);
-typedef NSMutableString *_Nullable(^JobsReturnMutableStringByStringBlock)(NSString *_Nullable data);
 typedef NSString *_Nullable(^JobsReturnStrByCorBlock)(UIColor *_Nullable data);
+typedef NSString *_Nullable(^JobsReturnStringByIntegerBlock)(NSInteger data);
+typedef NSString *_Nullable(^JobsReturnStringByTimeIntervalBlock)(NSTimeInterval data);
+typedef NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateFormatterBlock)(NSTimeInterval data,NSDateFormatter *_Nullable dateFormatter);
+typedef NSMutableString *_Nullable(^JobsReturnMutableStringByStringBlock)(NSString *_Nullable data);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIntegerBlock)(NSInteger data);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByVoidBlock)(void);
 
+typedef NSDate *_Nullable(^JobsReturnDateByTimeIntervalBlock)(NSTimeInterval data);
+typedef NSDate *_Nullable(^JobsReturnDateByDateFormatterBlock)(NSDateFormatter *_Nullable data);
 typedef NSData *_Nullable(^JobsReturnDataByAssetBlock)(AVAsset *_Nullable asset);
+typedef NSTimeInterval(^JobsReturnTimeIntervalByDateBlock)(NSDate *_Nullable);
+
 typedef PHAsset *_Nullable(^JobsReturnAssetByStrBlock)(NSString *_Nullable Key);
 
 typedef UIFont *_Nullable(^JobsReturnFontByVoidBlock)(void);
@@ -65,7 +73,7 @@ typedef UIImage *_Nonnull(^JobsReturnImageByViewBlock)(__kindof UIView *_Nonnull
 
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTableViewHeaderFooterViewBlock)(__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView);
 
-typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Class _Nonnull cls,NSString * _Nullable salt);
+typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewCellStyleBlock)(UITableViewCellStyle tableViewCellStyle);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewBlock)(UITableView *_Nonnull tableView);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
@@ -145,7 +153,9 @@ typedef id _Nullable(^JobsReturnIDByUnsignedLongLongBlock)(unsigned long long da
 typedef NSInteger(^JobsReturnByNSIntegerBlock)(NSInteger data);
 typedef NSUInteger(^JobsReturnByNSUIntegerBlock)(NSUInteger data);
 typedef CGFloat(^JobsReturnByCGFloatBlock)(CGFloat data);
-typedef BOOL(^JobsReturnBOOLByStringBlock)(NSString * _Nullable data);
+
+typedef BOOL(^JobsReturnBOOLByDateBlock)(NSDate *_Nullable date);
+typedef BOOL(^JobsReturnBOOLByStringBlock)(NSString *_Nullable data);
 typedef BOOL(^JobsReturnByBOOLBlock)(BOOL data);
 typedef BOOL(^JobsReturnBOOLByNSUIntegerBlock)(NSUInteger data);
 typedef BOOL(^JobsReturnBOOLByNSIntegerBlock)(NSInteger data);

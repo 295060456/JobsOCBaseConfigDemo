@@ -14,6 +14,7 @@
 #import "MacroDef_Func.h"
 
 #pragma mark —— Category
+#import "NSString+Time.h"
 #import "NSString+Conversion.h"
 #import "NSString+Decoration.h"
 #import "NSString+Eomji.h"

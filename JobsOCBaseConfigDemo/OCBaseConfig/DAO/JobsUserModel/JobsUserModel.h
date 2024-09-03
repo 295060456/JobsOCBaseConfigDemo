@@ -26,6 +26,7 @@ BaseProtocol
 @property(nonatomic,copy)NSString *userRacnkClass;/// 用户等级
 @property(nonatomic,copy)NSString *password;
 @property(nonatomic,copy)NSString *token;
+@property(nonatomic,copy)NSString *expireTime;
 @property(nonatomic,copy)NSString *uid;
 @property(nonatomic,copy)NSString *deviceId;/// 设备ID
 @property(nonatomic,copy)NSString *validate;/// 网易云盾
@@ -44,6 +45,8 @@ BaseProtocol
 @property(nonatomic,copy)NSString *superiorAccount;// 上级账号
 @property(nonatomic,strong)NSNumber *userId;
 @property(nonatomic,copy)NSString *webChat;
+
+@property(nonatomic,copy)NSString *tokenExpireTime;/// 手动添加的
 
 @end
 

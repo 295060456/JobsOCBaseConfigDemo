@@ -218,7 +218,7 @@ BaseViewControllerProtocol_synthesize
             }
             self.statusBar.backgroundColor = cor;
         } else {
-            UIView *statusBar = [UIApplication.sharedApplication.valueForKeyBlock(@"statusBarWindow") valueForKey:@"statusBar"];
+            UIView *statusBar = [UIApplication.sharedApplication.valueForKey(@"statusBarWindow") valueForKey:@"statusBar"];
             if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
                 statusBar.backgroundColor = cor;
             }
@@ -239,7 +239,7 @@ BaseViewControllerProtocol_synthesize
             if(!cor) cor = JobsWhiteColor;
             self.statusBar.backgroundColor = cor;
         } else {
-            UIView *statusBar = [UIApplication.sharedApplication.valueForKeyBlock(@"statusBarWindow") valueForKey:@"statusBar"];
+            UIView *statusBar = [UIApplication.sharedApplication.valueForKey(@"statusBarWindow") valueForKey:@"statusBar"];
             if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
                 statusBar.backgroundColor = JobsClearColor;;
             }

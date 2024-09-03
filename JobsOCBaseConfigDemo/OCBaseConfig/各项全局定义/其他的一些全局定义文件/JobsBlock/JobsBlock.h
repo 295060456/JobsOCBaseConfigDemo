@@ -29,6 +29,45 @@
 #import "VoidByUnCertainParameters.h"
 
 #pragma mark —— 定义业务Block
+#ifndef JOBS_TimeZoneType
+#define JOBS_TimeZoneType
+typedef NS_ENUM(NSInteger, TimeZoneType) {
+    TimeZoneTypeUTC,           // 协调世界时
+    TimeZoneTypeGMT,           // 格林尼治标准时间
+    TimeZoneTypePST,           // 太平洋标准时间 (美国和加拿大)
+    TimeZoneTypeEST,           // 东部标准时间 (美国和加拿大)
+    TimeZoneTypeCST,           // 中部标准时间 (美国和加拿大)
+    TimeZoneTypeMST,           // 山地标准时间 (美国和加拿大)
+    TimeZoneTypeCSTChina,      // 中国标准时间
+    TimeZoneTypeJST,           // 日本标准时间
+    TimeZoneTypeBST,           // 英国夏令时
+    TimeZoneTypeAEST,          // 澳大利亚东部标准时间
+    TimeZoneTypeAWST,          // 澳大利亚西部标准时间
+    TimeZoneTypeCET,           // 欧洲中部时间
+    TimeZoneTypeMSK,           // 莫斯科标准时间
+    TimeZoneTypeIST,           // 印度标准时间
+    TimeZoneTypeBRT,           // 巴西利亚时间
+    TimeZoneTypeCSTMexico,     // 墨西哥城时间
+    TimeZoneTypeART,           // 阿根廷时间
+    TimeZoneTypeHST,           // 夏威夷标准时间
+    TimeZoneTypeAKST,          // 阿拉斯加标准时间
+    TimeZoneTypeCEST,          // 中欧夏令时
+    TimeZoneTypeEET,           // 欧洲东部时间
+    TimeZoneTypeWET,           // 欧洲西部时间
+    TimeZoneTypeNST,           // 纽芬兰标准时间
+    TimeZoneTypeAST,           // 大西洋标准时间
+    TimeZoneTypePDT,           // 太平洋夏令时
+    TimeZoneTypeMDT,           // 山地夏令时
+    TimeZoneTypeCDT,           // 中部夏令时
+    TimeZoneTypeEDT,           // 东部夏令时
+    TimeZoneTypeNZST,          // 新西兰标准时间
+    TimeZoneTypeHKT,           // 香港时间
+    TimeZoneTypeSGT,           // 新加坡时间
+    TimeZoneTypeMYT,           // 马来西亚时间
+    TimeZoneTypeKST            // 韩国标准时间
+    // 可以继续添加更多时区类型...
+};
+#endif /* JOBS_TimeZoneType */
 /// 系统支持语言
 #ifndef APP_LANGUAGE_ENUM_DEFINED
 #define APP_LANGUAGE_ENUM_DEFINED
@@ -64,6 +103,7 @@ typedef ComponentType(^JobsReturnComponentTypeByVoidBlock)(void);
 typedef DeviceOrientation(^JobsReturnDeviceOrientationByVoidBlock)(void);
 typedef AppLanguage(^JobsReturnAppLanguageByVoidBlock)(void);
 typedef DeviceOrientation(^JobsReturnDeviceOrientationByViewBlock)(__kindof UIView *_Nullable data);
+typedef NSTimeZone *_Nullable(^JobsReturnTimeZoneByTypeBlock)(TimeZoneType timeZoneType);
 typedef id _Nullable(^JobsReturnIDByAppLanguageBlock)(AppLanguage data);
 typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType componentType,
                                                                  __kindof UIView *_Nullable data);
@@ -76,6 +116,9 @@ typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(__kindof UIViewModel *_Nullabl
 typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByArrBlock)(__kindof NSArray *_Nullable data);
+
+@class JobsTimeFormatterModel;
+typedef JobsTimeFormatterModel *_Nullable(^JobsReturnTimeFormatterModelByStringBlock)(NSString *_Nullable data);
 
 @class ButtonTimerProcessValueModel;
 typedef void(^jobsByButtonTimerProcessValueModelBlock)(ButtonTimerProcessValueModel *_Nullable data);

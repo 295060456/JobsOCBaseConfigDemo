@@ -52,7 +52,7 @@
         NSString *name = @(property_getName(property));
         id value = @"nil";
         @try {
-            value = self.valueForKeyBlock(name) ?: @"nil"; //默认值为nil字符串
+            value = self.valueForKey(name) ?: @"nil"; //默认值为nil字符串
         }
         @catch (NSException *exception) {
             NSLog(@"Exception: %@", exception);

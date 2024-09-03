@@ -22,7 +22,7 @@
 
 #import "UINavigationController+FDFullscreenPopGesture.h"
 
-@interface _FDFullscreenPopGestureRecognizerDelegate : NSObject <UIGestureRecognizerDelegate>
+@interface _FDFullscreenPopGestureRecognizerDelegate : NSObject
 
 @property(nonatomic,weak)UINavigationController *navigationController;
 
@@ -47,7 +47,7 @@
         return NO;
     }
     // Ignore pan gesture when the navigation controller is currently in transition.
-    if ([self.navigationController.valueForKeyBlock(@"_isTransitioning") boolValue]) {
+    if ([self.navigationController.valueForKey(@"_isTransitioning") boolValue]) {
         return NO;
     }
     // Prevent calling the handler when the gesture begins in an opposite direction.

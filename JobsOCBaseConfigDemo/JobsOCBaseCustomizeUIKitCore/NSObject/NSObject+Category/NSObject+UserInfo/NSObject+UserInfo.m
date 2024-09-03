@@ -114,7 +114,7 @@ NSString *const FM用户数据 = @"FM用户数据";
 -(jobsByStringBlock)saveUserName{
     return ^(NSString *_Nullable userName){
         if (isNull(userName)) return;
-        NSMutableArray <NSString *>*userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKeyBlock(用户名数组)];//取出来的实际上是个不可变数组，所以需要向可变数组进行转化
+        NSMutableArray <NSString *>*userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKey(用户名数组)];//取出来的实际上是个不可变数组，所以需要向可变数组进行转化
         if (!userNameMutArr) {
             userNameMutArr = NSMutableArray.array;
         }
@@ -128,12 +128,12 @@ NSString *const FM用户数据 = @"FM用户数据";
 }
 /// 读取用户名组
 -(NSArray *_Nullable)readUserNameMutArr{
-    return JobsUserDefaults.valueForKeyBlock(用户名数组);
+    return JobsUserDefaults.valueForKey(用户名数组);
 }
 /// 全局删除已经登录成功的用户名
 -(jobsByStringBlock)deleteUserName{
     return ^(NSString *_Nullable userName){
-        NSMutableArray <NSString *>*userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKeyBlock(用户名数组)];
+        NSMutableArray <NSString *>*userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKey(用户名数组)];
         if (userNameMutArr && isValue(userName)) {
             [userNameMutArr removeObject:userName];
             JobsSetUserDefaultKeyWithObject(用户名数组, userNameMutArr);
