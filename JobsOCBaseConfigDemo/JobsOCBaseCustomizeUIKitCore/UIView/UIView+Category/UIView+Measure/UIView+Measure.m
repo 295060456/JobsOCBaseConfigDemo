@@ -9,8 +9,17 @@
 #import "UIView+Measure.h"
 /* ❤️【优先级】 @implementation UIView (Measure) > Masonry,因为Masonry刷新后才有frame ❤️*/
 @implementation UIView (Measure)
+#pragma mark —— 刷新UI
+-(jobsByVoidBlock _Nonnull)jobsRefreshUI{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
+    };
+}
 #pragma mark —— 交换宽高
--(JobsReturnCGRectByVoidBlock)exchangeWidthAndHeight{
+-(JobsReturnCGRectByVoidBlock _Nonnull)exchangeWidthAndHeight{
     return ^CGRect(){
         return CGRectMake(self.x,
                           self.y,
@@ -19,7 +28,7 @@
     };
 }
 #pragma mark —— 交换 X 和 Y
--(JobsReturnCGRectByVoidBlock)exchangeXAndY{
+-(JobsReturnCGRectByVoidBlock _Nonnull)exchangeXAndY{
     return ^CGRect(){
         return CGRectMake(self.y,
                           self.x,
@@ -28,7 +37,7 @@
     };
 }
 #pragma mark —— UIView
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetOriginX{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginX{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -39,7 +48,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatAndUIViewBlock _Nullable)resetRightX{
+-(JobsReturnCGRectByCGFloatAndUIViewBlock _Nonnull)resetRightX{
     @jobs_weakify(self)
     return ^(CGFloat data,UIView *superView) {
         @jobs_strongify(self)
@@ -50,7 +59,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetOriginY{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginY{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -61,7 +70,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatAndUIViewBlock _Nullable)resetBottomY{
+-(JobsReturnCGRectByCGFloatAndUIViewBlock _Nonnull)resetBottomY{
     @jobs_weakify(self)
     return ^(CGFloat data,UIView *superView) {
         @jobs_strongify(self)
@@ -72,7 +81,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetWidth{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetWidth{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -83,7 +92,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetHeight{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetHeight{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -94,7 +103,7 @@
     };
 }
 
--(JobsReturnCGRectByCGPointBlock _Nullable)resetOrigin{
+-(JobsReturnCGRectByCGPointBlock _Nonnull)resetOrigin{
     @jobs_weakify(self)
     return ^(CGPoint data) {
         @jobs_strongify(self)
@@ -106,7 +115,7 @@
     };
 }
 
--(JobsReturnCGRectByCGSizeBlock _Nullable)resetSize{
+-(JobsReturnCGRectByCGSizeBlock _Nonnull)resetSize{
     @jobs_weakify(self)
     return ^(CGSize data) {
         @jobs_strongify(self)
@@ -117,7 +126,7 @@
     };
 }
 /// 依据偏移量重设Frame
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetByOffsetOriginX{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetOriginX{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -128,7 +137,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetByOffsetOriginY{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetOriginY{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -139,7 +148,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetCenterX{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterX{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -150,7 +159,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetCenterY{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterY{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -161,7 +170,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetByOffsetWidth{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetWidth{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -172,7 +181,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetByOffsetHeight{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetHeight{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -183,7 +192,7 @@
     };
 }
 
--(JobsReturnCGRectByCGPointBlock _Nullable)resetByOffsetOrigin{
+-(JobsReturnCGRectByCGPointBlock _Nonnull)resetByOffsetOrigin{
     @jobs_weakify(self)
     return ^(CGPoint data) {
         @jobs_strongify(self)
@@ -195,7 +204,7 @@
     };
 }
 
--(JobsReturnCGRectByCGSizeBlock _Nullable)resetByOffsetSize{
+-(JobsReturnCGRectByCGSizeBlock _Nonnull)resetByOffsetSize{
     @jobs_weakify(self)
     return ^(CGSize data) {
         @jobs_strongify(self)
@@ -207,7 +216,7 @@
     };
 }
 /// 设置水平方向对齐
--(jobsByViewBlock)centerxEqualToView{
+-(jobsByViewBlock _Nonnull)centerxEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -220,7 +229,7 @@
     };
 }
 /// 设置垂平方向对齐
--(jobsByViewBlock)centeryEqualToView{
+-(jobsByViewBlock _Nonnull)centeryEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -233,7 +242,7 @@
     };
 }
 /// 设置中心方向对齐
--(jobsByViewBlock)centerEqualToView{
+-(jobsByViewBlock _Nonnull)centerEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -246,7 +255,7 @@
     };
 }
 /// 设置左对齐
--(jobsByViewBlock)leftEqualToView{
+-(jobsByViewBlock _Nonnull)leftEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -260,7 +269,7 @@
     };
 }
 /// 设置右对齐
--(jobsByViewBlock)rightEqualToView{
+-(jobsByViewBlock _Nonnull)rightEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -274,7 +283,7 @@
     };
 }
 /// 设置顶部对齐
--(jobsByViewBlock)topEqualToView{
+-(jobsByViewBlock _Nonnull)topEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -288,7 +297,7 @@
     };
 }
 /// 设置底部对齐
--(jobsByViewBlock)bottomEqualToView{
+-(jobsByViewBlock _Nonnull)bottomEqualToView{
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
@@ -302,7 +311,7 @@
     };
 }
 #pragma mark —— UIScrollView.contentSize
--(jobsBySizeBlock _Nullable)resetContentSize{
+-(jobsBySizeBlock _Nonnull)resetContentSize{
     @jobs_weakify(self)
     return ^(CGSize data) {
         @jobs_strongify(self)
@@ -313,7 +322,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentSizeWidth{
+-(jobsByCGFloatBlock _Nonnull)resetContentSizeWidth{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -324,7 +333,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentSizeHeight{
+-(jobsByCGFloatBlock _Nonnull)resetContentSizeHeight{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -335,7 +344,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentSizeOffsetWidth{
+-(jobsByCGFloatBlock _Nonnull)resetContentSizeOffsetWidth{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -347,7 +356,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentSizeOffsetHeight{
+-(jobsByCGFloatBlock _Nonnull)resetContentSizeOffsetHeight{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -359,7 +368,7 @@
     };
 }
 #pragma mark —— UIScrollView.contentOffset
--(jobsByPointBlock _Nullable)resetContentOffset{
+-(jobsByPointBlock _Nonnull)resetContentOffset{
     @jobs_weakify(self)
     return ^(CGPoint data) {
         @jobs_strongify(self)
@@ -370,7 +379,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentOffsetX{
+-(jobsByCGFloatBlock _Nonnull)resetContentOffsetX{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -381,7 +390,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentOffsetY{
+-(jobsByCGFloatBlock _Nonnull)resetContentOffsetY{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -392,7 +401,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentOffsetX_offset{
+-(jobsByCGFloatBlock _Nonnull)resetContentOffsetX_offset{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -404,7 +413,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentOffsetY_offset{
+-(jobsByCGFloatBlock _Nonnull)resetContentOffsetY_offset{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -416,7 +425,7 @@
     };
 }
 #pragma mark —— UIScrollView.contentInset
--(jobsByEdgeInsetBlock _Nullable)resetContentInset{
+-(jobsByEdgeInsetBlock _Nonnull)resetContentInset{
     @jobs_weakify(self)
     return ^(UIEdgeInsets data) {
         @jobs_strongify(self)
@@ -427,7 +436,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentInsetTop{
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetTop{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -441,7 +450,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentInsetLeft{
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetLeft{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -455,7 +464,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentInsetBottom{
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetBottom{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -469,7 +478,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentInsetRight{
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetRight{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -483,7 +492,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetTop{
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetTop{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -497,7 +506,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetLeft{
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetLeft{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -511,7 +520,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetBottom{
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetBottom{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -525,7 +534,7 @@
     };
 }
 
--(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetRight{
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetRight{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -541,7 +550,7 @@
 /// 依据偏移量重塑Frame
 -(jobsByViewModelBlock)offsetForView{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable viewModel) {
+    return ^(UIViewModel *_Nonnull viewModel) {
         @jobs_strongify(self)
         if(viewModel.offsetXForEach){
             self.resetByOffsetOriginX(viewModel.offsetXForEach);
@@ -558,239 +567,130 @@
     };
 }
 
-- (CGFloat)maxX {
+-(CGFloat)maxX{
     return self.x + self.width;
 }
 
-- (CGFloat)maxY {
+-(CGFloat)maxY{
     return self.y + self.height;
 }
 
-- (void)setMaxXByShift:(CGFloat)maxX {
+-(void)setMaxXByShift:(CGFloat)maxX{
     self.x = maxX - self.width;
 }
 
-- (void)setMaxYByShift:(CGFloat)maxY {
+-(void)setMaxYByShift:(CGFloat)maxY{
     self.y = maxY - self.height;
 }
 
-- (void)setMaxXByStretch:(CGFloat)maxX {
+-(void)setMaxXByStretch:(CGFloat)maxX{
     self.width = maxX - self.x;
 }
 
-- (void)setMaxYByStretch:(CGFloat)maxY {
+-(void)setMaxYByStretch:(CGFloat)maxY{
     self.height = maxY - self.y;
 }
 
-- (CGPoint)boundCenter {
+-(CGPoint)boundCenter{
     return CGPointMake(self.bounds.size.width / 2,
                        self.bounds.size.height / 2);
 }
 /// 简捷获得控件坐标
 #pragma mark —— @property(nonatomic,assign)CGFloat x
-JobsKey(_x)
-@dynamic x;
 -(CGFloat)x{
-    if (Jobs_getAssociatedObject(_x)) {
-        return [Jobs_getAssociatedObject(_x) floatValue];
-    }else{
-        CGFloat X = self.frame.origin.x;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_x, @(X))
-        return X;
-    }
+    return self.frame.origin.x;
 }
 
 -(void)setX:(CGFloat)x{
     self.frame = self.resetOriginX(x);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_x, @(x))
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat y
-JobsKey(_y)
-@dynamic y;
 -(CGFloat)y{
-    if (Jobs_getAssociatedObject(_y)) {
-        return [Jobs_getAssociatedObject(_y) floatValue];
-    }else{
-        CGFloat Y = self.frame.origin.y;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_y, @(Y))
-        return Y;
-    }
+    return self.frame.origin.y;
 }
 
 -(void)setY:(CGFloat)y{
     self.frame = self.resetOriginY(y);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_y, @(y))
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat width
-JobsKey(_width)
-@dynamic width;
 -(CGFloat)width{
-    if (Jobs_getAssociatedObject(_width)) {
-        return [Jobs_getAssociatedObject(_width) floatValue];
-    }else{
-        CGFloat Width = self.frame.size.width;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_width, @(Width))
-        return Width;
-    }
+    return self.frame.size.width;
 }
 
 -(void)setWidth:(CGFloat)width{
     self.frame = self.resetWidth(width);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_width, @(width))
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat height
-JobsKey(_height)
-@dynamic height;
 -(CGFloat)height{
-    if (Jobs_getAssociatedObject(_height)) {
-        return [Jobs_getAssociatedObject(_height) floatValue];
-    }else{
-        CGFloat Height = self.frame.size.height;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_height, @(Height))
-        return Height;
-    }
+    return self.frame.size.height;
 }
 
 -(void)setHeight:(CGFloat)height{
     self.frame = self.resetHeight(height);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_height, @(height))
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat centerX
-JobsKey(_centerX)
-@dynamic centerX;
 -(CGFloat)centerX{
-    if (Jobs_getAssociatedObject(_centerX)) {
-        return [Jobs_getAssociatedObject(_centerX) floatValue];
-    }else{
-        CGFloat CenterX = self.center.x;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_centerX, @(CenterX))
-        return CenterX;
-    }
+    return self.center.x;
 }
 
 -(void)setCenterX:(CGFloat)centerX{
     self.frame = self.resetCenterX(centerX);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_centerX, @(centerX))
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat centerY
-JobsKey(_centerY)
-@dynamic centerY;
 -(CGFloat)centerY{
-    if (Jobs_getAssociatedObject(_centerY)) {
-        return [Jobs_getAssociatedObject(_centerY) floatValue];
-    }else{
-        CGFloat CenterY = self.center.y;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_centerY, @(CenterY))
-        return CenterY;
-    }
+    return self.center.y;
 }
 
 -(void)setCenterY:(CGFloat)centerY{
     self.frame = self.resetCenterY(centerY);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_centerY, @(centerY))
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat left
-JobsKey(_left)
-@dynamic left;
 -(CGFloat)left{
-    if (Jobs_getAssociatedObject(_left)) {
-        return [Jobs_getAssociatedObject(_left) floatValue];
-    }else{
-        CGFloat Left = self.frame.origin.x;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_left, @(Left))
-        return Left;
-    }
+    return self.frame.origin.x;
 }
 
 -(void)setLeft:(CGFloat)left{
     self.frame = self.resetOriginX(left);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_left, @(left))
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat right
-JobsKey(_right)
-@dynamic right;
 -(CGFloat)right{
-    if (Jobs_getAssociatedObject(_right)) {
-        return [Jobs_getAssociatedObject(_right) floatValue];
-    }else{
-        CGFloat Right = self.frame.origin.x + self.frame.size.width;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_right, @(Right))
-        return Right;
-    }
+    return self.frame.origin.x + self.frame.size.width;
 }
 
 -(void)setRight:(CGFloat)right{
     self.frame = self.resetOriginX(right - self.width);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_right, @(right))
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat top
-JobsKey(_top)
-@dynamic top;
 -(CGFloat)top{
-    if (Jobs_getAssociatedObject(_top)) {
-        return [Jobs_getAssociatedObject(_top) floatValue];
-    }else{
-        CGFloat Top = CGRectGetMinY(self.frame);
-        [self setTop:Top];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_top, @(Top))
-        return Top;
-    }
+    return CGRectGetMinY(self.frame);
 }
 
 -(void)setTop:(CGFloat)top{
     self.frame = self.resetOriginY(top);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_top, @(top))
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat bottom
-JobsKey(_bottom)
-@dynamic bottom;
 -(CGFloat)bottom{
-    if (Jobs_getAssociatedObject(_bottom)) {
-        return [Jobs_getAssociatedObject(_bottom) floatValue];
-    }else{
-        CGFloat Bottom = self.frame.origin.y + self.frame.size.height;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_bottom, @(Bottom))
-        return Bottom;
-    }
+    return self.frame.origin.y + self.frame.size.height;
 }
 
 -(void)setBottom:(CGFloat)bottom{
     self.frame = self.resetOriginY(bottom - self.height);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_bottom, @(bottom))
 }
 #pragma mark —— @property(nonatomic,assign)CGSize size
-JobsKey(_size)
-@dynamic size;
 -(CGSize)size{
-    if (Jobs_getAssociatedObject(_size)) {
-        return [Jobs_getAssociatedObject(_size) CGSizeValue];
-    }else{
-        CGSize Size = self.frame.size;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_size, @(Size))
-        return Size;
-    }
+    return self.frame.size;
 }
 
 -(void)setSize:(CGSize)size{
     self.frame = self.resetSize(size);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_size, @(size))
 }
 #pragma mark —— @property(nonatomic,assign)CGPoint origin
-JobsKey(_origin)
-@dynamic origin;
 -(CGPoint)origin{
-    if (Jobs_getAssociatedObject(_origin)) {
-        return [Jobs_getAssociatedObject(_origin) CGPointValue];
-    }else{
-        CGPoint Point = self.frame.origin;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_origin, [NSValue valueWithCGPoint:Point])
-        return Point;
-    }
+    return self.frame.origin;
 }
 
 -(void)setOrigin:(CGPoint)origin{
     self.frame = self.resetOrigin(origin);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_origin, [NSValue valueWithCGPoint:origin])
 }
 
 @end

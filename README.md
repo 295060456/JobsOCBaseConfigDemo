@@ -891,7 +891,7 @@ NSObject <|-- BaseProtocol
   * 继承和分类应该结合使用，功能各有优劣
   * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用
 
-### 14、度量衡 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 14、<font id=度量衡>**度量衡**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * [**手机屏幕尺寸大全**](https://www.strerr.com/screen.html)
 
@@ -4994,6 +4994,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 13、iOS 状态栏颜色的修改 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+#### 13.1、颜色的修改
+
 * 全局修改
 
   * 在`Info.plist`里面加入如下键值对
@@ -5013,9 +5015,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 局部修改
 
-  * 在`Info.plist`里面加入如下键值对
-
-    ```xml
+  * ```xml
     <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <true/>
@@ -5038,6 +5038,34 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         return UIStatusBarStyleLightContent;
     }
     ```
+
+#### 13.2、状态栏的隐藏（默认显示）
+
+* 全局隐藏
+
+  ```xml
+<key>UIViewControllerBasedStatusBarAppearance</key>
+  <false/>
+  <!--只设置UIViewControllerBasedStatusBarAppearance为false，而不设置UIStatusBarHidden为true，在某些情况下会显示本应该隐藏的iOS状态栏-->
+  <key>UIStatusBarHidden</key>
+  <true/>
+  ```
+
+* 在某个特定的视图控制器中隐藏状态栏。重写视图控制器的`- (BOOL)prefersStatusBarHidden`方法
+
+  ```objective-c
+  - (BOOL)prefersStatusBarHidden {
+      return YES;
+  }
+  ```
+
+* 动态隐藏（已经在 iOS 9.0 后被废弃）
+
+  ```objective-c
+  [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+  ```
+
+#### 13.3、[状态栏高度的封装](#度量衡)
 
 ### 14、对`NSUserDefaults.standardUserDefaults` 的二次封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

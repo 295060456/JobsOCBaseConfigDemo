@@ -40,66 +40,68 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat bottom;
 @property(nonatomic,assign)CGSize size;
 @property(nonatomic,assign)CGPoint origin;
+#pragma mark —— 刷新UI
+-(jobsByVoidBlock)jobsRefreshUI;
 #pragma mark —— 交换宽高
 -(JobsReturnCGRectByVoidBlock)exchangeWidthAndHeight;
 #pragma mark —— 交换 X 和 Y
 -(JobsReturnCGRectByVoidBlock)exchangeXAndY;
 #pragma mark —— UIView
 /// 重设Frame
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetOriginX;
--(JobsReturnCGRectByCGFloatAndUIViewBlock _Nullable)resetRightX;
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetOriginY;
--(JobsReturnCGRectByCGFloatAndUIViewBlock _Nullable)resetBottomY;
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetWidth;
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetHeight;
--(JobsReturnCGRectByCGPointBlock _Nullable)resetOrigin;
--(JobsReturnCGRectByCGSizeBlock _Nullable)resetSize;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginX;
+-(JobsReturnCGRectByCGFloatAndUIViewBlock _Nonnull)resetRightX;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginY;
+-(JobsReturnCGRectByCGFloatAndUIViewBlock _Nonnull)resetBottomY;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetWidth;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetHeight;
+-(JobsReturnCGRectByCGPointBlock _Nonnull)resetOrigin;
+-(JobsReturnCGRectByCGSizeBlock _Nonnull)resetSize;
 /// 依据偏移量重设Frame
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetByOffsetOriginX;
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetByOffsetOriginY;
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetCenterX;
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetCenterY;
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetByOffsetWidth;
--(JobsReturnCGRectByCGFloatBlock _Nullable)resetByOffsetHeight;
--(JobsReturnCGRectByCGPointBlock _Nullable)resetByOffsetOrigin;
--(JobsReturnCGRectByCGSizeBlock _Nullable)resetByOffsetSize;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetOriginX;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetOriginY;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterX;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterY;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetWidth;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetHeight;
+-(JobsReturnCGRectByCGPointBlock _Nonnull)resetByOffsetOrigin;
+-(JobsReturnCGRectByCGSizeBlock _Nonnull)resetByOffsetSize;
 #pragma mark —— UIView对齐方法扩充 https://github.com/MisterZhouZhou/ZWUIViewExtension
 /// 设置水平方向对齐
--(jobsByViewBlock)centerxEqualToView;
+-(jobsByViewBlock _Nonnull)centerxEqualToView;
 /// 设置垂平方向对齐
--(jobsByViewBlock)centeryEqualToView;
+-(jobsByViewBlock _Nonnull)centeryEqualToView;
 /// 设置中心方向对齐
--(jobsByViewBlock)centerEqualToView;
+-(jobsByViewBlock _Nonnull)centerEqualToView;
 /// 设置左对齐
--(jobsByViewBlock)leftEqualToView;
+-(jobsByViewBlock _Nonnull)leftEqualToView;
 /// 设置右对齐
--(jobsByViewBlock)rightEqualToView;
+-(jobsByViewBlock _Nonnull)rightEqualToView;
 /// 设置顶部对齐
--(jobsByViewBlock)topEqualToView;
+-(jobsByViewBlock _Nonnull)topEqualToView;
 /// 设置底部对齐
--(jobsByViewBlock)bottomEqualToView;
+-(jobsByViewBlock _Nonnull)bottomEqualToView;
 #pragma mark —— UIScrollView.contentSize
--(jobsBySizeBlock _Nullable)resetContentSize;
--(jobsByCGFloatBlock _Nullable)resetContentSizeWidth;
--(jobsByCGFloatBlock _Nullable)resetContentSizeHeight;
--(jobsByCGFloatBlock _Nullable)resetContentSizeOffsetWidth;
--(jobsByCGFloatBlock _Nullable)resetContentSizeOffsetHeight;
+-(jobsBySizeBlock _Nonnull)resetContentSize;
+-(jobsByCGFloatBlock _Nonnull)resetContentSizeWidth;
+-(jobsByCGFloatBlock _Nonnull)resetContentSizeHeight;
+-(jobsByCGFloatBlock _Nonnull)resetContentSizeOffsetWidth;
+-(jobsByCGFloatBlock _Nonnull)resetContentSizeOffsetHeight;
 #pragma mark —— UIScrollView.contentOffset
--(jobsByPointBlock _Nullable)resetContentOffset;
--(jobsByCGFloatBlock _Nullable)resetContentOffsetX;
--(jobsByCGFloatBlock _Nullable)resetContentOffsetY;
--(jobsByCGFloatBlock _Nullable)resetContentOffsetX_offset;
--(jobsByCGFloatBlock _Nullable)resetContentOffsetY_offset;
+-(jobsByPointBlock _Nonnull)resetContentOffset;
+-(jobsByCGFloatBlock _Nonnull)resetContentOffsetX;
+-(jobsByCGFloatBlock _Nonnull)resetContentOffsetY;
+-(jobsByCGFloatBlock _Nonnull)resetContentOffsetX_offset;
+-(jobsByCGFloatBlock _Nonnull)resetContentOffsetY_offset;
 #pragma mark —— UIScrollView.contentInset
--(jobsByEdgeInsetBlock _Nullable)resetContentInset;
--(jobsByCGFloatBlock _Nullable)resetContentInsetTop;
--(jobsByCGFloatBlock _Nullable)resetContentInsetLeft;
--(jobsByCGFloatBlock _Nullable)resetContentInsetBottom;
--(jobsByCGFloatBlock _Nullable)resetContentInsetRight;
--(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetTop;
--(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetLeft;
--(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetBottom;
--(jobsByCGFloatBlock _Nullable)resetContentInsetOffsetRight;
+-(jobsByEdgeInsetBlock _Nonnull)resetContentInset;
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetTop;
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetLeft;
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetBottom;
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetRight;
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetTop;
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetLeft;
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetBottom;
+-(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetRight;
 #pragma mark —— 依据UIViewModel所携带的偏移量重塑Frame
 -(jobsByViewModelBlock)offsetForView;
 #pragma mark —— 拉升和平移
@@ -107,13 +109,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,readonly)CGFloat maxY;
 @property(nonatomic,readonly)CGPoint boundCenter;
 /// [平移]这个view, 让view.maxX = maxX
-- (void)setMaxXByShift:(CGFloat)maxX;
+-(void)setMaxXByShift:(CGFloat)maxX;
 /// [拉伸]这个view, 让view.maxX = maxX
-- (void)setMaxXByStretch:(CGFloat)maxX;
+-(void)setMaxXByStretch:(CGFloat)maxX;
 /// [平移]这个view, 让view.maxY = maxY
-- (void)setMaxYByShift:(CGFloat)maxY;
+-(void)setMaxYByShift:(CGFloat)maxY;
 /// [拉伸]这个view, 让view.maxY = maxY
-- (void)setMaxYByStretch:(CGFloat)maxY;
+-(void)setMaxYByStretch:(CGFloat)maxY;
 
 @end
 

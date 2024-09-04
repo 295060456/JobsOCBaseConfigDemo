@@ -15,7 +15,7 @@
 @property(nonatomic,strong)UIButton *authCodeBtn;
 @property(nonatomic,strong)UIButton *securityModeBtn;
 @property(nonatomic,strong)ZYTextField *textField;
-@property(nonatomic,strong)UIButton *chooseBtn;
+@property(nonatomic,strong)BaseButton *chooseBtn;
 /// Data
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 @property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
@@ -142,13 +142,51 @@
 #pragma mark —— lazyLoad
 -(UIButton *)securityModeBtn{
     if (!_securityModeBtn) {
-        _securityModeBtn = UIButton.new;
-        _securityModeBtn.selectedImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
-        _securityModeBtn.normalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image);
         @jobs_weakify(self)
-        [_securityModeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _securityModeBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                             background:nil
+                                             buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                          textAlignment:NSTextAlignmentCenter
+                                                       subTextAlignment:NSTextAlignmentCenter
+                                                            normalImage:self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image
+                                                         highlightImage:nil
+                                                        attributedTitle:nil
+                                                selectedAttributedTitle:nil
+                                                     attributedSubtitle:nil
+                                                                  title:nil
+                                                               subTitle:nil
+                                                              titleFont:nil
+                                                           subTitleFont:nil
+                                                               titleCor:nil
+                                                            subTitleCor:nil
+                                                     titleLineBreakMode:NSLineBreakByWordWrapping
+                                                  subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                    baseBackgroundColor:nil
+                                                        backgroundImage:nil
+                                                           imagePadding:JobsWidth(0)
+                                                           titlePadding:JobsWidth(0)
+                                                         imagePlacement:NSDirectionalRectEdgeNone
+                                             contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                               contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                          contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                      cornerRadiusValue:JobsWidth(0)
+                                                        roundingCorners:UIRectCornerAllCorners
+                                                   roundingCornersRadii:CGSizeZero
+                                                         layerBorderCor:nil
+                                                            borderWidth:JobsWidth(0)
+                                                          primaryAction:nil
+                                             longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                            id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                        clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             x.selected = !x.selected;
+            if(x.selected){
+                x.jobsResetBtnImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
+            }
             self.textField.secureTextEntry = x.selected;
             if (x.selected && !self.textField.isEditing) {
                 self.textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
@@ -211,22 +249,49 @@
     }return _authCodeBtn;
 }
 
--(UIButton *)chooseBtn{
+-(BaseButton *)chooseBtn{
     if (!_chooseBtn) {
-        _chooseBtn = UIButton.new;
-        _chooseBtn.normalImage(self.chooseBtnViewModel.image);
-        _chooseBtn.normalTitleColor(self.chooseBtnViewModel.textModel.textCor);
-        _chooseBtn.normalTitle(self.chooseBtnViewModel.textModel.text);
-        _chooseBtn.titleFont(self.chooseBtnViewModel.textModel.font);
-        [self addSubview:_chooseBtn];
-        [_chooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self).offset(-JobsWidth(8));
-            make.size.mas_equalTo(self.chooseBtnSize);
-            make.left.equalTo(self).offset(JobsWidth(0));
-        }];
         @jobs_weakify(self)
-        [_chooseBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _chooseBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                       background:nil
+                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                    textAlignment:NSTextAlignmentCenter
+                                                 subTextAlignment:NSTextAlignmentCenter
+                                                      normalImage:self.chooseBtnViewModel.image
+                                                   highlightImage:nil
+                                                  attributedTitle:nil
+                                          selectedAttributedTitle:nil
+                                               attributedSubtitle:nil
+                                                            title:self.chooseBtnViewModel.textModel.text
+                                                         subTitle:nil
+                                                        titleFont:self.chooseBtnViewModel.textModel.font
+                                                     subTitleFont:nil
+                                                         titleCor:self.chooseBtnViewModel.textModel.textCor
+                                                      subTitleCor:nil
+                                               titleLineBreakMode:NSLineBreakByWordWrapping
+                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                              baseBackgroundColor:nil
+                                                  backgroundImage:nil
+                                                     imagePadding:JobsWidth(8)
+                                                     titlePadding:JobsWidth(0)
+                                                   imagePlacement:NSDirectionalRectEdgeTrailing
+                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                cornerRadiusValue:JobsWidth(0)
+                                                  roundingCorners:UIRectCornerAllCorners
+                                             roundingCornersRadii:CGSizeZero
+                                                   layerBorderCor:nil
+                                                      borderWidth:JobsWidth(0)
+                                                    primaryAction:nil
+                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                      id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                  clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             x.selected = !x.selected;
             if (x.selected) {
                 @jobs_weakify(self)
@@ -244,8 +309,12 @@
                 [self->dropDownListView dropDownListViewDisappear:x];
             }return nil;
         }];
-        [_chooseBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTrailing
-                                       imagePadding:JobsWidth(8)];
+        [self addSubview:_chooseBtn];
+        [_chooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self).offset(-JobsWidth(8));
+            make.size.mas_equalTo(self.chooseBtnSize);
+            make.left.equalTo(self).offset(JobsWidth(0));
+        }];
     }return _chooseBtn;
 }
 

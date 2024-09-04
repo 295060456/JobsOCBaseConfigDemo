@@ -85,9 +85,9 @@
 <!-- 应用支持的所有语言代码，这些语言代码应该与您的本地化资源文件夹相匹配 -->
 <key>CFBundleLocalizations</key>
 <array>
-	<string>en</string>
-	<string>zh-Hans</string>
-	<string>fil-PH</string>
+    <string>en</string>
+    <string>zh-Hans</string>
+    <string>fil-PH</string>
 </array>
 <!-- 开发区域的语言代码 -->
 <key>CFBundleDevelopmentRegion</key>
@@ -268,6 +268,9 @@
 <!-- iOS 状态栏颜色的修改【全局设置】Status bar style : Light Content-->
 <key>UIStatusBarStyle</key>
 <string>UIStatusBarStyleLightContent</string>
+<!--只设置UIViewControllerBasedStatusBarAppearance为false，而不设置UIStatusBarHidden为true，在某些情况下会显示本应该隐藏的iOS状态栏-->
+<key>UIStatusBarHidden</key>
+<true/>
 ```
 
 ## 9、App名
