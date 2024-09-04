@@ -243,7 +243,12 @@ BaseButtonProtocol_synthesize
     if (self.selected){ //如果此时取消了点赞,则不执行动画
         CAKeyframeAnimation *animation2 = [CAKeyframeAnimation animationWithKeyPath:@"countLabel"];
         animation2.keyPath = @"opacity";
-        animation2.values = @[@0.2,@0.5,@0.8,@1];
+        animation2.values = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(@0.2);
+            data.add(@0.5);
+            data.add(@0.8);
+            data.add(@1);
+        });
         animation2.duration = 0.8;
         animation2.calculationMode = kCAAnimationCubic;
         [self.countLabel.layer addAnimation:animation2 forKey:nil];
@@ -266,7 +271,11 @@ BaseButtonProtocol_synthesize
     /// 1、添加数字+1透明度动画
     CAKeyframeAnimation *animation0 = CAKeyframeAnimation.animation;
     animation0.keyPath = @"opacity";
-    animation0.values = @[@0.5,@0.8,@1.0];
+    animation0.values = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add(@0.5);
+        data.add(@0.8);
+        data.add(@1.0);
+    });
     animation0.duration = 0.5;
     animation0.calculationMode = kCAAnimationCubic;
     [self.incLabel.layer addAnimation:animation0 forKey:nil];
@@ -277,7 +286,11 @@ BaseButtonProtocol_synthesize
     /// 2、添加"+1"慢慢变大动画
     CAKeyframeAnimation *animationScale = CAKeyframeAnimation.animation;
     animationScale.keyPath = @"transform.scale";
-    animationScale.values = @[@1.0,@1.1,@1.2];
+    animationScale.values = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add(@1.0);
+        data.add(@1.1);
+        data.add(@1.2);
+    });
     animationScale.duration = 1.0;
     animationScale.calculationMode = kCAAnimationCubic;
     [self.incLabel.layer addAnimation:animationScale forKey:nil];
@@ -294,7 +307,11 @@ BaseButtonProtocol_synthesize
         /// 4、添加"+1"慢慢消失动画
         CAKeyframeAnimation *animation2 = CAKeyframeAnimation.animation;
         animation2.keyPath = @"opacity";
-        animation2.values = @[@0.8,@0.5,@0];
+        animation2.values = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(@0.8);
+            data.add(@0.5);
+            data.add(@0);
+        });
         animation2.duration = 0.5;
         animation2.calculationMode = kCAAnimationCubic;
         [self.incLabel.layer addAnimation:animation2 forKey:nil];

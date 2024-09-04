@@ -53,6 +53,7 @@
 		CE4B43712C6F450600FDCB0F /* NSMutableDictionary+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B436F2C6F450500FDCB0F /* NSMutableDictionary+Extra.m */; };
 		CE706A422C57680500CB7B97 /* JobsPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE794C2C450C5000764AF5 /* JobsPostVC.m */; };
 		CE706A462C57682900CB7B97 /* data.tsv in Resources */ = {isa = PBXBuildFile; fileRef = CE706A432C57682900CB7B97 /* data.tsv */; };
+		CE72AC312C885E54000B7A40 /* JobsUploadingProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE72AC2F2C885E4D000B7A40 /* JobsUploadingProgressView.m */; };
 		CE7F395D2C4FDA1000431A5D /* JobsFMDBMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */; };
 		CE7F395E2C4FDA1000431A5D /* FMDB_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F395A2C4FDA1000431A5D /* FMDB_VC.m */; };
 		CE7F396F2C4FDAF900431A5D /* JobsMenuSubView@1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39602C4FDAF900431A5D /* JobsMenuSubView@1.m */; };
@@ -918,8 +919,6 @@
 		CECE874E2C45140000764AF5 /* AESCrypt-ObjC.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE86AF2C45140000764AF5 /* AESCrypt-ObjC.md */; };
 		CECE874F2C45140000764AF5 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE86B12C45140000764AF5 /* AESCrypt.m */; };
 		CECE87522C45140000764AF5 /* JobsLaunchAdMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE86BA2C45140000764AF5 /* JobsLaunchAdMgr.m */; };
-		CECE87532C45140000764AF5 /* DDUploadingProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE86BD2C45140000764AF5 /* DDUploadingProgressView.m */; };
-		CECE87542C45140000764AF5 /* DDUploadingProgressView.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE86BE2C45140000764AF5 /* DDUploadingProgressView.md */; };
 		CECE87552C45140000764AF5 /* File in Resources */ = {isa = PBXBuildFile; fileRef = CECE86C02C45140000764AF5 /* File */; };
 		CECE87562C45140000764AF5 /* FSAppIconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE86C32C45140000764AF5 /* FSAppIconManager.m */; };
 		CECE87572C45140000764AF5 /* FSAppIconManager.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE86C42C45140000764AF5 /* FSAppIconManager.md */; };
@@ -1254,6 +1253,9 @@
 		CE4B436F2C6F450500FDCB0F /* NSMutableDictionary+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Extra.m"; sourceTree = "<group>"; };
 		CE706A432C57682900CB7B97 /* data.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.tsv; sourceTree = "<group>"; };
 		CE706A442C57682900CB7B97 /* TSV文件介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "TSV文件介绍.md"; sourceTree = "<group>"; };
+		CE72AC2E2C885E49000B7A40 /* JobsUploadingProgressView.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = JobsUploadingProgressView.md; sourceTree = "<group>"; };
+		CE72AC2F2C885E4D000B7A40 /* JobsUploadingProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsUploadingProgressView.m; sourceTree = "<group>"; };
+		CE72AC302C885E51000B7A40 /* JobsUploadingProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsUploadingProgressView.h; sourceTree = "<group>"; };
 		CE73A5362C4E441D00B44795 /* JobsToggleNavViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsToggleNavViewProtocol.h; sourceTree = "<group>"; };
 		CE775D7C2C47BF5D004D39D0 /* 自定义 UITabBarController.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "自定义 UITabBarController.md"; path = "自定义 UITabBarController.md/自定义 UITabBarController.md"; sourceTree = "<group>"; };
 		CE7F39562C4FDA1000431A5D /* JobsFMDBMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsFMDBMgr.h; sourceTree = "<group>"; };
@@ -2948,9 +2950,6 @@
 		CECE86B12C45140000764AF5 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
 		CECE86B92C45140000764AF5 /* JobsLaunchAdMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsLaunchAdMgr.h; sourceTree = "<group>"; };
 		CECE86BA2C45140000764AF5 /* JobsLaunchAdMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsLaunchAdMgr.m; sourceTree = "<group>"; };
-		CECE86BC2C45140000764AF5 /* DDUploadingProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDUploadingProgressView.h; sourceTree = "<group>"; };
-		CECE86BD2C45140000764AF5 /* DDUploadingProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDUploadingProgressView.m; sourceTree = "<group>"; };
-		CECE86BE2C45140000764AF5 /* DDUploadingProgressView.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DDUploadingProgressView.md; sourceTree = "<group>"; };
 		CECE86C02C45140000764AF5 /* File */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = File; sourceTree = "<group>"; };
 		CECE86C22C45140000764AF5 /* FSAppIconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAppIconManager.h; sourceTree = "<group>"; };
 		CECE86C32C45140000764AF5 /* FSAppIconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAppIconManager.m; sourceTree = "<group>"; };
@@ -12837,14 +12836,14 @@
 			path = "App开屏广告-JobsLaunchAdMgr";
 			sourceTree = "<group>";
 		};
-		CECE86BF2C45140000764AF5 /* DDUploadingProgressView */ = {
+		CECE86BF2C45140000764AF5 /* JobsUploadingProgressView */ = {
 			isa = PBXGroup;
 			children = (
-				CECE86BC2C45140000764AF5 /* DDUploadingProgressView.h */,
-				CECE86BD2C45140000764AF5 /* DDUploadingProgressView.m */,
-				CECE86BE2C45140000764AF5 /* DDUploadingProgressView.md */,
+				CE72AC302C885E51000B7A40 /* JobsUploadingProgressView.h */,
+				CE72AC2F2C885E4D000B7A40 /* JobsUploadingProgressView.m */,
+				CE72AC2E2C885E49000B7A40 /* JobsUploadingProgressView.md */,
 			);
-			path = DDUploadingProgressView;
+			path = JobsUploadingProgressView;
 			sourceTree = "<group>";
 		};
 		CECE86C12C45140000764AF5 /* FFmpeg */ = {
@@ -13076,7 +13075,7 @@
 				CECE86AE2C45140000764AF5 /* 圆形倒计时进度条（中间有字，可点击回调） */,
 				CECE86B22C45140000764AF5 /* AESCrypt-ObjC */,
 				CECE86BB2C45140000764AF5 /* App开屏广告-JobsLaunchAdMgr */,
-				CECE86BF2C45140000764AF5 /* DDUploadingProgressView */,
+				CECE86BF2C45140000764AF5 /* JobsUploadingProgressView */,
 				CECE86C12C45140000764AF5 /* FFmpeg */,
 				CECE86C52C45140000764AF5 /* FSAppIconManager */,
 				CECE86CD2C45140000764AF5 /* GXCardView */,
@@ -14005,7 +14004,6 @@
 				CECE89002C4519AD00764AF5 /* NotoSansDisplay-ExtraBold.ttf in Resources */,
 				CECE7ECE2C450E5B00764AF5 /* A60FD1B7CBF08631A978DC3E57B4F221.png in Resources */,
 				CECE89442C4519AD00764AF5 /* 6.59.png in Resources */,
-				CECE87542C45140000764AF5 /* DDUploadingProgressView.md in Resources */,
 				CECE88C52C4519AD00764AF5 /* 钱袋.gif in Resources */,
 				CECE85B62C4513CE00764AF5 /* BaseTableView.md in Resources */,
 				CECE89552C4519AD00764AF5 /* UserData.json in Resources */,
@@ -14309,7 +14307,6 @@
 				CECE85E72C4513CE00764AF5 /* UIView+SuspendView.m in Sources */,
 				CECE854C2C4513CE00764AF5 /* NSObject+UUID.m in Sources */,
 				CECE858C2C4513CE00764AF5 /* JobsTextFieldStyleCVCell.m in Sources */,
-				CECE87532C45140000764AF5 /* DDUploadingProgressView.m in Sources */,
 				CECE87672C45140000764AF5 /* TMSCollectionViewLayout.m in Sources */,
 				CEAF25312C60FE050056570C /* ExcelVC.m in Sources */,
 				CECE85662C4513CE00764AF5 /* NSString+FilteringSpecialCharacters.m in Sources */,
@@ -14476,6 +14473,7 @@
 				CECE87242C45140000764AF5 /* NSData+Base64.m in Sources */,
 				CECE85DC2C4513CE00764AF5 /* UIView+BackgroundImage.m in Sources */,
 				CECE81452C4512BF00764AF5 /* JobsCustomTabBar.m in Sources */,
+				CE72AC312C885E54000B7A40 /* JobsUploadingProgressView.m in Sources */,
 				CECE85552C4513CE00764AF5 /* NSObject+RegularExpression.m in Sources */,
 				CE2E873A2C689F9100260207 /* JobsBtnStyleTBVCell.m in Sources */,
 				CECE81072C4512BF00764AF5 /* BaseContentView.m in Sources */,

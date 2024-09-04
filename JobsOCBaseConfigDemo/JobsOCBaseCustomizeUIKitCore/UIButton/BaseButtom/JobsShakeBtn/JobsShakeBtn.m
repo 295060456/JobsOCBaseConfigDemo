@@ -112,9 +112,11 @@
     #define Angle2Radian(angle) ((angle) / 180.0 * M_PI)
         _anim = CAKeyframeAnimation.animation;
         _anim.keyPath = @"transform.rotation";
-        _anim.values = @[@(Angle2Radian(-5)),
-                        @(Angle2Radian(5)),
-                        @(Angle2Radian(-5))];
+        _anim.values = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(@(Angle2Radian(-5)));
+            data.add(@(Angle2Radian(5)));
+            data.add(@(Angle2Radian(-5)));
+        });
         _anim.duration = 0.25;
         // 动画次数设置为最大
         _anim.repeatCount = MAXFLOAT;

@@ -26,8 +26,9 @@
             if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
             return nil;
         } selectorName:nil target:self]];
-        
-        [menu setMenuItems:@[copyItem]];
+        menu.menuItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(copyItem);
+        });
         [menu update];
         
         if(@available(iOS 10.3, *)){

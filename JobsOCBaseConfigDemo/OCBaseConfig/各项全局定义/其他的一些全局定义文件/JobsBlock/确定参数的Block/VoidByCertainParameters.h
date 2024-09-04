@@ -12,6 +12,8 @@
 typedef void(^jobsByVoidBlock)(void);
 
 typedef void(^jobsByURLBlock)(NSURL *_Nullable data);
+typedef void(^jobsByMutableArrayBlock)(NSMutableArray *_Nullable data);
+typedef void(^jobsByMutableSetBlock)(NSMutableSet *_Nullable data);
 typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable data);
 typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);
 typedef void(^jobsByTimerBlock)(NSTimer *_Nullable data);

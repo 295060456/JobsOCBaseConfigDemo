@@ -7,9 +7,8 @@
 //
 
 #import "GDFadeView.h"
-@interface GDFadeView (){
-    
-}
+
+@interface GDFadeView ()
 
 @property(nonatomic,strong)UILabel *backLabel;
 @property(nonatomic,strong)UILabel *frontLabel;
@@ -40,12 +39,16 @@
 
 - (void)createMask{
     self.cagradientLayer.frame = self.bounds;
-    self.cagradientLayer.colors = @[(id)[UIColor clearColor].CGColor,
-                                    (id)[UIColor redColor].CGColor,
-                                    (id)[UIColor clearColor].CGColor];
-    self.cagradientLayer.locations = @[@(0.25),
-                                       @(0.5),
-                                       @(0.75)];
+    self.cagradientLayer.colors = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add((id)JobsClearColor.CGColor);
+        data.add((id)JobsRedColor.CGColor);
+        data.add((id)JobsClearColor.CGColor);
+    });
+    self.cagradientLayer.locations = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add(@(0.25));
+        data.add(@(0.5));
+        data.add(@(0.75));
+    });
     self.cagradientLayer.startPoint = CGPointMake(0, 0);
     self.cagradientLayer.endPoint = CGPointMake(1, 0);
     _frontLabel.layer.mask = self.cagradientLayer;
@@ -54,10 +57,10 @@
 }
 
 - (void)iPhoneFadeWithDuration:(NSTimeInterval)duration{
-    CABasicAnimation *basicAnimation = [CABasicAnimation animation];
+    CABasicAnimation *basicAnimation = CABasicAnimation.animation;
     basicAnimation.keyPath = @"transform.translation.x";
     basicAnimation.fromValue = @(0);
-    basicAnimation.toValue = @(self.bounds.size.width+self.bounds.size.width/2.0);
+    basicAnimation.toValue = @(self.bounds.size.width + self.bounds.size.width / 2.0);
     basicAnimation.duration = duration;
     basicAnimation.repeatCount = MAXFLOAT;//LONG_MAX
     basicAnimation.removedOnCompletion = NO;
@@ -114,6 +117,5 @@
         _cagradientLayer = CAGradientLayer.layer;
     }return _cagradientLayer;
 }
-
 
 @end

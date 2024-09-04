@@ -35,7 +35,11 @@ JobsKey(_navigationBar)
         };//设置导航上的title显示样式
         [NavBar setBarTintColor:JobsRedColor];//一般的业务是全局设置，因为一个App里面只有一个主题
         NavBar.tintColor = JobsBlackColor;//系统的组件着色（返回按钮——箭头图标 和 上面的字）
-        NavBar.items = @[self.navItem];
+        @jobs_weakify(self)
+        NavBar.items = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            data.add(self.navItem);
+        });
         NavBar.translucent = self.isBarTranslucent;
         NavBar.hidden = self.isHiddenNavigationBar;
         [self.view addSubview:NavBar];

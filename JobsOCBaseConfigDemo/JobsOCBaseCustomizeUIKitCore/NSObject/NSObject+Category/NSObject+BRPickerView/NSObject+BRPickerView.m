@@ -28,8 +28,16 @@
      */
     addressPickerView.pickerMode = BRAddressPickerModeArea;
     addressPickerView.title = JobsInternationalization(@"请选择地区");
-    // AddressPickerView.selectValues = @[@"浙江省", @"杭州市", @"西湖区"];
-    addressPickerView.selectIndexs = @[@10, @0, @4];
+//    addressPickerView.selectValues = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+//        data.add(JobsInternationalization(@"浙江省"));
+//        data.add(JobsInternationalization(@"杭州市"));
+//        data.add(JobsInternationalization(@"西湖区"));
+//    });
+    addressPickerView.selectIndexs = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add(@10);
+        data.add(0);
+        data.add(@4);
+    });
     addressPickerView.isAutoSelect = YES;
     // 设置自定义样式
     addressPickerView.pickerStyle = pickerStyle;
@@ -85,7 +93,7 @@
 //        [self.addressPickerView removePickerFromView:nil];
 //        if (clickDoneBlock) clickDoneBlock();
 //    };
-//    
+//
 //    self.addressPickerView.resultBlock = ^(BRProvinceModel *province,
 //                                           BRCityModel *city,
 //                                           BRAreaModel *area) {
@@ -113,13 +121,13 @@
 //                                                JobsInternationalization(@"博士后")];
 //        stringPickerViewModel.selectIndex = 2;
 //    }
-//    
+//
 //    self.stringPickerView.pickerMode = stringPickerViewModel.pickerMode;
 //    self.stringPickerView.title = stringPickerViewModel.title;
 //    self.stringPickerView.dataSourceArr = stringPickerViewModel.dataSourceArr;
 //    self.stringPickerView.selectIndex = stringPickerViewModel.selectIndex;
 //    self.stringPickerView.pickerStyle = pickerStyle ? : self.customStyle;
-//    
+//
 //    @jobs_weakify(self)
 //    self.stringPickerView.doneBlock = ^{
 //        @jobs_strongify(self)
@@ -137,7 +145,7 @@
 //        @jobs_strongify(self)
 //        if (self.objectBlock) self.objectBlock(resultModelArr);
 //    };
-//    
+//
 //    [self.stringPickerView show];
 //}
 #pragma mark —— 一些私有方法

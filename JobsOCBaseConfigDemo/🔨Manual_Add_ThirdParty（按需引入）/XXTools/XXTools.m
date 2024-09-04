@@ -8,7 +8,7 @@
 
 #import "XXTools.h"
 
-@interface  XXTools()
+@interface XXTools()
 
 @property(nonatomic,strong)UIImageView *labView;
 @property(nonatomic,strong)UILabel *lab2;
@@ -54,7 +54,10 @@
     self.lab2.backgroundColor = JobsClearColor;//lab2 不要颜色
     self.lab2.transform = CGAffineTransformMakeRotation(-M_PI_4);
     [superView addSubview:self.lab2];
-    return @[self.labView,self.lab2];
+    return jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add(self.labView);
+        data.add(self.lab2);
+    });
 }
 
 #pragma mark —— lazyLoad

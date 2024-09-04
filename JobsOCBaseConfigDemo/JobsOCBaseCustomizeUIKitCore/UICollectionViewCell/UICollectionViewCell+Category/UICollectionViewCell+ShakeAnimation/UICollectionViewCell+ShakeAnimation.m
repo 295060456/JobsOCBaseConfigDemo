@@ -14,9 +14,11 @@
     anim.keyPath = @"transform.rotation";
     anim.duration = 0.2;
     anim.repeatCount = MAXFLOAT;
-    anim.values = @[@(-0.03),
-                    @(0.03),
-                    @(-0.03)];
+    anim.values = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add(@(-0.03));
+        data.add(@(0.03));
+        data.add(@(-0.03));
+    });
     anim.removedOnCompletion = NO;
     anim.fillMode = kCAFillModeForwards;
     [self.layer addAnimation:anim

@@ -3383,7 +3383,122 @@ static const uint32_t kSequenceBits = 12;
   }
   ```
 
-### 31、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 31、容器类的二次封装使用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* 数组
+
+  [**@implementation NSMutableArray (Extra)**]()
+
+  ```objective-c
+  /// 清除数组元素
+  -(jobsByVoidBlock _Nonnull)clean{
+      @jobs_weakify(self)
+      return ^(){
+          @jobs_strongify(self)
+          [self removeAllObjects];
+      };
+  }
+  /// 元素包含
+  -(JobsReturnBOOLByIDBlock)containsObject{
+      return ^BOOL((id _Nullable data)){
+          return [self containsObject:data];
+      };
+  }
+  /// 数组取值（无法关联数组的泛型）
+  -(JobsReturnIDByUIntegerBlock _Nonnull)objectAt{
+      @jobs_weakify(self)
+      return ^id _Nullable(NSUInteger data){
+          @jobs_strongify(self)
+          return [self objectAtIndex:data];
+      };
+  }
+  /// 数组取下标
+  -(JobsReturnNSUIntegerByIDBlock)indexBy{
+      @jobs_weakify(self)
+      return ^NSUInteger(id _Nullable data){
+          @jobs_strongify(self)
+          return [self indexOfObject:data];
+      };
+  }
+  /// 阻止向可变数组添加空元素
+  -(JobsReturnIDByIDBlock _Nonnull)add{
+      @jobs_weakify(self)
+      return ^id (id _Nullable data) {
+          @jobs_strongify(self)
+          if(data){
+              [self addObject:data];/// 向数组加入nil会崩
+          }else{
+              NSLog(@"数组被添加了一个空元素");
+          }return self;
+      };
+  }
+  /// 向数组加入一个从来没有没有过的元素，以保证数组元素的单一性
+  -(JobsReturnIDByIDBlock _Nonnull)jobsAddSoleObject{
+      @jobs_weakify(self)
+      return ^id (id _Nullable data) {
+          @jobs_strongify(self)
+          if(data){
+              if (![self containsObject:data]) {
+                  [self addObject:data];
+              }
+          }else{
+              NSLog(@"数组被添加了一个空元素");
+          }return self;
+      };
+  }
+  ```
+
+  ```objective-c
+  /// 可变数组的方便调用
+  -(__kindof NSArray *_Nonnull)jobsMakeMutArr:(jobsByMutableArrayBlock _Nonnull)block{
+      NSMutableArray *mutableArray = NSMutableArray.array;
+      if (block) block(mutableArray);
+      return mutableArray;
+  }
+  /// 可变数组的方便调用
+  static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutableArrayBlock _Nonnull block){
+      NSMutableArray *mutableArray = NSMutableArray.array;
+      if (block) block(mutableArray);
+      return mutableArray;
+  }
+  ```
+
+* 集合
+
+  [**@implementation NSMutableSet (Extra)**]()
+
+  ```objective-c
+  /// 阻止向可变集合添加空元素
+  -(JobsReturnIDByIDBlock _Nonnull)add{
+      @jobs_weakify(self)
+      return ^id (id _Nullable data) {
+          @jobs_strongify(self)
+          if(data){
+              /// 向集合加入nil会崩
+              [self addObject:data];
+          }else{
+              NSLog(@"集合被添加了一个空元素");
+          }return self;
+      };
+  }
+  ```
+
+  ```objective-c
+  /// 可变集合的方便调用
+  -(__kindof NSSet *_Nonnull)jobsMakeMutSet:(jobsByMutableSetBlock _Nonnull)block{
+      NSMutableSet *mutableSet = NSMutableSet.set;
+      if (block) block(mutableSet);
+      return mutableSet;
+  }
+  /// 可变集合的方便调用
+  static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsByMutableSetBlock _Nonnull block){
+      NSMutableSet *mutableSet = NSMutableSet.set;
+      if (block) block(mutableSet);
+      return mutableSet;
+  }
+  ```
+
+### 32、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 

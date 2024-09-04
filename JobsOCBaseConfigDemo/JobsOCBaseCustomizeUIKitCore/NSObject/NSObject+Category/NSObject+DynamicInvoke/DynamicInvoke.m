@@ -202,16 +202,16 @@
                            targetObj:DynamicInvoke.class
                          paramarrays:@[@"block1",@"block2",@"block3",@"block4"]];
     NSMutableArray *temp = NSMutableArray.array;
-    [temp addObject:Test11];
-    [temp addObject:Test12];
-    [temp addObject:Test13];
-    [temp addObject:Test14];
-    [temp addObject:Test15];
-    [temp addObject:Test16];
-    [temp addObject:Test17];
-    [temp addObject:Test18];
-    [temp addObject:Test19];
-    [temp addObject:Test20];
+    temp.add(Test11);
+    temp.add(Test12);
+    temp.add(Test13);
+    temp.add(Test14);
+    temp.add(Test15);
+    temp.add(Test16);
+    temp.add(Test17);
+    temp.add(Test18);
+    temp.add(Test19);
+    temp.add(Test20);
     NSLog(@"temp = %@",temp);
 }
 #pragma mark —— 实例方法（不带返回值）

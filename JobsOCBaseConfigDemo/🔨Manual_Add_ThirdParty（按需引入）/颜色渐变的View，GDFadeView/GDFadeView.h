@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface GDFadeView : UIView
-@property (nonatomic,strong) NSString *text;
-@property (nonatomic,assign) NSTextAlignment alignment;
-@property (nonatomic,strong) UIColor *backColor;
-@property (nonatomic,strong) UIColor *foreColor;
-@property (nonatomic,strong) UIFont *font;
 
-- (void)iPhoneFadeWithDuration:(NSTimeInterval)duration;
+@property(nonatomic,strong)NSString *text;
+@property(nonatomic,assign)NSTextAlignment alignment;
+@property(nonatomic,strong)UIColor *backColor;
+@property(nonatomic,strong)UIColor *foreColor;
+@property(nonatomic,strong)UIFont *font;
+
+-(void)iPhoneFadeWithDuration:(NSTimeInterval)duration;
 
 @end

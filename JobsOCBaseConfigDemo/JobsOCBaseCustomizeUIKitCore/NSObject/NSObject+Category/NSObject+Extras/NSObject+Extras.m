@@ -176,6 +176,19 @@
     } selectorName:nil target:self] name:notificationName object:nil];
 }
 #pragma mark —— 功能性的
+/// 可变数组的方便调用
+-(__kindof NSArray *_Nonnull)jobsMakeMutArr:(jobsByMutableArrayBlock _Nonnull)block{
+    NSMutableArray *mutableArray = NSMutableArray.array;
+    if (block) block(mutableArray);
+    return mutableArray;
+}
+/// 可变集合的方便调用
+-(__kindof NSSet *_Nonnull)jobsMakeMutSet:(jobsByMutableSetBlock _Nonnull)block{
+    NSMutableSet *mutableSet = NSMutableSet.set;
+    if (block) block(mutableSet);
+    return mutableSet;
+}
+
 -(jobsByVoidBlock _Nonnull)loginOK{
     return ^(){
         self.jobsPost(JobsLoginNotification);
@@ -1054,7 +1067,7 @@
 /// CGPoint
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                        addCGPoint:(CGPoint)point{
-    [mutArr addObject:[NSValue valueWithCGPoint:point]];
+    mutArr.add([NSValue valueWithCGPoint:point]);
     return mutArr;
 }
 
@@ -1064,7 +1077,7 @@
 /// CGVector
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*  )mutArr
                                       addCGVector:(CGVector)vector{
-    [mutArr addObject:[NSValue valueWithCGVector:vector]];
+    mutArr.add([NSValue valueWithCGVector:vector]);
     return mutArr;
 }
 
@@ -1074,7 +1087,7 @@
 /// CGSize
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                         addCGSize:(CGSize)size{
-    [mutArr addObject:[NSValue valueWithCGSize:size]];
+    mutArr.add([NSValue valueWithCGSize:size]);
     return mutArr;
 }
 
@@ -1084,7 +1097,7 @@
 /// CGRect
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                         addCGRect:(CGRect)frame{
-    [mutArr addObject:[NSValue valueWithCGRect:frame]];
+    mutArr.add([NSValue valueWithCGRect:frame]);
     return mutArr;
 }
 
@@ -1094,7 +1107,7 @@
 /// CGAffineTransform
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                              addCGAffineTransform:(CGAffineTransform)affineTransform{
-    [mutArr addObject:[NSValue valueWithCGAffineTransform:affineTransform]];
+    mutArr.add([NSValue valueWithCGAffineTransform:affineTransform]);
     return mutArr;
 }
 
@@ -1104,7 +1117,7 @@
 /// UIEdgeInsets
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                   addUIEdgeInsets:(UIEdgeInsets)edgeInsets{
-    [mutArr addObject:[NSValue valueWithUIEdgeInsets:edgeInsets]];
+    mutArr.add([NSValue valueWithUIEdgeInsets:edgeInsets]);
     return mutArr;
 }
 
@@ -1114,7 +1127,7 @@
 /// NSDirectionalEdgeInsets
 -(NSMutableArray <NSValue *>*)jobsMutArr:(NSMutableArray <NSValue *>*)mutArr
               addNSDirectionalEdgeInsets:(NSDirectionalEdgeInsets)directionalEdgeInsets{
-    [mutArr addObject:[NSValue valueWithDirectionalEdgeInsets:directionalEdgeInsets]];
+    mutArr.add([NSValue valueWithDirectionalEdgeInsets:directionalEdgeInsets]);
     return mutArr;
 }
 
@@ -1124,7 +1137,7 @@
 /// UIOffset
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                       addUIOffset:(UIOffset)offset{
-    [mutArr addObject:[NSValue valueWithUIOffset:offset]];
+    mutArr.add([NSValue valueWithUIOffset:offset]);
     return mutArr;
 }
 

@@ -1,13 +1,13 @@
 //
-//  DDUploadingProgressView.m
+//  JobsUploadingProgressView.m
 //  DouDong-II
 //
 //  Created by xxx on 2021/1/12.
 //
 
-#import "DDUploadingProgressView.h"
+#import "JobsUploadingProgressView.h"
 
-@interface DDUploadingProgressView()
+@interface JobsUploadingProgressView()
 /// UI
 @property(nonatomic,strong)UIBezierPath *bezier;
 @property(nonatomic,strong)UILabel *refreshLabel;
@@ -22,13 +22,13 @@
 
 @end
 
-@implementation DDUploadingProgressView
+@implementation JobsUploadingProgressView
 
-static DDUploadingProgressView *static_uploadingProgressView = nil;
+static JobsUploadingProgressView *static_uploadingProgressView = nil;
 +(instancetype)sharedInstance{
     @synchronized(self){
         if (!static_uploadingProgressView) {
-            static_uploadingProgressView = [DDUploadingProgressView.alloc initWithFrame:CGRectMake((JobsMainScreen_WIDTH() - 267) / 2,
+            static_uploadingProgressView = [JobsUploadingProgressView.alloc initWithFrame:CGRectMake((JobsMainScreen_WIDTH() - 267) / 2,
                                                                                                    JobsMainScreen_HEIGHT() / 2 - 76,
                                                                                                    267,
                                                                                                    76)];
@@ -126,15 +126,17 @@ static DDUploadingProgressView *static_uploadingProgressView = nil;
     if (!_anim) {
         _anim = CAKeyframeAnimation.animation;
         _anim.keyPath = @"transform.rotation";
-        _anim.values = @[@(M_PI/4.0),
-                         @(M_PI * 2/4.0),
-                         @(M_PI * 3/4.0),
-                         @(4 * M_PI /4.0),
-                         @(5 *M_PI/4.0),
-                         @(6 *M_PI/4.0),
-                         @(7 *M_PI/4.0),
-                         @(8 * M_PI /4.0),
-                         @(8 * M_PI /4.0 + M_PI/4.0)];
+        _anim.values = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(@(M_PI/4.0));
+            data.add(@(M_PI * 2/4.0));
+            data.add(@(M_PI * 3/4.0));
+            data.add(@(4 * M_PI /4.0));
+            data.add(@(5 *M_PI/4.0));
+            data.add(@(6 *M_PI/4.0));
+            data.add(@(7 *M_PI/4.0));
+            data.add(@(8 * M_PI /4.0));
+            data.add(@(8 * M_PI /4.0 + M_PI/4.0));
+        });
         _anim.repeatCount = MAXFLOAT;
         _anim.duration = 1;
         _anim.removedOnCompletion = NO;

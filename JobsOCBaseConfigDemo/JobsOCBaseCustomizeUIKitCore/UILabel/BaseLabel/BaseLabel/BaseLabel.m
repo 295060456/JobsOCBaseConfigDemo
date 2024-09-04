@@ -67,8 +67,9 @@ UILocationProtocol_UIViewModelSynthesize
         [self copyText:text];
         return nil;
     } selectorName:NSStringFromSelector(@selector(copyText:)) target:self]];
-    
-    [menu setMenuItems:@[copyItem]];
+    menu.menuItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add(copyItem);
+    });
     [menu update];
     
     if(@available(iOS 10.3, *)){

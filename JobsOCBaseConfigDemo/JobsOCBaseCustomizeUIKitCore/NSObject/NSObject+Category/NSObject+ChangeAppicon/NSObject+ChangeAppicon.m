@@ -10,7 +10,12 @@
 @implementation NSObject (ChangeAppicon)
 /// 测试App更改图标
 -(void)testChangeAppicon{
-    NSArray <NSString *>*weathers = @[@"晴", @"多云", @"大雨", @"雪"];
+    NSArray <NSString *>*weathers = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add(JobsInternationalization(@"晴"));
+        data.add(JobsInternationalization(@"多云"));
+        data.add(JobsInternationalization(@"大雨"));
+        data.add(JobsInternationalization(@"雪"));
+    });
     NSString *weather = weathers[arc4random() % (weathers.count)];
     [self setAppIconWithName:weather];
 }

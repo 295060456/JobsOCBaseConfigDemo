@@ -174,7 +174,10 @@ JobsKey(_messageComposeVC)
         //设置短信内容
         MessageComposeVC.body = JobsInternationalization(@"吃饭了没");
         //设置收件人列表
-        MessageComposeVC.recipients = @[@"10010",@"10086"];
+        MessageComposeVC.recipients = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(@"10010");
+            data.add(@"10086");
+        });
         //设置代理
         MessageComposeVC.messageComposeDelegate = self;
         Jobs_setAssociatedRETAIN_NONATOMIC(_messageComposeVC, MessageComposeVC)
@@ -192,13 +195,17 @@ JobsKey(_mailComposeVC)
     if (!MailComposeVC) {
         MailComposeVC = MFMailComposeViewController.new;
         //设置邮件主题
-        [MailComposeVC setSubject:JobsInternationalization(@"测试邮件")];
+        MailComposeVC.subject = JobsInternationalization(@"测试邮件");
         //设置邮件内容
         [MailComposeVC setMessageBody:JobsInternationalization(@"测试内容") isHTML:NO];
         //设置收件人列表
-        [MailComposeVC setToRecipients:@[@"test@qq.com"]];
+        MailComposeVC.toRecipients = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(@"test@qq.com");
+        });
         //设置抄送人列表
-        [MailComposeVC setCcRecipients:@[@"test1@qq.com"]];
+        MailComposeVC.ccRecipients = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(@"test1@qq.com");
+        });
         //设置代理
         MailComposeVC.mailComposeDelegate = self;
         Jobs_setAssociatedRETAIN_NONATOMIC(_mailComposeVC, MailComposeVC)

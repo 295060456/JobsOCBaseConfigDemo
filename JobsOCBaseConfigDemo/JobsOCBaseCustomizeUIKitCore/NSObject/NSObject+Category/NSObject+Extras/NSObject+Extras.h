@@ -186,6 +186,10 @@ BaseProtocol
 /// 接收通知
 -(void)addNotificationName:(NSString *_Nonnull)notificationName block:(JobsSelectorBlock _Nullable)block;
 #pragma mark —— 功能性的
+/// 可变数组的方便调用
+-(__kindof NSArray *_Nonnull)jobsMakeMutArr:(jobsByMutableArrayBlock _Nonnull)block;
+/// 可变集合的方便调用
+-(__kindof NSSet *_Nonnull)jobsMakeMutSet:(jobsByMutableSetBlock _Nonnull)block;
 -(jobsByVoidBlock _Nonnull)loginOK;
 -(jobsByVoidBlock _Nonnull)logoutOK;
 /**

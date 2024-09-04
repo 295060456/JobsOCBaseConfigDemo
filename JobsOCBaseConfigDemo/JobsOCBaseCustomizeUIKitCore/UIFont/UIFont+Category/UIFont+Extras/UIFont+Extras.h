@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSMutableArray+Extra.h"
 #import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN

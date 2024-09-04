@@ -17,6 +17,7 @@ typedef id _Nullable(^JobsReturnIDBySELBlock)(SEL _Nullable data);
 typedef id _Nullable(^JobsReturnIDByGestureRecognizerBlock)(UIGestureRecognizer *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByDicBlock)(NSDictionary *_Nullable data);
 
+typedef __kindof NSArray *_Nullable(^JobsReturnArrayByMutableArrayBlock)(NSMutableArray *_Nullable data);
 typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByVoidBlock)(void);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByVoidBlock)(void);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByClassBlock)(Class _Nonnull cls);

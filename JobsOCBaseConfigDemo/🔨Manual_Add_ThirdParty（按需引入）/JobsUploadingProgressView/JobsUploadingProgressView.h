@@ -1,5 +1,5 @@
 //
-//  DDUploadingProgressView.h
+//  JobsUploadingProgressView.h
 //  DouDong-II
 //
 //  Created by xxx on 2021/1/12.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDUploadingProgressView : BaseView
+@interface JobsUploadingProgressView : BaseView
 
 @property(nonatomic,strong)UIColor *strokeColor; // 圆的线条颜色
 @property(nonatomic,strong)NSString *titleStr; // 描述文字
@@ -18,9 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat height; // 提示框 h
 @property(nonatomic,assign)CGFloat radius; // 圆半径
 
--(void)updateProgressText:(NSString *)progressText;
-
 +(instancetype)sharedInstance;
+-(void)updateProgressText:(NSString *)progressText;
 
 @end
 

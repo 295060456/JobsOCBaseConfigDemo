@@ -10,7 +10,10 @@
 @implementation NSObject (RichText)
 /// 调用示例：对外输出 NSMutableArray <JobsRichTextConfig *>*
 -(NSMutableArray <JobsRichTextConfig *>*)makeRichTextConfigMutArr{
-    UIColor *color = [UIColor gradientCorDataMutArr:[NSMutableArray arrayWithArray:@[RGB_COLOR(247, 131, 97),RGB_COLOR(245, 75, 100)]]
+    UIColor *color = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add(RGB_COLOR(247, 131, 97));
+        data.add(RGB_COLOR(245, 75, 100));
+    })
                                          startPoint:CGPointZero
                                            endPoint:CGPointZero
                                              opaque:NO
