@@ -3027,12 +3027,12 @@ NSObject <|-- BaseProtocol
           _excelData.XZExcelH = [JobsExcelView viewSizeWithModel:nil].height;
           _excelData.XZExcelW = [JobsExcelView viewSizeWithModel:nil].width;
           
-          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Order Time"));
-          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Order No."));
-          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Transaction Type"));
-          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Amount"));
-          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Method"));
-          _excelData.topHeaderTitles.jobsAddObject(JobsInternationalization(@"Status"));
+          _excelData.topHeaderTitles.add(JobsInternationalization(@"Order Time"));
+          _excelData.topHeaderTitles.add(JobsInternationalization(@"Order No."));
+          _excelData.topHeaderTitles.add(JobsInternationalization(@"Transaction Type"));
+          _excelData.topHeaderTitles.add(JobsInternationalization(@"Amount"));
+          _excelData.topHeaderTitles.add(JobsInternationalization(@"Method"));
+          _excelData.topHeaderTitles.add(JobsInternationalization(@"Status"));
           
           _excelData.configureData();
       }return _excelData;
@@ -3725,9 +3725,9 @@ static const uint32_t kSequenceBits = 12;
   -(NSMutableArray<NSString *> *)richTextMutArr{
      if (!_richTextMutArr) {
          _richTextMutArr = NSMutableArray.array;
-         _richTextMutArr.jobsAddObject(JobsInternationalization(@"观看完整教学视频需支付"));
-         _richTextMutArr.jobsAddObject(JobsInternationalization(@"99"));
-         _richTextMutArr.jobsAddObject(JobsInternationalization(@"Mata值"));
+         _richTextMutArr.add(JobsInternationalization(@"观看完整教学视频需支付"));
+         _richTextMutArr.add(JobsInternationalization(@"99"));
+         _richTextMutArr.add(JobsInternationalization(@"Mata值"));
      }return _richTextMutArr;
   }
   
@@ -5430,9 +5430,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     -(NSMutableArray<NSString *> *)items{
         if(!_items){
             _items = NSMutableArray.array;
-            _items.jobsAddObject(@"Your deposit will be successfully credited to your wallet once the transaction completed.");
-            _items.jobsAddObject(@"In case you meet any problem in deposit, please contact our CS.");
-            _items.jobsAddObject(@"Additional information can be found on our website.");
+            _items.add(@"Your deposit will be successfully credited to your wallet once the transaction completed.");
+            _items.add(@"In case you meet any problem in deposit, please contact our CS.");
+            _items.add(@"Additional information can be found on our website.");
         }return _items;
     }
     ```
@@ -5571,9 +5571,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           config_03.textBgCor = JobsRedColor;
           config_03.paragraphStyle = self.paragtaphStyle;
         
-          _richLabelDataStringsMutArr.jobsAddObject(config_01);
-          _richLabelDataStringsMutArr.jobsAddObject(config_02);
-          _richLabelDataStringsMutArr.jobsAddObject(config_03);
+          _richLabelDataStringsMutArr.add(config_01);
+          _richLabelDataStringsMutArr.add(config_02);
+          _richLabelDataStringsMutArr.add(config_03);
           
       }return _richLabelDataStringsMutArr;
   }
@@ -7147,16 +7147,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    -(NSMutableArray<__kindof UITableViewHeaderFooterView *> *)tbvHeaderFooterViewMutArr{
        if(!_tbvHeaderFooterViewMutArr){
            _tbvHeaderFooterViewMutArr = NSMutableArray.array;
-           _tbvHeaderFooterViewMutArr.jobsAddObject(self.tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@""));
-           _tbvHeaderFooterViewMutArr.jobsAddObject(self.tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@""));
-           _tbvHeaderFooterViewMutArr.jobsAddObject(self.tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@""));
+           _tbvHeaderFooterViewMutArr.add(self.tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@""));
+           _tbvHeaderFooterViewMutArr.add(self.tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@""));
+           _tbvHeaderFooterViewMutArr.add(self.tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@""));
        }return _tbvHeaderFooterViewMutArr;
    }
    // 不分组的 cell
    -(NSMutableArray<__kindof UITableViewCell *> *)rowCellMutArr{
        if(!_rowCellMutArr){
            _rowCellMutArr = NSMutableArray.array;
-           _rowCellMutArr.jobsAddObject([FMTableViewCellStyle4 cellStyleValue1WithTableView:self.tableView]);
+           _rowCellMutArr.add([FMTableViewCellStyle4 cellStyleValue1WithTableView:self.tableView]);
        }return _rowCellMutArr;
    }
    // 分组的 cell
@@ -7165,27 +7165,27 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
            _tbvSectionRowCellMutArr = NSMutableArray.array;
            {
                NSMutableArray<__kindof UITableViewCell *> *rowCellMutArr = NSMutableArray.array;
-               rowCellMutArr.jobsAddObject([FMTableViewCellStyle4 cellStyleValue1WithTableView:self.tableView]);
-               rowCellMutArr.jobsAddObject([FMTableViewCellStyle3 cellStyleValue1WithTableView:self.tableView]);
-               rowCellMutArr.jobsAddObject([FMTableViewCellStyle2 cellStyleValue1WithTableView:self.tableView]);
-               rowCellMutArr.jobsAddObject([FMTableViewCellStyle4 cellStyleValue1WithTableView:self.tableView]);
-               rowCellMutArr.jobsAddObject([FMTableViewCellStyle3 cellStyleValue1WithTableView:self.tableView]);
-               rowCellMutArr.jobsAddObject([FMTableViewCellStyle3 cellStyleValue1WithTableView:self.tableView]);
-               _tbvSectionRowCellMutArr.jobsAddObject(rowCellMutArr);
+               rowCellMutArr.add([FMTableViewCellStyle4 cellStyleValue1WithTableView:self.tableView]);
+               rowCellMutArr.add([FMTableViewCellStyle3 cellStyleValue1WithTableView:self.tableView]);
+               rowCellMutArr.add([FMTableViewCellStyle2 cellStyleValue1WithTableView:self.tableView]);
+               rowCellMutArr.add([FMTableViewCellStyle4 cellStyleValue1WithTableView:self.tableView]);
+               rowCellMutArr.add([FMTableViewCellStyle3 cellStyleValue1WithTableView:self.tableView]);
+               rowCellMutArr.add([FMTableViewCellStyle3 cellStyleValue1WithTableView:self.tableView]);
+               _tbvSectionRowCellMutArr.add(rowCellMutArr);
            }
            
            {
                NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-               rowCellMutArr.jobsAddObject([FMTableViewCellStyle3 cellStyleValue1WithTableView:self.tableView]);
-               rowCellMutArr.jobsAddObject([FMTableViewCellStyle1 cellStyleValue1WithTableView:self.tableView]);
-               _tbvSectionRowCellMutArr.jobsAddObject(rowCellMutArr);
+               rowCellMutArr.add([FMTableViewCellStyle3 cellStyleValue1WithTableView:self.tableView]);
+               rowCellMutArr.add([FMTableViewCellStyle1 cellStyleValue1WithTableView:self.tableView]);
+               _tbvSectionRowCellMutArr.add(rowCellMutArr);
            }
            
            {
                NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-               rowCellMutArr.jobsAddObject([FMTableViewCellStyle3 cellStyleValue1WithTableView:self.tableView]);
-               rowCellMutArr.jobsAddObject([FMTableViewCellStyle1 cellStyleValue1WithTableView:self.tableView]);
-               _tbvSectionRowCellMutArr.jobsAddObject(rowCellMutArr);
+               rowCellMutArr.add([FMTableViewCellStyle3 cellStyleValue1WithTableView:self.tableView]);
+               rowCellMutArr.add([FMTableViewCellStyle1 cellStyleValue1WithTableView:self.tableView]);
+               _tbvSectionRowCellMutArr.add(rowCellMutArr);
            }
            
        }return _tbvSectionRowCellMutArr;
@@ -7212,7 +7212,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                viewModel.textCor = JobsCor(@"#FFFFFF");
                viewModel.font = UIFontWeightRegularSize(14);
                viewModel.placeholder = JobsInternationalization(@"Philippines");
-               _rowDataMutArr.jobsAddObject(viewModel);
+               _rowDataMutArr.add(viewModel);
            }
            
            {
@@ -7221,7 +7221,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                viewModel.textCor = JobsCor(@"#FFFFFF");
                viewModel.font = UIFontWeightRegularSize(14);
                viewModel.placeholder = JobsInternationalization(@"Philippines");
-               _rowDataMutArr.jobsAddObject(viewModel);
+               _rowDataMutArr.add(viewModel);
            }
        }return _rowDataMutArr;
    }
@@ -7245,7 +7245,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                    viewModel.textCor = JobsCor(@"#FFFFFF");
                    viewModel.font = UIFontWeightRegularSize(14);
                    viewModel.placeholder = JobsInternationalization(@"This Name must match the name on any IDs or any bank accounts");
-                   temp.jobsAddObject(viewModel);
+                   temp.add(viewModel);
                }
                {
                    UIViewModel *viewModel = UIViewModel.new;
@@ -7253,7 +7253,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                    viewModel.textCor = JobsCor(@"#FFFFFF");
                    viewModel.font = UIFontWeightRegularSize(14);
                    viewModel.placeholder = JobsInternationalization(@"Philippines");
-                   temp.jobsAddObject(viewModel);
+                   temp.add(viewModel);
                }
                {
                    UIViewModel *viewModel = UIViewModel.new;
@@ -7263,31 +7263,31 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                    viewModel.subText = JobsInternationalization(@"21 / 09 / 2021");
                    viewModel.subTextCor = JobsCor(@"#FFFFFF");
                    viewModel.subFont = UIFontWeightRegularSize(14);
-                   temp.jobsAddObject(viewModel);
+                   temp.add(viewModel);
                }
                {
                    UIViewModel *viewModel = UIViewModel.new;
                    viewModel.text = JobsInternationalization(@"Place of Birth");
                    viewModel.textCor = JobsCor(@"#FFFFFF");
                    viewModel.font = UIFontWeightRegularSize(14);
-                   temp.jobsAddObject(viewModel);
+                   temp.add(viewModel);
                }
                {
                    UIViewModel *viewModel = UIViewModel.new;
                    viewModel.text = JobsInternationalization(@"Nature of Work");
                    viewModel.textCor = JobsCor(@"#FFFFFF");
                    viewModel.font = UIFontWeightRegularSize(14);
-                   temp.jobsAddObject(viewModel);
+                   temp.add(viewModel);
                }
                {
                    UIViewModel *viewModel = UIViewModel.new;
                    viewModel.text = JobsInternationalization(@"Source of Income");
                    viewModel.textCor = JobsCor(@"#FFFFFF");
                    viewModel.font = UIFontWeightRegularSize(14);
-                   temp.jobsAddObject(viewModel);
+                   temp.add(viewModel);
                }
                
-               _dataMutArr.jobsAddObject(temp);
+               _dataMutArr.add(temp);
            }
            {
                NSMutableArray <UIViewModel *>*temp = NSMutableArray.array;
@@ -7304,14 +7304,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                   viewModel.text = JobsInternationalization(@"Province/City");
                   viewModel.textCor = JobsCor(@"#FFFFFF");
                   viewModel.font = UIFontWeightRegularSize(14);
-                  temp.jobsAddObject(viewModel);
+                  temp.add(viewModel);
               }
               {
                   UIViewModel *viewModel = UIViewModel.new;
-                  temp.jobsAddObject(viewModel);
+                  temp.add(viewModel);
              }
      
-              _dataMutArr.jobsAddObject(temp);
+              _dataMutArr.add(temp);
           }
           {
               NSMutableArray <UIViewModel *>*temp = NSMutableArray.array;
@@ -7328,13 +7328,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                   viewModel.text = JobsInternationalization(@"Province/City");
                   viewModel.textCor = JobsCor(@"#FFFFFF");
                   viewModel.font = UIFontWeightRegularSize(14);
-                  temp.jobsAddObject(viewModel);
+                  temp.add(viewModel);
               }
               {
                   UIViewModel *viewModel = UIViewModel.new;
-                  temp.jobsAddObject(viewModel);
+                  temp.add(viewModel);
               }
-              _dataMutArr.jobsAddObject(temp);
+              _dataMutArr.add(temp);
           }
      }return _dataMutArr;
   }
@@ -7357,7 +7357,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               viewModel.textCor = JobsCor(@"#FFFFFF");
               viewModel.font = UIFontWeightRegularSize(14);
               viewModel.placeholder = JobsInternationalization(@"Philippines");
-              _rowDataMutArr.jobsAddObject(viewModel);
+              _rowDataMutArr.add(viewModel);
           }
           
           {
@@ -7366,7 +7366,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               viewModel.textCor = JobsCor(@"#FFFFFF");
               viewModel.font = UIFontWeightRegularSize(14);
               viewModel.placeholder = JobsInternationalization(@"Philippines");
-              _rowDataMutArr.jobsAddObject(viewModel);
+              _rowDataMutArr.add(viewModel);
           }
       }return _rowDataMutArr;
   }
@@ -9825,7 +9825,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
     ```objective-c
     /// 阻止向可变数组添加空元素
-    -(JobsReturnIDByIDBlock _Nonnull)jobsAddObject{
+    -(JobsReturnIDByIDBlock _Nonnull)add{
         @jobs_weakify(self)
         return ^id (id _Nullable data) {
             @jobs_strongify(self)
@@ -10147,12 +10147,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   -(NSMutableArray<UIImage *> *)dataMutArr{
       if (!_dataMutArr) {
           _dataMutArr = NSMutableArray.array;
-          _dataMutArr.jobsAddObject(JobsIMG(@"狮子"));
-          _dataMutArr.jobsAddObject(JobsIMG(@"金猪"));
-          _dataMutArr.jobsAddObject(JobsIMG(@"美女荷官"));
-          _dataMutArr.jobsAddObject(JobsIMG(@"棋牌美女"));
-          _dataMutArr.jobsAddObject(JobsIMG(@"篮球运动员"));
-          _dataMutArr.jobsAddObject(JobsIMG(@"捕鱼"));
+          _dataMutArr.add(JobsIMG(@"狮子"));
+          _dataMutArr.add(JobsIMG(@"金猪"));
+          _dataMutArr.add(JobsIMG(@"美女荷官"));
+          _dataMutArr.add(JobsIMG(@"棋牌美女"));
+          _dataMutArr.add(JobsIMG(@"篮球运动员"));
+          _dataMutArr.add(JobsIMG(@"捕鱼"));
       }return _dataMutArr;
   }
   ```

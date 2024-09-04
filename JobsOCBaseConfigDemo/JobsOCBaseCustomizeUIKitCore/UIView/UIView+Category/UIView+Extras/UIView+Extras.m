@@ -424,6 +424,12 @@
         [self addSubview:subView];
     };
 }
+
+-(jobsByViewBlock _Nonnull)remove{
+    return ^(__kindof UIView *_Nullable subView) {
+        [self removeFromSuperview];
+    };
+}
 /// 针对数据源是UIImage  *的GKPhotoBrowser
 -(void)viewTapGRSavePicsWithImageDataMutArr:(NSMutableArray <UIImage *>* _Nonnull)imageDataMutArr
                                 atIndexPath:(NSIndexPath * _Nonnull)indexPath

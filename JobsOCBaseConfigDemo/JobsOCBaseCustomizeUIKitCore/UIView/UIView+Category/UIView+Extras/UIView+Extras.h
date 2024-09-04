@@ -110,6 +110,7 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 #pragma mark —— 其他
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;
 -(jobsByViewBlock _Nonnull)addSubview;
+-(jobsByViewBlock _Nonnull)remove;
 /// 针对数据源是UIImage  *的GKPhotoBrowser
 -(void)viewTapGRSavePicsWithImageDataMutArr:(NSMutableArray <UIImage *>* _Nonnull)imageDataMutArr
                                 atIndexPath:(NSIndexPath *_Nonnull)indexPath
