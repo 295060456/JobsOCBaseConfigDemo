@@ -178,7 +178,16 @@ BaseProtocol
  */
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
+#pragma mark —— NSNotification
+/// 在主线程上带参发通知
+-(jobsByKey_ValueBlock _Nonnull)JobsPost;
+/// 在主线程上不带参发通知
+-(jobsByStringBlock _Nonnull)jobsPost;
+/// 接收通知
+-(void)addNotificationName:(NSString *_Nonnull)notificationName block:(JobsSelectorBlock _Nullable)block;
 #pragma mark —— 功能性的
+-(jobsByVoidBlock _Nonnull)loginOK;
+-(jobsByVoidBlock _Nonnull)logoutOK;
 /**
  注意：有些时候UIApplication.sharedApplication.keyWindow获取到的window有frame，而windowScene.windows.firstObject获取到的window没有frame
  
@@ -490,46 +499,6 @@ BaseProtocol
       contentView:(UIScrollView *_Nonnull)contentView;
 
 @end
-/**
- 通知的写法：调用示例
- 
- 接受通知：
-@jobs_weakify(self)
- [NSNotificationCenter.defaultCenter addObserver:self
-                                        selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                                    id _Nullable arg) {
-     NSNotification *notification = (NSNotification *)arg;
-     if([notification.object isKindOfClass:NSNumber.class]){
-         NSNumber *b = notification.object;
-         NSLog(@"SSS = %d",b.boolValue);
-     }
-     NSLog(@"通知传递过来的 = %@",notification.object);
-     return nil;
- } selectorName:nil target:self]
-                                            name:JobsLanguageSwitchNotification
-                                          object:nil];
- 或者：
- @jobs_weakify(self)
- JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                             id _Nullable arg) {
-     NSNotification *notification = (NSNotification *)arg;
-     if([notification.object isKindOfClass:NSNumber.class]){
-         NSNumber *b = notification.object;
-         NSLog(@"SSS = %d",b.boolValue);
-     }
-     NSLog(@"通知传递过来的 = %@",notification.object);
-     return nil;
- } selectorName:nil target:self],JobsLanguageSwitchNotification,nil);
-};
- ======================================================================================
- 发通知：
- [NSNotificationCenter.defaultCenter postNotificationName:JobsLanguageSwitchNotification object:@(NO)];
- 或者：
- JobsPostNotificationOnMainThread(JobsLanguageSwitchNotification,
-                                  @(CLLanguageManager.appLanguage),
-                                  nil);
- */
-
 /**
  NSInvocation的使用，方法多参数传递 调用示例
  

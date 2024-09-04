@@ -9,6 +9,12 @@
 
 @implementation BaseRequest
 
++(JobsReturnIDByDicBlock)initByParameters{
+    return ^id _Nullable(NSDictionary *_Nullable data){
+        return [self.class.alloc initWithParameters:data];
+    };
+}
+
 -(instancetype _Nullable)initWithParameters:(NSDictionary *_Nullable)parameters{
     if (self = [super init]) {
         self.parameters = parameters;

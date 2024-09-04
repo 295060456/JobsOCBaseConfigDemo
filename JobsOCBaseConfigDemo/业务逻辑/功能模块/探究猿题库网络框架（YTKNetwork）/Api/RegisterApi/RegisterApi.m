@@ -10,12 +10,6 @@
 
 @implementation RegisterApi
 
--(instancetype _Nullable)initWithParameters:(NSDictionary *_Nullable)parameters{
-    if (self = [super init]) {
-        self.parameters = parameters;
-    }return self;
-}
-
 -(NSString *_Nonnull)requestUrl {
     return @"";
 }

@@ -10,12 +10,6 @@
 
 @implementation GetUserInfoApi
 
--(instancetype _Nullable)initWithParameters:(NSDictionary *_Nullable)parameters{
-    if (self = [super init]) {
-        self.parameters = parameters;
-    }return self;
-}
-
 -(NSString *)requestUrl{
     return self.BaseUrl.add(@"");
 }

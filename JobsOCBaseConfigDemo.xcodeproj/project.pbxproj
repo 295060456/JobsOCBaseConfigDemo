@@ -66,6 +66,7 @@
 		CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877BB2C51F1FF0085948C /* JobsNavBar.m */; };
 		CEA018B62C86F9BF006F06CF /* UIBarButtonItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA018B32C86F94C006F06CF /* UIBarButtonItem+Extra.m */; };
 		CEA018B72C86F9C8006F06CF /* NSString+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA018B02C86F922006F06CF /* NSString+Time.m */; };
+		CEA018BF2C881A4F006F06CF /* NSRunLoop+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA018BD2C881A4B006F06CF /* NSRunLoop+Extra.m */; };
 		CEA116222C5278F8009D6FB3 /* XZMLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA116202C5278F8009D6FB3 /* XZMLayout.m */; };
 		CEAF25312C60FE050056570C /* ExcelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF24C42C60FE040056570C /* ExcelVC.m */; };
 		CEAF25322C60FE050056570C /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF24C82C60FE040056570C /* ChannelCell.m */; };
@@ -1285,6 +1286,8 @@
 		CEA018B22C86F94C006F06CF /* UIBarButtonItem+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extra.h"; sourceTree = "<group>"; };
 		CEA018B32C86F94C006F06CF /* UIBarButtonItem+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extra.m"; sourceTree = "<group>"; };
 		CEA018B52C86F94C006F06CF /* JobsBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBarButtonItem.h; sourceTree = "<group>"; };
+		CEA018BC2C881A4B006F06CF /* NSRunLoop+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSRunLoop+Extra.h"; sourceTree = "<group>"; };
+		CEA018BD2C881A4B006F06CF /* NSRunLoop+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSRunLoop+Extra.m"; sourceTree = "<group>"; };
 		CEA114BA2C522E00009D6FB3 /* JobsBaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseViewProtocol.h; sourceTree = "<group>"; };
 		CEA1161F2C5278F8009D6FB3 /* XZMLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZMLayout.h; sourceTree = "<group>"; };
 		CEA116202C5278F8009D6FB3 /* XZMLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZMLayout.m; sourceTree = "<group>"; };
@@ -3968,6 +3971,15 @@
 				CEA018B32C86F94C006F06CF /* UIBarButtonItem+Extra.m */,
 			);
 			path = "UIBarButtonItem+Category";
+			sourceTree = "<group>";
+		};
+		CEA018BE2C881A4B006F06CF /* NSRunLoop */ = {
+			isa = PBXGroup;
+			children = (
+				CEA018BC2C881A4B006F06CF /* NSRunLoop+Extra.h */,
+				CEA018BD2C881A4B006F06CF /* NSRunLoop+Extra.m */,
+			);
+			path = NSRunLoop;
 			sourceTree = "<group>";
 		};
 		CEA116212C5278F8009D6FB3 /* XZMLayout */ = {
@@ -12166,6 +12178,7 @@
 			isa = PBXGroup;
 			children = (
 				CECE850D2C4513CD00764AF5 /* JobsBaseCustomizeUIKitCoreHeader.h */,
+				CEA018BE2C881A4B006F06CF /* NSRunLoop */,
 				CEA018AE2C86F909006F06CF /* NSFormatter */,
 				CE08701C2C845917003D8CCF /* NSBundle */,
 				CE0870192C8458EC003D8CCF /* NSLocale */,
@@ -14197,6 +14210,7 @@
 				CECE85792C4513CE00764AF5 /* SoundBtn.m in Sources */,
 				CECE7CA52C450C5000764AF5 /* JXCategoryPopupSubVC.m in Sources */,
 				CECE85242C4513CE00764AF5 /* JobsSEL_IMP.m in Sources */,
+				CEA018BF2C881A4F006F06CF /* NSRunLoop+Extra.m in Sources */,
 				CECE7C062C450C5000764AF5 /* JobsSettingGestureVC.m in Sources */,
 				CECE7C4E2C450C5000764AF5 /* ForgetCodeStep_01View.m in Sources */,
 				CECE7C3C2C450C5000764AF5 /* CXBVC.m in Sources */,

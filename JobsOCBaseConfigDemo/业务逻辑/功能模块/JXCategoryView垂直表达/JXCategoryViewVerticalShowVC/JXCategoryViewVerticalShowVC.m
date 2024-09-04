@@ -24,7 +24,7 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    [NSNotificationCenter.defaultCenter removeObserver:self];
+//    JobsNotificationCenter.remove(self);
 }
 
 -(void)loadView{

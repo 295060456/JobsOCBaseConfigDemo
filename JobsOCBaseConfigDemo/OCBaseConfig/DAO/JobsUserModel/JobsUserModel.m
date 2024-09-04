@@ -11,8 +11,8 @@
 #pragma mark —— MJKeyValue
 - (id)mj_newValueFromOldValue:(id)oldValue
                      property:(MJProperty *)property{
-    if ([property.name isEqualToString:@"headImage"]) {
-        return [NSURL URLWithString:oldValue];
+    if (property.name.isEqualToString(@"headImage")) {
+        return toStringByID(oldValue).jobsUrl;
     }return oldValue;
 }
 
@@ -140,9 +140,7 @@ static dispatch_once_t static_userModelOnceToken;
 #pragma mark —— 自动补全
 -(void)setExpireTime:(NSString *)expireTime{
     _expireTime = expireTime;
-    self.tokenExpireTime = [_expireTime timeStampByTimeFormatter:nil
-                                                    timeZoneType:TimeZoneTypeCSTChina
-                                                   intervalStyle:intervalBySec];
+    self.tokenExpireTime = _expireTime.jobsTime();
     NSLog(@"Token 的过期时间是:%@",self.tokenExpireTime);
 }
 #pragma mark —— 默认值设置

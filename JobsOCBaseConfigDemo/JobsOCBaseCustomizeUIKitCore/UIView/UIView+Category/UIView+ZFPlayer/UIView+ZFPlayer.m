@@ -11,12 +11,12 @@
 #pragma mark —— 一些公有方法
 -(void)enterBackgroundStopPlayer{
     @jobs_weakify(self)
-    [NSNotificationCenter.defaultCenter addObserverForName:JobsEnterBackgroundStopPlayer
-                                                    object:nil
-                                                     queue:nil
-                                                usingBlock:^(NSNotification * _Nonnull notification) {
+    [JobsNotificationCenter addObserverForName:JobsEnterBackgroundStopPlayer
+                                        object:nil
+                                         queue:nil
+                                    usingBlock:^(NSNotification * _Nonnull notification) {
         @jobs_strongify(self)
-        NSString *notificationName = notification.name;
+//        NSString *notificationName = notification.name;
         if (objc_getAssociatedObject(self, _avPlayerManager)) {
             [self.avPlayerManager stop];
         }

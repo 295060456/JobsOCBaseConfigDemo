@@ -29,7 +29,7 @@
 @implementation ZMJGanttListVC
 
 - (void)dealloc{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsNotificationCenter.remove(self);
     NSLog(@"%@",JobsLocalFunc);
 }
 

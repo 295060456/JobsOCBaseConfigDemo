@@ -8,12 +8,6 @@
 #import "GetCustomerContactApi.h"
 
 @implementation GetCustomerContactApi
-
--(instancetype _Nullable)initWithParameters:(NSDictionary *_Nullable)parameters{
-    if (self = [super init]) {
-        self.parameters = parameters;
-    }return self;
-}
 /// 请求Api
 -(NSString *)requestUrl{
     return self.BaseUrl.add(@"");

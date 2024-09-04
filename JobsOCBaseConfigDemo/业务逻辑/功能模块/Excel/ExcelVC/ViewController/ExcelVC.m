@@ -19,7 +19,7 @@
 @implementation ExcelVC
 
 - (void)dealloc{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    JobsNotificationCenter.remove(self);
     NSLog(@"%@",JobsLocalFunc);
 }
 
@@ -232,7 +232,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                           bottomLineCor:HEXCOLOR(0xFFFFFF)
                                          cellOutLineCor:HEXCOLOR(0xEEE2C8)
                                        cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
-                                            borderWidth:JobsWidth(10) 
+                                            borderWidth:JobsWidth(10)
                                                      dx:JobsWidth(0)
                                                      dy:JobsWidth(0)];
 }
@@ -370,7 +370,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsExcel")
                                                                attributeSubTitle:JobsInternationalization(@"JobsExcel")];
                 viewModel.cls = JobsExcelVC.class;
-                [rowMutArr addObject:viewModel];
+                rowMutArr.add(viewModel);
             }
             
             _dataMutArr.add(rowMutArr);

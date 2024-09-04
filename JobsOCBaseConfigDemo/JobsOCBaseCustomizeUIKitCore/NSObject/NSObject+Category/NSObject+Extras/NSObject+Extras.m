@@ -147,7 +147,46 @@
                     options:NSKeyValueObservingOptionNew
                     context:nil];
 }
+#pragma mark —— NSNotification
+/// 在主线程上带参发通知
+-(jobsByKey_ValueBlock _Nonnull)JobsPost{
+    return ^(NSString *_Nonnull key,id _Nullable value){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [JobsNotificationCenter postNotificationName:key object:value];
+        });
+    };
+}
+/// 在主线程上不带参发通知
+-(jobsByStringBlock _Nonnull)jobsPost{
+    return ^(NSString *_Nonnull key){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.JobsPost(key,@(NO));
+        });
+    };
+}
+/// 接收通知
+-(void)addNotificationName:(NSString *_Nonnull)notificationName block:(JobsSelectorBlock _Nullable)block{
+    @jobs_weakify(self)
+    [JobsNotificationCenter addObserver:self
+                               selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                           id _Nullable arg) {
+        @jobs_strongify(self)
+        if (block) block(self, arg);
+        return nil;
+    } selectorName:nil target:self] name:notificationName object:nil];
+}
 #pragma mark —— 功能性的
+-(jobsByVoidBlock _Nonnull)loginOK{
+    return ^(){
+        self.jobsPost(JobsLoginNotification);
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)logoutOK{
+    return ^(){
+        self.jobsPost(JobsLogoutNotification);
+    };
+}
 /**
  注意：有些时候UIApplication.sharedApplication.keyWindow获取到的window有frame，而windowScene.windows.firstObject获取到的window没有frame
  
@@ -378,7 +417,7 @@
 
 -(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
                          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock{
-    [NSNotificationCenter.defaultCenter addObserver:self
+    [JobsNotificationCenter addObserver:self
                                            selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                        id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
@@ -878,7 +917,7 @@
 }
 /// 监听程序被杀死前的时刻，进行一些需要异步的操作：磁盘读写、网络请求...
 -(void)terminalCheck:(jobsByIDBlock _Nullable)checkBlock{
-    [NSNotificationCenter.defaultCenter addObserver:self
+    [JobsNotificationCenter addObserver:self
                                            selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                        id _Nullable arg) {
         //进行埋点操作

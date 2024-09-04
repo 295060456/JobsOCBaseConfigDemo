@@ -8,9 +8,9 @@
 #import "NSString+Time.h"
 
 @implementation NSString (Time)
-
--(JobsReturnStringByStringBlock)jobsTime{
-    return ^NSString *_Nullable(NSString *_Nullable data){
+/// 格式化为中国时间
+-(JobsReturnStringByVoidBlock)jobsTime{
+    return ^NSString *_Nullable(){
         return [self timeStampByTimeFormatter:nil
                                  timeZoneType:TimeZoneTypeCSTChina
                                 intervalStyle:intervalByMilliSec];
@@ -40,6 +40,25 @@
     formatter.timeZone = self.timeZone(timeZoneType);
     NSString *dateStr = formatter.date(date);
     return dateStr;
+}
+/// 当前时间戳较之当前时间是否已过期
+-(JobsReturnBOOLByVoidBlock)isExpired{
+    return ^BOOL(){
+        /// 将时间戳字符串转换为 double 类型的时间戳
+        double timeStamp = self.doubleValue;
+        /// 创建 NSDate 对象
+        NSDate *dateFromTimeStamp;
+        if (self.length > 0) {
+            // 假设时间戳是以秒为单位
+            dateFromTimeStamp = [NSDate dateWithTimeIntervalSince1970:timeStamp];
+        }else return NO;/// 时间戳为空，返回 NO
+        /// 获取当前时间
+        NSDate *currentDate = NSDate.date;
+        /// 比较当前时间和时间戳所代表的时间
+        NSComparisonResult result = [currentDate compare:dateFromTimeStamp];
+        /// 如果当前时间晚于时间戳所代表的时间，返回 YES
+        return (result == NSOrderedDescending);
+    };
 }
 
 @end

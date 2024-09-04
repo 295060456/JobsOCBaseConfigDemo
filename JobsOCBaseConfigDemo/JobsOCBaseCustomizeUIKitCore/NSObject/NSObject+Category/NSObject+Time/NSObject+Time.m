@@ -469,9 +469,12 @@ NSString *const App当日首次进入 = @"App当日首次进入";
     return resultDate;
 }
 /// 以当前时间为基准，加上某个时间间隔（NSTimeInterval类型）以后的NSData值
--(NSDate *)getDateFromCurrentAfterTimeInterval:(NSTimeInterval)timeInterval{
-    return [NSDate.alloc initWithTimeIntervalSinceNow:timeInterval];
+-(JobsReturnDateByTimeIntervalBlock)getDateFromCurrentAfterTimeInterval{
+    return ^NSDate *_Nullable(NSTimeInterval timeInterval){
+        return [NSDate.alloc initWithTimeIntervalSinceNow:timeInterval];
+    };
 }
+
 /// 通过一个（可为空的）NSDateFormatter，将NSTimeInterval转化为可视化时间字符串
 -(JobsReturnStringByTimeIntervalAndDateFormatterBlock)strByTimeInterval{
     return ^NSString *_Nullable(NSTimeInterval data,NSDateFormatter *_Nullable dateFormatter){

@@ -15,6 +15,4 @@
 
 @interface GetImageApi : BaseRequest
 
--(instancetype _Nullable)initWithParameters:(NSDictionary *_Nullable)parameters;
-
 @end

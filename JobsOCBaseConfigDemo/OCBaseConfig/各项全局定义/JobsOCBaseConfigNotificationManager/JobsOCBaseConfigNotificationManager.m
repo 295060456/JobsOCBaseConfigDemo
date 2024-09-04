@@ -10,3 +10,5 @@
 NSString *const JobsAFNReachabilityStatus = @"JobsAFNReachabilityStatus";/// 网络状态监控
 NSString *const JobsEnterBackgroundStopPlayer = @"JobsEnterBackgroundStopPlayer";/// 退到后台停止播放ZFPlayer
 NSString *const JobsLanguageSwitchNotification = @"JobsLanguageSwitchNotification";/// 语言切换
+NSString *const JobsLoginNotification = @"JobsLoginNotification";/// 登录成功
+NSString *const JobsLogoutNotification = @"JobsLogoutNotification";/// 退出登录

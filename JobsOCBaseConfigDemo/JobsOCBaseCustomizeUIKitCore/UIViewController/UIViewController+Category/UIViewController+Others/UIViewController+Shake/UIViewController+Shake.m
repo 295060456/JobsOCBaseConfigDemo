@@ -43,12 +43,12 @@
 #pragma mark —— 加速仪
 -(void)invokeWhenViewDidAppearUsingCMMotionManager{
     @jobs_weakify(self)
-    [NSNotificationCenter.defaultCenter addObserverForName:UIApplicationDidEnterBackgroundNotification
-                                                    object:nil
-                                                     queue:nil
-                                                usingBlock:^(NSNotification * _Nonnull notification) {
+    [JobsNotificationCenter addObserverForName:UIApplicationDidEnterBackgroundNotification
+                                        object:nil
+                                         queue:nil
+                                    usingBlock:^(NSNotification * _Nonnull notification) {
         @jobs_strongify(self)
-        NSString *notificationName = notification.name;
+//        NSString *notificationName = notification.name;
         if (notification.name.isEqualToString(UIApplicationDidEnterBackgroundNotification)){
             [self.motionManager stopAccelerometerUpdates];
         }else{
@@ -56,12 +56,12 @@
         }
     }];
     
-    [NSNotificationCenter.defaultCenter addObserverForName:UIApplicationWillEnterForegroundNotification
-                                                    object:nil
-                                                     queue:nil
-                                                usingBlock:^(NSNotification * _Nonnull notification) {
+    [JobsNotificationCenter addObserverForName:UIApplicationWillEnterForegroundNotification
+                                        object:nil
+                                         queue:nil
+                                    usingBlock:^(NSNotification * _Nonnull notification) {
         @jobs_strongify(self)
-        NSString *notificationName = notification.name;
+//        NSString *notificationName = notification.name;
         if (notification.name.isEqualToString(UIApplicationDidEnterBackgroundNotification)){
             [self.motionManager stopAccelerometerUpdates];
         }else{
@@ -86,12 +86,8 @@
 
 -(void)stopAccelerometerWhenViewDidDisappear{
     [self.motionManager stopAccelerometerUpdates];
-    [NSNotificationCenter.defaultCenter removeObserver:self
-                                                  name:UIApplicationDidEnterBackgroundNotification
-                                                object:nil];
-    [NSNotificationCenter.defaultCenter removeObserver:self
-                                                  name:UIApplicationWillEnterForegroundNotification
-                                                object:nil];
+    JobsNotificationCenter.Remove(UIApplicationDidEnterBackgroundNotification,self);
+    JobsNotificationCenter.Remove(UIApplicationWillEnterForegroundNotification,self);
 }
 
 -(void)outputAccelertionData:(CMAcceleration)acceleration{

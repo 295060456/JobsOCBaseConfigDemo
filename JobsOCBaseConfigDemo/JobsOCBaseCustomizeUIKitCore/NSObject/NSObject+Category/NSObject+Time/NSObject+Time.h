@@ -97,7 +97,7 @@ FOUNDATION_EXTERN NSString * _Nonnull const App当日首次进入;
 -(NSDate *)getDate:(NSDate *_Nonnull)date
   afterIntegerTime:(NSInteger)afterIntegerTime;
 /// 以当前时间为基准，加上某个时间间隔（NSTimeInterval类型）以后的NSData值
--(NSDate *)getDateFromCurrentAfterTimeInterval:(NSTimeInterval)timeInterval;
+-(JobsReturnDateByTimeIntervalBlock)getDateFromCurrentAfterTimeInterval;
 /// 通过一个（可为空的）NSDateFormatter，将NSTimeInterval转化为可视化时间字符串
 -(JobsReturnStringByTimeIntervalAndDateFormatterBlock)strByTimeInterval;
 /// 计算两字符串时间的差值【方法一】

@@ -24,12 +24,14 @@
 /// 2.1、不带参数的发送通知
 #ifndef JobsPostNotification
 #define JobsPostNotification(NotificationName,Obj)\
-[JobsNotificationCenter postNotificationName:(NotificationName) object:(Obj)]
+[JobsNotificationCenter postNotificationName:(NotificationName) object:(Obj)];
 #endif
 /// 2.2、带参数的发送通知
 #ifndef JobsPostNotificationUserInfo
 #define JobsPostNotificationUserInfo(NotificationName,Obj,UserInfo)\
-[JobsNotificationCenter postNotificationName:(NotificationName) object:(Obj) userInfo:(UserInfo)]
+[JobsNotificationCenter postNotificationName:(NotificationName) \
+                                      object:(Obj) \
+                                    userInfo:(UserInfo)];
 #endif
 /// 2.3、在主线程上发送通知【建议】
 #ifndef JobsPostNotificationOnMainThread
@@ -37,7 +39,6 @@
 dispatch_async(dispatch_get_main_queue(), ^{\
     JobsPostNotificationUserInfo(NotificationName,Obj,UserInfo);\
 });
-
 #endif
 
 #pragma mark —— 3、监听通知
@@ -46,19 +47,19 @@ dispatch_async(dispatch_get_main_queue(), ^{\
 [JobsNotificationCenter addObserver:(Observer) \
                         selector:(SEL) \
                         name:(NotificationName) \
-                        object:(Obj)]
+                      object:(Obj)];
 #endif
 
 #pragma mark —— 4、销毁通知
 #ifndef JobsRemoveNotification
-#define JobsRemoveNotification(Object) [JobsNotificationCenter removeObserver:Object]
+#define JobsRemoveNotification(Object) [JobsNotificationCenter removeObserver:Object];
 #endif
 
 #ifndef JobsRemoveNotificationWith
 #define JobsRemoveNotificationWith(Observer, NotificationName, Obj)\
-[NSNotificationCenter.defaultCenter removeObserver:(Observer) \
-                                    name:(NotificationName)\
-                                    object:(Obj)]
+[JobsNotificationCenter removeObserver:(Observer) \
+                                  name:(NotificationName)\
+                                object:(Obj)];
 #endif
 
 #endif /* MacroDef_Notification_h */

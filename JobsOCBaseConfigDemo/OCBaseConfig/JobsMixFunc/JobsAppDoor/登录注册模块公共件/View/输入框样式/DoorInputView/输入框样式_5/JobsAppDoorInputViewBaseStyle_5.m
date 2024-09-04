@@ -52,22 +52,20 @@
 }
 #pragma mark —— 一些私有方法
 -(void)registerNotification{
-    @weakify(self)
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                                       id _Nullable arg) {
+    @jobs_weakify(self)
+    [self addNotificationName:@"关闭电话号码区号选择器"
+                        block:^(id _Nullable weakSelf,
+                                id _Nullable arg) {
+        @jobs_strongify(self)
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
             NSLog(@"SSS = %d",b.boolValue);
         }
-        @strongify(self)
         if (self.style_5 == InputViewStyle_5_3) {
             [self->dropDownListView dropDownListViewDisappear:self.chooseBtn];
-        }return nil;
-    } selectorName:nil target:self]
-                                               name:@"关闭电话号码区号选择器"
-                                             object:nil];
+        }
+    }];
 }
 
 -(void)configTextField{

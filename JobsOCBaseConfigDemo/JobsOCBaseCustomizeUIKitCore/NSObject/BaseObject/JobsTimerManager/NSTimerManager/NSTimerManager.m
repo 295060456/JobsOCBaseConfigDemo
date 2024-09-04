@@ -115,7 +115,7 @@
     return ^(NSRunLoop *runLoop) {
         @jobs_strongify(self)
         if (!runLoop) runLoop = NSRunLoop.mainRunLoop;
-        [runLoop addTimer:self.nsTimer forMode:NSRunLoopCommonModes];
+        runLoop.commonModesByTimer(self.nsTimer);
     };
 }
 /// 定时器暂停
@@ -124,7 +124,7 @@
     return ^(void) {
         @jobs_strongify(self)
         if (self->_nsTimer) {
-            [self->_nsTimer setFireDate:NSDate.distantFuture];
+            self->_nsTimer.fireDate = NSDate.distantFuture;
             self.timerCurrentStatus = NSTimerCurrentStatusPause;
         }
     };
@@ -135,7 +135,7 @@
     return ^(void) {
         @jobs_strongify(self)
         if (self->_nsTimer) {
-            [self->_nsTimer setFireDate:NSDate.distantPast];
+            self->_nsTimer.fireDate = NSDate.distantPast;
             self.timerCurrentStatus = NSTimerCurrentStatusRun;
         }
     };
@@ -193,7 +193,7 @@
 
 -(NSDate *)date{
     if (!_date) {
-        _date = [NSObject getDateFromCurrentAfterTimeInterval:self.timeSecIntervalSinceDate];
+        _date = self.getDateFromCurrentAfterTimeInterval(self.timeSecIntervalSinceDate);
     }return _date;
 }
 

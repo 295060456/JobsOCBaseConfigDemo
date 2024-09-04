@@ -1923,7 +1923,7 @@ NSObject <|-- BaseProtocol
   * ```objective-c
     AppDelegate *appDelegate;/// 声明，否则 extern AppDelegate *appDelegate;会崩溃
     @interface AppDelegate ()
-  
+    
     @end
     ```
   
@@ -4310,55 +4310,113 @@ static const uint32_t kSequenceBits = 12;
 
 #### 6.2、对通知的使用
 
-* 关注实现类：[**`MacroDef_Notification.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Notification.h)
+关注实现类：[**`MacroDef_Notification.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Notification.h) [**`@interface NSNotificationCenter (JobsBlock)`**]()
 
+##### 6.2.1、发通知
+
+* ```objective-c
+  [JobsNotificationCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
+  ```
+
+* ```objective-c
+  /// 在主线程上带参发通知
+  -(jobsByKey_ValueBlock _Nonnull)JobsPost{
+      return ^(NSString *_Nonnull key,id _Nullable value){
+          dispatch_async(dispatch_get_main_queue(), ^{
+              [JobsNotificationCenter postNotificationName:key object:value];
+          });
+      };
+  }
+  /// 在主线程上不带参发通知
+  -(jobsByStringBlock _Nonnull)jobsPost{
+      return ^(NSString *_Nonnull key){
+          dispatch_async(dispatch_get_main_queue(), ^{
+              self.JobsPost(key,@(NO));
+          });
+      };
+  }
+  ```
+
+* 
   ```objective-c
-  #ifndef JobsAddNotification
-  #define JobsAddNotification(Observer, SEL, NotificationName, Obj)\
-  [JobsNotificationCenter addObserver:(Observer) \
-                          selector:(SEL) \
-                          name:(NotificationName) \
-                          object:(Obj)]
+  /// 2.1、不带参数的发送通知
+  #ifndef JobsPostNotification
+  #define JobsPostNotification(NotificationName,Obj)\
+  [JobsNotificationCenter postNotificationName:(NotificationName) object:(Obj)];
+  #endif
+  /// 2.2、带参数的发送通知
+  #ifndef JobsPostNotificationUserInfo
+  #define JobsPostNotificationUserInfo(NotificationName,Obj,UserInfo)\
+  [JobsNotificationCenter postNotificationName:(NotificationName) \
+                                        object:(Obj) \
+                                      userInfo:(UserInfo)];
+  #endif
+  /// 2.3、在主线程上发送通知【建议】
+  #ifndef JobsPostNotificationOnMainThread
+  #define JobsPostNotificationOnMainThread(NotificationName, Obj, UserInfo)\
+  dispatch_async(dispatch_get_main_queue(), ^{\
+      JobsPostNotificationUserInfo(NotificationName,Obj,UserInfo);\
+  });
   #endif
   ```
-  
-* 接收通知：
 
-  ```objective-c
+##### 6.2.2、接收通知
+
+* ```objective-c
   @jobs_weakify(self)
-   [NSNotificationCenter.defaultCenter addObserver:self
-                                          selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                                      id _Nullable arg) {
-       NSNotification *notification = (NSNotification *)arg;
-       if([notification.object isKindOfClass:NSNumber.class]){
-           NSNumber *b = notification.object;
-           NSLog(@"SSS = %d",b.boolValue);
-       }
-       NSLog(@"通知传递过来的 = %@",notification.object);
-       return nil;
-   } selectorName:nil target:self]
-                                              name:JobsLanguageSwitchNotification
-                                            object:nil];
-  ```
-  
-  ```objective-c
-  @jobs_weakify(self)
-  JobsAddNotification(targetView,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                    id _Nullable arg) {
+  [self addNotificationName:kReachabilityChangedNotification
+                      block:^(id _Nullable weakSelf,
+                              id _Nullable arg) {
+      @jobs_strongify(self)
       NSNotification *notification = (NSNotification *)arg;
-      if([notification.object isKindOfClass:NSNumber.class]){
-          NSNumber *b = notification.object;
-          NSLog(@"SSS = %d",b.boolValue);
-      }
       NSLog(@"通知传递过来的 = %@",notification.object);
-      return nil;
-  } selectorName:nil target:self],JobsLanguageSwitchNotification,nil);
+  }];
   ```
-  
-* 发通知：
 
+* ```objective-c
+  @jobs_weakify(self)
+  [JobsNotificationCenter addObserver:self
+                            selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                        id _Nullable arg) {
+     NSNotification *notification = (NSNotification *)arg;
+     if([notification.object isKindOfClass:NSNumber.class]){
+         NSNumber *b = notification.object;
+         NSLog(@"SSS = %d",b.boolValue);
+     }
+     NSLog(@"通知传递过来的 = %@",notification.object);
+     return nil;
+  } selectorName:nil target:self]
+                                 name:JobsLanguageSwitchNotification
+                               object:nil];
+  ```
+
+* ```objective-c
+  [JobsNotificationCenter addObserverForName:GSUploadNetworkSpeedNotificationKey
+                                      object:nil
+                                       queue:nil
+                                  usingBlock:^(NSNotification * _Nonnull notification) {
+      NSLog(@"%@",notification.object);
+  }];
+  ```
+
+##### 6.2.3、移除通知
+
+* [**@implementation NSNotificationCenter (JobsBlock)**]()
+  
   ```objective-c
-  [NSNotificationCenter.defaultCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
+  -(jobsByIDBlock)remove{
+      return ^(id _Nullable data){
+          [JobsNotificationCenter removeObserver:data];
+      };
+  }
+  
+  -(jobsByKey_ValueBlock)Remove{
+      return ^(NSString *_Nonnull key,id _Nullable value){
+          [JobsNotificationCenter removeObserver:value
+                                            name:key
+                                          object:nil];
+      };
+  }
   ```
 
 ### 7、`UIViewModel`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
@@ -5534,18 +5592,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 20、字符串定义 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-*  ```objective-c
+*  在`*.h`文件中定义
+   
+   ```objective-c
    FOUNDATION_EXTERN NSString *const 皇冠符号;
-   ```
-
-  ```objective-c
-  NSString *const 皇冠符号 = @"♚　♛　♝　♞　♜　♟　♔　♕　♗　♘　♖　♟";
   ```
+  
+  在`*.m`文件中定义
 
-* ```objective-c
+   ```objective-c
+   NSString *const 皇冠符号 = @"♚　♛　♝　♞　♜　♟　♔　♕　♗　♘　♖　♟";
+   ```
+  
+* 在`*.h`文件中定义
+  
+  ```objective-c
   extern NSString *const UserDefaultKey_AppLanguage;
   ```
-
+  
+  在`*.m`文件中定义
+  
   ```objective-c
   NSString *const UserDefaultKey_AppLanguage = @"AppLanguage";
   ```

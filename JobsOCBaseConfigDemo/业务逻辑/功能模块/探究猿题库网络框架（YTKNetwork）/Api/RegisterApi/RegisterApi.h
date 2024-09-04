@@ -15,7 +15,6 @@
 
 @interface RegisterApi : BaseRequest
 
--(instancetype _Nullable)initWithParameters:(NSDictionary *_Nullable)parameters;
 -(NSString *_Nonnull)userId;/// 在链式请求中，下一个请求的参数来源于上一个请求的结果
 
 @end

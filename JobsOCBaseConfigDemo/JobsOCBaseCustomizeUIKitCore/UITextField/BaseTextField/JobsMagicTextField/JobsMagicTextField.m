@@ -25,15 +25,14 @@
         self.placeholdAnimationable = YES;
         self.placeHolderAlignment = NSTextAlignmentLeft;
         self.clipsToBounds = NO;
-        [NSNotificationCenter.defaultCenter addObserver:self
-                                               selector:@selector(changeEditing)
-                                                   name:UITextFieldTextDidChangeNotification
-                                                 object:nil];
+        @jobs_weakify(self)
+        [self addNotificationName:UITextFieldTextDidChangeNotification
+                            block:^(id  _Nullable weakSelf,
+                                    id  _Nullable arg) {
+            @jobs_strongify(self)
+            self.placeholderAnimationLbl.jobsVisible = self.placeholdAnimationable && isValue(self.text);
+        }];
     }return self;
-}
-
--(void)changeEditing{
-    self.placeholderAnimationLbl.jobsVisible = self.placeholdAnimationable && ![self.text isEqualToString:JobsInternationalization(@"")];
 }
 /// ⚠️当一个TF1->TF2，先获得焦点再失去焦点
 /// 这个方法里面，正在获得、但还没有获得焦点，此时的self.isFirstResponder == NO

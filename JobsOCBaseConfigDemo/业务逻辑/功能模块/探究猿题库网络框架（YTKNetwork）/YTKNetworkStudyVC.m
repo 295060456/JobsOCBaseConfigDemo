@@ -82,7 +82,7 @@
 /// 普通的单个请求
 -(jobsByVoidBlock)loadCacheData{
     return ^(){
-        GetCustomerContactApi *api = [GetCustomerContactApi.alloc initWithParameters:nil];
+        GetCustomerContactApi *api = GetCustomerContactApi.initByParameters(nil);
         if ([api loadCacheWithError:nil]) {
             NSDictionary *json = api.responseJSONObject;
             NSLog(@"json = %@", json);
@@ -105,10 +105,10 @@
 /// 多请求の同步请求
 -(jobsByVoidBlock)sendBatchRequest{
     return ^(){
-        GetImageApi *a = [GetImageApi.alloc initWithParameters:nil];
-        GetImageApi *b = [GetImageApi.alloc initWithParameters:nil];
-        GetImageApi *c = [GetImageApi.alloc initWithParameters:nil];
-        GetUserInfoApi *d = [GetUserInfoApi.alloc initWithParameters:nil];
+        GetImageApi *a = GetImageApi.initByParameters(nil);
+        GetImageApi *b = GetImageApi.initByParameters(nil);
+        GetImageApi *c = GetImageApi.initByParameters(nil);
+        GetUserInfoApi *d = GetUserInfoApi.initByParameters(nil);
         
         YTKBatchRequest *batchRequest = [YTKBatchRequest.alloc initWithRequestArray:@[a, b, c, d]];
         [batchRequest startWithCompletionBlockWithSuccess:^(YTKBatchRequest *batchRequest) {
@@ -137,7 +137,7 @@
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        RegisterApi *reg = [RegisterApi.alloc initWithParameters:nil];
+        RegisterApi *reg = RegisterApi.initByParameters(nil);
         YTKChainRequest *chainReq = YTKChainRequest.new;
         [chainReq addRequest:reg
                     callback:^(YTKChainRequest *chainRequest,
@@ -145,7 +145,7 @@
             
             RegisterApi *result = (RegisterApi *)baseRequest;
             /// 在链式请求中，下一个请求的参数来源于上一个请求的结果
-            GetUserInfoApi *api = [GetUserInfoApi.alloc initWithParameters:@{@"KKK":result.userId}];
+            GetUserInfoApi *api = GetUserInfoApi.initByParameters(@{@"KKK":result.userId});
             [chainRequest addRequest:api callback:nil];
         }];
         chainReq.delegate = self;
@@ -158,7 +158,7 @@
 }
 
 -(void)chainRequestFailed:(YTKChainRequest *)chainRequest
-        failedBaseRequest:(YTKBaseRequest *)request{
+        failedBaseRequest:(YTKBaseRequest*)request{
     NSLog(@"some one of request is failed");
 }
 #pragma mark —— lazyLoad

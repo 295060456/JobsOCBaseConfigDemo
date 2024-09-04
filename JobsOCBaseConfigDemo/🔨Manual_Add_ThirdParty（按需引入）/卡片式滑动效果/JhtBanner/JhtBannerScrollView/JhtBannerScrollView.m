@@ -11,7 +11,7 @@
 
 #import "JhtBannerScrollView.h"
 
-@interface JhtBannerScrollView () <UIScrollViewDelegate> {
+@interface JhtBannerScrollView () {
     NSTimer *_bannerTimer;
     NSInteger _timerPageIndex;
     // 标识定时器是否为 暂停状态
@@ -82,16 +82,38 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
 #pragma mark Notification
 /** 注册系统通知 */
 - (void)bsvRegisterSystemNotification {
+    @jobs_weakify(self)
     // 后台 --> 前台
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                             selector:@selector(continueScroll)
-                                                 name:UIApplicationDidBecomeActiveNotification
-                                               object:nil];
+    [self addNotificationName:UIApplicationDidBecomeActiveNotification
+                        block:^(id  _Nullable weakSelf,
+                                id  _Nullable arg) {
+        @jobs_strongify(self)
+        // 判断定时器是否为 暂停状态
+        @jobs_weakify(self)
+        if (self->_timerIsPause) {
+            // 延迟0.2S调用，给人相应反应时间
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
+                                         (int64_t)(0.2 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                @jobs_strongify(self)
+                if (self->_bannerTimer) {
+                    self->_bannerTimer.fireDate = NSDate.distantPast;
+                } else {
+                    // 开启
+                    [self bsvStartTimer];
+                }
+            });
+            self->_timerIsPause = !self->_timerIsPause;
+        }
+    }];
     // 前台 --> 后台
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                             selector:@selector(pauseScroll)
-                                                 name:UIApplicationDidEnterBackgroundNotification
-                                               object:nil];
+    [self addNotificationName:UIApplicationDidEnterBackgroundNotification
+                        block:^(id  _Nullable weakSelf,
+                                id  _Nullable arg) {
+        @jobs_strongify(self)
+        self->_timerIsPause = YES;
+        self->_bannerTimer.fireDate = NSDate.distantFuture;
+    }];
 }
 #pragma mark - Public Method
 - (void)reloadData {
@@ -211,7 +233,7 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
 }
 
 - (UIView *)dequeueReusableView {
-    JhtBannerCardView *cardView = [self.reusableArray lastObject];
+    JhtBannerCardView *cardView = self.reusableArray.lastObject;
     if (cardView) {
         [self.reusableArray removeLastObject];
     }return cardView;
@@ -260,32 +282,6 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
         [self bsvUpdateVisibleCardViewAppearance];
     }
 }
-
-- (void)continueScroll {
-    // 判断定时器是否为 暂停状态
-    @jobs_weakify(self)
-    if (_timerIsPause) {
-        // 延迟0.2S调用，给人相应反应时间
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
-                                     (int64_t)(0.2 * NSEC_PER_SEC)),
-                       dispatch_get_main_queue(), ^{
-            @jobs_strongify(self)
-            if (self->_bannerTimer) {
-                [self->_bannerTimer setFireDate:[NSDate distantPast]];
-            } else {
-                // 开启
-                [self bsvStartTimer];
-            }
-        });
-        _timerIsPause = !_timerIsPause;
-    }
-}
-
-- (void)pauseScroll {
-    _timerIsPause = YES;
-    [_bannerTimer setFireDate:[NSDate distantFuture]];
-}
-
 #pragma mark - Private Methods
 - (void)bsvStartTimer {
     if (_orginPageCount > 1 &&
@@ -487,7 +483,7 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
             break;
         }
             
-		// 纵向
+        // 纵向
         case BV_Orientation_Vertical: {
             NSInteger startIndex = 0;
             for (NSInteger i = 0; i < self.cardViewArray.count; i ++) {
@@ -536,7 +532,7 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
 /** 添加 CardView */
 - (void)bsvAddCardViewToInsideScrollViewWithIndex:(NSInteger)pageIndex {
     NSParameterAssert(pageIndex >= 0 && pageIndex < self.cardViewArray.count);
-	
+    
     UIView *cardView = [self.cardViewArray objectAtIndex:pageIndex];
     
     if ((NSObject *)cardView == [NSNull null]) {
@@ -622,8 +618,7 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
 
 - (UIScrollView *)insideScrollView {
     if (!_insideScrollView) {
-        _insideScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-        
+        _insideScrollView = [UIScrollView.alloc initWithFrame:self.bounds];
         _insideScrollView.scrollsToTop = NO;
         _insideScrollView.delegate = self;
         _insideScrollView.pagingEnabled = YES;
@@ -674,12 +669,12 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
     }
     NSInteger pageIndex;
     switch (self.orientation) {
-        	// 横向
+            // 横向
         case BV_Orientation_Horizontal: {
             pageIndex = (NSInteger)round(self.insideScrollView.contentOffset.x / _pageSize.width) % _orginPageCount;
             break;
         }
-        	// 纵向
+            // 纵向
         case BV_Orientation_Vertical: {
             pageIndex = (NSInteger)round(self.insideScrollView.contentOffset.y / _pageSize.height) % _orginPageCount;
             break;
@@ -740,8 +735,8 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
                                                       selector:@selector(bsvAutoNextCardView)
                                                       userInfo:nil
                                                        repeats:YES];
-        [[NSRunLoop mainRunLoop] addTimer:_bannerTimer
-                                  forMode:NSRunLoopCommonModes];
+        [NSRunLoop.mainRunLoop addTimer:_bannerTimer
+                                forMode:NSRunLoopCommonModes];
         switch (self.orientation) {
                 // 横向
             case BV_Orientation_Horizontal: {
