@@ -829,7 +829,7 @@
 		CECE85E32C4513CE00764AF5 /* UIView+JHGestureBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84A82C4513CD00764AF5 /* UIView+JHGestureBlock.m */; };
 		CECE85E42C4513CE00764AF5 /* UIView+Masonry.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84AB2C4513CD00764AF5 /* UIView+Masonry.m */; };
 		CECE85E52C4513CE00764AF5 /* UIView+Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84AE2C4513CD00764AF5 /* UIView+Measure.m */; };
-		CECE85E62C4513CE00764AF5 /* UIView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84B12C4513CD00764AF5 /* UIView+MJRefresh.m */; };
+		CECE85E62C4513CE00764AF5 /* UIView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84B12C4513CD00764AF5 /* UIView+Refresh.m */; };
 		CECE85E72C4513CE00764AF5 /* UIView+SuspendView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84B42C4513CD00764AF5 /* UIView+SuspendView.m */; };
 		CECE85E82C4513CE00764AF5 /* UIView+UIBackgroundConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84B72C4513CD00764AF5 /* UIView+UIBackgroundConfig.m */; };
 		CECE85E92C4513CE00764AF5 /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE84BA2C4513CD00764AF5 /* UIView+ViewController.m */; };
@@ -2778,8 +2778,8 @@
 		CECE84AB2C4513CD00764AF5 /* UIView+Masonry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Masonry.m"; sourceTree = "<group>"; };
 		CECE84AD2C4513CD00764AF5 /* UIView+Measure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Measure.h"; sourceTree = "<group>"; };
 		CECE84AE2C4513CD00764AF5 /* UIView+Measure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Measure.m"; sourceTree = "<group>"; };
-		CECE84B02C4513CD00764AF5 /* UIView+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJRefresh.h"; sourceTree = "<group>"; };
-		CECE84B12C4513CD00764AF5 /* UIView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJRefresh.m"; sourceTree = "<group>"; };
+		CECE84B02C4513CD00764AF5 /* UIView+Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Refresh.h"; sourceTree = "<group>"; };
+		CECE84B12C4513CD00764AF5 /* UIView+Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Refresh.m"; sourceTree = "<group>"; };
 		CECE84B32C4513CD00764AF5 /* UIView+SuspendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SuspendView.h"; sourceTree = "<group>"; };
 		CECE84B42C4513CD00764AF5 /* UIView+SuspendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SuspendView.m"; sourceTree = "<group>"; };
 		CECE84B62C4513CD00764AF5 /* UIView+UIBackgroundConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+UIBackgroundConfig.h"; sourceTree = "<group>"; };
@@ -11866,13 +11866,13 @@
 			path = "UIView+Measure";
 			sourceTree = "<group>";
 		};
-		CECE84B22C4513CD00764AF5 /* UIView+MJRefresh */ = {
+		CECE84B22C4513CD00764AF5 /* UIView+Refresh */ = {
 			isa = PBXGroup;
 			children = (
-				CECE84B02C4513CD00764AF5 /* UIView+MJRefresh.h */,
-				CECE84B12C4513CD00764AF5 /* UIView+MJRefresh.m */,
+				CECE84B02C4513CD00764AF5 /* UIView+Refresh.h */,
+				CECE84B12C4513CD00764AF5 /* UIView+Refresh.m */,
 			);
-			path = "UIView+MJRefresh";
+			path = "UIView+Refresh";
 			sourceTree = "<group>";
 		};
 		CECE84B52C4513CD00764AF5 /* UIView+SuspendView */ = {
@@ -11928,7 +11928,7 @@
 				CECE84A92C4513CD00764AF5 /* UIView+JHGestureBlock */,
 				CECE84AC2C4513CD00764AF5 /* UIView+Masonry */,
 				CECE84AF2C4513CD00764AF5 /* UIView+Measure */,
-				CECE84B22C4513CD00764AF5 /* UIView+MJRefresh */,
+				CECE84B22C4513CD00764AF5 /* UIView+Refresh */,
 				CE1F25792C5DDAA100324198 /* UIView+Navigator */,
 				CECE84B52C4513CD00764AF5 /* UIView+SuspendView */,
 				CECE84B82C4513CD00764AF5 /* UIView+UIBackgroundConfig */,
@@ -14603,7 +14603,7 @@
 				CECE7EE02C450E5B00764AF5 /* ZWPullMenuConfig.m in Sources */,
 				CECE81122C4512BF00764AF5 /* JobsHotLabelWithMultiLine.m in Sources */,
 				CE7F39772C4FDB9B00431A5D /* FMDatabase+Manager.m in Sources */,
-				CECE85E62C4513CE00764AF5 /* UIView+MJRefresh.m in Sources */,
+				CECE85E62C4513CE00764AF5 /* UIView+Refresh.m in Sources */,
 				CE40B29C2C4BF78E00CB64B5 /* JobsToggleNavView.m in Sources */,
 				CECE874F2C45140000764AF5 /* AESCrypt.m in Sources */,
 				CE207E7F2C82EE9E00AD9FFB /* JobsVerticalMenuMainVC.m in Sources */,

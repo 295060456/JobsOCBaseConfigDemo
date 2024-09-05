@@ -18,7 +18,7 @@
 #import "UIView+Extras.h"
 #import "UIView+Gradient.h"
 #import "UIView+Measure.h"
-#import "UIView+MJRefresh.h"
+#import "UIView+Refresh.h"
 #import "UIView+SuspendView.h"
 #import "UIView+ViewController.h"
 #import "UIView+ZFPlayer.h"

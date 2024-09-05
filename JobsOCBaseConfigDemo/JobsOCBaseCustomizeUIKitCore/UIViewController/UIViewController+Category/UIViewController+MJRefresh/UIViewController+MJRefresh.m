@@ -26,12 +26,6 @@
     MJRefreshFooter->MJRefreshComponent->UIView
  *
  */
--(void)震动特效反馈{
-    [self addObserver:self
-           forKeyPath:@"state"
-              options:NSKeyValueObservingOptionNew
-              context:nil];
-}
 #pragma mark —— BaseViewProtocol
 ///KVO 监听 MJRefresh + 震动特效反馈
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -40,14 +34,14 @@
                        context:(void *)context {
     if ([object isEqual:self.mjRefreshGifHeader] &&
         self.mjRefreshGifHeader.state == MJRefreshStatePulling) {
-        NSObject.feedbackGenerator();
+        self.feedbackGenerator();
     }else if (([object isEqual:self.mjRefreshAutoGifFooter] ||
                [object isEqual:self.mjRefreshBackNormalFooter] ||
                [object isEqual:self.mjRefreshAutoNormalFooter]) && (self.mjRefreshAutoGifFooter.state == MJRefreshStatePulling ||
                                                                     self.mjRefreshBackNormalFooter.state == MJRefreshStatePulling ||
                                                                     self.mjRefreshAutoNormalFooter.state == MJRefreshStatePulling)
              ) {
-        NSObject.feedbackGenerator();
+        self.feedbackGenerator();
     }else{}
 }
 #pragma mark —— @property(nonatomic,strong)MJRefreshConfigModel *refreshConfigHeader;//头部的配置信息
@@ -143,9 +137,7 @@ JobsKey(_lotAnimMJRefreshHeader)
             lotAnimMJRefreshHeader.stateLabel.font = self.refreshConfigHeader.font;
             // 设置颜色
             lotAnimMJRefreshHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
-            if (self.refreshConfigHeader.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_lotAnimMJRefreshHeader, lotAnimMJRefreshHeader)
     }return lotAnimMJRefreshHeader;
@@ -189,9 +181,7 @@ JobsKey(_mjRefreshNormalHeader)
             MjRefreshNormalHeader.stateLabel.font = self.refreshConfigHeader.font;
             // 设置颜色
             MjRefreshNormalHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
-            if (self.refreshConfigHeader.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshNormalHeader, MjRefreshNormalHeader);
     }return MjRefreshNormalHeader;
@@ -235,9 +225,7 @@ JobsKey(_mjRefreshStateHeader)
             MjRefreshStateHeader.stateLabel.font = self.refreshConfigHeader.font;
             // 设置颜色
             MjRefreshStateHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
-            if (self.refreshConfigHeader.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshStateHeader, MjRefreshStateHeader)
     }return MjRefreshStateHeader;
@@ -259,9 +247,7 @@ JobsKey(_mjRefreshHeader)
         }];
         //其他
         {
-            if (self.refreshConfigHeader.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshHeader, MjRefreshHeader)
     }return MjRefreshHeader;
@@ -324,9 +310,7 @@ JobsKey(_mjRefreshGifHeader)
             MjRefreshGifHeader.stateLabel.font = self.refreshConfigHeader.font;
             // 设置颜色
             MjRefreshGifHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
-            if (self.refreshConfigHeader.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshGifHeader, MjRefreshGifHeader)
     }return MjRefreshGifHeader;
@@ -390,9 +374,7 @@ JobsKey(_mjRefreshAutoGifFooter)
             MjRefreshAutoGifFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshAutoGifFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoGifFooter, MjRefreshAutoGifFooter)
     }return MjRefreshAutoGifFooter;
@@ -436,9 +418,7 @@ JobsKey(_mjRefreshBackNormalFooter)
             MjRefreshBackNormalFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshBackNormalFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackNormalFooter, MjRefreshBackNormalFooter)
     }return MjRefreshBackNormalFooter;
@@ -483,9 +463,7 @@ JobsKey(_mjRefreshAutoNormalFooter)
             MjRefreshAutoNormalFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshAutoNormalFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoNormalFooter, MjRefreshAutoNormalFooter)
     }return MjRefreshAutoNormalFooter;
@@ -529,9 +507,7 @@ JobsKey(_mjRefreshAutoStateFooter)
             MjRefreshAutoStateFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshAutoStateFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoStateFooter, MjRefreshAutoStateFooter)
     }return MjRefreshAutoStateFooter;
@@ -612,9 +588,7 @@ JobsKey(_mjRefreshBackGifFooter)
             MjRefreshBackGifFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshBackGifFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackGifFooter, MjRefreshBackGifFooter)
     }return MjRefreshBackGifFooter;
@@ -658,9 +632,7 @@ JobsKey(_mjRefreshBackStateFooter)
             MjRefreshBackStateFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshBackStateFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackStateFooter, MjRefreshBackStateFooter)
     }return MjRefreshBackStateFooter;
@@ -682,9 +654,7 @@ JobsKey(_mjRefreshBackFooter)
         }];
         //其他
         {
-            if (self.refreshConfigFooter.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackFooter, MjRefreshBackFooter)
     }return MjRefreshBackFooter;
@@ -706,9 +676,7 @@ JobsKey(_mjRefreshFooter)
         }];
         //其他
         {
-            if (self.refreshConfigFooter.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshFooter, MjRefreshFooter)
     }return MjRefreshFooter;

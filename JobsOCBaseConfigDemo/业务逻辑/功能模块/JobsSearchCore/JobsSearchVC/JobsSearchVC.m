@@ -372,10 +372,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+            refreshConfigHeader.loadBlock = ^id _Nullable(id _Nullable data) {
                 @jobs_strongify(self)
-                NSObject.feedbackGenerator();//震动反馈
-                self.endRefreshing(self->_tableView);
+                self.feedbackGenerator();//震动反馈
+                self->_tableView.endRefreshing();
 //                self.endRefreshingWithNoMoreData(self->_tableView);
                 return nil;
             };
@@ -386,9 +386,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
             refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
-            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
+            refreshConfigFooter.loadBlock = ^id _Nullable(id _Nullable data) {
                 @jobs_strongify(self)
-                self.endRefreshing(self->_tableView);
+                self->_tableView.endRefreshing();
                 return nil;
             };
 

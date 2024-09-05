@@ -310,13 +310,13 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                NSObject.feedbackGenerator();//震动反馈
+                self.feedbackGenerator();//震动反馈
                 [self withdrawBanklist:^(NSArray *data) {
                     @jobs_strongify(self)
                     if (data.count) {
-                        self.endRefreshing(self->_collectionView);
+                        self->_collectionView.endRefreshing();
                     }else{
-                        self.endRefreshingWithNoMoreData(self->_collectionView);
+                        self->_collectionView.endRefreshingWithNoMoreData();
                     }
                     /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
                     @jobs_weakify(self)
@@ -336,7 +336,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                self.endRefreshing(self->_collectionView);
+                self->_collectionView.endRefreshing();
                 return nil;
             };
             self.refreshConfigHeader = refreshConfigHeader;

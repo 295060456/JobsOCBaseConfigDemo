@@ -283,8 +283,8 @@ insetForSectionAtIndex:(NSInteger)section {
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                NSObject.feedbackGenerator();//震动反馈
-                self.endRefreshing(self->_collectionView);
+                self.feedbackGenerator();//震动反馈
+                self->_collectionView.endRefreshing();
                 return nil;
             };
 
@@ -296,7 +296,7 @@ insetForSectionAtIndex:(NSInteger)section {
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                self.endRefreshing(self->_collectionView);
+                self->_collectionView.endRefreshing();
                 return nil;
             };
 

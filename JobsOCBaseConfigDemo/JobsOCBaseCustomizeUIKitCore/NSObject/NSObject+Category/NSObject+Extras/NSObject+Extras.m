@@ -176,6 +176,16 @@
     } selectorName:nil target:self] name:notificationName object:nil];
 }
 #pragma mark —— 功能性的
+-(jobsByVoidBlock _Nonnull)震动特效反馈{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        [self addObserver:self
+               forKeyPath:@"state"
+                  options:NSKeyValueObservingOptionNew
+                  context:nil];
+    };
+}
 /// 可变数组的方便调用
 -(__kindof NSArray *_Nonnull)jobsMakeMutArr:(jobsByMutableArrayBlock _Nonnull)block{
     NSMutableArray *mutableArray = NSMutableArray.array;
@@ -796,15 +806,13 @@
     }return ![recordToday isEqualToString:today];
 }
 /// 震动特效反馈
-+(jobsByVoidBlock _Nonnull)feedbackGenerator{
+-(jobsByVoidBlock _Nonnull)feedbackGenerator{
     return ^() {
         if (@available(iOS 10.0, *)) {
             UIImpactFeedbackGenerator *generator = [UIImpactFeedbackGenerator.alloc initWithStyle:UIImpactFeedbackStyleMedium];
             [generator prepare];
             [generator impactOccurred];
-        } else {
-            AudioServicesPlaySystemSound(1520);
-        }
+        } else AudioServicesPlaySystemSound(1520);
     };
 }
 /// 检测用户是否锁屏：根据屏幕光线来进行判定，而不是系统通知

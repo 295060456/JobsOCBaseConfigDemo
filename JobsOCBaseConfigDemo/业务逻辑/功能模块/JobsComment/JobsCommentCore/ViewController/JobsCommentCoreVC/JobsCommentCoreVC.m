@@ -32,7 +32,7 @@
 -(void)loadView{
     [super loadView];
     @jobs_weakify(self)
-    [jobsGetMainWindow() actionObjectBlock:^(id data) {
+    [NSObject.mainWindow() actionObjectBlock:^(id data) {
         @jobs_strongify(self)
         [self dismissViewControllerAnimated:YES
                                  completion:Nil];
@@ -76,13 +76,13 @@
 -(void)setMJModel:(JobsCommentModel *)mjModel{
     self.mjModel = mjModel;
     [self dataSource:self.mjModel.listDataArr contentView:self.tableView];
-    self.endRefreshing(self->_tableView);
+    self.tableView.endRefreshing();
 }
 
 -(void)setYYModel:(JobsCommentModel *)yyModel{
     self.yyModel = yyModel;
     [self dataSource:self.yyModel.listDataArr contentView:self.tableView];
-    self.endRefreshing(self->_tableView);
+    self.tableView.endRefreshing();
 }
 
 -(JobsCommentTitleHeaderView *)getJobsCommentTitleHeaderView{
@@ -232,7 +232,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
             refreshConfigHeader.refreshingTitle = JobsInternationalization(@"正在刷新数据");
             refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
-            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
+            refreshConfigHeader.loadBlock = ^id _Nullable(id _Nullable data) {
                 @jobs_strongify(self)
                 /// 装载本地假数据
                 NSDictionary *dic = @"CommentData".readLocalFileWithName;
@@ -241,7 +241,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
 
                 NSLog(@"self.mjModel = %@",self.mjModel);
                 [self dataSource:self.mjModel.listDataArr contentView:self.tableView];
-                self.endRefreshing(self->_tableView);
+                self->_tableView.endRefreshing();
                 // 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
                 self.tableView.pagingEnabled = NO;
                 self.tableView.mj_footer.state = MJRefreshStateIdle;
@@ -260,7 +260,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
                 NSLog(@"上拉加载更多");
-                self.endRefreshing(self->_tableView);
+                self->_tableView.endRefreshing();
                 return nil;
             };
             // 赋值

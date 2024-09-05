@@ -186,6 +186,7 @@ BaseProtocol
 /// 接收通知
 -(void)addNotificationName:(NSString *_Nonnull)notificationName block:(JobsSelectorBlock _Nullable)block;
 #pragma mark —— 功能性的
+-(jobsByVoidBlock _Nonnull)震动特效反馈;
 /// 可变数组的方便调用
 -(__kindof NSArray *_Nonnull)jobsMakeMutArr:(jobsByMutableArrayBlock _Nonnull)block;
 /// 可变集合的方便调用
@@ -315,7 +316,7 @@ BaseProtocol
 /// 判断是否是App今日的首次启动
 -(BOOL)isTodayAppFirstLaunch;
 /// 震动特效反馈
-+(jobsByVoidBlock _Nonnull)feedbackGenerator;
+-(jobsByVoidBlock _Nonnull)feedbackGenerator;
 /// 检测用户是否锁屏：根据屏幕光线来进行判定，而不是系统通知
 -(JobsReturnBOOLByVoidBlock _Nonnull)didUserPressLockButton;
 /// iOS 限制自动锁屏 lockSwitch:YES(关闭自动锁屏)

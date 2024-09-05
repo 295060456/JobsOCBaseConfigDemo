@@ -10,12 +10,12 @@
 
 @interface JobsAppDoorLoginContentView ()
 /// UI
-@property(nonatomic,strong)UIButton *toRegisterBtn;/// 去注册
+@property(nonatomic,strong)BaseButton *toRegisterBtn;/// 去注册
 @property(nonatomic,strong)UILabel *titleLab;/// 标题
-@property(nonatomic,strong)UIButton *abandonLoginBtn;/// 返回首页按钮
-@property(nonatomic,strong)UIButton *sendBtn;/// 登录
-@property(nonatomic,strong)UIButton *storeCodeBtn;/// 记住密码
-@property(nonatomic,strong)UIButton *findCodeBtn;/// 忘记密码
+@property(nonatomic,strong)BaseButton *abandonLoginBtn;/// 返回首页按钮
+@property(nonatomic,strong)BaseButton *sendBtn;/// 登录
+@property(nonatomic,strong)BaseButton *storeCodeBtn;/// 记住密码
+@property(nonatomic,strong)BaseButton *findCodeBtn;/// 忘记密码
 /// Data
 @property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
 @property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*loginDoorInputViewBaseStyleMutArr;
@@ -63,9 +63,7 @@
         @jobs_weakify(self)
         [inputView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
-            if (self.objectBlock) {
-                self.objectBlock(data);//data：监测输入字符回调 和 激活的textField
-            }
+            if (self.objectBlock) self.objectBlock(data);//data：监测输入字符回调 和 激活的textField
         }];
 
         [self addSubview:inputView];
@@ -91,7 +89,7 @@
     @jobs_weakify(self)
     return ^(id _Nullable model) {
         @jobs_strongify(self)
-        self.toRegisterBtn.alpha = 1;
+        self.toRegisterBtn.alpha = .7f;
         self.titleLab.alpha = 1;
         [self makeInputView];
         self.abandonLoginBtn.alpha = 1;
@@ -101,29 +99,58 @@
     };
 }
 #pragma mark —— lazyLoad
--(UIButton *)toRegisterBtn{
+-(BaseButton *)toRegisterBtn{
     if (!_toRegisterBtn) {
-        _toRegisterBtn = UIButton.new;
-        _toRegisterBtn.makeNewLineShows(YES);
-        _toRegisterBtn.backgroundColor = JobsBlackColor;
-        _toRegisterBtn.titleFont(UIFontWeightMediumSize(13));
-        _toRegisterBtn.alpha = 0.7f;
-        _toRegisterBtn.normalTitle(Title2);
-        _toRegisterBtn.normalImage(JobsIMG(@"用户名称"));
         @jobs_weakify(self)
-        [_toRegisterBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _toRegisterBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                           background:nil
+                                           buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                        textAlignment:NSTextAlignmentCenter
+                                                     subTextAlignment:NSTextAlignmentCenter
+                                                          normalImage:JobsIMG(@"用户名称")
+                                                       highlightImage:nil
+                                                      attributedTitle:nil
+                                              selectedAttributedTitle:nil
+                                                   attributedSubtitle:nil
+                                                                title:Title2
+                                                             subTitle:nil
+                                                            titleFont:UIFontWeightMediumSize(13)
+                                                         subTitleFont:nil
+                                                             titleCor:nil
+                                                          subTitleCor:nil
+                                                   titleLineBreakMode:NSLineBreakByWordWrapping
+                                                subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                  baseBackgroundColor:JobsBlackColor
+                                                      backgroundImage:nil
+                                                         imagePadding:JobsWidth(8)
+                                                         titlePadding:JobsWidth(0)
+                                                       imagePlacement:NSDirectionalRectEdgeTop
+                                           contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                             contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                        contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                    cornerRadiusValue:JobsWidth(0)
+                                                      roundingCorners:UIRectCornerAllCorners
+                                                 roundingCornersRadii:CGSizeZero
+                                                       layerBorderCor:nil
+                                                          borderWidth:JobsWidth(0)
+                                                        primaryAction:nil
+                                           longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                          id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                      clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
             [self endEditing:YES];
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }];
+        _toRegisterBtn.makeNewLineShows(YES);
         [self addSubview:_toRegisterBtn];
         [_toRegisterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.bottom.equalTo(self);
             make.width.mas_equalTo(btnWidth);
         }];
-        [_toRegisterBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
-                                           imagePadding:JobsWidth(8)];
     }return _toRegisterBtn;
 }
 
@@ -143,10 +170,49 @@
 
 -(UIButton *)abandonLoginBtn{
     if (!_abandonLoginBtn) {
-        _abandonLoginBtn = UIButton.new;
-        _abandonLoginBtn.normalTitle(Title4);
-        _abandonLoginBtn.normalTitleColor(JobsWhiteColor);
-        _abandonLoginBtn.titleFont(UIFontWeightSemiboldSize(15));
+        @jobs_weakify(self)
+        _abandonLoginBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                             background:nil
+                                             buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                          textAlignment:NSTextAlignmentCenter
+                                                       subTextAlignment:NSTextAlignmentCenter
+                                                            normalImage:nil
+                                                         highlightImage:nil
+                                                        attributedTitle:nil
+                                                selectedAttributedTitle:nil
+                                                     attributedSubtitle:nil
+                                                                  title:Title4
+                                                               subTitle:nil
+                                                              titleFont:UIFontWeightSemiboldSize(15)
+                                                           subTitleFont:nil
+                                                               titleCor:JobsWhiteColor
+                                                            subTitleCor:nil
+                                                     titleLineBreakMode:NSLineBreakByWordWrapping
+                                                  subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                    baseBackgroundColor:nil
+                                                        backgroundImage:nil
+                                                           imagePadding:JobsWidth(0)
+                                                           titlePadding:JobsWidth(0)
+                                                         imagePlacement:NSDirectionalRectEdgeNone
+                                             contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                               contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                          contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                      cornerRadiusValue:JobsWidth(0)
+                                                        roundingCorners:UIRectCornerAllCorners
+                                                   roundingCornersRadii:CGSizeZero
+                                                         layerBorderCor:nil
+                                                            borderWidth:JobsWidth(0)
+                                                          primaryAction:nil
+                                             longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                            id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                        clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        }];
         [_abandonLoginBtn buttonAutoWidthByFont];
         [self addSubview:_abandonLoginBtn];
         [_abandonLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -154,22 +220,55 @@
             make.height.mas_equalTo(JobsWidth(15));
             make.bottom.mas_equalTo(self).offset(-JobsWidth(30));
         }];
-        @jobs_weakify(self)
-        [_abandonLoginBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
     }return _abandonLoginBtn;
 }
 
 -(UIButton *)sendBtn{
     if (!_sendBtn) {
-        _sendBtn = UIButton.new;
-        _sendBtn.normalTitle(Title7);
-        _sendBtn.normalTitleColor(JobsWhiteColor);
-        _sendBtn.titleFont(UIFontWeightSemiboldSize(15));
-        _sendBtn.backgroundColor = [JobsSystemPinkColor colorWithAlphaComponent:0.7];
+        @jobs_weakify(self)
+        _sendBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                     background:nil
+                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                  textAlignment:NSTextAlignmentCenter
+                                               subTextAlignment:NSTextAlignmentCenter
+                                                    normalImage:nil
+                                                 highlightImage:nil
+                                                attributedTitle:nil
+                                        selectedAttributedTitle:nil
+                                             attributedSubtitle:nil
+                                                          title:Title7
+                                                       subTitle:nil
+                                                      titleFont:UIFontWeightSemiboldSize(15)
+                                                   subTitleFont:nil
+                                                       titleCor:JobsWhiteColor
+                                                    subTitleCor:nil
+                                             titleLineBreakMode:NSLineBreakByWordWrapping
+                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                            baseBackgroundColor:[JobsSystemPinkColor colorWithAlphaComponent:0.7]
+                                                backgroundImage:nil
+                                                   imagePadding:JobsWidth(0)
+                                                   titlePadding:JobsWidth(0)
+                                                 imagePlacement:NSDirectionalRectEdgeNone
+                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                              cornerRadiusValue:ThingsHeight / 2
+                                                roundingCorners:UIRectCornerAllCorners
+                                           roundingCornersRadii:CGSizeZero
+                                                 layerBorderCor:nil
+                                                    borderWidth:JobsWidth(0)
+                                                  primaryAction:nil
+                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+         }
+                                                clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            toast(x.titleForNormalState);
+            return nil;
+        }];
         [self addSubview:_sendBtn];
         [_sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(self.width - self.toRegisterBtn.width - JobsWidth(40), ThingsHeight));
@@ -177,23 +276,57 @@
             make.bottom.mas_equalTo(self).offset(-JobsWidth(60));
         }];
         [self layoutIfNeeded];
-        _sendBtn.cornerCutToCircleWithCornerRadius(_sendBtn.height / 2);
-        [_sendBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            toast(x.titleForNormalState);
-            return nil;
-        }];
     }return _sendBtn;
 }
 /// 记住登录成功的账号和密码
 -(UIButton *)storeCodeBtn{
     if (!_storeCodeBtn) {
-        _storeCodeBtn = UIButton.new;
-        _storeCodeBtn.normalTitle(Title5);
-        _storeCodeBtn.titleFont(UIFontWeightRegularSize(12));
-        _storeCodeBtn.normalImage(JobsIMG(@"没有记住密码"));
-        _storeCodeBtn.selectedImage(JobsIMG(@"记住密码"));
+        @jobs_weakify(self)
+        _storeCodeBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                          background:nil
+                                          buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                       textAlignment:NSTextAlignmentCenter
+                                                    subTextAlignment:NSTextAlignmentCenter
+                                                         normalImage:JobsIMG(@"没有记住密码")
+                                                      highlightImage:nil
+                                                     attributedTitle:nil
+                                             selectedAttributedTitle:nil
+                                                  attributedSubtitle:nil
+                                                               title:Title5
+                                                            subTitle:nil
+                                                           titleFont:UIFontWeightRegularSize(12)
+                                                        subTitleFont:nil
+                                                            titleCor:JobsWhiteColor
+                                                         subTitleCor:nil
+                                                  titleLineBreakMode:NSLineBreakByWordWrapping
+                                               subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                 baseBackgroundColor:nil
+                                                     backgroundImage:nil
+                                                        imagePadding:JobsWidth(3)
+                                                        titlePadding:JobsWidth(0)
+                                                      imagePlacement:NSDirectionalRectEdgeLeading
+                                          contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                            contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                       contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                   cornerRadiusValue:JobsWidth(0)
+                                                     roundingCorners:UIRectCornerAllCorners
+                                                roundingCornersRadii:CGSizeZero
+                                                      layerBorderCor:nil
+                                                         borderWidth:JobsWidth(0)
+                                                       primaryAction:nil
+                                          longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                         id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                     clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            x.selected = !x.selected;
+            x.selected ? x.jobsResetBtnImage(JobsIMG(@"记住密码")) : x.jobsResetBtnImage(JobsIMG(@"没有记住密码"));
+            return nil;
+        }];
         _storeCodeBtn.selected = YES;// 默认记住密码
-        _storeCodeBtn.titleLabel.textColor = JobsWhiteColor;
         [_storeCodeBtn buttonAutoWidthByFont];
         [self addSubview:_storeCodeBtn];
         [_storeCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -201,38 +334,61 @@
             make.left.equalTo(inputView).offset(JobsWidth(20));
             make.top.equalTo(inputView.mas_bottom).offset(JobsWidth(25));
         }];
-        
         [self layoutIfNeeded];
-        [_storeCodeBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
-                                          imagePadding:JobsWidth(3)];
-        @jobs_weakify(self)
-        [_storeCodeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
     }return _storeCodeBtn;
 }
 
 -(UIButton *)findCodeBtn{
     if (!_findCodeBtn) {
-        _findCodeBtn = UIButton.new;
-        _findCodeBtn.normalTitle(Title3);
-        _findCodeBtn.titleFont(UIFontWeightRegularSize(12));
-        _findCodeBtn.normalTitleColor(Title3);
+        @jobs_weakify(self)
+        _findCodeBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                         background:nil
+                                         buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                      textAlignment:NSTextAlignmentCenter
+                                                   subTextAlignment:NSTextAlignmentCenter
+                                                        normalImage:nil
+                                                     highlightImage:nil
+                                                    attributedTitle:nil
+                                            selectedAttributedTitle:nil
+                                                 attributedSubtitle:nil
+                                                              title:Title3
+                                                           subTitle:nil
+                                                          titleFont:UIFontWeightRegularSize(12)
+                                                       subTitleFont:nil
+                                                           titleCor:Title3
+                                                        subTitleCor:nil
+                                                 titleLineBreakMode:NSLineBreakByWordWrapping
+                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                baseBackgroundColor:nil
+                                                    backgroundImage:nil
+                                                       imagePadding:JobsWidth(0)
+                                                       titlePadding:JobsWidth(0)
+                                                     imagePlacement:NSDirectionalRectEdgeNone
+                                         contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                           contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                      contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                  cornerRadiusValue:JobsWidth(0)
+                                                    roundingCorners:UIRectCornerAllCorners
+                                               roundingCornersRadii:CGSizeZero
+                                                     layerBorderCor:nil
+                                                        borderWidth:JobsWidth(0)
+                                                      primaryAction:nil
+                                         longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                        id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                    clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        }];
         [_findCodeBtn buttonAutoWidthByFont];
         [self addSubview:_findCodeBtn];
         [_findCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             JobsAppDoorInputViewBaseStyle *inputView = (JobsAppDoorInputViewBaseStyle *)self.loginDoorInputViewBaseStyleMutArr.lastObject;
             make.right.equalTo(inputView).offset(-JobsWidth(20));
             make.top.equalTo(inputView.mas_bottom).offset(JobsWidth(20));
-        }];
-        @jobs_weakify(self)
-        [_findCodeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
         }];
     }return _findCodeBtn;
 }

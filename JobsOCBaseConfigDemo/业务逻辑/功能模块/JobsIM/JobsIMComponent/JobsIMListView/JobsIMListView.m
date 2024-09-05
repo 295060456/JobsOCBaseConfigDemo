@@ -65,7 +65,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 #pragma mark —— MGSwipeTableCellDelegate
 -(void)swipeTableCellWillBeginSwiping:(nonnull MGSwipeTableCell *)cell{
-    NSObject.feedbackGenerator();//震动反馈
+    self.feedbackGenerator();//震动反馈
 }
 /// 点击了第几个滑动出现的按钮？
 -(BOOL)swipeTableCell:(MGSwipeTableCell *)cell
@@ -119,7 +119,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
                 NSLog(@"下拉刷新");
-                self.endRefreshing(self->_tableView);
+                self->_tableView.endRefreshing();
                 return nil;
             };
             
@@ -137,7 +137,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 self->_tableView.mj_footer.state = MJRefreshStateIdle;
                 self->_tableView.mj_footer.hidden = YES;
                 self->_tableView.pagingEnabled = YES;
-                self.endRefreshing(self->_tableView);
+                self->_tableView.endRefreshing();
                 return nil;
             };
             // 赋值

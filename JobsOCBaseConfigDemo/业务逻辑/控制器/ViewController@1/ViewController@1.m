@@ -241,8 +241,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
                 /// 下拉刷新
-                NSObject.feedbackGenerator();//震动反馈
-                self.endRefreshing(self->_tableView);
+                self.feedbackGenerator();//震动反馈
+                self->_tableView.endRefreshing();
                 return nil;
             };
             
@@ -254,7 +254,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data){
                 @jobs_strongify(self)
-                self.endRefreshing(self->_tableView);
+                self->_tableView.endRefreshing();
                 return nil;
             };
             

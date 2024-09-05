@@ -313,7 +313,7 @@ willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 //}
 
 -(void)swipeTableCellWillBeginSwiping:(nonnull MGSwipeTableCell *)cell{
-    NSObject.feedbackGenerator();//震动反馈
+    self.feedbackGenerator();//震动反馈
 }
 /// 点击了第几个滑动出现的按钮？
 -(BOOL)swipeTableCell:(MGSwipeTableCell *)cell
@@ -414,7 +414,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                self.endRefreshing(self->_tableView);
+                self->_tableView.endRefreshing();
                 return nil;
             };
             
@@ -432,7 +432,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 self.tableView.mj_footer.state = MJRefreshStateIdle;
                 self.tableView.mj_footer.hidden = YES;
                 self.tableView.pagingEnabled = YES;
-                self.endRefreshingWithNoMoreData(self->_tableView);
+                self->_tableView.endRefreshingWithNoMoreData();
                 return nil;
             };
             // 赋值

@@ -353,7 +353,7 @@ static dispatch_once_t onceToken;
                 }break;
                 case UIGestureRecognizerStateBegan:{
                     if (self.isFeedbackGenerator) {
-                        NSObject.feedbackGenerator();/// 震动反馈
+                        self.feedbackGenerator();/// 震动反馈
                     }
                     /// 长按手势出菜单（高仿 Telegram）
                     [JobsPullListAutoSizeView initWithTargetView:self.UITabBarButtonMutArr[longPressGR.view.tag]
@@ -397,7 +397,7 @@ static dispatch_once_t onceToken;
         // Lottie 动画
         if (self.judgeLottieWithIndex(self.selectedIndex)) [self.tabBar animationLottieImage:(int)index];
         // 震动反馈
-        if (self.isFeedbackGenerator) NSObject.feedbackGenerator();
+        if (self.isFeedbackGenerator) self.feedbackGenerator();
         // 点击声音
         if (self.isPlaySound) self.playSoundWithFileName(@"Sound.wav");
         // 重力弹跳动画效果

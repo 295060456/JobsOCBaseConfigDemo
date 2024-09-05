@@ -9,10 +9,8 @@
 
 @interface MSMineView2 ()
 /// UI
-@property(nonatomic,strong)UIButton *btn1;
-@property(nonatomic,strong)UIButton *btn2;
-/// Data
-@property(nonatomic,strong)UIButtonConfiguration *btnConfig;
+@property(nonatomic,strong)BaseButton *btn1;
+@property(nonatomic,strong)BaseButton *btn2;
 
 @end
 
@@ -40,11 +38,11 @@ static dispatch_once_t static_mineView2OnceToken;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        @jobs_weakify(self)
+//        @jobs_weakify(self)
         [self addNotificationName:JobsLanguageSwitchNotification
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
@@ -82,84 +80,110 @@ static dispatch_once_t static_mineView2OnceToken;
     return CGSizeMake(JobsWidth(355), JobsWidth(36));
 }
 #pragma mark —— lazyLoad
--(UIButtonConfiguration *)btnConfig{
-    if(!_btnConfig){
-        _btnConfig = UIButtonConfiguration.plainButtonConfiguration;
-        {// 图片
-            _btnConfig.image = JobsIMG(@"入职Mata"); // 替换为你的图像名称
-            _btnConfig.imagePlacement = NSDirectionalRectEdgeLeading;// 这里将图像放置在标题的前面
-            _btnConfig.imagePadding = 10;// 设置图像与标题之间的间距
-        }
-        
-        {// 一般的文字
-            _btnConfig.title = JobsInternationalization(@"入职Mata");
-            _btnConfig.subtitle = JobsInternationalization(@"");
-            _btnConfig.baseForegroundColor = JobsBlackColor;// 前景颜色（= 文字颜色）
-        }
-        
-        {// 富文本
-            // 设置按钮标题的文本属性
-            _btnConfig.titleTextAttributesTransformer = ^NSDictionary<NSAttributedStringKey, id> *(NSDictionary<NSAttributedStringKey, id> *textAttributes) {
-                NSMutableDictionary<NSAttributedStringKey, id> *newTextAttributes = textAttributes.mutableCopy;
-                [newTextAttributes addEntriesFromDictionary:@{
-                    NSFontAttributeName:UIFontWeightRegularSize(14), // 替换为你想要的字体和大小
-                    NSForegroundColorAttributeName: JobsBlackColor // 替换为你想要的文本颜色
-                }];
-                return newTextAttributes.copy;
-            };
-            _btnConfig.attributedTitle = [NSAttributedString.alloc initWithString:JobsInternationalization(@"入职Mata") attributes:@{NSForegroundColorAttributeName:JobsBlackColor}];
-        }
-        
-        {// 其他
-            _btnConfig.baseBackgroundColor = JobsWhiteColor;// 背景颜色
-            _btnConfig.contentInsets = NSDirectionalEdgeInsetsMake(0, 0, 0, 0); // 内边距
-        }
-    }return _btnConfig;
-}
-
--(UIButton *)btn1{
+-(BaseButton *)btn1{
+    @jobs_weakify(self)
     if(!_btn1){
-        if(self.deviceSystemVersion.floatValue >= 15.0){
-            _btn1 = [UIButton buttonWithConfiguration:self.btnConfig primaryAction:nil];
-        }else{
-            _btn1 = UIButton.new;
-            _btn1.normalImage(JobsIMG(@"入职Mata"));
-            _btn1.titleFont(UIFontWeightRegularSize(14));
-            _btn1.normalTitle(JobsInternationalization(@"入职Mata"));
-            _btn1.normalTitleColor(JobsBlackColor);
+        _btn1 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                  background:nil
+                                  buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                               textAlignment:NSTextAlignmentCenter
+                                            subTextAlignment:NSTextAlignmentCenter
+                                                 normalImage:JobsIMG(@"入职Mata")
+                                              highlightImage:nil
+                                             attributedTitle:nil
+                                     selectedAttributedTitle:nil
+                                          attributedSubtitle:nil
+                                                       title:JobsInternationalization(@"入职Mata")
+                                                    subTitle:nil
+                                                   titleFont:UIFontWeightRegularSize(14)
+                                                subTitleFont:nil
+                                                    titleCor:JobsBlackColor
+                                                 subTitleCor:nil
+                                          titleLineBreakMode:NSLineBreakByWordWrapping
+                                       subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                         baseBackgroundColor:nil
+                                             backgroundImage:nil
+                                                imagePadding:JobsWidth(10)
+                                                titlePadding:JobsWidth(0)
+                                              imagePlacement:NSDirectionalRectEdgeLeading
+                                  contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                    contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                               contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                           cornerRadiusValue:JobsWidth(0)
+                                             roundingCorners:UIRectCornerAllCorners
+                                        roundingCornersRadii:CGSizeZero
+                                              layerBorderCor:nil
+                                                 borderWidth:JobsWidth(0)
+                                               primaryAction:nil
+                                  longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                 id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
         }
-        // 添加按钮到视图中
+                                             clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        }];
         [self addSubview:_btn1];
         [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(105), JobsWidth(16)));
             make.centerY.equalTo(self);
             make.left.equalTo(self).offset(JobsWidth(6));
         }];
-        if(self.deviceSystemVersion.floatValue < 15.0){
-            [_btn1 layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
-                                      imagePadding:JobsWidth(8)];
-        }
     }return _btn1;
 }
 
 -(UIButton *)btn2{
     if(!_btn2){
-        _btn2 = UIButton.new;
-        _btn2.titleFont(UIFontWeightRegularSize(14));
-        _btn2.normalTitle(JobsInternationalization(@"立即进入"));
-        _btn2.normalTitleColor(JobsWhiteColor);
-        _btn2.backgroundColor = JobsCor(@"#EA2918");
+        @jobs_weakify(self)
+        _btn2 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                  background:nil
+                                  buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                               textAlignment:NSTextAlignmentCenter
+                                            subTextAlignment:NSTextAlignmentCenter
+                                                 normalImage:nil
+                                              highlightImage:nil
+                                             attributedTitle:nil
+                                     selectedAttributedTitle:nil
+                                          attributedSubtitle:nil
+                                                       title:JobsInternationalization(@"立即进入")
+                                                    subTitle:nil
+                                                   titleFont:UIFontWeightRegularSize(14)
+                                                subTitleFont:nil
+                                                    titleCor:JobsWhiteColor
+                                                 subTitleCor:nil
+                                          titleLineBreakMode:NSLineBreakByWordWrapping
+                                       subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                         baseBackgroundColor:JobsCor(@"#EA2918")
+                                             backgroundImage:nil
+                                                imagePadding:JobsWidth(0)
+                                                titlePadding:JobsWidth(0)
+                                              imagePlacement:NSDirectionalRectEdgeNone
+                                  contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                    contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                               contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                           cornerRadiusValue:JobsWidth(14)
+                                             roundingCorners:UIRectCornerAllCorners
+                                        roundingCornersRadii:CGSizeZero
+                                              layerBorderCor:nil
+                                                 borderWidth:JobsWidth(0)
+                                               primaryAction:nil
+                                  longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                 id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                             clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        }];
         [self addSubview:_btn2];
         [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(88), JobsWidth(28)));
             make.centerY.equalTo(self);
             make.right.equalTo(self).offset(JobsWidth(-5));
-        }];
-        _btn2.cornerCutToCircleWithCornerRadius(JobsWidth(14));
-        @jobs_weakify(self)
-        [_btn2 jobsBtnClickEventBlock:^id(id data) {
-            @jobs_strongify(self)
-            return nil;
         }];
     }return _btn2;
 }

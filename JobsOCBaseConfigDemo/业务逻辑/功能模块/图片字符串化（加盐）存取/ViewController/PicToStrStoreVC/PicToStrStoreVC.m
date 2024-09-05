@@ -153,8 +153,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                NSObject.feedbackGenerator();//震动反馈
-                self.endRefreshing(self->_tableView);
+                self.feedbackGenerator();//震动反馈
+                self->_tableView.endRefreshing();
                 return nil;
             };
             
@@ -166,7 +166,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                self.endRefreshing(self->_tableView);
+                self->_tableView.endRefreshing();
                 return nil;
             };
             

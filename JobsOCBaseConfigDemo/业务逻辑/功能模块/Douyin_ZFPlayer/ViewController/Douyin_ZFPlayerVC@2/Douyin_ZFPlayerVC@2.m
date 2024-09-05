@@ -129,7 +129,7 @@
         [self playTheVideoAtIndexPath:indexPath];
     }];
     
-    self.endRefreshing(self.tableView);
+    self.tableView.endRefreshing();
 //    [self endRefreshingWithNoMoreData:self.tableView];
 }
 /**
@@ -768,9 +768,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 if (isLoadMore) {
                     if (tempDataArr.count) {
                         [self.dataMutArr addObjectsFromArray:tempDataArr];
-                        self.endRefreshing(self->_tableView);//上拉加载更多
+                        self->_tableView.endRefreshing();//上拉加载更多
                     }else{
-                        self.endRefreshingWithNoMoreData(self->_tableView);//没有更多数据了
+                        self->_tableView.endRefreshingWithNoMoreData();//没有更多数据了
                     }
                 }
             }

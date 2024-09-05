@@ -12,9 +12,9 @@
 
 @interface JobsAppDoorRegisterContentView ()
 /// UI
-@property(nonatomic,strong)UIButton *backToLoginBtn;// 返回登录
+@property(nonatomic,strong)BaseButton *backToLoginBtn;// 返回登录
 @property(nonatomic,strong)UILabel *titleLab;// 标题
-@property(nonatomic,strong)UIButton *sendBtn;// 注册按钮
+@property(nonatomic,strong)BaseButton *sendBtn;// 注册按钮
 /// Data
 @property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
 @property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputViewBaseStyleMutArr;
@@ -62,7 +62,7 @@
     @jobs_weakify(self)
     return ^(id _Nullable model) {
         @jobs_strongify(self)
-        self.backToLoginBtn.alpha = 1;
+        self.backToLoginBtn.alpha = 0.7f;
         self.titleLab.alpha = 1;
         [self makeInputView];
         self.sendBtn.alpha = 1;
@@ -110,30 +110,59 @@
     }return nil;
 }
 #pragma mark —— lazyLoad
--(UIButton *)backToLoginBtn{
+-(BaseButton *)backToLoginBtn{
     if (!_backToLoginBtn) {
-        _backToLoginBtn = UIButton.new;
-        _backToLoginBtn.titleLabel.numberOfLines = 0;
-        _backToLoginBtn.backgroundColor = Cor1;
-        _backToLoginBtn.alpha = 0.7f;
-        _backToLoginBtn.titleFont(UIFontWeightMediumSize(13));
-        _backToLoginBtn.normalTitle(Title1);
-        _backToLoginBtn.normalImage(JobsIMG(@"用户名称"));
         @jobs_weakify(self)
-        [_backToLoginBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _backToLoginBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                            background:nil
+                                            buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                         textAlignment:NSTextAlignmentCenter
+                                                      subTextAlignment:NSTextAlignmentCenter
+                                                           normalImage:JobsIMG(@"用户名称")
+                                                        highlightImage:nil
+                                                       attributedTitle:nil
+                                               selectedAttributedTitle:nil
+                                                    attributedSubtitle:nil
+                                                                 title:Title1
+                                                              subTitle:nil
+                                                             titleFont:UIFontWeightMediumSize(13)
+                                                          subTitleFont:nil
+                                                              titleCor:nil
+                                                           subTitleCor:nil
+                                                    titleLineBreakMode:NSLineBreakByWordWrapping
+                                                 subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                                   baseBackgroundColor:Cor1
+                                                       backgroundImage:nil
+                                                          imagePadding:JobsWidth(8)
+                                                          titlePadding:JobsWidth(0)
+                                                        imagePlacement:NSDirectionalRectEdgeTop
+                                            contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                              contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                         contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                                     cornerRadiusValue:JobsWidth(0)
+                                                       roundingCorners:UIRectCornerAllCorners
+                                                  roundingCornersRadii:CGSizeZero
+                                                        layerBorderCor:nil
+                                                           borderWidth:JobsWidth(0)
+                                                         primaryAction:nil
+                                            longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                           id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                       clickEventBlock:^id(BaseButton *x){
             @jobs_strongify(self)
-            [self endEditing:YES];
             if (self.objectBlock) self.objectBlock(x);
+            [self endEditing:YES];
             return nil;
         }];
+        _backToLoginBtn.titleLabel.numberOfLines = 0;
         [self addSubview:_backToLoginBtn];
         [_backToLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.bottom.equalTo(self);
             make.width.mas_equalTo(btnWidth);
         }];
         [self layoutIfNeeded];
-        [_backToLoginBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
-                                            imagePadding:JobsWidth(8)];
     }return _backToLoginBtn;
 }
 
@@ -152,20 +181,54 @@
 
 -(UIButton *)sendBtn{
     if (!_sendBtn) {
-        _sendBtn = UIButton.new;
-        _sendBtn.normalTitle(Title6);
-        _sendBtn.backgroundColor = [JobsSystemPinkColor colorWithAlphaComponent:0.7];
-        _sendBtn.normalTitleColor(JobsWhiteColor);
-        _sendBtn.titleFont(UIFontWeightRegularSize(16)) ;
-        [_sendBtn buttonAutoWidthByFont];
-        [_sendBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        @jobs_weakify(self)
+        _sendBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                     background:nil
+                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                  textAlignment:NSTextAlignmentCenter
+                                               subTextAlignment:NSTextAlignmentCenter
+                                                    normalImage:nil
+                                                 highlightImage:nil
+                                                attributedTitle:nil
+                                        selectedAttributedTitle:nil
+                                             attributedSubtitle:nil
+                                                          title:Title6
+                                                       subTitle:nil
+                                                      titleFont:UIFontWeightRegularSize(16)
+                                                   subTitleFont:nil
+                                                       titleCor:JobsWhiteColor
+                                                    subTitleCor:nil
+                                             titleLineBreakMode:NSLineBreakByWordWrapping
+                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                            baseBackgroundColor:[JobsSystemPinkColor colorWithAlphaComponent:0.7]
+                                                backgroundImage:nil
+                                                   imagePadding:JobsWidth(0)
+                                                   titlePadding:JobsWidth(0)
+                                                 imagePlacement:NSDirectionalRectEdgeNone
+                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                              cornerRadiusValue:ThingsHeight / 2
+                                                roundingCorners:UIRectCornerAllCorners
+                                           roundingCornersRadii:CGSizeZero
+                                                 layerBorderCor:nil
+                                                    borderWidth:JobsWidth(0)
+                                                  primaryAction:nil
+                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        }
+                                                clickEventBlock:^id(BaseButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
             toast(x.titleForNormalState);
             return nil;
         }];
+        [_sendBtn buttonAutoWidthByFont];
         _sendBtn.x = self.backToLoginBtn.width + JobsWidth(20);
         _sendBtn.size = CGSizeMake(self.width - self.backToLoginBtn.width - JobsWidth(40), ThingsHeight);
         _sendBtn.bottom = JobsAppDoorContentViewRegisterHeight - JobsWidth(20);
-        _sendBtn.cornerCutToCircleWithCornerRadius(_sendBtn.height / 2);
         [self addSubview:_sendBtn];
     }return _sendBtn;
 }

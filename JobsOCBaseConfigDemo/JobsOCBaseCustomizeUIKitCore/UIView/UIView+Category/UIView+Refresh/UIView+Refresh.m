@@ -1,20 +1,273 @@
 //
-//  UIView+MJRefresh.m
+//  UIView+Refresh.m
 //  DouDong-II
 //
 //  Created by Jobs on 2021/1/17.
 //
 
-#import "UIView+MJRefresh.h"
+#import "UIView+Refresh.h"
 
-@implementation UIView (MJRefresh)
-#pragma mark —— 一些私有方法
--(void)震动特效反馈{
-    [self addObserver:self
-           forKeyPath:@"state"
-              options:NSKeyValueObservingOptionNew
-              context:nil];
+@implementation UIView (Refresh)
+#pragma mark —— 关于 XZMRefresh 的二次封装
+-(jobsByVoidBlock _Nonnull)XZM_beginRefreshingNormalHeader{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.xzm_header beginRefreshing];
+        }
+    };
 }
+
+-(jobsByVoidBlock _Nonnull)XZM_endRefreshingNormalHeader{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.xzm_header endRefreshing];
+        }
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)XZM_beginRefreshingGifHeader{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.xzm_gifHeader beginRefreshing];
+        }
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)XZM_endRefreshingGifHeader{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.xzm_gifHeader endRefreshing];
+        }
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)XZM_beginRefreshingNormalFooter{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.xzm_footer beginRefreshing];
+        }
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)XZM_endRefreshingNormalFooter{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.xzm_footer endRefreshing];
+        }
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)XZM_beginRefreshingGifFooter{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.xzm_gifFooter beginRefreshing];
+        }
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)XZM_endRefreshingGifFooter{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.xzm_gifFooter endRefreshing];
+        }
+    };
+}
+#pragma mark —— 关于 MJRefresh 的二次封装
+-(jobsByVoidBlock _Nonnull)mj_beginRefreshing_header{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.mj_header beginRefreshing];
+        }
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)mj_endRefreshing_header{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.mj_header endRefreshing];
+        }
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)mj_beginRefreshing_footer{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.mj_footer beginRefreshing];
+        }
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)mj_endRefreshing_footer{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.mj_footer endRefreshing];
+        }
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)mj_beginRefreshing_trailer{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.mj_trailer beginRefreshing];
+        }
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)mj_endRefreshing_trailer{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.mj_trailer endRefreshing];
+        }
+    };
+}
+/// 停止刷新【可能还有数据的情况，状态为：MJRefreshStateIdle】
+-(jobsByVoidBlock _Nonnull)endRefreshing{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        if (KindOfTableViewCls(self)) {
+            UITableView *tableView = (UITableView *)self;
+            [tableView reloadData];
+        }else if (KindOfCollectionViewCls(self)){
+            UICollectionView *collectionView = (UICollectionView *)self;
+            [collectionView reloadData];
+        }else{}
+        
+        [self tab_endAnimation];//里面实现了 [self.collectionView reloadData];
+        
+        self.endMJHeaderRefreshing();
+        self.endMJFooterRefreshingWithMoreData();
+        
+        self.endXZMHeaderRefreshing();
+        self.endXZMFooterRefreshing();
+    };
+}
+/// 停止刷新【没有数据的情况，状态为：MJRefreshStateNoMoreData】
+-(jobsByVoidBlock _Nonnull)endRefreshingWithNoMoreData{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        if (KindOfTableViewCls(self)) {
+            UITableView *tableView = (UITableView *)self;
+            [tableView reloadData];
+        }else if (KindOfCollectionViewCls(self)){
+            UICollectionView *collectionView = (UICollectionView *)self;
+            [collectionView reloadData];
+        }else{}
+        
+        [self tab_endAnimation];//里面实现了 [self.collectionView reloadData];
+
+        self.endMJHeaderRefreshing();
+        self.endMJFooterRefreshingWithNoMoreData();
+        
+        self.endXZMHeaderRefreshing();
+        self.endXZMFooterRefreshing();
+    };
+}
+#pragma mark —— 针对 MJRefresh
+/// 停止MJHeader的刷新
+-(jobsByVoidBlock _Nonnull)endMJHeaderRefreshing{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            if (scrollView.mj_header.refreshing) [scrollView.mj_header endRefreshing];// 结束刷新
+        }
+    };
+}
+/// 停止MJFooter的刷新【没有数据的情况，状态为：MJRefreshStateNoMoreData】
+-(jobsByVoidBlock _Nonnull)endMJFooterRefreshingWithNoMoreData{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            if (scrollView.mj_footer.refreshing) [scrollView.mj_footer endRefreshingWithNoMoreData];// 结束刷新
+        }
+    };
+}
+/// 停止MJFooter刷新【可能还有数据的情况，状态为：MJRefreshStateIdle】
+-(jobsByVoidBlock _Nonnull)endMJFooterRefreshingWithMoreData{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            if (scrollView.mj_footer.refreshing) {
+                [scrollView.mj_footer endRefreshingWithNoMoreData];// 结束刷新
+            }else{
+                [scrollView.mj_footer resetNoMoreData];// 结束刷新
+            }
+        }
+    };
+}
+#pragma mark —— 针对 XZMRefresh
+/// 停止xzm_header的刷新
+-(jobsByVoidBlock _Nonnull)endXZMHeaderRefreshing{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.xzm_header endRefreshing];// 结束刷新
+        }
+    };
+}
+/// 停止xzm_footer的刷新
+-(jobsByVoidBlock _Nonnull)endXZMFooterRefreshing{
+    @jobs_weakify(self)
+    return ^() {
+        @jobs_strongify(self)
+        if(KindOfScrollViewCls(self)){
+            UIScrollView *scrollView = (UIScrollView *)self;
+            [scrollView.xzm_footer endRefreshing];// 结束刷新
+        }
+    };
+}
+#pragma mark —— 一些私有方法
 /*
  * 相关继承关系图谱 4个header + 9个Footer ;已经实现的👌
     MJRefreshGifHeader  👌 ->MJRefreshStateHeader->MJRefreshHeader->MJRefreshComponent->UIView
@@ -41,14 +294,14 @@
                        context:(void *)context {
     if ([object isEqual:self.mjRefreshGifHeader] &&
         self.mjRefreshGifHeader.state == MJRefreshStatePulling) {
-        NSObject.feedbackGenerator();
+        self.feedbackGenerator();
     }else if (([object isEqual:self.mjRefreshAutoGifFooter] ||
                [object isEqual:self.mjRefreshBackNormalFooter] ||
                [object isEqual:self.mjRefreshAutoNormalFooter]) && (self.mjRefreshAutoGifFooter.state == MJRefreshStatePulling ||
                                                                     self.mjRefreshBackNormalFooter.state == MJRefreshStatePulling ||
                                                                     self.mjRefreshAutoNormalFooter.state == MJRefreshStatePulling)
              ) {
-        NSObject.feedbackGenerator();
+        self.feedbackGenerator();
     }else{}
 }
 #pragma mark —— @property(nonatomic,weak)UIScrollView *mjRefreshTargetView; MJRefresh 作用于targetView
@@ -154,9 +407,7 @@ JobsKey(_lotAnimMJRefreshHeader)
             // 设置颜色
             lotAnimMJRefreshHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
             //震动特效反馈
-            if (self.refreshConfigHeader.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_lotAnimMJRefreshHeader, lotAnimMJRefreshHeader);
     }return lotAnimMJRefreshHeader;
@@ -201,9 +452,7 @@ JobsKey(_mjRefreshNormalHeader)
             // 设置颜色
             MjRefreshNormalHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
             //震动特效反馈
-            if (self.refreshConfigHeader.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshNormalHeader, MjRefreshNormalHeader)
     }return MjRefreshNormalHeader;
@@ -248,9 +497,7 @@ JobsKey(_mjRefreshStateHeader)
             // 设置颜色
             MjRefreshStateHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
             //震动特效反馈
-            if (self.refreshConfigHeader.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshStateHeader, MjRefreshStateHeader)
     }return MjRefreshStateHeader;
@@ -273,9 +520,7 @@ JobsKey(_mjRefreshHeader)
         //其他
         {
             //震动特效反馈
-            if (self.refreshConfigHeader.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshHeader, MjRefreshHeader)
     }return MjRefreshHeader;
@@ -339,9 +584,7 @@ JobsKey(_mjRefreshGifHeader)
             // 设置颜色
             MjRefreshGifHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
             //震动特效反馈
-            if (self.refreshConfigHeader.isShake) {
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshGifHeader, MjRefreshGifHeader)
     }return MjRefreshGifHeader;
@@ -406,10 +649,7 @@ JobsKey(_mjRefreshAutoGifFooter)
             MjRefreshAutoGifFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshAutoGifFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                //震动特效反馈
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoGifFooter, MjRefreshAutoGifFooter)
     }return MjRefreshAutoGifFooter;
@@ -453,10 +693,7 @@ JobsKey(_mjRefreshBackNormalFooter)
             MjRefreshBackNormalFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshBackNormalFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                //震动特效反馈
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackNormalFooter, MjRefreshBackNormalFooter)
     }return MjRefreshBackNormalFooter;
@@ -501,10 +738,7 @@ JobsKey(_mjRefreshAutoNormalFooter)
             MjRefreshAutoNormalFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshAutoNormalFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                //震动特效反馈
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoNormalFooter, MjRefreshAutoNormalFooter)
     }return MjRefreshAutoNormalFooter;
@@ -548,10 +782,7 @@ JobsKey(_mjRefreshAutoStateFooter)
             MjRefreshAutoStateFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshAutoStateFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                //震动特效反馈
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoStateFooter, MjRefreshAutoStateFooter)
     }return MjRefreshAutoStateFooter;
@@ -632,10 +863,7 @@ JobsKey(_mjRefreshBackGifFooter)
             MjRefreshBackGifFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshBackGifFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                //震动特效反馈
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackGifFooter, MjRefreshBackGifFooter);
     }return MjRefreshBackGifFooter;
@@ -679,10 +907,7 @@ JobsKey(_mjRefreshBackStateFooter)
             MjRefreshBackStateFooter.stateLabel.font = self.refreshConfigFooter.font;
             // 设置颜色
             MjRefreshBackStateFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) {
-                //震动特效反馈
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackStateFooter, MjRefreshBackStateFooter);
     }return MjRefreshBackStateFooter;
@@ -704,10 +929,7 @@ JobsKey(_mjRefreshBackFooter)
         }];
         //其他
         {
-            if (self.refreshConfigFooter.isShake) {
-                //震动特效反馈
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackFooter, MjRefreshBackFooter);
     }return MjRefreshBackFooter;
@@ -729,10 +951,7 @@ JobsKey(_mjRefreshFooter)
         }];
         //其他
         {
-            if (self.refreshConfigFooter.isShake) {
-                //震动特效反馈
-                [self 震动特效反馈];
-            }
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
         }
         Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshFooter, MjRefreshFooter)
     }return MjRefreshFooter;
