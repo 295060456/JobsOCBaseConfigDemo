@@ -11,8 +11,8 @@
 @interface JobsRightBtnsView ()
 /// UI
 @property(nonatomic,strong)RBCLikeButton *loveBtn;/// 点赞
-@property(nonatomic,strong)UIButton *commentBtn;/// 评论
-@property(nonatomic,strong)UIButton *shareBtn;/// 分享
+@property(nonatomic,strong)BaseButton *commentBtn;/// 评论
+@property(nonatomic,strong)BaseButton *shareBtn;/// 分享
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIButton *>*masonryViewArr;
 @property(nonatomic,assign)BOOL isSelected;
@@ -44,16 +44,17 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                    id _Nullable arg) {
+        @jobs_weakify(self)
+        [self addNotificationName:JobsLanguageSwitchNotification
+                            block:^(id _Nullable weakSelf,
+                                    id _Nullable arg) {
+            @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
                 NSLog(@"SSS = %d",b.boolValue);
-            }
-            NSLog(@"通知传递过来的 = %@",notification.object);
-            return nil;
-        } selectorName:nil target:self],JobsLanguageSwitchNotification,nil);
+            }NSLog(@"通知传递过来的 = %@",notification.object);
+        }];
     }return self;
 }
 
@@ -177,7 +178,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
     return _loveBtn;
 }
 
--(UIButton *)commentBtn{
+-(BaseButton *)commentBtn{
     if(!_commentBtn){
         @jobs_weakify(self)
         _commentBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
@@ -244,7 +245,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
     }return _commentBtn;
 }
 
--(UIButton *)shareBtn{
+-(BaseButton *)shareBtn{
     if(!_shareBtn){
         @jobs_weakify(self)
         _shareBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil

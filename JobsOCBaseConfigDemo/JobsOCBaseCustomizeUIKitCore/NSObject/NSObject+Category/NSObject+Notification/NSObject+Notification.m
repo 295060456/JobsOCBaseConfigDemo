@@ -21,13 +21,15 @@
 -(void)monitorNotification:(nonnull NSString *)notificationName
                  withBlock:(nonnull JobsReturnIDBySelectorBlock)actionBlock{
     if (isNull(notificationName)) return;
-    JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                id _Nullable arg) {
+    @jobs_weakify(self)
+    [self addNotificationName:notificationName
+                        block:^(id _Nullable weakSelf,
+                                id _Nullable arg) {
+        @jobs_strongify(self)
         NSNotification *notification = (NSNotification *)arg;
         NSLog(@"通知传递过来的 = %@",notification.object);
         if(actionBlock) actionBlock(weakSelf,arg);
-        return nil;
-    } selectorName:nil target:self],notificationName,nil);
+    }];
 }
 ///【监听通知】设置App语言环境
 -(void)monitorAppLanguage{

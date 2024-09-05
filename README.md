@@ -9053,6 +9053,71 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   #endif
   ```
   
+*  相关继承关系图
+  
+  ```Mermaid
+  classDiagram
+      UIView <|-- MJRefreshComponent
+      MJRefreshComponent <|-- MJRefreshHeader
+      MJRefreshComponent <|-- MJRefreshFooter
+      MJRefreshHeader <|-- MJRefreshStateHeader
+      MJRefreshStateHeader <|-- MJRefreshGifHeader
+      MJRefreshStateHeader <|-- MJRefreshNormalHeader
+      MJRefreshFooter <|-- MJRefreshAutoFooter
+      MJRefreshFooter <|-- MJRefreshBackFooter
+      MJRefreshAutoFooter <|-- MJRefreshAutoStateFooter
+      MJRefreshAutoStateFooter <|-- MJRefreshAutoGifFooter
+      MJRefreshAutoStateFooter <|-- MJRefreshAutoNormalFooter
+      MJRefreshBackFooter <|-- MJRefreshBackStateFooter
+      MJRefreshBackStateFooter <|-- MJRefreshBackGifFooter
+      MJRefreshBackStateFooter <|-- MJRefreshBackNormalFooter
+  
+      class UIView {
+      }
+  
+      class MJRefreshComponent {
+      }
+  
+      class MJRefreshHeader {
+      }
+  
+      class MJRefreshFooter {
+      }
+  
+      class MJRefreshStateHeader {
+      }
+  
+      class MJRefreshGifHeader {
+      }
+  
+      class MJRefreshNormalHeader {
+      }
+  
+      class MJRefreshAutoFooter {
+      }
+  
+      class MJRefreshBackFooter {
+      }
+  
+      class MJRefreshAutoStateFooter {
+      }
+  
+      class MJRefreshAutoGifFooter {
+      }
+  
+      class MJRefreshAutoNormalFooter {
+      }
+  
+      class MJRefreshBackStateFooter {
+      }
+  
+      class MJRefreshBackGifFooter {
+      }
+  
+      class MJRefreshBackNormalFooter {
+      }
+  ```
+  
 *  使用方式
   
   * [**对`UITableView`的使用方式**](#创建UITableView) 
@@ -9072,6 +9137,43 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   #else
   #import "XZMRefresh.h"
   #endif
+  ```
+  
+* 相关继承关系图
+
+  ```Mermaid
+  classDiagram
+      UIView <|-- XZMBaseRefreshView
+      XZMBaseRefreshView <|-- XZMRefreshHeader
+      XZMBaseRefreshView <|-- XZMRefreshFooter
+      XZMRefreshHeader <|-- XZMRefreshNormalHeader
+      XZMRefreshHeader <|-- XZMRefreshGifHeader
+      XZMRefreshFooter <|-- XZMRefreshNormalFooter
+      XZMRefreshFooter <|-- XZMRefreshGifFooter
+      
+      class UIView{
+      }
+  
+      class XZMBaseRefreshView{
+      }
+  
+      class XZMRefreshHeader{
+      }
+  
+      class XZMRefreshNormalHeader{
+      }
+  
+      class XZMRefreshGifHeader{
+      }
+  
+      class XZMRefreshFooter{
+      }
+  
+      class XZMRefreshNormalFooter{
+      }
+  
+      class XZMRefreshGifFooter{
+      }
   ```
   
 * <font color=red>**值得注意**</font>

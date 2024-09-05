@@ -1280,7 +1280,10 @@
 /// 横屏通知的监听
 -(void)横屏通知的监听:(JobsSelectorBlock1)block{
     @jobs_weakify(self)
-    JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id  _Nullable weakSelf, id  _Nullable arg) {
+    [self addNotificationName:UIDeviceOrientationDidChangeNotification
+                        block:^(id _Nullable weakSelf,
+                                id _Nullable arg) {
+        @jobs_strongify(self)
         switch (UIDevice.currentDevice.orientation) {
             case UIDeviceOrientationFaceUp:
                 NSLog(@"屏幕朝上平躺");
@@ -1320,8 +1323,7 @@
                 break;
             }
         if(block)block(weakSelf,arg,@( JobsAppTool.jobsDeviceOrientation));
-        return nil;
-    } selectorName:nil target:self],UIDeviceOrientationDidChangeNotification,nil);
+    }];
 }
 #pragma mark —— 键盘⌨️
 /**
@@ -1356,8 +1358,9 @@
 -(void)keyboard{
     @jobs_weakify(self)
     /// 键盘的弹出
-    JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                id _Nullable arg) {
+    [self addNotificationName:UIKeyboardWillChangeFrameNotification
+                        block:^(id _Nullable weakSelf,
+                                id _Nullable arg) {
         @jobs_strongify(self)
         NSNotification *notification = (NSNotification *)arg;
         NSLog(@"通知传递过来的 = %@",notification.object);
@@ -1368,7 +1371,6 @@
         notificationKeyboardModel.keyboardOffsetY = notificationKeyboardModel.beginFrame.origin.y - notificationKeyboardModel.endFrame.origin.y;// 正则抬起 ，负值下降
         notificationKeyboardModel.notificationName = UIKeyboardWillChangeFrameNotification;
         NSLog(@"KeyboardOffsetY = %f", notificationKeyboardModel.keyboardOffsetY);
-     
         if (notificationKeyboardModel.keyboardOffsetY > 0) {
             NSLog(@"键盘抬起");
             if (self.keyboardUpNotificationBlock) self.keyboardUpNotificationBlock(notificationKeyboardModel);
@@ -1377,15 +1379,16 @@
             if (self.keyboardDownNotificationBlock) self.keyboardDownNotificationBlock(notificationKeyboardModel);
         }else{
             NSLog(@"键盘");
-        }return nil;
-    } selectorName:nil target:self],UIKeyboardWillChangeFrameNotification,nil);
+        }
+    }];
     /// 键盘的回收
-    JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                id _Nullable arg) {
+    [self addNotificationName:UIKeyboardDidChangeFrameNotification
+                        block:^(id _Nullable weakSelf,
+                                id _Nullable arg) {
+        @jobs_strongify(self)
         NSNotification *notification = (NSNotification *)arg;
         NSLog(@"通知传递过来的 = %@",notification.object);
-        return nil;
-    } selectorName:nil target:self],UIKeyboardDidChangeFrameNotification,nil);
+    }];
 }
 
 -(void)actionkeyboardUpNotificationBlock:(JobsReturnIDByIDBlock _Nullable)keyboardUpNotificationBlock{
@@ -1394,71 +1397,6 @@
 
 -(void)actionkeyboardDownNotificationBlock:(JobsReturnIDByIDBlock _Nullable)keyboardDownNotificationBlock{
     self.keyboardDownNotificationBlock = keyboardDownNotificationBlock;
-}
-#pragma mark —— 刷新
-/// 停止刷新【可能还有数据的情况，状态为：MJRefreshStateIdle】
--(jobsByScrollViewBlock _Nonnull)endRefreshing{
-    @jobs_weakify(self)
-    return ^(UIScrollView * _Nullable targetScrollView) {
-        @jobs_strongify(self)
-        if ([targetScrollView isKindOfClass:UITableView.class]) {
-            UITableView *tableView = (UITableView *)targetScrollView;
-            [tableView reloadData];
-        }else if ([targetScrollView isKindOfClass:UICollectionView.class]){
-            UICollectionView *collectionView = (UICollectionView *)targetScrollView;
-            [collectionView reloadData];
-        }else{}
-        
-        [targetScrollView tab_endAnimation];//里面实现了 [self.collectionView reloadData];
-        
-        self.endMJHeaderRefreshing(targetScrollView);
-        self.endMJFooterRefreshingWithMoreData(targetScrollView);
-    };
-}
-/// 停止刷新【没有数据的情况，状态为：MJRefreshStateNoMoreData】
--(jobsByScrollViewBlock _Nonnull)endRefreshingWithNoMoreData{
-    @jobs_weakify(self)
-    return ^(UIScrollView * _Nullable targetScrollView) {
-        @jobs_strongify(self)
-        if ([targetScrollView isKindOfClass:UITableView.class]) {
-            UITableView *tableView = (UITableView *)targetScrollView;
-            [tableView reloadData];
-        }else if ([targetScrollView isKindOfClass:UICollectionView.class]){
-            UICollectionView *collectionView = (UICollectionView *)targetScrollView;
-            [collectionView reloadData];
-        }else{}
-        
-        [targetScrollView tab_endAnimation];//里面实现了 [self.collectionView reloadData];
-
-        self.endMJHeaderRefreshing(targetScrollView);
-        self.endMJFooterRefreshingWithNoMoreData(targetScrollView);
-    };
-}
-/// 停止MJHeader的刷新
--(jobsByScrollViewBlock _Nonnull)endMJHeaderRefreshing{
-    return ^(UIScrollView * _Nullable targetScrollView) {
-        if (targetScrollView.mj_header.refreshing) {
-            [targetScrollView.mj_header endRefreshing];// 结束刷新
-        }
-    };
-}
-/// 停止MJFooter的刷新【没有数据的情况，状态为：MJRefreshStateNoMoreData】
--(jobsByScrollViewBlock _Nonnull)endMJFooterRefreshingWithNoMoreData{
-    return ^(UIScrollView * _Nullable targetScrollView) {
-        if (targetScrollView.mj_footer.refreshing) {
-            [targetScrollView.mj_footer endRefreshingWithNoMoreData];// 结束刷新
-        }
-    };
-}
-/// 停止MJFooter刷新【可能还有数据的情况，状态为：MJRefreshStateIdle】
--(jobsByScrollViewBlock _Nonnull)endMJFooterRefreshingWithMoreData{
-    return ^(UIScrollView * _Nullable targetScrollView) {
-        if (targetScrollView.mj_footer.refreshing) {
-            [targetScrollView.mj_footer endRefreshing];// 结束刷新
-        }else{
-            [targetScrollView.mj_footer resetNoMoreData];// 结束刷新
-        }
-    };
 }
 /// 根据数据源【数组】是否有值进行判定：占位图 和 mj_footer 的显隐性
 -(void)dataSource:(NSArray *_Nonnull)dataSource

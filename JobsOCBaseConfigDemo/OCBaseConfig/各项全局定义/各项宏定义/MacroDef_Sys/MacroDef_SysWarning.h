@@ -32,7 +32,7 @@
      就可以忽略你这些警告了
  */
 
-//⚠️ 在category中重写了原类的方法
+#pragma mark —— ⚠️ 在category中重写了原类的方法
 #define SuppressWobjcProtocolMethodImplementationWarning(Stuff) \
     do { \
         _Pragma("clang diagnostic push") \
@@ -46,7 +46,7 @@
     作用：对于多个构造方法，它可以指定一个基础的构造方法；其它快捷的构造方法都必须通过它来实现类的初始化。代码规范的一种，可以避免不必要的bug，良好的编程习惯
     注意事项：指定构造方法需要先调用父类的指定构造方法，然后再对自身类的属性进行初始化。如果子类的指定构造t方法与父类不同，则该子类需要覆写父类的指定构造方法，并在该实现里面调用自身的指定构造方法。
  */
-// ⚠️ 你使用了非指定初始化方法之外的方法。不影响正常使用
+#pragma mark ——⚠️ 你使用了非指定初始化方法之外的方法。不影响正常使用
 #define SuppressDesignatedInitializersWarning(Stuff) \
     do { \
         _Pragma("clang diagnostic push") \
@@ -54,7 +54,7 @@
         Stuff; \
         _Pragma("clang diagnostic pop") \
 } while (0)
-//⚠️未声明的选择器
+#pragma mark ——⚠️未声明的选择器
 #define SuppressWundeclaredSelectorWarning(Stuff) \
     do { \
         _Pragma("clang diagnostic push") \
@@ -62,7 +62,7 @@
         Stuff; \
         _Pragma("clang diagnostic pop") \
 } while (0)
-// ⚠️用于指示在代码中存在不兼容的指针类型赋值或使用的情况（指针类型不匹配、函数指针类型不匹配、隐式类型转换）
+#pragma mark ——⚠️用于指示在代码中存在不兼容的指针类型赋值或使用的情况（指针类型不匹配、函数指针类型不匹配、隐式类型转换）
 #define SuppressWincompatiblePointerTypesWarning(Stuff) \
     do { \
         _Pragma("clang diagnostic push") \
@@ -70,7 +70,7 @@
         Stuff; \
         _Pragma("clang diagnostic pop") \
 } while (0)
-// ⚠️方法定义未实现
+#pragma mark ——⚠️方法定义未实现
 #define SuppressWincompleteImplementationWarning(Stuff) \
     do { \
         _Pragma("clang diagnostic push") \
@@ -78,7 +78,7 @@
         Stuff; \
         _Pragma("clang diagnostic pop") \
 } while (0)
-// ⚠️废弃声明 —— 实现
+#pragma mark ——⚠️废弃声明 —— 实现
 #define SuppressWdeprecatedImplementationsWarning(Stuff) \
     do { \
         _Pragma("clang diagnostic push") \
@@ -86,7 +86,7 @@
         Stuff; \
         _Pragma("clang diagnostic pop") \
 } while (0)
-// ⚠️废弃声明 —— 方法
+#pragma mark ——⚠️废弃声明 —— 方法
 #define SuppressWdeprecatedDeclarationsWarning(Stuff) \
     do { \
         _Pragma("clang diagnostic push") \
@@ -94,7 +94,7 @@
         Stuff; \
         _Pragma("clang diagnostic pop") \
 } while (0)
-// ⚠️编译器发现可能存在的内存泄漏问题
+#pragma mark ——⚠️编译器发现可能存在的内存泄漏问题
 #define SuppressWarcPerformSelectorLeaksWarning(Stuff) \
     do { \
         _Pragma("clang diagnostic push") \

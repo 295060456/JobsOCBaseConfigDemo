@@ -154,6 +154,9 @@ typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
 @class GKPhotoBrowser;
 typedef void(^jobsByGKPhotoBrowserBlock)(GKPhotoBrowser *_Nonnull data);
 
+@class XZMRefreshNormalHeader;
+typedef void(^jobsByXZMRefreshNormalHeaderBlock)(XZMRefreshNormalHeader *_Nonnull data);
+
 #endif /* JobsBlock_h */
 /*
 

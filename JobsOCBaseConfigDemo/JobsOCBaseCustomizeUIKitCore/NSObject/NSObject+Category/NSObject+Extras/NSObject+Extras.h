@@ -441,7 +441,7 @@ BaseProtocol
 -(BOOL)judgementExactDivisionByNum1:(NSNumber *_Nonnull)num1
                                num2:(NSNumber *_Nonnull)num2;
 #pragma mark —— 检测当前设备屏幕方向
-//https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md
+/// https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md
 -(CGFloat)jobsMainScreen_HEIGHT;
 -(CGFloat)jobsMainScreen_WIDTH;
 -(UIView *_Nullable)getView;
@@ -487,17 +487,6 @@ BaseProtocol
  */
 /// 加入键盘通知的监听者
 -(void)keyboard;
-#pragma mark —— 刷新
-/// 停止刷新【可能还有数据的情况，状态为：MJRefreshStateIdle】
--(jobsByScrollViewBlock _Nonnull)endRefreshing;
-/// 停止刷新【没有数据的情况，状态为：MJRefreshStateNoMoreData】
--(jobsByScrollViewBlock _Nonnull)endRefreshingWithNoMoreData;
-/// 停止MJHeader的刷新
--(jobsByScrollViewBlock _Nonnull)endMJHeaderRefreshing;
-/// 停止MJFooter的刷新【没有数据的情况，状态为：MJRefreshStateNoMoreData】
--(jobsByScrollViewBlock _Nonnull)endMJFooterRefreshingWithNoMoreData;
-/// 停止MJFooter刷新【可能还有数据的情况，状态为：MJRefreshStateIdle】
--(jobsByScrollViewBlock _Nonnull)endMJFooterRefreshingWithMoreData;
 /// 根据数据源【数组】是否有值进行判定：占位图 和 mj_footer 的显隐性
 -(void)dataSource:(NSArray *_Nonnull)dataSource
       contentView:(UIScrollView *_Nonnull)contentView;

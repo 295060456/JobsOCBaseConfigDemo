@@ -135,11 +135,11 @@ JobsToggleNavViewProtocolSynthesize
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(data);
             if(KindOfBaseButtonCls(data)){
-                BaseButton *btn = (BaseButton *)data;
+                self.currentSelectedBtn = (BaseButton *)data;
                 /// 由 self.bgScroll 驱动
-                self.bgScroll.contentOffset = CGPointMake(self.bgScroll.width * btn.index,0);
-                NSLog(@"当前滑动的index = %ld",(long)btn.index);
-                [self.taggedNavView selectingOneTagWithIndex:btn.index];
+                self.bgScroll.contentOffset = CGPointMake(self.bgScroll.width * self.currentSelectedBtn.index,0);
+                NSLog(@"当前滑动的index = %ld",(long)self.currentSelectedBtn.index);
+                [self.taggedNavView selectingOneTagWithIndex:self.currentSelectedBtn.index];
             }
         }];
     }return _taggedNavView;

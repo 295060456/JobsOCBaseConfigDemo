@@ -26,16 +26,18 @@
 /// @param aSelector 相关逻辑
 +(void)targetView:(UIView *)targetView
 languageSwitchNotificationWithSelector:(SEL)aSelector{
-    JobsAddNotification(targetView,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                      id _Nullable arg) {
+    @jobs_weakify(self)
+    [self addNotificationName:JobsLanguageSwitchNotification
+                        block:^(id _Nullable weakSelf,
+                                id _Nullable arg) {
+        @jobs_strongify(self)
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
             NSLog(@"SSS = %d",b.boolValue);
         }
         NSLog(@"通知传递过来的 = %@",notification.object);
-        return nil;
-    } selectorName:nil target:self],JobsLanguageSwitchNotification,nil);
+    }];
 }
 /// 【App语言国际化】更改UITabBarItem的标题
 -(void)changeTabBarItemTitle:(NSIndexPath *)indexPath{

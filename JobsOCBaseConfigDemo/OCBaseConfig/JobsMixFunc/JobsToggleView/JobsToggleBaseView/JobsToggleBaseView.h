@@ -27,6 +27,7 @@ JobsToggleNavViewProtocol
 @property(nonatomic,assign)CGSize toggleView_size;
 @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*scrollContentViews;
 @property(nonatomic,strong)NSMutableArray <NSString *>*taggedNavTitles;
+@property(nonatomic,weak)__kindof UIButton *currentSelectedBtn;
 
 -(JobsToggleNavView *)taggedNavView;
 -(UIScrollView *)bgScroll;

@@ -8,6 +8,13 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import "JobsBlock.h"
+
+#if __has_include(<YTKNetwork/YTKNetwork.h>)
+#import <YTKNetwork/YTKNetwork.h>
+#else
+#import "YTKNetwork.h"
+#endif
+
 /**
 【命名规则】：
     1、无返回值省略Return
@@ -146,139 +153,139 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-#ifndef KindOfBtnCls
-#define KindOfBtnCls(data) [data isKindOfClass:UIButton.class]
-#endif /* KindOfBtnCls */
-
-#ifndef KindOfBaseButtonCls
-#define KindOfBaseButtonCls(data) [data isKindOfClass:BaseButton.class]
-#endif /* KindOfBaseButtonCls */
-
-#ifndef KindOfViewCls
-#define KindOfViewCls(data) [data isKindOfClass:UIView.class]
-#endif /* KindOfViewCls */
-
-#ifndef KindOfStrCls
-#define KindOfStrCls(data) [data isKindOfClass:NSString.class]
-#endif /* KindOfStrCls */
-
-#ifndef KindOfVCCls
-#define KindOfVCCls(data) [data isKindOfClass:UIViewController.class]
-#endif /* KindOfVCCls */
-
-#ifndef KindOfDataCls
-#define KindOfDataCls(data) [data isKindOfClass:NSData.class]
-#endif /* KindOfDataCls */
-
-#ifndef KindOfMutArrCls
-#define KindOfMutArrCls(data) [data isKindOfClass:NSMutableArray.class]
-#endif /* KindOfMutArrCls */
-
-#ifndef KindOfArrCls
-#define KindOfArrCls(data) [data isKindOfClass:NSArray.class]
-#endif /* KindOfArrCls */
-
-#ifndef KindOfMutDicCls
-#define KindOfMutDicCls(data) [data isKindOfClass:NSMutableDictionary.class]
-#endif /* KindOfMutDicCls */
-
-#ifndef KindOfDicCls
-#define KindOfDicCls(data) [data isKindOfClass:NSDictionary.class]
-#endif /* KindOfDicCls */
-
-#ifndef KindOfJSONerializationCls
-#define KindOfJSONerializationCls(data) [data isKindOfClass:NSJSONSerialization.class]
-#endif /* KindOfJSONerializationCls */
-
-#ifndef KindOfMutStrCls
-#define KindOfMutStrCls(data) [data isKindOfClass:NSMutableString.class]
-#endif /* KindOfMutStrCls */
-
-#ifndef KindOfImageCls
-#define KindOfImageCls(data) [data isKindOfClass:UIImage.class]
-#endif /* KindOfImageCls */
-
-#ifndef KindOfTabBarCtrlCls
-#define KindOfTabBarCtrlCls(data) [data isKindOfClass:UITabBarController.class]
-#endif /* KindOfTabBarCtrlCls */
-
-#ifndef KindOfNavCtrlCls
-#define KindOfNavCtrlCls(data) [data isKindOfClass:UINavigationController.class]
-#endif /* KindOfNavCtrlCls */
-
-#ifndef KindOfScrollViewCls
-#define KindOfScrollViewCls(data) [data isKindOfClass:UIScrollView.class]
-#endif /* KindOfScrollViewCls */
-    
-#ifndef KindOfNumberCls
-#define KindOfNumberCls(data) [data isKindOfClass:NSNumber.class]
-#endif /* KindOfNumberCls */
-   
-#ifndef KindOfSetCls
-#define KindOfSetCls(data) [data isKindOfClass:NSSet.class]
-#endif /* KindOfSetCls */
-    
-#ifndef KindOfMutSetCls
-#define KindOfMutSetCls(data) [data isKindOfClass:NSMutableSet.class]
-#endif /* KindOfMutSetCls */
-
-#ifndef KindOfViewModelCls
-#define KindOfViewModelCls(data) [data isKindOfClass:UIViewModel.class]
-#endif /* KindOfViewModelCls */
-
-#ifndef KindOfButtonModelCls
-#define KindOfButtonModelCls(data) [data isKindOfClass:UIButtonModel.class]
-#endif /* KindOfButtonModelCls */
-    
-#ifndef KindOfLabCls
-#define KindOfLabCls(data) [data isKindOfClass:UILabel.class]
-#endif /* KindOfLabCls */
-    
-#ifndef KindOfCollectionViewCellCls
-#define KindOfCollectionViewCellCls(data) [data isKindOfClass:UICollectionViewCell.class]
-#endif /* KindOfCollectionViewCellCls */
-    
-#ifndef KindOfTableViewCellCls
-#define KindOfTableViewCellCls(data) [data isKindOfClass:UITableViewCell.class]
-#endif /* KindOfTableViewCellCls */
-    
-#ifndef KindOfTableViewCls
-#define KindOfTableViewCls(data) [data isKindOfClass:UITableView.class]
-#endif /* KindOfTableViewCls */
-
-#ifndef KindOfCollectionViewCls
-#define KindOfCollectionViewCls(data) [data isKindOfClass:UICollectionView.class]
-#endif /* KindOfCollectionViewCls */
-
-#ifndef KindOfErrorCls
-#define KindOfErrorCls(data) [data isKindOfClass:NSError.class]
-#endif /* KindOfErrorCls */
-
-#ifndef KindOfPHAssetCls
-#define KindOfPHAssetCls(data) [data isKindOfClass:PHAsset.class]
-#endif /* KindOfPHAssetCls */
-    
-#ifndef KindOfTextFieldCls
-#define KindOfTextFieldCls(data) [data isKindOfClass:UITextField.class]
-#endif /* KindOfTextFieldCls */
-    
-#ifndef KindOfLZTabBarItemCls
-#define KindOfLZTabBarItemCls(data) [data isKindOfClass:LZTabBarItem.class]
-#endif /* KindOfLZTabBarItemCls */
-    
-#ifndef KindOfCtrlCls
-#define KindOfCtrlCls(data) [data isKindOfClass:UIControl.class]
-#endif /* KindOfCtrlCls */
-
-#ifndef KindOfTextItemCls
-#define KindOfTextItemCls(data) [data isKindOfClass:UITextItem.class]
-#endif /* KindOfTextItemCls */
-
-#ifndef KindOfYTKAnimatingRequestAccessoryCls
-#define KindOfYTKAnimatingRequestAccessoryCls(data) [data isKindOfClass:YTKAnimatingRequestAccessory.class]
-#endif /* KindOfYTKAnimatingRequestAccessoryCls */
-    
-#ifndef KindOfClsFromStr
-#define KindOfClsFromStr(data,ClsName) [data isKindOfClass:NSClassFromString(ClsName)]
-#endif /* KindOfClsFromStr */
+// UIButton
+static inline BOOL KindOfBtnCls(id _Nonnull data) {
+    return [data isKindOfClass:UIButton.class];
+}
+// BaseButton
+static inline BOOL KindOfBaseButtonCls(id _Nonnull data) {
+    return [data isKindOfClass:BaseButton.class];
+}
+// UIView
+static inline BOOL KindOfViewCls(id _Nonnull data) {
+    return [data isKindOfClass:UIView.class];
+}
+// NSString
+static inline BOOL KindOfStrCls(id _Nonnull data) {
+    return [data isKindOfClass:NSString.class];
+}
+// UIViewController
+static inline BOOL KindOfVCCls(id _Nonnull data) {
+    return [data isKindOfClass:UIViewController.class];
+}
+// NSData
+static inline BOOL KindOfDataCls(id _Nonnull data) {
+    return [data isKindOfClass:NSData.class];
+}
+// NSMutableArray
+static inline BOOL KindOfMutArrCls(id _Nonnull data) {
+    return [data isKindOfClass:NSMutableArray.class];
+}
+// NSArray
+static inline BOOL KindOfArrCls(id _Nonnull data) {
+    return [data isKindOfClass:NSArray.class];
+}
+// NSMutableDictionary
+static inline BOOL KindOfMutDicCls(id _Nonnull data) {
+    return [data isKindOfClass:NSMutableDictionary.class];
+}
+// NSDictionary
+static inline BOOL KindOfDicCls(id _Nonnull data) {
+    return [data isKindOfClass:NSDictionary.class];
+}
+// NSJSONSerialization
+static inline BOOL KindOfJSONerializationCls(id _Nonnull data) {
+    return [data isKindOfClass:NSJSONSerialization.class];
+}
+// NSMutableString
+static inline BOOL KindOfMutStrCls(id _Nonnull data) {
+    return [data isKindOfClass:NSMutableString.class];
+}
+// UIImage
+static inline BOOL KindOfImageCls(id _Nonnull data) {
+    return [data isKindOfClass:UIImage.class];
+}
+// UITabBarController
+static inline BOOL KindOfTabBarCtrlCls(id _Nonnull data) {
+    return [data isKindOfClass:UITabBarController.class];
+}
+// UINavigationController
+static inline BOOL KindOfNavCtrlCls(id _Nonnull data) {
+    return [data isKindOfClass:UINavigationController.class];
+}
+// UIScrollView
+static inline BOOL KindOfScrollViewCls(id _Nonnull data) {
+    return [data isKindOfClass:UIScrollView.class];
+}
+// NSNumber
+static inline BOOL KindOfNumberCls(id _Nonnull data) {
+    return [data isKindOfClass:NSNumber.class];
+}
+// NSSet
+static inline BOOL KindOfSetCls(id _Nonnull data) {
+    return [data isKindOfClass:NSSet.class];
+}
+// NSMutableSet
+static inline BOOL KindOfMutSetCls(id _Nonnull data) {
+    return [data isKindOfClass:NSMutableSet.class];
+}
+// UIViewModel
+static inline BOOL KindOfViewModelCls(id _Nonnull data) {
+    return [data isKindOfClass:UIViewModel.class];
+}
+// UIButtonModel
+static inline BOOL KindOfButtonModelCls(id _Nonnull data) {
+    return [data isKindOfClass:UIButtonModel.class];
+}
+// UILabel
+static inline BOOL KindOfLabCls(id _Nonnull data) {
+    return [data isKindOfClass:UILabel.class];
+}
+// UICollectionViewCell
+static inline BOOL KindOfCollectionViewCellCls(id _Nonnull data) {
+    return [data isKindOfClass:UICollectionViewCell.class];
+}
+// UITableViewCell
+static inline BOOL KindOfTableViewCellCls(id _Nonnull data) {
+    return [data isKindOfClass:UITableViewCell.class];
+}
+// UITableView
+static inline BOOL KindOfTableViewCls(id _Nonnull data) {
+    return [data isKindOfClass:UITableView.class];
+}
+// UICollectionView
+static inline BOOL KindOfCollectionViewCls(id _Nonnull data) {
+    return [data isKindOfClass:UICollectionView.class];
+}
+// NSError
+static inline BOOL KindOfErrorCls(id _Nonnull data) {
+    return [data isKindOfClass:NSError.class];
+}
+// PHAsset
+static inline BOOL KindOfPHAssetCls(id _Nonnull data) {
+    return [data isKindOfClass:PHAsset.class];
+}
+// UITextField
+static inline BOOL KindOfTextFieldCls(id _Nonnull data) {
+    return [data isKindOfClass:UITextField.class];
+}
+#import "LZTabBarItem.h"
+static inline BOOL KindOfLZTabBarItemCls(id _Nonnull data) {
+    return [data isKindOfClass:LZTabBarItem.class];
+}
+// UIControl
+static inline BOOL KindOfCtrlCls(id _Nonnull data) {
+    return [data isKindOfClass:UIControl.class];
+}
+// UITextItem
+static inline BOOL KindOfTextItemCls(id _Nonnull data) {
+    return [data isKindOfClass:UITextItem.class];
+}
+#import "YTKAnimatingRequestAccessory.h"
+static inline BOOL KindOfYTKAnimatingRequestAccessoryCls(id _Nonnull data) {
+    return [data isKindOfClass:YTKAnimatingRequestAccessory.class];
+}
+// NSClassFromString
+static inline BOOL KindOfClsFromStr(id _Nonnull data, NSString *_Nonnull ClsName) {
+    return [data isKindOfClass:NSClassFromString(ClsName)];
+}
