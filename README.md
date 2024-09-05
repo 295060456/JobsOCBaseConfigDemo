@@ -2306,6 +2306,8 @@ NSObject <|-- BaseProtocol
 
 ### 26、数据解析 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+#### 26.1、对`json`数据的解析
+
 * 对待data是数组
 
   ```objective-c
@@ -2407,6 +2409,39 @@ NSObject <|-- BaseProtocol
   }
   
   @end
+  ```
+
+#### 26.2、对图片URL数据的解析（利用`SDWebImage`）
+
+* ```ruby
+  pod 'SDWebImage' # https://github.com/SDWebImage/SDWebImage YES_SMP
+  ```
+
+* ```objective-c
+  #if __has_include(<SDWebImage/SDWebImage.h>)
+  #import <SDWebImage/SDWebImage.h>
+  #else
+  #import "SDWebImage.h"
+  #endif
+  ```
+
+* [@interface UIImageView (SDWebImage)]()
+
+  ```objective-c
+  self.bgImageView
+      .imageURL(model.url)
+      .placeholderImage(model.bgImage)
+      .options(SDWebImageRefreshCached)/// 强制刷新缓存
+      .completed(^(UIImage * _Nullable image,
+                   NSError * _Nullable error,
+                   SDImageCacheType cacheType,
+                   NSURL * _Nullable imageURL) {
+          if (error) {
+              NSLog(@"图片加载失败: %@", error);
+          } else {
+              NSLog(@"图片加载成功");
+          }
+      }).load();
   ```
 
 ### 27、<font color=blue>**竖形菜单**</font>方案 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

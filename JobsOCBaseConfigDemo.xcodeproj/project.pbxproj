@@ -65,6 +65,8 @@
 		CE8877A92C50B3090085948C /* JobsRichTextConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877A72C50B3090085948C /* JobsRichTextConfig.m */; };
 		CE8877BD2C51F1FF0085948C /* JobsNavBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */; };
 		CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877BB2C51F1FF0085948C /* JobsNavBar.m */; };
+		CE89E11D2C89730A0042B7D9 /* UIImageView+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CE89E1172C89728E0042B7D9 /* UIImageView+SDWebImage.m */; };
+		CE89E11E2C89730E0042B7D9 /* UIImageView+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = CE89E11B2C89728E0042B7D9 /* UIImageView+GIF.m */; };
 		CEA018B62C86F9BF006F06CF /* UIBarButtonItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA018B32C86F94C006F06CF /* UIBarButtonItem+Extra.m */; };
 		CEA018B72C86F9C8006F06CF /* NSString+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA018B02C86F922006F06CF /* NSString+Time.m */; };
 		CEA018BF2C881A4F006F06CF /* NSRunLoop+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA018BD2C881A4B006F06CF /* NSRunLoop+Extra.m */; };
@@ -769,7 +771,6 @@
 		CECE85A02C4513CE00764AF5 /* UIImage+Tailor.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE83C72C4513CD00764AF5 /* UIImage+Tailor.m */; };
 		CECE85A12C4513CE00764AF5 /* UIImage+YBGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE83CA2C4513CD00764AF5 /* UIImage+YBGIF.m */; };
 		CECE85A22C4513CE00764AF5 /* BaseImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE83D12C4513CD00764AF5 /* BaseImageView.m */; };
-		CECE85A32C4513CE00764AF5 /* UIImageView+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE83D42C4513CD00764AF5 /* UIImageView+GIF.m */; };
 		CECE85A42C4513CE00764AF5 /* BaseLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE83D92C4513CD00764AF5 /* BaseLabel.m */; };
 		CECE85A52C4513CE00764AF5 /* JobsAnimationLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE83DC2C4513CD00764AF5 /* JobsAnimationLabel.m */; };
 		CECE85A62C4513CE00764AF5 /* JobsBaseLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE83DF2C4513CD00764AF5 /* JobsBaseLabel.m */; };
@@ -1280,6 +1281,10 @@
 		CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNavBarConfig.m; sourceTree = "<group>"; };
 		CE8877BA2C51F1FF0085948C /* JobsNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNavBar.h; sourceTree = "<group>"; };
 		CE8877BB2C51F1FF0085948C /* JobsNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNavBar.m; sourceTree = "<group>"; };
+		CE89E1162C89728E0042B7D9 /* UIImageView+SDWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SDWebImage.h"; sourceTree = "<group>"; };
+		CE89E1172C89728E0042B7D9 /* UIImageView+SDWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SDWebImage.m"; sourceTree = "<group>"; };
+		CE89E11A2C89728E0042B7D9 /* UIImageView+GIF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+GIF.h"; sourceTree = "<group>"; };
+		CE89E11B2C89728E0042B7D9 /* UIImageView+GIF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+GIF.m"; sourceTree = "<group>"; };
 		CEA018AA2C86F909006F06CF /* NSFormatter+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFormatter+Extra.h"; sourceTree = "<group>"; };
 		CEA018AB2C86F909006F06CF /* NSFormatter+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFormatter+Extra.m"; sourceTree = "<group>"; };
 		CEA018AD2C86F909006F06CF /* JobsFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsFormatter.h; sourceTree = "<group>"; };
@@ -2649,8 +2654,6 @@
 		CECE83CE2C4513CD00764AF5 /* JobsLoadingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsLoadingImage.h; sourceTree = "<group>"; };
 		CECE83D02C4513CD00764AF5 /* BaseImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseImageView.h; sourceTree = "<group>"; };
 		CECE83D12C4513CD00764AF5 /* BaseImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseImageView.m; sourceTree = "<group>"; };
-		CECE83D32C4513CD00764AF5 /* UIImageView+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+GIF.h"; sourceTree = "<group>"; };
-		CECE83D42C4513CD00764AF5 /* UIImageView+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+GIF.m"; sourceTree = "<group>"; };
 		CECE83D62C4513CD00764AF5 /* JobsImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsImageView.h; sourceTree = "<group>"; };
 		CECE83D82C4513CD00764AF5 /* BaseLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLabel.h; sourceTree = "<group>"; };
 		CECE83D92C4513CD00764AF5 /* BaseLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLabel.m; sourceTree = "<group>"; };
@@ -3927,6 +3930,25 @@
 				CE8877BB2C51F1FF0085948C /* JobsNavBar.m */,
 			);
 			path = JobsNavBar;
+			sourceTree = "<group>";
+		};
+		CE89E1182C89728E0042B7D9 /* UIImageView+SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				CE89E1162C89728E0042B7D9 /* UIImageView+SDWebImage.h */,
+				CE89E1172C89728E0042B7D9 /* UIImageView+SDWebImage.m */,
+			);
+			name = "UIImageView+SDWebImage";
+			path = "UIImageView+SDWebImage/UIImageView+SDWebImage";
+			sourceTree = "<group>";
+		};
+		CE89E11C2C89728E0042B7D9 /* UIImageView+GIF */ = {
+			isa = PBXGroup;
+			children = (
+				CE89E11A2C89728E0042B7D9 /* UIImageView+GIF.h */,
+				CE89E11B2C89728E0042B7D9 /* UIImageView+GIF.m */,
+			);
+			path = "UIImageView+GIF";
 			sourceTree = "<group>";
 		};
 		CE9076C82C54B60F00CD902B /* 自定义视图 */ = {
@@ -11098,8 +11120,8 @@
 		CECE83D52C4513CD00764AF5 /* UIImageView+Category */ = {
 			isa = PBXGroup;
 			children = (
-				CECE83D32C4513CD00764AF5 /* UIImageView+GIF.h */,
-				CECE83D42C4513CD00764AF5 /* UIImageView+GIF.m */,
+				CE89E1182C89728E0042B7D9 /* UIImageView+SDWebImage */,
+				CE89E11C2C89728E0042B7D9 /* UIImageView+GIF */,
 			);
 			path = "UIImageView+Category";
 			sourceTree = "<group>";
@@ -14701,7 +14723,6 @@
 				CECE85AA2C4513CE00764AF5 /* UILabel+Measure.m in Sources */,
 				CECE81722C4512BF00764AF5 /* UITabBarItem+TLAnimation.m in Sources */,
 				CECE81052C4512BF00764AF5 /* JobsAppDoorLogoContentView.m in Sources */,
-				CECE85A32C4513CE00764AF5 /* UIImageView+GIF.m in Sources */,
 				CE706A422C57680500CB7B97 /* JobsPostVC.m in Sources */,
 				CECE7E812C450E5B00764AF5 /* JXCategoryTitleBackgroundView.m in Sources */,
 				CECE7CF42C450C5000764AF5 /* WidgetVC.m in Sources */,
@@ -14740,6 +14761,7 @@
 				CECE7C4D2C450C5000764AF5 /* ForgetCodeStep_02View.m in Sources */,
 				CECE87192C45140000764AF5 /* AESCipher.m in Sources */,
 				CECE7C3A2C450C5000764AF5 /* NotifiView.m in Sources */,
+				CE89E11D2C89730A0042B7D9 /* UIImageView+SDWebImage.m in Sources */,
 				CECE7C8F2C450C5000764AF5 /* JobsSearchVC.m in Sources */,
 				CECE7D462C450CCD00764AF5 /* NSObject+URLManager.m in Sources */,
 				CECE871A2C45140000764AF5 /* AES.m in Sources */,
@@ -14846,6 +14868,7 @@
 				CECE7E912C450E5B00764AF5 /* HTTPMessage.m in Sources */,
 				CE7F39732C4FDAF900431A5D /* JobsMenuView.m in Sources */,
 				CECE85372C4513CE00764AF5 /* NSObject+BRPickerView.m in Sources */,
+				CE89E11E2C89730E0042B7D9 /* UIImageView+GIF.m in Sources */,
 				CECE7CB92C450C5000764AF5 /* BaiShaETProjMembersSubsBaseVC.m in Sources */,
 				CECE7C882C450C5000764AF5 /* JobsIMListTBVCell.m in Sources */,
 			);

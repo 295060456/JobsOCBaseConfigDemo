@@ -12,5 +12,6 @@
 #import "BaseImageView.h"
 #pragma mark —— Category
 #import "UIImageView+GIF.h"
+#import "UIImageView+SDWebImage.h"
 
 #endif /* JobsImageView_h */

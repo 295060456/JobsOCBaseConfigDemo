@@ -25,6 +25,8 @@ typedef __kindof UIBarButtonItem *_Nullable(^JobsReturnBarButtonItemByViewBlock)
 typedef __kindof UIBarButtonItem *_Nullable(^JobsReturnBarButtonItemByVoidBlock)(void);
 
 typedef NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
+typedef UIImageView *_Nonnull(^JobsReturnImageViewByImageBlock)(UIImage *_Nullable data);
+typedef UIImageView *_Nonnull(^JobsReturnImageViewByURLBlock)(NSURL *_Nullable data);
 typedef UIImage *_Nullable(^JobsReturnImageByCorBlock)(UIColor *_Nullable data);
 typedef UIImage *_Nullable(^JobsReturnImageByDataBlock)(NSData *_Nullable data);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByView)(__kindof UIView *_Nonnull view);
