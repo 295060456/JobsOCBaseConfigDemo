@@ -9,6 +9,14 @@
 
 @implementation UICollectionView (Func)
 
++(JobsReturnCollectionViewByFlowLayoutBlock)initByLayout{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionView *_Nullable(__kindof UICollectionViewFlowLayout *_Nullable data){
+        @jobs_strongify(self)
+        return [self.class.alloc initWithFrame:CGRectZero collectionViewLayout:data];
+    };
+}
+
 -(jobsByIDBlock _Nonnull)dataLink{
     @jobs_weakify(self)
     return ^(id _Nonnull target) {

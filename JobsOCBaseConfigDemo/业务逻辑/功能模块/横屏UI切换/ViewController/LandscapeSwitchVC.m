@@ -280,8 +280,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(BaseCollectionView *)collectionView{
     if (!_collectionView) {
         @jobs_weakify(self)
-        _collectionView = [BaseCollectionView.alloc initWithFrame:CGRectZero
-                                             collectionViewLayout:self.layout];
+        _collectionView = BaseCollectionView.initByLayout(self.layout);
         _collectionView.backgroundColor = JobsGreenColor;//RGB_SAMECOLOR(246);
         _collectionView.layoutSubviewsRectCorner = UIRectCornerTopLeft | UIRectCornerTopRight;
         _collectionView.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(20), JobsWidth(20));

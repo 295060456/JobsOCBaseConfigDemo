@@ -83,14 +83,15 @@ typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsBlock)(Class _Nonnull cls);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsAndSaltStrBlock)(Class _Nonnull cls,
                                                                                            NSString *_Nullable salt);
-typedef UITableViewCell __kindof *_Nullable(^JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block)(Class _Nonnull cls,
-                                                                                                    NSString *_Nullable salt,
-                                                                                                    NSIndexPath *_Nonnull indexPath);
+typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block)(Class _Nonnull cls,
+                                                                                                   NSString *_Nullable salt,
+                                                                                                   NSIndexPath *_Nonnull indexPath);
 
 typedef NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(NSString *_Nullable data);
 typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Class _Nullable cls,NSString *_Nullable salt);
 
-typedef UICollectionViewCell __kindof *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable data);
+typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
 
 typedef CGPoint(^JobsReturnCGPointByVoidBlock)(void);
 typedef CGPoint(^JobsReturnCGPointByIDBlock)(id _Nullable data);

@@ -6656,8 +6656,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    -(BaseCollectionView *)collectionView{
        if (!_collectionView) {
            @jobs_weakify(self)
-           _collectionView = [BaseCollectionView.alloc initWithFrame:CGRectZero
-                                                collectionViewLayout:self.layout];
+           _collectionView = BaseCollectionView.initByLayout(self.layout);
            _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
            _collectionView.dataLink(self);
            _collectionView.showsVerticalScrollIndicator = NO;
