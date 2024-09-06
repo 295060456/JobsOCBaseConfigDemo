@@ -158,7 +158,7 @@ JobsToggleNavViewProtocolSynthesize
         _bgScroll.pagingEnabled = YES;
         _bgScroll.showsHorizontalScrollIndicator = NO;
         _bgScroll.showsVerticalScrollIndicator = NO;
-        for (UIView *subView in self.scrollContentViews) {
+        for (__kindof UIView *subView in self.scrollContentViews) {
             [_bgScroll addSubview:subView];
         }
         [self addSubview:_bgScroll];
@@ -189,17 +189,17 @@ JobsToggleNavViewProtocolSynthesize
     }return _taggedNavView_bgScroll_offset;
 }
 
--(NSMutableArray<UIView *> *)tempLabs{
+-(NSMutableArray<__kindof UIView *> *)tempLabs{
     if(!_tempLabs){
         _tempLabs = NSMutableArray.array;
         int t = 0;
         for (NSString *title in self.tempTitles) {
             UILabel *label = UILabel.new;
             label.backgroundColor = JobsRandomColor;
-            label.text = [NSString stringWithFormat:@"%d\n%@",t,title];
+            label.text = toStringByInt(t).add(@"\n").add(title);
             label.textAlignment = NSTextAlignmentCenter;
             label.numberOfLines = 0;
-            [_tempLabs addObject:label];
+            _tempLabs.add(label);
             t+=1;
         }
     }return _tempLabs;
@@ -208,10 +208,10 @@ JobsToggleNavViewProtocolSynthesize
 -(NSMutableArray<NSString *> *)tempTitles{
     if(!_tempTitles){
         _tempTitles = NSMutableArray.array;
-        [_tempTitles addObject:JobsInternationalization(@"人生到处知何似，恰似飞鸿踏雪泥；")];
-        [_tempTitles addObject:JobsInternationalization(@"泥上偶然留指爪，鸿飞那复计东西。")];
-        [_tempTitles addObject:JobsInternationalization(@"老僧已死成新塔，坏壁无由见旧题；")];
-        [_tempTitles addObject:JobsInternationalization(@"往日崎岖还记否，路长人困蹇驴嘶。")];
+        _tempTitles.add(JobsInternationalization(@"人生到处知何似，恰似飞鸿踏雪泥；"));
+        _tempTitles.add(JobsInternationalization(@"泥上偶然留指爪，鸿飞那复计东西。"));
+        _tempTitles.add(JobsInternationalization(@"老僧已死成新塔，坏壁无由见旧题；"));
+        _tempTitles.add(JobsInternationalization(@"往日崎岖还记否，路长人困蹇驴嘶。"));
     }return _tempTitles;
 }
 
@@ -219,7 +219,7 @@ JobsToggleNavViewProtocolSynthesize
     if(!_taggedNavTitles){
         _taggedNavTitles = NSMutableArray.array;
         for (int y = 0; y < self.tempTitles.count; y++) {
-            [_taggedNavTitles addObject:toStringByInt(y)];
+            _taggedNavTitles.add(toStringByInt(y));
         }
     }return _taggedNavTitles;
 }

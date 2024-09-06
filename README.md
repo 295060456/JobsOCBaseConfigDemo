@@ -2437,7 +2437,7 @@ NSObject <|-- BaseProtocol
                    SDImageCacheType cacheType,
                    NSURL * _Nullable imageURL) {
           if (error) {
-              NSLog(@"图片加载失败: %@", error);
+              NSLog(@"图片加载失败: %@-%@", error,imageURL);
           } else {
               NSLog(@"图片加载成功");
           }
