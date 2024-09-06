@@ -46,33 +46,41 @@ static const uint32_t kSequenceBits = 12;
 }
 
 -(nullable NSNumber *)nextID{
-    uint64_t currentTime = (uint64_t)NSDate.date.timeIntervalSince1970 * 1000;
-    if (self.lastGeneralMillisecond < currentTime) {
-        self.lastGeneralMillisecond = currentTime;
-        self.sequence = 0;
-    } else if (self.lastGeneralMillisecond == currentTime) {
-        self.sequence = (self.sequence + 1) & ((1 << kSequenceBits) - 1);
-        if (self.sequence == 0) {
+    @synchronized (self) {
+        uint64_t currentTime = (uint64_t)NSDate.date.timeIntervalSince1970 * 1000;
+        if (self.lastGeneralMillisecond < currentTime) {
+            // 正常情况：更新时间戳并重置序列号
+            self.lastGeneralMillisecond = currentTime;
+            self.sequence = 0;
+        } else if (self.lastGeneralMillisecond == currentTime) {
+            // 同一毫秒内生成多个ID时，增加序列号
+            self.sequence = (self.sequence + 1) & ((1 << kSequenceBits) - 1);
+            if (self.sequence == 0) {
+                // 如果序列号溢出，等待下一个毫秒
+                usleep(1000);
+                currentTime = (uint64_t)NSDate.date.timeIntervalSince1970 * 1000;
+                self.lastGeneralMillisecond = currentTime;
+            }
+        } else {
+            // 处理时钟回退的情况，可以通过等待或重新同步时间来解决
+            NSLog(@"Clock moved backwards. Waiting for valid timestamp.");
             usleep(1000);
             currentTime = (uint64_t)NSDate.date.timeIntervalSince1970 * 1000;
             self.lastGeneralMillisecond = currentTime;
         }
-    } else {
-        // Clock rollback, should handle according to business logic
-        return nil;
+        
+        uint64_t timeParameter = self.lastGeneralMillisecond - self.publishMillisecond;
+        uint64_t timeOffset = kIDCBits + kMachineBits + kSequenceBits;
+        
+        uint64_t idcParameter = self.IDC;
+        uint64_t idcOffset = kMachineBits + kSequenceBits;
+        
+        uint64_t machineParameter = self.machine;
+        uint64_t machineOffset = kSequenceBits;
+        
+        uint64_t result = (timeParameter << timeOffset) | (idcParameter << idcOffset) | (machineParameter << machineOffset) | self.sequence;
+        return @(result);  // Return as NSNumber
     }
-    
-    uint64_t timeParameter = self.lastGeneralMillisecond - self.publishMillisecond;
-    uint64_t timeOffset = kIDCBits + kMachineBits + kSequenceBits;
-    
-    uint64_t idcParameter = self.IDC;
-    uint64_t idcOffset = kMachineBits + kSequenceBits;
-    
-    uint64_t machineParameter = self.machine;
-    uint64_t machineOffset = kSequenceBits;
-    
-    uint64_t result = (timeParameter << timeOffset) | (idcParameter << idcOffset) | (machineParameter << machineOffset) | self.sequence;
-    return @(result);  // Return as NSNumber
 }
 
 - (uint64_t)timeWithID:(uint64_t)id {
