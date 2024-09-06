@@ -2411,7 +2411,7 @@ NSObject <|-- BaseProtocol
   @end
   ```
 
-#### 26.2、对图片URL数据的解析（利用`SDWebImage`）
+#### 26.2、对图片URL数据的解析（对`SDWebImage`的二次封装）
 
 * ```ruby
   pod 'SDWebImage' # https://github.com/SDWebImage/SDWebImage YES_SMP
@@ -10351,8 +10351,20 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
               NSString *urlStr = @"";
               
-              [cell.backgroundImageView sd_setImageWithURL:urlStr.jobsUrl
-                                          placeholderImage:self.dataMutArr[indexPath.item]];
+              cell.backgroundImageView
+                  .imageURL(urlStr.jobsUrl)
+                  .placeholderImage(self.dataMutArr[indexPath.item])
+                  .options(SDWebImageRefreshCached)/// 强制刷新缓存
+                  .completed(^(UIImage * _Nullable image,
+                               NSError * _Nullable error,
+                               SDImageCacheType cacheType,
+                               NSURL * _Nullable imageURL) {
+                      if (error) {
+                          NSLog(@"图片加载失败: %@", error);
+                      } else {
+                          NSLog(@"图片加载成功");
+                      }
+                  }).load();
               return cell;
           })
           .wEventClickSet(^(id anyID, NSInteger index) {

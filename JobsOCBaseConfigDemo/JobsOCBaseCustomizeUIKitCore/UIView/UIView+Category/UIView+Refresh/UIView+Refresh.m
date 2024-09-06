@@ -26,7 +26,7 @@
         @jobs_strongify(self)
         if(KindOfScrollViewCls(self)){
             UIScrollView *scrollView = (UIScrollView *)self;
-            [scrollView.xzm_header endRefreshing];
+            if(scrollView.xzm_header.state == XZMRefreshStateRefreshing) [scrollView.xzm_header endRefreshing];
         }
     };
 }
@@ -48,7 +48,7 @@
         @jobs_strongify(self)
         if(KindOfScrollViewCls(self)){
             UIScrollView *scrollView = (UIScrollView *)self;
-            [scrollView.xzm_gifHeader endRefreshing];
+            if(scrollView.xzm_gifHeader.state == XZMRefreshStateRefreshing) [scrollView.xzm_gifHeader endRefreshing];
         }
     };
 }
@@ -70,7 +70,7 @@
         @jobs_strongify(self)
         if(KindOfScrollViewCls(self)){
             UIScrollView *scrollView = (UIScrollView *)self;
-            [scrollView.xzm_footer endRefreshing];
+            if(scrollView.xzm_footer.state == XZMRefreshStateRefreshing) [scrollView.xzm_footer endRefreshing];
         }
     };
 }
@@ -92,7 +92,7 @@
         @jobs_strongify(self)
         if(KindOfScrollViewCls(self)){
             UIScrollView *scrollView = (UIScrollView *)self;
-            [scrollView.xzm_gifFooter endRefreshing];
+            if(scrollView.xzm_gifFooter.state == XZMRefreshStateRefreshing) [scrollView.xzm_gifFooter endRefreshing];
         }
     };
 }
