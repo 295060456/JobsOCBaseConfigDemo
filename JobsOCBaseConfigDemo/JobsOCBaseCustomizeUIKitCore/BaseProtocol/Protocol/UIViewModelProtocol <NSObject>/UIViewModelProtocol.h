@@ -148,11 +148,15 @@ NS_ASSUME_NONNULL_END
 @synthesize longPressGestureEventBlock = _longPressGestureEventBlock;\
 @synthesize clickEventBlock = _clickEventBlock;\
 \
+@synthesize buttonConfiguration = _buttonConfiguration;\
+@synthesize backgroundConfiguration = _backgroundConfiguration;\
 @synthesize titleAlignment = _titleAlignment;\
+@synthesize buttonConfigurationTitleAlignment = _buttonConfigurationTitleAlignment;\
 @synthesize btnBackgroundColor = _btnBackgroundColor;\
 @synthesize imageSize = _imageSize;\
 @synthesize contentHorizontalAlignment = _contentHorizontalAlignment;\
 @synthesize contentVerticalAlignment = _contentVerticalAlignment;\
+@synthesize directionalRectEdge = _directionalRectEdge;\
 @synthesize contentEdgeInsets = _contentEdgeInsets;\
 @synthesize contentInsets = _contentInsets;\
 @synthesize contentSpacing = _contentSpacing;\
@@ -183,7 +187,9 @@ NS_ASSUME_NONNULL_END
 @synthesize imageViewFrameOffsetHeight = _imageViewFrameOffsetHeight;\
 \
 @synthesize textAlignment = _textAlignment;\
+@synthesize subTextAlignment = _subTextAlignment;\
 @synthesize lineBreakMode = _lineBreakMode;\
+@synthesize subLineBreakMode = _subLineBreakMode;\
 @synthesize textLineSpacing = _textLineSpacing;\
 @synthesize placeholder = _placeholder;\
 @synthesize placeholderColor = _placeholderColor;\
@@ -301,15 +307,20 @@ NS_ASSUME_NONNULL_END
 @dynamic longPressGestureEventBlock;\
 @dynamic clickEventBlock;\
 \
+@dynamic buttonConfiguration;\
+@dynamic backgroundConfiguration;\
 @dynamic titleAlignment;\
+@dynamic buttonConfigurationTitleAlignment;\
 @dynamic btnBackgroundColor;\
 @dynamic imageSize;\
 @dynamic contentHorizontalAlignment;\
 @dynamic contentVerticalAlignment;\
+@dynamic directionalRectEdge;\
 @dynamic contentEdgeInsets;\
 @dynamic contentInsets;\
 @dynamic contentSpacing;\
 @dynamic lineBreakMode;\
+@dynamic subLineBreakMode;\
 @dynamic btnWidth;\
 @dynamic textLabelFrame;\
 @dynamic subTextLabelFrame;\
@@ -337,6 +348,7 @@ NS_ASSUME_NONNULL_END
 @dynamic imageViewFrameOffsetHeight;\
 \
 @dynamic textAlignment;\
+@dynamic subTextAlignment;\
 @dynamic textLineSpacing;\
 @dynamic placeholder;\
 @dynamic placeholderColor;\

@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— UIButton + UI
 /// 为了迎合点语法而故意把下列方法属性化
 /// Common
+@property(nonatomic,strong)UIButtonConfiguration *buttonConfiguration;
+@property(nonatomic,strong)UIBackgroundConfiguration *backgroundConfiguration;
 @property(nonatomic,assign)NSTextAlignment titleAlignment;
 @property(nonatomic,assign)UIButtonConfigurationTitleAlignment buttonConfigurationTitleAlignment;
 @property(nonatomic,assign)BOOL jobsSelected;
@@ -24,10 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 结合下列属性来实现改变Button文字位置
 @property(nonatomic,assign)UIControlContentHorizontalAlignment contentHorizontalAlignment;
 @property(nonatomic,assign)UIControlContentVerticalAlignment contentVerticalAlignment;
+@property(nonatomic,assign)NSDirectionalRectEdge directionalRectEdge;
 @property(nonatomic,assign)UIEdgeInsets contentEdgeInsets;/// iOS 15以前可以用
 @property(nonatomic,readwrite,assign)NSDirectionalEdgeInsets contentInsets;/// iOS 15以后 结合UIButtonConfiguration 以替换属性：UIEdgeInsets contentEdgeInsets;
 @property(nonatomic,assign)CGFloat contentSpacing;
 @property(nonatomic,assign)NSLineBreakMode lineBreakMode;
+@property(nonatomic,assign)NSLineBreakMode subLineBreakMode;
 @property(nonatomic,assign)CGFloat btnWidth;/// 预设值，父视图的宽度不能大于这个值
 #pragma mark —— 以前的
 /// ⚠️执行return的顺序依照下列👇🏻属性的排序⚠️
@@ -99,13 +103,17 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseButtonProtocol_synthesize
 #define BaseButtonProtocol_synthesize \
 \
+@synthesize buttonConfiguration = _buttonConfiguration;\
+@synthesize backgroundConfiguration = _backgroundConfiguration;\
 @synthesize titleAlignment = _titleAlignment;\
+@synthesize buttonConfigurationTitleAlignment = _buttonConfigurationTitleAlignment;\
 @synthesize jobsSelected = _jobsSelected;\
 @synthesize jobsEnabled = _jobsEnabled;\
 @synthesize btnBackgroundColor = _btnBackgroundColor;\
 @synthesize imageSize = _imageSize;\
 @synthesize contentHorizontalAlignment = _contentHorizontalAlignment;\
 @synthesize contentVerticalAlignment = _contentVerticalAlignment;\
+@synthesize directionalRectEdge = _directionalRectEdge;\
 @synthesize contentEdgeInsets = _contentEdgeInsets;\
 @synthesize contentInsets = _contentInsets;\
 @synthesize contentSpacing = _contentSpacing;\
@@ -154,17 +162,22 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseButtonProtocol_dynamic
 #define BaseButtonProtocol_dynamic \
 \
+@dynamic buttonConfiguration;\
+@dynamic backgroundConfiguration;\
 @dynamic titleAlignment;\
+@dynamic buttonConfigurationTitleAlignment;\
 @dynamic jobsEnabled;\
 @dynamic jobsSelected;\
 @dynamic btnBackgroundColor;\
 @dynamic imageSize;\
 @dynamic contentHorizontalAlignment;\
 @dynamic contentVerticalAlignment;\
+@dynamic directionalRectEdge;\
 @dynamic contentEdgeInsets;\
 @dynamic contentInsets;\
 @dynamic contentSpacing;\
 @dynamic lineBreakMode;\
+@dynamic subLineBreakMode;\
 @dynamic btnWidth;\
 \
 @dynamic textLabelFrame;\

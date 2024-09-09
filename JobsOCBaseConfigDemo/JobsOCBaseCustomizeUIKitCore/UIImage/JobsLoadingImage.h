@@ -23,10 +23,10 @@ static inline UIImage *__nullable JobsIMG(NSString *__nonnull imgName){
 /// @param pathForResource 自定义 Bundle 的名字（不能带.bundle后缀）
 /// @param bundle_folderName 如果在此自定义Bundle下还存在文件夹，不管几级都在此写，属于中间路径，函数内部是进行字符串拼接；如果不存在可以传nil 或者JobsInternationalization(@"")
 /// @param ofType 文件类型（后缀名）
-static inline NSString *__nullable JobsPathForResource(NSString *__nullable blueFolderName,
-                                                       NSString *__nullable pathForResource,
-                                                       NSString *__nullable bundle_folderName,
-                                                       NSString *__nullable ofType){
+static inline NSString *__nonnull JobsPathForResource(NSString *__nullable blueFolderName,
+                                                      NSString *__nullable pathForResource,
+                                                      NSString *__nullable bundle_folderName,
+                                                      NSString *__nullable ofType){
     NSString *filePath = nil;
     if (isNull(blueFolderName)) {// 最外层是蓝色文件夹
         filePath = [NSBundle.mainBundle pathForResource:pathForResource
@@ -45,6 +45,7 @@ static inline NSString *__nullable JobsPathForResource(NSString *__nullable blue
         filePath = filePath.addPathComponent(bundle_folderName);
     }
     
+    if(!filePath) filePath = @"";
     return filePath;
 }
 /// 读取自定义Bundle文件里面的图片 输出 NSString *

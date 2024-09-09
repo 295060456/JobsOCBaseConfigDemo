@@ -95,7 +95,9 @@ UIViewModelProtocol_synthesize
 
 -(NSMutableArray *)jobsDataMutArr{
     if (!_jobsDataMutArr) {
-        _jobsDataMutArr = NSMutableArray.array;
+        _jobsDataMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            
+        });
     }return _jobsDataMutArr;
 }
 
@@ -131,7 +133,7 @@ UIViewModelProtocol_synthesize
 
 -(NSString *)placeholder{
     if(!_placeholder){
-        _placeholder = JobsInternationalization(@"");
+        _placeholder = @"";
     }return _placeholder;
 }
 
@@ -143,19 +145,19 @@ UIViewModelProtocol_synthesize
 
 -(NSInteger)curWordCount{
     if(!_curWordCount){
-        _curWordCount = 0;
+        
     }return _curWordCount;
 }
 
 -(NSInteger)maxWordCount{
     if(!_maxWordCount){
-        _maxWordCount = 0;
+   
     }return _maxWordCount;
 }
 
 -(NSString *)text{
     if(!_text){
-        _text = JobsInternationalization(@"");
+        _text = @"";
     }return _text;
 }
 
@@ -179,13 +181,15 @@ UIViewModelProtocol_synthesize
 
 -(NSMutableArray<JobsRichTextConfig *> *)titleAttributedDataMutArr{
     if(!_titleAttributedDataMutArr){
-        
+        _titleAttributedDataMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            
+        });
     }return _titleAttributedDataMutArr;
 }
 
 -(NSString *)selectedText{
     if(!_selectedText){
-        _selectedText = JobsInternationalization(@"");
+        _selectedText = @"";
     }return _selectedText;
 }
 
@@ -209,14 +213,30 @@ UIViewModelProtocol_synthesize
 
 -(NSMutableArray<JobsRichTextConfig *> *)selectedTitleAttributedDataMutArr{
     if(!_selectedTitleAttributedDataMutArr){
-        
+        _selectedTitleAttributedDataMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            
+        });
     }return _selectedTitleAttributedDataMutArr;
 }
 
 -(NSMutableArray<JobsReturnIDByIDBlock> *)jobsBlockMutArr{
     if(!_jobsBlockMutArr){
-        _jobsBlockMutArr = NSMutableArray.array;
+        _jobsBlockMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            
+        });
     }return _jobsBlockMutArr;
+}
+
+-(UIButtonModel *)buttonModel{
+    if(!_buttonModel){
+        _buttonModel = UIButtonModel.new;
+    }return _buttonModel;
+}
+
+-(UIButtonModel *)subButtonModel{
+    if(!_subButtonModel){
+        _subButtonModel = UIButtonModel.new;
+    }return _subButtonModel;
 }
 
 @end

@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— Common
 @property(nonatomic,assign)NSTextAlignment textAlignment;/// 主文字对齐方式
 @property(nonatomic,assign)NSLineBreakMode lineBreakMode;/// 主文字提行方式
+@property(nonatomic,assign)NSTextAlignment subTextAlignment;/// 副文字对齐方式
+@property(nonatomic,assign)NSLineBreakMode subLineBreakMode;/// 副文字提行方式
 @property(nonatomic,assign)CGFloat textLineSpacing;
 @property(nonatomic,copy)NSString *placeholder;
 @property(nonatomic,strong)UIColor *placeholderColor;
@@ -48,7 +50,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)UIColor *selectedSubTextCor;/// 主字体颜色
 @property(nonatomic,strong,nullable)NSAttributedString *selectedAttributedSubText API_AVAILABLE(ios(6.0));
 @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *> *selectedSubTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
-
 @end
 
 NS_ASSUME_NONNULL_END
@@ -58,6 +59,7 @@ NS_ASSUME_NONNULL_END
 #ifndef UITextModelProtocol_UIViewModelSynthesize
 #define UITextModelProtocol_UIViewModelSynthesize \
 @synthesize lineBreakMode = _lineBreakMode;\
+@synthesize subLineBreakMode = _subLineBreakMode;\
 
 #endif
 
@@ -65,6 +67,7 @@ NS_ASSUME_NONNULL_END
 #define UITextModelProtocol_synthesize \
 \
 @synthesize textAlignment = _textAlignment;\
+@synthesize subTextAlignment = _subTextAlignment;\
 @synthesize textLineSpacing = _textLineSpacing;\
 @synthesize placeholder = _placeholder;\
 @synthesize placeholderColor = _placeholderColor;\
@@ -90,7 +93,9 @@ NS_ASSUME_NONNULL_END
 #ifndef UITextModelProtocol_dynamic
 #define UITextModelProtocol_dynamic \
 @dynamic textAlignment;\
+@dynamic subTextAlignment;\
 @dynamic lineBreakMode;\
+@dynamic subLineBreakMode;\
 @dynamic textLineSpacing;\
 @dynamic placeholder;\
 @dynamic placeholderColor;\

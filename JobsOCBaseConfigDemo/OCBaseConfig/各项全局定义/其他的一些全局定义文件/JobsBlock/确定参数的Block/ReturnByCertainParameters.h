@@ -144,7 +144,18 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleBlock)(NSString *_N
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAndFontBlock)(NSString *_Nonnull title,UIFont *_Nonnull font);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAndFontAndTitleCorBlock)(NSString *_Nonnull title,UIFont *_Nonnull font,UIColor *_Nonnull titleCor);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNormalImageBlock)(UIImage *_Nonnull image);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByBackgroundImageBlock)(UIImage *_Nonnull BackgroundImage);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByBackgroundImageBlock)(UIImage *_Nonnull backgroundImage);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle1Block)(NSString *_Nonnull string,/// 主文字内容
+                                                                     UIFont *_Nonnull font,/// 字体大小
+                                                                     UIColor *_Nonnull textCor,/// 主文字颜色
+                                                                     UIImage *_Nonnull image,/// 按钮图片
+                                                                     NSDirectionalRectEdge directionalRectEdge,/// 图文相对位置
+                                                                     CGFloat x);/// 图文距离
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle2Block)(NSString *_Nonnull string,/// 主文字内容
+                                                                     UIFont *_Nonnull font,/// 字体大小
+                                                                     UIColor *_Nonnull textCor,/// 主文字颜色
+                                                                     UIImage *_Nonnull image,/// 按钮图片
+                                                                     CGFloat x);/// 图文距离
 
 typedef id _Nullable(^JobsReturnIDByNSIntegerBlock)(NSInteger data);
 typedef id _Nullable(^JobsReturnIDByUIntegerBlock)(NSUInteger data);

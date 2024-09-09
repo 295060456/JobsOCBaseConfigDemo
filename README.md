@@ -3700,7 +3700,31 @@ static const uint32_t kSequenceBits = 12;
 
   * **BaseButtonProtocol.h**
   
-    ```
+    ```objective-c
+    @protocol BaseButtonProtocol <BaseViewProtocol>
+    @optional
+    #pragma mark —— UIButton + UI
+    /// 为了迎合点语法而故意把下列方法属性化
+    /// Common
+    @property(nonatomic,strong)UIButtonConfiguration *buttonConfiguration;
+    @property(nonatomic,strong)UIBackgroundConfiguration *backgroundConfiguration;
+    @property(nonatomic,assign)NSTextAlignment titleAlignment;
+    @property(nonatomic,assign)UIButtonConfigurationTitleAlignment buttonConfigurationTitleAlignment;
+    @property(nonatomic,assign)BOOL jobsSelected;
+    #pragma mark —— JobsBtnModel
+    @property(nonatomic,strong)UIColor *btnBackgroundColor;
+    @property(nonatomic,assign)CGSize imageSize;
+    /// 结合下列属性来实现改变Button文字位置
+    @property(nonatomic,assign)UIControlContentHorizontalAlignment contentHorizontalAlignment;
+    @property(nonatomic,assign)UIControlContentVerticalAlignment contentVerticalAlignment;
+    @property(nonatomic,assign)NSDirectionalRectEdge directionalRectEdge;
+    @property(nonatomic,assign)UIEdgeInsets contentEdgeInsets;/// iOS 15以前可以用
+    @property(nonatomic,readwrite,assign)NSDirectionalEdgeInsets contentInsets;/// iOS 15以后 结合UIButtonConfiguration 以替换属性：UIEdgeInsets contentEdgeInsets;
+    @property(nonatomic,assign)CGFloat contentSpacing;
+    @property(nonatomic,assign)NSLineBreakMode lineBreakMode;
+    @property(nonatomic,assign)NSLineBreakMode subLineBreakMode;
+    @property(nonatomic,assign)CGFloat btnWidth;/// 预设值，父视图的宽度不能大于这个值
+    #pragma mark —— 以前的
     /// ⚠️执行return的顺序依照下列👇🏻属性的排序⚠️
     ///【组 1】UIButton 单独自定义设置系统自带控件的Frame【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️
     @property(nonatomic,assign)CGRect textLabelFrame;
@@ -3741,6 +3765,26 @@ static const uint32_t kSequenceBits = 12;
     @property(nonatomic,assign)CGFloat imageViewFrameOffsetY;
     @property(nonatomic,assign)CGFloat imageViewFrameOffsetWidth;
     @property(nonatomic,assign)CGFloat imageViewFrameOffsetHeight;
+    //具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    -(void)richElementsInButtonWithModel:(id _Nullable)model;
+    #pragma mark —— 用类方法定义
+    //具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    +(CGFloat)buttonWidthWithModel:(id _Nullable)model;
+    //具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    +(CGFloat)buttonHeightWithModel:(id _Nullable)model;
+    //具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    +(CGSize)buttonSizeWithModel:(id _Nullable)model;
+    //具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    +(CGRect)buttonFrameWithModel:(id _Nullable)model;
+    #pragma mark —— 用实例方法定义
+    //具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    -(CGFloat)buttonWidthWithModel:(id _Nullable)model;
+    //具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    -(CGFloat)buttonHeightWithModel:(id _Nullable)model;
+    //具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    -(CGSize)buttonSizeWithModel:(id _Nullable)model;
+    //具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    -(CGRect)buttonFrameWithModel:(id _Nullable)model;
     ```
   
 * 系统配置文件
@@ -3874,44 +3918,58 @@ static const uint32_t kSequenceBits = 12;
   
   -(NSMutableArray<NSString *> *)richTextMutArr{
      if (!_richTextMutArr) {
-         _richTextMutArr = NSMutableArray.array;
-         _richTextMutArr.add(JobsInternationalization(@"观看完整教学视频需支付"));
-         _richTextMutArr.add(JobsInternationalization(@"99"));
-         _richTextMutArr.add(JobsInternationalization(@"Mata值"));
+         _richTextMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+             data.add(JobsInternationalization(@"观看完整教学视频需支付"));
+             data.add(JobsInternationalization(@"99"));
+             data.add(JobsInternationalization(@"Mata值"));
+         });
      }return _richTextMutArr;
   }
   
   -(NSMutableArray<JobsRichTextConfig *> *)JobsRichTextConfigMutArr{
      if (!_JobsRichTextConfigMutArr) {
-         _JobsRichTextConfigMutArr = NSMutableArray.array;
-         {
-             JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-             config_01.font = UIFontWeightRegularSize(14);
-             config_01.textCor = JobsCor(@"#666666");
-             config_01.targetString = self.richTextMutArr[0];
-             config_01.paragraphStyle = self.jobsParagraphStyleCenter;
-             [_JobsRichTextConfigMutArr addObject:config_01];
-         }
+         _JobsRichTextConfigMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+             {
+                 JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
+                 config_01.font = UIFontWeightRegularSize(14);
+                 config_01.textCor = JobsCor(@"#666666");
+                 config_01.targetString = self.richTextMutArr[0];
+                 config_01.paragraphStyle = self.jobsParagraphStyleCenter;
+                 data.add(config_01);
+             }
   
-         {
-             JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-             config_02.font = UIFontWeightRegularSize(14);
-             config_02.textCor = JobsCor(@"#BA9B77");
-             config_02.targetString = self.richTextMutArr[1];
-             config_02.paragraphStyle = self.jobsParagraphStyleCenter;
-             [_JobsRichTextConfigMutArr addObject:config_02];
-         }
+             {
+                 JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
+                 config_02.font = UIFontWeightRegularSize(14);
+                 config_02.textCor = JobsCor(@"#BA9B77");
+                 config_02.targetString = self.richTextMutArr[1];
+                 config_02.paragraphStyle = self.jobsParagraphStyleCenter;
+                 data.add(config_02);
+             }
   
-         {
-             JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
-             config_03.font = UIFontWeightRegularSize(14);
-             config_03.textCor = JobsCor(@"#666666");
-             config_03.targetString = self.richTextMutArr[2];
-             config_03.paragraphStyle = self.jobsParagraphStyleCenter;
-             [_JobsRichTextConfigMutArr addObject:config_03];
-         }
+             {
+                 JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
+                 config_03.font = UIFontWeightRegularSize(14);
+                 config_03.textCor = JobsCor(@"#666666");
+                 config_03.targetString = self.richTextMutArr[2];
+                 config_03.paragraphStyle = self.jobsParagraphStyleCenter;
+                 data.add(config_03);
+             }
+         });
      }return _JobsRichTextConfigMutArr;
   }
+  ```
+  
+* <font color=red>**因为此Api过于冗长且较为繁琐，所以对上述Api的二次封装**</font>
+
+  ```objective-c
+  BaseButton *d = BaseButton.initByTitle(@"444").onClick(^(UIButton *btn){
+     NSLog(@"");
+  }).onLongPressGesture(^(id data){
+     NSLog(@"");
+  });
+  self.view.addSubview(d);
+  d.frame = CGRectMake(100, 100, 100, 100);
   ```
   
 * 对按钮各项属性的设置
@@ -3939,6 +3997,7 @@ static const uint32_t kSequenceBits = 12;
     ```
   
   * ```objective-c
+    #pragma mark —— 一些通用修改（已做Api向下兼容）
     /// 重设Btn的描边：线宽和线段的颜色
     -(jobsByColor_FloatBlock)jobsResetBtnlayerBorderCorAndWidth;
     /// 重设Btn的描边线段的颜色
@@ -3947,19 +4006,58 @@ static const uint32_t kSequenceBits = 12;
     -(jobsByFloatBlock)jobsResetBtnlayerBorderWidth;
     /// 重设Btn的圆切角
     -(jobsByCGFloatBlock)jobsResetBtnCornerRadiusValue;
-    /// 重设Btn主标题的文字内容
+    /// 重设Btn主标题的文字内容 ❤️优先级高于jobsResetTitle 和 normalTitle❤️
     -(jobsByStringBlock)jobsResetBtnTitle;
+    /// 重设Btn副标题的文字内容
+    -(jobsByStringBlock)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
+    /// 修改主标题的对齐方式
+    -(jobsByTextAlignmentBlock _Nonnull)jobsResetTitleTextAlignment API_AVAILABLE(ios(16.0));
+    /// 修改副标题的对齐方式
+    -(jobsByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0));
     /// 重设Btn.Image
     -(jobsByImageBlock)jobsResetBtnImage;
     /// 重设Btn主标题的文字颜色
     -(jobsByCorBlock)jobsResetBtnTitleCor;
+    /// 重设Btn副标题的文字颜色
+    -(jobsByCorBlock)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
     /// 重设Btn主标题的背景颜色
     -(jobsByCorBlock)jobsResetBtnBgCor;
     /// 重设Btn的背景图片
     -(jobsByImageBlock)jobsResetBtnBgImage;
+    -(jobsByBOOLBlock _Nonnull)makeNewLineShows;
+    -(jobsByNSIntegerBlock _Nonnull)titleAlignment;
+    -(jobsByFontBlock _Nonnull)titleFont;
+    -(jobsByFontBlock _Nonnull)subTitleFont;
+    -(jobsByImageBlock _Nonnull)normalImage;
+    -(jobsByImageBlock _Nonnull)normalBackgroundImage;
+    -(jobsByStringBlock _Nonnull)normalTitle;
+    -(jobsByCorBlock _Nonnull)normalTitleColor;
+    -(jobsByCorBlock _Nonnull)subTitleColor;
+    /// 富文本
+    -(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle;
+    -(jobsByCGFloatBlock _Nonnull)resetCornerRadius;
+    -(jobsByCorBlock _Nonnull)resetLayerBorderCor;
+    -(jobsByCGFloatBlock _Nonnull)resetBorderWidth;
+    #pragma mark —— UIButton.带状态 set
+    /// 设置 UIButton 已选择状态下的 按钮图片
+    -(jobsByImageBlock _Nonnull)selectedImage;
+    /// 设置 UIButton 已选择状态下的 按钮背景图片
+    -(jobsByImageBlock _Nonnull)selectedBackgroundImage;
+    /// 设置 UIButton 已选择状态下的 按钮主标题
+    -(jobsByStringBlock _Nonnull)selectedTitle;
+    /// 设置 UIButton 已选择状态下的 按钮主标题的颜色
+    -(jobsByCorBlock _Nonnull)selectedTitleColor;
+    /// 设置 UIButton 已选择状态下的 按钮主标题的富文本内容
+    -(jobsByAttributedStringBlock _Nonnull)selectedAttributedTitle;
     ```
-  
+    
   * ```objective-c
+    /**
+     1、一一对应UIButtonConfiguration.h文件里面的属性
+     2、只有通过UIButtonConfiguration创建的UIButton，这个UIbutton的configuration属性才不为空
+     3、要修改通过UIButtonConfiguration创建的UIButton的各属性值，只有通过下列方式方可以
+     */
+    #pragma mark —— UIButton.configuration的各项属性值的修改
     -(JobsReturnButtonConfigurationByBackgroundBlock _Nonnull)jobsResetBackground API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetBackgroundImage API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByCornerStyleBlock _Nonnull)jobsResetCornerStyle API_AVAILABLE(ios(16.0));
@@ -3972,6 +4070,7 @@ static const uint32_t kSequenceBits = 12;
     -(JobsReturnButtonConfigurationByShowsActivityIndicatorBlock _Nonnull)jobsResetShowsActivityIndicator API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByActivityIndicatorColorTransformerBlock _Nonnull)jobsResetActivityIndicatorColorTransformer API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetTitle API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetSubTitle API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByAttributedTitleBlock _Nonnull)jobsResetAttributedTitle API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByTitleTextAttributesTransformerBlock _Nonnull)jobsResetTitleTextAttributesTransformer API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByTitleLineBreakModeBlock _Nonnull)jobsResetTitleLineBreakMode API_AVAILABLE(ios(16.0));
