@@ -8,7 +8,7 @@
 #import "UIButton+SimplyMake.h"
 
 @implementation UIButton (SimplyMake)
-/// 仅仅依靠标题创建
+/// 仅仅依靠标题内容（普通文本）进行创建
 +(JobsReturnButtonByTitleBlock)initByTitle{
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title){
         return [BaseButton.alloc jobsInitBtnByConfiguration:nil
@@ -54,7 +54,7 @@
         }];
     };
 }
-/// 依靠标题和字体
+/// 依靠标题内容和字体大小进行创建
 +(JobsReturnButtonByTitleAndFontBlock)initByTitleAndFont{
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
                                          UIFont *_Nonnull font){
@@ -101,7 +101,7 @@
         }];
     };
 }
-/// 依靠标题
+/// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
 +(JobsReturnButtonByTitleAndFontAndTitleCorBlock)initByTitleAndFontAndTitleCor{
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
                                          UIFont *_Nonnull font,
@@ -149,7 +149,7 @@
         }];
     };
 }
-
+/// 仅仅靠按钮图片进行创建
 +(JobsReturnButtonByNormalImageBlock)initByNormalImage{
     return ^__kindof UIButton *_Nullable(UIImage *_Nonnull image){
         return [BaseButton.alloc jobsInitBtnByConfiguration:nil
@@ -195,7 +195,7 @@
         }];
     };
 }
-
+/// 仅仅依靠按钮背景图进行创建
 +(JobsReturnButtonByBackgroundImageBlock)initByBackgroundImage{
     return ^__kindof UIButton *_Nullable(UIImage *_Nonnull image){
         return [BaseButton.alloc jobsInitBtnByConfiguration:nil
@@ -241,7 +241,9 @@
         }];
     };
 }
-
+/// 依靠UIViewModel进行创建
+/// 依靠UITextModel进行创建
+#pragma mark —— 一些公有方法
 -(JobsReturnButtonByClickBlock)onClick{
     return ^UIButton *(jobsByBtnBlock block) {
         UIButton.clickBlock = block;
