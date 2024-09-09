@@ -69,6 +69,7 @@
 		CE84D3852C8EBF3D005DE167 /* JobsTabBarSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84D37C2C8EBF1C005DE167 /* JobsTabBarSettingVC.m */; };
 		CE84D3862C8EC45D005DE167 /* JobsBaseDataSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84D36D2C8EBF1C005DE167 /* JobsBaseDataSettingVC.m */; };
 		CE84D3872C8EC460005DE167 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84D36A2C8EBF1C005DE167 /* BaseViewController.m */; };
+		CE84D5092C8F03F4005DE167 /* UIButton+SimplyMake.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84D5072C8F03EF005DE167 /* UIButton+SimplyMake.m */; };
 		CE8877A92C50B3090085948C /* JobsRichTextConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877A72C50B3090085948C /* JobsRichTextConfig.m */; };
 		CE8877BD2C51F1FF0085948C /* JobsNavBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */; };
 		CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877BB2C51F1FF0085948C /* JobsNavBar.m */; };
@@ -1296,6 +1297,8 @@
 		CE84D3792C8EBF1C005DE167 /* JobsStatusBarSetttingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsStatusBarSetttingVC.m; sourceTree = "<group>"; };
 		CE84D37B2C8EBF1C005DE167 /* JobsTabBarSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTabBarSettingVC.h; sourceTree = "<group>"; };
 		CE84D37C2C8EBF1C005DE167 /* JobsTabBarSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTabBarSettingVC.m; sourceTree = "<group>"; };
+		CE84D5062C8F03EF005DE167 /* UIButton+SimplyMake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+SimplyMake.h"; sourceTree = "<group>"; };
+		CE84D5072C8F03EF005DE167 /* UIButton+SimplyMake.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SimplyMake.m"; sourceTree = "<group>"; };
 		CE8877A62C50B3090085948C /* JobsRichTextConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsRichTextConfig.h; sourceTree = "<group>"; };
 		CE8877A72C50B3090085948C /* JobsRichTextConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsRichTextConfig.m; sourceTree = "<group>"; };
 		CE8877B72C51F1FF0085948C /* JobsNavBarConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNavBarConfig.h; sourceTree = "<group>"; };
@@ -3996,6 +3999,15 @@
 				CE84D37D2C8EBF1C005DE167 /* JobsTabBarSettingVC */,
 			);
 			path = BaseVC;
+			sourceTree = "<group>";
+		};
+		CE84D5082C8F03EF005DE167 /* UIButton+SimplyMake */ = {
+			isa = PBXGroup;
+			children = (
+				CE84D5062C8F03EF005DE167 /* UIButton+SimplyMake.h */,
+				CE84D5072C8F03EF005DE167 /* UIButton+SimplyMake.m */,
+			);
+			path = "UIButton+SimplyMake";
 			sourceTree = "<group>";
 		};
 		CE8877A82C50B3090085948C /* JobsRichTextConfig */ = {
@@ -10777,6 +10789,7 @@
 		CECE835F2C4513CD00764AF5 /* UIButton+Category */ = {
 			isa = PBXGroup;
 			children = (
+				CE84D5082C8F03EF005DE167 /* UIButton+SimplyMake */,
 				CECE834C2C4513CD00764AF5 /* UIButton+Animation */,
 				CECE834F2C4513CD00764AF5 /* UIButton+Extra */,
 				CECE83532C4513CD00764AF5 /* UIButton+ImageTitleSpacing */,
@@ -14532,6 +14545,7 @@
 				CECE7EA92C450E5B00764AF5 /* KTVHCHTTPServer.m in Sources */,
 				CECE7C402C450C5000764AF5 /* JobsPlayerTBVCell.m in Sources */,
 				CECE80BA2C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.m in Sources */,
+				CE84D5092C8F03F4005DE167 /* UIButton+SimplyMake.m in Sources */,
 				CECE7EB62C450E5B00764AF5 /* TKPermissionFolders.m in Sources */,
 				CECE852A2C4513CE00764AF5 /* JobsTuple.m in Sources */,
 				CECE85592C4513CE00764AF5 /* NSObject+Sound.m in Sources */,

@@ -140,6 +140,12 @@ typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitlePa
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitleAlignmentBlock)(UIButtonConfigurationTitleAlignment data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock)(BOOL data) API_AVAILABLE(ios(16.0));
 
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleBlock)(NSString *_Nonnull title);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAndFontBlock)(NSString *_Nonnull title,UIFont *_Nonnull font);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAndFontAndTitleCorBlock)(NSString *_Nonnull title,UIFont *_Nonnull font,UIColor *_Nonnull titleCor);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNormalImageBlock)(UIImage *_Nonnull image);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByBackgroundImageBlock)(UIImage *_Nonnull BackgroundImage);
+
 typedef id _Nullable(^JobsReturnIDByNSIntegerBlock)(NSInteger data);
 typedef id _Nullable(^JobsReturnIDByUIntegerBlock)(NSUInteger data);
 typedef id _Nullable(^JobsReturnIDByCGFloatBlock)(CGFloat data);

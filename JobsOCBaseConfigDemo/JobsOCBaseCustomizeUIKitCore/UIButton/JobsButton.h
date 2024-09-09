@@ -19,6 +19,7 @@
 #import "UIButton+Animation.h"
 
 #import "UIButton+Extra.h"
+#import "UIButton+SimplyMake.h"
 
 #pragma mark —— Base
 /// 不规则多边形按钮
