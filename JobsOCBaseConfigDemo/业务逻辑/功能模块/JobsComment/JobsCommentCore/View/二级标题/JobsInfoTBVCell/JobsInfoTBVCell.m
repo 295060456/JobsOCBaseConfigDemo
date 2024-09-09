@@ -52,7 +52,7 @@ BaseProtocol_synthesize
 #pragma mark —— 复写系统父类方法
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.imageView.size = JobsCommentConfig.sharedInstance.headerImageViewSize;//subTitleOffset
+    self.imageView.Size = JobsCommentConfig.sharedInstance.headerImageViewSize;//subTitleOffset
     self.imageView.cornerCutToCircleWithCornerRadius(self.imageView.height / 2);
     self.textLabel.font = JobsCommentConfig.sharedInstance.titleFont;
     self.detailTextLabel.font = JobsCommentConfig.sharedInstance.subTitleFont;

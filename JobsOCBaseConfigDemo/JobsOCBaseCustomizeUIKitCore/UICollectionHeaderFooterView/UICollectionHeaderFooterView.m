@@ -11,12 +11,11 @@
 /// UI
 @property(nonatomic,strong)UIImageView *imageView;
 /// Data
-@property(nonatomic,assign)CGRect imageViewFrame;
 
 @end
 
 @implementation UICollectionHeaderFooterView
-
+@synthesize imageViewFrame = _imageViewFrame;
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{

@@ -614,7 +614,11 @@
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat width
 -(CGFloat)width{
-    return self.frame.size.width;
+    if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+        return MAX(self.frame.size.width, self.frame.size.height);
+    }else{
+        return MIN(self.frame.size.width, self.frame.size.height);
+    }
 }
 
 -(void)setWidth:(CGFloat)width{
@@ -622,7 +626,11 @@
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat height
 -(CGFloat)height{
-    return self.frame.size.height;
+    if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+        return MIN(self.frame.size.width, self.frame.size.height);
+    }else{
+        return MAX(self.frame.size.width, self.frame.size.height);
+    }
 }
 
 -(void)setHeight:(CGFloat)height{
@@ -654,7 +662,7 @@
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat right
 -(CGFloat)right{
-    return self.frame.origin.x + self.frame.size.width;
+    return self.frame.origin.x + self.width;
 }
 
 -(void)setRight:(CGFloat)right{
@@ -670,22 +678,22 @@
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat bottom
 -(CGFloat)bottom{
-    return self.frame.origin.y + self.frame.size.height;
+    return self.frame.origin.y + self.height;
 }
 
 -(void)setBottom:(CGFloat)bottom{
     self.frame = self.resetOriginY(bottom - self.height);
 }
-#pragma mark —— @property(nonatomic,assign)CGSize size
--(CGSize)size{
-    return self.frame.size;
+#pragma mark —— @property(nonatomic,assign)CGSize Size
+-(CGSize)Size{
+    return CGSizeMake(self.width, self.height);
 }
 
 -(void)setSize:(CGSize)size{
     self.frame = self.resetSize(size);
 }
-#pragma mark —— @property(nonatomic,assign)CGPoint origin
--(CGPoint)origin{
+#pragma mark —— @property(nonatomic,assign)CGPoint Origin
+-(CGPoint)Origin{
     return self.frame.origin;
 }
 

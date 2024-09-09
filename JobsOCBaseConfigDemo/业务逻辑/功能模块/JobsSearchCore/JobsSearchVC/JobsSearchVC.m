@@ -9,7 +9,7 @@
 
 @interface JobsSearchVC ()
 /// UI
-@property(nonatomic,strong)UIButton *scanBtn;
+@property(nonatomic,strong)BaseButton *scanBtn;
 @property(nonatomic,strong)BaseTableView *tableView;
 @property(nonatomic,strong)JobsSearchBar *jobsSearchBar;
 @property(nonatomic,strong)JobsDropDownListView *dropDownListView;
@@ -430,7 +430,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 -(JobsSearchBar *)jobsSearchBar{
     if (!_jobsSearchBar) {
         _jobsSearchBar = JobsSearchBar.new;
-        _jobsSearchBar.size = [JobsSearchBar viewSizeWithModel:nil];
+        _jobsSearchBar.Size = [JobsSearchBar viewSizeWithModel:nil];
         _jobsSearchBar.jobsRichElementsInViewWithModel(nil);
         @jobs_weakify(self)
         [_jobsSearchBar actionObjectBlock:^(NSString *data) {
@@ -462,13 +462,51 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }return _jobsSearchBar;
 }
 
--(UIButton *)scanBtn{
+-(BaseButton *)scanBtn{
     if (!_scanBtn) {
-        _scanBtn = UIButton.new;
-        _scanBtn.normalBackgroundImage(JobsIMG(@"扫描"));
-        [_scanBtn jobsBtnClickEventBlock:^id(id data) {
+        @jobs_weakify(self)
+        _scanBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                                     background:nil
+                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                                  textAlignment:NSTextAlignmentCenter
+                                               subTextAlignment:NSTextAlignmentCenter
+                                                    normalImage:JobsIMG(@"扫描")
+                                                 highlightImage:nil
+                                                attributedTitle:nil
+                                        selectedAttributedTitle:nil
+                                             attributedSubtitle:nil
+                                                          title:nil
+                                                       subTitle:nil
+                                                      titleFont:nil
+                                                   subTitleFont:nil
+                                                       titleCor:nil
+                                                    subTitleCor:nil
+                                             titleLineBreakMode:NSLineBreakByWordWrapping
+                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                            baseBackgroundColor:nil
+                                                backgroundImage:nil
+                                                   imagePadding:JobsWidth(0)
+                                                   titlePadding:JobsWidth(0)
+                                                 imagePlacement:NSDirectionalRectEdgeNone
+                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                              cornerRadiusValue:JobsWidth(0)
+                                                roundingCorners:UIRectCornerAllCorners
+                                           roundingCornersRadii:CGSizeZero
+                                                 layerBorderCor:nil
+                                                    borderWidth:JobsWidth(0)
+                                                  primaryAction:nil
+                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                                                                    id _Nullable arg) {
+             NSLog(@"按钮的长按事件触发");
+             return nil;
+         }
+                                                clickEventBlock:^id(BaseButton *x){
+             @jobs_strongify(self)
+             if (self.objectBlock) self.objectBlock(x);
             toast(JobsInternationalization(@"此功能尚未开发"));
-            return nil;
+             return nil;
         }];
     }return _scanBtn;
 }

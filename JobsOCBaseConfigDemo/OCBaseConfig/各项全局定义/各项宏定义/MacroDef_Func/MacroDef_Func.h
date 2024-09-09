@@ -64,6 +64,7 @@ static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
         }
     }return mainWindow;
 }
+
 //static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
 //    UIWindow *window = nil;
 //    /// 使用UIWindowScene（需要iOS 13及更高版本）来获取主窗口
@@ -92,7 +93,7 @@ static inline UIWindow *_Nullable jobsGetMainWindow(void){
 static inline UIWindow *_Nullable jobsGetMainWindowWithSize(void){
     UIWindow *window = nil;
     window = NSObject.mainWindow();
-    return CGSizeEqualToSize(CGSizeZero, window.size) ? jobsGetMainWindowBefore13() : window;
+    return CGSizeEqualToSize(CGSizeZero, window.Size) ? jobsGetMainWindowBefore13() : window;
 }
 /// 获取 keyWindowScene iOS 13版本后可用
 static inline UIWindowScene *_Nullable jobsGetkeyWindowScene(void) {

@@ -53,7 +53,7 @@
 -(jobsByViewBlock _Nonnull)popupShowSlideWithView{
     return ^(UIView __kindof * _Nullable view) {
         if (!view) return;
-        TFPopupParam *popupParameter = makeSlidePopupParameterByViewHeight(view.size.height);
+        TFPopupParam *popupParameter = makeSlidePopupParameterByViewHeight(view.Size.height);
         if(AppDelegate.tabBarVC){
             [view tf_showSlide:AppDelegate.tabBarVC.view
                      direction:popupParameter.bubbleDirection
@@ -106,7 +106,7 @@
 /// 公告
 -(JobsNoticePopupView *)noticePopupView{
     JobsNoticePopupView *_noticePopupView = JobsNoticePopupView.new;
-    _noticePopupView.size = [JobsNoticePopupView viewSizeWithModel:nil];
+    _noticePopupView.Size = [JobsNoticePopupView viewSizeWithModel:nil];
     _noticePopupView.jobsRichElementsInViewWithModel(UIViewModel.new);
     return _noticePopupView;
 }

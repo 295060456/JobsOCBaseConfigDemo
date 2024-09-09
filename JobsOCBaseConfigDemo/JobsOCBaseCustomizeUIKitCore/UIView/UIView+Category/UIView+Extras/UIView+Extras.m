@@ -18,13 +18,13 @@
 
 -(jobsByStringBlock _Nonnull)jobsLogPoint{
     return ^(NSString *_Nonnull str) {
-        NSLog(@"%@ = %@", str, NSStringFromCGPoint(self.origin));
+        NSLog(@"%@ = %@", str, NSStringFromCGPoint(self.Origin));
     };
 }
 
 -(jobsByStringBlock _Nonnull)jobsLogSize{
     return ^(NSString *_Nonnull str) {
-        NSLog(@"%@ = %@", str, NSStringFromCGSize(self.size));
+        NSLog(@"%@ = %@", str, NSStringFromCGSize(self.Size));
     };
 }
 #pragma mark —— 键盘事件

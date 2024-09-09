@@ -11,10 +11,8 @@
 @protocol HAHandleDemoViewDelegate <NSObject>
 
 @optional
-
-- (void)animationCompleted;
-
-- (void)animationCancel;
+-(void)animationCompleted;
+-(void)animationCancel;
 
 @end
 
@@ -24,9 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<HAHandleDemoViewDelegate> delegate;
 
-- (void)handleBtnTouchDownAction;
-
-- (void)handleBtnTouchUpOutsideAction;
+-(void)handleBtnTouchDownAction;
+-(void)handleBtnTouchUpOutsideAction;
 
 @end
 

@@ -4799,8 +4799,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         [super viewDidLoad];
     #pragma mark —— JobsNavBar <BaseViewControllerProtocol> 仅做Demo演示
         self.makeNavBarConfig(nil,nil);
-        self.navBar.getBackBtn.normalTitleColor(JobsWhiteColor);
-        self.navBar.getBackBtn.jobsVisible = YES;
+        self.navBar.backBtn.normalTitleColor(JobsWhiteColor);
+        self.navBar.backBtn.jobsVisible = YES;
         self.navBar.jobsVisible = YES;
     #pragma mark —— GKNavigationBar -(void)makeGKNavigationBarConfigure 仅做Demo演示
         self.gk_statusBarHidden = NO;
@@ -4925,8 +4925,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   * ```objective-c
     self.makeNavBarConfig(nil,nil);
-    self.navBar.getBackBtn.normalTitleColor(JobsWhiteColor);
-    self.navBar.getBackBtn.jobsVisible = YES;
+    self.navBar.backBtn.normalTitleColor(JobsWhiteColor);
+    self.navBar.backBtn.jobsVisible = YES;
     self.navBar.jobsVisible = YES;
     ```
     
@@ -6998,6 +6998,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```objective-c
   _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
   ```
+
+* <font color=red>**滚动到指定行**</font>
+
+  * ```objective-c
+    NSInteger s = self.tableView.numberOfSections;/// 有多少组
+    if (s < 1) return;
+    NSInteger r = [self.tableView numberOfRowsInSection:s - 1];/// 最后一组有多少行
+    if (r < 1) return;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:r - 1 inSection:s - 1];/// 取最后一行数据
+    [self.tableView scrollToRowAtIndexPath:indexPath
+                          atScrollPosition:UITableViewScrollPositionBottom
+                                  animated:YES];/// 滚动到最后一行
+    ```
+
+  * ```objective-c
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];/// 取第一行数据
+    [self.tableView scrollToRowAtIndexPath:indexPath
+                          atScrollPosition:UITableViewScrollPositionTop
+                                  animated:YES];/// 滚动到第一行
+    ```
 
 * `tableHeaderView`也会随着**`UITableView`**的滚动而滚动
 

@@ -101,7 +101,7 @@ static const CGFloat OffsetBetweenStateLabelAndAnimationView = 5;//StateLabel �
                                                @"下拉刷新1.json");
         _animationView = [LOTAnimationView animationWithFilePath:filePaths];
         _animationView.loopAnimation = YES;
-        _animationView.size = self.lOTAnimationViewSize;
+        _animationView.Size = self.lOTAnimationViewSize;
         [self addSubview:_animationView];
     }return _animationView;
 }

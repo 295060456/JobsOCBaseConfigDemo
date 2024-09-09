@@ -20,13 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JobsNavBar : BaseImageView
 /// Data
 @property(nonatomic,strong)JobsNavBarConfig *navBarConfig;
-// 左中右三个控件
--(BaseButton *)getBackBtn;
--(UILabel *)getTitleLab;
--(BaseButton *)getCloseBtn;
-// 返回按钮的回调
+/// 左中右三个控件
+-(BaseButton *)backBtn;
+-(UILabel *)titleLab;
+-(BaseButton *)closeBtn;
+/// 返回按钮的回调
 -(void)actionNavBarBackBtnClickBlock:(JobsNavBarBackBtnClickAction)objectBlock;
-// 关闭按钮的回调
+/// 关闭按钮的回调
 -(void)actionNavBarCloseBtnClickBlock:(JobsNavBarCloseBtnClickAction)objectBlock;
 
 @end

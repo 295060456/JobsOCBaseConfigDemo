@@ -297,7 +297,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(BaiShaETProjChoiceStadiumView *)choiceStadiumView{
     if (!_choiceStadiumView) {
         _choiceStadiumView = BaiShaETProjChoiceStadiumView.new;
-        _choiceStadiumView.size = [BaiShaETProjChoiceStadiumView viewSizeWithModel:nil];
+        _choiceStadiumView.Size = [BaiShaETProjChoiceStadiumView viewSizeWithModel:nil];
         _choiceStadiumView.jobsRichElementsInViewWithModel(nil);
     }return _choiceStadiumView;
 }

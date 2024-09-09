@@ -53,8 +53,8 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     /// 内部指定圆切角
-    //    [self layoutSubviewsCutCnrByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
-    //                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+//    [self layoutSubviewsCutCnrByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
+//                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -67,8 +67,6 @@
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-//        self.viewModel = model ? : UIViewModel.new;
-//        MakeDataNull
         if (self.navBarConfig.bgImage) {
             self.image = self.navBarConfig.bgImage;
         }else{
@@ -126,7 +124,6 @@
 }
 
 -(UILabel *)titleLab{
-    @jobs_weakify(self)
     if(!_titleLab){
         _titleLab = UILabel.new;
         _titleLab.text = NavBarConfig.title;
@@ -148,7 +145,6 @@
 
 -(BaseButton *)backBtn{
     if(!_backBtn){
-        @jobs_weakify(self)
         JobsNavBarConfig *navBarConfig = self.navBarConfig;
         NSLog(@"%@",navBarConfig);
         _backBtn = [BaseButton.alloc jobsInitBtnByConfiguration:BackBtnModel.btnConfiguration
@@ -199,7 +195,6 @@
 
 -(BaseButton *)closeBtn{
     if(!_closeBtn){
-        @jobs_weakify(self)
         JobsNavBarConfig *navBarConfig = self.navBarConfig;
         NSLog(@"%@",navBarConfig);
         _closeBtn = [BaseButton.alloc jobsInitBtnByConfiguration:CloseBtnModel.btnConfiguration

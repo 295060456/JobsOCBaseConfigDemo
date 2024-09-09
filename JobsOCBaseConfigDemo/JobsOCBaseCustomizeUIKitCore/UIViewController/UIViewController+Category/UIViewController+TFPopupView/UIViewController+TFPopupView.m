@@ -47,7 +47,7 @@ JobsKey(_filtrationView)
     JobsFiltrationView *FiltrationView = Jobs_getAssociatedObject(_filtrationView);
     if (!FiltrationView) {
         FiltrationView = JobsFiltrationView.new;
-        FiltrationView.size = [JobsFiltrationView viewSizeWithModel:nil];
+        FiltrationView.Size = [JobsFiltrationView viewSizeWithModel:nil];
         FiltrationView.jobsRichElementsInViewWithModel(nil);
         Jobs_setAssociatedRETAIN_NONATOMIC(_filtrationView, FiltrationView)
     }return FiltrationView;
@@ -63,7 +63,7 @@ JobsKey(_customView)
     JobsCustomView *CustomView = Jobs_getAssociatedObject(_customView);
     if (!CustomView) {
         CustomView = JobsCustomView.new;
-        CustomView.size = [JobsFiltrationView viewSizeWithModel:nil];
+        CustomView.Size = [JobsFiltrationView viewSizeWithModel:nil];
         CustomView.jobsRichElementsInViewWithModel(nil);
         Jobs_setAssociatedRETAIN_NONATOMIC(_customView, CustomView)
     }return CustomView;

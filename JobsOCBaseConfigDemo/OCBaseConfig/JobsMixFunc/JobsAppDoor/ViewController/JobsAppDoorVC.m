@@ -446,7 +446,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
         _customerServiceBtn.normalTitle(Title8);
         _customerServiceBtn.normalImage(JobsIMG(@"客服"));
         [self.view addSubview:_customerServiceBtn];
-        _customerServiceBtn.size = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsMainScreen_WIDTH() / 9);
+        _customerServiceBtn.Size = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsMainScreen_WIDTH() / 9);
         _customerServiceBtn.centerX = JobsMainScreen_WIDTH() / 2;
         _customerServiceBtn.top = self.jobsAppDoorContentView.top + self.jobsAppDoorContentView.height + 20;
         self.customerServiceBtnY = _customerServiceBtn.y;

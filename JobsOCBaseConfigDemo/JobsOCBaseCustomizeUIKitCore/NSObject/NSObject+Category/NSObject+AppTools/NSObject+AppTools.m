@@ -26,11 +26,9 @@
 /// @param aSelector 相关逻辑
 +(void)targetView:(UIView *)targetView
 languageSwitchNotificationWithSelector:(SEL)aSelector{
-    @jobs_weakify(self)
     [self addNotificationName:JobsLanguageSwitchNotification
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
-        @jobs_strongify(self)
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;

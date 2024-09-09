@@ -70,7 +70,7 @@
             @jobs_strongify(self)
             if (isValue(self.textField.text)) {
                 self.cancelBtn.alpha = 1;
-                self.textField.width = TextFieldWidth - (self.cancelBtn.size.width + JobsWidth(5));
+                self.textField.width = TextFieldWidth - (self.cancelBtn.Size.width + JobsWidth(5));
             }return isValue(value);
         }] subscribeNext:^(NSString * _Nullable x) {
             @jobs_strongify(self)
@@ -152,7 +152,7 @@
 -(JobsAdNoticeView *)adNoticeView{
     if (!_adNoticeView) {
         _adNoticeView = JobsAdNoticeView.new;
-        _adNoticeView.size = [JobsAdNoticeView viewSizeWithModel:nil];
+        _adNoticeView.Size = [JobsAdNoticeView viewSizeWithModel:nil];
         _adNoticeView.jobsRichElementsInViewWithModel(nil);
     }return _adNoticeView;
 }

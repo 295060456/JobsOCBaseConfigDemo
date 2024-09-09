@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewProtocol.h"
+#import "JobsAppTools.h"
 #import "JobsBlock.h"
+#import <objc/runtime.h>
 
 @class UIViewModel;
 
@@ -38,8 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat right;
 @property(nonatomic,assign)CGFloat top;
 @property(nonatomic,assign)CGFloat bottom;
-@property(nonatomic,assign)CGSize size;
-@property(nonatomic,assign)CGPoint origin;
+@property(nonatomic,assign)CGSize Size;
+@property(nonatomic,assign)CGPoint Origin;
 #pragma mark —— 刷新UI
 -(jobsByVoidBlock)jobsRefreshUI;
 #pragma mark —— 交换宽高

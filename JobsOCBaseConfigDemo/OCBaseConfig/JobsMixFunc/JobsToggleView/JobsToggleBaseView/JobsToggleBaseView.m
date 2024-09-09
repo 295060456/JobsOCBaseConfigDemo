@@ -71,7 +71,9 @@ JobsToggleNavViewProtocolSynthesize
 }
 
 -(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return jobsEqualToZeroSize(self.toggleView_size) ? [JobsToggleBaseView viewSizeWithModel:nil] : self.toggleView_size;
+    if(!jobsEqualToZeroSize(self.toggleView_size)) return self.toggleView_size;
+    if(!jobsEqualToZeroSize(self.Size)) return self.Size;
+    return [JobsToggleBaseView viewSizeWithModel:nil];
 }
 #pragma mark —— 一些公共方法
 
