@@ -1,5 +1,5 @@
 //
-//  BaseVCProtocol.h
+//  BaseViewControllerProtocol.h
 //  DouDong-II
 //
 //  Created by Jobs on 2021/3/22.
@@ -55,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)JobsNavBar *navBar;
 @property(nonatomic,strong)NSMutableArray<__kindof UIBarButtonItem *> *barButtonItems;/// UIBarButtonItem 数组
 @property(nonatomic,strong)NSMutableArray<__kindof UIViewController *> *viewControllers;/// 子视图控制器 数组
+@property(nonatomic,strong)UIBarButtonItem *barButtonItem;
 /// 更新状态栏颜色为自定义的颜色
 -(jobsByCorBlock _Nonnull)updateStatusBarCor;
 /// 恢复状态栏颜色
@@ -86,6 +87,7 @@ NS_ASSUME_NONNULL_END
 @synthesize statusBar = _statusBar;\
 @synthesize barButtonItems = _barButtonItems;\
 @synthesize viewControllers = _viewControllers;\
+@synthesize barButtonItem = _barButtonItem;\
 //@synthesize navBar = _navBar;\ 在 @implementation UIViewController (BaseVC) 实现。这里不写
 //@synthesize navBarConfig = _navBarConfig;\ 在 @implementation UIViewController (BaseVC) 实现。这里不写
 
@@ -103,5 +105,6 @@ NS_ASSUME_NONNULL_END
 @dynamic navBarConfig;\
 @dynamic navBar;\
 @dynamic viewControllers;\
+@dynamic barButtonItem;\
 
 #endif

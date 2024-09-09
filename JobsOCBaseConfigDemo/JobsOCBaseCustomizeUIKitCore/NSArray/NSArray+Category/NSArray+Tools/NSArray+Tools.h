@@ -11,14 +11,14 @@
 
 @interface NSArray (Tools)
 /// 数组里面是否包含某个元素
--(JobsReturnBOOLByIDBlock)contains;
+-(JobsReturnBOOLByIDBlock)containsObject;
 /// 数组转字符串
 -(NSString *)string;
 /// 数组比较
--(BOOL)compareEqualArrElement:(NSArray *)array;
+-(JobsReturnBOOLByArrBlock)compareEqualArrElement;
 /// 数组计算交集
--(NSArray *)arrayForIntersectionWithOtherArray:(NSArray *)otherArray;
+-(JobsReturnArrByArrBlock)arrayForIntersectionWithOtherArray;
 /// 数据计算差集
--(NSArray *)arrayForMinusWithOtherArray:(NSArray *)otherArray;
+-(JobsReturnArrByArrBlock)arrayForMinusWithOtherArray;
 
 @end

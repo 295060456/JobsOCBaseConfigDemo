@@ -4786,6 +4786,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   * 如果在`BaseViewController`无法满足的操作，应该提升到`UIViewController`的分类进行
 
+  * 最终形成`BaseViewController`背后是一系列的按照功能进行区分的子控制器。用户只需要对接`BaseViewController`即可
+
   * 命名为`BaseViewController`也是充分考虑同业者的偏好习惯
 
   * 正常情况下，在建立子控制器的时候，为了缩短命名，应该将`ViewController`命名为`VC`
@@ -4795,20 +4797,67 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```objective-c
     - (void)viewDidLoad {
         [super viewDidLoad];
-        
-        self.view.backgroundColor = JobsRandomColor;
-    //    self.setGKNav(nil);
-    //    self.setGKNavBackBtn(nil);
-    //    self.gk_navigationBar.jobsVisible = NO;
-        
-        self.makeNavBarConfig(nil);
-        self.navBar.alpha = 1;
-        
-    //    [self.bgImageView removeFromSuperview];
+    #pragma mark —— JobsNavBar <BaseViewControllerProtocol> 仅做Demo演示
+        self.makeNavBarConfig(nil,nil);
+        self.navBar.getBackBtn.normalTitleColor(JobsWhiteColor);
+        self.navBar.getBackBtn.jobsVisible = YES;
+        self.navBar.jobsVisible = YES;
+    #pragma mark —— GKNavigationBar -(void)makeGKNavigationBarConfigure 仅做Demo演示
+        self.gk_statusBarHidden = NO;
+        self.setGKNav(nil);
+        self.setGKNavBackBtn(nil);
+        self.gk_navBackgroundColor = JobsWhiteColor;
+        self.gk_navTitleFont = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
+        self.gk_navTitleColor = AppMainCor_01;
+        self.gk_backStyle = GKNavigationBarBackStyleBlack;
+        self.gk_navLineHidden = YES;
+        self.gk_navRightBarButtonItem = JobsBarButtonItem(self.contactBtn);
+        self.gk_navigationBar.jobsVisible = YES;
+        @jobs_weakify(self)
+        self.gk_navRightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            data.add(self.msgBtn);
+            data.add(self.customerServiceBtn);
+        });
     }
     ```
+    
+  * ```mermaid
+    classDiagram
+        class BaseViewController
+        class JobsBaseDataSettingVC
+        class JobsDebugVC
+        class JobsMonitorVC
+        class JobsNavSettingVC
+        class JobsStatusBarSetttingVC
+        class JobsTabBarSettingVC
+        class UIViewController
+    
+        BaseViewController <|-- JobsBaseDataSettingVC
+        JobsBaseDataSettingVC <|-- JobsDebugVC
+        JobsDebugVC <|-- JobsMonitorVC
+        JobsMonitorVC <|-- JobsNavSettingVC
+        JobsNavSettingVC <|-- JobsTabBarSettingVC
+    
+        UIViewController <|.. UIViewController_JXCategoryListContentViewDelegate
+        UIViewController <|.. UIViewController_JXPagerViewListViewDelegate
+        UIViewController <|.. UIViewController_XLBubbleTransition
+        UIViewController <|.. UIViewController_MJRefresh
+        UIViewController <|.. UIViewController_SafeTransition
+        UIViewController <|.. UIViewController_JPImageresizerView
+        UIViewController <|.. UIViewController_BackBtn
+        UIViewController <|.. UIViewController_EmptyData
+        UIViewController <|.. UIViewController_Shake
+        UIViewController <|.. UIViewController_BaseVC
+        UIViewController <|.. UIViewController_GifImageView
+        UIViewController <|.. UIViewController_BaseNavigationBar
+        UIViewController <|.. UIViewController_Lottie
+        UIViewController <|.. UIViewController_SuspendBtn
+        UIViewController <|.. UIViewController_TFPopupView
+    
+    ```
 
-#### 10.2、导航栏
+#### 10.2、关于导航栏
 
 ##### 10.2.1、[**`GKNavigationBar`**](https://github.com/QuintGao/GKNavigationBar)
 
@@ -4816,6 +4865,21 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   pod 'GKNavigationBar' # https://github.com/QuintGao/GKNavigationBar NO_SMP
   ```
 
+  ```objective-c
+  #if __has_include(<GKNavigationBar/GKNavigationBar.h>)
+  #import <GKNavigationBar/GKNavigationBar.h>
+  #else
+  #import "GKNavigationBar.h"
+  #endif
+  ```
+  
+  ```objective-c
+  self.setGKNav(nil);
+  self.setGKNavBackBtn(nil);
+  self.gk_navRightBarButtonItem = JobsBarButtonItem(self.contactBtn);
+  self.gk_navigationBar.jobsVisible = YES;
+  ```
+  
 * 产生的背景和原因
 
   * 系统原生的`NavigationBar`晦涩难懂不方便修改，很多人理解不深刻容易出问题
@@ -4861,9 +4925,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   * ```objective-c
     self.makeNavBarConfig(nil,nil);
-    self.navBar.alpha = 1;
+    self.navBar.getBackBtn.normalTitleColor(JobsWhiteColor);
+    self.navBar.getBackBtn.jobsVisible = YES;
+    self.navBar.jobsVisible = YES;
     ```
-
+    
     ```objective-c
     -(UIButtonModel *)closeBtnModel{
         if(!_closeBtnModel){

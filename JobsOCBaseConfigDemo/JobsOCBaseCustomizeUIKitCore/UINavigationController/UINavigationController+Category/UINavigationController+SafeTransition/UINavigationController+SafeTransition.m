@@ -79,7 +79,7 @@
 - (void)safePushViewController:(UIViewController *)viewController
                       animated:(BOOL)animated {
     // 如果当前controller已经在栈里了，则不要继续push
-    if(self.childViewControllers.contains(viewController)) return;
+    if(self.childViewControllers.containsObject(viewController)) return;
     if (self.viewTransitionInProgress == NO) {
         [self safePushViewController:viewController animated:animated];
         if (animated) self.viewTransitionInProgress = YES;

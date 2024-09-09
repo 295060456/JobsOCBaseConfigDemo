@@ -298,7 +298,7 @@
         });
         NSMutableArray <NSString *>*temp = NSMutableArray.array;
         for (NSString *string in UIFont.getAvailableFont()) {
-            if (!sysFontNameArr.contains(string)) {
+            if (!sysFontNameArr.containsObject(string)) {
                 temp.add(string);
             }
         }

@@ -10,7 +10,7 @@
 
 @implementation NSArray (Tools)
 /// 数组里面是否包含某个元素
--(JobsReturnBOOLByIDBlock)contains{
+-(JobsReturnBOOLByIDBlock)containsObject{
     @jobs_weakify(self)
     return ^BOOL(id _Nullable data) {
         @jobs_strongify(self)
@@ -20,8 +20,7 @@
 }
 /// 数组转字符串
 -(NSString *)string{
-    if(!self
-       ||self.count == 0) return JobsInternationalization(@"");
+    if(!self ||self.count == 0) return JobsInternationalization(@"");
     NSMutableString *str = NSMutableString.string;
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx,
                                        BOOL *stop) {
@@ -32,34 +31,44 @@
     return strForRight;
 }
 /// 数组比较
--(BOOL)compareEqualArrElement:(NSArray *)array{
-    NSSet *set1 = [NSSet setWithArray:self];
-    NSSet *set2 = [NSSet setWithArray:array];
-    return [set1 isEqualToSet:set2];
+-(JobsReturnBOOLByArrBlock)compareEqualArrElement{
+    @jobs_weakify(self)
+    return ^BOOL(NSArray *_Nullable array){
+        @jobs_strongify(self)
+        return [[NSSet setWithArray:self] isEqualToSet:[NSSet setWithArray:array]];
+    };
 }
 /// 数组计算交集
--(NSArray *)arrayForIntersectionWithOtherArray:(NSArray *)otherArray{
-    NSMutableArray *intersectionArray = NSMutableArray.array;
-    if(self.count == 0) return nil;
-    if(!otherArray) return nil;
-    //遍历
-    for (id obj in self) {
-        if(![otherArray containsObject:obj]) continue;
-        //添加
-        [intersectionArray addObject:obj];
-    }return intersectionArray;
+-(JobsReturnArrByArrBlock)arrayForIntersectionWithOtherArray{
+    @jobs_weakify(self)
+    return ^__kindof NSArray *_Nullable(__kindof NSArray *_Nullable otherArray){
+        @jobs_strongify(self)
+        NSMutableArray *intersectionArray = NSMutableArray.array;
+        if(self.count == 0) return nil;
+        if(!otherArray) return nil;
+        /// 遍历
+        for (id obj in self) {
+            if(!otherArray.containsObject(obj)) continue;
+            /// 添加
+            intersectionArray.add(obj);
+        }return intersectionArray;
+    };
 }
 /// 数据计算差集
--(NSArray *)arrayForMinusWithOtherArray:(NSArray *)otherArray{
-    if(!self) return nil;
-    if(!otherArray) return self;
-    NSMutableArray *minusArray = [NSMutableArray arrayWithArray:self];
-    //遍历
-    for (id obj in otherArray) {
-        if(![self containsObject:obj]) continue;
-        //添加
-        [minusArray removeObject:obj];
-    }return minusArray;
+-(JobsReturnArrByArrBlock)arrayForMinusWithOtherArray{
+    @jobs_weakify(self)
+    return ^__kindof NSArray *_Nullable(__kindof NSArray *_Nullable otherArray){
+        @jobs_strongify(self)
+        if(!self) return nil;
+        if(!otherArray) return self;
+        NSMutableArray *minusArray = [NSMutableArray arrayWithArray:self];
+        /// 遍历
+        for (id obj in otherArray) {
+            if(!self.containsObject(obj)) continue;
+            /// 添加
+            [minusArray removeObject:obj];
+        }return minusArray;
+    };
 }
 
 @end

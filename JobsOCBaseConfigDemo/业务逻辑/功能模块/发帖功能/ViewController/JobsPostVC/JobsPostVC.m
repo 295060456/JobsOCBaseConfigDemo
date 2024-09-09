@@ -211,7 +211,7 @@ UIViewModelProtocol_synthesize
     return ^(UIButton *_Nullable sender) {
         @jobs_strongify(self)
         if (self.isUpload) return;
-        if (![self.photoManager.afterSelectedArray compareEqualArrElement:self.historyPhotoDataArr] ||//!d
+        if (!self.photoManager.afterSelectedArray.compareEqualArrElement(self.historyPhotoDataArr) ||//!d
             ![NSString isEqualStrA:self.inputDataHistoryString strB:self.inputDataString]) {
             [self saveDoc];
         }else [self back:sender];

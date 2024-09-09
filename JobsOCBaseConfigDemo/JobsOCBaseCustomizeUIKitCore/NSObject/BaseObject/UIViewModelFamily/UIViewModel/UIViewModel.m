@@ -8,7 +8,6 @@
 #import "UIViewModel.h"
 
 @implementation UIViewModel
-
 #pragma mark —— UIViewModelProtocol
 UIViewModelProtocol_synthesize
 #pragma mark —— lazyLoad
@@ -47,13 +46,13 @@ UIViewModelProtocol_synthesize
 
 -(UIImage *)image{
     if (!_image) {
-//        _image = JobsRandomColor.image;
+//        _image = [UIImage imageWithColor:JobsRandomColor];
     }return _image;
 }
 
 -(UIImage *)bgImage{
     if (!_bgImage) {
-//        _bgImage = JobsRandomColor.image;
+//        _bgImage = [UIImage imageWithColor:JobsRandomColor];
     }return _bgImage;
 }
 

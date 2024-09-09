@@ -16,12 +16,6 @@
         [self removeAllObjects];
     };
 }
-/// 元素包含
--(JobsReturnBOOLByIDBlock)containsObject{
-    return ^BOOL((id _Nullable data)){
-        return [self containsObject:data];
-    };
-}
 /// 数组取值（无法关联数组的泛型）
 -(JobsReturnIDByUIntegerBlock _Nonnull)objectAt{
     @jobs_weakify(self)
