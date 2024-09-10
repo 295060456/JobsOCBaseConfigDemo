@@ -23,6 +23,12 @@ NSString *const FM用户数据 = @"FM用户数据";
         return isValue(self.readUserInfo().token);
     }return obj;
 }
+/// 检查是否登录并执行传入的代码块
+-(void)isLogin:(jobsByVoidBlock)loginedinBlock {
+    if (self.isLogin) {
+        if (loginedinBlock) loginedinBlock();
+    } else self.toLogin();
+}
 #pragma mark —— 全局的用户数据(存、取、清)[全局唯一一份用户档案]
 /// 登出清空用户数据 【用户信息】/【JobsUserModel】
 -(void)logOut{

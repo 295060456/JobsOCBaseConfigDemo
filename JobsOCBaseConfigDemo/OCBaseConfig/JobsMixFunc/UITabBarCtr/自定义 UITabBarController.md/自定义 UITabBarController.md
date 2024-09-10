@@ -265,7 +265,7 @@ if (self.isOpenPPBadge) {
 -(BOOL)forcedLoginIndex:(NSUInteger)index{
     for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.tabBarItemConfigMutArr) {
         if(tabBarItemConfig.isNeedCheckLogin){
-            [self forcedLogin];
+            self.forcedLogin();
             return YES;
         }
     }return NO;

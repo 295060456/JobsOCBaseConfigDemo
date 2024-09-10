@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
   【return】 YES(已经登录)、NO（未登录）
  */
 -(BOOL)isLogin;
+/// 检查是否登录并执行传入的代码块
+-(void)isLogin:(jobsByVoidBlock)loginedinBlock;
 #pragma mark —— 全局的用户数据(存、取、清)
 /// 登出清空用户数据 【用户信息】/【JobsUserModel】
 -(void)logOut;

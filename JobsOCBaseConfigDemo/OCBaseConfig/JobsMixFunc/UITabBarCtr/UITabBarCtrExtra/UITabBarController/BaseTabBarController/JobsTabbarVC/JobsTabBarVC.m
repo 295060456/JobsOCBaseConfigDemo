@@ -218,7 +218,7 @@ static dispatch_once_t onceToken;
         @jobs_strongify(self)
         for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.tabBarItemConfigMutArr) {
             if(tabBarItemConfig.isNeedCheckLogin){
-                [self forcedLogin];
+                self.forcedLogin();
                 return YES;
             }
         }return NO;

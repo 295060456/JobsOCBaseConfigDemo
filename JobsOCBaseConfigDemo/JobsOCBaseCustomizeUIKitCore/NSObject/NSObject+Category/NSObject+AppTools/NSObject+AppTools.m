@@ -50,33 +50,43 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 }
 #pragma mark —— <AppToolsProtocol> 关于注册登录
 /// 去登录？去注册？
--(void)toLoginOrRegister:(CurrentPage)appDoorContentType{
-    // 登录页 不推出 登录页
-    UIViewController *viewController = self.getCurrentViewController;
-    if ([viewController isKindOfClass:JobsAppDoorVC.class]) return;
-    
-    // 首页没有展现的时候，不推出登录页
-//    extern BOOL CasinoHomeVC_viewDidAppear;
-//    if(!CasinoHomeVC_viewDidAppear) return;
-    
-    UIViewModel *viewModel = UIViewModel.new;
-    viewModel.requestParams = @(JobsAppDoorBgType_video);
-    viewController.comingToPresentVCByRequestParams(JobsAppDoorVC.new,viewModel);
+-(jobsByNSIntegerBlock)toLoginOrRegister{
+    return ^(CurrentPage appDoorContentType){
+        // 登录页 不推出 登录页
+        UIViewController *viewController = self.getCurrentViewController;
+        if ([viewController isKindOfClass:JobsAppDoorVC.class]) return;
+        
+        // 首页没有展现的时候，不推出登录页
+    //    extern BOOL CasinoHomeVC_viewDidAppear;
+    //    if(!CasinoHomeVC_viewDidAppear) return;
+        
+        UIViewModel *viewModel = UIViewModel.new;
+        viewModel.requestParams = @(JobsAppDoorBgType_video);
+        viewController.comingToPresentVCByRequestParams(JobsAppDoorVC.new,viewModel);
+    };
 }
 /// 强制登录：没登录（本地用户数据为空）就去登录
--(void)forcedLogin{
-    if (!self.isLogin) [self toLogin];
+-(jobsByVoidBlock)forcedLogin{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if (!self.isLogin) self.toLogin();
+    };
 }
 /// 去登录：有限制makeDataArr
--(void)toLogin{
-    [self toLoginOrRegisterWithRestricted:self.makeDataArr
-                       appDoorContentType:CurrentPage_login];
+-(jobsByVoidBlock)toLogin{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        [self toLoginOrRegisterWithRestricted:self.makeDataArr
+                           appDoorContentType:CurrentPage_login];
+    };
 }
 /// 限制条件：在某些页面（noNeedLoginArr）不调取登录页
 -(void)toLoginOrRegisterWithRestricted:(NSArray <Class>*_Nullable)dataArr
                     appDoorContentType:(CurrentPage)appDoorContentType{
-    if ([dataArr containsObject:self.class]) return;/// 包含则不触发AppDoor的页面
-    [self toLoginOrRegister:appDoorContentType];
+    if (dataArr.containsObject(self.class)) return;/// 包含则不触发AppDoor的页面
+    self.toLoginOrRegister(appDoorContentType);
 }
 /// 触发退出登录模块之前，弹窗提示二次确认，确认以后再删除本地用户数据
 -(void)popUpViewToLogout{
@@ -111,7 +121,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 /// 当前对象是否是 Tabbar管理的，不含导航的根控制器
 -(BOOL)isRootVC{
     if ([self isKindOfClass:UIViewController.class]) {
-        return [self.appRootVC containsObject:(UIViewController *)self];
+        return self.appRootVC.containsObject((UIViewController *)self);
     }else return NO;
 }
 #pragma mark —— 关于图片编解码
@@ -160,7 +170,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     UIViewModel *viewModel = UIViewModel.new;
     
     {
-        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:JobsInternationalization(title)];
+        NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(title));
         [attributedText addAttribute:NSFontAttributeName
                                value:UITextModel.new.font
                                range:NSMakeRange(0, JobsInternationalization(title).length)];
@@ -177,7 +187,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     }
     
     {
-        NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle)];
+        NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle));
         [attributedText addAttribute:NSFontAttributeName
                                value:UITextModel.new.font
                                range:NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length)];
@@ -207,9 +217,9 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 }
 
 -(NSString *)currentLanguage{
-    if ([currentLanguage() containsString:@"zh-Hans"]) {
+    if (currentLanguage().containsString(@"zh-Hans")) {
         return @"简体中文";
-    }else if ([currentLanguage() containsString:@"en"]){
+    }else if (currentLanguage().containsString(@"en")){
         return @"English";
     }else{
         NSLog(@"%@",currentLanguage());
@@ -245,7 +255,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     }
     return viewModel;
 }
-///// Debug模式下的弹出框 及其相关的数据封装。在外层进行调用，[ 需要被展现的视图 popupShowScaleWithView:popupView];
+/// Debug模式下的弹出框 及其相关的数据封装。在外层进行调用，[ 需要被展现的视图 popupShowScaleWithView:popupView];
 //-(JobsOCBaseConfigTestPopupView *)JobsTestPopView:(NSString *)string{
 //    UIViewModel *viewModel = UIViewModel.new;
 //    UITextModel *textModel = UITextModel.new;
@@ -253,7 +263,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //    viewModel.textModel = textModel;
 //    return [self jobsTestPopView:viewModel];
 //}
-///// 在外层进行调用，[ 需要被展现的视图 popupShowScaleWithView:popupView];
+/// 在外层进行调用，[ 需要被展现的视图 popupShowScaleWithView:popupView];
 //-(JobsOCBaseConfigTestPopupView *)jobsTestPopView:(UIViewModel *_Nullable)viewModel{
 //#ifdef DEBUG
 //    JobsOCBaseConfigTestPopupView *testPopupView = JobsOCBaseConfigTestPopupView.sharedInstance;
@@ -349,210 +359,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //    }];
 //}
 #pragma mark —— 网络通讯方面的
-/// 获取客服联系方式
--(void)getCustomerContact:(jobsByIDBlock _Nullable)block{
-//    JobsNetworkingPrepare
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//    [JobsNetworkingAPI requestApi:NSObject.customerContactGET.funcName
-//                     parameters:nil
-//                   successBlock:^(JobsResponseModel *data) {
-//        if (block) block(data);
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
-/// 银行列表
--(void)getBankcardBanklist:(jobsByIDBlock _Nullable)block{
-//    JobsNetworkingPrepare
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//    [JobsNetworkingAPI requestApi:NSObject.bankcardBanklistGET.funcName
-//                     parameters:nil
-//                   successBlock:^(JobsResponseModel *data) {
-//        if (block) block(data);
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
-/// 获取文件服务器地址
--(void)getDownloadStationGetFileServerUrl:(jobsByIDBlock _Nullable)block{
-//    JobsNetworkingPrepare
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//    [JobsNetworkingAPI requestApi:NSObject.downloadStationGetFileServerUrlGET.funcName
-//                     parameters:nil
-//                   successBlock:^(JobsResponseModel *data) {
-//        if (block) block(data);
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
-/// 检查平台维护开关
--(void)checkPlatformMaintenanceSwitch:(jobsByIDBlock _Nullable)block{
-//    JobsNetworkingPrepare
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//    @jobs_weakify(self)
-//    [JobsNetworkingAPI requestApi:NSObject.platformConfigCheckPlatformMaintenanceSwitchGET.funcName
-//                     parameters:nil
-//                   successBlock:^(JobsResponseModel *data) {
-//        @jobs_strongify(self)
-//        if (block) block(data);
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
-/// 获取当前用户的基本信息(不包含 余额，打码量，可提现金额,洗码金额)
--(void)getUserInfo:(jobsByIDBlock _Nullable)block{
-//    JobsNetworkingPrepare
-//
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//    [JobsNetworkingAPI requestApi:NSObject.userInfoGET.funcName
-//                     parameters:nil
-//                   successBlock:^(JobsResponseModel *data) {
-//        if (block) block(data);
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
-/// 检查人人代开关
--(void)getPlatformConfigCheckPeopleProxySwitch:(jobsByIDBlock _Nullable)block{
-//    JobsNetworkingPrepare
-//
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//    [JobsNetworkingAPI requestApi:NSObject.platformConfigCheckPeopleProxySwitchGET.funcName
-//                     parameters:nil
-//                   successBlock:^(JobsResponseModel *data) {
-//        if (block) block(data);
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
-/// 获取当前用户的余额,打码量,可提现金额,洗码金额,分润金额
--(void)getUserGetMoney:(jobsByIDBlock _Nullable)successBlock
-          failureBlock:(jobsByIDBlock _Nullable)failureBlock{
-//    JobsNetworkingPrepare
-//
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//    [JobsNetworkingAPI requestApi:NSObject.userGetMoneyGET.funcName
-//                     parameters:nil
-//                   successBlock:^(JobsResponseModel *data) {
-//        if (successBlock) successBlock(data);
-//    } failureBlock:^(id data) {
-//        if (failureBlock) failureBlock(data);
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
-/// 查询当前登录用户WM余额
--(void)getWmGetWmBalance:(jobsByIDBlock _Nullable)successBlock
-            failureBlock:(jobsByIDBlock _Nullable)failureBlock{
-//    JobsNetworkingPrepare
-//
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//    [JobsNetworkingAPI requestApi:NSObject.wmGetWmBalanceGET.funcName
-//                     parameters:nil
-//                   successBlock:^(JobsResponseModel *data) {
-//        if (successBlock) successBlock(data);
-//    } failureBlock:^(id data) {
-//        if (failureBlock) failureBlock(data);
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
-/// iOS最新版本检查
--(void)getDownloadStationGetIosNewestVersion:(jobsByIDBlock _Nullable)block{
-//    JobsNetworkingPrepare
-//
-//    NSDictionary *parameters = @{
-//        @"versionNumber":self.appVersion// 版本号
-//    };
-//
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = HTTPRequestHeaderLanguageCN;
-//    [RequestTool setupPublicParameters:config];
-//    [JobsNetworkingAPI requestApi:NSObject.downloadStationGetIosNewestVersionGET.funcName
-//                     parameters:parameters
-//                   successBlock:^(JobsResponseModel *data) {
-//
-//        NSMutableArray <CasinoGetiOSNewestVersionModel *>*tags = [CasinoGetiOSNewestVersionModel mj_objectArrayWithKeyValuesArray:data.data];
-//
-//        CasinoGetiOSNewestVersionModel *iOSNewestVersionModel = nil;
-//        NSString *temp = self.appVersion;
-//        for (CasinoGetiOSNewestVersionModel *model in tags) {
-//            if (model.isForced == ForcedUpdate_YES) {// 优先强制更新，强制更新有且只有一个，遇到了直接跳开
-//                iOSNewestVersionModel = model;
-//                break;
-//            }else{// 📌定位弱更新里面最新鲜的那个
-//                CompareRes compareRes = [self versionNumber1:temp versionNumber2:model.versionNumber];
-//                if (compareRes == CompareRes_LessThan){
-//                    temp = model.versionNumber;
-//                    iOSNewestVersionModel = model;
-//                }
-//            }
-//        }
-//        if (block) block(iOSNewestVersionModel);
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
-/// 公告/活动
--(void)getNoticeNewest:(jobsByIDBlock _Nullable)block{
-//    JobsNetworkingPrepare
-//
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//    [JobsNetworkingAPI requestApi:NSObject.noticeNewestGET.funcName
-//                     parameters:nil
-//                   successBlock:^(JobsResponseModel *data) {
-//        if (block) block(data);
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
-/// 获取移动端logo
--(void)getDownloadStationGetLogImageUrlApp:(jobsByIDBlock _Nullable)block{
-//    JobsNetworkingPrepare
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//    [JobsNetworkingAPI requestApi:NSObject.downloadStationGetLogImageUrlAppGET.funcName
-//                     parameters:nil
-//                   successBlock:^(JobsResponseModel *data) {
-//        if (block) block(data);
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
-/// 获取用户已绑定银行卡
--(void)withdrawBanklist:(jobsByIDBlock)block{
-//    JobsNetworkingPrepare
-//
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-////    @jobs_weakify(self)
-//    [JobsNetworkingAPI requestApi:NSObject.withdrawBanklistGET.funcName
-//                     parameters:nil
-//                   successBlock:^(JobsResponseModel *data) {
-////        @jobs_strongify(self)
-//        if (block) block(data);
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
-}
+
 #pragma mark —— 通过验证返回YES
 -(BOOL)userAndPasswordNotUpTo:(NSString *)value{
     return value.length < 6;

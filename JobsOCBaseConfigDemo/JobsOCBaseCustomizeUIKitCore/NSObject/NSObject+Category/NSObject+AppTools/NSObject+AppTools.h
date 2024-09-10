@@ -56,32 +56,6 @@ AppToolsProtocol
 -(UIView<BaseViewProtocol> *)jobsPopView:(Class<BaseViewProtocol> _Nullable)popViewClass
                                viewModel:(UIViewModel *_Nullable)viewModel;
 #pragma mark —— 网络通讯方面的
-/// 获取客服联系方式
--(void)getCustomerContact:(jobsByIDBlock _Nullable)block;
-/// 银行列表
--(void)getBankcardBanklist:(jobsByIDBlock _Nullable)block;
-/// 获取文件服务器地址
--(void)getDownloadStationGetFileServerUrl:(jobsByIDBlock _Nullable)block;
-/// 检查平台维护开关
--(void)checkPlatformMaintenanceSwitch:(jobsByIDBlock _Nullable)block;
-/// 获取当前用户的基本信息(不包含 余额，打码量，可提现金额,洗码金额)
--(void)getUserInfo:(jobsByIDBlock _Nullable)block;
-/// 检查人人代开关
--(void)getPlatformConfigCheckPeopleProxySwitch:(jobsByIDBlock _Nullable)block;
-/// 获取当前用户的余额,打码量,可提现金额,洗码金额,分润金额
--(void)getUserGetMoney:(jobsByIDBlock _Nullable)successBlock
-          failureBlock:(jobsByIDBlock _Nullable)failureBlock;
-/// 查询当前登录用户WM余额
--(void)getWmGetWmBalance:(jobsByIDBlock _Nullable)successBlock
-            failureBlock:(jobsByIDBlock _Nullable)failureBlock;
-/// iOS最新版本检查
--(void)getDownloadStationGetIosNewestVersion:(jobsByIDBlock _Nullable)block;
-/// 公告/活动
--(void)getNoticeNewest:(jobsByIDBlock _Nullable)block;
-/// 获取移动端logo
--(void)getDownloadStationGetLogImageUrlApp:(jobsByIDBlock _Nullable)block;
-/// 获取用户已绑定银行卡
--(void)withdrawBanklist:(jobsByIDBlock)block;
 #pragma mark —— 通过验证返回YES
 -(BOOL)userAndPasswordNotUpTo:(NSString *)value;
 -(BOOL)telNotUpTo:(NSString *)value;

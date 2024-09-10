@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseProtocol.h"
+#import "JobsBlock.h"
 #import "JobsAppDoorConfig.h"
 #import "NetworkingConstant.h"
 #import "CasinoGetiOSNewestVersionModel.h"
@@ -20,14 +21,14 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 #pragma mark —— <AppToolsProtocol> 关于注册登录
 /// 去登录？去注册？
--(void)toLoginOrRegister:(CurrentPage)appDoorContentType;
+-(jobsByNSIntegerBlock)toLoginOrRegister;
 /// 在某些页面不调取登录页
 -(void)toLoginOrRegisterWithRestricted:(NSArray <Class>*_Nullable)dataArr
                     appDoorContentType:(CurrentPage)appDoorContentType;
 /// 去登录
--(void)toLogin;
+-(jobsByVoidBlock)toLogin;
 /// 强制去登录
--(void)forcedLogin;
+-(jobsByVoidBlock)forcedLogin;
 /// 触发退出登录模块之前，弹窗提示二次确认，确认以后再删除本地用户数据
 -(void)popUpViewToLogout;
 #pragma mark —— <AppToolsProtocol> 关于 TabBar

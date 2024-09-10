@@ -311,21 +311,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
                 self.feedbackGenerator();//震动反馈
-                [self withdrawBanklist:^(NSArray *data) {
-                    @jobs_strongify(self)
-                    if (data.count) {
-                        self->_collectionView.endRefreshing();
-                    }else{
-                        self->_collectionView.endRefreshingWithNoMoreData();
-                    }
-                    /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
-                    @jobs_weakify(self)
-                    [self getMainQueue:^{
-                        @jobs_strongify(self)
-            //            [CollectionViewAnimationKit showWithAnimationType:XSCollectionViewAnimationTypeFall
-            //                                               collectionView:self.collectionView];
-                    }];
-                }];return nil;
+                return nil;
             };
             
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;

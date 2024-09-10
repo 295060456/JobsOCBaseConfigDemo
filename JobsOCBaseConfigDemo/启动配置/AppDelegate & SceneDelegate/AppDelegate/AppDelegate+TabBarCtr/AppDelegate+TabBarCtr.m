@@ -260,8 +260,12 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
                     NSLog(@"");
                     x.selected = !x.selected;
-                    [AppDelegate button:x index:0];
-                    if (self.objectBlock) self.objectBlock(x);
+                    @jobs_weakify(self)
+                    [self isLogin:^{
+                        @jobs_strongify(self)
+                        [AppDelegate button:x index:0];
+                        if (self.objectBlock) self.objectBlock(x);
+                    }];
                 }).onLongPressGesture(^(id data){
                     NSLog(@"");
                 }));
@@ -281,8 +285,12 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
                     NSLog(@"");
                     x.selected = !x.selected;
-                    [AppDelegate button:x index:1];
-                    if (self.objectBlock) self.objectBlock(x);
+                    @jobs_weakify(self)
+                    [self isLogin:^{
+                        @jobs_strongify(self)
+                        [AppDelegate button:x index:1];
+                        if (self.objectBlock) self.objectBlock(x);
+                    }];
                 }).onLongPressGesture(^(id data){
                     NSLog(@"");
                 }));
@@ -467,11 +475,11 @@ static NSMutableArray <__kindof UIViewController *>*_viewCtrlMutArr = nil;
 +(NSMutableArray <__kindof UIViewController *>*)viewCtrlMutArr{
     if(!_viewCtrlMutArr){
         _viewCtrlMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-            data.add(MyFavVC.new);
-            data.add(BankVC.new);
-            data.add(IncentiveVC.new);
-            data.add(InviteVC.new);
-            data.add(ContactUsVC.new);
+            data.add(ViewController_1.new);
+            data.add(ViewController_2.new);
+            data.add(ViewController_3.new);
+            data.add(ViewController_4.new);
+            data.add(ViewController_5.new);
         });
     }return _viewCtrlMutArr;
 }
