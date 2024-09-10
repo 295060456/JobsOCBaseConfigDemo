@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 对按钮创建方法的二次封装
 @interface UIButton (SimplyMake)
 
-@property(nonatomic,copy,class)jobsByBtnBlock clickBlock;
-@property(nonatomic,copy,class)jobsByBtnBlock longPressGestureBlock;
+@property(nonatomic,copy)jobsByBtnBlock clickBlock;
+@property(nonatomic,copy)jobsByBtnBlock longPressGestureBlock;
 #pragma mark —— 依靠单一数据进行简单创建
 /// 仅仅依靠标题内容（普通文本）进行创建
 +(JobsReturnButtonByTitleBlock)initByTitle;

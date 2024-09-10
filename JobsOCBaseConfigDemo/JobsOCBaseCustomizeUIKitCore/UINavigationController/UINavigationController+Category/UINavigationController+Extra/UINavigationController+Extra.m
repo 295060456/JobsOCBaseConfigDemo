@@ -9,6 +9,12 @@
 
 @implementation UINavigationController (Extra)
 
++(JobsReturnNavCtrByVC)initByRootVC{
+    return ^__kindof UINavigationController *_Nullable(__kindof UIViewController *_Nonnull vc){
+        return [UINavigationController.alloc initWithRootViewController:vc];
+    };
+}
+
 -(UIViewController *)rootViewController{
     return self.viewControllers.firstObject;
 }

@@ -148,14 +148,14 @@
                                        layerBorderCor:data.buttonModel.layerBorderCor
                                           borderWidth:data.buttonModel.borderWidth
                                         primaryAction:data.buttonModel.primaryAction
-                           longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                           longPressGestureEventBlock:^id(__kindof UIButton *_Nullable weakSelf,
                                                           id _Nullable arg) {
             NSLog(@"按钮的长按事件触发");
-            if(UIButton.longPressGestureBlock) UIButton.longPressGestureBlock(arg);
+            if(weakSelf.longPressGestureBlock) weakSelf.longPressGestureBlock(arg);
             return nil;
         }
-                                      clickEventBlock:^id(BaseButton *x){
-            if(UIButton.clickBlock) UIButton.clickBlock(x);
+                                      clickEventBlock:^id(__kindof UIButton *x){
+            if(x.clickBlock) x.clickBlock(x);
             return nil;
         }];
     };
@@ -195,14 +195,14 @@
                                        layerBorderCor:nil
                                           borderWidth:JobsWidth(0)
                                         primaryAction:nil
-                           longPressGestureEventBlock:^id(id _Nullable weakSelf,
+                           longPressGestureEventBlock:^id(__kindof UIButton *_Nullable weakSelf,
                                                           id _Nullable arg) {
             NSLog(@"按钮的长按事件触发");
-            if(UIButton.longPressGestureBlock) UIButton.longPressGestureBlock(arg);
+            if(weakSelf.longPressGestureBlock) weakSelf.longPressGestureBlock(arg);
             return nil;
         }
-                                      clickEventBlock:^id(BaseButton *x){
-            if(UIButton.clickBlock) UIButton.clickBlock(x);
+                                      clickEventBlock:^id(__kindof UIButton *x){
+            if(x.clickBlock) x.clickBlock(x);
             return nil;
         }];
     };
@@ -212,7 +212,7 @@
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
         @jobs_strongify(self)
-        UIButton.clickBlock = block;
+        self.clickBlock = block;
         return self;
     };
 }
@@ -221,7 +221,7 @@
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
         @jobs_strongify(self)
-        UIButton.longPressGestureBlock = block;
+        self.longPressGestureBlock = block;
         return self;
     };
 }
@@ -246,21 +246,21 @@
 #pragma mark —— @property(nonatomic,copy)jobsByBtnBlock clickBlock;
 JobsKey(_clickBlock)
 @dynamic clickBlock;
-+(jobsByBtnBlock)clickBlock{
+-(jobsByBtnBlock)clickBlock{
     return Jobs_getAssociatedObject(_clickBlock);
 }
 
-+(void)setClickBlock:(jobsByBtnBlock)clickBlock{
+-(void)setClickBlock:(jobsByBtnBlock)clickBlock{
     Jobs_setAssociatedRETAIN_NONATOMIC(_clickBlock, clickBlock);
 }
 #pragma mark —— @property(nonatomic,copy,class)jobsByBtnBlock longPressGestureBlock;
 JobsKey(_longPressGestureBlock)
 @dynamic longPressGestureBlock;
-+(jobsByBtnBlock)longPressGestureBlock{
+-(jobsByBtnBlock)longPressGestureBlock{
     return Jobs_getAssociatedObject(_longPressGestureBlock);
 }
 
-+(void)setLongPressGestureBlock:(jobsByBtnBlock)longPressGestureBlock{
+-(void)setLongPressGestureBlock:(jobsByBtnBlock)longPressGestureBlock{
     Jobs_setAssociatedRETAIN_NONATOMIC(_longPressGestureBlock, longPressGestureBlock);
 }
 

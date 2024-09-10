@@ -80,6 +80,7 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 - (void)customSelectIndex:(NSUInteger)index {
     self.selectedIndex = index;
     /// TODO 系统的 UITabBarController 的切换方法没有暴露出来，但是实际情况是最好监控这个方法的运行机制，所以期望有一个高仿系统 self.selectedIndex 切换的逻辑
+    NSLog(@"");
 }
 
 -(JobsCustomTabBar *)getCustomTabBar{
