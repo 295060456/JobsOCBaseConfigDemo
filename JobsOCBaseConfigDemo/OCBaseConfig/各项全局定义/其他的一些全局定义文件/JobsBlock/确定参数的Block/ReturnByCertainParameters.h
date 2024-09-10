@@ -75,6 +75,7 @@ typedef UIImage *_Nonnull(^JobsReturnImageByCGRectBlock)(CGRect data);
 typedef UIImage *_Nonnull(^JobsReturnImageByCGSizeBlock)(CGSize data);
 typedef UIImage *_Nonnull(^JobsReturnImageByAVURLAssetBlock)(AVURLAsset *_Nonnull data);
 typedef UIImage *_Nonnull(^JobsReturnImageByViewBlock)(__kindof UIView *_Nonnull data);
+typedef UIImage *_Nonnull(^JobsReturnImageByAlphaBlock)(CGFloat alpha);
 
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTableViewHeaderFooterViewBlock)(__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView);
 
@@ -140,6 +141,7 @@ typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitlePa
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitleAlignmentBlock)(UIButtonConfigurationTitleAlignment data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock)(BOOL data) API_AVAILABLE(ios(16.0));
 
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleBlock)(NSString *_Nonnull title);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByCorBlock)(UIColor *_Nonnull cor);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByFloatBlock)(CGFloat data);

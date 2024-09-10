@@ -10,7 +10,6 @@
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		C525D3EC2C4801C1003DAFD0 /* JobsLinkageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */; };
-		C58F35832C8F4299009C78A9 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C58F35812C8F4299009C78A9 /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		CE08701A2C8458F3003D8CCF /* NSLocale+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0870162C8458EC003D8CCF /* NSLocale+Extra.m */; };
 		CE0870262C85898F003D8CCF /* NSObject+SPAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82742C4513CD00764AF5 /* NSObject+SPAlertController.m */; };
 		CE1F24EA2C5CD50100324198 /* NSObject+NTESVerifyCodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F24E82C5CD50000324198 /* NSObject+NTESVerifyCodeManager.m */; };
@@ -70,6 +69,7 @@
 		CE84D3862C8EC45D005DE167 /* JobsBaseDataSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84D36D2C8EBF1C005DE167 /* JobsBaseDataSettingVC.m */; };
 		CE84D3872C8EC460005DE167 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84D36A2C8EBF1C005DE167 /* BaseViewController.m */; };
 		CE84D5092C8F03F4005DE167 /* UIButton+SimplyMake.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84D5072C8F03EF005DE167 /* UIButton+SimplyMake.m */; };
+		CE84D7042C901912005DE167 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE84D7022C901912005DE167 /* JobsOCBaseConfigDemo.xcdatamodeld */; };
 		CE8877A92C50B3090085948C /* JobsRichTextConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877A72C50B3090085948C /* JobsRichTextConfig.m */; };
 		CE8877BD2C51F1FF0085948C /* JobsNavBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */; };
 		CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877BB2C51F1FF0085948C /* JobsNavBar.m */; };
@@ -1163,7 +1163,6 @@
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
 		C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsLinkageMenuView.m; sourceTree = "<group>"; };
 		C525D3EB2C4801C1003DAFD0 /* JobsLinkageMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsLinkageMenuView.h; sourceTree = "<group>"; };
-		C58F35822C8F4299009C78A9 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		CE0614EC2C71ED41001F0360 /* JobsBtnsStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBtnsStyleCVCell.h; sourceTree = "<group>"; };
 		CE0614ED2C71ED41001F0360 /* JobsBtnsStyleCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBtnsStyleCVCell.m; sourceTree = "<group>"; };
 		CE0870152C8458EC003D8CCF /* NSLocale+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSLocale+Extra.h"; sourceTree = "<group>"; };
@@ -1299,6 +1298,7 @@
 		CE84D37C2C8EBF1C005DE167 /* JobsTabBarSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTabBarSettingVC.m; sourceTree = "<group>"; };
 		CE84D5062C8F03EF005DE167 /* UIButton+SimplyMake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+SimplyMake.h"; sourceTree = "<group>"; };
 		CE84D5072C8F03EF005DE167 /* UIButton+SimplyMake.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SimplyMake.m"; sourceTree = "<group>"; };
+		CE84D7032C901912005DE167 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		CE8877A62C50B3090085948C /* JobsRichTextConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsRichTextConfig.h; sourceTree = "<group>"; };
 		CE8877A72C50B3090085948C /* JobsRichTextConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsRichTextConfig.m; sourceTree = "<group>"; };
 		CE8877B72C51F1FF0085948C /* JobsNavBarConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNavBarConfig.h; sourceTree = "<group>"; };
@@ -13616,7 +13616,7 @@
 		CECE89682C4519D000764AF5 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				C58F35812C8F4299009C78A9 /* JobsOCBaseConfigDemo.xcdatamodeld */,
+				CE84D7022C901912005DE167 /* JobsOCBaseConfigDemo.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -14424,7 +14424,6 @@
 				CECE7EA22C450E5B00764AF5 /* KTVHCDataUnit.m in Sources */,
 				CECE814A2C4512BF00764AF5 /* LZTabBar.m in Sources */,
 				CECE85502C4513CE00764AF5 /* NSObject+NSMutableParagraphStyle.m in Sources */,
-				C58F35832C8F4299009C78A9 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */,
 				CECE85CD2C4513CE00764AF5 /* JobsMagicTextField.m in Sources */,
 				CECE7EC42C450E5B00764AF5 /* TKPermissionSiri.m in Sources */,
 				CECE85E72C4513CE00764AF5 /* UIView+SuspendView.m in Sources */,
@@ -14549,6 +14548,7 @@
 				CECE7EB62C450E5B00764AF5 /* TKPermissionFolders.m in Sources */,
 				CECE852A2C4513CE00764AF5 /* JobsTuple.m in Sources */,
 				CECE85592C4513CE00764AF5 /* NSObject+Sound.m in Sources */,
+				CE84D7042C901912005DE167 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */,
 				CECE7D692C450DED00764AF5 /* AppDelegate+Func.m in Sources */,
 				CECE85482C4513CE00764AF5 /* NSObject+DeviceID.m in Sources */,
 				CECE852D2C4513CE00764AF5 /* JobsHeaderFooterViewModel.m in Sources */,
@@ -15436,14 +15436,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C58F35812C8F4299009C78A9 /* JobsOCBaseConfigDemo.xcdatamodeld */ = {
+		CE84D7022C901912005DE167 /* JobsOCBaseConfigDemo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C58F35822C8F4299009C78A9 /* JobsBaseConfig.xcdatamodel */,
+				CE84D7032C901912005DE167 /* JobsBaseConfig.xcdatamodel */,
 			);
-			currentVersion = C58F35822C8F4299009C78A9 /* JobsBaseConfig.xcdatamodel */;
+			currentVersion = CE84D7032C901912005DE167 /* JobsBaseConfig.xcdatamodel */;
 			name = JobsOCBaseConfigDemo.xcdatamodeld;
-			path = "/Users/jobs/Documents/GitHub/JobsOCBaseConfigDemo/JobsOCBaseConfigDemo/其他/CoreData/JobsOCBaseConfigDemo.xcdatamodeld";
+			path = "/Users/user/Documents/Github/JobsOCBaseConfigDemo/JobsOCBaseConfigDemo/其他/CoreData/JobsOCBaseConfigDemo.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

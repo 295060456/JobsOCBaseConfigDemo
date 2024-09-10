@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
                                           withSize:(CGFloat)size;
 /// 对UIImage对象进行缩放，并返回一个指定尺寸的新图像
 -(JobsReturnImageByCGSizeBlock)imageResize;
+/// 图像模糊化
+-(JobsReturnImageByAlphaBlock)alpha;
 
 @end
 
