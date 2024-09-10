@@ -104,7 +104,7 @@ NSString *const FM用户数据 = @"FM用户数据";
             if (!userModel) {
                 NSLog(@"解档失败: %@", error.localizedDescription);
                 /// 没取到用户数据，就直接跳登录
-//                self.show_view(self.loginView);
+                self.toLogin();
             }return userModel;
         }
     };
