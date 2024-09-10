@@ -12,7 +12,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol UITextModelProtocol <NSObject>
-
 @optional
 #pragma mark —— Common
 @property(nonatomic,assign)NSTextAlignment textAlignment;/// 主文字对齐方式

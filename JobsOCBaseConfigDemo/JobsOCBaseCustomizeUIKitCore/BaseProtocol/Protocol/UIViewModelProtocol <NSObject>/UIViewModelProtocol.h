@@ -36,7 +36,6 @@ UIPictureAndBackGroundCorProtocol
 ,BaseButtonProtocol
 ,UITextModelProtocol
 >
-
 @optional
 #pragma mark —— 文字配置
 @property(nonatomic,strong,nullable)UITextModel *textModel;
