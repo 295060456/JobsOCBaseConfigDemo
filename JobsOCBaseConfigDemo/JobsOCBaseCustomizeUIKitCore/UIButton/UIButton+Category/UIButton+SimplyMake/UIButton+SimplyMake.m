@@ -209,15 +209,37 @@
 }
 #pragma mark —— 一些公有方法
 -(JobsReturnButtonByClickBlock)onClick{
-    return ^UIButton *(jobsByBtnBlock block) {
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
+        @jobs_strongify(self)
         UIButton.clickBlock = block;
         return self;
     };
 }
 
 -(JobsReturnButtonByClickBlock)onLongPressGesture{
-    return ^UIButton *(jobsByBtnBlock block) {
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
+        @jobs_strongify(self)
         UIButton.longPressGestureBlock = block;
+        return self;
+    };
+}
+
+-(JobsReturnButtonByCorBlock)bgColor{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(UIColor *color) {
+        @jobs_strongify(self)
+        if(color) self.jobsResetBtnBgCor(color);
+        return self;
+    };
+}
+
+-(JobsReturnButtonByFloatBlock)cornerRadiusValue{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(CGFloat data) {
+        @jobs_strongify(self)
+        self.jobsResetBtnCornerRadiusValue(data);
         return self;
     };
 }

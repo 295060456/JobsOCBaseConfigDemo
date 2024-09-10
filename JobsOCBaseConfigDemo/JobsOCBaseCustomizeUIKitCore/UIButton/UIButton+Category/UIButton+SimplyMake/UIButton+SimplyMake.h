@@ -42,19 +42,31 @@ NS_ASSUME_NONNULL_BEGIN
 +(JobsReturnButtonByViewModelBlock)initByViewModel;
 /// 依靠UITextModel进行创建
 +(JobsReturnButtonByTextModelBlock)initByTextModel;
-
+#pragma mark —— 对功能性进行补充
 -(JobsReturnButtonByClickBlock)onClick;
 -(JobsReturnButtonByClickBlock)onLongPressGesture;
+-(JobsReturnButtonByCorBlock)bgColor;
+-(JobsReturnButtonByFloatBlock)cornerRadiusValue;
 
 @end
 
 NS_ASSUME_NONNULL_END
 /**
-     BaseButton *d = BaseButton.initByTitle(@"444").onClick(^(UIButton *btn){
-         NSLog(@"");
-     }).onLongPressGesture(^(id data){
-         NSLog(@"");
-     });
-     self.view.addSubview(d);
-     d.frame = CGRectMake(100, 100, 100, 100);
+ -(BaseButton *)playBtn{
+     if(!_playBtn){
+         _playBtn = BaseButton.initByNormalImage(JobsIMG(@"play"))
+             .bgColor(JobsWhiteColor)
+             .cornerRadiusValue(JobsWidth(8))
+             .onClick(^(UIButton *btn){
+                 NSLog(@"");
+             }).onLongPressGesture(^(id data){
+                 NSLog(@"");
+             });
+         self.contentView.addSubview(_playBtn);
+         [_playBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.size.mas_equalTo(CGSizeMake(JobsWidth(16), JobsWidth(16)));
+             make.center.equalTo(self.contentView);
+         }];
+     }return _playBtn;
+ }
  */

@@ -3963,13 +3963,23 @@ static const uint32_t kSequenceBits = 12;
 * <font color=red>**因为此Api过于冗长且较为繁琐，所以对上述Api的二次封装**</font>
 
   ```objective-c
-  BaseButton *d = BaseButton.initByTitle(@"444").onClick(^(UIButton *btn){
-     NSLog(@"");
-  }).onLongPressGesture(^(id data){
-     NSLog(@"");
-  });
-  self.view.addSubview(d);
-  d.frame = CGRectMake(100, 100, 100, 100);
+   -(BaseButton *)playBtn{
+       if(!_playBtn){
+           _playBtn = BaseButton.initByNormalImage(JobsIMG(@"play"))
+               .bgColor(JobsWhiteColor)
+               .cornerRadiusValue(JobsWidth(8))
+               .onClick(^(UIButton *btn){
+                   NSLog(@"");
+               }).onLongPressGesture(^(id data){
+                   NSLog(@"");
+               });
+           self.contentView.addSubview(_playBtn);
+           [_playBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+               make.size.mas_equalTo(CGSizeMake(JobsWidth(16), JobsWidth(16)));
+               make.center.equalTo(self.contentView);
+           }];
+       }return _playBtn;
+   }
   ```
   
 * 对按钮各项属性的设置
