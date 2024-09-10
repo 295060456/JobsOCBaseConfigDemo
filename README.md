@@ -7317,16 +7317,17 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     -(void)customAccessoryView:(jobsByIDBlock)customAccessoryViewBlock{
         /// 不用系统自带的箭头
         if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator) {
-            UIButton *btn = UIButton.new;
-            /// 特比注意:如果这个地方是纯view（UIView、UIIMageView...）就可以不用加size，UIButton是因为受到了UIControl，需要接收一个size，否则显示不出来
-            btn.size = self.size;
-            btn.normalBackgroundImage(self.img);
             @jobs_weakify(self)
-            [btn jobsBtnClickEventBlock:^id(id data) {
-                @jobs_strongify(self)
+            BaseButton *btn = BaseButton.initByBackgroundImage(self.img)
+                .bgColor(JobsClearColor.colorWithAlphaComponent(0))
+                .onClick(^(__kindof UIButton *x){
+                    @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
                 if (customAccessoryViewBlock) customAccessoryViewBlock(self);
-                return nil;
-            }];
+            });
+            /// 特比注意:如果这个地方是纯view（UIView、UIIMageView...）就可以不用加size，UIButton是因为受到了UIControl，需要接收一个size，否则显示不出来
+            btn.Size = self.Size;
+            btn.resetByOffsetWidth(JobsWidth(5));
             self.accessoryView = btn;
         }
     }
