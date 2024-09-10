@@ -48,11 +48,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = JobsRandomColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.gk_navigationBar.jobsVisible = YES;
+    self.makeNavByAlpha(1);
 //    [self.bgImageView removeFromSuperview];
     self.label.alpha = 1;
     self.textView.alpha = 1;
@@ -80,7 +77,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    self.restoreStatusBarCor(nil);
+//    /self.restoreStatusBarCor(nil);
     IQKeyboardManager.sharedManager.enable = YES;
     UIPasteboard.generalPasteboard.string = JobsInternationalization(@"");
 }
@@ -103,14 +100,14 @@
 //    NSLog(@"333");
 //}
 ////-(void)textViewDidEndEditing:(UITextView *)textView;
-//-(BOOL)textView:(UITextView *)textView 
+//-(BOOL)textView:(UITextView *)textView
 //shouldChangeTextInRange:(NSRange)range
 //replacementText:(NSString *)text{
 //    NSLog(@"21");
 //    return YES;
 //}
 //-(void)textViewDidChange:(UITextView *)textView{
-//    
+//
 //}
 //-(void)textViewDidChangeSelection:(UITextView *)textView{
 //

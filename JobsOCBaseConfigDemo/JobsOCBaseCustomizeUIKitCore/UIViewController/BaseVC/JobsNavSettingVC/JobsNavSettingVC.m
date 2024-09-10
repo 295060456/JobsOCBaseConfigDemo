@@ -58,6 +58,15 @@
 //        data.add(self.msgBtn);
 //        data.add(self.customerServiceBtn);
 //    });
+#pragma mark —— 在最终的子类这么写
+//    if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+//        self.makeNavBarConfig(nil,nil);
+//        self.navBar.alpha = 1;
+//    }else{
+//        self.setGKNav(nil);
+//        self.setGKNavBackBtn(nil);
+//        self.gk_navigationBar.jobsVisible = YES;
+//    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,6 +95,25 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+}
+#pragma mark —— 一些公有方法
+-(jobsByCGFloatBlock)makeNavByAlpha{
+    @jobs_weakify(self)
+    return ^(CGFloat data){
+        @jobs_strongify(self)
+        if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+            self.makeNavBarConfig(nil,nil);
+            self.navBar.hidden = !data;
+            self.navBar.alpha = data;
+        }else{
+            self.setGKNav(nil);
+            self.setGKNavBackBtn(nil);
+            self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
+            self.gk_navRightBarButtonItems = self.rightBarButtonItems;
+            self.gk_navigationBar.hidden = !data;
+            self.gk_navigationBar.alpha = data;
+        }
+    };
 }
 #pragma mark —— lazyLoad
 

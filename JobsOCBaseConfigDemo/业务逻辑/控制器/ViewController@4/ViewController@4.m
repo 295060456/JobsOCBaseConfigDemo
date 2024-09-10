@@ -51,8 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsBlueColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+    self.makeNavByAlpha(1);
 }
 
 -(void)viewWillAppear:(BOOL)animated{

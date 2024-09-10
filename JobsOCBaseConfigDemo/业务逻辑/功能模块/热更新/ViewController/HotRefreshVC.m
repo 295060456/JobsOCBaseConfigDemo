@@ -42,14 +42,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = JobsRandomColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
     
-//    self.gk_navRightBarButtonItem = JobsBarButtonItem(self.aboutBtn);
-//    self.gk_navLeftBarButtonItem = JobsBarButtonItem(self.aboutBtn);
-    self.gk_navigationBar.jobsVisible = NO;
+    @jobs_weakify(self)
+    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+//        data.add(JobsBarButtonItem(self.aboutBtn));
+    });
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+//        data.add(JobsBarButtonItem(self.aboutBtn));
+    });
+    self.makeNavByAlpha(0);
+
 //    [self.bgImageView removeFromSuperview];
 }
 

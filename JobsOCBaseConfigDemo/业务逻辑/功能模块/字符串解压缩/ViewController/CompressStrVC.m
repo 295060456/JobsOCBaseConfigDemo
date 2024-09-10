@@ -43,9 +43,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = JobsRandomColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.gk_navigationBar.jobsVisible = YES;
+    self.makeNavByAlpha(1);
     
 }
 

@@ -43,9 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+    self.makeNavByAlpha(1);
     self.topLineLab.alpha = 1;
 }
 

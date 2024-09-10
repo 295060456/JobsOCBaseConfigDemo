@@ -48,9 +48,7 @@
     [super viewDidLoad];
     @jobs_weakify(self)
     self.view.backgroundColor = JobsRandomColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.gk_navigationBar.jobsVisible = YES;
+    self.makeNavByAlpha(1);
     self.collectionView.alpha = 1;
     self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
         @jobs_strongify(self)

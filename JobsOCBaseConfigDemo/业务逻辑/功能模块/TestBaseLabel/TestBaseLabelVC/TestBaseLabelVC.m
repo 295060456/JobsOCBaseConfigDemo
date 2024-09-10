@@ -47,8 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+    self.makeNavByAlpha(1);
     
     self.titleLab.alpha = 1;
     self.baseLabel.alpha = 1;

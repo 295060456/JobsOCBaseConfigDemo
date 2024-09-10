@@ -78,12 +78,18 @@ UIViewModelProtocol_synthesize
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = JobsWhiteColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.gk_navigationBar.jobsVisible = YES;
-    self.gk_navRightBarButtonItem = JobsBarButtonItem(self.releaseBtn);
+
+    @jobs_weakify(self)
+    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+//        data.add(JobsBarButtonItem(self.aboutBtn));
+    });
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+        data.add(JobsBarButtonItem(self.releaseBtn));
+    });
+    self.makeNavByAlpha(1);
     
     self.textView.alpha = 1;
     self.tipsLab.alpha = 1;

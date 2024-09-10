@@ -35,7 +35,7 @@
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据
         // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-        // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+
         self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
     //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
         self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
@@ -46,9 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsRandomColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.gk_navigationBar.jobsVisible = YES;
+    self.makeNavByAlpha(1);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -77,7 +75,7 @@
     [super viewDidDisappear:animated];
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
     
     JobsPresentedVC *vc = JobsPresentedVC.new;

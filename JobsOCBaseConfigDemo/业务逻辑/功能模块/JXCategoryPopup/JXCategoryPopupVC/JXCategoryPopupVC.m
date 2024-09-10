@@ -46,8 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+    self.makeNavByAlpha(1);
     
     self.categoryView.alpha = 1;
     self.filterBtn.alpha = 1;

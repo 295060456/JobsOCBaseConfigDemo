@@ -55,10 +55,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.barButtonItems.add(JobsBarButtonItem(self.deleteBtn));
-    self.gk_navRightBarButtonItems = self.barButtonItems;
+    @jobs_weakify(self)
+    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+//        data.add(JobsBarButtonItem(self.shareBtn));
+    });
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+        data.add(JobsBarButtonItem(self.deleteBtn));
+    });
+    self.makeNavByAlpha(1);
+    
     
     self.titleLab.alpha = 1;
     self.subTitleLab.alpha = 1;

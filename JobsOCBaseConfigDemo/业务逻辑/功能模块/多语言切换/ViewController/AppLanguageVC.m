@@ -66,8 +66,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+    self.makeNavByAlpha(1);
     self.tableView.alpha = 1;
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
     UIInterfaceOrientation s = self.getInterfaceOrientation;

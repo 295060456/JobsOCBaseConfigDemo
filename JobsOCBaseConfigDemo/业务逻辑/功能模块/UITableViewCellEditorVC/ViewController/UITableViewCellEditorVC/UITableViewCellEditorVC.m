@@ -52,10 +52,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.barButtonItems.add(JobsBarButtonItem(self.editBtn));
-    self.gk_navRightBarButtonItems = self.barButtonItems;
+    @jobs_weakify(self)
+    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+//        data.add(JobsBarButtonItem(self.aboutBtn));
+    });
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+        data.add(JobsBarButtonItem(self.editBtn));
+    });
+    self.makeNavByAlpha(1);
     
     self.tableView.alpha = 1;
     self.msgEditBoardView.jobsVisible = YES;

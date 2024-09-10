@@ -52,9 +52,7 @@
     [super viewDidLoad];
 
     self.view.backgroundColor = JobsWhiteColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.gk_navigationBar.jobsVisible = YES;
+    self.makeNavByAlpha(1);
     
     self.cameraBtn.alpha = 1;
     self.photoAlbumBtn.alpha = 1;

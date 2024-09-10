@@ -54,9 +54,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    @jobs_weakify(self)
+    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+//        data.add(JobsBarButtonItem(self.aboutBtn));
+    });
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+        data.add(JobsBarButtonItem(self.ruleBtn));
+    });
+    
     self.gk_navItemRightSpace = JobsWidth(16);
-    self.barButtonItems.add(JobsBarButtonItem(self.ruleBtn));
-    self.gk_navRightBarButtonItems = self.barButtonItems;
+    self.makeNavByAlpha(1);
+    
     self.topLineLab.alpha = 0;
     self.categoryView.alpha = 1;
 }

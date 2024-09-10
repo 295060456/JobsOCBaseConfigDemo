@@ -44,9 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+    self.makeNavByAlpha(1);
 }
 
 -(void)viewWillAppear:(BOOL)animated{

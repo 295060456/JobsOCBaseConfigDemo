@@ -53,11 +53,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = JobsYellowColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    
+    self.makeNavByAlpha(1);
     self.btn.alpha = 1;
     self.switcher.alpha = 1;
 }

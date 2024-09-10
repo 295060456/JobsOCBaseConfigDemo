@@ -44,9 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsRandomColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.gk_navigationBar.jobsVisible = YES;
+    self.makeNavByAlpha(1);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -99,7 +97,7 @@
 /// 增加数据
 - (void)insertUserWithName:(NSString *)name
                        age:(NSInteger)age {
-    NSManagedObject *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" 
+    NSManagedObject *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                                              inManagedObjectContext:self.context];
     [newUser setValue:name forKey:@"name"];
     [newUser setValue:@(age) forKey:@"age"];

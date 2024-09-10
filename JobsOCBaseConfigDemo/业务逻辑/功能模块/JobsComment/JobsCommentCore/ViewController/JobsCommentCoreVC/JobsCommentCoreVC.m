@@ -43,10 +43,16 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = JobsOrangeColor;
-//    self.setGKNav(nil);
-//    self.setGKNavBackBtn(nil);
-//    self.gk_navRightBarButtonItem = JobsBarButtonItem(self.aboutBtn);
-//    self.gk_navLeftBarButtonItem = JobsBarButtonItem(self.aboutBtn);
+//    @jobs_weakify(self)
+//    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+//        @jobs_strongify(self)
+//        data.add(JobsBarButtonItem(self.userHeadBtn));
+//    });
+//    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+//        @jobs_strongify(self)
+////        data.add(JobsBarButtonItem(self.deleteBtn));
+//    });
+//    self.makeNavByAlpha(1);
     self.isHiddenNavigationBar = YES;//禁用系统的导航栏
     self.gk_statusBarHidden = YES;
     self.gk_navigationBar.jobsVisible = YES;

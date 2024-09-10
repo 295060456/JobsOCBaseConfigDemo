@@ -47,10 +47,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    
+    self.makeNavByAlpha(1);
     self.contactCustomerServiceBtn.alpha = 1;
 }
 

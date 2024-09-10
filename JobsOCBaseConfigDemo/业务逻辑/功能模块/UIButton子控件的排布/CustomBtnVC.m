@@ -51,9 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.gk_navigationBar.jobsVisible = YES;
+    self.makeNavByAlpha(1);
     
     self.btn1.alpha = 1;
     self.btn2.alpha = 1;

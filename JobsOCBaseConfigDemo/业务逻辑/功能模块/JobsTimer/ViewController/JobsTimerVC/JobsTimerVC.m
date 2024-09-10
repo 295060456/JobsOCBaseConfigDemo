@@ -54,8 +54,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = JobsMagentaColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+    self.makeNavByAlpha(1);
     
     [self test_masonry_horizontal_fixSpace];
     self.countDownBtn.alpha = 1;

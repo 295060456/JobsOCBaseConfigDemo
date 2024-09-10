@@ -33,7 +33,8 @@
     
     {
         self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
-        self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
+        self.viewModel.backBtnTitleModel.textCor = JobsRedColor;
+        self.viewModel.textModel.textCor = JobsGreenColor;
         self.viewModel.textModel.text = JobsInternationalization(@"用户信息展示(开发测试专用)");
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
@@ -49,14 +50,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+    self.makeNavByAlpha(1);
     self.tableView.alpha = 1;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_beginRefreshing_header();
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -144,8 +144,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                             viewModel.textModel.text = propertyName;
                             viewModel.subTextModel.text = requestParams.valueForKey(propertyName);
                             viewModel.textModel.textCor = JobsBlueColor;
-                            viewModel.textModel.textCor = JobsRedColor;
-                            [self.dataMutArr addObject:viewModel];
+                            viewModel.textModel.font = UIFontSystemFontOfSize(10);
+                            viewModel.textModel.subTextCor = JobsRedColor;
+                            viewModel.textModel.subFont = UIFontSystemFontOfSize(8);
+                            self.dataMutArr.add(viewModel);
                         }
                     }
                 }

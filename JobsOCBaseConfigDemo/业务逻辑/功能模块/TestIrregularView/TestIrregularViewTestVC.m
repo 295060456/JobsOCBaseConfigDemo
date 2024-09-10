@@ -47,8 +47,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = JobsYellowColor;
     
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+    self.makeNavByAlpha(1);
     
     [self view1]; //右斜边梯形
     [self view2]; //平行四边形

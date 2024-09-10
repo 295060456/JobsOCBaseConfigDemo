@@ -46,18 +46,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsRandomColor;
-    
-    if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-        self.makeNavBarConfig(nil,nil);
-        self.navBar.alpha = 1;
-    }else{
-        self.setGKNav(nil);
-        self.setGKNavBackBtn(nil);
-        self.gk_navigationBar.jobsVisible = NO;
-    }
-    
+    self.makeNavByAlpha(1);
 //    [self.bgImageView removeFromSuperview];
-
     self.btn.alpha = 1;
 }
 

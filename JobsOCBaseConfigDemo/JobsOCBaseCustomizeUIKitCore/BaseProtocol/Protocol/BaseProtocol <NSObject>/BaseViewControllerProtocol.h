@@ -53,7 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)__kindof UIView *statusBar;
 @property(nonatomic,strong)JobsNavBarConfig *navBarConfig;
 @property(nonatomic,strong)JobsNavBar *navBar;
-@property(nonatomic,strong)NSMutableArray<__kindof UIBarButtonItem *> *barButtonItems;/// UIBarButtonItem 数组
+@property(nonatomic,strong)NSMutableArray<__kindof UIBarButtonItem *> *leftBarButtonItems;/// 左边UIBarButtonItem 数组
+@property(nonatomic,strong)NSMutableArray<__kindof UIBarButtonItem *> *rightBarButtonItems;/// 右边UIBarButtonItem 数组
 @property(nonatomic,strong)NSMutableArray<__kindof UIViewController *> *viewControllers;/// 子视图控制器 数组
 @property(nonatomic,strong)UIBarButtonItem *barButtonItem;
 /// 更新状态栏颜色为自定义的颜色
@@ -85,7 +86,8 @@ NS_ASSUME_NONNULL_END
 @synthesize pushOrPresent = _pushOrPresent;\
 @synthesize setupNavigationBarHidden = _setupNavigationBarHidden;\
 @synthesize statusBar = _statusBar;\
-@synthesize barButtonItems = _barButtonItems;\
+@synthesize leftBarButtonItems = _leftBarButtonItems;\
+@synthesize rightBarButtonItems = _rightBarButtonItems;\
 @synthesize viewControllers = _viewControllers;\
 @synthesize barButtonItem = _barButtonItem;\
 //@synthesize navBar = _navBar;\ 在 @implementation UIViewController (BaseVC) 实现。这里不写
@@ -101,7 +103,8 @@ NS_ASSUME_NONNULL_END
 @dynamic pushOrPresent;\
 @dynamic setupNavigationBarHidden;\
 @dynamic statusBar;\
-@dynamic barButtonItems;\
+@dynamic leftBarButtonItems;\
+@dynamic rightBarButtonItems;\
 @dynamic navBarConfig;\
 @dynamic navBar;\
 @dynamic viewControllers;\

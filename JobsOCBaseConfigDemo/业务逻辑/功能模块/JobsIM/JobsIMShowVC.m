@@ -50,10 +50,16 @@
     [super viewDidLoad];
     self.view.backgroundColor = JobsYellowColor;
     {
-        self.setGKNav(nil);
-        self.setGKNavBackBtn(nil);
-        self.barButtonItems.add(JobsBarButtonItem(self.shareBtn));
-        self.gk_navRightBarButtonItems = self.barButtonItems;
+        @jobs_weakify(self)
+        self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+    //        data.add(JobsBarButtonItem(self.aboutBtn));
+        });
+        self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            data.add(JobsBarButtonItem(self.shareBtn));
+        });
+        self.makeNavByAlpha(1);
     }
     self.listView.alpha = 1;
 }

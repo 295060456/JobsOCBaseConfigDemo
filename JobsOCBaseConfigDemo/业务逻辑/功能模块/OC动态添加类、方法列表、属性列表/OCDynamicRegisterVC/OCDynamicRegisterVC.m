@@ -11,7 +11,7 @@
     Class newClass;
 }
 
-@end 
+@end
 /**
  资料来源：
  https://cloud.tencent.com/developer/article/1799505
@@ -55,9 +55,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = JobsRandomColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.gk_navigationBar.jobsVisible = YES;
+    self.makeNavByAlpha(1);
     
 //    [self msgSend];
     [self work];

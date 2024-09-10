@@ -65,9 +65,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-//    self.gk_navRightBarButtonItem = JobsBarButtonItem(self.scanBtn);
+
+//    @jobs_weakify(self)
+//    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+//        @jobs_strongify(self)
+////        data.add(JobsBarButtonItem(self.aboutBtn));
+//    });
+//    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+//        @jobs_strongify(self)
+//        data.add(JobsBarButtonItem(self.scanBtn));
+//    });
+//    self.makeNavByAlpha(1);
+    
     self.getTabBar.hidden = YES;
     self.tableView.alpha = 1;
 }

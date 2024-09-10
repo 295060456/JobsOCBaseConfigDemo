@@ -51,8 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+    self.makeNavByAlpha(1);
     
     [self test_masonry_horizontal_fixSpace];
     self.valueLab.alpha = 1;

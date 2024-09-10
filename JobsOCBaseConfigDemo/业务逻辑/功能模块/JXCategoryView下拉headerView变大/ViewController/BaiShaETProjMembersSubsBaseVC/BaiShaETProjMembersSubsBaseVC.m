@@ -43,11 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    
-    self.gk_navigationBar.jobsVisible = YES;
+    self.makeNavByAlpha(1);
     
     self.topLineLab.alpha = 1;
 }

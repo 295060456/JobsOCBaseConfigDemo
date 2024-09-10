@@ -55,13 +55,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    
-    self.gk_navigationBar.jobsVisible = YES;
-    self.barButtonItems.add(JobsBarButtonItem(self.msgBtn));
-    self.barButtonItems.add(JobsBarButtonItem(self.customerServiceBtn));
-    self.gk_navRightBarButtonItems = self.barButtonItems;
+    @jobs_weakify(self)
+    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+//        data.add(JobsBarButtonItem(self.aboutBtn));
+    });
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+        data.add(JobsBarButtonItem(self.msgBtn));
+        data.add(JobsBarButtonItem(self.customerServiceBtn));
+    });
+    self.makeNavByAlpha(1);
     
     self.searchView.alpha = 1;
     self.tableView.alpha = 1;

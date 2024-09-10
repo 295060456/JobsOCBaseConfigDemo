@@ -48,8 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
+    self.makeNavByAlpha(1);
     self.topLineLab.alpha = 1;
     [self 重定义父类控件的距离];
 }

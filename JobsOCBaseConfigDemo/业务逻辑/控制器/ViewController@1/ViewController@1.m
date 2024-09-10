@@ -65,13 +65,20 @@ BOOL ISLogin;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsRedColor;
+        
+    @jobs_weakify(self)
+    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+        data.add(JobsBarButtonItem(self.userHeadBtn));
+    });
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+//        data.add(JobsBarButtonItem(self.deleteBtn));
+    });
+    self.makeNavByAlpha(1);
     
-    self.setGKNav(nil);/// GK 不支持横屏啊
-    self.setGKNavBackBtn(nil);
-    self.gk_navLeftBarButtonItem = JobsBarButtonItem(self.userHeadBtn);
     self.tableView.alpha = 1;
     self.suspendBtn.alpha = 1;
-    @jobs_weakify(self)
     self.objectBlock = ^(id data) {
         @jobs_strongify(self)
         if ([data isKindOfClass:JobsSuspendBtn.class]) {
