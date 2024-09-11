@@ -12,10 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsBaseDataSettingVC : JobsDebugVC
 <
-UIViewModelProtocol
+BaseViewControllerProtocol
 ,UIGestureRecognizerDelegate
 ,UIContentContainer
 >
+
+@property(nonatomic,strong,nullable)UIViewModel *viewModel;
 
 @end
 

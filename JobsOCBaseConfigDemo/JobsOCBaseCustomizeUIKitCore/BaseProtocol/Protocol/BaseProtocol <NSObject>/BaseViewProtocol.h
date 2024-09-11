@@ -101,6 +101,17 @@ NS_ASSUME_NONNULL_BEGIN
 -(CGFloat)widthByData:(UIViewModel *_Nonnull)data;
 /// 数据（字符串）定高
 -(CGFloat)heightByData:(UIViewModel *_Nonnull)data;
+#pragma mark —— 关于导航栏
+/// 配置 GKNavigationBar
+-(jobsByViewModelBlock _Nonnull)setGKNav;
+/// 配置 JobsNavBarConfig
+-(JobsReturnNavBarConfigByButtonModelBlock _Nonnull)makeNavBarConfig;
+/// 配置GKNavigationBar的返回按钮
+-(jobsByBtnBlock _Nonnull)setGKNavBackBtn;
+// 返回按钮的回调
+-(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock _Nullable)objectBlock;
+// 关闭按钮的回调
+-(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock _Nullable)objectBlock;
 #pragma mark —— 一些功能性的
 /// 初始化的时候最好传入一个size值将其子视图的大小固定死。因为只有当父视图有Size的情况下子视图才会展开，从而避免刷新约束时候的一系列麻烦事。
 -(instancetype)initWithSize:(CGSize)thisViewSize;

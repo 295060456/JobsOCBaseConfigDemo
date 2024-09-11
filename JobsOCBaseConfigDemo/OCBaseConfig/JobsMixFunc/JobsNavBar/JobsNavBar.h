@@ -9,12 +9,6 @@
 #import "BaseButton.h"
 #import "JobsNavBarConfig.h"
 
-#ifndef JobsNavBar_typedef
-#define JobsNavBar_typedef
-typedef void(^JobsNavBarBackBtnClickAction)(UIButton *_Nullable data);
-typedef void(^JobsNavBarCloseBtnClickAction)(UIButton * _Nullable data);
-#endif /* JobsNavBar_typedef */
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsNavBar : BaseImageView
@@ -24,10 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(BaseButton *)backBtn;
 -(UILabel *)titleLab;
 -(BaseButton *)closeBtn;
-/// 返回按钮的回调
--(void)actionNavBarBackBtnClickBlock:(JobsNavBarBackBtnClickAction)objectBlock;
-/// 关闭按钮的回调
--(void)actionNavBarCloseBtnClickBlock:(JobsNavBarCloseBtnClickAction)objectBlock;
 
 @end
 

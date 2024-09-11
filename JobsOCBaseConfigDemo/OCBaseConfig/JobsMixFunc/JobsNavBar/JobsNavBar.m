@@ -25,8 +25,8 @@
 @property(nonatomic,strong)UILabel *titleLab;
 @property(nonatomic,strong)BaseButton *closeBtn;
 /// Data
-@property(nonatomic,copy)JobsNavBarBackBtnClickAction backBtnClickAction;
-@property(nonatomic,copy)JobsNavBarCloseBtnClickAction closeBtnClickAction;
+@property(nonatomic,copy)jobsByBtnBlock backBtnClickAction;
+@property(nonatomic,copy)jobsByBtnBlock closeBtnClickAction;
 
 @end
 
@@ -98,12 +98,12 @@
 -(BaseButton *)getCloseBtn{
     return self.closeBtn;
 }
-
--(void)actionNavBarBackBtnClickBlock:(JobsNavBarBackBtnClickAction)objectBlock{
+#pragma mark —— BaseViewProtocol
+-(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock)objectBlock{
     self.backBtnClickAction = objectBlock;
 }
     
--(void)actionNavBarCloseBtnClickBlock:(JobsNavBarCloseBtnClickAction)objectBlock{
+-(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock)objectBlock{
     self.closeBtnClickAction = objectBlock;
 }
 #pragma mark —— lazyLoad

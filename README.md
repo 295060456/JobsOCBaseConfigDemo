@@ -3533,7 +3533,47 @@ static const uint32_t kSequenceBits = 12;
   }
   ```
 
-### 32、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 32、协议属性的使用
+
+* 协议的属性值无法在控制台用`po`进行打印输出，只能通过`NSLog`。因为当本类的成员变量列表已经部署完毕了以后，再部署以runtime的形式部署分类的属性
+
+* 在分类里面实现协议属性需要涉及到关键字<font color=red>**@dynamic**</font>
+
+  ```objective-c
+  #pragma mark —— @property(nonatomic,strong,nullable)UIViewModel *viewModel;
+  JobsKey(_viewModel)
+  @dynamic viewModel;
+  -(UIViewModel *)viewModel{
+      UIViewModel *VM = Jobs_getAssociatedObject(_viewModel);
+      if(!VM){
+          VM = UIViewModel.new;
+          VM.textModel.textCor = HEXCOLOR(0x3D4A58);
+          VM.textModel.font = UIFontWeightRegularSize(16);
+          Jobs_setAssociatedRETAIN_NONATOMIC(_viewModel, VM);
+      }return VM;
+  }
+  
+  -(void)setViewModel:(UIViewModel *)viewModel{
+      Jobs_setAssociatedRETAIN_NONATOMIC(_viewModel, viewModel)
+  }
+  ```
+
+* 在具体子类里面实现协议属性需要涉及到关键字<font color=red>**@synthesize**</font>
+
+  ```objective-c
+  @synthesize viewModel = _viewModel;
+  -(UIViewModel *)viewModel{
+      if (!_viewModel) {
+          _viewModel = UIViewModel.new;
+          _viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
+          _viewModel.textModel.font = UIFontWeightRegularSize(16);
+      }return _viewModel;
+  }
+  ```
+
+* <font color=red>**@synthesize**</font>只在本类有效果，如果遇到继承关系，则不覆盖当前类的子类
+
+### 33、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 
@@ -3552,13 +3592,13 @@ static const uint32_t kSequenceBits = 12;
   
   [super layoutSubviews];
   ```
-  
+
 * **将视图至于最底层**
 
   ```objective-c
   [cell insertSubview:imageView atIndex:0];
   ```
-  
+
 * [**iOS 父视图透明度影响到子视图**](https://blog.csdn.net/ios_xumin/article/details/114263960)
 
   * 父视图的透明度会影响到其子视图。跟着一起变得半透明
@@ -3573,13 +3613,13 @@ static const uint32_t kSequenceBits = 12;
     ```objective-c
     self.view.backgroundColor = [UIColor.redColor colorWithAlphaComponent:0.5f];
     ```
-  
+
 * <font color=red>**nil**</font> vs <font color=red>**NULL**</font>
 
   * ```objective-c
   NSObject *object = nil; // object 是一个空指针，不指向任何对象。
     ```
-  
+
   * ```c
     int *ptr = NULL; // ptr 是一个空指针，不指向任何内存地址。
 

@@ -36,7 +36,7 @@
 @end
 
 @implementation JobsPostVC
-UIViewModelProtocol_synthesize
+
 - (void)dealloc{
     JobsRemoveNotification(self);
     NSLog(@"%@",JobsLocalFunc);
@@ -481,18 +481,20 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         _postTextModel.placeholderColor = RGB_SAMECOLOR(173);
         _postTextModel.font = UIFontWeightRegularSize(14);
         _postTextModel.maxWordCount = 10;
-    }return _textModel;
+    }return _postTextModel;
 }
 
 -(NSString *)inputDataHistoryString{
     if(!_inputDataHistoryString){
-        _inputDataHistoryString = JobsInternationalization(@"");
+        _inputDataHistoryString = @"";
     }return _inputDataHistoryString;
 }
 
 -(NSMutableArray<UIImage *> *)photosImageMutArr{
     if (!_photosImageMutArr) {
-        _photosImageMutArr = NSMutableArray.array;
+        _photosImageMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            
+        });
     }return _photosImageMutArr;
 }
 

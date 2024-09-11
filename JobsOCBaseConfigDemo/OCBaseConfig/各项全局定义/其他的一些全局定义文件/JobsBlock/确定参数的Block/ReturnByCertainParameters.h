@@ -54,10 +54,14 @@ typedef NSMutableString *_Nullable(^JobsReturnMutableStringByStringBlock)(NSStri
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIntegerBlock)(NSInteger data);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByVoidBlock)(void);
 
+typedef NSDate *_Nullable(^JobsReturnDateByVoidBlock)(void);
 typedef NSDate *_Nullable(^JobsReturnDateByTimeIntervalBlock)(NSTimeInterval data);
 typedef NSDate *_Nullable(^JobsReturnDateByDateFormatterBlock)(NSDateFormatter *_Nullable data);
-typedef NSData *_Nullable(^JobsReturnDataByAssetBlock)(AVAsset *_Nullable asset);
 typedef NSTimeInterval(^JobsReturnTimeIntervalByDateBlock)(NSDate *_Nullable);
+
+typedef NSData *_Nullable(^JobsReturnDataByVoidBlock)(void);
+typedef NSData *_Nullable(^JobsReturnDataByAssetBlock)(AVAsset *_Nullable asset);
+typedef NSData *_Nullable(^JobsReturnDataByStringBlock)(NSString *_Nullable data);
 
 typedef PHAsset *_Nullable(^JobsReturnAssetByStrBlock)(NSString *_Nullable Key);
 
@@ -73,6 +77,7 @@ typedef UIColor *_Nullable(^JobsReturnColorByImageBlock)(UIImage *_Nonnull cor);
 typedef UIImage *_Nonnull(^JobsReturnImageByVoidBlock)(void);
 typedef UIImage *_Nonnull(^JobsReturnImageByCGRectBlock)(CGRect data);
 typedef UIImage *_Nonnull(^JobsReturnImageByCGSizeBlock)(CGSize data);
+typedef UIImage *_Nonnull(^JobsReturnImageByDataBlock)(NSData *_Nullable data);
 typedef UIImage *_Nonnull(^JobsReturnImageByAVURLAssetBlock)(AVURLAsset *_Nonnull data);
 typedef UIImage *_Nonnull(^JobsReturnImageByViewBlock)(__kindof UIView *_Nonnull data);
 typedef UIImage *_Nonnull(^JobsReturnImageByAlphaBlock)(CGFloat alpha);

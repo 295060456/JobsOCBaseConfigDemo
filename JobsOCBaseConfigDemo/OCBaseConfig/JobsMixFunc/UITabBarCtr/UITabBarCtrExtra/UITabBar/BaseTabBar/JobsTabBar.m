@@ -10,8 +10,8 @@
 
 @interface JobsTabBar ()
 
-@property(nonatomic,strong)NSMutableArray <UIView *>*tabBarButtons;
-@property(nonatomic,strong)NSMutableArray <LOTAnimationView *>*lOTAnimationViews;
+@property(nonatomic,strong)NSMutableArray <__kindof UIView *>*tabBarButtons;
+@property(nonatomic,strong)NSMutableArray <__kindof LOTAnimationView *>*lOTAnimationViews;
 
 @end
 
@@ -205,32 +205,40 @@
     }
 }
 #pragma mark —— LazyLoad
--(NSMutableArray<UIView *> *)tabBarButtons{
+-(NSMutableArray<__kindof UIView *> *)tabBarButtons{
     if(!_tabBarButtons){
-        _tabBarButtons = NSMutableArray.array;
-        for (UIView *subview in self.subviews) {
-            if([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]){
-                [_tabBarButtons addObject:subview];
+        _tabBarButtons = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            for (UIView *subview in self.subviews) {
+                if([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]){
+                    data.add(subview);
+                }
             }
-        }
+        });
     }return _tabBarButtons;
 }
 
--(NSMutableArray<LOTAnimationView *> *)lOTAnimationViews{
+-(NSMutableArray<__kindof LOTAnimationView *> *)lOTAnimationViews{
     if(!_lOTAnimationViews){
-        _lOTAnimationViews = NSMutableArray.array;
-        for (int t = 0;
-             t < self.tabBarButtons.count;
-             t++) {
-            JobsTabBarItemConfig *config = (JobsTabBarItemConfig *)AppDelegate.tabBarItemConfigMutArr[t];
-//            -config.humpOffsetY / 2
-            /// 根据config.lottieName 方法-config.lottieName:offsetY:lottieName:内部做了判空处理
-            LOTAnimationView *lotAnimationView = [self addLottieImage:t lottieName:config.lottieName];
-            if (lotAnimationView) {
-                [_lOTAnimationViews addObject:lotAnimationView];
+        _lOTAnimationViews = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            for (int t = 0;
+                 t < self.tabBarButtons.count;
+                 t++) {
+                JobsTabBarItemConfig *config = (JobsTabBarItemConfig *)AppDelegate.tabBarItemConfigMutArr[t];
+    //            -config.humpOffsetY / 2
+                /// 根据config.lottieName 方法-config.lottieName:offsetY:lottieName:内部做了判空处理
+                LOTAnimationView *lotAnimationView = [self addLottieImage:t lottieName:config.lottieName];
+                if (lotAnimationView) {
+                    data.add(lotAnimationView);
+                }
             }
-        }
+        });
     }return _lOTAnimationViews;
+}
+@synthesize viewModel = _viewModel;
+-(UIViewModel *)viewModel{
+    if(!_viewModel){
+        _viewModel = UIViewModel.new;
+    }return _viewModel;
 }
 
 @end

@@ -505,49 +505,17 @@ JobsKey(__立即注册)
     BaseButton *_立即注册 = Jobs_getAssociatedObject(_立即注册);
     if ([self isKindOfClass:UIViewController.class] && !_立即注册 ) {
         @jobs_weakify(self)
-        _立即注册 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                  background:nil
-                                  buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                               textAlignment:NSTextAlignmentCenter
-                                            subTextAlignment:NSTextAlignmentCenter
-                                                 normalImage:nil
-                                              highlightImage:nil
-                                             attributedTitle:nil
-                                     selectedAttributedTitle:nil
-                                          attributedSubtitle:nil
-                                                       title:JobsInternationalization(@"立即注册")
-                                                    subTitle:nil
-                                                   titleFont:UIFontWeightRegularSize(14)
-                                                subTitleFont:nil
-                                                    titleCor:HEXCOLOR(0x757575)
-                                                 subTitleCor:nil
-                                          titleLineBreakMode:NSLineBreakByWordWrapping
-                                       subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                         baseBackgroundColor:nil
-                                             backgroundImage:nil
-                                                imagePadding:JobsWidth(0)
-                                                titlePadding:JobsWidth(0)
-                                              imagePlacement:NSDirectionalRectEdgeNone
-                                  contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                    contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                               contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                           cornerRadiusValue:JobsWidth(0)
-                                             roundingCorners:UIRectCornerAllCorners
-                                        roundingCornersRadii:CGSizeZero
-                                              layerBorderCor:nil
-                                                 borderWidth:JobsWidth(0)
-                                               primaryAction:nil
-                                  longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                 id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                             clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"立即注册")
-            return nil;
-        }];
+        _立即注册 = BaseButton
+            .initByTitleAndFontAndTitleCor(JobsInternationalization(@"立即注册"),UIFontWeightRegularSize(14),HEXCOLOR(0x757575))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                NSLog(@"联系客服");
+                if (self.objectBlock) self.objectBlock(x);
+            })
+            .onLongPressGesture(^(id data){
+                @jobs_strongify(self)
+                NSLog(@"按钮的长按事件触发");
+            });
         UIViewController *viewController = (UIViewController *)self;
         [viewController.bgImageView addSubview:_立即注册];
         [_立即注册 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -570,49 +538,17 @@ JobsKey(__联系客服)
     BaseButton *_联系客服 = Jobs_getAssociatedObject(__联系客服);
     if ([self isKindOfClass:UIViewController.class] && !_联系客服) {
         @jobs_weakify(self)
-        _联系客服 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                    background:nil
-                                  buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                               textAlignment:NSTextAlignmentCenter
-                                            subTextAlignment:NSTextAlignmentCenter
-                                                 normalImage:nil
-                                              highlightImage:nil
-                                             attributedTitle:nil
-                                     selectedAttributedTitle:nil
-                                          attributedSubtitle:nil
-                                                       title:JobsInternationalization(@"联系客服")
-                                                    subTitle:nil
-                                                   titleFont:UIFontWeightRegularSize(14)
-                                                subTitleFont:nil
-                                                    titleCor:HEXCOLOR(0x757575)
-                                                 subTitleCor:nil
-                                          titleLineBreakMode:NSLineBreakByWordWrapping
-                                       subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                         baseBackgroundColor:nil
-                                             backgroundImage:nil
-                                                imagePadding:JobsWidth(0)
-                                                titlePadding:JobsWidth(0)
-                                              imagePlacement:NSDirectionalRectEdgeNone
-                                  contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                    contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                               contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                           cornerRadiusValue:JobsWidth(0)
-                                             roundingCorners:UIRectCornerAllCorners
-                                        roundingCornersRadii:CGSizeZero
-                                              layerBorderCor:nil
-                                                 borderWidth:JobsWidth(0)
-                                               primaryAction:nil
-                                  longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                 id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                             clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"联系客服");
-            return nil;
-        }];
+        _联系客服 = BaseButton
+            .initByTitleAndFontAndTitleCor(JobsInternationalization(@"联系客服"),UIFontWeightRegularSize(14),HEXCOLOR(0x757575))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                NSLog(@"联系客服");
+                if (self.objectBlock) self.objectBlock(x);
+            })
+            .onLongPressGesture(^(id data){
+                @jobs_strongify(self)
+                NSLog(@"按钮的长按事件触发");
+            });
         UIViewController *viewController = (UIViewController *)self;
         [viewController.bgImageView addSubview:_联系客服];
         [_联系客服 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -648,9 +584,10 @@ JobsKey(_richTextMutArr)
 -(NSMutableArray<NSString *> *)richTextMutArr{
     NSMutableArray <NSString *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextMutArr);
     if (!RichTextMutArr) {
-        RichTextMutArr = NSMutableArray.array;
-        RichTextMutArr.add(JobsInternationalization(@"如需帮助，请联系"));
-        RichTextMutArr.add(JobsInternationalization(@"专属客服"));
+        RichTextMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(JobsInternationalization(@"如需帮助，请联系"));
+            data.add(JobsInternationalization(@"专属客服"));
+        });
         [self setRichTextMutArr:RichTextMutArr];
         Jobs_setAssociatedRETAIN_NONATOMIC(_richTextMutArr, RichTextMutArr)
     }return RichTextMutArr;
@@ -665,20 +602,20 @@ JobsKey(_richTextConfigMutArr)
 -(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
     NSMutableArray <JobsRichTextConfig *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextConfigMutArr);
     if (!RichTextMutArr) {
-        RichTextMutArr = NSMutableArray.array;
-        
-        JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-        config_01.font = UIFontWeightRegularSize(12);
-        config_01.textCor = HEXCOLOR(0x757575);
-        config_01.targetString = self.richTextMutArr[0];
-        [RichTextMutArr addObject:config_01];
+        RichTextMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
+            config_01.font = UIFontWeightRegularSize(12);
+            config_01.textCor = HEXCOLOR(0x757575);
+            config_01.targetString = self.richTextMutArr[0];
+            data.add(config_01);
 
-        JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-        config_02.font = UIFontWeightMediumSize(12);;
-        config_02.textCor = HEXCOLOR(0xAE8330);
-        config_02.targetString = self.richTextMutArr[1];
-        config_02.urlStr = @"click://";
-        [RichTextMutArr addObject:config_02];
+            JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
+            config_02.font = UIFontWeightMediumSize(12);;
+            config_02.textCor = HEXCOLOR(0xAE8330);
+            config_02.targetString = self.richTextMutArr[1];
+            config_02.urlStr = @"click://";
+            data.add(config_02);
+        });
         [self setRichTextConfigMutArr:RichTextMutArr];
         
         Jobs_setAssociatedRETAIN_NONATOMIC(_richTextConfigMutArr, RichTextMutArr)
@@ -728,11 +665,12 @@ JobsKey(_jxCategoryViewTitleMutArr)
 -(NSMutableArray<NSString *> *)jxCategoryViewTitleMutArr{
     NSMutableArray *JXCategoryViewTitleMutArr = Jobs_getAssociatedObject(_jxCategoryViewTitleMutArr);
     if (!JXCategoryViewTitleMutArr) {
-        JXCategoryViewTitleMutArr = NSMutableArray.array;
-        JXCategoryViewTitleMutArr.add(JobsInternationalization(@"今日"));
-        JXCategoryViewTitleMutArr.add(JobsInternationalization(@"昨日"));
-        JXCategoryViewTitleMutArr.add(JobsInternationalization(@"近7日"));
-        JXCategoryViewTitleMutArr.add(JobsInternationalization(@"近30日"));
+        JXCategoryViewTitleMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(JobsInternationalization(@"今日"));
+            data.add(JobsInternationalization(@"昨日"));
+            data.add(JobsInternationalization(@"近7日"));
+            data.add(JobsInternationalization(@"近30日"));
+        });
         Jobs_setAssociatedRETAIN_NONATOMIC(_jxCategoryViewTitleMutArr, JXCategoryViewTitleMutArr)
     }return JXCategoryViewTitleMutArr;
 }

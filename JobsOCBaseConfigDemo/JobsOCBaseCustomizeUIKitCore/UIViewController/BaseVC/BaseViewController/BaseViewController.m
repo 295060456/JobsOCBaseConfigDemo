@@ -12,8 +12,6 @@
 @end
 
 @implementation BaseViewController
-#pragma mark —— UIViewModelProtocol
-UIViewModelProtocol_synthesize
 #pragma mark —— BaseViewProtocol
 BaseViewProtocol_synthesize
 /// new方法触发
@@ -98,6 +96,7 @@ BaseViewProtocol_synthesize
     };
 }
 #pragma mark —— lazyLoad
+@synthesize bgImageView = _bgImageView;
 -(UIImageView *)bgImageView{
     if (!_bgImageView) {
         _bgImageView = UIImageView.new;

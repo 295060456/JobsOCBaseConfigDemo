@@ -27,20 +27,6 @@ typedef NS_ENUM(NSUInteger, ComingStyle) {
 };
 #endif /* COMING_STYLE_ENUM_DEFINED */
 
-#ifndef VC_LIFE_CYCLE_ENUM_DEFINED
-#define VC_LIFE_CYCLE_ENUM_DEFINED
-typedef NS_ENUM(NSUInteger, UIViewControllerLifeCycle) {
-    VCLifeCycle_loadView = 0,
-    VCLifeCycle_viewDidLoad,
-    VCLifeCycle_viewWillAppear,
-    VCLifeCycle_viewDidAppear,
-    VCLifeCycle_viewWillDisappear,
-    VCLifeCycle_viewDidDisappear,
-    VCLifeCycle_viewWillLayoutSubviews,
-    VCLifeCycle_viewDidLayoutSubviews
-};
-#endif /* VC_LIFE_CYCLE_ENUM_DEFINED */
-
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseViewControllerProtocol<BaseViewProtocol>
@@ -55,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)JobsNavBar *navBar;
 @property(nonatomic,strong)NSMutableArray<__kindof UIBarButtonItem *> *leftBarButtonItems;/// 左边UIBarButtonItem 数组
 @property(nonatomic,strong)NSMutableArray<__kindof UIBarButtonItem *> *rightBarButtonItems;/// 右边UIBarButtonItem 数组
-@property(nonatomic,strong)NSMutableArray<__kindof UIViewController *> *viewControllers;/// 子视图控制器 数组
+@property(nonatomic,strong)NSMutableArray<__kindof UIViewController *> *vcs;/// 子视图控制器 数组
 @property(nonatomic,strong)UIBarButtonItem *barButtonItem;
 /// 更新状态栏颜色为自定义的颜色
 -(jobsByCorBlock _Nonnull)updateStatusBarCor;
@@ -65,12 +51,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByView2Block _Nonnull)configViewNavigatorBySuperviewAndView;
 /// 查看用户数据
 -(void)showUserInfo;
-/// 配置 GKNavigationBar
--(jobsByViewModelBlock _Nonnull)setGKNav;
-/// 配置 JobsNavBarConfig
--(JobsReturnNavBarConfigByButtonModelBlock _Nonnull)makeNavBarConfig;
-/// 配置GKNavigationBar的返回按钮
--(jobsByBtnBlock _Nonnull)setGKNavBackBtn;
 /// 铺满全屏展示的策略
 -(void)fullScreenConstraintTargetView:(nonnull __kindof UIView *)view
                         topViewOffset:(CGFloat)topViewOffset;
@@ -88,7 +68,7 @@ NS_ASSUME_NONNULL_END
 @synthesize statusBar = _statusBar;\
 @synthesize leftBarButtonItems = _leftBarButtonItems;\
 @synthesize rightBarButtonItems = _rightBarButtonItems;\
-@synthesize viewControllers = _viewControllers;\
+@synthesize vcs = _vcs;\
 @synthesize barButtonItem = _barButtonItem;\
 //@synthesize navBar = _navBar;\ 在 @implementation UIViewController (BaseVC) 实现。这里不写
 //@synthesize navBarConfig = _navBarConfig;\ 在 @implementation UIViewController (BaseVC) 实现。这里不写
@@ -107,7 +87,7 @@ NS_ASSUME_NONNULL_END
 @dynamic rightBarButtonItems;\
 @dynamic navBarConfig;\
 @dynamic navBar;\
-@dynamic viewControllers;\
+@dynamic vcs;\
 @dynamic barButtonItem;\
 
 #endif

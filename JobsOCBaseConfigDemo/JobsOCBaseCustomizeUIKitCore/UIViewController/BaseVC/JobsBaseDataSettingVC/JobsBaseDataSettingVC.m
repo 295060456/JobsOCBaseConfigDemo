@@ -15,10 +15,7 @@
 @end
 
 @implementation JobsBaseDataSettingVC
-#pragma mark —— BaseViewControllerProtocol
-BaseViewControllerProtocol_synthesize
-#pragma mark —— UIViewModelProtocol
-UIViewModelProtocol_synthesize
+
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -88,7 +85,7 @@ UIViewModelProtocol_synthesize
     // update the preferredContentSize.
     [self updatePreferredContentSizeWithTraitCollection:newCollection];
 }
-
+@synthesize presentUpHeight = _presentUpHeight;
 -(void)updatePreferredContentSizeWithTraitCollection:(UITraitCollection *)traitCollection{
     NSLog(@"%f",self.presentUpHeight);
     self.preferredContentSize = CGSizeMake(self.view.bounds.size.width,
@@ -100,7 +97,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     return YES;
 }
 #pragma mark —— BaseViewControllerProtocol
--(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig{
+-(JobsReturnNavBarConfigByButtonModelBlock _Nonnull)makeNavBarConfig{
     @jobs_weakify(self)
     return ^JobsNavBarConfig *_Nullable(UIButtonModel *_Nullable backBtnModel,
                                         UIButtonModel *_Nullable closeBtnModel) {
@@ -118,12 +115,16 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         return _navBarConfig;
     };
 }
+
 #pragma mark —— lazyLoad
 /// BaseViewControllerProtocol
--(NSMutableArray<__kindof UIViewController *> *)viewControllers{
-    if(!_viewControllers){
-        _viewControllers = NSMutableArray.array;
-    }return _viewControllers;
+@synthesize vcs = _vcs;
+-(NSMutableArray<__kindof UIViewController *> *)vcs{
+    if(!_vcs){
+        _vcs = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            
+        });
+    }return _vcs;
 }
 
 -(UIViewModel *)viewModel{

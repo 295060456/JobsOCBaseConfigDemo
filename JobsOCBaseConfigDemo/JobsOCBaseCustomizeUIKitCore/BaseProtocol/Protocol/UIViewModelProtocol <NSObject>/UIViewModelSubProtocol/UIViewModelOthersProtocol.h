@@ -42,8 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)RACSignal *reqSignal;
 @property(nonatomic,strong,nullable)id data;/// 绑定的数据源，数据类型id
 @property(nonatomic,strong,nullable)id requestParams;/// 绑定的数据源，数据类型id
-@property(nonatomic,strong)NSURL *url;
 @property(nonatomic,strong,nullable)UIViewModel *viewModel;
+@property(nonatomic,strong)NSURL *url;
 #pragma mark —— 定位
 @property(nonatomic,assign)NSUInteger jobsTag;
 #pragma mark —— 点击

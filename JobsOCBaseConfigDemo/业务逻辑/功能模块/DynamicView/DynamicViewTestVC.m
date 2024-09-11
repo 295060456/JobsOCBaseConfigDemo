@@ -65,6 +65,22 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
 }
+#pragma mark —— 一些私有方法
+-(JobsReturnDataByVoidBlock)getData{
+    @jobs_weakify(self)
+    return ^NSData *(){
+        @jobs_strongify(self)
+        return [NSData dataWithContentsOfFile:self.path];
+    };
+}
+
+-(JobsReturnImageByDataBlock)getImage{
+    @jobs_weakify(self)
+    return ^UIImage *(NSData *_Nullable data){
+        @jobs_strongify(self)
+        return [UIImage sd_imageWithGIFData:self.getData()];
+    };
+}
 #pragma mark —— lazyLoad
 -(UIImageView *)gifImageView{
     if (!_gifImageView) {
@@ -79,22 +95,8 @@
 
 -(NSString *)path{
     if (!_path) {
-        _path = [NSBundle.mainBundle pathForResource:@"GIF大图"
-                                              ofType:@"gif"];
+        _path = [NSBundle.mainBundle pathForResource:@"GIF大图" ofType:@"gif"];
     }return _path;
 }
-@synthesize data = _data;
--(NSData *)data{
-    if (!_data) {
-        _data = [NSData dataWithContentsOfFile:self.path];
-    }return _data;
-}
-@synthesize image = _image;
--(UIImage *)image{
-    if (!_image) {
-        _image = [UIImage sd_imageWithGIFData:self.data];
-    }return _image;
-}
-
 
 @end

@@ -72,7 +72,7 @@
     self.editBtn.alpha = 1;
     self.refreshLeftView();
     
-    self.displayViewController(self.viewControllers[0]);
+    self.displayViewController(self.vcs[0]);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -100,7 +100,7 @@
     return ^(){
         /// 这里可以调用接口去获取一级目录分类的数据
         for (int i = 0; i < self.titleMutArr.count; i++){
-            self.viewControllers.add(JobsVerticalMenuSubVC.new);
+            self.vcs.add(JobsVerticalMenuSubVC.new);
         }
     };
 }
@@ -209,7 +209,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(void)tableView:(__kindof UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.displayViewController(self.viewControllers[indexPath.row]);
+    self.displayViewController(self.vcs[indexPath.row]);
 }
 #pragma mark —— lazyLoad
 -(UITableView *)tableView{
