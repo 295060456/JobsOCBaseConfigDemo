@@ -8,9 +8,6 @@
 #import "JobsBaseDataSettingVC.h"
 
 @interface JobsBaseDataSettingVC ()
-/// Data
-@property(nonatomic,strong)UIButtonModel *closeBtnModel;
-@property(nonatomic,strong)UIButtonModel *backBtnModel;
 
 @end
 

@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,class)NSMutableArray <__kindof UIViewController *>*viewCtrlMutArr;///【手动添加的】Tabbar管理的，不含导航的根控制器
 @property(nonatomic,strong,class)NSMutableArray <__kindof UINavigationController *>*navCtrMutArr;
 #pragma mark —— 一些公有方法
+/// 切换控制器
++(void)button:(__kindof UIButton *)button index:(NSUInteger)index;
 /// 刷新 TabBarTitle
 -(void)refreshTabBarTitle;
 

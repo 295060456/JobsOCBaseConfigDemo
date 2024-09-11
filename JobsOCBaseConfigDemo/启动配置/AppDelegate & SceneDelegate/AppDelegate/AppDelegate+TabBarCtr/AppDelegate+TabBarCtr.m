@@ -256,7 +256,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.textAlignment = NSTextAlignmentCenter;
                 viewModel.subTextAlignment = NSTextAlignmentCenter;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = DefaultIndex == _tabBarItemMutArr.count ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                viewModel.buttonModel.backgroundImage = DefaultIndex == 0 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
                 data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
                     NSLog(@"");
                     x.selected = !x.selected;
@@ -281,7 +281,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.textAlignment = NSTextAlignmentCenter;
                 viewModel.subTextAlignment = NSTextAlignmentCenter;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = DefaultIndex == _tabBarItemMutArr.count ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                viewModel.buttonModel.backgroundImage = DefaultIndex == 1 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
                 data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
                     NSLog(@"");
                     x.selected = !x.selected;
@@ -307,7 +307,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.textAlignment = NSTextAlignmentCenter;
                 viewModel.subTextAlignment = NSTextAlignmentCenter;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = DefaultIndex == _tabBarItemMutArr.count ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                viewModel.buttonModel.backgroundImage = DefaultIndex == 2 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
                 data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
                     NSLog(@"");
                     x.selected = !x.selected;
@@ -329,7 +329,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.textAlignment = NSTextAlignmentCenter;
                 viewModel.subTextAlignment = NSTextAlignmentCenter;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = DefaultIndex == _tabBarItemMutArr.count ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                viewModel.buttonModel.backgroundImage = DefaultIndex == 3 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
                 data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
                     NSLog(@"");
                     x.selected = !x.selected;
@@ -351,7 +351,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.textAlignment = NSTextAlignmentCenter;
                 viewModel.subTextAlignment = NSTextAlignmentCenter;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = DefaultIndex == _tabBarItemMutArr.count ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                viewModel.buttonModel.backgroundImage = DefaultIndex == 4 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
                 data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
                     NSLog(@"");
                     x.selected = !x.selected;
@@ -504,8 +504,9 @@ static NSMutableArray <__kindof UINavigationController *>*_navCtrMutArr = nil;
 +(void)setNavCtrMutArr:(NSMutableArray<__kindof UINavigationController *> *)navCtrMutArr{
     _navCtrMutArr = navCtrMutArr;
 }
-#pragma mark —— 一些私有方法
-+(void)button:(UIButton *)button index:(NSUInteger)index{
+#pragma mark —— 一些公有方法
+/// 切换控制器
++(void)button:(__kindof UIButton *)button index:(NSUInteger)index{
     int t = 0;
     for (UIButton *btn in AppDelegate.tabBarItemMutArr) {
         btn.jobsResetBtnImage(self.imageUnSelectedMutArr[t]);
@@ -518,7 +519,6 @@ static NSMutableArray <__kindof UINavigationController *>*_navCtrMutArr = nil;
     button.jobsResetBtnBgImage(JobsIMG(@"TabBarItem选中的背景色"));
     [self.jobsCustomTabBarVC customSelectIndex:index];
 }
-#pragma mark —— 一些公有方法
 /// 刷新 TabBarTitle
 -(void)refreshTabBarTitle{
     for (JobsTabBarItemConfig *config in AppDelegate.tabBarItemConfigMutArr) {
