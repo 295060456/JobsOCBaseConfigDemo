@@ -79,12 +79,12 @@ JobsKey(_target)
     id target = Jobs_getAssociatedObject(_target);
     if (!target) {
         @jobs_weakify(self)
-        Jobs_setAssociatedASSIGN(_target, weak_self)
+        Jobs_setAssociatedRETAIN_NONATOMIC(_target, weak_self)
     }return target;
 }
 
 -(void)setTarget:(id)target{
-    Jobs_setAssociatedASSIGN(_target, target)
+    Jobs_setAssociatedRETAIN_NONATOMIC(_target, target)
 }
 #pragma mark —— @property(nonatomic,assign)NSUInteger minimumNumberOfTouches API_UNAVAILABLE(tvos);
 JobsKey(_minimumNumberOfTouches)

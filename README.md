@@ -3537,26 +3537,79 @@ static const uint32_t kSequenceBits = 12;
 
 * 协议的属性值无法在控制台用`po`进行打印输出，只能通过`NSLog`。因为当本类的成员变量列表已经部署完毕了以后，再部署以runtime的形式部署分类的属性
 
+* 同一属性，不要<font color=red>**@dynamic**</font>和<font color=red>**@synthesize**</font>，容易出现一些异常。（比如，<font color=red>**@synthesize**</font>修饰的属性，无法覆盖本类的子类）
+
+* 就近原则：本类直接定义的属性 > <font color=red>**@synthesize**</font> > <font color=red>**@dynamic**</font>
+
 * 在分类里面实现协议属性需要涉及到关键字<font color=red>**@dynamic**</font>
 
-  ```objective-c
-  #pragma mark —— @property(nonatomic,strong,nullable)UIViewModel *viewModel;
-  JobsKey(_viewModel)
-  @dynamic viewModel;
-  -(UIViewModel *)viewModel{
-      UIViewModel *VM = Jobs_getAssociatedObject(_viewModel);
-      if(!VM){
-          VM = UIViewModel.new;
-          VM.textModel.textCor = HEXCOLOR(0x3D4A58);
-          VM.textModel.font = UIFontWeightRegularSize(16);
-          Jobs_setAssociatedRETAIN_NONATOMIC(_viewModel, VM);
-      }return VM;
-  }
-  
-  -(void)setViewModel:(UIViewModel *)viewModel{
-      Jobs_setAssociatedRETAIN_NONATOMIC(_viewModel, viewModel)
-  }
-  ```
+  * <font color=red>**copy**</font>：`Jobs_setAssociatedCOPY_NONATOMIC`、`Jobs_setAssociatedCOPY`
+
+    ```objective-c
+    #pragma mark —— @property(nonatomic,copy)jobsByIDBlock makeBlock;
+    JobsKey(_makeBlock)
+    @dynamic makeBlock;
+    -(jobsByIDBlock)makeBlock{
+        return Jobs_getAssociatedObject(_makeBlock);
+    }
+    
+    -(void)setMakeBlock:(jobsByIDBlock)makeBlock{
+        Jobs_setAssociatedCOPY_NONATOMIC(_makeBlock, makeBlock)
+    }
+    ```
+
+  * <font color=red>**retain**</font>：`Jobs_setAssociatedRETAIN_NONATOMIC`、`Jobs_setAssociatedRETAIN`
+
+    ```objective-c
+    #pragma mark —— @property(nonatomic,strong,nullable)UIViewModel *viewModel;
+    JobsKey(_viewModel)
+    @dynamic viewModel;
+    -(UIViewModel *)viewModel{
+        UIViewModel *VM = Jobs_getAssociatedObject(_viewModel);
+        if(!VM){
+            VM = UIViewModel.new;
+            VM.textModel.textCor = HEXCOLOR(0x3D4A58);
+            VM.textModel.font = UIFontWeightRegularSize(16);
+            Jobs_setAssociatedRETAIN_NONATOMIC(_viewModel, VM);
+        }return VM;
+    }
+    
+    -(void)setViewModel:(UIViewModel *)viewModel{
+        Jobs_setAssociatedRETAIN_NONATOMIC(_viewModel, viewModel)
+    }
+    ```
+
+    对基本数据类型，需要封装成`NSNumber`对象再进行存储
+
+    ```objective-c
+    #pragma mark —— @property(nonatomic,assign)NSUInteger minimumNumberOfTouches API_UNAVAILABLE(tvos);
+    JobsKey(_minimumNumberOfTouches)
+    @dynamic minimumNumberOfTouches;
+    -(NSUInteger)minimumNumberOfTouches{
+        return [Jobs_getAssociatedObject(_minimumNumberOfTouches) unsignedIntegerValue];
+    }
+    
+    -(void)setMinimumNumberOfTouches:(NSUInteger)minimumNumberOfTouches{
+        Jobs_setAssociatedRETAIN_NONATOMIC(_minimumNumberOfTouches, @(minimumNumberOfTouches))
+    }
+    ```
+
+  * <font color=red>**assign**</font>：`Jobs_setAssociatedASSIGN`
+
+    weak对象
+
+    ```objective-c
+    #pragma mark —— <BaseViewControllerProtocol> @property(nonatomic,weak)UIViewController *fromVC;
+    JobsKey(_fromVC)
+    @dynamic fromVC;
+    -(UIViewController *)fromVC{
+        return Jobs_getAssociatedObject(_fromVC);
+    }
+    
+    -(void)setFromVC:(UIViewController *)fromVC{
+        Jobs_setAssociatedASSIGN(_fromVC, fromVC)
+    }
+    ```
 
 * 在具体子类里面实现协议属性需要涉及到关键字<font color=red>**@synthesize**</font>
 
@@ -3570,8 +3623,6 @@ static const uint32_t kSequenceBits = 12;
       }return _viewModel;
   }
   ```
-
-* <font color=red>**@synthesize**</font>只在本类有效果，如果遇到继承关系，则不覆盖当前类的子类
 
 ### 33、其他 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
