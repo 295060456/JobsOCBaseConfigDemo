@@ -118,5 +118,8 @@
 /// 对 NTESVerifyCodeManager 的二次封装
 /// https://github.com/yidun/NTESVerifyCode
 #import "NSObject+NTESVerifyCodeManager.h"
+/// 极验验证码
+/// https://www2.geetest.com/
+#import "NSObject+GTCaptcha4.h"
 
 #endif /* JobsObject_h */

@@ -14,6 +14,7 @@
 #endif
 
 #import "JobsLanguageManager.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NTESVerifyCodeManager *verifyCodeManager;
 @property(nonatomic,strong)NTESVerifyCodeStyleConfig *verifyCodeStyleConfig;
 
--(void)verifyCode_simpleCall;
+-(jobsByVoidBlock)show_verifyCode_NTES;
 
 @end
 

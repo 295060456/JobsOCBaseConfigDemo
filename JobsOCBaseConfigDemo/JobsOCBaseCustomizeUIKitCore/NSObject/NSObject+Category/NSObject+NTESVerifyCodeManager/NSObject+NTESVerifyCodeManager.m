@@ -8,10 +8,14 @@
 #import "NSObject+NTESVerifyCodeManager.h"
 
 @implementation NSObject (NTESVerifyCodeManager)
-
--(void)verifyCode_simpleCall{
-    // 显示验证码
-    [self.verifyCodeManager openVerifyCodeView:nil];
+#pragma mark —— BaseProtocol
+// 显示验证码
+-(jobsByVoidBlock)show_verifyCode_NTES{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        [self.verifyCodeManager openVerifyCodeView:nil];
+    };
 }
 #pragma mark —— NTESVerifyCodeManagerDelegate
 /// 验证码组件初始化完成
@@ -51,7 +55,7 @@ JobsKey(_verifyCodeManager)
         VerifyCodeManager = NTESVerifyCodeManager.getInstance;
         VerifyCodeManager.delegate = self;
         
-        [VerifyCodeManager configureVerifyCode:@"请输入易盾业务ID" 
+        [VerifyCodeManager configureVerifyCode:网易易盾KEY
                                        timeout:7.0
                                    styleConfig:self.verifyCodeStyleConfig];
         /**

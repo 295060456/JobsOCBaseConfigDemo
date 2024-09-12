@@ -53,6 +53,9 @@
 		CE706A422C57680500CB7B97 /* JobsPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE794C2C450C5000764AF5 /* JobsPostVC.m */; };
 		CE706A462C57682900CB7B97 /* data.tsv in Resources */ = {isa = PBXBuildFile; fileRef = CE706A432C57682900CB7B97 /* data.tsv */; };
 		CE72AC312C885E54000B7A40 /* JobsUploadingProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE72AC2F2C885E4D000B7A40 /* JobsUploadingProgressView.m */; };
+		CE7C79AF2C92B98000C0153C /* NSObject+GTCaptcha4.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7C79AD2C92B97C00C0153C /* NSObject+GTCaptcha4.m */; };
+		CE7C79B42C92B9CD00C0153C /* GTCaptcha4.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE7C79B12C92B9C600C0153C /* GTCaptcha4.bundle */; };
+		CE7C79B52C92B9D000C0153C /* GTCaptcha4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7C79B22C92B9C600C0153C /* GTCaptcha4.framework */; };
 		CE7F395D2C4FDA1000431A5D /* JobsFMDBMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */; };
 		CE7F395E2C4FDA1000431A5D /* FMDB_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F395A2C4FDA1000431A5D /* FMDB_VC.m */; };
 		CE7F396F2C4FDAF900431A5D /* JobsMenuSubView@1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39602C4FDAF900431A5D /* JobsMenuSubView@1.m */; };
@@ -882,7 +885,6 @@
 		CECE87252C45140000764AF5 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE86372C45140000764AF5 /* NSString+Base64.m */; };
 		CECE87262C45140000764AF5 /* UIImage+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE863A2C45140000764AF5 /* UIImage+Base64.m */; };
 		CECE87272C45140000764AF5 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE863E2C45140000764AF5 /* GTMBase64.m */; };
-		CECE87282C45140000764AF5 /* GTMBase64.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE86402C45140000764AF5 /* GTMBase64.md */; };
 		CECE87292C45140000764AF5 /* Base64.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE86442C45140000764AF5 /* Base64.md */; };
 		CECE872A2C45140000764AF5 /* NSData+Base85.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE86472C45140000764AF5 /* NSData+Base85.m */; };
 		CECE872B2C45140000764AF5 /* NSString+Base85.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE864A2C45140000764AF5 /* NSString+Base85.m */; };
@@ -1268,6 +1270,11 @@
 		CE72AC302C885E51000B7A40 /* JobsUploadingProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsUploadingProgressView.h; sourceTree = "<group>"; };
 		CE73A5362C4E441D00B44795 /* JobsToggleNavViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsToggleNavViewProtocol.h; sourceTree = "<group>"; };
 		CE775D7C2C47BF5D004D39D0 /* 自定义 UITabBarController.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "自定义 UITabBarController.md"; path = "自定义 UITabBarController.md/自定义 UITabBarController.md"; sourceTree = "<group>"; };
+		CE7C79AC2C92B97C00C0153C /* NSObject+GTCaptcha4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+GTCaptcha4.h"; sourceTree = "<group>"; };
+		CE7C79AD2C92B97C00C0153C /* NSObject+GTCaptcha4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GTCaptcha4.m"; sourceTree = "<group>"; };
+		CE7C79B02C92B9C600C0153C /* 极验验证码.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "极验验证码.md"; sourceTree = "<group>"; };
+		CE7C79B12C92B9C600C0153C /* GTCaptcha4.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GTCaptcha4.bundle; sourceTree = "<group>"; };
+		CE7C79B22C92B9C600C0153C /* GTCaptcha4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTCaptcha4.framework; sourceTree = "<group>"; };
 		CE7F39562C4FDA1000431A5D /* JobsFMDBMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsFMDBMgr.h; sourceTree = "<group>"; };
 		CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsFMDBMgr.m; sourceTree = "<group>"; };
 		CE7F39592C4FDA1000431A5D /* FMDB_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB_VC.h; sourceTree = "<group>"; };
@@ -3231,6 +3238,7 @@
 				CECE89642C4519AE00764AF5 /* libstdc++.6.dylib in Frameworks */,
 				CECE895A2C4519AE00764AF5 /* libarclite_iphonesimulator.a in Frameworks */,
 				CECE89662C4519AE00764AF5 /* libstdc++.dylib in Frameworks */,
+				CE7C79B52C92B9D000C0153C /* GTCaptcha4.framework in Frameworks */,
 				CECE895B2C4519AE00764AF5 /* libarclite_macosx.a in Frameworks */,
 				33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */,
 				CECE89622C4519AE00764AF5 /* libstdc++.6.0.9.dylib in Frameworks */,
@@ -3839,6 +3847,25 @@
 				CE706A442C57682900CB7B97 /* TSV文件介绍.md */,
 			);
 			path = "TSV文件";
+			sourceTree = "<group>";
+		};
+		CE7C79AE2C92B97C00C0153C /* NSObject+GTCaptcha4 */ = {
+			isa = PBXGroup;
+			children = (
+				CE7C79AC2C92B97C00C0153C /* NSObject+GTCaptcha4.h */,
+				CE7C79AD2C92B97C00C0153C /* NSObject+GTCaptcha4.m */,
+			);
+			path = "NSObject+GTCaptcha4";
+			sourceTree = "<group>";
+		};
+		CE7C79B32C92B9C600C0153C /* 极验验证码 */ = {
+			isa = PBXGroup;
+			children = (
+				CE7C79B02C92B9C600C0153C /* 极验验证码.md */,
+				CE7C79B12C92B9C600C0153C /* GTCaptcha4.bundle */,
+				CE7C79B22C92B9C600C0153C /* GTCaptcha4.framework */,
+			);
+			path = "极验验证码";
 			sourceTree = "<group>";
 		};
 		CE7F39582C4FDA1000431A5D /* JobsFMDBMgr */ = {
@@ -8067,6 +8094,7 @@
 		CECE7E7A2C450E5B00764AF5 /* PodsManual */ = {
 			isa = PBXGroup;
 			children = (
+				CE7C79B32C92B9C600C0153C /* 极验验证码 */,
 				CE410FE62C57B8B400AB9402 /* ZBNetworking */,
 				CE7F39762C4FDB9B00431A5D /* FMDatabase+Manager */,
 				CECE7D812C450E5B00764AF5 /* JXCategoryView */,
@@ -10371,6 +10399,7 @@
 		CECE82FD2C4513CD00764AF5 /* NSObject+Category */ = {
 			isa = PBXGroup;
 			children = (
+				CE7C79AE2C92B97C00C0153C /* NSObject+GTCaptcha4 */,
 				CE1F24E92C5CD50000324198 /* NSObject+NTESVerifyCodeManager */,
 				CECE82722C4513CD00764AF5 /* NSObject+AFNReachability */,
 				CECE82792C4513CD00764AF5 /* NSObject+Alert */,
@@ -13820,6 +13849,7 @@
 				CECE7C842C450C5000764AF5 /* JobsIM【Outlines 10】.png in Resources */,
 				CECE88CC2C4519AD00764AF5 /* 空白图.png in Resources */,
 				CECE89562C4519AD00764AF5 /* MetaData.plist in Resources */,
+				CE7C79B42C92B9CD00C0153C /* GTCaptcha4.bundle in Resources */,
 				CECE872E2C45140000764AF5 /* DES.md in Resources */,
 				CECE894B2C4519AD00764AF5 /* InfoPlist.strings in Resources */,
 				CECE88D62C4519AD00764AF5 /* 750x1334.png in Resources */,
@@ -14079,7 +14109,6 @@
 				CECE85732C4513CE00764AF5 /* del_Photo@2x.png in Resources */,
 				CECE85CE2C4513CE00764AF5 /* ZYTextField.bundle in Resources */,
 				CECE80B52C4512BF00764AF5 /* iPhone尺寸.png in Resources */,
-				CECE87282C45140000764AF5 /* GTMBase64.md in Resources */,
 				CECE88FB2C4519AD00764AF5 /* NotoSansDisplay-VariableFont_wdth,wght.ttf in Resources */,
 				CECE89162C4519AD00764AF5 /* NotoSansDisplay_Condensed-Italic.ttf in Resources */,
 				CECE81152C4512BF00764AF5 /* 0@2x.png in Resources */,
@@ -14820,6 +14849,7 @@
 				CECE7C212C450C5000764AF5 /* YTKUrlArgumentsFilter.m in Sources */,
 				CECE85382C4513CE00764AF5 /* NSObject+CallBackInfoByBlock.m in Sources */,
 				CED358282C92A4E900A5703F /* NSURLRequest+Extra.m in Sources */,
+				CE7C79AF2C92B98000C0153C /* NSObject+GTCaptcha4.m in Sources */,
 				CECE7C1E2C450C5000764AF5 /* YTKBatchRequest+AnimatingAccessory.m in Sources */,
 				CECE81042C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyleModel.m in Sources */,
 				CECE80B72C4512BF00764AF5 /* JobsOCBaseConfigNotificationManager.m in Sources */,
@@ -15303,6 +15333,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K92UCMVH8G;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JobsOCBaseConfigDemo/PodsManual/极验验证码",
+				);
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JobsOCBaseConfigDemo/Info.plist;
@@ -15341,6 +15375,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K92UCMVH8G;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JobsOCBaseConfigDemo/PodsManual/极验验证码",
+				);
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JobsOCBaseConfigDemo/Info.plist;
