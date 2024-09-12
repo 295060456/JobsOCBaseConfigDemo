@@ -5,14 +5,8 @@
 //  Created by TangQiao on 11/8/14.
 //  Copyright (c) 2014 yuantiku.com. All rights reserved.
 //
-#import "YTKNetworkToolsHeader.h"
+#import "JobsBaseApi.h"
 
-#if __has_include(<YTKNetwork/YTKNetwork.h>)
-#import <YTKNetwork/YTKNetwork.h>
-#else
-#import "YTKNetwork.h"
-#endif
-
-@interface GetUserInfoApi : BaseRequest
+@interface GetUserInfoApi : JobsBaseApi
 
 @end

@@ -186,6 +186,9 @@ BaseProtocol
 /// 接收通知
 -(void)addNotificationName:(NSString *_Nonnull)notificationName block:(JobsSelectorBlock _Nullable)block;
 #pragma mark —— 功能性的
+/// JSON对象转NSData
+-(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject;
+-(JobsReturnURLRequestByURLBlock _Nonnull)request;
 -(jobsByVoidBlock _Nonnull)震动特效反馈;
 /// 可变数组的方便调用
 -(__kindof NSArray *_Nonnull)jobsMakeMutArr:(jobsByMutableArrayBlock _Nonnull)block;

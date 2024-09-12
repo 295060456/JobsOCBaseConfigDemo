@@ -7,23 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YTKNetworkToolsHeader.h"
+#import "JobsBaseApi.h"
 
-#if __has_include(<YTKNetwork/YTKRequest.h>)
-#import <YTKNetwork/YTKRequest.h>
-#else
-#import "YTKRequest.h"
-#endif
+@interface UploadImageApi : JobsBaseApi
 
-#if __has_include(<AFNetworking/AFURLRequestSerialization.h>)
-#import <AFNetworking/AFURLRequestSerialization.h>
-#else
-#import "AFURLRequestSerialization.h"
-#endif
-
-@interface UploadImageApi : BaseRequest
-
--(id)initWithImage:(UIImage *)image;
++(JobsReturnIDByImageBlock)initByImage;
+-(instancetype)initWithImage:(UIImage *)image;
 -(NSString *)responseImageId;
 
 @end

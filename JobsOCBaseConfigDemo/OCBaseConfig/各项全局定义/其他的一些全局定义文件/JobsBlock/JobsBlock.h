@@ -148,6 +148,10 @@ typedef void(^jobsByIDAndKeyBlock)(NSObject <NSCoding> *_Nonnull userModel,
 @class UserDefaultModel;
 typedef void(^jobsByUserDefaultModelBlock)(UserDefaultModel *_Nonnull data);
 
+@class JobsRequestBuilder;
+typedef JobsRequestBuilder *_Nullable(^JobsReturnRequestBuilderByURLRequestBlock)(__kindof NSURLRequest *_Nonnull data);
+typedef JobsRequestBuilder *_Nullable(^JobsReturnRequestBuilderByStringBlock)(NSString *_Nonnull data);
+
 #pragma mark —— 涉及到第三方类的Block定义
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);

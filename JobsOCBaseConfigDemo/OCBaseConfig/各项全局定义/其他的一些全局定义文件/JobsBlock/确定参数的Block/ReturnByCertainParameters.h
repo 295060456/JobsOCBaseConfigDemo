@@ -27,6 +27,7 @@ typedef __kindof UIBarButtonItem *_Nullable(^JobsReturnBarButtonItemByViewBlock)
 typedef __kindof UIBarButtonItem *_Nullable(^JobsReturnBarButtonItemByVoidBlock)(void);
 
 typedef NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
+typedef id _Nullable(^JobsReturnIDByImageBlock)(UIImage *_Nullable data);
 typedef UIImageView *_Nonnull(^JobsReturnImageViewByImageBlock)(UIImage *_Nullable data);
 typedef UIImageView *_Nonnull(^JobsReturnImageViewByURLBlock)(NSURL *_Nullable data);
 typedef UIImage *_Nullable(^JobsReturnImageByCorBlock)(UIColor *_Nullable data);
@@ -60,10 +61,13 @@ typedef NSDate *_Nullable(^JobsReturnDateByDateFormatterBlock)(NSDateFormatter *
 typedef NSTimeInterval(^JobsReturnTimeIntervalByDateBlock)(NSDate *_Nullable);
 
 typedef NSData *_Nullable(^JobsReturnDataByVoidBlock)(void);
+typedef NSData *_Nullable(^JobsReturnDataByIDBlock)(id _Nullable data);
 typedef NSData *_Nullable(^JobsReturnDataByAssetBlock)(AVAsset *_Nullable asset);
 typedef NSData *_Nullable(^JobsReturnDataByStringBlock)(NSString *_Nullable data);
 
 typedef PHAsset *_Nullable(^JobsReturnAssetByStrBlock)(NSString *_Nullable Key);
+
+typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByURLBlock)(NSURL *_Nullable url);
 
 typedef UIFont *_Nullable(^JobsReturnFontByVoidBlock)(void);
 typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);

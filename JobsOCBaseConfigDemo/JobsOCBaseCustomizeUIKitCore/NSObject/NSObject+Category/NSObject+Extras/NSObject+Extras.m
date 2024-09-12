@@ -176,6 +176,26 @@
     } selectorName:nil target:self] name:notificationName object:nil];
 }
 #pragma mark —— 功能性的
+/// JSON对象转NSData
+-(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject{
+    return ^NSData *_Nullable(id _Nullable data){
+        NSError *parseError = nil;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data
+                                                           options:NSJSONWritingPrettyPrinted
+                                                             error:&parseError];
+        if(parseError) NSLog(@"parseError = %@",parseError);
+        return jsonData;
+    };
+}
+
+-(JobsReturnURLRequestByURLBlock _Nonnull)request{
+    return ^NSURLRequest *_Nullable(NSURL *_Nullable url){
+        return [NSMutableURLRequest requestWithURL:url
+                                       cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                   timeoutInterval:30];
+    };
+}
+
 -(jobsByVoidBlock _Nonnull)震动特效反馈{
     @jobs_weakify(self)
     return ^(){
@@ -441,8 +461,8 @@
 -(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
                          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock{
     [JobsNotificationCenter addObserver:self
-                                           selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                                       id _Nullable arg) {
+                               selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
+                                                                           id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
@@ -938,10 +958,9 @@
 }
 /// 监听程序被杀死前的时刻，进行一些需要异步的操作：磁盘读写、网络请求...
 -(void)terminalCheck:(jobsByIDBlock _Nullable)checkBlock{
-    [JobsNotificationCenter addObserver:self
-                                           selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                                       id _Nullable arg) {
-        //进行埋点操作
+    [self addNotificationName:@"UIApplicationWillTerminateNotification"
+                        block:^(id _Nullable weakSelf,
+                                id _Nullable arg) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             NSLog(@"我只执行一次");
@@ -949,10 +968,8 @@
             if (checkBlock) checkBlock(@1);
             [NSThread sleepForTimeInterval:60];
             NSLog(@"程序被杀死");
-        });return nil;
-    } selectorName:nil target:self]
-                                               name:@"UIApplicationWillTerminateNotification"
-                                             object:nil];
+        });
+    }];
 }
 /// Object转换为NSData
 -(NSData *_Nullable)transformToData:(id _Nullable)object{
@@ -975,11 +992,7 @@
             SuppressWdeprecatedDeclarationsWarning(return [NSKeyedArchiver archivedDataWithRootObject:array]);
         }
     }else if ([object isKindOfClass:NSDictionary.class]){
-        NSDictionary *dictionary = (NSDictionary *)object;
-        NSError *err = nil;
-        return [NSJSONSerialization dataWithJSONObject:dictionary
-                                               options:NSJSONWritingPrettyPrinted
-                                                 error:&err];
+        return self.dataByJSONObject(object);
     }else return nil;
 }
 /// 获取当前设备可用内存

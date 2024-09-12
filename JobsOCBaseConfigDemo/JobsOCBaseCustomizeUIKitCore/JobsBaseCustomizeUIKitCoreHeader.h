@@ -107,5 +107,7 @@
 #import "JobsBarButtonItem.h"
 #pragma mark —— NSFormatter
 #import "JobsFormatter.h"
+#pragma mark —— NSURLRequest
+#import "NSURLRequest+Extra.h"
 
 #endif /* JobsBaseCustomizeUIKitCoreHeader_h */

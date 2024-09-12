@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSData (Other)
-///【类方法】解压缩字符串
+/// 解压缩字符串
 -(NSString *)decompressToStr;
 
 @end

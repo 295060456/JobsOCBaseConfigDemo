@@ -8,14 +8,12 @@
 #import "NSData+Other.h"
 
 @implementation NSData (Other)
-
-///【类方法】解压缩字符串
+/// 解压缩字符串
 -(NSString *)decompressToStr{
     NSData *data = [NSKeyedUnarchiver unarchivedObjectOfClass:NSData.class
                                                      fromData:self
                                                         error:nil];
-    NSString *string = [NSString.alloc initWithData:data
-                                           encoding:NSUTF8StringEncoding];
+    NSString *string = [NSString.alloc initWithData:data encoding:NSUTF8StringEncoding];
     return string;
 }
 

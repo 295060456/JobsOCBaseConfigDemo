@@ -9840,58 +9840,182 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 请求的配置（<font color=blue>**请求的方式**</font>、<font color=blue>**请求的URL**</font>、是否使用CND...）
 
-  ```objective-c
-  -(instancetype _Nullable)initWithParameters:(NSDictionary *_Nullable)parameters{
-      if (self = [super init]) {
-          self.parameters = parameters;
-      }return self;
-  }
-  
-  -(NSString *)requestUrl{
-      return self.BaseUrl.add(@"");
-  }
-  /// 请求方式
-  -(YTKRequestMethod)requestMethod {
-      return YTKRequestMethodGET;
-  }
-  /// 设置自定义的 HTTP Header
-  - (NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
-      // 在这里添加你想要的 HTTP header
-      JobsUserModel *loginModel = self.readUserInfo();
-      return @{
-          @"Content-Type": @"application/json", // 设置 Content-Type
-          @"Authorization": loginModel.token // 设置 Authorization
-      };
-  }
-  /// 如果当前请求是GET，下列方法不可用
-  - (NSURLRequest *)buildCustomUrlRequest{
-      if(self.requestMethod == YTKRequestMethodGET) return nil;
-      NSError *parseError = nil;
-      NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.parameters
-                                                         options:NSJSONWritingPrettyPrinted
-                                                           error:&parseError];
-      NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.requestUrl.jobsUrl
-                                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                                         timeoutInterval:30];
-      [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-      [request setHTTPMethod:@"GET"];//GET请求
-      [request setHTTPBody:jsonData];//body 数据
-      self.printRequestMessage(request);
-      NSLog(@"");
-      return request;
-  }
-  
-  //-(BOOL)useCDN{
-  //    return YES;
-  //}
-  
-  //-(NSString *)resumableDownloadPath{
-  //    NSString *libPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-  //    NSString *cachePath = [libPath stringByAppendingPathComponent:@"Caches"];
-  //    NSString *filePath = [cachePath stringByAppendingPathComponent:_imageId];
-  //    return filePath;
-  //}
-  ```
+  * <font color=red>**所有的Api均需要继承此类**</font>
+
+    ```objective-c
+    #import <Foundation/Foundation.h>
+    #import "YTKNetworkToolsHeader.h"
+    
+    NS_ASSUME_NONNULL_BEGIN
+    
+    @interface JobsBaseApi : BaseRequest
+    
+    @end
+    
+    NS_ASSUME_NONNULL_END
+    ```
+
+    ```objective-c
+    //
+    //  JobsBaseApi.m
+    //  FM
+    //
+    //  Created by User on 9/12/24.
+    //
+    
+    #import "JobsBaseApi.h"
+    
+    @implementation JobsBaseApi
+    #pragma mark —— 需要在很具体子类进行实现的
+    /// URL
+    -(NSString *)requestUrl{
+        return @"";
+    }
+    /// 请求方式
+    -(YTKRequestMethod)requestMethod {
+        return YTKRequestMethodPOST;
+    }
+    #pragma mark —— （本类）父类实现的
+    /// Body 参数
+    -(id _Nullable)requestArgument{
+        return self.parameters;
+    }
+    /// 限定接收到的字段类型，如果不匹配则外层block走Failure
+    -(id)jsonValidator{
+        return nil;
+    }
+    
+    -(NSInteger)cacheTimeInSeconds{
+        return 60 * 3;
+    }
+    /// 设置自定义的 HTTP Header
+    -(NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
+        // 在这里添加你想要的 HTTP header
+        FMLoginModel *loginModel = self.readUserInfoByUserName(FMLoginModel.class,FM用户数据);
+        return @{
+            @"Content-Type": @"application/json", // 设置 Content-Type
+            @"Authorization": loginModel.accessToken ? : @"" // 设置 Authorization
+        };
+    }
+    
+    - (NSURLRequest *)buildCustomUrlRequest{
+        NSMutableURLRequest *request = self.request(self.requestUrl.jobsUrl);
+        for (NSString *key in self.requestHeaderFieldValueDictionary) {
+            JobsRequestBuilder.initByURLRequest(request)
+                .httpHeaderField(key)
+                .value(self.requestHeaderFieldValueDictionary[key]);
+        }
+        request.HTTPMethod = httpMethod(self.requestMethod);
+        if(self.requestMethod != YTKRequestMethodGET){
+            request.HTTPBody = self.dataByJSONObject(self.parameters);//body 数据
+        }
+        self.printRequestMessage(request);
+        return request;
+    }
+    
+    @end
+    ```
+
+  * 一般的请求
+
+    ```objective-c
+    #import "JobsBaseApi.h"
+    
+    NS_ASSUME_NONNULL_BEGIN
+    
+    @interface FM_favoriteGames_delete_api : JobsBaseApi
+    
+    @end
+    
+    NS_ASSUME_NONNULL_END
+    
+    @implementation FM_favoriteGames_delete_api
+    /// 请求的完整URL：游戏大厅喜爱的游戏-删除【POST】
+    -(NSString *)requestUrl{
+        return self.BaseUrl.add(self.post_game_home_favoriteGames_delete.url);
+    }
+    /// 请求方式
+    -(YTKRequestMethod)requestMethod {
+        return YTKRequestMethodPOST;
+    }
+    
+    @end
+    ```
+
+  * 图片上载
+
+    ```objective-c
+    #import <UIKit/UIKit.h>
+    #import "JobsBaseApi.h"
+    
+    @interface UploadImageApi : JobsBaseApi
+    
+    +(JobsReturnIDByImageBlock)initByImage;
+    -(instancetype)initWithImage:(UIImage *)image;
+    -(NSString *)responseImageId;
+    
+    @end
+    ```
+
+    ```objective-c
+    #import "UploadImageApi.h"
+    
+    @interface UploadImageApi ()
+    
+    @property(nonatomic,strong)UIImage *image;
+    
+    @end
+    
+    @implementation UploadImageApi
+    
+    +(JobsReturnIDByImageBlock)initByImage{
+        @jobs_weakify(self)
+        return ^id(UIImage *_Nullable data){
+            @jobs_strongify(self)
+            return [self.class.alloc initWithImage:data];
+        };
+    }
+    
+    -(instancetype)initWithImage:(UIImage *)image {
+        if (self = [super init]) {
+            self.image = image;
+        }return self;
+    }
+    /// 请求的完整URL：
+    -(NSString *)requestUrl {
+        return self.BaseUrl.add(@"/iphone/image/upload");
+    }
+    /// 请求方式
+    -(YTKRequestMethod)requestMethod {
+        return YTKRequestMethodPOST;
+    }
+    
+    -(AFConstructingBlock)constructingBodyBlock {
+        @jobs_weakify(self)
+        return ^(id<AFMultipartFormData> formData) {
+            @jobs_strongify(self)
+            NSData *data = UIImageJPEGRepresentation(self->_image, 0.9);
+            NSString *name = @"image";
+            NSString *formKey = @"image";
+            NSString *type = @"image/jpeg";
+            [formData appendPartWithFileData:data
+                                        name:formKey
+                                    fileName:name
+                                    mimeType:type];
+        };
+    }
+    
+    -(id)jsonValidator {
+        return @{@"imageId": NSString.class};
+    }
+    
+    -(NSString *)responseImageId {
+        NSDictionary *dict = self.responseJSONObject;
+        return dict[@"imageId"];
+    }
+    
+    @end
+    ```
 
 * 打印**`YTKBaseRequest`**
 
