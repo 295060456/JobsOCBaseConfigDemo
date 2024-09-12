@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)destroyInstance;
 
 -(void)customSelectIndex:(NSUInteger)index;
--(JobsCustomTabBar *)getCustomTabBar;
+-(JobsCustomTabBar *)customTabBar;
 
 @end
 

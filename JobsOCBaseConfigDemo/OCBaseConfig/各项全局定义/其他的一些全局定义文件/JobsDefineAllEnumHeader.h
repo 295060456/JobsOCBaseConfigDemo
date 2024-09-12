@@ -14,13 +14,9 @@
 #define JOBS_NETWORKING_ENVIR_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, JobsNetworkingEnvir) {
     JobsNetworkingEnvir_Undefined = 0,
-    JobsNetworkingEnvir_DevEnviron_Cambodia_Main,/// 柬埔寨（主要）开发环境
-    JobsNetworkingEnvir_DevEnviron_Cambodia_Minor,/// 柬埔寨（次要）开发环境
-    JobsNetworkingEnvir_DevEnviron_China_Mainland,/// 中国大陆开发环境
-    JobsNetworkingEnvir_TestEnviron,/// 测试环境
+    JobsNetworkingEnvir_DevEnviron,/// 开发环境
+    JobsNetworkingEnvir_UATEnviron,/// UAT环境
     JobsNetworkingEnvir_ProductEnviron,/// 生产环境
-    JobsNetworkingEnvir_UATEnviron,/// UAT环境地址
-    JobsNetworkingEnvir_All
 };
 #endif /* JOBS_NETWORKING_ENVIR_ENUM_DEFINED */
 /// 平台维护状态
@@ -166,13 +162,14 @@ typedef NS_ENUM(NSUInteger, JhtBannerViewOrientation) {
 /// 请求数据返回的状态码、根据自己的服务端数据来
 typedef NS_ENUM(NSInteger, HTTPResponseCode) {//KKK
     HTTPResponseCodeServeError = -1,/// 服务器异常
-    HTTPResponseCodeSuccess = 0,/// 请求成功
+    HTTPResponseCodeSuccess = 200,/// 请求成功
     HTTPResponseCodeLoginDate = 1,/// 登录已过期，请重新登录
     HTTPResponseCodeAuthorizationFailure = 2,/// 授权失败
     HTTPResponseCodeLeakTime = 4,/// 限定时间内超过请求次数
     HTTPResponseCodeRiskOperation = 6,/// 风险操作
     HTTPResponseCodeNoSettingTransactionPassword = 7,/// 未设置交易密码
-    HTTPResponseCodeOffline = 8/// 帐号已在其他设备登录
+    HTTPResponseCodeOffline = 8,/// 帐号已在其他设备登录
+    HTTPResponseCodeTokenExpire = 10009/// Token 过期
     ///其他代号，展示msg内容即可
 };
 #endif /* HTTP_RESPONSE_CODE_ENUM_DEFINED */
@@ -416,5 +413,37 @@ typedef NS_ENUM(NSInteger, JobsMsgType) {
     JobsMsgType_All,
 };
 #endif /* JOBS_MSG_TYPE_ENUM_DEFINED */
+/// 账户类型
+#ifndef AccountStyle_DEFINED
+#define AccountStyle_DEFINED
+typedef NS_ENUM(NSInteger, AccountStyle) {
+    AccountStyle_GCCash,/// GCCash
+    AccountStyle_Bank,/// 银行
+};
+#endif /* AccountStyle_DEFINED */
+
+#ifndef MOVE_DIRECTION_ENUM_DEFINED
+#define MOVE_DIRECTION_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, FM_action_type){
+    FM_action_type_Signin = 0, /// 注册
+    FM_action_type_Login,   /// 登录
+    FM_action_type_forgotPwd,   /// 忘记密码
+    FM_action_type_BindMobilePhone,   /// 绑定手机号
+    FM_action_type_BindBankCard,   /// 绑定银行卡
+    FM_action_type_BindEwallet,   /// 绑定加密货币地址
+    M_action_type_Withdraw,   /// 提现
+};
+#endif /* MOVE_DIRECTION_ENUM_DEFINED */
+
+#ifndef FMGAMELISTSTYLE
+#define FMGAMELISTSTYLE
+typedef NS_ENUM(NSUInteger, FMGameListStyle){
+    FMGameListStyle_All = 0, /// 全部
+    FMGameListStyle_Hot,   /// 热门
+    FMGameListStyle_New,   /// 最新
+    FMGameListStyle_Fav,   /// 最爱
+};
+#endif /* FMGAMELISTSTYLE */
+
 
 #endif /* JobsDefineAllEnumHeader_h */

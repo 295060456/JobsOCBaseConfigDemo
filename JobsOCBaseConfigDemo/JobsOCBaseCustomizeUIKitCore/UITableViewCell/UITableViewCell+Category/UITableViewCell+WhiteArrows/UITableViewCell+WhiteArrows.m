@@ -22,7 +22,7 @@
             if (customAccessoryViewBlock) customAccessoryViewBlock(self);
         });
         /// 特比注意:如果这个地方是纯view（UIView、UIIMageView...）就可以不用加size，UIButton是因为受到了UIControl，需要接收一个size，否则显示不出来
-        btn.Size = self.Size;
+        btn.Size = self.arrows_size;
         btn.resetByOffsetWidth(JobsWidth(5));
         self.accessoryView = btn;
     }
@@ -41,19 +41,19 @@ JobsKey(_img)
 -(void)setImg:(UIImage *)img{
     Jobs_setAssociatedRETAIN_NONATOMIC(_img, img)
 }
-#pragma mark —— @property(nonatomic,assign)CGSize size;
-JobsKey(_size)
-@dynamic size;
--(CGSize)size{
-    CGSize Size = [Jobs_getAssociatedObject(_size) CGSizeValue];
+#pragma mark —— @property(nonatomic,assign)CGSize arrows_size;
+JobsKey(_arrows_size)
+@dynamic arrows_size;
+-(CGSize)arrows_size{
+    CGSize Size = [Jobs_getAssociatedObject(_arrows_size) CGSizeValue];
     if (CGSizeEqualToSize(Size, CGSizeZero)) {
         Size = CGSizeMake(JobsWidth(10), JobsWidth(18.3));//缺省值
-        Jobs_setAssociatedRETAIN_NONATOMIC(_size, [NSValue valueWithCGSize:Size])
+        Jobs_setAssociatedRETAIN_NONATOMIC(_arrows_size, [NSValue valueWithCGSize:Size])
     }return Size;
 }
 
--(void)setSize:(CGSize)size{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_size, [NSValue valueWithCGSize:size])
+-(void)setArrows_size:(CGSize)arrows_size{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_arrows_size, [NSValue valueWithCGSize:arrows_size])
 }
 
 @end

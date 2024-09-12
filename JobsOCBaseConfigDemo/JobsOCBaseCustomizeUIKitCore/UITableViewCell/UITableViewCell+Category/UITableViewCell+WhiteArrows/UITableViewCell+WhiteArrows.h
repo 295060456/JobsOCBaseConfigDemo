@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UITableViewCell (WhiteArrows)
 
 @property(nonatomic,strong)UIImage *img;
-@property(nonatomic,assign)CGSize size;
+@property(nonatomic,assign)CGSize arrows_size;
 /// 必须 self.accessoryType = UITableViewCellAccessoryDisclosureIndicator; 打开后才可以启用
 -(void)customAccessoryView:(jobsByIDBlock)customAccessoryViewBlock;
 
