@@ -130,9 +130,13 @@ UITableViewCellProtocol_dynamic
     }
 }
 
--(void)setCellBgImage:(UIImage *)bgImage{
-    self.backgroundColor = self.contentView.backgroundColor = JobsClearColor;
-    self.backgroundImageView.image = bgImage;
+-(jobsByImageBlock _Nonnull)setCellBgImage{
+    @jobs_weakify(self)
+    return ^(UIImage *_Nullable bgImage){
+        @jobs_strongify(self)
+        self.backgroundColor = self.contentView.backgroundColor = JobsClearColor;
+        self.backgroundImageView.image = bgImage;
+    };
 }
 
 +(CGFloat)cellHeightWithModel:(id _Nullable)model{

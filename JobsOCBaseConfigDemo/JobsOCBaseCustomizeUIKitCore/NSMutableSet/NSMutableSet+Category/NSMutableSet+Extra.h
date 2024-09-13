@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
 /// 可变数组的方便调用
-static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsByMutableSetBlock _Nonnull block){
+static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull block){
     NSMutableSet *mutableSet = NSMutableSet.set;
     if (block) block(mutableSet);
     return mutableSet;

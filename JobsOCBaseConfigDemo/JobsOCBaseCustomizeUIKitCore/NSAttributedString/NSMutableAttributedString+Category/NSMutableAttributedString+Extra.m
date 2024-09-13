@@ -9,8 +9,10 @@
 
 @implementation NSMutableAttributedString (Extra)
 /// OC富文本字符串拼接
--(JobsReturnMutAttributedStringByAttributedStringBlock _Nonnull)add{
+-(JobsReturnAttributedStringByAttributedStringBlock _Nonnull)add{
+    @jobs_weakify(self)
     return ^NSMutableAttributedString * _Nullable(NSAttributedString * _Nonnull data) {
+        @jobs_strongify(self)
         if(!data) data = JobsAttributedString(@"");
         [self appendAttributedString:data];
         return self;

@@ -24,10 +24,22 @@ NSString *const FM用户数据 = @"FM用户数据";
     }return obj;
 }
 /// 检查是否登录并执行传入的代码块
--(void)isLogin:(jobsByVoidBlock)loginedinBlock {
+-(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock {
     if (self.isLogin) {
         if (loginedinBlock) loginedinBlock();
     } else self.toLogin();
+}
+/// 刷新用户Token
+-(jobsByVoidBlock _Nonnull)refreshUserToken{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        JobsUserModel *loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
+        if(loginModel.token.isExpired()){
+            /// 如果Token过期，则跳转登录获取，以刷新Token
+            self.toLogin();
+        }
+    };
 }
 #pragma mark —— 全局的用户数据(存、取、清)[全局唯一一份用户档案]
 /// 登出清空用户数据 【用户信息】/【JobsUserModel】
@@ -35,7 +47,7 @@ NSString *const FM用户数据 = @"FM用户数据";
     self.deleteUserInfoByUserName(用户信息);
 }
 /// 保存用户数据（用 NSUserDefaults ）【用户信息】/【JobsUserModel】
--(jobsByUserModelBlock)saveUserInfo{
+-(jobsByUserModelBlock _Nonnull)saveUserInfo{
     @jobs_weakify(self)
     return ^(JobsUserModel <NSCoding> *_Nullable userModel) {
         @jobs_strongify(self)
@@ -51,7 +63,7 @@ NSString *const FM用户数据 = @"FM用户数据";
     };
 }
 /// 保存用户数据
--(jobsByIDAndKeyBlock)jobsSaveUserInfo{
+-(jobsByIDAndKeyBlock _Nonnull)jobsSaveUserInfo{
     return ^(NSObject <NSCoding> * _Nonnull userModel,
              NSString * _Nullable key) {
         UserDefaultModel *userDefaultModel = UserDefaultModel.new;
@@ -61,7 +73,7 @@ NSString *const FM用户数据 = @"FM用户数据";
     };
 }
 /// 读取用户信息
--(JobsReturnIDByStringBlock)jobsReadUserInfo{
+-(JobsReturnIDByStringBlock _Nonnull)jobsReadUserInfo{
     @jobs_weakify(self)
     return ^id _Nullable(NSString * _Nullable data) {
         @jobs_strongify(self)
@@ -70,7 +82,7 @@ NSString *const FM用户数据 = @"FM用户数据";
 }
 #pragma mark —— 保存特定的用户数据（不随登出清空数据）[全局多份用户档案]
 ///【通过特定的用户名】 保存（更新）用户的本地资料（用 NSUserDefaults ）
--(jobsByUserModelBlock)userNameToSaveUserInfo{
+-(jobsByUserModelBlock _Nonnull)userNameToSaveUserInfo{
     return ^(JobsUserModel <NSCoding>*_Nullable userModel){
         UserDefaultModel *userDefaultModel = UserDefaultModel.new;
         userDefaultModel.obj = userModel;
@@ -79,7 +91,7 @@ NSString *const FM用户数据 = @"FM用户数据";
     };
 }
 ///【通过特定的用户名】 读取用户的本地资料
--(JobsReturnIDByClsAndSaltStrBlock)readUserInfoByUserName{
+-(JobsReturnIDByClsAndSaltStrBlock _Nonnull)readUserInfoByUserName{
     return ^id _Nullable(Class _Nonnull cls,NSString *_Nullable userName){
         NSData *archivedData = NSUserDefaults.readWithKey(userName);
         if(HDDeviceSystemVersion.floatValue < 12.0){
@@ -110,14 +122,14 @@ NSString *const FM用户数据 = @"FM用户数据";
     };
 }
 ///【通过特定的用户名】 删除该用户的本地资料
--(jobsByStringBlock)deleteUserInfoByUserName{
+-(jobsByStringBlock _Nonnull)deleteUserInfoByUserName{
     return ^(NSString *_Nullable userName) {
         NSUserDefaults.deleteWithKey(userName);
     };
 }
 #pragma mark —— 全局保存和删除已经登录成功的用户名
 /// 全局保存已经登录成功 且 并未删除的用户名组
--(jobsByStringBlock)saveUserName{
+-(jobsByStringBlock _Nonnull)saveUserName{
     return ^(NSString *_Nullable userName){
         if (isNull(userName)) return;
         NSMutableArray <NSString *>*userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKey(用户名数组)];//取出来的实际上是个不可变数组，所以需要向可变数组进行转化
@@ -137,7 +149,7 @@ NSString *const FM用户数据 = @"FM用户数据";
     return JobsUserDefaults.valueForKey(用户名数组);
 }
 /// 全局删除已经登录成功的用户名
--(jobsByStringBlock)deleteUserName{
+-(jobsByStringBlock _Nonnull)deleteUserName{
     return ^(NSString *_Nullable userName){
         NSMutableArray <NSString *>*userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKey(用户名数组)];
         if (userNameMutArr && isValue(userName)) {

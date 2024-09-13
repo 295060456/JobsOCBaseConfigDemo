@@ -132,7 +132,7 @@ static inline UIFont *UIFontTitalicSystemFontOfSize(CGFloat fontSize) {
 }
 /// 根据fontName出字体
 /// https://www.jianshu.com/p/736f2972a660
-/// @param fontName 外来字体要先通过方法：+(JobsReturnMutableArrayByVoidBlock _Nonnull)getAvailableFont，获得fontName再进行代入
+/// @param fontName 外来字体要先通过方法：+(JobsReturnArrayByVoidBlock _Nonnull)getAvailableFont，获得fontName再进行代入
 /// @param fontSize 字体大小
 static inline UIFont *fontName(NSString *fontName,CGFloat fontSize) {
     return [UIFont fontWithName:fontName size:JobsWidth(fontSize)];

@@ -8,37 +8,42 @@
 #ifndef VoidByCertainParameters_h
 #define VoidByCertainParameters_h
 ///【 确定入参个数 并且 没有返回值的Block定义】
-#pragma mark —— 单形参
 typedef void(^jobsByVoidBlock)(void);
-
-typedef void(^jobsByURLBlock)(NSURL *_Nullable data);
-typedef void(^jobsByMutableArrayBlock)(NSMutableArray *_Nullable data);
-typedef void(^jobsByMutableSetBlock)(NSMutableSet *_Nullable data);
-typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable data);
-typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);
-typedef void(^jobsByTimerBlock)(NSTimer *_Nullable data);
-typedef void(^jobsByLayoutAttributeBlock)(NSLayoutAttribute data);
 typedef void(^jobsByIDBlock)(id _Nullable data);
-typedef void(^jobsByDataBlock)(NSData *_Nullable data);
-typedef void(^jobsByStringBlock)(NSString *_Nullable data);
-typedef void(^jobsByAttributedStringBlock)(NSAttributedString *_Nullable data);
-typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
-typedef void(^jobsByCorBlock)(UIColor *_Nullable data);
-typedef void(^jobsByFontBlock)(UIFont *_Nullable data);
+typedef void(^jobsBySELBlock)(SEL _Nullable data);
+typedef void(^jobsByClassBlock)(Class _Nonnull cls);
+typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
+typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
+typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
+#pragma mark —— 关于View
 typedef void(^jobsByViewBlock)(__kindof UIView *_Nullable view);
 typedef void(^jobsByScrollViewBlock)(UIScrollView *_Nullable data);
 typedef void(^jobsByBtnBlock)(__kindof UIButton *_Nullable btn);
 typedef void(^jobsByWindowBlock)(__kindof UIWindow *_Nullable data);
-typedef void(^jobsByClassAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
-typedef void(^jobsByVCBlock)(__kindof UIViewController *_Nullable data);
-typedef void(^jobsByVCAndDataBlock)(__kindof UIViewController *_Nullable viewController,id _Nullable data);
 typedef void(^jobsByViewAndAnimatedBlock)(__kindof UIView *_Nullable view,BOOL animated);
 typedef void(^jobsByView2Block)(__kindof UIView *_Nullable superview,UIView *_Nullable view);
 typedef void(^jobsByTableViewCellBlock)(__kindof UITableViewCell *_Nullable data);
-typedef void(^jobsByURLSessionDataTaskBlock)(__kindof NSURLSessionDataTask *_Nullable data);
-typedef void(^jobsByURLRequestBlock)(__kindof NSURLRequest *_Nullable data);
+#pragma mark —— 关于数据容器
+typedef void(^jobsByArrayBlock)(__kindof NSArray *_Nullable data);
+typedef void(^jobsBySetBlock)(__kindof NSSet *_Nullable data);
+#pragma mark —— 关于UI表现力
+typedef void(^jobsByLayoutAttributeBlock)(NSLayoutAttribute data);
+typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
+typedef void(^jobsByCorBlock)(UIColor *_Nullable data);
+typedef void(^jobsByFontBlock)(UIFont *_Nullable data);
+typedef void(^jobsByTextAlignmentBlock)(NSTextAlignment data);
+typedef void(^jobsByClassAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
+typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
+#pragma mark —— 关于按钮配置
 typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
-/// 关于手势
+#pragma mark —— URL
+typedef void(^jobsByURLBlock)(NSURL *_Nullable data);
+typedef void(^jobsByURLRequestBlock)(__kindof NSURLRequest *_Nullable data);
+typedef void(^jobsByURLSessionDataTaskBlock)(__kindof NSURLSessionDataTask *_Nullable data);
+#pragma mark —— 关于 UIViewController
+typedef void(^jobsByVCBlock)(__kindof UIViewController *_Nullable data);
+typedef void(^jobsByVCAndDataBlock)(__kindof UIViewController *_Nullable viewController,id _Nullable data);
+#pragma mark —— 关于手势
 typedef void(^jobsByGestureRecognizerBlock)(__kindof UIGestureRecognizer *_Nullable data);
 typedef void(^jobsByPanGestureRecognizerBlock)(__kindof UIPanGestureRecognizer *_Nullable data);
 typedef void(^jobsByTapGestureRecognizerBlock)(__kindof UITapGestureRecognizer *_Nullable data);
@@ -47,15 +52,11 @@ typedef void(^jobsBySwipeGestureRecognizerBlock)(__kindof UISwipeGestureRecogniz
 typedef void(^jobsByPinchGestureRecognizerBlock)(__kindof UIPinchGestureRecognizer *_Nullable data);
 typedef void(^jobsByRotationGestureRecognizerBlock)(__kindof UIRotationGestureRecognizer *_Nullable data);
 typedef void(^jobsByScreenEdgePanGestureRecognizerBlock)(__kindof UIScreenEdgePanGestureRecognizer *_Nullable data);
-
-typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
-
-typedef void(^jobsBySELBlock)(SEL _Nullable data);
-typedef void(^jobsByClassBlock)(Class _Nonnull cls);
+#pragma mark —— 关于方位
 typedef void(^jobsByPointBlock)(CGPoint data);
 typedef void(^jobsBySizeBlock)(CGSize data);
 typedef void(^jobsByEdgeInsetBlock)(UIEdgeInsets data);
-typedef void(^jobsByTextAlignmentBlock)(NSTextAlignment data);
+#pragma mark —— 关于数据类型
 typedef void(^jobsByNSIntegerBlock)(NSInteger data);
 typedef void(^jobsByNSUIntegerBlock)(NSUInteger data);
 typedef void(^jobsByCGFloatBlock)(CGFloat data);
@@ -71,10 +72,13 @@ typedef void(^jobsByUnsignedShortBlock)(unsigned short data);
 typedef void(^jobsByLongBlock)(long data);
 typedef void(^jobsByUnsignedLongBlock)(unsigned long data);
 typedef void(^jobsByUnsignedLongLongBlock)(unsigned long long data);
-#pragma mark —— 多形参
-typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
-typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
-typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
+#pragma mark —— 其他
+typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable data);
+typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);
+typedef void(^jobsByTimerBlock)(NSTimer *_Nullable data);
+typedef void(^jobsByDataBlock)(NSData *_Nullable data);
+typedef void(^jobsByStringBlock)(NSString *_Nullable data);
+typedef void(^jobsByAttributedStringBlock)(__kindof NSAttributedString *_Nullable data);
 
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;
 typedef void(^jobsByThreeIDBlock)Jobs_3_Arguments;
@@ -85,5 +89,13 @@ typedef void(^jobsBySevenIDBlock)Jobs_7_Arguments;
 typedef void(^jobsByEightIDBlock)Jobs_8_Arguments;
 typedef void(^jobsByNineIDBlock)Jobs_9_Arguments;
 typedef void(^jobsByTenIDBlock)Jobs_10_Arguments;
+/// weakSelf 方便使用，用来打破循环引用。使用时需要改成实际类型，否则没有代码提示
+/// selector 实际调用的方法
+/// arg 事件默认传递的对象，比如`NSNotification`，`UIButton`
+typedef void(^_Nullable JobsSelectorBlock)(id _Nullable weakSelf,
+                                           id _Nullable arg);
+typedef void(^_Nullable JobsSelectorBlock1)(id _Nullable weakSelf,
+                                            id _Nullable arg,
+                                            id _Nullable data);
 
 #endif /* VoidByCertainParameters_h */

@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 实例方法
 /// 将一个确定的UIColor子类，翻译成RGB格式的字符串值并对外输出【可能因为四舍五入的问题影响末位精度，误差在±1】
 /// 资料来源  https://blog.csdn.net/thanklife/article/details/25784879
--(JobsReturnStrByCorBlock)rgbCorStr;
+-(JobsReturnStringByCorBlock)rgbCorStr;
 /// 将一个确定的UIColor子类，翻译成十六进制格式的字符串值并对外输出
 -(JobsReturnCorModelByVoidBlock)hexadecimalCorStr;
 /// iOS 父视图透明度影响到子视图

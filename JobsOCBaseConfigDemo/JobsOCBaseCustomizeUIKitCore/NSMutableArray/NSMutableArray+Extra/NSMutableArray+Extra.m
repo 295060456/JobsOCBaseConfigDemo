@@ -74,7 +74,7 @@
     }return nil;
 }
 /// 将数组里的元素复制times次
--(JobsReturnMutableArrayByIntegerBlock)copyElementBytimes{
+-(JobsReturnArrayByIntegerBlock)copyElementBytimes{
     @jobs_weakify(self)
     return ^NSMutableArray *(NSInteger times) {
         @jobs_strongify(self)

@@ -24,31 +24,33 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(BOOL)isLogin;
 /// 检查是否登录并执行传入的代码块
--(void)isLogin:(jobsByVoidBlock)loginedinBlock;
+-(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock;
+/// 刷新用户Token
+-(jobsByVoidBlock _Nonnull)refreshUserToken;
 #pragma mark —— 全局的用户数据(存、取、清)
 /// 登出清空用户数据 【用户信息】/【JobsUserModel】
 -(void)logOut;
 /// 保存用户数据（用 NSUserDefaults ）【用户信息】/【JobsUserModel】
--(jobsByUserModelBlock)saveUserInfo;
+-(jobsByUserModelBlock _Nonnull)saveUserInfo;
 /// 读取用户信息【用户信息】/【JobsUserModel】
--(JobsReturnUserModelByVoidBlock)readUserInfo;
+-(JobsReturnUserModelByVoidBlock _Nonnull)readUserInfo;
 /// 保存用户数据
--(jobsByIDAndKeyBlock)jobsSaveUserInfo;
+-(jobsByIDAndKeyBlock _Nonnull)jobsSaveUserInfo;
 /// 读取用户信息
--(JobsReturnIDByStringBlock)jobsReadUserInfo;
+-(JobsReturnIDByStringBlock _Nonnull)jobsReadUserInfo;
 #pragma mark —— 保存特定的用户数据（不随登出清空数据）
 ///【通过特定的用户名】 保存（更新）用户的本地资料（用 NSUserDefaults ）
 -(jobsByUserModelBlock)userNameToSaveUserInfo;
 ///【通过特定的用户名】 读取用户的本地资料
--(JobsReturnIDByClsAndSaltStrBlock)readUserInfoByUserName;
+-(JobsReturnIDByClsAndSaltStrBlock _Nonnull)readUserInfoByUserName;
 ///【通过特定的用户名】 删除该用户的本地资料
--(jobsByStringBlock)deleteUserInfoByUserName;
+-(jobsByStringBlock _Nonnull)deleteUserInfoByUserName;
 #pragma mark —— 全局保存和删除已经登录成功的用户名
 /// 全局保存已经登录成功 且 并未删除的用户名
--(jobsByStringBlock)saveUserName;
+-(jobsByStringBlock _Nonnull)saveUserName;
 -(NSArray *_Nullable)readUserNameMutArr;
 /// 全局删除已经登录成功的用户名
--(jobsByStringBlock)deleteUserName;
+-(jobsByStringBlock _Nonnull)deleteUserName;
 
 @end
 

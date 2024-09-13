@@ -207,13 +207,13 @@
     };
 }
 /// 可变数组的方便调用
--(__kindof NSArray *_Nonnull)jobsMakeMutArr:(jobsByMutableArrayBlock _Nonnull)block{
+-(__kindof NSArray *_Nonnull)jobsMakeMutArr:(jobsByArrayBlock _Nonnull)block{
     NSMutableArray *mutableArray = NSMutableArray.array;
     if (block) block(mutableArray);
     return mutableArray;
 }
 /// 可变集合的方便调用
--(__kindof NSSet *_Nonnull)jobsMakeMutSet:(jobsByMutableSetBlock _Nonnull)block{
+-(__kindof NSSet *_Nonnull)jobsMakeMutSet:(jobsBySetBlock _Nonnull)block{
     NSMutableSet *mutableSet = NSMutableSet.set;
     if (block) block(mutableSet);
     return mutableSet;

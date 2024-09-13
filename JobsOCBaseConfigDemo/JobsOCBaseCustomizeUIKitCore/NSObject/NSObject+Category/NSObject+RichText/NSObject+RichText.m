@@ -112,14 +112,14 @@
     };
 }
 /// 字符串中划线
--(JobsReturnMutAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation{
+-(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation{
     return ^NSMutableAttributedString *(NSString *data) {
         return JobsMutAttributedStringByAttributes(data,
                                              @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]});
     };
 }
 /// 字符串下划线
--(JobsReturnMutAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation{
+-(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation{
     return ^NSMutableAttributedString *(NSString *data) {
         return JobsMutAttributedStringByAttributes(data,
                                                    @{NSUnderlineStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]});

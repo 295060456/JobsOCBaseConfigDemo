@@ -113,10 +113,6 @@ NS_ASSUME_NONNULL_BEGIN
 // 关闭按钮的回调
 -(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock _Nullable)objectBlock;
 #pragma mark —— 一些功能性的
-/// 初始化的时候最好传入一个size值将其子视图的大小固定死。因为只有当父视图有Size的情况下子视图才会展开，从而避免刷新约束时候的一系列麻烦事。
--(instancetype)initWithSize:(CGSize)thisViewSize;
-/// 获取绑定的数据源
--(UIViewModel *_Nullable)getViewModel;
 /**
  在这个方法里：
  传入：UITableViewHeaderFooterView *
@@ -125,6 +121,16 @@ NS_ASSUME_NONNULL_BEGIN
  self.makeViewOnTableViewHeaderFooterView(headerView).alpha = 1; /// 进行一句话进行调用
  */
 -(JobsReturnViewByTableViewHeaderFooterViewBlock)makeViewOnTableViewHeaderFooterView;
+/// 初始化的时候最好传入一个size值将其子视图的大小固定死。因为只有当父视图有Size的情况下子视图才会展开，从而避免刷新约束时候的一系列麻烦事。
+-(instancetype)initWithSize:(CGSize)thisViewSize;
+/// 获取绑定的数据源
+-(UIViewModel *_Nullable)getViewModel;
+#pragma mark —— 在View内部进行实现处理，对外暴露的值。（不直接暴露UI控件）
+-(id)value;
+-(id)value1;
+-(id)value2;
+-(id)value3;
+-(id)value4;
 
 @end
 

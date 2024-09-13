@@ -20,9 +20,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// 仅仅依靠标题内容（普通文本）进行创建
 +(JobsReturnButtonByTitleBlock)initByTitle;
 /// 依靠标题内容和字体大小进行创建
-+(JobsReturnButtonByTitleAndFontBlock)initByTitleAndFont;
++(JobsReturnButtonByTitleAndFontBlock)initByTitle_font;
 /// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorBlock)initByTitleAndFontAndTitleCor;
++(JobsReturnButtonByTitleAndFontAndTitleCorBlock)initByTitle_font_titleCor;
+/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
++(JobsReturnButtonByTitleAndFontAndTitleCorAndImageBlock)initByTitle_font_titleCor_image;
+/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
++(JobsReturnButtonByTitleAndFontAndTitleCorAndImageBlock)initByTitle_font_titleCor_bgImage;
+/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
++(JobsReturnButtonByTitleAndFontAndTitleCorAndImageAndBgImageBlock)initByTitle_font_titleCor_image_bgImage;
 /// 仅仅靠按钮图片进行创建
 +(JobsReturnButtonByNormalImageBlock)initByNormalImage;
 /// 仅仅依靠按钮背景图进行创建
@@ -69,4 +75,21 @@ NS_ASSUME_NONNULL_END
          }];
      }return _playBtn;
  }
+ */
+
+/**
+ BaseButton *btn = BaseButton
+     .initByTitle_font_titleCor(buttonModel.title,
+                                    buttonModel.titleFont,
+                                    buttonModel.titleCor)
+ .bgColor(buttonModel.baseBackgroundColor)
+ .cornerRadiusValue(buttonModel.cornerRadiusValue)
+ .onClick(^(UIButton *x){
+     @jobs_strongify(self)
+     if (self.objectBlock) self.objectBlock(x);
+ }).onLongPressGesture(^(id data){
+     NSLog(@"");
+ });
+ btn.jobsResetBtnlayerBorderCor(buttonModel.layerBorderCor);
+ btn.jobsResetBtnlayerBorderWidth(buttonModel.borderWidth);
  */

@@ -35,11 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 对象转OC字符串
 +(JobsReturnStringByIDBlock)toString;
 /// OC字符串拼接
--(JobsReturnMutableStringByStringBlock _Nonnull)add;
+-(JobsReturnStringByStringBlock _Nonnull)add;
 /// OC字符串转NSDate
 -(JobsReturnDateByDateFormatterBlock)dataByDateFormatter;
 /// OC字符串路径拼接
--(JobsReturnMutableStringByStringBlock _Nonnull)addPathComponent;
+-(JobsReturnStringByStringBlock _Nonnull)addPathComponent;
 /// OC字符串数组 转 OC字符串
 +(NSString *_Nonnull)toStrByStringArr:(NSArray <NSString *>*_Nonnull)arr;
 #pragma mark —— 自定义替换、裁剪

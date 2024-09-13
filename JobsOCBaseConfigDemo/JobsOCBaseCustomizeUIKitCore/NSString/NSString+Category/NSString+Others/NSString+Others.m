@@ -38,7 +38,7 @@
     };
 }
 /// OC字符串拼接
--(JobsReturnMutableStringByStringBlock _Nonnull)add{
+-(JobsReturnStringByStringBlock _Nonnull)add{
     return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
         if(!str) str = @"";
         // 系统的stringByAppendingString方法在参数为nil的时候会崩溃
@@ -52,7 +52,7 @@
     };
 }
 /// OC字符串路径拼接
--(JobsReturnMutableStringByStringBlock _Nonnull)addPathComponent{
+-(JobsReturnStringByStringBlock _Nonnull)addPathComponent{
     return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
         if(!str) str = @"";
         // 系统的stringByAppendingString方法在参数为nil的时候会崩溃

@@ -9,7 +9,7 @@
 #import "JobsBlock.h"
 
 /// 可变数组的方便调用
-static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutableArrayBlock _Nonnull block){
+static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByArrayBlock _Nonnull block){
     NSMutableArray *mutableArray = NSMutableArray.array;
     if (block) block(mutableArray);
     return mutableArray;
@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSMutableArray *_Nullable)moveElementFromIndex:(NSInteger)fromIndex
                                          toIndex:(NSInteger)toIndex;
 /// 将数组里的元素复制times次
--(JobsReturnMutableArrayByIntegerBlock)copyElementBytimes;
+-(JobsReturnArrayByIntegerBlock)copyElementBytimes;
 
 @end
 

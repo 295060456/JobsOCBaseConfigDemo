@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(CGSize)cellSizeWithModel:(id _Nullable)model;
 -(CGSize)cellSizeWithModel:(id _Nullable)model;
 #pragma mark —— 设置Cell的背景图片
--(void)setCellBgImage:(UIImage *)bgImage;
+-(jobsByImageBlock _Nonnull)setCellBgImage;
 
 @end
 

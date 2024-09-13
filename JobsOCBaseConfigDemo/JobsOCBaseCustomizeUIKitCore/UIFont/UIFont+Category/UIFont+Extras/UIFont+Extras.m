@@ -9,7 +9,7 @@
 
 @implementation UIFont (Extras)
 /// 打印全员字体
-+(JobsReturnMutableArrayByVoidBlock _Nonnull)getAvailableFont{
++(JobsReturnArrayByVoidBlock _Nonnull)getAvailableFont{
     return ^NSMutableArray <NSString *>*_Nullable(){
         NSMutableArray <NSString *>*fontNamesMutArr = NSMutableArray.array;
         printf("=== 打印全员字体 === \n");
@@ -23,7 +23,7 @@
     };
 }
 /// 打印外援字体
-+(JobsReturnMutableArrayByVoidBlock _Nonnull)foreignAidFontName{
++(JobsReturnArrayByVoidBlock _Nonnull)foreignAidFontName{
     return ^NSMutableArray <NSString *>*_Nullable(){
         /// 苹果可能每次发布版本会添加一些字体，这个时候需要对这个已知的字体库进行同步升级
         /// 系统自带的字体合集
