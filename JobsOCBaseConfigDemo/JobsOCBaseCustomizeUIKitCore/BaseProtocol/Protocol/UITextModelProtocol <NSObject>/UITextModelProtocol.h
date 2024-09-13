@@ -25,13 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)NSInteger maxWordCount;/// 最大限制字数
 #pragma mark —— Normal
 /// 主标题
-@property(nonatomic,strong,nullable)NSString *text;
+@property(nonatomic,copy,nullable)NSString *text;
 @property(nonatomic,strong,nullable)UIFont *font;
 @property(nonatomic,strong,nullable)UIColor *textCor;/// 主字体颜色
 @property(nonatomic,strong,nullable)NSAttributedString *attributedText API_AVAILABLE(ios(6.0));
 @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *> *titleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
 /// 子标题
-@property(nonatomic,strong,nullable)NSString *subText;
+@property(nonatomic,copy,nullable)NSString *subText;
 @property(nonatomic,strong,nullable)UIFont *subFont;
 @property(nonatomic,strong,nullable)UIColor *subTextCor;/// 主字体颜色
 @property(nonatomic,strong,nullable)NSAttributedString *attributedSubText API_AVAILABLE(ios(6.0));

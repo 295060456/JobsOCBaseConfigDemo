@@ -6,6 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSMutableArray+Extra.h"
+#import "MacroDef_String.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

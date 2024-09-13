@@ -2311,7 +2311,7 @@ NSObject <|-- BaseProtocol
 * 对待data是数组
 
   ```objective-c
-  NSMutableArray *tags = [VideoTagModel mj_objectArrayWithKeyValuesArray:model.data];
+  NSMutableArray <VideoTagModel *>*tags = [VideoTagModel mj_objectArrayWithKeyValuesArray:data];
   ```
 
 * 对待data是字典

@@ -48,7 +48,7 @@
     return ^(NSMutableArray <__kindof UIViewModel *>* model) {
         @jobs_strongify(self)
         self.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-        self.dataMutArr =  model;
+        self.dataMutArr = model;
         self.tableView.alpha = 1;
     };
 }

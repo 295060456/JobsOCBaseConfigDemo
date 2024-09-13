@@ -58,6 +58,7 @@
 		CE7C79B52C92B9D000C0153C /* GTCaptcha4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7C79B22C92B9C600C0153C /* GTCaptcha4.framework */; };
 		CE7C7BBD2C942E8600C0153C /* NSDate+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7C7BBB2C942E8000C0153C /* NSDate+Extra.m */; };
 		CE7C7BC12C942EBA00C0153C /* JobsCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7C7BBF2C942EB400C0153C /* JobsCalenderView.m */; };
+		CE7C7D422C9447A800C0153C /* philippines.json in Resources */ = {isa = PBXBuildFile; fileRef = CE7C7D412C9447A100C0153C /* philippines.json */; };
 		CE7F395D2C4FDA1000431A5D /* JobsFMDBMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */; };
 		CE7F395E2C4FDA1000431A5D /* FMDB_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F395A2C4FDA1000431A5D /* FMDB_VC.m */; };
 		CE7F396F2C4FDAF900431A5D /* JobsMenuSubView@1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39602C4FDAF900431A5D /* JobsMenuSubView@1.m */; };
@@ -1138,7 +1139,6 @@
 		CED358592C92A8F500A5703F /* RegisterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358502C92A8E700A5703F /* RegisterApi.m */; };
 		CED3585A2C92A8F800A5703F /* UploadImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358532C92A8E700A5703F /* UploadImageApi.m */; };
 		CEE403072C788F2B0085C23C /* JobsCorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE403052C7887960085C23C /* JobsCorModel.m */; };
-		CEFA816F2C6DEB1E00751B1F /* philippines.json in Resources */ = {isa = PBXBuildFile; fileRef = CEFA816E2C6DEB1E00751B1F /* philippines.json */; };
 		CEFA81772C6E016F00751B1F /* PointLabBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFA81752C6E016F00751B1F /* PointLabBaseView.m */; };
 		D16B7B0D974F1991F2B39889 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */; };
 /* End PBXBuildFile section */
@@ -1281,6 +1281,9 @@
 		CE7C7BBB2C942E8000C0153C /* NSDate+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extra.m"; sourceTree = "<group>"; };
 		CE7C7BBE2C942EB400C0153C /* JobsCalenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCalenderView.h; sourceTree = "<group>"; };
 		CE7C7BBF2C942EB400C0153C /* JobsCalenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCalenderView.m; sourceTree = "<group>"; };
+		CE7C7D412C9447A100C0153C /* philippines.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = philippines.json; sourceTree = "<group>"; };
+		CE7C7D432C9447CD00C0153C /* PhilippinesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhilippinesModel.h; sourceTree = "<group>"; };
+		CE7C7D442C9447CD00C0153C /* PhilippinesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhilippinesModel.m; sourceTree = "<group>"; };
 		CE7F39562C4FDA1000431A5D /* JobsFMDBMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsFMDBMgr.h; sourceTree = "<group>"; };
 		CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsFMDBMgr.m; sourceTree = "<group>"; };
 		CE7F39592C4FDA1000431A5D /* FMDB_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB_VC.h; sourceTree = "<group>"; };
@@ -3227,7 +3230,6 @@
 		CED358532C92A8E700A5703F /* UploadImageApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadImageApi.m; sourceTree = "<group>"; };
 		CEE403042C7887960085C23C /* JobsCorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCorModel.h; sourceTree = "<group>"; };
 		CEE403052C7887960085C23C /* JobsCorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCorModel.m; sourceTree = "<group>"; };
-		CEFA816E2C6DEB1E00751B1F /* philippines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = philippines.json; sourceTree = "<group>"; };
 		CEFA81742C6E016F00751B1F /* PointLabBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointLabBaseView.h; sourceTree = "<group>"; };
 		CEFA81752C6E016F00751B1F /* PointLabBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointLabBaseView.m; sourceTree = "<group>"; };
 		CEFB9A212C60DFF0000285F1 /* YYFPSLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
@@ -3567,6 +3569,7 @@
 		CE2E88C12C69DEC300260207 /* JobsCountriesModel */ = {
 			isa = PBXGroup;
 			children = (
+				CE7C7D452C9447CD00C0153C /* PhilippinesModel */,
 				CE2E88C22C69DECC00260207 /* JobsCountriesModel.h */,
 				CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */,
 			);
@@ -3890,6 +3893,15 @@
 				CE7C7BBF2C942EB400C0153C /* JobsCalenderView.m */,
 			);
 			path = "弹出的日历选择页面";
+			sourceTree = "<group>";
+		};
+		CE7C7D452C9447CD00C0153C /* PhilippinesModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE7C7D432C9447CD00C0153C /* PhilippinesModel.h */,
+				CE7C7D442C9447CD00C0153C /* PhilippinesModel.m */,
+			);
+			path = PhilippinesModel;
 			sourceTree = "<group>";
 		};
 		CE7F39582C4FDA1000431A5D /* JobsFMDBMgr */ = {
@@ -13527,7 +13539,7 @@
 		CECE88A32C4519AD00764AF5 /* Json文件 */ = {
 			isa = PBXGroup;
 			children = (
-				CEFA816E2C6DEB1E00751B1F /* philippines.json */,
+				CE7C7D412C9447A100C0153C /* philippines.json */,
 				CE2E88C52C69DF3100260207 /* countries.json */,
 				CECE889F2C4519AD00764AF5 /* 假数据.json */,
 				CECE88A02C4519AD00764AF5 /* CommentData.json */,
@@ -13915,6 +13927,7 @@
 				CECE894F2C4519AD00764AF5 /* Localizable.strings in Resources */,
 				CECE89112C4519AD00764AF5 /* NotoSansDisplay_Condensed-BoldItalic.ttf in Resources */,
 				CECE88F12C4519AD00764AF5 /* NotoSans-Light.ttf in Resources */,
+				CE7C7D422C9447A800C0153C /* philippines.json in Resources */,
 				CECE7C722C450C5000764AF5 /* Check@2x.png in Resources */,
 				CECE873C2C45140000764AF5 /* SHA.md in Resources */,
 				CECE7C7C2C450C5000764AF5 /* JobsIM【Outlines 02】.png in Resources */,
@@ -14225,7 +14238,6 @@
 				CECE81232C4512BF00764AF5 /* 7@2x.png in Resources */,
 				CECE89402C4519AD00764AF5 /* NotoSansDisplay_SemiCondensed-SemiBold.ttf in Resources */,
 				CECE892B2C4519AD00764AF5 /* NotoSansDisplay_ExtraCondensed-Medium.ttf in Resources */,
-				CEFA816F2C6DEB1E00751B1F /* philippines.json in Resources */,
 				CECE81592C4512BF00764AF5 /* 社区.json in Resources */,
 				CECE87592C45140000764AF5 /* GXCardItemDemoCell.xib in Resources */,
 				CECE7C762C450C5000764AF5 /* Menu@2x.png in Resources */,

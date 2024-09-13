@@ -43,6 +43,7 @@ UITextFieldDelegate
 @property(nonatomic,assign)UIKeyboardType keyboardType;
 @property(nonatomic,assign)UITextFieldViewMode leftViewMode;
 @property(nonatomic,assign)UITextFieldViewMode rightViewMode;
+@property(nonatomic,assign)BOOL isAllowEdit;
 @property(nullable,nonatomic,copy)NSString *placeholder;
 @property(nullable,nonatomic,copy)NSAttributedString *attributedPlaceholder API_AVAILABLE(ios(6.0));
 
