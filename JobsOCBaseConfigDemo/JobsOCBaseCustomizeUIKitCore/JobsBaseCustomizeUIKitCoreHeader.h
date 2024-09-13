@@ -43,6 +43,8 @@
 #import "JobsAttributedString.h"
 #pragma mark —— NSData
 #import "JobsData.h"
+#pragma mark —— NSDate
+#import "NSDate+Extra.h"
 #pragma mark —— UIColor
 #import "JobsColor.h"
 #pragma mark —— UIDevice

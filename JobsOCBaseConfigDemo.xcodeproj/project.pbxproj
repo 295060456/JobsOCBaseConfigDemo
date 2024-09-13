@@ -56,6 +56,8 @@
 		CE7C79AF2C92B98000C0153C /* NSObject+GTCaptcha4.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7C79AD2C92B97C00C0153C /* NSObject+GTCaptcha4.m */; };
 		CE7C79B42C92B9CD00C0153C /* GTCaptcha4.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE7C79B12C92B9C600C0153C /* GTCaptcha4.bundle */; };
 		CE7C79B52C92B9D000C0153C /* GTCaptcha4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7C79B22C92B9C600C0153C /* GTCaptcha4.framework */; };
+		CE7C7BBD2C942E8600C0153C /* NSDate+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7C7BBB2C942E8000C0153C /* NSDate+Extra.m */; };
+		CE7C7BC12C942EBA00C0153C /* JobsCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7C7BBF2C942EB400C0153C /* JobsCalenderView.m */; };
 		CE7F395D2C4FDA1000431A5D /* JobsFMDBMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */; };
 		CE7F395E2C4FDA1000431A5D /* FMDB_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F395A2C4FDA1000431A5D /* FMDB_VC.m */; };
 		CE7F396F2C4FDAF900431A5D /* JobsMenuSubView@1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39602C4FDAF900431A5D /* JobsMenuSubView@1.m */; };
@@ -1275,6 +1277,10 @@
 		CE7C79B02C92B9C600C0153C /* 极验验证码.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "极验验证码.md"; sourceTree = "<group>"; };
 		CE7C79B12C92B9C600C0153C /* GTCaptcha4.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GTCaptcha4.bundle; sourceTree = "<group>"; };
 		CE7C79B22C92B9C600C0153C /* GTCaptcha4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTCaptcha4.framework; sourceTree = "<group>"; };
+		CE7C7BBA2C942E8000C0153C /* NSDate+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extra.h"; sourceTree = "<group>"; };
+		CE7C7BBB2C942E8000C0153C /* NSDate+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extra.m"; sourceTree = "<group>"; };
+		CE7C7BBE2C942EB400C0153C /* JobsCalenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCalenderView.h; sourceTree = "<group>"; };
+		CE7C7BBF2C942EB400C0153C /* JobsCalenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCalenderView.m; sourceTree = "<group>"; };
 		CE7F39562C4FDA1000431A5D /* JobsFMDBMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsFMDBMgr.h; sourceTree = "<group>"; };
 		CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsFMDBMgr.m; sourceTree = "<group>"; };
 		CE7F39592C4FDA1000431A5D /* FMDB_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB_VC.h; sourceTree = "<group>"; };
@@ -3866,6 +3872,24 @@
 				CE7C79B22C92B9C600C0153C /* GTCaptcha4.framework */,
 			);
 			path = "极验验证码";
+			sourceTree = "<group>";
+		};
+		CE7C7BBC2C942E8000C0153C /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				CE7C7BBA2C942E8000C0153C /* NSDate+Extra.h */,
+				CE7C7BBB2C942E8000C0153C /* NSDate+Extra.m */,
+			);
+			path = NSDate;
+			sourceTree = "<group>";
+		};
+		CE7C7BC02C942EB400C0153C /* 弹出的日历选择页面 */ = {
+			isa = PBXGroup;
+			children = (
+				CE7C7BBE2C942EB400C0153C /* JobsCalenderView.h */,
+				CE7C7BBF2C942EB400C0153C /* JobsCalenderView.m */,
+			);
+			path = "弹出的日历选择页面";
 			sourceTree = "<group>";
 		};
 		CE7F39582C4FDA1000431A5D /* JobsFMDBMgr */ = {
@@ -12279,6 +12303,7 @@
 			isa = PBXGroup;
 			children = (
 				CECE850D2C4513CD00764AF5 /* JobsBaseCustomizeUIKitCoreHeader.h */,
+				CE7C7BBC2C942E8000C0153C /* NSDate */,
 				CED358272C92A4E400A5703F /* NSURLRequest */,
 				CEA018BE2C881A4B006F06CF /* NSRunLoop */,
 				CEA018AE2C86F909006F06CF /* NSFormatter */,
@@ -13166,6 +13191,7 @@
 		CECE87132C45140000764AF5 /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				CE7C7BC02C942EB400C0153C /* 弹出的日历选择页面 */,
 				CEFB9A232C60DFF0000285F1 /* YYFPSLabel */,
 				CECE86072C45140000764AF5 /* 电影倒计时特效 */,
 				CECE868C2C45140000764AF5 /* 加密体系 */,
@@ -14522,6 +14548,7 @@
 				CECE80F62C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_6.m in Sources */,
 				CECE7C452C450C5000764AF5 /* ZFDouYinControlView.m in Sources */,
 				CECE7CE32C450C5000764AF5 /* MSCommentTableHeaderFooterView.m in Sources */,
+				CE7C7BC12C942EBA00C0153C /* JobsCalenderView.m in Sources */,
 				CECE81712C4512BF00764AF5 /* JobsTabBarItem.m in Sources */,
 				CE207E902C82F49000AD9FFB /* JobsVerticalMenuVC@0.m in Sources */,
 				CECE7C992C450C5000764AF5 /* JobsSearchTBVCell.m in Sources */,
@@ -14783,6 +14810,7 @@
 				CECE7C562C450C5000764AF5 /* JobsLoadMoreTBVCell.m in Sources */,
 				CEAF253F2C60FE050056570C /* ZMJTaskCell.m in Sources */,
 				CECE7CE72C450C5000764AF5 /* UITBVCellFoldVC.m in Sources */,
+				CE7C7BBD2C942E8600C0153C /* NSDate+Extra.m in Sources */,
 				CECE7CCC2C450C5000764AF5 /* JobsProgressVC.m in Sources */,
 				CECE7CCF2C450C5000764AF5 /* PushAnimation.m in Sources */,
 				CECE853C2C4513CE00764AF5 /* NSObject+DataBinding.m in Sources */,

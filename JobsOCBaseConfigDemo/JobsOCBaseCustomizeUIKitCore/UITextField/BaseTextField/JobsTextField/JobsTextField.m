@@ -62,6 +62,10 @@ UIViewModelProtocol_synthesize
         self.rightView.alpha = 1;
     };
 }
+#pragma mark —— UITextModelProtocol
+-(NSString *)text{
+    return self.realTextField.text;
+}
 #pragma mark —— UITextFieldDelegate
 /// 含义：在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑。
 /// 用途：您可以使用此方法进行输入验证或单元格选择，以决定是否允许用户开始编辑。
@@ -143,14 +147,8 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     [_leftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
         make.left.equalTo(self).offset(self.leftViewByOutLineOffset);
-        
-        if (_leftView.width) {
-            make.width.mas_equalTo(_leftView.width);
-        }
-        
-        if (_leftView.height) {
-            make.height.mas_equalTo(_leftView.height);
-        }
+        if (_leftView.width) make.width.mas_equalTo(_leftView.width);
+        if (_leftView.height) make.height.mas_equalTo(_leftView.height);
     }];
     /// 会将之前设置的size值冲掉
     [self layoutIfNeeded];
@@ -163,14 +161,8 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     [_rightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
         make.right.equalTo(self).offset(-self.rightViewByOutLineOffset);
-        
-        if (rightView.width) {
-            make.width.mas_equalTo(rightView.width);
-        }
-        
-        if (rightView.height) {
-            make.height.mas_equalTo(rightView.height);
-        }
+        if (rightView.width) make.width.mas_equalTo(rightView.width);
+        if (rightView.height) make.height.mas_equalTo(rightView.height);
     }];
     /// 会将之前设置的size值冲掉
     [self layoutIfNeeded];
