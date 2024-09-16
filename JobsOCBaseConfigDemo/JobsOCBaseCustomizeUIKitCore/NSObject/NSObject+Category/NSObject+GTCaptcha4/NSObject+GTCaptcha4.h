@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "APIKey.h"
+#import "JobsBlock.h"
 
 #if __has_include(<GTCaptcha4/GTCaptcha4.h>)
 #import <GTCaptcha4/GTCaptcha4.h>
@@ -20,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)GTCaptcha4Session *captchaSession;
 
--(jobsByVoidBlock)show_verifyCode_GTCaptcha4;// 显示验证码
+-(jobsByVoidBlock _Nonnull)show_verifyCode_GTCaptcha4;// 显示验证码
 
 @end
 

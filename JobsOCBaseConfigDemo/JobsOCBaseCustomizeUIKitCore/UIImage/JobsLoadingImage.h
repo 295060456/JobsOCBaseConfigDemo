@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
 #import "JobsString.h"
 /// 直接拖图片在项目文件夹，没用Bundle进行管理，也没有用Assets.xcassets
 /// @param imgName 文件可以不强制要求带后缀名，系统会自动识别png文件
@@ -37,8 +36,7 @@ static inline NSString *__nonnull JobsPathForResource(NSString *__nullable blueF
             filePath = blueFolderName;
         }
     }else{// 最外层是黄色文件夹
-        filePath = [NSBundle.mainBundle pathForResource:pathForResource
-                                                 ofType:ofType];
+        filePath = pathForResource.add(@".").add(ofType).pathForResourceWithFullName;
     }
     
     if (isValue(bundle_folderName)) {

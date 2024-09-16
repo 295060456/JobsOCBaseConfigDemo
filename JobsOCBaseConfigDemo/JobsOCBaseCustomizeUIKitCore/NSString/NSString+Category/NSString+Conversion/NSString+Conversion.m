@@ -18,7 +18,7 @@
 /// 读取本地JSON文件
 -(NSDictionary *)readLocalFileWithName{
     // 获取文件路径
-    NSString *path = [NSBundle.mainBundle pathForResource:self ofType:@"json"];
+    NSString *path = self.add(@".json").pathForResourceWithFullName;
     // 将文件数据化
     NSData *data = [NSData.alloc initWithContentsOfFile:path];
     // 对数据进行JSON格式化并返回字典形式

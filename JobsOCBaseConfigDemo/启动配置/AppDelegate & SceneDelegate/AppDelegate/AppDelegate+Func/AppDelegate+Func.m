@@ -86,11 +86,11 @@
             };
             
             // 本地图片资源示例
-    //        NSString *localImagePath = [NSBundle.mainBundle pathForResource:@"1242x2688" ofType:@"png"];
-    //        [adManager showAdWithLocalResource:localImagePath isVideo:NO];
+//            NSString *localImagePath = @"1242x2688.png".pathForResourceWithFullName;
+//            [adManager showAdWithLocalResource:localImagePath isVideo:NO];
             
             // 本地视频资源示例
-    //         NSString *localVideoPath = [NSBundle.mainBundle pathForResource:@"welcome_video" ofType:@"mp4"];
+    //         NSString *localVideoPath = @"welcome_video.mp4".pathForResourceWithFullName
     //         [adManager showAdWithLocalResource:localVideoPath isVideo:YES];
             
             // URL图片资源示例

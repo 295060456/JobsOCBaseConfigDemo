@@ -471,7 +471,7 @@
 		CECE80B32C4512BF00764AF5 /* 安全区域.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE7EF32C4512BF00764AF5 /* 安全区域.png */; };
 		CECE80B42C4512BF00764AF5 /* iPad尺寸.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE7EF42C4512BF00764AF5 /* iPad尺寸.png */; };
 		CECE80B52C4512BF00764AF5 /* iPhone尺寸.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE7EF52C4512BF00764AF5 /* iPhone尺寸.png */; };
-		CECE80B72C4512BF00764AF5 /* JobsOCBaseConfigNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F0C2C4512BF00764AF5 /* JobsOCBaseConfigNotificationManager.m */; };
+		CECE80B72C4512BF00764AF5 /* DefineConstString.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F0C2C4512BF00764AF5 /* DefineConstString.m */; };
 		CECE80B82C4512BF00764AF5 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F102C4512BF00764AF5 /* BaseModel.m */; };
 		CECE80B92C4512BF00764AF5 /* CasinoCustomerContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F132C4512BF00764AF5 /* CasinoCustomerContactModel.m */; };
 		CECE80BA2C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F162C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.m */; };
@@ -2089,8 +2089,8 @@
 		CECE7F062C4512BF00764AF5 /* JobsBlock.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = JobsBlock.md; sourceTree = "<group>"; };
 		CECE7F082C4512BF00764AF5 /* APIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIKey.h; sourceTree = "<group>"; };
 		CECE7F092C4512BF00764AF5 /* JobsDefineAllEnumHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsDefineAllEnumHeader.h; sourceTree = "<group>"; };
-		CECE7F0B2C4512BF00764AF5 /* JobsOCBaseConfigNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsOCBaseConfigNotificationManager.h; sourceTree = "<group>"; };
-		CECE7F0C2C4512BF00764AF5 /* JobsOCBaseConfigNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsOCBaseConfigNotificationManager.m; sourceTree = "<group>"; };
+		CECE7F0B2C4512BF00764AF5 /* DefineConstString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefineConstString.h; sourceTree = "<group>"; };
+		CECE7F0C2C4512BF00764AF5 /* DefineConstString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefineConstString.m; sourceTree = "<group>"; };
 		CECE7F0F2C4512BF00764AF5 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		CECE7F102C4512BF00764AF5 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		CECE7F122C4512BF00764AF5 /* CasinoCustomerContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasinoCustomerContactModel.h; sourceTree = "<group>"; };
@@ -8251,13 +8251,13 @@
 			path = "其他的一些全局定义文件";
 			sourceTree = "<group>";
 		};
-		CECE7F0D2C4512BF00764AF5 /* JobsOCBaseConfigNotificationManager */ = {
+		CECE7F0D2C4512BF00764AF5 /* DefineConstString */ = {
 			isa = PBXGroup;
 			children = (
-				CECE7F0B2C4512BF00764AF5 /* JobsOCBaseConfigNotificationManager.h */,
-				CECE7F0C2C4512BF00764AF5 /* JobsOCBaseConfigNotificationManager.m */,
+				CECE7F0B2C4512BF00764AF5 /* DefineConstString.h */,
+				CECE7F0C2C4512BF00764AF5 /* DefineConstString.m */,
 			);
-			path = JobsOCBaseConfigNotificationManager;
+			path = DefineConstString;
 			sourceTree = "<group>";
 		};
 		CECE7F0E2C4512BF00764AF5 /* 各项全局定义 */ = {
@@ -8265,7 +8265,7 @@
 			children = (
 				CECE7EFE2C4512BF00764AF5 /* 各项宏定义 */,
 				CECE7F0A2C4512BF00764AF5 /* 其他的一些全局定义文件 */,
-				CECE7F0D2C4512BF00764AF5 /* JobsOCBaseConfigNotificationManager */,
+				CECE7F0D2C4512BF00764AF5 /* DefineConstString */,
 			);
 			path = "各项全局定义";
 			sourceTree = "<group>";
@@ -14892,7 +14892,7 @@
 				CE7C79AF2C92B98000C0153C /* NSObject+GTCaptcha4.m in Sources */,
 				CECE7C1E2C450C5000764AF5 /* YTKBatchRequest+AnimatingAccessory.m in Sources */,
 				CECE81042C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyleModel.m in Sources */,
-				CECE80B72C4512BF00764AF5 /* JobsOCBaseConfigNotificationManager.m in Sources */,
+				CECE80B72C4512BF00764AF5 /* DefineConstString.m in Sources */,
 				CECE7EA82C450E5B00764AF5 /* KTVHCHTTPResponse.m in Sources */,
 				CEAF25402C60FE050056570C /* ZMJTextCell.m in Sources */,
 				CE84D3852C8EBF3D005DE167 /* JobsTabBarSettingVC.m in Sources */,

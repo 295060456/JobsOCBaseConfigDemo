@@ -7,7 +7,7 @@
 //
 
 #import "NSObject+Time.h"
-NSString *const App当日首次进入 = @"App当日首次进入";
+
 @implementation NSObject (Time)
 /// 返回的是（Double）时间戳
 -(NSTimeInterval)currentUnixTimeStamp{

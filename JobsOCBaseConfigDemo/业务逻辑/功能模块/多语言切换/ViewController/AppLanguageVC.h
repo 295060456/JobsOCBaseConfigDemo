@@ -10,7 +10,7 @@
 #import "BaseViewController.h"
 #import "MacroDef_Func.h"
 #import "MacroDef_Notification.h"
-#import "JobsOCBaseConfigNotificationManager.h"
+#import "DefineConstString.h"
 #import "NSObject+AppTools.h"
 #import "UIViewController+BackBtn.h"
 #import "UITableViewCell+UITableViewCellProtocol.h"

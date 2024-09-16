@@ -13,7 +13,7 @@ int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
     @autoreleasepool {
         // 获取应用的主 bundle 路径
-        NSString *path = [NSBundle.mainBundle pathForResource:@"zh-Hans" ofType:@"lproj"];
+        NSString *path = @"zh-Hans.lproj".pathForResourceWithFullName;
         // 创建一个新的 bundle，用于加载指定语言的资源
         NSBundle *zhHansBundle = [NSBundle bundleWithPath:path];
         // 使用指定语言的 bundle 加载本地化字符串

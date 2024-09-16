@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsUserDefaultDefine.h"
+#import "DefineConstString.h"
 /// 系统支持语言
 #ifndef APP_LANGUAGE_ENUM_DEFINED
 #define APP_LANGUAGE_ENUM_DEFINED
@@ -18,7 +19,7 @@ typedef NS_ENUM(NSInteger, AppLanguage) {
     AppLanguageTagalog            /// tl：菲律宾他加禄语
 };
 #endif/* APP_LANGUAGE_ENUM_DEFINED */
-FOUNDATION_EXTERN NSString * _Nonnull const JobsLanguageKey;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsLanguageManager : NSObject

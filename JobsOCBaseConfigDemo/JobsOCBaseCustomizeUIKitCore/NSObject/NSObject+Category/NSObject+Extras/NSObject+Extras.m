@@ -178,6 +178,47 @@
         return nil;
     } selectorName:nil target:self] name:notificationName object:nil];
 }
+#pragma mark —— 路径获取
+/// 获取bundle路径
+-(NSString *_Nonnull)bundlePath{
+    return NSBundle.mainBundle.bundlePath;
+}
+/// 获取沙盒的主目录路径：
+-(NSString *_Nonnull)homeDir{
+    return NSHomeDirectory();
+}
+/// 获取真机沙盒中Documents的目录路径：
+-(NSString *_Nonnull)documentsDir{
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                NSUserDomainMask,
+                                                YES) firstObject];
+}
+/// 获取沙盒中Library的目录路径：
+-(NSString *_Nonnull)libraryDir{
+    return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
+                                                NSUserDomainMask,
+                                                YES) lastObject];
+}
+/// 获取沙盒中NSUserDefaults的保存位置
+-(NSString *_Nonnull)userDefaultsDir{
+    return NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
+                                               NSUserDomainMask,
+                                               YES).firstObject;
+}
+/// 获取沙盒中Libarary/Preferences的目录路径：
+-(NSString *_Nonnull)preferencesDir{
+    return NSString.libraryDir.addPathComponent(@"Preferences");
+}
+/// 获取沙盒中Library/Caches的目录路径：
+-(NSString *_Nonnull)cachesDir{
+    return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
+                                                NSUserDomainMask,
+                                                YES) firstObject];
+}
+/// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
+-(NSString *_Nonnull)tmpDir{
+    return NSTemporaryDirectory();
+}
 #pragma mark —— 功能性的
 /// UICollectionViewFlowLayout
 -(__kindof UICollectionViewFlowLayout *_Nonnull)verticalLayout{

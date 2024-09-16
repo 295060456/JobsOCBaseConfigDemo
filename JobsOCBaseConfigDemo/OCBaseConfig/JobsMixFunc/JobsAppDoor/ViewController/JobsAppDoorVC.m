@@ -145,8 +145,8 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     self->_jobsAppDoorContentView.backgroundColor = Cor2;
     Ivar ivar = class_getInstanceVariable(JobsAppDoorContentView.class, "_toRegisterBtn");//必须是下划线接属性
     UIButton *toRegisterBtn = object_getIvar(self->_jobsAppDoorContentView, ivar);
-    toRegisterBtn.backgroundColor = Cor4;
-    toRegisterBtn.normalTitleColor(Cor1);
+    toRegisterBtn.jobsResetBtnBgCor(Cor4);
+    toRegisterBtn.jobsResetBtnTitleCor(Cor1);
     
     self.currentPage = CurrentPage_register;//注册页面
     self->_jobsAppDoorContentView.frame = CGRectMake(JobsAppDoorContentViewRegisterX,
@@ -164,9 +164,8 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     self->_jobsAppDoorContentView.backgroundColor = Cor2;
     Ivar ivar = class_getInstanceVariable([JobsAppDoorContentView class], "_toRegisterBtn");//必须是下划线接属性
     UIButton *toRegisterBtn = object_getIvar(self->_jobsAppDoorContentView, ivar);
-    toRegisterBtn.backgroundColor = Cor1;
-    [toRegisterBtn setTitleColor:Cor3
-                        forState:UIControlStateNormal];
+    toRegisterBtn.jobsResetBtnBgCor(Cor1);
+    toRegisterBtn.jobsResetBtnTitleCor(Cor3);
 
     self.currentPage = CurrentPage_login;//登录页面
     self->_jobsAppDoorContentView.frame = CGRectMake(JobsAppDoorContentViewLoginX,
@@ -352,7 +351,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             @jobs_strongify(self)
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
-                if ([btn.titleLabel.text isEqualToString:Title1]){
+                if (btn.titleForNormalState.isEqualToString(Title1)){
                     self.currentPage = CurrentPage_login;
                     [self.forgotCodeContentView removeContentViewWithOffsetY:0];
                     [self.jobsAppDoorContentView showContentViewWithOffsetY:0];
@@ -390,8 +389,8 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             if ([data isKindOfClass:UIButton.class]) {
                 [self.view endEditing:YES];
                 UIButton *btn = (UIButton *)data;
-                if ([btn.titleLabel.text isEqualToString:Title2] ||// Title2 JobsInternationalization(@"L\no\ng\ni\nn")
-                    [btn.titleLabel.text isEqualToString:Title1]) {// Title1 JobsInternationalization(@"B\na\nc\nk\nT\no\nL\no\ng\ni\nn")
+                if (btn.titleForNormalState.isEqualToString(Title2) ||// Title2 JobsInternationalization(@"L\no\ng\ni\nn")
+                    btn.titleForNormalState.isEqualToString(Title1)) {// Title1 JobsInternationalization(@"B\na\nc\nk\nT\no\nL\no\ng\ni\nn")
                     self->toRegisterBtn = (UIButton *)data;
                     //状态置空
                     self.currentActivateTFIndex = 0;
@@ -405,21 +404,21 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
                     self.customerServiceBtn.top = self.jobsAppDoorContentView.top + self.jobsAppDoorContentView.height + JobsWidth(20);
                     self.customerServiceBtnY =  self.customerServiceBtn.y;
                 }
-                else if ([btn.titleLabel.text isEqualToString:Title6]){// Title6 JobsInternationalization(@"Register")
+                else if (btn.titleForNormalState.isEqualToString(Title6)){// Title6 JobsInternationalization(@"Register")
 
                 }
-                else if ([btn.titleLabel.text isEqualToString:Title7]){// JobsInternationalization(@"Login")
+                else if (btn.titleForNormalState.isEqualToString(Title7)){// JobsInternationalization(@"Login")
 
                 }
-                else if ([btn.titleLabel.text isEqualToString:Title4]){// Title4 JobsInternationalization(@"Back to HomePage")
+                else if (btn.titleForNormalState.isEqualToString(Title4)){// Title4 JobsInternationalization(@"Back to HomePage")
                     UIButton *abandonLoginBtn = (UIButton *)data;
                     self.backBtnClickEvent(abandonLoginBtn);
                     [JobsAppDoorVC destroyAppDoorSingleton];
                 }
-                else if ([btn.titleLabel.text isEqualToString:Title5]){// Title5 JobsInternationalization(@"Save the user name")
+                else if (btn.titleForNormalState.isEqualToString(Title5)){// Title5 JobsInternationalization(@"Save the user name")
                     
                 }
-                else if ([btn.titleLabel.text isEqualToString:Title3]){// Title3 JobsInternationalization(@"Forgot code")
+                else if (btn.titleForNormalState.isEqualToString(Title3)){// Title3 JobsInternationalization(@"Forgot code")
                     
                     {//本页动效实现的
                         self.currentPage = CurrentPage_forgotCode;
@@ -463,13 +462,10 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     if (!_playerManager) {
         _playerManager = ZFAVPlayerManager.new;
         _playerManager.shouldAutoPlay = YES;
-
         if (isiPhoneX_series()) {
-            _playerManager.assetURL = [NSURL fileURLWithPath:[NSBundle.mainBundle pathForResource:@"iph_X"
-                                                                                           ofType:@"mp4"]];
+            _playerManager.assetURL = @"iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
         }else{
-            _playerManager.assetURL = [NSURL fileURLWithPath:[NSBundle.mainBundle pathForResource:@"非iph_X"
-                                                                                           ofType:@"mp4"]];
+            _playerManager.assetURL = @"非iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
         }
     }return _playerManager;
 }

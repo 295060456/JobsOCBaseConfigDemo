@@ -26,7 +26,7 @@
 #pragma mark - system
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = JobsWhiteColor;
     
     [self creatSubviews];
 }
@@ -46,10 +46,10 @@
 
     //判断当前系统语言
     if (LanguageIsEnglish) {
-        NSString *plistPathEN = [[NSBundle mainBundle] pathForResource:@"sortedNameCH" ofType:@"plist"];
+        NSString *plistPathEN = @"sortedNameCH.plist".pathForResourceWithFullName;
         _sortedNameDict = [[NSDictionary alloc] initWithContentsOfFile:plistPathEN];
     } else {
-        NSString *plistPathCH = [[NSBundle mainBundle] pathForResource:@"sortedNameCH" ofType:@"plist"];
+        NSString *plistPathCH = @"sortedNameCH.plist".pathForResourceWithFullName;
         _sortedNameDict = [[NSDictionary alloc] initWithContentsOfFile:plistPathCH];
     }
     
@@ -141,7 +141,7 @@
     //    }
 }
 
-- (__kindof UITableViewCell *)tableView:(UITableView *)tableView 
+- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *identifier = @"identifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -184,8 +184,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (_indexArray.count && _indexArray.count > section) {
         return [_indexArray objectAtIndex:section];
-    }
-    return nil;
+    }return nil;
 }
 
 #pragma mark - 选择国际获取代码

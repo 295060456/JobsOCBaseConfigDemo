@@ -14,7 +14,7 @@
     return ^(NSString *_Nullable fileName){
         SystemSoundID soundID;
         /// 得到音效文件的地址
-        NSURL *url = [NSBundle.mainBundle URLForResource:fileName withExtension:nil];
+        NSURL *url = fileName.pathForResourceWithName.jobsFileUrl;
         /// 生成系统音效id
         OSStatus errorCode = AudioServicesCreateSystemSoundID((__bridge CFURLRef)(url) , &soundID);
         if (errorCode) {
@@ -32,7 +32,7 @@
         FileNameModel *fileNameModel = fileFullName.byFileFullName(fileFullName);
         SystemSoundID soundID;
         /// 得到音效文件的地址
-        NSString *soundFilePath = [NSBundle.mainBundle pathForResource:fileNameModel.name ofType:fileNameModel.type];
+        NSString *soundFilePath = fileNameModel.name.add(fileNameModel.type).pathForResourceWithFullName;
         /// 生成系统音效id
         OSStatus errorCode = AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundFilePath.jobsUrl, &soundID);
         if (errorCode) {

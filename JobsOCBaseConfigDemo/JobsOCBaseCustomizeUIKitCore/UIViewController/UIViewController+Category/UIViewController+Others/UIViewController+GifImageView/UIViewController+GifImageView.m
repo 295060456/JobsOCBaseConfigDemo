@@ -34,7 +34,7 @@ JobsKey(_path)
 -(NSString *)path{
     NSString *Path = Jobs_getAssociatedObject(_path);
     if (isValue(Path)) {
-        Path = [NSBundle.mainBundle pathForResource:@"GIF大图" ofType:@"gif"];
+        Path = @"GIF大图.gif".pathForResourceWithFullName;
         Jobs_setAssociatedRETAIN_NONATOMIC(_path, Path)
     }return Path;
 }

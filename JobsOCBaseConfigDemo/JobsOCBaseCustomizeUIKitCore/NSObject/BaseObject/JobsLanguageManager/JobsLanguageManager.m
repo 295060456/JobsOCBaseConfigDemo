@@ -7,7 +7,6 @@
 
 #import "JobsLanguageManager.h"
 
-NSString *const JobsLanguageKey = @"JobsLanguageKey";
 @implementation JobsLanguageManager
 
 static NSBundle *bundle = nil;
@@ -32,7 +31,7 @@ static AppLanguage _language = AppLanguageBySys;
 + (void)setLanguage:(AppLanguage)language {
     _language = language;
     NSString *languageCode = [self languageCodeForAppLanguage:language];
-    NSString *path = [NSBundle.mainBundle pathForResource:languageCode ofType:@"lproj"];
+    NSString *path = languageCode.add(@".lproj").pathForResourceWithFullName;
     if (path) {
         bundle = [NSBundle bundleWithPath:path];
     } else {
@@ -56,14 +55,13 @@ static AppLanguage _language = AppLanguageBySys;
             /// tl（他加禄语）：这是菲律宾的主要语言之一，也是菲律宾语的基础语言。ISO 639-1代码为"tl"
             /// fil-PH：表示菲律宾的菲律宾语
             /// tl-PH：表示菲律宾的他加禄语
-            return [NSBundle.mainBundle pathForResource:@"fil" ofType:@"lproj"] ? @"fil" : @"fil-PH";
-        default:
-            return NSLocale.preferredLanguages.firstObject;
+            return isValue(@"fil.lproj".pathForResourceWithFullName) ? @"fil": @"fil-PH";
+        default:return NSLocale.preferredLanguages.firstObject;
     }
 }
 /// 通过key取值对应的语言
 + (NSString *)localStringWithKey:(NSString *_Nonnull)key {
-    return [self localizedString:key 
+    return [self localizedString:key
                        fromTable:nil
                         inBundle:self.bundle];
 }

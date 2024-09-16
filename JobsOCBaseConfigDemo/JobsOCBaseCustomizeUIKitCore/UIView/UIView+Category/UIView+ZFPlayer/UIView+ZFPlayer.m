@@ -75,7 +75,7 @@ JobsKey(_avPlayerManager)
 //        {
 //            NSString *str = @"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4";//苹果官方给出的测试地址
 //            AVPlayerManager.assetURL = str.jobsUrl;
-//            AVPlayerManager.assetURL = [NSURL fileURLWithPath:[NSBundle.mainBundle pathForResource:@"iph_X" ofType:@"mp4"]];
+//            AVPlayerManager.assetURL = @"iph_X.mp4".pathForResourceWithFullName.jobsUrl;
 //        }
         Jobs_setAssociatedRETAIN_NONATOMIC(_avPlayerManager, AVPlayerManager)
     }return AVPlayerManager;

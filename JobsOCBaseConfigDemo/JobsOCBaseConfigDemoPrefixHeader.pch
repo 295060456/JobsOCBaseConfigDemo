@@ -7,29 +7,27 @@
 
 #ifndef JobsOCBaseConfigPrefixHeader_pch
 #define JobsOCBaseConfigPrefixHeader_pch
-
 #pragma mark —— 系统SDK
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <sys/sysctl.h>
+#import <mach/mach.h>
 #import <objc/runtime.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
+#import <CoreData/CoreData.h>
+#import <CoreImage/CoreImage.h>
 #import <QuartzCore/QuartzCore.h>
 #import <VideoToolbox/VideoToolbox.h>// FFmpeg 需要
-#import <CoreData/CoreData.h>
 #import <Photos/Photos.h>
 #import <ImageIO/ImageIO.h>
-#import <CoreImage/CoreImage.h>
 #import <AVFoundation/AVAsset.h>
 #import <AVFoundation/AVAssetImageGenerator.h>
 #import <AVFoundation/AVTime.h>
-#import <sys/sysctl.h>
-#import <mach/mach.h>
 #import <EventKit/EventKit.h>// 用来读取，修改和创建日历上的事件
-
 #pragma mark —— 各项全局定义
-/// JobsOCBaseConfigNotificationManager
-#import "JobsOCBaseConfigNotificationManager.h"
+/// DefineConstString
+#import "DefineConstString.h"
 /// 各项宏定义
 #import "MacroDef_Size.h"
 #import "MacroDef_App.h"

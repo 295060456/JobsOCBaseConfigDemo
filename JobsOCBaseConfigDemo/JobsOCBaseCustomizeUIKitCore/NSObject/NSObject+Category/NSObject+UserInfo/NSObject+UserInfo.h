@@ -6,13 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DefineConstString.h"
 #import "NSUserDefaults+Manager.h"
 #import "JobsUserModel.h"
 #import "JobsBlock.h"
-
-FOUNDATION_EXTERN NSString *_Nonnull const 用户信息;
-FOUNDATION_EXTERN NSString *_Nonnull const 用户名数组;
-FOUNDATION_EXTERN NSString *_Nonnull const FM用户数据;
 
 NS_ASSUME_NONNULL_BEGIN
 

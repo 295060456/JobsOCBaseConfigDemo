@@ -95,7 +95,7 @@
 
 -(NSString *)path{
     if (!_path) {
-        _path = [NSBundle.mainBundle pathForResource:@"GIF大图" ofType:@"gif"];
+        _path = @"GIF大图.gif".pathForResourceWithFullName;
     }return _path;
 }
 

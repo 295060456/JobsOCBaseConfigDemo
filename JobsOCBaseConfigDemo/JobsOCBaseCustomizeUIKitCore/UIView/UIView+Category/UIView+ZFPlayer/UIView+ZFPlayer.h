@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
-#import "JobsOCBaseConfigNotificationManager.h"
+#import "DefineConstString.h"
 
 #pragma mark —— ZFPlayer 播放器相关
 //Core

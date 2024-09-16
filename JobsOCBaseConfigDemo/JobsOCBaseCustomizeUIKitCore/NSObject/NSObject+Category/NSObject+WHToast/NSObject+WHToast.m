@@ -54,7 +54,7 @@
 +(jobsByStringBlock _Nonnull)jobsToastLoadingMsg{
     return ^(NSString *_Nullable errMsg) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *path = [NSBundle.mainBundle pathForResource:@"toastLoading" ofType:@"gif"];
+            NSString *path = @"toastLoading.gif".pathForResourceWithFullName;
             NSData *data = [NSData dataWithContentsOfFile:path];
             UIImage *image = [UIImage sd_imageWithGIFData:data];
             [WHToast showImage:image

@@ -185,6 +185,23 @@ BaseProtocol
 -(jobsByStringBlock _Nonnull)jobsPost;
 /// 接收通知
 -(void)addNotificationName:(NSString *_Nonnull)notificationName block:(JobsSelectorBlock _Nullable)block;
+#pragma mark —— 路径获取
+/// 获取bundle路径
+-(NSString *_Nonnull)bundlePath;
+/// 获取沙盒的主目录路径：
+-(NSString *_Nonnull)homeDir;
+/// 获取真机沙盒中Documents的目录路径：
+-(NSString *_Nonnull)documentsDir;
+/// 获取沙盒中Library的目录路径：
+-(NSString *_Nonnull)libraryDir;
+/// 获取沙盒中NSUserDefaults的保存位置
+-(NSString *_Nonnull)userDefaultsDir;
+/// 获取沙盒中Libarary/Preferences的目录路径：
+-(NSString *_Nonnull)preferencesDir;
+/// 获取沙盒中Library/Caches的目录路径：
+-(NSString *_Nonnull)cachesDir;
+/// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
+-(NSString *_Nonnull)tmpDir;
 #pragma mark —— 功能性的
 /// UICollectionViewFlowLayout
 -(__kindof UICollectionViewFlowLayout *_Nonnull)verticalLayout;

@@ -9,7 +9,7 @@
 #import "UIViewModelProtocol.h"
 #import "BaseViewControllerProtocol.h"
 #import "JobsBlock.h"
-#import "JobsOCBaseConfigNotificationManager.h"
+#import "DefineConstString.h"
 #import "MacroDef_Notification.h"
 #import "MacroDef_Log.h"
 #import "MacroDef_String.h"

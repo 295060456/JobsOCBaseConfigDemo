@@ -10,7 +10,7 @@
 @interface JobsAppDoorVC_Style2 ()
 /// UI
 @property(nonatomic,strong)UIImageView *bgImgV;
-@property(nonatomic,strong)UIButton *customerServiceBtn;
+@property(nonatomic,strong)BaseButton *customerServiceBtn;
 @property(nonatomic,strong)ZFPlayerController *player;
 @property(nonatomic,strong)ZFAVPlayerManager *playerManager;
 @property(nonatomic,strong,nullable)CustomZFPlayerControlView *customPlayerControlView;
@@ -317,17 +317,17 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     }return _logoContentView;
 }
 
--(UIButton *)customerServiceBtn{
+-(BaseButton *)customerServiceBtn{
     if (!_customerServiceBtn) {
-        _customerServiceBtn = UIButton.new;
-        _customerServiceBtn.normalTitle(Title8);
-        _customerServiceBtn.normalImage(JobsIMG(@"客服"));
         @jobs_weakify(self)
-        [_customerServiceBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            toast(x.titleForNormalState);
-            return nil;
-        }];
+        _customerServiceBtn = BaseButton.initByTitle_font_titleCor_image(Title8,nil,nil,JobsIMG(@"客服"))
+            .bgColor(JobsWhiteColor)
+            .cornerRadiusValue(_customerServiceBtn.height / 2)
+            .onClick(^(UIButton *x){
+                toast(x.titleForNormalState);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [_customerServiceBtn buttonAutoFontByWidth];
         [self.view addSubview:_customerServiceBtn];
         [_customerServiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -337,8 +337,8 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         }];
         [self.view layoutIfNeeded];
         self.loginCustomerServiceBtnY = _customerServiceBtn.y;
-        _customerServiceBtn.cornerCutToCircleWithCornerRadius(_customerServiceBtn.height / 2);
-        [_customerServiceBtn layerBorderCor:JobsWhiteColor andBorderWidth:2];
+        _customerServiceBtn.jobsResetBtnlayerBorderCor(JobsWhiteColor);
+        _customerServiceBtn.jobsResetBtnlayerBorderWidth(2);
     }return _customerServiceBtn;
 }
 
@@ -346,11 +346,10 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     if (!_playerManager) {
         _playerManager = ZFAVPlayerManager.new;
         _playerManager.shouldAutoPlay = YES;
-
         if (isiPhoneX_series()) {
-            _playerManager.assetURL = [NSURL fileURLWithPath:[NSBundle.mainBundle pathForResource:@"iph_X" ofType:@"mp4"]];
+            _playerManager.assetURL = @"iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
         }else{
-            _playerManager.assetURL = [NSURL fileURLWithPath:[NSBundle.mainBundle pathForResource:@"非iph_X" ofType:@"mp4"]];
+            _playerManager.assetURL = @"非iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
         }
     }return _playerManager;
 }

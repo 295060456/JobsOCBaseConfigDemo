@@ -17,7 +17,7 @@
 #import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
-FOUNDATION_EXTERN NSString * _Nonnull const App当日首次进入;
+
 @interface NSObject (Time)
 /// 返回的是（Double）时间戳
 -(NSTimeInterval)currentUnixTimeStamp;

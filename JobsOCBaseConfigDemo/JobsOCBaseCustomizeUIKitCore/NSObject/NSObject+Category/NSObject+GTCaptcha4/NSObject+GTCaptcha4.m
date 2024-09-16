@@ -10,7 +10,7 @@
 @implementation NSObject (GTCaptcha4)
 #pragma mark —— BaseProtocol
 // 显示验证码
--(jobsByVoidBlock)show_verifyCode_GTCaptcha4{
+-(jobsByVoidBlock _Nonnull)show_verifyCode_GTCaptcha4{
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)

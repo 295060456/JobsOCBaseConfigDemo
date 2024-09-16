@@ -7,10 +7,6 @@
 
 #import "NSObject+UserInfo.h"
 
-NSString *const 用户信息 = @"用户信息";
-NSString *const 用户名数组 = @"用户名数组";
-NSString *const FM用户数据 = @"FM用户数据";
-
 @implementation NSObject (UserInfo)
 /**
  【鉴别是否登录】
