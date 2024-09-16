@@ -164,6 +164,7 @@ typedef NS_ENUM(NSInteger, HTTPResponseCode) {//KKK
     HTTPResponseCodeServeError = -1,/// 服务器异常
     HTTPResponseCodeSuccess = 200,/// 请求成功
     HTTPResponseCodeLoginDate = 1,/// 登录已过期，请重新登录
+    HTTPResponseCodeLoginFailed = 1002000000,/// 登录失败：账密错误
     HTTPResponseCodeAuthorizationFailure = 2,/// 授权失败
     HTTPResponseCodeLeakTime = 4,/// 限定时间内超过请求次数
     HTTPResponseCodeRiskOperation = 6,/// 风险操作

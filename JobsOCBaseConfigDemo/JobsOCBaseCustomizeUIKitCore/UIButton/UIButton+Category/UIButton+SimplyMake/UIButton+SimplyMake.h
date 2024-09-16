@@ -18,41 +18,41 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)jobsByBtnBlock longPressGestureBlock;
 #pragma mark —— 依靠单一数据进行简单创建
 /// 仅仅依靠标题内容（普通文本）进行创建
-+(JobsReturnButtonByTitleBlock)initByTitle;
++(JobsReturnButtonByTitleBlock _Nonnull)initByTitle;
 /// 依靠标题内容和字体大小进行创建
-+(JobsReturnButtonByTitleAndFontBlock)initByTitle_font;
++(JobsReturnButtonByTitleAndFontBlock _Nonnull)initByTitle_font;
 /// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorBlock)initByTitle_font_titleCor;
++(JobsReturnButtonByTitleAndFontAndTitleCorBlock _Nonnull)initByTitle_font_titleCor;
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorAndImageBlock)initByTitle_font_titleCor_image;
++(JobsReturnButtonByTitleAndFontAndTitleCorAndImageBlock _Nonnull)initByTitle_font_titleCor_image;
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorAndImageBlock)initByTitle_font_titleCor_bgImage;
++(JobsReturnButtonByTitleAndFontAndTitleCorAndImageBlock _Nonnull)initByTitle_font_titleCor_bgImage;
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorAndImageAndBgImageBlock)initByTitle_font_titleCor_image_bgImage;
++(JobsReturnButtonByTitleAndFontAndTitleCorAndImageAndBgImageBlock _Nonnull)initByTitle_font_titleCor_image_bgImage;
 /// 仅仅靠按钮图片进行创建
-+(JobsReturnButtonByNormalImageBlock)initByNormalImage;
++(JobsReturnButtonByNormalImageBlock _Nonnull)initByNormalImage;
 /// 仅仅依靠按钮背景图进行创建
-+(JobsReturnButtonByBackgroundImageBlock)initByBackgroundImage;
++(JobsReturnButtonByBackgroundImageBlock _Nonnull)initByBackgroundImage;
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
-+(JobsReturnButtonByStyle1Block)initByStyle1;
++(JobsReturnButtonByStyle1Block _Nonnull)initByStyle1;
 /// 图文混排（图片在上边 ）
-+(JobsReturnButtonByStyle2Block)initByStyleTop;
++(JobsReturnButtonByStyle2Block _Nonnull)initByStyleTop;
 /// 图文混排（图片在左边 ）
-+(JobsReturnButtonByStyle2Block)initByStyleLeft;
++(JobsReturnButtonByStyle2Block _Nonnull)initByStyleLeft;
 /// 图文混排（图片在下边 ）
-+(JobsReturnButtonByStyle2Block)initByStyleBottom;
++(JobsReturnButtonByStyle2Block _Nonnull)initByStyleBottom;
 /// 图文混排（图片在右边 ）
-+(JobsReturnButtonByStyle2Block)initByStyleRight;
++(JobsReturnButtonByStyle2Block _Nonnull)initByStyleRight;
 #pragma mark —— 依靠数据束进行创建
 /// 依靠UIViewModel进行创建
-+(JobsReturnButtonByViewModelBlock)initByViewModel;
++(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel;
 /// 依靠UITextModel进行创建
-+(JobsReturnButtonByTextModelBlock)initByTextModel;
++(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel;
 #pragma mark —— 对功能性进行补充
--(JobsReturnButtonByClickBlock)onClick;
--(JobsReturnButtonByClickBlock)onLongPressGesture;
--(JobsReturnButtonByCorBlock)bgColor;
--(JobsReturnButtonByFloatBlock)cornerRadiusValue;
+-(JobsReturnButtonByClickBlock _Nonnull)onClick;
+-(JobsReturnButtonByClickBlock _Nonnull)onLongPressGesture;
+-(JobsReturnButtonByCorBlock _Nonnull)bgColor;
+-(JobsReturnButtonByFloatBlock _Nonnull)cornerRadiusValue;
 
 @end
 
