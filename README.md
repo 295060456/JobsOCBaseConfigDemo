@@ -2320,6 +2320,41 @@ NSObject <|-- BaseProtocol
   DDMyVipModel *myVipModel = [DDMyVipModel mj_objectWithKeyValues:data]; 
   ```
   
+* 二次封装
+
+  ```objective-c
+  @implementation NSObject (Data)
+  #pragma mark —— 关于数据（MJExtension）解析
+  /// 对待输入参数是含字典的数组
+  +(JobsReturnArrByArrBlock)byDataArr{
+      @jobs_weakify(self)
+      return ^__kindof NSArray *_Nullable(__kindof NSArray <NSDictionary *>*_Nullable data){
+          @jobs_strongify(self)
+          return [self.class mj_objectArrayWithKeyValuesArray:data];
+      };
+  }
+  /// 对待输入参数是字典
+  +(JobsReturnIDByDicBlock)byDataDic{
+      @jobs_weakify(self)
+      return ^id _Nullable(__kindof NSDictionary *_Nullable data){
+          @jobs_strongify(self)
+          return [self.class mj_objectWithKeyValues:data];
+      };
+  }
+  /// 万能解析
+  +(JobsReturnIDByIDBlock)byData{
+      @jobs_weakify(self)
+      return ^id _Nullable(id _Nullable data){
+          @jobs_strongify(self)
+          if(KindOfDicCls(data)) return [self.class mj_objectWithKeyValues:data];
+          if(KindOfArrCls(data)) return [self.class mj_objectArrayWithKeyValuesArray:data];
+          return nil;
+      };
+  }
+  
+  @end
+  ```
+  
 * 字段替换：接口返回字段<font color=red>**id**</font>和OC关键字<font color=red>**id**</font>重合冲突，这里用<font color=green>**jj**</font>替换<font color=red>**id**</font>
 
   ```objective-c

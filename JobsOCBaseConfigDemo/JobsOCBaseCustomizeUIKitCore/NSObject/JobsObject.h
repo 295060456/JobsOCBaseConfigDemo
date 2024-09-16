@@ -78,8 +78,6 @@
 #import "NSObject+Notification.h"
 /// 万物回调
 #import "NSObject+CallBackInfoByBlock.h"
-/// 万物数据绑定
-#import "NSObject+DataBinding.h"
 /// runtime方法交换
 #import "NSObject+Swizzling.h"
 /// 打开URL
@@ -103,8 +101,6 @@
 #import "NSObject+SYSAlertController.h"
 /// 网络监控
 #import "NSObject+AFNReachability.h"
-///【对FileFolderHandleTool的二次封装】 存数据，储存成功返回地址
-#import "NSObject+DataSave.h"
 /// UIScrollViewDelegate 协议
 #import "NSObject+UIScrollViewDelegate.h"
 /// Cell 部署策略
@@ -121,5 +117,7 @@
 /// 极验验证码
 /// https://www2.geetest.com/
 #import "NSObject+GTCaptcha4.h"
+/// 关于数据
+#import "NSObject+Data.h"
 
 #endif /* JobsObject_h */

@@ -677,8 +677,6 @@
 		CECE85392C4513CE00764AF5 /* NSObject+ChangeAppicon.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82852C4513CD00764AF5 /* NSObject+ChangeAppicon.m */; };
 		CECE853A2C4513CE00764AF5 /* NSObject+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82882C4513CD00764AF5 /* NSObject+Class.m */; };
 		CECE853B2C4513CE00764AF5 /* NSObject+CurrentDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE828B2C4513CD00764AF5 /* NSObject+CurrentDevice.m */; };
-		CECE853C2C4513CE00764AF5 /* NSObject+DataBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE828E2C4513CD00764AF5 /* NSObject+DataBinding.m */; };
-		CECE853D2C4513CE00764AF5 /* NSObject+DataSave.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82912C4513CD00764AF5 /* NSObject+DataSave.m */; };
 		CECE853E2C4513CE00764AF5 /* NSObject+DefConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82942C4513CD00764AF5 /* NSObject+DefConfig.m */; };
 		CECE853F2C4513CE00764AF5 /* NSObject+JobsDeployCellConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82982C4513CD00764AF5 /* NSObject+JobsDeployCellConfig.m */; };
 		CECE85402C4513CE00764AF5 /* NSObject+DeviceIP.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE829B2C4513CD00764AF5 /* NSObject+DeviceIP.m */; };
@@ -1138,6 +1136,7 @@
 		CED358582C92A8F200A5703F /* GetUserInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED3584D2C92A8E700A5703F /* GetUserInfoApi.m */; };
 		CED358592C92A8F500A5703F /* RegisterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358502C92A8E700A5703F /* RegisterApi.m */; };
 		CED3585A2C92A8F800A5703F /* UploadImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358532C92A8E700A5703F /* UploadImageApi.m */; };
+		CEE26F3A2C9801A900D900AA /* NSObject+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE26F382C9801A400D900AA /* NSObject+Data.m */; };
 		CEE403072C788F2B0085C23C /* JobsCorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE403052C7887960085C23C /* JobsCorModel.m */; };
 		CEFA81772C6E016F00751B1F /* PointLabBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFA81752C6E016F00751B1F /* PointLabBaseView.m */; };
 		D16B7B0D974F1991F2B39889 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */; };
@@ -2477,10 +2476,6 @@
 		CECE82882C4513CD00764AF5 /* NSObject+Class.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Class.m"; sourceTree = "<group>"; };
 		CECE828A2C4513CD00764AF5 /* NSObject+CurrentDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CurrentDevice.h"; sourceTree = "<group>"; };
 		CECE828B2C4513CD00764AF5 /* NSObject+CurrentDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CurrentDevice.m"; sourceTree = "<group>"; };
-		CECE828D2C4513CD00764AF5 /* NSObject+DataBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DataBinding.h"; sourceTree = "<group>"; };
-		CECE828E2C4513CD00764AF5 /* NSObject+DataBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DataBinding.m"; sourceTree = "<group>"; };
-		CECE82902C4513CD00764AF5 /* NSObject+DataSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DataSave.h"; sourceTree = "<group>"; };
-		CECE82912C4513CD00764AF5 /* NSObject+DataSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DataSave.m"; sourceTree = "<group>"; };
 		CECE82932C4513CD00764AF5 /* NSObject+DefConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DefConfig.h"; sourceTree = "<group>"; };
 		CECE82942C4513CD00764AF5 /* NSObject+DefConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DefConfig.m"; sourceTree = "<group>"; };
 		CECE82962C4513CD00764AF5 /* JobsDeployDataForCellHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsDeployDataForCellHeader.h; sourceTree = "<group>"; };
@@ -3228,6 +3223,8 @@
 		CED358502C92A8E700A5703F /* RegisterApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterApi.m; sourceTree = "<group>"; };
 		CED358522C92A8E700A5703F /* UploadImageApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UploadImageApi.h; sourceTree = "<group>"; };
 		CED358532C92A8E700A5703F /* UploadImageApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadImageApi.m; sourceTree = "<group>"; };
+		CEE26F372C9801A400D900AA /* NSObject+Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Data.h"; sourceTree = "<group>"; };
+		CEE26F382C9801A400D900AA /* NSObject+Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Data.m"; sourceTree = "<group>"; };
 		CEE403042C7887960085C23C /* JobsCorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCorModel.h; sourceTree = "<group>"; };
 		CEE403052C7887960085C23C /* JobsCorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCorModel.m; sourceTree = "<group>"; };
 		CEFA81742C6E016F00751B1F /* PointLabBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointLabBaseView.h; sourceTree = "<group>"; };
@@ -10102,24 +10099,6 @@
 			path = "NSObject+CurrentDevice";
 			sourceTree = "<group>";
 		};
-		CECE828F2C4513CD00764AF5 /* NSObject+DataBinding */ = {
-			isa = PBXGroup;
-			children = (
-				CECE828D2C4513CD00764AF5 /* NSObject+DataBinding.h */,
-				CECE828E2C4513CD00764AF5 /* NSObject+DataBinding.m */,
-			);
-			path = "NSObject+DataBinding";
-			sourceTree = "<group>";
-		};
-		CECE82922C4513CD00764AF5 /* NSObject+DataSave */ = {
-			isa = PBXGroup;
-			children = (
-				CECE82902C4513CD00764AF5 /* NSObject+DataSave.h */,
-				CECE82912C4513CD00764AF5 /* NSObject+DataSave.m */,
-			);
-			path = "NSObject+DataSave";
-			sourceTree = "<group>";
-		};
 		CECE82952C4513CD00764AF5 /* NSObject+DefConfig */ = {
 			isa = PBXGroup;
 			children = (
@@ -10435,6 +10414,7 @@
 		CECE82FD2C4513CD00764AF5 /* NSObject+Category */ = {
 			isa = PBXGroup;
 			children = (
+				CEE26F392C9801A400D900AA /* NSObject+Data */,
 				CE7C79AE2C92B97C00C0153C /* NSObject+GTCaptcha4 */,
 				CE1F24E92C5CD50000324198 /* NSObject+NTESVerifyCodeManager */,
 				CECE82722C4513CD00764AF5 /* NSObject+AFNReachability */,
@@ -10445,8 +10425,6 @@
 				CECE82862C4513CD00764AF5 /* NSObject+ChangeAppicon */,
 				CECE82892C4513CD00764AF5 /* NSObject+Class */,
 				CECE828C2C4513CD00764AF5 /* NSObject+CurrentDevice */,
-				CECE828F2C4513CD00764AF5 /* NSObject+DataBinding */,
-				CECE82922C4513CD00764AF5 /* NSObject+DataSave */,
 				CECE82952C4513CD00764AF5 /* NSObject+DefConfig */,
 				CECE82992C4513CD00764AF5 /* NSObject+DeployCell */,
 				CECE829C2C4513CD00764AF5 /* NSObject+DeviceIP */,
@@ -13727,6 +13705,15 @@
 			path = Api;
 			sourceTree = "<group>";
 		};
+		CEE26F392C9801A400D900AA /* NSObject+Data */ = {
+			isa = PBXGroup;
+			children = (
+				CEE26F372C9801A400D900AA /* NSObject+Data.h */,
+				CEE26F382C9801A400D900AA /* NSObject+Data.m */,
+			);
+			path = "NSObject+Data";
+			sourceTree = "<group>";
+		};
 		CEE403062C7887960085C23C /* JobsCorModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -14507,6 +14494,7 @@
 				CECE872C2C45140000764AF5 /* UIImage+Base85.m in Sources */,
 				CECE858D2C4513CE00764AF5 /* UICollectionViewCell+ShakeAnimation.m in Sources */,
 				CEAF25412C60FE050056570C /* ZMJTask.m in Sources */,
+				CEE26F3A2C9801A900D900AA /* NSObject+Data.m in Sources */,
 				CECE85892C4513CE00764AF5 /* JobsBaseCollectionViewCell.m in Sources */,
 				CECE7D442C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.m in Sources */,
 				CECE7EB12C450E5B00764AF5 /* RACEXTRuntimeExtensions.m in Sources */,
@@ -14799,7 +14787,6 @@
 				CECE7CD12C450C5000764AF5 /* MyFansTBVCell.m in Sources */,
 				CECE7EA72C450E5B00764AF5 /* KTVHCHTTPConnection.m in Sources */,
 				CECE85212C4513CE00764AF5 /* JobsMonitorNetwoking.m in Sources */,
-				CECE853D2C4513CE00764AF5 /* NSObject+DataSave.m in Sources */,
 				CECE87682C45140000764AF5 /* TMSWalletCollectionReusableView.m in Sources */,
 				CECE7C0E2C450C5000764AF5 /* TreeClassItemCell.m in Sources */,
 				CECE7CA82C450C5000764AF5 /* JXCategoryViewVerticalShowVC.m in Sources */,
@@ -14825,7 +14812,6 @@
 				CE7C7BBD2C942E8600C0153C /* NSDate+Extra.m in Sources */,
 				CECE7CCC2C450C5000764AF5 /* JobsProgressVC.m in Sources */,
 				CECE7CCF2C450C5000764AF5 /* PushAnimation.m in Sources */,
-				CECE853C2C4513CE00764AF5 /* NSObject+DataBinding.m in Sources */,
 				CECE7C1C2C450C5000764AF5 /* YTKAnimatingRequestAccessory.m in Sources */,
 				CE7F39702C4FDAF900431A5D /* JobsMenuSubView@2.m in Sources */,
 				CECE7E8F2C450E5B00764AF5 /* HTTPConnection.m in Sources */,
