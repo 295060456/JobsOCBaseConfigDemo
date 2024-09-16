@@ -9,7 +9,7 @@
 #define JobsCollectionViewFlowLayout_h
 
 #pragma mark —— Category
-
+#import "UICollectionViewFlowLayout+Extra.h"
 #pragma mark —— Base
 #import "LMHWaterFallLayout.h"
 #import "KFZShopCatoryFlowLayput.h"

@@ -38,7 +38,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidEnterBackground:(UIApplication *)application{
     NSLog(@"---applicationDidEnterBackground----");//进入后台
-    JobsPostNotification(JobsEnterBackgroundStopPlayer, nil);
+    JobsPostNotification(退到后台停止播放ZFPlayer, nil);
 }
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidBecomeActive:(UIApplication *)application{

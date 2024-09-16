@@ -9,7 +9,7 @@
 
 @implementation NSString (Judgment)
 #pragma mark —— 字符串的 比较 & 判断
--(JobsReturnBOOLByIDBlock)isEqualToString{
+-(JobsReturnBOOLByIDBlock _Nullable)isEqualToString{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)
@@ -19,7 +19,7 @@
     };
 }
 
--(JobsReturnBOOLByIDBlock)containsString{
+-(JobsReturnBOOLByIDBlock _Nullable)containsString{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)
@@ -29,7 +29,7 @@
     };
 }
 
--(JobsReturnBOOLByIDBlock)hasPrefix{
+-(JobsReturnBOOLByIDBlock _Nullable)hasPrefix{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)
@@ -39,7 +39,7 @@
     };
 }
 
--(JobsReturnBOOLByIDBlock)hasSuffix{
+-(JobsReturnBOOLByIDBlock _Nullable)hasSuffix{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)
@@ -73,14 +73,15 @@
 /// @param standardChar 执行标准
 -(BOOL)isAllSameCharWithStandardChar:(char)standardChar{
     if (self.length) {
-        NSMutableArray <NSString *>*carries = NSMutableArray.array;
-        for (int i = 0; i < self.length; i++) {
-            char s = [self characterAtIndex:i];
-            if(s == standardChar){
-                NSString *tempString = [NSString stringWithUTF8String:&s];
-                carries.add(tempString);
+        NSMutableArray <NSString *>*carries = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            for (int i = 0; i < self.length; i++) {
+                char s = [self characterAtIndex:i];
+                if(s == standardChar){
+                    NSString *tempString = [NSString stringWithUTF8String:&s];
+                    data.add(tempString);
+                }
             }
-        }return carries.count == self.length;
+        });return carries.count == self.length;
     }return NO;
 }
 /// 是否是系统自带九宫格输入 yes-是 no-不是

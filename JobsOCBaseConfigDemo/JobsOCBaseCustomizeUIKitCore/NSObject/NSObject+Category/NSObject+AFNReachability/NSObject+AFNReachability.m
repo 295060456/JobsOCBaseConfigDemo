@@ -21,7 +21,7 @@
     @weakify(networkReachabilityManager)
     [networkReachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         if (statusBlock) statusBlock(status);
-        JobsPostNotification(JobsAFNReachabilityStatus, @(status));
+        JobsPostNotification(网络状态监控, @(status));
         @strongify(networkReachabilityManager)
         [networkReachabilityManager startMonitoring];
     }];

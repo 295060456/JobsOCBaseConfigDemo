@@ -40,10 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Judgment)
 #pragma mark —— 字符串的 比较 & 判断
--(JobsReturnBOOLByIDBlock)isEqualToString;
--(JobsReturnBOOLByIDBlock)containsString;
--(JobsReturnBOOLByIDBlock)hasPrefix;
--(JobsReturnBOOLByIDBlock)hasSuffix;
+-(JobsReturnBOOLByIDBlock _Nullable)isEqualToString;
+-(JobsReturnBOOLByIDBlock _Nullable)containsString;
+-(JobsReturnBOOLByIDBlock _Nullable)hasPrefix;
+-(JobsReturnBOOLByIDBlock _Nullable)hasSuffix;
 /// 判断字符串对象是否为狭义范围内的空格
 -(BOOL)isNotBlank;
 /// 判断是否是广义范围内的空格(space、\t、\r、\n)

@@ -125,7 +125,7 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
                 self.jobsToastErrMsg(JobsInternationalization(@"Server Exception"));
             }break;
             case HTTPResponseCodeLoginDate:{// 登录已过期，请重新登录 JobsResponseModel
-                JobsPostNotification(退出登录,@(NO));
+                JobsPostNotification(退出登录成功,@(NO));
             }break;
             case HTTPResponseCodeAuthorizationFailure:{// 授权失败
                 self.jobsToastErrMsg(JobsInternationalization(@"Authorization failure"));

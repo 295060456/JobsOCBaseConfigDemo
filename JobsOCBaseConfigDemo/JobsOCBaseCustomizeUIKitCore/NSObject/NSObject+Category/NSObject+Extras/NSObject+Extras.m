@@ -159,13 +159,16 @@
 /// 在主线程上不带参发通知
 -(jobsByStringBlock _Nonnull)jobsPost{
     return ^(NSString *_Nonnull key){
+        @jobs_weakify(self)
         dispatch_async(dispatch_get_main_queue(), ^{
+            @jobs_strongify(self)
             self.JobsPost(key,@(NO));
         });
     };
 }
 /// 接收通知
--(void)addNotificationName:(NSString *_Nonnull)notificationName block:(JobsSelectorBlock _Nullable)block{
+-(void)addNotificationName:(NSString *_Nonnull)notificationName
+                     block:(JobsSelectorBlock _Nullable)block{
     @jobs_weakify(self)
     [JobsNotificationCenter addObserver:self
                                selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
@@ -176,6 +179,18 @@
     } selectorName:nil target:self] name:notificationName object:nil];
 }
 #pragma mark —— 功能性的
+/// UICollectionViewFlowLayout
+-(__kindof UICollectionViewFlowLayout *_Nonnull)verticalLayout{
+    UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    return layout;
+}
+
+-(__kindof UICollectionViewFlowLayout *_Nonnull)horizontalLayout{
+    UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    return layout;
+}
 /// JSON对象转NSData
 -(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject{
     return ^NSData *_Nullable(id _Nullable data){
@@ -220,14 +235,18 @@
 }
 
 -(jobsByVoidBlock _Nonnull)loginOK{
+    @jobs_weakify(self)
     return ^(){
-        self.jobsPost(JobsLoginNotification);
+        @jobs_strongify(self)
+        self.jobsPost(登录成功);
     };
 }
 
 -(jobsByVoidBlock _Nonnull)logoutOK{
+    @jobs_weakify(self)
     return ^(){
-        self.jobsPost(JobsLogoutNotification);
+        @jobs_strongify(self)
+        self.jobsPost(退出登录成功);
     };
 }
 /**

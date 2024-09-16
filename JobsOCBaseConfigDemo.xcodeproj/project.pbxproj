@@ -1137,6 +1137,7 @@
 		CED358592C92A8F500A5703F /* RegisterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358502C92A8E700A5703F /* RegisterApi.m */; };
 		CED3585A2C92A8F800A5703F /* UploadImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358532C92A8E700A5703F /* UploadImageApi.m */; };
 		CEE26F3A2C9801A900D900AA /* NSObject+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE26F382C9801A400D900AA /* NSObject+Data.m */; };
+		CEE26FC22C980A0900D900AA /* UICollectionViewFlowLayout+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE26FC02C980A0500D900AA /* UICollectionViewFlowLayout+Extra.m */; };
 		CEE403072C788F2B0085C23C /* JobsCorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE403052C7887960085C23C /* JobsCorModel.m */; };
 		CEFA81772C6E016F00751B1F /* PointLabBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFA81752C6E016F00751B1F /* PointLabBaseView.m */; };
 		D16B7B0D974F1991F2B39889 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */; };
@@ -3225,6 +3226,8 @@
 		CED358532C92A8E700A5703F /* UploadImageApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadImageApi.m; sourceTree = "<group>"; };
 		CEE26F372C9801A400D900AA /* NSObject+Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Data.h"; sourceTree = "<group>"; };
 		CEE26F382C9801A400D900AA /* NSObject+Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Data.m"; sourceTree = "<group>"; };
+		CEE26FBF2C980A0500D900AA /* UICollectionViewFlowLayout+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewFlowLayout+Extra.h"; sourceTree = "<group>"; };
+		CEE26FC02C980A0500D900AA /* UICollectionViewFlowLayout+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewFlowLayout+Extra.m"; sourceTree = "<group>"; };
 		CEE403042C7887960085C23C /* JobsCorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCorModel.h; sourceTree = "<group>"; };
 		CEE403052C7887960085C23C /* JobsCorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCorModel.m; sourceTree = "<group>"; };
 		CEFA81742C6E016F00751B1F /* PointLabBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointLabBaseView.h; sourceTree = "<group>"; };
@@ -11021,6 +11024,7 @@
 		CECE839F2C4513CD00764AF5 /* UICollectionViewFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
+				CEE26FC12C980A0500D900AA /* UICollectionViewFlowLayout+Category */,
 				CECE839C2C4513CD00764AF5 /* BaseCollectionViewFlowLayout */,
 				CECE839D2C4513CD00764AF5 /* JobsCollectionViewFlowLayout.h */,
 				CECE839E2C4513CD00764AF5 /* UICollectionViewFlowLayout.md */,
@@ -13714,6 +13718,15 @@
 			path = "NSObject+Data";
 			sourceTree = "<group>";
 		};
+		CEE26FC12C980A0500D900AA /* UICollectionViewFlowLayout+Category */ = {
+			isa = PBXGroup;
+			children = (
+				CEE26FBF2C980A0500D900AA /* UICollectionViewFlowLayout+Extra.h */,
+				CEE26FC02C980A0500D900AA /* UICollectionViewFlowLayout+Extra.m */,
+			);
+			path = "UICollectionViewFlowLayout+Category";
+			sourceTree = "<group>";
+		};
 		CEE403062C7887960085C23C /* JobsCorModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -14675,6 +14688,7 @@
 				CECE7E7F2C450E5B00764AF5 /* JXCategoryTitleBackgroundCell.m in Sources */,
 				CECE81372C4512BF00764AF5 /* JobsSuspendLab.m in Sources */,
 				CECE85EC2C4513CE00764AF5 /* UIViewController+JXCategoryListContentViewDelegate.m in Sources */,
+				CEE26FC22C980A0900D900AA /* UICollectionViewFlowLayout+Extra.m in Sources */,
 				CECE85C42C4513CE00764AF5 /* UITableViewCell+WhiteArrows.m in Sources */,
 				CECE7EB92C450E5B00764AF5 /* TKPermissionLocationAlways.m in Sources */,
 				CECE81312C4512BF00764AF5 /* JobsPageView.m in Sources */,

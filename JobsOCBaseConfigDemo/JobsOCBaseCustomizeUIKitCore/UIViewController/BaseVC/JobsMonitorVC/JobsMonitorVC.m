@@ -81,7 +81,7 @@
     @jobs_weakify(self)
     return ^() {
         @jobs_strongify(self)
-        [self addNotificationName:JobsLanguageSwitchNotification
+        [self addNotificationName:语言切换
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
             NSNotification *notification = (NSNotification *)arg;

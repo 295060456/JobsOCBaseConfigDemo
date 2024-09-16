@@ -43,7 +43,7 @@ static dispatch_once_t static_shareViewOnceToken;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         @jobs_weakify(self)
-        [self addNotificationName:JobsLanguageSwitchNotification
+        [self addNotificationName:语言切换
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
             @jobs_strongify(self)
@@ -206,46 +206,15 @@ insetForSectionAtIndex:(NSInteger)section {
 -(BaseButton *)cancelBtn{
     if(!_cancelBtn){
         @jobs_weakify(self)
-        _cancelBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                       background:nil
-                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                    textAlignment:NSTextAlignmentCenter
-                                                 subTextAlignment:NSTextAlignmentCenter
-                                                      normalImage:nil
-                                                   highlightImage:nil
-                                                  attributedTitle:nil
-                                          selectedAttributedTitle:nil
-                                               attributedSubtitle:nil
-                                                            title:JobsInternationalization(@"取消")
-                                                         subTitle:nil
-                                                        titleFont:UIFontWeightMediumSize(16)
-                                                     subTitleFont:nil
-                                                         titleCor:JobsCor(@"#333333")
-                                                      subTitleCor:nil
-                                               titleLineBreakMode:NSLineBreakByWordWrapping
-                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                              baseBackgroundColor:JobsWhiteColor
-                                                  backgroundImage:nil
-                                                     imagePadding:JobsWidth(0)
-                                                     titlePadding:JobsWidth(0)
-                                                   imagePlacement:NSDirectionalRectEdgeNone
-                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                cornerRadiusValue:JobsWidth(0)
-                                                  roundingCorners:UIRectCornerAllCorners
-                                             roundingCornersRadii:CGSizeZero
-                                                   layerBorderCor:nil
-                                                      borderWidth:JobsWidth(0)
-                                                    primaryAction:nil
-                                       longPressGestureEventBlock:nil
-                                                  clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
-            
-            return nil;
-        }];
+        _cancelBtn = BaseButton
+            .initByTitle_font_titleCor(JobsInternationalization(@"取消"),UIFontWeightMediumSize(16),JobsCor(@"#333333"))
+            .bgColor(JobsWhiteColor)
+            .onClick(^(UIButton *x){
+                x.selected = !x.selected;
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_cancelBtn];
         [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.collectionView.mas_bottom);
@@ -317,36 +286,35 @@ insetForSectionAtIndex:(NSInteger)section {
 
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"钱包");
-            viewModel.image = JobsIMG(@"钱包");
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"我的店铺");
-            viewModel.image = JobsIMG(@"我的店铺");
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"我的团队");
-            viewModel.image = JobsIMG(@"我的团队");
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"信用分数");
-            viewModel.image = JobsIMG(@"信用分数");
-            [_dataMutArr addObject:viewModel];
-        }
-
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            {
+                UIViewModel *viewModel = UIViewModel.new;
+                viewModel.textModel.text = JobsInternationalization(@"钱包");
+                viewModel.image = JobsIMG(@"钱包");
+                data.add(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = UIViewModel.new;
+                viewModel.textModel.text = JobsInternationalization(@"我的店铺");
+                viewModel.image = JobsIMG(@"我的店铺");
+                data.add(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = UIViewModel.new;
+                viewModel.textModel.text = JobsInternationalization(@"我的团队");
+                viewModel.image = JobsIMG(@"我的团队");
+                data.add(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = UIViewModel.new;
+                viewModel.textModel.text = JobsInternationalization(@"信用分数");
+                viewModel.image = JobsIMG(@"信用分数");
+                data.add(viewModel);
+            }
+        });
     }return _dataMutArr;
 }
 

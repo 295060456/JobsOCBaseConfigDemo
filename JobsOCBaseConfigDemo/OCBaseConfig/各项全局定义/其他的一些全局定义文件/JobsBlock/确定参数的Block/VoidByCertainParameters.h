@@ -25,6 +25,7 @@ typedef void(^jobsByView2Block)(__kindof UIView *_Nullable superview,UIView *_Nu
 typedef void(^jobsByTableViewCellBlock)(__kindof UITableViewCell *_Nullable data);
 #pragma mark —— 关于数据容器
 typedef void(^jobsByArrayBlock)(__kindof NSArray *_Nullable data);
+typedef void(^jobsByMutArrayBlock)(__kindof NSMutableArray *_Nullable data);
 typedef void(^jobsBySetBlock)(__kindof NSSet *_Nullable data);
 #pragma mark —— 关于UI表现力
 typedef void(^jobsByLayoutAttributeBlock)(NSLayoutAttribute data);

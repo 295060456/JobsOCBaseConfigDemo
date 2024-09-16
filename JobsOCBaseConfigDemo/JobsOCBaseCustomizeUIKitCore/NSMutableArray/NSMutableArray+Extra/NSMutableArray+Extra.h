@@ -9,7 +9,7 @@
 #import "JobsBlock.h"
 
 /// 可变数组的方便调用
-static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByArrayBlock _Nonnull block){
+static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutArrayBlock _Nonnull block){
     NSMutableArray *mutableArray = NSMutableArray.array;
     if (block) block(mutableArray);
     return mutableArray;

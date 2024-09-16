@@ -14,7 +14,7 @@
 @property(nonatomic,strong)BaseButton *commentBtn;/// 评论
 @property(nonatomic,strong)BaseButton *shareBtn;/// 分享
 /// Data
-@property(nonatomic,strong)NSMutableArray <UIButton *>*masonryViewArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UIButton *>*masonryViewArr;
 @property(nonatomic,assign)BOOL isSelected;
 
 @end
@@ -45,7 +45,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         @jobs_weakify(self)
-        [self addNotificationName:JobsLanguageSwitchNotification
+        [self addNotificationName:语言切换
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
             @jobs_strongify(self)
@@ -128,49 +128,21 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(RBCLikeButton *)loveBtn{
     if(!_loveBtn){
         @jobs_weakify(self)
-        _loveBtn = [RBCLikeButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                        buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:JobsIMG(@"视频未点赞")
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:JobsNonnullString(self.viewModel.textModel.text, JobsInternationalization(@"点赞"))
-                                                          subTitle:nil
-                                                         titleFont:UIFontWeightRegularSize(12)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsCor(@"#EA2918")
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:JobsClearColor
-                                                   backgroundImage:nil
-                                                      imagePadding:JobsWidth(5)
-                                                      titlePadding:JobsWidth(0)
-                                                    imagePlacement:NSDirectionalRectEdgeTop
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(0)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:nil
-                                                   clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            NSLog(@"我是点赞");
-            x.selected = !x.selected;
-            [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
-                @jobs_strongify(self)
-                self->_loveBtn.tag = MKRightBtnViewBtnType_loveBtn;//写在block外部，此值异常
-                if (self.objectBlock) self.objectBlock(self->_loveBtn);
-            }];return nil;
-        }];
+        _loveBtn = RBCLikeButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"点赞")),UIFontWeightRegularSize(12),JobsCor(@"#EA2918"),JobsIMG(@"视频未点赞"),JobsWidth(5))
+            .bgColor(JobsClearColor)
+            .onClick(^(UIButton *x){
+                NSLog(@"我是点赞");
+                x.selected = !x.selected;
+                @jobs_weakify(x)
+                [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
+                    @jobs_strongify(self)
+                    @jobs_strongify(x)
+                    x.tag = MKRightBtnViewBtnType_loveBtn;//写在block外部，此值异常
+                    if (self.objectBlock) self.objectBlock(x);
+                }];
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_loveBtn];
         [self layoutIfNeeded];
     }
@@ -181,65 +153,35 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(BaseButton *)commentBtn{
     if(!_commentBtn){
         @jobs_weakify(self)
-        _commentBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                        buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:JobsIMG(@"视频评论")
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:JobsNonnullString(self.viewModel.subTextModel.text, JobsInternationalization(@"评论"))
-                                                          subTitle:nil
-                                                            titleFont:UIFontWeightRegularSize(12)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsCor(@"#EA2918")
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:JobsClearColor
-                                                   backgroundImage:nil
-                                                      imagePadding:JobsWidth(5)
-                                                      titlePadding:JobsWidth(0)
-                                                    imagePlacement:NSDirectionalRectEdgeTop
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(0)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:nil
-                                                   clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            NSLog(@"我是评论");
-            [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
-                @jobs_strongify(self)
-                self->_commentBtn.tag = MKRightBtnViewBtnType_commentBtn;//写在block外部，此值异常
-                if (self.objectBlock) self.objectBlock(self->_commentBtn);
-                
-                JobsCommentCoreVC *jobsCommentCoreVC = JobsCommentCoreVC.new;
-                JobsPresentationCtrl *presentationController NS_VALID_UNTIL_END_OF_SCOPE;
-                presentationController = [JobsPresentationCtrl.alloc initWithPresentedViewController:jobsCommentCoreVC
-                                                                            presentingViewController:self.jobsGetCurrentViewController];
-                jobsCommentCoreVC.presentUpHeight = JobsWidth(800);
-                /// jobsCommentCoreVC.view.backgroundColor = JobsRedColor;
-                jobsCommentCoreVC.transitioningDelegate = presentationController;
-                
-                [self forceComingToPresentVC:jobsCommentCoreVC
-                               requestParams:JobsInternationalization(@"")
-                                  completion:nil];
-                @jobs_weakify(self)
-                [jobsCommentCoreVC actionObjectBlock:^(id data) {
+        _commentBtn = BaseButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"评论")),UIFontWeightRegularSize(12),JobsCor(@"#EA2918"),JobsIMG(@"视频评论"),JobsWidth(5))
+            .bgColor(JobsClearColor)
+            .onClick(^(UIButton *x){
+                NSLog(@"我是评论");
+                @jobs_weakify(x)
+                [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
+                    @jobs_strongify(x)
                     @jobs_strongify(self)
-                    NSLog(@"您点击了评论");
+                    x.tag = MKRightBtnViewBtnType_commentBtn;//写在block外部，此值异常
+                    if (self.objectBlock) self.objectBlock(x);
+                    
+                    JobsCommentCoreVC *jobsCommentCoreVC = JobsCommentCoreVC.new;
+                    JobsPresentationCtrl *presentationController NS_VALID_UNTIL_END_OF_SCOPE;
+                    presentationController = [JobsPresentationCtrl.alloc initWithPresentedViewController:jobsCommentCoreVC
+                                                                                presentingViewController:self.jobsGetCurrentViewController];
+                    jobsCommentCoreVC.presentUpHeight = JobsWidth(800);
+                    /// jobsCommentCoreVC.view.backgroundColor = JobsRedColor;
+                    jobsCommentCoreVC.transitioningDelegate = presentationController;
+                    
+                    [self forceComingToPushVC:jobsCommentCoreVC requestParams:JobsInternationalization(@"")];
+                    @jobs_weakify(self)
+                    [jobsCommentCoreVC actionObjectBlock:^(id data) {
+                        @jobs_strongify(self)
+                        NSLog(@"您点击了评论");
+                    }];
                 }];
-            }];return nil;
-        }];
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_commentBtn];
         [self layoutIfNeeded];
     }return _commentBtn;
@@ -248,62 +190,37 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(BaseButton *)shareBtn{
     if(!_shareBtn){
         @jobs_weakify(self)
-        _shareBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                      background:nil
-                                      buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                   textAlignment:NSTextAlignmentCenter
-                                                subTextAlignment:NSTextAlignmentCenter
-                                                     normalImage:JobsIMG(@"分享")
-                                                  highlightImage:nil
-                                                 attributedTitle:nil
-                                         selectedAttributedTitle:nil
-                                              attributedSubtitle:nil
-                                                           title:JobsInternationalization(@"分享")
-                                                        subTitle:nil
-                                                       titleFont:UIFontWeightRegularSize(12)
-                                                    subTitleFont:nil
-                                                        titleCor:JobsCor(@"#EA2918")
-                                                     subTitleCor:nil
-                                              titleLineBreakMode:NSLineBreakByWordWrapping
-                                           subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                             baseBackgroundColor:JobsClearColor
-                                                 backgroundImage:nil
-                                                    imagePadding:JobsWidth(5)
-                                                    titlePadding:JobsWidth(0)
-                                                  imagePlacement:NSDirectionalRectEdgeTop
-                                      contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                        contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                   contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                               cornerRadiusValue:JobsWidth(0)
-                                                 roundingCorners:UIRectCornerAllCorners
-                                            roundingCornersRadii:CGSizeZero
-                                                  layerBorderCor:nil
-                                                     borderWidth:JobsWidth(0)
-                                                   primaryAction:nil
-                                      longPressGestureEventBlock:nil
-                                                 clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            NSLog(@"我是分享");
-            [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
-                @jobs_strongify(self)
-                self->_shareBtn.tag = MKRightBtnViewBtnType_shareBtn;//写在block外部，此值异常
-                JobsShareView *shareView = JobsShareView.new;
-                shareView.jobsRichElementsInViewWithModel(nil);
-                self.popupShowSlideWithView(shareView);
-                if (self.objectBlock) self.objectBlock(self->_shareBtn);
-            }];return nil;
-        }];
+        _shareBtn = RBCLikeButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"分享")),UIFontWeightRegularSize(12),JobsCor(@"#EA2918"),JobsIMG(@"分享"),JobsWidth(5))
+            .bgColor(JobsClearColor)
+            .onClick(^(UIButton *x){
+                NSLog(@"我是分享");
+                @jobs_weakify(x)
+                [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
+                    @jobs_strongify(x)
+                    @jobs_strongify(self)
+                    x.tag = MKRightBtnViewBtnType_shareBtn;//写在block外部，此值异常
+                    JobsShareView *shareView = JobsShareView.new;
+                    shareView.jobsRichElementsInViewWithModel(nil);
+                    self.popupShowSlideWithView(shareView);
+                    if (self.objectBlock) self.objectBlock(x);
+                }];
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_shareBtn];
         [self layoutIfNeeded];
     }return _shareBtn;
 }
 
-- (NSMutableArray *)masonryViewArr{
+-(NSMutableArray<__kindof UIButton *> *)masonryViewArr{
     if (!_masonryViewArr) {
-        _masonryViewArr = NSMutableArray.array;
-        [_masonryViewArr addObject:self.loveBtn];
-        [_masonryViewArr addObject:self.commentBtn];
-        [_masonryViewArr addObject:self.shareBtn];
+        @jobs_weakify(self)
+        _masonryViewArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            data.add(self.loveBtn);
+            data.add(self.commentBtn);
+            data.add(self.shareBtn);
+        });
     }return _masonryViewArr;
 }
 

@@ -186,6 +186,9 @@ BaseProtocol
 /// 接收通知
 -(void)addNotificationName:(NSString *_Nonnull)notificationName block:(JobsSelectorBlock _Nullable)block;
 #pragma mark —— 功能性的
+/// UICollectionViewFlowLayout
+-(__kindof UICollectionViewFlowLayout *_Nonnull)verticalLayout;
+-(__kindof UICollectionViewFlowLayout *_Nonnull)horizontalLayout;
 /// JSON对象转NSData
 -(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject;
 -(JobsReturnURLRequestByURLBlock _Nonnull)request;

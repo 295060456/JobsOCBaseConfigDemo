@@ -46,7 +46,7 @@ willConnectToSession:(UISceneSession *)session
 - (void)sceneDidEnterBackground:(UIScene *)scene {
     NSLog(@"---applicationDidEnterBackground----"); //进入后台
     [(AppDelegate *)UIApplication.sharedApplication.delegate saveContext];
-    JobsPostNotification(JobsEnterBackgroundStopPlayer, nil);
+    JobsPostNotification(退到后台停止播放ZFPlayer, nil);
 }
 
 @end

@@ -46,7 +46,7 @@ JobsKey(_logOutPopupView)
                 self.jobsToastSuccessMsg(JobsInternationalization(@"Logout succeeded"));
                 extern BOOL ISLogin;
                 ISLogin = NO;
-                JobsPostNotification(退出登录, @(NO));
+                JobsPostNotification(退出登录成功, @(NO));
             }
             [LogOutPopupView tf_hide];
         }];

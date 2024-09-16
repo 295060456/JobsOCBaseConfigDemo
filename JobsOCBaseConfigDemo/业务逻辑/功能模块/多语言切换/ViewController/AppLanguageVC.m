@@ -46,7 +46,7 @@
     }
     
     @jobs_weakify(self)
-    [self addNotificationName:JobsLanguageSwitchNotification
+    [self addNotificationName:语言切换
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
         @jobs_strongify(self)

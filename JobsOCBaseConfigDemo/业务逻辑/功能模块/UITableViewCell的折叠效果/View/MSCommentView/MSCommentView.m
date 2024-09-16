@@ -40,7 +40,7 @@ static dispatch_once_t static_commentViewOnceToken;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
 //        @jobs_weakify(self)
-        [self addNotificationName:JobsLanguageSwitchNotification
+        [self addNotificationName:语言切换
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
 //            @jobs_strongify(self)
@@ -256,109 +256,91 @@ willDisplayHeaderView:(UIView *)view
 
 -(NSMutableArray<MSCommentModel *> *)dataMutArr{
     if(!_dataMutArr){
-        _dataMutArr = NSMutableArray.array;
-        {
-            NSMutableArray <MSCommentDetailModel *>*commentDataMutArr = NSMutableArray.array;
-            
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"张山的歌，第1条评论";
-                [commentDataMutArr addObject:commentDetailModel];
-            }
-            
-            {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"张山的歌，第2条评论";
-                [commentDataMutArr addObject:commentDetailModel];
-            }
+                @jobs_weakify(data)
+                NSMutableArray <MSCommentDetailModel *>*commentDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <MSCommentDetailModel *>*_Nullable data2) {
+                    @jobs_strongify(data)
+                    {
+                        MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
+                        commentDetailModel.rowTitle = JobsInternationalization(@"张山的歌").add(@",").add(JobsInternationalization(@"第1条评论"));
+                        data2.add(commentDetailModel);
+                    }
+                    
+                    {
+                        MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
+                        commentDetailModel.rowTitle = JobsInternationalization(@"张山的歌").add(@",").add(JobsInternationalization(@"第2条评论"));
+                        data2.add(commentDetailModel);
+                    }
 
-            {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"张山的歌，第3条评论";
-                [commentDataMutArr addObject:commentDetailModel];
-            }
-            
-            MSCommentModel *commentModel = MSCommentModel.new;
-            commentModel.sectionTitle = JobsInternationalization(@"张山的歌");
-            commentModel.commentDataMutArr = commentDataMutArr;
-            
-            [_dataMutArr addObject:commentModel];
-        }
-        
-        {
-            NSMutableArray <MSCommentDetailModel *>*commentDataMutArr = NSMutableArray.array;
-            
-            {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"我是李闯，第1条评论";
-                [commentDataMutArr addObject:commentDetailModel];
+                    {
+                        MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
+                        commentDetailModel.rowTitle = JobsInternationalization(@"张山的歌").add(@",").add(JobsInternationalization(@"第3条评论"));
+                        data2.add(commentDetailModel);
+                    }
+                });
+                MSCommentModel *commentModel = MSCommentModel.new;
+                commentModel.sectionTitle = JobsInternationalization(@"张山的歌");
+                commentModel.commentDataMutArr = commentDataMutArr;
+                data.add(commentModel);
             }
             
             {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"我是李闯，第2条评论";
-                [commentDataMutArr addObject:commentDetailModel];
-            }
+                @jobs_weakify(data)
+                NSMutableArray <MSCommentDetailModel *>*commentDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <MSCommentDetailModel *>*_Nullable data2) {
+                    @jobs_strongify(data)
+                    {
+                        MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
+                        commentDetailModel.rowTitle = JobsInternationalization(@"赵四的歌").add(@",").add(JobsInternationalization(@"第1条评论"));
+                        data2.add(commentDetailModel);
+                    }
+                    
+                    {
+                        MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
+                        commentDetailModel.rowTitle = JobsInternationalization(@"赵四的歌").add(@",").add(JobsInternationalization(@"第2条评论"));
+                        data2.add(commentDetailModel);
+                    }
 
-            {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"我是李闯，第3条评论";
-                [commentDataMutArr addObject:commentDetailModel];
+                    {
+                        MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
+                        commentDetailModel.rowTitle = JobsInternationalization(@"赵四的歌").add(@",").add(JobsInternationalization(@"第3条评论"));
+                        data2.add(commentDetailModel);
+                    }
+                });
+                MSCommentModel *commentModel = MSCommentModel.new;
+                commentModel.sectionTitle = JobsInternationalization(@"赵四的歌");
+                commentModel.commentDataMutArr = commentDataMutArr;
+                data.add(commentModel);
             }
             
             {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"我是李闯，第4条评论";
-                [commentDataMutArr addObject:commentDetailModel];
-            }
-            
-            MSCommentModel *commentModel = MSCommentModel.new;
-            commentModel.sectionTitle = JobsInternationalization(@"我是李闯");
-            commentModel.commentDataMutArr = commentDataMutArr;
-            
-            [_dataMutArr addObject:commentModel];
-        }
+                @jobs_weakify(data)
+                NSMutableArray <MSCommentDetailModel *>*commentDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <MSCommentDetailModel *>*_Nullable data2) {
+                    @jobs_strongify(data)
+                    {
+                        MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
+                        commentDetailModel.rowTitle = JobsInternationalization(@"王五的歌").add(@",").add(JobsInternationalization(@"第1条评论"));
+                        data2.add(commentDetailModel);
+                    }
+                    
+                    {
+                        MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
+                        commentDetailModel.rowTitle = JobsInternationalization(@"王五的歌").add(@",").add(JobsInternationalization(@"第2条评论"));
+                        data2.add(commentDetailModel);
+                    }
 
-        {
-            NSMutableArray <MSCommentDetailModel *>*commentDataMutArr = NSMutableArray.array;
-            
-            {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"今天我很高兴，第1条评论";
-                [commentDataMutArr addObject:commentDetailModel];
+                    {
+                        MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
+                        commentDetailModel.rowTitle = JobsInternationalization(@"王五的歌").add(@",").add(JobsInternationalization(@"第3条评论"));
+                        data2.add(commentDetailModel);
+                    }
+                });
+                MSCommentModel *commentModel = MSCommentModel.new;
+                commentModel.sectionTitle = JobsInternationalization(@"王五的歌");
+                commentModel.commentDataMutArr = commentDataMutArr;
+                data.add(commentModel);
             }
-            
-            {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"今天我很高兴，第2条评论";
-                [commentDataMutArr addObject:commentDetailModel];
-            }
-
-            {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"今天我很高兴，第3条评论";
-                [commentDataMutArr addObject:commentDetailModel];
-            }
-            
-            {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"今天我很高兴，第4条评论";
-                [commentDataMutArr addObject:commentDetailModel];
-            }
-            
-            {
-                MSCommentDetailModel *commentDetailModel = MSCommentDetailModel.new;
-                commentDetailModel.rowTitle = @"今天我很高兴，第5条评论";
-                [commentDataMutArr addObject:commentDetailModel];
-            }
-            
-            MSCommentModel *commentModel = MSCommentModel.new;
-            commentModel.sectionTitle = JobsInternationalization(@"今天我很高兴");
-            commentModel.commentDataMutArr = commentDataMutArr;
-            
-            [_dataMutArr addObject:commentModel];
-        }
-
+        });
     }return _dataMutArr;
 }
 

@@ -10,15 +10,16 @@
 @implementation NSObject (AppTools)
 #pragma mark —— 一些私有化方法
 -(NSMutableArray <Class>*_Nullable)makeDataArr{
-    NSMutableArray <Class>*tempDataArr = NSMutableArray.array;
-    for (int y = 0; y < AppDelegate.viewCtrlByTabBarCtrlConfigMutArr.count; y++) {
-        UIViewController *viewController = AppDelegate.viewCtrlByTabBarCtrlConfigMutArr[y];
-        JobsTabBarItemConfig *tabBarItemConfig = AppDelegate.tabBarItemConfigMutArr[y];
-        if(tabBarItemConfig.isNotNeedCheckLogin){
-            Class cls = viewController.class;
-            tempDataArr.add(cls);
+    NSMutableArray <Class>*tempDataArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        for (int y = 0; y < AppDelegate.viewCtrlByTabBarCtrlConfigMutArr.count; y++) {
+            UIViewController *viewController = AppDelegate.viewCtrlByTabBarCtrlConfigMutArr[y];
+            JobsTabBarItemConfig *tabBarItemConfig = AppDelegate.tabBarItemConfigMutArr[y];
+            if(tabBarItemConfig.isNotNeedCheckLogin){
+                Class cls = viewController.class;
+                data.add(cls);
+            }
         }
-    }return tempDataArr;
+    });return tempDataArr;
 }
 #pragma mark —— BaseProtocol
 /// 【通知监听】国际化语言修改UI
@@ -26,7 +27,7 @@
 /// @param aSelector 相关逻辑
 +(void)targetView:(UIView *)targetView
 languageSwitchNotificationWithSelector:(SEL)aSelector{
-    [self addNotificationName:JobsLanguageSwitchNotification
+    [self addNotificationName:语言切换
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
@@ -40,9 +41,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 /// 【App语言国际化】更改UITabBarItem的标题
 -(void)changeTabBarItemTitle:(NSIndexPath *)indexPath{
     id appDelegate = getSysAppDelegate();
-    if (!appDelegate) {
-        appDelegate = AppDelegate.sharedManager;
-    }
+    if (!appDelegate) appDelegate = AppDelegate.sharedManager;
     if ([appDelegate isKindOfClass:AppDelegate.class]) {
         AppDelegate *ad = (AppDelegate *)appDelegate;
         [ad refreshTabBarTitle];
@@ -50,7 +49,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 }
 #pragma mark —— <AppToolsProtocol> 关于注册登录
 /// 去登录？去注册？
--(jobsByNSIntegerBlock)toLoginOrRegister{
+-(jobsByNSIntegerBlock _Nonnull)toLoginOrRegister{
     return ^(CurrentPage appDoorContentType){
         // 登录页 不推出 登录页
         UIViewController *viewController = self.getCurrentViewController;
@@ -66,7 +65,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 /// 强制登录：没登录（本地用户数据为空）就去登录
--(jobsByVoidBlock)forcedLogin{
+-(jobsByVoidBlock _Nonnull)forcedLogin{
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
@@ -74,7 +73,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 /// 去登录：有限制makeDataArr
--(jobsByVoidBlock)toLogin{
+-(jobsByVoidBlock _Nonnull)toLogin{
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
@@ -103,13 +102,13 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     AppDelegate.tabBarVC.selectedIndex = 0;
 }
 /// JobsTabbarVC 关闭手势
--(jobsByVoidBlock)tabBarClosePan{
+-(jobsByVoidBlock _Nonnull)tabBarClosePan{
     return ^(){
         AppDelegate.tabBarVC.closePan();
     };
 }
 /// JobsTabbarVC 打开手势
--(jobsByVoidBlock)tabBarOpenPan{
+-(jobsByVoidBlock _Nonnull)tabBarOpenPan{
     return ^(){
         AppDelegate.tabBarVC.openPan();
     };
@@ -454,7 +453,9 @@ JobsKey(_hotLabelDataMutArr)
 -(NSMutableArray<UIViewModel *> *)hotLabelDataMutArr{
     NSMutableArray<UIViewModel *> *HotLabelDataMutArr = Jobs_getAssociatedObject(_hotLabelDataMutArr);
     if (!HotLabelDataMutArr) {
-        HotLabelDataMutArr = NSMutableArray.array;
+        HotLabelDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            
+        });
 
 //        for (CasinoCustomerContactElementModel *element in self.customerContactModel.customerList) {
 //            UIViewModel *vm = UIViewModel.new;

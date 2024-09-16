@@ -11,7 +11,7 @@
 #pragma mark —— 一些公有方法
 -(void)enterBackgroundStopPlayer{
     @jobs_weakify(self)
-    [JobsNotificationCenter addObserverForName:JobsEnterBackgroundStopPlayer
+    [JobsNotificationCenter addObserverForName:退到后台停止播放ZFPlayer
                                         object:nil
                                          queue:nil
                                     usingBlock:^(NSNotification * _Nonnull notification) {

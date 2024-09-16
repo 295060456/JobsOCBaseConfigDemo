@@ -39,7 +39,7 @@ static dispatch_once_t static_mineView2OnceToken;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
 //        @jobs_weakify(self)
-        [self addNotificationName:JobsLanguageSwitchNotification
+        [self addNotificationName:语言切换
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
 //            @jobs_strongify(self)
@@ -83,48 +83,15 @@ static dispatch_once_t static_mineView2OnceToken;
 -(BaseButton *)btn1{
     @jobs_weakify(self)
     if(!_btn1){
-        _btn1 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                  background:nil
-                                  buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                               textAlignment:NSTextAlignmentCenter
-                                            subTextAlignment:NSTextAlignmentCenter
-                                                 normalImage:JobsIMG(@"入职Mata")
-                                              highlightImage:nil
-                                             attributedTitle:nil
-                                     selectedAttributedTitle:nil
-                                          attributedSubtitle:nil
-                                                       title:JobsInternationalization(@"入职Mata")
-                                                    subTitle:nil
-                                                   titleFont:UIFontWeightRegularSize(14)
-                                                subTitleFont:nil
-                                                    titleCor:JobsBlackColor
-                                                 subTitleCor:nil
-                                          titleLineBreakMode:NSLineBreakByWordWrapping
-                                       subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                         baseBackgroundColor:nil
-                                             backgroundImage:nil
-                                                imagePadding:JobsWidth(10)
-                                                titlePadding:JobsWidth(0)
-                                              imagePlacement:NSDirectionalRectEdgeLeading
-                                  contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                    contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                               contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                           cornerRadiusValue:JobsWidth(0)
-                                             roundingCorners:UIRectCornerAllCorners
-                                        roundingCornersRadii:CGSizeZero
-                                              layerBorderCor:nil
-                                                 borderWidth:JobsWidth(0)
-                                               primaryAction:nil
-                                  longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                 id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                             clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _btn1 = BaseButton.initByStyleLeft(JobsInternationalization(@"入职Mata"),UIFontWeightRegularSize(14),JobsBlackColor,JobsIMG(@"入职Mata"),JobsWidth(10))
+            .bgColor(JobsWhiteColor)
+            .cornerRadiusValue(JobsWidth(8))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_btn1];
         [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(105), JobsWidth(16)));
@@ -137,48 +104,15 @@ static dispatch_once_t static_mineView2OnceToken;
 -(UIButton *)btn2{
     if(!_btn2){
         @jobs_weakify(self)
-        _btn2 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                  background:nil
-                                  buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                               textAlignment:NSTextAlignmentCenter
-                                            subTextAlignment:NSTextAlignmentCenter
-                                                 normalImage:nil
-                                              highlightImage:nil
-                                             attributedTitle:nil
-                                     selectedAttributedTitle:nil
-                                          attributedSubtitle:nil
-                                                       title:JobsInternationalization(@"立即进入")
-                                                    subTitle:nil
-                                                   titleFont:UIFontWeightRegularSize(14)
-                                                subTitleFont:nil
-                                                    titleCor:JobsWhiteColor
-                                                 subTitleCor:nil
-                                          titleLineBreakMode:NSLineBreakByWordWrapping
-                                       subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                         baseBackgroundColor:JobsCor(@"#EA2918")
-                                             backgroundImage:nil
-                                                imagePadding:JobsWidth(0)
-                                                titlePadding:JobsWidth(0)
-                                              imagePlacement:NSDirectionalRectEdgeNone
-                                  contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                    contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                               contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                           cornerRadiusValue:JobsWidth(14)
-                                             roundingCorners:UIRectCornerAllCorners
-                                        roundingCornersRadii:CGSizeZero
-                                              layerBorderCor:nil
-                                                 borderWidth:JobsWidth(0)
-                                               primaryAction:nil
-                                  longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                 id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                             clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _btn2 = BaseButton.initByTitle_font_titleCor(JobsInternationalization(@"立即进入"),UIFontWeightRegularSize(14),JobsWhiteColor)
+            .bgColor(JobsCor(@"#EA2918"))
+            .cornerRadiusValue(JobsWidth(14))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_btn2];
         [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(88), JobsWidth(28)));
