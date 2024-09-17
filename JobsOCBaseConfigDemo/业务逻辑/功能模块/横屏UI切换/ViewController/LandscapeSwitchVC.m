@@ -270,8 +270,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 #pragma mark —— lazyLoad
 -(UICollectionViewFlowLayout *)layout{
     if (!_layout) {
-        _layout = UICollectionViewFlowLayout.new;
-        _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _layout = self.verticalLayout;
     }return _layout;
 }
 

@@ -12,8 +12,8 @@
 @property(nonatomic,strong)UILabel *titleLab;
 @property(nonatomic,strong)UIButton *closeBtn;
 @property(nonatomic,strong)UIColor *cor;
-@property(nonatomic,strong)UIButton *cancelBtn;
-@property(nonatomic,strong)UIButton *sureBtn;
+@property(nonatomic,strong)BaseButton *cancelBtn;
+@property(nonatomic,strong)BaseButton *sureBtn;
 @property(nonatomic,strong)UIView *bgView;
 @property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
@@ -247,8 +247,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark —— lazyLoad
 -(UICollectionViewFlowLayout *)layout{
     if (!_layout) {
-        _layout = UICollectionViewFlowLayout.new;
-        _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _layout = self.verticalLayout;
     }return _layout;
 }
 
@@ -362,53 +361,48 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     }return _closeBtn;
 }
 
--(UIButton *)cancelBtn{
+-(BaseButton *)cancelBtn{
     if (!_cancelBtn) {
-        _cancelBtn = UIButton.new;
-        _cancelBtn.normalBackgroundImage(JobsIMG(@"弹窗取消按钮"));
-        _cancelBtn.selectedBackgroundImage(JobsIMG(@"弹窗取消按钮"));
-        _cancelBtn.normalTitle(JobsInternationalization(@"恢复默认"));
-        _cancelBtn.normalTitleColor(HEXCOLOR(0xB0B0B0));
-        _cancelBtn.titleFont(UIFontWeightRegularSize(18));
+        @jobs_weakify(self)
+        _cancelBtn = BaseButton
+            .initByTitle_font_titleCor_bgImage(JobsInternationalization(@"恢复默认"),UIFontWeightRegularSize(18),HEXCOLOR(0xB0B0B0),JobsIMG(@"弹窗取消按钮"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                [self cancelBtnActionForPopView:x];
+                self.shakeCell(NO);
+            })
+            .onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.bgView addSubview:_cancelBtn];
         [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(JobsWidth(-26));
             make.left.equalTo(self).offset(JobsWidth(24));
             make.size.mas_equalTo(CGSizeMake(JobsWidth(120), JobsWidth(40)));
         }];
-        @jobs_weakify(self)
-        [_cancelBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            NSLog(@"恢复默认");
-            x.selected = !x.selected;
-            [self cancelBtnActionForPopView:x];
-            self.shakeCell(NO);
-            return nil;
-        }];
     }return _cancelBtn;
 }
 
--(UIButton *)sureBtn{
+-(BaseButton *)sureBtn{
     if (!_sureBtn) {
-        _sureBtn = UIButton.new;
-        _sureBtn.normalBackgroundImage(JobsIMG(@"弹窗提交按钮"));
-        _sureBtn.selectedBackgroundImage(JobsIMG(@"弹窗提交按钮"));
-        _sureBtn.normalTitle(JobsInternationalization(@"完成"));
-        _sureBtn.normalTitleColor(JobsBlackColor);
-        _sureBtn.titleFont(UIFontWeightRegularSize(18));
+        @jobs_weakify(self)
+        _sureBtn = BaseButton
+            .initByTitle_font_titleCor_bgImage(JobsInternationalization(@"完成"),UIFontWeightRegularSize(18),JobsBlackColor,JobsIMG(@"弹窗提交按钮"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                [self cancelBtnActionForPopView:self.dataMutArr];
+                self.shakeCell(NO);
+            })
+            .onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.bgView addSubview:_sureBtn];
         [_sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(JobsWidth(-26));
             make.right.equalTo(self).offset(JobsWidth(-24));
             make.size.mas_equalTo(CGSizeMake(JobsWidth(120), JobsWidth(40)));
-        }];
-        @jobs_weakify(self)
-        [_sureBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            [self cancelBtnActionForPopView:self.dataMutArr];
-            self.shakeCell(NO);
-            return nil;
         }];
     }return _sureBtn;
 }

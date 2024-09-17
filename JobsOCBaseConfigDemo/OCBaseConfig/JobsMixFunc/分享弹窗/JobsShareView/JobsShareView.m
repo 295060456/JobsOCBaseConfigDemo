@@ -225,8 +225,7 @@ insetForSectionAtIndex:(NSInteger)section {
 
 -(UICollectionViewFlowLayout *)layout{
     if (!_layout) {
-        _layout = UICollectionViewFlowLayout.new;
-        _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _layout = self.verticalLayout;
     }return _layout;
 }
 

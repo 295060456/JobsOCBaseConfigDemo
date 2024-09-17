@@ -218,15 +218,13 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 #pragma mark —— lazyLoad
 -(UICollectionViewFlowLayout *)layout{
     if (!_layout) {
-        _layout = UICollectionViewFlowLayout.new;
-        _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _layout = self.verticalLayout;
     }return _layout;
 }
 
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [UICollectionView.alloc initWithFrame:CGRectZero
-                                           collectionViewLayout:self.layout];
+        _collectionView = UICollectionView.initByLayout(self.layout);
         _collectionView.backgroundColor = JobsClearColor;
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;

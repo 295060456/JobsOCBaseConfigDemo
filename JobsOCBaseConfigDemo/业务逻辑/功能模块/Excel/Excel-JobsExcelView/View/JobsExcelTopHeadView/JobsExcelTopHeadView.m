@@ -84,9 +84,8 @@
 #pragma mark —— getter and setter
 -(UICollectionViewFlowLayout *)layout{
     if(!_layout){
-        _layout = UICollectionViewFlowLayout.new;
+        _layout = self.verticalLayout;
         _layout.itemSize = CGSizeMake(self.viewModel.itemW, self.viewModel.itemH);
-        _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _layout.minimumLineSpacing = 0;
         _layout.minimumInteritemSpacing = 0;
     }return _layout;

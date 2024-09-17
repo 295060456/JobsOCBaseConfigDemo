@@ -20,7 +20,7 @@
 @property(nonatomic,strong)UICollectionView *collectionView;
 // Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <UICollectionViewCell *>*>*cvcellMutArr;
+@property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UICollectionViewCell *>*>*cvcellMutArr;
 
 @end
 
@@ -300,15 +300,13 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 
 -(UICollectionViewFlowLayout *)layout{
     if (!_layout) {
-        _layout = UICollectionViewFlowLayout.new;
-        _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _layout = self.verticalLayout;
     }return _layout;
 }
 
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [UICollectionView.alloc initWithFrame:CGRectZero
-                                           collectionViewLayout:self.layout];
+        _collectionView = UICollectionView.initByLayout(self.layout);
         _collectionView.backgroundColor = RGB_SAMECOLOR(246);
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight() + JobsTabBarHeight(nil), 0);
         _collectionView.dataLink(self);
@@ -321,48 +319,58 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     }return _collectionView;
 }
 
--(NSMutableArray <NSMutableArray<UICollectionViewCell *>*>*)cvcellMutArr{
+-(NSMutableArray <NSMutableArray<__kindof UICollectionViewCell *>*>*)cvcellMutArr{
     if (!_cvcellMutArr) {
-        _cvcellMutArr = NSMutableArray.array;
-
-        {
-            NSMutableArray <UICollectionViewCell *>*mutArr = NSMutableArray.array;
-            [mutArr addObject:[BaiShaETProjVIPSubCVCell_01 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){0,0}]]];
-            [_cvcellMutArr addObject:mutArr];
-        }
-        
-        {
-            NSMutableArray <UICollectionViewCell *>*mutArr = NSMutableArray.array;
-            for (int i = 0; i < 6; i++) {
-                [mutArr addObject:[BaiShaETProjVIPSubCVCell_02 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){1,i}]]];
+        _cvcellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_weakify(self)
+            {
+                NSMutableArray <UICollectionViewCell *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
+                    @jobs_strongify(self)
+                    data2.add([BaiShaETProjVIPSubCVCell_01 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){0,0}]]);
+                });
+                data.add(mutArr);
             }
-            [_cvcellMutArr addObject:mutArr];
-        }
-        
-        {
-            NSMutableArray <UICollectionViewCell *>*mutArr = NSMutableArray.array;
-            [mutArr addObject:[BaiShaETProjVIPSubCVCell_03 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){2,0}]]];
-            [_cvcellMutArr addObject:mutArr];
-        }
-        
-        {
-            NSMutableArray <UICollectionViewCell *>*mutArr = NSMutableArray.array;
-            [mutArr addObject:[BaiShaETProjVIPSubCVCell_04 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){3,0}]]];
-            [_cvcellMutArr addObject:mutArr];
-        }
-        
-        {
-            NSMutableArray <UICollectionViewCell *>*mutArr = NSMutableArray.array;
-            [mutArr addObject:[BaiShaETProjVIPSubCVCell_05 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){4,0}]]];
-            [_cvcellMutArr addObject:mutArr];
-        }
-        
+            
+            {
+                NSMutableArray <UICollectionViewCell *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
+                    @jobs_strongify(self)
+                    data2.add([BaiShaETProjVIPSubCVCell_02 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){1,0}]]);
+                });
+                data.add(mutArr);
+            }
+            
+            {
+                NSMutableArray <UICollectionViewCell *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
+                    @jobs_strongify(self)
+                    data2.add([BaiShaETProjVIPSubCVCell_03 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){2,0}]]);
+                });
+                data.add(mutArr);
+            }
+            
+            {
+                NSMutableArray <UICollectionViewCell *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
+                    @jobs_strongify(self)
+                    data2.add([BaiShaETProjVIPSubCVCell_04 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){3,0}]]);
+                });
+                data.add(mutArr);
+            }
+            
+            {
+                NSMutableArray <UICollectionViewCell *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
+                    @jobs_strongify(self)
+                    data2.add([BaiShaETProjVIPSubCVCell_05 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){4,0}]]);
+                });
+                data.add(mutArr);
+            }
+        });
     }return _cvcellMutArr;
 }
 
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            
+        });
     }return _dataMutArr;
 }
 
