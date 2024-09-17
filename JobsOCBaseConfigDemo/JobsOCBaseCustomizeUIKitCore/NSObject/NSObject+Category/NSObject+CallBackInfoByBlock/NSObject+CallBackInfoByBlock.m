@@ -19,7 +19,7 @@ JobsKey(_voidBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_voidBlock, voidBlock)
 }
 
--(void)actionVoidBlock:(jobsByVoidBlock)voidBlock{
+-(void)actionVoidBlock:(jobsByVoidBlock _Nullable)voidBlock{
     self.voidBlock = voidBlock;
 }
 #pragma mark —— 1.2、（单一）入参 ｜ 无返回值
@@ -33,7 +33,7 @@ JobsKey(_objectBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_objectBlock, objectBlock)
 }
 
--(void)actionObjectBlock:(jobsByIDBlock)objectBlock{
+-(void)actionObjectBlock:(jobsByIDBlock _Nullable)objectBlock{
     self.objectBlock = objectBlock;
 }
 JobsKey(_gestureRecognizerBlock)
@@ -45,7 +45,7 @@ JobsKey(_gestureRecognizerBlock)
 -(void)setGestureRecognizerBlock:(jobsByGestureRecognizerBlock)gestureRecognizerBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_gestureRecognizerBlock, gestureRecognizerBlock)
 }
--(void)actionGestureRecognizerBlock:(jobsByGestureRecognizerBlock)gestureRecognizerBlock{
+-(void)actionGestureRecognizerBlock:(jobsByGestureRecognizerBlock _Nullable)gestureRecognizerBlock{
     self.gestureRecognizerBlock = gestureRecognizerBlock;
 }
 JobsKey(_selBlock)
@@ -57,7 +57,7 @@ JobsKey(_selBlock)
 -(void)setSelBlock:(jobsBySELBlock)selBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_selBlock, selBlock);
 }
--(void)actionSELBlock:(jobsBySELBlock)selBlock{
+-(void)actionSELBlock:(jobsBySELBlock _Nullable)selBlock{
     self.selBlock = selBlock;
 }
 JobsKey(_stringBlock)
@@ -70,7 +70,7 @@ JobsKey(_stringBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_stringBlock, stringBlock)
 }
 
--(void)actionStringBlock:(jobsByStringBlock)stringBlock{
+-(void)actionStringBlock:(jobsByStringBlock _Nullable)stringBlock{
     self.stringBlock = stringBlock;
 }
 #pragma mark —— 1.3、（单一）入参为基本数据类型 ｜ 无返回值
@@ -84,7 +84,7 @@ JobsKey(_NSIntegerBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_NSIntegerBlock, NSIntegerBlock)
 }
 
--(void)actionNSIntegerBlock:(jobsByNSIntegerBlock)NSIntegerBlock{
+-(void)actionNSIntegerBlock:(jobsByNSIntegerBlock _Nullable)NSIntegerBlock{
     self.NSIntegerBlock = NSIntegerBlock;
 }
 JobsKey(_NSUIntegerBlock)
@@ -97,7 +97,7 @@ JobsKey(_NSUIntegerBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_NSUIntegerBlock, NSUIntegerBlock)
 }
 
--(void)actionNSUIntegerBlock:(jobsByNSUIntegerBlock)NSUIntegerBlock{
+-(void)actionNSUIntegerBlock:(jobsByNSUIntegerBlock _Nullable)NSUIntegerBlock{
     self.NSUIntegerBlock = NSUIntegerBlock;
 }
 JobsKey(_CGFloatBlock)
@@ -110,7 +110,7 @@ JobsKey(_CGFloatBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_CGFloatBlock, CGFloatBlock)
 }
 
--(void)actionCGFloatBlock:(jobsByCGFloatBlock)CGFloatBlock{
+-(void)actionCGFloatBlock:(jobsByCGFloatBlock _Nullable)CGFloatBlock{
     self.CGFloatBlock = CGFloatBlock;
 }
 JobsKey(_BOOLBlock)
@@ -123,7 +123,7 @@ JobsKey(_BOOLBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_BOOLBlock, BOOLBlock)
 }
 
--(void)actionBOOLBlock:(jobsByBOOLBlock)BOOLBlock{
+-(void)actionBOOLBlock:(jobsByBOOLBlock _Nullable)BOOLBlock{
     self.BOOLBlock = BOOLBlock;
 }
 JobsKey(_IntBlock)
@@ -136,7 +136,7 @@ JobsKey(_IntBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_IntBlock, IntBlock)
 }
 
--(void)actionIntBlock:(jobsByIntBlock)IntBlock{
+-(void)actionIntBlock:(jobsByIntBlock _Nullable)IntBlock{
     self.IntBlock = IntBlock;
 }
 JobsKey(_UnsignedIntBlock)
@@ -149,7 +149,7 @@ JobsKey(_UnsignedIntBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_UnsignedIntBlock, UnsignedIntBlock)
 }
 
--(void)actionUnsignedIntBlock:(jobsByUnsignedIntBlock)UnsignedIntBlock{
+-(void)actionUnsignedIntBlock:(jobsByUnsignedIntBlock _Nullable)UnsignedIntBlock{
     self.UnsignedIntBlock = UnsignedIntBlock;
 }
 JobsKey(_FloatBlock)
@@ -162,7 +162,7 @@ JobsKey(_FloatBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_FloatBlock, FloatBlock)
 }
 
--(void)actionFloatBlock:(jobsByFloatBlock)FloatBlock{
+-(void)actionFloatBlock:(jobsByFloatBlock _Nullable)FloatBlock{
     self.FloatBlock = FloatBlock;
 }
 JobsKey(_DoubleBlock)
@@ -175,7 +175,7 @@ JobsKey(_DoubleBlock)
  Jobs_setAssociatedCOPY_NONATOMIC(_DoubleBlock, DoubleBlock)
 }
 
--(void)actionDoubleBlock:(jobsByDoubleBlock)DoubleBlock{
+-(void)actionDoubleBlock:(jobsByDoubleBlock _Nullable)DoubleBlock{
     self.DoubleBlock = DoubleBlock;
 }
 JobsKey(_CharBlock)
@@ -188,7 +188,7 @@ JobsKey(_CharBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_CharBlock, CharBlock)
 }
 
--(void)actionCharBlock:(jobsByCharBlock)CharBlock{
+-(void)actionCharBlock:(jobsByCharBlock _Nullable)CharBlock{
     self.CharBlock = CharBlock;
 }
 JobsKey(_UnsignedCharBlock)
@@ -201,7 +201,7 @@ JobsKey(_UnsignedCharBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_UnsignedCharBlock, UnsignedCharBlock)
 }
 
--(void)actionUnsignedCharBlock:(jobsByUnsignedCharBlock)UnsignedCharBlock{
+-(void)actionUnsignedCharBlock:(jobsByUnsignedCharBlock _Nullable)UnsignedCharBlock{
     self.UnsignedCharBlock = UnsignedCharBlock;
 }
 JobsKey(_ShortBlock)
@@ -214,7 +214,7 @@ JobsKey(_ShortBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_ShortBlock, ShortBlock)
 }
 
--(void)actionShortBlock:(jobsByShortBlock)ShortBlock{
+-(void)actionShortBlock:(jobsByShortBlock _Nullable)ShortBlock{
     self.ShortBlock = ShortBlock;
 }
 JobsKey(_UnsignedShortBlock)
@@ -227,7 +227,7 @@ JobsKey(_UnsignedShortBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_UnsignedShortBlock, UnsignedShortBlock)
 }
 
--(void)actionUnsignedShortBlock:(jobsByUnsignedShortBlock)UnsignedShortBlock{
+-(void)actionUnsignedShortBlock:(jobsByUnsignedShortBlock _Nullable)UnsignedShortBlock{
     self.UnsignedShortBlock = UnsignedShortBlock;
 }
 JobsKey(_LongBlock)
@@ -240,7 +240,7 @@ JobsKey(_LongBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_LongBlock, LongBlock)
 }
 
--(void)actionLongBlock:(jobsByLongBlock)LongBlock{
+-(void)actionLongBlock:(jobsByLongBlock _Nullable)LongBlock{
     self.LongBlock = LongBlock;
 }
 JobsKey(_UnsignedLongBlock)
@@ -253,7 +253,7 @@ JobsKey(_UnsignedLongBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_UnsignedLongBlock, UnsignedLongBlock)
 }
 
--(void)actionUnsignedLongBlock:(jobsByUnsignedLongBlock)UnsignedLongBlock{
+-(void)actionUnsignedLongBlock:(jobsByUnsignedLongBlock _Nullable)UnsignedLongBlock{
     self.UnsignedLongBlock = UnsignedLongBlock;
 }
 JobsKey(_UnsignedLongLongBlock)
@@ -266,7 +266,7 @@ JobsKey(_UnsignedLongLongBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_UnsignedLongLongBlock, UnsignedLongLongBlock)
 }
 
--(void)actionUnsignedLongLongBlock:(jobsByUnsignedLongLongBlock)UnsignedLongLongBlock{
+-(void)actionUnsignedLongLongBlock:(jobsByUnsignedLongLongBlock _Nullable)UnsignedLongLongBlock{
     self.UnsignedLongLongBlock = UnsignedLongLongBlock;
 }
 #pragma mark —— 1.4、多入参（任意数据类型） ｜ 无返回值
@@ -280,7 +280,7 @@ JobsKey(_SelectorBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_SelectorBlock, selectorBlock)
 }
 
--(void)actionSelectorBlock:(JobsSelectorBlock)selectorBlock{
+-(void)actionSelectorBlock:(JobsSelectorBlock _Nullable)selectorBlock{
     self.SelectorBlock = selectorBlock;
 }
 #pragma mark —— 2.1、无入参 ｜ 有返回值
@@ -294,7 +294,7 @@ JobsKey(_returnObjectBySELBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnObjectBySELBlock, returnObjectBySELBlock)
 }
 
--(void)actionReturnIDBySELBlock:(JobsReturnIDBySELBlock)returnObjectBySELBlock{
+-(void)actionReturnIDBySELBlock:(JobsReturnIDBySELBlock _Nullable)returnObjectBySELBlock{
     self.returnObjectBySELBlock = returnObjectBySELBlock;
 }
 JobsKey(_returnObjectByVoidBlock)
@@ -307,7 +307,7 @@ JobsKey(_returnObjectByVoidBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnObjectByVoidBlock, returnObjectByVoidBlock)
 }
 
--(void)actionReturnIDByVoidBlock:(JobsReturnIDByVoidBlock)returnObjectByVoidBlock{
+-(void)actionReturnIDByVoidBlock:(JobsReturnIDByVoidBlock _Nullable)returnObjectByVoidBlock{
     self.returnObjectByVoidBlock = returnObjectByVoidBlock;
 }
 #pragma mark —— 2.2、（单一）入参 ｜ （其他数据类型）返回值
@@ -321,7 +321,7 @@ JobsKey(_returnObjectByGestureRecognizerBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnObjectByGestureRecognizerBlock, returnObjectByGestureRecognizerBlock)
 }
 
--(void)actionReturnIDByGestureRecognizerBlock:(JobsReturnIDByGestureRecognizerBlock)returnObjectByGestureRecognizerBlock{
+-(void)actionReturnIDByGestureRecognizerBlock:(JobsReturnIDByGestureRecognizerBlock _Nullable)returnObjectByGestureRecognizerBlock{
     self.returnObjectByGestureRecognizerBlock = returnObjectByGestureRecognizerBlock;
 }
 
@@ -334,7 +334,7 @@ JobsKey(_returnObjectByStringBlock)
 -(void)setReturnObjectByStringBlock:(JobsReturnIDByStringBlock)returnObjectByStringBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_returnObjectByStringBlock, returnObjectByStringBlock)
 }
--(void)actionReturnIDByStringBlock:(JobsReturnIDByStringBlock)returnObjectByStringBlock{
+-(void)actionReturnIDByStringBlock:(JobsReturnIDByStringBlock _Nullable)returnObjectByStringBlock{
     self.returnObjectByStringBlock = returnObjectByStringBlock;
 }
 JobsKey(_returnNSIntegerByIDBlock)
@@ -347,7 +347,7 @@ JobsKey(_returnNSIntegerByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnNSIntegerByIDBlock, returnNSIntegerByIDBlock)
 }
 
--(void)actionReturnNSIntegerByIDBlock:(JobsReturnNSIntegerByIDBlock)returnNSIntegerByIDBlock{
+-(void)actionReturnNSIntegerByIDBlock:(JobsReturnNSIntegerByIDBlock _Nullable)returnNSIntegerByIDBlock{
     self.returnNSIntegerByIDBlock = returnNSIntegerByIDBlock;
 }
 JobsKey(_returnNSUIntegerByIDBlock)
@@ -360,7 +360,7 @@ JobsKey(_returnNSUIntegerByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnNSUIntegerByIDBlock, returnNSUIntegerByIDBlock)
 }
 
--(void)actionReturnNSUIntegerByIDBlock:(JobsReturnNSUIntegerByIDBlock)returnNSUIntegerByIDBlock{
+-(void)actionReturnNSUIntegerByIDBlock:(JobsReturnNSUIntegerByIDBlock _Nullable)returnNSUIntegerByIDBlock{
     self.returnNSUIntegerByIDBlock = returnNSUIntegerByIDBlock;
 }
 JobsKey(_returnCGFloatByIDBlock)
@@ -373,7 +373,7 @@ JobsKey(_returnCGFloatByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnCGFloatByIDBlock, returnCGFloatByIDBlock)
 }
 
--(void)actionReturnCGFloatByIDBlock:(JobsReturnCGFloatByIDBlock)returnCGFloatByIDBlock{
+-(void)actionReturnCGFloatByIDBlock:(JobsReturnCGFloatByIDBlock _Nullable)returnCGFloatByIDBlock{
     self.returnCGFloatByIDBlock = returnCGFloatByIDBlock;
 }
 JobsKey(_returnBoolByIDBlock)
@@ -386,7 +386,7 @@ JobsKey(_returnBoolByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnBoolByIDBlock, returnBoolByIDBlock);
 }
 
--(void)actionReturnBoolByIDBlock:(JobsReturnBOOLByIDBlock)returnBoolByIDBlock{
+-(void)actionReturnBoolByIDBlock:(JobsReturnBOOLByIDBlock _Nullable)returnBoolByIDBlock{
     self.returnBoolByIDBlock = returnBoolByIDBlock;
 }
 JobsKey(_returnIntByIDBlock)
@@ -399,7 +399,7 @@ JobsKey(_returnIntByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnIntByIDBlock, returnIntByIDBlock)
 }
 
--(void)actionReturnIntByIDBlock:(JobsReturnIntByIDBlock)returnIntByIDBlock{
+-(void)actionReturnIntByIDBlock:(JobsReturnIntByIDBlock _Nullable)returnIntByIDBlock{
     self.returnIntByIDBlock = returnIntByIDBlock;
 }
 JobsKey(_returnUnsignedIntByIDBlock)
@@ -412,7 +412,7 @@ JobsKey(_returnUnsignedIntByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnUnsignedIntByIDBlock,returnUnsignedIntByIDBlock)
 }
 
--(void)actionReturnUnsignedIntByIDBlock:(JobsReturnUnsignedIntByIDBlock)returnUnsignedIntByIDBlock{
+-(void)actionReturnUnsignedIntByIDBlock:(JobsReturnUnsignedIntByIDBlock _Nullable)returnUnsignedIntByIDBlock{
     self.returnUnsignedIntByIDBlock = returnUnsignedIntByIDBlock;
 }
 JobsKey(_returnFloatByIDBlock)
@@ -425,7 +425,7 @@ JobsKey(_returnFloatByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnFloatByIDBlock, returnFloatByIDBlock)
 }
 
--(void)actionReturnFloatByIDBlock:(JobsReturnFloatByIDBlock)returnFloatByIDBlock{
+-(void)actionReturnFloatByIDBlock:(JobsReturnFloatByIDBlock _Nullable)returnFloatByIDBlock{
     self.returnFloatByIDBlock = returnFloatByIDBlock;
 }
 JobsKey(_returnDoubleByIDBlock)
@@ -438,7 +438,7 @@ JobsKey(_returnDoubleByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnDoubleByIDBlock, returnDoubleByIDBlock)
 }
 
--(void)actionReturnDoubleByIDBlock:(JobsReturnDoubleByIDBlock)returnDoubleByIDBlock{
+-(void)actionReturnDoubleByIDBlock:(JobsReturnDoubleByIDBlock _Nullable)returnDoubleByIDBlock{
     self.returnDoubleByIDBlock = returnDoubleByIDBlock;
 }
 JobsKey(_returnCharByIDBlock)
@@ -451,7 +451,7 @@ JobsKey(_returnCharByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnCharByIDBlock, returnCharByIDBlock)
 }
 
--(void)actionReturnCharByIDBlock:(JobsReturnCharByIDBlock)returnCharByIDBlock{
+-(void)actionReturnCharByIDBlock:(JobsReturnCharByIDBlock _Nullable)returnCharByIDBlock{
     self.returnCharByIDBlock = returnCharByIDBlock;
 }
 JobsKey(_returnUnsignedCharByIDBlock)
@@ -464,7 +464,7 @@ JobsKey(_returnUnsignedCharByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnUnsignedCharByIDBlock, returnUnsignedCharByIDBlock)
 }
 
--(void)actionReturnUnsignedCharByIDBlock:(JobsReturnUnsignedCharByIDBlock)returnUnsignedCharByIDBlock{
+-(void)actionReturnUnsignedCharByIDBlock:(JobsReturnUnsignedCharByIDBlock _Nullable)returnUnsignedCharByIDBlock{
     self.returnUnsignedCharByIDBlock = returnUnsignedCharByIDBlock;
 }
 JobsKey(_returnShortByIDBlock)
@@ -477,7 +477,7 @@ JobsKey(_returnShortByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnShortByIDBlock, returnShortByIDBlock)
 }
 
--(void)actionReturnShortByIDBlock:(JobsReturnShortByIDBlock)returnShortByIDBlock{
+-(void)actionReturnShortByIDBlock:(JobsReturnShortByIDBlock _Nullable)returnShortByIDBlock{
     self.returnShortByIDBlock = returnShortByIDBlock;
 }
 JobsKey(_returnUnsignedShortByIDBlock)
@@ -490,7 +490,7 @@ JobsKey(_returnUnsignedShortByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnUnsignedShortByIDBlock, returnUnsignedShortByIDBlock)
 }
 
--(void)actionReturnUnsignedShortByIDBlock:(JobsReturnUnsignedShortByIDBlock)returnUnsignedShortByIDBlock{
+-(void)actionReturnUnsignedShortByIDBlock:(JobsReturnUnsignedShortByIDBlock _Nullable)returnUnsignedShortByIDBlock{
     self.returnUnsignedShortByIDBlock = returnUnsignedShortByIDBlock;
 }
 JobsKey(_returnLongByIDBlock)
@@ -503,7 +503,7 @@ JobsKey(_returnLongByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnLongByIDBlock, returnLongByIDBlock)
 }
 
--(void)actionReturnLongByIDBlock:(JobsReturnLongByIDBlock)returnLongByIDBlock{
+-(void)actionReturnLongByIDBlock:(JobsReturnLongByIDBlock _Nullable)returnLongByIDBlock{
     self.returnLongByIDBlock = returnLongByIDBlock;
 }
 JobsKey(_returnUnsignedLongByIDBlock)
@@ -516,7 +516,7 @@ JobsKey(_returnUnsignedLongByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnUnsignedLongByIDBlock, returnUnsignedLongByIDBlock)
 }
 
--(void)actionReturnUnsignedLongByIDBlock:(JobsReturnUnsignedLongByIDBlock)returnUnsignedLongByIDBlock{
+-(void)actionReturnUnsignedLongByIDBlock:(JobsReturnUnsignedLongByIDBlock _Nullable)returnUnsignedLongByIDBlock{
     self.returnUnsignedLongByIDBlock = returnUnsignedLongByIDBlock;
 }
 JobsKey(_returnUnsignedLongLongByIDBlock)
@@ -529,7 +529,7 @@ JobsKey(_returnUnsignedLongLongByIDBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnUnsignedLongLongByIDBlock, returnUnsignedLongLongByIDBlock)
 }
 
--(void)actionReturnUnsignedLongLongByIDBlock:(JobsReturnUnsignedLongLongByIDBlock)returnUnsignedLongLongByIDBlock{
+-(void)actionReturnUnsignedLongLongByIDBlock:(JobsReturnUnsignedLongLongByIDBlock _Nullable)returnUnsignedLongLongByIDBlock{
     self.returnUnsignedLongLongByIDBlock = returnUnsignedLongLongByIDBlock;
 }
 #pragma mark —— 2.3、（单一）入参 ｜ 返回（入参类型）值
@@ -543,7 +543,7 @@ JobsKey(_returnObjectBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnObjectBlock, returnObjectBlock)
 }
 
--(void)actionReturnObjectBlock:(JobsReturnIDByIDBlock)returnObjectBlock{
+-(void)actionReturnObjectBlock:(JobsReturnIDByIDBlock _Nullable)returnObjectBlock{
     self.returnObjectBlock = returnObjectBlock;
 }
 JobsKey(_returnNSIntegerBlock)
@@ -556,7 +556,7 @@ JobsKey(_returnNSIntegerBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnNSIntegerBlock, returnNSIntegerBlock)
 }
 
--(void)actionReturnNSIntegerBlock:(JobsReturnByNSIntegerBlock)returnNSIntegerBlock{
+-(void)actionReturnNSIntegerBlock:(JobsReturnByNSIntegerBlock _Nullable)returnNSIntegerBlock{
     self.returnNSIntegerBlock = returnNSIntegerBlock;
 }
 JobsKey(_returnNSUIntegerBlock)
@@ -569,7 +569,7 @@ JobsKey(_returnNSUIntegerBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnNSUIntegerBlock, returnNSUIntegerBlock)
 }
 
--(void)actionReturnNSUIntegerBlock:(JobsReturnByNSUIntegerBlock)returnNSUIntegerBlock{
+-(void)actionReturnNSUIntegerBlock:(JobsReturnByNSUIntegerBlock _Nullable)returnNSUIntegerBlock{
     self.returnNSUIntegerBlock = returnNSUIntegerBlock;
 }
 JobsKey(_returnCGFloatBlock)
@@ -582,7 +582,7 @@ JobsKey(_returnCGFloatBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnCGFloatBlock, returnCGFloatBlock)
 }
 
--(void)actionReturnCGFloatBlock:(JobsReturnByCGFloatBlock)returnCGFloatBlock{
+-(void)actionReturnCGFloatBlock:(JobsReturnByCGFloatBlock _Nullable)returnCGFloatBlock{
     self.returnCGFloatBlock = returnCGFloatBlock;
 }
 JobsKey(_returnBoolBlock)
@@ -595,7 +595,7 @@ JobsKey(_returnBoolBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnBoolBlock, returnBoolBlock)
 }
 
--(void)actionReturnBOOLBlock:(JobsReturnByBOOLBlock)returnBoolBlock{
+-(void)actionReturnBOOLBlock:(JobsReturnByBOOLBlock _Nullable)returnBoolBlock{
     self.returnBoolBlock = returnBoolBlock;
 }
 JobsKey(_returnBoolByNSUIntegerBlock)
@@ -608,7 +608,7 @@ JobsKey(_returnBoolByNSUIntegerBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnBoolByNSUIntegerBlock, returnBoolByNSUIntegerBlock)
 }
 
--(void)actionReturnBoolByNSUIntegerBlock:(JobsReturnBOOLByNSUIntegerBlock)returnBoolByNSUIntegerBlock{
+-(void)actionReturnBoolByNSUIntegerBlock:(JobsReturnBOOLByNSUIntegerBlock _Nullable)returnBoolByNSUIntegerBlock{
     self.returnBoolByNSUIntegerBlock = returnBoolByNSUIntegerBlock;
 }
 JobsKey(_returnIntBlock)
@@ -621,7 +621,7 @@ JobsKey(_returnIntBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnIntBlock, returnIntBlock)
 }
 
--(void)actionReturnIntBlock:(JobsReturnByIntBlock)returnIntBlock{
+-(void)actionReturnIntBlock:(JobsReturnByIntBlock _Nullable)returnIntBlock{
     self.returnIntBlock = returnIntBlock;
 }
 JobsKey(_returnUnsignedIntBlock)
@@ -634,7 +634,7 @@ JobsKey(_returnUnsignedIntBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnUnsignedIntBlock, returnUnsignedIntBlock)
 }
 
--(void)actionReturnUnsignedIntBlock:(JobsReturnByUnsignedIntBlock)returnUnsignedIntBlock{
+-(void)actionReturnUnsignedIntBlock:(JobsReturnByUnsignedIntBlock _Nullable)returnUnsignedIntBlock{
     self.returnUnsignedIntBlock = returnUnsignedIntBlock;
 }
 JobsKey(_returnFloatBlock)
@@ -647,7 +647,7 @@ JobsKey(_returnFloatBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnFloatBlock, returnFloatBlock)
 }
 
--(void)actionReturnFloatBlock:(JobsReturnByFloatBlock)returnFloatBlock{
+-(void)actionReturnFloatBlock:(JobsReturnByFloatBlock _Nullable)returnFloatBlock{
     self.returnFloatBlock = returnFloatBlock;
 }
 JobsKey(_returnDoubleBlock)
@@ -660,7 +660,7 @@ JobsKey(_returnDoubleBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnDoubleBlock, returnDoubleBlock)
 }
 
--(void)actionReturnDoubleBlock:(JobsReturnByDoubleBlock)returnDoubleBlock{
+-(void)actionReturnDoubleBlock:(JobsReturnByDoubleBlock _Nullable)returnDoubleBlock{
     self.returnDoubleBlock = returnDoubleBlock;
 }
 JobsKey(_returnCharBlock)
@@ -673,7 +673,7 @@ JobsKey(_returnCharBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnCharBlock, returnCharBlock)
 }
 
--(void)actionReturnCharBlock:(JobsReturnByCharBlock)returnCharBlock{
+-(void)actionReturnCharBlock:(JobsReturnByCharBlock _Nullable)returnCharBlock{
     self.returnCharBlock = returnCharBlock;
 }
 JobsKey(_returnUnsignedCharBlock)
@@ -686,7 +686,7 @@ JobsKey(_returnUnsignedCharBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnUnsignedCharBlock, returnUnsignedCharBlock)
 }
 
--(void)actionReturnUnsignedCharBlock:(JobsReturnByUnsignedCharBlock)returnUnsignedCharBlock{
+-(void)actionReturnUnsignedCharBlock:(JobsReturnByUnsignedCharBlock _Nullable)returnUnsignedCharBlock{
     self.returnUnsignedCharBlock = returnUnsignedCharBlock;
 }
 JobsKey(_returnShortBlock)
@@ -699,7 +699,7 @@ JobsKey(_returnShortBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnShortBlock, returnShortBlock)
 }
 
--(void)actionReturnShortBlock:(JobsReturnByShortBlock)returnShortBlock{
+-(void)actionReturnShortBlock:(JobsReturnByShortBlock _Nullable)returnShortBlock{
     self.returnShortBlock = returnShortBlock;
 }
 JobsKey(_returnUnsignedShortBlock)
@@ -712,7 +712,7 @@ JobsKey(_returnUnsignedShortBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnUnsignedShortBlock, returnUnsignedShortBlock)
 }
 
--(void)actionReturnUnsignedShortBlock:(JobsReturnByUnsignedShortBlock)returnUnsignedShortBlock{
+-(void)actionReturnUnsignedShortBlock:(JobsReturnByUnsignedShortBlock _Nullable)returnUnsignedShortBlock{
     self.returnUnsignedShortBlock = returnUnsignedShortBlock;
 }
 JobsKey(_returnLongBlock)
@@ -725,7 +725,7 @@ JobsKey(_returnLongBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnLongBlock, returnLongBlock)
 }
 
--(void)actionReturnLongBlock:(JobsReturnByLongBlock)returnLongBlock{
+-(void)actionReturnLongBlock:(JobsReturnByLongBlock _Nullable)returnLongBlock{
     self.returnLongBlock = returnLongBlock;
 }
 JobsKey(_returnUnsignedLongBlock)
@@ -738,7 +738,7 @@ JobsKey(_returnUnsignedLongBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnUnsignedLongBlock, returnUnsignedLongBlock)
 }
 
--(void)actionReturnUnsignedLongBlock:(JobsReturnByUnsignedLongBlock)returnUnsignedLongBlock{
+-(void)actionReturnUnsignedLongBlock:(JobsReturnByUnsignedLongBlock _Nullable)returnUnsignedLongBlock{
     self.returnUnsignedLongBlock = returnUnsignedLongBlock;
 }
 JobsKey(_returnUnsignedLongLongBlock)
@@ -751,7 +751,7 @@ JobsKey(_returnUnsignedLongLongBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnUnsignedLongLongBlock, returnUnsignedLongLongBlock)
 }
 
--(void)actionReturnUnsignedLongLongBlock:(JobsReturnByUnsignedLongLongBlock)returnUnsignedLongLongBlock{
+-(void)actionReturnUnsignedLongLongBlock:(JobsReturnByUnsignedLongLongBlock _Nullable)returnUnsignedLongLongBlock{
     self.returnUnsignedLongLongBlock = returnUnsignedLongLongBlock;
 }
 JobsKey(_returnIDBySelectorBlock)
@@ -764,7 +764,7 @@ JobsKey(_returnIDBySelectorBlock)
     Jobs_setAssociatedCOPY_NONATOMIC(_returnIDBySelectorBlock, returnIDBySelectorBlock)
 }
 #pragma mark —— 2.4、多入参（任意数据类型） ｜ 有返回（其他类型）值
--(void)actionReturnIDBySelectorBlock:(JobsReturnIDBySelectorBlock)returnIDBySelectorBlock{
+-(void)actionReturnIDBySelectorBlock:(JobsReturnIDBySelectorBlock _Nullable)returnIDBySelectorBlock{
     self.returnIDBySelectorBlock = returnIDBySelectorBlock;
 }
 

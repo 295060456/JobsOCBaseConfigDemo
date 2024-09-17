@@ -3569,7 +3569,6 @@
 		CE2E88C12C69DEC300260207 /* JobsCountriesModel */ = {
 			isa = PBXGroup;
 			children = (
-				CE7C7D452C9447CD00C0153C /* PhilippinesModel */,
 				CE2E88C22C69DECC00260207 /* JobsCountriesModel.h */,
 				CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */,
 			);
@@ -7282,6 +7281,7 @@
 				CECE7D482C450DE100764AF5 /* Other.h */,
 				CECE7D202C450CCD00764AF5 /* ☀️业务模块中公用的View */,
 				CECE7D352C450CCD00764AF5 /* 网络请求 */,
+				CECE7F1F2C4512BF00764AF5 /* DAO */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -8318,6 +8318,7 @@
 		CECE7F1F2C4512BF00764AF5 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				CE7C7D452C9447CD00C0153C /* PhilippinesModel */,
 				CE2E88C12C69DEC300260207 /* JobsCountriesModel */,
 				CECE7F112C4512BF00764AF5 /* BaseModel */,
 				CECE7F142C4512BF00764AF5 /* CasinoCustomerContactModel */,
@@ -9503,7 +9504,6 @@
 			isa = PBXGroup;
 			children = (
 				CECE7F0E2C4512BF00764AF5 /* 各项全局定义 */,
-				CECE7F1F2C4512BF00764AF5 /* DAO */,
 				CECE7F222C4512BF00764AF5 /* JobsPods */,
 				CECE80B12C4512BF00764AF5 /* JobsMixFunc */,
 			);

@@ -88,11 +88,12 @@
             // show cached data
         }
 
-        api.animatingText = JobsInternationalization(@"正在加载");
+        api.animatingText = JobsInternationalization(JobsInternationalization(@"正在加载"));
         api.animatingView = self.view;
 
         [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-            JobsResponseModel *responseModel = [JobsResponseModel mj_objectWithKeyValues:request.responseObject];
+            /// 以下是我们需要的值
+            JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
             if(responseModel.code == HTTPResponseCodeSuccess){
                 NSLog(@"update ui");
             }
