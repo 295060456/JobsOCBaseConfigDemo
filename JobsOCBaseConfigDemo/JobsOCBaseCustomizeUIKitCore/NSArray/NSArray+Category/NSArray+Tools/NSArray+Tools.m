@@ -10,7 +10,7 @@
 
 @implementation NSArray (Tools)
 /// 数组里面是否包含某个元素
--(JobsReturnBOOLByIDBlock)containsObject{
+-(JobsReturnBOOLByIDBlock _Nonnull)containsObject{
     @jobs_weakify(self)
     return ^BOOL(id _Nullable data) {
         @jobs_strongify(self)
@@ -19,7 +19,7 @@
     };
 }
 /// 数组转字符串
--(NSString *)string{
+-(NSString *_Nonnull)string{
     if(!self ||self.count == 0) return JobsInternationalization(@"");
     NSMutableString *str = NSMutableString.string;
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx,
@@ -31,7 +31,7 @@
     return strForRight;
 }
 /// 数组比较
--(JobsReturnBOOLByArrBlock)compareEqualArrElement{
+-(JobsReturnBOOLByArrBlock _Nonnull)compareEqualArrElement{
     @jobs_weakify(self)
     return ^BOOL(NSArray *_Nullable array){
         @jobs_strongify(self)
@@ -39,7 +39,7 @@
     };
 }
 /// 数组计算交集
--(JobsReturnArrByArrBlock)arrayForIntersectionWithOtherArray{
+-(JobsReturnArrayByArrayBlock _Nonnull)arrayForIntersectionWithOtherArray{
     @jobs_weakify(self)
     return ^__kindof NSArray *_Nullable(__kindof NSArray *_Nullable otherArray){
         @jobs_strongify(self)
@@ -55,7 +55,7 @@
     };
 }
 /// 数据计算差集
--(JobsReturnArrByArrBlock)arrayForMinusWithOtherArray{
+-(JobsReturnArrayByArrayBlock _Nonnull)arrayForMinusWithOtherArray{
     @jobs_weakify(self)
     return ^__kindof NSArray *_Nullable(__kindof NSArray *_Nullable otherArray){
         @jobs_strongify(self)

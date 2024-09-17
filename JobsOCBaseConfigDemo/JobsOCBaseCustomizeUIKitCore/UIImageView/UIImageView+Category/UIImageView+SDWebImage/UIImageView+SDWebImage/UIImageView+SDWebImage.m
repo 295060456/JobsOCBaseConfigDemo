@@ -27,7 +27,7 @@
 JobsKey(_imageURL)
 @dynamic imageURL;
 -(JobsReturnImageViewByURLBlock _Nonnull)imageURL {
-    return ^(NSURL *imageURL) {
+    return ^__kindof UIImageView *_Nonnull(NSURL *imageURL) {
         Jobs_setAssociatedRETAIN_NONATOMIC(_imageURL, imageURL)
         return self;
     };
@@ -36,7 +36,7 @@ JobsKey(_imageURL)
 JobsKey(_placeholderImage)
 @dynamic placeholderImage;
 -(JobsReturnImageViewByImageBlock _Nonnull)placeholderImage {
-    return ^(UIImage *placeholderImage) {
+    return ^__kindof UIImageView *_Nonnull(UIImage *placeholderImage) {
         Jobs_setAssociatedRETAIN_NONATOMIC(_placeholderImage, placeholderImage)
         return self;
     };
@@ -45,7 +45,7 @@ JobsKey(_placeholderImage)
 JobsKey(_options)
 @dynamic options;
 -(JobsReturnImageViewBySDWebImageOptionsBlock _Nonnull)options{
-    return ^UIImageView *_Nullable(SDWebImageOptions options) {
+    return ^__kindof UIImageView *_Nullable(SDWebImageOptions options) {
         Jobs_setAssociatedRETAIN_NONATOMIC(_options, @(options));
         return self;
     };
@@ -54,7 +54,7 @@ JobsKey(_options)
 JobsKey(_completed)
 @dynamic completed;
 - (JobsReturnImageViewBySDExternalCompletionBlock _Nonnull)completed {
-    return ^UIImageView *_Nullable(SDExternalCompletionBlock completion) {
+    return ^__kindof UIImageView *_Nullable(SDExternalCompletionBlock completion) {
         Jobs_setAssociatedCOPY_NONATOMIC(_completed,completion);
         return self;
     };
