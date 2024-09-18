@@ -6,39 +6,10 @@
 //
 
 #import "BaseViewController.h"
+#import "NSObject+Network.h"
 
-#import "YTKBatchRequest.h"
-#import "YTKChainRequest.h"
-
-#import "YTKUrlArgumentsFilter.h"
 #import "GetImageApi.h"
 #import "GetUserInfoApi.h"
-#import "RegisterApi.h"
-#import "UploadImageApi.h"
-#import "GetCustomerContactApi.h"
-
-#import "YTKChainRequest+AnimatingAccessory.h"
-#import "YTKBatchRequest+AnimatingAccessory.h"
-#import "YTKBaseRequest+AnimatingAccessory.h"
-#import "YTKAnimatingRequestAccessory.h"
-
-#import "YTKRequest+Custom.h"
-
-#if __has_include(<AFNetworking/AFNetworking.h>)
-#import <AFNetworking/AFNetworking.h>
-#elif __has_include("AFNetworking.h")
-#import "AFNetworking.h"
-#elif __has_include("AFNetworking-umbrella.h")
-#import "AFNetworking-umbrella.h"
-#else
-#error "AFNetworking header not found"
-#endif
-
-#if __has_include(<YTKNetwork/YTKNetwork.h>)
-#import <YTKNetwork/YTKNetwork.h>
-#else
-#import "YTKNetwork.h"
-#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

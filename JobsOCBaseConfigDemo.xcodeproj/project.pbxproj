@@ -1136,6 +1136,7 @@
 		CED358582C92A8F200A5703F /* GetUserInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED3584D2C92A8E700A5703F /* GetUserInfoApi.m */; };
 		CED358592C92A8F500A5703F /* RegisterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358502C92A8E700A5703F /* RegisterApi.m */; };
 		CED3585A2C92A8F800A5703F /* UploadImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358532C92A8E700A5703F /* UploadImageApi.m */; };
+		CEDA695F2C9ABE6C00FE39BB /* NSObject+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA695D2C9ABE6800FE39BB /* NSObject+Network.m */; };
 		CEE26F3A2C9801A900D900AA /* NSObject+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE26F382C9801A400D900AA /* NSObject+Data.m */; };
 		CEE26FC22C980A0900D900AA /* UICollectionViewFlowLayout+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE26FC02C980A0500D900AA /* UICollectionViewFlowLayout+Extra.m */; };
 		CEE403072C788F2B0085C23C /* JobsCorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE403052C7887960085C23C /* JobsCorModel.m */; };
@@ -3224,6 +3225,8 @@
 		CED358502C92A8E700A5703F /* RegisterApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterApi.m; sourceTree = "<group>"; };
 		CED358522C92A8E700A5703F /* UploadImageApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UploadImageApi.h; sourceTree = "<group>"; };
 		CED358532C92A8E700A5703F /* UploadImageApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadImageApi.m; sourceTree = "<group>"; };
+		CEDA695D2C9ABE6800FE39BB /* NSObject+Network.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Network.m"; sourceTree = "<group>"; };
+		CEDA695E2C9ABE6800FE39BB /* NSObject+Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Network.h"; sourceTree = "<group>"; };
 		CEE26F372C9801A400D900AA /* NSObject+Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Data.h"; sourceTree = "<group>"; };
 		CEE26F382C9801A400D900AA /* NSObject+Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Data.m"; sourceTree = "<group>"; };
 		CEE26FBF2C980A0500D900AA /* UICollectionViewFlowLayout+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewFlowLayout+Extra.h"; sourceTree = "<group>"; };
@@ -7452,6 +7455,7 @@
 		CECE7D352C450CCD00764AF5 /* 网络请求 */ = {
 			isa = PBXGroup;
 			children = (
+				CEDA695C2C9ABE6200FE39BB /* NSObject+Network */,
 				CECE7D232C450CCD00764AF5 /* 存取页面数据 */,
 				CECE7D262C450CCD00764AF5 /* 请求的公共配置文件 */,
 				CECE7D2D2C450CCD00764AF5 /* App 的所有网络请求Api */,
@@ -13709,6 +13713,15 @@
 			path = Api;
 			sourceTree = "<group>";
 		};
+		CEDA695C2C9ABE6200FE39BB /* NSObject+Network */ = {
+			isa = PBXGroup;
+			children = (
+				CEDA695E2C9ABE6800FE39BB /* NSObject+Network.h */,
+				CEDA695D2C9ABE6800FE39BB /* NSObject+Network.m */,
+			);
+			path = "NSObject+Network";
+			sourceTree = "<group>";
+		};
 		CEE26F392C9801A400D900AA /* NSObject+Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -14946,6 +14959,7 @@
 				CECE7CBC2C450C5000764AF5 /* MasonryVC.m in Sources */,
 				CECE813C2C4512BF00764AF5 /* JobsUserHeaderDataViewForHeaderInSection.m in Sources */,
 				CECE85192C4513CE00764AF5 /* NSMutableDictionary+Ordered.m in Sources */,
+				CEDA695F2C9ABE6C00FE39BB /* NSObject+Network.m in Sources */,
 				CE207E942C82F52B00AD9FFB /* JobsVerticalMenuSubView.m in Sources */,
 				CECE872B2C45140000764AF5 /* NSString+Base85.m in Sources */,
 				CECE85152C4513CE00764AF5 /* NSCache+Extra.m in Sources */,

@@ -64,10 +64,31 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    self.loadCacheData();// OK
-    self.sendBatchRequest();// OK
-    self.sendChainRequest();// OK
+    @jobs_weakify(self)
+    /// 普通的单个请求
+    [self loadCacheData:^(JobsResponseModel *_Nullable responseModel) {
+        
+    }];
+    /// 多请求の同步请求
+    [self sendBatchRequest:^(YTKBatchRequest *_Nullable batchRequest) {
+        NSArray *requests = batchRequest.requestArray;
+        GetImageApi *a = (GetImageApi *)requests[0];
+        GetImageApi *b = (GetImageApi *)requests[1];
+        GetImageApi *c = (GetImageApi *)requests[2];
+        GetUserInfoApi *user = (GetUserInfoApi *)requests[3];
+        ///deal with requests result ...
+        NSLog(@"%@, %@, %@, %@", a, b, c, user);
+        /// 以下是我们需要的值
+        a.responseObject;
+        b.responseObject;
+        c.responseObject;
+        user.responseObject;
+    }];
+    /// 多请求の链式请求。链式请求的结果集体现在<YTKChainRequestDelegate>
+    [self sendChainRequest:^(YTKChainRequest *_Nullable chainReq) {
+        @jobs_strongify(self)
+        chainReq.delegate = self;
+    }];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -76,81 +97,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-}
-#pragma mark —— 网络请求
-/// 普通的单个请求
--(jobsByVoidBlock)loadCacheData{
-    return ^(){
-        GetCustomerContactApi *api = GetCustomerContactApi.initByParameters(nil);
-        if ([api loadCacheWithError:nil]) {
-            NSDictionary *json = api.responseJSONObject;
-            NSLog(@"json = %@", json);
-            // show cached data
-        }
-
-        api.animatingText = JobsInternationalization(JobsInternationalization(@"正在加载"));
-        api.animatingView = self.view;
-
-        [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-            /// 以下是我们需要的值
-            JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
-            if(responseModel.code == HTTPResponseCodeSuccess){
-                NSLog(@"update ui");
-            }
-        } failure:^(YTKBaseRequest *request) {
-            NSLog(@"failed");
-        }];
-    };
-}
-/// 多请求の同步请求
--(jobsByVoidBlock)sendBatchRequest{
-    return ^(){
-        GetImageApi *a = GetImageApi.initByParameters(nil);
-        GetImageApi *b = GetImageApi.initByParameters(nil);
-        GetImageApi *c = GetImageApi.initByParameters(nil);
-        GetUserInfoApi *d = GetUserInfoApi.initByParameters(nil);
-        
-        YTKBatchRequest *batchRequest = [YTKBatchRequest.alloc initWithRequestArray:@[a, b, c, d]];
-        [batchRequest startWithCompletionBlockWithSuccess:^(YTKBatchRequest *batchRequest) {
-            NSLog(@"succeed");
-            NSArray *requests = batchRequest.requestArray;
-            GetImageApi *a = (GetImageApi *)requests[0];
-            GetImageApi *b = (GetImageApi *)requests[1];
-            GetImageApi *c = (GetImageApi *)requests[2];
-            GetUserInfoApi *user = (GetUserInfoApi *)requests[3];
-            ///deal with requests result ...
-            NSLog(@"%@, %@, %@, %@", a, b, c, user);
-            
-            /// 以下是我们需要的值
-            a.responseObject;
-            b.responseObject;
-            c.responseObject;
-            user.responseObject;
-            
-        } failure:^(YTKBatchRequest *batchRequest) {
-            NSLog(@"failed");
-        }];
-    };
-}
-/// 多请求の链式请求。链式请求的结果集体现在<YTKChainRequestDelegate>
--(jobsByVoidBlock)sendChainRequest{
-    @jobs_weakify(self)
-    return ^(){
-        @jobs_strongify(self)
-        RegisterApi *reg = RegisterApi.initByParameters(nil);
-        YTKChainRequest *chainReq = YTKChainRequest.new;
-        [chainReq addRequest:reg
-                    callback:^(YTKChainRequest *chainRequest,
-                               YTKBaseRequest *baseRequest) {
-            
-            RegisterApi *result = (RegisterApi *)baseRequest;
-            /// 在链式请求中，下一个请求的参数来源于上一个请求的结果
-            GetUserInfoApi *api = GetUserInfoApi.initByParameters(@{@"KKK":result.userId});
-            [chainRequest addRequest:api callback:nil];
-        }];
-        chainReq.delegate = self;
-        [chainReq start];// start to send request
-    };
 }
 #pragma mark —— YTKChainRequestDelegate
 -(void)chainRequestFinished:(YTKChainRequest *)chainRequest{
