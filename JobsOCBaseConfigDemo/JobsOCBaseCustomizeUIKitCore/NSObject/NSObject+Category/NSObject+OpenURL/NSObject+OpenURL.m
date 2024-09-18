@@ -60,8 +60,10 @@ failCompletionHandlerBlock:^{
 }
 #pragma mark —— 安全打开URL
 /// 软性打开URL：【不会处理打开成功和打开失败两种情况】如果URL有误则无法打开
--(jobsByIDBlock)jobsOpenURL{
+-(jobsByIDBlock _Nonnull)jobsOpenURL{
+    @jobs_weakify(self)
     return ^(id _Nullable URLStr){
+        @jobs_strongify(self)
         [self jobsOpenURL:URLStr
                   options:@{}
     successCompletionHandlerBlock:nil
@@ -107,7 +109,6 @@ failCompletionHandlerBlock:^{
            options:(NSDictionary<UIApplicationOpenExternalURLOptionsKey, id> *_Nullable)options
 successCompletionHandlerBlock:(jobsByVoidBlock _Nullable)successCompletionHandlerBlock
 failCompletionHandlerBlock:(jobsByVoidBlock _Nullable)failCompletionHandlerBlock{
-
     if ([URL isKindOfClass:NSString.class]) {
         NSString *url = (NSString *)URL;
         if (isNull(url)) {
