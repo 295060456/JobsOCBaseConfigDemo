@@ -93,8 +93,8 @@
             if (!jobsZeroSizeValue(self.textLabelSize)) {
                 self.titleLabel.resetSize(self.textLabelSize);
             }
-            self.titleLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
-            self.titleLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
+            self.titleLabel.resetOriginXByOffset(self.textLabelFrameOffsetX);
+            self.titleLabel.resetOriginYByOffset(self.textLabelFrameOffsetY);
         }
         
         {
@@ -102,8 +102,8 @@
                 if(!jobsZeroSizeValue(self.subTextLabelSize)){
                     self.subtitleLabel.resetSize(self.subTextLabelSize);
                 }
-                self.subtitleLabel.resetByOffsetOriginX(self.subTextLabelFrameOffsetX);
-                self.subtitleLabel.resetByOffsetOriginY(self.subTextLabelFrameOffsetY);
+                self.subtitleLabel.resetOriginXByOffset(self.subTextLabelFrameOffsetX);
+                self.subtitleLabel.resetOriginYByOffset(self.subTextLabelFrameOffsetY);
             }
         }
         
@@ -111,8 +111,8 @@
             if (!jobsZeroSizeValue(self.imageViewSize)) {
                 self.imageView.resetSize(self.imageViewSize);
             }
-            self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
-            self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
+            self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
+            self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
         }
     }
     
@@ -162,26 +162,26 @@
     
     {/// 【组 3】UIButton 单独自定义设置系统自带控件的长宽 ❤️与组1、2属性互斥❤️
         {
-            self.titleLabel.resetByOffsetWidth(self.textLabelWidth);
-            self.titleLabel.resetByOffsetHeight(self.textLabelHeight);
-            self.titleLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
-            self.titleLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
+            self.titleLabel.resetWidthByOffset(self.textLabelWidth);
+            self.titleLabel.resetHeightByOffset(self.textLabelHeight);
+            self.titleLabel.resetOriginXByOffset(self.textLabelFrameOffsetX);
+            self.titleLabel.resetOriginYByOffset(self.textLabelFrameOffsetY);
         }
         
         {
             if (@available(iOS 15.0, *)) {
-                self.subtitleLabel.resetByOffsetWidth(self.subTextLabelWidth);
-                self.subtitleLabel.resetByOffsetHeight(self.subTextLabelHeight);
-                self.subtitleLabel.resetByOffsetOriginX(self.subTextLabelFrameOffsetX);
-                self.subtitleLabel.resetByOffsetOriginY(self.subTextLabelFrameOffsetY);
+                self.subtitleLabel.resetWidthByOffset(self.subTextLabelWidth);
+                self.subtitleLabel.resetHeightByOffset(self.subTextLabelHeight);
+                self.subtitleLabel.resetOriginXByOffset(self.subTextLabelFrameOffsetX);
+                self.subtitleLabel.resetOriginYByOffset(self.subTextLabelFrameOffsetY);
             }
         }
 
         {
-            self.imageView.resetByOffsetWidth(self.imageViewWidth);
-            self.imageView.resetByOffsetHeight(self.imageViewHeight);
-            self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
-            self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
+            self.imageView.resetWidthByOffset(self.imageViewWidth);
+            self.imageView.resetHeightByOffset(self.imageViewHeight);
+            self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
+            self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
         }
     }
 

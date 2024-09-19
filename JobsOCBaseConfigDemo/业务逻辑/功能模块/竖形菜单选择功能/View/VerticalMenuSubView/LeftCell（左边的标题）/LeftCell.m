@@ -63,7 +63,7 @@ UITableViewCell_UIViewModelProtocolSynthesize
     self.modifySysChildViewFrame2();
     
     if(self.accessoryView){
-        self.accessoryView.resetByOffsetOriginX(20);
+        self.accessoryView.resetOriginXByOffset(20);
     }
 }
 #pragma mark —— 一些私有方法

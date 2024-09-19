@@ -43,11 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGSize Size;
 @property(nonatomic,assign)CGPoint Origin;
 #pragma mark —— 刷新UI
--(jobsByVoidBlock)jobsRefreshUI;
+-(jobsByVoidBlock _Nonnull)jobsRefreshUI;
 #pragma mark —— 交换宽高
--(JobsReturnCGRectByVoidBlock)exchangeWidthAndHeight;
+-(JobsReturnCGRectByVoidBlock _Nonnull)exchangeWidthAndHeight;
 #pragma mark —— 交换 X 和 Y
--(JobsReturnCGRectByVoidBlock)exchangeXAndY;
+-(JobsReturnCGRectByVoidBlock _Nonnull)exchangeXAndY;
 #pragma mark —— UIView
 /// 重设Frame
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginX;
@@ -59,14 +59,14 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnCGRectByCGPointBlock _Nonnull)resetOrigin;
 -(JobsReturnCGRectByCGSizeBlock _Nonnull)resetSize;
 /// 依据偏移量重设Frame
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetOriginX;
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetOriginY;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginXByOffset;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginYByOffset;
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterX;
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterY;
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetWidth;
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetHeight;
--(JobsReturnCGRectByCGPointBlock _Nonnull)resetByOffsetOrigin;
--(JobsReturnCGRectByCGSizeBlock _Nonnull)resetByOffsetSize;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetWidthByOffset;
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetHeightByOffset;
+-(JobsReturnCGRectByCGPointBlock _Nonnull)resetOriginByOffset;
+-(JobsReturnCGRectByCGSizeBlock _Nonnull)resetSizeByOffset;
 #pragma mark —— UIView对齐方法扩充 https://github.com/MisterZhouZhou/ZWUIViewExtension
 /// 设置水平方向对齐
 -(jobsByViewBlock _Nonnull)centerxEqualToView;

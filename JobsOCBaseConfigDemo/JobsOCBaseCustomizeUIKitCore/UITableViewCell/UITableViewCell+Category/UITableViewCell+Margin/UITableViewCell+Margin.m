@@ -80,10 +80,10 @@
                     self.textLabel.resetSize(self.textLabelSize);
                 }
                 if(self.textLabelFrameOffsetX){
-                    self.textLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
+                    self.textLabel.resetOriginXByOffset(self.textLabelFrameOffsetX);
                 }
                 if(self.textLabelFrameOffsetY){
-                    self.textLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
+                    self.textLabel.resetOriginYByOffset(self.textLabelFrameOffsetY);
                 }
             }
             
@@ -92,10 +92,10 @@
                     self.detailTextLabel.resetSize(self.detailTextLabelSize);
                 }
                 if(self.detailTextLabelOffsetX && self.detailTextLabel){
-                    self.detailTextLabel.resetByOffsetOriginX(self.detailTextLabelOffsetX);
+                    self.detailTextLabel.resetOriginXByOffset(self.detailTextLabelOffsetX);
                 }
                 if(self.detailTextLabelOffsetY && self.detailTextLabel){
-                    self.detailTextLabel.resetByOffsetOriginY(self.detailTextLabelOffsetY);
+                    self.detailTextLabel.resetOriginYByOffset(self.detailTextLabelOffsetY);
                 }
             }
 
@@ -104,10 +104,10 @@
                     self.imageView.resetSize(self.imageViewSize);
                 }
                 if(self.imageViewFrameOffsetX){
-                    self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
+                    self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
                 }
                 if(self.imageViewFrameOffsetY){
-                    self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
+                    self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
                 }
             }
         }
@@ -122,10 +122,10 @@
                     self.detailTextLabel.resetHeight(self.textLabelHeight);
                 }
                 if(self.textLabelFrameOffsetX){
-                    self.textLabel.resetByOffsetOriginX(self.textLabelFrameOffsetX);
+                    self.textLabel.resetOriginXByOffset(self.textLabelFrameOffsetX);
                 }
                 if(self.textLabelFrameOffsetY){
-                    self.textLabel.resetByOffsetOriginY(self.textLabelFrameOffsetY);
+                    self.textLabel.resetOriginYByOffset(self.textLabelFrameOffsetY);
                 }
             }
             
@@ -137,10 +137,10 @@
                     self.detailTextLabel.resetHeight(self.detailTextLabelHeight);
                 }
                 if(self.detailTextLabelOffsetX && self.detailTextLabel){
-                    self.detailTextLabel.resetByOffsetOriginX(self.detailTextLabelOffsetX);
+                    self.detailTextLabel.resetOriginXByOffset(self.detailTextLabelOffsetX);
                 }
                 if(self.detailTextLabelOffsetY && self.detailTextLabel){
-                    self.detailTextLabel.resetByOffsetOriginY(self.detailTextLabelOffsetY);
+                    self.detailTextLabel.resetOriginYByOffset(self.detailTextLabelOffsetY);
                 }
             }
             
@@ -152,10 +152,10 @@
                     self.imageView.resetHeight(self.imageViewHeight);
                 }
                 if(self.imageViewFrameOffsetX){
-                    self.imageView.resetByOffsetOriginX(self.imageViewFrameOffsetX);
+                    self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
                 }
                 if(self.imageViewFrameOffsetY){
-                    self.imageView.resetByOffsetOriginY(self.imageViewFrameOffsetY);
+                    self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
                 }
             }
         }
@@ -195,20 +195,20 @@
     return ^(){
         self.contentView.frame = self.bounds;
         
-        self.textLabelFrameOffsetX = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetOriginX(JobsWidth(0));
-        self.textLabelFrameOffsetY = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetOriginY(JobsWidth(0));
-        self.textLabelFrameOffsetWidth = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetWidth(JobsWidth(0));
-        self.textLabelFrameOffsetHeight = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetHeight(JobsWidth(0));
+        self.textLabelFrameOffsetX = JobsWidth(0);// 等价于用这个 self.textLabel.resetOriginXByOffset(JobsWidth(0));
+        self.textLabelFrameOffsetY = JobsWidth(0);// 等价于用这个 self.textLabel.resetOriginYByOffset(JobsWidth(0));
+        self.textLabelFrameOffsetWidth = JobsWidth(0);// 等价于用这个 self.textLabel.resetWidthByOffset(JobsWidth(0));
+        self.textLabelFrameOffsetHeight = JobsWidth(0);// 等价于用这个 self.textLabel.resetHeightByOffset(JobsWidth(0));
         
-        self.detailTextLabelOffsetX = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetOriginX(JobsWidth(0));
-        self.detailTextLabelOffsetY = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetOriginY(JobsWidth(0));
-        self.detailTextLabelOffsetWidth = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetWidth(JobsWidth(0));
-        self.detailTextLabelOffsetHeight = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetHeight(JobsWidth(0));
+        self.detailTextLabelOffsetX = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetOriginXByOffset(JobsWidth(0));
+        self.detailTextLabelOffsetY = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetOriginYByOffset(JobsWidth(0));
+        self.detailTextLabelOffsetWidth = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetWidthByOffset(JobsWidth(0));
+        self.detailTextLabelOffsetHeight = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetHeightByOffset(JobsWidth(0));
         
-        self.imageViewFrameOffsetX = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetOriginX(JobsWidth(0));
-        self.imageViewFrameOffsetY = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetOriginY(JobsWidth(0));
-        self.imageViewFrameOffsetWidth = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetWidth(JobsWidth(0));
-        self.imageViewFrameOffsetHeight = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetHeight(JobsWidth(0));
+        self.imageViewFrameOffsetX = JobsWidth(0);// 等价于用这个 self.imageView.resetOriginXByOffset(JobsWidth(0));
+        self.imageViewFrameOffsetY = JobsWidth(0);// 等价于用这个 self.imageView.resetOriginYByOffset(JobsWidth(0));
+        self.imageViewFrameOffsetWidth = JobsWidth(0);// 等价于用这个 self.imageView.resetWidthByOffset(JobsWidth(0));
+        self.imageViewFrameOffsetHeight = JobsWidth(0);// 等价于用这个 self.imageView.resetHeightByOffset(JobsWidth(0));
     };
 }
 /// 取内部类UITableViewCellEditControl,对编辑状态的Cell的点击按钮进行替换成自定义的

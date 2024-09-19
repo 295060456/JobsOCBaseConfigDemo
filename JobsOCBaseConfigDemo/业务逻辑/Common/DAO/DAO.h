@@ -8,7 +8,7 @@
 #ifndef DAO_h
 #define DAO_h
 /// 公共类
-#import "JobsUserModel.h"*-+
+#import "JobsUserModel.h"
 #import "JobsResponseModel.h"
 #import "BaseModel.h"
 #import "SDWebImageModel.h"

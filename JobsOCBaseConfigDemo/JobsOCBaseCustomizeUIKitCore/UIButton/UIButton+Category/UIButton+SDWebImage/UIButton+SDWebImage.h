@@ -41,3 +41,18 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+/**
+ subView.imageURL(self.BaseUrl.add(model.iosImage).jobsUrl)
+         .placeholderImage(model.image)
+         .options(SDWebImageRefreshCached)/// 强制刷新缓存
+         .completed(^(UIImage * _Nullable image,
+                      NSError * _Nullable error,
+                      SDImageCacheType cacheType,
+                      NSURL * _Nullable imageURL) {
+             if (error) {
+                 NSLog(@"图片加载失败: %@-%@", error,imageURL);
+             } else {
+                 NSLog(@"图片加载成功");
+             }
+         }).normalLoad();
+ */

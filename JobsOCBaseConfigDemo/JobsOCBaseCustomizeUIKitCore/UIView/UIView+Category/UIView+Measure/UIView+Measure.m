@@ -126,7 +126,7 @@
     };
 }
 /// 依据偏移量重设Frame
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetOriginX{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginXByOffset{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -137,7 +137,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetOriginY{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginYByOffset{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -170,7 +170,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetWidth{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetWidthByOffset{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -181,7 +181,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetByOffsetHeight{
+-(JobsReturnCGRectByCGFloatBlock _Nonnull)resetHeightByOffset{
     @jobs_weakify(self)
     return ^(CGFloat data) {
         @jobs_strongify(self)
@@ -192,7 +192,7 @@
     };
 }
 
--(JobsReturnCGRectByCGPointBlock _Nonnull)resetByOffsetOrigin{
+-(JobsReturnCGRectByCGPointBlock _Nonnull)resetOriginByOffset{
     @jobs_weakify(self)
     return ^(CGPoint data) {
         @jobs_strongify(self)
@@ -204,7 +204,7 @@
     };
 }
 
--(JobsReturnCGRectByCGSizeBlock _Nonnull)resetByOffsetSize{
+-(JobsReturnCGRectByCGSizeBlock _Nonnull)resetSizeByOffset{
     @jobs_weakify(self)
     return ^(CGSize data) {
         @jobs_strongify(self)
@@ -553,16 +553,16 @@
     return ^(UIViewModel *_Nonnull viewModel) {
         @jobs_strongify(self)
         if(viewModel.offsetXForEach){
-            self.resetByOffsetOriginX(viewModel.offsetXForEach);
+            self.resetOriginXByOffset(viewModel.offsetXForEach);
         }
         if(viewModel.offsetYForEach){
-            self.resetByOffsetOriginY(viewModel.offsetYForEach);
+            self.resetOriginYByOffset(viewModel.offsetYForEach);
         }
         if(viewModel.offsetWidth){
-            self.resetByOffsetWidth(viewModel.offsetWidth);
+            self.resetWidthByOffset(viewModel.offsetWidth);
         }
         if(viewModel.offsetHeight){
-            self.resetByOffsetHeight(viewModel.offsetHeight);
+            self.resetHeightByOffset(viewModel.offsetHeight);
         }
     };
 }
