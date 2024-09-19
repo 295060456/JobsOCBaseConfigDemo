@@ -10558,7 +10558,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * **原则上，是不希望在数据容器上用继承关系的。因为这样可能会导致一些未知错误的发生。**但是可以用分类的方式，定义一些算法方面的方法，减少应用层的负担
 
-### 36、[网易验证码](https://github.com/yidun/NTESVerifyCode)的二次封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 36、第三方验证码 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+#### 36.1、[网易验证码](https://github.com/yidun/NTESVerifyCode)的二次封装
 
 * ```ruby
   pod 'NTESVerifyCode' # 网易验证码 https://github.com/yidun/NTESVerifyCode https://support.dun.163.com/documents/15588062143475712?docId=150442931089756160
@@ -10580,6 +10582,33 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 
 * 关注实现类 [**@interface NSObject (NTESVerifyCodeManager)<NTESVerifyCodeManagerDelegate>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BNTESVerifyCodeManager)
+
+#### 36.2、[极验验证码](https://www2.geetest.com/)的二次封装
+
+* 关注实现类 [**@interface NSObject (GTCaptcha4)<GTCaptcha4SessionTaskDelegate>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BNTESVerifyCodeManager)
+
+  ```objective-c
+  #import "NSObject+GTCaptcha4.h"
+  ```
+
+  ```objective-c
+  #if __has_include(<GTCaptcha4/GTCaptcha4.h>)
+  #import <GTCaptcha4/GTCaptcha4.h>
+  #else
+  #import "GTCaptcha4.h"
+  #endif
+  ```
+
+  ```objective-c
+  // 显示验证码
+  -(jobsByVoidBlock _Nonnull)show_verifyCode_GTCaptcha4{
+      @jobs_weakify(self)
+      return ^(){
+          @jobs_strongify(self)
+          [self.captchaSession verify];
+      };
+  }
+  ```
 
 ### 37、<font color=red id=UIView支持push和pop>让 **`UIView`**像 **`UINavigationController`**一样支持 push 和 pop</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -10773,20 +10802,33 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   ```objective-c
   self.bannerView.alpha = 1;
+  /// 刷新数据源
+  @synthesize dataArr = _dataArr;
+  -(void)setDataArr:(NSMutableArray<FMBannerAdsModel *> *)dataArr{
+      _dataArr = dataArr;
+      _bannerParam = nil;
+      self.bannerView = self.makeBannerView;
+  }
+  
+  -(WMZBannerView *)makeBannerView{
+      WMZBannerView *bannerView = [WMZBannerView.alloc initConfigureWithModel:self.bannerParam];
+      self.scrollView.addSubview(bannerView);
+      [bannerView updateUI];
+      return bannerView;
+  }
   
   -(WMZBannerView *)bannerView{
       if (!_bannerView) {
-          _bannerView = [WMZBannerView.alloc initConfigureWithModel:self.bannerParam];
-          [self.scrollView addSubview:_bannerView];
-          [_bannerView updateUI];
+          _bannerView = self.makeBannerView;
       }return _bannerView;
   }
   
   -(WMZBannerParam *)bannerParam{
       if (!_bannerParam) {
           _bannerParam = BannerParam()
-          //自定义视图必传
+          /// 自定义视图必传
           .wMyCellClassNameSet(JobsBaseCollectionViewCell.class.description)
+          /// 只有当首次调用时的数据源有值的时候，这个Block才会执行
           .wMyCellSet(^UICollectionViewCell *(NSIndexPath *indexPath,
                                               UICollectionView *collectionView,
                                               id model,
@@ -10796,17 +10838,22 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               JobsBaseCollectionViewCell *cell = [JobsBaseCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
               cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
               NSString *urlStr = @"";
-              
+              if(self.dataArr.count){
+                  for (FMBannerAdsModel *model in self.dataArr) {
+                      model.image = JobsIMG(@"狮子");
+                  }urlStr = self.dataArr[indexPath.item].iosImage;
+              }
               cell.backgroundImageView
-                  .imageURL(urlStr.jobsUrl)
-                  .placeholderImage(self.dataMutArr[indexPath.item])
+                  .imageURL(self.BaseUrl.add(urlStr).jobsUrl)
+                  .placeholderImage(self.dataArr[indexPath.item].image)
                   .options(SDWebImageRefreshCached)/// 强制刷新缓存
-                  .completed(^(UIImage * _Nullable image,
-                               NSError * _Nullable error,
+                  .completed(^(UIImage *_Nullable image,
+                               NSError *_Nullable error,
                                SDImageCacheType cacheType,
                                NSURL * _Nullable imageURL) {
                       if (error) {
                           NSLog(@"图片加载失败: %@", error);
+                          NSLog(@"图片URL: %@-%@",imageURL,urlStr.jobsUrl);
                       } else {
                           NSLog(@"图片加载成功");
                       }
@@ -10824,44 +10871,45 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           })
           .wFrameSet(CGRectMake(0,
                                 0,
-                                JobsWidth(280),
+                                JobsWidth(270),
                                 JobsWidth(250)))
-          //图片铺满
+          /// 图片铺满
           .wImageFillSet(YES)
-          //循环滚动
+          /// 循环滚动
           .wRepeatSet(YES)
-          //自动滚动时间
+          /// 自动滚动时间
           .wAutoScrollSecondSet(5)
-          //自动滚动
+          /// 自动滚动
           .wAutoScrollSet(YES)
-          //cell的位置
+          /// cell的位置
           .wPositionSet(BannerCellPositionCenter)
-          //分页按钮的选中的颜色
+          /// 分页按钮的选中的颜色
           .wBannerControlSelectColorSet(JobsWhiteColor)
-          //分页按钮的未选中的颜色
+          /// 分页按钮的未选中的颜色
           .wBannerControlColorSet(JobsLightGrayColor)
-          //分页按钮的圆角
+          /// 分页按钮的圆角
           .wBannerControlImageRadiusSet(5)
-          //自定义圆点间距
+          /// 自定义圆点间距
           .wBannerControlSelectMarginSet(3)
-          //隐藏分页按钮
+          /// 隐藏分页按钮
           .wHideBannerControlSet(NO)
-          //能否拖动
+          /// 能否拖动
           .wCanFingerSlidingSet(YES);
-          
-          _bannerParam.wDataSet(self.dataMutArr);
+          /// 第一次创建的时候，如果此数据源没有值，那么后续即便刷新UI也不会显示
+          _bannerParam.wDataSet(self.dataArr);
       }return _bannerParam;
   }
   
   -(NSMutableArray<UIImage *> *)dataMutArr{
       if (!_dataMutArr) {
-          _dataMutArr = NSMutableArray.array;
-          _dataMutArr.add(JobsIMG(@"狮子"));
-          _dataMutArr.add(JobsIMG(@"金猪"));
-          _dataMutArr.add(JobsIMG(@"美女荷官"));
-          _dataMutArr.add(JobsIMG(@"棋牌美女"));
-          _dataMutArr.add(JobsIMG(@"篮球运动员"));
-          _dataMutArr.add(JobsIMG(@"捕鱼"));
+          _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+              data.add(JobsIMG(@"狮子"));
+              data.add(JobsIMG(@"金猪"));
+              data.add(JobsIMG(@"美女荷官"));
+              data.add(JobsIMG(@"棋牌美女"));
+              data.add(JobsIMG(@"篮球运动员"));
+              data.add(JobsIMG(@"捕鱼"));
+          });
       }return _dataMutArr;
   }
   ```
