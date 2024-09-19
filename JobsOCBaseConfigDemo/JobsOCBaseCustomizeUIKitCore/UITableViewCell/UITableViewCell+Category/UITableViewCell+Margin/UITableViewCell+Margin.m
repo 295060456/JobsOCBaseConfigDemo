@@ -22,8 +22,10 @@
 //    [super setFrame:frame];
 //}
 /// 值打印
--(jobsByVoidBlock)printValue{
+-(jobsByVoidBlock _Nonnull)printValue{
+    @jobs_weakify(self)
     return ^(){
+        @jobs_strongify(self)
         NSLog(@"self.textLabelFrame = %@",NSStringFromCGRect(self.textLabelFrame));
         NSLog(@"self.detailTextLabelFrame = %@",NSStringFromCGRect(self.detailTextLabelFrame));
         NSLog(@"self.imageViewFrame = %@",NSStringFromCGRect(self.imageViewFrame));
@@ -56,8 +58,10 @@
     };
 }
 /// 修改 UITableViewCell 中默认子控件的frame 【方法一】
--(jobsByVoidBlock)modifySysChildViewFrame1{
+-(jobsByVoidBlock _Nonnull)modifySysChildViewFrame1{
+    @jobs_weakify(self)
     return ^(){
+        @jobs_strongify(self)
         self.contentView.frame = self.bounds;
         
         {///【组 1】 UITableViewCell单独自定义设置系统自带控件的Frame 【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️
@@ -191,8 +195,10 @@
     };
 }
 /// 修改 UITableViewCell 中默认子控件的frame 【方法二】
--(jobsByVoidBlock)modifySysChildViewFrame2{
+-(jobsByVoidBlock _Nonnull)modifySysChildViewFrame2{
+    @jobs_weakify(self)
     return ^(){
+        @jobs_strongify(self)
         self.contentView.frame = self.bounds;
         
         self.textLabelFrameOffsetX = JobsWidth(0);// 等价于用这个 self.textLabel.resetOriginXByOffset(JobsWidth(0));
@@ -212,8 +218,10 @@
     };
 }
 /// 取内部类UITableViewCellEditControl,对编辑状态的Cell的点击按钮进行替换成自定义的
--(jobsByVoidBlock)customCellEditStateImage{
+-(jobsByVoidBlock _Nonnull)customCellEditStateImage{
+    @jobs_weakify(self)
     return ^(){
+        @jobs_strongify(self)
         for (UIControl *control in self.subviews){
             if ([control isMemberOfClass:NSClassFromString(@"UITableViewCellEditControl")]){
                 for (UIView *view in control.subviews){

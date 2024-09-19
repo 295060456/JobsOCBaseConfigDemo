@@ -2624,33 +2624,24 @@ NSObject <|-- BaseProtocol
   ```
 
   ```objective-c
-  #import "IncentiveVC.h"
-  
+  import "FMIncentiveVC.h"
   #define MenuWidth JobsWidth(159)
-  
-  @interface IncentiveVC ()
+  @interface FMIncentiveVC ()
   /// UI
   @property(nonatomic,strong)UITableView *tableView; /// 左侧的标题
-  @property(nonatomic,strong)JobsHotRecommendView *hotRecommendView;
-  @property(nonatomic,strong)TopBar *topBar;
   @property(nonatomic,strong)UIImageView *topImageView;
-  @property(nonatomic,strong)UIImageView *tabBarCoverImageView;
-  @property(nonatomic,strong)TopGamesView *topGamesView;
-  @property(nonatomic,strong)SlotGamesView *slotGamesView;
-  @property(nonatomic,strong)LiveCasinoView *liveCasinoView;
-  @property(nonatomic,strong)TableGamesView *tableGamesView;
-  @property(nonatomic,strong)SportsView *sportsView;
-  @property(nonatomic,strong)FishingView *fishingView;
   /// Data
   @property(nonatomic,strong)NSMutableArray <UIViewModel *>*titleMutArr;
   @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*subViewMutArr;/// 右侧的视图数组
   @property(nonatomic,strong)NSMutableArray <UIImage *>*normal_titleBgImageMutArr;
   @property(nonatomic,strong)NSMutableArray <UIImage *>*normal_titleImageMutArr;
   @property(nonatomic,strong)NSMutableArray <UIImage *>*select_titleBgImageMutArr;
+  @property(nonatomic,strong)NSMutableArray <UIImage *>*bgImageMutArr1; /// 底图
+  @property(nonatomic,strong)NSMutableArray <UIImage *>*bgImageMutArr2; /// 最上面的小图
   
   @end
   
-  @implementation IncentiveVC
+  @implementation FMIncentiveVC
   
   - (void)dealloc{
       NSLog(@"%@",JobsLocalFunc);
@@ -2670,36 +2661,27 @@ NSObject <|-- BaseProtocol
           self.viewModel = (UIViewModel *)self.requestParams;
       }
       self.setupNavigationBarHidden = YES;
+      self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"INCENTIVE");
+      self.viewModel.textModel.textCor = JobsWhiteColor;
+      self.viewModel.textModel.text = JobsInternationalization(@"");
+      self.viewModel.textModel.font = bayonRegular(JobsWidth(18));
       
-      {
-          self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
-          self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-          self.viewModel.textModel.text = JobsInternationalization(@"相关功能列表");
-          self.viewModel.textModel.font = UIFontWeightRegularSize(16);
-          
-          // 使用原则：底图有 + 底色有 = 优先使用底图数据
-          // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-          // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
-          self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-      //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
-          self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-          self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
-      }
+      // 使用原则：底图有 + 底色有 = 优先使用底图数据
+      // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
+      // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+      self.viewModel.navBgCor = JobsClearColor.colorWithAlphaComponent(0);
+  //    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
   }
   
   - (void)viewDidLoad {
       [super viewDidLoad];
-      self.setGKNav(nil);
-      self.setGKNavBackBtn(nil);
-      self.bgImageView.image = JobsIMG(@"TOP GAMES");
+      self.makeNavByAlpha(1);
+      self.bgImageView.image = self.bgImageMutArr1[0];
       self.topImageView.alpha = 1;
-      self.topBar.alpha = 1;
       
       self.tableView.alpha = 1;
-      self.hotRecommendView.alpha = 1;
-      self.tabBarCoverImageView.alpha = 1;
       
-      self.displayView(self.subViewMutArr[0]);
+      self.displayView(self.subViewMutArr[0]);/// 显示指定的右侧视图
   }
   
   -(void)viewWillAppear:(BOOL)animated{
@@ -2727,12 +2709,7 @@ NSObject <|-- BaseProtocol
   - (__kindof UITableViewCell *)tableView:(__kindof UITableView *)tableView
                     cellForRowAtIndexPath:(NSIndexPath *)indexPath {
       FMMenuTBVCell *cell = FMMenuTBVCell.cellStyleDefaultWithTableView(tableView);
-      UIViewModel *viewModel = UIViewModel.new;
-      viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
-      if(indexPath.row == 0){
-          viewModel.bgImage = self.select_titleBgImageMutArr[indexPath.row];
-      }
-      cell.jobsRichElementsInCellWithModel(viewModel);
+      cell.jobsRichElementsInCellWithModel(self.titleMutArr[indexPath.row]);
       return cell;
   }
   
@@ -2745,21 +2722,25 @@ NSObject <|-- BaseProtocol
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
       self.displayView(self.subViewMutArr[indexPath.row]);
       FMMenuTBVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-      int t = 0;
-      for (FMMenuTBVCell *cell in tableView.visibleCells) {
-          UIViewModel *viewModel = UIViewModel.new;
-          viewModel.textModel.text = self.titleMutArr[t].textModel.text;
+  
+      for (int t = 0; t < tableView.visibleCells.count; t++) {
+          FMMenuTBVCell *cell = tableView.visibleCells[t];
+          UIViewModel *viewModel = self.titleMutArr[t];
+          viewModel.isMark = NO;
           cell.jobsRichElementsInCellWithModel(viewModel);
-          t++;
       }
       
-      UIViewModel *viewModel = UIViewModel.new;
-      viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
-      viewModel.bgImage = self.select_titleBgImageMutArr[indexPath.row];
+      self.bgImageView.image = self.bgImageMutArr1[indexPath.row];
+      self.topImageView.image = self.bgImageMutArr2[indexPath.row];
+      
+      UIViewModel *viewModel = self.titleMutArr[indexPath.row];
+      viewModel.isMark = YES;
       cell.jobsRichElementsInCellWithModel(viewModel);
+      
+  //    self.refreshNewView(indexPath.row);
   }
   #pragma mark —— 一些私有方法
-  -(JobsReturnViewByClassBlock)makeSubViews{
+  -(JobsReturnViewByClassBlock _Nonnull)makeSubViews{
       return ^UIView *_Nullable(Class _Nonnull cls){
           UIView *view = cls.new;
           view.frame = CGRectMake(MenuWidth,
@@ -2770,8 +2751,17 @@ NSObject <|-- BaseProtocol
           return view;
       };
   }
+  
+  -(jobsByNSIntegerBlock _Nonnull)refreshNewView{
+      @jobs_weakify(self)
+      return ^(NSInteger data){
+          @jobs_strongify(self)
+          JobsMenuBaseSubView *view = self.subViewMutArr[data];
+          view.refreshNewView();
+      };
+  }
   /// 显示指定的右侧视图
-  - (jobsByViewBlock)displayView {
+  - (jobsByViewBlock _Nonnull)displayView {
       @jobs_weakify(self)
       return ^(__kindof UIView *subview) {
           @jobs_strongify(self)
@@ -2807,43 +2797,17 @@ NSObject <|-- BaseProtocol
           [self.view addSubview:_tableView];
           [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
               make.left.equalTo(self.view);
-              make.top.equalTo(self.topBar.mas_bottom);
+              make.top.equalTo(self.navBar.mas_bottom);
               make.bottom.equalTo(self.view);
               make.width.mas_equalTo(MenuWidth);
           }];
       }return _tableView;
   }
-  /// 屏幕右下角的热门推荐
-  -(JobsHotRecommendView *)hotRecommendView{
-      if(!_hotRecommendView){
-          _hotRecommendView = JobsHotRecommendView.new;
-          [self.view addSubview:_hotRecommendView];
-          [_hotRecommendView mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.size.mas_equalTo([_hotRecommendView viewSizeWithModel:nil]);
-              make.bottom.equalTo(self.view);
-              make.right.equalTo(self.view);
-          }];
-          _hotRecommendView.jobsRichElementsInViewWithModel(nil);
-      }return _hotRecommendView;
-  }
-  /// 屏幕顶部的Bar
-  -(TopBar *)topBar{
-      if(!_topBar){
-          _topBar = TopBar.new;
-          _topBar.backgroundColor = JobsClearColor;
-          [self.view addSubview:_topBar];
-          [_topBar mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.size.mas_equalTo([TopBar viewSizeWithModel:nil]);
-              make.top.left.equalTo(self.view);
-          }];
-          _topBar.jobsRichElementsInViewWithModel(nil);
-      }return _topBar;
-  }
   
   -(UIImageView *)topImageView{
       if(!_topImageView){
           _topImageView = UIImageView.new;
-          _topImageView.image = JobsIMG(@"Top_Games");
+          _topImageView.image = self.bgImageMutArr2[0];
           [self.bgImageView addSubview:_topImageView];
           [_topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
               make.top.equalTo(self.view);
@@ -2853,149 +2817,166 @@ NSObject <|-- BaseProtocol
       }return _topImageView;
   }
   
-  -(UIImageView *)tabBarCoverImageView{
-      if(!_tabBarCoverImageView){
-          _tabBarCoverImageView = UIImageView.new;
-          _tabBarCoverImageView.image = JobsIMG(@"TabBarCoverImage");
-          [self.view addSubview:_tabBarCoverImageView];
-          [_tabBarCoverImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.size.mas_equalTo(CGSizeMake(JobsRealWidth(),
-                                               [self.hotRecommendView viewSizeWithModel:nil].height + JobsWidth(7)));
-              make.left.equalTo(self.view);
-              make.bottom.equalTo(self.view);
-          }];
-      }return _tabBarCoverImageView;
-  }
-  
   - (NSMutableArray<UIViewModel *> *)titleMutArr {
       if (!_titleMutArr) {
           /// 最初默认的数据
-          _titleMutArr = NSMutableArray.array;
-          {
-              UIViewModel *viewModel = UIViewModel.new;
-              viewModel.textModel.text = JobsInternationalization(@"TOP GAMES");
-              _titleMutArr.add(viewModel);
-          }
+          _titleMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+              {
+                  UIViewModel *viewModel = UIViewModel.new;
+                  viewModel.textModel.text = JobsInternationalization(@"ALL");
+                  viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
+                  viewModel.image = self.normal_titleImageMutArr[0];
+                  viewModel.bgImage = self.select_titleBgImageMutArr[0];
+                  data.add(viewModel);
+              }
+              
+              {
+                  UIViewModel *viewModel = UIViewModel.new;
+                  viewModel.textModel.text = JobsInternationalization(@"SLOT GAMES");
+                  viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
+                  viewModel.image = self.normal_titleImageMutArr[1];
+                  data.add(viewModel);
+              }
   
-          {
-              UIViewModel *viewModel = UIViewModel.new;
-              viewModel.textModel.text = JobsInternationalization(@"SLOT GAMES");
-              _titleMutArr.add(viewModel);
-          }
+              {
+                  UIViewModel *viewModel = UIViewModel.new;
+                  viewModel.textModel.text = JobsInternationalization(@"LIVE CASINO");
+                  viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
+                  viewModel.image = self.normal_titleImageMutArr[2];
+                  data.add(viewModel);
+              }
   
-          {
-              UIViewModel *viewModel = UIViewModel.new;
-              viewModel.textModel.text = JobsInternationalization(@"LIVE CASINO");
-              _titleMutArr.add(viewModel);
-          }
-  
-          {
-              UIViewModel *viewModel = UIViewModel.new;
-              viewModel.textModel.text = JobsInternationalization(@"TABLE GAMES");
-              _titleMutArr.add(viewModel);
-          }
-  
-          {
-              UIViewModel *viewModel = UIViewModel.new;
-              viewModel.textModel.text = JobsInternationalization(@"SPORTS");
-              _titleMutArr.add(viewModel);
-          }
-          
-          {
-              UIViewModel *viewModel = UIViewModel.new;
-              viewModel.textModel.text = JobsInternationalization(@"FISHING");
-              _titleMutArr.add(viewModel);
-          }
+              {
+                  UIViewModel *viewModel = UIViewModel.new;
+                  viewModel.textModel.text = JobsInternationalization(@"SPORTS");
+                  viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
+                  viewModel.image = self.normal_titleImageMutArr[3];
+                  data.add(viewModel);
+              }
+              
+              {
+                  UIViewModel *viewModel = UIViewModel.new;
+                  viewModel.textModel.text = JobsInternationalization(@"OTHERS");
+                  viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
+                  viewModel.image = self.normal_titleImageMutArr[4];
+                  data.add(viewModel);
+              }
+          });
       }return _titleMutArr;
   }
   
   -(NSMutableArray<__kindof UIView *> *)subViewMutArr{
       if(!_subViewMutArr){
-          _subViewMutArr = NSMutableArray.array;
-          _subViewMutArr.add(self.topGamesView);
-          _subViewMutArr.add(self.slotGamesView);
-          _subViewMutArr.add(self.liveCasinoView);
-          _subViewMutArr.add(self.tableGamesView);
-          _subViewMutArr.add(self.sportsView);
-          _subViewMutArr.add(self.fishingView);
+          @jobs_weakify(self)
+          _subViewMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+              @jobs_strongify(self)
+              data.add(self.makeSubViews(FMIncentiveAllView.class));
+              data.add(self.makeSubViews(FMIncentiveSlotGamesView.class));
+              data.add(self.makeSubViews(FMIncentiveLiveCasinoView.class));
+              data.add(self.makeSubViews(FMIncentiveSportsView.class));
+              data.add(self.makeSubViews(FMIncentiveOthersView.class));
+          });
       }return _subViewMutArr;
   }
   
   -(NSMutableArray<UIImage *> *)normal_titleBgImageMutArr{
       if(!_normal_titleBgImageMutArr){
-          _normal_titleBgImageMutArr = NSMutableArray.array;
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Top_Games_menu_未点击"));
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Slot_Games_menu_未点击"));
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Live_Casino_menu_未点击"));
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Table_Games_menu_未点击"));
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Sport_Menu_未点击"));
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Fishing_menu_未点击"));
+          _normal_titleBgImageMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+              data.add(JobsIMG(@"Top_Games_menu_未点击"));
+              data.add(JobsIMG(@"Slot_Games_menu_未点击"));
+              data.add(JobsIMG(@"Live_Casino_menu_未点击"));
+              data.add(JobsIMG(@"Table_Games_menu_未点击"));
+              data.add(JobsIMG(@"Sport_Menu_未点击"));
+  //            data.add(JobsIMG(@"Fishing_menu_未点击"));
+          });
       }return _normal_titleBgImageMutArr;
   }
   
   -(NSMutableArray<UIImage *> *)normal_titleImageMutArr{
       if(!_normal_titleImageMutArr){
-          _normal_titleImageMutArr = NSMutableArray.array;
-          _normal_titleImageMutArr.add(JobsIMG(@"Top_Games_小图标_未点击"));
-          _normal_titleImageMutArr.add(JobsIMG(@"Slot_Games_小图标_未点击"));
-          _normal_titleImageMutArr.add(JobsIMG(@"Live_Casino_小图标_未点击"));
-          _normal_titleImageMutArr.add(JobsIMG(@"Table_Games_小图标_未点击"));
-          _normal_titleImageMutArr.add(JobsIMG(@"Sport_小图标_未点击"));
-          _normal_titleImageMutArr.add(JobsIMG(@"Fishing_小图标_未点击"));
+          _normal_titleImageMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+              data.add(JobsIMG(@"Top_Games_小图标_未点击"));
+              data.add(JobsIMG(@"Slot_Games_小图标_未点击"));
+              data.add(JobsIMG(@"Live_Casino_小图标_未点击"));
+              data.add(JobsIMG(@"Table_Games_小图标_未点击"));
+              data.add(JobsIMG(@"Sport_小图标_未点击"));
+  //            data.add(JobsIMG(@"Fishing_小图标_未点击"));
+          });
       }return _normal_titleImageMutArr;
   }
   
   -(NSMutableArray<UIImage *> *)select_titleBgImageMutArr{
       if(!_select_titleBgImageMutArr){
-          _select_titleBgImageMutArr = NSMutableArray.array;
-          _select_titleBgImageMutArr.add(JobsIMG(@"Top_Games_menu_已点击"));
-          _select_titleBgImageMutArr.add(JobsIMG(@"Slot_Games_menu_已点击"));
-          _select_titleBgImageMutArr.add(JobsIMG(@"Live_Casino_menu_已点击"));
-          _select_titleBgImageMutArr.add(JobsIMG(@"Table_Games_menu_已点击"));
-          _select_titleBgImageMutArr.add(JobsIMG(@"Sport_Menu_已点击"));
-          _select_titleBgImageMutArr.add(JobsIMG(@"Fishing_menu_已点击"));
+          _select_titleBgImageMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+              data.add(JobsIMG(@"Top_Games_menu_已点击"));
+              data.add(JobsIMG(@"Slot_Games_menu_已点击"));
+              data.add(JobsIMG(@"Live_Casino_menu_已点击"));
+              data.add(JobsIMG(@"Table_Games_menu_已点击"));
+              data.add(JobsIMG(@"Sport_Menu_已点击"));
+  //            data.add(JobsIMG(@"Fishing_menu_已点击"));
+          });
       }return _select_titleBgImageMutArr;
   }
-  
-  -(TopGamesView *)topGamesView{
-      if(!_topGamesView){
-          _topGamesView = self.makeSubViews(TopGamesView.class);
-      }return _topGamesView;
+  /// 底图
+  -(NSMutableArray<UIImage *> *)bgImageMutArr1{
+      if(!_bgImageMutArr1){
+          _bgImageMutArr1 = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+              data.add(JobsIMG(@"TOP GAMES"));
+              data.add(JobsIMG(@"SLOT GAMES"));
+              data.add(JobsIMG(@"LIVE CASINO"));
+              data.add(JobsIMG(@"TABLE GAMES"));
+              data.add(JobsIMG(@"SPORTS"));
+  //            data.add(JobsIMG(@"FINSHING"));
+          });
+      }return _bgImageMutArr1;
   }
-  
-  -(SlotGamesView *)slotGamesView{
-      if(!_slotGamesView){
-          _slotGamesView = self.makeSubViews(SlotGamesView.class);
-      }return _slotGamesView;
+  /// 最上面的小图
+  -(NSMutableArray<UIImage *> *)bgImageMutArr2{
+      if(!_bgImageMutArr2){
+          _bgImageMutArr2 = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+              data.add(JobsIMG(@"Top_Games"));
+              data.add(JobsIMG(@"Slot_Games"));
+              data.add(JobsIMG(@"Live_Casino"));
+              data.add(JobsIMG(@"Table_Games"));
+              data.add(JobsIMG(@"Sports"));
+  //            data.add(JobsIMG(@"Fishing"));
+          });
+      }return _bgImageMutArr2;
   }
-  
-  -(LiveCasinoView *)liveCasinoView{
-      if(!_liveCasinoView){
-          _liveCasinoView = self.makeSubViews(LiveCasinoView.class);
-      }return _liveCasinoView;
-  }
-  
-  -(TableGamesView *)tableGamesView{
-      if(!_tableGamesView){
-          _tableGamesView = self.makeSubViews(TableGamesView.class);
-      }return _tableGamesView;
-  }
-  
-  -(SportsView *)sportsView{
-      if(!_sportsView){
-          _sportsView = self.makeSubViews(SportsView.class);
-      }return _sportsView;
-  }
-  
-  -(FishingView *)fishingView{
-      if(!_fishingView){
-          _fishingView = self.makeSubViews(FishingView.class);
-      }return _fishingView;
+  @synthesize backBtnModel = _backBtnModel;
+  -(UIButtonModel *)backBtnModel{
+      if(!_backBtnModel){
+          _backBtnModel = UIButtonModel.new;
+  //        _backBtnModel.backgroundImage = JobsIMG(@"返回");
+  //        _backBtnModel.selected_backgroundImage = JobsIMG(@"返回");
+          _backBtnModel.normalImage = JobsIMG(@"返回");
+          _backBtnModel.highlightImage = JobsIMG(@"返回");
+          _backBtnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+          _backBtnModel.title = self.viewModel.backBtnTitleModel.text;
+          _backBtnModel.titleFont = bayonRegular(JobsWidth(18));
+          _backBtnModel.titleCor = JobsWhiteColor;
+          _backBtnModel.selected_titleCor = JobsWhiteColor;
+          _backBtnModel.roundingCorners = UIRectCornerAllCorners;
+          _backBtnModel.imagePlacement = NSDirectionalRectEdgeLeading;
+          _backBtnModel.imagePadding = JobsWidth(5);
+          @jobs_weakify(self)
+          _backBtnModel.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
+                                                         id _Nullable arg) {
+              NSLog(@"按钮的长按事件触发");
+              return nil;
+          };
+          _backBtnModel.clickEventBlock = ^id(BaseButton *x){
+              @jobs_strongify(self)
+              if (self.objectBlock) self.objectBlock(x);
+              self.jobsBackBtnClickEvent(x);
+              return nil;
+          };
+      }return _backBtnModel;
   }
   
   @end
   ```
-
+  
 * [**`JobsVerticalMenuVC@2`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/%E7%AB%96%E5%BD%A2%E8%8F%9C%E5%8D%95%E9%80%89%E6%8B%A9%E5%8A%9F%E8%83%BD/ViewController/JobsVerticalMenuVC)
 
   * 左侧的菜单标题是**`UITableView`**

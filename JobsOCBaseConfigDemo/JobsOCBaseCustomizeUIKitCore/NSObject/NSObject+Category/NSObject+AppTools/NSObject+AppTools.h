@@ -55,7 +55,9 @@ AppToolsProtocol
 /// @param viewModel 此视图所绑定的数据。传nil则使用testPopViewData的数据、传UIViewModel.new则使用popViewClass预埋的数据
 -(UIView<BaseViewProtocol> *)jobsPopView:(Class<BaseViewProtocol> _Nullable)popViewClass
                                viewModel:(UIViewModel *_Nullable)viewModel;
-#pragma mark —— 网络通讯方面的
+#pragma mark —— 设备横屏的方向判定
+-(BOOL)isLandscapeRight;
+-(BOOL)isLandscapeLeft;
 #pragma mark —— 通过验证返回YES
 -(BOOL)userAndPasswordNotUpTo:(NSString *)value;
 -(BOOL)telNotUpTo:(NSString *)value;
@@ -73,3 +75,28 @@ AppToolsProtocol
 @end
 
 NS_ASSUME_NONNULL_END
+/**
+ switch (customerContactElementModel.customerMark) {
+     case CustomerContactStyle_QQ:{
+         self.jobsOpenURL(@"mqq://im/chat?chat_type=wpa&uin=".add(customerContactElementModel.customerAccount).add(@"&version=1&src_type=web"));
+     }break;
+     case CustomerContactStyle_Skype:{
+         self.jobsOpenURL(@"skype://".add(customerContactElementModel.customerAccount).add(@"?chat"));
+     }break;
+     case CustomerContactStyle_Telegram:{
+         self.jobsOpenURL(@"https://t.me/".add(customerContactElementModel.customerAccount));
+     }break;
+     case CustomerContactStyle_whatsApp:{
+         self.jobsOpenURL(@"https://wa.me/".add(customerContactElementModel.customerAccount));
+     }break;
+     case CustomerContactStyle_手机号码:{
+         self.jobsToastMsg(@"打开手机号码未配置");
+     }break;
+     case CustomerContactStyle_onlineURL:{
+         self.jobsToastMsg(@"打开onlineURL未配置");
+     }break;
+
+     default:
+         break;
+ }
+ */

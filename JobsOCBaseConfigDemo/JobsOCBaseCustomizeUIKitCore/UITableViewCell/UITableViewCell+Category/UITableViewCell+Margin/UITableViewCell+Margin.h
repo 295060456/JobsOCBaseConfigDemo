@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
+#import "JobsBlock.h"
 #import "BaseCellProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -18,13 +19,13 @@ BaseCellProtocol
 >
 #pragma mark —— 一些公有的功能方法
 /// 值打印
--(jobsByVoidBlock)printValue;
+-(jobsByVoidBlock _Nonnull)printValue;
 /// 修改 UITableViewCell 中默认子控件的frame 【方法一】
--(jobsByVoidBlock)modifySysChildViewFrame1;
+-(jobsByVoidBlock _Nonnull)modifySysChildViewFrame1;
 /// 修改 UITableViewCell 中默认子控件的frame 【方法二】
--(jobsByVoidBlock)modifySysChildViewFrame2;
+-(jobsByVoidBlock _Nonnull)modifySysChildViewFrame2;
 /// 取内部类UITableViewCellEditControl,对编辑状态的Cell的点击按钮进行替换成自定义的
--(jobsByVoidBlock)customCellEditStateImage;
+-(jobsByVoidBlock _Nonnull)customCellEditStateImage;
 
 @end
 

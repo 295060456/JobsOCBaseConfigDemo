@@ -34,47 +34,13 @@ NS_ASSUME_NONNULL_END
 /**
  【用法与用量】
  -(BaseButton *)btn{
-     if(!_btn){
-         @jobs_weakify(self)
-         _btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                  background:nil
-                                  buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                               textAlignment:NSTextAlignmentCenter
-                                            subTextAlignment:NSTextAlignmentCenter
-                                                 normalImage:nil
-                                              highlightImage:nil
-                                             attributedTitle:nil
-                                     selectedAttributedTitle:nil
-                                          attributedSubtitle:nil
-                                                       title:JobsInternationalization(@"点击按钮弹出下拉列表")
-                                                    subTitle:nil
-                                                   titleFont:UIFontWeightRegularSize(12)
-                                                subTitleFont:nil
-                                                    titleCor:JobsWhiteColor
-                                                 subTitleCor:nil
-                                          titleLineBreakMode:NSLineBreakByWordWrapping
-                                       subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                         baseBackgroundColor:JobsOrangeColor
-                                             backgroundImage:nil
-                                                imagePadding:JobsWidth(0)
-                                                titlePadding:JobsWidth(0)
-                                              imagePlacement:NSDirectionalRectEdgeNone
-                                  contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                    contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                               contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                           cornerRadiusValue:JobsWidth(8)
-                                             roundingCorners:UIRectCornerAllCorners
-                                        roundingCornersRadii:CGSizeZero
-                                              layerBorderCor:nil
-                                                 borderWidth:JobsWidth(1)
-                                               primaryAction:nil
-                                  longPressGestureEventBlock:^id(id  _Nullable weakSelf,
-                                                               id  _Nullable arg) {
-             NSLog(@"按钮的长按事件触发");
-             return nil;
-      }
-                                             clickEventBlock:^id(BaseButton *x){
-             @jobs_strongify(self)
+ if(!_btn){
+     @jobs_weakify(self)
+     _btn = BaseButton
+         .initByTitle_font_titleCor(JobsInternationalization(@"点击按钮弹出下拉列表"),UIFontWeightRegularSize(12),JobsWhiteColor)
+         .bgColor(JobsWhiteColor)
+         .cornerRadiusValue(JobsWidth(8))
+         .onClick(^(UIButton *x){
              if (self.objectBlock) self.objectBlock(x);
              NSLog(@"AAA = %@",self.dropDownListView);
              x.selected = !x.selected;
@@ -89,17 +55,18 @@ NS_ASSUME_NONNULL_END
                  }];
              }else{
                  [self endDropDownListView];
-             }return nil;
-          return nil;
-         }];
-         [self.view addSubview:_btn];
-         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.center.equalTo(self.view);
- //            make.size.mas_equalTo(CGSizeMake(JobsWidth(120), JobsWidth(25)));
-             make.height.mas_equalTo(JobsWidth(30));
-         }];
-         _btn.makeBtnTitleByShowingType(UILabelShowingType_03);
-     }return _btn;
- }
+             }
+         }).onLongPressGesture(^(id data){
+             NSLog(@"按钮的长按事件触发");
+         });
+     [self.view addSubview:_btn];
+     [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.center.equalTo(self.view);
+//            make.size.mas_equalTo(CGSizeMake(JobsWidth(120), JobsWidth(25)));
+         make.height.mas_equalTo(JobsWidth(30));
+     }];
+     _btn.makeBtnTitleByShowingType(UILabelShowingType_03);
+ }return _btn;
+}
  
  */

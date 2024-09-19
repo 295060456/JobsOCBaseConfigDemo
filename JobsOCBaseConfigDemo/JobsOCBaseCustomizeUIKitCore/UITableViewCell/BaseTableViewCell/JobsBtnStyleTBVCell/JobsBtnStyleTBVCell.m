@@ -64,44 +64,8 @@ UIViewModelProtocol_synthesize
 -(BaseButton *)btn{
     if(!_btn){
         @jobs_weakify(self)
-        _btn = [BaseButton.alloc jobsInitBtnByConfiguration:UIButtonConfiguration.plainButtonConfiguration
-                                                 background:nil
-                                 buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                              textAlignment:NSTextAlignmentCenter
-                                           subTextAlignment:NSTextAlignmentCenter
-                                                normalImage:nil
-                                             highlightImage:nil
-                                            attributedTitle:nil
-                                    selectedAttributedTitle:nil
-                                         attributedSubtitle:nil
-                                                      title:nil
-                                                   subTitle:nil
-                                                  titleFont:nil
-                                               subTitleFont:nil
-                                                   titleCor:nil
-                                                subTitleCor:nil
-                                         titleLineBreakMode:NSLineBreakByWordWrapping
-                                      subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                        baseBackgroundColor:nil
-                                            backgroundImage:nil
-                                               imagePadding:JobsWidth(0)
-                                               titlePadding:JobsWidth(0)
-                                             imagePlacement:NSDirectionalRectEdgeTop
-                                 contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                   contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                              contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                          cornerRadiusValue:JobsWidth(0)
-                                            roundingCorners:UIRectCornerAllCorners
-                                       roundingCornersRadii:CGSizeZero
-                                             layerBorderCor:nil
-                                                borderWidth:JobsWidth(0)
-                                              primaryAction:nil
-                                 longPressGestureEventBlock:nil
-                                            clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        UIButtonModel *buttonModel = UIButtonModel.new;
+        _btn = BaseButton.initByButtonModel(buttonModel);
         _btn.enabled = NO;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
         [self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {

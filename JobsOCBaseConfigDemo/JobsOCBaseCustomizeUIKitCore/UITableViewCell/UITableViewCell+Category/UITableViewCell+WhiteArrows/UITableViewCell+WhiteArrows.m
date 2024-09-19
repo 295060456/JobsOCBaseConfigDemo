@@ -18,8 +18,8 @@
             .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .onClick(^(__kindof UIButton *x){
                 @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            if (customAccessoryViewBlock) customAccessoryViewBlock(self);
+                if (self.objectBlock) self.objectBlock(x);
+                if (customAccessoryViewBlock) customAccessoryViewBlock(self);
         });
         /// 特比注意:如果这个地方是纯view（UIView、UIIMageView...）就可以不用加size，UIButton是因为受到了UIControl，需要接收一个size，否则显示不出来
         btn.Size = self.arrows_size;

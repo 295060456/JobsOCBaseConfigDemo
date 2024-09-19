@@ -292,7 +292,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     // popupView.size = [popViewClass viewSizeWithModel:nil];
     popupView.jobsRichElementsInViewWithModel(viewModel ? : self.testPopViewData);
     @jobs_weakify(popupView)
-    [popupView actionObjectBlock:^(UIButton *data) {
+    [popupView actionObjectBlock:^(__kindof UIButton *data) {
         @jobs_strongify(popupView)
         if([data.titleForNormalState isKindOfClass:NSString.class]){
             if (data.titleForNormalState.isEqualToString(JobsInternationalization(@"取消"))) {
@@ -305,60 +305,14 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         [popViewClass.class destroySingleton];
     }];return popupView;
 }
-/// App 升级弹窗：在根控制器下实现，做到覆盖全局的统一
--(void)appUpdateWithData:(CasinoGetiOSNewestVersionModel *_Nonnull)updateData
-               sureBlock:(jobsByIDBlock _Nullable)sureBlock
-             cancelBlock:(jobsByIDBlock _Nullable)cancelBlock{
-//    CasinoUpgradePopupView *upgradePopupView = CasinoUpgradePopupView.new;
-//    upgradePopupView.size = [CasinoUpgradePopupView viewSizeWithModel:nil];
-//    upgradePopupView.jobsRichElementsInViewWithModel(updateData);
-//    [upgradePopupView actionObjectBlock:^(UIButton *data) {
-//        if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Cancel")]) {
-//            if (cancelBlock) cancelBlock(@1);
-//        }else if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Sure")]){
-//            if (sureBlock) sureBlock(@1);
-//        }else{}
-//        [upgradePopupView tf_hide];
-//    }];
-//
-//    [self popupWithView:upgradePopupView];
+#pragma mark —— 设备横屏的方向判定
+-(BOOL)isLandscapeRight{
+    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscapeRight;
 }
 
-//-(void)actionForHotLabel:(JobsHotLabelWithSingleLine *)hl{
-////    @jobs_weakify(self)
-//    [hl actionObjectBlock:^(UIButton *btn) {
-////        @jobs_strongify(self)
-//        if([btn.requestParams isKindOfClass:CasinoCustomerContactElementModel.class]){
-//            CasinoCustomerContactElementModel *customerContactElementModel = (CasinoCustomerContactElementModel *)btn.requestParams;
-//
-//            switch (customerContactElementModel.customerMark) {
-//                case CustomerContactStyle_QQ:{
-//                    self.jobsOpenURL(@"mqq://im/chat?chat_type=wpa&uin=".add(customerContactElementModel.customerAccount).add(@"&version=1&src_type=web"));
-//                }break;
-//                case CustomerContactStyle_Skype:{
-//                    self.jobsOpenURL(@"skype://".add(customerContactElementModel.customerAccount).add(@"?chat"));
-//                }break;
-//                case CustomerContactStyle_Telegram:{
-//                    self.jobsOpenURL(@"https://t.me/".add(customerContactElementModel.customerAccount));
-//                }break;
-//                case CustomerContactStyle_whatsApp:{
-//                    self.jobsOpenURL(@"https://wa.me/".add(customerContactElementModel.customerAccount));
-//                }break;
-//                case CustomerContactStyle_手机号码:{
-//                    self.jobsToastMsg(@"打开手机号码未配置");
-//                }break;
-//                case CustomerContactStyle_onlineURL:{
-//                    self.jobsToastMsg(@"打开onlineURL未配置");
-//                }break;
-//
-//                default:
-//                    break;
-//            }
-//        }
-//    }];
-//}
-#pragma mark —— 网络通讯方面的
-
+-(BOOL)isLandscapeLeft{
+    return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscapeLeft;
+}
 #pragma mark —— 通过验证返回YES
 -(BOOL)userAndPasswordNotUpTo:(NSString *)value{
     return value.length < 6;
@@ -514,7 +468,6 @@ JobsKey(__立即注册)
                 if (self.objectBlock) self.objectBlock(x);
             })
             .onLongPressGesture(^(id data){
-                @jobs_strongify(self)
                 NSLog(@"按钮的长按事件触发");
             });
         UIViewController *viewController = (UIViewController *)self;
@@ -547,7 +500,6 @@ JobsKey(__联系客服)
                 if (self.objectBlock) self.objectBlock(x);
             })
             .onLongPressGesture(^(id data){
-                @jobs_strongify(self)
                 NSLog(@"按钮的长按事件触发");
             });
         UIViewController *viewController = (UIViewController *)self;

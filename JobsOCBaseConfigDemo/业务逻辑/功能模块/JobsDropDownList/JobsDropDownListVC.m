@@ -88,62 +88,29 @@
 -(BaseButton *)btn{
     if(!_btn){
         @jobs_weakify(self)
-        _btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                 background:nil
-                                 buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                              textAlignment:NSTextAlignmentCenter
-                                           subTextAlignment:NSTextAlignmentCenter
-                                                normalImage:nil
-                                             highlightImage:nil
-                                            attributedTitle:nil
-                                    selectedAttributedTitle:nil
-                                         attributedSubtitle:nil
-                                                      title:JobsInternationalization(@"点击按钮弹出下拉列表")
-                                                   subTitle:nil
-                                                  titleFont:UIFontWeightRegularSize(12)
-                                               subTitleFont:nil
-                                                   titleCor:JobsWhiteColor
-                                                subTitleCor:nil
-                                         titleLineBreakMode:NSLineBreakByWordWrapping
-                                      subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                        baseBackgroundColor:JobsOrangeColor
-                                            backgroundImage:nil
-                                               imagePadding:JobsWidth(0)
-                                               titlePadding:JobsWidth(0)
-                                             imagePlacement:NSDirectionalRectEdgeNone
-                                 contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                   contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                              contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                          cornerRadiusValue:JobsWidth(8)
-                                            roundingCorners:UIRectCornerAllCorners
-                                       roundingCornersRadii:CGSizeZero
-                                             layerBorderCor:nil
-                                                borderWidth:JobsWidth(1)
-                                              primaryAction:nil
-                                 longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                            clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"AAA = %@",self.dropDownListView);
-            x.selected = !x.selected;
-            if (x.selected) {
-                /// ❤️只能让它执行一次❤️
-                self.dropDownListView = [self motivateFromView:x
-                                 jobsDropDownListViewDirection:self.dropDownListViewDirection
-                                                          data:self.listViewData
-                                            motivateViewOffset:JobsWidth(5)
-                                                   finishBlock:^(UIViewModel *data) {
-                    NSLog(@"data = %@",data);
-                }];
-            }else{
-                [self endDropDownListView];
-            }return nil;
-         return nil;
-        }];
+        _btn = BaseButton
+            .initByTitle_font_titleCor(JobsInternationalization(@"点击按钮弹出下拉列表"),UIFontWeightRegularSize(12),JobsWhiteColor)
+            .bgColor(JobsWhiteColor)
+            .cornerRadiusValue(JobsWidth(8))
+            .onClick(^(UIButton *x){
+                if (self.objectBlock) self.objectBlock(x);
+                NSLog(@"AAA = %@",self.dropDownListView);
+                x.selected = !x.selected;
+                if (x.selected) {
+                    /// ❤️只能让它执行一次❤️
+                    self.dropDownListView = [self motivateFromView:x
+                                     jobsDropDownListViewDirection:self.dropDownListViewDirection
+                                                              data:self.listViewData
+                                                motivateViewOffset:JobsWidth(5)
+                                                       finishBlock:^(UIViewModel *data) {
+                        NSLog(@"data = %@",data);
+                    }];
+                }else{
+                    [self endDropDownListView];
+                }
+            }).onLongPressGesture(^(id data){
+                NSLog(@"按钮的长按事件触发");
+            });
         [self.view addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.view);
@@ -201,7 +168,7 @@
             UIViewModel *viewModel = UIViewModel.new;
             viewModel.textModel.text = @"0".add(toStringByInt(i));
             viewModel.subTextModel.text = @"00".add(toStringByInt(i));
-            [_listViewData addObject:viewModel];
+            _listViewData.add(viewModel);
         }
     }return _listViewData;
 }
