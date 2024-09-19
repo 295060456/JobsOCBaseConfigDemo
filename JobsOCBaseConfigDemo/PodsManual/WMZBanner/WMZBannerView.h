@@ -5,9 +5,11 @@
 //  Created by wmz on 2019/9/6.
 //  Copyright © 2019 wmz. All rights reserved.
 //
-
-#import "WMZBannerParam.h"
 #import <UIKit/UIKit.h>
+#import "WMZBannerParam.h"
+#import "UIImageView+SDWebImage.h"
+#import "NSString+Others.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WMZBannerView : UIView

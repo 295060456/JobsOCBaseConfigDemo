@@ -132,6 +132,7 @@ typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(UIColor *_Nullable
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);
 
 @class UIButtonModel;
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(UIButtonModel *_Nonnull data);
 @class JobsNavBarConfig;
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,
                                                                                UIButtonModel *_Nullable closeBtnModel);

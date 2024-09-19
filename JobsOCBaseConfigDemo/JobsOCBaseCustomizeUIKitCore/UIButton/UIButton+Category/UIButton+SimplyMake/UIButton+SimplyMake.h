@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 依靠数据束进行创建
 /// 依靠UIViewModel进行创建
 +(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel;
+/// 依靠UIButtonModel进行创建
++(JobsReturnButtonByButtonModelBlock _Nonnull)initByButtonModel;
 /// 依靠UITextModel进行创建
 +(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel;
 #pragma mark —— 对功能性进行补充

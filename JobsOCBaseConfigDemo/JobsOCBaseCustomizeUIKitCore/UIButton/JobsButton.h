@@ -17,7 +17,8 @@
 #import "UIButton+UI.h"
 /// 动画封装
 #import "UIButton+Animation.h"
-
+/// SDWebImage
+#import "UIButton+SDWebImage.h"
 #import "UIButton+Extra.h"
 #import "UIButton+SimplyMake.h"
 

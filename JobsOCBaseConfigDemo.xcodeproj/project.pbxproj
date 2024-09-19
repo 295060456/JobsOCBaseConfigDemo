@@ -110,6 +110,8 @@
 		CEAF27042C62508F0056570C /* NSMutableSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF27012C62508F0056570C /* NSMutableSet+Extra.m */; };
 		CEAF27082C6251100056570C /* UICollectionView+RegistrationTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF27062C6251100056570C /* UICollectionView+RegistrationTracking.m */; };
 		CEB4B1722C5A39EA00831085 /* JobsStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB4B16F2C5A39EA00831085 /* JobsStepView.m */; };
+		CEB807322C9BEBD300DCB5DF /* UIButton+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB807302C9BEBD300DCB5DF /* UIButton+SDWebImage.m */; };
+		CEB807362C9BEC8300DCB5DF /* SDWebImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB807342C9BEC8300DCB5DF /* SDWebImageModel.m */; };
 		CEBA44102C5E316200F0042D /* BaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */; };
 		CEC01BDF2C48DF300069C91A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB32C48AFED0069C91A /* TabBar.xcassets */; };
 		CEC01BE62C48E20F0069C91A /* Bayon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC01BE52C48E20F0069C91A /* Bayon.ttf */; };
@@ -1393,6 +1395,10 @@
 		CEB4B16D2C5A39EA00831085 /* JobsStepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsStepView.h; sourceTree = "<group>"; };
 		CEB4B16E2C5A39EA00831085 /* JobsStepView.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JobsStepView.jpg; sourceTree = "<group>"; };
 		CEB4B16F2C5A39EA00831085 /* JobsStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsStepView.m; sourceTree = "<group>"; };
+		CEB8072F2C9BEBD300DCB5DF /* UIButton+SDWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+SDWebImage.h"; sourceTree = "<group>"; };
+		CEB807302C9BEBD300DCB5DF /* UIButton+SDWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SDWebImage.m"; sourceTree = "<group>"; };
+		CEB807332C9BEC8300DCB5DF /* SDWebImageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageModel.h; sourceTree = "<group>"; };
+		CEB807342C9BEC8300DCB5DF /* SDWebImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageModel.m; sourceTree = "<group>"; };
 		CEBA440D2C5E316200F0042D /* BaseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewCell.h; sourceTree = "<group>"; };
 		CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewCell.m; sourceTree = "<group>"; };
 		CEC01AB32C48AFED0069C91A /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
@@ -4486,6 +4492,24 @@
 				CEB4B16F2C5A39EA00831085 /* JobsStepView.m */,
 			);
 			path = JobsStepView;
+			sourceTree = "<group>";
+		};
+		CEB807312C9BEBD300DCB5DF /* UIButton+SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				CEB8072F2C9BEBD300DCB5DF /* UIButton+SDWebImage.h */,
+				CEB807302C9BEBD300DCB5DF /* UIButton+SDWebImage.m */,
+			);
+			path = "UIButton+SDWebImage";
+			sourceTree = "<group>";
+		};
+		CEB807352C9BEC8300DCB5DF /* SDWebImageModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEB807332C9BEC8300DCB5DF /* SDWebImageModel.h */,
+				CEB807342C9BEC8300DCB5DF /* SDWebImageModel.m */,
+			);
+			path = SDWebImageModel;
 			sourceTree = "<group>";
 		};
 		CEBA440F2C5E316200F0042D /* BaseCollectionViewCell */ = {
@@ -8322,14 +8346,15 @@
 		CECE7F1F2C4512BF00764AF5 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
-				CE7C7D452C9447CD00C0153C /* PhilippinesModel */,
-				CE2E88C12C69DEC300260207 /* JobsCountriesModel */,
+				CECE7F1E2C4512BF00764AF5 /* DAO.h */,
 				CECE7F112C4512BF00764AF5 /* BaseModel */,
 				CECE7F142C4512BF00764AF5 /* CasinoCustomerContactModel */,
 				CECE7F172C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel */,
+				CE2E88C12C69DEC300260207 /* JobsCountriesModel */,
 				CECE7F1A2C4512BF00764AF5 /* JobsResponseModel */,
 				CECE7F1D2C4512BF00764AF5 /* JobsUserModel */,
-				CECE7F1E2C4512BF00764AF5 /* DAO.h */,
+				CE7C7D452C9447CD00C0153C /* PhilippinesModel */,
+				CEB807352C9BEC8300DCB5DF /* SDWebImageModel */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -10793,6 +10818,7 @@
 		CECE835F2C4513CD00764AF5 /* UIButton+Category */ = {
 			isa = PBXGroup;
 			children = (
+				CEB807312C9BEBD300DCB5DF /* UIButton+SDWebImage */,
 				CE84D5082C8F03EF005DE167 /* UIButton+SimplyMake */,
 				CECE834C2C4513CD00764AF5 /* UIButton+Animation */,
 				CECE834F2C4513CD00764AF5 /* UIButton+Extra */,
@@ -14446,6 +14472,7 @@
 				CECE814C2C4512BF00764AF5 /* LZTabBarController.m in Sources */,
 				CECE85792C4513CE00764AF5 /* SoundBtn.m in Sources */,
 				CECE7CA52C450C5000764AF5 /* JXCategoryPopupSubVC.m in Sources */,
+				CEB807322C9BEBD300DCB5DF /* UIButton+SDWebImage.m in Sources */,
 				CECE85242C4513CE00764AF5 /* JobsSEL_IMP.m in Sources */,
 				CEA018BF2C881A4F006F06CF /* NSRunLoop+Extra.m in Sources */,
 				CED358572C92A8EF00A5703F /* GetImageApi.m in Sources */,
@@ -15015,6 +15042,7 @@
 				CECE7EB22C450E5B00764AF5 /* TKPermissionBluetooth.m in Sources */,
 				CECE81552C4512BF00764AF5 /* TLTabBarAnimation.m in Sources */,
 				CECE85102C4513CE00764AF5 /* CALayer+Anim.m in Sources */,
+				CEB807362C9BEC8300DCB5DF /* SDWebImageModel.m in Sources */,
 				CECE87142C45140000764AF5 /* MovieCountDown.m in Sources */,
 				CECE857B2C4513CE00764AF5 /* UIButton+Extra.m in Sources */,
 				CECE85B12C4513CE00764AF5 /* UIScrollView+AnimationKit.m in Sources */,

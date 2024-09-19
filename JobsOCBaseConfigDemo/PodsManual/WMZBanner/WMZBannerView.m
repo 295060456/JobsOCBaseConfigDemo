@@ -259,9 +259,22 @@
 
 - (void)setIconData:(UIImageView*)icon withData:(id)data{
     if (!data) return;
-    if ([data isKindOfClass:[NSString class]]) {
-        if ([(NSString*)data hasPrefix:@"http"]) {
-            [icon sd_setImageWithURL:[NSURL URLWithString:(NSString*)data] placeholderImage:self.param.wPlaceholderImage?[UIImage imageNamed:self.param.wPlaceholderImage]:nil];
+    if ([data isKindOfClass:NSString.class]) {
+        if ([(NSString *)data hasPrefix:@"http"]) {
+            NSString *url = data;
+            icon.imageURL(url.jobsUrl)
+                .placeholderImage(JobsIMG(self.param.wPlaceholderImage))
+                .options(SDWebImageRefreshCached)/// 强制刷新缓存
+                .completed(^(UIImage * _Nullable image,
+                             NSError * _Nullable error,
+                             SDImageCacheType cacheType,
+                             NSURL * _Nullable imageURL) {
+                    if (error) {
+                        NSLog(@"图片加载失败: %@-%@", error,imageURL);
+                    } else {
+                        NSLog(@"图片加载成功");
+                    }
+                }).load();
         }else{
             icon.image = [UIImage imageNamed:(NSString*)data];
         }

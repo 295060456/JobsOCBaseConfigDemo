@@ -232,6 +232,55 @@
         }];
     };
 }
+/// 依靠UIButtonModel进行创建
++(JobsReturnButtonByButtonModelBlock _Nonnull)initByButtonModel{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(UIButtonModel *_Nonnull data){
+        @jobs_strongify(self)
+        return [self.alloc jobsInitBtnByConfiguration:data.btnConfiguration
+                                           background:data.background
+                           buttonConfigTitleAlignment:data.buttonConfigTitleAlignment
+                                        textAlignment:data.textAlignment
+                                     subTextAlignment:data.subTextAlignment
+                                          normalImage:data.normalImage
+                                       highlightImage:data.highlightImage
+                                      attributedTitle:data.attributedTitle
+                              selectedAttributedTitle:data.selectedAttributedTitle
+                                   attributedSubtitle:data.attributedSubtitle
+                                                title:data.title
+                                             subTitle:data.subTitle
+                                            titleFont:data.titleFont
+                                         subTitleFont:data.subTitleFont
+                                             titleCor:data.titleCor
+                                          subTitleCor:data.subTitleCor
+                                   titleLineBreakMode:data.titleLineBreakMode
+                                subtitleLineBreakMode:data.subtitleLineBreakMode
+                                  baseBackgroundColor:data.baseBackgroundColor
+                                      backgroundImage:data.backgroundImage
+                                         imagePadding:data.imagePadding
+                                         titlePadding:data.titlePadding
+                                       imagePlacement:data.imagePlacement
+                           contentHorizontalAlignment:data.contentHorizontalAlignment
+                             contentVerticalAlignment:data.contentVerticalAlignment
+                                        contentInsets:data.contentInsets
+                                    cornerRadiusValue:data.cornerRadiusValue
+                                      roundingCorners:data.roundingCorners//UIRectCornerAllCorners
+                                 roundingCornersRadii:data.roundingCornersRadii
+                                       layerBorderCor:data.layerBorderCor
+                                          borderWidth:data.borderWidth
+                                        primaryAction:data.primaryAction
+                           longPressGestureEventBlock:^id(__kindof UIButton *_Nullable weakSelf,
+                                                          id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            if(weakSelf.longPressGestureBlock) weakSelf.longPressGestureBlock(arg);
+            return nil;
+        }
+                                      clickEventBlock:^id(__kindof UIButton *x){
+            if(x.clickBlock) x.clickBlock(x);
+            return nil;
+        }];
+    };
+}
 /// 依靠UITextModel进行创建
 +(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel{
     @jobs_weakify(self)
