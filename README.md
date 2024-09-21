@@ -3707,6 +3707,23 @@ static const uint32_t kSequenceBits = 12;
 
   * ```c
     int *ptr = NULL; // ptr 是一个空指针，不指向任何内存地址。
+    ```
+  
+* 泛型
+
+  * 协变（`__covariant`）：如果 `B` 是 `A` 的子类，那么 `Container<B>` 可以被当作 `Container<A>` 来使用。这意味着子类型可以赋值给父类型。
+  
+  * 逆变（`__contravariant`）：与协变相反，如果 `B` 是 `A` 的子类，那么 `Container<A>` 可以被当作 `Container<B>` 来使用。父类型可以被赋值给子类型。
+
+  * `__covariant` 和 `__contravariant` 是用于泛型类型的修饰符，无法直接用于局部变量或非泛型方法。
+  
+  * 正确的写法（<font color=red>**不能在分类中使用**</font>）
+  
+    ```objective-c
+    @interface MyGenericDictionary<__covariant KeyType, __covariant ObjectType> : NSObject
+    
+    @end
+    ```
 
 ## 四、架构相关 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

@@ -9,21 +9,23 @@
 
 @implementation NSMutableDictionary (Extra)
 
--(jobsKeyValueBlock)add{
+-(jobsKeyValueBlock _Nonnull)add{
     @jobs_weakify(self)
     return ^(id <NSCopying>_Nonnull key,id _Nonnull value) {
         @jobs_strongify(self)
-        if(!key){
-            NSLog(@"Key 不能为空");
-            return;
-        }
-        
-        if(!value){
-            NSLog(@"Value 不能为空");
-            return;
-        }
-        
+        if(isNull(key)) return;
+        if(!value) return;
         if(key && value) [self setObject:value forKey:key];
+    };
+}
+
+-(jobsByIDBlock _Nonnull)saveDataBy{
+    @jobs_weakify(self)
+    return ^(JobsKeyValueModel *_Nullable model){
+        @jobs_strongify(self)
+        if (isValue(model.key)) {
+            [self setObject:model.data forKey:model.key];
+        }
     };
 }
 

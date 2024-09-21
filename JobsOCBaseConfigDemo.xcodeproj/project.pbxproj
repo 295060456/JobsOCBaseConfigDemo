@@ -17,7 +17,6 @@
 		CE1F25742C5DD2AA00324198 /* JobsViewNavigatorTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F25732C5DD2AA00324198 /* JobsViewNavigatorTestVC.m */; };
 		CE1F25772C5DD37000324198 /* JobsPushView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F25762C5DD37000324198 /* JobsPushView.m */; };
 		CE1F257C2C5DDABB00324198 /* UIView+Navigator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F257B2C5DDABB00324198 /* UIView+Navigator.m */; };
-		CE207E552C8185E500AD9FFB /* FileNameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E542C8185E500AD9FFB /* FileNameModel.m */; };
 		CE207E592C818E9A00AD9FFB /* AVURLAsset+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E582C818E9A00AD9FFB /* AVURLAsset+Extra.m */; };
 		CE207E732C82EA6A00AD9FFB /* JobsVerticalMenuSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E702C82EA5700AD9FFB /* JobsVerticalMenuSubVC.m */; };
 		CE207E762C82ED7C00AD9FFB /* JobsVerticalMenuVC@1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE207E752C82ED7C00AD9FFB /* JobsVerticalMenuVC@1.m */; };
@@ -31,7 +30,6 @@
 		CE2E87412C689F9100260207 /* JobsBtnStyleTBVCell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE2E87322C689F9000260207 /* JobsBtnStyleTBVCell.jpg */; };
 		CE2E87422C689F9100260207 /* JobsImageStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87352C689F9000260207 /* JobsImageStyleTBVCell.m */; };
 		CE2E87432C689F9100260207 /* JobsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */; };
-		CE2E88C42C69DECC00260207 /* JobsCountriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */; };
 		CE2E88C62C69DF3100260207 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = CE2E88C52C69DF3100260207 /* countries.json */; };
 		CE2E88CD2C69E14100260207 /* PopListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E88C92C69E14100260207 /* PopListBaseView.m */; };
 		CE2E8ACC2C6AF7C900260207 /* 幸运转盘.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2E8ACB2C6AF7B800260207 /* 幸运转盘.xcassets */; };
@@ -50,6 +48,37 @@
 		CE4B42522C6E05CB00FDCB0F /* PointLabTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B42512C6E05CB00FDCB0F /* PointLabTestVC.m */; };
 		CE4B42562C6E138D00FDCB0F /* NSAttributedString+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B42542C6E138D00FDCB0F /* NSAttributedString+Extra.m */; };
 		CE4B43712C6F450600FDCB0F /* NSMutableDictionary+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B436F2C6F450500FDCB0F /* NSMutableDictionary+Extra.m */; };
+		CE61ACD82C9EAA75002DF138 /* NSDictionary+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61ACD52C9EAA75002DF138 /* NSDictionary+Extra.m */; };
+		CE61ACF72C9EAAE1002DF138 /* PhilippinesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61ACEE2C9EAAE1002DF138 /* PhilippinesModel.m */; };
+		CE61ACF82C9EAAE1002DF138 /* JobsKeyValueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61ACDB2C9EAAE1002DF138 /* JobsKeyValueModel.m */; };
+		CE61ACF92C9EAAE1002DF138 /* URLManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61ACF42C9EAAE1002DF138 /* URLManagerModel.m */; };
+		CE61ACFA2C9EAAE1002DF138 /* SDWebImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61ACF12C9EAAE1002DF138 /* SDWebImageModel.m */; };
+		CE61ACFB2C9EAAE1002DF138 /* NSNotificationKeyboardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61ACEB2C9EAAE1002DF138 /* NSNotificationKeyboardModel.m */; };
+		CE61ACFC2C9EAAE1002DF138 /* FileNameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61ACE22C9EAAE1002DF138 /* FileNameModel.m */; };
+		CE61ACFD2C9EAAE1002DF138 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61ACDF2C9EAAE1002DF138 /* BaseModel.m */; };
+		CE61ACFE2C9EAAE1002DF138 /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61ACE52C9EAAE1002DF138 /* ImageModel.m */; };
+		CE61ACFF2C9EAAE1002DF138 /* JobsCountriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61ACE82C9EAAE1002DF138 /* JobsCountriesModel.m */; };
+		CE61AD472C9EAB26002DF138 /* FM_promotion_advertise_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD172C9EAB26002DF138 /* FM_promotion_advertise_api.m */; };
+		CE61AD482C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD262C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.m */; };
+		CE61AD492C9EAB26002DF138 /* FM_loginByVerificationCode_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD2C2C9EAB26002DF138 /* FM_loginByVerificationCode_api.m */; };
+		CE61AD4A2C9EAB26002DF138 /* FM_loginByAccAndPwd_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD322C9EAB26002DF138 /* FM_loginByAccAndPwd_api.m */; };
+		CE61AD4B2C9EAB26002DF138 /* GetMemberInfo_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD292C9EAB26002DF138 /* GetMemberInfo_api.m */; };
+		CE61AD4C2C9EAB26002DF138 /* NSObject+YTKNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD082C9EAB26002DF138 /* NSObject+YTKNetwork.m */; };
+		CE61AD4D2C9EAB26002DF138 /* FM_favoriteGames_delete_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD202C9EAB26002DF138 /* FM_favoriteGames_delete_api.m */; };
+		CE61AD4E2C9EAB26002DF138 /* FM_favoriteGames_add_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD232C9EAB26002DF138 /* FM_favoriteGames_add_api.m */; };
+		CE61AD4F2C9EAB26002DF138 /* JobsBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD0B2C9EAB26002DF138 /* JobsBaseApi.m */; };
+		CE61AD502C9EAB26002DF138 /* FM_user_logout_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD1A2C9EAB26002DF138 /* FM_user_logout_api.m */; };
+		CE61AD512C9EAB26002DF138 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD042C9EAB26002DF138 /* DataManager.m */; };
+		CE61AD522C9EAB26002DF138 /* FM_queryAnnByMember_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD0E2C9EAB26002DF138 /* FM_queryAnnByMember_api.m */; };
+		CE61AD532C9EAB26002DF138 /* FM_check_login_verification_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD352C9EAB26002DF138 /* FM_check_login_verification_api.m */; };
+		CE61AD542C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD142C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.m */; };
+		CE61AD552C9EAB26002DF138 /* RequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD422C9EAB26002DF138 /* RequestTool.m */; };
+		CE61AD562C9EAB26002DF138 /* FM_promotion_ad_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD112C9EAB26002DF138 /* FM_promotion_ad_api.m */; };
+		CE61AD572C9EAB26002DF138 /* FM_kyc_submit_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD1D2C9EAB26002DF138 /* FM_kyc_submit_api.m */; };
+		CE61AD582C9EAB26002DF138 /* FM_game_home_popularGames_query_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD2F2C9EAB26002DF138 /* FM_game_home_popularGames_query_api.m */; };
+		CE61AD592C9EAB26002DF138 /* JobsNetworkingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD3C2C9EAB26002DF138 /* JobsNetworkingAPI.m */; };
+		CE61AD5A2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD3F2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m */; };
+		CE61AD5B2C9EAB26002DF138 /* NSObject+URLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD012C9EAB26002DF138 /* NSObject+URLManager.m */; };
 		CE706A422C57680500CB7B97 /* JobsPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE794C2C450C5000764AF5 /* JobsPostVC.m */; };
 		CE706A462C57682900CB7B97 /* data.tsv in Resources */ = {isa = PBXBuildFile; fileRef = CE706A432C57682900CB7B97 /* data.tsv */; };
 		CE72AC312C885E54000B7A40 /* JobsUploadingProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE72AC2F2C885E4D000B7A40 /* JobsUploadingProgressView.m */; };
@@ -111,7 +140,6 @@
 		CEAF27082C6251100056570C /* UICollectionView+RegistrationTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF27062C6251100056570C /* UICollectionView+RegistrationTracking.m */; };
 		CEB4B1722C5A39EA00831085 /* JobsStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB4B16F2C5A39EA00831085 /* JobsStepView.m */; };
 		CEB807322C9BEBD300DCB5DF /* UIButton+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB807302C9BEBD300DCB5DF /* UIButton+SDWebImage.m */; };
-		CEB807362C9BEC8300DCB5DF /* SDWebImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB807342C9BEC8300DCB5DF /* SDWebImageModel.m */; };
 		CEBA44102C5E316200F0042D /* BaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */; };
 		CEC01BDF2C48DF300069C91A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC01AB32C48AFED0069C91A /* TabBar.xcassets */; };
 		CEC01BE62C48E20F0069C91A /* Bayon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC01BE52C48E20F0069C91A /* Bayon.ttf */; };
@@ -368,12 +396,6 @@
 		CECE7D3F2C450CCD00764AF5 /* JobsCustomView.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE7D192C450CCD00764AF5 /* JobsCustomView.png */; };
 		CECE7D402C450CCD00764AF5 /* JobsFiltrationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D1C2C450CCD00764AF5 /* JobsFiltrationView.m */; };
 		CECE7D412C450CCD00764AF5 /* JobsFiltrationView.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE7D1D2C450CCD00764AF5 /* JobsFiltrationView.png */; };
-		CECE7D422C450CCD00764AF5 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D222C450CCD00764AF5 /* DataManager.m */; };
-		CECE7D432C450CCD00764AF5 /* RequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D252C450CCD00764AF5 /* RequestTool.m */; };
-		CECE7D442C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D282C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.m */; };
-		CECE7D452C450CCD00764AF5 /* JobsNetworkingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D2B2C450CCD00764AF5 /* JobsNetworkingAPI.m */; };
-		CECE7D462C450CCD00764AF5 /* NSObject+URLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D2F2C450CCD00764AF5 /* NSObject+URLManager.m */; };
-		CECE7D472C450CCD00764AF5 /* URLManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D322C450CCD00764AF5 /* URLManagerModel.m */; };
 		CECE7D692C450DED00764AF5 /* AppDelegate+Func.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D512C450DED00764AF5 /* AppDelegate+Func.m */; };
 		CECE7D6A2C450DED00764AF5 /* AppDelegate+TabBarCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D552C450DED00764AF5 /* AppDelegate+TabBarCtr.m */; };
 		CECE7D6C2C450DED00764AF5 /* AppDelegate+UIApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7D5B2C450DED00764AF5 /* AppDelegate+UIApplicationDelegate.m */; };
@@ -474,7 +496,6 @@
 		CECE80B42C4512BF00764AF5 /* iPad尺寸.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE7EF42C4512BF00764AF5 /* iPad尺寸.png */; };
 		CECE80B52C4512BF00764AF5 /* iPhone尺寸.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE7EF52C4512BF00764AF5 /* iPhone尺寸.png */; };
 		CECE80B72C4512BF00764AF5 /* DefineConstString.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F0C2C4512BF00764AF5 /* DefineConstString.m */; };
-		CECE80B82C4512BF00764AF5 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F102C4512BF00764AF5 /* BaseModel.m */; };
 		CECE80B92C4512BF00764AF5 /* CasinoCustomerContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F132C4512BF00764AF5 /* CasinoCustomerContactModel.m */; };
 		CECE80BA2C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F162C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.m */; };
 		CECE80BB2C4512BF00764AF5 /* JobsResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7F192C4512BF00764AF5 /* JobsResponseModel.m */; };
@@ -1132,13 +1153,11 @@
 		CECE89672C4519AE00764AF5 /* libstdc++.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE88BB2C4519AD00764AF5 /* libstdc++.md */; };
 		CED358282C92A4E900A5703F /* NSURLRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358262C92A4E400A5703F /* NSURLRequest+Extra.m */; };
 		CED3582C2C92A58000A5703F /* JobsRequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CED3582A2C92A57A00A5703F /* JobsRequestBuilder.m */; };
-		CED358452C92A80400A5703F /* JobsBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358432C92A7EA00A5703F /* JobsBaseApi.m */; };
 		CED358562C92A8EC00A5703F /* GetCustomerContactApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358472C92A8E700A5703F /* GetCustomerContactApi.m */; };
 		CED358572C92A8EF00A5703F /* GetImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED3584A2C92A8E700A5703F /* GetImageApi.m */; };
 		CED358582C92A8F200A5703F /* GetUserInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED3584D2C92A8E700A5703F /* GetUserInfoApi.m */; };
 		CED358592C92A8F500A5703F /* RegisterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358502C92A8E700A5703F /* RegisterApi.m */; };
 		CED3585A2C92A8F800A5703F /* UploadImageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CED358532C92A8E700A5703F /* UploadImageApi.m */; };
-		CEDA695F2C9ABE6C00FE39BB /* NSObject+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA695D2C9ABE6800FE39BB /* NSObject+Network.m */; };
 		CEE26F3A2C9801A900D900AA /* NSObject+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE26F382C9801A400D900AA /* NSObject+Data.m */; };
 		CEE26FC22C980A0900D900AA /* UICollectionViewFlowLayout+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE26FC02C980A0500D900AA /* UICollectionViewFlowLayout+Extra.m */; };
 		CEE403072C788F2B0085C23C /* JobsCorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE403052C7887960085C23C /* JobsCorModel.m */; };
@@ -1191,8 +1210,6 @@
 		CE1F25762C5DD37000324198 /* JobsPushView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsPushView.m; sourceTree = "<group>"; };
 		CE1F257A2C5DDABB00324198 /* UIView+Navigator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Navigator.h"; sourceTree = "<group>"; };
 		CE1F257B2C5DDABB00324198 /* UIView+Navigator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Navigator.m"; sourceTree = "<group>"; };
-		CE207E532C8185E500AD9FFB /* FileNameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileNameModel.h; sourceTree = "<group>"; };
-		CE207E542C8185E500AD9FFB /* FileNameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileNameModel.m; sourceTree = "<group>"; };
 		CE207E572C818E9A00AD9FFB /* AVURLAsset+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVURLAsset+Extra.h"; sourceTree = "<group>"; };
 		CE207E582C818E9A00AD9FFB /* AVURLAsset+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVURLAsset+Extra.m"; sourceTree = "<group>"; };
 		CE207E6F2C82EA5700AD9FFB /* JobsVerticalMenuSubVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsVerticalMenuSubVC.h; sourceTree = "<group>"; };
@@ -1222,8 +1239,6 @@
 		CE2E87352C689F9000260207 /* JobsImageStyleTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsImageStyleTBVCell.m; sourceTree = "<group>"; };
 		CE2E87372C689F9100260207 /* JobsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBaseTableViewCell.h; sourceTree = "<group>"; };
 		CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsBaseTableViewCell.m; sourceTree = "<group>"; };
-		CE2E88C22C69DECC00260207 /* JobsCountriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsCountriesModel.h; sourceTree = "<group>"; };
-		CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsCountriesModel.m; sourceTree = "<group>"; };
 		CE2E88C52C69DF3100260207 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		CE2E88C72C69E14100260207 /* 全局统一的下拉选择器改为屏幕中部弹出的列表.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "全局统一的下拉选择器改为屏幕中部弹出的列表.jpg"; sourceTree = "<group>"; };
 		CE2E88C82C69E14100260207 /* PopListBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopListBaseView.h; sourceTree = "<group>"; };
@@ -1268,6 +1283,73 @@
 		CE4B42682C6EF3A400FDCB0F /* JobsAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsAttributedString.h; sourceTree = "<group>"; };
 		CE4B436E2C6F450500FDCB0F /* NSMutableDictionary+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Extra.h"; sourceTree = "<group>"; };
 		CE4B436F2C6F450500FDCB0F /* NSMutableDictionary+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Extra.m"; sourceTree = "<group>"; };
+		CE61ACD42C9EAA75002DF138 /* NSDictionary+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extra.h"; sourceTree = "<group>"; };
+		CE61ACD52C9EAA75002DF138 /* NSDictionary+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extra.m"; sourceTree = "<group>"; };
+		CE61ACD62C9EAA75002DF138 /* JobsDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsDictionary.h; sourceTree = "<group>"; };
+		CE61ACDA2C9EAAE1002DF138 /* JobsKeyValueModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsKeyValueModel.h; sourceTree = "<group>"; };
+		CE61ACDB2C9EAAE1002DF138 /* JobsKeyValueModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsKeyValueModel.m; sourceTree = "<group>"; };
+		CE61ACDD2C9EAAE1002DF138 /* JobsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsModel.h; sourceTree = "<group>"; };
+		CE61ACDE2C9EAAE1002DF138 /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		CE61ACDF2C9EAAE1002DF138 /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		CE61ACE12C9EAAE1002DF138 /* FileNameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileNameModel.h; sourceTree = "<group>"; };
+		CE61ACE22C9EAAE1002DF138 /* FileNameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileNameModel.m; sourceTree = "<group>"; };
+		CE61ACE42C9EAAE1002DF138 /* ImageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageModel.h; sourceTree = "<group>"; };
+		CE61ACE52C9EAAE1002DF138 /* ImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageModel.m; sourceTree = "<group>"; };
+		CE61ACE72C9EAAE1002DF138 /* JobsCountriesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCountriesModel.h; sourceTree = "<group>"; };
+		CE61ACE82C9EAAE1002DF138 /* JobsCountriesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCountriesModel.m; sourceTree = "<group>"; };
+		CE61ACEA2C9EAAE1002DF138 /* NSNotificationKeyboardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNotificationKeyboardModel.h; sourceTree = "<group>"; };
+		CE61ACEB2C9EAAE1002DF138 /* NSNotificationKeyboardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNotificationKeyboardModel.m; sourceTree = "<group>"; };
+		CE61ACED2C9EAAE1002DF138 /* PhilippinesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhilippinesModel.h; sourceTree = "<group>"; };
+		CE61ACEE2C9EAAE1002DF138 /* PhilippinesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhilippinesModel.m; sourceTree = "<group>"; };
+		CE61ACF02C9EAAE1002DF138 /* SDWebImageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageModel.h; sourceTree = "<group>"; };
+		CE61ACF12C9EAAE1002DF138 /* SDWebImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageModel.m; sourceTree = "<group>"; };
+		CE61ACF32C9EAAE1002DF138 /* URLManagerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLManagerModel.h; sourceTree = "<group>"; };
+		CE61ACF42C9EAAE1002DF138 /* URLManagerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLManagerModel.m; sourceTree = "<group>"; };
+		CE61AD002C9EAB26002DF138 /* NSObject+URLManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager.h"; sourceTree = "<group>"; };
+		CE61AD012C9EAB26002DF138 /* NSObject+URLManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager.m"; sourceTree = "<group>"; };
+		CE61AD032C9EAB26002DF138 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		CE61AD042C9EAB26002DF138 /* DataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		CE61AD072C9EAB26002DF138 /* NSObject+YTKNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YTKNetwork.h"; sourceTree = "<group>"; };
+		CE61AD082C9EAB26002DF138 /* NSObject+YTKNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YTKNetwork.m"; sourceTree = "<group>"; };
+		CE61AD0A2C9EAB26002DF138 /* JobsBaseApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseApi.h; sourceTree = "<group>"; };
+		CE61AD0B2C9EAB26002DF138 /* JobsBaseApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBaseApi.m; sourceTree = "<group>"; };
+		CE61AD0D2C9EAB26002DF138 /* FM_queryAnnByMember_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_queryAnnByMember_api.h; sourceTree = "<group>"; };
+		CE61AD0E2C9EAB26002DF138 /* FM_queryAnnByMember_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_queryAnnByMember_api.m; sourceTree = "<group>"; };
+		CE61AD102C9EAB26002DF138 /* FM_promotion_ad_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_promotion_ad_api.h; sourceTree = "<group>"; };
+		CE61AD112C9EAB26002DF138 /* FM_promotion_ad_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_promotion_ad_api.m; sourceTree = "<group>"; };
+		CE61AD132C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_promotion_advertise_homeBanner_api.h; sourceTree = "<group>"; };
+		CE61AD142C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_promotion_advertise_homeBanner_api.m; sourceTree = "<group>"; };
+		CE61AD162C9EAB26002DF138 /* FM_promotion_advertise_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_promotion_advertise_api.h; sourceTree = "<group>"; };
+		CE61AD172C9EAB26002DF138 /* FM_promotion_advertise_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_promotion_advertise_api.m; sourceTree = "<group>"; };
+		CE61AD192C9EAB26002DF138 /* FM_user_logout_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_user_logout_api.h; sourceTree = "<group>"; };
+		CE61AD1A2C9EAB26002DF138 /* FM_user_logout_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_user_logout_api.m; sourceTree = "<group>"; };
+		CE61AD1C2C9EAB26002DF138 /* FM_kyc_submit_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_kyc_submit_api.h; sourceTree = "<group>"; };
+		CE61AD1D2C9EAB26002DF138 /* FM_kyc_submit_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_kyc_submit_api.m; sourceTree = "<group>"; };
+		CE61AD1F2C9EAB26002DF138 /* FM_favoriteGames_delete_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_favoriteGames_delete_api.h; sourceTree = "<group>"; };
+		CE61AD202C9EAB26002DF138 /* FM_favoriteGames_delete_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_favoriteGames_delete_api.m; sourceTree = "<group>"; };
+		CE61AD222C9EAB26002DF138 /* FM_favoriteGames_add_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_favoriteGames_add_api.h; sourceTree = "<group>"; };
+		CE61AD232C9EAB26002DF138 /* FM_favoriteGames_add_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_favoriteGames_add_api.m; sourceTree = "<group>"; };
+		CE61AD252C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_game_home_queryTopGamesList_api.h; sourceTree = "<group>"; };
+		CE61AD262C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_game_home_queryTopGamesList_api.m; sourceTree = "<group>"; };
+		CE61AD282C9EAB26002DF138 /* GetMemberInfo_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetMemberInfo_api.h; sourceTree = "<group>"; };
+		CE61AD292C9EAB26002DF138 /* GetMemberInfo_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMemberInfo_api.m; sourceTree = "<group>"; };
+		CE61AD2B2C9EAB26002DF138 /* FM_loginByVerificationCode_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_loginByVerificationCode_api.h; sourceTree = "<group>"; };
+		CE61AD2C2C9EAB26002DF138 /* FM_loginByVerificationCode_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_loginByVerificationCode_api.m; sourceTree = "<group>"; };
+		CE61AD2E2C9EAB26002DF138 /* FM_game_home_popularGames_query_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_game_home_popularGames_query_api.h; sourceTree = "<group>"; };
+		CE61AD2F2C9EAB26002DF138 /* FM_game_home_popularGames_query_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_game_home_popularGames_query_api.m; sourceTree = "<group>"; };
+		CE61AD312C9EAB26002DF138 /* FM_loginByAccAndPwd_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_loginByAccAndPwd_api.h; sourceTree = "<group>"; };
+		CE61AD322C9EAB26002DF138 /* FM_loginByAccAndPwd_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_loginByAccAndPwd_api.m; sourceTree = "<group>"; };
+		CE61AD342C9EAB26002DF138 /* FM_check_login_verification_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_check_login_verification_api.h; sourceTree = "<group>"; };
+		CE61AD352C9EAB26002DF138 /* FM_check_login_verification_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_check_login_verification_api.m; sourceTree = "<group>"; };
+		CE61AD382C9EAB26002DF138 /* YTKNetworkApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YTKNetworkApi.h; sourceTree = "<group>"; };
+		CE61AD3A2C9EAB26002DF138 /* ZBRequestManagerApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBRequestManagerApi.h; sourceTree = "<group>"; };
+		CE61AD3B2C9EAB26002DF138 /* JobsNetworkingAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsNetworkingAPI.h; sourceTree = "<group>"; };
+		CE61AD3C2C9EAB26002DF138 /* JobsNetworkingAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsNetworkingAPI.m; sourceTree = "<group>"; };
+		CE61AD3E2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JobsNetworkingAPI+DemoTestApi.h"; sourceTree = "<group>"; };
+		CE61AD3F2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JobsNetworkingAPI+DemoTestApi.m"; sourceTree = "<group>"; };
+		CE61AD412C9EAB26002DF138 /* RequestTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestTool.h; sourceTree = "<group>"; };
+		CE61AD422C9EAB26002DF138 /* RequestTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestTool.m; sourceTree = "<group>"; };
+		CE61AD452C9EAB26002DF138 /* JobsNetworkingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsNetworkingHeader.h; sourceTree = "<group>"; };
 		CE706A432C57682900CB7B97 /* data.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.tsv; sourceTree = "<group>"; };
 		CE706A442C57682900CB7B97 /* TSV文件介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "TSV文件介绍.md"; sourceTree = "<group>"; };
 		CE72AC2E2C885E49000B7A40 /* JobsUploadingProgressView.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = JobsUploadingProgressView.md; sourceTree = "<group>"; };
@@ -1285,8 +1367,6 @@
 		CE7C7BBE2C942EB400C0153C /* JobsCalenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCalenderView.h; sourceTree = "<group>"; };
 		CE7C7BBF2C942EB400C0153C /* JobsCalenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCalenderView.m; sourceTree = "<group>"; };
 		CE7C7D412C9447A100C0153C /* philippines.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = philippines.json; sourceTree = "<group>"; };
-		CE7C7D432C9447CD00C0153C /* PhilippinesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhilippinesModel.h; sourceTree = "<group>"; };
-		CE7C7D442C9447CD00C0153C /* PhilippinesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhilippinesModel.m; sourceTree = "<group>"; };
 		CE7F39562C4FDA1000431A5D /* JobsFMDBMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsFMDBMgr.h; sourceTree = "<group>"; };
 		CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsFMDBMgr.m; sourceTree = "<group>"; };
 		CE7F39592C4FDA1000431A5D /* FMDB_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB_VC.h; sourceTree = "<group>"; };
@@ -1397,8 +1477,6 @@
 		CEB4B16F2C5A39EA00831085 /* JobsStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsStepView.m; sourceTree = "<group>"; };
 		CEB8072F2C9BEBD300DCB5DF /* UIButton+SDWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+SDWebImage.h"; sourceTree = "<group>"; };
 		CEB807302C9BEBD300DCB5DF /* UIButton+SDWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SDWebImage.m"; sourceTree = "<group>"; };
-		CEB807332C9BEC8300DCB5DF /* SDWebImageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageModel.h; sourceTree = "<group>"; };
-		CEB807342C9BEC8300DCB5DF /* SDWebImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageModel.m; sourceTree = "<group>"; };
 		CEBA440D2C5E316200F0042D /* BaseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewCell.h; sourceTree = "<group>"; };
 		CEBA440E2C5E316200F0042D /* BaseCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewCell.m; sourceTree = "<group>"; };
 		CEC01AB32C48AFED0069C91A /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
@@ -1849,19 +1927,6 @@
 		CECE7D1B2C450CCD00764AF5 /* JobsFiltrationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsFiltrationView.h; sourceTree = "<group>"; };
 		CECE7D1C2C450CCD00764AF5 /* JobsFiltrationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsFiltrationView.m; sourceTree = "<group>"; };
 		CECE7D1D2C450CCD00764AF5 /* JobsFiltrationView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JobsFiltrationView.png; sourceTree = "<group>"; };
-		CECE7D212C450CCD00764AF5 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
-		CECE7D222C450CCD00764AF5 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
-		CECE7D242C450CCD00764AF5 /* RequestTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestTool.h; sourceTree = "<group>"; };
-		CECE7D252C450CCD00764AF5 /* RequestTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestTool.m; sourceTree = "<group>"; };
-		CECE7D272C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JobsNetworkingAPI+DemoTestApi.h"; sourceTree = "<group>"; };
-		CECE7D282C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JobsNetworkingAPI+DemoTestApi.m"; sourceTree = "<group>"; };
-		CECE7D2A2C450CCD00764AF5 /* JobsNetworkingAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNetworkingAPI.h; sourceTree = "<group>"; };
-		CECE7D2B2C450CCD00764AF5 /* JobsNetworkingAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNetworkingAPI.m; sourceTree = "<group>"; };
-		CECE7D2C2C450CCD00764AF5 /* JobsNetworkingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNetworkingHeader.h; sourceTree = "<group>"; };
-		CECE7D2E2C450CCD00764AF5 /* NSObject+URLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager.h"; sourceTree = "<group>"; };
-		CECE7D2F2C450CCD00764AF5 /* NSObject+URLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager.m"; sourceTree = "<group>"; };
-		CECE7D312C450CCD00764AF5 /* URLManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLManagerModel.h; sourceTree = "<group>"; };
-		CECE7D322C450CCD00764AF5 /* URLManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLManagerModel.m; sourceTree = "<group>"; };
 		CECE7D482C450DE100764AF5 /* Other.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Other.h; sourceTree = "<group>"; };
 		CECE7D502C450DED00764AF5 /* AppDelegate+Func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Func.h"; sourceTree = "<group>"; };
 		CECE7D512C450DED00764AF5 /* AppDelegate+Func.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Func.m"; sourceTree = "<group>"; };
@@ -2098,8 +2163,6 @@
 		CECE7F092C4512BF00764AF5 /* JobsDefineAllEnumHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsDefineAllEnumHeader.h; sourceTree = "<group>"; };
 		CECE7F0B2C4512BF00764AF5 /* DefineConstString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefineConstString.h; sourceTree = "<group>"; };
 		CECE7F0C2C4512BF00764AF5 /* DefineConstString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefineConstString.m; sourceTree = "<group>"; };
-		CECE7F0F2C4512BF00764AF5 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
-		CECE7F102C4512BF00764AF5 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		CECE7F122C4512BF00764AF5 /* CasinoCustomerContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasinoCustomerContactModel.h; sourceTree = "<group>"; };
 		CECE7F132C4512BF00764AF5 /* CasinoCustomerContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CasinoCustomerContactModel.m; sourceTree = "<group>"; };
 		CECE7F152C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasinoGetiOSNewestVersionModel.h; sourceTree = "<group>"; };
@@ -3219,8 +3282,6 @@
 		CED358262C92A4E400A5703F /* NSURLRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+Extra.m"; sourceTree = "<group>"; };
 		CED358292C92A57A00A5703F /* JobsRequestBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsRequestBuilder.h; sourceTree = "<group>"; };
 		CED3582A2C92A57A00A5703F /* JobsRequestBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsRequestBuilder.m; sourceTree = "<group>"; };
-		CED358422C92A7EA00A5703F /* JobsBaseApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseApi.h; sourceTree = "<group>"; };
-		CED358432C92A7EA00A5703F /* JobsBaseApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBaseApi.m; sourceTree = "<group>"; };
 		CED358462C92A8E700A5703F /* GetCustomerContactApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCustomerContactApi.h; sourceTree = "<group>"; };
 		CED358472C92A8E700A5703F /* GetCustomerContactApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCustomerContactApi.m; sourceTree = "<group>"; };
 		CED358492C92A8E700A5703F /* GetImageApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetImageApi.h; sourceTree = "<group>"; };
@@ -3231,8 +3292,6 @@
 		CED358502C92A8E700A5703F /* RegisterApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterApi.m; sourceTree = "<group>"; };
 		CED358522C92A8E700A5703F /* UploadImageApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UploadImageApi.h; sourceTree = "<group>"; };
 		CED358532C92A8E700A5703F /* UploadImageApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadImageApi.m; sourceTree = "<group>"; };
-		CEDA695D2C9ABE6800FE39BB /* NSObject+Network.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Network.m"; sourceTree = "<group>"; };
-		CEDA695E2C9ABE6800FE39BB /* NSObject+Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Network.h"; sourceTree = "<group>"; };
 		CEE26F372C9801A400D900AA /* NSObject+Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Data.h"; sourceTree = "<group>"; };
 		CEE26F382C9801A400D900AA /* NSObject+Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Data.m"; sourceTree = "<group>"; };
 		CEE26FBF2C980A0500D900AA /* UICollectionViewFlowLayout+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewFlowLayout+Extra.h"; sourceTree = "<group>"; };
@@ -3437,15 +3496,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		CE207E522C8185C000AD9FFB /* FileNameModel */ = {
-			isa = PBXGroup;
-			children = (
-				CE207E532C8185E500AD9FFB /* FileNameModel.h */,
-				CE207E542C8185E500AD9FFB /* FileNameModel.m */,
-			);
-			path = FileNameModel;
-			sourceTree = "<group>";
-		};
 		CE207E562C818E7F00AD9FFB /* AVURLAsset */ = {
 			isa = PBXGroup;
 			children = (
@@ -3573,15 +3623,6 @@
 				CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */,
 			);
 			path = JobsBaseTableViewCell;
-			sourceTree = "<group>";
-		};
-		CE2E88C12C69DEC300260207 /* JobsCountriesModel */ = {
-			isa = PBXGroup;
-			children = (
-				CE2E88C22C69DECC00260207 /* JobsCountriesModel.h */,
-				CE2E88C32C69DECC00260207 /* JobsCountriesModel.m */,
-			);
-			path = JobsCountriesModel;
 			sourceTree = "<group>";
 		};
 		CE2E88CA2C69E14100260207 /* PopListBaseView */ = {
@@ -3769,15 +3810,6 @@
 			path = ZBNetworking;
 			sourceTree = "<group>";
 		};
-		CE475C732C79BE0200CF1143 /* JobsNetworkingAPI */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7D2A2C450CCD00764AF5 /* JobsNetworkingAPI.h */,
-				CECE7D2B2C450CCD00764AF5 /* JobsNetworkingAPI.m */,
-			);
-			path = JobsNetworkingAPI;
-			sourceTree = "<group>";
-		};
 		CE4B42462C6E04A800FDCB0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3847,6 +3879,364 @@
 			path = "NSMutableDictionary+Extra";
 			sourceTree = "<group>";
 		};
+		CE61ACD72C9EAA75002DF138 /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ACD42C9EAA75002DF138 /* NSDictionary+Extra.h */,
+				CE61ACD52C9EAA75002DF138 /* NSDictionary+Extra.m */,
+				CE61ACD62C9EAA75002DF138 /* JobsDictionary.h */,
+			);
+			path = NSDictionary;
+			sourceTree = "<group>";
+		};
+		CE61ACDC2C9EAAE1002DF138 /* JobsKeyValueModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ACDA2C9EAAE1002DF138 /* JobsKeyValueModel.h */,
+				CE61ACDB2C9EAAE1002DF138 /* JobsKeyValueModel.m */,
+			);
+			path = JobsKeyValueModel;
+			sourceTree = "<group>";
+		};
+		CE61ACE02C9EAAE1002DF138 /* BaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ACDE2C9EAAE1002DF138 /* BaseModel.h */,
+				CE61ACDF2C9EAAE1002DF138 /* BaseModel.m */,
+			);
+			path = BaseModel;
+			sourceTree = "<group>";
+		};
+		CE61ACE32C9EAAE1002DF138 /* FileNameModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ACE12C9EAAE1002DF138 /* FileNameModel.h */,
+				CE61ACE22C9EAAE1002DF138 /* FileNameModel.m */,
+			);
+			path = FileNameModel;
+			sourceTree = "<group>";
+		};
+		CE61ACE62C9EAAE1002DF138 /* ImageModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ACE42C9EAAE1002DF138 /* ImageModel.h */,
+				CE61ACE52C9EAAE1002DF138 /* ImageModel.m */,
+			);
+			path = ImageModel;
+			sourceTree = "<group>";
+		};
+		CE61ACE92C9EAAE1002DF138 /* JobsCountriesModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ACE72C9EAAE1002DF138 /* JobsCountriesModel.h */,
+				CE61ACE82C9EAAE1002DF138 /* JobsCountriesModel.m */,
+			);
+			path = JobsCountriesModel;
+			sourceTree = "<group>";
+		};
+		CE61ACEC2C9EAAE1002DF138 /* NSNotificationKeyboardModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ACEA2C9EAAE1002DF138 /* NSNotificationKeyboardModel.h */,
+				CE61ACEB2C9EAAE1002DF138 /* NSNotificationKeyboardModel.m */,
+			);
+			path = NSNotificationKeyboardModel;
+			sourceTree = "<group>";
+		};
+		CE61ACEF2C9EAAE1002DF138 /* PhilippinesModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ACED2C9EAAE1002DF138 /* PhilippinesModel.h */,
+				CE61ACEE2C9EAAE1002DF138 /* PhilippinesModel.m */,
+			);
+			path = PhilippinesModel;
+			sourceTree = "<group>";
+		};
+		CE61ACF22C9EAAE1002DF138 /* SDWebImageModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ACF02C9EAAE1002DF138 /* SDWebImageModel.h */,
+				CE61ACF12C9EAAE1002DF138 /* SDWebImageModel.m */,
+			);
+			path = SDWebImageModel;
+			sourceTree = "<group>";
+		};
+		CE61ACF52C9EAAE1002DF138 /* URLManagerModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ACF32C9EAAE1002DF138 /* URLManagerModel.h */,
+				CE61ACF42C9EAAE1002DF138 /* URLManagerModel.m */,
+			);
+			path = URLManagerModel;
+			sourceTree = "<group>";
+		};
+		CE61ACF62C9EAAE1002DF138 /* JobsModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ACDD2C9EAAE1002DF138 /* JobsModel.h */,
+				CE61ACE02C9EAAE1002DF138 /* BaseModel */,
+				CE61ACE32C9EAAE1002DF138 /* FileNameModel */,
+				CE61ACE62C9EAAE1002DF138 /* ImageModel */,
+				CE61ACE92C9EAAE1002DF138 /* JobsCountriesModel */,
+				CE61ACDC2C9EAAE1002DF138 /* JobsKeyValueModel */,
+				CE61ACEC2C9EAAE1002DF138 /* NSNotificationKeyboardModel */,
+				CE61ACEF2C9EAAE1002DF138 /* PhilippinesModel */,
+				CE61ACF22C9EAAE1002DF138 /* SDWebImageModel */,
+				CE61ACF52C9EAAE1002DF138 /* URLManagerModel */,
+			);
+			path = JobsModel;
+			sourceTree = "<group>";
+		};
+		CE61AD022C9EAB26002DF138 /* NSObject+URLManager */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD002C9EAB26002DF138 /* NSObject+URLManager.h */,
+				CE61AD012C9EAB26002DF138 /* NSObject+URLManager.m */,
+			);
+			path = "NSObject+URLManager";
+			sourceTree = "<group>";
+		};
+		CE61AD052C9EAB26002DF138 /* 存取页面数据 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD032C9EAB26002DF138 /* DataManager.h */,
+				CE61AD042C9EAB26002DF138 /* DataManager.m */,
+			);
+			path = "存取页面数据";
+			sourceTree = "<group>";
+		};
+		CE61AD062C9EAB26002DF138 /* 公共部分 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD022C9EAB26002DF138 /* NSObject+URLManager */,
+				CE61AD052C9EAB26002DF138 /* 存取页面数据 */,
+			);
+			path = "公共部分";
+			sourceTree = "<group>";
+		};
+		CE61AD092C9EAB26002DF138 /* NSObject+YTKNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD072C9EAB26002DF138 /* NSObject+YTKNetwork.h */,
+				CE61AD082C9EAB26002DF138 /* NSObject+YTKNetwork.m */,
+			);
+			path = "NSObject+YTKNetwork";
+			sourceTree = "<group>";
+		};
+		CE61AD0C2C9EAB26002DF138 /* JobsBaseApi */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD0A2C9EAB26002DF138 /* JobsBaseApi.h */,
+				CE61AD0B2C9EAB26002DF138 /* JobsBaseApi.m */,
+			);
+			path = JobsBaseApi;
+			sourceTree = "<group>";
+		};
+		CE61AD0F2C9EAB26002DF138 /* 跑马灯信息查询【建议前端每20s-30s可以刷新请求一次】【GET】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD0D2C9EAB26002DF138 /* FM_queryAnnByMember_api.h */,
+				CE61AD0E2C9EAB26002DF138 /* FM_queryAnnByMember_api.m */,
+			);
+			path = "跑马灯信息查询【建议前端每20s-30s可以刷新请求一次】【GET】";
+			sourceTree = "<group>";
+		};
+		CE61AD122C9EAB26002DF138 /* 查询广告列表-支持游客：活动推广专区【GET】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD102C9EAB26002DF138 /* FM_promotion_ad_api.h */,
+				CE61AD112C9EAB26002DF138 /* FM_promotion_ad_api.m */,
+			);
+			path = "查询广告列表-支持游客：活动推广专区【GET】";
+			sourceTree = "<group>";
+		};
+		CE61AD152C9EAB26002DF138 /* 查询广告列表-支持游客：首页天顶轮播大Banner【GET】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD132C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.h */,
+				CE61AD142C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.m */,
+			);
+			path = "查询广告列表-支持游客：首页天顶轮播大Banner【GET】";
+			sourceTree = "<group>";
+		};
+		CE61AD182C9EAB26002DF138 /* 查询广告列表-支持游客：APP首页右下3Banner【GET】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD162C9EAB26002DF138 /* FM_promotion_advertise_api.h */,
+				CE61AD172C9EAB26002DF138 /* FM_promotion_advertise_api.m */,
+			);
+			path = "查询广告列表-支持游客：APP首页右下3Banner【GET】";
+			sourceTree = "<group>";
+		};
+		CE61AD1B2C9EAB26002DF138 /* 用户登出【POST】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD192C9EAB26002DF138 /* FM_user_logout_api.h */,
+				CE61AD1A2C9EAB26002DF138 /* FM_user_logout_api.m */,
+			);
+			path = "用户登出【POST】";
+			sourceTree = "<group>";
+		};
+		CE61AD1E2C9EAB26002DF138 /* 用户提交KYC认证【POST】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD1C2C9EAB26002DF138 /* FM_kyc_submit_api.h */,
+				CE61AD1D2C9EAB26002DF138 /* FM_kyc_submit_api.m */,
+			);
+			path = "用户提交KYC认证【POST】";
+			sourceTree = "<group>";
+		};
+		CE61AD212C9EAB26002DF138 /* 游戏大厅喜爱的游戏-删除【POST】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD1F2C9EAB26002DF138 /* FM_favoriteGames_delete_api.h */,
+				CE61AD202C9EAB26002DF138 /* FM_favoriteGames_delete_api.m */,
+			);
+			path = "游戏大厅喜爱的游戏-删除【POST】";
+			sourceTree = "<group>";
+		};
+		CE61AD242C9EAB26002DF138 /* 游戏大厅喜爱的游戏-添加【POST】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD222C9EAB26002DF138 /* FM_favoriteGames_add_api.h */,
+				CE61AD232C9EAB26002DF138 /* FM_favoriteGames_add_api.m */,
+			);
+			path = "游戏大厅喜爱的游戏-添加【POST】";
+			sourceTree = "<group>";
+		};
+		CE61AD272C9EAB26002DF138 /* 菲站APP首页- 受欢迎的游戏列表查询【POST】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD252C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.h */,
+				CE61AD262C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.m */,
+			);
+			path = "菲站APP首页- 受欢迎的游戏列表查询【POST】";
+			sourceTree = "<group>";
+		};
+		CE61AD2A2C9EAB26002DF138 /* 获取会员个人信息【GET】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD282C9EAB26002DF138 /* GetMemberInfo_api.h */,
+				CE61AD292C9EAB26002DF138 /* GetMemberInfo_api.m */,
+			);
+			path = "获取会员个人信息【GET】";
+			sourceTree = "<group>";
+		};
+		CE61AD2D2C9EAB26002DF138 /* 手机登录【POST】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD2B2C9EAB26002DF138 /* FM_loginByVerificationCode_api.h */,
+				CE61AD2C2C9EAB26002DF138 /* FM_loginByVerificationCode_api.m */,
+			);
+			path = "手机登录【POST】";
+			sourceTree = "<group>";
+		};
+		CE61AD302C9EAB26002DF138 /* 菲站首页- 受欢迎的游戏列表查询【POST】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD2E2C9EAB26002DF138 /* FM_game_home_popularGames_query_api.h */,
+				CE61AD2F2C9EAB26002DF138 /* FM_game_home_popularGames_query_api.m */,
+			);
+			path = "菲站首页- 受欢迎的游戏列表查询【POST】";
+			sourceTree = "<group>";
+		};
+		CE61AD332C9EAB26002DF138 /* 账号密码登录【POST】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD312C9EAB26002DF138 /* FM_loginByAccAndPwd_api.h */,
+				CE61AD322C9EAB26002DF138 /* FM_loginByAccAndPwd_api.m */,
+			);
+			path = "账号密码登录【POST】";
+			sourceTree = "<group>";
+		};
+		CE61AD362C9EAB26002DF138 /* 发送短信验证码【POST】 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD342C9EAB26002DF138 /* FM_check_login_verification_api.h */,
+				CE61AD352C9EAB26002DF138 /* FM_check_login_verification_api.m */,
+			);
+			path = "发送短信验证码【POST】";
+			sourceTree = "<group>";
+		};
+		CE61AD372C9EAB26002DF138 /* FM_Api */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD0F2C9EAB26002DF138 /* 跑马灯信息查询【建议前端每20s-30s可以刷新请求一次】【GET】 */,
+				CE61AD122C9EAB26002DF138 /* 查询广告列表-支持游客：活动推广专区【GET】 */,
+				CE61AD152C9EAB26002DF138 /* 查询广告列表-支持游客：首页天顶轮播大Banner【GET】 */,
+				CE61AD182C9EAB26002DF138 /* 查询广告列表-支持游客：APP首页右下3Banner【GET】 */,
+				CE61AD1B2C9EAB26002DF138 /* 用户登出【POST】 */,
+				CE61AD1E2C9EAB26002DF138 /* 用户提交KYC认证【POST】 */,
+				CE61AD212C9EAB26002DF138 /* 游戏大厅喜爱的游戏-删除【POST】 */,
+				CE61AD242C9EAB26002DF138 /* 游戏大厅喜爱的游戏-添加【POST】 */,
+				CE61AD272C9EAB26002DF138 /* 菲站APP首页- 受欢迎的游戏列表查询【POST】 */,
+				CE61AD2A2C9EAB26002DF138 /* 获取会员个人信息【GET】 */,
+				CE61AD2D2C9EAB26002DF138 /* 手机登录【POST】 */,
+				CE61AD302C9EAB26002DF138 /* 菲站首页- 受欢迎的游戏列表查询【POST】 */,
+				CE61AD332C9EAB26002DF138 /* 账号密码登录【POST】 */,
+				CE61AD362C9EAB26002DF138 /* 发送短信验证码【POST】 */,
+			);
+			path = FM_Api;
+			sourceTree = "<group>";
+		};
+		CE61AD392C9EAB26002DF138 /* YTKNetwork.API */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD0C2C9EAB26002DF138 /* JobsBaseApi */,
+				CE61AD372C9EAB26002DF138 /* FM_Api */,
+				CE61AD382C9EAB26002DF138 /* YTKNetworkApi.h */,
+			);
+			path = YTKNetwork.API;
+			sourceTree = "<group>";
+		};
+		CE61AD3D2C9EAB26002DF138 /* JobsNetworkingAPI */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD3B2C9EAB26002DF138 /* JobsNetworkingAPI.h */,
+				CE61AD3C2C9EAB26002DF138 /* JobsNetworkingAPI.m */,
+			);
+			path = JobsNetworkingAPI;
+			sourceTree = "<group>";
+		};
+		CE61AD402C9EAB26002DF138 /* App接口示例 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD3E2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.h */,
+				CE61AD3F2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m */,
+			);
+			path = "App接口示例";
+			sourceTree = "<group>";
+		};
+		CE61AD432C9EAB26002DF138 /* 请求的公共配置文件 */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD412C9EAB26002DF138 /* RequestTool.h */,
+				CE61AD422C9EAB26002DF138 /* RequestTool.m */,
+			);
+			path = "请求的公共配置文件";
+			sourceTree = "<group>";
+		};
+		CE61AD442C9EAB26002DF138 /* ZBRequestManager.API */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD3A2C9EAB26002DF138 /* ZBRequestManagerApi.h */,
+				CE61AD3D2C9EAB26002DF138 /* JobsNetworkingAPI */,
+				CE61AD402C9EAB26002DF138 /* App接口示例 */,
+				CE61AD432C9EAB26002DF138 /* 请求的公共配置文件 */,
+			);
+			path = ZBRequestManager.API;
+			sourceTree = "<group>";
+		};
+		CE61AD462C9EAB26002DF138 /* App 的所有网络请求Api */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AD392C9EAB26002DF138 /* YTKNetwork.API */,
+				CE61AD442C9EAB26002DF138 /* ZBRequestManager.API */,
+				CE61AD452C9EAB26002DF138 /* JobsNetworkingHeader.h */,
+			);
+			path = "App 的所有网络请求Api";
+			sourceTree = "<group>";
+		};
 		CE706A3D2C5767CA00CB7B97 /* Excel */ = {
 			isa = PBXGroup;
 			children = (
@@ -3901,15 +4291,6 @@
 				CE7C7BBF2C942EB400C0153C /* JobsCalenderView.m */,
 			);
 			path = "弹出的日历选择页面";
-			sourceTree = "<group>";
-		};
-		CE7C7D452C9447CD00C0153C /* PhilippinesModel */ = {
-			isa = PBXGroup;
-			children = (
-				CE7C7D432C9447CD00C0153C /* PhilippinesModel.h */,
-				CE7C7D442C9447CD00C0153C /* PhilippinesModel.m */,
-			);
-			path = PhilippinesModel;
 			sourceTree = "<group>";
 		};
 		CE7F39582C4FDA1000431A5D /* JobsFMDBMgr */ = {
@@ -4501,15 +4882,6 @@
 				CEB807302C9BEBD300DCB5DF /* UIButton+SDWebImage.m */,
 			);
 			path = "UIButton+SDWebImage";
-			sourceTree = "<group>";
-		};
-		CEB807352C9BEC8300DCB5DF /* SDWebImageModel */ = {
-			isa = PBXGroup;
-			children = (
-				CEB807332C9BEC8300DCB5DF /* SDWebImageModel.h */,
-				CEB807342C9BEC8300DCB5DF /* SDWebImageModel.m */,
-			);
-			path = SDWebImageModel;
 			sourceTree = "<group>";
 		};
 		CEBA440F2C5E316200F0042D /* BaseCollectionViewCell */ = {
@@ -7411,79 +7783,12 @@
 			path = "☀️业务模块中公用的View";
 			sourceTree = "<group>";
 		};
-		CECE7D232C450CCD00764AF5 /* 存取页面数据 */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7D212C450CCD00764AF5 /* DataManager.h */,
-				CECE7D222C450CCD00764AF5 /* DataManager.m */,
-			);
-			path = "存取页面数据";
-			sourceTree = "<group>";
-		};
-		CECE7D262C450CCD00764AF5 /* 请求的公共配置文件 */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7D242C450CCD00764AF5 /* RequestTool.h */,
-				CECE7D252C450CCD00764AF5 /* RequestTool.m */,
-			);
-			path = "请求的公共配置文件";
-			sourceTree = "<group>";
-		};
-		CECE7D292C450CCD00764AF5 /* App接口示例 */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7D272C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.h */,
-				CECE7D282C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.m */,
-			);
-			path = "App接口示例";
-			sourceTree = "<group>";
-		};
-		CECE7D2D2C450CCD00764AF5 /* App 的所有网络请求Api */ = {
-			isa = PBXGroup;
-			children = (
-				CED358442C92A7EA00A5703F /* JobsBaseApi */,
-				CE475C732C79BE0200CF1143 /* JobsNetworkingAPI */,
-				CECE7D292C450CCD00764AF5 /* App接口示例 */,
-				CECE7D2C2C450CCD00764AF5 /* JobsNetworkingHeader.h */,
-			);
-			path = "App 的所有网络请求Api";
-			sourceTree = "<group>";
-		};
-		CECE7D302C450CCD00764AF5 /* NSObject+URLManager */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7D2E2C450CCD00764AF5 /* NSObject+URLManager.h */,
-				CECE7D2F2C450CCD00764AF5 /* NSObject+URLManager.m */,
-			);
-			path = "NSObject+URLManager";
-			sourceTree = "<group>";
-		};
-		CECE7D332C450CCD00764AF5 /* URLManagerModel */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7D312C450CCD00764AF5 /* URLManagerModel.h */,
-				CECE7D322C450CCD00764AF5 /* URLManagerModel.m */,
-			);
-			path = URLManagerModel;
-			sourceTree = "<group>";
-		};
-		CECE7D342C450CCD00764AF5 /* URL_Manager */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7D302C450CCD00764AF5 /* NSObject+URLManager */,
-				CECE7D332C450CCD00764AF5 /* URLManagerModel */,
-			);
-			path = URL_Manager;
-			sourceTree = "<group>";
-		};
 		CECE7D352C450CCD00764AF5 /* 网络请求 */ = {
 			isa = PBXGroup;
 			children = (
-				CEDA695C2C9ABE6200FE39BB /* NSObject+Network */,
-				CECE7D232C450CCD00764AF5 /* 存取页面数据 */,
-				CECE7D262C450CCD00764AF5 /* 请求的公共配置文件 */,
-				CECE7D2D2C450CCD00764AF5 /* App 的所有网络请求Api */,
-				CECE7D342C450CCD00764AF5 /* URL_Manager */,
+				CE61AD062C9EAB26002DF138 /* 公共部分 */,
+				CE61AD092C9EAB26002DF138 /* NSObject+YTKNetwork */,
+				CE61AD462C9EAB26002DF138 /* App 的所有网络请求Api */,
 			);
 			path = "网络请求";
 			sourceTree = "<group>";
@@ -8298,15 +8603,6 @@
 			path = "各项全局定义";
 			sourceTree = "<group>";
 		};
-		CECE7F112C4512BF00764AF5 /* BaseModel */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7F0F2C4512BF00764AF5 /* BaseModel.h */,
-				CECE7F102C4512BF00764AF5 /* BaseModel.m */,
-			);
-			path = BaseModel;
-			sourceTree = "<group>";
-		};
 		CECE7F142C4512BF00764AF5 /* CasinoCustomerContactModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -8347,14 +8643,10 @@
 			isa = PBXGroup;
 			children = (
 				CECE7F1E2C4512BF00764AF5 /* DAO.h */,
-				CECE7F112C4512BF00764AF5 /* BaseModel */,
 				CECE7F142C4512BF00764AF5 /* CasinoCustomerContactModel */,
 				CECE7F172C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel */,
-				CE2E88C12C69DEC300260207 /* JobsCountriesModel */,
 				CECE7F1A2C4512BF00764AF5 /* JobsResponseModel */,
 				CECE7F1D2C4512BF00764AF5 /* JobsUserModel */,
-				CE7C7D452C9447CD00C0153C /* PhilippinesModel */,
-				CEB807352C9BEC8300DCB5DF /* SDWebImageModel */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -10020,8 +10312,8 @@
 		CECE826F2C4513CD00764AF5 /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
+				CE61ACF62C9EAAE1002DF138 /* JobsModel */,
 				CED3582B2C92A57A00A5703F /* JobsRequestBuilder */,
-				CE207E522C8185C000AD9FFB /* FileNameModel */,
 				CE34664F2C7DA76500177010 /* 雪花算法 */,
 				CECE82342C4513CD00764AF5 /* FileFolderHandleTool */,
 				CECE82372C4513CD00764AF5 /* JobsAppTools */,
@@ -12327,6 +12619,7 @@
 			isa = PBXGroup;
 			children = (
 				CECE850D2C4513CD00764AF5 /* JobsBaseCustomizeUIKitCoreHeader.h */,
+				CE61ACD72C9EAA75002DF138 /* NSDictionary */,
 				CE7C7BBC2C942E8000C0153C /* NSDate */,
 				CED358272C92A4E400A5703F /* NSURLRequest */,
 				CEA018BE2C881A4B006F06CF /* NSRunLoop */,
@@ -13673,15 +13966,6 @@
 			path = JobsRequestBuilder;
 			sourceTree = "<group>";
 		};
-		CED358442C92A7EA00A5703F /* JobsBaseApi */ = {
-			isa = PBXGroup;
-			children = (
-				CED358422C92A7EA00A5703F /* JobsBaseApi.h */,
-				CED358432C92A7EA00A5703F /* JobsBaseApi.m */,
-			);
-			path = JobsBaseApi;
-			sourceTree = "<group>";
-		};
 		CED358482C92A8E700A5703F /* GetCustomerContactApi */ = {
 			isa = PBXGroup;
 			children = (
@@ -13737,15 +14021,6 @@
 				CED358542C92A8E700A5703F /* UploadImageApi */,
 			);
 			path = Api;
-			sourceTree = "<group>";
-		};
-		CEDA695C2C9ABE6200FE39BB /* NSObject+Network */ = {
-			isa = PBXGroup;
-			children = (
-				CEDA695E2C9ABE6800FE39BB /* NSObject+Network.h */,
-				CEDA695D2C9ABE6800FE39BB /* NSObject+Network.m */,
-			);
-			path = "NSObject+Network";
 			sourceTree = "<group>";
 		};
 		CEE26F392C9801A400D900AA /* NSObject+Data */ = {
@@ -14549,10 +14824,8 @@
 				CEAF25412C60FE050056570C /* ZMJTask.m in Sources */,
 				CEE26F3A2C9801A900D900AA /* NSObject+Data.m in Sources */,
 				CECE85892C4513CE00764AF5 /* JobsBaseCollectionViewCell.m in Sources */,
-				CECE7D442C450CCD00764AF5 /* JobsNetworkingAPI+DemoTestApi.m in Sources */,
 				CECE7EB12C450E5B00764AF5 /* RACEXTRuntimeExtensions.m in Sources */,
 				CECE7C572C450C5000764AF5 /* JobsCommentPopUpView_viewForHeaderInSection.m in Sources */,
-				CECE7D422C450CCD00764AF5 /* DataManager.m in Sources */,
 				CECE80C72C4512BF00764AF5 /* UIScrollView+FDFullscreenPopGesture.m in Sources */,
 				CECE87332C45140000764AF5 /* NSData+MIME.m in Sources */,
 				CECE85532C4513CE00764AF5 /* NSObject+PopViewToLogOut.m in Sources */,
@@ -14585,7 +14858,6 @@
 				CECE7E8D2C450E5B00764AF5 /* HTTPRedirectResponse.m in Sources */,
 				CECE85C72C4513CE00764AF5 /* BaseTableViewHeaderFooterView.m in Sources */,
 				CEFA81772C6E016F00751B1F /* PointLabBaseView.m in Sources */,
-				CECE7D432C450CCD00764AF5 /* RequestTool.m in Sources */,
 				CECE7C3B2C450C5000764AF5 /* CoreTextLearningVC.m in Sources */,
 				CECE7C1D2C450C5000764AF5 /* YTKBaseRequest+AnimatingAccessory.m in Sources */,
 				CECE85412C4513CE00764AF5 /* DynamicInvoke.m in Sources */,
@@ -14650,6 +14922,7 @@
 				CECE7C472C450C5000764AF5 /* Douyin_ZFPlayerVC@2.m in Sources */,
 				CECE85AE2C4513CE00764AF5 /* UINavigationController+SafeTransition.m in Sources */,
 				CECE855C2C4513CE00764AF5 /* NSObject+Time.m in Sources */,
+				CE61ACD82C9EAA75002DF138 /* NSDictionary+Extra.m in Sources */,
 				CECE816F2C4512BF00764AF5 /* UITabBar+TLAnimation.m in Sources */,
 				CECE85C22C4513CE00764AF5 /* UITableViewCell+Margin.m in Sources */,
 				CECE816D2C4512BF00764AF5 /* JobsTabBar.m in Sources */,
@@ -14754,7 +15027,6 @@
 				CECE7CC82C450C5000764AF5 /* PeekAndPopVC.m in Sources */,
 				CECE857C2C4513CE00764AF5 /* UIButton+ImageTitleSpacing.m in Sources */,
 				CECE80F92C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_7.m in Sources */,
-				CE207E552C8185E500AD9FFB /* FileNameModel.m in Sources */,
 				CECE85EA2C4513CE00764AF5 /* UIView+ZFPlayer.m in Sources */,
 				CECE7EBF2C450E5B00764AF5 /* TKPermissionNotification.m in Sources */,
 				CECE85D12C4513CE00764AF5 /* UITextField+Extend.m in Sources */,
@@ -14813,13 +15085,21 @@
 				CECE859B2C4513CE00764AF5 /* UIDevice+XMUtils.m in Sources */,
 				CECE7CCB2C450C5000764AF5 /* PHCycleView.m in Sources */,
 				CECE85872C4513CE00764AF5 /* UICollectionView+JobsRegisterClass.m in Sources */,
+				CE61ACF72C9EAAE1002DF138 /* PhilippinesModel.m in Sources */,
+				CE61ACF82C9EAAE1002DF138 /* JobsKeyValueModel.m in Sources */,
+				CE61ACF92C9EAAE1002DF138 /* URLManagerModel.m in Sources */,
+				CE61ACFA2C9EAAE1002DF138 /* SDWebImageModel.m in Sources */,
+				CE61ACFB2C9EAAE1002DF138 /* NSNotificationKeyboardModel.m in Sources */,
+				CE61ACFC2C9EAAE1002DF138 /* FileNameModel.m in Sources */,
+				CE61ACFD2C9EAAE1002DF138 /* BaseModel.m in Sources */,
+				CE61ACFE2C9EAAE1002DF138 /* ImageModel.m in Sources */,
+				CE61ACFF2C9EAAE1002DF138 /* JobsCountriesModel.m in Sources */,
 				CECE7CB62C450C5000764AF5 /* BaiShaETProjVIPSubCVCell_05.m in Sources */,
 				CECE87472C45140000764AF5 /* WGradientProgressView.m in Sources */,
 				CECE852E2C4513CE00764AF5 /* UIButtonModel.m in Sources */,
 				CE1F24EA2C5CD50100324198 /* NSObject+NTESVerifyCodeManager.m in Sources */,
 				CECE85142C4513CE00764AF5 /* NSMutableAttributedString+Extra.m in Sources */,
 				CE2E87402C689F9100260207 /* JobsBtnsStyleTBVCell.m in Sources */,
-				CED358452C92A80400A5703F /* JobsBaseApi.m in Sources */,
 				CECE85772C4513CE00764AF5 /* RBCLikeButton.m in Sources */,
 				CECE813D2C4512BF00764AF5 /* JobsUserHeaderDataViewTBVCell.m in Sources */,
 				CECE85AD2C4513CE00764AF5 /* UINavigationController+Extra.m in Sources */,
@@ -14925,6 +15205,27 @@
 				CECE85132C4513CE00764AF5 /* NSArray+Tools.m in Sources */,
 				CEAF253E2C60FE050056570C /* ZMJHeaderCell.m in Sources */,
 				CECE7CD72C450C5000764AF5 /* TestIrregularViewTestVC.m in Sources */,
+				CE61AD472C9EAB26002DF138 /* FM_promotion_advertise_api.m in Sources */,
+				CE61AD482C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.m in Sources */,
+				CE61AD492C9EAB26002DF138 /* FM_loginByVerificationCode_api.m in Sources */,
+				CE61AD4A2C9EAB26002DF138 /* FM_loginByAccAndPwd_api.m in Sources */,
+				CE61AD4B2C9EAB26002DF138 /* GetMemberInfo_api.m in Sources */,
+				CE61AD4C2C9EAB26002DF138 /* NSObject+YTKNetwork.m in Sources */,
+				CE61AD4D2C9EAB26002DF138 /* FM_favoriteGames_delete_api.m in Sources */,
+				CE61AD4E2C9EAB26002DF138 /* FM_favoriteGames_add_api.m in Sources */,
+				CE61AD4F2C9EAB26002DF138 /* JobsBaseApi.m in Sources */,
+				CE61AD502C9EAB26002DF138 /* FM_user_logout_api.m in Sources */,
+				CE61AD512C9EAB26002DF138 /* DataManager.m in Sources */,
+				CE61AD522C9EAB26002DF138 /* FM_queryAnnByMember_api.m in Sources */,
+				CE61AD532C9EAB26002DF138 /* FM_check_login_verification_api.m in Sources */,
+				CE61AD542C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.m in Sources */,
+				CE61AD552C9EAB26002DF138 /* RequestTool.m in Sources */,
+				CE61AD562C9EAB26002DF138 /* FM_promotion_ad_api.m in Sources */,
+				CE61AD572C9EAB26002DF138 /* FM_kyc_submit_api.m in Sources */,
+				CE61AD582C9EAB26002DF138 /* FM_game_home_popularGames_query_api.m in Sources */,
+				CE61AD592C9EAB26002DF138 /* JobsNetworkingAPI.m in Sources */,
+				CE61AD5A2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m in Sources */,
+				CE61AD5B2C9EAB26002DF138 /* NSObject+URLManager.m in Sources */,
 				CECE7E932C450E5B00764AF5 /* WebSocket.m in Sources */,
 				CECE7C212C450C5000764AF5 /* YTKUrlArgumentsFilter.m in Sources */,
 				CECE85382C4513CE00764AF5 /* NSObject+CallBackInfoByBlock.m in Sources */,
@@ -14962,7 +15263,6 @@
 				CECE80C12C4512BF00764AF5 /* MSMineView6CVCell.m in Sources */,
 				CECE85842C4513CE00764AF5 /* JobsHeaderFooterView.m in Sources */,
 				CECE7CF92C450C5000764AF5 /* ViewController@3.m in Sources */,
-				CECE7D472C450CCD00764AF5 /* URLManagerModel.m in Sources */,
 				CECE7CF72C450C5000764AF5 /* ViewController@1.m in Sources */,
 				CECE87422C45140000764AF5 /* JhtBannerScrollView.m in Sources */,
 				CECE7EA62C450E5B00764AF5 /* KTVHCDownload.m in Sources */,
@@ -14986,7 +15286,6 @@
 				CECE7CBC2C450C5000764AF5 /* MasonryVC.m in Sources */,
 				CECE813C2C4512BF00764AF5 /* JobsUserHeaderDataViewForHeaderInSection.m in Sources */,
 				CECE85192C4513CE00764AF5 /* NSMutableDictionary+Ordered.m in Sources */,
-				CEDA695F2C9ABE6C00FE39BB /* NSObject+Network.m in Sources */,
 				CE207E942C82F52B00AD9FFB /* JobsVerticalMenuSubView.m in Sources */,
 				CECE872B2C45140000764AF5 /* NSString+Base85.m in Sources */,
 				CECE85152C4513CE00764AF5 /* NSCache+Extra.m in Sources */,
@@ -15002,7 +15301,6 @@
 				CECE7CD02C450C5000764AF5 /* B_VC.m in Sources */,
 				CE2E8AD42C6AFB2F00260207 /* LuckyDiskVC.m in Sources */,
 				CECE7CB02C450C5000764AF5 /* BaiShaETProjVIPSubCVCell_02.m in Sources */,
-				CECE80B82C4512BF00764AF5 /* BaseModel.m in Sources */,
 				CECA79842C707C3C003BCEF9 /* TableViewOneCell.m in Sources */,
 				CECE85252C4513CE00764AF5 /* JobsTimeModel.m in Sources */,
 				CECE80F22C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_5.m in Sources */,
@@ -15019,12 +15317,10 @@
 				CECE7C3A2C450C5000764AF5 /* NotifiView.m in Sources */,
 				CE89E11D2C89730A0042B7D9 /* UIImageView+SDWebImage.m in Sources */,
 				CECE7C8F2C450C5000764AF5 /* JobsSearchVC.m in Sources */,
-				CECE7D462C450CCD00764AF5 /* NSObject+URLManager.m in Sources */,
 				CECE871A2C45140000764AF5 /* AES.m in Sources */,
 				CECE873E2C45140000764AF5 /* NSData+CommonCrypto.m in Sources */,
 				CECE80FF2C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_9.m in Sources */,
 				CECE85262C4513CE00764AF5 /* CADisplayLink_TimerManager.m in Sources */,
-				CE2E88C42C69DECC00260207 /* JobsCountriesModel.m in Sources */,
 				CECA79852C707C3F003BCEF9 /* MainTableViewCell.m in Sources */,
 				CECE7C052C450C5000764AF5 /* JobsMembersSubsBaseVC.m in Sources */,
 				CECE7EB82C450E5B00764AF5 /* TKPermissionHome.m in Sources */,
@@ -15042,7 +15338,6 @@
 				CECE7EB22C450E5B00764AF5 /* TKPermissionBluetooth.m in Sources */,
 				CECE81552C4512BF00764AF5 /* TLTabBarAnimation.m in Sources */,
 				CECE85102C4513CE00764AF5 /* CALayer+Anim.m in Sources */,
-				CEB807362C9BEC8300DCB5DF /* SDWebImageModel.m in Sources */,
 				CECE87142C45140000764AF5 /* MovieCountDown.m in Sources */,
 				CECE857B2C4513CE00764AF5 /* UIButton+Extra.m in Sources */,
 				CECE85B12C4513CE00764AF5 /* UIScrollView+AnimationKit.m in Sources */,
@@ -15103,7 +15398,6 @@
 				CECE872F2C45140000764AF5 /* NSData+HexadecimalData.m in Sources */,
 				CECE871C2C45140000764AF5 /* NSString+Base16.m in Sources */,
 				CECE85392C4513CE00764AF5 /* NSObject+ChangeAppicon.m in Sources */,
-				CECE7D452C450CCD00764AF5 /* JobsNetworkingAPI.m in Sources */,
 				CECE7ECC2C450E5B00764AF5 /* WMZBannerView.m in Sources */,
 				CECE87212C45140000764AF5 /* UIImage+Base32.m in Sources */,
 				CECE80F32C4512BF00764AF5 /* AuthCodeLab.m in Sources */,

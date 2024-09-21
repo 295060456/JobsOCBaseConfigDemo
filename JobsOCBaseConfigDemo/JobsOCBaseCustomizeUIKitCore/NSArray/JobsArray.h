@@ -8,6 +8,10 @@
 #ifndef JobsArray_h
 #define JobsArray_h
 
+#ifndef JobsMutableArray
+#define JobsMutableArray(MutArrInstace) (MutArrInstace ? [MutArrInstace removeAllObjects] : (MutArrInstace = NSMutableArray.array))
+#endif /* JobsMutableArray */
+
 #pragma mark —— Base
 // TODO
 #pragma mark —— Category

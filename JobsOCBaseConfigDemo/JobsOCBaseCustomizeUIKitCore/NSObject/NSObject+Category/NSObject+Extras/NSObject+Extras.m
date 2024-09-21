@@ -66,7 +66,7 @@
     return self.getCurrentViewControllerByRootVC(NSObject.mainWindow().rootViewController);
 }
 /// 获得当前控制器的根控制器
--(JobsReturnVCByVC _Nullable)getCurrentViewControllerByRootVC{
+-(JobsReturnVCByVC _Nonnull)getCurrentViewControllerByRootVC{
     @jobs_weakify(self)
     return ^(UIViewController *_Nonnull rootVC) {
         @jobs_strongify(self)
@@ -220,6 +220,14 @@
     return NSTemporaryDirectory();
 }
 #pragma mark —— 功能性的
+-(JobsReturnIDByStringBlock _Nonnull)dataByKey{
+    return ^JobsKeyValueModel *_Nullable(NSString *_Nullable key){
+        JobsKeyValueModel *keyValueModel = JobsKeyValueModel.new;
+        keyValueModel.data = self;
+        keyValueModel.key = key;
+        return keyValueModel;
+    };
+}
 /// UICollectionViewFlowLayout
 -(__kindof UICollectionViewFlowLayout *_Nonnull)verticalLayout{
     UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
@@ -337,7 +345,7 @@
 #define JobsPresentationStyle (UIDevice.currentDevice.systemVersion.doubleValue >= 13.0 ? UIModalPresentationAutomatic : UIModalPresentationFullScreen)
 #endif
 /// 简洁版强制present展现一个控制器页面【不需要正向传参】
--(jobsByVCBlock _Nullable)comingToPresentVC{
+-(jobsByVCBlock _Nonnull)comingToPresentVC{
     @jobs_weakify(self)
     return ^(UIViewController *_Nonnull viewController) {
         @jobs_strongify(self)
@@ -352,7 +360,7 @@
     };
 }
 /// 简洁版强制present展现一个控制器页面【需要正向传参】
--(jobsByVCAndDataBlock _Nullable)comingToPresentVCByRequestParams{
+-(jobsByVCAndDataBlock _Nonnull)comingToPresentVCByRequestParams{
     @jobs_weakify(self)
     return ^(UIViewController * _Nullable viewController,id _Nullable requestParams) {
         @jobs_strongify(self)
@@ -368,7 +376,7 @@
 }
 #pragma mark —— push
 /// 简洁版强制push展现一个控制器页面【不需要正向传参】
--(jobsByVCBlock _Nullable)comingToPushVC{
+-(jobsByVCBlock _Nonnull)comingToPushVC{
     @jobs_weakify(self)
     return ^(UIViewController *_Nonnull viewController) {
         @jobs_strongify(self)
@@ -383,7 +391,7 @@
     };
 }
 /// 简洁版强制push展现一个控制器页面【需要正向传参】
--(jobsByVCAndDataBlock _Nullable)comingToPushVCByRequestParams{
+-(jobsByVCAndDataBlock _Nonnull)comingToPushVCByRequestParams{
     @jobs_weakify(self)
     return ^(UIViewController * _Nullable viewController,id _Nullable requestParams) {
         @jobs_strongify(self)
@@ -398,7 +406,7 @@
     };
 }
 /// 代理检测和回调
--(jobsDelegateBlock _Nullable)jobsDelegate{
+-(jobsDelegateBlock _Nonnull)jobsDelegate{
     @jobs_weakify(self)
     return ^(NSString *_Nullable data,jobsByVoidBlock block) {
         @jobs_strongify(self)
@@ -411,7 +419,7 @@
 ///【子类需要覆写 】创建返回键的点击事件
 -(jobsByBtnBlock _Nonnull)jobsBackBtnClickEvent{
     @jobs_weakify(self)
-    return ^(UIButton *_Nullable sender) {
+    return ^(__kindof UIButton *_Nullable sender) {
         @jobs_strongify(self)
         if (self.jobsBackBlock) self.jobsBackBlock(sender);
         UIViewController *vc = nil;
@@ -436,7 +444,7 @@
     };
 }
 /// 打印YTKBaseRequest
--(jobsByYTKBaseRequestBlock _Nullable)checkRequest{
+-(jobsByYTKBaseRequestBlock _Nonnull)checkRequest{
     return ^(YTKBaseRequest *_Nonnull request) {
         NSLog(@"request.error = %@\n",request.error);
         NSLog(@"request.requestArgument = %@\n",request.requestArgument);
@@ -472,7 +480,7 @@
         //获取图片信息
         imageModel.info = (__bridge NSDictionary*)CGImageSourceCopyPropertiesAtIndex(source, i, NULL);
         imageModel.timeDic = [imageModel.info objectForKey:(__bridge NSString *)kCGImagePropertyGIFDictionary];
-        [imageModelArr addObject:imageModel];
+        imageModelArr.add(imageModel);
     }return imageModelArr;
 }
 /**
@@ -484,7 +492,7 @@
  // dataMutArr = self.createDataMutArr2; 这一段无效
  
  */
-- (JobsReturnIDByIDBlock)valueForKey{
+- (JobsReturnIDByIDBlock _Nonnull)valueForKey{
     return ^(NSString *key) {
         id value = nil;
         if ([key isKindOfClass:NSString.class] &&
@@ -501,19 +509,25 @@
 }
 /// KVC 的二次封装
 -(jobsByKey_ValueBlock _Nonnull)jobsKVC{
+    @jobs_weakify(self)
     return ^(NSString *_Nonnull key,id _Nullable value) {
+        @jobs_strongify(self)
         [self setValue:value forKey:key];
     };
 }
 
 -(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClass{
+    @jobs_weakify(self)
     return ^(Class cls) {
+        @jobs_strongify(self)
         return [self isKindOfClass:cls];
     };
 }
 
 -(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClass{
+    @jobs_weakify(self)
     return ^(Class cls) {
+        @jobs_strongify(self)
         return [self isKindOfClass:cls];
     };
 }
@@ -746,36 +760,37 @@
     //    dropDownListView.backgroundColor = JobsRedColor;
     CGRect f = [self getWindowFrameByView:motivateFromView];
     if (!data) {
-        data = NSMutableArray.array;
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.font = UIFontWeightRegularSize(14);
-            viewModel.jobsWidth = f.size.width;
-            viewModel.textModel.text = @"111111111";
-            viewModel.subTextModel.text = @"eeeeeeeee";
-            viewModel.textModel.textLineSpacing = 0;
-            [data addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.font = UIFontWeightRegularSize(14);
-            viewModel.jobsWidth = f.size.width;
-            viewModel.textModel.text = @"222222222";
-            viewModel.subTextModel.text = @"wwwwwwwww";
-            viewModel.textModel.textLineSpacing = 0;
-            [data addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.font = UIFontWeightRegularSize(14);
-            viewModel.jobsWidth = f.size.width;
-            viewModel.textModel.text = @"333333333";
-            viewModel.subTextModel.text = @"sssssssss";
-            viewModel.textModel.textLineSpacing = 0;
-            [data addObject:viewModel];
-        }
+        data = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            {
+                UIViewModel *viewModel = UIViewModel.new;
+                viewModel.textModel.font = UIFontWeightRegularSize(14);
+                viewModel.jobsWidth = f.size.width;
+                viewModel.textModel.text = @"111111111";
+                viewModel.subTextModel.text = @"eeeeeeeee";
+                viewModel.textModel.textLineSpacing = 0;
+                data.add(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = UIViewModel.new;
+                viewModel.textModel.font = UIFontWeightRegularSize(14);
+                viewModel.jobsWidth = f.size.width;
+                viewModel.textModel.text = @"222222222";
+                viewModel.subTextModel.text = @"wwwwwwwww";
+                viewModel.textModel.textLineSpacing = 0;
+                data.add(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = UIViewModel.new;
+                viewModel.textModel.font = UIFontWeightRegularSize(14);
+                viewModel.jobsWidth = f.size.width;
+                viewModel.textModel.text = @"333333333";
+                viewModel.subTextModel.text = @"sssssssss";
+                viewModel.textModel.textLineSpacing = 0;
+                data.add(viewModel);
+            }
+        });
     }
     dropDownListView.jobsRichElementsInViewWithModel(data);
     
@@ -1100,47 +1115,47 @@
 /// @param tableView 此TableView
 /// @param tbvSuperview 承接这个TableView的父容器View
 /// @param indexPath 用indexPath定位📌TableViewCell
--(CGRect)tableView:(UITableView *_Nonnull)tableView
-      tbvSuperview:(UIView *_Nonnull)tbvSuperview
+-(CGRect)tableView:(__kindof UITableView *_Nonnull)tableView
+      tbvSuperview:(__kindof UIView *_Nonnull)tbvSuperview
    cellAtIndexPath:(NSIndexPath *_Nonnull)indexPath{
     CGRect rectInTableView = [self tbvCellRectInTableView:tableView atIndexPath:indexPath];
     return [tableView convertRect:rectInTableView toView:tbvSuperview];
 }
 /// TableViewCell 相对于承接此tableView的父视图的frame【用TableViewCell】❤️
--(CGRect)tableView:(UITableView *_Nonnull)tableView
-      tbvSuperview:(UIView *_Nonnull)tbvSuperview
-     tableViewCell:(UITableViewCell *_Nonnull)tableViewCell{
+-(CGRect)tableView:(__kindof UITableView *_Nonnull)tableView
+      tbvSuperview:(__kindof UIView *_Nonnull)tbvSuperview
+     tableViewCell:(__kindof UITableViewCell *_Nonnull)tableViewCell{
     CGRect rectInTableView = [self tableViewCell:tableViewCell frameInTableView:tableView];
     return [tableView convertRect:rectInTableView toView:tbvSuperview];
 }
 /// 获取CollectionViewCell在当前collection的位置【用indexPath】
 /// @param collectionView 此CollectionView
 /// @param indexPath 用indexPath定位📌CollectionViewCell
--(CGRect)frameInCollectionView:(UICollectionView *_Nonnull)collectionView
+-(CGRect)frameInCollectionView:(__kindof UICollectionView *_Nonnull)collectionView
                cellAtIndexPath:(NSIndexPath *_Nonnull)indexPath{
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     return [collectionView convertRect:cell.frame toView:collectionView];
 }
 /// 获取CollectionViewCell在当前collection的位置【用collectionViewCell】❤️
--(CGRect)collectionViewCell:(UICollectionViewCell *_Nonnull)collectionViewCell
-      frameInCollectionView:(UICollectionView *_Nonnull)collectionView{
+-(CGRect)collectionViewCell:(__kindof UICollectionViewCell *_Nonnull)collectionViewCell
+      frameInCollectionView:(__kindof UICollectionView *_Nonnull)collectionView{
     return [collectionView convertRect:collectionViewCell.frame toView:collectionView];
 }
 /// 获取CollectionViewCell在当前屏幕的位置【用indexPath】
 /// @param cvSuperview 承接这个CollectionView的父容器View
 /// @param collectionView  此CollectionView
 /// @param indexPath 用indexPath定位📌CollectionViewCell
--(CGRect)frameInCVSuperview:(UIView *_Nonnull)cvSuperview
-             collectionView:(UICollectionView *_Nonnull)collectionView
+-(CGRect)frameInCVSuperview:(__kindof UIView *_Nonnull)cvSuperview
+             collectionView:(__kindof UICollectionView *_Nonnull)collectionView
             cellAtIndexPath:(NSIndexPath *_Nonnull)indexPath{
     CGRect cellInCollection = [self frameInCollectionView:collectionView
                                           cellAtIndexPath:indexPath];
     return [collectionView convertRect:cellInCollection toView:cvSuperview];
 }
 /// 获取CollectionViewCell在当前屏幕的位置【用collectionViewCell】❤️
--(CGRect)frameInCVSuperview:(UIView *_Nonnull)cvSuperview
-             collectionView:(UICollectionView *_Nonnull)collectionView
-         collectionViewCell:(UICollectionViewCell *_Nonnull)collectionViewCell{
+-(CGRect)frameInCVSuperview:(__kindof UIView *_Nonnull)cvSuperview
+             collectionView:(__kindof UICollectionView *_Nonnull)collectionView
+         collectionViewCell:(__kindof UICollectionViewCell *_Nonnull)collectionViewCell{
     CGRect cellInCollection = [self collectionViewCell:collectionViewCell frameInCollectionView:collectionView];
     return [collectionView convertRect:cellInCollection toView:cvSuperview];
 }
@@ -1281,7 +1296,7 @@
     return JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape ? JobsMainScreen_HEIGHT() : JobsMainScreen_WIDTH();
 }
 
--(UIView *_Nullable)getView{
+-(__kindof UIView *_Nullable)getView{
     UIView *view = nil;
     if ([self isKindOfClass:UIView.class]) {
         view = (UIView *)self;
@@ -1308,29 +1323,7 @@
     if (interfaceOrientationMaskBlock){
         return interfaceOrientationMaskBlock( JobsAppTool.currentInterfaceOrientationMask);
     }else return CGSizeZero;
-//    switch (self.currentInterfaceOrientationMask) {
-//        ///【界面】竖屏方向
-//        case UIInterfaceOrientationMaskPortrait:{
-//            NSLog(@"检测屏幕方向：设备竖直向上，Home 按钮在下方");
-////            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向上，Home 按钮在下方"));
-//        }break;
-//        ///【界面】倒竖屏方向
-//        case UIInterfaceOrientationMaskLandscapeLeft:{
-//            NSLog(@"检测屏幕方向：设备竖直向下，Home 按钮在上方");
-////            toast(JobsInternationalization(@"检测屏幕方向：设备竖直向下，Home 按钮在上方"));
-//        }break;
-//        ///【界面】左横屏方向
-//        case UIInterfaceOrientationMaskLandscapeRight:{
-//            NSLog(@"检测屏幕方向：设备水平，Home 按钮在左侧");
-////            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在左侧"));
-//        }break;
-//        ///【界面】右横屏方向
-//        case UIInterfaceOrientationMaskPortraitUpsideDown:{
-//            NSLog(@"检测屏幕方向：设备水平，Home 按钮在右侧");
-////            toast(JobsInternationalization(@"检测屏幕方向：设备水平，Home 按钮在右侧"));
-//        }default:
-//            break;
-//    }
+
 }
 /// UIInterfaceOrientation 检测屏幕方向
 -(UIInterfaceOrientation)getInterfaceOrientation{
@@ -1479,8 +1472,8 @@
     self.keyboardDownNotificationBlock = keyboardDownNotificationBlock;
 }
 /// 根据数据源【数组】是否有值进行判定：占位图 和 mj_footer 的显隐性
--(void)dataSource:(NSArray *_Nonnull)dataSource
-      contentView:(UIScrollView *_Nonnull)contentView{
+-(void)dataSource:(__kindof NSArray *_Nonnull)dataSource
+      contentView:(__kindof UIScrollView *_Nonnull)contentView{
     if (dataSource.count) {
         [contentView ly_hideEmptyView];
         contentView.ly_emptyView.alpha = 0;
@@ -1595,18 +1588,4 @@ JobsKey(_keyboardDownNotificationBlock)
     Jobs_setAssociatedRETAIN_NONATOMIC(_keyboardDownNotificationBlock, keyboardDownNotificationBlock)
 }
 
-@end
-
-@implementation ImageModel
-
-@end
-
-@implementation NSNotificationKeyboardModel
-/**
- 关于键盘弹起：
- 1、建议用RAC进行键盘管理，因为过滤字符比如emoji字符会很难处理
-    1.1、关注：@implementation UITextField (Extend) -(void)jobsTextFieldEventFilterBlock:(JobsReturnBOOLByIDBlock)filterBlock subscribeNextBlock:(jobsByIDBlock)subscribeNextBlock；
-    1.2、RAC 键盘管理当“注册键盘事件”的时候会执行一次RAC键盘监听方法
- 2、键盘弹起会执行-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField；
- */
 @end

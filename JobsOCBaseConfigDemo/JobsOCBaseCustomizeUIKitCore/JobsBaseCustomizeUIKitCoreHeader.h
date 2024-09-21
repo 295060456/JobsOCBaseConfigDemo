@@ -18,6 +18,8 @@
 #import "JobsCache.h"
 #pragma mark —— NSMutableDictionary
 #import "JobsMutableDictionary.h"
+#pragma mark —— NSDictionary
+#import "JobsDictionary.h"
 #pragma mark —— NSArray
 #import "JobsArray.h"
 #import "NSMutableArray+Extra.h"

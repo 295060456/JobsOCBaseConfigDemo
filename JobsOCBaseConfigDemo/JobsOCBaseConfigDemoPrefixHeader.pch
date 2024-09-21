@@ -57,6 +57,6 @@
 /// 数据模型层
 #import "DAO.h"
 /// 网络请求
-#import "NSObject+Network.h"
+#import "JobsNetworkingHeader.h"
 
 #endif /* JobsOCBaseConfigPrefixHeader_pch */

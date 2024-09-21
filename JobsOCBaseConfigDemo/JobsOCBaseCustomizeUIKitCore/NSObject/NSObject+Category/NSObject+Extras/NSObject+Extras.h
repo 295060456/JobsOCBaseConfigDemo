@@ -25,6 +25,8 @@
 #import "JobsAppTools.h"
 #import "JobsSnowflake.h"
 
+#import "JobsModel.h"
+
 #if __has_include(<WHToast/WHToast.h>)
 #import <WHToast/WHToast.h>
 #else
@@ -74,10 +76,6 @@
 #endif
 
 #import "JobsDropDownListView.h"
-
-#ifndef JobsMutableArray
-#define JobsMutableArray(MutArrInstace) (MutArrInstace ? [MutArrInstace removeAllObjects] : (MutArrInstace = NSMutableArray.array))
-#endif /* JobsMutableArray */
 /// 屏幕方向
 #ifndef DeviceOrientation_typedef
 #define DeviceOrientation_typedef
@@ -94,24 +92,6 @@ static inline NSObject *_Nullable idToObject(id _Nullable data){
         return object;
     }else return nil;
 }
-
-@interface ImageModel : NSObject
-
-@property(nonatomic,strong,nullable)UIImage *image;
-@property(nonatomic,strong,nullable)NSDictionary *info;
-@property(nonatomic,strong,nullable)NSDictionary *timeDic;
-
-@end
-
-@interface NSNotificationKeyboardModel : NSObject
-
-@property(nonatomic,strong,nullable)NSDictionary *userInfo;
-@property(nonatomic,assign)CGRect beginFrame;
-@property(nonatomic,assign)CGRect endFrame;
-@property(nonatomic,assign)CGFloat keyboardOffsetY;
-@property(nonatomic,strong,nonnull)NSString *notificationName;
-
-@end
 
 @interface NSObject (Extras)
 <
@@ -141,7 +121,7 @@ BaseProtocol
 /// 获得当前的控制器
 -(__kindof UIViewController *_Nullable)getCurrentViewController;
 /// 获得当前控制器的根控制器
--(JobsReturnVCByVC _Nullable)getCurrentViewControllerByRootVC;
+-(JobsReturnVCByVC _Nonnull)getCurrentViewControllerByRootVC;
 /// 强制以Push的方式展现页面
 /// @param toPushVC 需要进行展现的页面
 /// @param requestParams 正向推页面传递的参数
@@ -203,6 +183,7 @@ BaseProtocol
 /// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
 -(NSString *_Nonnull)tmpDir;
 #pragma mark —— 功能性的
+-(JobsReturnIDByStringBlock _Nonnull)dataByKey;
 /// UICollectionViewFlowLayout
 -(__kindof UICollectionViewFlowLayout *_Nonnull)verticalLayout;
 -(__kindof UICollectionViewFlowLayout *_Nonnull)horizontalLayout;
@@ -235,21 +216,21 @@ BaseProtocol
 -(NSNumber *_Nonnull)makeSnowflake;
 /// present
 /// 简洁版强制present展现一个控制器页面【不需要正向传参】
--(jobsByVCBlock _Nullable)comingToPresentVC;
+-(jobsByVCBlock _Nonnull)comingToPresentVC;
 /// 简洁版强制present展现一个控制器页面【需要正向传参】
--(jobsByVCAndDataBlock _Nullable)comingToPresentVCByRequestParams;
+-(jobsByVCAndDataBlock _Nonnull)comingToPresentVCByRequestParams;
 /// push
 /// 简洁版强制push展现一个控制器页面【不需要正向传参】
--(jobsByVCBlock _Nullable)comingToPushVC;
+-(jobsByVCBlock _Nonnull)comingToPushVC;
 /// 简洁版强制push展现一个控制器页面【需要正向传参】
--(jobsByVCAndDataBlock _Nullable)comingToPushVCByRequestParams;
+-(jobsByVCAndDataBlock _Nonnull)comingToPushVCByRequestParams;
 /// 代理检测和回调
--(jobsDelegateBlock _Nullable)jobsDelegate;
+-(jobsDelegateBlock _Nonnull)jobsDelegate;
 /// GKNavigationBar 返回按钮点击方法
 ///【子类需要覆写 】创建返回键的点击事件
 -(jobsByBtnBlock _Nonnull)jobsBackBtnClickEvent;
 /// 打印YTKBaseRequest
--(jobsByYTKBaseRequestBlock _Nullable)checkRequest;
+-(jobsByYTKBaseRequestBlock _Nonnull)checkRequest;
 /// 此功能的必要性：如果外界传入的数组是空，那么拿到的count是0，做-1操作就是-1，直接用for循环就会进入死循环
 -(void)jobsSafetyCycleFunc:(int)ceiling
                 cycleBlock:(jobsByIntBlock _Nullable)cycleBlock;
@@ -379,32 +360,32 @@ BaseProtocol
 /// @param tableView 此TableView
 /// @param tbvSuperview 承接这个TableView的父容器View
 /// @param indexPath 用indexPath定位📌TableViewCell
--(CGRect)tableView:(UITableView *_Nonnull)tableView
-      tbvSuperview:(UIView *_Nonnull)tbvSuperview
+-(CGRect)tableView:(__kindof UITableView *_Nonnull)tableView
+      tbvSuperview:(__kindof UIView *_Nonnull)tbvSuperview
    cellAtIndexPath:(NSIndexPath *_Nonnull)indexPath;
 /// TableViewCell 相对于承接此tableView的父视图的frame【用TableViewCell】❤️
--(CGRect)tableView:(UITableView *_Nonnull)tableView
-      tbvSuperview:(UIView *_Nonnull)tbvSuperview
-     tableViewCell:(UITableViewCell *_Nonnull)tableViewCell;
+-(CGRect)tableView:(__kindof UITableView *_Nonnull)tableView
+      tbvSuperview:(__kindof UIView *_Nonnull)tbvSuperview
+     tableViewCell:(__kindof UITableViewCell *_Nonnull)tableViewCell;
 /// 获取CollectionViewCell在当前collection的位置【用indexPath】
 /// @param collectionView 此CollectionView
 /// @param indexPath 用indexPath定位📌CollectionViewCell
--(CGRect)frameInCollectionView:(UICollectionView *_Nonnull)collectionView
+-(CGRect)frameInCollectionView:(__kindof UICollectionView *_Nonnull)collectionView
                cellAtIndexPath:(NSIndexPath *_Nonnull)indexPath;
 /// 获取CollectionViewCell在当前collection的位置【用collectionViewCell】❤️
--(CGRect)collectionViewCell:(UICollectionViewCell *_Nonnull)collectionViewCell
-      frameInCollectionView:(UICollectionView *_Nonnull)collectionView;
+-(CGRect)collectionViewCell:(__kindof UICollectionViewCell *_Nonnull)collectionViewCell
+      frameInCollectionView:(__kindof UICollectionView *_Nonnull)collectionView;
 /// 获取CollectionViewCell在当前屏幕的位置【用indexPath】
 /// @param cvSuperview 承接这个CollectionView的父容器View
 /// @param collectionView  此CollectionView
 /// @param indexPath 用indexPath定位📌CollectionViewCell
--(CGRect)frameInCVSuperview:(UIView *_Nonnull)cvSuperview
-             collectionView:(UICollectionView *_Nonnull)collectionView
+-(CGRect)frameInCVSuperview:(__kindof UIView *_Nonnull)cvSuperview
+             collectionView:(__kindof UICollectionView *_Nonnull)collectionView
             cellAtIndexPath:(NSIndexPath *_Nonnull)indexPath;
 /// 获取CollectionViewCell在当前屏幕的位置【用collectionViewCell】❤️
--(CGRect)frameInCVSuperview:(UIView *_Nonnull)cvSuperview
-             collectionView:(UICollectionView *_Nonnull)collectionView
-         collectionViewCell:(UICollectionViewCell *_Nonnull)collectionViewCell;
+-(CGRect)frameInCVSuperview:(__kindof UIView *_Nonnull)cvSuperview
+             collectionView:(__kindof UICollectionView *_Nonnull)collectionView
+         collectionViewCell:(__kindof UICollectionViewCell *_Nonnull)collectionViewCell;
 #pragma mark —— 利用数组和NSValue，存取结构体
 /// CGPoint
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
@@ -468,7 +449,7 @@ BaseProtocol
 /// https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md
 -(CGFloat)jobsMainScreen_HEIGHT;
 -(CGFloat)jobsMainScreen_WIDTH;
--(UIView *_Nullable)getView;
+-(__kindof UIView *_Nullable)getView;
 -(id _Nullable)getViewByBlock:(JobsReturnIDByComponentTypeAndUIViewBlock _Nullable)block;
 /// UIInterfaceOrientationMask 检测屏幕方向
 -(CGSize)checkScreenOrientation_UIInterfaceOrientationMask:(JobsReturnSizeByUIntegerBlock _Nullable)interfaceOrientationMaskBlock;
@@ -512,8 +493,8 @@ BaseProtocol
 /// 加入键盘通知的监听者
 -(void)keyboard;
 /// 根据数据源【数组】是否有值进行判定：占位图 和 mj_footer 的显隐性
--(void)dataSource:(NSArray *_Nonnull)dataSource
-      contentView:(UIScrollView *_Nonnull)contentView;
+-(void)dataSource:(__kindof NSArray *_Nonnull)dataSource
+      contentView:(__kindof UIScrollView *_Nonnull)contentView;
 
 @end
 /**

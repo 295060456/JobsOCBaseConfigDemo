@@ -8,7 +8,9 @@
 #ifndef JobsNetworkingHeader_h
 #define JobsNetworkingHeader_h
 
-#import "JobsNetworkingAPI.h"
-#import "JobsNetworkingAPI+DemoTestApi.h"
+#import "YTKNetworkApi.h"
+#import "ZBRequestManagerApi.h"
+
 
 #endif /* JobsNetworkingHeader_h */
+
