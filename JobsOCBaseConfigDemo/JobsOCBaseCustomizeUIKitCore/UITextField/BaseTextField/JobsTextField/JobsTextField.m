@@ -39,7 +39,7 @@ UIViewModelProtocol_synthesize
 -(void)layoutSubviews{
     [super layoutSubviews];
     /// 内部指定圆切角
-    [self layoutSubviewsCutCnrByRoundingCorners:self.layoutSubviewsRectCorner
+    [self appointCornerCutToCircleByRoundingCorners:self.layoutSubviewsRectCorner
                                     cornerRadii:self.layoutSubviewsRectCornerSize];
 }
 #pragma mark —— 一些公有方法

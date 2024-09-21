@@ -47,7 +47,7 @@ BaseViewProtocol_synthesize
     /// 在这里设置这个View的size，外界设置的话，在某些情况下会因为内部生命周期的问题，导致异常
     // self.size = [MSPayView viewSizeWithModel:nil];
     if(!CGSizeEqualToSize(CGSizeZero, self.layoutSubviewsRectCornerSize)){
-        [self layoutSubviewsCutCnrByRoundingCorners:self.layoutSubviewsRectCorner
+        [self appointCornerCutToCircleByRoundingCorners:self.layoutSubviewsRectCorner
                                         cornerRadii:self.layoutSubviewsRectCornerSize];
     }
 }

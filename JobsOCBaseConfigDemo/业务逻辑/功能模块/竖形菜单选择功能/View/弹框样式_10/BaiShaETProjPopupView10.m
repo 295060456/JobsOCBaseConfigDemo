@@ -10,7 +10,7 @@
 @interface BaiShaETProjPopupView10 ()
 /// UI
 @property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UIButton *closeBtn;
+@property(nonatomic,strong)BaseButton *closeBtn;
 @property(nonatomic,strong)UIColor *cor;
 @property(nonatomic,strong)BaseButton *cancelBtn;
 @property(nonatomic,strong)BaseButton *sureBtn;
@@ -339,9 +339,9 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     }return _titleLab;
 }
 
--(UIButton *)closeBtn{
+-(BaseButton *)closeBtn{
     if (!_closeBtn) {
-        _closeBtn = UIButton.new;
+        _closeBtn = BaseButton.new;
         _closeBtn.normalBackgroundImage(JobsIMG(@"关闭"));
         [self.titleLab addSubview:_closeBtn];
         [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -354,7 +354,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
             NSLog(@"关闭");
             @jobs_strongify(self)
             x.selected = !x.selected;
-            [self cancelBtnActionForPopView:x];
+            self.cancelBtnActionForPopView(x);
             self.shakeCell(NO);
             return nil;
         }];
@@ -369,7 +369,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
-                [self cancelBtnActionForPopView:x];
+                self.cancelBtnActionForPopView(x);
                 self.shakeCell(NO);
             })
             .onLongPressGesture(^(id data){
@@ -392,7 +392,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
-                [self cancelBtnActionForPopView:self.dataMutArr];
+                self.cancelBtnActionForPopView(self.dataMutArr);
                 self.shakeCell(NO);
             })
             .onLongPressGesture(^(id data){
@@ -422,7 +422,10 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
 -(UIColor *)cor{
     if (!_cor) {
-        _cor = [UIColor gradientCorDataMutArr:[NSMutableArray arrayWithArray:@[HEXCOLOR(0xFFEABA),HEXCOLOR(0xF2CD7A)]]
+        _cor = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(HEXCOLOR(0xFFEABA));
+            data.add(HEXCOLOR(0xF2CD7A));
+        })
                                    startPoint:CGPointZero
                                      endPoint:CGPointZero
                                        opaque:NO

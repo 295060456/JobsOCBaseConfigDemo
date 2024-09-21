@@ -57,6 +57,10 @@ typedef __kindof NSArray *_Nullable(^JobsReturnArrayByVoidBlock)(void);
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(NSString *_Nullable data);
 #pragma mark —— 关于 View
 typedef __kindof UIView *_Nullable(^JobsReturnViewByVoidBlock)(void);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByCorBlock)(UIColor *_Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByFloatBlock)(CGFloat data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByNSUIntegerBlock)(NSUInteger data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewBySizeBlock)(CGSize data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByClassBlock)(Class _Nonnull cls);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTableViewHeaderFooterViewBlock)(__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView);
 typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByVoidBlock)(void);

@@ -202,7 +202,7 @@
     }
     {/// 公共设置
         if(self.deviceSystemVersion.floatValue < 15.0){
-            [btn layerBorderCor:layerBorderCor andBorderWidth:borderWidth];/// 描边
+            btn.layerByBorderCor(layerBorderCor).layerByBorderWidth(borderWidth);/// 描边
         }
         
         if(roundingCorners == UIRectCornerAllCorners && jobsZeroSizeValue(roundingCornersRadii)){

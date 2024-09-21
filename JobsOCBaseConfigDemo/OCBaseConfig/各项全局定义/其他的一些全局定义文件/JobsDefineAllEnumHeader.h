@@ -95,13 +95,39 @@ typedef NS_ENUM(NSInteger, PicToStrStyle) {
 /// banner滚动方向
 #ifndef JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED
 #define JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED
-typedef NS_ENUM(NSUInteger, JhtBannerViewOrientation) {
+typedef NS_ENUM(NSInteger, JhtBannerViewOrientation) {
     // 横向
     BV_Orientation_Horizontal,
     // 纵向
     BV_Orientation_Vertical,
 };
 #endif /* JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED */
+/// ShadowDirection
+#ifndef ShadowDirection_h
+#define ShadowDirection_h
+typedef NS_OPTIONS(NSUInteger, ShadowDirection) {
+    ShadowDirection_top = 0,
+    ShadowDirection_down = 1 << 0,
+    ShadowDirection_left = 1 << 1,
+    ShadowDirection_right = 1 << 2,
+    ShadowDirection_leftTop = 1 << 3,
+    ShadowDirection_leftDown = 1 << 4,
+    ShadowDirection_rightTop = 1 << 5,
+    ShadowDirection_rightDown = 1 << 6,
+    ShadowDirection_All = ~0UL
+};
+#endif /* ShadowDirection_h */
+/// UIBorderSideType
+#ifndef UIBorderSideType_h
+#define UIBorderSideType_h
+typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
+    UIBorderSideTypeAll  = 0,
+    UIBorderSideTypeTop = 1 << 0,
+    UIBorderSideTypeBottom = 1 << 1,
+    UIBorderSideTypeLeft = 1 << 2,
+    UIBorderSideTypeRight = 1 << 3,
+};
+#endif /* UIBorderSideType_h */
 /// BaseURL
 #ifndef SERVER_URL_DEFINED
 #define SERVER_URL_DEFINED
@@ -178,7 +204,7 @@ typedef NS_ENUM(NSInteger, HTTPResponseCode) {//KKK
 ///
 #ifndef HTTP_REQUEST_HEADER_LANGUAGE_TYPE_ENUM_DEFINED
 #define HTTP_REQUEST_HEADER_LANGUAGE_TYPE_ENUM_DEFINED
-typedef NS_ENUM(NSUInteger, HTTPRequestHeaderLanguageType) {
+typedef NS_ENUM(NSInteger, HTTPRequestHeaderLanguageType) {
     HTTPRequestHeaderLanguageEn,/// 英文
     HTTPRequestHeaderLanguageCN,/// 中文
     HTTPRequestHeaderLanguageOther/// 其他语言
@@ -187,7 +213,7 @@ typedef NS_ENUM(NSUInteger, HTTPRequestHeaderLanguageType) {
 ///
 #ifndef MK_RIGHT_BTN_VIEW_BTN_TYPE_ENUM_DEFINED
 #define MK_RIGHT_BTN_VIEW_BTN_TYPE_ENUM_DEFINED
-typedef NS_ENUM(NSUInteger, MKRightBtnViewBtnType) {
+typedef NS_ENUM(NSInteger, MKRightBtnViewBtnType) {
     MKRightBtnViewBtnType_loveBtn,/// 点赞
     MKRightBtnViewBtnType_commentBtn,/// 评论
     MKRightBtnViewBtnType_shareBtn/// 分享
@@ -196,7 +222,7 @@ typedef NS_ENUM(NSUInteger, MKRightBtnViewBtnType) {
 ///
 #ifndef MOVE_DIRECTION_ENUM_DEFINED
 #define MOVE_DIRECTION_ENUM_DEFINED
-typedef NS_ENUM(NSUInteger, MoveDirection){
+typedef NS_ENUM(NSInteger, MoveDirection){
     MoveDirection_vertical_up = 0, /// 垂直方向(向上)滑动
     MoveDirection_vertical_down,   /// 垂直方向(向下)滑动
     MoveDirection_horizont_left,   /// 水平方向(向左)滑动
@@ -426,7 +452,7 @@ typedef NS_ENUM(NSInteger, AccountStyle) {
 
 #ifndef MOVE_DIRECTION_ENUM_DEFINED
 #define MOVE_DIRECTION_ENUM_DEFINED
-typedef NS_ENUM(NSUInteger, FM_action_type){
+typedef NS_ENUM(NSInteger, FM_action_type){
     FM_action_type_Signin = 0, /// 注册
     FM_action_type_Login,   /// 登录
     FM_action_type_forgotPwd,   /// 忘记密码
@@ -439,13 +465,49 @@ typedef NS_ENUM(NSUInteger, FM_action_type){
 
 #ifndef FMGAMELISTSTYLE
 #define FMGAMELISTSTYLE
-typedef NS_ENUM(NSUInteger, FMGameListStyle){
+typedef NS_ENUM(NSInteger, FMGameListStyle){
     FMGameListStyle_All = 0, /// 全部
     FMGameListStyle_Hot,   /// 热门
     FMGameListStyle_New,   /// 最新
     FMGameListStyle_Fav,   /// 最爱
 };
 #endif /* FMGAMELISTSTYLE */
+
+#ifndef FMADSTYPE
+#define FMADSTYPE
+/// 广告类型
+typedef NS_ENUM(NSInteger, FMAdsType){
+    FMAdsType_homeBanner = 0, /// 首页天顶轮播大Banner
+    FMAdsType_ = 1, /// 导航栏4小Banner
+    FMAdsType_hotRecommend = 2, /// APP首页右下3Banner
+    FMAdsType_memberCentral = 3, /// APP会员中心
+    FMAdsType_promotionArea = 4 /// 活动推广专区
+};
+#endif /* FMAFMADSTYPEdsType */
+
+#ifndef FMACCOUNTTYPE
+#define FMACCOUNTTYPE
+/// 账号类型
+typedef NS_ENUM(NSInteger, FMAccType){
+    FMAccType_ALL_MEMBER = 0, /// 所有会员
+    FMAccType_DESIGNATED_MEMBER = 1, /// 指定会员
+    FMAccType_All_AGENCY = 2, /// 全代理线
+    FMAccType_DESIGNATED_AGENCY = 3, /// 指定代理线
+};
+#endif /* FMACCOUNTTYPE */
+
+#ifndef FMJUMPTYPE
+#define FMJUMPTYPE
+/// 跳转类型
+typedef NS_ENUM(NSInteger, FMJumpType){
+    FMJumpType_DESIGNATED_GAME = 0, /// 指定游戏
+    FMJumpType_STADIUM = 1, /// 场馆大厅
+    FMJumpType_ACTIVITY = 2, /// 活动模块
+    FMJumpType_WEBURL = 3, /// 网站地址
+    FMJumpType_NO = 4, /// 不跳转
+};
+#endif /* FMJUMPTYPE */
+
 
 
 #endif /* JobsDefineAllEnumHeader_h */

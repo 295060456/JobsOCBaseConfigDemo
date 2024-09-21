@@ -39,7 +39,7 @@ BaseViewProtocol_synthesize
 -(void)layoutSubviews{
     [super layoutSubviews];
     if(!CGSizeEqualToSize(CGSizeZero, self.layoutSubviewsRectCornerSize)){
-        [self layoutSubviewsCutCnrByRoundingCorners:self.layoutSubviewsRectCorner
+        [self appointCornerCutToCircleByRoundingCorners:self.layoutSubviewsRectCorner
                                         cornerRadii:self.layoutSubviewsRectCornerSize];
     }
 }

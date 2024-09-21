@@ -7,47 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <objc/runtime.h>
+#import "JobsDefineAllEnumHeader.h"
+#import "BaseViewProtocol.h"
+#import "JobsBlock.h"
 #import "MacroDef_App.h"
 #import "MacroDef_Size.h"
 #import "MacroDef_Cor.h"
 #import "MacroDef_Func.h"
 #import "MacroDef_Sys.h"
-#import "UIButton+UI.h"
-#import "UIView+Measure.h"
+#import "MacroDef_Notification.h"
 #import "NSObject+Extras.h"
 #import "NSObject+GKPhotoBrowser.h"
-#import "MacroDef_Notification.h"
 #import "NSObject+DynamicInvoke.h"
-#import "BaseViewProtocol.h"
-#import "JobsBlock.h"
-
-#ifndef ShadowDirection_h
-#define ShadowDirection_h
-typedef NS_OPTIONS(NSUInteger, ShadowDirection) {
-    ShadowDirection_top = 0,
-    ShadowDirection_down = 1 << 0,
-    ShadowDirection_left = 1 << 1,
-    ShadowDirection_right = 1 << 2,
-    ShadowDirection_leftTop = 1 << 3,
-    ShadowDirection_leftDown = 1 << 4,
-    ShadowDirection_rightTop = 1 << 5,
-    ShadowDirection_rightDown = 1 << 6,
-    ShadowDirection_All = ~0UL
-};
-#endif /* ShadowDirection_h */
-
-#ifndef UIBorderSideType_h
-#define UIBorderSideType_h
-typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
-    UIBorderSideTypeAll  = 0,
-    UIBorderSideTypeTop = 1 << 0,
-    UIBorderSideTypeBottom = 1 << 1,
-    UIBorderSideTypeLeft = 1 << 2,
-    UIBorderSideTypeRight = 1 << 3,
-};
-#endif /* UIBorderSideType_h */
+#import "UIView+Measure.h"
+#import "UIButton+UI.h"
 
 @interface UIView (Extras)<BaseViewProtocol>
+@property(nonatomic,assign)BOOL jobsVisible;
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame;
 -(jobsByStringBlock _Nonnull)jobsLogPoint;
@@ -64,17 +41,33 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
  */
 /// 获取屏幕截图
 -(UIImage *_Nullable)screenShot;
-/// 截图
--(JobsReturnImageByViewBlock _Nonnull)rendImage;
 /// 获取启动页的截图
 -(UIImage *_Nullable)lanuchScreenShot;
 /// 获取某个view 上的截图
 -(UIImage *_Nullable)viewShots;
 /// 获取某个scrollview 上的截图
 -(UIImage *_Nullable)scrollViewShot;
+/// 截图
+-(JobsReturnImageByViewBlock _Nonnull)rendImage;
 /// 获取某个 范围内的 截图
--(UIImage *_Nullable)innerViewShotAtFrame:(CGRect)rect;
+-(JobsReturnImageByCGRectBlock _Nonnull)innerViewShotAtFrame;
 #pragma mark —— 描边
+/// 调用方式：view.leftBorderColor(color).leftBorderWidth(borderType);
+-(JobsReturnViewByCorBlock _Nonnull)leftBorderColor;
+/// 调用方式：view.rightBorderColor(color).rightBorderWidth(borderType);
+-(JobsReturnViewByCorBlock _Nonnull)rightBorderColor;
+/// 调用方式：view.topBorderColor(color).topBorderWidth(borderType);
+-(JobsReturnViewByCorBlock _Nonnull)topBorderColor;
+/// 调用方式：view.bottomBorderColor(color).bottomBorderWidth(borderType);
+-(JobsReturnViewByCorBlock _Nonnull)bottomBorderColor;
+/// 调用方式：view.leftBorderColor(color).leftBorderWidth(borderType);
+-(JobsReturnViewByFloatBlock _Nonnull)leftBorderWidth;
+/// 调用方式：view.rightBorderColor(color).rightBorderWidth(borderType);
+-(JobsReturnViewByFloatBlock _Nonnull)rightBorderWidth;
+/// 调用方式：view.topBorderColor(color).topBorderWidth(borderType);
+-(JobsReturnViewByFloatBlock _Nonnull)topBorderWidth;
+/// 调用方式：view.bottomBorderColor(color).bottomBorderWidth(borderType);
+-(JobsReturnViewByFloatBlock _Nonnull)bottomBorderWidth;
 /// 指定描边 【在使用这个方法的一个前提是被描边的view刷新后存在frame】
 /// @param color 作用颜色
 /// @param borderWidth 线宽
@@ -87,17 +80,21 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 /// @param borderWidth 边线宽度
 -(void)layerBorderCor:(UIColor *_Nullable)layerBorderCor
        andBorderWidth:(CGFloat)borderWidth;
+/// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
+-(JobsReturnViewByCorBlock _Nonnull)layerByBorderCor;
+/// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
+-(JobsReturnViewByFloatBlock _Nonnull)layerByBorderWidth;
 #pragma mark —— 切角
 /// 切整个View的4个角为统一的切角参数
 -(jobsByCGFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius;
-/// 指定圆切角（方法一）
+/// 调用方式：view.appointCorners(UIRectCornerTopLeft | UIRectCornerBottomRight).cornerRadii(CGSizeMake(10, 10));
+-(JobsReturnViewByNSUIntegerBlock _Nonnull)appointCorners;
+/// 调用方式：view.appointCorners(UIRectCornerTopLeft | UIRectCornerBottomRight).cornerRadii(CGSizeMake(10, 10));
+-(JobsReturnViewBySizeBlock _Nonnull)cornerRadii;
+/// 指定圆切角
 /// ⚠️这种写法存在一定的弊端：如果在某个View上添加子View，并对这个View使用如下方法的圆切角，则这个View上的子视图不可见⚠️
 -(void)appointCornerCutToCircleByRoundingCorners:(UIRectCorner)corners
                                      cornerRadii:(CGSize)cornerRadii;
-/// 指定圆切角（方法二），避免了（方法一）的弊端
-/// 作用于需要切的View的子类里面的-(void)layoutSubviews方法
--(void)layoutSubviewsCutCnrByRoundingCorners:(UIRectCorner)corners
-                                 cornerRadii:(CGSize)cornerRadii;
 #pragma mark —— @implementation UILabel (AutoScroll)
 /// 根据文字长短自动判断是否需要显示TextLayer，并且滚动
 -(void)setTextLayerScroll;
@@ -107,32 +104,34 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 -(CABasicAnimation *_Nonnull)getAnimation;
 /// 判断是否需要滚动
 -(BOOL)shouldAutoScroll;
+/// 数据（字符串）定宽
++(CGFloat)widthByData:(UIViewModel *_Nonnull)data;
+/// 数据（字符串）定高
++(CGFloat)heightByData:(UIViewModel *_Nonnull)data;
 #pragma mark —— 其他
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;
 -(jobsByViewBlock _Nonnull)addSubview;
 -(jobsByViewBlock _Nonnull)remove;
 /// 针对数据源是UIImage  *的GKPhotoBrowser
--(void)viewTapGRSavePicsWithImageDataMutArr:(NSMutableArray <UIImage *>* _Nonnull)imageDataMutArr
+-(void)viewTapGRSavePicsWithImageDataMutArr:(NSMutableArray <UIImage *>*_Nonnull)imageDataMutArr
                                 atIndexPath:(NSIndexPath *_Nonnull)indexPath
                                    byTarget:(id _Nonnull)target;
 /// 针对数据源是NSURL  *的GKPhotoBrowser
--(void)viewTapGRSavePicsWithImageUrlMutArr:(NSMutableArray <NSURL *>* _Nonnull)imageUrlMutArr
-                               atIndexPath:(NSIndexPath * _Nonnull)indexPath
+-(void)viewTapGRSavePicsWithImageUrlMutArr:(NSMutableArray <NSURL *>*_Nonnull)imageUrlMutArr
+                               atIndexPath:(NSIndexPath *_Nonnull)indexPath
                                   byTarget:(id _Nonnull)target;
 /// 针对数据源是NSString  *的GKPhotoBrowser
--(void)viewTapGRSavePicsWithImageUrlStrMutArr:(NSMutableArray <NSString *>* _Nonnull)imageUrlStrMutArr
-                                  atIndexPath:(NSIndexPath * _Nonnull)indexPath
+-(void)viewTapGRSavePicsWithImageUrlStrMutArr:(NSMutableArray <NSString *>*_Nonnull)imageUrlStrMutArr
+                                  atIndexPath:(NSIndexPath *_Nonnull)indexPath
                                      byTarget:(id _Nonnull)target;
--(void)viewTapGRSavePicsBaseConfigByTarget:(id _Nonnull)target;
--(BOOL)jobsVisible;
--(void)setJobsVisible:(BOOL)jobsVisible;
+/// 对GKPhotoBrowser保存图片的基础设置
+-(jobsByIDBlock _Nonnull)viewTapGRSavePicsBaseConfigByTarget;
 /// popView取消按钮常规处理方法
--(void)cancelBtnActionForPopView:(id _Nullable)object;
+-(jobsByIDBlock _Nonnull)cancelBtnActionForPopView;
 /// 顺时针旋转radians度【依据中心点进行旋转】
 -(void)transformByRadians:(CGFloat)radians;
 /// 顺时针旋转degrees弧度【依据中心点进行旋转】
 -(void)transformByDegrees:(CGFloat)degrees;
-
 -(UIImage *_Nullable)getImage;
 /// iOS 阴影效果 添加了shadowPath后消除了离屏渲染问题 。特别提示：不能存在 -(void)drawRect:(CGRect)rect 或者在-(void)drawRect:(CGRect)rect里面写，否则无效
 /// @param targetShadowview 需要作用阴影效果的View
@@ -145,8 +144,8 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 /// @param shadowOpacity 阴影的不透明度,取值范围在0~1
 /// @param layerShadowColor 阴影颜色
 /// @param layerShadowRadius  模糊计算的半径
-+(void)makeTargetShadowview:(UIView *__nonnull)targetShadowview
-                  superView:(UIView *__nullable)superview
++(void)makeTargetShadowview:(__kindof UIView *__nonnull)targetShadowview
+                  superView:(__kindof UIView *__nullable)superview
             shadowDirection:(ShadowDirection)ShadowDirection
           shadowWithOffsetX:(CGFloat)offsetX
                     offsetY:(CGFloat)offsetY

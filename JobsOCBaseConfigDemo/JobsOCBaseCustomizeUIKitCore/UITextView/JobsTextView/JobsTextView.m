@@ -63,7 +63,7 @@ static dispatch_once_t static_textViewOnceToken;
 -(void)layoutSubviews{
     [super layoutSubviews];
 //    /// 内部指定圆切角
-//    [self layoutSubviewsCutCnrByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
+//    [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
 //                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】

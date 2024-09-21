@@ -16,15 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EmptyView : LYEmptyView
 
-+ (instancetype)diyEmptyViewWithTitle:(NSString *_Nullable)title;
-
-+ (instancetype)diyEmptyActionViewWithTarget:(id)target
-                                      action:(SEL)action;
++(instancetype)diyEmptyViewWithTitle:(NSString *_Nullable)title;
++(instancetype)diyEmptyActionViewWithTarget:(id)target action:(SEL)action;
 
 @end
 
 NS_ASSUME_NONNULL_END
-
 /*
  _tableView.ly_emptyView = [EmptyView diyEmptyViewWithTitle:@"您还未关注账号"];
  */
