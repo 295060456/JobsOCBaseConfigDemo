@@ -183,11 +183,15 @@
     };
 }
 #pragma mark —— 依靠数据束进行创建
++(instancetype)jobsInit{
+    return BaseButton.initByButtonModel(nil);
+}
 /// 依靠UIViewModel进行创建
 +(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel{
     @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(UIViewModel *_Nonnull data){
+    return ^__kindof UIButton *_Nullable(UIViewModel *_Nullable data){
         @jobs_strongify(self)
+        if(!data) data = UIViewModel.new;
         return [self.alloc jobsInitBtnByConfiguration:data.buttonConfiguration
                                            background:data.backgroundConfiguration
                            buttonConfigTitleAlignment:data.buttonConfigurationTitleAlignment//UIButtonConfigurationTitleAlignmentAutomatic
@@ -235,8 +239,9 @@
 /// 依靠UIButtonModel进行创建
 +(JobsReturnButtonByButtonModelBlock _Nonnull)initByButtonModel{
     @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(UIButtonModel *_Nonnull data){
+    return ^__kindof UIButton *_Nullable(UIButtonModel *_Nullable data){
         @jobs_strongify(self)
+        if(!data) data = UIButtonModel.new;
         return [self.alloc jobsInitBtnByConfiguration:data.btnConfiguration
                                            background:data.background
                            buttonConfigTitleAlignment:data.buttonConfigTitleAlignment
@@ -284,8 +289,9 @@
 /// 依靠UITextModel进行创建
 +(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel{
     @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(UITextModel *_Nonnull data){
+    return ^__kindof UIButton *_Nullable(UITextModel *_Nullable data){
         @jobs_strongify(self)
+        if(!data) data = UITextModel.new;
         return [self.alloc jobsInitBtnByConfiguration:nil
                                            background:nil
                                  buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic

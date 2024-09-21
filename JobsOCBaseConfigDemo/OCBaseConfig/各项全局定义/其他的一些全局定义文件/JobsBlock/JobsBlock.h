@@ -111,7 +111,7 @@ typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType c
 typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable data);
 
 @class UIViewModel;
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(UIViewModel *_Nonnull data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(UIViewModel *_Nullable data);
 typedef void(^jobsByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullable data);
@@ -119,7 +119,7 @@ typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(__kindof UIViewModel *_Nulla
 typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByArrBlock)(__kindof NSArray *_Nullable data);
 
 @class UITextModel;
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextModel *_Nonnull data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextModel *_Nullable data);
 
 @class JobsTimeFormatterModel;
 typedef JobsTimeFormatterModel *_Nullable(^JobsReturnTimeFormatterModelByStringBlock)(NSString *_Nullable data);
@@ -132,7 +132,7 @@ typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(UIColor *_Nullable
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);
 
 @class UIButtonModel;
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(UIButtonModel *_Nonnull data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(UIButtonModel *_Nullable data);
 @class JobsNavBarConfig;
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,
                                                                                UIButtonModel *_Nullable closeBtnModel);

@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图文混排（图片在右边 ）
 +(JobsReturnButtonByStyle2Block _Nonnull)initByStyleRight;
 #pragma mark —— 依靠数据束进行创建
++(instancetype)jobsInit;
 /// 依靠UIViewModel进行创建
 +(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel;
 /// 依靠UIButtonModel进行创建

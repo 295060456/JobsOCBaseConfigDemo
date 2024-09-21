@@ -115,17 +115,17 @@ NS_ASSUME_NONNULL_BEGIN
 -(UIConfigurationTextAttributesTransformer)jobsSetConfigTextAttributesTransformerByTitleFont:(UIFont *_Nullable)titleFont
                                                                                  btnTitleCor:(UIColor *_Nullable)titleCor;
 /// 通过 Transformer 得到 字体
--(JobsReturnFontByConfigurationTextAttributesTransformerBlock)getTitleFontFromTransformer;
+-(JobsReturnFontByConfigurationTextAttributesTransformerBlock _Nonnull)getTitleFontFromTransformer;
 /// 通过 Transformer 得到 文字颜色
--(JobsReturnColorByConfigurationTextAttributesTransformerBlock)getTitleColorFromTransformer;
+-(JobsReturnColorByConfigurationTextAttributesTransformerBlock _Nonnull)getTitleColorFromTransformer;
 /// RAC 点击事件2次封装
--(RACDisposable *)jobsBtnClickEventBlock:(JobsReturnIDByIDBlock)subscribeNextBlock;
+-(RACDisposable *)jobsBtnClickEventBlock:(JobsReturnIDByIDBlock _Nullable)subscribeNextBlock;
 /// 设置按钮的长按手势
--(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDBySelectorBlock)longPressGestureEventBlock;
+-(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock;
 /// 方法名字符串（带参数、参数之间用"："隔开）、作用对象、参数
--(JobsReturnIDByThreeIDBlock)btnClickActionWithParamarrays;
+-(JobsReturnIDByThreeIDBlock _Nonnull)btnClickActionWithParamarrays;
 /// 方法名字符串（不带参数）、作用对象
--(JobsReturnIDByTwoIDBlock)btnClickActionWithMethodName;
+-(JobsReturnIDByTwoIDBlock _Nonnull)btnClickActionWithMethodName;
 /// 代码触发点击调用
 -(jobsByVoidBlock _Nonnull)actionByCode;
 /// UIButton 上的 image 旋转一定的角度angle
@@ -133,35 +133,35 @@ NS_ASSUME_NONNULL_BEGIN
 /// 当Button不可用的时候，需要做些什么
 -(jobsByBOOLBlock _Nonnull)enabledBlock;
 /// 重设UIButtonConfiguration并使之生效  JobsReturnButtonConfigurationByButtonConfigurationBlock
--(void)jobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock)configurationBlock;
--(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock)configurationBlock;
+-(void)jobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock;
+-(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock;
 #pragma mark —— 一些通用修改（已做Api向下兼容）
 /// 重设Btn的描边：线宽和线段的颜色
--(jobsByColor_FloatBlock)jobsResetBtnlayerBorderCorAndWidth;
+-(jobsByColor_FloatBlock _Nonnull)jobsResetBtnlayerBorderCorAndWidth;
 /// 重设Btn的描边线段的颜色
--(jobsByCorBlock)jobsResetBtnlayerBorderCor;
+-(jobsByCorBlock _Nonnull)jobsResetBtnlayerBorderCor;
 /// 重设Btn的描边线段的宽度
--(jobsByFloatBlock)jobsResetBtnlayerBorderWidth;
+-(jobsByFloatBlock _Nonnull)jobsResetBtnlayerBorderWidth;
 /// 重设Btn的圆切角
--(jobsByCGFloatBlock)jobsResetBtnCornerRadiusValue;
+-(jobsByCGFloatBlock _Nonnull)jobsResetBtnCornerRadiusValue;
 /// 重设Btn主标题的文字内容 ❤️优先级高于jobsResetTitle 和 normalTitle❤️
--(jobsByStringBlock)jobsResetBtnTitle;
+-(jobsByStringBlock _Nonnull)jobsResetBtnTitle;
 /// 重设Btn副标题的文字内容
--(jobsByStringBlock)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
+-(jobsByStringBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
 /// 修改主标题的对齐方式
 -(jobsByTextAlignmentBlock _Nonnull)jobsResetTitleTextAlignment API_AVAILABLE(ios(16.0));
 /// 修改副标题的对齐方式
 -(jobsByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0));
 /// 重设Btn.Image
--(jobsByImageBlock)jobsResetBtnImage;
+-(jobsByImageBlock _Nonnull)jobsResetBtnImage;
 /// 重设Btn主标题的文字颜色
--(jobsByCorBlock)jobsResetBtnTitleCor;
+-(jobsByCorBlock _Nonnull)jobsResetBtnTitleCor;
 /// 重设Btn副标题的文字颜色
--(jobsByCorBlock)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
+-(jobsByCorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
 /// 重设Btn主标题的背景颜色
--(jobsByCorBlock)jobsResetBtnBgCor;
+-(jobsByCorBlock _Nonnull)jobsResetBtnBgCor;
 /// 重设Btn的背景图片
--(jobsByImageBlock)jobsResetBtnBgImage;
+-(jobsByImageBlock _Nonnull)jobsResetBtnBgImage;
 -(jobsByBOOLBlock _Nonnull)makeNewLineShows;
 -(jobsByNSIntegerBlock _Nonnull)titleAlignment;
 -(jobsByFontBlock _Nonnull)titleFont;

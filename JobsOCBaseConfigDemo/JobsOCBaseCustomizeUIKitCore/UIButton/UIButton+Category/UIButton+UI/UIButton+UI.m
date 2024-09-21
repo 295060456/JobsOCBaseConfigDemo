@@ -252,7 +252,7 @@
     };
 }
 /// 通过 Transformer 得到 字体
--(JobsReturnFontByConfigurationTextAttributesTransformerBlock)getTitleFontFromTransformer{
+-(JobsReturnFontByConfigurationTextAttributesTransformerBlock _Nonnull)getTitleFontFromTransformer{
     return ^(UIConfigurationTextAttributesTransformer transformer) {
         if(!transformer) return (UIFont *)nil;
         // 创建一个示例的 textAttributes 字典
@@ -265,7 +265,7 @@
     };
 }
 /// 通过 Transformer 得到 文字颜色
--(JobsReturnColorByConfigurationTextAttributesTransformerBlock)getTitleColorFromTransformer{
+-(JobsReturnColorByConfigurationTextAttributesTransformerBlock _Nonnull)getTitleColorFromTransformer{
     return ^(UIConfigurationTextAttributesTransformer transformer) {
         if(!transformer) return (UIColor *)nil;
         // 创建一个示例的 textAttributes 字典
@@ -278,13 +278,13 @@
     };
 }
 /// RAC 点击事件2次封装
--(RACDisposable *)jobsBtnClickEventBlock:(JobsReturnIDByIDBlock)subscribeNextBlock{
+-(RACDisposable *)jobsBtnClickEventBlock:(JobsReturnIDByIDBlock _Nullable)subscribeNextBlock{
     return [[self rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIButton * _Nullable x) {
         if(subscribeNextBlock) subscribeNextBlock(x);
     }];
 }
 /// 设置按钮的长按手势
--(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDBySelectorBlock)longPressGestureEventBlock{
+-(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock{
     @jobs_weakify(self)
     if(longPressGestureEventBlock){
         self.userInteractionEnabled = YES;
@@ -309,7 +309,7 @@
     }
 }
 /// 方法名字符串（带参数、参数之间用"："隔开）、作用对象、参数
--(JobsReturnIDByThreeIDBlock)btnClickActionWithParamarrays{
+-(JobsReturnIDByThreeIDBlock _Nonnull)btnClickActionWithParamarrays{
     // SEL method = @selector(func);//定义一个类方法的指针，selector查找是当前类（包含子类）的方法
     // SEL 用 assign修饰
     @jobs_weakify(self)
@@ -325,7 +325,7 @@
     };
 }
 /// 方法名字符串（不带参数）、作用对象
--(JobsReturnIDByTwoIDBlock)btnClickActionWithMethodName{
+-(JobsReturnIDByTwoIDBlock _Nonnull)btnClickActionWithMethodName{
     return ^(NSString * _Nonnull methodName,
              id _Nonnull targetObj){
         SuppressWarcPerformSelectorLeaksWarning(return [self jobsBtnClickEventBlock:^(id data) {
@@ -360,7 +360,7 @@
     };
 }
 /// 重设UIButtonConfiguration并使之生效  JobsReturnButtonConfigurationByButtonConfigurationBlock
--(void)jobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock)configurationBlock {
+-(void)jobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock {
     if (@available(iOS 16.0, *)) {
         UIButtonConfiguration *config = self.configuration.copy;
         if (configurationBlock) configurationBlock(config);
@@ -369,13 +369,13 @@
     }
 }
 
--(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock)configurationBlock{
+-(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock{
     [self jobsUpdateButtonConfiguration:configurationBlock];
     return self.configuration;
 }
 #pragma mark —— 一些通用修改（已做Api向下兼容）
 /// 重设Btn的描边：线宽和线段的颜色
--(jobsByColor_FloatBlock)jobsResetBtnlayerBorderCorAndWidth{
+-(jobsByColor_FloatBlock _Nonnull)jobsResetBtnlayerBorderCorAndWidth{
     @jobs_weakify(self)
     return ^(UIColor *_Nullable layerBorderCor,float borderWidth) {
         @jobs_strongify(self)
@@ -384,21 +384,21 @@
     };
 }
 /// 重设Btn的描边线段的颜色
--(jobsByCorBlock)jobsResetBtnlayerBorderCor{
+-(jobsByCorBlock _Nonnull)jobsResetBtnlayerBorderCor{
+    @jobs_weakify(self)
     return ^(UIColor *_Nullable layerBorderCor) {
-        @jobs_weakify(self)
+        @jobs_strongify(self)
         if(self.deviceSystemVersion.floatValue < 15.0){
             self.layer.borderColor = layerBorderCor.CGColor;
         }else{
             [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
-                @jobs_strongify(self)
                 config.background.strokeColor = layerBorderCor;
             }];
         }
     };
 }
 /// 重设Btn的描边线段的宽度
--(jobsByFloatBlock)jobsResetBtnlayerBorderWidth{
+-(jobsByFloatBlock _Nonnull)jobsResetBtnlayerBorderWidth{
     @jobs_weakify(self)
     return ^(float borderWidth) {
         @jobs_strongify(self)
@@ -412,7 +412,7 @@
     };
 }
 /// 重设Btn的圆切角
--(jobsByCGFloatBlock)jobsResetBtnCornerRadiusValue{
+-(jobsByCGFloatBlock _Nonnull)jobsResetBtnCornerRadiusValue{
     @jobs_weakify(self)
     return ^(CGFloat cornerRadiusValue) {
         @jobs_strongify(self)
@@ -426,7 +426,7 @@
     };
 }
 /// 重设Btn主标题的文字内容 优先级高于jobsResetTitle 和 normalTitle
--(jobsByStringBlock)jobsResetBtnTitle{
+-(jobsByStringBlock _Nonnull)jobsResetBtnTitle{
     @jobs_weakify(self)
     return ^(NSString *_Nullable data) {
         @jobs_strongify(self)
@@ -436,7 +436,7 @@
     };
 }
 /// 重设Btn副标题的文字内容
--(jobsByStringBlock)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0)){
+-(jobsByStringBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^(NSString *_Nullable data) {
         @jobs_strongify(self)
@@ -480,7 +480,7 @@
     };
 }
 /// 重设Btn.Image
--(jobsByImageBlock)jobsResetBtnImage{
+-(jobsByImageBlock _Nonnull)jobsResetBtnImage{
     @jobs_weakify(self)
     return ^(UIImage *_Nullable data) {
         @jobs_strongify(self)
@@ -490,7 +490,7 @@
     };
 }
 /// 重设Btn主标题的文字颜色
--(jobsByCorBlock)jobsResetBtnTitleCor{
+-(jobsByCorBlock _Nonnull)jobsResetBtnTitleCor{
     @jobs_weakify(self)
     return ^(UIColor *_Nullable data) {
         @jobs_strongify(self)
@@ -500,7 +500,7 @@
     };
 }
 /// 重设Btn副标题的文字颜色
--(jobsByCorBlock)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0)){
+-(jobsByCorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^(UIColor *_Nullable data) {
         @jobs_strongify(self)
@@ -508,7 +508,7 @@
     };
 }
 /// 重设Btn主标题的背景颜色
--(jobsByCorBlock)jobsResetBtnBgCor{
+-(jobsByCorBlock _Nonnull)jobsResetBtnBgCor{
     @jobs_weakify(self)
     return ^(UIColor *_Nullable data) {
         @jobs_strongify(self)
@@ -518,7 +518,7 @@
     };
 }
 /// 重设Btn的背景图片
--(jobsByImageBlock)jobsResetBtnBgImage{
+-(jobsByImageBlock _Nonnull)jobsResetBtnBgImage{
     @jobs_weakify(self)
     return ^(UIImage *_Nullable data) {
         @jobs_strongify(self)
@@ -1049,7 +1049,8 @@
             config.baseForegroundColor = data;
             self.configuration = config;
         }];
-        self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:nil btnTitleCor:data]);
+        self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:nil
+                                                                                                    btnTitleCor:data]);
         [self updateConfiguration];
         return self.configuration;
     };
@@ -1059,7 +1060,8 @@
     @jobs_weakify(self)
     return ^(UIFont *data) {
         @jobs_strongify(self)
-        self.jobsResetTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:data btnTitleCor:nil]);
+        self.jobsResetTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:data
+                                                                                                 btnTitleCor:nil]);
     };
 }
 
@@ -1067,7 +1069,8 @@
     @jobs_weakify(self)
     return ^(UIFont *data) {
         @jobs_strongify(self)
-        self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:data btnTitleCor:nil]);
+        self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:data
+                                                                                                    btnTitleCor:nil]);
     };
 }
 #pragma mark —— UIButton.带状态的 get
