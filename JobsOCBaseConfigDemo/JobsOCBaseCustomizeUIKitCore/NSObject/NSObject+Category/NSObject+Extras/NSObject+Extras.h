@@ -183,6 +183,7 @@ BaseProtocol
 /// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
 -(NSString *_Nonnull)tmpDir;
 #pragma mark —— 功能性的
+-(JobsReturnBOOLByIDBlock _Nonnull)isEqual;
 -(JobsReturnIDByStringBlock _Nonnull)dataByKey;
 /// UICollectionViewFlowLayout
 -(__kindof UICollectionViewFlowLayout *_Nonnull)verticalLayout;

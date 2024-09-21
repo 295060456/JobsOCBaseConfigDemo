@@ -70,8 +70,9 @@ UIViewModelProtocol_synthesize
 /// 含义：在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑。
 /// 用途：您可以使用此方法进行输入验证或单元格选择，以决定是否允许用户开始编辑。
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if(self.otherActionBlock) self.otherActionBlock(textField);
-    return self.isAllowEdit;
+    if(!self.isAllowEdit){
+        if(self.otherActionBlock) self.otherActionBlock(textField);
+    } return self.isAllowEdit;
 }
 /// 含义：文本字段已经开始编辑时调用。
 /// 用途：在此方法中，您可以开始相应的操作，例如更新用户界面（UI），显示工具条等。

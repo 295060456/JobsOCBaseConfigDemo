@@ -220,6 +220,14 @@
     return NSTemporaryDirectory();
 }
 #pragma mark —— 功能性的
+-(JobsReturnBOOLByIDBlock _Nonnull)isEqual{
+    @jobs_weakify(self)
+    return ^BOOL(id _Nullable data){
+        @jobs_strongify(self)
+        return [self isEqual:data];
+    };
+}
+
 -(JobsReturnIDByStringBlock _Nonnull)dataByKey{
     return ^JobsKeyValueModel *_Nullable(NSString *_Nullable key){
         JobsKeyValueModel *keyValueModel = JobsKeyValueModel.new;

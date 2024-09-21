@@ -127,51 +127,55 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _tableView;
 }
 
--(NSMutableArray<UITableViewCell *> *)tbvCellMutArr{
+-(NSMutableArray<__kindof UITableViewCell *>*)tbvCellMutArr{
     if (!_tbvCellMutArr) {
-        _tbvCellMutArr = NSMutableArray.array;
-        for (int d = 0; d < self.dataMutArr.count; d++) {
-            _tbvCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-        }
+        @jobs_weakify(self)
+        _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            for (int d = 0; d < self.dataMutArr.count; d++) {
+                @jobs_strongify(self)
+                data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            }
+        });
     }return _tbvCellMutArr;
 }
 
 -(NSMutableArray<__kindof UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.text = JobsInternationalization(@"选项1");
-            viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
-            viewModel.textCor = JobsCor(@"#5D5D5D");
-            viewModel.selectedTextCor = JobsWhiteColor;
-            viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
-            viewModel.bgCor = JobsCor(@"#1F1F1F");
-            viewModel.textAlignment = NSTextAlignmentCenter;
-            _dataMutArr.add(viewModel);
-        }
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.text = JobsInternationalization(@"选项2");
-            viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
-            viewModel.textCor = JobsCor(@"#5D5D5D");
-            viewModel.selectedTextCor = JobsWhiteColor;
-            viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
-            viewModel.bgCor = JobsCor(@"#1F1F1F");
-            viewModel.textAlignment = NSTextAlignmentCenter;
-            _dataMutArr.add(viewModel);
-        }
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.text = JobsInternationalization(@"选项3");
-            viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
-            viewModel.textCor = JobsCor(@"#5D5D5D");
-            viewModel.selectedTextCor = JobsWhiteColor;
-            viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
-            viewModel.bgCor = JobsCor(@"#1F1F1F");
-            viewModel.textAlignment = NSTextAlignmentCenter;
-            _dataMutArr.add(viewModel);
-        }
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            {
+                UIViewModel *viewModel = UIViewModel.new;
+                viewModel.text = JobsInternationalization(@"选项1");
+                viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
+                viewModel.textCor = JobsCor(@"#5D5D5D");
+                viewModel.selectedTextCor = JobsWhiteColor;
+                viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
+                viewModel.bgCor = JobsCor(@"#1F1F1F");
+                viewModel.textAlignment = NSTextAlignmentCenter;
+                data.add(viewModel);
+            }
+            {
+                UIViewModel *viewModel = UIViewModel.new;
+                viewModel.text = JobsInternationalization(@"选项2");
+                viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
+                viewModel.textCor = JobsCor(@"#5D5D5D");
+                viewModel.selectedTextCor = JobsWhiteColor;
+                viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
+                viewModel.bgCor = JobsCor(@"#1F1F1F");
+                viewModel.textAlignment = NSTextAlignmentCenter;
+                data.add(viewModel);
+            }
+            {
+                UIViewModel *viewModel = UIViewModel.new;
+                viewModel.text = JobsInternationalization(@"选项3");
+                viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
+                viewModel.textCor = JobsCor(@"#5D5D5D");
+                viewModel.selectedTextCor = JobsWhiteColor;
+                viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
+                viewModel.bgCor = JobsCor(@"#1F1F1F");
+                viewModel.textAlignment = NSTextAlignmentCenter;
+                data.add(viewModel);
+            }
+        });
     }return _dataMutArr;
 }
 

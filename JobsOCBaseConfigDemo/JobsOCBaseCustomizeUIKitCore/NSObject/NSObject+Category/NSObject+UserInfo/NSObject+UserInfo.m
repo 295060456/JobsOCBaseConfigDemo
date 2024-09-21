@@ -33,7 +33,19 @@
         JobsUserModel *loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
         if(loginModel.token.isExpired()){
             /// 如果Token过期，则跳转登录获取，以刷新Token
-            self.toLogin();
+//            self.toLogin();
+        }
+    };
+}
+/// 刷新用户Token（仅删除本地的用户数据）
+-(jobsByVoidBlock _Nonnull)refreshUserToken2{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        JobsUserModel *loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
+        if(loginModel.token.isExpired()){
+            /// 清理本地用户数据
+            self.deleteUserInfoByUserName(用户信息);
         }
     };
 }
@@ -112,7 +124,7 @@
             if (!userModel) {
                 NSLog(@"解档失败: %@", error.localizedDescription);
                 /// 没取到用户数据，就直接跳登录
-                self.toLogin();
+//                self.toLogin();
             }return userModel;
         }
     };
@@ -129,9 +141,7 @@
     return ^(NSString *_Nullable userName){
         if (isNull(userName)) return;
         NSMutableArray <NSString *>*userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKey(用户名数组)];//取出来的实际上是个不可变数组，所以需要向可变数组进行转化
-        if (!userNameMutArr) {
-            userNameMutArr = NSMutableArray.array;
-        }
+        if (!userNameMutArr) userNameMutArr = NSMutableArray.array;
         // 保持唯一性
         if (![userNameMutArr containsObject:userName]) {
             userNameMutArr.add(userName);

@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock;
 /// 刷新用户Token
 -(jobsByVoidBlock _Nonnull)refreshUserToken;
+/// 刷新用户Token（仅删除本地的用户数据）
+-(jobsByVoidBlock _Nonnull)refreshUserToken2;
 #pragma mark —— 全局的用户数据(存、取、清)
 /// 登出清空用户数据 【用户信息】/【JobsUserModel】
 -(void)logOut;
