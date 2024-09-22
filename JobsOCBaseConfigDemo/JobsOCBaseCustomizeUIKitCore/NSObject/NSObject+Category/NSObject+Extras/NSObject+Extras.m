@@ -890,13 +890,12 @@
     }
 }
 /// 打印请求体
--(jobsByURLSessionDataTaskBlock _Nonnull)printURLSessionRequestMessage{
+-(jobsByURLSessionTaskBlock _Nonnull)printURLSessionRequestMessage{
+    @jobs_weakify(self)
     return ^(__kindof NSURLSessionDataTask *_Nullable task) {
-        if (task) {
-            self.printRequestMessage(task.originalRequest);
-        }else{
-            NSLog(@"NSURLSessionDataTask *task 为空,请检查");
-        }
+        @jobs_strongify(self)
+        if(!task){NSLog(@"NSURLSessionDataTask *task 为空,请检查");return;}
+        self.printRequestMessage(task.originalRequest);
     };
 }
 
@@ -910,10 +909,10 @@
             // 请求头信息
             NSLog(@"请求头信息:%@\n",data.allHTTPHeaderFields);
             // 请求正文信息
-            NSLog(@"请求正文信息:%@\n",[NSString.alloc initWithData:data.HTTPBody encoding:NSUTF8StringEncoding]);
+            NSLog(@"请求正文信息:%@\n",data.HTTPBody.stringByUTF8Encoding);
             // 请求响应时间
             NSLog(@"请求响应时间:%@\n",self.currentTimestampString);
-            NSLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",data.URL,data.HTTPMethod,data.allHTTPHeaderFields,[NSString.alloc initWithData:data.HTTPBody encoding:NSUTF8StringEncoding],self.currentTimestampString);
+            NSLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",data.URL,data.HTTPMethod,data.allHTTPHeaderFields,data.HTTPBody.stringByUTF8Encoding,self.currentTimestampString);
         }else{
             NSLog(@"NSURLRequest *data 为空,请检查");
         }

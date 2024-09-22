@@ -40,7 +40,7 @@ typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable 
 #pragma mark —— URL
 typedef void(^jobsByURLBlock)(NSURL *_Nullable data);
 typedef void(^jobsByURLRequestBlock)(__kindof NSURLRequest *_Nullable data);
-typedef void(^jobsByURLSessionDataTaskBlock)(__kindof NSURLSessionDataTask *_Nullable data);
+typedef void(^jobsByURLSessionTaskBlock)(__kindof NSURLSessionTask *_Nullable data);
 #pragma mark —— 关于 UIViewController
 typedef void(^jobsByVCBlock)(__kindof UIViewController *_Nullable data);
 typedef void(^jobsByVCAndDataBlock)(__kindof UIViewController *_Nullable viewController,id _Nullable data);

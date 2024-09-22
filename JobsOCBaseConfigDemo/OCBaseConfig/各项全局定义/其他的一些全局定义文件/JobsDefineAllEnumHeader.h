@@ -186,8 +186,8 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 #ifndef HTTP_RESPONSE_CODE_ENUM_DEFINED
 #define HTTP_RESPONSE_CODE_ENUM_DEFINED
 /// 请求数据返回的状态码、根据自己的服务端数据来
-typedef NS_ENUM(NSInteger, HTTPResponseCode) {//KKK
-    HTTPResponseCodeServeError = -1,/// 服务器异常
+typedef NS_ENUM(NSInteger, HTTPResponseCode) {
+    HTTPResponseCodeServeError = 10005,/// 服务器异常
     HTTPResponseCodeSuccess = 200,/// 请求成功
     HTTPResponseCodeNoToken = 401,/// 令牌不能为空
     HTTPResponseCodeLoginDate = 1,/// 登录已过期，请重新登录
