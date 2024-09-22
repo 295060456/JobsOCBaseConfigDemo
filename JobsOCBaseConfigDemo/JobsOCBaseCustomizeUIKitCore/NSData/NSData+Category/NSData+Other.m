@@ -10,11 +10,16 @@
 @implementation NSData (Other)
 /// 解压缩字符串
 -(NSString *)decompressToStr{
+    NSError *error;
     NSData *data = [NSKeyedUnarchiver unarchivedObjectOfClass:NSData.class
                                                      fromData:self
-                                                        error:nil];
-    NSString *string = [NSString.alloc initWithData:data encoding:NSUTF8StringEncoding];
+                                                        error:&error];
+    NSString *string = data.stringByUTF8Encoding;
     return string;
+}
+
+-(NSString *)stringByUTF8Encoding{
+    return [NSString.alloc initWithData:self encoding:NSUTF8StringEncoding];
 }
 
 @end

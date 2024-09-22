@@ -12,6 +12,7 @@
 typedef id _Nullable(^JobsReturnIDByVoidBlock)(void);
 
 typedef id _Nullable(^JobsReturnIDByIDBlock)(id _Nullable data);
+typedef id _Nullable(^JobsReturnIDByDataBlock)(NSData *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByStringBlock)(NSString *_Nullable data);
 typedef id _Nonnull(^JobsReturnIDBySaltStrBlock)(NSString *_Nullable salt);
 typedef id _Nullable(^JobsReturnIDBySELBlock)(SEL _Nullable data);
@@ -97,6 +98,7 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable da
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDateBlock)(NSDate *_Nullable date);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByNumberBlock)(NSNumber *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCorBlock)(UIColor *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegerBlock)(NSInteger data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalBlock)(NSTimeInterval data);
@@ -115,7 +117,8 @@ typedef NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
 typedef NSData *_Nullable(^JobsReturnDataByVoidBlock)(void);
 typedef NSData *_Nullable(^JobsReturnDataByIDBlock)(id _Nullable data);
 typedef NSData *_Nullable(^JobsReturnDataByAssetBlock)(AVAsset *_Nullable asset);
-typedef NSData *_Nullable(^JobsReturnDataByStringBlock)(NSString *_Nullable data);
+typedef NSData *_Nullable(^JobsReturnDataByStringBlock)(__kindof NSString *_Nullable data);
+typedef NSData *_Nullable(^JobsReturnDataByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef PHAsset *_Nullable(^JobsReturnAssetByStrBlock)(NSString *_Nullable Key);
 typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByURLBlock)(NSURL *_Nullable url);
 #pragma mark —— 关于字体

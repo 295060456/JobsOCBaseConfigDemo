@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSData (Other)
 /// 解压缩字符串
 -(NSString *)decompressToStr;
+-(NSString *)stringByUTF8Encoding;
 
 @end
 

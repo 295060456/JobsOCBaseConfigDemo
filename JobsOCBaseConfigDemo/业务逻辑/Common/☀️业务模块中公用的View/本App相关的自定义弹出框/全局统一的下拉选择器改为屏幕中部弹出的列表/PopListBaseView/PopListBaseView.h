@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_END
      if(!_nationalPopList_dataMutArr){
          _nationalPopList_dataMutArr = NSMutableArray.array;
          /// 装载本地假数据
-         NSDictionary *dic = @"countries".readLocalFileWithName;
+         NSDictionary *dic = @"Countries".readLocalFileWithName;
          NSMutableArray <JobsCountriesModel *>*tags = [JobsCountriesModel mj_objectArrayWithKeyValuesArray:dic];
          
          for (JobsCountriesModel *model in tags) {

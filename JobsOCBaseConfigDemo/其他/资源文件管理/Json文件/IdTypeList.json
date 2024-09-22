@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "name": "Driver's License"
+    },
+    {
+        "id": 2,
+        "name": "PhilHealth ID"
+    },
+    {
+        "id": 3,
+        "name": "Postal ID"
+    },
+    {
+        "id": 4,
+        "name": "NBI Clearance"
+    },
+    {
+        "id": 5,
+        "name": "Senior Citizen Card"
+    },
+    {
+        "id": 6,
+        "name": "OWWA Card"
+    },
+    {
+        "id": 7,
+        "name": "ID Passport (Philippine/Foreign)"
+    },
+    {
+        "id": 8,
+        "name": "Firearms License"
+    },
+    {
+        "id": 9,
+        "name": "Police Clearance"
+    },
+    {
+        "id": 10,
+        "name": "IBP ID"
+    },
+    {
+        "id": 11,
+        "name": "Seaman's Book"
+    },
+    {
+        "id": 12,
+        "name": "Professional Regulations Commission"
+    },
+    {
+        "id": 13,
+        "name": "Overseas Filipino Workers (OFW) ID"
+    },
+    {
+        "id": 14,
+        "name": "SSS Card"
+    },
+    {
+        "id": 15,
+        "name": "Tax Identification (TIN)"
+    },
+    {
+        "id": 16,
+        "name": "Unified Multi-Purpose ID (UMID)"
+    },
+    {
+        "id": 17,
+        "name": "Voter’s ID"
+    },
+    {
+        "id": 18,
+        "name": "MARINA ID"
+    },
+    {
+        "id": 19,
+        "name": "Philippine National ID"
+    },
+    {
+        "id": 20,
+        "name": "Valid Passport"
+    },
+    {
+        "id": 21,
+        "name": "Alien Certificate of Registration"
+    },
+    {
+        "id": 22,
+        "name": "ICR ID"
+    },
+    {
+        "id": 23,
+        "name": "National ID"
+    },
+    {
+        "id": 100,
+        "name": "Other ID"
+    }
+]

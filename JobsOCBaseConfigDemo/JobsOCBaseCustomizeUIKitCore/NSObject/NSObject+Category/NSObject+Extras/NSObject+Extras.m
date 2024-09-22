@@ -220,6 +220,44 @@
     return NSTemporaryDirectory();
 }
 #pragma mark —— 功能性的
+-(JobsReturnDataByDictionaryBlock _Nonnull)JSONWritingPrettyPrinted{
+    return ^NSData *_Nullable(__kindof NSDictionary *_Nullable data){
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data.copy
+                                                           options:NSJSONWritingPrettyPrinted
+                                                             error:&error];
+        if(error) NSLog(@"%@",error.description);
+        return jsonData;
+    };
+}
+
+-(JobsReturnIDByDataBlock _Nonnull)JSONReadingMutableContainers{
+    return ^id _Nullable(NSData *_Nullable data){
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization JSONObjectWithData:data.copy
+                                                           options:NSJSONReadingMutableContainers
+                                                             error:&error];
+        if(error) NSLog(@"%@",error.description);
+        return jsonData;
+    };
+}
+
+-(JobsReturnIDByDataBlock _Nonnull)JSONkNilOptions{
+    return ^id _Nullable(NSData *_Nullable data){
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization JSONObjectWithData:data.copy
+                                                           options:kNilOptions
+                                                             error:&error];
+        if(error) NSLog(@"%@",error.description);
+        return jsonData;
+    };
+}
+-(JobsReturnDataByStringBlock _Nonnull)initWithContentsOfFile{
+    return ^NSData *_Nullable(__kindof NSString *_Nullable path){
+        return  [NSData.alloc initWithContentsOfFile:path];
+    };
+}
+
 -(JobsReturnBOOLByIDBlock _Nonnull)isEqual{
     @jobs_weakify(self)
     return ^BOOL(id _Nullable data){

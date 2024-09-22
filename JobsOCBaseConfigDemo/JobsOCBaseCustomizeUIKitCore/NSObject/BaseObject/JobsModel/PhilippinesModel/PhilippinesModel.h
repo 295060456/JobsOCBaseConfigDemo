@@ -6,13 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IncomeSourceModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PhilippinesModel : NSObject
+@interface PhilippinesModel : IncomeSourceModel
 
-@property(nonatomic,copy)NSString *ID;
-@property(nonatomic,copy)NSString *name;
 @property(nonatomic,assign)NSInteger state_id;
 @property(nonatomic,copy)NSString *state_name;
 

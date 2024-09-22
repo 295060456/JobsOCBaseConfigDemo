@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Salary"
+    },
+    {
+        "id": 2,
+        "name": "Income From Own Business"
+    },
+    {
+        "id": 3,
+        "name": "Savings"
+    },
+    {
+        "id": 4,
+        "name": "Investment"
+    },
+    {
+        "id": 5,
+        "name": "Self-employed"
+    },
+    {
+        "id": 6,
+        "name": "Others"
+    }
+]

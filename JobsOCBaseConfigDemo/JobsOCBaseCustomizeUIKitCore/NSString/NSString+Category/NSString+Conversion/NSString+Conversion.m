@@ -9,6 +9,14 @@
 
 @implementation NSString (Conversion)
 #pragma mark —— 转化
+/// 转化为可变字符串
+-(NSMutableString *_Nullable)Mutable{
+    return [NSMutableString stringWithString:self];
+}
+
+-(NSData *_Nullable)UTF8Encoding{
+    return [self dataUsingEncoding:NSUTF8StringEncoding];
+}
 /// 字符串中取数字
 -(long long)getDigits{
     NSCharacterSet *nonDigits = NSCharacterSet.decimalDigitCharacterSet.invertedSet;
@@ -16,94 +24,63 @@
     return (long long)remainSecond;
 }
 /// 读取本地JSON文件
--(NSDictionary *)readLocalFileWithName{
+-(nullable id)readLocalFileWithName{
     // 获取文件路径
     NSString *path = self.add(@".json").pathForResourceWithFullName;
     // 将文件数据化
-    NSData *data = [NSData.alloc initWithContentsOfFile:path];
+    NSData *data = self.initWithContentsOfFile(path);
     // 对数据进行JSON格式化并返回字典形式
-    return [NSJSONSerialization JSONObjectWithData:data
-                                           options:kNilOptions
-                                             error:nil];
+    return self.JSONkNilOptions(data);
 }
 /// JSON 转 NSDictionary
--(NSDictionary *)dictionaryWithJsonString{
+-(nullable id)dictionaryWithJsonString{
     if (isNull(self)) return nil;
-//  https://www.wynter.wang/2019/02/15/ios%20%20%E5%A4%84%E7%90%86%E5%AF%BC%E8%87%B4json%E8%A7%A3%E6%9E%90%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6/
-//  特殊字符会导致解析失败
-    NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                        options:NSJSONReadingMutableContainers
-                                                          error:&err];
-    if(err){
-        NSLog(@"json解析失败：%@",err);
-        return nil;
-    }return dic;
+    // 特殊字符会导致解析失败 https://www.wynter.wang/2019/02/15/ios%20%20%E5%A4%84%E7%90%86%E5%AF%BC%E8%87%B4json%E8%A7%A3%E6%9E%90%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6/
+    return self.JSONReadingMutableContainers(self.UTF8Encoding);
 }
 /// NSDictionary 转 json字符串方法//==[dic mj_JSONString]
--(NSString *)convertToJsonData:(NSDictionary *)dict{
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
-    NSString *jsonString;
-    if (!jsonData) {
-        NSLog(@"%@",error);
-    }else{
-        jsonString = [NSString.alloc initWithData:jsonData
-                                         encoding:NSUTF8StringEncoding];
-    }
-    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
-    NSRange range = {0,jsonString.length};
-    /// 去掉字符串中的空格
-    [mutStr replaceOccurrencesOfString:@" "
-                            withString:JobsInternationalization(@"")
-                               options:NSLiteralSearch
-                                 range:range];
-    NSRange range2 = {0,mutStr.length};
-    /// 去掉字符串中的换行符
-    [mutStr replaceOccurrencesOfString:@"\n"
-                            withString:JobsInternationalization(@"")
-                               options:NSLiteralSearch
-                                 range:range2];
-    return mutStr;
+-(JobsReturnStringByDictionaryBlock _Nonnull)convertToJsonData{
+    return ^__kindof NSString *_Nullable(__kindof NSDictionary *_Nullable dict){
+        NSString *jsonString = self.JSONWritingPrettyPrinted(dict).stringByUTF8Encoding;
+        NSMutableString *mutStr = jsonString.Mutable;
+        NSRange range = {0,jsonString.length};
+        /// 去掉字符串中的空格
+        [mutStr replaceOccurrencesOfString:@" "
+                                withString:JobsInternationalization(@"")
+                                   options:NSLiteralSearch
+                                     range:range];
+        NSRange range2 = {0,mutStr.length};
+        /// 去掉字符串中的换行符
+        [mutStr replaceOccurrencesOfString:@"\n"
+                                withString:JobsInternationalization(@"")
+                                   options:NSLiteralSearch
+                                     range:range2];
+        return mutStr;
+    };
 }
 /// NSDictionary 转 NSString
--(NSString *)convertDictionaryToString:(NSMutableDictionary *)dict{
-    NSError *error;
-    NSDictionary *tempDict = dict.copy;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:tempDict
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
-    NSString *nsJson=  [NSString.alloc initWithData:jsonData
-                                           encoding:NSUTF8StringEncoding];
-    return nsJson;
+-(JobsReturnStringByDictionaryBlock _Nonnull)convertDictionaryToString{
+    @jobs_weakify(self)
+    return ^__kindof NSString *_Nullable(__kindof NSDictionary *_Nullable dict){
+        @jobs_strongify(self)
+        return self.JSONWritingPrettyPrinted(dict).stringByUTF8Encoding;
+    };
 }
 ///【实例方法】解压缩字符串
 -(NSData *)compress{
-    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data
-                                                   requiringSecureCoding:NO
-                                                                   error:nil];
-    return compressedData;
+    return archivedDataWithRootObject(self.UTF8Encoding);
 }
 ///【类方法】压缩字符串成NSData
-+(NSData *)compressString:(NSString *)string{
-    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data
-                                                   requiringSecureCoding:NO
-                                                                   error:nil];
-    return compressedData;
+-(JobsReturnDataByStringBlock _Nonnull)compressString{
+    @jobs_weakify(self)
+    return ^NSData *_Nullable(__kindof NSString *_Nullable string){
+        @jobs_strongify(self)
+        return archivedDataWithRootObject(string.UTF8Encoding);
+    };
 }
 ///【类方法】解压缩字符串
 +(NSString *)decompressString:(NSData *)compressedData{
-    NSData *data = [NSKeyedUnarchiver unarchivedObjectOfClass:NSData.class
-                                                     fromData:compressedData
-                                                        error:nil];
-    NSString *string = [NSString.alloc initWithData:data
-                                           encoding:NSUTF8StringEncoding];
-    return string;
+    return compressedData.decompressToStr;
 }
 
 @end

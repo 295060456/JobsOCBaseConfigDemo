@@ -30,7 +30,6 @@
 		CE2E87412C689F9100260207 /* JobsBtnStyleTBVCell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE2E87322C689F9000260207 /* JobsBtnStyleTBVCell.jpg */; };
 		CE2E87422C689F9100260207 /* JobsImageStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87352C689F9000260207 /* JobsImageStyleTBVCell.m */; };
 		CE2E87432C689F9100260207 /* JobsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */; };
-		CE2E88C62C69DF3100260207 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = CE2E88C52C69DF3100260207 /* countries.json */; };
 		CE2E88CD2C69E14100260207 /* PopListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E88C92C69E14100260207 /* PopListBaseView.m */; };
 		CE2E8ACC2C6AF7C900260207 /* 幸运转盘.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2E8ACB2C6AF7B800260207 /* 幸运转盘.xcassets */; };
 		CE2E8AD42C6AFB2F00260207 /* LuckyDiskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E8ACE2C6AF7FB00260207 /* LuckyDiskVC.m */; };
@@ -45,6 +44,18 @@
 		CE410FE92C57B8B400AB9402 /* ZBRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDC2C57B8B400AB9402 /* ZBRequestEngine.m */; };
 		CE410FEA2C57B8B400AB9402 /* ZBRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDF2C57B8B400AB9402 /* ZBRequestManager.m */; };
 		CE410FEB2C57B8B400AB9402 /* ZBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */; };
+		CE42BC5B2C9FD5C900E4FE8A /* IncomeSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42BC592C9FD5C900E4FE8A /* IncomeSourceModel.m */; };
+		CE42BC672C9FD65A00E4FE8A /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC612C9FD65A00E4FE8A /* data.json */; };
+		CE42BC682C9FD65A00E4FE8A /* Philippines.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC652C9FD65A00E4FE8A /* Philippines.json */; };
+		CE42BC692C9FD65A00E4FE8A /* OccupationList.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC642C9FD65A00E4FE8A /* OccupationList.json */; };
+		CE42BC6A2C9FD65A00E4FE8A /* CountryList.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC602C9FD65A00E4FE8A /* CountryList.json */; };
+		CE42BC6B2C9FD65A00E4FE8A /* Countries.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC5F2C9FD65A00E4FE8A /* Countries.json */; };
+		CE42BC6C2C9FD65A00E4FE8A /* 假数据.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC5C2C9FD65A00E4FE8A /* 假数据.json */; };
+		CE42BC6D2C9FD65A00E4FE8A /* IdTypeList.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC622C9FD65A00E4FE8A /* IdTypeList.json */; };
+		CE42BC6E2C9FD65A00E4FE8A /* CommentData.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC5E2C9FD65A00E4FE8A /* CommentData.json */; };
+		CE42BC6F2C9FD65A00E4FE8A /* IncomeSource.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC632C9FD65A00E4FE8A /* IncomeSource.json */; };
+		CE42BC702C9FD65A00E4FE8A /* CityList.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC5D2C9FD65A00E4FE8A /* CityList.json */; };
+		CE42BC712C9FD65A00E4FE8A /* UserData.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC662C9FD65A00E4FE8A /* UserData.json */; };
 		CE4B42522C6E05CB00FDCB0F /* PointLabTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B42512C6E05CB00FDCB0F /* PointLabTestVC.m */; };
 		CE4B42562C6E138D00FDCB0F /* NSAttributedString+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B42542C6E138D00FDCB0F /* NSAttributedString+Extra.m */; };
 		CE4B43712C6F450600FDCB0F /* NSMutableDictionary+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B436F2C6F450500FDCB0F /* NSMutableDictionary+Extra.m */; };
@@ -87,7 +98,6 @@
 		CE7C79B52C92B9D000C0153C /* GTCaptcha4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7C79B22C92B9C600C0153C /* GTCaptcha4.framework */; };
 		CE7C7BBD2C942E8600C0153C /* NSDate+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7C7BBB2C942E8000C0153C /* NSDate+Extra.m */; };
 		CE7C7BC12C942EBA00C0153C /* JobsCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7C7BBF2C942EB400C0153C /* JobsCalenderView.m */; };
-		CE7C7D422C9447A800C0153C /* philippines.json in Resources */ = {isa = PBXBuildFile; fileRef = CE7C7D412C9447A100C0153C /* philippines.json */; };
 		CE7F395D2C4FDA1000431A5D /* JobsFMDBMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */; };
 		CE7F395E2C4FDA1000431A5D /* FMDB_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F395A2C4FDA1000431A5D /* FMDB_VC.m */; };
 		CE7F396F2C4FDAF900431A5D /* JobsMenuSubView@1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39602C4FDAF900431A5D /* JobsMenuSubView@1.m */; };
@@ -1129,10 +1139,6 @@
 		CECE894E2C4519AD00764AF5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECE88982C4519AD00764AF5 /* Localizable.strings */; };
 		CECE894F2C4519AD00764AF5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECE889A2C4519AD00764AF5 /* Localizable.strings */; };
 		CECE89502C4519AD00764AF5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECE889C2C4519AD00764AF5 /* Localizable.strings */; };
-		CECE89522C4519AD00764AF5 /* 假数据.json in Resources */ = {isa = PBXBuildFile; fileRef = CECE889F2C4519AD00764AF5 /* 假数据.json */; };
-		CECE89532C4519AD00764AF5 /* CommentData.json in Resources */ = {isa = PBXBuildFile; fileRef = CECE88A02C4519AD00764AF5 /* CommentData.json */; };
-		CECE89542C4519AD00764AF5 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = CECE88A12C4519AD00764AF5 /* data.json */; };
-		CECE89552C4519AD00764AF5 /* UserData.json in Resources */ = {isa = PBXBuildFile; fileRef = CECE88A22C4519AD00764AF5 /* UserData.json */; };
 		CECE89562C4519AD00764AF5 /* MetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = CECE88A42C4519AD00764AF5 /* MetaData.plist */; };
 		CECE89572C4519AD00764AF5 /* libarclite_appletvos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CECE88A72C4519AD00764AF5 /* libarclite_appletvos.a */; };
 		CECE89582C4519AE00764AF5 /* libarclite_appletvsimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CECE88A82C4519AD00764AF5 /* libarclite_appletvsimulator.a */; };
@@ -1239,7 +1245,6 @@
 		CE2E87352C689F9000260207 /* JobsImageStyleTBVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsImageStyleTBVCell.m; sourceTree = "<group>"; };
 		CE2E87372C689F9100260207 /* JobsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsBaseTableViewCell.h; sourceTree = "<group>"; };
 		CE2E87382C689F9100260207 /* JobsBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsBaseTableViewCell.m; sourceTree = "<group>"; };
-		CE2E88C52C69DF3100260207 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		CE2E88C72C69E14100260207 /* 全局统一的下拉选择器改为屏幕中部弹出的列表.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "全局统一的下拉选择器改为屏幕中部弹出的列表.jpg"; sourceTree = "<group>"; };
 		CE2E88C82C69E14100260207 /* PopListBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopListBaseView.h; sourceTree = "<group>"; };
 		CE2E88C92C69E14100260207 /* PopListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopListBaseView.m; sourceTree = "<group>"; };
@@ -1271,6 +1276,19 @@
 		CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBURLRequest.m; sourceTree = "<group>"; };
 		CE410FE42C57B8B400AB9402 /* ZBNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBNetworking.h; sourceTree = "<group>"; };
 		CE410FE52C57B8B400AB9402 /* ZBRequestConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBRequestConst.h; sourceTree = "<group>"; };
+		CE42BC582C9FD5C900E4FE8A /* IncomeSourceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncomeSourceModel.h; sourceTree = "<group>"; };
+		CE42BC592C9FD5C900E4FE8A /* IncomeSourceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncomeSourceModel.m; sourceTree = "<group>"; };
+		CE42BC5C2C9FD65A00E4FE8A /* 假数据.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "假数据.json"; sourceTree = "<group>"; };
+		CE42BC5D2C9FD65A00E4FE8A /* CityList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CityList.json; sourceTree = "<group>"; };
+		CE42BC5E2C9FD65A00E4FE8A /* CommentData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CommentData.json; sourceTree = "<group>"; };
+		CE42BC5F2C9FD65A00E4FE8A /* Countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Countries.json; sourceTree = "<group>"; };
+		CE42BC602C9FD65A00E4FE8A /* CountryList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CountryList.json; sourceTree = "<group>"; };
+		CE42BC612C9FD65A00E4FE8A /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		CE42BC622C9FD65A00E4FE8A /* IdTypeList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IdTypeList.json; sourceTree = "<group>"; };
+		CE42BC632C9FD65A00E4FE8A /* IncomeSource.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IncomeSource.json; sourceTree = "<group>"; };
+		CE42BC642C9FD65A00E4FE8A /* OccupationList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OccupationList.json; sourceTree = "<group>"; };
+		CE42BC652C9FD65A00E4FE8A /* Philippines.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Philippines.json; sourceTree = "<group>"; };
+		CE42BC662C9FD65A00E4FE8A /* UserData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserData.json; sourceTree = "<group>"; };
 		CE4B42482C6E04B200FDCB0F /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		CE4B42492C6E04B500FDCB0F /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		CE4B424C2C6E04D400FDCB0F /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -1366,7 +1384,6 @@
 		CE7C7BBB2C942E8000C0153C /* NSDate+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extra.m"; sourceTree = "<group>"; };
 		CE7C7BBE2C942EB400C0153C /* JobsCalenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCalenderView.h; sourceTree = "<group>"; };
 		CE7C7BBF2C942EB400C0153C /* JobsCalenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsCalenderView.m; sourceTree = "<group>"; };
-		CE7C7D412C9447A100C0153C /* philippines.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = philippines.json; sourceTree = "<group>"; };
 		CE7F39562C4FDA1000431A5D /* JobsFMDBMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsFMDBMgr.h; sourceTree = "<group>"; };
 		CE7F39572C4FDA1000431A5D /* JobsFMDBMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsFMDBMgr.m; sourceTree = "<group>"; };
 		CE7F39592C4FDA1000431A5D /* FMDB_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB_VC.h; sourceTree = "<group>"; };
@@ -3256,10 +3273,6 @@
 		CECE88972C4519AD00764AF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CECE88992C4519AD00764AF5 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CECE889B2C4519AD00764AF5 /* fil-PH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fil-PH"; path = "fil-PH.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		CECE889F2C4519AD00764AF5 /* 假数据.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "假数据.json"; sourceTree = "<group>"; };
-		CECE88A02C4519AD00764AF5 /* CommentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CommentData.json; sourceTree = "<group>"; };
-		CECE88A12C4519AD00764AF5 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
-		CECE88A22C4519AD00764AF5 /* UserData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserData.json; sourceTree = "<group>"; };
 		CECE88A42C4519AD00764AF5 /* MetaData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MetaData.plist; sourceTree = "<group>"; };
 		CECE88A72C4519AD00764AF5 /* libarclite_appletvos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_appletvos.a; sourceTree = "<group>"; };
 		CECE88A82C4519AD00764AF5 /* libarclite_appletvsimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_appletvsimulator.a; sourceTree = "<group>"; };
@@ -3810,6 +3823,15 @@
 			path = ZBNetworking;
 			sourceTree = "<group>";
 		};
+		CE42BC5A2C9FD5C900E4FE8A /* IncomeSourceModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE42BC582C9FD5C900E4FE8A /* IncomeSourceModel.h */,
+				CE42BC592C9FD5C900E4FE8A /* IncomeSourceModel.m */,
+			);
+			path = IncomeSourceModel;
+			sourceTree = "<group>";
+		};
 		CE4B42462C6E04A800FDCB0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3974,6 +3996,7 @@
 			isa = PBXGroup;
 			children = (
 				CE61ACDD2C9EAAE1002DF138 /* JobsModel.h */,
+				CE42BC5A2C9FD5C900E4FE8A /* IncomeSourceModel */,
 				CE61ACE02C9EAAE1002DF138 /* BaseModel */,
 				CE61ACE32C9EAAE1002DF138 /* FileNameModel */,
 				CE61ACE62C9EAAE1002DF138 /* ImageModel */,
@@ -13844,12 +13867,17 @@
 		CECE88A32C4519AD00764AF5 /* Json文件 */ = {
 			isa = PBXGroup;
 			children = (
-				CE7C7D412C9447A100C0153C /* philippines.json */,
-				CE2E88C52C69DF3100260207 /* countries.json */,
-				CECE889F2C4519AD00764AF5 /* 假数据.json */,
-				CECE88A02C4519AD00764AF5 /* CommentData.json */,
-				CECE88A12C4519AD00764AF5 /* data.json */,
-				CECE88A22C4519AD00764AF5 /* UserData.json */,
+				CE42BC5C2C9FD65A00E4FE8A /* 假数据.json */,
+				CE42BC5D2C9FD65A00E4FE8A /* CityList.json */,
+				CE42BC5E2C9FD65A00E4FE8A /* CommentData.json */,
+				CE42BC5F2C9FD65A00E4FE8A /* Countries.json */,
+				CE42BC602C9FD65A00E4FE8A /* CountryList.json */,
+				CE42BC612C9FD65A00E4FE8A /* data.json */,
+				CE42BC622C9FD65A00E4FE8A /* IdTypeList.json */,
+				CE42BC632C9FD65A00E4FE8A /* IncomeSource.json */,
+				CE42BC642C9FD65A00E4FE8A /* OccupationList.json */,
+				CE42BC652C9FD65A00E4FE8A /* Philippines.json */,
+				CE42BC662C9FD65A00E4FE8A /* UserData.json */,
 			);
 			path = "Json文件";
 			sourceTree = "<group>";
@@ -14239,9 +14267,19 @@
 				CECE7C702C450C5000764AF5 /* Header@2x.png in Resources */,
 				CECE89342C4519AD00764AF5 /* NotoSansDisplay_SemiCondensed-Bold.ttf in Resources */,
 				CECE894F2C4519AD00764AF5 /* Localizable.strings in Resources */,
+				CE42BC672C9FD65A00E4FE8A /* data.json in Resources */,
+				CE42BC682C9FD65A00E4FE8A /* Philippines.json in Resources */,
+				CE42BC692C9FD65A00E4FE8A /* OccupationList.json in Resources */,
+				CE42BC6A2C9FD65A00E4FE8A /* CountryList.json in Resources */,
+				CE42BC6B2C9FD65A00E4FE8A /* Countries.json in Resources */,
+				CE42BC6C2C9FD65A00E4FE8A /* 假数据.json in Resources */,
+				CE42BC6D2C9FD65A00E4FE8A /* IdTypeList.json in Resources */,
+				CE42BC6E2C9FD65A00E4FE8A /* CommentData.json in Resources */,
+				CE42BC6F2C9FD65A00E4FE8A /* IncomeSource.json in Resources */,
+				CE42BC702C9FD65A00E4FE8A /* CityList.json in Resources */,
+				CE42BC712C9FD65A00E4FE8A /* UserData.json in Resources */,
 				CECE89112C4519AD00764AF5 /* NotoSansDisplay_Condensed-BoldItalic.ttf in Resources */,
 				CECE88F12C4519AD00764AF5 /* NotoSans-Light.ttf in Resources */,
-				CE7C7D422C9447A800C0153C /* philippines.json in Resources */,
 				CECE7C722C450C5000764AF5 /* Check@2x.png in Resources */,
 				CECE873C2C45140000764AF5 /* SHA.md in Resources */,
 				CECE7C7C2C450C5000764AF5 /* JobsIM【Outlines 02】.png in Resources */,
@@ -14292,7 +14330,6 @@
 				CECE88C22C4519AD00764AF5 /* 动态头像_1 尺寸126.gif in Resources */,
 				CECE7C652C450C5000764AF5 /* 右气泡@3x.png in Resources */,
 				CECE816A2C4512BF00764AF5 /* upgrade.json in Resources */,
-				CECE89542C4519AD00764AF5 /* data.json in Resources */,
 				CECE7CD52C450C5000764AF5 /* 3.jpeg in Resources */,
 				CECE87772C45140000764AF5 /* XWCountryCodeController.md in Resources */,
 				CECE813F2C4512BF00764AF5 /* 启动页_01.png in Resources */,
@@ -14356,7 +14393,6 @@
 				CECE88BE2C4519AD00764AF5 /* 非iph_X.mp4 in Resources */,
 				CECE85C52C4513CE00764AF5 /* WhiteRightArrow@2x.png in Resources */,
 				CECE872D2C45140000764AF5 /* Base85.md in Resources */,
-				CE2E88C62C69DF3100260207 /* countries.json in Resources */,
 				CECE81352C4512BF00764AF5 /* JobsShowNumView.png in Resources */,
 				CECE85362C4513CE00764AF5 /* NSObject+AppTools.md in Resources */,
 				CECE88F52C4519AD00764AF5 /* NotoSans-Regular.ttf in Resources */,
@@ -14472,7 +14508,6 @@
 				CECE7CB12C450C5000764AF5 /* BaiShaETProjVIPSubCVCell_02.png in Resources */,
 				CECE7D3F2C450CCD00764AF5 /* JobsCustomView.png in Resources */,
 				CECE81662C4512BF00764AF5 /* tab_home_animate.json in Resources */,
-				CECE89522C4519AD00764AF5 /* 假数据.json in Resources */,
 				CECE788D2C4509E000764AF5 /* Base in Resources */,
 				CECE89472C4519AD00764AF5 /* 6.59.png in Resources */,
 				CECE891C2C4519AD00764AF5 /* NotoSansDisplay_Condensed-SemiBold.ttf in Resources */,
@@ -14503,7 +14538,6 @@
 				CECE811C2C4512BF00764AF5 /* 3@3x.png in Resources */,
 				CECE891A2C4519AD00764AF5 /* NotoSansDisplay_Condensed-MediumItalic.ttf in Resources */,
 				CECE80C02C4512BF00764AF5 /* MSMineView6CVCell.jpg in Resources */,
-				CECE89532C4519AD00764AF5 /* CommentData.json in Resources */,
 				CECE874B2C45140000764AF5 /* 音律跳动.bundle in Resources */,
 				CECE7C6E2C450C5000764AF5 /* Drop@2x.png in Resources */,
 				CECE80EF2C4512BF00764AF5 /* 输入框样式_5.1.png in Resources */,
@@ -14546,7 +14580,6 @@
 				CECE89442C4519AD00764AF5 /* 6.59.png in Resources */,
 				CECE88C52C4519AD00764AF5 /* 钱袋.gif in Resources */,
 				CECE85B62C4513CE00764AF5 /* BaseTableView.md in Resources */,
-				CECE89552C4519AD00764AF5 /* UserData.json in Resources */,
 				CECE87572C45140000764AF5 /* FSAppIconManager.md in Resources */,
 				CECE87182C45140000764AF5 /* AESCipher in Resources */,
 				CECE81232C4512BF00764AF5 /* 7@2x.png in Resources */,
@@ -15419,6 +15452,7 @@
 				CE410FEB2C57B8B400AB9402 /* ZBURLRequest.m in Sources */,
 				CECE7E912C450E5B00764AF5 /* HTTPMessage.m in Sources */,
 				CE7F39732C4FDAF900431A5D /* JobsMenuView.m in Sources */,
+				CE42BC5B2C9FD5C900E4FE8A /* IncomeSourceModel.m in Sources */,
 				CECE85372C4513CE00764AF5 /* NSObject+BRPickerView.m in Sources */,
 				CE89E11E2C89730E0042B7D9 /* UIImageView+GIF.m in Sources */,
 				CECE7CB92C450C5000764AF5 /* BaiShaETProjMembersSubsBaseVC.m in Sources */,
