@@ -170,56 +170,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(BaseButton *)userHeadBtn{
     @jobs_weakify(self)
     if (!_userHeadBtn) {
-        _userHeadBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                         background:nil
-                                         buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                      textAlignment:NSTextAlignmentCenter
-                                                   subTextAlignment:NSTextAlignmentCenter
-                                                        normalImage:JobsIMG(@"首页_头像")
-                                                     highlightImage:nil
-                                                    attributedTitle:nil
-                                            selectedAttributedTitle:nil
-                                                 attributedSubtitle:nil
-                                                              title:nil
-                                                           subTitle:nil
-                                                          titleFont:nil
-                                                       subTitleFont:nil
-                                                           titleCor:nil
-                                                        subTitleCor:nil
-                                                 titleLineBreakMode:NSLineBreakByWordWrapping
-                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                baseBackgroundColor:JobsClearColor
-                                                    backgroundImage:nil
-                                                       imagePadding:JobsWidth(0)
-                                                       titlePadding:JobsWidth(0)
-                                                     imagePlacement:NSDirectionalRectEdgeNone
-                                         contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                           contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                      contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                  cornerRadiusValue:JobsWidth(0)
-                                                    roundingCorners:UIRectCornerAllCorners
-                                               roundingCornersRadii:CGSizeZero
-                                                     layerBorderCor:nil
-                                                        borderWidth:JobsWidth(0)
-                                                      primaryAction:nil
-                                         longPressGestureEventBlock:^id (id _Nullable weakSelf,
-                                                                         id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                    clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:@"用户信息展示(开发测试专用)" attributeSubTitle:nil];
-            viewModel.cls = JobsShowObjInfoVC.class;
-            viewModel.requestParams = self.readUserInfo();
-            [self forceComingToPushVC:viewModel.cls.new
-                        requestParams:viewModel];// 测试专用
-            return nil;
-        }];
+        _userHeadBtn = BaseButton.initByNormalImage(JobsIMG(@"首页_头像"))
+            .bgColor(JobsClearColor)
+            .onClick(^(UIButton *x){
+                if (self.objectBlock) self.objectBlock(x);
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:@"用户信息展示(开发测试专用)" attributeSubTitle:nil];
+                viewModel.cls = JobsShowObjInfoVC.class;
+                viewModel.requestParams = self.readUserInfo();
+                [self forceComingToPushVC:viewModel.cls.new
+                            requestParams:viewModel];// 测试专用
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _userHeadBtn.Size = CGSizeMake(JobsWidth(32), JobsWidth(32));
-        [_userHeadBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
-                                         imagePadding:JobsWidth(1)];
     }return _userHeadBtn;
 }
 
@@ -279,7 +242,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             
             _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
-            _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightMedium];
+            _tableView.ly_emptyView.titleLabFont = UIFontSystemFontOfSize(JobsWidth(16));
         }
         
         [self.view addSubview:_tableView];

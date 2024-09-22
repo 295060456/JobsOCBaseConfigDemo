@@ -14,6 +14,7 @@
 @implementation BaseViewController
 #pragma mark —— BaseViewProtocol
 BaseViewProtocol_synthesize
+BaseViewControllerProtocol_synthesize
 /// new方法触发
 - (instancetype)init{
     if (self = [super init]) {
