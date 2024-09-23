@@ -299,41 +299,39 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         }
         
         {
-            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
-            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉刷新数据");
-            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"正在刷新数据");
-            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
-            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
-                @jobs_strongify(self)
-                NSLog(@"下拉刷新");
-                self.currentPage = 1;
-                [self requestData];
-            //    [self requestData:NO];
-            //    [self playVideo];
-                return nil;
-            };
-            
-            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"上拉加载数据");
-            refreshConfigFooter.pullingTitle = JobsInternationalization(@"上拉加载数据");
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"正在加载数据");
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"加载数据中");
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"没有更多数据");
-            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
-                @jobs_strongify(self)
-                NSLog(@"上拉加载更多");
-                self.currentPage += 1;
-                [self requestData];
-            //    NSLog(@"currentPageNum = %ld",self.currentPage);
-            //    [self requestData:YES];
-            //    [self playVideo];
-                return nil;
-            };
-            
-            self.refreshConfigHeader = refreshConfigHeader;
-            self.refreshConfigFooter = refreshConfigFooter;
+            self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
+                data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
+                data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
+                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+                data.loadBlock = ^id _Nullable(id  _Nullable data) {
+                    @jobs_strongify(self)
+                    NSLog(@"下拉刷新");
+                    self.currentPage = 1;
+                    [self requestData];
+                //    [self requestData:NO];
+                //    [self playVideo];
+                    return nil;
+                };
+            });
+            self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"上拉加载数据");
+                data.pullingTitle = JobsInternationalization(@"上拉加载数据");
+                data.refreshingTitle = JobsInternationalization(@"正在加载数据");
+                data.willRefreshTitle = JobsInternationalization(@"加载数据中");
+                data.noMoreDataTitle = JobsInternationalization(@"没有更多数据");
+                data.loadBlock = ^id _Nullable(id  _Nullable data) {
+                    @jobs_strongify(self)
+                    NSLog(@"上拉加载更多");
+                    self.currentPage += 1;
+                    [self requestData];
+                //    NSLog(@"currentPageNum = %ld",self.currentPage);
+                //    [self requestData:YES];
+                //    [self playVideo];
+                    return nil;
+                };
+            });
             
             _tableView.mj_header = self.mjRefreshNormalHeader;
             _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度

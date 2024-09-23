@@ -247,22 +247,20 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
-            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-            
-            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");;
-            
-            self.refreshConfigHeader = refreshConfigHeader;
-            self.refreshConfigFooter = refreshConfigFooter;
+            self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+            });
+            self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"");
+                data.pullingTitle = JobsInternationalization(@"");
+                data.refreshingTitle = JobsInternationalization(@"");
+                data.willRefreshTitle = JobsInternationalization(@"");
+                data.noMoreDataTitle = JobsInternationalization(@"");
+            });
             
             _tableView.mj_header = self.mjRefreshNormalHeader;
             _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
@@ -291,34 +289,37 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             make.left.right.bottom.equalTo(self.view);
             make.top.equalTo(self.navBar.mas_bottom);
         }];
-        
     }return _tableView;
 }
 
 -(NSMutableArray<__kindof UITableViewCell *> *)tbvSectionRowCellMutArr{
     if(!_tbvSectionRowCellMutArr){
-        _tbvSectionRowCellMutArr = NSMutableArray.array;
-        _tbvSectionRowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-        _tbvSectionRowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+        @jobs_weakify(self)
+        _tbvSectionRowCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+        });
     }return _tbvSectionRowCellMutArr;
 }
 
 -(NSMutableArray<__kindof UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
-        {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"方形转盘抽奖")
-                                                           attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
-            viewModel.cls = LuckyDiskVC.class;
-            _dataMutArr.add(viewModel);
-        }
-        
-        {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"圆形抽奖轮盘")
-                                                           attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
-            viewModel.cls = LuckyRollVC.class;
-            _dataMutArr.add(viewModel);
-        }
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"方形转盘抽奖")
+                                                               attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
+                viewModel.cls = LuckyDiskVC.class;
+                data.add(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"圆形抽奖轮盘")
+                                                               attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
+                viewModel.cls = LuckyRollVC.class;
+                data.add(viewModel);
+            }
+        });
     }return _dataMutArr;
 }
 

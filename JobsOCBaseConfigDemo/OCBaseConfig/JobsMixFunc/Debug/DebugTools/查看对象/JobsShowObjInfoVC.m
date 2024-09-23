@@ -117,72 +117,71 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.tableFooterView = UIView.new;
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+        
         {
-            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
-                @jobs_strongify(self)
-                self.feedbackGenerator();;//震动反馈
-                if (self.dataMutArr.count) {
-                    [self.dataMutArr removeAllObjects];
-                }
-                /// 装载数据
-                if ([self.viewModel.requestParams isKindOfClass:NSObject.class]) {
-                    NSObject *requestParams = (NSObject *)self.viewModel.requestParams;
-                    NSMutableArray <NSString *>*propertyList = requestParams.printPropertyList;
-                    for (NSString *propertyName in propertyList) {
-                        UIViewModel *viewModel = UIViewModel.new;
-                        NSString *text = propertyName;
-                        id subtext = requestParams.valueForKey(propertyName);
-                        /// 防崩溃处理：
-                        if([subtext isKindOfClass:NSString.class] &&
-                           [text isKindOfClass:NSString.class]){
-                            viewModel.textModel.text = propertyName;
-                            viewModel.subTextModel.text = requestParams.valueForKey(propertyName);
-                            viewModel.textModel.textCor = JobsBlueColor;
-                            viewModel.textModel.font = UIFontSystemFontOfSize(10);
-                            viewModel.textModel.subTextCor = JobsRedColor;
-                            viewModel.textModel.subFont = UIFontSystemFontOfSize(8);
-                            self.dataMutArr.add(viewModel);
+            self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+                data.loadBlock = ^id _Nullable(id  _Nullable data) {
+                    @jobs_strongify(self)
+                    self.feedbackGenerator();;//震动反馈
+                    if (self.dataMutArr.count) {
+                        [self.dataMutArr removeAllObjects];
+                    }
+                    /// 装载数据
+                    if ([self.viewModel.requestParams isKindOfClass:NSObject.class]) {
+                        NSObject *requestParams = (NSObject *)self.viewModel.requestParams;
+                        NSMutableArray <NSString *>*propertyList = requestParams.printPropertyList;
+                        for (NSString *propertyName in propertyList) {
+                            UIViewModel *viewModel = UIViewModel.new;
+                            NSString *text = propertyName;
+                            id subtext = requestParams.valueForKey(propertyName);
+                            /// 防崩溃处理：
+                            if([subtext isKindOfClass:NSString.class] &&
+                               [text isKindOfClass:NSString.class]){
+                                viewModel.textModel.text = propertyName;
+                                viewModel.subTextModel.text = requestParams.valueForKey(propertyName);
+                                viewModel.textModel.textCor = JobsBlueColor;
+                                viewModel.textModel.font = UIFontSystemFontOfSize(10);
+                                viewModel.textModel.subTextCor = JobsRedColor;
+                                viewModel.textModel.subFont = UIFontSystemFontOfSize(8);
+                                self.dataMutArr.add(viewModel);
+                            }
                         }
                     }
-                }
-                self.isVisible = YES;
-                if (self.dataMutArr.count) {
-                    self->_tableView.endRefreshing();
-                }else{
-                    self->_tableView.endRefreshingWithNoMoreData();
-                }
-                /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
-                @jobs_weakify(self)
-                [self getMainQueue:^{
+                    self.isVisible = YES;
+                    if (self.dataMutArr.count) {
+                        self->_tableView.endRefreshing();
+                    }else{
+                        self->_tableView.endRefreshingWithNoMoreData();
+                    }
+                    /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
+                    @jobs_weakify(self)
+                    [self getMainQueue:^{
+                        @jobs_strongify(self)
+                        [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
+                                                  animationBlock:nil
+                                                 completionBlock:nil];
+                    }];
+                    return nil;
+                };
+            });
+            self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"");
+                data.pullingTitle = JobsInternationalization(@"");
+                data.refreshingTitle = JobsInternationalization(@"");
+                data.willRefreshTitle = JobsInternationalization(@"");
+                data.noMoreDataTitle = JobsInternationalization(@"");
+                data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
-                                              animationBlock:nil
-                                             completionBlock:nil];
-                }];
-                return nil;
-            };
-
-            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
-            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
-                @jobs_strongify(self)
-                self->_tableView.endRefreshing();
-                return nil;
-            };
-
-            self.refreshConfigHeader = refreshConfigHeader;
-            self.refreshConfigFooter = refreshConfigFooter;
-
+                    self->_tableView.endRefreshing();
+                    return nil;
+                };
+            });
+            
             _tableView.mj_header = self.mjRefreshNormalHeader;
             _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
         }

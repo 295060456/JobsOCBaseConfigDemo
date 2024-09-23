@@ -248,22 +248,20 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
-            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-            
-            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");;
-            
-            self.refreshConfigHeader = refreshConfigHeader;
-            self.refreshConfigFooter = refreshConfigFooter;
+            self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+            });
+            self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"");
+                data.pullingTitle = JobsInternationalization(@"");
+                data.refreshingTitle = JobsInternationalization(@"");
+                data.willRefreshTitle = JobsInternationalization(@"");
+                data.noMoreDataTitle = JobsInternationalization(@"");
+            });
             
             _tableView.mj_header = self.mjRefreshNormalHeader;
             _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度

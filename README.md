@@ -6719,38 +6719,38 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 
   ```objective-c
-  MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-  refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-  refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-  refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-  refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-  refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-  @jobs_weakify(self)
-  refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
-      @jobs_strongify(self)
-      [self feedbackGenerator];//震动反馈
-      return nil;
-  };
+  self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+      data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+      data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+      data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+      data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+      data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+      data.loadBlock = ^id _Nullable(id _Nullable data) {
+          @jobs_strongify(self)
+          /// 下拉刷新
+          self.feedbackGenerator();//震动反馈
+          self->_collectionView.endRefreshing();
+          return nil;
+      };
+  });
   ```
 
   ```objective-c
-  MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-  refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-  refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
-  refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
-  refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
-  refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
-  @jobs_weakify(self)
-  refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
-      @jobs_strongify(self)
-      return nil;
-  };
+  self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+      data.stateIdleTitle = JobsInternationalization(@"");
+      data.pullingTitle = JobsInternationalization(@"");
+      data.refreshingTitle = JobsInternationalization(@"");
+      data.willRefreshTitle = JobsInternationalization(@"");
+      data.noMoreDataTitle = JobsInternationalization(@"");
+      data.loadBlock = ^id _Nullable(id _Nullable data){
+          @jobs_strongify(self)
+          self->_collectionView.endRefreshing();
+          return nil;
+      };
+  });
   ```
 
   ```objective-c
-  self.refreshConfigHeader = refreshConfigHeader;
-  self.refreshConfigFooter = refreshConfigFooter;
-  
   _collectionView.mj_header = self.mjRefreshNormalHeader;
   _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
   ```
@@ -7011,33 +7011,34 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
            _collectionView.registerCollectionViewCellClass(MSMineView6CVCell.class,@"");
            
            {
-               MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-               refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-               refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-               refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-               refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-               refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-               refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
-                   @jobs_strongify(self)
-                   [self feedbackGenerator];//震动反馈
-                   return nil;
-               };
-   
-               MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-               refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-               refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
-               refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
-               refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
-               refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
-               refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
-                   @jobs_strongify(self)
-                   return nil;
-               };
+               self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                   data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+                   data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+                   data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+                   data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                   data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+                   data.loadBlock = ^id _Nullable(id _Nullable data) {
+                       @jobs_strongify(self)
+                       /// 下拉刷新
+                       self.feedbackGenerator();//震动反馈
+                       self->_collectionView.endRefreshing();
+                       return nil;
+                   };
+               });
+               self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                   data.stateIdleTitle = JobsInternationalization(@"");
+                   data.pullingTitle = JobsInternationalization(@"");
+                   data.refreshingTitle = JobsInternationalization(@"");
+                   data.willRefreshTitle = JobsInternationalization(@"");
+                   data.noMoreDataTitle = JobsInternationalization(@"");
+                   data.loadBlock = ^id _Nullable(id _Nullable data){
+                       @jobs_strongify(self)
+                       self->_collectionView.endRefreshing();
+                       return nil;
+                   };
+               });
    
                {
-                   self.refreshConfigHeader = refreshConfigHeader;
-                   self.refreshConfigFooter = refreshConfigFooter;
-   
                    _collectionView.mj_header = self.mjRefreshNormalHeader;
                    _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
                }
@@ -7368,33 +7369,35 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 
   ```objective-c
-  MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-  refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-  refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-  refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-  refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-  refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-  refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
-      @jobs_strongify(self)
-      [self feedbackGenerator];//震动反馈
-      return nil;
-  };
+    self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+        data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+        data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+        data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+        data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+        data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+        data.loadBlock = ^id _Nullable(id _Nullable data) {
+            @jobs_strongify(self)
+            /// 下拉刷新
+            self.feedbackGenerator();//震动反馈
+            self->_tableView.endRefreshing();
+            return nil;
+        };
+    });
+    self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+        data.stateIdleTitle = JobsInternationalization(@"");
+        data.pullingTitle = JobsInternationalization(@"");
+        data.refreshingTitle = JobsInternationalization(@"");
+        data.willRefreshTitle = JobsInternationalization(@"");
+        data.noMoreDataTitle = JobsInternationalization(@"");
+        data.loadBlock = ^id _Nullable(id _Nullable data){
+            @jobs_strongify(self)
+            self->_tableView.endRefreshing();
+            return nil;
+        };
+    });
   
-  MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-  refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-  refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
-  refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
-  refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
-  refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
-  refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
-      return nil;
-  };
-  
-  self.refreshConfigHeader = refreshConfigHeader;
-  self.refreshConfigFooter = refreshConfigFooter;
-  
-  _tableView.mj_header = self.mjRefreshNormalHeader;
-  _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+    _tableView.mj_header = self.mjRefreshNormalHeader;
+    _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
   ```
 
 * 支持水平方向的<u>左拉加载</u>和<u>右拉刷新</u> [**XZMRefresh**](https://github.com/xiezhongmin/XZMRefresh)
@@ -7550,30 +7553,32 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
            }
            
            {
-               MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-               refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-               refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-               refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-               refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-               refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-               refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
-                   @jobs_strongify(self)
-                   [self feedbackGenerator];//震动反馈
-                   return nil;
-               };
-               
-               MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-               refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-               refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
-               refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
-               refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
-               refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
-               refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
-                   return nil;
-               };
-               
-               self.refreshConfigHeader = refreshConfigHeader;
-               self.refreshConfigFooter = refreshConfigFooter;
+               self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                   data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+                   data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+                   data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+                   data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                   data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+                   data.loadBlock = ^id _Nullable(id _Nullable data) {
+                       @jobs_strongify(self)
+                       /// 下拉刷新
+                       self.feedbackGenerator();//震动反馈
+                       self->_tableView.endRefreshing();
+                       return nil;
+                   };
+               });
+               self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                   data.stateIdleTitle = JobsInternationalization(@"");
+                   data.pullingTitle = JobsInternationalization(@"");
+                   data.refreshingTitle = JobsInternationalization(@"");
+                   data.willRefreshTitle = JobsInternationalization(@"");
+                   data.noMoreDataTitle = JobsInternationalization(@"");
+                   data.loadBlock = ^id _Nullable(id _Nullable data){
+                       @jobs_strongify(self)
+                       self->_tableView.endRefreshing();
+                       return nil;
+                   };
+               });
                
                _tableView.mj_header = self.mjRefreshNormalHeader;
                _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
@@ -7849,8 +7854,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                   temp.add(viewModel);
               }
               _dataMutArr.add(temp);
-          }
-     }return _dataMutArr;
+         }
+    }return _dataMutArr;
   }
   
   -(NSMutableArray<UIViewModel *> *)rowDataMutArr{

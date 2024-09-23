@@ -248,22 +248,20 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         {
-            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-            
-            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");;
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");;
-            
-            self.refreshConfigHeader = refreshConfigHeader;
-            self.refreshConfigFooter = refreshConfigFooter;
+            self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+            });
+            self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"");
+                data.pullingTitle = JobsInternationalization(@"");
+                data.refreshingTitle = JobsInternationalization(@"");
+                data.willRefreshTitle = JobsInternationalization(@"");
+                data.noMoreDataTitle = JobsInternationalization(@"");
+            });
             
             _tableView.mj_header = self.mjRefreshNormalHeader;
             _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
@@ -298,59 +296,53 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<NSMutableArray<__kindof UITableViewCell *> *> *)tbvSectionRowCellMutArr{
     if(!_tbvSectionRowCellMutArr){
-        _tbvSectionRowCellMutArr = NSMutableArray.array;
-        {
-            NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            _tbvSectionRowCellMutArr.add(rowCellMutArr);
-        }
-        
-        {
-            NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            _tbvSectionRowCellMutArr.add(rowCellMutArr);
-        }
+        @jobs_weakify(self)
+        _tbvSectionRowCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
+                data1.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+                data1.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+                data1.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+                data1.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            }));
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
+                @jobs_strongify(self)
+                data1.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            }));
+        });
     }return _tbvSectionRowCellMutArr;
 }
 
 -(NSMutableArray<NSMutableArray<__kindof UIViewModel *> *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
-        
-        {
-            NSMutableArray <__kindof UIViewModel *>*rowMutArr = NSMutableArray.array;
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"右边的架构是UIViewController")
-                                                               attributeSubTitle:JobsInternationalization(@"正常")];
-                viewModel.cls = JobsVerticalMenuVC_1.class;
-                rowMutArr.add(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"右边的架构是UICollectionView")
-                                                               attributeSubTitle:JobsInternationalization(@"正常")];
-                viewModel.cls = JobsVerticalMenuVC_2.class;
-                rowMutArr.add(viewModel);
-            }
-            _dataMutArr.add(rowMutArr);
-        }
-        
-        {
-            NSMutableArray <__kindof UIViewModel *>*rowMutArr = NSMutableArray.array;
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsVerticalMenuVC_0")
-                                                               attributeSubTitle:JobsInternationalization(@"JobsVerticalMenuVC_0")];
-                viewModel.cls = JobsVerticalMenuVC_0.class;
-                rowMutArr.add(viewModel);
-            }
-            
-            _dataMutArr.add(rowMutArr);
-        }
+        @jobs_weakify(self)
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
+                @jobs_strongify(self)
+                {
+                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"右边的架构是UIViewController")
+                                                                   attributeSubTitle:JobsInternationalization(@"正常")];
+                    viewModel.cls = JobsVerticalMenuVC_1.class;
+                    data1.add(viewModel);
+                }
+                
+                {
+                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"右边的架构是UICollectionView")
+                                                                   attributeSubTitle:JobsInternationalization(@"正常")];
+                    viewModel.cls = JobsVerticalMenuVC_2.class;
+                    data1.add(viewModel);
+                }
+            }));
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
+                @jobs_strongify(self)
+                {
+                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsVerticalMenuVC_0")
+                                                                   attributeSubTitle:JobsInternationalization(@"JobsVerticalMenuVC_0")];
+                    viewModel.cls = JobsVerticalMenuVC_0.class;
+                    data1.add(viewModel);
+                }
+            }));
+        });
     }return _dataMutArr;
 }
 

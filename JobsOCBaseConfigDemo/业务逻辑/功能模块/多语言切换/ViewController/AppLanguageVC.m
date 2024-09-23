@@ -195,49 +195,47 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         {
-            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉刷新");
-            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉刷新");
-            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"立即释放刷新");
-            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据");
-            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新");
-            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
-                @jobs_strongify(self)
-                // 刷新本界面
-                if (self.dataMutArr.count) {
-                    [self.dataMutArr remove];
-                    self->_dataMutArr = nil;
-                }
-                self.isVisible = YES;
-                if (self.dataMutArr.count) {
-                    self->_tableView.endRefreshing();
-                }else{
-                    self->_tableView.endRefreshingWithNoMoreData();
-                }
-                /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
-                @jobs_weakify(self)
-                [self getMainQueue:^{
+            self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"下拉刷新");
+                data.pullingTitle = JobsInternationalization(@"下拉刷新");
+                data.refreshingTitle = JobsInternationalization(@"立即释放刷新");
+                data.willRefreshTitle = JobsInternationalization(@"刷新数据");
+                data.noMoreDataTitle = JobsInternationalization(@"下拉刷新");
+                data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
-                                              animationBlock:nil
-                                             completionBlock:nil];
-                }];return nil;
-            };
-
-            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = JobsInternationalization(@"");
-            refreshConfigFooter.pullingTitle = JobsInternationalization(@"");
-            refreshConfigFooter.refreshingTitle = JobsInternationalization(@"");
-            refreshConfigFooter.willRefreshTitle = JobsInternationalization(@"");
-            refreshConfigFooter.noMoreDataTitle = JobsInternationalization(@"");
-            refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
-                @jobs_strongify(self)
-                self->_tableView.endRefreshing();
-                return nil;
-            };
-
-            self.refreshConfigHeader = refreshConfigHeader;
-            self.refreshConfigFooter = refreshConfigFooter;
+                    // 刷新本界面
+                    if (self.dataMutArr.count) {
+                        [self.dataMutArr remove];
+                        self->_dataMutArr = nil;
+                    }
+                    self.isVisible = YES;
+                    if (self.dataMutArr.count) {
+                        self->_tableView.endRefreshing();
+                    }else{
+                        self->_tableView.endRefreshingWithNoMoreData();
+                    }
+                    /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
+                    @jobs_weakify(self)
+                    [self getMainQueue:^{
+                        @jobs_strongify(self)
+                        [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
+                                                  animationBlock:nil
+                                                 completionBlock:nil];
+                    }];return nil;
+                };
+            });
+            self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"");
+                data.pullingTitle = JobsInternationalization(@"");
+                data.refreshingTitle = JobsInternationalization(@"");
+                data.willRefreshTitle = JobsInternationalization(@"");
+                data.noMoreDataTitle = JobsInternationalization(@"");
+                data.loadBlock = ^id _Nullable(id  _Nullable data) {
+                    @jobs_strongify(self)
+                    self->_tableView.endRefreshing();
+                    return nil;
+                };
+            });
 
             _tableView.mj_header = self.mjRefreshNormalHeader;
             _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
@@ -263,40 +261,24 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.appLanguage = AppLanguageBySys;
-            viewModel.text = JobsInternationalization(@"跟随系统");
-            
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.appLanguage = AppLanguageChineseSimplified;
-            viewModel.text = JobsInternationalization(@"中文");
-            
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.appLanguage = AppLanguageEnglish;
-            viewModel.text = JobsInternationalization(@"英文");
-            
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.appLanguage = AppLanguageTagalog;
-            viewModel.text = JobsInternationalization(@"他加禄语");
-            
-            [_dataMutArr addObject:viewModel];
-        }
-        
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.appLanguage = AppLanguageBySys;
+                data1.text = JobsInternationalization(@"跟随系统");
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.appLanguage = AppLanguageBySys;
+                data1.text = JobsInternationalization(@"中文");
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.appLanguage = AppLanguageBySys;
+                data1.text = JobsInternationalization(@"英文");
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.appLanguage = AppLanguageBySys;
+                data1.text = JobsInternationalization(@"他加禄语");
+            }));
+        });
     }return _dataMutArr;
 }
 

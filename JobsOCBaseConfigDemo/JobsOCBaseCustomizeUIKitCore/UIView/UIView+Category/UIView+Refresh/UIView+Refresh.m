@@ -359,7 +359,7 @@ JobsKey(_lotAnimMJRefreshHeader)
         @jobs_weakify(self)
         lotAnimMJRefreshHeader = [LOTAnimationMJRefreshHeader headerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
+            if(self.refreshConfigHeader.loadBlock) self.refreshConfigHeader.loadBlock(nil);
         }];
         //图片
         {
