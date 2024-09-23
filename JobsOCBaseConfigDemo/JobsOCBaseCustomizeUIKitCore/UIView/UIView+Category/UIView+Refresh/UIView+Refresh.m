@@ -364,41 +364,30 @@ JobsKey(_lotAnimMJRefreshHeader)
         //图片
         {
             // 普通闲置状态
-            [lotAnimMJRefreshHeader setImages:self.refreshConfigHeader.stateIdlePicsMutArr
-                                     forState:MJRefreshStateIdle];
+            lotAnimMJRefreshHeader.refreshStatePullingByImages(self.refreshConfigHeader.stateIdlePicsMutArr);
             // 松开就可以进行刷新的状态
-            [lotAnimMJRefreshHeader setImages:self.refreshConfigHeader.pullingPicsMutArr
-                                     forState:MJRefreshStatePulling];
+            lotAnimMJRefreshHeader.refreshStatePullingByImages(self.refreshConfigHeader.pullingPicsMutArr);
             // 正在刷新中的状态
             [lotAnimMJRefreshHeader setImages:self.refreshConfigHeader.refreshingPicsMutArr
                                      duration:self.refreshConfigHeader.refreshingDuration
                                      forState:MJRefreshStateRefreshing];
             // 即将刷新的状态
-            [lotAnimMJRefreshHeader setImages:self.refreshConfigHeader.willRefreshPicsMutArr
-                                     forState:MJRefreshStateWillRefresh];
+            lotAnimMJRefreshHeader.refreshStateWillRefreshByImages(self.refreshConfigHeader.willRefreshPicsMutArr);
             // 所有数据加载完毕，没有更多的数据了
-            [lotAnimMJRefreshHeader setImages:self.refreshConfigHeader.noMoreDataPicsMutArr
-                                     forState:MJRefreshStateNoMoreData];
+            lotAnimMJRefreshHeader.refreshStateNoMoreDataByImages(self.refreshConfigHeader.noMoreDataPicsMutArr);
         }
         //文字
         {
-//            NSLog(@"%@",self.refreshConfigHeader.stateIdleTitle);
-            NSLog(@"%@",self.refreshConfigHeader);
             // 普通闲置状态
-            [lotAnimMJRefreshHeader setTitle:self.refreshConfigHeader.stateIdleTitle
-                                    forState:MJRefreshStateIdle];
+            lotAnimMJRefreshHeader.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
             // 松开就可以进行刷新的状态
-            [lotAnimMJRefreshHeader setTitle:self.refreshConfigHeader.pullingTitle
-                                    forState:MJRefreshStatePulling];
+            lotAnimMJRefreshHeader.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
             // 正在刷新中的状态
-            [lotAnimMJRefreshHeader setTitle:self.refreshConfigHeader.refreshingTitle
-                                    forState:MJRefreshStateRefreshing];
+            lotAnimMJRefreshHeader.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
             // 即将刷新的状态
-            [lotAnimMJRefreshHeader setTitle:self.refreshConfigHeader.willRefreshTitle
-                                    forState:MJRefreshStateWillRefresh];
+            lotAnimMJRefreshHeader.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
             // 所有数据加载完毕，没有更多的数据了
-            [lotAnimMJRefreshHeader setTitle:self.refreshConfigHeader.noMoreDataTitle
-                                    forState:MJRefreshStateNoMoreData];
+            lotAnimMJRefreshHeader.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
         }
         //其他
         {
@@ -430,20 +419,15 @@ JobsKey(_mjRefreshNormalHeader)
         //文字
         {
             // 普通闲置状态
-            [MjRefreshNormalHeader setTitle:self.refreshConfigHeader.stateIdleTitle
-                                   forState:MJRefreshStateIdle];
+            MjRefreshNormalHeader.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
             // 松开就可以进行刷新的状态
-            [MjRefreshNormalHeader setTitle:self.refreshConfigHeader.pullingTitle
-                                   forState:MJRefreshStatePulling];
+            MjRefreshNormalHeader.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
             // 正在刷新中的状态
-            [MjRefreshNormalHeader setTitle:self.refreshConfigHeader.refreshingTitle
-                                   forState:MJRefreshStateRefreshing];
+            MjRefreshNormalHeader.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
             // 即将刷新的状态
-            [MjRefreshNormalHeader setTitle:self.refreshConfigHeader.willRefreshTitle
-                                   forState:MJRefreshStateWillRefresh];
+            MjRefreshNormalHeader.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
             // 所有数据加载完毕，没有更多的数据了
-            [MjRefreshNormalHeader setTitle:self.refreshConfigHeader.noMoreDataTitle
-                                   forState:MJRefreshStateNoMoreData];
+            MjRefreshNormalHeader.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
         }
         //其他
         {
@@ -475,20 +459,15 @@ JobsKey(_mjRefreshStateHeader)
         //文字
         {
             // 普通闲置状态
-            [MjRefreshStateHeader setTitle:self.refreshConfigHeader.stateIdleTitle
-                                  forState:MJRefreshStateIdle];
+            MjRefreshStateHeader.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
             // 松开就可以进行刷新的状态
-            [MjRefreshStateHeader setTitle:self.refreshConfigHeader.pullingTitle
-                                  forState:MJRefreshStatePulling];
+            MjRefreshStateHeader.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
             // 正在刷新中的状态
-            [MjRefreshStateHeader setTitle:self.refreshConfigHeader.refreshingTitle
-                                  forState:MJRefreshStateRefreshing];
+            MjRefreshStateHeader.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
             // 即将刷新的状态
-            [MjRefreshStateHeader setTitle:self.refreshConfigHeader.willRefreshTitle
-                                  forState:MJRefreshStateWillRefresh];
+            MjRefreshStateHeader.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
             // 所有数据加载完毕，没有更多的数据了
-            [MjRefreshStateHeader setTitle:self.refreshConfigHeader.noMoreDataTitle
-                                  forState:MJRefreshStateNoMoreData];
+            MjRefreshStateHeader.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
         }
         //其他
         {
@@ -515,7 +494,7 @@ JobsKey(_mjRefreshHeader)
         @jobs_weakify(self)
         MjRefreshHeader = [MJRefreshHeader headerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
+            if(self.refreshConfigHeader.loadBlock) self.refreshConfigHeader.loadBlock(nil);
         }];
         //其他
         {
@@ -538,44 +517,35 @@ JobsKey(_mjRefreshGifHeader)
         @jobs_weakify(self)
         MjRefreshGifHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
+            if(self.refreshConfigHeader.loadBlock) self.refreshConfigHeader.loadBlock(nil);
         }];
         //图片
         {
             // 普通闲置状态
-            [MjRefreshGifHeader setImages:self.refreshConfigHeader.stateIdlePicsMutArr
-                                 forState:MJRefreshStateIdle];
+            MjRefreshGifHeader.refreshStatePullingByImages(self.refreshConfigHeader.stateIdlePicsMutArr);
             // 松开就可以进行刷新的状态
-            [MjRefreshGifHeader setImages:self.refreshConfigHeader.pullingPicsMutArr
-                                 forState:MJRefreshStatePulling];
+            MjRefreshGifHeader.refreshStatePullingByImages(self.refreshConfigHeader.pullingPicsMutArr);
             // 正在刷新中的状态
             [MjRefreshGifHeader setImages:self.refreshConfigHeader.refreshingPicsMutArr
                                  duration:self.refreshConfigHeader.refreshingDuration
                                  forState:MJRefreshStateRefreshing];
             // 即将刷新的状态
-            [MjRefreshGifHeader setImages:self.refreshConfigHeader.willRefreshPicsMutArr
-                                 forState:MJRefreshStateWillRefresh];
+            MjRefreshGifHeader.refreshStateWillRefreshByImages(self.refreshConfigHeader.willRefreshPicsMutArr);
             // 所有数据加载完毕，没有更多的数据了
-            [MjRefreshGifHeader setImages:self.refreshConfigHeader.noMoreDataPicsMutArr
-                                 forState:MJRefreshStateNoMoreData];
+            MjRefreshGifHeader.refreshStateNoMoreDataByImages(self.refreshConfigHeader.noMoreDataPicsMutArr);
         }
         //文字
         {
             // 普通闲置状态
-            [MjRefreshGifHeader setTitle:self.refreshConfigHeader.stateIdleTitle
-                                forState:MJRefreshStateIdle];
+            MjRefreshGifHeader.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
             // 松开就可以进行刷新的状态
-            [MjRefreshGifHeader setTitle:self.refreshConfigHeader.pullingTitle
-                                forState:MJRefreshStatePulling];
+            MjRefreshGifHeader.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
             // 正在刷新中的状态
-            [MjRefreshGifHeader setTitle:self.refreshConfigHeader.refreshingTitle
-                                forState:MJRefreshStateRefreshing];
+            MjRefreshGifHeader.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
             // 即将刷新的状态
-            [MjRefreshGifHeader setTitle:self.refreshConfigHeader.willRefreshTitle
-                                forState:MJRefreshStateWillRefresh];
+            MjRefreshGifHeader.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
             // 所有数据加载完毕，没有更多的数据了
-            [MjRefreshGifHeader setTitle:self.refreshConfigHeader.noMoreDataTitle
-                                forState:MJRefreshStateNoMoreData];
+            MjRefreshGifHeader.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
         }
         //其他
         {
@@ -609,39 +579,30 @@ JobsKey(_mjRefreshAutoGifFooter)
         // 图片
         {
             // 普通闲置状态
-            [MjRefreshAutoGifFooter setImages:self.refreshConfigFooter.stateIdlePicsMutArr
-                                     forState:MJRefreshStateIdle];
+            MjRefreshAutoGifFooter.refreshStatePullingByImages(self.refreshConfigHeader.stateIdlePicsMutArr);
             // 松开就可以进行刷新的状态
-            [MjRefreshAutoGifFooter setImages:self.refreshConfigFooter.pullingPicsMutArr
-                                     forState:MJRefreshStatePulling];
+            MjRefreshAutoGifFooter.refreshStatePullingByImages(self.refreshConfigHeader.pullingPicsMutArr);
             // 正在刷新中的状态
-            [MjRefreshAutoGifFooter setImages:self.refreshConfigFooter.refreshingPicsMutArr
-                                     duration:self.refreshConfigFooter.refreshingDuration
+            [MjRefreshAutoGifFooter setImages:self.refreshConfigHeader.refreshingPicsMutArr
+                                     duration:self.refreshConfigHeader.refreshingDuration
                                      forState:MJRefreshStateRefreshing];
             // 即将刷新的状态
-            [MjRefreshAutoGifFooter setImages:self.refreshConfigFooter.willRefreshPicsMutArr
-                                     forState:MJRefreshStateWillRefresh];
+            MjRefreshAutoGifFooter.refreshStateWillRefreshByImages(self.refreshConfigHeader.willRefreshPicsMutArr);
             // 所有数据加载完毕，没有更多的数据了
-            [MjRefreshAutoGifFooter setImages:self.refreshConfigFooter.noMoreDataPicsMutArr
-                                     forState:MJRefreshStateNoMoreData];
+            MjRefreshAutoGifFooter.refreshStateNoMoreDataByImages(self.refreshConfigHeader.noMoreDataPicsMutArr);
         }
         // 文字
         {
             // 普通闲置状态
-            [MjRefreshAutoGifFooter setTitle:self.refreshConfigFooter.stateIdleTitle
-                                    forState:MJRefreshStateIdle];
+            MjRefreshAutoGifFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
             // 松开就可以进行刷新的状态
-            [MjRefreshAutoGifFooter setTitle:self.refreshConfigFooter.pullingTitle
-                                    forState:MJRefreshStatePulling];
+            MjRefreshAutoGifFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
             // 正在刷新中的状态
-            [MjRefreshAutoGifFooter setTitle:self.refreshConfigFooter.refreshingTitle
-                                    forState:MJRefreshStateRefreshing];
-            /** 即将刷新的状态 */
-            [MjRefreshAutoGifFooter setTitle:self.refreshConfigFooter.willRefreshTitle
-                                    forState:MJRefreshStateWillRefresh];
-            /** 所有数据加载完毕，没有更多的数据了 */
-            [MjRefreshAutoGifFooter setTitle:self.refreshConfigFooter.noMoreDataTitle
-                                    forState:MJRefreshStateNoMoreData];
+            MjRefreshAutoGifFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
+            // 即将刷新的状态
+            MjRefreshAutoGifFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
+            // 所有数据加载完毕，没有更多的数据了
+            MjRefreshAutoGifFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
         }
         //其他
         {
@@ -672,20 +633,15 @@ JobsKey(_mjRefreshBackNormalFooter)
         // 文字 (此模式下只有文字而没有图片)
         {
             // 普通闲置状态
-            [MjRefreshBackNormalFooter setTitle:self.refreshConfigFooter.stateIdleTitle
-                                       forState:MJRefreshStateIdle];
+            MjRefreshBackNormalFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
             // 松开就可以进行刷新的状态
-            [MjRefreshBackNormalFooter setTitle:self.refreshConfigFooter.pullingTitle
-                                       forState:MJRefreshStatePulling];
+            MjRefreshBackNormalFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
             // 正在刷新中的状态
-            [MjRefreshBackNormalFooter setTitle:self.refreshConfigFooter.refreshingTitle
-                                       forState:MJRefreshStateRefreshing];
+            MjRefreshBackNormalFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
             // 即将刷新的状态
-            [MjRefreshBackNormalFooter setTitle:self.refreshConfigFooter.willRefreshTitle
-                                       forState:MJRefreshStateWillRefresh];
+            MjRefreshBackNormalFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
             // 所有数据加载完毕，没有更多的数据了
-            [MjRefreshBackNormalFooter setTitle:self.refreshConfigFooter.noMoreDataTitle
-                                       forState:MJRefreshStateNoMoreData];
+            MjRefreshBackNormalFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
         }
         //其他
         {
@@ -711,26 +667,20 @@ JobsKey(_mjRefreshAutoNormalFooter)
         @jobs_weakify(self)
         MjRefreshAutoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock)self.refreshConfigFooter.loadBlock(nil);
+            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
         }];
-        
         // 文字
         {
             // 普通闲置状态
-            [MjRefreshAutoNormalFooter setTitle:self.refreshConfigFooter.stateIdleTitle
-                                       forState:MJRefreshStateIdle];
+            MjRefreshAutoNormalFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
             // 松开就可以进行刷新的状态
-            [MjRefreshAutoNormalFooter setTitle:self.refreshConfigFooter.pullingTitle
-                                       forState:MJRefreshStatePulling];
+            MjRefreshAutoNormalFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
             // 正在刷新中的状态
-            [MjRefreshAutoNormalFooter setTitle:self.refreshConfigFooter.refreshingTitle
-                                       forState:MJRefreshStateRefreshing];
+            MjRefreshAutoNormalFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
             // 即将刷新的状态
-            [MjRefreshAutoNormalFooter setTitle:self.refreshConfigFooter.willRefreshTitle
-                                       forState:MJRefreshStateWillRefresh];
+            MjRefreshAutoNormalFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
             // 所有数据加载完毕，没有更多的数据了
-            [MjRefreshAutoNormalFooter setTitle:self.refreshConfigFooter.noMoreDataTitle
-                                       forState:MJRefreshStateNoMoreData];
+            MjRefreshAutoNormalFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
         }
         //其他
         {
@@ -756,25 +706,20 @@ JobsKey(_mjRefreshAutoStateFooter)
         @jobs_weakify(self)
         MjRefreshAutoStateFooter = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock)self.refreshConfigFooter.loadBlock(nil);
+            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
         }];
         // 文字
         {
             // 普通闲置状态
-            [MjRefreshAutoStateFooter setTitle:self.refreshConfigFooter.stateIdleTitle
-                                      forState:MJRefreshStateIdle];
+            MjRefreshAutoStateFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
             // 松开就可以进行刷新的状态
-            [MjRefreshAutoStateFooter setTitle:self.refreshConfigFooter.pullingTitle
-                                      forState:MJRefreshStatePulling];
+            MjRefreshAutoStateFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
             // 正在刷新中的状态
-            [MjRefreshAutoStateFooter setTitle:self.refreshConfigFooter.refreshingTitle
-                                      forState:MJRefreshStateRefreshing];
-            /** 即将刷新的状态 */
-            [MjRefreshAutoStateFooter setTitle:self.refreshConfigFooter.willRefreshTitle
-                                      forState:MJRefreshStateWillRefresh];
-            /** 所有数据加载完毕，没有更多的数据了 */
-            [MjRefreshAutoStateFooter setTitle:self.refreshConfigFooter.noMoreDataTitle
-                                      forState:MJRefreshStateNoMoreData];
+            MjRefreshAutoStateFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
+            // 即将刷新的状态
+            MjRefreshAutoStateFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
+            // 所有数据加载完毕，没有更多的数据了
+            MjRefreshAutoStateFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
         }
         //其他
         {
@@ -823,39 +768,30 @@ JobsKey(_mjRefreshBackGifFooter)
         // 图片
         {
             // 普通闲置状态
-            [MjRefreshBackGifFooter setImages:self.refreshConfigFooter.stateIdlePicsMutArr
-                                     forState:MJRefreshStateIdle];
+            MjRefreshBackGifFooter.refreshStatePullingByImages(self.refreshConfigHeader.stateIdlePicsMutArr);
             // 松开就可以进行刷新的状态
-            [MjRefreshBackGifFooter setImages:self.refreshConfigFooter.pullingPicsMutArr
-                                     forState:MJRefreshStatePulling];
+            MjRefreshBackGifFooter.refreshStatePullingByImages(self.refreshConfigHeader.pullingPicsMutArr);
             // 正在刷新中的状态
-            [MjRefreshBackGifFooter setImages:self.refreshConfigFooter.refreshingPicsMutArr
-                                     duration:self.refreshConfigFooter.refreshingDuration
+            [MjRefreshBackGifFooter setImages:self.refreshConfigHeader.refreshingPicsMutArr
+                                     duration:self.refreshConfigHeader.refreshingDuration
                                      forState:MJRefreshStateRefreshing];
             // 即将刷新的状态
-            [MjRefreshBackGifFooter setImages:self.refreshConfigFooter.willRefreshPicsMutArr
-                                     forState:MJRefreshStateWillRefresh];
+            MjRefreshBackGifFooter.refreshStateWillRefreshByImages(self.refreshConfigHeader.willRefreshPicsMutArr);
             // 所有数据加载完毕，没有更多的数据了
-            [MjRefreshBackGifFooter setImages:self.refreshConfigFooter.noMoreDataPicsMutArr
-                                     forState:MJRefreshStateNoMoreData];
+            MjRefreshBackGifFooter.refreshStateNoMoreDataByImages(self.refreshConfigHeader.noMoreDataPicsMutArr);
         }
         // 文字
         {
             // 普通闲置状态
-            [MjRefreshBackGifFooter setTitle:self.refreshConfigFooter.stateIdleTitle
-                                    forState:MJRefreshStateIdle];
+            MjRefreshBackGifFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
             // 松开就可以进行刷新的状态
-            [MjRefreshBackGifFooter setTitle:self.refreshConfigFooter.pullingTitle
-                                    forState:MJRefreshStatePulling];
+            MjRefreshBackGifFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
             // 正在刷新中的状态
-            [MjRefreshBackGifFooter setTitle:self.refreshConfigFooter.refreshingTitle
-                                    forState:MJRefreshStateRefreshing];
-            /** 即将刷新的状态 */
-            [MjRefreshBackGifFooter setTitle:self.refreshConfigFooter.willRefreshTitle
-                                    forState:MJRefreshStateWillRefresh];
-            /** 所有数据加载完毕，没有更多的数据了 */
-            [MjRefreshBackGifFooter setTitle:self.refreshConfigFooter.noMoreDataTitle
-                                    forState:MJRefreshStateNoMoreData];
+            MjRefreshBackGifFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
+            // 即将刷新的状态
+            MjRefreshBackGifFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
+            // 所有数据加载完毕，没有更多的数据了
+            MjRefreshBackGifFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
         }
         //其他
         {
@@ -886,20 +822,15 @@ JobsKey(_mjRefreshBackStateFooter)
         // 文字
         {
             // 普通闲置状态
-            [MjRefreshBackStateFooter setTitle:self.refreshConfigFooter.stateIdleTitle
-                                      forState:MJRefreshStateIdle];
+            MjRefreshBackStateFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
             // 松开就可以进行刷新的状态
-            [MjRefreshBackStateFooter setTitle:self.refreshConfigFooter.pullingTitle
-                                      forState:MJRefreshStatePulling];
+            MjRefreshBackStateFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
             // 正在刷新中的状态
-            [MjRefreshBackStateFooter setTitle:self.refreshConfigFooter.refreshingTitle
-                                      forState:MJRefreshStateRefreshing];
-            /** 即将刷新的状态 */
-            [MjRefreshBackStateFooter setTitle:self.refreshConfigFooter.willRefreshTitle
-                                      forState:MJRefreshStateWillRefresh];
-            /** 所有数据加载完毕，没有更多的数据了 */
-            [MjRefreshBackStateFooter setTitle:self.refreshConfigFooter.noMoreDataTitle
-                                      forState:MJRefreshStateNoMoreData];
+            MjRefreshBackStateFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
+            // 即将刷新的状态
+            MjRefreshBackStateFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
+            // 所有数据加载完毕，没有更多的数据了
+            MjRefreshBackStateFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
         }
         //其他
         {

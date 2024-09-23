@@ -9,6 +9,7 @@
 #import <objc/runtime.h>
 #import "JobsBlock.h"
 #import "NSObject+Extras.h"
+#import "MJRefresh+Extra.h"
 
 #if __has_include(<ReactiveObjC/RACmetamacros.h>)
 #import <ReactiveObjC/RACmetamacros.h>

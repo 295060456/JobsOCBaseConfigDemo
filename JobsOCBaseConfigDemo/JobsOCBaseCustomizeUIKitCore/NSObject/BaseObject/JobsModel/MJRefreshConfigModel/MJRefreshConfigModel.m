@@ -85,69 +85,68 @@
 /// 静态图内部拼接出的动效，而非Gif
 -(NSMutableArray<UIImage *> *)stateIdlePicsMutArr{
     if (!_stateIdlePicsMutArr) {
-        _stateIdlePicsMutArr = NSMutableArray.array;
-        [_stateIdlePicsMutArr addObject:JobsBuddleIMG(@"bundle",
-                                                   @"刷新",
-                                                   nil,
-                                                   @"header.png")];
+        _stateIdlePicsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(JobsBuddleIMG(@"bundle",
+                                   @"刷新",
+                                   nil,
+                                   @"header.png"));
+        });
     }return _stateIdlePicsMutArr;
 }
 
 -(NSMutableArray<UIImage *> *)pullingPicsMutArr{
     if (!_pullingPicsMutArr) {
-        _pullingPicsMutArr = NSMutableArray.array;
-        [_pullingPicsMutArr addObject:JobsBuddleIMG(@"bundle",
-                                                 @"刷新",
-                                                 nil,
-                                                 @"Indeterminate Spinner - Small.png")];
+        _pullingPicsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(JobsBuddleIMG(@"bundle",
+                                   @"刷新",
+                                   nil,
+                                   @"Indeterminate Spinner - Small.png"));
+        });
     }return _pullingPicsMutArr;
 }
 
 -(NSMutableArray<UIImage *> *)refreshingPicsMutArr{
     if (!_refreshingPicsMutArr) {
-        _refreshingPicsMutArr = NSMutableArray.array;
-        
-        for (int i = 1; i <= 55; i++) {
-            NSString *str = [NSString stringWithFormat:@"gif_header_%d",i];
-            str = [str stringByAppendingString:@".png"];
-            [_refreshingPicsMutArr addObject:JobsBuddleIMG(@"bundle",
-                                                        @"刷新",
-                                                        @"刷新图片 166 * 166 @3x 100 * 100 @2x",
-                                                        str)];
-        }
-        
+        _refreshingPicsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            for (int i = 1; i <= 55; i++) {
+                NSString *str = @"gif_header_".add(toStringByInt(i));
+                str = str.add(@".png");
+                data.add(JobsBuddleIMG(@"bundle",
+                                       @"刷新",
+                                       @"刷新图片 166 * 166 @3x 100 * 100 @2x",
+                                       str));
+            }
+        });
     }return _refreshingPicsMutArr;
 }
 
 -(NSMutableArray<UIImage *> *)willRefreshPicsMutArr{
     if (!_willRefreshPicsMutArr) {
-        _willRefreshPicsMutArr = NSMutableArray.array;
-        
-        for (int i = 1; i <= 55; i++) {
-            NSString *str = [NSString stringWithFormat:@"gif_header_%d",i];
-            str = [str stringByAppendingString:@".png"];
-            [_willRefreshPicsMutArr addObject:JobsBuddleIMG(@"bundle",
-                                                         @"刷新",
-                                                         @"刷新图片 166 * 166 @3x 100 * 100 @2x",
-                                                         str)];
-        }
-        
+        _willRefreshPicsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            for (int i = 1; i <= 55; i++) {
+                NSString *str = @"gif_header_".add(toStringByInt(i));
+                str = str.add(@".png");
+                data.add(JobsBuddleIMG(@"bundle",
+                                       @"刷新",
+                                       @"刷新图片 166 * 166 @3x 100 * 100 @2x",
+                                       str));
+            }
+        });
     }return _willRefreshPicsMutArr;
 }
 
 -(NSMutableArray<UIImage *> *)noMoreDataPicsMutArr{
     if (!_noMoreDataPicsMutArr) {
-        _noMoreDataPicsMutArr = NSMutableArray.array;
-        
-        for (int i = 1; i <= 55; i++) {
-            NSString *str = [NSString stringWithFormat:@"gif_header_%d",i];
-            str = [str stringByAppendingString:@".png"];
-            [_noMoreDataPicsMutArr addObject:JobsBuddleIMG(@"bundle",
-                                                        @"刷新",
-                                                        @"刷新图片 166 * 166 @3x 100 * 100 @2x",
-                                                        str)];
-        }
-        
+        _noMoreDataPicsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray *_Nullable data) {
+            for (int i = 1; i <= 55; i++) {
+                NSString *str = @"gif_header_".add(toStringByInt(i));
+                str = str.add(@".png");
+                data.add(JobsBuddleIMG(@"bundle",
+                                       @"刷新",
+                                       @"刷新图片 166 * 166 @3x 100 * 100 @2x",
+                                       str));
+            }
+        });
     }return _noMoreDataPicsMutArr;
 }
 /// Lottie配置
