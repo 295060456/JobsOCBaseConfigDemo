@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "JobsBlock.h"
 #import "UITextModel.h"
 #import "UIViewModelProtocol.h"
 
@@ -18,3 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+static inline __kindof UIViewModel *_Nonnull jobsMakeViewModel(jobsByViewModelBlock _Nonnull block){
+    UIViewModel *model = UIViewModel.alloc.init;
+    if (block) block(model);
+    return model;
+}

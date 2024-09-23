@@ -9,6 +9,7 @@
 #import "UITextModelProtocol.h"
 #import "UIViewModelOthersProtocol.h"
 #import "UILocationProtocol.h"
+#import "JobsBlock.h"
 
 #define TextModelDataString @"主文字默认占位内容"
 /// 数据归位
@@ -32,3 +33,9 @@ UITextModelProtocol
 @end
 
 NS_ASSUME_NONNULL_END
+
+static inline __kindof UITextModel *_Nonnull jobsMakeTextModel(jobsByTextModelBlock _Nonnull block){
+    UITextModel *model = UITextModel.alloc.init;
+    if (block) block(model);
+    return model;
+}

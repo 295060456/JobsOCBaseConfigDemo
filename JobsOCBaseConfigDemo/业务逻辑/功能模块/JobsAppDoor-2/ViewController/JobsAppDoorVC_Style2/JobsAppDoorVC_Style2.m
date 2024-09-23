@@ -319,8 +319,11 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
 
 -(BaseButton *)customerServiceBtn{
     if (!_customerServiceBtn) {
-        @jobs_weakify(self)
-        _customerServiceBtn = BaseButton.initByTitle_font_titleCor_image(Title8,nil,nil,JobsIMG(@"客服"))
+//        @jobs_weakify(self)
+        _customerServiceBtn = BaseButton.initByTitle_font_titleCor_image(Title8,
+                                                                         nil
+                                                                         ,nil
+                                                                         ,JobsIMG(@"客服"))
             .bgColor(JobsWhiteColor)
             .cornerRadiusValue(_customerServiceBtn.height / 2)
             .onClick(^(UIButton *x){

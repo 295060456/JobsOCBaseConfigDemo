@@ -21,10 +21,9 @@ typedef NS_ENUM(NSUInteger, JhtBannerViewOrientation) {
 };
 #endif /* JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED */
 
-#ifndef WIDTH_SCALE_375_DEFINED
-#define WIDTH_SCALE_375_DEFINED
+#ifndef WidthScale375
 #define WidthScale375 (([[UIScreen mainScreen] bounds].size.width) / 375)
-#endif /* WIDTH_SCALE_375_DEFINED */
+#endif /* WidthScale375 */
 
 @class JhtBannerScrollView;
 /** banner view（整条view） */
@@ -33,6 +32,7 @@ typedef NS_ENUM(NSUInteger, JhtBannerViewOrientation) {
  *    default: BV_Orientation_Horizontal
  */
 @property(nonatomic,assign)JhtBannerViewOrientation orientation;
+
 /** 非当前页的透明比例（蒙板View alpha）
  *    default: 0.4
  */
@@ -57,7 +57,6 @@ typedef NS_ENUM(NSUInteger, JhtBannerViewOrientation) {
  *    default: 3.0
  */
 @property(nonatomic,assign)NSTimeInterval autoTime;
-
 /** 当前是第几页 */
 @property(nonatomic,assign,readonly)NSInteger currentIndex;
 /** pageControl（自定义扩展） */

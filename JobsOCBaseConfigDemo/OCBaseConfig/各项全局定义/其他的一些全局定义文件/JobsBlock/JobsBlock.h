@@ -120,6 +120,7 @@ typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByAr
 
 @class UITextModel;
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextModel *_Nullable data);
+typedef void(^jobsByTextModelBlock)(__kindof UITextModel *_Nullable data);
 
 @class JobsTimeFormatterModel;
 typedef JobsTimeFormatterModel *_Nullable(^JobsReturnTimeFormatterModelByStringBlock)(NSString *_Nullable data);
@@ -132,6 +133,7 @@ typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(UIColor *_Nullable
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);
 
 @class UIButtonModel;
+typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(UIButtonModel *_Nullable data);
 @class JobsNavBarConfig;
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,

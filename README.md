@@ -3724,6 +3724,33 @@ static const uint32_t kSequenceBits = 12;
     
     @end
     ```
+  
+* 在函数内部修改外部的值
+
+  * 如果你希望在函数内部能够修改外部变量的值，你可以使用指针的指针（`UIView  **` ），传递变量的地址来改变原变量的值。
+  
+    ```objective-c
+    static inline void destroyView(__strong __kindof UIView * _Nonnull * _Nonnull view) {
+        [*view removeFromSuperview];
+        *view = nil;
+    }
+    
+    destroyView(&view);
+    ```
+  
+    ```objective-c
+    /// 在 Objective-C 中，无法直接通过函数参数隐式传递对象的地址。
+    /// 如果希望在函数调用时自动传递对象的地址，只能通过宏来实现。
+    #ifndef DestroyView
+    #define DestroyView(view) destroyView(&(view))
+    #endif /* DestroyView */
+    ```
+  
+  * <font color=red>**"Passing address of non-local object to __ autoreleasing parameter for write-back"**</font>警告的原因是 **Objective-C **对指针操作的内存管理有一套特殊的机制，特别是涉及  <font color=red>**__autoreleasing**</font>、<font color=red>**__strong**</font> 等修饰符时
+  
+  * 当你传递一个对象的指针（比如 UIView）时，编译器可能会将这个指针的参数视为 <font color=red>**__autoreleasing**</font>。而你试图传递一个本地对象的地址给<font color=red>**__autoreleasing**</font> 参数时，就会触发这个警告。简而言之，**Objective-C** 认为这样操作可能会引发内存管理上的问题。
+  
+  * 要解决这个问题，首先可以强制指定参数为<font color=red>**__strong**</font> 以避免自动推导为  <font color=red>**__autoreleasing**</font>
 
 ## 四、架构相关 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -10813,63 +10840,98 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   @property(nonatomic,strong)WMZBannerView *bannerView;
   /// Data
   @property(nonatomic,strong)WMZBannerParam *bannerParam;
-  @property(nonatomic,strong)NSMutableArray <UIImage *>*dataMutArr;
+  @property(nonatomic,strong)NSMutableArray <FMBannerAdsModel *>*subViewModelMutArr;
   ```
 
   ```objective-c
-  self.bannerView.alpha = 1;
-  /// 刷新数据源
-  @synthesize dataArr = _dataArr;
-  -(void)setDataArr:(NSMutableArray<FMBannerAdsModel *> *)dataArr{
-      _dataArr = dataArr;
+  /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+  -(jobsByIDBlock)jobsRichElementsInViewWithModel{
+      @jobs_weakify(self)
+      return ^(UIViewModel *_Nullable model) {
+          @jobs_strongify(self)
+          /// 用默认数据渲染原始的UI
+          self.bannerView.alpha = 1;
+          /// 用请求到的最新的数据渲染最新的UI
+          [self promotionAdsInfoList:^(JobsResponseModel *_Nullable responseModel) {
+              @jobs_strongify(self)
+              self.subViewModelMutArr = FMBannerAdsModel.byData((responseModel.data));
+              for (FMBannerAdsModel *model in self.subViewModelMutArr) {
+                  model.image = JobsIMG(@"个人中心广告");
+              }
+          }];
+      };
+  }
+  ```
+  ```objective-c
+  @synthesize subViewModelMutArr = _subViewModelMutArr;
+  -(void)setSubViewModelMutArr:(NSMutableArray<FMBannerAdsModel *> *)subViewModelMutArr{
+      _subViewModelMutArr = subViewModelMutArr;
       _bannerParam = nil;
-      self.bannerView = self.makeBannerView;
+      DestroyView(_bannerView);
+      [self.bannerView updateUI];
   }
   
-  -(WMZBannerView *)makeBannerView{
-      WMZBannerView *bannerView = [WMZBannerView.alloc initConfigureWithModel:self.bannerParam];
-      self.scrollView.addSubview(bannerView);
-      [bannerView updateUI];
-      return bannerView;
+  -(NSMutableArray<FMBannerAdsModel *> *)subViewModelMutArr{
+      if(!_subViewModelMutArr){
+          _subViewModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <FMBannerAdsModel *>* _Nullable data) {
+              {
+                  FMBannerAdsModel *model = FMBannerAdsModel.new;
+                  model.image = JobsIMG(@"个人中心广告");
+                  data.add(model);
+              }
+              {
+                  FMBannerAdsModel *model = FMBannerAdsModel.new;
+                  model.image = JobsIMG(@"个人中心广告");
+                  data.add(model);
+              }
+              {
+                  FMBannerAdsModel *model = FMBannerAdsModel.new;
+                  model.image = JobsIMG(@"个人中心广告");
+                  data.add(model);
+              }
+          });
+      }return _subViewModelMutArr;
   }
   
   -(WMZBannerView *)bannerView{
       if (!_bannerView) {
-          _bannerView = self.makeBannerView;
+          _bannerView = [WMZBannerView.alloc initConfigureWithModel:self.bannerParam];
+          [self addSubview:_bannerView];
+          [_bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.size.mas_equalTo(CGSizeMake(JobsWidth(148), JobsWidth(284)));
+              make.top.equalTo(self).offset(JobsWidth(0));
+              make.left.equalTo(self.tableView.mas_right).offset(JobsWidth(10));
+          }];
+          [_bannerView updateUI];
       }return _bannerView;
   }
   
   -(WMZBannerParam *)bannerParam{
+      @jobs_weakify(self)
       if (!_bannerParam) {
-          _bannerParam = BannerParam()
-          /// 自定义视图必传
+          _bannerParam = BannerParam()//
+          //自定义视图必传
           .wMyCellClassNameSet(JobsBaseCollectionViewCell.class.description)
-          /// 只有当首次调用时的数据源有值的时候，这个Block才会执行
           .wMyCellSet(^UICollectionViewCell *(NSIndexPath *indexPath,
                                               UICollectionView *collectionView,
-                                              id model,
+                                              FMBannerAdsModel *model,
                                               UIImageView *bgImageView,
                                               NSArray *dataArr) {
+             @jobs_strongify(self)
               //自定义视图
               JobsBaseCollectionViewCell *cell = [JobsBaseCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
               cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
               NSString *urlStr = @"";
-              if(self.dataArr.count){
-                  for (FMBannerAdsModel *model in self.dataArr) {
-                      model.image = JobsIMG(@"狮子");
-                  }urlStr = self.dataArr[indexPath.item].iosImage;
-              }
               cell.backgroundImageView
                   .imageURL(self.BaseUrl.add(urlStr).jobsUrl)
-                  .placeholderImage(self.dataArr[indexPath.item].image)
+                  .placeholderImage(model.image)
                   .options(SDWebImageRefreshCached)/// 强制刷新缓存
                   .completed(^(UIImage *_Nullable image,
                                NSError *_Nullable error,
                                SDImageCacheType cacheType,
-                               NSURL * _Nullable imageURL) {
+                               NSURL *_Nullable imageURL) {
                       if (error) {
-                          NSLog(@"图片加载失败: %@", error);
-                          NSLog(@"图片URL: %@-%@",imageURL,urlStr.jobsUrl);
+                          NSLog(@"图片加载失败: %@-%@", error,imageURL);
                       } else {
                           NSLog(@"图片加载成功");
                       }
@@ -10887,48 +10949,35 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           })
           .wFrameSet(CGRectMake(0,
                                 0,
-                                JobsWidth(270),
-                                JobsWidth(250)))
-          /// 图片铺满
+                                JobsWidth(148),
+                                JobsWidth(284)))
+          //图片铺满
           .wImageFillSet(YES)
-          /// 循环滚动
+          //循环滚动
           .wRepeatSet(YES)
-          /// 自动滚动时间
+          //自动滚动时间
           .wAutoScrollSecondSet(5)
-          /// 自动滚动
+          //自动滚动
           .wAutoScrollSet(YES)
-          /// cell的位置
+          //cell的位置
           .wPositionSet(BannerCellPositionCenter)
-          /// 分页按钮的选中的颜色
+          //分页按钮的选中的颜色
           .wBannerControlSelectColorSet(JobsWhiteColor)
-          /// 分页按钮的未选中的颜色
+          //分页按钮的未选中的颜色
           .wBannerControlColorSet(JobsLightGrayColor)
-          /// 分页按钮的圆角
+          //分页按钮的圆角
           .wBannerControlImageRadiusSet(5)
-          /// 自定义圆点间距
+          //自定义圆点间距
           .wBannerControlSelectMarginSet(3)
-          /// 隐藏分页按钮
+          //隐藏分页按钮
           .wHideBannerControlSet(NO)
-          /// 能否拖动
+          //能否拖动
           .wCanFingerSlidingSet(YES);
-          /// 第一次创建的时候，如果此数据源没有值，那么后续即便刷新UI也不会显示
-          _bannerParam.wDataSet(self.dataArr);
+          _bannerParam.wDataSet(self.subViewModelMutArr);
       }return _bannerParam;
   }
-  
-  -(NSMutableArray<UIImage *> *)dataMutArr{
-      if (!_dataMutArr) {
-          _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-              data.add(JobsIMG(@"狮子"));
-              data.add(JobsIMG(@"金猪"));
-              data.add(JobsIMG(@"美女荷官"));
-              data.add(JobsIMG(@"棋牌美女"));
-              data.add(JobsIMG(@"篮球运动员"));
-              data.add(JobsIMG(@"捕鱼"));
-          });
-      }return _dataMutArr;
-  }
   ```
+  
   </details>
 
 ### 39、**`UIScrollView`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

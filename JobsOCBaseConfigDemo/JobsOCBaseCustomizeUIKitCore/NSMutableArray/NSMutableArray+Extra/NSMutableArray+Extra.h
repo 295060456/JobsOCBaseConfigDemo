@@ -18,21 +18,24 @@ static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutArrayBlock _Non
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableArray (Extra)
++(JobsReturnArrayByArrayBlock _Nonnull)initBy;
 /// 清除数组元素
 -(jobsByVoidBlock _Nonnull)clean;
 /// 数组取值（无法关联数组的泛型）
 -(JobsReturnIDByUIntegerBlock _Nonnull)objectAt;
 /// 数组取下标
--(JobsReturnNSUIntegerByIDBlock)indexBy;
+-(JobsReturnNSUIntegerByIDBlock _Nonnull)indexBy;
 /// 阻止向可变数组添加空元素
 -(JobsReturnIDByIDBlock _Nonnull)add;
+/// 阻止向可变数组添加空元素
+-(JobsReturnIDByIDBlock _Nonnull)addBy;
 /// 向数组加入一个从来没有没有过的元素，以保证数组元素的单一性
 -(JobsReturnIDByIDBlock _Nonnull)jobsAddSoleObject;
 /// 将数组里的某个元素移动到原数组的某个位
--(NSMutableArray *_Nullable)moveElementFromIndex:(NSInteger)fromIndex
-                                         toIndex:(NSInteger)toIndex;
+-(__kindof NSArray *_Nullable)moveElementFromIndex:(NSInteger)fromIndex
+                                           toIndex:(NSInteger)toIndex;
 /// 将数组里的元素复制times次
--(JobsReturnArrayByIntegerBlock)copyElementBytimes;
+-(JobsReturnArrayByIntegerBlock _Nonnull)copyElementBytimes;
 
 @end
 

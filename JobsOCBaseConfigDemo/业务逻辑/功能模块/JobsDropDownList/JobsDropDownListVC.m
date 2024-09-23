@@ -89,10 +89,13 @@
     if(!_btn){
         @jobs_weakify(self)
         _btn = BaseButton
-            .initByTitle_font_titleCor(JobsInternationalization(@"点击按钮弹出下拉列表"),UIFontWeightRegularSize(12),JobsWhiteColor)
+            .initByTitle_font_titleCor(JobsInternationalization(@"点击按钮弹出下拉列表"),
+                                       UIFontWeightRegularSize(12),
+                                       JobsWhiteColor)
             .bgColor(JobsWhiteColor)
             .cornerRadiusValue(JobsWidth(8))
             .onClick(^(UIButton *x){
+                @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 NSLog(@"AAA = %@",self.dropDownListView);
                 x.selected = !x.selected;

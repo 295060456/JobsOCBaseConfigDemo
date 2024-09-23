@@ -159,3 +159,9 @@ NS_ASSUME_NONNULL_END
     }return _buttonModel; \
 }
 #endif /**INIT_BUTTON_MODE**/
+
+static inline __kindof UIButtonModel *_Nonnull jobsMakeButtonModel(jobsByButtonModelBlock _Nonnull block){
+    UIButtonModel *model = UIButtonModel.alloc.init;
+    if (block) block(model);
+    return model;
+}

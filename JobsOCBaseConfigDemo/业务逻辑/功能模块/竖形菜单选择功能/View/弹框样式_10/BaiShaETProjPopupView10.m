@@ -365,7 +365,10 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!_cancelBtn) {
         @jobs_weakify(self)
         _cancelBtn = BaseButton
-            .initByTitle_font_titleCor_bgImage(JobsInternationalization(@"恢复默认"),UIFontWeightRegularSize(18),HEXCOLOR(0xB0B0B0),JobsIMG(@"弹窗取消按钮"))
+            .initByTitle_font_titleCor_bgImage(JobsInternationalization(@"恢复默认"),
+                                               UIFontWeightRegularSize(18)
+                                               ,HEXCOLOR(0xB0B0B0)
+                                               ,JobsIMG(@"弹窗取消按钮"))
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
@@ -388,7 +391,10 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!_sureBtn) {
         @jobs_weakify(self)
         _sureBtn = BaseButton
-            .initByTitle_font_titleCor_bgImage(JobsInternationalization(@"完成"),UIFontWeightRegularSize(18),JobsBlackColor,JobsIMG(@"弹窗提交按钮"))
+            .initByTitle_font_titleCor_bgImage(JobsInternationalization(@"完成")
+                                               ,UIFontWeightRegularSize(18)
+                                               ,JobsBlackColor
+                                               ,JobsIMG(@"弹窗提交按钮"))
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;

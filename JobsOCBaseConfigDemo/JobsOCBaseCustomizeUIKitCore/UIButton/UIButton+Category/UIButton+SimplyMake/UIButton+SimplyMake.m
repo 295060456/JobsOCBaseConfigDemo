@@ -184,7 +184,9 @@
 }
 #pragma mark —— 依靠数据束进行创建
 +(instancetype)jobsInit{
-    return BaseButton.initByButtonModel(nil);
+    return BaseButton
+        .initByButtonModel(nil)
+        .bgColor(JobsClearColor);
 }
 /// 依靠UIViewModel进行创建
 +(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel{

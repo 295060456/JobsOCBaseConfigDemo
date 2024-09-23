@@ -104,7 +104,9 @@ static dispatch_once_t static_mineView2OnceToken;
 -(UIButton *)btn2{
     if(!_btn2){
         @jobs_weakify(self)
-        _btn2 = BaseButton.initByTitle_font_titleCor(JobsInternationalization(@"立即进入"),UIFontWeightRegularSize(14),JobsWhiteColor)
+        _btn2 = BaseButton.initByTitle_font_titleCor(JobsInternationalization(@"立即进入"),
+                                                     UIFontWeightRegularSize(14),
+                                                     JobsWhiteColor)
             .bgColor(JobsCor(@"#EA2918"))
             .cornerRadiusValue(JobsWidth(14))
             .onClick(^(UIButton *x){

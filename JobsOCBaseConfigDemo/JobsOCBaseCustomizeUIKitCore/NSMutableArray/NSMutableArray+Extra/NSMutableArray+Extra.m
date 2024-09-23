@@ -8,6 +8,12 @@
 #import "NSMutableArray+Extra.h"
 
 @implementation NSMutableArray (Extra)
+
++(JobsReturnArrayByArrayBlock _Nonnull)initBy{
+    return ^__kindof NSArray *_Nullable(__kindof NSArray *_Nullable data){
+        return [NSMutableArray arrayWithArray:data];
+    };
+}
 /// 清除数组元素
 -(jobsByVoidBlock _Nonnull)clean{
     @jobs_weakify(self)
@@ -25,7 +31,7 @@
     };
 }
 /// 数组取下标
--(JobsReturnNSUIntegerByIDBlock)indexBy{
+-(JobsReturnNSUIntegerByIDBlock _Nonnull)indexBy{
     @jobs_weakify(self)
     return ^NSUInteger(id _Nullable data){
         @jobs_strongify(self)
@@ -39,9 +45,19 @@
         @jobs_strongify(self)
         if(data){
             [self addObject:data];/// 向数组加入nil会崩
-        }else{
-            NSLog(@"数组被添加了一个空元素");
-        }return self;
+        }else NSLog(@"数组被添加了一个空元素");
+        return self;
+    };
+}
+/// 阻止向可变数组添加空元素
+-(JobsReturnIDByIDBlock _Nonnull)addBy{
+    @jobs_weakify(self)
+    return ^id (__kindof NSArray *data) {
+        @jobs_strongify(self)
+        if(data){
+            [self addObjectsFromArray:data];/// 向数组加入nil会崩
+        }else NSLog(@"数组被添加了一个空元素");
+        return self;
     };
 }
 /// 向数组加入一个从来没有没有过的元素，以保证数组元素的单一性
@@ -50,17 +66,14 @@
     return ^id (id _Nullable data) {
         @jobs_strongify(self)
         if(data){
-            if (![self containsObject:data]) {
-                [self addObject:data];
-            }
-        }else{
-            NSLog(@"数组被添加了一个空元素");
-        }return self;
+            if (!self.containsObject(data)) self.add(data);
+        }else NSLog(@"数组被添加了一个空元素");
+        return self;
     };
 }
 /// 将数组里的某个元素移动到原数组的某个位
--(NSMutableArray *_Nullable)moveElementFromIndex:(NSInteger)fromIndex
-                                         toIndex:(NSInteger)toIndex{
+-(__kindof NSArray *_Nullable)moveElementFromIndex:(NSInteger)fromIndex
+                                           toIndex:(NSInteger)toIndex{
     
     BOOL a = self.count > fromIndex;
     BOOL b = fromIndex >= 0;
@@ -74,14 +87,17 @@
     }return nil;
 }
 /// 将数组里的元素复制times次
--(JobsReturnArrayByIntegerBlock)copyElementBytimes{
+-(JobsReturnArrayByIntegerBlock _Nonnull)copyElementBytimes{
     @jobs_weakify(self)
     return ^NSMutableArray *(NSInteger times) {
+        __block NSInteger Times = times;
         @jobs_strongify(self)
-        NSMutableArray *tempMutArr = NSMutableArray.array;
-        for (int i = 0; i < times; times++) {
-            [tempMutArr addObjectsFromArray:self];
-        }return self;
+        return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            for (int i = 0; i < Times; Times--) {
+                data.addBy(self.copy);
+            }
+        });
     };
 }
 
