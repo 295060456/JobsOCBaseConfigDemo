@@ -111,6 +111,9 @@ typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType c
 typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable data);
 typedef void(^jobsByRichTextConfigBlock)(__kindof JobsRichTextConfig *_Nullable data);
 
+@class SDWebImageModel;
+typedef void(^jobsBySDWebImageModelBlock)(__kindof SDWebImageModel *_Nullable data);
+
 @class UIViewModel;
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(UIViewModel *_Nullable data);
 typedef void(^jobsByViewModelBlock)(__kindof UIViewModel *_Nullable data);

@@ -2496,6 +2496,22 @@ NSObject <|-- BaseProtocol
                }
            }).normalLoad();
   ```
+  
+  ```objective-c
+  self.headBtn.imageURL(self.BaseUrl.add(self.loginModel.avatar).jobsUrl)
+          .placeholderImage(self.loginModel.userDefaultHeadImage)
+          .options(SDWebImageRefreshCached)/// 强制刷新缓存
+          .completed(^(UIImage * _Nullable image,
+                       NSError * _Nullable error,
+                       SDImageCacheType cacheType,
+                       NSURL * _Nullable imageURL) {
+              if (error) {
+                  NSLog(@"图片加载失败: %@-%@", error,imageURL);
+              } else {
+                  NSLog(@"图片加载成功");
+              }
+          }).bgNormalLoad();
+  ```
 
 ### 27、<font color=blue>**竖形菜单**</font>方案 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

@@ -32,40 +32,38 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
         _configureData = ^() {
             @jobs_strongify(self)
             for (int i = 1; i < 50; i++) {/// y
-                NSMutableArray <UIButtonModel *>*row = NSMutableArray.array;
-                for (int j = 1; j < (self.topHeaderTitles.count ? : 30) ; j++){/// x
-                    UIButtonModel *model = UIButtonModel.new;
-                    
-                    if(j == 1){
-                        model.title = self.topHeaderTitles[j];
-                    }else{
-                        model.title = toStringByInt(i * j);
-                    }
+                self.contentArr.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable row) {
+                    for (int j = 1; j < (self.topHeaderTitles.count ? : 30) ; j++){/// x
+                        row.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+                            if(j == 1){
+                                model.title = self.topHeaderTitles[j];
+                            }else{
+                                model.title = toStringByInt(i * j);
+                            }
 
-                    if(j == 2){
-                        model.imagePlacement = NSDirectionalRectEdgeTrailing;
-                        model.imagePadding = JobsWidth(8);
-                        model.normalImage = JobsIMG(@"复制图标");
-                        model.clickEventBlock = ^id _Nullable(UIButton *_Nullable data) {
-                            data.titleForNormalState.pasteboard();
-                            return nil;
-                        };
-                        model.enabled = YES;
-                        
+                            if(j == 2){
+                                model.imagePlacement = NSDirectionalRectEdgeTrailing;
+                                model.imagePadding = JobsWidth(8);
+                                model.normalImage = JobsIMG(@"复制图标");
+                                model.clickEventBlock = ^id _Nullable(UIButton *_Nullable data) {
+                                    data.titleForNormalState.pasteboard();
+                                    return nil;
+                                };
+                                model.enabled = YES;
+                            }
+                            
+                            model.baseBackgroundColor = i % 2 ? self.cor2: self.cor1;
+                            model.backgroundImage = i % 2 ? self.image2: self.image1;
+                            model.titleCor = JobsWhiteColor;
+                            model.titleFont = UIFontWeightRegularSize(JobsWidth(10));
+                            
+                //            model.jobsTestBlock();
+                //            model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
+                //                return nil;
+                //            });
+                        }));/// 一行的数据
                     }
-                    
-                    model.baseBackgroundColor = i % 2 ? self.cor2: self.cor1;
-                    model.backgroundImage = i % 2 ? self.image2: self.image1;
-                    model.titleCor = JobsWhiteColor;
-                    model.titleFont = UIFontWeightRegularSize(JobsWidth(10));
-                    
-        //            model.jobsTestBlock();
-        //            model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
-        //                return nil;
-        //            });
-                    row.add(model);/// 一行的数据
-                }
-                self.contentArr.add(row);
+                }));
             }
             
             self.rowNumber = self.contentArr[0].count;
@@ -77,47 +75,60 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
 
 -(NSMutableArray<NSMutableArray<UIButtonModel *> *> *)contentArr{
     if(!_contentArr){
-        _contentArr = NSMutableArray.array;
+        _contentArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            
+        });
     }return _contentArr;
 }
 
 -(UIButtonModel *)data_00{
     if(!_data_00){
-        _data_00 = UIButtonModel.new;
-        _data_00.title = self.topHeaderTitles[0] ? : JobsInternationalization(@"楼层");
-        _data_00.titleCor = self.cor4;
-        _data_00.baseBackgroundColor = self.cor0;
-        _data_00.backgroundImage = self.image0;
+        @jobs_weakify(self)
+        _data_00 = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            @jobs_strongify(self)
+            data.title = self.topHeaderTitles[0] ? : JobsInternationalization(@"楼层");
+            data.titleCor = self.cor4;
+            data.baseBackgroundColor = self.cor0;
+            data.backgroundImage = self.image0;
+        });
     }return _data_00;
 }
 
 -(NSMutableArray<UIButtonModel *> *)topHeaderDatas{
     if(!_topHeaderDatas){
-        _topHeaderDatas = NSMutableArray.array;
-        for (int y = 1; y <= self.contentArr[0].count ; y++) {
-            UIButtonModel *btnModel = UIButtonModel.new;
-            btnModel.title = self.topHeaderTitles[y] ? : toStringByInt(y).add(JobsInternationalization(@"层"));
-            btnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-            btnModel.titleCor = self.cor4;
-            btnModel.baseBackgroundColor = self.cor3;
-            btnModel.backgroundImage = self.image3;
-            _topHeaderDatas.add(btnModel);
-        }
+        @jobs_weakify(self)
+        _topHeaderDatas = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            for (int y = 1; y <= self.contentArr[0].count ; y++) {
+                data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                    @jobs_strongify(self)
+                    data1.title = self.topHeaderTitles[y] ? : toStringByInt(y).add(JobsInternationalization(@"层"));
+                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                    data1.titleCor = self.cor4;
+                    data1.baseBackgroundColor = self.cor3;
+                    data1.backgroundImage = self.image3;
+                }));
+            }
+        });
     }return _topHeaderDatas;
 }
 
 -(NSMutableArray<UIButtonModel *> *)leftListDatas{
     if(!_leftListDatas){
-        _leftListDatas = NSMutableArray.array;
-        for (int y = 1; y <= self.contentArr.count ; y++) {
-            UIButtonModel *btnModel = UIButtonModel.new;
-            btnModel.title = toStringByInt(y).add(JobsInternationalization(@"楼"));
-            btnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-            btnModel.titleCor = JobsWhiteColor;
-            btnModel.baseBackgroundColor = y % 2 ? self.cor2 : self.cor1;
-            btnModel.backgroundImage = y % 2 ? self.image2 : self.image1;
-            _leftListDatas.add(btnModel);
-        }
+        @jobs_weakify(self)
+        _leftListDatas = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            for (int y = 1; y <= self.contentArr.count ; y++) {
+                data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                    @jobs_strongify(self)
+                    data1.title = toStringByInt(y).add(JobsInternationalization(@"楼"));
+                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                    data1.titleCor = JobsWhiteColor;
+                    data1.baseBackgroundColor = y % 2 ? self.cor2 : self.cor1;
+                    data1.backgroundImage = y % 2 ? self.image2 : self.image1;
+                }));
+            }
+        });
     }return _leftListDatas;
 }
 /// 整张Excel表的宽度
@@ -207,13 +218,17 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
 
 -(NSMutableArray<NSString *> *)topHeaderTitles{
     if(!_topHeaderTitles){
-        _topHeaderTitles = NSMutableArray.array;
+        _topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            
+        });
     }return _topHeaderTitles;
 }
 
 -(NSMutableArray<NSString *> *)leftTitles{
     if(!_leftTitles){
-        _leftTitles = NSMutableArray.array;
+        _leftTitles = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            
+        });
     }return _leftTitles;
 }
 

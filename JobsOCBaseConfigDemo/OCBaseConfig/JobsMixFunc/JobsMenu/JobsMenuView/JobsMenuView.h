@@ -42,13 +42,16 @@ NS_ASSUME_NONNULL_END
 
  -(UIButtonModel *)buttonModel{
      if(!_buttonModel){
-         _buttonModel = UIButtonModel.new;
-         _buttonModel.normal_titles = self.titleMutArr;
-         _buttonModel.titleCor = JobsClearColor;
-         _buttonModel.selected_titleCor = JobsClearColor;
-         _buttonModel.normal_backgroundImages = self.normal_titleBgImageMutArr;
-         _buttonModel.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
-         _buttonModel.data = self.subViewMutArr;
+         @jobs_weakify(self)
+         _buttonModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+             @jobs_strongify(self)
+             data.normal_titles = self.titleMutArr;
+             data.titleCor = JobsClearColor;
+             data.selected_titleCor = JobsClearColor;
+             data.normal_backgroundImages = self.normal_titleBgImageMutArr;
+             data.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
+             data.data = self.subViewMutArr;
+         });
      }return _buttonModel;
  }
 
@@ -100,49 +103,49 @@ NS_ASSUME_NONNULL_END
      }return _select_titleBgImageMutArr;
  }
 
- -(TopGamesView *)topGamesView{
+ -(FMHomeTopGamesView *)topGamesView{
      if(!_topGamesView){
-         _topGamesView = TopGamesView.new;
+         _topGamesView = FMHomeTopGamesView.new;
          _topGamesView.frame = self.bounds;
          _topGamesView.jobsRichElementsInViewWithModel(nil);
      }return _topGamesView;
  }
 
- -(SlotGamesView *)slotGamesView{
+ -(FMHomeSlotGamesView *)slotGamesView{
      if(!_slotGamesView){
-         _slotGamesView = SlotGamesView.new;
+         _slotGamesView = FMHomeSlotGamesView.new;
          _slotGamesView.frame = self.bounds;
          _slotGamesView.jobsRichElementsInViewWithModel(nil);
      }return _slotGamesView;
  }
 
- -(LiveCasinoView *)liveCasinoView{
+ -(FMHomeLiveCasinoView *)liveCasinoView{
      if(!_liveCasinoView){
-         _liveCasinoView = LiveCasinoView.new;
+         _liveCasinoView = FMHomeLiveCasinoView.new;
          _liveCasinoView.frame = self.bounds;
          _liveCasinoView.jobsRichElementsInViewWithModel(nil);
      }return _liveCasinoView;
  }
 
- -(TableGamesView *)tableGamesView{
+ -(FMHomeTableGamesView *)tableGamesView{
      if(!_tableGamesView){
-         _tableGamesView = TableGamesView.new;
+         _tableGamesView = FMHomeTableGamesView.new;
          _tableGamesView.frame = self.bounds;
          _tableGamesView.jobsRichElementsInViewWithModel(nil);
      }return _tableGamesView;
  }
 
- -(SportsView *)sportsView{
+ -(FMHomeSportsView *)sportsView{
      if(!_sportsView){
-         _sportsView = SportsView.new;
+         _sportsView = FMHomeSportsView.new;
          _sportsView.frame = self.bounds;
          _sportsView.jobsRichElementsInViewWithModel(nil);
      }return _sportsView;
  }
 
- -(FishingView *)fishingView{
+ -(FMHomeFishingView *)fishingView{
      if(!_fishingView){
-         _fishingView = FishingView.new;
+         _fishingView = FMHomeFishingView.new;
          _fishingView.frame = self.bounds;
          _fishingView.jobsRichElementsInViewWithModel(nil);
      }return _fishingView;

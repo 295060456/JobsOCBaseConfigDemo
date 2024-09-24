@@ -229,13 +229,17 @@ UIViewModelProtocol_synthesize
 
 -(UIButtonModel *)buttonModel{
     if(!_buttonModel){
-        _buttonModel = UIButtonModel.new;
+        _buttonModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            
+        });
     }return _buttonModel;
 }
 
 -(UIButtonModel *)subButtonModel{
     if(!_subButtonModel){
-        _subButtonModel = UIButtonModel.new;
+        _subButtonModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            
+        });
     }return _subButtonModel;
 }
 

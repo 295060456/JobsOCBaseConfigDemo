@@ -41,10 +41,6 @@
     [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
                                     cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
-#pragma mark —— 一些公有方法
--(JobsLinkageMenuView *)getLinkageMenuView{
-    return self.menuView;
-}
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
@@ -92,16 +88,19 @@
 
 -(UIButtonModel *)buttonModel{
     if(!_buttonModel){
-        _buttonModel = UIButtonModel.new;
-        _buttonModel.normal_titles = self.titleMutArr;
-        _buttonModel.titleCor = JobsWhiteColor;
-        _buttonModel.selected_titleCor = JobsClearColor;
-        _buttonModel.normal_backgroundImages = self.normal_titleBgImageMutArr;
-        _buttonModel.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
-        _buttonModel.normal_images = self.normal_titleImageMutArr;
-        _buttonModel.data = self.subViewMutArr;
-        _buttonModel.imagePaddings = self.imagePaddings;
-        _buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
+        @jobs_weakify(self)
+        _buttonModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            @jobs_strongify(self)
+            data.normal_titles = self.titleMutArr;
+            data.titleCor = JobsWhiteColor;
+            data.selected_titleCor = JobsClearColor;
+            data.normal_backgroundImages = self.normal_titleBgImageMutArr;
+            data.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
+            data.normal_images = self.normal_titleImageMutArr;
+            data.data = self.subViewMutArr;
+            data.imagePaddings = self.imagePaddings;
+            data.imagePlacement = NSDirectionalRectEdgeLeading;
+        });
     }return _buttonModel;
 }
 

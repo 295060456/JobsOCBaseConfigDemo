@@ -112,32 +112,35 @@ BaseViewControllerProtocol_synthesize
 //@synthesize backBtnModel = _backBtnModel;
 //-(UIButtonModel *)backBtnModel{
 //    if(!_backBtnModel){
-//        _backBtnModel = UIButtonModel.new;
-////        _backBtnModel.backgroundImage = JobsIMG(@"返回");
-////        _backBtnModel.selected_backgroundImage = JobsIMG(@"返回");
-//        _backBtnModel.normalImage = JobsIMG(@"返回");
-//        _backBtnModel.highlightImage = JobsIMG(@"返回");
-//        _backBtnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-//        _backBtnModel.title = self.viewModel.backBtnTitleModel.text;
-//        _backBtnModel.titleFont = bayonRegular(JobsWidth(18));
-//        _backBtnModel.titleCor = JobsWhiteColor;
-//        _backBtnModel.selected_titleCor = JobsWhiteColor;
-//        _backBtnModel.roundingCorners = UIRectCornerAllCorners;
-//        _backBtnModel.imagePlacement = NSDirectionalRectEdgeLeading;
-//        _backBtnModel.imagePadding = JobsWidth(5);
 //        @jobs_weakify(self)
-//        _backBtnModel.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
-//                                                       id _Nullable arg) {
-//            NSLog(@"按钮的长按事件触发");
-//            return nil;
-//        };
-//        _backBtnModel.clickEventBlock = ^id(BaseButton *x){
+//        _backBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
 //            @jobs_strongify(self)
-//            if (self.objectBlock) self.objectBlock(x);
-//            AppDelegate.jobsCustomTabBarVC.customTabBar.jobsVisible = YES;
-//            [AppDelegate button:AppDelegate.tabBarItemMutArr[2] index:2];
-//            return nil;
-//        };
+////            data.backgroundImage = JobsIMG(@"返回");
+////            data.selected_backgroundImage = JobsIMG(@"返回");
+//            data.normalImage = JobsIMG(@"返回");
+//            data.highlightImage = JobsIMG(@"返回");
+//            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+//            data.title = self.viewModel.backBtnTitleModel.text;
+//            data.titleFont = bayonRegular(JobsWidth(18));
+//            data.titleCor = JobsWhiteColor;
+//            data.selected_titleCor = JobsWhiteColor;
+//            data.roundingCorners = UIRectCornerAllCorners;
+//            data.imagePlacement = NSDirectionalRectEdgeLeading;
+//            data.imagePadding = JobsWidth(5);
+//            @jobs_weakify(self)
+//            data.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
+//                                                  id _Nullable arg) {
+//                NSLog(@"按钮的长按事件触发");
+//                return nil;
+//            };
+//            data.clickEventBlock = ^id(BaseButton *x){
+//                @jobs_strongify(self)
+//                if (self.objectBlock) self.objectBlock(x);
+//                AppDelegate.jobsCustomTabBarVC.customTabBar.jobsVisible = YES;
+//                [AppDelegate button:AppDelegate.tabBarItemMutArr[2] index:2];
+//                return nil;
+//            };
+//        });
 //    }return _backBtnModel;
 //}
 

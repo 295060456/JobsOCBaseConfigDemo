@@ -13,6 +13,8 @@
 #import "SDWebImage.h"
 #endif
 
+#import "JobsBlock.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SDWebImageModel : NSObject
@@ -26,3 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+static inline __kindof SDWebImageModel *_Nonnull jobsMakeSDWebImageModel(jobsBySDWebImageModelBlock _Nonnull block){
+    SDWebImageModel *data = SDWebImageModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

@@ -241,43 +241,47 @@ BaseViewProtocol_synthesize
 
 -(UIButtonModel *)closeBtnModel{
     if(!_closeBtnModel){
-        _closeBtnModel = UIButtonModel.new;
-        _closeBtnModel.backgroundImage = JobsIMG(@"联系我们");
-//        _closeBtnModel.selected_backgroundImage = JobsIMG(@"联系我们");
-//        _closeBtnModel.normalImage = JobsIMG(@"联系我们");
-//        _closeBtnModel.highlightImage = JobsIMG(@"联系我们");
-//        _closeBtnModel.imagePadding = JobsWidth(5);
-        _closeBtnModel.roundingCorners = UIRectCornerAllCorners;
-        _closeBtnModel.baseBackgroundColor = JobsClearColor;
+        _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            data.backgroundImage = JobsIMG(@"联系我们");
+    //        data.selected_backgroundImage = JobsIMG(@"联系我们");
+    //        data.normalImage = JobsIMG(@"联系我们");
+    //        data.highlightImage = JobsIMG(@"联系我们");
+    //        data.imagePadding = JobsWidth(5);
+            data.roundingCorners = UIRectCornerAllCorners;
+            data.baseBackgroundColor = JobsClearColor;
+        });
     }return _closeBtnModel;
 }
 
 -(UIButtonModel *)backBtnModel{
     if(!_backBtnModel){
-        _backBtnModel = UIButtonModel.new;
-//        _backBtnModel.backgroundImage = JobsIMG(@"返回");
-//        _backBtnModel.selected_backgroundImage = JobsIMG(@"返回");
-        _backBtnModel.normalImage = JobsIMG(@"返回");
-        _backBtnModel.highlightImage = JobsIMG(@"返回");
-        _backBtnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-        _backBtnModel.title = self.viewModel.backBtnTitleModel.text;
-        _backBtnModel.titleCor = JobsBlackColor;
-        _backBtnModel.selected_titleCor = JobsBlackColor;
-        _backBtnModel.roundingCorners = UIRectCornerAllCorners;
-        _backBtnModel.imagePlacement = NSDirectionalRectEdgeLeading;
-        _backBtnModel.imagePadding = JobsWidth(5);
         @jobs_weakify(self)
-        _backBtnModel.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
-                                                       id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        };
-        _backBtnModel.clickEventBlock = ^id(BaseButton *x){
+        _backBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            self.jobsBackBtnClickEvent(x);
-            return nil;
-        };
+//            data.backgroundImage = JobsIMG(@"返回");
+//            data.selected_backgroundImage = JobsIMG(@"返回");
+            data.normalImage = JobsIMG(@"返回");
+            data.highlightImage = JobsIMG(@"返回");
+            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+            data.title = self.viewModel.backBtnTitleModel.text;
+            data.titleCor = JobsBlackColor;
+            data.selected_titleCor = JobsBlackColor;
+            data.roundingCorners = UIRectCornerAllCorners;
+            data.imagePlacement = NSDirectionalRectEdgeLeading;
+            data.imagePadding = JobsWidth(5);
+            @jobs_weakify(self)
+            data.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
+                                                  id _Nullable arg) {
+                NSLog(@"按钮的长按事件触发");
+                return nil;
+            };
+            data.clickEventBlock = ^id(BaseButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                self.jobsBackBtnClickEvent(x);
+                return nil;
+            };
+        });
     }return _backBtnModel;
 }
 

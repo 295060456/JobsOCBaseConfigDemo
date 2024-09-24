@@ -10,15 +10,15 @@
 @implementation UIButton (SDWebImage)
 #pragma mark —— 一些私有方法
 -(SDWebImageModel *)makeSDWebImageModel{
-    SDWebImageModel *sdWebImageModel = SDWebImageModel.new;
-    sdWebImageModel.url = Jobs_getAssociatedObject(_imageURL);
-    sdWebImageModel.placeholder = Jobs_getAssociatedObject(_placeholderImage);
-    sdWebImageModel.options = [Jobs_getAssociatedObject(_options) integerValue];
-    sdWebImageModel.completion = Jobs_getAssociatedObject(_completed);
-    sdWebImageModel.progress = Jobs_getAssociatedObject(_progress);
-    return sdWebImageModel;
+    return jobsMakeSDWebImageModel(^(__kindof SDWebImageModel * _Nullable data) {
+        data.url = Jobs_getAssociatedObject(_imageURL);
+        data.placeholder = Jobs_getAssociatedObject(_placeholderImage);
+        data.options = [Jobs_getAssociatedObject(_options) integerValue];
+        data.completion = Jobs_getAssociatedObject(_completed);
+        data.progress = Jobs_getAssociatedObject(_progress);
+    });
 }
-
+#pragma mark —— 设置普通图片的方法
 -(jobsByVoidBlock _Nonnull)normalLoad{
     @jobs_weakify(self)
     return ^{
@@ -107,6 +107,97 @@
                          options:self.makeSDWebImageModel.options
                         progress:self.makeSDWebImageModel.progress
                        completed:self.makeSDWebImageModel.completion];
+    };
+}
+#pragma mark —— 设置背景图片的方法
+-(jobsByVoidBlock _Nonnull)bgNormalLoad{
+    @jobs_weakify(self)
+    return ^{
+        @jobs_strongify(self)
+        [self sd_setBackgroundImageWithURL:self.makeSDWebImageModel.url
+                                  forState:UIControlStateNormal
+                          placeholderImage:self.makeSDWebImageModel.placeholder
+                                   options:self.makeSDWebImageModel.options
+                                  progress:self.makeSDWebImageModel.progress
+                                 completed:self.makeSDWebImageModel.completion];
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)bgHighlightedlLoad{
+    @jobs_weakify(self)
+    return ^{
+        @jobs_strongify(self)
+        [self sd_setBackgroundImageWithURL:self.makeSDWebImageModel.url
+                                  forState:UIControlStateHighlighted
+                          placeholderImage:self.makeSDWebImageModel.placeholder
+                                   options:self.makeSDWebImageModel.options
+                                  progress:self.makeSDWebImageModel.progress
+                                 completed:self.makeSDWebImageModel.completion];
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)bgDisabledLoad{
+    @jobs_weakify(self)
+    return ^{
+        @jobs_strongify(self)
+        [self sd_setBackgroundImageWithURL:self.makeSDWebImageModel.url
+                                  forState:UIControlStateDisabled
+                          placeholderImage:self.makeSDWebImageModel.placeholder
+                                   options:self.makeSDWebImageModel.options
+                                  progress:self.makeSDWebImageModel.progress
+                                 completed:self.makeSDWebImageModel.completion];
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)bgSelectedLoad{
+    @jobs_weakify(self)
+    return ^{
+        @jobs_strongify(self)
+        [self sd_setBackgroundImageWithURL:self.makeSDWebImageModel.url
+                                  forState:UIControlStateSelected
+                          placeholderImage:self.makeSDWebImageModel.placeholder
+                                   options:self.makeSDWebImageModel.options
+                                  progress:self.makeSDWebImageModel.progress
+                                 completed:self.makeSDWebImageModel.completion];
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)bgFocusedLoad API_AVAILABLE(ios(9.0)){
+    @jobs_weakify(self)
+    return ^{
+        @jobs_strongify(self)
+        [self sd_setBackgroundImageWithURL:self.makeSDWebImageModel.url
+                                  forState:UIControlStateFocused
+                          placeholderImage:self.makeSDWebImageModel.placeholder
+                                   options:self.makeSDWebImageModel.options
+                                  progress:self.makeSDWebImageModel.progress
+                                 completed:self.makeSDWebImageModel.completion];
+    };
+}
+/// additional flags available for application use
+-(jobsByVoidBlock _Nonnull)bgApplicationLoad{
+    @jobs_weakify(self)
+    return ^{
+        @jobs_strongify(self)
+        [self sd_setBackgroundImageWithURL:self.makeSDWebImageModel.url
+                                  forState:UIControlStateApplication
+                          placeholderImage:self.makeSDWebImageModel.placeholder
+                                   options:self.makeSDWebImageModel.options
+                                  progress:self.makeSDWebImageModel.progress
+                                 completed:self.makeSDWebImageModel.completion];
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)bgReservedLoad{
+    @jobs_weakify(self)
+    return ^{
+        @jobs_strongify(self)
+        [self sd_setBackgroundImageWithURL:self.makeSDWebImageModel.url
+                                  forState:UIControlStateReserved
+                          placeholderImage:self.makeSDWebImageModel.placeholder
+                                   options:self.makeSDWebImageModel.options
+                                  progress:self.makeSDWebImageModel.progress
+                                 completed:self.makeSDWebImageModel.completion];
     };
 }
 #pragma mark —— @property(nonatomic,strong,readonly)JobsReturnButtonByURLBlock imageURL;
