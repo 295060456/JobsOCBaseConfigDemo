@@ -207,7 +207,7 @@ insetForSectionAtIndex:(NSInteger)section {
     if(!_cancelBtn){
         @jobs_weakify(self)
         _cancelBtn = BaseButton
-            .initByTitle_font_titleCor(JobsInternationalization(@"取消"),
+            .initByStyle1(JobsInternationalization(@"取消"),
                                        UIFontWeightMediumSize(16),
                                        JobsCor(@"#333333"))
             .bgColor(JobsWhiteColor)

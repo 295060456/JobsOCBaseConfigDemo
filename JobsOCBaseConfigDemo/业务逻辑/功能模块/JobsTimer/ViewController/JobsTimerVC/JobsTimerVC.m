@@ -178,7 +178,7 @@
     if (!_btnMutArr) {
         _btnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButton *>*_Nullable data) {
             for (NSString *title in self.btnTitleMutArr) {
-                UIButton *btn = BaseButton.initByTitle_font_titleCor_bgImage(title,
+                UIButton *btn = BaseButton.initByStyle3(title,
                                                                            nil,
                                                                            JobsBlackColor,
                                                                            JobsIMG(@"弹窗取消按钮背景图"))

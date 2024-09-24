@@ -102,15 +102,20 @@
 -(BaseButton *)toRegisterBtn{
     if (!_toRegisterBtn) {
         @jobs_weakify(self)
-        _toRegisterBtn = BaseButton.initByStyleTop(Title2,UIFontWeightMediumSize(13),nil,JobsIMG(@"用户名称"),JobsWidth(8))
-            .bgColor(JobsBlackColor)
-            .onClick(^(UIButton *x){
-                @jobs_strongify(self)
-                [self endEditing:YES];
-                if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
-                NSLog(@"");
-            });
+        _toRegisterBtn = BaseButton.initByStyleTop(Title2,
+                                                   UIFontWeightMediumSize(13),
+                                                   nil,
+                                                   JobsIMG(@"用户名称"),
+                                                   NSDirectionalRectEdgeNone,
+                                                   JobsWidth(8))
+        .bgColor(JobsBlackColor)
+        .onClick(^(UIButton *x){
+            @jobs_strongify(self)
+            [self endEditing:YES];
+            if (self.objectBlock) self.objectBlock(x);
+        }).onLongPressGesture(^(id data){
+            NSLog(@"");
+        });
         _toRegisterBtn.makeNewLineShows(YES);
         [self addSubview:_toRegisterBtn];
         [_toRegisterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -136,7 +141,7 @@
 -(BaseButton *)abandonLoginBtn{
     if (!_abandonLoginBtn) {
         @jobs_weakify(self)
-        _abandonLoginBtn = BaseButton.initByTitle_font_titleCor(Title4,
+        _abandonLoginBtn = BaseButton.initByStyle1(Title4,
                                                                 UIFontWeightSemiboldSize(15),
                                                                 JobsWhiteColor)
             .bgColor(JobsBlackColor)
@@ -159,7 +164,7 @@
 -(BaseButton *)sendBtn{
     if (!_sendBtn) {
         @jobs_weakify(self)
-        _sendBtn = BaseButton.initByTitle_font_titleCor(Title7,
+        _sendBtn = BaseButton.initByStyle1(Title7,
                                                         UIFontWeightSemiboldSize(15),
                                                         JobsWhiteColor)
             .cornerRadiusValue(ThingsHeight / 2)
@@ -185,7 +190,12 @@
     if (!_storeCodeBtn) {
         @jobs_weakify(self)
         _storeCodeBtn = BaseButton
-            .initByStyleLeft(Title5,UIFontWeightRegularSize(12),JobsWhiteColor,JobsIMG(@"没有记住密码"),JobsWidth(3))
+            .initByStyleLeft(Title5,
+                             UIFontWeightRegularSize(12),
+                             JobsWhiteColor,
+                             JobsIMG(@"没有记住密码"),
+                             NSDirectionalRectEdgeNone,
+                             JobsWidth(3))
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
@@ -210,7 +220,7 @@
     if (!_findCodeBtn) {
         @jobs_weakify(self)
         _findCodeBtn = BaseButton
-            .initByTitle_font_titleCor(Title3,UIFontWeightRegularSize(12),JobsBlueColor)
+            .initByStyle1(Title3,UIFontWeightRegularSize(12),JobsBlueColor)
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);

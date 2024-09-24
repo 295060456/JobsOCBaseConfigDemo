@@ -452,7 +452,7 @@ JobsKey(__立即注册)
     if ([self isKindOfClass:UIViewController.class] && !_立即注册 ) {
         @jobs_weakify(self)
         _立即注册 = BaseButton
-            .initByTitle_font_titleCor(JobsInternationalization(@"立即注册"),
+            .initByStyle1(JobsInternationalization(@"立即注册"),
                                        UIFontWeightRegularSize(14),
                                        HEXCOLOR(0x757575))
             .onClick(^(UIButton *x){
@@ -486,7 +486,7 @@ JobsKey(__联系客服)
     if ([self isKindOfClass:UIViewController.class] && !_联系客服) {
         @jobs_weakify(self)
         _联系客服 = BaseButton
-            .initByTitle_font_titleCor(JobsInternationalization(@"联系客服"),
+            .initByStyle1(JobsInternationalization(@"联系客服"),
                                        UIFontWeightRegularSize(14),
                                        HEXCOLOR(0x757575))
             .onClick(^(UIButton *x){

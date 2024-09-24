@@ -116,34 +116,41 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleBlock)(NSString *_Nonnull title);/// 主文字内容
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByCorBlock)(UIColor *_Nonnull cor);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByFloatBlock)(CGFloat data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAndFontBlock)(NSString *_Nonnull title,/// 主文字内容
-                                                                           UIFont *_Nullable font);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAndFontAndTitleCorBlock)(NSString *_Nonnull title,/// 主文字内容
-                                                                                      UIFont *_Nullable font,/// 字体大小
-                                                                                      UIColor *_Nullable titleCor);/// 主文字颜色
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAndFontAndTitleCorAndImageBlock)(NSString *_Nonnull title,/// 主文字内容
-                                                                                              UIFont *_Nullable font,/// 字体大小
-                                                                                              UIColor *_Nullable titleCor,/// 主文字颜色
-                                                                                              UIImage *_Nonnull image);/// 按钮图片
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAndFontAndTitleCorAndImageAndBgImageBlock)(NSString *_Nonnull title,/// 主文字内容
-                                                                                              UIFont *_Nullable font,/// 字体大小
-                                                                                              UIColor *_Nullable titleCor,/// 主文字颜色
-                                                                                              UIImage *_Nonnull image,/// 按钮图片
-                                                                                              UIImage *_Nonnull backgroundImage);/// 按钮背景图片
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNormalImageBlock)(UIImage *_Nonnull image);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByBackgroundImageBlock)(UIImage *_Nonnull backgroundImage);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle1Block)(NSString *_Nonnull title,/// 主文字内容
+                                                                     UIFont *_Nullable font);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle2Block)(NSString *_Nonnull title,/// 主文字内容
+                                                                     UIFont *_Nullable font,/// 字体大小
+                                                                     UIColor *_Nullable titleCor);/// 主文字颜色
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle3Block)(NSString *_Nonnull title,/// 主文字内容
+                                                                     UIFont *_Nullable font,/// 字体大小
+                                                                     UIColor *_Nullable titleCor,/// 主文字颜色
+                                                                     UIImage *_Nonnull image,/// 按钮图片
+                                                                     NSDirectionalRectEdge imagePlacement,/// 图片和文字的位置关系
+                                                                     CGFloat x);/// 图文距离
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle4Block)(NSString *_Nonnull title,/// 主文字内容
+                                                                     UIFont *_Nullable font,/// 字体大小
+                                                                     UIColor *_Nullable titleCor,/// 主文字颜色
+                                                                     UIImage *_Nonnull image);/// 按钮图片
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle5Block)(NSString *_Nonnull title,/// 主文字内容
+                                                                     UIFont *_Nullable font,/// 字体大小
+                                                                     UIColor *_Nullable titleCor,/// 主文字颜色
+                                                                     UIImage *_Nonnull image,/// 按钮图片
+                                                                     UIImage *_Nonnull backgroundImage,/// 按钮背景图片
+                                                                     NSDirectionalRectEdge imagePlacement);/// 图片和文字的位置关系
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle6Block)(NSString *_Nonnull title,/// 主文字内容
                                                                      UIFont *_Nullable font,/// 字体大小
                                                                      UIColor *_Nullable titleCor,/// 主文字颜色
                                                                      UIImage *_Nonnull image,/// 按钮图片
                                                                      NSDirectionalRectEdge directionalRectEdge,/// 图文相对位置
                                                                      CGFloat x);/// 图文距离
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle2Block)(NSString *_Nonnull title,/// 主文字内容
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle7Block)(NSString *_Nonnull title,/// 主文字内容
                                                                      UIFont *_Nullable font,/// 字体大小
                                                                      UIColor *_Nullable titleCor,/// 主文字颜色
                                                                      UIImage *_Nonnull image,/// 按钮图片
                                                                      CGFloat x);/// 图文距离
-
+#pragma mark —— 关于 UITableView
 typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewCellStyleBlock)(UITableViewCellStyle tableViewCellStyle);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewBlock)(UITableView *_Nonnull tableView);

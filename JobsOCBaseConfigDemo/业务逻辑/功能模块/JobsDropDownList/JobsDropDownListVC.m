@@ -89,7 +89,7 @@
     if(!_btn){
         @jobs_weakify(self)
         _btn = BaseButton
-            .initByTitle_font_titleCor(JobsInternationalization(@"点击按钮弹出下拉列表"),
+            .initByStyle1(JobsInternationalization(@"点击按钮弹出下拉列表"),
                                        UIFontWeightRegularSize(12),
                                        JobsWhiteColor)
             .bgColor(JobsWhiteColor)

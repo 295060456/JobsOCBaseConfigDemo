@@ -19,30 +19,31 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 依靠单一数据进行简单创建
 /// 仅仅依靠标题内容（普通文本）进行创建
 +(JobsReturnButtonByTitleBlock _Nonnull)initByTitle;
-/// 依靠标题内容和字体大小进行创建
-+(JobsReturnButtonByTitleAndFontBlock _Nonnull)initByTitle_font;
-/// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorBlock _Nonnull)initByTitle_font_titleCor;
-/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorAndImageBlock _Nonnull)initByTitle_font_titleCor_image;
-/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorAndImageBlock _Nonnull)initByTitle_font_titleCor_bgImage;
-/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorAndImageAndBgImageBlock _Nonnull)initByTitle_font_titleCor_image_bgImage;
 /// 仅仅靠按钮图片进行创建
 +(JobsReturnButtonByNormalImageBlock _Nonnull)initByNormalImage;
 /// 仅仅依靠按钮背景图进行创建
 +(JobsReturnButtonByBackgroundImageBlock _Nonnull)initByBackgroundImage;
+#pragma mark —— 依靠多数据进行较为复杂的创建
+/// 依靠标题内容和字体大小进行创建
++(JobsReturnButtonByStyle1Block _Nonnull)initByTitle_font;
+/// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
++(JobsReturnButtonByStyle2Block _Nonnull)initByStyle1;
+/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyle2;
+/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
++(JobsReturnButtonByStyle4Block _Nonnull)initByStyle3;
+/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
++(JobsReturnButtonByStyle5Block _Nonnull)initByStyle4;
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
-+(JobsReturnButtonByStyle1Block _Nonnull)initByStyle1;
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyle5;
 /// 图文混排（图片在上边 ）
-+(JobsReturnButtonByStyle2Block _Nonnull)initByStyleTop;
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyleTop;
 /// 图文混排（图片在左边 ）
-+(JobsReturnButtonByStyle2Block _Nonnull)initByStyleLeft;
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyleLeft;
 /// 图文混排（图片在下边 ）
-+(JobsReturnButtonByStyle2Block _Nonnull)initByStyleBottom;
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyleBottom;
 /// 图文混排（图片在右边 ）
-+(JobsReturnButtonByStyle2Block _Nonnull)initByStyleRight;
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyleRight;
 #pragma mark —— 依靠数据束进行创建
 +(instancetype)jobsInit;
 /// 依靠UIViewModel进行创建
@@ -51,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(JobsReturnButtonByButtonModelBlock _Nonnull)initByButtonModel;
 /// 依靠UITextModel进行创建
 +(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel;
-#pragma mark —— 对功能性进行补充
+#pragma mark —— 一些公有方法
 -(JobsReturnButtonByClickBlock _Nonnull)onClick;
 -(JobsReturnButtonByClickBlock _Nonnull)onLongPressGesture;
 -(JobsReturnButtonByCorBlock _Nonnull)bgColor;
@@ -63,10 +64,10 @@ NS_ASSUME_NONNULL_END
 /**
  -(BaseButton *)playBtn{
      if(!_playBtn){
-         _playBtn = BaseButton.initByTitle_font_titleCor_bgImage(title,
-                                                                 nil,
-                                                                 JobsBlackColor,
-                                                                 JobsIMG(@"弹窗取消按钮背景图"))
+         _playBtn = BaseButton.initByStyle3(title,
+                                   nil,
+                                   JobsBlackColor,
+                                   JobsIMG(@"弹窗取消按钮背景图"))
          .bgColor(JobsWhiteColor)
          .cornerRadiusValue(buttonModel.cornerRadiusValue)
          .onClick(^(UIButton *btn){

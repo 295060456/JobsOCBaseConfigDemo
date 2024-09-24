@@ -14,85 +14,9 @@
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title){
         @jobs_strongify(self)
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.buttonModel.title = title;
-        return self.initByViewModel(viewModel);
-    };
-}
-/// 依靠标题内容和字体大小进行创建
-+(JobsReturnButtonByTitleAndFontBlock _Nonnull)initByTitle_font{
-    @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
-                                         UIFont *_Nullable font){
-        @jobs_strongify(self)
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.buttonModel.title = title;
-        viewModel.buttonModel.titleFont = font;
-        return self.initByViewModel(viewModel);
-    };
-}
-/// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorBlock _Nonnull)initByTitle_font_titleCor{
-    @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
-                                         UIFont *_Nullable font,
-                                         UIColor *_Nullable titleCor){
-        @jobs_strongify(self)
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.buttonModel.title = title;
-        viewModel.buttonModel.titleFont = font;
-        viewModel.buttonModel.titleCor = titleCor;
-        return self.initByViewModel(viewModel);
-    };
-}
-/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorAndImageBlock _Nonnull)initByTitle_font_titleCor_image{
-    @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
-                                         UIFont *_Nullable font,
-                                         UIColor *_Nullable titleCor,
-                                         UIImage *_Nonnull image){
-        @jobs_strongify(self)
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.image = image;
-        viewModel.buttonModel.title = title;
-        viewModel.buttonModel.titleFont = font;
-        viewModel.buttonModel.titleCor = titleCor;
-        return self.initByViewModel(viewModel);
-    };
-}
-/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorAndImageBlock _Nonnull)initByTitle_font_titleCor_bgImage{
-    @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
-                                         UIFont *_Nullable font,
-                                         UIColor *_Nullable titleCor,
-                                         UIImage *_Nonnull backgroundImage){
-        @jobs_strongify(self)
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.buttonModel.title = title;
-        viewModel.buttonModel.titleFont = font;
-        viewModel.buttonModel.titleCor = titleCor;
-        viewModel.buttonModel.backgroundImage = backgroundImage;
-        return self.initByViewModel(viewModel);
-    };
-}
-/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
-+(JobsReturnButtonByTitleAndFontAndTitleCorAndImageAndBgImageBlock _Nonnull)initByTitle_font_titleCor_image_bgImage{
-    @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
-                                         UIFont *_Nullable font,
-                                         UIColor *_Nullable titleCor,
-                                         UIImage *_Nonnull image,
-                                         UIImage *_Nonnull backgroundImage){
-        @jobs_strongify(self)
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.image = image;
-        viewModel.buttonModel.title = title;
-        viewModel.buttonModel.titleFont = font;
-        viewModel.buttonModel.titleCor = titleCor;
-        viewModel.buttonModel.backgroundImage = backgroundImage;
-        return self.initByViewModel(viewModel);
+        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
+            data.buttonModel.title = title;
+        }));
     };
 }
 /// 仅仅靠按钮图片进行创建
@@ -100,9 +24,9 @@
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIImage *_Nonnull image){
         @jobs_strongify(self)
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.image = image;
-        return self.initByViewModel(viewModel);
+        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.image = image;
+        }));
     };
 }
 /// 仅仅依靠按钮背景图进行创建
@@ -110,13 +34,97 @@
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIImage *_Nonnull image){
         @jobs_strongify(self)
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.buttonModel.backgroundImage = image;
-        return self.initByViewModel(viewModel);
+        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.buttonModel.backgroundImage = image;
+        }));
     };
 }
+#pragma mark —— 依靠多数据进行较为复杂的创建
+/// 依靠标题内容和字体大小进行创建
++(JobsReturnButtonByStyle1Block _Nonnull)initByTitle_font{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
+                                         UIFont *_Nullable font){
+        @jobs_strongify(self)
+        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
+            data.buttonModel.title = title;
+            data.buttonModel.titleFont = font;
+        }));
+    };
+}
+/// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
++(JobsReturnButtonByStyle2Block _Nonnull)initByStyle1{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
+                                         UIFont *_Nullable font,
+                                         UIColor *_Nullable titleCor){
+        @jobs_strongify(self)
+        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
+            data.buttonModel.title = title;
+            data.buttonModel.titleFont = font;
+            data.buttonModel.titleCor = titleCor;
+        }));
+    };
+}
+/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyle2{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
+                                         UIFont *_Nullable font,
+                                         UIColor *_Nullable titleCor,
+                                         UIImage *_Nonnull image,
+                                         NSDirectionalRectEdge imagePlacement,
+                                         CGFloat x){
+        @jobs_strongify(self)
+        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
+            data.image = image;
+            data.buttonModel.title = title;
+            data.buttonModel.titleFont = font;
+            data.buttonModel.titleCor = titleCor;
+            data.buttonModel.imagePlacement = imagePlacement;
+            data.buttonModel.imagePadding = x;
+        }));
+    };
+}
+/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
++(JobsReturnButtonByStyle4Block _Nonnull)initByStyle3{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
+                                         UIFont *_Nullable font,
+                                         UIColor *_Nullable titleCor,
+                                         UIImage *_Nonnull backgroundImage){
+        @jobs_strongify(self)
+        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.buttonModel.title = title;
+            data.buttonModel.titleFont = font;
+            data.buttonModel.titleCor = titleCor;
+            data.buttonModel.backgroundImage = backgroundImage;
+        }));
+    };
+}
+/// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
++(JobsReturnButtonByStyle5Block _Nonnull)initByStyle4{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
+                                         UIFont *_Nullable font,
+                                         UIColor *_Nullable titleCor,
+                                         UIImage *_Nonnull image,
+                                         UIImage *_Nonnull backgroundImage,
+                                         NSDirectionalRectEdge imagePlacement){
+        @jobs_strongify(self)
+        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.image = image;
+            data.buttonModel.title = title;
+            data.buttonModel.titleFont = font;
+            data.buttonModel.titleCor = titleCor;
+            data.buttonModel.backgroundImage = backgroundImage;
+            data.buttonModel.imagePlacement = imagePlacement;
+        }));
+    };
+}
+
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
-+(JobsReturnButtonByStyle1Block _Nonnull)initByStyle1{
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyle5{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nullable font,/// 字体大小
@@ -125,61 +133,65 @@
                                          NSDirectionalRectEdge directionalRectEdge,/// 图文相对位置
                                          CGFloat x){/// 图文距离
         @jobs_strongify(self)
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.image = image;
-        viewModel.buttonModel.title = title;
-        viewModel.buttonModel.titleFont = font;
-        viewModel.buttonModel.titleCor = titleCor;
-        viewModel.directionalRectEdge = directionalRectEdge;
-        return self.initByViewModel(viewModel);
+        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.image = image;
+            data.buttonModel.title = title;
+            data.buttonModel.titleFont = font;
+            data.buttonModel.titleCor = titleCor;
+            data.directionalRectEdge = directionalRectEdge;
+        }));
     };
 }
 /// 图文混排（图片在上边 ）
-+(JobsReturnButtonByStyle2Block _Nonnull)initByStyleTop{
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyleTop{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
                                          UIColor *_Nonnull titleCor,/// 主文字颜色
                                          UIImage *_Nonnull image,/// 按钮图片
+                                         NSDirectionalRectEdge imagePlacement,/// 图片和文字的位置关系
                                          CGFloat x){/// 图文距离
         @jobs_strongify(self)
-        return self.initByStyle1(title,font,titleCor,image,NSDirectionalRectEdgeTop,x);
+        return self.initByStyle5(title,font,titleCor,image,NSDirectionalRectEdgeTop,x);
     };
 }
 /// 图文混排（图片在左边 ）
-+(JobsReturnButtonByStyle2Block _Nonnull)initByStyleLeft{
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyleLeft{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
                                          UIColor *_Nonnull titleCor,/// 主文字颜色
                                          UIImage *_Nonnull image,/// 按钮图片
+                                         NSDirectionalRectEdge imagePlacement,/// 图片和文字的位置关系
                                          CGFloat x){/// 图文距离
         @jobs_strongify(self)
-        return self.initByStyle1(title,font,titleCor,image,NSDirectionalRectEdgeLeading,x);
+        return self.initByStyle5(title,font,titleCor,image,NSDirectionalRectEdgeLeading,x);
     };
 }
 /// 图文混排（图片在下边 ）
-+(JobsReturnButtonByStyle2Block _Nonnull)initByStyleBottom{
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyleBottom{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
                                          UIColor *_Nonnull titleCor,/// 主文字颜色
                                          UIImage *_Nonnull image,/// 按钮图片
+                                         NSDirectionalRectEdge imagePlacement,/// 图片和文字的位置关系
                                          CGFloat x){/// 图文距离
         @jobs_strongify(self)
-        return self.initByStyle1(title,font,titleCor,image,NSDirectionalRectEdgeBottom,x);
+        return self.initByStyle5(title,font,titleCor,image,NSDirectionalRectEdgeBottom,x);
     };
 }
 /// 图文混排（图片在右边 ）
-+(JobsReturnButtonByStyle2Block _Nonnull)initByStyleRight{
++(JobsReturnButtonByStyle3Block _Nonnull)initByStyleRight{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
                                          UIColor *_Nonnull titleCor,/// 主文字颜色
                                          UIImage *_Nonnull image,/// 按钮图片
+                                         NSDirectionalRectEdge imagePlacement,/// 图片和文字的位置关系
                                          CGFloat x){/// 图文距离
         @jobs_strongify(self)
-        return self.initByStyle1(title,font,titleCor,image,NSDirectionalRectEdgeTrailing,x);
+        return self.initByStyle5(title,font,titleCor,image,NSDirectionalRectEdgeTrailing,x);
     };
 }
 #pragma mark —— 依靠数据束进行创建

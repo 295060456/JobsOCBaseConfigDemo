@@ -115,12 +115,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(void)setIsSelected:(BOOL)isSelected{
     _isSelected = isSelected;
     self.loveBtn.selected = _isSelected;
-    if (self.loveBtn.selected) {
-        //特别重要，花了老子半个小时，mmp.只要改变选择状态都要进行刷新 走这一句
-        self.loveBtn.selectedTitle(JobsNonnullString(self.viewModel.textModel.text, JobsInternationalization(@"点赞")));
-    }else{
-        self.loveBtn.normalTitle(JobsNonnullString(self.viewModel.textModel.text, JobsInternationalization(@"点赞")));
-    }
+    self.loveBtn.jobsResetBtnTitle(self.viewModel.textModel.text.replace(JobsInternationalization(@"点赞")));
     [self.loveBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
                                      imagePadding:JobsWidth(5)];
 }
@@ -128,7 +123,12 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(RBCLikeButton *)loveBtn{
     if(!_loveBtn){
         @jobs_weakify(self)
-        _loveBtn = RBCLikeButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"点赞")),UIFontWeightRegularSize(12),JobsCor(@"#EA2918"),JobsIMG(@"视频未点赞"),JobsWidth(5))
+        _loveBtn = RBCLikeButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"点赞")),
+                                                UIFontWeightRegularSize(12),
+                                                JobsCor(@"#EA2918"),
+                                                JobsIMG(@"视频未点赞"),
+                                                NSDirectionalRectEdgeNone,
+                                                JobsWidth(5))
             .bgColor(JobsClearColor)
             .onClick(^(UIButton *x){
                 NSLog(@"我是点赞");
@@ -153,7 +153,12 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(BaseButton *)commentBtn{
     if(!_commentBtn){
         @jobs_weakify(self)
-        _commentBtn = BaseButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"评论")),UIFontWeightRegularSize(12),JobsCor(@"#EA2918"),JobsIMG(@"视频评论"),JobsWidth(5))
+        _commentBtn = BaseButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"评论")),
+                                                UIFontWeightRegularSize(12),
+                                                JobsCor(@"#EA2918"),
+                                                JobsIMG(@"视频评论"),
+                                                NSDirectionalRectEdgeNone,
+                                                JobsWidth(5))
             .bgColor(JobsClearColor)
             .onClick(^(UIButton *x){
                 NSLog(@"我是评论");
@@ -190,7 +195,12 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(BaseButton *)shareBtn{
     if(!_shareBtn){
         @jobs_weakify(self)
-        _shareBtn = RBCLikeButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"分享")),UIFontWeightRegularSize(12),JobsCor(@"#EA2918"),JobsIMG(@"分享"),JobsWidth(5))
+        _shareBtn = RBCLikeButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"分享")),
+                                                 UIFontWeightRegularSize(12),
+                                                 JobsCor(@"#EA2918"),
+                                                 JobsIMG(@"分享"),
+                                                 NSDirectionalRectEdgeNone,
+                                                 JobsWidth(5))
             .bgColor(JobsClearColor)
             .onClick(^(UIButton *x){
                 NSLog(@"我是分享");

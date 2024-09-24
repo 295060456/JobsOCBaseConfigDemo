@@ -11,8 +11,8 @@
 /// UI
 @property(nonatomic,strong)UILabel *titleLab;
 @property(nonatomic,strong)UILabel *subTitleLab;
-@property(nonatomic,strong)UIButton *btn1;
-@property(nonatomic,strong)UIButton *btn2;
+@property(nonatomic,strong)BaseButton *btn1;
+@property(nonatomic,strong)BaseButton *btn2;
 /// Data
 
 @end
@@ -86,21 +86,21 @@
     }return _subTitleLab;
 }
 
--(UIButton *)btn1{
+-(BaseButton *)btn1{
     if (!_btn1) {
-        _btn1 = UIButton.new;
+        _btn1 = BaseButton
+            .initByStyle4(JobsInternationalization(@"Cancel"),
+                                                                    UIFontWeightRegularSize(14),
+                                                                    HEXCOLOR(0x502600),
+                                                                    self.viewModel.image,
+                                                                    JobsIMG(@"弹窗取消按钮背景图"),
+                                                                    NSDirectionalRectEdgeNone)
+            .onClick(^(UIButton *x){
+                if(self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _btn1.tag = 666;
-        _btn1.titleFont(UIFontWeightRegularSize(14));
-        _btn1.normalImage(self.viewModel.image);
-        _btn1.normalBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
-        _btn1.normalTitleColor(HEXCOLOR(0x502600));
-        _btn1.normalTitle(JobsInternationalization(@"Cancel"));
-        @jobs_weakify(self)
-        [_btn1 jobsBtnClickEventBlock:^id(id data) {
-            @jobs_strongify(self)
-            if(self.objectBlock) self.objectBlock(self->_btn1);
-            return nil;
-        }];
         [self addSubview:_btn1];
         [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(110), JobsWidth(44)));
@@ -110,19 +110,23 @@
     }return _btn1;
 }
 
--(UIButton *)btn2{
+-(BaseButton *)btn2{
     if (!_btn2) {
-        _btn2 = UIButton.new;
+        @jobs_weakify(self)
+        _btn2 = BaseButton
+            .initByStyle4(JobsInternationalization(@"Sure"),
+                                                                    UIFontWeightRegularSize(14),
+                                                                    HEXCOLOR(0x502600),
+                                                                    self.viewModel.image,
+                                                                    JobsIMG(@"弹窗确定按钮背景图"),
+                                                                    NSDirectionalRectEdgeNone)
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if(self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _btn2.tag = 999;
-        _btn2.titleFont(UIFontWeightRegularSize(14));
-        _btn2.normalImage(self.viewModel.image);
-        _btn2.normalBackgroundImage(JobsIMG(@"弹窗确定按钮背景图"));
-        _btn2.normalTitleColor(HEXCOLOR(0x502600));
-        _btn2.normalTitle(JobsInternationalization(@"Sure"));
-        [_btn2 jobsBtnClickEventBlock:^id(id data) {
-            if(self.objectBlock) self.objectBlock(self.btn2);
-            return nil;
-        }];
         [self addSubview:_btn2];
         [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(110), JobsWidth(44)));

@@ -108,10 +108,12 @@
 }
 #pragma mark —— lazyLoad
 -(JobsNavBarConfig *)navBarConfig{
+    @jobs_weakify(self)
     if(!_navBarConfig){
         _navBarConfig = JobsNavBarConfig.new;
     }
     [_navBarConfig actionObjectBlock:^(id _Nullable data) {
+        @jobs_strongify(self)
         if([data isKindOfClass:UIButton.class]){
             UIButton *btn = (UIButton *)data;
             if(btn.tag == 123){
@@ -147,40 +149,7 @@
     if(!_backBtn){
         JobsNavBarConfig *navBarConfig = self.navBarConfig;
         NSLog(@"%@",navBarConfig);
-        _backBtn = [BaseButton.alloc jobsInitBtnByConfiguration:BackBtnModel.btnConfiguration
-                                                     background:BackBtnModel.background
-                                     buttonConfigTitleAlignment:BackBtnModel.buttonConfigTitleAlignment
-                                                  textAlignment:BackBtnModel.textAlignment
-                                               subTextAlignment:BackBtnModel.subTextAlignment
-                                                    normalImage:BackBtnModel.normalImage
-                                                 highlightImage:BackBtnModel.highlightImage
-                                                attributedTitle:BackBtnModel.attributedTitle
-                                        selectedAttributedTitle:BackBtnModel.selectedAttributedTitle
-                                             attributedSubtitle:BackBtnModel.attributedSubtitle
-                                                          title:BackBtnModel.title
-                                                       subTitle:BackBtnModel.subTitle
-                                                      titleFont:BackBtnModel.titleFont
-                                                   subTitleFont:BackBtnModel.subTitleFont
-                                                       titleCor:BackBtnModel.titleCor
-                                                    subTitleCor:BackBtnModel.subTitleCor
-                                             titleLineBreakMode:BackBtnModel.titleLineBreakMode
-                                          subtitleLineBreakMode:BackBtnModel.subtitleLineBreakMode
-                                            baseBackgroundColor:BackBtnModel.baseBackgroundColor
-                                                backgroundImage:BackBtnModel.backgroundImage
-                                                   imagePadding:BackBtnModel.imagePadding
-                                                   titlePadding:BackBtnModel.titlePadding
-                                                 imagePlacement:BackBtnModel.imagePlacement
-                                     contentHorizontalAlignment:BackBtnModel.contentHorizontalAlignment
-                                       contentVerticalAlignment:BackBtnModel.contentVerticalAlignment
-                                                  contentInsets:BackBtnModel.contentInsets
-                                              cornerRadiusValue:BackBtnModel.cornerRadiusValue
-                                                roundingCorners:BackBtnModel.roundingCorners
-                                           roundingCornersRadii:BackBtnModel.roundingCornersRadii
-                                                 layerBorderCor:BackBtnModel.layerBorderCor
-                                                    borderWidth:BackBtnModel.borderWidth
-                                                  primaryAction:BackBtnModel.primaryAction
-                                     longPressGestureEventBlock:BackBtnModel.longPressGestureEventBlock
-                                                clickEventBlock:BackBtnModel.clickEventBlock];
+        _backBtn = BaseButton.initByButtonModel(BackBtnModel);
         _backBtn.tag = 456;
         [self addSubview:_backBtn];
         [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -197,40 +166,7 @@
     if(!_closeBtn){
         JobsNavBarConfig *navBarConfig = self.navBarConfig;
         NSLog(@"%@",navBarConfig);
-        _closeBtn = [BaseButton.alloc jobsInitBtnByConfiguration:CloseBtnModel.btnConfiguration
-                                                      background:CloseBtnModel.background
-                                      buttonConfigTitleAlignment:CloseBtnModel.buttonConfigTitleAlignment
-                                                   textAlignment:CloseBtnModel.textAlignment
-                                                subTextAlignment:CloseBtnModel.subTextAlignment
-                                                     normalImage:CloseBtnModel.normalImage
-                                                  highlightImage:CloseBtnModel.highlightImage
-                                                 attributedTitle:CloseBtnModel.attributedTitle
-                                         selectedAttributedTitle:CloseBtnModel.selectedAttributedTitle
-                                              attributedSubtitle:CloseBtnModel.attributedSubtitle
-                                                           title:CloseBtnModel.title
-                                                        subTitle:CloseBtnModel.subTitle
-                                                       titleFont:CloseBtnModel.titleFont
-                                                    subTitleFont:CloseBtnModel.subTitleFont
-                                                        titleCor:CloseBtnModel.titleCor
-                                                     subTitleCor:CloseBtnModel.subTitleCor
-                                              titleLineBreakMode:CloseBtnModel.titleLineBreakMode
-                                           subtitleLineBreakMode:CloseBtnModel.subtitleLineBreakMode
-                                             baseBackgroundColor:CloseBtnModel.baseBackgroundColor
-                                                 backgroundImage:CloseBtnModel.backgroundImage
-                                                    imagePadding:CloseBtnModel.imagePadding
-                                                    titlePadding:CloseBtnModel.titlePadding
-                                                  imagePlacement:CloseBtnModel.imagePlacement
-                                      contentHorizontalAlignment:CloseBtnModel.contentHorizontalAlignment
-                                        contentVerticalAlignment:CloseBtnModel.contentVerticalAlignment
-                                                   contentInsets:CloseBtnModel.contentInsets
-                                               cornerRadiusValue:CloseBtnModel.cornerRadiusValue
-                                                 roundingCorners:CloseBtnModel.roundingCorners
-                                            roundingCornersRadii:CloseBtnModel.roundingCornersRadii
-                                                  layerBorderCor:CloseBtnModel.layerBorderCor
-                                                     borderWidth:CloseBtnModel.borderWidth
-                                                   primaryAction:CloseBtnModel.primaryAction
-                                      longPressGestureEventBlock:CloseBtnModel.longPressGestureEventBlock
-                                                 clickEventBlock:CloseBtnModel.clickEventBlock];
+        _closeBtn = BaseButton.initByButtonModel(CloseBtnModel);
         _closeBtn.tag = 123;
         [self addSubview:_closeBtn];
         [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {

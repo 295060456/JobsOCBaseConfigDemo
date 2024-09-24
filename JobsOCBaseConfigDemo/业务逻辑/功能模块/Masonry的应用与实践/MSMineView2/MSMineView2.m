@@ -83,7 +83,12 @@ static dispatch_once_t static_mineView2OnceToken;
 -(BaseButton *)btn1{
     @jobs_weakify(self)
     if(!_btn1){
-        _btn1 = BaseButton.initByStyleLeft(JobsInternationalization(@"入职Mata"),UIFontWeightRegularSize(14),JobsBlackColor,JobsIMG(@"入职Mata"),JobsWidth(10))
+        _btn1 = BaseButton.initByStyleLeft(JobsInternationalization(@"入职Mata"),
+                                           UIFontWeightRegularSize(14),
+                                           JobsBlackColor,
+                                           JobsIMG(@"入职Mata"),
+                                           NSDirectionalRectEdgeNone,
+                                           JobsWidth(10))
             .bgColor(JobsWhiteColor)
             .cornerRadiusValue(JobsWidth(8))
             .onClick(^(UIButton *x){
@@ -104,7 +109,7 @@ static dispatch_once_t static_mineView2OnceToken;
 -(UIButton *)btn2{
     if(!_btn2){
         @jobs_weakify(self)
-        _btn2 = BaseButton.initByTitle_font_titleCor(JobsInternationalization(@"立即进入"),
+        _btn2 = BaseButton.initByStyle1(JobsInternationalization(@"立即进入"),
                                                      UIFontWeightRegularSize(14),
                                                      JobsWhiteColor)
             .bgColor(JobsCor(@"#EA2918"))
