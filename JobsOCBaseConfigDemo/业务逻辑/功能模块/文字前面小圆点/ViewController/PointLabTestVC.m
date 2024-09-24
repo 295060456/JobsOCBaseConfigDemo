@@ -79,56 +79,58 @@
 
 -(NSMutableParagraphStyle *)paragraphStyle{
     if(!_paragraphStyle){
-        _paragraphStyle = NSMutableParagraphStyle.new;
-        _paragraphStyle.headIndent = 10; // 设置文本的缩进，使其与圆点对齐
-        _paragraphStyle.firstLineHeadIndent = 0; // 第一行不缩进
+        _paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+            data.headIndent = 10; // 设置文本的缩进，使其与圆点对齐
+            data.firstLineHeadIndent = 0; // 第一行不缩进
+        });
     }return _paragraphStyle;
 }
 
 -(NSTextAttachment *)bulletAttachment{
     if(!_bulletAttachment){
-        _bulletAttachment = NSTextAttachment.new;
-        _bulletAttachment.bounds = CGRectMake(0, 0, 10, 10); // 设置圆点的大小和位置
-        
-        UIGraphicsBeginImageContextWithOptions(_bulletAttachment.bounds.size, NO, 0);
-        [JobsRedColor setFill];// 设置圆点的颜色
-        [[UIBezierPath bezierPathWithOvalInRect:_bulletAttachment.bounds] fill];
-        _bulletAttachment.image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
+        _bulletAttachment = jobsMakeTextAttachment(^(NSTextAttachment * _Nullable data) {
+            data.bounds = CGRectMake(0, 0, 10, 10); // 设置圆点的大小和位置
+            
+            UIGraphicsBeginImageContextWithOptions(data.bounds.size, NO, 0);
+            [JobsRedColor setFill];// 设置圆点的颜色
+            [[UIBezierPath bezierPathWithOvalInRect:data.bounds] fill];
+            data.image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+        });
     }return _bulletAttachment;
 }
 
 -(NSMutableAttributedString *)attributedString{
     if(!_attributedString){
-        _attributedString = NSMutableAttributedString.new;
-        _attributedString.add(JobsAttributedString(self.dot
-                                                       .add(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人")
-                                                       .add(@"\n")));
-                                                       
-        _attributedString.add(JobsAttributedString(self.dot
-                                                       .add(@"你是日本人你是日本人你是日本人你是日本人你是日本人你是日本人")
-                                                       .add(@"\n")));
+        _attributedString = jobsMakeMutableAttributedString(^(__kindof NSMutableAttributedString *_Nullable data) {
+            data.add(JobsAttributedString(self.dot
+                                          .add(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人")
+                                          .add(@"\n")));
+                                                           
+            data.add(JobsAttributedString(self.dot
+                                          .add(@"你是日本人你是日本人你是日本人你是日本人你是日本人你是日本人")
+                                          .add(@"\n")));
 
-        /// 设置段落
-        [_attributedString addAttribute:NSParagraphStyleAttributeName
-                                  value:self.paragraphStyle
-                                  range:NSMakeRange(0, self.attributedString.length)];
-        /// 设置小圆点的颜色
-        [_attributedString addAttribute:NSForegroundColorAttributeName
-                                  value:JobsRedColor
-                                  range:NSMakeRange(0, 1)]; // 第一个圆点
-        [_attributedString addAttribute:NSForegroundColorAttributeName
-                                  value:JobsYellowColor
-                                  range:NSMakeRange(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人".add(@"\n").length + 1, 1)]; // 第二个圆点
-        /// 设置文本颜色
-        [_attributedString addAttribute:NSForegroundColorAttributeName
-                                  value:JobsCor(@"#D0D0D0")
-                                  range:NSMakeRange(1, _attributedString.length - 1)];
-        /// 设置字体
-        [_attributedString addAttribute:NSFontAttributeName
-                                  value:UIFontWeightRegularSize(JobsWidth(12))
-                                  range:NSMakeRange(0, _attributedString.length)];
+            /// 设置段落
+            [data addAttribute:NSParagraphStyleAttributeName
+                                      value:self.paragraphStyle
+                                      range:NSMakeRange(0, self.attributedString.length)];
+            /// 设置小圆点的颜色
+            [data addAttribute:NSForegroundColorAttributeName
+                                      value:JobsRedColor
+                                      range:NSMakeRange(0, 1)]; // 第一个圆点
+            [data addAttribute:NSForegroundColorAttributeName
+                                      value:JobsYellowColor
+                                      range:NSMakeRange(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人".add(@"\n").length + 1, 1)]; // 第二个圆点
+            /// 设置文本颜色
+            [data addAttribute:NSForegroundColorAttributeName
+                                      value:JobsCor(@"#D0D0D0")
+                                      range:NSMakeRange(1, data.length - 1)];
+            /// 设置字体
+            [data addAttribute:NSFontAttributeName
+                                      value:UIFontWeightRegularSize(JobsWidth(12))
+                                      range:NSMakeRange(0, data.length)];
+        });
     }return _attributedString;
 }
 

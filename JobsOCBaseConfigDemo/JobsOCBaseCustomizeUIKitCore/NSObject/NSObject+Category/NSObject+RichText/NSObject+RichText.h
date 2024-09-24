@@ -11,6 +11,42 @@
 #import "JobsBlock.h"
 #import "NSString+Others.h"
 
+static inline NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
+    NSMutableAttributedString *data = NSMutableAttributedString.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline NSTextAttachment *_Nonnull jobsMakeTextAttachment(jobsByTextAttachmentBlock _Nonnull block){
+    NSTextAttachment *data = NSTextAttachment.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByParagraphStyleBlock _Nonnull block){
+    NSMutableParagraphStyle *data = NSMutableParagraphStyle.alloc.init;
+    /**
+     
+     常见的属性及说明
+     alignment               对齐方式，取值枚举常量 NSTextAlignment
+     firstLineHeadIndent     首行缩进，取值 float
+     headIndent              缩进，取值 float
+     tailIndent              尾部缩进，取值 float
+     ineHeightMultiple       可变行高,乘因数，取值 float
+     maximumLineHeight       最大行高，取值 float
+     minimumLineHeight       最小行高，取值 float
+     lineSpacing             行距，取值 float
+     paragraphSpacing        段距，取值 float
+     paragraphSpacingBefore  段首空间，取值 float
+
+     baseWritingDirection    句子方向，取值枚举常量 NSWritingDirection
+     lineBreakMode           断行方式，取值枚举常量 NSLineBreakMode
+     hyphenationFactor       连字符属性，在iOS，唯一支持的值分别为0和1
+     
+     */
+    if (block) block(data);
+    return data;
+}
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (RichText)

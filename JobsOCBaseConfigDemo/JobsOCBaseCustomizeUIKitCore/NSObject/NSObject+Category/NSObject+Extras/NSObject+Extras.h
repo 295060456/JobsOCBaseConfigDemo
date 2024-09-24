@@ -197,10 +197,6 @@ BaseProtocol
 -(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject;
 -(JobsReturnURLRequestByURLBlock _Nonnull)request;
 -(jobsByVoidBlock _Nonnull)震动特效反馈;
-/// 可变数组的方便调用
--(__kindof NSArray *_Nonnull)jobsMakeMutArr:(jobsByArrayBlock _Nonnull)block;
-/// 可变集合的方便调用
--(__kindof NSSet *_Nonnull)jobsMakeMutSet:(jobsBySetBlock _Nonnull)block;
 -(jobsByVoidBlock _Nonnull)loginOK;
 -(jobsByVoidBlock _Nonnull)logoutOK;
 /**

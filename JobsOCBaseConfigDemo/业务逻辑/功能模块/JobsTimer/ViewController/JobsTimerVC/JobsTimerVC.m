@@ -119,19 +119,19 @@
         @jobs_weakify(self)
         _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
                             longPressGestureEventBlock:nil
-                                       clickEventBlock:nil];
+                                       clickEventBlock:nil]
+            .onClick(^(UIButton *x){
+                x.startTimer();//选择时机、触发启动
+                NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.view addSubview:_countDownBtn];
         [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(25));
             make.center.equalTo(self.view);
         }];
         _countDownBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-        [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            x.startTimer();//选择时机、触发启动
-            NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
-            return nil;
-        }];
-        
         [_countDownBtn actionObjectBlock:^(id data) {
 //            @jobs_strongify(self)
             if ([data isKindOfClass:TimerProcessModel.class]) {
@@ -144,61 +144,75 @@
 
 -(ButtonTimerConfigModel *)btnTimerConfigModel{
     if (!_btnTimerConfigModel) {
-        _btnTimerConfigModel = ButtonTimerConfigModel.new;
-        
-        /// 一些通用的设置
-        _btnTimerConfigModel.jobsSize = CGSizeMake(JobsWidth(100), JobsWidth(25));
-        _btnTimerConfigModel.count = 5;
-        _btnTimerConfigModel.showTimeType = ShowTimeType_SS;//时间显示风格
-        _btnTimerConfigModel.countDownBtnType = TimerStyle_anticlockwise;/// 逆时针模式（倒计时模式）
-        _btnTimerConfigModel.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;
-        _btnTimerConfigModel.labelShowingType = UILabelShowingType_03;/// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
-        /// 计时器未开始【静态值】
-        _btnTimerConfigModel.readyPlayValue.layerBorderWidth = 0.1;
-        _btnTimerConfigModel.readyPlayValue.layerCornerRadius = JobsWidth(8);
-        _btnTimerConfigModel.readyPlayValue.bgCor = JobsYellowColor;
-        _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsBrownColor;
-        _btnTimerConfigModel.readyPlayValue.textCor = JobsBlueColor;
-        _btnTimerConfigModel.readyPlayValue.text = JobsInternationalization(@"获取验证码");
-        _btnTimerConfigModel.readyPlayValue.font = UIFontWeightMediumSize(13);
-        /// 计时器进行中【动态值】
-        _btnTimerConfigModel.runningValue.bgCor = JobsCyanColor;
-        _btnTimerConfigModel.runningValue.text = JobsInternationalization(Title12);
-        _btnTimerConfigModel.runningValue.layerBorderCor = JobsRedColor;
-        _btnTimerConfigModel.runningValue.textCor = JobsBlackColor;
-        /// 计时器结束【静态值】
-        _btnTimerConfigModel.endValue.bgCor = JobsYellowColor;
-        _btnTimerConfigModel.endValue.text = JobsInternationalization(@"哈哈哈哈");
-        _btnTimerConfigModel.endValue.layerBorderCor = JobsPurpleColor;
-        _btnTimerConfigModel.endValue.textCor = JobsBlackColor;
-        
+        _btnTimerConfigModel = jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
+            /// 一些通用的设置
+            data.jobsSize = CGSizeMake(JobsWidth(100), JobsWidth(25));
+            data.count = 5;
+            data.showTimeType = ShowTimeType_SS;//时间显示风格
+            data.countDownBtnType = TimerStyle_anticlockwise;/// 逆时针模式（倒计时模式）
+            data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;
+            data.labelShowingType = UILabelShowingType_03;/// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
+            /// 计时器未开始【静态值】
+            data.readyPlayValue.layerBorderWidth = 0.1;
+            data.readyPlayValue.layerCornerRadius = JobsWidth(8);
+            data.readyPlayValue.bgCor = JobsYellowColor;
+            data.readyPlayValue.layerBorderCor = JobsBrownColor;
+            data.readyPlayValue.textCor = JobsBlueColor;
+            data.readyPlayValue.text = JobsInternationalization(@"获取验证码");
+            data.readyPlayValue.font = UIFontWeightMediumSize(13);
+            /// 计时器进行中【动态值】
+            data.runningValue.bgCor = JobsCyanColor;
+            data.runningValue.text = JobsInternationalization(Title12);
+            data.runningValue.layerBorderCor = JobsRedColor;
+            data.runningValue.textCor = JobsBlackColor;
+            /// 计时器结束【静态值】
+            data.endValue.bgCor = JobsYellowColor;
+            data.endValue.text = JobsInternationalization(@"哈哈哈哈");
+            data.endValue.layerBorderCor = JobsPurpleColor;
+            data.endValue.textCor = JobsBlackColor;
+        });
     }return _btnTimerConfigModel;
 }
 
--(NSMutableArray<UIButton *> *)btnMutArr{
+-(NSMutableArray<__kindof UIButton *>*)btnMutArr{
     if (!_btnMutArr) {
-        _btnMutArr = NSMutableArray.array;
-        for (NSString *title in self.btnTitleMutArr) {
-            UIButton *btn = UIButton.new;
-            btn.normalTitle(title);
-            btn.normalTitleColor(JobsBlackColor);
-            btn.normalBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
-            btn.selectedBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
-            btn.cornerCutToCircleWithCornerRadius(JobsWidth(8));
-            [btn layerBorderCor:HEXCOLOR(0xAE8330) andBorderWidth:0.5f];
-            [self.view addSubview:btn];
-            [_btnMutArr addObject:btn];
-        }
+        _btnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButton *>*_Nullable data) {
+            for (NSString *title in self.btnTitleMutArr) {
+                UIButton *btn = BaseButton.initByTitle_font_titleCor_bgImage(title,
+                                                                           nil,
+                                                                           JobsBlackColor,
+                                                                           JobsIMG(@"弹窗取消按钮背景图"))
+                .bgColor(JobsWhiteColor)
+                .onClick(^(UIButton *btn){
+                    btn.selected = !btn.selected;
+                    btn.jobsResetBtnBgImage(btn.selected ? JobsIMG(@"弹窗取消按钮背景图") : JobsIMG(@"弹窗取消按钮背景图"));
+                    
+                    btn.jobsResetBtnlayerBorderCor(HEXCOLOR(0xAE8330));/// 重设Btn的描边线段的颜色
+                    btn.jobsResetBtnlayerBorderWidth(0.5f);/// 重设Btn的描边线段的宽度
+                    btn.jobsResetBtnCornerRadiusValue(JobsWidth(8));/// 重设Btn的圆切角
+                    
+                }).onLongPressGesture(^(id data){
+                    NSLog(@"");
+                })
+                .layerByBorderCor(HEXCOLOR(0xAE8330))
+                .layerByBorderWidth(0.5f)
+                .cornerCutToCircleWithCornerRadius(JobsWidth(8));
+
+                [self.view addSubview:btn];
+                data.add(btn);
+            }
+        });
     }return _btnMutArr;
 }
 
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
-        _btnTitleMutArr = NSMutableArray.array;
-        _btnTitleMutArr.add(JobsInternationalization(@"开始"));
-        _btnTitleMutArr.add(JobsInternationalization(@"暂停"));
-        _btnTitleMutArr.add(JobsInternationalization(@"继续"));
-        _btnTitleMutArr.add(JobsInternationalization(@"结束"));
+        _btnTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(JobsInternationalization(@"开始"));
+            data.add(JobsInternationalization(@"暂停"));
+            data.add(JobsInternationalization(@"继续"));
+            data.add(JobsInternationalization(@"结束"));
+        });
     }return _btnTitleMutArr;
 }
 

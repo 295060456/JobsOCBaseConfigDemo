@@ -110,4 +110,6 @@ UIViewModelProtocol_synthesize
     return _titileLab;
 }
 
+
+
 @end

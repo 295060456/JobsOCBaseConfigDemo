@@ -361,12 +361,13 @@ JobsKey(_bottomBorderLayer)
 }
 #pragma mark —— 切角
 /// 切整个View的4个角为统一的切角参数
--(jobsByCGFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius{
+-(JobsReturnViewByFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius{
     @jobs_weakify(self)
     return ^(CGFloat cornerRadiusValue) {
         @jobs_strongify(self)
         self.layer.cornerRadius = cornerRadiusValue;
         self.layer.masksToBounds = YES;
+        return self;
     };
 }
 /// 调用方式：view.appointCorners(UIRectCornerTopLeft | UIRectCornerBottomRight).cornerRadii(CGSizeMake(10, 10));

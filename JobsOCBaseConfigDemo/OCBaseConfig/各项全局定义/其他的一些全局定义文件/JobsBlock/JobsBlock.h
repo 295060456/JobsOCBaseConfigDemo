@@ -109,6 +109,7 @@ typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType c
                                                                  __kindof UIView *_Nullable data);
 @class JobsRichTextConfig;
 typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable data);
+typedef void(^jobsByRichTextConfigBlock)(__kindof JobsRichTextConfig *_Nullable data);
 
 @class UIViewModel;
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(UIViewModel *_Nullable data);
@@ -131,6 +132,9 @@ typedef void(^jobsByButtonTimerProcessValueModelBlock)(ButtonTimerProcessValueMo
 @class JobsCorModel;
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(UIColor *_Nullable data);
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);
+
+@class ButtonTimerConfigModel;
+typedef void(^jobsByButtonTimerConfigModelBlock)(__kindof ButtonTimerConfigModel *_Nullable data);
 
 @class UIButtonModel;
 typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable data);

@@ -156,46 +156,47 @@ static dispatch_once_t static_countdownViewOnceToken;
 
 -(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
     JobsMutableArray(_richTextConfigMutArr);
-    JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-    config_01.font = UIFontWeightBoldSize(48);
-    config_01.textCor = HEXCOLOR(0xAE8330);
-    config_01.targetString = self.minutesStr;
-    [_richTextConfigMutArr addObject:config_01];
-
-    JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-    config_02.font = UIFontWeightRegularSize(12);
-    config_02.textCor = HEXCOLOR(0x757575);
-    config_02.targetString = JobsInternationalization(@"分");
-    [_richTextConfigMutArr addObject:config_02];
+    @jobs_weakify(self)
+    _richTextConfigMutArr.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
+        @jobs_strongify(self)
+        data.font = UIFontWeightBoldSize(48);
+        data.textCor = HEXCOLOR(0xAE8330);
+        data.targetString = self.minutesStr;
+    }));
     
-    JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
-    config_03.font = UIFontWeightBoldSize(48);
-    config_03.textCor = HEXCOLOR(0xAE8330);
-    config_03.targetString = self.secondStr;
-    [_richTextConfigMutArr addObject:config_03];
+    _richTextConfigMutArr.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
+        data.font = UIFontWeightRegularSize(12);
+        data.textCor = HEXCOLOR(0x757575);
+        data.targetString = JobsInternationalization(@"分");
+    }));
     
-    JobsRichTextConfig *config_04 = JobsRichTextConfig.new;
-    config_04.font = UIFontWeightRegularSize(12);
-    config_04.textCor = HEXCOLOR(0x757575);
-    config_04.targetString = JobsInternationalization(@"秒");
-    [_richTextConfigMutArr addObject:config_04];
+    _richTextConfigMutArr.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
+        data.font = UIFontWeightBoldSize(48);
+        data.textCor = HEXCOLOR(0xAE8330);
+        data.targetString = self.secondStr;
+    }));
     
-    return _richTextConfigMutArr;
+    _richTextConfigMutArr.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
+        data.font = UIFontWeightRegularSize(12);
+        data.textCor = HEXCOLOR(0x757575);
+        data.targetString = JobsInternationalization(@"秒");
+    }));return _richTextConfigMutArr;
 }
 
 -(NSMutableArray<NSString *> *)richTextMutArr{
     JobsMutableArray(_richTextMutArr);
-    [_richTextMutArr addObject:self.minutesStr];
-    [_richTextMutArr addObject:JobsInternationalization(@"分")];
-    [_richTextMutArr addObject:self.secondStr];
-    [_richTextMutArr addObject:JobsInternationalization(@"秒")];
+    _richTextMutArr.add(self.minutesStr);
+    _richTextMutArr.add(JobsInternationalization(@"分"));
+    _richTextMutArr.add(self.secondStr);
+    _richTextMutArr.add(JobsInternationalization(@"秒"));
     return _richTextMutArr;
 }
 
 -(NSMutableParagraphStyle *)paragraphStyle{
     if (!_paragraphStyle) {
-        _paragraphStyle = NSMutableParagraphStyle.new;
-        _paragraphStyle.alignment = NSTextAlignmentCenter;
+        _paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+            data.alignment = NSTextAlignmentCenter;
+        });
     }return _paragraphStyle;
 }
 

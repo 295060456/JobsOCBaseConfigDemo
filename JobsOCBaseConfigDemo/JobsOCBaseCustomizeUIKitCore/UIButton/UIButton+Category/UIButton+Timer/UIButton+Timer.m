@@ -13,51 +13,12 @@
 -(instancetype)initWithConfig:(nullable ButtonTimerConfigModel *)config
    longPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock
               clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
-    @jobs_weakify(self)
-    self = [UIButton.alloc jobsInitBtnByConfiguration:nil
-                                           background:nil
-                           buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                        textAlignment:NSTextAlignmentCenter
-                                     subTextAlignment:NSTextAlignmentCenter
-                                          normalImage:nil
-                                       highlightImage:nil
-                                      attributedTitle:nil
-                              selectedAttributedTitle:nil
-                                   attributedSubtitle:nil
-                                                title:nil
-                                             subTitle:nil
-                                            titleFont:nil
-                                         subTitleFont:nil
-                                             titleCor:nil
-                                          subTitleCor:nil
-                                   titleLineBreakMode:NSLineBreakByWordWrapping
-                                subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                  baseBackgroundColor:nil
-                                      backgroundImage:nil
-                                         imagePadding:JobsWidth(0)
-                                         titlePadding:JobsWidth(0)
-                                       imagePlacement:NSDirectionalRectEdgeNone
-                           contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                             contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                        contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                    cornerRadiusValue:JobsWidth(0)
-                                      roundingCorners:UIRectCornerAllCorners
-                                 roundingCornersRadii:CGSizeZero
-                                       layerBorderCor:nil
-                                          borderWidth:JobsWidth(0)
-                                        primaryAction:nil
-                           longPressGestureEventBlock:^id(BaseButton *_Nullable weakSelf,
-                                                          id _Nullable arg) {
-        NSLog(@"按钮的长按事件触发");
-        if (longPressGestureEventBlock) longPressGestureEventBlock(weakSelf,arg);
-        return nil;
-    }
-                                      clickEventBlock:^id(__kindof UIButton *x) {
-//        @jobs_strongify(self)
+    self = UIButton.jobsInit.onClick(^(UIButton *x){
         x.selected = !x.selected;
-        if(clickEventBlock)clickEventBlock(x);
-        return nil;
-    }];
+        if(clickEventBlock) clickEventBlock(x);
+    }).onLongPressGesture(^(id data){
+        if (longPressGestureEventBlock) longPressGestureEventBlock(self,data);
+    });
     self.btnTimerConfig = config;// 为空则加载默认配置，self.btnTimerConfig 有容错机制
     self.setLayerConfigReadyPlay();// UI配置 1.1、【计时器未开始】设置Layer层 和 背景颜色
     self.setTitleReadyPlay();// 设置普通标题或者富文本标题【计时器未开始】文字内容
@@ -389,7 +350,9 @@ JobsKey(_btnTimerConfig)
 -(ButtonTimerConfigModel *)btnTimerConfig{
     ButtonTimerConfigModel *BtnTimerConfig = Jobs_getAssociatedObject(_btnTimerConfig);
     if (!BtnTimerConfig) {
-        BtnTimerConfig = ButtonTimerConfigModel.new;
+        BtnTimerConfig = jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
+            
+        });
         Jobs_setAssociatedRETAIN_NONATOMIC(_btnTimerConfig, BtnTimerConfig)
     }
     // 定时器运行时的Block

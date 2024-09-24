@@ -360,13 +360,13 @@
     };
 }
 /// 重设UIButtonConfiguration并使之生效  JobsReturnButtonConfigurationByButtonConfigurationBlock
--(void)jobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock {
+-(__kindof UIButton *)jobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock {
     if (@available(iOS 16.0, *)) {
         UIButtonConfiguration *config = self.configuration.copy;
         if (configurationBlock) configurationBlock(config);
         self.configuration = config;
         [self updateConfiguration];
-    }
+    } return self;
 }
 
 -(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock{
@@ -375,98 +375,103 @@
 }
 #pragma mark —— 一些通用修改（已做Api向下兼容）
 /// 重设Btn的描边：线宽和线段的颜色
--(jobsByColor_FloatBlock _Nonnull)jobsResetBtnlayerBorderCorAndWidth{
+-(JobsReturnButtonByColor_FloatBlock _Nonnull)jobsResetBtnlayerBorderCorAndWidth{
     @jobs_weakify(self)
-    return ^(UIColor *_Nullable layerBorderCor,float borderWidth) {
+    return ^__kindof UIButton *(UIColor *_Nullable layerBorderCor,float borderWidth) {
         @jobs_strongify(self)
         self.jobsResetBtnlayerBorderCor(layerBorderCor);
         self.jobsResetBtnlayerBorderWidth(borderWidth);
+        return self;
     };
 }
 /// 重设Btn的描边线段的颜色
--(jobsByCorBlock _Nonnull)jobsResetBtnlayerBorderCor{
+-(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnlayerBorderCor{
     @jobs_weakify(self)
-    return ^(UIColor *_Nullable layerBorderCor) {
+    return ^__kindof UIButton *(UIColor *_Nullable layerBorderCor) {
         @jobs_strongify(self)
         if(self.deviceSystemVersion.floatValue < 15.0){
             self.layer.borderColor = layerBorderCor.CGColor;
+            return self;
         }else{
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.background.strokeColor = layerBorderCor;
             }];
         }
     };
 }
 /// 重设Btn的描边线段的宽度
--(jobsByFloatBlock _Nonnull)jobsResetBtnlayerBorderWidth{
+-(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnlayerBorderWidth{
     @jobs_weakify(self)
-    return ^(float borderWidth) {
+    return ^__kindof UIButton *(CGFloat borderWidth) {
         @jobs_strongify(self)
         if(self.deviceSystemVersion.floatValue < 15.0){
             self.layer.borderWidth = borderWidth;
+            return self;
         }else{
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.background.strokeWidth = borderWidth;
             }];
         }
     };
 }
 /// 重设Btn的圆切角
--(jobsByCGFloatBlock _Nonnull)jobsResetBtnCornerRadiusValue{
+-(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnCornerRadiusValue{
     @jobs_weakify(self)
-    return ^(CGFloat cornerRadiusValue) {
+    return ^__kindof UIButton *(CGFloat cornerRadiusValue) {
         @jobs_strongify(self)
         if(self.deviceSystemVersion.floatValue < 15.0){
             self.cornerCutToCircleWithCornerRadius(cornerRadiusValue);
+            return self;
         }else{
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.background.cornerRadius = cornerRadiusValue;
             }];
         }
     };
 }
 /// 重设Btn主标题的文字内容 优先级高于jobsResetTitle 和 normalTitle
--(jobsByStringBlock _Nonnull)jobsResetBtnTitle{
+-(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnTitle{
     @jobs_weakify(self)
-    return ^(NSString *_Nullable data) {
+    return ^__kindof UIButton *(NSString *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetTitle(data ? : JobsInternationalization(@"暂无数据"));
         } else self.normalTitle(data);
+        return self;
     };
 }
 /// 重设Btn副标题的文字内容
--(jobsByStringBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0)){
+-(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(NSString *_Nullable data) {
+    return ^__kindof UIButton *(NSString *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetSubTitle(data ? : JobsInternationalization(@"暂无数据"));
-        }
+        }return self;
     };
 }
 /// 修改主标题的对齐方式
--(jobsByTextAlignmentBlock _Nonnull)jobsResetTitleTextAlignment API_AVAILABLE(ios(16.0)){
-    return ^(NSTextAlignment data) {
+-(JobsReturnButtonByTextAlignmentBlock _Nonnull)jobsResetTitleTextAlignment API_AVAILABLE(ios(16.0)){
+    return ^__kindof UIButton *(NSTextAlignment data) {
         @jobs_weakify(self)
-        [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
-            @jobs_strongify(self)
+        return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             if(config.subtitle){
-                NSMutableDictionary <NSAttributedStringKey, id>*mutDic = NSMutableDictionary.dictionary;
-                mutDic.add(NSForegroundColorAttributeName,self.getTitleColorFromTransformer(config.titleTextAttributesTransformer));
-                mutDic.add(NSFontAttributeName,self.getTitleFontFromTransformer(config.titleTextAttributesTransformer));
-                mutDic.add(NSParagraphStyleAttributeName,self.jobsparagraphStyleByTextAlignment(data));
                 config.attributedSubtitle = [NSAttributedString.alloc initWithString:config.subtitle
-                                                                          attributes:mutDic];
+                                                                          attributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data1) {
+                    @jobs_strongify(self)
+                    data1.add(NSForegroundColorAttributeName,self.getTitleColorFromTransformer(config.titleTextAttributesTransformer));
+                    data1.add(NSFontAttributeName,self.getTitleFontFromTransformer(config.titleTextAttributesTransformer));
+                    data1.add(NSParagraphStyleAttributeName,self.jobsparagraphStyleByTextAlignment(data));
+                })];
             }
         }];
     };
 }
 /// 修改副标题的对齐方式
--(jobsByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0)){
-    return ^(NSTextAlignment data) {
+-(JobsReturnButtonByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0)){
+    return ^__kindof UIButton *(NSTextAlignment data) {
         @jobs_weakify(self)
-        [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+        return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             @jobs_strongify(self)
             if(config.subtitle){
                 NSMutableDictionary <NSAttributedStringKey, id>*mutDic = NSMutableDictionary.dictionary;
@@ -480,51 +485,56 @@
     };
 }
 /// 重设Btn.Image
--(jobsByImageBlock _Nonnull)jobsResetBtnImage{
+-(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnImage{
     @jobs_weakify(self)
-    return ^(UIImage *_Nullable data) {
+    return ^__kindof UIButton *(UIImage *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetImage(data);
         } else self.normalImage(data);
+        return self;
     };
 }
 /// 重设Btn主标题的文字颜色
--(jobsByCorBlock _Nonnull)jobsResetBtnTitleCor{
+-(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnTitleCor{
     @jobs_weakify(self)
-    return ^(UIColor *_Nullable data) {
+    return ^__kindof UIButton *(UIColor *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetTitleBaseForegroundColor(data ? : JobsBlueColor);
         } else self.normalTitleColor(data);
+        return self;
     };
 }
 /// 重设Btn副标题的文字颜色
--(jobsByCorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0)){
+-(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIColor *_Nullable data) {
+    return ^__kindof UIButton *(UIColor *_Nullable data) {
         @jobs_strongify(self)
         self.jobsResetSubTitleBaseForegroundColor(data);
+        return self;
     };
 }
 /// 重设Btn主标题的背景颜色
--(jobsByCorBlock _Nonnull)jobsResetBtnBgCor{
+-(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnBgCor{
     @jobs_weakify(self)
-    return ^(UIColor *_Nullable data) {
+    return ^__kindof UIButton *(UIColor *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetBaseBackgroundColor(data ? : JobsCyanColor);
         } else self.backgroundColor = data;
+        return self;
     };
 }
 /// 重设Btn的背景图片
--(jobsByImageBlock _Nonnull)jobsResetBtnBgImage{
+-(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnBgImage{
     @jobs_weakify(self)
-    return ^(UIImage *_Nullable data) {
+    return ^__kindof UIButton *(UIImage *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetBackgroundImage(data);
         } else self.normalBackgroundImage(data);
+        return self;
     };
 }
 
@@ -536,11 +546,11 @@
     };
 }
 
--(jobsByNSIntegerBlock _Nonnull)titleAlignment{
-    return ^(NSTextAlignment textAlignment) {
+-(JobsReturnButtonByNSIntegerBlock _Nonnull)titleAlignment{
+    return ^__kindof UIButton *(NSTextAlignment textAlignment) {
         if (@available(iOS 16.0, *)) {
             @jobs_weakify(self)
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 @jobs_strongify(self)
                 NSMutableDictionary <NSAttributedStringKey, id>*mutDic = NSMutableDictionary.dictionary;
                 mutDic.add(NSForegroundColorAttributeName,self.normalTitleColor);
@@ -550,181 +560,198 @@
                                                                        attributes:mutDic];
             }];
         } else self.titleLabel.textAlignment = textAlignment;
+        return self;
     };
 }
 
--(jobsByFontBlock _Nonnull)titleFont{
-    return ^(UIFont *_Nonnull font) {
+-(JobsReturnButtonByFontBlock _Nonnull)titleFont{
+    return ^__kindof UIButton *(UIFont *_Nonnull font) {
         if (@available(iOS 16.0, *)) {
             @jobs_weakify(self)
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 @jobs_strongify(self)
                 config.titleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:font btnTitleCor:self.titleColorForNormalState];
             }];
         } else self.titleLabel.font = font;
+        return self;
     };
 }
 
--(jobsByFontBlock _Nonnull)subTitleFont{
-    return ^(UIFont *_Nonnull font) {
+-(JobsReturnButtonByFontBlock _Nonnull)subTitleFont{
+    return ^__kindof UIButton *(UIFont *_Nonnull font) {
         @jobs_weakify(self)
         if (@available(iOS 16.0, *)) {
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 @jobs_strongify(self)
                 config.subtitleTextAttributesTransformer =
                 [self jobsSetConfigTextAttributesTransformerByTitleFont:font
                                                             btnTitleCor:self.getTitleColorFromTransformer(config.subtitleTextAttributesTransformer)];
             }];
         } else self.titleLabel.font = font;
+        return self;
     };
 }
 
--(jobsByImageBlock _Nonnull)normalImage{
+-(JobsReturnButtonByImageBlock _Nonnull)normalImage{
     @jobs_weakify(self)
-    return ^(UIImage *_Nonnull image) {
+    return ^__kindof UIButton *(UIImage *_Nonnull image) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.image = image;
             }];
         } else [self setImage:image forState:UIControlStateNormal];
+        return self;
     };
 }
 
--(jobsByImageBlock _Nonnull)normalBackgroundImage{
+-(JobsReturnButtonByImageBlock _Nonnull)normalBackgroundImage{
     @jobs_weakify(self)
-    return ^(UIImage *_Nonnull backgroundImage) {
+    return ^__kindof UIButton *(UIImage *_Nonnull backgroundImage) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.background.image = backgroundImage;
             }];
         } else [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+        return self;
     };
 }
 
--(jobsByStringBlock _Nonnull)normalTitle{
+-(JobsReturnButtonByStringBlock _Nonnull)normalTitle{
     @jobs_weakify(self)
-    return ^(NSString *_Nonnull title) {
+    return ^__kindof UIButton *(NSString *_Nonnull title) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.title = title;
             }];
         } else [self setTitle:title forState:UIControlStateNormal];
+        return self;
     };
 }
 
--(jobsByCorBlock _Nonnull)normalTitleColor{
+-(JobsReturnButtonByColorBlock _Nonnull)normalTitleColor{
     @jobs_weakify(self)
-    return ^(UIColor *_Nonnull titleColor) {
+    return ^__kindof UIButton *(UIColor *_Nonnull titleColor) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.baseForegroundColor = titleColor;/// 文本颜色
             }];
         } else [self setTitleColor:titleColor forState:UIControlStateNormal];
+        return self;
     };
 }
 
--(jobsByCorBlock _Nonnull)subTitleColor{
+-(JobsReturnButtonByColorBlock _Nonnull)subTitleColor{
     @jobs_weakify(self)
-    return ^(UIColor *_Nonnull color) {
+    return ^__kindof UIButton *(UIColor *_Nonnull color) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.subtitleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:self.getTitleFontFromTransformer(config.subtitleTextAttributesTransformer) btnTitleCor:color];
             }];
         } else self.titleLabel.textColor = color;
+        return self;
     };
 }
 /// 富文本
--(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle{
+-(JobsReturnButtonByAttributedStringBlock _Nonnull)normalAttributedTitle{
     @jobs_weakify(self)
-    return ^(NSAttributedString *_Nonnull title) {
+    return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.attributedTitle = title;
             }];
         } else [self setAttributedTitle:title forState:UIControlStateNormal];
+        return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetCornerRadius{
+-(JobsReturnButtonByCGFloatBlock _Nonnull)resetCornerRadius{
     @jobs_weakify(self)
-    return ^(CGFloat cornerRadiusValue) {
+    return ^__kindof UIButton *(CGFloat cornerRadiusValue) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.background.cornerRadius = cornerRadiusValue;
             }];
         } else self.cornerCutToCircleWithCornerRadius(cornerRadiusValue);
+        return self;
     };
 }
 
--(jobsByCorBlock _Nonnull)resetLayerBorderCor{
+-(JobsReturnButtonByColorBlock _Nonnull)resetLayerBorderCor{
     @jobs_weakify(self)
-    return ^(UIColor *_Nullable layerBorderCor) {
+    return ^__kindof UIButton *(UIColor *_Nullable layerBorderCor) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.background.strokeColor = layerBorderCor;
             }];
         } else self.layer.borderColor = layerBorderCor.CGColor;
+        return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetBorderWidth{
+-(JobsReturnButtonByCGFloatBlock _Nonnull)resetBorderWidth{
     @jobs_weakify(self)
-    return ^(CGFloat borderWidth) {
+    return ^__kindof UIButton *(CGFloat borderWidth) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.background.strokeWidth = borderWidth;
             }];
         } else self.layer.borderWidth = borderWidth;
+        return self;
     };
 }
 #pragma mark —— UIButton.带状态 set
 /// 设置 UIButton 已选择状态下的 按钮图片
--(jobsByImageBlock _Nonnull)selectedImage{
+-(JobsReturnButtonByImageBlock _Nonnull)selectedImage{
     @jobs_weakify(self)
-    return ^(UIImage *_Nonnull image) {
+    return ^__kindof UIButton *(UIImage *_Nonnull image) {
         @jobs_strongify(self)
         [self setImage:image forState:UIControlStateSelected];
+        return self;
     };
 }
 /// 设置 UIButton 已选择状态下的 按钮背景图片
--(jobsByImageBlock _Nonnull)selectedBackgroundImage{
+-(JobsReturnButtonByImageBlock _Nonnull)selectedBackgroundImage{
     @jobs_weakify(self)
-    return ^(UIImage *_Nonnull backgroundImage) {
+    return ^__kindof UIButton *(UIImage *_Nonnull backgroundImage) {
         @jobs_strongify(self)
         [self setBackgroundImage:backgroundImage forState:UIControlStateSelected];
+        return self;
     };
 }
 /// 设置 UIButton 已选择状态下的 按钮主标题
--(jobsByStringBlock _Nonnull)selectedTitle{
+-(JobsReturnButtonByTitleBlock _Nonnull)selectedTitle{
     @jobs_weakify(self)
-    return ^(NSString *_Nonnull title) {
+    return ^__kindof UIButton *(NSString *_Nonnull title) {
         @jobs_strongify(self)
         [self setTitle:title forState:UIControlStateSelected];
+        return self;
     };
 }
 /// 设置 UIButton 已选择状态下的 按钮主标题的颜色
--(jobsByCorBlock _Nonnull)selectedTitleColor{
+-(JobsReturnButtonByColorBlock _Nonnull)selectedTitleColor{
     @jobs_weakify(self)
-    return ^(UIColor *_Nonnull titleColor) {
+    return ^__kindof UIButton *(UIColor *_Nonnull titleColor) {
         @jobs_strongify(self)
         [self setTitleColor:titleColor forState:UIControlStateSelected];
+        return self;
     };
 }
 /// 设置 UIButton 已选择状态下的 按钮主标题的富文本内容
--(jobsByAttributedStringBlock _Nonnull)selectedAttributedTitle{
+-(JobsReturnButtonByAttributedStringBlock _Nonnull)selectedAttributedTitle{
     @jobs_weakify(self)
-    return ^(NSAttributedString *_Nonnull title) {
+    return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)
         [self setAttributedTitle:title forState:UIControlStateSelected];
+        return self;
     };
 }
 /**
@@ -735,7 +762,7 @@
 #pragma mark —— UIButton.configuration的各项属性值的修改
 -(JobsReturnButtonConfigurationByBackgroundBlock _Nonnull)jobsResetBackground API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIBackgroundConfiguration *data) {
+    return ^UIButtonConfiguration *(UIBackgroundConfiguration *data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.background = data;
@@ -745,7 +772,7 @@
 
 -(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetBackgroundImage API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIImage *data) {
+    return ^UIButtonConfiguration *(UIImage *data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.background.image = data;
@@ -755,7 +782,7 @@
 
 -(JobsReturnButtonConfigurationByCornerStyleBlock _Nonnull)jobsResetCornerStyle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIButtonConfigurationCornerStyle data) {
+    return ^UIButtonConfiguration *(UIButtonConfigurationCornerStyle data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.cornerStyle = data;
@@ -765,7 +792,7 @@
 
 -(JobsReturnButtonConfigurationBySizeBlock _Nonnull)jobsResetButtonSize API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIButtonConfigurationSize data) {
+    return ^UIButtonConfiguration *(UIButtonConfigurationSize data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.buttonSize = data;
@@ -775,7 +802,7 @@
 
 -(JobsReturnButtonConfigurationByMacIdiomStyleBlock _Nonnull)jobsResetMacIdiomStyle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIButtonConfigurationMacIdiomStyle data) {
+    return ^UIButtonConfiguration *(UIButtonConfigurationMacIdiomStyle data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.macIdiomStyle = data;
@@ -785,7 +812,7 @@
 
 -(JobsReturnButtonConfigurationByBaseBackgroundColorBlock _Nonnull)jobsResetBaseBackgroundColor API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIColor *data) {
+    return ^UIButtonConfiguration *(UIColor *data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             UIBackgroundConfiguration *bgConfig = config.background.copy;
@@ -798,7 +825,7 @@
 
 -(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetImage API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIImage *data) {
+    return ^UIButtonConfiguration *(UIImage *data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.image = data;
@@ -808,7 +835,7 @@
 
 -(JobsReturnButtonConfigurationByImageColorTransformerBlock _Nonnull)jobsResetImageColorTransformer API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIConfigurationColorTransformer data) {
+    return ^UIButtonConfiguration *(UIConfigurationColorTransformer data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.imageColorTransformer = data;
@@ -818,7 +845,7 @@
 
 -(JobsReturnButtonConfigurationByPreferredSymbolConfigurationForImageBlock _Nonnull)jobsResetPreferredSymbolConfigurationForImage API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIImageSymbolConfiguration *data) {
+    return ^UIButtonConfiguration *(UIImageSymbolConfiguration *data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.preferredSymbolConfigurationForImage = data;
@@ -828,7 +855,7 @@
 
 -(JobsReturnButtonConfigurationByShowsActivityIndicatorBlock _Nonnull)jobsResetShowsActivityIndicator API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(BOOL data) {
+    return ^UIButtonConfiguration *(BOOL data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.showsActivityIndicator = data;
@@ -838,7 +865,7 @@
 
 -(JobsReturnButtonConfigurationByActivityIndicatorColorTransformerBlock _Nonnull)jobsResetActivityIndicatorColorTransformer API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIConfigurationColorTransformer data) {
+    return ^UIButtonConfiguration *(UIConfigurationColorTransformer data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.activityIndicatorColorTransformer = data;
@@ -848,7 +875,7 @@
 
 -(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetTitle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(NSString *data) {
+    return ^UIButtonConfiguration *(NSString *data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.title = data;
@@ -858,7 +885,7 @@
 
 -(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetSubTitle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(NSString *data) {
+    return ^UIButtonConfiguration *(NSString *data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.subtitle = data;
@@ -868,7 +895,7 @@
 
 -(JobsReturnButtonConfigurationByAttributedTitleBlock _Nonnull)jobsResetAttributedTitle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(NSAttributedString *data) {
+    return ^UIButtonConfiguration *(NSAttributedString *data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.attributedTitle = data;
@@ -878,7 +905,7 @@
 
 -(JobsReturnButtonConfigurationByTitleTextAttributesTransformerBlock _Nonnull)jobsResetTitleTextAttributesTransformer API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIConfigurationTextAttributesTransformer data) {
+    return ^UIButtonConfiguration *(UIConfigurationTextAttributesTransformer data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.titleTextAttributesTransformer = data;
@@ -888,7 +915,7 @@
 
 -(JobsReturnButtonConfigurationByTitleLineBreakModeBlock _Nonnull)jobsResetTitleLineBreakMode API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(NSLineBreakMode data) {
+    return ^UIButtonConfiguration *(NSLineBreakMode data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.titleLineBreakMode = data;
@@ -898,7 +925,7 @@
 
 -(JobsReturnButtonConfigurationByTitleLineBreakModeBlock _Nonnull)jobsResetSubTitleLineBreakMode API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(NSLineBreakMode data) {
+    return ^UIButtonConfiguration *(NSLineBreakMode data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.subtitleLineBreakMode = data;
@@ -908,7 +935,7 @@
 
 -(JobsReturnButtonConfigurationBySubtitleBlock _Nonnull)jobsResetSubtitle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(NSString *data) {
+    return ^UIButtonConfiguration *(NSString *data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.subtitle = data;
@@ -918,7 +945,7 @@
 
 -(JobsReturnButtonConfigurationByAttributedSubtitleBlock _Nonnull)jobsResetAttributedSubtitle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(NSAttributedString *data) {
+    return ^UIButtonConfiguration *(NSAttributedString *data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.attributedSubtitle = data;
@@ -928,7 +955,7 @@
 
 -(JobsReturnButtonConfigurationBySubtitleTextAttributesTransformerBlock _Nonnull)jobsResetSubtitleTextAttributesTransformer API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIConfigurationTextAttributesTransformer data) {
+    return ^UIButtonConfiguration *(UIConfigurationTextAttributesTransformer data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.subtitleTextAttributesTransformer = data;
@@ -938,7 +965,7 @@
 
 -(JobsReturnButtonConfigurationBySubtitleLineBreakModeBlock _Nonnull)jobsResetSubtitleLineBreakMode API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(NSLineBreakMode data) {
+    return ^UIButtonConfiguration *(NSLineBreakMode data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.subtitleLineBreakMode = data;
@@ -948,7 +975,7 @@
 
 -(JobsReturnButtonConfigurationByIndicatorBlock _Nonnull)jobsResetIndicator API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIButtonConfigurationIndicator data) {
+    return ^UIButtonConfiguration *(UIButtonConfigurationIndicator data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.indicator = data;
@@ -958,7 +985,7 @@
 
 -(JobsReturnButtonConfigurationByIndicatorColorTransformerBlock _Nonnull)jobsResetIndicatorColorTransformer API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIConfigurationColorTransformer data) {
+    return ^UIButtonConfiguration *(UIConfigurationColorTransformer data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.indicatorColorTransformer = data;
@@ -968,7 +995,7 @@
 
 -(JobsReturnButtonConfigurationByContentInsetsBlock _Nonnull)jobsResetContentInsets API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(NSDirectionalEdgeInsets data) {
+    return ^UIButtonConfiguration *(NSDirectionalEdgeInsets data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.contentInsets = data;
@@ -978,7 +1005,7 @@
 
 -(JobsReturnButtonConfigurationByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(NSDirectionalRectEdge data) {
+    return ^UIButtonConfiguration *(NSDirectionalRectEdge data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.imagePlacement = data;
@@ -988,7 +1015,7 @@
 
 -(JobsReturnButtonConfigurationByImagePaddingBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^UIButtonConfiguration *(CGFloat data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.imagePadding = data;
@@ -998,7 +1025,7 @@
 
 -(JobsReturnButtonConfigurationByTitlePaddingBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^UIButtonConfiguration *(CGFloat data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.titlePadding = data;
@@ -1008,7 +1035,7 @@
 
 -(JobsReturnButtonConfigurationByTitleAlignmentBlock _Nonnull)jobsResetTitleAlignment API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIButtonConfigurationTitleAlignment data) {
+    return ^UIButtonConfiguration *(UIButtonConfigurationTitleAlignment data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.titleAlignment = data;
@@ -1018,7 +1045,7 @@
 
 -(JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock _Nonnull)jobsResetAutomaticallyUpdateForSelection API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(BOOL data) {
+    return ^UIButtonConfiguration *(BOOL data) {
         @jobs_strongify(self)
         return [self JobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.automaticallyUpdateForSelection = data;
@@ -1028,7 +1055,7 @@
 
 -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetTitleBaseForegroundColor API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIColor *data) {
+    return ^UIButtonConfiguration *(UIColor *data) {
         @jobs_strongify(self)
         [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.baseForegroundColor = data;
@@ -1042,7 +1069,7 @@
 
 -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetSubTitleBaseForegroundColor API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIColor *data) {
+    return ^UIButtonConfiguration *(UIColor *data) {
         @jobs_strongify(self)
         [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
 #warning UIButtonConfiguration 没有对subTitle字体颜色的描述
@@ -1056,21 +1083,21 @@
     };
 }
 
--(jobsByFontBlock _Nonnull)jobsResetTitleFont API_AVAILABLE(ios(16.0)){
+-(JobsReturnButtonConfigurationByFontBlock _Nonnull)jobsResetTitleFont API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIFont *data) {
+    return ^__kindof UIButtonConfiguration *(UIFont *data) {
         @jobs_strongify(self)
-        self.jobsResetTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:data
-                                                                                                 btnTitleCor:nil]);
+        return self.jobsResetTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:data
+                                                                                                        btnTitleCor:nil]);
     };
 }
 
--(jobsByFontBlock _Nonnull)jobsResetSubTitleFont API_AVAILABLE(ios(16.0)){
+-(JobsReturnButtonConfigurationByFontBlock _Nonnull)jobsResetSubTitleFont API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^(UIFont *data) {
+    return ^__kindof UIButtonConfiguration *(UIFont *data) {
         @jobs_strongify(self)
-        self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:data
-                                                                                                    btnTitleCor:nil]);
+        return self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:data
+                                                                                                           btnTitleCor:nil]);
     };
 }
 #pragma mark —— UIButton.带状态的 get

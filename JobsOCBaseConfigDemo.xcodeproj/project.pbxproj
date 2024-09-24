@@ -115,7 +115,6 @@
 		CE84D3872C8EC460005DE167 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84D36A2C8EBF1C005DE167 /* BaseViewController.m */; };
 		CE84D5092C8F03F4005DE167 /* UIButton+SimplyMake.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84D5072C8F03EF005DE167 /* UIButton+SimplyMake.m */; };
 		CE84D8042C912E2F005DE167 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE84D8022C912E2F005DE167 /* JobsOCBaseConfigDemo.xcdatamodeld */; };
-		CE8877A92C50B3090085948C /* JobsRichTextConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877A72C50B3090085948C /* JobsRichTextConfig.m */; };
 		CE8877BD2C51F1FF0085948C /* JobsNavBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */; };
 		CE8877BE2C51F1FF0085948C /* JobsNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8877BB2C51F1FF0085948C /* JobsNavBar.m */; };
 		CE89E11D2C89730A0042B7D9 /* UIImageView+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CE89E1172C89728E0042B7D9 /* UIImageView+SDWebImage.m */; };
@@ -774,7 +773,6 @@
 		CECE857B2C4513CE00764AF5 /* UIButton+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE834E2C4513CD00764AF5 /* UIButton+Extra.m */; };
 		CECE857C2C4513CE00764AF5 /* UIButton+ImageTitleSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE83512C4513CD00764AF5 /* UIButton+ImageTitleSpacing.m */; };
 		CECE857D2C4513CE00764AF5 /* UIButton+ImageTitleSpacing.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE83522C4513CD00764AF5 /* UIButton+ImageTitleSpacing.md */; };
-		CECE857E2C4513CE00764AF5 /* ButtonTimerConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE83552C4513CD00764AF5 /* ButtonTimerConfigModel.m */; };
 		CECE857F2C4513CE00764AF5 /* UIButton+Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE83592C4513CD00764AF5 /* UIButton+Timer.m */; };
 		CECE85802C4513CE00764AF5 /* UIButton+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE835C2C4513CD00764AF5 /* UIButton+UI.m */; };
 		CECE85812C4513CE00764AF5 /* UIButton+UI.md in Resources */ = {isa = PBXBuildFile; fileRef = CECE835D2C4513CD00764AF5 /* UIButton+UI.md */; };
@@ -1170,6 +1168,8 @@
 		CEDC58E72CA190BC00C7772C /* MJRefreshBackStateFooter+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDC58D82CA190BC00C7772C /* MJRefreshBackStateFooter+Extra.m */; };
 		CEDC58E82CA190BC00C7772C /* MJRefreshGifHeader+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDC58CF2CA190BC00C7772C /* MJRefreshGifHeader+Extra.m */; };
 		CEDC58EC2CA190CF00C7772C /* MJRefreshConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDC58EA2CA190CF00C7772C /* MJRefreshConfigModel.m */; };
+		CEDFA9AD2CA268410075D200 /* JobsRichTextConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFA9AB2CA268410075D200 /* JobsRichTextConfig.m */; };
+		CEDFA9B12CA28F4D0075D200 /* ButtonTimerConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFA9AF2CA28F4D0075D200 /* ButtonTimerConfigModel.m */; };
 		CEE26F3A2C9801A900D900AA /* NSObject+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE26F382C9801A400D900AA /* NSObject+Data.m */; };
 		CEE26FC22C980A0900D900AA /* UICollectionViewFlowLayout+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE26FC02C980A0500D900AA /* UICollectionViewFlowLayout+Extra.m */; };
 		CEE403072C788F2B0085C23C /* JobsCorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE403052C7887960085C23C /* JobsCorModel.m */; };
@@ -1424,8 +1424,6 @@
 		CE84D5062C8F03EF005DE167 /* UIButton+SimplyMake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+SimplyMake.h"; sourceTree = "<group>"; };
 		CE84D5072C8F03EF005DE167 /* UIButton+SimplyMake.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SimplyMake.m"; sourceTree = "<group>"; };
 		CE84D8032C912E2F005DE167 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
-		CE8877A62C50B3090085948C /* JobsRichTextConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsRichTextConfig.h; sourceTree = "<group>"; };
-		CE8877A72C50B3090085948C /* JobsRichTextConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsRichTextConfig.m; sourceTree = "<group>"; };
 		CE8877B72C51F1FF0085948C /* JobsNavBarConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNavBarConfig.h; sourceTree = "<group>"; };
 		CE8877B82C51F1FF0085948C /* JobsNavBarConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsNavBarConfig.m; sourceTree = "<group>"; };
 		CE8877BA2C51F1FF0085948C /* JobsNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsNavBar.h; sourceTree = "<group>"; };
@@ -2698,8 +2696,6 @@
 		CECE83502C4513CD00764AF5 /* UIButton+ImageTitleSpacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ImageTitleSpacing.h"; sourceTree = "<group>"; };
 		CECE83512C4513CD00764AF5 /* UIButton+ImageTitleSpacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ImageTitleSpacing.m"; sourceTree = "<group>"; };
 		CECE83522C4513CD00764AF5 /* UIButton+ImageTitleSpacing.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "UIButton+ImageTitleSpacing.md"; sourceTree = "<group>"; };
-		CECE83542C4513CD00764AF5 /* ButtonTimerConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTimerConfigModel.h; sourceTree = "<group>"; };
-		CECE83552C4513CD00764AF5 /* ButtonTimerConfigModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonTimerConfigModel.m; sourceTree = "<group>"; };
 		CECE83572C4513CD00764AF5 /* ButtonTimerDefStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTimerDefStructure.h; sourceTree = "<group>"; };
 		CECE83582C4513CD00764AF5 /* UIButton+Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Timer.h"; sourceTree = "<group>"; };
 		CECE83592C4513CD00764AF5 /* UIButton+Timer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Timer.m"; sourceTree = "<group>"; };
@@ -3325,6 +3321,10 @@
 		CEDC58E12CA190BC00C7772C /* MJRefresh+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJRefresh+Extra.h"; sourceTree = "<group>"; };
 		CEDC58E92CA190CF00C7772C /* MJRefreshConfigModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJRefreshConfigModel.h; sourceTree = "<group>"; };
 		CEDC58EA2CA190CF00C7772C /* MJRefreshConfigModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConfigModel.m; sourceTree = "<group>"; };
+		CEDFA9AA2CA268410075D200 /* JobsRichTextConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsRichTextConfig.h; sourceTree = "<group>"; };
+		CEDFA9AB2CA268410075D200 /* JobsRichTextConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsRichTextConfig.m; sourceTree = "<group>"; };
+		CEDFA9AE2CA28F4D0075D200 /* ButtonTimerConfigModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonTimerConfigModel.h; sourceTree = "<group>"; };
+		CEDFA9AF2CA28F4D0075D200 /* ButtonTimerConfigModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonTimerConfigModel.m; sourceTree = "<group>"; };
 		CEE26F372C9801A400D900AA /* NSObject+Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Data.h"; sourceTree = "<group>"; };
 		CEE26F382C9801A400D900AA /* NSObject+Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Data.m"; sourceTree = "<group>"; };
 		CEE26FBF2C980A0500D900AA /* UICollectionViewFlowLayout+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewFlowLayout+Extra.h"; sourceTree = "<group>"; };
@@ -4016,6 +4016,8 @@
 			isa = PBXGroup;
 			children = (
 				CE61ACDD2C9EAAE1002DF138 /* JobsModel.h */,
+				CEDFA9B02CA28F4D0075D200 /* ButtonTimerModel */,
+				CEDFA9AC2CA268410075D200 /* JobsRichTextConfig */,
 				CEDC58EB2CA190CF00C7772C /* MJRefreshConfigModel */,
 				CE42BC5A2C9FD5C900E4FE8A /* IncomeSourceModel */,
 				CE61ACE02C9EAAE1002DF138 /* BaseModel */,
@@ -4513,15 +4515,6 @@
 				CE84D5072C8F03EF005DE167 /* UIButton+SimplyMake.m */,
 			);
 			path = "UIButton+SimplyMake";
-			sourceTree = "<group>";
-		};
-		CE8877A82C50B3090085948C /* JobsRichTextConfig */ = {
-			isa = PBXGroup;
-			children = (
-				CE8877A62C50B3090085948C /* JobsRichTextConfig.h */,
-				CE8877A72C50B3090085948C /* JobsRichTextConfig.m */,
-			);
-			path = JobsRichTextConfig;
 			sourceTree = "<group>";
 		};
 		CE8877B92C51F1FF0085948C /* JobsNavBarConfig */ = {
@@ -10680,7 +10673,6 @@
 		CECE82DC2C4513CD00764AF5 /* NSObject+RichText */ = {
 			isa = PBXGroup;
 			children = (
-				CE8877A82C50B3090085948C /* JobsRichTextConfig */,
 				CECE82DA2C4513CD00764AF5 /* NSObject+RichText.h */,
 				CECE82DB2C4513CD00764AF5 /* NSObject+RichText.m */,
 			);
@@ -11122,19 +11114,9 @@
 			path = "UIButton+ImageTitleSpacing";
 			sourceTree = "<group>";
 		};
-		CECE83562C4513CD00764AF5 /* ButtonTimerModel */ = {
-			isa = PBXGroup;
-			children = (
-				CECE83542C4513CD00764AF5 /* ButtonTimerConfigModel.h */,
-				CECE83552C4513CD00764AF5 /* ButtonTimerConfigModel.m */,
-			);
-			path = ButtonTimerModel;
-			sourceTree = "<group>";
-		};
 		CECE835A2C4513CD00764AF5 /* UIButton+Timer */ = {
 			isa = PBXGroup;
 			children = (
-				CECE83562C4513CD00764AF5 /* ButtonTimerModel */,
 				CECE83572C4513CD00764AF5 /* ButtonTimerDefStructure.h */,
 				CECE83582C4513CD00764AF5 /* UIButton+Timer.h */,
 				CECE83592C4513CD00764AF5 /* UIButton+Timer.m */,
@@ -14141,6 +14123,24 @@
 			path = MJRefreshConfigModel;
 			sourceTree = "<group>";
 		};
+		CEDFA9AC2CA268410075D200 /* JobsRichTextConfig */ = {
+			isa = PBXGroup;
+			children = (
+				CEDFA9AA2CA268410075D200 /* JobsRichTextConfig.h */,
+				CEDFA9AB2CA268410075D200 /* JobsRichTextConfig.m */,
+			);
+			path = JobsRichTextConfig;
+			sourceTree = "<group>";
+		};
+		CEDFA9B02CA28F4D0075D200 /* ButtonTimerModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEDFA9AE2CA28F4D0075D200 /* ButtonTimerConfigModel.h */,
+				CEDFA9AF2CA28F4D0075D200 /* ButtonTimerConfigModel.m */,
+			);
+			path = ButtonTimerModel;
+			sourceTree = "<group>";
+		};
 		CEE26F392C9801A400D900AA /* NSObject+Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -15030,6 +15030,7 @@
 				CECE85282C4513CE00764AF5 /* Nanosecond_TimerManager.m in Sources */,
 				CE8877BD2C51F1FF0085948C /* JobsNavBarConfig.m in Sources */,
 				CECE87762C45140000764AF5 /* XWCountryCodeController.m in Sources */,
+				CEDFA9B12CA28F4D0075D200 /* ButtonTimerConfigModel.m in Sources */,
 				CECE85342C4513CE00764AF5 /* NSObject+SYSAlertController.m in Sources */,
 				CECE87732C45140000764AF5 /* XLSphereView.m in Sources */,
 				CECE7EA12C450E5B00764AF5 /* KTVHCDataStorage.m in Sources */,
@@ -15055,7 +15056,6 @@
 				CECE7E7C2C450E5B00764AF5 /* JXCategoryTimelineCell.m in Sources */,
 				CE410FEA2C57B8B400AB9402 /* ZBRequestManager.m in Sources */,
 				CECE7C382C450C5000764AF5 /* NotifiViewFactory.m in Sources */,
-				CECE857E2C4513CE00764AF5 /* ButtonTimerConfigModel.m in Sources */,
 				CECE85462C4513CE00764AF5 /* KeychainHelper.m in Sources */,
 				CECE7C892C450C5000764AF5 /* JobsIMListView.m in Sources */,
 				CECE7CC72C450C5000764AF5 /* MyTableTableVC.m in Sources */,
@@ -15224,6 +15224,7 @@
 				CECE85142C4513CE00764AF5 /* NSMutableAttributedString+Extra.m in Sources */,
 				CE2E87402C689F9100260207 /* JobsBtnsStyleTBVCell.m in Sources */,
 				CECE85772C4513CE00764AF5 /* RBCLikeButton.m in Sources */,
+				CEDFA9AD2CA268410075D200 /* JobsRichTextConfig.m in Sources */,
 				CECE813D2C4512BF00764AF5 /* JobsUserHeaderDataViewTBVCell.m in Sources */,
 				CECE85AD2C4513CE00764AF5 /* UINavigationController+Extra.m in Sources */,
 				CECE7CBF2C450C5000764AF5 /* NSTimerManagerTestVC.m in Sources */,
@@ -15515,7 +15516,6 @@
 				CECE85B72C4513CE00764AF5 /* UITableView+Expand.m in Sources */,
 				CECE87252C45140000764AF5 /* NSString+Base64.m in Sources */,
 				CECE816E2C4512BF00764AF5 /* UITabBar+Ex.m in Sources */,
-				CE8877A92C50B3090085948C /* JobsRichTextConfig.m in Sources */,
 				CECE7C8D2C450C5000764AF5 /* MGSwipeButtonModel.m in Sources */,
 				CECE80D12C4512BF00764AF5 /* CasinoCustomerServiceView.m in Sources */,
 				CECE7C0D2C450C5000764AF5 /* ThreeClassCell.m in Sources */,

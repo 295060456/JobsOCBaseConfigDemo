@@ -9,6 +9,12 @@
 #import "JobsBlock.h"
 #import "JobsModel.h"
 
+static inline __kindof NSMutableDictionary *_Nonnull jobsMakeMutDic(jobsByMutableDictionarycBlock _Nonnull block){
+    NSMutableDictionary *data = NSMutableDictionary.dictionary;
+    if (block) block(data);
+    return data;
+}
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableDictionary (Extra)

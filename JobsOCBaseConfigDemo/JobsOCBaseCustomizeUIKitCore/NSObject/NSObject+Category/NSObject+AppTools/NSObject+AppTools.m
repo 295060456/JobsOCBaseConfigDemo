@@ -139,29 +139,26 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 -(JobsReturnStringByStringBlock _Nonnull)decodePicStr{
     return ^(NSString * _Nullable encodePicStr) {
         // 删除字符串
-        NSString *modifiedString = [encodePicStr stringByReplacingOccurrencesOfString:PicSalt withString:JobsInternationalization(@"")];
-        return modifiedString;
+        return [encodePicStr stringByReplacingOccurrencesOfString:PicSalt withString:@""];
     };
 }
 #pragma mark —— <AppToolsProtocol> 其他
 /// 设置普通文本
 -(UIViewModel *)configViewModelWithTitle:(NSString *_Nullable)title
                                 subTitle:(NSString *_Nullable)subTitle{
-    UIViewModel *viewModel = UIViewModel.new;
-    
-    {
-        UITextModel *textModel = UITextModel.new;
-        textModel.text = JobsInternationalization(title);
-        viewModel.textModel = textModel;
+    return jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        viewModel.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
+            textModel.text = JobsInternationalization(title);
+        });
         
-        UITextModel *subTextModel = UITextModel.new;
-        subTextModel.text = JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle);
-        viewModel.subTextModel = subTextModel;
-        
-        UITextModel *backBtnTitleModel = UITextModel.new;
-        backBtnTitleModel.text = JobsInternationalization(@"返回首页");
-        viewModel.backBtnTitleModel = backBtnTitleModel;
-    }return viewModel;
+        viewModel.subTextModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
+            textModel.text = JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle);
+        });
+
+        viewModel.backBtnTitleModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
+            textModel.text = JobsInternationalization(@"返回首页");
+        });
+    });
 }
 /// 带段落配置的文本
 -(UIViewModel *)configViewModelWithAttributeTitle:(NSString *_Nullable)title
@@ -239,20 +236,14 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 #pragma mark —— 弹出框。为了防止业务层的变化，弹出框定义在NSObject层
 /// Debug模式下的弹出框 及其相关的数据封装
 -(UIViewModel *)testPopViewData{
-    UIViewModel *viewModel = UIViewModel.new;
-    
-    {
-        UITextModel *textModel = UITextModel.new;
-        textModel.text = JobsInternationalization(@"主标题");
-        viewModel.textModel = textModel;
-    }
-    
-    {
-        UITextModel *textModel = UITextModel.new;
-        textModel.text = JobsInternationalization(@"副标题");
-        viewModel.subTextModel = textModel;
-    }
-    return viewModel;
+    return jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        viewModel.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
+            textModel.text = JobsInternationalization(@"主标题");
+        });
+        viewModel.subTextModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
+            textModel.text = JobsInternationalization(@"副标题");
+        });
+    });
 }
 /// Debug模式下的弹出框 及其相关的数据封装。在外层进行调用，[ 需要被展现的视图 popupShowScaleWithView:popupView];
 //-(JobsOCBaseConfigTestPopupView *)JobsTestPopView:(NSString *)string{
@@ -559,22 +550,23 @@ JobsKey(_richTextConfigMutArr)
 -(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
     NSMutableArray <JobsRichTextConfig *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextConfigMutArr);
     if (!RichTextMutArr) {
+        @jobs_weakify(self)
         RichTextMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-            JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-            config_01.font = UIFontWeightRegularSize(12);
-            config_01.textCor = HEXCOLOR(0x757575);
-            config_01.targetString = self.richTextMutArr[0];
-            data.add(config_01);
-
-            JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-            config_02.font = UIFontWeightMediumSize(12);;
-            config_02.textCor = HEXCOLOR(0xAE8330);
-            config_02.targetString = self.richTextMutArr[1];
-            config_02.urlStr = @"click://";
-            data.add(config_02);
+            @jobs_strongify(self)
+            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                data1.font = UIFontWeightRegularSize(12);
+                data1.textCor = HEXCOLOR(0x757575);
+                data1.targetString = self.richTextMutArr[0];
+            }));
+            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                @jobs_strongify(self)
+                data1.font = UIFontWeightMediumSize(12);;
+                data1.textCor = HEXCOLOR(0xAE8330);
+                data1.targetString = self.richTextMutArr[1];
+                data1.urlStr = @"click://";
+            }));
         });
         [self setRichTextConfigMutArr:RichTextMutArr];
-        
         Jobs_setAssociatedRETAIN_NONATOMIC(_richTextConfigMutArr, RichTextMutArr)
     }return RichTextMutArr;
 }

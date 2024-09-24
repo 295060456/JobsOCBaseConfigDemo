@@ -26,7 +26,7 @@ button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 ```objective-c
 @property(nonatomic,strong)BaseButton *titleBtn;
 @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
-@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*JobsRichTextConfigMutArr;
 ```
 
 * <span style="color:red; font-weight:bold;">警告：</span>一旦采用**UIButtonConfiguration**创建的UIButton，其他用老式Api创建的UIButton会全部出现异常（例如：title不显示）因为全部渲染走**UIButtonConfiguration**。但是**UIButtonConfiguration**会很方便我们应对富文本的需求。
@@ -91,43 +91,41 @@ button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 ```objective-c
 -(NSMutableArray<NSString *> *)richTextMutArr{
    if (!_richTextMutArr) {
-       _richTextMutArr = NSMutableArray.array;
-       _richTextMutArr.add(JobsInternationalization(@"观看完整教学视频需支付"));
-       _richTextMutArr.add(JobsInternationalization(@"99"));
-       _richTextMutArr.add(JobsInternationalization(@"Mata值"));
+       _richTextMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+           data.add(JobsInternationalization(@"观看完整教学视频需支付"));
+           data.add(JobsInternationalization(@"99"));
+           data.add(JobsInternationalization(@"Mata值"));
+       });
    }return _richTextMutArr;
 }
 
--(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
-   if (!_richTextConfigMutArr) {
-       _richTextConfigMutArr = NSMutableArray.array;
-       {
-           JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-           config_01.font = UIFontWeightRegularSize(14);
-           config_01.textCor = JobsCor(@"#666666");
-           config_01.targetString = self.richTextMutArr[0];
-           config_01.paragraphStyle = self.jobsParagraphStyleCenter;
-           [_richTextConfigMutArr addObject:config_01];
-       }
-
-       {
-           JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-           config_02.font = UIFontWeightRegularSize(14);
-           config_02.textCor = JobsCor(@"#BA9B77");
-           config_02.targetString = self.richTextMutArr[1];
-           config_02.paragraphStyle = self.jobsParagraphStyleCenter;
-           [_richTextConfigMutArr addObject:config_02];
-       }
-
-       {
-           JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
-           config_03.font = UIFontWeightRegularSize(14);
-           config_03.textCor = JobsCor(@"#666666");
-           config_03.targetString = self.richTextMutArr[2];
-           config_03.paragraphStyle = self.jobsParagraphStyleCenter;
-           [_richTextConfigMutArr addObject:config_03];
-       }
-   }return _richTextConfigMutArr;
+-(NSMutableArray<JobsRichTextConfig *> *)JobsRichTextConfigMutArr{
+   if (!_JobsRichTextConfigMutArr) {
+       @jobs_weakify(self)
+       _JobsRichTextConfigMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+           data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+               @jobs_strongify(self)
+               data1.font = UIFontWeightRegularSize(14);
+               data1.textCor = JobsCor(@"#666666");
+               data1.targetString = self.richTextMutArr[0];
+               data1.paragraphStyle = self.jobsParagraphStyleCenter;
+           }));
+           data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+               @jobs_strongify(self)
+               data1.font = UIFontWeightRegularSize(14);
+               data1.textCor = JobsCor(@"#BA9B77");
+               data1.targetString = self.richTextMutArr[1];
+               data1.paragraphStyle = self.jobsParagraphStyleCenter;
+           }));
+           data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+               @jobs_strongify(self)
+               data1.font = UIFontWeightRegularSize(14);
+               data1.textCor = JobsCor(@"#666666");
+               data1.targetString = self.richTextMutArr[2];
+               data1.paragraphStyle = self.jobsParagraphStyleCenter;
+           }));
+       });
+   }return _JobsRichTextConfigMutArr;
 }
 ```
 

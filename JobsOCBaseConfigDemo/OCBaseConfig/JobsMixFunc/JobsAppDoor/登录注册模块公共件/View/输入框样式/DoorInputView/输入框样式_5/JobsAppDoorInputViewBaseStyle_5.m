@@ -13,7 +13,7 @@
 /// UI
 @property(nonatomic,strong)UILabel *titleLab;
 @property(nonatomic,strong)UIButton *authCodeBtn;
-@property(nonatomic,strong)UIButton *securityModeBtn;
+@property(nonatomic,strong)BaseButton *securityModeBtn;
 @property(nonatomic,strong)ZYTextField *textField;
 @property(nonatomic,strong)BaseButton *chooseBtn;
 /// Data
@@ -136,62 +136,28 @@
     return _textField.text;
 }
 
--(UIButton *)getSecurityModeBtn{
+-(BaseButton *)getSecurityModeBtn{
     return _securityModeBtn;
 }
 #pragma mark —— lazyLoad
--(UIButton *)securityModeBtn{
+-(BaseButton *)securityModeBtn{
     if (!_securityModeBtn) {
         @jobs_weakify(self)
-        _securityModeBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                             background:nil
-                                             buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                          textAlignment:NSTextAlignmentCenter
-                                                       subTextAlignment:NSTextAlignmentCenter
-                                                            normalImage:self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image
-                                                         highlightImage:nil
-                                                        attributedTitle:nil
-                                                selectedAttributedTitle:nil
-                                                     attributedSubtitle:nil
-                                                                  title:nil
-                                                               subTitle:nil
-                                                              titleFont:nil
-                                                           subTitleFont:nil
-                                                               titleCor:nil
-                                                            subTitleCor:nil
-                                                     titleLineBreakMode:NSLineBreakByWordWrapping
-                                                  subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                    baseBackgroundColor:nil
-                                                        backgroundImage:nil
-                                                           imagePadding:JobsWidth(0)
-                                                           titlePadding:JobsWidth(0)
-                                                         imagePlacement:NSDirectionalRectEdgeNone
-                                             contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                               contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                          contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                      cornerRadiusValue:JobsWidth(0)
-                                                        roundingCorners:UIRectCornerAllCorners
-                                                   roundingCornersRadii:CGSizeZero
-                                                         layerBorderCor:nil
-                                                            borderWidth:JobsWidth(0)
-                                                          primaryAction:nil
-                                             longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                            id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                        clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            x.selected = !x.selected;
-            if(x.selected){
-                x.jobsResetBtnImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
-            }
-            self.textField.secureTextEntry = x.selected;
-            if (x.selected && !self.textField.isEditing) {
-                self.textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
-            }return nil;
-        }];
+        _securityModeBtn = BaseButton
+            .initByNormalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image)
+            .onClick(^(UIButton *x){
+                if (self.objectBlock) self.objectBlock(x);
+                x.selected = !x.selected;
+                if(x.selected){
+                    x.jobsResetBtnImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
+                }
+                self.textField.secureTextEntry = x.selected;
+                if (x.selected && !self.textField.isEditing) {
+                    self.textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
+                }
+        }).onLongPressGesture(^(id data){
+            NSLog(@"");
+        });
         [self addSubview:_securityModeBtn];
         [_securityModeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.bottom.equalTo(self);
@@ -220,14 +186,13 @@
     if (!_authCodeBtn) {
         _authCodeBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
                            longPressGestureEventBlock:nil
-                                      clickEventBlock:nil];
-        _authCodeBtn.normalTitle(JobsInternationalization(@"獲取驗證碼"));
-//        @jobs_weakify(self)
-        [_authCodeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-//            @jobs_strongify(self)
+                                      clickEventBlock:^id(UIButton *_Nullable x){
             x.startTimer();
             return nil;
-        }];
+        }].layerByBorderCor(HEXCOLOR(0xAE8330))
+            .layerByBorderWidth(0.5f)
+            .cornerCutToCircleWithCornerRadius(25 / 2);
+        
         [_authCodeBtn actionObjectBlock:^(id data) {
 //            @jobs_strongify(self)
             if ([data isKindOfClass:TimerProcessModel.class]) {
@@ -242,73 +207,47 @@
             make.size.mas_equalTo(self.btnTimerConfigModel.jobsSize);
         }];
         [self layoutIfNeeded];
-        _authCodeBtn.cornerCutToCircleWithCornerRadius(25 / 2);
-//        [_countDownBtn appointCornerCutToCircleByRoundingCorners:UIRectCornerTopRight | UIRectCornerBottomRight
-//                                                     cornerRadii:CGSizeMake(_countDownBtn.height / 2, _countDownBtn.height / 2)];
-
     }return _authCodeBtn;
 }
 
 -(BaseButton *)chooseBtn{
     if (!_chooseBtn) {
         @jobs_weakify(self)
-        _chooseBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                       background:nil
-                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                    textAlignment:NSTextAlignmentCenter
-                                                 subTextAlignment:NSTextAlignmentCenter
-                                                      normalImage:self.chooseBtnViewModel.image
-                                                   highlightImage:nil
-                                                  attributedTitle:nil
-                                          selectedAttributedTitle:nil
-                                               attributedSubtitle:nil
-                                                            title:self.chooseBtnViewModel.textModel.text
-                                                         subTitle:nil
-                                                        titleFont:self.chooseBtnViewModel.textModel.font
-                                                     subTitleFont:nil
-                                                         titleCor:self.chooseBtnViewModel.textModel.textCor
-                                                      subTitleCor:nil
-                                               titleLineBreakMode:NSLineBreakByWordWrapping
-                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                              baseBackgroundColor:nil
-                                                  backgroundImage:nil
-                                                     imagePadding:JobsWidth(8)
-                                                     titlePadding:JobsWidth(0)
-                                                   imagePlacement:NSDirectionalRectEdgeTrailing
-                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                cornerRadiusValue:JobsWidth(0)
-                                                  roundingCorners:UIRectCornerAllCorners
-                                             roundingCornersRadii:CGSizeZero
-                                                   layerBorderCor:nil
-                                                      borderWidth:JobsWidth(0)
-                                                    primaryAction:nil
-                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                      id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                  clickEventBlock:^id(BaseButton *x){
+        _chooseBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            data.buttonConfigTitleAlignment = UIButtonConfigurationTitleAlignmentAutomatic;
+            data.textAlignment = NSTextAlignmentCenter;
+            data.subTextAlignment = NSTextAlignmentCenter;
+            data.normalImage = self.chooseBtnViewModel.image;
+            data.title = self.chooseBtnViewModel.textModel.text;
+            data.titleFont = self.chooseBtnViewModel.textModel.font;
+            data.titleCor = self.chooseBtnViewModel.textModel.textCor;
+            data.titleLineBreakMode = NSLineBreakByWordWrapping;
+            data.subtitleLineBreakMode = NSLineBreakByWordWrapping;
+            data.imagePadding = JobsWidth(8);
+            data.imagePlacement = NSDirectionalRectEdgeTrailing;
+            data.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+            data.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+            data.roundingCorners = UIRectCornerAllCorners;
+        })).onClick(^(UIButton *x){
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
             x.selected = !x.selected;
+            if (self.objectBlock) self.objectBlock(x);
             if (x.selected) {
-                @jobs_weakify(self)
                 self->dropDownListView = [self motivateFromView:x
                                   jobsDropDownListViewDirection:JobsDropDownListViewDirection_UP
                                                            data:self.jobsPageViewDataMutArr
                                              motivateViewOffset:0
                                                     finishBlock:^(UIViewModel *data) {
-                    @jobs_strongify(self)
                     NSLog(@"data = %@",data);
                     NSLog(@"data = %@",data.data);
-                    x.normalTitle([data.textModel.text stringByAppendingString:data.subTextModel.text]);
+                    x.normalTitle(data.textModel.text.add(data.subTextModel.text));
                 }];
             }else{
                 [self->dropDownListView dropDownListViewDisappear:x];
-            }return nil;
-        }];
+            }
+        }).onLongPressGesture(^(id data){
+            NSLog(@"");
+        });
         [self addSubview:_chooseBtn];
         [_chooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self).offset(-JobsWidth(8));
@@ -359,81 +298,75 @@
 
 -(UIViewModel *)chooseBtnViewModel{
     if (!_chooseBtnViewModel) {
-        _chooseBtnViewModel = UIViewModel.new;
-        _chooseBtnViewModel.textModel.text = JobsInternationalization(@"請選擇區號");
-        _chooseBtnViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
-        _chooseBtnViewModel.textModel.textLineSpacing = 0;
-        _chooseBtnViewModel.textModel.font = UIFontWeightRegularSize(14);
-        _chooseBtnViewModel.bgCor = JobsClearColor;
-        _chooseBtnViewModel.jobsWidth = self.chooseBtnSize.width;
-        _chooseBtnViewModel.subTextModel.text = JobsInternationalization(@"");
-        _chooseBtnViewModel.image = JobsIMG(@"向下的箭头");
+        _chooseBtnViewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.textModel.text = JobsInternationalization(@"請選擇區號");
+            data.textModel.textCor = HEXCOLOR(0xC4C4C4);
+            data.textModel.textLineSpacing = 0;
+            data.textModel.font = UIFontWeightRegularSize(14);
+            data.bgCor = JobsClearColor;
+            data.jobsWidth = self.chooseBtnSize.width;
+            data.subTextModel.text = JobsInternationalization(@"");
+            data.image = JobsIMG(@"向下的箭头");
+        });
     }return _chooseBtnViewModel;
 }
 
 -(NSMutableArray<UIViewModel *> *)jobsPageViewDataMutArr{
     if (!_jobsPageViewDataMutArr) {
-        _jobsPageViewDataMutArr = NSMutableArray.array;
-
-        {
-            UIViewModel *jobsPageViewModel = UIViewModel.new;
-            jobsPageViewModel.textModel.text = JobsInternationalization(@"+87");
-            jobsPageViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
-            jobsPageViewModel.textModel.textLineSpacing = 0;
-            jobsPageViewModel.textModel.font = UIFontWeightRegularSize(14);
-            jobsPageViewModel.bgCor = JobsClearColor;
-            jobsPageViewModel.jobsWidth = self.chooseBtnSize.width;
-            jobsPageViewModel.subTextModel.text = JobsInternationalization(@"");
-            
-            [_jobsPageViewDataMutArr addObject:jobsPageViewModel];
-        }
-        
-        {
-            UIViewModel *jobsPageViewModel = UIViewModel.new;
-            jobsPageViewModel.textModel.text = JobsInternationalization(@"+88");
-            jobsPageViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
-            jobsPageViewModel.textModel.textLineSpacing = 0;
-            jobsPageViewModel.textModel.font = UIFontWeightRegularSize(14);
-            jobsPageViewModel.bgCor = JobsClearColor;
-            jobsPageViewModel.jobsWidth = self.chooseBtnSize.width;
-            jobsPageViewModel.subTextModel.text = JobsInternationalization(@"");
-            
-            [_jobsPageViewDataMutArr addObject:jobsPageViewModel];
-        }
+        _jobsPageViewDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"+87");
+                viewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
+                viewModel.textModel.textLineSpacing = 0;
+                viewModel.textModel.font = UIFontWeightRegularSize(14);
+                viewModel.bgCor = JobsClearColor;
+                viewModel.jobsWidth = self.chooseBtnSize.width;
+                viewModel.subTextModel.text = JobsInternationalization(@"");
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"+88");
+                viewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
+                viewModel.textModel.textLineSpacing = 0;
+                viewModel.textModel.font = UIFontWeightRegularSize(14);
+                viewModel.bgCor = JobsClearColor;
+                viewModel.jobsWidth = self.chooseBtnSize.width;
+                viewModel.subTextModel.text = JobsInternationalization(@"");
+            }));
+        });
         
     }return _jobsPageViewDataMutArr;
 }
 
 -(ButtonTimerConfigModel *)btnTimerConfigModel{
     if (!_btnTimerConfigModel) {
-        _btnTimerConfigModel = ButtonTimerConfigModel.new;
-        /// 一些通用的设置
-        _btnTimerConfigModel.jobsSize = CGSizeMake(JobsWidth(120), JobsWidth(25));
-        _btnTimerConfigModel.count = 3;
-        _btnTimerConfigModel.showTimeType = ShowTimeType_SS;//时间显示风格
-        _btnTimerConfigModel.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
-        _btnTimerConfigModel.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;// 文本显示类型
-        _btnTimerConfigModel.labelShowingType = UILabelShowingType_03;
-        _btnTimerConfigModel.secondStr = JobsInternationalization(@"S");
-        /// 计时器未开始【静态值】
-        _btnTimerConfigModel.readyPlayValue.layerBorderWidth = 1;
-        _btnTimerConfigModel.readyPlayValue.layerCornerRadius = 0;
-        _btnTimerConfigModel.readyPlayValue.bgCor = JobsClearColor;
-        _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsClearColor;
-        _btnTimerConfigModel.readyPlayValue.textCor = HEXCOLOR(0xAE8330);
-        _btnTimerConfigModel.readyPlayValue.text = JobsInternationalization(@"獲取驗證碼");
-        _btnTimerConfigModel.readyPlayValue.font = UIFontWeightBoldSize(14);
-        /// 计时器进行中【动态值】
-        _btnTimerConfigModel.runningValue.bgCor = JobsClearColor;
-        _btnTimerConfigModel.runningValue.layerBorderCor = JobsClearColor;
-        _btnTimerConfigModel.runningValue.textCor = HEXCOLOR(0xAE8330);
-        _btnTimerConfigModel.runningValue.text = JobsInternationalization(@"");
-        /// 计时器结束【静态值】
-        _btnTimerConfigModel.endValue.bgCor = JobsClearColor;
-        _btnTimerConfigModel.endValue.layerBorderCor = JobsClearColor;
-        _btnTimerConfigModel.endValue.textCor = HEXCOLOR(0xAE8330);
-        _btnTimerConfigModel.endValue.text = JobsInternationalization(@"重新获取验证码");
-        
+        _btnTimerConfigModel = jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
+            /// 一些通用的设置
+            data.jobsSize = CGSizeMake(JobsWidth(120), JobsWidth(25));
+            data.count = 3;
+            data.showTimeType = ShowTimeType_SS;//时间显示风格
+            data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
+            data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;// 文本显示类型
+            data.labelShowingType = UILabelShowingType_03;
+            data.secondStr = JobsInternationalization(@"S");
+            /// 计时器未开始【静态值】
+            data.readyPlayValue.layerBorderWidth = 1;
+            data.readyPlayValue.layerCornerRadius = 0;
+            data.readyPlayValue.bgCor = JobsClearColor;
+            data.readyPlayValue.layerBorderCor = JobsClearColor;
+            data.readyPlayValue.textCor = HEXCOLOR(0xAE8330);
+            data.readyPlayValue.text = JobsInternationalization(@"獲取驗證碼");
+            data.readyPlayValue.font = UIFontWeightBoldSize(14);
+            /// 计时器进行中【动态值】
+            data.runningValue.bgCor = JobsClearColor;
+            data.runningValue.layerBorderCor = JobsClearColor;
+            data.runningValue.textCor = HEXCOLOR(0xAE8330);
+            data.runningValue.text = JobsInternationalization(@"");
+            /// 计时器结束【静态值】
+            data.endValue.bgCor = JobsClearColor;
+            data.endValue.layerBorderCor = JobsClearColor;
+            data.endValue.textCor = HEXCOLOR(0xAE8330);
+            data.endValue.text = JobsInternationalization(@"重新获取验证码");
+        });
     }return _btnTimerConfigModel;
 }
 

@@ -16,7 +16,6 @@
 @property(nonatomic,strong)NSString *titleStr_2;
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 @property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
-//@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richLabelDataStringsMutArr;
 
 @end
 
@@ -29,7 +28,6 @@
         self.thisViewSize = thisViewSize;
         self.titleStr_1 = JobsInternationalization(@"請輸入金額");
         self.titleStr_2 = JobsInternationalization(@"全部金額");
-//        [self layerBorderCor:JobsWhiteColor andBorderWidth:1];
         
     }return self;
 }

@@ -9,9 +9,9 @@
 #import "JobsBlock.h"
 /// 可变数组的方便调用
 static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull block){
-    NSMutableSet *mutableSet = NSMutableSet.set;
-    if (block) block(mutableSet);
-    return mutableSet;
+    NSMutableSet *data = NSMutableSet.set;
+    if (block) block(data);
+    return data;
 }
 
 NS_ASSUME_NONNULL_BEGIN

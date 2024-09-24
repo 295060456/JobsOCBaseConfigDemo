@@ -61,19 +61,17 @@ JobsKey(_defaultAttributedDataForPlaceHolderMutArr)
 -(NSMutableArray<JobsRichTextConfig *> *)defaultAttributedDataForPlaceHolderMutArr{
     NSMutableArray *DefaultAttributedDataMutArr = Jobs_getAssociatedObject(_defaultAttributedDataForPlaceHolderMutArr);
     if (!DefaultAttributedDataMutArr) {
-        DefaultAttributedDataMutArr = NSMutableArray.array;
-        
-        {
-            JobsRichTextConfig *richTextConfig = JobsRichTextConfig.new;
-            richTextConfig.targetString = self.placeholder;
-            richTextConfig.font = UIFontWeightRegularSize(10);
-            richTextConfig.textCor = JobsBlueColor;
-    //        richTextConfig.underlineStyle;
-    //        richTextConfig.paragraphStyle;
-    //        richTextConfig.urlStr;
-            richTextConfig.range =  NSMakeRange(0, self.placeholder.length);
-            [DefaultAttributedDataMutArr addObject:richTextConfig];
-        }
+        DefaultAttributedDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                data1.targetString = self.placeholder;
+                data1.font = UIFontWeightRegularSize(10);
+                data1.textCor = JobsBlueColor;
+        //        data1.underlineStyle;
+        //        data1.paragraphStyle;
+        //        data1.urlStr;
+                data1.range =  NSMakeRange(0, self.placeholder.length);
+            }));
+        });
         Jobs_setAssociatedRETAIN_NONATOMIC(_defaultAttributedDataForPlaceHolderMutArr, DefaultAttributedDataMutArr)
     }return DefaultAttributedDataMutArr;
 }

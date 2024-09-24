@@ -3285,7 +3285,7 @@ static const uint32_t kSequenceBits = 12;
 }
 ```
 
-### 30、数据的归档和解档
+### 30、数据的归档和解档 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 #### 30.1、数据的序列化
 
@@ -3519,19 +3519,13 @@ static const uint32_t kSequenceBits = 12;
 
   ```objective-c
   /// 可变数组的方便调用
-  -(__kindof NSArray *_Nonnull)jobsMakeMutArr:(jobsByMutableArrayBlock _Nonnull)block{
-      NSMutableArray *mutableArray = NSMutableArray.array;
-      if (block) block(mutableArray);
-      return mutableArray;
-  }
-  /// 可变数组的方便调用
   static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutableArrayBlock _Nonnull block){
-      NSMutableArray *mutableArray = NSMutableArray.array;
-      if (block) block(mutableArray);
-      return mutableArray;
+      NSMutableArray *data = NSMutableArray.array;
+      if (block) block(data);
+      return data;
   }
   ```
-
+  
 * 集合
 
   [**@implementation NSMutableSet (Extra)**]()
@@ -3554,15 +3548,9 @@ static const uint32_t kSequenceBits = 12;
 
   ```objective-c
   /// 可变集合的方便调用
-  -(__kindof NSSet *_Nonnull)jobsMakeMutSet:(jobsByMutableSetBlock _Nonnull)block{
-      NSMutableSet *mutableSet = NSMutableSet.set;
-      if (block) block(mutableSet);
-      return mutableSet;
-  }
-  /// 可变集合的方便调用
-  static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsByMutableSetBlock _Nonnull block){
-      NSMutableSet *mutableSet = NSMutableSet.set;
-      if (block) block(mutableSet);
+  static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull block){
+      NSMutableSet *data = NSMutableSet.set;
+      if (block) block(data);
       return mutableSet;
   }
   ```
@@ -4097,33 +4085,29 @@ static const uint32_t kSequenceBits = 12;
   
   -(NSMutableArray<JobsRichTextConfig *> *)JobsRichTextConfigMutArr{
      if (!_JobsRichTextConfigMutArr) {
+         @jobs_weakify(self)
          _JobsRichTextConfigMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-             {
-                 JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-                 config_01.font = UIFontWeightRegularSize(14);
-                 config_01.textCor = JobsCor(@"#666666");
-                 config_01.targetString = self.richTextMutArr[0];
-                 config_01.paragraphStyle = self.jobsParagraphStyleCenter;
-                 data.add(config_01);
-             }
-  
-             {
-                 JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-                 config_02.font = UIFontWeightRegularSize(14);
-                 config_02.textCor = JobsCor(@"#BA9B77");
-                 config_02.targetString = self.richTextMutArr[1];
-                 config_02.paragraphStyle = self.jobsParagraphStyleCenter;
-                 data.add(config_02);
-             }
-  
-             {
-                 JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
-                 config_03.font = UIFontWeightRegularSize(14);
-                 config_03.textCor = JobsCor(@"#666666");
-                 config_03.targetString = self.richTextMutArr[2];
-                 config_03.paragraphStyle = self.jobsParagraphStyleCenter;
-                 data.add(config_03);
-             }
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(14);
+                 data1.textCor = JobsCor(@"#666666");
+                 data1.targetString = self.richTextMutArr[0];
+                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
+             }));
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(14);
+                 data1.textCor = JobsCor(@"#BA9B77");
+                 data1.targetString = self.richTextMutArr[1];
+                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
+             }));
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(14);
+                 data1.textCor = JobsCor(@"#666666");
+                 data1.targetString = self.richTextMutArr[2];
+                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
+             }));
          });
      }return _JobsRichTextConfigMutArr;
   }
@@ -5818,12 +5802,17 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         }return _label;
     }
     
-    -(NSMutableParagraphStyle *)paragraphStyle{
-        if(!_paragraphStyle){
-            _paragraphStyle = NSMutableParagraphStyle.new;
-            _paragraphStyle.headIndent = 10; // 设置文本的缩进，使其与圆点对齐
-            _paragraphStyle.firstLineHeadIndent = 0; // 第一行不缩进
-        }return _paragraphStyle;
+    -(NSMutableParagraphStyle *)paragtaphStyle{
+        if (!_paragtaphStyle) {
+            _paragtaphStyle = jobsMakeParagraphStyle(^(__kindof NSMutableParagraphStyle * _Nullable data) {
+                data.alignment = NSTextAlignmentJustified;
+                data.paragraphSpacing = 0;//段距，取值 float
+                data.paragraphSpacingBefore = 0;//段首空间，取值 float
+                data.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+                data.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+                data.lineSpacing = 0;//行距，取值 float
+            });   
+        }return _paragtaphStyle;
     }
     ```
   
@@ -6040,35 +6029,35 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   
   ```objective-c
   #pragma mark —— lazyLoad
-  -(NSMutableArray<JobsJobsRichTextConfig *> *)richLabelDataStringsMutArr{
+  -(NSMutableArray<JobsRichTextConfig *> *)richLabelDataStringsMutArr{
       if (!_richLabelDataStringsMutArr) {
-          _richLabelDataStringsMutArr = NSMutableArray.array;
-          
-          JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-          config_01.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
-          config_01.textCor = JobsBlueColor;
-          config_01.targetString = @"编译器自动管理内存地址,\n";
-          config_01.textBgCor = JobsCor(@"#FFC700");
-          config_01.paragraphStyle = self.paragtaphStyle;
-          
-          JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-          config_02.font = [UIFont systemFontOfSize:JobsWidth(13) weight:UIFontWeightMedium];
-          config_02.textCor = JobsWhiteColor;
-          config_02.targetString = @"让程序员更加专注于\n";
-          config_02.textBgCor = JobsBlueColor;
-          config_02.paragraphStyle = self.paragtaphStyle;
-          
-          JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
-          config_03.font = [UIFont systemFontOfSize:JobsWidth(14) weight:UIFontWeightSemibold];
-          config_03.textCor = JobsWhiteColor;
-          config_03.targetString = @"APP的业务。";
-          config_03.textBgCor = JobsRedColor;
-          config_03.paragraphStyle = self.paragtaphStyle;
-        
-          _richLabelDataStringsMutArr.add(config_01);
-          _richLabelDataStringsMutArr.add(config_02);
-          _richLabelDataStringsMutArr.add(config_03);
-          
+          @jobs_weakify(self)
+          _richLabelDataStringsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                  @jobs_strongify(self)
+                  data1.font = UIFontWeightRegularSize(JobsWidth(12));
+                  data1.textCor = JobsBlueColor;
+                  data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
+                  data1.textBgCor = JobsBrownColor;
+                  data1.paragraphStyle = self.paragtaphStyle;
+              }));
+              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                  @jobs_strongify(self)
+                  data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
+                  data1.textCor = JobsWhiteColor;
+                  data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
+                  data1.textBgCor = JobsBrownColor;
+                  data1.paragraphStyle = self.paragtaphStyle;
+              }));
+              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                  @jobs_strongify(self)
+                  data1.font = UIFontWeightUltraLightSize(JobsWidth(14));
+                  data1.textCor = JobsGreenColor;
+                  data1.targetString = JobsInternationalization(@"APP的业务。");
+                  data1.textBgCor = JobsBrownColor;
+                  data1.paragraphStyle = self.paragtaphStyle;
+              }));
+          });
       }return _richLabelDataStringsMutArr;
   }
   
@@ -6080,34 +6069,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   
   -(NSMutableParagraphStyle *)paragtaphStyle{
       if (!_paragtaphStyle) {
-          _paragtaphStyle = NSMutableParagraphStyle.new;
-          _paragtaphStyle.alignment = NSTextAlignmentJustified;
-          _paragtaphStyle.paragraphSpacing = 0;//段距，取值 float
-          _paragtaphStyle.paragraphSpacingBefore = 0;//段首空间，取值 float
-          _paragtaphStyle.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-          _paragtaphStyle.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-          _paragtaphStyle.lineSpacing = 0;//行距，取值 float
-          
-  /**
-   
-   常见的属性及说明
-   alignment               对齐方式，取值枚举常量 NSTextAlignment
-   firstLineHeadIndent     首行缩进，取值 float
-   headIndent              缩进，取值 float
-   tailIndent              尾部缩进，取值 float
-   ineHeightMultiple       可变行高,乘因数，取值 float
-   maximumLineHeight       最大行高，取值 float
-   minimumLineHeight       最小行高，取值 float
-   lineSpacing             行距，取值 float
-   paragraphSpacing        段距，取值 float
-   paragraphSpacingBefore  段首空间，取值 float
-  
-   baseWritingDirection    句子方向，取值枚举常量 NSWritingDirection
-   lineBreakMode           断行方式，取值枚举常量 NSLineBreakMode
-   hyphenationFactor       连字符属性，在iOS，唯一支持的值分别为0和1
-   
-   */
-          
+          _paragtaphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+              data.alignment = NSTextAlignmentJustified;
+              data.paragraphSpacing = 0;//段距，取值 float
+              data.paragraphSpacingBefore = 0;//段首空间，取值 float
+              data.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+              data.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+              data.lineSpacing = 0;//行距，取值 float
+          });
       }return _paragtaphStyle;
   }
   ```
@@ -11005,7 +10974,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 要获取 **`UIScrollView`** 滑动的距离，你可以使用 `contentOffset` 属性。`contentOffset` 表示 `UIScrollView` 的内容视图的原点相对于 **`UIScrollView`**自身边界的偏移量。
 
-### 40、自动布局
+### 40、自动布局 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * **SDAutoLayout** 和 **Masonry** 一起使用时可能会导致冲突
 
@@ -11091,6 +11060,89 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```objective-c
   JobsBlackColor.colorWithAlphaComponent(0.5f);
   ```
+
+### 42、数据模型的封装调用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+```objective-c
+static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutArrayBlock _Nonnull block){
+    NSMutableArray *data = NSMutableArray.array;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof NSMutableDictionary *_Nonnull jobsMakeMutDic(jobsByMutableDictionarycBlock _Nonnull block){
+    NSMutableDictionary *data = NSMutableDictionary.dictionary;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UIButtonModel *_Nonnull jobsMakeButtonModel(jobsByButtonModelBlock _Nonnull block){
+    UIButtonModel *data = UIButtonModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UITextModel *_Nonnull jobsMakeTextModel(jobsByTextModelBlock _Nonnull block){
+    UITextModel *data = UITextModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UIViewModel *_Nonnull jobsMakeViewModel(jobsByViewModelBlock _Nonnull block){
+    UIViewModel *data = UIViewModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull block){
+    NSMutableSet *data = NSMutableSet.set;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof JobsRichTextConfig *_Nonnull jobsMakeRichTextConfig(jobsByRichTextConfigBlock _Nonnull block){
+    JobsRichTextConfig *data = JobsRichTextConfig.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
+    NSMutableAttributedString *data = NSMutableAttributedString.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline NSTextAttachment *_Nonnull jobsMakeTextAttachment(jobsByTextAttachmentBlock _Nonnull block){
+    NSTextAttachment *data = NSTextAttachment.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByParagraphStyleBlock _Nonnull block){
+    NSMutableParagraphStyle *data = NSMutableParagraphStyle.alloc.init;
+    /**
+     
+     常见的属性及说明
+     alignment               对齐方式，取值枚举常量 NSTextAlignment
+     firstLineHeadIndent     首行缩进，取值 float
+     headIndent              缩进，取值 float
+     tailIndent              尾部缩进，取值 float
+     ineHeightMultiple       可变行高,乘因数，取值 float
+     maximumLineHeight       最大行高，取值 float
+     minimumLineHeight       最小行高，取值 float
+     lineSpacing             行距，取值 float
+     paragraphSpacing        段距，取值 float
+     paragraphSpacingBefore  段首空间，取值 float
+
+     baseWritingDirection    句子方向，取值枚举常量 NSWritingDirection
+     lineBreakMode           断行方式，取值枚举常量 NSLineBreakMode
+     hyphenationFactor       连字符属性，在iOS，唯一支持的值分别为0和1
+     
+     */
+    if (block) block(data);
+    return data;
+}
+```
 
 ### Test  
 

@@ -63,14 +63,26 @@ NS_ASSUME_NONNULL_END
 /**
  -(BaseButton *)playBtn{
      if(!_playBtn){
-         _playBtn = BaseButton.initByNormalImage(JobsIMG(@"play"))
-             .bgColor(JobsWhiteColor)
-             .cornerRadiusValue(JobsWidth(8))
-             .onClick(^(UIButton *btn){
-                 NSLog(@"");
-             }).onLongPressGesture(^(id data){
-                 NSLog(@"");
-             });
+         _playBtn = BaseButton.initByTitle_font_titleCor_bgImage(title,
+                                                                 nil,
+                                                                 JobsBlackColor,
+                                                                 JobsIMG(@"弹窗取消按钮背景图"))
+         .bgColor(JobsWhiteColor)
+         .cornerRadiusValue(buttonModel.cornerRadiusValue)
+         .onClick(^(UIButton *btn){
+             btn.selected = !btn.selected;
+             btn.jobsResetBtnBgImage(btn.selected ? JobsIMG(@"弹窗取消按钮背景图") : JobsIMG(@"弹窗取消按钮背景图"));
+             
+             btn.jobsResetBtnlayerBorderCor(HEXCOLOR(0xAE8330));/// 重设Btn的描边线段的颜色
+             btn.jobsResetBtnlayerBorderWidth(0.5f);/// 重设Btn的描边线段的宽度
+             btn.jobsResetBtnCornerRadiusValue(JobsWidth(8));/// 重设Btn的圆切角
+             
+         }).onLongPressGesture(^(id data){
+             NSLog(@"");
+         })
+         .layerByBorderCor(HEXCOLOR(0xAE8330))
+         .layerByBorderWidth(0.5f)
+         .cornerCutToCircleWithCornerRadius(JobsWidth(8));
          self.contentView.addSubview(_playBtn);
          [_playBtn mas_makeConstraints:^(MASConstraintMaker *make) {
              make.size.mas_equalTo(CGSizeMake(JobsWidth(16), JobsWidth(16)));
@@ -78,21 +90,4 @@ NS_ASSUME_NONNULL_END
          }];
      }return _playBtn;
  }
- */
-
-/**
- BaseButton *btn = BaseButton
-     .initByTitle_font_titleCor(buttonModel.title,
-                                    buttonModel.titleFont,
-                                    buttonModel.titleCor)
- .bgColor(buttonModel.baseBackgroundColor)
- .cornerRadiusValue(buttonModel.cornerRadiusValue)
- .onClick(^(UIButton *x){
-     @jobs_strongify(self)
-     if (self.objectBlock) self.objectBlock(x);
- }).onLongPressGesture(^(id data){
-     NSLog(@"");
- });
- btn.jobsResetBtnlayerBorderCor(buttonModel.layerBorderCor);
- btn.jobsResetBtnlayerBorderWidth(buttonModel.borderWidth);
  */

@@ -10,32 +10,28 @@
 @implementation NSObject (RichText)
 /// 调用示例：对外输出 NSMutableArray <JobsRichTextConfig *>*
 -(NSMutableArray <JobsRichTextConfig *>*)makeRichTextConfigMutArr{
-    UIColor *color = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-        data.add(RGB_COLOR(247, 131, 97));
-        data.add(RGB_COLOR(245, 75, 100));
-    })
-                                         startPoint:CGPointZero
-                                           endPoint:CGPointZero
-                                             opaque:NO
-                                     targetViewRect:CGRectMake(0,
-                                                               0,
-                                                               JobsWidth(400),
-                                                               JobsWidth(1))];
-    JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-    config_01.font = UIFontWeightRegularSize(10.6);
-    config_01.textCor = RGB_SAMECOLOR(115);
-    config_01.targetString = JobsInternationalization(@"我是第一段文字");
-
-    JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-    config_02.font = UIFontWeightRegularSize(10.6);;
-    config_02.textCor = color;
-    config_02.targetString = JobsInternationalization(@"我是第二段文字");
-    
-    NSMutableArray *dataMutArr = NSMutableArray.array;
-    [dataMutArr addObject:config_01];
-    [dataMutArr addObject:config_02];
-    
-    return dataMutArr;
+    return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+            data1.font = UIFontWeightRegularSize(10.6);
+            data1.textCor = RGB_SAMECOLOR(115);
+            data1.targetString = JobsInternationalization(@"我是第一段文字");
+        }));
+        data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+            data1.font = UIFontWeightRegularSize(10.6);;
+            data1.textCor = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+                data.add(RGB_COLOR(247, 131, 97));
+                data.add(RGB_COLOR(245, 75, 100));
+            })
+                                                 startPoint:CGPointZero
+                                                   endPoint:CGPointZero
+                                                     opaque:NO
+                                             targetViewRect:CGRectMake(0,
+                                                                       0,
+                                                                       JobsWidth(400),
+                                                                       JobsWidth(1))];
+            data1.targetString = JobsInternationalization(@"我是第二段文字");
+        }));
+    });;
 }
 /// 整合输出富文本，作用于lable.attributedText
 /// @param richTextDataConfigMutArr 富文本的配置集合,对该纯文本字符串的释义
@@ -44,8 +40,9 @@
                                                      paragraphStyle:(NSMutableParagraphStyle *_Nullable)paragraphStyle{
     
     if (!paragraphStyle) {
-        paragraphStyle = NSMutableParagraphStyle.new;
-        paragraphStyle.alignment = NSTextAlignmentLeft;//❤️文本对齐方式 左右对齐（两边对齐）,textAlignment属性失效❤️
+        paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+            data.alignment = NSTextAlignmentLeft;//❤️文本对齐方式 左右对齐（两边对齐）,textAlignment属性失效❤️
+        });
     }
     /// 设置段落样式
     NSMutableAttributedString *attributedString = self.richTextWithDataConfigMutArr(richTextDataConfigMutArr);

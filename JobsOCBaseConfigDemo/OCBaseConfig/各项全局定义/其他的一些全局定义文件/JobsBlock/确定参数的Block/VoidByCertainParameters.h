@@ -27,6 +27,9 @@ typedef void(^jobsByTableViewCellBlock)(__kindof UITableViewCell *_Nullable data
 typedef void(^jobsByArrayBlock)(__kindof NSArray *_Nullable data);
 typedef void(^jobsByMutArrayBlock)(__kindof NSMutableArray *_Nullable data);
 typedef void(^jobsBySetBlock)(__kindof NSSet *_Nullable data);
+typedef void(^jobsByMutableSetBlock)(__kindof NSMutableSet *_Nullable data);
+typedef void(^jobsByDictionarycBlock)(__kindof NSDictionary *_Nullable data);
+typedef void(^jobsByMutableDictionarycBlock)(__kindof NSMutableDictionary *_Nullable data);
 #pragma mark —— 关于UI表现力
 typedef void(^jobsByLayoutAttributeBlock)(NSLayoutAttribute data);
 typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
@@ -80,6 +83,8 @@ typedef void(^jobsByTimerBlock)(NSTimer *_Nullable data);
 typedef void(^jobsByDataBlock)(NSData *_Nullable data);
 typedef void(^jobsByStringBlock)(NSString *_Nullable data);
 typedef void(^jobsByAttributedStringBlock)(__kindof NSAttributedString *_Nullable data);
+typedef void(^jobsByParagraphStyleBlock)(NSMutableParagraphStyle *_Nullable data);
+typedef void(^jobsByTextAttachmentBlock)(NSTextAttachment *_Nullable data);
 
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;
 typedef void(^jobsByThreeIDBlock)Jobs_3_Arguments;

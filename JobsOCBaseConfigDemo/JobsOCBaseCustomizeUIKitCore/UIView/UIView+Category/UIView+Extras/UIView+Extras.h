@@ -101,7 +101,7 @@ static inline void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view
 -(JobsReturnViewByFloatBlock _Nonnull)layerByBorderWidth;
 #pragma mark —— 切角
 /// 切整个View的4个角为统一的切角参数
--(jobsByCGFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius;
+-(JobsReturnViewByFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius;
 /// 调用方式：view.appointCorners(UIRectCornerTopLeft | UIRectCornerBottomRight).cornerRadii(CGSizeMake(10, 10));
 -(JobsReturnViewByNSUIntegerBlock _Nonnull)appointCorners;
 /// 调用方式：view.appointCorners(UIRectCornerTopLeft | UIRectCornerBottomRight).cornerRadii(CGSizeMake(10, 10));

@@ -23,3 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+static inline __kindof JobsRichTextConfig *_Nonnull jobsMakeRichTextConfig(jobsByRichTextConfigBlock _Nonnull block){
+    JobsRichTextConfig *data = JobsRichTextConfig.alloc.init;
+    if (block) block(data);
+    return data;
+}
+

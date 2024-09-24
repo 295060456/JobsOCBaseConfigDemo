@@ -15,6 +15,9 @@
 #import "SDWebImageModel.h"
 #import "URLManagerModel.h"
 #import "JobsKeyValueModel.h"
+#import "MJRefreshConfigModel.h"
+#import "JobsRichTextConfig.h"
+#import "ButtonTimerConfigModel.h"
 
 #import "IncomeSourceModel.h"
 #import "JobsCountriesModel.h"

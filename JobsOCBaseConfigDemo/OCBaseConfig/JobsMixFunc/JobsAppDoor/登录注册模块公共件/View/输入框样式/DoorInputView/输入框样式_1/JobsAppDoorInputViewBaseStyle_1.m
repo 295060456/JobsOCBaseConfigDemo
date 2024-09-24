@@ -16,7 +16,6 @@
 @property(nonatomic,strong)NSString *titleStr_1;
 @property(nonatomic,strong)NSString *titleStr_2;
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
-//@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richLabelDataStringsMutArr;
 @property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
 
 @end
@@ -118,52 +117,46 @@
 #pragma mark —— lazyLoad
 -(ButtonTimerConfigModel *)btnTimerConfigModel{
     if (!_btnTimerConfigModel) {
-        _btnTimerConfigModel = ButtonTimerConfigModel.new;
-        
-        /// 一些通用的设置
-        _btnTimerConfigModel.count = 50;
-        _btnTimerConfigModel.showTimeType = ShowTimeType_SS;// 时间显示风格
-        _btnTimerConfigModel.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
-        _btnTimerConfigModel.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
-        _btnTimerConfigModel.labelShowingType = UILabelShowingType_01;//【换行模式】
-        
-        /// 计时器未开始【静态值】
-        _btnTimerConfigModel.readyPlayValue.layerBorderWidth = 1;
-        _btnTimerConfigModel.readyPlayValue.layerCornerRadius = JobsWidth(18);
-        _btnTimerConfigModel.readyPlayValue.bgCor = JobsClearColor;
-        _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsClearColor;
-        _btnTimerConfigModel.readyPlayValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
-        _btnTimerConfigModel.readyPlayValue.text = Title9;
-        _btnTimerConfigModel.readyPlayValue.font = [UIFont systemFontOfSize:JobsWidth(14)
-                                                                               weight:UIFontWeightMedium];
-        /// 计时器进行中【动态值】
-        _btnTimerConfigModel.runningValue.bgCor = JobsClearColor;
-        _btnTimerConfigModel.runningValue.text = JobsInternationalization(Title12);
-        _btnTimerConfigModel.runningValue.layerBorderCor = JobsClearColor;
-        _btnTimerConfigModel.runningValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
-        _btnTimerConfigModel.runningValue.font = [UIFont systemFontOfSize:JobsWidth(14)
-                                                                               weight:UIFontWeightMedium];
-    
-        /// 计时器结束【静态值】
-        _btnTimerConfigModel.endValue.bgCor = JobsClearColor;
-        
+        _btnTimerConfigModel = jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
+            /// 一些通用的设置
+            data.count = 50;
+            data.showTimeType = ShowTimeType_SS;// 时间显示风格
+            data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
+            data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
+            data.labelShowingType = UILabelShowingType_01;//【换行模式】
+            /// 计时器未开始【静态值】
+            data.readyPlayValue.layerBorderWidth = 1;
+            data.readyPlayValue.layerCornerRadius = JobsWidth(18);
+            data.readyPlayValue.bgCor = JobsClearColor;
+            data.readyPlayValue.layerBorderCor = JobsClearColor;
+            data.readyPlayValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
+            data.readyPlayValue.text = Title9;
+            data.readyPlayValue.font = UIFontWeightMediumSize(JobsWidth(14));
+            /// 计时器进行中【动态值】
+            data.runningValue.bgCor = JobsClearColor;
+            data.runningValue.text = JobsInternationalization(Title12);
+            data.runningValue.layerBorderCor = JobsClearColor;
+            data.runningValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
+            data.runningValue.font = UIFontWeightMediumSize(JobsWidth(14));
+            /// 计时器结束【静态值】
+            data.endValue.bgCor = JobsClearColor;
+        });
     }return _btnTimerConfigModel;
 }
 
 -(UIButton *)countDownBtn{
     if (!_countDownBtn) {
+        @jobs_weakify(self)
         _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
                             longPressGestureEventBlock:nil
-                                       clickEventBlock:nil];
-        @jobs_weakify(self)
-        [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            x.startTimer();//选择时机、触发启动
-//            NSLog(@"SSSSS = 获取验证码");
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
-        
+                                       clickEventBlock:nil]
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                x.startTimer();//选择时机、触发启动
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [_countDownBtn actionObjectBlock:^(id data) {
 //            @jobs_strongify(self)
             if ([data isKindOfClass:TimerProcessModel.class]) {
@@ -171,7 +164,6 @@
                 NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
             }
         }];
-
         [self addSubview:_countDownBtn];
         [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(-JobsWidth(120));
@@ -179,29 +171,8 @@
             make.bottom.equalTo(self).offset(-JobsWidth(8));
             make.width.mas_equalTo(JobsWidth(80));
         }];
-        
     }return _countDownBtn;
 }
-
-//-(NSMutableArray<JobsRichTextConfig *> *)richLabelDataStringsMutArr{
-//    if (!_richLabelDataStringsMutArr) {
-//        _richLabelDataStringsMutArr = NSMutableArray.array;
-//
-//        JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-//        config_01.font = [UIFont systemFontOfSize:JobsWidth(14) weight:UIFontWeightMedium];
-//        config_01.cor = JobsBlueColor;
-//        config_01.targetString = self.titleStr_1;
-//
-//        JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-//        config_02.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightMedium];
-//        config_02.cor = JobsRedColor;
-//        config_02.targetString = self.titleStr_2;
-//
-//        [_richLabelDataStringsMutArr addObject:config_01];
-//        [_richLabelDataStringsMutArr addObject:config_02];
-//
-//    }return _richLabelDataStringsMutArr;
-//}
 
 -(JobsMagicTextField *)textField{
     if (!_textField) {

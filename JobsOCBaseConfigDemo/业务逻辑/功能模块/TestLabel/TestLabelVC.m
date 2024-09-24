@@ -113,67 +113,46 @@
 #pragma mark —— 富文本
 -(NSMutableArray<JobsRichTextConfig *> *)richLabelDataStringsMutArr{
     if (!_richLabelDataStringsMutArr) {
-        _richLabelDataStringsMutArr = NSMutableArray.array;
-        
-        JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-        config_01.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
-        config_01.textCor = JobsBlueColor;
-        
-        config_01.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
-        config_01.textBgCor = JobsBrownColor;
-        config_01.paragraphStyle = self.paragtaphStyle;
-        
-        JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-        config_02.font = [UIFont systemFontOfSize:JobsWidth(13) weight:UIFontWeightMedium];
-        config_02.textCor = JobsWhiteColor;
-        config_02.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
-        config_02.textBgCor = JobsBrownColor;
-        config_02.paragraphStyle = self.paragtaphStyle;
-        
-        JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
-        config_03.font = [UIFont systemFontOfSize:JobsWidth(14) weight:UIFontWeightSemibold];
-        config_03.textCor = JobsGreenColor;
-        config_03.targetString = JobsInternationalization(@"APP的业务。");
-        config_03.textBgCor = JobsBrownColor;
-        config_03.paragraphStyle = self.paragtaphStyle;
-        
-        _richLabelDataStringsMutArr.add(config_01);
-        _richLabelDataStringsMutArr.add(config_02);
-        _richLabelDataStringsMutArr.add(config_03);
-        
+        @jobs_weakify(self)
+        _richLabelDataStringsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                @jobs_strongify(self)
+                data1.font = UIFontWeightRegularSize(JobsWidth(12));
+                data1.textCor = JobsBlueColor;
+                data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
+                data1.textBgCor = JobsBrownColor;
+                data1.paragraphStyle = self.paragtaphStyle;
+            }));
+            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                @jobs_strongify(self)
+                data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
+                data1.textCor = JobsWhiteColor;
+                data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
+                data1.textBgCor = JobsBrownColor;
+                data1.paragraphStyle = self.paragtaphStyle;
+            }));
+            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                @jobs_strongify(self)
+                data1.font = UIFontWeightUltraLightSize(JobsWidth(14));
+                data1.textCor = JobsGreenColor;
+                data1.targetString = JobsInternationalization(@"APP的业务。");
+                data1.textBgCor = JobsBrownColor;
+                data1.paragraphStyle = self.paragtaphStyle;
+            }));
+        });
     }return _richLabelDataStringsMutArr;
 }
 
 -(NSMutableParagraphStyle *)paragtaphStyle{
     if (!_paragtaphStyle) {
-        _paragtaphStyle = NSMutableParagraphStyle.new;
-        _paragtaphStyle.alignment = NSTextAlignmentJustified;
-        _paragtaphStyle.paragraphSpacing = 0;//段距，取值 float
-        _paragtaphStyle.paragraphSpacingBefore = 0;//段首空间，取值 float
-        _paragtaphStyle.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-        _paragtaphStyle.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-        _paragtaphStyle.lineSpacing = 0;//行距，取值 float
-        
-/**
- 
- 常见的属性及说明
- alignment               对齐方式，取值枚举常量 NSTextAlignment
- firstLineHeadIndent     首行缩进，取值 float
- headIndent              缩进，取值 float
- tailIndent              尾部缩进，取值 float
- ineHeightMultiple       可变行高,乘因数，取值 float
- maximumLineHeight       最大行高，取值 float
- minimumLineHeight       最小行高，取值 float
- lineSpacing             行距，取值 float
- paragraphSpacing        段距，取值 float
- paragraphSpacingBefore  段首空间，取值 float
-
- baseWritingDirection    句子方向，取值枚举常量 NSWritingDirection
- lineBreakMode           断行方式，取值枚举常量 NSLineBreakMode
- hyphenationFactor       连字符属性，在iOS，唯一支持的值分别为0和1
- 
- */
-        
+        _paragtaphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+            data.alignment = NSTextAlignmentJustified;
+            data.paragraphSpacing = 0;//段距，取值 float
+            data.paragraphSpacingBefore = 0;//段首空间，取值 float
+            data.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+            data.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+            data.lineSpacing = 0;//行距，取值 float
+        });
     }return _paragtaphStyle;
 }
 @synthesize attributedText = _attributedText;
