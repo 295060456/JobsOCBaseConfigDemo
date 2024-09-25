@@ -128,7 +128,7 @@
     if(!_label){
         _label = BaseLabel.new;
         _label.backgroundColor = JobsLightGrayColor;
-        _label.text = [JobsInternationalization(@"请点击复制：") stringByAppendingString:self.textData1];
+        _label.text = JobsInternationalization(@"请点击复制：").add(self.textData1);
         _label.textColor = JobsRedColor;
         _label.font = UIFontSystemFontOfSize(20);
         _label.textAlignment = NSTextAlignmentCenter;

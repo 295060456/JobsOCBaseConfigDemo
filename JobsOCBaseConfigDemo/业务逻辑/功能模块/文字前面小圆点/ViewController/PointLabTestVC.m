@@ -14,7 +14,6 @@
 /// Data
 @property(nonatomic,strong)NSMutableAttributedString *attributedString;
 @property(nonatomic,strong)NSMutableAttributedString *attributedString2;
-@property(nonatomic,strong)NSTextAttachment *bulletAttachment;
 @property(nonatomic,strong)NSMutableArray<NSString *> *items;
 @property(nonatomic,copy)NSString *dot;
 
@@ -76,20 +75,6 @@
     }return _dot;
 }
 
--(NSTextAttachment *)bulletAttachment{
-    if(!_bulletAttachment){
-        _bulletAttachment = jobsMakeTextAttachment(^(NSTextAttachment * _Nullable data) {
-            data.bounds = CGRectMake(0, 0, 10, 10); // 设置圆点的大小和位置
-            
-            UIGraphicsBeginImageContextWithOptions(data.bounds.size, NO, 0);
-            [JobsRedColor setFill];// 设置圆点的颜色
-            [[UIBezierPath bezierPathWithOvalInRect:data.bounds] fill];
-            data.image = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-        });
-    }return _bulletAttachment;
-}
-
 -(NSMutableAttributedString *)attributedString{
     if(!_attributedString){
         _attributedString = jobsMakeMutableAttributedString(^(__kindof NSMutableAttributedString *_Nullable data) {
@@ -137,7 +122,15 @@
         // 通过循环来创建每一行的富文本
         for (NSString *item in self.items) {
             // 添加小圆点
-            _attributedString2.add(JobsAttributedStringByTextAttachment(self.bulletAttachment));
+            _attributedString2.add(JobsAttributedStringByTextAttachment(jobsMakeTextAttachment(^(NSTextAttachment * _Nullable data) {
+                data.bounds = CGRectMake(0, 0, 10, 10); // 设置圆点的大小和位置
+                
+                UIGraphicsBeginImageContextWithOptions(data.bounds.size, NO, 0);
+                [JobsRedColor setFill];// 设置圆点的颜色
+                [[UIBezierPath bezierPathWithOvalInRect:data.bounds] fill];
+                data.image = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+            })));
             // 添加空格后再添加文本
             _attributedString2.add(JobsAttributedString(@" "));
             // 添加对应的文本
