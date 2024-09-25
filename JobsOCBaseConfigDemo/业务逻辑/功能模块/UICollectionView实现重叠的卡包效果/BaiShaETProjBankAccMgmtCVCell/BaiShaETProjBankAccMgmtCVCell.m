@@ -72,10 +72,10 @@
             make.centerY.equalTo(self.contentView);
         }];
     }
-    _titleBtn.normalTitle(self.viewModel.textModel.text);
-    _titleBtn.normalImage(self.viewModel.image);
-    _titleBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
-    _titleBtn.titleFont(UIFontWeightBoldSize(14));
+    _titleBtn.jobsResetBtnTitle(self.viewModel.textModel.text);
+    _titleBtn.jobsResetBtnImage(self.viewModel.image);
+    _titleBtn.jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58));
+    _titleBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(14));
 
     _titleBtn.imageViewSize = CGSizeMake(JobsWidth(40), JobsWidth(40));
     _titleBtn.imageView.cornerCutToCircleWithCornerRadius(JobsWidth(20));
@@ -110,7 +110,10 @@
 
 -(UIColor *)cor1{
     if (!_cor1) {
-        _cor1 = [UIColor gradientCorDataMutArr:[NSMutableArray arrayWithArray:@[HEXCOLOR(0xD4EDFE),HEXCOLOR(0xE6F5FF)]]
+        _cor1 = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(HEXCOLOR(0xD4EDFE));
+            data.add(HEXCOLOR(0xE6F5FF));
+        })
                                     startPoint:CGPointZero
                                       endPoint:CGPointZero
                                         opaque:NO
@@ -120,7 +123,10 @@
 
 -(UIColor *)cor2{
     if (!_cor2) {
-        _cor2 = [UIColor gradientCorDataMutArr:[NSMutableArray arrayWithArray:@[HEXCOLOR(0xFFE5E6),HEXCOLOR(0xFFF3F3)]]
+        _cor2 = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(HEXCOLOR(0xFFE5E6));
+            data.add(HEXCOLOR(0xFFF3F3));
+        })
                                     startPoint:CGPointZero
                                       endPoint:CGPointZero
                                         opaque:NO
@@ -130,7 +136,10 @@
 
 -(UIColor *)cor3{
     if (!_cor3) {
-        _cor3 = [UIColor gradientCorDataMutArr:[NSMutableArray arrayWithArray:@[HEXCOLOR(0xFFEFC3),HEXCOLOR(0xFFF7E0)]]
+        _cor3 = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(HEXCOLOR(0xFFEFC3));
+            data.add(HEXCOLOR(0xFFF7E0));
+        })
                                     startPoint:CGPointZero
                                       endPoint:CGPointZero
                                         opaque:NO

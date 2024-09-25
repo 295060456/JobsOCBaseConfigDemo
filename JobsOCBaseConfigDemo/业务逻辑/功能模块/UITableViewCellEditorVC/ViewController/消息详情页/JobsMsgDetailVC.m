@@ -135,11 +135,11 @@
 -(UIButton *)drawBtn{
     if (!_drawBtn) {
         _drawBtn = UIButton.new;
-        _drawBtn.normalTitle(self.msgDataModel.isDraw ? JobsInternationalization(@" 已领取 ") : JobsInternationalization(@" 领取 "));
-        _drawBtn.normalTitleColor(HEXCOLOR(0xAE8330));
+        _drawBtn.jobsResetBtnTitle(self.msgDataModel.isDraw ? JobsInternationalization(@" 已领取 ") : JobsInternationalization(@" 领取 "));
+        _drawBtn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
         _drawBtn.selectedTitleColor(HEXCOLOR(0x757575));
         _drawBtn.backgroundColor = HEXCOLOR(0xFFEABA);
-        _drawBtn.titleFont(UIFontWeightRegularSize(12));
+        _drawBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(12));
         [self.view addSubview:_drawBtn];
         [_drawBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(40), JobsWidth(20)));
@@ -180,49 +180,22 @@
 -(BaseButton *)deleteBtn{
     if (!_deleteBtn) {
         @jobs_weakify(self)
-        _deleteBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                       background:nil
-                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                    textAlignment:NSTextAlignmentCenter
-                                                 subTextAlignment:NSTextAlignmentCenter
-                                                      normalImage:nil
-                                                   highlightImage:nil
-                                                  attributedTitle:nil
-                                          selectedAttributedTitle:nil
-                                               attributedSubtitle:nil
-                                                            title:JobsInternationalization(@"删除")
-                                                         subTitle:nil
-                                                        titleFont:UIFontWeightRegularSize(12)
-                                                     subTitleFont:nil
-                                                         titleCor:HEXCOLOR(0x3D4A58)
-                                                      subTitleCor:nil
-                                               titleLineBreakMode:NSLineBreakByWordWrapping
-                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                              baseBackgroundColor:nil
-                                                  backgroundImage:nil
-                                                     imagePadding:JobsWidth(0)
-                                                     titlePadding:JobsWidth(0)
-                                                   imagePlacement:NSDirectionalRectEdgeNone
-                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                cornerRadiusValue:JobsWidth(0)
-                                                  roundingCorners:UIRectCornerAllCorners
-                                             roundingCornersRadii:CGSizeZero
-                                                   layerBorderCor:nil
-                                                      borderWidth:JobsWidth(0)
-                                                    primaryAction:nil
-                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                      id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                  clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            self.backBtnClickEvent(x);
-            if (self.objectBlock) self.objectBlock(self.msgDataModel);
-            return nil;
-        }];
+        _deleteBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+            .jobsResetImagePlacement(1)
+            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(JobsInternationalization(@"删除"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                self.backBtnClickEvent(x);
+                if (self.objectBlock) self.objectBlock(self.msgDataModel);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
     }return _deleteBtn;
 }
 

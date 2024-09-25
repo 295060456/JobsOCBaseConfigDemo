@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 #import "JobsBlock.h"
+#import "NSObject+RichText.h"
 /**
  资料来源：
  https://github.com/zhuchenglong/LabelDemo

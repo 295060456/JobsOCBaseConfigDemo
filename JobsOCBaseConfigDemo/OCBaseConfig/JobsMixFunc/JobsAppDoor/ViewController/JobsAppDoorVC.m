@@ -442,8 +442,8 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     if (!_customerServiceBtn) {
         _customerServiceBtn = UIButton.new;
         _customerServiceBtn.hidden = YES;//本版本需要进行屏蔽
-        _customerServiceBtn.normalTitle(Title8);
-        _customerServiceBtn.normalImage(JobsIMG(@"客服"));
+        _customerServiceBtn.jobsResetBtnTitle(Title8);
+        _customerServiceBtn.jobsResetBtnImage(JobsIMG(@"客服"));
         [self.view addSubview:_customerServiceBtn];
         _customerServiceBtn.Size = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsMainScreen_WIDTH() / 9);
         _customerServiceBtn.centerX = JobsMainScreen_WIDTH() / 2;

@@ -79,46 +79,22 @@
 -(BaseButton *)btn{
     if(!_btn){
         @jobs_weakify(self)
-        _btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                 background:nil
-                                 buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                              textAlignment:NSTextAlignmentCenter
-                                           subTextAlignment:NSTextAlignmentCenter
-                                                normalImage:nil
-                                             highlightImage:nil
-                                            attributedTitle:nil
-                                    selectedAttributedTitle:nil
-                                         attributedSubtitle:nil
-                                                      title:JobsInternationalization(@"点我")
-                                                   subTitle:JobsInternationalization(@"出推送通知")
-                                                  titleFont:UIFontWeightBoldSize(18)
-                                               subTitleFont:nil
-                                                   titleCor:JobsCor(@"#333333")
-                                                subTitleCor:nil
-                                         titleLineBreakMode:NSLineBreakByWordWrapping
-                                      subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                        baseBackgroundColor:JobsWhiteColor
-                                            backgroundImage:nil
-                                               imagePadding:JobsWidth(0)
-                                               titlePadding:JobsWidth(10)
-                                             imagePlacement:NSDirectionalRectEdgeNone
-                                 contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                   contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                              contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                          cornerRadiusValue:JobsWidth(8)
-                                            roundingCorners:UIRectCornerAllCorners
-                                       roundingCornersRadii:CGSizeZero
-                                             layerBorderCor:nil
-                                                borderWidth:JobsWidth(0)
-                                              primaryAction:nil
-                                 longPressGestureEventBlock:nil
-                                            clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
-            [JobsMakeLocalNotification.new triggerLocalNotification:JobsLocalNotificationModel.new];
-            return nil;
-        }];
+        _btn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnTitleCor(JobsCor(@"#333333"))
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(18)))
+            .jobsResetBtnTitle(JobsInternationalization(@"点我"))
+            .jobsResetBtnSubTitle(JobsInternationalization(@"出推送通知"))
+            .jobsResetTitlePadding(JobsWidth(10))
+            .jobsResetBtnCornerRadiusValue(JobsWidth(8))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                if (self.objectBlock) self.objectBlock(x);
+                [JobsMakeLocalNotification.new triggerLocalNotification:JobsLocalNotificationModel.new];
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.view addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.view);

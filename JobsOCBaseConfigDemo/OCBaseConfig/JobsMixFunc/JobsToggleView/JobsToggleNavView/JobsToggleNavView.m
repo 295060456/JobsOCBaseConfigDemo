@@ -81,52 +81,14 @@ JobsToggleNavViewProtocolSynthesize
     }// selected_backgroundImage
     for (int i = 0 ; i < self.dataArr.count ; i++) {
         @jobs_weakify(self)
-        UIButton *button = [BaseButton.alloc jobsInitBtnByConfiguration:self.buttonModel.btnConfiguration
-                                                             background:self.buttonModel.background
-                                             buttonConfigTitleAlignment:self.buttonModel.buttonConfigTitleAlignment
-                                                          textAlignment:self.buttonModel.textAlignment
-                                                       subTextAlignment:self.buttonModel.subTextAlignment
-                                                            normalImage:self.buttonModel.normalImage
-                                                         highlightImage:self.buttonModel.highlightImage
-                                                        attributedTitle:self.buttonModel.attributedTitle
-                                                selectedAttributedTitle:self.buttonModel.selectedAttributedTitle
-                                                     attributedSubtitle:self.buttonModel.attributedSubtitle
-                                                                  title:self.dataArr[i]
-                                                               subTitle:nil
-                                                              titleFont:self.buttonModel.titleFont
-                                                           subTitleFont:self.buttonModel.subTitleFont
-                                                               titleCor:self.buttonModel.titleCor
-                                                            subTitleCor:self.buttonModel.subTitleCor
-                                                     titleLineBreakMode:self.buttonModel.titleLineBreakMode
-                                                  subtitleLineBreakMode:self.buttonModel.subtitleLineBreakMode
-                                                    baseBackgroundColor:self.buttonModel.baseBackgroundColor
-                                                        backgroundImage:self.buttonModel.normal_backgroundImages[i]
-                                                           imagePadding:self.buttonModel.imagePadding
-                                                           titlePadding:self.buttonModel.titlePadding
-                                                         imagePlacement:self.buttonModel.imagePlacement
-                                             contentHorizontalAlignment:self.buttonModel.contentHorizontalAlignment
-                                               contentVerticalAlignment:self.buttonModel.contentVerticalAlignment
-                                                          contentInsets:self.buttonModel.contentInsets
-                                                      cornerRadiusValue:self.buttonModel.cornerRadiusValue
-                                                        roundingCorners:self.buttonModel.roundingCorners
-                                                   roundingCornersRadii:self.buttonModel.roundingCornersRadii
-                                                         layerBorderCor:self.buttonModel.layerBorderCor
-                                                            borderWidth:self.buttonModel.borderWidth
-                                                          primaryAction:self.buttonModel.primaryAction
-                                             longPressGestureEventBlock:self.buttonModel.longPressGestureEventBlock
-                                                        clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            /// 最外层的View联动
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        BaseButton *button = BaseButton.initByButtonModel(self.buttonModel);
         button.frame = CGRectMake(i * self.buttonWidth + (i ? self.btn_each_offset : 0),
                                   0,
                                   self.buttonWidth,
                                   self.height);
         button.index = self.buttonsArray.count;
 //        NSLog(@"sss = %ld",(long)button.index);
-        [self.buttonsArray addObject:button];
+        self.buttonsArray.add(button);
         [self addSubview:button];
     }
     self.current_index = 0;

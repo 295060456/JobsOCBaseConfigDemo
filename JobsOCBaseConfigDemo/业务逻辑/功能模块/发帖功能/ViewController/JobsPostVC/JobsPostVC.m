@@ -243,7 +243,7 @@
 -(void)releaseBtnState:(NSArray *)photoDataArr
        inputDataString:(NSString *)inputDataString{
     self.releaseBtn.enabled = photoDataArr.count || inputDataString.length;
-    self.releaseBtn.normalBackgroundImage(self.releaseBtn.enabled ? JobsIMG(@"发布") : JobsIMG(@"未发布"));
+    self.releaseBtn.jobsResetBtnBgImage(self.releaseBtn.enabled ? JobsIMG(@"发布") : JobsIMG(@"未发布"));
 }
 #pragma mark —— HXPhotoViewDelegate
 /// 在这里获取到点选的资料
@@ -337,50 +337,21 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
 -(BaseButton *)releaseBtn{
     if (!_releaseBtn) {
         @jobs_weakify(self)
-        _releaseBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                        buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:JobsInternationalization(@"发布")
-                                                          subTitle:nil
-                                                         titleFont:UIFontWeightRegularSize(12.5)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsWhiteColor
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:nil
-                                                   backgroundImage:JobsIMG(@"未发布")
-                                                      imagePadding:JobsWidth(0)
-                                                      titlePadding:JobsWidth(0)
-                                                    imagePlacement:NSDirectionalRectEdgeNone
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(23 / 2)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                       id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                   clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            [self.view endEditing:YES];
-            [self networking_checkHadRoleGET];
-            return nil;
-        }];
+        _releaseBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnBgImage(JobsIMG(@"未发布"))
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(JobsInternationalization(@"发布"))
+            .jobsResetBtnCornerRadiusValue(JobsWidth(23 / 2))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                [self.view endEditing:YES];
+                [self networking_checkHadRoleGET];
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _releaseBtn.enabled = NO;
         _releaseBtn.width = JobsWidth(38);
         _releaseBtn.height = JobsWidth(23);

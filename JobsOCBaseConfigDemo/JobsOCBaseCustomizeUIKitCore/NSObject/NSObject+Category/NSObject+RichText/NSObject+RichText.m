@@ -46,9 +46,10 @@
     }
     /// 设置段落样式
     NSMutableAttributedString *attributedString = self.richTextWithDataConfigMutArr(richTextDataConfigMutArr);
-    [attributedString addAttribute:NSParagraphStyleAttributeName
-                             value:paragraphStyle
-                             range:NSMakeRange(0, attributedString.string.length)];
+    attributedString.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+        data.value = paragraphStyle;
+        data.range = NSMakeRange(0, attributedString.string.length);
+    }));
 //    [attributedString endEditing];
     return attributedString;
 }
@@ -77,33 +78,38 @@
         for (JobsRichTextConfig *config in richTextDataConfigMutArr){
             /// 添加字体 & 设置作用域
             if (config.font) {
-                [attrString addAttribute:NSFontAttributeName
-                                   value:config.font
-                                   range:config.range];
+                attrString.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                    data.value = config.font;
+                    data.range = config.range;
+                }));
             }
             /// 添加文字颜色 & 设置作用域
             if (config.textCor) {
-                [attrString addAttribute:NSForegroundColorAttributeName
-                                   value:config.textCor
-                                   range:config.range];
+                attrString.addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                    data.value = config.textCor;
+                    data.range = config.range;
+                }));
             }
             /// 添加下划线 & 设置作用域
             if (config.underlineStyle) {
-                [attrString addAttribute:NSUnderlineStyleAttributeName
-                                   value:[NSNumber numberWithInteger:config.underlineStyle]
-                                   range:config.range];
+                attrString.addUnderlineStyleAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                    data.value = @(config.underlineStyle);
+                    data.range = config.range;
+                }));
             }
             /// 添加段落样式 & 设置作用域
             if (config.paragraphStyle) {
-                [attrString addAttribute:NSParagraphStyleAttributeName
-                                   value:config.paragraphStyle
-                                   range:config.range];
+                attrString.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                    data.value = config.paragraphStyle;
+                    data.range = config.range;
+                }));
             }
             /// 添加链接 & 设置作用域
             if (config.urlStr) {
-                [attrString addAttribute:NSLinkAttributeName
-                                   value:config.urlStr
-                                   range:config.range];
+                attrString.addLinkAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                    data.value = config.urlStr;
+                    data.range = config.range;
+                }));
             }
         }return attrString;
     };
@@ -112,14 +118,14 @@
 -(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation{
     return ^NSMutableAttributedString *(NSString *data) {
         return JobsMutAttributedStringByAttributes(data,
-                                             @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]});
+                                             @{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle)});
     };
 }
 /// 字符串下划线
 -(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation{
     return ^NSMutableAttributedString *(NSString *data) {
         return JobsMutAttributedStringByAttributes(data,
-                                                   @{NSUnderlineStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]});
+                                                   @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)});
     };
 }
 

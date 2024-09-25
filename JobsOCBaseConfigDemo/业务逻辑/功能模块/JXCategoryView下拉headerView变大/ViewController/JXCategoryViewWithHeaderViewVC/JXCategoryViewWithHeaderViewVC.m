@@ -200,69 +200,40 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
 -(BaseButton *)ruleBtn{
     if (!_ruleBtn) {
         @jobs_weakify(self)
-        _ruleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                     background:nil
-                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                  textAlignment:NSTextAlignmentCenter
-                                               subTextAlignment:NSTextAlignmentCenter
-                                                    normalImage:nil
-                                                 highlightImage:nil
-                                                attributedTitle:nil
-                                        selectedAttributedTitle:nil
-                                             attributedSubtitle:nil
-                                                          title:JobsInternationalization(@"VIP規則")
-                                                       subTitle:nil
-                                                      titleFont:UIFontWeightRegularSize(12)
-                                                   subTitleFont:nil
-                                                       titleCor:HEXCOLOR(0x3D4A58)
-                                                    subTitleCor:nil
-                                             titleLineBreakMode:NSLineBreakByWordWrapping
-                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                            baseBackgroundColor:nil
-                                                backgroundImage:nil
-                                                   imagePadding:JobsWidth(0)
-                                                   titlePadding:JobsWidth(0)
-                                                 imagePlacement:NSDirectionalRectEdgeNone
-                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                              cornerRadiusValue:JobsWidth(0)
-                                                roundingCorners:UIRectCornerAllCorners
-                                           roundingCornersRadii:CGSizeZero
-                                                 layerBorderCor:nil
-                                                    borderWidth:JobsWidth(0)
-                                                  primaryAction:nil
-                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                    id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            toast(JobsInternationalization(@"VIP規則"));
-            return nil;
-        }];
+        _ruleBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(JobsInternationalization(@"VIP規則"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                toast(JobsInternationalization(@"VIP規則"));
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
     }return _ruleBtn;
 }
 
 -(NSMutableArray<NSString *> *)titleMutArr{
     if (!_titleMutArr) {
-        _titleMutArr = NSMutableArray.array;
-        for (int i = 0; i <= 5; i++) {
-            _titleMutArr.add(JobsInternationalization(@"Lv".add(toStringByInt(i))));
-        }
+        _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            for (int i = 0; i <= 5; i++) {
+                data.add(JobsInternationalization(@"Lv".add(toStringByInt(i))));
+            }
+        });
     }return _titleMutArr;
 }
 
 -(NSMutableArray<__kindof UIViewController *> *)childVCMutArr{
     if (!_childVCMutArr) {
-        _childVCMutArr = NSMutableArray.array;
-        for (NSString *str in self.titleMutArr) {
-            JXCategoryViewWithHeaderViewSubVC *vipSubVC = JXCategoryViewWithHeaderViewSubVC.new;
-            vipSubVC.jobsTag = [self.titleMutArr indexOfObject:str];
-            [_childVCMutArr addObject:vipSubVC];
-        }
+        _childVCMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            for (NSString *str in self.titleMutArr) {
+                JXCategoryViewWithHeaderViewSubVC *vipSubVC = JXCategoryViewWithHeaderViewSubVC.new;
+                vipSubVC.jobsTag = [self.titleMutArr indexOfObject:str];
+                data.add(vipSubVC);
+            }
+        });
     }return _childVCMutArr;
 }
 

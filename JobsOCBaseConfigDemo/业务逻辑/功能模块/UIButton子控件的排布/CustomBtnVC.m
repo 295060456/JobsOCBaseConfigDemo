@@ -62,10 +62,10 @@
 -(UIButton *)btn1{
     if (!_btn1) {
         _btn1 = UIButton.new;
-        _btn1.normalTitle(JobsInternationalization(@"image左、label右【系统默认状态】"));
-        _btn1.normalImage(JobsIMG(@"Lock"));
-        _btn1.normalTitleColor(JobsWhiteColor);
-        _btn1.titleFont(UIFontWeightRegularSize(14));
+        _btn1.jobsResetBtnTitle(JobsInternationalization(@"image左、label右【系统默认状态】"));
+        _btn1.jobsResetBtnImage(JobsIMG(@"Lock"));
+        _btn1.jobsResetBtnTitleCor(JobsWhiteColor);
+        _btn1.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
         _btn1.backgroundColor = JobsCyanColor;
     
         [self.view addSubview:_btn1];
@@ -87,10 +87,10 @@
 -(UIButton *)btn2{
     if (!_btn2) {
         _btn2 = UIButton.new;
-        _btn2.normalTitle(JobsInternationalization(@"image右、label左"));
-        _btn2.normalImage(JobsIMG(@"Lock"));
-        _btn2.normalTitleColor(JobsWhiteColor);
-        _btn2.titleFont(UIFontWeightRegularSize(14));
+        _btn2.jobsResetBtnTitle(JobsInternationalization(@"image右、label左"));
+        _btn2.jobsResetBtnImage(JobsIMG(@"Lock"));
+        _btn2.jobsResetBtnTitleCor(JobsWhiteColor);
+        _btn2.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
         _btn2.backgroundColor = JobsCyanColor;
         
         [self.view addSubview:_btn2];
@@ -112,10 +112,10 @@
 -(UIButton *)btn3{
     if (!_btn3) {
         _btn3 = UIButton.new;
-        _btn3.normalTitle(JobsInternationalization(@"image上，label下"));
-        _btn3.normalImage(JobsIMG(@"Lock"));
-        _btn3.normalTitleColor(JobsWhiteColor);
-        _btn3.titleFont(UIFontWeightRegularSize(14));
+        _btn3.jobsResetBtnTitle(JobsInternationalization(@"image上，label下"));
+        _btn3.jobsResetBtnImage(JobsIMG(@"Lock"));
+        _btn3.jobsResetBtnTitleCor(JobsWhiteColor);
+        _btn3.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
         _btn3.backgroundColor = JobsCyanColor;
         
         [self.view addSubview:_btn3];
@@ -137,10 +137,10 @@
 -(UIButton *)btn4{
     if (!_btn4) {
         _btn4 = UIButton.new;
-        _btn4.normalTitle(JobsInternationalization(@"image下，label上"));
-        _btn4.normalImage(JobsIMG(@"Lock"));
-        _btn4.normalTitleColor(JobsWhiteColor);
-        _btn4.titleFont(UIFontWeightRegularSize(14));
+        _btn4.jobsResetBtnTitle(JobsInternationalization(@"image下，label上"));
+        _btn4.jobsResetBtnImage(JobsIMG(@"Lock"));
+        _btn4.jobsResetBtnTitleCor(JobsWhiteColor);
+        _btn4.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
         _btn4.backgroundColor = JobsCyanColor;
         
         [self.view addSubview:_btn4];

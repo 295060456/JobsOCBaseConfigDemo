@@ -77,11 +77,11 @@
         }];
     }
     
-    _subTitleBtn.normalImage(self.viewModel.image);
-    _subTitleBtn.normalBackgroundImage(self.viewModel.bgImage);
-    _subTitleBtn.normalTitle(self.viewModel.subTextModel.text);
-    _subTitleBtn.normalTitleColor(self.viewModel.subTextModel.textCor);
-    _subTitleBtn.normalAttributedTitle(self.viewModel.subTextModel.attributedText);
+    _subTitleBtn.jobsResetBtnImage(self.viewModel.image);
+    _subTitleBtn.jobsResetBtnBgImage(self.viewModel.bgImage);
+    _subTitleBtn.jobsResetBtnTitle(self.viewModel.subTextModel.text);
+    _subTitleBtn.jobsResetBtnTitleCor(self.viewModel.subTextModel.textCor);
+    _subTitleBtn.jobsResetBtnNormalAttributedTitle(self.viewModel.subTextModel.attributedText);
     
     _subTitleBtn.selectedImage(self.viewModel.selectedImage_);
     _subTitleBtn.selectedBackgroundImage(self.viewModel.bgSelectedImage);
@@ -89,7 +89,7 @@
     _subTitleBtn.selectedTitleColor(self.viewModel.subTextModel.textCor);
     _subTitleBtn.selectedAttributedTitle(self.viewModel.subTextModel.attributedText);
     
-    _subTitleBtn.titleFont(self.viewModel.subTextModel.font);
+    _subTitleBtn.jobsResetBtnTitleFont(self.viewModel.subTextModel.font);
     _subTitleBtn.titleAlignment = self.viewModel.subTextModel.textAlignment;
     _subTitleBtn.lineBreakMode = self.viewModel.subTextModel.lineBreakMode;
     

@@ -69,10 +69,10 @@ static dispatch_once_t static_showNumViewOnceToken;
         
         for (NSString *string in temp) {
             UIButton *btn = UIButton.new;
-            btn.normalBackgroundImage(JobsIMG(@"JobsShowNum"));
-            btn.normalTitle(JobsInternationalization(string));
-            btn.titleFont(UIFontWeightBoldSize(40));
-            btn.normalTitleColor(HEXCOLOR(0xAE8330));
+            btn.jobsResetBtnBgImage(JobsIMG(@"JobsShowNum"));
+            btn.jobsResetBtnTitle(JobsInternationalization(string));
+            btn.jobsResetBtnTitleFont(UIFontWeightBoldSize(40));
+            btn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
             @jobs_weakify(self)
             [btn jobsBtnClickEventBlock:^id(id data) {
                 @jobs_strongify(self)

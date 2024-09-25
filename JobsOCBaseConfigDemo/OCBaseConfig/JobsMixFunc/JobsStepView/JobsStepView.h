@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_END
              buttonModel.title = JobsInternationalization(@"第一步");
              buttonModel.titleCor = JobsWhiteColor;
              buttonModel.titleFont = UIFontWeightRegularSize(14);
-             buttonModel.normalImage = JobsIMG(@"正在进行第一步");
+             buttonModel.jobsResetBtnImage = JobsIMG(@"正在进行第一步");
              buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
              buttonModel.imagePadding = JobsWidth(10);
              buttonModel.roundingCorners = UIRectCornerAllCorners;
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_END
              buttonModel.title = JobsInternationalization(@"第二步");
              buttonModel.titleCor = JobsWhiteColor;
              buttonModel.titleFont = UIFontWeightRegularSize(14);
-             buttonModel.normalImage = JobsIMG(@"还未进行第二步");
+             buttonModel.jobsResetBtnImage = JobsIMG(@"还未进行第二步");
              buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
              buttonModel.imagePadding = JobsWidth(10);
              buttonModel.roundingCorners = UIRectCornerAllCorners;
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_END
              buttonModel.title = JobsInternationalization(@"第三步");
              buttonModel.titleCor = JobsWhiteColor;
              buttonModel.titleFont = UIFontWeightRegularSize(14);
-             buttonModel.normalImage = JobsIMG(@"还未进行第三步");
+             buttonModel.jobsResetBtnImage = JobsIMG(@"还未进行第三步");
              buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
              buttonModel.imagePadding = JobsWidth(10);
              buttonModel.roundingCorners = UIRectCornerAllCorners;

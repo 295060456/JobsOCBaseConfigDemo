@@ -92,10 +92,10 @@ cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.item]);
     if (indexPath.item == self.selectedIndex - 1) {
         cell.btn.backgroundColor = HEXCOLOR(0xFFEABA);
-        cell.btn.normalTitleColor(HEXCOLOR(0xAE8330));
+        cell.btn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
     }else{
         cell.btn.backgroundColor = HEXCOLOR(0xF3F3F3);
-        cell.btn.normalTitleColor(HEXCOLOR(0x757575));
+        cell.btn.jobsResetBtnTitleCor(HEXCOLOR(0x757575));
     }
     
     cell.cornerCutToCircleWithCornerRadius([JobsBtnStyleCVCell cellSizeWithModel:nil].height / 2);
@@ -342,7 +342,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 -(BaseButton *)closeBtn{
     if (!_closeBtn) {
         _closeBtn = BaseButton.new;
-        _closeBtn.normalBackgroundImage(JobsIMG(@"关闭"));
+        _closeBtn.jobsResetBtnBgImage(JobsIMG(@"关闭"));
         [self.titleLab addSubview:_closeBtn];
         [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(9.75f), JobsWidth(9.75f)));

@@ -472,49 +472,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 -(BaseButton *)scanBtn{
     if (!_scanBtn) {
         @jobs_weakify(self)
-        _scanBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                     background:nil
-                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                  textAlignment:NSTextAlignmentCenter
-                                               subTextAlignment:NSTextAlignmentCenter
-                                                    normalImage:JobsIMG(@"扫描")
-                                                 highlightImage:nil
-                                                attributedTitle:nil
-                                        selectedAttributedTitle:nil
-                                             attributedSubtitle:nil
-                                                          title:nil
-                                                       subTitle:nil
-                                                      titleFont:nil
-                                                   subTitleFont:nil
-                                                       titleCor:nil
-                                                    subTitleCor:nil
-                                             titleLineBreakMode:NSLineBreakByWordWrapping
-                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                            baseBackgroundColor:nil
-                                                backgroundImage:nil
-                                                   imagePadding:JobsWidth(0)
-                                                   titlePadding:JobsWidth(0)
-                                                 imagePlacement:NSDirectionalRectEdgeNone
-                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                              cornerRadiusValue:JobsWidth(0)
-                                                roundingCorners:UIRectCornerAllCorners
-                                           roundingCornersRadii:CGSizeZero
-                                                 layerBorderCor:nil
-                                                    borderWidth:JobsWidth(0)
-                                                  primaryAction:nil
-                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                    id _Nullable arg) {
-             NSLog(@"按钮的长按事件触发");
-             return nil;
-         }
-                                                clickEventBlock:^id(BaseButton *x){
-             @jobs_strongify(self)
-             if (self.objectBlock) self.objectBlock(x);
-            toast(JobsInternationalization(@"此功能尚未开发"));
-             return nil;
-        }];
+        _scanBtn = BaseButton.initByNormalImage(JobsIMG(@"扫描"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                toast(JobsInternationalization(@"此功能尚未开发"));
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
     }return _scanBtn;
 }
 
@@ -532,156 +497,115 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 -(NSMutableArray<UIViewModel *> *)sectionTitleMutArr{
     if (!_sectionTitleMutArr) {
-        _sectionTitleMutArr = NSMutableArray.array;
-    
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"热门搜索");
-        viewModel.textModel.textCor = JobsLightGrayColor;
-        viewModel.bgCor = JobsWhiteColor;
-        viewModel.textModel.font = JobsFontRegular(20);
-        
-        [_sectionTitleMutArr addObject:viewModel];
-        
-        if (self.listViewData.count) {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"搜索历史");
-            viewModel.textModel.textCor = JobsLightGrayColor;
-            viewModel.bgCor = JobsWhiteColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            
-            [_sectionTitleMutArr addObject:viewModel];
-        }
+        @jobs_weakify(self)
+        _sectionTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"热门搜索");
+                viewModel.textModel.textCor = JobsLightGrayColor;
+                viewModel.bgCor = JobsWhiteColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            @jobs_strongify(self)
+            if (self.listViewData.count) {
+                data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                    viewModel.textModel.text = JobsInternationalization(@"搜索历史");
+                    viewModel.textModel.textCor = JobsLightGrayColor;
+                    viewModel.bgCor = JobsWhiteColor;
+                    viewModel.textModel.font = JobsFontRegular(20);
+                }));
+            }
+        });
     }return _sectionTitleMutArr;
 }
 
 -(NSMutableArray<UIViewModel *> *)hotSearchMutArr{
     if (!_hotSearchMutArr) {
-        _hotSearchMutArr = NSMutableArray.array;
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"Java");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"Python");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"Objective-C");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"Swift");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"C");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"C++");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"PHP");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"C#");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"Perl");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"Go");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"JavaScript");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"Ruby");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"R");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"MATLAB");
-            viewModel.textModel.textCor = JobsRandomColor;
-            viewModel.bgCor = JobsRandomColor;
-            viewModel.textModel.font = JobsFontRegular(20);
-            [_hotSearchMutArr addObject:viewModel];
-        }
+        _hotSearchMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"Java");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"Python");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"Objective-C");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"Swift");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"C");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"C++");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"C#");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"PHP");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"Perl");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"Go");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"JavaScript");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"Ruby");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"R");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"MATLAB");
+                viewModel.textModel.textCor = JobsRandomColor;
+                viewModel.bgCor = JobsRandomColor;
+                viewModel.textModel.font = JobsFontRegular(20);
+            }));
+        });
     }return _hotSearchMutArr;
 }
 

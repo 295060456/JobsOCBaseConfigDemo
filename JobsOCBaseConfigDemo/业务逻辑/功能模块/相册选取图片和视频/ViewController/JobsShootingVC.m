@@ -68,9 +68,9 @@
 -(UIButton *)cameraBtn{
     if(!_cameraBtn){
         _cameraBtn = UIButton.new;
-        _cameraBtn.normalTitle(JobsInternationalization(@"调取系统相机"));
+        _cameraBtn.jobsResetBtnTitle(JobsInternationalization(@"调取系统相机"));
         _cameraBtn.backgroundColor = JobsGreenColor;
-        _cameraBtn.normalTitleColor(JobsWhiteColor);
+        _cameraBtn.jobsResetBtnTitleCor(JobsWhiteColor);
         [self.view addSubview:_cameraBtn];
         [_cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(50));
@@ -96,8 +96,8 @@
     if(!_photoAlbumBtn){
         _photoAlbumBtn = UIButton.new;
         _photoAlbumBtn.backgroundColor = JobsBlueColor;
-        _photoAlbumBtn.normalTitleColor(JobsWhiteColor);
-        _photoAlbumBtn.normalTitle(JobsInternationalization(@"调取系统相机"));
+        _photoAlbumBtn.jobsResetBtnTitleCor(JobsWhiteColor);
+        _photoAlbumBtn.jobsResetBtnTitle(JobsInternationalization(@"调取系统相机"));
         [self.view addSubview:_photoAlbumBtn];
         [_photoAlbumBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(50));

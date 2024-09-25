@@ -86,49 +86,20 @@
 -(BaseButton *)switchBtn{
     if(!_switchBtn){
         @jobs_weakify(self)
-        _switchBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                       background:nil
-                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                    textAlignment:NSTextAlignmentCenter
-                                                 subTextAlignment:NSTextAlignmentCenter
-                                                      normalImage:nil
-                                                   highlightImage:nil
-                                                  attributedTitle:nil
-                                          selectedAttributedTitle:nil
-                                               attributedSubtitle:nil
-                                                            title:JobsInternationalization(@"点击")
-                                                         subTitle:JobsInternationalization(@"跳转Collection控制器")
-                                                        titleFont:UIFontWeightBoldSize(18)
-                                                     subTitleFont:nil
-                                                         titleCor:JobsCor(@"#333333")
-                                                      subTitleCor:nil
-                                               titleLineBreakMode:NSLineBreakByWordWrapping
-                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                              baseBackgroundColor:JobsWhiteColor
-                                                  backgroundImage:nil
-                                                     imagePadding:JobsWidth(0)
-                                                     titlePadding:JobsWidth(10)
-                                                   imagePlacement:NSDirectionalRectEdgeNone
-                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                cornerRadiusValue:JobsWidth(8)
-                                                  roundingCorners:UIRectCornerAllCorners
-                                             roundingCornersRadii:CGSizeZero
-                                                   layerBorderCor:nil
-                                                      borderWidth:JobsWidth(0)
-                                                    primaryAction:nil
-                                       longPressGestureEventBlock:^id(BaseButton *_Nullable weakSelf,
-                                                                      id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                  clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            self.comingToPushVC(MyCollectionVC.new);
-            return nil;
-        }];
+        _switchBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(18))
+            .jobsResetBtnTitle(JobsInternationalization(@"点击"))
+            .jobsResetBtnSubTitle(JobsInternationalization(@"跳转Collection控制器"))
+            .jobsResetTitlePadding(JobsWidth(10))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                self.comingToPushVC(MyCollectionVC.new);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.view addSubview:_switchBtn];
         [_switchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(80), JobsWidth(100)));

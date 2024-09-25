@@ -129,7 +129,7 @@ static dispatch_once_t static_codeViewOnceToken;
             [self refreshAction];
             return nil;
         }];
-        self.refresh.normalImage(JobsIMG(@"refresh"));
+        self.refresh.jobsResetBtnImage(JobsIMG(@"refresh"));
         self.refresh;
     })];
     self.resetHeight(CGRectGetMaxY(self.refresh.frame) + WMZmargin);
@@ -163,7 +163,7 @@ static dispatch_once_t static_codeViewOnceToken;
                                         CGRectGetMaxY(self.mainImage.frame) + WMZmargin,
                                         40,
                                         40);
-        self.refresh.normalImage(JobsIMG(@"refresh"));
+        self.refresh.jobsResetBtnImage(JobsIMG(@"refresh"));
         @jobs_weakify(self)
         [self.refresh jobsBtnClickEventBlock:^id(id data) {
             @jobs_strongify(self)
@@ -218,9 +218,9 @@ static dispatch_once_t static_codeViewOnceToken;
 }
 /// 添加可移动的图片
 - (void)addMoveImage{
-    UIImage *normalImage = JobsIMG(self.name);
-    normalImage = [normalImage dw_RescaleImageToSize:CGSizeMake(self.width-WMZmargin*2, WMZimageHeight)];
-    self.mainImage.image = normalImage;
+    UIImage *jobsResetBtnImage = JobsIMG(self.name);
+    jobsResetBtnImage = [jobsResetBtnImage dw_RescaleImageToSize:CGSizeMake(self.width-WMZmargin*2, WMZimageHeight)];
+    self.mainImage.image = jobsResetBtnImage;
     [self.mainImage addSubview:({
         self.maskView.frame = CGRectMake(self.randomPoint.x,
                                          self.randomPoint.y,
@@ -287,9 +287,9 @@ static dispatch_once_t static_codeViewOnceToken;
         for (int i = 0; i < arr.count; i++) {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.backgroundColor = JobsWhiteColor;
-            btn.normalTitleColor(JobsBlackColor);
-            btn.normalTitle(arr[i]);
-            btn.titleFont([UIFont systemFontOfSize:20.0]);
+            btn.jobsResetBtnTitleCor(JobsBlackColor);
+            btn.jobsResetBtnTitle(arr[i]);
+            btn.jobsResetBtnTitleFont([UIFont systemFontOfSize:20.0]);
             btn.layer.masksToBounds = YES;
             btn.layer.cornerRadius = btnWidth/2;
             @jobs_weakify(self)
@@ -315,7 +315,7 @@ static dispatch_once_t static_codeViewOnceToken;
     }else{
          for (int i = 0; i < self.btnArr.count; i++) {
              UIButton *btn = self.btnArr[i];
-             btn.normalTitle(arr[i]);
+             btn.jobsResetBtnTitle(arr[i]);
                if (self.type == CodeTypeLabel) {
                  CGFloat h = [self getRandomNumber:btnWidth to:WMZimageHeight-WMZmargin];
                  btn.frame = CGRectMake(btn.frame.origin.x, h, btnWidth, btnWidth);

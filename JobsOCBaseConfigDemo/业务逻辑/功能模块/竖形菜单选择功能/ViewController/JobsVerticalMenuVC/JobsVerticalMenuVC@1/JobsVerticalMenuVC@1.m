@@ -230,96 +230,29 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 -(BaseButton *)customerServiceBtn{
     if (!_customerServiceBtn) {
         @jobs_weakify(self)
-        _customerServiceBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                                background:nil
-                                                buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                             textAlignment:NSTextAlignmentCenter
-                                                          subTextAlignment:NSTextAlignmentCenter
-                                                               normalImage:JobsIMG(@"人工客服")
-                                                            highlightImage:nil
-                                                           attributedTitle:nil
-                                                   selectedAttributedTitle:nil
-                                                        attributedSubtitle:nil
-                                                                     title:nil
-                                                                  subTitle:nil
-                                                                 titleFont:nil
-                                                              subTitleFont:nil
-                                                                  titleCor:nil
-                                                               subTitleCor:nil
-                                                        titleLineBreakMode:NSLineBreakByWordWrapping
-                                                     subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                       baseBackgroundColor:nil
-                                                           backgroundImage:nil
-                                                              imagePadding:JobsWidth(0)
-                                                              titlePadding:JobsWidth(0)
-                                                            imagePlacement:NSDirectionalRectEdgeNone
-                                                contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                                  contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                             contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                         cornerRadiusValue:JobsWidth(0)
-                                                           roundingCorners:UIRectCornerAllCorners
-                                                      roundingCornersRadii:CGSizeZero
-                                                            layerBorderCor:nil
-                                                               borderWidth:JobsWidth(0)
-                                                             primaryAction:nil
-                                                longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                               id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                           clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _customerServiceBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnImage(JobsIMG(@"人工客服"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
     }return _customerServiceBtn;
 }
 
 -(BaseButton *)msgBtn{
     if (!_msgBtn) {
         @jobs_weakify(self)
-        _msgBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                    background:nil
-                                    buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                 textAlignment:NSTextAlignmentCenter
-                                              subTextAlignment:NSTextAlignmentCenter
-                                                   normalImage:JobsIMG(@"消息")
-                                                highlightImage:nil
-                                               attributedTitle:nil
-                                       selectedAttributedTitle:nil
-                                            attributedSubtitle:nil
-                                                         title:nil
-                                                      subTitle:nil
-                                                     titleFont:nil
-                                                  subTitleFont:nil
-                                                      titleCor:nil
-                                                   subTitleCor:nil
-                                            titleLineBreakMode:NSLineBreakByWordWrapping
-                                         subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                           baseBackgroundColor:nil
-                                               backgroundImage:nil
-                                                  imagePadding:JobsWidth(0)
-                                                  titlePadding:JobsWidth(0)
-                                                imagePlacement:NSDirectionalRectEdgeNone
-                                    contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                      contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                 contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                             cornerRadiusValue:JobsWidth(0)
-                                               roundingCorners:UIRectCornerAllCorners
-                                          roundingCornersRadii:CGSizeZero
-                                                layerBorderCor:nil
-                                                   borderWidth:JobsWidth(0)
-                                                 primaryAction:nil
-                                    longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                   id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                               clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _msgBtn = BaseButton.jobsInit()
+            .jobsResetBtnImage(JobsIMG(@"消息"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });;
     }return _msgBtn;
 }
 
@@ -367,49 +300,21 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 -(BaseButton *)editBtn{
     if (!_editBtn) {
         @jobs_weakify(self)
-        _editBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                     background:nil
-                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                  textAlignment:NSTextAlignmentCenter
-                                               subTextAlignment:NSTextAlignmentCenter
-                                                    normalImage:JobsIMG(@"编辑")
-                                                 highlightImage:nil
-                                                attributedTitle:nil
-                                        selectedAttributedTitle:nil
-                                             attributedSubtitle:nil
-                                                          title:JobsInternationalization(@"编辑")
-                                                       subTitle:nil
-                                                      titleFont:UIFontWeightRegularSize(12)
-                                                   subTitleFont:nil
-                                                       titleCor:HEXCOLOR(0xB0B0B0)
-                                                    subTitleCor:nil
-                                             titleLineBreakMode:NSLineBreakByWordWrapping
-                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                            baseBackgroundColor:HEXCOLOR(0xFCFBFB)
-                                                backgroundImage:nil
-                                                   imagePadding:JobsWidth(5.75)
-                                                   titlePadding:JobsWidth(0)
-                                                 imagePlacement:NSDirectionalRectEdgeLeading
-                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                              cornerRadiusValue:JobsWidth(0)
-                                                roundingCorners:UIRectCornerAllCorners
-                                           roundingCornersRadii:CGSizeZero
-                                                 layerBorderCor:nil
-                                                    borderWidth:JobsWidth(0)
-                                                  primaryAction:nil
-                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                    id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            toast(JobsInternationalization(@"编辑"));
-            return nil;
-        }];
+        _editBtn = BaseButton.jobsInit()
+            .bgColor(HEXCOLOR(0xFCFBFB))
+            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+            .jobsResetImagePlacement(JobsWidth(5.75))
+            .jobsResetBtnBgImage(JobsIMG(@"编辑"))
+            .jobsResetBtnTitleCor(HEXCOLOR(0xB0B0B0))
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(JobsInternationalization(@"编辑"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                toast(JobsInternationalization(@"编辑"));
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.view addSubview:_editBtn];
         [_editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view);

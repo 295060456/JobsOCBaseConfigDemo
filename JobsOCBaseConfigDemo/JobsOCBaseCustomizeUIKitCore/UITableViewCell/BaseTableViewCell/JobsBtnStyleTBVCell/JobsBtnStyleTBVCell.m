@@ -90,7 +90,7 @@ UIViewModelProtocol_synthesize
         _btn.jobsResetBtnBgCor(self.viewModel.bgCor);
         /// 图文间距
         if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePadding(self.viewModel.imageTitleSpace);
+            _btn.jobsResetImagePlacement(self.viewModel.imageTitleSpace);
         } else {
             // Fallback on earlier versions
         }
@@ -101,7 +101,7 @@ UIViewModelProtocol_synthesize
             // Fallback on earlier versions
         }
         /// 圆切角
-        _btn.resetCornerRadius(self.viewModel.layerCornerRadius);
+        _btn.jobsResetBtnCornerRadiusValue(self.viewModel.layerCornerRadius);
     }
     
     if(self.buttonModel){
@@ -121,7 +121,7 @@ UIViewModelProtocol_synthesize
                       btnSubTitleCor: self.buttonModel.subTitleCor ? : JobsBlueColor];
         /// 图文间距
         if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePadding(self.buttonModel.imagePadding);
+            _btn.jobsResetImagePlacement(self.buttonModel.imagePadding);
         } else {
             // Fallback on earlier versions
         }
@@ -132,7 +132,7 @@ UIViewModelProtocol_synthesize
             // Fallback on earlier versions
         }
         /// 圆切角
-        _btn.resetCornerRadius(self.buttonModel.cornerRadiusValue);
+        _btn.jobsResetBtnCornerRadiusValue(self.buttonModel.cornerRadiusValue);
     }return _btn;
 }
 

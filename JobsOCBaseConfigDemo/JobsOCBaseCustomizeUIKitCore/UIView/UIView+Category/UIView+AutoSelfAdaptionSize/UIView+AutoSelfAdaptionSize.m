@@ -129,17 +129,18 @@
     if ([self isKindOfClass:UILabel.class]) {
         UILabel *label = (UILabel *)self;
         //创建可变字符串属性
-        NSMutableAttributedString *attributedString = [NSMutableAttributedString.alloc initWithAttributedString:label.attributedText];
+        NSMutableAttributedString *attributedString = toMutAttributedString(label.attributedText);
         //调整间距
-        [attributedString addAttribute:(__bridge NSString *)kCTKernAttributeName
-                                 value:@(textSpace)
-                                 range:NSMakeRange(0, attributedString.length)];
+        attributedString.addkCTKernAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+            data.value = @(textSpace);
+            data.range = NSMakeRange(0, attributedString.length);
+        }));
         label.attributedText = attributedString;
-        NSDictionary *attributes = @{NSFontAttributeName:label.font,NSKernAttributeName:@(textSpace)};
         //计算自适应高度
         CGRect rect = [label.text boundingRectWithSize:CGSizeMake(MAXFLOAT, maxHight)
                                                options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
-                                            attributes:attributes
+                                            attributes:@{NSFontAttributeName:label.font,
+                                                         NSKernAttributeName:@(textSpace)}
                                                context:nil];
         frame = CGRectMake(origin.x,
                            origin.y,
@@ -158,16 +159,17 @@
         UILabel *label = (UILabel *)self;
         label.numberOfLines = 0;//无限行
         // 字间距
-        NSMutableAttributedString *attributedString = [NSMutableAttributedString.alloc initWithString:label.text
-                                                                                           attributes:@{NSKernAttributeName:@(textSpace),
-                                                                                                        NSFontAttributeName:label.font}];
+        NSMutableAttributedString *attributedString = [AttributedString initWithString:label.text
+                                                                            attributes:@{NSKernAttributeName:@(textSpace),
+                                                                                         NSFontAttributeName:label.font}];
         // 行间距
-        NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
-        paragraphStyle.lineSpacing = lineSpace;
-        paragraphStyle.baseWritingDirection = NSWritingDirectionLeftToRight;// 从左到右
         // 给可变的属性字符串 添加段落格式
         [attributedString addAttribute:NSParagraphStyleAttributeName
-                                 value:paragraphStyle
+                                 value:jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+            data.lineSpacing = lineSpace;
+            data.baseWritingDirection = NSWritingDirectionLeftToRight;// 从左到右
+        })
+
                                  range:NSMakeRange(0, label.text.length)];
         label.attributedText = attributedString;
         //设置文本偏移量

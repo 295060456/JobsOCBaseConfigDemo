@@ -55,45 +55,19 @@
 -(BaseButton *)userInfoBtn{
     if(!_userInfoBtn){
         @jobs_weakify(self)
-        _userInfoBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                         background:nil
-                                         buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                      textAlignment:NSTextAlignmentCenter
-                                                   subTextAlignment:NSTextAlignmentCenter
-                                                        normalImage:nil
-                                                     highlightImage:nil
-                                                    attributedTitle:nil
-                                            selectedAttributedTitle:nil
-                                                 attributedSubtitle:nil
-                                                              title:nil
-                                                           subTitle:nil
-                                                          titleFont:UIFontWeightBoldSize(12)
-                                                       subTitleFont:nil
-                                                           titleCor:JobsCor(@"#EA2918")
-                                                        subTitleCor:nil
-                                                 titleLineBreakMode:NSLineBreakByWordWrapping
-                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                baseBackgroundColor:JobsWhiteColor
-                                                    backgroundImage:nil
-                                                       imagePadding:JobsWidth(0)
-                                                       titlePadding:JobsWidth(5)
-                                                     imagePlacement:NSDirectionalRectEdgeLeading
-                                         contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                           contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                      contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                  cornerRadiusValue:JobsWidth(0)
-                                                    roundingCorners:UIRectCornerAllCorners
-                                               roundingCornersRadii:CGSizeZero
-                                                     layerBorderCor:nil
-                                                        borderWidth:JobsWidth(0)
-                                                      primaryAction:nil
-                                         longPressGestureEventBlock:nil
-                                                    clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _userInfoBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+            .jobsResetImagePlacement(1)
+            .jobsResetBtnTitleCor(JobsCor(@"#EA2918"))
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         /// 很重要，自定义设置UIBotton.imageView
         _userInfoBtn.imageViewFrame = CGRectMake(JobsWidth(15), 0, JobsWidth(45), JobsWidth(45));
         _userInfoBtn.textLabelFrameOffsetX = JobsWidth(0);
@@ -106,29 +80,31 @@
         }];
     }
     
-    {
-        @jobs_weakify(self)
-        if (self.firstCommentModel.headImg.jobsCanOpenUrl) {
-            [self->_userInfoBtn.imageView sd_setImageWithURL:self.firstCommentModel.headImg.jobsUrl
-                                            placeholderImage:[UIImage animatedGIFNamed:@"动态头像 尺寸126"] ? : JobsIMG(@"头像01")
-                                                   completed:^(UIImage * _Nullable image,
-                                                               NSError * _Nullable error,
-                                                               SDImageCacheType cacheType,
-                                                               NSURL * _Nullable imageURL) {
-                @jobs_strongify(self)
-                self->_userInfoBtn.jobsResetImage(image ? : [UIImage animatedGIFNamed:@"动态头像 尺寸126"] ? : JobsIMG(@"头像01"));
-            }];
-        }else{
-            self->_userInfoBtn.jobsResetBtnImage([UIImage animatedGIFNamed:@"动态头像 尺寸126"] ? : JobsIMG(@"头像01"));
-        }
+    if (self.firstCommentModel.headImg.jobsCanOpenUrl) {
+        self->_userInfoBtn.imageURL(self.firstCommentModel.headImg.jobsUrl)
+           .placeholderImage(JobsGifIMG(@"动态头像 尺寸126") ? : JobsIMG(@"头像01"))
+           .options(SDWebImageRefreshCached)/// 强制刷新缓存
+           .completed(^(UIImage * _Nullable image,
+                        NSError * _Nullable error,
+                        SDImageCacheType cacheType,
+                        NSURL * _Nullable imageURL) {
+               if (error) {
+                   NSLog(@"图片加载失败: %@-%@", error,imageURL);
+               } else {
+                   NSLog(@"图片加载成功");
+                   self->_userInfoBtn.jobsResetImage(image ? : JobsGifIMG(@"动态头像 尺寸126") ? : JobsIMG(@"头像01"));
+               }
+           }).normalLoad();
+    }else{
+        self->_userInfoBtn.jobsResetBtnImage(JobsGifIMG(@"动态头像 尺寸126") ? : JobsIMG(@"头像01"));
     }
     
-    _userInfoBtn.jobsResetAttributedTitle([NSMutableAttributedString.alloc initWithString:self.firstCommentModel.nickname
-                                                                               attributes:@{NSFontAttributeName: JobsCommentConfig.sharedInstance.titleFont,
-                                                                                            NSForegroundColorAttributeName: JobsCommentConfig.sharedInstance.titleCor}]);
-    _userInfoBtn.jobsResetAttributedSubtitle([NSMutableAttributedString.alloc initWithString:self.firstCommentModel.content
-                                                                                  attributes:@{NSFontAttributeName: JobsCommentConfig.sharedInstance.subTitleFont,
-                                                                                               NSForegroundColorAttributeName: JobsCommentConfig.sharedInstance.subTitleCor}]);
+    _userInfoBtn.jobsResetAttributedTitle([AttributedString initWithString:self.firstCommentModel.nickname
+                                                                attributes:@{NSFontAttributeName: JobsCommentConfig.sharedInstance.titleFont,
+                                                                             NSForegroundColorAttributeName: JobsCommentConfig.sharedInstance.titleCor}]);
+    _userInfoBtn.jobsResetAttributedSubtitle([AttributedString initWithString:self.firstCommentModel.content
+                                                                   attributes:@{NSFontAttributeName: JobsCommentConfig.sharedInstance.subTitleFont,
+                                                                                NSForegroundColorAttributeName: JobsCommentConfig.sharedInstance.subTitleCor}]);
     _userInfoBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     return _userInfoBtn;
 }
@@ -136,56 +112,30 @@
 -(RBCLikeButton *)likeBtn{
     if(!_likeBtn){
         @jobs_weakify(self)
-        _likeBtn = [RBCLikeButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                        buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:nil
-                                                          subTitle:nil
-                                                         titleFont:UIFontWeightRegularSize(4)
-                                                      subTitleFont:nil
-                                                          titleCor:nil
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:JobsWhiteColor
-                                                   backgroundImage:nil
-                                                      imagePadding:JobsWidth(3)
-                                                      titlePadding:JobsWidth(0)
-                                                    imagePlacement:NSDirectionalRectEdgeLeading
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(0)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:nil
-                                                   clickEventBlock:^id(RBCLikeButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            x.jobsResetBtnImage(x.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"));
-//            [x setThumbWithSelected:x.selected
-//                           thumbNum:x.selected ? x.thumpNum + 1 : x.thumpNum - 1
-//                          animation:YES];
-            if(x.selected){
-                x.thumpNum = x.thumpNum + 1;
-            }else{
-                x.thumpNum = x.thumpNum - 1;
-            }
-            x.jobsResetTitle([NSString stringWithFormat:@"%ld",x.thumpNum]);
-            x.jobsResetBtnTitleCor(x.selected ? JobsRedColor : JobsGrayColor);
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _likeBtn = RBCLikeButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnImage(_likeBtn.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"))
+            .jobsResetBtnTitleCor(_likeBtn.selected ? JobsRedColor : JobsGrayColor)
+            .jobsResetBtnTitleFont(UIFontWeightRegularSize(4))
+            .jobsResetBtnTitle((toStringByNSInteger(_likeBtn.thumpNum)))
+            .onClick(^(RBCLikeButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                x.jobsResetBtnImage(x.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"));
+    //            [x setThumbWithSelected:x.selected
+    //                           thumbNum:x.selected ? x.thumpNum + 1 : x.thumpNum - 1
+    //                          animation:YES];
+                if(x.selected){
+                    x.thumpNum = x.thumpNum + 1;
+                }else{
+                    x.thumpNum = x.thumpNum - 1;
+                }
+                x.jobsResetTitle(toStringByNSInteger(x.thumpNum));
+                x.jobsResetBtnTitleCor(x.selected ? JobsRedColor : JobsGrayColor);
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _likeBtn.thumpNum = 0;
         [self addSubview:_likeBtn];
         [_likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -196,9 +146,6 @@
     }
     _likeBtn.selected = self.firstCommentModel.isPraise;
     _likeBtn.thumpNum = self.firstCommentModel.praiseNum;
-    _likeBtn.jobsResetTitle([NSString stringWithFormat:@"%ld",_likeBtn.thumpNum]);
-    _likeBtn.jobsResetBtnTitleCor(_likeBtn.selected ? JobsRedColor : JobsGrayColor);
-    _likeBtn.jobsResetBtnImage(_likeBtn.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"));
     _likeBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     return _likeBtn;
 }

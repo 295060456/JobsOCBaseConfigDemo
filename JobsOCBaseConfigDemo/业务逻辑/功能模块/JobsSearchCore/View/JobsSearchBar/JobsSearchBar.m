@@ -85,48 +85,17 @@
 -(BaseButton *)cancelBtn{
     if (!_cancelBtn) {
         @jobs_weakify(self)
-        _cancelBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                       background:nil
-                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                    textAlignment:NSTextAlignmentCenter
-                                                 subTextAlignment:NSTextAlignmentCenter
-                                                      normalImage:nil
-                                                   highlightImage:nil
-                                                  attributedTitle:nil
-                                          selectedAttributedTitle:nil
-                                               attributedSubtitle:nil
-                                                            title:JobsInternationalization(@"取消")
-                                                         subTitle:nil
-                                                        titleFont:UIFontWeightRegularSize(12)
-                                                     subTitleFont:nil
-                                                         titleCor:HEXCOLOR(0x0F81FE)
-                                                      subTitleCor:nil
-                                               titleLineBreakMode:NSLineBreakByWordWrapping
-                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                              baseBackgroundColor:JobsLightGrayColor
-                                                  backgroundImage:nil
-                                                     imagePadding:JobsWidth(0)
-                                                     titlePadding:JobsWidth(0)
-                                                   imagePlacement:NSDirectionalRectEdgeNone
-                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                cornerRadiusValue:JobsWidth(8)
-                                                  roundingCorners:UIRectCornerAllCorners
-                                             roundingCornersRadii:CGSizeZero
-                                                   layerBorderCor:JobsWhiteColor
-                                                      borderWidth:JobsWidth(1)
-                                                    primaryAction:nil
-                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                      id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                  clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _cancelBtn = BaseButton.jobsInit()
+            .bgColor(JobsLightGrayColor)
+            .jobsResetBtnTitleCor(HEXCOLOR(0x0F81FE))
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(JobsInternationalization(@"取消"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_cancelBtn];
         [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(50), JobsWidth(30)));

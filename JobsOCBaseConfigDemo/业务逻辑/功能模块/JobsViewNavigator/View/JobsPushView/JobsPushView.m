@@ -35,68 +35,36 @@
 -(BaseButton *)push_btn{
     @jobs_weakify(self)
     if(!_push_btn){
-        _push_btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                      background:nil
-                                      buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                   textAlignment:NSTextAlignmentCenter
-                                                subTextAlignment:NSTextAlignmentCenter
-                                                     normalImage:nil
-                                                  highlightImage:nil
-                                                 attributedTitle:nil
-                                         selectedAttributedTitle:nil
-                                              attributedSubtitle:nil
-                                                           title:JobsInternationalization(@"点击按钮push出view")
-                                                        subTitle:nil
-                                                       titleFont:UIFontWeightRegularSize(12)
-                                                    subTitleFont:nil
-                                                        titleCor:JobsWhiteColor
-                                                     subTitleCor:nil
-                                              titleLineBreakMode:NSLineBreakByWordWrapping
-                                           subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                             baseBackgroundColor:JobsOrangeColor
-                                                 backgroundImage:nil
-                                                    imagePadding:JobsWidth(0)
-                                                    titlePadding:JobsWidth(0)
-                                                  imagePlacement:NSDirectionalRectEdgeNone
-                                      contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                        contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                   contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                               cornerRadiusValue:JobsWidth(8)
-                                                 roundingCorners:UIRectCornerAllCorners
-                                            roundingCornersRadii:CGSizeZero
-                                                  layerBorderCor:nil
-                                                     borderWidth:JobsWidth(1)
-                                                   primaryAction:nil
-                                      longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                     id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-          }
-                                                 clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            
-//            JobsViewNavigator *navigator = JobsViewNavigator.new;
-//            navigator.frame = self.bounds;
-//            self.pushView.navigator = navigator;
-//            [self addSubview:navigator];
-//            navigator.pushView(self.pushView,YES);
-            
-//            self.navigator.frame = self.bounds;
-//            self.pushView.navigator = self.navigator;
-//            self.navigator.pushView(self.pushView,YES);
+        _push_btn = BaseButton.jobsInit()
+            .bgColor(JobsOrangeColor)
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(JobsInternationalization(@"点击按钮push出view"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                
+    //            JobsViewNavigator *navigator = JobsViewNavigator.new;
+    //            navigator.frame = self.bounds;
+    //            self.pushView.navigator = navigator;
+    //            [self addSubview:navigator];
+    //            navigator.pushView(self.pushView,YES);
+                
+    //            self.navigator.frame = self.bounds;
+    //            self.pushView.navigator = self.navigator;
+    //            self.navigator.pushView(self.pushView,YES);
 
-//            self.configViewNavigatorByPushview_(self.pushView);
-//            self.navigator.pushView(self.pushView,YES);
-//
-//            self.pushView.configViewNavigatorBySuperview_(self);
-//            self.navigator.pushView(self.pushView,YES);
-//
-            self.configViewNavigatorBySuperviewAndView_(self,self.pushView);
-            self.navigator.pushView(self.pushView,YES);
-            
-            return nil;
-        }];
+    //            self.configViewNavigatorByPushview_(self.pushView);
+    //            self.navigator.pushView(self.pushView,YES);
+    //
+    //            self.pushView.configViewNavigatorBySuperview_(self);
+    //            self.navigator.pushView(self.pushView,YES);
+    //
+                self.configViewNavigatorBySuperviewAndView_(self,self.pushView);
+                self.navigator.pushView(self.pushView,YES);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_push_btn];
         [_push_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
@@ -109,50 +77,19 @@
 -(BaseButton *)pop_btn{
     @jobs_weakify(self)
     if(!_pop_btn){
-        _pop_btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                     background:nil
-                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                  textAlignment:NSTextAlignmentCenter
-                                               subTextAlignment:NSTextAlignmentCenter
-                                                    normalImage:nil
-                                                 highlightImage:nil
-                                                attributedTitle:nil
-                                        selectedAttributedTitle:nil
-                                             attributedSubtitle:nil
-                                                          title:JobsInternationalization(@"点我pop当前view")
-                                                       subTitle:nil
-                                                      titleFont:UIFontWeightRegularSize(12)
-                                                   subTitleFont:nil
-                                                       titleCor:JobsWhiteColor
-                                                    subTitleCor:nil
-                                             titleLineBreakMode:NSLineBreakByWordWrapping
-                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                            baseBackgroundColor:JobsOrangeColor
-                                                backgroundImage:nil
-                                                   imagePadding:JobsWidth(0)
-                                                   titlePadding:JobsWidth(0)
-                                                 imagePlacement:NSDirectionalRectEdgeNone
-                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                              cornerRadiusValue:JobsWidth(8)
-                                                roundingCorners:UIRectCornerAllCorners
-                                           roundingCornersRadii:CGSizeZero
-                                                 layerBorderCor:nil
-                                                    borderWidth:JobsWidth(1)
-                                                  primaryAction:nil
-                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                    id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-         }
-                                                clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"%@",self.navigator);
-            if(self.navigator) self.navigator.popViewAnimated(YES);
-            return nil;
-        }];
+        _pop_btn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(JobsInternationalization(@"点我pop当前view"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                NSLog(@"%@",self.navigator);
+                if(self.navigator) self.navigator.popViewAnimated(YES);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_pop_btn];
         [_pop_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.equalTo(self.push_btn);

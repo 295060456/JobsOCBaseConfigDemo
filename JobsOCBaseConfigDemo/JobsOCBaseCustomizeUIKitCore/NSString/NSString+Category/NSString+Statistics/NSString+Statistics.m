@@ -31,33 +31,35 @@
     if(@available(iOS 7.0, *)){
         if([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]){
             // 创建一个NSMutableAttributedString，用于设置字体和行间距
-            NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:self];
-            [attributedText addAttribute:NSFontAttributeName
-                                   value:font
-                                   range:NSMakeRange(0, self.length)];
+            NSMutableAttributedString *attributedText = JobsMutAttributedString(self);
+            attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                data.value = font;
+                data.range = NSMakeRange(0, self.length);
+            }));
             // 创建段落样式，设置行间距
-            NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
-            paragraphStyle.lineSpacing = lineSpacing;
-            paragraphStyle.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
-            paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
-            [attributedText addAttribute:NSParagraphStyleAttributeName
-                                   value:paragraphStyle
-                                   range:NSMakeRange(0, self.length)];
+            attributedText.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data1) {
+                    data1.lineSpacing = lineSpacing;
+                    data1.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
+                    data1.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
+                });
+                data.range = NSMakeRange(0, self.length);
+            }));
             // 计算文本的高度
             CGSize maxSize = CGSizeMake(controlWidth, CGFLOAT_MAX);
             CGRect boundingRect = [attributedText boundingRectWithSize:maxSize
                                                                options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                                context:nil];
             CGFloat textHeight = ceil(CGRectGetHeight(boundingRect));
-            
-            UITextModel *textModel = UITextModel.new;
-            textModel.text = self;
-            textModel.font = font;
-            textModel.textLineSpacing = lineSpacing;
-            textModel.jobsWidth = controlWidth;
-            textModel.jobsHeight = textHeight;
-            
-            return textModel;
+            @jobs_weakify(self)
+            return jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
+                @jobs_strongify(self)
+                data.text = self;
+                data.font = font;
+                data.textLineSpacing = lineSpacing;
+                data.jobsWidth = controlWidth;
+                data.jobsHeight = textHeight;
+            });
         }return nil;
     }return nil;
 }
@@ -72,16 +74,18 @@
     if(@available(iOS 7.0, *)){
         if([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]){
             // 创建一个NSMutableAttributedString，用于设置字体和行间距
-            NSMutableAttributedString *attributedText = [NSMutableAttributedString.alloc initWithString:self];
-            [attributedText addAttribute:NSFontAttributeName
-                                   value:font
-                                   range:NSMakeRange(0, self.length)];
+            NSMutableAttributedString *attributedText = JobsMutAttributedString(self);
+            attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                data.value = font;
+                data.range = NSMakeRange(0, self.length);
+            }));
             // 创建段落样式，设置行间距
-            NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
-            paragraphStyle.lineSpacing = lineSpacing;
-            [attributedText addAttribute:NSParagraphStyleAttributeName
-                                 value:paragraphStyle
-                                 range:NSMakeRange(0, self.length)];
+            attributedText.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data1) {
+                    data1.lineSpacing = lineSpacing;
+                });
+                data.range = NSMakeRange(0, self.length);
+            }));
             // 计算文本的宽度
             CGSize maxSize = CGSizeMake(CGFLOAT_MAX, controlHeight);
             CGRect boundingRect = [attributedText boundingRectWithSize:maxSize
@@ -89,15 +93,15 @@
                                                                context:nil];
 
             CGFloat textWidth = ceil(CGRectGetWidth(boundingRect));
-            
-            UITextModel *textModel = UITextModel.new;
-            textModel.text = self;
-            textModel.font = font;
-            textModel.textLineSpacing = lineSpacing;
-            textModel.jobsWidth = textWidth;
-            textModel.jobsHeight = controlHeight;
-            
-            return textModel;
+            @jobs_weakify(self)
+            return jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
+                @jobs_strongify(self)
+                data.text = self;
+                data.font = font;
+                data.textLineSpacing = lineSpacing;
+                data.jobsWidth = textWidth;
+                data.jobsHeight = controlHeight;
+            });
         }return nil;
     }return nil;
 }

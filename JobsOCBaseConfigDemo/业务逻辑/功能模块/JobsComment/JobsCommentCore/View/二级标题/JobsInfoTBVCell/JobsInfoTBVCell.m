@@ -75,56 +75,30 @@ BaseProtocol_synthesize
 -(RBCLikeButton *)likeBtn{
     if(!_likeBtn){
         @jobs_weakify(self)
-        _likeBtn = [RBCLikeButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                        buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:nil
-                                                          subTitle:nil
-                                                         titleFont:UIFontWeightRegularSize(4)
-                                                      subTitleFont:nil
-                                                          titleCor:nil
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:JobsWhiteColor
-                                                   backgroundImage:nil
-                                                      imagePadding:JobsWidth(3)
-                                                      titlePadding:JobsWidth(0)
-                                                    imagePlacement:NSDirectionalRectEdgeLeading
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(0)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:nil
-                                                   clickEventBlock:^id(RBCLikeButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            x.jobsResetBtnImage(x.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"));
-//            [x setThumbWithSelected:x.selected
-//                           thumbNum:x.selected ? x.thumpNum + 1 : x.thumpNum - 1
-//                          animation:YES];
-            if(x.selected){
-                x.thumpNum = x.thumpNum + 1;
-            }else{
-                x.thumpNum = x.thumpNum - 1;
-            }
-            x.jobsResetTitle([NSString stringWithFormat:@"%ld",x.thumpNum]);
-            x.jobsResetBtnTitleCor(x.selected ? JobsRedColor : JobsGrayColor);
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _likeBtn = RBCLikeButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnImage(_likeBtn.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"))
+            .jobsResetBtnTitleCor(_likeBtn.selected ? JobsRedColor : JobsGrayColor)
+            .jobsResetBtnTitleFont(UIFontWeightRegularSize(4))
+            .jobsResetBtnTitle((toStringByNSInteger(_likeBtn.thumpNum)))
+            .onClick(^(RBCLikeButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                x.jobsResetBtnImage(x.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"));
+    //            [x setThumbWithSelected:x.selected
+    //                           thumbNum:x.selected ? x.thumpNum + 1 : x.thumpNum - 1
+    //                          animation:YES];
+                if(x.selected){
+                    x.thumpNum = x.thumpNum + 1;
+                }else{
+                    x.thumpNum = x.thumpNum - 1;
+                }
+                x.jobsResetTitle(toStringByNSInteger(x.thumpNum));
+                x.jobsResetBtnTitleCor(x.selected ? JobsRedColor : JobsGrayColor);
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _likeBtn.thumpNum = 0;
         [self.contentView addSubview:_likeBtn];
         [_likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {

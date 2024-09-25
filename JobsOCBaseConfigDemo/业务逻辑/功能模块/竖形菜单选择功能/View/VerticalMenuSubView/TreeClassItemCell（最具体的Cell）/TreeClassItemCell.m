@@ -103,54 +103,26 @@ UILocationProtocol_UIViewModelSynthesize
 -(BaseButton *)btn{
     if (!_btn) {
         @jobs_weakify(self)
-        _btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                 background:nil
-                                 buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                              textAlignment:NSTextAlignmentCenter
-                                           subTextAlignment:NSTextAlignmentCenter
-                                                normalImage:JobsIMG(@"未点赞")
-                                             highlightImage:nil
-                                            attributedTitle:nil
-                                    selectedAttributedTitle:nil
-                                         attributedSubtitle:nil
-                                                      title:self.dataModel.subTextModel.text
-                                                   subTitle:nil
-                                                  titleFont:UIFontWeightRegularSize(12)
-                                               subTitleFont:nil
-                                                   titleCor:HEXCOLOR(0xC4C4C4)
-                                                subTitleCor:nil
-                                         titleLineBreakMode:NSLineBreakByWordWrapping
-                                      subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                        baseBackgroundColor:JobsClearColor
-                                            backgroundImage:nil
-                                               imagePadding:JobsWidth(5)
-                                               titlePadding:JobsWidth(0)
-                                             imagePlacement:NSDirectionalRectEdgeLeading
-                                 contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                   contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                              contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                          cornerRadiusValue:JobsWidth(0)
-                                            roundingCorners:UIRectCornerAllCorners
-                                       roundingCornersRadii:CGSizeZero
-                                             layerBorderCor:nil
-                                                borderWidth:JobsWidth(0)
-                                              primaryAction:nil
-                                 longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                            clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if(x.selected){
-                x.jobsResetBtnImage(JobsIMG(@"已点赞"));
-                self.dataModel.jobsSelected = x.selected;
-            }
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
-
+        _btn = BaseButton.jobsInit()
+            .bgColor(JobsClearColor)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+            .jobsResetImagePlacement(JobsWidth(5))
+            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnBgImage(JobsIMG(@"未点赞"))
+            .jobsResetBtnTitleCor(HEXCOLOR(0xC4C4C4))
+            .jobsResetBtnTitleFont(UIFontWeightRegularSize(12))
+            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                if(x.selected){
+                    x.jobsResetBtnImage(JobsIMG(@"已点赞"));
+                    self.dataModel.jobsSelected = x.selected;
+                }
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(12));

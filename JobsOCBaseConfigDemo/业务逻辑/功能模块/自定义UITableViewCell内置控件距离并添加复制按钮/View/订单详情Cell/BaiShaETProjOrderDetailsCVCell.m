@@ -135,9 +135,9 @@ heightForFooterInSection:(NSInteger)section{
 -(UIButton *)jobsCopyBtn{
     if (!_jobsCopyBtn) {
         _jobsCopyBtn = UIButton.new;
-        _jobsCopyBtn.normalTitle(JobsInternationalization(@"   複製  "));
-        _jobsCopyBtn.titleFont(UIFontWeightBoldSize(12));
-        _jobsCopyBtn.normalTitleColor(HEXCOLOR(0x757575));
+        _jobsCopyBtn.jobsResetBtnTitle(@"   ".add(JobsInternationalization(@"複製")).add(@"  "));
+        _jobsCopyBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(12));
+        _jobsCopyBtn.jobsResetBtnTitleCor(HEXCOLOR(0x757575));
         _jobsCopyBtn.backgroundColor = HEXCOLOR(0xEAEBED);
     }return _jobsCopyBtn;
 }

@@ -30,3 +30,37 @@ static inline __kindof JobsRichTextConfig *_Nonnull jobsMakeRichTextConfig(jobsB
     return data;
 }
 
+/**
+ @synthesize attributedText = _attributedText;
+ -(NSAttributedString *)attributedText{
+     if (!_attributedText) {
+         @jobs_weakify(self)
+         _attributedText = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(JobsWidth(12));
+                 data1.textCor = JobsBlueColor;
+                 data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
+                 data1.textBgCor = JobsBrownColor;
+                 data1.paragraphStyle = self.paragtaphStyle;
+             }));
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
+                 data1.textCor = JobsWhiteColor;
+                 data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
+                 data1.textBgCor = JobsBrownColor;
+                 data1.paragraphStyle = self.paragtaphStyle;
+             }));
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightUltraLightSize(JobsWidth(14));
+                 data1.textCor = JobsGreenColor;
+                 data1.targetString = JobsInternationalization(@"APP的业务。");
+                 data1.textBgCor = JobsBrownColor;
+                 data1.paragraphStyle = self.paragtaphStyle;
+             }));
+         }));
+     }return _attributedText;
+ }
+ */

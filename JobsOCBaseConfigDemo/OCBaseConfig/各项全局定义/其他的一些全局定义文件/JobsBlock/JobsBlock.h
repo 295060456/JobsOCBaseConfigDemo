@@ -165,6 +165,9 @@ typedef JobsRequestBuilder *_Nullable(^JobsReturnRequestBuilderByStringBlock)(NS
 @class MJRefreshConfigModel;
 typedef void(^jobsByRefreshConfigModelBlock)(__kindof MJRefreshConfigModel *_Nullable data);
 
+@class JobsParagraphStyleModel;
+typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *_Nullable data);
+
 #pragma mark —— 涉及到第三方类的Block定义
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);

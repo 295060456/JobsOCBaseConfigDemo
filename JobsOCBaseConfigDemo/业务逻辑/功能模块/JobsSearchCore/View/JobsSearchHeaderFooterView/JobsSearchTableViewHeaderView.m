@@ -65,7 +65,7 @@
 -(UIButton *)delBtn{
     if (!_delBtn) {
         _delBtn = UIButton.new;
-        _delBtn.normalImage(JobsIMG(@"垃圾箱"));
+        _delBtn.jobsResetBtnImage(JobsIMG(@"垃圾箱"));
         @jobs_weakify(self)
         [_delBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)

@@ -29,7 +29,7 @@
 }
 /// 自定义系统的清除按钮
 - (void)modifyClearButtonWithImage:(UIImage *)image{
-    self.customSysClearBtn.normalImage(image);
+    self.customSysClearBtn.jobsResetBtnImage(image);
     self.rightView = self.customSysClearBtn;
     self.rightViewMode = UITextFieldViewModeWhileEditing;
 }

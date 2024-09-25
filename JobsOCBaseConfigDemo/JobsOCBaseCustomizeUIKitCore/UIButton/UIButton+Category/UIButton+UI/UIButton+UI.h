@@ -15,6 +15,7 @@
 #import "NSObject+DynamicInvoke.h"
 #import "JobsSEL_IMP.h"
 #import "NSObject+NSMutableParagraphStyle.h"
+#import "UIButton+ImageTitleSpacing.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
 #import <ReactiveObjC/ReactiveObjC.h>
@@ -135,64 +136,73 @@ NS_ASSUME_NONNULL_BEGIN
 /// 重设UIButtonConfiguration并使之生效  JobsReturnButtonConfigurationByButtonConfigurationBlock
 -(__kindof UIButton *)jobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock;
 -(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock;
-#pragma mark —— 一些通用修改（已做Api向下兼容）
-/// 重设Btn的描边：线宽和线段的颜色
--(JobsReturnButtonByColor_FloatBlock _Nonnull)jobsResetBtnlayerBorderCorAndWidth;
-/// 重设Btn的描边线段的颜色
--(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnlayerBorderCor;
-/// 重设Btn的描边线段的宽度
--(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnlayerBorderWidth;
-/// 重设Btn的圆切角
--(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnCornerRadiusValue;
-/// 重设Btn主标题的文字内容 ❤️优先级高于jobsResetTitle 和 normalTitle❤️
--(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnTitle;
-/// 重设Btn副标题的文字内容
--(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
-/// 修改主标题的对齐方式
--(JobsReturnButtonByTextAlignmentBlock _Nonnull)jobsResetTitleTextAlignment API_AVAILABLE(ios(16.0));
-/// 修改副标题的对齐方式
--(JobsReturnButtonByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0));
-/// 重设Btn.Image
--(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnImage;
-/// 重设Btn主标题的文字颜色
--(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnTitleCor;
-/// 重设Btn副标题的文字颜色
--(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
-/// 重设Btn主标题的背景颜色
--(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnBgCor;
-/// 重设Btn的背景图片
--(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnBgImage;
+#pragma mark —— 一些通用修改.主标题（Api已做向下兼容）
+/// 主标题是否多行显示
 -(jobsByBOOLBlock _Nonnull)makeNewLineShows;
--(JobsReturnButtonByNSIntegerBlock _Nonnull)titleAlignment;
--(JobsReturnButtonByFontBlock _Nonnull)titleFont;
--(JobsReturnButtonByFontBlock _Nonnull)subTitleFont;
--(JobsReturnButtonByImageBlock _Nonnull)normalImage;
--(JobsReturnButtonByImageBlock _Nonnull)normalBackgroundImage;
--(JobsReturnButtonByStringBlock _Nonnull)normalTitle;
--(JobsReturnButtonByColorBlock _Nonnull)normalTitleColor;
--(JobsReturnButtonByColorBlock _Nonnull)subTitleColor;
-/// 富文本
--(JobsReturnButtonByAttributedStringBlock _Nonnull)normalAttributedTitle;
--(JobsReturnButtonByCGFloatBlock _Nonnull)resetCornerRadius;
--(JobsReturnButtonByColorBlock _Nonnull)resetLayerBorderCor;
--(JobsReturnButtonByCGFloatBlock _Nonnull)resetBorderWidth;
+///【兼容】重设Btn主标题的文字内容 优先级高于jobsResetTitle
+-(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnTitle;
+///【兼容】重设Btn主标题的文字颜色
+-(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnTitleCor;
+///【兼容】重设Btn的主标题字体
+-(JobsReturnButtonByFontBlock _Nonnull)jobsResetBtnTitleFont;
+///【兼容】重设Btn的主标题对其方式
+-(JobsReturnButtonByNSIntegerBlock _Nonnull)jobsResetBtnTitleAlignment;
+#pragma mark —— 一些通用修改.副标题
+///【最新的Api】重设Btn副标题的文字内容
+-(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
+///【最新的Api】重设Btn副标题的文字颜色
+-(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
+///【兼容】重设Btn的副标题字体
+-(JobsReturnButtonByFontBlock _Nonnull)jobsResetBtnSubTitleFont;
+///【最新的Api】修改副标题的对齐方式
+-(JobsReturnButtonByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0));
+#pragma mark —— 一些通用修改.按钮图片
+///【兼容】重设Btn.Image
+-(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnImage;
+#pragma mark —— 一些通用修改.按钮背景图片
+///【兼容】重设Btn的背景图片
+-(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnBgImage;
+#pragma mark —— 一些通用修改.按钮颜色
+///【兼容】重设Btn的背景颜色
+-(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnBgCor;
+#pragma mark —— 一些通用修改.Layer
+///【合并】重设Btn的描边：线宽和线段的颜色
+-(JobsReturnButtonByColor_FloatBlock _Nonnull)jobsResetBtnLayerBorderCorAndWidth;
+///【兼容】重设Btn的圆切角
+-(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnCornerRadiusValue;
+///【兼容】重设Btn的描边线段的颜色
+-(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnLayerBorderCor;
+///【兼容】重设Btn的描边线段的宽度
+-(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnLayerBorderWidth;
+#pragma mark —— 一些通用修改.富文本
+///【兼容】重设Btn富文本
+-(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnNormalAttributedTitle;
+#pragma mark —— 一些通用修改.间距
+///【兼容】重设Btn的图文间距和相对位置
+-(JobsReturnButtonByImagePlacementAndPaddingBlock _Nonnull)jobsResetImagePlacement_Padding API_AVAILABLE(ios(16.0));
+///【最新的Api】重设Btn的图文间距
+-(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0));
+///【最新的Api】重设Btn主标题与副标题之间的距离
+-(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0));
 #pragma mark —— UIButton.带状态 set
-/// 设置 UIButton 已选择状态下的 按钮图片
+///【老Api】设置 Btn 已选择状态下的 按钮图片
 -(JobsReturnButtonByImageBlock _Nonnull)selectedImage;
-/// 设置 UIButton 已选择状态下的 按钮背景图片
+///【老Api】设置 Btn 已选择状态下的 按钮背景图片
 -(JobsReturnButtonByImageBlock _Nonnull)selectedBackgroundImage;
-/// 设置 UIButton 已选择状态下的 按钮主标题
+///【老Api】设置 Btn 已选择状态下的 按钮主标题
 -(JobsReturnButtonByTitleBlock _Nonnull)selectedTitle;
-/// 设置 UIButton 已选择状态下的 按钮主标题的颜色
+///【老Api】设置 Btn 已选择状态下的 按钮主标题的颜色
 -(JobsReturnButtonByColorBlock _Nonnull)selectedTitleColor;
-/// 设置 UIButton 已选择状态下的 按钮主标题的富文本内容
+///【老Api】设置 Btn 已选择状态下的 按钮主标题的富文本内容
 -(JobsReturnButtonByAttributedStringBlock _Nonnull)selectedAttributedTitle;
 /**
  1、一一对应UIButtonConfiguration.h文件里面的属性
  2、只有通过UIButtonConfiguration创建的UIButton，这个UIbutton的configuration属性才不为空
  3、要修改通过UIButtonConfiguration创建的UIButton的各属性值，只有通过下列方式方可以
  */
-#pragma mark —— UIButton.configuration的各项属性值的修改
+#pragma mark —— 【最新的Api】UIButton.configuration的各项属性值的修改
+-(JobsReturnButtonByTitleAlignmentBlock _Nonnull)jobsResetTitleAlignment API_AVAILABLE(ios(16.0));
+-(JobsReturnButtonByBOOLBlock _Nonnull)jobsResetAutomaticallyUpdateForSelection API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByBackgroundBlock _Nonnull)jobsResetBackground API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetBackgroundImage API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByCornerStyleBlock _Nonnull)jobsResetCornerStyle API_AVAILABLE(ios(16.0));
@@ -217,33 +227,36 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnButtonConfigurationByIndicatorBlock _Nonnull)jobsResetIndicator API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByIndicatorColorTransformerBlock _Nonnull)jobsResetIndicatorColorTransformer API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByContentInsetsBlock _Nonnull)jobsResetContentInsets API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByImagePaddingBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByTitlePaddingBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByTitleAlignmentBlock _Nonnull)jobsResetTitleAlignment API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock _Nonnull)jobsResetAutomaticallyUpdateForSelection API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetSubTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByFontBlock _Nonnull)jobsResetTitleFont API_AVAILABLE(ios(16.0));
 -(JobsReturnButtonConfigurationByFontBlock _Nonnull)jobsResetSubTitleFont API_AVAILABLE(ios(16.0));
-#pragma mark —— UIButton.带状态的 get
-/// 获取 UIButton 已选择状态下的按钮图片
--(nullable UIImage *)imageForSelectedState;
-/// 获取 UIButton 已选择状态下的背景图片
--(nullable UIImage *)backgroundImageForSelectedState;
-/// 获取 UIButton 已选择状态下的 主标题的文本内容
--(nullable NSString *)titleForSelectedState;
-/// 获取 UIButton 已选择状态下的 主标题的文本颜色
--(nullable UIColor *)titleColorForSelectedState;
-/// 获取 UIButton 已选择状态下的 主标题的富文本内容
--(nullable NSAttributedString *)attributedTitleForSelectedState;
 #pragma mark —— UIButton.UIControlStateNormal.get
+///【兼容】获取按钮图片（普通状态下）
 -(nullable UIImage *)imageForNormalState;
+///【兼容】获取按钮背景图片（普通状态下）
 -(nullable UIImage *)backgroundImageForNormalState;
--(nullable NSString *)titleForConfigurationAttributed;
--(nullable NSString *)titleForNormalState;
--(nullable UIColor *)titleColorForNormalState;
+///【兼容】获取按钮富文本字符串内容
+-(nullable NSString *)titleForConfigurationAttributedText;
+///【兼容】获取按钮富文本内容（更通用）
+-(nullable NSAttributedString *)titleForConfigurationAttributed;
+///【兼容】获取按钮富文本内容（普通状态下）
 -(nullable NSAttributedString *)attributedTitleForNormalState;
+///【兼容】获取按钮主文字内容
+-(nullable NSString *)titleForNormalState;
+///【兼容】获取按钮主文字颜色
+-(nullable UIColor *)titleColorForNormalState;
+#pragma mark —— UIButton.带状态的 get
+/// 获取 Btn 已选择状态下的按钮图片
+-(nullable UIImage *)imageForSelectedState;
+/// 获取 Btn 已选择状态下的背景图片
+-(nullable UIImage *)backgroundImageForSelectedState;
+/// 获取 Btn 已选择状态下的 主标题的文本内容
+-(nullable NSString *)titleForSelectedState;
+/// 获取 Btn 已选择状态下的 主标题的文本颜色
+-(nullable UIColor *)titleColorForSelectedState;
+/// 获取 Btn 已选择状态下的 主标题的富文本内容
+-(nullable NSAttributedString *)attributedTitleForSelectedState;
 
 @end
 
@@ -266,106 +279,65 @@ NS_ASSUME_NONNULL_END
  // 设置内容水平居中对齐
  button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
  */
+
 /**
- @property(nonatomic,strong)BaseButton *titleBtn;
-
- @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
  
- @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+ BaseButton.jobsInit()
+     .bgColor(JobsWhiteColor)
+     .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+     .jobsResetImagePlacement(1)
+     .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+     .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+     .jobsResetBtnTitleCor(JobsWhiteColor)
+     .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+     .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+     .onClick(^(UIButton *x){
+         NSLog(@"");
+     }).onLongPressGesture(^(id data){
+         NSLog(@"");
+     });
  
- -(BaseButton *)titleBtn{
-     if(!_titleBtn){
+ -(BaseButton *)applyNowBtn{
+     if(!_applyNowBtn){
          @jobs_weakify(self)
-         _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                       background:nil
-                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                    textAlignment:NSTextAlignmentCenter
-                                                 subTextAlignment:NSTextAlignmentCenter
-                                                      normalImage:nil
-                                                   highlightImage:nil
-                                                  attributedTitle:nil
-                                          selectedAttributedTitle:nil
-                                               attributedSubtitle:self.richTextWithDataConfigMutArr(self.richTextConfigMutArr)
-                                                            title:JobsInternationalization(@"请支付")
-                                                         subTitle:nil//JobsInternationalization(@"观看完整教学视频需支付99Mata值")
-                                                        titleFont:UIFontWeightBoldSize(18)
-                                                     subTitleFont:nil
-                                                         titleCor:JobsCor(@"#333333")
-                                                      subTitleCor:nil
-                                               titleLineBreakMode:NSLineBreakByWordWrapping
-                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                              baseBackgroundColor:JobsWhiteColor
-                                                     imagePadding:JobsWidth(0)
-                                                     titlePadding:JobsWidth(10)
-                                                   imagePlacement:NSDirectionalRectEdgeNone
-                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                cornerRadiusValue:JobsWidth(0)
-                                                  roundingCorners:UIRectCornerAllCorners
-                                             roundingCornersRadii:CGSizeZero
-                                                   layerBorderCor:nil
-                                                      borderWidth:JobsWidth(0)
-                                                    primaryAction:nil
-                                       longPressGestureEventBlock:^(BaseButton *_Nullable weakSelf,
-                                                                    id _Nullable arg) {
-             NSLog(@"按钮的长按事件触发");
-             return nil;
-         }
-                                                  clickEventBlock:^id(BaseButton *x) {
-             @jobs_strongify(self)
-             x.selected = !x.selected;
-             if (self.objectBlock) self.objectBlock(x);
-             return nil;
-         }];
-         [self addSubview:_titleBtn];
-         [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.height.mas_equalTo(JobsWidth(72));
-             make.top.equalTo(self).offset(JobsWidth(20));
-             make.centerX.equalTo(self);
-         }];
-         _titleBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-     }return _titleBtn;
+         _applyNowBtn = BaseButton.initByAttributedString(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(14);
+                 data1.textCor = JobsCor(@"#666666");
+                 data1.targetString = self.richTextMutArr[0];
+                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
+             }));
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(14);
+                 data1.textCor = JobsCor(@"#BA9B77");
+                 data1.targetString = self.richTextMutArr[1];
+                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
+             }));
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(14);
+                 data1.textCor = JobsCor(@"#666666");
+                 data1.targetString = self.richTextMutArr[2];
+                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
+             }));
+         }))).bgColor(JobsWhiteColor)
+             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+             .jobsResetImagePlacement(1)
+             .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+             .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+             .jobsResetBtnTitleCor(JobsWhiteColor)
+             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+             .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+             .onClick(^(UIButton *x){
+                 @jobs_strongify(self)
+                 x.selected = !x.selected;
+                 if (self.objectBlock) self.objectBlock(x);
+             }).onLongPressGesture(^(id data){
+                 NSLog(@"");
+             });
+     }return _applyNowBtn;
  }
-
- -(NSMutableArray<NSString *> *)richTextMutArr{
-     if (!_richTextMutArr) {
-         _richTextMutArr = NSMutableArray.array;
-         _richTextMutArr.add(JobsInternationalization(@"观看完整教学视频需支付"));
-         _richTextMutArr.add(JobsInternationalization(@"99"));
-         _richTextMutArr.add(JobsInternationalization(@"Mata值"));
-     }return _richTextMutArr;
- }
-
- -(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
-     if (!_richTextConfigMutArr) {
-         _richTextConfigMutArr = NSMutableArray.array;
-         {
-             JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-             config_01.font = UIFontWeightRegularSize(14);
-             config_01.textCor = JobsCor(@"#666666");
-             config_01.targetString = self.richTextMutArr[0];
-             config_01.paragraphStyle = self.jobsParagraphStyleCenter;
-             [_richTextConfigMutArr addObject:config_01];
-         }
-         
-         {
-             JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-             config_02.font = UIFontWeightRegularSize(14);
-             config_02.textCor = JobsCor(@"#BA9B77");
-             config_02.targetString = self.richTextMutArr[1];
-             config_02.paragraphStyle = self.jobsParagraphStyleCenter;
-             [_richTextConfigMutArr addObject:config_02];
-         }
-         
-         {
-             JobsRichTextConfig *config_03 = JobsRichTextConfig.new;
-             config_03.font = UIFontWeightRegularSize(14);
-             config_03.textCor = JobsCor(@"#666666");
-             config_03.targetString = self.richTextMutArr[2];
-             config_03.paragraphStyle = self.jobsParagraphStyleCenter;
-             [_richTextConfigMutArr addObject:config_03];
-         }
-     }return _richTextConfigMutArr;
- }
+ 
  */

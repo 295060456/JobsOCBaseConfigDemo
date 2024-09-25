@@ -240,7 +240,7 @@
                                                     finishBlock:^(UIViewModel *data) {
                     NSLog(@"data = %@",data);
                     NSLog(@"data = %@",data.data);
-                    x.normalTitle(data.textModel.text.add(data.subTextModel.text));
+                    x.jobsResetBtnTitle(data.textModel.text.add(data.subTextModel.text));
                 }];
             }else{
                 [self->dropDownListView dropDownListViewDisappear:x];

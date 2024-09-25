@@ -94,14 +94,13 @@
               cellForItemAt:(NSIndexPath *)indexPath{
     ZMJHeaderCell *Cell = (ZMJHeaderCell *)[spreadsheetView dequeueReusableCellWithReuseIdentifier:ZMJHeaderCell.description
                                                                                       forIndexPath:indexPath];
-    [Cell.btn normalTitle:self.dataMutArr[indexPath.row].readModelPropertyValueByOrder[indexPath.column]];
+    Cell.btn.jobsResetBtnTitle(self.dataMutArr[indexPath.row].readModelPropertyValueByOrder[indexPath.column]);
     
     Cell.gridlines.left = [GridStyle style:GridStyle_default width:0 color:nil];
     Cell.gridlines.right = [GridStyle borderStyleNone];
     
     Cell.backgroundColor = indexPath.row ? HEXCOLOR(0xFBF7E3) : HEXCOLOR(0xB6843B);
-    [Cell.btn normalTitleColor:indexPath.row ? HEXCOLOR(0x524740) : JobsBlackColor];
-    
+    Cell.btn.jobsResetBtnTitleCor(indexPath.row ? HEXCOLOR(0x524740) : JobsBlackColor);
     return Cell;
 }
 //@optional

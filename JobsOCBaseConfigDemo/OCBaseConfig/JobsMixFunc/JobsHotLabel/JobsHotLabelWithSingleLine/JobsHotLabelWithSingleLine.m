@@ -137,13 +137,13 @@
 //                                 forState:UIControlStateNormal
 //                         placeholderImage:bgImg];
 //    }else{
-//        [btn normalBackgroundImage:vm.bgImage];
+//        [btn jobsResetBtnBgImage:vm.bgImage];
 //        [btn selectedBackgroundImage:vm.bgSelectedImage];
 //    }
     
-    btn.normalTitle(vm.textModel.text);
-    btn.titleFont(vm.textModel.font);
-    btn.normalTitleColor(vm.textModel.textCor);
+    btn.jobsResetBtnTitle(vm.textModel.text);
+    btn.jobsResetBtnTitleFont(vm.textModel.font);
+    btn.jobsResetBtnTitleCor(vm.textModel.textCor);
     @jobs_weakify(self)
     [btn jobsBtnClickEventBlock:^id(UIButton *x) {
         @jobs_strongify(self)

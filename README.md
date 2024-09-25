@@ -2837,46 +2837,41 @@ NSObject <|-- BaseProtocol
       if (!_titleMutArr) {
           /// 最初默认的数据
           _titleMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-              {
-                  UIViewModel *viewModel = UIViewModel.new;
+              data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"ALL");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
                   viewModel.image = self.normal_titleImageMutArr[0];
-                  viewModel.bgImage = self.select_titleBgImageMutArr[0];
-                  data.add(viewModel);
-              }
+                  viewModel.bgSelectedImage = self.select_titleBgImageMutArr[0];
+                  viewModel.isMark = YES;
+              }));
               
-              {
-                  UIViewModel *viewModel = UIViewModel.new;
+              data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"SLOT GAMES");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
                   viewModel.image = self.normal_titleImageMutArr[1];
-                  data.add(viewModel);
-              }
+                  viewModel.bgSelectedImage = self.select_titleBgImageMutArr[1];
+              }));
   
-              {
-                  UIViewModel *viewModel = UIViewModel.new;
+              data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"LIVE CASINO");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
                   viewModel.image = self.normal_titleImageMutArr[2];
-                  data.add(viewModel);
-              }
+                  viewModel.bgSelectedImage = self.select_titleBgImageMutArr[2];
+              }));
   
-              {
-                  UIViewModel *viewModel = UIViewModel.new;
+              data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"SPORTS");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
                   viewModel.image = self.normal_titleImageMutArr[3];
-                  data.add(viewModel);
-              }
+                  viewModel.bgSelectedImage = self.select_titleBgImageMutArr[3];
+              }));
               
-              {
-                  UIViewModel *viewModel = UIViewModel.new;
+              data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"OTHERS");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
                   viewModel.image = self.normal_titleImageMutArr[4];
-                  data.add(viewModel);
-              }
+                  viewModel.bgSelectedImage = self.select_titleBgImageMutArr[4];
+              }));
           });
       }return _titleMutArr;
   }
@@ -4033,210 +4028,135 @@ static const uint32_t kSequenceBits = 12;
 * <font color=red id=用新Api（UIButtonConfiguration）创建一个带富文本的UIButton>**用新Api（UIButtonConfiguration）创建一个带富文本的UIButton**</font>
 
   ```objective-c
-  @property(nonatomic,strong)BaseButton *titleBtn;
-  @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
-  @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*JobsRichTextConfigMutArr;
   
-  -(BaseButton *)titleBtn{
-     if(!_titleBtn){
-         @jobs_weakify(self)
-         _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                                    buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                            attributedSubtitle:self.richTextWithDataConfigMutArr(self.JobsRichTextConfigMutArr)
-                                                             title:JobsInternationalization(@"请支付")
-                                                          subTitle:nil//Internationalization(@"观看完整教学视频需支付99Mata值")
-                                                         titleFont:UIFontWeightBoldSize(18)
-                                                      subTitleFont:nil
-                                                          titleCor:JobsCor(@"#333333")
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:UIColor.whiteColor
-                                                      imagePadding:JobsWidth(0)
-                                                      titlePadding:JobsWidth(10)
-                                                    imagePlacement:NSDirectionalRectEdgeNone
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(0)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-  									                    longPressGestureEventBlock:nil
-                                                   clickEventBlock:^id(BaseButton *x) {
-             @jobs_strongify(self)
-             x.selected = !x.selected;
-             if (self.objectBlock) self.objectBlock(x);
-             return nil;
-         }];
-       	 _titleBtn.imageViewFrameResetX = 0;
-         [self addSubview:_titleBtn];
-         [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.height.mas_equalTo(JobsWidth(72));
-             make.top.equalTo(self).offset(JobsWidth(20));
-             make.centerX.equalTo(self);
-         }];
-         _titleBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
-     }return _titleBtn;
-  }
   
-  -(NSMutableArray<NSString *> *)richTextMutArr{
-     if (!_richTextMutArr) {
-         _richTextMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-             data.add(JobsInternationalization(@"观看完整教学视频需支付"));
-             data.add(JobsInternationalization(@"99"));
-             data.add(JobsInternationalization(@"Mata值"));
-         });
-     }return _richTextMutArr;
-  }
+   -(BaseButton *)applyNowBtn{
+       if(!_applyNowBtn){
+           _applyNowBtn = BaseButton.jobsInit()
+               .bgColor(JobsWhiteColor)
+               .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+               .jobsResetImagePadding(1)
+               .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+               .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+               .jobsResetBtnTitleCor(JobsWhiteColor)
+               .titleFont(UIFontWeightBoldSize(JobsWidth(12)))
+               .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+               .onClick(^(UIButton *x){
+                   NSLog(@"");
+               }).onLongPressGesture(^(id data){
+                   NSLog(@"");
+               });
+           [self.bgImageView addSubview:_applyNowBtn];
+           [_applyNowBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+               make.size.mas_equalTo(CGSizeMake(JobsWidth(99), JobsWidth(29)));
+               make.right.equalTo(self.view).offset(JobsWidth(-166));
+               make.bottom.equalTo(self.view).offset(JobsWidth(-127));
+           }];
+       }return _applyNowBtn;
+   }
   
-  -(NSMutableArray<JobsRichTextConfig *> *)JobsRichTextConfigMutArr{
-     if (!_JobsRichTextConfigMutArr) {
-         @jobs_weakify(self)
-         _JobsRichTextConfigMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                 @jobs_strongify(self)
-                 data1.font = UIFontWeightRegularSize(14);
-                 data1.textCor = JobsCor(@"#666666");
-                 data1.targetString = self.richTextMutArr[0];
-                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
-             }));
-             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                 @jobs_strongify(self)
-                 data1.font = UIFontWeightRegularSize(14);
-                 data1.textCor = JobsCor(@"#BA9B77");
-                 data1.targetString = self.richTextMutArr[1];
-                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
-             }));
-             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                 @jobs_strongify(self)
-                 data1.font = UIFontWeightRegularSize(14);
-                 data1.textCor = JobsCor(@"#666666");
-                 data1.targetString = self.richTextMutArr[2];
-                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
-             }));
-         });
-     }return _JobsRichTextConfigMutArr;
-  }
   ```
   
 * <font color=red>**因为此Api过于冗长且较为繁琐，所以对上述Api的二次封装**</font>
 
   ```objective-c
-   -(BaseButton *)playBtn{
-       if(!_playBtn){
-           _playBtn = BaseButton.initByNormalImage(JobsIMG(@"play"))
-               .bgColor(JobsWhiteColor)
-               .cornerRadiusValue(JobsWidth(8))
-               .onClick(^(UIButton *btn){
-                   NSLog(@"");
-               }).onLongPressGesture(^(id data){
-                   NSLog(@"");
-               });
-           self.contentView.addSubview(_playBtn);
-           [_playBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-               make.size.mas_equalTo(CGSizeMake(JobsWidth(16), JobsWidth(16)));
-               make.center.equalTo(self.contentView);
-           }];
-       }return _playBtn;
-   }
+  -(BaseButton *)applyNowBtn{
+      if(!_applyNowBtn){
+          @jobs_weakify(self)
+          _applyNowBtn = BaseButton.initByAttributedString(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                  @jobs_strongify(self)
+                  data1.font = UIFontWeightRegularSize(14);
+                  data1.textCor = JobsCor(@"#666666");
+                  data1.targetString = self.richTextMutArr[0];
+                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
+              }));
+              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                  @jobs_strongify(self)
+                  data1.font = UIFontWeightRegularSize(14);
+                  data1.textCor = JobsCor(@"#BA9B77");
+                  data1.targetString = self.richTextMutArr[1];
+                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
+              }));
+              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                  @jobs_strongify(self)
+                  data1.font = UIFontWeightRegularSize(14);
+                  data1.textCor = JobsCor(@"#666666");
+                  data1.targetString = self.richTextMutArr[2];
+                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
+              }));
+          }))).bgColor(JobsWhiteColor)
+              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+              .jobsResetImagePadding(1)
+              .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+              .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+              .jobsResetBtnTitleCor(JobsWhiteColor)
+              .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+              .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+              .onClick(^(UIButton *x){
+                  @jobs_strongify(self)
+                  x.selected = !x.selected;
+                  if (self.objectBlock) self.objectBlock(x);
+              }).onLongPressGesture(^(id data){
+                  NSLog(@"");
+              });
+      }return _applyNowBtn;
+  }
   ```
   
 * 对按钮各项属性的设置
 
   * ```objective-c
+    /// 主标题是否多行显示
     -(jobsByBOOLBlock _Nonnull)makeNewLineShows;
-    -(jobsByNSIntegerBlock _Nonnull)titleAlignment;
-    -(jobsByFontBlock _Nonnull)titleFont;
-    -(jobsByImageBlock _Nonnull)normalImage;
-    -(jobsByImageBlock _Nonnull)normalBackgroundImage;
-    -(jobsByStringBlock _Nonnull)normalTitle;
-    -(jobsByCorBlock _Nonnull)normalTitleColor;
-    -(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle;/// 富文本
-    -(jobsByCGFloatBlock _Nonnull)resetCornerRadius;
-    -(jobsByCorBlock _Nonnull)resetLayerBorderCor;
-    -(jobsByCGFloatBlock _Nonnull)resetBorderWidth;
-    ```
-    
-  * ```objective-c
-    -(jobsByImageBlock _Nonnull)selectedImage;
-    -(jobsByImageBlock _Nonnull)selectedBackgroundImage;
-    -(jobsByStringBlock _Nonnull)selectedTitle;
-    -(jobsByCorBlock _Nonnull)selectedTitleColor;
-    -(jobsByAttributedStringBlock _Nonnull)selectedAttributedTitle;/// 富文本
+    ///【兼容】重设Btn主标题的文字内容 优先级高于jobsResetTitle
+    -(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnTitle;
+    ///【兼容】重设Btn主标题的文字颜色
+    -(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnTitleCor;
+    ///【兼容】重设Btn的主标题字体
+    -(JobsReturnButtonByFontBlock _Nonnull)jobsResetBtnTitleFont;
+    ///【兼容】重设Btn的主标题对其方式
+    -(JobsReturnButtonByNSIntegerBlock _Nonnull)jobsResetBtnTitleAlignment;
+    #pragma mark —— 一些通用修改.副标题
+    ///【最新的Api】重设Btn副标题的文字内容
+    -(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
+    ///【最新的Api】重设Btn副标题的文字颜色
+    -(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
+    ///【兼容】重设Btn的副标题字体
+    -(JobsReturnButtonByFontBlock _Nonnull)jobsResetBtnSubTitleFont;
+    ///【最新的Api】修改副标题的对齐方式
+    -(JobsReturnButtonByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0));
+    #pragma mark —— 一些通用修改.按钮图片
+    ///【兼容】重设Btn.Image
+    -(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnImage;
+    #pragma mark —— 一些通用修改.按钮背景图片
+    ///【兼容】重设Btn的背景图片
+    -(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnBgImage;
+    #pragma mark —— 一些通用修改.按钮颜色
+    ///【兼容】重设Btn的背景颜色
+    -(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnBgCor;
+    #pragma mark —— 一些通用修改.Layer
+    ///【合并】重设Btn的描边：线宽和线段的颜色
+    -(JobsReturnButtonByColor_FloatBlock _Nonnull)jobsResetBtnLayerBorderCorAndWidth;
+    ///【兼容】重设Btn的圆切角
+    -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnCornerRadiusValue;
+    ///【兼容】重设Btn的描边线段的颜色
+    -(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnLayerBorderCor;
+    ///【兼容】重设Btn的描边线段的宽度
+    -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnLayerBorderWidth;
+    #pragma mark —— 一些通用修改.富文本
+    ///【兼容】重设Btn富文本
+    -(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnNormalAttributedTitle;
     ```
   
   * ```objective-c
-    #pragma mark —— 一些通用修改（已做Api向下兼容）
-    /// 重设Btn的描边：线宽和线段的颜色
-    -(jobsByColor_FloatBlock)jobsResetBtnlayerBorderCorAndWidth;
-    /// 重设Btn的描边线段的颜色
-    -(jobsByCorBlock)jobsResetBtnlayerBorderCor;
-    /// 重设Btn的描边线段的宽度
-    -(jobsByFloatBlock)jobsResetBtnlayerBorderWidth;
-    /// 重设Btn的圆切角
-    -(jobsByCGFloatBlock)jobsResetBtnCornerRadiusValue;
-    /// 重设Btn主标题的文字内容 ❤️优先级高于jobsResetTitle 和 normalTitle❤️
-    -(jobsByStringBlock)jobsResetBtnTitle;
-    /// 重设Btn副标题的文字内容
-    -(jobsByStringBlock)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
-    /// 修改主标题的对齐方式
-    -(jobsByTextAlignmentBlock _Nonnull)jobsResetTitleTextAlignment API_AVAILABLE(ios(16.0));
-    /// 修改副标题的对齐方式
-    -(jobsByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0));
-    /// 重设Btn.Image
-    -(jobsByImageBlock)jobsResetBtnImage;
-    /// 重设Btn主标题的文字颜色
-    -(jobsByCorBlock)jobsResetBtnTitleCor;
-    /// 重设Btn副标题的文字颜色
-    -(jobsByCorBlock)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
-    /// 重设Btn主标题的背景颜色
-    -(jobsByCorBlock)jobsResetBtnBgCor;
-    /// 重设Btn的背景图片
-    -(jobsByImageBlock)jobsResetBtnBgImage;
-    -(jobsByBOOLBlock _Nonnull)makeNewLineShows;
-    -(jobsByNSIntegerBlock _Nonnull)titleAlignment;
-    -(jobsByFontBlock _Nonnull)titleFont;
-    -(jobsByFontBlock _Nonnull)subTitleFont;
-    -(jobsByImageBlock _Nonnull)normalImage;
-    -(jobsByImageBlock _Nonnull)normalBackgroundImage;
-    -(jobsByStringBlock _Nonnull)normalTitle;
-    -(jobsByCorBlock _Nonnull)normalTitleColor;
-    -(jobsByCorBlock _Nonnull)subTitleColor;
-    /// 富文本
-    -(jobsByAttributedStringBlock _Nonnull)normalAttributedTitle;
-    -(jobsByCGFloatBlock _Nonnull)resetCornerRadius;
-    -(jobsByCorBlock _Nonnull)resetLayerBorderCor;
-    -(jobsByCGFloatBlock _Nonnull)resetBorderWidth;
-    #pragma mark —— UIButton.带状态 set
-    /// 设置 UIButton 已选择状态下的 按钮图片
-    -(jobsByImageBlock _Nonnull)selectedImage;
-    /// 设置 UIButton 已选择状态下的 按钮背景图片
-    -(jobsByImageBlock _Nonnull)selectedBackgroundImage;
-    /// 设置 UIButton 已选择状态下的 按钮主标题
-    -(jobsByStringBlock _Nonnull)selectedTitle;
-    /// 设置 UIButton 已选择状态下的 按钮主标题的颜色
-    -(jobsByCorBlock _Nonnull)selectedTitleColor;
-    /// 设置 UIButton 已选择状态下的 按钮主标题的富文本内容
-    -(jobsByAttributedStringBlock _Nonnull)selectedAttributedTitle;
-    ```
+    pragma mark —— 【最新的Api】UIButton.configuration的各项属性值的修改
+    -(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonByTitleAlignmentBlock _Nonnull)jobsResetTitleAlignment API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonByBOOLBlock _Nonnull)jobsResetAutomaticallyUpdateForSelection API_AVAILABLE(ios(16.0));
     
-  * ```objective-c
-    /**
-     1、一一对应UIButtonConfiguration.h文件里面的属性
-     2、只有通过UIButtonConfiguration创建的UIButton，这个UIbutton的configuration属性才不为空
-     3、要修改通过UIButtonConfiguration创建的UIButton的各属性值，只有通过下列方式方可以
-     */
-    #pragma mark —— UIButton.configuration的各项属性值的修改
     -(JobsReturnButtonConfigurationByBackgroundBlock _Nonnull)jobsResetBackground API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetBackgroundImage API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByCornerStyleBlock _Nonnull)jobsResetCornerStyle API_AVAILABLE(ios(16.0));
@@ -4261,15 +4181,10 @@ static const uint32_t kSequenceBits = 12;
     -(JobsReturnButtonConfigurationByIndicatorBlock _Nonnull)jobsResetIndicator API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByIndicatorColorTransformerBlock _Nonnull)jobsResetIndicatorColorTransformer API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByContentInsetsBlock _Nonnull)jobsResetContentInsets API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByImagePaddingBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByTitlePaddingBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByTitleAlignmentBlock _Nonnull)jobsResetTitleAlignment API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock _Nonnull)jobsResetAutomaticallyUpdateForSelection API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetSubTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
-    -(jobsByFontBlock _Nonnull)jobsResetTitleFont API_AVAILABLE(ios(16.0));
-    -(jobsByFontBlock _Nonnull)jobsResetSubTitleFont API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByFontBlock _Nonnull)jobsResetTitleFont API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonConfigurationByFontBlock _Nonnull)jobsResetSubTitleFont API_AVAILABLE(ios(16.0));
     ```
   
 * 资料来源：
@@ -4330,41 +4245,30 @@ static const uint32_t kSequenceBits = 12;
   ```objective-c
    -(ButtonTimerConfigModel *)btnTimerConfigModel{
        if (!_btnTimerConfigModel) {
-           _btnTimerConfigModel = ButtonTimerConfigModel.new;
-           /// 一些通用的设置
-           _btnTimerConfigModel.jobsSize = CGSizeMake(JobsWidth(108), JobsWidth(14));
-           _btnTimerConfigModel.count = 60;
-           _btnTimerConfigModel.showTimeType = ShowTimeType_SS;//时间显示风格
-           _btnTimerConfigModel.countDownBtnType = TimerStyle_anticlockwise;/// 逆时针模式（倒计时模式）
-           _btnTimerConfigModel.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;
-           _btnTimerConfigModel.labelShowingType = UILabelShowingType_03;/// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
-           _btnTimerConfigModel.secondStr = JobsInternationalization(@"秒后重新发送");
-           /// 计时器未开始【静态值】
-           _btnTimerConfigModel.readyPlayValue.layerBorderWidth = 0;
-           _btnTimerConfigModel.readyPlayValue.layerCornerRadius = JobsWidth(0);
-           _btnTimerConfigModel.readyPlayValue.bgCor = JobsClearColor;
-           _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsClearColor;
-           _btnTimerConfigModel.readyPlayValue.textCor = JobsCor(@"#333333");
-           _btnTimerConfigModel.readyPlayValue.text = JobsInternationalization(@"获取验证码");
-           _btnTimerConfigModel.readyPlayValue.font = UIFontWeightRegularSize(14);
-           /// 计时器进行中【动态值】
-           _btnTimerConfigModel.runningValue.layerBorderWidth = 0;
-           _btnTimerConfigModel.runningValue.layerCornerRadius = JobsWidth(0);
-           _btnTimerConfigModel.runningValue.bgCor = JobsClearColor;
-           _btnTimerConfigModel.runningValue.layerBorderCor = JobsClearColor;
-           _btnTimerConfigModel.runningValue.textCor = JobsCor(@"#333333");
-           _btnTimerConfigModel.runningValue.text = JobsInternationalization(@"");
-           _btnTimerConfigModel.runningValue.font = UIFontWeightRegularSize(14);
-  
-           /// 计时器结束【静态值】
-           _btnTimerConfigModel.endValue.layerBorderWidth = 0;
-           _btnTimerConfigModel.endValue.layerCornerRadius = JobsWidth(0);
-           _btnTimerConfigModel.endValue.bgCor = JobsClearColor;
-           _btnTimerConfigModel.endValue.layerBorderCor = JobsClearColor;
-           _btnTimerConfigModel.endValue.textCor = JobsCor(@"#333333");
-           _btnTimerConfigModel.endValue.text = JobsInternationalization(@"重新获取");
-           _btnTimerConfigModel.endValue.font = UIFontWeightRegularSize(14);
-           
+           _btnTimerConfigModel = jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
+               /// 一些通用的设置
+               data.count = 50;
+               data.showTimeType = ShowTimeType_SS;// 时间显示风格
+               data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
+               data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
+               data.labelShowingType = UILabelShowingType_01;//【换行模式】
+               /// 计时器未开始【静态值】
+               data.readyPlayValue.layerBorderWidth = 1;
+               data.readyPlayValue.layerCornerRadius = JobsWidth(18);
+               data.readyPlayValue.bgCor = JobsClearColor;
+               data.readyPlayValue.layerBorderCor = JobsClearColor;
+               data.readyPlayValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
+               data.readyPlayValue.text = Title9;
+               data.readyPlayValue.font = UIFontWeightMediumSize(JobsWidth(14));
+               /// 计时器进行中【动态值】
+               data.runningValue.bgCor = JobsClearColor;
+               data.runningValue.text = JobsInternationalization(Title12);
+               data.runningValue.layerBorderCor = JobsClearColor;
+               data.runningValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
+               data.runningValue.font = UIFontWeightMediumSize(JobsWidth(14));
+               /// 计时器结束【静态值】
+               data.endValue.bgCor = JobsClearColor;
+           });
        }return _btnTimerConfigModel;
    }
   ```
@@ -5790,9 +5694,116 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 富文本是告诉系统，某段文字的表达方式。<u>其本质是一个带配置信息的字符串</u>
 
-* 关注实现类 [**@interface  NSMutableAttributedString (Extra)**]()、[**@interface NSAttributedString (Extra)**]()
+* 关注实现类
 
-* 富文本实现文本前面有个小圆点的效果
+  *  [**@interface  NSMutableAttributedString (Extra)**]()
+  * [**@interface NSAttributedString (Extra)**]()
+  * [**@interface NSObject (RichText)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+RichText)
+
+* ```objective-c
+  #pragma mark —— 创建不可变富文本
+  static inline NSAttributedString *_Nonnull JobsAttributedString(NSString *_Nonnull data) {
+      if (!data) data = @"";
+      return [NSAttributedString.alloc initWithString:data];
+  }
+  
+  static inline NSAttributedString *_Nonnull JobsAttributedStringByAttributes(NSString *_Nonnull data,
+                                                                               NSDictionary<NSAttributedStringKey, id> *_Nullable attrs){
+      if (!data) data = @"";
+      return [NSAttributedString.alloc initWithString:data attributes:attrs];
+  }
+  
+  static inline NSAttributedString *_Nonnull JobsAttributedStringByAttributeString(NSAttributedString *_Nullable data){
+      if (!data) data = JobsAttributedString(@"");
+      return [NSAttributedString.alloc initWithAttributedString:data];
+  }
+  
+  static inline NSAttributedString *_Nonnull JobsAttributedStringByTextAttachment(NSTextAttachment *_Nonnull data) {
+      if (!data) data = NSTextAttachment.alloc.init;
+      return [NSAttributedString attributedStringWithAttachment:data];
+  }
+  #pragma mark —— 创建可变富文本
+  static inline NSMutableAttributedString *_Nonnull toMutAttributedString(NSAttributedString *_Nonnull data) {
+      if(!data) data = JobsAttributedString(@"");
+      return [NSMutableAttributedString.alloc initWithAttributedString:data];
+  }
+  
+  static inline NSMutableAttributedString *_Nonnull JobsMutAttributedStringByAttributes(NSString *_Nonnull data,
+                                                                               NSDictionary<NSAttributedStringKey, id> * _Nullable attrs){
+      return toMutAttributedString(JobsAttributedStringByAttributes(data,attrs));
+  }
+  
+  static inline NSMutableAttributedString *_Nonnull JobsMutAttributedString(NSString *_Nonnull data) {
+      return toMutAttributedString(JobsAttributedString(data));
+  }
+  
+  static inline NSMutableAttributedString *_Nonnull JobsMutAttributedStringByTextAttachment(NSTextAttachment *_Nonnull data) {
+      if (!data) data = NSTextAttachment.alloc.init;
+      return toMutAttributedString(JobsAttributedStringByTextAttachment(data));
+  }
+  ```
+  
+* <font color=red>**富文本的简单调用（带段落信息）**</font>
+
+  ```objective-c
+  @property(nonatomic,strong,nullable)NSAttributedString *attributedText API_AVAILABLE(ios(6.0));
+  #pragma mark —— 富文本
+  @synthesize attributedText = _attributedText;
+  -(NSAttributedString *)attributedText{
+      if (!_attributedText) {
+          @jobs_weakify(self)
+          _attributedText = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
+              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                  @jobs_strongify(self)
+                  data1.font = UIFontWeightRegularSize(JobsWidth(12));
+                  data1.textCor = JobsBlueColor;
+                  data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
+                  data1.textBgCor = JobsBrownColor;
+                  data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
+                      data2.alignment = NSTextAlignmentJustified;
+                      data2.paragraphSpacing = 0;//段距，取值 float
+                      data2.paragraphSpacingBefore = 0;//段首空间，取值 float
+                      data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+                      data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+                      data2.lineSpacing = 0;//行距，取值 float
+                  });
+              }));
+              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                  @jobs_strongify(self)
+                  data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
+                  data1.textCor = JobsWhiteColor;
+                  data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
+                  data1.textBgCor = JobsBrownColor;
+                  data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
+                      data2.alignment = NSTextAlignmentJustified;
+                      data2.paragraphSpacing = 0;//段距，取值 float
+                      data2.paragraphSpacingBefore = 0;//段首空间，取值 float
+                      data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+                      data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+                      data2.lineSpacing = 0;//行距，取值 float
+                  });
+              }));
+              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                  @jobs_strongify(self)
+                  data1.font = UIFontWeightUltraLightSize(JobsWidth(14));
+                  data1.textCor = JobsGreenColor;
+                  data1.targetString = JobsInternationalization(@"APP的业务。");
+                  data1.textBgCor = JobsBrownColor;
+                  data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
+                      data2.alignment = NSTextAlignmentJustified;
+                      data2.paragraphSpacing = 0;//段距，取值 float
+                      data2.paragraphSpacingBefore = 0;//段首空间，取值 float
+                      data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+                      data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+                      data2.lineSpacing = 0;//行距，取值 float
+                  });
+              }));
+          }));
+      }return _attributedText;
+  }
+  ```
+  
+* 富文本的复杂调用：富文本实现文本前面有个小圆点的效果
 
   * 公共部分
 
@@ -5914,24 +5925,25 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     -(NSTextAttachment *)bulletAttachment{
         if(!_bulletAttachment){
-            _bulletAttachment = NSTextAttachment.new;
-            _bulletAttachment.bounds = CGRectMake(0, 0, 10, 10); // 设置圆点的大小和位置
-            
-            UIGraphicsBeginImageContextWithOptions(_bulletAttachment.bounds.size, NO, 0);
-            [JobsRedColor setFill];// 设置圆点的颜色
-            [[UIBezierPath bezierPathWithOvalInRect:_bulletAttachment.bounds] fill];
-            _bulletAttachment.image = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            
+            _bulletAttachment = jobsMakeTextAttachment(^(NSTextAttachment * _Nullable data) {
+                data.bounds = CGRectMake(0, 0, 10, 10); // 设置圆点的大小和位置
+                
+                UIGraphicsBeginImageContextWithOptions(data.bounds.size, NO, 0);
+                [JobsRedColor setFill];// 设置圆点的颜色
+                [[UIBezierPath bezierPathWithOvalInRect:data.bounds] fill];
+                data.image = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+            });
         }return _bulletAttachment;
     }
     
     -(NSMutableArray<NSString *> *)items{
         if(!_items){
-            _items = NSMutableArray.array;
-            _items.add(@"Your deposit will be successfully credited to your wallet once the transaction completed.");
-            _items.add(@"In case you meet any problem in deposit, please contact our CS.");
-            _items.add(@"Additional information can be found on our website.");
+            _items = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+                data.add(@"Your deposit will be successfully credited to your wallet once the transaction completed.");
+                data.add(@"In case you meet any problem in deposit, please contact our CS.");
+                data.add(@"Additional information can be found on our website.");
+            });
         }return _items;
     }
     ```
@@ -6017,85 +6029,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           }return nil; // 默认菜单
       }
       ```
-  
-* 运行机制
-
-  * 将根数据源：`JobsRichTextConfig` 赋值后，装载到可变数组里面
-
-  * 关注实现类：[**@interface NSObject (RichText)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+RichText)。<font color=red>**最终输出`NSMutableAttributedString *`供系统解析使用**</font>
-
-    ```objective-c
-    /// 整合输出富文本，作用于lable.attributedText
-    /// @param richTextDataConfigMutArr 富文本的配置集合,对该纯文本字符串的释义
-    /// @param paragraphStyle 段落样式
-    -(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <JobsRichTextConfig *>*_Nonnull)richTextDataConfigMutArr
-                                                         paragraphStyle:(NSMutableParagraphStyle *_Nullable)paragraphStyle;
-    /// 利用 NSArray <JobsRichTextConfig *>* 形成富文本
-    /// @param richTextDataConfigMutArr 富文本的配置集合,对该纯文本字符串的释义
-    -(NSMutableAttributedString *_Nullable)richTextWithDataConfigMutArr:(NSArray <JobsRichTextConfig *>*_Nonnull)richTextDataConfigMutArr;
-    ```
-
-* 调用示例
-
-  ```objective-c
-  @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richLabelDataStringsMutArr;
-  @property(nonatomic,strong)NSMutableParagraphStyle *paragtaphStyle;
-  @property(nonatomic,strong,nullable)NSAttributedString *attributedText API_AVAILABLE(ios(6.0));
-  ```
-  
-  ```objective-c
-  #pragma mark —— lazyLoad
-  -(NSMutableArray<JobsRichTextConfig *> *)richLabelDataStringsMutArr{
-      if (!_richLabelDataStringsMutArr) {
-          @jobs_weakify(self)
-          _richLabelDataStringsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                  @jobs_strongify(self)
-                  data1.font = UIFontWeightRegularSize(JobsWidth(12));
-                  data1.textCor = JobsBlueColor;
-                  data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
-                  data1.textBgCor = JobsBrownColor;
-                  data1.paragraphStyle = self.paragtaphStyle;
-              }));
-              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                  @jobs_strongify(self)
-                  data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
-                  data1.textCor = JobsWhiteColor;
-                  data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
-                  data1.textBgCor = JobsBrownColor;
-                  data1.paragraphStyle = self.paragtaphStyle;
-              }));
-              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                  @jobs_strongify(self)
-                  data1.font = UIFontWeightUltraLightSize(JobsWidth(14));
-                  data1.textCor = JobsGreenColor;
-                  data1.targetString = JobsInternationalization(@"APP的业务。");
-                  data1.textBgCor = JobsBrownColor;
-                  data1.paragraphStyle = self.paragtaphStyle;
-              }));
-          });
-      }return _richLabelDataStringsMutArr;
-  }
-  
-  -(NSAttributedString *)attributedText{
-      if (!_attributedText) {
-          _attributedText = self.richTextWithDataConfigMutArr(self.richLabelDataStringsMutArr);
-      }return _attributedText;
-  }
-  
-  -(NSMutableParagraphStyle *)paragtaphStyle{
-      if (!_paragtaphStyle) {
-          _paragtaphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
-              data.alignment = NSTextAlignmentJustified;
-              data.paragraphSpacing = 0;//段距，取值 float
-              data.paragraphSpacingBefore = 0;//段首空间，取值 float
-              data.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-              data.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-              data.lineSpacing = 0;//行距，取值 float
-          });
-      }return _paragtaphStyle;
-  }
-  ```
 
 ### 20、字符串定义 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
@@ -11079,33 +11012,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 42、数据模型的封装调用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
+#### 42.1、封装系统Api
+
 ```objective-c
 static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutArrayBlock _Nonnull block){
     NSMutableArray *data = NSMutableArray.array;
-    if (block) block(data);
-    return data;
-}
-
-static inline __kindof NSMutableDictionary *_Nonnull jobsMakeMutDic(jobsByMutableDictionarycBlock _Nonnull block){
-    NSMutableDictionary *data = NSMutableDictionary.dictionary;
-    if (block) block(data);
-    return data;
-}
-
-static inline __kindof UIButtonModel *_Nonnull jobsMakeButtonModel(jobsByButtonModelBlock _Nonnull block){
-    UIButtonModel *data = UIButtonModel.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
-static inline __kindof UITextModel *_Nonnull jobsMakeTextModel(jobsByTextModelBlock _Nonnull block){
-    UITextModel *data = UITextModel.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
-static inline __kindof UIViewModel *_Nonnull jobsMakeViewModel(jobsByViewModelBlock _Nonnull block){
-    UIViewModel *data = UIViewModel.alloc.init;
     if (block) block(data);
     return data;
 }
@@ -11116,8 +11027,8 @@ static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull bl
     return data;
 }
 
-static inline __kindof JobsRichTextConfig *_Nonnull jobsMakeRichTextConfig(jobsByRichTextConfigBlock _Nonnull block){
-    JobsRichTextConfig *data = JobsRichTextConfig.alloc.init;
+static inline __kindof NSMutableDictionary *_Nonnull jobsMakeMutDic(jobsByMutableDictionarycBlock _Nonnull block){
+    NSMutableDictionary *data = NSMutableDictionary.dictionary;
     if (block) block(data);
     return data;
 }
@@ -11155,6 +11066,46 @@ static inline NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByPar
      hyphenationFactor       连字符属性，在iOS，唯一支持的值分别为0和1
      
      */
+    if (block) block(data);
+    return data;
+}
+```
+
+#### 42.2、封装自建Api
+
+```objective-c
+static inline __kindof UIButtonModel *_Nonnull jobsMakeButtonModel(jobsByButtonModelBlock _Nonnull block){
+    UIButtonModel *data = UIButtonModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UITextModel *_Nonnull jobsMakeTextModel(jobsByTextModelBlock _Nonnull block){
+    UITextModel *data = UITextModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UIViewModel *_Nonnull jobsMakeViewModel(jobsByViewModelBlock _Nonnull block){
+    UIViewModel *data = UIViewModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof JobsParagraphStyle *_Nonnull jobsMakeParagraphStyler(jobsByParagraphStyleBlock _Nonnull block){
+    JobsParagraphStyle *data = JobsParagraphStyle.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsByButtonTimerConfigModelBlock _Nonnull block){
+    ButtonTimerConfigModel *model = ButtonTimerConfigModel.alloc.init;
+    if (block) block(model);
+    return model;
+}
+
+static inline __kindof JobsRichTextConfig *_Nonnull jobsMakeRichTextConfig(jobsByRichTextConfigBlock _Nonnull block){
+    JobsRichTextConfig *data = JobsRichTextConfig.alloc.init;
     if (block) block(data);
     return data;
 }

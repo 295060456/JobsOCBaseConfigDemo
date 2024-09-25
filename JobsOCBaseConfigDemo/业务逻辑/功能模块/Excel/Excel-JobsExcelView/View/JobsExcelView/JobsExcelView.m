@@ -84,48 +84,7 @@
 -(BaseButton *)titleBtn{
     if(!_titleBtn){
         @jobs_weakify(self)
-        _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:self.viewModel_.data_00.btnConfiguration
-                                                      background:self.viewModel_.data_00.background
-                                      buttonConfigTitleAlignment:self.viewModel_.data_00.buttonConfigTitleAlignment
-                                                   textAlignment:self.viewModel_.data_00.textAlignment
-                                                subTextAlignment:self.viewModel_.data_00.subTextAlignment
-                                                     normalImage:self.viewModel_.data_00.normalImage
-                                                  highlightImage:self.viewModel_.data_00.highlightImage
-                                                 attributedTitle:self.viewModel_.data_00.attributedTitle
-                                         selectedAttributedTitle:self.viewModel_.data_00.selectedAttributedTitle
-                                              attributedSubtitle:self.viewModel_.data_00.attributedSubtitle
-                                                           title:self.viewModel_.data_00.title
-                                                        subTitle:self.viewModel_.data_00.subTitle
-                                                       titleFont:self.viewModel_.data_00.titleFont
-                                                    subTitleFont:self.viewModel_.data_00.subTitleFont
-                                                        titleCor:self.viewModel_.data_00.titleCor
-                                                     subTitleCor:self.viewModel_.data_00.subTitleCor
-                                              titleLineBreakMode:self.viewModel_.data_00.titleLineBreakMode
-                                           subtitleLineBreakMode:self.viewModel_.data_00.subtitleLineBreakMode
-                                             baseBackgroundColor:self.viewModel_.data_00.baseBackgroundColor
-                                                 backgroundImage:self.viewModel_.data_00.backgroundImage
-                                                    imagePadding:self.viewModel_.data_00.imagePadding
-                                                    titlePadding:self.viewModel_.data_00.titlePadding
-                                                  imagePlacement:self.viewModel_.data_00.imagePlacement
-                                      contentHorizontalAlignment:self.viewModel_.data_00.contentHorizontalAlignment
-                                        contentVerticalAlignment:self.viewModel_.data_00.contentVerticalAlignment
-                                                   contentInsets:self.viewModel_.data_00.contentInsets
-                                               cornerRadiusValue:self.viewModel_.data_00.cornerRadiusValue
-                                                 roundingCorners:self.viewModel_.data_00.roundingCorners
-                                            roundingCornersRadii:self.viewModel_.data_00.roundingCornersRadii
-                                                  layerBorderCor:self.viewModel_.data_00.layerBorderCor
-                                                     borderWidth:self.viewModel_.data_00.borderWidth
-                                                   primaryAction:self.viewModel_.data_00.primaryAction
-                                      longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                     id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                 clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _titleBtn = BaseButton.initByButtonModel(self.viewModel_.data_00);
         [self.bgImageView addSubview:_titleBtn];
         [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self);

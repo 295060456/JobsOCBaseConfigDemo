@@ -38,7 +38,7 @@
             [super drawRect:rect];
         }
         [self setTextLayerScroll];
-        self.normalTitle(JobsInternationalization(@""));
+        self.jobsResetBtnTitle(JobsInternationalization(@""));
     }else{
         [super drawRect:rect];
     }

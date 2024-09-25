@@ -343,8 +343,8 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         }];
         [self.view layoutIfNeeded];
         self.loginCustomerServiceBtnY = _customerServiceBtn.y;
-        _customerServiceBtn.jobsResetBtnlayerBorderCor(JobsWhiteColor);
-        _customerServiceBtn.jobsResetBtnlayerBorderWidth(2);
+        _customerServiceBtn.jobsResetBtnLayerBorderCor(JobsWhiteColor);
+        _customerServiceBtn.jobsResetBtnLayerBorderWidth(2);
     }return _customerServiceBtn;
 }
 

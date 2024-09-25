@@ -38,7 +38,7 @@
 
 #pragma mark —— JobsNavBar <BaseViewControllerProtocol> 仅做Demo演示
 //    self.makeNavBarConfig(nil,nil);
-//    self.navBar.getBackBtn.normalTitleColor(JobsWhiteColor);
+//    self.navBar.getBackBtn.jobsResetBtnTitleCor(JobsWhiteColor);
 //    self.navBar.getBackBtn.jobsVisible = YES;
 //    self.navBar.jobsVisible = YES;
 #pragma mark —— GKNavigationBar -(void)makeGKNavigationBarConfigure 仅做Demo演示

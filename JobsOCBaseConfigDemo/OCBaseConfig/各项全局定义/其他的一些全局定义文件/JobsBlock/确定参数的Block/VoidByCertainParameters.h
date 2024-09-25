@@ -83,7 +83,7 @@ typedef void(^jobsByTimerBlock)(NSTimer *_Nullable data);
 typedef void(^jobsByDataBlock)(NSData *_Nullable data);
 typedef void(^jobsByStringBlock)(NSString *_Nullable data);
 typedef void(^jobsByAttributedStringBlock)(__kindof NSAttributedString *_Nullable data);
-typedef void(^jobsByParagraphStyleBlock)(NSMutableParagraphStyle *_Nullable data);
+typedef void(^jobsByMutableParagraphStyleBlock)(NSMutableParagraphStyle *_Nullable data);
 typedef void(^jobsByTextAttachmentBlock)(NSTextAttachment *_Nullable data);
 
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;

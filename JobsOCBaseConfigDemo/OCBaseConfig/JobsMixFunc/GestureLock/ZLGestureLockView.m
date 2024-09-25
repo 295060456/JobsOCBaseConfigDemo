@@ -37,7 +37,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.userInteractionEnabled = NO;
         
-        btn.normalImage(JobsIMG(@"灰色椭圆"));
+        btn.jobsResetBtnImage(JobsIMG(@"灰色椭圆"));
         btn.selectedImage(JobsIMG(@"橙色椭圆"));
         [self addSubview:btn];
         btn.tag = i + 1;
@@ -118,7 +118,7 @@
                 [[UIColor redColor] set];
                 for (int i = 0; i < self.errorBtns.count; i++) {
                     UIButton *btn =  [self.errorBtns objectAtIndex:i];
-                    btn.normalImage(JobsIMG(@"红色椭圆"));
+                    btn.jobsResetBtnImage(JobsIMG(@"红色椭圆"));
                 }break;
             case ResultKindTypeNoEnough:{
                     [JobsClearColor set];
@@ -147,7 +147,7 @@
     
     if (pan.state == UIGestureRecognizerStateBegan) {
         for (UIButton *btn in _errorBtns) {
-            btn.normalImage(JobsIMG(@"灰色椭圆"));
+            btn.jobsResetBtnImage(JobsIMG(@"灰色椭圆"));
             btn.selectedImage(JobsIMG(@"橙色椭圆"));
         }
         [self.errorBtns removeAllObjects];
@@ -229,7 +229,7 @@
             [JobsClearColor set];
             for (int i = 0; i < self.errorBtns.count; i++) {
                 UIButton *btn =  [self.errorBtns objectAtIndex:i];
-                btn.normalImage(JobsIMG(@"灰色椭圆"));
+                btn.jobsResetBtnImage(JobsIMG(@"灰色椭圆"));
             }
             [self.errorBtns removeAllObjects];
         }

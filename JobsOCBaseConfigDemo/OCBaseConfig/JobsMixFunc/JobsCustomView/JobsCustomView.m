@@ -173,8 +173,8 @@ static dispatch_once_t static_customViewOnceToken;
 -(UIButton *)cancelBtn{
     if (!_cancelBtn) {
         _cancelBtn = UIButton.new;
-        _cancelBtn.normalTitle(JobsInternationalization(@"取消"));
-        _cancelBtn.normalTitleColor(HEXCOLOR(0xB0B0B0));
+        _cancelBtn.jobsResetBtnTitle(JobsInternationalization(@"取消"));
+        _cancelBtn.jobsResetBtnTitleCor(HEXCOLOR(0xB0B0B0));
         _cancelBtn.backgroundColor = self.cancelBtnBgCor;
         [self addSubview:_cancelBtn];
         [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -193,8 +193,8 @@ static dispatch_once_t static_customViewOnceToken;
 -(UIButton *)sureBtn{
     if (!_sureBtn) {
         _sureBtn = UIButton.new;
-        _sureBtn.normalTitle(JobsInternationalization(@"确定"));
-        _sureBtn.normalTitleColor(JobsBlackColor);
+        _sureBtn.jobsResetBtnTitle(JobsInternationalization(@"确定"));
+        _sureBtn.jobsResetBtnTitleCor(JobsBlackColor);
         _sureBtn.backgroundColor = self.sureBtnBgCor;
         [self addSubview:_sureBtn];
         [_sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -95,64 +95,34 @@
 -(BaseButton *)btn{
     if(!_btn){
         @jobs_weakify(self)
-        _btn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                 background:nil
-                                 buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                              textAlignment:NSTextAlignmentCenter
-                                           subTextAlignment:NSTextAlignmentCenter
-                                                normalImage:nil
-                                             highlightImage:nil
-                                            attributedTitle:nil
-                                    selectedAttributedTitle:nil
-                                         attributedSubtitle:nil
-                                                      title:JobsInternationalization(@"点击按钮push出view")
-                                                   subTitle:nil
-                                                  titleFont:UIFontWeightRegularSize(12)
-                                               subTitleFont:nil
-                                                   titleCor:JobsWhiteColor
-                                                subTitleCor:nil
-                                         titleLineBreakMode:NSLineBreakByWordWrapping
-                                      subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                        baseBackgroundColor:JobsOrangeColor
-                                            backgroundImage:nil
-                                               imagePadding:JobsWidth(0)
-                                               titlePadding:JobsWidth(0)
-                                             imagePlacement:NSDirectionalRectEdgeNone
-                                 contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                   contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                              contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                          cornerRadiusValue:JobsWidth(8)
-                                            roundingCorners:UIRectCornerAllCorners
-                                       roundingCornersRadii:CGSizeZero
-                                             layerBorderCor:nil
-                                                borderWidth:JobsWidth(1)
-                                              primaryAction:nil
-                                 longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                            clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            
-//            JobsViewNavigator *navigator = JobsViewNavigator.new;
-//            navigator.frame = self.view.bounds;
-//            self.pushView.navigator = navigator;
-//            [self.view addSubview:navigator];
-//            navigator.pushView(self.pushView,YES);
-            
-            self.view.configViewNavigatorByPushview(self.pushView);
-            self.view.navigator.pushView(self.pushView,YES);
-            
-//            self.pushView.configViewNavigatorBySuperview(self.view);
-//            self.view.navigator.pushView(self.pushView,YES);
-            
-//            self.configViewNavigatorBySuperviewAndView(self.view,self.pushView);
-//            self.view.navigator.pushView(self.pushView,YES);
-            
-         return nil;
-        }];
+        _btn = BaseButton.jobsInit()
+            .bgColor(JobsOrangeColor)
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnTitleFont(UIFontWeightRegularSize(12))
+            .jobsResetBtnTitle(JobsInternationalization(@"点击按钮push出view"))
+            .jobsResetBtnCornerRadiusValue(JobsWidth(8))
+            .jobsResetBtnLayerBorderWidth(JobsWidth(1))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                
+    //            JobsViewNavigator *navigator = JobsViewNavigator.new;
+    //            navigator.frame = self.view.bounds;
+    //            self.pushView.navigator = navigator;
+    //            [self.view addSubview:navigator];
+    //            navigator.pushView(self.pushView,YES);
+                
+                self.view.configViewNavigatorByPushview(self.pushView);
+                self.view.navigator.pushView(self.pushView,YES);
+                
+    //            self.pushView.configViewNavigatorBySuperview(self.view);
+    //            self.view.navigator.pushView(self.pushView,YES);
+                
+    //            self.configViewNavigatorBySuperviewAndView(self.view,self.pushView);
+    //            self.view.navigator.pushView(self.pushView,YES);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.view addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.view);

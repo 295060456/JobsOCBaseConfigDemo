@@ -24,49 +24,22 @@ JobsKey(_backBtnCategory)
     BaseButton *BackBtnCategory = Jobs_getAssociatedObject(_backBtnCategory);
     if (!BackBtnCategory) {
         @jobs_weakify(self)
-        BackBtnCategory = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                            background:nil
-                                            buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                         textAlignment:NSTextAlignmentCenter
-                                                      subTextAlignment:NSTextAlignmentCenter
-                                                           normalImage:self.viewModel.backBtnIMG ? : JobsBuddleIMG(nil,@"Frameworks/GKNavigationBar.framework/GKNavigationBar",nil,self.gk_backStyle == GKNavigationBarBackStyleBlack ? @"btn_back_black" : @"btn_back_white")
-                                                        highlightImage:nil
-                                                       attributedTitle:nil
-                                               selectedAttributedTitle:nil
-                                                    attributedSubtitle:nil
-                                                                 title:self.viewModel.backBtnTitleModel.text
-                                                              subTitle:nil
-                                                             titleFont:self.viewModel.backBtnTitleModel.font
-                                                          subTitleFont:nil
-                                                              titleCor:self.viewModel.backBtnTitleModel.textCor ? : JobsBlackColor
-                                                           subTitleCor:nil
-                                                    titleLineBreakMode:NSLineBreakByWordWrapping
-                                                 subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                   baseBackgroundColor:JobsClearColor.colorWithAlphaComponent(0)
-                                                       backgroundImage:nil
-                                                          imagePadding:JobsWidth(8)
-                                                          titlePadding:JobsWidth(0)
-                                                        imagePlacement:NSDirectionalRectEdgeLeading
-                                            contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                              contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                         contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                     cornerRadiusValue:JobsWidth(0)
-                                                       roundingCorners:UIRectCornerAllCorners
-                                                  roundingCornersRadii:CGSizeZero
-                                                        layerBorderCor:nil
-                                                           borderWidth:JobsWidth(0)
-                                                         primaryAction:nil
-                                            longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                         id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                       clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            self.backBtnClickEvent(x);
-            return nil;
-        }];
+        BackBtnCategory = BaseButton.jobsInit()
+            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
+            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+            .jobsResetImagePlacement(1)
+            .jobsResetBtnImage(self.viewModel.backBtnIMG ? : JobsBuddleIMG(nil,@"Frameworks/GKNavigationBar.framework/GKNavigationBar",nil,self.gk_backStyle == GKNavigationBarBackStyleBlack ? @"btn_back_black" : @"btn_back_white"))
+            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnTitleCor(self.viewModel.backBtnTitleModel.textCor ? : JobsBlackColor)
+            .jobsResetBtnTitleFont(self.viewModel.backBtnTitleModel.font)
+            .jobsResetBtnTitle(self.viewModel.backBtnTitleModel.text)
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                self.backBtnClickEvent(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         Jobs_setAssociatedRETAIN_NONATOMIC(_backBtnCategory, BackBtnCategory)
     }return BackBtnCategory;
 }

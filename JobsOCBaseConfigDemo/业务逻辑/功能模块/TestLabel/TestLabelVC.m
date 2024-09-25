@@ -10,9 +10,6 @@
 @interface TestLabelVC ()
 
 @property(nonatomic,strong)UIScrollView *scrollView;
-/// 富文本
-@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richLabelDataStringsMutArr;
-@property(nonatomic,strong)NSMutableParagraphStyle *paragtaphStyle;
 /// UILabel
 @property(nonatomic,strong)BaseLabel *lab1;///【UILabelShowingType_01】 一行显示。定宽、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
 @property(nonatomic,strong)BaseLabel *lab2;///【UILabelShowingType_02】 一行显示普通文本。定宽、定字体。多余部分scrollerView ❤️集成@implementation UILabel (AutoScroll)❤️
@@ -111,17 +108,25 @@
     }return _scrollView;
 }
 #pragma mark —— 富文本
--(NSMutableArray<JobsRichTextConfig *> *)richLabelDataStringsMutArr{
-    if (!_richLabelDataStringsMutArr) {
+@synthesize attributedText = _attributedText;
+-(NSAttributedString *)attributedText{
+    if (!_attributedText) {
         @jobs_weakify(self)
-        _richLabelDataStringsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _attributedText = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
                 data1.font = UIFontWeightRegularSize(JobsWidth(12));
                 data1.textCor = JobsBlueColor;
                 data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
                 data1.textBgCor = JobsBrownColor;
-                data1.paragraphStyle = self.paragtaphStyle;
+                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
+                    data2.alignment = NSTextAlignmentJustified;
+                    data2.paragraphSpacing = 0;//段距，取值 float
+                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
+                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+                    data2.lineSpacing = 0;//行距，取值 float
+                });
             }));
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
@@ -129,7 +134,14 @@
                 data1.textCor = JobsWhiteColor;
                 data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
                 data1.textBgCor = JobsBrownColor;
-                data1.paragraphStyle = self.paragtaphStyle;
+                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
+                    data2.alignment = NSTextAlignmentJustified;
+                    data2.paragraphSpacing = 0;//段距，取值 float
+                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
+                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+                    data2.lineSpacing = 0;//行距，取值 float
+                });
             }));
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
@@ -137,28 +149,16 @@
                 data1.textCor = JobsGreenColor;
                 data1.targetString = JobsInternationalization(@"APP的业务。");
                 data1.textBgCor = JobsBrownColor;
-                data1.paragraphStyle = self.paragtaphStyle;
+                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
+                    data2.alignment = NSTextAlignmentJustified;
+                    data2.paragraphSpacing = 0;//段距，取值 float
+                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
+                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+                    data2.lineSpacing = 0;//行距，取值 float
+                });
             }));
-        });
-    }return _richLabelDataStringsMutArr;
-}
-
--(NSMutableParagraphStyle *)paragtaphStyle{
-    if (!_paragtaphStyle) {
-        _paragtaphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
-            data.alignment = NSTextAlignmentJustified;
-            data.paragraphSpacing = 0;//段距，取值 float
-            data.paragraphSpacingBefore = 0;//段首空间，取值 float
-            data.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-            data.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-            data.lineSpacing = 0;//行距，取值 float
-        });
-    }return _paragtaphStyle;
-}
-@synthesize attributedText = _attributedText;
--(NSAttributedString *)attributedText{
-    if (!_attributedText) {
-        _attributedText = self.richTextWithDataConfigMutArr(self.richLabelDataStringsMutArr);
+        }));
     }return _attributedText;
 }
 #pragma mark —— BaseLabel
@@ -270,7 +270,7 @@
     if (!_btn1) {
         _btn1 = BaseButton.new;
         _btn1.backgroundColor = JobsBrownColor;
-        _btn1.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
+        _btn1.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
         [self.scrollView addSubview:_btn1];
         [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
@@ -284,7 +284,7 @@
     if (!_btn2) {
         _btn2 = BaseButton.new;
         _btn2.backgroundColor = JobsBrownColor;
-        _btn2.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
+        _btn2.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
         [self.scrollView addSubview:_btn2];
         [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
@@ -298,7 +298,7 @@
     if (!_btn3) {
         _btn3 = BaseButton.new;
         _btn3.backgroundColor = JobsBrownColor;
-        _btn3.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
+        _btn3.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
         [self.scrollView addSubview:_btn3];
         [_btn3 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
@@ -312,7 +312,7 @@
     if (!_btn4) {
         _btn4 = BaseButton.new;
         _btn4.backgroundColor = JobsBrownColor;
-        _btn4.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
+        _btn4.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
         [self.scrollView addSubview:_btn4];
         [_btn4 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
@@ -326,7 +326,7 @@
     if (!_btn5) {
         _btn5 = BaseButton.new;
         _btn5.backgroundColor = JobsBrownColor;
-        _btn5.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
+        _btn5.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
         _btn5.titleLabel.numberOfLines = 0;
         [_btn5 labelAutoWidthByFont];
         [self.scrollView addSubview:_btn5];
@@ -342,7 +342,7 @@
     if (!_btn6) {
         _btn6 = BaseButton.new;
         _btn6.backgroundColor = JobsBrownColor;
-        _btn6.normalTitle(JobsInternationalization(@"编译器自动管理内存地址，\n让程序员更加专注于\nAPP的业务。"));
+        _btn6.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，\n让程序员更加专注于\nAPP的业务。"));
         _btn6.titleLabel.numberOfLines = 0;
         [_btn6 labelAutoWidthByFont];
         [self.scrollView addSubview:_btn6];
@@ -357,7 +357,7 @@
 -(BaseButton *)btn7{
     if (!_btn7) {
         _btn7 = BaseButton.new;
-        _btn7.normalAttributedTitle(self.attributedText);
+        _btn7.jobsResetBtnNormalAttributedTitle(self.attributedText);
         /**
          【特别说明】
          1、_btn7.backgroundColor = JobsBrownColor;// 如果使用富文本，那么背景颜色这个属性无效

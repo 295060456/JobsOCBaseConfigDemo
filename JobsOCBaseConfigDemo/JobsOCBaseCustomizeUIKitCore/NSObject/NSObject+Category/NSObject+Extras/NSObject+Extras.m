@@ -871,7 +871,7 @@
                     lab.text = JobsInternationalization(view.internationalizationKEY);
                 }else if ([view isKindOfClass:UIButton.class]){
                     UIButton *btn = (UIButton *)view;
-                    btn.normalTitle(JobsInternationalization(view.internationalizationKEY));
+                    btn.jobsResetBtnTitle(JobsInternationalization(view.internationalizationKEY));
                 }else{}
             }
         }

@@ -113,49 +113,21 @@
 -(BaseButton *)backToLoginBtn{
     if (!_backToLoginBtn) {
         @jobs_weakify(self)
-        _backToLoginBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                            background:nil
-                                            buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                         textAlignment:NSTextAlignmentCenter
-                                                      subTextAlignment:NSTextAlignmentCenter
-                                                           normalImage:JobsIMG(@"用户名称")
-                                                        highlightImage:nil
-                                                       attributedTitle:nil
-                                               selectedAttributedTitle:nil
-                                                    attributedSubtitle:nil
-                                                                 title:Title1
-                                                              subTitle:nil
-                                                             titleFont:UIFontWeightMediumSize(13)
-                                                          subTitleFont:nil
-                                                              titleCor:nil
-                                                           subTitleCor:nil
-                                                    titleLineBreakMode:NSLineBreakByWordWrapping
-                                                 subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                   baseBackgroundColor:Cor1
-                                                       backgroundImage:nil
-                                                          imagePadding:JobsWidth(8)
-                                                          titlePadding:JobsWidth(0)
-                                                        imagePlacement:NSDirectionalRectEdgeTop
-                                            contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                              contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                         contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                     cornerRadiusValue:JobsWidth(0)
-                                                       roundingCorners:UIRectCornerAllCorners
-                                                  roundingCornersRadii:CGSizeZero
-                                                        layerBorderCor:nil
-                                                           borderWidth:JobsWidth(0)
-                                                         primaryAction:nil
-                                            longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                           id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                       clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            [self endEditing:YES];
-            return nil;
-        }];
+        _backToLoginBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+            .jobsResetImagePlacement(JobsWidth(8))
+            .jobsResetBtnImage(JobsIMG(@"用户名称"))
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnTitleFont(UIFontWeightMediumSize(13))
+            .jobsResetBtnTitle(Title1)
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                [self endEditing:YES];
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _backToLoginBtn.titleLabel.numberOfLines = 0;
         [self addSubview:_backToLoginBtn];
         [_backToLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -182,49 +154,19 @@
 -(UIButton *)sendBtn{
     if (!_sendBtn) {
         @jobs_weakify(self)
-        _sendBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                     background:nil
-                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                  textAlignment:NSTextAlignmentCenter
-                                               subTextAlignment:NSTextAlignmentCenter
-                                                    normalImage:nil
-                                                 highlightImage:nil
-                                                attributedTitle:nil
-                                        selectedAttributedTitle:nil
-                                             attributedSubtitle:nil
-                                                          title:Title6
-                                                       subTitle:nil
-                                                      titleFont:UIFontWeightRegularSize(16)
-                                                   subTitleFont:nil
-                                                       titleCor:JobsWhiteColor
-                                                    subTitleCor:nil
-                                             titleLineBreakMode:NSLineBreakByWordWrapping
-                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                            baseBackgroundColor:[JobsSystemPinkColor colorWithAlphaComponent:0.7]
-                                                backgroundImage:nil
-                                                   imagePadding:JobsWidth(0)
-                                                   titlePadding:JobsWidth(0)
-                                                 imagePlacement:NSDirectionalRectEdgeNone
-                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                              cornerRadiusValue:ThingsHeight / 2
-                                                roundingCorners:UIRectCornerAllCorners
-                                           roundingCornersRadii:CGSizeZero
-                                                 layerBorderCor:nil
-                                                    borderWidth:JobsWidth(0)
-                                                  primaryAction:nil
-                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                    id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            toast(x.titleForNormalState);
-            return nil;
-        }];
+        _sendBtn = BaseButton.jobsInit()
+            .bgColor([JobsSystemPinkColor colorWithAlphaComponent:0.7])
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnTitleFont(UIFontWeightRegularSize(16))
+            .jobsResetBtnTitle(Title6)
+            .jobsResetBtnCornerRadiusValue(ThingsHeight / 2)
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                [self endEditing:YES];
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [_sendBtn buttonAutoWidthByFont];
         _sendBtn.x = self.backToLoginBtn.width + JobsWidth(20);
         _sendBtn.Size = CGSizeMake(self.width - self.backToLoginBtn.width - JobsWidth(40), ThingsHeight);

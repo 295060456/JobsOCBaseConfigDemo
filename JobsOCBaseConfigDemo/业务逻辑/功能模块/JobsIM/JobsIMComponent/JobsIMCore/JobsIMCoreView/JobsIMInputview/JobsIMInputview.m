@@ -64,47 +64,17 @@
 -(BaseButton *)sendBtn{
     if (!_sendBtn) {
         @jobs_weakify(self)
-        _sendBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                     background:nil
-                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                  textAlignment:NSTextAlignmentCenter
-                                               subTextAlignment:NSTextAlignmentCenter
-                                                    normalImage:nil
-                                                 highlightImage:nil
-                                                attributedTitle:nil
-                                        selectedAttributedTitle:nil
-                                             attributedSubtitle:nil
-                                                          title:JobsInternationalization(@"发送")
-                                                       subTitle:nil
-                                                      titleFont:nil
-                                                   subTitleFont:nil
-                                                       titleCor:JobsWhiteColor
-                                                    subTitleCor:nil
-                                             titleLineBreakMode:NSLineBreakByWordWrapping
-                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                            baseBackgroundColor:nil
-                                                backgroundImage:JobsCyanColor.image
-                                                   imagePadding:JobsWidth(0)
-                                                   titlePadding:JobsWidth(0)
-                                                 imagePlacement:NSDirectionalRectEdgeNone
-                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                              cornerRadiusValue:JobsWidth(3)
-                                                roundingCorners:UIRectCornerAllCorners
-                                           roundingCornersRadii:CGSizeZero
-                                                 layerBorderCor:nil
-                                                    borderWidth:JobsWidth(0)
-                                                  primaryAction:nil
-                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                    id _Nullable arg) {
-                NSLog(@"按钮的长按事件触发");
-                return nil;
-        }
-                                                clickEventBlock:^id(BaseButton *x){
+        _sendBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnBgImage(JobsCyanColor.image)
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(JobsInternationalization(@"发送"))
+            .jobsResetBtnCornerRadiusValue(JobsWidth(3))
+            .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
-                x.normalBackgroundImage(JobsLightGrayColor.image);
+                x.jobsResetBtnBgImage(JobsLightGrayColor.image);
                 if (self.objectBlock) self.objectBlock(x);
                 [self endEditing:YES];
                 if (isValue(self.inputTextField.text)) {
@@ -113,9 +83,9 @@
                 }
                 self.inputTextField.text = JobsInternationalization(@"");
                 x.enabled = NO;
-                return nil;
-        }];
-
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _sendBtn.userInteractionEnabled = NO;
         _sendBtn.enabled = NO;
         [_sendBtn setTitleColor:JobsWhiteColor forState:UIControlStateDisabled];

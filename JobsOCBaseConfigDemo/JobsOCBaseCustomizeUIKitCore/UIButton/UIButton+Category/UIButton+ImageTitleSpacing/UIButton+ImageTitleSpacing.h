@@ -23,8 +23,8 @@
  *  @param style titleLabel和imageView的布局样式
  *  @param imagePadding titleLabel和imageView的间距
  */
-- (void)layoutButtonWithEdgeInsetsStyle:(NSDirectionalRectEdge)style
-                           imagePadding:(CGFloat)imagePadding;
+-(__kindof UIButton *)layoutButtonWithEdgeInsetsStyle:(NSDirectionalRectEdge)style
+                                         imagePadding:(CGFloat)imagePadding;
 
 @end
 /***

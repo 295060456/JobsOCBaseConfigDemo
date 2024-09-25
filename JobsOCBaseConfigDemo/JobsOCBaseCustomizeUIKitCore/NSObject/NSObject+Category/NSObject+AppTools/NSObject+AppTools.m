@@ -167,43 +167,41 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     
     {
         NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(title));
-        [attributedText addAttribute:NSFontAttributeName
-                               value:UITextModel.new.font
-                               range:NSMakeRange(0, JobsInternationalization(title).length)];
-
-        NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
-        paragraphStyle.lineSpacing = 0;
-        paragraphStyle.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
-        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
-        [attributedText addAttribute:NSParagraphStyleAttributeName
-                               value:paragraphStyle
-                               range:NSMakeRange(0, JobsInternationalization(title).length)];
-        
+        attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+            data.value = UITextModel.new.font;
+            data.range = NSMakeRange(0, JobsInternationalization(title).length);
+        }));
+        attributedText.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+            data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+                data.lineSpacing = 0;
+                data.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
+                data.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
+            });
+            data.range = NSMakeRange(0, JobsInternationalization(title).length);
+        }));
         viewModel.textModel.attributedText = attributedText;
     }
     
     {
         NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle));
-        [attributedText addAttribute:NSFontAttributeName
-                               value:UITextModel.new.font
-                               range:NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length)];
-
-        NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
-        paragraphStyle.lineSpacing = 0;
-        paragraphStyle.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
-        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
-        [attributedText addAttribute:NSParagraphStyleAttributeName
-                               value:paragraphStyle
-                               range:NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length)];
-        
+        attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+            data.value = UITextModel.new.font;
+            data.range = NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length);
+        }));
+        attributedText.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+            data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+                data.lineSpacing = 0;
+                data.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
+                data.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
+            });
+            data.range = NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length);
+        }));
         viewModel.subTextModel.attributedText = attributedText;
     }
 
-    {
-        UITextModel *backBtnTitleModel = UITextModel.new;
-        backBtnTitleModel.text = JobsInternationalization(@"返回首页");
-        viewModel.backBtnTitleModel = backBtnTitleModel;
-    }
+    viewModel.backBtnTitleModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
+        data.text = JobsInternationalization(@"返回首页");
+    });
     
     return viewModel;
 }

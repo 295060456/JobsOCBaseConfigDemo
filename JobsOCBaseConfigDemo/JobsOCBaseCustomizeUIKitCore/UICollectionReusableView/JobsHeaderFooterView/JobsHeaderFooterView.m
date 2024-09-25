@@ -59,45 +59,22 @@
 -(BaseButton *)titleBtn{
     if (!_titleBtn) {
         @jobs_weakify(self)
-        _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                      background:nil
-                                      buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                   textAlignment:NSTextAlignmentCenter
-                                                subTextAlignment:NSTextAlignmentCenter
-                                                     normalImage:nil
-                                                  highlightImage:nil
-                                                 attributedTitle:nil
-                                         selectedAttributedTitle:nil
-                                              attributedSubtitle:nil
-                                                           title:nil
-                                                        subTitle:nil
-                                                       titleFont:nil
-                                                    subTitleFont:nil
-                                                        titleCor:nil
-                                                     subTitleCor:nil
-                                              titleLineBreakMode:NSLineBreakByWordWrapping
-                                           subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                             baseBackgroundColor:nil
-                                                 backgroundImage:nil
-                                                    imagePadding:JobsWidth(0)
-                                                    titlePadding:JobsWidth(0)
-                                                  imagePlacement:NSDirectionalRectEdgeNone
-                                      contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                        contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                   contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                               cornerRadiusValue:JobsWidth(0)
-                                                 roundingCorners:UIRectCornerAllCorners
-                                            roundingCornersRadii:CGSizeZero
-                                                  layerBorderCor:nil
-                                                     borderWidth:JobsWidth(0)
-                                                   primaryAction:nil
-                                      longPressGestureEventBlock:nil
-                                                 clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _titleBtn = BaseButton.jobsInit()
+//            .bgColor(JobsWhiteColor)
+//            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+//            .jobsResetImagePlacement(1)
+//            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+//            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+//            .jobsResetBtnTitleCor(JobsWhiteColor)
+//            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+//            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_titleBtn];
         [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(self.viewModel.textModel.offsetXForEach);
@@ -107,7 +84,7 @@
     
     _titleBtn.jobsResetBtnTitle(self.titleModel.textModel.text);
     _titleBtn.jobsResetSubtitle((self.titleModel.subTextModel.text));
-    _titleBtn.jobsResetImagePadding(self.titleModel.imageTitleSpace);
+    _titleBtn.jobsResetImagePlacement(self.titleModel.imageTitleSpace);
     _titleBtn.jobsResetTitlePadding(self.titleModel.titleSpace);
     _titleBtn.jobsResetBtnImage(self.titleModel.image);
     _titleBtn.jobsResetTitleLineBreakMode(self.titleModel.subTextModel.lineBreakMode);
@@ -130,47 +107,23 @@
 
 -(BaseButton *)subTitleBtn{
     if (!_subTitleBtn) {
-        _subTitleBtn = BaseButton.new;
         @jobs_weakify(self)
-        _subTitleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                         background:nil
-                                         buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                      textAlignment:NSTextAlignmentCenter
-                                                   subTextAlignment:NSTextAlignmentCenter
-                                                        normalImage:nil
-                                                     highlightImage:nil
-                                                    attributedTitle:nil
-                                            selectedAttributedTitle:nil
-                                                 attributedSubtitle:nil
-                                                              title:nil
-                                                           subTitle:nil
-                                                          titleFont:nil
-                                                       subTitleFont:nil
-                                                           titleCor:nil
-                                                        subTitleCor:nil
-                                                 titleLineBreakMode:NSLineBreakByWordWrapping
-                                              subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                baseBackgroundColor:nil
-                                                    backgroundImage:nil
-                                                       imagePadding:JobsWidth(0)
-                                                       titlePadding:JobsWidth(0)
-                                                     imagePlacement:NSDirectionalRectEdgeNone
-                                         contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                           contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                      contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                  cornerRadiusValue:JobsWidth(0)
-                                                    roundingCorners:UIRectCornerAllCorners
-                                               roundingCornersRadii:CGSizeZero
-                                                     layerBorderCor:nil
-                                                        borderWidth:JobsWidth(0)
-                                                      primaryAction:nil
-                                         longPressGestureEventBlock:nil
-                                                    clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _subTitleBtn = BaseButton.jobsInit()
+//            .bgColor(JobsWhiteColor)
+//            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+//            .jobsResetImagePlacement(1)
+//            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+//            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+//            .jobsResetBtnTitleCor(JobsWhiteColor)
+//            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+//            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_subTitleBtn];
         [_subTitleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(self.viewModel.subTextModel.offsetXForEach);
@@ -180,7 +133,7 @@
     
     _subTitleBtn.jobsResetBtnTitle(self.subTitleModel.textModel.text);
     _subTitleBtn.jobsResetSubtitle((self.subTitleModel.subTextModel.text));
-    _subTitleBtn.jobsResetImagePadding(self.subTitleModel.imageTitleSpace);
+    _subTitleBtn.jobsResetImagePlacement(self.subTitleModel.imageTitleSpace);
     _subTitleBtn.jobsResetTitlePadding(self.subTitleModel.titleSpace);
     _subTitleBtn.jobsResetBtnImage(self.subTitleModel.image);
     _subTitleBtn.jobsResetTitleLineBreakMode(self.subTitleModel.subTextModel.lineBreakMode);

@@ -100,7 +100,7 @@
     self.msgEditBoardView.getDeleteBtn.enabledBlock(self.selectedDataMutArr.count);
     self.msgEditBoardView.getMarkToReadBtn.enabledBlock(self.selectedDataMutArr.count);
     self.editBtn.selected = NO;
-    self.editBtn.normalTitle(JobsInternationalization(@"編輯"));
+    self.editBtn.jobsResetBtnTitle(JobsInternationalization(@"編輯"));
     [self.msgEditBoardView disappearByView:self.view];
 }
 /// 全选的实现
@@ -214,53 +214,22 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(BaseButton *)editBtn{
     if (!_editBtn) {
         @jobs_weakify(self)
-        _editBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                     background:nil
-                                     buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                  textAlignment:NSTextAlignmentCenter
-                                               subTextAlignment:NSTextAlignmentCenter
-                                                    normalImage:nil
-                                                 highlightImage:nil
-                                                attributedTitle:nil
-                                        selectedAttributedTitle:nil
-                                             attributedSubtitle:nil
-                                                          title:JobsInternationalization(@"編輯")
-                                                       subTitle:nil
-                                                      titleFont:UIFontWeightBoldSize(12)
-                                                   subTitleFont:nil
-                                                       titleCor:HEXCOLOR(0x3D4A58)
-                                                    subTitleCor:nil
-                                             titleLineBreakMode:NSLineBreakByWordWrapping
-                                          subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                            baseBackgroundColor:nil
-                                                backgroundImage:nil
-                                                   imagePadding:JobsWidth(0)
-                                                   titlePadding:JobsWidth(0)
-                                                 imagePlacement:NSDirectionalRectEdgeNone
-                                     contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                       contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                  contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                              cornerRadiusValue:JobsWidth(0)
-                                                roundingCorners:UIRectCornerAllCorners
-                                           roundingCornersRadii:CGSizeZero
-                                                 layerBorderCor:nil
-                                                    borderWidth:JobsWidth(0)
-                                                  primaryAction:nil
-                                     longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                    id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-//            toast(x.titleForNormalState);
-            x.selected = !x.selected;
-            x.normalTitle(x.selected ? JobsInternationalization(@"完成") : JobsInternationalization(@"編輯"));
-            [self.tableView setEditing:x.selected animated:YES];
-            x.selected ? [self.getMsgEditBoardView appearByView:self.view] : [self.getMsgEditBoardView disappearByView:self.view];
-             return nil;
-        }];
+        _editBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(12))
+            .jobsResetBtnTitle(JobsInternationalization(@"編輯"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+    //            toast(x.titleForNormalState);
+                x.selected = !x.selected;
+                x.jobsResetBtnTitle(x.selected ? JobsInternationalization(@"完成") : JobsInternationalization(@"編輯"));
+                [self.tableView setEditing:x.selected animated:YES];
+                x.selected ? [self.getMsgEditBoardView appearByView:self.view] : [self.getMsgEditBoardView disappearByView:self.view];
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
     }return _editBtn;
 }
 
@@ -342,9 +311,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             @jobs_strongify(self)
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
-                if ([btn.normalTitle isEqualToString:JobsInternationalization(@"全選")]) {
+                if ([btn.jobsResetBtnTitle isEqualToString:JobsInternationalization(@"全選")]) {
                     btn.selected ? [self allChoose] : [self allCancelChoose];
-                }else if ([btn.normalTitle isEqualToString:JobsInternationalization(@"標記為已讀")]){
+                }else if ([btn.jobsResetBtnTitle isEqualToString:JobsInternationalization(@"標記為已讀")]){
                     
                     for (JobsMsgDataModel *model in self.selectedDataMutArr) {//dataMutArr
                         model.isRead = YES;
@@ -352,7 +321,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                         [self.dataMutArr replaceObjectAtIndex:index withObject:model];
                     }
                     [self dataForUI];
-                }else if ([btn.normalTitle isEqualToString:JobsInternationalization(@"删除")]){
+                }else if ([btn.jobsResetBtnTitle isEqualToString:JobsInternationalization(@"删除")]){
                     NSLog(@"%@",self.selectedDataMutArr);
                     [self.dataMutArr removeObjectsInArray:self.selectedDataMutArr];
                     [self dataForUI];

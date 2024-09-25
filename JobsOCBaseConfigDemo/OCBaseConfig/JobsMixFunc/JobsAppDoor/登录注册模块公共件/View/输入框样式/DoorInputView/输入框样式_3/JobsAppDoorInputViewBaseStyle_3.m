@@ -123,7 +123,7 @@
     if (!_securityModeBtn) {
         _securityModeBtn = UIButton.new;
         _securityModeBtn.selectedImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
-        _securityModeBtn.normalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image);
+        _securityModeBtn.jobsResetBtnImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image);
         @jobs_weakify(self)
         [_securityModeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)

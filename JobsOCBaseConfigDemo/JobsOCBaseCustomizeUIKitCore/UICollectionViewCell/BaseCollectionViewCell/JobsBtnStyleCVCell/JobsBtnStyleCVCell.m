@@ -71,41 +71,7 @@
 -(BaseButton *)btn{
     @jobs_weakify(self)
     if(!_btn){
-        _btn = [BaseButton.alloc jobsInitBtnByConfiguration:UIButtonConfiguration.plainButtonConfiguration
-                                                 background:nil
-                                 buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                              textAlignment:NSTextAlignmentCenter
-                                           subTextAlignment:NSTextAlignmentCenter
-                                                normalImage:nil
-                                             highlightImage:nil
-                                            attributedTitle:nil
-                                    selectedAttributedTitle:nil
-                                         attributedSubtitle:nil
-                                                      title:nil
-                                                   subTitle:nil
-                                                  titleFont:nil
-                                               subTitleFont:nil
-                                                   titleCor:nil
-                                                subTitleCor:nil
-                                         titleLineBreakMode:NSLineBreakByWordWrapping
-                                      subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                        baseBackgroundColor:nil
-                                            backgroundImage:nil
-                                               imagePadding:JobsWidth(0)
-                                               titlePadding:JobsWidth(0)
-                                             imagePlacement:NSDirectionalRectEdgeTop
-                                 contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                   contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                              contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                          cornerRadiusValue:JobsWidth(0)
-                                            roundingCorners:UIRectCornerAllCorners
-                                       roundingCornersRadii:CGSizeZero
-                                             layerBorderCor:nil
-                                                borderWidth:JobsWidth(0)
-                                              primaryAction:nil
-                                 longPressGestureEventBlock:nil
-                                            clickEventBlock:nil];
-
+        _btn = BaseButton.jobsInit();
         [self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
@@ -144,7 +110,7 @@
         _btn.backgroundColor = self.buttonModel.bgCor;
         /// 图文间距
         if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePadding(self.viewModel.imageTitleSpace);
+            _btn.jobsResetImagePlacement(self.viewModel.imageTitleSpace);
         } else {
             // Fallback on earlier versions
         }
@@ -155,7 +121,7 @@
             // Fallback on earlier versions
         }
         /// 圆切角
-        _btn.resetCornerRadius(self.viewModel.layerCornerRadius);
+        _btn.jobsResetBtnCornerRadiusValue(self.viewModel.layerCornerRadius);
     }
     
     if(self.buttonModel){
@@ -190,7 +156,7 @@
         
         /// 图文间距
         if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePadding(self.buttonModel.imagePadding);
+            _btn.jobsResetImagePlacement(self.buttonModel.imagePadding);
         } else {
             // Fallback on earlier versions
         }
@@ -201,7 +167,7 @@
             // Fallback on earlier versions
         }
         /// 圆切角
-        _btn.resetCornerRadius(self.buttonModel.cornerRadiusValue);
+        _btn.jobsResetBtnCornerRadiusValue(self.buttonModel.cornerRadiusValue);
     }return _btn;
 }
 

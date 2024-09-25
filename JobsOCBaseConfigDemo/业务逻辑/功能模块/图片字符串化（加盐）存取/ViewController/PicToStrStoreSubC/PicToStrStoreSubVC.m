@@ -203,61 +203,42 @@
 -(BaseButton *)btn_1{
     if(!_btn_1){
         @jobs_weakify(self)
-        _btn_1 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                   background:nil
-                                   buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                textAlignment:NSTextAlignmentCenter
-                                             subTextAlignment:NSTextAlignmentCenter
-                                                  normalImage:_picBefore ? : JobsBuddleIMG(@"bundle",@"Others",nil,@"绿色加号")
-                                               highlightImage:nil
-                                              attributedTitle:nil
-                                      selectedAttributedTitle:nil
-                                           attributedSubtitle:nil
-                                                        title:JobsInternationalization(@"点击按钮")
-                                                     subTitle:JobsInternationalization(@"选取相册图片")
-                                                    titleFont:UIFontWeightBoldSize(25)
-                                                 subTitleFont:UIFontWeightBoldSize(18)
-                                                     titleCor:JobsCor(@"#333333")
-                                                  subTitleCor:nil
-                                           titleLineBreakMode:NSLineBreakByWordWrapping
-                                        subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                          baseBackgroundColor:JobsLightGrayColor
-                                              backgroundImage:nil
-                                                 imagePadding:JobsWidth(10)
-                                                 titlePadding:JobsWidth(10)
-                                               imagePlacement:NSDirectionalRectEdgeNone
-                                   contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                     contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                            cornerRadiusValue:JobsWidth(8)
-                                              roundingCorners:UIRectCornerAllCorners
-                                         roundingCornersRadii:CGSizeZero
-                                               layerBorderCor:nil
-                                                  borderWidth:JobsWidth(.5f)
-                                                primaryAction:nil
-                                   longPressGestureEventBlock:nil
-                                              clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
-            /// 调取系统相册
-            @jobs_weakify(self)
-            [self hx_invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
-                self.photoManager = data.photoManager;
-                [data.photoList hx_requestImageWithOriginal:NO
-                                                 completion:^(NSArray<UIImage *> * _Nullable imageArray,
-                                                              NSArray<HXPhotoModel *> * _Nullable errorArray) {
-                    @jobs_strongify(self)
-                    self.photosImageMutArr = [NSMutableArray arrayWithArray:imageArray];
-                    UIImage *image = (UIImage *)self.photosImageMutArr.lastObject;
-                    self->_picBefore = image;
-                    self.btn_1.jobsResetBtnImage(image);/// 永远值显示最后选择的图
-                    [self strForPic:self->_picBefore];
+        _btn_1 = BaseButton.jobsInit()
+            .bgColor(JobsLightGrayColor)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeNone)
+            .jobsResetImagePlacement(JobsWidth(10))
+            .jobsResetTitlePadding(JobsWidth(10))
+            .jobsResetBtnImage(_picBefore ? : JobsBuddleIMG(@"bundle",@"Others",nil,@"绿色加号"))
+            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnTitleCor(JobsCor(@"#333333"))
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(25))
+            .jobsResetBtnSubTitleFont(UIFontWeightBoldSize(18))
+            .jobsResetBtnTitle(JobsInternationalization(@"点击按钮"))
+            .jobsResetBtnSubTitle(JobsInternationalization(@"选取相册图片"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                if (self.objectBlock) self.objectBlock(x);
+                /// 调取系统相册
+                @jobs_weakify(self)
+                [self hx_invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
+                    self.photoManager = data.photoManager;
+                    [data.photoList hx_requestImageWithOriginal:NO
+                                                     completion:^(NSArray<UIImage *> * _Nullable imageArray,
+                                                                  NSArray<HXPhotoModel *> * _Nullable errorArray) {
+                        @jobs_strongify(self)
+                        self.photosImageMutArr = [NSMutableArray arrayWithArray:imageArray];
+                        UIImage *image = (UIImage *)self.photosImageMutArr.lastObject;
+                        self->_picBefore = image;
+                        self.btn_1.jobsResetBtnImage(image);/// 永远值显示最后选择的图
+                        [self strForPic:self->_picBefore];
+                    }];
+                } failBlock:^(HXPhotoPickerModel *data) {
+    //                @jobs_strongify(self)
                 }];
-            } failBlock:^(HXPhotoPickerModel *data) {
-//                @jobs_strongify(self)
-            }];return nil;
-        }];
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.view addSubview:_btn_1];
         [_btn_1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(10));
@@ -272,49 +253,31 @@
 -(BaseButton *)btn_2{
     if(!_btn_2){
         @jobs_weakify(self)
-        _btn_2 = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                   background:nil
-                                   buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                textAlignment:NSTextAlignmentCenter
-                                             subTextAlignment:NSTextAlignmentCenter
-                                                  normalImage:nil
-                                               highlightImage:nil
-                                              attributedTitle:nil
-                                      selectedAttributedTitle:nil
-                                           attributedSubtitle:nil
-                                                        title:JobsInternationalization(@"点击按钮")
-                                                     subTitle:JobsInternationalization(@"编码转译成图片")
-                                                    titleFont:UIFontWeightBoldSize(25)
-                                                 subTitleFont:UIFontWeightBoldSize(18)
-                                                     titleCor:JobsCor(@"#333333")
-                                                  subTitleCor:nil
-                                           titleLineBreakMode:NSLineBreakByWordWrapping
-                                        subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                          baseBackgroundColor:JobsLightGrayColor
-                                              backgroundImage:nil
-                                                 imagePadding:JobsWidth(10)
-                                                 titlePadding:JobsWidth(10)
-                                               imagePlacement:NSDirectionalRectEdgeNone
-                                   contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                     contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                            cornerRadiusValue:JobsWidth(8)
-                                              roundingCorners:UIRectCornerAllCorners
-                                         roundingCornersRadii:CGSizeZero
-                                               layerBorderCor:nil
-                                                  borderWidth:JobsWidth(.5f)
-                                                primaryAction:nil
-                                   longPressGestureEventBlock:nil
-                                              clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
-            if(isNull(self->_resultStr)){
-                /// 存在于内存里面的编码，转变成图像对外进行输出
-                [self picForStr:self->_resultStr];
-            }else self.jobsToastMsg(JobsInternationalization(@"请先编码图片"));
-            return nil;
-        }];
+        _btn_2 = BaseButton.jobsInit()
+            .bgColor(JobsLightGrayColor)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeNone)
+            .jobsResetImagePlacement(JobsWidth(10))
+            .jobsResetTitlePadding(JobsWidth(10))
+            .jobsResetBtnImage(_picBefore ? : JobsBuddleIMG(@"bundle",@"Others",nil,@"绿色加号"))
+            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnTitleCor(JobsCor(@"#333333"))
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(25))
+            .jobsResetBtnSubTitleFont(UIFontWeightBoldSize(18))
+            .jobsResetBtnTitle(JobsInternationalization(@"点击按钮"))
+            .jobsResetBtnSubTitle(JobsInternationalization(@"编码转译成图片"))
+            .jobsResetBtnCornerRadiusValue(JobsWidth(8))
+            .jobsResetBtnLayerBorderWidth(JobsWidth(.5f))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                if (self.objectBlock) self.objectBlock(x);
+                if(isNull(self->_resultStr)){
+                    /// 存在于内存里面的编码，转变成图像对外进行输出
+                    [self picForStr:self->_resultStr];
+                }else self.jobsToastMsg(JobsInternationalization(@"请先编码图片"));
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.view addSubview:_btn_2];
         [_btn_2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.btn_1.mas_bottom).offset(JobsWidth(10));

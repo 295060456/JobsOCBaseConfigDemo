@@ -60,45 +60,20 @@ static dispatch_once_t static_testPopupViewOnceToken;
 -(BaseButton *)containerView{
     if(!_containerView){
         @jobs_weakify(self)
-        _containerView = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                           background:nil
-                                           buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                        textAlignment:NSTextAlignmentCenter
-                                                     subTextAlignment:NSTextAlignmentCenter
-                                                          normalImage:nil
-                                                       highlightImage:nil
-                                                      attributedTitle:nil
-                                              selectedAttributedTitle:nil
-                                                   attributedSubtitle:nil
-                                                                title:isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"测试弹窗"): self.viewModel.textModel.text
-                                                             subTitle:isNull(self.viewModel.subTextModel.text) ? JobsInternationalization(@"相关信息"): self.viewModel.textModel.text
-                                                            titleFont:UIFontWeightBoldSize(20)
-                                                         subTitleFont:nil
-                                                             titleCor:JobsRedColor
-                                                          subTitleCor:nil
-                                                   titleLineBreakMode:NSLineBreakByWordWrapping
-                                                subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                  baseBackgroundColor:JobsWhiteColor
-                                                      backgroundImage:nil
-                                                         imagePadding:JobsWidth(0)
-                                                            titlePadding:JobsWidth(8)
-                                                       imagePlacement:NSDirectionalRectEdgeNone
-                                           contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                             contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                        contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                    cornerRadiusValue:JobsWidth(0)
-                                                      roundingCorners:UIRectCornerAllCorners
-                                                 roundingCornersRadii:CGSizeZero
-                                                       layerBorderCor:nil
-                                                          borderWidth:JobsWidth(0)
-                                                        primaryAction:nil
-                                           longPressGestureEventBlock:nil
-                                                      clickEventBlock:^id(BaseButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _containerView = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetTitlePadding(JobsWidth(8))
+            .jobsResetBtnTitleCor(JobsRedColor)
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(20))
+            .jobsResetBtnTitle(isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"测试弹窗"): self.viewModel.textModel.text)
+            .jobsResetBtnSubTitle(isNull(self.viewModel.subTextModel.text) ? JobsInternationalization(@"相关信息"): self.viewModel.textModel.text)
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_containerView];
         [_containerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(_containerView.jobsSize);
@@ -110,11 +85,11 @@ static dispatch_once_t static_testPopupViewOnceToken;
 -(UIButton *)testPopupViewSureBtn{
     if (!_testPopupViewSureBtn) {
         _testPopupViewSureBtn = UIButton.new;
-        _testPopupViewSureBtn.normalBackgroundImage(JobsIMG(@"测试弹窗的确定按钮"));
+        _testPopupViewSureBtn.jobsResetBtnBgImage(JobsIMG(@"测试弹窗的确定按钮"));
         _testPopupViewSureBtn.selectedBackgroundImage(JobsIMG(@"测试弹窗的确定按钮"));
-        _testPopupViewSureBtn.normalTitle(JobsInternationalization(@"确定"));
-        _testPopupViewSureBtn.normalTitleColor(JobsBlackColor);
-        _testPopupViewSureBtn.titleFont(UIFontWeightRegularSize(18));
+        _testPopupViewSureBtn.jobsResetBtnTitle(JobsInternationalization(@"确定"));
+        _testPopupViewSureBtn.jobsResetBtnTitleCor(JobsBlackColor);
+        _testPopupViewSureBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(18));
         [self addSubview:_testPopupViewSureBtn];
         [_testPopupViewSureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(JobsWidth(-15));

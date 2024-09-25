@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_END
      JobsSuspendBtn *SuspendBtn = Jobs_getAssociatedObject(_suspendBtn);
      if (!SuspendBtn) {
          SuspendBtn = JobsSuspendBtn.new;
-         SuspendBtn.normalImage = JobsIMG(@"旋转");
+         SuspendBtn.jobsResetBtnImage = JobsIMG(@"旋转");
          SuspendBtn.isAllowDrag = YES;//悬浮效果必须要的参数
          @jobs_weakify(self)
          [SuspendBtn jobsBtnClickEventBlock:^id(UIButton *x) {

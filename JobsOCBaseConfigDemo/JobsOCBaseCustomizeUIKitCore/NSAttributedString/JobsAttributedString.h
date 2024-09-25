@@ -11,6 +11,10 @@
 #import "NSMutableAttributedString+Extra.h"
 #import "NSAttributedString+Extra.h"
 
+#ifndef AttributedString
+#define AttributedString NSMutableAttributedString.alloc
+#endif /* AttributedString */
+
 #pragma mark —— 创建不可变富文本
 static inline NSAttributedString *_Nonnull JobsAttributedString(NSString *_Nonnull data) {
     if (!data) data = @"";

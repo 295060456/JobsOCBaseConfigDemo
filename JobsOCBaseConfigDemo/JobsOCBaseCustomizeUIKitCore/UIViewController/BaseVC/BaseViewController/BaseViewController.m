@@ -117,7 +117,7 @@ BaseViewControllerProtocol_synthesize
 //            @jobs_strongify(self)
 ////            data.backgroundImage = JobsIMG(@"返回");
 ////            data.selected_backgroundImage = JobsIMG(@"返回");
-//            data.normalImage = JobsIMG(@"返回");
+//            data.jobsResetBtnImage = JobsIMG(@"返回");
 //            data.highlightImage = JobsIMG(@"返回");
 //            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
 //            data.title = self.viewModel.backBtnTitleModel.text;

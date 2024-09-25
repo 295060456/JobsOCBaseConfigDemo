@@ -159,10 +159,10 @@
 -(UIButton *)chooseBtn{
     if (!_chooseBtn) {
         _chooseBtn = UIButton.new;
-        _chooseBtn.normalImage(self.chooseBtnViewModel.image);
-        _chooseBtn.normalTitleColor(self.chooseBtnViewModel.textModel.textCor);
-        _chooseBtn.normalTitle(self.chooseBtnViewModel.textModel.text);
-        _chooseBtn.titleFont(self.chooseBtnViewModel.textModel.font);
+        _chooseBtn.jobsResetBtnImage(self.chooseBtnViewModel.image);
+        _chooseBtn.jobsResetBtnTitleCor(self.chooseBtnViewModel.textModel.textCor);
+        _chooseBtn.jobsResetBtnTitle(self.chooseBtnViewModel.textModel.text);
+        _chooseBtn.jobsResetBtnTitleFont(self.chooseBtnViewModel.textModel.font);
         [self addSubview:_chooseBtn];
         [_chooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.leftIMGV.mas_right).offset(JobsWidth(20));
@@ -185,7 +185,7 @@
                     @jobs_strongify(self)
                     NSLog(@"data = %@",data);
                     NSLog(@"data = %@",data.data);
-                    x.normalTitle([data.textModel.text stringByAppendingString:data.subTextModel.text]);
+                    x.jobsResetBtnTitle(data.textModel.text.add(data.subTextModel.text));
                 }];
             }else{
                 [self->dropDownListView dropDownListViewDisappear:x];

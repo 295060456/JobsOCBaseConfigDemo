@@ -398,7 +398,7 @@ if (self.isOpenPPBadge) {
                                         buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
                                                      textAlignment:NSTextAlignmentCenter
                                                   subTextAlignment:NSTextAlignmentCenter
-                                                       normalImage:nil
+                                                       jobsResetBtnImage:nil
                                                     highlightImage:nil
                                                    attributedTitle:nil
                                            selectedAttributedTitle:nil
@@ -441,7 +441,7 @@ if (self.isOpenPPBadge) {
       
       _titleBtn.jobsResetBtnTitle(self.titleModel.textModel.text);
       _titleBtn.jobsResetSubtitle((self.titleModel.subTextModel.text));
-      _titleBtn.jobsResetImagePadding(self.titleModel.imageTitleSpace);
+      _titleBtn.jobsResetImagePlacement(self.titleModel.imageTitleSpace);
       _titleBtn.jobsResetTitlePadding(self.titleModel.titleSpace);
       _titleBtn.jobsResetBtnImage(self.titleModel.image);
       _titleBtn.jobsResetTitleLineBreakMode(self.titleModel.subTextModel.lineBreakMode);

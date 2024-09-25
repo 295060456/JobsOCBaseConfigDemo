@@ -81,49 +81,22 @@
 -(BaseButton *)backToLoginBtn{
     if (!_backToLoginBtn) {
         @jobs_weakify(self)
-        _backToLoginBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                            background:nil
-                                            buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                         textAlignment:NSTextAlignmentCenter
-                                                      subTextAlignment:NSTextAlignmentCenter
-                                                           normalImage:JobsIMG(@"用户名称")
-                                                        highlightImage:nil
-                                                       attributedTitle:nil
-                                               selectedAttributedTitle:nil
-                                                    attributedSubtitle:nil
-                                                                 title:Title1
-                                                              subTitle:nil
-                                                             titleFont:UIFontWeightMediumSize(13)
-                                                          subTitleFont:nil
-                                                              titleCor:Cor3
-                                                           subTitleCor:nil
-                                                    titleLineBreakMode:NSLineBreakByWordWrapping
-                                                 subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                   baseBackgroundColor:Cor1
-                                                       backgroundImage:nil
-                                                          imagePadding:JobsWidth(8)
-                                                          titlePadding:JobsWidth(0)
-                                                        imagePlacement:NSDirectionalRectEdgeTop
-                                            contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                              contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                         contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                     cornerRadiusValue:JobsWidth(0)
-                                                       roundingCorners:UIRectCornerAllCorners
-                                                  roundingCornersRadii:CGSizeZero
-                                                        layerBorderCor:nil
-                                                           borderWidth:JobsWidth(0)
-                                                         primaryAction:nil
-                                            longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                           id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                       clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            [self endEditing:YES];
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _backToLoginBtn = BaseButton.jobsInit()
+            .bgColor(Cor1)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+            .jobsResetImagePlacement(JobsWidth(8))
+            .jobsResetBtnImage(JobsIMG(@"用户名称"))
+            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnTitleCor(Cor3)
+            .jobsResetBtnTitleFont(UIFontWeightMediumSize(13))
+            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                [self endEditing:YES];
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _backToLoginBtn.alpha = 0.7f;
         [self addSubview:_backToLoginBtn];
         [_backToLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -138,56 +111,16 @@
 -(BaseButton *)contactCustomerServiceBtn{
     if (!_contactCustomerServiceBtn) {
         @jobs_weakify(self)
-        _contactCustomerServiceBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                                       background:nil
-                                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                                    textAlignment:NSTextAlignmentCenter
-                                                                 subTextAlignment:NSTextAlignmentCenter
-                                                                      normalImage:JobsIMG(@"zaixiankefu_en")
-                                                                   highlightImage:nil
-                                                                  attributedTitle:nil
-                                                          selectedAttributedTitle:nil
-                                                               attributedSubtitle:nil
-                                                                            title:nil
-                                                                         subTitle:nil
-                                                                        titleFont:nil
-                                                                     subTitleFont:nil
-                                                                         titleCor:nil
-                                                                      subTitleCor:nil
-                                                               titleLineBreakMode:NSLineBreakByWordWrapping
-                                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                              baseBackgroundColor:nil
-                                                                  backgroundImage:nil
-                                                                     imagePadding:JobsWidth(0)
-                                                                     titlePadding:JobsWidth(0)
-                                                                   imagePlacement:NSDirectionalRectEdgeNone
-                                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                                cornerRadiusValue:JobsWidth(0)
-                                                                  roundingCorners:UIRectCornerAllCorners
-                                                             roundingCornersRadii:CGSizeZero
-                                                                   layerBorderCor:nil
-                                                                      borderWidth:JobsWidth(0)
-                                                                    primaryAction:nil
-                                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                                      id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                                  clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            NSLog(@"返回登录");
-//            if (isNull(self.customerContactModel.onlineUrl.customerAccount)) {
-//                [self customerContact:nil];
-//            }else{
-//                [NSObject openURL:self.customerContactModel.onlineUrl.customerAccount];
-//            }
-            [self endEditing:YES];
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _contactCustomerServiceBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnImage(JobsIMG(@"zaixiankefu_en"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                [self endEditing:YES];
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self addSubview:_contactCustomerServiceBtn];
         [_contactCustomerServiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(230), JobsWidth(50)));

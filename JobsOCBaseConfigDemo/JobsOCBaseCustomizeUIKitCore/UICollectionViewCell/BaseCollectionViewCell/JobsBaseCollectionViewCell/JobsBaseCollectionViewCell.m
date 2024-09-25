@@ -105,71 +105,38 @@
 -(BaseButton *)bgBtn{
     if (!_bgBtn) {
         @jobs_weakify(self)
-        _bgBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                   background:nil
-                                   buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                textAlignment:NSTextAlignmentCenter
-                                             subTextAlignment:NSTextAlignmentCenter
-                                                  normalImage:nil
-                                               highlightImage:nil
-                                              attributedTitle:nil
-                                      selectedAttributedTitle:nil
-                                           attributedSubtitle:nil
-                                                        title:nil
-                                                     subTitle:nil
-                                                    titleFont:nil
-                                                 subTitleFont:nil
-                                                     titleCor:nil
-                                                  subTitleCor:nil
-                                           titleLineBreakMode:NSLineBreakByWordWrapping
-                                        subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                          baseBackgroundColor:nil
-                                              backgroundImage:nil
-                                                 imagePadding:JobsWidth(0)
-                                                 titlePadding:JobsWidth(0)
-                                               imagePlacement:NSDirectionalRectEdgeNone
-                                   contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                     contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                            cornerRadiusValue:JobsWidth(0)
-                                              roundingCorners:UIRectCornerAllCorners
-                                         roundingCornersRadii:CGSizeZero
-                                               layerBorderCor:nil
-                                                  borderWidth:JobsWidth(0)
-                                                primaryAction:nil
-                                   longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                              clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
+        _bgBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+            .jobsResetImagePlacement(1)
+            .jobsResetBtnImage(self.viewModel.image)
+            .jobsResetBtnBgImage(self.viewModel.bgImage)
+            .jobsResetBtnTitleCor(self.viewModel.textModel.textCor)
+            .jobsResetBtnTitleFont(self.viewModel.textModel.font)
+            .jobsResetBtnTitle(self.viewModel.textModel.text)
+            .jobsResetBtnNormalAttributedTitle(self.viewModel.textModel.attributedText)
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _bgBtn.userInteractionEnabled = NO;
         [self.contentView addSubview:_bgBtn];
         [_bgBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView);
         }];
     }
-    _bgBtn.normalImage(self.viewModel.image);
-    _bgBtn.normalTitle(self.viewModel.textModel.text);
-    _bgBtn.normalBackgroundImage(self.viewModel.bgImage);
-    _bgBtn.normalAttributedTitle(self.viewModel.textModel.attributedText);
-    _bgBtn.normalTitleColor(self.viewModel.textModel.textCor);
-    
     _bgBtn.selectedImage(self.viewModel.selectedImage_);
     _bgBtn.selectedTitle(self.viewModel.textModel.selectedText);
     _bgBtn.selectedBackgroundImage(self.viewModel.bgSelectedImage);
     _bgBtn.selectedAttributedTitle(self.viewModel.textModel.selectedAttributedText);
     _bgBtn.selectedTitleColor(self.viewModel.textModel.selectedTextCor);
     
-    _bgBtn.titleFont(self.viewModel.textModel.font);
     _bgBtn.titleAlignment = self.viewModel.textModel.textAlignment;
     _bgBtn.makeNewLineShows(self.viewModel.textModel.lineBreakMode);
-    [_bgBtn layoutButtonWithEdgeInsetsStyle:self.viewModel.buttonEdgeInsetsStyle
-                               imagePadding:self.viewModel.imageTitleSpace];
+    
+    _bgBtn.jobsResetImagePlacement_Padding(self.viewModel.buttonEdgeInsetsStyle,self.viewModel.imageTitleSpace);
     return _bgBtn;
 }
 

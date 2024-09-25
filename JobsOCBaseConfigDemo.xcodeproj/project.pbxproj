@@ -123,6 +123,7 @@
 		CEA018B72C86F9C8006F06CF /* NSString+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA018B02C86F922006F06CF /* NSString+Time.m */; };
 		CEA018BF2C881A4F006F06CF /* NSRunLoop+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA018BD2C881A4B006F06CF /* NSRunLoop+Extra.m */; };
 		CEA116222C5278F8009D6FB3 /* XZMLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA116202C5278F8009D6FB3 /* XZMLayout.m */; };
+		CEAD80382CA402FC000DE93B /* JobsParagraphStyleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD80362CA402FC000DE93B /* JobsParagraphStyleModel.m */; };
 		CEAF25312C60FE050056570C /* ExcelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF24C42C60FE040056570C /* ExcelVC.m */; };
 		CEAF25322C60FE050056570C /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF24C82C60FE040056570C /* ChannelCell.m */; };
 		CEAF25332C60FE050056570C /* DateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF24CB2C60FE040056570C /* DateCell.m */; };
@@ -1445,6 +1446,8 @@
 		CEA114BA2C522E00009D6FB3 /* JobsBaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseViewProtocol.h; sourceTree = "<group>"; };
 		CEA1161F2C5278F8009D6FB3 /* XZMLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZMLayout.h; sourceTree = "<group>"; };
 		CEA116202C5278F8009D6FB3 /* XZMLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZMLayout.m; sourceTree = "<group>"; };
+		CEAD80352CA402FC000DE93B /* JobsParagraphStyleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsParagraphStyleModel.h; sourceTree = "<group>"; };
+		CEAD80362CA402FC000DE93B /* JobsParagraphStyleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsParagraphStyleModel.m; sourceTree = "<group>"; };
 		CEAF24C32C60FE040056570C /* ExcelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcelVC.h; sourceTree = "<group>"; };
 		CEAF24C42C60FE040056570C /* ExcelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExcelVC.m; sourceTree = "<group>"; };
 		CEAF24C72C60FE040056570C /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
@@ -4016,6 +4019,7 @@
 			isa = PBXGroup;
 			children = (
 				CE61ACDD2C9EAAE1002DF138 /* JobsModel.h */,
+				CEAD80372CA402FC000DE93B /* JobsParagraphStyleModel */,
 				CEDFA9B02CA28F4D0075D200 /* ButtonTimerModel */,
 				CEDFA9AC2CA268410075D200 /* JobsRichTextConfig */,
 				CEDC58EB2CA190CF00C7772C /* MJRefreshConfigModel */,
@@ -4614,6 +4618,15 @@
 				CEA116202C5278F8009D6FB3 /* XZMLayout.m */,
 			);
 			path = XZMLayout;
+			sourceTree = "<group>";
+		};
+		CEAD80372CA402FC000DE93B /* JobsParagraphStyleModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEAD80352CA402FC000DE93B /* JobsParagraphStyleModel.h */,
+				CEAD80362CA402FC000DE93B /* JobsParagraphStyleModel.m */,
+			);
+			path = JobsParagraphStyleModel;
 			sourceTree = "<group>";
 		};
 		CEAF24C52C60FE040056570C /* ViewController */ = {
@@ -15268,6 +15281,7 @@
 				CEAF253F2C60FE050056570C /* ZMJTaskCell.m in Sources */,
 				CECE7CE72C450C5000764AF5 /* UITBVCellFoldVC.m in Sources */,
 				CE7C7BBD2C942E8600C0153C /* NSDate+Extra.m in Sources */,
+				CEAD80382CA402FC000DE93B /* JobsParagraphStyleModel.m in Sources */,
 				CECE7CCC2C450C5000764AF5 /* JobsProgressVC.m in Sources */,
 				CECE7CCF2C450C5000764AF5 /* PushAnimation.m in Sources */,
 				CECE7C1C2C450C5000764AF5 /* YTKAnimatingRequestAccessory.m in Sources */,

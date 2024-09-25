@@ -128,11 +128,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UIButton *)userHeaderBtn{
     if (!_userHeaderBtn) {
         _userHeaderBtn = UIButton.new;
-        _userHeaderBtn.normalTitle(self.readUserInfo().userName.add(JobsInternationalization(@"    VIP 0")));
+        _userHeaderBtn.jobsResetBtnTitle(self.readUserInfo().userName.add(JobsInternationalization(@"    VIP 0")));
         NSLog(@"%@",_userHeaderBtn.titleForNormalState);
-        _userHeaderBtn.normalImage(JobsIMG(@"默认头像"));
-        _userHeaderBtn.normalTitleColor(HEXCOLOR(0xAE8330));
-        _userHeaderBtn.titleFont(UIFontWeightBoldSize(16));
+        _userHeaderBtn.jobsResetBtnImage(JobsIMG(@"默认头像"));
+        _userHeaderBtn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
+        _userHeaderBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(16));
         [self addSubview:_userHeaderBtn];
         [_userHeaderBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);

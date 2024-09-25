@@ -128,11 +128,11 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
 -(UIButton *)allChooseBtn{
     if (!_allChooseBtn) {
         _allChooseBtn = UIButton.new;
-        _allChooseBtn.normalImage(JobsIMG(@"按钮未选中"));
+        _allChooseBtn.jobsResetBtnImage(JobsIMG(@"按钮未选中"));
         _allChooseBtn.selectedImage(JobsIMG(@"按钮已选中"));
-        _allChooseBtn.normalTitleColor(HEXCOLOR(0x3D4A58));
-        _allChooseBtn.titleFont(UIFontWeightBoldSize(14));
-        _allChooseBtn.normalTitle(JobsInternationalization(@"全選"));
+        _allChooseBtn.jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58));
+        _allChooseBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(14));
+        _allChooseBtn.jobsResetBtnTitle(JobsInternationalization(@"全選"));
         _allChooseBtn.selectedTitle(JobsInternationalization(@"取消"));
         [self addSubview:_allChooseBtn];
         [_allChooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -155,10 +155,9 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
 -(UIButton *)markToReadBtn{
     if (!_markToReadBtn) {
         _markToReadBtn = UIButton.new;
-        _markToReadBtn.normalTitleColor(HEXCOLOR(0xAE8330));
-        _markToReadBtn.titleFont(UIFontWeightBoldSize(14));
-        _markToReadBtn.normalTitleColor(HEXCOLOR(0xAE8330));
-        _markToReadBtn.normalTitle(JobsInternationalization(@"標記為已讀"));
+        _markToReadBtn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
+        _markToReadBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(14));
+        _markToReadBtn.jobsResetBtnTitle(JobsInternationalization(@"標記為已讀"));
         _markToReadBtn.enabledBlock(NO);
         [self addSubview:_markToReadBtn];
         [_markToReadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -179,9 +178,9 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
 -(UIButton *)deleteBtn{
     if (!_deleteBtn) {
         _deleteBtn = UIButton.new;
-        _deleteBtn.normalTitle(JobsInternationalization(@"删除"));
-        _deleteBtn.normalTitleColor(HEXCOLOR(0xEB677F));
-        _deleteBtn.titleFont(UIFontWeightBoldSize(14));
+        _deleteBtn.jobsResetBtnTitle(JobsInternationalization(@"删除"));
+        _deleteBtn.jobsResetBtnTitleCor(HEXCOLOR(0xEB677F));
+        _deleteBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(14));
         _deleteBtn.enabledBlock(NO);
         [self addSubview:_deleteBtn];
         [_deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {

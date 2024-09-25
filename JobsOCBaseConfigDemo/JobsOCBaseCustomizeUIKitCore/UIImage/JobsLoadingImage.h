@@ -9,10 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "JobsString.h"
+#import "UIImage+YBGIF.h"
 /// 直接拖图片在项目文件夹，没用Bundle进行管理，也没有用Assets.xcassets
 /// @param imgName 文件可以不强制要求带后缀名，系统会自动识别png文件
 static inline UIImage *__nullable JobsIMG(NSString *__nonnull imgName){
     UIImage *image = [UIImage imageNamed:imgName];
+    if(!image && isValue(imgName)){
+        NSLog(@"文件名为%@的图片获取失败，请检查",imgName);
+    }return image;
+}
+
+static inline UIImage *__nullable JobsGifIMG(NSString *__nonnull imgName){
+    UIImage *image = [UIImage animatedGIFNamed:imgName];
     if(!image && isValue(imgName)){
         NSLog(@"文件名为%@的图片获取失败，请检查",imgName);
     }return image;

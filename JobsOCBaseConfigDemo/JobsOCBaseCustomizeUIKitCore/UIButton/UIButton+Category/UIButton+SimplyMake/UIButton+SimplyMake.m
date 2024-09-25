@@ -9,13 +9,23 @@
 
 @implementation UIButton (SimplyMake)
 #pragma mark —— 依靠单一数据进行简单创建
-/// 仅仅依靠标题内容（普通文本）进行创建
+/// 仅仅依靠主标题内容（普通文本）进行创建
 +(JobsReturnButtonByTitleBlock _Nonnull)initByTitle{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title){
         @jobs_strongify(self)
-        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
-            data.buttonModel.title = title;
+        return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
+            data.title = title;
+        }));
+    };
+}
+/// 仅仅依靠主标题富文本内容进行创建
++(JobsReturnButtonByAttributedStringBlock _Nonnull)initByAttributedString{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(NSAttributedString *_Nonnull title){
+        @jobs_strongify(self)
+        return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            data.attributedTitle = title;
         }));
     };
 }
@@ -36,6 +46,29 @@
         @jobs_strongify(self)
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             data.buttonModel.backgroundImage = image;
+        }));
+    };
+}
+#pragma mark —— 对副标题进行创建
+/// 仅仅依靠（主/副）标题内容（普通文本）进行创建
++(JobsReturnButtonByTitlesBlock _Nonnull)initByTitles{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,NSString *_Nonnull subTitle){
+        @jobs_strongify(self)
+        return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
+            data.title = title;
+            data.subTitle = subTitle;
+        }));
+    };
+}
+/// 仅仅依靠（主标题+副标题）富文本内容进行创建
++(JobsReturnButtonByAttributedStringsBlock _Nonnull)initByAttributedStrings{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(NSAttributedString *_Nonnull title,NSAttributedString *_Nonnull subTitle){
+        @jobs_strongify(self)
+        return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            data.attributedTitle = title;
+            data.attributedSubtitle = subTitle;
         }));
     };
 }
@@ -195,10 +228,12 @@
     };
 }
 #pragma mark —— 依靠数据束进行创建
-+(instancetype)jobsInit{
-    return BaseButton
-        .initByButtonModel(nil)
-        .bgColor(JobsClearColor);
++(JobsReturnButtonByVoidBlock _Nonnull)jobsInit{
+    return ^__kindof UIButton *_Nullable(){
+        return BaseButton
+            .initByButtonModel(nil)
+            .bgColor(JobsClearColor);
+    };
 }
 /// 依靠UIViewModel进行创建
 +(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel{

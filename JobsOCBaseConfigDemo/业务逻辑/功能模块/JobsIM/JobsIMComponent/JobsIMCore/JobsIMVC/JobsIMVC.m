@@ -301,8 +301,8 @@ willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     // 拿到按钮,设置图片
     UIButton *button = rowActionView.subviews.firstObject;
     button.backgroundColor = JobsRedColor;
-    [button normalTitle:@"删除"];
-    [button normalImage:JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"删除")];
+    [button jobsResetBtnTitle:@"删除"];
+    [button jobsResetBtnImage:JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"删除")];
 }
 #endif
 
@@ -457,49 +457,17 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
 -(BaseButton *)shareBtn{
     if (!_shareBtn) {
         @jobs_weakify(self)
-        _shareBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                      background:nil
-                                      buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                   textAlignment:NSTextAlignmentCenter
-                                                subTextAlignment:NSTextAlignmentCenter
-                                                     normalImage:JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"分享")
-                                                  highlightImage:nil
-                                                 attributedTitle:nil
-                                         selectedAttributedTitle:nil
-                                              attributedSubtitle:nil
-                                                           title:nil
-                                                        subTitle:nil
-                                                       titleFont:nil
-                                                    subTitleFont:nil
-                                                        titleCor:JobsWhiteColor
-                                                     subTitleCor:nil
-                                              titleLineBreakMode:NSLineBreakByWordWrapping
-                                           subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                             baseBackgroundColor:nil
-                                                 backgroundImage:nil
-                                                    imagePadding:JobsWidth(0)
-                                                    titlePadding:JobsWidth(0)
-                                                  imagePlacement:NSDirectionalRectEdgeNone
-                                      contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                        contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                   contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                               cornerRadiusValue:JobsWidth(23 / 2)
-                                                 roundingCorners:UIRectCornerAllCorners
-                                            roundingCornersRadii:CGSizeZero
-                                                  layerBorderCor:nil
-                                                     borderWidth:JobsWidth(0)
-                                                   primaryAction:nil
-                                      longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                     id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                 clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            toast(JobsInternationalization(@"正在研发中...敬请期待"));
-            return nil;
-        }];
+        _shareBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnCornerRadiusValue(JobsWidth(23 / 2))
+            .jobsResetBtnImage(JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"分享"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                toast(JobsInternationalization(@"正在研发中...敬请期待"));
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _shareBtn.width = JobsWidth(23);
         _shareBtn.height = JobsWidth(23);
     }return _shareBtn;

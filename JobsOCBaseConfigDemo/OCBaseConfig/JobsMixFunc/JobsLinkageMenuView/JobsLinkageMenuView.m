@@ -124,7 +124,7 @@
                                                                  id _Nullable arg) {
             @jobs_strongify(self)
             UIButton *button = (UIButton *)[self viewWithTag:self.newChoseTag];
-            button.normalTitleColor(self.selectTextColor);
+            button.jobsResetBtnTitleCor(self.selectTextColor);
             self.choseTag = self.newChoseTag;
             return nil;
         } selectorName:nil target:self]
@@ -150,7 +150,7 @@
     _textColor = textColor;
     for (int i = 2; i <= self.btnConfig.normal_titles.count; i++) {
         UIButton *button = [self viewWithTag:i];
-        button.normalTitleColor(textColor);
+        button.jobsResetBtnTitleCor(textColor);
     }
 }
 
@@ -230,50 +230,23 @@
         [_menuView addSubview:self.bottomView];
         for (int i = 1; i <= self.btnConfig.normal_titles.count; i++) {
             @jobs_weakify(self)
-            BaseButton *menuButton = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                                       background:nil
-                                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentCenter
-                                                                    textAlignment:NSTextAlignmentLeft
-                                                                 subTextAlignment:NSTextAlignmentCenter
-                                                                      normalImage:[self.btnConfig.normal_images objectAtIndex:(i - 1)]
-                                                                   highlightImage:nil
-                                                                  attributedTitle:nil
-                                                          selectedAttributedTitle:nil
-                                                               attributedSubtitle:nil
-                                                                            title:[self.btnConfig.normal_titles objectAtIndex:(i - 1)]
-                                                                         subTitle:nil
-                                                                        titleFont:[UIFont systemFontOfSize:self.textSize]
-                                                                     subTitleFont:nil
-                                                                         titleCor:self.btnConfig.titleCor
-                                                                      subTitleCor:nil
-                                                               titleLineBreakMode:NSLineBreakByWordWrapping
-                                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                                              baseBackgroundColor:JobsClearColor
-                                                                  backgroundImage:nil
-                                                                     imagePadding:self.btnConfig.imagePadding ? : [self.btnConfig.imagePaddings objectAtIndex:(i - 1)].floatValue
-                                                                     titlePadding:JobsWidth(10)
-                                                                   imagePlacement:self.btnConfig.imagePlacement
-                                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                                cornerRadiusValue:JobsWidth(8)
-                                                                  roundingCorners:UIRectCornerAllCorners
-                                                             roundingCornersRadii:CGSizeZero
-                                                                   layerBorderCor:nil
-                                                                      borderWidth:JobsWidth(0)
-                                                                    primaryAction:nil
-                                                       longPressGestureEventBlock:^id(BaseButton *_Nullable weakSelf,
-                                                                                      id _Nullable arg) {
-                NSLog(@"按钮的长按事件触发");
-                return nil;
-              }
-                                                                  clickEventBlock:^id(BaseButton *x) {
+            
+            BaseButton *menuButton = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                data.normalImage = [self.btnConfig.normal_images objectAtIndex:(i - 1)];
+                data.title = [self.btnConfig.normal_titles objectAtIndex:(i - 1)];
+                data.titleFont = [UIFont systemFontOfSize:self.textSize];
+                data.titleCor = self.btnConfig.titleCor;
+                data.imagePadding = self.btnConfig.imagePadding ? : [self.btnConfig.imagePaddings objectAtIndex:(i - 1)].floatValue;
+                data.titlePadding = JobsWidth(10);
+                data.imagePlacement = self.btnConfig.imagePlacement;
+                data.cornerRadiusValue = JobsWidth(8);
+            })).onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 [self choseMenu:x];
                 if (self.objectBlock) self.objectBlock(x);
-                return nil;
-            }];
-            
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
             menuButton.imageViewFrameResetX = 0;
             
             menuButton.tag = i;

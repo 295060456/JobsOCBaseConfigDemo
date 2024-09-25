@@ -13,7 +13,7 @@
 -(instancetype)initWithConfig:(nullable ButtonTimerConfigModel *)config
    longPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock
               clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
-    self = UIButton.jobsInit.onClick(^(UIButton *x){
+    self = UIButton.jobsInit().onClick(^(UIButton *x){
         x.selected = !x.selected;
         if(clickEventBlock) clickEventBlock(x);
     }).onLongPressGesture(^(id data){
@@ -63,8 +63,8 @@
                                                                                                      btnTitleCor:self.btnTimerConfig.readyPlayValue.textCor]);
         }else{
             self.titleLabel.textAlignment = NSTextAlignmentCenter;
-            self.normalTitleColor(self.btnTimerConfig.readyPlayValue.textCor);
-            self.titleFont(self.btnTimerConfig.readyPlayValue.font);//ok
+            self.jobsResetBtnTitleCor(self.btnTimerConfig.readyPlayValue.textCor);
+            self.jobsResetBtnTitleFont(self.btnTimerConfig.readyPlayValue.font);//ok
         }
         self.makeBtnTitleByShowingType(self.btnTimerConfig.labelShowingType);
         self.extraWidth(JobsWidth(8));
@@ -94,8 +94,8 @@
                                                                                                      btnTitleCor:self.btnTimerConfig.runningValue.textCor]);
         }else{
             self.titleLabel.textAlignment = NSTextAlignmentCenter;
-            self.titleFont(self.btnTimerConfig.runningValue.font);
-            self.normalTitleColor(self.btnTimerConfig.runningValue.textCor);
+            self.jobsResetBtnTitleFont(self.btnTimerConfig.runningValue.font);
+            self.jobsResetBtnTitleCor(self.btnTimerConfig.runningValue.textCor);
         }
         self.makeBtnTitleByShowingType(self.btnTimerConfig.labelShowingType);
         self.extraWidth(JobsWidth(0));
@@ -125,8 +125,8 @@
                                                                                                      btnTitleCor:self.btnTimerConfig.endValue.textCor]);
         }else{
             self.titleLabel.textAlignment = NSTextAlignmentCenter;
-            self.titleFont(self.btnTimerConfig.endValue.font);
-            self.normalTitleColor(self.btnTimerConfig.endValue.textCor);
+            self.jobsResetBtnTitleFont(self.btnTimerConfig.endValue.font);
+            self.jobsResetBtnTitleCor(self.btnTimerConfig.endValue.textCor);
         }
         self.titleLabel.numberOfLines = 1;/// 不加这一句会有UI异常
         self.makeBtnTitleByShowingType(self.btnTimerConfig.labelShowingType);
@@ -153,7 +153,7 @@
             self.btnTimerConfig.readyPlayValue.attributedText) {/// 富文本存在
             if (@available(iOS 16.0, *)) {
                 self.jobsResetAttributedTitle(self.attributedTitleForNormalState);
-            }else self.normalAttributedTitle(self.btnTimerConfig.readyPlayValue.attributedText);
+            }else self.jobsResetBtnNormalAttributedTitle(self.btnTimerConfig.readyPlayValue.attributedText);
         }else{
             if (@available(iOS 16.0, *)) {
                 /// 拼凑组装
@@ -161,7 +161,7 @@
                 NSLog(@"%@",self.btnTimerConfig.readyPlayValue.textCor);
                 NSLog(@"%@",self.btnTimerConfig.readyPlayValue.font);
                 self.toSetTitle(self.btnTimerConfig.readyPlayValue);
-            }else self.normalTitle(self.btnTimerConfig.readyPlayValue.text);
+            }else self.jobsResetBtnTitle(self.btnTimerConfig.readyPlayValue.text);
         }
     };
 }
@@ -174,7 +174,7 @@
             self.btnTimerConfig.runningValue.attributedText) {/// 富文本存在
             if (@available(iOS 16.0, *)) {
                 self.jobsResetAttributedTitle(self.attributedTitleForNormalState);
-            }else self.normalAttributedTitle(self.btnTimerConfig.runningValue.attributedText);
+            }else self.jobsResetBtnNormalAttributedTitle(self.btnTimerConfig.runningValue.attributedText);
         }else{
             if (@available(iOS 16.0, *)) {
                 /// 拼凑组装
@@ -182,7 +182,7 @@
                 NSLog(@"%@",self.btnTimerConfig.runningValue.textCor);
                 NSLog(@"%@",self.btnTimerConfig.runningValue.font);
                 self.toSetTitle(self.btnTimerConfig.runningValue);
-            }else self.normalTitle(self.btnTimerConfig.runningValue.text);
+            }else self.jobsResetBtnTitle(self.btnTimerConfig.runningValue.text);
         }
     };
 }
@@ -195,7 +195,7 @@
             self.btnTimerConfig.endValue.attributedText) {/// 富文本存在
             if (@available(iOS 16.0, *)) {
                 self.jobsResetAttributedTitle(self.attributedTitleForNormalState);
-            }else self.normalAttributedTitle(self.btnTimerConfig.endValue.attributedText);
+            }else self.jobsResetBtnNormalAttributedTitle(self.btnTimerConfig.endValue.attributedText);
         }else{
             if (@available(iOS 16.0, *)) {
                 /// 拼凑组装
@@ -203,7 +203,7 @@
                 NSLog(@"%@",self.btnTimerConfig.endValue.textCor);
                 NSLog(@"%@",self.btnTimerConfig.endValue.font);
                 self.toSetTitle(self.btnTimerConfig.endValue);
-            }else self.normalTitle(self.btnTimerConfig.endValue.text);
+            }else self.jobsResetBtnTitle(self.btnTimerConfig.endValue.text);
         }
     };
 }

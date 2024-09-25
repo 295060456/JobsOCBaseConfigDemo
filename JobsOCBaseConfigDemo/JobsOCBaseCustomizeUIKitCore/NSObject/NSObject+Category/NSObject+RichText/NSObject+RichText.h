@@ -23,7 +23,7 @@ static inline NSTextAttachment *_Nonnull jobsMakeTextAttachment(jobsByTextAttach
     return data;
 }
 
-static inline NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByParagraphStyleBlock _Nonnull block){
+static inline NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByMutableParagraphStyleBlock _Nonnull block){
     NSMutableParagraphStyle *data = NSMutableParagraphStyle.alloc.init;
     /**
      
@@ -112,38 +112,37 @@ NS_ASSUME_NONNULL_END
      }return _tipsTextView;
  }
 
+ -(NSMutableArray<NSString *> *)richTextMutArr{
+     NSMutableArray <NSString *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextMutArr);
+     if (!RichTextMutArr) {
+         RichTextMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+             data.add(JobsInternationalization(@"如需帮助，请联系"));
+             data.add(JobsInternationalization(@"专属客服"));
+         });
+         [self setRichTextMutArr:RichTextMutArr];
+         Jobs_setAssociatedRETAIN_NONATOMIC(_richTextMutArr, RichTextMutArr)
+     }return RichTextMutArr;
+ }
+ 
  -(NSMutableAttributedString *)attributedStringData{
      if (!_attributedStringData) {
-         _attributedStringData = self.richTextWithDataConfigMutArr(self.richTextConfigMutArr);
+         @jobs_weakify(self)
+         _attributedStringData = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(14);
+                 data1.textCor = HEXCOLOR(0x757575);
+                 data1.targetString = self.richTextMutArr[0];
+             }));
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(14);
+                 data1.textCor = HEXCOLOR(0xAE8330);
+                 data1.targetString = self.richTextMutArr[1];
+                 data1.urlStr = @"click://"; /// 根据这个属性加链接,点击进行跳转
+             }));
+         }));
      }return _attributedStringData;
- }
-
- -(NSMutableArray<NSString *> *)richTextMutArr{
-     if (!_richTextMutArr) {
-         _richTextMutArr = NSMutableArray.array;
-         [_richTextMutArr addObject:JobsInternationalization(@"如需帮助，请联系")];
-         [_richTextMutArr addObject:JobsInternationalization(@"专属客服")];
-     }return _richTextMutArr;
- }
-
- -(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
-     if (!_richTextConfigMutArr) {
-         _richTextConfigMutArr = NSMutableArray.array;
-         
-         JobsRichTextConfig *config_01 = JobsRichTextConfig.new;
-         config_01.font = UIFontWeightRegularSize(14);
-         config_01.textCor = HEXCOLOR(0x757575);
-         config_01.targetString = self.richTextMutArr[0];
-         [_richTextConfigMutArr addObject:config_01];
-
-         JobsRichTextConfig *config_02 = JobsRichTextConfig.new;
-         config_02.font = UIFontWeightRegularSize(14);
-         config_02.textCor = HEXCOLOR(0xAE8330);
-         config_02.targetString = self.richTextMutArr[1];
-         config_02.urlStr = @"click://"; /// 根据这个属性加链接,点击进行跳转
-         [_richTextConfigMutArr addObject:config_02];
-         
-     }return _richTextConfigMutArr;
  }
  
  #pragma mark —— UITextViewDelegate

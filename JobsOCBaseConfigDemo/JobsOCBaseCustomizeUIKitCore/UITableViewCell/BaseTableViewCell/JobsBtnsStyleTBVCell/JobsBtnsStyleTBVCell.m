@@ -109,7 +109,7 @@ UIViewModelProtocol_synthesize
     if(self.leftBtnVM.normalImage){
         _leftBtn.jobsResetBtnImage(_rightBtn.selected ? self.leftBtnVM.highlightImage : self.leftBtnVM.normalImage);
         _leftBtn.jobsResetImagePlacement(NSDirectionalRectEdgeLeading);
-        _leftBtn.jobsResetImagePadding(JobsWidth(5));
+        _leftBtn.jobsResetImagePlacement(JobsWidth(5));
     }
     _leftBtn.makeBtnTitleByShowingType(self.leftBtnVM.titleShowingType);
     _leftBtn.jobsResetBtnBgCor(self.leftBtnVM.baseBackgroundColor);
@@ -167,7 +167,7 @@ UIViewModelProtocol_synthesize
     if(self.rightBtnVM.normalImage){
         _rightBtn.jobsResetBtnImage(_rightBtn.selected ? self.rightBtnVM.highlightImage : self.rightBtnVM.normalImage);
         _rightBtn.jobsResetImagePlacement(NSDirectionalRectEdgeLeading);
-        _rightBtn.jobsResetImagePadding(JobsWidth(5));
+        _rightBtn.jobsResetImagePlacement(JobsWidth(5));
     }
     
     _rightBtn.makeBtnTitleByShowingType(self.rightBtnVM.titleShowingType);

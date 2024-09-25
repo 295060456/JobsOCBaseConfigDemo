@@ -56,10 +56,10 @@ NS_ASSUME_NONNULL_END
  -(UIButton *)filterBtn{
      if (!_filterBtn) {
          _filterBtn = UIButton.new;
-         _filterBtn.normalTitle = JobsInternationalization(@"篩選");
-         _filterBtn.normalImage = JobsIMG(@"向下的箭头");
+         _filterBtn.jobsResetBtnTitle = JobsInternationalization(@"篩選");
+         _filterBtn.jobsResetBtnImage = JobsIMG(@"向下的箭头");
          _filterBtn.titleFont = fontName(@"NotoSans-Bold", 12);
-         _filterBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
+         _filterBtn.jobsResetBtnTitleCor = HEXCOLOR(0x3D4A58);
          [self.view addSubview:_filterBtn];
          [_filterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
              make.right.equalTo(self.view);
@@ -91,9 +91,9 @@ NS_ASSUME_NONNULL_END
  -(UIButton *)customBtn{
      if (!_customBtn) {
          _customBtn = UIButton.new;
-         _customBtn.normalTitle = JobsInternationalization(@"自定义");
+         _customBtn.jobsResetBtnTitle = JobsInternationalization(@"自定义");
          _customBtn.titleFont = fontName(@"NotoSans-Bold", 12);
-         _customBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
+         _customBtn.jobsResetBtnTitleCor = HEXCOLOR(0x3D4A58);
          _customBtn.selectedTitleColor = HEXCOLOR(0xAE8330);
          [self.view addSubview:_customBtn];
          [_customBtn mas_makeConstraints:^(MASConstraintMaker *make) {

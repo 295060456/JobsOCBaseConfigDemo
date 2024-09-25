@@ -18,6 +18,7 @@
 #import "MJRefreshConfigModel.h"
 #import "JobsRichTextConfig.h"
 #import "ButtonTimerConfigModel.h"
+#import "JobsParagraphStyleModel.h"
 
 #import "IncomeSourceModel.h"
 #import "JobsCountriesModel.h"

@@ -10,8 +10,8 @@
 
 @implementation UIButton (ImageTitleSpacing)
 
--(void)layoutButtonWithEdgeInsetsStyle:(NSDirectionalRectEdge)style
-                          imagePadding:(CGFloat)imagePadding{
+-(__kindof UIButton *)layoutButtonWithEdgeInsetsStyle:(NSDirectionalRectEdge)style
+                                         imagePadding:(CGFloat)imagePadding{
     if (self.deviceSystemVersion.floatValue >= 15.0) {
 /**
  利用 UIButtonConfiguration 来解决问题，示例：
@@ -56,10 +56,10 @@
              _btn1 = [UIButton buttonWithConfiguration:self.btnConfig primaryAction:nil];
          }else{
              _btn1 = UIButton.new;
-             _btn1.normalImage = JobsIMG(@"入职Mata");
+             _btn1.jobsResetBtnImage = JobsIMG(@"入职Mata");
              _btn1.titleFont = UIFontWeightRegularSize(14);
-             _btn1.normalTitle = JobsInternationalization(@"入职Mata");
-             _btn1.normalTitleColor = JobsBlackColor;
+             _btn1.jobsResetBtnTitle = JobsInternationalization(@"入职Mata");
+             _btn1.jobsResetBtnTitleCor = JobsBlackColor;
          }
          // 添加按钮到视图中
          [self addSubview:_btn1];
@@ -144,7 +144,7 @@
                                            // 4、 赋值
                                            self.titleEdgeInsets = labelEdgeInsets;
                                            self.imageEdgeInsets = imageEdgeInsets;
-                                           );
+                                           );return self;
 }
 
 @end

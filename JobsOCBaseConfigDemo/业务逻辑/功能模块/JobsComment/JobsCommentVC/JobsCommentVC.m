@@ -75,15 +75,16 @@
 #pragma mark —— lazyLoad
 -(UIButton *)contactCustomerServiceBtn{
     if (!_contactCustomerServiceBtn) {
-        _contactCustomerServiceBtn = UIButton.new;
-        _contactCustomerServiceBtn.normalImage(JobsIMG(JobsInternationalization(@"zaixiankefu_en")));
-        _contactCustomerServiceBtn.selectedImage(JobsIMG(JobsInternationalization(@"zaixiankefu_en")));
         @jobs_weakify(self)
-        [_contactCustomerServiceBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            [self makeJobsCommentCoreVC];
-            return nil;
-        }];
+        _contactCustomerServiceBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnImage(JobsIMG(@"zaixiankefu_en"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                [self makeJobsCommentCoreVC];
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.view addSubview:_contactCustomerServiceBtn];
         [_contactCustomerServiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(230), JobsWidth(50)));

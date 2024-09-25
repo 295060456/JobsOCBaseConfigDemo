@@ -196,84 +196,58 @@ ratio:(CGFloat)ratio {
 
 -(NSMutableArray<NSString *> *)titleMutArr{
     if (!_titleMutArr) {
-        _titleMutArr = NSMutableArray.array;
-        _titleMutArr.add(JobsInternationalization(@"全部游戏"));
-        _titleMutArr.add(JobsInternationalization(@"真人"));
-        _titleMutArr.add(JobsInternationalization(@"体育"));
-        _titleMutArr.add(JobsInternationalization(@"电子"));
-        _titleMutArr.add(JobsInternationalization(@"棋牌"));
-        _titleMutArr.add(JobsInternationalization(@"彩票"));
+        _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(JobsInternationalization(@"全部游戏"));
+            data.add(JobsInternationalization(@"真人"));
+            data.add(JobsInternationalization(@"体育"));
+            data.add(JobsInternationalization(@"电子"));
+            data.add(JobsInternationalization(@"棋牌"));
+            data.add(JobsInternationalization(@"彩票"));
+        });
     }return _titleMutArr;
 }
 
 -(NSMutableArray<__kindof UIViewController *> *)childVCMutArr{
     if (!_childVCMutArr) {
-        _childVCMutArr = NSMutableArray.array;
-        for (NSString *str in self.titleMutArr) {
-            _childVCMutArr.add(JXCategoryPopupSubVC.new);
-        }
+        _childVCMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            for (NSString *str in self.titleMutArr) {
+                data.add(JXCategoryPopupSubVC.new);
+            }
+        });
     }return _childVCMutArr;
 }
 
 -(BaseButton *)filterBtn{
     if (!_filterBtn) {
         @jobs_weakify(self)
-        _filterBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                       background:nil
-                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                    textAlignment:NSTextAlignmentCenter
-                                                 subTextAlignment:NSTextAlignmentCenter
-                                                      normalImage:JobsIMG(@"筛选箭头（向下）")
-                                                   highlightImage:nil
-                                                  attributedTitle:nil
-                                          selectedAttributedTitle:nil
-                                               attributedSubtitle:nil
-                                                            title:JobsInternationalization(@"篩選")
-                                                         subTitle:nil
-                                                        titleFont:fontName(@"NotoSans-Bold", 12)
-                                                     subTitleFont:nil
-                                                         titleCor:HEXCOLOR(0x3D4A58)
-                                                      subTitleCor:nil
-                                               titleLineBreakMode:NSLineBreakByWordWrapping
-                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                              baseBackgroundColor:nil
-                                                  backgroundImage:nil
-                                                     imagePadding:JobsWidth(6)
-                                                     titlePadding:JobsWidth(0)
-                                                   imagePlacement:NSDirectionalRectEdgeTrailing
-                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                cornerRadiusValue:JobsWidth(0)
-                                                  roundingCorners:UIRectCornerAllCorners
-                                             roundingCornersRadii:CGSizeZero
-                                                   layerBorderCor:nil
-                                                      borderWidth:JobsWidth(0)
-                                                    primaryAction:nil
-                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                      id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                  clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            x.selected = !x.selected;
-            self.jobsToastMsg(JobsInternationalization(@"篩選"));
-            [x changeAction:x.selected];
-            self.currentIndex = self.listContainerView.valueForKey(@"currentIndex");
-            NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
-            self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
-            [self.vc hidePopupView:self.popUpCustomView];
-            if (x.selected) {
-                self.customBtn.selected = NO;
-                self.popUpFiltrationView = self.vc.popUpFiltrationView;
-                self.popUpFiltrationView.popupDelegate = self;
-            }else{
-                [self.vc hidePopupView:self.popUpFiltrationView];
-            }return nil;
-               return nil;
-        }];
+        _filterBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeTrailing)
+            .jobsResetImagePlacement(JobsWidth(6))
+            .jobsResetBtnImage(JobsIMG(@"筛选箭头（向下）"))
+            .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
+            .jobsResetBtnTitleFont(fontName(@"NotoSans-Bold", 12))
+            .jobsResetBtnTitle(JobsInternationalization(@"篩選"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                x.selected = !x.selected;
+                self.jobsToastMsg(JobsInternationalization(@"篩選"));
+                [x changeAction:x.selected];
+                self.currentIndex = self.listContainerView.valueForKey(@"currentIndex");
+                NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
+                self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
+                [self.vc hidePopupView:self.popUpCustomView];
+                if (x.selected) {
+                    self.customBtn.selected = NO;
+                    self.popUpFiltrationView = self.vc.popUpFiltrationView;
+                    self.popUpFiltrationView.popupDelegate = self;
+                }else{
+                    [self.vc hidePopupView:self.popUpFiltrationView];
+                }
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         [self.view addSubview:_filterBtn];
         [_filterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.view);
@@ -286,63 +260,33 @@ ratio:(CGFloat)ratio {
 -(BaseButton *)customBtn{
     if (!_customBtn) {
         @jobs_weakify(self)
-        _customBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                       background:nil
-                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                    textAlignment:NSTextAlignmentCenter
-                                                 subTextAlignment:NSTextAlignmentCenter
-                                                      normalImage:nil
-                                                   highlightImage:nil
-                                                  attributedTitle:nil
-                                          selectedAttributedTitle:nil
-                                               attributedSubtitle:nil
-                                                            title:JobsInternationalization(@"自定义")
-                                                         subTitle:nil
-                                                        titleFont:fontName(@"NotoSans-Bold", 12)
-                                                     subTitleFont:nil
-                                                         titleCor:HEXCOLOR(0x3D4A58)
-                                                      subTitleCor:nil
-                                               titleLineBreakMode:NSLineBreakByWordWrapping
-                                            subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                              baseBackgroundColor:nil
-                                                  backgroundImage:nil
-                                                     imagePadding:JobsWidth(0)
-                                                     titlePadding:JobsWidth(0)
-                                                   imagePlacement:NSDirectionalRectEdgeNone
-                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                cornerRadiusValue:JobsWidth(0)
-                                                  roundingCorners:UIRectCornerAllCorners
-                                             roundingCornersRadii:CGSizeZero
-                                                   layerBorderCor:nil
-                                                      borderWidth:JobsWidth(0)
-                                                    primaryAction:nil
-                                       longPressGestureEventBlock:^id(id _Nullable weakSelf,
-                                                                      id _Nullable arg) {
-            NSLog(@"按钮的长按事件触发");
-            return nil;
-        }
-                                                  clickEventBlock:^id(BaseButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            x.selected = !x.selected;
-            x.jobsResetBtnTitleCor(x.selected ? HEXCOLOR(0xAE8330) : HEXCOLOR(0x3D4A58));
-            self.jobsToastMsg(JobsInternationalization(@"自定义"));
-            self.currentIndex = self.listContainerView.valueForKey(@"currentIndex");
-            NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
-            self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
-            self.popUpFiltrationView = self.vc.popUpFiltrationView;
-            [self.vc hidePopupView:self.popUpFiltrationView];
-            [self.filterBtn changeAction:self.filterBtn.selected];
-            if (x.selected) {
-                self.filterBtn.selected = NO;
-                self.popUpCustomView = self.vc.popUpCustomView;
-//                self.popUpCustomView.popupDelegate = self;
-            }else{
-                [self.vc hidePopupView:self.popUpCustomView];
-            }return nil;
-        }];
+        _customBtn = BaseButton.jobsInit()
+            .bgColor(JobsWhiteColor)
+            .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
+            .jobsResetBtnTitleFont(fontName(@"NotoSans-Bold", 12))
+            .jobsResetBtnTitle(JobsInternationalization(@"自定义"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
+                x.selected = !x.selected;
+                x.jobsResetBtnTitleCor(x.selected ? HEXCOLOR(0xAE8330) : HEXCOLOR(0x3D4A58));
+                self.jobsToastMsg(JobsInternationalization(@"自定义"));
+                self.currentIndex = self.listContainerView.valueForKey(@"currentIndex");
+                NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
+                self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
+                self.popUpFiltrationView = self.vc.popUpFiltrationView;
+                [self.vc hidePopupView:self.popUpFiltrationView];
+                [self.filterBtn changeAction:self.filterBtn.selected];
+                if (x.selected) {
+                    self.filterBtn.selected = NO;
+                    self.popUpCustomView = self.vc.popUpCustomView;
+    //                self.popUpCustomView.popupDelegate = self;
+                }else{
+                    [self.vc hidePopupView:self.popUpCustomView];
+                }
+            }).onLongPressGesture(^(id data){
+                NSLog(@"");
+            });
         _customBtn.selectedTitleColor(HEXCOLOR(0xAE8330));
         [self.view addSubview:_customBtn];
         [_customBtn mas_makeConstraints:^(MASConstraintMaker *make) {
