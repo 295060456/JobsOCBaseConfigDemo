@@ -143,8 +143,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         
         _userHeaderBtn.imageTitleSpace = JobsWidth(12);
         _userHeaderBtn.makeBtnTitleByShowingType(UILabelShowingType_05);
-        [_userHeaderBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
-                                           imagePadding:_userHeaderBtn.imageTitleSpace];
+        _userHeaderBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTop,_userHeaderBtn.imageTitleSpace);
         
     }return _userHeaderBtn;
 }

@@ -12,6 +12,9 @@
 		C525D3EC2C4801C1003DAFD0 /* JobsLinkageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C525D3EA2C4801C1003DAFD0 /* JobsLinkageMenuView.m */; };
 		CE08701A2C8458F3003D8CCF /* NSLocale+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0870162C8458EC003D8CCF /* NSLocale+Extra.m */; };
 		CE0870262C85898F003D8CCF /* NSObject+SPAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE82742C4513CD00764AF5 /* NSObject+SPAlertController.m */; };
+		CE100E092CA4413D00F9893C /* JobsAppDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE100E072CA4413D00F9893C /* JobsAppDoorModel.m */; };
+		CE100E0A2CA4413D00F9893C /* JobsAppDoorInputViewBaseStyleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE100E032CA4413D00F9893C /* JobsAppDoorInputViewBaseStyleModel.m */; };
+		CE100E0B2CA4413D00F9893C /* JobsAppDoorInputViewBaseStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CE100E002CA4413D00F9893C /* JobsAppDoorInputViewBaseStyle.m */; };
 		CE1F24EA2C5CD50100324198 /* NSObject+NTESVerifyCodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F24E82C5CD50000324198 /* NSObject+NTESVerifyCodeManager.m */; };
 		CE1F25702C5DD25900324198 /* JobsViewNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F256F2C5DD25900324198 /* JobsViewNavigator.m */; };
 		CE1F25742C5DD2AA00324198 /* JobsViewNavigatorTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F25732C5DD2AA00324198 /* JobsViewNavigatorTestVC.m */; };
@@ -562,10 +565,7 @@
 		CECE80FF2C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_9.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7FAE2C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_9.m */; };
 		CECE81012C4512BF00764AF5 /* 输入框样式_10.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE7FB12C4512BF00764AF5 /* 输入框样式_10.png */; };
 		CECE81022C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_10.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7FB32C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_10.m */; };
-		CECE81032C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7FB62C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle.m */; };
-		CECE81042C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7FB82C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyleModel.m */; };
 		CECE81052C4512BF00764AF5 /* JobsAppDoorLogoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7FBF2C4512BF00764AF5 /* JobsAppDoorLogoContentView.m */; };
-		CECE81062C4512BF00764AF5 /* JobsAppDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7FC42C4512BF00764AF5 /* JobsAppDoorModel.m */; };
 		CECE81072C4512BF00764AF5 /* BaseContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7FC72C4512BF00764AF5 /* BaseContentView.m */; };
 		CECE81082C4512BF00764AF5 /* JobsAppDoorContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7FCA2C4512BF00764AF5 /* JobsAppDoorContentView.m */; };
 		CECE81092C4512BF00764AF5 /* JobsAppDoorForgotCodeContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7FCD2C4512BF00764AF5 /* JobsAppDoorForgotCodeContentView.m */; };
@@ -1213,6 +1213,12 @@
 		CE08701B2C845917003D8CCF /* JobsBundle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBundle.h; sourceTree = "<group>"; };
 		CE08701F2C845B12003D8CCF /* NSBundle+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Extra.h"; sourceTree = "<group>"; };
 		CE0870202C845B12003D8CCF /* NSBundle+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Extra.m"; sourceTree = "<group>"; };
+		CE100DFF2CA4413D00F9893C /* JobsAppDoorInputViewBaseStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorInputViewBaseStyle.h; sourceTree = "<group>"; };
+		CE100E002CA4413D00F9893C /* JobsAppDoorInputViewBaseStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsAppDoorInputViewBaseStyle.m; sourceTree = "<group>"; };
+		CE100E022CA4413D00F9893C /* JobsAppDoorInputViewBaseStyleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorInputViewBaseStyleModel.h; sourceTree = "<group>"; };
+		CE100E032CA4413D00F9893C /* JobsAppDoorInputViewBaseStyleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsAppDoorInputViewBaseStyleModel.m; sourceTree = "<group>"; };
+		CE100E062CA4413D00F9893C /* JobsAppDoorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorModel.h; sourceTree = "<group>"; };
+		CE100E072CA4413D00F9893C /* JobsAppDoorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsAppDoorModel.m; sourceTree = "<group>"; };
 		CE1F24E72C5CD50000324198 /* NSObject+NTESVerifyCodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NTESVerifyCodeManager.h"; sourceTree = "<group>"; };
 		CE1F24E82C5CD50000324198 /* NSObject+NTESVerifyCodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NTESVerifyCodeManager.m"; sourceTree = "<group>"; };
 		CE1F256E2C5DD25900324198 /* JobsViewNavigator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsViewNavigator.h; sourceTree = "<group>"; };
@@ -2293,16 +2299,10 @@
 		CECE7FB12C4512BF00764AF5 /* 输入框样式_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "输入框样式_10.png"; sourceTree = "<group>"; };
 		CECE7FB22C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_10.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorInputViewBaseStyle_10.h; sourceTree = "<group>"; };
 		CECE7FB32C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle_10.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsAppDoorInputViewBaseStyle_10.m; sourceTree = "<group>"; };
-		CECE7FB52C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorInputViewBaseStyle.h; sourceTree = "<group>"; };
-		CECE7FB62C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsAppDoorInputViewBaseStyle.m; sourceTree = "<group>"; };
-		CECE7FB72C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorInputViewBaseStyleModel.h; sourceTree = "<group>"; };
-		CECE7FB82C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsAppDoorInputViewBaseStyleModel.m; sourceTree = "<group>"; };
 		CECE7FBA2C4512BF00764AF5 /* JobsAppDoorInputViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorInputViewHeader.h; sourceTree = "<group>"; };
 		CECE7FBB2C4512BF00764AF5 /* JobsDoorInputViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsDoorInputViewProtocol.h; sourceTree = "<group>"; };
 		CECE7FBE2C4512BF00764AF5 /* JobsAppDoorLogoContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorLogoContentView.h; sourceTree = "<group>"; };
 		CECE7FBF2C4512BF00764AF5 /* JobsAppDoorLogoContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsAppDoorLogoContentView.m; sourceTree = "<group>"; };
-		CECE7FC32C4512BF00764AF5 /* JobsAppDoorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorModel.h; sourceTree = "<group>"; };
-		CECE7FC42C4512BF00764AF5 /* JobsAppDoorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsAppDoorModel.m; sourceTree = "<group>"; };
 		CECE7FC62C4512BF00764AF5 /* BaseContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseContentView.h; sourceTree = "<group>"; };
 		CECE7FC72C4512BF00764AF5 /* BaseContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseContentView.m; sourceTree = "<group>"; };
 		CECE7FC92C4512BF00764AF5 /* JobsAppDoorContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorContentView.h; sourceTree = "<group>"; };
@@ -3462,6 +3462,42 @@
 			path = "NSBundle+Category";
 			sourceTree = "<group>";
 		};
+		CE100E012CA4413D00F9893C /* JobsAppDoorInputViewBaseStyle */ = {
+			isa = PBXGroup;
+			children = (
+				CE100DFF2CA4413D00F9893C /* JobsAppDoorInputViewBaseStyle.h */,
+				CE100E002CA4413D00F9893C /* JobsAppDoorInputViewBaseStyle.m */,
+			);
+			path = JobsAppDoorInputViewBaseStyle;
+			sourceTree = "<group>";
+		};
+		CE100E042CA4413D00F9893C /* JobsAppDoorInputViewBaseStyleModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE100E022CA4413D00F9893C /* JobsAppDoorInputViewBaseStyleModel.h */,
+				CE100E032CA4413D00F9893C /* JobsAppDoorInputViewBaseStyleModel.m */,
+			);
+			path = JobsAppDoorInputViewBaseStyleModel;
+			sourceTree = "<group>";
+		};
+		CE100E052CA4413D00F9893C /* 输入框样式基类 */ = {
+			isa = PBXGroup;
+			children = (
+				CE100E012CA4413D00F9893C /* JobsAppDoorInputViewBaseStyle */,
+				CE100E042CA4413D00F9893C /* JobsAppDoorInputViewBaseStyleModel */,
+			);
+			path = "输入框样式基类";
+			sourceTree = "<group>";
+		};
+		CE100E082CA4413D00F9893C /* JobsAppDoorModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE100E062CA4413D00F9893C /* JobsAppDoorModel.h */,
+				CE100E072CA4413D00F9893C /* JobsAppDoorModel.m */,
+			);
+			path = JobsAppDoorModel;
+			sourceTree = "<group>";
+		};
 		CE1F24E92C5CD50000324198 /* NSObject+NTESVerifyCodeManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -4019,6 +4055,8 @@
 			isa = PBXGroup;
 			children = (
 				CE61ACDD2C9EAAE1002DF138 /* JobsModel.h */,
+				CE100E052CA4413D00F9893C /* 输入框样式基类 */,
+				CE100E082CA4413D00F9893C /* JobsAppDoorModel */,
 				CEAD80372CA402FC000DE93B /* JobsParagraphStyleModel */,
 				CEDFA9B02CA28F4D0075D200 /* ButtonTimerModel */,
 				CEDFA9AC2CA268410075D200 /* JobsRichTextConfig */,
@@ -9049,17 +9087,6 @@
 			path = "输入框样式_10";
 			sourceTree = "<group>";
 		};
-		CECE7FB92C4512BF00764AF5 /* 输入框样式基类 */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7FB52C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle.h */,
-				CECE7FB62C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle.m */,
-				CECE7FB72C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyleModel.h */,
-				CECE7FB82C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyleModel.m */,
-			);
-			path = "输入框样式基类";
-			sourceTree = "<group>";
-		};
 		CECE7FBC2C4512BF00764AF5 /* DoorInputView */ = {
 			isa = PBXGroup;
 			children = (
@@ -9073,7 +9100,6 @@
 				CECE7FAA2C4512BF00764AF5 /* 输入框样式_8 */,
 				CECE7FAF2C4512BF00764AF5 /* 输入框样式_9 */,
 				CECE7FB42C4512BF00764AF5 /* 输入框样式_10 */,
-				CECE7FB92C4512BF00764AF5 /* 输入框样式基类 */,
 				CECE7FBA2C4512BF00764AF5 /* JobsAppDoorInputViewHeader.h */,
 				CECE7FBB2C4512BF00764AF5 /* JobsDoorInputViewProtocol.h */,
 			);
@@ -9113,15 +9139,6 @@
 				CECE7FC12C4512BF00764AF5 /* View */,
 			);
 			path = "登录注册模块公共件";
-			sourceTree = "<group>";
-		};
-		CECE7FC52C4512BF00764AF5 /* JobsAppDoorModel */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7FC32C4512BF00764AF5 /* JobsAppDoorModel.h */,
-				CECE7FC42C4512BF00764AF5 /* JobsAppDoorModel.m */,
-			);
-			path = JobsAppDoorModel;
 			sourceTree = "<group>";
 		};
 		CECE7FC82C4512BF00764AF5 /* BaseContentView */ = {
@@ -9174,7 +9191,6 @@
 			isa = PBXGroup;
 			children = (
 				CECE7FC22C4512BF00764AF5 /* 登录注册模块公共件 */,
-				CECE7FC52C4512BF00764AF5 /* JobsAppDoorModel */,
 				CECE7FCF2C4512BF00764AF5 /* View */,
 				CECE7FD22C4512BF00764AF5 /* ViewController */,
 				CECE7FD32C4512BF00764AF5 /* 尝试高仿蜜柚.md */,
@@ -14859,10 +14875,12 @@
 				CECE7CE62C450C5000764AF5 /* MSCommentView.m in Sources */,
 				CECE859E2C4513CE00764AF5 /* UIImage+Overlay.m in Sources */,
 				CECE85A52C4513CE00764AF5 /* JobsAnimationLabel.m in Sources */,
-				CECE81062C4512BF00764AF5 /* JobsAppDoorModel.m in Sources */,
 				CECE7C222C450C5000764AF5 /* YTKNetworkStudyVC.m in Sources */,
 				CECE7C132C450C5000764AF5 /* User_Realm.m in Sources */,
 				CECE7CBA2C450C5000764AF5 /* JXCategoryViewWithHeaderViewSubVC.m in Sources */,
+				CE100E092CA4413D00F9893C /* JobsAppDoorModel.m in Sources */,
+				CE100E0A2CA4413D00F9893C /* JobsAppDoorInputViewBaseStyleModel.m in Sources */,
+				CE100E0B2CA4413D00F9893C /* JobsAppDoorInputViewBaseStyle.m in Sources */,
 				CE410FE72C57B8B400AB9402 /* NSString+ZBURLEncoding.m in Sources */,
 				CE1F25772C5DD37000324198 /* JobsPushView.m in Sources */,
 				CE7F395E2C4FDA1000431A5D /* FMDB_VC.m in Sources */,
@@ -15128,7 +15146,6 @@
 				CECE7C582C450C5000764AF5 /* JobsCommentTitleHeaderView.m in Sources */,
 				CECE859D2C4513CE00764AF5 /* UIImage+Extras.m in Sources */,
 				CECE85E32C4513CE00764AF5 /* UIView+JHGestureBlock.m in Sources */,
-				CECE81032C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyle.m in Sources */,
 				CE40B28E2C4B54A500CB64B5 /* JobsTextField.m in Sources */,
 				CECE855F2C4513CE00764AF5 /* NSObject+UserInfo.m in Sources */,
 				CECE87272C45140000764AF5 /* GTMBase64.m in Sources */,
@@ -15370,7 +15387,6 @@
 				CED358282C92A4E900A5703F /* NSURLRequest+Extra.m in Sources */,
 				CE7C79AF2C92B98000C0153C /* NSObject+GTCaptcha4.m in Sources */,
 				CECE7C1E2C450C5000764AF5 /* YTKBatchRequest+AnimatingAccessory.m in Sources */,
-				CECE81042C4512BF00764AF5 /* JobsAppDoorInputViewBaseStyleModel.m in Sources */,
 				CECE80B72C4512BF00764AF5 /* DefineConstString.m in Sources */,
 				CECE7EA82C450E5B00764AF5 /* KTVHCHTTPResponse.m in Sources */,
 				CEAF25402C60FE050056570C /* ZMJTextCell.m in Sources */,

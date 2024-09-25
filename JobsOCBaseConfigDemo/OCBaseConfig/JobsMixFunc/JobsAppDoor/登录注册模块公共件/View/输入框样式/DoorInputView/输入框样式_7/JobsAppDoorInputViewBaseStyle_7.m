@@ -191,22 +191,22 @@
                 [self->dropDownListView dropDownListViewDisappear:x];
             }return nil;
         }];
-        [_chooseBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTrailing
-                                       imagePadding:JobsWidth(8)];
+        _chooseBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTrailing,JobsWidth(8));
     }return _chooseBtn;
 }
 
 -(UIViewModel *)chooseBtnViewModel{
     if (!_chooseBtnViewModel) {
-        _chooseBtnViewModel = UIViewModel.new;
-        _chooseBtnViewModel.textModel.text = JobsInternationalization(@"請選擇區號");
-        _chooseBtnViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
-        _chooseBtnViewModel.textModel.textLineSpacing = 0;
-        _chooseBtnViewModel.textModel.font = UIFontWeightRegularSize(14);
-        _chooseBtnViewModel.bgCor = JobsClearColor;
-        _chooseBtnViewModel.jobsWidth = self.chooseBtnSize.width;
-        _chooseBtnViewModel.subTextModel.text = JobsInternationalization(@"");
-        _chooseBtnViewModel.image = JobsIMG(@"向下的箭头");
+        _chooseBtnViewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.textModel.text = JobsInternationalization(@"請選擇區號");
+            data.textModel.textCor = HEXCOLOR(0xC4C4C4);
+            data.textModel.textLineSpacing = 0;
+            data.textModel.font = UIFontWeightRegularSize(14);
+            data.bgCor = JobsClearColor;
+            data.jobsWidth = self.chooseBtnSize.width;
+            data.subTextModel.text = JobsInternationalization(@"");
+            data.image = JobsIMG(@"向下的箭头");
+        });
     }return _chooseBtnViewModel;
 }
 

@@ -140,8 +140,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
             make.left.equalTo(self).offset(JobsWidth(16));
             make.top.equalTo(self).offset(JobsWidth(18));
         }];
-        [_allChooseBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
-                                          imagePadding:JobsWidth(12)];
+        _allChooseBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeLeading,JobsWidth(12));
         @jobs_weakify(self)
         [_allChooseBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)

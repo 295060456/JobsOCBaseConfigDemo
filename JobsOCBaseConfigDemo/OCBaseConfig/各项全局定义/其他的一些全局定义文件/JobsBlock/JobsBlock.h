@@ -132,6 +132,9 @@ typedef JobsTimeFormatterModel *_Nullable(^JobsReturnTimeFormatterModelByStringB
 @class ButtonTimerProcessValueModel;
 typedef void(^jobsByButtonTimerProcessValueModelBlock)(ButtonTimerProcessValueModel *_Nullable data);
 
+@class JobsAppDoorInputViewBaseStyleModel;
+typedef void(^jobsByAppDoorInputViewBaseStyleModelBlock)(JobsAppDoorInputViewBaseStyleModel *_Nullable data);
+
 @class JobsCorModel;
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(UIColor *_Nullable data);
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);

@@ -79,8 +79,7 @@
         [_btn1.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
         _btn1.makeBtnTitleByShowingType(UILabelShowingType_03);
-        [_btn1 layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
-                                  imagePadding:JobsWidth(8)];
+        _btn1.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeLeading,JobsWidth(8));
     }return _btn1;
 }
 
@@ -102,8 +101,7 @@
         
         _btn2.imageView.cornerCutToCircleWithCornerRadius(JobsWidth(1));
         [_btn2.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
-        [_btn2 layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTrailing
-                                  imagePadding:JobsWidth(8)];
+        _btn2.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTrailing,JobsWidth(8));
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
         _btn2.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _btn2;
@@ -129,8 +127,7 @@
         [_btn3.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
         _btn3.makeBtnTitleByShowingType(UILabelShowingType_03);
-        [_btn3 layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
-                                  imagePadding:JobsWidth(8)];
+        _btn3.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTop,JobsWidth(8));
     }return _btn3;
 }
 
@@ -154,8 +151,7 @@
         [_btn4.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
         _btn4.makeBtnTitleByShowingType(UILabelShowingType_03);
-        [_btn4 layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeBottom
-                                  imagePadding:JobsWidth(8)];
+        _btn4.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeBottom,JobsWidth(8));
     }return _btn4;
 }
 

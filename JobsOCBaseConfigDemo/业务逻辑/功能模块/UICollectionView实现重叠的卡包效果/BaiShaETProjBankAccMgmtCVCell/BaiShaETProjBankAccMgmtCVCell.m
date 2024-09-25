@@ -82,8 +82,7 @@
     [_titleBtn.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
     
     _titleBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-    [_titleBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeLeading
-                                  imagePadding:JobsWidth(50)];
+    _titleBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeLeading,JobsWidth(50));
     
     _titleBtn.imageView.y = -JobsWidth(12);
     _titleBtn.imageView.x = 0;

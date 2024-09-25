@@ -19,6 +19,9 @@
 #import "JobsRichTextConfig.h"
 #import "ButtonTimerConfigModel.h"
 #import "JobsParagraphStyleModel.h"
+#import "JobsAppDoorModel.h"
+#import "JobsAppDoorInputViewBaseStyle.h"
+#import "JobsAppDoorInputViewBaseStyleModel.h"
 
 #import "IncomeSourceModel.h"
 #import "JobsCountriesModel.h"

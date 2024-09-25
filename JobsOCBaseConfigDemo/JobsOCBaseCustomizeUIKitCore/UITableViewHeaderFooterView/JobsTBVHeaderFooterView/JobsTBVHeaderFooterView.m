@@ -94,8 +94,8 @@
     _subTitleBtn.lineBreakMode = self.viewModel.subTextModel.lineBreakMode;
     
     _subTitleBtn.makeBtnTitleByShowingType(self.viewModel.labelShowingType);
-    [_subTitleBtn layoutButtonWithEdgeInsetsStyle:self.viewModel.buttonEdgeInsetsStyle
-                                     imagePadding:self.viewModel.imageTitleSpace];
+    
+    _subTitleBtn.jobsResetImagePlacement_Padding(self.viewModel.buttonEdgeInsetsStyle,self.viewModel.imageTitleSpace);
     return _subTitleBtn;
 }
 

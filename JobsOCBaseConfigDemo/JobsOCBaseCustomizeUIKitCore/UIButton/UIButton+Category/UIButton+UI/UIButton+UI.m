@@ -200,8 +200,7 @@
                 updatedButton.configuration.image = updatedButton.isHighlighted ? highlightImage : normalImage;
             };
             self.titleLabel.textAlignment = textAlignment;
-            [self layoutButtonWithEdgeInsetsStyle:imagePlacement
-                                     imagePadding:imagePadding];
+            self.jobsResetImagePlacement_Padding(imagePlacement,imagePadding);
         }else{
             NSLog(@"初始化UIButton失败");
             NSAssert(0, @"初始化失败");

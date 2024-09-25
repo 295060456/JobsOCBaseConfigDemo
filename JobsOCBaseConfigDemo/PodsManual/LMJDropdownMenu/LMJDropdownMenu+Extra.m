@@ -9,18 +9,16 @@
 
 @implementation LMJDropdownMenu (Extra)
 
--(UIButton *)great{
-    UIButton *btn = [self object:self
-                         getIvar:[self classGetInstanceVariableWithClass:LMJDropdownMenu.class
-                                                    instanceVariableName:@"mainBtn"]];
-    return btn;
+-(__kindof UIButton *)great{
+    return [self object:self
+                getIvar:[self classGetInstanceVariableWithClass:LMJDropdownMenu.class
+                                           instanceVariableName:@"mainBtn"]];
 }
 
 -(void)greatAtEmpty{
     UIButton *btn = self.great;
     btn.jobsResetBtnImage(JobsIMG(@"空白图"));
-    [btn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTrailing
-                            imagePadding:JobsWidth(5)];
+    btn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTrailing,JobsWidth(5));
 }
 
 @end

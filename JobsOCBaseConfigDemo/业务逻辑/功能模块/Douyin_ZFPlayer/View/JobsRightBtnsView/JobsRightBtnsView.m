@@ -116,8 +116,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
     _isSelected = isSelected;
     self.loveBtn.selected = _isSelected;
     self.loveBtn.jobsResetBtnTitle(self.viewModel.textModel.text.replace(JobsInternationalization(@"点赞")));
-    [self.loveBtn layoutButtonWithEdgeInsetsStyle:NSDirectionalRectEdgeTop
-                                     imagePadding:JobsWidth(5)];
+    self.loveBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTop,JobsWidth(5));
 }
 #pragma mark —— lazyLoad
 -(RBCLikeButton *)loveBtn{

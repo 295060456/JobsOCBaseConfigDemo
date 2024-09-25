@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LMJDropdownMenu (Extra)
 
--(UIButton *)great;
+-(__kindof UIButton *)great;
 -(void)greatAtEmpty;
 
 @end
