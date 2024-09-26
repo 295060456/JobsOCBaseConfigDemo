@@ -63,9 +63,9 @@ UIViewModelProtocol_synthesize
 #pragma mark —— lazyLoad
 -(BaseButton *)btn{
     if(!_btn){
-        @jobs_weakify(self)
-        UIButtonModel *buttonModel = UIButtonModel.new;
-        _btn = BaseButton.initByButtonModel(buttonModel);
+        _btn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            
+        }));
         _btn.enabled = NO;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
         [self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -90,7 +90,7 @@ UIViewModelProtocol_synthesize
         _btn.jobsResetBtnBgCor(self.viewModel.bgCor);
         /// 图文间距
         if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePlacement(self.viewModel.imageTitleSpace);
+            _btn.jobsResetImagePadding(self.viewModel.imageTitleSpace);
         } else {
             // Fallback on earlier versions
         }
@@ -121,7 +121,7 @@ UIViewModelProtocol_synthesize
                       btnSubTitleCor: self.buttonModel.subTitleCor ? : JobsBlueColor];
         /// 图文间距
         if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePlacement(self.buttonModel.imagePadding);
+            _btn.jobsResetImagePadding(self.buttonModel.imagePadding);
         } else {
             // Fallback on earlier versions
         }

@@ -70,7 +70,6 @@
         @jobs_strongify(self)
         int f = 0;
         for (UIButtonModel *buttonModel in self.btnModelMutArr) {
-            @jobs_weakify(self)
             BaseButton *btn = BaseButton.initByButtonModel(buttonModel);
             [self addSubview:btn];
             [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -101,8 +100,7 @@
             }else{
                 [self makeRightLab:btn buttonModel:buttonModel];
             }
-            
-            [self.btnMutArr addObject:btn];
+            self.btnMutArr.add(btn);
             f++;
         }
     };

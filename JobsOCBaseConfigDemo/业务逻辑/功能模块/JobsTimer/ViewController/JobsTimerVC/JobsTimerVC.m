@@ -178,10 +178,11 @@
     if (!_btnMutArr) {
         _btnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButton *>*_Nullable data) {
             for (NSString *title in self.btnTitleMutArr) {
-                UIButton *btn = BaseButton.initByStyle3(title,
-                                                                           nil,
-                                                                           JobsBlackColor,
-                                                                           JobsIMG(@"弹窗取消按钮背景图"))
+                UIButton *btn = BaseButton
+                    .initByStyle3(title,
+                                  nil,
+                                  JobsBlackColor,
+                                  JobsIMG(@"弹窗取消按钮背景图"))
                 .bgColor(JobsWhiteColor)
                 .onClick(^(UIButton *btn){
                     btn.selected = !btn.selected;
@@ -207,7 +208,7 @@
 
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
-        _btnTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _btnTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
             data.add(JobsInternationalization(@"开始"));
             data.add(JobsInternationalization(@"暂停"));
             data.add(JobsInternationalization(@"继续"));

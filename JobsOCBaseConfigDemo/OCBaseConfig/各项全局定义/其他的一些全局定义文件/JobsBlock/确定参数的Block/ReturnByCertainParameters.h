@@ -101,6 +101,7 @@ typedef __kindof UIBarButtonItem *_Nullable(^JobsReturnBarButtonItemByVoidBlock)
 typedef __kindof UIImageView *_Nonnull(^JobsReturnImageViewByImageBlock)(UIImage *_Nullable data);
 typedef __kindof UIImageView *_Nonnull(^JobsReturnImageViewByURLBlock)(NSURL *_Nullable data);
 #pragma mark —— 关于按钮
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
 typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByImageBlock)(UIImage *_Nullable data);
 typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByBOOLBlock)(BOOL data);
 typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByURLBlock)(NSURL *_Nullable data);
@@ -115,7 +116,6 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNSIntegerBlock)(NSIntege
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByColorBlock)(UIColor *_Nullable);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByCGFloatBlock)(CGFloat data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleBlock)(NSString *_Nonnull title);/// 主文字内容
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitlesBlock)(NSString *_Nonnull title,NSString *_Nonnull subTitle);/// 主/副 文字内容
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByAttributedStringBlock)(NSAttributedString *_Nonnull title);/// 富文本内容

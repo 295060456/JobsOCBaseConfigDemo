@@ -108,7 +108,7 @@
         _bgBtn = BaseButton.jobsInit()
             .bgColor(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-            .jobsResetImagePlacement(1)
+            .jobsResetImagePadding(1)
             .jobsResetBtnImage(self.viewModel.image)
             .jobsResetBtnBgImage(self.viewModel.bgImage)
             .jobsResetBtnTitleCor(self.viewModel.textModel.textCor)

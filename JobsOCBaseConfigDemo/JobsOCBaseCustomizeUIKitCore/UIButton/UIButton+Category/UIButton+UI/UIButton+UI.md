@@ -10,7 +10,7 @@
          _applyNowBtn = BaseButton.jobsInit()
              .bgColor(JobsWhiteColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-             .jobsResetImagePlacement(1)
+             .jobsResetImagePadding(1)
              .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
              .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
              .jobsResetBtnTitleCor(JobsWhiteColor)

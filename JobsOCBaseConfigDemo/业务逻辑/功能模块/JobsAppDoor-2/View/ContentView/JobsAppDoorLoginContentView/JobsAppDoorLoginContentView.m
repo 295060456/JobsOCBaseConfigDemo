@@ -141,9 +141,10 @@
 -(BaseButton *)abandonLoginBtn{
     if (!_abandonLoginBtn) {
         @jobs_weakify(self)
-        _abandonLoginBtn = BaseButton.initByStyle1(Title4,
-                                                                UIFontWeightSemiboldSize(15),
-                                                                JobsWhiteColor)
+        _abandonLoginBtn = BaseButton
+            .initByStyle1(Title4,
+                          UIFontWeightSemiboldSize(15),
+                          JobsWhiteColor)
             .bgColor(JobsBlackColor)
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
@@ -164,9 +165,10 @@
 -(BaseButton *)sendBtn{
     if (!_sendBtn) {
         @jobs_weakify(self)
-        _sendBtn = BaseButton.initByStyle1(Title7,
-                                                        UIFontWeightSemiboldSize(15),
-                                                        JobsWhiteColor)
+        _sendBtn = BaseButton
+            .initByStyle1(Title7,
+                          UIFontWeightSemiboldSize(15),
+                          JobsWhiteColor)
             .cornerRadiusValue(ThingsHeight / 2)
             .bgColor([JobsSystemPinkColor colorWithAlphaComponent:0.7])
             .onClick(^(UIButton *x){

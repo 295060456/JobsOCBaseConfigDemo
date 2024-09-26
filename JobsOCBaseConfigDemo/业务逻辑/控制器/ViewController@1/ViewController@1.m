@@ -171,7 +171,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     @jobs_weakify(self)
     if (!_userHeadBtn) {
         _userHeadBtn = BaseButton.initByNormalImage(JobsIMG(@"首页_头像"))
-            .bgColor(JobsClearColor)
+            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .onClick(^(UIButton *x){
                 if (self.objectBlock) self.objectBlock(x);
                 UIViewModel *viewModel = [self configViewModelWithAttributeTitle:@"用户信息展示(开发测试专用)" attributeSubTitle:nil];

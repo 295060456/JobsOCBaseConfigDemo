@@ -231,7 +231,7 @@
     return ^__kindof UIButton *_Nullable(){
         return BaseButton
             .initByButtonModel(nil)
-            .bgColor(JobsClearColor);
+            .bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 依靠UIViewModel进行创建

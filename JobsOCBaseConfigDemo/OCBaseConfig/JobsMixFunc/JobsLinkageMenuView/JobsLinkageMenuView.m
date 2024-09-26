@@ -230,7 +230,6 @@
         [_menuView addSubview:self.bottomView];
         for (int i = 1; i <= self.btnConfig.normal_titles.count; i++) {
             @jobs_weakify(self)
-            
             BaseButton *menuButton = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
                 data.normalImage = [self.btnConfig.normal_images objectAtIndex:(i - 1)];
                 data.title = [self.btnConfig.normal_titles objectAtIndex:(i - 1)];

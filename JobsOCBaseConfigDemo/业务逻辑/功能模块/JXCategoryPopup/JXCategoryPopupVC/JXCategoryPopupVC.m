@@ -223,7 +223,7 @@ ratio:(CGFloat)ratio {
         _filterBtn = BaseButton.jobsInit()
             .bgColor(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeTrailing)
-            .jobsResetImagePlacement(JobsWidth(6))
+            .jobsResetImagePadding(JobsWidth(6))
             .jobsResetBtnImage(JobsIMG(@"筛选箭头（向下）"))
             .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
             .jobsResetBtnTitleFont(fontName(@"NotoSans-Bold", 12))

@@ -180,8 +180,10 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 一些通用修改.间距
 ///【兼容】重设Btn的图文间距和相对位置
 -(JobsReturnButtonByImagePlacementAndPaddingBlock _Nonnull)jobsResetImagePlacement_Padding API_AVAILABLE(ios(16.0));
-///【最新的Api】重设Btn的图文间距
+///【最新的Api】重设Btn的图文相对位置
 -(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0));
+///【最新的Api】重设Btn的图文间距
+-(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
 ///【最新的Api】重设Btn主标题与副标题之间的距离
 -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0));
 #pragma mark —— UIButton.带状态 set
@@ -285,7 +287,7 @@ NS_ASSUME_NONNULL_END
  BaseButton.jobsInit()
      .bgColor(JobsWhiteColor)
      .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-     .jobsResetImagePlacement(1)
+     .jobsResetImagePadding(1)
      .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
      .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
      .jobsResetBtnTitleCor(JobsWhiteColor)
@@ -324,7 +326,7 @@ NS_ASSUME_NONNULL_END
              }));
          }))).bgColor(JobsWhiteColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-             .jobsResetImagePlacement(1)
+             .jobsResetImagePadding(1)
              .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
              .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
              .jobsResetBtnTitleCor(JobsWhiteColor)

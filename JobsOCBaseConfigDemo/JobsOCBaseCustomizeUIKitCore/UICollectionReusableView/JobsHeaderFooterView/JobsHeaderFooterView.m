@@ -62,7 +62,7 @@
         _titleBtn = BaseButton.jobsInit()
 //            .bgColor(JobsWhiteColor)
 //            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-//            .jobsResetImagePlacement(1)
+//            .jobsResetImagePadding(1)
 //            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
 //            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
 //            .jobsResetBtnTitleCor(JobsWhiteColor)
@@ -84,7 +84,7 @@
     
     _titleBtn.jobsResetBtnTitle(self.titleModel.textModel.text);
     _titleBtn.jobsResetSubtitle((self.titleModel.subTextModel.text));
-    _titleBtn.jobsResetImagePlacement(self.titleModel.imageTitleSpace);
+    _titleBtn.jobsResetImagePadding(self.titleModel.imageTitleSpace);
     _titleBtn.jobsResetTitlePadding(self.titleModel.titleSpace);
     _titleBtn.jobsResetBtnImage(self.titleModel.image);
     _titleBtn.jobsResetTitleLineBreakMode(self.titleModel.subTextModel.lineBreakMode);
@@ -111,7 +111,7 @@
         _subTitleBtn = BaseButton.jobsInit()
 //            .bgColor(JobsWhiteColor)
 //            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-//            .jobsResetImagePlacement(1)
+//            .jobsResetImagePadding(1)
 //            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
 //            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
 //            .jobsResetBtnTitleCor(JobsWhiteColor)
@@ -133,7 +133,7 @@
     
     _subTitleBtn.jobsResetBtnTitle(self.subTitleModel.textModel.text);
     _subTitleBtn.jobsResetSubtitle((self.subTitleModel.subTextModel.text));
-    _subTitleBtn.jobsResetImagePlacement(self.subTitleModel.imageTitleSpace);
+    _subTitleBtn.jobsResetImagePadding(self.subTitleModel.imageTitleSpace);
     _subTitleBtn.jobsResetTitlePadding(self.subTitleModel.titleSpace);
     _subTitleBtn.jobsResetBtnImage(self.subTitleModel.image);
     _subTitleBtn.jobsResetTitleLineBreakMode(self.subTitleModel.subTextModel.lineBreakMode);

@@ -128,7 +128,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                 JobsIMG(@"视频未点赞"),
                                                 NSDirectionalRectEdgeNone,
                                                 JobsWidth(5))
-            .bgColor(JobsClearColor)
+            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .onClick(^(UIButton *x){
                 NSLog(@"我是点赞");
                 x.selected = !x.selected;
@@ -158,7 +158,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                 JobsIMG(@"视频评论"),
                                                 NSDirectionalRectEdgeNone,
                                                 JobsWidth(5))
-            .bgColor(JobsClearColor)
+            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .onClick(^(UIButton *x){
                 NSLog(@"我是评论");
                 @jobs_weakify(x)
@@ -179,7 +179,6 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     [self forceComingToPushVC:jobsCommentCoreVC requestParams:JobsInternationalization(@"")];
                     @jobs_weakify(self)
                     [jobsCommentCoreVC actionObjectBlock:^(id data) {
-                        @jobs_strongify(self)
                         NSLog(@"您点击了评论");
                     }];
                 }];
@@ -200,7 +199,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                  JobsIMG(@"分享"),
                                                  NSDirectionalRectEdgeNone,
                                                  JobsWidth(5))
-            .bgColor(JobsClearColor)
+            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .onClick(^(UIButton *x){
                 NSLog(@"我是分享");
                 @jobs_weakify(x)

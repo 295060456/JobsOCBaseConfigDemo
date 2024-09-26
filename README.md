@@ -4028,8 +4028,6 @@ static const uint32_t kSequenceBits = 12;
 * <font color=red id=用新Api（UIButtonConfiguration）创建一个带富文本的UIButton>**用新Api（UIButtonConfiguration）创建一个带富文本的UIButton**</font>
 
   ```objective-c
-  
-  
    -(BaseButton *)applyNowBtn{
        if(!_applyNowBtn){
            _applyNowBtn = BaseButton.jobsInit()
@@ -4147,16 +4145,20 @@ static const uint32_t kSequenceBits = 12;
     #pragma mark —— 一些通用修改.富文本
     ///【兼容】重设Btn富文本
     -(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnNormalAttributedTitle;
-    ```
-  
-  * ```objective-c
-    pragma mark —— 【最新的Api】UIButton.configuration的各项属性值的修改
+    #pragma mark —— 一些通用修改.间距
+    ///【兼容】重设Btn的图文间距和相对位置
+    -(JobsReturnButtonByImagePlacementAndPaddingBlock _Nonnull)jobsResetImagePlacement_Padding API_AVAILABLE(ios(16.0));
+    ///【最新的Api】重设Btn的图文相对位置
     -(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
+    ///【最新的Api】重设Btn的图文间距
+    -(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
+    ///【最新的Api】重设Btn主标题与副标题之间的距离
     -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0));
+    ```
+    
+  * ```objective-c
     -(JobsReturnButtonByTitleAlignmentBlock _Nonnull)jobsResetTitleAlignment API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonByBOOLBlock _Nonnull)jobsResetAutomaticallyUpdateForSelection API_AVAILABLE(ios(16.0));
-    
     -(JobsReturnButtonConfigurationByBackgroundBlock _Nonnull)jobsResetBackground API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetBackgroundImage API_AVAILABLE(ios(16.0));
     -(JobsReturnButtonConfigurationByCornerStyleBlock _Nonnull)jobsResetCornerStyle API_AVAILABLE(ios(16.0));
@@ -11109,6 +11111,31 @@ static inline __kindof JobsRichTextConfig *_Nonnull jobsMakeRichTextConfig(jobsB
     if (block) block(data);
     return data;
 }
+
+static inline __kindof JobsTabBarItemConfig *_Nonnull jobsMakeTabBarItemConfig(jobsByTabBarItemConfigBlock _Nonnull block){
+    JobsTabBarItemConfig *data = JobsTabBarItemConfig.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof LZTabBarConfig *_Nonnull jobsMakeLZTabBarConfig(jobsByLZTabBarConfigBlock _Nonnull block){
+    LZTabBarConfig *data = LZTabBarConfig.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof MJRefreshConfigModel *_Nonnull jobsMakeRefreshConfigModel(jobsByRefreshConfigModelBlock _Nonnull block){
+    MJRefreshConfigModel *model = MJRefreshConfigModel.alloc.init;
+    if (block) block(model);
+    return model;
+}
+
+static inline __kindof JobsParagraphStyleModel *_Nonnull jobsMakeParagraphStyleModel(jobsByParagraphStyleModelBlock _Nonnull block){
+    JobsParagraphStyleModel *data = JobsParagraphStyleModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 ```
 
 ### Test  

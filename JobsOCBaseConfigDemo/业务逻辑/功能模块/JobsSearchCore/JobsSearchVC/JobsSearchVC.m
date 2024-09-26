@@ -363,7 +363,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         /// 值得注意：只能用这样的初始化方式传入UITableViewStyleGrouped进行
         /// 否则viewForHeaderInSection 和 tableHeaderView 之间会有一段距离
-        _tableView = [BaseTableView.alloc initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _tableView = BaseTableView.initWithStyleGrouped;
         _tableView.backgroundColor = self.bgColour;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -472,7 +472,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 -(BaseButton *)scanBtn{
     if (!_scanBtn) {
         @jobs_weakify(self)
-        _scanBtn = BaseButton.initByNormalImage(JobsIMG(@"扫描"))
+        _scanBtn = BaseButton
+            .initByNormalImage(JobsIMG(@"扫描"))
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);

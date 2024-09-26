@@ -58,7 +58,7 @@
         _userInfoBtn = BaseButton.jobsInit()
             .bgColor(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-            .jobsResetImagePlacement(1)
+            .jobsResetImagePadding(1)
             .jobsResetBtnTitleCor(JobsCor(@"#EA2918"))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .onClick(^(UIButton *x){

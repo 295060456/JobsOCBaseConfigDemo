@@ -127,7 +127,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
     if (!_closeBtn) {
         @jobs_weakify(self)
         _closeBtn = BaseButton.jobsInit()
-            .bgColor(JobsClearColor)
+            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .jobsResetBtnBgImage(JobsIMG(@"客服_关闭按钮"))
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)

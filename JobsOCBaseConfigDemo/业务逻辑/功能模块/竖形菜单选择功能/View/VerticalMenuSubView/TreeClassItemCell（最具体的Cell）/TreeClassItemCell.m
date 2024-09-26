@@ -104,9 +104,9 @@ UILocationProtocol_UIViewModelSynthesize
     if (!_btn) {
         @jobs_weakify(self)
         _btn = BaseButton.jobsInit()
-            .bgColor(JobsClearColor)
+            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-            .jobsResetImagePlacement(JobsWidth(5))
+            .jobsResetImagePadding(JobsWidth(5))
             .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
             .jobsResetBtnBgImage(JobsIMG(@"未点赞"))
             .jobsResetBtnTitleCor(HEXCOLOR(0xC4C4C4))

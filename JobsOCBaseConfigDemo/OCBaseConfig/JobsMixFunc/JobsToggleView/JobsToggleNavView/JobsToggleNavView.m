@@ -75,12 +75,10 @@ JobsToggleNavViewProtocolSynthesize
 }
 
 -(void)createUI{
-//    self.backgroundColor = JobsWhiteColor;
     if(self.buttonsArray.count){
         [self.buttonsArray removeAllObjects];
-    }// selected_backgroundImage
+    }
     for (int i = 0 ; i < self.dataArr.count ; i++) {
-        @jobs_weakify(self)
         BaseButton *button = BaseButton.initByButtonModel(self.buttonModel);
         button.frame = CGRectMake(i * self.buttonWidth + (i ? self.btn_each_offset : 0),
                                   0,

@@ -84,7 +84,7 @@
         _backToLoginBtn = BaseButton.jobsInit()
             .bgColor(Cor1)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-            .jobsResetImagePlacement(JobsWidth(8))
+            .jobsResetImagePadding(JobsWidth(8))
             .jobsResetBtnImage(JobsIMG(@"用户名称"))
             .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
             .jobsResetBtnTitleCor(Cor3)

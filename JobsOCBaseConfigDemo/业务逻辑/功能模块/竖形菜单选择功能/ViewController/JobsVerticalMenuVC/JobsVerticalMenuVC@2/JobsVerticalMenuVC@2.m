@@ -473,7 +473,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
         _editBtn = BaseButton.jobsInit()
             .bgColor(HEXCOLOR(0xFCFBFB))
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-            .jobsResetImagePlacement(JobsWidth(5.75))
+            .jobsResetImagePadding(JobsWidth(5.75))
             .jobsResetBtnBgImage(JobsIMG(@"编辑"))
             .jobsResetBtnTitleCor(HEXCOLOR(0xB0B0B0))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))

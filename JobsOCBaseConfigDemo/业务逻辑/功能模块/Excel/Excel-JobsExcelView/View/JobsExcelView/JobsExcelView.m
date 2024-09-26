@@ -83,7 +83,6 @@
 
 -(BaseButton *)titleBtn{
     if(!_titleBtn){
-        @jobs_weakify(self)
         _titleBtn = BaseButton.initByButtonModel(self.viewModel_.data_00);
         [self.bgImageView addSubview:_titleBtn];
         [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {

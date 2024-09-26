@@ -136,8 +136,8 @@ BaseViewControllerProtocol_synthesize
 //            data.clickEventBlock = ^id(BaseButton *x){
 //                @jobs_strongify(self)
 //                if (self.objectBlock) self.objectBlock(x);
-//                AppDelegate.jobsCustomTabBarVC.customTabBar.jobsVisible = YES;
-//                [AppDelegate button:AppDelegate.tabBarItemMutArr[2] index:2];
+//                self.showTabBar(YES);
+//                self.backTo(2);
 //                return nil;
 //            };
 //        });

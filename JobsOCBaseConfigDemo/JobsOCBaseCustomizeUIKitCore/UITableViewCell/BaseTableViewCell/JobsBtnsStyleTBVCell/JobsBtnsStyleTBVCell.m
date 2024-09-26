@@ -64,8 +64,9 @@ UIViewModelProtocol_synthesize
 -(BaseButton *)leftBtn{
     if(!_leftBtn){
         @jobs_weakify(self)
-        UIButtonModel *buttonModel = UIButtonModel.new;
-        _leftBtn = BaseButton.initByButtonModel(buttonModel)
+        _leftBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            
+        }))
             .bgColor(JobsWhiteColor)
             .cornerRadiusValue(JobsWidth(8))
             .onClick(^(UIButton *x){
@@ -109,7 +110,7 @@ UIViewModelProtocol_synthesize
     if(self.leftBtnVM.normalImage){
         _leftBtn.jobsResetBtnImage(_rightBtn.selected ? self.leftBtnVM.highlightImage : self.leftBtnVM.normalImage);
         _leftBtn.jobsResetImagePlacement(NSDirectionalRectEdgeLeading);
-        _leftBtn.jobsResetImagePlacement(JobsWidth(5));
+        _leftBtn.jobsResetImagePadding(JobsWidth(5));
     }
     _leftBtn.makeBtnTitleByShowingType(self.leftBtnVM.titleShowingType);
     _leftBtn.jobsResetBtnBgCor(self.leftBtnVM.baseBackgroundColor);
@@ -120,8 +121,9 @@ UIViewModelProtocol_synthesize
 -(BaseButton *)rightBtn{
     if(!_rightBtn){
         @jobs_weakify(self)
-        UIButtonModel *buttonModel = UIButtonModel.new;
-        _rightBtn = BaseButton.initByButtonModel(buttonModel)
+        _rightBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            
+        }))
             .bgColor(JobsWhiteColor)
             .cornerRadiusValue(JobsWidth(8))
             .onClick(^(UIButton *x){
@@ -167,7 +169,7 @@ UIViewModelProtocol_synthesize
     if(self.rightBtnVM.normalImage){
         _rightBtn.jobsResetBtnImage(_rightBtn.selected ? self.rightBtnVM.highlightImage : self.rightBtnVM.normalImage);
         _rightBtn.jobsResetImagePlacement(NSDirectionalRectEdgeLeading);
-        _rightBtn.jobsResetImagePlacement(JobsWidth(5));
+        _rightBtn.jobsResetImagePadding(JobsWidth(5));
     }
     
     _rightBtn.makeBtnTitleByShowingType(self.rightBtnVM.titleShowingType);

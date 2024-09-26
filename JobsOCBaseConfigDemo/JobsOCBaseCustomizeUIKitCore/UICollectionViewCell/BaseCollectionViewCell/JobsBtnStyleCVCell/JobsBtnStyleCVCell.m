@@ -110,7 +110,7 @@
         _btn.backgroundColor = self.buttonModel.bgCor;
         /// 图文间距
         if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePlacement(self.viewModel.imageTitleSpace);
+            _btn.jobsResetImagePadding(self.viewModel.imageTitleSpace);
         } else {
             // Fallback on earlier versions
         }
@@ -156,7 +156,7 @@
         
         /// 图文间距
         if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePlacement(self.buttonModel.imagePadding);
+            _btn.jobsResetImagePadding(self.buttonModel.imagePadding);
         } else {
             // Fallback on earlier versions
         }

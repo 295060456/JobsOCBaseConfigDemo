@@ -158,8 +158,14 @@ typedef void(^jobsByUserModelBlock)(__kindof JobsUserModel <NSCoding>*_Nullable 
 typedef void(^jobsByIDAndKeyBlock)(NSObject <NSCoding> *_Nonnull userModel,
                                    NSString *_Nullable key);
 
+@class JobsTabBarItemConfig;
+typedef void(^jobsByTabBarItemConfigBlock)(__kindof JobsTabBarItemConfig *_Nullable data);
+
 @class UserDefaultModel;
 typedef void(^jobsByUserDefaultModelBlock)(UserDefaultModel *_Nonnull data);
+
+@class LZTabBarConfig;
+typedef void(^jobsByLZTabBarConfigBlock)(__kindof LZTabBarConfig *_Nullable data);
 
 @class JobsRequestBuilder;
 typedef JobsRequestBuilder *_Nullable(^JobsReturnRequestBuilderByURLRequestBlock)(__kindof NSURLRequest *_Nonnull data);

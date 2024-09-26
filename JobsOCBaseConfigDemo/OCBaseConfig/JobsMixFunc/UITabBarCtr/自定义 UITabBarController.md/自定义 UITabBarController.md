@@ -329,47 +329,52 @@ if (self.isOpenPPBadge) {
 
   ```objective-c
   - (void)layoutSubviews {
-     [super layoutSubviews];
-     NSMutableArray<UIView *> *tabBarButtons = NSMutableArray.array;
-     for (UIView *subview in self.subviews) {
-         if ([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
-  //            subview.backgroundColor = JobsRandomColor; 
-             [tabBarButtons addObject:subview];
+      [super layoutSubviews];
+      for (UIView *view in self.tabBarButtons) {
+          for (UIView *subview in view.subviews) {
+              UILabel *label = nil; /// TabBar的文字
+              UIImageView *imageView = nil; /// TabBar的图片
+              if ([subview isKindOfClass:UILabel.class]) {
+                  label = (UILabel *)subview;
+                  label.backgroundColor = JobsRedColor;
+                  [label sizeToFit];
+              }
+              if ([subview isKindOfClass:UIImageView.class]) {
+                  imageView = (UIImageView *)subview;
+              }
+              [self layoutIfNeeded];
+              if (label && imageView) {
+                  JobsTabBarItemConfig *tabBarControllerConfig = AppDelegate.tabBarItemConfigMutArr[self.tabBarButtons.count - 1];
+                  [self alignLabel:label
+                         imageView:imageView
+                      tabBarButton:subview
+                           spacing:tabBarControllerConfig.spacing];
+              }
+          }
+      }
   
-             UILabel *label = nil; /// TabBar的文字
-             UIImageView *imageView = nil; /// TabBar的图片
-  
-             for (UIView *subSubview in subview.subviews) {
-                 if ([subSubview isKindOfClass:[UILabel class]]) {
-                     label = (UILabel *)subSubview;
-                     label.backgroundColor = JobsRedColor; 
-                     [label sizeToFit];
-                 }
-  
-                 if ([subSubview isKindOfClass:[UIImageView class]]) {
-                     imageView = (UIImageView *)subSubview;
-                 }
-             }
-  
-             [self layoutIfNeeded];
-             if (label && imageView) {
-                 [self alignLabel:label imageView:imageView inTabBarButton:subview];
-             }
-         }
-     }   
-     CGFloat s = 0.f;
-     for (int t = 0; t < self.tabBarControllerConfigMutArr.count ; t++) {
-         JobsTabBarCtrlConfig *tabBarControllerConfig = self.tabBarControllerConfigMutArr[t];
-         UIView *tabBarButton = tabBarButtons[t];
-         if (t) {
-             tabBarButton.resetOriginX(s + tabBarControllerConfig.xOffset);
-         }else{
-             tabBarButton.resetOriginX(tabBarControllerConfig.xOffset);
-         }
-  
-         s += (tabBarControllerConfig.xOffset + tabBarControllerConfig.tabBarItemWidth);
-         tabBarButton.resetWidth(tabBarControllerConfig.tabBarItemWidth);
-     }
+      CGFloat s = 0.f;
+      for (int t = 0; t < AppDelegate.tabBarItemConfigMutArr.count ; t++) {
+          JobsTabBarItemConfig *tabBarControllerConfig = AppDelegate.tabBarItemConfigMutArr[t];
+          LOTAnimationView *lOTAnimationView = nil;
+          if(self.lOTAnimationViews.count){
+              lOTAnimationView = self.lOTAnimationViews[t];
+          }
+          UIView *tabBarButton = self.tabBarButtons[t];
+          if(tabBarControllerConfig.xOffset){
+              if (t) {
+                  tabBarButton.resetOriginX(s + tabBarControllerConfig.xOffset);
+              }else{
+                  tabBarButton.resetOriginX(tabBarControllerConfig.xOffset);
+              }
+              s += (tabBarControllerConfig.xOffset + tabBarControllerConfig.tabBarItemWidth);
+          }
+          
+          if(tabBarControllerConfig.tabBarItemWidth){
+              tabBarButton.resetWidth(tabBarControllerConfig.tabBarItemWidth);
+          }
+          lOTAnimationView.frame = tabBarButton.frame;
+      }
   }
   ```
 
@@ -393,45 +398,22 @@ if (self.isOpenPPBadge) {
   -(BaseButton *)titleBtn{
       if (!_titleBtn) {
           @jobs_weakify(self)
-          _titleBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                                        background:nil
-                                        buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                     textAlignment:NSTextAlignmentCenter
-                                                  subTextAlignment:NSTextAlignmentCenter
-                                                       jobsResetBtnImage:nil
-                                                    highlightImage:nil
-                                                   attributedTitle:nil
-                                           selectedAttributedTitle:nil
-                                                attributedSubtitle:nil
-                                                             title:nil
-                                                          subTitle:nil
-                                                         titleFont:nil
-                                                      subTitleFont:nil
-                                                          titleCor:nil
-                                                       subTitleCor:nil
-                                                titleLineBreakMode:NSLineBreakByWordWrapping
-                                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                                               baseBackgroundColor:nil
-                                                   backgroundImage:nil
-                                                      imagePadding:JobsWidth(0)
-                                                      titlePadding:JobsWidth(0)
-                                                    imagePlacement:NSDirectionalRectEdgeNone
-                                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                 cornerRadiusValue:JobsWidth(0)
-                                                   roundingCorners:UIRectCornerAllCorners
-                                              roundingCornersRadii:CGSizeZero
-                                                    layerBorderCor:nil
-                                                       borderWidth:JobsWidth(0)
-                                                     primaryAction:nil
-                                        longPressGestureEventBlock:nil
-                                                   clickEventBlock:^id(BaseButton *x) {
-              @jobs_strongify(self)
-              x.selected = !x.selected;
-              if (self.objectBlock) self.objectBlock(x);
-              return nil;
-          }];
+          _titleBtn = BaseButton.jobsInit()
+  //            .bgColor(JobsWhiteColor)
+  //            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+  //            .jobsResetImagePadding(1)
+  //            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+  //            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+  //            .jobsResetBtnTitleCor(JobsWhiteColor)
+  //            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+  //            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+              .onClick(^(UIButton *x){
+                  @jobs_strongify(self)
+                  x.selected = !x.selected;
+                  if (self.objectBlock) self.objectBlock(x);
+              }).onLongPressGesture(^(id data){
+                  NSLog(@"");
+              });
           [self addSubview:_titleBtn];
           [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
               make.left.equalTo(self).offset(self.viewModel.textModel.offsetXForEach);
@@ -441,7 +423,7 @@ if (self.isOpenPPBadge) {
       
       _titleBtn.jobsResetBtnTitle(self.titleModel.textModel.text);
       _titleBtn.jobsResetSubtitle((self.titleModel.subTextModel.text));
-      _titleBtn.jobsResetImagePlacement(self.titleModel.imageTitleSpace);
+      _titleBtn.jobsResetImagePadding(self.titleModel.imageTitleSpace);
       _titleBtn.jobsResetTitlePadding(self.titleModel.titleSpace);
       _titleBtn.jobsResetBtnImage(self.titleModel.image);
       _titleBtn.jobsResetTitleLineBreakMode(self.titleModel.subTextModel.lineBreakMode);

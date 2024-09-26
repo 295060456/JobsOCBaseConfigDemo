@@ -6,7 +6,7 @@
 //
 
 #import "AppDelegate+TabBarCtr.h"
-NSUInteger DefaultIndex = 2;
+NSUInteger DefaultIndex = 2; /// 默认从第3个开始初始显示
 @implementation AppDelegate (TabBarCtr)
 #pragma mark —— 配置一些普通的控制器
 @dynamic tabBarVC;
@@ -19,7 +19,9 @@ static JobsTabBarVC *_tabBarVC = nil;
         _tabBarVC.isFeedbackGenerator = YES;
         _tabBarVC.isOpenScrollTabbar = NO;
     //    _tabBarVC.isShakerAnimation = YES;
+        @jobs_weakify(self)
         [_tabBarVC actionReturnBoolByNSUIntegerBlock:^BOOL(NSUInteger data) {
+            @jobs_strongify(self)
             for (JobsTabBarItemConfig *tabBarItemConfig in self.tabBarItemConfigMutArr) {
                 if(tabBarItemConfig.isNeedjump){
                     toast(@"这个跳开");
@@ -102,12 +104,15 @@ static UINavigationController *_lZTabBarNavCtrl = nil;
 static LZTabBarConfig *_lZTabBarConfig = nil;
 +(LZTabBarConfig *)lZTabBarConfig{
     if(!_lZTabBarConfig){
-        _lZTabBarConfig = LZTabBarConfig.new;
-        _lZTabBarConfig.viewControllers = self.viewCtrlByTabBarCtrlConfigMutArr;
-        _lZTabBarConfig.normalImages = self.imageUnselectedNameMutArr;
-        _lZTabBarConfig.selectedImages = self.imageSelectedNameMutArr;
-        _lZTabBarConfig.titles = self.tabBarItemTitleMutArr;
-        _lZTabBarConfig.isNavigation = NO;
+        @jobs_weakify(self)
+        _lZTabBarConfig = jobsMakeLZTabBarConfig(^(__kindof LZTabBarConfig * _Nullable data) {
+            @jobs_strongify(self)
+            data.viewControllers = self.viewCtrlByTabBarCtrlConfigMutArr;
+            data.normalImages = self.imageUnselectedNameMutArr;
+            data.selectedImages = self.imageSelectedNameMutArr;
+            data.titles = self.tabBarItemTitleMutArr;
+            data.isNavigation = NO;
+        });
     }return _lZTabBarConfig;
 }
 
@@ -142,9 +147,8 @@ static NSMutableArray <__kindof JobsTabBarItemConfig *>*_tabBarItemConfigMutArr 
     if(!_tabBarItemConfigMutArr){
         @jobs_weakify(self)
         _tabBarItemConfigMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-            @jobs_strongify(self)
-            {
-                JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
+            data.add(jobsMakeTabBarItemConfig(^(__kindof JobsTabBarItemConfig * _Nullable config) {
+                @jobs_strongify(self)
                 config.vc = self.viewCtrlMutArr[0];
                 config.title = self.tabBarItemTitleMutArr[0];
                 config.imageSelected = self.imageSelectedMutArr[0];
@@ -158,10 +162,9 @@ static NSMutableArray <__kindof JobsTabBarItemConfig *>*_tabBarItemConfigMutArr 
                 config.isNeedCheckLogin = NO;
                 config.isNotNeedCheckLogin = YES;
                 config.isNeedjump = NO;
-                data.add(config);
-            }
-            {
-                JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
+            }));
+            data.add(jobsMakeTabBarItemConfig(^(__kindof JobsTabBarItemConfig * _Nullable config) {
+                @jobs_strongify(self)
                 config.vc = self.viewCtrlMutArr[1];
                 config.title = self.tabBarItemTitleMutArr[1];
                 config.imageSelected = self.imageSelectedMutArr[1];
@@ -175,11 +178,9 @@ static NSMutableArray <__kindof JobsTabBarItemConfig *>*_tabBarItemConfigMutArr 
                 config.isNeedCheckLogin = NO;
                 config.isNotNeedCheckLogin = YES;
                 config.isNeedjump = NO;
-                data.add(config);
-            }
-            
-            {
-                JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
+            }));
+            data.add(jobsMakeTabBarItemConfig(^(__kindof JobsTabBarItemConfig * _Nullable config) {
+                @jobs_strongify(self)
                 config.vc = self.viewCtrlMutArr[2];
                 config.title = self.tabBarItemTitleMutArr[2];
                 config.imageSelected = self.imageSelectedMutArr[2];
@@ -193,11 +194,9 @@ static NSMutableArray <__kindof JobsTabBarItemConfig *>*_tabBarItemConfigMutArr 
                 config.isNeedCheckLogin = NO;
                 config.isNotNeedCheckLogin = YES;
                 config.isNeedjump = NO;
-                data.add(config);
-            }
-            
-            {
-                JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
+            }));
+            data.add(jobsMakeTabBarItemConfig(^(__kindof JobsTabBarItemConfig * _Nullable config) {
+                @jobs_strongify(self)
                 config.vc = self.viewCtrlMutArr[3];
                 config.title = self.tabBarItemTitleMutArr[3];
                 config.imageSelected = self.imageSelectedMutArr[3];
@@ -211,11 +210,9 @@ static NSMutableArray <__kindof JobsTabBarItemConfig *>*_tabBarItemConfigMutArr 
                 config.isNeedCheckLogin = NO;
                 config.isNotNeedCheckLogin = YES;
                 config.isNeedjump = NO;
-                data.add(config);
-            }
-            
-            {
-                JobsTabBarItemConfig *config = JobsTabBarItemConfig.new;
+            }));
+            data.add(jobsMakeTabBarItemConfig(^(__kindof JobsTabBarItemConfig * _Nullable config) {
+                @jobs_strongify(self)
                 config.vc = self.viewCtrlMutArr[4];
                 config.title = self.tabBarItemTitleMutArr[4];
                 config.imageSelected = self.imageSelectedMutArr[4];
@@ -229,8 +226,7 @@ static NSMutableArray <__kindof JobsTabBarItemConfig *>*_tabBarItemConfigMutArr 
                 config.isNeedCheckLogin = NO;
                 config.isNotNeedCheckLogin = YES;
                 config.isNeedjump = NO;
-                data.add(config);
-            }
+            }));
         });
     }return _tabBarItemConfigMutArr;
 }
@@ -245,8 +241,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
         @jobs_weakify(self)
         _tabBarItemMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
-            {
-                UIViewModel *viewModel = UIViewModel.new;
+            data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.image = self.imageUnSelectedMutArr[0];
                 viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[0];
                 viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[0];
@@ -257,21 +252,19 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.subTextAlignment = NSTextAlignmentCenter;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
                 viewModel.buttonModel.backgroundImage = DefaultIndex == 0 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
-                data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
-                    NSLog(@"");
-                    x.selected = !x.selected;
-                    @jobs_weakify(self)
-                    [self isLogin:^{
-                        @jobs_strongify(self)
-                        [AppDelegate button:x index:0];
-                        if (self.objectBlock) self.objectBlock(x);
-                    }];
-                }).onLongPressGesture(^(id data){
-                    NSLog(@"");
-                }));
-            }
-            {
-                UIViewModel *viewModel = UIViewModel.new;
+            }))
+                     .onClick(^(__kindof UIButton *x){
+                         x.selected = !x.selected;
+                         @jobs_weakify(self)
+                         [self isLogin:^{
+                             @jobs_strongify(self)
+                             [AppDelegate button:x index:0];
+                             if (self.objectBlock) self.objectBlock(x);
+                         }];
+                     }).onLongPressGesture(^(id data){
+                         NSLog(@"");
+                     }));
+            data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.image = self.imageUnSelectedMutArr[1];
                 viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[1];
                 viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[1];
@@ -281,23 +274,20 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.textAlignment = NSTextAlignmentCenter;
                 viewModel.subTextAlignment = NSTextAlignmentCenter;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = DefaultIndex == 1 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
-                data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
-                    NSLog(@"");
-                    x.selected = !x.selected;
-                    @jobs_weakify(self)
-                    [self isLogin:^{
-                        @jobs_strongify(self)
-                        [AppDelegate button:x index:1];
-                        if (self.objectBlock) self.objectBlock(x);
-                    }];
-                }).onLongPressGesture(^(id data){
-                    NSLog(@"");
-                }));
-            }
-            
-            {
-                UIViewModel *viewModel = UIViewModel.new;
+                viewModel.buttonModel.backgroundImage = DefaultIndex == 1 ? JobsIMG(@"TabBarItem选中的背景色")  :JobsIMG(@"TabBarItem选中的背景色（透明）");
+            }))
+                     .onClick(^(__kindof UIButton *x){
+                         x.selected = !x.selected;
+                         @jobs_weakify(self)
+                         [self isLogin:^{
+                             @jobs_strongify(self)
+                             [AppDelegate button:x index:1];
+                             if (self.objectBlock) self.objectBlock(x);
+                         }];
+                     }).onLongPressGesture(^(id data){
+                         NSLog(@"");
+                     }));
+            data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.image = self.imageUnSelectedMutArr[2];
                 viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[2];
                 viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[2];
@@ -307,19 +297,19 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.textAlignment = NSTextAlignmentCenter;
                 viewModel.subTextAlignment = NSTextAlignmentCenter;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = DefaultIndex == 2 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
-                data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
-                    NSLog(@"");
-                    x.selected = !x.selected;
-                    [AppDelegate button:x index:2];
-                    if (self.objectBlock) self.objectBlock(x);
-                }).onLongPressGesture(^(id data){
-                    NSLog(@"");
-                }));
-            }
+                viewModel.buttonModel.backgroundImage = JobsIMG(@"TabBarItem选中的背景色（透明）");
+//                DefaultIndex == 2 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+            }))
+                     .onClick(^(__kindof UIButton *x){
+                         @jobs_strongify(self)
+                         x.selected = !x.selected;
+                         [AppDelegate button:x index:2];
+                         if (self.objectBlock) self.objectBlock(x);
+                     }).onLongPressGesture(^(id data){
+                         NSLog(@"");
+                     }));
             
-            {
-                UIViewModel *viewModel = UIViewModel.new;
+            data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.image = self.imageUnSelectedMutArr[3];
                 viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[3];
                 viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[3];
@@ -330,18 +320,16 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.subTextAlignment = NSTextAlignmentCenter;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
                 viewModel.buttonModel.backgroundImage = DefaultIndex == 3 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
-                data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
-                    NSLog(@"");
-                    x.selected = !x.selected;
-                    [AppDelegate button:x index:3];
-                    if (self.objectBlock) self.objectBlock(x);
-                }).onLongPressGesture(^(id data){
-                    NSLog(@"");
-                }));
-            }
-            
-            {
-                UIViewModel *viewModel = UIViewModel.new;
+            }))
+                     .onClick(^(__kindof UIButton *x){
+                         @jobs_strongify(self)
+                         x.selected = !x.selected;
+                         [AppDelegate button:x index:3];
+                         if (self.objectBlock) self.objectBlock(x);
+                     }).onLongPressGesture(^(id data){
+                         NSLog(@"");
+                     }));
+            data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.image = self.imageUnSelectedMutArr[4];
                 viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[4];
                 viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[4];
@@ -352,15 +340,15 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.subTextAlignment = NSTextAlignmentCenter;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
                 viewModel.buttonModel.backgroundImage = DefaultIndex == 4 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
-                data.add(BaseButton.initByViewModel(viewModel).onClick(^(UIButton *x){
-                    NSLog(@"");
-                    x.selected = !x.selected;
-                    [AppDelegate button:x index:4];
-                    if (self.objectBlock) self.objectBlock(x);
-                }).onLongPressGesture(^(id data){
-                    NSLog(@"");
-                }));
-            }
+            }))
+                     .onClick(^(__kindof UIButton *x){
+                         @jobs_strongify(self)
+                         x.selected = !x.selected;
+                         [AppDelegate button:x index:4];
+                         if (self.objectBlock) self.objectBlock(x);
+                     }).onLongPressGesture(^(id data){
+                         NSLog(@"");
+                     }));
         });
     } return _tabBarItemMutArr;
 }
@@ -372,7 +360,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
 static NSMutableArray <__kindof NSString *>*_tabBarItemTitleMutArr = nil;
 +(NSMutableArray <__kindof NSString *>*)tabBarItemTitleMutArr{
     if(!_tabBarItemTitleMutArr){
-        _tabBarItemTitleMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _tabBarItemTitleMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof NSString *>*_Nullable data) {
             data.add(JobsInternationalization(@"MY FAV"));
             data.add(JobsInternationalization(@"BANK"));
             data.add(JobsInternationalization(@"INCENTIVE"));
@@ -389,7 +377,7 @@ static NSMutableArray <__kindof NSString *>*_tabBarItemTitleMutArr = nil;
 static NSMutableArray <__kindof NSString *>*_imageSelectedNameMutArr = nil;
 +(NSMutableArray <__kindof NSString *>*)imageSelectedNameMutArr{
     if(!_imageSelectedNameMutArr){
-        _imageSelectedNameMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _imageSelectedNameMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof NSString *>*_Nullable data) {
             data.add(@"MY FAV_已点击");
             data.add(@"BANK_已点击");
             data.add(@"INCENTIVE_已点击");
@@ -406,7 +394,7 @@ static NSMutableArray <__kindof NSString *>*_imageSelectedNameMutArr = nil;
 static NSMutableArray <__kindof NSString *>*_imageUnselectedNameMutArr = nil;
 +(NSMutableArray <__kindof NSString *>*)imageUnselectedNameMutArr{
     if(!_imageUnselectedNameMutArr){
-        _imageUnselectedNameMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _imageUnselectedNameMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof NSString *>*_Nullable data) {
             data.add(@"MY FAV_未点击");
             data.add(@"BANK_未点击");
             data.add(@"INCENTIVE_未点击");
@@ -424,7 +412,7 @@ static NSMutableArray <__kindof UIImage *>*_imageSelectedMutArr = nil;
 +(NSMutableArray <__kindof UIImage *>*)imageSelectedMutArr{
     if(!_imageSelectedMutArr){
         @jobs_weakify(self)
-        _imageSelectedMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _imageSelectedMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof UIImage *>*_Nullable data) {
             @jobs_strongify(self)
             for (NSString *imageSelectedName in self.imageSelectedNameMutArr) {
                 data.add(JobsIMG(imageSelectedName));
@@ -441,7 +429,7 @@ static NSMutableArray <__kindof UIImage *>*_imageUnSelectedMutArr = nil;
 +(NSMutableArray <__kindof UIImage *>*)imageUnSelectedMutArr{
     if(!_imageUnSelectedMutArr){
         @jobs_weakify(self)
-        _imageUnSelectedMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _imageUnSelectedMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof UIImage *>*_Nullable data) {
             @jobs_strongify(self)
             for (NSString *imageUnSelectedName in self.imageUnselectedNameMutArr) {
                 data.add(JobsIMG(imageUnSelectedName));
@@ -474,7 +462,7 @@ static NSMutableArray <__kindof UIViewController *>*_viewCtrlByTabBarCtrlConfigM
 static NSMutableArray <__kindof UIViewController *>*_viewCtrlMutArr = nil;
 +(NSMutableArray <__kindof UIViewController *>*)viewCtrlMutArr{
     if(!_viewCtrlMutArr){
-        _viewCtrlMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _viewCtrlMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof UIViewController *>*_Nullable data) {
             data.add(ViewController_1.new);
             data.add(ViewController_2.new);
             data.add(ViewController_3.new);
@@ -492,7 +480,7 @@ static NSMutableArray <__kindof UINavigationController *>*_navCtrMutArr = nil;
 +(NSMutableArray <__kindof UINavigationController *>*)navCtrMutArr{
     if(!_navCtrMutArr){
         @jobs_weakify(self)
-        _navCtrMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _navCtrMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof UINavigationController *>*_Nullable data) {
             @jobs_strongify(self)
             for (UIViewController *vc in self.viewCtrlMutArr) {
                 data.add(UINavigationController.initByRootVC(vc));
@@ -508,7 +496,7 @@ static NSMutableArray <__kindof UINavigationController *>*_navCtrMutArr = nil;
 /// 切换控制器
 +(void)button:(__kindof UIButton *)button index:(NSUInteger)index{
     int t = 0;
-    for (UIButton *btn in AppDelegate.tabBarItemMutArr) {
+    for (__kindof UIButton *btn in AppDelegate.tabBarItemMutArr) {
         btn.jobsResetBtnImage(self.imageUnSelectedMutArr[t]);
         btn.jobsResetBtnTitleCor(JobsCor(@"#FFFFFF"));
         btn.jobsResetBtnBgImage(JobsIMG(@"TabBarItem选中的背景色（透明）"));

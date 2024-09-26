@@ -58,9 +58,11 @@
 -(UIButton *)cancelBtn{
     if(!_cancelBtn){
         @jobs_weakify(self)
-        _cancelBtn = BaseButton.initByBackgroundImage(JobsIMG(@"删除")).onClick(^(UIButton *x){
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
+        _cancelBtn = BaseButton
+            .initByBackgroundImage(JobsIMG(@"删除"))
+            .onClick(^(UIButton *x){
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(x);
         }).onLongPressGesture(^(id data){
             NSLog(@"");
         });;
