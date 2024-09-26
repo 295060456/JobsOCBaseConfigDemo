@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "MasonryModel.h"
+
+#if __has_include(<Masonry/Masonry.h>)
+#import <Masonry/Masonry.h>
+#else
+#import "Masonry.h"
+#endif
 
 @interface NSArray (Tools)
 /// 数组里面是否包含某个元素
@@ -20,5 +27,36 @@
 -(JobsReturnArrayByArrayBlock _Nonnull)arrayForIntersectionWithOtherArray;
 /// 数据计算差集
 -(JobsReturnArrayByArrayBlock _Nonnull)arrayForMinusWithOtherArray;
+/// Masonry 均匀分布的布局方式封装
+-(JobsReturnIDByMasonryModelBlock _Nonnull)installByMasonryModel;
+-(jobsByVoidBlock _Nonnull)describe;
 
 @end
+
+/**
+ @property(nonatomic,strong)NSMutableArray <UIImageView *>*subViewsMutArr;
+ self.subViewsMutArr.describe();
+ 
+ -(NSMutableArray<UIImageView *> *)subViewsMutArr{
+     if(!_subViewsMutArr){
+         @jobs_weakify(self)
+         _subViewsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView *>*_Nullable data) {
+             @jobs_strongify(self)
+             data.add(BonusEarnedView.JobsRichElementsInViewWithModel(nil));
+             data.add(InvitedFriendsNumberView.JobsRichElementsInViewWithModel(nil));
+             data.add(CopyLinkView.JobsRichElementsInViewWithModel(nil));
+             data.add(DownloadQRCodeView.JobsRichElementsInViewWithModel(nil));
+             for (UIView *view in data) {
+                 self.view.addSubview(view);
+             }
+         }).installByMasonryModel(jobsMakeMasonryModel(^(__kindof MasonryModel * _Nullable data) {
+             data.axisType = MASAxisTypeHorizontal;
+             data.fixedSpacing = JobsWidth(22);
+             data.leadSpacing = JobsWidth(52);
+             data.tailSpacing = JobsWidth(52);
+             data.top = JobsWidth(90);
+             data.height = [BonusEarnedView viewSizeWithModel:nil].height;
+         }));
+     }return _subViewsMutArr;
+ }
+ */

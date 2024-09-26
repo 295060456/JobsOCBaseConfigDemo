@@ -4413,6 +4413,38 @@ static const uint32_t kSequenceBits = 12;
         make.width.equalTo(@60);
     }];
     ```
+    
+  * 将上述进行封装以后的调用示例：
+  
+    ```objective-c
+    #import "NSArray+Tools.h"
+    
+    @property(nonatomic,strong)NSMutableArray <UIImageView *>*subViewsMutArr;
+    self.subViewsMutArr.describe();
+    
+    -(NSMutableArray<UIImageView *> *)subViewsMutArr{
+        if(!_subViewsMutArr){
+            @jobs_weakify(self)
+            _subViewsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView *>*_Nullable data) {
+                @jobs_strongify(self)
+                data.add(BonusEarnedView.JobsRichElementsInViewWithModel(nil));
+                data.add(InvitedFriendsNumberView.JobsRichElementsInViewWithModel(nil));
+                data.add(CopyLinkView.JobsRichElementsInViewWithModel(nil));
+                data.add(DownloadQRCodeView.JobsRichElementsInViewWithModel(nil));
+                for (UIView *view in data) {
+                    self.view.addSubview(view);
+                }
+            }).installByMasonryModel(jobsMakeMasonryModel(^(__kindof MasonryModel * _Nullable data) {
+                data.axisType = MASAxisTypeHorizontal;
+                data.fixedSpacing = JobsWidth(22);
+                data.leadSpacing = JobsWidth(52);
+                data.tailSpacing = JobsWidth(52);
+                data.top = JobsWidth(90);
+                data.height = [BonusEarnedView viewSizeWithModel:nil].height;
+            }));
+        }return _subViewsMutArr;
+    }
+    ```
   
 
 <details id="Masonry约束动画<br>">
@@ -11076,6 +11108,12 @@ static inline NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByPar
 #### 42.2、封装自建Api
 
 ```objective-c
+static inline ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsByButtonTimerConfigModelBlock _Nonnull block){
+    ButtonTimerConfigModel *model = ButtonTimerConfigModel.alloc.init;
+    if (block) block(model);
+    return model;
+}
+
 static inline __kindof UIButtonModel *_Nonnull jobsMakeButtonModel(jobsByButtonModelBlock _Nonnull block){
     UIButtonModel *data = UIButtonModel.alloc.init;
     if (block) block(data);
@@ -11098,12 +11136,6 @@ static inline __kindof JobsParagraphStyle *_Nonnull jobsMakeParagraphStyler(jobs
     JobsParagraphStyle *data = JobsParagraphStyle.alloc.init;
     if (block) block(data);
     return data;
-}
-
-static inline ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsByButtonTimerConfigModelBlock _Nonnull block){
-    ButtonTimerConfigModel *model = ButtonTimerConfigModel.alloc.init;
-    if (block) block(model);
-    return model;
 }
 
 static inline __kindof JobsRichTextConfig *_Nonnull jobsMakeRichTextConfig(jobsByRichTextConfigBlock _Nonnull block){
@@ -11136,6 +11168,11 @@ static inline __kindof JobsParagraphStyleModel *_Nonnull jobsMakeParagraphStyleM
     return data;
 }
 
+static inline __kindof MasonryModel *_Nonnull jobsMakeMasonryModel(jobsByMasonryModelBlock _Nonnull block){
+    MasonryModel *data = MasonryModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
 ```
 
 ### Test  

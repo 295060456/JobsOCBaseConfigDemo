@@ -28,6 +28,7 @@
 #import "URLManagerModel.h"
 #import "MJRefreshConfigModel.h"
 #import "ButtonTimerConfigModel.h"
+#import "MasonryModel.h"
 
 #import "IncomeSourceModel.h"
 #import "JobsCountriesModel.h"

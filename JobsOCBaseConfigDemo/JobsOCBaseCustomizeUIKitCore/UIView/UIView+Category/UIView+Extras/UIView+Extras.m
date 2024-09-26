@@ -9,6 +9,17 @@
 #import "UIView+Extras.h"
 
 @implementation UIView (Extras)
+#pragma mark —— BaseViewProtocol
++(JobsReturnIDByIDBlock _Nonnull)JobsRichElementsInViewWithModel{
+    @jobs_weakify(self)
+    return ^id _Nullable(id _Nullable data){
+        @jobs_strongify(self)
+        UIView <BaseViewProtocol>*instance = self.class.new;
+        if ([instance respondsToSelector:@selector(jobsRichElementsInViewWithModel)]) {
+            instance.jobsRichElementsInViewWithModel(data);
+        }return instance;
+    };
+}
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame{
     @jobs_weakify(self)

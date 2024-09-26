@@ -43,15 +43,14 @@
     @jobs_weakify(self)
     return ^__kindof NSArray *_Nullable(__kindof NSArray *_Nullable otherArray){
         @jobs_strongify(self)
-        NSMutableArray *intersectionArray = NSMutableArray.array;
         if(self.count == 0) return nil;
         if(!otherArray) return nil;
-        /// 遍历
-        for (id obj in self) {
-            if(!otherArray.containsObject(obj)) continue;
-            /// 添加
-            intersectionArray.add(obj);
-        }return intersectionArray;
+        return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            for (id obj in self) {/// 遍历
+                if(!otherArray.containsObject(obj)) continue;
+                data.add(obj);/// 添加
+            }
+        });
     };
 }
 /// 数据计算差集
@@ -61,13 +60,45 @@
         @jobs_strongify(self)
         if(!self) return nil;
         if(!otherArray) return self;
-        NSMutableArray *minusArray = [NSMutableArray arrayWithArray:self];
-        /// 遍历
-        for (id obj in otherArray) {
-            if(!self.containsObject(obj)) continue;
-            /// 添加
-            [minusArray removeObject:obj];
-        }return minusArray;
+        return jobsMakeMutArr(^(NSMutableArray *array) {
+            @jobs_strongify(self)
+            [array addObjectsFromArray:self];
+            for (id obj in otherArray) {
+                if(!self.containsObject(obj)) continue;
+                [array removeObject:obj];
+            }
+        });
+    };
+}
+/// Masonry 均匀分布的布局方式封装
+-(JobsReturnIDByMasonryModelBlock _Nonnull)installByMasonryModel{
+    @jobs_weakify(self)
+    return ^id _Nullable(__kindof MasonryModel *_Nullable data){
+        @jobs_strongify(self)
+        [self mas_distributeViewsAlongAxis:data.axisType/// 在水平（垂直）方向上分布这些视图
+                          withFixedSpacing:data.fixedSpacing/// 指定每个视图之间的固定间距
+                               leadSpacing:data.leadSpacing/// 指定第一个视图与父视图左边缘（顶部）之间的距离
+                               tailSpacing:data.tailSpacing];/// 指定最后一个视图与父视图右边缘（底部）之间的距离
+        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+            /// 横向拉伸以均分
+            if(data.axisType == MASAxisTypeHorizontal){
+                make.top.equalTo(@(data.top));
+                make.height.equalTo(@(data.height));
+            }
+            /// 纵向拉伸以均分
+            if(data.axisType == MASAxisTypeVertical){
+                make.left.equalTo(@(data.left));
+                make.width.equalTo(@(data.width));
+            }
+        }];return self;
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)describe{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        NSLog(@"%@",self);
     };
 }
 

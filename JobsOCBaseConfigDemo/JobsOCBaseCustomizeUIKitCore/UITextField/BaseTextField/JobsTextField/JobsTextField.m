@@ -40,7 +40,7 @@ UIViewModelProtocol_synthesize
     [super layoutSubviews];
     /// 内部指定圆切角
     [self appointCornerCutToCircleByRoundingCorners:self.layoutSubviewsRectCorner
-                                    cornerRadii:self.layoutSubviewsRectCornerSize];
+                                        cornerRadii:self.layoutSubviewsRectCornerSize];
 }
 #pragma mark —— 一些公有方法
 -(void)otherActionBlock:(JobsReturnIDByIDBlock)otherActionBlock{

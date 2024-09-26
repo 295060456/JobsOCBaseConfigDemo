@@ -142,6 +142,10 @@ typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);
 @class ButtonTimerConfigModel;
 typedef void(^jobsByButtonTimerConfigModelBlock)(__kindof ButtonTimerConfigModel *_Nullable data);
 
+@class MasonryModel;
+typedef void(^jobsByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
+typedef id _Nullable(^JobsReturnIDByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
+
 @class UIButtonModel;
 typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(UIButtonModel *_Nullable data);

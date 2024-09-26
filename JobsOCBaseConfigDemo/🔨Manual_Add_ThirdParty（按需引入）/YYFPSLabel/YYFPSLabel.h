@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#if __has_include(<Masonry/Masonry.h>)
+#if __has_include(<YYKit/YYKit.h>)
 #import <YYKit/YYKit.h>
 #else
 #import "YYKit.h"

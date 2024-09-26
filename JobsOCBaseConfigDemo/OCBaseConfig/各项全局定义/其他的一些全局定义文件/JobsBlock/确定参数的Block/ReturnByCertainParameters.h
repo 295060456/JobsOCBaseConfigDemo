@@ -12,6 +12,7 @@
 typedef id _Nullable(^JobsReturnIDByVoidBlock)(void);
 
 typedef id _Nullable(^JobsReturnIDByIDBlock)(id _Nullable data);
+typedef id _Nullable(^JobsReturnIDByObjBlock)(NSObject *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByDataBlock)(NSData *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByStringBlock)(NSString *_Nullable data);
 typedef id _Nonnull(^JobsReturnIDBySaltStrBlock)(NSString *_Nullable salt);

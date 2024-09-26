@@ -1171,6 +1171,7 @@
 		CEDC58EC2CA190CF00C7772C /* MJRefreshConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDC58EA2CA190CF00C7772C /* MJRefreshConfigModel.m */; };
 		CEDFA9AD2CA268410075D200 /* JobsRichTextConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFA9AB2CA268410075D200 /* JobsRichTextConfig.m */; };
 		CEDFA9B12CA28F4D0075D200 /* ButtonTimerConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFA9AF2CA28F4D0075D200 /* ButtonTimerConfigModel.m */; };
+		CEE1B5DA2CA58AA4000C2603 /* MasonryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE1B5D82CA58AA4000C2603 /* MasonryModel.m */; };
 		CEE26F3A2C9801A900D900AA /* NSObject+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE26F382C9801A400D900AA /* NSObject+Data.m */; };
 		CEE26FC22C980A0900D900AA /* UICollectionViewFlowLayout+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE26FC02C980A0500D900AA /* UICollectionViewFlowLayout+Extra.m */; };
 		CEE403072C788F2B0085C23C /* JobsCorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE403052C7887960085C23C /* JobsCorModel.m */; };
@@ -3328,6 +3329,8 @@
 		CEDFA9AB2CA268410075D200 /* JobsRichTextConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsRichTextConfig.m; sourceTree = "<group>"; };
 		CEDFA9AE2CA28F4D0075D200 /* ButtonTimerConfigModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonTimerConfigModel.h; sourceTree = "<group>"; };
 		CEDFA9AF2CA28F4D0075D200 /* ButtonTimerConfigModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonTimerConfigModel.m; sourceTree = "<group>"; };
+		CEE1B5D72CA58AA4000C2603 /* MasonryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasonryModel.h; sourceTree = "<group>"; };
+		CEE1B5D82CA58AA4000C2603 /* MasonryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasonryModel.m; sourceTree = "<group>"; };
 		CEE26F372C9801A400D900AA /* NSObject+Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Data.h"; sourceTree = "<group>"; };
 		CEE26F382C9801A400D900AA /* NSObject+Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Data.m"; sourceTree = "<group>"; };
 		CEE26FBF2C980A0500D900AA /* UICollectionViewFlowLayout+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewFlowLayout+Extra.h"; sourceTree = "<group>"; };
@@ -4055,6 +4058,7 @@
 			isa = PBXGroup;
 			children = (
 				CE61ACDD2C9EAAE1002DF138 /* JobsModel.h */,
+				CEE1B5D92CA58AA4000C2603 /* MasonryModel */,
 				CE100E052CA4413D00F9893C /* 输入框样式基类 */,
 				CE61ACE02C9EAAE1002DF138 /* BaseModel */,
 				CEDFA9B02CA28F4D0075D200 /* ButtonTimerModel */,
@@ -14170,6 +14174,15 @@
 			path = ButtonTimerModel;
 			sourceTree = "<group>";
 		};
+		CEE1B5D92CA58AA4000C2603 /* MasonryModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEE1B5D72CA58AA4000C2603 /* MasonryModel.h */,
+				CEE1B5D82CA58AA4000C2603 /* MasonryModel.m */,
+			);
+			path = MasonryModel;
+			sourceTree = "<group>";
+		};
 		CEE26F392C9801A400D900AA /* NSObject+Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -14947,6 +14960,7 @@
 				CECE85CA2C4513CE00764AF5 /* UITableViewHeaderFooterView+BaseTableViewHeaderFooterViewProtocol.m in Sources */,
 				CECE85692C4513CE00764AF5 /* NSString+Path.m in Sources */,
 				CECE7EAD2C450E5B00764AF5 /* GCDAsyncSocket.m in Sources */,
+				CEE1B5DA2CA58AA4000C2603 /* MasonryModel.m in Sources */,
 				CECE7BFC2C450C5000764AF5 /* JobsTextView.m in Sources */,
 				CECE87432C45140000764AF5 /* JhtBannerView.m in Sources */,
 				CECE851C2C4513CE00764AF5 /* FileFolderHandleTool.m in Sources */,
