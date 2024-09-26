@@ -115,18 +115,7 @@ BaseViewControllerProtocol_synthesize
 //        @jobs_weakify(self)
 //        _backBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
 //            @jobs_strongify(self)
-////            data.backgroundImage = JobsIMG(@"返回");
-////            data.selected_backgroundImage = JobsIMG(@"返回");
-//            data.jobsResetBtnImage = JobsIMG(@"返回");
-//            data.highlightImage = JobsIMG(@"返回");
-//            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-//            data.title = self.viewModel.backBtnTitleModel.text;
-//            data.titleFont = bayonRegular(JobsWidth(18));
-//            data.titleCor = JobsWhiteColor;
-//            data.selected_titleCor = JobsWhiteColor;
-//            data.roundingCorners = UIRectCornerAllCorners;
-//            data.imagePlacement = NSDirectionalRectEdgeLeading;
-//            data.imagePadding = JobsWidth(5);
+//            data = self.makeBackBtnModel;
 //            @jobs_weakify(self)
 //            data.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
 //                                                  id _Nullable arg) {

@@ -258,18 +258,7 @@ BaseViewProtocol_synthesize
         @jobs_weakify(self)
         _backBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
             @jobs_strongify(self)
-//            data.backgroundImage = JobsIMG(@"返回");
-//            data.selected_backgroundImage = JobsIMG(@"返回");
-            data.normalImage = JobsIMG(@"返回");
-            data.highlightImage = JobsIMG(@"返回");
-            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-            data.title = self.viewModel.backBtnTitleModel.text;
-            data.titleCor = JobsBlackColor;
-            data.selected_titleCor = JobsBlackColor;
-            data.roundingCorners = UIRectCornerAllCorners;
-            data.imagePlacement = NSDirectionalRectEdgeLeading;
-            data.imagePadding = JobsWidth(5);
-            @jobs_weakify(self)
+            data = self.makeBackBtnModel;
             data.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
                                                   id _Nullable arg) {
                 NSLog(@"按钮的长按事件触发");

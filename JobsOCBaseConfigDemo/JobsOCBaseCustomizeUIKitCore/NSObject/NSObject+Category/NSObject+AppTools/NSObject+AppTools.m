@@ -47,6 +47,24 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         [ad refreshTabBarTitle];
     }
 }
+#pragma mark —— 一些公共设置
+-(UIButtonModel *)makeBackBtnModel{
+    @jobs_weakify(self)
+    return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+        @jobs_strongify(self)
+        data.backgroundImage = JobsIMG(@"返回");
+        data.selected_backgroundImage = JobsIMG(@"返回");
+        data.highlightImage = JobsIMG(@"返回");
+        data.normalImage = JobsIMG(@"返回");
+        data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        data.title = self.viewModel.backBtnTitleModel.text;
+        data.titleCor = JobsBlackColor;
+        data.selected_titleCor = JobsBlackColor;
+        data.roundingCorners = UIRectCornerAllCorners;
+        data.imagePlacement = NSDirectionalRectEdgeLeading;
+        data.imagePadding = JobsWidth(5);
+    });
+}
 #pragma mark —— <AppToolsProtocol> 关于注册登录
 /// 去登录？去注册？
 -(jobsByNSIntegerBlock _Nonnull)toLoginOrRegister{

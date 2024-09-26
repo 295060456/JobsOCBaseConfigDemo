@@ -13,12 +13,8 @@
     if(!_backBtnModel){
         @jobs_weakify(self)
         _backBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-            data.backgroundImage = JobsIMG(@"返回");
-            data.selected_backgroundImage = JobsIMG(@"返回");
-            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-            data.titleCor = JobsClearColor;
-            data.selected_titleCor = JobsClearColor;
-            data.roundingCorners = UIRectCornerAllCorners;
+            @jobs_strongify(self)
+            data = self.makeBackBtnModel;
             data.longPressGestureEventBlock = ^id (id _Nullable weakSelf,
                                                    id _Nullable arg) {
                 NSLog(@"按钮的长按事件触发");

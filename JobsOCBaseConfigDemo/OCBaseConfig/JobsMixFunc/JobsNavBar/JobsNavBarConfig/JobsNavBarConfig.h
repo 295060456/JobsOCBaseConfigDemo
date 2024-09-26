@@ -7,13 +7,14 @@
 
 #import <Foundation/Foundation.h>
 #import "UIButtonModel.h"
+#import "NSObject+AppTools.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsNavBarConfig : NSObject
-
-@property(nonatomic,strong)UIColor *bgCor;
-@property(nonatomic,strong)UIImage *bgImage;
+#pragma mark —— 对Bar的配置
+@property(nonatomic,strong,null_resettable)UIColor *bgCor;
+@property(nonatomic,strong)UIImage *bgImage;/// 无默认值，优先级 bgImage > bgCor
 #pragma mark —— backBtn 的配置
 @property(nonatomic,strong,null_resettable)UIButtonModel *backBtnModel;
 #pragma mark —— 对标题的设置
