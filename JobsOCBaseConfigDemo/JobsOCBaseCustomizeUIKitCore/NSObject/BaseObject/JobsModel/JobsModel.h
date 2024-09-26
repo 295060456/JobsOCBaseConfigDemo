@@ -9,19 +9,25 @@
 #define JobsModel_h
 
 #import "BaseModel.h"
+#import "UIViewModel.h"/// 本类是自定义类，但是是对系统类的仿写，目的是承接上下文数据 成一束，方便管理
+#import "UIButtonModel.h"/// 按钮数据源
+#import "UITextModel.h"/// 文本数据源
+#import "JobsHeaderFooterViewModel.h"
+#import "JobsParagraphStyleModel.h"
+#import "JobsAppDoorModel.h"
+#import "JobsAppDoorInputViewBaseStyle.h"
+#import "JobsAppDoorInputViewBaseStyleModel.h"
+#import "JobsKeyValueModel.h"
+#import "JobsRichTextConfig.h"
+#import "JobsTimeModel.h"/// 时间格式转换、时间相关模型 【包含  JobsTimeModel 和 JobsTimeFormatterModel 两个类】
+#import "JobsFormatTime.h"/// 时间格式化
 #import "ImageModel.h"
 #import "NSNotificationKeyboardModel.h"
 #import "FileNameModel.h"
 #import "SDWebImageModel.h"
 #import "URLManagerModel.h"
-#import "JobsKeyValueModel.h"
 #import "MJRefreshConfigModel.h"
-#import "JobsRichTextConfig.h"
 #import "ButtonTimerConfigModel.h"
-#import "JobsParagraphStyleModel.h"
-#import "JobsAppDoorModel.h"
-#import "JobsAppDoorInputViewBaseStyle.h"
-#import "JobsAppDoorInputViewBaseStyleModel.h"
 
 #import "IncomeSourceModel.h"
 #import "JobsCountriesModel.h"

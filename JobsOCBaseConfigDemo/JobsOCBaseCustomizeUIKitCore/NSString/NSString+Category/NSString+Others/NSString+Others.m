@@ -39,7 +39,9 @@
 }
 /// OC字符串拼接
 -(JobsReturnStringByStringBlock _Nonnull)add{
+    @jobs_weakify(self)
     return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
+        @jobs_strongify(self)
         if(!str) str = @"";
         // 系统的stringByAppendingString方法在参数为nil的时候会崩溃
         return JobsMutableString([self stringByAppendingString:str]);/// 原始字符串不会改变，输出一个新的字符串
@@ -47,13 +49,17 @@
 }
 /// OC字符串转NSDate
 -(JobsReturnDateByDateFormatterBlock)dataByDateFormatter{
+    @jobs_weakify(self)
     return ^NSDate *_Nullable(NSDateFormatter *_Nullable data){
+        @jobs_strongify(self)
         return [data dateFromString:self];;
     };
 }
 /// OC字符串路径拼接
 -(JobsReturnStringByStringBlock _Nonnull)addPathComponent{
+    @jobs_weakify(self)
     return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
+        @jobs_strongify(self)
         if(!str) str = @"";
         // 系统的stringByAppendingString方法在参数为nil的时候会崩溃
         return JobsMutableString([self stringByAppendingPathComponent:str]);/// 自动处理（加上"/"）

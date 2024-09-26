@@ -6,17 +6,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSString+Others.h"
+#import "MacroDef_String.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsFormatTime : NSObject
 /// 时间之间的分隔形式。可以是：、可以是中文、也可以多语言化
-@property(nonatomic,strong)NSString *year;
-@property(nonatomic,strong)NSString *month;
-@property(nonatomic,strong)NSString *day;
-@property(nonatomic,strong)NSString *hour;
-@property(nonatomic,strong)NSString *minute;
-@property(nonatomic,strong)NSString *second;
+@property(nonatomic,copy)NSString *year;
+@property(nonatomic,copy)NSString *month;
+@property(nonatomic,copy)NSString *day;
+@property(nonatomic,copy)NSString *hour;
+@property(nonatomic,copy)NSString *minute;
+@property(nonatomic,copy)NSString *second;
 
 -(NSString *_Nonnull)formatTimeWithYear:(NSString * _Nullable)year
                                   month:(NSString * _Nullable)month

@@ -155,7 +155,6 @@
         }));
     };
 }
-
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
 +(JobsReturnButtonByStyle3Block _Nonnull)initByStyle5{
     @jobs_weakify(self)
@@ -273,13 +272,13 @@
                                        layerBorderCor:data.buttonModel.layerBorderCor
                                           borderWidth:data.buttonModel.borderWidth
                                         primaryAction:data.buttonModel.primaryAction
-                           longPressGestureEventBlock:^id(__kindof UIButton *_Nullable weakSelf,
-                                                          id _Nullable arg) {
+                           longPressGestureEventBlock:data.buttonModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable weakSelf,
+                                                                                                          id _Nullable arg) {
             NSLog(@"按钮的长按事件触发");
             if(weakSelf.longPressGestureBlock) weakSelf.longPressGestureBlock(arg);
             return nil;
         }
-                                      clickEventBlock:^id(__kindof UIButton *x){
+                                      clickEventBlock:data.buttonModel.clickEventBlock ? : ^id(__kindof UIButton *x){
             if(x.clickBlock) x.clickBlock(x);
             return nil;
         }];
@@ -323,13 +322,13 @@
                                        layerBorderCor:data.layerBorderCor
                                           borderWidth:data.borderWidth
                                         primaryAction:data.primaryAction
-                           longPressGestureEventBlock:^id(__kindof UIButton *_Nullable weakSelf,
-                                                          id _Nullable arg) {
+                           longPressGestureEventBlock:data.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable weakSelf,
+                                                                                              id _Nullable arg) {
             NSLog(@"按钮的长按事件触发");
             if(weakSelf.longPressGestureBlock) weakSelf.longPressGestureBlock(arg);
             return nil;
         }
-                                      clickEventBlock:^id(__kindof UIButton *x){
+                                      clickEventBlock:data.clickEventBlock ? : ^id(__kindof UIButton *x){
             if(x.clickBlock) x.clickBlock(x);
             return nil;
         }];
@@ -343,7 +342,7 @@
         if(!data) data = UITextModel.new;
         return [self.alloc jobsInitBtnByConfiguration:nil
                                            background:nil
-                                 buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                           buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
                                         textAlignment:NSTextAlignmentCenter
                                      subTextAlignment:NSTextAlignmentCenter
                                           normalImage:nil

@@ -23,27 +23,18 @@
 #import "FileFolderHandleTool.h"
 /// 时间管理
 #import "JobsTimerManager.h"
-/// 时间格式转换、时间相关模型 【包含  JobsTimeModel 和 JobsTimeFormatterModel 两个类】
-#import "JobsTimeModel.h"
 /// 网络监控
 #import "JobsMonitorNetwoking.h"
 /// SockeIO
 //#import "JobsSocketIOTools.h"
 /// TouchID
 #import "TouchID.h"
-/// 本类是自定义类，但是是对系统类的仿写，目的是承接上下文数据 成一束，方便管理
-#import "UIViewModel.h"
-#import "JobsHeaderFooterViewModel.h"
-/// 时间格式化
-#import "JobsFormatTime.h"
 /// 记录SEL和IMP
 #import "JobsSEL_IMP.h"
 /// 用Objective-C仿写Swift中的元祖
 #import "JobsTuple.h"
-/// 按钮数据源
-#import "UIButtonModel.h"
-/// 文本数据源
-#import "UITextModel.h"
+
+#import "JobsModel.h"
 
 #pragma mark —— Category
 /// 【二次封装HXPhotoPicker】弹出系统相册选择页面 + 调取系统相机进行拍摄
