@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 #import "UIButtonModel.h"
-#import "NSObject+AppTools.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

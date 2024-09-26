@@ -13,7 +13,6 @@
 #import "UIViewModelProtocol.h"
 #import "MacroDef_Notification.h"
 #import "JobsNavBar.h"
-#import "NSObject+AppTools.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
