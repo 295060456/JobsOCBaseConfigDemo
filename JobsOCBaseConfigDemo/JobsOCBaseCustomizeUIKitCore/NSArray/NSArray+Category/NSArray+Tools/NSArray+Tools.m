@@ -82,12 +82,14 @@
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
             /// 横向拉伸以均分
             if(data.axisType == MASAxisTypeHorizontal){
-                make.top.equalTo(@(data.top));
+                if(data.top) make.top.equalTo(@(data.top));
+                if(data.bottom) make.bottom.equalTo(@(data.bottom));
                 make.height.equalTo(@(data.height));
             }
             /// 纵向拉伸以均分
             if(data.axisType == MASAxisTypeVertical){
-                make.left.equalTo(@(data.left));
+                if(data.left) make.left.equalTo(@(data.left));
+                if(data.right) make.right.equalTo(@(data.right));
                 make.width.equalTo(@(data.width));
             }
         }];return self;
