@@ -7,9 +7,12 @@
 
 #import <Foundation/Foundation.h>
 #import "DefineConstString.h"
-#import "NSUserDefaults+Manager.h"
-#import "JobsUserModel.h"
 #import "JobsBlock.h"
+#import "JobsUserModel.h"
+#import "NSUserDefaults+Manager.h"
+#import "NSMutableSet+Extra.h"
+#import "NSMutableArray+Extra.h"
+#import "NSObject+Extras.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnIDByStringBlock _Nonnull)jobsReadUserInfo;
 #pragma mark —— 保存特定的用户数据（不随登出清空数据）
 ///【通过特定的用户名】 保存（更新）用户的本地资料（用 NSUserDefaults ）
--(jobsByUserModelBlock)userNameToSaveUserInfo;
+-(jobsByUserModelBlock _Nonnull)userNameToSaveUserInfo;
 ///【通过特定的用户名】 读取用户的本地资料
 -(JobsReturnIDByClsAndSaltStrBlock _Nonnull)readUserInfoByUserName;
 ///【通过特定的用户名】 删除该用户的本地资料

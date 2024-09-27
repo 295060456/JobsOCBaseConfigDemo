@@ -10,9 +10,9 @@
 
 @implementation UIView (Extras)
 #pragma mark —— BaseViewProtocol
-+(JobsReturnIDByIDBlock _Nonnull)JobsRichElementsInViewWithModel{
++(JobsReturnViewByIDBlock _Nonnull)JobsRichElementsInViewWithModel{
     @jobs_weakify(self)
-    return ^id _Nullable(id _Nullable data){
+    return ^__kindof UIView *_Nullable(id _Nullable data){
         @jobs_strongify(self)
         UIView <BaseViewProtocol>*instance = self.class.new;
         if ([instance respondsToSelector:@selector(jobsRichElementsInViewWithModel)]) {

@@ -10,21 +10,23 @@
 
 @implementation UIView (Animation)
 #pragma mark —— 一些功能方法
--(jobsByBOOLBlock)抖动动画{
+-(JobsReturnViewByBOOLBlock _Nonnull)抖动动画{
     @jobs_weakify(self)
-    return ^(BOOL open) {
+    return ^__kindof UIView *_Nullable(BOOL open) {
         @jobs_strongify(self)
         open ? [self.layer addAnimation:self.shakeAnim forKey:@"shake"] : [self.layer removeAnimationForKey:@"shake"];
+        return self;
     };
 }
 
--(jobsByBOOLBlock)旋转动画{
+-(JobsReturnViewByBOOLBlock _Nonnull)旋转动画{
     @jobs_weakify(self)
-    return ^(BOOL start) {
+    return ^__kindof UIView *_Nullable(BOOL start) {
         @jobs_strongify(self)
         if (start) {
-            @jobs_weakify(self)
+            // 获取结束时的角度
             CGAffineTransform endAngle = CGAffineTransformMakeRotation(self.currentAngle * (M_PI / 180.0f));
+            // 动画部分
             [UIView animateWithDuration:self.durationTime
                                   delay:self.delayTime
                                 options:UIViewAnimationOptionCurveLinear
@@ -33,40 +35,55 @@
                 self.transform = endAngle;
             } completion:^(BOOL finished) {
                 @jobs_strongify(self)
+                // 增加角度
                 self.currentAngle += self.rotateChangeAngle;
-                if (!self.isStopRotateAnimation) self.旋转动画(YES);
+                // 判断是否继续旋转
+                if (!self.isStopRotateAnimation) {
+                    // 递归调用旋转动画
+                    self.旋转动画(YES);
+                }
             }];
-        }else self.isStopRotateAnimation = !self.isStopRotateAnimation;
+        } else {
+            // 停止旋转
+            self.isStopRotateAnimation = !self.isStopRotateAnimation;
+        }return self;
     };
 }
-
--(jobsByVoidBlock)图片从小放大{
+-(JobsReturnViewByVoidBlock _Nonnull)图片从小放大{
     @jobs_weakify(self)
-    return ^() {
+    return ^__kindof UIView *_Nullable() {
         @jobs_strongify(self)
         CAKeyframeAnimation *popAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
         popAnimation.duration = 1;
-        popAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f,
-                                                                                       0.01f,
-                                                                                       1.0f)],
-                                [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1f,
-                                                                                       1.1f,
-                                                                                       1.0f)],
-                                [NSValue valueWithCATransform3D:CATransform3DIdentity]];
-        popAnimation.keyTimes = @[@0.0f,
-                                  @0.5f,
-                                  @0.75f,
-                                  @1.0f];
-        popAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-                                         [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-                                         [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-        [self.layer addAnimation:popAnimation
-                          forKey:nil];
+        popAnimation.values = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add([NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f,
+                                                                            0.01f,
+                                                                            1.0f)]);
+            data.add([NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1f,
+                                                                            1.1f,
+                                                                            1.0f)]);
+            data.add([NSValue valueWithCATransform3D:CATransform3DIdentity]);
+        });
+        popAnimation.keyTimes = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(@0.0f);
+            data.add(@0.5f);
+            data.add(@0.75f);
+            data.add(@1.0f);
+        });
+        popAnimation.timingFunctions = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add([CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]);
+            data.add([CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]);
+            data.add([CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]);
+        });
+        [self.layer addAnimation:popAnimation forKey:nil];
+        return self;
     };
 }
 
--(jobsByVoidBlock)视图上下一直来回跳动的动画{
-    return ^() {
+-(JobsReturnViewByVoidBlock _Nonnull)视图上下一直来回跳动的动画{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable() {
+        @jobs_strongify(self)
         CABasicAnimation *hover = [CABasicAnimation animationWithKeyPath:@"position"];
         hover.additive = YES; // fromValue and toValue will be relative instead of absolute values
         hover.fromValue = [NSValue valueWithCGPoint:CGPointZero];
@@ -76,6 +93,7 @@
         hover.repeatCount = INFINITY; // The number of times the animation should repeat
         hover.removedOnCompletion = NO;//锁屏进入继续动画
         [self.layer addAnimation:hover forKey:@"myHoverAnimation"];
+        return self;
     };
 }
 /// 点击放大再缩小
@@ -145,20 +163,24 @@
     CAKeyframeAnimation * animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.y"];
     CGFloat currentTx = self.transform.ty;
     animation.duration = duration;
-    animation.values = @[@(currentTx),
-                         @(currentTx + height),
-                         @(currentTx - height / 3 * 2),
-                         @(currentTx + height / 3 * 2),
-                         @(currentTx - height / 3),
-                         @(currentTx + height / 3),
-                         @(currentTx)];
-    animation.keyTimes = @[@(0),
-                           @(0.225),
-                           @(0.425),
-                           @(0.6),
-                           @(0.75),
-                           @(0.875),
-                           @(1)];
+    animation.values = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        data.add(@(currentTx));
+        data.add(@(currentTx + height));
+        data.add(@(currentTx - height / 3 * 2));
+        data.add(@(currentTx + height / 3 * 2));
+        data.add(@(currentTx - height / 3));
+        data.add(@(currentTx + height / 3));
+        data.add(@(currentTx));
+    });
+    animation.keyTimes = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        data.add(@(0));
+        data.add(@(0.225));
+        data.add(@(0.425));
+        data.add(@(0.6));
+        data.add(@(0.75));
+        data.add(@(0.875));
+        data.add(@(1));
+    });
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [self.layer addAnimation:animation forKey:@"kViewShakerAnimationKey"];
 }

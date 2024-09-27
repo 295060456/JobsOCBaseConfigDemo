@@ -96,11 +96,13 @@
     };
 }
 
--(jobsByVoidBlock _Nonnull)describe{
+-(jobsByBOOLBlock _Nonnull)jobsVisible{
     @jobs_weakify(self)
-    return ^(){
+    return ^(BOOL data){
         @jobs_strongify(self)
-        NSLog(@"%@",self);
+        for (UIView *view in self) {
+            view.jobsVisible = data;
+        }
     };
 }
 

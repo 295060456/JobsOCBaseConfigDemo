@@ -39,17 +39,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (Animation)
 
-@property(nonatomic,assign)CGFloat __block rotateChangeAngle;
-@property(nonatomic,assign)CGFloat __block currentAngle;
-@property(nonatomic,assign)CGFloat __block durationTime;
-@property(nonatomic,assign)CGFloat __block delayTime;
-@property(nonatomic,assign)BOOL __block isStopRotateAnimation;//默认值为NO（一直旋转）
-@property(nonatomic,strong)CAKeyframeAnimation *__block shakeAnim;
+@property(nonatomic,assign)CGFloat rotateChangeAngle;
+@property(nonatomic,assign)CGFloat currentAngle;
+@property(nonatomic,assign)CGFloat durationTime;
+@property(nonatomic,assign)CGFloat delayTime;
+@property(nonatomic,assign)BOOL isStopRotateAnimation;//默认值为NO（一直旋转）
+@property(nonatomic,strong)CAKeyframeAnimation *shakeAnim;
 #pragma mark —— 一些功能方法
--(jobsByBOOLBlock)抖动动画;
--(jobsByBOOLBlock)旋转动画;
--(jobsByVoidBlock)图片从小放大;
--(jobsByVoidBlock)视图上下一直来回跳动的动画;
+-(JobsReturnViewByBOOLBlock _Nonnull)抖动动画;
+-(JobsReturnViewByBOOLBlock _Nonnull)旋转动画;
+-(JobsReturnViewByVoidBlock _Nonnull)图片从小放大;
+-(JobsReturnViewByVoidBlock _Nonnull)视图上下一直来回跳动的动画;
 /// 点击放大再缩小
 -(void)addViewAnimationWithCompletionBlock:(jobsByIDBlock _Nullable)completionBlock;
 /// 逐渐显示

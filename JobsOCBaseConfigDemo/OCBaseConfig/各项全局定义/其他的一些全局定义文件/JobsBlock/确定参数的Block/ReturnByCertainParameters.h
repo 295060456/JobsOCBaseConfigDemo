@@ -96,7 +96,9 @@ typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitleAl
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock)(BOOL data) API_AVAILABLE(ios(16.0));
 #pragma mark —— 关于 View
 typedef __kindof UIView *_Nullable(^JobsReturnViewByVoidBlock)(void);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByIDBlock)(id _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByCorBlock)(UIColor *_Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByBOOLBlock)(BOOL data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByFloatBlock)(CGFloat data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByNSUIntegerBlock)(NSUInteger data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewBySizeBlock)(CGSize data);

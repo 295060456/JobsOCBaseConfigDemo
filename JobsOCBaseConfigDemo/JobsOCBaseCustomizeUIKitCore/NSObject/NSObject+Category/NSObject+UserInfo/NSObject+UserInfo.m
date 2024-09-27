@@ -14,10 +14,7 @@
  【return】 YES(已经登录)、NO（未登录）
  */
 -(BOOL)isLogin{
-    UserDefaultModel *obj = (UserDefaultModel *)NSUserDefaults.readWithKey(用户信息);
-    if (obj) {
-        return isValue(self.readUserInfo().token);
-    }return obj;
+    return isValue(self.readUserInfo().token) && self.readUserInfo();
 }
 /// 检查是否登录并执行传入的代码块
 -(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock {
@@ -63,7 +60,7 @@
     };
 }
 /// 读取用户信息【用户信息】/【JobsUserModel】
--(JobsReturnUserModelByVoidBlock)readUserInfo{
+-(JobsReturnUserModelByVoidBlock _Nonnull)readUserInfo{
     @jobs_weakify(self)
     return ^JobsUserModel <NSCoding> *_Nullable() {
         @jobs_strongify(self)
@@ -108,15 +105,16 @@
             NSError *error = nil;
             /// 如果 JobsUserModel 中包含更多自定义类型或者你需要解码其他基本类型（例如 NSArray 或 NSDictionary），需要将这些类也加入到 allowedClasses 集合中。
             /// 确保在解码所有需要的类时，将其包含在 allowedClasses 集合中以避免警告和潜在的解码失败。例如
-            NSMutableSet <Class>*allowedClasses = NSMutableSet.set;
-            allowedClasses.add(JobsUserModel.class);
-            allowedClasses.add(NSString.class);
-            allowedClasses.add(NSNumber.class);
-            allowedClasses.add(NSArray.class);
-            allowedClasses.add(NSDictionary.class);
-            allowedClasses.add(UIImage.class);
-            allowedClasses.add(NSArray.class);
-            allowedClasses.add(cls);
+            NSMutableSet <Class>*allowedClasses = jobsMakeMutSet(^(__kindof NSMutableSet * _Nullable data) {
+                data.add(JobsUserModel.class);
+                data.add(NSString.class);
+                data.add(NSNumber.class);
+                data.add(NSArray.class);
+                data.add(NSDictionary.class);
+                data.add(UIImage.class);
+                data.add(NSArray.class);
+                data.add(cls);
+            });
             
             id userModel = [NSKeyedUnarchiver unarchivedObjectOfClasses:allowedClasses
                                                                fromData:archivedData
@@ -140,7 +138,8 @@
 -(jobsByStringBlock _Nonnull)saveUserName{
     return ^(NSString *_Nullable userName){
         if (isNull(userName)) return;
-        NSMutableArray <NSString *>*userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKey(用户名数组)];//取出来的实际上是个不可变数组，所以需要向可变数组进行转化
+        //取出来的实际上是个不可变数组，所以需要向可变数组进行转化
+        NSMutableArray <NSString *>*userNameMutArr = NSMutableArray.initBy(JobsUserDefaults.valueForKey(用户名数组));
         if (!userNameMutArr) userNameMutArr = NSMutableArray.array;
         // 保持唯一性
         if (![userNameMutArr containsObject:userName]) {
@@ -157,7 +156,7 @@
 /// 全局删除已经登录成功的用户名
 -(jobsByStringBlock _Nonnull)deleteUserName{
     return ^(NSString *_Nullable userName){
-        NSMutableArray <NSString *>*userNameMutArr = [NSMutableArray arrayWithArray:JobsUserDefaults.valueForKey(用户名数组)];
+        NSMutableArray <NSString *>*userNameMutArr = NSMutableArray.initBy(JobsUserDefaults.valueForKey(用户名数组));
         if (userNameMutArr && isValue(userName)) {
             [userNameMutArr removeObject:userName];
             JobsSetUserDefaultKeyWithObject(用户名数组, userNameMutArr);

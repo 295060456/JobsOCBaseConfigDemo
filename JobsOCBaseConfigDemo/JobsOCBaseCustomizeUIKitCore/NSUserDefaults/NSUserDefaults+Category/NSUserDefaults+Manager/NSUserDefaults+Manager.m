@@ -10,7 +10,7 @@
 @implementation NSUserDefaults (Manager)
 /// CRUD（create, read, update, delete）
 /// 存数据（包括父类直到NSObject的所有属性）
-+(jobsByUserDefaultModelBlock)updateWithModel{
++(jobsByUserDefaultModelBlock _Nonnull)updateWithModel{
     return ^(UserDefaultModel *_Nonnull userDefaultModel) {
         if (isValue(userDefaultModel.key)) {
             if (userDefaultModel.obj && ![userDefaultModel.obj isKindOfClass:NSNull.class]) {
@@ -40,7 +40,7 @@
     };
 }
 /// 读取数据
-+(JobsReturnIDByStringBlock)readWithKey{
++(JobsReturnIDByStringBlock _Nonnull)readWithKey{
     return ^(NSString * _Nullable key) {
         id data = nil;
         if (isValue(key)){
@@ -49,7 +49,7 @@
     };
 }
 /// 删除数据
-+(jobsByStringBlock)deleteWithKey{
++(jobsByStringBlock _Nonnull)deleteWithKey{
     return ^(NSString * _Nullable key) {
         if (isValue(key)){
             JobsDeleUserDefaultWithKey(key);

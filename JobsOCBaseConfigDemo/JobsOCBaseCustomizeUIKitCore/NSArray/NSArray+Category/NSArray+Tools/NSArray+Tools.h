@@ -29,13 +29,13 @@
 -(JobsReturnArrayByArrayBlock _Nonnull)arrayForMinusWithOtherArray;
 /// Masonry 均匀分布的布局方式封装
 -(JobsReturnIDByMasonryModelBlock _Nonnull)installByMasonryModel;
--(jobsByVoidBlock _Nonnull)describe;
+-(jobsByBOOLBlock _Nonnull)jobsVisible;
 
 @end
 
 /**
  @property(nonatomic,strong)NSMutableArray <UIImageView *>*subViewsMutArr;
- self.subViewsMutArr.describe();
+ self.subViewsMutArr.jobsVisible(YES);
  
  -(NSMutableArray<UIImageView *> *)subViewsMutArr{
      if(!_subViewsMutArr){

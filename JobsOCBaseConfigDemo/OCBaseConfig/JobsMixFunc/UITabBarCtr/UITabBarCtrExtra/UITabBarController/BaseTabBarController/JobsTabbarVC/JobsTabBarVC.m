@@ -488,29 +488,20 @@ shouldSelectViewController:(UIViewController *)viewController {
 
 -(NSMutableArray<UIViewModel *> *)pullListAutoSizeViewMutArr{
     if (!_pullListAutoSizeViewMutArr) {
-        _pullListAutoSizeViewMutArr = NSMutableArray.array;
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.image = JobsIMG(JobsInternationalization(@""));
-            viewModel.textModel.text = JobsInternationalization(@"111");
-            [_pullListAutoSizeViewMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.image = JobsIMG(JobsInternationalization(@""));
-            viewModel.textModel.text = JobsInternationalization(@"222");
-            [_pullListAutoSizeViewMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.image = JobsIMG(JobsInternationalization(@""));
-            viewModel.textModel.text = JobsInternationalization(@"333");
-            [_pullListAutoSizeViewMutArr addObject:viewModel];
-        }
-        
+        _pullListAutoSizeViewMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.image = JobsIMG(JobsInternationalization(@""));
+                viewModel.textModel.text = JobsInternationalization(@"111");
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.image = JobsIMG(JobsInternationalization(@""));
+                viewModel.textModel.text = JobsInternationalization(@"222");
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.image = JobsIMG(JobsInternationalization(@""));
+                viewModel.textModel.text = JobsInternationalization(@"333");
+            }));
+        });
     }return _pullListAutoSizeViewMutArr;
 }
 
