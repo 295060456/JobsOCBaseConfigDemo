@@ -48,7 +48,20 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnCGRectByVoidBlock _Nonnull)exchangeWidthAndHeight;
 #pragma mark —— 交换 X 和 Y
 -(JobsReturnCGRectByVoidBlock _Nonnull)exchangeXAndY;
-#pragma mark —— UIView
+#pragma mark —— 设置控件的约束（返回控件自己本身）
+/// 设置控件的 Size
+-(JobsReturnIDByCGSizeBlock _Nonnull)bySize;
+/// 设置控件的 Frame
+-(JobsReturnIDByCGRectBlock _Nonnull)byFrame;
+/// 设置控件的 Origin
+-(JobsReturnIDByCGPointBlock _Nonnull)byOrigin;
+/// 设置控件的 Width
+-(JobsReturnIDByCGFloatBlock _Nonnull)byWidth;
+/// 设置控件的 Height
+-(JobsReturnIDByCGFloatBlock _Nonnull)byHeight;
+/// 设置控件的 Center
+-(JobsReturnIDByCenterBlock _Nonnull)byCenter;
+#pragma mark —— 重新设置控件的约束（返回控件的Frame）
 /// 重设Frame
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginX;
 -(JobsReturnCGRectByCGFloatAndUIViewBlock _Nonnull)resetRightX;

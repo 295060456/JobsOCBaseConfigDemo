@@ -11,6 +11,12 @@
 #pragma mark —— 关于 id
 typedef id _Nullable(^JobsReturnIDByVoidBlock)(void);
 
+typedef id _Nullable(^JobsReturnIDByCGSizeBlock)(CGSize data);
+typedef id _Nullable(^JobsReturnIDByCGRectBlock)(CGRect data);
+typedef id _Nullable(^JobsReturnIDByCGPointBlock)(CGPoint data);
+typedef id _Nullable(^JobsReturnIDByCGFloatBlock)(CGFloat data);
+typedef id _Nullable(^JobsReturnIDByCenterBlock)(CGFloat x,CGFloat y);
+
 typedef id _Nullable(^JobsReturnIDByIDBlock)(id _Nullable data);
 typedef id _Nullable(^JobsReturnIDByObjBlock)(NSObject *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByDataBlock)(NSData *_Nullable data);

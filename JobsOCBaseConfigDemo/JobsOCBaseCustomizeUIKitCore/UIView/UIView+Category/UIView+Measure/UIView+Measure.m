@@ -20,7 +20,9 @@
 }
 #pragma mark —— 交换宽高
 -(JobsReturnCGRectByVoidBlock _Nonnull)exchangeWidthAndHeight{
+    @jobs_weakify(self)
     return ^CGRect(){
+        @jobs_strongify(self)
         return CGRectMake(self.x,
                           self.y,
                           self.height,
@@ -29,14 +31,74 @@
 }
 #pragma mark —— 交换 X 和 Y
 -(JobsReturnCGRectByVoidBlock _Nonnull)exchangeXAndY{
+    @jobs_weakify(self)
     return ^CGRect(){
+        @jobs_strongify(self)
         return CGRectMake(self.y,
                           self.x,
                           self.width,
                           self.height);
     };
 }
-#pragma mark —— UIView
+#pragma mark —— 设置控件的约束（返回控件自己本身）
+/// 设置控件的 Size
+-(JobsReturnIDByCGSizeBlock _Nonnull)bySize{
+    @jobs_weakify(self)
+    return ^id _Nullable(CGSize data){
+        @jobs_strongify(self)
+        self.resetSize(data);
+        return self;
+    };
+}
+/// 设置控件的 Frame
+-(JobsReturnIDByCGRectBlock _Nonnull)byFrame{
+    @jobs_weakify(self)
+    return ^id _Nullable(CGRect data){
+        @jobs_strongify(self)
+        self.frame = data;
+        return self;
+    };
+}
+/// 设置控件的 Origin
+-(JobsReturnIDByCGPointBlock _Nonnull)byOrigin{
+    @jobs_weakify(self)
+    return ^id _Nullable(CGPoint data){
+        @jobs_strongify(self)
+        self.resetOrigin(data);
+        return self;
+    };
+}
+/// 设置控件的 Width
+-(JobsReturnIDByCGFloatBlock _Nonnull)byWidth{
+    @jobs_weakify(self)
+    return ^id _Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.resetWidth(data);
+        return self;
+    };
+}
+/// 设置控件的 Height
+-(JobsReturnIDByCGFloatBlock _Nonnull)byHeight{
+    @jobs_weakify(self)
+    return ^id _Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.resetHeight(data);
+        return self;
+    };
+}
+/// 设置控件的 Center
+-(JobsReturnIDByCenterBlock _Nonnull)byCenter{
+    @jobs_weakify(self)
+    return ^id _Nullable(CGFloat x,CGFloat y){
+        @jobs_strongify(self)
+        CGPoint center = self.center;
+        center.x = x;
+        center.x = y;
+        self.center = center;
+        return self;
+    };
+}
+#pragma mark —— 重新设置控件的约束（返回控件的Frame）
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginX{
     @jobs_weakify(self)
     return ^(CGFloat data) {
