@@ -119,10 +119,6 @@ static inline void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view
 -(CABasicAnimation *_Nonnull)getAnimation;
 /// 判断是否需要滚动
 -(BOOL)shouldAutoScroll;
-/// 数据（字符串）定宽
-+(CGFloat)widthByData:(UIViewModel *_Nonnull)data;
-/// 数据（字符串）定高
-+(CGFloat)heightByData:(UIViewModel *_Nonnull)data;
 #pragma mark —— 其他
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;
 -(jobsByViewBlock _Nonnull)addSubview;

@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_END
      if(!_topGamesView){
          _topGamesView = FMHomeTopGamesView.new;
          _topGamesView.frame = self.bounds;
-         _topGamesView.jobsRichElementsInViewWithModel(nil);
+         _topGamesView.jobsRichViewByModel(nil);
      }return _topGamesView;
  }
 
@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_END
      if(!_slotGamesView){
          _slotGamesView = FMHomeSlotGamesView.new;
          _slotGamesView.frame = self.bounds;
-         _slotGamesView.jobsRichElementsInViewWithModel(nil);
+         _slotGamesView.jobsRichViewByModel(nil);
      }return _slotGamesView;
  }
 
@@ -123,7 +123,7 @@ NS_ASSUME_NONNULL_END
      if(!_liveCasinoView){
          _liveCasinoView = FMHomeLiveCasinoView.new;
          _liveCasinoView.frame = self.bounds;
-         _liveCasinoView.jobsRichElementsInViewWithModel(nil);
+         _liveCasinoView.jobsRichViewByModel(nil);
      }return _liveCasinoView;
  }
 
@@ -131,7 +131,7 @@ NS_ASSUME_NONNULL_END
      if(!_tableGamesView){
          _tableGamesView = FMHomeTableGamesView.new;
          _tableGamesView.frame = self.bounds;
-         _tableGamesView.jobsRichElementsInViewWithModel(nil);
+         _tableGamesView.jobsRichViewByModel(nil);
      }return _tableGamesView;
  }
 
@@ -139,7 +139,7 @@ NS_ASSUME_NONNULL_END
      if(!_sportsView){
          _sportsView = FMHomeSportsView.new;
          _sportsView.frame = self.bounds;
-         _sportsView.jobsRichElementsInViewWithModel(nil);
+         _sportsView.jobsRichViewByModel(nil);
      }return _sportsView;
  }
 
@@ -147,7 +147,7 @@ NS_ASSUME_NONNULL_END
      if(!_fishingView){
          _fishingView = FMHomeFishingView.new;
          _fishingView.frame = self.bounds;
-         _fishingView.jobsRichElementsInViewWithModel(nil);
+         _fishingView.jobsRichViewByModel(nil);
      }return _fishingView;
  }
  

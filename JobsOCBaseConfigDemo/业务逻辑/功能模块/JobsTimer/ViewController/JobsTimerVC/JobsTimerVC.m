@@ -220,11 +220,11 @@
 -(JobsCountdownView *)countdownView{
     if (!_countdownView) {
         _countdownView = JobsCountdownView.new;
-        _countdownView.jobsRichElementsInViewWithModel(nil);
+        _countdownView.jobsRichViewByModel(nil);
         [self.view addSubview:_countdownView];
         [_countdownView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.view);
-            make.size.mas_equalTo([JobsCountdownView viewSizeWithModel:nil]);
+            make.size.mas_equalTo(JobsCountdownView.viewSizeByModel(nil));
         }];
     }return _countdownView;
 }

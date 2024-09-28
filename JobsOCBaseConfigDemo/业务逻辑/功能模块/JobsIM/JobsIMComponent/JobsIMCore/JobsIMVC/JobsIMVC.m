@@ -73,7 +73,7 @@
     [super viewDidLayoutSubviews];
     if (self.inputview.inputTextField.TFRiseHeight) {
         CGFloat H = self.inputview.inputTextField.TFRiseHeight;
-        CGFloat h = [JobsAdNoticeView viewSizeWithModel:nil].height;
+        CGFloat h = JobsAdNoticeView.viewSizeByModel(nil).height;
         self.inputview.mj_y = self.inputview.inputAccessoryView ? (H - h) : H;
     }
 }
@@ -125,7 +125,7 @@
 #pragma mark —————————— UITableViewDelegate,UITableViewDataSource ——————————
 -(CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [JobsIMChatInfoTBVCell cellHeightWithModel:self.chatInfoModelMutArr[indexPath.row]];
+    return JobsIMChatInfoTBVCell.cellHeightByModel(self.chatInfoModelMutArr[indexPath.row]);
 }
 
 -(void)tableView:(UITableView *)tableView
@@ -373,7 +373,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             NSLog(@"%f",JobsBottomSafeAreaHeight());
             make.bottom.equalTo(self.view).offset(-JobsBottomSafeAreaHeight());
         }];
-        _inputview.jobsRichElementsInViewWithModel(nil);
+        _inputview.jobsRichViewByModel(nil);
     }return _inputview;
 }
 

@@ -44,7 +44,7 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 外层数据渲染
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(id _Nullable data) {
         @jobs_strongify(self)
@@ -163,7 +163,7 @@
             make.size.mas_equalTo(CGSizeMake(JobsWidth(250), JobsWidth(50)));
         }];
         [self layoutIfNeeded];
-        _hl.jobsRichElementsInViewWithModel(self.hotLabelDataMutArr);
+        _hl.jobsRichViewByModel(self.hotLabelDataMutArr);
     }return _hl;
 }
 /**

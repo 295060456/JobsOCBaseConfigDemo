@@ -26,7 +26,7 @@
     [super drawRect:rect];
 }
 #pragma mark —— BaseViewProtocol
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(id _Nullable model) {
         @jobs_strongify(self)
@@ -34,8 +34,10 @@
     };
 }
 
-+(CGSize)viewSizeWithModel:(id _Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH(), 30);
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^(id _Nullable data){
+        return CGSizeMake(JobsMainScreen_WIDTH(), 30);
+    };
 }
 #pragma mark —— lazyLoad
 -(UILabel *)adNoticeLab{

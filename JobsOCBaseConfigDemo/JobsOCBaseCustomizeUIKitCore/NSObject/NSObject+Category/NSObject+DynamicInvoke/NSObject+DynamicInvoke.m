@@ -170,8 +170,6 @@ existMethodWithName:(nullable NSString *)methodName{
 ///   - block: 最终的执行体
 ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
 ///   - target: 执行目标
-///
-///
 -(SEL _Nullable)selectorBlocks:(JobsReturnIDBySelectorBlock)block
                   selectorName:(NSString *_Nullable)selectorName
                         target:(id _Nullable)target{
@@ -190,8 +188,7 @@ existMethodWithName:(nullable NSString *)methodName{
     /// 检查缓存中是否已经存在该选择器
     NSValue *cachedSelValue = self.methodCache[selName];
     if (cachedSelValue) {
-        sel = cachedSelValue.pointerValue;
-        return sel;
+        return cachedSelValue.pointerValue;;
     }
     /**
      方法签名由方法名称和一个参数列表（方法的参数的顺序和类型）组成
@@ -216,7 +213,7 @@ existMethodWithName:(nullable NSString *)methodName{
                                      block,
                                      OBJC_ASSOCIATION_COPY_NONATOMIC);
             // 缓存该选择器
-            self.methodCache[selName] = [NSValue valueWithPointer:sel];
+            self.methodCache[selName] = NSValue.byPoint(sel);
         }else{
             [NSException raise:JobsInternationalization(@"添加方法失败")
                         format:@"%@ selectorBlock error", target];
@@ -224,12 +221,11 @@ existMethodWithName:(nullable NSString *)methodName{
     }return sel;
 }
 /// 内部调用无需暴露
-static void selectorImp(id self,
+static void selectorImp(id target,
                         SEL _cmd,
                         id arg) {
-    JobsReturnIDBySelectorBlock block = objc_getAssociatedObject(self, _cmd);
-    @jobs_weakify(self)
-    if (block) block(weak_self, arg);
+    JobsReturnIDBySelectorBlock block = objc_getAssociatedObject(target, _cmd);
+    if (block) block(target, arg);
 }
 /// 对 SEL和IMP的统一管理
 #pragma mark —— @property(nonatomic,strong)JobsSEL_IMP *selImp;

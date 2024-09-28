@@ -61,7 +61,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -73,20 +73,26 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
     };
 }
 /// 具体由子类进行复写【FrameY的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)viewChangeYWithModel:(id _Nullable)model{
-    return JobsWidth(50) + JobsBottomSafeAreaHeight();
++(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeYByModel{
+    return ^CGFloat(id _Nullable data){
+        return JobsWidth(50) + JobsBottomSafeAreaHeight();
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH(),
-                      [MsgEditBoardView viewChangeYWithModel:nil]);
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeMake(JobsMainScreen_WIDTH(),
+                          MsgEditBoardView.viewChangeYByModel(nil));
+    };
 }
 /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGRect)viewFrameWithModel:(id _Nullable)model{
-    return CGRectMake(0,
-                      JobsMainScreen_HEIGHT(),
-                      [MsgEditBoardView viewSizeWithModel:nil].width,
-                      [MsgEditBoardView viewSizeWithModel:nil].height);
++(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel{
+    return ^CGRect(id _Nullable data){
+        return CGRectMake(0,
+                          JobsMainScreen_HEIGHT(),
+                          MsgEditBoardView.viewSizeByModel(nil).width,
+                          MsgEditBoardView.viewSizeByModel(nil).height);
+    };
 }
 #pragma mark —— 一些公有方法
 -(void)appearByView:(UIView * _Nonnull)view{
@@ -94,8 +100,8 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
     [UIView animateWithDuration:.5f
                      animations:^{
         @jobs_strongify(self)
-        CGRect rect = [MsgEditBoardView viewFrameWithModel:nil];
-        rect.origin.y -= [MsgEditBoardView viewChangeYWithModel:nil];
+        CGRect rect = MsgEditBoardView.viewFrameByModel(nil);
+        rect.origin.y -= MsgEditBoardView.viewChangeYByModel(nil);
         self.frame = rect;
         [view addSubview:self];
     } completion:nil];
@@ -106,7 +112,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
     [UIView animateWithDuration:.5f
                      animations:^{
         @jobs_strongify(self)
-        self.frame = [MsgEditBoardView viewFrameWithModel:nil];
+        self.frame = MsgEditBoardView.viewFrameByModel(nil);
     } completion:^(BOOL finished) {
         @jobs_strongify(self)
         [self removeFromSuperview];

@@ -73,7 +73,7 @@ static dispatch_once_t static_commentViewOnceToken;
     viewModel.textModel.text = self.dataMutArr[section].sectionTitle;
     viewModel.textModel.font = UIFontWeightBoldSize(16);
     viewModel.textModel.textCor = JobsCor(@"#333333");
-    headerView.jobsRichElementsInViewWithModel(viewModel);
+    headerView.jobsRichViewByModel(viewModel);
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -82,7 +82,7 @@ static dispatch_once_t static_commentViewOnceToken;
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -108,7 +108,7 @@ didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{}
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [MSCommentTBVCell cellHeightWithModel:self.dataMutArr[indexPath.section].commentDataMutArr[indexPath.row]];
+    return MSCommentTBVCell.cellHeightByModel(self.dataMutArr[indexPath.section].commentDataMutArr[indexPath.row]);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -132,11 +132,11 @@ numberOfRowsInSection:(NSInteger)section{
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{
-    return [MSCommentTableHeaderFooterView heightForHeaderInSection:nil];
+    return MSCommentTableHeaderFooterView.heightForHeaderInSection(nil);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
-heightForFooterInSection:(NSInteger)section{
+heightForFooterInSectionByModel:(NSInteger)section{
     return CGFLOAT_MIN;
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
@@ -155,14 +155,11 @@ viewForHeaderInSection:(NSInteger)section{
         header.allowableMovement = 1;
         header.userInteractionEnabled = YES;
         header.target = self;
-        @jobs_weakify(self)
         header.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                              UITapGestureRecognizer *_Nullable arg) {
-            @jobs_strongify(self)
             MSCommentTableHeaderFooterView *header = (MSCommentTableHeaderFooterView *)arg.view;
             NSInteger section = header.tag;
-            [tableView ww_foldSection:section
-                                 fold:![tableView ww_isSectionFolded:section]];
+            [tableView ww_foldSection:section fold:![tableView ww_isSectionFolded:section]];
             return nil;
         }];
         header.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行

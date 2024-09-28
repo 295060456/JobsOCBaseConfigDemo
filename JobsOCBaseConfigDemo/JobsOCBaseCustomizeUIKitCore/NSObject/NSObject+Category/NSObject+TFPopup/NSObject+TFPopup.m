@@ -118,10 +118,9 @@
 #warning 这样写的目的是方便在其他地方调用
 /// 公告
 -(JobsNoticePopupView *)noticePopupView{
-    JobsNoticePopupView *_noticePopupView = JobsNoticePopupView.new;
-    _noticePopupView.Size = [JobsNoticePopupView viewSizeWithModel:nil];
-    _noticePopupView.jobsRichElementsInViewWithModel(UIViewModel.new);
-    return _noticePopupView;
+    return JobsNoticePopupView
+        .BySize(JobsNoticePopupView.viewSizeByModel(nil))
+        .JobsRichViewByModel2(UIViewModel.new);
 }
 #pragma mark —— @property(nonatomic,strong)TFPopupParam *popupParameter;
 JobsKey(_popupParameter)

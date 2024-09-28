@@ -94,7 +94,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataMutArr[indexPath.row].cls) {
-        self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.row].cls.new,self.dataMutArr[indexPath.row]);
+        self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.row].cls.new,
+                                           self.dataMutArr[indexPath.row]);
     }else self.jobsToastMsg(JobsInternationalization(@"尚未接入此功能"));
 }
 /// 编辑模式下，点击取消左边已选中的cell的按钮
@@ -130,7 +131,7 @@ heightForHeaderInSection:(NSInteger)section{
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
-heightForFooterInSection:(NSInteger)section{
+heightForFooterInSectionByModel:(NSInteger)section{
     return JobsWidth(10);
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
@@ -148,7 +149,7 @@ viewForHeaderInSection:(NSInteger)section{
 //            headerView.tableView = tableView;
 //            headerView.section = section;
 //        }
-        headerView.jobsRichElementsInViewWithModel(nil);
+        headerView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [headerView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
@@ -167,7 +168,7 @@ viewForHeaderInSection:(NSInteger)section{
         }
         tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
         tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
-        tbvFooterView.jobsRichElementsInViewWithModel(nil);
+        tbvFooterView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [tbvFooterView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
@@ -279,7 +280,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 //        {/// 设置tabAnimated相关属性
 //            // 可以不进行手动初始化，将使用默认属性
 //            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
-//                                                                  cellHeight:[JobsBaseTableViewCell cellHeightWithModel:nil]];
+//                                                                  cellHeight:[JobsBaseTableViewCell cellHeightByModel:nil]];
 //            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
 //            [_tableView tab_startAnimation];   // 开启动画
 //        }

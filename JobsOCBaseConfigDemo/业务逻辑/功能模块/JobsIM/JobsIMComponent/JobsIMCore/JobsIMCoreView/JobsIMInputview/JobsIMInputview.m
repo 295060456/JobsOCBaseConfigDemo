@@ -29,7 +29,7 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(id _Nullable model) {
         @jobs_strongify(self)
@@ -148,8 +148,8 @@
 -(JobsAdNoticeView *)adNoticeView{
     if (!_adNoticeView) {
         _adNoticeView = JobsAdNoticeView.new;
-        _adNoticeView.Size = [JobsAdNoticeView viewSizeWithModel:nil];
-        _adNoticeView.jobsRichElementsInViewWithModel(nil);
+        _adNoticeView.Size = JobsAdNoticeView.viewSizeByModel(nil);
+        _adNoticeView.jobsRichViewByModel(nil);
     }return _adNoticeView;
 }
 

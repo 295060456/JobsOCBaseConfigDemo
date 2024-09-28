@@ -84,7 +84,7 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
 - (void)bsvRegisterSystemNotification {
     @jobs_weakify(self)
     // 后台 --> 前台
-    [self addNotificationName:UIApplicationDidBecomeActiveNotification
+    [self addNotificationName:UIApplicationDidBecomeActiveNotification 
                         block:^(id  _Nullable weakSelf,
                                 id  _Nullable arg) {
         @jobs_strongify(self)
@@ -483,7 +483,7 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
             break;
         }
             
-        // 纵向
+		// 纵向
         case BV_Orientation_Vertical: {
             NSInteger startIndex = 0;
             for (NSInteger i = 0; i < self.cardViewArray.count; i ++) {
@@ -532,7 +532,7 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
 /** 添加 CardView */
 - (void)bsvAddCardViewToInsideScrollViewWithIndex:(NSInteger)pageIndex {
     NSParameterAssert(pageIndex >= 0 && pageIndex < self.cardViewArray.count);
-    
+	
     UIView *cardView = [self.cardViewArray objectAtIndex:pageIndex];
     
     if ((NSObject *)cardView == [NSNull null]) {
@@ -669,12 +669,12 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
     }
     NSInteger pageIndex;
     switch (self.orientation) {
-            // 横向
+        	// 横向
         case BV_Orientation_Horizontal: {
             pageIndex = (NSInteger)round(self.insideScrollView.contentOffset.x / _pageSize.width) % _orginPageCount;
             break;
         }
-            // 纵向
+        	// 纵向
         case BV_Orientation_Vertical: {
             pageIndex = (NSInteger)round(self.insideScrollView.contentOffset.y / _pageSize.height) % _orginPageCount;
             break;

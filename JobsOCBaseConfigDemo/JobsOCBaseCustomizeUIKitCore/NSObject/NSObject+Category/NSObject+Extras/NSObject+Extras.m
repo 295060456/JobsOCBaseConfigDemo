@@ -167,7 +167,7 @@
     };
 }
 /// 接收通知
--(void)addNotificationName:(NSString *_Nonnull)notificationName
+-(void)addNotificationName:(NSString *_Nonnull)notificationName 
                      block:(JobsSelectorBlock _Nullable)block{
     @jobs_weakify(self)
     [JobsNotificationCenter addObserver:self
@@ -826,18 +826,18 @@
             }
         });
     }
-    dropDownListView.jobsRichElementsInViewWithModel(data);
+    dropDownListView.jobsRichViewByModel(data);
     
     if (jobsDropDownListViewDirection) {
         dropDownListView.frame = CGRectMake(f.origin.x,
-                                            f.origin.y - motivateViewOffset - data.count * [JobsDropDownListTBVCell cellHeightWithModel:Nil],
+                                            f.origin.y - motivateViewOffset - data.count * JobsDropDownListTBVCell.cellHeightByModel(nil),
                                             f.size.width,
-                                            data.count * [JobsDropDownListTBVCell cellHeightWithModel:Nil]);
+                                            data.count * JobsDropDownListTBVCell.cellHeightByModel(nil));
     }else{
         dropDownListView.frame = CGRectMake(f.origin.x,
                                             f.origin.y + f.size.height + motivateViewOffset,
                                             f.size.width,
-                                            data.count * [JobsDropDownListTBVCell cellHeightWithModel:Nil]);
+                                            data.count * JobsDropDownListTBVCell.cellHeightByModel(nil));
     }
     
     [NSObject.mainWindow() addSubview:dropDownListView];

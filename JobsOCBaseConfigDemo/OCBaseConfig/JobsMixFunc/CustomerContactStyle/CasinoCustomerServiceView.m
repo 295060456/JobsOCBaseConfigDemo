@@ -50,7 +50,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
     [super drawRect:rect];
 }
 // BaseViewProtocol
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(NSMutableArray <UIViewModel *>*_Nullable model) {
         @jobs_strongify(self)
@@ -68,9 +68,11 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
     };
 }
 
-+(CGSize)viewSizeWithModel:(NSArray <UIViewModel *>* _Nullable)model{
-    CGFloat h = JobsWidth(162) + [JobsHotLabelWithSingleLine viewSizeWithModel:model].height + JobsWidth(70);
-    return CGSizeMake(JobsWidth(345), h);
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^CGSize(NSArray <UIViewModel *>*_Nullable data){
+        CGFloat h = JobsWidth(162) + JobsHotLabelWithSingleLine.viewSizeByModel(data).height + JobsWidth(70);
+        return CGSizeMake(JobsWidth(345), h);
+    };
 }
 #pragma mark —— 网络请求
 /// 获取客服联系方式
@@ -174,10 +176,10 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
         [_hl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.top.equalTo(self.subTitleLab.mas_bottom).offset(JobsWidth(13));
-            make.size.mas_equalTo([JobsHotLabelWithSingleLine viewSizeWithModel:self.hotLabelDataMutArr]);
+            make.size.mas_equalTo(JobsHotLabelWithSingleLine.viewSizeByModel(self.hotLabelDataMutArr));
         }];
         [self layoutIfNeeded];
-        _hl.jobsRichElementsInViewWithModel(self.hotLabelDataMutArr);
+        _hl.jobsRichViewByModel(self.hotLabelDataMutArr);
     }return _hl;
 }
 

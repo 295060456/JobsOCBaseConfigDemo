@@ -185,11 +185,9 @@
         if (indexPath.section == self.cvcellMutArr.count - 1) {
             BaiShaETProjVIPSubCVFooterView *footerView = [collectionView UICollectionElementKindSectionFooterClass:BaiShaETProjVIPSubCVFooterView.class
                                                                                                       forIndexPath:indexPath];
-            
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"查看VIP規則");
-        
-            footerView.jobsRichElementsInViewWithModel(viewModel);
+            footerView.jobsRichViewByModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.textModel.text = JobsInternationalization(@"查看VIP規則");
+            }));
             
             return footerView;
         }else return nil;
@@ -245,7 +243,7 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
                   layout:(UICollectionViewLayout*)collectionViewLayout
 referenceSizeForFooterInSection:(NSInteger)section{
     if (section == self.cvcellMutArr.count - 1) {
-        return [BaiShaETProjVIPSubCVFooterView collectionReusableViewSizeWithModel:nil];
+        return BaiShaETProjVIPSubCVFooterView.collectionReusableViewSizeByModel(nil);
     }else return CGSizeZero;
 }
 
@@ -254,15 +252,15 @@ referenceSizeForFooterInSection:(NSInteger)section{
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self planSizeAtIndexPath:indexPath
                               block1:^CGSize{
-        return [BaiShaETProjVIPSubCVCell_01 cellSizeWithModel:nil];
+        return BaiShaETProjVIPSubCVCell_01.cellSizeByModel(nil);
     }block2:^CGSize{
-        return [BaiShaETProjVIPSubCVCell_02 cellSizeWithModel:nil];
+        return BaiShaETProjVIPSubCVCell_02.cellSizeByModel(nil);
     }block3:^CGSize{
-        return [BaiShaETProjVIPSubCVCell_03 cellSizeWithModel:nil];
+        return BaiShaETProjVIPSubCVCell_03.cellSizeByModel(nil);
     }block4:^CGSize{
-        return [BaiShaETProjVIPSubCVCell_04 cellSizeWithModel:nil];
+        return BaiShaETProjVIPSubCVCell_04.cellSizeByModel(nil);
     }block5:^CGSize{
-        return [BaiShaETProjVIPSubCVCell_05 cellSizeWithModel:nil];
+        return BaiShaETProjVIPSubCVCell_05.cellSizeByModel(nil);
     }];
 }
 /// 定义的是元素垂直之间的间距
@@ -293,8 +291,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(BaiShaETProjChoiceStadiumView *)choiceStadiumView{
     if (!_choiceStadiumView) {
         _choiceStadiumView = BaiShaETProjChoiceStadiumView.new;
-        _choiceStadiumView.Size = [BaiShaETProjChoiceStadiumView viewSizeWithModel:nil];
-        _choiceStadiumView.jobsRichElementsInViewWithModel(nil);
+        _choiceStadiumView.Size = BaiShaETProjChoiceStadiumView.viewSizeByModel(nil);
+        _choiceStadiumView.jobsRichViewByModel(nil);
     }return _choiceStadiumView;
 }
 
@@ -323,45 +321,26 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     if (!_cvcellMutArr) {
         _cvcellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             @jobs_weakify(self)
-            {
-                NSMutableArray <UICollectionViewCell *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
-                    @jobs_strongify(self)
-                    data2.add([BaiShaETProjVIPSubCVCell_01 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){0,0}]]);
-                });
-                data.add(mutArr);
-            }
-            
-            {
-                NSMutableArray <UICollectionViewCell *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
-                    @jobs_strongify(self)
-                    data2.add([BaiShaETProjVIPSubCVCell_02 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){1,0}]]);
-                });
-                data.add(mutArr);
-            }
-            
-            {
-                NSMutableArray <UICollectionViewCell *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
-                    @jobs_strongify(self)
-                    data2.add([BaiShaETProjVIPSubCVCell_03 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){2,0}]]);
-                });
-                data.add(mutArr);
-            }
-            
-            {
-                NSMutableArray <UICollectionViewCell *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
-                    @jobs_strongify(self)
-                    data2.add([BaiShaETProjVIPSubCVCell_04 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){3,0}]]);
-                });
-                data.add(mutArr);
-            }
-            
-            {
-                NSMutableArray <UICollectionViewCell *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
-                    @jobs_strongify(self)
-                    data2.add([BaiShaETProjVIPSubCVCell_05 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){4,0}]]);
-                });
-                data.add(mutArr);
-            }
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
+                @jobs_strongify(self)
+                data2.add([BaiShaETProjVIPSubCVCell_01 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){0,0}]]);
+            }));
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
+                @jobs_strongify(self)
+                data2.add([BaiShaETProjVIPSubCVCell_02 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){1,0}]]);
+            }));
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
+                @jobs_strongify(self)
+                data2.add([BaiShaETProjVIPSubCVCell_03 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){2,0}]]);
+            }));
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
+                @jobs_strongify(self)
+                data2.add([BaiShaETProjVIPSubCVCell_04 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){3,0}]]);
+            }));
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
+                @jobs_strongify(self)
+                data2.add([BaiShaETProjVIPSubCVCell_05 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){4,0}]]);
+            }));
         });
     }return _cvcellMutArr;
 }

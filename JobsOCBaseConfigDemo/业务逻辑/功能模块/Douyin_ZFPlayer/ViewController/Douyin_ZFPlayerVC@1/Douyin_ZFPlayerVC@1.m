@@ -187,7 +187,7 @@
 #pragma mark —————————— UITableViewDelegate,UITableViewDataSource ——————————
 -(CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [JobsPlayerTBVCell cellHeightWithModel:nil];
+    return JobsPlayerTBVCell.cellHeightByModel(nil);
 }
 
 -(void)tableView:(UITableView *)tableView

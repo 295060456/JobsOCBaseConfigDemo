@@ -26,11 +26,13 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 由具体的子类进行覆写
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeZero;
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeZero;
+    };
 }
 /// 由具体的子类进行覆写
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(NSMutableArray <UIViewModel *>*_Nullable model) {
         @jobs_strongify(self)

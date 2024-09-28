@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_END
          
          _用户名输入框.layer.cornerRadius = inputSize().height / 2;
          [_用户名输入框 layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:1.f];
-         _用户名输入框.jobsRichElementsInViewWithModel(配置用户名输入框);
+         _用户名输入框.jobsRichViewByModel(配置用户名输入框);
      }return _用户名输入框;
  }
 

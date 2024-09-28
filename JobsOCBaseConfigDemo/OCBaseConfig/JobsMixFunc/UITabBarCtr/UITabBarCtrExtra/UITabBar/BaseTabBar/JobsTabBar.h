@@ -10,6 +10,7 @@
 #import "BaseViewProtocol.h"
 #import "JobsLoadingImage.h"
 #import "UIView+Measure.h"
+#import "NSMutableArray+Extra.h"
 
 #ifndef ALIGNMENT_TYPE_ENUM_DEFINED
 #define ALIGNMENT_TYPE_ENUM_DEFINED

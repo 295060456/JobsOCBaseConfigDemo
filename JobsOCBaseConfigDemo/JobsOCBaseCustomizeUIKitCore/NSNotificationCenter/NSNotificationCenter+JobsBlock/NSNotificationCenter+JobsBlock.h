@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)jobsByNotificationBlock jobsNotificationBlock;
 
--(jobsByIDBlock)remove;
+-(jobsByIDBlock _Nonnull)remove;
 -(jobsByKey_ValueBlock)Remove;
 
 @end

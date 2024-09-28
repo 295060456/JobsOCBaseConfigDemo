@@ -287,7 +287,7 @@ JobsKey(_JPImageresizerView_avURLAsset)
 #pragma mark —— @property(nonatomic,copy)jobsByIDBlock makeBlock;
 JobsKey(_makeBlock)
 @dynamic makeBlock;
--(jobsByIDBlock)makeBlock{
+-(jobsByIDBlock _Nonnull)makeBlock{
     return Jobs_getAssociatedObject(_makeBlock);
 }
 
@@ -297,7 +297,7 @@ JobsKey(_makeBlock)
 #pragma mark —— @property(nonatomic,copy)jobsByIDBlock fixErrorBlock;
 JobsKey(_fixErrorBlock)
 @dynamic fixErrorBlock;
--(jobsByIDBlock)fixErrorBlock{
+-(jobsByIDBlock _Nonnull)fixErrorBlock{
     return Jobs_getAssociatedObject(_fixErrorBlock);
 }
 
@@ -307,7 +307,7 @@ JobsKey(_fixErrorBlock)
 #pragma mark —— @property(nonatomic,copy)jobsByIDBlock fixStartBlock;
 JobsKey(_fixStartBlock)
 @dynamic fixStartBlock;
--(jobsByIDBlock)fixStartBlock{
+-(jobsByIDBlock _Nonnull)fixStartBlock{
     return Jobs_getAssociatedObject(_fixStartBlock);
 }
 
@@ -317,7 +317,7 @@ JobsKey(_fixStartBlock)
 #pragma mark —— @property(nonatomic,copy)jobsByIDBlock fixProgressBlock;
 JobsKey(_fixProgressBlock)
 @dynamic fixProgressBlock;
--(jobsByIDBlock)fixProgressBlock{
+-(jobsByIDBlock _Nonnull)fixProgressBlock{
     return Jobs_getAssociatedObject(_fixProgressBlock);
 }
 
@@ -327,7 +327,7 @@ JobsKey(_fixProgressBlock)
 #pragma mark —— @property(nonatomic,copy)jobsByIDBlock fixCompleteBlock;
 JobsKey(_fixCompleteBlock)
 @dynamic fixCompleteBlock;
--(jobsByIDBlock)fixCompleteBlock{
+-(jobsByIDBlock _Nonnull)fixCompleteBlock{
     return Jobs_getAssociatedObject(_fixCompleteBlock);
 }
 

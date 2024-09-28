@@ -59,7 +59,7 @@
     for (int i = 0; i < self.loginDoorInputViewBaseStyleModelMutArr.count; i++) {
         JobsAppDoorInputViewBaseStyle_3 *inputView = JobsAppDoorInputViewBaseStyle_3.new;
         [self.loginDoorInputViewBaseStyleMutArr addObject:inputView];
-        inputView.jobsRichElementsInViewWithModel(self.loginDoorInputViewBaseStyleModelMutArr[i]);
+        inputView.jobsRichViewByModel(self.loginDoorInputViewBaseStyleModelMutArr[i]);
         @jobs_weakify(self)
         [inputView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
@@ -85,7 +85,7 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 外层数据渲染
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(id _Nullable model) {
         @jobs_strongify(self)

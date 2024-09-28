@@ -26,23 +26,25 @@
     };
 }
 
-+(CGFloat)cellHeightWithModel:(NSMutableArray <UIViewModel *>* _Nullable)model{
-    CGFloat width = hotLabLeft + hotLabRight;
-    CGFloat height = 0;
-    int row = 1;
-    for (UIViewModel *viewModel in model) {
-        CGSize size = [UILabel sizeWithText:viewModel.textModel.text
-                                       font:[UIFont systemFontOfSize:JobsWidth(14) weight:UIFontWeightRegular]
-                                    maxSize:CGSizeZero];
-        width += size.width + hotLabOffsetX;
-        height = size.height;
-        if (width >= JobsSearchShowHotwordsTBVCellWidth) {
-            width = hotLabLeft + hotLabRight;
-            row += 1;
++(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+    return ^CGFloat(NSMutableArray <UIViewModel *>*_Nullable data){
+        CGFloat width = hotLabLeft + hotLabRight;
+        CGFloat height = 0;
+        int row = 1;
+        for (UIViewModel *viewModel in data) {
+            CGSize size = [UILabel sizeWithText:viewModel.textModel.text
+                                           font:UIFontWeightRegularSize(JobsWidth(14))
+                                        maxSize:CGSizeZero];
+            width += size.width + hotLabOffsetX;
+            height = size.height;
+            if (width >= JobsSearchShowHotwordsTBVCellWidth) {
+                width = hotLabLeft + hotLabRight;
+                row += 1;
+            }
         }
-    }
-    CGFloat offset = JobsWidth(3);// 从何而来？
-    return (height + hotLabOffsetY) * row + (hotLabTop + hotLabBottom) + offset;
+        CGFloat offset = JobsWidth(3);// 从何而来？
+        return (height + hotLabOffsetY) * row + (hotLabTop + hotLabBottom) + offset;
+    };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
@@ -51,7 +53,7 @@
         @jobs_strongify(self)
         self.viewModelMutArr = model;
         if (self.viewModelMutArr.count) {
-            self.jobsHotLabel.jobsRichElementsInViewWithModel(self.viewModelMutArr);
+            self.jobsHotLabel.jobsRichViewByModel(self.viewModelMutArr);
         }
     };
 }

@@ -58,7 +58,7 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 外层数据渲染
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(id _Nullable model) {
         @jobs_strongify(self)
@@ -82,7 +82,7 @@
             }
             
         }
-        inputViewBaseStyle.jobsRichElementsInViewWithModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);//进数据
+        inputViewBaseStyle.jobsRichViewByModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);//进数据
         [self addSubview:inputViewBaseStyle];
         inputViewBaseStyle.Size = CGSizeMake(self.width - RegisterBtnWidth - JobsWidth(40), ThingsHeight);
         inputViewBaseStyle.centerX = self.titleLab.centerX;

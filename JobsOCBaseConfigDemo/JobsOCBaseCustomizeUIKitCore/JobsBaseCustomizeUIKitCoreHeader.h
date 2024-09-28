@@ -113,5 +113,79 @@
 #import "JobsFormatter.h"
 #pragma mark —— NSURLRequest
 #import "NSURLRequest+Extra.h"
+#pragma mark —— NSValue
+#import "JobsValue.h"
+
+static inline __kindof UIImageView *_Nonnull jobsMakeImageView(jobsByImageViewBlock _Nonnull block){
+    UIImageView *data = UIImageView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UITextView *_Nonnull jobsMakeTextView(jobsByTextViewBlock _Nonnull block){
+    UITextView *data = UITextView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UITextField *_Nonnull jobsMakeTextField(jobsByTextFieldBlock _Nonnull block){
+    UITextField *data = UITextField.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UICollectionView *_Nonnull jobsMakeCollectionView(jobsByCollectionViewBlock _Nonnull block){
+    UICollectionView *data = UICollectionView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UIWindow *_Nonnull jobsMakeWindow(jobsByWindowBlock _Nonnull block){
+    UIWindow *data = UIWindow.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UIView *_Nonnull jobsMakeView(jobsByViewBlock _Nonnull block){
+    UIView *data = UIView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull block){
+    UILabel *data = UILabel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UIScrollView *_Nonnull jobsMakeScrollView(jobsByScrollViewBlock _Nonnull block){
+    UIScrollView *data = UIScrollView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull block){
+    UIButton *data = UIButton.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UITableView *_Nonnull jobsMakeTableViewByGrouped(jobsByTableViewBlock _Nonnull block){
+    UITableView *data = UITableView.initWithStyleGrouped;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UITableView *_Nonnull jobsMakeTableViewByPlain(jobsByTableViewBlock _Nonnull block){
+    UITableView *data = UITableView.initWithStylePlain;
+    if (block) block(data);
+    return data;
+}
+
+static inline __kindof UITableView *_Nonnull jobsMakeTableViewByInsetGrouped(jobsByTableViewBlock _Nonnull block){
+    UITableView *data = UITableView.initWithStyleInsetGrouped;
+    if (block) block(data);
+    return data;
+}
 
 #endif /* JobsBaseCustomizeUIKitCoreHeader_h */

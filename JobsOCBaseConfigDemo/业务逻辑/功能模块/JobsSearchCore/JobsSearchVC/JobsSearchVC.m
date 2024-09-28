@@ -206,10 +206,10 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         case 0:{
             switch (self.hotSearchStyle) {
                 case HotSearchStyle_1:{
-                    return [JobsSearchShowHotwordsTBVCell cellHeightWithModel:self.hotSearchMutArr];
+                    return JobsSearchShowHotwordsTBVCell.cellHeightByModel(self.hotSearchMutArr);
                 }break;
                 case HotSearchStyle_2:{
-                    return [JobsSearchTBVCell cellHeightWithModel:self.hotSearchMutArr];
+                    return JobsSearchTBVCell.cellHeightByModel(self.hotSearchMutArr);
                 }break;
                     
                 default:{
@@ -218,7 +218,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             }
         }break;
         case 1:{
-            return [JobsSearchShowHistoryDataTBVCell cellHeightWithModel:self.listViewData];
+            return JobsSearchShowHistoryDataTBVCell.cellHeightByModel(self.listViewData);
         }break;
         default:
             return 0;
@@ -276,7 +276,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                         if (![self filtrationData:data
                                         atDataArr:self.listViewData
                                    byPropertyName:@"text"]) {
-                            [self.listViewData addObject:data];
+                            self.listViewData.add(data);
                         }
                         [self endDropDownListView];
                     }];return cell;
@@ -305,13 +305,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{
-    return [JobsSearchTableViewHeaderView viewHeightWithModel:nil];
+    return JobsSearchTableViewHeaderView.viewHeightByModel(nil);
 }
 
 -(nullable UIView *)tableView:(UITableView *)tableView
        viewForHeaderInSection:(NSInteger)section{
     JobsSearchTableViewHeaderView *header = tableView.tableViewHeaderFooterView(JobsSearchTableViewHeaderView.class,@"");
-    header.jobsRichElementsInViewWithModel(self.sectionTitleMutArr[section]);
+    header.jobsRichViewByModel(self.sectionTitleMutArr[section]);
     if (section == 1) {
         header.getDelBtn.jobsVisible = YES;
         @jobs_weakify(self)
@@ -437,8 +437,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 -(JobsSearchBar *)jobsSearchBar{
     if (!_jobsSearchBar) {
         _jobsSearchBar = JobsSearchBar.new;
-        _jobsSearchBar.Size = [JobsSearchBar viewSizeWithModel:nil];
-        _jobsSearchBar.jobsRichElementsInViewWithModel(nil);
+        _jobsSearchBar.Size = JobsSearchBar.viewSizeByModel(nil);
+        _jobsSearchBar.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [_jobsSearchBar actionObjectBlock:^(NSString *data) {
             @jobs_strongify(self)

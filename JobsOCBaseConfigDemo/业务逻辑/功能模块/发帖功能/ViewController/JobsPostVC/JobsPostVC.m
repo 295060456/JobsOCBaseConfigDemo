@@ -66,13 +66,12 @@
     }
     
     {
-        JobsPostDelViewHeight =[JobsPostDelView viewSizeWithModel:nil].height;
+        JobsPostDelViewHeight = JobsPostDelView.viewSizeByModel(nil).height;
         self.historyPhotoDataArr = [self.photoManager getLocalModelsInFileWithAddData:YES];
         if (isValue(JobsUserModel.sharedManager.postDraftURLStr)) {
             self.inputDataHistoryString = [FileFolderHandleTool filePath:JobsUserModel.sharedManager.postDraftURLStr
                                                                 fileType:TXT];
-        }
-        NSLog(@"%@",self.inputDataHistoryString);
+        }NSLog(@"%@",self.inputDataHistoryString);
     }
 }
 
@@ -312,7 +311,7 @@ gestureRecognizerBegan:(UILongPressGestureRecognizer *)longPgr
 gestureRecognizerChange:(UILongPressGestureRecognizer *)longPgr
         indexPath:(NSIndexPath *)indexPath {
     CGPoint point = [longPgr locationInView:self.view];
-    self.postDelView.jobsRichElementsInViewWithModel(@(point.y >= self.postDelView.hx_y));
+    self.postDelView.jobsRichViewByModel(@(point.y >= self.postDelView.hx_y));
 }
 
 - (void)photoView:(HXPhotoView *)photoView
@@ -330,7 +329,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         self.postDelView.y = JobsMainScreen_HEIGHT();
     } completion:^(BOOL finished) {
         @jobs_strongify(self)
-        self.postDelView.jobsRichElementsInViewWithModel(@(NO));
+        self.postDelView.jobsRichViewByModel(@(NO));
     }];
 }
 #pragma mark —— lazyLoad
@@ -370,7 +369,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
             make.right.equalTo(self.view).offset(JobsWidth(-0));
             make.height.mas_equalTo(JobsWidth(101));
         }];
-        _textView.jobsRichElementsInViewWithModel(self.textModel);
+        _textView.jobsRichViewByModel(self.textModel);
         @jobs_weakify(self)
         [_textView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
@@ -422,8 +421,8 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
     if (!_postDelView) {
         _postDelView = JobsPostDelView.new;
         [self.view addSubview:_postDelView];
-        _postDelView.frame = [JobsPostDelView viewFrameWithModel:nil];
-        _postDelView.jobsRichElementsInViewWithModel(nil);
+        _postDelView.frame = JobsPostDelView.viewFrameByModel(nil);
+        _postDelView.jobsRichViewByModel(nil);
     }return _postDelView;
 }
 

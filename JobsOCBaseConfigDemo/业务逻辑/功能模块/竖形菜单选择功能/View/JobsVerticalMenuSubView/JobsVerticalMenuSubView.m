@@ -13,6 +13,4 @@
 
 @implementation JobsVerticalMenuSubView
 
-
-
 @end

@@ -97,7 +97,7 @@
 /// 增加数据
 - (void)insertUserWithName:(NSString *)name
                        age:(NSInteger)age {
-    NSManagedObject *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+    NSManagedObject *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" 
                                                              inManagedObjectContext:self.context];
     [newUser setValue:name forKey:@"name"];
     [newUser setValue:@(age) forKey:@"age"];

@@ -98,13 +98,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [JobsBaseTableViewCell cellHeightWithModel:self.dataMutArr[indexPath.row]] * 2;
+    return JobsBaseTableViewCell.cellHeightByModel(self.dataMutArr[indexPath.row]) * 2;
 }
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.dataMutArr[indexPath.row].requestParams isKindOfClass:NSNumber.class]) {
-        self.comingToPushVCByRequestParams(PicToStrStoreSubVC.new,self.dataMutArr[indexPath.row]);
+        self.comingToPushVCByRequestParams(PicToStrStoreSubVC.new,
+                                           self.dataMutArr[indexPath.row]);
     }else self.jobsToastMsg(JobsInternationalization(@"尚未接入此功能"));
 }
 

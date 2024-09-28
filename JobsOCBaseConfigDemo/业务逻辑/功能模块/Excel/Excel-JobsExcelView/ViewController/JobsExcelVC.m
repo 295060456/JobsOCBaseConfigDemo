@@ -89,17 +89,17 @@
         [self.view addSubview:_excelView];
         [_excelView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.view);
-            make.size.mas_equalTo([JobsExcelView viewSizeWithModel:nil]);
+            make.size.mas_equalTo(JobsExcelView.viewSizeByModel(nil));
         }];
-        _excelView.jobsRichElementsInViewWithModel(self.excelData);
+        _excelView.jobsRichViewByModel(self.excelData);
     }return _excelView;
 }
 
 -(JobsExcelConfigureViewModel *)excelData{
     if(!_excelData){
         _excelData = JobsExcelConfigureViewModel.new;
-        _excelData.XZExcelH = [JobsExcelView viewSizeWithModel:nil].height;
-        _excelData.XZExcelW = [JobsExcelView viewSizeWithModel:nil].width;
+        _excelData.XZExcelH = JobsExcelView.viewSizeByModel(nil).height;
+        _excelData.XZExcelW = JobsExcelView.viewSizeByModel(nil).width;
         _excelData.itemW = JobsWidth(80);
         
         _excelData.topHeaderTitles.add(JobsInternationalization(@"Order Time"));

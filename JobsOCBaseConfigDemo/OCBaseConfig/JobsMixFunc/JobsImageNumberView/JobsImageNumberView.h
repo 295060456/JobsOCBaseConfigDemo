@@ -33,6 +33,6 @@ NS_ASSUME_NONNULL_END
  viewModel.text = @"123.99";
  self.dataMutArr = [self translateToArr:viewModel.text.floatValue
                       saveBitAfterPoint:2];
- self.imageNumberView.jobsRichElementsInViewWithModel(self.dataMutArr);
+ self.imageNumberView.jobsRichViewByModel(self.dataMutArr);
  
  */

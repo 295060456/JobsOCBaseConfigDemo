@@ -47,7 +47,7 @@
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(NSMutableArray <UIButtonModel *>*_Nullable model) {
         @jobs_strongify(self)
@@ -56,12 +56,10 @@
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(400), JobsWidth(62));
-}
-
--(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return [self.class viewSizeWithModel:nil];
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^(id _Nullable data){
+        return CGSizeMake(JobsWidth(400), JobsWidth(62));
+    };
 }
 #pragma mark —— 一些私有方法
 -(jobsByVoidBlock)makeBtn{
@@ -74,13 +72,13 @@
             [self addSubview:btn];
             [btn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self);
-                make.height.mas_equalTo([self viewSizeWithModel:nil].height);
+                make.height.mas_equalTo(self.viewSizeByModel(nil).height);
             }];
             [self layoutIfNeeded];
             NSLog(@"");
             if(self.btnMutArr.count){
                 UIView *view = self.btnMutArr.lastObject;
-                CGFloat d = (([self viewSizeWithModel:nil].width - btn.width * self.btnModelMutArr.count) / (self.btnModelMutArr.count - 1));
+                CGFloat d = ((self.viewSizeByModel(nil).width - btn.width * self.btnModelMutArr.count) / (self.btnModelMutArr.count - 1));
                 [btn mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.equalTo(view.mas_right).offset(d);
                 }];

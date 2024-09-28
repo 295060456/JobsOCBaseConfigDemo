@@ -31,11 +31,13 @@
     };
 }
 
-+(CGFloat)cellHeightWithModel:(id _Nullable)model{
-    if ([model isKindOfClass:UITableView.class]) {
-        UITableView *tbv = (UITableView *)model;
-        return tbv.mj_h;
-    }return JobsMainScreen_HEIGHT();
++(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+    return ^CGFloat(id _Nullable data){
+        if ([data isKindOfClass:UITableView.class]) {
+            UITableView *tbv = (UITableView *)data;
+            return tbv.mj_h;
+        }return JobsMainScreen_HEIGHT();
+    };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
@@ -72,7 +74,7 @@
 -(JobsRightBtnsView *)rbView{
     if (!_rbView) {
         _rbView = JobsRightBtnsView.new;
-        _rbView.jobsRichElementsInViewWithModel(nil);
+        _rbView.jobsRichViewByModel(nil);
 //        @jobs_weakify(self)
         [_rbView actionObjectBlock:^(id data) {
 //            @jobs_strongify(self)
@@ -81,7 +83,7 @@
         [_rbView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.contentView);
             make.bottom.equalTo(self.contentView).offset(JobsWidth(-150));
-            make.size.mas_equalTo([JobsRightBtnsView viewSizeWithModel:nil]);
+            make.size.mas_equalTo(JobsRightBtnsView.viewSizeByModel(nil));
         }];
     }return _rbView;
 }

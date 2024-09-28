@@ -75,7 +75,7 @@
     [super viewDidDisappear:animated];
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches
+-(void)touchesBegan:(NSSet<UITouch *> *)touches 
           withEvent:(UIEvent *)event{
     
     JobsPresentedVC *vc = JobsPresentedVC.new;

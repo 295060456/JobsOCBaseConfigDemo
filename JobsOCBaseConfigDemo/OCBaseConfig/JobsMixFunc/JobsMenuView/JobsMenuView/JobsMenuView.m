@@ -48,7 +48,7 @@
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -59,15 +59,13 @@
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsRealWidth(),
-                      JobsWidth(200));
-//    return CGSizeMake(JobsRealWidth(),
-//                      JobsRealHeight() - AppDelegate.jobsCustomTabBarConfig.tabBarHeight - [TopBar viewSizeWithModel:nil].height + JobsBottomSafeAreaHeight());
-}
-
--(CGSize)viewSizeWithModel:(id _Nullable)model{
-    return [JobsMenuView viewSizeWithModel:model];
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^(id _Nullable data){
+        return CGSizeMake(JobsRealWidth(),
+                          JobsWidth(200));
+    //    return CGSizeMake(JobsRealWidth(),
+    //                      JobsRealHeight() - AppDelegate.jobsCustomTabBarConfig.tabBarHeight - [TopBar viewSizeWithModel:nil].height + JobsBottomSafeAreaHeight());
+    };
 }
 #pragma mark —— lazyLoad
 -(JobsLinkageMenuView *)menuView{
@@ -76,7 +74,7 @@
                                                    btnConfig:self.buttonModel
                                        linkageMenuViewConfig:self.linkageMenuViewConfig];
 //        _menuView.backgroundColor = JobsRedColor;
-        _menuView.jobsRichElementsInViewWithModel(nil);
+        _menuView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [_menuView actionObjectBlock:^(id  _Nullable x) {
             @jobs_strongify(self)

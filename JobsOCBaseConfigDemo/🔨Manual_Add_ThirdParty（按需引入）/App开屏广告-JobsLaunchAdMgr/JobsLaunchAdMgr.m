@@ -205,7 +205,7 @@
     if (self.onSingleTap) {
         self.onSingleTap();
     } else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.redirectURL] options:@{} completionHandler:nil];
+        self.jobsOpenURL(self.redirectURL.jobsUrl);
         [self adDidFinish];
     }
 }

@@ -106,8 +106,8 @@
         [headerFooterView addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(headerFooterView);
-            make.size.mas_equalTo(CGSizeMake([BaseTableViewHeaderFooterView heightForHeaderInSection:nil],
-                                             [BaseTableViewHeaderFooterView heightForHeaderInSection:nil]));
+            make.size.mas_equalTo(CGSizeMake(BaseTableViewHeaderFooterView.heightForHeaderInSection(nil),
+                                             BaseTableViewHeaderFooterView.heightForHeaderInSection(nil)));
         }];return imageView;
     };
 }
@@ -156,7 +156,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{
-    return [BaseTableViewHeaderFooterView heightForHeaderInSection:nil];
+    return BaseTableViewHeaderFooterView.heightForHeaderInSection(nil);
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -176,7 +176,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     /// 只有 headerView.backgroundView.backgroundColor 是有效操作✅
     headerView.backgroundView.backgroundColor = JobsCyanColor;
     self.makeViewOnTableViewHeaderFooterView(headerView).alpha = 1;
-    headerView.jobsRichElementsInViewWithModel(UIViewModel.new);
+    headerView.jobsRichViewByModel(UIViewModel.new);
 //        @jobs_weakify(self)
     [headerView actionObjectBlock:^(id data) {
 //            @jobs_strongify(self)

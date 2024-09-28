@@ -55,7 +55,7 @@ JobsKey(_verifyCodeManager)
         VerifyCodeManager = NTESVerifyCodeManager.getInstance;
         VerifyCodeManager.delegate = self;
         
-        [VerifyCodeManager configureVerifyCode:网易易盾KEY
+        [VerifyCodeManager configureVerifyCode:网易易盾KEY 
                                        timeout:7.0
                                    styleConfig:self.verifyCodeStyleConfig];
         /**

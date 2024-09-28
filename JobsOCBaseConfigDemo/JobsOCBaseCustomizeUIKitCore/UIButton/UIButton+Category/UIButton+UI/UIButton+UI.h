@@ -140,18 +140,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// 主标题是否多行显示
 -(jobsByBOOLBlock _Nonnull)makeNewLineShows;
 ///【兼容】重设Btn主标题的文字内容 优先级高于jobsResetTitle
--(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnTitle;
+-(JobsReturnButtonByStringBlock _Nonnull)jobsResetBtnTitle;
 ///【兼容】重设Btn主标题的文字颜色
--(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnTitleCor;
+-(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnTitleCor;
 ///【兼容】重设Btn的主标题字体
 -(JobsReturnButtonByFontBlock _Nonnull)jobsResetBtnTitleFont;
 ///【兼容】重设Btn的主标题对其方式
 -(JobsReturnButtonByNSIntegerBlock _Nonnull)jobsResetBtnTitleAlignment;
 #pragma mark —— 一些通用修改.副标题
 ///【最新的Api】重设Btn副标题的文字内容
--(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
+-(JobsReturnButtonByStringBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
 ///【最新的Api】重设Btn副标题的文字颜色
--(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
+-(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
 ///【兼容】重设Btn的副标题字体
 -(JobsReturnButtonByFontBlock _Nonnull)jobsResetBtnSubTitleFont;
 ///【最新的Api】修改副标题的对齐方式
@@ -164,7 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnBgImage;
 #pragma mark —— 一些通用修改.按钮颜色
 ///【兼容】重设Btn的背景颜色
--(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnBgCor;
+-(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnBgCor;
 #pragma mark —— 一些通用修改.Layer
 ///【合并】重设Btn的描边：线宽和线段的颜色
 -(JobsReturnButtonByColor_FloatBlock _Nonnull)jobsResetBtnLayerBorderCorAndWidth;
@@ -192,7 +192,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///【老Api】设置 Btn 已选择状态下的 按钮背景图片
 -(JobsReturnButtonByImageBlock _Nonnull)selectedBackgroundImage;
 ///【老Api】设置 Btn 已选择状态下的 按钮主标题
--(JobsReturnButtonByTitleBlock _Nonnull)selectedTitle;
+-(JobsReturnButtonByStringBlock _Nonnull)selectedTitle;
 ///【老Api】设置 Btn 已选择状态下的 按钮主标题的颜色
 -(JobsReturnButtonByColorBlock _Nonnull)selectedTitleColor;
 ///【老Api】设置 Btn 已选择状态下的 按钮主标题的富文本内容

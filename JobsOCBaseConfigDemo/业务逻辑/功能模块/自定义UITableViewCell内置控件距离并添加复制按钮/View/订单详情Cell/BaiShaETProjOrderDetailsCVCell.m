@@ -50,8 +50,10 @@
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)cellSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(343), 子TableViewCell的高度 * model.jobsDataMutArr.count + JobsWidth(40));
++(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
+    return ^CGSize(UIViewModel *_Nullable data){
+        return CGSizeMake(JobsWidth(343), 子TableViewCell的高度 * data.jobsDataMutArr.count + JobsWidth(40));
+    };
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -109,8 +111,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
-heightForFooterInSection:(NSInteger)section{
-    return [BaseTableViewHeaderFooterView heightForFooterInSection:nil];
+heightForFooterInSectionByModel:(NSInteger)section{
+    return BaseTableViewHeaderFooterView.heightForFooterInSectionByModel(nil);
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
@@ -125,7 +127,7 @@ heightForFooterInSection:(NSInteger)section{
     /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作❌
     /// 只有 tbvFooterView.backgroundView.backgroundColor 是有效操作✅
     tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xFFFFFF);
-    tbvFooterView.jobsRichElementsInViewWithModel(nil);
+    tbvFooterView.jobsRichViewByModel(nil);
     @jobs_weakify(self)
     [tbvFooterView actionObjectBlock:^(id data) {
         @jobs_strongify(self)

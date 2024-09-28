@@ -61,7 +61,7 @@ static AppLanguage _language = AppLanguageBySys;
 }
 /// 通过key取值对应的语言
 + (NSString *)localStringWithKey:(NSString *_Nonnull)key {
-    return [self localizedString:key
+    return [self localizedString:key 
                        fromTable:nil
                         inBundle:self.bundle];
 }

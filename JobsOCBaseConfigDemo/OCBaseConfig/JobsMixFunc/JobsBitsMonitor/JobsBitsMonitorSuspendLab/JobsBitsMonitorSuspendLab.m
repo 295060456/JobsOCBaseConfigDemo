@@ -83,23 +83,26 @@ extern JobsNetworkingEnvir networkingEnvir;
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGRect)viewFrameWithModel:(id _Nullable)model{
-    return CGRectMake(JobsWidth(20),
-                      JobsMainScreen_HEIGHT() - JobsWidth(200),
-                      JobsWidth(80),
-                      JobsWidth(40));
++(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel{
+    return ^CGRect(id _Nullable data){
+        return CGRectMake(JobsWidth(20),
+                          JobsMainScreen_HEIGHT() - JobsWidth(200),
+                          JobsWidth(80),
+                          JobsWidth(40));
+    };
 }
 #pragma mark —— lazyLoad
 -(NSMutableArray<NSString *> *)operationEnvironMutArr{
     if (!_operationEnvironMutArr) {
-        _operationEnvironMutArr = NSMutableArray.array;
-        _operationEnvironMutArr.add(JobsInternationalization(@"开发环境_01"));
-        _operationEnvironMutArr.add(JobsInternationalization(@"开发环境_02"));
-        _operationEnvironMutArr.add(JobsInternationalization(@"开发环境_03"));
-        _operationEnvironMutArr.add(JobsInternationalization(@"开发环境_04"));
-        _operationEnvironMutArr.add(JobsInternationalization(@"测试环境"));
-        _operationEnvironMutArr.add(JobsInternationalization(@"UAT环境"));
-        _operationEnvironMutArr.add(JobsInternationalization(@"生产环境"));
+        _operationEnvironMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(JobsInternationalization(@"开发环境_01"));
+            data.add(JobsInternationalization(@"开发环境_02"));
+            data.add(JobsInternationalization(@"开发环境_03"));
+            data.add(JobsInternationalization(@"开发环境_04"));
+            data.add(JobsInternationalization(@"测试环境"));
+            data.add(JobsInternationalization(@"UAT环境"));
+            data.add(JobsInternationalization(@"生产环境"));
+        });
     }return _operationEnvironMutArr;
 }
 

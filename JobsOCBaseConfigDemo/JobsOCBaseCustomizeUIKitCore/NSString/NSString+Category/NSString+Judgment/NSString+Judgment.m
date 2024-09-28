@@ -9,7 +9,7 @@
 
 @implementation NSString (Judgment)
 #pragma mark —— 字符串的 比较 & 判断
--(JobsReturnBOOLByIDBlock _Nullable)isEqualToString{
+-(JobsReturnBOOLByIDBlock _Nonnull)isEqualToString{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)
@@ -19,7 +19,7 @@
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nullable)containsString{
+-(JobsReturnBOOLByIDBlock _Nonnull)containsString{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)
@@ -29,7 +29,7 @@
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nullable)hasPrefix{
+-(JobsReturnBOOLByIDBlock _Nonnull)hasPrefix{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)
@@ -39,7 +39,7 @@
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nullable)hasSuffix{
+-(JobsReturnBOOLByIDBlock _Nonnull)hasSuffix{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)

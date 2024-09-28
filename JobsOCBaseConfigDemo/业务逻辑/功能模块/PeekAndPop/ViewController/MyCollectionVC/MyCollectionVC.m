@@ -119,13 +119,13 @@
             UIAction *action1 = [UIAction actionWithTitle:JobsInternationalization(@"Action 1")
                                                     image:nil
                                                identifier:nil
-                                                  handler:^(__kindof UIAction * _Nonnull action) {
+                                                  handler:^(__kindof UIAction *_Nonnull action) {
                 NSLog(@"Action 1 selected for item %ld", (long)indexPath.item);
             }];
             UIAction *action2 = [UIAction actionWithTitle:JobsInternationalization(@"Action 2")
                                                     image:nil
                                                identifier:nil
-                                                  handler:^(__kindof UIAction * _Nonnull action) {
+                                                  handler:^(__kindof UIAction *_Nonnull action) {
                 NSLog(@"Action 2 selected for item %ld", (long)indexPath.item);
             }];
             // 创建并返回菜单
@@ -248,9 +248,11 @@ willDisplayMenuForConfiguration:(UIContextMenuConfiguration *)configuration
 - (CGSize)collectionView:(__kindof UICollectionView *)collectionView
                   layout:(__kindof UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    @jobs_weakify(self)
     return [self jobsCellPlanSizeForSectionAtIndexPath:indexPath.section
                                             cellBlock0:^CGSize{
-        return [BaiShaETProjOrderDetailsCVCell cellSizeWithModel:self.dataMutArr[indexPath.section]];
+        @jobs_strongify(self)
+        return BaiShaETProjOrderDetailsCVCell.cellSizeByModel(self.dataMutArr[indexPath.section]);
     }
                                             cellBlock1:nil
                                             cellBlock2:nil

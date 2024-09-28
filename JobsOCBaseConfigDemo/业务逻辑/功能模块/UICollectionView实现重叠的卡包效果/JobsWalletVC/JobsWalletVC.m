@@ -153,13 +153,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (kind == TMSCollectionViewSectionHeader) {
         UIViewModel *viewModel = self.sectionHeaderDataSource[indexPath.section];
         viewModel.textModel.text = [NSString stringWithFormat:@"Section Header:%zd-%zd", indexPath.section, indexPath.item];
-        reusableView.jobsRichElementsInViewWithModel(viewModel);
+        reusableView.jobsRichViewByModel(viewModel);
     }
 
     if (kind == TMSCollectionViewSectionFooter) {
         UIViewModel *viewModel = self.sectionFooterDataSource[indexPath.section];
         viewModel.textModel.text = [NSString stringWithFormat:@"Section Header:%zd-%zd", indexPath.section, indexPath.item];
-        reusableView.jobsRichElementsInViewWithModel(viewModel);
+        reusableView.jobsRichViewByModel(viewModel);
     }return reusableView;
 }
 #pragma mark —— lazyLoad

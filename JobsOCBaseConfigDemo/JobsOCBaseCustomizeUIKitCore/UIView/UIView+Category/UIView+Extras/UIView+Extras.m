@@ -10,24 +10,225 @@
 
 @implementation UIView (Extras)
 #pragma mark —— BaseViewProtocol
-+(JobsReturnViewByIDBlock _Nonnull)JobsRichElementsInViewWithModel{
++(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(id _Nullable data){
         @jobs_strongify(self)
         UIView <BaseViewProtocol>*instance = self.class.new;
-        if ([instance respondsToSelector:@selector(jobsRichElementsInViewWithModel)]) {
-            instance.jobsRichElementsInViewWithModel(data);
+        if ([instance respondsToSelector:@selector(jobsRichViewByModel)]) {
+            instance.jobsRichViewByModel(data);
         }return instance;
     };
 }
 
--(JobsReturnViewByIDBlock _Nonnull)jobsRichElementsInViewWithModel2{
+-(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel2{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(id _Nullable data){
         @jobs_strongify(self)
-        self.jobsRichElementsInViewWithModel(data);
+        self.jobsRichViewByModel(data);
         return self;
     };
+}
+
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
+    @jobs_weakify(self)
+    return ^(id _Nullable data) {
+        @jobs_strongify(self)
+    };
+}
+#pragma mark —— 用类方法定义
+/// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGFloatByIDBlock _Nonnull)viewWidthByModel{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
+}
+/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGFloatByIDBlock _Nonnull)viewHeightByModel{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
+}
+/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel{
+    return ^CGFloat(id _Nullable data){
+        return JobsWidth(0);
+    };
+}
+/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
+}
+/// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeZero;
+    };
+}
+/// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel{
+    return ^CGRect(id _Nullable data){
+        return CGRectZero;
+    };
+}
+/// 具体由子类进行复写【FrameX的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeXByModel{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
+}
+/// 具体由子类进行复写【FrameY的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeYByModel{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
+}
+/// 具体由子类进行复写【FrameWidth的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeWidthByModel{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
+}
+/// 具体由子类进行复写【FrameHeight的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeHeightByModel{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
+}
+/// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// UICollectionViewDelegateFlowLayout
++(JobsReturnCGSizeByIDBlock _Nonnull)collectionReusableViewSizeByModel{
+    return ^(id _Nullable data){
+        return CGSizeZero;
+    };
+}
+/// 数据（字符串）定宽
++(JobsReturnCGFloatByIDBlock _Nonnull)widthByData{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
+}
+/// 数据（字符串）定高
++(JobsReturnCGFloatByIDBlock _Nonnull)heightByData{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
+}
+#pragma mark —— 用实例方法定义
+/// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewWidthByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.viewWidthByModel(data);
+    };
+}
+/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewHeightByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.viewHeightByModel(data);
+    };
+}
+/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.heightForFooterInSectionByModel(data);
+    };
+}
+/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.heightForHeaderInSection(data);
+    };
+}
+/// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    @jobs_weakify(self)
+    return ^CGSize(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.viewSizeByModel(data);
+    };
+}
+/// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel{
+    @jobs_weakify(self)
+    return ^CGRect(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.viewFrameByModel(data);
+    };
+}
+/// 具体由子类进行复写【FrameX的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeXByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.viewChangeXByModel(data);
+    };
+}
+/// 具体由子类进行复写【FrameY的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeYByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.viewChangeYByModel(data);
+    };
+}
+/// 具体由子类进行复写【FrameWidth的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeWidthByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.viewChangeWidthByModel(data);
+    };
+}
+/// 具体由子类进行复写【FrameHeight的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeHeightByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.viewChangeHeightByModel(data);
+    };
+}
+/// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// UICollectionViewDelegateFlowLayout
+-(JobsReturnCGSizeByIDBlock _Nonnull)collectionReusableViewSizeByModel{
+    @jobs_weakify(self)
+    return ^(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.collectionReusableViewSizeByModel(data);
+    };
+}
+/// 数据（字符串）定宽
+-(JobsReturnCGFloatByIDBlock _Nonnull)widthByData{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.widthByData(data);
+    };
+}
+/// 数据（字符串）定高
+-(JobsReturnCGFloatByIDBlock _Nonnull)heightByData{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.heightByData(data);
+    };
+}
+
+-(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock)objectBlock{
+    self.backBtnClickAction = objectBlock;
+}
+    
+-(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock)objectBlock{
+    self.closeBtnClickAction = objectBlock;
 }
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame{
@@ -570,14 +771,6 @@ JobsKey(_getAnimation)
     }
     
     return shouldScroll;
-}
-/// 数据（字符串）定宽
-+(CGFloat)widthByData:(UIViewModel *_Nonnull)data{
-    return 0;
-}
-/// 数据（字符串）定高
-+(CGFloat)heightByData:(UIViewModel *_Nonnull)data{
-    return 0;
 }
 #pragma mark —— 其他
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem{

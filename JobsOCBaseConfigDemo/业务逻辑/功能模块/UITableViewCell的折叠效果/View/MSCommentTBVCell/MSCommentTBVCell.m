@@ -78,10 +78,14 @@ UIViewModelProtocol_synthesize
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)cellHeightWithModel:(MSCommentDetailModel *_Nullable)model{
-    return 3 * [self jobsGetLabelHeightByWidth:JobsWidth(355)
-                                         title:model.rowTitle
-                                          font:UIFontWeightRegularSize(14)];
++(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(MSCommentDetailModel *_Nullable data){
+        @jobs_strongify(self)
+        return 3 * [self jobsGetLabelHeightByWidth:JobsWidth(355)
+                                             title:data.rowTitle
+                                              font:UIFontWeightRegularSize(14)];
+    };
 }
 // 在具体的子类去实现,分类调用异常
 -(void)setFrame:(CGRect)frame{

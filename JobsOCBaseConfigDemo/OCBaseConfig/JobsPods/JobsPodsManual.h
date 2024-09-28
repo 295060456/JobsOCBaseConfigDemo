@@ -7,9 +7,7 @@
 
 #ifndef JobsPodsManual_h
 #define JobsPodsManual_h
-
 // 极大程度上尊重作者，不去污染源代码的基础上，用分类去实现一些功能
-
 #import "EmptyView.h"
 #import "ZMJCell+CustomView.h"
 #import "FMDatabase+Manager.h"
@@ -42,6 +40,12 @@
 #import <KTVHTTPCache/KTVHTTPCache.h>
 #else
 #import "KTVHTTPCache.h"
+#endif
+
+#if __has_include(<GTCaptcha4/GTCaptcha4.h>)
+#import <GTCaptcha4/GTCaptcha4.h>
+#else
+#import "GTCaptcha4.h"
 #endif
 
 #endif /* JobsPodsManual_h */

@@ -74,19 +74,17 @@
 #pragma mark —————————— UITableViewDelegate,UITableViewDataSource ——————————
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [MyFansTBVCell cellHeightWithModel:nil];
+    return MyFansTBVCell.cellHeightByModel(nil);
 }
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     B_VC *b = B_VC.new;
     b.indexPath = indexPath;
-    
-    UIViewModel *viewModel = UIViewModel.new;
-    viewModel.image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld.jpeg",indexPath.row]];
-    viewModel.backBtnTitleModel.text = @"B_VC";
-    self.comingToPushVCByRequestParams(b,viewModel);
+    self.comingToPushVCByRequestParams(b,jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+        data.image = JobsIMG(toStringByNSInteger(indexPath.row).add(@".jpeg"));
+        data.backBtnTitleModel.text = @"B_VC";
+    }));
 }
 
 - (NSInteger)tableView:(UITableView *)tableView

@@ -252,7 +252,7 @@ JobsKey(_navBar)
             make.height.mas_equalTo(JobsWidth(40));
         }];
         [self.view layoutIfNeeded];
-        NavBar.jobsRichElementsInViewWithModel(nil);
+        NavBar.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [NavBar actionNavBarBackBtnClickBlock:^(UIButton * _Nullable x) {
             @jobs_strongify(self)

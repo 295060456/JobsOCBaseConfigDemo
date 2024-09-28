@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_END
          
          _获取并输入手机验证码.layer.cornerRadius = JobsWidth(52 / 2);
          _获取并输入手机验证码.layer.borderColor = HEXCOLOR(0xEEE2C8).CGColor;
-         _获取并输入手机验证码.jobsRichElementsInViewWithModel(.配置验证码输入);
+         _获取并输入手机验证码.jobsRichViewByModel(.配置验证码输入);
      }return _获取并输入手机验证码;
  }
  

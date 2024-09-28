@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_END
  -(JobsHotLabelWithMultiLine *)hotLabel{
      if (!_hotLabel) {
          _hotLabel = JobsHotLabelWithMultiLine.new;
-         _hotLabel.jobsRichElementsInViewWithModel(self.hotLabelModel);
+         _hotLabel.jobsRichViewByModel(self.hotLabelModel);
          [self addSubview:_hotLabel];
          [_hotLabel mas_makeConstraints:^(MASConstraintMaker *make) {
              make.edges.equalTo(self);
@@ -121,7 +121,7 @@ NS_ASSUME_NONNULL_END
  }
 
  /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
- -(jobsByIDBlock)jobsRichElementsInViewWithModel{
+ -(jobsByIDBlock _Nonnull)jobsRichViewByModel{
      @jobs_weakify(self)
      return ^(UIViewModel *_Nullable model) {
          @jobs_strongify(self)

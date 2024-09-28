@@ -94,7 +94,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -105,14 +105,16 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    model = model ? : UIViewModel.new;
-//    model.usesTableViewHeaderView = YES;// 这个属性在外面设置
-    return CGSizeMake(JobsMainScreen_WIDTH(),
-                      (model.usesTableViewHeaderView ? [JobsUserHeaderDataViewForHeaderInSection viewHeightWithModel:nil] : 0 ) +
-                      JobsBottomSafeAreaHeight() +
-                      JobsWidth(31) +
-                      [JobsUserHeaderDataViewTBVCell cellHeightWithModel:nil] * JobsUserHeaderDataView.createDataMutArr.count);
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^(UIViewModel *_Nullable data){
+        data = data ? : UIViewModel.new;
+    //    model.usesTableViewHeaderView = YES;// 这个属性在外面设置
+        return CGSizeMake(JobsMainScreen_WIDTH(),
+                          (data.usesTableViewHeaderView ? JobsUserHeaderDataViewForHeaderInSection.viewHeightByModel(nil) : 0 ) +
+                          JobsBottomSafeAreaHeight() +
+                          JobsWidth(31) +
+                          JobsUserHeaderDataViewTBVCell.cellHeightByModel(nil) * JobsUserHeaderDataView.createDataMutArr.count);
+    };
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -121,7 +123,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [JobsUserHeaderDataViewTBVCell cellHeightWithModel:Nil];
+    return JobsUserHeaderDataViewTBVCell.cellHeightByModel(nil);
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -144,7 +146,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{
     NSLog(@"%d",self.viewModel.usesTableViewHeaderView);
-    return self.viewModel.usesTableViewHeaderView ? [JobsUserHeaderDataViewForHeaderInSection viewHeightWithModel:nil] : 0;
+    return self.viewModel.usesTableViewHeaderView ? JobsUserHeaderDataViewForHeaderInSection.viewHeightByModel(nil) : 0;
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -159,7 +161,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.viewModel.usesTableViewHeaderView) {
         JobsUserHeaderDataViewForHeaderInSection *headerView = tableView.tableViewHeaderFooterView(JobsUserHeaderDataViewForHeaderInSection.class,@"");
         headerView.section = section;
-        headerView.jobsRichElementsInViewWithModel(nil);
+        headerView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [headerView actionObjectBlock:^(id data) {
             @jobs_strongify(self)

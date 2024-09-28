@@ -47,28 +47,37 @@ BaseViewProtocol_synthesize
 -(void)layoutIfNeeded{
     [super layoutIfNeeded];
 }
+#pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(id _Nullable data) {
         @jobs_strongify(self)
     };
 }
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)viewWidthWithModel:(id _Nullable)model{
-    return 0;
++(JobsReturnCGFloatByIDBlock _Nonnull)viewWidthByModel{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)viewHeightWithModel:(id _Nullable)model{
-    return 0;
++(JobsReturnCGFloatByIDBlock _Nonnull)viewHeightByModel{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(id _Nullable)model{
-    return CGSizeZero;
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^(id _Nullable data){
+        return CGSizeZero;
+    };
 }
 /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGRect)viewFrameWithModel:(id _Nullable)model{
-    return CGRectZero;
++(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel{
+    return ^CGRect(id _Nullable data){
+        return CGRectZero;
+    };
 }
 
 @end

@@ -74,7 +74,7 @@
           _myTabBar = JobsTabBar.new;
           _myTabBar.tabBarControllerConfigMutArr = self.tabBarControllerConfigMutArr;
           _myTabBar.alignmentType = ImageTopTitleBottom;
-          _myTabBar.jobsRichElementsInViewWithModel(self.viewModel);
+          _myTabBar.jobsRichViewByModel(self.viewModel);
           self.jobsKVC(@"tabBar",_myTabBar);/// KVC 进行替换
       }return _myTabBar;
   }

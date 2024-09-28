@@ -158,6 +158,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    @jobs_weakify(self)
     if (self.tableView.editing) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.selected = YES;
@@ -165,10 +166,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         self.msgEditBoardView.getDeleteBtn.enabledBlock(dataMutArr.count);
         self.msgEditBoardView.getMarkToReadBtn.enabledBlock(dataMutArr.count);
     }else{
-
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.data = self.dataMutArr[indexPath.row];
-        
         JobsMsgDetailVC *msgDetailVC = JobsMsgDetailVC.new;
         @jobs_weakify(self)
         [msgDetailVC actionObjectBlock:^(JobsMsgDataModel *data) {
@@ -176,7 +173,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
             [self.dataMutArr removeObject:data];
             [self.tableView reloadData];
         }];
-        self.comingToPushVCByRequestParams(msgDetailVC,viewModel);
+        self.comingToPushVCByRequestParams(msgDetailVC,jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            @jobs_strongify(self)
+            viewModel.data = self.dataMutArr[indexPath.row];
+        }));
     }
 }
 /// 编辑模式下，点击取消左边已选中的cell的按钮
@@ -290,7 +290,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             
             _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
-            _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightMedium];
+            _tableView.ly_emptyView.titleLabFont = UIFontWeightMediumSize(JobsWidth(16));
         }
         
         [self.view addSubview:_tableView];
@@ -303,8 +303,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(MsgEditBoardView *)msgEditBoardView{
     if (!_msgEditBoardView) {
         _msgEditBoardView = MsgEditBoardView.new;
-        _msgEditBoardView.frame = [MsgEditBoardView viewFrameWithModel:nil];
-        _msgEditBoardView.jobsRichElementsInViewWithModel(nil);
+        _msgEditBoardView.frame = MsgEditBoardView.viewFrameByModel(nil);
+        _msgEditBoardView.jobsRichViewByModel(nil);
         _msgEditBoardView.getDeleteBtn.enabledBlock(self.selectedDataMutArr.count);
         @jobs_weakify(self)
         [_msgEditBoardView actionObjectBlock:^(id data) {
@@ -333,50 +333,40 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<JobsMsgDataModel *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
-        {
-            JobsMsgDataModel *viewModel = JobsMsgDataModel.new;
-            viewModel.msgStyle = JobsMsgType_Notify;/// 通知
-            viewModel.textModel.text = JobsInternationalization(@"6月1日13:00點整，英超焦點賽月1日13:00點整，英超焦點賽");
-            viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...夏季聯賽火熱來襲，全體會員虛擬幣存");
-            viewModel.time = JobsInternationalization(@"05-13 18:20");
-            viewModel.isDraw = NO;
-            viewModel.isRead = NO;
-            _dataMutArr.add(viewModel);
-        }
-        
-        {
-            JobsMsgDataModel *viewModel = JobsMsgDataModel.new;
-            viewModel.msgStyle = JobsMsgType_Activity;/// 活动
-            viewModel.textModel.text = JobsInternationalization(@"6月1日13:00點");
-            viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");
-            viewModel.time = JobsInternationalization(@"05-13 18:20");
-            viewModel.isDraw = YES;
-            viewModel.isRead = YES;
-            _dataMutArr.add(viewModel);
-        }
-        
-        {
-            JobsMsgDataModel *viewModel = JobsMsgDataModel.new;
-            viewModel.msgStyle = JobsMsgType_Notice;/// 公告
-            viewModel.textModel.text = JobsInternationalization(@"6月1日");
-            viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");
-            viewModel.time = JobsInternationalization(@"05-13 18:20");
-            viewModel.isDraw = NO;
-            viewModel.isRead = NO;
-            _dataMutArr.add(viewModel);
-        }
-        
-        {
-            JobsMsgDataModel *viewModel = JobsMsgDataModel.new;
-            viewModel.msgStyle = JobsMsgType_Bonus;/// 红利
-            viewModel.textModel.text = JobsInternationalization(@"wowowowowo");
-            viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");
-            viewModel.time = JobsInternationalization(@"05-13 18:20");
-            viewModel.isDraw = YES;
-            viewModel.isRead = YES;
-            _dataMutArr.add(viewModel);
-        }
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
+                viewModel.msgStyle = JobsMsgType_Notify;/// 通知
+                viewModel.textModel.text = JobsInternationalization(@"6月1日13:00點整，英超焦點賽月1日13:00點整，英超焦點賽");
+                viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...夏季聯賽火熱來襲，全體會員虛擬幣存");
+                viewModel.time = JobsInternationalization(@"05-13 18:20");
+                viewModel.isDraw = NO;
+                viewModel.isRead = NO;
+            }));
+            data.add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
+                viewModel.msgStyle = JobsMsgType_Activity;/// 活动
+                viewModel.textModel.text = JobsInternationalization(@"6月1日13:00點");
+                viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");
+                viewModel.time = JobsInternationalization(@"05-13 18:20");
+                viewModel.isDraw = YES;
+                viewModel.isRead = YES;
+            }));
+            data.add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
+                viewModel.msgStyle = JobsMsgType_Notice;/// 公告
+                viewModel.textModel.text = JobsInternationalization(@"6月1日");
+                viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");
+                viewModel.time = JobsInternationalization(@"05-13 18:20");
+                viewModel.isDraw = NO;
+                viewModel.isRead = NO;
+            }));
+            data.add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
+                viewModel.msgStyle = JobsMsgType_Bonus;/// 红利
+                viewModel.textModel.text = JobsInternationalization(@"wowowowowo");
+                viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");
+                viewModel.time = JobsInternationalization(@"05-13 18:20");
+                viewModel.isDraw = YES;
+                viewModel.isRead = YES;
+            }));
+        });
     }return _dataMutArr;
 }
 

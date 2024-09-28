@@ -72,12 +72,14 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
     }return self;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(50), JobsMainScreen_HEIGHT()/ 4);
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeMake(JobsWidth(50), JobsMainScreen_HEIGHT()/ 4);
+    };
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -97,13 +99,13 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(void)子视图垂直等间距排列{
     /// 实现masonry垂直方向固定控件高度方法
     [self.masonryViewArr mas_distributeViewsAlongAxis:MASAxisTypeVertical
-                                  withFixedItemLength:[JobsRightBtnsView viewSizeWithModel:nil].width
+                                  withFixedItemLength:JobsRightBtnsView.viewSizeByModel(nil).width
                                           leadSpacing:0
                                           tailSpacing:0];
     /// 设置array的水平方向的约束
     [self.masonryViewArr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
-        make.width.mas_equalTo([JobsRightBtnsView viewSizeWithModel:nil].width);
+        make.width.mas_equalTo(JobsRightBtnsView.viewSizeByModel(nil).width);
     }];
     [self layoutIfNeeded];
     UIViewModel *vm = UIViewModel.new;
@@ -208,7 +210,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     @jobs_strongify(self)
                     x.tag = MKRightBtnViewBtnType_shareBtn;//写在block外部，此值异常
                     JobsShareView *shareView = JobsShareView.new;
-                    shareView.jobsRichElementsInViewWithModel(nil);
+                    shareView.jobsRichViewByModel(nil);
                     self.popupShowSlideWithView(shareView);
                     if (self.objectBlock) self.objectBlock(x);
                 }];

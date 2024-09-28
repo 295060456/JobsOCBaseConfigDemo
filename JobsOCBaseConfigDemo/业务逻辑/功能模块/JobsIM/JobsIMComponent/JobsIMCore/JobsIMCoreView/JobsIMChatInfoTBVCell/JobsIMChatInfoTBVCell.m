@@ -64,20 +64,22 @@
     };
 }
 
-+(CGFloat)cellHeightWithModel:(id _Nullable)model{
-    if ([model isKindOfClass:JobsIMChatInfoModel.class]){
-        JobsIMChatInfoModel *chatInfoModel = (JobsIMChatInfoModel *)model;
-#warning 这里需要被修改
-        CGFloat CellHeight = 0;
-//        CGFloat CellHeight = [chatInfoModel.chatTextStr getContentHeightOrWidthWithParagraphStyleLineSpacing:0
-//                                                                                       calcLabelHeight_Width:CalcLabelHeight
-//                                                                                                        font:NULL
-//                                                                                boundingRectWithHeight_Width:JobsIMChatInfoTBVChatContentLabWidth()];
-        NSLog(@"%f",CellHeight);
-        return (CellHeight < JobsIMChatInfoTBVDefaultCellHeight() ? JobsIMChatInfoTBVDefaultCellHeight() : CellHeight) + (JobsIMChatInfoTBVDefaultCellHeight() / 2 - 5);
-    }else{
-        return 0;
-    }
++(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+    return ^CGFloat(id _Nullable data){
+        if ([data isKindOfClass:JobsIMChatInfoModel.class]){
+            JobsIMChatInfoModel *chatInfoModel = (JobsIMChatInfoModel *)data;
+    #warning 这里需要被修改
+            CGFloat CellHeight = 0;
+    //        CGFloat CellHeight = [chatInfoModel.chatTextStr getContentHeightOrWidthWithParagraphStyleLineSpacing:0
+    //                                                                                       calcLabelHeight_Width:CalcLabelHeight
+    //                                                                                                        font:NULL
+    //                                                                                boundingRectWithHeight_Width:JobsIMChatInfoTBVChatContentLabWidth()];
+            NSLog(@"%f",CellHeight);
+            return (CellHeight < JobsIMChatInfoTBVDefaultCellHeight() ? JobsIMChatInfoTBVDefaultCellHeight() : CellHeight) + (JobsIMChatInfoTBVDefaultCellHeight() / 2 - 5);
+        }else{
+            return 0;
+        }
+    };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{

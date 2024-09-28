@@ -134,13 +134,13 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
 /// 整张Excel表的宽度
 -(CGFloat)XZExcelW{
     if(!_XZExcelW){
-        _XZExcelW = [JobsExcelView viewSizeWithModel:nil].width;
+        _XZExcelW = JobsExcelView.viewSizeByModel(nil).width;
     }return _XZExcelW;
 }
 /// 整张Excel表的高度
 -(CGFloat)XZExcelH{
     if(!_XZExcelH){
-        _XZExcelH = [JobsExcelView viewSizeWithModel:nil].height;
+        _XZExcelH = JobsExcelView.viewSizeByModel(nil).height;
     }return _XZExcelH;
 }
 /// 线宽

@@ -77,13 +77,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [JobsBaseTableViewCell cellHeightWithModel:self.dataMutArr[indexPath.row]];
+    return JobsBaseTableViewCell.cellHeightByModel(self.dataMutArr[indexPath.row]);
 }
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIPasteboard.generalPasteboard.string = self.dataMutArr[indexPath.row].subTextModel.text;
-    self.jobsToastMsg(JobsInternationalization(@"复制").add(self.dataMutArr[indexPath.row].textModel.text).add(JobsInternationalization(@"成功")));
+    self.jobsToastMsg(JobsInternationalization(@"复制")
+                      .add(self.dataMutArr[indexPath.row].textModel.text)
+                      .add(JobsInternationalization(@"成功")));
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -136,19 +138,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                         NSObject *requestParams = (NSObject *)self.viewModel.requestParams;
                         NSMutableArray <NSString *>*propertyList = requestParams.printPropertyList;
                         for (NSString *propertyName in propertyList) {
-                            UIViewModel *viewModel = UIViewModel.new;
                             NSString *text = propertyName;
                             id subtext = requestParams.valueForKey(propertyName);
                             /// 防崩溃处理：
                             if([subtext isKindOfClass:NSString.class] &&
                                [text isKindOfClass:NSString.class]){
-                                viewModel.textModel.text = propertyName;
-                                viewModel.subTextModel.text = requestParams.valueForKey(propertyName);
-                                viewModel.textModel.textCor = JobsBlueColor;
-                                viewModel.textModel.font = UIFontSystemFontOfSize(10);
-                                viewModel.textModel.subTextCor = JobsRedColor;
-                                viewModel.textModel.subFont = UIFontSystemFontOfSize(8);
-                                self.dataMutArr.add(viewModel);
+                                self.dataMutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                                    viewModel.textModel.text = propertyName;
+                                    viewModel.subTextModel.text = requestParams.valueForKey(propertyName);
+                                    viewModel.textModel.textCor = JobsBlueColor;
+                                    viewModel.textModel.font = UIFontSystemFontOfSize(10);
+                                    viewModel.textModel.subTextCor = JobsRedColor;
+                                    viewModel.textModel.subFont = UIFontSystemFontOfSize(8);
+                                }));
                             }
                         }
                     }

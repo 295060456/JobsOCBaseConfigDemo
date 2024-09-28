@@ -48,12 +48,10 @@ UIViewModelProtocol_synthesize
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)cellHeightWithModel:(UIViewModel *_Nullable)model{
-    return JobsWidth(55);
-}
-/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGFloat)cellHeightWithModel:(UIViewModel *_Nullable)model{
-    return [self.class cellHeightWithModel:model];
++(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+    return ^CGFloat(id _Nullable data){
+        return JobsWidth(55);
+    };
 }
 #pragma mark —— BaseViewProtocol
 /// 获取绑定的数据源

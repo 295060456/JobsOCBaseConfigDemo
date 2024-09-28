@@ -195,12 +195,16 @@ UITableViewCellProtocol_synthesize
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)heightForFooterInSection:(id _Nullable)model{
-    return JobsWidth(10);
++(JobsReturnCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel{
+    return ^CGFloat(id _Nullable data){
+        return JobsWidth(10);
+    };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)heightForHeaderInSection:(id _Nullable)model{
-    return JobsWidth(10);
++(JobsReturnCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
+    return ^CGFloat(id _Nullable data){
+        return 10.0f;
+    };
 }
 /// 获取绑定的数据源
 -(UIViewModel *)getViewModel{
@@ -249,39 +253,42 @@ UITableViewCellProtocol_synthesize
     };
 }
 
-+(CGFloat)cellHeightWithModel:(__kindof UIViewModel *_Nullable)model{
-    if(model){
-        UIViewModel *vm = UIViewModel.new;
-        NSString *title = @"";
-        NSString *subtitle = @"";
-        if(model.textModel.attributedText.string.length){
-            title = model.textModel.attributedText.string;
-            vm.textModel.font = model.textModel.attributedText.attributedStringFont() ? : UIFontWeightRegularSize(14);
-            vm.textModel.textLineSpacing = model.textModel.attributedText.attributedStringParagraphStyle().lineSpacing;
-        }else{
-            title = model.textModel.text;
-            vm.textModel.font = model.textModel.font ? : UIFontWeightRegularSize(14);
-            vm.textModel.textLineSpacing = model.textModel.textLineSpacing;
-        }
-        
-        if(model.subTextModel.attributedText.string.length){
-            subtitle = model.subTextModel.attributedText.string;
-            vm.textModel.font = model.subTextModel.attributedText.attributedStringFont() ? : UIFontWeightRegularSize(14);
-            vm.textModel.textLineSpacing = model.subTextModel.attributedText.attributedStringParagraphStyle().lineSpacing;
-        }else{
-            subtitle = model.subTextModel.text;
-            vm.textModel.font = model.subTextModel.font ? : UIFontWeightRegularSize(14);
-            vm.textModel.textLineSpacing = model.subTextModel.textLineSpacing;
-        }
-        /// 主标题和副标题进行比较，以最长文本为标准执行
-        vm.textModel.text = title.length >= subtitle.length ? title : subtitle;
-        vm.jobsWidth = UITableViewCellTitleWidth;
-        
-        return [vm.textModel.text jobsTextHeightWithFont:vm.textModel.font
-                                              lineHeight:vm.textModel.textLineSpacing
-                                            controlWidth:vm.jobsWidth].jobsHeight;
-    }return JobsWidth(50);/// 没有数据源传入的时候的缺省值
++(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+    return ^CGFloat(__kindof UIViewModel *_Nullable model){
+        if(model){
+            UIViewModel *vm = UIViewModel.new;
+            NSString *title = @"";
+            NSString *subtitle = @"";
+            if(model.textModel.attributedText.string.length){
+                title = model.textModel.attributedText.string;
+                vm.textModel.font = model.textModel.attributedText.attributedStringFont() ? : UIFontWeightRegularSize(14);
+                vm.textModel.textLineSpacing = model.textModel.attributedText.attributedStringParagraphStyle().lineSpacing;
+            }else{
+                title = model.textModel.text;
+                vm.textModel.font = model.textModel.font ? : UIFontWeightRegularSize(14);
+                vm.textModel.textLineSpacing = model.textModel.textLineSpacing;
+            }
+            
+            if(model.subTextModel.attributedText.string.length){
+                subtitle = model.subTextModel.attributedText.string;
+                vm.textModel.font = model.subTextModel.attributedText.attributedStringFont() ? : UIFontWeightRegularSize(14);
+                vm.textModel.textLineSpacing = model.subTextModel.attributedText.attributedStringParagraphStyle().lineSpacing;
+            }else{
+                subtitle = model.subTextModel.text;
+                vm.textModel.font = model.subTextModel.font ? : UIFontWeightRegularSize(14);
+                vm.textModel.textLineSpacing = model.subTextModel.textLineSpacing;
+            }
+            /// 主标题和副标题进行比较，以最长文本为标准执行
+            vm.textModel.text = title.length >= subtitle.length ? title : subtitle;
+            vm.jobsWidth = UITableViewCellTitleWidth;
+            
+            return [vm.textModel.text jobsTextHeightWithFont:vm.textModel.font
+                                                  lineHeight:vm.textModel.textLineSpacing
+                                                controlWidth:vm.jobsWidth].jobsHeight;
+        }return JobsWidth(50);/// 没有数据源传入的时候的缺省值
+    };
 }
+
 #pragma mark —— @synthesize UIViewModelProtocol
 UIViewModelProtocol_synthesize
 -(void)setIndexPath:(NSIndexPath *)indexPath{

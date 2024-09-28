@@ -15,7 +15,7 @@
         @jobs_strongify(self)
         if(isNull(key)) return;
         if(!value) return;
-        if(key && value) [self setObject:value forKey:key];
+        if(key && value) [self setObject:value forKey:key];        
     };
 }
 

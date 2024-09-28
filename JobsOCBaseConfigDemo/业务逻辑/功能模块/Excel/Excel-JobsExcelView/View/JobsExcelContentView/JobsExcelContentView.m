@@ -29,7 +29,7 @@
     }return self;
 }
 #pragma mark —— BaseViewProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable model) {
         @jobs_strongify(self)

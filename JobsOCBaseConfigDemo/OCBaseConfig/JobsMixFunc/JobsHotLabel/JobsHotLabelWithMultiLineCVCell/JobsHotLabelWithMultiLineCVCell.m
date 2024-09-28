@@ -58,10 +58,12 @@
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)cellSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeEqualToSize(model.jobsSize, CGSizeZero) ? [UILabel sizeWithText:model.textModel.text
-                                                                            font:model.textModel.font
-                                                                         maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)] : model.jobsSize;
++(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
+    return ^CGSize(UIViewModel *_Nullable data){
+        return CGSizeEqualToSize(data.jobsSize, CGSizeZero) ? [UILabel sizeWithText:data.textModel.text
+                                                                               font:data.textModel.font
+                                                                            maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)] : data.jobsSize;
+    };
 }
 #pragma mark —— lazyLoad
 -(UILabel *)textLab{

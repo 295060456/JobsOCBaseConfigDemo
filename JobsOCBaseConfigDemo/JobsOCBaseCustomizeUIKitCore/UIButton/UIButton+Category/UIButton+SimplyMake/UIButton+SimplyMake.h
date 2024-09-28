@@ -18,13 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)jobsByBtnBlock longPressGestureBlock;
 #pragma mark —— 依靠单一数据进行简单创建
 /// 仅仅依靠主标题内容（普通文本）进行创建
-+(JobsReturnButtonByTitleBlock _Nonnull)initByTitle;
++(JobsReturnButtonByStringBlock _Nonnull)initByTitle;
 /// 仅仅依靠主标题富文本内容进行创建
 +(JobsReturnButtonByAttributedStringBlock _Nonnull)initByAttributedString;
 /// 仅仅靠按钮图片进行创建
-+(JobsReturnButtonByNormalImageBlock _Nonnull)initByNormalImage;
++(JobsReturnButtonByImageBlock _Nonnull)initByNormalImage;
 /// 仅仅依靠按钮背景图进行创建
-+(JobsReturnButtonByBackgroundImageBlock _Nonnull)initByBackgroundImage;
++(JobsReturnButtonByImageBlock _Nonnull)initByBackgroundImage;
 #pragma mark —— 对副标题进行创建
 /// 仅仅依靠（主/副）标题内容（普通文本）进行创建
 +(JobsReturnButtonByTitlesBlock _Nonnull)initByTitles;
@@ -63,8 +63,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 一些公有方法
 -(JobsReturnButtonByClickBlock _Nonnull)onClick;
 -(JobsReturnButtonByClickBlock _Nonnull)onLongPressGesture;
--(JobsReturnButtonByCorBlock _Nonnull)bgColor;
--(JobsReturnButtonByFloatBlock _Nonnull)cornerRadiusValue;
+-(JobsReturnButtonByColorBlock _Nonnull)bgColor;
+-(JobsReturnButtonByCGFloatBlock _Nonnull)cornerRadiusValue;
 
 @end
 

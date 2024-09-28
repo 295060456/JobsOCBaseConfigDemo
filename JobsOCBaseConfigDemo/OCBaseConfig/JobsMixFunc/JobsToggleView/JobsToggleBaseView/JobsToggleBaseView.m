@@ -54,7 +54,7 @@ JobsToggleNavViewProtocolSynthesize
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -66,14 +66,20 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(454),JobsWidth(155));
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^(id _Nullable data){
+        return CGSizeMake(JobsWidth(454),JobsWidth(155));
+    };
 }
 
--(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    if(!jobsEqualToZeroSize(self.toggleView_size)) return self.toggleView_size;
-    if(!jobsEqualToZeroSize(self.Size)) return self.Size;
-    return [JobsToggleBaseView viewSizeWithModel:nil];
+-(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    @jobs_weakify(self)
+    return ^(id _Nullable data){
+        @jobs_strongify(self)
+        if(!jobsEqualToZeroSize(self.toggleView_size)) return self.toggleView_size;
+        if(!jobsEqualToZeroSize(self.Size)) return self.Size;
+        return JobsToggleBaseView.viewSizeByModel(nil);
+    };
 }
 #pragma mark —— 一些公共方法
 
@@ -81,7 +87,7 @@ JobsToggleNavViewProtocolSynthesize
 -(void)makeScrollContentViewsFrame{
     int t = 0;
     for (UIView *subView in self.scrollContentViews) {
-        subView.frame = CGRectMake([self viewSizeWithModel:nil].width * t,
+        subView.frame = CGRectMake(self.viewSizeByModel(nil).width * t,
                                  0,
                                  self.bgScroll.width,
                                  self.bgScroll.height);
@@ -130,7 +136,7 @@ JobsToggleNavViewProtocolSynthesize
         _taggedNavView.sliderH = JobsWidth(1);
         
         [self addSubview:_taggedNavView];
-        _taggedNavView.jobsRichElementsInViewWithModel(nil);
+        _taggedNavView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         /// 联动
         [_taggedNavView actionObjectBlock:^(id _Nullable data) {
@@ -153,8 +159,8 @@ JobsToggleNavViewProtocolSynthesize
         _bgScroll.scrollEnabled = NO;
         _bgScroll.frame = CGRectMake(0,
                                      self.taggedNavView_height + self.taggedNavView_bgScroll_offset,
-                                     [self viewSizeWithModel:nil].width,
-                                     [self viewSizeWithModel:nil].height - (self.taggedNavView_height + self.taggedNavView_bgScroll_offset));
+                                     self.viewSizeByModel(nil).width,
+                                     self.viewSizeByModel(nil).height - (self.taggedNavView_height + self.taggedNavView_bgScroll_offset));
         _bgScroll.contentSize = CGSizeMake(_bgScroll.width * self.scrollContentViews.count, 0);
         _bgScroll.delegate = self;
         _bgScroll.pagingEnabled = YES;
@@ -175,7 +181,7 @@ JobsToggleNavViewProtocolSynthesize
 
 -(CGFloat)taggedNavView_width{
     if(!_taggedNavView_width){
-        _taggedNavView_width = [self viewSizeWithModel:nil].width;
+        _taggedNavView_width = self.viewSizeByModel(nil).width;
     }return _taggedNavView_width;
 }
 
@@ -191,10 +197,10 @@ JobsToggleNavViewProtocolSynthesize
     }return _taggedNavView_bgScroll_offset;
 }
 
--(NSMutableArray<__kindof UIView *> *)tempLabs{
+-(NSMutableArray<__kindof UIView *>*)tempLabs{
     if(!_tempLabs){
         @jobs_weakify(self)
-        _tempLabs = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _tempLabs = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView *>*_Nullable data) {
             @jobs_strongify(self)
             int t = 0;
             for (NSString *title in self.tempTitles) {

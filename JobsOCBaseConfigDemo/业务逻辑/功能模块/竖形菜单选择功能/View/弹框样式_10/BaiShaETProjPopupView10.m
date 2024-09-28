@@ -51,7 +51,7 @@ static dispatch_once_t static_popupView10OnceToken;
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -67,8 +67,10 @@ static dispatch_once_t static_popupView10OnceToken;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(322));
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(322));
+    };
 }
 #pragma mark —— 一些公有方法
 -(jobsByBOOLBlock)shakeCell{
@@ -98,7 +100,7 @@ cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
         cell.btn.jobsResetBtnTitleCor(HEXCOLOR(0x757575));
     }
     
-    cell.cornerCutToCircleWithCornerRadius([JobsBtnStyleCVCell cellSizeWithModel:nil].height / 2);
+    cell.cornerCutToCircleWithCornerRadius(JobsBtnStyleCVCell.cellSizeByModel(nil).height / 2);
     return cell;
 }
 
@@ -112,12 +114,12 @@ numberOfItemsInSection:(NSInteger)section {
                                  atIndexPath:(NSIndexPath *)indexPath {
     if (kind.isEqualToString(UICollectionElementKindSectionHeader)) {
         JobsHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHeaderFooterView.class
-                                                                                                       forIndexPath:indexPath];
+                                                                                        forIndexPath:indexPath];
         
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = JobsInternationalization(@"拖動按鈕迸行位置調整");
         viewModel.subTextModel.text = JobsInternationalization(@"");
-        headerView.jobsRichElementsInViewWithModel(viewModel);
+        headerView.jobsRichViewByModel(viewModel);
         headerView.backgroundColor = HEXCOLOR(0xFFFCF7);
         
         [headerView.getTitleBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -266,7 +268,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.top.equalTo(self.bgView);
-            make.width.mas_equalTo([BaiShaETProjPopupView10 viewSizeWithModel:nil].width);
+            make.width.mas_equalTo(BaiShaETProjPopupView10.viewSizeByModel(nil).width);
             make.height.mas_equalTo(200);// 需要动态添加
         }];
     
@@ -331,7 +333,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
         [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self);
             make.centerX.equalTo(self);
-            make.size.mas_equalTo(CGSizeMake([BaiShaETProjPopupView10 viewSizeWithModel:nil].width, JobsWidth(44)));
+            make.size.mas_equalTo(CGSizeMake(BaiShaETProjPopupView10.viewSizeByModel(nil).width, JobsWidth(44)));
         }];
         [self layoutIfNeeded];
         [_titleLab appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
@@ -419,7 +421,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
         _bgView.backgroundColor = JobsWhiteColor;
         [self addSubview:_bgView];
         [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake([BaiShaETProjPopupView10 viewSizeWithModel:nil].width, [BaiShaETProjPopupView10 viewSizeWithModel:nil].height - JobsWidth(44)));
+            make.size.mas_equalTo(CGSizeMake(BaiShaETProjPopupView10.viewSizeByModel(nil).width, BaiShaETProjPopupView10.viewSizeByModel(nil).height - JobsWidth(44)));
             make.centerX.equalTo(self);
             make.top.equalTo(self.titleLab.mas_bottom);
         }];
@@ -435,7 +437,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
                                    startPoint:CGPointZero
                                      endPoint:CGPointZero
                                        opaque:NO
-                               targetViewRect:CGRectMake(0, 0, [BaiShaETProjPopupView10 viewSizeWithModel:nil].width, JobsWidth(44))];
+                               targetViewRect:CGRectMake(0, 0, BaiShaETProjPopupView10.viewSizeByModel(nil).width, JobsWidth(44))];
     }return _cor;
 }
 

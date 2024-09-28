@@ -91,48 +91,32 @@
 }
 #pragma mark —— 一些私有方法
 +(NSMutableArray<UIViewModel *> *)createDataMutArr{
-    NSMutableArray <UIViewModel *>*dataMutArr = NSMutableArray.array;
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DG體育");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DG真人");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DG電子");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DG彩票");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DG棋牌");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DA電子");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }return dataMutArr;
+    NSMutableArray <UIViewModel *>*dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DG體育");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DG真人");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DG電子");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DG彩票");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DG棋牌");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DA電子");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+    });return dataMutArr;
 }
 #pragma mark - UIContextMenuInteractionDelegate
 /**
@@ -331,7 +315,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(BaiShaETProjChoiceStadiumTBVHeaderView *)tbvHeaderView{
     if (!_tbvHeaderView) {
         _tbvHeaderView = BaiShaETProjChoiceStadiumTBVHeaderView.new;
-        _tbvHeaderView.Size = [BaiShaETProjChoiceStadiumTBVHeaderView viewSizeWithModel:nil];
+        _tbvHeaderView.Size = BaiShaETProjChoiceStadiumTBVHeaderView.viewSizeByModel(nil);
         _tbvHeaderView.text = JobsInternationalization(@"選擇場館");
         _tbvHeaderView.textColor = HEXCOLOR(0x3D4A58);
         _tbvHeaderView.font = UIFontWeightBoldSize(16);
@@ -347,11 +331,15 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<JobsBaseTableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
-        _tbvCellMutArr = NSMutableArray.array;
-        for (UIViewModel *viewModel in self.dataMutArr) {
-            _tbvCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-        }
+        @jobs_weakify(self)
+        _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            for (UIViewModel *viewModel in self.dataMutArr) {
+                data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            }
+        });
     }return _tbvCellMutArr;
 }
 
 @end
+

@@ -386,7 +386,7 @@
 }
 #pragma mark —— 一些通用修改.主标题（Api已做向下兼容）
 ///【兼容】重设Btn主标题的文字内容 优先级高于jobsResetTitle
--(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnTitle{
+-(JobsReturnButtonByStringBlock _Nonnull)jobsResetBtnTitle{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSString *_Nullable data) {
         @jobs_strongify(self)
@@ -406,7 +406,7 @@
     };
 }
 ///【兼容】重设Btn主标题的文字颜色
--(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnTitleCor{
+-(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnTitleCor{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIColor *_Nullable data) {
         @jobs_strongify(self)
@@ -476,7 +476,7 @@
 }
 #pragma mark —— 一些通用修改.副标题
 ///【最新的Api】重设Btn副标题的文字内容
--(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0)){
+-(JobsReturnButtonByStringBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSString *_Nullable data) {
         @jobs_strongify(self)
@@ -485,7 +485,7 @@
     };
 }
 ///【最新的Api】重设Btn副标题的文字颜色
--(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0)){
+-(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIColor *_Nullable data) {
         @jobs_strongify(self)
@@ -560,7 +560,7 @@
 }
 #pragma mark —— 一些通用修改.按钮颜色
 ///【兼容】重设Btn的背景颜色
--(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnBgCor{
+-(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnBgCor{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIColor *_Nullable data) {
         @jobs_strongify(self)
@@ -698,7 +698,7 @@
     };
 }
 ///【老Api】设置 Btn 已选择状态下的 按钮主标题
--(JobsReturnButtonByTitleBlock _Nonnull)selectedTitle{
+-(JobsReturnButtonByStringBlock _Nonnull)selectedTitle{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSString *_Nonnull title) {
         @jobs_strongify(self)

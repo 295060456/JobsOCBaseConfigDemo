@@ -256,7 +256,7 @@ numberOfRowsInSection:(NSInteger)section{
 
 -(CGFloat)tableView:(__kindof UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [LeftCell cellHeightWithModel:nil];
+    return LeftCell.cellHeightByModel(nil);
 }
 
 -(void)tableView:(__kindof UITableView *)tableView
@@ -391,8 +391,8 @@ referenceSizeForFooterInSection:(NSInteger)section{
         _tempCell.backgroundColor = JobsRedColor;
         _tempCell.frame = CGRectMake(0,
                                      0,
-                                     [ThreeClassCell cellSizeWithModel:nil].width,
-                                     [ThreeClassCell cellSizeWithModel:nil].height);
+                                     ThreeClassCell.cellSizeByModel(nil).width,
+                                     ThreeClassCell.cellSizeByModel(nil).height);
     }return _tempCell;
 }
 
@@ -429,7 +429,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
     if (!_searchView) {
         _searchView = JobsSearchBar.new;
         _searchView.Size = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
-        _searchView.jobsRichElementsInViewWithModel(nil);
+        _searchView.jobsRichViewByModel(nil);
 //        @jobs_weakify(self)
         [_searchView actionObjectBlock:^(NSString *data) {
 //            @jobs_strongify(self)
@@ -550,7 +550,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
 -(BaiShaETProjPopupView10 *)popupView{
     if (!_popupView) {
         _popupView = BaiShaETProjPopupView10.new;
-        _popupView.Size = [BaiShaETProjPopupView10 viewSizeWithModel:nil];
+        _popupView.Size = BaiShaETProjPopupView10.viewSizeByModel(nil);
         @jobs_weakify(self)
         [_popupView tf_observerDelegateProcess:^(UIView *pop, DelegateProcess pro) {
             @strongify(self)
@@ -589,7 +589,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
     viewModel.index = self.thisIndex;
     viewModel.data = self.popupViewDataMutArr;
     
-    _popupView.jobsRichElementsInViewWithModel(viewModel);
+    _popupView.jobsRichViewByModel(viewModel);
     return _popupView;
 }
 

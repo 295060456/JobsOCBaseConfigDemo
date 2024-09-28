@@ -34,23 +34,26 @@
 /// 返回动画曲线
 -(NSString *)curve:(TransitionCurve)curve{
     /// 曲线数组
-    NSArray *funcNames=@[kCAMediaTimingFunctionDefault,
-                         kCAMediaTimingFunctionEaseIn,
-                         kCAMediaTimingFunctionEaseInEaseOut,
-                         kCAMediaTimingFunctionEaseOut,
-                         kCAMediaTimingFunctionLinear];
+    NSArray *funcNames = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add(kCAMediaTimingFunctionDefault);
+        data.add(kCAMediaTimingFunctionEaseIn);
+        data.add(kCAMediaTimingFunctionEaseInEaseOut);
+        data.add(kCAMediaTimingFunctionEaseOut);
+        data.add(kCAMediaTimingFunctionLinear);
+    });
     return [self objFromArray:funcNames
                         index:curve
                      isRamdom:(TransitionCurveRamdom == curve)];
 }
 /// 返回动画方向
 -(NSString *)animaSubtype:(TransitionSubType)subType{
-    
     /// 设置转场动画的方向
-    NSArray *subtypes=@[kCATransitionFromTop,
-                        kCATransitionFromLeft,
-                        kCATransitionFromBottom,
-                        kCATransitionFromRight];
+    NSArray *subtypes = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        data.add(kCATransitionFromTop);
+        data.add(kCATransitionFromLeft);
+        data.add(kCATransitionFromBottom);
+        data.add(kCATransitionFromRight);
+    });
     return [self objFromArray:subtypes
                         index:subType
                      isRamdom:(TransitionSubtypesFromRamdom == subType)];

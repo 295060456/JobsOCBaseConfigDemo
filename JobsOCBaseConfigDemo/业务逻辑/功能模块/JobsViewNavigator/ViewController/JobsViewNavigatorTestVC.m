@@ -137,7 +137,7 @@
         _pushView = JobsPushView.new;
         _pushView.frame = self.view.bounds;
         _pushView.backgroundColor = JobsRandomColor;
-        _pushView.jobsRichElementsInViewWithModel(nil);
+        _pushView.jobsRichViewByModel(nil);
     }return _pushView;
 }
 

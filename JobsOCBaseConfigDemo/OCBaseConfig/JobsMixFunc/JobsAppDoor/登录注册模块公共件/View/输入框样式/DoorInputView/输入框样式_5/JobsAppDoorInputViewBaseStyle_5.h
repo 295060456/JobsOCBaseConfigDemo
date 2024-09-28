@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_END
  
  -(JobsAppDoorInputViewBaseStyle_5 *)inputView{
      if (!_inputView) {
-         _inputView = [JobsAppDoorInputViewBaseStyle_5.alloc initWithSize:[BaiShaETProjAddVirtualCurrencyAddressInputTBVCell cellSizeWithModel:nil]];
+         _inputView = [JobsAppDoorInputViewBaseStyle_5.alloc initWithSize:[BaiShaETProjAddVirtualCurrencyAddressInputTBVCell cellSizeByModel:nil]];
          if (self.indexPath.row == 4) {
              _inputView.style_5 = InputViewStyle_5_1;
          }else if(self.indexPath.row == 3){
@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_END
          [_inputView mas_makeConstraints:^(MASConstraintMaker *make) {
              make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, JobsWidth(16), 0, JobsWidth(-16)));
          }];
-         _inputView.jobsRichElementsInViewWithModel(self.inputViewStyleModel);
+         _inputView.jobsRichViewByModel(self.inputViewStyleModel);
          @jobs_weakify(self)
          [_inputView actionObjectBlock:^(id data) {
              @jobs_strongify(self)

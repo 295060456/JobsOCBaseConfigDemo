@@ -46,6 +46,12 @@
 #error "XYColorOC header not found"
 #endif
 
+#if __has_include(<VerifyCode/NTESVerifyCodeManager.h>)
+#import <VerifyCode/NTESVerifyCodeManager.h>
+#else
+#import "NTESVerifyCodeManager.h"
+#endif
+
 #if __has_include(<YTKNetwork/YTKNetwork.h>)
 #import <YTKNetwork/YTKNetwork.h>
 #else
@@ -62,12 +68,6 @@
 #import <WMZCode/WMZCodeView.h>
 #else
 #import "WMZCodeView.h"
-#endif
-
-#if __has_include(<VerifyCode/NTESVerifyCodeManager.h>)
-#import <VerifyCode/NTESVerifyCodeManager.h>
-#else
-#import "NTESVerifyCodeManager.h"
 #endif
 
 #if __has_include(<FSCalendar/FSCalendar.h>)
@@ -92,6 +92,12 @@
 #import <WMZBanner/WMZBannerView.h>
 #else
 #import "WMZBannerView.h"
+#endif
+
+#if __has_include(<ZMJTipView/ZMJTipView.h>)
+#import <ZMJTipView/ZMJTipView.h>
+#else
+#import "ZMJTipView.h"
 #endif
 
 //#if __has_include(<VerifyCode/NTESVerifyCodeManager.h>)

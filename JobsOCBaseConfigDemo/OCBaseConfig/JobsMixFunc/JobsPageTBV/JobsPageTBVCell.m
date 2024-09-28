@@ -41,8 +41,12 @@
     };
 }
 
-+(CGFloat)cellHeightWithModel:(id _Nullable)model{
-    return 0.f;
+-(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return 0.f;
+    };
 }
 #pragma mark —— lazyLoad
 -(UILabel *)textLab{

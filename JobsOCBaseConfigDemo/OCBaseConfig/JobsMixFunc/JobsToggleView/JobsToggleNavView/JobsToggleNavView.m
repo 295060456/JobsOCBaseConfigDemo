@@ -52,7 +52,7 @@ JobsToggleNavViewProtocolSynthesize
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -62,12 +62,17 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(340), JobsWidth(500));
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^(id _Nullable data){
+        return CGSizeMake(JobsWidth(340), JobsWidth(500));
+    };
 }
 
--(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(410), JobsWidth(280));
+-(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^(id _Nullable data){
+//        return self.class.viewSizeByModel(nil);
+        return CGSizeMake(JobsWidth(410), JobsWidth(280));
+    };
 }
 #pragma mark —— 一些私有方法
 -(CGFloat)buttonWidth{

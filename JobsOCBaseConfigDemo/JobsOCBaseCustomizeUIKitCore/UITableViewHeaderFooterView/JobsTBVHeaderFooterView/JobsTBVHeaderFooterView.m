@@ -23,7 +23,7 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 由具体的子类进行覆写
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -34,8 +34,10 @@
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)heightForHeaderInSection:(id _Nullable)model{
-    return JobsWidth(46);
++(JobsReturnCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
+    return ^CGFloat(id _Nullable data){
+        return JobsWidth(46);
+    };
 }
 #pragma mark —— 一些公共方法
 -(UILabel *)getTitleLab{

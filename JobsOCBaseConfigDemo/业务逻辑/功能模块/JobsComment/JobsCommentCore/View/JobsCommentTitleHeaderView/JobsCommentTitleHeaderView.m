@@ -30,11 +30,11 @@
     [super layoutSubviews];
 }
 #pragma mark —— BaseViewProtocol
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-        super.jobsRichElementsInViewWithModel(model);
+        super.jobsRichViewByModel(model);
         self.backgroundColor = JobsWhiteColor;
         self.titleLab.alpha = 1;
         self.cancelBtn.alpha = 1;

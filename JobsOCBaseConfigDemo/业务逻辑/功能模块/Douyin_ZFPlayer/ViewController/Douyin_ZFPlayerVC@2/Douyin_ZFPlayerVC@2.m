@@ -60,7 +60,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-//
+//    
 //    NSError *error = nil;
 //    [KTVHTTPCache proxyStart:&error];
     
@@ -226,7 +226,7 @@
 #pragma mark —————————— UITableViewDelegate,UITableViewDataSource ——————————
 -(CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [JobsVideoTBVCell cellHeightWithModel:tableView];
+    return JobsVideoTBVCell.cellHeightByModel(tableView);
 }
 
 -(NSInteger)tableView:(UITableView *)tableView
@@ -263,7 +263,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         _bitsMonitorSuspendLab.vc = weak_self;
         _bitsMonitorSuspendLab.isAllowDrag = YES;//悬浮效果必须要的参数
         [self.view addSubview:_bitsMonitorSuspendLab];
-        _bitsMonitorSuspendLab.frame = [JobsBitsMonitorSuspendLab viewFrameWithModel:nil];
+        _bitsMonitorSuspendLab.frame = JobsBitsMonitorSuspendLab.viewFrameByModel(nil);
     }return _bitsMonitorSuspendLab;
 }
 
@@ -342,7 +342,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //        {/// 设置tabAnimated相关属性
 //            // 可以不进行手动初始化，将使用默认属性
 //            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:ZFDouYinCell.class
-//                                                                  cellHeight:[ZFDouYinCell cellHeightWithModel:nil]];
+//                                                                  cellHeight:[ZFDouYinCell cellHeightByModel:nil]];
 //            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
 //   //            [_tableView.tabAnimated addHeaderViewClass:LineTableViewHeaderFooterView.class viewHeight:60 toSection:0];
 //            [_tableView tab_startAnimation];   // 开启动画

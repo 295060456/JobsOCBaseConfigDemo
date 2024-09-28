@@ -211,7 +211,7 @@
 -(MSMineView2 *)view2{
     if(!_view2){
         _view2 = MSMineView2.new;
-        _view2.jobsRichElementsInViewWithModel(nil);
+        _view2.jobsRichViewByModel(nil);
         [self.view addSubview:_view2];
         // 移除第一个 _view2 的约束
         [self.view2 mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -229,7 +229,7 @@
             // 在动画完成后，切换到第二个 _view2 的约束
             [self.view2 mas_remakeConstraints:^(MASConstraintMaker *make) {
                 // 添加第二个 _view2 的约束
-                make.size.mas_equalTo([MSMineView2 viewSizeWithModel:nil]);
+                make.size.mas_equalTo(MSMineView2.viewSizeByModel(nil));
                 make.centerX.equalTo(self.view);
                 make.top.equalTo(self.view).offset(JobsWidth(12));
             }];
@@ -240,7 +240,7 @@
                 [self.view layoutIfNeeded]; // 让视图更新布局
             }];
         }];
-        _view2.cornerCutToCircleWithCornerRadius([MSMineView2 viewSizeWithModel:nil].height / 2);
+        _view2.cornerCutToCircleWithCornerRadius(MSMineView2.viewSizeByModel(nil).height / 2);
     }return _view2;
 }
 

@@ -30,7 +30,7 @@
 }
 #pragma mark —— BaseViewProtocol
 //具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(NSArray <UIViewModel *>*_Nullable model) {
         @jobs_strongify(self)
@@ -50,7 +50,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [JobsPageTBVCell cellHeightWithModel:Nil] ? : self.cellHeight;
+    return JobsPageTBVCell.cellHeightByModel(nil) ? : self.cellHeight;
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -69,8 +69,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.jobsRichElementsInCellWithModel(self.dataArr[indexPath.row]);
 #warning 这里需要被修改
 //    UIViewModel *viewModel = self.dataArr[indexPath.row];
-//    viewModel.jobsWidth = [JobsPageTBVCell cellHeightWithModel:Nil] ? : self.cellHeight;
-//    [UIView widthByData:viewModel];
+//    viewModel.jobsWidth = JobsPageTBVCell.cellHeightByModel(nil) ? : self.cellHeight;
+//    UIView.widthByData(viewModel);
     return cell;
 }
 #pragma mark —— lazyLoad

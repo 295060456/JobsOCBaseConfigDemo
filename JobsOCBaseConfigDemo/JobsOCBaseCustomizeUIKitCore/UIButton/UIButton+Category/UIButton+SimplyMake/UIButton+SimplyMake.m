@@ -10,7 +10,7 @@
 @implementation UIButton (SimplyMake)
 #pragma mark —— 依靠单一数据进行简单创建
 /// 仅仅依靠主标题内容（普通文本）进行创建
-+(JobsReturnButtonByTitleBlock _Nonnull)initByTitle{
++(JobsReturnButtonByStringBlock _Nonnull)initByTitle{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title){
         @jobs_strongify(self)
@@ -30,7 +30,7 @@
     };
 }
 /// 仅仅靠按钮图片进行创建
-+(JobsReturnButtonByNormalImageBlock _Nonnull)initByNormalImage{
++(JobsReturnButtonByImageBlock _Nonnull)initByNormalImage{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIImage *_Nonnull image){
         @jobs_strongify(self)
@@ -40,7 +40,7 @@
     };
 }
 /// 仅仅依靠按钮背景图进行创建
-+(JobsReturnButtonByBackgroundImageBlock _Nonnull)initByBackgroundImage{
++(JobsReturnButtonByImageBlock _Nonnull)initByBackgroundImage{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIImage *_Nonnull image){
         @jobs_strongify(self)
@@ -403,7 +403,7 @@
     };
 }
 
--(JobsReturnButtonByCorBlock _Nonnull)bgColor{
+-(JobsReturnButtonByColorBlock _Nonnull)bgColor{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIColor *color) {
         @jobs_strongify(self)
@@ -412,7 +412,7 @@
     };
 }
 
--(JobsReturnButtonByFloatBlock _Nonnull)cornerRadiusValue{
+-(JobsReturnButtonByCGFloatBlock _Nonnull)cornerRadiusValue{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(CGFloat data) {
         @jobs_strongify(self)

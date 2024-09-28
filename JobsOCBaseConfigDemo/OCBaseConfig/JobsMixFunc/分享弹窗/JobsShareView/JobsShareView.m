@@ -64,7 +64,7 @@ static dispatch_once_t static_shareViewOnceToken;
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    JobsLock(self.Size = [JobsShareView viewSizeWithModel:nil];)
+    JobsLock(self.Size = JobsShareView.viewSizeByModel(nil);)
     /// 内部指定圆切角
     [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
                                     cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
@@ -76,19 +76,21 @@ static dispatch_once_t static_shareViewOnceToken;
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model;
-        self.Size = [JobsShareView viewSizeWithModel:nil];
+        self.Size = JobsShareView.viewSizeByModel(nil);
         self.collectionView.alpha = 1;
         self.cancelBtn.alpha = 1;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(148));
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(148));
+    };
 }
 #pragma mark —— 一些私有方法
 
@@ -180,7 +182,7 @@ layout:(UICollectionViewLayout *)collectionViewLayout
 sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     UIViewModel *viewModel = UIViewModel.new;
     viewModel.cls = self.class;
-    return [MSMineView6CVCell cellSizeWithModel:viewModel];
+    return MSMineView6CVCell.cellSizeByModel(viewModel);
 }
 /// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView

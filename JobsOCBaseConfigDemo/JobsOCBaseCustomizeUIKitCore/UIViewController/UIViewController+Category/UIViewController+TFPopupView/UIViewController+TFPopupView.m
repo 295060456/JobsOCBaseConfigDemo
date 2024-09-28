@@ -13,8 +13,8 @@
     self.popupParameter.disuseBackgroundTouchHide = NO;
     CGRect targetFrame = CGRectMake(0,
                                     0,
-                                    [JobsFiltrationView viewSizeWithModel:nil].width,
-                                    [JobsFiltrationView viewSizeWithModel:nil].height);
+                                    JobsFiltrationView.viewSizeByModel(nil).width,
+                                    JobsFiltrationView.viewSizeByModel(nil).height);
     if ([self isKindOfClass:UIViewController.class]) {
         [self.filtrationView tf_showFold:self.view
                              targetFrame:targetFrame
@@ -27,8 +27,8 @@
     self.popupParameter.disuseBackgroundTouchHide = NO;
     CGRect targetFrame = CGRectMake(0,
                                     0,
-                                    [JobsCustomView viewSizeWithModel:nil].width,
-                                    [JobsCustomView viewSizeWithModel:nil].height);
+                                    JobsCustomView.viewSizeByModel(nil).width,
+                                    JobsCustomView.viewSizeByModel(nil).height);
     if ([self isKindOfClass:UIViewController.class]) {
         [self.customView tf_showFold:self.view
                          targetFrame:targetFrame
@@ -47,8 +47,8 @@ JobsKey(_filtrationView)
     JobsFiltrationView *FiltrationView = Jobs_getAssociatedObject(_filtrationView);
     if (!FiltrationView) {
         FiltrationView = JobsFiltrationView.new;
-        FiltrationView.Size = [JobsFiltrationView viewSizeWithModel:nil];
-        FiltrationView.jobsRichElementsInViewWithModel(nil);
+        FiltrationView.Size = JobsFiltrationView.viewSizeByModel(nil);
+        FiltrationView.jobsRichViewByModel(nil);
         Jobs_setAssociatedRETAIN_NONATOMIC(_filtrationView, FiltrationView)
     }return FiltrationView;
 }
@@ -63,8 +63,8 @@ JobsKey(_customView)
     JobsCustomView *CustomView = Jobs_getAssociatedObject(_customView);
     if (!CustomView) {
         CustomView = JobsCustomView.new;
-        CustomView.Size = [JobsFiltrationView viewSizeWithModel:nil];
-        CustomView.jobsRichElementsInViewWithModel(nil);
+        CustomView.Size = JobsFiltrationView.viewSizeByModel(nil);
+        CustomView.jobsRichViewByModel(nil);
         Jobs_setAssociatedRETAIN_NONATOMIC(_customView, CustomView)
     }return CustomView;
 }

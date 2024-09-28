@@ -30,8 +30,12 @@ BaseProtocol_synthesize
     };
 }
 #pragma mark —— BaseCellProtocol
-+(CGFloat)cellHeightWithModel:(id _Nullable)model{
-    return JobsCommentConfig.sharedInstance.cellHeight;
++(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return JobsCommentConfig.sharedInstance.cellHeight;
+    };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
@@ -41,11 +45,22 @@ BaseProtocol_synthesize
         if ([model isKindOfClass:JobsChildCommentModel.class]) {
             self.childCommentModel = (JobsChildCommentModel *)model;
             self.likeBtn.alpha = 1;
-
             self.textLabel.text = self.childCommentModel.nickname;
             self.detailTextLabel.text = self.childCommentModel.content;
-            [self.imageView sd_setImageWithURL:self.childCommentModel.headImg.jobsUrl
-                              placeholderImage:[UIImage animatedGIFNamed:@"动态头像 尺寸126"] ? : JobsIMG(@"用户默认头像")];
+            self.imageView
+                .imageURL(self.childCommentModel.headImg.jobsUrl)
+                .placeholderImage(JobsGifIMG(@"动态头像 尺寸126") ? : JobsIMG(@"用户默认头像"))
+                .options(SDWebImageRefreshCached)/// 强制刷新缓存
+                .completed(^(UIImage * _Nullable image,
+                             NSError * _Nullable error,
+                             SDImageCacheType cacheType,
+                             NSURL * _Nullable imageURL) {
+                    if (error) {
+                        NSLog(@"图片加载失败: %@-%@", error,imageURL);
+                    } else {
+                        NSLog(@"图片加载成功");
+                    }
+                }).load();
         }
     };
 }

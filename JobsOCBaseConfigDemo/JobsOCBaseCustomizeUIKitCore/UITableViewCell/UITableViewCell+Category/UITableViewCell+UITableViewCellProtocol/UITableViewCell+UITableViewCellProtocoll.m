@@ -139,8 +139,10 @@ UITableViewCellProtocol_dynamic
     };
 }
 
-+(CGFloat)cellHeightWithModel:(id _Nullable)model{
-    return JobsWidth(44);
++(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+    return ^CGFloat(id _Nullable data){
+        return JobsWidth(44);
+    };
 }
 #pragma mark —— UITableViewCellProtocol
 /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
@@ -290,6 +292,22 @@ UITableViewCellProtocol_dynamic
      dy：为正数是，向下平移dy，高度缩小2dy。为负数是，向上平移dy，高度增大2dy。
      */
     return CGRectInset(self.bounds,dx,dy);/// 获取显示区域大小
+}
+
+-(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.cellHeightByModel(data);
+    };
+}
+
+-(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
+    @jobs_weakify(self)
+    return ^CGSize(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.cellSizeByModel(data);
+    };
 }
 
 @end

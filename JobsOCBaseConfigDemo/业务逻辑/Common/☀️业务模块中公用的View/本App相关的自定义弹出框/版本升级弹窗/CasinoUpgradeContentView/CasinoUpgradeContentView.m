@@ -35,7 +35,7 @@
     [super drawRect:rect];
 }
 #pragma mark —— BaseViewProtocol
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(JobsGetiOSNewestVersionModel *_Nullable model) {
         @jobs_strongify(self)
@@ -50,9 +50,11 @@
         self.sureBtn.alpha = 1;
     };
 }
-//具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(JobsGetiOSNewestVersionModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(290), JobsWidth(133));
+/// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^(id _Nullable data){
+        return CGSizeMake(JobsWidth(290), JobsWidth(133));
+    };
 }
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{

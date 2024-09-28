@@ -123,7 +123,7 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
     return JobsStatusBarHeight()
 //    + self.gk_navigationBar.height
     + JobsNavigationBarAndStatusBarHeight(nil)
-    + [BaiShaETProjCollectionHeaderView viewSizeWithModel:nil].height;
+    + BaiShaETProjCollectionHeaderView.viewSizeByModel(nil).height;
 }
 /// JXCategoryTitleView *categoryView 的高度
 - (NSUInteger)heightForPinSectionHeaderInPagerView:(JXPagerView *)pagerView {
@@ -160,10 +160,10 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
         _collectionHeaderView = BaiShaETProjCollectionHeaderView.new;
         _collectionHeaderView.frame = CGRectMake(0,
                                                  JobsNavigationBarAndStatusBarHeight(nil),
-                                                 [BaiShaETProjCollectionHeaderView viewSizeWithModel:nil].width,
-                                                 [BaiShaETProjCollectionHeaderView viewSizeWithModel:nil].height);
+                                                 BaiShaETProjCollectionHeaderView.viewSizeByModel(nil).width,
+                                                 BaiShaETProjCollectionHeaderView.viewSizeByModel(nil).height);
         _collectionHeaderView.isZoom = YES;
-        _collectionHeaderView.jobsRichElementsInViewWithModel(nil);
+        _collectionHeaderView.jobsRichViewByModel(nil);
     }return _collectionHeaderView;
 }
 
@@ -215,9 +215,9 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
     }return _ruleBtn;
 }
 
--(NSMutableArray<NSString *> *)titleMutArr{
+-(NSMutableArray<NSString *>*)titleMutArr{
     if (!_titleMutArr) {
-        _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
             for (int i = 0; i <= 5; i++) {
                 data.add(JobsInternationalization(@"Lv".add(toStringByInt(i))));
             }
@@ -225,9 +225,11 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
     }return _titleMutArr;
 }
 
--(NSMutableArray<__kindof UIViewController *> *)childVCMutArr{
+-(NSMutableArray<__kindof UIViewController *>*)childVCMutArr{
     if (!_childVCMutArr) {
-        _childVCMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        @jobs_weakify(self)
+        _childVCMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIViewController *>*_Nullable data) {
+            @jobs_strongify(self)
             for (NSString *str in self.titleMutArr) {
                 JXCategoryViewWithHeaderViewSubVC *vipSubVC = JXCategoryViewWithHeaderViewSubVC.new;
                 vipSubVC.jobsTag = [self.titleMutArr indexOfObject:str];
@@ -238,6 +240,3 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
 }
 
 @end
-
-
-

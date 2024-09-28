@@ -109,11 +109,11 @@
 #pragma mark —————————— UITableViewDelegate,UITableViewDataSource ——————————
 -(CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [JobsLoadMoreTBVCell cellHeightWithModel:nil];//isFullShow
+    return JobsLoadMoreTBVCell.cellHeightByModel(nil);//isFullShow
 }
 
 -(CGFloat)tableView:(UITableView *)tableView
-heightForFooterInSection:(NSInteger)section{
+heightForFooterInSectionByModel:(NSInteger)section{
     return 0.0f;
 }
 
@@ -174,14 +174,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{///  👌
-    return [JobsCommentPopUpView_viewForHeaderInSection viewHeightWithModel:nil];
+    return JobsCommentPopUpView_viewForHeaderInSection.viewHeightByModel(nil);
 }
 /// 一级评论数据 展示在viewForHeaderInSection
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{
     JobsCommentPopUpView_viewForHeaderInSection *header = JobsCommentPopUpView_viewForHeaderInSection.new;
-    header.jobsRichElementsInViewWithModel(self.mjModel.listDataArr[section]);/// 一级评论数据 展示在viewForHeaderInSection
+    header.jobsRichViewByModel(self.mjModel.listDataArr[section]);/// 一级评论数据 展示在viewForHeaderInSection
     @jobs_weakify(self)
     // 一级标题点击事件
     [header actionObjectBlock:^(id data) {
@@ -193,7 +193,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
 -(JobsCommentTitleHeaderView *)titleHeaderView{
     if (!_titleHeaderView) {
         _titleHeaderView = JobsCommentTitleHeaderView.new;
-        _titleHeaderView.jobsRichElementsInViewWithModel(nil);
+        _titleHeaderView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [_titleHeaderView actionObjectBlock:^(id data) {
             @jobs_strongify(self)

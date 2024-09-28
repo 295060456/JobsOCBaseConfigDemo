@@ -100,14 +100,14 @@
 //    NSLog(@"333");
 //}
 ////-(void)textViewDidEndEditing:(UITextView *)textView;
-//-(BOOL)textView:(UITextView *)textView
+//-(BOOL)textView:(UITextView *)textView 
 //shouldChangeTextInRange:(NSRange)range
 //replacementText:(NSString *)text{
 //    NSLog(@"21");
 //    return YES;
 //}
 //-(void)textViewDidChange:(UITextView *)textView{
-//
+//    
 //}
 //-(void)textViewDidChangeSelection:(UITextView *)textView{
 //

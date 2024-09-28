@@ -14,13 +14,13 @@ JobsKey(_logOutPopupVM)
 -(UIViewModel *)logOutPopupVM{
     UIViewModel *LogOutPopupVM = Jobs_getAssociatedObject(_logOutPopupVM);
     if (!LogOutPopupVM) {
-        LogOutPopupVM = UIViewModel.new;
-        LogOutPopupVM.textModel.text = JobsInternationalization(@"Confirm to exit ?");
-        LogOutPopupVM.textModel.font = UIFontWeightRegularSize(14);
-        LogOutPopupVM.textModel.textAlignment = NSTextAlignmentCenter;
-        LogOutPopupVM.subTextModel.text = JobsInternationalization(@"");
-        LogOutPopupVM.bgCor = JobsWhiteColor;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_logOutPopupVM, LogOutPopupVM)
+        LogOutPopupVM = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.textModel.text = JobsInternationalization(@"Confirm to exit ?");
+            data.textModel.font = UIFontWeightRegularSize(14);
+            data.textModel.textAlignment = NSTextAlignmentCenter;
+            data.subTextModel.text = JobsInternationalization(@"");
+            data.bgCor = JobsWhiteColor;
+        });Jobs_setAssociatedRETAIN_NONATOMIC(_logOutPopupVM, LogOutPopupVM)
     }return LogOutPopupVM;
 }
 
@@ -34,8 +34,8 @@ JobsKey(_logOutPopupView)
     JobsBasePopupView *LogOutPopupView = Jobs_getAssociatedObject(_logOutPopupView);
     if (!LogOutPopupView) {
         LogOutPopupView = JobsBasePopupView.new;
-        LogOutPopupView.Size = [JobsBasePopupView viewSizeWithModel:nil];
-        LogOutPopupView.jobsRichElementsInViewWithModel(self.logOutPopupVM);
+        LogOutPopupView.Size = JobsBasePopupView.viewSizeByModel(nil);
+        LogOutPopupView.jobsRichViewByModel(self.logOutPopupVM);
         @jobs_weakify(self)
         [LogOutPopupView actionObjectBlock:^(UIButton *data) {
             @jobs_strongify(self)

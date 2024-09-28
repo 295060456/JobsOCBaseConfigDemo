@@ -24,7 +24,7 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 由具体的子类进行覆写
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)

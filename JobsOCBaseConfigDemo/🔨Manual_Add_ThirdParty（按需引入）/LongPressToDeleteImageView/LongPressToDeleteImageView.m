@@ -39,7 +39,7 @@
 //// 恢复抖动
 //view.layer.speed = 1.0;
 //// 停止抖动
-//view.layer.speed = 0.0;
+//view.layer.speed = 0.0; 
 
 //- (IBAction)delete:(id)sender {
 //    [self.imageView removeFromSuperview];

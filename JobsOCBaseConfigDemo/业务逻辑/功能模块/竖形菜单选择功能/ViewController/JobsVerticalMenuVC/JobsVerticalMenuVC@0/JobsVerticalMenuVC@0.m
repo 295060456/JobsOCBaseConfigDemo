@@ -115,7 +115,7 @@
 //                                0,
 //                                JobsRealWidth() - MenuWidth,
 //                                JobsRealHeight());
-//        view.jobsRichElementsInViewWithModel(nil);
+//        view.jobsRichViewByModel(nil);
 //        return view;
 //    };
 //}
@@ -176,7 +176,7 @@
 
 - (CGFloat)tableView:(__kindof UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [LeftCell cellHeightWithModel:nil];
+    return LeftCell.cellHeightByModel(nil);
 }
 
 - (void)tableView:(__kindof UITableView *)tableView
@@ -232,7 +232,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!_searchView) {
         _searchView = JobsSearchBar.new;
         _searchView.Size = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
-        _searchView.jobsRichElementsInViewWithModel(nil);
+        _searchView.jobsRichViewByModel(nil);
 //        @jobs_weakify(self)
         [_searchView actionObjectBlock:^(NSString *data) {
 //            @jobs_strongify(self)

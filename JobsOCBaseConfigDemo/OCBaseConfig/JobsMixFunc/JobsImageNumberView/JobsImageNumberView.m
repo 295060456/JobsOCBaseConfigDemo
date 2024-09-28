@@ -28,7 +28,7 @@
     [super drawRect:rect];
 }
 //具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(NSArray <UIImage *>*_Nullable model) {
         @jobs_strongify(self)
@@ -96,7 +96,7 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [JobsImageNumberViewCVCell cellSizeWithModel:self.dataMutArr[indexPath.row]];
+    return JobsImageNumberViewCVCell.cellSizeByModel(self.dataMutArr[indexPath.row]);
 }
 /// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView

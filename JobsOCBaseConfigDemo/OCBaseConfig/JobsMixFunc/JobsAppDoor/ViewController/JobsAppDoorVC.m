@@ -345,7 +345,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
         _forgotCodeContentView.height = JobsAppDoorContentViewFindPasswordHeight;
         self.forgotCodeContentViewY = _forgotCodeContentView.y;
         [self.view addSubview:_forgotCodeContentView];
-        _forgotCodeContentView.jobsRichElementsInViewWithModel(UIViewModel.new);
+        _forgotCodeContentView.jobsRichViewByModel(UIViewModel.new);
         @jobs_weakify(self)
         [_forgotCodeContentView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
@@ -434,7 +434,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
         }];
         [self.view addSubview:_jobsAppDoorContentView];
         _jobsAppDoorContentView.cornerCutToCircleWithCornerRadius(8);
-        _jobsAppDoorContentView.jobsRichElementsInViewWithModel(nil);
+        _jobsAppDoorContentView.jobsRichViewByModel(nil);
     }return _jobsAppDoorContentView;
 }
 

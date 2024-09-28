@@ -49,15 +49,15 @@ UITableViewCell_UIViewModelProtocolSynthesize
     };
 }
 
-+(CGFloat)cellHeightWithModel:(UIViewModel *_Nullable)model{
-    
-    UIViewModel *vm = UIViewModel.new;
-    vm.textModel.font = UIFontWeightRegularSize(14);
-    vm.jobsWidth = JobsMainScreen_WIDTH() - JobsWidth(200);
-    vm.textModel.text = vm.subTextModel.text;
-    vm.textModel.textLineSpacing = 0;
-    
-    return [UIView heightByData:model ? : vm] + JobsWidth(20);
++(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+    return ^CGFloat(UIViewModel *_Nullable model){
+        UIViewModel *vm = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.textModel.font = UIFontWeightRegularSize(14);
+            data.jobsWidth = JobsMainScreen_WIDTH() - JobsWidth(200);
+            data.textModel.text = data.subTextModel.text;
+            data.textModel.textLineSpacing = 0;
+        });return UIView.heightByData(model ? : vm) + JobsWidth(20);
+    };
 }
 
 @end

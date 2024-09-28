@@ -29,32 +29,32 @@ typedef NS_ENUM(NSUInteger, JhtBannerViewOrientation) {
 /** banner view（整条view） */
 @interface JhtBannerScrollView : UIView <UIScrollViewDelegate>
 /** 滚动方向
- *    default: BV_Orientation_Horizontal
+ *	default: BV_Orientation_Horizontal
  */
 @property(nonatomic,assign)JhtBannerViewOrientation orientation;
 
 /** 非当前页的透明比例（蒙板View alpha）
- *    default: 0.4
+ *	default: 0.4
  */
 @property(nonatomic,assign)CGFloat minCoverViewAlpha;
 /** View之间 左右间距
- *    default: 20.0
+ *	default: 20.0
  */
 @property(nonatomic,assign)CGFloat leftRightMargin;
 /** 两侧小View与中间View 高度差
- *    default: 15.0
+ *	default: 15.0
  */
 @property(nonatomic,assign)CGFloat topBottomMargin;
 /** 是否开启自动滚动
- *    default: YES
+ *	default: YES
  */
 @property(nonatomic,assign)BOOL isOpenAutoScroll;
 /** 是否开启无限轮播
- *    default: YES
+ *	default: YES
  */
 @property(nonatomic,assign)BOOL isCarousel;
 /** 自动切换视图 时间
- *    default: 3.0
+ *	default: 3.0
  */
 @property(nonatomic,assign)NSTimeInterval autoTime;
 /** 当前是第几页 */

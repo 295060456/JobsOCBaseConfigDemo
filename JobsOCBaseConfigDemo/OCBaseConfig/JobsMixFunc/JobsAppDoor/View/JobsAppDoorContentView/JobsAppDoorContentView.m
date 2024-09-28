@@ -46,7 +46,7 @@
     [super drawRect:rect];
 }
 #pragma mark —— BaseViewProtocol
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(id _Nullable data) {
         @jobs_strongify(self)
@@ -142,7 +142,7 @@
         JobsAppDoorInputViewBaseStyle_3 *inputView = JobsAppDoorInputViewBaseStyle_3.new;
         [self.inputViewMutArr addObject:inputView];
         [self.loginDoorInputViewBaseStyleMutArr addObject:inputView];
-        inputView.jobsRichElementsInViewWithModel(self.loginDoorInputViewBaseStyleModelMutArr[i]);
+        inputView.jobsRichViewByModel(self.loginDoorInputViewBaseStyleModelMutArr[i]);
         @jobs_weakify(self)
         //【用户名 & 密码 输入回调，共享注册与登录两个界面】
         [inputView actionObjectBlock:^(UITextField *data) {
@@ -306,7 +306,7 @@
             doorInputViewBaseStyle = (JobsAppDoorInputViewBaseStyle *)inputView;
             [self addSubview:inputView];
             [self.registerDoorInputViewBaseStyleMutArr addObject:inputView];
-            inputView.jobsRichElementsInViewWithModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);
+            inputView.jobsRichViewByModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);
             @jobs_weakify(self)
             [inputView actionObjectBlock:^(UITextField *data) {
                 @jobs_strongify(self)
@@ -320,7 +320,7 @@
             doorInputViewBaseStyle = (JobsAppDoorInputViewBaseStyle *)inputView_7;
             [self addSubview:inputView_7];
             [self.registerDoorInputViewBaseStyleMutArr addObject:inputView_7];
-            inputView_7.jobsRichElementsInViewWithModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);
+            inputView_7.jobsRichViewByModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);
             @jobs_weakify(self)
             [inputView_7 actionObjectBlock:^(UITextField *data) {
                 @jobs_strongify(self)
@@ -334,7 +334,7 @@
             doorInputViewBaseStyle = (JobsAppDoorInputViewBaseStyle *)inputView;
             [self addSubview:inputView];
             [self.registerDoorInputViewBaseStyleMutArr addObject:inputView];
-            inputView.jobsRichElementsInViewWithModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);
+            inputView.jobsRichViewByModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);
             @jobs_weakify(self)
             [inputView actionObjectBlock:^(id data) {
                 @jobs_strongify(self)

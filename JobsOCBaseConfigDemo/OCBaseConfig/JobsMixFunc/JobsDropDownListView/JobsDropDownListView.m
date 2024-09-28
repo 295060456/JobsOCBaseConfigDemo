@@ -64,7 +64,7 @@
     [self removeFromSuperview];
 }
 
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(NSMutableArray <__kindof UIViewModel *>*_Nullable model) {
         @jobs_strongify(self)
@@ -81,8 +81,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    /// self.tbvCell_cls没有值的时候等于调用 [JobsDropDownListTBVCell cellHeightWithModel:Nil];
-    NSNumber *d = [NSObject methodName:@"cellHeightWithModel:"
+    /// self.tbvCell_cls没有值的时候等于调用 JobsDropDownListTBVCell.cellHeightByModel(nil)
+    NSNumber *d = [NSObject methodName:@"cellHeightByModel:"
                              targetObj:self.tbvCell_cls ? self.tbvCell_cls.class : JobsDropDownListTBVCell.class
                            paramarrays:nil];
     return d.floatValue;
@@ -131,14 +131,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<__kindof UITableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
-        _tbvCellMutArr = NSMutableArray.array;
-        NSInteger dataMutArrCount = self.dataMutArr.count;
-        do {
-            UITableViewCell *tableViewCell = [self.tableView tableViewCellClass:self.tbvCell_cls ? : JobsDropDownListTBVCell.class
-                                                   tableViewCellStyleValue1Salt:@""];
-            _tbvCellMutArr.add(tableViewCell);
-            dataMutArrCount -= 1;
-        } while (dataMutArrCount);
+        @jobs_weakify(self)
+        _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            NSInteger dataMutArrCount = self.dataMutArr.count;
+            do {
+                UITableViewCell *tableViewCell = [self.tableView tableViewCellClass:self.tbvCell_cls ? : JobsDropDownListTBVCell.class
+                                                       tableViewCellStyleValue1Salt:@""];
+                data.add(tableViewCell);
+                dataMutArrCount -= 1;
+            } while (dataMutArrCount);
+        });
     }return _tbvCellMutArr;
 }
 

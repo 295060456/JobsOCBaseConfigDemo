@@ -232,13 +232,13 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
 referenceSizeForHeaderInSection:(NSInteger)section {
-    return [JobsHeaderFooterView collectionReusableViewSizeWithModel:nil];
+    return JobsHeaderFooterView.collectionReusableViewSizeByModel(nil);
 }
 /// Footer 大小
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
 referenceSizeForFooterInSection:(NSInteger)section{
-    return [JobsHeaderFooterView collectionReusableViewSizeWithModel:nil];
+    return JobsHeaderFooterView.collectionReusableViewSizeByModel(nil);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -348,9 +348,9 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 //                                    DDCollectionViewCell_Style4.class,
 //                                    ];
 //            NSArray *sizeArray = @[
-//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style2 cellSizeWithModel:nil]],
-//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeWithModel:nil]],
-//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeWithModel:nil]]
+//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style2 cellSizeByModel:nil]],
+//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeByModel:nil]],
+//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeByModel:nil]]
 //                                   ];
 //
 //            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:classArray
@@ -358,10 +358,10 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 //                                                                         animatedCountArray:@[@(1),@(1),@(1)]];
 //
 //            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
-//                                                   viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeWithModel:nil]
+//                                                   viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeByModel:nil]
 //                                                  toSection:0];
 //            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
-//                                                   viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeWithModel:nil]
+//                                                   viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeByModel:nil]
 //                                                  toSection:2];
 //
 //            _collectionView.tabAnimated.containNestAnimation = YES;

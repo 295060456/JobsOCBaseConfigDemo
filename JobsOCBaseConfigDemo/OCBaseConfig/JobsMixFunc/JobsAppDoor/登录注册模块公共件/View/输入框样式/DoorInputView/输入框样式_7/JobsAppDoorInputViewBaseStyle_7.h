@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_END
          
          _选择区号并输入手机号.layer.cornerRadius = JobsWidth(52 / 2);
          _选择区号并输入手机号.layer.borderColor = HEXCOLOR(0xEEE2C8).CGColor;
-         _选择区号并输入手机号.jobsRichElementsInViewWithModel(self.配置选择区号并输入手机号);
+         _选择区号并输入手机号.jobsRichViewByModel(self.配置选择区号并输入手机号);
      }return _选择区号并输入手机号;
  }
  

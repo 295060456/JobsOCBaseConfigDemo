@@ -97,7 +97,7 @@
     if (!_listView) {
         _listView = JobsIMListView.new;
         @jobs_weakify(self)
-        _listView.jobsRichElementsInViewWithModel(nil);
+        _listView.jobsRichViewByModel(nil);
         [_listView actionObjectBlock:^(JobsIMListDataModel *data) {
             @jobs_strongify(self)
             self.comingToPushVCByRequestParams(JobsIMVC.new,[self makeData:data]);

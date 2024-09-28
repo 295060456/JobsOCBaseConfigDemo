@@ -45,13 +45,15 @@
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)cellSizeWithModel:(UIViewModel *_Nullable)model{
-//    if([model.cls isEqual:MSMySocialTitleView.class]){
-//        return CGSizeMake(JobsWidth(40), JobsWidth(60));
-//    }else if ([model.cls isEqual:MSMineVC.class]){
-//        return CGSizeMake(JobsWidth(70), JobsWidth(70));
-//    }else return CGSizeZero;
-    return CGSizeMake(JobsWidth(70), JobsWidth(70));
++(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
+    return ^CGSize(id _Nullable data){
+//        if([model.cls isEqual:MSMySocialTitleView.class]){
+//            return CGSizeMake(JobsWidth(40), JobsWidth(60));
+//        }else if ([model.cls isEqual:MSMineVC.class]){
+//            return CGSizeMake(JobsWidth(70), JobsWidth(70));
+//        }else return CGSizeZero;
+        return CGSizeMake(JobsWidth(70), JobsWidth(70));
+    };
 }
 #pragma mark —— lazyLoad
 

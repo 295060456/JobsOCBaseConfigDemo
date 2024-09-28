@@ -44,7 +44,7 @@
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable data) {
         @jobs_strongify(self)
@@ -59,12 +59,10 @@
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsRealWidth() - 100, JobsRealHeight() / 2);
-}
-
--(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return [self.class viewSizeWithModel:nil];
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeMake(JobsRealWidth() - 100, JobsRealHeight() / 2);
+    };
 }
 #pragma mark —— lazyLoad
 -(UIImageView *)bgImageView{
@@ -104,7 +102,7 @@
             make.width.mas_equalTo(itemW);
             make.bottom.equalTo(self);
         }];
-        _leftListView.jobsRichElementsInViewWithModel(self.viewModel_);
+        _leftListView.jobsRichViewByModel(self.viewModel_);
     }return _leftListView;
 }
 
@@ -118,7 +116,7 @@
             make.right.equalTo(self);
             make.height.equalTo(self.titleBtn);
         }];
-        _headView.jobsRichElementsInViewWithModel(self.viewModel_);
+        _headView.jobsRichViewByModel(self.viewModel_);
     }return _headView;
 }
 
@@ -132,7 +130,7 @@
             make.right.equalTo(self);
             make.bottom.equalTo(self);
         }];
-        _contentView.jobsRichElementsInViewWithModel(self.viewModel_);
+        _contentView.jobsRichViewByModel(self.viewModel_);
     }return _contentView;
 }
 

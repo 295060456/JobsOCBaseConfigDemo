@@ -111,9 +111,9 @@
          _textField.placeholderColor = JobsGrayColor;
          CGFloat placeholderHeight = [self jobsGetLabelWidthWithTitle:_textField.placeholder font:_textField.placeholderFont].height;
          CGFloat placeholderY = (JobsWidth(28) - placeholderHeight) / 2;
-         _textField.drawPlaceholderInRect = CGRectMake(JobsWidth(52), placeholderY, [MSInputStyle1View viewSizeWithModel:nil].width - JobsWidth(32), JobsWidth(28));// OK
-         _textField.editingRectForBounds = CGRectMake(JobsWidth(52), 0, [MSInputStyle1View viewSizeWithModel:nil].width - JobsWidth(32 + 12), JobsWidth(28));
-         _textField.textRectForBounds = CGRectMake(JobsWidth(52), 0, [MSInputStyle3View viewSizeWithModel:nil].width - JobsWidth(32 + 12 + 100), 100);
+         _textField.drawPlaceholderInRect = CGRectMake(JobsWidth(52), placeholderY, MSInputStyle1View.viewSizeByModel(nil).width - JobsWidth(32), JobsWidth(28));// OK
+         _textField.editingRectForBounds = CGRectMake(JobsWidth(52), 0, MSInputStyle1View.viewSizeByModel(nil).width - JobsWidth(32 + 12), JobsWidth(28));
+         _textField.textRectForBounds = CGRectMake(JobsWidth(52), 0, MSInputStyle3View.viewSizeByModel(nil).width - JobsWidth(32 + 12 + 100), 100);
          @jobs_weakify(self)
          [_textField jobsTextFieldEventFilterBlock:^BOOL(id data) {
  //            @jobs_strongify(self)
@@ -125,7 +125,7 @@
          }];
          [self addSubview:_textField];
          [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.size.mas_equalTo(CGSizeMake([MSInputStyle1View viewSizeWithModel:nil].width - JobsWidth(32 + 12), JobsWidth(28)));
+             make.size.mas_equalTo(CGSizeMake(MSInputStyle1View.viewSizeByModel(nil).width - JobsWidth(32 + 12), JobsWidth(28)));
              make.centerY.equalTo(self);
              make.left.equalTo(self).offset(JobsWidth(12));
          }];
@@ -149,9 +149,9 @@
          _textField.placeholderColor = JobsGrayColor;
          CGFloat placeholderHeight = [self jobsGetLabelWidthWithTitle:_textField.placeholder font:_textField.placeholderFont].height;
          CGFloat placeholderY = (JobsWidth(28) - placeholderHeight) / 2;
-         _textField.drawPlaceholderInRect = CGRectMake(JobsWidth(52), placeholderY, [MSInputStyle3View viewSizeWithModel:nil].width - JobsWidth(32 + 100), JobsWidth(28));// OK
-         _textField.editingRectForBounds = CGRectMake(JobsWidth(52), 0, [MSInputStyle3View viewSizeWithModel:nil].width - JobsWidth(32 + 12 + 100), JobsWidth(28));
-         _textField.textRectForBounds = CGRectMake(JobsWidth(52), 0, [MSInputStyle3View viewSizeWithModel:nil].width - JobsWidth(32 + 12 + 100), 100);
+         _textField.drawPlaceholderInRect = CGRectMake(JobsWidth(52), placeholderY, MSInputStyle3ViewviewSizeByModel(nil).width - JobsWidth(32 + 100), JobsWidth(28));// OK
+         _textField.editingRectForBounds = CGRectMake(JobsWidth(52), 0, MSInputStyle3View.viewSizeByModel(nil).width - JobsWidth(32 + 12 + 100), JobsWidth(28));
+         _textField.textRectForBounds = CGRectMake(JobsWidth(52), 0, MSInputStyle3View.viewSizeByModel(nil).width - JobsWidth(32 + 12 + 100), 100);
          @jobs_weakify(self)
          [_textField jobsTextFieldEventFilterBlock:^BOOL(id data) {
  //            @jobs_strongify(self)
@@ -163,7 +163,7 @@
          }];
          [self addSubview:_textField];
          [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.size.mas_equalTo(CGSizeMake([MSInputStyle3View viewSizeWithModel:nil].width - JobsWidth(32 + 12 + 100), JobsWidth(28)));
+             make.size.mas_equalTo(CGSizeMake(MSInputStyle3View.viewSizeByModel(nil).width - JobsWidth(32 + 12 + 100), JobsWidth(28)));
              make.centerY.equalTo(self);
              make.left.equalTo(self).offset(JobsWidth(12));
          }];
@@ -195,17 +195,17 @@
          
          _textField.drawPlaceholderInRect = CGRectMake(JobsWidth(32),// leftView的宽
                                                        placeholderY,// 垂直居中
-                                                       [MSSearchView viewSizeWithModel:nil].width - JobsWidth(32 + 52),// 52是self.searchBtn的宽
+                                                       MSSearchView.viewSizeByModel(nil).width - JobsWidth(32 + 52),// 52是self.searchBtn的宽
                                                        JobsWidth(28));//
          _textField.editingRectForBounds = CGRectMake(JobsWidth(32),
                                                       0,
-                                                      [MSSearchView viewSizeWithModel:nil].width - JobsWidth(32 + 22 + 5) - self.searchBtn.size.width,// 5 是右边与self.searchBtn的距离
+                                                      MSSearchView viewSizeByModel(nil).width - JobsWidth(32 + 22 + 5) - self.searchBtn.size.width,// 5 是右边与self.searchBtn的距离
                                                       JobsWidth(28));
          _textField.textRectForBounds = CGRectMake(JobsWidth(32),
                                                    0,
-                                                   [MSSearchView viewSizeWithModel:nil].width - JobsWidth(32 + 22 + 5),// 5 是右边与self.searchBtn的距离
+                                                   MSSearchView.viewSizeByModel(nil).width - JobsWidth(32 + 22 + 5),// 5 是右边与self.searchBtn的距离
                                                    100);// 100 这个值写死，不用管
-         _textField.rightViewRectForBounds = CGRectMake(JobsWidth([MSSearchView viewSizeWithModel:nil].width - self.searchBtn.size.width),
+         _textField.rightViewRectForBounds = CGRectMake(JobsWidth(MSSearchView.viewSizeByModel(nil).width - self.searchBtn.size.width),
                                                         rightViewY,
                                                         self.searchBtn.size.width,
                                                         self.searchBtn.size.height);

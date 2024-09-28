@@ -30,7 +30,7 @@
 }
 /// 获取当前的UICollectionViewCell对应的section个数
 -(NSInteger)jobsGetCurrentNumberOfSections{
-    return [self.jobsGetCurrentCollectionView numberOfSections];
+    return self.jobsGetCurrentCollectionView.numberOfSections;
 }
 /// 获取当前的UICollectionViewCell对应的section的的item个数
 -(NSInteger)jobsGetCurrentNumberOfItemsInSection{
@@ -277,5 +277,29 @@
      */
     return CGRectInset(self.bounds,dx,dy);/// 获取显示区域大小
 }
+
+//+(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
+//    @jobs_weakify(self)
+//    return ^CGSize(id _Nullable data){
+//        @jobs_strongify(self)
+//        return CGSizeZero;
+//    };
+//}
+//
+//-(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+//    @jobs_weakify(self)
+//    return ^CGFloat(id _Nullable data){
+//        @jobs_strongify(self)
+//        return self.class.cellHeightByModel(data);
+//    };
+//}
+//
+//-(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
+//    @jobs_weakify(self)
+//    return ^CGSize(id _Nullable data){
+//        @jobs_strongify(self)
+//        return self.class.cellSizeByModel(data);
+//    };
+//}
 
 @end

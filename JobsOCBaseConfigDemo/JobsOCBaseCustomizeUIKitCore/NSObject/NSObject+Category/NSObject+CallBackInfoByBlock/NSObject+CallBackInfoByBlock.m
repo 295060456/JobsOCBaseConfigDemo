@@ -25,7 +25,7 @@ JobsKey(_voidBlock)
 #pragma mark —— 1.2、（单一）入参 ｜ 无返回值
 JobsKey(_objectBlock)
 @dynamic objectBlock;
--(jobsByIDBlock)objectBlock{
+-(jobsByIDBlock _Nonnull)objectBlock{
     return Jobs_getAssociatedObject(_objectBlock);
 }
 

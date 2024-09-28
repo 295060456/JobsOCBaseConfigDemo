@@ -49,7 +49,7 @@
         self.sectionInsetRight = JobsWidth(15.f);
         self.minimumLineSpacing = JobsWidth(17);
         self.minimumInteritemSpacing = JobsWidth(13);
-        self.itemHeight = [TreeClassItemCell cellSizeWithModel:nil].height;
+        self.itemHeight = TreeClassItemCell.cellSizeByModel(nil).height;
         self.backgroundColor = self.contentView.backgroundColor = ThreeClassCellBgCor;
         self.jobsRichElementsInCellWithModel(nil);
     }return self;
@@ -66,8 +66,10 @@
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)cellSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH() - TableViewWidth, JobsWidth(1000));
++(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeMake(JobsMainScreen_WIDTH() - TableViewWidth, JobsWidth(1000));
+    };
 }
 #pragma mark —— 一些公有方法
 -(CGFloat)getCollectionHeight:(NSMutableArray *)dataArray{
@@ -89,7 +91,7 @@
         _flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _flowLayout.minimumInteritemSpacing = self.minimumInteritemSpacing;
         _flowLayout.minimumLineSpacing = self.minimumLineSpacing;
-        _flowLayout.itemSize = [TreeClassItemCell cellSizeWithModel:nil];
+        _flowLayout.itemSize = TreeClassItemCell.cellSizeByModel(nil);
         _flowLayout.sectionInset = UIEdgeInsetsMake(self.sectionInsetTop,
                                                     self.sectionInsetLeft,
                                                     self.sectionInsetBottom,
@@ -99,11 +101,11 @@
 
 -(UICollectionView *)collectionView{
     if (!_collectionView){
-        _collectionView = [UICollectionView.alloc initWithFrame:CGRectMake(JobsWidth(8.76),
-                                                                           0,
-                                                                           self.frame.size.width - JobsWidth(17.52),
-                                                                           self.frame.size.height)
-                                           collectionViewLayout:self.flowLayout];
+        _collectionView = UICollectionView.initByLayout(self.flowLayout);
+        _collectionView.frame = CGRectMake(JobsWidth(8.76),
+                                           0,
+                                           self.frame.size.width - JobsWidth(17.52),
+                                           self.frame.size.height);
         _collectionView.scrollEnabled = NO;
         _collectionView.dataLink(self);
 

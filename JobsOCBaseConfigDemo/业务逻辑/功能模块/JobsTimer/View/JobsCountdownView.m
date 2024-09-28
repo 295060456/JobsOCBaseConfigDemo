@@ -72,7 +72,7 @@ static dispatch_once_t static_countdownViewOnceToken;
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -84,8 +84,10 @@ static dispatch_once_t static_countdownViewOnceToken;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(343), JobsWidth(184));
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeMake(JobsWidth(343), JobsWidth(184));
+    };
 }
 #pragma mark —— lazyLoad
 -(NSTimerManager *)nsTimerManager{
@@ -149,7 +151,7 @@ static dispatch_once_t static_countdownViewOnceToken;
             make.centerX.equalTo(self);
             make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(16));
             make.height.mas_equalTo(JobsWidth(60));
-            make.width.mas_equalTo([JobsCountdownView viewSizeWithModel:nil].width);
+            make.width.mas_equalTo(JobsCountdownView.viewSizeByModel(nil).width);
         }];
     }return _countdownTimeLab;
 }

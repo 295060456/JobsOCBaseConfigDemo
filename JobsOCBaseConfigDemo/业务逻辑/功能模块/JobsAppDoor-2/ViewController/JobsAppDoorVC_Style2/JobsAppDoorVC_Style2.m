@@ -183,7 +183,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         _loginContentView.width = JobsMainScreen_WIDTH() - 40;
         self.loginContentViewY = _loginContentView.y;
         [self.view addSubview:_loginContentView];
-        _loginContentView.jobsRichElementsInViewWithModel(nil);
+        _loginContentView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [_loginContentView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
@@ -239,7 +239,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         _registerContentView.width = JobsMainScreen_WIDTH() - 40;
         self.registerContentViewY = _registerContentView.y;
         [self.view addSubview:_registerContentView];
-        _registerContentView.jobsRichElementsInViewWithModel(nil);
+        _registerContentView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [_registerContentView actionObjectBlock:^(id data) {
             @jobs_strongify(self)
@@ -276,7 +276,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         _forgotCodeContentView.width = JobsMainScreen_WIDTH() - 40;
         self.forgotCodeContentViewY = _forgotCodeContentView.y;
         [self.view addSubview:_forgotCodeContentView];
-        _forgotCodeContentView.jobsRichElementsInViewWithModel(nil);
+        _forgotCodeContentView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [_forgotCodeContentView actionObjectBlock:^(id data) {
             @jobs_strongify(self)

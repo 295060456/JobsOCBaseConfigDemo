@@ -1,17 +1,17 @@
 //
-//  JobsMenuSubView@3.m
+//  JobsMenuSubView@4.m
 //  JobsOCBaseConfigDemo
 //
 //  Created by Jobs Hi on 2024/7/17.
 //
 
-#import "JobsMenuSubView@3.h"
+#import "JobsMenuSubView@4.h"
 
-@interface JobsMenuSubView_3 ()
+@interface JobsMenuSubView_4 ()
 
 @end
 
-@implementation JobsMenuSubView_3
+@implementation JobsMenuSubView_4
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseProtocol
 #pragma mark —— SysMethod
@@ -44,7 +44,7 @@
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(id _Nullable data) {
         @jobs_strongify(self)
@@ -52,10 +52,11 @@
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeZero;
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^(id _Nullable data){
+        return CGSizeZero;
+    };
 }
 #pragma mark —— lazyLoad
-
 
 @end

@@ -9,7 +9,7 @@
 
 @implementation UITableViewHeaderFooterView (BaseTableViewHeaderFooterViewProtocol)
 /// 具体由子类进行复写【数据定UI】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -20,15 +20,19 @@
     };
 }
 /// 具体由子类进行复写【数据定高】
-+(CGFloat)viewHeightWithModel:(id _Nullable)model{
-    return JobsWidth(5);
++(JobsReturnCGFloatByIDBlock _Nonnull)viewHeightByModel{
+    return ^CGFloat(id _Nullable data){
+        return JobsWidth(5);
+    };
 }
 /// 具体由子类进行复写【数据Frame】
-+(CGRect)viewFrameWithModel:(id _Nullable)model{
-    return CGRectMake(0,
-                      0,
-                      JobsMainScreen_WIDTH(),
-                      JobsWidth(5));
++(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel{
+    return ^CGRect(id _Nullable data){
+        return CGRectMake(0,
+                          0,
+                          JobsMainScreen_WIDTH(),
+                          JobsWidth(5));
+    };
 }
 
 @end

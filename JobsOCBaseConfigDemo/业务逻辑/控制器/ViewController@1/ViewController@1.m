@@ -138,13 +138,14 @@ BOOL ISLogin;
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [JobsBaseTableViewCell cellHeightWithModel:self.dataMutArr[indexPath.row]] * 2;
+    return JobsBaseTableViewCell.cellHeightByModel(self.dataMutArr[indexPath.row]) * 2;
 }
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataMutArr[indexPath.row].cls) {
-        self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.row].cls.new,self.dataMutArr[indexPath.row]);
+        self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.row].cls.new,
+                                           self.dataMutArr[indexPath.row]);
     }else self.jobsToastMsg(JobsInternationalization(@"尚未接入此功能"));
 }
 
@@ -168,9 +169,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 #pragma mark —— lazyLoad
 -(BaseButton *)userHeadBtn{
-    @jobs_weakify(self)
     if (!_userHeadBtn) {
-        _userHeadBtn = BaseButton.initByNormalImage(JobsIMG(@"首页_头像"))
+        _userHeadBtn = BaseButton
+            .initByNormalImage(JobsIMG(@"首页_头像"))
             .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .onClick(^(UIButton *x){
                 if (self.objectBlock) self.objectBlock(x);
@@ -276,7 +277,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<UITableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
-        _tbvCellMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _tbvCellMutArr = jobsMakeMutArr(^(NSMutableArray <UITableViewCell *>*_Nullable data) {
             @jobs_weakify(self)
             for (UIViewModel *viewModel in self.dataMutArr) {
                 @jobs_strongify(self)

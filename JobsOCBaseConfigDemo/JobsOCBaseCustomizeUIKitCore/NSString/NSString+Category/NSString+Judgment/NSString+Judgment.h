@@ -12,7 +12,7 @@
 #import "JobsBlock.h"
 
 /// 要判nil和NULL，必须用类方法或者内联函数，在实例方法里面nil和NULL会被包装为空串
-static inline BOOL isNull(NSString * _Nullable string){
+static inline BOOL isNull(id _Nonnull string){
     if(string == nil) return YES;
     if(string == NULL) return YES;
     if((NSNull *)string == NSNull.null) return YES;
@@ -32,7 +32,7 @@ static inline BOOL isNull(NSString * _Nullable string){
     }return NO;
 }
 
-static inline BOOL isValue(NSString * _Nullable string){
+static inline BOOL isValue(id _Nonnull string){
     return !isNull(string);
 }
 
@@ -40,10 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Judgment)
 #pragma mark —— 字符串的 比较 & 判断
--(JobsReturnBOOLByIDBlock _Nullable)isEqualToString;
--(JobsReturnBOOLByIDBlock _Nullable)containsString;
--(JobsReturnBOOLByIDBlock _Nullable)hasPrefix;
--(JobsReturnBOOLByIDBlock _Nullable)hasSuffix;
+-(JobsReturnBOOLByIDBlock _Nonnull)isEqualToString;
+-(JobsReturnBOOLByIDBlock _Nonnull)containsString;
+-(JobsReturnBOOLByIDBlock _Nonnull)hasPrefix;
+-(JobsReturnBOOLByIDBlock _Nonnull)hasSuffix;
 /// 判断字符串对象是否为狭义范围内的空格
 -(BOOL)isNotBlank;
 /// 判断是否是广义范围内的空格(space、\t、\r、\n)

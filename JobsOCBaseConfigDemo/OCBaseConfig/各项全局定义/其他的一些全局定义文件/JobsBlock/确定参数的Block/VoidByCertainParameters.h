@@ -12,17 +12,24 @@ typedef void(^jobsByVoidBlock)(void);
 typedef void(^jobsByIDBlock)(id _Nullable data);
 typedef void(^jobsBySELBlock)(SEL _Nullable data);
 typedef void(^jobsByClassBlock)(Class _Nonnull cls);
+/// 多参数
 typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
 typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
 typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
 #pragma mark —— 关于View
 typedef void(^jobsByViewBlock)(__kindof UIView *_Nullable view);
-typedef void(^jobsByScrollViewBlock)(UIScrollView *_Nullable data);
+typedef void(^jobsByScrollViewBlock)(UIScrollView *_Nullable scrollView);
 typedef void(^jobsByBtnBlock)(__kindof UIButton *_Nullable btn);
 typedef void(^jobsByWindowBlock)(__kindof UIWindow *_Nullable data);
+typedef void(^jobsByLabelBlock)(__kindof UILabel *_Nullable label);
+typedef void(^jobsByTableViewBlock)(__kindof UITableView *_Nullable tableView);
+typedef void(^jobsByCollectionViewBlock)(__kindof UICollectionView *_Nullable collectionView);
+typedef void(^jobsByTextFieldBlock)(__kindof UITextField *_Nullable textField);
+typedef void(^jobsByTextViewBlock)(__kindof UITextView *_Nullable textView);
+typedef void(^jobsByImageViewBlock)(__kindof UIImageView *_Nullable imageView);
+/// 多参数
 typedef void(^jobsByViewAndAnimatedBlock)(__kindof UIView *_Nullable view,BOOL animated);
 typedef void(^jobsByView2Block)(__kindof UIView *_Nullable superview,UIView *_Nullable view);
-typedef void(^jobsByTableViewCellBlock)(__kindof UITableViewCell *_Nullable data);
 #pragma mark —— 关于数据容器
 typedef void(^jobsByArrayBlock)(__kindof NSArray *_Nullable data);
 typedef void(^jobsByMutArrayBlock)(__kindof NSMutableArray *_Nullable data);
@@ -36,6 +43,7 @@ typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
 typedef void(^jobsByCorBlock)(UIColor *_Nullable data);
 typedef void(^jobsByFontBlock)(UIFont *_Nullable data);
 typedef void(^jobsByTextAlignmentBlock)(NSTextAlignment data);
+/// 多参数
 typedef void(^jobsByClassAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
 typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
 #pragma mark —— 关于按钮配置

@@ -61,7 +61,7 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    @jobs_weakify(self)
+    @jobs_weakify(self)    
     return [self jobsCollectionViewCellPlanAtIndexPath:indexPath
                                         collectionView:collectionView
                               collectionViewCellBlock0:^UICollectionViewCell * _Nullable{
@@ -69,7 +69,7 @@
         BaiShaETProjOrderDetailsCVCell *cell = [BaiShaETProjOrderDetailsCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
         cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.section]);
         return cell;
-    }
+    } 
                               collectionViewCellBlock1:nil
                               collectionViewCellBlock2:nil
                               collectionViewCellBlock3:nil
@@ -86,10 +86,10 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self jobsCellPlanSizeForSectionAtIndexPath:indexPath.section
                                             cellBlock0:^CGSize{
-        return [BaiShaETProjOrderDetailsCVCell cellSizeWithModel:self.dataMutArr[indexPath.section]];
+        return BaiShaETProjOrderDetailsCVCell.cellSizeByModel(self.dataMutArr[indexPath.section]);
     }
                                             cellBlock1:nil
-                                            cellBlock2:nil
+                                            cellBlock2:nil 
                                             cellBlock3:nil
                                             cellBlock4:nil];
 }

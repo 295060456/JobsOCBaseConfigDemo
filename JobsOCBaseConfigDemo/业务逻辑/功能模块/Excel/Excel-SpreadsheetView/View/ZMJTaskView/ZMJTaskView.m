@@ -22,7 +22,7 @@
 
 #define DateTitleWidth 45.f
 
-@interface ZMJTaskView ()
+@interface ZMJTaskView () 
 
 @property(nonatomic,strong)UILabel *taskTitleLabel;
 @property(nonatomic,strong)UILabel *startTimeTitleLabel;

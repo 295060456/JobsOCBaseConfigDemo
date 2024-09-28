@@ -25,7 +25,6 @@ typedef NS_ENUM(NSInteger, JobsHeaderFooterViewStyle) {
 #endif /* JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED */
 
 @class UIViewModel;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseViewProtocol <BaseProtocol>
@@ -43,67 +42,64 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGSize thisViewSize;
 /// 标记是HeaderView 还是 FooterView
 @property(nonatomic,assign)JobsHeaderFooterViewStyle headerFooterViewStyle;
-
-+(JobsReturnViewByIDBlock _Nonnull)JobsRichElementsInViewWithModel;
--(JobsReturnViewByIDBlock _Nonnull)jobsRichElementsInViewWithModel2;
-/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsInViewWithModel;
+@property(nonatomic,copy)jobsByBtnBlock backBtnClickAction;
+@property(nonatomic,copy)jobsByBtnBlock closeBtnClickAction;
 #pragma mark —— 用类方法定义
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)viewWidthWithModel:(id _Nullable)model;
++(JobsReturnCGFloatByIDBlock _Nonnull)viewWidthByModel;
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)viewHeightWithModel:(id _Nullable)model;
++(JobsReturnCGFloatByIDBlock _Nonnull)viewHeightByModel;
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)heightForFooterInSection:(id _Nullable)model;
++(JobsReturnCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel;
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)heightForHeaderInSection:(id _Nullable)model;
++(JobsReturnCGFloatByIDBlock _Nonnull)heightForHeaderInSection;
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(id _Nullable)model;
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel;
 /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGRect)viewFrameWithModel:(id _Nullable)model;
++(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel;
 /// 具体由子类进行复写【FrameX的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)viewChangeXWithModel:(id _Nullable)model;
++(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeXByModel;
 /// 具体由子类进行复写【FrameY的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)viewChangeYWithModel:(id _Nullable)model;
++(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeYByModel;
 /// 具体由子类进行复写【FrameWidth的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)viewChangeWidthWithModel:(id _Nullable)model;
++(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeWidthByModel;
 /// 具体由子类进行复写【FrameHeight的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)viewChangeHeightWithModel:(id _Nullable)model;
++(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeHeightByModel;
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 /// UICollectionViewDelegateFlowLayout
-+(CGSize)collectionReusableViewSizeWithModel:(id _Nullable)model;
++(JobsReturnCGSizeByIDBlock _Nonnull)collectionReusableViewSizeByModel;
 /// 数据（字符串）定宽
-+(CGFloat)widthByData:(UIViewModel *_Nonnull)data;
++(JobsReturnCGFloatByIDBlock _Nonnull)widthByData;
 /// 数据（字符串）定高
-+(CGFloat)heightByData:(UIViewModel *_Nonnull)data;
++(JobsReturnCGFloatByIDBlock _Nonnull)heightByData;
 #pragma mark —— 用实例方法定义
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGFloat)viewWidthWithModel:(id _Nullable)model;
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewWidthByModel;
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGFloat)viewHeightWithModel:(id _Nullable)model;
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewHeightByModel;
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGFloat)heightForFooterInSection:(id _Nullable)model;
+-(JobsReturnCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel;
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGFloat)heightForHeaderInSection:(id _Nullable)model;
+-(JobsReturnCGFloatByIDBlock _Nonnull)heightForHeaderInSection;
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGSize)viewSizeWithModel:(id _Nullable)model;
+-(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel;
 /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGRect)viewFrameWithModel:(id _Nullable)model;
+-(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel;
 /// 具体由子类进行复写【FrameX的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGFloat)viewChangeXWithModel:(id _Nullable)model;
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeXByModel;
 /// 具体由子类进行复写【FrameY的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGFloat)viewChangeYWithModel:(id _Nullable)model;
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeYByModel;
 /// 具体由子类进行复写【FrameWidth的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGFloat)viewChangeWidthWithModel:(id _Nullable)model;
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeWidthByModel;
 /// 具体由子类进行复写【FrameHeight的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGFloat)viewChangeHeightWithModel:(id _Nullable)model;
+-(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeHeightByModel;
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 /// UICollectionViewDelegateFlowLayout
--(CGSize)collectionReusableViewSizeWithModel:(id _Nullable)model;
+-(JobsReturnCGSizeByIDBlock _Nonnull)collectionReusableViewSizeByModel;
 /// 数据（字符串）定宽
--(CGFloat)widthByData:(UIViewModel *_Nonnull)data;
+-(JobsReturnCGFloatByIDBlock _Nonnull)widthByData;
 /// 数据（字符串）定高
--(CGFloat)heightByData:(UIViewModel *_Nonnull)data;
+-(JobsReturnCGFloatByIDBlock _Nonnull)heightByData;
 #pragma mark —— 关于导航栏
 /// 配置 GKNavigationBar
 -(jobsByViewModelBlock _Nonnull)setGKNav;
@@ -116,6 +112,16 @@ NS_ASSUME_NONNULL_BEGIN
 // 关闭按钮的回调
 -(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock _Nullable)objectBlock;
 #pragma mark —— 一些功能性的
+/// 初始化的时候最好传入一个size值将其子视图的大小固定死。因为只有当父视图有Size的情况下子视图才会展开，从而避免刷新约束时候的一系列麻烦事。
+-(instancetype)initWithSize:(CGSize)thisViewSize;
+-(JobsReturnIDByCGSizeBlock)initWithSize;
+/// 依据数据源对UI进行渲染：具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel;
+-(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel2;
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel;
+-(jobsByViewModelBlock _Nonnull)jobsRichViewByViewModel;
+/// 获取绑定的数据源
+-(UIViewModel *_Nullable)getViewModel;
 /**
  在这个方法里：
  传入：UITableViewHeaderFooterView *
@@ -124,10 +130,6 @@ NS_ASSUME_NONNULL_BEGIN
  self.makeViewOnTableViewHeaderFooterView(headerView).alpha = 1; /// 进行一句话进行调用
  */
 -(JobsReturnViewByTableViewHeaderFooterViewBlock)makeViewOnTableViewHeaderFooterView;
-/// 初始化的时候最好传入一个size值将其子视图的大小固定死。因为只有当父视图有Size的情况下子视图才会展开，从而避免刷新约束时候的一系列麻烦事。
--(instancetype)initWithSize:(CGSize)thisViewSize;
-/// 获取绑定的数据源
--(UIViewModel *_Nullable)getViewModel;
 #pragma mark —— 在View内部进行实现处理，对外暴露的值。（不直接暴露UI控件）
 -(id)value;
 -(id)value1;
@@ -152,6 +154,8 @@ typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewPro
 @synthesize constraintMutArr = _constraintMutArr;\
 @synthesize thisViewSize = _thisViewSize;\
 @synthesize headerFooterViewStyle = _headerFooterViewStyle;\
+@synthesize backBtnClickAction = _backBtnClickAction;\
+@synthesize closeBtnClickAction = _closeBtnClickAction;\
 
 #endif
 
@@ -166,5 +170,7 @@ typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewPro
 @dynamic constraintMutArr;\
 @dynamic thisViewSize;\
 @dynamic headerFooterViewStyle;\
+@dynamic backBtnClickAction;\
+@dynamic closeBtnClickAction;\
 
 #endif

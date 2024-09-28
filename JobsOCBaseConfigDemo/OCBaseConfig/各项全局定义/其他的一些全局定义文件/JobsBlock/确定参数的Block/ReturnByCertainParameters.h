@@ -41,7 +41,7 @@ typedef id _Nullable(^JobsReturnIDByUnsignedShortBlock)(unsigned short data);
 typedef id _Nullable(^JobsReturnIDByLongBlock)(long data);
 typedef id _Nullable(^JobsReturnIDByUnsignedLongBlock)(unsigned long data);
 typedef id _Nullable(^JobsReturnIDByUnsignedLongLongBlock)(unsigned long long data);
-
+/// 多参数
 typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Class _Nullable cls,NSString *_Nullable salt);
 typedef id _Nullable(^JobsReturnIDBySelectorBlock)(id _Nullable weakSelf,id _Nullable arg);
 typedef id _Nullable(^JobsReturnIDBySelectorBlock2)(id _Nullable weakSelf,
@@ -63,6 +63,9 @@ typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIntegerBlock)(NSInteger da
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByVoidBlock)(void);
 
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(NSString *_Nullable data);
+#pragma mark —— 关于 NSValue
+typedef NSValue *_Nullable(^JobsReturnValueByCGSizeBlock)(CGSize data);
+typedef NSValue *_Nullable(^JobsReturnValueByPointBlock)(const void *_Nullable data);
 
 #pragma mark —— 关于按钮配置信息
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByFontBlock)(UIFont *_Nullable data);
@@ -114,28 +117,29 @@ typedef __kindof UIImageView *_Nonnull(^JobsReturnImageViewByImageBlock)(UIImage
 typedef __kindof UIImageView *_Nonnull(^JobsReturnImageViewByURLBlock)(NSURL *_Nullable data);
 #pragma mark —— 关于按钮
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
-typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByImageBlock)(UIImage *_Nullable data);
 typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByBOOLBlock)(BOOL data);
-typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByURLBlock)(NSURL *_Nullable data);
-typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementBlock)(NSDirectionalRectEdge data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementAndPaddingBlock)(NSDirectionalRectEdge data,CGFloat x);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByCGFloatBlock)(CGFloat data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByFloatBlock)(float data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNSIntegerBlock)(NSInteger data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAlignmentBlock)(UIButtonConfigurationTitleAlignment data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextAlignmentBlock)(NSTextAlignment data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNSIntegerBlock)(NSInteger data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementBlock)(NSDirectionalRectEdge data);
+typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByImageBlock)(UIImage *_Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImageBlock)(UIImage *_Nonnull image);
+typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByURLBlock)(NSURL *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByFontBlock)(UIFont *_Nullable data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNSIntegerBlock)(NSInteger data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStringBlock)(__kindof NSString *_Nullable data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByColorBlock)(UIColor *_Nullable);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByCGFloatBlock)(CGFloat data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleBlock)(NSString *_Nonnull title);/// 主文字内容
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitlesBlock)(NSString *_Nonnull title,NSString *_Nonnull subTitle);/// 主/副 文字内容
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByColorBlock)(UIColor *_Nonnull cor);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStringBlock)(__kindof NSString *_Nullable data);/// 主文字内容
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByAttributedStringBlock)(NSAttributedString *_Nonnull title);/// 富文本内容
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByAttributedStringsBlock)(NSAttributedString *_Nonnull title,NSAttributedString *_Nonnull subTitle);/// 主/副 富文本内容
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByCorBlock)(UIColor *_Nonnull cor);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByFloatBlock)(CGFloat data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNormalImageBlock)(UIImage *_Nonnull image);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByBackgroundImageBlock)(UIImage *_Nonnull backgroundImage);
+/// 多参数
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementAndPaddingBlock)(NSDirectionalRectEdge data,
+                                                                                       CGFloat x);
+typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByColor_FloatBlock)(UIColor *_Nullable,
+                                                                         float borderWidth);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitlesBlock)(NSString *_Nonnull title,
+                                                                     NSString *_Nonnull subTitle);/// 主/副 文字内容
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByAttributedStringsBlock)(NSAttributedString *_Nonnull title,
+                                                                                NSAttributedString *_Nonnull subTitle);/// 主/副 富文本内容
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle1Block)(NSString *_Nonnull title,/// 主文字内容
                                                                      UIFont *_Nullable font);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle2Block)(NSString *_Nonnull title,/// 主文字内容
@@ -168,19 +172,26 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle7Block)(NSString *_
                                                                      UIColor *_Nullable titleCor,/// 主文字颜色
                                                                      UIImage *_Nonnull image,/// 按钮图片
                                                                      CGFloat x);/// 图文距离
-#pragma mark —— 关于 UITableView
-typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
+#pragma mark —— 关于 UITableViewHeaderFooterView
+/// 多参数
+typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Class _Nonnull cls,
+                                                                                                                  NSString *_Nullable salt);
+#pragma mark —— 关于 UITableViewCell
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewCellStyleBlock)(UITableViewCellStyle tableViewCellStyle);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewBlock)(UITableView *_Nonnull tableView);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsBlock)(Class _Nonnull cls);
-typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
+/// 多参数
+typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsAndSaltStrBlock)(Class _Nonnull cls,
+                                                                                          NSString *_Nullable salt);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block)(Class _Nonnull cls,
                                                                                                    NSString *_Nullable salt,
                                                                                                    NSIndexPath *_Nonnull indexPath);
+#pragma mark —— 关于 UICollectionView
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable data);
+#pragma mark —— 关于 UICollectionViewCell
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
-#pragma mark —— 关于 UIViewController
+#pragma mark —— 关于控制器
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByView)(__kindof UIView *_Nonnull view);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByVC)(__kindof UIViewController *_Nonnull vc);
 typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByVC)(__kindof UIViewController *_Nonnull vc);
@@ -189,25 +200,25 @@ typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByStri
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString *_Nonnull data);
 #pragma mark —— 关于字符串
 typedef __kindof NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegerBlock)(NSInteger data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalBlock)(NSTimeInterval data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDateBlock)(NSDate *_Nullable date);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByNumberBlock)(NSNumber *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCorBlock)(UIColor *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegerBlock)(NSInteger data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalBlock)(NSTimeInterval data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString *_Nullable data);
+/// 多参数
 typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateFormatterBlock)(NSTimeInterval data,
                                                                                            NSDateFormatter *_Nullable dateFormatter);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByStringStringBlock)(NSString *_Nullable fontString,
                                                                            NSString *_Nullable tailString);
 #pragma mark —— 关于时间
+typedef NSTimeInterval(^JobsReturnTimeIntervalByDateBlock)(NSDate *_Nullable);
+typedef NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
 typedef NSDate *_Nullable(^JobsReturnDateByVoidBlock)(void);
 typedef NSDate *_Nullable(^JobsReturnDateByTimeIntervalBlock)(NSTimeInterval data);
 typedef NSDate *_Nullable(^JobsReturnDateByDateFormatterBlock)(NSDateFormatter *_Nullable data);
-typedef NSTimeInterval(^JobsReturnTimeIntervalByDateBlock)(NSDate *_Nullable);
-typedef NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
 #pragma mark —— 关于数据
 typedef NSData *_Nullable(^JobsReturnDataByVoidBlock)(void);
 typedef NSData *_Nullable(^JobsReturnDataByIDBlock)(id _Nullable data);
@@ -220,22 +231,22 @@ typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByURLBlock)(NSURL 
 typedef UIFont *_Nullable(^JobsReturnFontByVoidBlock)(void);
 typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
 #pragma mark —— 关于颜色
-typedef UIColor *_Nullable(^JobsReturnColorByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
-typedef UIColor *_Nullable(^JobsReturnColorByStringBlock)(NSString *_Nonnull cor);
 typedef UIColor *_Nullable(^JobsReturnColorByHexAlphaBlock)(uint32_t hexValue, CGFloat alpha);
 typedef UIColor *_Nullable(^JobsReturnColorByHexBlock)(uint32_t hexValue);
 typedef UIColor *_Nonnull(^JobsReturnColorByCGFloatBlock)(CGFloat data);
+typedef UIColor *_Nullable(^JobsReturnColorByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
+typedef UIColor *_Nullable(^JobsReturnColorByStringBlock)(NSString *_Nonnull cor);
 typedef UIColor *_Nullable(^JobsReturnColorByImageBlock)(UIImage *_Nonnull cor);
 #pragma mark —— 关于图片
 typedef UIImage *_Nonnull(^JobsReturnImageByVoidBlock)(void);
+typedef UIImage *_Nonnull(^JobsReturnImageByAlphaBlock)(CGFloat alpha);
 typedef UIImage *_Nonnull(^JobsReturnImageByCGRectBlock)(CGRect data);
 typedef UIImage *_Nonnull(^JobsReturnImageByCGSizeBlock)(CGSize data);
-typedef UIImage *_Nonnull(^JobsReturnImageByDataBlock)(NSData *_Nullable data);
 typedef UIImage *_Nonnull(^JobsReturnImageByAVURLAssetBlock)(AVURLAsset *_Nonnull data);
 typedef UIImage *_Nonnull(^JobsReturnImageByViewBlock)(__kindof UIView *_Nonnull data);
-typedef UIImage *_Nonnull(^JobsReturnImageByAlphaBlock)(CGFloat alpha);
 typedef UIImage *_Nullable(^JobsReturnImageByCorBlock)(UIColor *_Nullable data);
 typedef UIImage *_Nullable(^JobsReturnImageByDataBlock)(NSData *_Nullable data);
+typedef UIImage *_Nonnull(^JobsReturnImageByDataBlock)(NSData *_Nullable data);
 #pragma mark —— 关于段落配置
 typedef __kindof NSParagraphStyle *_Nullable(^JobsReturnParagraphStyleByVoidBlock)(void);
 typedef __kindof NSParagraphStyle *_Nullable(^JobsReturnParagraphStyleByTextAlignmentBlock)(NSTextAlignment data);
@@ -245,21 +256,22 @@ typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByIDBlock)(id _Nullable data);
 
 typedef CGSize(^JobsReturnCGSizeByVoidBlock)(void);
 typedef CGSize(^JobsReturnCGSizeByIDBlock)(id _Nullable data);
+typedef CGSize(^JobsReturnSizeByBOOLBlock)(BOOL data);
+typedef CGSize(^JobsReturnSizeByIntBlock)(int data);
+typedef CGSize(^JobsReturnSizeByLongBlock)(long data);
 typedef CGSize(^JobsReturnSizeByNSIntegerBlock)(NSInteger data);
 typedef CGSize(^JobsReturnSizeByUIntegerBlock)(NSUInteger data);
 typedef CGSize(^JobsReturnSizeByCGFloatBlock)(CGFloat data);
-typedef CGSize(^JobsReturnSizeByBOOLBlock)(BOOL data);
-typedef CGSize(^JobsReturnSizeByIntBlock)(int data);
-typedef CGSize(^JobsReturnSizeByUnsignedIntBlock)(unsigned int data);
 typedef CGSize(^JobsReturnSizeByFloatBlock)(float data);
 typedef CGSize(^JobsReturnSizeByDoubleBlock)(double data);
-typedef CGSize(^JobsReturnSizeByCharBlock)(char data);
-typedef CGSize(^JobsReturnSizeByUnsignedCharBlock)(unsigned char data);
 typedef CGSize(^JobsReturnSizeByShortBlock)(short data);
+typedef CGSize(^JobsReturnSizeByCharBlock)(char data);
+typedef CGSize(^JobsReturnSizeByUnsignedIntBlock)(unsigned int data);
+typedef CGSize(^JobsReturnSizeByUnsignedCharBlock)(unsigned char data);
 typedef CGSize(^JobsReturnSizeByUnsignedShortBlock)(unsigned short data);
-typedef CGSize(^JobsReturnSizeByLongBlock)(long data);
 typedef CGSize(^JobsReturnSizeByUnsignedLongBlock)(unsigned long data);
 typedef CGSize(^JobsReturnSizeByUnsignedLongLongBlock)(unsigned long long data);
+/// 多参数
 typedef CGSize(^JobsReturnCGSizeByTwoIDBlock)Jobs_2_Arguments;
 typedef CGSize(^JobsReturnCGSizeByThreeIDBlock)Jobs_3_Arguments;
 typedef CGSize(^JobsReturnCGSizeByFourIDBlock)Jobs_4_Arguments;
@@ -270,27 +282,28 @@ typedef CGSize(^JobsReturnCGSizeByEightIDBlock)Jobs_8_Arguments;
 typedef CGSize(^JobsReturnCGSizeByNineIDBlock)Jobs_9_Arguments;
 typedef CGSize(^JobsReturnCGSizeByTenIDBlock)Jobs_10_Arguments;
 
+typedef CGRect(^JobsReturnCGRectByVoidBlock)(void);
 typedef CGRect(^JobsReturnRectByNSIntegerBlock)(NSInteger data);
 typedef CGRect(^JobsReturnRectByUIntegerBlock)(NSUInteger data);
 typedef CGRect(^JobsReturnRectByCGFloatBlock)(CGFloat data);
 typedef CGRect(^JobsReturnRectByBOOLBlock)(BOOL data);
 typedef CGRect(^JobsReturnRectByIntBlock)(int data);
-typedef CGRect(^JobsReturnRectByUnsignedIntBlock)(unsigned int data);
+typedef CGRect(^JobsReturnRectByLongBlock)(long data);
+typedef CGRect(^JobsReturnRectByShortBlock)(short data);
 typedef CGRect(^JobsReturnRectByFloatBlock)(float data);
 typedef CGRect(^JobsReturnRectByDoubleBlock)(double data);
 typedef CGRect(^JobsReturnRectByCharBlock)(char data);
-typedef CGRect(^JobsReturnRectByUnsignedCharBlock)(unsigned char data);
-typedef CGRect(^JobsReturnRectByShortBlock)(short data);
+typedef CGRect(^JobsReturnRectByUnsignedIntBlock)(unsigned int data);
 typedef CGRect(^JobsReturnRectByUnsignedShortBlock)(unsigned short data);
-typedef CGRect(^JobsReturnRectByLongBlock)(long data);
+typedef CGRect(^JobsReturnRectByUnsignedCharBlock)(unsigned char data);
 typedef CGRect(^JobsReturnRectByUnsignedLongBlock)(unsigned long data);
 typedef CGRect(^JobsReturnRectByUnsignedLongLongBlock)(unsigned long long data);
-typedef CGRect(^JobsReturnCGRectByVoidBlock)(void);
-typedef CGRect(^JobsReturnCGRectByIDBlock)(id _Nullable data);
-typedef CGRect(^JobsReturnRectByViewBlock)(__kindof UIView *_Nonnull data);
 typedef CGRect(^JobsReturnCGRectByCGPointBlock)(CGPoint data);
 typedef CGRect(^JobsReturnCGRectByCGSizeBlock)(CGSize data);
 typedef CGRect(^JobsReturnCGRectByCGFloatBlock)(CGFloat data);
+typedef CGRect(^JobsReturnCGRectByIDBlock)(id _Nullable data);
+typedef CGRect(^JobsReturnRectByViewBlock)(__kindof UIView *_Nonnull data);
+/// 多参数
 typedef CGRect(^JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,__kindof UIView *_Nonnull superView);
 typedef CGRect(^JobsReturnCGRectByTwoIDBlock)Jobs_2_Arguments;
 typedef CGRect(^JobsReturnCGRectByThreeIDBlock)Jobs_3_Arguments;
@@ -303,22 +316,23 @@ typedef CGRect(^JobsReturnCGRectByNineIDBlock)Jobs_9_Arguments;
 typedef CGRect(^JobsReturnCGRectByTenIDBlock)Jobs_10_Arguments;
 
 typedef CGPoint(^JobsReturnCGPointByVoidBlock)(void);
-typedef CGPoint(^JobsReturnCGPointByIDBlock)(id _Nullable data);
+typedef CGPoint(^JobsReturnCGPointByBOOLBlock)(BOOL data);
+typedef CGPoint(^JobsReturnCGPointByIntBlock)(int data);
+typedef CGPoint(^JobsReturnCGPointByFloatBlock)(float data);
+typedef CGPoint(^JobsReturnCGPointByDoubleBlock)(double data);
+typedef CGPoint(^JobsReturnCGPointByShortBlock)(short data);
+typedef CGPoint(^JobsReturnCGPointByLongBlock)(long data);
+typedef CGPoint(^JobsReturnCGPointByCharBlock)(char data);
+typedef CGPoint(^JobsReturnCGPointByUnsignedIntBlock)(unsigned int data);
+typedef CGPoint(^JobsReturnCGPointByUnsignedCharBlock)(unsigned char data);
+typedef CGPoint(^JobsReturnCGPointByUnsignedShortBlock)(unsigned short data);
+typedef CGPoint(^JobsReturnCGPointByUnsignedLongBlock)(unsigned long data);
+typedef CGPoint(^JobsReturnCGPointByUnsignedLongLongBlock)(unsigned long long data);
 typedef CGPoint(^JobsReturnCGPointByNSIntegerBlock)(NSInteger data);
 typedef CGPoint(^JobsReturnCGPointByUIntegerBlock)(NSUInteger data);
 typedef CGPoint(^JobsReturnCGPointByCGFloatBlock)(CGFloat data);
-typedef CGPoint(^JobsReturnCGPointByBOOLBlock)(BOOL data);
-typedef CGPoint(^JobsReturnCGPointByIntBlock)(int data);
-typedef CGPoint(^JobsReturnCGPointByUnsignedIntBlock)(unsigned int data);
-typedef CGPoint(^JobsReturnCGPointByFloatBlock)(float data);
-typedef CGPoint(^JobsReturnCGPointByDoubleBlock)(double data);
-typedef CGPoint(^JobsReturnCGPointByCharBlock)(char data);
-typedef CGPoint(^JobsReturnCGPointByUnsignedCharBlock)(unsigned char data);
-typedef CGPoint(^JobsReturnCGPointByShortBlock)(short data);
-typedef CGPoint(^JobsReturnCGPointByUnsignedShortBlock)(unsigned short data);
-typedef CGPoint(^JobsReturnCGPointByLongBlock)(long data);
-typedef CGPoint(^JobsReturnCGPointByUnsignedLongBlock)(unsigned long data);
-typedef CGPoint(^JobsReturnCGPointByUnsignedLongLongBlock)(unsigned long long data);
+typedef CGPoint(^JobsReturnCGPointByIDBlock)(id _Nullable data);
+/// 多参数
 typedef CGPoint(^JobsReturnCGPointByTwoIDBlock)Jobs_2_Arguments;
 typedef CGPoint(^JobsReturnCGPointByThreeIDBlock)Jobs_3_Arguments;
 typedef CGPoint(^JobsReturnCGPointByFourIDBlock)Jobs_4_Arguments;
@@ -328,60 +342,71 @@ typedef CGPoint(^JobsReturnCGPointBySevenIDBlock)Jobs_7_Arguments;
 typedef CGPoint(^JobsReturnCGPointByEightIDBlock)Jobs_8_Arguments;
 typedef CGPoint(^JobsReturnCGPointByNineIDBlock)Jobs_9_Arguments;
 typedef CGPoint(^JobsReturnCGPointByTenIDBlock)Jobs_10_Arguments;
-
 #pragma mark —— 关于数据类型
+typedef NSInteger(^JobsReturnNSIntegerByVoidBlock)(void);
 typedef NSInteger(^JobsReturnByNSIntegerBlock)(NSInteger data);
-typedef NSUInteger(^JobsReturnByNSUIntegerBlock)(NSUInteger data);
-typedef CGFloat(^JobsReturnByCGFloatBlock)(CGFloat data);
+typedef NSInteger(^JobsReturnNSIntegerByIDBlock)(id _Nullable data);
 
-typedef BOOL(^JobsReturnBOOLByArrBlock)(NSArray *_Nullable data);
-typedef BOOL(^JobsReturnBOOLByDateBlock)(NSDate *_Nullable date);
-typedef BOOL(^JobsReturnBOOLByStringBlock)(NSString *_Nullable data);
+typedef NSUInteger(^JobsReturnNSUIntegerByVoidBlock)(void);
+typedef NSUInteger(^JobsReturnByNSUIntegerBlock)(NSUInteger data);
+typedef NSUInteger(^JobsReturnNSUIntegerByIDBlock)(id _Nullable data);
+
+typedef CGFloat(^JobsReturnByCGFloatBlock)(CGFloat data);
+typedef CGFloat(^JobsReturnCGFloatByCGFloatBlock)(CGFloat data);
+typedef CGFloat(^JobsReturnCGFloatByIDBlock)(id _Nullable data);
+typedef CGFloat(^JobsReturnCGFloatByVoidBlock)(void);
+
+typedef BOOL(^JobsReturnBOOLByVoidBlock)(void);
 typedef BOOL(^JobsReturnByBOOLBlock)(BOOL data);
 typedef BOOL(^JobsReturnBOOLByNSUIntegerBlock)(NSUInteger data);
 typedef BOOL(^JobsReturnBOOLByNSIntegerBlock)(NSInteger data);
-typedef int(^JobsReturnByIntBlock)(int data);
-typedef unsigned int(^JobsReturnByUnsignedIntBlock)(unsigned int data);
-typedef float(^JobsReturnByFloatBlock)(float data);
-typedef double(^JobsReturnByDoubleBlock)(double data);
-typedef char(^JobsReturnByCharBlock)(char data);
-typedef unsigned char(^JobsReturnByUnsignedCharBlock)(unsigned char data);
-typedef short(^JobsReturnByShortBlock)(short data);
-typedef unsigned short(^JobsReturnByUnsignedShortBlock)(unsigned short data);
-typedef long(^JobsReturnByLongBlock)(long data);
-typedef unsigned long(^JobsReturnByUnsignedLongBlock)(unsigned long data);
-typedef unsigned long long(^JobsReturnByUnsignedLongLongBlock)(unsigned long long data);
-
-typedef NSInteger(^JobsReturnNSIntegerByIDBlock)(id _Nullable data);
-typedef NSUInteger(^JobsReturnNSUIntegerByIDBlock)(id _Nullable data);
-typedef CGFloat(^JobsReturnCGFloatByIDBlock)(CGFloat data);
 typedef BOOL(^JobsReturnBOOLByIDBlock)(id _Nullable data);
-typedef int(^JobsReturnIntByIDBlock)(id _Nullable data);
-typedef unsigned int(^JobsReturnUnsignedIntByIDBlock)(id _Nullable data);
-typedef float(^JobsReturnFloatByIDBlock)(id _Nullable data);
-typedef double(^JobsReturnDoubleByIDBlock)(id _Nullable data);
-typedef char(^JobsReturnCharByIDBlock)(id _Nullable data);
-typedef unsigned char(^JobsReturnUnsignedCharByIDBlock)(id _Nullable data);
-typedef short(^JobsReturnShortByIDBlock)(id _Nullable data);
-typedef unsigned short(^JobsReturnUnsignedShortByIDBlock)(id _Nullable data);
-typedef long(^JobsReturnLongByIDBlock)(id _Nullable data);
-typedef unsigned long(^JobsReturnUnsignedLongByIDBlock)(id _Nullable data);
-typedef unsigned long long(^JobsReturnUnsignedLongLongByIDBlock)(id _Nullable data);
+typedef BOOL(^JobsReturnBOOLByStringBlock)(NSString *_Nullable data);
+typedef BOOL(^JobsReturnBOOLByDateBlock)(NSDate *_Nullable date);
+typedef BOOL(^JobsReturnBOOLByArrBlock)(NSArray *_Nullable data);
 
-typedef NSInteger(^JobsReturnNSIntegerByVoidBlock)(void);
-typedef NSUInteger(^JobsReturnNSUIntegerByVoidBlock)(void);
-typedef CGFloat(^JobsReturnCGFloatByVoidBlock)(void);
-typedef BOOL(^JobsReturnBOOLByVoidBlock)(void);
 typedef int(^JobsReturnIntByVoidBlock)(void);
+typedef int(^JobsReturnByIntBlock)(int data);
+typedef int(^JobsReturnIntByIDBlock)(id _Nullable data);
+
 typedef unsigned int(^JobsReturnUnsignedIntByVoidBlock)(void);
+typedef unsigned int(^JobsReturnByUnsignedIntBlock)(unsigned int data);
+typedef unsigned int(^JobsReturnUnsignedIntByIDBlock)(id _Nullable data);
+
 typedef float(^JobsReturnFloatByVoidBlock)(void);
+typedef float(^JobsReturnByFloatBlock)(float data);
+typedef float(^JobsReturnFloatByIDBlock)(id _Nullable data);
+
 typedef double(^JobsReturnDoubleByVoidBlock)(void);
+typedef double(^JobsReturnByDoubleBlock)(double data);
+typedef double(^JobsReturnDoubleByIDBlock)(id _Nullable data);
+
+typedef char(^JobsReturnByCharBlock)(char data);
+typedef char(^JobsReturnCharByIDBlock)(id _Nullable data);
 typedef char(^JobsReturnCharByVoidBlock)(void);
+
+typedef unsigned char(^JobsReturnByUnsignedCharBlock)(unsigned char data);
+typedef unsigned char(^JobsReturnUnsignedCharByIDBlock)(id _Nullable data);
 typedef unsigned char(^JobsReturnUnsignedCharByVoidBlock)(void);
+
+typedef short(^JobsReturnByShortBlock)(short data);
+typedef short(^JobsReturnShortByIDBlock)(id _Nullable data);
 typedef short(^JobsReturnShortByVoidBlock)(void);
+
 typedef unsigned short(^JobsReturnUnsignedShortByVoidBlock)(void);
+typedef unsigned short(^JobsReturnByUnsignedShortBlock)(unsigned short data);
+typedef unsigned short(^JobsReturnUnsignedShortByIDBlock)(id _Nullable data);
+
 typedef long(^JobsReturnLongByVoidBlock)(void);
+typedef long(^JobsReturnByLongBlock)(long data);
+typedef long(^JobsReturnLongByIDBlock)(id _Nullable data);
+
 typedef unsigned long(^JobsReturnUnsignedLongByVoidBlock)(void);
+typedef unsigned long(^JobsReturnByUnsignedLongBlock)(unsigned long data);
+typedef unsigned long(^JobsReturnUnsignedLongByIDBlock)(id _Nullable data);
+
+typedef unsigned long long(^JobsReturnUnsignedLongLongByIDBlock)(id _Nullable data);
 typedef unsigned long long(^JobsReturnUnsignedLongLongByVoidBlock)(void);
+typedef unsigned long long(^JobsReturnByUnsignedLongLongBlock)(unsigned long long data);
 
 #endif /* ReturnByCertainParameters_h */

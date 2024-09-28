@@ -40,7 +40,7 @@ static NSString *kY = @"curveY";
                   context:nil];
         [self addObserver:self
                forKeyPath:kY
-                  options:NSKeyValueObservingOptionNew
+                  options:NSKeyValueObservingOptionNew 
                   context:nil];
         [self configShapeLayer];
         [self configCurveView];

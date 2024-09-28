@@ -40,7 +40,7 @@
     self.registeredIdentifiers.add(identifier);
 }
 
-- (void)swizzled_registerClass:(Class)viewClass 
+- (void)swizzled_registerClass:(Class)viewClass
     forSupplementaryViewOfKind:(NSString *)elementKind
            withReuseIdentifier:(NSString *)identifier {
     [self swizzled_registerClass:viewClass

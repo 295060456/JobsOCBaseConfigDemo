@@ -273,8 +273,8 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 //-(JobsOCBaseConfigTestPopupView *)jobsTestPopView:(UIViewModel *_Nullable)viewModel{
 //#ifdef DEBUG
 //    JobsOCBaseConfigTestPopupView *testPopupView = JobsOCBaseConfigTestPopupView.sharedInstance;
-//    testPopupView.size = [CasinoUpgradePopupView viewSizeWithModel:nil];
-//    testPopupView.jobsRichElementsInViewWithModel(viewModel ? : self.testPopViewData);
+//    testPopupView.size = CasinoUpgradePopupView.viewSizeByModel(nil);
+//    testPopupView.jobsRichViewByModel(viewModel ? : self.testPopViewData);
 //    @jobs_weakify(popupView)
 //    [testPopupView actionObjectBlock:^(UIButton *data) {
 //        @jobs_strongify(popupView)
@@ -296,8 +296,8 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     // 将方法内的变量进行单例化,避免重复创建
     UIView<BaseViewProtocol> *popupView = popViewClass.class.sharedManager;
     // 这里设置弹出框的尺寸（最好在View内部layoutSubviews里面进行设置，外界设置的话，在某些情况下会出现异常）
-    // popupView.size = [popViewClass viewSizeWithModel:nil];
-    popupView.jobsRichElementsInViewWithModel(viewModel ? : self.testPopViewData);
+    // popupView.size = popViewClass.viewSizeByModel(nil);
+    popupView.jobsRichViewByModel(viewModel ? : self.testPopViewData);
     @jobs_weakify(popupView)
     [popupView actionObjectBlock:^(__kindof UIButton *data) {
         @jobs_strongify(popupView)

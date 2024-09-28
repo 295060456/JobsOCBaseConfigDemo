@@ -42,10 +42,10 @@
          @jobs_weakify(self)
          _subViewsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView *>*_Nullable data) {
              @jobs_strongify(self)
-             data.add(BonusEarnedView.JobsRichElementsInViewWithModel(nil));
-             data.add(InvitedFriendsNumberView.JobsRichElementsInViewWithModel(nil));
-             data.add(CopyLinkView.JobsRichElementsInViewWithModel(nil));
-             data.add(DownloadQRCodeView.JobsRichElementsInViewWithModel(nil));
+             data.add(BonusEarnedView.JobsRichViewByModel(nil));
+             data.add(InvitedFriendsNumberView.JobsRichViewByModel(nil));
+             data.add(CopyLinkView.JobsRichViewByModel(nil));
+             data.add(DownloadQRCodeView.JobsRichViewByModel(nil));
              for (UIView *view in data) {
                  self.view.addSubview(view);
              }
@@ -55,7 +55,7 @@
              data.leadSpacing = JobsWidth(52);
              data.tailSpacing = JobsWidth(52);
              data.top = JobsWidth(90);
-             data.height = [BonusEarnedView viewSizeWithModel:nil].height;
+             data.height = BonusEarnedView.viewSizeByModel(nil).height;
          }));
      }return _subViewsMutArr;
  }

@@ -36,8 +36,10 @@
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsMainScreen_WIDTH(),JobsWidth(46));
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeMake(JobsMainScreen_WIDTH(),JobsWidth(46));
+    };
 }
 #pragma mark —— lazyLoad
 -(UIColor *)cor{
@@ -112,7 +114,7 @@ static dispatch_once_t static_choiceStadiumViewOnceToken;
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -122,53 +124,39 @@ static dispatch_once_t static_choiceStadiumViewOnceToken;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(JobsMainScreen_WIDTH()), JobsWidth(46) * [BaiShaETProjChoiceStadiumView createDataMutArr].count + JobsWidth(44) + JobsBottomSafeAreaHeight());
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeMake(JobsWidth(JobsMainScreen_WIDTH()), JobsWidth(46) * [BaiShaETProjChoiceStadiumView createDataMutArr].count + JobsWidth(44) + JobsBottomSafeAreaHeight());
+    };
 }
 #pragma mark —— 一些私有方法
 +(NSMutableArray<UIViewModel *> *)createDataMutArr{
-    NSMutableArray <UIViewModel *>*dataMutArr = NSMutableArray.array;
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DG體育");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DG真人");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DG電子");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DG彩票");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DG棋牌");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"DA電子");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        [dataMutArr addObject:viewModel];
-    }return dataMutArr;
+    NSMutableArray <UIViewModel *>*dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DG體育");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DG真人");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DG電子");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DG彩票");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DG棋牌");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"DA電子");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
+    });return dataMutArr;
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (void)tableView:(UITableView *)tableView
@@ -278,7 +266,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(BaiShaETProjChoiceStadiumTBVHeaderView *)tbvHeaderView{
     if (!_tbvHeaderView) {
         _tbvHeaderView = BaiShaETProjChoiceStadiumTBVHeaderView.new;
-        _tbvHeaderView.Size = [BaiShaETProjChoiceStadiumTBVHeaderView viewSizeWithModel:nil];
+        _tbvHeaderView.Size = BaiShaETProjChoiceStadiumTBVHeaderView.viewSizeByModel(nil);
         _tbvHeaderView.text = JobsInternationalization(@"選擇場館");
         _tbvHeaderView.textColor = HEXCOLOR(0x3D4A58);
         _tbvHeaderView.font = UIFontWeightBoldSize(16);
@@ -295,10 +283,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<JobsBaseTableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
-        _tbvCellMutArr = NSMutableArray.array;
-        for (UIViewModel *viewModel in self.dataMutArr) {
-            _tbvCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-        }
+        _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            for (UIViewModel *viewModel in self.dataMutArr) {
+                data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            }
+        });
     }return _tbvCellMutArr;
 }
 

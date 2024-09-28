@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_END
              @jobs_strongify(self)
          }];
          
-         _inputView.jobsRichElementsInViewWithModel(self.inputViewDataModel;)
+         _inputView.jobsRichViewByModel(self.inputViewDataModel;)
          [self addSubview:_inputView];
          [_inputView mas_makeConstraints:^(MASConstraintMaker *make) {
              make.size.mas_equalTo(self.inputViewSize);

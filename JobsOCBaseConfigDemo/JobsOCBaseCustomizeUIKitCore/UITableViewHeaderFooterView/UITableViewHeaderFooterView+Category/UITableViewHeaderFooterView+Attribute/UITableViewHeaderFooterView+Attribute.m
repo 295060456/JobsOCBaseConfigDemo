@@ -13,7 +13,7 @@
 #pragma mark —— tableView
 -(void)setTableView:(UITableView *)tableView{
     [self willChangeValueForKey:NSStringFromSelector(_cmd)];
-    objc_setAssociatedObject(self,
+    objc_setAssociatedObject(self, 
                              _cmd,
                              tableView,
                              OBJC_ASSOCIATION_ASSIGN);
@@ -26,7 +26,7 @@
 #pragma mark —— section
 -(void)setSection:(NSUInteger)section{
     [self willChangeValueForKey:NSStringFromSelector(_cmd)];
-    objc_setAssociatedObject(self,
+    objc_setAssociatedObject(self, 
                              _cmd,
                              @(section),
                              OBJC_ASSOCIATION_ASSIGN);
