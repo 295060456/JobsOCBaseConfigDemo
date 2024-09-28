@@ -85,16 +85,15 @@ JobsToggleNavViewProtocolSynthesize
                                   self.buttonWidth,
                                   self.height);
         button.index = self.buttonsArray.count;
-//        NSLog(@"sss = %ld",(long)button.index);
         self.buttonsArray.add(button);
         [self addSubview:button];
+        self.buttonsArray[i].jobsResetBtnBgImage(self.buttonModel.selected_backgroundImages[i]);
     }
     self.current_index = 0;
     self.sliderView.alpha = 1;
     
     self.buttonsArray[0].jobsResetTitleFont(self.buttonModel.selected_titleFont);
     self.buttonsArray[0].jobsResetBtnTitleCor(self.buttonModel.selected_titleCor);
-    self.buttonsArray[0].jobsResetBtnBgImage(self.buttonModel.selected_backgroundImages[0]);
     self.buttonsArray[0].selected = YES;
 }
 #pragma mark —— 一些公有方法

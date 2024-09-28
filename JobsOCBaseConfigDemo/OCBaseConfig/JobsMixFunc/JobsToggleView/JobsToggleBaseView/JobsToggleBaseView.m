@@ -193,36 +193,43 @@ JobsToggleNavViewProtocolSynthesize
 
 -(NSMutableArray<__kindof UIView *> *)tempLabs{
     if(!_tempLabs){
-        _tempLabs = NSMutableArray.array;
-        int t = 0;
-        for (NSString *title in self.tempTitles) {
-            UILabel *label = UILabel.new;
-            label.backgroundColor = JobsRandomColor;
-            label.text = toStringByInt(t).add(@"\n").add(title);
-            label.textAlignment = NSTextAlignmentCenter;
-            label.numberOfLines = 0;
-            _tempLabs.add(label);
-            t+=1;
-        }
+        @jobs_weakify(self)
+        _tempLabs = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            int t = 0;
+            for (NSString *title in self.tempTitles) {
+                UILabel *label = UILabel.new;
+                label.backgroundColor = JobsRandomColor;
+                label.text = toStringByInt(t).add(@"\n").add(title);
+                label.textAlignment = NSTextAlignmentCenter;
+                label.numberOfLines = 0;
+                data.add(label);
+                t+=1;
+            }
+        });
     }return _tempLabs;
 }
 
--(NSMutableArray<NSString *> *)tempTitles{
+-(NSMutableArray<NSString *>*)tempTitles{
     if(!_tempTitles){
-        _tempTitles = NSMutableArray.array;
-        _tempTitles.add(JobsInternationalization(@"人生到处知何似，恰似飞鸿踏雪泥；"));
-        _tempTitles.add(JobsInternationalization(@"泥上偶然留指爪，鸿飞那复计东西。"));
-        _tempTitles.add(JobsInternationalization(@"老僧已死成新塔，坏壁无由见旧题；"));
-        _tempTitles.add(JobsInternationalization(@"往日崎岖还记否，路长人困蹇驴嘶。"));
+        _tempTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
+            data.add(JobsInternationalization(@"人生到处知何似，恰似飞鸿踏雪泥；"));
+            data.add(JobsInternationalization(@"泥上偶然留指爪，鸿飞那复计东西。"));
+            data.add(JobsInternationalization(@"老僧已死成新塔，坏壁无由见旧题；"));
+            data.add(JobsInternationalization(@"往日崎岖还记否，路长人困蹇驴嘶。"));
+        });
     }return _tempTitles;
 }
 
--(NSMutableArray<NSString *> *)taggedNavTitles{
+-(NSMutableArray<NSString *>*)taggedNavTitles{
     if(!_taggedNavTitles){
-        _taggedNavTitles = NSMutableArray.array;
-        for (int y = 0; y < self.tempTitles.count; y++) {
-            _taggedNavTitles.add(toStringByInt(y));
-        }
+        @jobs_weakify(self)
+        _taggedNavTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
+            @jobs_strongify(self)
+            for (int y = 0; y < self.tempTitles.count; y++) {
+                data.add(toStringByInt(y));
+            }
+        });
     }return _taggedNavTitles;
 }
 INIT_BUTTON_MODE

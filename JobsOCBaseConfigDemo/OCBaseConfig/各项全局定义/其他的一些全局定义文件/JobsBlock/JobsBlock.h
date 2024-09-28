@@ -196,6 +196,10 @@ typedef void(^jobsByXZMRefreshNormalHeaderBlock)(XZMRefreshNormalHeader *_Nonnul
 
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByClickBlock)(jobsByBtnBlock _Nullable);
 
+#pragma mark —— 关于业务（不与JobsOCBaseConfigDemo同步）
+@class FMBannerAdsModel;
+typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable data);
+
 #endif /* JobsBlock_h */
 /*
 
