@@ -92,6 +92,39 @@
         }
     };
 }
+#pragma mark —— BaseButtonProtocol
+/// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGFloatByIDBlock _Nonnull)buttonWidthByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.buttonWidthByModel(data);
+    };
+}
+/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGFloatByIDBlock _Nonnull)buttonHeightByModel{
+    @jobs_weakify(self)
+    return ^CGFloat(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.buttonHeightByModel(data);
+    };
+}
+/// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGSizeByIDBlock _Nonnull)buttonSizeByModel{
+    @jobs_weakify(self)
+    return ^CGSize(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.buttonSizeByModel(data);
+    };
+}
+/// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel{
+    @jobs_weakify(self)
+    return ^CGRect(id _Nullable data){
+        @jobs_strongify(self)
+        return self.class.buttonFrameByModel(data);
+    };
+}
 #pragma mark —— @property(nonatomic,assign)CGFloat imageTitleSpace;
 JobsKey(_imageTitleSpace)
 @dynamic imageTitleSpace;

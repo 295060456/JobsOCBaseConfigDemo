@@ -108,10 +108,11 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         make.width.mas_equalTo(JobsRightBtnsView.viewSizeByModel(nil).width);
     }];
     [self layoutIfNeeded];
-    UIViewModel *vm = UIViewModel.new;
-    vm.jobsRect = self.loveBtn.frame;
-    NSLog(@"self.loveBtn = %@",self.loveBtn);
-    [self.loveBtn richElementsInButtonWithModel:vm];
+    @jobs_weakify(self)
+    self.loveBtn.richButtonByModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+        @jobs_strongify(self)
+        data.jobsRect = self.loveBtn.frame;
+    }));
 }
 #pragma mark —— Set方法
 -(void)setIsSelected:(BOOL)isSelected{

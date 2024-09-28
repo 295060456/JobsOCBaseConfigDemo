@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseViewProtocol.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -75,25 +76,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat imageViewFrameOffsetWidth;
 @property(nonatomic,assign)CGFloat imageViewFrameOffsetHeight;
 //具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInButtonWithModel:(id _Nullable)model;
+-(jobsByIDBlock _Nonnull)richButtonByModel;
 #pragma mark —— 用类方法定义
 //具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)buttonWidthWithModel:(id _Nullable)model;
++(JobsReturnCGFloatByIDBlock _Nonnull)buttonWidthByModel;
 //具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)buttonHeightWithModel:(id _Nullable)model;
++(JobsReturnCGFloatByIDBlock _Nonnull)buttonHeightByModel;
 //具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)buttonSizeWithModel:(id _Nullable)model;
++(JobsReturnCGSizeByIDBlock _Nonnull)buttonSizeByModel;
 //具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGRect)buttonFrameWithModel:(id _Nullable)model;
++(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel;
 #pragma mark —— 用实例方法定义
 //具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGFloat)buttonWidthWithModel:(id _Nullable)model;
+-(JobsReturnCGFloatByIDBlock _Nonnull)buttonWidthByModel;
 //具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGFloat)buttonHeightWithModel:(id _Nullable)model;
+-(JobsReturnCGFloatByIDBlock _Nonnull)buttonHeightByModel;
 //具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGSize)buttonSizeWithModel:(id _Nullable)model;
+-(JobsReturnCGSizeByIDBlock _Nonnull)buttonSizeByModel;
 //具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(CGRect)buttonFrameWithModel:(id _Nullable)model;
+-(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel;
 
 @end
 

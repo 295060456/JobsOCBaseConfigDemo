@@ -36,11 +36,15 @@ BaseButtonProtocol_synthesize
 }
 #pragma mark —— BaseButtonProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInButtonWithModel:(UIViewModel *_Nullable)model{
-    self.viewModel = model;
-    _isNeedAnimation = YES;
-    [self setupExplosion];/// 初始化粒子动画
-    [self setupBackWithFrame: model.jobsRect];/// 初始化其他控件
+-(jobsByIDBlock _Nonnull)richButtonByModel{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable data){
+        @jobs_strongify(self)
+        self.viewModel = data;
+        self.isNeedAnimation = YES;
+        [self setupExplosion];/// 初始化粒子动画
+        [self setupBackWithFrame: data.jobsRect];/// 初始化其他控件
+    };
 }
 
 - (void)setupBackWithFrame:(CGRect)frame {

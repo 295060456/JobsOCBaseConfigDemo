@@ -240,24 +240,34 @@
 #pragma mark —— BaseButtonProtocol
 BaseButtonProtocol_synthesize
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInButtonWithModel:(id _Nullable)model{
-    NSLog(@"");
+-(jobsByIDBlock _Nonnull)richButtonByModel{
+    return ^(id _Nullable data){
+        
+    };
 }
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)buttonWidthWithModel:(id _Nullable)model{
-    return 0;
++(JobsReturnCGFloatByIDBlock _Nonnull)buttonWidthByModel{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)buttonHeightWithModel:(id _Nullable)model{
-    return 0;
++(JobsReturnCGFloatByIDBlock _Nonnull)buttonHeightByModel{
+    return ^CGFloat(id _Nullable data){
+        return 0.0f;
+    };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)buttonSizeWithModel:(id _Nullable)model{
-    return CGSizeZero;
++(JobsReturnCGSizeByIDBlock _Nonnull)buttonSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeZero;
+    };
 }
 /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGRect)buttonFrameWithModel:(id _Nullable)model{
-    return CGRectZero;
++(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel{
+    return ^CGRect(id _Nullable data){
+        return CGRectZero;
+    };
 }
 
 @end
