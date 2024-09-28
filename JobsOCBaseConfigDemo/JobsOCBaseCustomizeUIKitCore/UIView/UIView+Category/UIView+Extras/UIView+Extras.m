@@ -20,6 +20,15 @@
         }return instance;
     };
 }
+
+-(JobsReturnViewByIDBlock _Nonnull)jobsRichElementsInViewWithModel2{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(id _Nullable data){
+        @jobs_strongify(self)
+        self.jobsRichElementsInViewWithModel(data);
+        return self;
+    };
+}
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame{
     @jobs_weakify(self)

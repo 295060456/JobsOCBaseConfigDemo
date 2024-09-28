@@ -40,56 +40,116 @@
                           self.height);
     };
 }
-#pragma mark —— 设置控件的约束（返回控件自己本身）
-/// 设置控件的 Size
--(JobsReturnIDByCGSizeBlock _Nonnull)bySize{
+#pragma mark ——【类方法】设置控件的约束（返回控件自己本身）
++(JobsReturnViewBySizeBlock _Nonnull)BySize{
     @jobs_weakify(self)
-    return ^id _Nullable(CGSize data){
+    return ^__kindof UIView *_Nullable(CGSize data){
+        @jobs_strongify(self)
+        UIView <BaseViewProtocol>*instance = self.class.new;
+        instance.bySize(data);
+        return instance;
+    };
+}
+/// 设置控件的 Frame
++(JobsReturnViewByRectBlock _Nonnull)ByFrame{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(CGRect data){
+        @jobs_strongify(self)
+        UIView <BaseViewProtocol>*instance = self.class.new;
+        instance.byFrame(data);
+        return instance;
+    };
+}
+/// 设置控件的 Origin
++(JobsReturnViewByPointBlock _Nonnull)ByOrigin{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(CGPoint data){
+        @jobs_strongify(self)
+        UIView <BaseViewProtocol>*instance = self.class.new;
+        instance.byOrigin(data);
+        return instance;
+    };
+}
+/// 设置控件的 Width
++(JobsReturnViewByFloatBlock _Nonnull)ByWidth{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        UIView <BaseViewProtocol>*instance = self.class.new;
+        instance.byWidth(data);
+        return instance;
+    };
+}
+/// 设置控件的 Height
++(JobsReturnViewByFloatBlock _Nonnull)ByHeight{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        UIView <BaseViewProtocol>*instance = self.class.new;
+        instance.byHeight(data);
+        return instance;
+    };
+}
+/// 设置控件的 Center
++(JobsReturnViewByCenterBlock _Nonnull)ByCenter{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(CGFloat x,CGFloat y){
+        @jobs_strongify(self)
+        UIView <BaseViewProtocol>*instance = self.class.new;
+        instance.byCenter(x,y);
+        return instance;
+    };
+}
+#pragma mark ——【实例方法】设置控件的约束（返回控件自己本身）
+/// 设置控件的 Size
+-(JobsReturnViewBySizeBlock _Nonnull)bySize{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(CGSize data){
         @jobs_strongify(self)
         self.resetSize(data);
         return self;
     };
 }
 /// 设置控件的 Frame
--(JobsReturnIDByCGRectBlock _Nonnull)byFrame{
+-(JobsReturnViewByRectBlock _Nonnull)byFrame{
     @jobs_weakify(self)
-    return ^id _Nullable(CGRect data){
+    return ^__kindof UIView *_Nullable(CGRect data){
         @jobs_strongify(self)
         self.frame = data;
         return self;
     };
 }
 /// 设置控件的 Origin
--(JobsReturnIDByCGPointBlock _Nonnull)byOrigin{
+-(JobsReturnViewByPointBlock _Nonnull)byOrigin{
     @jobs_weakify(self)
-    return ^id _Nullable(CGPoint data){
+    return ^__kindof UIView *_Nullable(CGPoint data){
         @jobs_strongify(self)
         self.resetOrigin(data);
         return self;
     };
 }
 /// 设置控件的 Width
--(JobsReturnIDByCGFloatBlock _Nonnull)byWidth{
+-(JobsReturnViewByFloatBlock _Nonnull)byWidth{
     @jobs_weakify(self)
-    return ^id _Nullable(CGFloat data){
+    return ^__kindof UIView *_Nullable(CGFloat data){
         @jobs_strongify(self)
         self.resetWidth(data);
         return self;
     };
 }
 /// 设置控件的 Height
--(JobsReturnIDByCGFloatBlock _Nonnull)byHeight{
+-(JobsReturnViewByFloatBlock _Nonnull)byHeight{
     @jobs_weakify(self)
-    return ^id _Nullable(CGFloat data){
+    return ^__kindof UIView *_Nullable(CGFloat data){
         @jobs_strongify(self)
         self.resetHeight(data);
         return self;
     };
 }
 /// 设置控件的 Center
--(JobsReturnIDByCenterBlock _Nonnull)byCenter{
+-(JobsReturnViewByCenterBlock _Nonnull)byCenter{
     @jobs_weakify(self)
-    return ^id _Nullable(CGFloat x,CGFloat y){
+    return ^__kindof UIView *_Nullable(CGFloat x,CGFloat y){
         @jobs_strongify(self)
         CGPoint center = self.center;
         center.x = x;
