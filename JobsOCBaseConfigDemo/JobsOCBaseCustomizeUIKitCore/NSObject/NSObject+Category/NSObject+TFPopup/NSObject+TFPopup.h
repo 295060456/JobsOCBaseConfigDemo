@@ -83,6 +83,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— PopView
 /// 出现的弹窗需要手动触发关闭
 -(jobsByViewBlock _Nonnull)show_view;
+/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框
+-(jobsByViewBlock _Nonnull)show_view2;
 /// 出现的弹窗自动触发关闭
 -(jobsByViewBlock _Nonnull)show_tips;
 #warning 这样写的目的是方便在其他地方调用

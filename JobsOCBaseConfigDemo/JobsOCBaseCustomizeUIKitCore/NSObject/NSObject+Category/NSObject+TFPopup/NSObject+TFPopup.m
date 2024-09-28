@@ -80,13 +80,26 @@
     }
 }
 #pragma mark —— PopView
-/// 出现的弹窗需要手动触发关闭
+/// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框
 -(jobsByViewBlock _Nonnull)show_view{
     @jobs_weakify(self)
     return ^(UIView *_Nonnull view) {
         @jobs_strongify(self)
         self.popupParameter.dragEnable = YES;
         self.popupParameter.disuseBackgroundTouchHide = YES;/// 禁止点击背景消失弹框
+        [view tf_showSlide:NSObject.mainWindow()
+                 direction:PopupDirectionContainerCenter
+                popupParam:self.popupParameter];
+    };
+}
+/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框
+-(jobsByViewBlock _Nonnull)show_view2{
+    @jobs_weakify(self)
+    return ^(UIView *_Nonnull view) {
+        @jobs_strongify(self)
+        self.popupParameter.dragEnable = YES;
+        self.popupParameter.backgroundColor = JobsBlackColor.colorWithAlphaComponent(.3f);
+        self.popupParameter.disuseBackgroundTouchHide = NO;/// 允许点击背景消失弹框
         [view tf_showSlide:NSObject.mainWindow()
                  direction:PopupDirectionContainerCenter
                 popupParam:self.popupParameter];
