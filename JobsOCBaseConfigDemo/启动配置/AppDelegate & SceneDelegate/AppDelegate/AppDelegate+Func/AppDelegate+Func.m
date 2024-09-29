@@ -156,7 +156,27 @@
 -(jobsByVoidBlock _Nonnull)makeTABAnimatedConfig{
     return ^(){
         [TABAnimated.sharedAnimated initWithOnlySkeleton];
+        /// 是否开启控制台Log提醒，默认不开启
         TABAnimated.sharedAnimated.openLog = YES;
+        ///开启后，会在每一个动画元素上增加一个红色的数字，该数字表示该动画元素所在的下标，方便快速定位某个动画元素。
+//        TABAnimated.sharedAnimated.openAnimationTag = YES;
+//        TABAnimated.sharedAnimated.animationType;/// 全局动画类型
+//        TABAnimated.sharedAnimated.animatedHeightCoefficient;/// 动画高度与视图原有高度的比例系数，该属性仅仅对`UILabel`生效。
+//        TABAnimated.sharedAnimated.animatedColor;/// 全局动画内容颜色，默认值为0xEEEEEE
+        TABAnimated.sharedAnimated.animatedBackgroundColor = JobsLightGrayColor;/// 全局动画背景颜色，默认值为UIColor.whiteColor
+//        TABAnimated.sharedAnimated.useGlobalCornerRadius;/// 是否开启全局圆角。开启后，全局圆角默认值为: 动画高度/2.0
+//        TABAnimated.sharedAnimated.animatedCornerRadius;/// 全局圆角的值。优先级：此属性 < view自身的圆角
+//        TABAnimated.sharedAnimated.useGlobalAnimatedHeight;/// 是否需要全局动画高度
+//        TABAnimated.sharedAnimated.animatedHeight;/// 全局动画高度
+//        TABAnimated.sharedAnimated.scrollEnabled;/// 是否可以在滚动，默认可以滚动
+//        TABAnimated.sharedAnimated.closeCache;/// 关闭缓存功能，默认开启
+//        TABAnimated.sharedAnimated.darkAnimatedBackgroundColor;/// 暗黑模式下，动画背景色
+//        TABAnimated.sharedAnimated.darkAnimatedColor;/// 暗黑模式下，动画内容的颜色
+//        TABAnimated.sharedAnimated.darkModeType;/// 暗黑模式选择，跟随系统、强制普通模式、强制暗黑模式
+//        TABAnimated.sharedAnimated.classicAnimation;/// 经典动画全局配置
+//        TABAnimated.sharedAnimated.dropAnimation;/// 下坠动画全局配置
+//        TABAnimated.sharedAnimated.binAnimation;/// 呼吸灯动画全局配置
+//        TABAnimated.sharedAnimated.shimmerAnimation;/// 闪光灯动画全局配置
     };
 }
 #pragma mark —— 全局配置键盘

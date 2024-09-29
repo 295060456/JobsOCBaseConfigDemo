@@ -6768,6 +6768,36 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```
 
     ```objective-c
+    #pragma mark —— 全局配置 TABAnimated
+    -(jobsByVoidBlock _Nonnull)makeTABAnimatedConfig{
+        return ^(){
+            [TABAnimated.sharedAnimated initWithOnlySkeleton];
+            /// 是否开启控制台Log提醒，默认不开启
+            TABAnimated.sharedAnimated.openLog = YES;
+            ///开启后，会在每一个动画元素上增加一个红色的数字，该数字表示该动画元素所在的下标，方便快速定位某个动画元素。
+    //        TABAnimated.sharedAnimated.openAnimationTag = YES;
+    //        TABAnimated.sharedAnimated.animationType;/// 全局动画类型
+    //        TABAnimated.sharedAnimated.animatedHeightCoefficient;/// 动画高度与视图原有高度的比例系数，该属性仅仅对`UILabel`生效。
+    //        TABAnimated.sharedAnimated.animatedColor;/// 全局动画内容颜色，默认值为0xEEEEEE
+            TABAnimated.sharedAnimated.animatedBackgroundColor = JobsLightGrayColor;/// 全局动画背景颜色，默认值为UIColor.whiteColor
+    //        TABAnimated.sharedAnimated.useGlobalCornerRadius;/// 是否开启全局圆角。开启后，全局圆角默认值为: 动画高度/2.0
+    //        TABAnimated.sharedAnimated.animatedCornerRadius;/// 全局圆角的值。优先级：此属性 < view自身的圆角
+    //        TABAnimated.sharedAnimated.useGlobalAnimatedHeight;/// 是否需要全局动画高度
+    //        TABAnimated.sharedAnimated.animatedHeight;/// 全局动画高度
+    //        TABAnimated.sharedAnimated.scrollEnabled;/// 是否可以在滚动，默认可以滚动
+    //        TABAnimated.sharedAnimated.closeCache;/// 关闭缓存功能，默认开启
+    //        TABAnimated.sharedAnimated.darkAnimatedBackgroundColor;/// 暗黑模式下，动画背景色
+    //        TABAnimated.sharedAnimated.darkAnimatedColor;/// 暗黑模式下，动画内容的颜色
+    //        TABAnimated.sharedAnimated.darkModeType;/// 暗黑模式选择，跟随系统、强制普通模式、强制暗黑模式
+    //        TABAnimated.sharedAnimated.classicAnimation;/// 经典动画全局配置
+    //        TABAnimated.sharedAnimated.dropAnimation;/// 下坠动画全局配置
+    //        TABAnimated.sharedAnimated.binAnimation;/// 呼吸灯动画全局配置
+    //        TABAnimated.sharedAnimated.shimmerAnimation;/// 闪光灯动画全局配置
+        };
+    }
+    ```
+    
+    ```objective-c
     NSArray *classArray = @[
                             DDCollectionViewCell_Style2.class,
                             DDCollectionViewCell_Style3.class,
@@ -6793,6 +6823,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     _collectionView.tabAnimated.containNestAnimation = YES;
     _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
     _collectionView.tabAnimated.canLoadAgain = YES;
+    [_collectionView tab_startAnimation];   // 开启动画
+    ```
+    
+    ```objective-c
+    _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClass:HomeCVCell.class
+                                                                      cellSize:HomeCVCell.cellSizeByModel(nil)];
+    _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
+    _collectionView.tabAnimated.canLoadAgain = YES;
+    _collectionView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
+    //_collectionView.tabAnimated.animatedBackgroundColor = JobsRedColor;
     [_collectionView tab_startAnimation];   // 开启动画
     ```
 
@@ -7004,31 +7044,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
            }
          
            {
-               NSArray *classArray = @[
-                                       DDCollectionViewCell_Style2.class,
-                                       DDCollectionViewCell_Style3.class,
-                                       DDCollectionViewCell_Style4.class,
-                                       ];
-               NSArray *sizeArray = @[
-                                      [NSValue valueWithCGSize:[DDCollectionViewCell_Style2 cellSizeWithModel:nil]],
-                                      [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeWithModel:nil]],
-                                      [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeWithModel:nil]]
-                                      ];
-   
-               _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:classArray
-                                                                                 cellSizeArray:sizeArray
-                                                                            animatedCountArray:@[@(1),@(1),@(1)]];
-   
-               [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
-                                                      viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeWithModel:nil]
-                                                     toSection:0];
-               [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
-                                                      viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeWithModel:nil]
-                                                     toSection:2];
-   
-               _collectionView.tabAnimated.containNestAnimation = YES;
-               _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+               _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClass:HomeCVCell.class
+                                                                                 cellSize:HomeCVCell.cellSizeByModel(nil)];
+               _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
                _collectionView.tabAnimated.canLoadAgain = YES;
+               _collectionView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
+   //            _collectionView.tabAnimated.animatedBackgroundColor = JobsRedColor;
                [_collectionView tab_startAnimation];   // 开启动画
            }
            
@@ -7301,7 +7322,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```objective-c
     // 可以不进行手动初始化，将使用默认属性
     _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
-                                                          cellHeight:[JobsBaseTableViewCell cellHeightWithModel:nil]];
+                                                          cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
     _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
     [_tableView tab_startAnimation];   // 开启动画
     ```
@@ -7575,12 +7596,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
            }
            
-             /// 设置tabAnimated相关属性
-           {
-               // 可以不进行手动初始化，将使用默认属性
-               _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:MSCommentTBVCell.class
-                                                                     cellHeight:74.5];
-               _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+           {// 设置tabAnimated相关属性
+               _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
+                                                                     cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
+               _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
+               _tableView.tabAnimated.canLoadAgain = YES;
+   //            _tableView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
+   //            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
                [_tableView tab_startAnimation];   // 开启动画
            }
    
@@ -7807,7 +7829,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               }
               _dataMutArr.add(temp);
          }
-    }return _dataMutArr;
+   }return _dataMutArr;
   }
   
   -(NSMutableArray<UIViewModel *> *)rowDataMutArr{

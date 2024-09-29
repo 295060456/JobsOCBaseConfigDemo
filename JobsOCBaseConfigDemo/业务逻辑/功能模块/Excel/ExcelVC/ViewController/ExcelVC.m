@@ -278,11 +278,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
         }
         
-//        {/// 设置tabAnimated相关属性
-//            // 可以不进行手动初始化，将使用默认属性
+//        {// 设置tabAnimated相关属性
 //            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
-//                                                                  cellHeight:[JobsBaseTableViewCell cellHeightByModel:nil]];
-//            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+//                                                                  cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
+//            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
+//            _tableView.tabAnimated.canLoadAgain = YES;
+////            _tableView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
+////            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
 //            [_tableView tab_startAnimation];   // 开启动画
 //        }
         
@@ -297,21 +299,20 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<NSMutableArray<__kindof UITableViewCell *> *> *)tbvSectionRowCellMutArr{
     if(!_tbvSectionRowCellMutArr){
-        _tbvSectionRowCellMutArr = NSMutableArray.array;
-        {
-            NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            _tbvSectionRowCellMutArr.add(rowCellMutArr);
-        }
-        
-        {
-            NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr = NSMutableArray.array;
-            rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            _tbvSectionRowCellMutArr.add(rowCellMutArr);
-        }
+        @jobs_weakify(self)
+        _tbvSectionRowCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable rowCellMutArr) {
+                @jobs_strongify(self)
+                rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+                rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+                rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+                rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            }));
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable rowCellMutArr) {
+                @jobs_strongify(self)
+                rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            }));
+        });
     }return _tbvSectionRowCellMutArr;
 }
 

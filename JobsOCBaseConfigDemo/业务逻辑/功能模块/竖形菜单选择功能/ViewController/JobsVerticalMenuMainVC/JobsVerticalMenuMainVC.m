@@ -278,11 +278,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
         }
         
-//        {/// 设置tabAnimated相关属性
-//            // 可以不进行手动初始化，将使用默认属性
+
+//        {// 设置tabAnimated相关属性
 //            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
-//                                                                  cellHeight:[JobsBaseTableViewCell cellHeightByModel:nil]];
-//            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+//                                                                  cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
+//            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
+//            _tableView.tabAnimated.canLoadAgain = YES;
+////            _tableView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
+////            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
 //            [_tableView tab_startAnimation];   // 开启动画
 //        }
         

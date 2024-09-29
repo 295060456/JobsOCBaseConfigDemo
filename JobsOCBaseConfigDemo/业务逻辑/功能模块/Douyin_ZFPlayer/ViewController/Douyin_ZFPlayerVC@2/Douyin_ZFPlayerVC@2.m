@@ -60,7 +60,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-//    
+//
 //    NSError *error = nil;
 //    [KTVHTTPCache proxyStart:&error];
     
@@ -339,12 +339,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
             _tableView.mj_footer.hidden = NO;
         }
         
-//        {/// 设置tabAnimated相关属性
-//            // 可以不进行手动初始化，将使用默认属性
-//            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:ZFDouYinCell.class
-//                                                                  cellHeight:[ZFDouYinCell cellHeightByModel:nil]];
-//            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
-//   //            [_tableView.tabAnimated addHeaderViewClass:LineTableViewHeaderFooterView.class viewHeight:60 toSection:0];
+//        {// 设置tabAnimated相关属性
+//            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
+//                                                                  cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
+//            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
+//            _tableView.tabAnimated.canLoadAgain = YES;
+////            _tableView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
+////            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
 //            [_tableView tab_startAnimation];   // 开启动画
 //        }
         

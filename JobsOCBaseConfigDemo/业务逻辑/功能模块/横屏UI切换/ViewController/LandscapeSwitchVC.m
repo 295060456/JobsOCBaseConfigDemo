@@ -341,32 +341,12 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         }
         
 //        {
-//
-//            NSArray *classArray = @[
-//                                    DDCollectionViewCell_Style2.class,
-//                                    DDCollectionViewCell_Style3.class,
-//                                    DDCollectionViewCell_Style4.class,
-//                                    ];
-//            NSArray *sizeArray = @[
-//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style2 cellSizeByModel:nil]],
-//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style3 cellSizeByModel:nil]],
-//                                   [NSValue valueWithCGSize:[DDCollectionViewCell_Style4 cellSizeByModel:nil]]
-//                                   ];
-//
-//            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:classArray
-//                                                                              cellSizeArray:sizeArray
-//                                                                         animatedCountArray:@[@(1),@(1),@(1)]];
-//
-//            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
-//                                                   viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeByModel:nil]
-//                                                  toSection:0];
-//            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
-//                                                   viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeByModel:nil]
-//                                                  toSection:2];
-//
-//            _collectionView.tabAnimated.containNestAnimation = YES;
-//            _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+//            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClass:HomeCVCell.class
+//                                                                              cellSize:HomeCVCell.cellSizeByModel(nil)];
+//            _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
 //            _collectionView.tabAnimated.canLoadAgain = YES;
+//            _collectionView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
+////            _collectionView.tabAnimated.animatedBackgroundColor = JobsRedColor;
 //            [_collectionView tab_startAnimation];   // 开启动画
 //        }
         
