@@ -145,6 +145,7 @@ typedef void(^jobsByButtonTimerConfigModelBlock)(__kindof ButtonTimerConfigModel
 @class MasonryModel;
 typedef void(^jobsByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
+typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
 
 @class UIButtonModel;
 typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable data);
@@ -196,7 +197,16 @@ typedef void(^jobsByXZMRefreshNormalHeaderBlock)(XZMRefreshNormalHeader *_Nonnul
 
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByClickBlock)(jobsByBtnBlock _Nullable);
 
+@class MASConstraintMaker;
+typedef void(^jobsByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
+typedef void(^jobsByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
+typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
+typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
+
 #pragma mark —— 关于业务（不与JobsOCBaseConfigDemo同步）
+@class FMBannerAdsModel;
+typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable data);
+
 @class JobsMsgDataModel;
 typedef void(^jobsByMsgDataModelBlock)(__kindof JobsMsgDataModel *_Nullable data);
 

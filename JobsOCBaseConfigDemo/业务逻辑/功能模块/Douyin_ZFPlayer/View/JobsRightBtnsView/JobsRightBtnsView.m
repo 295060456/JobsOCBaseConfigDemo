@@ -98,15 +98,15 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 /// 垂直方向排列、固定控件高度、控件间隔不定
 -(void)子视图垂直等间距排列{
     /// 实现masonry垂直方向固定控件高度方法
-    [self.masonryViewArr mas_distributeViewsAlongAxis:MASAxisTypeVertical
-                                  withFixedItemLength:JobsRightBtnsView.viewSizeByModel(nil).width
-                                          leadSpacing:0
-                                          tailSpacing:0];
-    /// 设置array的水平方向的约束
-    [self.masonryViewArr mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.masonryViewArr.installByMasonryModel2(jobsMakeMasonryModel(^(__kindof MasonryModel * _Nullable data) {
+        data.axisType = MASAxisTypeVertical;
+        data.fixedItemLength = JobsRightBtnsView.viewSizeByModel(nil).width;
+        data.leadSpacing = JobsWidth(0);
+        data.tailSpacing = JobsWidth(0);
+    })).installByMasonryBlock(^(MASConstraintMaker *_Nonnull make){/// 设置array的水平方向的约束
         make.centerX.equalTo(self);
         make.width.mas_equalTo(JobsRightBtnsView.viewSizeByModel(nil).width);
-    }];
+    });
     [self layoutIfNeeded];
     @jobs_weakify(self)
     self.loveBtn.richButtonByModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
@@ -180,7 +180,6 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     jobsCommentCoreVC.transitioningDelegate = presentationController;
                     
                     [self forceComingToPushVC:jobsCommentCoreVC requestParams:JobsInternationalization(@"")];
-                    @jobs_weakify(self)
                     [jobsCommentCoreVC actionObjectBlock:^(id data) {
                         NSLog(@"您点击了评论");
                     }];

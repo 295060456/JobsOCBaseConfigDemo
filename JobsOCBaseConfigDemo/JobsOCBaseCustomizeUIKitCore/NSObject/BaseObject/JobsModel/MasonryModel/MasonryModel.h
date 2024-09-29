@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)MASAxisType axisType;
 @property(nonatomic,assign)CGFloat fixedSpacing;
+@property(nonatomic,assign)CGFloat fixedItemLength;
 @property(nonatomic,assign)CGFloat leadSpacing;
 @property(nonatomic,assign)CGFloat tailSpacing;
 @property(nonatomic,assign)CGFloat top;
@@ -21,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat right;
 @property(nonatomic,assign)CGFloat height;
 @property(nonatomic,assign)CGFloat width;
+@property(nonatomic,assign)CGFloat centerX;
+@property(nonatomic,assign)CGFloat centerY;
+@property(nonatomic,assign)BOOL is_mas_makeConstraints;
+@property(nonatomic,strong)__kindof UIView *view;
 
 @end
 
