@@ -6842,13 +6842,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * `UICollectionView` 的一个布局对象，用于定义网格布局
   
   * ```objective-c
-    UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;  // 设置滚动方向
-    layout.itemSize = CGSizeMake(100, 100);  // 设置单元格尺寸
-    layout.minimumLineSpacing = 10;  // 设置行间距
-    layout.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
-    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
-    ```
+    @jobs_weakify(self)
+    _collectionView = BaseCollectionView.initByLayout(jobsMakeCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
+        @jobs_strongify(self)
+        data = self.verticalLayout;
+    //  data.itemSize = CGSizeMake(100, 100);  // 设置单元格尺寸
+    //  data.minimumLineSpacing = 10;  // 设置行间距
+    //  data.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
+  //  data.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
+  }));
+  ```
   
   * 在`UICollectionViewFlowLayout`和`UICollectionViewDelegateFlowLayout`协议方法中设置布局属性时，<font color=red>**`UICollectionViewDelegateFlowLayout`协议方法的优先级更高**</font>。也就是说，如果你同时在`UICollectionViewFlowLayout`对象和`UICollectionViewDelegateFlowLayout`方法中设置了布局属性，集合视图将优先使用`UICollectionViewDelegateFlowLayout`方法中提供的值
 
@@ -6991,7 +6994,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    -(BaseCollectionView *)collectionView{
        if (!_collectionView) {
            @jobs_weakify(self)
-           _collectionView = BaseCollectionView.initByLayout(self.horizontalLayout);
+           _collectionView = BaseCollectionView.initByLayout(jobsMakeCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
+               @jobs_strongify(self)
+               data = self.verticalLayout;
+   //            data.itemSize = CGSizeMake(100, 100);  // 设置单元格尺寸
+   //            data.minimumLineSpacing = 10;  // 设置行间距
+   //            data.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
+   //            data.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
+           }));
            _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
            _collectionView.dataLink(self);
            _collectionView.showsVerticalScrollIndicator = NO;
@@ -7058,19 +7068,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                make.height.mas_equalTo(JobsWidth(102));
            }];
        }return _collectionView;
-   }
-   ```
-   
-   ```objective-c
-   -(UICollectionViewFlowLayout *)layout{
-       if(!_layout){
-           _layout = UICollectionViewFlowLayout.new;
-           _layout.scrollDirection = UICollectionViewScrollDirectionVertical;  // 设置滚动方向
-           _layout.itemSize = CGSizeMake(100, 100);  // 设置单元格尺寸
-           _layout.minimumLineSpacing = 10;  // 设置行间距
-           _layout.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
-           _layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
-       }return _layout;
    }
    ```
    
