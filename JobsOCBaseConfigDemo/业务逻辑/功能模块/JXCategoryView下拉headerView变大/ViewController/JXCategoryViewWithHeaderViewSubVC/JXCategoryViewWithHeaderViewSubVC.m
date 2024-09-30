@@ -16,7 +16,6 @@
 }
 /// UI
 @property(nonatomic,strong)BaiShaETProjChoiceStadiumView *choiceStadiumView;
-@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)UICollectionView *collectionView;
 // Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -296,15 +295,9 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     }return _choiceStadiumView;
 }
 
--(UICollectionViewFlowLayout *)layout{
-    if (!_layout) {
-        _layout = self.verticalLayout;
-    }return _layout;
-}
-
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = UICollectionView.initByLayout(self.layout);
+        _collectionView = UICollectionView.initByLayout(self.verticalLayout);
         _collectionView.backgroundColor = RGB_SAMECOLOR(246);
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight() + JobsTabBarHeight(nil), 0);
         _collectionView.dataLink(self);

@@ -23,25 +23,30 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UILocationProtocol <NSObject>
 @optional
 #pragma mark —— 方位和大小
-@property(nonatomic,assign)CGFloat cornerRadius;/// 圆切角（全角）
-@property(nonatomic,assign)UIRectCorner rectCorner;/// 设置切哪个直角
-@property(nonatomic,assign)CGSize cornerRadii;/// 设置切哪个直角的切角矩形
+/// Frame
 @property(nonatomic,assign)CGFloat jobsX;
 @property(nonatomic,assign)CGFloat jobsY;
 @property(nonatomic,assign)CGFloat jobsWidth;/// 宽
 @property(nonatomic,assign)CGFloat jobsHeight;/// 高
+/// Edge
 @property(nonatomic,assign)CGFloat jobsTop;
-@property(nonatomic,assign)CGFloat jobsLeft;
-@property(nonatomic,assign)CGFloat jobsRight;
+@property(nonatomic,assign)CGFloat jobsLeft;/// = leading
+@property(nonatomic,assign)CGFloat jobsRight;/// = trailing
 @property(nonatomic,assign)CGFloat jobsBottom;
+/// Offset
 @property(nonatomic,assign)CGFloat jobsOffsetX;
 @property(nonatomic,assign)CGFloat jobsOffsetY;
+/// 结构体
 @property(nonatomic,assign)CGSize jobsSize;/// 二维尺寸
 @property(nonatomic,assign)CGRect jobsRect;
 @property(nonatomic,assign)CGPoint jobsPoint;
+@property(nonatomic,assign)UIRectCorner rectCorner;/// 设置切哪个直角
+@property(nonatomic,assign)CGSize cornerRadii;/// 设置切哪个直角的切角矩形
 @property(nonatomic,assign)UILayoutConstraintAxis axis;
 @property(nonatomic,assign)UIStackViewDistribution distribution;
 @property(nonatomic,assign)UIStackViewAlignment alignment;
+/// Layer
+@property(nonatomic,assign)CGFloat cornerRadius;/// 圆切角（全角）
 #pragma mark —— UIButton 专用属性 — 图文的相对位置
 @property(nonatomic,assign)NSDirectionalRectEdge buttonEdgeInsetsStyle;
 @property(nonatomic,assign)CGFloat imageTitleSpace;

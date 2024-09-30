@@ -9,7 +9,6 @@
 
 @interface MyCollectionVC ()
 /// UI
-@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -277,18 +276,12 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(UIEdgeInsets)collectionView:(__kindof UICollectionView *)collectionView
                        layout:(UICollectionViewLayout *)collectionViewLayout
        insetForSectionAtIndex:(NSInteger)section {
-    return jobsSameEdgeInset(16);
+    return jobsSameEdgeInset(JobsWidth(16));
 }
 #pragma mark —— lazyLoad
--(UICollectionViewFlowLayout *)layout{
-    if (!_layout) {
-        _layout = self.verticalLayout;
-    }return _layout;
-}
-
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = UICollectionView.initByLayout(self.layout);
+        _collectionView = UICollectionView.initByLayout(self.verticalLayout);
         _collectionView.backgroundColor = HEXCOLOR(0xFCFBFB);
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;
@@ -305,54 +298,34 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            {
-                NSMutableArray <UIViewModel *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable mutArr) {
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.jobsDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable mutArr) {
+                    mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"存款金额");
                         viewModel.subTextModel.text = JobsInternationalization(@"10,000.00");
-                        mutArr.add(viewModel);
-                    }
-                    
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
+                    }));
+                    mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"存款方式");
                         viewModel.subTextModel.text = JobsInternationalization(@"虛擬幣充值");
-                        mutArr.add(viewModel);
-                    }
-                    
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
+                    }));
+                    mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"訂單編號");
-                        viewModel.subTextModel.text = JobsInternationalization(@"YSF2025022302644565964");
-                        mutArr.add(viewModel);
-                    }
-                    
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
+                        viewModel.subTextModel.text = @"YSF2025022302644565964";
+                    }));
+                    mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"轉賬姓名");
                         viewModel.subTextModel.text = JobsInternationalization(@"張三 ");
-                        mutArr.add(viewModel);
-                    }
-                    
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
+                    }));
+                    mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"銀行賬號");
                         viewModel.subTextModel.text = JobsInternationalization(@"6230 5822 0031 5762 430");
-                        mutArr.add(viewModel);
-                    }
-                    
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
+                    }));
+                    mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"轉賬地址");
                         viewModel.subTextModel.text = JobsInternationalization(@"中國平安銀行");
-                        mutArr.add(viewModel);
-                    }
+                    }));
                 });
-                UIViewModel *viewModel = UIViewModel.new;
-                viewModel.jobsDataMutArr = mutArr;
-                data.add(viewModel);
-            }
+            }));
         });
     }return _dataMutArr;
 }

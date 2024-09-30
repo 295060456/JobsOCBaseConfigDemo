@@ -10,7 +10,6 @@
 @interface JobsSearchTBVCell ()
 /// UI
 @property(nonatomic,strong)UICollectionView *collectionView;
-@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 /// Data
 
 @end
@@ -134,15 +133,9 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsZero;
 }
 #pragma mark —— lazyLoad
--(UICollectionViewFlowLayout *)layout{
-    if (!_layout) {
-        _layout = self.verticalLayout;
-    }return _layout;
-}
-
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = UICollectionView.initByLayout(self.layout);
+        _collectionView = UICollectionView.initByLayout(self.verticalLayout);
         _collectionView.dataLink(self);
         _collectionView.registerCollectionViewClass();
         [self.contentView addSubview:_collectionView];

@@ -93,6 +93,7 @@ typedef void(^jobsByStringBlock)(NSString *_Nullable data);
 typedef void(^jobsByAttributedStringBlock)(__kindof NSAttributedString *_Nullable data);
 typedef void(^jobsByMutableParagraphStyleBlock)(NSMutableParagraphStyle *_Nullable data);
 typedef void(^jobsByTextAttachmentBlock)(NSTextAttachment *_Nullable data);
+typedef void(^jobsByCollectionViewFlowLayoutBlock)(UICollectionViewFlowLayout *_Nullable data);
 
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;
 typedef void(^jobsByThreeIDBlock)Jobs_3_Arguments;

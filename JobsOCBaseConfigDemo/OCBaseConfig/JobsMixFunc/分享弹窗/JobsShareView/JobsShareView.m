@@ -9,7 +9,6 @@
 
 @interface JobsShareView ()
 /// UI
-@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)BaseCollectionView *collectionView;
 @property(nonatomic,strong)BaseButton *cancelBtn;
 /// Data
@@ -202,7 +201,12 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
 layout:(UICollectionViewLayout *)collectionViewLayout
 insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(JobsWidth(6), JobsWidth(15), JobsWidth(6), JobsWidth(15));
+    return jobsMakeEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+        data.jobsTop = JobsWidth(6);
+        data.jobsLeft = JobsWidth(15);
+        data.jobsBottom = JobsWidth(6);
+        data.jobsRight = JobsWidth(15);
+    });
 }
 #pragma mark —— lazyLoad
 -(BaseButton *)cancelBtn{
@@ -228,16 +232,10 @@ insetForSectionAtIndex:(NSInteger)section {
     }return _cancelBtn;
 }
 
--(UICollectionViewFlowLayout *)layout{
-    if (!_layout) {
-        _layout = self.verticalLayout;
-    }return _layout;
-}
-
 -(BaseCollectionView *)collectionView{
     if (!_collectionView) {
         @jobs_weakify(self)
-        _collectionView = BaseCollectionView.initByLayout(self.layout);
+        _collectionView = BaseCollectionView.initByLayout(self.verticalLayout);
         _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;

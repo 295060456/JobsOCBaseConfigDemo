@@ -188,6 +188,7 @@ static inline __kindof UITableView *_Nonnull jobsMakeTableViewByInsetGrouped(job
     return data;
 }
 #pragma mark —— 关于结构体的创建
+#pragma mark —— UIEdgeInsets
 static inline UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
     JobsLocationModel *data = JobsLocationModel.alloc.init;
     if (block) block(data);
@@ -196,7 +197,34 @@ static inline UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocation
                             data.jobsBottom,
                             data.jobsRight);
 }
-
+/// 构建一个四边距离相等的 UIEdgeInsets
+static inline UIEdgeInsets jobsSameEdgeInset(CGFloat insets){
+    return jobsMakeEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+        data.jobsTop = insets;
+        data.jobsLeft = insets;
+        data.jobsBottom = insets;
+        data.jobsRight = insets;
+    });
+}
+#pragma mark —— NSDirectionalEdgeInsets
+static inline NSDirectionalEdgeInsets jobsMakeDirectionalEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+    JobsLocationModel *data = JobsLocationModel.alloc.init;
+    if (block) block(data);
+    return NSDirectionalEdgeInsetsMake(data.jobsTop,
+                                       data.jobsLeft,
+                                       data.jobsBottom,
+                                       data.jobsRight);
+}
+/// 构建一个内边距相等的 NSDirectionalEdgeInsets
+static inline NSDirectionalEdgeInsets jobsSameDirectionalEdgeInsets(CGFloat x){
+    return jobsMakeDirectionalEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+        data.jobsTop = x;
+        data.jobsLeft = x;
+        data.jobsBottom = x;
+        data.jobsRight = x;
+    });
+}
+#pragma mark —— CGRect
 static inline CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
     JobsLocationModel *data = JobsLocationModel.alloc.init;
     if (block) block(data);
@@ -205,13 +233,13 @@ static inline CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock
                       data.jobsWidth,
                       data.jobsHeight);
 }
-
+#pragma mark —— CGPoint
 static inline CGPoint jobsMakeCGPointByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
     JobsLocationModel *data = JobsLocationModel.alloc.init;
     if (block) block(data);
     return CGPointMake(data.jobsX, data.jobsY);
 }
-
+#pragma mark —— CGSize
 static inline CGSize jobsMakeCGSizeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
     JobsLocationModel *data = JobsLocationModel.alloc.init;
     if (block) block(data);

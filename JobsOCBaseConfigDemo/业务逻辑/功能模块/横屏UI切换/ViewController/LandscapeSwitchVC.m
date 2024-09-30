@@ -9,7 +9,6 @@
 
 @interface LandscapeSwitchVC ()
 /// UI
-@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)BaseCollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -265,19 +264,13 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                        layout:(UICollectionViewLayout *)collectionViewLayout
        insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return jobsSameEdgeInset(JobsWidth(10));
 }
 #pragma mark —— lazyLoad
--(UICollectionViewFlowLayout *)layout{
-    if (!_layout) {
-        _layout = self.verticalLayout;
-    }return _layout;
-}
-
 -(BaseCollectionView *)collectionView{
     if (!_collectionView) {
         @jobs_weakify(self)
-        _collectionView = BaseCollectionView.initByLayout(self.layout);
+        _collectionView = BaseCollectionView.initByLayout(self.verticalLayout);
         _collectionView.backgroundColor = JobsGreenColor;//RGB_SAMECOLOR(246);
         _collectionView.layoutSubviewsRectCorner = UIRectCornerTopLeft | UIRectCornerTopRight;
         _collectionView.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(20), JobsWidth(20));

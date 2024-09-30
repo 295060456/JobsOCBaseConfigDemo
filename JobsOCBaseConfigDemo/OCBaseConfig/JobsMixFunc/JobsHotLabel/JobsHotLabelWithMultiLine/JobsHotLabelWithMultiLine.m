@@ -9,7 +9,6 @@
 
 @interface JobsHotLabelWithMultiLine ()
 /// UI
-@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <__kindof UICollectionViewCell *>*cvcellMutArr;
@@ -215,18 +214,12 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                        layout:(UICollectionViewLayout *)collectionViewLayout
        insetForSectionAtIndex:(NSInteger)section {
-    return jobsSameEdgeInset(5);
+    return jobsSameEdgeInset(JobsWidth(5));
 }
 #pragma mark —— lazyLoad
--(UICollectionViewFlowLayout *)layout{
-    if (!_layout) {
-        _layout = self.verticalLayout;
-    }return _layout;
-}
-
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = UICollectionView.initByLayout(self.layout);
+        _collectionView = UICollectionView.initByLayout(self.verticalLayout);
         _collectionView.backgroundColor = JobsClearColor;
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;
@@ -241,14 +234,17 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     }return _collectionView;
 }
 
--(NSMutableArray<UICollectionViewCell *> *)cvcellMutArr{
+-(NSMutableArray<__kindof UICollectionViewCell *> *)cvcellMutArr{
     if (!_cvcellMutArr) {
-        _cvcellMutArr = NSMutableArray.array;
-        for (UIViewModel *viewModel in self.dataModel.viewModelMutArr) {
-            NSUInteger index = [self.dataModel.viewModelMutArr indexOfObject:viewModel];
-            [_cvcellMutArr addObject:[JobsHotLabelWithMultiLineCVCell cellWithCollectionView:self.collectionView
-                                                                                forIndexPath:[self myIndexPath:(JobsIndexPath){0,index}]]];
-        }
+        @jobs_weakify(self)
+        _cvcellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            for (UIViewModel *viewModel in self.dataModel.viewModelMutArr) {
+                NSUInteger index = [self.dataModel.viewModelMutArr indexOfObject:viewModel];
+                data.add([JobsHotLabelWithMultiLineCVCell cellWithCollectionView:self.collectionView
+                                                                    forIndexPath:[self myIndexPath:(JobsIndexPath){0,index}]]);
+            }
+        });
     }return _cvcellMutArr;
 }
 

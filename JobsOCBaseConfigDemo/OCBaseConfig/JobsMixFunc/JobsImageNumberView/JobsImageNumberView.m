@@ -9,7 +9,6 @@
 
 @interface JobsImageNumberView ()
 /// UI
-@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)BaseCollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSArray <UIImage *>*dataMutArr;
@@ -116,19 +115,12 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                        layout:(UICollectionViewLayout*)collectionViewLayout
        insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 0, 0, 0);
+    return jobsSameEdgeInset(JobsWidth(0));
 }
 #pragma mark —— lazyLoad
--(UICollectionViewFlowLayout *)layout{
-    if (!_layout) {
-        _layout = self.verticalLayout;
-    }return _layout;
-}
-
 -(BaseCollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectZero
-                                               collectionViewLayout:self.layout];
+        _collectionView = BaseCollectionView.initByLayout(self.verticalLayout);
         
         _collectionView.backgroundColor = JobsClearColor;
         _collectionView.dataLink(self);

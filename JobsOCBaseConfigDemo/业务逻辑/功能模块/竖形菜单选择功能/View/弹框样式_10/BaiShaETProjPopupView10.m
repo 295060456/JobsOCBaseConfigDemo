@@ -18,7 +18,6 @@
 @property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
-@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,assign)NSInteger selectedIndex;
 
 @end
@@ -247,16 +246,9 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 #endif
 }
 #pragma mark —— lazyLoad
--(UICollectionViewFlowLayout *)layout{
-    if (!_layout) {
-        _layout = self.verticalLayout;
-    }return _layout;
-}
-
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [UICollectionView.alloc initWithFrame:CGRectZero
-                                           collectionViewLayout:self.layout];
+        _collectionView = UICollectionView.initByLayout(self.verticalLayout);
         _collectionView.backgroundColor = JobsWhiteColor;
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;

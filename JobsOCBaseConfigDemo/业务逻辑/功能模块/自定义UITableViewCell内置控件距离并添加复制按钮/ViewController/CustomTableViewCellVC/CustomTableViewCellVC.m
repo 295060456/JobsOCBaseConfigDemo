@@ -9,7 +9,6 @@
 
 @interface CustomTableViewCellVC ()
 /// UI
-@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -61,7 +60,7 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    @jobs_weakify(self)    
+    @jobs_weakify(self)
     return [self jobsCollectionViewCellPlanAtIndexPath:indexPath
                                         collectionView:collectionView
                               collectionViewCellBlock0:^UICollectionViewCell * _Nullable{
@@ -69,7 +68,7 @@
         BaiShaETProjOrderDetailsCVCell *cell = [BaiShaETProjOrderDetailsCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
         cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.section]);
         return cell;
-    } 
+    }
                               collectionViewCellBlock1:nil
                               collectionViewCellBlock2:nil
                               collectionViewCellBlock3:nil
@@ -89,7 +88,7 @@
         return BaiShaETProjOrderDetailsCVCell.cellSizeByModel(self.dataMutArr[indexPath.section]);
     }
                                             cellBlock1:nil
-                                            cellBlock2:nil 
+                                            cellBlock2:nil
                                             cellBlock3:nil
                                             cellBlock4:nil];
 }
@@ -111,18 +110,12 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                        layout:(UICollectionViewLayout *)collectionViewLayout
        insetForSectionAtIndex:(NSInteger)section {
-    return jobsSameEdgeInset(16);
+    return jobsSameEdgeInset(JobsWidth(16));
 }
 #pragma mark —— lazyLoad
--(UICollectionViewFlowLayout *)layout{
-    if (!_layout) {
-        _layout = self.verticalLayout;
-    }return _layout;
-}
-
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = UICollectionView.initByLayout(self.layout);
+        _collectionView = UICollectionView.initByLayout(self.verticalLayout);
         _collectionView.backgroundColor = HEXCOLOR(0xFCFBFB);
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;

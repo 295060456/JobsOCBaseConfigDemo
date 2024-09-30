@@ -11,7 +11,6 @@
 @interface MainTableViewCell()
 /// Data
 @property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel_;
-@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)NSMutableArray <UIButtonModel *>*model;
 
 @end
@@ -95,7 +94,19 @@
 #pragma mark —— lazyLoad
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [UICollectionView.alloc initWithFrame:self.bounds collectionViewLayout:self.layout];
+        @jobs_weakify(self)
+        _collectionView = [UICollectionView.alloc initWithFrame:self.bounds
+                                           collectionViewLayout:jobsMakeCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
+            @jobs_strongify(self)
+            data = self.verticalLayout;
+            data.itemSize = jobsMakeCGSizeByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+                @jobs_strongify(self)
+                data.jobsWidth = self.viewModel_.itemW;
+                data.jobsHeight = self.viewModel_.itemH;
+            });
+            data.minimumLineSpacing = 0;
+            data.minimumInteritemSpacing = 0;
+        })];
         _collectionView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;
@@ -105,16 +116,6 @@
             make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
     }return _collectionView;
-}
-
--(UICollectionViewFlowLayout *)layout{
-    if(!_layout){
-        _layout = self.verticalLayout;
-        _layout.itemSize = CGSizeMake(self.viewModel_.itemW,
-                                      self.viewModel_.itemH);
-        _layout.minimumLineSpacing = 0;
-        _layout.minimumInteritemSpacing = 0;
-    }return _layout;
 }
 
 @end

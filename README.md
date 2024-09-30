@@ -6984,7 +6984,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    
    
    ```objective-c
-   @property(nonatomic,strong)UICollectionViewFlowLayout *layout;
    @property(nonatomic,strong)BaseCollectionView *collectionView;
    ```
    
@@ -6992,7 +6991,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    -(BaseCollectionView *)collectionView{
        if (!_collectionView) {
            @jobs_weakify(self)
-           _collectionView = BaseCollectionView.initByLayout(self.layout);
+           _collectionView = BaseCollectionView.initByLayout(self.horizontalLayout);
            _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
            _collectionView.dataLink(self);
            _collectionView.showsVerticalScrollIndicator = NO;
@@ -7156,7 +7155,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                           layout:(UICollectionViewLayout*)collectionViewLayout
           insetForSectionAtIndex:(NSInteger)section {
-       return UIEdgeInsetsMake(0, 0, 0, 0);
+       return jobsSameEdgeInset(JobsWidth(0));
    }
    ```
    
@@ -11070,62 +11069,132 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 #### 42.1、封装系统Api
 
-```objective-c
-static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutArrayBlock _Nonnull block){
-    NSMutableArray *data = NSMutableArray.array;
-    if (block) block(data);
-    return data;
-}
+* 对于类的封装
 
-static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull block){
-    NSMutableSet *data = NSMutableSet.set;
-    if (block) block(data);
-    return data;
-}
+  ```objective-c
+  static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutArrayBlock _Nonnull block){
+      NSMutableArray *data = NSMutableArray.array;
+      if (block) block(data);
+      return data;
+  }
+  
+  static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull block){
+      NSMutableSet *data = NSMutableSet.set;
+      if (block) block(data);
+      return data;
+  }
+  
+  static inline __kindof NSMutableDictionary *_Nonnull jobsMakeMutDic(jobsByMutableDictionarycBlock _Nonnull block){
+      NSMutableDictionary *data = NSMutableDictionary.dictionary;
+      if (block) block(data);
+      return data;
+  }
+  
+  static inline UICollectionViewFlowLayout *_Nonnull jobsMakeCollectionViewFlowLayout(jobsByCollectionViewFlowLayoutBlock _Nonnull block){
+      UICollectionViewFlowLayout *data = UICollectionViewFlowLayout.alloc.init;
+      if (block) block(data);
+      return data;
+  }
+  
+  static inline NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
+      NSMutableAttributedString *data = NSMutableAttributedString.alloc.init;
+      if (block) block(data);
+      return data;
+  }
+  
+  static inline NSTextAttachment *_Nonnull jobsMakeTextAttachment(jobsByTextAttachmentBlock _Nonnull block){
+      NSTextAttachment *data = NSTextAttachment.alloc.init;
+      if (block) block(data);
+      return data;
+  }
+  
+  static inline NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByParagraphStyleBlock _Nonnull block){
+      NSMutableParagraphStyle *data = NSMutableParagraphStyle.alloc.init;
+      /**
+       
+       常见的属性及说明
+       alignment               对齐方式，取值枚举常量 NSTextAlignment
+       firstLineHeadIndent     首行缩进，取值 float
+       headIndent              缩进，取值 float
+       tailIndent              尾部缩进，取值 float
+       ineHeightMultiple       可变行高,乘因数，取值 float
+       maximumLineHeight       最大行高，取值 float
+       minimumLineHeight       最小行高，取值 float
+       lineSpacing             行距，取值 float
+       paragraphSpacing        段距，取值 float
+       paragraphSpacingBefore  段首空间，取值 float
+  
+       baseWritingDirection    句子方向，取值枚举常量 NSWritingDirection
+       lineBreakMode           断行方式，取值枚举常量 NSLineBreakMode
+       hyphenationFactor       连字符属性，在iOS，唯一支持的值分别为0和1
+       
+       */
+      if (block) block(data);
+      return data;
+  }
+  ```
 
-static inline __kindof NSMutableDictionary *_Nonnull jobsMakeMutDic(jobsByMutableDictionarycBlock _Nonnull block){
-    NSMutableDictionary *data = NSMutableDictionary.dictionary;
-    if (block) block(data);
-    return data;
-}
+* 对于结构体的封装
 
-static inline NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
-    NSMutableAttributedString *data = NSMutableAttributedString.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
-static inline NSTextAttachment *_Nonnull jobsMakeTextAttachment(jobsByTextAttachmentBlock _Nonnull block){
-    NSTextAttachment *data = NSTextAttachment.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
-static inline NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByParagraphStyleBlock _Nonnull block){
-    NSMutableParagraphStyle *data = NSMutableParagraphStyle.alloc.init;
-    /**
-     
-     常见的属性及说明
-     alignment               对齐方式，取值枚举常量 NSTextAlignment
-     firstLineHeadIndent     首行缩进，取值 float
-     headIndent              缩进，取值 float
-     tailIndent              尾部缩进，取值 float
-     ineHeightMultiple       可变行高,乘因数，取值 float
-     maximumLineHeight       最大行高，取值 float
-     minimumLineHeight       最小行高，取值 float
-     lineSpacing             行距，取值 float
-     paragraphSpacing        段距，取值 float
-     paragraphSpacingBefore  段首空间，取值 float
-
-     baseWritingDirection    句子方向，取值枚举常量 NSWritingDirection
-     lineBreakMode           断行方式，取值枚举常量 NSLineBreakMode
-     hyphenationFactor       连字符属性，在iOS，唯一支持的值分别为0和1
-     
-     */
-    if (block) block(data);
-    return data;
-}
-```
+  ```objective-c
+  #pragma mark —— UIEdgeInsets
+  static inline UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+      JobsLocationModel *data = JobsLocationModel.alloc.init;
+      if (block) block(data);
+      return UIEdgeInsetsMake(data.jobsTop,
+                              data.jobsLeft,
+                              data.jobsBottom,
+                              data.jobsRight);
+  }
+  /// 构建一个四边距离相等的 UIEdgeInsets
+  static inline UIEdgeInsets jobsSameEdgeInset(CGFloat insets){
+      return jobsMakeEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+          data.jobsTop = insets;
+          data.jobsLeft = insets;
+          data.jobsBottom = insets;
+          data.jobsRight = insets;
+      });
+  }
+  #pragma mark —— NSDirectionalEdgeInsets
+  static inline NSDirectionalEdgeInsets jobsMakeDirectionalEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+      JobsLocationModel *data = JobsLocationModel.alloc.init;
+      if (block) block(data);
+      return NSDirectionalEdgeInsetsMake(data.jobsTop,
+                                         data.jobsLeft,
+                                         data.jobsBottom,
+                                         data.jobsRight);
+  }
+  /// 构建一个内边距相等的 NSDirectionalEdgeInsets
+  static inline NSDirectionalEdgeInsets jobsSameDirectionalEdgeInsets(CGFloat x){
+      return jobsMakeDirectionalEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+          data.jobsTop = x;
+          data.jobsLeft = x;
+          data.jobsBottom = x;
+          data.jobsRight = x;
+      });
+  }
+  #pragma mark —— CGRect
+  static inline CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+      JobsLocationModel *data = JobsLocationModel.alloc.init;
+      if (block) block(data);
+      return CGRectMake(data.jobsX,
+                        data.jobsY,
+                        data.jobsWidth,
+                        data.jobsHeight);
+  }
+  #pragma mark —— CGPoint
+  static inline CGPoint jobsMakeCGPointByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+      JobsLocationModel *data = JobsLocationModel.alloc.init;
+      if (block) block(data);
+      return CGPointMake(data.jobsX, data.jobsY);
+  }
+  #pragma mark —— CGSize
+  static inline CGSize jobsMakeCGSizeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+      JobsLocationModel *data = JobsLocationModel.alloc.init;
+      if (block) block(data);
+      return CGSizeMake(data.jobsWidth, data.jobsHeight);
+  }
+  ```
 
 #### 42.2、封装自建Api
 

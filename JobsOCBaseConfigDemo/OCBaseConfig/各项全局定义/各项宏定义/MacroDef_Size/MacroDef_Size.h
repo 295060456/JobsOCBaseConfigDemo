@@ -420,13 +420,6 @@ static inline BOOL jobsZeroRectValue(CGRect rectValue){
 static inline BOOL jobsZeroPointValue(CGPoint pointValue){
     return CGPointEqualToPoint(CGPointZero, pointValue);
 }
-/// 构建一个四边距离相等的 UIEdgeInsets
-static inline UIEdgeInsets jobsSameEdgeInset(CGFloat insets){
-    return (UIEdgeInsetsMake(JobsWidth(insets),
-                             JobsWidth(insets),
-                             JobsWidth(insets),
-                             JobsWidth(insets)));
-}
 /// 构建一个宽高相等的 CGSize
 static inline CGSize jobsSameSize(CGFloat x){
     return CGSizeMake(JobsWidth(x), JobsWidth(x));
@@ -434,10 +427,6 @@ static inline CGSize jobsSameSize(CGFloat x){
 /// 构建一个XY相等的 CGPoint
 static inline CGPoint jobsSamePoint(CGFloat x){
     return CGPointMake(JobsWidth(x), JobsWidth(x));
-}
-/// 构建一个内边距相等的 NSDirectionalEdgeInsets
-static inline NSDirectionalEdgeInsets jobsSameDirectionalEdgeInsets(CGFloat x){
-    return NSDirectionalEdgeInsetsMake(x, x, x, x);
 }
 
 static inline BOOL jobsEqualToZeroRect(CGRect x){
