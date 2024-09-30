@@ -200,6 +200,7 @@ typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByStri
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString *_Nonnull data);
 #pragma mark —— 关于字符串
 typedef __kindof NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByCharBlock)(char *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegerBlock)(NSInteger data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalBlock)(NSTimeInterval data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);

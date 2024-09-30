@@ -73,7 +73,7 @@
 #pragma mark —— SpreadsheetViewDataSource
 //@required
 -(NSInteger)numberOfColumns:(SpreadsheetView *)spreadsheetView{
-    return self.dataMutArr[0].printPropertyList.count;
+    return self.dataMutArr[0].propertyList.count;
 }
 
 -(NSInteger)numberOfRows:(SpreadsheetView *)spreadsheetView{
@@ -94,7 +94,7 @@
               cellForItemAt:(NSIndexPath *)indexPath{
     ZMJHeaderCell *Cell = (ZMJHeaderCell *)[spreadsheetView dequeueReusableCellWithReuseIdentifier:ZMJHeaderCell.description
                                                                                       forIndexPath:indexPath];
-    Cell.btn.jobsResetBtnTitle(self.dataMutArr[indexPath.row].readModelPropertyValueByOrder[indexPath.column]);
+    Cell.btn.jobsResetBtnTitle(self.dataMutArr[indexPath.row].readModelPropertyValueByOrder()[indexPath.column]);
     
     Cell.gridlines.left = [GridStyle style:GridStyle_default width:0 color:nil];
     Cell.gridlines.right = [GridStyle borderStyleNone];

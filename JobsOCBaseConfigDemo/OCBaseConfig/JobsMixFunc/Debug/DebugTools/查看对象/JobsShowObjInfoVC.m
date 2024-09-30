@@ -136,7 +136,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     /// 装载数据
                     if ([self.viewModel.requestParams isKindOfClass:NSObject.class]) {
                         NSObject *requestParams = (NSObject *)self.viewModel.requestParams;
-                        NSMutableArray <NSString *>*propertyList = requestParams.printPropertyList;
+                        NSMutableArray <NSString *>*propertyList = requestParams.propertyList;
                         for (NSString *propertyName in propertyList) {
                             NSString *text = propertyName;
                             id subtext = requestParams.valueForKey(propertyName);

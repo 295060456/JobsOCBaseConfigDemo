@@ -16,6 +16,10 @@ static inline NSMutableString * _Nonnull JobsMutableString(NSString * _Nonnull s
     return [NSMutableString stringWithString:str];
 }
 
+static inline NSString *_Nonnull StringWithUTF8String(const char *_Nonnull data){
+    return [NSString stringWithUTF8String:data];
+}
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Others)

@@ -78,17 +78,18 @@
 /// 将字符串中除首尾字符外的所有字符替换为星号 (*)
 -(NSString *_Nonnull)getAnonymousString{
     if (self.length < 2) return self;
-    NSMutableArray <NSString *>*carries = NSMutableArray.array;
-    for (int i = 1; i < self.length - 1; i++) {
-        char s = [self characterAtIndex:i];
-        s = '*';
-        NSString *tempString = [NSString stringWithUTF8String:&s];
-        carries.add(tempString);
-    }
-    NSString *string = [carries componentsJoinedByString:@""];
-    NSString *anonymousString = [self stringByReplacingCharactersInRange:NSMakeRange(1, self.length - 2)
-                                                              withString:string];
-    return anonymousString;
+    @jobs_weakify(self)
+    NSString *string = [jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+        for (int i = 1; i < self.length - 1; i++) {
+            char s = [self characterAtIndex:i];
+            s = '*';
+            NSString *tempString = StringWithUTF8String(&s);
+            data.add(tempString);
+        }
+    }) componentsJoinedByString:@""];
+    return [self stringByReplacingCharactersInRange:NSMakeRange(1, self.length - 2)
+                                         withString:string];
 }
 /// OC字符串去除最后一个字符
 -(NSString *_Nonnull)removeLastChars{

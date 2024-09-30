@@ -11,7 +11,7 @@
 #pragma mark —— Eomji相关
 /// 编码emoji
 -(NSString *)emojiEncode{
-    NSString *uniStr = [NSString stringWithUTF8String:self.UTF8String];
+    NSString *uniStr = StringWithUTF8String(self.UTF8String);
     NSData *uniData = [uniStr dataUsingEncoding:NSNonLossyASCIIStringEncoding];
     NSString *emojiText = [NSString.alloc initWithData:uniData
                                               encoding:NSUTF8StringEncoding];
@@ -19,11 +19,8 @@
 }
 /// 解码emoji
 -(NSString *)emojiDecode{
-    const char *jsonString = self.UTF8String;
-    NSData *jsonData = [NSData dataWithBytes:jsonString
-                                      length:strlen(jsonString)];
-    NSString *emojiText = [NSString.alloc initWithData:jsonData
-                                              encoding:NSNonLossyASCIIStringEncoding];
+    NSData *jsonData = [NSData dataWithBytes:self.UTF8String length:strlen(self.UTF8String)];
+    NSString *emojiText = [NSString.alloc initWithData:jsonData encoding:NSNonLossyASCIIStringEncoding];
     return emojiText;
 }
 /// 判断第三方键盘中的表情

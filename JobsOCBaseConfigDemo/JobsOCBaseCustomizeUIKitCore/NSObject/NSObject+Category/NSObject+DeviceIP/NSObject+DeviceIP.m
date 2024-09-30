@@ -19,11 +19,10 @@
         temp_address = ifaddress;
         while(temp_address != NULL) {
             if(temp_address->ifa_addr->sa_family == AF_INET) {
-              if([[NSString stringWithUTF8String:temp_address->ifa_name] isEqualToString:@"en0"]) {
-                  address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_address->ifa_addr)->sin_addr)];
+              if([StringWithUTF8String(temp_address->ifa_name) isEqualToString:@"en0"]) {
+                  address = StringWithUTF8String(inet_ntoa(((struct sockaddr_in *)temp_address->ifa_addr)->sin_addr));
                 }
-            }
-            temp_address = temp_address->ifa_next;
+            }temp_address = temp_address->ifa_next;
         }
     }
     NSLog(@"获取到的IP地址为：%@",address);
@@ -46,7 +45,7 @@
     
     //方式二：新浪api
     NSError *error;
-    NSMutableString *ip = [NSMutableString stringWithContentsOfURL:@"http://pv.sohu.com/cityjson?ie=utf-8".jobsUrl 
+    NSMutableString *ip = [NSMutableString stringWithContentsOfURL:@"http://pv.sohu.com/cityjson?ie=utf-8".jobsUrl
                                                           encoding:NSUTF8StringEncoding
                                                              error:&error];
     //判断返回字符串是否为所需数据
@@ -58,7 +57,7 @@
         NSString * nowIp =[ip substringToIndex:ip.length - 1];
         //将字符串转换成二进制进行Json解析
         NSData * data = [nowIp dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data 
+        NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
                                                               options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"%@",dict);
         return dict[@"cip"] ? dict[@"cip"] : @"0.0.0.0";
@@ -74,7 +73,7 @@
     NSLog(@"addresses: %@", addresses);
     
     __block NSString *address;
-    [searchArray enumerateObjectsUsingBlock:^(NSString *key, 
+    [searchArray enumerateObjectsUsingBlock:^(NSString *key,
                                               NSUInteger idx,
                                               BOOL *stop) {
          address = addresses[key];
@@ -94,7 +93,7 @@
     "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
     
     NSError *error;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:urlRegEx 
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:urlRegEx
                                                                            options:0
                                                                              error:&error];
     
@@ -127,7 +126,7 @@
             const struct sockaddr_in *addr = (const struct sockaddr_in*)interface->ifa_addr;
             char addrBuf[ MAX(INET_ADDRSTRLEN, INET6_ADDRSTRLEN) ];
             if(addr && (addr->sin_family==AF_INET || addr->sin_family==AF_INET6)) {
-                NSString *name = [NSString stringWithUTF8String:interface->ifa_name];
+                NSString *name = StringWithUTF8String(interface->ifa_name);
                 NSString *type;
                 if(addr->sin_family == AF_INET) {
                     if(inet_ntop(AF_INET, &addr->sin_addr, addrBuf, INET_ADDRSTRLEN)) {
@@ -141,7 +140,7 @@
                 }
                 if(type) {
                     NSString *key = [NSString stringWithFormat:@"%@/%@", name, type];
-                    addresses[key] = [NSString stringWithUTF8String:addrBuf];
+                    addresses[key] = StringWithUTF8String(addrBuf);
                 }
             }
         }

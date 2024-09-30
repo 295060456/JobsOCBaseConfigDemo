@@ -15,37 +15,48 @@
 #endif
 
 #import "MacroDef_Log.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark —— 打印某个类：可以精确的打印具体的类，包括父类
-/// 返回并打印成员变量列表
-static inline NSMutableArray <NSString *>* printIvarListByClass(Class cls){
+// 返回并打印成员变量列表及其值
+static inline NSMutableArray<NSString *> *printIvarListByClass(Class cls) {
     unsigned int count;
-    NSMutableArray *tempDataMutArr = NSMutableArray.array;
-    Ivar *ivarList = class_copyIvarList([cls class], &count);
+    NSMutableArray <NSString *>*tempDataMutArr = NSMutableArray.array;
+    Ivar *ivarList = class_copyIvarList(cls, &count);
+    // 创建一个默认对象的实例
+    id instance = [[cls alloc] init];
     for (unsigned int i = 0; i < count; i++) {
         Ivar myIvar = ivarList[i];
         const char *ivarName = ivar_getName(myIvar);
-        NSLog(@"ivar(%d) : %@", i, [NSString stringWithUTF8String:ivarName]);
-        [tempDataMutArr addObject:[NSString stringWithUTF8String:ivarName]];
-    }free(ivarList);
+        id value = object_getIvar(instance, myIvar); // 获取对应的值
+        // 打印成员变量名和对应的值
+        NSLog(@"ivar(%d) : %@ = %@", i, [NSString stringWithUTF8String:ivarName], value);
+        [tempDataMutArr addObject:[NSString stringWithFormat:@"%s: %@", ivarName, value]];
+    }
+    free(ivarList);
     return tempDataMutArr;
 }
-/// 返回并打印属性列表
-static inline NSMutableArray <NSString *>* printPropertyListByClass(Class cls){
+// 返回并打印属性列表及其值
+static inline NSMutableArray<NSString *> *printPropertyListByClass(Class cls) {
     unsigned int count;
-    NSMutableArray *tempDataMutArr = NSMutableArray.array;
-    objc_property_t *propertyList = class_copyPropertyList([cls class], &count);
+    NSMutableArray <NSString *>*tempDataMutArr = NSMutableArray.array;
+    objc_property_t *propertyList = class_copyPropertyList(cls, &count);
+    // 创建一个默认对象的实例
+    id instance = [[cls alloc] init];
     for (unsigned int i = 0; i < count; i++) {
         const char *propertyName = property_getName(propertyList[i]);
-        NSLog(@"propertyName(%d) : %@", i, [NSString stringWithUTF8String:propertyName]);
-        [tempDataMutArr addObject:[NSString stringWithUTF8String:propertyName]];
-    }free(propertyList);
+        id value = [instance valueForKey:[NSString stringWithUTF8String:propertyName]]; // 获取属性值
+        // 打印属性名和对应的值
+        NSLog(@"property(%d) : %@ = %@", i, [NSString stringWithUTF8String:propertyName], value);
+        [tempDataMutArr addObject:[NSString stringWithFormat:@"%s: %@", propertyName, value]];
+    }
+    free(propertyList);
     return tempDataMutArr;
 }
 /// 返回并打印方法列表
-static inline NSMutableArray <NSString *>* printMethodListByClass(Class cls){
+static inline NSMutableArray <NSString *>*printMethodListByClass(Class cls){
     unsigned int count;
     NSMutableArray *tempDataMutArr = NSMutableArray.array;
     Method *methodList = class_copyMethodList([cls class], &count);
@@ -57,7 +68,7 @@ static inline NSMutableArray <NSString *>* printMethodListByClass(Class cls){
     return tempDataMutArr;
 }
 /// 返回并打印协议列表
-static inline NSMutableArray <NSString *>* printProtocolListByClass(Class cls){
+static inline NSMutableArray <NSString *>*printProtocolListByClass(Class cls){
     unsigned int count;
     NSMutableArray *tempDataMutArr = NSMutableArray.array;
     __unsafe_unretained Protocol **protocolList = class_copyProtocolList([cls class], &count);
@@ -71,19 +82,19 @@ static inline NSMutableArray <NSString *>* printProtocolListByClass(Class cls){
 }
 #pragma mark —— 打印某个实例:如果打印其父类，最终还是实际类
 /// 返回并打印成员变量列表
-static inline NSMutableArray <NSString *>* printIvarListByObj(id instanceObj){
+static inline NSMutableArray <NSString *>*printIvarListByObj(id instanceObj){
     return printIvarListByClass([instanceObj class]);
 }
 /// 返回并打印属性列表
-static inline NSMutableArray <NSString *>* printPropertyListByObj(id instanceObj){
+static inline NSMutableArray <NSString *>*printPropertyListByObj(id instanceObj){
     return printPropertyListByClass([instanceObj class]);
 }
 /// 返回并打印方法列表
-static inline NSMutableArray <NSString *>* printMethodListByObj(id instanceObj){
+static inline NSMutableArray <NSString *>*printMethodListByObj(id instanceObj){
     return printMethodListByClass([instanceObj class]);
 }
 /// 返回并打印协议列表
-static inline NSMutableArray <NSString *>* printProtocolListByObj(id instanceObj){
+static inline NSMutableArray <NSString *>*printProtocolListByObj(id instanceObj){
     return printIvarListByClass([instanceObj class]);
 }
 #pragma mark —— 其他
@@ -102,20 +113,23 @@ static inline BOOL jobsClassisContainsSuperMethod(Class cls,NSString *methodName
     return NO;
 }
 @interface NSObject (Class)
-/// 返回并打印成员变量列表
--(NSMutableArray <NSString *>*)printIvarList;
-/// 返回并打印属性列表
--(NSMutableArray <NSString *>*)printPropertyList;
-/// 返回并打印方法列表
--(NSMutableArray <NSString *>*)printMethodList;
-/// 返回并打印协议列表
--(NSMutableArray <NSString *>*)printProtocolList;
-/**
-    1、字典是hash映射，是无序的，如果需要有序则需要避开字典，所以对模型进行操作是大前提
-    2、字典和模型的差距在于序列化
-    3、字典化的模型里面，依据有序的（从上至下）属性名字排列，去取值，映射到数组里面
- */
--(NSMutableArray *)readModelPropertyValueByOrder;
+#pragma mark —— 返回并打印成员变量列表
+-(JobsReturnArrayByVoidBlock _Nonnull)printIvarList;
+-(__kindof NSArray *)ivarList;
+#pragma mark —— 返回并打印属性列表
+-(JobsReturnArrayByVoidBlock _Nonnull)printPropertyList;
+-(__kindof NSArray *)propertyList;
+#pragma mark —— 返回并打印方法列表
+-(JobsReturnArrayByVoidBlock _Nonnull)printMethodList;
+-(__kindof NSArray *)methodList;
+#pragma mark —— 返回并打印协议列表
+-(JobsReturnArrayByVoidBlock _Nonnull)printProtocolList;
+-(__kindof NSArray *)protocolList;
+/// 1、字典是hash映射，是无序的，如果需要有序则需要避开字典，所以对模型进行操作是大前提
+/// 2、字典和模型的差距在于序列化
+/// 3、字典化的模型里面，依据有序的（从上至下）属性名字排列，去取值，映射到数组里面
+/// 4、要成为字典的Key，只需要遵循NSCopying协议
+-(JobsReturnArrayByVoidBlock _Nonnull)readModelPropertyValueByOrder;
 
 @end
 

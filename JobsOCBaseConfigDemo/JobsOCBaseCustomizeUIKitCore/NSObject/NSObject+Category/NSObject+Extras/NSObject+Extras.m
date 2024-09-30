@@ -167,7 +167,7 @@
     };
 }
 /// 接收通知
--(void)addNotificationName:(NSString *_Nonnull)notificationName 
+-(void)addNotificationName:(NSString *_Nonnull)notificationName
                      block:(JobsSelectorBlock _Nullable)block{
     @jobs_weakify(self)
     [JobsNotificationCenter addObserver:self
@@ -219,7 +219,21 @@
 -(NSString *_Nonnull)tmpDir{
     return NSTemporaryDirectory();
 }
+#pragma mark —— 调试相关
+
 #pragma mark —— 功能性的
+/// 获取m文件的属性
+-(JobsReturnIDByStringBlock _Nonnull)getObjByName{
+    @jobs_weakify(self)
+    return ^id _Nullable(NSString *_Nullable data){
+        @jobs_strongify(self)
+        const char *name = @"_".add(data).UTF8String;//必须是下划线接属性
+        Ivar ivar = class_getInstanceVariable(self.class, name);
+        id obj = object_getIvar(self, ivar);
+        return obj;
+    };
+}
+
 -(JobsReturnDataByDictionaryBlock _Nonnull)JSONWritingPrettyPrinted{
     return ^NSData *_Nullable(__kindof NSDictionary *_Nullable data){
         NSError *error;
@@ -613,7 +627,7 @@
                 }
             }else{// 自定义的对象
                 NSObject *customObj = (NSObject *)obj;
-                NSMutableArray <NSString *>*propertyList = customObj.printPropertyList;
+                NSMutableArray <NSString *>*propertyList = customObj.propertyList;
                 for (NSString *str in propertyList) {
                     switch (searchStrategy) {
                         case JobsSearchStrategy_Accurate:{
@@ -657,7 +671,7 @@
 /// @param propertyName 需要查找的属性值
 -(id _Nullable)checkTargetObj:(NSObject *_Nullable)obj
                  propertyName:(NSString *_Nullable)propertyName{
-    if ([obj.printPropertyList containsObject:propertyName]) {
+    if ([obj.propertyList containsObject:propertyName]) {
         return obj.valueForKey(propertyName);
     }return nil;
 }

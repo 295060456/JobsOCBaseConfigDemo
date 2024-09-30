@@ -73,11 +73,13 @@
 /// @param standardChar 执行标准
 -(BOOL)isAllSameCharWithStandardChar:(char)standardChar{
     if (self.length) {
+        @jobs_weakify(self)
         NSMutableArray <NSString *>*carries = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
             for (int i = 0; i < self.length; i++) {
                 char s = [self characterAtIndex:i];
                 if(s == standardChar){
-                    NSString *tempString = [NSString stringWithUTF8String:&s];
+                    NSString *tempString = StringWithUTF8String(&s);
                     data.add(tempString);
                 }
             }

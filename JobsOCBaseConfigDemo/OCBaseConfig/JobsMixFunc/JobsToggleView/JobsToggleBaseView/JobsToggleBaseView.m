@@ -161,7 +161,6 @@ JobsToggleNavViewProtocolSynthesize
                                      self.taggedNavView_height + self.taggedNavView_bgScroll_offset,
                                      self.viewSizeByModel(nil).width,
                                      self.viewSizeByModel(nil).height - (self.taggedNavView_height + self.taggedNavView_bgScroll_offset));
-        _bgScroll.contentSize = CGSizeMake(_bgScroll.width * self.scrollContentViews.count, 0);
         _bgScroll.delegate = self;
         _bgScroll.pagingEnabled = YES;
         _bgScroll.showsHorizontalScrollIndicator = NO;
