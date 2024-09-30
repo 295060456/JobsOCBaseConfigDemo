@@ -6662,31 +6662,22 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   [_collectionView xzm_addNormalHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                                 id _Nullable arg) {
       NSLog(@"KKK加载新的数据，参数: %@", arg);
-      // 模拟延迟加载数据，因此2秒后才调用）
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
-                     dispatch_get_main_queue(), ^{
-          @jobs_strongify(self)
-          [self->_collectionView reloadData];
-          [self->_collectionView.xzm_header endRefreshing];// 结束刷新
-      });return nil;
+      /// 在需要结束刷新的时候调用（只能调用一次）
+      /// _collectionView.endRefreshing();
+      return nil;
   } selectorName:nil target:self]];
   
   [_collectionView xzm_addNormalFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                                 id _Nullable arg) {
       NSLog(@"SSSS加载新的数据，参数: %@", arg);
-      @jobs_strongify(self)
-      // 模拟延迟加载数据，因此2秒后才调用）
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
-                     dispatch_get_main_queue(), ^{
-          @jobs_strongify(self)
-          [self->_collectionView reloadData];
-          [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
-      });return nil;
+      /// 在需要结束刷新的时候调用（只能调用一次）
+      /// _collectionView.endRefreshing();
+      return nil;
   } selectorName:nil target:self]];
   
   [_collectionView.xzm_header beginRefreshing];
   ```
-
+  
 * 支持垂直方向上的<u>上拉加载</u>和<u>下拉刷新</u> [**MJRefresh**](https://github.com/CoderMJLee/MJRefresh) 
 
   ```objective-c
@@ -7413,13 +7404,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                                      action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                id _Nullable arg) {
       NSLog(@"KKK加载新的数据，参数: %@", arg);
-      // 模拟延迟加载数据，因此2秒后才调用）
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
-  			dispatch_get_main_queue(), ^{
-        @jobs_strongify(self)
-        [self->_tableView reloadData];
-        [self->_tableView.xzm_header endRefreshing];// 结束刷新
-        });return nil;
+      /// 在需要结束刷新的时候调用（只能调用一次）
+      /// _tableView.endRefreshing();
+      return nil;
   } selectorName:nil target:self]];
   
   [_tableView xzm_addNormalFooterWithTarget:self
@@ -7427,13 +7414,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                                                                                id _Nullable arg) {
       NSLog(@"SSSS加载新的数据，参数: %@", arg);
       @jobs_strongify(self)
-      // 模拟延迟加载数据，因此2秒后才调用）
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
-  			dispatch_get_main_queue(), ^{
-        @jobs_strongify(self)
-        [self->_tableView reloadData];
-        [self->_tableView.xzm_footer endRefreshing];// 结束刷新
-        });return nil;
+      /// 在需要结束刷新的时候调用（只能调用一次）
+      /// _tableView.endRefreshing();
+      return nil;
   } selectorName:nil target:self]];
   
   [_tableView.xzm_header beginRefreshing];
@@ -7579,27 +7562,20 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
          	{
                 [_tableView xzm_addNormalHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                                          id _Nullable arg) {
-                   NSLog(@"KKK加载新的数据，参数: %@", arg);
-                   // 模拟延迟加载数据，因此2秒后才调用）
-                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
-                                  dispatch_get_main_queue(), ^{
-                       @jobs_strongify(self)
-                       [self->_tableView reloadData];
-                       [self->_tableView.xzm_header endRefreshing];// 结束刷新
-                   });return nil;
+                   NSLog(@"SSSS加载新的数据，参数: %@", arg);
+                   @jobs_strongify(self)
+                   /// 在需要结束刷新的时候调用（只能调用一次）
+                   /// _tableView.endRefreshing();
+                   return nil;
                } selectorName:nil target:self]];
    
                [_tableView xzm_addNormalFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                                         id _Nullable arg) {
                    NSLog(@"SSSS加载新的数据，参数: %@", arg);
                    @jobs_strongify(self)
-                   // 模拟延迟加载数据，因此2秒后才调用）
-                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
-                                  dispatch_get_main_queue(), ^{
-                       @jobs_strongify(self)
-                       [self->_tableView reloadData];
-                       [self->_tableView.xzm_footer endRefreshing];// 结束刷新
-                   });return nil;
+                   /// 在需要结束刷新的时候调用（只能调用一次）
+                   /// _tableView.endRefreshing();
+                   return nil;
                } selectorName:nil target:self]];
    
                [_tableView.xzm_header beginRefreshing];
@@ -7849,13 +7825,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               _dataMutArr.add(temp);
          }
    }return _dataMutArr;
-  }
-  
-  -(NSMutableArray<UIViewModel *> *)rowDataMutArr{
-      if(!_rowDataMutArr){
-          _rowDataMutArr = NSMutableArray.array;
-          
-          {
+   }
+   
+   -(NSMutableArray<UIViewModel *> *)rowDataMutArr{
+       if(!_rowDataMutArr){
+           _rowDataMutArr = NSMutableArray.array;
+           
+           {
               UIViewModel *viewModel = UIViewModel.new;
               viewModel.text = JobsInternationalization(@"Please fill out your Personal Information completely");
               viewModel.textCor = JobsCor(@"#FFC700");
@@ -9643,62 +9619,48 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         [_collectionView xzm_addNormalHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                                       id _Nullable arg) {
-            NSLog(@"KKK加载新的数据，参数: %@", arg);
-            // 模拟延迟加载数据，因此2秒后才调用）
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
-                           dispatch_get_main_queue(), ^{
-                @jobs_strongify(self)
-                [self->_collectionView reloadData];
-                [self->_collectionView.xzm_header endRefreshing];// 结束刷新
-            });return nil;
+            NSLog(@"SSSS加载新的数据，参数: %@", arg);
+            @jobs_strongify(self)
+            /// 在需要结束刷新的时候调用（只能调用一次）
+            /// _collectionView.endRefreshing();
+            return nil;
         } selectorName:nil target:self]];
     
         [_collectionView xzm_addNormalFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                                       id _Nullable arg) {
             NSLog(@"SSSS加载新的数据，参数: %@", arg);
             @jobs_strongify(self)
-            // 模拟延迟加载数据，因此2秒后才调用）
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
-                           dispatch_get_main_queue(), ^{
-                @jobs_strongify(self)
-                [self->_collectionView reloadData];
-                [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
-            });return nil;
+            /// 在需要结束刷新的时候调用（只能调用一次）
+            /// _collectionView.endRefreshing();
+            return nil;
         } selectorName:nil target:self]];
     
         [_collectionView.xzm_header beginRefreshing];
     }
     ```
-
+    
   * **`UICollectionView` + 隐藏时间**
-
+  
     ```objective-c
     #pragma mark 
     -(void)example02{
         @jobs_weakify(self)
         [_collectionView xzm_addNormalHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                                       id _Nullable arg) {
-            NSLog(@"KKK加载新的数据，参数: %@", arg);
-            // 模拟延迟加载数据，因此2秒后才调用）
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
-                           dispatch_get_main_queue(), ^{
-                @jobs_strongify(self)
-                [self->_collectionView reloadData];
-                [self->_collectionView.xzm_header endRefreshing];// 结束刷新
-            });return nil;
+            NSLog(@"SSSS加载新的数据，参数: %@", arg);
+            @jobs_strongify(self)
+            /// 在需要结束刷新的时候调用（只能调用一次）
+            /// _collectionView.endRefreshing();
+            return nil;
         } selectorName:nil target:self]];
     
         [_collectionView xzm_addNormalFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                                       id _Nullable arg) {
             NSLog(@"SSSS加载新的数据，参数: %@", arg);
             @jobs_strongify(self)
-            // 模拟延迟加载数据，因此2秒后才调用）
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
-                           dispatch_get_main_queue(), ^{
-                @jobs_strongify(self)
-                [self->_collectionView reloadData];
-                [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
-            });return nil;
+            /// 在需要结束刷新的时候调用（只能调用一次）
+            /// _collectionView.endRefreshing();
+            return nil;
         } selectorName:nil target:self]];
     
         // 隐藏时间
@@ -9706,9 +9668,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         [_collectionView.xzm_header beginRefreshing];
     }
     ```
-
+    
   * **`UICollectionView` + 动图刷新**
-
+  
     ```objective-c
     -(void)example03{
         @jobs_weakify(self)  
@@ -9757,9 +9719,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         [_collectionView.xzm_gifHeader beginRefreshing];
     }
     ```
-
+  
   * **`UICollectionView` + 动图刷新 + 隐藏文字**
-
+  
     ```objective-c
     -(void)example04{
         @jobs_weakify(self)
@@ -9812,35 +9774,28 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         [_collectionView.xzm_gifHeader beginRefreshing];
     }
     ```
-
+  
   * **`UICollectionView` + 自定义文字**
-
+  
     ```objective-c
     -(void)example05{
         @jobs_weakify(self)
         [_collectionView xzm_addNormalHeaderWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                                       id _Nullable arg) {
-            NSLog(@"KKK加载新的数据，参数: %@", arg);
-            // 模拟延迟加载数据，因此2秒后才调用）
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
-                           dispatch_get_main_queue(), ^{
-                @jobs_strongify(self)
-                [self->_collectionView reloadData];
-                [self->_collectionView.xzm_header endRefreshing];// 结束刷新
-            });return nil;
+            NSLog(@"SSSS加载新的数据，参数: %@", arg);
+            @jobs_strongify(self)
+            /// 在需要结束刷新的时候调用（只能调用一次）
+            /// _collectionView.endRefreshing();
+            return nil;
         } selectorName:nil target:self]];
     
         [_collectionView xzm_addNormalFooterWithTarget:self action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
                                                                                                       id _Nullable arg) {
             NSLog(@"SSSS加载新的数据，参数: %@", arg);
             @jobs_strongify(self)
-            // 模拟延迟加载数据，因此2秒后才调用）
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2.0 * NSEC_PER_SEC)),
-                           dispatch_get_main_queue(), ^{
-                @jobs_strongify(self)
-                [self->_collectionView reloadData];
-                [self->_collectionView.xzm_footer endRefreshing];// 结束刷新
-            });return nil;
+            /// 在需要结束刷新的时候调用（只能调用一次）
+            /// _collectionView.endRefreshing();
+            return nil;
         } selectorName:nil target:self]];
       
         // 设置header文字

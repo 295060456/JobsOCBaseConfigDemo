@@ -12,6 +12,7 @@
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
     @autoreleasepool {
+        NSLog(@"在此设备上的比例尺换算标准是 1 = %f",JobsWidth(1));
         // 获取应用的主 bundle 路径
         NSString *path = @"zh-Hans.lproj".pathForResourceWithFullName;
         // 创建一个新的 bundle，用于加载指定语言的资源
