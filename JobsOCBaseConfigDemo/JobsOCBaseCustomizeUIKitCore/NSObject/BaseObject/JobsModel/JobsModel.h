@@ -19,6 +19,7 @@
 #import "JobsAppDoorInputViewBaseStyleModel.h"
 #import "JobsKeyValueModel.h"
 #import "JobsRichTextConfig.h"
+#import "JobsLocationModel.h"
 #import "JobsTimeModel.h"/// 时间格式转换、时间相关模型 【包含  JobsTimeModel 和 JobsTimeFormatterModel 两个类】
 #import "JobsFormatTime.h"/// 时间格式化
 #import "ImageModel.h"

@@ -115,7 +115,7 @@
 #import "NSURLRequest+Extra.h"
 #pragma mark —— NSValue
 #import "JobsValue.h"
-
+#pragma mark —— 关于UIView的创建
 static inline __kindof UIImageView *_Nonnull jobsMakeImageView(jobsByImageViewBlock _Nonnull block){
     UIImageView *data = UIImageView.alloc.init;
     if (block) block(data);
@@ -186,6 +186,36 @@ static inline __kindof UITableView *_Nonnull jobsMakeTableViewByInsetGrouped(job
     UITableView *data = UITableView.initWithStyleInsetGrouped;
     if (block) block(data);
     return data;
+}
+#pragma mark —— 关于结构体的创建
+static inline UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+    JobsLocationModel *data = JobsLocationModel.alloc.init;
+    if (block) block(data);
+    return UIEdgeInsetsMake(data.jobsTop,
+                            data.jobsLeft,
+                            data.jobsBottom,
+                            data.jobsRight);
+}
+
+static inline CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+    JobsLocationModel *data = JobsLocationModel.alloc.init;
+    if (block) block(data);
+    return CGRectMake(data.jobsX,
+                      data.jobsY,
+                      data.jobsWidth,
+                      data.jobsHeight);
+}
+
+static inline CGPoint jobsMakeCGPointByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+    JobsLocationModel *data = JobsLocationModel.alloc.init;
+    if (block) block(data);
+    return CGPointMake(data.jobsX, data.jobsY);
+}
+
+static inline CGSize jobsMakeCGSizeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+    JobsLocationModel *data = JobsLocationModel.alloc.init;
+    if (block) block(data);
+    return CGSizeMake(data.jobsWidth, data.jobsHeight);
 }
 
 #endif /* JobsBaseCustomizeUIKitCoreHeader_h */

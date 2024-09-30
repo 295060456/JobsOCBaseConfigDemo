@@ -182,6 +182,8 @@ typedef void(^jobsByRefreshConfigModelBlock)(__kindof MJRefreshConfigModel *_Nul
 @class JobsParagraphStyleModel;
 typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *_Nullable data);
 
+@class JobsLocationModel;
+typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
 #pragma mark —— 涉及到第三方类的Block定义
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);

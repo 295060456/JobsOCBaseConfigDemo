@@ -1105,6 +1105,7 @@
 		CEDC58E62CA190BC00C7772C /* MJRefreshBackGifFooter+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDC58DE2CA190BC00C7772C /* MJRefreshBackGifFooter+Extra.m */; };
 		CEDC58E72CA190BC00C7772C /* MJRefreshBackStateFooter+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDC58D82CA190BC00C7772C /* MJRefreshBackStateFooter+Extra.m */; };
 		CEDC58E82CA190BC00C7772C /* MJRefreshGifHeader+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDC58CF2CA190BC00C7772C /* MJRefreshGifHeader+Extra.m */; };
+		CEDD9DE12CAA5752002FD89F /* JobsLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDD9DDF2CAA5752002FD89F /* JobsLocationModel.m */; };
 		D16B7B0D974F1991F2B39889 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -3270,6 +3271,8 @@
 		CEDC58DE2CA190BC00C7772C /* MJRefreshBackGifFooter+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MJRefreshBackGifFooter+Extra.m"; sourceTree = "<group>"; };
 		CEDC58E02CA190BC00C7772C /* MJRefreshProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJRefreshProtocol.h; sourceTree = "<group>"; };
 		CEDC58E12CA190BC00C7772C /* MJRefresh+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJRefresh+Extra.h"; sourceTree = "<group>"; };
+		CEDD9DDE2CAA5752002FD89F /* JobsLocationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsLocationModel.h; sourceTree = "<group>"; };
+		CEDD9DDF2CAA5752002FD89F /* JobsLocationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsLocationModel.m; sourceTree = "<group>"; };
 		F5DAEE19CC0B77742495EB1F /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE176E0EC1B036786E28E5E5 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -9651,6 +9654,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5A61072CA82C2D006D67A7 /* JobsModel.h */,
+				CEDD9DE02CAA5752002FD89F /* JobsLocationModel */,
 				CE5A610E2CA82C2D006D67A7 /* 输入框样式基类 */,
 				CE5A61112CA82C2D006D67A7 /* BaseModel */,
 				CE5A61142CA82C2D006D67A7 /* ButtonTimerModel */,
@@ -14182,6 +14186,15 @@
 			path = "MJRefresh+Extra";
 			sourceTree = "<group>";
 		};
+		CEDD9DE02CAA5752002FD89F /* JobsLocationModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEDD9DDE2CAA5752002FD89F /* JobsLocationModel.h */,
+				CEDD9DDF2CAA5752002FD89F /* JobsLocationModel.m */,
+			);
+			path = JobsLocationModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -15434,6 +15447,7 @@
 				CE5A661D2CA8367B006D67A7 /* BaseView.m in Sources */,
 				CE4F28122CA825CD002AF25B /* JobsCommentPopUpView_viewForHeaderInSection.m in Sources */,
 				CE5A64952CA82E0C006D67A7 /* JobsAppDoorModel.m in Sources */,
+				CEDD9DE12CAA5752002FD89F /* JobsLocationModel.m in Sources */,
 				CE4F28132CA825CD002AF25B /* JobsSearchResultDataListTBVCell.m in Sources */,
 				CE5A65AE2CA8339C006D67A7 /* BaseContentView.m in Sources */,
 				CE5A64812CA82D5C006D67A7 /* NSBundle+Extra.m in Sources */,

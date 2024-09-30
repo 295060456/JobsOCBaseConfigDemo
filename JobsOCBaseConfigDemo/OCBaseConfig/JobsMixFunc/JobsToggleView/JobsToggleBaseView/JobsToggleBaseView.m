@@ -138,7 +138,7 @@ JobsToggleNavViewProtocolSynthesize
         [self addSubview:_taggedNavView];
         _taggedNavView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        /// 联动
+        /// 切换联动
         [_taggedNavView actionObjectBlock:^(id _Nullable data) {
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(data);

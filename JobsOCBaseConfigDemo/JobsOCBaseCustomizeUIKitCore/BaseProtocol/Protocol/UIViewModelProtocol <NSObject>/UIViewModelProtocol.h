@@ -81,6 +81,8 @@ NS_ASSUME_NONNULL_END
 @synthesize cornerRadius = _cornerRadius;\
 @synthesize rectCorner = _rectCorner;\
 @synthesize cornerRadii = _cornerRadii;\
+@synthesize jobsX = _jobsX;\
+@synthesize jobsY = _jobsY;\
 @synthesize jobsWidth = _jobsWidth;\
 @synthesize jobsHeight = _jobsHeight;\
 @synthesize jobsTop = _jobsTop;\
@@ -240,6 +242,8 @@ NS_ASSUME_NONNULL_END
 @dynamic cornerRadius;\
 @dynamic rectCorner;\
 @dynamic cornerRadii;\
+@dynamic jobsX;\
+@dynamic jobsY;\
 @dynamic jobsWidth;\
 @dynamic jobsHeight;\
 @dynamic jobsTop;\

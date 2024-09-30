@@ -25,21 +25,26 @@ JobsKey(_backgroundImageView)
         BackgroundImageView = UIImageView.new;
         BackgroundImageView.userInteractionEnabled = YES;
         BackgroundImageView.contentMode = UIViewContentModeScaleToFill;
-
         self.backgroundColor = JobsClearColor;
         if ([self isKindOfClass:UICollectionViewCell.class]) {
             UICollectionViewCell *cell = (UICollectionViewCell *)self;
             [cell.contentView addSubview:BackgroundImageView];
+            [BackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(cell.contentView);
+            }];
         }else if ([self isKindOfClass:UITableViewCell.class]){
             UITableViewCell *cell = (UITableViewCell *)self;
             [cell.contentView addSubview:BackgroundImageView];
+            [BackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(cell.contentView);
+            }];
         }else{
             [self addSubview:BackgroundImageView];
+            [BackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
         }
         BackgroundImageView.layer.zPosition = -1;// 设置层级关系
-        [BackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
         Jobs_setAssociatedRETAIN_NONATOMIC(_backgroundImageView, BackgroundImageView)
     }return BackgroundImageView;
 }

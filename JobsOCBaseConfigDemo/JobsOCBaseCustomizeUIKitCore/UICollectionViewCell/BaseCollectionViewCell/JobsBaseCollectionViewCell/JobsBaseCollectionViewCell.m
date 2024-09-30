@@ -78,10 +78,10 @@
             return;
         }
         /// 如果有文字（普通文本 或者富文本）则只显示这个文字（普通文本 或者富文本），并铺满
-        if (B || self.forceUsetextView) {
+        if (B || self.forceUseTextView) {
             /// ❤️textView 和 bgBtn不能共存❤️
-            self.bgBtn.jobsVisible = !B || self.forceUsetextView;
-            self.textView.jobsVisible = B || self.forceUsetextView;
+            self.bgBtn.jobsVisible = !B || self.forceUseTextView;
+            self.textView.jobsVisible = B || self.forceUseTextView;
             return;
         }
     };

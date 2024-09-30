@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat cornerRadius;/// 圆切角（全角）
 @property(nonatomic,assign)UIRectCorner rectCorner;/// 设置切哪个直角
 @property(nonatomic,assign)CGSize cornerRadii;/// 设置切哪个直角的切角矩形
+@property(nonatomic,assign)CGFloat jobsX;
+@property(nonatomic,assign)CGFloat jobsY;
 @property(nonatomic,assign)CGFloat jobsWidth;/// 宽
 @property(nonatomic,assign)CGFloat jobsHeight;/// 高
 @property(nonatomic,assign)CGFloat jobsTop;
@@ -69,6 +71,8 @@ NS_ASSUME_NONNULL_END
 @synthesize cornerRadius = _cornerRadius;\
 @synthesize rectCorner = _rectCorner;\
 @synthesize cornerRadii = _cornerRadii;\
+@synthesize jobsX = _jobsX;\
+@synthesize jobsY = _jobsY;\
 @synthesize jobsWidth = _jobsWidth;\
 @synthesize jobsHeight = _jobsHeight;\
 @synthesize jobsTop = _jobsTop;\
@@ -107,6 +111,8 @@ NS_ASSUME_NONNULL_END
 @dynamic cornerRadius;\
 @dynamic rectCorner;\
 @dynamic cornerRadii;\
+@dynamic jobsX;\
+@dynamic jobsY;\
 @dynamic jobsWidth;\
 @dynamic jobsHeight;\
 @dynamic jobsTop;\
