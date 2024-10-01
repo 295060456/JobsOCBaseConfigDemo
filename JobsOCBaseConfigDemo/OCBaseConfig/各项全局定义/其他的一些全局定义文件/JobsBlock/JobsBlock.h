@@ -184,6 +184,9 @@ typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *
 
 @class JobsLocationModel;
 typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
+
+@class JobsNavBarConfig;
+typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable data);
 #pragma mark —— 涉及到第三方类的Block定义
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);

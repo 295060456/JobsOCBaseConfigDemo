@@ -15,7 +15,7 @@
 #endif
 
 #pragma mark —— 创建数据源
-static inline TFPopupParam * _Nonnull makeSlidePopupParameterByViewHeight(CGFloat viewHeight){
+NS_INLINE TFPopupParam * _Nonnull makeSlidePopupParameterByViewHeight(CGFloat viewHeight){
     TFPopupParam *popupParameter = TFPopupParam.new;
     popupParameter.bubbleDirection = PopupDirectionBottom;
     if(viewHeight){
@@ -27,7 +27,7 @@ static inline TFPopupParam * _Nonnull makeSlidePopupParameterByViewHeight(CGFloa
     return popupParameter;
 }
 
-static inline TFPopupParam *_Nonnull makeNormalPopupParameter(void){
+NS_INLINE TFPopupParam *_Nonnull makeNormalPopupParameter(void){
     TFPopupParam *popupParameter = TFPopupParam.new;
     popupParameter.duration = 0.3;
     popupParameter.showAnimationDelay = 0;
@@ -38,7 +38,7 @@ static inline TFPopupParam *_Nonnull makeNormalPopupParameter(void){
     return popupParameter;
 }
 
-static inline TFPopupParam *_Nonnull makeNormalTipsParameter(void){
+NS_INLINE TFPopupParam *_Nonnull makeNormalTipsParameter(void){
     TFPopupParam *popupParameter = TFPopupParam.new;
     popupParameter.duration = 0.3;
     popupParameter.showAnimationDelay = 0;
@@ -49,7 +49,7 @@ static inline TFPopupParam *_Nonnull makeNormalTipsParameter(void){
     return popupParameter;
 }
 
-static inline TFPopupParam *_Nonnull makeSlidePopupParameterByViewSize(CGSize viewSize){
+NS_INLINE TFPopupParam *_Nonnull makeSlidePopupParameterByViewSize(CGSize viewSize){
     TFPopupParam *popupParameter = TFPopupParam.new;
     popupParameter.bubbleDirection = PopupDirectionBottom;
     if(jobsZeroSizeValue(viewSize)){

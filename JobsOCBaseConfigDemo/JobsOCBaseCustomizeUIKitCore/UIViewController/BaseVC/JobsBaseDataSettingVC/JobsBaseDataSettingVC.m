@@ -95,24 +95,26 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 }
 #pragma mark —— BaseViewControllerProtocol
 -(JobsReturnNavBarConfigByButtonModelBlock _Nonnull)makeNavBarConfig{
-    @jobs_weakify(self)
     return ^JobsNavBarConfig *_Nullable(UIButtonModel *_Nullable backBtnModel,
                                         UIButtonModel *_Nullable closeBtnModel) {
-        @jobs_strongify(self)
-        JobsNavBarConfig *_navBarConfig = JobsNavBarConfig.new;
-        _navBarConfig.bgCor = self.viewModel.navBgCor;
-        _navBarConfig.bgImage = self.viewModel.navBgImage;
-        _navBarConfig.attributedTitle = self.viewModel.backBtnTitleModel.attributedText;
-        _navBarConfig.title = self.viewModel.textModel.text;
-        _navBarConfig.font = self.viewModel.textModel.font;
-        _navBarConfig.titleCor = self.viewModel.textModel.textCor;
-        _navBarConfig.backBtnModel = backBtnModel ? : self.backBtnModel;
-        _navBarConfig.closeBtnModel = closeBtnModel ? : self.closeBtnModel;
-        self.navBarConfig = _navBarConfig;
-        return _navBarConfig;
+        @jobs_weakify(self)
+        return Jobs3TO(static_navBarConfig, jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable data) {
+            @jobs_strongify(self)
+            /// 对中间标题的配置
+            data.bgCor = self.viewModel.navBgCor;
+            data.bgImage = self.viewModel.navBgImage;
+            data.attributedTitle = Jobs3TO(self.viewModel.attributedText, self.viewModel.textModel.attributedText);
+            data.title = Jobs3TO(self.viewModel.text, self.viewModel.textModel.text);
+            data.font = Jobs3TO(self.viewModel.font, self.viewModel.textModel.font);
+            data.titleCor = self.viewModel.textModel.textCor;
+            /// 对（左边）返回键的配置
+            data.backBtnModel = Jobs3TO(backBtnModel, self.backBtnModel);
+            /// 对（右边）关闭键的配置
+            data.closeBtnModel = Jobs3TO(closeBtnModel, self.closeBtnModel);
+            self.navBarConfig = data;
+        }));
     };
 }
-
 #pragma mark —— lazyLoad
 /// BaseViewControllerProtocol
 @synthesize vcs = _vcs;
@@ -131,7 +133,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         _viewModel.textModel.font = UIFontWeightRegularSize(16);
     }return _viewModel;
 }
-
+/// 在具体的子类去实现，以覆盖父类的方法实现
 -(UIButtonModel *)closeBtnModel{
     if(!_closeBtnModel){
         _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
@@ -145,25 +147,22 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         });
     }return _closeBtnModel;
 }
-
+/// 在具体的子类去实现，以覆盖父类的方法实现
 -(UIButtonModel *)backBtnModel{
     if(!_backBtnModel){
         @jobs_weakify(self)
-        _backBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+        _backBtnModel = self.makeBackBtnModel;
+        _backBtnModel.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
+                                                       id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        };
+        _backBtnModel.clickEventBlock = ^id(BaseButton *x){
             @jobs_strongify(self)
-            data = self.makeBackBtnModel;
-            data.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
-                                                                   id _Nullable arg) {
-                NSLog(@"按钮的长按事件触发");
-                return nil;
-            };
-            data.clickEventBlock = ^id(BaseButton *x){
-                @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
-                self.backBtnClickEvent(x);
-                return nil;
-            };
-        });
+            if (self.objectBlock) self.objectBlock(x);
+            self.backBtnClickEvent(x);
+            return nil;
+        };
     }return _backBtnModel;
 }
 

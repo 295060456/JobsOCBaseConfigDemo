@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark —— 打印某个类：可以精确的打印具体的类，包括父类
 // 返回并打印成员变量列表及其值
-static inline NSMutableArray<NSString *> *printIvarListByClass(Class cls) {
+NS_INLINE NSMutableArray<NSString *> *printIvarListByClass(Class cls) {
     unsigned int count;
     NSMutableArray <NSString *>*tempDataMutArr = NSMutableArray.array;
     Ivar *ivarList = class_copyIvarList(cls, &count);
@@ -39,7 +39,7 @@ static inline NSMutableArray<NSString *> *printIvarListByClass(Class cls) {
     return tempDataMutArr;
 }
 // 返回并打印属性列表及其值
-static inline NSMutableArray<NSString *> *printPropertyListByClass(Class cls) {
+NS_INLINE NSMutableArray<NSString *> *printPropertyListByClass(Class cls) {
     unsigned int count;
     NSMutableArray <NSString *>*tempDataMutArr = NSMutableArray.array;
     objc_property_t *propertyList = class_copyPropertyList(cls, &count);
@@ -56,7 +56,7 @@ static inline NSMutableArray<NSString *> *printPropertyListByClass(Class cls) {
     return tempDataMutArr;
 }
 /// 返回并打印方法列表
-static inline NSMutableArray <NSString *>*printMethodListByClass(Class cls){
+NS_INLINE NSMutableArray <NSString *>*printMethodListByClass(Class cls){
     unsigned int count;
     NSMutableArray *tempDataMutArr = NSMutableArray.array;
     Method *methodList = class_copyMethodList([cls class], &count);
@@ -68,7 +68,7 @@ static inline NSMutableArray <NSString *>*printMethodListByClass(Class cls){
     return tempDataMutArr;
 }
 /// 返回并打印协议列表
-static inline NSMutableArray <NSString *>*printProtocolListByClass(Class cls){
+NS_INLINE NSMutableArray <NSString *>*printProtocolListByClass(Class cls){
     unsigned int count;
     NSMutableArray *tempDataMutArr = NSMutableArray.array;
     __unsafe_unretained Protocol **protocolList = class_copyProtocolList([cls class], &count);
@@ -82,24 +82,24 @@ static inline NSMutableArray <NSString *>*printProtocolListByClass(Class cls){
 }
 #pragma mark —— 打印某个实例:如果打印其父类，最终还是实际类
 /// 返回并打印成员变量列表
-static inline NSMutableArray <NSString *>*printIvarListByObj(id instanceObj){
+NS_INLINE NSMutableArray <NSString *>*printIvarListByObj(id instanceObj){
     return printIvarListByClass([instanceObj class]);
 }
 /// 返回并打印属性列表
-static inline NSMutableArray <NSString *>*printPropertyListByObj(id instanceObj){
+NS_INLINE NSMutableArray <NSString *>*printPropertyListByObj(id instanceObj){
     return printPropertyListByClass([instanceObj class]);
 }
 /// 返回并打印方法列表
-static inline NSMutableArray <NSString *>*printMethodListByObj(id instanceObj){
+NS_INLINE NSMutableArray <NSString *>*printMethodListByObj(id instanceObj){
     return printMethodListByClass([instanceObj class]);
 }
 /// 返回并打印协议列表
-static inline NSMutableArray <NSString *>*printProtocolListByObj(id instanceObj){
+NS_INLINE NSMutableArray <NSString *>*printProtocolListByObj(id instanceObj){
     return printIvarListByClass([instanceObj class]);
 }
 #pragma mark —— 其他
 /// 判断一个父类是否包含某个方法（包含私有方法）
-static inline BOOL jobsClassisContainsSuperMethod(Class cls,NSString *methodName){
+NS_INLINE BOOL jobsClassisContainsSuperMethod(Class cls,NSString *methodName){
     unsigned int outCount = 0;
     Method *methods = class_copyMethodList(cls, &outCount);
     for (int i = 0; i < outCount; i ++) {

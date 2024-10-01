@@ -43,7 +43,7 @@
 //#endif
 
 /// 用导航控制器进行包装
-static inline __kindof UINavigationController * _Nullable JobsNavCtrl(UIViewController __kindof * _Nonnull viewController){
+NS_INLINE __kindof UINavigationController * _Nullable JobsNavCtrl(UIViewController __kindof * _Nonnull viewController){
     return viewController.navigationController ? viewController : [UINavigationController.alloc initWithRootViewController:viewController];
 }
 NS_ASSUME_NONNULL_BEGIN

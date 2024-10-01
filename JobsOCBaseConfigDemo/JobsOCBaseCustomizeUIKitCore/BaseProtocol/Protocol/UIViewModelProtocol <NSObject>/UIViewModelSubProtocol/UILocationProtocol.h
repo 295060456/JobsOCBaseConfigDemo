@@ -45,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)UILayoutConstraintAxis axis;
 @property(nonatomic,assign)UIStackViewDistribution distribution;
 @property(nonatomic,assign)UIStackViewAlignment alignment;
+@property(nonatomic,assign)NSInteger row;
+@property(nonatomic,assign)NSInteger item;
+@property(nonatomic,assign)NSInteger section;
 /// Layer
 @property(nonatomic,assign)CGFloat cornerRadius;/// 圆切角（全角）
 #pragma mark —— UIButton 专用属性 — 图文的相对位置
@@ -96,6 +99,9 @@ NS_ASSUME_NONNULL_END
 @synthesize axis = _axis;\
 @synthesize distribution = _distribution;\
 @synthesize alignment = _alignment;\
+@synthesize row = _row;\
+@synthesize item = _item;\
+@synthesize section = _section;\
 @synthesize buttonEdgeInsetsStyle;\
 @synthesize imageTitleSpace;\
 @synthesize titleSpace;\
@@ -136,6 +142,9 @@ NS_ASSUME_NONNULL_END
 @dynamic axis;\
 @dynamic distributio;\
 @dynamic alignment;\
+@dynamic row;\
+@dynamic item;\
+@dynamic section;\
 @dynamic buttonEdgeInsetsStyle;\
 @dynamic imageTitleSpace;\
 @dynamic titleSpace;\

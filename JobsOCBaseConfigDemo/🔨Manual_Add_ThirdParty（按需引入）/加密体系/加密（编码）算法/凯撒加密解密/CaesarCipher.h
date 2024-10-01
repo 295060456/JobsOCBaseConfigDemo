@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 /// 凯撒加密
-static inline NSString *caesardDecode(NSString *string){
+NS_INLINE NSString *caesardDecode(NSString *string){
     NSString *originalStr = string;
     NSMutableArray *arr = [NSMutableArray array];
     for (int i=0 ;i <originalStr.length; i++){
@@ -24,7 +24,7 @@ static inline NSString *caesardDecode(NSString *string){
     return encodeStr;
 }
 /// 凯撒解密
-static inline NSString *caesarEncrypt(NSString *encodeStr){
+NS_INLINE NSString *caesarEncrypt(NSString *encodeStr){
     NSMutableArray *arr = [NSMutableArray array];
     for (int i=0 ;i < encodeStr.length; i++){
         unichar asciiCode = [encodeStr characterAtIndex:i];

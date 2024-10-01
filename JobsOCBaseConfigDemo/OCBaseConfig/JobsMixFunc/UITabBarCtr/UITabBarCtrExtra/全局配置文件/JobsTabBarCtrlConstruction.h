@@ -11,30 +11,30 @@
 #import "AppDelegate.h"
 
 #pragma mark —— 创建动画函数
-static inline TLBounceAnimation *bounceAnimation(void){
+NS_INLINE TLBounceAnimation *bounceAnimation(void){
     TLBounceAnimation *anm = TLBounceAnimation.alloc.init;
     anm.isPlayFireworksAnimation = YES;
     return anm;
 }
 
-static inline TLRotationAnimation *rotationAnimation(void){
+NS_INLINE TLRotationAnimation *rotationAnimation(void){
     TLRotationAnimation *anm = TLRotationAnimation.alloc.init;
     return anm;
 }
 
-static inline TLTransitionAniamtion *transitionAniamtion(void){
+NS_INLINE TLTransitionAniamtion *transitionAniamtion(void){
     TLTransitionAniamtion *anm = TLTransitionAniamtion.alloc.init;
     anm.direction = 1; // 1~6
     anm.disableDeselectAnimation = NO;
     return anm;
 }
 
-static inline TLFumeAnimation *fumeAnimation(void){
+NS_INLINE TLFumeAnimation *fumeAnimation(void){
     TLFumeAnimation *anm = TLFumeAnimation.alloc.init;
     return anm;
 }
 
-static inline NSArray *imgs(void){//静态轮播图
+NS_INLINE NSArray *imgs(void){//静态轮播图
     NSMutableArray *temp = NSMutableArray.array;
     for (NSInteger i = 28 ; i <= 65; i++) {
         NSString *imgName = [NSString stringWithFormat:@"Tools_000%zi", i];
@@ -43,7 +43,7 @@ static inline NSArray *imgs(void){//静态轮播图
     }return temp;
 }
 
-static inline TLFrameAnimation *frameAnimation(void){
+NS_INLINE TLFrameAnimation *frameAnimation(void){
     TLFrameAnimation *anm = TLFrameAnimation.alloc.init;
     anm.images = imgs();
     anm.isPlayFireworksAnimation = YES;
@@ -51,7 +51,7 @@ static inline TLFrameAnimation *frameAnimation(void){
 }
 #pragma mark —— 给UITabBarItem绑定动画
 /// 给UITabBarItem绑定动画
-static inline void setAnimation(UITabBarItem *item,
+NS_INLINE void setAnimation(UITabBarItem *item,
                                 NSInteger index) {
      item.animation = @[
                        bounceAnimation(),
@@ -75,7 +75,7 @@ static inline void setAnimation(UITabBarItem *item,
  *  UITabBarSystemItemMostRecent,
  *  UITabBarSystemItemMostViewed,
  */
-static inline UIViewController *childViewController_SystemStyle(UIViewController *viewController,
+NS_INLINE UIViewController *childViewController_SystemStyle(UIViewController *viewController,
                                                                 UITabBarSystemItem systemItem,
                                                                 NSUInteger tag){
     viewController.view.backgroundColor = JobsWhiteColor;

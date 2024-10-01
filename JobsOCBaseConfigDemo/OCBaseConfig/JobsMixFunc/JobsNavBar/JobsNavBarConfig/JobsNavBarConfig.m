@@ -6,29 +6,40 @@
 //
 
 #import "JobsNavBarConfig.h"
-
+JobsNavBarConfig *static_navBarConfig = nil;
+static dispatch_once_t static_navBarConfigOnceToken;
 @implementation JobsNavBarConfig
+#pragma mark —— BaseProtocol
+/// 单例化和销毁
++(void)destroySingleton{
+    static_navBarConfigOnceToken = 0;
+    static_navBarConfig = nil;
+}
 
++(instancetype)sharedInstance{
+    dispatch_once(&static_navBarConfigOnceToken, ^{
+        static_navBarConfig = JobsNavBarConfig.new;
+    });return static_navBarConfig;
+}
+#pragma mark —— LazyLoad
+/// 在具体的子类去实现，以覆盖父类的方法实现
 -(UIButtonModel *)backBtnModel{
     if(!_backBtnModel){
         @jobs_weakify(self)
-        _backBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+        _backBtnModel = self.makeBackBtnModel;
+        _backBtnModel.longPressGestureEventBlock = ^id (id _Nullable weakSelf,
+                                                        id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        };
+        _backBtnModel.clickEventBlock = ^id(BaseButton *x){
             @jobs_strongify(self)
-            data = self.makeBackBtnModel;
-            data.longPressGestureEventBlock = ^id (id _Nullable weakSelf,
-                                                   id _Nullable arg) {
-                NSLog(@"按钮的长按事件触发");
-                return nil;
-            };
-            data.clickEventBlock = ^id(BaseButton *x){
-                @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
-                return nil;
-            };
-        });
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        };
     }return _backBtnModel;
 }
-
+/// 在具体的子类去实现，以覆盖父类的方法实现
 -(UIButtonModel *)closeBtnModel{
     if(!_closeBtnModel){
         @jobs_weakify(self)

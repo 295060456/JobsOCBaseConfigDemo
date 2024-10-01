@@ -59,21 +59,21 @@ BaseViewProtocol_synthesize
 }
 #pragma mark —— lazyLoad
 -(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig{
-    @jobs_weakify(self)
     return ^(UIButtonModel *_Nullable backBtnModel,
              UIButtonModel *_Nullable closeBtnModel) {
-        @jobs_strongify(self)
-        JobsNavBarConfig *_navBarConfig = JobsNavBarConfig.new;
-        _navBarConfig.bgCor = self.viewModel.navBgCor;
-        _navBarConfig.bgImage = self.viewModel.navBgImage;
-        _navBarConfig.attributedTitle = self.viewModel.backBtnTitleModel.attributedText;
-        _navBarConfig.title = self.viewModel.textModel.text;
-        _navBarConfig.font = self.viewModel.textModel.font;
-        _navBarConfig.titleCor = self.viewModel.textModel.textCor;
-        _navBarConfig.backBtnModel = backBtnModel ? : self.backBtnModel;
-        _navBarConfig.closeBtnModel = closeBtnModel ? : self.closeBtnModel;
-        self.navBarConfig = _navBarConfig;
-        return _navBarConfig;
+        @jobs_weakify(self)
+        return jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable data) {
+            @jobs_strongify(self)
+            data.bgCor = self.viewModel.navBgCor;
+            data.bgImage = self.viewModel.navBgImage;
+            data.attributedTitle = self.viewModel.backBtnTitleModel.attributedText;
+            data.title = self.viewModel.textModel.text;
+            data.font = self.viewModel.textModel.font;
+            data.titleCor = self.viewModel.textModel.textCor;
+            data.backBtnModel = backBtnModel ? : self.backBtnModel;
+            data.closeBtnModel = closeBtnModel ? : self.closeBtnModel;
+            self.navBarConfig = data;
+        });
     };
 }
 
@@ -112,7 +112,7 @@ BaseViewProtocol_synthesize
         }];
     }return _navBar;
 }
-
+/// 在具体的子类去实现，以覆盖父类的方法实现
 -(UIButtonModel *)closeBtnModel{
     if(!_closeBtnModel){
         _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
@@ -126,25 +126,22 @@ BaseViewProtocol_synthesize
         });
     }return _closeBtnModel;
 }
-
+/// 在具体的子类去实现，以覆盖父类的方法实现
 -(UIButtonModel *)backBtnModel{
     if(!_backBtnModel){
         @jobs_weakify(self)
-        _backBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+        _backBtnModel = self.makeBackBtnModel;
+        _backBtnModel.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
+                                              id _Nullable arg) {
+            NSLog(@"按钮的长按事件触发");
+            return nil;
+        };
+        _backBtnModel.clickEventBlock = ^id(BaseButton *x){
             @jobs_strongify(self)
-            data = self.makeBackBtnModel;
-            data.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
-                                                  id _Nullable arg) {
-                NSLog(@"按钮的长按事件触发");
-                return nil;
-            };
-            data.clickEventBlock = ^id(BaseButton *x){
-                @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
-                self.jobsBackBtnClickEvent(x);
-                return nil;
-            };
-        });
+            if (self.objectBlock) self.objectBlock(x);
+            self.jobsBackBtnClickEvent(x);
+            return nil;
+        };
     }return _backBtnModel;
 }
 

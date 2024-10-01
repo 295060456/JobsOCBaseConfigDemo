@@ -12,55 +12,55 @@
 
 #define FORMAT_STRING(fmt, val) [NSString stringWithFormat:(fmt), (val)]
 
-static inline NSString *_Nonnull toStringByID(id _Nullable i){
+NS_INLINE NSString *_Nonnull toStringByID(id _Nullable i){
     return FORMAT_STRING(@"%@", i);
 }
 
-static inline NSString *_Nonnull toStringByInt(int i){
+NS_INLINE NSString *_Nonnull toStringByInt(int i){
     return FORMAT_STRING(@"%d", i);
 }
 /// 保留？位小数点有效值
-static inline NSString *_Nonnull toStringByFloatDecimalPlaces(float i, NSUInteger decimalPlaces){
+NS_INLINE NSString *_Nonnull toStringByFloatDecimalPlaces(float i, NSUInteger decimalPlaces){
     return [NSString stringWithFormat:[NSString stringWithFormat:@"%%.%luf", (unsigned long)decimalPlaces], i];
 }
 
-static inline NSString *_Nonnull toStringByFloat(float i){
+NS_INLINE NSString *_Nonnull toStringByFloat(float i){
     return FORMAT_STRING(@"%f", i);
 }
 
-static inline NSString *_Nonnull toStringByDouble(double i){
+NS_INLINE NSString *_Nonnull toStringByDouble(double i){
     return FORMAT_STRING(@"%f", i);
 }
 
-static inline NSString *_Nonnull toStringByShort(short i){
+NS_INLINE NSString *_Nonnull toStringByShort(short i){
     return FORMAT_STRING(@"%c", i);
 }
 
-static inline NSString *_Nonnull toStringByUnsignedShort(unsigned short i){
+NS_INLINE NSString *_Nonnull toStringByUnsignedShort(unsigned short i){
     return FORMAT_STRING(@"%c", i);
 }
 
-static inline NSString *_Nonnull toStringByNSInteger(NSInteger i){
+NS_INLINE NSString *_Nonnull toStringByNSInteger(NSInteger i){
     return FORMAT_STRING(@"%ld", (long)i);
 }
 
-static inline NSString *_Nonnull toStringByNSUInteger(NSUInteger i){
+NS_INLINE NSString *_Nonnull toStringByNSUInteger(NSUInteger i){
     return FORMAT_STRING(@"%lu", (unsigned long)i);
 }
 
-static inline NSString *_Nonnull toStringByLong(long i){
+NS_INLINE NSString *_Nonnull toStringByLong(long i){
     return FORMAT_STRING(@"%ld", i);
 }
 
-static inline NSString *_Nonnull toStringByLongLong(long long i){
+NS_INLINE NSString *_Nonnull toStringByLongLong(long long i){
     return FORMAT_STRING(@"%lld", i);
 }
 
-static inline NSString *_Nonnull toStringByChar(char i){
+NS_INLINE NSString *_Nonnull toStringByChar(char i){
     return FORMAT_STRING(@"%c", i);
 }
 
-static inline NSString *_Nonnull toStringByUnsignedChar(unsigned char i){
+NS_INLINE NSString *_Nonnull toStringByUnsignedChar(unsigned char i){
     return FORMAT_STRING(@"%c", i);
 }
 
@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-static inline NSData *_Nullable archivedDataWithRootObject(id _Nullable object){
+NS_INLINE NSData *_Nullable archivedDataWithRootObject(id _Nullable object){
     NSError *error;
     NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:object
                                                    requiringSecureCoding:NO

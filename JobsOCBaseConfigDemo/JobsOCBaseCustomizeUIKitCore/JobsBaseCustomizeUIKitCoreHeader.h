@@ -116,80 +116,86 @@
 #pragma mark —— NSValue
 #import "JobsValue.h"
 #pragma mark —— 关于UIView的创建
-static inline __kindof UIImageView *_Nonnull jobsMakeImageView(jobsByImageViewBlock _Nonnull block){
+NS_INLINE __kindof UIImageView *_Nonnull jobsMakeImageView(jobsByImageViewBlock _Nonnull block){
     UIImageView *data = UIImageView.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UITextView *_Nonnull jobsMakeTextView(jobsByTextViewBlock _Nonnull block){
+NS_INLINE __kindof UITextView *_Nonnull jobsMakeTextView(jobsByTextViewBlock _Nonnull block){
     UITextView *data = UITextView.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UITextField *_Nonnull jobsMakeTextField(jobsByTextFieldBlock _Nonnull block){
+NS_INLINE __kindof UITextField *_Nonnull jobsMakeTextField(jobsByTextFieldBlock _Nonnull block){
     UITextField *data = UITextField.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UICollectionView *_Nonnull jobsMakeCollectionView(jobsByCollectionViewBlock _Nonnull block){
+NS_INLINE __kindof UICollectionView *_Nonnull jobsMakeCollectionView(jobsByCollectionViewBlock _Nonnull block){
     UICollectionView *data = UICollectionView.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UIWindow *_Nonnull jobsMakeWindow(jobsByWindowBlock _Nonnull block){
+NS_INLINE __kindof UIWindow *_Nonnull jobsMakeWindow(jobsByWindowBlock _Nonnull block){
     UIWindow *data = UIWindow.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UIView *_Nonnull jobsMakeView(jobsByViewBlock _Nonnull block){
+NS_INLINE __kindof UIView *_Nonnull jobsMakeView(jobsByViewBlock _Nonnull block){
     UIView *data = UIView.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull block){
+NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull block){
     UILabel *data = UILabel.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UIScrollView *_Nonnull jobsMakeScrollView(jobsByScrollViewBlock _Nonnull block){
+NS_INLINE __kindof UIScrollView *_Nonnull jobsMakeScrollView(jobsByScrollViewBlock _Nonnull block){
     UIScrollView *data = UIScrollView.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull block){
+NS_INLINE __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull block){
     UIButton *data = UIButton.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UITableView *_Nonnull jobsMakeTableViewByGrouped(jobsByTableViewBlock _Nonnull block){
+NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByGrouped(jobsByTableViewBlock _Nonnull block){
     UITableView *data = UITableView.initWithStyleGrouped;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UITableView *_Nonnull jobsMakeTableViewByPlain(jobsByTableViewBlock _Nonnull block){
+NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByPlain(jobsByTableViewBlock _Nonnull block){
     UITableView *data = UITableView.initWithStylePlain;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UITableView *_Nonnull jobsMakeTableViewByInsetGrouped(jobsByTableViewBlock _Nonnull block){
+NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByInsetGrouped(jobsByTableViewBlock _Nonnull block){
     UITableView *data = UITableView.initWithStyleInsetGrouped;
     if (block) block(data);
     return data;
 }
 #pragma mark —— 关于结构体的创建
+#pragma mark —— NSIndexPath
+NS_INLINE NSIndexPath *_Nonnull jobsMakeIndexPathByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+    JobsLocationModel *data = JobsLocationModel.alloc.init;
+    if (block) block(data);
+    return [NSIndexPath indexPathForRow:data.row inSection:data.section];
+}
 #pragma mark —— UIEdgeInsets
-static inline UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+NS_INLINE UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
     JobsLocationModel *data = JobsLocationModel.alloc.init;
     if (block) block(data);
     return UIEdgeInsetsMake(data.jobsTop,
@@ -198,7 +204,7 @@ static inline UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocation
                             data.jobsRight);
 }
 /// 构建一个四边距离相等的 UIEdgeInsets
-static inline UIEdgeInsets jobsSameEdgeInset(CGFloat insets){
+NS_INLINE UIEdgeInsets jobsSameEdgeInset(CGFloat insets){
     return jobsMakeEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
         data.jobsTop = insets;
         data.jobsLeft = insets;
@@ -207,7 +213,7 @@ static inline UIEdgeInsets jobsSameEdgeInset(CGFloat insets){
     });
 }
 #pragma mark —— NSDirectionalEdgeInsets
-static inline NSDirectionalEdgeInsets jobsMakeDirectionalEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+NS_INLINE NSDirectionalEdgeInsets jobsMakeDirectionalEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
     JobsLocationModel *data = JobsLocationModel.alloc.init;
     if (block) block(data);
     return NSDirectionalEdgeInsetsMake(data.jobsTop,
@@ -216,7 +222,7 @@ static inline NSDirectionalEdgeInsets jobsMakeDirectionalEdgeInsetsByLocationMod
                                        data.jobsRight);
 }
 /// 构建一个内边距相等的 NSDirectionalEdgeInsets
-static inline NSDirectionalEdgeInsets jobsSameDirectionalEdgeInsets(CGFloat x){
+NS_INLINE NSDirectionalEdgeInsets jobsSameDirectionalEdgeInsets(CGFloat x){
     return jobsMakeDirectionalEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
         data.jobsTop = x;
         data.jobsLeft = x;
@@ -225,7 +231,7 @@ static inline NSDirectionalEdgeInsets jobsSameDirectionalEdgeInsets(CGFloat x){
     });
 }
 #pragma mark —— CGRect
-static inline CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+NS_INLINE CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
     JobsLocationModel *data = JobsLocationModel.alloc.init;
     if (block) block(data);
     return CGRectMake(data.jobsX,
@@ -234,13 +240,13 @@ static inline CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock
                       data.jobsHeight);
 }
 #pragma mark —— CGPoint
-static inline CGPoint jobsMakeCGPointByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+NS_INLINE CGPoint jobsMakeCGPointByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
     JobsLocationModel *data = JobsLocationModel.alloc.init;
     if (block) block(data);
     return CGPointMake(data.jobsX, data.jobsY);
 }
 #pragma mark —— CGSize
-static inline CGSize jobsMakeCGSizeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+NS_INLINE CGSize jobsMakeCGSizeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
     JobsLocationModel *data = JobsLocationModel.alloc.init;
     if (block) block(data);
     return CGSizeMake(data.jobsWidth, data.jobsHeight);

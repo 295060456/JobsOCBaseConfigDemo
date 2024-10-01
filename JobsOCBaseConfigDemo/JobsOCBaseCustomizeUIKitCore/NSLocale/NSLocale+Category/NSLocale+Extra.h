@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 /// 获取系统的首选语言代码
-static inline NSString *currentLanguage(void){
+NS_INLINE NSString *currentLanguage(void){
     NSString *languageCode = NSLocale.preferredLanguages.firstObject;
     return languageCode;
 }

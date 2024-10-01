@@ -68,6 +68,7 @@ typedef void(^jobsByScreenEdgePanGestureRecognizerBlock)(__kindof UIScreenEdgePa
 typedef void(^jobsByPointBlock)(CGPoint data);
 typedef void(^jobsBySizeBlock)(CGSize data);
 typedef void(^jobsByEdgeInsetBlock)(UIEdgeInsets data);
+typedef void(^jobsByIndexPathBlock)(NSIndexPath *_Nullable indexPath);
 #pragma mark —— 关于数据类型
 typedef void(^jobsByNSIntegerBlock)(NSInteger data);
 typedef void(^jobsByNSUIntegerBlock)(NSUInteger data);

@@ -25,8 +25,6 @@
 @property(nonatomic,strong)UILabel *titleLab;
 @property(nonatomic,strong)BaseButton *closeBtn;
 /// Data
-@property(nonatomic,copy)jobsByBtnBlock backBtnClickAction;
-@property(nonatomic,copy)jobsByBtnBlock closeBtnClickAction;
 
 @end
 
@@ -117,19 +115,20 @@
 -(JobsNavBarConfig *)navBarConfig{
     @jobs_weakify(self)
     if(!_navBarConfig){
-        _navBarConfig = JobsNavBarConfig.new;
-    }
-    [_navBarConfig actionObjectBlock:^(id _Nullable data) {
-        @jobs_strongify(self)
-        if([data isKindOfClass:UIButton.class]){
-            UIButton *btn = (UIButton *)data;
-            if(btn.tag == 123){
-                if(self.closeBtnClickAction)self.closeBtnClickAction(btn);
-            }else if (btn.tag == 456){
-                if(self.backBtnClickAction)self.backBtnClickAction(btn);
-            }else{}
-        }
-    }];return _navBarConfig;
+        _navBarConfig = jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable data) {
+            [data actionObjectBlock:^(id _Nullable data) {
+                @jobs_strongify(self)
+                if([data isKindOfClass:UIButton.class]){
+                    UIButton *btn = (UIButton *)data;
+                    if(btn.tag == 123){
+                        if(self.closeBtnClickAction)self.closeBtnClickAction(btn);
+                    }else if (btn.tag == 456){
+                        if(self.backBtnClickAction)self.backBtnClickAction(btn);
+                    }else{}
+                }
+            }];
+        });
+    }return _navBarConfig;
 }
 
 -(UILabel *)titleLab{

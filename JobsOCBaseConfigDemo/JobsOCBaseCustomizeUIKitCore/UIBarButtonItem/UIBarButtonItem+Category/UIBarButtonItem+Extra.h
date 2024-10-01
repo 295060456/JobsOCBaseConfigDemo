@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 
-static inline __kindof UIBarButtonItem * _Nullable JobsBarButtonItem(__kindof UIView *_Nullable view){
+NS_INLINE __kindof UIBarButtonItem * _Nullable JobsBarButtonItem(__kindof UIView *_Nullable view){
     return [UIBarButtonItem.alloc initWithCustomView:view];
 }
 

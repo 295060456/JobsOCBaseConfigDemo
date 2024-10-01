@@ -9,7 +9,7 @@
 #define layout_h
 #import <UIKit/UIKit.h>
 //375*667，iphone6位基准。
-static inline BOOL isX(void) {
+NS_INLINE BOOL isX(void) {
     static BOOL v = NO;
     static dispatch_once_t once_t = 0;
     dispatch_once(&once_t, ^{
@@ -20,7 +20,7 @@ static inline BOOL isX(void) {
     return v;
 }
 
-static inline CGFloat hs(CGFloat v) {
+NS_INLINE CGFloat hs(CGFloat v) {
     static CGFloat hv = 0;
     static dispatch_once_t once_t = 0;
     dispatch_once(&once_t, ^{
@@ -30,7 +30,7 @@ static inline CGFloat hs(CGFloat v) {
     return hv * v;
 }
 
-static inline CGFloat vs(CGFloat v) {
+NS_INLINE CGFloat vs(CGFloat v) {
     static CGFloat vv = 0;
     static dispatch_once_t once_t = 0;
     dispatch_once(&once_t, ^{
@@ -40,7 +40,7 @@ static inline CGFloat vs(CGFloat v) {
     return vv * v;
 }
 
-static inline CGFloat naviH(void) {
+NS_INLINE CGFloat naviH(void) {
     static CGFloat v = 0;
     static dispatch_once_t once_t = 0;
     dispatch_once(&once_t, ^{
@@ -49,20 +49,20 @@ static inline CGFloat naviH(void) {
     return v;
 }
 
-static inline CGRect fitHor(CGFloat x, CGFloat y, CGFloat w, CGFloat h) {
+NS_INLINE CGRect fitHor(CGFloat x, CGFloat y, CGFloat w, CGFloat h) {
     return CGRectMake(hs(x), hs(y), hs(w), hs(h));
 }
 
-static inline CGRect fitVer(CGFloat x, CGFloat y, CGFloat w, CGFloat h) {
+NS_INLINE CGRect fitVer(CGFloat x, CGFloat y, CGFloat w, CGFloat h) {
     return CGRectMake(hs(x), vs(y), hs(w), hs(h));
 }
 
-static inline CGRect fitTop(CGFloat x, CGFloat y, CGFloat w, CGFloat h) {
+NS_INLINE CGRect fitTop(CGFloat x, CGFloat y, CGFloat w, CGFloat h) {
     CGFloat v = hs(y - 64) + naviH();
     return CGRectMake(hs(x), v, hs(w), hs(h));
 }
 
-static inline CGPoint fitOrigin(CGFloat x, CGFloat y) {
+NS_INLINE CGPoint fitOrigin(CGFloat x, CGFloat y) {
     CGFloat v = hs(y - 64) + naviH();
     return CGPointMake(hs(x), v);
 }

@@ -46,7 +46,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)JobsLanguageSwitchNotification:(nonnull NSNotification *)notification;//在具体子类进行实现
 #pragma mark —— 单例化和销毁
 +(void)destroySingleton;
-+(instancetype)sharedManager;
++(instancetype)sharedInstance;
++(JobsReturnIDByVoidBlock _Nonnull)SharedInstance;
++(jobsByVoidBlock _Nonnull)DestroySingleton;
 
 @end
 

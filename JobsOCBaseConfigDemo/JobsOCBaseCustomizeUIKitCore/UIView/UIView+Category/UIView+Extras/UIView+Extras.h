@@ -28,7 +28,7 @@
 ///  要解决这个问题，首先可以强制指定参数为 __strong 以避免自动推导为 __autoreleasing
 ///  如果你希望在函数内部能够修改外部变量的值，你可以使用指针的指针（UIView **），传递变量的地址来改变原变量的值。
 ///  destroyView(&view);
-static inline void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
+NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
     [*view removeFromSuperview];
     *view = nil;
 }

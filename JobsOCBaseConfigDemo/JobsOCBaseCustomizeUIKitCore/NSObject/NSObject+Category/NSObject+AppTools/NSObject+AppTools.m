@@ -48,16 +48,18 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     }
 }
 #pragma mark —— 一些公共设置
+/// 导航返回键的配置
 -(UIButtonModel *)makeBackBtnModel{
     @jobs_weakify(self)
     return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
         @jobs_strongify(self)
-        data.backgroundImage = JobsIMG(@"返回");
+//        data.backgroundImage = JobsIMG(@"返回");
         data.selected_backgroundImage = JobsIMG(@"返回");
         data.highlightImage = JobsIMG(@"返回");
         data.normalImage = JobsIMG(@"返回");
         data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
         data.title = self.viewModel.backBtnTitleModel.text;
+        data.font = self.viewModel.backBtnTitleModel.font;
         data.titleCor = JobsBlackColor;
         data.selected_titleCor = JobsBlackColor;
         data.roundingCorners = UIRectCornerAllCorners;
@@ -294,10 +296,10 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 -(UIView<BaseViewProtocol> *)jobsPopView:(Class<BaseViewProtocol> _Nullable)popViewClass
                                viewModel:(UIViewModel *_Nullable)viewModel{
     // 将方法内的变量进行单例化,避免重复创建
-    UIView<BaseViewProtocol> *popupView = popViewClass.class.sharedManager;
+    UIView<BaseViewProtocol> *popupView = popViewClass.class.SharedInstance();
     // 这里设置弹出框的尺寸（最好在View内部layoutSubviews里面进行设置，外界设置的话，在某些情况下会出现异常）
     // popupView.size = popViewClass.viewSizeByModel(nil);
-    popupView.jobsRichViewByModel(viewModel ? : self.testPopViewData);
+    popupView.jobsRichViewByModel(Jobs3TO(viewModel, self.testPopViewData));
     @jobs_weakify(popupView)
     [popupView actionObjectBlock:^(__kindof UIButton *data) {
         @jobs_strongify(popupView)
@@ -309,7 +311,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
             }else{}
         }
         [popupView tf_hide];
-        [popViewClass.class destroySingleton];
+        popViewClass.class.DestroySingleton();
     }];return popupView;
 }
 #pragma mark —— 设备横屏的方向判定

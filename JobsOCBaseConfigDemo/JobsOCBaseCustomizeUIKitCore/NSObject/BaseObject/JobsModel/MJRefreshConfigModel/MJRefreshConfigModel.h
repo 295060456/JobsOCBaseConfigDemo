@@ -59,7 +59,7 @@ typedef enum : NSInteger {
 
 NS_ASSUME_NONNULL_END
 
-static inline __kindof MJRefreshConfigModel *_Nonnull jobsMakeRefreshConfigModel(jobsByRefreshConfigModelBlock _Nonnull block){
+NS_INLINE __kindof MJRefreshConfigModel *_Nonnull jobsMakeRefreshConfigModel(jobsByRefreshConfigModelBlock _Nonnull block){
     MJRefreshConfigModel *model = MJRefreshConfigModel.alloc.init;
     if (block) block(model);
     return model;

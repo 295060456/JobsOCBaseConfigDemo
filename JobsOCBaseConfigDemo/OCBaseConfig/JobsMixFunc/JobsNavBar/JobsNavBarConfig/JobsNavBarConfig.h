@@ -7,10 +7,12 @@
 
 #import <Foundation/Foundation.h>
 #import "UIButtonModel.h"
+#import "BaseProtocol.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@interface JobsNavBarConfig : NSObject
+extern JobsNavBarConfig *static_navBarConfig;
+@interface JobsNavBarConfig : NSObject<BaseProtocol>
 #pragma mark —— 对Bar的配置
 @property(nonatomic,strong,null_resettable)UIColor *bgCor;
 @property(nonatomic,strong)UIImage *bgImage;/// 无默认值，优先级 bgImage > bgCor
@@ -27,3 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsNavBarConfig *_Nonnull jobsMakeNavBarConfig(jobsByNavBarConfigBlock _Nonnull block){
+    JobsNavBarConfig *data = JobsNavBarConfig.alloc.init;
+    if (block) block(data);
+    return data;
+}

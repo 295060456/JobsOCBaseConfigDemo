@@ -11,19 +11,19 @@
 #import "JobsBlock.h"
 #import "NSString+Others.h"
 
-static inline NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
+NS_INLINE NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
     NSMutableAttributedString *data = NSMutableAttributedString.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline NSTextAttachment *_Nonnull jobsMakeTextAttachment(jobsByTextAttachmentBlock _Nonnull block){
+NS_INLINE NSTextAttachment *_Nonnull jobsMakeTextAttachment(jobsByTextAttachmentBlock _Nonnull block){
     NSTextAttachment *data = NSTextAttachment.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByMutableParagraphStyleBlock _Nonnull block){
+NS_INLINE NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByMutableParagraphStyleBlock _Nonnull block){
     NSMutableParagraphStyle *data = NSMutableParagraphStyle.alloc.init;
     /**
      

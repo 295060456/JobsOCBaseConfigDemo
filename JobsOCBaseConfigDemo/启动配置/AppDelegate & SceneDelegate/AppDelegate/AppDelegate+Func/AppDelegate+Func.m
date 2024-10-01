@@ -27,8 +27,9 @@
     #ifdef DEBUG
         UIFont.getAvailableFont();/// 打印全员字体
     #endif
-        self.makeTABAnimatedConfig();
-        self.makeIQKeyboardManagerConfig();
+        self.makeJobsNavBarConfig();/// 全局配置 JobsNavBarConfig
+        self.makeTABAnimatedConfig();/// 全局配置 TABAnimated
+        self.makeIQKeyboardManagerConfig();/// 全局配置键盘
         self.makeGKNavigationBarConfig();/// 自定义导航栏
 //        self.makeJobsLaunchAdConfig();/// 开屏广告
         self.makeReachabilityConfig();/// 网络环境监测
@@ -211,6 +212,15 @@
     #warning 这里的Api有变化 先注释，否则无法编译通过
     //        configure.shiledItemSpaceVCs = @[@"PUPhotoPickerHostViewController"];
         }];
+    };
+}
+#pragma mark —— 全局配置JobsNavBarConfig
+-(jobsByVoidBlock _Nonnull)makeJobsNavBarConfig{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        static_navBarConfig = JobsNavBarConfig.SharedInstance();
+//        static_navBarConfig.backBtnModel = self.makeBackBtnModel;
     };
 }
 #pragma mark —— UNUserNotificationCenterDelegate

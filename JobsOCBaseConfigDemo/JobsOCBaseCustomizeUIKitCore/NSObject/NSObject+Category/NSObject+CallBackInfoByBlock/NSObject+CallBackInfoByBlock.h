@@ -21,37 +21,44 @@
     3、入参、返回值同一类型，标识为ReturnBy
     4、有返回值前缀Jobs、无返回值前缀jobs
  */
+/// 对三目运算符的封装
+NS_INLINE id _Nullable Jobs3TO(id _Nullable Obj1, id _Nonnull Obj2) {
+    /// 三目运算符（Ternary Operator）之所以被称为 "三目" 运算符，是因为它涉及三个操作数。它是唯一一个需要三个操作数的运算符。
+    return Obj1 ? Obj1 : Obj2;
+}
 NS_ASSUME_NONNULL_BEGIN
-
+//在 Objective-C 中，向 nil 对象发送消息不会崩溃
+//但是如果你尝试对 nil 对象调用分类中的方法，可能会导致问题。
+//这是因为 nil 对象并不会执行任何方法实现，分类中的方法也不会被调用。
 @interface NSObject (CallBackInfoByBlock)
 
-@property(nonatomic,assign)jobsByVoidBlock voidBlock;/// 无入参，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByVoidBlock voidBlock;/// 无入参，无返回值的回调
 -(void)actionVoidBlock:(jobsByVoidBlock _Nullable)voidBlock;
 
-@property(nonatomic,assign)jobsByIDBlock objectBlock;/// 入参为ID类型，无返回值的回调
-@property(nonatomic,assign)jobsByGestureRecognizerBlock gestureRecognizerBlock;/// 入参为UIGestureRecognizer，无返回值的回调
-@property(nonatomic,assign)jobsBySELBlock selBlock;///入参为SEL，无返回值的回调
-@property(nonatomic,assign)jobsByStringBlock stringBlock;///入参为NSString，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByIDBlock objectBlock;/// 入参为ID类型，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByGestureRecognizerBlock gestureRecognizerBlock;/// 入参为UIGestureRecognizer，无返回值的回调
+@property(nonatomic,copy,nullable)jobsBySELBlock selBlock;///入参为SEL，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByStringBlock stringBlock;///入参为NSString，无返回值的回调
 -(void)actionObjectBlock:(jobsByIDBlock _Nullable)objectBlock;
 -(void)actionGestureRecognizerBlock:(jobsByGestureRecognizerBlock _Nullable)gestureRecognizerBlock;
 -(void)actionSELBlock:(jobsBySELBlock _Nullable)selBlock;
 -(void)actionStringBlock:(jobsByStringBlock _Nullable)stringBlock;
 
-@property(nonatomic,assign)jobsByNSIntegerBlock NSIntegerBlock;/// 入参为NSInteger，无返回值的回调
-@property(nonatomic,assign)jobsByNSUIntegerBlock NSUIntegerBlock;/// 入参为NSUInteger，无返回值的回调
-@property(nonatomic,assign)jobsByCGFloatBlock CGFloatBlock;/// 入参CGFloat，无返回值的回调
-@property(nonatomic,assign)jobsByBOOLBlock BOOLBlock;/// 入参为BOOL，无返回值的回调
-@property(nonatomic,assign)jobsByIntBlock IntBlock;/// 入参为Int，无返回值的回调
-@property(nonatomic,assign)jobsByUnsignedIntBlock UnsignedIntBlock;/// 入参为UnsignedInt，无返回值的回调
-@property(nonatomic,assign)jobsByFloatBlock FloatBlock;/// 入参为Float，无返回值的回调
-@property(nonatomic,assign)jobsByDoubleBlock DoubleBlock;/// 入参为Double，无返回值的回调
-@property(nonatomic,assign)jobsByCharBlock CharBlock;/// 入参为Char，无返回值的回调
-@property(nonatomic,assign)jobsByUnsignedCharBlock UnsignedCharBlock;/// 入参为IUnsignedChar，无返回值的回调
-@property(nonatomic,assign)jobsByShortBlock ShortBlock;/// 入参为Short，无返回值的回调
-@property(nonatomic,assign)jobsByUnsignedShortBlock UnsignedShortBlock;/// 入参为UnsignedShort，无返回值的回调
-@property(nonatomic,assign)jobsByLongBlock LongBlock;/// 入参为Long，无返回值的回调
-@property(nonatomic,assign)jobsByUnsignedLongBlock UnsignedLongBlock;/// 入参为UnsignedLong，无返回值的回调
-@property(nonatomic,assign)jobsByUnsignedLongLongBlock UnsignedLongLongBlock;/// 入参为IUnsignedLongLong，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByNSIntegerBlock NSIntegerBlock;/// 入参为NSInteger，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByNSUIntegerBlock NSUIntegerBlock;/// 入参为NSUInteger，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByCGFloatBlock CGFloatBlock;/// 入参CGFloat，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByBOOLBlock BOOLBlock;/// 入参为BOOL，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByIntBlock IntBlock;/// 入参为Int，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByUnsignedIntBlock UnsignedIntBlock;/// 入参为UnsignedInt，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByFloatBlock FloatBlock;/// 入参为Float，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByDoubleBlock DoubleBlock;/// 入参为Double，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByCharBlock CharBlock;/// 入参为Char，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByUnsignedCharBlock UnsignedCharBlock;/// 入参为IUnsignedChar，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByShortBlock ShortBlock;/// 入参为Short，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByUnsignedShortBlock UnsignedShortBlock;/// 入参为UnsignedShort，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByLongBlock LongBlock;/// 入参为Long，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByUnsignedLongBlock UnsignedLongBlock;/// 入参为UnsignedLong，无返回值的回调
+@property(nonatomic,copy,nullable)jobsByUnsignedLongLongBlock UnsignedLongLongBlock;/// 入参为IUnsignedLongLong，无返回值的回调
 -(void)actionNSIntegerBlock:(jobsByNSIntegerBlock _Nullable)NSIntegerBlock;
 -(void)actionNSUIntegerBlock:(jobsByNSUIntegerBlock _Nullable)NSUIntegerBlock;
 -(void)actionCGFloatBlock:(jobsByCGFloatBlock _Nullable)CGFloatBlock;
@@ -68,30 +75,30 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)actionUnsignedLongBlock:(jobsByUnsignedLongBlock _Nullable)UnsignedLongBlock;
 -(void)actionUnsignedLongLongBlock:(jobsByUnsignedLongLongBlock _Nullable)UnsignedLongLongBlock;
 
-@property(nonatomic,assign)JobsSelectorBlock SelectorBlock;
+@property(nonatomic,copy,nullable)JobsSelectorBlock SelectorBlock;
 -(void)actionSelectorBlock:(JobsSelectorBlock _Nullable)SelectorBlock;
 
-@property(nonatomic,assign)JobsReturnIDByVoidBlock returnObjectByVoidBlock;/// 无入参，返回值为ID的回调
+@property(nonatomic,copy,nullable)JobsReturnIDByVoidBlock returnObjectByVoidBlock;/// 无入参，返回值为ID的回调
 -(void)actionReturnIDByVoidBlock:(JobsReturnIDByVoidBlock _Nullable)returnObjectByVoidBlock;
 
-@property(nonatomic,assign)JobsReturnIDByGestureRecognizerBlock returnObjectByGestureRecognizerBlock;/// 入参为UIGestureRecognizer，返回值为ID的回调
-@property(nonatomic,assign)JobsReturnIDBySELBlock returnObjectBySELBlock;/// 入参为SEL，返回值为ID的回调
-@property(nonatomic,assign)JobsReturnIDByStringBlock returnObjectByStringBlock;/// 入参为NSString，返回值为ID的回调
-@property(nonatomic,assign)JobsReturnNSIntegerByIDBlock returnNSIntegerByIDBlock;
-@property(nonatomic,assign)JobsReturnNSUIntegerByIDBlock returnNSUIntegerByIDBlock;
-@property(nonatomic,assign)JobsReturnCGFloatByIDBlock returnCGFloatByIDBlock;
-@property(nonatomic,assign)JobsReturnBOOLByIDBlock returnBoolByIDBlock;
-@property(nonatomic,assign)JobsReturnIntByIDBlock returnIntByIDBlock;
-@property(nonatomic,assign)JobsReturnUnsignedIntByIDBlock returnUnsignedIntByIDBlock;
-@property(nonatomic,assign)JobsReturnFloatByIDBlock returnFloatByIDBlock;
-@property(nonatomic,assign)JobsReturnDoubleByIDBlock returnDoubleByIDBlock;
-@property(nonatomic,assign)JobsReturnCharByIDBlock returnCharByIDBlock;
-@property(nonatomic,assign)JobsReturnUnsignedCharByIDBlock returnUnsignedCharByIDBlock;
-@property(nonatomic,assign)JobsReturnShortByIDBlock returnShortByIDBlock;
-@property(nonatomic,assign)JobsReturnUnsignedShortByIDBlock returnUnsignedShortByIDBlock;
-@property(nonatomic,assign)JobsReturnLongByIDBlock returnLongByIDBlock;
-@property(nonatomic,assign)JobsReturnUnsignedLongByIDBlock returnUnsignedLongByIDBlock;
-@property(nonatomic,assign)JobsReturnUnsignedLongLongByIDBlock returnUnsignedLongLongByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnIDByGestureRecognizerBlock returnObjectByGestureRecognizerBlock;/// 入参为UIGestureRecognizer，返回值为ID的回调
+@property(nonatomic,copy,nullable)JobsReturnIDBySELBlock returnObjectBySELBlock;/// 入参为SEL，返回值为ID的回调
+@property(nonatomic,copy,nullable)JobsReturnIDByStringBlock returnObjectByStringBlock;/// 入参为NSString，返回值为ID的回调
+@property(nonatomic,copy,nullable)JobsReturnNSIntegerByIDBlock returnNSIntegerByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnNSUIntegerByIDBlock returnNSUIntegerByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnCGFloatByIDBlock returnCGFloatByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnBOOLByIDBlock returnBoolByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnIntByIDBlock returnIntByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnUnsignedIntByIDBlock returnUnsignedIntByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnFloatByIDBlock returnFloatByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnDoubleByIDBlock returnDoubleByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnCharByIDBlock returnCharByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnUnsignedCharByIDBlock returnUnsignedCharByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnShortByIDBlock returnShortByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnUnsignedShortByIDBlock returnUnsignedShortByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnLongByIDBlock returnLongByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnUnsignedLongByIDBlock returnUnsignedLongByIDBlock;
+@property(nonatomic,copy,nullable)JobsReturnUnsignedLongLongByIDBlock returnUnsignedLongLongByIDBlock;
 -(void)actionReturnIDByGestureRecognizerBlock:(JobsReturnIDByGestureRecognizerBlock _Nullable)returnObjectByGestureRecognizerBlock;
 -(void)actionReturnIDBySELBlock:(JobsReturnIDBySELBlock _Nullable)returnObjectBySELBlock;
 -(void)actionReturnIDByStringBlock:(JobsReturnIDByStringBlock _Nullable)returnObjectByStringBlock;
@@ -111,23 +118,23 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)actionReturnUnsignedLongByIDBlock:(JobsReturnUnsignedLongByIDBlock _Nullable)returnUnsignedLongByIDBlock;
 -(void)actionReturnUnsignedLongLongByIDBlock:(JobsReturnUnsignedLongLongByIDBlock _Nullable)returnUnsignedLongLongByIDBlock;
 
-@property(nonatomic,assign)JobsReturnIDByIDBlock returnObjectBlock;/// 返回值为ID的回调
-@property(nonatomic,assign)JobsReturnByNSIntegerBlock returnNSIntegerBlock;/// 返回值为NSInteger的回调
-@property(nonatomic,assign)JobsReturnByNSUIntegerBlock returnNSUIntegerBlock;/// 返回值为UInteger的回调
-@property(nonatomic,assign)JobsReturnByCGFloatBlock returnCGFloatBlock;/// 返回值为CGFloat的回调
-@property(nonatomic,assign)JobsReturnByBOOLBlock returnBoolBlock;/// 返回值为BOOL的回调
-@property(nonatomic,assign)JobsReturnBOOLByNSUIntegerBlock returnBoolByNSUIntegerBlock;/// 入参为NSUInteger，返回值为BOOL的回调
-@property(nonatomic,assign)JobsReturnByIntBlock returnIntBlock;/// 返回值为Int的回调
-@property(nonatomic,assign)JobsReturnByUnsignedIntBlock returnUnsignedIntBlock;/// 返回值为UnsignedInt的回调
-@property(nonatomic,assign)JobsReturnByFloatBlock returnFloatBlock;/// 返回值为Float的回调
-@property(nonatomic,assign)JobsReturnByDoubleBlock returnDoubleBlock;/// 返回值为Double的回调
-@property(nonatomic,assign)JobsReturnByCharBlock returnCharBlock;/// 返回值为Char的回调
-@property(nonatomic,assign)JobsReturnByUnsignedCharBlock returnUnsignedCharBlock;/// 返回值为UnsignedChar的回调
-@property(nonatomic,assign)JobsReturnByShortBlock returnShortBlock;/// 返回值为Short的回调
-@property(nonatomic,assign)JobsReturnByUnsignedShortBlock returnUnsignedShortBlock;/// 返回值为UnsignedShort的回调
-@property(nonatomic,assign)JobsReturnByLongBlock returnLongBlock;/// 返回值为Long的回调
-@property(nonatomic,assign)JobsReturnByUnsignedLongBlock returnUnsignedLongBlock;/// 返回值为UnsignedLong的回调
-@property(nonatomic,assign)JobsReturnByUnsignedLongLongBlock returnUnsignedLongLongBlock;/// 返回值为UnsignedLongLong的回调
+@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock returnObjectBlock;/// 返回值为ID的回调
+@property(nonatomic,copy,nullable)JobsReturnByNSIntegerBlock returnNSIntegerBlock;/// 返回值为NSInteger的回调
+@property(nonatomic,copy,nullable)JobsReturnByNSUIntegerBlock returnNSUIntegerBlock;/// 返回值为UInteger的回调
+@property(nonatomic,copy,nullable)JobsReturnByCGFloatBlock returnCGFloatBlock;/// 返回值为CGFloat的回调
+@property(nonatomic,copy,nullable)JobsReturnByBOOLBlock returnBoolBlock;/// 返回值为BOOL的回调
+@property(nonatomic,copy,nullable)JobsReturnBOOLByNSUIntegerBlock returnBoolByNSUIntegerBlock;/// 入参为NSUInteger，返回值为BOOL的回调
+@property(nonatomic,copy,nullable)JobsReturnByIntBlock returnIntBlock;/// 返回值为Int的回调
+@property(nonatomic,copy,nullable)JobsReturnByUnsignedIntBlock returnUnsignedIntBlock;/// 返回值为UnsignedInt的回调
+@property(nonatomic,copy,nullable)JobsReturnByFloatBlock returnFloatBlock;/// 返回值为Float的回调
+@property(nonatomic,copy,nullable)JobsReturnByDoubleBlock returnDoubleBlock;/// 返回值为Double的回调
+@property(nonatomic,copy,nullable)JobsReturnByCharBlock returnCharBlock;/// 返回值为Char的回调
+@property(nonatomic,copy,nullable)JobsReturnByUnsignedCharBlock returnUnsignedCharBlock;/// 返回值为UnsignedChar的回调
+@property(nonatomic,copy,nullable)JobsReturnByShortBlock returnShortBlock;/// 返回值为Short的回调
+@property(nonatomic,copy,nullable)JobsReturnByUnsignedShortBlock returnUnsignedShortBlock;/// 返回值为UnsignedShort的回调
+@property(nonatomic,copy,nullable)JobsReturnByLongBlock returnLongBlock;/// 返回值为Long的回调
+@property(nonatomic,copy,nullable)JobsReturnByUnsignedLongBlock returnUnsignedLongBlock;/// 返回值为UnsignedLong的回调
+@property(nonatomic,copy,nullable)JobsReturnByUnsignedLongLongBlock returnUnsignedLongLongBlock;/// 返回值为UnsignedLongLong的回调
 -(void)actionReturnObjectBlock:(JobsReturnIDByIDBlock _Nullable)returnObjectBlock;
 -(void)actionReturnNSIntegerBlock:(JobsReturnByNSIntegerBlock _Nullable)returnNSIntegerBlock;
 -(void)actionReturnNSUIntegerBlock:(JobsReturnByNSUIntegerBlock _Nullable)returnNSUIntegerBlock;
@@ -146,145 +153,145 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)actionReturnUnsignedLongBlock:(JobsReturnByUnsignedLongBlock _Nullable)returnUnsignedLongBlock;
 -(void)actionReturnUnsignedLongLongBlock:(JobsReturnByUnsignedLongLongBlock _Nullable)returnUnsignedLongLongBlock;
 
-@property(nonatomic,assign)JobsReturnIDBySelectorBlock returnIDBySelectorBlock;
+@property(nonatomic,copy,nullable)JobsReturnIDBySelectorBlock returnIDBySelectorBlock;
 -(void)actionReturnIDBySelectorBlock:(JobsReturnIDBySelectorBlock _Nullable)returnIDBySelectorBlock;
 
 @end
 
 NS_ASSUME_NONNULL_END
 /// NSClassFromString
-static inline BOOL KindOfClsFromStr(id _Nonnull data, NSString *_Nonnull ClsName) {
+NS_INLINE BOOL KindOfClsFromStr(id _Nonnull data, NSString *_Nonnull ClsName) {
     return [data isKindOfClass:NSClassFromString(ClsName)];
 }
 /// UIButton
-static inline BOOL KindOfBtnCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfBtnCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UIButton");
 }
 /// BaseButton
-static inline BOOL KindOfBaseButtonCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfBaseButtonCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"BaseButton");
 }
 /// UIView
-static inline BOOL KindOfViewCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfViewCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UIView");
 }
 /// NSString
-static inline BOOL KindOfStrCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfStrCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSString");
 }
 /// UIViewController
-static inline BOOL KindOfVCCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfVCCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UIViewController");
 }
 /// NSData
-static inline BOOL KindOfDataCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfDataCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSData");
 }
 /// NSMutableArray
-static inline BOOL KindOfMutArrCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfMutArrCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSMutableArray");
 }
 /// NSArray
-static inline BOOL KindOfArrCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfArrCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSArray");
 }
 /// NSMutableDictionary
-static inline BOOL KindOfMutDicCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfMutDicCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSMutableDictionary");
 }
 /// NSDictionary
-static inline BOOL KindOfDicCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfDicCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSDictionary");
 }
 /// NSJSONSerialization
-static inline BOOL KindOfJSONerializationCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfJSONerializationCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSJSONSerialization");
 }
 /// NSMutableString
-static inline BOOL KindOfMutStrCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfMutStrCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSMutableString");
 }
 /// UIImage
-static inline BOOL KindOfImageCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfImageCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UIImage");
 }
 /// UITabBarController
-static inline BOOL KindOfTabBarCtrlCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfTabBarCtrlCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UITabBarController");
 }
 /// UINavigationController
-static inline BOOL KindOfNavCtrlCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfNavCtrlCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UINavigationController");
 }
 /// UIScrollView
-static inline BOOL KindOfScrollViewCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfScrollViewCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UIScrollView");
 }
 /// NSNumber
-static inline BOOL KindOfNumberCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfNumberCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSNumber");
 }
 /// NSSet
-static inline BOOL KindOfSetCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfSetCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSSet");
 }
 /// NSMutableSet
-static inline BOOL KindOfMutSetCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfMutSetCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSMutableSet");
 }
 /// UIViewModel
-static inline BOOL KindOfViewModelCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfViewModelCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UIViewModel");
 }
 /// UIButtonModel
-static inline BOOL KindOfButtonModelCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfButtonModelCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UIButtonModel");
 }
 /// UILabel
-static inline BOOL KindOfLabCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfLabCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UILabel");
 }
 /// UICollectionViewCell
-static inline BOOL KindOfCollectionViewCellCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfCollectionViewCellCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UICollectionViewCell");
 }
 /// UITableViewCell
-static inline BOOL KindOfTableViewCellCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfTableViewCellCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UITableViewCell");
 }
 /// UITableView
-static inline BOOL KindOfTableViewCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfTableViewCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UITableView");
 }
 /// UICollectionView
-static inline BOOL KindOfCollectionViewCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfCollectionViewCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UICollectionView");
 }
 /// NSError
-static inline BOOL KindOfErrorCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfErrorCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"NSError");
 }
 /// PHAsset
-static inline BOOL KindOfPHAssetCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfPHAssetCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"PHAsset");
 }
 /// UITextField
-static inline BOOL KindOfTextFieldCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfTextFieldCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UITextField");
 }
 /// LZTabBarItem
-static inline BOOL KindOfLZTabBarItemCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfLZTabBarItemCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"LZTabBarItem");
 }
 /// UIControl
-static inline BOOL KindOfCtrlCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfCtrlCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UIControl");
 }
 /// UITextItem
-static inline BOOL KindOfTextItemCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfTextItemCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"UITextItem");
 }
 /// YTKAnimatingRequestAccessory
-static inline BOOL KindOfYTKAnimatingRequestAccessoryCls(id _Nonnull data) {
+NS_INLINE BOOL KindOfYTKAnimatingRequestAccessoryCls(id _Nonnull data) {
     return KindOfClsFromStr(data, @"YTKAnimatingRequestAccessory");
 }

@@ -27,7 +27,7 @@
 
 #pragma mark —— 关于window的获取
 /// 获取 iOS 13 之前的 window
-static inline UIWindow *_Nullable jobsGetMainWindowBefore13(void){
+NS_INLINE UIWindow *_Nullable jobsGetMainWindowBefore13(void){
     UIWindow *window = nil;
     /// 使用UIApplication的windows属性来获取当前窗口：
     /// 这种方式获取窗口的方式在iOS 13之前是常用的做法
@@ -44,7 +44,7 @@ static inline UIWindow *_Nullable jobsGetMainWindowBefore13(void){
     }return window;
 }
 /// 获取 iOS 13 之后的 window
-static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
+NS_INLINE UIWindow *_Nullable jobsGetMainWindowAfter13(void){
     UIWindow *mainWindow = nil;
     if (@available(iOS 13.0, *)) {
         for (UIWindowScene *windowScene in UIApplication.sharedApplication.connectedScenes) {
@@ -65,7 +65,7 @@ static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
     }return mainWindow;
 }
 
-//static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
+//NS_INLINE UIWindow *_Nullable jobsGetMainWindowAfter13(void){
 //    UIWindow *window = nil;
 //    /// 使用UIWindowScene（需要iOS 13及更高版本）来获取主窗口
 //    /// iOS 13及更高版本中才会被执行
@@ -78,7 +78,7 @@ static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
 //    }return window;
 //}
 
-static inline UIWindow *_Nullable jobsGetMainWindow(void){
+NS_INLINE UIWindow *_Nullable jobsGetMainWindow(void){
     UIWindow *mainWindowBefore13 = jobsGetMainWindowBefore13();
     UIWindow *mainWindowAfter13 = jobsGetMainWindowAfter13();
     UIWindow *resultWindow = UIDevice.currentDevice.systemVersion.floatValue >= 13.0 ? mainWindowAfter13 : mainWindowBefore13;
@@ -90,13 +90,13 @@ static inline UIWindow *_Nullable jobsGetMainWindow(void){
 }
 
 /// 获取一个有Size的window
-static inline UIWindow *_Nullable jobsGetMainWindowWithSize(void){
+NS_INLINE UIWindow *_Nullable jobsGetMainWindowWithSize(void){
     UIWindow *window = nil;
     window = NSObject.mainWindow();
     return CGSizeEqualToSize(CGSizeZero, window.Size) ? jobsGetMainWindowBefore13() : window;
 }
 /// 获取 keyWindowScene iOS 13版本后可用
-static inline UIWindowScene *_Nullable jobsGetkeyWindowScene(void) {
+NS_INLINE UIWindowScene *_Nullable jobsGetkeyWindowScene(void) {
     if(@available(iOS 13.0, *)){
         UIWindowScene *keyWindowScene = (UIWindowScene *)UIApplication.sharedApplication.connectedScenes.allObjects.firstObject;
         return keyWindowScene;
@@ -121,7 +121,7 @@ static inline UIWindowScene *_Nullable jobsGetkeyWindowScene(void) {
  */
 /// 判断目标iPhone是否是刘海屏系列：   X系列（X/XS/XR/XS Max)、11系列（11、pro、pro max）
 /// @return YES 是该系列 NO 不是该系列
-static inline BOOL isiPhoneX_series(void) {
+NS_INLINE BOOL isiPhoneX_series(void) {
     BOOL iPhoneXSeries = NO;
     if(UIDevice.currentDevice.systemVersion.floatValue >= 13.0){
         NSArray<UIWindow *> *sceneWindows = jobsGetkeyWindowScene().windows;
@@ -137,7 +137,7 @@ static inline BOOL isiPhoneX_series(void) {
 }
 #pragma mark —— 获取 AppDelegate 和 SceneDelegate
 /// AppDelegate.sharedManager
-static inline id<UIApplicationDelegate> _Nullable getSysAppDelegate(void){
+NS_INLINE id<UIApplicationDelegate> _Nullable getSysAppDelegate(void){
     return UIApplication.sharedApplication.delegate;
 }
 /**
@@ -154,20 +154,20 @@ static inline id<UIApplicationDelegate> _Nullable getSysAppDelegate(void){
      
      获取方式：extern SceneDelegate *sceneDelegate;
  */
-static inline id<UIWindowSceneDelegate> _Nullable getSysSceneDelegate(void){
+NS_INLINE id<UIWindowSceneDelegate> _Nullable getSysSceneDelegate(void){
     id sceneDelegate = nil;
     if (@available(iOS 13.0, *)) {
         sceneDelegate = UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
     }return sceneDelegate;
 }
 #pragma mark —— 弹出提示
-static inline void toast(NSString *_Nullable msg){
+NS_INLINE void toast(NSString *_Nullable msg){
     if(!msg || ![msg isKindOfClass:NSString.class]){
         msg = JobsInternationalization(@"数据错误");
     }NSObject.jobsToastMsg(JobsInternationalization(msg));
 }
 
-static inline void toastErr(NSString *_Nullable msg){
+NS_INLINE void toastErr(NSString *_Nullable msg){
     if(!msg || ![msg isKindOfClass:NSString.class]){
         msg = JobsInternationalization(@"数据错误");
     }NSObject.jobsToastErrMsg(JobsInternationalization(msg));

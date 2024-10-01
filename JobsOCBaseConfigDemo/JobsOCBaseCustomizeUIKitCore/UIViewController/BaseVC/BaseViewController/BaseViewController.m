@@ -109,27 +109,24 @@ BaseViewControllerProtocol_synthesize
         [self.view insertSubview:_bgImageView atIndex:0];
     }return _bgImageView;
 }
+/// 在具体的子类去实现，以覆盖父类的方法实现
 //@synthesize backBtnModel = _backBtnModel;
 //-(UIButtonModel *)backBtnModel{
 //    if(!_backBtnModel){
-//        @jobs_weakify(self)
-//        _backBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+//        @jobs_strongify(self)
+//        _backBtnModel = self.makeBackBtnModel;
+//        _backBtnModel.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
+//                                                       id _Nullable arg) {
+//            NSLog(@"按钮的长按事件触发");
+//            return nil;
+//        };
+//        _backBtnModel.clickEventBlock = ^id(BaseButton *x){
 //            @jobs_strongify(self)
-//            data = self.makeBackBtnModel;
-//            @jobs_weakify(self)
-//            data.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
-//                                                  id _Nullable arg) {
-//                NSLog(@"按钮的长按事件触发");
-//                return nil;
-//            };
-//            data.clickEventBlock = ^id(BaseButton *x){
-//                @jobs_strongify(self)
-//                if (self.objectBlock) self.objectBlock(x);
-//                self.showTabBar(YES);
-//                self.backTo(2);
-//                return nil;
-//            };
-//        });
+//            if (self.objectBlock) self.objectBlock(x);
+//            self.showTabBar(YES);
+//            self.backTo(2);
+//            return nil;
+//        };
 //    }return _backBtnModel;
 //}
 

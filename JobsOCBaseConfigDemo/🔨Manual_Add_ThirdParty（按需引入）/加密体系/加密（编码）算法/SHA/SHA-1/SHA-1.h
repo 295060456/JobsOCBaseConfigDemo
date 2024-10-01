@@ -15,7 +15,7 @@
 /// @param isLowercase 是否大小写
 /// @param bit 加密长度
 /// @param useBase64 是否用Base64 进行二次加密
-static inline NSString *sha_1(NSString *string,
+NS_INLINE NSString *sha_1(NSString *string,
                                     BOOL isLowercase,
                                     int bit,
                                     BOOL useBase64){

@@ -34,7 +34,7 @@ UITextModelProtocol
 
 NS_ASSUME_NONNULL_END
 
-static inline __kindof UITextModel *_Nonnull jobsMakeTextModel(jobsByTextModelBlock _Nonnull block){
+NS_INLINE __kindof UITextModel *_Nonnull jobsMakeTextModel(jobsByTextModelBlock _Nonnull block){
     UITextModel *data = UITextModel.alloc.init;
     if (block) block(data);
     return data;

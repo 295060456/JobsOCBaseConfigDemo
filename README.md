@@ -902,7 +902,7 @@ NSObject <|-- BaseProtocol
   * 寻找此设备真正的高
     
     ```objective-c
-    static inline CGFloat JobsDeviceRealHeight(void){
+    NS_INLINE CGFloat JobsDeviceRealHeight(void){
         return MAX(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
     }
     ```
@@ -910,7 +910,7 @@ NSObject <|-- BaseProtocol
   * 寻找此设备真正的宽
     
     ```objective-c
-    static inline CGFloat JobsDeviceRealWidth(void){
+    NS_INLINE CGFloat JobsDeviceRealWidth(void){
         return MIN(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
     }
     ```
@@ -918,7 +918,7 @@ NSObject <|-- BaseProtocol
   * 寻找当前屏幕真正的高
     
     ```objective-c
-    static inline CGFloat JobsRealHeight(void){
+    NS_INLINE CGFloat JobsRealHeight(void){
         return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsDeviceRealWidth() :JobsDeviceRealHeight();
     }
     ```
@@ -926,7 +926,7 @@ NSObject <|-- BaseProtocol
   * 寻找当前屏幕真正的宽
 
     ```objective-c
-    static inline CGFloat JobsRealWidth(void){
+    NS_INLINE CGFloat JobsRealWidth(void){
         return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscape ? JobsDeviceRealHeight() :JobsDeviceRealWidth();
     }
     ```
@@ -942,13 +942,13 @@ NSObject <|-- BaseProtocol
 * **全局比例尺**
   
   * ```objective-c
-    static inline CGFloat JobsWidth(CGFloat width){
+    NS_INLINE CGFloat JobsWidth(CGFloat width){
         return (JobsDeviceRealWidth() / 375) * width;
     }
     ```
     
   * ```objective-c
-    static inline CGFloat JobsHeight(CGFloat height){
+    NS_INLINE CGFloat JobsHeight(CGFloat height){
         return (JobsDeviceRealHeight() / 743) * height;
     }
     ```
@@ -958,7 +958,7 @@ NSObject <|-- BaseProtocol
   * 顶部的安全距离
   
     ```objective-c
-    static inline CGFloat JobsTopSafeAreaHeight(void){
+    NS_INLINE CGFloat JobsTopSafeAreaHeight(void){
         if (@available(iOS 11.0, *)) {
             return NSObject.mainWindow().safeAreaInsets.top;
         } else return 0.f;
@@ -968,7 +968,7 @@ NSObject <|-- BaseProtocol
   * 底部的安全距离：全面屏手机为**34pt**，非全面屏手机为**0pt** 
   
     ```objective-c
-    static inline CGFloat JobsBottomSafeAreaHeight(void){
+    NS_INLINE CGFloat JobsBottomSafeAreaHeight(void){
         if (@available(iOS 11.0, *)) {
             return NSObject.mainWindow().safeAreaInsets.bottom;
         } else return 0.f;
@@ -977,10 +977,10 @@ NSObject <|-- BaseProtocol
   
 * **状态栏高度**
   
-  * `static inline CGFloat JobsStatusBarHeightByAppleIncData(void) `
+  * `NS_INLINE CGFloat JobsStatusBarHeightByAppleIncData(void) `
   
   * ```objective-c
-    static inline CGFloat JobsRectOfStatusbar(void){
+    NS_INLINE CGFloat JobsRectOfStatusbar(void){
         SuppressWdeprecatedDeclarationsWarning(
             if (@available(iOS 13.0, *)){
                 UIStatusBarManager *statusBarManager = NSObject.mainWindow().windowScene.statusBarManager;
@@ -990,7 +990,7 @@ NSObject <|-- BaseProtocol
     ```
   
   * ```objective-c
-    static inline CGFloat JobsStatusBarHeight(void){
+    NS_INLINE CGFloat JobsStatusBarHeight(void){
         if (@available(iOS 11.0, *)) {
             return NSObject.mainWindow().safeAreaInsets.top;
         } else return JobsRectOfStatusbar();
@@ -999,7 +999,7 @@ NSObject <|-- BaseProtocol
   
 * **导航栏高度**
   * ```objective-c
-    static inline CGFloat JobsNavigationHeight(UINavigationController * _Nullable navigationController){
+    NS_INLINE CGFloat JobsNavigationHeight(UINavigationController * _Nullable navigationController){
         if (navigationController) {
             return navigationController.navigationBar.frame.size.height;
         }else return 44.f;
@@ -1010,7 +1010,7 @@ NSObject <|-- BaseProtocol
   * ```objective-c
     /// 非刘海屏：状态栏高度(20.f) + 导航栏高度(44.f) = 64.f
     /// 刘海屏系列：状态栏高度(44.f) + 导航栏高度(44.f) = 88.f
-    static inline CGFloat JobsNavigationBarAndStatusBarHeight(UINavigationController * _Nullable navigationController){
+    NS_INLINE CGFloat JobsNavigationBarAndStatusBarHeight(UINavigationController * _Nullable navigationController){
         return JobsStatusBarHeight() + JobsNavigationHeight(navigationController);
     }
     ```
@@ -1018,7 +1018,7 @@ NSObject <|-- BaseProtocol
 * **TabBar高度**：全面屏手机比普通手机多34的安全区域
   
   * ```objective-c
-    static inline CGFloat JobsTabBarHeight(UITabBarController * _Nullable tabBarController){
+    NS_INLINE CGFloat JobsTabBarHeight(UITabBarController * _Nullable tabBarController){
         //因为tabbar可以自定义高度，所以这个地方返回系统默认的49像素的高度
         if (tabBarController) {
             return tabBarController.tabBar.frame.size.height;
@@ -1030,7 +1030,7 @@ NSObject <|-- BaseProtocol
   
     ```objective-c
     /// tabbar高度：【包括了底部安全区域的TabBar高度，一般用这个】
-    static inline CGFloat JobsTabBarHeightByBottomSafeArea(UITabBarController * _Nullable tabBarController){
+    NS_INLINE CGFloat JobsTabBarHeightByBottomSafeArea(UITabBarController * _Nullable tabBarController){
         return JobsTabBarHeight(tabBarController) + JobsBottomSafeAreaHeight();
     }
     ```
@@ -1039,7 +1039,7 @@ NSObject <|-- BaseProtocol
   
   * ```objective-c
     #pragma mark ——  除开 tabBarController 和 navigationController 的内容可用区域的大小
-    static inline CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBarController,
+    NS_INLINE CGFloat JobsContentAreaHeight(UITabBarController * _Nullable tabBarController,
                                                 UINavigationController * _Nullable navigationController){
         CGFloat tabBarHeightByBottomSafeArea = JobsTabBarHeightByBottomSafeArea(tabBarController);
         CGFloat navigationBarAndStatusBarHeight = JobsNavigationBarAndStatusBarHeight(navigationController);
@@ -1079,7 +1079,7 @@ NSObject <|-- BaseProtocol
 * 判空（因为nil是不能唤起方法的，为了防止字符串是nil，所以此方法必须是类方法或者是内敛函数）
 
   ```objective-c
-  static inline BOOL isNull(NSString * _Nullable string){
+  NS_INLINE BOOL isNull(NSString * _Nullable string){
       if(string == nil) return YES;
       if(string == NULL) return YES;
       if((NSNull *)string == NSNull.null) return YES;
@@ -1103,7 +1103,7 @@ NSObject <|-- BaseProtocol
  * 有价值的字符串：`nil`、`NSNull`、`@”“`、`@”   “`均为无意义的字符串
 
    ```objective-c
-   static inline BOOL isValue(NSString * _Nullable string){
+   NS_INLINE BOOL isValue(NSString * _Nullable string){
        return !isNull(string);
    }
    ```
@@ -1115,31 +1115,31 @@ NSObject <|-- BaseProtocol
 * 基本数据类型转化成字符串类型
 
   ```objective-c
-  static inline NSString * _Nonnull toStringByInt(int i){
+  NS_INLINE NSString * _Nonnull toStringByInt(int i){
       return [NSString stringWithFormat:@"%d",i];
   }
   
-  static inline NSString * _Nonnull toStringByFloat(float i){
+  NS_INLINE NSString * _Nonnull toStringByFloat(float i){
       return [NSString stringWithFormat:@"%f",i];
   }
   
-  static inline NSString * _Nonnull toStringByDouble(double i){
+  NS_INLINE NSString * _Nonnull toStringByDouble(double i){
       return [NSString stringWithFormat:@"%f",i];
   }
   
-  static inline NSString * _Nonnull toStringByNSInteger(NSInteger i){
+  NS_INLINE NSString * _Nonnull toStringByNSInteger(NSInteger i){
       return [NSString stringWithFormat:@"%ld",(long)i];
   }
   
-  static inline NSString * _Nonnull toStringByNSUInteger(NSUInteger i){
+  NS_INLINE NSString * _Nonnull toStringByNSUInteger(NSUInteger i){
       return [NSString stringWithFormat:@"%lu",(unsigned long)i];
   }
   
-  static inline NSString * _Nonnull toStringByLong(long i){
+  NS_INLINE NSString * _Nonnull toStringByLong(long i){
       return [NSString stringWithFormat:@"%ld",i];
   }
   
-  static inline NSString * _Nonnull toStringByLongLong(long long i){
+  NS_INLINE NSString * _Nonnull toStringByLongLong(long long i){
       return [NSString stringWithFormat:@"%lld",i];
   }
   ```
@@ -1828,7 +1828,7 @@ NSObject <|-- BaseProtocol
   * 获取<font color=blue>**iOS 13**</font>之前的 **window**
 
     ```objective-c
-    static inline UIWindow *_Nullable jobsGetMainWindowBefore13(void){
+    NS_INLINE UIWindow *_Nullable jobsGetMainWindowBefore13(void){
         UIWindow *window = nil;
         /// 使用UIApplication的windows属性来获取当前窗口：
         /// 这种方式获取窗口的方式在iOS 13之前是常用的做法
@@ -1849,7 +1849,7 @@ NSObject <|-- BaseProtocol
   * 获取<font color=blue>**iOS 13**</font>之后的 **window**
 
     ```objective-c
-    static inline UIWindow *_Nullable jobsGetMainWindowAfter13(void){
+    NS_INLINE UIWindow *_Nullable jobsGetMainWindowAfter13(void){
         UIWindow *mainWindow = nil;
         if (@available(iOS 13.0, *)) {
             for (UIWindowScene* windowScene in UIApplication.sharedApplication.connectedScenes) {
@@ -1893,7 +1893,7 @@ NSObject <|-- BaseProtocol
   * 获取一个有Size的 **window**
 
     ```objective-c
-    static inline UIWindow *_Nullable jobsGetMainWindowWithSize(void){
+    NS_INLINE UIWindow *_Nullable jobsGetMainWindowWithSize(void){
         UIWindow *window = nil;
         window = NSObject.mainWindow();
         return CGSizeEqualToSize(CGSizeZero, window.size) ? jobsGetMainWindowBefore13() : window;
@@ -1903,7 +1903,7 @@ NSObject <|-- BaseProtocol
   * 获取 **keyWindowScene**<font color=blue>**iOS 13**</font>版本后可用
 
     ```objective-c
-    static inline UIWindowScene *_Nullable jobsGetkeyWindowScene(void) {
+    NS_INLINE UIWindowScene *_Nullable jobsGetkeyWindowScene(void) {
         if(@available(iOS 13.0, *)){
             UIWindowScene *keyWindowScene = (UIWindowScene *)UIApplication.sharedApplication.connectedScenes.allObjects.firstObject;
             return keyWindowScene;
@@ -1915,7 +1915,7 @@ NSObject <|-- BaseProtocol
 * 寻找**AppDelegate**
 
   * ```objective-c
-    static inline id<UIApplicationDelegate> _Nullable getSysAppDelegate(void){
+    NS_INLINE id<UIApplicationDelegate> _Nullable getSysAppDelegate(void){
         return UIApplication.sharedApplication.delegate;
     }
     ```
@@ -1934,7 +1934,7 @@ NSObject <|-- BaseProtocol
 * 寻找**SceneDelegate**
 
   * ```objective-c
-    static inline id _Nullable getSysSceneDelegate(void){
+    NS_INLINE id _Nullable getSysSceneDelegate(void){
         id sceneDelegate = nil;
         if (@available(iOS 13.0, *)) {
             sceneDelegate = UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
@@ -3530,7 +3530,7 @@ static const uint32_t kSequenceBits = 12;
 
   ```objective-c
   /// 可变数组的方便调用
-  static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutableArrayBlock _Nonnull block){
+  NS_INLINE __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutableArrayBlock _Nonnull block){
       NSMutableArray *data = NSMutableArray.array;
       if (block) block(data);
       return data;
@@ -3559,7 +3559,7 @@ static const uint32_t kSequenceBits = 12;
 
   ```objective-c
   /// 可变集合的方便调用
-  static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull block){
+  NS_INLINE __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull block){
       NSMutableSet *data = NSMutableSet.set;
       if (block) block(data);
       return mutableSet;
@@ -3752,7 +3752,7 @@ static const uint32_t kSequenceBits = 12;
   * 如果你希望在函数内部能够修改外部变量的值，你可以使用指针的指针（`UIView  **` ），传递变量的地址来改变原变量的值。
   
     ```objective-c
-    static inline void destroyView(__strong __kindof UIView * _Nonnull * _Nonnull view) {
+    NS_INLINE void destroyView(__strong __kindof UIView * _Nonnull * _Nonnull view) {
         [*view removeFromSuperview];
         *view = nil;
     }
@@ -4938,7 +4938,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     关注实现类：[<font color=blue>**`MacroDef_Func.h`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h)
     
     ```objective-c
-    static inline void toast(NSString *_Nullable msg){
+    NS_INLINE void toast(NSString *_Nullable msg){
         if(!msg || ![msg isKindOfClass:NSString.class]){
             msg = JobsInternationalization(@"数据错误");
         }NSObject.jobsToastMsg(JobsInternationalization(msg));
@@ -5759,42 +5759,42 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * ```objective-c
   #pragma mark —— 创建不可变富文本
-  static inline NSAttributedString *_Nonnull JobsAttributedString(NSString *_Nonnull data) {
+  NS_INLINE NSAttributedString *_Nonnull JobsAttributedString(NSString *_Nonnull data) {
       if (!data) data = @"";
       return [NSAttributedString.alloc initWithString:data];
   }
   
-  static inline NSAttributedString *_Nonnull JobsAttributedStringByAttributes(NSString *_Nonnull data,
+  NS_INLINE NSAttributedString *_Nonnull JobsAttributedStringByAttributes(NSString *_Nonnull data,
                                                                                NSDictionary<NSAttributedStringKey, id> *_Nullable attrs){
       if (!data) data = @"";
       return [NSAttributedString.alloc initWithString:data attributes:attrs];
   }
   
-  static inline NSAttributedString *_Nonnull JobsAttributedStringByAttributeString(NSAttributedString *_Nullable data){
+  NS_INLINE NSAttributedString *_Nonnull JobsAttributedStringByAttributeString(NSAttributedString *_Nullable data){
       if (!data) data = JobsAttributedString(@"");
       return [NSAttributedString.alloc initWithAttributedString:data];
   }
   
-  static inline NSAttributedString *_Nonnull JobsAttributedStringByTextAttachment(NSTextAttachment *_Nonnull data) {
+  NS_INLINE NSAttributedString *_Nonnull JobsAttributedStringByTextAttachment(NSTextAttachment *_Nonnull data) {
       if (!data) data = NSTextAttachment.alloc.init;
       return [NSAttributedString attributedStringWithAttachment:data];
   }
   #pragma mark —— 创建可变富文本
-  static inline NSMutableAttributedString *_Nonnull toMutAttributedString(NSAttributedString *_Nonnull data) {
+  NS_INLINE NSMutableAttributedString *_Nonnull toMutAttributedString(NSAttributedString *_Nonnull data) {
       if(!data) data = JobsAttributedString(@"");
       return [NSMutableAttributedString.alloc initWithAttributedString:data];
   }
   
-  static inline NSMutableAttributedString *_Nonnull JobsMutAttributedStringByAttributes(NSString *_Nonnull data,
+  NS_INLINE NSMutableAttributedString *_Nonnull JobsMutAttributedStringByAttributes(NSString *_Nonnull data,
                                                                                NSDictionary<NSAttributedStringKey, id> * _Nullable attrs){
       return toMutAttributedString(JobsAttributedStringByAttributes(data,attrs));
   }
   
-  static inline NSMutableAttributedString *_Nonnull JobsMutAttributedString(NSString *_Nonnull data) {
+  NS_INLINE NSMutableAttributedString *_Nonnull JobsMutAttributedString(NSString *_Nonnull data) {
       return toMutAttributedString(JobsAttributedString(data));
   }
   
-  static inline NSMutableAttributedString *_Nonnull JobsMutAttributedStringByTextAttachment(NSTextAttachment *_Nonnull data) {
+  NS_INLINE NSMutableAttributedString *_Nonnull JobsMutAttributedStringByTextAttachment(NSTextAttachment *_Nonnull data) {
       if (!data) data = NSTextAttachment.alloc.init;
       return toMutAttributedString(JobsAttributedStringByTextAttachment(data));
   }
@@ -6863,8 +6863,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     //  data.itemSize = CGSizeMake(100, 100);  // 设置单元格尺寸
     //  data.minimumLineSpacing = 10;  // 设置行间距
     //  data.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
-  //  data.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
-  }));
+    //  data.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
+    }));
   ```
   
   * 在`UICollectionViewFlowLayout`和`UICollectionViewDelegateFlowLayout`协议方法中设置布局属性时，<font color=red>**`UICollectionViewDelegateFlowLayout`协议方法的优先级更高**</font>。也就是说，如果你同时在`UICollectionViewFlowLayout`对象和`UICollectionViewDelegateFlowLayout`方法中设置了布局属性，集合视图将优先使用`UICollectionViewDelegateFlowLayout`方法中提供的值
@@ -6911,8 +6911,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
             method_exchangeImplementations(originalMethod2, swizzledMethod2);
         });
     }
-    ```
-    
+  ```
+
     ```objective-c
     +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                              forIndexPath:(nonnull NSIndexPath *)indexPath{
@@ -11047,43 +11047,43 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 对于类的封装
 
   ```objective-c
-  static inline __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutArrayBlock _Nonnull block){
+  NS_INLINE __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutArrayBlock _Nonnull block){
       NSMutableArray *data = NSMutableArray.array;
       if (block) block(data);
       return data;
   }
   
-  static inline __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull block){
+  NS_INLINE __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull block){
       NSMutableSet *data = NSMutableSet.set;
       if (block) block(data);
       return data;
   }
   
-  static inline __kindof NSMutableDictionary *_Nonnull jobsMakeMutDic(jobsByMutableDictionarycBlock _Nonnull block){
+  NS_INLINE __kindof NSMutableDictionary *_Nonnull jobsMakeMutDic(jobsByMutableDictionarycBlock _Nonnull block){
       NSMutableDictionary *data = NSMutableDictionary.dictionary;
       if (block) block(data);
       return data;
   }
   
-  static inline UICollectionViewFlowLayout *_Nonnull jobsMakeCollectionViewFlowLayout(jobsByCollectionViewFlowLayoutBlock _Nonnull block){
+  NS_INLINE UICollectionViewFlowLayout *_Nonnull jobsMakeCollectionViewFlowLayout(jobsByCollectionViewFlowLayoutBlock _Nonnull block){
       UICollectionViewFlowLayout *data = UICollectionViewFlowLayout.alloc.init;
       if (block) block(data);
       return data;
   }
   
-  static inline NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
+  NS_INLINE NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
       NSMutableAttributedString *data = NSMutableAttributedString.alloc.init;
       if (block) block(data);
       return data;
   }
   
-  static inline NSTextAttachment *_Nonnull jobsMakeTextAttachment(jobsByTextAttachmentBlock _Nonnull block){
+  NS_INLINE NSTextAttachment *_Nonnull jobsMakeTextAttachment(jobsByTextAttachmentBlock _Nonnull block){
       NSTextAttachment *data = NSTextAttachment.alloc.init;
       if (block) block(data);
       return data;
   }
   
-  static inline NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByParagraphStyleBlock _Nonnull block){
+  NS_INLINE NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByParagraphStyleBlock _Nonnull block){
       NSMutableParagraphStyle *data = NSMutableParagraphStyle.alloc.init;
       /**
        
@@ -11113,7 +11113,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   ```objective-c
   #pragma mark —— UIEdgeInsets
-  static inline UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+  NS_INLINE UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
       JobsLocationModel *data = JobsLocationModel.alloc.init;
       if (block) block(data);
       return UIEdgeInsetsMake(data.jobsTop,
@@ -11122,7 +11122,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                               data.jobsRight);
   }
   /// 构建一个四边距离相等的 UIEdgeInsets
-  static inline UIEdgeInsets jobsSameEdgeInset(CGFloat insets){
+  NS_INLINE UIEdgeInsets jobsSameEdgeInset(CGFloat insets){
       return jobsMakeEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
           data.jobsTop = insets;
           data.jobsLeft = insets;
@@ -11131,7 +11131,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       });
   }
   #pragma mark —— NSDirectionalEdgeInsets
-  static inline NSDirectionalEdgeInsets jobsMakeDirectionalEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+  NS_INLINE NSDirectionalEdgeInsets jobsMakeDirectionalEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
       JobsLocationModel *data = JobsLocationModel.alloc.init;
       if (block) block(data);
       return NSDirectionalEdgeInsetsMake(data.jobsTop,
@@ -11140,7 +11140,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                                          data.jobsRight);
   }
   /// 构建一个内边距相等的 NSDirectionalEdgeInsets
-  static inline NSDirectionalEdgeInsets jobsSameDirectionalEdgeInsets(CGFloat x){
+  NS_INLINE NSDirectionalEdgeInsets jobsSameDirectionalEdgeInsets(CGFloat x){
       return jobsMakeDirectionalEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
           data.jobsTop = x;
           data.jobsLeft = x;
@@ -11149,7 +11149,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       });
   }
   #pragma mark —— CGRect
-  static inline CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+  NS_INLINE CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
       JobsLocationModel *data = JobsLocationModel.alloc.init;
       if (block) block(data);
       return CGRectMake(data.jobsX,
@@ -11158,13 +11158,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                         data.jobsHeight);
   }
   #pragma mark —— CGPoint
-  static inline CGPoint jobsMakeCGPointByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+  NS_INLINE CGPoint jobsMakeCGPointByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
       JobsLocationModel *data = JobsLocationModel.alloc.init;
       if (block) block(data);
       return CGPointMake(data.jobsX, data.jobsY);
   }
   #pragma mark —— CGSize
-  static inline CGSize jobsMakeCGSizeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+  NS_INLINE CGSize jobsMakeCGSizeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
       JobsLocationModel *data = JobsLocationModel.alloc.init;
       if (block) block(data);
       return CGSizeMake(data.jobsWidth, data.jobsHeight);
@@ -11174,67 +11174,67 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 #### 42.2、封装自建Api
 
 ```objective-c
-static inline ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsByButtonTimerConfigModelBlock _Nonnull block){
+NS_INLINE ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsByButtonTimerConfigModelBlock _Nonnull block){
     ButtonTimerConfigModel *model = ButtonTimerConfigModel.alloc.init;
     if (block) block(model);
     return model;
 }
 
-static inline __kindof UIButtonModel *_Nonnull jobsMakeButtonModel(jobsByButtonModelBlock _Nonnull block){
+NS_INLINE __kindof UIButtonModel *_Nonnull jobsMakeButtonModel(jobsByButtonModelBlock _Nonnull block){
     UIButtonModel *data = UIButtonModel.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UITextModel *_Nonnull jobsMakeTextModel(jobsByTextModelBlock _Nonnull block){
+NS_INLINE __kindof UITextModel *_Nonnull jobsMakeTextModel(jobsByTextModelBlock _Nonnull block){
     UITextModel *data = UITextModel.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof UIViewModel *_Nonnull jobsMakeViewModel(jobsByViewModelBlock _Nonnull block){
+NS_INLINE __kindof UIViewModel *_Nonnull jobsMakeViewModel(jobsByViewModelBlock _Nonnull block){
     UIViewModel *data = UIViewModel.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof JobsParagraphStyle *_Nonnull jobsMakeParagraphStyler(jobsByParagraphStyleBlock _Nonnull block){
+NS_INLINE __kindof JobsParagraphStyle *_Nonnull jobsMakeParagraphStyler(jobsByParagraphStyleBlock _Nonnull block){
     JobsParagraphStyle *data = JobsParagraphStyle.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof JobsRichTextConfig *_Nonnull jobsMakeRichTextConfig(jobsByRichTextConfigBlock _Nonnull block){
+NS_INLINE __kindof JobsRichTextConfig *_Nonnull jobsMakeRichTextConfig(jobsByRichTextConfigBlock _Nonnull block){
     JobsRichTextConfig *data = JobsRichTextConfig.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof JobsTabBarItemConfig *_Nonnull jobsMakeTabBarItemConfig(jobsByTabBarItemConfigBlock _Nonnull block){
+NS_INLINE __kindof JobsTabBarItemConfig *_Nonnull jobsMakeTabBarItemConfig(jobsByTabBarItemConfigBlock _Nonnull block){
     JobsTabBarItemConfig *data = JobsTabBarItemConfig.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof LZTabBarConfig *_Nonnull jobsMakeLZTabBarConfig(jobsByLZTabBarConfigBlock _Nonnull block){
+NS_INLINE __kindof LZTabBarConfig *_Nonnull jobsMakeLZTabBarConfig(jobsByLZTabBarConfigBlock _Nonnull block){
     LZTabBarConfig *data = LZTabBarConfig.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof MJRefreshConfigModel *_Nonnull jobsMakeRefreshConfigModel(jobsByRefreshConfigModelBlock _Nonnull block){
+NS_INLINE __kindof MJRefreshConfigModel *_Nonnull jobsMakeRefreshConfigModel(jobsByRefreshConfigModelBlock _Nonnull block){
     MJRefreshConfigModel *model = MJRefreshConfigModel.alloc.init;
     if (block) block(model);
     return model;
 }
 
-static inline __kindof JobsParagraphStyleModel *_Nonnull jobsMakeParagraphStyleModel(jobsByParagraphStyleModelBlock _Nonnull block){
+NS_INLINE __kindof JobsParagraphStyleModel *_Nonnull jobsMakeParagraphStyleModel(jobsByParagraphStyleModelBlock _Nonnull block){
     JobsParagraphStyleModel *data = JobsParagraphStyleModel.alloc.init;
     if (block) block(data);
     return data;
 }
 
-static inline __kindof MasonryModel *_Nonnull jobsMakeMasonryModel(jobsByMasonryModelBlock _Nonnull block){
+NS_INLINE __kindof MasonryModel *_Nonnull jobsMakeMasonryModel(jobsByMasonryModelBlock _Nonnull block){
     MasonryModel *data = MasonryModel.alloc.init;
     if (block) block(data);
     return data;

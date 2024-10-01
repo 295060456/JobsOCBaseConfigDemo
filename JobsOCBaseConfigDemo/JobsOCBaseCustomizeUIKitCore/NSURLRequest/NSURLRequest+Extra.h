@@ -15,7 +15,7 @@
 #define PATCHMethod httpMethod(YTKRequestMethodPATCH);
 #define HEADMethod httpMethod(YTKRequestMethodHEAD);
 
-static inline NSString *httpMethod(YTKRequestMethod method){
+NS_INLINE NSString *httpMethod(YTKRequestMethod method){
     switch (method) {
         case YTKRequestMethodGET:{
             return @"GET";

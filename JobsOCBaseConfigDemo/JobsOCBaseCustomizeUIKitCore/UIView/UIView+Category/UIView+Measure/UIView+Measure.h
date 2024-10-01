@@ -14,13 +14,13 @@
 
 @class UIViewModel;
 
-static inline CGRect exchangeWidthAndHeight(CGRect frame){
+NS_INLINE CGRect exchangeWidthAndHeight(CGRect frame){
     CGFloat width = frame.size.width;
     CGFloat height = frame.size.height;
     return CGRectMake(frame.origin.x, frame.origin.y, height, width);
 }
 
-static inline CGRect exchangeXAndY(CGRect frame){
+NS_INLINE CGRect exchangeXAndY(CGRect frame){
     CGFloat x = frame.origin.x;
     CGFloat y = frame.origin.y;
     return CGRectMake(y, x, frame.size.width, frame.size.height);

@@ -79,7 +79,7 @@ UIPictureAndBackGroundCorProtocol
 
 NS_ASSUME_NONNULL_END
 
-static inline ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsByButtonTimerConfigModelBlock _Nonnull block){
+NS_INLINE ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsByButtonTimerConfigModelBlock _Nonnull block){
     ButtonTimerConfigModel *model = ButtonTimerConfigModel.alloc.init;
     if (block) block(model);
     return model;

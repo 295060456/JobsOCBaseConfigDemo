@@ -10,7 +10,7 @@
 #import <CommonCrypto/CommonDigest.h>
 
 //亲测，可以适配iOS13并且兼容之前系统
-static inline NSString *SHA_256(NSString *string){
+NS_INLINE NSString *SHA_256(NSString *string){
     const char *s = [string cStringUsingEncoding:NSUTF8StringEncoding];
 
     NSData *keyData = [NSData dataWithBytes:s length:strlen(s)];

@@ -10,7 +10,7 @@
 #import <CommonCrypto/CommonCrypto.h>
 
 //DES 加密
-static inline NSData *encryptUseDES(NSData *plainText,
+NS_INLINE NSData *encryptUseDES(NSData *plainText,
                                     Byte *key){
     NSData *textData = plainText;
     NSUInteger dataLength = [textData length];
@@ -34,7 +34,7 @@ static inline NSData *encryptUseDES(NSData *plainText,
     }return nil;
 }
 //DES 解密
-static inline NSData *decrypUseDES(NSData *plainText,
+NS_INLINE NSData *decrypUseDES(NSData *plainText,
                                    Byte *key){
     NSData *cipherdata = plainText;
     unsigned char buffer[1024];

@@ -445,7 +445,7 @@ static dispatch_once_t static_codeViewOnceToken;
     self.tipLabel.attributedText = attStr;
 }
 /// 成功动画
-static inline CABasicAnimation *successAnimal(){
+NS_INLINE CABasicAnimation *successAnimal(){
     CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     animation.duration = 0.2;
     animation.autoreverses = YES;
@@ -455,7 +455,7 @@ static inline CABasicAnimation *successAnimal(){
     return animation;
 }
 /// 失败动画
-static inline CABasicAnimation *failAnimal(){
+NS_INLINE CABasicAnimation *failAnimal(){
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     [animation setDuration:0.08];
     animation.fromValue = @(-M_1_PI/16);
@@ -476,7 +476,7 @@ static inline CABasicAnimation *failAnimal(){
     });
 }
 /// 配置滑块贝塞尔曲线
-static inline UIBezierPath* getCodePath(){
+NS_INLINE UIBezierPath* getCodePath(){
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(0, 0)];
     [path addLineToPoint:CGPointMake(codeSize * 0.5 - WMZoffset,0)];

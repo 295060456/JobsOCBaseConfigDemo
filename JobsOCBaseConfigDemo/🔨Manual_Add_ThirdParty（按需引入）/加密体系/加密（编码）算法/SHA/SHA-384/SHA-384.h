@@ -6,7 +6,7 @@
 //  Copyright © 2020 Jobs. All rights reserved.
 //
 
-static inline NSString *SHA_384(NSString *string){
+NS_INLINE NSString *SHA_384(NSString *string){
     const char *cstr = [string cStringUsingEncoding:NSUTF8StringEncoding];
     NSData *data = [NSData dataWithBytes:cstr length:string.length];
     uint8_t digest[CC_SHA384_DIGEST_LENGTH];

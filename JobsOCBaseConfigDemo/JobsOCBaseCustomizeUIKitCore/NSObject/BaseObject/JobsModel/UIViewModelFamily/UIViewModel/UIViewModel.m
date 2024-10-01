@@ -25,9 +25,10 @@ UIViewModelProtocol_synthesize
 
 -(UITextModel *)backBtnTitleModel{
     if (!_backBtnTitleModel) {
-        _backBtnTitleModel = UITextModel.new;
-        _backBtnTitleModel.text = JobsInternationalization(@"Back");
-        _backBtnTitleModel.textCor = HEXCOLOR(0xD3B698);
+        _backBtnTitleModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
+            data.text = JobsInternationalization(@"Back");
+            data.textCor = HEXCOLOR(0xD3B698);
+        });
     }return _backBtnTitleModel;
 }
 
@@ -88,14 +89,18 @@ UIViewModelProtocol_synthesize
 
 -(NSIndexPath *)indexPath{
     if (!_indexPath) {
-        _indexPath = [NSIndexPath indexPathForRow:self.row
-                                        inSection:self.section];
+        @jobs_weakify(self)
+        _indexPath = jobsMakeIndexPathByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+            @jobs_strongify(self)
+            data.row = self.row;
+            data.section = self.section;
+        });
     }return _indexPath;
 }
 
 -(NSMutableArray *)jobsDataMutArr{
     if (!_jobsDataMutArr) {
-        _jobsDataMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _jobsDataMutArr = jobsMakeMutArr(^(NSMutableArray *_Nullable data) {
             
         });
     }return _jobsDataMutArr;
@@ -179,9 +184,9 @@ UIViewModelProtocol_synthesize
     }return _attributedText;
 }
 
--(NSMutableArray<JobsRichTextConfig *> *)titleAttributedDataMutArr{
+-(NSMutableArray<JobsRichTextConfig *>*)titleAttributedDataMutArr{
     if(!_titleAttributedDataMutArr){
-        _titleAttributedDataMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _titleAttributedDataMutArr = jobsMakeMutArr(^(NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
             
         });
     }return _titleAttributedDataMutArr;
@@ -211,17 +216,17 @@ UIViewModelProtocol_synthesize
     }return _selectedAttributedText;
 }
 
--(NSMutableArray<JobsRichTextConfig *> *)selectedTitleAttributedDataMutArr{
+-(NSMutableArray <JobsRichTextConfig *>*)selectedTitleAttributedDataMutArr{
     if(!_selectedTitleAttributedDataMutArr){
-        _selectedTitleAttributedDataMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _selectedTitleAttributedDataMutArr = jobsMakeMutArr(^(NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
             
         });
     }return _selectedTitleAttributedDataMutArr;
 }
 
--(NSMutableArray<JobsReturnIDByIDBlock> *)jobsBlockMutArr{
+-(NSMutableArray<JobsReturnIDByIDBlock>*)jobsBlockMutArr{
     if(!_jobsBlockMutArr){
-        _jobsBlockMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _jobsBlockMutArr = jobsMakeMutArr(^(NSMutableArray <JobsReturnIDByIDBlock>*_Nullable data) {
             
         });
     }return _jobsBlockMutArr;
@@ -229,7 +234,7 @@ UIViewModelProtocol_synthesize
 
 -(UIButtonModel *)buttonModel{
     if(!_buttonModel){
-        _buttonModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+        _buttonModel = jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
             
         });
     }return _buttonModel;
@@ -237,7 +242,7 @@ UIViewModelProtocol_synthesize
 
 -(UIButtonModel *)subButtonModel{
     if(!_subButtonModel){
-        _subButtonModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+        _subButtonModel = jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
             
         });
     }return _subButtonModel;

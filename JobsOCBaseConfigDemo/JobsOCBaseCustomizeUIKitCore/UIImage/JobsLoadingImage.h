@@ -12,14 +12,14 @@
 #import "UIImage+YBGIF.h"
 /// 直接拖图片在项目文件夹，没用Bundle进行管理，也没有用Assets.xcassets
 /// @param imgName 文件可以不强制要求带后缀名，系统会自动识别png文件
-static inline UIImage *__nullable JobsIMG(NSString *__nonnull imgName){
+NS_INLINE UIImage *__nullable JobsIMG(NSString *__nonnull imgName){
     UIImage *image = [UIImage imageNamed:imgName];
     if(!image && isValue(imgName)){
         NSLog(@"文件名为%@的图片获取失败，请检查",imgName);
     }return image;
 }
 
-static inline UIImage *__nullable JobsGifIMG(NSString *__nonnull imgName){
+NS_INLINE UIImage *__nullable JobsGifIMG(NSString *__nonnull imgName){
     UIImage *image = [UIImage animatedGIFNamed:imgName];
     if(!image && isValue(imgName)){
         NSLog(@"文件名为%@的图片获取失败，请检查",imgName);
@@ -30,7 +30,7 @@ static inline UIImage *__nullable JobsGifIMG(NSString *__nonnull imgName){
 /// @param pathForResource 自定义 Bundle 的名字（不能带.bundle后缀）
 /// @param bundle_folderName 如果在此自定义Bundle下还存在文件夹，不管几级都在此写，属于中间路径，函数内部是进行字符串拼接；如果不存在可以传nil 或者JobsInternationalization(@"")
 /// @param ofType 文件类型（后缀名）
-static inline NSString *__nonnull JobsPathForResource(NSString *__nullable blueFolderName,
+NS_INLINE NSString *__nonnull JobsPathForResource(NSString *__nullable blueFolderName,
                                                       NSString *__nullable pathForResource,
                                                       NSString *__nullable bundle_folderName,
                                                       NSString *__nullable ofType){
@@ -59,7 +59,7 @@ static inline NSString *__nonnull JobsPathForResource(NSString *__nullable blueF
 /// @param pathForResource 自定义 Bundle 的名字（不能带.bundle后缀）
 /// @param bundle_folderName 如果在此自定义Bundle下还存在文件夹，不管几级都在此写，属于中间路径，函数内部是进行字符串拼接；如果不存在可以传nil 或者JobsInternationalization(@"")
 /// @param fileFullNameWithSuffix 目标图片的名字。如果不带后缀名，则默认@".png" 后缀；如果是其他格式资源请自带后缀名
-static inline NSString *__nullable JobsPathForBuddleIMG(NSString *__nullable blueFolderName,
+NS_INLINE NSString *__nullable JobsPathForBuddleIMG(NSString *__nullable blueFolderName,
                                                         NSString *__nullable pathForResource,
                                                         NSString *__nullable bundle_folderName,
                                                         NSString *__nonnull fileFullNameWithSuffix){
@@ -79,7 +79,7 @@ static inline NSString *__nullable JobsPathForBuddleIMG(NSString *__nullable blu
 /// @param pathForResource 自定义 Bundle 的名字（不能带.bundle后缀）
 /// @param bundle_folderName 如果在此自定义Bundle下还存在文件夹，不管几级都在此写，属于中间路径，函数内部是进行字符串拼接；如果不存在可以传nil 或者JobsInternationalization(@"")
 /// @param fileFullNameWithSuffix 目标图片的名字。如果不带后缀名，则默认@".png" 后缀；如果是其他格式资源请自带后缀名
-static inline UIImage *__nullable JobsBuddleIMG(NSString *__nullable blueFolderName,
+NS_INLINE UIImage *__nullable JobsBuddleIMG(NSString *__nullable blueFolderName,
                                                 NSString *__nullable pathForResource,
                                                 NSString *__nullable bundle_folderName,
                                                 NSString *__nonnull fileFullNameWithSuffix){
@@ -96,7 +96,7 @@ static inline UIImage *__nullable JobsBuddleIMG(NSString *__nullable blueFolderN
 /// @param pathForResource 自定义 Bundle 的名字（不能带.bundle后缀）
 /// @param bundle_folderName 如果在此自定义Bundle下还存在文件夹，不管几级都在此写，属于中间路径，函数内部是进行字符串拼接；如果不存在可以传nil 或者JobsInternationalization(@"")
 /// @param fileFullNameWithSuffix 目标图片的名字。如果不带后缀名，则默认@".png" 后缀；如果是其他格式资源请自带后缀名
-static inline NSData *__nullable JobsDataByBuddleIMG(NSString *__nullable blueFolderName,
+NS_INLINE NSData *__nullable JobsDataByBuddleIMG(NSString *__nullable blueFolderName,
                                                      NSString *__nonnull pathForResource,
                                                      NSString *__nullable bundle_folderName,
                                                      NSString *__nonnull fileFullNameWithSuffix){
@@ -112,7 +112,7 @@ static inline NSData *__nullable JobsDataByBuddleIMG(NSString *__nullable blueFo
 /// @param pathForResource 自定义 Bundle 的名字（不能带.bundle后缀）
 /// @param bundle_folderName 如果在此自定义Bundle下还存在文件夹，不管几级都在此写，属于中间路径，函数内部是进行字符串拼接；如果不存在可以传nil 或者JobsInternationalization(@"")
 /// @param fileFullNameWithSuffix 目标图片的名字。如果不带后缀名，则默认@".png" 后缀；如果是其他格式资源请自带后缀名
-static inline UIImage *__nullable JobsIMGByDataFromBuddleIMG(NSString *__nullable blueFolderName,
+NS_INLINE UIImage *__nullable JobsIMGByDataFromBuddleIMG(NSString *__nullable blueFolderName,
                                                              NSString *__nonnull pathForResource,
                                                              NSString *__nullable bundle_folderName,
                                                              NSString *__nonnull fileFullNameWithSuffix){

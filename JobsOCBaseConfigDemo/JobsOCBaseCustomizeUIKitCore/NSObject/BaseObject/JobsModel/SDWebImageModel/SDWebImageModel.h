@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-static inline __kindof SDWebImageModel *_Nonnull jobsMakeSDWebImageModel(jobsBySDWebImageModelBlock _Nonnull block){
+NS_INLINE __kindof SDWebImageModel *_Nonnull jobsMakeSDWebImageModel(jobsBySDWebImageModelBlock _Nonnull block){
     SDWebImageModel *data = SDWebImageModel.alloc.init;
     if (block) block(data);
     return data;

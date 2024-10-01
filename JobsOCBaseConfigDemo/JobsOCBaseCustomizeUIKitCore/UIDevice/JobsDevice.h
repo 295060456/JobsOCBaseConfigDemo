@@ -12,40 +12,40 @@
 #import "UIDevice+XMUtils.h"
 #pragma mark —— Base
 /// 获取手机UUID
-static inline NSString *jobsUUIDString(void) {
+NS_INLINE NSString *jobsUUIDString(void) {
     [UIDevice currentDevice];
     return UIDevice.currentDevice.identifierForVendor.UUIDString;
 }
 /// 获取手机别名
-static inline NSString *jobsCurrentDeviceName(void) {
+NS_INLINE NSString *jobsCurrentDeviceName(void) {
     return UIDevice.currentDevice.name;
 }
 /// 获取设备名称
-static inline NSString *jobsCurrentDeviceSystemName(void) {
+NS_INLINE NSString *jobsCurrentDeviceSystemName(void) {
     return UIDevice.currentDevice.systemName;
 }
 /// 获取手机系统版本
-static inline NSString *jobsCurrentDeviceSystemVersion(void) {
+NS_INLINE NSString *jobsCurrentDeviceSystemVersion(void) {
     return UIDevice.currentDevice.systemVersion;
 }
 /// 获取手机型号
-static inline NSString *jobsCurrentDeviceModel(void) {
+NS_INLINE NSString *jobsCurrentDeviceModel(void) {
     return UIDevice.currentDevice.model;
 }
 /// 获取地方型号  (国际化区域名称)
-static inline NSString *jobsCurrentDeviceLocalizedModel(void) {
+NS_INLINE NSString *jobsCurrentDeviceLocalizedModel(void) {
     return UIDevice.currentDevice.localizedModel;
 }
 /// 获取当前App名字
-static inline NSString *jobsCurrentAppName(void) {
+NS_INLINE NSString *jobsCurrentAppName(void) {
    return [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleDisplayName"];
 }
 /// 获取当前应用软件版本（Float类型）
-static inline NSString *jobsCurrentAppVersion1(void) {
+NS_INLINE NSString *jobsCurrentAppVersion1(void) {
    return [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
 }
 /// 获取当前应用软件版本（int类型）
-static inline NSString *jobsCurrentAppVersion2(void) {
+NS_INLINE NSString *jobsCurrentAppVersion2(void) {
    return [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleVersion"];
 }
 

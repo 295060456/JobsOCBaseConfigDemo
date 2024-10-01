@@ -10,11 +10,11 @@
 
 #import "JobsDoorInputViewProtocol.h"
 
-static inline CGSize inputSize(void){
+NS_INLINE CGSize inputSize(void){
     return CGSizeMake(JobsWidth(343), JobsWidth(52));
 }
 
-static inline CGSize inputSize_02(void){
+NS_INLINE CGSize inputSize_02(void){
     return CGSizeMake(JobsWidth(303 - 50), JobsWidth(36));
 }
 

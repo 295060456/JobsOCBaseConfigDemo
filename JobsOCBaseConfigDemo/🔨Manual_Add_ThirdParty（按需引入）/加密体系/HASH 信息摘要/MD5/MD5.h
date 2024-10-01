@@ -15,7 +15,7 @@
 /// @param isLowercase 是否大小写
 /// @param bit 加密长度
 /// @param useBase64 是否用Base64 进行二次加密
-static inline NSString *MD5_32bits(NSString *salt,
+NS_INLINE NSString *MD5_32bits(NSString *salt,
                                    NSString *string,
                                    BOOL isLowercase,
                                    int bit,
@@ -57,7 +57,7 @@ static inline NSString *MD5_32bits(NSString *salt,
     }return nil;
 }
 /// HmacMD5加密，使用秘钥
-static inline NSString *hMacMD5String(NSString *string,
+NS_INLINE NSString *hMacMD5String(NSString *string,
                                       NSString *keyStr,
                                       BOOL isLowercase,
                                       int bit){

@@ -37,23 +37,23 @@ typedef NS_ENUM(NSInteger, JobsIMChatMessageType) {
 };
 #endif /* JOBS_IM_CHAT_MESSAGE_TYPE_ENUM_DEFINED */
 
-static inline CGFloat JobsIMInputviewHeight(void){
+NS_INLINE CGFloat JobsIMInputviewHeight(void){
     return 60;
 }
 
-static inline CGFloat JobsIMChatInfoTimeLabWidth(void){
+NS_INLINE CGFloat JobsIMChatInfoTimeLabWidth(void){
     return 55;
 }
 
-static inline CGFloat JobsIMChatInfoTBVDefaultCellHeight(void){
+NS_INLINE CGFloat JobsIMChatInfoTBVDefaultCellHeight(void){
     return 50;
 }
 
-static inline CGFloat JobsIMChatInfoTBVChatContentLabWidth(void){
+NS_INLINE CGFloat JobsIMChatInfoTBVChatContentLabWidth(void){
     return JobsMainScreen_WIDTH() - JobsIMChatInfoTimeLabWidth() - (JobsIMChatInfoTBVDefaultCellHeight() - 5) - 20;
 }
 
-static inline CGFloat JobsIMChatInfoTBVChatContentLabDefaultWidth(void){
+NS_INLINE CGFloat JobsIMChatInfoTBVChatContentLabDefaultWidth(void){
     return 30;
 }
 

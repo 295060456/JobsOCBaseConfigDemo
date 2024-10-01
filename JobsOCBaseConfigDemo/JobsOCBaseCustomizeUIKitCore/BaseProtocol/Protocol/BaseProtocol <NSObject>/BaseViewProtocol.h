@@ -114,7 +114,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 一些功能性的
 /// 初始化的时候最好传入一个size值将其子视图的大小固定死。因为只有当父视图有Size的情况下子视图才会展开，从而避免刷新约束时候的一系列麻烦事。
 -(instancetype)initWithSize:(CGSize)thisViewSize;
--(JobsReturnIDByCGSizeBlock)initWithSize;
+-(JobsReturnIDByCGSizeBlock _Nonnull)initWithSize;
 /// 依据数据源对UI进行渲染：具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel;
 -(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel2;

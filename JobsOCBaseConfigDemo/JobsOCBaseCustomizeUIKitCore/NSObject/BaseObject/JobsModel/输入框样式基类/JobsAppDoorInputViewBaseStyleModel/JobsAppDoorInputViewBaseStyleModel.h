@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-static inline __kindof JobsAppDoorInputViewBaseStyleModel *_Nonnull jobsMakeAppDoorInputViewBaseStyleModel(jobsByAppDoorInputViewBaseStyleModelBlock _Nonnull block){
+NS_INLINE __kindof JobsAppDoorInputViewBaseStyleModel *_Nonnull jobsMakeAppDoorInputViewBaseStyleModel(jobsByAppDoorInputViewBaseStyleModelBlock _Nonnull block){
     JobsAppDoorInputViewBaseStyleModel *data = JobsAppDoorInputViewBaseStyleModel.alloc.init;
     if (block) block(data);
     return data;

@@ -221,6 +221,22 @@
 }
 #pragma mark —— 调试相关
 
+#pragma mark —— 单例相关
++(JobsReturnIDByVoidBlock _Nonnull)SharedInstance{
+    @jobs_weakify(self)
+    return ^JobsNavBarConfig *(){
+        @jobs_strongify(self)
+        return self.class.sharedInstance;
+    };
+}
+
++(jobsByVoidBlock _Nonnull)DestroySingleton{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        [self.class destroySingleton];
+    };
+}
 #pragma mark —— 功能性的
 /// 获取m文件的属性
 -(JobsReturnIDByStringBlock _Nonnull)getObjByName{

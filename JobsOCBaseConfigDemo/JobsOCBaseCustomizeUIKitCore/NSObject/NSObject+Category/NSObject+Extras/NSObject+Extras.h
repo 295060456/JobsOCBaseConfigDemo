@@ -87,7 +87,7 @@ typedef NS_ENUM(NSInteger, DeviceOrientation) {
 };
 #endif /* DeviceOrientation_typedef */
 
-static inline NSObject *_Nullable idToObject(id _Nullable data){
+NS_INLINE NSObject *_Nullable idToObject(id _Nullable data){
     if ([data isKindOfClass:NSObject.class]) {
         NSObject *object = (NSObject *)data;
         return object;

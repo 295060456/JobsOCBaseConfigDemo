@@ -40,7 +40,7 @@ UIPictureAndBackGroundCorProtocol
 #pragma mark —— 文字配置
 @property(nonatomic,strong,nullable)UITextModel *textModel;
 @property(nonatomic,strong,nullable)UITextModel *subTextModel;
-@property(nonatomic,strong,nullable)UITextModel *backBtnTitleModel;
+@property(nonatomic,strong,nullable)UITextModel *backBtnTitleModel;/// 在具体的子类去实现，以覆盖父类的方法实现
 @property(nonatomic,strong,nullable)UIButtonModel *buttonModel;
 @property(nonatomic,strong,nullable)UIButtonModel *subButtonModel;
 @property(nonatomic,strong,nullable)JobsReturnIDByIDBlock jobsBlock;
@@ -262,6 +262,9 @@ NS_ASSUME_NONNULL_END
 @dynamic axis;\
 @dynamic distributio;\
 @dynamic alignment;\
+@dynamic row;\
+@dynamic item;\
+@dynamic section;\
 @dynamic buttonEdgeInsetsStyle;\
 @dynamic imageTitleSpace;\
 @dynamic titleSpace;\

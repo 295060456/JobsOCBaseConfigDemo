@@ -68,8 +68,8 @@
     {
         JobsPostDelViewHeight = JobsPostDelView.viewSizeByModel(nil).height;
         self.historyPhotoDataArr = [self.photoManager getLocalModelsInFileWithAddData:YES];
-        if (isValue(JobsUserModel.sharedManager.postDraftURLStr)) {
-            self.inputDataHistoryString = [FileFolderHandleTool filePath:JobsUserModel.sharedManager.postDraftURLStr
+        if (isValue(JobsUserModel.sharedInstance.postDraftURLStr)) {
+            self.inputDataHistoryString = [FileFolderHandleTool filePath:JobsUserModel.sharedInstance.postDraftURLStr
                                                                 fileType:TXT];
         }NSLog(@"%@",self.inputDataHistoryString);
     }
@@ -148,14 +148,18 @@
 
 -(void)保留文字{
     if (isValue(self.inputDataString)) {
-        JobsUserModel.sharedManager.postDraftURLStr = [NSObject saveData:self.inputDataString
-                                                   withDocumentsChildDir:JobsInternationalization(@"发帖草稿数据临时文件夹")
-                                                            fileFullname:@"发帖草稿数据.txt"
-                                                                   error:nil];
+        NSError *err;
+        JobsUserModel.sharedInstance.postDraftURLStr = [NSObject saveData:self.inputDataString
+                                                    withDocumentsChildDir:JobsInternationalization(@"发帖草稿数据临时文件夹")
+                                                             fileFullname:@"发帖草稿数据.txt"
+                                                                    error:&err];
+        if(err){
+            NSLog(err.description);
+        }
     }else{
-        FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedManager.postDraftURLStr);
+        FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedInstance.postDraftURLStr);
     }
-    NSLog(@"%@",JobsUserModel.sharedManager.postDraftURLStr);
+    NSLog(@"%@",JobsUserModel.sharedInstance.postDraftURLStr);
     [self.view hx_showLoadingHUDText:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BOOL success = [self.photoManager saveLocalModelsToFile];//保存图片
@@ -171,7 +175,7 @@
 }
 
 -(void)不保留文字{
-    FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedManager.postDraftURLStr);
+    FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedInstance.postDraftURLStr);
     [self.photoManager deleteLocalModelsInFile];
     [self back:nil];
 }
@@ -183,9 +187,18 @@
     config.message = JobsInternationalization(@"是否将当前内容保存为草稿？");
     config.preferredStyle = SPAlertControllerStyleAlert;
     config.animationType = SPAlertAnimationTypeDefault;
-    config.alertActionTitleArr = @[JobsInternationalization(@"不保存"),JobsInternationalization(@"保存")];
-    config.alertActionStyleArr = @[@(SPAlertActionStyleDestructive),@(SPAlertActionStyleDefault)];
-    config.alertBtnActionArr = @[JobsInternationalization(@"不保留文字"),JobsInternationalization(@"保留文字")];
+    config.alertActionTitleArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        data.add(JobsInternationalization(@"不保存"));
+        data.add(JobsInternationalization(@"保存"));
+    });
+    config.alertActionStyleArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        data.add(@(SPAlertActionStyleDestructive));
+        data.add(@(SPAlertActionStyleDefault));
+    });
+    config.alertBtnActionArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        data.add(JobsInternationalization(@"不保留文字"));
+        data.add(JobsInternationalization(@"保留文字"));
+    });
     config.targetVC = self;
     config.funcInWhere = self;
     config.animated = YES;
@@ -266,7 +279,7 @@
                                              completion:^(NSArray<UIImage *> * _Nullable imageArray,
                                                           NSArray<HXPhotoModel *> * _Nullable errorArray) {
             @strongify(self)
-            self.photosImageMutArr = [NSMutableArray arrayWithArray:imageArray];
+            self.photosImageMutArr = NSMutableArray.initBy(imageArray);
         }];
     }else{}
     [self releaseBtnState:allList
