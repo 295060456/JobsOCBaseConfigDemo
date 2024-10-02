@@ -18,6 +18,6 @@
 /// 数据源
 @property(nonatomic,strong)NSArray <NSString *>* _Nonnull dataArr;
 /// 选择某一个标签
--(void)selectingOneTagWithIndex:(NSInteger )index;
+-(jobsByNSIntegerBlock _Nonnull)selectingOneTagWithIndex;
 
 @end

@@ -58,11 +58,10 @@ JobsToggleNavViewProtocolSynthesize
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-//        self.viewModel = model ? : UIViewModel.new;
-//        MakeDataNull
         self.taggedNavView.alpha = 1;
         [self makeScrollContentViewsFrame];
         self.bgScroll.alpha = 1;
+        self.switchBy(0);
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -82,15 +81,22 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 #pragma mark —— 一些公共方法
-
+-(jobsByNSIntegerBlock _Nonnull)switchBy{
+    @jobs_weakify(self)
+    return ^(NSInteger index){
+        @jobs_strongify(self)
+        self.bgScroll.contentOffset = CGPointMake(self.bgScroll.width * index,0);
+        self.taggedNavView.selectingOneTagWithIndex(index);
+    };
+}
 #pragma mark —— 一些私有方法
 -(void)makeScrollContentViewsFrame{
     int t = 0;
     for (UIView *subView in self.scrollContentViews) {
         subView.frame = CGRectMake(self.viewSizeByModel(nil).width * t,
-                                 0,
-                                 self.bgScroll.width,
-                                 self.bgScroll.height);
+                                   0,
+                                   self.bgScroll.width,
+                                   self.bgScroll.height);
         t+=1;
     }
 }
@@ -114,10 +120,9 @@ JobsToggleNavViewProtocolSynthesize
     if(scrollView_contentOffset_x < 0) scrollView_contentOffset_x = 0;
     if(scrollView_contentOffset_x > scrollView.width * self.scrollContentViews.count - 1)
         scrollView_contentOffset_x = scrollView.width * self.scrollContentViews.count - 1;
-    
     NSInteger selectedIndx = round(scrollView_contentOffset_x / scrollView.width);
     NSLog(@"当前滑动的index = %ld",(long)selectedIndx)
-    [self.taggedNavView selectingOneTagWithIndex:selectedIndx];
+    self.taggedNavView.selectingOneTagWithIndex(selectedIndx);
 }
 #pragma mark —— lazyLoad
 -(JobsToggleNavView *)taggedNavView{
@@ -147,7 +152,7 @@ JobsToggleNavViewProtocolSynthesize
                 /// 由 self.bgScroll 驱动
                 self.bgScroll.contentOffset = CGPointMake(self.bgScroll.width * self.currentSelectedBtn.index,0);
                 NSLog(@"当前滑动的index = %ld",(long)self.currentSelectedBtn.index);
-                [self.taggedNavView selectingOneTagWithIndex:self.currentSelectedBtn.index];
+                self.taggedNavView.selectingOneTagWithIndex(self.currentSelectedBtn.index);
             }
         }];
     }return _taggedNavView;

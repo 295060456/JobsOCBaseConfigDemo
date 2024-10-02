@@ -31,6 +31,7 @@ JobsToggleNavViewProtocol
 
 -(JobsToggleNavView *)taggedNavView;
 -(UIScrollView *)bgScroll;
+-(jobsByNSIntegerBlock _Nonnull)switchBy;
 
 @end
 

@@ -97,30 +97,31 @@ JobsToggleNavViewProtocolSynthesize
 }
 #pragma mark —— 一些公有方法
 /// 核心方法：拖动和点击的逻辑，都归属于这个方法
-- (void)selectingOneTagWithIndex:(NSInteger)index{
-    /// 纠错
-    if(index > self.buttonsArray.count - 1) index = self.buttonsArray.count - 1;
-    if(index < 0) index = 0;
-    
-    NSLog(@"当前选择：%lu",(unsigned long)index);
-    if(index == self.current_index) return;
-    self.current_index = index;
-    /// 全部还原
-    int t = 0;
-    for (UIButton *subButton in self.buttonsArray) {
-        subButton.selected = NO;
-        subButton.jobsResetTitleFont(self.buttonModel.titleFont);
-        subButton.jobsResetBtnTitleCor(self.buttonModel.titleCor);
-        subButton.jobsResetBtnBgImage(self.buttonModel.normal_backgroundImages[t]);
-        t+=1;
-    }
-    UIButton *currentBtn = self.buttonsArray[index];
-    currentBtn.selected = YES;
-    
-    self.sliderView.resetCenterX(currentBtn.centerX);
-    currentBtn.jobsResetTitleFont(self.buttonModel.selected_titleFont);
-    currentBtn.jobsResetBtnTitleCor(self.buttonModel.selected_titleCor);
-    currentBtn.jobsResetBtnBgImage(self.buttonModel.selected_backgroundImages[index]);
+-(jobsByNSIntegerBlock _Nonnull)selectingOneTagWithIndex{
+    return ^(NSInteger index){
+        /// 纠错
+        if(index > self.buttonsArray.count - 1) index = self.buttonsArray.count - 1;
+        if(index < 0) index = 0;
+        
+        NSLog(@"当前选择：%lu",(unsigned long)index);
+        self.current_index = index;
+        /// 全部还原
+        int t = 0;
+        for (UIButton *subButton in self.buttonsArray) {
+            subButton.selected = NO;
+            subButton.jobsResetTitleFont(self.buttonModel.titleFont);
+            subButton.jobsResetBtnTitleCor(self.buttonModel.titleCor);
+            subButton.jobsResetBtnBgImage(self.buttonModel.normal_backgroundImages[t]);
+            t+=1;
+        }
+        UIButton *currentBtn = self.buttonsArray[index];
+        currentBtn.selected = YES;
+        
+        self.sliderView.resetCenterX(currentBtn.centerX);
+        currentBtn.jobsResetTitleFont(self.buttonModel.selected_titleFont);
+        currentBtn.jobsResetBtnTitleCor(self.buttonModel.selected_titleCor);
+        currentBtn.jobsResetBtnBgImage(self.buttonModel.selected_backgroundImages[index]);
+    };
 }
 #pragma mark —— lazyLoad
 -(UIView *)sliderView{
