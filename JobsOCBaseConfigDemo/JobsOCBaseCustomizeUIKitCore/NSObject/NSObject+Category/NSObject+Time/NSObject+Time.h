@@ -38,7 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// NSDate * ---> NSString *   (NSDate*)时间 转 (NSString*)时间戳（毫秒级）
 /// @param date 不传值则为当前时间
 -(NSString *)dateConversionTimeStamp:(NSDate *_Nullable)date
-                       timeFormatStr:(NSString *_Nullable)timeFormatStr
                        intervalStyle:(IntervalStyle)intervalStyle;
 /// NSTimeInterval ---> NSString *
 -(NSString *)timeIntervalByInterval:(NSTimeInterval)interval;

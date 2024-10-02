@@ -47,8 +47,7 @@ JobsKey(_logOutPopupView)
                 extern BOOL ISLogin;
                 ISLogin = NO;
                 JobsPostNotification(退出登录成功, @(NO));
-            }
-            [LogOutPopupView tf_hide];
+            }[LogOutPopupView tf_hide];
         }];
         Jobs_setAssociatedRETAIN_NONATOMIC(_logOutPopupView, LogOutPopupView)
     }return LogOutPopupView;

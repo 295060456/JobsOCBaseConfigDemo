@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobsBlock.h"
 #import "NSObject+Class.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -29,3 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof UserDefaultModel *_Nonnull jobsMakeUserDefaultModel(jobsByUserDefaultModelBlock _Nonnull block){
+    UserDefaultModel *data = UserDefaultModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

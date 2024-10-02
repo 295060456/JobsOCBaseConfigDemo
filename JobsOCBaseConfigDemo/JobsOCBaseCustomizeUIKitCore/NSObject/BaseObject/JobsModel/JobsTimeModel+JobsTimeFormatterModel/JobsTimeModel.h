@@ -86,7 +86,18 @@ typedef NS_ENUM(NSUInteger, IntervalStyle) {
 @property(nonatomic,assign)NSInteger timeOffset;/// 当前时区与格林威治时间的时间差
 @property(nonatomic,assign)NSInteger customTimeOffset;/// 自定义时区与格林威治时间的时间差
 
-
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsTimeModel *_Nonnull jobsMakeTimeModel(jobsByTimeModelBlock _Nonnull block){
+    JobsTimeModel *data = JobsTimeModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof JobsTimeFormatterModel *_Nonnull jobsMakeTimeFormatterModel(jobsByTimeFormatterModelBlock _Nonnull block){
+    JobsTimeFormatterModel *data = JobsTimeFormatterModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

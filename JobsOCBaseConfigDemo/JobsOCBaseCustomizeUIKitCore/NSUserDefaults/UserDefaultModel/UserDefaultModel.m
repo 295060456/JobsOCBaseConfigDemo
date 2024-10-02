@@ -25,9 +25,7 @@
         for (NSString *key in printPropertyListByObj(self)) {
             if ([self respondsToSelector:NSSelectorFromString(key)]) {
                 NSString * value = [decoder decodeObjectForKey:key];
-                if (value) {
-                    [self setValue:value forKey:key];
-                }
+                if (value) [self setValue:value forKey:key];
             }
         }
     }return self;

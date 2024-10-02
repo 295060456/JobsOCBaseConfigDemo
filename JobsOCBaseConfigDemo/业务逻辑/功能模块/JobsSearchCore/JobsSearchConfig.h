@@ -39,15 +39,13 @@ NS_INLINE NSArray *_Nullable JobsSearchReadData(void){
 /// 存数据
 NS_INLINE void JobsSearchStorageData(_Nonnull id data){
     NSArray *arr = (NSArray *)NSUserDefaults.readWithKey(StorageID);
-    UserDefaultModel *userDefaultModel = UserDefaultModel.new;
-
     if ([arr containsObject:data]) return;
-    NSMutableArray *mutArr = [NSMutableArray arrayWithArray:arr];/// 实际存档的是数组
-    [mutArr addObject:data];
-    userDefaultModel.obj = mutArr;
-    userDefaultModel.key = StorageID;
-
-    NSUserDefaults.updateWithModel(userDefaultModel);
+    NSMutableArray *mutArr = NSMutableArray.initBy(arr);/// 实际存档的是数组
+    mutArr.add(data);
+    NSUserDefaults.updateWithModel(jobsMakeUserDefaultModel(^(UserDefaultModel * _Nonnull data) {
+        data.obj = mutArr;
+        data.key = StorageID;
+    }));
 }
 
 #endif /* JobsSearchConfig_h */

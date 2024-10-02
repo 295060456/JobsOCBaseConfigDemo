@@ -187,6 +187,13 @@ typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable da
 
 @class JobsNavBarConfig;
 typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable data);
+
+@class JobsTimeModel;
+typedef void(^jobsByTimeModelBlock)(__kindof JobsTimeModel *_Nullable data);
+
+@class JobsTimeFormatterModel;
+typedef void(^jobsByTimeFormatterModelBlock)(__kindof JobsTimeFormatterModel *_Nullable data);
+
 #pragma mark —— 涉及到第三方类的Block定义
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);

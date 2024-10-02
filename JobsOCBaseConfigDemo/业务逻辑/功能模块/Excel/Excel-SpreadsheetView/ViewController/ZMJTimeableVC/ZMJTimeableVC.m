@@ -217,19 +217,21 @@
 
 -(NSDateFormatter *)hourFormatter{
     if(!_hourFormatter){
-        _hourFormatter = NSDateFormatter.new;
-        _hourFormatter.calendar = [NSCalendar.alloc initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        _hourFormatter.locale = [NSLocale.alloc initWithLocaleIdentifier:@"en_US_POSIX"];
-        _hourFormatter.dateFormat = @"h\na";
+        _hourFormatter = jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
+            data.calendar = [NSCalendar.alloc initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+            data.locale = [NSLocale.alloc initWithLocaleIdentifier:@"en_US_POSIX"];
+            data.dateFormat = @"h\na";
+        });
     }return _hourFormatter;
 }
 
 -(NSDateFormatter *)twelveHourFormatter{
     if(!_twelveHourFormatter){
-        _twelveHourFormatter = NSDateFormatter.new;
-        _twelveHourFormatter.calendar = [NSCalendar.alloc initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        _twelveHourFormatter.locale = [NSLocale.alloc initWithLocaleIdentifier:@"en_US_POSIX"];
-        _twelveHourFormatter.dateFormat = @"H";
+        _twelveHourFormatter = jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
+            data.calendar = [NSCalendar.alloc initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+            data.locale = [NSLocale.alloc initWithLocaleIdentifier:@"en_US_POSIX"];
+            data.dateFormat = @"H";
+        });
     }return _twelveHourFormatter;
 }
 

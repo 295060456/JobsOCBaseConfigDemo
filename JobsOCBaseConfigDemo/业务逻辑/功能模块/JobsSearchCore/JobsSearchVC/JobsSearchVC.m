@@ -323,11 +323,10 @@ heightForHeaderInSection:(NSInteger)section{
             /// 删除历史过往记录
             [self.listViewData removeAllObjects];
 
-//            UserDefaultModel *userDefaultModel = UserDefaultModel.new;
-//            userDefaultModel.key = JobsSearchHistoryData;
-//            userDefaultModel.obj = self.historySearchMutArr;
-//
-//            NSUserDefaults.updateWithModel(userDefaultModel);
+//            NSUserDefaults.updateWithModel(jobsMakeUserDefaultModel(^(UserDefaultModel * _Nonnull data) {
+//                data.key = JobsSearchHistoryData;
+//                data.obj = self.historySearchMutArr;
+//            }));
 //
 //            if (self.historySearchMutArr.count == 0) {
 //                [self.sectionTitleMutArr removeAllObjects];

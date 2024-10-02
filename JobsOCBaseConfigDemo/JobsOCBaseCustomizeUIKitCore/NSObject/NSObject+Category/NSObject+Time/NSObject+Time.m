@@ -24,9 +24,9 @@
 #pragma mark —— 时间格式转换
 /// 时间格式
 -(NSDateFormatter *)dateFormatter{
-    NSDateFormatter *dateFormatter = NSDateFormatter.new;
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    return dateFormatter;
+    return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
+        data.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    });
 }
 ///接受一个秒数，对这个秒数进行解析出：时、分、秒，存入JobsTimeModel，外层再对这个JobsTimeModel进行取值，对数据进行拼装
 -(JobsTimeModel *)HHMMSS:(NSInteger)TimeSec{
@@ -45,13 +45,14 @@
 -(JobsTimeFormatterModel *)timeFormatterWithDate:(NSDate *_Nullable)date
                                    timeFormatStr:(NSString *_Nullable)timeFormatStr{
     JobsTimeFormatterModel *timeModel = JobsTimeFormatterModel.new;
-    NSDateFormatter *dateFormatter = NSDateFormatter.new;
-    /// 设定时间格式,这里可以设置成自己需要的格式
-    if(isNull(timeFormatStr)){
-        dateFormatter.dateFormat = @"MMM dd,yyyy HH:mm tt";
-    }else{
-        dateFormatter.dateFormat = timeFormatStr;
-    }
+    NSDateFormatter *dateFormatter = jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
+        /// 设定时间格式,这里可以设置成自己需要的格式
+        if(isNull(timeFormatStr)){
+            data.dateFormat = @"MMM dd,yyyy HH:mm tt";
+        }else{
+            data.dateFormat = timeFormatStr;
+        }
+    });
     if(!date) date = NSDate.date;
     timeModel.date = date;/// 时间字符串NSDate
     timeModel.dateStr = dateFormatter.date(date);/// NSDate转时间字符串
@@ -62,17 +63,8 @@
 /// NSDate * ---> NSString *   (NSDate*)时间 转 (NSString*)时间戳（毫秒级）
 /// @param date 不传值则为当前时间
 -(NSString *)dateConversionTimeStamp:(NSDate *_Nullable)date
-                       timeFormatStr:(NSString *_Nullable)timeFormatStr
                        intervalStyle:(IntervalStyle)intervalStyle{
     if (!date) date = NSDate.date;
-    NSDateFormatter *dateFormatter = NSDateFormatter.new;
-    /// 设定时间格式,这里可以设置成自己需要的格式
-    if(isNull(timeFormatStr)){
-        dateFormatter.dateFormat = @"MMM dd,yyyy HH:mm tt";
-    }else{
-        dateFormatter.dateFormat = timeFormatStr;
-    }
-    
     NSString *timeSp = nil;
     if (intervalStyle == intervalBySec) {
         timeSp = toStringByLongLong(date.timeIntervalSince1970);
@@ -83,7 +75,6 @@
 /// NSTimeInterval ---> NSString *
 -(NSString *)timeIntervalByInterval:(NSTimeInterval)interval{
     NSString *intervalStr = [self dateConversionTimeStamp:self.dateByTimeInterval(interval)
-                                            timeFormatStr:nil
                                             intervalStyle:intervalBySec];
     return intervalStr;
 }
@@ -385,44 +376,33 @@
 -(JobsTimeFormatterModel *)currentTime{
     NSDate *date = NSDate.date;
     NSTimeZone *zone = NSTimeZone.systemTimeZone; /// 系统时区
-    JobsTimeFormatterModel *timeModel = JobsTimeFormatterModel.new;
-    
-    NSTimeInterval interval = [zone secondsFromGMTForDate:date];//??
-    NSDate *currentDate = [date dateByAddingTimeInterval:interval];
-    NSString *currentStr = [NSObject dateConversionTimeStamp:currentDate
-                                               timeFormatStr:nil
-                                               intervalStyle:intervalBySec];
-    
-    timeModel.date = currentDate;
-    timeModel.dateStr = currentStr;
-    timeModel.intervalBySec = interval;
-
-    return timeModel;
+    return jobsMakeTimeFormatterModel(^(__kindof JobsTimeFormatterModel * _Nullable data) {
+        data.date = [date dateByAddingTimeInterval:data.intervalBySec];
+        data.dateStr = [NSObject dateConversionTimeStamp:data.date intervalStyle:intervalBySec];
+        data.intervalBySec = [zone secondsFromGMTForDate:date];
+    });
 }
 /// 获得今天的时间：年/月/日
 -(JobsReturnTimeFormatterModelByStringBlock)getToday{
     return ^JobsTimeFormatterModel *_Nullable((NSString *_Nullable dateFormat)){
-        NSDateFormatter *formatter = NSDateFormatter.new;
-        
-        if (isNull(dateFormat)) {
-            formatter.dateFormat = @"yyyy-MM-dd";
-        }else{
-            formatter.dateFormat = dateFormat;
-        }
-        
-        NSTimeZone *zone = NSTimeZone.systemTimeZone; /// 系统时区
+        NSDateFormatter *formatter = jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
+            if (isNull(dateFormat)) {
+                data.dateFormat = @"yyyy-MM-dd";
+            }else{
+                data.dateFormat = dateFormat;
+            }
+        });
         
         NSString *dateTime_Str = formatter.date(NSDate.date); /// 今天
         NSDate *dateTime_Date = dateTime_Str.dataByDateFormatter(formatter);
-        NSTimeInterval interval = [zone secondsFromGMTForDate:NSDate.date];
+        NSTimeInterval interval = [NSTimeZone.systemTimeZone secondsFromGMTForDate:NSDate.date];/// 系统时区
         
-        JobsTimeFormatterModel *timeModel = JobsTimeFormatterModel.new;
-        timeModel.dateStr = dateTime_Str;
-        timeModel.date = dateTime_Date;
-        timeModel.intervalBySec = interval;
-        timeModel.intervalByMilliSec = timeModel.intervalBySec * 1000;
-        
-        return timeModel;
+        return jobsMakeTimeFormatterModel(^(__kindof JobsTimeFormatterModel * _Nullable data) {
+            data.dateStr = dateTime_Str;
+            data.date = dateTime_Date;
+            data.intervalBySec = interval;
+            data.intervalByMilliSec = data.intervalBySec * 1000;
+        });
     };
 }
 /// 可以获得两个日期之间的时间间隔
@@ -435,22 +415,21 @@
     if (isNull(timeFormatter)) {
         timeFormatter = @"yyyy-MM-dd HH:mm:ss";
     }
-    
-    NSDateFormatter *dateFormatter = NSDateFormatter.new;
-    dateFormatter.dateFormat = timeFormatter;
-    NSDate *startDate = startTime.dataByDateFormatter(dateFormatter);
-    NSDate *endDate = nil;
-    if (isNull(endTime)) {
-        endDate = dateFormatter.date(NSDate.date).dataByDateFormatter(dateFormatter);
-    }else{
-        endDate = endTime.dataByDateFormatter(dateFormatter);
-    }
-    
-    JobsTimeFormatterModel *timeModel = JobsTimeFormatterModel.new;
-    timeModel.intervalBySec = [endDate timeIntervalSinceDate:startDate];
-    timeModel.intervalByMilliSec = timeModel.intervalBySec * 1000;
-    
-    return timeModel;
+    __block NSDate *endDate = nil;
+    __block NSDate *startDate = nil;
+    NSDateFormatter *dateFormatter = jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
+        data.dateFormat = timeFormatter;
+        startDate = startTime.dataByDateFormatter(data);
+        if (isNull(endTime)) {
+            endDate = data.date(NSDate.date).dataByDateFormatter(data);
+        }else{
+            endDate = endTime.dataByDateFormatter(data);
+        }
+    });
+    return jobsMakeTimeFormatterModel(^(__kindof JobsTimeFormatterModel * _Nullable data) {
+        data.intervalBySec = [endDate timeIntervalSinceDate:startDate];
+        data.intervalByMilliSec = data.intervalBySec * 1000;
+    });
 }
 /**
     iOS 获取 加上多少时间以后的时间A (NSDate *) = 基础时间（NSDate *） +  时间间隔（NSInteger）
@@ -479,22 +458,20 @@
 -(JobsReturnStringByTimeIntervalAndDateFormatterBlock)strByTimeInterval{
     return ^NSString *_Nullable(NSTimeInterval data,NSDateFormatter *_Nullable dateFormatter){
         if (!dateFormatter) {
-            JobsTimeModel *timeModel = JobsTimeModel.new;
-            timeModel.dateFormatterStr = @"HH:mm:ss";//根据自己的需求定义格式
-            dateFormatter = timeModel.dateFormatter;
-        }
-        return dateFormatter.time(data);
+            dateFormatter = jobsMakeTimeModel(^(__kindof JobsTimeModel * _Nullable data) {
+                data.dateFormatterStr = @"HH:mm:ss";//根据自己的需求定义格式
+            }).dateFormatter;
+        }return dateFormatter.time(data);
     };
 }
 /// 计算两字符串时间的差值【方法一】
 -(NSTimeInterval)intervalDifferenceBetweenStarTime:(NSString *)starTime
                                          toEndTime:(NSString *)endTime
                                    byDateFormatter:(NSDateFormatter *)dateFormatter{
-    
     if (!dateFormatter) {
-        JobsTimeModel *timeModel = JobsTimeModel.new;
-        timeModel.dateFormatterStr = @"HH:mm:ss";//根据自己的需求定义格式
-        dateFormatter = timeModel.dateFormatter;
+        dateFormatter = jobsMakeTimeModel(^(__kindof JobsTimeModel * _Nullable data) {
+            data.dateFormatterStr = @"HH:mm:ss";//根据自己的需求定义格式
+        }).dateFormatter;
     }
     NSDate *startDate = starTime.dataByDateFormatter(dateFormatter);
     NSDate *endDate = endTime.dataByDateFormatter(dateFormatter);
@@ -506,9 +483,9 @@
                                              toEndTime:(NSString *)endTime
                                        byDateFormatter:(NSDateFormatter *)dateFormatter{
     if (!dateFormatter) {
-        JobsTimeModel *timeModel = JobsTimeModel.new;
-        timeModel.dateFormatterStr = @"HH:mm:ss";//根据自己的需求定义格式
-        dateFormatter = timeModel.dateFormatter;
+        dateFormatter = jobsMakeTimeModel(^(__kindof JobsTimeModel * _Nullable data) {
+            data.dateFormatterStr = @"HH:mm:ss";//根据自己的需求定义格式
+        }).dateFormatter;
     }
     NSDate *date1 = [dateFormatter dateFromString:starTime];
     NSDate *date2 = [dateFormatter dateFromString:endTime];
@@ -598,25 +575,22 @@
         flag = YES;
     }
     // 保存启动时间
-    UserDefaultModel *userDefaultModel = UserDefaultModel.new;
-    userDefaultModel.key = App当日首次进入;
-    userDefaultModel.obj = NSDate.date;
-    
-    NSUserDefaults.updateWithModel(userDefaultModel);
-    return flag;
+    NSUserDefaults.updateWithModel(jobsMakeUserDefaultModel(^(UserDefaultModel * _Nonnull data) {
+        data.key = App当日首次进入;
+        data.obj = NSDate.date;
+    }));return flag;
 }
 /// 判断某个时间是否为  今天（系统时区）
 -(JobsReturnBOOLByDateBlock)isToday{
     return ^BOOL(NSDate *_Nullable date){
-        NSDateFormatter *fmt = NSDateFormatter.new;
-        fmt.timeZone = NSTimeZone.systemTimeZone; // 系统时区
-        fmt.dateStyle = NSDateFormatterMediumStyle;
-        fmt.timeStyle = NSDateFormatterShortStyle;
-        fmt.dateFormat = @"yyyy-MM-dd";
-        
+        NSDateFormatter *fmt = jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
+            data.timeZone = NSTimeZone.systemTimeZone; // 系统时区
+            data.dateStyle = NSDateFormatterMediumStyle;
+            data.timeStyle = NSDateFormatterShortStyle;
+            data.dateFormat = @"yyyy-MM-dd";
+        });
         NSString *dateStr = fmt.date(date);
         NSString *nowStr = fmt.date(JobsTimeModel.new.currentDate);// Now
-        
         return dateStr.isEqualToString(nowStr);
     };
 }

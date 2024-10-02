@@ -71,10 +71,10 @@
 -(jobsByIDAndKeyBlock _Nonnull)jobsSaveUserInfo{
     return ^(NSObject <NSCoding> * _Nonnull userModel,
              NSString * _Nullable key) {
-        UserDefaultModel *userDefaultModel = UserDefaultModel.new;
-        userDefaultModel.obj = userModel;
-        userDefaultModel.key = key;
-        NSUserDefaults.updateWithModel(userDefaultModel);
+        NSUserDefaults.updateWithModel(jobsMakeUserDefaultModel(^(UserDefaultModel * _Nonnull data) {
+            data.obj = userModel;
+            data.key = key;
+        }));
     };
 }
 /// 读取用户信息
@@ -89,10 +89,10 @@
 ///【通过特定的用户名】 保存（更新）用户的本地资料（用 NSUserDefaults ）
 -(jobsByUserModelBlock _Nonnull)userNameToSaveUserInfo{
     return ^(JobsUserModel <NSCoding>*_Nullable userModel){
-        UserDefaultModel *userDefaultModel = UserDefaultModel.new;
-        userDefaultModel.obj = userModel;
-        userDefaultModel.key = userModel.userName;
-        NSUserDefaults.updateWithModel(userDefaultModel);
+        NSUserDefaults.updateWithModel(jobsMakeUserDefaultModel(^(UserDefaultModel * _Nonnull data) {
+            data.obj = userModel;
+            data.key = userModel.userName;
+        }));
     };
 }
 ///【通过特定的用户名】 读取用户的本地资料

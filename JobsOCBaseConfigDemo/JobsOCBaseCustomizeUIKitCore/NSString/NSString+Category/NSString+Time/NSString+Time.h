@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Time)
 /// 当前时间戳较之当前时间是否已过期
--(JobsReturnBOOLByVoidBlock)isExpired;
--(JobsReturnStringByVoidBlock)jobsTime;
+-(JobsReturnBOOLByVoidBlock _Nonnull)isExpired;
+-(JobsReturnStringByVoidBlock _Nonnull)jobsTime;
 /// 时间戳（字符串）依据某一规范，格式化为能一目了然的时间（字符串）
 /// - Parameters:
 ///   - timeFormatter: timeFormatter

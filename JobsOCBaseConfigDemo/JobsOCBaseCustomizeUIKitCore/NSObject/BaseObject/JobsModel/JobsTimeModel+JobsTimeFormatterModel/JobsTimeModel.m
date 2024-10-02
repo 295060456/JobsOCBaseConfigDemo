@@ -126,8 +126,11 @@
 
 -(NSDateFormatter *)dateFormatter{
     if (!_dateFormatter) {
-        _dateFormatter = NSDateFormatter.new;
-        _dateFormatter.dateFormat = self.dateFormatterStr;
+        @jobs_weakify(self)
+        _dateFormatter = jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
+            @jobs_strongify(self)
+            data.dateFormat = self.dateFormatterStr;
+        });
     }return _dateFormatter;
 }
 #pragma mark —— 结论部分

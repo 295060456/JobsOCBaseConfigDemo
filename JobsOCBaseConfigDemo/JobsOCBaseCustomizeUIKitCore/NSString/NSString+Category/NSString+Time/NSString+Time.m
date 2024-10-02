@@ -9,8 +9,10 @@
 
 @implementation NSString (Time)
 /// 格式化为中国时间
--(JobsReturnStringByVoidBlock)jobsTime{
+-(JobsReturnStringByVoidBlock _Nonnull)jobsTime{
+    @jobs_weakify(self)
     return ^NSString *_Nullable(){
+        @jobs_strongify(self)
         return [self timeStampByTimeFormatter:nil
                                  timeZoneType:TimeZoneTypeCSTChina
                                 intervalStyle:intervalByMilliSec];
@@ -24,26 +26,26 @@
 -(NSString *)timeStampByTimeFormatter:(NSString *_Nullable)timeFormatter
                          timeZoneType:(TimeZoneType)timeZoneType
                         intervalStyle:(IntervalStyle)intervalStyle{
+    @jobs_weakify(self)
     NSDate *date = nil;
     if (intervalStyle == intervalBySec) {
         date = [NSDate dateWithTimeIntervalSince1970:self.doubleValue];
     }else if(intervalStyle == intervalByMilliSec){
         date = [NSDate dateWithTimeIntervalSince1970:self.doubleValue / 1000.0];
-    }
-    NSDateFormatter *formatter = NSDateFormatter.new;
-    
-    if (isNull(timeFormatter)) {
-        formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    }else{
-        formatter.dateFormat = timeFormatter;
-    }
-    formatter.timeZone = self.timeZone(timeZoneType);
-    NSString *dateStr = formatter.date(date);
-    return dateStr;
+    }return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
+        @jobs_strongify(self)
+        if (isNull(timeFormatter)) {
+            data.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        }else{
+            data.dateFormat = timeFormatter;
+        }data.timeZone = self.timeZone(timeZoneType);
+    }).date(date);
 }
 /// 当前时间戳较之当前时间是否已过期
--(JobsReturnBOOLByVoidBlock)isExpired{
+-(JobsReturnBOOLByVoidBlock _Nonnull)isExpired{
+    @jobs_weakify(self)
     return ^BOOL(){
+        @jobs_strongify(self)
         /// 将时间戳字符串转换为 double 类型的时间戳
         double timeStamp = self.doubleValue;
         /// 创建 NSDate 对象

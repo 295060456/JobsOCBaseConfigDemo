@@ -117,7 +117,7 @@
 - (NSArray<NSString *> *)getAllDaysWithCalender:(NSDate *)theDay {
     NSAssert(theDay != nil, @"theDay is null.");
     NSUInteger dayCount = [self getNumberOfDaysInMonth:theDay]; //一个月的总天数
-    static NSDateFormatter * formatter = nil;
+    static NSDateFormatter *formatter = nil;
     if (!formatter) {
         formatter = NSDateFormatter.new;
     }

@@ -37,17 +37,25 @@ typedef void(^jobsBySetBlock)(__kindof NSSet *_Nullable data);
 typedef void(^jobsByMutableSetBlock)(__kindof NSMutableSet *_Nullable data);
 typedef void(^jobsByDictionarycBlock)(__kindof NSDictionary *_Nullable data);
 typedef void(^jobsByMutableDictionarycBlock)(__kindof NSMutableDictionary *_Nullable data);
+#pragma mark —— 关于（富）文本
+typedef void(^jobsByStringBlock)(NSString *_Nullable data);
+typedef void(^jobsByAttributedStringBlock)(__kindof NSAttributedString *_Nullable data);
+typedef void(^jobsByMutableParagraphStyleBlock)(NSMutableParagraphStyle *_Nullable data);
+typedef void(^jobsByTextAttachmentBlock)(NSTextAttachment *_Nullable data);
+typedef void(^jobsByTextAlignmentBlock)(NSTextAlignment data);
 #pragma mark —— 关于UI表现力
 typedef void(^jobsByLayoutAttributeBlock)(NSLayoutAttribute data);
 typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
 typedef void(^jobsByCorBlock)(UIColor *_Nullable data);
 typedef void(^jobsByFontBlock)(UIFont *_Nullable data);
-typedef void(^jobsByTextAlignmentBlock)(NSTextAlignment data);
 /// 多参数
 typedef void(^jobsByClassAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
 typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
-#pragma mark —— 关于按钮配置
+#pragma mark —— 关于UI配置
+/// 按钮配置
 typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
+/// UICollectionView配置
+typedef void(^jobsByCollectionViewFlowLayoutBlock)(UICollectionViewFlowLayout *_Nullable data);
 #pragma mark —— URL
 typedef void(^jobsByURLBlock)(NSURL *_Nullable data);
 typedef void(^jobsByURLRequestBlock)(__kindof NSURLRequest *_Nullable data);
@@ -85,16 +93,13 @@ typedef void(^jobsByUnsignedShortBlock)(unsigned short data);
 typedef void(^jobsByLongBlock)(long data);
 typedef void(^jobsByUnsignedLongBlock)(unsigned long data);
 typedef void(^jobsByUnsignedLongLongBlock)(unsigned long long data);
+#pragma mark —— 关于时间
+typedef void(^jobsByTimerBlock)(NSTimer *_Nullable data);
+typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable data);
 #pragma mark —— 其他
 typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable data);
 typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);
-typedef void(^jobsByTimerBlock)(NSTimer *_Nullable data);
 typedef void(^jobsByDataBlock)(NSData *_Nullable data);
-typedef void(^jobsByStringBlock)(NSString *_Nullable data);
-typedef void(^jobsByAttributedStringBlock)(__kindof NSAttributedString *_Nullable data);
-typedef void(^jobsByMutableParagraphStyleBlock)(NSMutableParagraphStyle *_Nullable data);
-typedef void(^jobsByTextAttachmentBlock)(NSTextAttachment *_Nullable data);
-typedef void(^jobsByCollectionViewFlowLayoutBlock)(UICollectionViewFlowLayout *_Nullable data);
 
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;
 typedef void(^jobsByThreeIDBlock)Jobs_3_Arguments;

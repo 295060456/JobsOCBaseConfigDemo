@@ -11065,6 +11065,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       return data;
   }
   
+  NS_INLINE __kindof NSDateFormatter *_Nonnull jobsMakeDateFormatter(jobsByDateFormatterBlock _Nonnull block){
+      NSDateFormatter *data = NSDateFormatter.alloc.init;
+      if (block) block(data);
+      return data;
+  }
+  
   NS_INLINE UICollectionViewFlowLayout *_Nonnull jobsMakeCollectionViewFlowLayout(jobsByCollectionViewFlowLayoutBlock _Nonnull block){
       UICollectionViewFlowLayout *data = UICollectionViewFlowLayout.alloc.init;
       if (block) block(data);
@@ -11236,6 +11242,12 @@ NS_INLINE __kindof JobsParagraphStyleModel *_Nonnull jobsMakeParagraphStyleModel
 
 NS_INLINE __kindof MasonryModel *_Nonnull jobsMakeMasonryModel(jobsByMasonryModelBlock _Nonnull block){
     MasonryModel *data = MasonryModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof JobsTimeModel *_Nonnull jobsMakeTimeModel(jobsByTimeModelBlock _Nonnull block){
+    JobsTimeModel *data = JobsTimeModel.alloc.init;
     if (block) block(data);
     return data;
 }
