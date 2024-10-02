@@ -56,9 +56,26 @@ JobsToggleNavViewProtocolSynthesize
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-//        self.viewModel = model ? : UIViewModel.new;
-//        MakeDataNull
-        [self createUI];
+        if(self.buttonsArray.count){
+            [self.buttonsArray removeAllObjects];
+        }
+        for (int i = 0 ; i < self.dataArr.count ; i++) {
+            BaseButton *button = BaseButton.initByButtonModel(self.buttonModel);
+            button.frame = CGRectMake(i * self.buttonWidth + (i ? self.btn_each_offset : 0),
+                                      0,
+                                      self.buttonWidth,
+                                      self.height);
+            button.index = self.buttonsArray.count;
+            self.buttonsArray.add(button);
+            [self addSubview:button];
+            self.buttonsArray[i].jobsResetBtnBgImage(self.buttonModel.selected_backgroundImages[i]);
+        }
+        self.current_index = 0;
+        self.sliderView.alpha = 1;
+        
+        self.buttonsArray[0].jobsResetTitleFont(self.buttonModel.selected_titleFont);
+        self.buttonsArray[0].jobsResetBtnTitleCor(self.buttonModel.selected_titleCor);
+        self.buttonsArray[0].selected = YES;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -77,29 +94,6 @@ JobsToggleNavViewProtocolSynthesize
 #pragma mark —— 一些私有方法
 -(CGFloat)buttonWidth{
     return self.width / self.dataArr.count;
-}
-
--(void)createUI{
-    if(self.buttonsArray.count){
-        [self.buttonsArray removeAllObjects];
-    }
-    for (int i = 0 ; i < self.dataArr.count ; i++) {
-        BaseButton *button = BaseButton.initByButtonModel(self.buttonModel);
-        button.frame = CGRectMake(i * self.buttonWidth + (i ? self.btn_each_offset : 0),
-                                  0,
-                                  self.buttonWidth,
-                                  self.height);
-        button.index = self.buttonsArray.count;
-        self.buttonsArray.add(button);
-        [self addSubview:button];
-        self.buttonsArray[i].jobsResetBtnBgImage(self.buttonModel.selected_backgroundImages[i]);
-    }
-    self.current_index = 0;
-    self.sliderView.alpha = 1;
-    
-    self.buttonsArray[0].jobsResetTitleFont(self.buttonModel.selected_titleFont);
-    self.buttonsArray[0].jobsResetBtnTitleCor(self.buttonModel.selected_titleCor);
-    self.buttonsArray[0].selected = YES;
 }
 #pragma mark —— 一些公有方法
 /// 核心方法：拖动和点击的逻辑，都归属于这个方法

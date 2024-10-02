@@ -14,13 +14,11 @@
 #import "MacroDef_Cor.h"
 #import "JobsLoadingImage.h"
 #import "NSObject+CallBackInfoByBlock.h"
+#import "BaseProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WMZCodeView : UIView
-
-+(instancetype)sharedInstance;
-+(void)destroySingleton;
+@interface WMZCodeView : UIView<BaseProtocol>
 /*
  * 调用方法
  *

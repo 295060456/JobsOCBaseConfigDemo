@@ -8,6 +8,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
+#import "BaseProtocol.h"
 
 #if __has_include(<WHToast/WHToast.h>)
 #import <WHToast/WHToast.h>
@@ -19,11 +20,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsRecordPresentedViewController : NSObject
+@interface JobsRecordPresentedViewController : NSObject<BaseProtocol>
 
 @property(nonatomic,strong)NSMutableArray <__kindof UIViewController *>*presentedVCMutArr;
-
-+(instancetype)sharedInstance;
 
 @end
 /// 防止过多的presented模态推出ViewController

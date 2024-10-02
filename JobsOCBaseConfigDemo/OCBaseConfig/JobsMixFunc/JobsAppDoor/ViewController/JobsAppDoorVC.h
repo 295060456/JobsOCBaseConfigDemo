@@ -110,12 +110,8 @@
 #import "CustomZFPlayerControlView.h"//播放器的控制层
 
 NS_ASSUME_NONNULL_BEGIN
-
 //高仿蜜柚
 @interface JobsAppDoorVC : BaseViewController
-
-+(instancetype)sharedInstance;
-+(void)destroyAppDoorSingleton;
 /// 进此页面先自动跳转到注册页面
 -(void)toRegister;
 

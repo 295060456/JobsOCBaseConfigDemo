@@ -42,7 +42,7 @@
     JobsRemoveNotification(self);
 }
 
-+(void)destroyAppDoorSingleton{
++(void)destroySingleton{
     static_jobsAppDoorOnceToken = 0;
     static_appDoorVC = nil;
 }
@@ -413,7 +413,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
                 else if (btn.titleForNormalState.isEqualToString(Title4)){// Title4 JobsInternationalization(@"Back to HomePage")
                     UIButton *abandonLoginBtn = (UIButton *)data;
                     self.backBtnClickEvent(abandonLoginBtn);
-                    [JobsAppDoorVC destroyAppDoorSingleton];
+                    [JobsAppDoorVC destroySingleton];
                 }
                 else if (btn.titleForNormalState.isEqualToString(Title5)){// Title5 JobsInternationalization(@"Save the user name")
                     

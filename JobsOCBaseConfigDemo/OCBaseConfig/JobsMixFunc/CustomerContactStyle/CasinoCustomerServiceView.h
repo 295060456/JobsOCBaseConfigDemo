@@ -8,12 +8,11 @@
 #import "BaseView.h"
 #import "JobsHotLabelWithSingleLine.h"
 #import "AppToolsProtocol.h"
+#import "BaseProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CasinoCustomerServiceView : BaseView<AppToolsProtocol>
-
-+(instancetype)sharedInstance;
 
 @end
 
