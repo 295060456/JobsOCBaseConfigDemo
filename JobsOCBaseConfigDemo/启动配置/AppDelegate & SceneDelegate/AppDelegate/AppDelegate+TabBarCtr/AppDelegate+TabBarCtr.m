@@ -240,8 +240,8 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
     if(!_tabBarItemMutArr){
         @jobs_weakify(self)
         _tabBarItemMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-            @jobs_strongify(self)
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                @jobs_strongify(self)
                 viewModel.image = self.imageUnSelectedMutArr[0];
                 viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[0];
                 viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[0];
@@ -265,6 +265,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                          NSLog(@"");
                      }));
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                @jobs_strongify(self)
                 viewModel.image = self.imageUnSelectedMutArr[1];
                 viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[1];
                 viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[1];
@@ -288,6 +289,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                          NSLog(@"");
                      }));
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                @jobs_strongify(self)
                 viewModel.image = self.imageUnSelectedMutArr[2];
                 viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[2];
                 viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[2];
@@ -310,6 +312,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                      }));
             
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                @jobs_strongify(self)
                 viewModel.image = self.imageUnSelectedMutArr[3];
                 viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[3];
                 viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[3];
@@ -330,6 +333,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                          NSLog(@"");
                      }));
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                @jobs_strongify(self)
                 viewModel.image = self.imageUnSelectedMutArr[4];
                 viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[4];
                 viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[4];
