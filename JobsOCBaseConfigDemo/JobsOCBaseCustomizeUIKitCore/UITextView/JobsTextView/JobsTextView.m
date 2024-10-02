@@ -27,7 +27,7 @@
 
 static JobsTextView *static_textView = nil;
 static dispatch_once_t static_textViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_textViewOnceToken, ^{
         static_textView = JobsTextView.new;
     });return static_textView;

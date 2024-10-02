@@ -16,7 +16,7 @@
 
 @implementation DataManager
 /// 数据管理对象单例
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     static DataManager *sharedManager = nil;
     @synchronized(self){
         if (!sharedManager) {

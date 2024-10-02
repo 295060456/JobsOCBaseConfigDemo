@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *cacheKey;
 @property(nonatomic,copy)NSString *tag;
 /// 数据管理对象单例
-+(instancetype)sharedInstance;
++(instancetype)sharedManager;
 /// 保存页面数据
 -(void)saveDataInfo:(NSDictionary *)info key:(NSString *)key;
 /// 根据menuId获取相应页面的数据

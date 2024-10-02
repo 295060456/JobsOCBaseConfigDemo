@@ -35,7 +35,7 @@ static const CGFloat unit = 1000.0;
 
 @implementation ZBCacheManager
 
-+ (ZBCacheManager *)sharedInstance{
++ (ZBCacheManager *)sharedManager{
     static ZBCacheManager *cacheInstance=nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

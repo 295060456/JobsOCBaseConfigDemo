@@ -51,7 +51,7 @@
 
 static WMZCodeView *static_codeView = nil;
 static dispatch_once_t static_codeViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_codeViewOnceToken, ^{
         static_codeView = WMZCodeView.new;
     });return static_codeView;

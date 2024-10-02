@@ -21,14 +21,14 @@
         JobsLoadMoreTBVCell *cell = (JobsLoadMoreTBVCell *)tableView.tableViewCellClass(JobsLoadMoreTBVCell.class,@"");
         if (!cell) {
             cell = JobsLoadMoreTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.contentView.backgroundColor = JobsCommentConfig.sharedInstance.bgCor;
+            cell.contentView.backgroundColor = JobsCommentConfig.sharedManager.bgCor;
         }return cell;
     };
 }
 
 +(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(id _Nullable data){
-        return JobsCommentConfig.sharedInstance.cellHeight;
+        return JobsCommentConfig.sharedManager.cellHeight;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】

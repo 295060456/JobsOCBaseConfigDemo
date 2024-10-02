@@ -25,7 +25,7 @@
 
 static UICollectionHeaderFooterView *static_collectionHeaderFooterView = nil;
 static dispatch_once_t static_collectionHeaderFooterViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_collectionHeaderFooterViewOnceToken, ^{
         static_collectionHeaderFooterView = UICollectionHeaderFooterView.new;
     });return static_collectionHeaderFooterView;

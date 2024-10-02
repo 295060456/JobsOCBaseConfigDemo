@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat height; // 提示框 h
 @property(nonatomic,assign)CGFloat radius; // 圆半径
 
-+(instancetype)sharedInstance;
++(instancetype)sharedManager;
 -(void)updateProgressText:(NSString *)progressText;
 
 @end

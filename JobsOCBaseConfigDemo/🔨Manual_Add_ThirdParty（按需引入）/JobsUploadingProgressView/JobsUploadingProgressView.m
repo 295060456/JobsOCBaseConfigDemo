@@ -25,7 +25,7 @@
 @implementation JobsUploadingProgressView
 
 static JobsUploadingProgressView *static_uploadingProgressView = nil;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     @synchronized(self){
         if (!static_uploadingProgressView) {
             static_uploadingProgressView = [JobsUploadingProgressView.alloc initWithFrame:CGRectMake((JobsMainScreen_WIDTH() - 267) / 2,

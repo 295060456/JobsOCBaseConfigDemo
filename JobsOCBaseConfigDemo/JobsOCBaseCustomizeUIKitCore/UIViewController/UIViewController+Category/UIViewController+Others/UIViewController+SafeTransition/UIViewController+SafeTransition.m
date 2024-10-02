@@ -10,7 +10,7 @@
 @implementation JobsRecordPresentedViewController
 
 static JobsRecordPresentedViewController *static_JobsRecordPresentedVC = nil;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     @synchronized(self){
         if (!static_JobsRecordPresentedVC) {
             static_JobsRecordPresentedVC = JobsRecordPresentedViewController.new;
@@ -43,7 +43,7 @@ static JobsRecordPresentedViewController *static_JobsRecordPresentedVC = nil;
 
 -(void)swiz_dismissViewControllerAnimated:(BOOL)animated
                                completion:(void(^)(void))completion{
-    [JobsRecordPresentedViewController.sharedInstance.presentedVCMutArr removeAllObjects];
+    [JobsRecordPresentedViewController.sharedManager.presentedVCMutArr removeAllObjects];
     [self swiz_dismissViewControllerAnimated:animated completion:completion];
 }
 
@@ -67,7 +67,7 @@ static JobsRecordPresentedViewController *static_JobsRecordPresentedVC = nil;
     }
     
     if ([self checkPresented:vc]) {
-        [JobsRecordPresentedViewController.sharedInstance.presentedVCMutArr addObject:vc];
+        [JobsRecordPresentedViewController.sharedManager.presentedVCMutArr addObject:vc];
         [self swiz_presentViewController:vc
                                 animated:animated
                               completion:completion];
@@ -83,7 +83,7 @@ static JobsRecordPresentedViewController *static_JobsRecordPresentedVC = nil;
  如果下一次presented和数组里面进行记录的ViewController是同一个类型，那么不允许presented
  */
 -(BOOL)checkPresented:(UIViewController *)viewController{
-    for (UIViewController *vc in JobsRecordPresentedViewController.sharedInstance.presentedVCMutArr) {
+    for (UIViewController *vc in JobsRecordPresentedViewController.sharedManager.presentedVCMutArr) {
         if ([viewController isKindOfClass:vc.class]) return NO;
     }return YES;
 }

@@ -46,12 +46,12 @@ NSString *const _delegate =@"_delegate";
 }
 
 + (instancetype)defaultEngine{
-    static ZBRequestEngine *sharedInstance = nil;
+    static ZBRequestEngine *sharedManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[ZBRequestEngine alloc]init];
+        sharedManager = [[ZBRequestEngine alloc]init];
     });
-    return sharedInstance;
+    return sharedManager;
 }
 /*
    硬性设置：

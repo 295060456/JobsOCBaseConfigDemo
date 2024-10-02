@@ -38,7 +38,7 @@
 
 static BaiShaETProjCollectionHeaderView *static_collectionHeaderView = nil;
 static dispatch_once_t static_collectionHeaderViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_collectionHeaderViewOnceToken, ^{
         static_collectionHeaderView = BaiShaETProjCollectionHeaderView.new;
     });return static_collectionHeaderView;

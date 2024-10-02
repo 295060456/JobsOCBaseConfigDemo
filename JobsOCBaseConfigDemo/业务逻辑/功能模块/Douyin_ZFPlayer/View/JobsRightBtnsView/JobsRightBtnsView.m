@@ -30,7 +30,7 @@
 
 static JobsRightBtnsView *static_rightBtnsView = nil;
 static dispatch_once_t static_rightBtnsViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_rightBtnsViewOnceToken, ^{
         static_rightBtnsView = JobsRightBtnsView.new;
     });return static_rightBtnsView;

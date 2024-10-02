@@ -36,7 +36,7 @@ static dispatch_once_t JobsTabBarVCOnceToken;
     });return JobsTabBarVCInstance;
 }
 ///【单例模式】使用外界自定义的JobsTabBar
-+(instancetype _Nonnull)sharedInstanceWithJobsTabBar:(JobsTabBar *)tabBar{
++(instancetype _Nonnull)sharedManagerWithJobsTabBar:(JobsTabBar *)tabBar{
     dispatch_once(&JobsTabBarVCOnceToken, ^{
         JobsTabBarVCInstance = [[super allocWithZone:NULL] init];
         JobsTabBarVCInstance.myTabBar = tabBar;

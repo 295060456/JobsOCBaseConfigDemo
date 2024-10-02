@@ -30,7 +30,7 @@
 
 static JobsFiltrationView *static_filtrationView = nil;
 static dispatch_once_t static_filtrationViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_filtrationViewOnceToken, ^{
         static_filtrationView = JobsFiltrationView.new;
     });return static_filtrationView;

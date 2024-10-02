@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
+#import "BaseProtocol.h"
 /// 单例工具箱
 #ifndef JobsAppTool
 #define JobsAppTool JobsAppTools.sharedManager
@@ -36,7 +37,7 @@ typedef NS_ENUM(NSInteger, DeviceOrientation) {
 
 NS_ASSUME_NONNULL_BEGIN
 /// 本类结合 NSObject+AppTools 是对整个App作用于全局的工具箱🧰
-@interface JobsAppTools : NSObject
+@interface JobsAppTools : NSObject<BaseProtocol>
 #pragma mark —— 屏幕方向
 #warning 以下属性，如果用分类集成，即写在NSObject层，可能出现存取值异常
 /// UIInterfaceOrientationMaskLandscapeLeft :左手边是iPhone刘海，应用程序横屏倒置
@@ -45,9 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)UIInterfaceOrientation currentInterfaceOrientation;/// 描述界面当前的方向，用于确定应用界面是如何显示的
 @property(nonatomic,assign)UIDeviceOrientation currentDeviceOrientation;/// 描述设备本身的物理方向，即设备如何被用户持握
 @property(nonatomic,assign)DeviceOrientation jobsDeviceOrientation;/// 自定义枚举，直接输出横竖屏判定
-
-+ (instancetype)sharedManager;
-+ (void)destroyInstance;
+@property(nonatomic,assign)FMLoginWork loginWork;
 /// 仅仅为了iOS 13 版本向下兼容而存在
 -(UIWindow *)makeAppDelegateWindow;
 -(UIWindow *)makeSceneDelegateWindow;

@@ -33,7 +33,7 @@
 
 static BaiShaETProjPopupView10 *static_popupView10 = nil;
 static dispatch_once_t static_popupView10OnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_popupView10OnceToken, ^{
         static_popupView10 = BaiShaETProjPopupView10.new;
     });return static_popupView10;

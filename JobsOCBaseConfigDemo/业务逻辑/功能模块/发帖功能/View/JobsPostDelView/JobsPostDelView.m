@@ -25,7 +25,7 @@
 
 static JobsPostDelView *static_postDelView = nil;
 static dispatch_once_t static_postDelViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_postDelViewOnceToken, ^{
         static_postDelView = JobsPostDelView.new;
     });return static_postDelView;

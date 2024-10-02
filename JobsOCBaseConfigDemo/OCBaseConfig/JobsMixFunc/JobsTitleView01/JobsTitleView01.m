@@ -29,7 +29,7 @@
 
 static JobsTitleView01 *static_titleView01 = nil;
 static dispatch_once_t static_titleView01OnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_titleView01OnceToken, ^{
         static_titleView01 = JobsTitleView01.new;
     });return static_titleView01;

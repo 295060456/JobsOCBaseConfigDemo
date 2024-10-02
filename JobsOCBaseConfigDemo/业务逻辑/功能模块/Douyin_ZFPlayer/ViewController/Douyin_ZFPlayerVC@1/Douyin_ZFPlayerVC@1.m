@@ -84,7 +84,7 @@
 /// 真实的网络请求
 -(void)requestData:(BOOL)isLoadMore{
     JobsNetworkingPrepare
-    DataManager.sharedInstance.tag = ReuseIdentifier;
+    DataManager.sharedManager.tag = ReuseIdentifier;
     /**
      公共配置
      插件机制

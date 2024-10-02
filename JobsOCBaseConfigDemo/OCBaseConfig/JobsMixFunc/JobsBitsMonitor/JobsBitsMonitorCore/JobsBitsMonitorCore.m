@@ -34,7 +34,7 @@ NSString* const GSUploadAndDownloadNetworkSpeedNotificationKey = @"GSUploadAndDo
 @implementation JobsBitsMonitorCore
 
 static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     @synchronized(self){
         if (!static_bitsMonitorCore) {
             static_bitsMonitorCore = JobsBitsMonitorCore.new;

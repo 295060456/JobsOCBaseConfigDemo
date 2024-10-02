@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)JobsSuspendLab *rateLabel;
 
-+(JobsMonitorNetwoking *)sharedInstance;
++(JobsMonitorNetwoking *)sharedManager;
 -(long long)getInterfaceBytes;
 -(void)getInternetface;
 -(NSString *)formatNetWork:(long long int)rate;

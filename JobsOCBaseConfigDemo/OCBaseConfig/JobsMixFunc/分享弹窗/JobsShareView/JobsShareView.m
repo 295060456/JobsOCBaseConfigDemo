@@ -27,7 +27,7 @@
 
 static JobsShareView *static_shareView = nil;
 static dispatch_once_t static_shareViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_shareViewOnceToken, ^{
         static_shareView = JobsShareView.new;
     });return static_shareView;

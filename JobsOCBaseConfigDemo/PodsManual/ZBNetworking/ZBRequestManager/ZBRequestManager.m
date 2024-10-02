@@ -181,7 +181,7 @@ NSString *const zb_downloadPath =@"AppDownload";
         return [self dataTaskWithHTTPRequest:request];
     }else{
         NSString *key = [self keyWithParameters:request];
-        if ([[ZBCacheManager sharedInstance]cacheExistsForKey:key]&&request.apiType==ZBRequestTypeCache){
+        if ([[ZBCacheManager sharedManager]cacheExistsForKey:key]&&request.apiType==ZBRequestTypeCache){
             [self getCacheDataForKey:key request:request];
             return 0;
         }else{
@@ -205,7 +205,7 @@ NSString *const zb_downloadPath =@"AppDownload";
 
 + (NSUInteger)sendDownLoadRequest:(ZBURLRequest *)request{
     if (request.downloadState==ZBDownloadStateStart) {
-        [[ZBCacheManager sharedInstance]createDirectoryAtPath:[self AppDownloadPath]];
+        [[ZBCacheManager sharedManager]createDirectoryAtPath:[self AppDownloadPath]];
         return [self downloadStartWithRequest:request];
     }else{
         return [self downloadStopWithRequest:request];
@@ -215,8 +215,8 @@ NSString *const zb_downloadPath =@"AppDownload";
 + (NSUInteger)downloadStartWithRequest:(ZBURLRequest*)request{
     NSString *AppDownloadTempPath=[self AppDownloadTempPath];
     NSData *resumeData;
-    if ([[ZBCacheManager sharedInstance]cacheExistsForKey:request.url inPath:AppDownloadTempPath]) {
-        resumeData=[[ZBCacheManager sharedInstance]getCacheDataForKey:request.url inPath:AppDownloadTempPath];
+    if ([[ZBCacheManager sharedManager]cacheExistsForKey:request.url inPath:AppDownloadTempPath]) {
+        resumeData=[[ZBCacheManager sharedManager]getCacheDataForKey:request.url inPath:AppDownloadTempPath];
     }
     return [[ZBRequestEngine defaultEngine] downloadWithRequest:request resumeData:resumeData savePath:[self AppDownloadPath] progress:^(NSProgress * _Nullable downloadProgress) {
         if (request.delegate&&[request.delegate respondsToSelector:@selector(requestProgress:)]) {
@@ -228,8 +228,8 @@ NSString *const zb_downloadPath =@"AppDownload";
             [self failureWithError:error request:request];
         }else{
             [self successWithResponse:response responseObject:[filePath path] request:request];
-            if ([[ZBCacheManager sharedInstance]cacheExistsForKey:request.url inPath:AppDownloadTempPath]) {
-                [[ZBCacheManager sharedInstance]clearCacheForkey:request.url inPath:AppDownloadTempPath completion:nil];
+            if ([[ZBCacheManager sharedManager]cacheExistsForKey:request.url inPath:AppDownloadTempPath]) {
+                [[ZBCacheManager sharedManager]clearCacheForkey:request.url inPath:AppDownloadTempPath completion:nil];
             }
         }
     }];
@@ -241,8 +241,8 @@ NSString *const zb_downloadPath =@"AppDownload";
     if(downloadTask){
         [downloadTask cancelByProducingResumeData:^(NSData *resumeData) {
             NSString *AppDownloadTempPath=[self AppDownloadTempPath];
-            [[ZBCacheManager sharedInstance]createDirectoryAtPath:AppDownloadTempPath];
-            [[ZBCacheManager sharedInstance] storeContent:resumeData forKey:request.url inPath:AppDownloadTempPath isSuccess:^(BOOL isSuccess) {
+            [[ZBCacheManager sharedManager]createDirectoryAtPath:AppDownloadTempPath];
+            [[ZBCacheManager sharedManager] storeContent:resumeData forKey:request.url inPath:AppDownloadTempPath isSuccess:^(BOOL isSuccess) {
                 [self printDownloadStoreIsSuccess:isSuccess request:request];
             }];
         }];
@@ -293,7 +293,7 @@ NSString *const zb_downloadPath =@"AppDownload";
 }
 
 + (void)storeObject:(NSObject *)object request:(ZBURLRequest *)request{
-    [[ZBCacheManager sharedInstance] storeContent:object forKey:request.cacheKey isSuccess:nil];
+    [[ZBCacheManager sharedManager] storeContent:object forKey:request.cacheKey isSuccess:nil];
 }
 
 + (id)responsetSerializerConfig:(ZBURLRequest *)request responseObject:(id)responseObject{
@@ -363,7 +363,7 @@ NSString *const zb_downloadPath =@"AppDownload";
 }
 
 + (void)getCacheDataForKey:(NSString *)key request:(ZBURLRequest *)request{
-    [[ZBCacheManager sharedInstance]getCacheDataForKey:key value:^(NSData *data,NSString *filePath) {
+    [[ZBCacheManager sharedManager]getCacheDataForKey:key value:^(NSData *data,NSString *filePath) {
         [self printCacheInfoWithkey:key filePath:filePath request:request];
         if(filePath){
             [request setValue:filePath forKey:_filePath];
@@ -426,15 +426,15 @@ NSString *const zb_downloadPath =@"AppDownload";
 #endif
 #pragma mark - 下载获取文件
 + (NSString *)getDownloadFileForKey:(NSString *)key{
-    return [[ZBCacheManager sharedInstance]getDiskFileForKey:[key lastPathComponent] inPath:[self AppDownloadPath]];
+    return [[ZBCacheManager sharedManager]getDiskFileForKey:[key lastPathComponent] inPath:[self AppDownloadPath]];
 }
 
 + (NSString *)AppDownloadPath{
-    return [[[ZBCacheManager sharedInstance] ZBKitPath]stringByAppendingPathComponent:zb_downloadPath];
+    return [[[ZBCacheManager sharedManager] ZBKitPath]stringByAppendingPathComponent:zb_downloadPath];
 }
 
 + (NSString *)AppDownloadTempPath{
-    return [[[ZBCacheManager sharedInstance] ZBKitPath]stringByAppendingPathComponent:zb_downloadTempPath];
+    return [[[ZBCacheManager sharedManager] ZBKitPath]stringByAppendingPathComponent:zb_downloadTempPath];
 }
 
 #pragma mark - 打印log
@@ -444,7 +444,7 @@ NSString *const zb_downloadPath =@"AppDownload";
         if ([filePath isEqualToString:@"memoryCache"]) {
             NSLog(@"\n------------ZBNetworking------cache info------begin------\n-cachekey-:%@\n-cacheFileSource-:%@\n-responseSerializer-:%@\n-filtrationCacheKey-:%@\n------------ZBNetworking------cache info-------end-------",key,filePath,responseStr,request.filtrationCacheKey);
         }else{
-            NSLog(@"\n------------ZBNetworking------cache info------begin------\n-cachekey-:%@\n-cacheFileSource-:%@\n-cacheFileInfo-:%@\n-responseSerializer-:%@\n-filtrationCacheKey-:%@\n------------ZBNetworking------cache info-------end-------",key,filePath,[[ZBCacheManager sharedInstance] getDiskFileAttributesWithFilePath:filePath],responseStr,request.filtrationCacheKey);
+            NSLog(@"\n------------ZBNetworking------cache info------begin------\n-cachekey-:%@\n-cacheFileSource-:%@\n-cacheFileInfo-:%@\n-responseSerializer-:%@\n-filtrationCacheKey-:%@\n------------ZBNetworking------cache info-------end-------",key,filePath,[[ZBCacheManager sharedManager] getDiskFileAttributesWithFilePath:filePath],responseStr,request.filtrationCacheKey);
         }
     }
 }

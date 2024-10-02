@@ -29,7 +29,7 @@
 
 static JobsBaseLabel *static_baseLabel = nil;
 static dispatch_once_t static_baseLabelOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_baseLabelOnceToken, ^{
         static_baseLabel = JobsBaseLabel.new;
     });return static_baseLabel;

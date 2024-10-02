@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "BaseProtocol.h"
 
 #import "MacroDef_Func.h"
 #import "JobsLoadingImage.h"
@@ -55,7 +56,8 @@
 @interface JobsTabBarVC : UITabBarController
 <
 UITabBarControllerDelegate,
-UIGestureRecognizerDelegate
+UIGestureRecognizerDelegate,
+BaseProtocol
 >
 /// UI
 @property(nonatomic,strong,readonly)JobsTabBar * _Nonnull myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
@@ -67,14 +69,10 @@ UIGestureRecognizerDelegate
 @property(nonatomic,assign)BOOL isFeedbackGenerator;/// 振动反馈
 @property(nonatomic,assign)BOOL isJumpToNextVC;/// 当需要跳开的item,是否是需要直接跳到下一个VC？默认NO
 #pragma mark —— 初始化方法
-///【单例模式】使用内置默认的JobsTabBar
-+(instancetype _Nonnull)sharedManager;
 ///【单例模式】使用外界自定义的JobsTabBar
 +(instancetype _Nonnull)sharedInstanceWithJobsTabBar:(JobsTabBar *_Nullable)tabBar;
 /// 一般的初始化模式
 -(instancetype _Nonnull)initWithJobsTabBar:(JobsTabBar *_Nonnull)tabBar;
-#pragma mark —— 单例的销毁
-+(void)destroyInstance;
 #pragma mark —— 一些公有方法
 /// 需要强制跳转登录的index。点击和手势滑动都需要共同调用
 -(JobsReturnBOOLByNSUIntegerBlock _Nullable)forcedLoginIndex;

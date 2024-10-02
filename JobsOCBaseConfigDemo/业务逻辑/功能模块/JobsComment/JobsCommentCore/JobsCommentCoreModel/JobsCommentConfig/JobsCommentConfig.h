@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign,readonly)CGFloat cellHeight;/// 显示评论的承载cell高度
 @property(nonatomic,assign,readonly)CGFloat secondLevelCommentOffset;/// 二级标题相对于一级标题控件的偏移量
 
-+(instancetype)sharedInstance;
++(instancetype)sharedManager;
 
 @end
 

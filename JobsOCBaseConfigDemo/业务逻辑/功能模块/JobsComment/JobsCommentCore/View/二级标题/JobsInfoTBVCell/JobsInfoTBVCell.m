@@ -25,7 +25,7 @@ BaseProtocol_synthesize
         if (!cell) {
             cell = JobsInfoTBVCell.initTableViewCellWithStyle(UITableViewCellStyleSubtitle);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.contentView.backgroundColor = JobsCommentConfig.sharedInstance.bgCor;
+            cell.contentView.backgroundColor = JobsCommentConfig.sharedManager.bgCor;
         }return cell;
     };
 }
@@ -34,7 +34,7 @@ BaseProtocol_synthesize
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
-        return JobsCommentConfig.sharedInstance.cellHeight;
+        return JobsCommentConfig.sharedManager.cellHeight;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -67,12 +67,12 @@ BaseProtocol_synthesize
 #pragma mark —— 复写系统父类方法
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.imageView.Size = JobsCommentConfig.sharedInstance.headerImageViewSize;//subTitleOffset
+    self.imageView.Size = JobsCommentConfig.sharedManager.headerImageViewSize;//subTitleOffset
     self.imageView.cornerCutToCircleWithCornerRadius(self.imageView.height / 2);
-    self.textLabel.font = JobsCommentConfig.sharedInstance.titleFont;
-    self.detailTextLabel.font = JobsCommentConfig.sharedInstance.subTitleFont;
-    self.textLabel.textColor = JobsCommentConfig.sharedInstance.titleCor;
-    self.detailTextLabel.textColor = JobsCommentConfig.sharedInstance.subTitleCor;
+    self.textLabel.font = JobsCommentConfig.sharedManager.titleFont;
+    self.detailTextLabel.font = JobsCommentConfig.sharedManager.subTitleFont;
+    self.textLabel.textColor = JobsCommentConfig.sharedManager.titleCor;
+    self.detailTextLabel.textColor = JobsCommentConfig.sharedManager.subTitleCor;
     /// 因为二级评论和一级评论的控件之间存在一定的offset(向右偏)，故这里进行重写约束
     self.imageView.resetOriginX(JobsWidth(50));
     self.imageView.resetOriginY(JobsWidth(0));

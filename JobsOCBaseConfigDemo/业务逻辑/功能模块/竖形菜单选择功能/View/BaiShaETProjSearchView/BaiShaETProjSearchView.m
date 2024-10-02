@@ -22,7 +22,7 @@
 
 static BaiShaETProjSearchView *static_searchView = nil;
 static dispatch_once_t static_searchViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_searchViewOnceToken, ^{
         static_searchView = BaiShaETProjSearchView.new;
     });return static_searchView;

@@ -25,7 +25,7 @@
 @implementation CasinoCustomerServiceView
 
 static CasinoCustomerServiceView *static_customerServiceView = nil;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     @synchronized(self){
         if (!static_customerServiceView) {
             static_customerServiceView = CasinoCustomerServiceView.new;

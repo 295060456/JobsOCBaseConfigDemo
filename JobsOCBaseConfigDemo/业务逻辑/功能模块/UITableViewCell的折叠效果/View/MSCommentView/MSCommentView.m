@@ -25,7 +25,7 @@
 
 static MSCommentView *static_commentView = nil;
 static dispatch_once_t static_commentViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_commentViewOnceToken, ^{
         static_commentView = MSCommentView.new;
     });return static_commentView;

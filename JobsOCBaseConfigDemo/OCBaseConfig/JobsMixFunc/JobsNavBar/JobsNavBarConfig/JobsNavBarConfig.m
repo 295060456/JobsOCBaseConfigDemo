@@ -16,7 +16,7 @@ static dispatch_once_t static_navBarConfigOnceToken;
     static_navBarConfig = nil;
 }
 
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_navBarConfigOnceToken, ^{
         static_navBarConfig = JobsNavBarConfig.new;
     });return static_navBarConfig;

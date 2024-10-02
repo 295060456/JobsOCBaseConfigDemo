@@ -48,7 +48,7 @@
 }
 static JobsAppDoorVC *static_appDoorVC = nil;
 static dispatch_once_t static_jobsAppDoorOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_jobsAppDoorOnceToken, ^{
         static_appDoorVC = JobsAppDoorVC.new;
     });return static_appDoorVC;

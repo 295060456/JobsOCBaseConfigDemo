@@ -26,7 +26,7 @@
 
 static JobsShowNumView *static_showNumView = nil;
 static dispatch_once_t static_showNumViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_showNumViewOnceToken, ^{
         static_showNumView = JobsShowNumView.new;
     });return static_showNumView;

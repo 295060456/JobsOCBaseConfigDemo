@@ -37,7 +37,7 @@
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGFloatByIDBlock _Nonnull)viewHeightByModel{
     return ^CGFloat(id _Nullable data){
-        return JobsCommentConfig.sharedInstance.cellHeight;
+        return JobsCommentConfig.sharedManager.cellHeight;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -102,11 +102,11 @@
     }
     
     _userInfoBtn.jobsResetAttributedTitle([AttributedString initWithString:self.firstCommentModel.nickname
-                                                                attributes:@{NSFontAttributeName: JobsCommentConfig.sharedInstance.titleFont,
-                                                                             NSForegroundColorAttributeName: JobsCommentConfig.sharedInstance.titleCor}]);
+                                                                attributes:@{NSFontAttributeName: JobsCommentConfig.sharedManager.titleFont,
+                                                                             NSForegroundColorAttributeName: JobsCommentConfig.sharedManager.titleCor}]);
     _userInfoBtn.jobsResetAttributedSubtitle([AttributedString initWithString:self.firstCommentModel.content
-                                                                   attributes:@{NSFontAttributeName: JobsCommentConfig.sharedInstance.subTitleFont,
-                                                                                NSForegroundColorAttributeName: JobsCommentConfig.sharedInstance.subTitleCor}]);
+                                                                   attributes:@{NSFontAttributeName: JobsCommentConfig.sharedManager.subTitleFont,
+                                                                                NSForegroundColorAttributeName: JobsCommentConfig.sharedManager.subTitleCor}]);
     _userInfoBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     return _userInfoBtn;
 }

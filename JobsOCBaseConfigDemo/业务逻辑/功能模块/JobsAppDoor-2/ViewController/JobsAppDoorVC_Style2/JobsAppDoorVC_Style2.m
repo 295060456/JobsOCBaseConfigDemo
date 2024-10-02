@@ -44,7 +44,7 @@
 }
 static JobsAppDoorVC_Style2 *appDoorVC_Style2 = nil;
 static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_jobsAppDoor_Style2OnceToken, ^{
         appDoorVC_Style2 = JobsAppDoorVC_Style2.new;
     });return appDoorVC_Style2;

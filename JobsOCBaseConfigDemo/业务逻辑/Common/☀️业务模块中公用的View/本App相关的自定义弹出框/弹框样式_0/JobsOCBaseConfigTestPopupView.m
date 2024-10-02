@@ -25,7 +25,7 @@
 
 static JobsOCBaseConfigTestPopupView *static_popupView01 = nil;
 static dispatch_once_t static_testPopupViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_testPopupViewOnceToken, ^{
         static_popupView01 = JobsOCBaseConfigTestPopupView.new;
     });return static_popupView01;

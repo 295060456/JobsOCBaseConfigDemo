@@ -6,10 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 对整个TabBar的配置
-@interface JobsCustomTabBarConfig : NSObject
+@interface JobsCustomTabBarConfig : NSObject<BaseProtocol>
 
 @property(nonatomic,assign)CGFloat tabBarHeight;
 @property(nonatomic,assign)CGFloat tabBarWidth;
@@ -23,9 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSMutableArray <__kindof UIButton *>*tabBarItems;
 @property(nonatomic,strong)NSMutableArray <__kindof UIViewController *>*viewControllers;
 @property(nonatomic,strong,null_resettable)NSMutableArray <__kindof NSNumber *>*tabBarItemYOffsets;
-
-+(instancetype)sharedManager;
-+(void)destroyInstance;
 
 @end
 

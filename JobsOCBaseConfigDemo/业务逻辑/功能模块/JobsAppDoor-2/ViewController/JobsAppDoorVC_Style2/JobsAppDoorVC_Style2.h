@@ -112,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JobsAppDoorVC_Style2 : BaseViewController
 
 +(void)destroyAppDoorSingleton;
-+(instancetype)sharedInstance;
++(instancetype)sharedManager;
 
 @end
 

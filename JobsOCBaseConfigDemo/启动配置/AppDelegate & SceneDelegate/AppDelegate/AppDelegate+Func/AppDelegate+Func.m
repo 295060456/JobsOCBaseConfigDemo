@@ -41,7 +41,7 @@
     return ^() {
         // 配置并展示开屏广告
 //        {
-//            JobsLaunchAdMgr *adManager = [JobsLaunchAdMgr sharedInstance];
+//            JobsLaunchAdMgr *adManager = [JobsLaunchAdMgr sharedManager];
 //                adManager.adURL = [NSURL URLWithString:@"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4"]; // Replace with your ad URL
 //                adManager.imageDisplayDuration = 5.0; // Duration to display the image
 //                adManager.adMode = JobsLaunchAdModeNormal; // Choose the ad mode

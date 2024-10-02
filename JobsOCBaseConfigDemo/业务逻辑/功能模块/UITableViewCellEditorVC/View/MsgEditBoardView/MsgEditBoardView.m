@@ -29,7 +29,7 @@
 
 static MsgEditBoardView *static_msgEditBoardView = nil;
 static dispatch_once_t static_msgEditBoardViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_msgEditBoardViewOnceToken, ^{
         static_msgEditBoardView = MsgEditBoardView.new;
     });return static_msgEditBoardView;

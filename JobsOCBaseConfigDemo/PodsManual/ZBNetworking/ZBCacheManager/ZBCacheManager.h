@@ -39,7 +39,7 @@ typedef void(^ZBCacheCompletedBlock)(void);
 /**
  *  返回单例对象
  */
-+ (ZBCacheManager *_Nonnull)sharedInstance;
++ (ZBCacheManager *_Nonnull)sharedManager;
 
 /**
  *  内存缓存应该保存的对象的最大数目.

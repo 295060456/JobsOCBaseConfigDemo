@@ -23,7 +23,7 @@
 
 static JobsScrollYView *static_scrollYView = nil;
 static dispatch_once_t static_scrollYViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_scrollYViewOnceToken, ^{
         static_scrollYView = JobsScrollYView.new;
     });return static_scrollYView;

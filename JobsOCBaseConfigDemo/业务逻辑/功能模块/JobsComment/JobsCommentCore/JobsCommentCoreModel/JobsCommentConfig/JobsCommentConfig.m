@@ -29,7 +29,7 @@
 }
 static JobsCommentConfig *static_jobsCommentConfig = nil;
 static dispatch_once_t static_jobsCommentConfigOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_jobsCommentConfigOnceToken, ^{
         static_jobsCommentConfig = JobsCommentConfig.new;
     });return static_jobsCommentConfig;

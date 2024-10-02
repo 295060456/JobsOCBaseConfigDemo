@@ -26,7 +26,7 @@
 
 static JobsUserHeaderDataView *static_choiceUserHeaderDataView = nil;
 static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_choiceUserHeaderDataViewOnceToken, ^{
         static_choiceUserHeaderDataView = JobsUserHeaderDataView.new;
     });return static_choiceUserHeaderDataView;

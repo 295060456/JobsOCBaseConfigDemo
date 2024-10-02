@@ -24,7 +24,7 @@
 
 static MSMineView2 *static_mineView2 = nil;
 static dispatch_once_t static_mineView2OnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_mineView2OnceToken, ^{
         static_mineView2 = MSMineView2.new;
     });return static_mineView2;

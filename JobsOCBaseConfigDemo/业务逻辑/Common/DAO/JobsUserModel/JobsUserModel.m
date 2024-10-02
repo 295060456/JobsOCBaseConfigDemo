@@ -31,7 +31,7 @@
 
 static JobsUserModel *static_userModel = nil;
 static dispatch_once_t static_userModelOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_userModelOnceToken, ^{
         static_userModel = JobsUserModel.new;
     });return static_userModel;

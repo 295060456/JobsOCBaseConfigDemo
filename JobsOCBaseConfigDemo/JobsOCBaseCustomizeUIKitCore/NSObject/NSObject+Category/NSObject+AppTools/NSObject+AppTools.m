@@ -274,7 +274,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 /// 在外层进行调用，[ 需要被展现的视图 popupShowScaleWithView:popupView];
 //-(JobsOCBaseConfigTestPopupView *)jobsTestPopView:(UIViewModel *_Nullable)viewModel{
 //#ifdef DEBUG
-//    JobsOCBaseConfigTestPopupView *testPopupView = JobsOCBaseConfigTestPopupView.sharedInstance;
+//    JobsOCBaseConfigTestPopupView *testPopupView = JobsOCBaseConfigTestPopupView.sharedManager;
 //    testPopupView.size = CasinoUpgradePopupView.viewSizeByModel(nil);
 //    testPopupView.jobsRichViewByModel(viewModel ? : self.testPopViewData);
 //    @jobs_weakify(popupView)

@@ -82,7 +82,7 @@
 
 static BaiShaETProjChoiceStadiumView *static_choiceStadiumView = nil;
 static dispatch_once_t static_choiceStadiumViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_choiceStadiumViewOnceToken, ^{
         static_choiceStadiumView = BaiShaETProjChoiceStadiumView.new;
     });return static_choiceStadiumView;

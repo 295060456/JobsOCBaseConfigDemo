@@ -40,7 +40,7 @@
 
 static JobsCountdownView *static_countdownView = nil;
 static dispatch_once_t static_countdownViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_countdownViewOnceToken, ^{
         static_countdownView = JobsCountdownView.new;
     });return static_countdownView;

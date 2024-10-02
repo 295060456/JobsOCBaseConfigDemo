@@ -68,8 +68,8 @@
     {
         JobsPostDelViewHeight = JobsPostDelView.viewSizeByModel(nil).height;
         self.historyPhotoDataArr = [self.photoManager getLocalModelsInFileWithAddData:YES];
-        if (isValue(JobsUserModel.sharedInstance.postDraftURLStr)) {
-            self.inputDataHistoryString = [FileFolderHandleTool filePath:JobsUserModel.sharedInstance.postDraftURLStr
+        if (isValue(JobsUserModel.sharedManager.postDraftURLStr)) {
+            self.inputDataHistoryString = [FileFolderHandleTool filePath:JobsUserModel.sharedManager.postDraftURLStr
                                                                 fileType:TXT];
         }NSLog(@"%@",self.inputDataHistoryString);
     }
@@ -149,7 +149,7 @@
 -(void)保留文字{
     if (isValue(self.inputDataString)) {
         NSError *err;
-        JobsUserModel.sharedInstance.postDraftURLStr = [NSObject saveData:self.inputDataString
+        JobsUserModel.sharedManager.postDraftURLStr = [NSObject saveData:self.inputDataString
                                                     withDocumentsChildDir:JobsInternationalization(@"发帖草稿数据临时文件夹")
                                                              fileFullname:@"发帖草稿数据.txt"
                                                                     error:&err];
@@ -157,9 +157,9 @@
             NSLog(err.description);
         }
     }else{
-        FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedInstance.postDraftURLStr);
+        FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedManager.postDraftURLStr);
     }
-    NSLog(@"%@",JobsUserModel.sharedInstance.postDraftURLStr);
+    NSLog(@"%@",JobsUserModel.sharedManager.postDraftURLStr);
     [self.view hx_showLoadingHUDText:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BOOL success = [self.photoManager saveLocalModelsToFile];//保存图片
@@ -175,7 +175,7 @@
 }
 
 -(void)不保留文字{
-    FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedInstance.postDraftURLStr);
+    FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedManager.postDraftURLStr);
     [self.photoManager deleteLocalModelsInFile];
     [self back:nil];
 }

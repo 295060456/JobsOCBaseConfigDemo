@@ -507,7 +507,15 @@ typedef NS_ENUM(NSInteger, FMJumpType){
     FMJumpType_NO = 4, /// 不跳转
 };
 #endif /* FMJUMPTYPE */
-
-
+/// 记录是什么触发登录操作的（登录成功继续进行流程）
+#ifndef FMLOGINWORK
+#define FMLOGINWORK
+/// 跳转类型
+typedef NS_ENUM(NSInteger, FMLoginWork){
+    FMLoginWork_Default = 0,
+    FMLoginWork_MyFav,
+    FMLoginWork_MyBank
+};
+#endif /* FMLOGINWORK */
 
 #endif /* JobsDefineAllEnumHeader_h */

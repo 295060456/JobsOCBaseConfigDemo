@@ -26,7 +26,7 @@
 
 static JobsHotLabelWithMultiLine *static_hotLabelWithMultiLine = nil;
 static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_hotLabelWithMultiLineOnceToken, ^{
         static_hotLabelWithMultiLine = JobsHotLabelWithMultiLine.new;
     });return static_hotLabelWithMultiLine;

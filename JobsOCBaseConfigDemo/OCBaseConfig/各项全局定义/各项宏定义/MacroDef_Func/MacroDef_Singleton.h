@@ -12,14 +12,14 @@
 #define DEFINE_SHARED_INSTANCE_USING_DISPATCH_ONCE \
     + (instancetype)sharedManager { \
         static dispatch_once_t onceToken; \
-        static id sharedInstance = nil; \
+        static id sharedManager = nil; \
         dispatch_once(&onceToken, ^{ \
-            sharedInstance = [[self alloc] init]; \
+            sharedManager = [[self alloc] init]; \
         }); \
-        return sharedInstance; \
+        return sharedManager; \
     } \
     + (void)destroyInstance { \
-        sharedInstance = nil; \
+        sharedManager = nil; \
         onceToken = 0; \
     } \
     + (instancetype)allocWithZone:(struct _NSZone *)zone { \
@@ -45,15 +45,15 @@
 #define DEFINE_SHARED_INSTANCE_USING_SYNCHRONIZED \
     + (instancetype)sharedManager { \
         @synchronized (self) { \
-            if (sharedInstance == nil) { \
-                sharedInstance = [[self alloc] init]; \
+            if (sharedManager == nil) { \
+                sharedManager = [[self alloc] init]; \
             } \
         } \
-        return sharedInstance; \
+        return sharedManager; \
     } \
     + (void)destroyInstance { \
         @synchronized (self) { \
-            sharedInstance = nil; \
+            sharedManager = nil; \
         } \
     } \
     + (instancetype)allocWithZone:(struct _NSZone *)zone { \
@@ -67,7 +67,7 @@
     }
 
 #define IMPLEMENT_SHARED_INSTANCE_USING_SYNCHRONIZED(CLASSNAME) \
-    static CLASSNAME *sharedInstance = nil; \
+    static CLASSNAME *sharedManager = nil; \
     @implementation CLASSNAME \
     DEFINE_SHARED_INSTANCE_USING_SYNCHRONIZED \
     @end

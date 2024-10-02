@@ -226,7 +226,7 @@
     @jobs_weakify(self)
     return ^JobsNavBarConfig *(){
         @jobs_strongify(self)
-        return self.class.sharedInstance;
+        return self.class.sharedManager;
     };
 }
 

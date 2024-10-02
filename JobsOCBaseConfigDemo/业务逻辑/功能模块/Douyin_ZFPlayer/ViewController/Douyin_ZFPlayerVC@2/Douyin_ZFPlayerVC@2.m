@@ -73,7 +73,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.tableView.mj_header beginRefreshing];
-    JobsBitsMonitorCore.sharedInstance.bitsMonitorRunMode = BitsMonitorManualRun;
+    JobsBitsMonitorCore.sharedManager.bitsMonitorRunMode = BitsMonitorManualRun;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -82,7 +82,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [JobsBitsMonitorCore.sharedInstance stop];
+    [JobsBitsMonitorCore.sharedManager stop];
     [self.player.currentPlayerManager stop];
 }
 
@@ -724,7 +724,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     /// 下拉时候一定要停止当前播放，不然有新数据，播放位置会错位。
     [self.player stopCurrentPlayingCell];
     NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],[ZBRequestManager networkReachability]);
-    DataManager.sharedInstance.tag = ReuseIdentifier;
+    DataManager.sharedManager.tag = ReuseIdentifier;
     /**
      公共配置
      插件机制

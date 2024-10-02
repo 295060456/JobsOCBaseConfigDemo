@@ -16,7 +16,7 @@
  证书设置
  */
 #define JobsNetworkingPrepare NSLog(@"当前是否有网：%d 状态：%ld",ZBRequestManager.isNetworkReachable,ZBRequestManager.networkReachability);\
-DataManager.sharedInstance.tag = ReuseIdentifier.add(@"_").add(NSStringFromSelector(_cmd));\
+DataManager.sharedManager.tag = ReuseIdentifier.add(@"_").add(NSStringFromSelector(_cmd));\
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_END
  调用示例：【一般的网络请求，只带body参数，最多也就是自定义header】
  -(void)networking_messageSecondClassListGET{
      NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
-     DataManager.sharedInstance.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
+     DataManager.sharedManager.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
      [RequestTool setupPublicParameters];//公共配置、插件机制、证书设置
      @jobs_weakify(self)
      NSDictionary *parameters = @{};
@@ -90,8 +90,8 @@ NS_ASSUME_NONNULL_END
  //        request.headers = headers;//与公共配置 Headers 兼容
          request.retryCount = 1;//请求失败 单次请求 重新连接次数 优先级大于 全局设置，不影响其他请求设置
          request.timeoutInterval = 10;//默认30 //优先级 高于 公共配置,不影响其他请求设置
-         if (isValue(DataManager.sharedInstance.tag)) {
-             request.userInfo = @{@"info":DataManager.sharedInstance.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
+         if (isValue(DataManager.sharedManager.tag)) {
+             request.userInfo = @{@"info":DataManager.sharedManager.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
          };//与公共配置 UserInfo 不兼容 优先级大于 公共配置
          
          {
@@ -126,7 +126,7 @@ NS_ASSUME_NONNULL_END
 /// 帖子图片上传 POST
 -(void)networking_postUploadImagePOST{
  NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
- DataManager.sharedInstance.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
+ DataManager.sharedManager.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
 
  [RequestTool setupPublicParameters];//公共配置、插件机制、证书设置
  @jobs_weakify(self)
@@ -173,8 +173,8 @@ NS_ASSUME_NONNULL_END
      request.timeoutInterval = 120;//默认30 //优先级 高于 公共配置,不影响其他请求设置
      request.requestSerializer = ZBHTTPRequestSerializer;
      request.uploadDatas = uploadDatas;
-     if (isValue(DataManager.sharedInstance.tag)) {
-         request.userInfo = @{@"info":DataManager.sharedInstance.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
+     if (isValue(DataManager.sharedManager.tag)) {
+         request.userInfo = @{@"info":DataManager.sharedManager.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
      };//与公共配置 UserInfo 不兼容 优先级大于 公共配置
  } progress:^(NSProgress * _Nullable progress) {
      NSLog(@"onProgress: %.2f", 100.f * progress.completedUnitCount/progress.totalUnitCount);
@@ -198,7 +198,7 @@ NS_ASSUME_NONNULL_END
 /// 帖子视频上传 POST
 -(void)networking_postuploadVideoPOST{
  NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
- DataManager.sharedInstance.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
+ DataManager.sharedManager.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
 
  [RequestTool setupPublicParameters];//公共配置、插件机制、证书设置
  @jobs_weakify(self)
@@ -254,8 +254,8 @@ NS_ASSUME_NONNULL_END
          request.timeoutInterval = 120;//默认30 //优先级 高于 公共配置,不影响其他请求设置
          request.requestSerializer = ZBHTTPRequestSerializer;
          request.uploadDatas = uploadDatas;
-         if (isValue(DataManager.sharedInstance.tag)) {
-             request.userInfo = @{@"info":DataManager.sharedInstance.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
+         if (isValue(DataManager.sharedManager.tag)) {
+             request.userInfo = @{@"info":DataManager.sharedManager.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
          };//与公共配置 UserInfo 不兼容 优先级大于 公共配置
      } progress:^(NSProgress * _Nullable progress) {
          NSLog(@"onProgress: %.2f", 100.f * progress.completedUnitCount/progress.totalUnitCount);

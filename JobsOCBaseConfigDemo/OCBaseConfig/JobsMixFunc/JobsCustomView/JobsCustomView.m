@@ -36,7 +36,7 @@
 
 static JobsCustomView *static_customView = nil;
 static dispatch_once_t static_customViewOnceToken;
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_customViewOnceToken, ^{
         static_customView = JobsCustomView.new;
     });return static_customView;

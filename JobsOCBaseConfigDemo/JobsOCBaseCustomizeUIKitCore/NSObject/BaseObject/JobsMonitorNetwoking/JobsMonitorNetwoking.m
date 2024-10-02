@@ -17,7 +17,7 @@
 @implementation JobsMonitorNetwoking
 
 static JobsMonitorNetwoking *monitorNetwoking = nil;
-+(JobsMonitorNetwoking *)sharedInstance{
++(JobsMonitorNetwoking *)sharedManager{
     @synchronized(self){
         if (!monitorNetwoking) {
             monitorNetwoking = JobsMonitorNetwoking.new;
