@@ -179,7 +179,6 @@
         
         self.endMJHeaderRefreshing();
         self.endMJFooterRefreshingWithMoreData();
-        
         self.endXZMHeaderRefreshing();
         self.endXZMFooterRefreshing();
     };
@@ -252,7 +251,7 @@
         @jobs_strongify(self)
         if(KindOfScrollViewCls(self)){
             UIScrollView *scrollView = (UIScrollView *)self;
-            [scrollView.xzm_header endRefreshing];// 结束刷新
+            if (scrollView.xzm_header.state == XZMRefreshStateRefreshing) [scrollView.xzm_header endRefreshing]; // 结束刷新
         }
     };
 }
@@ -263,7 +262,7 @@
         @jobs_strongify(self)
         if(KindOfScrollViewCls(self)){
             UIScrollView *scrollView = (UIScrollView *)self;
-            [scrollView.xzm_footer endRefreshing];// 结束刷新
+            if (scrollView.xzm_footer.state == XZMRefreshStateRefreshing) [scrollView.xzm_footer endRefreshing];// 结束刷新
         }
     };
 }
@@ -454,7 +453,7 @@ JobsKey(_mjRefreshStateHeader)
         @jobs_weakify(self)
         MjRefreshStateHeader = [MJRefreshStateHeader headerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
+            if(self.refreshConfigHeader.loadBlock) self.refreshConfigHeader.loadBlock(nil);
         }];
         //文字
         {
@@ -573,8 +572,7 @@ JobsKey(_mjRefreshAutoGifFooter)
         @jobs_weakify(self)
         MjRefreshAutoGifFooter = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock)self.refreshConfigFooter.loadBlock(nil);
-            
+            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
         }];
         // 图片
         {
@@ -628,7 +626,7 @@ JobsKey(_mjRefreshBackNormalFooter)
         @jobs_weakify(self)
         MjRefreshBackNormalFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock)self.refreshConfigFooter.loadBlock(nil);
+            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
         }];
         // 文字 (此模式下只有文字而没有图片)
         {
@@ -763,7 +761,7 @@ JobsKey(_mjRefreshBackGifFooter)
         @jobs_weakify(self)
         MjRefreshBackGifFooter = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock)self.refreshConfigFooter.loadBlock(nil);
+            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
         }];
         // 图片
         {
@@ -817,7 +815,7 @@ JobsKey(_mjRefreshBackStateFooter)
         @jobs_weakify(self)
         MjRefreshBackStateFooter = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock)self.refreshConfigFooter.loadBlock(nil);
+            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
         }];
         // 文字
         {
@@ -856,7 +854,7 @@ JobsKey(_mjRefreshBackFooter)
         @jobs_weakify(self)
         MjRefreshBackFooter = [MJRefreshBackFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock)self.refreshConfigFooter.loadBlock(nil);
+            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
         }];
         //其他
         {
@@ -878,7 +876,7 @@ JobsKey(_mjRefreshFooter)
         @jobs_weakify(self)
         MjRefreshFooter = [MJRefreshFooter footerWithRefreshingBlock:^{
             @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock)self.refreshConfigFooter.loadBlock(nil);
+            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
         }];
         //其他
         {
