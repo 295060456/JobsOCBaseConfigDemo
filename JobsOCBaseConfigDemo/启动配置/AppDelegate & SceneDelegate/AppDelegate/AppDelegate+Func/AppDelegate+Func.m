@@ -34,6 +34,7 @@
 //        self.makeJobsLaunchAdConfig();/// 开屏广告
         self.makeReachabilityConfig();/// 网络环境监测
         self.YTKNetworkConfig();/// YTK网络框架的配置
+        self.KTVHTTP();/// KTVHTTPCache
     };
 }
 #pragma mark —— 开屏广告
@@ -117,6 +118,16 @@
         config.sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration;
         YTKUrlArgumentsFilter *urlFilter = [YTKUrlArgumentsFilter filterWithArguments:@{@"version": self.appVersion}];
         [config addUrlFilter:urlFilter];
+    };
+}
+#pragma mark —— KTVHTTPCache
+-(jobsByVoidBlock _Nonnull)KTVHTTP{
+    return ^(){
+        NSError *error = nil;
+        [KTVHTTPCache proxyStart:&error];
+        if(error){
+            NSLog(@"error = %@",error.description)
+        }
     };
 }
 #pragma mark —— 欢迎引导页面
@@ -239,8 +250,7 @@
         [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert +
                                                  UNAuthorizationOptionSound +
                                                  UNAuthorizationOptionBadge)
-                              completionHandler:^(BOOL granted,
-                                                  NSError *_Nullable error) {
+                              completionHandler:^(BOOL granted,NSError *_Nullable error) {
             if (granted) {
                 NSLog(@"Notification permission granted.");
             } else {

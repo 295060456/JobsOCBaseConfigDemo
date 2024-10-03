@@ -88,6 +88,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
 NS_ASSUME_NONNULL_END
 
+NS_INLINE __kindof VideoModel_Core *_Nonnull jobsMakeVideoModelCore(jobsByVideoModelCoreBlock _Nonnull block){
+    VideoModel_Core *data = VideoModel_Core.alloc.init;
+    if (block) block(data);
+    return data;
+}
