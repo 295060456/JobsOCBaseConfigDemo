@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 #import "BaseView.h"
 #import "BaseButton.h"
 #import "UIButton+UI.h"
