@@ -24,8 +24,6 @@
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
     }
-    self.setupNavigationBarHidden = YES;
-    
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = JobsInternationalization(@"消息详情页");

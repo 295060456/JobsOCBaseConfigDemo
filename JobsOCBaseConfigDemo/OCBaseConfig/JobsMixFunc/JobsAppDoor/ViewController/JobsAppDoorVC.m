@@ -7,7 +7,6 @@
 //
 
 #import "JobsAppDoorVC.h"
-
 //ZFPlayerController *ZFPlayer_DoorVC;
 @interface JobsAppDoorVC (){
     NSInteger index;// 当前被激活的TextField的序号，从1开始
@@ -62,7 +61,6 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 
 -(void)loadView{
     [super loadView];
-    
     self.bgImage = nil;
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
@@ -72,28 +70,24 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             [self.player.currentPlayerManager play];
         }else{}
     }
-    
-    self.setupNavigationBarHidden = YES;//禁用系统的导航栏
     self.currentPage = CurrentPage_login;//默认页面是登录
     //标的值初始化
     self.logoContentViewY = 0;
     self.jobsAppDoorContentViewY = 0;
     self.customerServiceBtnY = 0;
     
-    {
-        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
-        self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
-        self.viewModel.textModel.font = UIFontWeightRegularSize(16);
-        
-        // 使用原则：底图有 + 底色有 = 优先使用底图数据
-        // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-        // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
-        self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-    //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
-        self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-        self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
-    }
+    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.font = UIFontWeightRegularSize(16);
+    
+    // 使用原则：底图有 + 底色有 = 优先使用底图数据
+    // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
+    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
+//    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+    self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
+    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
 }
 
 - (void)viewDidLoad {

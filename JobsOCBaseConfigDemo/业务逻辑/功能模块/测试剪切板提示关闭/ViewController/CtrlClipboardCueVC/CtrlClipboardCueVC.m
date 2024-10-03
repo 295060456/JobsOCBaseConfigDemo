@@ -30,7 +30,6 @@
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
     }
-    self.setupNavigationBarHidden = YES;
     
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
@@ -100,14 +99,14 @@
 //    NSLog(@"333");
 //}
 ////-(void)textViewDidEndEditing:(UITextView *)textView;
-//-(BOOL)textView:(UITextView *)textView 
+//-(BOOL)textView:(UITextView *)textView
 //shouldChangeTextInRange:(NSRange)range
 //replacementText:(NSString *)text{
 //    NSLog(@"21");
 //    return YES;
 //}
 //-(void)textViewDidChange:(UITextView *)textView{
-//    
+//
 //}
 //-(void)textViewDidChangeSelection:(UITextView *)textView{
 //

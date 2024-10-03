@@ -24,6 +24,7 @@
 
 -(void)loadView{
     [super loadView];
+    self.setupNavigationBarHidden = YES;
 }
 
 - (void)viewDidLoad {

@@ -30,22 +30,17 @@
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
     }
-    self.setupNavigationBarHidden = YES;
-    
-    {
-        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
-        self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
-        self.viewModel.textModel.font = UIFontWeightRegularSize(16);
-        
-        // 使用原则：底图有 + 底色有 = 优先使用底图数据
-        // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-        // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
-        self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
+    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.font = UIFontWeightRegularSize(16);
+    // 使用原则：底图有 + 底色有 = 优先使用底图数据
+    // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
+    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
 //        self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
-        self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-        self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
-    }
+    self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
+    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
 }
 
 - (void)viewDidLoad {
@@ -61,7 +56,7 @@
 #pragma mark —— 一些私有方法
 /// 选取最后一张你选的图，作为显示
 -(void)getImageFromResource:(NSArray <HXPhotoModel *>*)resource{
-    @jobs_weakify(self)
+//    @jobs_weakify(self)
 
 }
 #pragma mark —— lazyLoad

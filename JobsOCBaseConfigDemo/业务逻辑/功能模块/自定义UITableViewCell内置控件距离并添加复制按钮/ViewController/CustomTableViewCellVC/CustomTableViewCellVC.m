@@ -19,32 +19,27 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    JobsRemoveNotification(self);
+//    JobsRemoveNotification(self);
 }
 
 -(void)loadView{
     [super loadView];
-    
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
     }
-    self.setupNavigationBarHidden = YES;
-    
-    {
-        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
-        self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
+    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
 //        self.viewModel.textModel.text = JobsInternationalization(@"充值");
-        self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
-        self.viewModel.textModel.font = UIFontWeightRegularSize(16);
-        
-        // 使用原则：底图有 + 底色有 = 优先使用底图数据
-        // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-        // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
-        self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-    //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
-        self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-        self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
-    }
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.font = UIFontWeightRegularSize(16);
+    
+    // 使用原则：底图有 + 底色有 = 优先使用底图数据
+    // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
+    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
+//    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+    self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
+    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
 }
 
 - (void)viewDidLoad {
@@ -132,55 +127,34 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            {
-                NSMutableArray <UIViewModel *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable mutArr) {
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
-                        viewModel.textModel.text = JobsInternationalization(@"存款金额");
-                        viewModel.subTextModel.text = JobsInternationalization(@"10,000.00");
-                        mutArr.add(viewModel);
-                    }
-                    
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
-                        viewModel.textModel.text = JobsInternationalization(@"存款方式");
-                        viewModel.subTextModel.text = JobsInternationalization(@"虛擬幣充值");
-                        mutArr.add(viewModel);
-                    }
-                    
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
-                        viewModel.textModel.text = JobsInternationalization(@"訂單編號");
-                        viewModel.subTextModel.text = JobsInternationalization(@"YSF2025022302644565964");
-                        mutArr.add(viewModel);
-                    }
-                    
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
-                        viewModel.textModel.text = JobsInternationalization(@"轉賬姓名");
-                        viewModel.subTextModel.text = JobsInternationalization(@"張三 ");
-                        mutArr.add(viewModel);
-                    }
-                    
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
-                        viewModel.textModel.text = JobsInternationalization(@"銀行賬號");
-                        viewModel.subTextModel.text = JobsInternationalization(@"6230 5822 0031 5762 430");
-                        mutArr.add(viewModel);
-                    }
-                    
-                    {
-                        UIViewModel *viewModel = UIViewModel.new;
-                        viewModel.textModel.text = JobsInternationalization(@"轉賬地址");
-                        viewModel.subTextModel.text = JobsInternationalization(@"中國平安銀行");
-                        mutArr.add(viewModel);
-                    }
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.jobsDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data2) {
+                    data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
+                        data3.textModel.text = JobsInternationalization(@"存款金额");
+                        data3.subTextModel.text = JobsInternationalization(@"10,000.00");
+                    }));
+                    data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
+                        data3.textModel.text = JobsInternationalization(@"存款方式");
+                        data3.subTextModel.text = JobsInternationalization(@"虛擬幣充值");
+                    }));
+                    data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
+                        data3.textModel.text = JobsInternationalization(@"訂單編號");
+                        data3.subTextModel.text = JobsInternationalization(@"YSF2025022302644565964");
+                    }));
+                    data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
+                        data3.textModel.text = JobsInternationalization(@"轉賬姓名");
+                        data3.subTextModel.text = JobsInternationalization(@"張三 ");
+                    }));
+                    data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
+                        data3.textModel.text = JobsInternationalization(@"銀行賬號");
+                        data3.subTextModel.text = JobsInternationalization(@"6230 5822 0031 5762 430");
+                    }));
+                    data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
+                        data3.textModel.text = JobsInternationalization(@"轉賬地址");
+                        data3.subTextModel.text = JobsInternationalization(@"中國平安銀行");
+                    }));
                 });
-                
-                UIViewModel *viewModel = UIViewModel.new;
-                viewModel.jobsDataMutArr = mutArr;
-                data.add(viewModel);
-            }
+            }));
         });
     }return _dataMutArr;
 }

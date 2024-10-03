@@ -34,31 +34,25 @@
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
     }
-    self.setupNavigationBarHidden = YES;
-
-    {
-        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
-        self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
-        self.viewModel.textModel.font = UIFontWeightRegularSize(16);
-
-        // 使用原则：底图有 + 底色有 = 优先使用底图数据
-        // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-        // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
-        self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-        //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
-        self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-        self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
-    }
+    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.font = UIFontWeightRegularSize(16);
+    // 使用原则：底图有 + 底色有 = 优先使用底图数据
+    // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
+    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
+    //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+    self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
+    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
     self.makeSubViews();
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     @jobs_weakify(self)
     self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-        @jobs_strongify(self)
+//        @jobs_strongify(self)
 //        data.add(JobsBarButtonItem(self.aboutBtn));
     });
     self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
@@ -97,14 +91,17 @@
 }
 #pragma mark —— 一些私有方法
 /// 创建右侧视图
-- (jobsByVoidBlock)makeSubViews {
+- (jobsByVoidBlock _Nonnull)makeSubViews {
     return ^() {
-        self.rightViewArray = NSMutableArray.array;
-        for (int i = 0; i < self.titleMutArr.count; i++) {
-            JobsVerticalMenuSubView *subView = JobsVerticalMenuSubView.new;
-            subView.backgroundColor = JobsRandomColor;
-            self.rightViewArray.add(subView);
-        }
+        @jobs_weakify(self)
+        self.rightViewArray = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            for (int i = 0; i < self.titleMutArr.count; i++) {
+                JobsVerticalMenuSubView *subView = JobsVerticalMenuSubView.new;
+                subView.backgroundColor = JobsRandomColor;
+                data.add(subView);
+            }
+        });
     };
 }
 
@@ -132,9 +129,9 @@
         }
         /// 添加新的视图
         subview.frame = CGRectMake(self.tableView.frame.size.width,
-                                0,
-                                self.view.frame.size.width - self.tableView.frame.size.width,
-                                self.view.frame.size.height);
+                                   0,
+                                   self.view.frame.size.width - self.tableView.frame.size.width,
+                                   self.view.frame.size.height);
         [self.view addSubview:subview];
     };
 }
@@ -189,10 +186,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         _tableView = UITableView.initWithStylePlain;
         _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
         _tableView.dataLink(self);
-        _tableView.frame = CGRectMake(0,
-                                      JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
-                                      TableViewWidth,
-                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
+        _tableView.frame = jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+            data.jobsX = 0;
+            data.jobsY = JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h;
+            data.jobsWidth = TableViewWidth;
+            data.jobsHeight = JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight;
+        });
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_tableView];
@@ -299,42 +298,26 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 - (NSMutableArray<UIViewModel *> *)titleMutArr {
     if (!_titleMutArr) {
         /// 最初默认的数据
-        _titleMutArr = NSMutableArray.array;
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"收藏");
-            _titleMutArr.add(viewModel);
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"真人");
-            _titleMutArr.add(viewModel);
-        }
-
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"体育");
-            _titleMutArr.add(viewModel);
-        }
-
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"电子");
-            _titleMutArr.add(viewModel);
-        }
-
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"棋牌");
-            _titleMutArr.add(viewModel);
-        }
-
-        {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"彩票");
-            _titleMutArr.add(viewModel);
-        }
+        _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.textModel.text = JobsInternationalization(@"收藏");
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.textModel.text = JobsInternationalization(@"真人");
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.textModel.text = JobsInternationalization(@"体育");
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.textModel.text = JobsInternationalization(@"电子");
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.textModel.text = JobsInternationalization(@"棋牌");
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.textModel.text = JobsInternationalization(@"彩票");
+            }));
+        });
     }return _titleMutArr;
 }
 

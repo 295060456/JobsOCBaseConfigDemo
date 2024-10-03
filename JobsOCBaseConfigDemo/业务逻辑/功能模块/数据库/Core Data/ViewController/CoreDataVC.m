@@ -26,7 +26,6 @@
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
     }
-    self.setupNavigationBarHidden = YES;
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
@@ -97,7 +96,7 @@
 /// 增加数据
 - (void)insertUserWithName:(NSString *)name
                        age:(NSInteger)age {
-    NSManagedObject *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" 
+    NSManagedObject *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                                              inManagedObjectContext:self.context];
     [newUser setValue:name forKey:@"name"];
     [newUser setValue:@(age) forKey:@"age"];

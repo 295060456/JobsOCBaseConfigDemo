@@ -28,17 +28,15 @@
 
 - (void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    //    JobsRemoveNotification(self);
+//    JobsRemoveNotification(self);
 }
 
 -(void)loadView{
     [super loadView];
-    
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
         self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
     }
-    
 //    self.viewModel.textModel.text = JobsInternationalization(@"JXCategoryPopupVC");
     self.bgImage = nil;
 }
@@ -209,7 +207,9 @@ ratio:(CGFloat)ratio {
 
 -(NSMutableArray<__kindof UIViewController *> *)childVCMutArr{
     if (!_childVCMutArr) {
+        @jobs_weakify(self)
         _childVCMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
             for (NSString *str in self.titleMutArr) {
                 data.add(JXCategoryPopupSubVC.new);
             }

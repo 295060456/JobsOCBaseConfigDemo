@@ -42,29 +42,23 @@
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
     }
-    self.setupNavigationBarHidden = YES;
-    
-    {
-        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
-        self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
-        self.viewModel.textModel.font = UIFontWeightRegularSize(16);
-        
-        // 使用原则：底图有 + 底色有 = 优先使用底图数据
-        // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-        // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
-        self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-    //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
-        self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-        self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
-    }
+    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.font = UIFontWeightRegularSize(16);
+    // 使用原则：底图有 + 底色有 = 优先使用底图数据
+    // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
+    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
+//    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+    self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
+    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
     
     self.loadData();
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     @jobs_weakify(self)
     self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
         @jobs_strongify(self)
@@ -109,8 +103,10 @@
     return self.leftViewCurrentSelectModel ? self.leftDataArray.indexBy(self.leftViewCurrentSelectModel) : 0;
 }
 
--(jobsByVoidBlock)loadData{
+-(jobsByVoidBlock _Nonnull)loadData{
+    @jobs_weakify(self)
     return ^(){
+        @jobs_strongify(self)
         /// 这里可以调用接口去获取一级目录分类的数据
         for (int i = 0; i < self.titleMutArr.count; i++){
             self.leftDataArray.add([self createOneModel:i]);
@@ -119,49 +115,36 @@
 }
 /// 最初默认的数据
 -(NSMutableArray<UIViewModel *> *)makeTitleMutArr{
-    NSMutableArray <UIViewModel *>*titleMutArr = NSMutableArray.array;
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"收藏");
-        titleMutArr.add(viewModel);
-    }
-    
+    NSMutableArray <UIViewModel *>*titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            data1.textModel.text = JobsInternationalization(@"收藏");
+        }));
+    });
     [titleMutArr addObjectsFromArray:self.makePopViewDataMutArr];
     return titleMutArr;
 }
 
 -(NSMutableArray<UIViewModel *> *)makePopViewDataMutArr{
-    NSMutableArray <UIViewModel *>*titleMutArr = NSMutableArray.array;
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"真人");
-        titleMutArr.add(viewModel);
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"体育");
-        titleMutArr.add(viewModel);
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"电子");
-        titleMutArr.add(viewModel);
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"棋牌");
-        titleMutArr.add(viewModel);
-    }
-    
-    {
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"彩票");
-        titleMutArr.add(viewModel);
-    }return titleMutArr;
+    NSMutableArray <UIViewModel *>*titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            data1.textModel.text = JobsInternationalization(@"收藏");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            data1.textModel.text = JobsInternationalization(@"真人");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            data1.textModel.text = JobsInternationalization(@"体育");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            data1.textModel.text = JobsInternationalization(@"电子");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            data1.textModel.text = JobsInternationalization(@"棋牌");
+        }));
+        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            data1.textModel.text = JobsInternationalization(@"彩票");
+        }));
+    });return titleMutArr;
 }
 
 -(jobsByVoidBlock)refreshLeftView{
