@@ -22,10 +22,13 @@
 #pragma mark —— NSCoding
 - (instancetype)initWithCoder:(NSCoder *)decoder {
     if (self = [super init]) {
-        for (NSString *key in printPropertyListByObj(self)) {
-            if ([self respondsToSelector:NSSelectorFromString(key)]) {
-                NSString * value = [decoder decodeObjectForKey:key];
-                if (value) [self setValue:value forKey:key];
+        // 如果是使用 MJExtension 解析，跳过 NSCoding 解析
+        if(decoder.allowsKeyedCoding){
+            for (NSString *key in printPropertyListByObj(self)) {
+                if ([self respondsToSelector:NSSelectorFromString(key)]) {
+                    NSString * value = [decoder decodeObjectForKey:key];
+                    if (value) [self setValue:value forKey:key];
+                }
             }
         }
     }return self;
