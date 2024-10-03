@@ -20,18 +20,19 @@ NS_ASSUME_NONNULL_BEGIN
 UIScrollViewDelegate,
 JobsToggleNavViewProtocol
 >
+/// UI
+@property(nonatomic,strong,readonly)JobsToggleNavView *taggedNavView;
+@property(nonatomic,strong,readonly)UIScrollView *bgScroll;
 /// Data
 @property(nonatomic,assign)CGFloat taggedNavView_height;
 @property(nonatomic,assign)CGFloat taggedNavView_width;
 @property(nonatomic,assign)CGFloat taggedNavView_bgScroll_offset;
 @property(nonatomic,assign)CGSize toggleView_size;
+@property(nonatomic,strong)UIColor *taggedNavViewBgColor;
 @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*scrollContentViews;
-@property(nonatomic,strong)NSMutableArray <NSString *>*taggedNavTitles;
 @property(nonatomic,weak)__kindof UIButton *currentSelectedBtn;
 
--(JobsToggleNavView *)taggedNavView;
--(UIScrollView *)bgScroll;
--(jobsByNSIntegerBlock _Nonnull)switchBy;
+-(jobsByNSIntegerBlock _Nonnull)switchViewsBy;
 
 @end
 

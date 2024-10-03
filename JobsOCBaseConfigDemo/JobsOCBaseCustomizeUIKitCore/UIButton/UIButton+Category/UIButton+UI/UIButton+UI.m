@@ -659,9 +659,9 @@
     };
 }
 ///【最新的Api】重设Btn的图文间距
--(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0)){
+-(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
-    return ^__kindof UIButton *(NSDirectionalRectEdge data) {
+    return ^__kindof UIButton *(CGFloat data) {
         @jobs_strongify(self)
         return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             config.imagePadding = data;

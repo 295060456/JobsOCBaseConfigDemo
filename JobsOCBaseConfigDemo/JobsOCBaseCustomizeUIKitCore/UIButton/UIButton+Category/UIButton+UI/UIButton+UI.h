@@ -183,7 +183,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///【最新的Api】重设Btn的图文相对位置
 -(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0));
 ///【最新的Api】重设Btn的图文间距
--(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
+-(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
 ///【最新的Api】重设Btn主标题与副标题之间的距离
 -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0));
 #pragma mark —— UIButton.带状态 set

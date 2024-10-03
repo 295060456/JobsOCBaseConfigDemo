@@ -9041,15 +9041,22 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * `JobsToggleBaseView`
   * <font color=red>**这是一个纯视图**</font> 对外调用这个视图容器
-  * `JobsToggleNavView`作为`JobsToggleBaseView`的属性，不对外暴露，仅通过`-(JobsToggleNavView *)getToggleNavView;`对外界访问
-  * 上部的导航用`UIButton`的最新Api实现，可以丰富表现形式
+  
+  * ```objective-c
+    @property(nonatomic,strong,readonly)JobsToggleNavView *taggedNavView;
+    @property(nonatomic,strong,readonly)UIScrollView *bgScroll;
+    ```
+  
   * 点击了导航的按钮以后在`JobsToggleBaseView`的`scrollviewDelegate`实现滚动逻辑
-  * <font color=red>点击和手动滑动最后都会触发`- (void)selectingOneTagWithIndex:(NSInteger)index`</font>
+  
+  * <font color=red>点击和手动滑动最后都会触发`-(jobsByNSIntegerBlock _Nonnull)selectingOneTagWithIndex`</font>
+  
   * 点击和手动滑动最后都会进入`- (void)scrollViewDidScroll:(UIScrollView *)scrollView`，但是，因为`- (void)scrollViewDidScroll:(UIScrollView *)scrollView`要反复调用，<u>所以将视图手动滚动逻辑的生命周期提前到`-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate`</u>
   
 * `JobsToggleNavView`
   * 上部的导航栏
   * 可点击部分由`UIButton`构成，并匹配了系统最新的Api，丰富使用
+  * 每一个`Button`用`UIButtonModel`进行渲染
   
 * 使用方式
   
@@ -9060,60 +9067,95 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
   
   ```objective-c
-  @synthesize buttonModel = _buttonModel;
-  
   -(JobsToggleBaseView *)toggleBaseView{
       if(!_toggleBaseView){
+          @jobs_weakify(self)
           _toggleBaseView = JobsToggleBaseView.new;
-  //        _toggleBaseView.backgroundColor = JobsClearColor;
-          _toggleBaseView.buttonModel = self.buttonModel;
+          _toggleBaseView.btn_each_offset = JobsWidth(8);
           [self addSubview:_toggleBaseView];
           [_toggleBaseView mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.size.mas_equalTo([JobsToggleBaseView viewSizeWithModel:nil]);
-              make.top.equalTo(self);
+              make.size.mas_equalTo(JobsToggleBaseView.viewSizeByModel(nil));
+              make.top.equalTo(self.titleLab.mas_bottom);
               make.centerX.equalTo(self);
           }];
-   				[self layoutIfNeeded];
-          _toggleBaseView.taggedNavTitles = (NSMutableArray *)@[JobsInternationalization(@"PHONE NO."),JobsInternationalization(@"ACCOUNT NAME")];
-          _toggleBaseView.scrollContentViews = (NSMutableArray *)@[self.verification_code_view,self.account_code_view];
-          _toggleBaseView.btn_each_offset = JobsWidth(10);
+          [self layoutIfNeeded];
+          _toggleBaseView.taggedNavView_width = JobsWidth(94 * 2);//LoginView.viewSizeByModel(nil).width / 2;
           _toggleBaseView.taggedNavView_height = JobsWidth(24);
-          _toggleBaseView.taggedNavView_width = JobsWidth(180);
-          _toggleBaseView.toggleView_size = CGSizeMake(JobsWidth(400), JobsWidth(250));
-          _toggleBaseView.jobsRichElementsInViewWithModel(nil);
-          _toggleBaseView.getToggleNavView.backgroundColor = JobsClearColor;
+          _toggleBaseView.taggedNavViewBgColor = JobsClearColor.colorWithAlphaComponent(0);
+          _toggleBaseView.jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
+              data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                  @jobs_strongify(self)
+                  data1.backgroundImage = JobsIMG(@"PHONE_NO_未点击");
+                  data1.selected_backgroundImage = JobsIMG(@"PHONE_NO_已点击");
+                  data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                  data1.title = JobsInternationalization(@"PHONE NO.");
+                  data1.titleCor = JobsClearColor;
+                  data1.selected_titleCor = JobsClearColor;
+                  data1.roundingCorners = UIRectCornerAllCorners;
+                  data1.view = self.verification_code_view;
+                  data1.clickEventBlock = ^id _Nullable(__kindof UIButton *_Nullable x){
+                      @jobs_strongify(self)
+                      if(KindOfBaseButtonCls(x)){
+                          self.toggleBaseView.switchViewsBy(x.index);
+                      }return nil;
+                  };
+              }));
+              data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                  @jobs_strongify(self)
+                  data1.backgroundImage = JobsIMG(@"ACCOUNT_NAME_未点击");
+                  data1.selected_backgroundImage = JobsIMG(@"ACCOUNT_NAME_已点击");
+                  data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                  data1.title = JobsInternationalization(@"ACCOUNT NAME");
+                  data1.titleCor = JobsClearColor;
+                  data1.selected_titleCor = JobsClearColor;
+                  data1.roundingCorners = UIRectCornerAllCorners;
+                  data1.view = self.account_code_view;
+                  data1.clickEventBlock = ^id _Nullable(__kindof UIButton *_Nullable x){
+                      @jobs_strongify(self)
+                      if(KindOfBaseButtonCls(x)){
+                          self.toggleBaseView.switchViewsBy(x.index);
+                      }return nil;
+                  };
+              }));
+          }));
       }return _toggleBaseView;
   }
   
   -(Login_verification_code_view *)verification_code_view{
       if(!_verification_code_view){
           _verification_code_view = Login_verification_code_view.new;
-          _verification_code_view.size = [_verification_code_view viewSizeWithModel:nil];
-          _verification_code_view.jobsRichElementsInViewWithModel(nil);
+          _verification_code_view.Size = _verification_code_view.viewSizeByModel(nil);
+          _verification_code_view.jobsRichViewByModel(nil);
+          @jobs_weakify(self)
+          [_verification_code_view actionObjectBlock:^(id  _Nullable data) {
+              if(KindOfBtnCls(data)){
+                  UIButton *btn = (UIButton *)data;
+                  @jobs_strongify(self)
+                  if(btn.titleForNormalState){
+                      if(btn.titleForNormalState.isEqualToString(JobsInternationalization(@"GET_CODE"))){
+                          if (self.objectBlock) self.objectBlock(JobsInternationalization(@"GET_CODE"));
+                      }
+                      if(btn.titleForNormalState.isEqualToString(JobsInternationalization(@"是否显示密码明文"))){
+                          if (self.objectBlock) self.objectBlock(JobsInternationalization(@"是否显示密码明文"));
+                      }
+                      if(btn.titleForNormalState.isEqualToString(JobsInternationalization(@"Forgot Password?"))){
+                          if (self.objectBlock) self.objectBlock(JobsInternationalization(@"Forgot Password?"));
+                      }
+                      if(btn.titleForNormalState.isEqualToString(JobsInternationalization(@"LOGIN"))){
+                          if (self.objectBlock) self.objectBlock(JobsInternationalization(@"LOGIN"));
+                      }
+                  }
+              }
+          }];
       }return _verification_code_view;
   }
   
   -(Login_account_code_view *)account_code_view{
       if(!_account_code_view){
           _account_code_view = Login_account_code_view.new;
-          _account_code_view.size = [_account_code_view viewSizeWithModel:nil];
-          _account_code_view.jobsRichElementsInViewWithModel(nil);
+          _account_code_view.Size = _account_code_view.viewSizeByModel(nil);
+          _account_code_view.jobsRichViewByModel(nil);
       }return _account_code_view;
-  }
-  
-  -(UIButtonModel *)buttonModel{
-      if(!_buttonModel){
-          _buttonModel = UIButtonModel.new;
-          _buttonModel.selected_titleFont = bayonRegular(JobsWidth(16));
-          _buttonModel.titleFont = bayonRegular(JobsWidth(16));
-          _buttonModel.selected_titleFont = bayonRegular(JobsWidth(16));
-          _buttonModel.titleCor = JobsCor(@"#ABABAB");
-          _buttonModel.selected_titleCor = JobsCor(@"#FFFFFF");
-          _buttonModel.selected_backgroundImage = JobsIMG(@"按钮-8");
-          _buttonModel.backgroundImage = JobsIMG(@"透明图");
-          _buttonModel.baseBackgroundColor = JobsClearColor;
-          _buttonModel.roundingCorners = UIRectCornerAllCorners;
-      }return _buttonModel;
   }
   ```
 
@@ -11113,6 +11155,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                         data.jobsY,
                         data.jobsWidth,
                         data.jobsHeight);
+  }
+  
+  NS_INLINE CGRect jobsMakeFrameByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+      return jobsMakeCGRectByLocationModelBlock(block);
   }
   #pragma mark —— CGPoint
   NS_INLINE CGPoint jobsMakeCGPointByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){

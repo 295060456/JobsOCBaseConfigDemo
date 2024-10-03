@@ -15,6 +15,7 @@
 /// Data
 @property(nonatomic,strong)NSMutableArray <NSString *>*tempTitles;
 @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*tempLabs;
+@property(nonatomic,strong)NSMutableArray <UIButtonModel *>*taggedNavDatas;
 
 @end
 
@@ -56,12 +57,13 @@ JobsToggleNavViewProtocolSynthesize
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
+    return ^(NSMutableArray <UIButtonModel *>*_Nullable model) {
         @jobs_strongify(self)
+        self.taggedNavDatas = model;
         self.taggedNavView.alpha = 1;
         [self makeScrollContentViewsFrame];
         self.bgScroll.alpha = 1;
-        self.switchBy(0);
+        self.switchViewsBy(0);
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -81,7 +83,7 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 #pragma mark —— 一些公共方法
--(jobsByNSIntegerBlock _Nonnull)switchBy{
+-(jobsByNSIntegerBlock _Nonnull)switchViewsBy{
     @jobs_weakify(self)
     return ^(NSInteger index){
         @jobs_strongify(self)
@@ -127,22 +129,22 @@ JobsToggleNavViewProtocolSynthesize
 #pragma mark —— lazyLoad
 -(JobsToggleNavView *)taggedNavView{
     if(!_taggedNavView){
+        @jobs_weakify(self)
         _taggedNavView = JobsToggleNavView.new;
         _taggedNavView.btn_each_offset = self.btn_each_offset;
-        _taggedNavView.frame = CGRectMake(0,
-                                          0,
-                                          self.taggedNavView_width,
-                                          self.taggedNavView_height);
-        _taggedNavView.buttonModel = self.buttonModel;
-        
-        _taggedNavView.dataArr = self.taggedNavTitles;
+        _taggedNavView.frame = jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+            @jobs_strongify(self)
+            data.jobsX = 0;
+            data.jobsY = 0;
+            data.jobsWidth = self.taggedNavView_width;
+            data.jobsHeight = self.taggedNavView_height;
+        });
         _taggedNavView.sliderColor = self.sliderColor;
         _taggedNavView.sliderW = self.sliderW;
         _taggedNavView.sliderH = JobsWidth(1);
-        
+        _taggedNavView.backgroundColor = self.taggedNavViewBgColor;
         [self addSubview:_taggedNavView];
-        _taggedNavView.jobsRichViewByModel(nil);
-        @jobs_weakify(self)
+        _taggedNavView.jobsRichViewByModel(self.taggedNavDatas);
         /// 切换联动
         [_taggedNavView actionObjectBlock:^(id _Nullable data) {
             @jobs_strongify(self)
@@ -160,12 +162,16 @@ JobsToggleNavViewProtocolSynthesize
 
 -(UIScrollView *)bgScroll{
     if(!_bgScroll){
+        @jobs_weakify(self)
         _bgScroll = UIScrollView.new;
         _bgScroll.scrollEnabled = NO;
-        _bgScroll.frame = CGRectMake(0,
-                                     self.taggedNavView_height + self.taggedNavView_bgScroll_offset,
-                                     self.viewSizeByModel(nil).width,
-                                     self.viewSizeByModel(nil).height - (self.taggedNavView_height + self.taggedNavView_bgScroll_offset));
+        _bgScroll.frame = jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+            @jobs_strongify(self)
+            data.jobsX = 0;
+            data.jobsY = self.taggedNavView_height + self.taggedNavView_bgScroll_offset;
+            data.jobsWidth = self.viewSizeByModel(nil).width;
+            data.jobsHeight = self.viewSizeByModel(nil).height - (self.taggedNavView_height + self.taggedNavView_bgScroll_offset);
+        });
         _bgScroll.delegate = self;
         _bgScroll.pagingEnabled = YES;
         _bgScroll.showsHorizontalScrollIndicator = NO;
@@ -177,9 +183,16 @@ JobsToggleNavViewProtocolSynthesize
     }return _bgScroll;
 }
 
--(NSMutableArray<__kindof UIView *> *)scrollContentViews{
+-(NSMutableArray <__kindof UIView *>*)scrollContentViews{
     if(!_scrollContentViews){
-        _scrollContentViews = self.tempLabs;
+        _scrollContentViews = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView *>*_Nullable data) {
+            for (UIButtonModel *data1 in self.taggedNavDatas) {
+                data.add(data1.view);
+            }
+        });
+        if(!_scrollContentViews.count){
+            _scrollContentViews = self.tempLabs;
+        }
     }return _scrollContentViews;
 }
 
@@ -208,13 +221,14 @@ JobsToggleNavViewProtocolSynthesize
             @jobs_strongify(self)
             int t = 0;
             for (NSString *title in self.tempTitles) {
-                UILabel *label = UILabel.new;
-                label.backgroundColor = JobsRandomColor;
-                label.text = toStringByInt(t).add(@"\n").add(title);
-                label.textAlignment = NSTextAlignmentCenter;
-                label.numberOfLines = 0;
-                data.add(label);
-                t+=1;
+                data.add(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+                    label.backgroundColor = JobsRandomColor;
+                    label.textAlignment = NSTextAlignmentCenter;
+                    label.numberOfLines = 0;
+                    label.text = toStringByInt(t)
+                        .add(@"\n")
+                        .add(title);
+                }));t+=1;
             }
         });
     }return _tempLabs;
@@ -231,16 +245,20 @@ JobsToggleNavViewProtocolSynthesize
     }return _tempTitles;
 }
 
--(NSMutableArray<NSString *>*)taggedNavTitles{
-    if(!_taggedNavTitles){
+-(NSMutableArray<UIButtonModel *>*)taggedNavDatas{
+    if(!_taggedNavDatas){
         @jobs_weakify(self)
-        _taggedNavTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
+        _taggedNavDatas = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
             @jobs_strongify(self)
             for (int y = 0; y < self.tempTitles.count; y++) {
-                data.add(toStringByInt(y));
+                data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                    data.title = JobsInternationalization(@"第")
+                        .add(toStringByInt(y))
+                        .add(JobsInternationalization(@"个"));
+                }));
             }
         });
-    }return _taggedNavTitles;
+    }return _taggedNavDatas;
 }
 INIT_BUTTON_MODE
 @end

@@ -21,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat sliderH;
 /// 当前选择的标签按钮 index
 @property(nonatomic,assign,readonly)NSUInteger current_index;
-/// 标签按钮数据源
-@property(nonatomic,strong,null_resettable)UIButtonModel *buttonModel;
 
 @end
 

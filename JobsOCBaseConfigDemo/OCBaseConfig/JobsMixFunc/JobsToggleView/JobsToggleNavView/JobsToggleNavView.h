@@ -15,8 +15,6 @@
 #import "JobsToggleNavViewProtocol.h"
 
 @interface JobsToggleNavView : BaseView<JobsToggleNavViewProtocol>
-/// 数据源
-@property(nonatomic,strong)NSArray <NSString *>* _Nonnull dataArr;
 /// 选择某一个标签
 -(jobsByNSIntegerBlock _Nonnull)selectingOneTagWithIndex;
 

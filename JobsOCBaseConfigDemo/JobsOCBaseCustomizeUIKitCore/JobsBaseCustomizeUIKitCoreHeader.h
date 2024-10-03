@@ -239,6 +239,10 @@ NS_INLINE CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock _No
                       data.jobsWidth,
                       data.jobsHeight);
 }
+
+NS_INLINE CGRect jobsMakeFrameByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+    return jobsMakeCGRectByLocationModelBlock(block);
+}
 #pragma mark —— CGPoint
 NS_INLINE CGPoint jobsMakeCGPointByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
     JobsLocationModel *data = JobsLocationModel.alloc.init;

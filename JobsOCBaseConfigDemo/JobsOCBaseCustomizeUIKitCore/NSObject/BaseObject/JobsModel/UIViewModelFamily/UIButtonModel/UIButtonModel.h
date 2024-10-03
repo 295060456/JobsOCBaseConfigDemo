@@ -100,12 +100,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)NSArray <NSNumber *>*selected_imagePaddings;// imagePadding 图像与标题之间的间距
 #pragma mark —— 按钮挂载的对象
 @property(nonatomic,strong,nullable)id data;
+@property(nonatomic,strong,nullable)__kindof UIView *view;
 #pragma mark —— 点击
 @property(nonatomic,assign)BOOL selected;
 @property(nonatomic,assign)BOOL enabled;
 @property(nonatomic,strong,nullable)UIAction *primaryAction;/// 新Api的点击事件
 @property(nonatomic,copy,nullable)JobsReturnIDBySelectorBlock longPressGestureEventBlock;/// 按钮的长按事件
 @property(nonatomic,copy,nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
+@property(nonatomic,copy,nullable)jobsByBtnBlock onClickBlock;
+@property(nonatomic,copy,nullable)jobsByBtnBlock onLongPressGestureEventBlock;
 #pragma mark —— 其他
 @property(nonatomic,assign)CGFloat leftViewWidth;
 @property(nonatomic,assign)CGFloat rightViewWidth;
