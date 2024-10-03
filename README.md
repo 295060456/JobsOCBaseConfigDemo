@@ -2358,93 +2358,44 @@ NSObject <|-- BaseProtocol
 * 字段替换：接口返回字段<font color=red>**id**</font>和OC关键字<font color=red>**id**</font>重合冲突，这里用<font color=green>**jj**</font>替换<font color=red>**id**</font>
 
   ```objective-c
-  #import <Foundation/Foundation.h>
-  
-  #if __has_include(<MJExtension/MJExtension.h>)
-  #import <MJExtension/MJExtension.h>
-  #else
-  #import "MJExtension.h"
-  #endif
-  
-  @interface YourModel : NSObject
-  @property (nonatomic, copy) NSString *jj;
-  @end
-  
-  @implementation YourModel
   + (NSDictionary *)mj_replacedKeyFromPropertyName {
       return @{
           @"jj" : @"id"
       };
   }
-  
-  @end
   ```
   
-* **`- (id)mj_newValueFromOldValue:(id)oldValue property:(MJProperty *)property `**解析 JSON 数据时，对模型属性的值进行自定义处理。
+* 字段映射
 
-  可以通过重写这个方法，来实现对某些属性的特殊处理，比如数据转换或默认值设置
+  * **`- (id)mj_newValueFromOldValue:(id)oldValue property:(MJProperty *)property `**解析 JSON 数据时，对模型属性的值进行自定义处理。
 
-  ```objective-c
-  #import <Foundation/Foundation.h>
-  
-  #if __has_include(<MJExtension/MJExtension.h>)
-  #import <MJExtension/MJExtension.h>
-  #else
-  #import "MJExtension.h"
-  #endif
-  
-  @interface Person : NSObject
-  @property (nonatomic, assign) NSInteger age;
-  @end
-  
-  @implementation Person
-  // 重写这个方法进行自定义数据处理
-  - (id)mj_newValueFromOldValue:(id)oldValue 
-                       property:(MJProperty *)property {
-      if ([property.name isEqualToString:@"age"]) {
-          NSInteger age = [oldValue integerValue];
-          if (age < 0) {
-              return @(0); // 如果 age 小于 0，返回 0
-          }
-      } return oldValue;// 默认返回旧值
-  }
-  
-  @end
-  ```
+    可以通过重写这个方法，来实现对某些属性的特殊处理，比如数据转换或默认值设置
 
-* **`+ (NSDictionary *)mj_objectClassInArray`**解析 JSON 数组时，数组中的元素应该映射到哪个模型类
+    ```objective-c
+    // 重写这个方法进行自定义数据处理
+    - (id)mj_newValueFromOldValue:(id)oldValue 
+                         property:(MJProperty *)property {
+        if ([property.name isEqualToString:@"age"]) {
+            NSInteger age = [oldValue integerValue];
+            if (age < 0) {
+                return @(0); // 如果 age 小于 0，返回 0
+            }
+        } return oldValue;// 默认返回旧值
+    }
+    ```
 
-  ```objective-c
-  #import <Foundation/Foundation.h>
-  
-  #if __has_include(<MJExtension/MJExtension.h>)
-  #import <MJExtension/MJExtension.h>
-  #else
-  #import "MJExtension.h"
-  #endif
-  
-  @interface Student : NSObject
-  @property (nonatomic, copy) NSString *name;
-  @property (nonatomic, assign) NSInteger age;
-  @end
-  
-  @implementation Student
-  @end
-  
-  @interface Classroom : NSObject
-  @property (nonatomic, strong) NSArray<Student *> *students;
-  @end
-  
-  @implementation Classroom
-  // 告诉 MJExtension，students 数组中存放的是 Student 对象
-  + (NSDictionary *)mj_objectClassInArray {
-      return @{
-          @"students" : [Student class]
-      };
-  }
-  
-  @end
-  ```
+  * **`+ (NSDictionary *)mj_objectClassInArray`** <font color=red>**解析模型里面的数组**</font>
+
+    ```objective-c
+    @property(nonatomic,strong)NSArray<FMGameListModel *> *gameList; 
+    
+    // 告诉 MJExtension "gameList" 是一个 FMGameListModel 数组
+    + (NSDictionary *)mj_objectClassInArray {
+        return @{
+            @"gameList" : FMGameListModel.class
+        };
+    }
+    ```
 
 #### 26.2、对图片URL数据的解析（对`SDWebImage`的二次封装）
 
@@ -2460,7 +2411,7 @@ NSObject <|-- BaseProtocol
   #endif
   ```
 
-* [@interface UIImageView (SDWebImage)]()
+* [**@interface UIImageView (SDWebImage)**]()
 
   ```objective-c
   self.bgImageView
@@ -2479,10 +2430,10 @@ NSObject <|-- BaseProtocol
       }).load();
   ```
   
-  [@interface UIButton (SDWebImage)]()
+  [**@interface UIButton (SDWebImage）**]()
   
   ```objective-c
-   subView.imageURL(self.BaseUrl.add(model.iosImage).jobsUrl)
+   self.headBtn.imageURL(self.BaseUrl.add(model.iosImage).jobsUrl)
            .placeholderImage(model.image)
            .options(SDWebImageRefreshCached)/// 强制刷新缓存
            .completed(^(UIImage * _Nullable image,

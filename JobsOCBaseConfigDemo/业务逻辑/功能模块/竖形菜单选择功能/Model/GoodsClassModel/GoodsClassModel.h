@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UIViewModel.h"
+#import "BaseModel.h"
 
 #if __has_include(<MJExtension/MJExtension.h>)
 #import <MJExtension/MJExtension.h>
@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GoodsClassModel : UIViewModel
+@interface GoodsClassModel : BaseModel
 
 @property(nonatomic,copy)NSString *idField;
 @property(nonatomic,copy)NSString *pid;

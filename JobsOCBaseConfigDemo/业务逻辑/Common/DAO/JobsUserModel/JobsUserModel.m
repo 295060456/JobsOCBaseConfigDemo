@@ -16,11 +16,8 @@
     }return oldValue;
 }
 
-+(NSDictionary *)mj_replacedKeyFromPropertyName{
-    /* 返回的字典，key为模型属性名，value为转化的字典的多级key */
-    return @{
-        @"ID" : @"id"
-    };
++(NSDictionary *)mj_replacedKeyFromPropertyName {
+    return [super mj_replacedKeyFromPropertyName].mutableCopy;
 }
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
@@ -65,9 +62,9 @@ static dispatch_once_t static_userModelOnceToken;
     NSLog(@"printPropertyListByClass = %@",printPropertyListByClass(self.class));
     for (NSString *key in printPropertyListByClass(self.class)) {
         // 检查是否实现了协议中的属性对应的setter方法
-        NSLog(@"key.jobsCapitalCaseString = %@",@"set".add(key.jobsCapitalCaseString).add(@":"));
+        NSLog(@"key.jobsCapitalCaseString = %@",@"set".add(key.capitalizedString).add(@":"));
         NSLog(@"key = %@",key);
-        if ([self respondsToSelector:NSSelectorFromString(@"set".add(key.jobsCapitalCaseString).add(@":"))]) {
+        if ([self respondsToSelector:NSSelectorFromString(@"set".add(key.capitalizedString).add(@":"))]) {
             id value = [self valueForKey:key];
             [encoder encodeObject:value forKey:key];
         }

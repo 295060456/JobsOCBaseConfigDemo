@@ -9,11 +9,8 @@
 
 @implementation CasinoCustomerContactElementModel
 
-+(NSDictionary *)mj_replacedKeyFromPropertyName{
-    /* 返回的字典，key为模型属性名，value为转化的字典的多级key */
-    return @{
-        @"ID" : @"id",
-    };
++(NSDictionary *)mj_replacedKeyFromPropertyName {
+    return [super mj_replacedKeyFromPropertyName].mutableCopy;
 }
 
 @end

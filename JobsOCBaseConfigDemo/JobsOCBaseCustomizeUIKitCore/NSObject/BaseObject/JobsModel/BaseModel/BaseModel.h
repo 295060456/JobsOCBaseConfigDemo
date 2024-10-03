@@ -8,10 +8,21 @@
 #import <Foundation/Foundation.h>
 #import "NSObject+Data.h"
 #import "JobsDefineAllEnumHeader.h"
+#import "UIViewModel.h"
+
+#if __has_include(<MJExtension/MJExtension.h>)
+#import <MJExtension/MJExtension.h>
+#else
+#import "MJExtension.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseModel : NSObject
+@interface BaseModel : UIViewModel<NSCoding>
+#pragma mark —— MJExtension
++(NSDictionary *)mj_replacedKeyFromPropertyName;
+#pragma mark —— YYModel
++(NSDictionary *)modelCustomPropertyMapper;
 
 @end
 

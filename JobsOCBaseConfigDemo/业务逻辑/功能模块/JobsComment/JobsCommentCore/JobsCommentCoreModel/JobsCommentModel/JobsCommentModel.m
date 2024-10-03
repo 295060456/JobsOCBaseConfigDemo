@@ -9,31 +9,24 @@
 #import "JobsCommentModel.h"
 
 @implementation JobsChildCommentModel
-
 #pragma mark —— YYModel
 + (NSDictionary *)modelCustomPropertyMapper{
-    return @{
-        @"ID" : @"id"
-    };
+    return [super modelCustomPropertyMapper].mutableCopy;
 }
 #pragma mark —— MJExtention
 +(NSDictionary *)mj_replacedKeyFromPropertyName {
     /* 返回的字典，key为模型属性名，value为转化的字典的多级key */
-    return @{
-        @"ID" : @"id"
-    };
+    return [super mj_replacedKeyFromPropertyName].mutableCopy;
 }
 
 @end
 
 @implementation JobsFirstCommentModel
-
 #pragma mark —— YYModel
 + (NSDictionary *)modelCustomPropertyMapper{
-    return @{
-        @"ID" : @"id",
-        @"childDataArr":@"child"
-    };
+    NSMutableDictionary *dict = [super modelCustomPropertyMapper].mutableCopy;
+    dict[@"childDataArr"] = @"child";
+    return dict;
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
@@ -42,12 +35,11 @@
     };
 }
 #pragma mark —— MJExtention
+/* 返回的字典，key为模型属性名，value为转化的字典的多级key */
 +(NSDictionary *)mj_replacedKeyFromPropertyName{
-    /* 返回的字典，key为模型属性名，value为转化的字典的多级key */
-    return @{
-        @"ID" : @"id",
-        @"childDataArr":@"child"
-    };
+    NSMutableDictionary *dict = [super mj_replacedKeyFromPropertyName].mutableCopy;
+    dict[@"childDataArr"] = @"child";
+    return dict;
 }
 
 +(NSDictionary *)mj_objectClassInArray{
@@ -73,11 +65,11 @@
     };
 }
 #pragma mark —— MJExtention
+/* 返回的字典，key为模型属性名，value为转化的字典的多级key */
 +(NSDictionary *)mj_replacedKeyFromPropertyName{
-    /* 返回的字典，key为模型属性名，value为转化的字典的多级key */
-    return @{
-        @"listDataArr" : @"list",
-    };
+    NSMutableDictionary *dict = [super mj_replacedKeyFromPropertyName].mutableCopy;
+    dict[@"listDataArr"] = @"list";
+    return dict;
 }
 
 +(NSDictionary *)mj_objectClassInArray{

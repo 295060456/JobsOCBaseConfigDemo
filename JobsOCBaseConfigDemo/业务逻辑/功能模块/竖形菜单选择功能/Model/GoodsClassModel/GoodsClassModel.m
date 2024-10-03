@@ -9,16 +9,16 @@
 
 @implementation GoodsClassModel
 
-+(NSDictionary *)mj_replacedKeyFromPropertyName{
-    return @{
-             @"idField":@"id",
-             };
++(NSDictionary *)mj_replacedKeyFromPropertyName {
+    NSMutableDictionary *dict = [super mj_replacedKeyFromPropertyName].mutableCopy;
+    dict[@"idField"] = @"id";
+    return dict;
 }
 
 + (NSDictionary *)mj_objectClassInArray{
     return @{
-             @"childrenList":GoodsClassModel.class,
-             };
+        @"childrenList":GoodsClassModel.class,
+    };
 }
 
 -(NSMutableArray<GoodsClassModel *> *)childrenList{

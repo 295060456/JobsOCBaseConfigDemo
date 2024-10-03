@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "NSString+Check.h"
 #import "JobsBlock.h"
+#import "JobsTimeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

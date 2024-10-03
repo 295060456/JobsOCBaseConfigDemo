@@ -7,13 +7,10 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "BaseModel.h"
 #import "NSObject+Class.h"
 
 NS_ASSUME_NONNULL_BEGIN
-/// 需要被归档的类，需要按照JobsObject的标准写法
-@interface JobsObject : NSObject<NSCoding>
-
-@end
 
 @interface UserDefaultModel : NSObject
 // 对象

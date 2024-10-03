@@ -10,9 +10,7 @@
 @implementation IncomeSourceModel
 
 +(NSDictionary *)mj_replacedKeyFromPropertyName {
-    return @{
-        @"ID" : @"id"
-    };
+    return [super mj_replacedKeyFromPropertyName].mutableCopy;
 }
 
 @end

@@ -9,11 +9,12 @@
 #import "JobsDefineAllEnumHeader.h"
 #import "BaseProtocol.h"
 #import "JobsObject.h"
+#import "BaseModel.h"
 #import "NSObject+Class.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsUserModel : JobsObject
+@interface JobsUserModel : BaseModel
 <
 NSCoding,/// 编码
 NSSecureCoding,/// 解码
@@ -57,4 +58,3 @@ NS_INLINE __kindof JobsUserModel *_Nonnull jobsMakeUserModel(jobsByUserModelBloc
     if (block) block(data);
     return data;
 }
- 

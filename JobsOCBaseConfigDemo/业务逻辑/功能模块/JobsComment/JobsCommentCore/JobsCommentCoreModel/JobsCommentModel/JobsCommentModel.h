@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 //对应字段 child
-@interface JobsChildCommentModel : NSObject
+@interface JobsChildCommentModel : BaseModel
 
 @property(nonatomic,copy)NSString *ID;
 @property(nonatomic,copy)NSString *parentId;
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 // 对应字段 list
-@interface JobsFirstCommentModel : NSObject
+@interface JobsFirstCommentModel : BaseModel
 
 @property(nonatomic,copy)NSString *ID;
 @property(nonatomic,copy)NSString *parentId;
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface JobsFirstCommentCustomCofigModel : NSObject
+@interface JobsFirstCommentCustomCofigModel : BaseModel
 
 @property(nonatomic,strong)NSArray <JobsChildCommentModel *>*childDataArr;//二级评论
 #pragma mask —— 自定义字段
