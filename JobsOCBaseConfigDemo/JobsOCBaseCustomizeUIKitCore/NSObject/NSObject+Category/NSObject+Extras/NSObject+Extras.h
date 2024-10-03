@@ -94,6 +94,12 @@ NS_INLINE NSObject *_Nullable idToObject(id _Nullable data){
     }else return nil;
 }
 
+NS_INLINE __kindof YTKNetworkConfig *_Nonnull jobsMakeYTKNetworkConfig(jobsByYTKNetworkConfigBlock _Nonnull block){
+    YTKNetworkConfig *data = YTKNetworkConfig.sharedConfig;
+    if (block) block(data);
+    return data;
+}
+
 @interface NSObject (Extras)
 <
 BaseProtocol

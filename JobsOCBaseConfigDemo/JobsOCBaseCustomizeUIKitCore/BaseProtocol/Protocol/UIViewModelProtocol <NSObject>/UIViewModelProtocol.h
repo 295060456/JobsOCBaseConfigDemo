@@ -89,6 +89,8 @@ NS_ASSUME_NONNULL_END
 @synthesize jobsLeft = _jobsLeft;\
 @synthesize jobsRight = _jobsRight;\
 @synthesize jobsBottom = _jobsBottom;\
+@synthesize location = _location;\
+@synthesize length = _length;\
 @synthesize jobsOffsetX = _jobsOffsetX;\
 @synthesize jobsOffsetY = _jobsOffsetY;\
 @synthesize jobsSize = _jobsSize;\
@@ -250,6 +252,8 @@ NS_ASSUME_NONNULL_END
 @dynamic jobsLeft;\
 @dynamic jobsRight;\
 @dynamic jobsBottom;\
+@dynamic location;\
+@dynamic length;\
 @dynamic jobsOffsetX;\
 @dynamic jobsOffsetY;\
 @dynamic jobsSize;\

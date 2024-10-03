@@ -35,17 +35,18 @@
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
     self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
     /// 下列配置一般体现在 AppDelegate
-    YTKNetworkConfig *config = YTKNetworkConfig.sharedConfig;
-    config.baseUrl = self.BaseUrl;
-    config.cdnUrl = JobsInternationalization(@"");
-    //config.urlFilters = nil;
-    //config.cacheDirPathFilters = nil;
-    config.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-    config.debugLogEnabled = YES;
-    config.sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration;
-    
-    YTKUrlArgumentsFilter *urlFilter = [YTKUrlArgumentsFilter filterWithArguments:@{@"version": self.appVersion}];
-    [config addUrlFilter:urlFilter];
+    @jobs_weakify(self)
+    jobsMakeYTKNetworkConfig(^(__kindof YTKNetworkConfig * _Nullable data) {
+        @jobs_strongify(self)
+        data.baseUrl = self.BaseUrl;
+        data.cdnUrl = @"";
+        //data.urlFilters = nil;
+        //data.cacheDirPathFilters = nil;
+        data.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+        data.debugLogEnabled = YES;
+        data.sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration;
+        [data addUrlFilter:[YTKUrlArgumentsFilter filterWithArguments:@{@"version": self.appVersion}]];
+    });
 }
 
 - (void)viewDidLoad {///

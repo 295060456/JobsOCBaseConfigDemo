@@ -52,13 +52,13 @@ static dispatch_once_t AppDelegateOnceToken;
 }
 #pragma mark —— 一些私有方法
 /// 模拟用户数据
--(jobsByVoidBlock)simulateUserData{
+-(jobsByVoidBlock _Nonnull)simulateUserData{
     return ^(){
-        JobsUserModel *userModel = JobsUserModel.new;
-        userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
-        userModel.userName = @"张三丰";
-        userModel.phone = @"134****0000";
-        self.saveUserInfo(userModel);
+        self.saveUserInfo(jobsMakeUserModel(^(__kindof JobsUserModel<NSCoding> * _Nullable userModel) {
+            userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
+            userModel.userName = @"张三丰";
+            userModel.phone = @"134****0000";
+        }));
         id f = self.readUserInfo();
         NSLog(@"");
     };

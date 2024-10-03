@@ -30,123 +30,7 @@
         return [self stringByReplacingOccurrencesOfString:@"\u200B" withString:@""];
     }else return self;
 }
-#pragma mark —— 转化
-/// 对象转OC字符串
-+(JobsReturnStringByIDBlock)toString{
-    return ^NSString *_Nullable (id _Nullable data) {
-        return toStringByID(data);
-    };
-}
-/// OC字符串拼接
--(JobsReturnStringByStringBlock _Nonnull)add{
-    @jobs_weakify(self)
-    return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
-        @jobs_strongify(self)
-        if(!str) str = @"";
-        // 系统的stringByAppendingString方法在参数为nil的时候会崩溃
-        return JobsMutableString([self stringByAppendingString:str]);/// 原始字符串不会改变，输出一个新的字符串
-    };
-}
-/// OC字符串转NSDate
--(JobsReturnDateByDateFormatterBlock)dataByDateFormatter{
-    @jobs_weakify(self)
-    return ^NSDate *_Nullable(NSDateFormatter *_Nullable data){
-        @jobs_strongify(self)
-        return [data dateFromString:self];;
-    };
-}
-/// OC字符串路径拼接
--(JobsReturnStringByStringBlock _Nonnull)addPathComponent{
-    @jobs_weakify(self)
-    return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
-        @jobs_strongify(self)
-        if(!str) str = @"";
-        // 系统的stringByAppendingString方法在参数为nil的时候会崩溃
-        return JobsMutableString([self stringByAppendingPathComponent:str]);/// 自动处理（加上"/"）
-    };
-}
-/// OC字符串数组 转 OC字符串
-+(NSString *_Nonnull)toStrByStringArr:(NSArray <NSString *>*_Nonnull)arr{
-    NSString *resultStr;
-    for (int i = 0; i < arr.count; i++) {
-        NSString *tempStr = arr[i];
-        tempStr = [tempStr stringByReplacingOccurrencesOfString:@"/" withString:@""];//去除字符 /
-        resultStr.add(@"/").add(tempStr);
-    }return resultStr;
-}
-#pragma mark —— 自定义替换、裁剪
-/// 将字符串中除首尾字符外的所有字符替换为星号 (*)
--(NSString *_Nonnull)getAnonymousString{
-    if (self.length < 2) return self;
-    @jobs_weakify(self)
-    NSString *string = [jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-        @jobs_strongify(self)
-        for (int i = 1; i < self.length - 1; i++) {
-            char s = [self characterAtIndex:i];
-            s = '*';
-            NSString *tempString = StringWithUTF8String(&s);
-            data.add(tempString);
-        }
-    }) componentsJoinedByString:@""];
-    return [self stringByReplacingCharactersInRange:NSMakeRange(1, self.length - 2)
-                                         withString:string];
-}
-/// OC字符串去除最后一个字符
--(NSString *_Nonnull)removeLastChars{
-    return [self substringToIndex:self.length - 1];
-}
-/// 将某个OC字符串进行限定字符个数，二次包装以后对外输出。【截取完了以后添加替换字符】
-/// @param replaceStr 多余的字符串用replaceStr进行占位表示，一般的这里是用"."来进行替换
-/// @param replaceStrLenth 替代字符串的字符长度
-/// @param lineBreakMode 省略的字符串位于整个原始字符串的位置
-/// @param limit 限制的字符数
--(NSString *_Nonnull)omitByReplaceStr:(NSString *_Nullable)replaceStr
-                      replaceStrLenth:(NSInteger)replaceStrLenth
-                        lineBreakMode:(NSLineBreakMode)lineBreakMode
-                                limit:(NSInteger)limit{
-    if (!replaceStrLenth) replaceStrLenth = 3;
-    if (isNull(replaceStr)) replaceStr = @".";
-    /// limit 是不包括省略号的实际的限制字数
-    NSString *resultStr = self;
-    NSRange range;
-    NSString *pointStr = @"";
-    for (int i = 0; i < replaceStrLenth; i++) {
-        pointStr = pointStr.add(replaceStr);
-    }
-    /// 关键节点用向下取整进行保守处理
-    if (self.length > limit) {
-        if (lineBreakMode == NSLineBreakByTruncatingHead){/// 前面部分文字以...方式省略，显示尾部文字内容
-            range = NSMakeRange(self.length - limit,limit);
-            resultStr = pointStr.add([self substringWithRange:range]);
-        }else if (lineBreakMode == NSLineBreakByTruncatingTail){/// 结尾部分的内容以……方式省略，显示头的文字内容
-            range = NSMakeRange(0,limit);
-            resultStr = [self substringWithRange:range].add(pointStr);
-        }else if (lineBreakMode == NSLineBreakByTruncatingMiddle){/// 中间的内容以...方式省略，显示头尾的文字内容
-            NSRange rangeA = NSMakeRange(0,floor(limit / 2));
-            NSString *resultStrA = [self substringWithRange:rangeA];
-            NSRange rangeB = NSMakeRange(floor(self.length - limit / 2),floor(limit / 2));
-            NSString *resultStrB = [self substringWithRange:rangeB];
-            resultStr = resultStrA.add(pointStr).add(resultStrB);
-        }else{}
-    }return resultStr;
-}
 #pragma mark —— 一些功能性的
-/// 完整的文件名提取普通文件名和文件后缀名
--(JobsReturnFileNameModelByFileFullNameStringBlock)byFileFullName{
-    return ^FileNameModel *_Nonnull(NSString *_Nullable fileFullName){
-        FileNameModel *fileNameModel = FileNameModel.new;
-        /// 使用"."分割文件名，获取文件名和文件类型
-        NSArray<NSString *> *components = [fileFullName componentsSeparatedByString:@"."];
-        if (components.count != 2) {
-            NSLog(@"文件名格式错误: %@", fileFullName);
-            return fileNameModel;
-        }
-        
-        fileNameModel.name = components[0];
-        fileNameModel.type = components[1];
-        return fileNameModel;
-    };
-}
 /// 复制到系统剪切板
 -(JobsReturnStringByVoidBlock _Nonnull)pasteboard{
     @jobs_weakify(self)
@@ -214,10 +98,28 @@
     
     return pathLayer;
 }
-#pragma mark —— 其他
 /// 该文字是否是Debug定义的文字
 -(BOOL)isDebugText{
     return self.isEqualToString(JobsInternationalization(TextModelDataString));
+}
+/// 截取字符串方法封装
+-(NSString *)subStringFrom:(NSString *)startString to:(NSString *)endString{
+    NSRange startRange = [self rangeOfString:startString];
+    NSRange endRange = [self rangeOfString:endString];
+    NSRange range = jobsMakeRangeByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+        data.location = startRange.location + startRange.length;
+        data.length = endRange.location - startRange.location - startRange.length;
+    });return [self substringWithRange:range];
+}
+/// OC字符串拼接
+-(JobsReturnStringByStringBlock _Nonnull)add{
+    @jobs_weakify(self)
+    return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
+        @jobs_strongify(self)
+        if(!str) str = @"";
+        // 系统的stringByAppendingString方法在参数为nil的时候会崩溃
+        return JobsMutableString([self stringByAppendingString:str]);/// 原始字符串不会改变，输出一个新的字符串
+    };
 }
 
 @end

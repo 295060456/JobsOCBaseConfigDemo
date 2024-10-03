@@ -11175,6 +11175,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       if (block) block(data);
       return CGSizeMake(data.jobsWidth, data.jobsHeight);
   }
+  #pragma mark —— NSRange
+  NS_INLINE NSRange jobsMakeRangeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+      JobsLocationModel *data = JobsLocationModel.alloc.init;
+      if (block) block(data);
+      return NSMakeRange(data.location, data.length);
+  }
   ```
 
 #### 42.2、封装自建Api

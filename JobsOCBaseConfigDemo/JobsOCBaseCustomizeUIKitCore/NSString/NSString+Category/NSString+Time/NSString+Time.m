@@ -54,10 +54,8 @@
             // 假设时间戳是以秒为单位
             dateFromTimeStamp = [NSDate dateWithTimeIntervalSince1970:timeStamp];
         }else return NO;/// 时间戳为空，返回 NO
-        /// 获取当前时间
-        NSDate *currentDate = NSDate.date;
         /// 比较当前时间和时间戳所代表的时间
-        NSComparisonResult result = [currentDate compare:dateFromTimeStamp];
+        NSComparisonResult result = [NSDate.date compare:dateFromTimeStamp];
         /// 如果当前时间晚于时间戳所代表的时间，返回 YES
         return (result == NSOrderedDescending);
     };

@@ -105,19 +105,19 @@
 }
 #pragma mark —— YTKNetworkConfig
 -(jobsByVoidBlock _Nonnull)YTKNetworkConfig{
-    @jobs_weakify(self)
     return ^(){
-        @jobs_strongify(self)
-        YTKNetworkConfig *config = YTKNetworkConfig.sharedConfig;
-        config.baseUrl = self.BaseUrl;
-        config.cdnUrl = JobsInternationalization(@"");
-        //config.urlFilters = nil;
-        //config.cacheDirPathFilters = nil;
-        config.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-        config.debugLogEnabled = YES;
-        config.sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration;
-        YTKUrlArgumentsFilter *urlFilter = [YTKUrlArgumentsFilter filterWithArguments:@{@"version": self.appVersion}];
-        [config addUrlFilter:urlFilter];
+        @jobs_weakify(self)
+        jobsMakeYTKNetworkConfig(^(__kindof YTKNetworkConfig *_Nullable data) {
+            @jobs_strongify(self)
+            data.baseUrl = self.BaseUrl;
+            data.cdnUrl = @"";
+            //data.urlFilters = nil;
+            //data.cacheDirPathFilters = nil;
+            data.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+            data.debugLogEnabled = YES;
+            data.sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration;
+            [data addUrlFilter:[YTKUrlArgumentsFilter filterWithArguments:@{@"version": self.appVersion}]];
+        });
     };
 }
 #pragma mark —— KTVHTTPCache

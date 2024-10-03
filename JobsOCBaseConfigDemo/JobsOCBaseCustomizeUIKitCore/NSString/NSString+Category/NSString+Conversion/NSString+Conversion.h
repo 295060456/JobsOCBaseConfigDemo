@@ -86,7 +86,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///【类方法】压缩字符串成NSData
 -(JobsReturnDataByStringBlock _Nonnull)compressString;
 ///【类方法】解压缩字符串
-+(NSString *)decompressString:(NSData *)compressedData;
++(JobsReturnStringByDataBlock _Nonnull)decompressString;
+/// 对象转OC字符串
++(JobsReturnStringByIDBlock _Nonnull)toString;
+/// OC字符串转NSDate
+-(JobsReturnDateByDateFormatterBlock _Nonnull)dataByDateFormatter;
+/// OC字符串数组 转 OC字符串
++(NSString *_Nonnull)toStrByStringArr:(NSArray <NSString *>*_Nonnull)arr;
 
 @end
 

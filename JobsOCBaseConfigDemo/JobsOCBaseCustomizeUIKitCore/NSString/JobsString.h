@@ -16,7 +16,6 @@
 #pragma mark —— Category
 #import "NSString+Time.h"
 #import "NSString+Conversion.h"
-#import "NSString+Decoration.h"
 #import "NSString+Eomji.h"
 #import "NSString+Judgment.h"
 #import "NSString+Others.h"

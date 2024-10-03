@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat jobsLeft;/// = leading
 @property(nonatomic,assign)CGFloat jobsRight;/// = trailing
 @property(nonatomic,assign)CGFloat jobsBottom;
+/// NSRange
+@property(nonatomic,assign)NSUInteger location;
+@property(nonatomic,assign)NSUInteger length;
 /// Offset
 @property(nonatomic,assign)CGFloat jobsOffsetX;
 @property(nonatomic,assign)CGFloat jobsOffsetY;
@@ -87,6 +90,8 @@ NS_ASSUME_NONNULL_END
 @synthesize jobsLeft = _jobsLeft;\
 @synthesize jobsRight = _jobsRight;\
 @synthesize jobsBottom = _jobsBottom;\
+@synthesize location = _location;\
+@synthesize length = _length;\
 @synthesize jobsOffsetX = _jobsOffsetX;\
 @synthesize jobsOffsetY = _jobsOffsetY;\
 @synthesize jobsSize = _jobsSize;\
@@ -130,6 +135,8 @@ NS_ASSUME_NONNULL_END
 @dynamic jobsLeft;\
 @dynamic jobsRight;\
 @dynamic jobsBottom;\
+@dynamic location;\
+@dynamic length;\
 @dynamic jobsOffsetX;\
 @dynamic jobsOffsetY;\
 @dynamic jobsSize;\

@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
+		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
+		CE260F452CAE671C00233F0F /* NSString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F3E2CAE671C00233F0F /* NSString+Replace.m */; };
+		CE260F462CAE671C00233F0F /* NSString+Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F412CAE671C00233F0F /* NSString+Statistics.m */; };
+		CE260F472CAE671C00233F0F /* NSString+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F292CAE671C00233F0F /* NSString+Time.m */; };
+		CE260F482CAE671C00233F0F /* NSString+FilteringSpecialCharacters.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F322CAE671C00233F0F /* NSString+FilteringSpecialCharacters.m */; };
+		CE260F492CAE671C00233F0F /* NSString+Path.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F3B2CAE671C00233F0F /* NSString+Path.m */; };
+		CE260F4A2CAE671C00233F0F /* NSString+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2C2CAE671C00233F0F /* NSString+Conversion.m */; };
+		CE260F4B2CAE671C00233F0F /* NSString+Judgment.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F352CAE671C00233F0F /* NSString+Judgment.m */; };
+		CE260F4C2CAE671C00233F0F /* NSString+Others.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F382CAE671C00233F0F /* NSString+Others.m */; };
 		CE2E88CD2C69E14100260207 /* PopListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E88C92C69E14100260207 /* PopListBaseView.m */; };
 		CE2E8ACC2C6AF7C900260207 /* 幸运转盘.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2E8ACB2C6AF7B800260207 /* 幸运转盘.xcassets */; };
 		CE410FE72C57B8B400AB9402 /* NSString+ZBURLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FD62C57B8B400AB9402 /* NSString+ZBURLEncoding.m */; };
@@ -420,16 +429,6 @@
 		CE5A64E02CA83018006D67A7 /* NSObject+WHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62132CA82C2D006D67A7 /* NSObject+WHToast.m */; };
 		CE5A64E12CA8301D006D67A7 /* toastLoading.gif in Resources */ = {isa = PBXBuildFile; fileRef = CE5A62142CA82C2D006D67A7 /* toastLoading.gif */; };
 		CE5A64E22CA83023006D67A7 /* NSRunLoop+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62192CA82C2D006D67A7 /* NSRunLoop+Extra.m */; };
-		CE5A64E32CA8302A006D67A7 /* NSString+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A621C2CA82C2D006D67A7 /* NSString+Time.m */; };
-		CE5A64E42CA83037006D67A7 /* NSString+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A621F2CA82C2D006D67A7 /* NSString+Conversion.m */; };
-		CE5A64E52CA83037006D67A7 /* NSString+Decoration.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62222CA82C2D006D67A7 /* NSString+Decoration.m */; };
-		CE5A64E62CA8304B006D67A7 /* NSString+Others.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A622E2CA82C2D006D67A7 /* NSString+Others.m */; };
-		CE5A64E72CA8304B006D67A7 /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62252CA82C2D006D67A7 /* NSString+Eomji.m */; };
-		CE5A64E82CA8304B006D67A7 /* NSString+FilteringSpecialCharacters.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62282CA82C2D006D67A7 /* NSString+FilteringSpecialCharacters.m */; };
-		CE5A64E92CA8304B006D67A7 /* NSString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62342CA82C2D006D67A7 /* NSString+Replace.m */; };
-		CE5A64EA2CA8304B006D67A7 /* NSString+Path.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62312CA82C2D006D67A7 /* NSString+Path.m */; };
-		CE5A64EB2CA8304B006D67A7 /* NSString+Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62372CA82C2D006D67A7 /* NSString+Statistics.m */; };
-		CE5A64EC2CA8304B006D67A7 /* NSString+Judgment.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A622B2CA82C2D006D67A7 /* NSString+Judgment.m */; };
 		CE5A64ED2CA83058006D67A7 /* NSURL+Others.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A623D2CA82C2D006D67A7 /* NSURL+Others.m */; };
 		CE5A64EE2CA8305D006D67A7 /* NSURLRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62422CA82C2D006D67A7 /* NSURLRequest+Extra.m */; };
 		CE5A64EF2CA83065006D67A7 /* NSUserDefaults+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62452CA82C2D006D67A7 /* NSUserDefaults+Manager.m */; };
@@ -1134,6 +1133,24 @@
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
+		CE260F282CAE671C00233F0F /* NSString+Time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Time.h"; sourceTree = "<group>"; };
+		CE260F292CAE671C00233F0F /* NSString+Time.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Time.m"; sourceTree = "<group>"; };
+		CE260F2B2CAE671C00233F0F /* NSString+Conversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Conversion.h"; sourceTree = "<group>"; };
+		CE260F2C2CAE671C00233F0F /* NSString+Conversion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Conversion.m"; sourceTree = "<group>"; };
+		CE260F2E2CAE671C00233F0F /* NSString+Eomji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Eomji.h"; sourceTree = "<group>"; };
+		CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Eomji.m"; sourceTree = "<group>"; };
+		CE260F312CAE671C00233F0F /* NSString+FilteringSpecialCharacters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+FilteringSpecialCharacters.h"; sourceTree = "<group>"; };
+		CE260F322CAE671C00233F0F /* NSString+FilteringSpecialCharacters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+FilteringSpecialCharacters.m"; sourceTree = "<group>"; };
+		CE260F342CAE671C00233F0F /* NSString+Judgment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Judgment.h"; sourceTree = "<group>"; };
+		CE260F352CAE671C00233F0F /* NSString+Judgment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Judgment.m"; sourceTree = "<group>"; };
+		CE260F372CAE671C00233F0F /* NSString+Others.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Others.h"; sourceTree = "<group>"; };
+		CE260F382CAE671C00233F0F /* NSString+Others.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Others.m"; sourceTree = "<group>"; };
+		CE260F3A2CAE671C00233F0F /* NSString+Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Path.h"; sourceTree = "<group>"; };
+		CE260F3B2CAE671C00233F0F /* NSString+Path.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Path.m"; sourceTree = "<group>"; };
+		CE260F3D2CAE671C00233F0F /* NSString+Replace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Replace.h"; sourceTree = "<group>"; };
+		CE260F3E2CAE671C00233F0F /* NSString+Replace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Replace.m"; sourceTree = "<group>"; };
+		CE260F402CAE671C00233F0F /* NSString+Statistics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Statistics.h"; sourceTree = "<group>"; };
+		CE260F412CAE671C00233F0F /* NSString+Statistics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Statistics.m"; sourceTree = "<group>"; };
 		CE2E88C72C69E14100260207 /* 全局统一的下拉选择器改为屏幕中部弹出的列表.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "全局统一的下拉选择器改为屏幕中部弹出的列表.jpg"; sourceTree = "<group>"; };
 		CE2E88C82C69E14100260207 /* PopListBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopListBaseView.h; sourceTree = "<group>"; };
 		CE2E88C92C69E14100260207 /* PopListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopListBaseView.m; sourceTree = "<group>"; };
@@ -2423,26 +2440,6 @@
 		CE5A62142CA82C2D006D67A7 /* toastLoading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = toastLoading.gif; sourceTree = "<group>"; };
 		CE5A62182CA82C2D006D67A7 /* NSRunLoop+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSRunLoop+Extra.h"; sourceTree = "<group>"; };
 		CE5A62192CA82C2D006D67A7 /* NSRunLoop+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSRunLoop+Extra.m"; sourceTree = "<group>"; };
-		CE5A621B2CA82C2D006D67A7 /* NSString+Time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Time.h"; sourceTree = "<group>"; };
-		CE5A621C2CA82C2D006D67A7 /* NSString+Time.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Time.m"; sourceTree = "<group>"; };
-		CE5A621E2CA82C2D006D67A7 /* NSString+Conversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Conversion.h"; sourceTree = "<group>"; };
-		CE5A621F2CA82C2D006D67A7 /* NSString+Conversion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Conversion.m"; sourceTree = "<group>"; };
-		CE5A62212CA82C2D006D67A7 /* NSString+Decoration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Decoration.h"; sourceTree = "<group>"; };
-		CE5A62222CA82C2D006D67A7 /* NSString+Decoration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Decoration.m"; sourceTree = "<group>"; };
-		CE5A62242CA82C2D006D67A7 /* NSString+Eomji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Eomji.h"; sourceTree = "<group>"; };
-		CE5A62252CA82C2D006D67A7 /* NSString+Eomji.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Eomji.m"; sourceTree = "<group>"; };
-		CE5A62272CA82C2D006D67A7 /* NSString+FilteringSpecialCharacters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+FilteringSpecialCharacters.h"; sourceTree = "<group>"; };
-		CE5A62282CA82C2D006D67A7 /* NSString+FilteringSpecialCharacters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+FilteringSpecialCharacters.m"; sourceTree = "<group>"; };
-		CE5A622A2CA82C2D006D67A7 /* NSString+Judgment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Judgment.h"; sourceTree = "<group>"; };
-		CE5A622B2CA82C2D006D67A7 /* NSString+Judgment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Judgment.m"; sourceTree = "<group>"; };
-		CE5A622D2CA82C2D006D67A7 /* NSString+Others.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Others.h"; sourceTree = "<group>"; };
-		CE5A622E2CA82C2D006D67A7 /* NSString+Others.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Others.m"; sourceTree = "<group>"; };
-		CE5A62302CA82C2D006D67A7 /* NSString+Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Path.h"; sourceTree = "<group>"; };
-		CE5A62312CA82C2D006D67A7 /* NSString+Path.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Path.m"; sourceTree = "<group>"; };
-		CE5A62332CA82C2D006D67A7 /* NSString+Replace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Replace.h"; sourceTree = "<group>"; };
-		CE5A62342CA82C2D006D67A7 /* NSString+Replace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Replace.m"; sourceTree = "<group>"; };
-		CE5A62362CA82C2D006D67A7 /* NSString+Statistics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Statistics.h"; sourceTree = "<group>"; };
-		CE5A62372CA82C2D006D67A7 /* NSString+Statistics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Statistics.m"; sourceTree = "<group>"; };
 		CE5A623A2CA82C2D006D67A7 /* JobsString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsString.h; sourceTree = "<group>"; };
 		CE5A623C2CA82C2D006D67A7 /* NSURL+Others.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+Others.h"; sourceTree = "<group>"; };
 		CE5A623D2CA82C2D006D67A7 /* NSURL+Others.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Others.m"; sourceTree = "<group>"; };
@@ -3341,6 +3338,103 @@
 				87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE260F2A2CAE671C00233F0F /* NSString+Time */ = {
+			isa = PBXGroup;
+			children = (
+				CE260F282CAE671C00233F0F /* NSString+Time.h */,
+				CE260F292CAE671C00233F0F /* NSString+Time.m */,
+			);
+			path = "NSString+Time";
+			sourceTree = "<group>";
+		};
+		CE260F2D2CAE671C00233F0F /* NSString+Conversion */ = {
+			isa = PBXGroup;
+			children = (
+				CE260F2B2CAE671C00233F0F /* NSString+Conversion.h */,
+				CE260F2C2CAE671C00233F0F /* NSString+Conversion.m */,
+			);
+			path = "NSString+Conversion";
+			sourceTree = "<group>";
+		};
+		CE260F302CAE671C00233F0F /* NSString+Eomji */ = {
+			isa = PBXGroup;
+			children = (
+				CE260F2E2CAE671C00233F0F /* NSString+Eomji.h */,
+				CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */,
+			);
+			path = "NSString+Eomji";
+			sourceTree = "<group>";
+		};
+		CE260F332CAE671C00233F0F /* NSString+FilteringSpecialCharacters */ = {
+			isa = PBXGroup;
+			children = (
+				CE260F312CAE671C00233F0F /* NSString+FilteringSpecialCharacters.h */,
+				CE260F322CAE671C00233F0F /* NSString+FilteringSpecialCharacters.m */,
+			);
+			path = "NSString+FilteringSpecialCharacters";
+			sourceTree = "<group>";
+		};
+		CE260F362CAE671C00233F0F /* NSString+Judgment */ = {
+			isa = PBXGroup;
+			children = (
+				CE260F342CAE671C00233F0F /* NSString+Judgment.h */,
+				CE260F352CAE671C00233F0F /* NSString+Judgment.m */,
+			);
+			path = "NSString+Judgment";
+			sourceTree = "<group>";
+		};
+		CE260F392CAE671C00233F0F /* NSString+Others */ = {
+			isa = PBXGroup;
+			children = (
+				CE260F372CAE671C00233F0F /* NSString+Others.h */,
+				CE260F382CAE671C00233F0F /* NSString+Others.m */,
+			);
+			path = "NSString+Others";
+			sourceTree = "<group>";
+		};
+		CE260F3C2CAE671C00233F0F /* NSString+Path */ = {
+			isa = PBXGroup;
+			children = (
+				CE260F3A2CAE671C00233F0F /* NSString+Path.h */,
+				CE260F3B2CAE671C00233F0F /* NSString+Path.m */,
+			);
+			path = "NSString+Path";
+			sourceTree = "<group>";
+		};
+		CE260F3F2CAE671C00233F0F /* NSString+Replace */ = {
+			isa = PBXGroup;
+			children = (
+				CE260F3D2CAE671C00233F0F /* NSString+Replace.h */,
+				CE260F3E2CAE671C00233F0F /* NSString+Replace.m */,
+			);
+			path = "NSString+Replace";
+			sourceTree = "<group>";
+		};
+		CE260F422CAE671C00233F0F /* NSString+Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				CE260F402CAE671C00233F0F /* NSString+Statistics.h */,
+				CE260F412CAE671C00233F0F /* NSString+Statistics.m */,
+			);
+			path = "NSString+Statistics";
+			sourceTree = "<group>";
+		};
+		CE260F432CAE671C00233F0F /* NSString+Category */ = {
+			isa = PBXGroup;
+			children = (
+				CE260F2A2CAE671C00233F0F /* NSString+Time */,
+				CE260F2D2CAE671C00233F0F /* NSString+Conversion */,
+				CE260F302CAE671C00233F0F /* NSString+Eomji */,
+				CE260F332CAE671C00233F0F /* NSString+FilteringSpecialCharacters */,
+				CE260F362CAE671C00233F0F /* NSString+Judgment */,
+				CE260F392CAE671C00233F0F /* NSString+Others */,
+				CE260F3C2CAE671C00233F0F /* NSString+Path */,
+				CE260F3F2CAE671C00233F0F /* NSString+Replace */,
+				CE260F422CAE671C00233F0F /* NSString+Statistics */,
+			);
+			path = "NSString+Category";
 			sourceTree = "<group>";
 		};
 		CE2E88CA2C69E14100260207 /* PopListBaseView */ = {
@@ -10334,117 +10428,10 @@
 			path = NSRunLoop;
 			sourceTree = "<group>";
 		};
-		CE5A621D2CA82C2D006D67A7 /* NSString+Time */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A621B2CA82C2D006D67A7 /* NSString+Time.h */,
-				CE5A621C2CA82C2D006D67A7 /* NSString+Time.m */,
-			);
-			path = "NSString+Time";
-			sourceTree = "<group>";
-		};
-		CE5A62202CA82C2D006D67A7 /* NSString+Conversion */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A621E2CA82C2D006D67A7 /* NSString+Conversion.h */,
-				CE5A621F2CA82C2D006D67A7 /* NSString+Conversion.m */,
-			);
-			path = "NSString+Conversion";
-			sourceTree = "<group>";
-		};
-		CE5A62232CA82C2D006D67A7 /* NSString+Decoration */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A62212CA82C2D006D67A7 /* NSString+Decoration.h */,
-				CE5A62222CA82C2D006D67A7 /* NSString+Decoration.m */,
-			);
-			path = "NSString+Decoration";
-			sourceTree = "<group>";
-		};
-		CE5A62262CA82C2D006D67A7 /* NSString+Eomji */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A62242CA82C2D006D67A7 /* NSString+Eomji.h */,
-				CE5A62252CA82C2D006D67A7 /* NSString+Eomji.m */,
-			);
-			path = "NSString+Eomji";
-			sourceTree = "<group>";
-		};
-		CE5A62292CA82C2D006D67A7 /* NSString+FilteringSpecialCharacters */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A62272CA82C2D006D67A7 /* NSString+FilteringSpecialCharacters.h */,
-				CE5A62282CA82C2D006D67A7 /* NSString+FilteringSpecialCharacters.m */,
-			);
-			path = "NSString+FilteringSpecialCharacters";
-			sourceTree = "<group>";
-		};
-		CE5A622C2CA82C2D006D67A7 /* NSString+Judgment */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A622A2CA82C2D006D67A7 /* NSString+Judgment.h */,
-				CE5A622B2CA82C2D006D67A7 /* NSString+Judgment.m */,
-			);
-			path = "NSString+Judgment";
-			sourceTree = "<group>";
-		};
-		CE5A622F2CA82C2D006D67A7 /* NSString+Others */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A622D2CA82C2D006D67A7 /* NSString+Others.h */,
-				CE5A622E2CA82C2D006D67A7 /* NSString+Others.m */,
-			);
-			path = "NSString+Others";
-			sourceTree = "<group>";
-		};
-		CE5A62322CA82C2D006D67A7 /* NSString+Path */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A62302CA82C2D006D67A7 /* NSString+Path.h */,
-				CE5A62312CA82C2D006D67A7 /* NSString+Path.m */,
-			);
-			path = "NSString+Path";
-			sourceTree = "<group>";
-		};
-		CE5A62352CA82C2D006D67A7 /* NSString+Replace */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A62332CA82C2D006D67A7 /* NSString+Replace.h */,
-				CE5A62342CA82C2D006D67A7 /* NSString+Replace.m */,
-			);
-			path = "NSString+Replace";
-			sourceTree = "<group>";
-		};
-		CE5A62382CA82C2D006D67A7 /* NSString+Statistics */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A62362CA82C2D006D67A7 /* NSString+Statistics.h */,
-				CE5A62372CA82C2D006D67A7 /* NSString+Statistics.m */,
-			);
-			path = "NSString+Statistics";
-			sourceTree = "<group>";
-		};
-		CE5A62392CA82C2D006D67A7 /* NSString+Category */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A621D2CA82C2D006D67A7 /* NSString+Time */,
-				CE5A62202CA82C2D006D67A7 /* NSString+Conversion */,
-				CE5A62232CA82C2D006D67A7 /* NSString+Decoration */,
-				CE5A62262CA82C2D006D67A7 /* NSString+Eomji */,
-				CE5A62292CA82C2D006D67A7 /* NSString+FilteringSpecialCharacters */,
-				CE5A622C2CA82C2D006D67A7 /* NSString+Judgment */,
-				CE5A622F2CA82C2D006D67A7 /* NSString+Others */,
-				CE5A62322CA82C2D006D67A7 /* NSString+Path */,
-				CE5A62352CA82C2D006D67A7 /* NSString+Replace */,
-				CE5A62382CA82C2D006D67A7 /* NSString+Statistics */,
-			);
-			path = "NSString+Category";
-			sourceTree = "<group>";
-		};
 		CE5A623B2CA82C2D006D67A7 /* NSString */ = {
 			isa = PBXGroup;
 			children = (
-				CE5A62392CA82C2D006D67A7 /* NSString+Category */,
+				CE260F432CAE671C00233F0F /* NSString+Category */,
 				CE5A623A2CA82C2D006D67A7 /* JobsString.h */,
 			);
 			path = NSString;
@@ -14784,13 +14771,6 @@
 				CECE80B92C4512BF00764AF5 /* CasinoCustomerContactModel.m in Sources */,
 				CECE7E842C450E5B00764AF5 /* DDRange.m in Sources */,
 				CECE7EB12C450E5B00764AF5 /* RACEXTRuntimeExtensions.m in Sources */,
-				CE5A64E62CA8304B006D67A7 /* NSString+Others.m in Sources */,
-				CE5A64E72CA8304B006D67A7 /* NSString+Eomji.m in Sources */,
-				CE5A64E82CA8304B006D67A7 /* NSString+FilteringSpecialCharacters.m in Sources */,
-				CE5A64E92CA8304B006D67A7 /* NSString+Replace.m in Sources */,
-				CE5A64EA2CA8304B006D67A7 /* NSString+Path.m in Sources */,
-				CE5A64EB2CA8304B006D67A7 /* NSString+Statistics.m in Sources */,
-				CE5A64EC2CA8304B006D67A7 /* NSString+Judgment.m in Sources */,
 				CE5A64D32CA82FCE006D67A7 /* NSObject+PopViewToLogOut.m in Sources */,
 				CE5A65372CA831B0006D67A7 /* UITableView+Expand.m in Sources */,
 				CE5A65382CA831B0006D67A7 /* UITableView+RegisterClass.m in Sources */,
@@ -15355,7 +15335,6 @@
 				CE4F2A612CA82914002AF25B /* ViewController@3.m in Sources */,
 				CE4F27F42CA825CD002AF25B /* NSTimerManagerTestVC.m in Sources */,
 				CE5A64D62CA82FDE006D67A7 /* NSObject+RichText.m in Sources */,
-				CE5A64E32CA8302A006D67A7 /* NSString+Time.m in Sources */,
 				CE4F27F52CA825CD002AF25B /* PushAnimation.m in Sources */,
 				CE4F27F62CA825CD002AF25B /* SlotCell.m in Sources */,
 				CE4F27F72CA825CD002AF25B /* MSCommentTBVCell.m in Sources */,
@@ -15392,8 +15371,6 @@
 				CE5A65B92CA833D0006D67A7 /* JobsHotLabelWithMultiLine.m in Sources */,
 				CE5A65BA2CA833D0006D67A7 /* JobsHotLabelWithSingleLine.m in Sources */,
 				CE5A65BB2CA833D0006D67A7 /* JobsFiltrationView.m in Sources */,
-				CE5A64E42CA83037006D67A7 /* NSString+Conversion.m in Sources */,
-				CE5A64E52CA83037006D67A7 /* NSString+Decoration.m in Sources */,
 				CE5A65472CA831ED006D67A7 /* UITableViewHeaderFooterView+Attribute.m in Sources */,
 				CE5A65482CA831ED006D67A7 /* UITableViewHeaderFooterView+BaseTableViewHeaderFooterViewProtocol.m in Sources */,
 				CE4F28012CA825CD002AF25B /* JobsVerticalMenuSubView.m in Sources */,
@@ -15441,6 +15418,15 @@
 				CE4F280B2CA825CD002AF25B /* JobsExcelTopHeadView.m in Sources */,
 				CE4F280D2CA825CD002AF25B /* BaiShaETProjSearchView.m in Sources */,
 				CE4F280E2CA825CD002AF25B /* YTKBatchRequest+AnimatingAccessory.m in Sources */,
+				CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */,
+				CE260F452CAE671C00233F0F /* NSString+Replace.m in Sources */,
+				CE260F462CAE671C00233F0F /* NSString+Statistics.m in Sources */,
+				CE260F472CAE671C00233F0F /* NSString+Time.m in Sources */,
+				CE260F482CAE671C00233F0F /* NSString+FilteringSpecialCharacters.m in Sources */,
+				CE260F492CAE671C00233F0F /* NSString+Path.m in Sources */,
+				CE260F4A2CAE671C00233F0F /* NSString+Conversion.m in Sources */,
+				CE260F4B2CAE671C00233F0F /* NSString+Judgment.m in Sources */,
+				CE260F4C2CAE671C00233F0F /* NSString+Others.m in Sources */,
 				CE4F280F2CA825CD002AF25B /* GetImageApi.m in Sources */,
 				CE4F28102CA825CD002AF25B /* PointLabTestVC.m in Sources */,
 				CE4F28112CA825CD002AF25B /* FindCodeFlowChartView.m in Sources */,

@@ -217,6 +217,8 @@ typedef void(^jobsByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
 
+@class YTKNetworkConfig;
+typedef void(^jobsByYTKNetworkConfigBlock)(__kindof YTKNetworkConfig *_Nullable data);
 #pragma mark —— 关于业务（不与JobsOCBaseConfigDemo同步）
 @class FMBannerAdsModel;
 typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable data);

@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "BaseProtocol.h"
 
 #import "JobsTabBarVC.h"
 #import "JobsCustomTabBarConfig.h"
@@ -21,17 +22,15 @@
 /// 但是可能有多个SceneDelegate实例存在
 @interface AppDelegate : UIResponder
 <
-UIApplicationDelegate
-,UNUserNotificationCenterDelegate
+UIApplicationDelegate,
+UNUserNotificationCenterDelegate,
+BaseProtocol
 >
 /// UI
 @property(nonatomic,strong)UIWindow *window;/// 仅仅为了iOS 13 版本向下兼容而存在
 /// Data
 @property(readonly,strong)NSPersistentCloudKitContainer *persistentContainer;
 @property(nonatomic,assign)BOOL allowOrentitaionRotation;
-
-+(instancetype)sharedManager;
-+(void)destroyInstance;
 
 -(void)saveContext;
 

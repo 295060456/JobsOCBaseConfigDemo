@@ -40,7 +40,9 @@
 }
 /// NSDictionary 转 json字符串方法//==[dic mj_JSONString]
 -(JobsReturnStringByDictionaryBlock _Nonnull)convertToJsonData{
+    @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(__kindof NSDictionary *_Nullable dict){
+        @jobs_strongify(self)
         NSString *jsonString = self.JSONWritingPrettyPrinted(dict).stringByUTF8Encoding;
         NSMutableString *mutStr = jsonString.Mutable;
         NSRange range = {0,jsonString.length};
@@ -79,8 +81,33 @@
     };
 }
 ///【类方法】解压缩字符串
-+(NSString *)decompressString:(NSData *)compressedData{
-    return compressedData.decompressToStr;
++(JobsReturnStringByDataBlock _Nonnull)decompressString{
+    return ^__kindof NSString *_Nullable(NSData *_Nullable data){
+        return data.decompressToStr;
+    };
+}
+/// 对象转OC字符串
++(JobsReturnStringByIDBlock _Nonnull)toString{
+    return ^NSString *_Nullable (id _Nullable data) {
+        return toStringByID(data);
+    };
+}
+/// OC字符串转NSDate
+-(JobsReturnDateByDateFormatterBlock _Nonnull)dataByDateFormatter{
+    @jobs_weakify(self)
+    return ^NSDate *_Nullable(NSDateFormatter *_Nullable data){
+        @jobs_strongify(self)
+        return [data dateFromString:self];;
+    };
+}
+/// OC字符串数组 转 OC字符串
++(NSString *_Nonnull)toStrByStringArr:(NSArray <NSString *>*_Nonnull)arr{
+    NSString *resultStr;
+    for (int i = 0; i < arr.count; i++) {
+        NSString *tempStr = arr[i];
+        tempStr = [tempStr stringByReplacingOccurrencesOfString:@"/" withString:@""];//去除字符 /
+        resultStr.add(@"/").add(tempStr);
+    }return resultStr;
 }
 
 @end

@@ -51,3 +51,10 @@ BaseProtocol
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsUserModel *_Nonnull jobsMakeUserModel(jobsByUserModelBlock _Nonnull block){
+    JobsUserModel *data = JobsUserModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+ 

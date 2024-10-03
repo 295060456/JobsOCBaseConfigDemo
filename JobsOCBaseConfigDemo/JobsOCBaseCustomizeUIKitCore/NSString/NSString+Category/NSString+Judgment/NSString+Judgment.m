@@ -9,6 +9,13 @@
 
 @implementation NSString (Judgment)
 #pragma mark —— 字符串的 比较 & 判断
+/// 如果字符串为null 那么不走isEqualToString，无法比较都是空的情况
++(BOOL)isEqualStrA:(NSString *)stringA strB:(NSString *)stringB{
+    if (isNull(stringA) && isNull(stringB)) {/// 双方都是null
+        return YES;
+    }else return stringA.isEqualToString(stringB);
+}
+
 -(JobsReturnBOOLByIDBlock _Nonnull)isEqualToString{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
@@ -50,10 +57,9 @@
 }
 /// 判断字符串对象是否为狭义范围内的空格
 -(BOOL)isNotBlank{
-    NSCharacterSet *blank = NSCharacterSet.whitespaceAndNewlineCharacterSet;
     for (NSInteger i = 0; i < self.length; ++i) {
         unichar c = [self characterAtIndex:i];
-        if (![blank characterIsMember:c]) return YES;
+        if (![NSCharacterSet.whitespaceAndNewlineCharacterSet characterIsMember:c]) return YES;
     }return NO;
 }
 /// 判断是否是广义范围内的空格(space、\t、\r、\n)
@@ -94,12 +100,6 @@
         if(!([other rangeOfString:self].location != NSNotFound))
             return NO;
     }return YES;
-}
-/// 如果字符串为null 那么不走isEqualToString，无法比较都是空的情况
-+(BOOL)isEqualStrA:(NSString *)stringA strB:(NSString *)stringB{
-    if (isNull(stringA) && isNull(stringB)) {/// 双方都是null
-        return YES;
-    }else return stringA.isEqualToString(stringB);
 }
 /// 判断是否为整形
 -(BOOL)isPureInt{

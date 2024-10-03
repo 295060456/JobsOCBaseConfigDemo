@@ -35,34 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
  解决方法：可能存在复制源里面的文字带了空白url编码%E2%80%8B，空白编码没有宽度，虽然看不到但是会影响结果无法正确匹配对应的中文字。可以把文字重新url编码即可。
  */
 -(NSString *_Nonnull)urlProtect;
-#pragma mark —— 转化
-/// 对象转OC字符串
-+(JobsReturnStringByIDBlock)toString;
-/// OC字符串拼接
--(JobsReturnStringByStringBlock _Nonnull)add;
-/// OC字符串转NSDate
--(JobsReturnDateByDateFormatterBlock)dataByDateFormatter;
-/// OC字符串路径拼接
--(JobsReturnStringByStringBlock _Nonnull)addPathComponent;
-/// OC字符串数组 转 OC字符串
-+(NSString *_Nonnull)toStrByStringArr:(NSArray <NSString *>*_Nonnull)arr;
-#pragma mark —— 自定义替换、裁剪
-/// 将字符串中除首尾字符外的所有字符替换为星号 (*)
--(NSString *_Nonnull)getAnonymousString;
-/// OC字符串去除最后一个字符
--(NSString *_Nonnull)removeLastChars;
-/// 将某个OC字符串进行限定字符个数，二次包装以后对外输出。【截取完了以后添加替换字符】
-/// @param replaceStr 多余的字符串用replaceStr进行占位表示，一般的这里是用"."来进行替换
-/// @param replaceStrLenth 替代字符串的字符长度
-/// @param lineBreakMode 省略的字符串位于整个原始字符串的位置
-/// @param limit 限制的字符数
--(NSString *_Nonnull)omitByReplaceStr:(NSString *_Nullable)replaceStr
-                      replaceStrLenth:(NSInteger)replaceStrLenth
-                        lineBreakMode:(NSLineBreakMode)lineBreakMode
-                                limit:(NSInteger)limit;
 #pragma mark —— 一些功能性的
-/// 完整的文件名提取普通文件名和文件后缀名
--(JobsReturnFileNameModelByFileFullNameStringBlock)byFileFullName;
 /// 复制到系统剪切板
 -(JobsReturnStringByVoidBlock _Nonnull)pasteboard;
 /// 根据字符串生成二维码图像
@@ -82,9 +55,12 @@ NS_ASSUME_NONNULL_BEGIN
                                forFont:(UIFont *)aFont
                              withColor:(UIColor *_Nonnull)aColor
                           andDirection:(TransformLayerDirectionType)directionStr;
-#pragma mark —— 其他
 /// 该文字是否是Debug定义的文字
 -(BOOL)isDebugText;
+/// 截取字符串方法封装
+-(NSString *)subStringFrom:(NSString *)startString to:(NSString *)endString;
+/// OC字符串拼接
+-(JobsReturnStringByStringBlock _Nonnull)add;
 
 @end
 

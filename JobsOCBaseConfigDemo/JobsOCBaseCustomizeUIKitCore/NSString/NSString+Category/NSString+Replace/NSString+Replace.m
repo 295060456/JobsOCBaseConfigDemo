@@ -29,8 +29,8 @@
 /// 替换某个字符串中间的字符为replacement
 /// @param replacement 用来替换的字符（通常为 *）
 /// @param count 需要替换的字符数量
-- (NSString *)replaceMiddleCharactersWithReplacement:(NSString *)replacement
-                                               count:(NSInteger)count{
+-(NSString *)replaceMiddleCharactersWithReplacement:(NSString *)replacement
+                                              count:(NSInteger)count{
     if (self.length <= count || count <= 0) return self; // 字符串长度小于等于替换长度，或替换长度无效，直接返回原字符串
         
     NSInteger start = (self.length - count) / 2;
@@ -119,6 +119,60 @@
         return isNull(toStringByID(nullableString)) ? replaceString : toStringByID(nullableString);
     
     return replaceString;
+}
+/// 将某个OC字符串进行限定字符个数，二次包装以后对外输出。【截取完了以后添加替换字符】
+/// @param replaceStr 多余的字符串用replaceStr进行占位表示，一般的这里是用"."来进行替换
+/// @param replaceStrLenth 替代字符串的字符长度
+/// @param lineBreakMode 省略的字符串位于整个原始字符串的位置
+/// @param limit 限制的字符数
+-(NSString *_Nonnull)omitByReplaceStr:(NSString *_Nullable)replaceStr
+                      replaceStrLenth:(NSInteger)replaceStrLenth
+                        lineBreakMode:(NSLineBreakMode)lineBreakMode
+                                limit:(NSInteger)limit{
+    if (!replaceStrLenth) replaceStrLenth = 3;
+    if (isNull(replaceStr)) replaceStr = @".";
+    /// limit 是不包括省略号的实际的限制字数
+    NSString *resultStr = self;
+    NSRange range;
+    NSString *pointStr = @"";
+    for (int i = 0; i < replaceStrLenth; i++) {
+        pointStr = pointStr.add(replaceStr);
+    }
+    /// 关键节点用向下取整进行保守处理
+    if (self.length > limit) {
+        if (lineBreakMode == NSLineBreakByTruncatingHead){/// 前面部分文字以...方式省略，显示尾部文字内容
+            range = NSMakeRange(self.length - limit,limit);
+            resultStr = pointStr.add([self substringWithRange:range]);
+        }else if (lineBreakMode == NSLineBreakByTruncatingTail){/// 结尾部分的内容以……方式省略，显示头的文字内容
+            range = NSMakeRange(0,limit);
+            resultStr = [self substringWithRange:range].add(pointStr);
+        }else if (lineBreakMode == NSLineBreakByTruncatingMiddle){/// 中间的内容以...方式省略，显示头尾的文字内容
+            NSRange rangeA = NSMakeRange(0,floor(limit / 2));
+            NSString *resultStrA = [self substringWithRange:rangeA];
+            NSRange rangeB = NSMakeRange(floor(self.length - limit / 2),floor(limit / 2));
+            NSString *resultStrB = [self substringWithRange:rangeB];
+            resultStr = resultStrA.add(pointStr).add(resultStrB);
+        }else{}
+    }return resultStr;
+}
+/// 将字符串中除首尾字符外的所有字符替换为星号 (*)
+-(NSString *_Nonnull)getAnonymousString{
+    if (self.length < 2) return self;
+    @jobs_weakify(self)
+    NSString *string = [jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
+        for (int i = 1; i < self.length - 1; i++) {
+            char s = [self characterAtIndex:i];
+            s = '*';
+            NSString *tempString = StringWithUTF8String(&s);
+            data.add(tempString);
+        }
+    }) componentsJoinedByString:@""];
+    return [self stringByReplacingCharactersInRange:NSMakeRange(1, self.length - 2) withString:string];
+}
+/// OC字符串去除最后一个字符
+-(NSString *_Nonnull)removeLastChars{
+    return [self substringToIndex:self.length - 1];
 }
 
 @end

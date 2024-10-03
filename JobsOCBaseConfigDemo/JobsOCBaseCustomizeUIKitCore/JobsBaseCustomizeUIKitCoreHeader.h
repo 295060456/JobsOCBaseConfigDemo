@@ -251,6 +251,12 @@ NS_INLINE CGSize jobsMakeCGSizeByLocationModelBlock(jobsByLocationModelBlock _No
     if (block) block(data);
     return CGSizeMake(data.jobsWidth, data.jobsHeight);
 }
+#pragma mark —— NSRange
+NS_INLINE NSRange jobsMakeRangeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
+    JobsLocationModel *data = JobsLocationModel.alloc.init;
+    if (block) block(data);
+    return NSMakeRange(data.location, data.length);
+}
 #pragma mark —— 关于系统的一些配置文件
 NS_INLINE __kindof NSDateFormatter *_Nonnull jobsMakeDateFormatter(jobsByDateFormatterBlock _Nonnull block){
     NSDateFormatter *data = NSDateFormatter.alloc.init;

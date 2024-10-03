@@ -10,7 +10,6 @@
 #import "NSString+Judgment.h"
 #import <_ctype.h>
 #import "JobsBlock.h"
-
 /// 要判nil和NULL，必须用类方法或者内联函数，在实例方法里面nil和NULL会被包装为空串
 NS_INLINE BOOL isNull(id _Nonnull string){
     if(string == nil) return YES;
@@ -40,6 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Judgment)
 #pragma mark —— 字符串的 比较 & 判断
+/// 如果字符串为null 那么不走isEqualToString，无法比较都是空的情况
++(BOOL)isEqualStrA:(NSString *)stringA strB:(NSString *)stringB;
+
 -(JobsReturnBOOLByIDBlock _Nonnull)isEqualToString;
 -(JobsReturnBOOLByIDBlock _Nonnull)containsString;
 -(JobsReturnBOOLByIDBlock _Nonnull)hasPrefix;
@@ -55,8 +57,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)isAllSameCharWithStandardChar:(char)standardChar;
 /// 是否是系统自带九宫格输入 yes-是 no-不是
 -(BOOL)isNineKeyBoard;
-/// 如果字符串为null 那么不走isEqualToString，无法比较都是空的情况
-+(BOOL)isEqualStrA:(NSString *)stringA strB:(NSString *)stringB;
 /// 判断是否为整形
 -(BOOL)isPureInt;
 /// 判断是否为浮点形

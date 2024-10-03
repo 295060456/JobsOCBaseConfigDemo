@@ -184,90 +184,16 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
                        phone:(NSString *_Nullable)phone
                    phoneCode:(NSString *_Nullable)phoneCode
                     validate:(NSString *_Nullable)validate{
-//    JobsNetworkingPrepare
-//
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//
-//    NSDictionary *parameters = @{@"account":[NSString ensureNonnullString:account replaceStr:JobsInternationalization(@"")],// 帐号
-//                                 @"country":[NSString ensureNonnullString:country replaceStr:@"855"],// 区号，柬埔寨：855
-//                                 @"inviteCode":[NSString ensureNonnullString:inviteCode replaceStr:@"1111"],// 邀请码
-//                                 @"password":[NSString ensureNonnullString:password replaceStr:JobsInternationalization(@"")],// 密码
-//                                 @"phone":[NSString ensureNonnullString:phone replaceStr:JobsInternationalization(@"")],// 电话号码
-//                                 @"phoneCode":[NSString ensureNonnullString:phoneCode replaceStr:JobsInternationalization(@"")],// 手机号验证码
-//                                 @"validate":[NSString ensureNonnullString:validate replaceStr:JobsInternationalization(@"")]};// 网易云盾
-//    @jobs_weakify(self)
-//    [JobsNetworkingAPI requestApi:NSObject.authRegisterPOST.funcName
-//                     parameters:parameters
-//                   successBlock:^(JobsResponseModel *data) {
-//        @jobs_strongify(self)
-//        // 注册成功后返回登录
-//        if (data.code == HTTPResponseCodeSuccess) {
-//            [self->toRegisterBtn sendActionsForControlEvents:UIControlEventTouchUpInside];
-//        }
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
 }
 /// 登录网络请求
 -(void)authLoginByAccount:(NSString *_Nullable)account
                  deviceId:(NSString *_Nullable)deviceId
                  password:(NSString *_Nullable)password
                  validate:(NSString *_Nullable)validate{
-//    JobsNetworkingPrepare
-//
-//    RequestTool *config = RequestTool.new;
-//    config.languageType = self.currentLanguageType;
-//    [RequestTool setupPublicParameters:config];
-//
-//    NSDictionary *parameters = @{@"account":[NSString ensureNonnullString:account replaceStr:JobsInternationalization(@"")],// 账号
-//                                 @"deviceId":[NSString ensureNonnullString:deviceId replaceStr:self.deviceIdentity],// 设备ID,移动端必传
-//                                 @"password":[NSString ensureNonnullString:password replaceStr:JobsInternationalization(@"")],// 密码
-//                                 @"validate":[NSString ensureNonnullString:validate replaceStr:JobsInternationalization(@"")]};// 网易易顿
-//    @jobs_weakify(self)
-//    [JobsNetworkingAPI requestApi:NSObject.authLoginAPOST.funcName
-//                     parameters:parameters
-//                   successBlock:^(JobsResponseModel *data) {
-//        @jobs_strongify(self)
-//        NSLog(@"用户Token为:%@",data.data);
-//        JobsUserModel *userModel = JobsUserModel.new;
-//        userModel.userName = account;
-//        userModel.password = password;
-//        userModel.deviceId = deviceId;
-//        userModel.validate = validate;
-//        userModel.token = data.data;
-//        self.saveUserInfo(userModel);// 保存全局唯一的一份用户档案
-//
-//        if (self.jobsAppDoorContentView.getStoreCodeBtn.selected) {
-//            self.saveUserName(account);
-//        }else{
-//            self.deleteUserName(account);
-//        }
-//        JobsPostNotification(登录成功, @(YES));
-//        self.backBtnClickEvent(nil);
-//    } failureBlock:^(id data) {
-//        [JobsNetworkingAPI handleError:data];
-//    }];
 }
 /// 网易云盾验证
 -(void)NTESVerifyCodeWithBlock:(jobsByIDBlock)block{
-//    [self openVerifyCodeView:self.view];
-//    @jobs_weakify(self)
-//    [self actionObjectBlock:^(UIViewModel *data) {
-//        @jobs_strongify(self)
-//        if ([data isKindOfClass:UIViewModel.class]) {
-//            UIViewModel *vm = (UIViewModel *)data;
-//            if (vm.ntesVerifyCodeFinishResult) {
-//                // TODO
-//                if (block) block(data);
-//            }
-//
-//            if (vm.ntesVerifyCodeManagerStyle == VerifyCodeInitFinish) {
-//                self.NTESVerifyCodeCloseBtn.jobsVisible = YES;
-//            }
-//        }
-//    }];
+
 }
 //键盘 弹出 和 收回 走这个方法
 -(void)keyboardWillChangeFrameNotification:(NSNotification *)notification{}

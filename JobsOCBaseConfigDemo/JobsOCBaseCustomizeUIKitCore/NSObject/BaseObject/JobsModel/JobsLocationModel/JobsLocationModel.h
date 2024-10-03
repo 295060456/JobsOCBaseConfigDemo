@@ -12,15 +12,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsLocationModel : NSObject<UILocationProtocol>
 #pragma mark —— UILocationProtocol
+///// Frame
 //@property(nonatomic,assign)CGFloat jobsX;
 //@property(nonatomic,assign)CGFloat jobsY;
 //@property(nonatomic,assign)CGFloat jobsWidth;/// 宽
 //@property(nonatomic,assign)CGFloat jobsHeight;/// 高
-//
+///// Edge
 //@property(nonatomic,assign)CGFloat jobsTop;
-//@property(nonatomic,assign)CGFloat jobsLeft;
-//@property(nonatomic,assign)CGFloat jobsRight;
+//@property(nonatomic,assign)CGFloat jobsLeft;/// = leading
+//@property(nonatomic,assign)CGFloat jobsRight;/// = trailing
 //@property(nonatomic,assign)CGFloat jobsBottom;
+///// NSRange
+//@property(nonatomic,assign)NSUInteger location;
+//@property(nonatomic,assign)NSUInteger length;
 
 @end
 

@@ -527,9 +527,6 @@ if (self.isOpenPPBadge) {
   @property(readonly,strong)NSPersistentCloudKitContainer *persistentContainer;
   @property(nonatomic,assign)BOOL allowOrentitaionRotation;
   
-  +(instancetype)sharedManager;
-  +(void)destroyInstance;
-  
   -(void)saveContext;
   
   @end

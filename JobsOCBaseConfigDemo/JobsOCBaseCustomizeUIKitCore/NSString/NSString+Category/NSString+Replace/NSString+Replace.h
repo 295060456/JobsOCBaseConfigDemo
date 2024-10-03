@@ -12,6 +12,8 @@
 #import "NSString+Others.h"
 #import "NSString+Judgment.h"
 
+#define JobsNonnullString(nullableStr,replaceStr) [NSString nullableString:nullableStr replaceString:replaceStr]
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Replace)
@@ -22,8 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 替换某个字符串中间的字符为replacement
 /// @param replacement 用来替换的字符（通常为 *）
 /// @param count 需要替换的字符数量
-- (NSString *)replaceMiddleCharactersWithReplacement:(NSString *)replacement
-                                               count:(NSInteger)count;
+-(NSString *)replaceMiddleCharactersWithReplacement:(NSString *)replacement count:(NSInteger)count;
 /// 每隔num个字符添加一个空格的字符串算法
 /// @param num 默认值是4
 -(NSString *)dealWithString:(NSInteger)num;
@@ -41,9 +42,21 @@ NS_ASSUME_NONNULL_BEGIN
 /// 因为json传输是通过对象包装来进行，所以其实归结起来就是2类，一类是基本数据类型被包装成Number、其他包装成String
 /// @param nullableString 进行检查的资源
 /// @param replaceString 进行替换的备用文字资源
-#define JobsNonnullString(nullableStr,replaceStr) [NSString nullableString:nullableStr replaceString:replaceStr]
 +(NSString *)nullableString:(id)nullableString
               replaceString:(NSString *)replaceString;
+/// 将某个OC字符串进行限定字符个数，二次包装以后对外输出。【截取完了以后添加替换字符】
+/// @param replaceStr 多余的字符串用replaceStr进行占位表示，一般的这里是用"."来进行替换
+/// @param replaceStrLenth 替代字符串的字符长度
+/// @param lineBreakMode 省略的字符串位于整个原始字符串的位置
+/// @param limit 限制的字符数
+-(NSString *_Nonnull)omitByReplaceStr:(NSString *_Nullable)replaceStr
+                      replaceStrLenth:(NSInteger)replaceStrLenth
+                        lineBreakMode:(NSLineBreakMode)lineBreakMode
+                                limit:(NSInteger)limit;
+/// 将字符串中除首尾字符外的所有字符替换为星号 (*)
+-(NSString *_Nonnull)getAnonymousString;
+/// OC字符串去除最后一个字符
+-(NSString *_Nonnull)removeLastChars;
 
 @end
 
