@@ -368,7 +368,7 @@ typedef BOOL(^JobsReturnBOOLByDateBlock)(NSDate *_Nullable date);
 typedef BOOL(^JobsReturnBOOLByArrBlock)(NSArray *_Nullable data);
 
 typedef int(^JobsReturnIntByVoidBlock)(void);
-typedef int(^JobsReturnByIntBlock)(int data);
+typedef int(^JobsReturnIntByIntBlock)(int data);
 typedef int(^JobsReturnIntByIDBlock)(id _Nullable data);
 
 typedef unsigned int(^JobsReturnUnsignedIntByVoidBlock)(void);

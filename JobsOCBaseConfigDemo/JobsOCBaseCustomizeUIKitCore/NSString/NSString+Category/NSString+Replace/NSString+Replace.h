@@ -10,7 +10,7 @@
 #import "JobsBlock.h"
 #import "NSNumber+Extra.h"
 #import "NSString+Others.h"
-#import "NSString+Judgment.h"
+#import "NSString+Check.h"
 
 #define JobsNonnullString(nullableStr,replaceStr) [NSString nullableString:nullableStr replaceString:replaceStr]
 
@@ -55,8 +55,12 @@ NS_ASSUME_NONNULL_BEGIN
                                 limit:(NSInteger)limit;
 /// 将字符串中除首尾字符外的所有字符替换为星号 (*)
 -(NSString *_Nonnull)getAnonymousString;
+// 加密中国的电话号码。如：13409090909 => 134****0909
+-(NSString *_Nonnull)encryptedChineseTele;
 /// OC字符串去除最后一个字符
 -(NSString *_Nonnull)removeLastChars;
+/// OC字符串去除空格
+-(NSString *)pureString;
 
 @end
 

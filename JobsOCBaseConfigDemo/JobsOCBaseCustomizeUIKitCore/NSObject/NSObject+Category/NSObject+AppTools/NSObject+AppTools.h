@@ -22,7 +22,7 @@
 #import "JobsNetworkingHeader.h"
 #import "UIViewModel.h"
 
-#import "NSString+Judgment.h"
+#import "NSString+Check.h"
 
 #define PicSalt @"RRU4JZTV5WZXPCVZ"
 

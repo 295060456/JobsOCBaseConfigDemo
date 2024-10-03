@@ -74,9 +74,7 @@
 }
 ///【类方法】压缩字符串成NSData
 -(JobsReturnDataByStringBlock _Nonnull)compressString{
-    @jobs_weakify(self)
     return ^NSData *_Nullable(__kindof NSString *_Nullable string){
-        @jobs_strongify(self)
         return archivedDataWithRootObject(string.UTF8Encoding);
     };
 }
@@ -108,6 +106,26 @@
         tempStr = [tempStr stringByReplacingOccurrencesOfString:@"/" withString:@""];//去除字符 /
         resultStr.add(@"/").add(tempStr);
     }return resultStr;
+}
+/// 纯字符串格式化为4位数字为一组的银行卡格式字符串
+-(__kindof NSString *_Nullable)bankCardStyle{
+    return self.bankCardStyleBy(4);
+}
+
+-(JobsReturnStringByIntegerBlock _Nonnull)bankCardStyleBy{
+    @jobs_weakify(self)
+    return ^__kindof NSString *_Nullable(NSInteger data){
+        @jobs_strongify(self)
+        if(self.isPureDigit){
+            NSMutableString *formattedString = self.pureString.Mutable;
+            for (NSInteger i = formattedString.length - data; i > 0; i -= data) {
+                [formattedString insertString:@" " atIndex:i];
+            }return formattedString;
+        }else{
+            NSLog(@"当前字符串为%@,不是纯字符串，无法格式化输出",self);
+            return @"";
+        }
+    };
 }
 
 @end

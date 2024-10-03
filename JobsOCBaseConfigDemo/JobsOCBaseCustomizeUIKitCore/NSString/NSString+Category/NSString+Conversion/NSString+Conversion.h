@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NSString+Judgment.h"
+#import "NSString+Check.h"
 #import "NSData+Other.h"
 #import "JobsBlock.h"
 
@@ -93,6 +93,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnDateByDateFormatterBlock _Nonnull)dataByDateFormatter;
 /// OC字符串数组 转 OC字符串
 +(NSString *_Nonnull)toStrByStringArr:(NSArray <NSString *>*_Nonnull)arr;
+/// 纯字符串格式化为4位数字为一组的银行卡格式字符串
+-(__kindof NSString *_Nullable)bankCardStyle;
+-(JobsReturnStringByIntegerBlock _Nonnull)bankCardStyleBy;
 
 @end
 

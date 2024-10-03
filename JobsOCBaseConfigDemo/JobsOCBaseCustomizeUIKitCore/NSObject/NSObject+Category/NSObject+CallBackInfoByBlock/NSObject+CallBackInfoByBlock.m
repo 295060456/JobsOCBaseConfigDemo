@@ -615,15 +615,15 @@ JobsKey(_returnBoolByNSUIntegerBlock)
 }
 JobsKey(_returnIntBlock)
 @dynamic returnIntBlock;
--(JobsReturnByIntBlock _Nullable)returnIntBlock{
+-(JobsReturnIntByIntBlock _Nullable)returnIntBlock{
     return Jobs_getAssociatedObject(_returnIntBlock);
 }
 
--(void)setReturnIntBlock:(JobsReturnByIntBlock _Nullable)returnIntBlock{
+-(void)setReturnIntBlock:(JobsReturnIntByIntBlock _Nullable)returnIntBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_returnIntBlock, returnIntBlock)
 }
 
--(void)actionReturnIntBlock:(JobsReturnByIntBlock _Nullable)returnIntBlock{
+-(void)actionReturnIntBlock:(JobsReturnIntByIntBlock _Nullable)returnIntBlock{
     self.returnIntBlock = returnIntBlock;
 }
 JobsKey(_returnUnsignedIntBlock)

@@ -124,7 +124,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy,nullable)JobsReturnByCGFloatBlock returnCGFloatBlock;/// 返回值为CGFloat的回调
 @property(nonatomic,copy,nullable)JobsReturnByBOOLBlock returnBoolBlock;/// 返回值为BOOL的回调
 @property(nonatomic,copy,nullable)JobsReturnBOOLByNSUIntegerBlock returnBoolByNSUIntegerBlock;/// 入参为NSUInteger，返回值为BOOL的回调
-@property(nonatomic,copy,nullable)JobsReturnByIntBlock returnIntBlock;/// 返回值为Int的回调
+@property(nonatomic,copy,nullable)JobsReturnIntByIntBlock returnIntBlock;/// 返回值为Int的回调
 @property(nonatomic,copy,nullable)JobsReturnByUnsignedIntBlock returnUnsignedIntBlock;/// 返回值为UnsignedInt的回调
 @property(nonatomic,copy,nullable)JobsReturnByFloatBlock returnFloatBlock;/// 返回值为Float的回调
 @property(nonatomic,copy,nullable)JobsReturnByDoubleBlock returnDoubleBlock;/// 返回值为Double的回调
@@ -141,7 +141,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)actionReturnCGFloatBlock:(JobsReturnByCGFloatBlock _Nullable)returnCGFloatBlock;
 -(void)actionReturnBOOLBlock:(JobsReturnByBOOLBlock _Nullable)returnBoolBlock;
 -(void)actionReturnBoolByNSUIntegerBlock:(JobsReturnBOOLByNSUIntegerBlock _Nullable)returnBoolByNSUIntegerBlock;
--(void)actionReturnIntBlock:(JobsReturnByIntBlock _Nullable)returnIntBlock;
+-(void)actionReturnIntBlock:(JobsReturnIntByIntBlock _Nullable)returnIntBlock;
 -(void)actionReturnUnsignedIntBlock:(JobsReturnByUnsignedIntBlock _Nullable)returnUnsignedIntBlock;
 -(void)actionReturnFloatBlock:(JobsReturnByFloatBlock _Nullable)returnFloatBlock;
 -(void)actionReturnDoubleBlock:(JobsReturnByDoubleBlock _Nullable)returnDoubleBlock;

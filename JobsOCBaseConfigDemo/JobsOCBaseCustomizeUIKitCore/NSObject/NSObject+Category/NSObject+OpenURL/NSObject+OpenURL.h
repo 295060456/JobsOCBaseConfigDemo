@@ -12,7 +12,7 @@
 #import "MacroDef_String.h"
 #import "JobsBlock.h"
 #import "MacroDef_SysWarning.h"
-#import "NSString+Judgment.h"
+#import "NSString+Check.h"
 #import "NSObject+WHToast.h"
 #import "NSObject+Extras.h"
 #import "NSString+Others.h"

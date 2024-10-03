@@ -7,7 +7,7 @@
 
 #import "BaseViewProtocol.h"
 #import "JobsDoorInputViewProtocol.h"
-#import "NSString+Judgment.h"
+#import "NSString+Check.h"
 #import "MacroDef_String.h"
 #import "JobsAppDoorInputViewBaseStyleModel.h"
 #import "JobsAppDoorInputViewBaseStyle.h"

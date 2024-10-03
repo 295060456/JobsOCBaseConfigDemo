@@ -1,5 +1,5 @@
 //
-//  NSString+Judgment.h
+//  NSString+Check.h
 //  Casino
 //
 //  Created by Jobs on 2021/11/30.
@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MacroDef_Func.h"
-#import "NSString+Judgment.h"
+#import "NSString+Check.h"
 #import <_ctype.h>
 #import "JobsBlock.h"
 /// 要判nil和NULL，必须用类方法或者内联函数，在实例方法里面nil和NULL会被包装为空串
@@ -37,7 +37,7 @@ NS_INLINE BOOL isValue(id _Nonnull string){
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSString (Judgment)
+@interface NSString (Check)
 #pragma mark —— 字符串的 比较 & 判断
 /// 如果字符串为null 那么不走isEqualToString，无法比较都是空的情况
 +(BOOL)isEqualStrA:(NSString *)stringA strB:(NSString *)stringB;
@@ -83,6 +83,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)isContainsUrl;
 /// 正则匹配手机号
 -(BOOL)checkTelNumber;
+/// 检查是否是纯数字
+-(BOOL)isPureDigit;
 
 @end
 

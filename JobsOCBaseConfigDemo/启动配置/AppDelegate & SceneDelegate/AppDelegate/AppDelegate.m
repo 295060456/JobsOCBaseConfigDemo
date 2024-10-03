@@ -28,7 +28,7 @@ static dispatch_once_t AppDelegateOnceToken;
     });return AppDelegateInstance;
 }
 
-+ (void)destroyInstance {
++ (void)destroySingleton {
     AppDelegateInstance = nil;
     AppDelegateOnceToken = 0;
 }
@@ -57,7 +57,7 @@ static dispatch_once_t AppDelegateOnceToken;
         self.saveUserInfo(jobsMakeUserModel(^(__kindof JobsUserModel<NSCoding> * _Nullable userModel) {
             userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
             userModel.userName = @"张三丰";
-            userModel.phone = @"134****0000";
+            userModel.phone = @"13487878787".encryptedChineseTele;
         }));
         id f = self.readUserInfo();
         NSLog(@"");

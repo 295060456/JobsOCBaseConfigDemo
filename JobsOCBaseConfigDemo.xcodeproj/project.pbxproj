@@ -16,7 +16,7 @@
 		CE260F482CAE671C00233F0F /* NSString+FilteringSpecialCharacters.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F322CAE671C00233F0F /* NSString+FilteringSpecialCharacters.m */; };
 		CE260F492CAE671C00233F0F /* NSString+Path.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F3B2CAE671C00233F0F /* NSString+Path.m */; };
 		CE260F4A2CAE671C00233F0F /* NSString+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2C2CAE671C00233F0F /* NSString+Conversion.m */; };
-		CE260F4B2CAE671C00233F0F /* NSString+Judgment.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F352CAE671C00233F0F /* NSString+Judgment.m */; };
+		CE260F4B2CAE671C00233F0F /* NSString+Check.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F352CAE671C00233F0F /* NSString+Check.m */; };
 		CE260F4C2CAE671C00233F0F /* NSString+Others.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F382CAE671C00233F0F /* NSString+Others.m */; };
 		CE2E88CD2C69E14100260207 /* PopListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E88C92C69E14100260207 /* PopListBaseView.m */; };
 		CE2E8ACC2C6AF7C900260207 /* 幸运转盘.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2E8ACB2C6AF7B800260207 /* 幸运转盘.xcassets */; };
@@ -1141,8 +1141,8 @@
 		CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Eomji.m"; sourceTree = "<group>"; };
 		CE260F312CAE671C00233F0F /* NSString+FilteringSpecialCharacters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+FilteringSpecialCharacters.h"; sourceTree = "<group>"; };
 		CE260F322CAE671C00233F0F /* NSString+FilteringSpecialCharacters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+FilteringSpecialCharacters.m"; sourceTree = "<group>"; };
-		CE260F342CAE671C00233F0F /* NSString+Judgment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Judgment.h"; sourceTree = "<group>"; };
-		CE260F352CAE671C00233F0F /* NSString+Judgment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Judgment.m"; sourceTree = "<group>"; };
+		CE260F342CAE671C00233F0F /* NSString+Check.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Check.h"; sourceTree = "<group>"; };
+		CE260F352CAE671C00233F0F /* NSString+Check.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Check.m"; sourceTree = "<group>"; };
 		CE260F372CAE671C00233F0F /* NSString+Others.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Others.h"; sourceTree = "<group>"; };
 		CE260F382CAE671C00233F0F /* NSString+Others.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Others.m"; sourceTree = "<group>"; };
 		CE260F3A2CAE671C00233F0F /* NSString+Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Path.h"; sourceTree = "<group>"; };
@@ -3376,13 +3376,13 @@
 			path = "NSString+FilteringSpecialCharacters";
 			sourceTree = "<group>";
 		};
-		CE260F362CAE671C00233F0F /* NSString+Judgment */ = {
+		CE260F362CAE671C00233F0F /* NSString+Check */ = {
 			isa = PBXGroup;
 			children = (
-				CE260F342CAE671C00233F0F /* NSString+Judgment.h */,
-				CE260F352CAE671C00233F0F /* NSString+Judgment.m */,
+				CE260F342CAE671C00233F0F /* NSString+Check.h */,
+				CE260F352CAE671C00233F0F /* NSString+Check.m */,
 			);
-			path = "NSString+Judgment";
+			path = "NSString+Check";
 			sourceTree = "<group>";
 		};
 		CE260F392CAE671C00233F0F /* NSString+Others */ = {
@@ -3428,7 +3428,7 @@
 				CE260F2D2CAE671C00233F0F /* NSString+Conversion */,
 				CE260F302CAE671C00233F0F /* NSString+Eomji */,
 				CE260F332CAE671C00233F0F /* NSString+FilteringSpecialCharacters */,
-				CE260F362CAE671C00233F0F /* NSString+Judgment */,
+				CE260F362CAE671C00233F0F /* NSString+Check */,
 				CE260F392CAE671C00233F0F /* NSString+Others */,
 				CE260F3C2CAE671C00233F0F /* NSString+Path */,
 				CE260F3F2CAE671C00233F0F /* NSString+Replace */,
@@ -15425,7 +15425,7 @@
 				CE260F482CAE671C00233F0F /* NSString+FilteringSpecialCharacters.m in Sources */,
 				CE260F492CAE671C00233F0F /* NSString+Path.m in Sources */,
 				CE260F4A2CAE671C00233F0F /* NSString+Conversion.m in Sources */,
-				CE260F4B2CAE671C00233F0F /* NSString+Judgment.m in Sources */,
+				CE260F4B2CAE671C00233F0F /* NSString+Check.m in Sources */,
 				CE260F4C2CAE671C00233F0F /* NSString+Others.m in Sources */,
 				CE4F280F2CA825CD002AF25B /* GetImageApi.m in Sources */,
 				CE4F28102CA825CD002AF25B /* PointLabTestVC.m in Sources */,

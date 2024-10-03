@@ -1,13 +1,13 @@
 //
-//  NSString+Judgment.m
+//  NSString+Check.m
 //  Casino
 //
 //  Created by Jobs on 2021/11/30.
 //
 
-#import "NSString+Judgment.h"
+#import "NSString+Check.h"
 
-@implementation NSString (Judgment)
+@implementation NSString (Check)
 #pragma mark —— 字符串的 比较 & 判断
 /// 如果字符串为null 那么不走isEqualToString，无法比较都是空的情况
 +(BOOL)isEqualStrA:(NSString *)stringA strB:(NSString *)stringB{
@@ -194,6 +194,10 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
     BOOL isMatch = [pred evaluateWithObject:self];
     return isMatch;
+}
+/// 检查是否是纯数字
+-(BOOL)isPureDigit{
+    return [self.pureString rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet.invertedSet].location != NSNotFound;
 }
 
 @end

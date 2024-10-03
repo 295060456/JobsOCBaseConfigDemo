@@ -132,6 +132,10 @@
     if (!replaceStrLenth) replaceStrLenth = 3;
     if (isNull(replaceStr)) replaceStr = @".";
     /// limit 是不包括省略号的实际的限制字数
+    if(!self.isPureDigit){
+        NSLog(@"当前字符串为%@,不是纯字符串，无法格式化输出",self);
+        return @"";
+    }
     NSString *resultStr = self;
     NSRange range;
     NSString *pointStr = @"";
@@ -170,9 +174,20 @@
     }) componentsJoinedByString:@""];
     return [self stringByReplacingCharactersInRange:NSMakeRange(1, self.length - 2) withString:string];
 }
+// 加密中国的电话号码。如：13409090909 => 134****0909
+-(NSString *_Nonnull)encryptedChineseTele{
+    return [self omitByReplaceStr:@"*"
+                  replaceStrLenth:4
+                    lineBreakMode:NSLineBreakByTruncatingMiddle
+                            limit:7];
+}
 /// OC字符串去除最后一个字符
 -(NSString *_Nonnull)removeLastChars{
     return [self substringToIndex:self.length - 1];
+}
+/// OC字符串去除空格
+-(NSString *)pureString{
+    return [self stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
 
 @end

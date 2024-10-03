@@ -10,7 +10,7 @@
 #import "UIButton+UI.h"
 #import "UIView+BackgroundImage.h"
 #import "UIViewModelOthersProtocol.h"
-#import "NSString+Judgment.h"
+#import "NSString+Check.h"
 #import "JobsLoadingImage.h"
 
 NS_ASSUME_NONNULL_BEGIN

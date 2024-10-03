@@ -17,7 +17,7 @@
 #import "NSString+Time.h"
 #import "NSString+Conversion.h"
 #import "NSString+Eomji.h"
-#import "NSString+Judgment.h"
+#import "NSString+Check.h"
 #import "NSString+Others.h"
 #import "NSString+Replace.h"
 #import "NSString+Statistics.h"

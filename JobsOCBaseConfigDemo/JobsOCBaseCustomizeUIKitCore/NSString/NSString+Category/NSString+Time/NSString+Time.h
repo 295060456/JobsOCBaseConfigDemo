@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NSString+Judgment.h"
+#import "NSString+Check.h"
 #import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
