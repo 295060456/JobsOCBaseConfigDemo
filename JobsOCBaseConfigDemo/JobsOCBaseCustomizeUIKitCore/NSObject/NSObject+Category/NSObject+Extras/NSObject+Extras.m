@@ -1461,7 +1461,11 @@
 /**
  使用方法：
  IQKeyboardManager.sharedManager.enable = NO;
- [self keyboard];
+ [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+     NSLog(@"");
+ } downBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+     NSLog(@"");
+ }];
  [self actionNotificationBlock:^id(NSNotificationKeyboardModel *data) {
      @jobs_strongify(self)
      NSLog(@"userInfo = %@",data.userInfo);
@@ -1487,47 +1491,31 @@
  }];
  */
 /// 加入键盘通知的监听者
--(void)keyboard{
-    @jobs_weakify(self)
-    /// 键盘的弹出
+-(void)keyboardByUpBlock:(jobsByNSNotificationKeyboardModelBlock _Nullable)upBlock
+               downBlock:(jobsByNSNotificationKeyboardModelBlock _Nullable)downBlock{
     [self addNotificationName:UIKeyboardWillChangeFrameNotification
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
-        @jobs_strongify(self)
         NSNotification *notification = (NSNotification *)arg;
         NSLog(@"通知传递过来的 = %@",notification.object);
-        NSNotificationKeyboardModel *notificationKeyboardModel = NSNotificationKeyboardModel.new;
-        notificationKeyboardModel.userInfo = notification.userInfo;
-        notificationKeyboardModel.beginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-        notificationKeyboardModel.endFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-        notificationKeyboardModel.keyboardOffsetY = notificationKeyboardModel.beginFrame.origin.y - notificationKeyboardModel.endFrame.origin.y;// 正则抬起 ，负值下降
-        notificationKeyboardModel.notificationName = UIKeyboardWillChangeFrameNotification;
-        NSLog(@"KeyboardOffsetY = %f", notificationKeyboardModel.keyboardOffsetY);
-        if (notificationKeyboardModel.keyboardOffsetY > 0) {
+        NSNotificationKeyboardModel *model = jobsMakeNotificationKeyboardModel(^(NSNotificationKeyboardModel * _Nullable data) {
+            data.userInfo = notification.userInfo;
+            data.beginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+            data.endFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+            data.keyboardOffsetY = data.beginFrame.origin.y - data.endFrame.origin.y;// 正则抬起 ，负值下降
+            data.notificationName = UIKeyboardWillChangeFrameNotification;
+        });
+        NSLog(@"KeyboardOffsetY = %f", model.keyboardOffsetY);
+        if (model.keyboardOffsetY > 0) {
             NSLog(@"键盘抬起");
-            if (self.keyboardUpNotificationBlock) self.keyboardUpNotificationBlock(notificationKeyboardModel);
-        }else if(notificationKeyboardModel.keyboardOffsetY < 0){
+            if (upBlock) upBlock(model);
+        }else if(model.keyboardOffsetY < 0){
             NSLog(@"键盘收回");
-            if (self.keyboardDownNotificationBlock) self.keyboardDownNotificationBlock(notificationKeyboardModel);
+            if (downBlock) downBlock(model);
         }else{
             NSLog(@"键盘");
         }
     }];
-    /// 键盘的回收
-    [self addNotificationName:UIKeyboardDidChangeFrameNotification
-                        block:^(id _Nullable weakSelf,
-                                id _Nullable arg) {
-        NSNotification *notification = (NSNotification *)arg;
-        NSLog(@"通知传递过来的 = %@",notification.object);
-    }];
-}
-
--(void)actionkeyboardUpNotificationBlock:(JobsReturnIDByIDBlock _Nullable)keyboardUpNotificationBlock{
-    self.keyboardUpNotificationBlock = keyboardUpNotificationBlock;
-}
-
--(void)actionkeyboardDownNotificationBlock:(JobsReturnIDByIDBlock _Nullable)keyboardDownNotificationBlock{
-    self.keyboardDownNotificationBlock = keyboardDownNotificationBlock;
 }
 /// 根据数据源【数组】是否有值进行判定：占位图 和 mj_footer 的显隐性
 -(void)dataSource:(__kindof NSArray *_Nonnull)dataSource
@@ -1624,26 +1612,6 @@ JobsKey(_internationalizationKEY)
 
 -(void)setInternationalizationKEY:(NSString *)internationalizationKEY{
     Jobs_setAssociatedRETAIN_NONATOMIC(_internationalizationKEY, internationalizationKEY)
-}
-#pragma mark —— @property(nonatomic,copy)JobsReturnIDByIDBlock keyboardUpNotificationBlock;
-JobsKey(_keyboardUpNotificationBlock)
-@dynamic keyboardUpNotificationBlock;
--(JobsReturnIDByIDBlock)keyboardUpNotificationBlock{
-    return Jobs_getAssociatedObject(_keyboardUpNotificationBlock);
-}
-
--(void)setKeyboardUpNotificationBlock:(JobsReturnIDByIDBlock)keyboardUpNotificationBlock{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_keyboardUpNotificationBlock, keyboardUpNotificationBlock)
-}
-#pragma mark —— @property(nonatomic,copy)JobsReturnIDByIDBlock keyboardDownNotificationBlock;
-JobsKey(_keyboardDownNotificationBlock)
-@dynamic keyboardDownNotificationBlock;
--(JobsReturnIDByIDBlock)keyboardDownNotificationBlock{
-    return Jobs_getAssociatedObject(_keyboardDownNotificationBlock);
-}
-
--(void)setKeyboardDownNotificationBlock:(JobsReturnIDByIDBlock)keyboardDownNotificationBlock{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_keyboardDownNotificationBlock, keyboardDownNotificationBlock)
 }
 
 @end

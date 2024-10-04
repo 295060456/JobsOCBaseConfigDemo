@@ -29,7 +29,11 @@
     [super loadView];
     self.isHiddenNavigationBar = YES;//禁用系统的导航栏
     IQKeyboardManager.sharedManager.enable = NO;//该页面禁用
-    [self keyboard];
+    [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+        NSLog(@"");
+    } downBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+        NSLog(@"");
+    }];
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
         self.chatInfoModel = (JobsIMChatInfoModel *)self.viewModel.data;

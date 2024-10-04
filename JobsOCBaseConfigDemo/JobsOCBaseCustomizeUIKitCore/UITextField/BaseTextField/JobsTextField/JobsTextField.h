@@ -44,6 +44,7 @@ UITextFieldDelegate
 @property(nonatomic,assign)UITextFieldViewMode leftViewMode;
 @property(nonatomic,assign)UITextFieldViewMode rightViewMode;
 @property(nonatomic,assign)BOOL notAllowEdit;/// 默认不允许编辑
+@property(nonatomic,assign)BOOL secureTextEntry;
 @property(nullable,nonatomic,copy)NSString *placeholder;
 @property(nullable,nonatomic,copy)NSAttributedString *attributedPlaceholder API_AVAILABLE(ios(6.0));
 

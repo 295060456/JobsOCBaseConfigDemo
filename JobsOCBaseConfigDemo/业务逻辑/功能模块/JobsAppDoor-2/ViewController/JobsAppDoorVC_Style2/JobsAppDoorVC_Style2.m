@@ -38,7 +38,7 @@
     JobsRemoveNotification(self);
 }
 
-+(void)destroyAppDoorSingleton{
++(void)destroySingleton{
     static_jobsAppDoor_Style2OnceToken = 0;
     appDoorVC_Style2 = nil;
 }
@@ -77,7 +77,11 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     self.currentPage = CurrentPage_login;//默认页面是登录
     self.loginDoorInputEditing = NO;
     
-    [self keyboard];
+    [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+        NSLog(@"");
+    } downBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+        NSLog(@"");
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

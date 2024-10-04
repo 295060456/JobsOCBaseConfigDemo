@@ -5391,40 +5391,40 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 关注实现类：[**`@implementation NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
 
   ```objective-c
-  -(void)keyboard{
-      @jobs_weakify(self)
-      /// 键盘的弹出
+  -(void)keyboardByUpBlock:(jobsByNSNotificationKeyboardModelBlock _Nullable)upBlock
+                 downBlock:(jobsByNSNotificationKeyboardModelBlock _Nullable)downBlock{
       [self addNotificationName:UIKeyboardWillChangeFrameNotification
                           block:^(id _Nullable weakSelf,
                                   id _Nullable arg) {
-          @jobs_strongify(self)
           NSNotification *notification = (NSNotification *)arg;
           NSLog(@"通知传递过来的 = %@",notification.object);
-          NSNotificationKeyboardModel *notificationKeyboardModel = NSNotificationKeyboardModel.new;
-          notificationKeyboardModel.userInfo = notification.userInfo;
-          notificationKeyboardModel.beginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-          notificationKeyboardModel.endFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-          notificationKeyboardModel.keyboardOffsetY = notificationKeyboardModel.beginFrame.origin.y - notificationKeyboardModel.endFrame.origin.y;// 正则抬起 ，负值下降
-          notificationKeyboardModel.notificationName = UIKeyboardWillChangeFrameNotification;
-          NSLog(@"KeyboardOffsetY = %f", notificationKeyboardModel.keyboardOffsetY);
-          if (notificationKeyboardModel.keyboardOffsetY > 0) {
+          NSNotificationKeyboardModel *model = jobsMakeNotificationKeyboardModel(^(NSNotificationKeyboardModel * _Nullable data) {
+              data.userInfo = notification.userInfo;
+              data.beginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+              data.endFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+              data.keyboardOffsetY = data.beginFrame.origin.y - data.endFrame.origin.y;// 正则抬起 ，负值下降
+              data.notificationName = UIKeyboardWillChangeFrameNotification;
+          });
+          NSLog(@"KeyboardOffsetY = %f", model.keyboardOffsetY);
+          if (model.keyboardOffsetY > 0) {
               NSLog(@"键盘抬起");
-              if (self.keyboardUpNotificationBlock) self.keyboardUpNotificationBlock(notificationKeyboardModel);
-          }else if(notificationKeyboardModel.keyboardOffsetY < 0){
+              if (upBlock) upBlock(model);
+          }else if(model.keyboardOffsetY < 0){
               NSLog(@"键盘收回");
-              if (self.keyboardDownNotificationBlock) self.keyboardDownNotificationBlock(notificationKeyboardModel);
+              if (downBlock) downBlock(model);
           }else{
               NSLog(@"键盘");
           }
       }];
-      /// 键盘的回收
-      [self addNotificationName:UIKeyboardDidChangeFrameNotification
-                          block:^(id _Nullable weakSelf,
-                                  id _Nullable arg) {
-          NSNotification *notification = (NSNotification *)arg;
-          NSLog(@"通知传递过来的 = %@",notification.object);
-      }];
   }
+  ```
+  
+  ```objective-c
+  [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+      NSLog(@"");
+  } downBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+      NSLog(@"");
+  }];
   ```
 
 ### 13、iOS 状态栏颜色的修改 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

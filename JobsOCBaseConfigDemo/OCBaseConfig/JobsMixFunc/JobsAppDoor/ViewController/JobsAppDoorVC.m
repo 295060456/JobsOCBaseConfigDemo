@@ -92,8 +92,11 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self keyboard];
-
+    [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+        NSLog(@"");
+    } downBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+        NSLog(@"");
+    }];
     self.jobsAppDoorContentView.图片从小放大();
     self.logoContentView.图片从小放大();
     self.customerServiceBtn.图片从小放大();

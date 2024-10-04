@@ -21,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 @property(nonatomic,assign)BOOL isLock;
 @property(nonatomic,strong)RACDisposable *racDisposable;
-@property(nonatomic,copy)JobsReturnIDByIDBlock keyboardUpNotificationBlock;
-@property(nonatomic,copy)JobsReturnIDByIDBlock keyboardDownNotificationBlock;
 -(void)languageSwitchNotificationWithSelector:(SEL)aSelector;//在View上,target = self（view）,省略
 /// 更改UITabBarItem的标题
 -(void)changeTabBarItemTitle:(NSIndexPath *)indexPath;//NSObject (AppTools)
@@ -60,8 +58,6 @@ NS_ASSUME_NONNULL_END
 \
 @synthesize isLock = isLock;\
 @synthesize racDisposable = racDisposable;\
-@synthesize keyboardUpNotificationBlock = _keyboardUpNotificationBlock;\
-@synthesize keyboardDownNotificationBlock = _keyboardDownNotificationBlock;\
 
 #endif
 
@@ -71,7 +67,5 @@ NS_ASSUME_NONNULL_END
 \
 @dynamic isLock;\
 @dynamic racDisposable;\
-@dynamic keyboardUpNotificationBlock;\
-@dynamic keyboardDownNotificationBlock;\
 
 #endif

@@ -185,6 +185,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         _realTextField.text = self.text;
         _realTextField.textColor = self.textColor;
         _realTextField.delegate = self;
+        _realTextField.secureTextEntry = self.secureTextEntry;
         _realTextField.backgroundColor = self.realTextFieldBgCor;
         _realTextField.returnKeyType = self.returnKeyType;
         _realTextField.keyboardAppearance = self.keyboardAppearance;

@@ -15,8 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGRect beginFrame;
 @property(nonatomic,assign)CGRect endFrame;
 @property(nonatomic,assign)CGFloat keyboardOffsetY;
-@property(nonatomic,strong,nonnull)NSString *notificationName;
+@property(nonatomic,copy,nonnull)NSString *notificationName;
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof NSNotificationKeyboardModel *_Nonnull jobsMakeNotificationKeyboardModel(jobsByNSNotificationKeyboardModelBlock _Nonnull block){
+    NSNotificationKeyboardModel *data = NSNotificationKeyboardModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

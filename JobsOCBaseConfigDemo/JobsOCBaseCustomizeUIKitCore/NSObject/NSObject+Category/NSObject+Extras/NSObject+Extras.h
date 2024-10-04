@@ -475,7 +475,11 @@ BaseProtocol
 /**
  使用方法：
  IQKeyboardManager.sharedManager.enable = NO;
- [self keyboard];
+ [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+     NSLog(@"");
+ } downBlock:^(NSNotificationKeyboardModel * _Nullable data) {
+     NSLog(@"");
+ }];
  [self actionNotificationBlock:^id(NSNotificationKeyboardModel *data) {
      @jobs_strongify(self)
      NSLog(@"userInfo = %@",data.userInfo);
@@ -501,7 +505,8 @@ BaseProtocol
  }];
  */
 /// 加入键盘通知的监听者
--(void)keyboard;
+-(void)keyboardByUpBlock:(jobsByNSNotificationKeyboardModelBlock _Nullable)upBlock
+               downBlock:(jobsByNSNotificationKeyboardModelBlock _Nullable)downBlock;
 /// 根据数据源【数组】是否有值进行判定：占位图 和 mj_footer 的显隐性
 -(void)dataSource:(__kindof NSArray *_Nonnull)dataSource
       contentView:(__kindof UIScrollView *_Nonnull)contentView;
