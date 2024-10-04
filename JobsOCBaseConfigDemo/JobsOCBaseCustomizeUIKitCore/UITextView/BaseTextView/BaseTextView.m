@@ -26,7 +26,7 @@
                 @jobs_strongify(self)
                 if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
                 return nil;
-            }, nil, self)]);
+            }, MethodName(self), self)]);
         });
         [menu update];
         if(@available(iOS 10.3, *)){

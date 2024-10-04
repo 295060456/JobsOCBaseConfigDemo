@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_END
         /// 在需要结束刷新的时候调用（只能调用一次）
         /// _collectionView.endRefreshing();
         return nil;
-    }, nil, self)
+    }, MethodName(self), self)
                                 name:GSUploadNetworkSpeedNotificationKey
                               object:nil];
  

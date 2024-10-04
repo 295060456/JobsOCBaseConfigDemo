@@ -177,7 +177,7 @@ existMethodWithName:(nullable NSString *)methodName{
 ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
 ///   - target: 执行目标
 SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
-                             NSString *_Nullable selectorName,
+                             NSString *_Nullable selectorName,// MethodName(self)
                              NSObject *_Nonnull target) {
     if (!block) {
         toastErr(JobsInternationalization(@"方法不存在,请检查参数"));

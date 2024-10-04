@@ -174,7 +174,7 @@
         @jobs_strongify(self)
         if (block) block(self, arg);
         return nil;
-    }, nil, self) name:notificationName object:nil];
+    }, MethodName(self), self) name:notificationName object:nil];
 }
 #pragma mark —— 路径获取
 /// 获取bundle路径
@@ -597,7 +597,7 @@
 -(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
                          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock{
     [JobsNotificationCenter addObserver:self
-                               selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf, id  _Nullable arg) {
+                               selector:selectorBlocks(^id _Nullable(id _Nullable weakSelf, id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
@@ -605,7 +605,7 @@
         }
         if (selectorBlock) selectorBlock(weakSelf,arg);
         return nil;
-    }, nil, self) name:notificationName object:nil];
+    }, MethodName(self), self) name:notificationName object:nil];
 }
 /// 不能用于UITableViewHeaderFooterView
 +(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier{

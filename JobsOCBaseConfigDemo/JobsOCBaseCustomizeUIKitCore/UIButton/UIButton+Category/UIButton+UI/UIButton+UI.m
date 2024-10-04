@@ -298,7 +298,7 @@
         self.target = weak_self;/// ⚠️注意：任何手势这一句都要写
         NSLog(@"%@",NSStringFromSelector(self.longPressGR_SelImp.selector));
         if (!NSStringFromSelector(self.longPressGR_SelImp.selector)) {
-            self.longPressGR_SelImp.selector = selectorBlocks(longPressGestureEventBlock, nil, self);
+            self.longPressGR_SelImp.selector = selectorBlocks(longPressGestureEventBlock, MethodName(self), self);
             [self jobsSelectorBlock:longPressGestureEventBlock];
         }
         NSLog(@"%@",NSStringFromSelector(self.longPressGR_SelImp.selector));//

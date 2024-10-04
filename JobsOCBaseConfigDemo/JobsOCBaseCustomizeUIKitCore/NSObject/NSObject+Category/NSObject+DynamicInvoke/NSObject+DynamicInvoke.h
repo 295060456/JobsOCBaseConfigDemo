@@ -12,6 +12,8 @@
 #import "NSObject+Time.h"
 #import "NSValue+Extra.h"
 
+#define MethodName(obj) [NSStringFromClass([obj class]) stringByAppendingString:[@"_" stringByAppendingString:NSStringFromSelector(_cmd)]]
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (DynamicInvoke)
@@ -50,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
 ///   - target: 执行目标
 SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
-                             NSString *_Nullable selectorName,
+                             NSString *_Nullable selectorName,// MethodName(self)
                              NSObject *_Nonnull target);
 
 @end

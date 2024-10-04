@@ -120,13 +120,14 @@
                                                self.BOTTOMVIEW_HEIGHT);
         } completion:nil];
         
-        [self performSelector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf, id  _Nullable arg) {
+        [self performSelector:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                           id _Nullable arg) {
             @jobs_strongify(self)
             UIButton *button = (UIButton *)[self viewWithTag:self.newChoseTag];
             button.jobsResetBtnTitleCor(self.selectTextColor);
             self.choseTag = self.newChoseTag;
             return nil;
-        }, nil, self)
+        }, MethodName(self), self)
                    withObject:nil
                    afterDelay:0.07];
         
