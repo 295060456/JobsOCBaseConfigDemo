@@ -23,5 +23,6 @@
 #import "NSString+Statistics.h"
 #import "NSString+Path.h"
 #import "NSString+FilteringSpecialCharacters.h"
+#import "NSString+Notification.h"
 
 #endif /* JobsString_h */

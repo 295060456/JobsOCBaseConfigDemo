@@ -30,6 +30,7 @@
 #import "MJRefreshConfigModel.h"
 #import "ButtonTimerConfigModel.h"
 #import "MasonryModel.h"
+#import "NotificationModel.h"
 
 #import "IncomeSourceModel.h"
 #import "JobsCountriesModel.h"

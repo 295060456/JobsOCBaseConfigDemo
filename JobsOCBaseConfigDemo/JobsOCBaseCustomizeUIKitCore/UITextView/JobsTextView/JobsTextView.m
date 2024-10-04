@@ -54,6 +54,9 @@ static dispatch_once_t static_textViewOnceToken;
             NSLog(@"通知传递过来的 = %@",notification.object);
         }];
     }return self;
+    
+    
+
 }
 
 -(void)drawRect:(CGRect)rect{

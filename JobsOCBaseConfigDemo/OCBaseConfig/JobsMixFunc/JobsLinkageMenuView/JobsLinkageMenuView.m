@@ -120,14 +120,13 @@
                                                self.BOTTOMVIEW_HEIGHT);
         } completion:nil];
         
-        [self performSelector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                 id _Nullable arg) {
+        [self performSelector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf, id  _Nullable arg) {
             @jobs_strongify(self)
             UIButton *button = (UIButton *)[self viewWithTag:self.newChoseTag];
             button.jobsResetBtnTitleCor(self.selectTextColor);
             self.choseTag = self.newChoseTag;
             return nil;
-        } selectorName:nil target:self]
+        }, nil, self)
                    withObject:nil
                    afterDelay:0.07];
         
@@ -177,7 +176,6 @@
 - (UIView *)rightview{
     if (!_rightview) {
         _rightview = UIView.new;
-        
         if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
             _rightview.frame = CGRectMake(self.MENU_WIDTH + self.LINEVIEW_WIDTH,
                                           0,
@@ -235,7 +233,7 @@
                 data.title = [self.btnConfig.normal_titles objectAtIndex:(i - 1)];
                 data.titleFont = [UIFont systemFontOfSize:self.textSize];
                 data.titleCor = self.btnConfig.titleCor;
-                data.imagePadding = self.btnConfig.imagePadding ? : [self.btnConfig.imagePaddings objectAtIndex:(i - 1)].floatValue;
+                data.imagePadding = jobs3TO(self.btnConfig.imagePadding,[self.btnConfig.imagePaddings objectAtIndex:(i - 1)].floatValue);
                 data.titlePadding = JobsWidth(10);
                 data.imagePlacement = self.btnConfig.imagePlacement;
                 data.cornerRadiusValue = JobsWidth(8);
@@ -255,8 +253,7 @@
                                           self.btnHeight);
             self.btnMutArr.add(menuButton);
             [_menuView addSubview:menuButton];
-        }
-        [self addSubview:_menuView];
+        }[self addSubview:_menuView];
     }return _menuView;
 }
 

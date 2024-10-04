@@ -25,6 +25,8 @@
 		CE410FE92C57B8B400AB9402 /* ZBRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDC2C57B8B400AB9402 /* ZBRequestEngine.m */; };
 		CE410FEA2C57B8B400AB9402 /* ZBRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDF2C57B8B400AB9402 /* ZBRequestManager.m */; };
 		CE410FEB2C57B8B400AB9402 /* ZBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */; };
+		CE4299D72CAFA86B00A0446A /* NotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4299D52CAFA86B00A0446A /* NotificationModel.m */; };
+		CE4299DB2CAFA8CD00A0446A /* NSString+Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4299D92CAFA8CD00A0446A /* NSString+Notification.m */; };
 		CE42BC672C9FD65A00E4FE8A /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC612C9FD65A00E4FE8A /* data.json */; };
 		CE42BC682C9FD65A00E4FE8A /* Philippines.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC652C9FD65A00E4FE8A /* Philippines.json */; };
 		CE42BC692C9FD65A00E4FE8A /* OccupationList.json in Resources */ = {isa = PBXBuildFile; fileRef = CE42BC642C9FD65A00E4FE8A /* OccupationList.json */; };
@@ -1167,6 +1169,10 @@
 		CE410FE22C57B8B400AB9402 /* ZBURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBURLRequest.m; sourceTree = "<group>"; };
 		CE410FE42C57B8B400AB9402 /* ZBNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBNetworking.h; sourceTree = "<group>"; };
 		CE410FE52C57B8B400AB9402 /* ZBRequestConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBRequestConst.h; sourceTree = "<group>"; };
+		CE4299D42CAFA86B00A0446A /* NotificationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationModel.h; sourceTree = "<group>"; };
+		CE4299D52CAFA86B00A0446A /* NotificationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationModel.m; sourceTree = "<group>"; };
+		CE4299D82CAFA8CD00A0446A /* NSString+Notification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Notification.h"; sourceTree = "<group>"; };
+		CE4299D92CAFA8CD00A0446A /* NSString+Notification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Notification.m"; sourceTree = "<group>"; };
 		CE42BC5C2C9FD65A00E4FE8A /* 假数据.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "假数据.json"; sourceTree = "<group>"; };
 		CE42BC5D2C9FD65A00E4FE8A /* CityList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CityList.json; sourceTree = "<group>"; };
 		CE42BC5E2C9FD65A00E4FE8A /* CommentData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CommentData.json; sourceTree = "<group>"; };
@@ -3433,6 +3439,7 @@
 				CE260F3C2CAE671C00233F0F /* NSString+Path */,
 				CE260F3F2CAE671C00233F0F /* NSString+Replace */,
 				CE260F422CAE671C00233F0F /* NSString+Statistics */,
+				CE4299DA2CAFA8CD00A0446A /* NSString+Notification */,
 			);
 			path = "NSString+Category";
 			sourceTree = "<group>";
@@ -3512,6 +3519,24 @@
 				CE410FE52C57B8B400AB9402 /* ZBRequestConst.h */,
 			);
 			path = ZBNetworking;
+			sourceTree = "<group>";
+		};
+		CE4299D62CAFA86B00A0446A /* NotificationModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE4299D42CAFA86B00A0446A /* NotificationModel.h */,
+				CE4299D52CAFA86B00A0446A /* NotificationModel.m */,
+			);
+			path = NotificationModel;
+			sourceTree = "<group>";
+		};
+		CE4299DA2CAFA8CD00A0446A /* NSString+Notification */ = {
+			isa = PBXGroup;
+			children = (
+				CE4299D82CAFA8CD00A0446A /* NSString+Notification.h */,
+				CE4299D92CAFA8CD00A0446A /* NSString+Notification.m */,
+			);
+			path = "NSString+Notification";
 			sourceTree = "<group>";
 		};
 		CE4F1B592CA82510002AF25B /* 弹出的日历选择页面 */ = {
@@ -9748,6 +9773,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5A61072CA82C2D006D67A7 /* JobsModel.h */,
+				CE4299D62CAFA86B00A0446A /* NotificationModel */,
 				CEDD9DE02CAA5752002FD89F /* JobsLocationModel */,
 				CE5A610E2CA82C2D006D67A7 /* 输入框样式基类 */,
 				CE5A61112CA82C2D006D67A7 /* BaseModel */,
@@ -14766,6 +14792,7 @@
 				CECE7EC02C450E5B00764AF5 /* TKPermissionPhoto.m in Sources */,
 				CECE7EAD2C450E5B00764AF5 /* GCDAsyncSocket.m in Sources */,
 				CECE7E8E2C450E5B00764AF5 /* HTTPAuthenticationRequest.m in Sources */,
+				CE4299D72CAFA86B00A0446A /* NotificationModel.m in Sources */,
 				CECE7EB32C450E5B00764AF5 /* TKPermissionCalendar.m in Sources */,
 				CECE7E852C450E5B00764AF5 /* MultipartFormDataParser.m in Sources */,
 				CECE80B92C4512BF00764AF5 /* CasinoCustomerContactModel.m in Sources */,
@@ -15136,6 +15163,7 @@
 				CE5A65072CA830E3006D67A7 /* UICollectionView+JobsRegisterClass.m in Sources */,
 				CE5A65082CA830E3006D67A7 /* UICollectionView+Func.m in Sources */,
 				CE5A65092CA830E3006D67A7 /* UICollectionView+RegistrationTracking.m in Sources */,
+				CE4299DB2CAFA8CD00A0446A /* NSString+Notification.m in Sources */,
 				CE5A650A2CA830E3006D67A7 /* BaseCollectionView.m in Sources */,
 				CE5A65DA2CA83402006D67A7 /* JobsNavBar.m in Sources */,
 				CE5A65DB2CA83402006D67A7 /* JobsPageView.m in Sources */,

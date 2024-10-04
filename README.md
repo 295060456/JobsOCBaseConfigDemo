@@ -4082,18 +4082,18 @@ static const uint32_t kSequenceBits = 12;
     /// 主标题是否多行显示
     -(jobsByBOOLBlock _Nonnull)makeNewLineShows;
     ///【兼容】重设Btn主标题的文字内容 优先级高于jobsResetTitle
-    -(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnTitle;
+    -(JobsReturnButtonByStringBlock _Nonnull)jobsResetBtnTitle;
     ///【兼容】重设Btn主标题的文字颜色
-    -(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnTitleCor;
+    -(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnTitleCor;
     ///【兼容】重设Btn的主标题字体
     -(JobsReturnButtonByFontBlock _Nonnull)jobsResetBtnTitleFont;
     ///【兼容】重设Btn的主标题对其方式
     -(JobsReturnButtonByNSIntegerBlock _Nonnull)jobsResetBtnTitleAlignment;
     #pragma mark —— 一些通用修改.副标题
     ///【最新的Api】重设Btn副标题的文字内容
-    -(JobsReturnButtonByTitleBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonByStringBlock _Nonnull)jobsResetBtnSubTitle API_AVAILABLE(ios(16.0));
     ///【最新的Api】重设Btn副标题的文字颜色
-    -(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
     ///【兼容】重设Btn的副标题字体
     -(JobsReturnButtonByFontBlock _Nonnull)jobsResetBtnSubTitleFont;
     ///【最新的Api】修改副标题的对齐方式
@@ -4106,7 +4106,7 @@ static const uint32_t kSequenceBits = 12;
     -(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnBgImage;
     #pragma mark —— 一些通用修改.按钮颜色
     ///【兼容】重设Btn的背景颜色
-    -(JobsReturnButtonByCorBlock _Nonnull)jobsResetBtnBgCor;
+    -(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnBgCor;
     #pragma mark —— 一些通用修改.Layer
     ///【合并】重设Btn的描边：线宽和线段的颜色
     -(JobsReturnButtonByColor_FloatBlock _Nonnull)jobsResetBtnLayerBorderCorAndWidth;
@@ -4125,7 +4125,7 @@ static const uint32_t kSequenceBits = 12;
     ///【最新的Api】重设Btn的图文相对位置
     -(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0));
     ///【最新的Api】重设Btn的图文间距
-    -(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
+    -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
     ///【最新的Api】重设Btn主标题与副标题之间的距离
     -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0));
     ```
@@ -4578,32 +4578,35 @@ static const uint32_t kSequenceBits = 12;
 
    ```objective-c
    /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
+   /// 类方法或全局函数，用于添加选择器
    /// - Parameters:
    ///   - block: 最终的执行体
    ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
    ///   - target: 执行目标
-   -(SEL _Nullable)selectorBlocks:(JobsReturnIDBySelectorBlock)block
-                     selectorName:(NSString *_Nullable)selectorName
-                           target:(id _Nullable)target{
+   SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
+                                NSString *_Nullable selectorName,
+                                id _Nullable target) {
        if (!block) {
            toastErr(JobsInternationalization(@"方法不存在,请检查参数"));
-           /// 【经常崩溃损伤硬件】 [NSException raise:JobsInternationalization(@"block can not be nil") format:@"%@ selectorBlock error", target];
+           return NULL;
        }
-       /// 动态注册方法：对方法名进行拼接（加盐），以防止和当下的其他方法名引起冲突
-       NSString *selName = @"selector".add(@"_")
-           .add(self.currentTimestampString)
+       NSString *selName = @"selector"
            .add(@"_")
-           .add(toStringByInt(random100__200()))
+           .add(toStringByID(selectorName.makeSnowflake))
            .add(@"_")
            .add(selectorName);
-       
-       NSLog(@"selName = %@",selName);//selector_2024-08-26 16:34:32_196_
+       NSLog(@"selName = %@", selName);
        SEL sel = NSSelectorFromString(selName);
-       /// 检查缓存中是否已经存在该选择器
-       NSValue *cachedSelValue = self.methodCache[selName];
+       /// 检查缓存
+       static NSMutableDictionary *methodCache;
+       static dispatch_once_t onceToken;
+       dispatch_once(&onceToken, ^{
+           methodCache = NSMutableDictionary.dictionary;
+       });
+       
+       NSValue *cachedSelValue = methodCache[selName];
        if (cachedSelValue) {
-           sel = cachedSelValue.pointerValue;
-           return sel;
+           return cachedSelValue.pointerValue;
        }
        /**
         方法签名由方法名称和一个参数列表（方法的参数的顺序和类型）组成
@@ -4613,35 +4616,25 @@ static const uint32_t kSequenceBits = 12;
         第三个参数是所添加方法的函数实现的指针IMP
         第四个参数是所添加方法的签名
         */
-       if(class_getInstanceMethod([target class], sel)){
+       /// 检查目标类是否已有该方法
+       if (class_getInstanceMethod([target class], sel)) {
            NSLog(@"方法曾经已经被成功添加，再次添加会崩溃");
            return sel;
-   //        abort();
-       }else{
-           /// class_addMethod这个方法的实现会覆盖父类的方法实现，但不会取代本类中已存在的实现，如果本类中包含一个同名的实现，则函数会返回NO
-           if (class_addMethod([target class],
-                               sel,
-                               (IMP)selectorImp,
-                               "v@:@")) {
-               objc_setAssociatedObject(target,
-                                        sel,
-                                        block,
-                                        OBJC_ASSOCIATION_COPY_NONATOMIC);
-               // 缓存该选择器
-               self.methodCache[selName] = [NSValue valueWithPointer:sel];
-           }else{
+       } else {
+           /// 动态添加方法
+           if (class_addMethod([target class], sel, (IMP)selectorImp, "v@:@")) {
+               objc_setAssociatedObject(target, sel, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+               methodCache[selName] = NSValue.byPoint(sel);
+           } else {
                [NSException raise:JobsInternationalization(@"添加方法失败")
                            format:@"%@ selectorBlock error", target];
            }
        }return sel;
    }
    /// 内部调用无需暴露
-   static void selectorImp(id self,
-                           SEL _cmd,
-                           id arg) {
-       JobsReturnIDBySelectorBlock block = objc_getAssociatedObject(self, _cmd);
-       @jobs_weakify(self)
-       if (block) block(weak_self, arg);
+   static void selectorImp(id target, SEL _cmd, id arg) {
+       JobsReturnIDBySelectorBlock block = objc_getAssociatedObject(target, _cmd);
+       if (block) block(target, arg);
    }
    ```
 </details>
@@ -4655,6 +4648,30 @@ static const uint32_t kSequenceBits = 12;
 ##### 6.2.1、发通知
 
 * ```objective-c
+  @implementation NSString (Notification)
+  
+  -(jobsByIDBlock _Nonnull)postNotificationBy{
+      @jobs_weakify(self)
+      return ^(id _Nullable data){
+          @jobs_strongify(self)
+          [NSNotificationCenter.defaultCenter postNotificationName:self object:data];
+      };
+  }
+  
+  -(jobsByNotificationModelBlock _Nonnull)postNotificationByModel{
+      @jobs_weakify(self)
+      return ^(NotificationModel *_Nullable data){
+          @jobs_strongify(self)
+          [NSNotificationCenter.defaultCenter postNotificationName:self
+                                                            object:data.anObject
+                                                          userInfo:data.userInfo];
+      };
+  }
+  
+  @end
+  ```
+
+*  ```objective-c
   [JobsNotificationCenter postNotificationName:LanguageSwitchNotification object:@(NO)];
   ```
 
@@ -4663,7 +4680,7 @@ static const uint32_t kSequenceBits = 12;
   -(jobsByKey_ValueBlock _Nonnull)JobsPost{
       return ^(NSString *_Nonnull key,id _Nullable value){
           dispatch_async(dispatch_get_main_queue(), ^{
-              [JobsNotificationCenter postNotificationName:key object:value];
+              key.postNotificationBy(value);
           });
       };
   }
@@ -4671,7 +4688,7 @@ static const uint32_t kSequenceBits = 12;
   -(jobsByStringBlock _Nonnull)jobsPost{
       return ^(NSString *_Nonnull key){
           dispatch_async(dispatch_get_main_queue(), ^{
-              self.JobsPost(key,@(NO));
+              key.postNotificationBy(nil);
           });
       };
   }
@@ -4716,20 +4733,18 @@ static const uint32_t kSequenceBits = 12;
 * ```objective-c
   @jobs_weakify(self)
   [JobsNotificationCenter addObserver:self
-                            selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                        id _Nullable arg) {
-     NSNotification *notification = (NSNotification *)arg;
-     if([notification.object isKindOfClass:NSNumber.class]){
-         NSNumber *b = notification.object;
-         NSLog(@"SSS = %d",b.boolValue);
-     }
-     NSLog(@"通知传递过来的 = %@",notification.object);
-     return nil;
-  } selectorName:nil target:self]
-                                 name:JobsLanguageSwitchNotification
-                               object:nil];
+                             selector:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                                   id _Nullable arg) {
+      NSNotification *notification = (NSNotification *)arg;
+      if([notification.object isKindOfClass:NSNumber.class]){
+          NSNumber *b = notification.object;
+          NSLog(@"SSS = %d",b.boolValue);
+      }
+      NSLog(@"通知传递过来的 = %@",notification.object);
+      return nil;
+  }, nil, self) name:JobsLanguageSwitchNotification object:nil];
   ```
-
+  
 * ```objective-c
   [JobsNotificationCenter addObserverForName:GSUploadNetworkSpeedNotificationKey
                                       object:nil
@@ -4744,13 +4759,13 @@ static const uint32_t kSequenceBits = 12;
 * [**@implementation NSNotificationCenter (JobsBlock)**]()
   
   ```objective-c
-  -(jobsByIDBlock)remove{
+  -(jobsByIDBlock _Nonnull)remove{
       return ^(id _Nullable data){
           [JobsNotificationCenter removeObserver:data];
       };
   }
   
-  -(jobsByKey_ValueBlock)Remove{
+  -(jobsByKey_ValueBlock _Nonnull)Remove{
       return ^(NSString *_Nonnull key,id _Nullable value){
           [JobsNotificationCenter removeObserver:value
                                             name:key
@@ -4773,40 +4788,21 @@ static const uint32_t kSequenceBits = 12;
 ```objective-c
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
         @jobs_weakify(self)
-
-        {
-            UITextModel *textModel = UITextModel.new;
-            textModel.text = JobsInternationalization(@"Hello");
-            textModel.textCor = JobsRedColor;
-            textModel.textAlignment = NSTextAlignmentCenter;
-            
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel = textModel;
-            viewModel.jobsBlock = ^id(id param){
-                @jobs_strongify(self)
-                NSLog(@"Hello");
-                return nil;
-            };
-            [_dataMutArr addObject:viewModel];
-        }
-
-        {
-            UITextModel *textModel = UITextModel.new;
-            textModel.text = JobsInternationalization(@"OK");
-            textModel.textCor = JobsRedColor;
-            textModel.textAlignment = NSTextAlignmentCenter;
-            
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel = textModel;
-            viewModel.jobsBlock = ^id(id param){
-                @jobs_strongify(self)
-                NSLog(@"OK");
-                return nil;
-            };
-            [_dataMutArr addObject:viewModel];
-        }
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data2) {
+                    data2.text = JobsInternationalization(@"Hello");
+                    data2.textCor = JobsRedColor;
+                    data2.textAlignment = NSTextAlignmentCenter;
+                });
+                data1.jobsBlock = ^id(id param){
+                    @jobs_strongify(self)
+                    NSLog(@"Hello");
+                    return nil;
+                };
+            }));
+        });
     }return _dataMutArr;
 }
 ```
@@ -5162,7 +5158,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         }return _backBtnModel;
     }
     
-    -(JobsReturnNavBarConfigByButtonModelBlock)makeNavBarConfig{
+    -(JobsReturnNavBarConfigByButtonModelBlock _Nonnull)makeNavBarConfig{
         @jobs_weakify(self)
         return ^(UIButtonModel *_Nullable backBtnModel,
                  UIButtonModel *_Nullable closeBtnModel) {
@@ -5209,14 +5205,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```objective-c
     #pragma mark —— present
     /// 简洁版强制present展现一个控制器页面【不需要正向传参】
-    -(jobsByVCBlock)comingToPresentVC;
+    -(jobsByVCBlock _Nonnull)comingToPresentVC;
     /// 简洁版强制present展现一个控制器页面【需要正向传参】
-    -(jobsByVCAndDataBlock)comingToPresentVCByRequestParams;
+    -(jobsByVCAndDataBlock _Nonnull)comingToPresentVCByRequestParams;
     #pragma mark —— push
     /// 简洁版强制push展现一个控制器页面【不需要正向传参】
-    -(jobsByVCBlock)comingToPushVC;
+    -(jobsByVCBlock _Nonnull)comingToPushVC;
     /// 简洁版强制push展现一个控制器页面【需要正向传参】
-    -(jobsByVCAndDataBlock)comingToPushVCByRequestParams;
+    -(jobsByVCAndDataBlock _Nonnull)comingToPushVCByRequestParams;
     ```
     
     ```objective-c
@@ -5365,8 +5361,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   -(void)keyboard{
       @jobs_weakify(self)
       /// 键盘的弹出
-      JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                  id _Nullable arg) {
+      [self addNotificationName:UIKeyboardWillChangeFrameNotification
+                          block:^(id _Nullable weakSelf,
+                                  id _Nullable arg) {
           @jobs_strongify(self)
           NSNotification *notification = (NSNotification *)arg;
           NSLog(@"通知传递过来的 = %@",notification.object);
@@ -5377,7 +5374,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           notificationKeyboardModel.keyboardOffsetY = notificationKeyboardModel.beginFrame.origin.y - notificationKeyboardModel.endFrame.origin.y;// 正则抬起 ，负值下降
           notificationKeyboardModel.notificationName = UIKeyboardWillChangeFrameNotification;
           NSLog(@"KeyboardOffsetY = %f", notificationKeyboardModel.keyboardOffsetY);
-       
           if (notificationKeyboardModel.keyboardOffsetY > 0) {
               NSLog(@"键盘抬起");
               if (self.keyboardUpNotificationBlock) self.keyboardUpNotificationBlock(notificationKeyboardModel);
@@ -5386,15 +5382,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               if (self.keyboardDownNotificationBlock) self.keyboardDownNotificationBlock(notificationKeyboardModel);
           }else{
               NSLog(@"键盘");
-          }return nil;
-      } selectorName:nil target:self],UIKeyboardWillChangeFrameNotification,nil);
+          }
+      }];
       /// 键盘的回收
-      JobsAddNotification(self,[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                  id _Nullable arg) {
+      [self addNotificationName:UIKeyboardDidChangeFrameNotification
+                          block:^(id _Nullable weakSelf,
+                                  id _Nullable arg) {
           NSNotification *notification = (NSNotification *)arg;
           NSLog(@"通知传递过来的 = %@",notification.object);
-          return nil;
-      } selectorName:nil target:self],UIKeyboardDidChangeFrameNotification,nil);
+      }];
   }
   ```
 

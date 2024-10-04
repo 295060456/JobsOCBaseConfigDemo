@@ -152,17 +152,15 @@
 -(jobsByKey_ValueBlock _Nonnull)JobsPost{
     return ^(NSString *_Nonnull key,id _Nullable value){
         dispatch_async(dispatch_get_main_queue(), ^{
-            [JobsNotificationCenter postNotificationName:key object:value];
+            key.postNotificationBy(value);
         });
     };
 }
 /// 在主线程上不带参发通知
 -(jobsByStringBlock _Nonnull)jobsPost{
     return ^(NSString *_Nonnull key){
-        @jobs_weakify(self)
         dispatch_async(dispatch_get_main_queue(), ^{
-            @jobs_strongify(self)
-            self.JobsPost(key,@(NO));
+            key.postNotificationBy(nil);
         });
     };
 }
@@ -171,12 +169,12 @@
                      block:(JobsSelectorBlock _Nullable)block{
     @jobs_weakify(self)
     [JobsNotificationCenter addObserver:self
-                               selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                           id _Nullable arg) {
+                               selector:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                                     id _Nullable arg) {
         @jobs_strongify(self)
         if (block) block(self, arg);
         return nil;
-    } selectorName:nil target:self] name:notificationName object:nil];
+    }, nil, self) name:notificationName object:nil];
 }
 #pragma mark —— 路径获取
 /// 获取bundle路径
@@ -599,8 +597,7 @@
 -(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
                          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock{
     [JobsNotificationCenter addObserver:self
-                               selector:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                           id _Nullable arg) {
+                               selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf, id  _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
@@ -608,9 +605,7 @@
         }
         if (selectorBlock) selectorBlock(weakSelf,arg);
         return nil;
-    } selectorName:nil target:self]
-                                               name:notificationName
-                                             object:nil];
+    }, nil, self) name:notificationName object:nil];
 }
 /// 不能用于UITableViewHeaderFooterView
 +(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier{

@@ -196,6 +196,9 @@ typedef void(^jobsByTimeFormatterModelBlock)(__kindof JobsTimeFormatterModel *_N
 
 @class VideoModel_Core;
 typedef void(^jobsByVideoModelCoreBlock)(__kindof VideoModel_Core *_Nullable data);
+
+@class NotificationModel;
+typedef void(^jobsByNotificationModelBlock)(NotificationModel *_Nullable data);
 #pragma mark —— 涉及到第三方类的Block定义
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);

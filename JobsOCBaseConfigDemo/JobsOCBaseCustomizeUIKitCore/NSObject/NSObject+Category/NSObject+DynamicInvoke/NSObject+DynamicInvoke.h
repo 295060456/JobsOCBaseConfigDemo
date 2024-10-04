@@ -22,14 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 如果某个实例对象存在某个【不带参数的方法】，则对其调用执行
 /// @param targetObj 靶点，方法在哪里
 /// @param methodName 不带参数的方法名
-+(void)targetObj:(nonnull NSObject *)targetObj
-callingMethodWithName:(nullable NSString *)methodName;
++(void)targetObj:(nonnull NSObject *)targetObj callingMethodWithName:(nullable NSString *)methodName;
 /// 如果某个实例对象存在某个【不带参数的方法】，则对其调用执行
-/// @param methodName 不带参数的方法名
--(void)callingMethodWithName:(nullable NSString *)methodName;
+-(jobsByStringBlock _Nonnull)callingMethodWithName;
 /// 使用 dispatch_once 来执行只需运行一次的线程安全代码
-/// @param methodName 需要执行的方法的方法名（不带参数）
--(void)dispatchOnceInvokingWithMethodName:(nullable NSString *)methodName;
+-(jobsByStringBlock _Nonnull)dispatchOnceInvokingWithMethodName;
 /// NSInvocation的使用，方法多参数传递
 /// @param methodName 方法名
 /// @param targetObj 靶点，方法在哪里
@@ -40,13 +37,11 @@ callingMethodWithName:(nullable NSString *)methodName;
 /// 获取方法返回值
 /// @param inv inv
 /// @param sig 方法签名
-+(id)getMethodReturnValueWithInv:(NSInvocation *)inv
-                             sig:(NSMethodSignature *)sig;
++(id)getMethodReturnValueWithInv:(NSInvocation *)inv sig:(NSMethodSignature *)sig;
 /// 判断本程序是否存在某个类
-+(BOOL)judgementAppExistClassWithName:(nullable NSString *)className;
++(JobsReturnBOOLByStringBlock _Nonnull)judgementAppExistClassWithName;
 /// 判断某个实例对象是否存在某个【不带参数的方法】
-+(BOOL)judgementObj:(nonnull NSObject *)obj
-existMethodWithName:(nullable NSString *)methodName;
++(BOOL)judgementObj:(nonnull NSObject *)obj existMethodWithName:(nullable NSString *)methodName;
 /// 用block来代替selector。
 -(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock;
 /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
@@ -54,9 +49,9 @@ existMethodWithName:(nullable NSString *)methodName;
 ///   - block: 最终的执行体
 ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
 ///   - target: 执行目标
--(SEL _Nullable)selectorBlocks:(JobsReturnIDBySelectorBlock)block
-                  selectorName:(NSString *_Nullable)selectorName
-                        target:(id _Nullable)target;
+SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
+                             NSString *_Nullable selectorName,
+                             id _Nullable target);
 
 @end
 

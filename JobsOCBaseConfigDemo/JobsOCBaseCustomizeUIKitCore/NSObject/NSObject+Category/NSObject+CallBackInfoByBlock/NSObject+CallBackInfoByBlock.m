@@ -589,15 +589,15 @@ JobsKey(_returnCGFloatBlock)
 }
 JobsKey(_returnBoolBlock)
 @dynamic returnBoolBlock;
--(JobsReturnByBOOLBlock _Nullable)returnBoolBlock{
+-(JobsReturnBOOLByBOOLBlock _Nullable)returnBoolBlock{
     return Jobs_getAssociatedObject(_returnBoolBlock);
 }
 
--(void)setReturnBoolBlock:(JobsReturnByBOOLBlock _Nullable)returnBoolBlock{
+-(void)setReturnBoolBlock:(JobsReturnBOOLByBOOLBlock _Nullable)returnBoolBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_returnBoolBlock, returnBoolBlock)
 }
 
--(void)actionReturnBOOLBlock:(JobsReturnByBOOLBlock _Nullable)returnBoolBlock{
+-(void)actionReturnBOOLBlock:(JobsReturnBOOLByBOOLBlock _Nullable)returnBoolBlock{
     self.returnBoolBlock = returnBoolBlock;
 }
 JobsKey(_returnBoolByNSUIntegerBlock)

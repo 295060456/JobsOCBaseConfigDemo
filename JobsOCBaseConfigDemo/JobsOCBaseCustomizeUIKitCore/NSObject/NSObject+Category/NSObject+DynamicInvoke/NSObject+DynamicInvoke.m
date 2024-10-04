@@ -21,22 +21,27 @@ callingMethodWithName:(nullable NSString *)methodName{
     }
 }
 /// 如果某个实例对象存在某个【不带参数的方法】，则对其调用执行
-/// @param methodName 不带参数的方法名
--(void)callingMethodWithName:(nullable NSString *)methodName{
-    if ([NSObject judgementObj:self existMethodWithName:methodName]) {
-        SuppressWarcPerformSelectorLeaksWarning([self performSelector:NSSelectorFromString(methodName)]);
-    }else{
-        NSLog(@"目标类：%@,不存在此方法：%@,请检查",self.class,methodName);
-    }
+-(jobsByStringBlock _Nonnull)callingMethodWithName{
+    @jobs_weakify(self)
+    return ^(NSString *_Nullable data){
+        @jobs_strongify(self)
+        if ([NSObject judgementObj:self existMethodWithName:data]) {
+            SuppressWarcPerformSelectorLeaksWarning([self performSelector:NSSelectorFromString(data)]);
+        }else{
+            NSLog(@"目标类：%@,不存在此方法：%@,请检查",self.class,data);
+        }
+    };
 }
 /// 使用 dispatch_once 来执行只需运行一次的线程安全代码
-/// @param methodName 需要执行的方法的方法名（不带参数）
--(void)dispatchOnceInvokingWithMethodName:(nullable NSString *)methodName{
-    static dispatch_once_t NSObjectDispatchOnce;
+-(jobsByStringBlock _Nonnull)dispatchOnceInvokingWithMethodName{
     @jobs_weakify(self)
-    dispatch_once(&NSObjectDispatchOnce, ^{
-        [weak_self callingMethodWithName:methodName];
-    });
+    return ^(NSString *_Nullable data){
+        static dispatch_once_t NSObjectDispatchOnce;
+        dispatch_once(&NSObjectDispatchOnce, ^{
+            @jobs_strongify(self)
+            self.callingMethodWithName(data);/// 需要执行的方法的方法名（不带参数）
+        });
+    };
 }
 /// NSInvocation的使用，方法多参数传递
 /// @param methodName 方法名
@@ -146,8 +151,10 @@ callingMethodWithName:(nullable NSString *)methodName{
     }return returnValue;
 }
 /// 判断本程序是否存在某个类
-+(BOOL)judgementAppExistClassWithName:(nullable NSString *)className{
-    return NSClassFromString(className);
++(JobsReturnBOOLByStringBlock _Nonnull)judgementAppExistClassWithName{
+    return ^BOOL(NSString *_Nullable data){
+        return NSClassFromString(data);
+    };
 }
 /// 判断某个实例对象是否存在某个【不带参数的方法】
 +(BOOL)judgementObj:(nonnull NSObject *)obj
@@ -161,34 +168,38 @@ existMethodWithName:(nullable NSString *)methodName{
 }
 /// 用block来代替selector
 -(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock{
-    return [self selectorBlocks:selectorBlock
-                   selectorName:nil
-                         target:self];
+    return selectorBlocks(selectorBlock, nil, self);
 }
 /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
+/// 类方法或全局函数，用于添加选择器
 /// - Parameters:
 ///   - block: 最终的执行体
 ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
 ///   - target: 执行目标
--(SEL _Nullable)selectorBlocks:(JobsReturnIDBySelectorBlock)block
-                  selectorName:(NSString *_Nullable)selectorName
-                        target:(id _Nullable)target{
+SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
+                             NSString *_Nullable selectorName,
+                             id _Nullable target) {
     if (!block) {
         toastErr(JobsInternationalization(@"方法不存在,请检查参数"));
-        /// 【经常崩溃损伤硬件】 [NSException raise:JobsInternationalization(@"block can not be nil") format:@"%@ selectorBlock error", target];
+        return NULL;
     }
-    /// 动态注册方法：对方法名进行拼接（加盐），以防止和当下的其他方法名引起冲突
-    NSString *selName = @"selector".add(@"_")
-        .add(toStringByID(self.makeSnowflake))
+    NSString *selName = @"selector"
+        .add(@"_")
+        .add(toStringByID(selectorName.makeSnowflake))
         .add(@"_")
         .add(selectorName);
-    
-    NSLog(@"selName = %@",selName);//selector_2024-08-26 16:34:32_196_
+    NSLog(@"selName = %@", selName);
     SEL sel = NSSelectorFromString(selName);
-    /// 检查缓存中是否已经存在该选择器
-    NSValue *cachedSelValue = self.methodCache[selName];
+    /// 检查缓存
+    static NSMutableDictionary *methodCache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        methodCache = NSMutableDictionary.dictionary;
+    });
+    
+    NSValue *cachedSelValue = methodCache[selName];
     if (cachedSelValue) {
-        return cachedSelValue.pointerValue;;
+        return cachedSelValue.pointerValue;
     }
     /**
      方法签名由方法名称和一个参数列表（方法的参数的顺序和类型）组成
@@ -198,32 +209,23 @@ existMethodWithName:(nullable NSString *)methodName{
      第三个参数是所添加方法的函数实现的指针IMP
      第四个参数是所添加方法的签名
      */
-    if(class_getInstanceMethod([target class], sel)){
+    /// 检查目标类是否已有该方法
+    if (class_getInstanceMethod([target class], sel)) {
         NSLog(@"方法曾经已经被成功添加，再次添加会崩溃");
         return sel;
-//        abort();
-    }else{
-        /// class_addMethod这个方法的实现会覆盖父类的方法实现，但不会取代本类中已存在的实现，如果本类中包含一个同名的实现，则函数会返回NO
-        if (class_addMethod([target class],
-                            sel,
-                            (IMP)selectorImp,
-                            "v@:@")) {
-            objc_setAssociatedObject(target,
-                                     sel,
-                                     block,
-                                     OBJC_ASSOCIATION_COPY_NONATOMIC);
-            // 缓存该选择器
-            self.methodCache[selName] = NSValue.byPoint(sel);
-        }else{
+    } else {
+        /// 动态添加方法
+        if (class_addMethod([target class], sel, (IMP)selectorImp, "v@:@")) {
+            objc_setAssociatedObject(target, sel, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+            methodCache[selName] = NSValue.byPoint(sel);
+        } else {
             [NSException raise:JobsInternationalization(@"添加方法失败")
                         format:@"%@ selectorBlock error", target];
         }
     }return sel;
 }
 /// 内部调用无需暴露
-static void selectorImp(id target,
-                        SEL _cmd,
-                        id arg) {
+static void selectorImp(id target, SEL _cmd, id arg) {
     JobsReturnIDBySelectorBlock block = objc_getAssociatedObject(target, _cmd);
     if (block) block(target, arg);
 }

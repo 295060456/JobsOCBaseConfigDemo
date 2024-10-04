@@ -19,18 +19,16 @@
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         UIMenuController *menu = UIMenuController.sharedMenuController;
         @jobs_weakify(self)
-        UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:JobsInternationalization(@"相应事件")
-                                                        action:[self selectorBlocks:^id _Nullable(id _Nullable weakSelf,
-                                                                                                  id _Nullable arg) {
-            @jobs_strongify(self)
-            if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
-            return nil;
-        } selectorName:nil target:self]];
         menu.menuItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-            data.add(copyItem);
+            data.add([UIMenuItem.alloc initWithTitle:JobsInternationalization(@"相应事件")
+                                              action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                                                  id _Nullable arg) {
+                @jobs_strongify(self)
+                if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
+                return nil;
+            }, nil, self)]);
         });
         [menu update];
-        
         if(@available(iOS 10.3, *)){
             [menu showMenuFromView:self rect:self.bounds];
         }else{

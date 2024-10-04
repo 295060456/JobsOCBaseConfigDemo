@@ -14,7 +14,7 @@
     };
 }
 
--(jobsByKey_ValueBlock)Remove{
+-(jobsByKey_ValueBlock _Nonnull)Remove{
     return ^(NSString *_Nonnull key,id _Nullable value){
         [JobsNotificationCenter removeObserver:value
                                           name:key
@@ -22,7 +22,7 @@
     };
 }
 #pragma mark —— @property(nonatomic,copy)jobsByNotificationBlock jobsNotificationBlock;
--(jobsByNotificationBlock)jobsNotificationBlock{
+-(jobsByNotificationBlock _Nonnull)jobsNotificationBlock{
     return objc_getAssociatedObject(self, _cmd);
 }
 

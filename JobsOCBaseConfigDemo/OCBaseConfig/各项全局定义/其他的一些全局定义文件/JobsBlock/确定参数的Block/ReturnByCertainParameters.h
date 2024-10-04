@@ -359,7 +359,7 @@ typedef CGFloat(^JobsReturnCGFloatByIDBlock)(id _Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByVoidBlock)(void);
 
 typedef BOOL(^JobsReturnBOOLByVoidBlock)(void);
-typedef BOOL(^JobsReturnByBOOLBlock)(BOOL data);
+typedef BOOL(^JobsReturnBOOLByBOOLBlock)(BOOL data);
 typedef BOOL(^JobsReturnBOOLByNSUIntegerBlock)(NSUInteger data);
 typedef BOOL(^JobsReturnBOOLByNSIntegerBlock)(NSInteger data);
 typedef BOOL(^JobsReturnBOOLByIDBlock)(id _Nullable data);
