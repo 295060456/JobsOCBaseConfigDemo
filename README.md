@@ -4570,9 +4570,7 @@ static const uint32_t kSequenceBits = 12;
    ```objective-c
  typedef id _Nullable(^JobsReturnIDBySelectorBlock)(id _Nullable weakSelf, id _Nullable arg);
 -(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock{
-    return [self selectorBlocks:selectorBlock
-                   selectorName:nil
-                         target:self];
+    return selectorBlocks(selectorBlock, nil, self);
 }
    ```
 
@@ -4585,14 +4583,14 @@ static const uint32_t kSequenceBits = 12;
    ///   - target: 执行目标
    SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
                                 NSString *_Nullable selectorName,
-                                id _Nullable target) {
+                                NSObject *_Nonnull target) {
        if (!block) {
            toastErr(JobsInternationalization(@"方法不存在,请检查参数"));
            return NULL;
        }
        NSString *selName = @"selector"
            .add(@"_")
-           .add(toStringByID(selectorName.makeSnowflake))
+           .add(toStringByID(target.makeSnowflake))
            .add(@"_")
            .add(selectorName);
        NSLog(@"selName = %@", selName);
@@ -4622,7 +4620,7 @@ static const uint32_t kSequenceBits = 12;
            return sel;
        } else {
            /// 动态添加方法
-           if (class_addMethod([target class], sel, (IMP)selectorImp, "v@:@")) {
+           if (class_addMethod([target class], sel, (IMP)selectorImp, "v@:@@")) {
                objc_setAssociatedObject(target, sel, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
                methodCache[selName] = NSValue.byPoint(sel);
            } else {

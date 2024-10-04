@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - target: 执行目标
 SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
                              NSString *_Nullable selectorName,
-                             id _Nullable target);
+                             NSObject *_Nonnull target);
 
 @end
 
