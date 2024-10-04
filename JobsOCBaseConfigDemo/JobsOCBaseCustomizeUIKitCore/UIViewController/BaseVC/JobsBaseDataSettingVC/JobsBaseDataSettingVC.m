@@ -125,15 +125,17 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         });
     }return _vcs;
 }
-
+@synthesize viewModel = _viewModel;
 -(UIViewModel *)viewModel{
     if (!_viewModel) {
-        _viewModel = UIViewModel.new;
-        _viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        _viewModel.textModel.font = UIFontWeightRegularSize(16);
+        _viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.textModel.textCor = HEXCOLOR(0x3D4A58);
+            data.textModel.font = UIFontWeightRegularSize(16);
+        });
     }return _viewModel;
 }
 /// 在具体的子类去实现，以覆盖父类的方法实现
+@synthesize closeBtnModel = _closeBtnModel;
 -(UIButtonModel *)closeBtnModel{
     if(!_closeBtnModel){
         _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
@@ -148,6 +150,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }return _closeBtnModel;
 }
 /// 在具体的子类去实现，以覆盖父类的方法实现
+@synthesize backBtnModel = _backBtnModel;
 -(UIButtonModel *)backBtnModel{
     if(!_backBtnModel){
         @jobs_weakify(self)

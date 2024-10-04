@@ -101,6 +101,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 数据（字符串）定高
 -(JobsReturnCGFloatByIDBlock _Nonnull)heightByData;
 #pragma mark —— 关于导航栏
+@property(nonatomic,strong,nullable)UIButtonModel *closeBtnModel;
+@property(nonatomic,strong,nullable)UIButtonModel *backBtnModel;
+@property(nonatomic,strong,nullable)UIViewModel *titleModel;
 /// 配置 GKNavigationBar
 -(jobsByViewModelBlock _Nonnull)setGKNav;
 /// 配置 JobsNavBarConfig
@@ -156,6 +159,9 @@ typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewPro
 @synthesize headerFooterViewStyle = _headerFooterViewStyle;\
 @synthesize backBtnClickAction = _backBtnClickAction;\
 @synthesize closeBtnClickAction = _closeBtnClickAction;\
+@synthesize closeBtnModel = _closeBtnModel;\
+@synthesize backBtnModel = _backBtnModel;\
+@synthesize titleModel = _titleModel;\
 
 #endif
 
@@ -172,5 +178,8 @@ typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewPro
 @dynamic headerFooterViewStyle;\
 @dynamic backBtnClickAction;\
 @dynamic closeBtnClickAction;\
+@dynamic closeBtnModel;\
+@dynamic backBtnModel;\
+@dynamic titleModel;\
 
 #endif

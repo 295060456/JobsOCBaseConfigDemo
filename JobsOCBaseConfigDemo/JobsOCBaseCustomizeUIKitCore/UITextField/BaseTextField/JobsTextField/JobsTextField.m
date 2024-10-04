@@ -9,7 +9,7 @@
 
 @interface JobsTextField ()
 
-@property(nonatomic,strong,nullable)JobsReturnIDByIDBlock otherActionBlock;
+@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock otherActionBlock;
 
 @end
 

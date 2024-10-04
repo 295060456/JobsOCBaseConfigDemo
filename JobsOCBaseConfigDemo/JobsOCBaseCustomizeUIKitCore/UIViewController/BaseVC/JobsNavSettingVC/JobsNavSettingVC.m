@@ -98,7 +98,7 @@
     [super viewDidDisappear:animated];
 }
 #pragma mark —— 一些公有方法
--(jobsByCGFloatBlock)makeNavByAlpha{
+-(jobsByCGFloatBlock _Nonnull)makeNavByAlpha{
     @jobs_weakify(self)
     return ^(CGFloat data){
         @jobs_strongify(self)

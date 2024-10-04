@@ -16,10 +16,6 @@ BaseViewControllerProtocol
 ,UIGestureRecognizerDelegate
 ,UIContentContainer
 >
-/// Data
-@property(nonatomic,strong)UIButtonModel *closeBtnModel;
-@property(nonatomic,strong)UIButtonModel *backBtnModel;
-@property(nonatomic,strong,nullable)UIViewModel *viewModel;
 
 @end
 

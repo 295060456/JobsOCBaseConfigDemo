@@ -9,9 +9,6 @@
 #import "BaseView.h"
 
 @interface BaseView ()
-/// Data
-@property(nonatomic,strong)UIButtonModel *closeBtnModel;
-@property(nonatomic,strong)UIButtonModel *backBtnModel;
 
 @end
 

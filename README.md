@@ -11112,6 +11112,20 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       return data;
   }
   
+  NS_INLINE UICollectionViewFlowLayout *_Nonnull jobsMakeHorizontalCollectionViewFlowLayout(jobsByCollectionViewFlowLayoutBlock _Nonnull block){
+      UICollectionViewFlowLayout *data = UICollectionViewFlowLayout.alloc.init;
+      data.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+      if (block) block(data);
+      return data;
+  }
+  
+  NS_INLINE UICollectionViewFlowLayout *_Nonnull jobsMakeVerticalCollectionViewFlowLayout(jobsByCollectionViewFlowLayoutBlock _Nonnull block){
+      UICollectionViewFlowLayout *data = UICollectionViewFlowLayout.alloc.init;
+      data.scrollDirection = UICollectionViewScrollDirectionVertical;
+      if (block) block(data);
+      return data;
+  }
+  
   NS_INLINE NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
       NSMutableAttributedString *data = NSMutableAttributedString.alloc.init;
       if (block) block(data);

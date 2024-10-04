@@ -19,7 +19,6 @@
 @property(nonatomic,strong)UILabel *countLabel;/// 点赞数量Label
 /// Data
 @property(nonatomic,assign)BOOL isNeedAnimation;/// 选中/取消时是否需要动画
-@property(nonatomic,strong)UIViewModel *viewModel;
 
 @end
 
