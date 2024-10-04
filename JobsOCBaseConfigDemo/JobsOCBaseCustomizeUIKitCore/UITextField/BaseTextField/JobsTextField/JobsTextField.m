@@ -17,8 +17,6 @@
 BaseViewProtocol_synthesize
 BaseProtocol_synthesize
 UIViewModelProtocol_synthesize
-@synthesize leftView = _leftView;
-@synthesize rightView = _rightView;
 #pragma mark —— SysMethod
 -(instancetype)init{
     if (self = [super init]) {
@@ -70,9 +68,9 @@ UIViewModelProtocol_synthesize
 /// 含义：在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑。
 /// 用途：您可以使用此方法进行输入验证或单元格选择，以决定是否允许用户开始编辑。
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if(!self.isAllowEdit){
+    if(self.notAllowEdit){
         if(self.otherActionBlock) self.otherActionBlock(textField);
-    } return self.isAllowEdit;
+    } return !self.notAllowEdit;
 }
 /// 含义：文本字段已经开始编辑时调用。
 /// 用途：在此方法中，您可以开始相应的操作，例如更新用户界面（UI），显示工具条等。
@@ -93,7 +91,7 @@ UIViewModelProtocol_synthesize
 /// 用途：可以根据不同的结束原因执行不同的操作。
 /// API_AVAILABLE(ios(10.0))
 -(void)textFieldDidEndEditing:(UITextField *)textField
-                        reason:(UITextFieldDidEndEditingReason)reason{
+                       reason:(UITextFieldDidEndEditingReason)reason{
     
 }
 /// 含义：在文本字段的字符将要改变时调用，因为用户输入、删除或粘贴内容。返回YES允许更改，返回NO禁止更改。
@@ -142,6 +140,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     
 }
 #pragma mark —— set方法
+@synthesize leftView = _leftView;
 -(void)setLeftView:(UIView *)leftView{
     _leftView = leftView;
     [self addSubview:_leftView];
@@ -155,7 +154,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     [self layoutIfNeeded];
     NSLog(@"");
 }
-
+@synthesize rightView = _rightView;
 -(void)setRightView:(UIView *)rightView{
     _rightView = rightView;
     [self addSubview:_rightView];
@@ -204,7 +203,8 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         } subscribeNextBlock:^(NSString * _Nullable x) {
             @jobs_strongify(self)
             self.realTextField.text = x;
-            if (self.jobsBlock) self.jobsBlock(x);
+            id f = self.objectBlock;
+            if (self.objectBlock) self.objectBlock(x);
         }];
         [self addSubview:_realTextField];
         [_realTextField mas_makeConstraints:^(MASConstraintMaker *make) {

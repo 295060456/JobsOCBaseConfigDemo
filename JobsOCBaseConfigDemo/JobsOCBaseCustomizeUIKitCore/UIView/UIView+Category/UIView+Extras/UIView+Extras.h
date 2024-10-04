@@ -167,3 +167,10 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
           layerShadowRadius:(CGFloat)layerShadowRadius;
 
 @end
+/**
+ // 最外层的UI-描边
+ _textField_phone.layerByBorderCor(JobsCor(@"#FFC700")).layerByBorderWidth(1);
+ // 最外层的UI-切全角
+ _textField_phone.cornerCutToCircleWithCornerRadius(JobsWidth(8));
+ 
+ */

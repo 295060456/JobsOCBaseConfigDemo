@@ -1582,58 +1582,93 @@ NSObject <|-- BaseProtocol
 * <font color=red>`JobsTextField`</font>：**`BaseView`**
 
   ```objective-c
-  -(JobsTextField *)textField{
-      if(!_textField){
-          _textField = JobsTextField.new;
-          _textField.backgroundColor = JobsBlackColor.colorWithAlphaComponent(0.5f);
-          _textField.alpha = 0.5f;
-          // 只针对真实的textField配置
-          _textField.textColor = JobsWhiteColor;
-          _textField.realTextFieldBgCor = JobsClearColor;
-          _textField.leftViewByOutLineOffset = JobsWidth(4);
-          _textField.leftViewByTextFieldOffset = JobsWidth(4);
-          _textField.rightViewByTextFieldOffset = JobsWidth(4);
-          _textField.rightViewByOutLineOffset = JobsWidth(14);
-          _textField.returnKeyType = UIReturnKeyDefault;
-          _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
-          _textField.keyboardType = UIKeyboardTypeDefault;
-          _textField.leftViewMode = UITextFieldViewModeNever;
-          _textField.rightViewMode = UITextFieldViewModeNever;
-          _textField.rightView = self.rightBtn;
-          _textField.placeholder = self.viewModel.placeholder;
-          _textField.placeholderColor = JobsCor(@"#6A6A6A");
-          _textField.placeholderFont = UIFontWeightSemiboldSize(10);
-          _textField.attributedPlaceholder = nil;
-          _textField.leftViewByTextFieldOffset = JobsWidth(10);
-          _textField.layoutSubviewsRectCorner = UIRectCornerAllCorners;
-          _textField.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
+  -(JobsTextField *)textField_phone{
+      if(!_textField_phone){
           @jobs_weakify(self)
-          [_textField otherActionBlock:^id _Nullable(id  _Nullable data) {
-              @jobs_strongify(self)
-              NSLog(@"data = %@",data);
-              self.show_view(self.select_promo_popListView);
-              return nil;
-          }];
+          _textField_phone = JobsTextField.new;
+          _textField_phone.backgroundColor = JobsBlackCor(0.5f);
+          _textField_phone.alpha = 0.5f;
+          // 只针对真实的textField配置
+          _textField_phone.realTextFieldBgCor = JobsClearColor;
+          _textField_phone.leftViewByOutLineOffset = JobsWidth(4);
+          _textField_phone.leftViewByTextFieldOffset = JobsWidth(4);
+          _textField_phone.rightViewByTextFieldOffset = JobsWidth(4);
+          _textField_phone.rightViewByOutLineOffset = JobsWidth(14);
+          _textField_phone.returnKeyType = UIReturnKeyDefault;
+          _textField_phone.keyboardAppearance = UIKeyboardAppearanceDefault;
+          _textField_phone.keyboardType = UIKeyboardTypeDefault;
+          _textField_phone.leftViewMode = UITextFieldViewModeNever;
+          _textField_phone.rightViewMode = UITextFieldViewModeNever;
+          _textField_phone.leftView = self.choose_zone_code_btn;
+          _textField_phone.placeholder = JobsInternationalization(@"Validate phone no. starts with 0 and must be 11 digits");
+          _textField_phone.placeholderColor = JobsCor(@"#6A6A6A");
+          _textField_phone.placeholderFont = UIFontWeightSemiboldSize(10);
+  //        _textField_phone.attributedPlaceholder = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
+  //            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+  //                @jobs_strongify(self)
+  //                data1.font = UIFontWeightRegularSize(JobsWidth(12));
+  //                data1.textCor = JobsBlueColor;
+  //                data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
+  //                data1.textBgCor = JobsBrownColor;
+  //                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
+  //                    data2.alignment = NSTextAlignmentJustified;
+  //                    data2.paragraphSpacing = 0;//段距，取值 float
+  //                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
+  //                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+  //                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+  //                    data2.lineSpacing = 0;//行距，取值 float
+  //                });
+  //            }));
+  //            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+  //                @jobs_strongify(self)
+  //                data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
+  //                data1.textCor = JobsWhiteColor;
+  //                data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
+  //                data1.textBgCor = JobsBrownColor;
+  //                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
+  //                    data2.alignment = NSTextAlignmentJustified;
+  //                    data2.paragraphSpacing = 0;//段距，取值 float
+  //                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
+  //                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+  //                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+  //                    data2.lineSpacing = 0;//行距，取值 float
+  //                });
+  //            }));
+  //            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+  //                @jobs_strongify(self)
+  //                data1.font = UIFontWeightUltraLightSize(JobsWidth(14));
+  //                data1.textCor = JobsGreenColor;
+  //                data1.targetString = JobsInternationalization(@"APP的业务。");
+  //                data1.textBgCor = JobsBrownColor;
+  //                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
+  //                    data2.alignment = NSTextAlignmentJustified;
+  //                    data2.paragraphSpacing = 0;//段距，取值 float
+  //                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
+  //                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
+  //                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
+  //                    data2.lineSpacing = 0;//行距，取值 float
+  //                });
+  //            }));
+  //        }));
+          _textField_phone.layoutSubviewsRectCorner = UIRectCornerAllCorners;
+          _textField_phone.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
           // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
-          [_textField actionReturnObjectBlock:^id _Nullable(id _Nullable data) {
-              @jobs_strongify(self)
-              NSLog(@"data = %@",data);
-              return nil;
+          [_textField_phone actionObjectBlock:^(id  _Nullable data) {
+              NSLog(@"ddf = %@",data);
           }];
-          [(self.contentView ? : self) addSubview:_textField];
-          [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.right.equalTo(self.contentView ? : self);
-              make.top.equalTo(self.contentView ? : self).offset(JobsWidth(7));
-              make.bottom.equalTo(self.contentView ? : self).offset(JobsWidth(-7));
-              make.width.mas_equalTo(self.textField_width ? : JobsWidth(300));
+          
+          [self addSubview:_textField_phone];;
+          [_textField_phone mas_makeConstraints:^(MASConstraintMaker *make) {
+              make.size.mas_equalTo(CGSizeMake(JobsWidth(200), JobsWidth(32)));
+              make.top.equalTo(self.titleLab_phone.mas_bottom);
+              make.left.equalTo(self.titleLab_phone);
           }];
-          _textField.jobsRichElementsInViewWithModel(nil);
+          _textField_phone.jobsRichViewByModel(nil);
           // 最外层的UI-描边
-          [_textField layerBorderCor:JobsCor(@"#FFC700")
-                               andBorderWidth:JobsWidth(1)];
+          _textField_phone.layerByBorderCor(JobsCor(@"#FFC700")).layerByBorderWidth(1);
           // 最外层的UI-切全角
-          _textField.cornerCutToCircleWithCornerRadius(JobsWidth(8));
-      }return _textField;
+          _textField_phone.cornerCutToCircleWithCornerRadius(JobsWidth(8));
+      }return _textField_phone;
   }
   ```
   
