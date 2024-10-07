@@ -165,6 +165,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy,nullable)JobsReturnIDBySelectorBlock returnIDBySelectorBlock;
 -(void)actionReturnIDBySelectorBlock:(JobsReturnIDBySelectorBlock _Nullable)returnIDBySelectorBlock;
+#pragma mark —— 一些复合型Block
+-(JobsReturnViewByBlock3 _Nullable)JobsBlock1;
+-(JobsReturnViewByBlock2 _Nullable)JobsBlock2;
+-(JobsReturnViewByBlock1 _Nullable)JobsBlock3;
 
 @end
 

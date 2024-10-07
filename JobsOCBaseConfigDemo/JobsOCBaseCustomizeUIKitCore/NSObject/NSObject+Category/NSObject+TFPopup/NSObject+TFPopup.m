@@ -8,14 +8,21 @@
 #import "NSObject+TFPopup.h"
 
 @implementation NSObject (TFPopup)
-
--(__kindof UIView *)checkByView:(UIView *)view
-                         action:(jobsByVoidBlock _Nullable)action {
+#pragma mark —— 保证弹窗一定是被初始化
+-(__kindof UIView *)checkByView:(UIView *)view action:(jobsByVoidBlock _Nullable)action {
     if (view) {
         if (action) action(); // 执行传入的操作
     } else {
         toast(@"请初始化视图");
     }return view;
+}
+#pragma mark —— 关闭所有的弹出提示框
+-(jobsByViewBlock _Nonnull)tfHideAllPopupView{
+    return ^(UIView __kindof * _Nullable data) {
+        for (__kindof UIView *popupView in UIView.tf_getAllPopup) {
+            [popupView tf_hide:nil];
+        }
+    };
 }
 #pragma mark —— 弹出提示框
 -(jobsByStringBlock _Nonnull)toastMsg{
@@ -29,37 +36,37 @@
 /// 没有自定义 popupParam（缩放模式）
 -(jobsByViewBlock _Nonnull)popupShowScaleWithView{
     @jobs_weakify(self)
-    return ^(UIView __kindof * _Nullable view) {
+    return ^(UIView __kindof * _Nullable data) {
         @jobs_strongify(self)
-        [self checkByView:view action:^{
+        [self checkByView:data action:^{
             @jobs_strongify(self)
             if (KindOfVCCls(self)) {
                 UIViewController *vc = (UIViewController *)self;
-                [view tf_showScale:vc.view
+                [data tf_showScale:vc.view
                             offset:CGPointZero
                         popupParam:self.popupParameter];
             }else if (KindOfViewCls(self)){
                 UIView *v = (UIView *)self;
-                [view tf_showScale:v
+                [data tf_showScale:v
                             offset:CGPointZero
                         popupParam:self.popupParameter];
             }else{
-                [view tf_showNormal:MainWindow
+                [data tf_showNormal:MainWindow
                            animated:YES];
             }
         }];
     };
 }
 /// 有自定义popupParam（缩放模式）
--(void)popupShowScaleWithView:(UIView __kindof *_Nonnull)view
+-(void)popupShowScaleWithView:(UIView __kindof *_Nonnull)data
                popupParameter:(TFPopupParam *_Nullable)popupParameter{
     @jobs_weakify(self)
-    [self checkByView:view action:^{
+    [self checkByView:data action:^{
         @jobs_strongify(self)
         if (popupParameter) {
-            [view tf_showNormal:MainWindow popupParam:popupParameter];
+            [data tf_showNormal:MainWindow popupParam:popupParameter];
         }else{
-            self.popupShowScaleWithView(view);
+            self.popupShowScaleWithView(data);
         }
     }];
 }
@@ -67,16 +74,16 @@
 /// 没有自定义 popupParam（滑动模式）
 -(jobsByViewBlock _Nonnull)popupShowSlideWithView{
     @jobs_weakify(self)
-    return ^(UIView __kindof * _Nullable view) {
+    return ^(UIView __kindof * _Nullable data) {
         @jobs_strongify(self)
-        [self checkByView:view action:^{
-            TFPopupParam *popupParameter = makeSlidePopupParameterByViewHeight(view.Size.height);
+        [self checkByView:data action:^{
+            TFPopupParam *popupParameter = makeSlidePopupParameterByViewHeight(data.Size.height);
             if(AppDelegate.tabBarVC){
-                [view tf_showSlide:AppDelegate.tabBarVC.view
+                [data tf_showSlide:AppDelegate.tabBarVC.view
                          direction:popupParameter.bubbleDirection
                         popupParam:popupParameter];
             }else{
-                [view tf_showSlide:MainWindow
+                [data tf_showSlide:MainWindow
                          direction:popupParameter.bubbleDirection
                         popupParam:popupParameter];
             }
@@ -84,16 +91,16 @@
     };
 }
 /// 有自定义popupParam（滑动模式）
--(void)popupShowSlideWithView:(UIView __kindof *_Nonnull)view
+-(void)popupShowSlideWithView:(UIView __kindof *_Nonnull)data
                popupParameter:(TFPopupParam *_Nullable)popupParameter{
-    if(!popupParameter) popupParameter = makeSlidePopupParameterByViewHeight(view.height);
-    [self checkByView:view action:^{
+    if(!popupParameter) popupParameter = makeSlidePopupParameterByViewHeight(data.height);
+    [self checkByView:data action:^{
         if(AppDelegate.tabBarVC){
-            [view tf_showSlide:AppDelegate.tabBarVC.view
+            [data tf_showSlide:AppDelegate.tabBarVC.view
                      direction:popupParameter.bubbleDirection
                     popupParam:popupParameter];
         }else{
-            [view tf_showSlide:MainWindow
+            [data tf_showSlide:MainWindow
                      direction:popupParameter.bubbleDirection
                     popupParam:popupParameter];
         }
@@ -103,13 +110,14 @@
 /// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框
 -(jobsByViewBlock _Nonnull)show_view{
     @jobs_weakify(self)
-    return ^(UIView *_Nonnull view) {
+    return ^(UIView *_Nonnull data) {
         @jobs_strongify(self)
+        self.popupParameter.popupSize = data.viewSizeByModel(nil);
         self.popupParameter.dragEnable = YES;
         self.popupParameter.disuseBackgroundTouchHide = YES;/// 禁止点击背景消失弹框
-        [self checkByView:view action:^{
+        [self checkByView:data action:^{
             @jobs_strongify(self)
-            [view tf_showSlide:MainWindow
+            [data tf_showSlide:MainWindow
                      direction:PopupDirectionContainerCenter
                     popupParam:self.popupParameter];
         }];
@@ -118,38 +126,38 @@
 /// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框
 -(jobsByViewBlock _Nonnull)show_view2{
     @jobs_weakify(self)
-    return ^(UIView *_Nonnull view) {
+    return ^(UIView *_Nonnull data) {
         @jobs_strongify(self)
+        self.popupParameter.popupSize = data.viewSizeByModel(nil);
         self.popupParameter.dragEnable = YES;
         self.popupParameter.backgroundColor = JobsBlackColor.colorWithAlphaComponent(.3f);
         self.popupParameter.disuseBackgroundTouchHide = NO;/// 允许点击背景消失弹框
-        [self checkByView:view action:^{
+        [self checkByView:data action:^{
             @jobs_strongify(self)
-            [view tf_showSlide:MainWindow
+            [data tf_showSlide:MainWindow
                      direction:PopupDirectionContainerCenter
                     popupParam:self.popupParameter];
         }];
     };
 }
 /// 出现的弹窗自动触发关闭
+
 -(jobsByViewBlock _Nonnull)show_tips{
     @jobs_weakify(self)
-    return ^(UIView *_Nonnull view) {
+    return ^(UIView *_Nonnull data) {
         @jobs_strongify(self)
-        [self checkByView:view action:^{
+        self.tipsParameter.popupSize = data.viewSizeByModel(nil);
+        [self checkByView:data action:^{
             @jobs_strongify(self)
-            [view tf_showSlide:MainWindow
-                     direction:PopupDirectionContainerCenter
-                    popupParam:self.tipsParameter];
+            UIView *view = (UIView *)self;
+            [view tf_hide:^{
+                @jobs_strongify(self)
+                [view tf_showSlide:MainWindow
+                         direction:PopupDirectionContainerCenter
+                        popupParam:self.tipsParameter];
+            }];
         }];
     };
-}
-#warning 这样写的目的是方便在其他地方调用
-/// 公告
--(JobsNoticePopupView *)noticePopupView{
-    return JobsNoticePopupView
-        .BySize(JobsNoticePopupView.viewSizeByModel(nil))
-        .JobsRichViewByModel2(UIViewModel.new);
 }
 #pragma mark —— @property(nonatomic,strong)TFPopupParam *popupParameter;
 JobsKey(_popupParameter)

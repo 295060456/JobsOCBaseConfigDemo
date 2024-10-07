@@ -53,7 +53,7 @@
                                                                                      UITapGestureRecognizer *_Nullable arg) {
                 @jobs_strongify(self)
                 NSLog(@"%@",self.noticePopupView);
-                [self.noticePopupView tf_hide];
+                [self.noticePopupView tf_hide:nil];
                 return nil;
             }];
             _imageView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行

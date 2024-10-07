@@ -33,23 +33,22 @@ JobsKey(_logOutPopupView)
 -(JobsBasePopupView *)logOutPopupView{
     JobsBasePopupView *LogOutPopupView = Jobs_getAssociatedObject(_logOutPopupView);
     if (!LogOutPopupView) {
-        LogOutPopupView = JobsBasePopupView.new;
-        LogOutPopupView.Size = JobsBasePopupView.viewSizeByModel(nil);
-        LogOutPopupView.jobsRichViewByModel(self.logOutPopupVM);
         @jobs_weakify(self)
-        [LogOutPopupView actionObjectBlock:^(UIButton *data) {
-            @jobs_strongify(self)
-            if (data.tag == 666) {// 取消
-                NSLog(@"手滑了");
-            }else if (data.tag == 999){// 确定退出
-                [self logOut];
-                self.jobsToastSuccessMsg(JobsInternationalization(@"Logout succeeded"));
-                extern BOOL ISLogin;
-                ISLogin = NO;
-                JobsPostNotification(退出登录成功, @(NO));
-            }[LogOutPopupView tf_hide];
-        }];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_logOutPopupView, LogOutPopupView)
+        Jobs_setAssociatedRETAIN_NONATOMIC(_logOutPopupView, JobsBasePopupView
+                                           .BySize(JobsBasePopupView.viewSizeByModel(nil))
+                                           .JobsRichViewByModel2(self.logOutPopupVM)
+                                           .JobsBlock1(^(UIButton *data) {
+                                               @jobs_strongify(self)
+                                               if (data.tag == 666) {// 取消
+                                                   NSLog(@"手滑了");
+                                               }else if (data.tag == 999){// 确定退出
+                                                   [self logOut];
+                                                   self.jobsToastSuccessMsg(JobsInternationalization(@"Logout succeeded"));
+                                                   extern BOOL ISLogin;
+                                                   ISLogin = NO;
+                                                   JobsPostNotification(退出登录成功, @(NO));
+                                               }[LogOutPopupView tf_hide:nil];
+                                           }))
     }return LogOutPopupView;
 }
 

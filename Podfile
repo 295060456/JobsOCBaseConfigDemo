@@ -124,7 +124,7 @@ end
 ## 提示框
 def alert
   pod 'SPAlertController' # https://github.com/SPStore/SPAlertController 深度定制AlertController NO_SMP
-  pod 'TFPopup' # https://github.com/shmxybfq/TFPopup 不耦合view代码,可以为已创建过 / 未创建过的view添加弹出方式;只是一种弹出方式;
+#  pod 'TFPopup' # https://github.com/shmxybfq/TFPopup 不耦合view代码,可以为已创建过 / 未创建过的view添加弹出方式;只是一种弹出方式;
 end
 # UI相关
 def ui

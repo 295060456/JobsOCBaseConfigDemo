@@ -20,6 +20,13 @@
 		CE260F4C2CAE671C00233F0F /* NSString+Others.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F382CAE671C00233F0F /* NSString+Others.m */; };
 		CE2E88CD2C69E14100260207 /* PopListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E88C92C69E14100260207 /* PopListBaseView.m */; };
 		CE2E8ACC2C6AF7C900260207 /* 幸运转盘.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2E8ACB2C6AF7B800260207 /* 幸运转盘.xcassets */; };
+		CE3629A42CB403F900353B97 /* TFPopupExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3629982CB403F900353B97 /* TFPopupExtension.m */; };
+		CE3629A52CB403F900353B97 /* UIScrollView+TFPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3629A02CB403F900353B97 /* UIScrollView+TFPopup.m */; };
+		CE3629A62CB403F900353B97 /* TFPopupLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = CE36299A2CB403F900353B97 /* TFPopupLoading.m */; };
+		CE3629A72CB403F900353B97 /* UIView+TFPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3629A22CB403F900353B97 /* UIView+TFPopup.m */; };
+		CE3629A82CB403F900353B97 /* TFPopupParam.m in Sources */ = {isa = PBXBuildFile; fileRef = CE36299C2CB403F900353B97 /* TFPopupParam.m */; };
+		CE3629A92CB403F900353B97 /* NSObject+TFPopupMethodExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3629942CB403F900353B97 /* NSObject+TFPopupMethodExchange.m */; };
+		CE3629AA2CB403F900353B97 /* TFPopupToast.m in Sources */ = {isa = PBXBuildFile; fileRef = CE36299E2CB403F900353B97 /* TFPopupToast.m */; };
 		CE410FE72C57B8B400AB9402 /* NSString+ZBURLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FD62C57B8B400AB9402 /* NSString+ZBURLEncoding.m */; };
 		CE410FE82C57B8B400AB9402 /* ZBCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FD92C57B8B400AB9402 /* ZBCacheManager.m */; };
 		CE410FE92C57B8B400AB9402 /* ZBRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CE410FDC2C57B8B400AB9402 /* ZBRequestEngine.m */; };
@@ -1157,6 +1164,22 @@
 		CE2E88C82C69E14100260207 /* PopListBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopListBaseView.h; sourceTree = "<group>"; };
 		CE2E88C92C69E14100260207 /* PopListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopListBaseView.m; sourceTree = "<group>"; };
 		CE2E8ACB2C6AF7B800260207 /* 幸运转盘.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "幸运转盘.xcassets"; sourceTree = "<group>"; };
+		CE3629932CB403F900353B97 /* NSObject+TFPopupMethodExchange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+TFPopupMethodExchange.h"; sourceTree = "<group>"; };
+		CE3629942CB403F900353B97 /* NSObject+TFPopupMethodExchange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+TFPopupMethodExchange.m"; sourceTree = "<group>"; };
+		CE3629952CB403F900353B97 /* TFPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFPopup.h; sourceTree = "<group>"; };
+		CE3629962CB403F900353B97 /* TFPopupConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFPopupConst.h; sourceTree = "<group>"; };
+		CE3629972CB403F900353B97 /* TFPopupExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFPopupExtension.h; sourceTree = "<group>"; };
+		CE3629982CB403F900353B97 /* TFPopupExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFPopupExtension.m; sourceTree = "<group>"; };
+		CE3629992CB403F900353B97 /* TFPopupLoading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFPopupLoading.h; sourceTree = "<group>"; };
+		CE36299A2CB403F900353B97 /* TFPopupLoading.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFPopupLoading.m; sourceTree = "<group>"; };
+		CE36299B2CB403F900353B97 /* TFPopupParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFPopupParam.h; sourceTree = "<group>"; };
+		CE36299C2CB403F900353B97 /* TFPopupParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFPopupParam.m; sourceTree = "<group>"; };
+		CE36299D2CB403F900353B97 /* TFPopupToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFPopupToast.h; sourceTree = "<group>"; };
+		CE36299E2CB403F900353B97 /* TFPopupToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFPopupToast.m; sourceTree = "<group>"; };
+		CE36299F2CB403F900353B97 /* UIScrollView+TFPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TFPopup.h"; sourceTree = "<group>"; };
+		CE3629A02CB403F900353B97 /* UIScrollView+TFPopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TFPopup.m"; sourceTree = "<group>"; };
+		CE3629A12CB403F900353B97 /* UIView+TFPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+TFPopup.h"; sourceTree = "<group>"; };
+		CE3629A22CB403F900353B97 /* UIView+TFPopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+TFPopup.m"; sourceTree = "<group>"; };
 		CE410FD52C57B8B400AB9402 /* NSString+ZBURLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZBURLEncoding.h"; sourceTree = "<group>"; };
 		CE410FD62C57B8B400AB9402 /* NSString+ZBURLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZBURLEncoding.m"; sourceTree = "<group>"; };
 		CE410FD82C57B8B400AB9402 /* ZBCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBCacheManager.h; sourceTree = "<group>"; };
@@ -3460,6 +3483,29 @@
 				CE2E88CA2C69E14100260207 /* PopListBaseView */,
 			);
 			path = "全局统一的下拉选择器改为屏幕中部弹出的列表";
+			sourceTree = "<group>";
+		};
+		CE3629A32CB403F900353B97 /* TFPopup */ = {
+			isa = PBXGroup;
+			children = (
+				CE3629932CB403F900353B97 /* NSObject+TFPopupMethodExchange.h */,
+				CE3629942CB403F900353B97 /* NSObject+TFPopupMethodExchange.m */,
+				CE3629952CB403F900353B97 /* TFPopup.h */,
+				CE3629962CB403F900353B97 /* TFPopupConst.h */,
+				CE3629972CB403F900353B97 /* TFPopupExtension.h */,
+				CE3629982CB403F900353B97 /* TFPopupExtension.m */,
+				CE3629992CB403F900353B97 /* TFPopupLoading.h */,
+				CE36299A2CB403F900353B97 /* TFPopupLoading.m */,
+				CE36299B2CB403F900353B97 /* TFPopupParam.h */,
+				CE36299C2CB403F900353B97 /* TFPopupParam.m */,
+				CE36299D2CB403F900353B97 /* TFPopupToast.h */,
+				CE36299E2CB403F900353B97 /* TFPopupToast.m */,
+				CE36299F2CB403F900353B97 /* UIScrollView+TFPopup.h */,
+				CE3629A02CB403F900353B97 /* UIScrollView+TFPopup.m */,
+				CE3629A12CB403F900353B97 /* UIView+TFPopup.h */,
+				CE3629A22CB403F900353B97 /* UIView+TFPopup.m */,
+			);
+			path = TFPopup;
 			sourceTree = "<group>";
 		};
 		CE410FD72C57B8B400AB9402 /* NSString+ZBURLEncoding */ = {
@@ -13653,6 +13699,7 @@
 		CECE7E7A2C450E5B00764AF5 /* PodsManual */ = {
 			isa = PBXGroup;
 			children = (
+				CE3629A32CB403F900353B97 /* TFPopup */,
 				CEDC58E22CA190BC00C7772C /* MJRefresh+Extra */,
 				CE7C79B32C92B9C600C0153C /* 极验验证码 */,
 				CE410FE62C57B8B400AB9402 /* ZBNetworking */,
@@ -15276,6 +15323,13 @@
 				CE4F27CF2CA825CD002AF25B /* MyBlankCell.m in Sources */,
 				CE5A659E2CA83351006D67A7 /* ZLGestureLockViewController.m in Sources */,
 				CE5A65A22CA8336A006D67A7 /* JobsAppDoorConfig.m in Sources */,
+				CE3629A42CB403F900353B97 /* TFPopupExtension.m in Sources */,
+				CE3629A52CB403F900353B97 /* UIScrollView+TFPopup.m in Sources */,
+				CE3629A62CB403F900353B97 /* TFPopupLoading.m in Sources */,
+				CE3629A72CB403F900353B97 /* UIView+TFPopup.m in Sources */,
+				CE3629A82CB403F900353B97 /* TFPopupParam.m in Sources */,
+				CE3629A92CB403F900353B97 /* NSObject+TFPopupMethodExchange.m in Sources */,
+				CE3629AA2CB403F900353B97 /* TFPopupToast.m in Sources */,
 				CEB8FA762CA8383800CCFDF8 /* HAHandleDemoView.m in Sources */,
 				CEB8FA772CA8383800CCFDF8 /* GXCardView.m in Sources */,
 				CEB8FA782CA8383800CCFDF8 /* FSAppIconManager.m in Sources */,

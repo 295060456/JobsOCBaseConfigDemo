@@ -851,7 +851,7 @@ JobsKey(_getAnimation)
     @jobs_weakify(self)
     return ^(id _Nullable object){
         @jobs_strongify(self)
-        [self tf_hide];
+        [self tf_hide:nil];
         [self.class destroySingleton];
         if(self.objectBlock) self.objectBlock(object);
     };

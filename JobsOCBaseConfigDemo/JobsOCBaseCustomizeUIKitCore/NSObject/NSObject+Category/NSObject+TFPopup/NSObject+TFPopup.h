@@ -14,24 +14,29 @@
 #import "TFPopup.h"
 #endif
 
+#define ShowView(View) if(self) self.show_view(View);
+#define ShowView2(View) if(self) self.show_view2(View);
+#define ShowTips(View) if(self) self.show_tips(View);
+
 #pragma mark —— 创建数据源
+NS_INLINE TFPopupParam * _Nonnull TFPopupBaseParam(void){
+    TFPopupParam *popupParameter = TFPopupParam.alloc.init;
+    popupParameter.duration = 0.3;
+    popupParameter.showAnimationDelay = 0;
+    popupParameter.hideAnimationDelay = 0;
+    return popupParameter;
+}
+
 NS_INLINE TFPopupParam * _Nonnull makeSlidePopupParameterByViewHeight(CGFloat viewHeight){
     TFPopupParam *popupParameter = TFPopupParam.alloc.init;
     popupParameter.bubbleDirection = PopupDirectionBottom;
-    if(viewHeight){
-        popupParameter.popupSize = CGSizeMake(JobsMainScreen_WIDTH(), viewHeight);
-    }else{
-        popupParameter.popupSize = CGSizeMake(JobsMainScreen_WIDTH(), 300);
-    }
+    popupParameter.popupSize = CGSizeMake(JobsMainScreen_WIDTH(), jobs3TO(viewHeight, JobsWidth(300)));
     popupParameter.dragEnable = YES;
     return popupParameter;
 }
 
 NS_INLINE TFPopupParam *_Nonnull makeNormalPopupParameter(void){
-    TFPopupParam *popupParameter = TFPopupParam.alloc.init;
-    popupParameter.duration = 0.3;
-    popupParameter.showAnimationDelay = 0;
-    popupParameter.hideAnimationDelay = 0;
+    TFPopupParam *popupParameter = TFPopupBaseParam();
     popupParameter.autoDissmissDuration = 0;
     popupParameter.dragEnable = NO;
     popupParameter.disuseBackgroundTouchHide = YES;
@@ -39,10 +44,7 @@ NS_INLINE TFPopupParam *_Nonnull makeNormalPopupParameter(void){
 }
 
 NS_INLINE TFPopupParam *_Nonnull makeNormalTipsParameter(void){
-    TFPopupParam *popupParameter = TFPopupParam.new;
-    popupParameter.duration = 0.3;
-    popupParameter.showAnimationDelay = 0;
-    popupParameter.hideAnimationDelay = 0;
+    TFPopupParam *popupParameter = TFPopupBaseParam();
     popupParameter.autoDissmissDuration = 1;
     popupParameter.dragEnable = NO;
     popupParameter.disuseBackgroundTouchHide = YES;
@@ -52,7 +54,7 @@ NS_INLINE TFPopupParam *_Nonnull makeNormalTipsParameter(void){
 NS_INLINE TFPopupParam *_Nonnull makeSlidePopupParameterByViewSize(CGSize viewSize){
     TFPopupParam *popupParameter = TFPopupParam.alloc.init;
     popupParameter.bubbleDirection = PopupDirectionBottom;
-    popupParameter.popupSize = jobs3TOSize(viewSize,CGSizeMake(JobsMainScreen_WIDTH(), 300));
+    popupParameter.popupSize = jobs3TOSize(viewSize,CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(300)));
     popupParameter.dragEnable = YES;
     return popupParameter;
 }
@@ -64,6 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)TFPopupParam *tipsParameter;
 #pragma mark —— 保证弹窗一定是被初始化
 -(__kindof UIView *)checkByView:(UIView *)view action:(jobsByVoidBlock _Nullable)action;
+#pragma mark —— 关闭所有的弹出提示框
+-(jobsByViewBlock _Nonnull)tfHideAllPopupView;
 #pragma mark —— 弹出提示框
 -(jobsByStringBlock _Nonnull)toastMsg;
 #pragma mark —— 创建缩放模式下的View
@@ -85,19 +89,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByViewBlock _Nonnull)show_view2;
 /// 出现的弹窗自动触发关闭
 -(jobsByViewBlock _Nonnull)show_tips;
-#warning 这样写的目的是方便在其他地方调用
-/// 公告
--(JobsNoticePopupView *)noticePopupView;
-/// 登录
--(LoginView *)loginView;
-/// 退出登录
--(SignOutView *)signOutView;
-/// 注册
--(SignUpView *)signUpView;
-/// 密码重置-密码确认
--(PwdSettingView *)pwdSettingView;
-/// 密码重置-手机验证码
--(PwdSettingByCodeView *)pwdSettingByCodeView;
 
 @end
 

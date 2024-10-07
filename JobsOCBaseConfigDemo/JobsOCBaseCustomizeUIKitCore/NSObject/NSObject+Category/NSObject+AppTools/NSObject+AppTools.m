@@ -10,7 +10,7 @@
 @implementation NSObject (AppTools)
 #pragma mark —— 一些私有化方法
 -(NSMutableArray <Class>*_Nullable)makeDataArr{
-    NSMutableArray <Class>*tempDataArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+    NSMutableArray <Class>*tempDataArr = jobsMakeMutArr(^(__kindof NSMutableArray <Class>*_Nullable data) {
         for (int y = 0; y < AppDelegate.viewCtrlByTabBarCtrlConfigMutArr.count; y++) {
             UIViewController *viewController = AppDelegate.viewCtrlByTabBarCtrlConfigMutArr[y];
             JobsTabBarItemConfig *tabBarItemConfig = AppDelegate.tabBarItemConfigMutArr[y];
@@ -78,10 +78,9 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         // 首页没有展现的时候，不推出登录页
     //    extern BOOL CasinoHomeVC_viewDidAppear;
     //    if(!CasinoHomeVC_viewDidAppear) return;
-        
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.requestParams = @(JobsAppDoorBgType_video);
-        viewController.comingToPresentVCByRequestParams(JobsAppDoorVC.new,viewModel);
+        viewController.comingToPresentVCByRequestParams(JobsAppDoorVC.new,jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.requestParams = @(JobsAppDoorBgType_video);
+        }));
     };
 }
 /// 强制登录：没登录（本地用户数据为空）就去登录
@@ -183,47 +182,45 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 /// 带段落配置的文本
 -(UIViewModel *)configViewModelWithAttributeTitle:(NSString *_Nullable)title
                                 attributeSubTitle:(NSString *_Nullable)subTitle{
-    UIViewModel *viewModel = UIViewModel.new;
-    
-    {
-        NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(title));
-        attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
-            data.value = UITextModel.new.font;
-            data.range = NSMakeRange(0, JobsInternationalization(title).length);
-        }));
-        attributedText.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
-            data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
-                data.lineSpacing = 0;
-                data.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
-                data.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
-            });
-            data.range = NSMakeRange(0, JobsInternationalization(title).length);
-        }));
-        viewModel.textModel.attributedText = attributedText;
-    }
-    
-    {
-        NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle));
-        attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
-            data.value = UITextModel.new.font;
-            data.range = NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length);
-        }));
-        attributedText.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
-            data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
-                data.lineSpacing = 0;
-                data.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
-                data.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
-            });
-            data.range = NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length);
-        }));
-        viewModel.subTextModel.attributedText = attributedText;
-    }
+    return jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        {
+            NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(title));
+            attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                data.value = UITextModel.new.font;
+                data.range = NSMakeRange(0, JobsInternationalization(title).length);
+            }));
+            attributedText.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+                    data.lineSpacing = 0;
+                    data.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
+                    data.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
+                });
+                data.range = NSMakeRange(0, JobsInternationalization(title).length);
+            }));
+            viewModel.textModel.attributedText = attributedText;
+        }
+        
+        {
+            NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle));
+            attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                data.value = UITextModel.new.font;
+                data.range = NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length);
+            }));
+            attributedText.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+                    data.lineSpacing = 0;
+                    data.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
+                    data.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
+                });
+                data.range = NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length);
+            }));
+            viewModel.subTextModel.attributedText = attributedText;
+        }
 
-    viewModel.backBtnTitleModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
-        data.text = JobsInternationalization(@"返回首页");
+        viewModel.backBtnTitleModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
+            data.text = JobsInternationalization(@"返回首页");
+        });
     });
-    
-    return viewModel;
 }
 
 -(UIImage *)defaultHeaderImage{
@@ -310,8 +307,9 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                 
             }else{}
         }
-        [popupView tf_hide];
-        popViewClass.class.DestroySingleton();
+        [popupView tf_hide:^{
+            popViewClass.class.DestroySingleton();
+        }];
     }];return popupView;
 }
 #pragma mark —— 设备横屏的方向判定
@@ -600,9 +598,11 @@ JobsKey(_connectionTipsTV)
     if (!ConnectionTipsTV) {
         ConnectionTipsTV = UITextView.new;
         ConnectionTipsTV.userInteractionEnabled = YES;
-        ConnectionTipsTV.linkTextAttributes = @{NSForegroundColorAttributeName: self.richTextConfigMutArr[1].textCor,/// 链接文字颜色
-                                                 NSUnderlineColorAttributeName: JobsLightGrayColor,
-                                                 NSUnderlineStyleAttributeName: @(NSUnderlinePatternSolid)};
+        ConnectionTipsTV.linkTextAttributes = jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+            [data setValue:self.richTextConfigMutArr[1].textCor forKey:NSForegroundColorAttributeName];/// 链接文字颜色
+            [data setValue:JobsLightGrayColor forKey:NSUnderlineColorAttributeName];
+            [data setValue:@(NSUnderlinePatternSolid) forKey:NSUnderlineStyleAttributeName];
+        });
         
         ConnectionTipsTV.attributedText = self.attributedStringData;//
         [ConnectionTipsTV sizeToFit];
@@ -629,10 +629,10 @@ JobsKey(_connectionTipsTV)
 #pragma mark —— @property(nonatomic,strong)NSMutableArray<NSString *> *jxCategoryViewTitleMutArr;
 JobsKey(_jxCategoryViewTitleMutArr)
 @dynamic jxCategoryViewTitleMutArr;
--(NSMutableArray<NSString *> *)jxCategoryViewTitleMutArr{
+-(NSMutableArray <NSString *>*)jxCategoryViewTitleMutArr{
     NSMutableArray *JXCategoryViewTitleMutArr = Jobs_getAssociatedObject(_jxCategoryViewTitleMutArr);
     if (!JXCategoryViewTitleMutArr) {
-        JXCategoryViewTitleMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        JXCategoryViewTitleMutArr = jobsMakeMutArr(^(NSMutableArray <NSString *>*_Nullable data) {
             data.add(JobsInternationalization(@"今日"));
             data.add(JobsInternationalization(@"昨日"));
             data.add(JobsInternationalization(@"近7日"));

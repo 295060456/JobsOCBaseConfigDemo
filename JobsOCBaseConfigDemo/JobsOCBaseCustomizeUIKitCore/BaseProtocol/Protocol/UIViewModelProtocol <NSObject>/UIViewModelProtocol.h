@@ -141,9 +141,12 @@ NS_ASSUME_NONNULL_END
 @synthesize cls = _cls;\
 @synthesize reqSignal = _reqSignal;\
 @synthesize data = _data;\
+@synthesize data_weak = _data_weak;\
 @synthesize requestParams = _requestParams;\
-@synthesize url = _url;\
+@synthesize requestParams_weak = _requestParams_weak;\
 @synthesize viewModel = _viewModel;\
+@synthesize viewModel_weak = _viewModel_weak;\
+@synthesize url = _url;\
 @synthesize jobsTag = _jobsTag;\
 @synthesize jobsSelected = _jobsSelected;\
 @synthesize jobsEnabled = _jobsEnabled;\
@@ -308,8 +311,11 @@ NS_ASSUME_NONNULL_END
 @dynamic reqSignal;\
 @dynamic data;\
 @dynamic requestParams;\
-@dynamic url;\
 @dynamic viewModel;\
+@dynamic data_weak;\
+@dynamic requestParams_weak;\
+@dynamic viewModel_weak;\
+@dynamic url;\
 @dynamic jobsTag;\
 @dynamic jobsSelected;\
 @dynamic jobsEnabled;\

@@ -10,6 +10,27 @@
 //但是如果你尝试对 nil 对象调用分类中的方法，可能会导致问题。
 //这是因为 nil 对象并不会执行任何方法实现，分类中的方法也不会被调用。
 @implementation NSObject (CallBackInfoByBlock)
+#pragma mark —— 一些复合型Block
+-(JobsReturnViewByBlock3 _Nullable)JobsBlock1{
+    return ^__kindof UIView *_Nullable(jobsByIDBlock _Nullable data){
+        [self setObjectBlock:data];
+        return (UIView *)self;
+    };
+}
+
+-(JobsReturnViewByBlock2 _Nullable)JobsBlock2{
+    return ^__kindof UIView *_Nullable(JobsReturnIDByVoidBlock _Nullable data){
+        [self setReturnObjectByVoidBlock:data];
+        return (UIView *)self;
+    };
+}
+
+-(JobsReturnViewByBlock1 _Nullable)JobsBlock3{
+    return ^__kindof UIView *_Nullable(JobsReturnIDByIDBlock _Nullable data){
+        [self setReturnObjectBlock:data];
+        return (UIView *)self;
+    };
+}
 #pragma mark —— 1.1、无入参 ｜ 没有返回值
 JobsKey(_voidBlock)
 @dynamic voidBlock;

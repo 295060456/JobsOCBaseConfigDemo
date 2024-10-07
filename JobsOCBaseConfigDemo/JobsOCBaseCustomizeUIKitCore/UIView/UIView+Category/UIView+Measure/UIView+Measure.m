@@ -46,8 +46,9 @@
     return ^__kindof UIView *_Nullable(CGSize data){
         @jobs_strongify(self)
         UIView <BaseViewProtocol>*instance = self.class.new;
-        instance.bySize(data);
-        return instance;
+        if ([instance respondsToSelector:@selector(bySize)]) {
+            instance.bySize(data); // 确保视图有 bySize: 方法
+        }return instance;
     };
 }
 /// 设置控件的 Frame
@@ -56,8 +57,9 @@
     return ^__kindof UIView *_Nullable(CGRect data){
         @jobs_strongify(self)
         UIView <BaseViewProtocol>*instance = self.class.new;
-        instance.byFrame(data);
-        return instance;
+        if ([instance respondsToSelector:@selector(byFrame)]) {
+            instance.byFrame(data); // 确保视图有 bySize: 方法
+        }return instance;
     };
 }
 /// 设置控件的 Origin
@@ -66,8 +68,9 @@
     return ^__kindof UIView *_Nullable(CGPoint data){
         @jobs_strongify(self)
         UIView <BaseViewProtocol>*instance = self.class.new;
-        instance.byOrigin(data);
-        return instance;
+        if ([instance respondsToSelector:@selector(byOrigin)]) {
+            instance.byOrigin(data); // 确保视图有 bySize: 方法
+        }return instance;
     };
 }
 /// 设置控件的 Width
@@ -76,8 +79,9 @@
     return ^__kindof UIView *_Nullable(CGFloat data){
         @jobs_strongify(self)
         UIView <BaseViewProtocol>*instance = self.class.new;
-        instance.byWidth(data);
-        return instance;
+        if ([instance respondsToSelector:@selector(byWidth)]) {
+            instance.byWidth(data); // 确保视图有 bySize: 方法
+        }return instance;
     };
 }
 /// 设置控件的 Height
@@ -86,8 +90,9 @@
     return ^__kindof UIView *_Nullable(CGFloat data){
         @jobs_strongify(self)
         UIView <BaseViewProtocol>*instance = self.class.new;
-        instance.byHeight(data);
-        return instance;
+        if ([instance respondsToSelector:@selector(byHeight)]) {
+            instance.byHeight(data); // 确保视图有 bySize: 方法
+        }return instance;
     };
 }
 /// 设置控件的 Center
@@ -96,8 +101,9 @@
     return ^__kindof UIView *_Nullable(CGFloat x,CGFloat y){
         @jobs_strongify(self)
         UIView <BaseViewProtocol>*instance = self.class.new;
-        instance.byCenter(x,y);
-        return instance;
+        if ([instance respondsToSelector:@selector(byCenter)]) {
+            instance.byCenter(x,y); // 确保视图有 bySize: 方法
+        }return instance;
     };
 }
 #pragma mark ——【实例方法】设置控件的约束（返回控件自己本身）

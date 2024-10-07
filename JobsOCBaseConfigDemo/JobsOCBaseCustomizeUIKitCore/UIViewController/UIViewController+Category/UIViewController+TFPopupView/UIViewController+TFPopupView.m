@@ -9,36 +9,36 @@
 
 @implementation UIViewController (TFPopupView)
 /// 弹出筛选视图
--(UIView *)popUpFiltrationView{
+-(__kindof UIView *)popUpFiltrationView{
     self.popupParameter.disuseBackgroundTouchHide = NO;
-    CGRect targetFrame = CGRectMake(0,
-                                    0,
-                                    JobsFiltrationView.viewSizeByModel(nil).width,
-                                    JobsFiltrationView.viewSizeByModel(nil).height);
     if ([self isKindOfClass:UIViewController.class]) {
         [self.filtrationView tf_showFold:self.view
-                             targetFrame:targetFrame
+                             targetFrame:jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+            data.jobsWidth = JobsFiltrationView.viewSizeByModel(nil).width;
+            data.jobsHeight = JobsFiltrationView.viewSizeByModel(nil).height;
+        })
                                direction:PopupDirectionTop
                               popupParam:self.popupParameter];
     }return self.filtrationView;
 }
 /// 弹出自定义视图
--(UIView *)popUpCustomView{
+-(__kindof UIView *)popUpCustomView{
     self.popupParameter.disuseBackgroundTouchHide = NO;
-    CGRect targetFrame = CGRectMake(0,
-                                    0,
-                                    JobsCustomView.viewSizeByModel(nil).width,
-                                    JobsCustomView.viewSizeByModel(nil).height);
     if ([self isKindOfClass:UIViewController.class]) {
         [self.customView tf_showFold:self.view
-                         targetFrame:targetFrame
+                         targetFrame:jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+            data.jobsWidth = JobsCustomView.viewSizeByModel(nil).width;
+            data.jobsHeight = JobsCustomView.viewSizeByModel(nil).height;
+        })
                            direction:PopupDirectionTop
                           popupParam:self.popupParameter];
     }return self.customView;
 }
 /// 关闭弹出的视图
--(void)hidePopupView:(UIView *)popupView{
-    [popupView tf_hide];
+-(jobsByViewBlock _Nonnull)hidePopupView{
+    return ^(__kindof UIView *_Nullable view){
+        [view tf_hide:nil];
+    };
 }
 #pragma mark —— @property(nonatomic,strong)JobsFiltrationView *filtrationView;/// 过滤
 JobsKey(_filtrationView)
@@ -46,10 +46,9 @@ JobsKey(_filtrationView)
 -(JobsFiltrationView *)filtrationView{
     JobsFiltrationView *FiltrationView = Jobs_getAssociatedObject(_filtrationView);
     if (!FiltrationView) {
-        FiltrationView = JobsFiltrationView.new;
-        FiltrationView.Size = JobsFiltrationView.viewSizeByModel(nil);
-        FiltrationView.jobsRichViewByModel(nil);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_filtrationView, FiltrationView)
+        Jobs_setAssociatedRETAIN_NONATOMIC(_filtrationView, JobsFiltrationView
+                                           .BySize(JobsFiltrationView.viewSizeByModel(nil))
+                                           .JobsRichViewByModel2(nil));
     }return FiltrationView;
 }
 
@@ -62,10 +61,9 @@ JobsKey(_customView)
 -(JobsCustomView *)customView{
     JobsCustomView *CustomView = Jobs_getAssociatedObject(_customView);
     if (!CustomView) {
-        CustomView = JobsCustomView.new;
-        CustomView.Size = JobsFiltrationView.viewSizeByModel(nil);
-        CustomView.jobsRichViewByModel(nil);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_customView, CustomView)
+        Jobs_setAssociatedRETAIN_NONATOMIC(_customView, JobsCustomView
+                                           .BySize(JobsFiltrationView.viewSizeByModel(nil))
+                                           .JobsRichViewByModel2(nil))
     }return CustomView;
 }
 

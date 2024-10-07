@@ -6,6 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBaseCustomizeUIKitCoreHeader.h"
+#import "JobsBlock.h" // 自定义
 
 #if __has_include(<TFPopup/TFPopup.h>)
 #import <TFPopup/TFPopup.h>
@@ -16,6 +18,7 @@
 #import "JobsCustomView.h" // 自定义
 #import "JobsFiltrationView.h" // 过滤
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (TFPopupView)
@@ -23,11 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)JobsFiltrationView *filtrationView;/// 过滤
 @property(nonatomic,strong)JobsCustomView *customView;/// 自定义
 /// 弹出筛选视图
--(UIView *)popUpFiltrationView;
+-(__kindof UIView *)popUpFiltrationView;
 /// 弹出自定义视图
--(UIView *)popUpCustomView;
+-(__kindof UIView *)popUpCustomView;
 /// 关闭弹出的视图
--(void)hidePopupView:(UIView *)popupView;
+-(jobsByViewBlock _Nonnull)hidePopupView;
 
 @end
 

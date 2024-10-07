@@ -40,9 +40,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nullable)NSMutableDictionary *jobsDataMutDic;/// 绑定的数据源，数据类型NSMutableDictionary
 @property(nonatomic,strong,nullable)Class cls;/// 绑定的class
 @property(nonatomic,strong,nullable)RACSignal *reqSignal;
-@property(nonatomic,strong,nullable)id data;/// 绑定的数据源，数据类型id
-@property(nonatomic,strong,nullable)id requestParams;/// 绑定的数据源，数据类型id
+/// 强引用数据源
+@property(nonatomic,strong,nullable)id data;/// 【强引用】绑定的数据源，数据类型id
+@property(nonatomic,strong,nullable)id requestParams;/// 【强引用】绑定的数据源，数据类型id
 @property(nonatomic,strong,nullable)UIViewModel *viewModel;
+/// 弱引用数据源
+@property(nonatomic,strong,nullable)id data_weak;/// 【弱引用】绑定的数据源，数据类型id
+@property(nonatomic,strong,nullable)id requestParams_weak;/// 【弱引用】绑定的数据源，数据类型id
+@property(nonatomic,strong,nullable)UIViewModel *viewModel_weak;
 @property(nonatomic,strong)NSURL *url;
 #pragma mark —— 定位
 @property(nonatomic,assign)NSUInteger jobsTag;
@@ -77,9 +82,12 @@ NS_ASSUME_NONNULL_END
 @synthesize cls = _cls;\
 @synthesize reqSignal = _reqSignal;\
 @synthesize data = _data;\
+@synthesize data_weak = _data_weak;\
 @synthesize requestParams = _requestParams;\
-@synthesize url = _url;\
+@synthesize requestParams_weak = _requestParams_weak;\
 @synthesize viewModel = _viewModel;\
+@synthesize viewModel_weak = _viewModel_weak;\
+@synthesize url = _url;\
 @synthesize jobsTag = _jobsTag;\
 @synthesize jobsSelected = _jobsSelected;\
 @synthesize jobsEnabled = _jobsEnabled;\
@@ -110,8 +118,11 @@ NS_ASSUME_NONNULL_END
 @dynamic reqSignal;\
 @dynamic data;\
 @dynamic requestParams;\
-@dynamic url;\
 @dynamic viewModel;\
+@dynamic data_weak;\
+@dynamic requestParams_weak;\
+@dynamic viewModel_weak;\
+@dynamic url;\
 @dynamic jobsTag;\
 @dynamic jobsSelected;\
 @dynamic jobsEnabled;\
