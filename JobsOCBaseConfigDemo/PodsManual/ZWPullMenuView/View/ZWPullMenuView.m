@@ -255,7 +255,7 @@
 
 + (instancetype)pullMenuAnchorView:(UIView *)anchorView
                          menuArray:(NSArray<ZWPullMenuModel *> *)menuArray{
-    UIWindow * window = NSObject.mainWindow();
+    UIWindow * window = MainWindow;
     ZWPullMenuView *menuView = [[ZWPullMenuView alloc] init];
     menuView.frame = [UIScreen mainScreen].bounds;
     [window addSubview:menuView];
@@ -290,7 +290,7 @@
 
 + (instancetype)pullMenuAnchorPoint:(CGPoint)anchorPoint
                           menuArray:(NSArray<ZWPullMenuModel *> *)menuArray{
-    UIWindow * window = NSObject.mainWindow();
+    UIWindow * window = MainWindow;
     ZWPullMenuView *menuView = [[ZWPullMenuView alloc] init];
     menuView.frame = [UIScreen mainScreen].bounds;
     [window addSubview:menuView];

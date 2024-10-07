@@ -39,8 +39,8 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         static_uploadingProgressView = self;
-        [NSObject.mainWindow() addSubview:self];
-        [NSObject.mainWindow() bringSubviewToFront:self];
+        [MainWindow addSubview:self];
+        [MainWindow bringSubviewToFront:self];
         self.imge = JobsIMG(@"icon_upload_imge");
         self.strokeColor = self.byPatternImage(JobsIMG(@"gradualColor").imageResize(CGSizeMake(50, 25)));; //圆环底色
         self.radius = 34;

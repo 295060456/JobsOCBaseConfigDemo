@@ -31,6 +31,11 @@ NS_INLINE CGFloat jobs3TO(CGFloat Obj1, CGFloat Obj2) {
     /// 三目运算符（Ternary Operator）之所以被称为 "三目" 运算符，是因为它涉及三个操作数。它是唯一一个需要三个操作数的运算符。
     return Obj1 ? Obj1 : Obj2;
 }
+
+NS_INLINE CGSize jobs3TOSize(CGSize Obj1, CGSize Obj2) {
+    /// 三目运算符（Ternary Operator）之所以被称为 "三目" 运算符，是因为它涉及三个操作数。它是唯一一个需要三个操作数的运算符。
+    return CGSizeEqualToSize(CGSizeZero, Obj1) ? Obj2 : Obj1;
+}
 NS_ASSUME_NONNULL_BEGIN
 //在 Objective-C 中，向 nil 对象发送消息不会崩溃
 //但是如果你尝试对 nil 对象调用分类中的方法，可能会导致问题。

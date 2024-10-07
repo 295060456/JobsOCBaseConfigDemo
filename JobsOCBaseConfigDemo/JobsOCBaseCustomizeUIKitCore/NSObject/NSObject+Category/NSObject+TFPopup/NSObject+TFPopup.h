@@ -16,7 +16,7 @@
 
 #pragma mark —— 创建数据源
 NS_INLINE TFPopupParam * _Nonnull makeSlidePopupParameterByViewHeight(CGFloat viewHeight){
-    TFPopupParam *popupParameter = TFPopupParam.new;
+    TFPopupParam *popupParameter = TFPopupParam.alloc.init;
     popupParameter.bubbleDirection = PopupDirectionBottom;
     if(viewHeight){
         popupParameter.popupSize = CGSizeMake(JobsMainScreen_WIDTH(), viewHeight);
@@ -28,7 +28,7 @@ NS_INLINE TFPopupParam * _Nonnull makeSlidePopupParameterByViewHeight(CGFloat vi
 }
 
 NS_INLINE TFPopupParam *_Nonnull makeNormalPopupParameter(void){
-    TFPopupParam *popupParameter = TFPopupParam.new;
+    TFPopupParam *popupParameter = TFPopupParam.alloc.init;
     popupParameter.duration = 0.3;
     popupParameter.showAnimationDelay = 0;
     popupParameter.hideAnimationDelay = 0;
@@ -50,13 +50,9 @@ NS_INLINE TFPopupParam *_Nonnull makeNormalTipsParameter(void){
 }
 
 NS_INLINE TFPopupParam *_Nonnull makeSlidePopupParameterByViewSize(CGSize viewSize){
-    TFPopupParam *popupParameter = TFPopupParam.new;
+    TFPopupParam *popupParameter = TFPopupParam.alloc.init;
     popupParameter.bubbleDirection = PopupDirectionBottom;
-    if(jobsZeroSizeValue(viewSize)){
-        popupParameter.popupSize = CGSizeMake(JobsMainScreen_WIDTH(), 300);
-    }else{
-        popupParameter.popupSize = viewSize;
-    }
+    popupParameter.popupSize = jobs3TOSize(viewSize,CGSizeMake(JobsMainScreen_WIDTH(), 300));
     popupParameter.dragEnable = YES;
     return popupParameter;
 }
@@ -66,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Data
 @property(nonatomic,strong)TFPopupParam *popupParameter;
 @property(nonatomic,strong)TFPopupParam *tipsParameter;
+#pragma mark —— 保证弹窗一定是被初始化
+-(__kindof UIView *)checkByView:(UIView *)view action:(jobsByVoidBlock _Nullable)action;
 #pragma mark —— 弹出提示框
 -(jobsByStringBlock _Nonnull)toastMsg;
 #pragma mark —— 创建缩放模式下的View
@@ -90,6 +88,16 @@ NS_ASSUME_NONNULL_BEGIN
 #warning 这样写的目的是方便在其他地方调用
 /// 公告
 -(JobsNoticePopupView *)noticePopupView;
+/// 登录
+-(LoginView *)loginView;
+/// 退出登录
+-(SignOutView *)signOutView;
+/// 注册
+-(SignUpView *)signUpView;
+/// 密码重置-密码确认
+-(PwdSettingView *)pwdSettingView;
+/// 密码重置-手机验证码
+-(PwdSettingByCodeView *)pwdSettingByCodeView;
 
 @end
 

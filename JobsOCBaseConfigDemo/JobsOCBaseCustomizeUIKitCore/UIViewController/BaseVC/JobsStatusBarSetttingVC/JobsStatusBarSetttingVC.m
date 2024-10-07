@@ -88,7 +88,7 @@ BaseViewControllerProtocol_synthesize
     return ^(UIColor *_Nullable cor) {
         @jobs_strongify(self)
         if (@available(iOS 13.0, *)) {
-            if (!NSObject.mainWindow().subviews.containsObject(self.statusBar)) {
+            if (!MainWindow.subviews.containsObject(self.statusBar)) {
                 [self.statusBar removeFromSuperview];
             }
             if(!cor) cor = JobsWhiteColor;

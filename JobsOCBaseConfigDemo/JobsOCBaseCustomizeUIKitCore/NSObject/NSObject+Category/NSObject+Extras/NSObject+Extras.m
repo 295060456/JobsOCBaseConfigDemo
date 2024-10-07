@@ -63,7 +63,7 @@
 }
 /// 获得当前的控制器
 -(__kindof UIViewController *_Nullable)getCurrentViewController{
-    return self.getCurrentViewControllerByRootVC(NSObject.mainWindow().rootViewController);
+    return self.getCurrentViewControllerByRootVC(MainWindow.rootViewController);
 }
 /// 获得当前控制器的根控制器
 -(JobsReturnVCByVC _Nonnull)getCurrentViewControllerByRootVC{
@@ -865,13 +865,13 @@
                                             data.count * JobsDropDownListTBVCell.cellHeightByModel(nil));
     }
     
-    [NSObject.mainWindow() addSubview:dropDownListView];
+    [MainWindow addSubview:dropDownListView];
     return dropDownListView;
 }
 /// iOS 获取任意控件在屏幕中的坐标
 -(CGRect)getWindowFrameByView:(UIView *_Nonnull)view{
     // 将rect由rect所在视图转换到目标视图view中，返回在目标视图view中的rect
-    CGRect rect = [view convertRect:view.bounds toView:NSObject.mainWindow()];
+    CGRect rect = [view convertRect:view.bounds toView:MainWindow];
     return rect;
     /**
      类似的：

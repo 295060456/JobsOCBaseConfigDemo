@@ -28,7 +28,7 @@
     /// 先检查MainWindow里面是否存在本类，如果存在即释放 保证只创建一次
     JobsPullListAutoSizeView *(^checkMainWindowExistSelf)(void) = ^(void){
         JobsPullListAutoSizeView *jobsPullListAutoSizeView = nil;
-        for (UIView *subview in NSObject.mainWindow().subviews) {
+        for (UIView *subview in MainWindow.subviews) {
             if ([subview isKindOfClass:JobsPullListAutoSizeView.class]) {
                 jobsPullListAutoSizeView = (JobsPullListAutoSizeView *)subview;
             }
@@ -56,9 +56,9 @@
 -(void)makeUI{
     self.backgroundColor = JobsGrayColor;
     self.alpha = 0.7;
-    [NSObject.mainWindow() addSubview:self];
-    self.frame = NSObject.mainWindow().frame;
-    [NSObject.mainWindow() bringSubviewToFront:self];
+    [MainWindow addSubview:self];
+    self.frame = MainWindow.frame;
+    [MainWindow bringSubviewToFront:self];
     self.tableview.alpha = 1;
 }
 
@@ -100,7 +100,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableview.dataSource = self;
         [self addSubview:_tableview];
         
-        CGRect d = [self.targetView convertRect:self.targetView.bounds toView:NSObject.mainWindow()];
+        CGRect d = [self.targetView convertRect:self.targetView.bounds toView:MainWindow];
         CGFloat tableviewHeight = self.listTbVCellHeight * self.dataMutArr.count;
         CGFloat tableviewY = d.origin.y - tableviewHeight - self.listTbVOffset;
 

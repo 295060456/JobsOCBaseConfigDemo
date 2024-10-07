@@ -87,6 +87,10 @@ typedef NS_ENUM(NSInteger, DeviceOrientation) {
 };
 #endif /* DeviceOrientation_typedef */
 
+#ifndef MainWindow
+#define MainWindow NSObject.mainWindow()
+#endif /* MainWindow */
+
 NS_INLINE NSObject *_Nullable idToObject(id _Nullable data){
     if ([data isKindOfClass:NSObject.class]) {
         NSObject *object = (NSObject *)data;
