@@ -174,6 +174,16 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     _realTextField.placeholder = _placeholder;
 }
 
+-(void)setPlaceholderColor:(UIColor *)placeholderColor{
+    _placeholderColor = placeholderColor;
+    _realTextField.placeholderColor = _placeholderColor;
+}
+
+-(void)setPlaceholderFont:(UIFont *)placeholderFont{
+    _placeholderFont = placeholderFont;
+    _realTextField.placeholderFont = _placeholderFont;
+}
+
 -(void)setText:(NSString *)text{
     _text = text;
     _realTextField.text = _text;

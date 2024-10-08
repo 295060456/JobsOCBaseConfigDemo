@@ -199,6 +199,7 @@ NS_ASSUME_NONNULL_END
 @synthesize textLineSpacing = _textLineSpacing;\
 @synthesize placeholder = _placeholder;\
 @synthesize placeholderColor = _placeholderColor;\
+@synthesize placeholderFont = _placeholderFont;\
 @synthesize curWordCount = _curWordCount;\
 @synthesize maxWordCount = _maxWordCount;\
 @synthesize text = _text;\
@@ -368,6 +369,7 @@ NS_ASSUME_NONNULL_END
 @dynamic textLineSpacing;\
 @dynamic placeholder;\
 @dynamic placeholderColor;\
+@dynamic placeholderFont;\
 @dynamic curWordCount;\
 @dynamic maxWordCount;\
 @dynamic text;\
