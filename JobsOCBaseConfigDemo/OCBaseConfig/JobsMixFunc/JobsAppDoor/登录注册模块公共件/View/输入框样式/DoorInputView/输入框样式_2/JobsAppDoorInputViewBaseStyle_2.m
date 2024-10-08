@@ -49,7 +49,7 @@
     _textField.leftViewMode = self.doorInputViewBaseStyleModel.leftViewMode;
     _textField.returnKeyType = self.doorInputViewBaseStyleModel.returnKeyType;
     _textField.keyboardAppearance = self.doorInputViewBaseStyleModel.keyboardAppearance;
-    _textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
+    _textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
     _textField.keyboardType = self.doorInputViewBaseStyleModel.keyboardType;
     _textField.textColor = self.doorInputViewBaseStyleModel.titleStrCor;
     _textField.useCustomClearButton = self.doorInputViewBaseStyleModel.useCustomClearButton;
@@ -70,7 +70,7 @@
        value:(NSString *)value{
     
     self.textFieldInputModel.resString = value;
-    self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeHolderStr;
+    self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeholder;
 
     textField.requestParams = self.textFieldInputModel;
     

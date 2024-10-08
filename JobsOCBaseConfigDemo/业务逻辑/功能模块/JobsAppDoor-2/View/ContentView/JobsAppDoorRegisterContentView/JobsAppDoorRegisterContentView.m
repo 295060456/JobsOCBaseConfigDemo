@@ -181,7 +181,7 @@
         
         JobsAppDoorInputViewBaseStyleModel *用户名 = JobsAppDoorInputViewBaseStyleModel.new;
         用户名.leftViewIMG = JobsIMG(@"用户名称");
-        用户名.placeHolderStr = @"用户名";
+        用户名.placeholder = @"用户名";
         用户名.isShowDelBtn = YES;
         用户名.isShowSecurityBtn = NO;
         用户名.returnKeyType = UIReturnKeyDone;
@@ -191,7 +191,7 @@
         
         JobsAppDoorInputViewBaseStyleModel *密码 = JobsAppDoorInputViewBaseStyleModel.new;
         密码.leftViewIMG = JobsIMG(@"Lock");
-        密码.placeHolderStr = @"密码";
+        密码.placeholder = @"密码";
         密码.isShowDelBtn = YES;
         密码.isShowSecurityBtn = YES;
         密码.returnKeyType = UIReturnKeyDone;
@@ -203,7 +203,7 @@
         
         JobsAppDoorInputViewBaseStyleModel *确认密码 = JobsAppDoorInputViewBaseStyleModel.new;
         确认密码.leftViewIMG = JobsIMG(@"Lock");
-        确认密码.placeHolderStr = @"确认密码";
+        确认密码.placeholder = @"确认密码";
         确认密码.isShowDelBtn = YES;
         确认密码.isShowSecurityBtn = YES;
         确认密码.returnKeyType = UIReturnKeyDone;
@@ -215,7 +215,7 @@
         
         JobsAppDoorInputViewBaseStyleModel *推广码 = JobsAppDoorInputViewBaseStyleModel.new;
         推广码.leftViewIMG = JobsIMG(@"推广码");
-        推广码.placeHolderStr = @"手机验证码";
+        推广码.placeholder = @"手机验证码";
         推广码.isShowDelBtn = YES;
         推广码.isShowSecurityBtn = NO;
         推广码.returnKeyType = UIReturnKeyDone;
@@ -225,7 +225,7 @@
         
         JobsAppDoorInputViewBaseStyleModel *图形验证码 = JobsAppDoorInputViewBaseStyleModel.new;
         图形验证码.leftViewIMG = JobsIMG(@"验证ICON");
-        图形验证码.placeHolderStr = @"图形验证码";
+        图形验证码.placeholder = @"图形验证码";
         图形验证码.isShowDelBtn = YES;
         图形验证码.isShowSecurityBtn = NO;
         图形验证码.returnKeyType = UIReturnKeyDone;

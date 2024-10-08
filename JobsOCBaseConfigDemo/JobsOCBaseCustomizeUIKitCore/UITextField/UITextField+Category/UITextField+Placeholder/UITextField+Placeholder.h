@@ -6,14 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UITextModelProtocol.h"
+#import "NSMutableArray+Extra.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UITextField (Placeholder)
-
-@property(nonatomic,strong)UIColor *placeholderColor;
-@property(nonatomic,strong)UIFont *placeholderFont;
-@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*defaultAttributedDataForPlaceHolderMutArr;
+@interface UITextField (Placeholder)<UITextModelProtocol>
 
 -(UILabel *)placeholderLabel;
 

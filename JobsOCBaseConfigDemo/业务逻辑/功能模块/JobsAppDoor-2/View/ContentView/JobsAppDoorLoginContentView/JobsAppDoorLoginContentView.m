@@ -245,7 +245,7 @@
         _loginDoorInputViewBaseStyleModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             JobsAppDoorInputViewBaseStyleModel *用户名 = JobsAppDoorInputViewBaseStyleModel.new;
             用户名.leftViewIMG = JobsIMG(@"用户名称");
-            用户名.placeHolderStr = @"用户名";
+            用户名.placeholder = @"用户名";
             用户名.isShowDelBtn = YES;
             用户名.isShowSecurityBtn = NO;
             用户名.returnKeyType = UIReturnKeyDone;
@@ -255,7 +255,7 @@
             
             JobsAppDoorInputViewBaseStyleModel *密码 = JobsAppDoorInputViewBaseStyleModel.new;
             密码.leftViewIMG = JobsIMG(@"Lock");
-            密码.placeHolderStr = @"密码";
+            密码.placeholder = @"密码";
             密码.isShowDelBtn = YES;
             密码.isShowSecurityBtn = YES;
             密码.selectedSecurityBtnIMG = JobsIMG(@"codeEncode");//闭眼

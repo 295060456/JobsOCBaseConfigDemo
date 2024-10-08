@@ -7,7 +7,6 @@
 //
 
 #import "JobsAppDoorContentView.h"
-
 // 可以发现：（animateWithDuration + Masonry，动画参数设置无效）
 // 用户名 和 密码 ，登录注册两个界面共用，只不过frame不一样
 @interface JobsAppDoorContentView (){
@@ -525,7 +524,7 @@
         _loginDoorInputViewBaseStyleModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 用户名) {
                 用户名.leftViewIMG = JobsIMG(@"用户名称");
-                用户名.placeHolderStr = JobsInternationalization(@"User");
+                用户名.placeholder = JobsInternationalization(@"User");
                 用户名.isShowDelBtn = YES;
                 用户名.isShowSecurityBtn = NO;
                 用户名.useCustomClearButton = YES;
@@ -542,7 +541,7 @@
             }));
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 密码) {
                 密码.leftViewIMG = JobsIMG(@"Lock");
-                密码.placeHolderStr = JobsInternationalization(@"Code");
+                密码.placeholder = JobsInternationalization(@"Code");
                 密码.isShowDelBtn = YES;
                 密码.isShowSecurityBtn = YES;
                 密码.useCustomClearButton = YES;
@@ -565,7 +564,7 @@
         _registerDoorInputViewBaseStyleModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 用户名) {
                 用户名.leftViewIMG = JobsIMG(@"用户名称");
-                用户名.placeHolderStr = JobsInternationalization(@"User");
+                用户名.placeholder = JobsInternationalization(@"User");
                 用户名.isShowDelBtn = YES;
                 用户名.isShowSecurityBtn = NO;
                 用户名.useCustomClearButton = YES;
@@ -580,7 +579,7 @@
             }));
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 密码) {
                 密码.leftViewIMG = JobsIMG(@"Lock");
-                密码.placeHolderStr = JobsInternationalization(@"Code");
+                密码.placeholder = JobsInternationalization(@"Code");
                 密码.isShowDelBtn = YES;
                 密码.isShowSecurityBtn = YES;
                 密码.useCustomClearButton = YES;
@@ -596,7 +595,7 @@
             }));
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 确认密码) {
                 确认密码.leftViewIMG = JobsIMG(@"Lock");
-                确认密码.placeHolderStr = JobsInternationalization(@"Confirm");
+                确认密码.placeholder = JobsInternationalization(@"Confirm");
                 确认密码.isShowDelBtn = YES;
                 确认密码.isShowSecurityBtn = YES;
                 确认密码.useCustomClearButton = YES;
@@ -612,7 +611,7 @@
             }));
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 手机号码) {
                 手机号码.leftViewIMG = JobsIMG(@"手机号码");
-                手机号码.placeHolderStr = JobsInternationalization(@"Telephone");
+                手机号码.placeholder = JobsInternationalization(@"Telephone");
                 手机号码.isShowDelBtn = YES;
                 手机号码.isShowSecurityBtn = NO;
                 手机号码.useCustomClearButton = YES;
@@ -626,7 +625,7 @@
             }));
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 手机验证码) {
                 手机验证码.leftViewIMG = JobsIMG(@"验证ICON");
-                手机验证码.placeHolderStr = JobsInternationalization(@"Auth code");
+                手机验证码.placeholder = JobsInternationalization(@"Auth code");
                 手机验证码.isShowDelBtn = YES;
                 手机验证码.isShowSecurityBtn = NO;
                 手机验证码.useCustomClearButton = YES;

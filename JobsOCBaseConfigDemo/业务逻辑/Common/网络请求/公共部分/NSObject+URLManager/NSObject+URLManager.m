@@ -12,10 +12,14 @@
 #define JobsURL(URL) [NSObject url:(URL) funcName:NSStringFromSelector(_cmd)];
 #endif
 
-JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_DevEnviron;/// 开发环境
-//JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_UATEnviron;/// UAT环境
-//JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_ProductEnviron;/// 生产环境
-
+JobsNetworkingEnvir _networkingEnvir = JobsNetworkingEnvir_Undefined; // 全局变量的定义
+inline JobsNetworkingEnvir NetworkingEnvir(void) {
+//    _networkingEnvir =  JobsNetworkingEnvir_DevEnviron;/// 开发环境
+    _networkingEnvir =  JobsNetworkingEnvir_UATEnviron;/// UAT环境
+//    _networkingEnvir =  JobsNetworkingEnvir_ProductEnviron;/// 生产环境
+//    _networkingEnvir =  JobsNetworkingEnvir_Undefined;/// 未定义的网络环境
+    return _networkingEnvir;
+}
 /// 域名列表：
 /// https://docs.google.com/spreadsheets/d/1Iijk6KwNVXMhuu5VeQXaWZhXogKnuj1Ms1V6dWmz_ik/edit?gid=0#gid=0
 /// 体育接口文档：
@@ -36,7 +40,7 @@ JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_DevEnviron;/// 开发�
 }
 #pragma mark —— BaseURL
 -(NSString *)BaseUrl{
-    switch (networkingEnvir) {
+    switch (_networkingEnvir) {
         case JobsNetworkingEnvir_DevEnviron:{
             /// 开发环境
             return @"https://www.sports5555.com".urlProtect;
@@ -56,7 +60,7 @@ JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_DevEnviron;/// 开发�
 }
 
 -(NSString *)BaseUrl_Image{
-    switch (networkingEnvir) {
+    switch (_networkingEnvir) {
         case JobsNetworkingEnvir_DevEnviron:{
             /// 开发环境
             return @"https://p.bzpicx.com".urlProtect;
@@ -76,7 +80,7 @@ JobsNetworkingEnvir networkingEnvir = JobsNetworkingEnvir_DevEnviron;/// 开发�
 }
 
 -(NSString *)BaseUrl_H5{
-    switch (networkingEnvir) {
+    switch (_networkingEnvir) {
         case JobsNetworkingEnvir_DevEnviron:{
             /// 开发环境
             return @"".urlProtect;

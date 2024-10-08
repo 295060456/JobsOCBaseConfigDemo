@@ -41,7 +41,7 @@
 -(void)configTextField{
     _textField.leftView = [UIImageView.alloc initWithImage:self.doorInputViewBaseStyleModel.leftViewIMG];
     _textField.leftViewMode = self.doorInputViewBaseStyleModel.leftViewMode;
-    _textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
+    _textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
     _textField.keyboardType = self.doorInputViewBaseStyleModel.keyboardType;
     _textField.returnKeyType = self.doorInputViewBaseStyleModel.returnKeyType;
     _textField.keyboardAppearance = self.doorInputViewBaseStyleModel.keyboardAppearance;
@@ -64,7 +64,7 @@
        value:(NSString *)value{
     
     self.textFieldInputModel.resString = value;
-    self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeHolderStr;
+    self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeholder;
 
     textField.requestParams = self.textFieldInputModel;
     

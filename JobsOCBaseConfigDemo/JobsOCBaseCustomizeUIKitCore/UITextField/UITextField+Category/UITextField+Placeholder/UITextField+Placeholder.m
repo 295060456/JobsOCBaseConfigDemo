@@ -8,9 +8,10 @@
 #import "UITextField+Placeholder.h"
 
 @implementation UITextField (Placeholder)
+UITextModelProtocol_dynamic
 /// 修改Placeholder亦可以通过富文本来完成
 -(NSAttributedString *)defaultAttributedPlaceholder{
-    return self.richTextWithDataConfigMutArr(self.defaultAttributedDataForPlaceHolderMutArr);
+    return self.richTextWithDataConfigMutArr(self.titleAttributedDataMutArr);
 }
 
 -(UILabel *)placeholderLabel{
@@ -25,7 +26,6 @@
 }
 #pragma mark —— @property(nonatomic,strong)UIColor *placeholderColor;
 JobsKey(_placeholderColor)
-@dynamic placeholderColor;
 -(UIColor *)placeholderColor{
     UIColor *PlaceholderColor = Jobs_getAssociatedObject(_placeholderColor);
     if (!PlaceholderColor) {
@@ -41,7 +41,6 @@ JobsKey(_placeholderColor)
 }
 #pragma mark —— @property(nonatomic,strong)UIFont *placeholderFont;
 JobsKey(_placeholderFont)
-@dynamic placeholderFont;
 -(UIFont *)placeholderFont{
     UIFont *PlaceholderFont = Jobs_getAssociatedObject(_placeholderFont);
     if (!PlaceholderFont) {
@@ -55,14 +54,15 @@ JobsKey(_placeholderFont)
     self.placeholderLabel.font = placeholderFont;
     Jobs_setAssociatedRETAIN_NONATOMIC(_placeholderFont, placeholderFont)
 }
-#pragma mark —— @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*defaultAttributedDataMutArr;
-JobsKey(_defaultAttributedDataForPlaceHolderMutArr)
-@dynamic defaultAttributedDataForPlaceHolderMutArr;
--(NSMutableArray<JobsRichTextConfig *> *)defaultAttributedDataForPlaceHolderMutArr{
-    NSMutableArray *DefaultAttributedDataMutArr = Jobs_getAssociatedObject(_defaultAttributedDataForPlaceHolderMutArr);
-    if (!DefaultAttributedDataMutArr) {
-        DefaultAttributedDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+#pragma mark —— @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*titleAttributedDataMutArr;
+JobsKey(_titleAttributedDataMutArr)
+-(NSMutableArray<JobsRichTextConfig *> *)titleAttributedDataMutArr{
+    NSMutableArray *TitleAttributedDataMutArr = Jobs_getAssociatedObject(_titleAttributedDataMutArr);
+    if (!TitleAttributedDataMutArr) {
+        @jobs_weakify(self)
+        TitleAttributedDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                @jobs_strongify(self)
                 data1.targetString = self.placeholder;
                 data1.font = UIFontWeightRegularSize(10);
                 data1.textCor = JobsBlueColor;
@@ -71,13 +71,21 @@ JobsKey(_defaultAttributedDataForPlaceHolderMutArr)
         //        data1.urlStr;
                 data1.range =  NSMakeRange(0, self.placeholder.length);
             }));
-        });
-        Jobs_setAssociatedRETAIN_NONATOMIC(_defaultAttributedDataForPlaceHolderMutArr, DefaultAttributedDataMutArr)
-    }return DefaultAttributedDataMutArr;
+        });Jobs_setAssociatedRETAIN_NONATOMIC(_titleAttributedDataMutArr, TitleAttributedDataMutArr)
+    }return TitleAttributedDataMutArr;
 }
 
--(void)setDefaultAttributedDataForPlaceHolderMutArr:(NSMutableArray<JobsRichTextConfig *> *)defaultAttributedDataMutArr{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_defaultAttributedDataForPlaceHolderMutArr, defaultAttributedDataMutArr)
+-(void)setTitleAttributedDataMutArr:(NSMutableArray<JobsRichTextConfig *> *)titleAttributedDataMutArr{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_titleAttributedDataMutArr, titleAttributedDataMutArr)
+}
+#pragma mark —— @property(nonatomic,strong,nullable)NSAttributedString *attributedText API_AVAILABLE(ios(6.0));
+JobsKey(_attributedText)
+-(NSAttributedString *)attributedText{
+    NSAttributedString *AttributedText = Jobs_getAssociatedObject(_attributedText);
+    if(!AttributedText){
+        AttributedText = self.richTextWithDataConfigMutArr(self.titleAttributedDataMutArr);
+    }Jobs_setAssociatedRETAIN_NONATOMIC(_attributedText, AttributedText)
+    return AttributedText;
 }
 
 @end

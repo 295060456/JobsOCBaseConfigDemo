@@ -7,8 +7,6 @@
 
 #import "JobsBitsMonitorSuspendLab.h"
 
-extern JobsNetworkingEnvir networkingEnvir;
-
 @interface JobsBitsMonitorSuspendLab ()
 /// Data
 @property(nonatomic,strong)NSMutableArray <NSString *>*operationEnvironMutArr;
@@ -75,7 +73,7 @@ extern JobsNetworkingEnvir networkingEnvir;
     menuView.blockSelectedMenu = ^(NSInteger menuRow) {
         @jobs_strongify(self)
         NSLog(@"action----->%ld",(long)menuRow);
-        networkingEnvir = menuRow;
+        networkingEnvir(menuRow);
         if (menuRow + 1 <= self.operationEnvironMutArr.count) {
             self.jobsToastMsg(JobsInternationalization(@"当前环境").add(self.operationEnvironMutArr[menuRow]));
         }else self.jobsToastErrMsg(JobsInternationalization(@"切换环境出现错误"));

@@ -46,7 +46,7 @@
 //    _textField.leftView;
 //    _textField.leftViewMode;
     _textField.leftViewOffsetX = self.doorInputViewBaseStyleModel.leftViewOffsetX ? :  JobsWidth(17);
-    _textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
+    _textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
     _textField.placeholderColor = self.doorInputViewBaseStyleModel.placeholderColor;
     _textField.placeholderFont = self.doorInputViewBaseStyleModel.placeholderFont;
     _textField.placeHolderAlignment = self.doorInputViewBaseStyleModel.placeHolderAlignment ? : NSTextAlignmentLeft;
@@ -69,7 +69,7 @@
        value:(NSString *)value{
     
     self.textFieldInputModel.resString = value;
-    self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeHolderStr;
+    self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeholder;
 
     textField.requestParams = self.textFieldInputModel;
     

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 #import "BaseProtocol.h"
+@class AppDelegate;
 /// 单例工具箱
 #ifndef JobsAppTool
 #define JobsAppTool JobsAppTools.sharedManager

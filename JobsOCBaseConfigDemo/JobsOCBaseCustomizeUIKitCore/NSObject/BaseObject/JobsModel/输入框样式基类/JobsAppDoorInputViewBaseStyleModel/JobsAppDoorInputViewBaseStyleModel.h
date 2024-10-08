@@ -13,37 +13,38 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsAppDoorInputViewBaseStyleModel : UIViewModel
-/// 关于左右的标识图
+#pragma mark —— 关于左右的标识图
 @property(nullable,nonatomic,strong)UIImage *leftViewIMG;
 @property(nullable,nonatomic,strong)UIImage *selectedSecurityBtnIMG;
 @property(nullable,nonatomic,strong)UIImage *unSelectedSecurityBtnIMG;
 @property(nonatomic,assign)BOOL isShowDelBtn;/// 是否显示删除按钮,默认不显示
 @property(nonatomic,assign)BOOL isShowSecurityBtn;/// 是否显示安全按钮（眼睛）,默认不显示
 @property(nonatomic,assign)BOOL useCustomClearButton;/// 是否使用自定义的删除按钮 ,默认不使用
-/// 关于 placeHolder
-@property(nullable,nonatomic,strong)NSString *placeHolderStr;
-@property(nonatomic,strong)UIColor *placeholderCor;
-@property(nonatomic,strong)UIFont *placeholderFont;
-@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*defaultAttributedDataForPlaceHolderMutArr;
-/// 关于输入的文本字符
+#pragma mark —— 关于 placeHolder
+/// placeholder
+/// placeholderFont
+/// placeholderColor
+/// attributedText
+/// titleAttributedDataMutArr
+#pragma mark —— 关于输入的文本字符
 @property(nullable,nonatomic,strong)NSString *nickNamePlaceHolderStr;
 @property(nullable,nonatomic,strong)NSString *titleLabStr;
 @property(nullable,nonatomic,strong)UIFont *titleStrFont;
 @property(nullable,nonatomic,strong)UIColor *titleStrCor;
 @property(nullable,nonatomic,strong)NSString *inputStr;/// 输入框里面的实时内容
 @property(nonatomic,assign)NSInteger inputCharacterRestriction;/// 输入字符限制
-/// 关于键盘⌨️配置
+#pragma mark —— 关于键盘⌨️配置
 @property(nonatomic,assign)UIReturnKeyType returnKeyType;
 @property(nonatomic,assign)UIKeyboardAppearance keyboardAppearance;
 @property(nonatomic,assign)UITextFieldViewMode leftViewMode;
 @property(nonatomic,assign)UIKeyboardType keyboardType;
 @property(nonatomic,assign)BOOL keyboardEnable;
-/// 关于TextField
+#pragma mark —— 关于TextField
 @property(nullable,nonatomic,strong)UIColor *backgroundColor UI_APPEARANCE_SELECTOR;
 @property(nullable,nonatomic,strong)UIImage *disabledBackground;
 @property(nullable,nonatomic,strong)UIImage *background;
 @property(nonatomic,assign)CGSize tfSize;
-/// 关于 ZYTextField
+#pragma mark —— 关于 ZYTextField
 @property(nonatomic,assign)CGFloat TFRiseHeight;/// 键盘在此手机上的最高弹起，区别于全面屏结合非全面屏，有一个安全区域34
 @property(nonatomic,assign)CGFloat placeHolderOffset;/// 左/右/居中 对齐的时候placeHolder的偏移量【传正值】
 @property(nonatomic,assign)CGFloat fieldEditorOffset; /// 因为设置了leftView后fieldEditor所需的偏移量
@@ -58,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UIFont *ZYtextFont;/// 字体大小
 @property(nonatomic,assign)CGFloat ZYTextFieldCornerRadius;
 @property(nonatomic,assign)CGFloat ZYTextFieldBorderWidth;
-/// 关于 JobsMagicTextField
+#pragma mark —— 关于 JobsMagicTextField
 @property(nonatomic,assign,getter=isPlaceholdAnimationable)BOOL placeholdAnimationable;// 是否开启动画
 @property(nonatomic,strong)UIColor *animationColor;/// 动画最终字颜色
 @property(nonatomic,strong)UIFont *animationFont;/// 动画最终字体

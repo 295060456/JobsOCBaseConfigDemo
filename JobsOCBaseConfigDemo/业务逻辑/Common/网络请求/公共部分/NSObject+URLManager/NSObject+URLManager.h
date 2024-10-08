@@ -17,6 +17,25 @@
 /// http://16.163.191.190:8099/doc.html
 /// http://16.163.191.190:9201/doc.html#/default/%E5%BB%A3%E5%91%8A%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3/addUsingPOST_1
 /// 接口文档会因为后端开发而同步，使用时务必进行确认
+
+extern JobsNetworkingEnvir _networkingEnvir;
+JobsNetworkingEnvir NetworkingEnvir(void);
+NS_INLINE JobsNetworkingEnvir networkingEnvir(NSInteger data){
+    switch (data) {
+        case JobsNetworkingEnvir_DevEnviron:{
+            _networkingEnvir = JobsNetworkingEnvir_DevEnviron;/// 开发环境
+        }break;
+        case JobsNetworkingEnvir_UATEnviron:{
+            _networkingEnvir = JobsNetworkingEnvir_UATEnviron;/// UAT环境
+        }break;
+        case JobsNetworkingEnvir_ProductEnviron:{
+            _networkingEnvir = JobsNetworkingEnvir_ProductEnviron;/// 生产环境
+        }break;
+        default:
+            _networkingEnvir = JobsNetworkingEnvir_Undefined;/// 未定义的网络环境
+            break;
+    }return _networkingEnvir;
+}
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (URLManager)

@@ -69,7 +69,7 @@
 }
 
 -(void)configTextField{
-    _textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
+    _textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
     _textField.background = self.doorInputViewBaseStyleModel.background;
     _textField.keyboardType = self.doorInputViewBaseStyleModel.keyboardType;
     _textField.textColor = self.doorInputViewBaseStyleModel.ZYtextColor;
@@ -155,7 +155,7 @@
                 }
                 self.textField.secureTextEntry = x.selected;
                 if (x.selected && !self.textField.isEditing) {
-                    self.textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
+                    self.textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
                 }
         }).onLongPressGesture(^(id data){
             NSLog(@"");

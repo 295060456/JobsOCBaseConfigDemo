@@ -13,7 +13,7 @@
 @end
 
 @implementation JobsAppDoorInputViewBaseStyleModel
-
+UIViewModelProtocol_synthesize
 - (instancetype)init{
     if (self = [super init]) {
         self.keyboardEnable = YES;
@@ -38,10 +38,10 @@
     }return _placeholderFont;
 }
 
--(UIColor *)placeholderCor{
-    if (!_placeholderCor) {
-        _placeholderCor = HEXCOLOR(0x524740);
-    }return _placeholderCor;
+-(UIColor *)placeholderColor{
+    if (!_placeholderColor) {
+        _placeholderColor = HEXCOLOR(0x524740);
+    }return _placeholderColor;
 }
 
 @end

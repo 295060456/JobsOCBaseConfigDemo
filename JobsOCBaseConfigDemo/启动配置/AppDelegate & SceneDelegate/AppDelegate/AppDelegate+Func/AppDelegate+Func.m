@@ -24,9 +24,10 @@
          * 苹果要求：可重复产生的数据不得进行同步,什么叫做可重复数据？这里最好禁止，否则会影响上架，被拒！
          */
         FileFolderHandleTool.banSysDocSynchronization();
-    #ifdef DEBUG
+        NetworkingEnvir();/// 配置网络环境
+#ifdef DEBUG
         UIFont.getAvailableFont();/// 打印全员字体
-    #endif
+#endif
         self.makeJobsNavBarConfig();/// 全局配置 JobsNavBarConfig
         self.makeTABAnimatedConfig();/// 全局配置 TABAnimated
         self.makeIQKeyboardManagerConfig();/// 全局配置键盘
@@ -143,10 +144,10 @@
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        JobsUserModel *userModel = JobsUserModel.new;
-        userModel.token = @"12345";
-        userModel.uid = @"54321";
-        self.saveUserInfo(userModel);
+        self.saveUserInfo(jobsMakeUserModel(^(__kindof JobsUserModel<NSCoding> * _Nullable userModel) {
+            userModel.token = @"12345";
+            userModel.uid = @"54321";
+        }));
         NSLog(@"");
         JobsUserModel *f = self.readUserInfo();
         NSLog(@"");

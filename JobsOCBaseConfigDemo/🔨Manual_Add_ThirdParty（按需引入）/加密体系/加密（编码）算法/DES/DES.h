@@ -8,21 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonCrypto.h>
-
 //DES 加密
-NS_INLINE NSData *encryptUseDES(NSData *plainText,
-                                    Byte *key){
+NS_INLINE NSData *_Nullable encryptUseDES(NSData *_Nonnull plainText,
+                                          Byte *_Nonnull key){
     NSData *textData = plainText;
-    NSUInteger dataLength = [textData length];
+    NSUInteger dataLength = textData.length;
     unsigned char buffer[1024];
     memset(buffer, 0, sizeof(char));
     size_t numBytesEncrypted = 0;
-    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt, kCCAlgorithmDES,
+    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
+                                          kCCAlgorithmDES,
                                           kCCOptionECBMode,
                                           key,
                                           kCCKeySizeDES,
                                           nil,
-                                          [textData bytes],
+                                          textData.bytes,
                                           dataLength,
                                           buffer,
                                           1024,
@@ -34,8 +34,8 @@ NS_INLINE NSData *encryptUseDES(NSData *plainText,
     }return nil;
 }
 //DES 解密
-NS_INLINE NSData *decrypUseDES(NSData *plainText,
-                                   Byte *key){
+NS_INLINE NSData *_Nullable decrypUseDES(NSData *_Nonnull plainText,
+                                         Byte *_Nonnull key){
     NSData *cipherdata = plainText;
     unsigned char buffer[1024];
     memset(buffer, 0, sizeof(char));
@@ -46,8 +46,8 @@ NS_INLINE NSData *decrypUseDES(NSData *plainText,
                                           key,
                                           kCCKeySizeDES,
                                           nil,
-                                          [cipherdata bytes],
-                                          [cipherdata length],
+                                          cipherdata.bytes,
+                                          cipherdata.length,
                                           buffer,
                                           1024,
                                           &numBytesDecrypted);

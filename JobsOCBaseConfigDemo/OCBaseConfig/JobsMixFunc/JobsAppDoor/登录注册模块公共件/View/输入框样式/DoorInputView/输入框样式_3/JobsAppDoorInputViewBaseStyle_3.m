@@ -49,7 +49,7 @@
     _textField.leftView = [UIImageView.alloc initWithImage:self.doorInputViewBaseStyleModel.leftViewIMG];
     _textField.leftViewMode = self.doorInputViewBaseStyleModel.leftViewMode;
     _textField.textColor = self.doorInputViewBaseStyleModel.titleStrCor;
-    _textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
+    _textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
     _textField.returnKeyType = self.doorInputViewBaseStyleModel.returnKeyType;
     _textField.keyboardAppearance = self.doorInputViewBaseStyleModel.keyboardAppearance;
     _textField.useCustomClearButton = self.doorInputViewBaseStyleModel.useCustomClearButton;
@@ -72,7 +72,7 @@
        value:(NSString *)value{
 
     self.textFieldInputModel.resString = value;
-    self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeHolderStr;
+    self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeholder;
 
     textField.requestParams = self.textFieldInputModel;
     
@@ -132,7 +132,7 @@
             x.selected = !x.selected;
             self.textField.secureTextEntry = !x.selected;
             if (x.selected && !self.textField.isEditing) {
-                self.textField.placeholder = self.doorInputViewBaseStyleModel.placeHolderStr;
+                self.textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
             }return nil;
         }];
 
