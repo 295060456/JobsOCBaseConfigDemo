@@ -11,22 +11,28 @@
 //这是因为 nil 对象并不会执行任何方法实现，分类中的方法也不会被调用。
 @implementation NSObject (CallBackInfoByBlock)
 #pragma mark —— 一些复合型Block
--(JobsReturnViewByBlock3 _Nullable)JobsBlock1{
+-(JobsReturnViewByBlock1 _Nullable)JobsBlock1{
+    @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(jobsByIDBlock _Nullable data){
+        @jobs_strongify(self)
         [self setObjectBlock:data];
         return (UIView *)self;
     };
 }
 
 -(JobsReturnViewByBlock2 _Nullable)JobsBlock2{
+    @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(JobsReturnIDByVoidBlock _Nullable data){
+        @jobs_strongify(self)
         [self setReturnObjectByVoidBlock:data];
         return (UIView *)self;
     };
 }
 
--(JobsReturnViewByBlock1 _Nullable)JobsBlock3{
+-(JobsReturnViewByBlock3 _Nullable)JobsBlock3{
+    @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(JobsReturnIDByIDBlock _Nullable data){
+        @jobs_strongify(self)
         [self setReturnObjectBlock:data];
         return (UIView *)self;
     };

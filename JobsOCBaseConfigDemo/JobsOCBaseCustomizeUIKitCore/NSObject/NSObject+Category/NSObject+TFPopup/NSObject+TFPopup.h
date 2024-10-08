@@ -83,13 +83,27 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)popupShowSlideWithView:(UIView __kindof *_Nonnull)view
                popupParameter:(TFPopupParam *_Nullable)popupParameter;
 #pragma mark —— PopView
-/// 出现的弹窗需要手动触发关闭
+///【独占性】出现的弹窗需要手动触发关闭
 -(jobsByViewBlock _Nonnull)show_view;
-/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框
+///【独占性】出现的弹窗需要手动触发关闭——允许点击背景消失弹框
 -(jobsByViewBlock _Nonnull)show_view2;
-/// 出现的弹窗自动触发关闭
+///【独占性】出现的弹窗自动触发关闭
 -(jobsByViewBlock _Nonnull)show_tips;
 
 @end
 
 NS_ASSUME_NONNULL_END
+/**
+ @jobs_strongify(self)
+ if (self.objectBlock) self.objectBlock(x);
+ [self tf_hide:^{
+     @jobs_strongify(self)
+     ShowTips(AccBindSuccessTipView
+              .BySize(AccBindSuccessTipView.viewSizeByModel(nil))
+              .JobsRichViewByModel2(nil))
+              .JobsBlock1(^(UIButton *data) {
+                  @jobs_strongify(self)
+
+              });
+ }];
+ */

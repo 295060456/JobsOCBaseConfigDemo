@@ -18,7 +18,7 @@
 }
 #pragma mark —— 关闭所有的弹出提示框
 -(jobsByViewBlock _Nonnull)tfHideAllPopupView{
-    return ^(UIView __kindof * _Nullable data) {
+    return ^(__kindof UIView *_Nullable data) {
         for (__kindof UIView *popupView in UIView.tf_getAllPopup) {
             [popupView tf_hide:nil];
         }
@@ -36,7 +36,7 @@
 /// 没有自定义 popupParam（缩放模式）
 -(jobsByViewBlock _Nonnull)popupShowScaleWithView{
     @jobs_weakify(self)
-    return ^(UIView __kindof * _Nullable data) {
+    return ^(__kindof UIView *_Nullable data) {
         @jobs_strongify(self)
         [self checkByView:data action:^{
             @jobs_strongify(self)
@@ -58,7 +58,7 @@
     };
 }
 /// 有自定义popupParam（缩放模式）
--(void)popupShowScaleWithView:(UIView __kindof *_Nonnull)data
+-(void)popupShowScaleWithView:(__kindof UIView *_Nonnull)data
                popupParameter:(TFPopupParam *_Nullable)popupParameter{
     @jobs_weakify(self)
     [self checkByView:data action:^{
@@ -74,7 +74,7 @@
 /// 没有自定义 popupParam（滑动模式）
 -(jobsByViewBlock _Nonnull)popupShowSlideWithView{
     @jobs_weakify(self)
-    return ^(UIView __kindof * _Nullable data) {
+    return ^(__kindof UIView *_Nullable data) {
         @jobs_strongify(self)
         [self checkByView:data action:^{
             TFPopupParam *popupParameter = makeSlidePopupParameterByViewHeight(data.Size.height);
@@ -91,7 +91,7 @@
     };
 }
 /// 有自定义popupParam（滑动模式）
--(void)popupShowSlideWithView:(UIView __kindof *_Nonnull)data
+-(void)popupShowSlideWithView:(__kindof UIView *_Nonnull)data
                popupParameter:(TFPopupParam *_Nullable)popupParameter{
     if(!popupParameter) popupParameter = makeSlidePopupParameterByViewHeight(data.height);
     [self checkByView:data action:^{
@@ -141,7 +141,6 @@
     };
 }
 /// 出现的弹窗自动触发关闭
-
 -(jobsByViewBlock _Nonnull)show_tips{
     @jobs_weakify(self)
     return ^(UIView *_Nonnull data) {
@@ -149,13 +148,9 @@
         self.tipsParameter.popupSize = data.viewSizeByModel(nil);
         [self checkByView:data action:^{
             @jobs_strongify(self)
-            UIView *view = (UIView *)self;
-            [view tf_hide:^{
-                @jobs_strongify(self)
-                [view tf_showSlide:MainWindow
-                         direction:PopupDirectionContainerCenter
-                        popupParam:self.tipsParameter];
-            }];
+            [data tf_showSlide:MainWindow
+                     direction:PopupDirectionContainerCenter
+                    popupParam:self.tipsParameter];
         }];
     };
 }

@@ -203,9 +203,9 @@ typedef void(^jobsByNotificationModelBlock)(NotificationModel *_Nullable data);
 @class NSNotificationKeyboardModel;
 typedef void(^jobsByNSNotificationKeyboardModelBlock)(NSNotificationKeyboardModel *_Nullable data);
 
-typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock1)(JobsReturnIDByIDBlock _Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock1)(jobsByIDBlock _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock2)(JobsReturnIDByVoidBlock _Nullable data);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(jobsByIDBlock _Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBlock _Nullable data);
 
 #pragma mark —— 涉及到第三方类的Block定义
 @class RACDisposable;

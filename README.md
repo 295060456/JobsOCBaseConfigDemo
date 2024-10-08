@@ -4934,26 +4934,52 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 对其二次封装，方便使用。关注实现类：[<font color=blue>**`@implementation NSObject (TFPopup)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BTFPopup)
 
   * ```objective-c
-    /// 出现的弹窗需要手动触发关闭
+    #pragma mark —— PopView
+    /// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框
     -(jobsByViewBlock _Nonnull)show_view{
         @jobs_weakify(self)
-        return ^(UIView *_Nonnull view) {
+        return ^(UIView *_Nonnull data) {
             @jobs_strongify(self)
+            self.popupParameter.popupSize = data.viewSizeByModel(nil);
             self.popupParameter.dragEnable = YES;
             self.popupParameter.disuseBackgroundTouchHide = YES;/// 禁止点击背景消失弹框
-            [view tf_showSlide:NSObject.mainWindow()
-                     direction:PopupDirectionContainerCenter
-                    popupParam:self.popupParameter];
+            [self checkByView:data action:^{
+                @jobs_strongify(self)
+                [data tf_showSlide:MainWindow
+                         direction:PopupDirectionContainerCenter
+                        popupParam:self.popupParameter];
+            }];
+        };
+    }
+    /// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框
+    -(jobsByViewBlock _Nonnull)show_view2{
+        @jobs_weakify(self)
+        return ^(UIView *_Nonnull data) {
+            @jobs_strongify(self)
+            self.popupParameter.popupSize = data.viewSizeByModel(nil);
+            self.popupParameter.dragEnable = YES;
+            self.popupParameter.backgroundColor = JobsBlackColor.colorWithAlphaComponent(.3f);
+            self.popupParameter.disuseBackgroundTouchHide = NO;/// 允许点击背景消失弹框
+            [self checkByView:data action:^{
+                @jobs_strongify(self)
+                [data tf_showSlide:MainWindow
+                         direction:PopupDirectionContainerCenter
+                        popupParam:self.popupParameter];
+            }];
         };
     }
     /// 出现的弹窗自动触发关闭
     -(jobsByViewBlock _Nonnull)show_tips{
         @jobs_weakify(self)
-        return ^(UIView *_Nonnull view) {
+        return ^(UIView *_Nonnull data) {
             @jobs_strongify(self)
-            [view tf_showSlide:NSObject.mainWindow()
-                     direction:PopupDirectionContainerCenter
-                    popupParam:self.tipsParameter];
+            self.tipsParameter.popupSize = data.viewSizeByModel(nil);
+            [self checkByView:data action:^{
+                @jobs_strongify(self)
+                [data tf_showSlide:MainWindow
+                         direction:PopupDirectionContainerCenter
+                        popupParam:self.tipsParameter];
+            }];
         };
     }
     ```
@@ -4977,24 +5003,23 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * **出现**
     
     ```objective-c
-    self.show_view(self.deleteAccountView);
+    self.show_view(PopListBaseView
+                   .BySize(CGSizeMake(JobsWidth(328), JobsWidth(37 * 2)))
+                   .JobsRichViewByModel2(self.type_popList_dataMutArr)
+                   .JobsBlock1(^(UITableViewCell __kindof * _Nullable data){
+                       @jobs_strongify(self)
+                       self.type_textField.placeholder = data.viewModel.text;
+                   }));
     ```
     
-    ```objective-c
-    -(DeleteAccountView *)deleteAccountView{
-        if(!_deleteAccountView){
-            _deleteAccountView = DeleteAccountView.new;
-            _deleteAccountView.accountStyle = AccountStyle_GCCash;
-            _deleteAccountView.size = [_deleteAccountView viewSizeWithModel:nil];
-            _deleteAccountView.jobsRichElementsInViewWithModel(nil);
-        }return _deleteAccountView;
-    }
-    ```
-  
-  * **消失**
+  * **消失**（先消失，后展现）
   
     ```objective-c
-    [self tf_hide];
+    [self tf_hide:^{
+        ShowTips(ResetPWDSuccessPopView
+                 .BySize(ResetPWDSuccessPopView.viewSizeByModel(nil))
+                 .JobsRichViewByModel2(nil));
+    }];
     ```
 
 ### 10、关于`UIViewController`的一些配置 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
