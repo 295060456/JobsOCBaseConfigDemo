@@ -194,7 +194,7 @@ ratio:(CGFloat)ratio {
 
 -(NSMutableArray<NSString *> *)titleMutArr{
     if (!_titleMutArr) {
-        _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
             data.add(JobsInternationalization(@"全部游戏"));
             data.add(JobsInternationalization(@"真人"));
             data.add(JobsInternationalization(@"体育"));
@@ -208,7 +208,7 @@ ratio:(CGFloat)ratio {
 -(NSMutableArray<__kindof UIViewController *> *)childVCMutArr{
     if (!_childVCMutArr) {
         @jobs_weakify(self)
-        _childVCMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _childVCMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIViewController *>*_Nullable data) {
             @jobs_strongify(self)
             for (NSString *str in self.titleMutArr) {
                 data.add(JXCategoryPopupSubVC.new);
@@ -237,13 +237,13 @@ ratio:(CGFloat)ratio {
                 self.currentIndex = self.listContainerView.valueForKey(@"currentIndex");
                 NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
                 self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
-                [self.vc hidePopupView:self.popUpCustomView];
+                self.vc.hidePopupView(self.popUpCustomView);
                 if (x.selected) {
                     self.customBtn.selected = NO;
                     self.popUpFiltrationView = self.vc.popUpFiltrationView;
                     self.popUpFiltrationView.popupDelegate = self;
                 }else{
-                    [self.vc hidePopupView:self.popUpFiltrationView];
+                    self.vc.hidePopupView(self.popUpFiltrationView);
                 }
             }).onLongPressGesture(^(id data){
                 NSLog(@"");
@@ -275,14 +275,14 @@ ratio:(CGFloat)ratio {
                 NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
                 self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
                 self.popUpFiltrationView = self.vc.popUpFiltrationView;
-                [self.vc hidePopupView:self.popUpFiltrationView];
+                self.vc.hidePopupView(self.popUpFiltrationView);
                 [self.filterBtn changeAction:self.filterBtn.selected];
                 if (x.selected) {
                     self.filterBtn.selected = NO;
                     self.popUpCustomView = self.vc.popUpCustomView;
     //                self.popUpCustomView.popupDelegate = self;
                 }else{
-                    [self.vc hidePopupView:self.popUpCustomView];
+                    self.vc.hidePopupView(self.popUpCustomView);
                 }
             }).onLongPressGesture(^(id data){
                 NSLog(@"");

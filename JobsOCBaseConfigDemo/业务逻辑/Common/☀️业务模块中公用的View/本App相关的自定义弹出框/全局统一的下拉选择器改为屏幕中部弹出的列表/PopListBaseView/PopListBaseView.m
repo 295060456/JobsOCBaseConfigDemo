@@ -78,8 +78,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsTextStyleTBVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.backgroundColor = cell.contentView.backgroundColor = viewModel.bgSelectedCor;
     cell.lab.textColor = viewModel.selectedTextCor;
-    if (self.objectBlock) self.objectBlock(cell);/// 数据在cell.viewModel
-    [self tf_hide];
+    @jobs_weakify(self)
+    [self tf_hide:^{
+        @jobs_strongify(self)
+        if (self.objectBlock) self.objectBlock(cell);/// 数据在cell.viewModel
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

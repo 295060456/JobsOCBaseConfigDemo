@@ -100,9 +100,10 @@ static dispatch_once_t static_testPopupViewOnceToken;
         [_testPopupViewSureBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            [self tf_hide];
-            if(self.objectBlock) self.objectBlock(x);
-            return nil;
+            [self tf_hide:^{
+                @jobs_strongify(self)
+                if(self.objectBlock) self.objectBlock(x);
+            }];return nil;
         }];
     }return _testPopupViewSureBtn;
 }

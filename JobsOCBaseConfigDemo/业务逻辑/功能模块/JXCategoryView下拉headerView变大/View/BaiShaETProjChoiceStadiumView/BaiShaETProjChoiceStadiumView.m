@@ -170,7 +170,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.imageView.jobsVisible = !cell.imageView.jobsVisible;
     
     if (self.objectBlock) self.objectBlock(self.dataMutArr[indexPath.row]);
-    [self tf_hide];
+    [self tf_hide:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
