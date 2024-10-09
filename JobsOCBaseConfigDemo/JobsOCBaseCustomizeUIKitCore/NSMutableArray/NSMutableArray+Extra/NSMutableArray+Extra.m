@@ -49,6 +49,17 @@
         return self;
     };
 }
+/// 删除元素
+-(JobsReturnIDByIDBlock _Nonnull)remove{
+    @jobs_weakify(self)
+    return ^id (id _Nullable data) {
+        @jobs_strongify(self)
+        if(data){
+            [self removeObject:data];
+        }else NSLog(@"数组被删除了一个非空元素");
+        return self;
+    };
+}
 /// 阻止向可变数组添加空元素
 -(JobsReturnIDByIDBlock _Nonnull)addBy{
     @jobs_weakify(self)

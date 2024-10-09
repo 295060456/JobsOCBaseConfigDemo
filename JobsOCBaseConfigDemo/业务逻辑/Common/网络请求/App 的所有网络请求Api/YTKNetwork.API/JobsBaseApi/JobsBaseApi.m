@@ -34,10 +34,12 @@
 -(NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
     // 在这里添加你想要的 HTTP header
     self.loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
-    return @{
-        @"Content-Type": @"application/json", // 设置 Content-Type
-        @"Authorization": self.loginModel.token // 设置 Authorization
-    };
+    return jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+        // 设置 Content-Type
+        [data setValue:@"application/json" forKey:@"Content-Type"];
+        // 设置 Authorization
+        if(self.loginModel) [data setValue:self.loginModel.token forKey:@"Authorization"];
+    });
 }
 
 - (NSURLRequest *)buildCustomUrlRequest{

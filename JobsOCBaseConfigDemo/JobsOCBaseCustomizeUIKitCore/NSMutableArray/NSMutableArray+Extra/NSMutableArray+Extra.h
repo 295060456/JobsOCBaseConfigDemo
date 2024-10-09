@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnNSUIntegerByIDBlock _Nonnull)indexBy;
 /// 阻止向可变数组添加空元素
 -(JobsReturnIDByIDBlock _Nonnull)add;
+/// 删除元素
+-(JobsReturnIDByIDBlock _Nonnull)remove;
 /// 阻止向可变数组添加空元素
 -(JobsReturnIDByIDBlock _Nonnull)addBy;
 /// 向数组加入一个从来没有没有过的元素，以保证数组元素的单一性

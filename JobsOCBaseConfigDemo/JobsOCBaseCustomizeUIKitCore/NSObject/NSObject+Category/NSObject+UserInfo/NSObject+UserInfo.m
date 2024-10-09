@@ -14,7 +14,7 @@
  【return】 YES(已经登录)、NO（未登录）
  */
 -(BOOL)isLogin{
-    return isValue(self.readUserInfo().token);
+    return isValue(self.readUserInfo().token) && self.readUserInfo();
 }
 /// 检查是否登录并执行传入的代码块
 -(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock {
@@ -27,8 +27,7 @@
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        JobsUserModel *loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
-        if(loginModel.expireTime.isExpired()){
+        if(self.loginModel.expireTime.isExpired()){
             /// 如果Token过期，则跳转登录获取，以刷新Token
 //            self.toLogin();
         }
@@ -39,8 +38,7 @@
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        JobsUserModel *loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
-        if(loginModel.expireTime.isExpired()){
+        if(self.loginModel.expireTime.isExpired()){
             /// 清理本地用户数据
             self.deleteUserInfoByUserName(用户信息);
         }
@@ -99,31 +97,35 @@
 -(JobsReturnIDByClsAndSaltStrBlock _Nonnull)readUserInfoByUserName{
     return ^id _Nullable(Class _Nonnull cls,NSString *_Nullable userName){
         NSData *archivedData = NSUserDefaults.readWithKey(userName);
-        if(HDDeviceSystemVersion.floatValue < 12.0){
-            SuppressWdeprecatedDeclarationsWarning(return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];);
+        if(archivedData){
+            if(HDDeviceSystemVersion.floatValue < 12.0){
+                SuppressWdeprecatedDeclarationsWarning(return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];);
+            }else{
+                NSError *error = nil;
+                id userModel = nil;
+                /// 如果 JobsUserModel 中包含更多自定义类型或者你需要解码其他基本类型（例如 NSArray 或 NSDictionary），需要将这些类也加入到 allowedClasses 集合中。
+                /// 确保在解码所有需要的类时，将其包含在 allowedClasses 集合中以避免警告和潜在的解码失败。例如
+                userModel = [NSKeyedUnarchiver unarchivedObjectOfClasses:jobsMakeMutSet(^(__kindof NSMutableSet <Class>*_Nullable data) {
+                    data.add(JobsUserModel.class);
+                    data.add(NSString.class);
+                    data.add(NSNumber.class);
+                    data.add(NSArray.class);
+                    data.add(NSDictionary.class);
+                    data.add(UIImage.class);
+                    data.add(NSArray.class);
+                    data.add(cls);
+                })
+                                                                   fromData:archivedData
+                                                                      error:&error];
+                if (!userModel) {
+                    NSLog(@"解档失败: %@", error.localizedDescription);
+                    /// 没取到用户数据，就直接跳登录
+    //                self.toLogin();
+                }return userModel;
+            }
         }else{
-            NSError *error = nil;
-            /// 如果 JobsUserModel 中包含更多自定义类型或者你需要解码其他基本类型（例如 NSArray 或 NSDictionary），需要将这些类也加入到 allowedClasses 集合中。
-            /// 确保在解码所有需要的类时，将其包含在 allowedClasses 集合中以避免警告和潜在的解码失败。例如
-            NSMutableSet <Class>*allowedClasses = jobsMakeMutSet(^(__kindof NSMutableSet * _Nullable data) {
-                data.add(JobsUserModel.class);
-                data.add(NSString.class);
-                data.add(NSNumber.class);
-                data.add(NSArray.class);
-                data.add(NSDictionary.class);
-                data.add(UIImage.class);
-                data.add(NSArray.class);
-                data.add(cls);
-            });
-            
-            id userModel = [NSKeyedUnarchiver unarchivedObjectOfClasses:allowedClasses
-                                                               fromData:archivedData
-                                                                  error:&error];
-            if (!userModel) {
-                NSLog(@"解档失败: %@", error.localizedDescription);
-                /// 没取到用户数据，就直接跳登录
-//                self.toLogin();
-            }return userModel;
+            NSLog(@"解档失败:需要被解档的数据为空");
+            return nil;
         }
     };
 }
@@ -138,15 +140,10 @@
 -(jobsByStringBlock _Nonnull)saveUserName{
     return ^(NSString *_Nullable userName){
         if (isNull(userName)) return;
-        //取出来的实际上是个不可变数组，所以需要向可变数组进行转化
-        NSMutableArray <NSString *>*userNameMutArr = NSMutableArray.initBy(JobsUserDefaults.valueForKey(用户名数组));
-        if (!userNameMutArr) userNameMutArr = NSMutableArray.array;
-        // 保持唯一性
-        if (![userNameMutArr containsObject:userName]) {
-            userNameMutArr.add(userName);
-            JobsSetUserDefaultKeyWithObject(用户名数组, userNameMutArr);
-            JobsUserDefaultSynchronize;
-        }
+        JobsSetUserDefaultKeyWithObject(用户名数组, jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
+            data.addBy(JobsUserDefaults.valueForKey(用户名数组));
+            if (!data.containsObject(userName)) data.add(userName);// 保持唯一性
+        }));JobsUserDefaultSynchronize;
     };
 }
 /// 读取用户名组
@@ -156,12 +153,10 @@
 /// 全局删除已经登录成功的用户名
 -(jobsByStringBlock _Nonnull)deleteUserName{
     return ^(NSString *_Nullable userName){
-        NSMutableArray <NSString *>*userNameMutArr = NSMutableArray.initBy(JobsUserDefaults.valueForKey(用户名数组));
-        if (userNameMutArr && isValue(userName)) {
-            [userNameMutArr removeObject:userName];
-            JobsSetUserDefaultKeyWithObject(用户名数组, userNameMutArr);
-            JobsUserDefaultSynchronize;
-        }
+        JobsSetUserDefaultKeyWithObject(用户名数组, jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.addBy(JobsUserDefaults.valueForKey(用户名数组));
+            if (isValue(userName)) data.remove(userName);
+        }));JobsUserDefaultSynchronize;
     };
 }
 

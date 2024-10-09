@@ -10,10 +10,10 @@
 #import "JobsBlock.h"
 #import "JobsAppDoorConfig.h"
 #import "NetworkingConstant.h"
-#import "CasinoGetiOSNewestVersionModel.h"
 #import "NetworkingConstant.h"
 
 @class JobsHotLabelWithSingleLine;
+@class CasinoGetiOSNewestVersionModel;
 
 NS_ASSUME_NONNULL_BEGIN
 /// App工具协议
@@ -27,23 +27,23 @@ NS_ASSUME_NONNULL_BEGIN
 /// 清除用户数据资料
 -(jobsByVoidBlock _Nonnull)cleanUserData;
 /// 去登录？去注册？
--(jobsByNSIntegerBlock)toLoginOrRegister;
+-(jobsByNSIntegerBlock _Nonnull)toLoginOrRegister;
 /// 在某些页面不调取登录页
 -(void)toLoginOrRegisterWithRestricted:(NSArray <Class>*_Nullable)dataArr
                     appDoorContentType:(CurrentPage)appDoorContentType;
 /// 去登录
--(jobsByVoidBlock)toLogin;
+-(jobsByVoidBlock _Nonnull)toLogin;
 /// 强制去登录
--(jobsByVoidBlock)forcedLogin;
+-(jobsByVoidBlock _Nonnull)forcedLogin;
 /// 触发退出登录模块之前，弹窗提示二次确认，确认以后再删除本地用户数据
 -(void)popUpViewToLogout;
 #pragma mark —— <AppToolsProtocol> 关于 TabBar
 /// TabBar
 -(UITabBar *)getTabBar;
 /// JobsTabbarVC 关闭手势
--(jobsByVoidBlock)tabBarClosePan;
+-(jobsByVoidBlock _Nonnull)tabBarClosePan;
 /// JobsTabbarVC 打开手势
--(jobsByVoidBlock)tabBarOpenPan;
+-(jobsByVoidBlock _Nonnull)tabBarOpenPan;
 /// 跳到首页
 -(void)jumpToHome;
 /// 获取Tabbar管理的，不含导航的根控制器
@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(UIViewModel *)configViewModelWithAttributeTitle:(NSString *_Nullable)title
                                 attributeSubTitle:(NSString *_Nullable)subTitle;
 /// 打开游戏
--(void)openGameWithUrl:(NSString *)url;
+-(jobsByStringBlock _Nonnull)openGameWithUrl;
 /// 默认头像👤
 -(UIImage *)defaultHeaderImage;
 /// 当前语言【字符串形式】
