@@ -28,7 +28,7 @@
     return ^(){
         @jobs_strongify(self)
         JobsUserModel *loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
-        if(loginModel.token.isExpired()){
+        if(loginModel.expireTime.isExpired()){
             /// 如果Token过期，则跳转登录获取，以刷新Token
 //            self.toLogin();
         }
@@ -40,7 +40,7 @@
     return ^(){
         @jobs_strongify(self)
         JobsUserModel *loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
-        if(loginModel.token.isExpired()){
+        if(loginModel.expireTime.isExpired()){
             /// 清理本地用户数据
             self.deleteUserInfoByUserName(用户信息);
         }

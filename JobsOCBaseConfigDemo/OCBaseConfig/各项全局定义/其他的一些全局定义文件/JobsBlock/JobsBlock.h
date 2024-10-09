@@ -230,6 +230,10 @@ typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MAS
 
 @class YTKNetworkConfig;
 typedef void(^jobsByYTKNetworkConfigBlock)(__kindof YTKNetworkConfig *_Nullable data);
+
+@class YTKBaseRequest;
+#import "JobsDefineAllEnumHeader.h"
+typedef void(^JobsHandelNoSuccessBlock)(HTTPResponseCode data,YTKBaseRequest *_Nonnull request);
 #pragma mark —— 关于业务（不与JobsOCBaseConfigDemo同步）
 @class FMBannerAdsModel;
 typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable data);

@@ -46,6 +46,10 @@
     @jobs_weakify(self)
     return ^BOOL(){
         @jobs_strongify(self)
+#ifdef DEBUG
+        NSLog(@"当前时间为:%@,Token过期时间为:%@",self,self.jobsTime());
+        toast(JobsFormattedString(@"Token过期时间为:%@",self.jobsTime()));
+#endif
         /// 将时间戳字符串转换为 double 类型的时间戳
         double timeStamp = self.doubleValue;
         /// 创建 NSDate 对象

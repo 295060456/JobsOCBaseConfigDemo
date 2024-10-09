@@ -12,6 +12,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+NS_INLINE NSString *JobsFormattedString(NSString *format, ...) {
+    va_list args;
+    va_start(args, format);
+    NSString *formattedString = [NSString.alloc initWithFormat:format arguments:args];
+    va_end(args);
+    return formattedString;
+}
+
 @interface NSString (Time)
 /// 当前时间戳较之当前时间是否已过期
 -(JobsReturnBOOLByVoidBlock _Nonnull)isExpired;
