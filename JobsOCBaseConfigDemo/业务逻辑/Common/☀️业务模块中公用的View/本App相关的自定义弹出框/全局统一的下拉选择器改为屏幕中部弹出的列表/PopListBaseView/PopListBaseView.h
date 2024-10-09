@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PopListBaseView : BaseView
 <
-BaseViewProtocol
-,UITableViewDelegate
+UITableViewDelegate
 ,UITableViewDataSource
 >
 
@@ -22,6 +21,12 @@ BaseViewProtocol
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof PopListBaseView *_Nonnull jobsMakePopListBaseView(jobsByPopListBaseViewBlock _Nonnull block){
+    PopListBaseView *data = PopListBaseView.alloc.init;
+    if (block) block(data);
+    return data;
+}
 /**
  
  @property(nonatomic,strong)PopListBaseView *nationalPopListView;
@@ -30,8 +35,8 @@ NS_ASSUME_NONNULL_END
  -(PopListBaseView *)nationalPopListView{
      if(!_nationalPopListView){
          _nationalPopListView = PopListBaseView.new;
-         _nationalPopListView.size = [_nationalPopListView viewSizeWithModel:nil];
-         _nationalPopListView.jobsRichElementsInViewWithModel(self.nationalPopList_dataMutArr);
+         _nationalPopListView.size = _nationalPopListView.viewSizeByModel(nil);
+         _nationalPopListView.jobsRichViewByModel(self.nationalPopList_dataMutArr);
      }return _nationalPopListView;
  }
 

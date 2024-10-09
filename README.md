@@ -11151,6 +11151,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       return data;
   }
   
+  NS_INLINE __kindof NotificationModel *_Nonnull jobsMakeNotificationModel(jobsByNotificationModelBlock _Nonnull block){
+      NotificationModel *data = NotificationModel.alloc.init;
+      if (block) block(data);
+      return data;
+  }
+  
   NS_INLINE NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
       NSMutableAttributedString *data = NSMutableAttributedString.alloc.init;
       if (block) block(data);
@@ -11270,6 +11276,12 @@ NS_INLINE ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsBy
     return model;
 }
 
+NS_INLINE __kindof JobsNavBarConfig *_Nonnull jobsMakeNavBarConfig(jobsByNavBarConfigBlock _Nonnull block){
+    JobsNavBarConfig *data = JobsNavBarConfig.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof UIButtonModel *_Nonnull jobsMakeButtonModel(jobsByButtonModelBlock _Nonnull block){
     UIButtonModel *data = UIButtonModel.alloc.init;
     if (block) block(data);
@@ -11332,6 +11344,36 @@ NS_INLINE __kindof MasonryModel *_Nonnull jobsMakeMasonryModel(jobsByMasonryMode
 
 NS_INLINE __kindof JobsTimeModel *_Nonnull jobsMakeTimeModel(jobsByTimeModelBlock _Nonnull block){
     JobsTimeModel *data = JobsTimeModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof JobsTimeFormatterModel *_Nonnull jobsMakeTimeFormatterModel(jobsByTimeFormatterModelBlock _Nonnull block){
+    JobsTimeFormatterModel *data = JobsTimeFormatterModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof PopListBaseView *_Nonnull jobsMakePopListBaseView(jobsByPopListBaseViewBlock _Nonnull block){
+    PopListBaseView *data = PopListBaseView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof JobsExcelConfigureViewModel *_Nonnull jobsMakeExcelConfigureViewModel(jobsByExcelConfigureViewModelBlock _Nonnull block){
+    JobsExcelConfigureViewModel *data = JobsExcelConfigureViewModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof NSNotificationKeyboardModel *_Nonnull jobsMakeNotificationKeyboardModel(jobsByNSNotificationKeyboardModelBlock _Nonnull block){
+    NSNotificationKeyboardModel *data = NSNotificationKeyboardModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof VideoModel_Core *_Nonnull jobsMakeVideoModelCore(jobsByVideoModelCoreBlock _Nonnull block){
+    VideoModel_Core *data = VideoModel_Core.alloc.init;
     if (block) block(data);
     return data;
 }

@@ -51,3 +51,9 @@ UIKIT_EXTERN NSString * _Nullable const HorizontalScrollBegin;/// 水平滚动�
 @property(nonatomic,copy)jobsByVoidBlock _Nonnull configureData;
 
 @end
+
+NS_INLINE __kindof JobsExcelConfigureViewModel *_Nonnull jobsMakeExcelConfigureViewModel(jobsByExcelConfigureViewModelBlock _Nonnull block){
+    JobsExcelConfigureViewModel *data = JobsExcelConfigureViewModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

@@ -43,7 +43,7 @@
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(NSMutableArray <__kindof UIViewModel *>* model) {
         @jobs_strongify(self)
@@ -53,19 +53,17 @@
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(300), JobsWidth(259));
-}
-
--(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return [self.class viewSizeWithModel:nil];
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    return ^(id _Nullable data){
+        return CGSizeMake(JobsWidth(300), JobsWidth(259));
+    };
 }
 #pragma mark —— 一些私有方法
 -(void)layoutSubviews{
     [super layoutSubviews];
     /// 内部指定圆切角
     [self appointCornerCutToCircleByRoundingCorners:UIRectCornerAllCorners
-                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (void)tableView:(UITableView *)tableView
@@ -78,11 +76,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsTextStyleTBVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.backgroundColor = cell.contentView.backgroundColor = viewModel.bgSelectedCor;
     cell.lab.textColor = viewModel.selectedTextCor;
-    @jobs_weakify(self)
-    [self tf_hide:^{
-        @jobs_strongify(self)
-        if (self.objectBlock) self.objectBlock(cell);/// 数据在cell.viewModel
-    }];
+    id text = cell.viewModel.text;
+    id placeholder = cell.viewModel.placeholder;
+    if (self.objectBlock) self.objectBlock(cell);/// 数据在cell.viewModel
+    [self tf_hide:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -130,10 +127,10 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _tableView;
 }
 
--(NSMutableArray<__kindof UITableViewCell *>*)tbvCellMutArr{
+-(NSMutableArray <__kindof UITableViewCell *>*)tbvCellMutArr{
     if (!_tbvCellMutArr) {
         @jobs_weakify(self)
-        _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UITableViewCell *>*_Nullable data) {
             for (int d = 0; d < self.dataMutArr.count; d++) {
                 @jobs_strongify(self)
                 data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
@@ -141,12 +138,16 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         });
     }return _tbvCellMutArr;
 }
+@synthesize dataMutArr = _dataMutArr;
+-(void)setDataMutArr:(NSMutableArray <__kindof UIViewModel *>*)dataMutArr{
+    _dataMutArr = dataMutArr;
+    _tbvCellMutArr = nil;
+}
 
 -(NSMutableArray<__kindof UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            {
-                UIViewModel *viewModel = UIViewModel.new;
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.text = JobsInternationalization(@"选项1");
                 viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
                 viewModel.textCor = JobsCor(@"#5D5D5D");
@@ -154,10 +155,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
                 viewModel.bgCor = JobsCor(@"#1F1F1F");
                 viewModel.textAlignment = NSTextAlignmentCenter;
-                data.add(viewModel);
-            }
-            {
-                UIViewModel *viewModel = UIViewModel.new;
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.text = JobsInternationalization(@"选项2");
                 viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
                 viewModel.textCor = JobsCor(@"#5D5D5D");
@@ -165,10 +164,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
                 viewModel.bgCor = JobsCor(@"#1F1F1F");
                 viewModel.textAlignment = NSTextAlignmentCenter;
-                data.add(viewModel);
-            }
-            {
-                UIViewModel *viewModel = UIViewModel.new;
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.text = JobsInternationalization(@"选项3");
                 viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
                 viewModel.textCor = JobsCor(@"#5D5D5D");
@@ -176,8 +173,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
                 viewModel.bgCor = JobsCor(@"#1F1F1F");
                 viewModel.textAlignment = NSTextAlignmentCenter;
-                data.add(viewModel);
-            }
+            }));
         });
     }return _dataMutArr;
 }
