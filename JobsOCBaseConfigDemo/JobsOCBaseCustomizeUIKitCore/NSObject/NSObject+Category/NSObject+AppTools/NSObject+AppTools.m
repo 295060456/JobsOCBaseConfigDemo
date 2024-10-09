@@ -79,6 +79,16 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         toast(@"Token 已经过期，请重新登录");
     };
 }
+/// 退出登录应该做的事情
+-(jobsByVoidBlock _Nonnull)logout{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        self.cleanUserData();
+        JobsPostNotification(退出登录成功, @(YES));
+        toast(JobsInternationalization(@"退出登录成功"));
+    };
+}
 /// 清除用户数据资料
 -(jobsByVoidBlock _Nonnull)cleanUserData{
     @jobs_weakify(self)

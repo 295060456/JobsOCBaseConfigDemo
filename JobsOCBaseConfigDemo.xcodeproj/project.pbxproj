@@ -762,23 +762,11 @@
 		CE5A662E2CA83740006D67A7 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1B8C2CA82510002AF25B /* NSString+Base64.m */; };
 		CE5A662F2CA83740006D67A7 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1B892CA82510002AF25B /* NSData+Base64.m */; };
 		CE61AD472C9EAB26002DF138 /* FM_promotion_advertise_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD172C9EAB26002DF138 /* FM_promotion_advertise_api.m */; };
-		CE61AD482C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD262C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.m */; };
-		CE61AD492C9EAB26002DF138 /* FM_loginByVerificationCode_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD2C2C9EAB26002DF138 /* FM_loginByVerificationCode_api.m */; };
-		CE61AD4A2C9EAB26002DF138 /* FM_loginByAccAndPwd_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD322C9EAB26002DF138 /* FM_loginByAccAndPwd_api.m */; };
-		CE61AD4B2C9EAB26002DF138 /* GetMemberInfo_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD292C9EAB26002DF138 /* GetMemberInfo_api.m */; };
 		CE61AD4C2C9EAB26002DF138 /* NSObject+YTKNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD082C9EAB26002DF138 /* NSObject+YTKNetwork.m */; };
-		CE61AD4D2C9EAB26002DF138 /* FM_favoriteGames_delete_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD202C9EAB26002DF138 /* FM_favoriteGames_delete_api.m */; };
-		CE61AD4E2C9EAB26002DF138 /* FM_favoriteGames_add_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD232C9EAB26002DF138 /* FM_favoriteGames_add_api.m */; };
 		CE61AD4F2C9EAB26002DF138 /* JobsBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD0B2C9EAB26002DF138 /* JobsBaseApi.m */; };
 		CE61AD502C9EAB26002DF138 /* FM_user_logout_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD1A2C9EAB26002DF138 /* FM_user_logout_api.m */; };
 		CE61AD512C9EAB26002DF138 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD042C9EAB26002DF138 /* DataManager.m */; };
-		CE61AD522C9EAB26002DF138 /* FM_queryAnnByMember_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD0E2C9EAB26002DF138 /* FM_queryAnnByMember_api.m */; };
-		CE61AD532C9EAB26002DF138 /* FM_check_login_verification_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD352C9EAB26002DF138 /* FM_check_login_verification_api.m */; };
-		CE61AD542C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD142C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.m */; };
 		CE61AD552C9EAB26002DF138 /* RequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD422C9EAB26002DF138 /* RequestTool.m */; };
-		CE61AD562C9EAB26002DF138 /* FM_promotion_ad_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD112C9EAB26002DF138 /* FM_promotion_ad_api.m */; };
-		CE61AD572C9EAB26002DF138 /* FM_kyc_submit_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD1D2C9EAB26002DF138 /* FM_kyc_submit_api.m */; };
-		CE61AD582C9EAB26002DF138 /* FM_game_home_popularGames_query_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD2F2C9EAB26002DF138 /* FM_game_home_popularGames_query_api.m */; };
 		CE61AD592C9EAB26002DF138 /* JobsNetworkingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD3C2C9EAB26002DF138 /* JobsNetworkingAPI.m */; };
 		CE61AD5A2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD3F2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m */; };
 		CE61AD5B2C9EAB26002DF138 /* NSObject+URLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD012C9EAB26002DF138 /* NSObject+URLManager.m */; };
@@ -2836,34 +2824,10 @@
 		CE61AD082C9EAB26002DF138 /* NSObject+YTKNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YTKNetwork.m"; sourceTree = "<group>"; };
 		CE61AD0A2C9EAB26002DF138 /* JobsBaseApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseApi.h; sourceTree = "<group>"; };
 		CE61AD0B2C9EAB26002DF138 /* JobsBaseApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBaseApi.m; sourceTree = "<group>"; };
-		CE61AD0D2C9EAB26002DF138 /* FM_queryAnnByMember_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_queryAnnByMember_api.h; sourceTree = "<group>"; };
-		CE61AD0E2C9EAB26002DF138 /* FM_queryAnnByMember_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_queryAnnByMember_api.m; sourceTree = "<group>"; };
-		CE61AD102C9EAB26002DF138 /* FM_promotion_ad_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_promotion_ad_api.h; sourceTree = "<group>"; };
-		CE61AD112C9EAB26002DF138 /* FM_promotion_ad_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_promotion_ad_api.m; sourceTree = "<group>"; };
-		CE61AD132C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_promotion_advertise_homeBanner_api.h; sourceTree = "<group>"; };
-		CE61AD142C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_promotion_advertise_homeBanner_api.m; sourceTree = "<group>"; };
 		CE61AD162C9EAB26002DF138 /* FM_promotion_advertise_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_promotion_advertise_api.h; sourceTree = "<group>"; };
 		CE61AD172C9EAB26002DF138 /* FM_promotion_advertise_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_promotion_advertise_api.m; sourceTree = "<group>"; };
 		CE61AD192C9EAB26002DF138 /* FM_user_logout_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_user_logout_api.h; sourceTree = "<group>"; };
 		CE61AD1A2C9EAB26002DF138 /* FM_user_logout_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_user_logout_api.m; sourceTree = "<group>"; };
-		CE61AD1C2C9EAB26002DF138 /* FM_kyc_submit_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_kyc_submit_api.h; sourceTree = "<group>"; };
-		CE61AD1D2C9EAB26002DF138 /* FM_kyc_submit_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_kyc_submit_api.m; sourceTree = "<group>"; };
-		CE61AD1F2C9EAB26002DF138 /* FM_favoriteGames_delete_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_favoriteGames_delete_api.h; sourceTree = "<group>"; };
-		CE61AD202C9EAB26002DF138 /* FM_favoriteGames_delete_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_favoriteGames_delete_api.m; sourceTree = "<group>"; };
-		CE61AD222C9EAB26002DF138 /* FM_favoriteGames_add_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_favoriteGames_add_api.h; sourceTree = "<group>"; };
-		CE61AD232C9EAB26002DF138 /* FM_favoriteGames_add_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_favoriteGames_add_api.m; sourceTree = "<group>"; };
-		CE61AD252C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_game_home_queryTopGamesList_api.h; sourceTree = "<group>"; };
-		CE61AD262C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_game_home_queryTopGamesList_api.m; sourceTree = "<group>"; };
-		CE61AD282C9EAB26002DF138 /* GetMemberInfo_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetMemberInfo_api.h; sourceTree = "<group>"; };
-		CE61AD292C9EAB26002DF138 /* GetMemberInfo_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMemberInfo_api.m; sourceTree = "<group>"; };
-		CE61AD2B2C9EAB26002DF138 /* FM_loginByVerificationCode_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_loginByVerificationCode_api.h; sourceTree = "<group>"; };
-		CE61AD2C2C9EAB26002DF138 /* FM_loginByVerificationCode_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_loginByVerificationCode_api.m; sourceTree = "<group>"; };
-		CE61AD2E2C9EAB26002DF138 /* FM_game_home_popularGames_query_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_game_home_popularGames_query_api.h; sourceTree = "<group>"; };
-		CE61AD2F2C9EAB26002DF138 /* FM_game_home_popularGames_query_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_game_home_popularGames_query_api.m; sourceTree = "<group>"; };
-		CE61AD312C9EAB26002DF138 /* FM_loginByAccAndPwd_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_loginByAccAndPwd_api.h; sourceTree = "<group>"; };
-		CE61AD322C9EAB26002DF138 /* FM_loginByAccAndPwd_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_loginByAccAndPwd_api.m; sourceTree = "<group>"; };
-		CE61AD342C9EAB26002DF138 /* FM_check_login_verification_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_check_login_verification_api.h; sourceTree = "<group>"; };
-		CE61AD352C9EAB26002DF138 /* FM_check_login_verification_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_check_login_verification_api.m; sourceTree = "<group>"; };
 		CE61AD382C9EAB26002DF138 /* YTKNetworkApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YTKNetworkApi.h; sourceTree = "<group>"; };
 		CE61AD3A2C9EAB26002DF138 /* ZBRequestManagerApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBRequestManagerApi.h; sourceTree = "<group>"; };
 		CE61AD3B2C9EAB26002DF138 /* JobsNetworkingAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsNetworkingAPI.h; sourceTree = "<group>"; };
@@ -12628,33 +12592,6 @@
 			path = JobsBaseApi;
 			sourceTree = "<group>";
 		};
-		CE61AD0F2C9EAB26002DF138 /* 跑马灯信息查询【建议前端每20s-30s可以刷新请求一次】【GET】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD0D2C9EAB26002DF138 /* FM_queryAnnByMember_api.h */,
-				CE61AD0E2C9EAB26002DF138 /* FM_queryAnnByMember_api.m */,
-			);
-			path = "跑马灯信息查询【建议前端每20s-30s可以刷新请求一次】【GET】";
-			sourceTree = "<group>";
-		};
-		CE61AD122C9EAB26002DF138 /* 查询广告列表-支持游客：活动推广专区【GET】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD102C9EAB26002DF138 /* FM_promotion_ad_api.h */,
-				CE61AD112C9EAB26002DF138 /* FM_promotion_ad_api.m */,
-			);
-			path = "查询广告列表-支持游客：活动推广专区【GET】";
-			sourceTree = "<group>";
-		};
-		CE61AD152C9EAB26002DF138 /* 查询广告列表-支持游客：首页天顶轮播大Banner【GET】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD132C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.h */,
-				CE61AD142C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.m */,
-			);
-			path = "查询广告列表-支持游客：首页天顶轮播大Banner【GET】";
-			sourceTree = "<group>";
-		};
 		CE61AD182C9EAB26002DF138 /* 查询广告列表-支持游客：APP首页右下3Banner【GET】 */ = {
 			isa = PBXGroup;
 			children = (
@@ -12673,104 +12610,11 @@
 			path = "用户登出【POST】";
 			sourceTree = "<group>";
 		};
-		CE61AD1E2C9EAB26002DF138 /* 用户提交KYC认证【POST】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD1C2C9EAB26002DF138 /* FM_kyc_submit_api.h */,
-				CE61AD1D2C9EAB26002DF138 /* FM_kyc_submit_api.m */,
-			);
-			path = "用户提交KYC认证【POST】";
-			sourceTree = "<group>";
-		};
-		CE61AD212C9EAB26002DF138 /* 游戏大厅喜爱的游戏-删除【POST】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD1F2C9EAB26002DF138 /* FM_favoriteGames_delete_api.h */,
-				CE61AD202C9EAB26002DF138 /* FM_favoriteGames_delete_api.m */,
-			);
-			path = "游戏大厅喜爱的游戏-删除【POST】";
-			sourceTree = "<group>";
-		};
-		CE61AD242C9EAB26002DF138 /* 游戏大厅喜爱的游戏-添加【POST】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD222C9EAB26002DF138 /* FM_favoriteGames_add_api.h */,
-				CE61AD232C9EAB26002DF138 /* FM_favoriteGames_add_api.m */,
-			);
-			path = "游戏大厅喜爱的游戏-添加【POST】";
-			sourceTree = "<group>";
-		};
-		CE61AD272C9EAB26002DF138 /* 菲站APP首页- 受欢迎的游戏列表查询【POST】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD252C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.h */,
-				CE61AD262C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.m */,
-			);
-			path = "菲站APP首页- 受欢迎的游戏列表查询【POST】";
-			sourceTree = "<group>";
-		};
-		CE61AD2A2C9EAB26002DF138 /* 获取会员个人信息【GET】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD282C9EAB26002DF138 /* GetMemberInfo_api.h */,
-				CE61AD292C9EAB26002DF138 /* GetMemberInfo_api.m */,
-			);
-			path = "获取会员个人信息【GET】";
-			sourceTree = "<group>";
-		};
-		CE61AD2D2C9EAB26002DF138 /* 手机登录【POST】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD2B2C9EAB26002DF138 /* FM_loginByVerificationCode_api.h */,
-				CE61AD2C2C9EAB26002DF138 /* FM_loginByVerificationCode_api.m */,
-			);
-			path = "手机登录【POST】";
-			sourceTree = "<group>";
-		};
-		CE61AD302C9EAB26002DF138 /* 菲站首页- 受欢迎的游戏列表查询【POST】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD2E2C9EAB26002DF138 /* FM_game_home_popularGames_query_api.h */,
-				CE61AD2F2C9EAB26002DF138 /* FM_game_home_popularGames_query_api.m */,
-			);
-			path = "菲站首页- 受欢迎的游戏列表查询【POST】";
-			sourceTree = "<group>";
-		};
-		CE61AD332C9EAB26002DF138 /* 账号密码登录【POST】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD312C9EAB26002DF138 /* FM_loginByAccAndPwd_api.h */,
-				CE61AD322C9EAB26002DF138 /* FM_loginByAccAndPwd_api.m */,
-			);
-			path = "账号密码登录【POST】";
-			sourceTree = "<group>";
-		};
-		CE61AD362C9EAB26002DF138 /* 发送短信验证码【POST】 */ = {
-			isa = PBXGroup;
-			children = (
-				CE61AD342C9EAB26002DF138 /* FM_check_login_verification_api.h */,
-				CE61AD352C9EAB26002DF138 /* FM_check_login_verification_api.m */,
-			);
-			path = "发送短信验证码【POST】";
-			sourceTree = "<group>";
-		};
 		CE61AD372C9EAB26002DF138 /* FM_Api */ = {
 			isa = PBXGroup;
 			children = (
-				CE61AD0F2C9EAB26002DF138 /* 跑马灯信息查询【建议前端每20s-30s可以刷新请求一次】【GET】 */,
-				CE61AD122C9EAB26002DF138 /* 查询广告列表-支持游客：活动推广专区【GET】 */,
-				CE61AD152C9EAB26002DF138 /* 查询广告列表-支持游客：首页天顶轮播大Banner【GET】 */,
 				CE61AD182C9EAB26002DF138 /* 查询广告列表-支持游客：APP首页右下3Banner【GET】 */,
 				CE61AD1B2C9EAB26002DF138 /* 用户登出【POST】 */,
-				CE61AD1E2C9EAB26002DF138 /* 用户提交KYC认证【POST】 */,
-				CE61AD212C9EAB26002DF138 /* 游戏大厅喜爱的游戏-删除【POST】 */,
-				CE61AD242C9EAB26002DF138 /* 游戏大厅喜爱的游戏-添加【POST】 */,
-				CE61AD272C9EAB26002DF138 /* 菲站APP首页- 受欢迎的游戏列表查询【POST】 */,
-				CE61AD2A2C9EAB26002DF138 /* 获取会员个人信息【GET】 */,
-				CE61AD2D2C9EAB26002DF138 /* 手机登录【POST】 */,
-				CE61AD302C9EAB26002DF138 /* 菲站首页- 受欢迎的游戏列表查询【POST】 */,
-				CE61AD332C9EAB26002DF138 /* 账号密码登录【POST】 */,
-				CE61AD362C9EAB26002DF138 /* 发送短信验证码【POST】 */,
 			);
 			path = FM_Api;
 			sourceTree = "<group>";
@@ -14949,18 +14793,12 @@
 				CE5A64762CA82CCD006D67A7 /* CALayer+Transition.m in Sources */,
 				CECE7E9E2C450E5B00764AF5 /* KTVHCDataRequest.m in Sources */,
 				CE61AD472C9EAB26002DF138 /* FM_promotion_advertise_api.m in Sources */,
-				CE61AD482C9EAB26002DF138 /* FM_game_home_queryTopGamesList_api.m in Sources */,
-				CE61AD492C9EAB26002DF138 /* FM_loginByVerificationCode_api.m in Sources */,
 				CE5A64EE2CA8305D006D67A7 /* NSURLRequest+Extra.m in Sources */,
 				CE5A64B72CA82EEA006D67A7 /* NSObject+AFNReachability.m in Sources */,
-				CE61AD4A2C9EAB26002DF138 /* FM_loginByAccAndPwd_api.m in Sources */,
-				CE61AD4B2C9EAB26002DF138 /* GetMemberInfo_api.m in Sources */,
 				CE5A65192CA83127006D67A7 /* UIControl+XY.m in Sources */,
 				CE5A651A2CA83127006D67A7 /* UIControl+Extra.m in Sources */,
 				CE61AD4C2C9EAB26002DF138 /* NSObject+YTKNetwork.m in Sources */,
-				CE61AD4D2C9EAB26002DF138 /* FM_favoriteGames_delete_api.m in Sources */,
 				CE5A64AF2CA82EAD006D67A7 /* DispatchTimerManager.m in Sources */,
-				CE61AD4E2C9EAB26002DF138 /* FM_favoriteGames_add_api.m in Sources */,
 				CE5A64922CA82DF9006D67A7 /* FileNameModel.m in Sources */,
 				CE5A64D82CA82FEB006D67A7 /* NSObject+Shake.m in Sources */,
 				CE61AD4F2C9EAB26002DF138 /* JobsBaseApi.m in Sources */,
@@ -14978,12 +14816,7 @@
 				CE5A656D2CA83272006D67A7 /* JobsBaseDataSettingVC.m in Sources */,
 				CE5A656E2CA83272006D67A7 /* JobsDebugVC.m in Sources */,
 				CE5A656F2CA83272006D67A7 /* BaseViewController.m in Sources */,
-				CE61AD522C9EAB26002DF138 /* FM_queryAnnByMember_api.m in Sources */,
-				CE61AD532C9EAB26002DF138 /* FM_check_login_verification_api.m in Sources */,
-				CE61AD542C9EAB26002DF138 /* FM_promotion_advertise_homeBanner_api.m in Sources */,
 				CE61AD552C9EAB26002DF138 /* RequestTool.m in Sources */,
-				CE61AD562C9EAB26002DF138 /* FM_promotion_ad_api.m in Sources */,
-				CE61AD572C9EAB26002DF138 /* FM_kyc_submit_api.m in Sources */,
 				CE5A65FA2CA83483006D67A7 /* TLTabBarAnimation.m in Sources */,
 				CE5A65FB2CA83483006D67A7 /* TransitionController.m in Sources */,
 				CE5A65FC2CA83483006D67A7 /* JobsPullListTBVCell.m in Sources */,
@@ -14997,7 +14830,6 @@
 				CE5A662E2CA83740006D67A7 /* NSString+Base64.m in Sources */,
 				CE5A662F2CA83740006D67A7 /* NSData+Base64.m in Sources */,
 				CE5A64D92CA82FF0006D67A7 /* NSObject+Sound.m in Sources */,
-				CE61AD582C9EAB26002DF138 /* FM_game_home_popularGames_query_api.m in Sources */,
 				CE61AD592C9EAB26002DF138 /* JobsNetworkingAPI.m in Sources */,
 				CE5A65222CA83155006D67A7 /* UIImageView+GIF.m in Sources */,
 				CE5A65232CA83155006D67A7 /* UIImageView+SDWebImage.m in Sources */,

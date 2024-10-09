@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— <AppToolsProtocol> 关于注册登录
 /// Token过期应该做的事情
 -(jobsByVoidBlock _Nonnull)tokenExpire;
+/// 退出登录应该做的事情
+-(jobsByVoidBlock _Nonnull)logout;
 /// 清除用户数据资料
 -(jobsByVoidBlock _Nonnull)cleanUserData;
 /// 去登录？去注册？

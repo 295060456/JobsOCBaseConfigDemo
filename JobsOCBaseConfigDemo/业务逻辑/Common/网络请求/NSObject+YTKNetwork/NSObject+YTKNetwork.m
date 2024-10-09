@@ -81,10 +81,11 @@
     };
 }
 
--(jobsByNSIntegerBlock _Nonnull)jobsHandelNoSuccess{
+-(JobsHandelNoSuccessBlock _Nonnull)jobsHandelNoSuccess{
     @jobs_weakify(self)
-    return ^(HTTPResponseCode data){
+    return ^(HTTPResponseCode data,YTKBaseRequest *_Nonnull request){
         @jobs_strongify(self)
+        self.printURLSessionRequestMessage(request.requestTask);
         switch (data) {
                 /// 服务器异常
             case HTTPResponseCodeServeError:{
@@ -96,11 +97,6 @@
                 NSLog(@"令牌不能为空");
                 self.toLogin();
                 toast(JobsInternationalization(@"令牌不能为空"));
-            }break;
-                /// 登录已过期，请重新登录
-            case HTTPResponseCodeLoginDate:{
-                NSLog(@"登录已过期，请重新登录");
-                toast(JobsInternationalization(@"登录已过期，请重新登录"));
             }break;
                 /// 登录失败：账密错误
             case HTTPResponseCodeLoginFailed:{
@@ -132,10 +128,10 @@
                 NSLog(@"账号已在其他设备登录");
                 toast(JobsInternationalization(@"账号已在其他设备登录"));
             }break;
-                /// Token 过期
+                /// Token 过期：登录已过期，请重新登录
             case HTTPResponseCodeTokenExpire:{
                 NSLog(@"Token 过期");
-                toast(JobsInternationalization(@"Token 过期"));
+                self.tokenExpire();
             }break;
                 
             default:
@@ -167,6 +163,43 @@
             NSLog(@"json = %@", json);
         }
     };
+}
+#pragma mark —— 查询广告列表-支持游客：APP首页右下3Banner【GET】
+-(void)getAds:(jobsByIDBlock _Nullable)successBlock{
+    FM_promotion_advertise_api *api = FM_promotion_advertise_api.initByParameters(nil);
+    self.handleErr(api);
+    // self.tipsByApi(self);
+    @jobs_weakify(self)
+    [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+        @jobs_strongify(self)
+        JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
+        if(responseModel.code == HTTPResponseCodeSuccess){
+            if(successBlock) successBlock(responseModel);
+        }self.jobsHandelNoSuccess(responseModel.code,request);
+    } failure:^(YTKBaseRequest *request) {
+        @jobs_strongify(self)
+        self.jobsHandelFailure(request);
+    }];
+}
+#pragma mark —— 用户登出【POST】
+-(void)fm_logout:(jobsByIDBlock _Nullable)successBlock{
+    FM_user_logout_api *api = FM_user_logout_api.initByParameters(nil);
+    self.handleErr(api);
+    // self.tipsByApi(self);
+    @jobs_weakify(self)
+    [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+        @jobs_strongify(self)
+        JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
+        if(responseModel.code == HTTPResponseCodeSuccess){
+            toast(JobsInternationalization(@"退出登录成功"));
+            self.cleanUserData();
+            JobsPostNotification(退出登录成功, @(YES));
+            if(successBlock) successBlock(@YES);
+        }self.jobsHandelNoSuccess(responseModel.code,request);
+    } failure:^(YTKBaseRequest *request) {
+        @jobs_strongify(self)
+        self.jobsHandelFailure(request);
+    }];
 }
 
 @end
