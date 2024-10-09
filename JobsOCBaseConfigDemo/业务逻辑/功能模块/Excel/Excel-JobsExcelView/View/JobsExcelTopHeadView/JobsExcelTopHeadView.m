@@ -11,7 +11,6 @@
 @interface JobsExcelTopHeadView()
 
 @property(nonatomic,strong)UICollectionView *collectionView;
-@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
 @property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel;
 
 @end
@@ -82,19 +81,19 @@
     if(scrollView.contentOffset.x > d) scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
 }
 #pragma mark —— getter and setter
--(UICollectionViewFlowLayout *)layout{
-    if(!_layout){
-        _layout = self.verticalLayout;
-        _layout.itemSize = CGSizeMake(self.viewModel.itemW, self.viewModel.itemH);
-        _layout.minimumLineSpacing = 0;
-        _layout.minimumInteritemSpacing = 0;
-    }return _layout;
-}
-
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
+        @jobs_weakify(self)
         _collectionView = [UICollectionView.alloc initWithFrame:self.bounds
-                                           collectionViewLayout:self.layout];
+                                           collectionViewLayout:jobsMakeHorizontalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
+            data.itemSize = jobsMakeCGSizeByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+                @jobs_strongify(self)
+                data.jobsWidth = self.viewModel.itemW;
+                data.jobsHeight = self.viewModel.itemH;
+            });
+            data.minimumLineSpacing = 0;
+            data.minimumInteritemSpacing = 0;
+        })];
         _collectionView.backgroundColor = JobsClearColor;
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;

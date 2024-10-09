@@ -96,9 +96,8 @@
     if (!_collectionView) {
         @jobs_weakify(self)
         _collectionView = [UICollectionView.alloc initWithFrame:self.bounds
-                                           collectionViewLayout:jobsMakeCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
+                                           collectionViewLayout:jobsMakeHorizontalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
             @jobs_strongify(self)
-            data = self.verticalLayout;
             data.itemSize = jobsMakeCGSizeByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
                 @jobs_strongify(self)
                 data.jobsWidth = self.viewModel_.itemW;
