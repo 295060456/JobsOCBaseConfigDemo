@@ -11,14 +11,12 @@
 #pragma mark —— 打印model的内部属性内容
 @implementation NSObject (DebugDescription)
 
-+ (void)redirectNSlogToDocumentFolder{
-    
++(void)redirectNSlogToDocumentFolder{
     //如果已经连接Xcode调试则不输出到文件
     if(isatty(STDOUT_FILENO)) return;
-    
-    NSDateFormatter *dateFormatter = NSDateFormatter.new;
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *currentDateStr = [dateFormatter stringFromDate:NSDate.date];
+    NSString *currentDateStr = [jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
+        data.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    }) stringFromDate:NSDate.date];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectory = [paths objectAtIndex:0];
@@ -52,7 +50,7 @@
         NSString *name = @(property_getName(property));
         id value = @"nil";
         @try {
-            value = self.valueForKey(name) ?: @"nil"; //默认值为nil字符串
+            value = [self valueForKey:name] ? : @"nil"; //默认值为nil字符串
         }
         @catch (NSException *exception) {
             NSLog(@"Exception: %@", exception);
@@ -63,7 +61,7 @@
     //释放
     free(properties);
     //return
-    return [NSString stringWithFormat:@"<%@: %p> -- %@",self.class,self,dictionary];
+    return JobsFormattedString(@"<%@: %p> -- %@",self.class,self,dictionary);
 }
 /// 将obj转换成json字符串。如果失败则返回nil.
 -(NSString *)convertToJsonString {
@@ -79,9 +77,11 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
-    if (error || !jsonData) return nil;
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData
-                                                 encoding:NSUTF8StringEncoding];
+    if(error) {
+        NSLog(@"error = %@",error.description);
+        if (!jsonData) return nil;
+        return nil;
+    }NSString *jsonString = jsonData.stringByUTF8Encoding;
     return jsonString;
 }
 

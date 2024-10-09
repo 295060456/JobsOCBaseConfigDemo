@@ -181,16 +181,22 @@ BaseProtocol
 -(NSString *_Nonnull)bundlePath;
 /// 获取沙盒的主目录路径：
 -(NSString *_Nonnull)homeDir;
+/// Documents目录（这个目录通常用于存储应用程序中的用户数据或需要持久保存的数据。用户可以通过 iTunes 文件共享或 iCloud 访问该目录中的内容）下，用户主目录下，返回完整路径
+-(NSArray<NSString *> *_Nonnull)documentsPaths;
+/// Library目录（这个目录是每个 iOS 或 macOS 应用程序特有的目录，通常存储应用程序的支持文件、配置文件以及不能直接由用户访问的文件）下，用户主目录下，返回完整路径
+-(NSArray<NSString *> *_Nonnull)libraryPaths;
+/// 缓存目录下，用户主目录下，返回完整路径
+-(NSArray<NSString *> *_Nonnull)cachesPaths;
 /// 获取真机沙盒中Documents的目录路径：
 -(NSString *_Nonnull)documentsDir;
 /// 获取沙盒中Library的目录路径：
 -(NSString *_Nonnull)libraryDir;
 /// 获取沙盒中NSUserDefaults的保存位置
 -(NSString *_Nonnull)userDefaultsDir;
-/// 获取沙盒中Libarary/Preferences的目录路径：
--(NSString *_Nonnull)preferencesDir;
 /// 获取沙盒中Library/Caches的目录路径：
 -(NSString *_Nonnull)cachesDir;
+/// 获取沙盒中Libarary/Preferences的目录路径：
+-(NSString *_Nonnull)preferencesDir;
 /// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
 -(NSString *_Nonnull)tmpDir;
 #pragma mark —— 功能性的
@@ -246,8 +252,7 @@ BaseProtocol
 /// 打印YTKBaseRequest
 -(jobsByYTKBaseRequestBlock _Nonnull)checkRequest;
 /// 此功能的必要性：如果外界传入的数组是空，那么拿到的count是0，做-1操作就是-1，直接用for循环就会进入死循环
--(void)jobsSafetyCycleFunc:(int)ceiling
-                cycleBlock:(jobsByIntBlock _Nullable)cycleBlock;
+-(void)jobsSafetyCycleFunc:(int)ceiling cycleBlock:(jobsByIntBlock _Nullable)cycleBlock;
 -(NSMutableArray <ImageModel *>*_Nonnull)changeGifToImage:(NSData *_Nonnull)gifData;
 /**
  
@@ -287,9 +292,7 @@ BaseProtocol
 /// 给定一个数据源（数组）和 每行需要展示的元素个数，计算行数
 /// @param num 每行需要展示的元素个数
 -(NSInteger)lineNum:(NSInteger)num;
-
--(NSInteger)count:(NSUInteger)count
-              num:(NSInteger)num;
+-(NSInteger)count:(NSUInteger)count num:(NSInteger)num;
 /**
  ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
  -(ScrollDirection)judgementScrollDirectionByPoint:(CGPoint)point;

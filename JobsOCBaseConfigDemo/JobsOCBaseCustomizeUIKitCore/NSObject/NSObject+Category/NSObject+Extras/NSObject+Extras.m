@@ -185,33 +185,43 @@
 -(NSString *_Nonnull)homeDir{
     return NSHomeDirectory();
 }
+/// Documents目录（这个目录通常用于存储应用程序中的用户数据或需要持久保存的数据。用户可以通过 iTunes 文件共享或 iCloud 访问该目录中的内容）下，用户主目录下，返回完整路径
+-(NSArray<NSString *> *_Nonnull)documentsPaths{
+    return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                               NSUserDomainMask,
+                                               YES);
+}
+/// Library目录（这个目录是每个 iOS 或 macOS 应用程序特有的目录，通常存储应用程序的支持文件、配置文件以及不能直接由用户访问的文件）下，用户主目录下，返回完整路径
+-(NSArray<NSString *> *_Nonnull)libraryPaths{
+    return NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
+                                               NSUserDomainMask,
+                                               YES);
+}
+/// 缓存目录下，用户主目录下，返回完整路径
+-(NSArray<NSString *> *_Nonnull)cachesPaths{
+    return NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
+                                               NSUserDomainMask,
+                                               YES);
+}
 /// 获取真机沙盒中Documents的目录路径：
 -(NSString *_Nonnull)documentsDir{
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                NSUserDomainMask,
-                                                YES) firstObject];
+    return self.documentsPaths.firstObject;
 }
 /// 获取沙盒中Library的目录路径：
 -(NSString *_Nonnull)libraryDir{
-    return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
-                                                NSUserDomainMask,
-                                                YES) lastObject];
+    return self.libraryPaths.lastObject;
 }
 /// 获取沙盒中NSUserDefaults的保存位置
 -(NSString *_Nonnull)userDefaultsDir{
-    return NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
-                                               NSUserDomainMask,
-                                               YES).firstObject;
+    return self.libraryPaths.firstObject;
+}
+/// 获取沙盒中Library/Caches的目录路径：
+-(NSString *_Nonnull)cachesDir{
+    return self.cachesPaths.firstObject;
 }
 /// 获取沙盒中Libarary/Preferences的目录路径：
 -(NSString *_Nonnull)preferencesDir{
     return NSString.libraryDir.addPathComponent(@"Preferences");
-}
-/// 获取沙盒中Library/Caches的目录路径：
--(NSString *_Nonnull)cachesDir{
-    return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
-                                                NSUserDomainMask,
-                                                YES) firstObject];
 }
 /// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
 -(NSString *_Nonnull)tmpDir{
@@ -250,7 +260,7 @@
 
 -(JobsReturnDataByDictionaryBlock _Nonnull)JSONWritingPrettyPrinted{
     return ^NSData *_Nullable(__kindof NSDictionary *_Nullable data){
-        NSError *error;
+        NSError *error = nil;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data.copy
                                                            options:NSJSONWritingPrettyPrinted
                                                              error:&error];
@@ -261,7 +271,7 @@
 
 -(JobsReturnIDByDataBlock _Nonnull)JSONReadingMutableContainers{
     return ^id _Nullable(NSData *_Nullable data){
-        NSError *error;
+        NSError *error = nil;
         NSData *jsonData = [NSJSONSerialization JSONObjectWithData:data.copy
                                                            options:NSJSONReadingMutableContainers
                                                              error:&error];
@@ -272,7 +282,7 @@
 
 -(JobsReturnIDByDataBlock _Nonnull)JSONkNilOptions{
     return ^id _Nullable(NSData *_Nullable data){
-        NSError *error;
+        NSError *error = nil;
         NSData *jsonData = [NSJSONSerialization JSONObjectWithData:data.copy
                                                            options:kNilOptions
                                                              error:&error];
@@ -317,11 +327,11 @@
 /// JSON对象转NSData
 -(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject{
     return ^NSData *_Nullable(id _Nullable data){
-        NSError *parseError = nil;
+        NSError *error = nil;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data
                                                            options:NSJSONWritingPrettyPrinted
-                                                             error:&parseError];
-        if(parseError) NSLog(@"parseError = %@",parseError);
+                                                             error:&error];
+        if(error) NSLog(@"error = %@",error);
         return jsonData;
     };
 }
@@ -531,19 +541,18 @@
     CGImageSourceRef source = CGImageSourceCreateWithData(my_cfdata, NULL);
     /// 获取gif文件里图片的个数
     size_t count = CGImageSourceGetCount(source);
-    /// 存放全部图片
-    NSMutableArray <ImageModel *>*imageModelArr = NSMutableArray.array;
-    /// 遍历
-    for (size_t i = 0; i < count; i++) {
-        ImageModel *imageModel = ImageModel.new;
-        CGImageRef image = CGImageSourceCreateImageAtIndex(source, i, NULL);
-        imageModel.image = [UIImage imageWithCGImage:image];
-        CGImageRelease(image);
-        //获取图片信息
-        imageModel.info = (__bridge NSDictionary*)CGImageSourceCopyPropertiesAtIndex(source, i, NULL);
-        imageModel.timeDic = [imageModel.info objectForKey:(__bridge NSString *)kCGImagePropertyGIFDictionary];
-        imageModelArr.add(imageModel);
-    }return imageModelArr;
+    return jobsMakeMutArr(^(__kindof NSMutableArray <ImageModel *>*_Nullable data) {
+        for (size_t i = 0; i < count; i++) {
+            ImageModel *imageModel = ImageModel.new;
+            CGImageRef image = CGImageSourceCreateImageAtIndex(source, i, NULL);
+            imageModel.image = [UIImage imageWithCGImage:image];
+            CGImageRelease(image);
+            //获取图片信息
+            imageModel.info = (__bridge NSDictionary*)CGImageSourceCopyPropertiesAtIndex(source, i, NULL);
+            imageModel.timeDic = [imageModel.info objectForKey:(__bridge NSString *)kCGImagePropertyGIFDictionary];
+            data.add(imageModel);
+        }
+    });
 }
 /**
  
@@ -555,7 +564,9 @@
  
  */
 - (JobsReturnIDByIDBlock _Nonnull)valueForKey{
+    @jobs_weakify(self)
     return ^(NSString *key) {
+        @jobs_strongify(self)
         id value = nil;
         if ([key isKindOfClass:NSString.class] &&
             [self respondsToSelector:NSSelectorFromString(key)]) {
@@ -802,7 +813,6 @@
                                               data:(NSMutableArray <UIViewModel *>* _Nullable)data
                                 motivateViewOffset:(CGFloat)motivateViewOffset
                                        finishBlock:(jobsByIDBlock _Nullable)finishBlock{
-    
     JobsDropDownListView *dropDownListView = JobsDropDownListView.new;
     dropDownListView.direction = jobsDropDownListViewDirection;
     [dropDownListView actionObjectBlock:^(id data) {
@@ -810,61 +820,45 @@
             UIButton *btn = (UIButton *)motivateFromView;
             btn.selected = !btn.selected;
         }
-        
         if (finishBlock) finishBlock(data);
-        
         [dropDownListView dropDownListViewDisappear:nil];
     }];
-    
     //    dropDownListView.backgroundColor = JobsRedColor;
     CGRect f = [self getWindowFrameByView:motivateFromView];
     if (!data) {
         data = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            {
-                UIViewModel *viewModel = UIViewModel.new;
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.textModel.font = UIFontWeightRegularSize(14);
                 viewModel.jobsWidth = f.size.width;
                 viewModel.textModel.text = @"111111111";
                 viewModel.subTextModel.text = @"eeeeeeeee";
                 viewModel.textModel.textLineSpacing = 0;
-                data.add(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = UIViewModel.new;
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.textModel.font = UIFontWeightRegularSize(14);
                 viewModel.jobsWidth = f.size.width;
                 viewModel.textModel.text = @"222222222";
                 viewModel.subTextModel.text = @"wwwwwwwww";
                 viewModel.textModel.textLineSpacing = 0;
-                data.add(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = UIViewModel.new;
+            }));
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.textModel.font = UIFontWeightRegularSize(14);
                 viewModel.jobsWidth = f.size.width;
                 viewModel.textModel.text = @"333333333";
                 viewModel.subTextModel.text = @"sssssssss";
                 viewModel.textModel.textLineSpacing = 0;
-                data.add(viewModel);
-            }
+            }));
         });
     }
     dropDownListView.jobsRichViewByModel(data);
     
-    if (jobsDropDownListViewDirection) {
-        dropDownListView.frame = CGRectMake(f.origin.x,
-                                            f.origin.y - motivateViewOffset - data.count * JobsDropDownListTBVCell.cellHeightByModel(nil),
-                                            f.size.width,
-                                            data.count * JobsDropDownListTBVCell.cellHeightByModel(nil));
-    }else{
-        dropDownListView.frame = CGRectMake(f.origin.x,
-                                            f.origin.y + f.size.height + motivateViewOffset,
-                                            f.size.width,
-                                            data.count * JobsDropDownListTBVCell.cellHeightByModel(nil));
-    }
-    
+    dropDownListView.frame = jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data1) {
+        data1.jobsX = f.origin.x;
+        data1.jobsY = jobsDropDownListViewDirection ? (f.origin.y - motivateViewOffset - data.count * JobsDropDownListTBVCell.cellHeightByModel(nil))
+        : (f.origin.y + f.size.height + motivateViewOffset);
+        data1.jobsWidth = f.size.width;
+        data1.jobsHeight = data.count * JobsDropDownListTBVCell.cellHeightByModel(nil);
+    });
     [MainWindow addSubview:dropDownListView];
     return dropDownListView;
 }
@@ -913,7 +907,9 @@
 }
 
 -(jobsByURLRequestBlock _Nonnull)printRequestMessage{
+    @jobs_weakify(self)
     return ^(__kindof NSURLRequest *_Nullable data) {
+        @jobs_strongify(self)
         if (data) {
             // 请求URL
             NSLog(@"请求URL:%@\n",data.URL);
@@ -1017,7 +1013,6 @@
         if ([imageData isKindOfClass:UIImage.class]){
             imageData = UIImagePNGRepresentation((UIImage *)imageData);
         }
-        
         if ([imageData isKindOfClass:NSData.class]) {
             [PHPhotoLibrary.sharedPhotoLibrary performChanges:^{
                 if (@available(iOS 9, *)) {
@@ -1027,8 +1022,7 @@
                                          options:nil];
                     request.creationDate = NSDate.date;
                 }
-            } completionHandler:^(BOOL success,
-                                  NSError *error) {
+            } completionHandler:^(BOOL success,NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (success) {
                         NSLog(@"保存照片成功");
@@ -1047,37 +1041,26 @@
 /// @param bitNum 如果操作对象是浮点数，那么小数点后需要保留的位数
 -(nonnull NSMutableArray <UIImage *>*)translateToArr:(CGFloat)inputData
                                    saveBitAfterPoint:(NSInteger)bitNum{
-    
     if ([self isFloat:inputData] && !bitNum) {
         bitNum = 2;//默认保存小数点后2位
     }
-
-    NSString *format = @"%.".add([NSString stringWithFormat:@"%ldf",bitNum]);
-    NSString *str = [NSString stringWithFormat:format,inputData];
-    
-    NSMutableArray <NSString *>*resultMutArr = NSMutableArray.array;// For test
-    NSMutableArray <UIImage *>*resultIMGMutArr = NSMutableArray.array;
-    
-    NSUInteger len = str.length;
-    unichar buffer[len + 1];
-    [str getCharacters:buffer
-                 range:NSMakeRange(0, len)];
-    
-    for(int i = 0; i < len; i++) {
-        NSLog(@"%C", buffer[i]);
-        NSString *temp = [NSString stringWithFormat:@"%C",buffer[i]];
-        resultMutArr.add(temp);
-        // 数字映射图片
-        if ([temp isEqualToString:@"."]) {
-            temp = @"小数点";
+    NSString *format = @"%.".add(JobsFormattedString(@"%ldf",bitNum));
+    NSString *str = JobsFormattedString(format,inputData);
+    return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        NSUInteger len = str.length;
+        unichar buffer[len + 1];
+        [str getCharacters:buffer range:NSMakeRange(0, len)];
+        for(int i = 0; i < len; i++) {
+            NSString *temp = JobsFormattedString(@"%C",buffer[i]);
+            // 数字映射图片
+            if ([temp isEqualToString:@"."]) {
+                temp = @"小数点";
+            }data.add(JobsIMG(temp));
         }
-        resultIMGMutArr.add(JobsIMG(temp));
-    }
-    NSLog(@"resultMutArr【For Test】 = %@",resultMutArr);
-    return resultIMGMutArr;
+    });
 }
 /// 读取本地的plist文件到内存  【 plist ——> NSDictionary * 】
--(JobsReturnDicByStringBlock)readLocalPlistWithFileName{
+-(JobsReturnDicByStringBlock _Nonnull)readLocalPlistWithFileName{
     /// fileName Plist文件名
     return ^(NSString * _Nullable fileName) {
         NSString *filePath = JobsPathForResource(nil,
@@ -1118,9 +1101,12 @@
          *  error 返回时，是编码时发生的错误，或者nil没有发生错误
          */
         if (@available(iOS 11.0, *)) {
-            return [NSKeyedArchiver archivedDataWithRootObject:array
-                                         requiringSecureCoding:YES
-                                                         error:&err];
+            NSError *err = nil;
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:array
+                                                 requiringSecureCoding:YES
+                                                                 error:&err];
+            if (err) NSLog(@"err = %@",err.description);
+            return data;
         }else{
             SuppressWdeprecatedDeclarationsWarning(return [NSKeyedArchiver archivedDataWithRootObject:array]);
         }
@@ -1229,7 +1215,7 @@
     return value.CGPointValue;
 }
 /// CGVector
--(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*  )mutArr
+-(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                       addCGVector:(CGVector)vector{
     mutArr.add([NSValue valueWithCGVector:vector]);
     return mutArr;
@@ -1336,7 +1322,6 @@
     if (![num1 isKindOfClass:NSNumber.class] || ![num2 isKindOfClass:NSNumber.class]) return NO;
     /// 在数据类型为NSNumber* 的基础上进行讨论和判断
     if (num1 == num2) return YES;
-    
     if (num2.floatValue) {
         int a = num2.intValue;
         double s1 = num1.doubleValue;
@@ -1411,11 +1396,9 @@
 }
 /// 横屏通知的监听
 -(void)横屏通知的监听:(JobsSelectorBlock1)block{
-    @jobs_weakify(self)
     [self addNotificationName:UIDeviceOrientationDidChangeNotification
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
-        @jobs_strongify(self)
         switch (UIDevice.currentDevice.orientation) {
             case UIDeviceOrientationFaceUp:
                 NSLog(@"屏幕朝上平躺");
@@ -1526,8 +1509,7 @@
     }else{
         [contentView ly_showEmptyView];
         contentView.ly_emptyView.alpha = 1;
-    }
-    contentView.mj_footer.hidden = !dataSource.count;
+    }contentView.mj_footer.hidden = !dataSource.count;
 }
 #pragma mark —— @property(nonatomic,assign)CGPoint lastPoint;
 JobsKey(_lastPoint)
