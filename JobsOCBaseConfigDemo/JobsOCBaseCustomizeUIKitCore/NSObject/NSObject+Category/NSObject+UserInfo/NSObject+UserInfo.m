@@ -14,7 +14,7 @@
  【return】 YES(已经登录)、NO（未登录）
  */
 -(BOOL)isLogin{
-    return isValue(self.readUserInfo().token) && self.readUserInfo();
+    return isValue(self.readUserInfo().token);
 }
 /// 检查是否登录并执行传入的代码块
 -(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock {

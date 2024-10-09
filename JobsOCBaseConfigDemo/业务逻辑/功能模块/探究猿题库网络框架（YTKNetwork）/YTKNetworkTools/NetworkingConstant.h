@@ -57,15 +57,17 @@
 #ifndef HTTP_RESPONSE_CODE_ENUM_DEFINED
 #define HTTP_RESPONSE_CODE_ENUM_DEFINED
 /// 请求数据返回的状态码、根据自己的服务端数据来
-typedef NS_ENUM(NSInteger, HTTPResponseCode) {//KKK
-    HTTPResponseCodeServeError = -1,/// 服务器异常
-    HTTPResponseCodeSuccess = 0,/// 请求成功
-    HTTPResponseCodeLoginDate = 1,/// 登录已过期，请重新登录
+typedef NS_ENUM(NSInteger, HTTPResponseCode) {
+    HTTPResponseCodeServeError = 10005,/// 服务器异常
+    HTTPResponseCodeSuccess = 200,/// 请求成功
+    HTTPResponseCodeNoToken = 401,/// 令牌不能为空
+    HTTPResponseCodeLoginFailed = 1002000000,/// 登录失败：账密错误
     HTTPResponseCodeAuthorizationFailure = 2,/// 授权失败
     HTTPResponseCodeLeakTime = 4,/// 限定时间内超过请求次数
     HTTPResponseCodeRiskOperation = 6,/// 风险操作
     HTTPResponseCodeNoSettingTransactionPassword = 7,/// 未设置交易密码
-    HTTPResponseCodeOffline = 8/// 帐号已在其他设备登录
+    HTTPResponseCodeOffline = 8,/// 帐号已在其他设备登录
+    HTTPResponseCodeTokenExpire = 10009/// Token 过期
     ///其他代号，展示msg内容即可
 };
 #endif /* HTTP_RESPONSE_CODE_ENUM_DEFINED */

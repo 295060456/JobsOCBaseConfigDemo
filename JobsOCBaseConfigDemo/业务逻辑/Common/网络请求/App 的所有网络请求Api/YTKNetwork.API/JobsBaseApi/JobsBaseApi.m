@@ -33,10 +33,10 @@
 /// 设置自定义的 HTTP Header
 -(NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
     // 在这里添加你想要的 HTTP header
-    JobsUserModel *loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
+    self.loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
     return @{
         @"Content-Type": @"application/json", // 设置 Content-Type
-        @"Authorization": loginModel.token ? : @"" // 设置 Authorization
+        @"Authorization": self.loginModel.token // 设置 Authorization
     };
 }
 

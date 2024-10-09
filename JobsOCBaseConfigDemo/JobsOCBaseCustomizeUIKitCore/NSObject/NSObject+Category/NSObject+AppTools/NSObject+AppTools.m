@@ -68,6 +68,28 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     });
 }
 #pragma mark —— <AppToolsProtocol> 关于注册登录
+/// Token过期应该做的事情
+-(jobsByVoidBlock _Nonnull)tokenExpire{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        self.cleanUserData(); /// 清除用户数据资料
+        JobsPostNotification(退出登录成功, @(YES));
+        self.toLogin();
+        toast(@"Token 已经过期，请重新登录");
+    };
+}
+/// 清除用户数据资料
+-(jobsByVoidBlock _Nonnull)cleanUserData{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        self.loginModel = nil;
+#ifdef DEBUG
+        toast(@"Token过期，自动清除本地用户数据");
+#endif
+    };
+}
 /// 去登录？去注册？
 -(jobsByNSIntegerBlock _Nonnull)toLoginOrRegister{
     return ^(CurrentPage appDoorContentType){
@@ -644,6 +666,20 @@ JobsKey(_jxCategoryViewTitleMutArr)
 
 -(void)setJxCategoryViewTitleMutArr:(NSMutableArray<NSString *> *)jxCategoryViewTitleMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_jxCategoryViewTitleMutArr, jxCategoryViewTitleMutArr)
+}
+#pragma mark —— @property(nonatomic,strong,nullable)JobsUserModel *loginModel;
+JobsKey(_loginModel)
+@dynamic loginModel;
+-(JobsUserModel *_Nullable)loginModel{
+    return self.readUserInfoByUserName(JobsUserModel.class,用户信息);
+}
+
+-(void)setLoginModel:(JobsUserModel *_Nullable)loginModel{
+    if(loginModel){
+        self.jobsSaveUserInfo(loginModel,用户信息);
+    }else{
+        self.deleteUserInfoByUserName(用户信息);
+    }
 }
 
 @end

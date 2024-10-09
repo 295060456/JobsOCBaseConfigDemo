@@ -48,7 +48,7 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
                           successBlock:(jobsByIDBlock _Nullable)successBlock
                           failureBlock:(jobsByIDBlock _Nullable)failureBlock;
 #pragma mark —— 错误处理
-+(void)handleError:(id)error;
++(jobsByIDBlock _Nonnull)handleError;
 
 @end
 

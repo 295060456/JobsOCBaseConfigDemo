@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol AppToolsProtocol <BaseProtocol>
 @optional
 #pragma mark —— <AppToolsProtocol> 关于注册登录
+/// Token过期应该做的事情
+-(jobsByVoidBlock _Nonnull)tokenExpire;
+/// 清除用户数据资料
+-(jobsByVoidBlock _Nonnull)cleanUserData;
 /// 去登录？去注册？
 -(jobsByNSIntegerBlock)toLoginOrRegister;
 /// 在某些页面不调取登录页

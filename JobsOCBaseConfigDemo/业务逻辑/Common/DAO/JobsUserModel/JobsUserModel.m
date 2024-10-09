@@ -147,11 +147,11 @@ static dispatch_once_t static_userModelOnceToken;
 //    }return _userName;
 //}
 //
-//-(NSString *)token{
-//    if (!_token) {
-//        _token = @"暂时没有值";
-//    }return _token;
-//}
+-(NSString *)token{
+    if (!_token) {
+        _token = @"";
+    }return _token;
+}
 //
 //-(NSString *)uid{
 //    if (!_uid) {

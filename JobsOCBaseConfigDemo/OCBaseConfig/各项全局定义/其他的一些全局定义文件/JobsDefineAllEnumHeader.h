@@ -190,7 +190,6 @@ typedef NS_ENUM(NSInteger, HTTPResponseCode) {
     HTTPResponseCodeServeError = 10005,/// 服务器异常
     HTTPResponseCodeSuccess = 200,/// 请求成功
     HTTPResponseCodeNoToken = 401,/// 令牌不能为空
-    HTTPResponseCodeLoginDate = 1,/// 登录已过期，请重新登录
     HTTPResponseCodeLoginFailed = 1002000000,/// 登录失败：账密错误
     HTTPResponseCodeAuthorizationFailure = 2,/// 授权失败
     HTTPResponseCodeLeakTime = 4,/// 限定时间内超过请求次数
@@ -466,10 +465,10 @@ typedef NS_ENUM(NSInteger, FM_action_type){
 #ifndef FMGAMELISTSTYLE
 #define FMGAMELISTSTYLE
 typedef NS_ENUM(NSInteger, FMGameListStyle){
-    FMGameListStyle_All = 0, /// 全部
-    FMGameListStyle_Hot,   /// 热门
-    FMGameListStyle_New,   /// 最新
-    FMGameListStyle_Fav,   /// 最爱
+    FMGameListStyle_New = 0,   /// 最新
+    FMGameListStyle_Hot = 1,   /// 热门
+    FMGameListStyle_All = 2, /// 全部
+    FMGameListStyle_Fav = 3,   /// 最爱
 };
 #endif /* FMGAMELISTSTYLE */
 

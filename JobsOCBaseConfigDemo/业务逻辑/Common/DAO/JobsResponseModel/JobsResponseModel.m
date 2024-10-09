@@ -12,8 +12,7 @@
 -(void)setCode:(HTTPResponseCode)code{
     _code = code;
     if(code == HTTPResponseCodeTokenExpire){
-        self.refreshUserToken();
-        toast(@"Token 已经过期，请重新登录");
+        self.tokenExpire();
     }
 }
 
