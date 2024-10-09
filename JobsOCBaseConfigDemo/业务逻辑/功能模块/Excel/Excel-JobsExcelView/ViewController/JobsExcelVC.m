@@ -11,7 +11,6 @@
 /// UI
 @property(nonatomic,strong)JobsExcelView *excelView;
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *excelData;
 
 @end
 
@@ -88,26 +87,21 @@
             make.center.equalTo(self.view);
             make.size.mas_equalTo(JobsExcelView.viewSizeByModel(nil));
         }];
-        _excelView.jobsRichViewByModel(self.excelData);
+        _excelView.jobsRichViewByModel(jobsMakeExcelConfigureViewModel(^(JobsExcelConfigureViewModel * _Nullable data) {
+            data.XZExcelH = JobsExcelView.viewSizeByModel(nil).height;
+            data.XZExcelW = JobsExcelView.viewSizeByModel(nil).width;
+            data.itemW = JobsWidth(80);
+            
+            data.topHeaderTitles.add(JobsInternationalization(@"Order Time"));
+            data.topHeaderTitles.add(JobsInternationalization(@"Order No."));
+            data.topHeaderTitles.add(JobsInternationalization(@"Transaction Type"));
+            data.topHeaderTitles.add(JobsInternationalization(@"Amount"));
+            data.topHeaderTitles.add(JobsInternationalization(@"Method"));
+            data.topHeaderTitles.add(JobsInternationalization(@"Status"));
+            
+            data.configureData();
+        }));
     }return _excelView;
-}
-
--(JobsExcelConfigureViewModel *)excelData{
-    if(!_excelData){
-        _excelData = JobsExcelConfigureViewModel.new;
-        _excelData.XZExcelH = JobsExcelView.viewSizeByModel(nil).height;
-        _excelData.XZExcelW = JobsExcelView.viewSizeByModel(nil).width;
-        _excelData.itemW = JobsWidth(80);
-        
-        _excelData.topHeaderTitles.add(JobsInternationalization(@"Order Time"));
-        _excelData.topHeaderTitles.add(JobsInternationalization(@"Order No."));
-        _excelData.topHeaderTitles.add(JobsInternationalization(@"Transaction Type"));
-        _excelData.topHeaderTitles.add(JobsInternationalization(@"Amount"));
-        _excelData.topHeaderTitles.add(JobsInternationalization(@"Method"));
-        _excelData.topHeaderTitles.add(JobsInternationalization(@"Status"));
-        
-        _excelData.configureData();
-    }return _excelData;
 }
 
 @end

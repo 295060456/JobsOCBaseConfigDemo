@@ -57,9 +57,7 @@ BOOL ISLogin;
     }
     /// 装填用户信息数据
     /// json生成器 ： https://www.site24x7.com/zhcn/tools/json-generator.html
-    NSDictionary *dic = @"UserData".readLocalFileWithName;
-    JobsUserModel *userModel = [JobsUserModel mj_objectWithKeyValues:dic];
-    self.saveUserInfo(userModel);// 保存全局唯一的一份用户档案
+    self.saveUserInfo(JobsUserModel.byData(@"UserData".readLocalFileWithName));// 保存全局唯一的一份用户档案
 }
 
 - (void)viewDidLoad {

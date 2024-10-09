@@ -605,7 +605,6 @@
 		CE5A65912CA8332C006D67A7 /* JobsScrollYView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28CD2CA8286D002AF25B /* JobsScrollYView.m */; };
 		CE5A65922CA8333B006D67A7 /* JobsShowObjInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28D82CA8286D002AF25B /* JobsShowObjInfoVC.m */; };
 		CE5A65932CA8333B006D67A7 /* CheckMemFreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28DB2CA8286D002AF25B /* CheckMemFreeVC.m */; };
-		CE5A65942CA8333B006D67A7 /* DebugLogDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28D52CA8286D002AF25B /* DebugLogDescription.m */; };
 		CE5A65952CA8333B006D67A7 /* CasinoCustomerServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28D12CA8286D002AF25B /* CasinoCustomerServiceView.m */; };
 		CE5A65962CA83349006D67A7 /* gesture_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE4F28E72CA8286D002AF25B /* gesture_selected@2x.png */; };
 		CE5A65972CA83349006D67A7 /* gesture_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE4F28E62CA8286D002AF25B /* gesture_normal@2x.png */; };
@@ -1102,6 +1101,7 @@
 		CEDC58E72CA190BC00C7772C /* MJRefreshBackStateFooter+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDC58D82CA190BC00C7772C /* MJRefreshBackStateFooter+Extra.m */; };
 		CEDC58E82CA190BC00C7772C /* MJRefreshGifHeader+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDC58CF2CA190BC00C7772C /* MJRefreshGifHeader+Extra.m */; };
 		CEDD9DE12CAA5752002FD89F /* JobsLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDD9DDF2CAA5752002FD89F /* JobsLocationModel.m */; };
+		CEDE32122CB6A468005256B2 /* DebugLogDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28D52CA8286D002AF25B /* DebugLogDescription.m */; };
 		D16B7B0D974F1991F2B39889 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -15304,7 +15304,6 @@
 				CE5A655F2CA8325F006D67A7 /* UIView+Chain.m in Sources */,
 				CE5A65922CA8333B006D67A7 /* JobsShowObjInfoVC.m in Sources */,
 				CE5A65932CA8333B006D67A7 /* CheckMemFreeVC.m in Sources */,
-				CE5A65942CA8333B006D67A7 /* DebugLogDescription.m in Sources */,
 				CE5A65952CA8333B006D67A7 /* CasinoCustomerServiceView.m in Sources */,
 				CE5A65602CA8325F006D67A7 /* UIView+EmptyData.m in Sources */,
 				CE5A65612CA8325F006D67A7 /* UIView+Masonry.m in Sources */,
@@ -15357,6 +15356,7 @@
 				CE4F28162CA825CD002AF25B /* YTKAnimatingRequestAccessory.m in Sources */,
 				CE5A65D42CA833F7006D67A7 /* JobsLinkageMenuView.m in Sources */,
 				CE5A65D52CA833F7006D67A7 /* JobsMenuSubView@1.m in Sources */,
+				CEDE32122CB6A468005256B2 /* DebugLogDescription.m in Sources */,
 				CE5A65D62CA833F7006D67A7 /* JobsMenuSubView@3.m in Sources */,
 				CE5A65D72CA833F7006D67A7 /* JobsMenuSubView@4.m in Sources */,
 				CE5A65D82CA833F7006D67A7 /* JobsMenuView.m in Sources */,

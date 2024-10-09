@@ -149,9 +149,9 @@ viewForHeaderInSection:(NSInteger)section{
 //            headerView.section = section;
 //        }
         headerView.jobsRichViewByModel(nil);
-        @jobs_weakify(self)
+//        @jobs_weakify(self)
         [headerView actionObjectBlock:^(id data) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
         }];return headerView;
     }return nil;
 }
@@ -169,9 +169,9 @@ viewForHeaderInSection:(NSInteger)section{
         tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
         tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
         tbvFooterView.jobsRichViewByModel(nil);
-        @jobs_weakify(self)
+//        @jobs_weakify(self)
         [tbvFooterView actionObjectBlock:^(id data) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
         }];return tbvFooterView;
     }return nil;
 }
@@ -212,9 +212,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView hideSeparatorLineAtLast:indexPath
                                   cell:cell];
     cell.img = JobsIMG(@"向右的箭头（大）");
-    @jobs_weakify(self)
+//    @jobs_weakify(self)
     [cell customAccessoryView:^(id data) {
-        @jobs_strongify(self)
+//        @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
         NSLog(@"MMM - %ld",cell.index);
     }];
@@ -315,56 +315,44 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _tbvSectionRowCellMutArr;
 }
 
--(NSMutableArray<NSMutableArray<__kindof UIViewModel *> *> *)dataMutArr{
+-(NSMutableArray<NSMutableArray<__kindof UIViewModel *>*>*)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
-        
-        {
-            NSMutableArray <__kindof UIViewModel *>*rowMutArr = NSMutableArray.array;
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJClassData")
-                                                               attributeSubTitle:JobsInternationalization(@"正常")];
-                viewModel.cls = ZMJClassDataVC.class;
-                rowMutArr.add(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJTimeable")
-                                                               attributeSubTitle:JobsInternationalization(@"正常")];
-                viewModel.cls = ZMJTimeableVC.class;
-                rowMutArr.add(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJSchedule")
-                                                               attributeSubTitle:JobsInternationalization(@"正常")];
-                viewModel.cls = ZMJScheduleVC.class;
-                rowMutArr.add(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJGanttList")
-                                                               attributeSubTitle:JobsInternationalization(@"有崩溃，需要修复")];
-                viewModel.cls = ZMJGanttListVC.class;
-                rowMutArr.add(viewModel);
-            }
-            
-            _dataMutArr.add(rowMutArr);
-        }
-        
-        {
-            NSMutableArray <__kindof UIViewModel *>*rowMutArr = NSMutableArray.array;
-            
-            {
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSMutableArray<__kindof UIViewModel *> *>*_Nullable data) {
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
+                {
+                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJClassData")
+                                                                   attributeSubTitle:JobsInternationalization(@"正常")];
+                    viewModel.cls = ZMJClassDataVC.class;
+                    data1.add(viewModel);
+                }
+                {
+                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJTimeable")
+                                                                   attributeSubTitle:JobsInternationalization(@"正常")];
+                    viewModel.cls = ZMJTimeableVC.class;
+                    data1.add(viewModel);
+                }
+                
+                {
+                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJSchedule")
+                                                                   attributeSubTitle:JobsInternationalization(@"正常")];
+                    viewModel.cls = ZMJScheduleVC.class;
+                    data1.add(viewModel);
+                }
+                
+                {
+                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJGanttList")
+                                                                   attributeSubTitle:JobsInternationalization(@"有崩溃，需要修复")];
+                    viewModel.cls = ZMJGanttListVC.class;
+                    data1.add(viewModel);
+                }
+            }));
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
                 UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsExcel")
                                                                attributeSubTitle:JobsInternationalization(@"JobsExcel")];
                 viewModel.cls = JobsExcelVC.class;
-                rowMutArr.add(viewModel);
-            }
-            
-            _dataMutArr.add(rowMutArr);
-        }
+                data1.add(viewModel);
+            }));
+        });
     }return _dataMutArr;
 }
 

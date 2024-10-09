@@ -256,11 +256,12 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                      .onClick(^(__kindof UIButton *x){
                          x.selected = !x.selected;
                          @jobs_weakify(self)
-                         [self isLogin:^{
-                             @jobs_strongify(self)
-                             [AppDelegate button:x index:0];
-                             if (self.objectBlock) self.objectBlock(x);
-                         }];
+//                         [self isLogin:^{
+//                             @jobs_strongify(self)
+//                             [AppDelegate button:x index:0];
+//                             if (self.objectBlock) self.objectBlock(x);
+//                         }];
+                         [AppDelegate button:x index:0];
                      }).onLongPressGesture(^(id data){
                          NSLog(@"");
                      }));
@@ -280,11 +281,12 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                      .onClick(^(__kindof UIButton *x){
                          x.selected = !x.selected;
                          @jobs_weakify(self)
-                         [self isLogin:^{
-                             @jobs_strongify(self)
-                             [AppDelegate button:x index:1];
-                             if (self.objectBlock) self.objectBlock(x);
-                         }];
+//                         [self isLogin:^{
+//                             @jobs_strongify(self)
+//                             [AppDelegate button:x index:1];
+//                             if (self.objectBlock) self.objectBlock(x);
+//                         }];
+                         [AppDelegate button:x index:1];
                      }).onLongPressGesture(^(id data){
                          NSLog(@"");
                      }));

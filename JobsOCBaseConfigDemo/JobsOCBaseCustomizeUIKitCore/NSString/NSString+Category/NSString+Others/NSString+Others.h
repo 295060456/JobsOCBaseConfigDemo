@@ -11,7 +11,7 @@
 #import "JobsBlock.h"
 #import "FileNameModel.h"
 
-NS_INLINE NSMutableString * _Nonnull JobsMutableString(NSString * _Nonnull str){
+NS_INLINE NSMutableString *_Nonnull JobsMutableString(NSString * _Nonnull str){
     if(!str) str = @"";
     return [NSMutableString stringWithString:str];
 }

@@ -8,6 +8,7 @@
 #import "JobsUserModel.h"
 
 @implementation JobsUserModel
+BaseProtocol_synthesize
 #pragma mark —— MJKeyValue
 - (id)mj_newValueFromOldValue:(id)oldValue
                      property:(MJProperty *)property{
@@ -25,7 +26,6 @@
     static_userModelOnceToken = 0;
     static_userModel = nil;
 }
-
 static JobsUserModel *static_userModel = nil;
 static dispatch_once_t static_userModelOnceToken;
 +(instancetype)sharedManager{
@@ -38,18 +38,18 @@ static dispatch_once_t static_userModelOnceToken;
 - (nullable instancetype)initWithCoder:(NSCoder *)decoder {
 //    _img = [coder decodeObjectOfClass:UIImage.class forKey:@"img"];
     if (self = [super initWithCoder:decoder]) {
-        
-        NSMutableSet <Class>*allowedClasses = NSMutableSet.set;
-        allowedClasses.add(self.class);
-        allowedClasses.add(NSString.class);
-        allowedClasses.add(NSNumber.class);
-        allowedClasses.add(NSArray.class);
-        allowedClasses.add(NSDictionary.class);
-        allowedClasses.add(UIImage.class);
-        
         for (NSString *key in printPropertyListByClass(self.class)) {
             if ([self respondsToSelector:NSSelectorFromString(key)]) {
-                id value = [decoder decodeObjectOfClasses:allowedClasses forKey:key];
+                @jobs_weakify(self)
+                id value = [decoder decodeObjectOfClasses:jobsMakeMutSet(^(__kindof NSMutableSet <Class>*_Nullable data) {
+                    @jobs_strongify(self)
+                    data.add(self.class);
+                    data.add(NSString.class);
+                    data.add(NSNumber.class);
+                    data.add(NSArray.class);
+                    data.add(NSDictionary.class);
+                    data.add(UIImage.class);
+                }) forKey:key];
                 if (value) self.jobsKVC(key,value);
             }
         }
@@ -141,17 +141,17 @@ static dispatch_once_t static_userModelOnceToken;
     NSLog(@"Token 的过期时间是:%@-%@",expireTime,self.tokenExpireTime);
 }
 #pragma mark —— 默认值设置
-//-(NSString *)userName{
-//    if (!_userName) {
-//        _userName = @"暂时没有值.张山";
-//    }return _userName;
-//}
-//
 -(NSString *)token{
     if (!_token) {
         _token = @"";
     }return _token;
 }
+
+//-(NSString *)userName{
+//    if (!_userName) {
+//        _userName = @"暂时没有值.张山";
+//    }return _userName;
+//}
 //
 //-(NSString *)uid{
 //    if (!_uid) {

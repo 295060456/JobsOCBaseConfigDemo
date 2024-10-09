@@ -14,55 +14,48 @@
 +(void)redirectNSlogToDocumentFolder{
     //如果已经连接Xcode调试则不输出到文件
     if(isatty(STDOUT_FILENO)) return;
-    NSString *currentDateStr = [jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
+    NSString *logFilePath = [self.documentsDir stringByAppendingPathComponent:JobsFormattedString(@"%@.log",[jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
         data.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    }) stringFromDate:NSDate.date];
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    NSString *fileName = [NSString stringWithFormat:@"%@.log",currentDateStr];
-    NSString *logFilePath = [documentDirectory stringByAppendingPathComponent:fileName];
+    }) stringFromDate:NSDate.date])];
     // 先删除已经存在的文件
-    NSFileManager *defaultManager = [NSFileManager defaultManager];
-    [defaultManager removeItemAtPath:logFilePath error:nil];
-    
+    [NSFileManager.defaultManager removeItemAtPath:logFilePath error:nil];
     // 将log输入到文件
     freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+", stdout);
     freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+", stderr);
 }
 /// debugDescription方法只会在调试po的时候调用，而在代码中打印不会调用
-- (NSString *)debugDescription {
-    //判断是否时NSArray 或者NSDictionary NSNumber 如果是的话直接返回 debugDescription
-    if ([self isKindOfClass:NSArray.class] ||
-        [self isKindOfClass:NSDictionary.class] ||
-        [self isKindOfClass:NSString.class] ||
-        [self isKindOfClass:NSNumber.class]) {
-        return [self debugDescription];
-    }
-    //声明一个字典
-    NSMutableDictionary *dictionary = NSMutableDictionary.dictionary;
-    //得到当前class的所有属性
-    uint count;
-    objc_property_t *properties = class_copyPropertyList(self.class, &count);
-    //循环并用KVC得到每个属性的值
-    for (int i = 0; i<count; i++) {
-        objc_property_t property = properties[i];
-        NSString *name = @(property_getName(property));
-        id value = @"nil";
-        @try {
-            value = [self valueForKey:name] ? : @"nil"; //默认值为nil字符串
-        }
-        @catch (NSException *exception) {
-            NSLog(@"Exception: %@", exception);
-            value = @"nil"; // or handle the exception as needed
-        }
-        [dictionary setObject:value forKey:name];//装载到字典里
-    }
-    //释放
-    free(properties);
-    //return
-    return JobsFormattedString(@"<%@: %p> -- %@",self.class,self,dictionary);
-}
+//- (NSString *)debugDescription {
+//    //判断是否时NSArray 或者NSDictionary NSNumber 如果是的话直接返回 debugDescription
+//    if ([self isKindOfClass:NSArray.class] ||
+//        [self isKindOfClass:NSDictionary.class] ||
+//        [self isKindOfClass:NSString.class] ||
+//        [self isKindOfClass:NSNumber.class]) {
+//        return [self debugDescription];
+//    }
+//    //声明一个字典
+//    NSMutableDictionary *dictionary = NSMutableDictionary.dictionary;
+//    //得到当前class的所有属性
+//    uint count;
+//    objc_property_t *properties = class_copyPropertyList(self.class, &count);
+//    //循环并用KVC得到每个属性的值
+//    for (int i = 0; i<count; i++) {
+//        objc_property_t property = properties[i];
+//        NSString *name = @(property_getName(property));
+//        id value = @"nil";
+//        @try {
+//            value = self.valueForKey(name) ?: @"nil"; //默认值为nil字符串
+//        }
+//        @catch (NSException *exception) {
+//            NSLog(@"Exception: %@", exception);
+//            value = @"nil"; // or handle the exception as needed
+//        }
+//        [dictionary setObject:value forKey:name];//装载到字典里
+//    }
+//    //释放
+//    free(properties);
+//    //return
+//    return [NSString stringWithFormat:@"<%@: %p> -- %@",self.class,self,dictionary];
+//}
 /// 将obj转换成json字符串。如果失败则返回nil.
 -(NSString *)convertToJsonString {
     //先判断是否能转化为JSON格式
