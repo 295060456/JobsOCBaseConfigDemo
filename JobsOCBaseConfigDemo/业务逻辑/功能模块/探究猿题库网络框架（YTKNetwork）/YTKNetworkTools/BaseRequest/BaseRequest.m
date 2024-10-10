@@ -12,7 +12,7 @@
 +(instancetype _Nonnull)init{
     return [self.alloc init];
 }
-
+/// 直接调用，后面不能拼byURLParameters
 +(JobsReturnYTKRequestByDictionaryBlock _Nonnull)initByBodyParameters{
     @jobs_weakify(self)
     return ^__kindof YTKBaseRequest *_Nonnull(NSDictionary *_Nullable data){
@@ -20,7 +20,7 @@
         return [self.class.alloc initByBodyParameters:data];
     };
 }
-
+/// 直接调用，后面不能拼byBodyParameters
 +(JobsReturnYTKRequestByDictionaryBlock _Nonnull)initByURLParameters{
     @jobs_weakify(self)
     return ^__kindof YTKBaseRequest *_Nonnull(NSDictionary *_Nullable data){

@@ -114,5 +114,9 @@ inline JobsNetworkingEnvir NetworkingEnvir(void) {
 -(URLManagerModel *)post_promotion_api_client_activity_getDepositDiscountActivityRecord{
     return JobsURL(@"/api/promotion/api/client/activity/getDepositDiscountActivityRecord");
 }
+/// 获取会员KYC信息【GET】
+-(URLManagerModel *)get_kyc_info{
+    return JobsURL(@"/api/member/kyc/info/get");
+}
 
 @end

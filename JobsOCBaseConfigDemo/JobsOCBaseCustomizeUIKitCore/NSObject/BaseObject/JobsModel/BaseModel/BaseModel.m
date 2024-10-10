@@ -58,6 +58,9 @@
         @"ID" : @"id"
     };
 }
+//+(NSDictionary *)mj_replacedKeyFromPropertyName {
+//    return [super mj_replacedKeyFromPropertyName].mutableCopy;
+//}
 #pragma mark —— YYModel
 +(NSDictionary *)modelCustomPropertyMapper{
     return @{

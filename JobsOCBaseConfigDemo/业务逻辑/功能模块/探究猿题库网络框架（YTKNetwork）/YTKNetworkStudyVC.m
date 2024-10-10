@@ -95,11 +95,20 @@
 #pragma mark —— YTKChainRequestDelegate
 -(void)chainRequestFinished:(YTKChainRequest *)chainRequest{
     NSLog(@"all requests are done");
+//    chainRequest.requestArray;
+//    chainRequest.requestAccessories;
+    YTKBaseRequest *resultRequest = chainRequest.requestArray.lastObject;
+    [self request:resultRequest successBlock:^(JobsResponseModel *_Nullable responseModel){
+//        self.dataMutArr2 = GetDepositDiscountActivityRecordModel.byData(responseModel.data);
+        NSLog(@"");
+    }];
 }
 
 -(void)chainRequestFailed:(YTKChainRequest *)chainRequest
         failedBaseRequest:(YTKBaseRequest*)request{
-    NSLog(@"some one of request is failed");
+    JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
+    self.jobsHandelNoSuccess(responseModel.code,request);
+    NSLog(@"请求失败");
 }
 #pragma mark —— lazyLoad
 

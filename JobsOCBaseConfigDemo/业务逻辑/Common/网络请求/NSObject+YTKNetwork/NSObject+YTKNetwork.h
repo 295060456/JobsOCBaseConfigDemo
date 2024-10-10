@@ -26,7 +26,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSObject (YTKNetwork)
+@interface NSObject (YTKNetwork)<YTKChainRequestDelegate>
+#pragma mark —— 一些公有设置
+-(void)request:(YTKBaseRequest *)request successBlock:(jobsByIDBlock _Nullable)successBlock;
+-(jobsByIDBlock _Nonnull)jobsHandelFailure;
+-(JobsHandelNoSuccessBlock _Nonnull)jobsHandelNoSuccess;
+-(jobsByIDBlock _Nonnull)tipsByApi;
+-(jobsByIDBlock _Nonnull)handleErr;
 #pragma mark —— 示例代码
 /// 普通的单个请求
 -(void)loadCacheData:(jobsByIDBlock _Nullable)successBlock;

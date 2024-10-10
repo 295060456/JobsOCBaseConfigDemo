@@ -52,6 +52,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(URLManagerModel *)get_promotion_advertise_infoP_list_appIndex;
 /// 存款优惠活动信息【POST】
 -(URLManagerModel *)post_promotion_api_client_activity_getDepositDiscountActivityRecord;
+/// 获取会员KYC信息【GET】
+-(URLManagerModel *)get_kyc_info;
 
 @end
 

@@ -1103,6 +1103,7 @@
 		CEDD9DE12CAA5752002FD89F /* JobsLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDD9DDF2CAA5752002FD89F /* JobsLocationModel.m */; };
 		CEDE32122CB6A468005256B2 /* DebugLogDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28D52CA8286D002AF25B /* DebugLogDescription.m */; };
 		CEDE33122CB797CA005256B2 /* FM_getDepositDiscountActivityRecord_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDE33102CB797CA005256B2 /* FM_getDepositDiscountActivityRecord_api.m */; };
+		CEE6E7252CB7FF2E00B1BB60 /* FM_GetKYCInfo_api.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE6E7232CB7FF2E00B1BB60 /* FM_GetKYCInfo_api.m */; };
 		D16B7B0D974F1991F2B39889 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -3266,6 +3267,8 @@
 		CEDD9DDF2CAA5752002FD89F /* JobsLocationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsLocationModel.m; sourceTree = "<group>"; };
 		CEDE330F2CB797CA005256B2 /* FM_getDepositDiscountActivityRecord_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_getDepositDiscountActivityRecord_api.h; sourceTree = "<group>"; };
 		CEDE33102CB797CA005256B2 /* FM_getDepositDiscountActivityRecord_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_getDepositDiscountActivityRecord_api.m; sourceTree = "<group>"; };
+		CEE6E7222CB7FF2E00B1BB60 /* FM_GetKYCInfo_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_GetKYCInfo_api.h; sourceTree = "<group>"; };
+		CEE6E7232CB7FF2E00B1BB60 /* FM_GetKYCInfo_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_GetKYCInfo_api.m; sourceTree = "<group>"; };
 		F5DAEE19CC0B77742495EB1F /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE176E0EC1B036786E28E5E5 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -12616,6 +12619,7 @@
 		CE61AD372C9EAB26002DF138 /* FM_Api */ = {
 			isa = PBXGroup;
 			children = (
+				CEE6E7242CB7FF2E00B1BB60 /* 获取会员KYC信息【GET】 */,
 				CEDE33112CB797CA005256B2 /* 存款优惠活动信息【POST】 */,
 				CE61AD182C9EAB26002DF138 /* 查询广告列表-支持游客：APP首页右下3Banner【GET】 */,
 				CE61AD1B2C9EAB26002DF138 /* 用户登出【POST】 */,
@@ -14112,6 +14116,15 @@
 			path = "存款优惠活动信息【POST】";
 			sourceTree = "<group>";
 		};
+		CEE6E7242CB7FF2E00B1BB60 /* 获取会员KYC信息【GET】 */ = {
+			isa = PBXGroup;
+			children = (
+				CEE6E7222CB7FF2E00B1BB60 /* FM_GetKYCInfo_api.h */,
+				CEE6E7232CB7FF2E00B1BB60 /* FM_GetKYCInfo_api.m */,
+			);
+			path = "获取会员KYC信息【GET】";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -15036,6 +15049,7 @@
 				CE4F27962CA825CD002AF25B /* JobsWalletVC.m in Sources */,
 				CE4F27972CA825CD002AF25B /* Realm_VC.m in Sources */,
 				CE5A64E22CA83023006D67A7 /* NSRunLoop+Extra.m in Sources */,
+				CEE6E7252CB7FF2E00B1BB60 /* FM_GetKYCInfo_api.m in Sources */,
 				CE5A65892CA83317006D67A7 /* MSMineView6CVCell.m in Sources */,
 				CE5A658A2CA83317006D67A7 /* JobsShareView.m in Sources */,
 				CE4F27982CA825CD002AF25B /* PicToStrStoreSubVC.m in Sources */,
