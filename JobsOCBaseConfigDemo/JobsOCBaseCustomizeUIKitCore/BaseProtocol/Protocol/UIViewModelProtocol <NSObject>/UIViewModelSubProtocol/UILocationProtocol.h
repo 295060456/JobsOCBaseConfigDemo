@@ -58,9 +58,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat imageTitleSpace;
 @property(nonatomic,assign)CGFloat titleSpace;
 #pragma mark —— 关于 UITableViewCell 和 UICollectionViewCell
-@property(nonatomic,assign)CGFloat cellHeight;
+@property(nonatomic,assign,class)CGFloat HeightForHeaderInSection;
+@property(nonatomic,assign,class)CGFloat CellWidth;
+@property(nonatomic,assign,class)CGFloat CellHeight;
+@property(nonatomic,assign,class)CGSize CellSize;
+
 @property(nonatomic,assign)CGFloat heightForHeaderInSection;
+@property(nonatomic,assign)CGFloat cellWidth;
+@property(nonatomic,assign)CGFloat cellHeight;
 @property(nonatomic,assign)CGSize cellSize;
+
 @property(nonatomic,assign)CGSize tableHeaderViewSize;
 @property(nonatomic,assign)CGSize tableFooterViewSize;
 @property(nonatomic,assign)BOOL usesTableViewHeaderView;/// 默认不使用
@@ -110,6 +117,7 @@ NS_ASSUME_NONNULL_END
 @synthesize buttonEdgeInsetsStyle;\
 @synthesize imageTitleSpace;\
 @synthesize titleSpace;\
+@synthesize cellWidth = _cellWidth;\
 @synthesize cellHeight = _cellHeight;\
 @synthesize heightForHeaderInSection = _heightForHeaderInSection;\
 @synthesize cellSize = _cellSize;\
@@ -155,6 +163,7 @@ NS_ASSUME_NONNULL_END
 @dynamic buttonEdgeInsetsStyle;\
 @dynamic imageTitleSpace;\
 @dynamic titleSpace;\
+@dynamic cellWidth;\
 @dynamic cellHeight;\
 @dynamic heightForHeaderInSection;\
 @dynamic cellSize;\

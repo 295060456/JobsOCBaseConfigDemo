@@ -16,6 +16,9 @@ UITableViewDelegate
 ,UITableViewDataSource
 >
 
+//@property(nonatomic,assign)CGFloat cellHeight;
+//@property(nonatomic,assign)CGFloat cellWidth;
+
 -(UITableView *)tableView;
 
 @end

@@ -18,6 +18,10 @@
 #define ShowView2(View) if(self) self.show_view2(View);
 #define ShowTips(View) if(self) self.show_tips(View);
 
+#define ShowViewByModel(View,Data) if(self) self.showViewByModel(View,Data);
+#define ShowViewByModel2(View,Data) if(self) self.showViewByModel2(View,Data);
+#define ShowTipsByModel(View,Data) if(self) self.showTipsByModel(View,Data);
+
 #pragma mark —— 创建数据源
 NS_INLINE TFPopupParam * _Nonnull TFPopupBaseParam(void){
     TFPopupParam *popupParameter = TFPopupParam.alloc.init;
@@ -83,12 +87,18 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)popupShowSlideWithView:(UIView __kindof *_Nonnull)view
                popupParameter:(TFPopupParam *_Nullable)popupParameter;
 #pragma mark —— PopView
-///【独占性】出现的弹窗需要手动触发关闭
+/// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（不带数据）
 -(jobsByViewBlock _Nonnull)show_view;
-///【独占性】出现的弹窗需要手动触发关闭——允许点击背景消失弹框
+/// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（带数据）
+-(jobsByViewAndDataBlock _Nonnull)showViewByModel;
+/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框（不带数据）
 -(jobsByViewBlock _Nonnull)show_view2;
-///【独占性】出现的弹窗自动触发关闭
+/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框（带数据）
+-(jobsByViewAndDataBlock _Nonnull)showViewByModel2;
+/// 出现的弹窗自动触发关闭（不带数据）
 -(jobsByViewBlock _Nonnull)show_tips;
+/// 出现的弹窗自动触发关闭（带数据）
+-(jobsByViewAndDataBlock _Nonnull)showTipsByModel;
 
 @end
 

@@ -106,6 +106,7 @@ NS_ASSUME_NONNULL_END
 @synthesize buttonEdgeInsetsStyle;\
 @synthesize imageTitleSpace;\
 @synthesize titleSpace;\
+@synthesize cellWidth = _cellWidth;\
 @synthesize cellHeight = _cellHeight;\
 @synthesize heightForHeaderInSection = _heightForHeaderInSection;\
 @synthesize cellSize = _cellSize;\
@@ -276,6 +277,7 @@ NS_ASSUME_NONNULL_END
 @dynamic buttonEdgeInsetsStyle;\
 @dynamic imageTitleSpace;\
 @dynamic titleSpace;\
+@dynamic cellWidth;\
 @dynamic cellHeight;\
 @dynamic heightForHeaderInSection;\
 @dynamic cellSize;\

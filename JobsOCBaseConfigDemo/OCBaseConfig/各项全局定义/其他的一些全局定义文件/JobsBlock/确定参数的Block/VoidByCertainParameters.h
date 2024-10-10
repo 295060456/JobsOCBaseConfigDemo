@@ -29,6 +29,7 @@ typedef void(^jobsByTextViewBlock)(__kindof UITextView *_Nullable textView);
 typedef void(^jobsByImageViewBlock)(__kindof UIImageView *_Nullable imageView);
 /// 多参数
 typedef void(^jobsByViewAndAnimatedBlock)(__kindof UIView *_Nullable view,BOOL animated);
+typedef void(^jobsByViewAndDataBlock)(__kindof UIView *_Nullable view,id _Nullable data);
 typedef void(^jobsByView2Block)(__kindof UIView *_Nullable superview,UIView *_Nullable view);
 #pragma mark —— 关于数据容器
 typedef void(^jobsByArrayBlock)(__kindof NSArray *_Nullable data);

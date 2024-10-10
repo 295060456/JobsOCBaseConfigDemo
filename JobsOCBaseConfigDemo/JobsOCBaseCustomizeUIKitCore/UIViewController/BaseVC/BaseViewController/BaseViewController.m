@@ -32,20 +32,24 @@ BaseViewControllerProtocol_synthesize
 
 -(void)loadView{
     [super loadView];
+    self.LoadView = YES;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.ViewDidLoad = YES;
     /// 在loadView或者之前的生命周期中定义背景图片或者底色
     self.setBackGround();
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.ViewDidLoad = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    self.ViewDidAppear = YES;
 #ifdef DEBUG
     /// 网络异步数据刷新UI会在viewDidAppear以后执行viewWillLayoutSubviews、viewDidLayoutSubviews
 //    [self ifEmptyData];
@@ -54,10 +58,12 @@ BaseViewControllerProtocol_synthesize
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.ViewWillDisappear = YES;
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+    self.ViewDidDisappear = YES;
 }
 
 -(void)viewWillLayoutSubviews{

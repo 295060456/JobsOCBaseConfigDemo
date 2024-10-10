@@ -106,13 +106,11 @@
         }
     }];
 }
-#pragma mark —— PopView
-/// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框
--(jobsByViewBlock _Nonnull)show_view{
+#pragma mark —— PopView.Core(私有方法)
+-(jobsByViewBlock _Nonnull)_showViewCore{
     @jobs_weakify(self)
     return ^(UIView *_Nonnull data) {
         @jobs_strongify(self)
-        self.popupParameter.popupSize = data.viewSizeByModel(nil);
         self.popupParameter.dragEnable = YES;
         self.popupParameter.disuseBackgroundTouchHide = YES;/// 禁止点击背景消失弹框
         [self checkByView:data action:^{
@@ -123,12 +121,11 @@
         }];
     };
 }
-/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框
--(jobsByViewBlock _Nonnull)show_view2{
+
+-(jobsByViewBlock _Nonnull)_showViewCore2{
     @jobs_weakify(self)
     return ^(UIView *_Nonnull data) {
         @jobs_strongify(self)
-        self.popupParameter.popupSize = data.viewSizeByModel(nil);
         self.popupParameter.dragEnable = YES;
         self.popupParameter.backgroundColor = JobsBlackColor.colorWithAlphaComponent(.3f);
         self.popupParameter.disuseBackgroundTouchHide = NO;/// 允许点击背景消失弹框
@@ -140,18 +137,72 @@
         }];
     };
 }
-/// 出现的弹窗自动触发关闭
--(jobsByViewBlock _Nonnull)show_tips{
+
+-(jobsByViewBlock _Nonnull)_showTipsCore{
     @jobs_weakify(self)
     return ^(UIView *_Nonnull data) {
         @jobs_strongify(self)
-        self.tipsParameter.popupSize = data.viewSizeByModel(nil);
         [self checkByView:data action:^{
             @jobs_strongify(self)
             [data tf_showSlide:MainWindow
                      direction:PopupDirectionContainerCenter
                     popupParam:self.tipsParameter];
         }];
+    };
+}
+#pragma mark —— PopView
+/// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（不带数据）
+-(jobsByViewBlock _Nonnull)show_view{
+    @jobs_weakify(self)
+    return ^(UIView *_Nonnull data) {
+        @jobs_strongify(self)
+        self.popupParameter.popupSize = data.viewSizeByModel(nil);
+        self._showViewCore(data);
+    };
+}
+/// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（带数据）
+-(jobsByViewAndDataBlock _Nonnull)showViewByModel{
+    @jobs_weakify(self)
+    return ^(__kindof UIView *_Nullable view,id _Nullable data) {
+        @jobs_strongify(self)
+        self.popupParameter.popupSize = view.viewSizeByModel(data);
+        self._showViewCore(view);
+    };
+}
+/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框（不带数据）
+-(jobsByViewBlock _Nonnull)show_view2{
+    @jobs_weakify(self)
+    return ^(UIView *_Nonnull data) {
+        @jobs_strongify(self)
+        self.popupParameter.popupSize = data.viewSizeByModel(nil);
+        self._showViewCore2(data);
+    };
+}
+/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框（带数据）
+-(jobsByViewAndDataBlock _Nonnull)showViewByModel2{
+    @jobs_weakify(self)
+    return ^(__kindof UIView *_Nullable view,id _Nullable data) {
+        @jobs_strongify(self)
+        self.popupParameter.popupSize = view.viewSizeByModel(data);
+        self._showViewCore2(view);
+    };
+}
+/// 出现的弹窗自动触发关闭（不带数据）
+-(jobsByViewBlock _Nonnull)show_tips{
+    @jobs_weakify(self)
+    return ^(UIView *_Nonnull data) {
+        @jobs_strongify(self)
+        self.tipsParameter.popupSize = data.viewSizeByModel(nil);
+        self._showTipsCore(data);
+    };
+}
+/// 出现的弹窗自动触发关闭（带数据）
+-(jobsByViewAndDataBlock _Nonnull)showTipsByModel{
+    @jobs_weakify(self)
+    return ^(__kindof UIView *_Nullable view,id _Nullable data) {
+        @jobs_strongify(self)
+        self.tipsParameter.popupSize = view.viewSizeByModel(data);
+        self._showTipsCore(view);
     };
 }
 #pragma mark —— @property(nonatomic,strong)TFPopupParam *popupParameter;

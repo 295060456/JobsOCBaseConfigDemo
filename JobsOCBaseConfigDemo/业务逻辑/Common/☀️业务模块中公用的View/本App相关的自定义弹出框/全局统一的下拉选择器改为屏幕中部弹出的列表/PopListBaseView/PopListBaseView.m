@@ -54,8 +54,16 @@
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
-        return CGSizeMake(JobsWidth(300), JobsWidth(259));
+    return ^(NSArray *_Nullable data){
+        if(data){
+            return jobsMakeCGSizeByLocationModelBlock(^(__kindof JobsLocationModel *_Nullable data1) {
+                data1.jobsWidth = PopListBaseView.CellWidth;
+                data1.jobsHeight = MIN(data.count * PopListBaseView.CellHeight,JobsWidth(259));/// 高度限制在 JobsWidth(259)
+                NSLog(@"KKK = %f-%f",data1.jobsWidth,data1.jobsHeight);
+            });
+        }else{
+            return CGSizeMake(JobsWidth(300), JobsWidth(259));
+        }
     };
 }
 #pragma mark —— 一些私有方法
@@ -88,7 +96,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return JobsWidth(37);
+    return self.cellHeight;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -146,8 +154,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<__kindof UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>*_Nullable data) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable viewModel) {
                 viewModel.text = JobsInternationalization(@"选项1");
                 viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
                 viewModel.textCor = JobsCor(@"#5D5D5D");
@@ -156,7 +164,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 viewModel.bgCor = JobsCor(@"#1F1F1F");
                 viewModel.textAlignment = NSTextAlignmentCenter;
             }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable viewModel) {
                 viewModel.text = JobsInternationalization(@"选项2");
                 viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
                 viewModel.textCor = JobsCor(@"#5D5D5D");
@@ -165,7 +173,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 viewModel.bgCor = JobsCor(@"#1F1F1F");
                 viewModel.textAlignment = NSTextAlignmentCenter;
             }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable viewModel) {
                 viewModel.text = JobsInternationalization(@"选项3");
                 viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
                 viewModel.textCor = JobsCor(@"#5D5D5D");
@@ -176,6 +184,30 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             }));
         });
     }return _dataMutArr;
+}
+static CGFloat _CellHeight = 0;
++(CGFloat)CellHeight {
+    if (!_CellHeight) {
+        _CellHeight = JobsWidth(37);
+    }return _CellHeight;
+}
+static CGFloat _CellWidth = 0;
++(CGFloat)CellWidth {
+    if (!_CellWidth) {
+        _CellWidth = JobsWidth(300);
+    }return _CellWidth;
+}
+@synthesize cellHeight = _cellHeight;
+-(CGFloat)cellHeight{
+    if(!_cellHeight){
+        _cellHeight = PopListBaseView.CellHeight;
+    }return _cellHeight;
+}
+@synthesize cellWidth = _cellWidth;
+-(CGFloat)cellWidth{
+    if(!_cellWidth){
+        _cellWidth = PopListBaseView.CellWidth;
+    }return _cellWidth;
 }
 
 @end

@@ -31,6 +31,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseViewControllerProtocol<BaseViewProtocol>
 @optional
+/// 生命周期监控
+@property(nonatomic,assign)BOOL LoadView;
+@property(nonatomic,assign)BOOL ViewDidLoad;
+@property(nonatomic,assign)BOOL ViewWillAppear;
+@property(nonatomic,assign)BOOL ViewDidAppear;
+@property(nonatomic,assign)BOOL ViewWillDisappear;
+@property(nonatomic,assign)BOOL ViewDidDisappear;
 /// UI
 @property(nonatomic,weak)UIViewController *fromVC;
 @property(nonatomic,strong,nullable)SPAlertController *alertController;
@@ -65,6 +72,12 @@ NS_ASSUME_NONNULL_END
 @synthesize alertController = _alertController;\
 @synthesize pushOrPresent = _pushOrPresent;\
 @synthesize setupNavigationBarHidden = _setupNavigationBarHidden;\
+@synthesize LoadView = _LoadView;\
+@synthesize ViewDidLoad = _ViewDidLoad;\
+@synthesize ViewWillAppear = _ViewWillAppear;\
+@synthesize ViewDidAppear = _ViewDidAppear;\
+@synthesize ViewWillDisappear = _ViewWillDisappear;\
+@synthesize ViewDidDisappear = _ViewDidDisappear;\
 @synthesize statusBar = _statusBar;\
 @synthesize leftBarButtonItems = _leftBarButtonItems;\
 @synthesize rightBarButtonItems = _rightBarButtonItems;\
@@ -82,6 +95,13 @@ NS_ASSUME_NONNULL_END
 @dynamic alertController;\
 @dynamic pushOrPresent;\
 @dynamic setupNavigationBarHidden;\
+@dynamic ViewAppear;\
+@dynamic LoadView;\
+@dynamic ViewDidLoad;\
+@dynamic ViewWillAppear;\
+@dynamic ViewDidAppear;\
+@dynamic ViewWillDisappear;\
+@dynamic ViewDidDisappear;\
 @dynamic statusBar;\
 @dynamic leftBarButtonItems;\
 @dynamic rightBarButtonItems;\
