@@ -8,16 +8,54 @@
 #import "BaseRequest.h"
 
 @implementation BaseRequest
+#pragma mark —— 一些公有方法
++(instancetype _Nonnull)init{
+    return [self.alloc init];
+}
 
-+(JobsReturnIDByDicBlock)initByParameters{
-    return ^id _Nullable(NSDictionary *_Nullable data){
-        return [self.class.alloc initWithParameters:data];
++(JobsReturnYTKRequestByDictionaryBlock _Nonnull)initByBodyParameters{
+    @jobs_weakify(self)
+    return ^__kindof YTKBaseRequest *_Nonnull(NSDictionary *_Nullable data){
+        @jobs_strongify(self)
+        return [self.class.alloc initByBodyParameters:data];
     };
 }
 
--(instancetype _Nullable)initWithParameters:(NSDictionary *_Nullable)parameters{
++(JobsReturnYTKRequestByDictionaryBlock _Nonnull)initByURLParameters{
+    @jobs_weakify(self)
+    return ^__kindof YTKBaseRequest *_Nonnull(NSDictionary *_Nullable data){
+        @jobs_strongify(self)
+        return [self.class.alloc initByURLParameters:data];
+    };
+}
+
+-(JobsReturnYTKRequestByDictionaryBlock _Nonnull)byBodyParameters{
+    @jobs_weakify(self)
+    return ^__kindof YTKBaseRequest *_Nonnull(NSDictionary *_Nullable data){
+        @jobs_strongify(self)
+        self.parameters = data;
+        return self;
+    };
+}
+
+-(JobsReturnYTKRequestByIDBlock _Nonnull)byURLParameters{
+    @jobs_weakify(self)
+    return ^__kindof YTKBaseRequest *_Nonnull(id _Nullable data){
+        @jobs_strongify(self)
+        self.urlParameters = data;
+        return self;
+    };
+}
+#pragma mark —— 一些私有方法
+-(instancetype _Nullable)initByBodyParameters:(NSDictionary *_Nullable)bodyParameters{
     if (self = [super init]) {
-        self.parameters = parameters;
+        self.parameters = bodyParameters;
+    }return self;
+}
+
+-(instancetype _Nullable)initByURLParameters:(id _Nullable)urlParameters{
+    if (self = [super init]) {
+        self.urlParameters = urlParameters;
     }return self;
 }
 /// Body 参数（GET 请求不可用）

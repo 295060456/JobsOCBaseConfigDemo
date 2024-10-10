@@ -41,14 +41,14 @@ UIKIT_EXTERN NSString * _Nullable const HorizontalScrollBegin;/// 水平滚动�
 @property(nonatomic,strong)NSMutableArray <NSMutableArray <UIButtonModel *>*>* _Nonnull contentArr;
 @property(nonatomic,strong,null_resettable)NSMutableArray <UIButtonModel *>*topHeaderDatas;
 @property(nonatomic,strong,null_resettable)NSMutableArray <UIButtonModel *>*leftListDatas;
-@property(nonatomic,strong)NSValue * _Nonnull VerticalScrollValue;/// 垂直滚动
-@property(nonatomic,strong)NSValue * _Nonnull HorizontalScrollValue;/// 水平滚动
+@property(nonatomic,strong,nonnull)NSValue *VerticalScrollValue;/// 垂直滚动
+@property(nonatomic,strong,nonnull)NSValue *HorizontalScrollValue;/// 水平滚动
 @property(nonatomic,assign,readonly)NSInteger rowNumber;/// 行数
 @property(nonatomic,assign,readonly)NSInteger colNumber;/// 列数
 @property(nonatomic,strong)NSMutableArray <NSString *>* _Nullable topHeaderTitles;
 @property(nonatomic,strong)NSMutableArray <NSString *>* _Nullable leftTitles;
 
-@property(nonatomic,copy)jobsByVoidBlock _Nonnull configureData;
+@property(nonatomic,copy,nonnull)jobsByVoidBlock configureData;
 
 @end
 

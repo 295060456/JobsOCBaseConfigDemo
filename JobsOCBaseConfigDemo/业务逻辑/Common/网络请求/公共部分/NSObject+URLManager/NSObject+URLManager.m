@@ -110,5 +110,9 @@ inline JobsNetworkingEnvir NetworkingEnvir(void) {
 -(URLManagerModel *)get_promotion_advertise_infoP_list_appIndex{
     return JobsURL(@"/api/promotion/advertise/info/list/app-index");
 }
+/// 存款优惠活动信息【POST】
+-(URLManagerModel *)post_promotion_api_client_activity_getDepositDiscountActivityRecord{
+    return JobsURL(@"/api/promotion/api/client/activity/getDepositDiscountActivityRecord");
+}
 
 @end

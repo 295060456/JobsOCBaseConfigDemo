@@ -43,7 +43,7 @@
         if (!CGSizeEqualToSize(self.size, size)) {
             self.size = size;
             [self drawLineWithSize:size];
-            self.textLayer.frame = CGRectMake(0, size.height*0.5, size.width, size.height);
+            self.textLayer.frame = CGRectMake(0, size.height * 0.5, size.width, size.height);
         }
     };
 }

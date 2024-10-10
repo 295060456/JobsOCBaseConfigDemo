@@ -12,6 +12,7 @@
 
 #import "FM_user_logout_api.h" /// 用户登出【POST】
 #import "FM_promotion_advertise_api.h" /// 查询广告列表-支持游客：APP首页右下3Banner【GET】
+#import "FM_getDepositDiscountActivityRecord_api.h" /// 存款优惠活动信息【POST】
 
 #import "NSObject+YTKNetwork.h"
 

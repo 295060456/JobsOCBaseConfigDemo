@@ -239,7 +239,10 @@ typedef void(^jobsByYTKNetworkConfigBlock)(__kindof YTKNetworkConfig *_Nullable 
 
 @class YTKBaseRequest;
 #import "JobsDefineAllEnumHeader.h"
-typedef void(^JobsHandelNoSuccessBlock)(HTTPResponseCode data,YTKBaseRequest *_Nonnull request);
+typedef void(^JobsHandelNoSuccessBlock)(HTTPResponseCode data,__kindof YTKBaseRequest *_Nonnull request);
+typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByVoidBlock)(void);
+typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByIDBlock)(id _Nullable data);
+typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByDictionaryBlock)(NSDictionary *_Nullable data);
 #pragma mark —— 关于业务（不与JobsOCBaseConfigDemo同步）
 @class FMBannerAdsModel;
 typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable data);

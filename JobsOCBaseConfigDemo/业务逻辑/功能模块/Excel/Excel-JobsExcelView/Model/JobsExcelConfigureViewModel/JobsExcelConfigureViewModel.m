@@ -25,6 +25,18 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
 
     }return self;
 }
+#pragma mark —— 一些私有方法
+-(jobsByButtonModelBlock _Nonnull)configCopy{
+    return ^(__kindof UIButtonModel *_Nullable data){
+        data.imagePlacement = NSDirectionalRectEdgeTrailing;
+        data.imagePadding = JobsWidth(8);
+        data.normalImage = JobsIMG(@"复制图标");
+        data.clickEventBlock = ^id _Nullable(UIButton *_Nullable data) {
+            data.titleForNormalState.pasteboard();
+            return nil;
+        };data.enabled = YES;
+    };
+}
 #pragma mark —— lazyLoad
 -(jobsByVoidBlock)configureData{
     @jobs_weakify(self)
@@ -33,54 +45,31 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
             @jobs_strongify(self)
             for (int i = 1; i < 50; i++) {/// y
                 self.contentArr.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable row) {
+                    @jobs_strongify(self)
                     for (int j = 1; j < (self.topHeaderTitles.count ? : 30) ; j++){/// x
-                        row.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-                            if(j == 1){
-                                model.title = self.topHeaderTitles[j];
-                            }else{
-                                model.title = toStringByInt(i * j);
-                            }
-
-                            if(j == 2){
-                                model.imagePlacement = NSDirectionalRectEdgeTrailing;
-                                model.imagePadding = JobsWidth(8);
-                                model.normalImage = JobsIMG(@"复制图标");
-                                model.clickEventBlock = ^id _Nullable(UIButton *_Nullable data) {
-                                    data.titleForNormalState.pasteboard();
-                                    return nil;
-                                };
-                                model.enabled = YES;
-                            }
-                            
+                        row.add(jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable model) {
+                            @jobs_strongify(self)
                             model.baseBackgroundColor = i % 2 ? self.cor2: self.cor1;
                             model.backgroundImage = i % 2 ? self.image2: self.image1;
                             model.titleCor = JobsWhiteColor;
                             model.titleFont = UIFontWeightRegularSize(JobsWidth(10));
-                            
-                //            model.jobsTestBlock();
-                //            model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
-                //                return nil;
-                //            });
+                            model.title = j == 1 ? self.topHeaderTitles[j] : toStringByInt(i * j);
+                            model.btn_width = [model.title jobsTextWidthWithFont:model.titleFont
+                                                                      lineHeight:0
+                                                                   controlHeight:self.itemH].jobsHeight;
+                            NSLog(@"标题%@-长度%f",model.title,model.btn_width);
+                            if(j == 2) self.configCopy(model);
                         }));/// 一行的数据
                     }
                 }));
             }
-            
             self.rowNumber = self.contentArr[0].count;
             self.colNumber = self.contentArr.count;
             NSLog(@"");
         };
     }return _configureData;
 }
-
--(NSMutableArray<NSMutableArray<UIButtonModel *> *> *)contentArr{
-    if(!_contentArr){
-        _contentArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            
-        });
-    }return _contentArr;
-}
-
+/// 起始格子的数据
 -(UIButtonModel *)data_00{
     if(!_data_00){
         @jobs_weakify(self)
@@ -93,11 +82,11 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
         });
     }return _data_00;
 }
-
--(NSMutableArray<UIButtonModel *> *)topHeaderDatas{
+/// 最上边（非0,0）横向格子的数据
+-(NSMutableArray <UIButtonModel *>*)topHeaderDatas{
     if(!_topHeaderDatas){
         @jobs_weakify(self)
-        _topHeaderDatas = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _topHeaderDatas = jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
             @jobs_strongify(self)
             for (int y = 1; y <= self.contentArr[0].count ; y++) {
                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
@@ -112,11 +101,11 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
         });
     }return _topHeaderDatas;
 }
-
--(NSMutableArray<UIButtonModel *> *)leftListDatas{
+/// 最左边（非0,0）垂直格子的数据
+-(NSMutableArray <UIButtonModel *>*)leftListDatas{
     if(!_leftListDatas){
         @jobs_weakify(self)
-        _leftListDatas = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _leftListDatas = jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
             @jobs_strongify(self)
             for (int y = 1; y <= self.contentArr.count ; y++) {
                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
@@ -142,6 +131,18 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
     if(!_XZExcelH){
         _XZExcelH = JobsExcelView.viewSizeByModel(nil).height;
     }return _XZExcelH;
+}
+
+-(CGFloat)itemH{
+    if(!_itemH){
+        _itemH = JobsWidth(35);
+    }return _itemH;
+}
+
+-(CGFloat)itemW{
+    if(!_itemW){
+        _itemW = JobsWidth(60);
+    }return _itemW;
 }
 /// 线宽
 -(CGFloat)LineWidth{
@@ -224,24 +225,20 @@ NSString *const HorizontalScrollBegin = @"HorizontalScrollValue";
     }return _topHeaderTitles;
 }
 
+-(NSMutableArray<NSMutableArray<UIButtonModel *> *> *)contentArr{
+    if(!_contentArr){
+        _contentArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            
+        });
+    }return _contentArr;
+}
+
 -(NSMutableArray<NSString *> *)leftTitles{
     if(!_leftTitles){
         _leftTitles = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             
         });
     }return _leftTitles;
-}
-
--(CGFloat)itemH{
-    if(!_itemH){
-        _itemH = JobsWidth(35);
-    }return _itemH;
-}
-
--(CGFloat)itemW{
-    if(!_itemW){
-        _itemW = JobsWidth(60);
-    }return _itemW;
 }
 
 @end

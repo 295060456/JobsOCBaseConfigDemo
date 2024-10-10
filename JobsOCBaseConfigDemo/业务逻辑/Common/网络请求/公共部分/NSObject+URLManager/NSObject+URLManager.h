@@ -50,6 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(URLManagerModel *)post_user_auth_logout;
 /// 查询广告列表-支持游客:APP首页右下3Banner【GET】
 -(URLManagerModel *)get_promotion_advertise_infoP_list_appIndex;
+/// 存款优惠活动信息【POST】
+-(URLManagerModel *)post_promotion_api_client_activity_getDepositDiscountActivityRecord;
 
 @end
 
