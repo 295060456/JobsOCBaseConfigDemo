@@ -209,6 +209,10 @@ typedef void(^jobsByExcelConfigureViewModelBlock)(JobsExcelConfigureViewModel *_
 @class PopListBaseView;
 typedef void(^jobsByPopListBaseViewBlock)(PopListBaseView *_Nullable data);
 
+@class JobsResponseModel;
+typedef void(^jobsByResponseModelBlock)(JobsResponseModel *_Nullable responseModel);
+typedef id _Nullable(^JobsReturnIDByResponseModelBlock)(JobsResponseModel *_Nullable responseModel);
+
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock1)(jobsByIDBlock _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock2)(JobsReturnIDByVoidBlock _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBlock _Nullable data);

@@ -28,6 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (YTKNetwork)<YTKChainRequestDelegate>
 #pragma mark —— 一些公有设置
+-(void)request:(YTKBaseRequest *)request /// 总数据源
+successDataBlock:(JobsReturnIDByResponseModelBlock _Nullable)successDataBlock /// 本层对success的解析数据
+   actionBlock:(jobsByResponseModelBlock _Nullable)actionBlock /// 本层对success的解析回调
+  successBlock:(jobsByResponseModelBlock _Nullable)successBlock /// 外层对success的解析回调
+     failBlock:(jobsByVoidBlock _Nullable)failBlock;
 -(void)request:(YTKBaseRequest *)request successBlock:(jobsByIDBlock _Nullable)successBlock;
 -(jobsByIDBlock _Nonnull)jobsHandelFailure;
 -(JobsHandelNoSuccessBlock _Nonnull)jobsHandelNoSuccess;

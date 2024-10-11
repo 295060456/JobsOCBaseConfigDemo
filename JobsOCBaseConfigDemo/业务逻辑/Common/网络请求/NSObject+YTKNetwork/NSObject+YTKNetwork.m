@@ -80,12 +80,28 @@
     [chainReq start];// start to send request
 }
 #pragma mark —— 一些公有设置
--(void)request:(YTKBaseRequest *)request
-  successBlock:(jobsByIDBlock _Nullable)successBlock{
+-(void)request:(YTKBaseRequest *)request /// 总数据源
+successDataBlock:(JobsReturnIDByResponseModelBlock _Nullable)successDataBlock /// 本层对success的解析数据
+   actionBlock:(jobsByResponseModelBlock _Nullable)actionBlock /// 本层对success的解析回调
+  successBlock:(jobsByResponseModelBlock _Nullable)successBlock /// 外层对success的解析回调
+     failBlock:(jobsByVoidBlock _Nullable)failBlock{ /// 失败解析回调
     JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
     if(responseModel.code == HTTPResponseCodeSuccess){
-        if(successBlock) successBlock(responseModel);
-    }self.jobsHandelNoSuccess(responseModel.code,request);
+        if(successBlock) successBlock(successDataBlock(responseModel) ? successDataBlock(responseModel) : responseModel);
+        if(actionBlock) actionBlock(responseModel);
+    }else{
+        self.jobsHandelNoSuccess(responseModel.code,request);
+        if(failBlock) failBlock();
+    }
+}
+
+-(void)request:(YTKBaseRequest *)request
+  successBlock:(jobsByIDBlock _Nullable)successBlock{
+    [self request:request
+ successDataBlock:nil
+      actionBlock:nil
+     successBlock:successBlock
+        failBlock:nil];
 }
 
 -(jobsByIDBlock _Nonnull)jobsHandelFailure{
@@ -224,13 +240,7 @@
     @jobs_weakify(self)
     [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
         @jobs_strongify(self)
-        JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
-        if(responseModel.code == HTTPResponseCodeSuccess){
-            toast(JobsInternationalization(@"退出登录成功"));
-            self.cleanUserData();
-            JobsPostNotification(退出登录成功, @(YES));
-            if(successBlock) successBlock(@YES);
-        }self.jobsHandelNoSuccess(responseModel.code,request);
+        [self request:request successBlock:successBlock];
     } failure:^(YTKBaseRequest *request) {
         @jobs_strongify(self)
         self.jobsHandelFailure(request);
@@ -256,22 +266,6 @@
     chainReq.delegate = self;
     if(successBlock) successBlock(chainReq);
     [chainReq start];// start to send request
-    
-//    FM_getDepositDiscountActivityRecord_api *api = FM_getDepositDiscountActivityRecord_api.init
-//        .byURLParameters(urlParameters);/// @"?kyc=1"
-//    self.handleErr(api);
-//    // self.tipsByApi(self);
-//    @jobs_weakify(self)
-//    [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-//        @jobs_strongify(self)
-//        JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
-//        if(responseModel.code == HTTPResponseCodeSuccess){
-//            if(successBlock) successBlock(responseModel);
-//        }self.jobsHandelNoSuccess(responseModel.code,request);
-//    } failure:^(YTKBaseRequest *request) {
-//        @jobs_strongify(self)
-//        self.jobsHandelFailure(request);
-//    }];
 }
 
 @end
