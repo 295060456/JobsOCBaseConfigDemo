@@ -9,12 +9,13 @@
 
 @implementation NSObject (UserInfo)
 /**
- 【鉴别是否登录】
- 【标准】token是否为空
+ 【鉴别目前是否登录】
+ 【标准】判定的标准 = 用户数据存在 + 用户数据中Token的值非空 ＋ Token是否已经过期
  【return】 YES(已经登录)、NO（未登录）
  */
 -(BOOL)isLogin{
-    return isValue(self.readUserInfo().token) && self.readUserInfo();
+    JobsUserModel *userInfo = self.readUserInfo();
+    return isValue(userInfo.token) && userInfo && userInfo.expireTime.isExpired();
 }
 /// 检查是否登录并执行传入的代码块
 -(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock {
@@ -27,9 +28,9 @@
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        if(self.loginModel.expireTime.isExpired()){
+        if(self.isLogin){
             /// 如果Token过期，则跳转登录获取，以刷新Token
-//            self.toLogin();
+            self.toLogin();
         }
     };
 }
@@ -38,7 +39,7 @@
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        if(self.loginModel.expireTime.isExpired()){
+        if(self.isLogin){
             /// 清理本地用户数据
             self.deleteUserInfoByUserName(用户信息);
         }

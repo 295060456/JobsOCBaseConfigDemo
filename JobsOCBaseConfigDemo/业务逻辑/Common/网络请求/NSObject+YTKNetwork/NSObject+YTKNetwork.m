@@ -87,7 +87,8 @@ successDataBlock:(JobsReturnIDByResponseModelBlock _Nullable)successDataBlock //
      failBlock:(jobsByVoidBlock _Nullable)failBlock{ /// 失败解析回调
     JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
     if(responseModel.code == HTTPResponseCodeSuccess){
-        if(successBlock) successBlock(successDataBlock(responseModel) ? successDataBlock(responseModel) : responseModel);
+        id data = successDataBlock ? successDataBlock(responseModel) : nil;
+        if(successBlock) successBlock(data ? data : responseModel);
         if(actionBlock) actionBlock(responseModel);
     }else{
         self.jobsHandelNoSuccess(responseModel.code,request);
