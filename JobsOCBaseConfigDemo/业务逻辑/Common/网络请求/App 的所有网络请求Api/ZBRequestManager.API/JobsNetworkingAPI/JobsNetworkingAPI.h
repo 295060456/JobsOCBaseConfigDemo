@@ -59,7 +59,9 @@ NS_ASSUME_NONNULL_END
  -(void)networking_messageSecondClassListGET{
      NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
      DataManager.sharedManager.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
-     [RequestTool setupPublicParameters];//公共配置、插件机制、证书设置
+     RequestTool *config = RequestTool.new
+     config.languageType = HTTPRequestHeaderLanguageCN;
+     RequestTool.setupPublicParametersBy(config);;//公共配置、插件机制、证书设置
      @jobs_weakify(self)
      NSDictionary *parameters = @{};
      [JobsNetworkingAPI requestApi:NSObject.messageSecondClassListGET.funcName
@@ -128,7 +130,10 @@ NS_ASSUME_NONNULL_END
  NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
  DataManager.sharedManager.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
 
- [RequestTool setupPublicParameters];//公共配置、插件机制、证书设置
+ RequestTool *config = RequestTool.new
+ config.languageType = HTTPRequestHeaderLanguageCN;
+ RequestTool.setupPublicParametersBy(config);;//公共配置、插件机制、证书设置
+ 
  @jobs_weakify(self)
  NSDictionary *parameters = @{};
  [JobsNetworkingAPI requestApi:NSObject.postUploadImagePOST.funcName
@@ -200,7 +205,10 @@ NS_ASSUME_NONNULL_END
  NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
  DataManager.sharedManager.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
 
- [RequestTool setupPublicParameters];//公共配置、插件机制、证书设置
+ RequestTool *config = RequestTool.new
+ config.languageType = HTTPRequestHeaderLanguageCN;
+ RequestTool.setupPublicParametersBy(config);;//公共配置、插件机制、证书设置
+ 
  @jobs_weakify(self)
  NSDictionary *parameters = @{};
  

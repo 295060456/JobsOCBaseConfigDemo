@@ -768,12 +768,18 @@
 		CE61AD552C9EAB26002DF138 /* RequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD422C9EAB26002DF138 /* RequestTool.m */; };
 		CE61AD592C9EAB26002DF138 /* JobsNetworkingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD3C2C9EAB26002DF138 /* JobsNetworkingAPI.m */; };
 		CE61AD5A2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD3F2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m */; };
-		CE61AD5B2C9EAB26002DF138 /* NSObject+URLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE61AD012C9EAB26002DF138 /* NSObject+URLManager.m */; };
 		CE706A462C57682900CB7B97 /* data.tsv in Resources */ = {isa = PBXBuildFile; fileRef = CE706A432C57682900CB7B97 /* data.tsv */; };
 		CE7C79B42C92B9CD00C0153C /* GTCaptcha4.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE7C79B12C92B9C600C0153C /* GTCaptcha4.bundle */; };
 		CE7C79B52C92B9D000C0153C /* GTCaptcha4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7C79B22C92B9C600C0153C /* GTCaptcha4.framework */; };
 		CE7F39772C4FDB9B00431A5D /* FMDatabase+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */; };
 		CE84D8042C912E2F005DE167 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE84D8022C912E2F005DE167 /* JobsOCBaseConfigDemo.xcdatamodeld */; };
+		CE8C146D2CB91ADE0056090E /* NSObject+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C14652CB91ADE0056090E /* NSObject+URLManager_Base.m */; };
+		CE8C146E2CB91ADE0056090E /* NSObject+URLManager_2.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C146B2CB91ADE0056090E /* NSObject+URLManager_2.m */; };
+		CE8C146F2CB91ADE0056090E /* NSObject+URLManager_1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C14682CB91ADE0056090E /* NSObject+URLManager_1.m */; };
+		CE8C147C2CB927540056090E /* NSObject+URLManager_3.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C14712CB927540056090E /* NSObject+URLManager_3.m */; };
+		CE8C147D2CB927540056090E /* NSObject+URLManager_6.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C147A2CB927540056090E /* NSObject+URLManager_6.m */; };
+		CE8C147E2CB927540056090E /* NSObject+URLManager_4.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C14742CB927540056090E /* NSObject+URLManager_4.m */; };
+		CE8C147F2CB927540056090E /* NSObject+URLManager_5.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C14772CB927540056090E /* NSObject+URLManager_5.m */; };
 		CEB8FA5F2CA837BF00CCFDF8 /* UIImage+Base85.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB8FA5E2CA837B200CCFDF8 /* UIImage+Base85.m */; };
 		CEB8FA602CA837BF00CCFDF8 /* NSString+Base85.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1B9F2CA82510002AF25B /* NSString+Base85.m */; };
 		CEB8FA612CA837BF00CCFDF8 /* NSData+Base85.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1B9C2CA82510002AF25B /* NSData+Base85.m */; };
@@ -2818,8 +2824,6 @@
 		CE5A64722CA82C8F006D67A7 /* AVURLAsset+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVURLAsset+Extra.m"; sourceTree = "<group>"; };
 		CE5A647E2CA82D54006D67A7 /* NSBundle+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Extra.h"; sourceTree = "<group>"; };
 		CE5A647F2CA82D54006D67A7 /* NSBundle+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Extra.m"; sourceTree = "<group>"; };
-		CE61AD002C9EAB26002DF138 /* NSObject+URLManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager.h"; sourceTree = "<group>"; };
-		CE61AD012C9EAB26002DF138 /* NSObject+URLManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager.m"; sourceTree = "<group>"; };
 		CE61AD032C9EAB26002DF138 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		CE61AD042C9EAB26002DF138 /* DataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		CE61AD072C9EAB26002DF138 /* NSObject+YTKNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YTKNetwork.h"; sourceTree = "<group>"; };
@@ -2847,6 +2851,21 @@
 		CE7F39742C4FDB9B00431A5D /* FMDatabase+Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+Manager.h"; sourceTree = "<group>"; };
 		CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+Manager.m"; sourceTree = "<group>"; };
 		CE84D8032C912E2F005DE167 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
+		CE8C14632CB91ADE0056090E /* URLManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLManager.h; sourceTree = "<group>"; };
+		CE8C14642CB91ADE0056090E /* NSObject+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_Base.h"; sourceTree = "<group>"; };
+		CE8C14652CB91ADE0056090E /* NSObject+URLManager_Base.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager_Base.m"; sourceTree = "<group>"; };
+		CE8C14672CB91ADE0056090E /* NSObject+URLManager_1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_1.h"; sourceTree = "<group>"; };
+		CE8C14682CB91ADE0056090E /* NSObject+URLManager_1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager_1.m"; sourceTree = "<group>"; };
+		CE8C146A2CB91ADE0056090E /* NSObject+URLManager_2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_2.h"; sourceTree = "<group>"; };
+		CE8C146B2CB91ADE0056090E /* NSObject+URLManager_2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager_2.m"; sourceTree = "<group>"; };
+		CE8C14702CB927540056090E /* NSObject+URLManager_3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_3.h"; sourceTree = "<group>"; };
+		CE8C14712CB927540056090E /* NSObject+URLManager_3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager_3.m"; sourceTree = "<group>"; };
+		CE8C14732CB927540056090E /* NSObject+URLManager_4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_4.h"; sourceTree = "<group>"; };
+		CE8C14742CB927540056090E /* NSObject+URLManager_4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager_4.m"; sourceTree = "<group>"; };
+		CE8C14762CB927540056090E /* NSObject+URLManager_5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_5.h"; sourceTree = "<group>"; };
+		CE8C14772CB927540056090E /* NSObject+URLManager_5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager_5.m"; sourceTree = "<group>"; };
+		CE8C14792CB927540056090E /* NSObject+URLManager_6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_6.h"; sourceTree = "<group>"; };
+		CE8C147A2CB927540056090E /* NSObject+URLManager_6.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager_6.m"; sourceTree = "<group>"; };
 		CEB8FA5E2CA837B200CCFDF8 /* UIImage+Base85.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Base85.m"; sourceTree = "<group>"; };
 		CEC01AB32C48AFED0069C91A /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
 		CEC01BE52C48E20F0069C91A /* Bayon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bayon.ttf; sourceTree = "<group>"; };
@@ -12553,13 +12572,19 @@
 			path = "NSBundle+Category";
 			sourceTree = "<group>";
 		};
-		CE61AD022C9EAB26002DF138 /* NSObject+URLManager */ = {
+		CE61AD022C9EAB26002DF138 /* URLManager */ = {
 			isa = PBXGroup;
 			children = (
-				CE61AD002C9EAB26002DF138 /* NSObject+URLManager.h */,
-				CE61AD012C9EAB26002DF138 /* NSObject+URLManager.m */,
+				CE8C14632CB91ADE0056090E /* URLManager.h */,
+				CE8C14692CB91ADE0056090E /* URLManager@1 */,
+				CE8C146C2CB91ADE0056090E /* URLManager@2 */,
+				CE8C14722CB927540056090E /* URLManager@3 */,
+				CE8C14752CB927540056090E /* URLManager@4 */,
+				CE8C14782CB927540056090E /* URLManager@5 */,
+				CE8C147B2CB927540056090E /* URLManager@6 */,
+				CE8C14662CB91ADE0056090E /* URLManager@Base */,
 			);
-			path = "NSObject+URLManager";
+			path = URLManager;
 			sourceTree = "<group>";
 		};
 		CE61AD052C9EAB26002DF138 /* 存取页面数据 */ = {
@@ -12574,7 +12599,7 @@
 		CE61AD062C9EAB26002DF138 /* 公共部分 */ = {
 			isa = PBXGroup;
 			children = (
-				CE61AD022C9EAB26002DF138 /* NSObject+URLManager */,
+				CE61AD022C9EAB26002DF138 /* URLManager */,
 				CE61AD052C9EAB26002DF138 /* 存取页面数据 */,
 			);
 			path = "公共部分";
@@ -12711,6 +12736,69 @@
 				CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */,
 			);
 			path = "FMDatabase+Manager";
+			sourceTree = "<group>";
+		};
+		CE8C14662CB91ADE0056090E /* URLManager@Base */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C14642CB91ADE0056090E /* NSObject+URLManager_Base.h */,
+				CE8C14652CB91ADE0056090E /* NSObject+URLManager_Base.m */,
+			);
+			path = "URLManager@Base";
+			sourceTree = "<group>";
+		};
+		CE8C14692CB91ADE0056090E /* URLManager@1 */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C14672CB91ADE0056090E /* NSObject+URLManager_1.h */,
+				CE8C14682CB91ADE0056090E /* NSObject+URLManager_1.m */,
+			);
+			path = "URLManager@1";
+			sourceTree = "<group>";
+		};
+		CE8C146C2CB91ADE0056090E /* URLManager@2 */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C146A2CB91ADE0056090E /* NSObject+URLManager_2.h */,
+				CE8C146B2CB91ADE0056090E /* NSObject+URLManager_2.m */,
+			);
+			path = "URLManager@2";
+			sourceTree = "<group>";
+		};
+		CE8C14722CB927540056090E /* URLManager@3 */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C14702CB927540056090E /* NSObject+URLManager_3.h */,
+				CE8C14712CB927540056090E /* NSObject+URLManager_3.m */,
+			);
+			path = "URLManager@3";
+			sourceTree = "<group>";
+		};
+		CE8C14752CB927540056090E /* URLManager@4 */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C14732CB927540056090E /* NSObject+URLManager_4.h */,
+				CE8C14742CB927540056090E /* NSObject+URLManager_4.m */,
+			);
+			path = "URLManager@4";
+			sourceTree = "<group>";
+		};
+		CE8C14782CB927540056090E /* URLManager@5 */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C14762CB927540056090E /* NSObject+URLManager_5.h */,
+				CE8C14772CB927540056090E /* NSObject+URLManager_5.m */,
+			);
+			path = "URLManager@5";
+			sourceTree = "<group>";
+		};
+		CE8C147B2CB927540056090E /* URLManager@6 */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C14792CB927540056090E /* NSObject+URLManager_6.h */,
+				CE8C147A2CB927540056090E /* NSObject+URLManager_6.m */,
+			);
+			path = "URLManager@6";
 			sourceTree = "<group>";
 		};
 		CE9076C82C54B60F00CD902B /* 自定义视图 */ = {
@@ -14724,6 +14812,9 @@
 				CE5A65142CA8310B006D67A7 /* HQCollectionViewFlowLayout.m in Sources */,
 				CE5A65152CA8310B006D67A7 /* XZMLayout.m in Sources */,
 				CE5A65162CA8310B006D67A7 /* KFZShopCatoryFlowLayput.m in Sources */,
+				CE8C146D2CB91ADE0056090E /* NSObject+URLManager_Base.m in Sources */,
+				CE8C146E2CB91ADE0056090E /* NSObject+URLManager_2.m in Sources */,
+				CE8C146F2CB91ADE0056090E /* NSObject+URLManager_1.m in Sources */,
 				CECE7D6A2C450DED00764AF5 /* AppDelegate+TabBarCtr.m in Sources */,
 				CECE7EDF2C450E5B00764AF5 /* ZMJCell+CustomView.m in Sources */,
 				CE5A64842CA82D7B006D67A7 /* NSDate+Extra.m in Sources */,
@@ -14864,7 +14955,6 @@
 				CE61AD5A2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m in Sources */,
 				CE5A65D22CA833E6006D67A7 /* JobsImageNumberView.m in Sources */,
 				CE5A65D32CA833E6006D67A7 /* JobsImageNumberViewCVCell.m in Sources */,
-				CE61AD5B2C9EAB26002DF138 /* NSObject+URLManager.m in Sources */,
 				CE5A649F2CA82E44006D67A7 /* PhilippinesModel.m in Sources */,
 				CECE7E932C450E5B00764AF5 /* WebSocket.m in Sources */,
 				CE5A65B12CA833AA006D67A7 /* JobsAppDoorVC.m in Sources */,
@@ -15372,6 +15462,10 @@
 				CE4F28102CA825CD002AF25B /* PointLabTestVC.m in Sources */,
 				CE4F28112CA825CD002AF25B /* FindCodeFlowChartView.m in Sources */,
 				CE5A661D2CA8367B006D67A7 /* BaseView.m in Sources */,
+				CE8C147C2CB927540056090E /* NSObject+URLManager_3.m in Sources */,
+				CE8C147D2CB927540056090E /* NSObject+URLManager_6.m in Sources */,
+				CE8C147E2CB927540056090E /* NSObject+URLManager_4.m in Sources */,
+				CE8C147F2CB927540056090E /* NSObject+URLManager_5.m in Sources */,
 				CE4F28122CA825CD002AF25B /* JobsCommentPopUpView_viewForHeaderInSection.m in Sources */,
 				CE5A64952CA82E0C006D67A7 /* JobsAppDoorModel.m in Sources */,
 				CEDD9DE12CAA5752002FD89F /* JobsLocationModel.m in Sources */,

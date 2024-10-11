@@ -186,19 +186,19 @@
     return NSHomeDirectory();
 }
 /// Documents目录（这个目录通常用于存储应用程序中的用户数据或需要持久保存的数据。用户可以通过 iTunes 文件共享或 iCloud 访问该目录中的内容）下，用户主目录下，返回完整路径
--(NSArray<NSString *> *_Nonnull)documentsPaths{
+-(NSArray <NSString *>*_Nonnull)documentsPaths{
     return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                NSUserDomainMask,
                                                YES);
 }
 /// Library目录（这个目录是每个 iOS 或 macOS 应用程序特有的目录，通常存储应用程序的支持文件、配置文件以及不能直接由用户访问的文件）下，用户主目录下，返回完整路径
--(NSArray<NSString *> *_Nonnull)libraryPaths{
+-(NSArray <NSString *>*_Nonnull)libraryPaths{
     return NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
                                                NSUserDomainMask,
                                                YES);
 }
 /// 缓存目录下，用户主目录下，返回完整路径
--(NSArray<NSString *> *_Nonnull)cachesPaths{
+-(NSArray <NSString *>*_Nonnull)cachesPaths{
     return NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
                                                NSUserDomainMask,
                                                YES);
@@ -246,6 +246,12 @@
     };
 }
 #pragma mark —— 功能性的
+-(URLManagerModel *_Nonnull)url:(NSString *_Nonnull)url funcName:(NSString *_Nonnull)funcName{
+    return jobsMakeURLManagerModel(^(__kindof URLManagerModel * _Nullable data) {
+        data.url = url;
+        data.funcName = funcName;
+    });
+}
 /// 获取m文件的属性
 -(JobsReturnIDByStringBlock _Nonnull)getObjByName{
     @jobs_weakify(self)

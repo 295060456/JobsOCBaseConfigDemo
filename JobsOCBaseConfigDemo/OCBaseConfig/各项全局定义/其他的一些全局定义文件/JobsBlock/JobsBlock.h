@@ -114,6 +114,9 @@ typedef void(^jobsByRichTextConfigBlock)(__kindof JobsRichTextConfig *_Nullable 
 @class SDWebImageModel;
 typedef void(^jobsBySDWebImageModelBlock)(__kindof SDWebImageModel *_Nullable data);
 
+@class URLManagerModel;
+typedef void(^jobsByURLManagerModelBlock)(__kindof URLManagerModel *_Nullable data);
+
 @class UIViewModel;
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(UIViewModel *_Nullable data);
 typedef void(^jobsByViewModelBlock)(__kindof UIViewModel *_Nullable data);
@@ -212,6 +215,9 @@ typedef void(^jobsByPopListBaseViewBlock)(PopListBaseView *_Nullable data);
 @class JobsResponseModel;
 typedef void(^jobsByResponseModelBlock)(JobsResponseModel *_Nullable responseModel);
 typedef id _Nullable(^JobsReturnIDByResponseModelBlock)(JobsResponseModel *_Nullable responseModel);
+
+@class RequestTool;
+typedef void(^jobsByRequestToolBlock)(RequestTool *_Nullable requestTool);
 
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock1)(jobsByIDBlock _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock2)(JobsReturnIDByVoidBlock _Nullable data);

@@ -65,7 +65,8 @@
 //        JobsNetworkingPrepare
 //        RequestTool *config = RequestTool.new;
 //        config.languageType = self.currentLanguageType;
-//        [RequestTool setupPublicParameters:config];
+//        RequestTool.setupPublicParametersBy(config);
+    
 //
 //        NSDictionary *parameters = @{@"country":@"855",//暂时写死855
 //                                     @"phone":phone};
@@ -76,7 +77,7 @@
 //            NSLog(@"用户获取短信验证码成功");
 //            self.jobsToastSuccessMsg(JobsInternationalization(@"Verification send success"));
 //        } failureBlock:^(id data) {
-//            [JobsNetworkingAPI handleError:data];
+//            JobsNetworkingAPI.handleError(data);
 //            JobsAppDoorInputViewBaseStyle_1 *手机验证码 = (JobsAppDoorInputViewBaseStyle_1 *)self.registerDoorInputViewBaseStyleMutArr[4];
 //            手机验证码.getCountDownBtn.timerDestroy();
 //        }];

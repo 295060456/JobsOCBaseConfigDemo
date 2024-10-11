@@ -7,10 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NSObject+URLManager.h"
+#import "JobsBlock.h"
+#import "URLManager.h"
 #import "ZBNetworking.h"
 #import "DataManager.h"
 #import "NetworkingConstant.h"
+#import "NSObject+UserInfo.h"
+#import "NSMutableArray+Extra.h"
+#import "NSMutableDictionary+Extra.h"
+
+#if __has_include(<AFNetworking/AFNetworking.h>)
+#import <AFNetworking/AFNetworking.h>
+#elif __has_include("AFNetworking.h")
+#import "AFNetworking.h"
+#elif __has_include("AFNetworking-umbrella.h")
+#import "AFNetworking-umbrella.h"
+#else
+#error "AFNetworking header not found"
+#endif
+
+NS_INLINE AFHTTPRequestSerializer <AFURLRequestSerialization> *_Nonnull AFRequestSerializer(void){
+    return AFHTTPSessionManager.manager.requestSerializer;
+}
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)HTTPRequestHeaderLanguageType languageType;
 
-+(void)setupPublicParameters:(RequestTool *)config;
++(jobsByRequestToolBlock _Nullable)setupPublicParametersBy;
 
 @end
 

@@ -11,7 +11,7 @@
 #import "MacroDef_Func.h"
 #import "JobsDefineAllEnumHeader.h"
 
-#import "NSObject+URLManager.h"
+#import "URLManager.h"
 #import "NSObject+Data.h"
 #import "NSObject+Extras.h"
 

@@ -15,7 +15,10 @@
  */
 -(BOOL)isLogin{
     JobsUserModel *userInfo = self.readUserInfo();
-    return isValue(userInfo.token) && userInfo && userInfo.expireTime.isExpired();
+    return isValue(userInfo.token) &&
+    userInfo &&
+    isValue(userInfo.expireTime) &&
+    userInfo.expireTime.isExpired();
 }
 /// 检查是否登录并执行传入的代码块
 -(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock {

@@ -87,7 +87,7 @@
      */
     RequestTool *config = RequestTool.new;
     config.languageType = HTTPRequestHeaderLanguageCN;
-    [RequestTool setupPublicParameters:config];
+    RequestTool.setupPublicParametersBy(config);
     @jobs_weakify(self)
     NSDictionary *parameters = @{@"pageSize":@(10),
                                  @"pageNum":@(self.currentPage)};
@@ -339,260 +339,210 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
     }return _tableView;
 }
 
--(NSMutableArray<VideoModel_Core *> *)dataMutArr{
+-(NSMutableArray <VideoModel_Core *>*)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
-        /// 第1条视频
-        {
-            VideoModel_Core *data = VideoModel_Core.new;
-//            data.isPraise;
-//            data.authorId;
-//            data.videoSort;
-//            data.headImage;
-//            data.praiseNum;
-//            data.author;
-//            data.videoId;
-//            data.videoSize;
-//            data.isVip;
-//            data.commentNum;
-//            data.isAttention;
-//            data.areSelf;
-//            data.publishTime;
-//            data.playNum;
-//            data.videoTime;
-            
-            data.videoIdcUrl = @"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4";
-            data.videoTitle = JobsInternationalization(@"第1条视频");
-            data.videoImg = @"视频封面";
-            
-            [_dataMutArr addObject:data];
-        }
-        /// 第2条视频
-        {
-            VideoModel_Core *data = VideoModel_Core.new;
-//            data.isPraise;
-//            data.authorId;
-//            data.videoSort;
-//            data.headImage;
-//            data.praiseNum;
-//            data.author;
-//            data.videoId;
-//            data.videoSize;
-//            data.isVip;
-//            data.commentNum;
-//            data.isAttention;
-//            data.areSelf;
-//            data.publishTime;
-//            data.playNum;
-//            data.videoTime;
-            
-            data.videoIdcUrl = @"https://www.apple.com/105/media/cn/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/bruce/mac-bruce-tpl-cn-2018_1280x720h.mp4";
-            data.videoTitle = JobsInternationalization(@"第2条视频");
-            data.videoImg = @"视频封面";
-            
-            [_dataMutArr addObject:data];
-        }
-        /// 第3条视频
-        {
-            VideoModel_Core *data = VideoModel_Core.new;
-//            data.isPraise;
-//            data.authorId;
-//            data.videoSort;
-//            data.headImage;
-//            data.praiseNum;
-//            data.author;
-//            data.videoId;
-//            data.videoSize;
-//            data.isVip;
-//            data.commentNum;
-//            data.isAttention;
-//            data.areSelf;
-//            data.publishTime;
-//            data.playNum;
-//            data.videoTime;
-            
-            data.videoIdcUrl = @"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/peter/mac-peter-tpl-cc-us-2018_1280x720h.mp4";
-            data.videoTitle = JobsInternationalization(@"第3条视频");
-            data.videoImg = @"视频封面";
-            
-            [_dataMutArr addObject:data];
-        }
-        /// 第4条视频
-        {
-            VideoModel_Core *data = VideoModel_Core.new;
-//            data.isPraise;
-//            data.authorId;
-//            data.videoSort;
-//            data.headImage;
-//            data.praiseNum;
-//            data.author;
-//            data.videoId;
-//            data.videoSize;
-//            data.isVip;
-//            data.commentNum;
-//            data.isAttention;
-//            data.areSelf;
-//            data.publishTime;
-//            data.playNum;
-//            data.videoTime;
-            
-            data.videoIdcUrl = @"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/grimes/mac-grimes-tpl-cc-us-2018_1280x720h.mp4";
-            data.videoTitle = JobsInternationalization(@"第4条视频");
-            data.videoImg = @"视频封面";
-            
-            [_dataMutArr addObject:data];
-        }
-        /// 第5条视频
-        {
-            VideoModel_Core *data = VideoModel_Core.new;
-//            data.isPraise;
-//            data.authorId;
-//            data.videoSort;
-//            data.headImage;
-//            data.praiseNum;
-//            data.author;
-//            data.videoId;
-//            data.videoSize;
-//            data.isVip;
-//            data.commentNum;
-//            data.isAttention;
-//            data.areSelf;
-//            data.publishTime;
-//            data.playNum;
-//            data.videoTime;
-            
-            data.videoIdcUrl = @"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7194236f31b2e1e3da0fe06cfed4ba2b.mp4";
-            data.videoTitle = JobsInternationalization(@"第5条视频");
-            data.videoImg = @"视频封面";
-            
-            [_dataMutArr addObject:data];
-        }
-        /// 第6条视频
-        {
-            VideoModel_Core *data = VideoModel_Core.new;
-//            data.isPraise;
-//            data.authorId;
-//            data.videoSort;
-//            data.headImage;
-//            data.praiseNum;
-//            data.author;
-//            data.videoId;
-//            data.videoSize;
-//            data.isVip;
-//            data.commentNum;
-//            data.isAttention;
-//            data.areSelf;
-//            data.publishTime;
-//            data.playNum;
-//            data.videoTime;
-            
-            data.videoIdcUrl = @"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
-            data.videoTitle = JobsInternationalization(@"第6条视频");
-            data.videoImg = @"视频封面";
-            
-            [_dataMutArr addObject:data];
-        }
-        /// 第7条视频
-        {
-            VideoModel_Core *data = VideoModel_Core.new;
-//            data.isPraise;
-//            data.authorId;
-//            data.videoSort;
-//            data.headImage;
-//            data.praiseNum;
-//            data.author;
-//            data.videoId;
-//            data.videoSize;
-//            data.isVip;
-//            data.commentNum;
-//            data.isAttention;
-//            data.areSelf;
-//            data.publishTime;
-//            data.playNum;
-//            data.videoTime;
-            
-            data.videoIdcUrl = @"http://vjs.zencdn.net/v/oceans.mp4";
-            data.videoTitle = JobsInternationalization(@"第7条视频");
-            data.videoImg = @"视频封面";
-            
-            [_dataMutArr addObject:data];
-        }
-        /// 第8条视频
-        {
-            VideoModel_Core *data = VideoModel_Core.new;
-//            data.isPraise;
-//            data.authorId;
-//            data.videoSort;
-//            data.headImage;
-//            data.praiseNum;
-//            data.author;
-//            data.videoId;
-//            data.videoSize;
-//            data.isVip;
-//            data.commentNum;
-//            data.isAttention;
-//            data.areSelf;
-//            data.publishTime;
-//            data.playNum;
-//            data.videoTime;
-            
-            data.videoIdcUrl = @"https://media.w3.org/2010/05/sintel/trailer.mp4";
-            data.videoTitle = JobsInternationalization(@"第8条视频");
-            data.videoImg = @"视频封面";
-            
-            [_dataMutArr addObject:data];
-        }
-        /// 第9条视频
-        {
-            VideoModel_Core *data = VideoModel_Core.new;
-//            data.isPraise;
-//            data.authorId;
-//            data.videoSort;
-//            data.headImage;
-//            data.praiseNum;
-//            data.author;
-//            data.videoId;
-//            data.videoSize;
-//            data.isVip;
-//            data.commentNum;
-//            data.isAttention;
-//            data.areSelf;
-//            data.publishTime;
-//            data.playNum;
-//            data.videoTime;
-            
-            data.videoIdcUrl = @"http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4";
-            data.videoTitle = JobsInternationalization(@"第9条视频");
-            data.videoImg = @"视频封面";
-            
-            [_dataMutArr addObject:data];
-        }
-        /// 第10条视频
-        {
-            VideoModel_Core *data = VideoModel_Core.new;
-//            data.isPraise;
-//            data.authorId;
-//            data.videoSort;
-//            data.headImage;
-//            data.praiseNum;
-//            data.author;
-//            data.videoId;
-//            data.videoSize;
-//            data.isVip;
-//            data.commentNum;
-//            data.isAttention;
-//            data.areSelf;
-//            data.publishTime;
-//            data.playNum;
-//            data.videoTime;
-            
-            data.videoIdcUrl = @"https://sample-videos.com/video123/mp4/480/big_buck_bunny_480p_2mb.mp4";
-            data.videoTitle = JobsInternationalization(@"第10条视频");
-            data.videoImg = @"视频封面";
-            
-            [_dataMutArr addObject:data];
-        }
-
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <VideoModel_Core *>*_Nullable data) {
+            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
+//                data.isPraise;
+//                data.authorId;
+//                data.videoSort;
+//                data.headImage;
+//                data.praiseNum;
+//                data.author;
+//                data.videoId;
+//                data.videoSize;
+//                data.isVip;
+//                data.commentNum;
+//                data.isAttention;
+//                data.areSelf;
+//                data.publishTime;
+//                data.playNum;
+//                data.videoTime;
+                data.videoIdcUrl = @"https://sample-videos.com/video123/mp4/480/big_buck_bunny_480p_2mb.mp4";
+                data.videoTitle = JobsInternationalization(@"第1条视频");
+                data.videoImg = @"视频封面";
+            }));/// 第1条视频
+            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
+//                data.isPraise;
+//                data.authorId;
+//                data.videoSort;
+//                data.headImage;
+//                data.praiseNum;
+//                data.author;
+//                data.videoId;
+//                data.videoSize;
+//                data.isVip;
+//                data.commentNum;
+//                data.isAttention;
+//                data.areSelf;
+//                data.publishTime;
+//                data.playNum;
+//                data.videoTime;
+                data.videoIdcUrl = @"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4";
+                data.videoTitle = JobsInternationalization(@"第2条视频");
+                data.videoImg = @"视频封面";
+            }));/// 第2条视频
+            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
+//                data.isPraise;
+//                data.authorId;
+//                data.videoSort;
+//                data.headImage;
+//                data.praiseNum;
+//                data.author;
+//                data.videoId;
+//                data.videoSize;
+//                data.isVip;
+//                data.commentNum;
+//                data.isAttention;
+//                data.areSelf;
+//                data.publishTime;
+//                data.playNum;
+//                data.videoTime;
+                data.videoIdcUrl = @"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/peter/mac-peter-tpl-cc-us-2018_1280x720h.mp4";
+                data.videoTitle = JobsInternationalization(@"第3条视频");
+                data.videoImg = @"视频封面";
+            }));/// 第3条视频
+            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
+//                data.isPraise;
+//                data.authorId;
+//                data.videoSort;
+//                data.headImage;
+//                data.praiseNum;
+//                data.author;
+//                data.videoId;
+//                data.videoSize;
+//                data.isVip;
+//                data.commentNum;
+//                data.isAttention;
+//                data.areSelf;
+//                data.publishTime;
+//                data.playNum;
+//                data.videoTime;
+                data.videoIdcUrl = @"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/grimes/mac-grimes-tpl-cc-us-2018_1280x720h.mp4";
+                data.videoTitle = JobsInternationalization(@"第4条视频");
+                data.videoImg = @"视频封面";
+            }));/// 第4条视频
+            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
+//                data.isPraise;
+//                data.authorId;
+//                data.videoSort;
+//                data.headImage;
+//                data.praiseNum;
+//                data.author;
+//                data.videoId;
+//                data.videoSize;
+//                data.isVip;
+//                data.commentNum;
+//                data.isAttention;
+//                data.areSelf;
+//                data.publishTime;
+//                data.playNum;
+//                data.videoTime;
+                data.videoIdcUrl = @"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7194236f31b2e1e3da0fe06cfed4ba2b.mp4";
+                data.videoTitle = JobsInternationalization(@"第5条视频");
+                data.videoImg = @"视频封面";
+            }));/// 第5条视频
+            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
+//                data.isPraise;
+//                data.authorId;
+//                data.videoSort;
+//                data.headImage;
+//                data.praiseNum;
+//                data.author;
+//                data.videoId;
+//                data.videoSize;
+//                data.isVip;
+//                data.commentNum;
+//                data.isAttention;
+//                data.areSelf;
+//                data.publishTime;
+//                data.playNum;
+//                data.videoTime;
+                data.videoIdcUrl = @"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+                data.videoTitle = JobsInternationalization(@"第6条视频");
+                data.videoImg = @"视频封面";
+            }));/// 第6条视频
+            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
+//                data.isPraise;
+//                data.authorId;
+//                data.videoSort;
+//                data.headImage;
+//                data.praiseNum;
+//                data.author;
+//                data.videoId;
+//                data.videoSize;
+//                data.isVip;
+//                data.commentNum;
+//                data.isAttention;
+//                data.areSelf;
+//                data.publishTime;
+//                data.playNum;
+//                data.videoTime;
+                data.videoIdcUrl = @"http://vjs.zencdn.net/v/oceans.mp4";
+                data.videoTitle = JobsInternationalization(@"第7条视频");
+                data.videoImg = @"视频封面";
+            }));/// 第7条视频
+            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
+//                data.isPraise;
+//                data.authorId;
+//                data.videoSort;
+//                data.headImage;
+//                data.praiseNum;
+//                data.author;
+//                data.videoId;
+//                data.videoSize;
+//                data.isVip;
+//                data.commentNum;
+//                data.isAttention;
+//                data.areSelf;
+//                data.publishTime;
+//                data.playNum;
+//                data.videoTime;
+                data.videoIdcUrl = @"https://media.w3.org/2010/05/sintel/trailer.mp4";
+                data.videoTitle = JobsInternationalization(@"第8条视频");
+                data.videoImg = @"视频封面";
+            }));/// 第8条视频
+            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
+//                data.isPraise;
+//                data.authorId;
+//                data.videoSort;
+//                data.headImage;
+//                data.praiseNum;
+//                data.author;
+//                data.videoId;
+//                data.videoSize;
+//                data.isVip;
+//                data.commentNum;
+//                data.isAttention;
+//                data.areSelf;
+//                data.publishTime;
+//                data.playNum;
+//                data.videoTime;
+                data.videoIdcUrl = @"http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4";
+                data.videoTitle = JobsInternationalization(@"第9条视频");
+                data.videoImg = @"视频封面";
+            }));/// 第9条视频
+            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
+//                data.isPraise;
+//                data.authorId;
+//                data.videoSort;
+//                data.headImage;
+//                data.praiseNum;
+//                data.author;
+//                data.videoId;
+//                data.videoSize;
+//                data.isVip;
+//                data.commentNum;
+//                data.isAttention;
+//                data.areSelf;
+//                data.publishTime;
+//                data.playNum;
+//                data.videoTime;
+                data.videoIdcUrl = @"https://sample-videos.com/video123/mp4/480/big_buck_bunny_480p_2mb.mp4";
+                data.videoTitle = JobsInternationalization(@"第10条视频");
+                data.videoImg = @"视频封面";
+            }));/// 第10条视频
+        });
     }return _dataMutArr;
 }
 

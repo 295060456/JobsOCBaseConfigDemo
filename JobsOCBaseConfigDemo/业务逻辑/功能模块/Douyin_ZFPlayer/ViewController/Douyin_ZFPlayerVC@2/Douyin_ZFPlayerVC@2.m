@@ -435,9 +435,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     }return _fullControlView;
 }
 
--(NSMutableArray<VideoModel_Core *> *)dataMutArr{
+-(NSMutableArray <VideoModel_Core *>*)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <VideoModel_Core *>*_Nullable data) {
             /// 第1条视频
             data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4";
@@ -520,7 +520,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
      */
     RequestTool *config = RequestTool.new;
     config.languageType = HTTPRequestHeaderLanguageCN;
-    [RequestTool setupPublicParameters:config];
+    RequestTool.setupPublicParametersBy(config);
     
     @jobs_weakify(self)
     extern NSString *appInterfaceTesting;

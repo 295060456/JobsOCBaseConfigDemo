@@ -20,7 +20,10 @@
 }
 /// 在链式请求中，下一个请求的参数来源于上一个请求的结果
 -(NSString *_Nonnull)kyc{
-    return [[self.responseJSONObject objectForKey:@"kycStatus"] stringValue] ? : JobsInternationalization(@"");
+    JobsResponseModel *responseModel = JobsResponseModel.byData(self.responseObject);
+//    KYVModel *data = KYVModel.byData(responseModel.data);
+//    return toStringByNSInteger(data.kycStatus);
+    return @"";
 }
 
 @end
