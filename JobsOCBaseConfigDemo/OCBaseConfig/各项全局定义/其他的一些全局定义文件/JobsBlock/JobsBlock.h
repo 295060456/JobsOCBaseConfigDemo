@@ -229,6 +229,7 @@ typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(Job
 
 @class YTKBaseRequest;
 typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
+typedef JobsResponseModel *_Nullable(^JobsReturnResponseModelByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
 
 @class GKPhotoBrowser;
 typedef void(^jobsByGKPhotoBrowserBlock)(GKPhotoBrowser *_Nonnull data);

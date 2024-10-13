@@ -72,34 +72,34 @@
         api2.byURLParameters(nil);
         api2.byBodyParameters(jobsMakeMutDic(^(__kindof NSMutableDictionary *_Nullable data) {
             [data setValue:result.userId forKey:@"KKK"];
-        }));
-        [chainRequest addRequest:api2 callback:nil];
+        }));[chainRequest addRequest:api2 callback:nil];
     }];
     chainReq.delegate = self;
     if(successBlock) successBlock(chainReq);
     [chainReq start];// start to send request
 }
 #pragma mark —— 一些公有设置
+/// successData传nil：对总数据源进行标准格式解析后对外返回 JobsResponseModel
+/// successData传JobsSolveData(AModel)：对总数据源进行标准格式解析以后，再进行一层关于AModel的解析后对外返回
 -(void)request:(YTKBaseRequest *)request /// 总数据源
-successDataBlock:(JobsReturnIDByResponseModelBlock _Nullable)successDataBlock /// 本层对success的解析数据
+   successData:(id _Nullable)successData /// 本层对success的解析数据
    actionBlock:(jobsByResponseModelBlock _Nullable)actionBlock /// 本层对success的解析回调
   successBlock:(jobsByResponseModelBlock _Nullable)successBlock /// 外层对success的解析回调
      failBlock:(jobsByVoidBlock _Nullable)failBlock{ /// 失败解析回调
-    JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
-    if(responseModel.code == HTTPResponseCodeSuccess){
-        id data = successDataBlock ? successDataBlock(responseModel) : nil;
-        if(successBlock) successBlock(data ? data : responseModel);
-        if(actionBlock) actionBlock(responseModel);
-    }else{
-        self.jobsHandelNoSuccess(responseModel.code,request);
-        if(failBlock) failBlock();
-    }
+         JobsResponseModel *responseModel = JobsMapResponseModelBy(request);
+         if(responseModel.code == HTTPResponseCodeSuccess){
+             if(successBlock) successBlock(successData ? : responseModel);
+             if(actionBlock) actionBlock(responseModel);
+         }else{
+             self.jobsHandelNoSuccess(responseModel.code,request);
+             if(failBlock) failBlock();
+         }
 }
 
 -(void)request:(YTKBaseRequest *)request
   successBlock:(jobsByIDBlock _Nullable)successBlock{
     [self request:request
- successDataBlock:nil
+      successData:nil
       actionBlock:nil
      successBlock:successBlock
         failBlock:nil];

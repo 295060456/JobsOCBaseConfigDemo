@@ -7,9 +7,10 @@
 
 #import <Foundation/Foundation.h>
 #import "NetworkingConstant.h"
+#import "NSObject+Data.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+/// 后端按照标准格式返回的最外层的数据。通常我们锚定data进行解析
 @interface JobsResponseModel : NSObject
 
 @property(nonatomic,assign)HTTPResponseCode code;
@@ -19,18 +20,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-//if (successBlock) {
-//    if ([responseObject isKindOfClass:NSDictionary.class]) {
-//        NSDictionary *dataDic = (NSDictionary *)responseObject;
-//        JobsResponseModel *model = [JobsResponseModel mj_objectWithKeyValues:dataDic];
-//        // 公共请求错误直接抛出
-//        if (model.code != HTTPResponseCodeSuccess) {
-//        self.jobsToastMsg(model.msg);
-//        }else{
-//            successBlock(model);
-//        }
-//    }else{
-//        self.jobsToastMsg(@"异常接口".add(NSObject.userInfoSelectVideoCountPOST.funcName));
-//    }
-//}

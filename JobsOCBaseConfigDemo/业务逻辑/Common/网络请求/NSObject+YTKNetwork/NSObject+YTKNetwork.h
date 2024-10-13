@@ -24,16 +24,32 @@
 #import "JobsNetworkingHeader.h" /// Api
 #import "DAO.h"/// 数据模型层
 
+/// 后端接口返回数据按照标准格式（msg、code、data）进行解析，取出有用字段（data）
+NS_INLINE JobsResponseModel *_Nullable JobsMapResponseModelBy(YTKBaseRequest *_Nonnull request){
+    return JobsResponseModel.byData(request.responseObject);
+}
+
+#ifndef JobsResponseData
+#define JobsResponseData JobsMapResponseModelBy(request).data
+#endif /*JobsResponseData*/
+
+#ifndef JobsSolveData
+#define JobsSolveData(DATA) DATA.byData(JobsResponseData)
+#endif /*JobsSolveData*/
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (YTKNetwork)<YTKChainRequestDelegate>
 #pragma mark —— 一些公有设置
+/// successData传nil：对总数据源进行标准格式解析后对外返回 JobsResponseModel
+/// successData传JobsSolveData(AModel)：对总数据源进行标准格式解析以后，再进行一层关于AModel的解析后对外返回
 -(void)request:(YTKBaseRequest *)request /// 总数据源
-successDataBlock:(JobsReturnIDByResponseModelBlock _Nullable)successDataBlock /// 本层对success的解析数据
+   successData:(id _Nullable)successData /// 本层对success的解析数据
    actionBlock:(jobsByResponseModelBlock _Nullable)actionBlock /// 本层对success的解析回调
   successBlock:(jobsByResponseModelBlock _Nullable)successBlock /// 外层对success的解析回调
      failBlock:(jobsByVoidBlock _Nullable)failBlock;
--(void)request:(YTKBaseRequest *)request successBlock:(jobsByIDBlock _Nullable)successBlock;
+-(void)request:(YTKBaseRequest *)request
+  successBlock:(jobsByIDBlock _Nullable)successBlock;
 -(jobsByIDBlock _Nonnull)jobsHandelFailure;
 -(JobsHandelNoSuccessBlock _Nonnull)jobsHandelNoSuccess;
 -(jobsByIDBlock _Nonnull)tipsByApi;
