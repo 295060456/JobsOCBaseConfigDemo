@@ -194,19 +194,20 @@ willDisplayHeaderView:(UIView *)view
         }
         
         {
-            self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+            _tableView.mj_header = self.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                 data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
                 data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
                 data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
                 data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
                 data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+                data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
                     self.feedbackGenerator();//震动反馈
                     return nil;
                 };
-            });
-            self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+            }));
+            _tableView.mj_footer = self.MJRefreshFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                 data.stateIdleTitle = JobsInternationalization(@"");
                 data.pullingTitle = JobsInternationalization(@"");
                 data.refreshingTitle = JobsInternationalization(@"");
@@ -217,10 +218,7 @@ willDisplayHeaderView:(UIView *)view
                     self->_tableView.endRefreshing(YES);
                     return nil;
                 };
-            });
-            
-            _tableView.mj_header = self.mjRefreshNormalHeader;
-            _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+            }));
         }
         
         {

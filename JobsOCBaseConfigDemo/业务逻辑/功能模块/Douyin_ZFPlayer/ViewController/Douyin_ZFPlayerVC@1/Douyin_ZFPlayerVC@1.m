@@ -267,24 +267,23 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
         _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
         
         {
-            // 创建自定义值，用model管理
-            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
-            refreshConfigHeader.pullingTitle = JobsInternationalization(@"下拉刷新数据");
-            refreshConfigHeader.refreshingTitle = JobsInternationalization(@"正在刷新数据");
-            refreshConfigHeader.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-            refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
-            refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
-                @jobs_strongify(self)
-                NSLog(@"下拉刷新");
-                self.currentPage = 1;
-                @"data".readLocalFileWithName;/// 获取本地的数据
-                self->_tableView.endRefreshing(self.dataMutArr.count);
-                return nil;
-            };
-            // 赋值
-            self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
-            self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+            // 用值
+            _tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
+                data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
+                data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
+                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+                data.loadBlock = ^id _Nullable(id  _Nullable data) {
+                    @jobs_strongify(self)
+                    NSLog(@"下拉刷新");
+                    self.currentPage = 1;
+                    @"data".readLocalFileWithName;/// 获取本地的数据
+                    self->_tableView.endRefreshing(self.dataMutArr.count);
+                    return nil;
+                };
+            }));
+            _tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                 data.stateIdleTitle = JobsInternationalization(@"");
                 data.pullingTitle = JobsInternationalization(@"");
                 data.refreshingTitle = JobsInternationalization(@"");
@@ -305,10 +304,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
                     self->_tableView.endRefreshing(self.dataMutArr.count);
                     return nil;
                 };
-            });
-            // 用值
-            _tableView.mj_header = self.lotAnimMJRefreshHeader;
-            _tableView.mj_footer = self.mjRefreshAutoGifFooter;
+            }));
             _tableView.mj_footer.backgroundColor = JobsRedColor;
             self.view.mjRefreshTargetView = _tableView;
         }

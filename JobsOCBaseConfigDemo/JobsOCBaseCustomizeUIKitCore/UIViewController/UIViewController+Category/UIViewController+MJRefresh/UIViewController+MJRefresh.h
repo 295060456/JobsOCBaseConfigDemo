@@ -47,10 +47,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (MJRefresh)<BaseViewProtocol>
-
-@property(nonatomic,strong)MJRefreshConfigModel *refreshConfigHeader;//头部的配置信息
-@property(nonatomic,strong)MJRefreshConfigModel *refreshConfigFooter;//尾部的配置信息
-
+#pragma mark —— 配置信息
+@property(nonatomic,strong)MJRefreshConfigModel *refreshConfigHeader;/// 头部的配置信息
+@property(nonatomic,strong)MJRefreshConfigModel *refreshConfigFooter;/// 尾部的配置信息
 #pragma mark —— MJRefreshHeader
 @property(nonatomic,strong)LOTAnimationMJRefreshHeader *lotAnimMJRefreshHeader;
 @property(nonatomic,strong)MJRefreshNormalHeader *mjRefreshNormalHeader;

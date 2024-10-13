@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol MJRefreshProtocol <NSObject>
+@optional
 /// 普通闲置状态【图】
 -(jobsByArrayBlock _Nonnull)refreshStateIdleByImages;
 /// 松开就可以进行刷新的状态【图】

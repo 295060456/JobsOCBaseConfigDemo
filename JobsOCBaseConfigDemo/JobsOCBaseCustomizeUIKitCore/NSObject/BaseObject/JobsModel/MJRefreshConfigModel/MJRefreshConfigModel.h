@@ -28,7 +28,6 @@ typedef enum : NSInteger {
 
 @interface MJRefreshConfigModel : NSObject
 
-@property(nonatomic,assign)BOOL isShake;//是否需要震动反馈？默认不需要
 #pragma mark —— Font
 @property(nonatomic,strong)UIFont *font;
 #pragma mark —— TextColor
@@ -54,6 +53,10 @@ typedef enum : NSInteger {
 #pragma mark —— Lottie配置
 @property(nonatomic,strong)NSString *jsonLottiefilePaths;
 @property(nonatomic,copy)JobsReturnIDByIDBlock loadBlock;
+#pragma mark —— 其他
+/** 根据拖拽比例自动切换透明度 */
+@property(assign,nonatomic,getter=isAutomaticallyChangeAlpha)BOOL automaticallyChangeAlpha;
+@property(nonatomic,assign)BOOL isShake;/// 是否需要震动反馈？默认不需要
 
 @end
 

@@ -8,6 +8,342 @@
 #import "UIView+Refresh.h"
 
 @implementation UIView (Refresh)
+#pragma mark —— 一些私有方法
+-(jobsByRefreshConfigModelBlock)handleWord{
+    @jobs_weakify(self)
+    return ^(__kindof MJRefreshConfigModel *_Nullable data){
+        @jobs_strongify(self)
+        if ([self conformsToProtocol:@protocol(MJRefreshProtocol)]) {
+            UIView <MJRefreshProtocol>*view = (UIView <MJRefreshProtocol>*)self;
+            // 普通闲置状态
+            view.refreshStateIdleByString (data.stateIdleTitle);
+            // 松开就可以进行刷新的状态
+            view.refreshStatePullingByString (data.pullingTitle);
+            // 正在刷新中的状态
+            view.refreshStateRefreshingByString (data.refreshingTitle);
+            // 即将刷新的状态
+            view.refreshStateWillRefreshByString (data.willRefreshTitle);
+            // 所有数据加载完毕，没有更多的数据了
+            view.refreshStateNoMoreDataByString (data.noMoreDataTitle);
+        }
+    };
+}
+#pragma mark —— 创建不同类型的MJHeader 和 MJFootor
+/// Header
+-(JobsReturnLOTAnimationMJRefreshHeaderByRefreshConfigModelBlock _Nonnull)LOTAnimationMJRefreshHeaderBy{
+    return ^LOTAnimationMJRefreshHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        @jobs_weakify(self)
+        LOTAnimationMJRefreshHeader *lotAnimationMJRefreshHeader = [LOTAnimationMJRefreshHeader headerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        {//图片
+            // 普通闲置状态
+            lotAnimationMJRefreshHeader.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr);
+            // 松开就可以进行刷新的状态
+            lotAnimationMJRefreshHeader.refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr);
+            // 正在刷新中的状态
+            [lotAnimationMJRefreshHeader setImages:self.refreshConfigHeader.refreshingPicsMutArr
+                                          duration:self.refreshConfigHeader.refreshingDuration
+                                          forState:MJRefreshStateRefreshing];
+            // 即将刷新的状态
+            lotAnimationMJRefreshHeader.refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr);
+            // 所有数据加载完毕，没有更多的数据了
+            lotAnimationMJRefreshHeader.refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);
+        }
+        {//文字
+            // 普通闲置状态
+            lotAnimationMJRefreshHeader.refreshStateIdleByString(refreshConfigModel.stateIdleTitle);
+            // 松开就可以进行刷新的状态
+            lotAnimationMJRefreshHeader.refreshStatePullingByString(refreshConfigModel.pullingTitle);
+            // 正在刷新中的状态
+            lotAnimationMJRefreshHeader.refreshStateRefreshingByString(refreshConfigModel.refreshingTitle);
+            // 即将刷新的状态
+            lotAnimationMJRefreshHeader.refreshStateWillRefreshByString(refreshConfigModel.willRefreshTitle);
+            // 所有数据加载完毕，没有更多的数据了
+            lotAnimationMJRefreshHeader.refreshStateNoMoreDataByString(refreshConfigModel.noMoreDataTitle);
+        }
+        {//其他
+            // 设置字体
+            lotAnimationMJRefreshHeader.stateLabel.font = refreshConfigModel.font;
+            // 设置颜色
+            lotAnimationMJRefreshHeader.stateLabel.textColor = refreshConfigModel.textColor;
+            // 根据拖拽比例自动切换透明度
+            lotAnimationMJRefreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            // 震动特效反馈
+            if (refreshConfigModel.isShake) self.震动特效反馈();
+        }return lotAnimationMJRefreshHeader;
+    };
+}
+-(JobsReturnMJRefreshNormalHeaderByRefreshConfigModelBlock _Nonnull)MJRefreshNormalHeaderBy{
+    @jobs_weakify(self)
+    return ^MJRefreshNormalHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        MJRefreshNormalHeader *refreshNormalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        self.handleWord(refreshConfigModel);/// 文字
+        {//其他
+            // 设置字体
+            refreshNormalHeader.stateLabel.font = refreshConfigModel.font;
+            // 设置颜色
+            refreshNormalHeader.stateLabel.textColor = refreshConfigModel.textColor;
+            // 根据拖拽比例自动切换透明度
+            refreshNormalHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            //震动特效反馈
+            if (refreshConfigModel.isShake) self.震动特效反馈();
+        }return refreshNormalHeader;
+    };
+}
+-(JobsReturnMJRefreshStateHeaderByRefreshConfigModelBlock _Nonnull)MJRefreshStateHeaderBy{
+    @jobs_weakify(self)
+    return ^MJRefreshStateHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        MJRefreshStateHeader *refreshStateHeader = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        self.handleWord(refreshConfigModel);/// 文字
+        {//其他
+            // 设置字体
+            refreshStateHeader.stateLabel.font = refreshConfigModel.font;
+            // 设置颜色
+            refreshStateHeader.stateLabel.textColor = refreshConfigModel.textColor;
+            // 根据拖拽比例自动切换透明度
+            refreshStateHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            //震动特效反馈
+            if (refreshConfigModel.isShake) self.震动特效反馈();
+        }return refreshStateHeader;
+    };
+}
+-(JobsReturnMJRefreshHeaderByRefreshConfigModelBlock _Nonnull)MJRefreshHeaderBy{
+    @jobs_weakify(self)
+    return ^MJRefreshHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        MJRefreshHeader *refreshHeader = [MJRefreshHeader headerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        {//其他
+            // 根据拖拽比例自动切换透明度
+            refreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            // 震动特效反馈
+            if (refreshConfigModel.isShake) self.震动特效反馈();
+        }return refreshHeader;
+    };
+}
+-(JobsReturnMJRefreshGifHeaderByRefreshConfigModelBlock _Nonnull)MJRefreshGifHeaderBy{
+    @jobs_weakify(self)
+    return ^MJRefreshGifHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        MJRefreshGifHeader *refreshGifHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        {//图片
+            // 普通闲置状态
+            refreshGifHeader.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr);
+            // 松开就可以进行刷新的状态
+            refreshGifHeader.refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr);
+            // 正在刷新中的状态
+            [refreshGifHeader setImages:refreshConfigModel.refreshingPicsMutArr
+                               duration:refreshConfigModel.refreshingDuration
+                               forState:MJRefreshStateRefreshing];
+            // 即将刷新的状态
+            refreshGifHeader.refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr);
+            // 所有数据加载完毕，没有更多的数据了
+            refreshGifHeader.refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);
+        }
+        self.handleWord(refreshConfigModel);/// 文字
+        {//其他
+            // 设置字体
+            refreshGifHeader.stateLabel.font = refreshConfigModel.font;
+            // 设置颜色
+            refreshGifHeader.stateLabel.textColor = refreshConfigModel.textColor;
+            // 根据拖拽比例自动切换透明度
+            refreshGifHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            //震动特效反馈
+            if (refreshConfigModel.isShake) self.震动特效反馈();
+        }return refreshGifHeader;
+    };
+}
+/// Footer
+-(JobsReturnMJRefreshAutoGifFooterByRefreshConfigModelBlock _Nonnull)MJRefreshAutoGifFooterBy{
+    return ^MJRefreshAutoGifFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        @jobs_weakify(self)
+        MJRefreshAutoGifFooter *refreshAutoGifFooter = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        {// 图片
+            // 普通闲置状态
+            refreshAutoGifFooter.refreshStatePullingByImages (refreshConfigModel.stateIdlePicsMutArr);
+            // 松开就可以进行刷新的状态
+            refreshAutoGifFooter.refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr);
+            // 正在刷新中的状态
+            [refreshAutoGifFooter setImages:refreshConfigModel.refreshingPicsMutArr
+                                   duration:refreshConfigModel.refreshingDuration
+                                   forState:MJRefreshStateRefreshing];
+            // 即将刷新的状态
+            refreshAutoGifFooter.refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr);
+            // 所有数据加载完毕，没有更多的数据了
+            refreshAutoGifFooter.refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);
+        }
+        self.handleWord(refreshConfigModel);/// 文字
+        {//其他
+            // 设置字体
+            refreshAutoGifFooter.stateLabel.font = refreshConfigModel.font;
+            // 设置颜色
+            refreshAutoGifFooter.stateLabel.textColor = refreshConfigModel.textColor;
+            // 根据拖拽比例自动切换透明度
+            refreshAutoGifFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
+        }return refreshAutoGifFooter;
+    };
+}
+-(JobsReturnMJRefreshBackNormalFooterByRefreshConfigModelBlock _Nonnull)MJRefreshBackNormalFooterBy{
+    return ^MJRefreshBackNormalFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        @jobs_weakify(self)
+        MJRefreshBackNormalFooter *refreshBackNormalFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
+        }];
+        self.handleWord(refreshConfigModel);/// 文字 (此模式下只有文字而没有图片)
+        {//其他
+            // 设置字体
+            refreshBackNormalFooter.stateLabel.font = refreshConfigModel.font;
+            // 设置颜色
+            refreshBackNormalFooter.stateLabel.textColor = refreshConfigModel.textColor;
+            // 根据拖拽比例自动切换透明度
+            refreshBackNormalFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
+        }return refreshBackNormalFooter;
+    };
+}
+-(JobsReturnMJRefreshAutoNormalFooterByRefreshConfigModelBlock _Nonnull)MJRefreshAutoNormalFooterBy{
+    return ^MJRefreshAutoNormalFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        @jobs_weakify(self)
+        MJRefreshAutoNormalFooter *refreshAutoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        self.handleWord(refreshConfigModel);/// 文字
+        {//其他
+            // 设置字体
+            refreshAutoNormalFooter.stateLabel.font = refreshConfigModel.font;
+            // 设置颜色
+            refreshAutoNormalFooter.stateLabel.textColor = refreshConfigModel.textColor;
+            // 根据拖拽比例自动切换透明度
+            refreshAutoNormalFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
+        }return refreshAutoNormalFooter;
+    };
+}
+-(JobsReturnMJRefreshAutoStateFooterByRefreshConfigModelBlock _Nonnull)MJRefreshAutoStateFooterBy{
+    return ^MJRefreshAutoStateFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        @jobs_weakify(self)
+        MJRefreshAutoStateFooter *refreshAutoStateFooter = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        self.handleWord(refreshConfigModel);/// 文字
+        {//其他
+            // 设置字体
+            refreshAutoStateFooter.stateLabel.font = refreshConfigModel.font;
+            // 设置颜色
+            refreshAutoStateFooter.stateLabel.textColor = refreshConfigModel.textColor;
+            // 根据拖拽比例自动切换透明度
+            refreshAutoStateFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            if (refreshConfigModel.isShake) self.震动特效反馈();
+        }return refreshAutoStateFooter;
+    };
+}
+-(JobsReturnMJRefreshAutoFooterByRefreshConfigModelBlock _Nonnull)MJRefreshAutoFooterBy{
+    return ^MJRefreshAutoFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        @jobs_weakify(self)
+        MJRefreshAutoFooter *refreshAutoFooter = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];return refreshAutoFooter;
+    };
+}
+-(JobsReturnMJRefreshBackGifFooterByRefreshConfigModelBlock _Nonnull)MJRefreshBackGifFooterBy{
+    return ^MJRefreshBackGifFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        @jobs_weakify(self)
+        MJRefreshBackGifFooter *refreshBackGifFooter = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        {// 图片
+            // 普通闲置状态
+            refreshBackGifFooter.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr);
+            // 松开就可以进行刷新的状态
+            refreshBackGifFooter.refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr);
+            // 正在刷新中的状态
+            [refreshBackGifFooter setImages:refreshConfigModel.refreshingPicsMutArr
+                                   duration:refreshConfigModel.refreshingDuration
+                                   forState:MJRefreshStateRefreshing];
+            // 即将刷新的状态
+            refreshBackGifFooter.refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr);
+            // 所有数据加载完毕，没有更多的数据了
+            refreshBackGifFooter.refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);
+        }
+        self.handleWord(refreshConfigModel);/// 文字
+        {//其他
+            // 设置字体
+            refreshBackGifFooter.stateLabel.font = refreshConfigModel.font;
+            // 设置颜色
+            refreshBackGifFooter.stateLabel.textColor = refreshConfigModel.textColor;
+            // 根据拖拽比例自动切换透明度
+            refreshBackGifFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            if (refreshConfigModel.isShake) self.震动特效反馈();
+        }return refreshBackGifFooter;
+    };
+}
+-(JobsReturnMJRefreshBackStateFooterByRefreshConfigModelBlock _Nonnull)MJRefreshBackStateFooterBy{
+    return ^MJRefreshBackStateFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        @jobs_weakify(self)
+        MJRefreshBackStateFooter *refreshBackStateFooter = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(self.refreshConfigFooter.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        self.handleWord(refreshConfigModel);/// 文字
+        {//其他
+            // 设置字体
+            refreshBackStateFooter.stateLabel.font = self.refreshConfigFooter.font;
+            // 设置颜色
+            refreshBackStateFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
+            // 根据拖拽比例自动切换透明度
+            refreshBackStateFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
+        }return refreshBackStateFooter;
+    };
+}
+-(JobsReturnMJRefreshBackFooterByRefreshConfigModelBlock _Nonnull)MJRefreshBackFooterBy{
+    return ^MJRefreshBackFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        @jobs_weakify(self)
+        MJRefreshBackFooter *refreshBackFooter = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        {//其他
+            if (refreshConfigModel.isShake) self.震动特效反馈();
+            // 根据拖拽比例自动切换透明度
+            refreshBackFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+        }return refreshBackFooter;
+    };
+}
+-(JobsReturnMJRefreshFooterByRefreshConfigModelBlock _Nonnull)MJRefreshFooterBy{
+    return ^MJRefreshFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        @jobs_weakify(self)
+        MJRefreshFooter *refreshFooter = [MJRefreshFooter footerWithRefreshingBlock:^{
+            @jobs_strongify(self)
+            if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
+        }];
+        {//其他
+            if (refreshConfigModel.isShake) self.震动特效反馈();
+            // 根据拖拽比例自动切换透明度
+            refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+        }return refreshFooter;
+    };
+}
 #pragma mark —— 关于 XZMRefresh 的二次封装
 -(jobsByVoidBlock _Nonnull)XZM_beginRefreshingNormalHeader{
     @jobs_weakify(self)
@@ -300,6 +636,225 @@
         self.feedbackGenerator();
     }else{}
 }
+/**
+ MJRefreshStateIdle,   //   普通闲置状态
+ MJRefreshStatePulling,   //   松开就可以进行刷新的状态
+ MJRefreshStateRefreshing,   //   正在刷新中的状态
+ MJRefreshStateWillRefresh,   //   即将刷新的状态
+ MJRefreshStateNoMoreData   //   所有数据加载完毕，没有更多的数据了
+ */
+#pragma mark —— MJRefreshHeader
+#pragma mark —— @property(nonatomic,strong)LOTAnimationMJRefreshHeader *lotAnimMJRefreshHeader;
+JobsKey(_lotAnimMJRefreshHeader)
+@dynamic lotAnimMJRefreshHeader;
+-(LOTAnimationMJRefreshHeader *)lotAnimMJRefreshHeader{
+    LOTAnimationMJRefreshHeader *lotAnimMJRefreshHeader = Jobs_getAssociatedObject(_lotAnimMJRefreshHeader);
+    if (!lotAnimMJRefreshHeader) {
+        @jobs_weakify(self)
+        lotAnimMJRefreshHeader = self.LOTAnimationMJRefreshHeaderBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_lotAnimMJRefreshHeader, lotAnimMJRefreshHeader);
+    }return lotAnimMJRefreshHeader;
+}
+
+-(void)setLotAnimMJRefreshHeader:(LOTAnimationMJRefreshHeader *)lotAnimMJRefreshHeader{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_lotAnimMJRefreshHeader, lotAnimMJRefreshHeader);
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshNormalHeader *mjRefreshNormalHeader;
+JobsKey(_mjRefreshNormalHeader)
+@dynamic mjRefreshNormalHeader;
+-(MJRefreshNormalHeader *)mjRefreshNormalHeader{
+    MJRefreshNormalHeader *MjRefreshNormalHeader = Jobs_getAssociatedObject(_mjRefreshNormalHeader);
+    if (!MjRefreshNormalHeader) {
+        @jobs_weakify(self)
+        MjRefreshNormalHeader = self.MJRefreshNormalHeaderBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshNormalHeader, MjRefreshNormalHeader)
+    }return MjRefreshNormalHeader;
+}
+
+-(void)setMjRefreshNormalHeader:(MJRefreshNormalHeader *)mjRefreshNormalHeader{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshNormalHeader, mjRefreshNormalHeader)
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshStateHeader *mjRefreshStateHeader;
+JobsKey(_mjRefreshStateHeader)
+@dynamic mjRefreshStateHeader;
+-(MJRefreshStateHeader *)mjRefreshStateHeader{
+    MJRefreshStateHeader *MjRefreshStateHeader = Jobs_getAssociatedObject(_mjRefreshStateHeader);
+    if (!MjRefreshStateHeader) {
+        @jobs_weakify(self)
+        MjRefreshStateHeader = self.MJRefreshStateHeaderBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshStateHeader, MjRefreshStateHeader)
+    }return MjRefreshStateHeader;
+}
+
+-(void)setMjRefreshStateHeader:(MJRefreshStateHeader *)mjRefreshStateHeader{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshStateHeader, mjRefreshStateHeader)
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshHeader *mjRefreshHeader;
+JobsKey(_mjRefreshHeader)
+@dynamic mjRefreshHeader;
+-(MJRefreshHeader *)mjRefreshHeader{
+    MJRefreshHeader *MjRefreshHeader = Jobs_getAssociatedObject(_mjRefreshHeader);
+    if (!MjRefreshHeader) {
+        @jobs_weakify(self)
+        MjRefreshHeader = self.MJRefreshHeaderBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshHeader, MjRefreshHeader)
+    }return MjRefreshHeader;
+}
+
+-(void)setMjRefreshHeader:(MJRefreshHeader *)mjRefreshHeader{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshHeader, mjRefreshHeader)
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshGifHeader *mjRefreshGifHeader;
+JobsKey(_mjRefreshGifHeader)
+@dynamic mjRefreshGifHeader;
+-(MJRefreshGifHeader *)mjRefreshGifHeader{
+    MJRefreshGifHeader *MjRefreshGifHeader = Jobs_getAssociatedObject(_mjRefreshGifHeader);
+    if (!MjRefreshGifHeader) {
+        @jobs_weakify(self)
+        MjRefreshGifHeader = self.MJRefreshGifHeaderBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshGifHeader, MjRefreshGifHeader)
+    }return MjRefreshGifHeader;
+}
+
+-(void)setMjRefreshGifHeader:(MJRefreshGifHeader *)mjRefreshGifHeader{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshGifHeader, mjRefreshGifHeader)
+}
+#pragma mark —— MJRefreshFooter
+#pragma mark —— @property(nonatomic,strong)MJRefreshAutoGifFooter *mjRefreshAutoGifFooter;
+JobsKey(_mjRefreshAutoGifFooter)
+@dynamic mjRefreshAutoGifFooter;
+-(MJRefreshAutoGifFooter *)mjRefreshAutoGifFooter{
+    MJRefreshAutoGifFooter *MjRefreshAutoGifFooter = Jobs_getAssociatedObject(_mjRefreshAutoGifFooter);
+    if (!MjRefreshAutoGifFooter) {
+        @jobs_weakify(self)
+        MjRefreshAutoGifFooter = self.MJRefreshAutoGifFooterBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoGifFooter, MjRefreshAutoGifFooter)
+    }return MjRefreshAutoGifFooter;
+}
+
+-(void)setMjRefreshAutoGifFooter:(MJRefreshAutoGifFooter *)mjRefreshAutoGifFooter{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoGifFooter, mjRefreshAutoGifFooter)
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshBackNormalFooter *mjRefreshBackNormalFooter;
+JobsKey(_mjRefreshBackNormalFooter)
+@dynamic mjRefreshBackNormalFooter;
+-(MJRefreshBackNormalFooter *)mjRefreshBackNormalFooter{
+    MJRefreshBackNormalFooter *MjRefreshBackNormalFooter = Jobs_getAssociatedObject(_mjRefreshBackNormalFooter);
+    if (!MjRefreshBackNormalFooter) {
+        @jobs_weakify(self)
+        MjRefreshBackNormalFooter = self.MJRefreshBackNormalFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackNormalFooter, MjRefreshBackNormalFooter)
+    }return MjRefreshBackNormalFooter;
+}
+
+-(void)setMjRefreshBackNormalFooter:(MJRefreshBackNormalFooter *)mjRefreshBackNormalFooter{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackNormalFooter, mjRefreshBackNormalFooter)
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshAutoNormalFooter *mjRefreshAutoNormalFooter;
+JobsKey(_mjRefreshAutoNormalFooter)
+@dynamic mjRefreshAutoNormalFooter;
+-(MJRefreshAutoNormalFooter *)mjRefreshAutoNormalFooter{
+    MJRefreshAutoNormalFooter *MjRefreshAutoNormalFooter = Jobs_getAssociatedObject(_mjRefreshAutoNormalFooter);
+    if (!MjRefreshAutoNormalFooter) {
+        @jobs_weakify(self)
+        MjRefreshAutoNormalFooter = self.MJRefreshAutoNormalFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoNormalFooter, MjRefreshAutoNormalFooter)
+    }return MjRefreshAutoNormalFooter;
+}
+
+-(void)setMjRefreshAutoNormalFooter:(MJRefreshAutoNormalFooter *)mjRefreshAutoNormalFooter{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoNormalFooter, mjRefreshAutoNormalFooter)
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshAutoStateFooter *mjRefreshAutoStateFooter;
+JobsKey(_mjRefreshAutoStateFooter)
+@dynamic mjRefreshAutoStateFooter;
+-(MJRefreshAutoStateFooter *)mjRefreshAutoStateFooter{
+    MJRefreshAutoStateFooter *MjRefreshAutoStateFooter = Jobs_getAssociatedObject(_mjRefreshAutoStateFooter);
+    if (!MjRefreshAutoStateFooter) {
+        @jobs_weakify(self)
+        MjRefreshAutoStateFooter = self.MJRefreshAutoStateFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoStateFooter, MjRefreshAutoStateFooter)
+    }return MjRefreshAutoStateFooter;
+}
+
+-(void)setMjRefreshAutoStateFooter:(MJRefreshAutoStateFooter *)mjRefreshAutoStateFooter{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoStateFooter, mjRefreshAutoStateFooter)
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshAutoFooter *mjRefreshAutoFooter;
+JobsKey(_mjRefreshAutoFooter)
+@dynamic mjRefreshAutoFooter;
+-(MJRefreshAutoFooter *)mjRefreshAutoFooter{
+    MJRefreshAutoFooter *MjRefreshAutoFooter = Jobs_getAssociatedObject(_mjRefreshAutoFooter);
+    if (!MjRefreshAutoFooter) {
+        @jobs_weakify(self)
+        MjRefreshAutoFooter = self.MJRefreshAutoFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoFooter, MjRefreshAutoFooter)
+    }return MjRefreshAutoFooter;
+}
+
+-(void)setMjRefreshAutoFooter:(MJRefreshAutoFooter *)mjRefreshAutoFooter{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoFooter, mjRefreshAutoFooter)
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshBackGifFooter *mjRefreshBackGifFooter;
+JobsKey(_mjRefreshBackGifFooter)
+@dynamic mjRefreshBackGifFooter;
+-(MJRefreshBackGifFooter *)mjRefreshBackGifFooter{
+    MJRefreshBackGifFooter *MjRefreshBackGifFooter = Jobs_getAssociatedObject(_mjRefreshBackGifFooter);
+    if (!MjRefreshBackGifFooter) {
+        @jobs_weakify(self)
+        MjRefreshBackGifFooter = self.MJRefreshBackGifFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackGifFooter, MjRefreshBackGifFooter);
+    }return MjRefreshBackGifFooter;
+}
+
+-(void)setMjRefreshBackGifFooter:(MJRefreshBackGifFooter *)mjRefreshBackGifFooter{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackGifFooter, mjRefreshBackGifFooter);
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshBackStateFooter *mjRefreshBackStateFooter;
+JobsKey(_mjRefreshBackStateFooter)
+@dynamic mjRefreshBackStateFooter;
+-(MJRefreshBackStateFooter *)mjRefreshBackStateFooter{
+    MJRefreshBackStateFooter *MjRefreshBackStateFooter = Jobs_getAssociatedObject(_mjRefreshBackStateFooter);
+    if (!MjRefreshBackStateFooter) {
+        @jobs_weakify(self)
+        MjRefreshBackStateFooter = self.MJRefreshBackStateFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackStateFooter, MjRefreshBackStateFooter);
+    }return MjRefreshBackStateFooter;
+}
+
+-(void)setMjRefreshBackStateFooter:(MJRefreshBackStateFooter *)mjRefreshBackStateFooter{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackStateFooter, mjRefreshBackStateFooter)
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshBackFooter *mjRefreshBackFooter;
+JobsKey(_mjRefreshBackFooter)
+@dynamic mjRefreshBackFooter;
+-(MJRefreshBackFooter *)mjRefreshBackFooter{
+    MJRefreshBackFooter *MjRefreshBackFooter = Jobs_getAssociatedObject(_mjRefreshBackFooter);
+    if (!MjRefreshBackFooter) {
+        @jobs_weakify(self)
+        MjRefreshBackFooter = self.MJRefreshBackFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackFooter, MjRefreshBackFooter);
+    }return MjRefreshBackFooter;
+}
+
+-(void)setMjRefreshBackFooter:(MJRefreshBackFooter *)mjRefreshBackFooter{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackFooter, mjRefreshBackFooter);
+}
+#pragma mark —— @property(nonatomic,strong)MJRefreshFooter *mjRefreshFooter;
+JobsKey(_mjRefreshFooter)
+@dynamic mjRefreshFooter;
+-(MJRefreshFooter *)mjRefreshFooter{
+    MJRefreshFooter *MjRefreshFooter = Jobs_getAssociatedObject(_mjRefreshFooter);
+    if (!MjRefreshFooter) {
+        @jobs_weakify(self)
+        MjRefreshFooter = self.MJRefreshFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshFooter, MjRefreshFooter)
+    }return MjRefreshFooter;
+}
+
+-(void)setMjRefreshFooter:(MJRefreshFooter *)mjRefreshFooter{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshFooter, mjRefreshFooter)
+}
 #pragma mark —— @property(nonatomic,weak)UIScrollView *mjRefreshTargetView; MJRefresh 作用于targetView
 JobsKey(_mjRefreshTargetView)
 @dynamic mjRefreshTargetView;
@@ -337,554 +892,6 @@ JobsKey(_refreshConfigFooter)
 
 -(void)setRefreshConfigFooter:(MJRefreshConfigModel *)refreshConfigFooter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_refreshConfigFooter, refreshConfigFooter)
-}
-/**
- MJRefreshStateIdle,   //   普通闲置状态
- MJRefreshStatePulling,   //   松开就可以进行刷新的状态
- MJRefreshStateRefreshing,   //   正在刷新中的状态
- MJRefreshStateWillRefresh,   //   即将刷新的状态
- MJRefreshStateNoMoreData   //   所有数据加载完毕，没有更多的数据了
- */
-#pragma mark —— MJRefreshHeader
-#pragma mark —— @property(nonatomic,strong)LOTAnimationMJRefreshHeader *lotAnimMJRefreshHeader;
-JobsKey(_lotAnimMJRefreshHeader)
-@dynamic lotAnimMJRefreshHeader;
--(LOTAnimationMJRefreshHeader *)lotAnimMJRefreshHeader{
-    LOTAnimationMJRefreshHeader *lotAnimMJRefreshHeader = Jobs_getAssociatedObject(_lotAnimMJRefreshHeader);
-    if (!lotAnimMJRefreshHeader) {
-        @jobs_weakify(self)
-        lotAnimMJRefreshHeader = [LOTAnimationMJRefreshHeader headerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigHeader.loadBlock) self.refreshConfigHeader.loadBlock(nil);
-        }];
-        //图片
-        {
-            // 普通闲置状态
-            lotAnimMJRefreshHeader.refreshStatePullingByImages(self.refreshConfigHeader.stateIdlePicsMutArr);
-            // 松开就可以进行刷新的状态
-            lotAnimMJRefreshHeader.refreshStatePullingByImages(self.refreshConfigHeader.pullingPicsMutArr);
-            // 正在刷新中的状态
-            [lotAnimMJRefreshHeader setImages:self.refreshConfigHeader.refreshingPicsMutArr
-                                     duration:self.refreshConfigHeader.refreshingDuration
-                                     forState:MJRefreshStateRefreshing];
-            // 即将刷新的状态
-            lotAnimMJRefreshHeader.refreshStateWillRefreshByImages(self.refreshConfigHeader.willRefreshPicsMutArr);
-            // 所有数据加载完毕，没有更多的数据了
-            lotAnimMJRefreshHeader.refreshStateNoMoreDataByImages(self.refreshConfigHeader.noMoreDataPicsMutArr);
-        }
-        //文字
-        {
-            // 普通闲置状态
-            lotAnimMJRefreshHeader.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            lotAnimMJRefreshHeader.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
-            // 正在刷新中的状态
-            lotAnimMJRefreshHeader.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
-            // 即将刷新的状态
-            lotAnimMJRefreshHeader.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            lotAnimMJRefreshHeader.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
-        }
-        //其他
-        {
-            // 设置字体
-            lotAnimMJRefreshHeader.stateLabel.font = self.refreshConfigHeader.font;
-            // 设置颜色
-            lotAnimMJRefreshHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
-            //震动特效反馈
-            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_lotAnimMJRefreshHeader, lotAnimMJRefreshHeader);
-    }return lotAnimMJRefreshHeader;
-}
-
--(void)setLotAnimMJRefreshHeader:(LOTAnimationMJRefreshHeader *)lotAnimMJRefreshHeader{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_lotAnimMJRefreshHeader, lotAnimMJRefreshHeader);
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshNormalHeader *mjRefreshNormalHeader;
-JobsKey(_mjRefreshNormalHeader)
-@dynamic mjRefreshNormalHeader;
--(MJRefreshNormalHeader *)mjRefreshNormalHeader{
-    MJRefreshNormalHeader *MjRefreshNormalHeader = Jobs_getAssociatedObject(_mjRefreshNormalHeader);
-    if (!MjRefreshNormalHeader) {
-        @jobs_weakify(self)
-        MjRefreshNormalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigHeader.loadBlock)self.refreshConfigHeader.loadBlock(nil);
-        }];
-        //文字
-        {
-            // 普通闲置状态
-            MjRefreshNormalHeader.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            MjRefreshNormalHeader.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
-            // 正在刷新中的状态
-            MjRefreshNormalHeader.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
-            // 即将刷新的状态
-            MjRefreshNormalHeader.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshNormalHeader.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
-        }
-        //其他
-        {
-            // 设置字体
-            MjRefreshNormalHeader.stateLabel.font = self.refreshConfigHeader.font;
-            // 设置颜色
-            MjRefreshNormalHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
-            //震动特效反馈
-            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshNormalHeader, MjRefreshNormalHeader)
-    }return MjRefreshNormalHeader;
-}
-
--(void)setMjRefreshNormalHeader:(MJRefreshNormalHeader *)mjRefreshNormalHeader{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshNormalHeader, mjRefreshNormalHeader)
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshStateHeader *mjRefreshStateHeader;
-JobsKey(_mjRefreshStateHeader)
-@dynamic mjRefreshStateHeader;
--(MJRefreshStateHeader *)mjRefreshStateHeader{
-    MJRefreshStateHeader *MjRefreshStateHeader = Jobs_getAssociatedObject(_mjRefreshStateHeader);
-    if (!MjRefreshStateHeader) {
-        @jobs_weakify(self)
-        MjRefreshStateHeader = [MJRefreshStateHeader headerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigHeader.loadBlock) self.refreshConfigHeader.loadBlock(nil);
-        }];
-        //文字
-        {
-            // 普通闲置状态
-            MjRefreshStateHeader.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            MjRefreshStateHeader.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
-            // 正在刷新中的状态
-            MjRefreshStateHeader.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
-            // 即将刷新的状态
-            MjRefreshStateHeader.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshStateHeader.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
-        }
-        //其他
-        {
-            // 设置字体
-            MjRefreshStateHeader.stateLabel.font = self.refreshConfigHeader.font;
-            // 设置颜色
-            MjRefreshStateHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
-            //震动特效反馈
-            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshStateHeader, MjRefreshStateHeader)
-    }return MjRefreshStateHeader;
-}
-
--(void)setMjRefreshStateHeader:(MJRefreshStateHeader *)mjRefreshStateHeader{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshStateHeader, mjRefreshStateHeader)
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshHeader *mjRefreshHeader;
-JobsKey(_mjRefreshHeader)
-@dynamic mjRefreshHeader;
--(MJRefreshHeader *)mjRefreshHeader{
-    MJRefreshHeader *MjRefreshHeader = Jobs_getAssociatedObject(_mjRefreshHeader);
-    if (!MjRefreshHeader) {
-        @jobs_weakify(self)
-        MjRefreshHeader = [MJRefreshHeader headerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigHeader.loadBlock) self.refreshConfigHeader.loadBlock(nil);
-        }];
-        //其他
-        {
-            //震动特效反馈
-            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshHeader, MjRefreshHeader)
-    }return MjRefreshHeader;
-}
-
--(void)setMjRefreshHeader:(MJRefreshHeader *)mjRefreshHeader{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshHeader, mjRefreshHeader)
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshGifHeader *mjRefreshGifHeader;
-JobsKey(_mjRefreshGifHeader)
-@dynamic mjRefreshGifHeader;
--(MJRefreshGifHeader *)mjRefreshGifHeader{
-    MJRefreshGifHeader *MjRefreshGifHeader = Jobs_getAssociatedObject(_mjRefreshGifHeader);
-    if (!MjRefreshGifHeader) {
-        @jobs_weakify(self)
-        MjRefreshGifHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigHeader.loadBlock) self.refreshConfigHeader.loadBlock(nil);
-        }];
-        //图片
-        {
-            // 普通闲置状态
-            MjRefreshGifHeader.refreshStatePullingByImages(self.refreshConfigHeader.stateIdlePicsMutArr);
-            // 松开就可以进行刷新的状态
-            MjRefreshGifHeader.refreshStatePullingByImages(self.refreshConfigHeader.pullingPicsMutArr);
-            // 正在刷新中的状态
-            [MjRefreshGifHeader setImages:self.refreshConfigHeader.refreshingPicsMutArr
-                                 duration:self.refreshConfigHeader.refreshingDuration
-                                 forState:MJRefreshStateRefreshing];
-            // 即将刷新的状态
-            MjRefreshGifHeader.refreshStateWillRefreshByImages(self.refreshConfigHeader.willRefreshPicsMutArr);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshGifHeader.refreshStateNoMoreDataByImages(self.refreshConfigHeader.noMoreDataPicsMutArr);
-        }
-        //文字
-        {
-            // 普通闲置状态
-            MjRefreshGifHeader.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            MjRefreshGifHeader.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
-            // 正在刷新中的状态
-            MjRefreshGifHeader.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
-            // 即将刷新的状态
-            MjRefreshGifHeader.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshGifHeader.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
-        }
-        //其他
-        {
-            // 设置字体
-            MjRefreshGifHeader.stateLabel.font = self.refreshConfigHeader.font;
-            // 设置颜色
-            MjRefreshGifHeader.stateLabel.textColor = self.refreshConfigHeader.textColor;
-            //震动特效反馈
-            if (self.refreshConfigHeader.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshGifHeader, MjRefreshGifHeader)
-    }return MjRefreshGifHeader;
-}
-
--(void)setMjRefreshGifHeader:(MJRefreshGifHeader *)mjRefreshGifHeader{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshGifHeader, mjRefreshGifHeader)
-}
-#pragma mark —— MJRefreshFooter
-#pragma mark —— @property(nonatomic,strong)MJRefreshAutoGifFooter *mjRefreshAutoGifFooter;
-JobsKey(_mjRefreshAutoGifFooter)
-@dynamic mjRefreshAutoGifFooter;
--(MJRefreshAutoGifFooter *)mjRefreshAutoGifFooter{
-    MJRefreshAutoGifFooter *MjRefreshAutoGifFooter = Jobs_getAssociatedObject(_mjRefreshAutoGifFooter);
-    if (!MjRefreshAutoGifFooter) {
-        @jobs_weakify(self)
-        MjRefreshAutoGifFooter = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
-        }];
-        // 图片
-        {
-            // 普通闲置状态
-            MjRefreshAutoGifFooter.refreshStatePullingByImages(self.refreshConfigHeader.stateIdlePicsMutArr);
-            // 松开就可以进行刷新的状态
-            MjRefreshAutoGifFooter.refreshStatePullingByImages(self.refreshConfigHeader.pullingPicsMutArr);
-            // 正在刷新中的状态
-            [MjRefreshAutoGifFooter setImages:self.refreshConfigHeader.refreshingPicsMutArr
-                                     duration:self.refreshConfigHeader.refreshingDuration
-                                     forState:MJRefreshStateRefreshing];
-            // 即将刷新的状态
-            MjRefreshAutoGifFooter.refreshStateWillRefreshByImages(self.refreshConfigHeader.willRefreshPicsMutArr);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshAutoGifFooter.refreshStateNoMoreDataByImages(self.refreshConfigHeader.noMoreDataPicsMutArr);
-        }
-        // 文字
-        {
-            // 普通闲置状态
-            MjRefreshAutoGifFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            MjRefreshAutoGifFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
-            // 正在刷新中的状态
-            MjRefreshAutoGifFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
-            // 即将刷新的状态
-            MjRefreshAutoGifFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshAutoGifFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
-        }
-        //其他
-        {
-            // 设置字体
-            MjRefreshAutoGifFooter.stateLabel.font = self.refreshConfigFooter.font;
-            // 设置颜色
-            MjRefreshAutoGifFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoGifFooter, MjRefreshAutoGifFooter)
-    }return MjRefreshAutoGifFooter;
-}
-
--(void)setMjRefreshAutoGifFooter:(MJRefreshAutoGifFooter *)mjRefreshAutoGifFooter{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoGifFooter, mjRefreshAutoGifFooter)
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshBackNormalFooter *mjRefreshBackNormalFooter;
-JobsKey(_mjRefreshBackNormalFooter)
-@dynamic mjRefreshBackNormalFooter;
--(MJRefreshBackNormalFooter *)mjRefreshBackNormalFooter{
-    MJRefreshBackNormalFooter *MjRefreshBackNormalFooter = Jobs_getAssociatedObject(_mjRefreshBackNormalFooter);
-    if (!MjRefreshBackNormalFooter) {
-        @jobs_weakify(self)
-        MjRefreshBackNormalFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
-        }];
-        // 文字 (此模式下只有文字而没有图片)
-        {
-            // 普通闲置状态
-            MjRefreshBackNormalFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            MjRefreshBackNormalFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
-            // 正在刷新中的状态
-            MjRefreshBackNormalFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
-            // 即将刷新的状态
-            MjRefreshBackNormalFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshBackNormalFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
-        }
-        //其他
-        {
-            // 设置字体
-            MjRefreshBackNormalFooter.stateLabel.font = self.refreshConfigFooter.font;
-            // 设置颜色
-            MjRefreshBackNormalFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackNormalFooter, MjRefreshBackNormalFooter)
-    }return MjRefreshBackNormalFooter;
-}
-
--(void)setMjRefreshBackNormalFooter:(MJRefreshBackNormalFooter *)mjRefreshBackNormalFooter{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackNormalFooter, mjRefreshBackNormalFooter)
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshAutoNormalFooter *mjRefreshAutoNormalFooter;
-JobsKey(_mjRefreshAutoNormalFooter)
-@dynamic mjRefreshAutoNormalFooter;
--(MJRefreshAutoNormalFooter *)mjRefreshAutoNormalFooter{
-    MJRefreshAutoNormalFooter *MjRefreshAutoNormalFooter = Jobs_getAssociatedObject(_mjRefreshAutoNormalFooter);
-    if (!MjRefreshAutoNormalFooter) {
-        @jobs_weakify(self)
-        MjRefreshAutoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
-        }];
-        // 文字
-        {
-            // 普通闲置状态
-            MjRefreshAutoNormalFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            MjRefreshAutoNormalFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
-            // 正在刷新中的状态
-            MjRefreshAutoNormalFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
-            // 即将刷新的状态
-            MjRefreshAutoNormalFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshAutoNormalFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
-        }
-        //其他
-        {
-            // 设置字体
-            MjRefreshAutoNormalFooter.stateLabel.font = self.refreshConfigFooter.font;
-            // 设置颜色
-            MjRefreshAutoNormalFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoNormalFooter, MjRefreshAutoNormalFooter)
-    }return MjRefreshAutoNormalFooter;
-}
-
--(void)setMjRefreshAutoNormalFooter:(MJRefreshAutoNormalFooter *)mjRefreshAutoNormalFooter{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoNormalFooter, mjRefreshAutoNormalFooter)
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshAutoStateFooter *mjRefreshAutoStateFooter;
-JobsKey(_mjRefreshAutoStateFooter)
-@dynamic mjRefreshAutoStateFooter;
--(MJRefreshAutoStateFooter *)mjRefreshAutoStateFooter{
-    MJRefreshAutoStateFooter *MjRefreshAutoStateFooter = Jobs_getAssociatedObject(_mjRefreshAutoStateFooter);
-    if (!MjRefreshAutoStateFooter) {
-        @jobs_weakify(self)
-        MjRefreshAutoStateFooter = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
-        }];
-        // 文字
-        {
-            // 普通闲置状态
-            MjRefreshAutoStateFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            MjRefreshAutoStateFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
-            // 正在刷新中的状态
-            MjRefreshAutoStateFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
-            // 即将刷新的状态
-            MjRefreshAutoStateFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshAutoStateFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
-        }
-        //其他
-        {
-            // 设置字体
-            MjRefreshAutoStateFooter.stateLabel.font = self.refreshConfigFooter.font;
-            // 设置颜色
-            MjRefreshAutoStateFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoStateFooter, MjRefreshAutoStateFooter)
-    }return MjRefreshAutoStateFooter;
-}
-
--(void)setMjRefreshAutoStateFooter:(MJRefreshAutoStateFooter *)mjRefreshAutoStateFooter{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoStateFooter, mjRefreshAutoStateFooter)
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshAutoFooter *mjRefreshAutoFooter;
-JobsKey(_mjRefreshAutoFooter)
-@dynamic mjRefreshAutoFooter;
--(MJRefreshAutoFooter *)mjRefreshAutoFooter{
-    MJRefreshAutoFooter *MjRefreshAutoFooter = Jobs_getAssociatedObject(_mjRefreshAutoFooter);
-    if (!MjRefreshAutoFooter) {
-        @jobs_weakify(self)
-        MjRefreshAutoFooter = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock)self.refreshConfigFooter.loadBlock(nil);
-        }];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoFooter, MjRefreshAutoFooter)
-    }return MjRefreshAutoFooter;
-}
-
--(void)setMjRefreshAutoFooter:(MJRefreshAutoFooter *)mjRefreshAutoFooter{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoFooter, mjRefreshAutoFooter)
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshBackGifFooter *mjRefreshBackGifFooter;
-JobsKey(_mjRefreshBackGifFooter)
-@dynamic mjRefreshBackGifFooter;
--(MJRefreshBackGifFooter *)mjRefreshBackGifFooter{
-    MJRefreshBackGifFooter *MjRefreshBackGifFooter = Jobs_getAssociatedObject(_mjRefreshBackGifFooter);
-    if (!MjRefreshBackGifFooter) {
-        @jobs_weakify(self)
-        MjRefreshBackGifFooter = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
-        }];
-        // 图片
-        {
-            // 普通闲置状态
-            MjRefreshBackGifFooter.refreshStatePullingByImages(self.refreshConfigHeader.stateIdlePicsMutArr);
-            // 松开就可以进行刷新的状态
-            MjRefreshBackGifFooter.refreshStatePullingByImages(self.refreshConfigHeader.pullingPicsMutArr);
-            // 正在刷新中的状态
-            [MjRefreshBackGifFooter setImages:self.refreshConfigHeader.refreshingPicsMutArr
-                                     duration:self.refreshConfigHeader.refreshingDuration
-                                     forState:MJRefreshStateRefreshing];
-            // 即将刷新的状态
-            MjRefreshBackGifFooter.refreshStateWillRefreshByImages(self.refreshConfigHeader.willRefreshPicsMutArr);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshBackGifFooter.refreshStateNoMoreDataByImages(self.refreshConfigHeader.noMoreDataPicsMutArr);
-        }
-        // 文字
-        {
-            // 普通闲置状态
-            MjRefreshBackGifFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            MjRefreshBackGifFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
-            // 正在刷新中的状态
-            MjRefreshBackGifFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
-            // 即将刷新的状态
-            MjRefreshBackGifFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshBackGifFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
-        }
-        //其他
-        {
-            // 设置字体
-            MjRefreshBackGifFooter.stateLabel.font = self.refreshConfigFooter.font;
-            // 设置颜色
-            MjRefreshBackGifFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackGifFooter, MjRefreshBackGifFooter);
-    }return MjRefreshBackGifFooter;
-}
-
--(void)setMjRefreshBackGifFooter:(MJRefreshBackGifFooter *)mjRefreshBackGifFooter{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackGifFooter, mjRefreshBackGifFooter);
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshBackStateFooter *mjRefreshBackStateFooter;
-JobsKey(_mjRefreshBackStateFooter)
-@dynamic mjRefreshBackStateFooter;
--(MJRefreshBackStateFooter *)mjRefreshBackStateFooter{
-    MJRefreshBackStateFooter *MjRefreshBackStateFooter = Jobs_getAssociatedObject(_mjRefreshBackStateFooter);
-    if (!MjRefreshBackStateFooter) {
-        @jobs_weakify(self)
-        MjRefreshBackStateFooter = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
-        }];
-        // 文字
-        {
-            // 普通闲置状态
-            MjRefreshBackStateFooter.refreshStateIdleByString(self.refreshConfigHeader.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            MjRefreshBackStateFooter.refreshStatePullingByString(self.refreshConfigHeader.pullingTitle);
-            // 正在刷新中的状态
-            MjRefreshBackStateFooter.refreshStateRefreshingByString(self.refreshConfigHeader.refreshingTitle);
-            // 即将刷新的状态
-            MjRefreshBackStateFooter.refreshStateWillRefreshByString(self.refreshConfigHeader.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            MjRefreshBackStateFooter.refreshStateNoMoreDataByString(self.refreshConfigHeader.noMoreDataTitle);
-        }
-        //其他
-        {
-            // 设置字体
-            MjRefreshBackStateFooter.stateLabel.font = self.refreshConfigFooter.font;
-            // 设置颜色
-            MjRefreshBackStateFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackStateFooter, MjRefreshBackStateFooter);
-    }return MjRefreshBackStateFooter;
-}
-
--(void)setMjRefreshBackStateFooter:(MJRefreshBackStateFooter *)mjRefreshBackStateFooter{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackStateFooter, mjRefreshBackStateFooter)
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshBackFooter *mjRefreshBackFooter;
-JobsKey(_mjRefreshBackFooter)
-@dynamic mjRefreshBackFooter;
--(MJRefreshBackFooter *)mjRefreshBackFooter{
-    MJRefreshBackFooter *MjRefreshBackFooter = Jobs_getAssociatedObject(_mjRefreshBackFooter);
-    if (!MjRefreshBackFooter) {
-        @jobs_weakify(self)
-        MjRefreshBackFooter = [MJRefreshBackFooter footerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
-        }];
-        //其他
-        {
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackFooter, MjRefreshBackFooter);
-    }return MjRefreshBackFooter;
-}
-
--(void)setMjRefreshBackFooter:(MJRefreshBackFooter *)mjRefreshBackFooter{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackFooter, mjRefreshBackFooter);
-}
-#pragma mark —— @property(nonatomic,strong)MJRefreshFooter *mjRefreshFooter;
-JobsKey(_mjRefreshFooter)
-@dynamic mjRefreshFooter;
--(MJRefreshFooter *)mjRefreshFooter{
-    MJRefreshFooter *MjRefreshFooter = Jobs_getAssociatedObject(_mjRefreshFooter);
-    if (!MjRefreshFooter) {
-        @jobs_weakify(self)
-        MjRefreshFooter = [MJRefreshFooter footerWithRefreshingBlock:^{
-            @jobs_strongify(self)
-            if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
-        }];
-        //其他
-        {
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshFooter, MjRefreshFooter)
-    }return MjRefreshFooter;
-}
-
--(void)setMjRefreshFooter:(MJRefreshFooter *)mjRefreshFooter{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshFooter, mjRefreshFooter)
 }
 
 @end

@@ -224,6 +224,49 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock2)(JobsReturnIDByVoidBl
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBlock _Nullable data);
 
 #pragma mark —— 涉及到第三方类的Block定义
+@class MJRefreshNormalHeader;
+typedef MJRefreshNormalHeader *_Nonnull(^JobsReturnMJRefreshNormalHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshNormalHeaderBlock)(MJRefreshNormalHeader *_Nullable view);
+@class MJRefreshStateHeader;
+typedef MJRefreshStateHeader *_Nonnull(^JobsReturnMJRefreshStateHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshStateHeaderBlock)(MJRefreshStateHeader *_Nullable view);
+@class MJRefreshHeader;
+typedef MJRefreshHeader *_Nonnull(^JobsReturnMJRefreshHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshHeaderBlock)(MJRefreshHeader *_Nullable view);
+@class MJRefreshGifHeader;
+typedef MJRefreshGifHeader *_Nonnull(^JobsReturnMJRefreshGifHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshGifHeaderBlock)(MJRefreshGifHeader *_Nullable view);
+@class MJRefreshAutoGifFooter;
+typedef MJRefreshAutoGifFooter *_Nonnull(^JobsReturnMJRefreshAutoGifFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshAutoGifFooterBlock)(MJRefreshAutoGifFooter *_Nullable view);
+@class MJRefreshBackNormalFooter;
+typedef MJRefreshBackNormalFooter *_Nonnull(^JobsReturnMJRefreshBackNormalFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshBackNormalFooterBlock)(MJRefreshBackNormalFooter *_Nullable view);
+@class MJRefreshAutoNormalFooter;
+typedef MJRefreshAutoNormalFooter *_Nonnull(^JobsReturnMJRefreshAutoNormalFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshAutoNormalFooterBlock)(MJRefreshAutoNormalFooter *_Nullable view);
+@class MJRefreshAutoStateFooter;
+typedef MJRefreshAutoStateFooter *_Nonnull(^JobsReturnMJRefreshAutoStateFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshAutoStateFooterBlock)(MJRefreshAutoStateFooter *_Nullable view);
+@class MJRefreshAutoFooter;
+typedef MJRefreshAutoFooter *_Nonnull(^JobsReturnMJRefreshAutoFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshAutoFooterBlock)(MJRefreshAutoFooter *_Nullable view);
+@class MJRefreshBackGifFooter;
+typedef MJRefreshBackGifFooter *_Nonnull(^JobsReturnMJRefreshBackGifFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshBackGifFooterBlock)(MJRefreshBackGifFooter *_Nullable view);
+@class MJRefreshBackStateFooter;
+typedef MJRefreshBackStateFooter *_Nonnull(^JobsReturnMJRefreshBackStateFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshBackStateFooterBlock)(MJRefreshBackStateFooter *_Nullable view);
+@class MJRefreshBackFooter;
+typedef MJRefreshBackFooter *_Nonnull(^JobsReturnMJRefreshBackFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshBackFooterBlock)(MJRefreshBackFooter *_Nullable view);
+@class MJRefreshFooter;
+typedef MJRefreshFooter *_Nonnull(^JobsReturnMJRefreshFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByMJRefreshFooterBlock)(MJRefreshFooter *_Nullable view);
+@class LOTAnimationMJRefreshHeader;
+typedef LOTAnimationMJRefreshHeader *_Nonnull(^JobsReturnLOTAnimationMJRefreshHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef void(^jobsByLOTAnimationMJRefreshHeaderBlock)(LOTAnimationMJRefreshHeader *_Nullable view);
+
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);
 

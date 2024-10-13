@@ -6692,24 +6692,25 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 
   ```objective-c
-  self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+  _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
       data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
       data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
       data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
       data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
       data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+      data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
       data.loadBlock = ^id _Nullable(id _Nullable data) {
           @jobs_strongify(self)
           /// 下拉刷新
           self.feedbackGenerator();//震动反馈
-          self->_collectionView.endRefreshing();
+          self->_tableView.endRefreshing(YES);
           return nil;
       };
-  });
+  }));
   ```
-
+  
   ```objective-c
-  self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+  _tableView.mj_footer = self.view.MJRefreshFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
       data.stateIdleTitle = JobsInternationalization(@"");
       data.pullingTitle = JobsInternationalization(@"");
       data.refreshingTitle = JobsInternationalization(@"");
@@ -6717,17 +6718,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       data.noMoreDataTitle = JobsInternationalization(@"");
       data.loadBlock = ^id _Nullable(id _Nullable data){
           @jobs_strongify(self)
-          self->_collectionView.endRefreshing();
+          self->_tableView.endRefreshing(YES);
           return nil;
       };
-  });
+  }));
   ```
-
-  ```objective-c
-  _collectionView.mj_header = self.mjRefreshNormalHeader;
-  _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
-  ```
-
+  
 * 支持[**lottie**](https://github.com/airbnb/lottie-ios)动画
 
   ```ruby
@@ -6743,9 +6739,19 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 
   ```objective-c
-  self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
-  self.refreshConfigFooter = refreshConfigFooter;//数据赋值
-  _collectionView.mj_header = self.lotAnimMJRefreshHeader;
+  _tableView.mj_header = self.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+    data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
+    data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
+    data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
+    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+    data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+    data.loadBlock = ^id _Nullable(id  _Nullable data) {
+        @jobs_strongify(self)
+        NSLog(@"下拉刷新");
+        self.tableView.endRefreshing(self.jobsIMListMutArr.count);
+        return nil;
+    };
+  }));
   ```
 
 * **`UICollectionView`**的无数据占位方案
@@ -7033,44 +7039,32 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
            _collectionView.registerCollectionViewCellClass(MSMineView6CVCell.class,@"");
            
            {
-               self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+               _collectionView.mj_header = self.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                    data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
                    data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
                    data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
                    data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                   data.loadBlock = ^id _Nullable(id _Nullable data) {
+                   data.automaticallyChangeAlpha = YES; /// 根据拖拽比例自动切换透明度
+                   data.loadBlock = ^id _Nullable(id  _Nullable data) {
                        @jobs_strongify(self)
-                       /// 下拉刷新
                        self.feedbackGenerator();//震动反馈
-                       self->_collectionView.endRefreshing();
+                       self->_collectionView.endRefreshing(YES);
                        return nil;
                    };
-               });
-               self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+               }));
+               _collectionView.mj_footer = self.MJRefreshBackNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                    data.stateIdleTitle = JobsInternationalization(@"");
                    data.pullingTitle = JobsInternationalization(@"");
                    data.refreshingTitle = JobsInternationalization(@"");
                    data.willRefreshTitle = JobsInternationalization(@"");
                    data.noMoreDataTitle = JobsInternationalization(@"");
-                   data.loadBlock = ^id _Nullable(id _Nullable data){
+                   data.loadBlock = ^id _Nullable(id  _Nullable data) {
                        @jobs_strongify(self)
-                       self->_collectionView.endRefreshing();
+                       self->_collectionView.endRefreshing(YES);
                        return nil;
                    };
-               });
-   
-               {
-                   _collectionView.mj_header = self.mjRefreshNormalHeader;
-                   _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
-               }
-   
-              /// 如果需要支持lottie动画
-               {
-                   self.lotAnimMJRefreshHeader.refreshConfigModel = refreshConfigHeader;
-                   self.refreshConfigFooter = refreshConfigFooter;//数据赋值
-                   _collectionView.mj_header = self.lotAnimMJRefreshHeader;
-               }
+               }));
            }
          
            {
@@ -7359,35 +7353,35 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 
   ```objective-c
-    self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-        data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-        data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-        data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-        data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-        data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-        data.loadBlock = ^id _Nullable(id _Nullable data) {
-            @jobs_strongify(self)
-            /// 下拉刷新
-            self.feedbackGenerator();//震动反馈
-            self->_tableView.endRefreshing();
-            return nil;
-        };
-    });
-    self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-        data.stateIdleTitle = JobsInternationalization(@"");
-        data.pullingTitle = JobsInternationalization(@"");
-        data.refreshingTitle = JobsInternationalization(@"");
-        data.willRefreshTitle = JobsInternationalization(@"");
-        data.noMoreDataTitle = JobsInternationalization(@"");
-        data.loadBlock = ^id _Nullable(id _Nullable data){
-            @jobs_strongify(self)
-            self->_tableView.endRefreshing();
-            return nil;
-        };
-    });
-  
-    _tableView.mj_header = self.mjRefreshNormalHeader;
-    _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+  {
+              _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                  data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+                  data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+                  data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+                  data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                  data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+                  data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
+                  data.loadBlock = ^id _Nullable(id _Nullable data) {
+                      @jobs_strongify(self)
+                      /// 下拉刷新
+                      self.feedbackGenerator();//震动反馈
+                      self->_tableView.endRefreshing(YES);
+                      return nil;
+                  };
+              }));
+              _tableView.mj_footer = self.view.MJRefreshFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                  data.stateIdleTitle = JobsInternationalization(@"");
+                  data.pullingTitle = JobsInternationalization(@"");
+                  data.refreshingTitle = JobsInternationalization(@"");
+                  data.willRefreshTitle = JobsInternationalization(@"");
+                  data.noMoreDataTitle = JobsInternationalization(@"");
+                  data.loadBlock = ^id _Nullable(id _Nullable data){
+                      @jobs_strongify(self)
+                      self->_tableView.endRefreshing(YES);
+                      return nil;
+                  };
+              }));
+          }
   ```
 
 * 支持水平方向的<u>左拉加载</u>和<u>右拉刷新</u> [**XZMRefresh**](https://github.com/xiezhongmin/XZMRefresh)
@@ -7533,22 +7527,23 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
            }
            
-           {
-               self.refreshConfigHeader = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+   {
+               _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                    data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
                    data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
                    data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
                    data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+                   data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
                    data.loadBlock = ^id _Nullable(id _Nullable data) {
                        @jobs_strongify(self)
                        /// 下拉刷新
                        self.feedbackGenerator();//震动反馈
-                       self->_tableView.endRefreshing();
+                       self->_tableView.endRefreshing(YES);
                        return nil;
                    };
-               });
-               self.refreshConfigFooter = jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+               }));
+               _tableView.mj_footer = self.view.MJRefreshFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                    data.stateIdleTitle = JobsInternationalization(@"");
                    data.pullingTitle = JobsInternationalization(@"");
                    data.refreshingTitle = JobsInternationalization(@"");
@@ -7556,13 +7551,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                    data.noMoreDataTitle = JobsInternationalization(@"");
                    data.loadBlock = ^id _Nullable(id _Nullable data){
                        @jobs_strongify(self)
-                       self->_tableView.endRefreshing();
+                       self->_tableView.endRefreshing(YES);
                        return nil;
                    };
-               });
-               
-               _tableView.mj_header = self.mjRefreshNormalHeader;
-               _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+               }));
            }
          
          	{
@@ -7864,8 +7856,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               _rowDataMutArr.add(viewModel);
           }
      }return _rowDataMutArr;
-  }
-  ```
+   }
+   ```
   
   ```objective-c
   #pragma mark —— UITableViewDelegate,UITableViewDataSource
