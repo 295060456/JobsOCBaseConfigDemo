@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_END
                                                              id  _Nullable arg) {
         NSLog(@"SSSS加载新的数据，参数: %@", arg);
         /// 在需要结束刷新的时候调用（只能调用一次）
-        /// _collectionView.endRefreshing();
+        /// _collectionView.endRefreshing(YES);
         return nil;
     }, MethodName(self), self)
                                 name:GSUploadNetworkSpeedNotificationKey

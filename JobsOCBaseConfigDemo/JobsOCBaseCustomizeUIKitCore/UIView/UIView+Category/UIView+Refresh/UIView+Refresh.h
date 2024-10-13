@@ -98,9 +98,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByVoidBlock _Nonnull)mj_beginRefreshing_trailer;
 -(jobsByVoidBlock _Nonnull)mj_endRefreshing_trailer;
 /// 停止刷新【可能还有数据的情况，状态为：MJRefreshStateIdle】
--(jobsByVoidBlock _Nonnull)endRefreshing;
+-(jobsByBOOLBlock _Nonnull)endRefreshing;
 /// 停止刷新【没有数据的情况，状态为：MJRefreshStateNoMoreData】
--(jobsByVoidBlock _Nonnull)endRefreshingWithNoMoreData;
+-(jobsByBOOLBlock _Nonnull)endRefreshingWithNoMoreData;
 /// 停止MJHeader的刷新
 -(jobsByVoidBlock _Nonnull)endMJHeaderRefreshing;
 /// 停止MJFooter的刷新【没有数据的情况，状态为：MJRefreshStateNoMoreData】

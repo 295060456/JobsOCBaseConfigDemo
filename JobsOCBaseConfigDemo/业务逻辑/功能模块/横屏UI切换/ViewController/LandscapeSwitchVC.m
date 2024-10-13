@@ -311,7 +311,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                 data.noMoreDataTitle = JobsInternationalization(@"");
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self->_collectionView.endRefreshing();
+                    self->_collectionView.endRefreshing(self.dataMutArr.count);
                     return nil;
                 };
             });

@@ -6,7 +6,7 @@
 //
 
 #import "Douyin_ZFPlayerVC@1.h"
- 
+
 @interface Douyin_ZFPlayerVC_1 ()
 
 @property(nonatomic,strong)UITableView *tableView;
@@ -121,9 +121,9 @@
                 if (isLoadMore) {
                     if (tempDataArr.count) {
                         [self.dataMutArr addObjectsFromArray:tempDataArr];
-                        self->_tableView.endRefreshing();//上拉加载更多
+                        self->_tableView.endRefreshing(self.dataMutArr.count);//上拉加载更多
                     }else{
-                        self->_tableView.endRefreshingWithNoMoreData();//没有更多数据了
+                        self->_tableView.endRefreshingWithNoMoreData(self.dataMutArr.count);//没有更多数据了
                     }
                 }
             }
@@ -279,7 +279,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
                 NSLog(@"下拉刷新");
                 self.currentPage = 1;
                 @"data".readLocalFileWithName;/// 获取本地的数据
-                self->_tableView.endRefreshing();
+                self->_tableView.endRefreshing(self.dataMutArr.count);
                 return nil;
             };
             // 赋值
@@ -302,7 +302,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
                 //    [self performSelector:@selector(delayMethods) withObject:nil afterDelay:2];
                     
                     @"data".readLocalFileWithName;/// 获取本地的数据
-                    self->_tableView.endRefreshing();
+                    self->_tableView.endRefreshing(self.dataMutArr.count);
                     return nil;
                 };
             });

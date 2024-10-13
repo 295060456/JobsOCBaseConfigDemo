@@ -32,7 +32,7 @@
 -(void)loadView{
     [super loadView];
     @jobs_weakify(self)
-    [NSObject.mainWindow() actionObjectBlock:^(id data) {
+    [MainWindow actionObjectBlock:^(id data) {
         @jobs_strongify(self)
         [self dismissViewControllerAnimated:YES
                                  completion:Nil];
@@ -82,13 +82,13 @@
 -(void)setMJModel:(JobsCommentModel *)mjModel{
     self.mjModel = mjModel;
     [self dataSource:self.mjModel.listDataArr contentView:self.tableView];
-    self.tableView.endRefreshing();
+    self.tableView.endRefreshing(self.mjModel.listDataArr.count);
 }
 
 -(void)setYYModel:(JobsCommentModel *)yyModel{
     self.yyModel = yyModel;
     [self dataSource:self.yyModel.listDataArr contentView:self.tableView];
-    self.tableView.endRefreshing();
+    self.tableView.endRefreshing(self.mjModel.listDataArr.count);
 }
 
 -(JobsCommentTitleHeaderView *)getJobsCommentTitleHeaderView{
@@ -247,7 +247,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
 
                 NSLog(@"self.mjModel = %@",self.mjModel);
                 [self dataSource:self.mjModel.listDataArr contentView:self.tableView];
-                self->_tableView.endRefreshing();
+                self->_tableView.endRefreshing(self.mjModel.listDataArr.count);
                 // 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
                 self.tableView.pagingEnabled = NO;
                 self.tableView.mj_footer.state = MJRefreshStateIdle;
@@ -266,7 +266,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
             refreshConfigFooter.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
                 NSLog(@"上拉加载更多");
-                self->_tableView.endRefreshing();
+                self->_tableView.endRefreshing(self.mjModel.listDataArr.count);
                 return nil;
             };
             // 赋值

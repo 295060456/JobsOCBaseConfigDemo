@@ -258,7 +258,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self->_tableView.endRefreshing();
+                    self->_tableView.endRefreshing(YES);
                     return nil;
                 };
             });
@@ -270,7 +270,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 data.noMoreDataTitle = JobsInternationalization(@"");
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self->_tableView.endRefreshing();
+                    self->_tableView.endRefreshing(YES);
                     return nil;
                 };
             });

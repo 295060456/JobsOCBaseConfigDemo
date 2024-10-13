@@ -163,9 +163,9 @@
     };
 }
 /// 停止刷新【可能还有数据的情况，状态为：MJRefreshStateIdle】
--(jobsByVoidBlock _Nonnull)endRefreshing{
+-(jobsByBOOLBlock _Nonnull)endRefreshing{
     @jobs_weakify(self)
-    return ^() {
+    return ^(BOOL data) {
         @jobs_strongify(self)
         if (KindOfTableViewCls(self)) {
             UITableView *tableView = (UITableView *)self;
@@ -174,9 +174,7 @@
             UICollectionView *collectionView = (UICollectionView *)self;
             [collectionView reloadData];
         }else{}
-        
-        [self tab_endAnimation];//里面实现了 [self.collectionView reloadData];
-        
+        if(data) [self tab_endAnimation];//里面实现了 [self.collectionView reloadData];
         self.endMJHeaderRefreshing();
         self.endMJFooterRefreshingWithMoreData();
         self.endXZMHeaderRefreshing();
@@ -184,9 +182,9 @@
     };
 }
 /// 停止刷新【没有数据的情况，状态为：MJRefreshStateNoMoreData】
--(jobsByVoidBlock _Nonnull)endRefreshingWithNoMoreData{
+-(jobsByBOOLBlock _Nonnull)endRefreshingWithNoMoreData{
     @jobs_weakify(self)
-    return ^() {
+    return ^(BOOL data) {
         @jobs_strongify(self)
         if (KindOfTableViewCls(self)) {
             UITableView *tableView = (UITableView *)self;
@@ -195,8 +193,7 @@
             UICollectionView *collectionView = (UICollectionView *)self;
             [collectionView reloadData];
         }else{}
-        
-        [self tab_endAnimation];//里面实现了 [self.collectionView reloadData];
+        if(data) [self tab_endAnimation];//里面实现了 [self.collectionView reloadData];
 
         self.endMJHeaderRefreshing();
         self.endMJFooterRefreshingWithNoMoreData();

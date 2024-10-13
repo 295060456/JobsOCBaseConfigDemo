@@ -424,7 +424,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
-                self->_tableView.endRefreshing();
+                self->_tableView.endRefreshing(self.chatInfoModelMutArr.count);
                 return nil;
             };
             
@@ -442,7 +442,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 self.tableView.mj_footer.state = MJRefreshStateIdle;
                 self.tableView.mj_footer.hidden = YES;
                 self.tableView.pagingEnabled = YES;
-                self->_tableView.endRefreshingWithNoMoreData();
+                self->_tableView.endRefreshingWithNoMoreData(self.chatInfoModelMutArr.count);
                 return nil;
             };
             // 赋值

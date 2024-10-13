@@ -212,7 +212,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 data.noMoreDataTitle = JobsInternationalization(@"");
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self->_tableView.endRefreshing();
+                    self->_tableView.endRefreshing(self.dataMutArr.count);
                     return nil;
                 };
             });

@@ -122,7 +122,7 @@
         @jobs_strongify(self)
         [self playTheVideoAtIndexPath:indexPath];
     }];
-    self.tableView.endRefreshing();
+    self.tableView.endRefreshing(self.dataMutArr.count);
 //    [self endRefreshingWithNoMoreData:self.tableView];
 }
 
@@ -553,9 +553,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 if (isLoadMore) {
                     if (tempDataArr.count) {
                         [self.dataMutArr addObjectsFromArray:tempDataArr];
-                        self->_tableView.endRefreshing();//上拉加载更多
+                        self->_tableView.endRefreshing(self.dataMutArr.count);//上拉加载更多
                     }else{
-                        self->_tableView.endRefreshingWithNoMoreData();//没有更多数据了
+                        self->_tableView.endRefreshingWithNoMoreData(self.dataMutArr.count);//没有更多数据了
                     }
                 }
             }

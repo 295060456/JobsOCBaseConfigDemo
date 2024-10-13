@@ -18,7 +18,7 @@
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*hotSearchMutArr;
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*listViewData;
 @property(nonatomic,strong)UIColor *bgColour;
-@property(nonatomic,assign)NSString *titleStr;//标题
+@property(nonatomic,copy)NSString *titleStr;//标题
 @property(nonatomic,assign)CGRect tableViewRect;
 @property(nonatomic,assign)CGFloat gk_navigationBarHeight;
 @property(nonatomic,assign)HotSearchStyle hotSearchStyle;
@@ -380,7 +380,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                 data.loadBlock = ^id _Nullable(id _Nullable data) {
                     @jobs_strongify(self)
                     self.feedbackGenerator();//震动反馈
-                    self->_tableView.endRefreshing();
+                    self->_tableView.endRefreshing(YES);
     //                self.endRefreshingWithNoMoreData(self->_tableView);
                     return nil;
                 };
@@ -393,7 +393,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                 data.noMoreDataTitle = JobsInternationalization(@"");
                 data.loadBlock = ^id _Nullable(id _Nullable data) {
                     @jobs_strongify(self)
-                    self->_tableView.endRefreshing();
+                    self->_tableView.endRefreshing(YES);
                     return nil;
                 };
             });

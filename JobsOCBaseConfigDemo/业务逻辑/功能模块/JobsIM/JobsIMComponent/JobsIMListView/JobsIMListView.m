@@ -119,7 +119,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.loadBlock = ^id _Nullable(id  _Nullable data) {
                 @jobs_strongify(self)
                 NSLog(@"下拉刷新");
-                self->_tableView.endRefreshing();
+                self->_tableView.endRefreshing(self.jobsIMListMutArr.count);
                 return nil;
             };
             
@@ -137,7 +137,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 self->_tableView.mj_footer.state = MJRefreshStateIdle;
                 self->_tableView.mj_footer.hidden = YES;
                 self->_tableView.pagingEnabled = YES;
-                self->_tableView.endRefreshing();
+                self->_tableView.endRefreshing(self.jobsIMListMutArr.count);
                 return nil;
             };
             // 赋值

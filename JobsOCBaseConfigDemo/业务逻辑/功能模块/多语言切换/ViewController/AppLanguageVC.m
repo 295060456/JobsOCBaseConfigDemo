@@ -205,9 +205,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     }
                     self.isVisible = YES;
                     if (self.dataMutArr.count) {
-                        self->_tableView.endRefreshing();
+                        self->_tableView.endRefreshing(self.dataMutArr);
                     }else{
-                        self->_tableView.endRefreshingWithNoMoreData();
+                        self->_tableView.endRefreshingWithNoMoreData(self.dataMutArr);
                     }
                     /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
                     @jobs_weakify(self)
@@ -227,7 +227,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 data.noMoreDataTitle = JobsInternationalization(@"");
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self->_tableView.endRefreshing();
+                    self->_tableView.endRefreshing(YES);
                     return nil;
                 };
             });

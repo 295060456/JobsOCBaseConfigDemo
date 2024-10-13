@@ -152,7 +152,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
                     self.feedbackGenerator();//震动反馈
-                    self->_tableView.endRefreshing();
+                    self->_tableView.endRefreshing(YES);
                     return nil;
                 };
             });
@@ -164,7 +164,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 data.noMoreDataTitle = JobsInternationalization(@"");
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self->_tableView.endRefreshing();
+                    self->_tableView.endRefreshing(YES);
                     return nil;
                 };
             });
@@ -225,50 +225,47 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<__kindof UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
-
-        {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用十六进制字符串进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
-            viewModel.requestParams = @(PicToStrStyle_Hexadecimal);
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base16编码进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
-            viewModel.requestParams = @(PicToStrStyle_Base16);
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base32编码进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
-            viewModel.requestParams = @(PicToStrStyle_Base32);
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base64编码进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
-            viewModel.requestParams = @(PicToStrStyle_Base64);
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base85编码进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
-            viewModel.requestParams = @(PicToStrStyle_Base85);
-            [_dataMutArr addObject:viewModel];
-        }
-        
-        {
-            UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用MIME编码进行存取")
-                                                           attributeSubTitle:JobsInternationalization(@"")];
-            viewModel.requestParams = @(PicToStrStyle_MIME);
-            [_dataMutArr addObject:viewModel];
-        }
-        
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用十六进制字符串进行存取")
+                                                               attributeSubTitle:JobsInternationalization(@"")];
+                viewModel.requestParams = @(PicToStrStyle_Hexadecimal);
+                data.add(viewModel);
+            }
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base16编码进行存取")
+                                                               attributeSubTitle:JobsInternationalization(@"")];
+                viewModel.requestParams = @(PicToStrStyle_Base16);
+                data.add(viewModel);
+            }
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base32编码进行存取")
+                                                               attributeSubTitle:JobsInternationalization(@"")];
+                viewModel.requestParams = @(PicToStrStyle_Base32);
+                data.add(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base64编码进行存取")
+                                                               attributeSubTitle:JobsInternationalization(@"")];
+                viewModel.requestParams = @(PicToStrStyle_Base64);
+                data.add(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base85编码进行存取")
+                                                               attributeSubTitle:JobsInternationalization(@"")];
+                viewModel.requestParams = @(PicToStrStyle_Base85);
+                data.add(viewModel);
+            }
+            
+            {
+                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用MIME编码进行存取")
+                                                               attributeSubTitle:JobsInternationalization(@"")];
+                viewModel.requestParams = @(PicToStrStyle_MIME);
+                data.add(viewModel);
+            }
+        });
     }return _dataMutArr;
 }
 
