@@ -116,6 +116,7 @@ typedef void(^jobsBySDWebImageModelBlock)(__kindof SDWebImageModel *_Nullable da
 
 @class URLManagerModel;
 typedef void(^jobsByURLManagerModelBlock)(__kindof URLManagerModel *_Nullable data);
+typedef URLManagerModel *_Nullable(^JobsReturnURLManagerModelByStringBlock)(NSString *_Nullable data);
 
 @class UIViewModel;
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(UIViewModel *_Nullable data);

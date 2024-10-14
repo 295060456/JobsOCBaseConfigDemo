@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "NSObject+Extras.h"
 #import "URLManagerModel.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
