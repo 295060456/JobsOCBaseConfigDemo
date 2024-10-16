@@ -277,6 +277,9 @@ typedef JobsResponseModel *_Nullable(^JobsReturnResponseModelByYTKBaseRequestBlo
 
 @class GKPhotoBrowser;
 typedef void(^jobsByGKPhotoBrowserBlock)(GKPhotoBrowser *_Nonnull data);
+typedef GKPhotoBrowser *_Nullable(^JobsReturnGKPhotoBrowserByPhotosArrayAndCurrentIndexBlock)(__kindof NSArray * _Nullable photosArray,NSInteger currentIndex);
+@class GKPhoto;
+typedef void(^jobsByGKPhotoBlock)(GKPhoto *_Nonnull data);
 
 @class XZMRefreshNormalHeader;
 typedef void(^jobsByXZMRefreshNormalHeaderBlock)(XZMRefreshNormalHeader *_Nonnull data);
@@ -347,4 +350,3 @@ typedef void(^jobsByMsgDataModelBlock)(__kindof JobsMsgDataModel *_Nullable data
     }];
 
 */
-

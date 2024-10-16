@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 
 #if __has_include(<GKPhotoBrowser/GKPhotoBrowser.h>)
 #import <GKPhotoBrowser/GKPhotoBrowser.h>

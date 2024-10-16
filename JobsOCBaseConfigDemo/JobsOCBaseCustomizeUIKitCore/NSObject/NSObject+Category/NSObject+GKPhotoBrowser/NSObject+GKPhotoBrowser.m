@@ -8,93 +8,93 @@
 #import "NSObject+GKPhotoBrowser.h"
 
 @implementation NSObject (GKPhotoBrowser)
+#pragma mark —— 一些私有方法
+NS_INLINE __kindof GKPhoto *_Nonnull jobsMakeGKPhoto(jobsByGKPhotoBlock _Nonnull block){
+    GKPhoto *data = GKPhoto.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof GKPhotoBrowser *_Nonnull jobsMakeGKPhotoBrowserByPhotosArray(NSArray <GKPhoto *>*photosArray,
+                                                                                NSInteger currentIndex,
+                                                                                jobsByGKPhotoBrowserBlock block) {
+    GKPhotoBrowser *photoBrowser = [GKPhotoBrowser photoBrowserWithPhotos:photosArray currentIndex:currentIndex];
+    if (block) block(photoBrowser);
+    return photoBrowser;
+}
+
+-(JobsReturnGKPhotoBrowserByPhotosArrayAndCurrentIndexBlock _Nonnull)makeGKPhotoBrowser{
+    return ^GKPhotoBrowser *_Nullable(__kindof NSArray <GKPhoto *>*_Nullable photosArray,
+                                      NSInteger currentIndex){
+        return [GKPhotoBrowser photoBrowserWithPhotos:photosArray currentIndex:currentIndex];
+    };
+}
+
+-(jobsByGKPhotoBrowserBlock _Nonnull)configPhotoBrowser{
+    return ^(GKPhotoBrowser *_Nonnull browser){
+        browser.configure.showStyle           = GKPhotoBrowserShowStyleNone;
+        browser.configure.hideStyle           = GKPhotoBrowserHideStyleZoomScale;
+        browser.configure.isSingleTapDisabled = YES;  // 不响应默认单击事件
+        browser.isStatusBarShow     = YES;  // 显示状态栏
+        browser.configure.isHideSourceView    = NO;
+        browser.delegate            = self;
+        browser.configure.isFollowSystemRotation = !(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone);
+    };
+}
+#pragma mark —— 一些公有方法
 /// 针对数据源是UIImage  *的GKPhotoBrowser
 -(GKPhotoBrowser *)tapImageWithIndexPath:(NSIndexPath *)indexPath
                          imageDataMutArr:(NSMutableArray <UIImage *>*)imageDataMutArr{
-    NSMutableArray <GKPhoto *>*photosArray = [NSMutableArray arrayWithCapacity:imageDataMutArr.count];
-    [imageDataMutArr enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj,
-                                                  NSUInteger idx,
-                                                  BOOL * _Nonnull stop) {
-        GKPhoto *photo = GKPhoto.new;
-        photo.image = obj;
-        photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
-        photosArray.add(photo);
-    }];
-    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photosArray
-                                                        currentIndex:indexPath.row];
-    browser.showStyle           = GKPhotoBrowserShowStyleNone;
-    browser.hideStyle           = GKPhotoBrowserHideStyleZoomScale;
-    browser.isSingleTapDisabled = YES;  // 不响应默认单击事件
-    browser.isStatusBarShow     = YES;  // 显示状态栏
-    browser.isHideSourceView    = NO;
-    browser.delegate            = self;
-    
-    UIUserInterfaceIdiom idiom = UIDevice.currentDevice.userInterfaceIdiom;
-    if (idiom == UIUserInterfaceIdiomPhone) {
-        browser.isFollowSystemRotation = NO;
-    } else if (idiom == UIUserInterfaceIdiomPad) {
-        browser.isFollowSystemRotation = YES;
-    }return browser;
+    @jobs_weakify(self)
+    return jobsMakeGKPhotoBrowserByPhotosArray(jobsMakeMutArr(^(__kindof NSMutableArray <GKPhoto *>*_Nullable data) {
+        [imageDataMutArr enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj,
+                                                      NSUInteger idx,
+                                                      BOOL * _Nonnull stop) {
+            data.add(jobsMakeGKPhoto(^(GKPhoto * _Nonnull photo) {
+                photo.image = obj;
+                photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
+            }));
+        }];
+    }),indexPath.row,^(GKPhotoBrowser *_Nonnull browser){
+        @jobs_strongify(self)
+        self.configPhotoBrowser(browser);
+    });
 }
 /// 针对数据源是NSURL  *的GKPhotoBrowser
 -(GKPhotoBrowser *)tapImageWithIndexPath:(NSIndexPath *)indexPath
                           imageUrlMutArr:(NSMutableArray <NSURL *>*)imageUrlMutArr{
-    NSMutableArray <GKPhoto *>*photosArray = [NSMutableArray arrayWithCapacity:imageUrlMutArr.count];
-    
-    
-    [imageUrlMutArr enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj,
-                                                 NSUInteger idx,
-                                                 BOOL * _Nonnull stop) {
-        GKPhoto *photo = GKPhoto.new;
-        photo.url = obj;
-        photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
-        photosArray.add(photo);
-    }];
-
-    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photosArray
-                                                        currentIndex:indexPath.row];
-    browser.showStyle           = GKPhotoBrowserShowStyleNone;
-    browser.hideStyle           = GKPhotoBrowserHideStyleZoomScale;
-    browser.isSingleTapDisabled = YES;  // 不响应默认单击事件
-    browser.isStatusBarShow     = YES;  // 显示状态栏
-    browser.isHideSourceView    = NO;
-    browser.delegate            = self;
-    
-    UIUserInterfaceIdiom idiom = UIDevice.currentDevice.userInterfaceIdiom;
-    if (idiom == UIUserInterfaceIdiomPhone) {
-        browser.isFollowSystemRotation = NO;
-    } else if (idiom == UIUserInterfaceIdiomPad) {
-        browser.isFollowSystemRotation = YES;
-    }return browser;
+    @jobs_weakify(self)
+    return jobsMakeGKPhotoBrowserByPhotosArray(jobsMakeMutArr(^(__kindof NSMutableArray <GKPhoto *>*_Nullable data) {
+        [imageUrlMutArr enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj,
+                                                     NSUInteger idx,
+                                                     BOOL * _Nonnull stop) {
+            data.add(jobsMakeGKPhoto(^(GKPhoto * _Nonnull photo) {
+                photo.url = obj;
+                photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
+            }));
+        }];
+    }),indexPath.row,^(GKPhotoBrowser *_Nonnull browser){
+        @jobs_strongify(self)
+        self.configPhotoBrowser(browser);
+    });
 }
 /// 针对数据源是NSString  *的GKPhotoBrowser
 -(GKPhotoBrowser *)tapImageWithIndexPath:(NSIndexPath *)indexPath
                        imageUrlStrMutArr:(NSMutableArray <NSString *>*)imageUrlStrMutArr{
-    NSMutableArray <GKPhoto *>*photosArray = [NSMutableArray arrayWithCapacity:imageUrlStrMutArr.count];
-    [imageUrlStrMutArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj,
-                                                    NSUInteger idx,
-                                                    BOOL * _Nonnull stop) {
-        GKPhoto *photo = GKPhoto.new;
-        photo.url = obj.jobsUrl;
-        photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
-        photosArray.add(photo);
-    }];
-
-    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photosArray
-                                                        currentIndex:indexPath.row];
-    browser.showStyle           = GKPhotoBrowserShowStyleNone;
-    browser.hideStyle           = GKPhotoBrowserHideStyleZoomScale;
-    browser.isSingleTapDisabled = YES;  // 不响应默认单击事件
-    browser.isStatusBarShow     = YES;  // 显示状态栏
-    browser.isHideSourceView    = NO;
-    browser.delegate            = self;
-
-    UIUserInterfaceIdiom idiom = UIDevice.currentDevice.userInterfaceIdiom;
-    if (idiom == UIUserInterfaceIdiomPhone) {
-        browser.isFollowSystemRotation = NO;
-    } else if (idiom == UIUserInterfaceIdiomPad) {
-        browser.isFollowSystemRotation = YES;
-    }return browser;
+    @jobs_weakify(self)
+    return jobsMakeGKPhotoBrowserByPhotosArray(jobsMakeMutArr(^(__kindof NSMutableArray <GKPhoto *>*_Nullable data) {
+        [imageUrlStrMutArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj,
+                                                        NSUInteger idx,
+                                                        BOOL * _Nonnull stop) {
+            data.add(jobsMakeGKPhoto(^(GKPhoto * _Nonnull photo) {
+                photo.url = obj.jobsUrl;
+                photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
+            }));
+        }];
+    }),indexPath.row,^(GKPhotoBrowser *_Nonnull browser){
+        @jobs_strongify(self)
+        self.configPhotoBrowser(browser);
+    });
 }
 #pragma mark —— GKPhotoBrowserDelegate
 /// 滚动到一半时索引改变
@@ -203,6 +203,5 @@ videoTimeChangeWithPhotoView:(GKPhotoView *)photoView
           totalTime:(NSTimeInterval)totalTime{
     
 }
-#pragma mark —— 一些私有方法
 
 @end
