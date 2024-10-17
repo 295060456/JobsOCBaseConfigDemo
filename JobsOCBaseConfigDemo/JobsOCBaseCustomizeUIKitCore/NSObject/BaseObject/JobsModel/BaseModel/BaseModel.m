@@ -58,6 +58,7 @@
         @"ID" : @"id"
     };
 }
+/// 在子类进行如下调用
 //+(NSDictionary *)mj_replacedKeyFromPropertyName {
 //    return [super mj_replacedKeyFromPropertyName].mutableCopy;
 //}
@@ -67,22 +68,21 @@
         @"ID" : @"id"
     };
 }
-
-// 告诉 MJExtension "gameList" 是一个 FMGameListModel 数组
-//+ (NSDictionary *)mj_objectClassInArray {
-//    return @{
-//        @"gameList" : FMGameListModel.class
-//    };
+#pragma mark —— 重写这个方法进行字段类型转换
+/// 检查属性的名字是否是需要转换的字段
+//-(id)mj_newValueFromOldValue:(id)oldValue property:(MJProperty *)property {
+//    if (property.name.isEqualToString(@"phoneBinded")) {
+//        /// 将后端返回的字符串类型字段转换包装成NSURL类型进行对外输出
+//        if (property.name.isEqualToString(@"headImage")) return JobsUrl(oldValue);
+//        /// 如果 oldValue 是字符串类型，转换为 NSInteger.BindStyle 类型
+//        if ([oldValue isKindOfClass:NSString.class]) {
+//            NSString *stringValue = (NSString *)oldValue;
+//            if (stringValue.isEqualToString(@"0")) return @(NoBinded);
+//            if (stringValue.isEqualToString(@"1")) return @(Binded);
+//        }
+//    }return oldValue;/// 对于不需要转换的其他字段，直接返回原始值
 //}
-//@property(nonatomic,strong)NSString *headImage;
-//@property(nonatomic,strong)NSURL *headImage;
-//- (id)mj_newValueFromOldValue:(id)oldValue
-//                     property:(MJProperty *)property{
-//    if ([property.name isEqualToString:@"headImage"]) {
-//        return [NSURL URLWithString:oldValue];
-//    }return oldValue;
-//}
-/// 需要优化。目的是打印的时候，能完全看到属性及其值
+#pragma mark —— 需要优化。目的是打印的时候，能完全看到属性及其值
 //- (NSString *)description {
 //    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: %p>\n", self.class, self];
 //    unsigned int count;

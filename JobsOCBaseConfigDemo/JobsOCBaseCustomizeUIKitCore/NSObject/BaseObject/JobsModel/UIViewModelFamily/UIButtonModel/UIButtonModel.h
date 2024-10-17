@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)NSTextAlignment subTextAlignment;/// 也对应新Api里面的subTitle的对齐方式
 @property(nonatomic,strong,nullable)UIImage *normalImage;/// 正常情况下的image
 @property(nonatomic,strong,nullable)UIImage *highlightImage;/// = selected_Image 高亮情况下的image
+@property(nonatomic,copy)NSString *normalImageURLString;
+@property(nonatomic,strong)NSURL *normalImageURL;
 @property(nonatomic,strong,nullable)NSAttributedString *attributedTitle;/// 主标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
 @property(nonatomic,strong,nullable)NSAttributedString *selectedAttributedTitle;///（只限于老Api，新Api里面没有）UIControlStateSelected状态下的标题富文本。设置富文本，请关注：#import "NSObject+RichText.h"
 @property(nonatomic,strong,nullable)NSAttributedString *attributedSubtitle;///（新Api才有的）副标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"

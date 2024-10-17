@@ -10,8 +10,8 @@
 
 @implementation NSArray (Safety)
 
-+ (void)load{
-    [super load];
++ (void)initialize{
+    [super initialize];
     // 替换不可变数组中的方法 objectAtIndex
     Method oldObjectAtIndex = class_getInstanceMethod(objc_getClass("__NSArrayI"), @selector(objectAtIndex:));
     Method newObjectAtIndex = class_getInstanceMethod(objc_getClass("__NSArrayI"), @selector(newObjectAtIndex:));

@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "UIBezierPath+TextPath.h"
 #import "NSObject+Extras.h"
+#import "NSString+Check.h"
 #import "JobsBlock.h"
 #import "FileNameModel.h"
 
@@ -18,6 +19,21 @@ NS_INLINE NSMutableString *_Nonnull JobsMutableString(NSString * _Nonnull str){
 
 NS_INLINE NSString *_Nonnull StringWithUTF8String(const char *_Nonnull data){
     return [NSString stringWithUTF8String:data];
+}
+
+NS_INLINE NSURL * _Nullable JobsUrl(NSString *_Nonnull string) {
+    if(isValue(string)) return nil;
+    return [NSURL URLWithString:string];
+}
+
+NS_INLINE NSURL * _Nullable JobsFileUrl(NSString *_Nonnull string) {
+    if(isValue(string)) return nil;
+    return [NSURL fileURLWithPath:string];
+}
+
+NS_INLINE BOOL JobsCanOpenUrl(NSString *_Nonnull string) {
+    if(isValue(string)) return NO;
+    return [UIApplication.sharedApplication canOpenURL:JobsUrl(string)];
 }
 
 NS_ASSUME_NONNULL_BEGIN

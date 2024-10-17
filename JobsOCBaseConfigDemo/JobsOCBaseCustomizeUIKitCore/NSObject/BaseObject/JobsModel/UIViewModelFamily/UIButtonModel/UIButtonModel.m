@@ -80,4 +80,10 @@ UIViewModelProtocol_synthesize
     }return _jobsTestBlock;
 }
 
+-(NSURL *)normalImageURL{
+    if (!_normalImageURL) {
+        _normalImageURL = JobsUrl(self.normalImageURLString);
+    }return _normalImageURL;
+}
+
 @end
