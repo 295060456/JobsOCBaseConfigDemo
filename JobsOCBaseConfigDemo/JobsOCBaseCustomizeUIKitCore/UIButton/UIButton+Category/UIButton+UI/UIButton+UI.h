@@ -299,6 +299,26 @@ NS_ASSUME_NONNULL_END
          NSLog(@"");
      });
  
+ _headBtn = BaseButton.jobsInit()
+    .imageURL(@"".jobsUrl)
+    .placeholderImage(JobsIMG(@"小狮子"))
+    .options(SDWebImageRefreshCached)/// 强制刷新缓存
+    .completed(^(UIImage * _Nullable image,
+                 NSError * _Nullable error,
+                 SDImageCacheType cacheType,
+                 NSURL * _Nullable imageURL) {
+        if (error) {
+            NSLog(@"图片加载失败: %@-%@", error,imageURL);
+        } else {
+            NSLog(@"图片加载成功");
+        }
+    }).onClick(^(UIButton *x){
+        @jobs_strongify(self)
+        if (self.objectBlock) self.objectBlock(x);
+    }).onLongPressGesture(^(id data){
+    NSLog(@"");
+ }).bgNormalLoad();
+ 
  -(BaseButton *)applyNowBtn{
      if(!_applyNowBtn){
          @jobs_weakify(self)

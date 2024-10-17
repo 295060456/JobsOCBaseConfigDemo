@@ -6,6 +6,11 @@
 //
 
 #import "JobsBaseCollectionViewCell.h"
+#import "UIButton+UI.h"
+#import "UIButton+SDWebImage.h"
+#import "UIViewModelProtocol.h"
+#import "NSObject+CallBackInfoByBlock.h"
+#import "UIViewModelOthersProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 只在BaseCollectionViewCell完整的盖一个Button

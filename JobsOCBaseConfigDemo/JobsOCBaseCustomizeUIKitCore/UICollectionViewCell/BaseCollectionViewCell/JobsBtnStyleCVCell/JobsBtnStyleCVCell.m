@@ -104,9 +104,24 @@
             @jobs_strongify(self)
             return nil;
         }];
-        
         /// 按钮图
-        _btn.jobsResetImage(self.viewModel.image);
+        if (self.buttonModel.normalImageURL) {
+            _btn.imageURL(self.buttonModel.normalImageURL)
+            .placeholderImage(self.buttonModel.normalImage)
+            .options(SDWebImageRefreshCached)/// 强制刷新缓存
+            .completed(^(UIImage * _Nullable image,
+                         NSError * _Nullable error,
+                         SDImageCacheType cacheType,
+                         NSURL * _Nullable imageURL) {
+                if (error) {
+                    NSLog(@"图片加载失败: %@-%@", error,imageURL);
+                } else {
+                    NSLog(@"图片加载成功");
+                }
+            }).bgNormalLoad();
+        }else{
+            _btn.jobsResetImage(self.viewModel.image);
+        }
         /// 背景色
         _btn.jobsResetBtnBgCor(self.viewModel.bgCor);
         _btn.backgroundColor = self.buttonModel.bgCor;
@@ -138,7 +153,23 @@
         _btn.jobsResetBtnTitle(self.buttonModel.title);
         _btn.jobsResetBtnTitleCor(self.buttonModel.titleCor);
         /// 按钮图
-        _btn.jobsResetImage(self.buttonModel.normalImage);
+        if (self.buttonModel.normalImageURL) {
+            _btn.imageURL(self.buttonModel.normalImageURL)
+            .placeholderImage(self.buttonModel.normalImage)
+            .options(SDWebImageRefreshCached)/// 强制刷新缓存
+            .completed(^(UIImage * _Nullable image,
+                         NSError * _Nullable error,
+                         SDImageCacheType cacheType,
+                         NSURL * _Nullable imageURL) {
+                if (error) {
+                    NSLog(@"图片加载失败: %@-%@", error,imageURL);
+                } else {
+                    NSLog(@"图片加载成功");
+                }
+            }).bgNormalLoad();
+        }else{
+            _btn.jobsResetImage(self.buttonModel.normalImage);
+        }
         /// 子标题
         _btn.jobsResetSubTitle(self.buttonModel.subTitle);
         [_btn jobsSetBtnSubTitleFont:self.buttonModel.subTitleFont ? : UIFontWeightSemiboldSize(12)

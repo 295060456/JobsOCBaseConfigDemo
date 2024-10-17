@@ -24,14 +24,16 @@
 -(jobsByVoidBlock _Nonnull)reloadDatas{
     @jobs_weakify(self)
     return ^(){
-        @jobs_strongify(self)
-        if (self.isKindOfClass(UICollectionView.class)) {
-            UICollectionView *collectionView = (UICollectionView *)self;
-            [collectionView reloadData];
-        }else if (self.isKindOfClass(UITableView.class)){
-            UITableView *tableView = (UITableView *)self;
-            [tableView reloadData];
-        }else{}
+        dispatch_async(dispatch_get_main_queue(), ^{
+            @jobs_strongify(self)
+            if (self.isKindOfClass(UICollectionView.class)) {
+                UICollectionView *collectionView = (UICollectionView *)self;
+                [collectionView reloadData];
+            }else if (self.isKindOfClass(UITableView.class)){
+                UITableView *tableView = (UITableView *)self;
+                [tableView reloadData];
+            }else{}
+        });
     };
 }
 /// 得到visibleCells
