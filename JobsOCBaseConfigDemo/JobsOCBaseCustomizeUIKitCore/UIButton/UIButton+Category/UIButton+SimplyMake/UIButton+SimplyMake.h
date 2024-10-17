@@ -70,30 +70,41 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 /**
- -(BaseButton *)applyNowBtn{
-     if(!_applyNowBtn){
-         _applyNowBtn = BaseButton.jobsInit()
-             .bgColor(JobsWhiteColor)
-             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-             .jobsResetImagePadding(1)
-             .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-             .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
-             .jobsResetBtnTitleCor(JobsWhiteColor)
-             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-             .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-             .onClick(^(UIButton *x){
-                 NSLog(@"");
-             }).onLongPressGesture(^(id data){
-                 NSLog(@"");
-             });
-         [self.bgImageView addSubview:_applyNowBtn];
-         [_applyNowBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.size.mas_equalTo(CGSizeMake(JobsWidth(99), JobsWidth(29)));
-             make.right.equalTo(self.view).offset(JobsWidth(-166));
-             make.bottom.equalTo(self.view).offset(JobsWidth(-127));
-         }];
-     }return _applyNowBtn;
- }
+ 
+ _headBtn = BaseButton.jobsInit()
+     .imageURL(@"".jobsUrl)
+     .placeholderImage(JobsIMG(@"小狮子"))
+     .options(SDWebImageRefreshCached)/// 强制刷新缓存
+     .completed(^(UIImage * _Nullable image,
+                  NSError * _Nullable error,
+                  SDImageCacheType cacheType,
+                  NSURL * _Nullable imageURL) {
+         if (error) {
+             NSLog(@"图片加载失败: %@-%@", error,imageURL);
+         } else {
+             NSLog(@"图片加载成功");
+         }
+     }).onClick(^(UIButton *x){
+         @jobs_strongify(self)
+         if (self.objectBlock) self.objectBlock(x);
+     }).onLongPressGesture(^(id data){
+     NSLog(@"");
+ }).bgNormalLoad();
+ 
+ _applyNowBtn = BaseButton.jobsInit()
+     .bgColor(JobsWhiteColor)
+     .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+     .jobsResetImagePadding(1)
+     .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+     .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+     .jobsResetBtnTitleCor(JobsWhiteColor)
+     .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+     .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+     .onClick(^(UIButton *x){
+         NSLog(@"");
+     }).onLongPressGesture(^(id data){
+         NSLog(@"");
+     });
  
  -(BaseButton *)applyNowBtn{
      if(!_applyNowBtn){
