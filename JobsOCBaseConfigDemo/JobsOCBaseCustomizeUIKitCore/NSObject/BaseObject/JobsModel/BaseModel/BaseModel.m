@@ -82,6 +82,14 @@
 //        }
 //    }return oldValue;/// 对于不需要转换的其他字段，直接返回原始值
 //}
+#pragma mark —— 字段映射
+//+(NSDictionary *)mj_objectClassInArray {
+//    return @{
+//        @"ewalletDpChannelList" : EwalletDpChannelList.class,
+//        @"dpChannelList" : DpChannelList.class,
+//        @"cryptoDpChannelList" : CryptoDpChannelList.class,
+//    };
+//}
 #pragma mark —— 需要优化。目的是打印的时候，能完全看到属性及其值
 //- (NSString *)description {
 //    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: %p>\n", self.class, self];
