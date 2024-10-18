@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "JobsBlock.h"
+#import "NSString+Others.h"
 #import "SDWebImageModel.h"
 
 #if __has_include(<SDWebImage/SDWebImage.h>)

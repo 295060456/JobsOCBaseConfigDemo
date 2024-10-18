@@ -117,6 +117,7 @@ typedef __kindof UIImageView *_Nonnull(^JobsReturnImageViewByImageBlock)(UIImage
 typedef __kindof UIImageView *_Nonnull(^JobsReturnImageViewByURLBlock)(NSURL *_Nullable data);
 #pragma mark —— 关于按钮
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByControlStateBlock)(UIControlState data);
 typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByBOOLBlock)(BOOL data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByCGFloatBlock)(CGFloat data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByFloatBlock)(float data);
