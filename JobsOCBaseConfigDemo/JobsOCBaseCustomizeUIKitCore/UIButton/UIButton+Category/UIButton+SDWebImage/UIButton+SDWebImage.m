@@ -34,6 +34,7 @@
                                            SDImageCacheType cacheType,
                                            NSURL * _Nullable imageURL) {
                     @jobs_strongify(self)
+                    self.jobsResetBtnImage(image);
                     if (self.makeSDWebImageModel.completion) self.makeSDWebImageModel.completion(image, error, cacheType, imageURL);
                 }];
             }else{
@@ -65,6 +66,7 @@
                                                      SDImageCacheType cacheType,
                                                      NSURL * _Nullable imageURL) {
                     @jobs_strongify(self)
+                    self.jobsResetBtnBgImage(image);
                     if (self.makeSDWebImageModel.completion) self.makeSDWebImageModel.completion(image, error, cacheType, imageURL);
                 }];
             }else{
