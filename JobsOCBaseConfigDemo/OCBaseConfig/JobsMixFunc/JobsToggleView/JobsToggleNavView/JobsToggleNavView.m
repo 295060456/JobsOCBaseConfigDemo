@@ -59,11 +59,15 @@ JobsToggleNavViewProtocolSynthesize
     return ^(NSMutableArray <UIButtonModel *>*_Nullable model) {
         @jobs_strongify(self)
         self.buttonModels = model;
-        if(self.buttonsArray.count) [self.buttonsArray removeAllObjects];
+        if(self.buttonsArray.count) {
+            for (__kindof UIButton *btn in self.buttonsArray) {
+                [btn removeFromSuperview];
+            }[self.buttonsArray removeAllObjects];
+        }
         for (int i = 0 ; i < self.buttonModels.count ; i++) {
             BaseButton *button = BaseButton
                 .initByButtonModel((UIButtonModel *)self.buttonModels[i])
-                .byFrame(jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+                .byFrame(jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel *_Nullable data) {
                     @jobs_strongify(self)
                     data.jobsX = i * self.buttonWidth + (i ? self.btn_each_offset : 0);
                     data.jobsY = 0;

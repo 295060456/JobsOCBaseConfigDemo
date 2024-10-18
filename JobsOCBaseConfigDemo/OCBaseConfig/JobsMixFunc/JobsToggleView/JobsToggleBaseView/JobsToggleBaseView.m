@@ -144,7 +144,6 @@ JobsToggleNavViewProtocolSynthesize
         _taggedNavView.sliderH = JobsWidth(1);
         _taggedNavView.backgroundColor = self.taggedNavViewBgColor;
         [self addSubview:_taggedNavView];
-        _taggedNavView.jobsRichViewByModel(self.taggedNavDatas);
         /// 切换联动
         [_taggedNavView actionObjectBlock:^(id _Nullable data) {
             @jobs_strongify(self)
@@ -157,7 +156,9 @@ JobsToggleNavViewProtocolSynthesize
                 self.taggedNavView.selectingOneTagWithIndex(self.currentSelectedBtn.index);
             }
         }];
-    }return _taggedNavView;
+    }
+    _taggedNavView.jobsRichViewByModel(self.taggedNavDatas);
+    return _taggedNavView;
 }
 
 -(UIScrollView *)bgScroll{
@@ -190,9 +191,7 @@ JobsToggleNavViewProtocolSynthesize
                 data.add(data1.view);
             }
         });
-        if(!_scrollContentViews.count){
-            _scrollContentViews = self.tempLabs;
-        }
+        if(!_scrollContentViews.count) _scrollContentViews = self.tempLabs;
     }return _scrollContentViews;
 }
 
