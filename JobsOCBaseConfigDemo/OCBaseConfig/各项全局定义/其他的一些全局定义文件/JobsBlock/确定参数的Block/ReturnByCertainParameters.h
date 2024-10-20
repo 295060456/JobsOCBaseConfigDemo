@@ -58,6 +58,7 @@ typedef id _Nullable(^JobsReturnIDByNineIDBlock)Jobs_9_Arguments;
 typedef id _Nullable(^JobsReturnIDByTenIDBlock)Jobs_10_Arguments;
 #pragma mark —— 关于数据容器
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIDBlock)(id _Nullable data);
+typedef __kindof NSArray *_Nullable(^JobsReturnArrayByStringBlock)(NSString *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByArrayBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIntegerBlock)(NSInteger data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByVoidBlock)(void);

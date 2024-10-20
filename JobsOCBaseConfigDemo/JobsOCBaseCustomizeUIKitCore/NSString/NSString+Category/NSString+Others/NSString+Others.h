@@ -22,17 +22,17 @@ NS_INLINE NSString *_Nonnull StringWithUTF8String(const char *_Nonnull data){
 }
 
 NS_INLINE NSURL * _Nullable JobsUrl(NSString *_Nonnull string) {
-    if(isValue(string)) return nil;
+    if(!isValue(string)) return nil;  // 如果字符串无效，返回 nil
     return [NSURL URLWithString:string];
 }
 
 NS_INLINE NSURL * _Nullable JobsFileUrl(NSString *_Nonnull string) {
-    if(isValue(string)) return nil;
+    if(!isValue(string)) return nil;
     return [NSURL fileURLWithPath:string];
 }
 
 NS_INLINE BOOL JobsCanOpenUrl(NSString *_Nonnull string) {
-    if(isValue(string)) return NO;
+    if(!isValue(string)) return NO;
     return [UIApplication.sharedApplication canOpenURL:JobsUrl(string)];
 }
 
@@ -52,6 +52,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(NSString *_Nonnull)urlProtect;
 #pragma mark —— 一些功能性的
+/// 用入参进行分隔字符串对外输出数组
+-(JobsReturnArrayByStringBlock _Nonnull)makeArrBy;
 /// 复制到系统剪切板
 -(JobsReturnStringByVoidBlock _Nonnull)pasteboard;
 /// 根据字符串生成二维码图像

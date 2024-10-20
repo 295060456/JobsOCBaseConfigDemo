@@ -95,6 +95,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnCGSizeByIDBlock _Nonnull)buttonSizeByModel;
 //具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel;
+/// 获取绑定的数据源
+-(UIButtonModel *_Nullable)getButtonModel;
 
 @end
 

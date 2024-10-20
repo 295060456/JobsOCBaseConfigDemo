@@ -31,6 +31,14 @@
     }else return self;
 }
 #pragma mark —— 一些功能性的
+/// 用入参进行分隔字符串对外输出数组
+-(JobsReturnArrayByStringBlock _Nonnull)makeArrBy{
+    @jobs_weakify(self)
+    return ^ __kindof NSArray *_Nullable(NSString *_Nullable data){
+        @jobs_strongify(self)
+        return [self componentsSeparatedByString:data];
+    };
+}
 /// 复制到系统剪切板
 -(JobsReturnStringByVoidBlock _Nonnull)pasteboard{
     @jobs_weakify(self)

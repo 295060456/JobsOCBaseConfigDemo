@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, JobsHeaderFooterViewStyle) {
 #endif /* JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED */
 
 @class UIViewModel;
+@class UIButtonModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseViewProtocol <BaseProtocol>
@@ -125,6 +126,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByViewModelBlock _Nonnull)jobsRichViewByViewModel;
 /// 获取绑定的数据源
 -(UIViewModel *_Nullable)getViewModel;
+-(UIButtonModel *_Nullable)getButtonModel;
 /**
  在这个方法里：
  传入：UITableViewHeaderFooterView *
