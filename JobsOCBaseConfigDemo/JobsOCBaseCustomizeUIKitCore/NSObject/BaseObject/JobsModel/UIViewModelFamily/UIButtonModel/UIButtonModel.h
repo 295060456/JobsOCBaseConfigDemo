@@ -27,10 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)UIButtonConfigurationTitleAlignment buttonConfigTitleAlignment;/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
 @property(nonatomic,assign)NSTextAlignment textAlignment;/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】。也对应新Api里面的title的对齐方式
 @property(nonatomic,assign)NSTextAlignment subTextAlignment;/// 也对应新Api里面的subTitle的对齐方式
-@property(nonatomic,strong,nullable)UIImage *normalImage;/// 正常情况下的image
+//@property(nonatomic,strong,nullable)UIImage *normalImage;/// 正常情况下的image
 @property(nonatomic,strong,nullable)UIImage *highlightImage;/// = selected_Image 高亮情况下的image
-@property(nonatomic,copy)NSString *normalImageURLString;
-@property(nonatomic,strong)NSURL *normalImageURL;
 @property(nonatomic,strong,nullable)NSAttributedString *attributedTitle;/// 主标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
 @property(nonatomic,strong,nullable)NSAttributedString *selectedAttributedTitle;///（只限于老Api，新Api里面没有）UIControlStateSelected状态下的标题富文本。设置富文本，请关注：#import "NSObject+RichText.h"
 @property(nonatomic,strong,nullable)NSAttributedString *attributedSubtitle;///（新Api才有的）副标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
@@ -45,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)NSLineBreakMode titleLineBreakMode;/// 主标题换行模式
 @property(nonatomic,assign)NSLineBreakMode subtitleLineBreakMode;/// （新Api才有的）副标题换行模式
 @property(nonatomic,strong,nullable)UIColor *baseBackgroundColor;/// 背景颜色
-@property(nonatomic,strong,nullable)UIImage *backgroundImage;/// 背景图片
+//@property(nonatomic,strong,nullable)UIImage *backgroundImage;/// 背景图片
 @property(nonatomic,assign)CGFloat imagePadding;/// 图像与标题之间的间距
 @property(nonatomic,assign)CGFloat titlePadding;/// 标题和副标题标签之间的距离
 @property(nonatomic,assign)NSDirectionalRectEdge imagePlacement;/// ❤️图片和文字的位置关系❤️

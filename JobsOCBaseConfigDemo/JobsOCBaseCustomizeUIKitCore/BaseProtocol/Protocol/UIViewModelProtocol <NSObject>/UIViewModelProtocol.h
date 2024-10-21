@@ -45,6 +45,13 @@ UIPictureAndBackGroundCorProtocol
 @property(nonatomic,strong,nullable)UIButtonModel *subButtonModel;
 @property(nonatomic,strong,nullable)JobsReturnIDByIDBlock jobsBlock;
 @property(nonatomic,strong,nullable)NSMutableArray <JobsReturnIDByIDBlock>*jobsBlockMutArr;
+#pragma mark —— 图片配置
+/// 普通图
+@property(nonatomic,copy)NSString *normalImageURLString;
+@property(nonatomic,strong)NSURL *normalImageURL;
+/// 背景图
+@property(nonatomic,copy)NSString *normalBgImageURLString;
+@property(nonatomic,strong)NSURL *normalBgImageURL;
 
 @end
 

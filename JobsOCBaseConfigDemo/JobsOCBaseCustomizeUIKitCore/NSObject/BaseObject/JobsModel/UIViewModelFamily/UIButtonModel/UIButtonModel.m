@@ -9,6 +9,13 @@
 
 @implementation UIButtonModel
 UIViewModelProtocol_synthesize
+@synthesize backgroundImage = _backgroundImage;
+@synthesize normalImage = _normalImage;
+@synthesize normalImageURLString = _normalImageURLString;
+@synthesize normalBgImageURLString = _normalBgImageURLString;
+@synthesize normalImageURL = _normalImageURL;
+@synthesize normalBgImageURL = _normalBgImageURL;
+
 -(NSTextAlignment)textAlignment{
     if (!_textAlignment) {
         _textAlignment = NSTextAlignmentCenter;
@@ -79,10 +86,15 @@ UIViewModelProtocol_synthesize
         };
     }return _jobsTestBlock;
 }
-@synthesize normalImageURLString = _normalImageURLString;
+
 -(void)setNormalImageURLString:(NSString *)normalImageURLString{
-    _normalImageURLString = normalImageURLString;
+    _normalImageURLString = normalImageURLString.imageURLPlus;
     _normalImageURL = JobsUrl(self.normalImageURLString);
+}
+
+-(void)setNormalBgImageURLString:(NSString *)normalBgImageURLString{
+    _normalBgImageURLString = normalBgImageURLString.imageURLPlus;
+    _normalBgImageURL = JobsUrl(self.normalBgImageURLString);
 }
 
 @end

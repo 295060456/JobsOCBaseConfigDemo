@@ -193,6 +193,9 @@ typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCls_SaltSt
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable data);
 #pragma mark —— 关于 UICollectionViewCell
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
+#pragma mark —— 关于 UIScrollView
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByVoidBlock)(void);
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray *_Nullable data);
 #pragma mark —— 关于控制器
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByView)(__kindof UIView *_Nonnull view);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByVC)(__kindof UIViewController *_Nonnull vc);
@@ -231,6 +234,8 @@ typedef NSData *_Nullable(^JobsReturnDataByStringBlock)(__kindof NSString *_Null
 typedef NSData *_Nullable(^JobsReturnDataByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef PHAsset *_Nullable(^JobsReturnAssetByStrBlock)(NSString *_Nullable Key);
 typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByURLBlock)(NSURL *_Nullable url);
+typedef NSURL *_Nullable(^JobsReturnURLByStringBlock)(NSString *_Nullable data);
+typedef NSURL *_Nullable(^JobsReturnURLByURLBlock)(NSURL *_Nullable data);
 #pragma mark —— 关于字体
 typedef UIFont *_Nullable(^JobsReturnFontByVoidBlock)(void);
 typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);

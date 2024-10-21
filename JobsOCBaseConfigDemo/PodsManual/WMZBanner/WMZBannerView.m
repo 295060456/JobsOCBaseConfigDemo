@@ -262,7 +262,7 @@
     if ([data isKindOfClass:NSString.class]) {
         if ([(NSString *)data hasPrefix:@"http"]) {
             NSString *url = data;
-            icon.imageURL(url.jobsUrl)
+            icon.imageURL(url.imageURLPlus.jobsUrl)
                 .placeholderImage(JobsIMG(self.param.wPlaceholderImage))
                 .options(SDWebImageRefreshCached)/// 强制刷新缓存
                 .completed(^(UIImage * _Nullable image,

@@ -14,6 +14,7 @@
     return [NSURL URLWithString:self];
 }
 /// 返回文件路径相关的NSURL *
+/// 增加file://
 -(NSURL *_Nonnull)jobsFileUrl{
     return [NSURL fileURLWithPath:self];
 }

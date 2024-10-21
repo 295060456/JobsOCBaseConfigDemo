@@ -46,7 +46,7 @@ JobsToggleNavViewProtocolSynthesize
     [super layoutSubviews];
     /// 内部指定圆切角
 //    [self appointCornerCutToCircleByRoundingCorners:UIRectCornerAllCorners
-//                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+//                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -62,7 +62,7 @@ JobsToggleNavViewProtocolSynthesize
         self.taggedNavDatas = model;
         self.taggedNavView.alpha = 1;
         [self makeScrollContentViewsFrame];
-        self.bgScroll.alpha = 1;
+        self.configBgScroll(self.configSubView(model)).alpha = 1;
         self.switchViewsBy(0);
     };
 }
@@ -92,6 +92,34 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 #pragma mark —— 一些私有方法
+/// 配置显示的滑动View
+-(JobsReturnArrayByArrayBlock _Nonnull)configSubView{
+    @jobs_weakify(self)
+    return ^(__kindof NSArray *_Nullable data){
+        @jobs_strongify(self)
+        NSMutableArray *mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
+            for (UIButtonModel *buttonModel in data) {
+                data1.add(buttonModel.view);
+            }
+        });return mutArr.count ? mutArr : self.scrollContentViews;
+    };
+}
+/// 配置显示的Scroll
+-(JobsReturnScrollViewByMutArrBlock _Nonnull)configBgScroll{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(NSMutableArray <__kindof UIView *>*data){
+        @jobs_strongify(self)
+        if(self.bgScroll.subviews.count){
+            for (__kindof UIView *subview in self.bgScroll.subviews) {
+                [subview removeFromSuperview];
+            }
+        }
+        for (__kindof UIView *subView in data) {
+            [self.bgScroll addSubview:subView];
+        }return self.bgScroll;
+    };
+}
+
 -(void)makeScrollContentViewsFrame{
     int t = 0;
     for (UIView *subView in self.scrollContentViews) {
@@ -177,13 +205,10 @@ JobsToggleNavViewProtocolSynthesize
         _bgScroll.pagingEnabled = YES;
         _bgScroll.showsHorizontalScrollIndicator = NO;
         _bgScroll.showsVerticalScrollIndicator = NO;
-        for (__kindof UIView *subView in self.scrollContentViews) {
-            [_bgScroll addSubview:subView];
-        }
         [self addSubview:_bgScroll];
     }return _bgScroll;
 }
-
+@synthesize scrollContentViews = _scrollContentViews;
 -(NSMutableArray <__kindof UIView *>*)scrollContentViews{
     if(!_scrollContentViews){
         _scrollContentViews = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView *>*_Nullable data) {
@@ -193,6 +218,11 @@ JobsToggleNavViewProtocolSynthesize
         });
         if(!_scrollContentViews.count) _scrollContentViews = self.tempLabs;
     }return _scrollContentViews;
+}
+
+-(void)setScrollContentViews:(NSMutableArray<__kindof UIView *> *)scrollContentViews{
+    _scrollContentViews = scrollContentViews;
+    self.configBgScroll(self.configSubView(self.taggedNavDatas));
 }
 
 -(CGFloat)taggedNavView_width{

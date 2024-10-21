@@ -26,6 +26,10 @@
 -(UIViewModel *_Nullable)getViewModel{
     return self.viewModel;
 }
+
+-(UIButtonModel *_Nullable)getButtonModel{
+    return self.buttonModel;
+}
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
@@ -59,6 +63,8 @@
         
         self.btn.alpha = 1;
         self.btn.data = model;
+        
+        self.btn.jobsResetImage(self.buttonModel.normalImage);
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -79,7 +85,8 @@
             make.edges.equalTo(self);
         }];
     }
-    
+    NSLog(@"%@",self.buttonModel.normalImageURLString);
+    NSLog(@"%@",self.buttonModel.normalImageURL);
     if(self.viewModel){
         _btn.selected = self.viewModel.jobsSelected;
         _btn.enabled = self.viewModel.jobsEnabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
@@ -101,13 +108,13 @@
         
         [_btn jobsBtnLongPressGestureEventBlock:self.viewModel.longPressGestureEventBlock ? : ^id(id _Nullable weakSelf,
                                                                                                   id _Nullable arg) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
             return nil;
         }];
         /// 按钮图
-        if (self.buttonModel.normalImageURL) {
-            _btn.imageURL(self.buttonModel.normalImageURL)
-            .placeholderImage(self.buttonModel.normalImage)
+        if (self.viewModel.normalImageURL) {
+            _btn.imageURL(self.viewModel.normalImageURLString.imageURLPlus.jobsUrl)
+            .placeholderImage(self.viewModel.normalImage)
             .options(SDWebImageRefreshCached)/// 强制刷新缓存
             .completed(^(UIImage * _Nullable image,
                          NSError * _Nullable error,
@@ -124,7 +131,25 @@
         }
         /// 背景色
         _btn.jobsResetBtnBgCor(self.viewModel.bgCor);
-        _btn.backgroundColor = self.buttonModel.bgCor;
+        _btn.backgroundColor = self.viewModel.bgCor;
+        /// 背景图
+        if(self.viewModel.normalBgImageURL){
+            _btn.imageURL(self.viewModel.normalBgImageURLString.imageURLPlus.jobsUrl)
+                .placeholderImage(self.viewModel.backgroundImage)
+                    .options(SDWebImageRefreshCached)/// 强制刷新缓存
+                    .completed(^(UIImage *_Nullable image,
+                                 NSError *_Nullable error,
+                                 SDImageCacheType cacheType,
+                                 NSURL *_Nullable imageURL) {
+                        if (error) {
+                            NSLog(@"图片加载失败: %@-%@", error,imageURL);
+                        } else {
+                            NSLog(@"图片加载成功");
+                        }
+                    }).bgNormalLoad();
+        }else{
+            _btn.jobsResetBtnBgImage(self.viewModel.backgroundImage);
+        }
         /// 图文间距
         if (@available(iOS 16.0, *)) {
             _btn.jobsResetImagePadding(self.viewModel.imageTitleSpace);
@@ -148,13 +173,29 @@
         _btn.jobsResetBtnBgCor(self.buttonModel.baseBackgroundColor);
 //        _btn.backgroundColor = self.buttonModel.baseBackgroundColor;
         /// 背景图
-        _btn.jobsResetBtnBgImage(self.buttonModel.backgroundImage);
+        if(self.buttonModel.normalBgImageURL){
+            _btn.imageURL(self.buttonModel.normalBgImageURLString.imageURLPlus.jobsUrl)
+                    .placeholderImage(self.buttonModel.backgroundImage)
+                    .options(SDWebImageRefreshCached)/// 强制刷新缓存
+                    .completed(^(UIImage *_Nullable image,
+                                 NSError *_Nullable error,
+                                 SDImageCacheType cacheType,
+                                 NSURL *_Nullable imageURL) {
+                        if (error) {
+                            NSLog(@"图片加载失败: %@-%@", error,imageURL);
+                        } else {
+                            NSLog(@"图片加载成功");
+                        }
+                    }).bgNormalLoad();
+        }else{
+            _btn.jobsResetBtnBgImage(self.buttonModel.backgroundImage);
+        }
         /// 主标题
         _btn.jobsResetBtnTitle(self.buttonModel.title);
         _btn.jobsResetBtnTitleCor(self.buttonModel.titleCor);
         /// 按钮图
         if (self.buttonModel.normalImageURL) {
-            _btn.imageURL(self.buttonModel.normalImageURL)
+            _btn.imageURL(self.buttonModel.normalImageURLString.imageURLPlus.jobsUrl)
             .placeholderImage(self.buttonModel.normalImage)
             .options(SDWebImageRefreshCached)/// 强制刷新缓存
             .completed(^(UIImage * _Nullable image,

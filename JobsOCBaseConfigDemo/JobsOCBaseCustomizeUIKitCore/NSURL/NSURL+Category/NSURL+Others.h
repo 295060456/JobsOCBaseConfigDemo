@@ -12,6 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSURL (Others)
 ///  能否正常打开Url
 -(BOOL)jobsCanOpenUrl;
+/// 图片URL路径补齐
+-(NSURL *_Nullable)imageURLPlus;
+/// 一般的URL路径补齐
+-(NSURL *_Nullable)normalURLPlus;
+/// NSString + NSURL => NSURL
+-(JobsReturnURLByStringBlock _Nonnull)add;
+/// NSURL + NSURL => NSURL
+-(JobsReturnURLByURLBlock _Nonnull)Add;
 
 @end
 

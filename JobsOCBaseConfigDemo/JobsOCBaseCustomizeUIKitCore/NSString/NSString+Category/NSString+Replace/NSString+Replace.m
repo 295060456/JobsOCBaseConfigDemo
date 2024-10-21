@@ -189,5 +189,19 @@
 -(NSString *)pureString{
     return [self stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
+/// 图片URL路径补齐
+-(NSString *_Nullable)imageURLPlus{
+    if(!This.BaseUrl_Image || !This.BaseUrl) return self;
+    if(!self.containsString(@"http") && isValue(self)){
+        return (isValue(This.BaseUrl_Image) ? This.BaseUrl_Image : This.BaseUrl).add(self);
+    }else return self;
+}
+/// 一般的URL路径补齐
+-(NSString *_Nullable)normalURLPlus{
+    if(!This.BaseUrl_Image) return self;
+    if(!self.containsString(@"http") && isValue(self)){
+        return This.BaseUrl_Image.add(self);
+    }else return self;
+}
 
 @end

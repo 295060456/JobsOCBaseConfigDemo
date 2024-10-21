@@ -61,6 +61,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *_Nonnull)removeLastChars;
 /// OC字符串去除空格
 -(NSString *)pureString;
+/// 图片URL路径补齐
+-(NSString *_Nullable)imageURLPlus;
+/// 一般的URL路径补齐
+-(NSString *_Nullable)normalURLPlus;
 
 @end
 

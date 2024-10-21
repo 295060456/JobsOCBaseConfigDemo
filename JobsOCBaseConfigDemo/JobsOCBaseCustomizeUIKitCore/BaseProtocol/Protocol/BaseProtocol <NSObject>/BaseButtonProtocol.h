@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)NSTextAlignment titleAlignment;
 @property(nonatomic,assign)UIButtonConfigurationTitleAlignment buttonConfigurationTitleAlignment;
 @property(nonatomic,assign)BOOL jobsSelected;
+@property(nonatomic,strong,nullable)UIImage *backgroundImage;/// 背景图片
+@property(nonatomic,strong,nullable)UIImage *normalImage;/// 正常情况下的image
 #pragma mark —— JobsBtnModel
 @property(nonatomic,strong)UIColor *btnBackgroundColor;
 @property(nonatomic,assign)CGSize imageSize;
@@ -111,6 +113,8 @@ NS_ASSUME_NONNULL_END
 @synthesize titleAlignment = _titleAlignment;\
 @synthesize buttonConfigurationTitleAlignment = _buttonConfigurationTitleAlignment;\
 @synthesize jobsSelected = _jobsSelected;\
+@synthesize backgroundImage = _backgroundImage;\
+@synthesize normalImage = _normalImage;\
 @synthesize jobsEnabled = _jobsEnabled;\
 @synthesize btnBackgroundColor = _btnBackgroundColor;\
 @synthesize imageSize = _imageSize;\
@@ -171,6 +175,8 @@ NS_ASSUME_NONNULL_END
 @dynamic buttonConfigurationTitleAlignment;\
 @dynamic jobsEnabled;\
 @dynamic jobsSelected;\
+@dynamic backgroundImage;\
+@dynamic normalImage;\
 @dynamic btnBackgroundColor;\
 @dynamic imageSize;\
 @dynamic contentHorizontalAlignment;\

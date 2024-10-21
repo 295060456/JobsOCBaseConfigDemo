@@ -310,7 +310,7 @@ typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable da
 typedef void(^jobsByMsgDataModelBlock)(__kindof JobsMsgDataModel *_Nullable data);
 
 @class JobsToggleBaseView;
-typedef JobsToggleBaseView *_Nonnull(^JobsReturnToggleBaseViewByArrBlock)(NSMutableArray <NSMutableArray <UIButtonModel *>*>*_Nullable data);
+typedef JobsToggleBaseView *_Nonnull(^JobsReturnToggleBaseViewByArrBlock)(NSMutableArray *_Nullable data);
 
 #endif /* JobsBlock_h */
 /*
