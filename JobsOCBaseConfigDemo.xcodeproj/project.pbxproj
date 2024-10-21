@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
+		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
 		84E401422CC60F4900C8303A /* This.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E401402CC60E7100C8303A /* This.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
@@ -1136,6 +1137,8 @@
 		483BFC42C8B8CA074C2FE187 /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		55AE8BC0EBE5A194A8879F81 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoTests/Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMBannerAdsModel.h; sourceTree = "<group>"; };
+		84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMBannerAdsModel.m; sourceTree = "<group>"; };
 		84E4013B2CC60D3100C8303A /* This+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "This+URLManager_Base.h"; sourceTree = "<group>"; };
 		84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "This+URLManager_Base.m"; sourceTree = "<group>"; };
 		84E4013F2CC60E7100C8303A /* This.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = This.h; sourceTree = "<group>"; };
@@ -3349,6 +3352,15 @@
 				FE176E0EC1B036786E28E5E5 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */ = {
+			isa = PBXGroup;
+			children = (
+				84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */,
+				84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */,
+			);
+			path = FMBannerAdsModel;
 			sourceTree = "<group>";
 		};
 		84E4013D2CC60D3100C8303A /* This+Category */ = {
@@ -13710,6 +13722,7 @@
 		CECE7F1F2C4512BF00764AF5 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */,
 				CECE7F1E2C4512BF00764AF5 /* DAO.h */,
 				CECE7F142C4512BF00764AF5 /* CasinoCustomerContactModel */,
 				CECE7F172C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel */,
@@ -15209,6 +15222,7 @@
 				CE4F27B02CA825CD002AF25B /* MGSwipeButtonModel.m in Sources */,
 				CE4F27B12CA825CD002AF25B /* JobsSearchDataCVCell.m in Sources */,
 				CE5A64DD2CA83007006D67A7 /* NSObject+UNUserNotificationCenterDelegate.m in Sources */,
+				84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */,
 				CE5A651C2CA8313B006D67A7 /* UIFont+Extras.m in Sources */,
 				CE4F27B22CA825CD002AF25B /* JobsCommentConfig.m in Sources */,
 				CE4F27B32CA825CD002AF25B /* YTKBaseRequest+AnimatingAccessory.m in Sources */,

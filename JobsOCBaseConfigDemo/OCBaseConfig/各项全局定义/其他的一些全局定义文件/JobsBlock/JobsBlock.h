@@ -304,7 +304,10 @@ typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByIDBlock)(id _Nu
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByDictionaryBlock)(NSDictionary *_Nullable data);
 #pragma mark —— 关于业务（不与JobsOCBaseConfigDemo同步）
 @class FMBannerAdsModel;
+@class WMZBannerParam;
 typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable data);
+typedef WMZBannerParam *_Nonnull(^JobsReturnWMZBannerParamByArrBlock)(__kindof NSMutableArray <FMBannerAdsModel *>*_Nullable data);
+typedef void(^jobsByWMZBannerParamBlock)(WMZBannerParam *_Nullable data);
 
 @class JobsMsgDataModel;
 typedef void(^jobsByMsgDataModelBlock)(__kindof JobsMsgDataModel *_Nullable data);

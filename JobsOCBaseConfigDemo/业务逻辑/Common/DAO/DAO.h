@@ -14,5 +14,6 @@
 /// 业务类
 #import "CasinoCustomerContactModel.h"
 #import "CasinoGetiOSNewestVersionModel.h"
+#import "FMBannerAdsModel.h"
 
 #endif /* DAO_h */
