@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_END
      
      [ZBRequestManager requestWithConfig:^(ZBURLRequest * _Nullable request) {
 
-         request.server = NSObject.BaseUrl;
+         request.server = This.BaseUrl;
          request.url = [request.server stringByAppendingString:NSObject.userInfoInviteFriendPOST.url];
          
          NSLog(@"request.URLString = %@",request.url);
@@ -167,7 +167,7 @@ NS_ASSUME_NONNULL_END
      [uploadDatas addObject:zbdata];
  }
  [ZBRequestManager requestWithConfig:^(ZBURLRequest * request) {
-     request.server = NSObject.BaseUrl;
+     request.server = This.BaseUrl;
      request.url = [request.server stringByAppendingString:NSObject.postUploadImagePOST.url];
      NSLog(@"request.URLString = %@",request.url);
      request.methodType = ZBMethodTypeUpload;
@@ -251,7 +251,7 @@ NS_ASSUME_NONNULL_END
      }
      
      [ZBRequestManager requestWithConfig:^(ZBURLRequest * request) {
-         request.server = NSObject.BaseUrl;
+         request.server = This.BaseUrl;
          request.url = [request.server stringByAppendingString:NSObject.postuploadVideoPOST.url];
          NSLog(@"request.URLString = %@",request.url);
          request.methodType = ZBMethodTypeUpload;

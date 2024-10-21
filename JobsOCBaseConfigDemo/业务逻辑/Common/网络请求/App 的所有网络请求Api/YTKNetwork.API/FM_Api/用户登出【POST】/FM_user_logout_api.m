@@ -10,7 +10,7 @@
 @implementation FM_user_logout_api
 /// 请求的完整URL：用户登出【POST】
 -(NSString *)requestUrl{
-    return self.BaseUrl.add(self.post_user_auth_logout.url);
+    return This.BaseUrl.add(self.post_user_auth_logout.url);
 }
 /// 请求方式
 -(YTKRequestMethod)requestMethod {

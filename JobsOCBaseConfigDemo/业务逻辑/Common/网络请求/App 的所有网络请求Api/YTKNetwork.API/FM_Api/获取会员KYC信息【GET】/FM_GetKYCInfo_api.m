@@ -10,7 +10,7 @@
 @implementation FM_GetKYCInfo_api
 /// 请求的完整URL：获取会员KYC信息【GET】
 -(NSString *)requestUrl{
-    return self.BaseUrl
+    return This.BaseUrl
         .add(self.get_kyc_info.url)
         .add(self.urlParameters);
 }

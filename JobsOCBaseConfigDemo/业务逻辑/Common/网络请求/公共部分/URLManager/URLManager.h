@@ -51,7 +51,7 @@ NS_INLINE JobsNetworkingEnvir NetworkingEnvir(void) {
 #define JobsURL(URL) [NSObject url:(URL) funcName:NSStringFromSelector(_cmd)];
 #endif /* JobsURL */
 
-#import "NSObject+URLManager_Base.h"
+#import "This+URLManager_Base.h"
 #import "NSObject+URLManager_1.h"
 #import "NSObject+URLManager_2.h"
 #import "NSObject+URLManager_3.h"

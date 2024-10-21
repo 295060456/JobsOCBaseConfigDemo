@@ -110,5 +110,7 @@
 #import "NSObject+GTCaptcha4.h"
 /// 关于数据
 #import "NSObject+Data.h"
+/// 作为 NSObject 的替代者使用
+#import "This+URLManager_Base.h"
 
 #endif /* JobsObject_h */

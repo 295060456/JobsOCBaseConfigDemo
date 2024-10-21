@@ -110,7 +110,7 @@
         @jobs_weakify(self)
         jobsMakeYTKNetworkConfig(^(__kindof YTKNetworkConfig *_Nullable data) {
             @jobs_strongify(self)
-            data.baseUrl = self.BaseUrl;
+            data.baseUrl = This.BaseUrl;
             data.cdnUrl = @"";
             //data.urlFilters = nil;
             //data.cacheDirPathFilters = nil;

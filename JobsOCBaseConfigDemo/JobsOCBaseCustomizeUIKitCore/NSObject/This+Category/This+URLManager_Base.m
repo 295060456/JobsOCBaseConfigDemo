@@ -1,15 +1,15 @@
 //
-//  NSObject+URLManager_Base.m
+//  This+URLManager_Base.m
 //  FM
 //
-//  Created by User on 10/11/24.
+//  Created by Admin on 21/10/2024.
 //
 
-#import "NSObject+URLManager_Base.h"
+#import "This+URLManager_Base.h"
 
-@implementation NSObject (URLManager_Base)
+@implementation This (URLManager_Base)
 #pragma mark —— BaseURL
--(NSString *)BaseUrl{
++(NSString *)BaseUrl{
     switch (NetworkingEnvir()) {
         case JobsNetworkingEnvir_DevEnviron:{
             /// 开发环境
@@ -29,7 +29,7 @@
     }
 }
 
--(NSString *)BaseUrl_Image{
++(NSString *)BaseUrl_Image{
     switch (NetworkingEnvir()) {
         case JobsNetworkingEnvir_DevEnviron:{
             /// 开发环境
@@ -49,7 +49,7 @@
     }
 }
 
--(NSString *)BaseUrl_H5{
++(NSString *)BaseUrl_H5{
     switch (NetworkingEnvir()) {
         case JobsNetworkingEnvir_DevEnviron:{
             /// 开发环境
@@ -69,7 +69,7 @@
     }
 }
 #pragma mark —— App接口示例
--(URLManagerModel *)appInterfaceTesting{
++(URLManagerModel *)appInterfaceTesting{
     return JobsURL(@"http://172.24.135.14:8000/Downloads/CommentData.json") /// @"http://172.24.135.12/CommentData.json"
 }
 

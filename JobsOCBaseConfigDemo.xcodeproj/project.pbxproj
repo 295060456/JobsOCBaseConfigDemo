@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
+		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
+		84E401422CC60F4900C8303A /* This.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E401402CC60E7100C8303A /* This.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
 		CE260F452CAE671C00233F0F /* NSString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F3E2CAE671C00233F0F /* NSString+Replace.m */; };
 		CE260F462CAE671C00233F0F /* NSString+Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F412CAE671C00233F0F /* NSString+Statistics.m */; };
@@ -773,7 +775,6 @@
 		CE7C79B52C92B9D000C0153C /* GTCaptcha4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7C79B22C92B9C600C0153C /* GTCaptcha4.framework */; };
 		CE7F39772C4FDB9B00431A5D /* FMDatabase+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */; };
 		CE84D8042C912E2F005DE167 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE84D8022C912E2F005DE167 /* JobsOCBaseConfigDemo.xcdatamodeld */; };
-		CE8C146D2CB91ADE0056090E /* NSObject+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C14652CB91ADE0056090E /* NSObject+URLManager_Base.m */; };
 		CE8C146E2CB91ADE0056090E /* NSObject+URLManager_2.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C146B2CB91ADE0056090E /* NSObject+URLManager_2.m */; };
 		CE8C146F2CB91ADE0056090E /* NSObject+URLManager_1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C14682CB91ADE0056090E /* NSObject+URLManager_1.m */; };
 		CE8C147C2CB927540056090E /* NSObject+URLManager_3.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C14712CB927540056090E /* NSObject+URLManager_3.m */; };
@@ -1135,6 +1136,10 @@
 		483BFC42C8B8CA074C2FE187 /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		55AE8BC0EBE5A194A8879F81 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoTests/Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84E4013B2CC60D3100C8303A /* This+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "This+URLManager_Base.h"; sourceTree = "<group>"; };
+		84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "This+URLManager_Base.m"; sourceTree = "<group>"; };
+		84E4013F2CC60E7100C8303A /* This.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = This.h; sourceTree = "<group>"; };
+		84E401402CC60E7100C8303A /* This.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = This.m; sourceTree = "<group>"; };
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -2852,8 +2857,6 @@
 		CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+Manager.m"; sourceTree = "<group>"; };
 		CE84D8032C912E2F005DE167 /* JobsBaseConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobsBaseConfig.xcdatamodel; sourceTree = "<group>"; };
 		CE8C14632CB91ADE0056090E /* URLManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLManager.h; sourceTree = "<group>"; };
-		CE8C14642CB91ADE0056090E /* NSObject+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_Base.h"; sourceTree = "<group>"; };
-		CE8C14652CB91ADE0056090E /* NSObject+URLManager_Base.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager_Base.m"; sourceTree = "<group>"; };
 		CE8C14672CB91ADE0056090E /* NSObject+URLManager_1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_1.h"; sourceTree = "<group>"; };
 		CE8C14682CB91ADE0056090E /* NSObject+URLManager_1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager_1.m"; sourceTree = "<group>"; };
 		CE8C146A2CB91ADE0056090E /* NSObject+URLManager_2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_2.h"; sourceTree = "<group>"; };
@@ -3346,6 +3349,24 @@
 				FE176E0EC1B036786E28E5E5 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		84E4013D2CC60D3100C8303A /* This+Category */ = {
+			isa = PBXGroup;
+			children = (
+				84E4013B2CC60D3100C8303A /* This+URLManager_Base.h */,
+				84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */,
+			);
+			path = "This+Category";
+			sourceTree = "<group>";
+		};
+		84E401412CC60E7100C8303A /* This */ = {
+			isa = PBXGroup;
+			children = (
+				84E4013F2CC60E7100C8303A /* This.h */,
+				84E401402CC60E7100C8303A /* This.m */,
+			);
+			path = This;
 			sourceTree = "<group>";
 		};
 		92563F87BB14F01482586366 /* Frameworks */ = {
@@ -9979,6 +10000,7 @@
 		CE5A61842CA82C2D006D67A7 /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
+				84E401412CC60E7100C8303A /* This */,
 				CE5A61522CA82C2D006D67A7 /* JobsModel */,
 				CE5A61552CA82C2D006D67A7 /* JobsRequestBuilder */,
 				CE5A61582CA82C2D006D67A7 /* 雪花算法 */,
@@ -10473,6 +10495,7 @@
 		CE5A62172CA82C2D006D67A7 /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
+				84E4013D2CC60D3100C8303A /* This+Category */,
 				CE5A61062CA82C2D006D67A7 /* JobsObject.h */,
 				CE5A61842CA82C2D006D67A7 /* BaseObject */,
 				CE5A62162CA82C2D006D67A7 /* NSObject+Category */,
@@ -12582,7 +12605,6 @@
 				CE8C14752CB927540056090E /* URLManager@4 */,
 				CE8C14782CB927540056090E /* URLManager@5 */,
 				CE8C147B2CB927540056090E /* URLManager@6 */,
-				CE8C14662CB91ADE0056090E /* URLManager@Base */,
 			);
 			path = URLManager;
 			sourceTree = "<group>";
@@ -12736,15 +12758,6 @@
 				CE7F39752C4FDB9B00431A5D /* FMDatabase+Manager.m */,
 			);
 			path = "FMDatabase+Manager";
-			sourceTree = "<group>";
-		};
-		CE8C14662CB91ADE0056090E /* URLManager@Base */ = {
-			isa = PBXGroup;
-			children = (
-				CE8C14642CB91ADE0056090E /* NSObject+URLManager_Base.h */,
-				CE8C14652CB91ADE0056090E /* NSObject+URLManager_Base.m */,
-			);
-			path = "URLManager@Base";
 			sourceTree = "<group>";
 		};
 		CE8C14692CB91ADE0056090E /* URLManager@1 */ = {
@@ -14812,8 +14825,8 @@
 				CE5A65142CA8310B006D67A7 /* HQCollectionViewFlowLayout.m in Sources */,
 				CE5A65152CA8310B006D67A7 /* XZMLayout.m in Sources */,
 				CE5A65162CA8310B006D67A7 /* KFZShopCatoryFlowLayput.m in Sources */,
-				CE8C146D2CB91ADE0056090E /* NSObject+URLManager_Base.m in Sources */,
 				CE8C146E2CB91ADE0056090E /* NSObject+URLManager_2.m in Sources */,
+				84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */,
 				CE8C146F2CB91ADE0056090E /* NSObject+URLManager_1.m in Sources */,
 				CECE7D6A2C450DED00764AF5 /* AppDelegate+TabBarCtr.m in Sources */,
 				CECE7EDF2C450E5B00764AF5 /* ZMJCell+CustomView.m in Sources */,
@@ -15312,6 +15325,7 @@
 				CE4F27DF2CA825CD002AF25B /* PKProtocolExtension.m in Sources */,
 				CE4F27E02CA825CD002AF25B /* WidgetVC.m in Sources */,
 				CE4F27E12CA825CD002AF25B /* MasonryVC.m in Sources */,
+				84E401422CC60F4900C8303A /* This.m in Sources */,
 				CE4F27E22CA825CD002AF25B /* UIView+layout.m in Sources */,
 				CE5A65812CA832C5006D67A7 /* XLBubbleTransition.m in Sources */,
 				CE5A65822CA832C5006D67A7 /* UIViewController+TFPopupView.m in Sources */,

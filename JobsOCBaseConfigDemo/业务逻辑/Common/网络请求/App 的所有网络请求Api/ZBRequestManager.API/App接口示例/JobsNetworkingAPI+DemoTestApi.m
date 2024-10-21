@@ -18,8 +18,8 @@ NSString *appInterfaceTesting;
     
     [ZBRequestManager requestWithConfig:^(ZBURLRequest * _Nullable request) {
 
-        request.server = self.BaseUrl;
-        request.url = request.server.add(self.appInterfaceTesting.url);
+        request.server = This.BaseUrl;
+        request.url = request.server.add(This.appInterfaceTesting.url);
         
         NSLog(@"request.URLString = %@",request.url);
         

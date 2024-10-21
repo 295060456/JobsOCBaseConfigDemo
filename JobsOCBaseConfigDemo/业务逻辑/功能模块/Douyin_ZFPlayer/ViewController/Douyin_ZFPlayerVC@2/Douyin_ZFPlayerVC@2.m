@@ -521,7 +521,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     @jobs_weakify(self)
     extern NSString *appInterfaceTesting;
-    [JobsNetworkingAPI requestApi:NSObject.appInterfaceTesting.funcName
+    [JobsNetworkingAPI requestApi:This.appInterfaceTesting.funcName
                      parameters:@{@"pageSize":@(self.pageSize),
                                   @"pageNum":@(self.currentPage)}
                    successBlock:^(JobsResponseModel *data) {

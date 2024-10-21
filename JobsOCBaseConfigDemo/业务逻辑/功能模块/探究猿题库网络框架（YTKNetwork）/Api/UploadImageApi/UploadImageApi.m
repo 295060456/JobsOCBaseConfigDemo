@@ -31,7 +31,7 @@
 }
 /// 请求的完整URL：
 -(NSString *)requestUrl {
-    return self.BaseUrl.add(@"/iphone/image/upload");
+    return This.BaseUrl.add(@"/iphone/image/upload");
 }
 /// 请求方式
 -(YTKRequestMethod)requestMethod {

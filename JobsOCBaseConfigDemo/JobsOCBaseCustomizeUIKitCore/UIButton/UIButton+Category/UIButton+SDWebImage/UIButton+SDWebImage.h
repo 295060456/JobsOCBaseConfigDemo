@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 /**
- btn.imageURL(self.BaseUrl.add(model.iosImage).jobsUrl)
+ btn.imageURL(This.BaseUrl.add(model.iosImage).jobsUrl)
     .placeholderImage(model.image)
     .options(SDWebImageRefreshCached)/// 强制刷新缓存
     .completed(^(UIImage * _Nullable image,

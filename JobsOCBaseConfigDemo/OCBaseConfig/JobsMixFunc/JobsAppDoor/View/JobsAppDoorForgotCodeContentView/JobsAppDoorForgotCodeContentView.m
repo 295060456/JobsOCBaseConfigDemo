@@ -180,7 +180,7 @@
 //            UIViewModel *vm = UIViewModel.new;
 //
 //            vm.requestParams = element;
-//            vm.bgImageURLString = [self.BaseUrl stringByAppendingString:element.appIconUrl];
+//            vm.bgImageURLString = [This.BaseUrl stringByAppendingString:element.appIconUrl];
 //            vm.text = JobsInternationalization(@"");
 //            vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
 //            vm.offsetXForEach = JobsWidth(46);

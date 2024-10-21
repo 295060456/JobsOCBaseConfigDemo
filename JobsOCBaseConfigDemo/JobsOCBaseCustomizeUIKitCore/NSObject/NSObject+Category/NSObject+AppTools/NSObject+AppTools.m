@@ -454,7 +454,7 @@ JobsKey(_hotLabelDataMutArr)
 //            UIViewModel *vm = UIViewModel.new;
 //
 //            vm.requestParams = element;
-//            vm.bgImageURLString = JobsInternationalization(@"");//[self.BaseUrl stringByAppendingString:element.appIconUrl];
+//            vm.bgImageURLString = JobsInternationalization(@"");//[This.BaseUrl stringByAppendingString:element.appIconUrl];
 //            vm.textModel.text = JobsInternationalization(@"");
 //            vm.jobsSize = CGSizeMake(JobsWidth(46), JobsWidth(46));
 //            vm.offsetXForEach = JobsWidth(46);

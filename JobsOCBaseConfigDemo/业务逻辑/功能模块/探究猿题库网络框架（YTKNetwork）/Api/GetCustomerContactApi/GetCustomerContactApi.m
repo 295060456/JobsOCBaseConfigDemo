@@ -10,7 +10,7 @@
 @implementation GetCustomerContactApi
 /// 请求Api
 -(NSString *)requestUrl{
-    return self.BaseUrl.add(@"");
+    return This.BaseUrl.add(@"");
 }
 /// 请求方式
 -(YTKRequestMethod)requestMethod {

@@ -76,7 +76,7 @@
 }
 #pragma mark —— 具体子类实现请求Api
 //-(NSString *)requestUrl{
-//    return [self.BaseUrl stringByAppendingString:self.membersLoginPOST.url];
+//    return [This.BaseUrl stringByAppendingString:self.membersLoginPOST.url];
 //}
 //- (NSURLRequest *)buildCustomUrlRequest {
 //    NSError *parseError = nil;

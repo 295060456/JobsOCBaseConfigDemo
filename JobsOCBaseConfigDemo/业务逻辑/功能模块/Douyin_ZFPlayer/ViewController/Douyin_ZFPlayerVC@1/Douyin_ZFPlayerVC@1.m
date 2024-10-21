@@ -92,7 +92,7 @@
     NSDictionary *parameters = @{@"pageSize":@(10),
                                  @"pageNum":@(self.currentPage)};
 
-    [JobsNetworkingAPI requestApi:NSObject.appInterfaceTesting.funcName
+    [JobsNetworkingAPI requestApi:This.appInterfaceTesting.funcName
                        parameters:parameters
                      successBlock:^(JobsResponseModel *data) {
         @jobs_strongify(self)

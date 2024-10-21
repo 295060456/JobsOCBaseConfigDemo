@@ -11,7 +11,7 @@
 @implementation GetUserInfoApi
 /// 请求的完整URL：
 -(NSString *)requestUrl{
-    return self.BaseUrl.add(@"");
+    return This.BaseUrl.add(@"");
 }
 /// 请求方式
 -(YTKRequestMethod)requestMethod {
