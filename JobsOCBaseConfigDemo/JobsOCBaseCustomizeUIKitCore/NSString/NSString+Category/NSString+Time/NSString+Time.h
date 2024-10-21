@@ -21,7 +21,7 @@ NS_INLINE NSString *JobsFormattedString(NSString *format, ...) {
 }
 
 @interface NSString (Time)
-/// 当前时间戳较之当前时间是否已过期
+/// 当前时间戳较之当前时间是否已过期【过期返回YES】
 -(JobsReturnBOOLByVoidBlock _Nonnull)isExpired;
 -(JobsReturnStringByVoidBlock _Nonnull)jobsTime;
 /// 时间戳（字符串）依据某一规范，格式化为能一目了然的时间（字符串）

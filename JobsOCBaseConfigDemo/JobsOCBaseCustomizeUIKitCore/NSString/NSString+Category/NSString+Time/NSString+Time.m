@@ -41,23 +41,23 @@
         }data.timeZone = self.timeZone(timeZoneType);
     }).date(date);
 }
-/// 当前时间戳较之当前时间是否已过期
+/// 当前时间戳较之当前时间是否已过期【过期返回YES】
 -(JobsReturnBOOLByVoidBlock _Nonnull)isExpired{
     @jobs_weakify(self)
     return ^BOOL(){
         @jobs_strongify(self)
 #ifdef DEBUG
-        NSLog(@"当前时间为:%@,Token过期时间为:%@",self,self.jobsTime());
-        toast(JobsFormattedString(@"Token过期时间为:%@",self.jobsTime()));
+        NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.jobsTime());
+        toast(JobsFormattedString(@"Token过期时间为:%@", self.jobsTime()));
 #endif
         /// 将时间戳字符串转换为 double 类型的时间戳
         double timeStamp = self.doubleValue;
         /// 创建 NSDate 对象
         NSDate *dateFromTimeStamp;
         if (self.length > 0) {
-            // 假设时间戳是以秒为单位
+            /// 假设时间戳是以秒为单位
             dateFromTimeStamp = [NSDate dateWithTimeIntervalSince1970:timeStamp];
-        }else return NO;/// 时间戳为空，返回 NO
+        }else return NO; /// 时间戳为空，返回 NO
         /// 比较当前时间和时间戳所代表的时间
         NSComparisonResult result = [NSDate.date compare:dateFromTimeStamp];
         /// 如果当前时间晚于时间戳所代表的时间，返回 YES

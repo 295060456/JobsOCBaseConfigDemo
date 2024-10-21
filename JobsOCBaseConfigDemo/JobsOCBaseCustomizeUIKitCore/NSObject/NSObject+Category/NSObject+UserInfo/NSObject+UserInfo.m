@@ -10,15 +10,19 @@
 @implementation NSObject (UserInfo)
 /**
  【鉴别目前是否登录】
- 【标准】判定的标准 = 用户数据存在 + 用户数据中Token的值非空 ＋ Token是否已经过期
+ 【标准】判定的标准 = 用户数据存在➕用户数据中Token的值非空➕Token过期时间存在➕Token是否已经过期
  【return】 YES(已经登录)、NO（未登录）
  */
 -(BOOL)isLogin{
     JobsUserModel *userInfo = self.readUserInfo();
-    return isValue(userInfo.token) &&
-    userInfo &&
-    isValue(userInfo.expireTime) &&
-    userInfo.expireTime.isExpired();
+    /// 模型都没有建立肯定是没有登录的
+    if(!userInfo) return NO;
+    /// Token 都没有肯定也是没有登录的
+    if(!isValue(userInfo.token)) return NO;
+    /// 存在过期时间，则鉴别过期时间以判断是否登录
+    if(isValue(userInfo.expireTime)) {
+        return !userInfo.expireTime.isExpired();
+    }else return NO;/// 过期时间都没有，肯定也是没有登录的
 }
 /// 检查是否登录并执行传入的代码块
 -(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock {
