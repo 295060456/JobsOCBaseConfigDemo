@@ -49,18 +49,18 @@ NS_ASSUME_NONNULL_BEGIN
   successBlock:(jobsByResponseModelBlock _Nullable)successBlock /// 外层对success的解析回调
      failBlock:(jobsByVoidBlock _Nullable)failBlock;
 -(void)request:(YTKBaseRequest *)request
-  successBlock:(jobsByIDBlock _Nullable)successBlock;
+  successBlock:(jobsByResponseModelBlock _Nullable)successBlock;
 -(jobsByIDBlock _Nonnull)jobsHandelFailure;
 -(JobsHandelNoSuccessBlock _Nonnull)jobsHandelNoSuccess;
 -(jobsByIDBlock _Nonnull)tipsByApi;
--(jobsByIDBlock _Nonnull)handleErr;
+-(jobsByYTKRequestBlock _Nonnull)handleErr;
 #pragma mark —— 示例代码
 /// 普通的单个请求
--(void)loadCacheData:(jobsByIDBlock _Nullable)successBlock;
+-(void)loadCacheData:(jobsByResponseModelBlock _Nullable)successBlock;
 /// 多请求の同步请求
--(void)sendBatchRequest:(jobsByIDBlock _Nullable)successBlock;
+-(void)sendBatchRequest:(jobsByYTKBatchRequestBlock _Nullable)successBlock;
 /// 多请求の链式请求。链式请求的结果集体现在<YTKChainRequestDelegate>
--(void)sendChainRequest:(jobsByIDBlock _Nullable)successBlock;
+-(void)sendChainRequest:(jobsByYTKChainRequestBlock _Nullable)successBlock;
 
 @end
 

@@ -10,7 +10,7 @@
 @implementation NSObject (YTKNetwork)
 #pragma mark —— 示例代码
 /// 普通的单个请求
--(void)loadCacheData:(jobsByIDBlock _Nullable)successBlock{
+-(void)loadCacheData:(jobsByResponseModelBlock _Nullable)successBlock{
     GetCustomerContactApi *api = GetCustomerContactApi.init;
     api.byURLParameters(nil);
     api.byBodyParameters(nil);
@@ -29,7 +29,7 @@
     }];
 }
 /// 多请求の同步请求
--(void)sendBatchRequest:(jobsByIDBlock _Nullable)successBlock{
+-(void)sendBatchRequest:(jobsByYTKBatchRequestBlock _Nullable)successBlock{
     YTKBatchRequest *batchRequest = [YTKBatchRequest.alloc initWithRequestArray:jobsMakeMutArr(^(__kindof NSMutableArray <YTKRequest *>*_Nullable data) {
         data.add(GetImageApi.initByBodyParameters(nil));
         data.add(GetImageApi.initByBodyParameters(nil));
@@ -58,7 +58,7 @@
     }];
 }
 /// 多请求の链式请求。链式请求的结果集体现在<YTKChainRequestDelegate>
--(void)sendChainRequest:(jobsByIDBlock _Nullable)successBlock{
+-(void)sendChainRequest:(jobsByYTKChainRequestBlock _Nullable)successBlock{
     RegisterApi *api = RegisterApi.init;
     api.byURLParameters(nil);
     api.byBodyParameters(nil);
@@ -97,7 +97,7 @@
 }
 
 -(void)request:(YTKBaseRequest *)request
-  successBlock:(jobsByIDBlock _Nullable)successBlock{
+  successBlock:(jobsByResponseModelBlock _Nullable)successBlock{
     [self request:request
       successData:nil
       actionBlock:nil
@@ -189,10 +189,10 @@
     };
 }
 
--(jobsByIDBlock _Nonnull)handleErr{
-    return ^(JobsBaseApi *_Nullable api){
-        if ([api loadCacheWithError:nil]) {
-            NSDictionary *json = api.responseJSONObject;
+-(jobsByYTKRequestBlock _Nonnull)handleErr{
+    return ^(__kindof YTKRequest *_Nullable request){
+        if ([request loadCacheWithError:nil]) {
+            NSDictionary *json = request.responseJSONObject;
 //            NSLog(@"可以 = %@", api.parameters);
 //            NSLog(@"打断点 = %@", [json decodeUnicodeLog]);
         }
@@ -216,7 +216,7 @@
     NSLog(@"请求失败");
 }
 #pragma mark —— 查询广告列表-支持游客：APP首页右下3Banner【GET】
--(void)getAds:(jobsByIDBlock _Nullable)successBlock{
+-(void)getAds:(jobsByResponseModelBlock _Nullable)successBlock{
     FM_promotion_advertise_api *api = FM_promotion_advertise_api.init;
     api.byURLParameters(nil);
     api.byBodyParameters(nil);
@@ -232,7 +232,7 @@
     }];
 }
 #pragma mark —— 用户登出【POST】
--(void)fm_logout:(jobsByIDBlock _Nullable)successBlock{
+-(void)fm_logout:(jobsByResponseModelBlock _Nullable)successBlock{
     FM_user_logout_api *api = FM_user_logout_api.init;
     api.byURLParameters(nil);
     api.byBodyParameters(nil);
@@ -248,10 +248,10 @@
     }];
 }
 #pragma mark —— 存款优惠活动信息【POST】
--(void)depositDiscountActivityRecordByURLParameters:(NSString *)urlParameters
-                                       successBlock:(jobsByIDBlock _Nullable)successBlock{
+-(void)depositDiscountActivityRecordByURLParameters:(NSString *_Nullable)urlParameters
+                                       successBlock:(jobsByYTKChainRequestBlock _Nullable)successBlock{
     FM_GetKYCInfo_api *api = FM_GetKYCInfo_api.init;
-    api.byURLParameters(nil);
+    api.byURLParameters(urlParameters);
     api.byBodyParameters(nil);
     YTKChainRequest *chainReq = YTKChainRequest.new;
     [chainReq addRequest:api

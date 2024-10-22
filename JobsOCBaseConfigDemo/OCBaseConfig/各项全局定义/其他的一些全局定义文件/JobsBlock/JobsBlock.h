@@ -215,6 +215,9 @@ typedef void(^jobsByExcelConfigureViewModelBlock)(JobsExcelConfigureViewModel *_
 @class PopListBaseView;
 typedef void(^jobsByPopListBaseViewBlock)(PopListBaseView *_Nullable data);
 
+@class YTKRequest;
+typedef void(^jobsByYTKRequestBlock)(__kindof YTKRequest *_Nullable request);
+
 @class JobsResponseModel;
 typedef void(^jobsByResponseModelBlock)(JobsResponseModel *_Nullable responseModel);
 typedef id _Nullable(^JobsReturnIDByResponseModelBlock)(JobsResponseModel *_Nullable responseModel);
@@ -273,10 +276,6 @@ typedef void(^jobsByLOTAnimationMJRefreshHeaderBlock)(LOTAnimationMJRefreshHeade
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);
 
-@class YTKBaseRequest;
-typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
-typedef JobsResponseModel *_Nullable(^JobsReturnResponseModelByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
-
 @class GKPhotoBrowser;
 typedef void(^jobsByGKPhotoBrowserBlock)(GKPhotoBrowser *_Nonnull data);
 typedef GKPhotoBrowser *_Nullable(^JobsReturnGKPhotoBrowserByPhotosArrayAndCurrentIndexBlock)(__kindof NSArray * _Nullable photosArray,NSInteger currentIndex);
@@ -294,11 +293,19 @@ typedef void(^jobsByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
 
+@class YTKChainRequest;
+typedef void(^jobsByYTKChainRequestBlock)(YTKChainRequest *_Nullable request);
+
 @class YTKNetworkConfig;
 typedef void(^jobsByYTKNetworkConfigBlock)(__kindof YTKNetworkConfig *_Nullable data);
 
+@class YTKBatchRequest;
+typedef void(^jobsByYTKBatchRequestBlock)(__kindof YTKBatchRequest *_Nullable data);
+
 @class YTKBaseRequest;
 #import "JobsDefineAllEnumHeader.h"
+typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
+typedef JobsResponseModel *_Nullable(^JobsReturnResponseModelByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
 typedef void(^JobsHandelNoSuccessBlock)(HTTPResponseCode data,__kindof YTKBaseRequest *_Nonnull request);
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByVoidBlock)(void);
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByIDBlock)(id _Nullable data);
