@@ -54,6 +54,10 @@ NS_ASSUME_NONNULL_BEGIN
 SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
                              NSString *_Nullable selectorName,// MethodName(self)
                              NSObject *_Nonnull target);
+/// 是否存在这样的属性，有则返回
+-(JobsReturnIDByStringBlock _Nonnull)property;
+/// 是否遵从这样的协议？
+-(JobsReturnBOOLByStringBlock _Nonnull)protocol;
 
 @end
 

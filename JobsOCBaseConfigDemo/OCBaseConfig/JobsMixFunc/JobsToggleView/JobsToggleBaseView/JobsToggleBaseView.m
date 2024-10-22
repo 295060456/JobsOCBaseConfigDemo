@@ -14,7 +14,7 @@
 @property(nonatomic,strong)UIScrollView *bgScroll;
 /// Data
 @property(nonatomic,strong)NSMutableArray <NSString *>*tempTitles;
-@property(nonatomic,strong)NSMutableArray <__kindof UIView *>*tempLabs;
+@property(nonatomic,strong)NSMutableArray <__kindof UIView <BaseViewProtocol>*>*tempLabs;
 @property(nonatomic,strong)NSMutableArray <UIButtonModel *>*taggedNavDatas;
 
 @end
@@ -209,9 +209,9 @@ JobsToggleNavViewProtocolSynthesize
     }return _bgScroll;
 }
 @synthesize scrollContentViews = _scrollContentViews;
--(NSMutableArray <__kindof UIView *>*)scrollContentViews{
+-(NSMutableArray <__kindof UIView<BaseViewProtocol> *>*)scrollContentViews{
     if(!_scrollContentViews){
-        _scrollContentViews = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView *>*_Nullable data) {
+        _scrollContentViews = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView<BaseViewProtocol> *>*_Nullable data) {
             for (UIButtonModel *data1 in self.taggedNavDatas) {
                 data.add(data1.view);
             }
@@ -220,7 +220,7 @@ JobsToggleNavViewProtocolSynthesize
     }return _scrollContentViews;
 }
 
--(void)setScrollContentViews:(NSMutableArray<__kindof UIView *> *)scrollContentViews{
+-(void)setScrollContentViews:(NSMutableArray<__kindof UIView<BaseViewProtocol> *> *)scrollContentViews{
     _scrollContentViews = scrollContentViews;
     self.configBgScroll(self.configSubView(self.taggedNavDatas));
 }
@@ -243,21 +243,22 @@ JobsToggleNavViewProtocolSynthesize
     }return _taggedNavView_bgScroll_offset;
 }
 
--(NSMutableArray<__kindof UIView *>*)tempLabs{
+-(NSMutableArray<__kindof UIView <BaseViewProtocol>*>*)tempLabs{
     if(!_tempLabs){
         @jobs_weakify(self)
-        _tempLabs = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView *>*_Nullable data) {
+        _tempLabs = jobsMakeMutArr(^(NSMutableArray <__kindof UIView <BaseViewProtocol>*>*_Nullable data) {
             @jobs_strongify(self)
             int t = 0;
             for (NSString *title in self.tempTitles) {
-                data.add(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+                data.add(jobsMakeLabel(^(__kindof UILabel<BaseViewProtocol> * _Nullable label) {
                     label.backgroundColor = JobsRandomColor;
                     label.textAlignment = NSTextAlignmentCenter;
                     label.numberOfLines = 0;
                     label.text = toStringByInt(t)
                         .add(@"\n")
                         .add(title);
-                }));t+=1;
+                }));
+                t += 1;
             }
         });
     }return _tempLabs;

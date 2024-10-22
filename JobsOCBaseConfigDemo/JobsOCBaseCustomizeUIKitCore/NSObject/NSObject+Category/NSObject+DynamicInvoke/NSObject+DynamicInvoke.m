@@ -258,5 +258,37 @@ JobsKey(_methodCache)
 -(void)setMethodCache:(NSMutableDictionary<NSString *,NSValue *> *)methodCache{
     Jobs_setAssociatedRETAIN_NONATOMIC(_methodCache, methodCache)
 }
+/// 是否存在这样的属性，有则返回
+-(JobsReturnIDByStringBlock _Nonnull)property {
+    @jobs_weakify(self)
+    return ^id _Nullable(NSString *_Nullable data) {
+        @jobs_strongify(self)
+        SEL selector = NSSelectorFromString(data);
+        // 检查是否响应选择器
+        if ([self respondsToSelector:selector]) {
+            NSMethodSignature *signature = [self methodSignatureForSelector:selector];
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+            [invocation setSelector:selector];
+            [invocation setTarget:self];
+            // 调用选择器
+            [invocation invoke];
+            // 获取返回值
+            if (signature.methodReturnLength) {
+                id __unsafe_unretained returnValue = nil; // 使用 unsafe_unretained 避免内存泄漏
+                [invocation getReturnValue:&returnValue];
+                return returnValue; // 返回调用的结果
+            }
+        }return nil; // 如果对象不响应该属性，返回 nil
+    };
+}
+/// 是否遵从这样的协议？
+-(JobsReturnBOOLByStringBlock _Nonnull)protocol{
+    @jobs_weakify(self)
+    return ^BOOL(NSString *_Nullable data){
+        @jobs_strongify(self)
+        Protocol *protocol = NSProtocolFromString(data);
+        return [self conformsToProtocol:protocol];
+    };
+}
 
 @end
