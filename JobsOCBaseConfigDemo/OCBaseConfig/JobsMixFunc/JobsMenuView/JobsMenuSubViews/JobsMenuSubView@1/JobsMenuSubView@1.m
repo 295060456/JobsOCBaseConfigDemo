@@ -35,7 +35,7 @@
     [super layoutSubviews];
     /// 内部指定圆切角
     [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
-                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{

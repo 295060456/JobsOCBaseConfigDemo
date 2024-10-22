@@ -22,6 +22,13 @@
         
     }return self;
 }
+#pragma mark —— 一些私有方法
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    /// 内部指定圆切角
+    [self appointCornerCutToCircleByRoundingCorners:UIRectCornerAllCorners
+                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+}
 #pragma mark —— BaseViewProtocol
 -(UIViewModel *_Nullable)getViewModel{
     return self.viewModel;
@@ -224,7 +231,7 @@
         
         [_btn jobsBtnLongPressGestureEventBlock:self.buttonModel.longPressGestureEventBlock ? : ^id(id _Nullable weakSelf,
                                                                                                     id _Nullable arg) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
             return nil;
         }];
         
