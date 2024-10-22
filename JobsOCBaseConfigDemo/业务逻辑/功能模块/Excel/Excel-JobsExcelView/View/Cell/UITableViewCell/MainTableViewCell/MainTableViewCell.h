@@ -26,7 +26,7 @@ UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout
 >
 /// UI
-@property(nonatomic,strong)UICollectionView *collectionView;
+//@property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,weak)NSObject <MianTableViewCellDelegate>*delegate;
 

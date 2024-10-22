@@ -9,7 +9,7 @@
 
 @interface JobsPullListAutoSizeView ()
 /// UI
-@property(nonatomic,strong)UITableView *tableview;//content
+//@property(nonatomic,strong)UITableView *tableView;//content
 @property(nonatomic,strong)UIView *targetView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -59,7 +59,7 @@
     [MainWindow addSubview:self];
     self.frame = MainWindow.frame;
     [MainWindow bringSubviewToFront:self];
-    self.tableview.alpha = 1;
+    self.tableView.reloadDatas();
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
@@ -91,27 +91,29 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     return cell;
 }
 #pragma mark —— lazyLoad
--(UITableView *)tableview{
-    if (!_tableview) {
-        _tableview = UITableView.new;
-        _tableview.scrollEnabled = NO;
-        _tableview.cornerCutToCircleWithCornerRadius(JobsWidth(3));//圆润
-        _tableview.delegate = self;
-        _tableview.dataSource = self;
-        [self addSubview:_tableview];
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
+-(UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = UITableView.new;
+        _tableView.scrollEnabled = NO;
+        _tableView.cornerCutToCircleWithCornerRadius(JobsWidth(3));//圆润
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [self addSubview:_tableView];
         
         CGRect d = [self.targetView convertRect:self.targetView.bounds toView:MainWindow];
         CGFloat tableviewHeight = self.listTbVCellHeight * self.dataMutArr.count;
         CGFloat tableviewY = d.origin.y - tableviewHeight - self.listTbVOffset;
 
         //做了适配
-        _tableview.frame = CGRectMake(
+        _tableView.frame = CGRectMake(
                                       self.targetView.centerX + self.listTbVWidth < UIScreen.mainScreen.bounds.size.width ? self.targetView.centerX : self.targetView.centerX - self.listTbVWidth,
                                       tableviewY < 0 ? tableviewY += tableviewHeight : tableviewY,
                                       self.listTbVWidth,//相对固定
                                       tableviewHeight//相对固定
                                       );
-    }return _tableview;
+    }return _tableView;
 }
 
 -(CGFloat)listTbVWidth{

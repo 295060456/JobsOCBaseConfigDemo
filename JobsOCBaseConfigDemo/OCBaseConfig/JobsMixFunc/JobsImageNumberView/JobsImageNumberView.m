@@ -9,7 +9,7 @@
 
 @interface JobsImageNumberView ()
 /// UI
-@property(nonatomic,strong)BaseCollectionView *collectionView;
+//@property(nonatomic,strong)BaseCollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSArray <UIImage *>*dataMutArr;
 
@@ -32,7 +32,7 @@
     return ^(NSArray <UIImage *>*_Nullable model) {
         @jobs_strongify(self)
         self.dataMutArr = model;
-        self.collectionView.alpha = 1;
+        self.collectionView.reloadDatas();
     };
 }
 #pragma mark - UICollectionViewDataSource
@@ -118,6 +118,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return jobsSameEdgeInset(JobsWidth(0));
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 -(BaseCollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = BaseCollectionView.initByLayout(self.verticalLayout);

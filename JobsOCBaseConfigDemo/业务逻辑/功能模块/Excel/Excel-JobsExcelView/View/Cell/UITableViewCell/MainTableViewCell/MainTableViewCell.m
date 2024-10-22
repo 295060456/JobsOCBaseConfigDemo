@@ -92,6 +92,8 @@
     return CGSizeMake(self.viewModel_.itemW, self.viewModel_.itemH);
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
         @jobs_weakify(self)

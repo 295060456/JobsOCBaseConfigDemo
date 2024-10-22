@@ -44,7 +44,7 @@
     
     self.makeNavByAlpha(1);
     
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -110,7 +110,8 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.jobsRichElementsInCellWithModel(@(indexPath.row % 4));
     return cell;
 }
-
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.new;

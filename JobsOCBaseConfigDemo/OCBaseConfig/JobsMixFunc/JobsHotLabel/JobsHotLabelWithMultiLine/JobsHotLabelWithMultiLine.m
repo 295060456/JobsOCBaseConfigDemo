@@ -9,7 +9,7 @@
 
 @interface JobsHotLabelWithMultiLine ()
 /// UI
-@property(nonatomic,strong)UICollectionView *collectionView;
+//@property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <__kindof UICollectionViewCell *>*cvcellMutArr;
 @property(nonatomic,strong)JobsHotLabelWithMultiLineModel *dataModel;
@@ -217,6 +217,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return jobsSameEdgeInset(JobsWidth(5));
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = UICollectionView.initByLayout(self.verticalLayout);

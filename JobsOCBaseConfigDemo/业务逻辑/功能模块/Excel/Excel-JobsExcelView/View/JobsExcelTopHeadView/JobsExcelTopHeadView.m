@@ -10,7 +10,7 @@
 
 @interface JobsExcelTopHeadView()
 
-@property(nonatomic,strong)UICollectionView *collectionView;
+//@property(nonatomic,strong)UICollectionView *collectionView;
 @property(nonatomic,strong)JobsExcelConfigureViewModel *vm;
 
 @end
@@ -23,7 +23,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.collectionView.alpha = 1;
+        self.collectionView.reloadDatas();
     }return self;
 }
 #pragma mark —— BaseViewProtocol
@@ -72,7 +72,7 @@
 }
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    self.viewModel.jobsKVC(HorizontalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
+    self.vm.jobsKVC(HorizontalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
     NSLog(@"JobsExcelTopHeadView - scrollView.contentOffset.x = %f",scrollView.contentOffset.x)
     /// 防止在初始情况下，无意义的往右拉动👉🏻
     if (scrollView.contentOffset.x < 0) scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
@@ -81,6 +81,8 @@
     if(scrollView.contentOffset.x > d) scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
 }
 #pragma mark —— getter and setter
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
         @jobs_weakify(self)

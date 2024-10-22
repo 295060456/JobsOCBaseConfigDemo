@@ -10,7 +10,7 @@
 @interface UITableViewCellEditorVC ()
 /// UI
 @property(nonatomic,strong)BaseButton *editBtn;
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)MsgEditBoardView *msgEditBoardView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <JobsMsgDataModel *>*dataMutArr;
@@ -59,7 +59,7 @@
     });
     self.makeNavByAlpha(1);
     
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
     self.msgEditBoardView.jobsVisible = YES;
 }
 
@@ -228,7 +228,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             });
     }return _editBtn;
 }
-
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

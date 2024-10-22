@@ -9,7 +9,7 @@
 
 @interface AppLanguageVC ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -62,7 +62,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.makeNavByAlpha(1);
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
     UIInterfaceOrientation s = self.getInterfaceOrientation;
     DeviceOrientation d = self.getDeviceOrientation;
@@ -178,6 +178,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     }];return headerView;
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

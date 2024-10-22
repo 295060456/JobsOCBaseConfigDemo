@@ -9,7 +9,7 @@
 
 @interface JobsWalletVC ()
 /// UI
-@property(nonatomic,strong)UICollectionView *collectionView;
+//@property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)TMSCollectionViewLayout *tms_layout;
 @property(nonatomic,strong)NSMutableArray <NSMutableArray <UIViewModel *>*>*dataSourceMutArr;/// Cell的数据源
@@ -50,7 +50,7 @@
     [super viewDidLoad];
     self.makeNavByAlpha(1);
     self.view.backgroundColor = JobsOrangeColor;
-    self.collectionView.alpha = 1;
+    self.collectionView.reloadDatas();
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -159,6 +159,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }return reusableView;
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         _collectionView = [UICollectionView.alloc initWithFrame:CGRectZero collectionViewLayout:self.tms_layout];

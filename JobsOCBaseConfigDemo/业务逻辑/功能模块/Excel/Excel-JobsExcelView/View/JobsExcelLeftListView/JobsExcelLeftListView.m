@@ -10,7 +10,7 @@
 
 @interface JobsExcelLeftListView()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel;
 @property(nonatomic,strong)NSValue *VerticalScrollValue;/**垂直滚动 */
@@ -25,7 +25,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.tableView.alpha = 1;
+        self.tableView.reloadDatas();
     }return self;
 }
 #pragma mark —— BaseViewProtocol
@@ -91,6 +91,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     }
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 - (UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.initWithStylePlain;

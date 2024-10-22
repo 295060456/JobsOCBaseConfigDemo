@@ -20,7 +20,7 @@ UITableViewDelegate
 ,UINavigationControllerDelegate
 >
 
-@property(nonatomic,strong,nullable)UITableView *tableView;
+//@property(nonatomic,strong,nullable)UITableView *tableView;
 
 @end
 

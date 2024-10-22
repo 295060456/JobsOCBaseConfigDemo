@@ -120,7 +120,7 @@ static dispatch_once_t static_choiceStadiumViewOnceToken;
         @jobs_strongify(self)
         self.viewModel = model;
         MakeDataNull
-        self.tableView.alpha = 1;
+        self.tableView.reloadDatas();
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -202,6 +202,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return cell;
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

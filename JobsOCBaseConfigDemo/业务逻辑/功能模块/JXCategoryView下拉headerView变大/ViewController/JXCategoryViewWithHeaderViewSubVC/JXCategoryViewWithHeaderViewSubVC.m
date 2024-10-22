@@ -16,7 +16,7 @@
 }
 /// UI
 @property(nonatomic,strong)BaiShaETProjChoiceStadiumView *choiceStadiumView;
-@property(nonatomic,strong)UICollectionView *collectionView;
+//@property(nonatomic,strong)UICollectionView *collectionView;
 // Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 @property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UICollectionViewCell *>*>*cvcellMutArr;
@@ -55,7 +55,7 @@
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(0);
     
-    self.collectionView.alpha = 1;
+    self.collectionView.reloadDatas();
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -290,7 +290,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         _choiceStadiumView.jobsRichViewByModel(nil);
     }return _choiceStadiumView;
 }
-
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = UICollectionView.initByLayout(self.verticalLayout);

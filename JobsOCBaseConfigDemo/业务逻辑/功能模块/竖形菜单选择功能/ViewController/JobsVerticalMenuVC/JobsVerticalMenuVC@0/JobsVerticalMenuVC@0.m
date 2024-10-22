@@ -9,7 +9,7 @@
 
 @interface JobsVerticalMenuVC_0 ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView; /// 左侧的标题
+//@property(nonatomic,strong)UITableView *tableView; /// 左侧的标题
 @property(nonatomic,strong)BaseButton *customerServiceBtn;
 @property(nonatomic,strong)BaseButton *msgBtn;
 @property(nonatomic,strong)BaseButton *editBtn;
@@ -63,7 +63,7 @@
     self.makeNavByAlpha(1);
     
     self.searchView.alpha = 1;
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
     self.editBtn.alpha = 1;
     self.refreshLeftView();
 
@@ -181,6 +181,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.displayView(self.rightViewArray[indexPath.row]);
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView){
         _tableView = UITableView.initWithStylePlain;

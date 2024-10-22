@@ -15,7 +15,7 @@
 @property(nonatomic,strong)BaseButton *cancelBtn;
 @property(nonatomic,strong)BaseButton *sureBtn;
 @property(nonatomic,strong)UIView *bgView;
-@property(nonatomic,strong)UICollectionView *collectionView;
+//@property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 @property(nonatomic,assign)NSInteger selectedIndex;
@@ -246,6 +246,8 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 #endif
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = UICollectionView.initByLayout(self.verticalLayout);

@@ -9,7 +9,7 @@
 
 @interface TransparentRegionVC ()
 
-@property(nonatomic,strong)UIScrollView *scrollView;
+//@property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UILabel *label;
 
 @end
@@ -82,6 +82,8 @@
     [self.view.layer addSublayer:fillLayer];
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize scrollView = _scrollView;
 -(UIScrollView *)scrollView{
     if (!_scrollView) {
         _scrollView = UIScrollView.new;

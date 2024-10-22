@@ -10,7 +10,7 @@
 @interface JobsIMVC ()
 /// UI
 @property(nonatomic,strong)JobsIMInputview *inputview;
-@property(nonatomic,strong)UITableView *tableView;//显示数据
+//@property(nonatomic,strong)UITableView *tableView;//显示数据
 @property(nonatomic,strong)BaseButton *shareBtn;
 @property(nonatomic,strong)UIColor *bgColour;
 /// data
@@ -61,7 +61,7 @@
     }
 
     self.inputview.alpha = 1;
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -380,7 +380,8 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
         _inputview.jobsRichViewByModel(nil);
     }return _inputview;
 }
-
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

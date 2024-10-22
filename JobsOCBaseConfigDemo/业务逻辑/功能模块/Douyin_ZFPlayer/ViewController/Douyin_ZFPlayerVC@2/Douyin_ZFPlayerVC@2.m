@@ -9,7 +9,7 @@
 
 @interface Douyin_ZFPlayerVC_2 ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ZFPlayerController *player;
 @property(nonatomic,strong)ZFAVPlayerManager *playerManager;
 @property(nonatomic,strong)ZFDouYinControlView *controlView;
@@ -62,7 +62,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
     self.bitsMonitorSuspendLab.alpha = 1;
 }
 
@@ -248,7 +248,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         _bitsMonitorSuspendLab.frame = JobsBitsMonitorSuspendLab.viewFrameByModel(nil);
     }return _bitsMonitorSuspendLab;
 }
-
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 - (UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

@@ -9,7 +9,7 @@
 
 @interface JobsPageView ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSArray <UIViewModel *>*dataArr;
 
@@ -35,7 +35,7 @@
     return ^(NSArray <UIViewModel *>*_Nullable model) {
         @jobs_strongify(self)
         self.dataArr = model;
-        self.tableView.alpha = 1;
+        self.tableView.reloadDatas();
     //    self.backgroundImageView.image = JobsIMG(@"抖动钱包抖币用途");
     //    self.imageView_1.alpha = 1;
     //    self.imageView_2.alpha = 1;
@@ -74,6 +74,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     return cell;
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.new;

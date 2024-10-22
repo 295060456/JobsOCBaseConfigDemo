@@ -9,7 +9,7 @@
 
 @interface Douyin_ZFPlayerVC_1 ()
 
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray <VideoModel_Core *>*__block dataMutArr;
 
 @end
@@ -52,7 +52,7 @@
     self.view.backgroundColor = JobsYellowColor;
     self.makeNavByAlpha(1);
     
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
     
 //    [self monitorScrollView];
 //    [self requestData:NO];
@@ -254,6 +254,8 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
     [cell.getPlayer.currentPlayerManager pause];
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

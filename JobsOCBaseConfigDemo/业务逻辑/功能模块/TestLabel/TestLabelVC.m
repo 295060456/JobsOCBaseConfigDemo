@@ -9,7 +9,7 @@
 
 @interface TestLabelVC ()
 
-@property(nonatomic,strong)UIScrollView *scrollView;
+//@property(nonatomic,strong)UIScrollView *scrollView;
 /// UILabel
 @property(nonatomic,strong)BaseLabel *lab1;///【UILabelShowingType_01】 一行显示。定宽、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
 @property(nonatomic,strong)BaseLabel *lab2;///【UILabelShowingType_02】 一行显示普通文本。定宽、定字体。多余部分scrollerView ❤️集成@implementation UILabel (AutoScroll)❤️
@@ -92,6 +92,8 @@
     [super viewWillDisappear:animated];
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize scrollView = _scrollView;
 -(UIScrollView *)scrollView{
     if (!_scrollView) {
         _scrollView = UIScrollView.new;

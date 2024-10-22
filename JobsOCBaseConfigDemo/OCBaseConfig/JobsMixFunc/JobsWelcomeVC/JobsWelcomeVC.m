@@ -9,7 +9,7 @@
 
 @interface JobsWelcomeVC ()
 // UI
-@property(nonatomic,strong)UIScrollView *scrollView;
+//@property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UIPageControl *pageControl;
 // Data
 @property(nonatomic,strong)NSMutableArray <NSString *>*dataMutArr;
@@ -111,7 +111,8 @@
         }];
     }return _pageControl;
 }
-
+/// BaseViewProtocol
+@synthesize scrollView = _scrollView;
 -(UIScrollView *)scrollView{
     if (!_scrollView) {
         _scrollView = [UIScrollView.alloc initWithFrame:UIScreen.mainScreen.bounds];

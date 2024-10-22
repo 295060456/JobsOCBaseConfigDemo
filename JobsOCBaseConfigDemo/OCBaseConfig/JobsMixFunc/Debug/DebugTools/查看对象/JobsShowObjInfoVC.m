@@ -9,7 +9,7 @@
 
 @interface JobsShowObjInfoVC ()
 /// UI
-@property(nonatomic,strong)BaseTableView *tableView;
+//@property(nonatomic,strong)BaseTableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -45,7 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.makeNavByAlpha(1);
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -103,6 +103,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.alpha = self.isVisible;
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(BaseTableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

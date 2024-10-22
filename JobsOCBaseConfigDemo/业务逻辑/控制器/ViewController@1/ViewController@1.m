@@ -10,7 +10,7 @@
 BOOL ISLogin;
 @interface ViewController_1 ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UILabel *tableFooterView;
 @property(nonatomic,strong)BaseButton *userHeadBtn;
 /// Data
@@ -75,7 +75,7 @@ BOOL ISLogin;
     });
     self.makeNavByAlpha(1);
     
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
     self.suspendBtn.alpha = 1;
     self.objectBlock = ^(id data) {
         @jobs_strongify(self)
@@ -184,7 +184,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _userHeadBtn.Size = CGSizeMake(JobsWidth(32), JobsWidth(32));
     }return _userHeadBtn;
 }
-
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

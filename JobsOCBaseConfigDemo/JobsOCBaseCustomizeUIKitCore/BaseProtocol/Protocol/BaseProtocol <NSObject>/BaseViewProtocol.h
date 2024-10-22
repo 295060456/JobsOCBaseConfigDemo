@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseViewProtocol <BaseProtocol>
 @optional
+@property(nonatomic,strong)__kindof UICollectionView *collectionView;
+@property(nonatomic,strong)__kindof UITableView *tableView;
+@property(nonatomic,strong)__kindof UIScrollView *scrollView;
 /// 是否允许托拽手势
 @property(nonatomic,assign)BOOL isAllowDrag;
 /// 退出当前页面的时候，除了当前页面出栈以外，你额外需要做的事情
@@ -147,11 +150,13 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
 typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewProtocol> _Nullable data);
-
 #pragma mark —— @synthesize BaseViewProtocol
 #ifndef BaseViewProtocol_synthesize
 #define BaseViewProtocol_synthesize \
 \
+@synthesize collectionView = _collectionView;\
+@synthesize tableView = _tableView;\
+@synthesize scrollView = _scrollView;\
 @synthesize isAllowDrag = _isAllowDrag;\
 @synthesize jobsBackBlock = _jobsBackBlock;\
 @synthesize layoutSubviewsRectCorner = _layoutSubviewsRectCorner;\
@@ -171,6 +176,9 @@ typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewPro
 #ifndef BaseViewProtocol_dynamic
 #define BaseViewProtocol_dynamic \
 \
+@dynamic collectionView;\
+@dynamic tableView;\
+@dynamic scrollView;\
 @dynamic isAllowDrag;\
 @dynamic jobsBackBlock;\
 @dynamic layoutSubviewsRectCorner;\

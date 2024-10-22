@@ -9,7 +9,7 @@
 
 @interface MyTableTableVC ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)BaiShaETProjChoiceStadiumTBVHeaderView *tbvHeaderView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -48,7 +48,7 @@
     
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -286,6 +286,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return cell;
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.initWithStyleGrouped;

@@ -9,7 +9,7 @@
 
 @interface LandscapeSwitchVC ()
 /// UI
-@property(nonatomic,strong)BaseCollectionView *collectionView;
+//@property(nonatomic,strong)BaseCollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -47,7 +47,7 @@
     @jobs_weakify(self)
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
-    self.collectionView.alpha = 1;
+    self.collectionView.reloadDatas();
     self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
         @jobs_strongify(self)
         NSLog(@"退出页面的逻辑");
@@ -266,6 +266,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return jobsSameEdgeInset(JobsWidth(10));
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 -(BaseCollectionView *)collectionView{
     if (!_collectionView) {
         @jobs_weakify(self)

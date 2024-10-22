@@ -9,8 +9,9 @@
 #import "JobsExcelContentView.h"
 
 @interface JobsExcelContentView()
-
-@property(nonatomic,strong)UITableView *tableView;
+/// UI
+//@property(nonatomic,strong)UITableView *tableView;
+/// Data
 @property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel;
 @property(nonatomic,assign)CGPoint contentOffenset;
 
@@ -25,7 +26,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.tableView.alpha = 1;
+        self.tableView.reloadDatas();
     }return self;
 }
 #pragma mark —— BaseViewProtocol
@@ -73,9 +74,7 @@
     cell.indexPath = indexPath;
     cell.jobsRichElementsInCellWithModel(self.viewModel);
     cell.backgroundColor = cell.contentView.backgroundColor = indexPath.row % 2 ? self.viewModel.cor1 : self.viewModel.cor2;
-    NSMutableArray <UIButtonModel *>*dataArr = self.viewModel.contentArr[indexPath.row];
-    NSLog(@"KKK0 = %ld-%@",(long)indexPath.row + 1,dataArr[0].text);
-    cell.jobsRichElementsInCellWithModel2(dataArr);
+    cell.jobsRichElementsInCellWithModel2(self.viewModel.contentArr[indexPath.row]);
     return cell;
 }
 #pragma mark —— UIScrollViewDelegate
@@ -104,6 +103,8 @@
     }];
 }
 #pragma mark —— LazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 - (UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.initWithStylePlain;

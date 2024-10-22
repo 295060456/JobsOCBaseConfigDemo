@@ -9,7 +9,7 @@
 
 @interface PicToStrStoreVC ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UILabel *tableFooterView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
@@ -49,7 +49,7 @@
     
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
 //    [self.bgImageView removeFromSuperview];
 }
 
@@ -127,6 +127,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                   cell:cell];
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

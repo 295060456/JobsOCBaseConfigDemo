@@ -10,7 +10,7 @@
 @interface JobsSearchVC ()
 /// UI
 @property(nonatomic,strong)BaseButton *scanBtn;
-@property(nonatomic,strong)BaseTableView *tableView;
+//@property(nonatomic,strong)BaseTableView *tableView;
 @property(nonatomic,strong)JobsSearchBar *jobsSearchBar;
 @property(nonatomic,strong)JobsDropDownListView *dropDownListView;
 /// Data
@@ -75,7 +75,7 @@
 //    self.makeNavByAlpha(1);
     
     self.getTabBar.hidden = YES;
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -354,6 +354,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.img = JobsIMG(@"删除");
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(BaseTableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

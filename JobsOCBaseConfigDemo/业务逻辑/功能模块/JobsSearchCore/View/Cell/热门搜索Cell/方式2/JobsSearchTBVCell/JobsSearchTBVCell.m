@@ -9,7 +9,7 @@
 
 @interface JobsSearchTBVCell ()
 /// UI
-@property(nonatomic,strong)UICollectionView *collectionView;
+//@property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 
 @end
@@ -43,7 +43,7 @@ UIViewModelProtocol_synthesize
         self->_collectionView = nil;
         if (model) {
             self.viewModelMutArr = (NSMutableArray *)model;
-            self.collectionView.alpha = 1;
+            self.collectionView.reloadDatas();
         }
     };
 }
@@ -133,6 +133,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsZero;
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = UICollectionView.initByLayout(self.verticalLayout);

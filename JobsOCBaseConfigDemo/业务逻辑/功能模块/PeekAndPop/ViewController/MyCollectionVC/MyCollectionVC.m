@@ -9,7 +9,7 @@
 
 @interface MyCollectionVC ()
 /// UI
-@property(nonatomic,strong)UICollectionView *collectionView;
+//@property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -46,7 +46,7 @@
     
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
-    self.collectionView.alpha = 1;
+    self.collectionView.reloadDatas();
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -277,6 +277,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return jobsSameEdgeInset(JobsWidth(16));
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = UICollectionView.initByLayout(self.verticalLayout);

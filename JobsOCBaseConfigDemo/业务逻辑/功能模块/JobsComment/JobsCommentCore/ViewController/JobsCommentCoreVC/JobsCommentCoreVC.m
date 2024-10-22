@@ -10,7 +10,7 @@
 @interface JobsCommentCoreVC ()
 /// UI
 @property(nonatomic,strong)JobsCommentTitleHeaderView *titleHeaderView;
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)JobsCommentModel *mjModel;
 @property(nonatomic,strong)JobsCommentModel *yyModel;
@@ -58,7 +58,7 @@
     self.gk_navigationBar.jobsVisible = YES;
     
     self.titleHeaderView.alpha = 1;
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -207,7 +207,8 @@ heightForHeaderInSection:(NSInteger)section{///  👌
         }];
     }return _titleHeaderView;
 }
-
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

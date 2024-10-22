@@ -9,7 +9,7 @@
 
 @interface ThreeClassCell()
 /// UI
-@property(nonatomic,strong)UICollectionView *collectionView;
+//@property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,assign)CGFloat sectionInsetTop;
 @property(nonatomic,assign)CGFloat sectionInsetLeft;
@@ -61,7 +61,7 @@
         @jobs_strongify(self)
         self.dataMutArr = model;
         if (self.dataMutArr) {
-            self.collectionView.alpha = 1;
+            self.collectionView.reloadDatas();
         }
     };
 }
@@ -98,7 +98,8 @@
                                                     self.sectionInsetRight);
     }return _flowLayout;
 }
-
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 -(UICollectionView *)collectionView{
     if (!_collectionView){
         _collectionView = UICollectionView.initByLayout(self.flowLayout);

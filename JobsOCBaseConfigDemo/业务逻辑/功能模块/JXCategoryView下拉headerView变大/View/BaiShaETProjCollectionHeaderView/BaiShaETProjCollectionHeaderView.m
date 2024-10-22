@@ -14,7 +14,7 @@
 @property(nonatomic,strong)UILabel *leftLab;
 @property(nonatomic,strong)UILabel *rightLab;
 @property(nonatomic,strong)JobsAnimationLabel *animationLab;
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
 @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
@@ -91,7 +91,7 @@ static dispatch_once_t static_collectionHeaderViewOnceToken;
         self.leftLab.alpha = 1;
         self.rightLab.alpha = 1;
         
-        self.tableView.alpha = 1;
+        self.tableView.reloadDatas();
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -234,7 +234,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _rightLab.makeLabelByShowingType(UILabelShowingType_03);
     }return _rightLab;
 }
-
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.initWithStylePlain;

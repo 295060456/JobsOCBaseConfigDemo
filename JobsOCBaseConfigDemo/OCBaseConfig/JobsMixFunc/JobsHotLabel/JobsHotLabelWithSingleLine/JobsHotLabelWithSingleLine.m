@@ -12,7 +12,7 @@
     CGFloat width;
 }
 /// UI
-@property(nonatomic,strong)UIScrollView *scrollView;/// 可以横向滚动的滚动视图（所有控件加在这上面）
+//@property(nonatomic,strong)UIScrollView *scrollView;/// 可以横向滚动的滚动视图（所有控件加在这上面）
 @property(nonatomic,strong)UIStackView *stackView;/// 放在滚动视图上，可以滚动的UIStackView
 @property(nonatomic,strong)NSMutableArray <UIButton *>*btnMutArr;
 /// Data
@@ -239,7 +239,8 @@
         }];
     }return _stackView;
 }
-
+/// BaseViewProtocol
+@synthesize scrollView = _scrollView;
 -(UIScrollView *)scrollView{
     if (!_scrollView) {
         _scrollView = UIScrollView.new;

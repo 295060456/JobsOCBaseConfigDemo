@@ -9,7 +9,7 @@
 
 @interface JobsVerticalMenuMainVC ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
 @property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutArr;
@@ -47,7 +47,7 @@
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
 //    [self.bgImageView removeFromSuperview];
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -226,6 +226,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                      dy:JobsWidth(0)];
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.initWithStylePlain;

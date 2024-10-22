@@ -9,9 +9,8 @@
 
 @interface JobsVerticalMenuVC_2 ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;///  左侧的标题
-@property(nonatomic,strong)UICollectionView *collectionView; /// 右侧的内容
-@property(nonatomic,strong)UICollectionViewFlowLayout *flowLayout;
+//@property(nonatomic,strong)UITableView *tableView;///  左侧的标题
+//@property(nonatomic,strong)UICollectionView *collectionView; /// 右侧的内容
 @property(nonatomic,strong)BaseButton *customerServiceBtn;
 @property(nonatomic,strong)BaseButton *msgBtn;
 @property(nonatomic,strong)BaseButton *editBtn;
@@ -72,9 +71,9 @@
     self.makeNavByAlpha(1);
     
     self.searchView.alpha = 1;
-    self.tableView.alpha = 1;
+    self.tableView.reloadDatas();
     self.editBtn.alpha = 1;
-    self.collectionView.alpha = 1;
+    self.collectionView.reloadDatas();
     self.refreshLeftView();
 }
 
@@ -328,6 +327,8 @@ referenceSizeForFooterInSection:(NSInteger)section{
     return CGSizeMake(self.collectionView.width, [self getCellHeight:(NSMutableArray *)[self.rightDataArray objectAtIndex:indexPath.section].childrenList]);
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView){
         _tableView = UITableView.initWithStylePlain;
@@ -342,17 +343,13 @@ referenceSizeForFooterInSection:(NSInteger)section{
         [self.view addSubview:_tableView];
     }return _tableView;
 }
-
--(UICollectionViewFlowLayout *)flowLayout{
-    if (!_flowLayout) {
-        _flowLayout = UICollectionViewFlowLayout.new;
-        _flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    }return _flowLayout;
-}
-
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 -(UICollectionView *)collectionView{
     if (!_collectionView){
-        _collectionView = UICollectionView.initByLayout(self.flowLayout);
+        _collectionView = UICollectionView.initByLayout(jobsMakeVerticalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
+            
+        }));
         _collectionView.frame = CGRectMake(self.tableView.right,
                                            self.tableView.top,
                                            JobsMainScreen_WIDTH() - self.tableView.width,
@@ -467,7 +464,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
     //            toast(JobsInternationalization(@"编辑"));
                 self.popupParameter.dragEnable = YES;
                 self.popupParameter.disuseBackgroundTouchHide = NO;
-                [self.popupView tf_showSlide:NSObject.mainWindow()
+                [self.popupView tf_showSlide:MainWindow
                                    direction:PopupDirectionBottom
                                   popupParam:self.popupParameter];
             }).onLongPressGesture(^(id data){

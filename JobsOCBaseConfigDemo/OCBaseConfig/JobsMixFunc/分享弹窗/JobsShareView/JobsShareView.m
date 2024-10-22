@@ -9,7 +9,7 @@
 
 @interface JobsShareView ()
 /// UI
-@property(nonatomic,strong)BaseCollectionView *collectionView;
+//@property(nonatomic,strong)BaseCollectionView *collectionView;
 @property(nonatomic,strong)BaseButton *cancelBtn;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -81,7 +81,7 @@ static dispatch_once_t static_shareViewOnceToken;
         @jobs_strongify(self)
         self.viewModel = model;
         self.Size = JobsShareView.viewSizeByModel(nil);
-        self.collectionView.alpha = 1;
+        self.collectionView.reloadDatas();
         self.cancelBtn.alpha = 1;
     };
 }
@@ -231,7 +231,8 @@ insetForSectionAtIndex:(NSInteger)section {
         }];
     }return _cancelBtn;
 }
-
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
 -(BaseCollectionView *)collectionView{
     if (!_collectionView) {
         @jobs_weakify(self)

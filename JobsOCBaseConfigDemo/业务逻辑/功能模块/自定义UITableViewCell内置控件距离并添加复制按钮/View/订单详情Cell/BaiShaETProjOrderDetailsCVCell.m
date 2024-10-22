@@ -10,7 +10,7 @@
 @interface BaiShaETProjOrderDetailsCVCell ()
 /// UI
 @property(nonatomic,strong)UIButton *jobsCopyBtn;
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 
 @end
 
@@ -46,7 +46,7 @@
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model ? : UIViewModel.new;
-        self.tableView.alpha = 1;
+        self.tableView.reloadDatas();
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -143,7 +143,8 @@ heightForFooterInSectionByModel:(NSInteger)section{
         _jobsCopyBtn.backgroundColor = HEXCOLOR(0xEAEBED);
     }return _jobsCopyBtn;
 }
-
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.initWithStylePlain;

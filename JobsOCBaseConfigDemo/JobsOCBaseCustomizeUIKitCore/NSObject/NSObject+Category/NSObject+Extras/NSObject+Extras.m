@@ -320,15 +320,15 @@
 }
 /// UICollectionViewFlowLayout
 -(__kindof UICollectionViewFlowLayout *_Nonnull)verticalLayout{
-    UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    return layout;
+    return jobsMakeVerticalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
+        
+    });
 }
 
 -(__kindof UICollectionViewFlowLayout *_Nonnull)horizontalLayout{
-    UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    return layout;
+    return jobsMakeHorizontalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
+        
+    });
 }
 /// JSON对象转NSData
 -(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject{

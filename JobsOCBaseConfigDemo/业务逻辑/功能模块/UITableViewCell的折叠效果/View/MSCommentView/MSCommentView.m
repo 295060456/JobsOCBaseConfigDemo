@@ -9,7 +9,7 @@
 
 @interface MSCommentView ()
 /// UI
-@property(nonatomic,strong)BaseTableView *tableView;
+//@property(nonatomic,strong)BaseTableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <MSCommentModel *>*dataMutArr;
 
@@ -86,7 +86,7 @@ static dispatch_once_t static_commentViewOnceToken;
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-        self.tableView.alpha = 1;
+        self.tableView.reloadDatas();
     };
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
@@ -175,6 +175,8 @@ willDisplayHeaderView:(UIView *)view
     [self headerView:commentTableHeaderFooterView section:section];
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(BaseTableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)

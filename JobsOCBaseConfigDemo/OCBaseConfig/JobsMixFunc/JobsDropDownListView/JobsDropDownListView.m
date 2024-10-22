@@ -11,7 +11,7 @@
     CGFloat CellHeight;
 }
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)Class <UITableViewCellProtocol>tbvCell_cls;
 /// Data
 @property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
@@ -27,14 +27,14 @@
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.tableView.alpha = 1;
+        self.tableView.reloadDatas();
         self.backgroundColor = JobsClearColor;
     }return self;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.tableView.alpha = 1;
+        self.tableView.reloadDatas();
         self.backgroundColor = JobsClearColor;
     }return self;
 }
@@ -42,7 +42,7 @@
 -(instancetype)initWithTableViewClass:(Class <UITableViewCellProtocol>_Nonnull)tableViewClass{
     if (self = [super init]) {
         self.tbvCell_cls = tableViewClass;
-        self.tableView.alpha = 1;
+        self.tableView.reloadDatas();
         self.backgroundColor = JobsClearColor;
     }return self;
 }
@@ -70,7 +70,7 @@
         @jobs_strongify(self)
         if ([model isKindOfClass:NSArray.class]) {
             self.dataMutArr = model;
-            self.tableView.alpha = 1;
+            self.tableView.reloadDatas();
         }
     };
 }
@@ -112,6 +112,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                   cell:cell];
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.new;

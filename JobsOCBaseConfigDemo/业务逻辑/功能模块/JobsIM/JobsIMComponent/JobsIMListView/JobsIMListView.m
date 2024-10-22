@@ -9,7 +9,7 @@
 
 @interface JobsIMListView ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
+//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIColor *bgColour;
 /// Data
 @property(nonatomic,strong)NSMutableArray <JobsIMListDataModel *>*jobsIMListMutArr;
@@ -33,7 +33,7 @@
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-        self.tableView.alpha = 1;
+        self.tableView.reloadDatas();
     };
 }
 #pragma mark —— 一些私有方法
@@ -81,6 +81,8 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Tapped accessory button");
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
