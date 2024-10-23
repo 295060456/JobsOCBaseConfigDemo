@@ -348,7 +348,7 @@
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
-        //如果是子父关系
+        /// 如果是子父关系
         if ([self.superview isKindOfClass:view.class]) {
             self.center = CGPointMake(view.center.x - view.x, self.center.y);
         }else{
@@ -361,7 +361,7 @@
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
-        //如果是子父关系
+        /// 如果是子父关系
          if ([self.superview isKindOfClass:view.class]) {
              self.center = CGPointMake(self.center.x, view.center.y - view.y);
          }else{
@@ -374,7 +374,7 @@
     @jobs_weakify(self);
     return ^(UIView *view){
         @jobs_strongify(self);
-        //如果是子父关系
+        /// 如果是子父关系
         if ([self.superview isKindOfClass:view.class]) {
             self.center = CGPointMake(view.center.x - view.x , view.center.y - view.y);
         }else{
@@ -743,8 +743,10 @@
 #pragma mark —— @property(nonatomic,assign)CGFloat width
 -(CGFloat)width{
     if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+        /// 横屏的时候，谁大谁就是宽
         return MAX(self.frame.size.width, self.frame.size.height);
     }else{
+        /// 竖屏的时候，谁小谁就是宽
         return MIN(self.frame.size.width, self.frame.size.height);
     }
 }
@@ -755,8 +757,10 @@
 #pragma mark —— @property(nonatomic,assign)CGFloat height
 -(CGFloat)height{
     if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+        /// 横屏的时候，谁小谁就是高
         return MIN(self.frame.size.width, self.frame.size.height);
     }else{
+        /// 竖屏的时候，谁大谁就是高
         return MAX(self.frame.size.width, self.frame.size.height);
     }
 }

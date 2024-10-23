@@ -20,3 +20,9 @@
 -(jobsByNSIntegerBlock _Nonnull)selectingOneTagWithIndex;
 
 @end
+
+NS_INLINE __kindof JobsToggleNavView *_Nonnull jobsMakeToggleNavView(jobsByToggleNavViewBlock _Nonnull block){
+    JobsToggleNavView *data = JobsToggleNavView.alloc.init;
+    if (block) block(data);
+    return data;
+}

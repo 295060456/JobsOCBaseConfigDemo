@@ -69,6 +69,7 @@ JobsToggleNavViewProtocolSynthesize
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^(id _Nullable data){
+        /// 默认的尺寸
         return CGSizeMake(JobsWidth(454),JobsWidth(155));
     };
 }
@@ -93,6 +94,53 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 #pragma mark —— 一些私有方法
+/// 通过传入的数据源来决定导航栏的尺寸（size）
+-(JobsReturnCGSizeByArrBlock _Nonnull)makeTaggedNavViewSizeBy{
+    return ^CGSize(NSArray <__kindof UIView<BaseViewProtocol> *>*_Nullable arr){
+        @jobs_weakify(self)
+        return jobsMakeCGSizeByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+            @jobs_strongify(self)
+            data.jobsWidth = self.taggedNavSingleBtn_size.width * arr.count +
+            self.btn_each_offset *(arr.count - 1);
+            data.jobsHeight = self.taggedNavSingleBtn_size.height;
+        });
+    };
+}
+/// 数据源创建整个导航栏
+-(JobsReturnIDByArrBlock _Nonnull)makeTaggedNavViewBy{
+    @jobs_weakify(self)
+    return ^JobsToggleNavView *_Nullable(NSArray <__kindof UIView<BaseViewProtocol>*>*_Nullable data){
+        return jobsMakeToggleNavView(^(__kindof JobsToggleNavView * _Nullable taggedNavView) {
+            @jobs_strongify(self)
+            taggedNavView.btn_each_offset = self.btn_each_offset;/// 滑块之间的距离
+            taggedNavView.frame = jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data1) {
+                @jobs_strongify(self)
+                data1.jobsX = 0;
+                data1.jobsY = 0;
+                data1.jobsWidth = self.makeTaggedNavViewSizeBy(data).width ? : self.taggedNavView_width;
+                data1.jobsHeight = self.makeTaggedNavViewSizeBy(data).height ? : self.taggedNavView_height;
+            });
+            taggedNavView.sliderColor = self.sliderColor;/// 滑块颜色
+            taggedNavView.sliderW = self.sliderW;/// 滑块宽度
+            taggedNavView.sliderH = JobsWidth(1);/// 滑块高度
+            taggedNavView.backgroundColor = self.taggedNavViewBgColor;
+            [self addSubview:taggedNavView];
+            /// 切换联动
+            [taggedNavView actionObjectBlock:^(id _Nullable data1) {
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(data1);
+                if(KindOfBaseButtonCls(data1)){
+                    self.currentSelectedBtn = (BaseButton *)data1;
+                    /// 由 self.bgScroll 驱动
+                    self.bgScroll.contentOffset = CGPointMake(self.bgScroll.width * self.currentSelectedBtn.index,0);
+                    NSLog(@"当前滑动的index = %ld",(long)self.currentSelectedBtn.index);
+                    self.taggedNavView.selectingOneTagWithIndex(self.currentSelectedBtn.index);
+                }
+            }];
+            taggedNavView.jobsRichViewByModel(self.taggedNavDatas);
+        });
+    };
+}
 /// 刷新数据源【滑动的子View】
 -(JobsReturnArrayByArrayBlock _Nonnull)refreshScrollContentViews{
     @jobs_weakify(self)
@@ -166,36 +214,8 @@ JobsToggleNavViewProtocolSynthesize
 #pragma mark —— lazyLoad
 -(JobsToggleNavView *)taggedNavView{
     if(!_taggedNavView){
-        @jobs_weakify(self)
-        _taggedNavView = JobsToggleNavView.new;
-        _taggedNavView.btn_each_offset = self.btn_each_offset;
-        _taggedNavView.frame = jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
-            @jobs_strongify(self)
-            data.jobsX = 0;
-            data.jobsY = 0;
-            data.jobsWidth = self.taggedNavView_width;
-            data.jobsHeight = self.taggedNavView_height;
-        });
-        _taggedNavView.sliderColor = self.sliderColor;
-        _taggedNavView.sliderW = self.sliderW;
-        _taggedNavView.sliderH = JobsWidth(1);
-        _taggedNavView.backgroundColor = self.taggedNavViewBgColor;
-        [self addSubview:_taggedNavView];
-        /// 切换联动
-        [_taggedNavView actionObjectBlock:^(id _Nullable data) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(data);
-            if(KindOfBaseButtonCls(data)){
-                self.currentSelectedBtn = (BaseButton *)data;
-                /// 由 self.bgScroll 驱动
-                self.bgScroll.contentOffset = CGPointMake(self.bgScroll.width * self.currentSelectedBtn.index,0);
-                NSLog(@"当前滑动的index = %ld",(long)self.currentSelectedBtn.index);
-                self.taggedNavView.selectingOneTagWithIndex(self.currentSelectedBtn.index);
-            }
-        }];
-    }
-    _taggedNavView.jobsRichViewByModel(self.taggedNavDatas);
-    return _taggedNavView;
+        _taggedNavView = self.makeTaggedNavViewBy(nil);
+    }return _taggedNavView;
 }
 
 -(UIScrollView *)bgScroll{
@@ -206,7 +226,7 @@ JobsToggleNavViewProtocolSynthesize
         _bgScroll.frame = jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
             @jobs_strongify(self)
             data.jobsX = 0;
-            data.jobsY = self.taggedNavView_height + self.taggedNavView_bgScroll_offset;
+            data.jobsY = self.taggedNavView.height + self.taggedNavView_bgScroll_offset;
             data.jobsWidth = self.viewSizeByModel(nil).width;
             data.jobsHeight = self.viewSizeByModel(nil).height - (self.taggedNavView_height + self.taggedNavView_bgScroll_offset);
         });
@@ -226,8 +246,7 @@ JobsToggleNavViewProtocolSynthesize
             for (UIButtonModel *data1 in self.taggedNavDatas) {
                 data.add(data1.view);
             }
-        });
-        if(!_scrollContentViews.count) _scrollContentViews = self.tempLabs;
+        });if(!_scrollContentViews.count) _scrollContentViews = self.tempLabs;
     }return _scrollContentViews;
 }
 
@@ -235,6 +254,12 @@ JobsToggleNavViewProtocolSynthesize
     if(!_taggedNavView_width){
         _taggedNavView_width = self.viewSizeByModel(nil).width;
     }return _taggedNavView_width;
+}
+
+-(CGSize)taggedNavSingleBtn_size{
+    if(jobsEqualToZeroSize(_taggedNavSingleBtn_size)){
+        _taggedNavSingleBtn_size = CGSizeMake(JobsWidth(80), self.taggedNavView_height);
+    }return _taggedNavSingleBtn_size;
 }
 
 -(CGFloat)taggedNavView_height{

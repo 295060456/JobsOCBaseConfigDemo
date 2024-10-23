@@ -215,6 +215,9 @@ typedef void(^jobsByExcelConfigureViewModelBlock)(JobsExcelConfigureViewModel *_
 @class PopListBaseView;
 typedef void(^jobsByPopListBaseViewBlock)(PopListBaseView *_Nullable data);
 
+@class JobsToggleNavView;
+typedef void(^jobsByToggleNavViewBlock)(__kindof JobsToggleNavView *_Nullable taggedNavView);
+
 @class YTKRequest;
 typedef void(^jobsByYTKRequestBlock)(__kindof YTKRequest *_Nullable request);
 
@@ -230,7 +233,6 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock2)(JobsReturnIDByVoidBl
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBlock _Nullable data);
 
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable data);
-
 #pragma mark —— 涉及到第三方类的Block定义
 @class MJRefreshNormalHeader;
 typedef MJRefreshNormalHeader *_Nonnull(^JobsReturnMJRefreshNormalHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);

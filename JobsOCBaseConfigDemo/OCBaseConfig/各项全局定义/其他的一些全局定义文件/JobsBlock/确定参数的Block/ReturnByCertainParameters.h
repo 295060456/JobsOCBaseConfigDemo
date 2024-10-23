@@ -19,6 +19,7 @@ typedef id _Nullable(^JobsReturnIDByCenterBlock)(CGFloat x,CGFloat y);
 
 typedef id _Nullable(^JobsReturnIDByIDBlock)(id _Nullable data);
 typedef id _Nullable(^JobsReturnIDByObjBlock)(NSObject *_Nullable data);
+typedef id _Nullable(^JobsReturnIDByArrBlock)(NSArray *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByDataBlock)(NSData *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByStringBlock)(NSString *_Nullable data);
 typedef id _Nonnull(^JobsReturnIDBySaltStrBlock)(NSString *_Nullable salt);
@@ -265,6 +266,7 @@ typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByVoidBlock)(void);
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByIDBlock)(id _Nullable data);
 
 typedef CGSize(^JobsReturnCGSizeByVoidBlock)(void);
+typedef CGSize(^JobsReturnCGSizeByArrBlock)(NSArray *_Nullable data);
 typedef CGSize(^JobsReturnCGSizeByIDBlock)(id _Nullable data);
 typedef CGSize(^JobsReturnSizeByBOOLBlock)(BOOL data);
 typedef CGSize(^JobsReturnSizeByIntBlock)(int data);
@@ -293,6 +295,7 @@ typedef CGSize(^JobsReturnCGSizeByNineIDBlock)Jobs_9_Arguments;
 typedef CGSize(^JobsReturnCGSizeByTenIDBlock)Jobs_10_Arguments;
 
 typedef CGRect(^JobsReturnCGRectByVoidBlock)(void);
+typedef CGRect(^JobsReturnCGRectByArrBlock)(__kindof NSArray <__kindof UIView *>*_Nullable arr);
 typedef CGRect(^JobsReturnRectByNSIntegerBlock)(NSInteger data);
 typedef CGRect(^JobsReturnRectByUIntegerBlock)(NSUInteger data);
 typedef CGRect(^JobsReturnRectByCGFloatBlock)(CGFloat data);
