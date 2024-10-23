@@ -61,9 +61,9 @@ JobsToggleNavViewProtocolSynthesize
         @jobs_strongify(self)
         self.taggedNavDatas = model;
         self.taggedNavView.alpha = 1;
-        [self makeScrollContentViewsFrame];
-        self.configBgScroll(self.configSubView(model)).alpha = 1;
-        self.switchViewsBy(0);
+        self.makeScrollContentViewsFrameBy(self.refreshScrollContentViews(model));/// 可滑动子View的Frame
+        self.configBgScroll(self.refreshScrollContentViews(model)).alpha = 1;/// 配置显示的Scroll
+        self.switchViewsBy(0);/// 当前显示的子View
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -83,6 +83,7 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 #pragma mark —— 一些公共方法
+/// 当前显示的子View
 -(jobsByNSIntegerBlock _Nonnull)switchViewsBy{
     @jobs_weakify(self)
     return ^(NSInteger index){
@@ -92,16 +93,19 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 #pragma mark —— 一些私有方法
-/// 配置显示的滑动View
--(JobsReturnArrayByArrayBlock _Nonnull)configSubView{
+/// 刷新数据源【滑动的子View】
+-(JobsReturnArrayByArrayBlock _Nonnull)refreshScrollContentViews{
     @jobs_weakify(self)
-    return ^(__kindof NSArray *_Nullable data){
+    return ^__kindof NSArray <__kindof UIView<BaseViewProtocol> *>*_Nullable(__kindof NSArray <UIButtonModel *>*_Nullable data){
         @jobs_strongify(self)
-        NSMutableArray *mutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
+        NSMutableArray <__kindof UIView<BaseViewProtocol> *>*mutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView *>*_Nullable data1) {
             for (UIButtonModel *buttonModel in data) {
                 data1.add(buttonModel.view);
             }
-        });return mutArr.count ? mutArr : self.scrollContentViews;
+        });
+        /// 如果新数据源有值则用最新数据，否则使用原有的数据源
+        if(mutArr.count) self.scrollContentViews = mutArr;
+        return self.scrollContentViews;
     };
 }
 /// 配置显示的Scroll
@@ -109,6 +113,7 @@ JobsToggleNavViewProtocolSynthesize
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(NSMutableArray <__kindof UIView *>*data){
         @jobs_strongify(self)
+        /// 每次进行配置的时候，都需要先清理以前创建的子View
         if(self.bgScroll.subviews.count){
             for (__kindof UIView *subview in self.bgScroll.subviews) {
                 [subview removeFromSuperview];
@@ -119,16 +124,20 @@ JobsToggleNavViewProtocolSynthesize
         }return self.bgScroll;
     };
 }
-
--(void)makeScrollContentViewsFrame{
-    int t = 0;
-    for (UIView *subView in self.scrollContentViews) {
-        subView.frame = CGRectMake(self.viewSizeByModel(nil).width * t,
-                                   0,
-                                   self.bgScroll.width,
-                                   self.bgScroll.height);
-        t+=1;
-    }
+/// 可滑动子View的Frame
+-(jobsByArrayBlock _Nonnull)makeScrollContentViewsFrameBy{
+    @jobs_weakify(self)
+    return ^(__kindof NSArray <__kindof UIView *>*_Nullable data){
+        @jobs_strongify(self)
+        int t = 0;
+        for (UIView *subView in data) {
+            subView.frame = CGRectMake(self.viewSizeByModel(nil).width * t,
+                                       0,
+                                       self.bgScroll.width,
+                                       self.bgScroll.height);
+            t+=1;
+        }
+    };
 }
 #pragma mark —— scrollviewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -208,21 +217,18 @@ JobsToggleNavViewProtocolSynthesize
         [self addSubview:_bgScroll];
     }return _bgScroll;
 }
-@synthesize scrollContentViews = _scrollContentViews;
+
 -(NSMutableArray <__kindof UIView<BaseViewProtocol> *>*)scrollContentViews{
     if(!_scrollContentViews){
+        @jobs_weakify(self)
         _scrollContentViews = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView<BaseViewProtocol> *>*_Nullable data) {
+            @jobs_strongify(self)
             for (UIButtonModel *data1 in self.taggedNavDatas) {
                 data.add(data1.view);
             }
         });
         if(!_scrollContentViews.count) _scrollContentViews = self.tempLabs;
     }return _scrollContentViews;
-}
-
--(void)setScrollContentViews:(NSMutableArray<__kindof UIView<BaseViewProtocol> *> *)scrollContentViews{
-    _scrollContentViews = scrollContentViews;
-    self.configBgScroll(self.configSubView(self.taggedNavDatas));
 }
 
 -(CGFloat)taggedNavView_width{

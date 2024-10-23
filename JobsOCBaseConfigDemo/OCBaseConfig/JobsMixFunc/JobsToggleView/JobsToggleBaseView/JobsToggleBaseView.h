@@ -29,9 +29,9 @@ JobsToggleNavViewProtocol
 @property(nonatomic,assign)CGFloat taggedNavView_bgScroll_offset;
 @property(nonatomic,assign)CGSize toggleView_size;
 @property(nonatomic,strong)UIColor *taggedNavViewBgColor;
-@property(nonatomic,strong)NSMutableArray <__kindof UIView<BaseViewProtocol> *>*scrollContentViews;
+@property(nonatomic,strong)NSMutableArray <__kindof UIView<BaseViewProtocol> *>*scrollContentViews;/// 可滑动的子视图的【唯一的】数据源
 @property(nonatomic,weak)__kindof UIButton *currentSelectedBtn;
-
+/// 当前显示的View
 -(jobsByNSIntegerBlock _Nonnull)switchViewsBy;
 
 @end
