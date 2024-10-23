@@ -120,10 +120,6 @@ JobsToggleNavViewProtocolSynthesize
                 data1.jobsY = 0;
                 data1.jobsWidth = self.makeTaggedNavViewSizeBy(data).width ? : self.taggedNavView_width;
                 data1.jobsHeight = self.makeTaggedNavViewSizeBy(data).height ? : self.taggedNavView_height;
-//                NSLog(@"sfDDD = %f",self.makeTaggedNavViewSizeBy(data).width);
-//                NSLog(@"ghggg = %f",self.makeTaggedNavViewSizeBy(data).height);
-//                NSLog(@"SDFF = %f",data1.jobsWidth);
-//                NSLog(@"ftgr = %f",data1.jobsHeight);
             });
             taggedNavView.sliderColor = self.sliderColor;/// 滑块颜色
             taggedNavView.sliderW = self.sliderW;/// 滑块宽度

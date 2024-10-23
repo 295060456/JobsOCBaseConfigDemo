@@ -45,7 +45,7 @@ JobsToggleNavViewProtocolSynthesize
     [super layoutSubviews];
     /// 内部指定圆切角
 //    [self appointCornerCutToCircleByRoundingCorners:UIRectCornerAllCorners
-//                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+//                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -69,7 +69,7 @@ JobsToggleNavViewProtocolSynthesize
                 .initByButtonModel((UIButtonModel *)self.buttonModels[i])
                 .byFrame(jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel *_Nullable data) {
                     @jobs_strongify(self)
-                    data.jobsX = i * self.buttonWidth + (i ? self.btn_each_offset : 0);
+                    data.jobsX = self.buttonWidth * i + self.btn_each_offset * (i - 1);
                     data.jobsY = 0;
                     data.jobsWidth = jobs3TO(self.buttonModels[i].btn_width,self.buttonWidth);
                     data.jobsHeight = jobs3TO(self.buttonModels[i].btn_height,self.height);
