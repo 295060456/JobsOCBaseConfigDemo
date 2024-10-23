@@ -61,23 +61,17 @@ UIViewModelProtocol_synthesize
     }return _jobsReturnedTestBlock;
 }
 
-//-(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
-//    if(!_clickEventBlock){
-//        _clickEventBlock = ^id _Nullable(id _Nullable data){
-//            NSLog(@"%s", __FUNCTION__);
-//            return nil;
-//        };
-//    }return _clickEventBlock;
-//}
-//
-//-(JobsReturnIDBySelectorBlock)longPressGestureEventBlock{
-//    if(!_longPressGestureEventBlock){
-//        _longPressGestureEventBlock = ^id _Nullable(id _Nullable weakSelf,id _Nullable arg){
-//            NSLog(@"%s", __FUNCTION__);
-//            return nil;
-//        };
-//    }return _longPressGestureEventBlock;
-//}
+-(CGFloat)titleWidth{
+    if(!_titleWidth){
+        if(isValue(self.title)) _titleWidth = self.title.widthBy(self.titleFont);
+    }return _titleWidth;
+}
+
+-(CGFloat)subTitleWidth{
+    if(!_subTitleWidth){
+        if(isValue(self.subTitle)) _subTitleWidth = self.subTitle.widthBy(self.subTitleFont);
+    }return _subTitleWidth;
+}
 
 -(jobsByVoidBlock _Nullable)jobsTestBlock{
     if (!_jobsTestBlock) {
@@ -96,5 +90,23 @@ UIViewModelProtocol_synthesize
     _normalBgImageURLString = normalBgImageURLString.imageURLPlus;
     _normalBgImageURL = JobsUrl(self.normalBgImageURLString);
 }
+
+//-(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
+//    if(!_clickEventBlock){
+//        _clickEventBlock = ^id _Nullable(id _Nullable data){
+//            NSLog(@"%s", __FUNCTION__);
+//            return nil;
+//        };
+//    }return _clickEventBlock;
+//}
+//
+//-(JobsReturnIDBySelectorBlock)longPressGestureEventBlock{
+//    if(!_longPressGestureEventBlock){
+//        _longPressGestureEventBlock = ^id _Nullable(id _Nullable weakSelf,id _Nullable arg){
+//            NSLog(@"%s", __FUNCTION__);
+//            return nil;
+//        };
+//    }return _longPressGestureEventBlock;
+//}
 
 @end

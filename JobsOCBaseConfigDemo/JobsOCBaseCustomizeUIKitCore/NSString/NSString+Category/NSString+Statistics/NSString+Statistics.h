@@ -46,9 +46,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(UITextModel *_Nullable)jobsTextWidthWithFont:(UIFont *_Nonnull)font
                                     lineHeight:(CGFloat)lineSpacing
                                  controlHeight:(CGFloat)controlHeight;
-/// 获取一行文本的高度
+/// 获取一行字符串的高度
 /// 这个方法仅计算文本本身的高度，不包括行间距等因素
--(CGFloat)jobsSingleLineHeightWithfont:(UIFont *)font;
+-(JobsReturnByFontBlock _Nonnull)widthBy;
 /**
  系统的length是不区分中文和英文的,中文一个字length也是1
  通过计算ASCII码来实现:

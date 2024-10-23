@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 对方位
 @property(nonatomic,assign)CGFloat btn_x;
 @property(nonatomic,assign)CGFloat btn_y;
+@property(nonatomic,assign)CGFloat btn_right;
+@property(nonatomic,assign)CGFloat btn_bottom;
 @property(nonatomic,assign)CGFloat btn_offset_x;
 @property(nonatomic,assign)CGFloat btn_offset_y;
 @property(nonatomic,assign)CGFloat btn_width;
@@ -112,6 +114,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 其他
 @property(nonatomic,assign)CGFloat leftViewWidth;
 @property(nonatomic,assign)CGFloat rightViewWidth;
+@property(nonatomic,assign)CGFloat titleWidth;
+@property(nonatomic,assign)CGFloat subTitleWidth;
 #pragma mark —— 保留字段
 @property(nonatomic,copy,nullable)JobsReturnRACDisposableByReturnIDByIDBlock jobsReturnedTestBlock;
 @property(nonatomic,copy,nullable)jobsByVoidBlock jobsTestBlock;

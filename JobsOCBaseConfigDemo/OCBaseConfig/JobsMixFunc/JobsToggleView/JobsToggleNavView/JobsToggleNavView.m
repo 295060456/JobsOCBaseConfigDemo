@@ -64,16 +64,30 @@ JobsToggleNavViewProtocolSynthesize
                 [btn removeFromSuperview];
             }[self.buttonsArray removeAllObjects];
         }
+        __block CGFloat btnRight = 0;
         for (int i = 0 ; i < self.buttonModels.count ; i++) {
+            UIButtonModel *buttonModel = self.buttonModels[i];
             BaseButton *button = BaseButton
-                .initByButtonModel((UIButtonModel *)self.buttonModels[i])
+                .initByButtonModel(buttonModel)
                 .byFrame(jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel *_Nullable data) {
                     @jobs_strongify(self)
-                    data.jobsX = self.buttonWidth * i + self.btn_each_offset * (i - 1);
+                    data.jobsWidth = jobs3TO(buttonModel.btn_width,self.buttonWidth);
+                    data.jobsHeight = jobs3TO(buttonModel.btn_height,self.height);
+                    if(i == 0){
+                        btnRight = data.jobsWidth;
+                        buttonModel.btn_right = btnRight;
+                        data.jobsX = 0;
+                    }else{
+                        btnRight += (data.jobsWidth + self.btn_each_offset * i);
+                        buttonModel.btn_right = btnRight;
+                        UIButtonModel *buttonModel2 = self.buttonModels[i - 1];/// 上一个
+                        CGFloat d = jobs3TO(buttonModel2.btn_width,self.buttonWidth);
+                        buttonModel.btn_x = (d + self.btn_each_offset) * i;
+                        data.jobsX = buttonModel2.btn_right + self.btn_each_offset;
+                    }
                     data.jobsY = 0;
-                    data.jobsWidth = jobs3TO(self.buttonModels[i].btn_width,self.buttonWidth);
-                    data.jobsHeight = jobs3TO(self.buttonModels[i].btn_height,self.height);
                 }));
+            
 //            UIButtonModel *buttonModel = self.buttonModels[i];
 //            BaseButton *button = BaseButton.jobsInit()
 //                .bgColor(buttonModel.baseBackgroundColor)
@@ -133,7 +147,7 @@ JobsToggleNavViewProtocolSynthesize
 }
 #pragma mark —— 一些私有方法
 -(CGFloat)buttonWidth{
-    return self.width / self.buttonModels.count;
+    return (self.width - (self.buttonModels.count - 1) * self.btn_each_offset) / self.buttonModels.count;
 }
 #pragma mark —— 一些公有方法
 /// 核心方法：拖动和点击的逻辑，都归属于这个方法

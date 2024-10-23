@@ -24,12 +24,12 @@
 /// 对三目运算符的封装
 NS_INLINE id _Nullable Jobs3TO(id _Nullable Obj1, id _Nonnull Obj2) {
     /// 三目运算符（Ternary Operator）之所以被称为 "三目" 运算符，是因为它涉及三个操作数。它是唯一一个需要三个操作数的运算符。
-    return Obj1 ? Obj1 : Obj2;
+    return Obj1 ? : Obj2;
 }
 
 NS_INLINE CGFloat jobs3TO(CGFloat Obj1, CGFloat Obj2) {
     /// 三目运算符（Ternary Operator）之所以被称为 "三目" 运算符，是因为它涉及三个操作数。它是唯一一个需要三个操作数的运算符。
-    return Obj1 ? Obj1 : Obj2;
+    return Obj1 ? : Obj2;
 }
 
 NS_INLINE CGSize jobs3TOSize(CGSize Obj1, CGSize Obj2) {

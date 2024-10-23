@@ -105,13 +105,19 @@
         }return nil;
     }return nil;
 }
-/// 获取一行文本的高度
+/// 获取一行字符串的高度
 /// 这个方法仅计算文本本身的高度，不包括行间距等因素
--(CGFloat)jobsSingleLineHeightWithfont:(UIFont *)font{
-    UILabel *label = UILabel.new;
-    label.font = font;
-    label.text = self;
-    return label.font.lineHeight;
+-(JobsReturnByFontBlock _Nonnull)widthBy{
+    @jobs_weakify(self)
+    return ^CGFloat(UIFont *_Nullable font){
+        @jobs_strongify(self)
+        return [self boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, font.lineHeight)
+                                  options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                               attributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+            if(font) [data setValue:font forKey:NSFontAttributeName];
+        })
+                                  context:nil].size.width;
+    };
 }
 /**
  系统的length是不区分中文和英文的,中文一个字length也是1
