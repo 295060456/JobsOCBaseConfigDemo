@@ -100,8 +100,9 @@ JobsToggleNavViewProtocolSynthesize
         @jobs_weakify(self)
         return jobsMakeCGSizeByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
             @jobs_strongify(self)
-            data.jobsWidth = self.taggedNavSingleBtn_size.width * arr.count +
-            self.btn_each_offset *(arr.count - 1);
+            if(arr.count){
+                data.jobsWidth = self.taggedNavSingleBtn_size.width * arr.count + self.btn_each_offset * (arr.count - 1);
+            }else data.jobsWidth = self.taggedNavSingleBtn_size.width;
             data.jobsHeight = self.taggedNavSingleBtn_size.height;
         });
     };
@@ -119,6 +120,10 @@ JobsToggleNavViewProtocolSynthesize
                 data1.jobsY = 0;
                 data1.jobsWidth = self.makeTaggedNavViewSizeBy(data).width ? : self.taggedNavView_width;
                 data1.jobsHeight = self.makeTaggedNavViewSizeBy(data).height ? : self.taggedNavView_height;
+//                NSLog(@"sfDDD = %f",self.makeTaggedNavViewSizeBy(data).width);
+//                NSLog(@"ghggg = %f",self.makeTaggedNavViewSizeBy(data).height);
+//                NSLog(@"SDFF = %f",data1.jobsWidth);
+//                NSLog(@"ftgr = %f",data1.jobsHeight);
             });
             taggedNavView.sliderColor = self.sliderColor;/// 滑块颜色
             taggedNavView.sliderW = self.sliderW;/// 滑块宽度
@@ -214,7 +219,7 @@ JobsToggleNavViewProtocolSynthesize
 #pragma mark —— lazyLoad
 -(JobsToggleNavView *)taggedNavView{
     if(!_taggedNavView){
-        _taggedNavView = self.makeTaggedNavViewBy(nil);
+        _taggedNavView = self.makeTaggedNavViewBy(self.taggedNavDatas);
     }return _taggedNavView;
 }
 

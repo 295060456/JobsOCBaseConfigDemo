@@ -45,8 +45,12 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 刷新UI
 -(jobsByVoidBlock _Nonnull)jobsRefreshUI;
 #pragma mark —— 交换宽高
+/// 仅在横屏情况下交换Size宽高的值
+-(JobsReturnCGRectByVoidBlock _Nonnull)fitSize;
 -(JobsReturnCGRectByVoidBlock _Nonnull)exchangeWidthAndHeight;
 #pragma mark —— 交换 X 和 Y
+/// 仅在横屏情况下交换坐标XY的值
+-(JobsReturnCGRectByVoidBlock _Nonnull)fitOrigin;
 -(JobsReturnCGRectByVoidBlock _Nonnull)exchangeXAndY;
 #pragma mark ——【类方法】设置控件的约束（返回控件自己本身）
 +(JobsReturnViewBySizeBlock _Nonnull)BySize;

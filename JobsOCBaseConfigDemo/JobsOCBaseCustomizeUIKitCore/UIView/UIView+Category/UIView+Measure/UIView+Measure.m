@@ -19,6 +19,17 @@
     };
 }
 #pragma mark —— 交换宽高
+/// 仅在横屏情况下交换Size宽高的值
+-(JobsReturnCGRectByVoidBlock _Nonnull)fitSize{
+    @jobs_weakify(self)
+    return ^CGRect(){
+        @jobs_strongify(self)
+        if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+            return self.exchangeWidthAndHeight();
+        }else return self.frame;
+    };
+}
+
 -(JobsReturnCGRectByVoidBlock _Nonnull)exchangeWidthAndHeight{
     @jobs_weakify(self)
     return ^CGRect(){
@@ -30,6 +41,17 @@
     };
 }
 #pragma mark —— 交换 X 和 Y
+/// 仅在横屏情况下交换坐标XY的值
+-(JobsReturnCGRectByVoidBlock _Nonnull)fitOrigin{
+    @jobs_weakify(self)
+    return ^CGRect(){
+        @jobs_strongify(self)
+        if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+            return self.exchangeXAndY();
+        }else return self.frame;
+    };
+}
+
 -(JobsReturnCGRectByVoidBlock _Nonnull)exchangeXAndY{
     @jobs_weakify(self)
     return ^CGRect(){
@@ -742,13 +764,7 @@
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat width
 -(CGFloat)width{
-    if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-        /// 横屏的时候，谁大谁就是宽
-        return MAX(self.frame.size.width, self.frame.size.height);
-    }else{
-        /// 竖屏的时候，谁小谁就是宽
-        return MIN(self.frame.size.width, self.frame.size.height);
-    }
+    return self.frame.size.width;
 }
 
 -(void)setWidth:(CGFloat)width{
@@ -756,13 +772,7 @@
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat height
 -(CGFloat)height{
-    if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-        /// 横屏的时候，谁小谁就是高
-        return MIN(self.frame.size.width, self.frame.size.height);
-    }else{
-        /// 竖屏的时候，谁大谁就是高
-        return MAX(self.frame.size.width, self.frame.size.height);
-    }
+    return self.frame.size.height;
 }
 
 -(void)setHeight:(CGFloat)height{
