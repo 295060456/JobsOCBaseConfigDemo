@@ -246,6 +246,28 @@
     };
 }
 #pragma mark —— 功能性的
+/// 可以组合使用
+-(SDWebImageOptions)makeSDWebImageOptions{
+    return
+    /// 这个选项通常用于网络请求失败时重试加载图片。如果希望在网络不稳定或其他情况下自动重试图片加载，这是一个常用的选项。
+    SDWebImageRetryFailed |
+    /// 如果希望在图片还没有完全下载完成时逐步显示，类似于浏览器加载图片的效果，这个选项会很有帮助。适用于大图片或需要快速反馈的场景。
+    SDWebImageProgressiveLoad |
+    /// 当同一个 URL 的图片内容会发生变化时（例如用户的头像 URL），可以使用这个选项来强制刷新缓存，重新加载最新的图片。
+    SDWebImageRefreshCached |
+    /// 用于优先加载重要的图片，常用于需要立即显示的关键图片，如封面图或焦点图。
+    SDWebImageHighPriority |
+    /// 如果处理的图片可能非常大，而设备内存有限，使用这个选项可以缩小图片尺寸以节省内存。
+    SDWebImageScaleDownLargeImages |
+    ///在应用进入后台时继续下载图片，尤其是在需要确保图片下载任务不会被中断的情况下使用。
+    SDWebImageContinueInBackground
+    /// 当想手动控制图片的显示（例如先对图片进行某些处理后再显示）时，这个选项允许你在下载完成后手动设置图片。
+    // SDWebImageAvoidAutoSetImage |
+    /// 在滚动视图（如 UITableView 或 UICollectionView）中延迟加载图片，确保滑动流畅。这个选项比较常见于列表视图中的图片加载场景。
+    //SDWebImageLowPriority |
+    ;
+}
+
 -(URLManagerModel *_Nonnull)url:(NSString *_Nonnull)url funcName:(NSString *_Nonnull)funcName{
     return jobsMakeURLManagerModel(^(__kindof URLManagerModel * _Nullable data) {
         data.url = url;

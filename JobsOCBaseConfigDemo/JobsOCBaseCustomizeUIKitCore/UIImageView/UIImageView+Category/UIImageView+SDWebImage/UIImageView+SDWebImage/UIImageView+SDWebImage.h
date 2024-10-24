@@ -33,20 +33,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 /**
- 
+
+ @jobs_weakify(self)
+ [url.imageURLPlus.jobsUrl.absoluteString cleanSDImageCache:^{
+     @jobs_strongify(self)
  self.bgImageView
-     .imageURL(model.url)
-     .placeholderImage(model.bgImage)
-     .options(SDWebImageRefreshCached)/// 强制刷新缓存
-     .completed(^(UIImage * _Nullable image,
-                  NSError * _Nullable error,
-                  SDImageCacheType cacheType,
-                  NSURL * _Nullable imageURL) {
-         if (error) {
-             NSLog(@"图片加载失败: %@", error);
-         } else {
-             NSLog(@"图片加载成功");
-         }
-     }).load();
+         .imageURL(url.imageURLPlus.jobsUrl)
+         .placeholderImage(JobsIMG(self.param.wPlaceholderImage))
+         .options(self.makeSDWebImageOptions)
+         .completed(^(UIImage * _Nullable image,
+                      NSError * _Nullable error,
+                      SDImageCacheType cacheType,
+                      NSURL * _Nullable imageURL) {
+             if (error) {
+                 NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+             } else {
+                 NSLog(@"图片加载成功");
+             }
+         }).load();
+ }];
  
  */

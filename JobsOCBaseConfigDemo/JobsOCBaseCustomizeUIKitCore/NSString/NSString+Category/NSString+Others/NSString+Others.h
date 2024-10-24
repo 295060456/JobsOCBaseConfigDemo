@@ -12,6 +12,12 @@
 #import "JobsBlock.h"
 #import "FileNameModel.h"
 
+#if __has_include(<SDWebImage/SDWebImage.h>)
+#import <SDWebImage/SDWebImage.h>
+#else
+#import "SDWebImage.h"
+#endif
+
 NS_INLINE NSMutableString *_Nonnull JobsMutableString(NSString * _Nonnull str){
     if(!str) str = @"";
     return [NSMutableString stringWithString:str];
@@ -79,6 +85,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *)subStringFrom:(NSString *)startString to:(NSString *)endString;
 /// OC字符串拼接
 -(JobsReturnStringByStringBlock _Nonnull)add;
+/// 清除SDImage的图片缓存（用url为key）
+-(void)cleanSDImageCache:(SDWebImageNoParamsBlock)block;
 
 @end
 

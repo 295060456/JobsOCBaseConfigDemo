@@ -120,19 +120,24 @@
         }];
         /// 按钮图
         if (self.viewModel.normalImageURL) {
-            _btn.imageURL(self.viewModel.normalImageURLString.imageURLPlus.jobsUrl)
-            .placeholderImage(self.viewModel.normalImage)
-            .options(SDWebImageRefreshCached)/// 强制刷新缓存
-            .completed(^(UIImage * _Nullable image,
-                         NSError * _Nullable error,
-                         SDImageCacheType cacheType,
-                         NSURL * _Nullable imageURL) {
-                if (error) {
-                    NSLog(@"图片加载失败: %@-%@", error,imageURL);
-                } else {
-                    NSLog(@"图片加载成功");
-                }
-            }).bgNormalLoad();
+            @jobs_weakify(self)
+            [self.viewModel.normalImageURLString.imageURLPlus.jobsUrl.absoluteString cleanSDImageCache:^{
+                @jobs_strongify(self)
+                self->_btn
+                    .imageURL(self.viewModel.normalImageURLString.imageURLPlus.jobsUrl)
+                    .placeholderImage(self.viewModel.normalImage)
+                    .options(self.makeSDWebImageOptions)
+                    .completed(^(UIImage * _Nullable image,
+                                 NSError * _Nullable error,
+                                 SDImageCacheType cacheType,
+                                 NSURL * _Nullable imageURL) {
+                        if (error) {
+                            NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                        } else {
+                            NSLog(@"图片加载成功");
+                        }
+                    }).normalLoad();
+            }];
         }else{
             _btn.jobsResetImage(self.viewModel.image);
         }
@@ -141,19 +146,24 @@
         _btn.backgroundColor = self.viewModel.bgCor;
         /// 背景图
         if(self.viewModel.normalBgImageURL){
-            _btn.imageURL(self.viewModel.normalBgImageURLString.imageURLPlus.jobsUrl)
-                .placeholderImage(self.viewModel.backgroundImage)
-                    .options(SDWebImageRefreshCached)/// 强制刷新缓存
-                    .completed(^(UIImage *_Nullable image,
-                                 NSError *_Nullable error,
+            @jobs_weakify(self)
+            [self.viewModel.normalBgImageURLString.imageURLPlus.jobsUrl.absoluteString cleanSDImageCache:^{
+                @jobs_strongify(self)
+                self->_btn
+                    .imageURL(self.viewModel.normalBgImageURLString.imageURLPlus.jobsUrl)
+                    .placeholderImage(self.viewModel.normalImage)
+                    .options(self.makeSDWebImageOptions)
+                    .completed(^(UIImage * _Nullable image,
+                                 NSError * _Nullable error,
                                  SDImageCacheType cacheType,
-                                 NSURL *_Nullable imageURL) {
+                                 NSURL * _Nullable imageURL) {
                         if (error) {
-                            NSLog(@"图片加载失败: %@-%@", error,imageURL);
+                            NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
                         } else {
                             NSLog(@"图片加载成功");
                         }
                     }).bgNormalLoad();
+            }];
         }else{
             _btn.jobsResetBtnBgImage(self.viewModel.backgroundImage);
         }
@@ -181,19 +191,24 @@
 //        _btn.backgroundColor = self.buttonModel.baseBackgroundColor;
         /// 背景图
         if(self.buttonModel.normalBgImageURL){
-            _btn.imageURL(self.buttonModel.normalBgImageURLString.imageURLPlus.jobsUrl)
-                    .placeholderImage(self.buttonModel.backgroundImage)
-                    .options(SDWebImageRefreshCached)/// 强制刷新缓存
-                    .completed(^(UIImage *_Nullable image,
-                                 NSError *_Nullable error,
+            @jobs_weakify(self)
+            [self.buttonModel.normalBgImageURLString.imageURLPlus.jobsUrl.absoluteString cleanSDImageCache:^{
+                @jobs_strongify(self)
+                self->_btn
+                    .imageURL(self.buttonModel.normalBgImageURLString.imageURLPlus.jobsUrl)
+                    .placeholderImage(self.viewModel.backgroundImage)
+                    .options(self.makeSDWebImageOptions)
+                    .completed(^(UIImage * _Nullable image,
+                                 NSError * _Nullable error,
                                  SDImageCacheType cacheType,
-                                 NSURL *_Nullable imageURL) {
+                                 NSURL * _Nullable imageURL) {
                         if (error) {
-                            NSLog(@"图片加载失败: %@-%@", error,imageURL);
+                            NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
                         } else {
                             NSLog(@"图片加载成功");
                         }
                     }).bgNormalLoad();
+            }];
         }else{
             _btn.jobsResetBtnBgImage(self.buttonModel.backgroundImage);
         }
@@ -202,19 +217,24 @@
         _btn.jobsResetBtnTitleCor(self.buttonModel.titleCor);
         /// 按钮图
         if (self.buttonModel.normalImageURL) {
-            _btn.imageURL(self.buttonModel.normalImageURLString.imageURLPlus.jobsUrl)
-            .placeholderImage(self.buttonModel.normalImage)
-            .options(SDWebImageRefreshCached)/// 强制刷新缓存
-            .completed(^(UIImage * _Nullable image,
-                         NSError * _Nullable error,
-                         SDImageCacheType cacheType,
-                         NSURL * _Nullable imageURL) {
-                if (error) {
-                    NSLog(@"图片加载失败: %@-%@", error,imageURL);
-                } else {
-                    NSLog(@"图片加载成功");
-                }
-            }).bgNormalLoad();
+            @jobs_weakify(self)
+            [self.buttonModel.normalImageURLString.imageURLPlus.jobsUrl.absoluteString cleanSDImageCache:^{
+                @jobs_strongify(self)
+                self->_btn
+                    .imageURL(self.buttonModel.normalImageURLString.imageURLPlus.jobsUrl)
+                    .placeholderImage(self.buttonModel.normalImage)
+                    .options(self.makeSDWebImageOptions)
+                    .completed(^(UIImage * _Nullable image,
+                                 NSError * _Nullable error,
+                                 SDImageCacheType cacheType,
+                                 NSURL * _Nullable imageURL) {
+                        if (error) {
+                            NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                        } else {
+                            NSLog(@"图片加载成功");
+                        }
+                    }).normalLoad();
+            }];
         }else{
             _btn.jobsResetImage(self.buttonModel.normalImage);
         }

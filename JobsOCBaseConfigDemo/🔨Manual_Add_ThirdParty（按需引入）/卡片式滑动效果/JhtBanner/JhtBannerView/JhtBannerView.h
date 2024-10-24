@@ -8,12 +8,16 @@
 //  Created by Jinht on 2017/6/2.
 //  Copyright © 2017年 JhtBannerScrollView. All rights reserved.
 //
-
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 #import "JhtBannerScrollView.h"
 
 /** banner ScrollView */
 @interface JhtBannerView : UIView
+<
+JhtBannerScrollViewDelegate
+,JhtBannerScrollViewDataSource
+>
 
 #pragma mark - property
 #pragma mark required

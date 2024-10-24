@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WMZBannerView : UIView
+@interface WMZBannerView : UIView<UICollectionViewDelegate,UICollectionViewDataSource>
 //背景图
 @property(strong,nonatomic)UIImageView *bgImgView;
 

@@ -130,5 +130,9 @@
         return JobsMutableString([self stringByAppendingString:str]);/// 原始字符串不会改变，输出一个新的字符串
     };
 }
+/// 清除SDImage的图片缓存（用url为key）
+-(void)cleanSDImageCache:(SDWebImageNoParamsBlock)block{
+    [SDImageCache.sharedImageCache removeImageForKey:self withCompletion:block];
+}
 
 @end

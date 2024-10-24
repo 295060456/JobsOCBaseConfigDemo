@@ -47,20 +47,23 @@ BaseProtocol_synthesize
             self.likeBtn.alpha = 1;
             self.textLabel.text = self.childCommentModel.nickname;
             self.detailTextLabel.text = self.childCommentModel.content;
-            self.imageView
-                .imageURL(self.childCommentModel.headImg.jobsUrl)
-                .placeholderImage(JobsGifIMG(@"动态头像 尺寸126") ? : JobsIMG(@"用户默认头像"))
-                .options(SDWebImageRefreshCached)/// 强制刷新缓存
-                .completed(^(UIImage * _Nullable image,
-                             NSError * _Nullable error,
-                             SDImageCacheType cacheType,
-                             NSURL * _Nullable imageURL) {
-                    if (error) {
-                        NSLog(@"图片加载失败: %@-%@", error,imageURL);
-                    } else {
-                        NSLog(@"图片加载成功");
-                    }
-                }).load();
+            [self.childCommentModel.headImg.imageURLPlus.jobsUrl.absoluteString cleanSDImageCache:^{
+                @jobs_strongify(self)
+                self.imageView
+                    .imageURL(self.childCommentModel.headImg.imageURLPlus.jobsUrl)
+                    .placeholderImage(JobsGifIMG(@"动态头像 尺寸126") ? : JobsIMG(@"用户默认头像"))
+                    .options(self.makeSDWebImageOptions)
+                    .completed(^(UIImage * _Nullable image,
+                                 NSError * _Nullable error,
+                                 SDImageCacheType cacheType,
+                                 NSURL * _Nullable imageURL) {
+                        if (error) {
+                            NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                        } else {
+                            NSLog(@"图片加载成功");
+                        }
+                    }).load();
+            }];
         }
     };
 }

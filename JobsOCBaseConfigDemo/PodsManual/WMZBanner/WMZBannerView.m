@@ -13,7 +13,8 @@
 #import "WMZBannerControl.h"
 #import "WMZBannerOverLayout.h"
 #import "WMZBannerFadeLayout.h"
-@interface WMZBannerView()<UICollectionViewDelegate,UICollectionViewDataSource>{
+
+@interface WMZBannerView(){
     BOOL beganDragging;
     CGFloat marginTime;
 }
@@ -257,30 +258,32 @@
     return tmpCell;
 }
 
-- (void)setIconData:(UIImageView*)icon withData:(id)data{
+- (void)setIconData:(UIImageView *)icon withData:(id)data{
     if (!data) return;
     if ([data isKindOfClass:NSString.class]) {
         if ([(NSString *)data hasPrefix:@"http"]) {
             NSString *url = data;
-            icon.imageURL(url.imageURLPlus.jobsUrl)
-                .placeholderImage(JobsIMG(self.param.wPlaceholderImage))
-                .options(SDWebImageRefreshCached)/// 强制刷新缓存
-                .completed(^(UIImage * _Nullable image,
-                             NSError * _Nullable error,
-                             SDImageCacheType cacheType,
-                             NSURL * _Nullable imageURL) {
-                    if (error) {
-                        NSLog(@"图片加载失败: %@-%@", error,imageURL);
-                    } else {
-                        NSLog(@"图片加载成功");
-                    }
-                }).load();
-        }else{
-            icon.image = [UIImage imageNamed:(NSString*)data];
-        }
+            @jobs_weakify(self)
+            [url.imageURLPlus.jobsUrl.absoluteString cleanSDImageCache:^{
+                @jobs_strongify(self)
+                icon
+                    .imageURL(url.imageURLPlus.jobsUrl)
+                    .placeholderImage(JobsIMG(self.param.wPlaceholderImage))
+                    .options(self.makeSDWebImageOptions)
+                    .completed(^(UIImage * _Nullable image,
+                                 NSError * _Nullable error,
+                                 SDImageCacheType cacheType,
+                                 NSURL * _Nullable imageURL) {
+                        if (error) {
+                            NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                        } else {
+                            NSLog(@"图片加载成功");
+                        }
+                    }).load();
+            }];
+        }else icon.image = JobsIMG(data);
     }
 }
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
