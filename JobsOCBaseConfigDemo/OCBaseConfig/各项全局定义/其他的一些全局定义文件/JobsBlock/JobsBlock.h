@@ -230,6 +230,7 @@ typedef void(^jobsByRequestToolBlock)(RequestTool *_Nullable requestTool);
 
 @class BaseModel;
 typedef void(^jobsByBaseModelBlock)(__kindof BaseModel *_Nullable baseModel);
+typedef void(^jobsByBaseModelAndIndexBlock)(__kindof BaseModel *_Nullable baseModel,NSInteger index);
 
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock1)(jobsByIDBlock _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock2)(JobsReturnIDByVoidBlock _Nullable data);
