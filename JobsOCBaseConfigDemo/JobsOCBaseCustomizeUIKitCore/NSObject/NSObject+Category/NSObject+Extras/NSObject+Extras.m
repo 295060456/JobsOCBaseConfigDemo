@@ -43,7 +43,7 @@
 }
 #pragma mark —— ViewController
 /// 从一个视图（UIView）出发，获取它所在的视图控制器（UIViewController）
--(JobsReturnVCByView _Nonnull)getViewControllerByView{
+-(JobsReturnVCByViewBlock _Nonnull)getViewControllerByView{
     return ^(UIView *_Nonnull view) {
         UIResponder *responder = view;
         while (responder) {
@@ -66,7 +66,7 @@
     return self.getCurrentViewControllerByRootVC(MainWindow.rootViewController);
 }
 /// 获得当前控制器的根控制器
--(JobsReturnVCByVC _Nonnull)getCurrentViewControllerByRootVC{
+-(JobsReturnVCByVCBlock _Nonnull)getCurrentViewControllerByRootVC{
     @jobs_weakify(self)
     return ^(UIViewController *_Nonnull rootVC) {
         @jobs_strongify(self)
@@ -246,6 +246,18 @@
     };
 }
 #pragma mark —— 功能性的
+/// 根控制器 => 导航控制器（普通控制器）
+-(JobsReturnVCByVCBlock _Nonnull)rootViewControllerBy{
+    return ^__kindof UIViewController *_Nullable(__kindof UIViewController *_Nonnull vc){
+        return NSObject.makeNavigationControllerBy(vc);
+    };
+}
+/// 依据传入的普通控制器，创建导航控制器
++(JobsReturnNavCtrByVCBlock _Nonnull)makeNavigationControllerBy{
+    return ^__kindof UINavigationController *_Nullable(__kindof UIViewController *_Nonnull vc){
+        return UINavigationController.initByRootVC(vc);
+    };
+}
 /// 可以组合使用
 -(SDWebImageOptions)makeSDWebImageOptions{
     return
@@ -474,6 +486,23 @@
                                success:nil];
     };
 }
+#pragma mark —— pop
+/// pop到根控制器
+-(jobsByBOOLBlock _Nonnull)popToRootVCBy{
+    @jobs_weakify(self)
+    return ^(BOOL data){
+        @jobs_strongify(self)
+        [self.jobsGetCurrentViewController.navigationController popToRootViewControllerAnimated:data];
+    };
+}
+/// pop到上一个控制器
+-(jobsByBOOLBlock _Nonnull)popToPreviousVCBy{
+    @jobs_weakify(self)
+    return ^(BOOL data){
+        @jobs_strongify(self)
+        [self.jobsGetCurrentViewController.navigationController popViewControllerAnimated:data];
+    };
+}
 #pragma mark —— push
 /// 简洁版强制push展现一个控制器页面【不需要正向传参】
 -(jobsByVCBlock _Nonnull)comingToPushVC{
@@ -629,7 +658,7 @@
     @jobs_weakify(self)
     return ^(Class cls) {
         @jobs_strongify(self)
-        return [self isKindOfClass:cls];
+        return [self isMemberOfClass:cls];
     };
 }
 

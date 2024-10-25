@@ -25,9 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,class)JobsCustomTabBarVC *jobsCustomTabBarVC;
 @property(nonatomic,strong,class)LZTabBarController *lZTabBarCtrl;
 #pragma mark —— 配置一些导航控制器
-@property(nonatomic,strong,class)UINavigationController *tabBarNavCtrl;
-@property(nonatomic,strong,class)UINavigationController *jobsCustomTabBarNavCtrl;
-@property(nonatomic,strong,class)UINavigationController *lZTabBarNavCtrl;
+@property(nonatomic,strong,class)__kindof UINavigationController *tabBarNavCtrl;
+@property(nonatomic,strong,class)__kindof UINavigationController *jobsCustomTabBarNavCtrl;
+@property(nonatomic,strong,class)__kindof UINavigationController *lZTabBarNavCtrl;
 #pragma mark —— 数据源
 @property(nonatomic,strong,class)LZTabBarConfig *lZTabBarConfig;
 @property(nonatomic,strong,class)JobsCustomTabBarConfig *jobsCustomTabBarConfig;

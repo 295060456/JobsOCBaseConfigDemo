@@ -67,7 +67,7 @@ static LZTabBarController *_lZTabBarCtrl = nil;
 static UINavigationController *_tabBarNavCtrl = nil;
 +(UINavigationController *)tabBarNavCtrl{
     if(!_tabBarNavCtrl){
-        _tabBarNavCtrl = UINavigationController.initByRootVC(self.tabBarVC);
+        _tabBarNavCtrl = self.makeNavigationControllerBy(self.tabBarVC);
         _tabBarNavCtrl.hidesBottomBarWhenPushed = YES;
     }return _tabBarNavCtrl;
 }
@@ -79,7 +79,7 @@ static UINavigationController *_tabBarNavCtrl = nil;
 static UINavigationController *_jobsCustomTabBarNavCtrl = nil;
 +(UINavigationController *)jobsCustomTabBarNavCtrl{
     if(!_jobsCustomTabBarNavCtrl){
-        _jobsCustomTabBarNavCtrl = UINavigationController.initByRootVC(self.jobsCustomTabBarVC);
+        _jobsCustomTabBarNavCtrl = self.makeNavigationControllerBy(self.jobsCustomTabBarVC);
         _jobsCustomTabBarNavCtrl.hidesBottomBarWhenPushed = YES;
     }return _jobsCustomTabBarNavCtrl;
 }
@@ -91,7 +91,7 @@ static UINavigationController *_jobsCustomTabBarNavCtrl = nil;
 static UINavigationController *_lZTabBarNavCtrl = nil;
 +(UINavigationController *)lZTabBarNavCtrl{
     if(!_lZTabBarNavCtrl){
-        _lZTabBarNavCtrl = UINavigationController.initByRootVC(self.lZTabBarCtrl);
+        _lZTabBarNavCtrl = self.makeNavigationControllerBy(self.lZTabBarCtrl);
         _lZTabBarNavCtrl.hidesBottomBarWhenPushed = YES;
     }return _lZTabBarNavCtrl;
 }
@@ -238,8 +238,8 @@ static NSMutableArray <__kindof JobsTabBarItemConfig *>*_tabBarItemConfigMutArr 
 static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
 +(NSMutableArray <__kindof UIButton *>*)tabBarItemMutArr{
     if(!_tabBarItemMutArr){
-        @jobs_weakify(self)
         _tabBarItemMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            @jobs_weakify(self)
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 @jobs_strongify(self)
                 viewModel.image = self.imageUnSelectedMutArr[0];
@@ -255,6 +255,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
             }))
                      .onClick(^(__kindof UIButton *x){
                          x.selected = !x.selected;
+                         JobsAppTool.loginWork = FMLoginWork_MyFav;
                          @jobs_weakify(self)
 //                         [self isLogin:^{
 //                             @jobs_strongify(self)
@@ -280,6 +281,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
             }))
                      .onClick(^(__kindof UIButton *x){
                          x.selected = !x.selected;
+                         JobsAppTool.loginWork = FMLoginWork_MyBank;
                          @jobs_weakify(self)
 //                         [self isLogin:^{
 //                             @jobs_strongify(self)
@@ -328,6 +330,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
             }))
                      .onClick(^(__kindof UIButton *x){
                          @jobs_strongify(self)
+                         JobsAppTool.loginWork = FMLoginWork_Default;
                          x.selected = !x.selected;
                          [AppDelegate button:x index:3];
                          if (self.objectBlock) self.objectBlock(x);
@@ -489,7 +492,7 @@ static NSMutableArray <__kindof UINavigationController *>*_navCtrMutArr = nil;
         _navCtrMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof UINavigationController *>*_Nullable data) {
             @jobs_strongify(self)
             for (UIViewController *vc in self.viewCtrlMutArr) {
-                data.add(UINavigationController.initByRootVC(vc));
+                data.add(self.makeNavigationControllerBy(vc));
             }
         });
     }return _navCtrMutArr;

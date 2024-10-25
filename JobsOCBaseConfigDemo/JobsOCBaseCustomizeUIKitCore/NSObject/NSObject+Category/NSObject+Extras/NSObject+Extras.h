@@ -124,7 +124,7 @@ BaseProtocol
                          defaultValue:(nullable NSString *)defaultValue;
 #pragma mark —— ViewController
 /// 从一个视图（UIView）出发，获取它所在的视图控制器（UIViewController）
--(JobsReturnVCByView _Nonnull)getViewControllerByView;
+-(JobsReturnVCByViewBlock _Nonnull)getViewControllerByView;
 /// 获得当前的控制器。对getCurrentViewController的再次封装
 -(__kindof UIViewController *_Nullable)jobsGetCurrentViewControllerWithNavCtrl;
 /// 获得当前的控制器。对getCurrentViewController的再次封装
@@ -132,7 +132,7 @@ BaseProtocol
 /// 获得当前的控制器
 -(__kindof UIViewController *_Nullable)getCurrentViewController;
 /// 获得当前控制器的根控制器
--(JobsReturnVCByVC _Nonnull)getCurrentViewControllerByRootVC;
+-(JobsReturnVCByVCBlock _Nonnull)getCurrentViewControllerByRootVC;
 /// 强制以Push的方式展现页面
 /// @param toPushVC 需要进行展现的页面
 /// @param requestParams 正向推页面传递的参数
@@ -200,6 +200,10 @@ BaseProtocol
 /// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
 -(NSString *_Nonnull)tmpDir;
 #pragma mark —— 功能性的
+/// 根控制器 => 导航控制器（普通控制器）
+-(JobsReturnVCByVCBlock _Nonnull)rootViewControllerBy;
+/// 依据传入的普通控制器，创建导航控制器
++(JobsReturnNavCtrByVCBlock _Nonnull)makeNavigationControllerBy;
 /// 可以组合使用
 -(SDWebImageOptions)makeSDWebImageOptions;
 -(URLManagerModel *_Nonnull)url:(NSString *_Nonnull)url funcName:(NSString *_Nonnull)funcName;
@@ -242,6 +246,11 @@ BaseProtocol
 -(jobsByVCBlock _Nonnull)comingToPresentVC;
 /// 简洁版强制present展现一个控制器页面【需要正向传参】
 -(jobsByVCAndDataBlock _Nonnull)comingToPresentVCByRequestParams;
+/// pop
+/// pop到根控制器
+-(jobsByBOOLBlock _Nonnull)popToRootVCBy;
+/// pop到上一个控制器
+-(jobsByBOOLBlock _Nonnull)popToPreviousVCBy;
 /// push
 /// 简洁版强制push展现一个控制器页面【不需要正向传参】
 -(jobsByVCBlock _Nonnull)comingToPushVC;

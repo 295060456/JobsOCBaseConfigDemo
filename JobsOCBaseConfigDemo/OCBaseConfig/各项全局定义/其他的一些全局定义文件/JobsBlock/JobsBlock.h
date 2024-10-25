@@ -218,8 +218,9 @@ typedef void(^jobsByPopListBaseViewBlock)(PopListBaseView *_Nullable data);
 @class JobsToggleNavView;
 typedef void(^jobsByToggleNavViewBlock)(__kindof JobsToggleNavView *_Nullable taggedNavView);
 
-@class YTKRequest;
-typedef void(^jobsByYTKRequestBlock)(__kindof YTKRequest *_Nullable request);
+@class JobsCustomTabBar;
+typedef void(^jobsByCustomTabBarBlock)(__kindof JobsCustomTabBar *_Nullable customTabBar);
+typedef JobsCustomTabBar *_Nullable(^JobsReturnCustomTabBarByViewBlock)(__kindof UIView *_Nullable view);
 
 @class JobsResponseModel;
 typedef void(^jobsByResponseModelBlock)(JobsResponseModel *_Nullable responseModel);
@@ -301,11 +302,14 @@ typedef void(^jobsByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
 
-@class YTKChainRequest;
-typedef void(^jobsByYTKChainRequestBlock)(YTKChainRequest *_Nullable request);
-
 @class YTKNetworkConfig;
 typedef void(^jobsByYTKNetworkConfigBlock)(__kindof YTKNetworkConfig *_Nullable data);
+
+@class YTKRequest;
+typedef void(^jobsByYTKRequestBlock)(__kindof YTKRequest *_Nullable request);
+
+@class YTKChainRequest;
+typedef void(^jobsByYTKChainRequestBlock)(YTKChainRequest *_Nullable request);
 
 @class YTKBatchRequest;
 typedef void(^jobsByYTKBatchRequestBlock)(__kindof YTKBatchRequest *_Nullable data);

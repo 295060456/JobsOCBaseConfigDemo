@@ -48,185 +48,23 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     }
 }
 #pragma mark —— 一些公共设置
-/// 创建默认的广告数据源
--(NSMutableArray<FMBannerAdsModel *> *)makeDataMutArr{
-    return jobsMakeMutArr(^(__kindof NSMutableArray <FMBannerAdsModel *>*_Nullable data) {
-        data.add(jobsMakeBannerAdsModel(^(__kindof FMBannerAdsModel * _Nullable model) {
-            model.image = JobsIMG(@"狮子");
-        }));
-        data.add(jobsMakeBannerAdsModel(^(__kindof FMBannerAdsModel * _Nullable model) {
-            model.image = JobsIMG(@"金猪");
-        }));
-        data.add(jobsMakeBannerAdsModel(^(__kindof FMBannerAdsModel * _Nullable model) {
-            model.image = JobsIMG(@"美女荷官");
-        }));
-        data.add(jobsMakeBannerAdsModel(^(__kindof FMBannerAdsModel * _Nullable model) {
-            model.image = JobsIMG(@"棋牌美女");
-        }));
-        data.add(jobsMakeBannerAdsModel(^(__kindof FMBannerAdsModel * _Nullable model) {
-            model.image = JobsIMG(@"篮球运动员");
-        }));
-        data.add(jobsMakeBannerAdsModel(^(__kindof FMBannerAdsModel * _Nullable model) {
-            model.image = JobsIMG(@"捕鱼");
-        }));
-    });
-}
-/// 创建个人中心广告默认的数据源
--(NSMutableArray<FMBannerAdsModel *> *)makeSubViewModelMutArr{
-    return jobsMakeMutArr(^(__kindof NSMutableArray <FMBannerAdsModel *>*_Nullable data) {
-        for (int u = 0; u < 5; u++) {
-            data.add(jobsMakeBannerAdsModel(^(__kindof FMBannerAdsModel * _Nullable model) {
-                model.image = JobsIMG(@"个人中心广告");
-            }));
-        }
-    });
-}
-/// 创建公告默认的数据源
--(NSMutableArray<FMBannerAdsModel *> *)makeSubViewModelMutArr2{
-    return jobsMakeMutArr(^(__kindof NSMutableArray <FMBannerAdsModel *>*_Nullable data) {
-        for (int u = 0; u < 5; u++) {
-            data.add(jobsMakeBannerAdsModel(^(__kindof FMBannerAdsModel * _Nullable model) {
-                model.text = JobsInternationalization(@"这是本地的测试数据");
-            }));
-        }
-    });
-}
-
--(JobsReturnWMZBannerParamByArrBlock _Nonnull)makeBaseBannerParam{
-    @jobs_weakify(self)
-    return ^WMZBannerParam *_Nonnull(__kindof NSMutableArray <FMBannerAdsModel *>*_Nullable data){
-        WMZBannerParam *bannerParam = BannerParam()
-        /// 自定义视图必传
-        .wMyCellClassNameSet(JobsBaseCollectionViewCell.class.description)
-        /// 只有当首次调用时的数据源有值的时候，这个Block才会执行
-        .wMyCellSet(^UICollectionViewCell *(NSIndexPath *indexPath,
-                                            UICollectionView *collectionView,
-                                            id model,
-                                            UIImageView *bgImageView,
-                                            NSArray *dataArr) {
-            @jobs_strongify(self)
-            //自定义视图
-            JobsBaseCollectionViewCell *cell = [JobsBaseCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-            cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-            NSString *urlStr = @"";
-            if(data.count){
-                for (FMBannerAdsModel *model in data) {
-                    model.image = data[0].image;
-                }
-                if(data.count > indexPath.item) urlStr = data[indexPath.item].iosImage;
-            }
-            cell.backgroundImageView
-                .imageURL(urlStr.imageURLPlus.jobsUrl)
-                .placeholderImage(data[indexPath.item].image)
-                .options(SDWebImageRefreshCached)/// 强制刷新缓存
-                .completed(^(UIImage *_Nullable image,
-                             NSError *_Nullable error,
-                             SDImageCacheType cacheType,
-                             NSURL *_Nullable imageURL) {
-                    if (error) {
-                        NSLog(@"图片加载失败: %@", error);
-                        NSLog(@"图片URL: %@-%@",imageURL,urlStr.jobsUrl);
-                    } else {
-                        NSLog(@"图片加载成功");
-                    }
-                }).load();
-            return cell;
-        })
-        .wEventClickSet(^(id anyID, NSInteger index) {
-            NSLog(@"点击 %@ %ld",anyID,index);
-            @jobs_strongify(self)
-            FMBannerAdsModel *model = data[index];
-            self.adsAction(model);
-        })
-        .wEventCenterClickSet(^(id anyID,
-                                NSInteger index,
-                                BOOL isCenter,
-                                UICollectionViewCell *cell) {
-            NSLog(@"判断居中点击");
-        })
-        /// 图片铺满
-        .wImageFillSet(YES)
-        /// 循环滚动
-        .wRepeatSet(YES)
-        /// 自动滚动时间
-        .wAutoScrollSecondSet(5)
-        /// 自动滚动
-        .wAutoScrollSet(YES)
-        /// cell的位置
-        .wPositionSet(BannerCellPositionCenter)
-        /// 分页按钮的选中的颜色
-        .wBannerControlSelectColorSet(JobsWhiteColor)
-        /// 分页按钮的未选中的颜色
-        .wBannerControlColorSet(JobsLightGrayColor)
-        /// 分页按钮的圆角
-        .wBannerControlImageRadiusSet(5)
-        /// 自定义圆点间距
-        .wBannerControlSelectMarginSet(3)
-        /// 隐藏分页按钮
-        .wHideBannerControlSet(NO)
-        /// 能否拖动
-        .wCanFingerSlidingSet(YES);
-        return bannerParam;
+/// 控制CustomTabBar的显隐
+-(jobsByBOOLBlock _Nonnull)showCustomTabBar{
+    return ^(BOOL data){
+        CustomTabBar.jobsVisible = data;
     };
 }
-/// 广告轮播图的数据源
--(JobsReturnWMZBannerParamByArrBlock)makeADBannerParamBy{
-    @jobs_weakify(self)
-    return ^WMZBannerParam *_Nonnull(NSMutableArray <FMBannerAdsModel *>* data){
-        @jobs_strongify(self)
-        WMZBannerParam *bannerParam = self.makeBaseBannerParam(data)
-            .wFrameSet(CGRectMake(0,
-                                  0,
-                                  JobsWidth(148),
-                                  JobsWidth(284)));
-        /// 第一次创建的时候，如果此数据源没有值，那么后续即便刷新UI也不会显示
-        bannerParam.wDataSet(data);
-        return bannerParam;
-    };
-}
-/// 广告点击逻辑
--(jobsByIDBlock _Nonnull)adsAction{
-    return ^(FMBannerAdsModel *model){
-        switch (model.jumpType) {
-            /// 指定游戏
-            case FMJumpType_DESIGNATED_GAME:{
-                
-            }break;
-            /// 场馆大厅
-            case FMJumpType_STADIUM:{
-                
-            }break;
-            /// 活动模块
-            case FMJumpType_ACTIVITY:{
-                
-            }break;
-            /// 网站地址
-            case FMJumpType_WEBURL:{
-                self.jobsOpenURL(model.jumpParameter);
-            }break;
-            /// 不跳转
-            case FMJumpType_NO:{
-                
-            }break;
-                
-            default:
-                break;
-        }
-    };
-}
-/// 公告的数据源
--(JobsReturnWMZBannerParamByArrBlock _Nonnull)makeAnnouncementBannerParamBy{
-    @jobs_weakify(self)
-    return ^WMZBannerParam *_Nonnull(NSMutableArray <FMBannerAdsModel *>* data){
-        @jobs_strongify(self)
-        WMZBannerParam *bannerParam = self.makeBaseBannerParam(data)
-            .wFrameSet(CGRectMake(0,
-                                  0,
-                                  JobsWidth(270),
-                                  JobsWidth(250)));
-        /// 第一次创建的时候，如果此数据源没有值，那么后续即便刷新UI也不会显示
-        bannerParam.wDataSet(data);
-        return bannerParam;
+/// 创建JobsCustomTabBar（单例模式）
+static JobsCustomTabBar *sharedCustomTabBar = nil;
++(JobsReturnCustomTabBarByViewBlock _Nonnull)makeCustomTabBarBy{
+    return ^JobsCustomTabBar *_Nullable(__kindof UIView *_Nullable view){
+        if(!sharedCustomTabBar){
+            sharedCustomTabBar = jobsMakeCustomTabBar(^(__kindof JobsCustomTabBar *_Nullable customTabBar) {
+                customTabBar.backgroundColor = JobsClearColor;
+        //        customTabBar.backgroundColor = JobsRedColor;
+                customTabBar.configMasonryBy(view);
+            });
+        }return sharedCustomTabBar;
     };
 }
 /// 导航返回键的配置

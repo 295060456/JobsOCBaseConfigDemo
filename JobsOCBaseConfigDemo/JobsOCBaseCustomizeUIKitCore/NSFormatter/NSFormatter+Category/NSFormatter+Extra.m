@@ -9,23 +9,29 @@
 
 @implementation NSFormatter (Extra)
 
--(JobsReturnStringByDateBlock)date{
+-(JobsReturnStringByDateBlock _Nonnull)date{
     @jobs_weakify(self)
     return ^NSString *_Nullable(NSDate *_Nullable date){
         @jobs_strongify(self)
-        if(self.isKindOfClass(NSDateFormatter.class)){
-            NSDateFormatter *dateFormatter = (NSDateFormatter *)self;
-            return [dateFormatter stringFromDate:date];
+        if(self){
+            if(self.isKindOfClass(NSDateFormatter.class)){
+                NSDateFormatter *dateFormatter = (NSDateFormatter *)self;
+                return [dateFormatter stringFromDate:date];
+            }
         }return @"";
     };
 }
 
--(JobsReturnStringByTimeIntervalBlock)time{
+-(JobsReturnStringByTimeIntervalBlock _Nonnull)time{
+    @jobs_weakify(self)
     return ^NSString *_Nullable(NSTimeInterval timeInterval){
-        NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
-        if(self.isKindOfClass(NSDateFormatter.class)){
-            NSDateFormatter *dateFormatter = (NSDateFormatter *)self;
-            return dateFormatter.date(date);
+        @jobs_strongify(self)
+        if(self){
+            if(self.isKindOfClass(NSDateFormatter.class)){
+                NSDateFormatter *dateFormatter = (NSDateFormatter *)self;
+                NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
+                return dateFormatter.date(date);
+            }
         }return nil;
     };
 }

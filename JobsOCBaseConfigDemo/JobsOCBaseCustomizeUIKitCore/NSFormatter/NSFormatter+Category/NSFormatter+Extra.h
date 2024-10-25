@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSFormatter (Extra)
 
--(JobsReturnStringByDateBlock)date;
--(JobsReturnStringByTimeIntervalBlock)time;
+-(JobsReturnStringByDateBlock _Nonnull)date;
+-(JobsReturnStringByTimeIntervalBlock _Nonnull)time;
 
 @end
 

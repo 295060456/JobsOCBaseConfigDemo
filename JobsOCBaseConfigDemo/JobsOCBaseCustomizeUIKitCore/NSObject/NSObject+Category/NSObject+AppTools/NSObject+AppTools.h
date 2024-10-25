@@ -24,7 +24,17 @@
 
 #import "NSString+Check.h"
 
+#ifndef PicSalt
 #define PicSalt @"RRU4JZTV5WZXPCVZ"
+#endif /*PicSalt*/
+
+#ifndef MakeCustomTabBarBy
+#define MakeCustomTabBarBy(view) NSObject.makeCustomTabBarBy(view)
+#endif /*MakeCustomTabBarBy*/
+
+#ifndef CustomTabBar
+#define CustomTabBar MakeCustomTabBarBy(jobsGetMainWindow())
+#endif /*CustomTabBar*/
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -47,20 +57,10 @@ AppToolsProtocol
 @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
 @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 #pragma mark —— 一些公共设置
-/// 创建默认的广告数据源
--(NSMutableArray<FMBannerAdsModel *> *)makeDataMutArr;
-/// 创建个人中心广告默认的数据源
--(NSMutableArray<FMBannerAdsModel *> *)makeSubViewModelMutArr;
-/// 创建公告默认的数据源
--(NSMutableArray<FMBannerAdsModel *> *)makeSubViewModelMutArr2;
-
--(JobsReturnWMZBannerParamByArrBlock _Nonnull)makeBaseBannerParam;
-/// 广告轮播图的数据源
--(JobsReturnWMZBannerParamByArrBlock)makeADBannerParamBy;
-/// 广告点击逻辑
--(jobsByIDBlock _Nonnull)adsAction;
-/// 公告的数据源
--(JobsReturnWMZBannerParamByArrBlock _Nonnull)makeAnnouncementBannerParamBy;
+/// 控制CustomTabBar的显隐
+-(jobsByBOOLBlock _Nonnull)showCustomTabBar;
+/// 创建JobsCustomTabBar（单例模式）
++(JobsReturnCustomTabBarByViewBlock _Nonnull)makeCustomTabBarBy;
 -(UIButtonModel *)makeBackBtnModel;
 #pragma mark —— 弹出框。为了防止业务层的变化，弹出框定义在NSObject层
 /// Debug模式下的弹出框 及其相关的数据封装。在外层进行调用，[ 需要被展现的视图 popupShowScaleWithView:popupView];

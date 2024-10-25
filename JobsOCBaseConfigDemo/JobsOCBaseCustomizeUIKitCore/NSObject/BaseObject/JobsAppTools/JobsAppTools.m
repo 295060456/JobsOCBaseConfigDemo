@@ -24,7 +24,7 @@ static dispatch_once_t JobsAppToolsOnceToken;
     });return JobsAppToolsInstance;
 }
 /// 单例的销毁
-+(void)destroyInstance {
++(void)destroySingleton {
     JobsAppToolsOnceToken = 0;
     JobsAppToolsInstance = nil;
 }

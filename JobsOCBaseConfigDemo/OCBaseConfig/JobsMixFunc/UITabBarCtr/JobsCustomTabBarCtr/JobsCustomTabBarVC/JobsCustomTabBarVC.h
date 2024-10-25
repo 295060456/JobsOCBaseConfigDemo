@@ -11,6 +11,7 @@
 #import "MacroDef_Size.h"
 #import "BaseProtocol.h"
 #import "UIView+Measure.h"
+#import "NSObject+AppTools.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

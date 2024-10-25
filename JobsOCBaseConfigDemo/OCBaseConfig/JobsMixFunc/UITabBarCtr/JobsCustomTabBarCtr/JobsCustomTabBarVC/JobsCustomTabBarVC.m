@@ -85,49 +85,7 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 #pragma mark —— LazyLoad
 -(JobsCustomTabBar *)customTabBar{
     if(!_customTabBar){
-        _customTabBar = JobsCustomTabBar.new;
-        _customTabBar.backgroundColor = JobsClearColor;
-//        _customTabBar.backgroundColor = JobsRedColor;
-        [self.view addSubview:_customTabBar];
-        
-        if(!jobsZeroRectValue(JobsCustomTabBarConfig_appDelegate.tabBarFrame)){
-            _customTabBar.frame = JobsCustomTabBarConfig_appDelegate.tabBarFrame;
-        }else{
-            [_customTabBar mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                if(JobsCustomTabBarConfig_appDelegate.tabBarX){
-                    make.left.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarX);
-                }else{
-                    make.centerX.equalTo(self.view);
-                }
-                
-                if (JobsCustomTabBarConfig_appDelegate.tabBarY) {
-                    make.top.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarY);
-                }else{
-                    make.bottom.equalTo(self.view);
-                }
-                
-                if (!jobsZeroPointValue(JobsCustomTabBarConfig_appDelegate.tabBarOrigin)) {
-                    make.left.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarOrigin.x);
-                    make.top.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarOrigin.y);
-                }
-                
-                if (!jobsZeroSizeValue(JobsCustomTabBarConfig_appDelegate.tabBarSize)) {
-                    make.size.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarSize);
-                }
-                
-                if(JobsCustomTabBarConfig_appDelegate.tabBarHeight){
-                    // 这里使用 JobsCustomTabBarConfig.sharedManager.tabBarHeight 会崩
-                    make.height.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarHeight);
-                }
-                
-                if(JobsCustomTabBarConfig_appDelegate.tabBarWidth){
-                    // 这里使用 JobsCustomTabBarConfig.sharedManager.tabBarWidth 会崩
-                    make.width.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarWidth);
-                }
-            }];
-            [self.view layoutIfNeeded];
-        }
+        _customTabBar = NSObject.makeCustomTabBarBy(self.view);
     }return _customTabBar;
 }
 
