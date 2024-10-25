@@ -124,7 +124,9 @@
 #pragma mark —— LazyLoad
 -(NSDictionary *)parameters{
     if(!_parameters){
-        _parameters = NSDictionary.dictionary;
+        _parameters = jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+            
+        });
     }return _parameters;
 }
 
