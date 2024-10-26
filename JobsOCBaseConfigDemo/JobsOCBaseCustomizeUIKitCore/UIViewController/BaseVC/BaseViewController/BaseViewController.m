@@ -44,7 +44,7 @@ BaseViewControllerProtocol_synthesize
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.ViewDidLoad = YES;
+    self.ViewWillAppear = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated{

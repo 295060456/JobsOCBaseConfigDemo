@@ -25,8 +25,26 @@
     if(isValue(self.loginModel.token)) return YES;
     /// 存在过期时间，则鉴别过期时间以判断是否登录
     if(isValue(self.loginModel.expireTime)) {
-        return !self.loginModel.expireTime.isExpired();
+        /// 登录是否过期：过期 === 未登录
+        return !self.isLoginByExpiredTime(self.loginModel.expireTime);
     }else return NO;/// 过期时间都没有，肯定也是没有登录的
+}
+/// 判定是否登录的标准1：是否本地存在用户数据模型 + 是否存在Token
+-(BOOL)isLoginByToken{
+    /// 模型都没有建立肯定是没有登录的
+    if(self.loginModel) return YES;
+    /// Token 都没有肯定也是没有登录的
+    if(isValue(self.loginModel.token)) return YES;
+    return NO;
+}
+/// 判定是否登录的标准2
+/// 登录是否过期：没有过期时间 ===  已经过期
+-(JobsReturnBOOLByStringBlock _Nonnull)isLoginByExpiredTime{
+    return ^BOOL(NSString *_Nullable data){
+        if(isValue(data)){
+            return !data.isExpired();
+        }return NO;
+    };
 }
 /// 检查是否登录并执行传入的代码块
 -(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock {
@@ -50,9 +68,9 @@
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        if(self.isLogin){
-            /// 清理本地用户数据
-            self.deleteUserInfoByUserName(用户信息);
+        if(!(self.isLoginByToken &&
+             self.isLoginByExpiredTime((self.loginModel.expireTime)))){
+            self.deleteUserInfoByUserName(用户信息);/// 清理本地用户数据
         }
     };
 }

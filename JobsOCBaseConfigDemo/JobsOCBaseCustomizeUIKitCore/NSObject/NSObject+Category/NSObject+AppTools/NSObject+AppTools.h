@@ -56,6 +56,9 @@ AppToolsProtocol
 @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
 @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
 @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+#pragma mark —— 测试调试专用
+/// 查询当下的本地登录数据
+-(jobsByVoidBlock _Nullable)checkLoginData;
 #pragma mark —— 一些公共设置
 /// 控制CustomTabBar的显隐
 -(jobsByBOOLBlock _Nonnull)showCustomTabBar;

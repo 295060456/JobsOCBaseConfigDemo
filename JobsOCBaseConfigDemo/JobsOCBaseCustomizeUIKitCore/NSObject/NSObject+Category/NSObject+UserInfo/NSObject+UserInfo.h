@@ -23,6 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
   【return】 YES(已经登录)、NO（未登录）
  */
 -(BOOL)isLogin;
+/// 判定是否登录的标准1：是否本地存在用户数据模型 + 是否存在Token
+-(BOOL)isLoginByToken;
+/// 判定是否登录的标准2
+/// 登录是否过期：没有过期时间 ===  已经过期
+-(JobsReturnBOOLByStringBlock _Nonnull)isLoginByExpiredTime;
 /// 检查是否登录并执行传入的代码块
 -(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock;
 /// 刷新用户Token

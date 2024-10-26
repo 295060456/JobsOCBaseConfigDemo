@@ -47,6 +47,19 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         [ad refreshTabBarTitle];
     }
 }
+#pragma mark —— 测试调试专用
+/// 查询当下的本地登录数据
+-(jobsByVoidBlock _Nullable)checkLoginData{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        JobsUserModel *loginModel= self.readUserInfoByUserName(JobsUserModel.class,用户信息);
+        NSLog(@"Token = %@",loginModel.token);
+        if(self.loginModel.expireTime){
+            NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.loginModel.expireTime.jobsTime());
+        }
+    };
+}
 #pragma mark —— 一些公共设置
 /// 控制CustomTabBar的显隐
 -(jobsByBOOLBlock _Nonnull)showCustomTabBar{
@@ -106,6 +119,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         self.cleanUserData();
         JobsPostNotification(退出登录成功, @(YES));
         toast(JobsInternationalization(@"退出登录成功"));
+        self.popToRootVCBy(YES);
     };
 }
 /// 清除用户数据资料

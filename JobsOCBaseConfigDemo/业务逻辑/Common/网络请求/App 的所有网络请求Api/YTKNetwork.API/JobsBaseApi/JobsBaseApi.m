@@ -33,13 +33,22 @@
 /// 设置自定义的 HTTP Header
 -(NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
     // 在这里添加你想要的 HTTP header
-    self.loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
+    self.fm_loginModel = self.readUserInfoByUserName(FMLoginModel.class,FM用户数据);
+    NSLog(@"loginModel = %@",self.fm_loginModel);
+    NSLog(@"Token = %@",self.fm_loginModel.accessToken);
     return jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
         // 设置 Content-Type
         [data setValue:@"application/json" forKey:@"Content-Type"];
         // 设置 Authorization
-        if(self.loginModel) [data setValue:self.loginModel.token forKey:@"Authorization"];
+        if(self.fm_loginModel) [data setValue:self.fm_loginModel.accessToken forKey:@"Authorization"];
     });
+//    self.loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
+//    return jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+          // 设置 Content-Type
+//        [data setValue:@"application/json" forKey:@"Content-Type"];
+          // 设置 Authorization
+//        if(self.loginModel) [data setValue:self.loginModel.token forKey:@"Authorization"];
+//    });
 }
 
 - (NSURLRequest *)buildCustomUrlRequest{
