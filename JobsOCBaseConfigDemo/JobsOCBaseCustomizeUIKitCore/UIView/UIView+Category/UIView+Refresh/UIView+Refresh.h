@@ -9,7 +9,12 @@
 #import <objc/runtime.h>
 #import "JobsBlock.h"
 #import "NSObject+Extras.h"
+#import "NSObject+DynamicInvoke.h"
 #import "MJRefresh+Extra.h"
+
+#import "LOTAnimationMJRefreshHeader.h"
+#import "MJRefreshConfigModel.h"
+#import "BaseViewProtocol.h"
 
 #if __has_include(<ReactiveObjC/RACmetamacros.h>)
 #import <ReactiveObjC/RACmetamacros.h>
@@ -29,12 +34,6 @@
 #import "RACEXTKeyPathCoding.h"
 #endif
 
-//#if __has_include(<ReactiveObjC/RACEXTRuntimeExtensions.h>)
-//#import <ReactiveObjC/RACEXTRuntimeExtensions.h>
-//#else
-//#import "RACEXTRuntimeExtensions.h"
-//#endif
-
 #if __has_include(<MJRefresh/MJRefresh.h>)
 #import <MJRefresh/MJRefresh.h>
 #else
@@ -53,9 +52,11 @@
 #import "XZMRefresh.h"
 #endif
 
-#import "LOTAnimationMJRefreshHeader.h"
-#import "MJRefreshConfigModel.h"
-#import "BaseViewProtocol.h"
+//#if __has_include(<ReactiveObjC/RACEXTRuntimeExtensions.h>)
+//#import <ReactiveObjC/RACEXTRuntimeExtensions.h>
+//#else
+//#import "RACEXTRuntimeExtensions.h"
+//#endif
 
 NS_ASSUME_NONNULL_BEGIN
 /// https://github.com/CoderMJLee/MJRefresh/issues/1495
