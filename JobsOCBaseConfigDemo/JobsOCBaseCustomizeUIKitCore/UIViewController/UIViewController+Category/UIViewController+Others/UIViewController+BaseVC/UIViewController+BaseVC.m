@@ -112,14 +112,17 @@
         }
         @jobs_weakify(fromVC)
         jobsByVoidBlock presentViewControllerBlock = ^(){
-            toVC.pushOrPresent = ComingStyle_PRESENT;
-            /// iOS_13中modalPresentationStyle的默认改为UIModalPresentationAutomatic,而在之前默认是UIModalPresentationFullScreen
-            toVC.modalPresentationStyle = presentationStyle;
-            [weak_fromVC presentViewController:toVC
-                                      animated:animated
-                                    completion:^{
-                if (successBlock) successBlock(toVC);
-            }];
+            /// 防止多次present控制器
+            if(!fromVC.presentedViewController){
+                toVC.pushOrPresent = ComingStyle_PRESENT;
+                /// iOS_13中modalPresentationStyle的默认改为UIModalPresentationAutomatic,而在之前默认是UIModalPresentationFullScreen
+                toVC.modalPresentationStyle = presentationStyle;
+                [weak_fromVC presentViewController:toVC
+                                          animated:animated
+                                        completion:^{
+                    if (successBlock) successBlock(toVC);
+                }];
+            }
         };
         switch (comingStyle) {
             case ComingStyle_PUSH:{
@@ -213,8 +216,9 @@ JobsKey(_navBarConfig)
 -(JobsNavBarConfig *)navBarConfig{
     JobsNavBarConfig *NavBarConfig = Jobs_getAssociatedObject(_navBarConfig);
     if(!NavBarConfig){
-        NavBarConfig = JobsNavBarConfig.new;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_navBarConfig, NavBarConfig)
+        Jobs_setAssociatedRETAIN_NONATOMIC(_navBarConfig, jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable data) {
+            
+        }))
     }return NavBarConfig;
 }
 #pragma mark —— @property(nonatomic,strong)JobsNavBar *navBar;
@@ -227,36 +231,36 @@ JobsKey(_navBar)
 -(JobsNavBar *)navBar{
     JobsNavBar *NavBar = Jobs_getAssociatedObject(_navBar);
     if(!NavBar){
-        NavBar = JobsNavBar.new;
-        if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-            self.navBarConfig.backBtnModel.btn_offset_x = self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(40);
-            self.navBarConfig.closeBtnModel.btn_offset_x = self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(40);
-        }
-        NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
-        NSLog(@"%f",self.navBarConfig.closeBtnModel.btn_offset_x);
-//        if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
-        NavBar.navBarConfig = self.navBarConfig;
-        [self.view addSubview:NavBar];
-        [NavBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        Jobs_setAssociatedRETAIN_NONATOMIC(_navBar, jobsMakeNavBar(^(__kindof JobsNavBar * _Nullable data) {
             if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-                make.top.equalTo(self.view);
-            }else{
-                make.top.equalTo(self.view).offset(JobsStatusBarHeight());
+                self.navBarConfig.backBtnModel.btn_offset_x = self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(40);
+                self.navBarConfig.closeBtnModel.btn_offset_x = self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(40);
             }
-            make.left.right.equalTo(self.view);
-            make.height.mas_equalTo(JobsWidth(40));
-        }];
-        [self.view layoutIfNeeded];
-        NavBar.jobsRichViewByModel(nil);
-        @jobs_weakify(self)
-        [NavBar actionNavBarBackBtnClickBlock:^(UIButton * _Nullable x) {
-            @jobs_strongify(self)
-            self.backBtnClickEvent(x);
-        }];
-        [NavBar actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable x) {
-//            @jobs_strongify(self)
-        }];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_navBar, NavBar)
+            NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
+            NSLog(@"%f",self.navBarConfig.closeBtnModel.btn_offset_x);
+    //        if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
+            data.navBarConfig = self.navBarConfig;
+            [self.view addSubview:data];
+            [data mas_makeConstraints:^(MASConstraintMaker *make) {
+                if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+                    make.top.equalTo(self.view);
+                }else{
+                    make.top.equalTo(self.view).offset(JobsStatusBarHeight());
+                }
+                make.left.right.equalTo(self.view);
+                make.height.mas_equalTo(JobsWidth(40));
+            }];
+            [self.view layoutIfNeeded];
+            data.jobsRichViewByModel(nil);
+            @jobs_weakify(self)
+            [data actionNavBarBackBtnClickBlock:^(UIButton * _Nullable x) {
+                @jobs_strongify(self)
+                self.backBtnClickEvent(x);
+            }];
+            [data actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable x) {
+    //            @jobs_strongify(self)
+            }];
+        }))
     }return NavBar;
 }
 

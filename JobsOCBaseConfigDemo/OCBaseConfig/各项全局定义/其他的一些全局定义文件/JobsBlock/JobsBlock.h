@@ -157,8 +157,12 @@ typedef NSMutableArray <UIButtonModel *>*_Nullable(^JobsReturnButtonModelArrByAr
 typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByString)(__kindof NSString *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(UIButtonModel *_Nullable data);
 @class JobsNavBarConfig;
+typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable data);
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,
                                                                                UIButtonModel *_Nullable closeBtnModel);
+@class JobsNavBar;
+typedef void(^jobsByNavBarBlock)(__kindof JobsNavBar *_Nullable data);
+
 @class FileNameModel;
 typedef FileNameModel *_Nonnull(^JobsReturnFileNameModelByFileFullNameStringBlock)(NSString *_Nullable FileFullName);
 
@@ -168,12 +172,11 @@ typedef __kindof JobsUserModel<NSCoding> *_Nullable(^JobsReturnUserModelByKeyBlo
 typedef void(^jobsByUserModelBlock)(__kindof JobsUserModel <NSCoding>*_Nullable userModel);
 typedef void(^jobsByIDAndKeyBlock)(NSObject <NSCoding> *_Nonnull userModel,
                                    NSString *_Nullable key);
+@class UserDefaultModel;
+typedef void(^jobsByUserDefaultModelBlock)(UserDefaultModel *_Nonnull data);
 
 @class JobsTabBarItemConfig;
 typedef void(^jobsByTabBarItemConfigBlock)(__kindof JobsTabBarItemConfig *_Nullable data);
-
-@class UserDefaultModel;
-typedef void(^jobsByUserDefaultModelBlock)(UserDefaultModel *_Nonnull data);
 
 @class LZTabBarConfig;
 typedef void(^jobsByLZTabBarConfigBlock)(__kindof LZTabBarConfig *_Nullable data);
@@ -190,9 +193,6 @@ typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *
 
 @class JobsLocationModel;
 typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
-
-@class JobsNavBarConfig;
-typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable data);
 
 @class JobsTimeModel;
 typedef void(^jobsByTimeModelBlock)(__kindof JobsTimeModel *_Nullable data);

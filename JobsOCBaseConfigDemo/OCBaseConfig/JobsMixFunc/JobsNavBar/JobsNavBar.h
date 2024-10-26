@@ -22,3 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsNavBar *_Nonnull jobsMakeNavBar(jobsByNavBarBlock _Nonnull block){
+    JobsNavBar *data = JobsNavBar.alloc.init;
+    if (block) block(data);
+    return data;
+}
