@@ -14,14 +14,18 @@
  【return】 YES(已经登录)、NO（未登录）
  */
 -(BOOL)isLogin{
-    JobsUserModel *userInfo = self.readUserInfo();
+    NSLog(@"userInfo = %@",self.loginModel);
+    NSLog(@"Token = %@",self.loginModel.token);
+    if(self.loginModel.expireTime){
+        NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.loginModel.expireTime.jobsTime());
+    }
     /// 模型都没有建立肯定是没有登录的
-    if(!userInfo) return NO;
+    if(self.loginModel) return YES;
     /// Token 都没有肯定也是没有登录的
-    if(!isValue(userInfo.token)) return NO;
+    if(isValue(self.loginModel.token)) return YES;
     /// 存在过期时间，则鉴别过期时间以判断是否登录
-    if(isValue(userInfo.expireTime)) {
-        return !userInfo.expireTime.isExpired();
+    if(isValue(self.loginModel.expireTime)) {
+        return !self.loginModel.expireTime.isExpired();
     }else return NO;/// 过期时间都没有，肯定也是没有登录的
 }
 /// 检查是否登录并执行传入的代码块
@@ -54,8 +58,12 @@
 }
 #pragma mark —— 全局的用户数据(存、取、清)[全局唯一一份用户档案]
 /// 登出清空用户数据 【用户信息】/【JobsUserModel】
--(void)logOut{
-    self.deleteUserInfoByUserName(用户信息);
+-(jobsByVoidBlock _Nonnull)logOut{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        self.deleteUserInfoByUserName(用户信息);
+    };
 }
 /// 保存用户数据（用 NSUserDefaults ）【用户信息】/【JobsUserModel】
 -(jobsByUserModelBlock _Nonnull)saveUserInfo{
@@ -66,12 +74,8 @@
     };
 }
 /// 读取用户信息【用户信息】/【JobsUserModel】
--(JobsReturnUserModelByVoidBlock _Nonnull)readUserInfo{
-    @jobs_weakify(self)
-    return ^JobsUserModel <NSCoding> *_Nullable() {
-        @jobs_strongify(self)
-        return self.jobsReadUserInfo(用户信息);
-    };
+-(JobsUserModel <NSCoding>*_Nullable)readUserInfo{
+    return self.jobsReadUserInfo(用户信息);
 }
 /// 保存用户数据
 -(jobsByIDAndKeyBlock _Nonnull)jobsSaveUserInfo{
@@ -86,7 +90,7 @@
 /// 读取用户信息
 -(JobsReturnIDByStringBlock _Nonnull)jobsReadUserInfo{
     @jobs_weakify(self)
-    return ^id _Nullable(NSString * _Nullable data) {
+    return ^id _Nullable(NSString *_Nullable data) {
         @jobs_strongify(self)
         return self.readUserInfoByUserName(nil,data);
     };

@@ -59,7 +59,7 @@ static dispatch_once_t AppDelegateOnceToken;
             userModel.userName = @"张三丰";
             userModel.phone = @"13487878787".encryptedChineseTele;
         }));
-        id f = self.readUserInfo();
+        id f = self.readUserInfo;
         NSLog(@"");
     };
 }

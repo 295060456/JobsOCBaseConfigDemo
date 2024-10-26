@@ -149,7 +149,7 @@
             userModel.uid = @"54321";
         }));
         NSLog(@"");
-        JobsUserModel *f = self.readUserInfo();
+        JobsUserModel *f = self.readUserInfo;
         NSLog(@"");
     };
 }

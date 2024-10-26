@@ -20,7 +20,7 @@
          基础配置
          需要在请求之前配置，设置后所有请求都会带上 此基础配置
          */
-        JobsUserModel *f = self.readUserInfo();
+        JobsUserModel *f = self.readUserInfo;
         NSString *timeString = [NSString stringWithFormat:@"%.2f",NSDate.date.timeIntervalSince1970];
         NSMutableDictionary *parameters = jobsMakeMutDic(^(__kindof NSMutableDictionary *_Nullable data) {
             data[@"timeString"] = timeString;//时间戳

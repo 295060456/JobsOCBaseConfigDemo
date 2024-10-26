@@ -175,7 +175,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 if (self.objectBlock) self.objectBlock(x);
                 UIViewModel *viewModel = [self configViewModelWithAttributeTitle:@"用户信息展示(开发测试专用)" attributeSubTitle:nil];
                 viewModel.cls = JobsShowObjInfoVC.class;
-                viewModel.requestParams = self.readUserInfo();
+                viewModel.requestParams = self.readUserInfo;
                 [self forceComingToPushVC:viewModel.cls.new
                             requestParams:viewModel];// 测试专用
             }).onLongPressGesture(^(id data){

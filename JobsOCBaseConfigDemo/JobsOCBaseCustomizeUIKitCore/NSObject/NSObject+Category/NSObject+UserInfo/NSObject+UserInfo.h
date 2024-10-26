@@ -31,11 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByVoidBlock _Nonnull)refreshUserToken2;
 #pragma mark —— 全局的用户数据(存、取、清)
 /// 登出清空用户数据 【用户信息】/【JobsUserModel】
--(void)logOut;
+-(jobsByVoidBlock _Nonnull)logOut;
 /// 保存用户数据（用 NSUserDefaults ）【用户信息】/【JobsUserModel】
 -(jobsByUserModelBlock _Nonnull)saveUserInfo;
 /// 读取用户信息【用户信息】/【JobsUserModel】
--(JobsReturnUserModelByVoidBlock _Nonnull)readUserInfo;
+-(JobsUserModel <NSCoding>*_Nullable)readUserInfo;
 /// 保存用户数据
 -(jobsByIDAndKeyBlock _Nonnull)jobsSaveUserInfo;
 /// 读取用户信息
@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_END
      
      self.saveUserInfo(userModel);
      NSLog(@"");
-     JobsAppDoorVC *f = self.readUserInfo();
+     JobsAppDoorVC *f = self.readUserInfo;
      NSLog(@"");
  }
  

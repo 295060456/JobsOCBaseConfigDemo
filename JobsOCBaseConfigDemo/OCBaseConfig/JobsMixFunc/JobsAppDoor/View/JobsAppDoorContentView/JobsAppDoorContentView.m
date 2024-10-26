@@ -572,7 +572,7 @@
                 用户名.returnKeyType = UIReturnKeyDone;
                 用户名.keyboardAppearance = UIKeyboardAppearanceAlert;
                 用户名.leftViewMode = UITextFieldViewModeAlways;
-                用户名.inputStr = self.readUserInfo().userName;
+                用户名.inputStr = self.readUserInfo.userName;
                 用户名.placeholderColor = JobsWhiteColor;
                 用户名.rightViewOffsetX = -JobsWidth(25);
                 用户名.placeHolderOffset = JobsWidth(35);
