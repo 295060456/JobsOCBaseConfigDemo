@@ -192,7 +192,9 @@ typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCls_SaltSt
                                                                                                    NSString *_Nullable salt,
                                                                                                    NSIndexPath *_Nonnull indexPath);
 #pragma mark —— 关于 UICollectionView
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByLayoutBlock)(__kindof UICollectionViewLayout *_Nullable data);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable data);
+
 #pragma mark —— 关于 UICollectionViewCell
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
 #pragma mark —— 关于 UIScrollView
@@ -375,6 +377,7 @@ typedef BOOL(^JobsReturnBOOLByBOOLBlock)(BOOL data);
 typedef BOOL(^JobsReturnBOOLByNSUIntegerBlock)(NSUInteger data);
 typedef BOOL(^JobsReturnBOOLByNSIntegerBlock)(NSInteger data);
 typedef BOOL(^JobsReturnBOOLByIDBlock)(id _Nullable data);
+typedef BOOL(^JobsReturnBOOLByViewControllerBlock)(UIViewController *_Nullable viewController);
 typedef BOOL(^JobsReturnBOOLByStringBlock)(NSString *_Nullable data);
 typedef BOOL(^JobsReturnBOOLByDateBlock)(NSDate *_Nullable date);
 typedef BOOL(^JobsReturnBOOLByArrBlock)(NSArray *_Nullable data);

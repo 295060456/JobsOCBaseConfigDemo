@@ -9,9 +9,9 @@
 
 @implementation UICollectionView (Func)
 
-+(JobsReturnCollectionViewByFlowLayoutBlock)initByLayout{
++(JobsReturnCollectionViewByLayoutBlock _Nonnull)initByLayout{
     @jobs_weakify(self)
-    return ^__kindof UICollectionView *_Nullable(__kindof UICollectionViewFlowLayout *_Nullable data){
+    return ^__kindof UICollectionView *_Nullable(__kindof UICollectionViewLayout *_Nullable data){
         @jobs_strongify(self)
         return [self.class.alloc initWithFrame:CGRectZero collectionViewLayout:data];
     };

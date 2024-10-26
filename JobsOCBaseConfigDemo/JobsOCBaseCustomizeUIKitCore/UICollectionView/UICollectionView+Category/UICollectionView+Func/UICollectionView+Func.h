@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UICollectionView (Func)
 
-+(JobsReturnCollectionViewByFlowLayoutBlock)initByLayout;
++(JobsReturnCollectionViewByLayoutBlock _Nonnull)initByLayout;
 -(jobsByIDBlock _Nonnull)dataLink;
 -(UICollectionViewCell *)didSelectItemAtIndexPath:(NSIndexPath *)indexPath
                           collectionViewCellClass:(Class _Nullable)collectionViewCellClass;

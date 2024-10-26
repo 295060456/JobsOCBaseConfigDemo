@@ -86,6 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// OC字符串拼接
 -(JobsReturnStringByStringBlock _Nonnull)add;
 /// 清除SDImage的图片缓存（用url为key）
+/// ⚠️ 这个方法一旦使用，亦会清除掉placeholderImage
 -(void)cleanSDImageCache:(SDWebImageNoParamsBlock)block;
 
 @end

@@ -24,50 +24,47 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDImageLoaderProgressBlo
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (SDWebImage)
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByURLBlock imageURL;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByImageBlock placeholderImage;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonBySDWebImageOptionsBlock options;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonBySDExternalCompletionBlock completed;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonBySDImageLoaderProgressBlock progress;
+
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByURLBlock imageURL;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByImageBlock placeholderImage;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonBySDWebImageOptionsBlock options;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonBySDExternalCompletionBlock completed;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonBySDImageLoaderProgressBlock progress;
 #pragma mark —— 设置普通图片的方法
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock normalLoad;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock highlightedlLoad;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock disabledLoad;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock selectedLoad;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock focusedLoad API_AVAILABLE(ios(9.0));
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock applicationLoad;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock reservedLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock normalLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock highlightedlLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock disabledLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock selectedLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock focusedLoad API_AVAILABLE(ios(9.0));
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock applicationLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock reservedLoad;
 #pragma mark —— 设置背景图片的方法
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock bgNormalLoad;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock bgHighlightedlLoad;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock bgDisabledLoad;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock bgSelectedLoad;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock bgFocusedLoad API_AVAILABLE(ios(9.0));
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock bgApplicationLoad;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnButtonByVoidBlock bgReservedLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgNormalLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgHighlightedlLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgDisabledLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgSelectedLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgFocusedLoad API_AVAILABLE(ios(9.0));
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgApplicationLoad;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgReservedLoad;
 
 @end
 
 NS_ASSUME_NONNULL_END
 /**
- @jobs_weakify(self)
- [self.viewModel.normalImageURLString.imageURLPlus.jobsUrl.absoluteString cleanSDImageCache:^{
-     @jobs_strongify(self)
-     self->_btn
-         .imageURL(self.viewModel.normalImageURLString.imageURLPlus.jobsUrl)
-         .placeholderImage(self.viewModel.normalImage)
-         .options(self.makeSDWebImageOptions)
-         .completed(^(UIImage * _Nullable image,
-                      NSError * _Nullable error,
-                      SDImageCacheType cacheType,
-                      NSURL * _Nullable imageURL) {
-             if (error) {
-                 NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
-             } else {
-                 NSLog(@"图片加载成功");
-             }
-         }).normalLoad();
- }];
+ self->_btn
+     .imageURL(self.viewModel.normalImageURLString.imageURLPlus.jobsUrl)
+     .placeholderImage(self.viewModel.normalImage)
+     .options(self.makeSDWebImageOptions)
+     .completed(^(UIImage * _Nullable image,
+                  NSError * _Nullable error,
+                  SDImageCacheType cacheType,
+                  NSURL * _Nullable imageURL) {
+         if (error) {
+             NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+         } else {
+             NSLog(@"图片加载成功");
+         }
+     }).normalLoad();
  */
 /*
 

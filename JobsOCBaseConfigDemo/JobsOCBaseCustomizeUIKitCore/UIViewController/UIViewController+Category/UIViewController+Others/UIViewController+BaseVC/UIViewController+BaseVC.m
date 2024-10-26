@@ -58,7 +58,7 @@
     };
 }
 /// 铺满全屏展示的策略
--(void)fullScreenConstraintTargetView:(nonnull __kindof UIView *)view
+-(void)fullScreenConstraintTargetView:(__kindof UIView *_Nonnull)view
                         topViewOffset:(CGFloat)topViewOffset{
     /// 防止调用崩溃
     if (![self.view.subviews containsObject:view]) {
@@ -111,32 +111,27 @@
             toVC.fromVC = fromVC;// 【承上启下】下一个页面记录是从哪里来的
         }
         @jobs_weakify(fromVC)
+        jobsByVoidBlock presentViewControllerBlock = ^(){
+            toVC.pushOrPresent = ComingStyle_PRESENT;
+            /// iOS_13中modalPresentationStyle的默认改为UIModalPresentationAutomatic,而在之前默认是UIModalPresentationFullScreen
+            toVC.modalPresentationStyle = presentationStyle;
+            [weak_fromVC presentViewController:toVC
+                                      animated:animated
+                                    completion:^{
+                if (successBlock) successBlock(toVC);
+            }];
+        };
         switch (comingStyle) {
             case ComingStyle_PUSH:{
                 if (fromVC.navigationController) {
                     toVC.pushOrPresent = ComingStyle_PUSH;
+                    toVC.hidesBottomBarWhenPushed = hidesBottomBarWhenPushed;/// 下面有黑条
+                    [weak_fromVC.navigationController pushViewController:toVC animated:animated];
                     if (successBlock) successBlock(toVC);
-                    toVC.hidesBottomBarWhenPushed = hidesBottomBarWhenPushed;//下面有黑条
-                    [weak_fromVC.navigationController pushViewController:toVC
-                                                                animated:animated];
-                }else{
-                    toVC.pushOrPresent = ComingStyle_PRESENT;
-                    //iOS_13中modalPresentationStyle的默认改为UIModalPresentationAutomatic,而在之前默认是UIModalPresentationFullScreen
-                    toVC.modalPresentationStyle = presentationStyle;
-                    if (successBlock) successBlock(toVC);
-                    [weak_fromVC presentViewController:toVC
-                                              animated:animated
-                                            completion:^{}];
-                }
+                }else if(presentViewControllerBlock) presentViewControllerBlock();
             }break;
             case ComingStyle_PRESENT:{
-                toVC.pushOrPresent = ComingStyle_PRESENT;
-                //iOS_13中modalPresentationStyle的默认改为UIModalPresentationAutomatic,而在之前默认是UIModalPresentationFullScreen
-                toVC.modalPresentationStyle = presentationStyle;
-                if (successBlock) successBlock(toVC);
-                [weak_fromVC presentViewController:toVC
-                                          animated:animated
-                                        completion:^{}];
+                if(presentViewControllerBlock) presentViewControllerBlock();
             }break;
             default:
                 NSLog(@"错误的推进方式");
@@ -259,7 +254,7 @@ JobsKey(_navBar)
             self.backBtnClickEvent(x);
         }];
         [NavBar actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable x) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
         }];
         Jobs_setAssociatedRETAIN_NONATOMIC(_navBar, NavBar)
     }return NavBar;

@@ -200,6 +200,8 @@ BaseProtocol
 /// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
 -(NSString *_Nonnull)tmpDir;
 #pragma mark —— 功能性的
+/// 在导航栏堆栈里面，是否存在同样类型的控制器
+-(JobsReturnBOOLByViewControllerBlock _Nonnull)isSameVCBy;
 /// 根控制器 => 导航控制器（普通控制器）
 -(JobsReturnVCByVCBlock _Nonnull)rootViewControllerBy;
 /// 依据传入的普通控制器，创建导航控制器

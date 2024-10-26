@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查看用户数据
 -(void)showUserInfo;
 /// 铺满全屏展示的策略
--(void)fullScreenConstraintTargetView:(nonnull __kindof UIView *)view
+-(void)fullScreenConstraintTargetView:(__kindof UIView *_Nonnull)view
                         topViewOffset:(CGFloat)topViewOffset;
 @end
 

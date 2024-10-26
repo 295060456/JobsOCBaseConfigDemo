@@ -100,24 +100,20 @@ cardViewForBannerViewAtIndex:(NSInteger)index {
         NSString *str = self.dataArr[index];
         /// 单纯的字符串 或者是 网址
         if ([str containsString:@"http"]) {
-            @jobs_weakify(self)
-            [str.jobsUrl.imageURLPlus.absoluteString cleanSDImageCache:^{
-                @jobs_strongify(self)
-                cardView.cardImageView
-                    .imageURL(str.jobsUrl.imageURLPlus)
-                    .placeholderImage(JobsIMG(self.placeholderImageName))
-                    .options(self.makeSDWebImageOptions)
-                    .completed(^(UIImage * _Nullable image,
-                                 NSError * _Nullable error,
-                                 SDImageCacheType cacheType,
-                                 NSURL * _Nullable imageURL) {
-                        if (error) {
-                            NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
-                        } else {
-                            NSLog(@"图片加载成功");
-                        }
-                    }).load();
-            }];
+            cardView.cardImageView
+                .imageURL(str.jobsUrl.imageURLPlus)
+                .placeholderImage(JobsIMG(self.placeholderImageName))
+                .options(self.makeSDWebImageOptions)
+                .completed(^(UIImage * _Nullable image,
+                             NSError * _Nullable error,
+                             SDImageCacheType cacheType,
+                             NSURL * _Nullable imageURL) {
+                    if (error) {
+                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                    } else {
+                        NSLog(@"图片加载成功");
+                    }
+                }).load();
         }else{
             cardView.cardLab.text = JobsNonnullString(self.dataArr[index], self.placeholderName);
         }

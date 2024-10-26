@@ -9,15 +9,12 @@
 //
 
 #import "WMZBannerView.h"
-#import "WMZBannerFlowLayout.h"
-#import "WMZBannerControl.h"
-#import "WMZBannerOverLayout.h"
-#import "WMZBannerFadeLayout.h"
 
 @interface WMZBannerView(){
     BOOL beganDragging;
     CGFloat marginTime;
 }
+
 @property(strong,nonatomic)UICollectionView *myCollectionV;
 @property(strong,nonatomic)UICollectionViewFlowLayout *flowL ;
 @property(strong,nonatomic)WMZBannerControl *bannerControl ;
@@ -26,8 +23,11 @@
 @property(strong,nonatomic)NSTimer *timer;
 @property(strong,nonatomic)UIView *line;
 @property(assign,nonatomic)NSInteger lastIndex;
+
 @end
+
 @implementation WMZBannerView
+
 - (instancetype)initConfigureWithModel:(WMZBannerParam *)param withView:(UIView*)parentView{
     if (self = [super init]) {
         self.param = param;
@@ -44,10 +44,8 @@
     }
     return self;
 }
-
 /**
  *  调用方法
- *
  */
 - (instancetype)initConfigureWithModel:(WMZBannerParam *)param{
     if (self = [super init]) {
@@ -62,7 +60,6 @@
     }
     return self;
 }
-
 
 - (void)updateUI{
     self.data = [NSArray arrayWithArray:self.param.wData];
@@ -112,8 +109,6 @@
     }else{
         self.line.hidden = YES;
     }
-    
-    
 }
 
 - (void)setUp{
@@ -263,24 +258,20 @@
     if ([data isKindOfClass:NSString.class]) {
         if ([(NSString *)data hasPrefix:@"http"]) {
             NSString *url = data;
-            @jobs_weakify(self)
-            [url.imageURLPlus.jobsUrl.absoluteString cleanSDImageCache:^{
-                @jobs_strongify(self)
-                icon
-                    .imageURL(url.imageURLPlus.jobsUrl)
-                    .placeholderImage(JobsIMG(self.param.wPlaceholderImage))
-                    .options(self.makeSDWebImageOptions)
-                    .completed(^(UIImage * _Nullable image,
-                                 NSError * _Nullable error,
-                                 SDImageCacheType cacheType,
-                                 NSURL * _Nullable imageURL) {
-                        if (error) {
-                            NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
-                        } else {
-                            NSLog(@"图片加载成功");
-                        }
-                    }).load();
-            }];
+            icon
+                .imageURL(url.imageURLPlus.jobsUrl)
+                .placeholderImage(JobsIMG(self.param.wPlaceholderImage))
+                .options(self.makeSDWebImageOptions)
+                .completed(^(UIImage * _Nullable image,
+                             NSError * _Nullable error,
+                             SDImageCacheType cacheType,
+                             NSURL * _Nullable imageURL) {
+                    if (error) {
+                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                    } else {
+                        NSLog(@"图片加载成功");
+                    }
+                }).load();
         }else icon.image = JobsIMG(data);
     }
 }
@@ -334,7 +325,6 @@
         }
     }
 }
-
 /*
  检测是否是中间的cell 当前判断依据为最大的cell 如果cell大小一样 那么取显示的first第一个
  */
@@ -367,7 +357,6 @@
     }
     return center;
 }
-
 //滚动处理
 - (void)scrolToPath:(NSIndexPath*)path animated:(BOOL)animated{
     
@@ -398,8 +387,6 @@
         self.myCollectionV.contentOffset = CGPointMake(self.myCollectionV.contentOffset.x+self.myCollectionV.frame.size.width *(0.5-self.param.wContentOffsetX), self.myCollectionV.contentOffset.y);
     }
 }
-
-
 //定时器
 - (void)createTimer{
     if (!self.timer) {
@@ -408,7 +395,6 @@
         [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     }
 }
-
 //定时器方法 自动滚动
 - (void)autoScrollAction{
     if (beganDragging) return;
@@ -429,7 +415,6 @@
     NSIndexPath *nextIndexPath = [NSIndexPath indexPathForItem: self.param.myCurrentPath inSection:0];
     [self scrolToPath:nextIndexPath animated:YES];
 }
-
 //定时器方法 跑马灯
 - (void)autoMarqueenScrollAction{
     if (!self.timer) return;
@@ -454,7 +439,6 @@
     }
     [self.myCollectionV setContentOffset:value.CGPointValue];
 }
-
 //定时器销毁
 - (void)cancelTimer{
     if (self.timer) {
@@ -462,7 +446,6 @@
         self.timer = nil;
     }
 }
-
 //开始拖动
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     beganDragging = YES;
@@ -498,7 +481,6 @@
     }
     [self setUpSpecialFrame];
 }
-
 //拖动结束
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     beganDragging = NO;
@@ -579,7 +561,7 @@
         });
     }
 }
-//更新下划线位置
+// 更新下划线位置
 - (void)setUpSpecialFrame{
     if (!self.param.wSpecialStyle) return;
     if (!self.data.count) return;
@@ -658,7 +640,7 @@
     [self cancelTimer];
 }
 
-//要配合这里调用
+/// 要配合这里调用
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     [super willMoveToSuperview:newSuperview];
     if (!newSuperview &&self.timer) {
@@ -671,38 +653,35 @@
 @end
 
 @implementation Collectioncell
--(instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self){
+
+-(instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]){
         self.icon = [UIImageView new];
         self.icon.layer.masksToBounds = YES;
         [self.contentView addSubview:self.icon];
         self.icon.frame = self.contentView.bounds;
         self.contentView.layer.masksToBounds = YES;
-    }
-    return self;
+    }return self;
 }
 
 - (void)setParam:(WMZBannerParam *)param{
     _param = param;
     self.icon.contentMode = param.wImageFill?UIViewContentModeScaleAspectFill:UIViewContentModeScaleToFill;
 }
+
 @end
 
 @implementation CollectionTextCell
--(instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self){
+
+-(instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]){
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.label = [UILabel new];
         self.label.font = [UIFont systemFontOfSize:17.0];
         self.label.textColor = [UIColor redColor];
         [self.contentView addSubview:self.label];
         self.label.frame = CGRectMake(10, 0, frame.size.width-20, frame.size.height);
-    }
-    return self;
+    }return self;
 }
 
 - (void)setParam:(WMZBannerParam *)param{

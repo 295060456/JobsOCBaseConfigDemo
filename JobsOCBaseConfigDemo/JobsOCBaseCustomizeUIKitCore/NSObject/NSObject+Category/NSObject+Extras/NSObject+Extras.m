@@ -246,6 +246,17 @@
     };
 }
 #pragma mark —— 功能性的
+/// 在导航栏堆栈里面，是否存在同样类型的控制器
+-(JobsReturnBOOLByViewControllerBlock _Nonnull)isSameVCBy{
+    @jobs_weakify(self)
+    return ^BOOL(UIViewController *_Nullable viewController){
+        @jobs_strongify(self)
+        BOOL OK = NO;
+        for (__kindof UIViewController *vc in self.jobsGetCurrentViewController.navigationController.viewControllers) {
+            OK = vc.class == viewController.class;
+        }return OK;
+    };
+}
 /// 根控制器 => 导航控制器（普通控制器）
 -(JobsReturnVCByVCBlock _Nonnull)rootViewControllerBy{
     return ^__kindof UIViewController *_Nullable(__kindof UIViewController *_Nonnull vc){
@@ -332,7 +343,7 @@
 }
 -(JobsReturnDataByStringBlock _Nonnull)initWithContentsOfFile{
     return ^NSData *_Nullable(__kindof NSString *_Nullable path){
-        return  [NSData.alloc initWithContentsOfFile:path];
+        return [NSData.alloc initWithContentsOfFile:path];
     };
 }
 
@@ -459,7 +470,7 @@
 /// 简洁版强制present展现一个控制器页面【不需要正向传参】
 -(jobsByVCBlock _Nonnull)comingToPresentVC{
     @jobs_weakify(self)
-    return ^(UIViewController *_Nonnull viewController) {
+    return ^(__kindof UIViewController *_Nonnull viewController) {
         @jobs_strongify(self)
         [UIViewController comingFromVC:self.jobsGetCurrentViewController
                                   toVC:viewController
@@ -474,7 +485,7 @@
 /// 简洁版强制present展现一个控制器页面【需要正向传参】
 -(jobsByVCAndDataBlock _Nonnull)comingToPresentVCByRequestParams{
     @jobs_weakify(self)
-    return ^(UIViewController * _Nullable viewController,id _Nullable requestParams) {
+    return ^(__kindof UIViewController * _Nullable viewController,id _Nullable requestParams) {
         @jobs_strongify(self)
         [UIViewController comingFromVC:self.jobsGetCurrentViewController
                                   toVC:viewController
@@ -507,8 +518,11 @@
 /// 简洁版强制push展现一个控制器页面【不需要正向传参】
 -(jobsByVCBlock _Nonnull)comingToPushVC{
     @jobs_weakify(self)
-    return ^(UIViewController *_Nonnull viewController) {
+    return ^(__kindof UIViewController *_Nonnull viewController) {
         @jobs_strongify(self)
+        /// 防止多次推同一个控制器
+        if(self.isSameVCBy(viewController)) return;
+        /// 正式推控制器
         [UIViewController comingFromVC:self.jobsGetCurrentViewController
                                   toVC:viewController
                            comingStyle:ComingStyle_PUSH
@@ -522,8 +536,12 @@
 /// 简洁版强制push展现一个控制器页面【需要正向传参】
 -(jobsByVCAndDataBlock _Nonnull)comingToPushVCByRequestParams{
     @jobs_weakify(self)
-    return ^(UIViewController * _Nullable viewController,id _Nullable requestParams) {
+    return ^(__kindof UIViewController * _Nullable viewController,
+             id _Nullable requestParams) {
         @jobs_strongify(self)
+        /// 防止多次推同一个控制器
+        if(self.isSameVCBy(viewController)) return;
+        /// 正式推控制器
         [UIViewController comingFromVC:self.jobsGetCurrentViewController
                                   toVC:viewController
                            comingStyle:ComingStyle_PUSH

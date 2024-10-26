@@ -83,24 +83,20 @@
     }
     
     if (self.firstCommentModel.headImg.jobsCanOpenUrl) {
-        @jobs_weakify(self)
-        [self.firstCommentModel.headImg.imageURLPlus.jobsUrl.absoluteString cleanSDImageCache:^{
-            @jobs_strongify(self)
-            self->_userInfoBtn
-                .imageURL(self.firstCommentModel.headImg.imageURLPlus.jobsUrl)
-                .placeholderImage(JobsGifIMG(@"动态头像 尺寸126") ? : JobsIMG(@"用户默认头像"))
-                .options(self.makeSDWebImageOptions)
-                .completed(^(UIImage * _Nullable image,
-                             NSError * _Nullable error,
-                             SDImageCacheType cacheType,
-                             NSURL * _Nullable imageURL) {
-                    if (error) {
-                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
-                    } else {
-                        NSLog(@"图片加载成功");
-                    }
-                }).normalLoad();
-        }];
+        self->_userInfoBtn
+            .imageURL(self.firstCommentModel.headImg.imageURLPlus.jobsUrl)
+            .placeholderImage(JobsGifIMG(@"动态头像 尺寸126") ? : JobsIMG(@"用户默认头像"))
+            .options(self.makeSDWebImageOptions)
+            .completed(^(UIImage * _Nullable image,
+                         NSError * _Nullable error,
+                         SDImageCacheType cacheType,
+                         NSURL * _Nullable imageURL) {
+                if (error) {
+                    NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                } else {
+                    NSLog(@"图片加载成功");
+                }
+            }).normalLoad();
     }else{
         self->_userInfoBtn.jobsResetBtnImage(JobsGifIMG(@"动态头像 尺寸126") ? : JobsIMG(@"头像01"));
     }

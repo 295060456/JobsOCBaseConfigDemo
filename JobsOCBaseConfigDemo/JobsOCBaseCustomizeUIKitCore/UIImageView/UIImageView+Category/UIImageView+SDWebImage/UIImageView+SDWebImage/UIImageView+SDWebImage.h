@@ -22,21 +22,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImageView (SDWebImage)
 
-@property(nonatomic,strong,readonly,nonnull)jobsByVoidBlock load;
+@property(nonatomic,copy,readonly,nonnull)jobsByVoidBlock load;
 
-@property(nonatomic,strong,readonly,nonnull)JobsReturnImageViewByURLBlock imageURL;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnImageViewByImageBlock placeholderImage;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnImageViewBySDWebImageOptionsBlock options;
-@property(nonatomic,strong,readonly,nonnull)JobsReturnImageViewBySDExternalCompletionBlock completed;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnImageViewByURLBlock imageURL;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnImageViewByImageBlock placeholderImage;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnImageViewBySDWebImageOptionsBlock options;
+@property(nonatomic,copy,readonly,nonnull)JobsReturnImageViewBySDExternalCompletionBlock completed;
 
 @end
 
 NS_ASSUME_NONNULL_END
 /**
-
- @jobs_weakify(self)
- [url.imageURLPlus.jobsUrl.absoluteString cleanSDImageCache:^{
-     @jobs_strongify(self)
  self.bgImageView
          .imageURL(url.imageURLPlus.jobsUrl)
          .placeholderImage(JobsIMG(self.param.wPlaceholderImage))
@@ -51,6 +47,5 @@ NS_ASSUME_NONNULL_END
                  NSLog(@"图片加载成功");
              }
          }).load();
- }];
  
  */

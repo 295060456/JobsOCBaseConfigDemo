@@ -9,7 +9,7 @@
 
 @interface JobsWalletVC ()
 /// UI
-//@property(nonatomic,strong)UICollectionView *collectionView;
+
 /// Data
 @property(nonatomic,strong)TMSCollectionViewLayout *tms_layout;
 @property(nonatomic,strong)NSMutableArray <NSMutableArray <UIViewModel *>*>*dataSourceMutArr;/// Cell的数据源
@@ -163,7 +163,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 @synthesize collectionView = _collectionView;
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
-        _collectionView = [UICollectionView.alloc initWithFrame:CGRectZero collectionViewLayout:self.tms_layout];
+        _collectionView = UICollectionView.initByLayout(self.tms_layout);
         _collectionView.backgroundColor = JobsClearColor;
         
         {
@@ -189,75 +189,59 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 -(TMSCollectionViewLayout *)tms_layout{
     if (!_tms_layout) {
         _tms_layout = TMSCollectionViewLayout.new;
-        _tms_layout.padding = 15;
+        _tms_layout.padding = JobsWidth(15);
         _tms_layout.layout_delegate = self;
     }return _tms_layout;
 }
 
 -(NSMutableArray<NSMutableArray<UIViewModel *> *> *)dataSourceMutArr{
     if (!_dataSourceMutArr) {
-        _dataSourceMutArr = NSMutableArray.array;
-        {
-            NSMutableArray *dataMutArr = NSMutableArray.array;
-            {
-                UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = JobsInternationalization(@"上海银行");
-                viewModel.subTextModel.text = JobsInternationalization(@"**** 7895");
-                viewModel.image = JobsIMG(@"第一银行");
-                [dataMutArr addObject:viewModel];
-            }
-            
-            {
-                UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = JobsInternationalization(@"国泰世华");
-                viewModel.subTextModel.text = JobsInternationalization(@"**** 2345");
-                viewModel.image = JobsIMG(@"国泰世华");
-                [dataMutArr addObject:viewModel];
-            }
-            
-            {
-                UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = JobsInternationalization(@"台湾银行");
-                viewModel.subTextModel.text = JobsInternationalization(@"**** 7654");
-                viewModel.image = JobsIMG(@"台湾银行");
-                [dataMutArr addObject:viewModel];
-            }
-            [_dataSourceMutArr addObject:dataMutArr];
-        }
-        
-        {
-            NSMutableArray *dataMutArr = NSMutableArray.array;
-            {
-                UIViewModel *viewModel = UIViewModel.new;
-                viewModel.textModel.text = JobsInternationalization(@"＋添加新的銀行卡");
-                viewModel.textModel.font = UIFontWeightRegularSize(16);
-                viewModel.textModel.textCor = HEXCOLOR(0x757575);
-                [dataMutArr addObject:viewModel];
-            }
-            [_dataSourceMutArr addObject:dataMutArr];
-        }
+        _dataSourceMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSMutableArray<UIViewModel *>*>* _Nullable data) {
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable data1) {
+                data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
+                    data2.textModel.text = JobsInternationalization(@"上海银行");
+                    data2.subTextModel.text = JobsInternationalization(@"**** 7895");
+                    data2.image = JobsIMG(@"第一银行");
+                }));
+                data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
+                    data2.textModel.text = JobsInternationalization(@"国泰世华");
+                    data2.subTextModel.text = JobsInternationalization(@"**** 2345");
+                    data2.image = JobsIMG(@"国泰世华");
+                }));
+                data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
+                    data2.textModel.text = JobsInternationalization(@"台湾银行");
+                    data2.subTextModel.text = JobsInternationalization(@"**** 7654");
+                    data2.image = JobsIMG(@"台湾银行");
+                }));
+            }));
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable data1) {
+                data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
+                    data1.textModel.text = JobsInternationalization(@"＋添加新的銀行卡");
+                    data1.textModel.font = UIFontWeightRegularSize(16);
+                    data1.textModel.textCor = HEXCOLOR(0x757575);
+                }));
+            }));
+        });
     }return _dataSourceMutArr;
 }
 
 -(NSMutableArray<UIViewModel *> *)sectionHeaderDataSource{
     if (!_sectionHeaderDataSource) {
-        _sectionHeaderDataSource = NSMutableArray.array;
-        for (id data in self.dataSourceMutArr) {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"我是头部");
-            [_sectionHeaderDataSource addObject:viewModel];
-        }
+        _sectionHeaderDataSource = jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable data) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.textModel.text = JobsInternationalization(@"我是头部");
+            }));
+        });
     }return _sectionHeaderDataSource;
 }
 
 -(NSMutableArray<UIViewModel *> *)sectionFooterDataSource{
     if (!_sectionFooterDataSource) {
-        _sectionFooterDataSource = NSMutableArray.array;
-        for (id data in self.dataSourceMutArr) {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = JobsInternationalization(@"我是尾部");
-            [_sectionFooterDataSource addObject:viewModel];
-        }
+        _sectionFooterDataSource = jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable data) {
+            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                data1.textModel.text = JobsInternationalization(@"我是尾部");
+            }));
+        });
     }return _sectionFooterDataSource;
 }
 
