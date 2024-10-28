@@ -380,6 +380,9 @@ typedef CGFloat(^JobsReturnByFontBlock)(UIFont *_Nullable font);
 typedef CGFloat(^JobsReturnCGFloatByVoidBlock)(void);
 
 typedef BOOL(^JobsReturnBOOLByVoidBlock)(void);
+typedef BOOL(^JobsReturnBOOLBySizeBlock)(CGSize size);
+typedef BOOL(^JobsReturnBOOLByPointBlock)(CGPoint point);
+typedef BOOL(^JobsReturnBOOLByFrameBlock)(CGRect frame);
 typedef BOOL(^JobsReturnBOOLByBOOLBlock)(BOOL data);
 typedef BOOL(^JobsReturnBOOLByNSUIntegerBlock)(NSUInteger data);
 typedef BOOL(^JobsReturnBOOLByNSIntegerBlock)(NSInteger data);

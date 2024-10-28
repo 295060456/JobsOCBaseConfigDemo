@@ -11,6 +11,7 @@
 #import "UITextModelProtocol.h"
 #import "UITextField+Placeholder.h"
 #import "UITextField+Extend.h"
+#import "NSObject+Measure.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
 #import <ReactiveObjC/ReactiveObjC.h>
@@ -26,9 +27,9 @@ UITextFieldDelegate
 ,UITextModelProtocol
 >
 /// UI
-@property(nonatomic,strong,nullable)UIView *leftView;
+@property(nonatomic,strong,nullable)__kindof UIView *leftView;
 @property(nonatomic,strong,nonnull)UITextField *realTextField;
-@property(nonatomic,strong,nullable)UIView *rightView;
+@property(nonatomic,strong,nullable)__kindof UIView *rightView;
 /// Data
 @property(nonatomic,assign)CGFloat leftViewByOutLineOffset;
 @property(nonatomic,assign)CGFloat leftViewByTextFieldOffset;

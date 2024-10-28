@@ -48,36 +48,42 @@
 }
 #pragma mark —— 几何数据类型的比较
 /// 比较 size ？= CGSizeZero
-+(BOOL)isSizeZero:(CGSize)size{
-    return CGSizeEqualToSize(size, CGSizeZero);
+-(JobsReturnBOOLBySizeBlock _Nonnull)isSizeZero{
+    return ^BOOL(CGSize size){
+        return CGSizeEqualToSize(size, CGSizeZero);
+    };
 }
 /// 比较 point ？= CGPointZero
-+(BOOL)isPointZero:(CGPoint)point{
-    return CGPointEqualToPoint(point, CGPointZero);
+-(JobsReturnBOOLByPointBlock _Nonnull)isPointZero{
+    return ^BOOL(CGPoint point){
+        return CGPointEqualToPoint(point, CGPointZero);
+    };
 }
 /// 比较 rect ？= CGRectZero
-+(BOOL)isRectZero:(CGRect)rect{
-    return CGRectEqualToRect(rect, CGRectZero);
+-(JobsReturnBOOLByFrameBlock _Nonnull)isRectZero{
+    return ^(CGRect frame){
+        return CGRectEqualToRect(frame, CGRectZero);
+    };
 }
 /// 比较 rect1 ？= rect2
-+(BOOL)rect1:(CGRect)rect1
+-(BOOL)rect1:(CGRect)rect1
 isEqualToRect2:(CGRect)rect2{
     return CGRectEqualToRect(rect1, rect2);
 }
 /// 比较 point1 ？= point2
-+(BOOL)point1:(CGPoint)point1
+-(BOOL)point1:(CGPoint)point1
 isEqualToPoint2:(CGPoint)point2{
     return CGPointEqualToPoint(point1, point2);
 }
 /// 比较 size1 ？= size2
-+(BOOL)size1:(CGSize)size1
+-(BOOL)size1:(CGSize)size1
 isEqualToSize2:(CGSize)size2{
     return CGSizeEqualToSize(size1, size2);
 }
 /// UILabel多行文本的高度（定宽）：根据文本+字体+控件宽度+提行模式，计算高度
-- (CGFloat)jobsGetLabelHeightByWidth:(CGFloat)width
-                               title:(NSString *)title
-                                font:(UIFont *)font{
+-(CGFloat)jobsGetLabelHeightByWidth:(CGFloat)width
+                              title:(NSString *)title
+                               font:(UIFont *)font{
     UILabel *label = UILabel.new;
     label.frame = CGRectMake(0, 0, width, 0);
     label.text = title;
@@ -88,8 +94,8 @@ isEqualToSize2:(CGSize)size2{
     return ceil(height);
 }
 /// UILabe单行文本的宽度：根据字体计算单行文本的宽度
-- (CGSize)jobsGetLabelWidthWithTitle:(NSString *)title
-                                font:(UIFont *)font{
+-(CGSize)jobsGetLabelWidthWithTitle:(NSString *)title
+                               font:(UIFont *)font{
     return [title sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName,nil]];
 }
 /// UILabel多行文本的行数（定宽）：根据文本+字体+控件宽度+提行模式，计算行数
@@ -104,7 +110,7 @@ isEqualToSize2:(CGSize)size2{
     [label sizeToFit];
     CGFloat height = label.frame.size.height;
     /// 先用UILabel的 sizeToFit 计算出最佳大小，然后用高度/lineHeight就是行数，lineHeight为UIFont的属性
-    return ceil(height)/label.font.lineHeight;
+    return ceil(height) / label.font.lineHeight;
 }
 
 @end

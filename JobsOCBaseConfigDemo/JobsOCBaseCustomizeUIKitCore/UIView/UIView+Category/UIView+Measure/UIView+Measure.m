@@ -747,100 +747,152 @@
 }
 /// 简捷获得控件坐标
 #pragma mark —— @property(nonatomic,assign)CGFloat x
--(CGFloat)x{
-    return self.frame.origin.x;
+JobsKey(_x)
+@dynamic x;
+- (CGFloat)x{
+    return [Jobs_getAssociatedObject(_x) floatValue] ? : self.frame.origin.x;
 }
 
--(void)setX:(CGFloat)x{
-    self.frame = self.resetOriginX(x);
+- (void)setX:(CGFloat)x{
+    CGFloat X = x ? : self.frame.origin.x;
+    self.frame = self.resetOriginX(X);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_x, @(X));
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat y
--(CGFloat)y{
-    return self.frame.origin.y;
+JobsKey(_y)
+@dynamic y;
+- (CGFloat)y{
+    return [Jobs_getAssociatedObject(_y) floatValue] ? : self.frame.origin.y;
 }
 
--(void)setY:(CGFloat)y{
-    self.frame = self.resetOriginY(y);
+- (void)setY:(CGFloat)y {
+    CGFloat Y = y ? : self.frame.origin.y;
+    self.frame = self.resetOriginY(Y);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_y, @(Y));
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat width
--(CGFloat)width{
-    return self.frame.size.width;
+JobsKey(_width)
+@dynamic width;
+- (CGFloat)width {
+    return [Jobs_getAssociatedObject(_width) floatValue] ? : self.frame.size.width;
 }
 
--(void)setWidth:(CGFloat)width{
-    self.frame = self.resetWidth(width);
+- (void)setWidth:(CGFloat)width {
+    CGFloat Width = width ? : self.frame.size.width;
+    self.frame = self.resetWidth(Width);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_width, @(Width));
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat height
--(CGFloat)height{
-    return self.frame.size.height;
+JobsKey(_height)
+@dynamic height;
+- (CGFloat)height {
+    return [Jobs_getAssociatedObject(_height) floatValue] ? : self.frame.size.height;
 }
 
--(void)setHeight:(CGFloat)height{
-    self.frame = self.resetHeight(height);
+- (void)setHeight:(CGFloat)height {
+    CGFloat Height = height ? : self.frame.size.height;
+    self.frame = self.resetHeight(Height);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_height, @(Height));
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat centerX
--(CGFloat)centerX{
-    return self.center.x;
+JobsKey(_centerX)
+@dynamic centerX;
+- (CGFloat)centerX {
+    return [Jobs_getAssociatedObject(_centerX) floatValue] ? : self.center.x;
 }
 
--(void)setCenterX:(CGFloat)centerX{
-    self.frame = self.resetCenterX(centerX);
+- (void)setCenterX:(CGFloat)centerX {
+    CGFloat CenterX = centerX ? : self.center.x;
+    self.frame = self.resetCenterX(CenterX);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_centerX, @(CenterX));
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat centerY
--(CGFloat)centerY{
-    return self.center.y;
+JobsKey(_centerY)
+@dynamic centerY;
+- (CGFloat)centerY {
+    return [Jobs_getAssociatedObject(_centerY) floatValue] ? : self.center.y;
 }
 
--(void)setCenterY:(CGFloat)centerY{
+- (void)setCenterY:(CGFloat)centerY {
+    CGFloat CenterY = centerY ? : self.center.y;
     self.frame = self.resetCenterY(centerY);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_centerY, @(CenterY));
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat left
--(CGFloat)left{
-    return self.frame.origin.x;
+JobsKey(_left)
+@dynamic left;
+- (CGFloat)left {
+    return [Jobs_getAssociatedObject(_left) floatValue] ? : self.frame.origin.x;
 }
 
--(void)setLeft:(CGFloat)left{
-    self.frame = self.resetOriginX(left);
+- (void)setLeft:(CGFloat)left{
+    CGFloat Left = left ? : self.frame.origin.x;
+    self.frame = self.resetOriginX(Left);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_left, @(Left));
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat right
--(CGFloat)right{
-    return self.frame.origin.x + self.width;
+JobsKey(_right)
+@dynamic right;
+- (CGFloat)right {
+    return [Jobs_getAssociatedObject(_right) floatValue] ? : self.frame.origin.x + self.width;
 }
 
--(void)setRight:(CGFloat)right{
-    self.frame = self.resetOriginX(right - self.width);
+- (void)setRight:(CGFloat)right{
+    CGFloat Right = right ? : (self.frame.origin.x + self.width);
+    self.frame = self.resetOriginX(Right - self.width);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_right, @(Right));
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat top
+JobsKey(_top)
+@dynamic top;
 -(CGFloat)top{
-    return CGRectGetMinY(self.frame);
+    return [Jobs_getAssociatedObject(_top) floatValue] ? : CGRectGetMinY(self.frame);
 }
 
 -(void)setTop:(CGFloat)top{
-    self.frame = self.resetOriginY(top);
+    CGFloat Top = top ? : CGRectGetMinY(self.frame);
+    self.frame = self.resetOriginY(Top);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_top, @(Top))
 }
 #pragma mark —— @property(nonatomic,assign)CGFloat bottom
+JobsKey(_bottom)
+@dynamic bottom;
 -(CGFloat)bottom{
-    return self.frame.origin.y + self.height;
+    return [Jobs_getAssociatedObject(_bottom) floatValue] ? : (self.frame.origin.y + self.height);
 }
 
 -(void)setBottom:(CGFloat)bottom{
+    CGFloat Bottom = bottom ? : self.frame.origin.y + self.height;
     self.frame = self.resetOriginY(bottom - self.height);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_bottom, @(Bottom))
 }
 #pragma mark —— @property(nonatomic,assign)CGSize Size
+JobsKey(_Size)
+@dynamic Size;
 -(CGSize)Size{
-    return CGSizeMake(self.width, self.height);
+    NSValue *sizeValue = Jobs_getAssociatedObject(_Size);
+    return sizeValue ? sizeValue.CGSizeValue : CGSizeZero;
 }
 
--(void)setSize:(CGSize)size{
+-(void)setSize:(CGSize)Size{
+    CGSize size = self.isSizeZero(Size) ? CGSizeMake(self.width, self.height) : Size;
+    NSValue *sizeValue = [NSValue valueWithCGSize:size];
     self.frame = self.resetSize(size);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_Size, sizeValue);
 }
 #pragma mark —— @property(nonatomic,assign)CGPoint Origin
+JobsKey(_Origin)
+@dynamic Origin;
 -(CGPoint)Origin{
-    return self.frame.origin;
+    NSValue *pointValue = Jobs_getAssociatedObject(_Origin);
+    return pointValue ? pointValue.CGPointValue : CGPointZero;
 }
 
--(void)setOrigin:(CGPoint)origin{
-    self.frame = self.resetOrigin(origin);
+-(void)setOrigin:(CGPoint)Origin{
+    CGPoint point = self.isPointZero(Origin) ? self.frame.origin : Origin;
+    NSValue *pointValue = [NSValue valueWithCGPoint:point];
+    self.frame = self.resetOrigin(Origin);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_Origin, pointValue);
 }
 
 @end

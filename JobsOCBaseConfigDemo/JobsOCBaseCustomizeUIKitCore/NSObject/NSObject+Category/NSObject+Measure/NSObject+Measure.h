@@ -20,27 +20,27 @@ NS_ASSUME_NONNULL_BEGIN
                superview:(CGFloat)superview;
 #pragma mark —— 几何数据类型的比较
 /// 比较 size ？= CGSizeZero
-+(BOOL)isSizeZero:(CGSize)size;
+-(JobsReturnBOOLBySizeBlock _Nonnull)isSizeZero;
 /// 比较 point ？= CGPointZero
-+(BOOL)isPointZero:(CGPoint)point;
+-(JobsReturnBOOLByPointBlock _Nonnull)isPointZero;
 /// 比较 rect ？= CGRectZero
-+(BOOL)isRectZero:(CGRect)rect;
+-(JobsReturnBOOLByFrameBlock _Nonnull)isRectZero;
 /// 比较 rect1 ？= rect2
-+(BOOL)rect1:(CGRect)rect1
+-(BOOL)rect1:(CGRect)rect1
 isEqualToRect2:(CGRect)rect2;
 /// 比较 point1 ？= point2
-+(BOOL)point1:(CGPoint)point1
+-(BOOL)point1:(CGPoint)point1
 isEqualToPoint2:(CGPoint)point2;
 /// 比较 size1 ？= size2
-+(BOOL)size1:(CGSize)size1
+-(BOOL)size1:(CGSize)size1
 isEqualToSize2:(CGSize)size2;
 /// UILabel多行文本的高度（定宽）：根据文本+字体+控件宽度+提行模式，计算高度
-- (CGFloat)jobsGetLabelHeightByWidth:(CGFloat)width
-                               title:(NSString *)title
-                                font:(UIFont *)font;
+-(CGFloat)jobsGetLabelHeightByWidth:(CGFloat)width
+                              title:(NSString *)title
+                               font:(UIFont *)font;
 /// UILabe单行文本的宽度：根据字体计算单行文本的宽度
-- (CGSize)jobsGetLabelWidthWithTitle:(NSString *)title
-                                font:(UIFont *)font;
+-(CGSize)jobsGetLabelWidthWithTitle:(NSString *)title
+                               font:(UIFont *)font;
 /// UILabel多行文本的行数（定宽）：根据文本+字体+控件宽度+提行模式，计算行数
 -(NSInteger)jobsGetLineNumsByWidth:(CGFloat)width
                              title:(NSString *)title

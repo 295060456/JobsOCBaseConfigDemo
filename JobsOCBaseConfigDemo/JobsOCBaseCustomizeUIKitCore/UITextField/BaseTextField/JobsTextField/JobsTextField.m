@@ -161,8 +161,12 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     [_rightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
         make.right.equalTo(self).offset(-self.rightViewByOutLineOffset);
-        if (rightView.width) make.width.mas_equalTo(rightView.width);
-        if (rightView.height) make.height.mas_equalTo(rightView.height);
+        if(self.isSizeZero(rightView.Size)){
+            if (rightView.width) make.width.mas_equalTo(rightView.width);
+            if (rightView.height) make.height.mas_equalTo(rightView.height);
+        }else{
+            make.size.mas_equalTo(rightView.Size);
+        }
     }];
     /// 会将之前设置的size值冲掉
     [self layoutIfNeeded];
@@ -214,7 +218,6 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         } subscribeNextBlock:^(NSString * _Nullable x) {
             @jobs_strongify(self)
             self.realTextField.text = x;
-            id f = self.objectBlock;
             if (self.objectBlock) self.objectBlock(x);
         }];
         [self addSubview:_realTextField];
