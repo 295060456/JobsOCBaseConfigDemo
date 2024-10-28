@@ -8,16 +8,24 @@
 #import "JobsBaseApi.h"
 
 @implementation JobsBaseApi
-#pragma mark —— 需要在很具体子类进行实现的
-/// URL
--(NSString *)requestUrl{
-    return @"";
+#pragma mark —— 覆写 YTKBaseRequest 方法
+-(__kindof NSURLRequest *)buildCustomUrlRequest{
+    @jobs_weakify(self)
+    return [self jobsMakeRequestByBlock:^(__kindof NSMutableURLRequest * _Nullable request) {
+        @jobs_strongify(self)
+        /// 请求头
+        for (NSString *key in self.requestHeaderFieldValueDictionary) {
+            [request setValue:self.requestHeaderFieldValueDictionary[key] forHTTPHeaderField:key];
+        }
+        /// 请求方法
+        request.HTTPMethod = httpMethod(self.requestMethod);
+        /// 请求的（Body）参数
+        if(self.requestMethod != YTKRequestMethodGET){
+            request.HTTPBody = self.dataByJSONObject(self.parameters);//body 数据
+        }self.printRequestMessage(request);/// 打印URLRequest
+    }];
 }
-/// 请求方式
--(YTKRequestMethod)requestMethod {
-    return YTKRequestMethodPOST;
-}
-#pragma mark —— （本类）父类实现的
+#pragma mark ——（本类）父类实现的
 /// Body 参数
 -(id _Nullable)requestArgument{
     return self.parameters;
@@ -30,40 +38,14 @@
 -(NSInteger)cacheTimeInSeconds{
     return 60 * 3;
 }
-/// 设置自定义的 HTTP Header
--(NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
-    // 在这里添加你想要的 HTTP header
-    self.fm_loginModel = self.readUserInfoByUserName(FMLoginModel.class,FM用户数据);
-    NSLog(@"loginModel = %@",self.fm_loginModel);
-    NSLog(@"Token = %@",self.fm_loginModel.accessToken);
-    return jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
-        // 设置 Content-Type
-        [data setValue:@"application/json" forKey:@"Content-Type"];
-        // 设置 Authorization
-        if(self.fm_loginModel) [data setValue:self.fm_loginModel.accessToken forKey:@"Authorization"];
-    });
-//    self.loginModel = self.readUserInfoByUserName(JobsUserModel.class,用户信息);
-//    return jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
-          // 设置 Content-Type
-//        [data setValue:@"application/json" forKey:@"Content-Type"];
-          // 设置 Authorization
-//        if(self.loginModel) [data setValue:self.loginModel.token forKey:@"Authorization"];
-//    });
+#pragma mark —— 以下需要在很具体子类进行实现的
+/// URL
+-(NSString *)requestUrl{
+    return @"";
 }
-
-- (NSURLRequest *)buildCustomUrlRequest{
-    NSMutableURLRequest *request = self.request(self.requestUrl.jobsUrl);
-    for (NSString *key in self.requestHeaderFieldValueDictionary) {
-        JobsRequestBuilder.initByURLRequest(request)
-            .httpHeaderField(key)
-            .value(self.requestHeaderFieldValueDictionary[key]);
-    }
-    request.HTTPMethod = httpMethod(self.requestMethod);
-    if(self.requestMethod != YTKRequestMethodGET){
-        request.HTTPBody = self.dataByJSONObject(self.parameters);//body 数据
-    }
-    self.printRequestMessage(request);
-    return request;
+/// 请求方式
+-(YTKRequestMethod)requestMethod {
+    return YTKRequestMethodPOST;
 }
 
 @end

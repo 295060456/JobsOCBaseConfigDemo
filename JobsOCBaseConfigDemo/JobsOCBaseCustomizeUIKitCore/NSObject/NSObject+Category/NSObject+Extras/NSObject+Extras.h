@@ -15,18 +15,22 @@
 
 #import "NSObject+Class.h"
 #import "NSData+Other.h"
+#import "NSURL+Others.h"
+
 #import "BaseProtocol.h"
 #import "UIViewModelProtocol.h"
 #import "BaseViewControllerProtocol.h"
+
 #import "JobsBlock.h"
 #import "MacroDef_Func.h"
 #import "MacroDef_SysWarning.h"
+
 #import "FileFolderHandleTool.h"
 #import "JobsDefineAllEnumHeader.h"
 #import "JobsAppTools.h"
 #import "JobsSnowflake.h"
-
 #import "JobsModel.h"
+#import "JobsDropDownListView.h"
 
 #if __has_include(<WHToast/WHToast.h>)
 #import <WHToast/WHToast.h>
@@ -75,8 +79,6 @@
 #else
 #import "YTKNetwork.h"
 #endif
-
-#import "JobsDropDownListView.h"
 /// 屏幕方向
 #ifndef DeviceOrientation_typedef
 #define DeviceOrientation_typedef
@@ -222,7 +224,6 @@ BaseProtocol
 -(__kindof UICollectionViewFlowLayout *_Nonnull)horizontalLayout;
 /// JSON对象转NSData
 -(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject;
--(JobsReturnURLRequestByURLBlock _Nonnull)request;
 -(jobsByVoidBlock _Nonnull)震动特效反馈;
 -(jobsByVoidBlock _Nonnull)loginOK;
 -(jobsByVoidBlock _Nonnull)logoutOK;
@@ -344,8 +345,9 @@ BaseProtocol
 /// 依据View上铆定的internationalizationKEY来全局更改文字以适配国际化
 -(void)languageSwitch;
 /// 打印请求体
--(jobsByURLSessionTaskBlock _Nonnull)printURLSessionRequestMessage;
--(jobsByURLRequestBlock _Nonnull)printRequestMessage;
+-(JobsReturnURLRequestByURLSessionTaskBlock _Nullable)printURLSessionRequestMessage;
+/// 打印URLRequest
+-(JobsReturnMutableURLRequestByURLRequestBlock _Nullable)printRequestMessage;
 /// 判断是否是此版本App的首次启动
 -(BOOL)isAppFirstLaunch;
 /// 判断是否是App今日的首次启动

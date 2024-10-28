@@ -58,9 +58,12 @@ typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable 
 /// UICollectionView配置
 typedef void(^jobsByCollectionViewFlowLayoutBlock)(UICollectionViewFlowLayout *_Nullable data);
 #pragma mark —— URL
-typedef void(^jobsByURLBlock)(NSURL *_Nullable data);
-typedef void(^jobsByURLRequestBlock)(__kindof NSURLRequest *_Nullable data);
-typedef void(^jobsByURLSessionTaskBlock)(__kindof NSURLSessionTask *_Nullable data);
+typedef void(^jobsByURLBlock)(NSURL *_Nullable url);
+typedef void(^jobsByURLRequestBlock)(__kindof NSURLRequest *_Nullable request);
+typedef __kindof NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByURLRequestBlock)(__kindof NSURLRequest *_Nullable request);
+typedef void(^jobsByMutableURLRequestBlock)(__kindof NSMutableURLRequest *_Nullable request);
+typedef void(^jobsByURLSessionTaskBlock)(__kindof NSURLSessionTask *_Nullable SessionTask);
+typedef __kindof NSMutableURLRequest *_Nullable(^JobsReturnURLRequestByURLSessionTaskBlock)(__kindof NSURLSessionTask *_Nullable SessionTask);
 #pragma mark —— 关于 UIViewController
 typedef void(^jobsByVCBlock)(__kindof UIViewController *_Nullable data);
 typedef void(^jobsByVCAndDataBlock)(__kindof UIViewController *_Nullable viewController,id _Nullable data);

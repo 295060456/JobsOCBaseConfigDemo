@@ -34,6 +34,8 @@
 -(JobsReturnArrByMasonryModelBlock _Nonnull)installByMasonryModel1;
 /// 将一组视图沿某个方向（水平或垂直）等间距分布，视图的宽度（或高度）是固定的，且视图与容器的两端没有间隔。
 -(JobsReturnArrByMasonryModelBlock _Nonnull)installByMasonryModel2;
+/// 转成可变数组
+-(JobsReturnMutableArrayByVoidBlock _Nonnull)mutableArr;
 
 @end
 

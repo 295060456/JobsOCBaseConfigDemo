@@ -144,5 +144,13 @@
         }return self;
     };
 }
+/// 转成可变数组
+-(JobsReturnMutableArrayByVoidBlock _Nonnull)mutableArr{
+    @jobs_weakify(self)
+    return ^__kindof NSMutableArray *_Nullable(void){
+        @jobs_strongify(self)
+        return [NSMutableArray arrayWithArray:self];
+    };
+}
 
 @end

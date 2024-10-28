@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YTKNetworkToolsHeader.h"
+#import "JobsBlock.h"
 
 #define GETMethod httpMethod(YTKRequestMethodGET);
 #define POSTMethod httpMethod(YTKRequestMethodPOST);
@@ -15,7 +16,7 @@
 #define PATCHMethod httpMethod(YTKRequestMethodPATCH);
 #define HEADMethod httpMethod(YTKRequestMethodHEAD);
 
-NS_INLINE NSString *httpMethod(YTKRequestMethod method){
+NS_INLINE NSString * _Nullable httpMethod(YTKRequestMethod method){
     switch (method) {
         case YTKRequestMethodGET:{
             return @"GET";
@@ -45,6 +46,8 @@ NS_INLINE NSString *httpMethod(YTKRequestMethod method){
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSURLRequest (Extra)
+
+-(JobsReturnMutableURLRequestByVoidBlock _Nonnull)print;
 
 @end
 

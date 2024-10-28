@@ -21,7 +21,7 @@
 #endif
 
 #pragma mark —— 自定义封装
-#import "JobsRequestBuilder.h"
+#import "YTKBaseRequest+Extra.h"
 #pragma mark —— 一些基础定义
 #import "NetworkingConstant.h"
 #pragma mark —— BaseRequest
@@ -31,8 +31,6 @@
 #import "YTKBatchRequest+AnimatingAccessory.h"
 #import "YTKBaseRequest+AnimatingAccessory.h"
 #import "YTKAnimatingRequestAccessory.h"
-#pragma mark —— YTKRequest+Custom
-#import "YTKRequest+Custom.h"
 #pragma mark —— YTKUrlArgumentsFilter
 #import "YTKUrlArgumentsFilter.h"
 

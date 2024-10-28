@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSDictionary (Extra)
 
 -(JobsReturnIDByIDBlock _Nonnull)objectForKey;
+/// 转成可变字典
+-(JobsReturnMutableDicByVoidBlock _Nonnull)mutableDic;
 
 @end
 

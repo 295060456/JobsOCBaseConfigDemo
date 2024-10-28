@@ -45,5 +45,9 @@
         return self.absoluteString.add(data.absoluteString ? : @"").jobsUrl;
     };
 }
+/// NSURL => NSURLRequest
+-(NSMutableURLRequest *)URLRequest{
+    return [NSURLRequest requestWithURL:self].mutableCopy;
+}
 
 @end

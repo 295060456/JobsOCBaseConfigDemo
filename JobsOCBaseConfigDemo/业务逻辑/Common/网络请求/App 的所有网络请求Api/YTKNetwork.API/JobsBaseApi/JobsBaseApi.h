@@ -9,7 +9,7 @@
 #import "YTKNetworkToolsHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+/// JobsBaseApi >> BaseRequest >> YTKRequest >> YTKBaseRequest >> NSObject
 @interface JobsBaseApi : BaseRequest
 
 @end

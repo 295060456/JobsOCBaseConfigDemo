@@ -7,6 +7,14 @@
 
 #import "BaseRequest.h"
 
+@interface BaseRequest ()
+
+@property(nonatomic,strong,nullable)id urlParameters;
+@property(nonatomic,strong,nullable)NSMutableDictionary *parameters;
+@property(nonatomic,strong,nullable)NSMutableDictionary *customHTTPHeader;
+
+@end
+
 @implementation BaseRequest
 #pragma mark —— 一些公有方法
 +(instancetype _Nonnull)init{
@@ -28,16 +36,26 @@
         return [self.class.alloc initByURLParameters:data];
     };
 }
-
--(JobsReturnYTKRequestByDictionaryBlock _Nonnull)byBodyParameters{
+#pragma mark —— 加请求头参数
+-(JobsReturnYTKRequestByDictionaryBlock _Nonnull)byHeaderParameters{
     @jobs_weakify(self)
     return ^__kindof YTKBaseRequest *_Nonnull(NSDictionary *_Nullable data){
         @jobs_strongify(self)
-        self.parameters = data;
+        [self.customHTTPHeader addEntriesFromDictionary:data];
+        NSLog(@"请求头: %@", self.requestHeaderFieldValueDictionary);
         return self;
     };
 }
-
+#pragma mark —— 加Body参数
+-(JobsReturnYTKRequestByDictionaryBlock _Nonnull)byBodyParameters{
+    @jobs_weakify(self)
+    return ^__kindof YTKBaseRequest *_Nonnull(NSDictionary *_Nonnull data){
+        @jobs_strongify(self)
+        if(data) self.parameters = data.mutableDic();
+        return self;
+    };
+}
+#pragma mark —— 加URL参数
 -(JobsReturnYTKRequestByIDBlock _Nonnull)byURLParameters{
     @jobs_weakify(self)
     return ^__kindof YTKBaseRequest *_Nonnull(id _Nullable data){
@@ -47,9 +65,9 @@
     };
 }
 #pragma mark —— 一些私有方法
--(instancetype _Nullable)initByBodyParameters:(NSDictionary *_Nullable)bodyParameters{
+-(instancetype _Nullable)initByBodyParameters:(NSDictionary *_Nonnull)bodyParameters{
     if (self = [super init]) {
-        self.parameters = bodyParameters;
+        if(bodyParameters) self.parameters = bodyParameters.mutableDic();
     }return self;
 }
 
@@ -74,10 +92,50 @@
 -(NSInteger)cacheTimeInSeconds{
     return 60 * 3;
 }
-#pragma mark —— 具体子类实现请求Api
+
+-(NSMutableDictionary *)customHTTPHeader{
+    if(!_customHTTPHeader){
+        /// 在这里添加你想要的 HTTP header
+        @jobs_weakify(self)
+        _customHTTPHeader = jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable headers) {
+            @jobs_strongify(self)
+            /// 设置 Content-Type
+            [headers setValue:@"application/json"
+                       forKey:@"Content-Type"];
+            /// 设置 Authorization
+            if(self.fm_loginModel) [headers setValue:self.fm_loginModel.accessToken
+                                              forKey:@"Authorization"];
+            /// 请求的语言环境
+    //        switch (self.currentLanguageType) {
+    //            case HTTPRequestHeaderLanguageEn:{
+    //                headers[@"language"] = @"en_US";
+    //            }break;
+    //            case HTTPRequestHeaderLanguageCN:{
+    //                headers[@"language"] = @"zh_CN";
+    //            }break;
+    //            default:
+    //                break;
+    //        }
+        });
+    }return _customHTTPHeader;
+}
+#pragma mark —— 在链式请求中，下一个请求的参数来源于上一个请求的结果
+//-(NSString *_Nonnull)userId{
+//    return [[self.responseJSONObject objectForKey:@"userId"] stringValue] ? : JobsInternationalization(@"");
+//}
+#pragma mark ——  复写 YTKBaseRequest 方法
+/// 设置自定义的 HTTP Header
+-(NSMutableDictionary *)requestHeaderFieldValueDictionary{
+    self.fm_loginModel = self.readUserInfoByUserName(FMLoginModel.class,FM用户数据);
+    NSLog(@"loginModel = %@",self.fm_loginModel);
+    NSLog(@"Token = %@",self.fm_loginModel.accessToken);
+    return self.customHTTPHeader;
+}
+/// 具体子类实现请求Api
 //-(NSString *)requestUrl{
 //    return [This.BaseUrl stringByAppendingString:self.membersLoginPOST.url];
 //}
+///
 //- (NSURLRequest *)buildCustomUrlRequest {
 //    NSError *parseError = nil;
 //    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.parameters
@@ -91,16 +149,7 @@
 //    [request setHTTPBody:jsonData];//body 数据
 //    return request;
 //}
-#pragma mark —— 设置自定义的 HTTP Header
-//- (NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
-//    // 在这里添加你想要的 HTTP header
-//    JobsUserModel *loginModel = self.readUserInfo;
-//    return @{
-//        @"Content-Type": @"application/json", // 设置 Content-Type
-//        @"Authorization": loginModel.token // 设置 Authorization
-//    };
-//}
-#pragma mark —— 如果当前请求是GET，下列方法不可用
+/// 如果当前请求是GET，下列方法不可用
 //- (NSURLRequest *)buildCustomUrlRequest{
 //    if(self.requestMethod == YTKRequestMethodGET) return nil;
 //    NSError *parseError = nil;
@@ -117,12 +166,8 @@
 //    NSLog(@"");
 //    return request;
 //}
-#pragma mark —— 在链式请求中，下一个请求的参数来源于上一个请求的结果
-//-(NSString *_Nonnull)userId{
-//    return [[self.responseJSONObject objectForKey:@"userId"] stringValue] ? : JobsInternationalization(@"");
-//}
 #pragma mark —— LazyLoad
--(NSDictionary *)parameters{
+-(NSMutableDictionary *)parameters{
     if(!_parameters){
         _parameters = jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
             

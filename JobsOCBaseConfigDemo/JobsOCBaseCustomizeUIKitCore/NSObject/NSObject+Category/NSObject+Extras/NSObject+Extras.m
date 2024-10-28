@@ -387,14 +387,6 @@
     };
 }
 
--(JobsReturnURLRequestByURLBlock _Nonnull)request{
-    return ^NSURLRequest *_Nullable(NSURL *_Nullable url){
-        return [NSMutableURLRequest requestWithURL:url
-                                       cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                   timeoutInterval:30];
-    };
-}
-
 -(jobsByVoidBlock _Nonnull)震动特效反馈{
     @jobs_weakify(self)
     return ^(){
@@ -972,34 +964,21 @@
     }
 }
 /// 打印请求体
--(jobsByURLSessionTaskBlock _Nonnull)printURLSessionRequestMessage{
+-(JobsReturnURLRequestByURLSessionTaskBlock _Nullable)printURLSessionRequestMessage{
     @jobs_weakify(self)
-    return ^(__kindof NSURLSessionDataTask *_Nullable task) {
+    return ^__kindof NSMutableURLRequest *_Nullable(__kindof NSURLSessionDataTask *_Nullable task) {
         @jobs_strongify(self)
-        if(!task){NSLog(@"NSURLSessionDataTask *task 为空,请检查");return;}
-        self.printRequestMessage(task.originalRequest);
+        if(!task){NSLog(@"NSURLSessionDataTask *task 为空,请检查");return nil;}
+        return task.originalRequest.print();
     };
 }
-
--(jobsByURLRequestBlock _Nonnull)printRequestMessage{
+/// 打印URLRequest
+-(JobsReturnMutableURLRequestByURLRequestBlock _Nullable)printRequestMessage{
     @jobs_weakify(self)
-    return ^(__kindof NSURLRequest *_Nullable data) {
+    return ^__kindof NSMutableURLRequest *_Nullable(__kindof NSURLRequest *_Nullable data) {
         @jobs_strongify(self)
-        if (data) {
-            // 请求URL
-            NSLog(@"请求URL:%@\n",data.URL);
-            // 请求方式
-            NSLog(@"请求方式:%@\n",data.HTTPMethod);
-            // 请求头信息
-            NSLog(@"请求头信息:%@\n",data.allHTTPHeaderFields);
-            // 请求正文信息
-            NSLog(@"请求正文信息:%@\n",data.HTTPBody.stringByUTF8Encoding);
-            // 请求响应时间
-            NSLog(@"请求响应时间:%@\n",self.currentTimestampString);
-            NSLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",data.URL,data.HTTPMethod,data.allHTTPHeaderFields,data.HTTPBody.stringByUTF8Encoding,self.currentTimestampString);
-        }else{
-            NSLog(@"NSURLRequest *data 为空,请检查");
-        }
+        if (!data) {NSLog(@"NSURLRequest *data 为空,请检查");return nil;}
+        return data.print();
     };
 }
 /// 判断是否是此版本App的首次启动

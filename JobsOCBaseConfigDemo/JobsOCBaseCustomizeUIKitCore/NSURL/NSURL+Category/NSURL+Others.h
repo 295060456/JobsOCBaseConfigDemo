@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnURLByStringBlock _Nonnull)add;
 /// NSURL + NSURL => NSURL
 -(JobsReturnURLByURLBlock _Nonnull)Add;
+/// NSURL => NSMutableURLRequest
+-(NSMutableURLRequest *)URLRequest;
 
 @end
 

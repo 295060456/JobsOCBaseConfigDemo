@@ -58,13 +58,17 @@ typedef id _Nullable(^JobsReturnIDByEightIDBlock)Jobs_8_Arguments;
 typedef id _Nullable(^JobsReturnIDByNineIDBlock)Jobs_9_Arguments;
 typedef id _Nullable(^JobsReturnIDByTenIDBlock)Jobs_10_Arguments;
 #pragma mark —— 关于数据容器
+typedef __kindof NSArray *_Nullable(^JobsReturnArrayByVoidBlock)(void);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIDBlock)(id _Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByStringBlock)(NSString *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByArrayBlock)(__kindof NSArray *_Nullable data);
+typedef __kindof NSMutableArray *_Nullable(^JobsReturnMutableArrayByVoidBlock)(void);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIntegerBlock)(NSInteger data);
-typedef __kindof NSArray *_Nullable(^JobsReturnArrayByVoidBlock)(void);
+
 
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(NSString *_Nullable data);
+typedef __kindof NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByVoidBlock)(void);
+
 #pragma mark —— 关于 NSValue
 typedef NSValue *_Nullable(^JobsReturnValueByCGSizeBlock)(CGSize data);
 typedef NSValue *_Nullable(^JobsReturnValueByPointBlock)(const void *_Nullable data);
@@ -231,13 +235,16 @@ typedef NSDate *_Nullable(^JobsReturnDateByVoidBlock)(void);
 typedef NSDate *_Nullable(^JobsReturnDateByTimeIntervalBlock)(NSTimeInterval data);
 typedef NSDate *_Nullable(^JobsReturnDateByDateFormatterBlock)(NSDateFormatter *_Nullable data);
 #pragma mark —— 关于数据
+typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByVoidBlock)(void);
+typedef NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByVoidBlock)(void);
+typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByURLBlock)(NSURL *_Nullable url);
+typedef NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByURLBlock)(NSURL *_Nullable url);
 typedef NSData *_Nullable(^JobsReturnDataByVoidBlock)(void);
 typedef NSData *_Nullable(^JobsReturnDataByIDBlock)(id _Nullable data);
 typedef NSData *_Nullable(^JobsReturnDataByAssetBlock)(AVAsset *_Nullable asset);
 typedef NSData *_Nullable(^JobsReturnDataByStringBlock)(__kindof NSString *_Nullable data);
 typedef NSData *_Nullable(^JobsReturnDataByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef PHAsset *_Nullable(^JobsReturnAssetByStrBlock)(NSString *_Nullable Key);
-typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByURLBlock)(NSURL *_Nullable url);
 typedef NSURL *_Nullable(^JobsReturnURLByStringBlock)(NSString *_Nullable data);
 typedef NSURL *_Nullable(^JobsReturnURLByURLBlock)(NSURL *_Nullable data);
 #pragma mark —— 关于字体

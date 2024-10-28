@@ -181,10 +181,6 @@ typedef void(^jobsByTabBarItemConfigBlock)(__kindof JobsTabBarItemConfig *_Nulla
 @class LZTabBarConfig;
 typedef void(^jobsByLZTabBarConfigBlock)(__kindof LZTabBarConfig *_Nullable data);
 
-@class JobsRequestBuilder;
-typedef JobsRequestBuilder *_Nullable(^JobsReturnRequestBuilderByURLRequestBlock)(__kindof NSURLRequest *_Nonnull data);
-typedef JobsRequestBuilder *_Nullable(^JobsReturnRequestBuilderByStringBlock)(NSString *_Nonnull data);
-
 @class MJRefreshConfigModel;
 typedef void(^jobsByRefreshConfigModelBlock)(__kindof MJRefreshConfigModel *_Nullable data);
 

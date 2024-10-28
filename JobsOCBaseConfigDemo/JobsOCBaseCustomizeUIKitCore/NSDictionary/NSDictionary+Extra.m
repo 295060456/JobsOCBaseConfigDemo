@@ -27,6 +27,13 @@
         }return value;
     };
 }
-
+/// 转成可变字典
+-(JobsReturnMutableDicByVoidBlock _Nonnull)mutableDic{
+    @jobs_weakify(self)
+    return ^__kindof NSMutableDictionary *_Nonnull(){
+        @jobs_strongify(self)
+        return [NSMutableDictionary dictionaryWithDictionary:self];
+    };
+}
 
 @end

@@ -37,12 +37,12 @@
 #import "JobsString.h"
 #pragma mark —— NSUserDefaults
 #import "JobsUserDefaults.h"
-#pragma mark —— NSURL
-#import "JobsURL.h"
 #pragma mark —— NSNotificationCenter
 #import "NSNotificationCenter.h"
 #pragma mark —— NSAttributedString
 #import "JobsAttributedString.h"
+#pragma mark —— NSValue
+#import "JobsValue.h"
 #pragma mark —— NSData
 #import "JobsData.h"
 #pragma mark —— NSDate
@@ -111,10 +111,12 @@
 #import "JobsBarButtonItem.h"
 #pragma mark —— NSFormatter
 #import "JobsFormatter.h"
+#pragma mark —— NSURL
+#import "JobsURL.h"
 #pragma mark —— NSURLRequest
 #import "NSURLRequest+Extra.h"
-#pragma mark —— NSValue
-#import "JobsValue.h"
+#pragma mark —— NSURLSessionDataTask
+#import "NSURLSessionDataTask+Extra.h"
 #pragma mark —— 关于UIView的创建
 NS_INLINE __kindof UIImageView *_Nonnull jobsMakeImageView(jobsByImageViewBlock _Nonnull block){
     UIImageView *data = UIImageView.alloc.init;
