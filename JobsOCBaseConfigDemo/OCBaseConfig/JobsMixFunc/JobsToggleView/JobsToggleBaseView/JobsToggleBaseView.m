@@ -49,7 +49,7 @@ JobsToggleNavViewProtocolSynthesize
 //                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— BaseViewProtocol
-- (instancetype)initWithSize:(CGSize)thisViewSize{
+- (instancetype)initWithsizer:(CGSize)thisViewsizer{
     if (self = [super init]) {
 //        self.backgroundColor = JobsWhiteColor;
     }return self;
@@ -79,7 +79,7 @@ JobsToggleNavViewProtocolSynthesize
     return ^(id _Nullable data){
         @jobs_strongify(self)
         if(!jobsEqualToZeroSize(self.toggleView_size)) return self.toggleView_size;
-        if(!jobsEqualToZeroSize(self.Size)) return self.Size;
+        if(!jobsEqualToZeroSize(self.sizer)) return self.sizer;
         return JobsToggleBaseView.viewSizeByModel(nil);
     };
 }

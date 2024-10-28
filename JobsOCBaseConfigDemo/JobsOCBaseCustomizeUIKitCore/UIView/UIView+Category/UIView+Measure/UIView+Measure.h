@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat right;
 @property(nonatomic,assign)CGFloat top;
 @property(nonatomic,assign)CGFloat bottom;
-@property(nonatomic,assign)CGSize Size;
+@property(nonatomic,assign)CGSize sizer;/// 避免与size冲突
 @property(nonatomic,assign)CGPoint Origin;
 #pragma mark —— 刷新UI
 -(jobsByVoidBlock _Nonnull)jobsRefreshUI;

@@ -92,7 +92,7 @@ NS_INLINE UIWindow *_Nullable jobsGetMainWindow(void){
 NS_INLINE UIWindow *_Nullable jobsGetMainWindowWithSize(void){
     UIWindow *window = nil;
     window = MainWindow;
-    return CGSizeEqualToSize(CGSizeZero, window.Size) ? jobsGetMainWindowBefore13() : window;
+    return CGSizeEqualToSize(CGSizeZero, window.sizer) ? jobsGetMainWindowBefore13() : window;
 }
 /// 获取 keyWindowScene iOS 13版本后可用
 NS_INLINE UIWindowScene *_Nullable jobsGetkeyWindowScene(void) {

@@ -119,7 +119,7 @@
 }
 /// 重写来重置文字区域 【未编辑状态下光标的起始位置】【键盘弹起会调用此方法】
 -(CGRect)textRectForBounds:(CGRect)bounds{//0\0\100\100 -—> 0\0\255.333\32 <->0\0\100\100
-    CGRect textRectForBounds = CGRectMake((bounds.origin.x + self.offset) + (self.leftView.Origin.x + self.leftView.Size.width + self.leftViewOffsetX),
+    CGRect textRectForBounds = CGRectMake((bounds.origin.x + self.offset) + (self.leftView.Origin.x + self.leftView.sizer.width + self.leftViewOffsetX),
                                           bounds.origin.y,
                                           bounds.size.width - (self.offset + self.leftViewOffsetX + self.rightViewOffsetX),
                                           bounds.size.height);
@@ -127,7 +127,7 @@
 }
 /// 重写来重置编辑区域【编辑状态下的起始位置】、UIFieldEditor的位置大小【键盘弹起会调用此方法】
 -(CGRect)editingRectForBounds:(CGRect)bounds{// 0\0\217.6\27.3
-    CGRect editingRectForBounds = CGRectMake((bounds.origin.x + self.offset) + (self.leftView.Origin.x + self.leftView.Size.width + self.leftViewOffsetX),
+    CGRect editingRectForBounds = CGRectMake((bounds.origin.x + self.offset) + (self.leftView.Origin.x + self.leftView.sizer.width + self.leftViewOffsetX),
                                              bounds.origin.y,
                                              bounds.size.width - (self.offset + self.leftViewOffsetX + self.rightViewOffsetX + self.fieldEditorOffset),
                                              bounds.size.height);

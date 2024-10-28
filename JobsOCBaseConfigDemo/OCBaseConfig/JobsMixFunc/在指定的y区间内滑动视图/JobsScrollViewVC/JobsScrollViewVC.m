@@ -44,7 +44,7 @@
         [self.view layoutIfNeeded];
         _scrollYView.x = 0;
         _scrollYView.y = 初始位置;// 锚点1（最低点）
-        _scrollYView.Size = _scrollYView.viewSizeByModel(nil);
+        _scrollYView.sizer = _scrollYView.viewSizeByModel(nil);
         _scrollYView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [_scrollYView actionObjectBlock:^(JobsScrollYView *data) {

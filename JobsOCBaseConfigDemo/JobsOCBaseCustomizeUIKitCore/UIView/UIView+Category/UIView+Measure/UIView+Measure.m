@@ -866,19 +866,19 @@ JobsKey(_bottom)
     self.frame = self.resetOriginY(bottom - self.height);
     Jobs_setAssociatedRETAIN_NONATOMIC(_bottom, @(Bottom))
 }
-#pragma mark —— @property(nonatomic,assign)CGSize Size
-JobsKey(_Size)
-@dynamic Size;
--(CGSize)Size{
-    NSValue *sizeValue = Jobs_getAssociatedObject(_Size);
+#pragma mark —— @property(nonatomic,assign)CGSize sizer
+JobsKey(_sizer)
+@dynamic sizer;
+-(CGSize)sizer{
+    NSValue *sizeValue = Jobs_getAssociatedObject(_sizer);
     return sizeValue ? sizeValue.CGSizeValue : CGSizeZero;
 }
 
--(void)setSize:(CGSize)Size{
-    CGSize size = self.isSizeZero(Size) ? CGSizeMake(self.width, self.height) : Size;
+-(void)setSizer:(CGSize)sizer{
+    CGSize size = self.isSizeZero(sizer) ? CGSizeMake(self.width, self.height) : sizer;
     NSValue *sizeValue = [NSValue valueWithCGSize:size];
     self.frame = self.resetSize(size);
-    Jobs_setAssociatedRETAIN_NONATOMIC(_Size, sizeValue);
+    Jobs_setAssociatedRETAIN_NONATOMIC(_sizer, sizeValue);
 }
 #pragma mark —— @property(nonatomic,assign)CGPoint Origin
 JobsKey(_Origin)

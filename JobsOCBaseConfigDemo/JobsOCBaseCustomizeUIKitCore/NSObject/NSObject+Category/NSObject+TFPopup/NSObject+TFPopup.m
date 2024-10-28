@@ -77,7 +77,7 @@
     return ^(__kindof UIView *_Nullable data) {
         @jobs_strongify(self)
         [self checkByView:data action:^{
-            TFPopupParam *popupParameter = makeSlidePopupParameterByViewHeight(data.Size.height);
+            TFPopupParam *popupParameter = makeSlidePopupParameterByViewHeight(data.sizer.height);
             if(AppDelegate.tabBarVC){
                 [data tf_showSlide:AppDelegate.tabBarVC.view
                          direction:popupParameter.bubbleDirection

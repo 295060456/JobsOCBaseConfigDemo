@@ -408,7 +408,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
 -(JobsSearchBar *)searchView{
     if (!_searchView) {
         _searchView = JobsSearchBar.new;
-        _searchView.Size = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
+        _searchView.sizer = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
         _searchView.jobsRichViewByModel(nil);
 //        @jobs_weakify(self)
         [_searchView actionObjectBlock:^(NSString *data) {
@@ -530,7 +530,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
 -(BaiShaETProjPopupView10 *)popupView{
     if (!_popupView) {
         _popupView = BaiShaETProjPopupView10.new;
-        _popupView.Size = BaiShaETProjPopupView10.viewSizeByModel(nil);
+        _popupView.sizer = BaiShaETProjPopupView10.viewSizeByModel(nil);
         @jobs_weakify(self)
         [_popupView tf_observerDelegateProcess:^(UIView *pop, DelegateProcess pro) {
             @strongify(self)

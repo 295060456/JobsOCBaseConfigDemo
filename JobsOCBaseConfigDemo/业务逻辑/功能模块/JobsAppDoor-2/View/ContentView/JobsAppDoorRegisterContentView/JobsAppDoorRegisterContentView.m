@@ -84,7 +84,7 @@
         }
         inputViewBaseStyle.jobsRichViewByModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);//进数据
         [self addSubview:inputViewBaseStyle];
-        inputViewBaseStyle.Size = CGSizeMake(self.width - RegisterBtnWidth - JobsWidth(40), ThingsHeight);
+        inputViewBaseStyle.sizer = CGSizeMake(self.width - RegisterBtnWidth - JobsWidth(40), ThingsHeight);
         inputViewBaseStyle.centerX = self.titleLab.centerX;
         if (i == 0) {
             inputViewBaseStyle.top = self.titleLab.bottom + JobsWidth(20);//20是偏移量
@@ -169,7 +169,7 @@
             });
         [_sendBtn buttonAutoWidthByFont];
         _sendBtn.x = self.backToLoginBtn.width + JobsWidth(20);
-        _sendBtn.Size = CGSizeMake(self.width - self.backToLoginBtn.width - JobsWidth(40), ThingsHeight);
+        _sendBtn.sizer = CGSizeMake(self.width - self.backToLoginBtn.width - JobsWidth(40), ThingsHeight);
         _sendBtn.bottom = JobsAppDoorContentViewRegisterHeight - JobsWidth(20);
         [self addSubview:_sendBtn];
     }return _sendBtn;

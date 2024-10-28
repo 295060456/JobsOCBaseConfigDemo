@@ -157,7 +157,7 @@
             [self allRise:data];
         }];
         [self addSubview:inputView];
-        inputView.Size = CGSizeMake(self.width - self.toRegisterBtn.width - JobsWidth(40), ThingsHeight);
+        inputView.sizer = CGSizeMake(self.width - self.toRegisterBtn.width - JobsWidth(40), ThingsHeight);
         inputView.x = JobsWidth(20);
         if (i == 0) {
             inputView.top = self.titleLab.bottom + JobsWidth(20);//20是偏移量
@@ -192,7 +192,7 @@
 -(void)initialSendBtn{
 //        _sendBtn.backgroundColor = [KSystemPinkColor colorWithAlphaComponent:0.3];
     
-    self.sendBtn.size = CGSizeMake(self.width - self.toRegisterBtn.width - JobsWidth(40), ThingsHeight);
+    self.sendBtn.sizer = CGSizeMake(self.width - self.toRegisterBtn.width - JobsWidth(40), ThingsHeight);
     [self.sendBtn setBackgroundImage:JobsIMG(@"登录注册按钮背景图") forState:UIControlStateNormal];
     [self.sendBtn setBackgroundImage:JobsIMG(@"登录注册按钮背景图") forState:UIControlStateSelected];
     [self.sendBtn setTitleColor:Cor5
@@ -352,7 +352,7 @@
         
         JobsAppDoorInputViewBaseStyle *lastObj = (JobsAppDoorInputViewBaseStyle *)self.registerDoorInputViewBaseStyleMutArr[i - 1];
         doorInputViewBaseStyle.top = lastObj.bottom + InputViewOffset;
-        doorInputViewBaseStyle.size = CGSizeMake(self.width - self.toRegisterBtn.width - JobsWidth(40), ThingsHeight);
+        doorInputViewBaseStyle.sizer = CGSizeMake(self.width - self.toRegisterBtn.width - JobsWidth(40), ThingsHeight);
         doorInputViewBaseStyle.x = JobsWidth(20) + RegisterBtnWidth;
         doorInputViewBaseStyle.layer.cornerRadius = ThingsHeight / 2;
     }

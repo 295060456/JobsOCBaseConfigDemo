@@ -251,7 +251,7 @@
     @jobs_weakify(self)
     return ^(NSString *_Nonnull str) {
         @jobs_strongify(self)
-        NSLog(@"%@ = %@", str, NSStringFromCGSize(self.Size));
+        NSLog(@"%@ = %@", str, NSStringFromCGSize(self.sizer));
     };
 }
 #pragma mark —— 键盘事件

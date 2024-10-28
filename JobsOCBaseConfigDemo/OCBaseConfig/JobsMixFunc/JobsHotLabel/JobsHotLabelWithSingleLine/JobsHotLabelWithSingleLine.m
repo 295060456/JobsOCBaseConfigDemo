@@ -66,7 +66,7 @@
             self.viewModel = vm;
             // 其实item是button,因为button有相对于Label更为丰富的表现形式
             UIButton *btn = [self configBtn:vm];
-            btn.Size = btnSize;
+            btn.sizer = btnSize;
             [self.btnMutArr addObject:btn];
             [self.stackView addArrangedSubview:btn];
         }
@@ -158,7 +158,7 @@
         @jobs_strongify(self)
         [self.btnHeightMutArr addObject:data];
     }];
-    btn.Size = CGSizeMake((JobsMainScreen_WIDTH() - JobsWidth(15 * 5)) / 4, JobsWidth(30));
+    btn.sizer = CGSizeMake((JobsMainScreen_WIDTH() - JobsWidth(15 * 5)) / 4, JobsWidth(30));
     btn.makeBtnTitleByShowingType(self.labelShowingType);
     return btn;
 }

@@ -240,7 +240,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 -(JobsSearchBar *)searchView{
     if (!_searchView) {
         _searchView = JobsSearchBar.new;
-        _searchView.Size = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
+        _searchView.sizer = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
         _searchView.jobsRichViewByModel(nil);
 //        @jobs_weakify(self)
         [_searchView actionObjectBlock:^(NSString *data) {

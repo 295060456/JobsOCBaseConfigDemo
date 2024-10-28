@@ -67,7 +67,7 @@
         }];
 
         [self addSubview:inputView];
-        inputView.Size = CGSizeMake(self.width - self.toRegisterBtn.width - JobsWidth(40), ThingsHeight);
+        inputView.sizer = CGSizeMake(self.width - self.toRegisterBtn.width - JobsWidth(40), ThingsHeight);
         inputView.x = JobsWidth(20);
         if (i == 0) {
             inputView.top = self.titleLab.bottom + JobsWidth(20);//20是偏移量

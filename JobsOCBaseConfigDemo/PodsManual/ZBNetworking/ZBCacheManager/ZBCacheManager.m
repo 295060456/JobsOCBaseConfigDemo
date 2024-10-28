@@ -334,7 +334,7 @@ static const CGFloat unit = 1000.0;
     return count;
 }
 
-- (NSString *)fileUnitWithSize:(float)size{
+- (NSString *)fileUnitWithsizer:(float)size{
     if (size >= unit * unit * unit) { // >= 1GB
         return [NSString stringWithFormat:@"%.2fGB", size / unit / unit / unit];
     } else if (size >= unit * unit) { // >= 1MB

@@ -148,7 +148,7 @@
 -(JobsAdNoticeView *)adNoticeView{
     if (!_adNoticeView) {
         _adNoticeView = JobsAdNoticeView.new;
-        _adNoticeView.Size = JobsAdNoticeView.viewSizeByModel(nil);
+        _adNoticeView.sizer = JobsAdNoticeView.viewSizeByModel(nil);
         _adNoticeView.jobsRichViewByModel(nil);
     }return _adNoticeView;
 }

@@ -181,7 +181,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             }).onLongPressGesture(^(id data){
                 NSLog(@"");
             });
-        _userHeadBtn.Size = CGSizeMake(JobsWidth(32), JobsWidth(32));
+        _userHeadBtn.sizer = CGSizeMake(JobsWidth(32), JobsWidth(32));
     }return _userHeadBtn;
 }
 /// BaseViewProtocol

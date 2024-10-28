@@ -433,7 +433,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 -(JobsSearchBar *)jobsSearchBar{
     if (!_jobsSearchBar) {
         _jobsSearchBar = JobsSearchBar.new;
-        _jobsSearchBar.Size = JobsSearchBar.viewSizeByModel(nil);
+        _jobsSearchBar.sizer = JobsSearchBar.viewSizeByModel(nil);
         _jobsSearchBar.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [_jobsSearchBar actionObjectBlock:^(NSString *data) {

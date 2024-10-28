@@ -161,11 +161,11 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     [_rightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
         make.right.equalTo(self).offset(-self.rightViewByOutLineOffset);
-        if(self.isSizeZero(rightView.Size)){
+        if(self.isSizeZero(rightView.sizer)){
             if (rightView.width) make.width.mas_equalTo(rightView.width);
             if (rightView.height) make.height.mas_equalTo(rightView.height);
         }else{
-            make.size.mas_equalTo(rightView.Size);
+            make.size.mas_equalTo(rightView.sizer);
         }
     }];
     /// 会将之前设置的size值冲掉

@@ -63,7 +63,7 @@ static dispatch_once_t static_shareViewOnceToken;
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    JobsLock(self.Size = JobsShareView.viewSizeByModel(nil);)
+    JobsLock(self.sizer = JobsShareView.viewSizeByModel(nil);)
     /// 内部指定圆切角
     [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
                                     cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
@@ -80,7 +80,7 @@ static dispatch_once_t static_shareViewOnceToken;
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model;
-        self.Size = JobsShareView.viewSizeByModel(nil);
+        self.sizer = JobsShareView.viewSizeByModel(nil);
         self.collectionView.reloadDatas();
         self.cancelBtn.alpha = 1;
     };
