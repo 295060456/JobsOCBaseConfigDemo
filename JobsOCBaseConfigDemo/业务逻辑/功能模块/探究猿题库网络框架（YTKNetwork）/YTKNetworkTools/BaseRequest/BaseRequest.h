@@ -16,6 +16,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseRequest : YTKRequest
+
+@property(nonatomic,strong,nullable)id urlParameters;
+@property(nonatomic,strong,nullable)NSMutableDictionary *parameters;
+@property(nonatomic,strong,nullable)NSMutableDictionary *customHTTPHeader;
 /// 为了防止后端某些非标准的写法。比如POST请求将参数封装到URL里面进行传输
 +(instancetype _Nonnull)init;
 +(JobsReturnYTKRequestByDictionaryBlock _Nonnull)initByBodyParameters;/// 直接调用，后面不能拼byURLParameters

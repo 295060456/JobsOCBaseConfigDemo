@@ -9,10 +9,6 @@
 
 @interface BaseRequest ()
 
-@property(nonatomic,strong,nullable)id urlParameters;
-@property(nonatomic,strong,nullable)NSMutableDictionary *parameters;
-@property(nonatomic,strong,nullable)NSMutableDictionary *customHTTPHeader;
-
 @end
 
 @implementation BaseRequest
@@ -103,8 +99,8 @@
             [headers setValue:@"application/json"
                        forKey:@"Content-Type"];
             /// 设置 Authorization
-            if(self.fm_loginModel) [headers setValue:self.fm_loginModel.accessToken
-                                              forKey:@"Authorization"];
+            if(self.loginModel) [headers setValue:self.loginModel.token
+                                           forKey:@"Authorization"];
             /// 请求的语言环境
     //        switch (self.currentLanguageType) {
     //            case HTTPRequestHeaderLanguageEn:{
@@ -126,9 +122,9 @@
 #pragma mark ——  复写 YTKBaseRequest 方法
 /// 设置自定义的 HTTP Header
 -(NSMutableDictionary *)requestHeaderFieldValueDictionary{
-    self.fm_loginModel = self.readUserInfoByUserName(FMLoginModel.class,FM用户数据);
-    NSLog(@"loginModel = %@",self.fm_loginModel);
-    NSLog(@"Token = %@",self.fm_loginModel.accessToken);
+    self.loginModel = self.readUserInfoByUserName(JobsUserModel.class,FM用户数据);
+    NSLog(@"loginModel = %@",self.loginModel);
+    NSLog(@"Token = %@",self.loginModel.token);
     return self.customHTTPHeader;
 }
 /// 具体子类实现请求Api
