@@ -11,7 +11,7 @@
 #pragma mark —— 示例代码
 /// 普通的单个请求
 -(void)loadCacheData:(jobsByResponseModelBlock _Nullable)successBlock{
-    GetCustomerContactApi *api = GetCustomerContactApi.init;
+    GetCustomerContactApi *api = GetCustomerContactApi.new;
     api.byURLParameters(nil); /// 添加URL参数
     api.byBodyParameters(nil); /// 添加Body参数
     api.byHeaderParameters(nil); /// 添加Header参数
@@ -220,7 +220,7 @@
 }
 #pragma mark —— 查询广告列表-支持游客：APP首页右下3Banner【GET】
 -(void)getAds:(jobsByResponseModelBlock _Nullable)successBlock{
-    FM_promotion_advertise_api *api = FM_promotion_advertise_api.init;
+    FM_promotion_advertise_api *api = FM_promotion_advertise_api.new;
     api.byURLParameters(nil); /// 添加URL参数
     api.byBodyParameters(nil); /// 添加Body参数
     api.byHeaderParameters(nil); /// 添加Header参数
@@ -237,7 +237,7 @@
 }
 #pragma mark —— 用户登出【POST】
 -(void)fm_logout:(jobsByResponseModelBlock _Nullable)successBlock{
-    FM_user_logout_api *api = FM_user_logout_api.init;
+    FM_user_logout_api *api = FM_user_logout_api.new;
     api.byURLParameters(nil); /// 添加URL参数
     api.byBodyParameters(nil); /// 添加Body参数
     api.byHeaderParameters(nil); /// 添加Header参数
@@ -255,7 +255,7 @@
 #pragma mark —— 存款优惠活动信息【POST】
 -(void)depositDiscountActivityRecordByURLParameters:(NSString *_Nullable)urlParameters
                                        successBlock:(jobsByYTKChainRequestBlock _Nullable)successBlock{
-    FM_GetKYCInfo_api *api = FM_GetKYCInfo_api.init;
+    FM_GetKYCInfo_api *api = FM_GetKYCInfo_api.new;
     api.byURLParameters(urlParameters);/// 添加URL参数
     api.byBodyParameters(nil); /// 添加Body参数
     api.byHeaderParameters(nil); /// 添加Header参数
