@@ -9,33 +9,13 @@
 
 @implementation NSObject (GTCaptcha4)
 #pragma mark —— BaseProtocol
-// 显示验证码
+/// 显示验证码
 -(jobsByVoidBlock _Nonnull)show_verifyCode_GTCaptcha4{
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
         [self.captchaSession verify];
     };
-}
-#pragma mark —— @property(nonatomic,strong)GTCaptcha4Session *captchaSession;
-JobsKey(_captchaSession)
-@dynamic captchaSession;
--(GTCaptcha4Session *)captchaSession{
-    GTCaptcha4Session *gtCaptcha4Session = Jobs_getAssociatedObject(_captchaSession);
-    if(!gtCaptcha4Session){
-        gtCaptcha4Session = [GTCaptcha4Session sessionWithCaptchaID:极验验证码KEY];
-        gtCaptcha4Session.delegate = self;
-        /// 如需修改默认配置
-        /// 可选择下⾯注释的⽅式创建实例
-        // GTCaptcha4SessionConfiguration *config = GTCaptcha4SessionConfiguration.defaultConfiguration;
-        // config.timeout = 8.0f;
-        // gtCaptcha4Session = [GTCaptcha4Session sessionWithCaptchaID:极验验证码KEY configuration:config];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_captchaSession, gtCaptcha4Session);
-    }return gtCaptcha4Session;
-}
-
--(void)setCaptchaSession:(GTCaptcha4Session *)captchaSession{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_captchaSession, captchaSession)
 }
 #pragma mark —— GTCaptcha4SessionTaskDelegate
 /// 回调验证会话的结果参数(Callback result parameters of captcha session)
@@ -60,12 +40,60 @@ JobsKey(_captchaSession)
 - (void)gtCaptchaSession:(GTCaptcha4Session *)captchaSession
               didReceive:(NSString *)status
                   result:(nullable NSDictionary *)result{
-    NSLog(@"");
+    GTCaptcha4ResultModel *resultModel = GTCaptcha4ResultModel.byData(result);
+    if(isValue(resultModel.pass_token) &&
+       isValue(resultModel.gen_time) &&
+       isValue(resultModel.captcha_output) &&
+       isValue(resultModel.captcha_id) &&
+       isValue(resultModel.lot_number)){
+        self.JobsPostBy(jobsMakeKeyValueModel(^(JobsKeyValueModel *_Nullable data) {
+            data.key = 获取极验验证码成功;
+            data.value = jobsMakeGTCaptcha4Model(^(__kindof GTCaptcha4Model *_Nullable data1) {
+                data1.captchaSession = captchaSession;
+                data1.status = status;
+                data1.result = GTCaptcha4ResultModel.byData(result);
+            });
+        }));
+    }else toast(@"未通过图形验证，请重试");
 }
 /// 通知验证界面将要展现
 /// @param captchaSession 验证会话
 - (void)gtCaptchaSessionWillShow:(GTCaptcha4Session *)captchaSession{
     NSLog(@"");
+}
+/// 回调验证会话中发生的错误(Callback errors that occurred in the captcha session)
+/// @param captchaSession 验证会话(Captcha session)
+/// @param error 错误描述对象(Error description object)
+- (void)gtCaptchaSession:(GTCaptcha4Session *)captchaSession
+         didReceiveError:(GTC4Error *)error{
+    NSLog(@"error = %@",error);
+    self.JobsPostBy(jobsMakeKeyValueModel(^(JobsKeyValueModel * _Nullable data) {
+        data.key = 获取极验验证码失败;
+        data.value = jobsMakeGTCaptcha4Model(^(__kindof GTCaptcha4Model * _Nullable data1) {
+            data1.captchaSession = captchaSession;
+            data1.error = error;
+        });
+    }));
+}
+#pragma mark —— @property(nonatomic,strong)GTCaptcha4Session *captchaSession;
+JobsKey(_captchaSession)
+@dynamic captchaSession;
+-(GTCaptcha4Session *)captchaSession{
+    GTCaptcha4Session *gtCaptcha4Session = Jobs_getAssociatedObject(_captchaSession);
+    if(!gtCaptcha4Session){
+        gtCaptcha4Session = [GTCaptcha4Session sessionWithCaptchaID:极验验证码KEY];
+        gtCaptcha4Session.delegate = self;
+        /// 如需修改默认配置
+        /// 可选择下⾯注释的⽅式创建实例
+        // GTCaptcha4SessionConfiguration *config = GTCaptcha4SessionConfiguration.defaultConfiguration;
+        // config.timeout = 8.0f;
+        // gtCaptcha4Session = [GTCaptcha4Session sessionWithCaptchaID:极验验证码KEY configuration:config];
+        Jobs_setAssociatedRETAIN_NONATOMIC(_captchaSession, gtCaptcha4Session);
+    }return gtCaptcha4Session;
+}
+
+-(void)setCaptchaSession:(GTCaptcha4Session *)captchaSession{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_captchaSession, captchaSession)
 }
 
 @end

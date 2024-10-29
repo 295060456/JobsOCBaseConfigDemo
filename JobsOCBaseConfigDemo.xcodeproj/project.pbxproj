@@ -10,6 +10,7 @@
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		84170B002CD0BF5D0007E303 /* YTKBatchRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */; };
+		843099F92CD0F17400A7B9D0 /* GTCaptcha4Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */; };
 		843B73C22CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */; };
 		843B73C62CCF6FD400F172EF /* YTKBaseRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
@@ -1140,6 +1141,8 @@
 		5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84170AFD2CD0BF5D0007E303 /* YTKBatchRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBatchRequest+Extra.h"; sourceTree = "<group>"; };
 		84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBatchRequest+Extra.m"; sourceTree = "<group>"; };
+		843099F62CD0F17400A7B9D0 /* GTCaptcha4Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTCaptcha4Model.h; sourceTree = "<group>"; };
+		843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTCaptcha4Model.m; sourceTree = "<group>"; };
 		843B73BF2CCF6F0100F172EF /* NSURLSessionDataTask+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionDataTask+Extra.h"; sourceTree = "<group>"; };
 		843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionDataTask+Extra.m"; sourceTree = "<group>"; };
 		843B73C32CCF6FD400F172EF /* YTKBaseRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBaseRequest+Extra.h"; sourceTree = "<group>"; };
@@ -3364,6 +3367,15 @@
 				84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */,
 			);
 			path = "YTKBatchRequest+Extra";
+			sourceTree = "<group>";
+		};
+		843099F82CD0F17400A7B9D0 /* GTCaptcha4Model */ = {
+			isa = PBXGroup;
+			children = (
+				843099F62CD0F17400A7B9D0 /* GTCaptcha4Model.h */,
+				843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */,
+			);
+			path = GTCaptcha4Model;
 			sourceTree = "<group>";
 		};
 		843B73C12CCF6F0100F172EF /* NSURLSessionDataTask */ = {
@@ -9863,6 +9875,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5A61072CA82C2D006D67A7 /* JobsModel.h */,
+				843099F82CD0F17400A7B9D0 /* GTCaptcha4Model */,
 				CE4299D62CAFA86B00A0446A /* NotificationModel */,
 				CEDD9DE02CAA5752002FD89F /* JobsLocationModel */,
 				CE5A610E2CA82C2D006D67A7 /* 输入框样式基类 */,
@@ -15244,6 +15257,7 @@
 				CE5A65E32CA83422006D67A7 /* JobsSuspendView.m in Sources */,
 				CE5A65E42CA83422006D67A7 /* JobsStepView.m in Sources */,
 				CE4F27B42CA825CD002AF25B /* JobsVerticalMenuVC@2.m in Sources */,
+				843099F92CD0F17400A7B9D0 /* GTCaptcha4Model.m in Sources */,
 				CE4F27B52CA825CD002AF25B /* MyTableTableVC.m in Sources */,
 				CE4F27B62CA825CD002AF25B /* MyFansTBVCell.m in Sources */,
 				CE5A64E02CA83018006D67A7 /* NSObject+WHToast.m in Sources */,

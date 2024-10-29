@@ -16,6 +16,8 @@ NSString *const 用户信息 = @"用户信息";
 NSString *const 用户名数组 = @"用户名数组";
 NSString *const FM用户数据 = @"FM用户数据";
 NSString *const App当日首次进入 = @"App当日首次进入";
+NSString *const 获取极验验证码成功 = @"获取极验验证码成功";
+NSString *const 获取极验验证码失败 = @"获取极验验证码失败";
 NSString *const JobsLanguageKey = @"JobsLanguageKey";
 
 /*

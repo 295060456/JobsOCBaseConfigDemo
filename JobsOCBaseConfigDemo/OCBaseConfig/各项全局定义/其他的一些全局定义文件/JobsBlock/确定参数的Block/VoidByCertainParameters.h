@@ -36,7 +36,7 @@ typedef void(^jobsByArrayBlock)(__kindof NSArray *_Nullable data);
 typedef void(^jobsByMutArrayBlock)(__kindof NSMutableArray *_Nullable data);
 typedef void(^jobsBySetBlock)(__kindof NSSet *_Nullable data);
 typedef void(^jobsByMutableSetBlock)(__kindof NSMutableSet *_Nullable data);
-typedef void(^jobsByDictionarycBlock)(__kindof NSDictionary *_Nullable data);
+typedef void(^jobsByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef void(^jobsByMutableDictionarycBlock)(__kindof NSMutableDictionary *_Nullable data);
 #pragma mark —— 关于（富）文本
 typedef void(^jobsByStringBlock)(NSString *_Nullable data);

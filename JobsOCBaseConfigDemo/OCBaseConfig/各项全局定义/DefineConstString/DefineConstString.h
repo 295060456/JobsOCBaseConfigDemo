@@ -16,6 +16,8 @@ FOUNDATION_EXTERN NSString *_Nonnull const 用户信息;
 FOUNDATION_EXTERN NSString *_Nonnull const 用户名数组;
 FOUNDATION_EXTERN NSString *_Nonnull const FM用户数据;
 FOUNDATION_EXTERN NSString *_Nonnull const App当日首次进入;
+FOUNDATION_EXTERN NSString *_Nonnull const 获取极验验证码成功;
+FOUNDATION_EXTERN NSString *_Nonnull const 获取极验验证码失败;
 FOUNDATION_EXTERN NSString *_Nonnull const JobsLanguageKey;
 
 FOUNDATION_EXTERN NSString *_Nonnull const 皇冠符号;

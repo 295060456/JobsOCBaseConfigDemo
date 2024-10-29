@@ -174,6 +174,8 @@ BaseProtocol
 #pragma mark —— NSNotification
 /// 在主线程上带参发通知
 -(jobsByKey_ValueBlock _Nonnull)JobsPost;
+/// 在主线程上带参发通知
+-(jobsByKeyValueModelBlock _Nonnull)JobsPostBy;
 /// 在主线程上不带参发通知
 -(jobsByStringBlock _Nonnull)jobsPost;
 /// 接收通知

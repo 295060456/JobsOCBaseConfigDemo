@@ -156,6 +156,15 @@
         });
     };
 }
+/// 在主线程上带参发通知
+-(jobsByKeyValueModelBlock _Nonnull)JobsPostBy{
+    return ^(JobsKeyValueModel *_Nullable data){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *key = (NSString *)data.key;
+            key.postNotificationBy(data.value);
+        });
+    };
+}
 /// 在主线程上不带参发通知
 -(jobsByStringBlock _Nonnull)jobsPost{
     return ^(NSString *_Nonnull key){
