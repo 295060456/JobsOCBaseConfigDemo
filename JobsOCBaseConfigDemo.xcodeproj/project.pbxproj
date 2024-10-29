@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
+		84170B002CD0BF5D0007E303 /* YTKBatchRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */; };
 		843B73C22CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */; };
 		843B73C62CCF6FD400F172EF /* YTKBaseRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
@@ -1137,6 +1138,8 @@
 		483BFC42C8B8CA074C2FE187 /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		55AE8BC0EBE5A194A8879F81 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoTests/Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84170AFD2CD0BF5D0007E303 /* YTKBatchRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBatchRequest+Extra.h"; sourceTree = "<group>"; };
+		84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBatchRequest+Extra.m"; sourceTree = "<group>"; };
 		843B73BF2CCF6F0100F172EF /* NSURLSessionDataTask+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionDataTask+Extra.h"; sourceTree = "<group>"; };
 		843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionDataTask+Extra.m"; sourceTree = "<group>"; };
 		843B73C32CCF6FD400F172EF /* YTKBaseRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBaseRequest+Extra.h"; sourceTree = "<group>"; };
@@ -3352,6 +3355,15 @@
 				FE176E0EC1B036786E28E5E5 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		84170AFF2CD0BF5D0007E303 /* YTKBatchRequest+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				84170AFD2CD0BF5D0007E303 /* YTKBatchRequest+Extra.h */,
+				84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */,
+			);
+			path = "YTKBatchRequest+Extra";
 			sourceTree = "<group>";
 		};
 		843B73C12CCF6F0100F172EF /* NSURLSessionDataTask */ = {
@@ -5718,6 +5730,7 @@
 		CE4F25522CA825CD002AF25B /* YTKNetworkTools */ = {
 			isa = PBXGroup;
 			children = (
+				84170AFF2CD0BF5D0007E303 /* YTKBatchRequest+Extra */,
 				843B73C52CCF6FD400F172EF /* YTKBaseRequest+Extra */,
 				CE4F253C2CA825CD002AF25B /* BaseRequest */,
 				CE4F25492CA825CD002AF25B /* YTKNetworkAccessory */,
@@ -15430,6 +15443,7 @@
 				CE5A65B82CA833D0006D67A7 /* JobsHotLabelWithMultiLineCVCell.m in Sources */,
 				CE5A65B92CA833D0006D67A7 /* JobsHotLabelWithMultiLine.m in Sources */,
 				CE5A65BA2CA833D0006D67A7 /* JobsHotLabelWithSingleLine.m in Sources */,
+				84170B002CD0BF5D0007E303 /* YTKBatchRequest+Extra.m in Sources */,
 				CE5A65BB2CA833D0006D67A7 /* JobsFiltrationView.m in Sources */,
 				CE5A65472CA831ED006D67A7 /* UITableViewHeaderFooterView+Attribute.m in Sources */,
 				CE5A65482CA831ED006D67A7 /* UITableViewHeaderFooterView+BaseTableViewHeaderFooterViewProtocol.m in Sources */,

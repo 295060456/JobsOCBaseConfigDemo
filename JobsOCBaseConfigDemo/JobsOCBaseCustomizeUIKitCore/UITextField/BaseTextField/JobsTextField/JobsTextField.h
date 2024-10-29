@@ -54,3 +54,9 @@ UITextFieldDelegate
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextFieldBlock _Nonnull block){
+    JobsTextField *data = JobsTextField.alloc.init;
+    if (block) block(data);
+    return data;
+}

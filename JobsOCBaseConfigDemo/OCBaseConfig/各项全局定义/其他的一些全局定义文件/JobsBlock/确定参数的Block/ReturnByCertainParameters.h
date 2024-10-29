@@ -132,6 +132,7 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNSIntegerBlock)(NSIntege
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAlignmentBlock)(UIButtonConfigurationTitleAlignment data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextAlignmentBlock)(NSTextAlignment data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementBlock)(NSDirectionalRectEdge data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByDicBlock)(__kindof NSDictionary *_Nullable data);
 typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByImageBlock)(UIImage *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImageBlock)(UIImage *_Nonnull image);
 typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByURLBlock)(NSURL *_Nullable data);

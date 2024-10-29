@@ -38,3 +38,9 @@ JobsToggleNavViewProtocol
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsToggleBaseView *_Nonnull jobsMakeToggleBaseView(jobsByToggleBaseViewBlock _Nonnull block){
+    JobsToggleBaseView *data = JobsToggleBaseView.alloc.init;
+    if (block) block(data);
+    return data;
+}

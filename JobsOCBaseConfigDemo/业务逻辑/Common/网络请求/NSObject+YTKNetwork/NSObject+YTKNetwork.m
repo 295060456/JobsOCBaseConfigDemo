@@ -12,8 +12,9 @@
 /// 普通的单个请求
 -(void)loadCacheData:(jobsByResponseModelBlock _Nullable)successBlock{
     GetCustomerContactApi *api = GetCustomerContactApi.init;
-    api.byURLParameters(nil);
-    api.byBodyParameters(nil);
+    api.byURLParameters(nil); /// 添加URL参数
+    api.byBodyParameters(nil); /// 添加Body参数
+    api.byHeaderParameters(nil); /// 添加Header参数
     self.handleErr(api);
     // self.tipsByApi(self);
     @jobs_weakify(self)
@@ -30,17 +31,17 @@
 }
 /// 多请求の同步请求
 -(void)sendBatchRequest:(jobsByYTKBatchRequestBlock _Nullable)successBlock{
-    YTKBatchRequest *batchRequest = [YTKBatchRequest.alloc initWithRequestArray:jobsMakeMutArr(^(__kindof NSMutableArray <YTKRequest *>*_Nullable data) {
+    YTKBatchRequest *batchRequest = YTKBatchRequest.initByRequestArray(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof YTKRequest *>*_Nullable data) {
         data.add(GetImageApi.initByBodyParameters(nil));
         data.add(GetImageApi.initByBodyParameters(nil));
         data.add(GetImageApi.initByBodyParameters(nil));
         data.add(GetUserInfoApi.initByBodyParameters(nil));
-    })];
+    }));
     @jobs_weakify(self)
     [batchRequest startWithCompletionBlockWithSuccess:^(YTKBatchRequest *batchRequest) {
         NSLog(@"succeed");
         if(successBlock) successBlock(batchRequest);
-        NSArray *requests = batchRequest.requestArray;
+        NSArray <__kindof YTKRequest *>*requests = batchRequest.requestArray;
         GetImageApi *a = (GetImageApi *)requests[0];
         GetImageApi *b = (GetImageApi *)requests[1];
         GetImageApi *c = (GetImageApi *)requests[2];
@@ -60,8 +61,9 @@
 /// 多请求の链式请求。链式请求的结果集体现在<YTKChainRequestDelegate>
 -(void)sendChainRequest:(jobsByYTKChainRequestBlock _Nullable)successBlock{
     RegisterApi *api = RegisterApi.init;
-    api.byURLParameters(nil);
-    api.byBodyParameters(nil);
+    api.byURLParameters(nil); /// 添加URL参数
+    api.byBodyParameters(nil); /// 添加Body参数
+    api.byHeaderParameters(nil); /// 添加Header参数
     YTKChainRequest *chainReq = YTKChainRequest.new;
     [chainReq addRequest:api
                 callback:^(YTKChainRequest *chainRequest,
@@ -72,7 +74,8 @@
         api2.byURLParameters(nil);
         api2.byBodyParameters(jobsMakeMutDic(^(__kindof NSMutableDictionary *_Nullable data) {
             [data setValue:result.userId forKey:@"KKK"];
-        }));[chainRequest addRequest:api2 callback:nil];
+        })); /// 添加Body参数
+        [chainRequest addRequest:api2 callback:nil];
     }];
     chainReq.delegate = self;
     if(successBlock) successBlock(chainReq);
@@ -218,8 +221,9 @@
 #pragma mark —— 查询广告列表-支持游客：APP首页右下3Banner【GET】
 -(void)getAds:(jobsByResponseModelBlock _Nullable)successBlock{
     FM_promotion_advertise_api *api = FM_promotion_advertise_api.init;
-    api.byURLParameters(nil);
-    api.byBodyParameters(nil);
+    api.byURLParameters(nil); /// 添加URL参数
+    api.byBodyParameters(nil); /// 添加Body参数
+    api.byHeaderParameters(nil); /// 添加Header参数
     self.handleErr(api);
     // self.tipsByApi(self);
     @jobs_weakify(self)
@@ -234,8 +238,9 @@
 #pragma mark —— 用户登出【POST】
 -(void)fm_logout:(jobsByResponseModelBlock _Nullable)successBlock{
     FM_user_logout_api *api = FM_user_logout_api.init;
-    api.byURLParameters(nil);
-    api.byBodyParameters(nil);
+    api.byURLParameters(nil); /// 添加URL参数
+    api.byBodyParameters(nil); /// 添加Body参数
+    api.byHeaderParameters(nil); /// 添加Header参数
     self.handleErr(api);
     // self.tipsByApi(self);
     @jobs_weakify(self)
@@ -251,8 +256,9 @@
 -(void)depositDiscountActivityRecordByURLParameters:(NSString *_Nullable)urlParameters
                                        successBlock:(jobsByYTKChainRequestBlock _Nullable)successBlock{
     FM_GetKYCInfo_api *api = FM_GetKYCInfo_api.init;
-    api.byURLParameters(urlParameters);
-    api.byBodyParameters(nil);
+    api.byURLParameters(urlParameters);/// 添加URL参数
+    api.byBodyParameters(nil); /// 添加Body参数
+    api.byHeaderParameters(nil); /// 添加Header参数
     YTKChainRequest *chainReq = YTKChainRequest.new;
     [chainReq addRequest:api
                 callback:^(YTKChainRequest *chainRequest,

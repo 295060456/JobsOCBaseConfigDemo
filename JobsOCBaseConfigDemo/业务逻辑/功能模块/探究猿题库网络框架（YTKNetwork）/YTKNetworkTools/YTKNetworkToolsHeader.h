@@ -22,6 +22,7 @@
 
 #pragma mark —— 自定义封装
 #import "YTKBaseRequest+Extra.h"
+#import "YTKBatchRequest+Extra.h"
 #pragma mark —— 一些基础定义
 #import "NetworkingConstant.h"
 #pragma mark —— BaseRequest

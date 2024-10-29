@@ -163,6 +163,12 @@ typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(U
 @class JobsNavBar;
 typedef void(^jobsByNavBarBlock)(__kindof JobsNavBar *_Nullable data);
 
+@class JobsTextField;
+typedef void(^jobsByJobsTextFieldBlock)(__kindof JobsTextField *_Nullable data);
+
+@class JobsToggleBaseView;
+typedef void(^jobsByToggleBaseViewBlock)(JobsToggleBaseView *_Nullable toggleBaseView);
+
 @class FileNameModel;
 typedef FileNameModel *_Nonnull(^JobsReturnFileNameModelByFileFullNameStringBlock)(NSString *_Nullable FileFullName);
 
@@ -309,6 +315,7 @@ typedef void(^jobsByYTKChainRequestBlock)(YTKChainRequest *_Nullable request);
 
 @class YTKBatchRequest;
 typedef void(^jobsByYTKBatchRequestBlock)(__kindof YTKBatchRequest *_Nullable data);
+typedef __kindof YTKBatchRequest *_Nullable(^JobsReturnBatchRequestByArrBlock)(__kindof NSArray <YTKRequest *>*_Nullable data);
 
 @class YTKBaseRequest;
 #import "JobsDefineAllEnumHeader.h"
