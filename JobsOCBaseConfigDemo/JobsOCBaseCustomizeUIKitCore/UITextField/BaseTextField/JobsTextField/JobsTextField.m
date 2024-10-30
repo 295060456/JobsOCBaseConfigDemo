@@ -192,6 +192,11 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     _text = text;
     _realTextField.text = _text;
 }
+
+-(void)setSecureTextEntry:(BOOL)secureTextEntry{
+    _secureTextEntry = secureTextEntry;
+    self.realTextField.secureTextEntry = secureTextEntry;
+}
 #pragma mark —— lazyLoad
 -(UITextField *)realTextField{
     if(!_realTextField){
