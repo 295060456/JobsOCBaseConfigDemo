@@ -269,7 +269,9 @@
 /// 根控制器 => 导航控制器（普通控制器）
 -(JobsReturnVCByVCBlock _Nonnull)rootViewControllerBy{
     return ^__kindof UIViewController *_Nullable(__kindof UIViewController *_Nonnull vc){
-        return NSObject.makeNavigationControllerBy(vc);
+        if([vc isKindOfClass:UINavigationController.class]){
+            return vc;
+        }else return NSObject.makeNavigationControllerBy(vc);
     };
 }
 /// 依据传入的普通控制器，创建导航控制器

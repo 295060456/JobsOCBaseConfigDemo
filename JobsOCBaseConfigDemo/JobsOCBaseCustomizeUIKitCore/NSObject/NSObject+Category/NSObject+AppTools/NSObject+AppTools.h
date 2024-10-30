@@ -60,6 +60,10 @@ AppToolsProtocol
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;
 #pragma mark —— 一些公共设置
+/// 联系我们.按钮
+-(__kindof UIButton *_Nullable)makeContactBtn;
+/// 关闭.按钮
+-(__kindof UIButton *_Nullable)makeCloseBtnByActionBlock:(jobsByVoidBlock _Nullable)actionBlock;
 /// 控制CustomTabBar的显隐
 -(jobsByBOOLBlock _Nonnull)showCustomTabBar;
 /// 创建JobsCustomTabBar（单例模式）

@@ -61,6 +61,37 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 #pragma mark —— 一些公共设置
+/// 联系我们.按钮
+-(__kindof UIButton *_Nullable)makeContactBtn{
+    @jobs_weakify(self)
+    return BaseButton.initByBackgroundImage(JobsIMG(@"联系我们"))
+        .bgColor(JobsClearColor.colorWithAlphaComponent(0))
+        .onClick(^(UIButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            self.comingToPushVC(MyCollectionVC.new);
+            toast(@"联系我们");
+        }).onLongPressGesture(^(id data){
+            NSLog(@"");
+        });
+}
+/// 关闭.按钮
+-(__kindof UIButton *_Nullable)makeCloseBtnByActionBlock:(jobsByVoidBlock _Nullable)actionBlock{
+    @jobs_weakify(self)
+    return BaseButton.initByBackgroundImage(JobsIMG(@"关闭"))
+        .bgColor(JobsClearColor.colorWithAlphaComponent(0))
+        .onClick(^(UIButton *x){
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            if(actionBlock) actionBlock();
+            if (KindOfViewCls(self)) {
+                UIView *view = (UIView *)self;
+                [view tf_hide:nil];
+            }
+        }).onLongPressGesture(^(id data){
+            NSLog(@"");
+        });
+}
 /// 控制CustomTabBar的显隐
 -(jobsByBOOLBlock _Nonnull)showCustomTabBar{
     return ^(BOOL data){
