@@ -218,6 +218,7 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByCharBlock)(char *_Nullab
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegerBlock)(NSInteger data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalBlock)(NSTimeInterval data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByArrBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDateBlock)(NSDate *_Nullable date);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDataBlock)(NSData *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByNumberBlock)(NSNumber *_Nullable data);
@@ -391,7 +392,7 @@ typedef BOOL(^JobsReturnBOOLByIDBlock)(id _Nullable data);
 typedef BOOL(^JobsReturnBOOLByViewControllerBlock)(UIViewController *_Nullable viewController);
 typedef BOOL(^JobsReturnBOOLByStringBlock)(NSString *_Nullable data);
 typedef BOOL(^JobsReturnBOOLByDateBlock)(NSDate *_Nullable date);
-typedef BOOL(^JobsReturnBOOLByArrBlock)(NSArray *_Nullable data);
+typedef BOOL(^JobsReturnBOOLByArrBlock)(__kindof NSArray *_Nullable arr);
 
 typedef int(^JobsReturnIntByVoidBlock)(void);
 typedef int(^JobsReturnIntByIntBlock)(int data);

@@ -270,7 +270,7 @@
         } subscribeNextBlock:^(NSString * _Nullable x) {
             @jobs_strongify(self)
             self.securityModeBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
-            if ([x isContainsSpecialSymbolsString:nil]) {
+            if (x.isContainsSpecialSymbolsString(nil)) {
                 toast(JobsInternationalization(@"Do not enter special characters"));
             }else{
                 if (self.objectBlock) self.objectBlock(self->_textField);
@@ -300,7 +300,9 @@
 
 -(UIViewModel *)chooseBtnViewModel{
     if (!_chooseBtnViewModel) {
+        @jobs_weakify(self)
         _chooseBtnViewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            @jobs_strongify(self)
             data.textModel.text = JobsInternationalization(@"請選擇區號");
             data.textModel.textCor = HEXCOLOR(0xC4C4C4);
             data.textModel.textLineSpacing = 0;
@@ -315,8 +317,10 @@
 
 -(NSMutableArray<UIViewModel *> *)jobsPageViewDataMutArr{
     if (!_jobsPageViewDataMutArr) {
+        @jobs_weakify(self)
         _jobsPageViewDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                @jobs_strongify(self)
                 viewModel.textModel.text = JobsInternationalization(@"+87");
                 viewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
                 viewModel.textModel.textLineSpacing = 0;
@@ -326,6 +330,7 @@
                 viewModel.subTextModel.text = JobsInternationalization(@"");
             }));
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                @jobs_strongify(self)
                 viewModel.textModel.text = JobsInternationalization(@"+88");
                 viewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
                 viewModel.textModel.textLineSpacing = 0;
@@ -335,7 +340,6 @@
                 viewModel.subTextModel.text = JobsInternationalization(@"");
             }));
         });
-        
     }return _jobsPageViewDataMutArr;
 }
 

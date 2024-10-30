@@ -6,6 +6,7 @@
 //
 
 #import "BaseView.h"
+#import "JobsBlock.h"
 #import "MacroDef_Cor.h"
 #import "MacroDef_String.h"
 #import "UITextModelProtocol.h"
@@ -39,15 +40,16 @@ UITextFieldDelegate
 @property(nonatomic,strong,null_resettable)UIColor *textColor;
 @property(nonatomic,strong,null_resettable)UIColor *placeholderColor;
 @property(nonatomic,strong,null_resettable)UIFont *placeholderFont;
-@property(nonatomic,assign)UIReturnKeyType returnKeyType;
 @property(nonatomic,assign)UIKeyboardAppearance keyboardAppearance;
 @property(nonatomic,assign)UIKeyboardType keyboardType;
+@property(nonatomic,assign)UIReturnKeyType returnKeyType;
 @property(nonatomic,assign)UITextFieldViewMode leftViewMode;
 @property(nonatomic,assign)UITextFieldViewMode rightViewMode;
 @property(nonatomic,assign)BOOL notAllowEdit;/// 默认不允许编辑
 @property(nonatomic,assign)BOOL secureTextEntry;
 @property(nullable,nonatomic,copy)NSString *placeholder;
 @property(nullable,nonatomic,copy)NSAttributedString *attributedPlaceholder API_AVAILABLE(ios(6.0));
+//@property(nullable,nonatomic,copy)NSString *text;/// UITextModelProtocol
 
 -(void)otherActionBlock:(JobsReturnIDByIDBlock)otherActionBlock;
 

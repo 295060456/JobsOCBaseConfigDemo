@@ -27,6 +27,7 @@ FOUNDATION_EXTERN NSString *_Nonnull const 单位符号;
 FOUNDATION_EXTERN NSString *_Nonnull const 货币符号;
 FOUNDATION_EXTERN NSString *_Nonnull const 制表符;
 FOUNDATION_EXTERN NSString *_Nonnull const 特殊符号;
+FOUNDATION_EXTERN NSString *_Nonnull const 键盘特殊符号;
 FOUNDATION_EXTERN NSString *_Nonnull const 编号序号;
 FOUNDATION_EXTERN NSString *_Nonnull const 爱心符号;
 FOUNDATION_EXTERN NSString *_Nonnull const 箭头符号;

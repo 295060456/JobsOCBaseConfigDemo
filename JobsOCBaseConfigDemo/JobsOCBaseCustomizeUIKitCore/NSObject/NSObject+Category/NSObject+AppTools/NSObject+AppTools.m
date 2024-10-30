@@ -469,7 +469,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 }
 /// 电话号码可以最多20位数，超过后无法输入，且电话号码中无法包含特殊字符或者空格
 -(BOOL)checkTelNum:(NSString *)telNum{
-    return ![telNum isContainsSpecialSymbolsString:nil] &&// 不包含特殊字符
+    return !telNum.isContainsSpecialSymbolsString(nil) &&// 不包含特殊字符
     telNum.length <= 20 &&// 长度小于20位
     telNum.isContainBlank;// 不包含空格
 }
@@ -508,17 +508,19 @@ JobsKey(_separateLab)
 -(UILabel *)separateLab{
     UILabel *SeparateLab = Jobs_getAssociatedObject(_separateLab);
     if ([self isKindOfClass:UIViewController.class] && !SeparateLab) {
-        SeparateLab = UILabel.new;
-        SeparateLab.backgroundColor = HEXCOLOR(0xC4C4C4);
-        UIViewController *viewController = (UIViewController *)self;
-        [viewController.bgImageView addSubview:SeparateLab];
-        [SeparateLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(2), JobsWidth(14)));
-            make.centerX.equalTo(viewController.view);
-            make.bottom.equalTo(viewController.view).offset(JobsWidth(-64));
-        }];
-        [self setSeparateLab:SeparateLab];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_separateLab, SeparateLab)
+        @jobs_weakify(self)
+        Jobs_setAssociatedRETAIN_NONATOMIC(_separateLab, jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = HEXCOLOR(0xC4C4C4);
+            UIViewController *viewController = (UIViewController *)self;
+            [viewController.bgImageView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(2), JobsWidth(14)));
+                make.centerX.equalTo(viewController.view);
+                make.bottom.equalTo(viewController.view).offset(JobsWidth(-64));
+            }];
+            [self setSeparateLab:label];
+        }))
     }return SeparateLab;
 }
 
@@ -613,7 +615,7 @@ JobsKey(_richTextMutArr)
 -(NSMutableArray<NSString *> *)richTextMutArr{
     NSMutableArray <NSString *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextMutArr);
     if (!RichTextMutArr) {
-        RichTextMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        RichTextMutArr = jobsMakeMutArr(^(NSMutableArray <NSString *>*_Nullable data) {
             data.add(JobsInternationalization(@"如需帮助，请联系"));
             data.add(JobsInternationalization(@"专属客服"));
         });
@@ -661,30 +663,30 @@ JobsKey(_connectionTipsTV)
 -(UITextView *)connectionTipsTV{
     UITextView *ConnectionTipsTV = Jobs_getAssociatedObject(_connectionTipsTV);
     if (!ConnectionTipsTV) {
-        ConnectionTipsTV = UITextView.new;
-        ConnectionTipsTV.userInteractionEnabled = YES;
-        ConnectionTipsTV.linkTextAttributes = jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
-            [data setValue:self.richTextConfigMutArr[1].textCor forKey:NSForegroundColorAttributeName];/// 链接文字颜色
-            [data setValue:JobsLightGrayColor forKey:NSUnderlineColorAttributeName];
-            [data setValue:@(NSUnderlinePatternSolid) forKey:NSUnderlineStyleAttributeName];
-        });
-        
-        ConnectionTipsTV.attributedText = self.attributedStringData;//
-        [ConnectionTipsTV sizeToFit];
-        ConnectionTipsTV.backgroundColor = JobsClearColor;
-        ConnectionTipsTV.editable = NO;/// 必须禁止输入，否则点击将会弹出输入键盘
-        ConnectionTipsTV.scrollEnabled = NO;/// 可选的，视具体情况而定
+        Jobs_setAssociatedRETAIN_NONATOMIC(_connectionTipsTV, jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
+            textView.userInteractionEnabled = YES;
+            textView.linkTextAttributes = jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+                [data setValue:self.richTextConfigMutArr[1].textCor forKey:NSForegroundColorAttributeName];/// 链接文字颜色
+                [data setValue:JobsLightGrayColor forKey:NSUnderlineColorAttributeName];
+                [data setValue:@(NSUnderlinePatternSolid) forKey:NSUnderlineStyleAttributeName];
+            });
+            
+            textView.attributedText = self.attributedStringData;//
+            [textView sizeToFit];
+            textView.backgroundColor = JobsClearColor;
+            textView.editable = NO;/// 必须禁止输入，否则点击将会弹出输入键盘
+            textView.scrollEnabled = NO;/// 可选的，视具体情况而定
 
-        if ([self isKindOfClass:UIViewController.class]) {
-            ConnectionTipsTV.delegate = self;
-            UIViewController *viewController = (UIViewController *)self;
-            [viewController.view addSubview:ConnectionTipsTV];
-            [ConnectionTipsTV mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(viewController.view);
-                make.bottom.equalTo(viewController.view).offset(JobsWidth(-65));
-            }];
-        }
-        Jobs_setAssociatedRETAIN_NONATOMIC(_connectionTipsTV, ConnectionTipsTV)
+            if ([self isKindOfClass:UIViewController.class]) {
+                textView.delegate = self;
+                UIViewController *viewController = (UIViewController *)self;
+                [viewController.view addSubview:textView];
+                [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(viewController.view);
+                    make.bottom.equalTo(viewController.view).offset(JobsWidth(-65));
+                }];
+            }
+        }))
     }return ConnectionTipsTV;
 }
 

@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <_ctype.h>
 #import "MacroDef_Func.h"
 #import "NSString+Check.h"
-#import <_ctype.h>
 #import "JobsBlock.h"
 /// 要判nil和NULL，必须用类方法或者内联函数，在实例方法里面nil和NULL会被包装为空串
 NS_INLINE BOOL isNull(id _Nonnull string){
@@ -33,6 +33,10 @@ NS_INLINE BOOL isNull(id _Nonnull string){
 
 NS_INLINE BOOL isValue(id _Nonnull string){
     return !isNull(string);
+}
+
+NS_INLINE NSString *_Nonnull Guard(NSString *_Nullable data){
+    return isValue(data) ? data : @"";
 }
 
 NS_ASSUME_NONNULL_BEGIN
@@ -83,8 +87,14 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)isContainsUrl;
 /// 正则匹配手机号
 -(BOOL)checkTelNumber;
+/// 至少包含一个数字、大写字母、小写字母和特殊字符
+-(BOOL)isMixedCharacterString;
 /// 检查是否是纯数字
 -(BOOL)isPureDigit;
+/// 本字符串是否包含入参字符串的任何字符
+-(JobsReturnBOOLByStringBlock _Nonnull)isContainBy;
+/// 本字符串是否不包含入参字符串的任何字符
+-(JobsReturnBOOLByStringBlock _Nonnull)isNotContainBy;
 
 @end
 

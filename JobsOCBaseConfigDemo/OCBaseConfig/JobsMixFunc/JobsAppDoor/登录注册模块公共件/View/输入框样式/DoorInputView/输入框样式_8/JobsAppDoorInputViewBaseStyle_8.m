@@ -145,7 +145,7 @@
             @jobs_strongify(self)
             NSLog(@"输入的字符为 = %@",x);
             self.securityModelBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
-            if ([x isContainsSpecialSymbolsString:nil]) {
+            if (x.isContainsSpecialSymbolsString(nil)) {
                 self.jobsToastMsg(JobsInternationalization(@"Do not enter special characters"));
             }else{
                 NSLog(@"输入的字符为 = %@",x);

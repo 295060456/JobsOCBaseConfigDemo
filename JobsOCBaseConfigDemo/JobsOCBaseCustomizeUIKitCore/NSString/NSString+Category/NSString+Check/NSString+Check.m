@@ -97,8 +97,7 @@
     NSString *other = @"➋➌➍➎➏➐➑➒";
     int len = (int)self.length;
     for(int i = 0;i < len;i++){
-        if(!([other rangeOfString:self].location != NSNotFound))
-            return NO;
+        if(!([other rangeOfString:self].location != NSNotFound)) return NO;
     }return YES;
 }
 /// 判断是否为整形
@@ -111,7 +110,7 @@
 -(BOOL)isPureFloat{
     NSScanner* scan = [NSScanner scannerWithString:self];
     float val;
-    return[scan scanFloat:&val] && scan.isAtEnd;
+    return [scan scanFloat:&val] && scan.isAtEnd;
 }
 /// 判断是否是数字字母结合
 -(BOOL)isAlnum{
@@ -195,9 +194,32 @@
     BOOL isMatch = [pred evaluateWithObject:self];
     return isMatch;
 }
+/// 至少包含一个数字、大写字母、小写字母和特殊字符
+-(BOOL)isMixedCharacterString{
+    NSString *pattern = @"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+    return [predicate evaluateWithObject:self];
+}
 /// 检查是否是纯数字
 -(BOOL)isPureDigit{
     return [self.pureString rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet.invertedSet].location != NSNotFound;
+}
+/// 本字符串是否包含入参字符串的任何字符
+-(JobsReturnBOOLByStringBlock _Nonnull)isContainBy{
+    @jobs_weakify(self)
+    return ^BOOL(NSString *_Nullable data){
+        @jobs_strongify(self)
+        return !self.isNotContainBy(data);
+    };
+}
+/// 本字符串是否不包含入参字符串的任何字符
+-(JobsReturnBOOLByStringBlock _Nonnull)isNotContainBy{
+    @jobs_weakify(self)
+    return ^BOOL(NSString *_Nullable data){
+        @jobs_strongify(self)
+        NSRange range = [self rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:data]];
+        return range.location == NSNotFound;
+    };
 }
 
 @end
