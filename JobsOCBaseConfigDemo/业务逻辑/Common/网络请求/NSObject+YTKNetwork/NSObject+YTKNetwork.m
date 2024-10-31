@@ -94,7 +94,7 @@
              if(successBlock) successBlock(successData ? : responseModel);
              if(actionBlock) actionBlock(responseModel);
          }else{
-             self.jobsHandelNoSuccess(responseModel.code,request);
+             self.jobsHandelNoSuccess(request);
              if(failBlock) failBlock();
          }
 }
@@ -119,57 +119,61 @@
 
 -(JobsHandelNoSuccessBlock _Nonnull)jobsHandelNoSuccess{
     @jobs_weakify(self)
-    return ^(HTTPResponseCode data,YTKBaseRequest *_Nonnull request){
+    return ^(__kindof YTKBaseRequest *_Nonnull request){
         @jobs_strongify(self)
         self.printURLSessionRequestMessage(request.requestTask);
-        switch (data) {
-                /// 服务器异常
+        switch (request.responseModel.code) {
+            /// 服务器异常
             case HTTPResponseCodeServeError:{
                 NSLog(@"服务器异常");
                 toast(JobsInternationalization(@"服务器异常"));
             }break;
-                /// 令牌不能为空
+            /// 令牌不能为空
             case HTTPResponseCodeNoToken:{
                 NSLog(@"令牌不能为空");
                 self.toLogin();
                 toast(JobsInternationalization(@"令牌不能为空"));
             }break;
-                /// 登录失败：账密错误
+            /// 登录失败：账密错误
             case HTTPResponseCodeLoginFailed:{
                 NSLog(@"登录失败：账密错误");
                 toast(JobsInternationalization(@"登录失败：账密错误"));
             }break;
-                /// 授权失败
+            /// 授权失败
             case HTTPResponseCodeAuthorizationFailure:{
                 NSLog(@"授权失败");
                 toast(JobsInternationalization(@"授权失败"));
             }break;
-                /// 限定时间内超过请求次数
+            /// 限定时间内超过请求次数
             case HTTPResponseCodeLeakTime:{
                 NSLog(@"限定时间内超过请求次数");
                 toast(JobsInternationalization(@"限定时间内超过请求次数"));
             }break;
-                /// 风险操作
+            /// 风险操作
             case HTTPResponseCodeRiskOperation:{
                 NSLog(@"风险操作");
                 toast(JobsInternationalization(@"风险操作"));
             }break;
-                /// 未设置交易密码
+            /// 未设置交易密码
             case HTTPResponseCodeNoSettingTransactionPassword:{
                 NSLog(@"未设置交易密码");
                 toast(JobsInternationalization(@"未设置交易密码"));
             }break;
-                /// 账号已在其他设备登录
+            /// 账号已在其他设备登录
             case HTTPResponseCodeOffline:{
                 NSLog(@"账号已在其他设备登录");
                 toast(JobsInternationalization(@"账号已在其他设备登录"));
             }break;
-                /// Token 过期：登录已过期，请重新登录
+            /// Token 过期：登录已过期，请重新登录
             case HTTPResponseCodeTokenExpire:{
                 NSLog(@"Token 过期");
-                self.tokenExpire();
+                self.self.tokenExpire();
             }break;
-                
+            /// 手机号码不存在
+            case HTTPResponseCodePhoneNumberNotExist:{
+                NSLog(@"手机号码不存在");
+                toast(JobsInternationalization(@"手机号码不存在"));
+            }break;
             default:
                 break;
         }
@@ -215,7 +219,7 @@
 -(void)chainRequestFailed:(YTKChainRequest *)chainRequest
         failedBaseRequest:(YTKBaseRequest *)request{
     JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
-    self.jobsHandelNoSuccess(responseModel.code,request);
+    self.jobsHandelNoSuccess(request);
     NSLog(@"请求失败");
 }
 #pragma mark —— 查询广告列表-支持游客：APP首页右下3Banner【GET】
