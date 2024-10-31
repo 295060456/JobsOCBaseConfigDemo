@@ -67,7 +67,8 @@ typedef NS_ENUM(NSInteger, HTTPResponseCode) {
     HTTPResponseCodeRiskOperation = 6,/// 风险操作
     HTTPResponseCodeNoSettingTransactionPassword = 7,/// 未设置交易密码
     HTTPResponseCodeOffline = 8,/// 帐号已在其他设备登录
-    HTTPResponseCodeTokenExpire = 10009/// Token 过期
+    HTTPResponseCodeTokenExpire = 10009,/// Token 过期
+    HTTPResponseCodePhoneNumberNotExist = 1002000034,/// 手机号码不存在
     ///其他代号，展示msg内容即可
 };
 #endif /* HTTP_RESPONSE_CODE_ENUM_DEFINED */

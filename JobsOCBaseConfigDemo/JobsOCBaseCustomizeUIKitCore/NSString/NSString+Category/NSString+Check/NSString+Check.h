@@ -87,6 +87,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)isContainsUrl;
 /// 正则匹配手机号
 -(BOOL)checkTelNumber;
+/// 正则判断是否为菲律宾手机号码
+/// 菲律宾的手机号码通常有以下格式：
+/// 11位数字，以 9 开头的数字序列
+/// 国际格式为 +63 开头，后面是10位数字
+-(BOOL)isPhilippinesPhoneNum;
 /// 至少包含一个数字、大写字母、小写字母和特殊字符
 -(BOOL)isMixedCharacterString;
 /// 检查是否是纯数字

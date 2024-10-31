@@ -107,7 +107,7 @@
 -(void)chainRequestFailed:(YTKChainRequest *)chainRequest
         failedBaseRequest:(YTKBaseRequest*)request{
     JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
-    self.jobsHandelNoSuccess(responseModel.code,request);
+    self.jobsHandelNoSuccess(request);
     NSLog(@"请求失败");
 }
 #pragma mark —— lazyLoad

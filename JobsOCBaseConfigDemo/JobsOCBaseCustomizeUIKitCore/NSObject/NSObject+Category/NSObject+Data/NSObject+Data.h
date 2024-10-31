@@ -35,6 +35,7 @@ UITableViewDelegate
 ,UICollectionViewDelegate
 ,UICollectionViewDataSource
 ,UIViewModelOthersProtocol
+,BaseProtocol
 >
 
 #pragma mark —— 关于数据（MJExtension）解析

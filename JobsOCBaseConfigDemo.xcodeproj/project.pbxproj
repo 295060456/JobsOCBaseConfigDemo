@@ -13,6 +13,8 @@
 		843099F92CD0F17400A7B9D0 /* GTCaptcha4Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */; };
 		843B73C22CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */; };
 		843B73C62CCF6FD400F172EF /* YTKBaseRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */; };
+		8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */; };
+		8493F1ED2CD3A7E000011DD1 /* YTKChainRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1EB2CD3A7E000011DD1 /* YTKChainRequest+Extra.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
 		84E401422CC60F4900C8303A /* This.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E401402CC60E7100C8303A /* This.m */; };
@@ -1147,6 +1149,11 @@
 		843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionDataTask+Extra.m"; sourceTree = "<group>"; };
 		843B73C32CCF6FD400F172EF /* YTKBaseRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBaseRequest+Extra.h"; sourceTree = "<group>"; };
 		843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBaseRequest+Extra.m"; sourceTree = "<group>"; };
+		8493F1E52CD3A64F00011DD1 /* NSObject+YTKRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YTKRequest.h"; sourceTree = "<group>"; };
+		8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YTKRequest.m"; sourceTree = "<group>"; };
+		8493F1E92CD3A7E000011DD1 /* YTKCustomBaseRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YTKCustomBaseRequest.h; sourceTree = "<group>"; };
+		8493F1EA2CD3A7E000011DD1 /* YTKChainRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKChainRequest+Extra.h"; sourceTree = "<group>"; };
+		8493F1EB2CD3A7E000011DD1 /* YTKChainRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKChainRequest+Extra.m"; sourceTree = "<group>"; };
 		84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMBannerAdsModel.h; sourceTree = "<group>"; };
 		84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMBannerAdsModel.m; sourceTree = "<group>"; };
 		84E4013B2CC60D3100C8303A /* This+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "This+URLManager_Base.h"; sourceTree = "<group>"; };
@@ -3394,6 +3401,24 @@
 				843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */,
 			);
 			path = "YTKBaseRequest+Extra";
+			sourceTree = "<group>";
+		};
+		8493F1E72CD3A64F00011DD1 /* NSObject+YTKRequest */ = {
+			isa = PBXGroup;
+			children = (
+				8493F1E52CD3A64F00011DD1 /* NSObject+YTKRequest.h */,
+				8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */,
+			);
+			path = "NSObject+YTKRequest";
+			sourceTree = "<group>";
+		};
+		8493F1EC2CD3A7E000011DD1 /* YTKChainRequest+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				8493F1EA2CD3A7E000011DD1 /* YTKChainRequest+Extra.h */,
+				8493F1EB2CD3A7E000011DD1 /* YTKChainRequest+Extra.m */,
+			);
+			path = "YTKChainRequest+Extra";
 			sourceTree = "<group>";
 		};
 		84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */ = {
@@ -5742,6 +5767,8 @@
 		CE4F25522CA825CD002AF25B /* YTKNetworkTools */ = {
 			isa = PBXGroup;
 			children = (
+				8493F1E92CD3A7E000011DD1 /* YTKCustomBaseRequest.h */,
+				8493F1EC2CD3A7E000011DD1 /* YTKChainRequest+Extra */,
 				84170AFF2CD0BF5D0007E303 /* YTKBatchRequest+Extra */,
 				843B73C52CCF6FD400F172EF /* YTKBaseRequest+Extra */,
 				CE4F253C2CA825CD002AF25B /* BaseRequest */,
@@ -10487,6 +10514,7 @@
 		CE5A62162CA82C2D006D67A7 /* NSObject+Category */ = {
 			isa = PBXGroup;
 			children = (
+				8493F1E72CD3A64F00011DD1 /* NSObject+YTKRequest */,
 				CE5A61872CA82C2D006D67A7 /* NSObject+Data */,
 				CE5A618A2CA82C2D006D67A7 /* NSObject+GTCaptcha4 */,
 				CE5A618D2CA82C2D006D67A7 /* NSObject+NTESVerifyCodeManager */,
@@ -14869,6 +14897,7 @@
 				CE8C146F2CB91ADE0056090E /* NSObject+URLManager_1.m in Sources */,
 				CECE7D6A2C450DED00764AF5 /* AppDelegate+TabBarCtr.m in Sources */,
 				CECE7EDF2C450E5B00764AF5 /* ZMJCell+CustomView.m in Sources */,
+				8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */,
 				CE5A64842CA82D7B006D67A7 /* NSDate+Extra.m in Sources */,
 				CE5A64FC2CA830B2006D67A7 /* SoundBtn.m in Sources */,
 				CECE7EBB2C450E5B00764AF5 /* TKPermissionMedia.m in Sources */,
@@ -15213,6 +15242,7 @@
 				CE5A65082CA830E3006D67A7 /* UICollectionView+Func.m in Sources */,
 				CE5A65092CA830E3006D67A7 /* UICollectionView+RegistrationTracking.m in Sources */,
 				CE4299DB2CAFA8CD00A0446A /* NSString+Notification.m in Sources */,
+				8493F1ED2CD3A7E000011DD1 /* YTKChainRequest+Extra.m in Sources */,
 				CE5A650A2CA830E3006D67A7 /* BaseCollectionView.m in Sources */,
 				CE5A65DA2CA83402006D67A7 /* JobsNavBar.m in Sources */,
 				CE5A65DB2CA83402006D67A7 /* JobsPageView.m in Sources */,

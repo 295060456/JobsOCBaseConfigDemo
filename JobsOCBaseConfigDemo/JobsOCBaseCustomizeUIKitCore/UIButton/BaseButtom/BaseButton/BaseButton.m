@@ -12,7 +12,9 @@
 @end
 
 @implementation BaseButton
-@synthesize index = _index;
+BaseProtocol_synthesize
+UIMarkProtocol_synthesize
+BaseButtonProtocol_synthesize
 #pragma mark —— Sys
 -(instancetype)init{
     if (self = [super init]) {
@@ -74,6 +76,7 @@
 #pragma mark —— 一些私有方法
 /// 只能在-(void)layoutSubviews里面进行调用
 -(void)resetSubViews{
+    @jobs_weakify(self)
     {/// 【组 1】UIButton 单独自定义设置系统自带控件的Frame ❤️与组2、3属性互斥❤️
         if (!jobsZeroRectValue(self.textLabelFrame)) {
             self.titleLabel.frame = self.textLabelFrame;
@@ -186,23 +189,20 @@
     }
 
     {/// UIButton 单独自定义设置系统自带控件的偏移量 ❤️与其他组属性不互斥❤️
-        {
-            UIViewModel *viewModel = UIViewModel.new;
+        self.titleLabel.offsetForView(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            @jobs_strongify(self)
             viewModel.offsetXForEach = self.textLabelFrameOffsetX;
             viewModel.offsetYForEach = self.textLabelFrameOffsetY;
             viewModel.offsetWidth = self.textLabelFrameOffsetWidth;
             viewModel.offsetHeight = self.textLabelFrameOffsetHeight;
-            self.titleLabel.offsetForView(viewModel);
-        }
-        
-        {
-            UIViewModel *viewModel = UIViewModel.new;
+        }));
+        self.imageView.offsetForView(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            @jobs_strongify(self)
             viewModel.offsetXForEach = self.imageViewFrameOffsetX;
             viewModel.offsetYForEach = self.imageViewFrameOffsetY;
             viewModel.offsetWidth = self.imageViewFrameOffsetWidth;
             viewModel.offsetHeight = self.imageViewFrameOffsetHeight;
-            self.imageView.offsetForView(viewModel);
-        }
+        }));
     }
 }
 
@@ -238,7 +238,6 @@
     NSLog(@"self.imageViewFrameOffsetHeight = %f",self.imageViewFrameOffsetHeight);
 }
 #pragma mark —— BaseButtonProtocol
-BaseButtonProtocol_synthesize
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)richButtonByModel{
     return ^(id _Nullable data){

@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)GTCaptcha4ResultModel *result;
 @property(nonatomic,copy)NSString *status;
 @property(nonatomic,strong)GTC4Error *error;
+@property(nonatomic,weak)__kindof UIView *targetView;
 
 @end
 

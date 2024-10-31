@@ -9,19 +9,17 @@
 #import "JobsExcelContentView.h"
 
 @interface JobsExcelContentView()
-/// UI
-//@property(nonatomic,strong)UITableView *tableView;
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel;
+@property(nonatomic,strong)JobsExcelConfigureViewModel *excelConfigureData;
 @property(nonatomic,assign)CGPoint contentOffenset;
 
 @end
 
 @implementation JobsExcelContentView
 
-- (void)dealloc{
-    [self.viewModel removeObserver:self forKeyPath:VerticalScrollBegin];
-    [self.viewModel removeObserver:self forKeyPath:HorizontalScrollBegin];
+-(void)dealloc{
+    [self.excelConfigureData removeObserver:self forKeyPath:VerticalScrollBegin];
+    [self.excelConfigureData removeObserver:self forKeyPath:HorizontalScrollBegin];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -34,16 +32,16 @@
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable model) {
         @jobs_strongify(self)
-        self.viewModel = model;
-        self.tableView.rowHeight = self.viewModel.itemH;
+        self.excelConfigureData = model;
+        self.tableView.rowHeight = self.excelConfigureData.itemH;
         [self.tableView reloadData];
         
-        [self.viewModel addObserver:self
+        [self.excelConfigureData addObserver:self
                          forKeyPath:VerticalScrollBegin
                             options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
                             context:nil];
         
-        [self.viewModel addObserver:self
+        [self.excelConfigureData addObserver:self
                          forKeyPath:HorizontalScrollBegin
                             options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
                             context:nil];
@@ -54,17 +52,17 @@
                       ofObject:(id)object
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
                        context:(void *)context{
-    JobsExcelConfigureViewModel *viewModel = (JobsExcelConfigureViewModel *)object;
+    JobsExcelConfigureViewModel *excelConfigureData = (JobsExcelConfigureViewModel *)object;
     if ([keyPath isEqualToString:VerticalScrollBegin]) {
-        self.tableView.contentOffset = viewModel.VerticalScrollValue.CGPointValue;
+        self.tableView.contentOffset = excelConfigureData.VerticalScrollValue.CGPointValue;
     }else if ([keyPath isEqualToString:HorizontalScrollBegin]){
-       [self configureContentOffSet:viewModel.HorizontalScrollValue.CGPointValue];
+       [self configureContentOffSet:excelConfigureData.HorizontalScrollValue.CGPointValue];
     }
 }
 #pragma mark —— UITableView 数据源
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return self.viewModel.colNumber;
+    return self.excelConfigureData.colNumber;
 }
 #pragma mark —— UITableView 代理
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
@@ -72,15 +70,15 @@
     MainTableViewCell *cell = MainTableViewCell.cellStyleValue1WithTableView(tableView);
     cell.delegate = self;
     cell.indexPath = indexPath;
-    cell.jobsRichElementsInCellWithModel(self.viewModel);
-    cell.backgroundColor = cell.contentView.backgroundColor = indexPath.row % 2 ? self.viewModel.cor1 : self.viewModel.cor2;
-    cell.jobsRichElementsInCellWithModel2(self.viewModel.contentArr[indexPath.row]);
+    cell.jobsRichElementsInCellWithModel(self.excelConfigureData);
+    cell.backgroundColor = cell.contentView.backgroundColor = indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2;
+    cell.jobsRichElementsInCellWithModel2(self.excelConfigureData.contentArr[indexPath.row]);
     return cell;
 }
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView == self.tableView) {
-        self.viewModel.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
+        self.excelConfigureData.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
         [self configureContentOffSet:self.contentOffenset];
     }
 }
@@ -91,7 +89,7 @@
         return;
     }
     self.contentOffenset = scrollview.contentOffset;
-    self.viewModel.jobsKVC(HorizontalScrollBegin,[NSValue valueWithCGPoint:scrollview.contentOffset]);
+    self.excelConfigureData.jobsKVC(HorizontalScrollBegin,[NSValue valueWithCGPoint:scrollview.contentOffset]);
     [self configureContentOffSet:scrollview.contentOffset];
 }
 
@@ -110,7 +108,7 @@
         _tableView = UITableView.initWithStylePlain;
         _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
         _tableView.dataLink(self);
-        _tableView.rowHeight = self.viewModel.itemH;
+        _tableView.rowHeight = self.excelConfigureData.itemH;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {

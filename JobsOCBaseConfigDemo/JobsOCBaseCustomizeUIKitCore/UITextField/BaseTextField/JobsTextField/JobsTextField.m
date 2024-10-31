@@ -16,7 +16,7 @@
 @implementation JobsTextField
 BaseViewProtocol_synthesize
 BaseProtocol_synthesize
-UIViewModelProtocol_synthesize
+UITextModelProtocol_synthesize
 #pragma mark —— SysMethod
 -(instancetype)init{
     if (self = [super init]) {
@@ -63,6 +63,11 @@ UIViewModelProtocol_synthesize
 #pragma mark —— UITextModelProtocol
 -(NSString *)text{
     return self.realTextField.text;
+}
+
+-(void)setText:(NSString *)text{
+    _text = text;
+    self.realTextField.text = _text;
 }
 #pragma mark —— UITextFieldDelegate
 /// 含义：在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑。
@@ -186,11 +191,6 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
 -(void)setPlaceholderFont:(UIFont *)placeholderFont{
     _placeholderFont = placeholderFont;
     _realTextField.placeholderFont = _placeholderFont;
-}
-
--(void)setText:(NSString *)text{
-    _text = text;
-    _realTextField.text = _text;
 }
 
 -(void)setSecureTextEntry:(BOOL)secureTextEntry{

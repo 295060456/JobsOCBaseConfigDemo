@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否允许托拽手势
 @property(nonatomic,assign)BOOL isAllowDrag;
 /// 退出当前页面的时候，除了当前页面出栈以外，你额外需要做的事情
-@property(nonatomic,strong,nullable)JobsReturnIDByIDBlock jobsBackBlock;
+@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock jobsBackBlock;
 /// 作用于-(void)layoutSubviews的圆切角参数
 @property(nonatomic,assign)UIRectCorner layoutSubviewsRectCorner;
 @property(nonatomic,assign)CGSize layoutSubviewsRectCornerSize;
@@ -130,6 +130,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取绑定的数据源
 -(UIViewModel *_Nullable)getViewModel;
 -(UIButtonModel *_Nullable)getButtonModel;
+/// 清除数据
+-(JobsReturnViewByVoidBlock _Nonnull)cleanTextFieldValue;
 /**
  在这个方法里：
  传入：UITableViewHeaderFooterView *

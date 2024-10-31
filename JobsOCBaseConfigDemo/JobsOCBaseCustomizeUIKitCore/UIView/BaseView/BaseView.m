@@ -13,12 +13,9 @@
 @end
 
 @implementation BaseView
-#pragma mark —— UIViewModelProtocol
-UIViewModelProtocol_synthesize
-#pragma mark —— BaseProtocol
 BaseProtocol_synthesize
-#pragma mark —— BaseViewProtocol
 BaseViewProtocol_synthesize
+UIPictureAndBackGroundCorProtocol_synthesize
 -(instancetype)init{
     if (self = [super init]) {
 

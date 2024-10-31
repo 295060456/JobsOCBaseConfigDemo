@@ -15,12 +15,38 @@
 #import "ReactiveObjC.h"
 #endif
 
+#if __has_include(<YTKNetwork/YTKNetwork.h>)
+#import <YTKNetwork/YTKNetwork.h>
+#else
+#import "YTKNetwork.h"
+#endif
+
+@class UIViewModel;
+
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol BaseProtocol <NSObject>
+@protocol BaseProtocol <YTKChainRequestDelegate>
 @optional
 @property(nonatomic,assign)BOOL isLock;
 @property(nonatomic,strong)RACDisposable *racDisposable;
+#pragma mark —— Data
+@property(nonatomic,assign)AppLanguage appLanguage;
+@property(nonatomic,strong,nullable)NSString *internationalizationKEY;/// 国际化的key
+@property(nonatomic,strong,nullable)NSMutableSet *jobsDataMutSet;/// 绑定的数据源，数据类型NSMutableSet
+@property(nonatomic,strong,nullable)NSMutableArray *jobsDataMutArr;/// 绑定的数据源，数据类型NSMutableArray
+@property(nonatomic,strong,nullable)NSMutableArray <UIViewModel *> *viewModelMutArr;
+@property(nonatomic,strong,nullable)NSMutableDictionary *jobsDataMutDic;/// 绑定的数据源，数据类型NSMutableDictionary
+@property(nonatomic,strong,nullable)Class cls;/// 绑定的class
+@property(nonatomic,strong,nullable)RACSignal *reqSignal;
+/// 强引用数据源
+@property(nonatomic,strong,nullable)id data;/// 【强引用】绑定的数据源，数据类型id
+@property(nonatomic,strong,nullable)id requestParams;/// 【强引用】绑定的数据源，数据类型id
+@property(nonatomic,strong,nullable)UIViewModel *viewModel;
+/// 弱引用数据源
+@property(nonatomic,weak,nullable)id data_weak;/// 【弱引用】绑定的数据源，数据类型id
+@property(nonatomic,weak,nullable)id requestParams_weak;/// 【弱引用】绑定的数据源，数据类型id
+@property(nonatomic,weak,nullable)UIViewModel *viewModel_weak;
+@property(nonatomic,strong)NSURL *url;
 -(void)languageSwitchNotificationWithSelector:(SEL)aSelector;//在View上,target = self（view）,省略
 /// 更改UITabBarItem的标题
 -(void)changeTabBarItemTitle:(NSIndexPath *)indexPath;//NSObject (AppTools)
@@ -58,6 +84,21 @@ NS_ASSUME_NONNULL_END
 \
 @synthesize isLock = isLock;\
 @synthesize racDisposable = racDisposable;\
+@synthesize appLanguage = _appLanguage;\
+@synthesize internationalizationKEY = _internationalizationKEY;\
+@synthesize jobsDataMutSet = _jobsDataMutSet;\
+@synthesize jobsDataMutArr = _jobsDataMutArr;\
+@synthesize viewModelMutArr = _viewModelMutArr;\
+@synthesize jobsDataMutDic = _jobsDataMutDic;\
+@synthesize cls = _cls;\
+@synthesize reqSignal = _reqSignal;\
+@synthesize data = _data;\
+@synthesize data_weak = _data_weak;\
+@synthesize requestParams = _requestParams;\
+@synthesize requestParams_weak = _requestParams_weak;\
+@synthesize viewModel = _viewModel;\
+@synthesize viewModel_weak = _viewModel_weak;\
+@synthesize url = _url;\
 
 #endif
 
@@ -67,5 +108,20 @@ NS_ASSUME_NONNULL_END
 \
 @dynamic isLock;\
 @dynamic racDisposable;\
+@dynamic appLanguage;\
+@dynamic internationalizationKEY;\
+@dynamic jobsDataMutSet;\
+@dynamic jobsDataMutArr;\
+@dynamic viewModelMutArr;\
+@dynamic jobsDataMutDic;\
+@dynamic cls;\
+@dynamic reqSignal;\
+@dynamic data;\
+@dynamic requestParams;\
+@dynamic viewModel;\
+@dynamic data_weak;\
+@dynamic requestParams_weak;\
+@dynamic viewModel_weak;\
+@dynamic url;\
 
 #endif

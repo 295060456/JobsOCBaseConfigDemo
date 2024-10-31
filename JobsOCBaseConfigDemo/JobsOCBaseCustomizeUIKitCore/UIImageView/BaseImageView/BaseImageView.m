@@ -13,13 +13,10 @@
 @end
 
 @implementation BaseImageView
-#pragma mark —— UIViewModelProtocol
-UIViewModelProtocol_synthesize
 #pragma mark —— BaseProtocol
 BaseProtocol_synthesize
 #pragma mark —— BaseViewProtocol
 BaseViewProtocol_synthesize
-
 -(instancetype)init{
     if (self = [super init]) {
         self.userInteractionEnabled = YES;
@@ -48,7 +45,7 @@ BaseViewProtocol_synthesize
     // self.size = MSPayView.viewSizeByModel(nil);
     if(!CGSizeEqualToSize(CGSizeZero, self.layoutSubviewsRectCornerSize)){
         [self appointCornerCutToCircleByRoundingCorners:self.layoutSubviewsRectCorner
-                                        cornerRadii:self.layoutSubviewsRectCornerSize];
+                                            cornerRadii:self.layoutSubviewsRectCornerSize];
     }
 }
 

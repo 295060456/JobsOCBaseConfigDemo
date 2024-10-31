@@ -52,6 +52,7 @@
                 data1.captchaSession = captchaSession;
                 data1.status = status;
                 data1.result = GTCaptcha4ResultModel.byData(result);
+                data1.targetView = (UIView *)self.data_weak;
             });
         }));
     }else toast(@"未通过图形验证，请重试");
@@ -94,6 +95,16 @@ JobsKey(_captchaSession)
 
 -(void)setCaptchaSession:(GTCaptcha4Session *)captchaSession{
     Jobs_setAssociatedRETAIN_NONATOMIC(_captchaSession, captchaSession)
+}
+#pragma mark —— @property(nonatomic,strong)GTCaptcha4Model *captcha4Model;
+JobsKey(_captcha4Model)
+@dynamic captcha4Model;
+-(GTCaptcha4Model *)captcha4Model{
+    return Jobs_getAssociatedObject(_captcha4Model);
+}
+
+-(void)setCaptcha4Model:(GTCaptcha4Model *)captcha4Model{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_captcha4Model, captcha4Model)
 }
 
 @end

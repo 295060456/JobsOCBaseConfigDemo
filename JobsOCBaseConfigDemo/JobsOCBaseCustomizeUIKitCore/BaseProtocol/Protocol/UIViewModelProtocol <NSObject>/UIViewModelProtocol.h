@@ -29,10 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 全局的共用的属性。所有属性的大集合
 @protocol UIViewModelProtocol
 <
-UIPictureAndBackGroundCorProtocol
+UIViewModelOthersProtocol
+,UIPictureAndBackGroundCorProtocol
 ,UILocationProtocol
 ,UIMarkProtocol
-,UIViewModelOthersProtocol
 ,BaseButtonProtocol
 ,UITextModelProtocol
 >

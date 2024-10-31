@@ -14,7 +14,7 @@
 @property(nonatomic,strong)JobsRightBtnsView *rbView;
 @property(nonatomic,strong)UIButton *rotation;
 /// Data
-@property(nonatomic,strong)VideoModel_Core *data;
+@property(nonatomic,strong)VideoModel_Core *core_data;
 
 @end
 
@@ -48,10 +48,10 @@
             self.data = (VideoModel_Core *)model;
             self.label.text = [NSString stringWithFormat:@"%ld",(long)self.index];
             self.rotation.alpha = 1;
-            [self.coverImageView setImageWithURLString:self.data.videoImg
+            [self.coverImageView setImageWithURLString:self.core_data.videoImg
                                            placeholder:JobsIMG(@"视频封面")];
             self.rbView.alpha = 1;
-            self.textLabel.text = self.data.videoTitle;
+            self.textLabel.text = self.core_data.videoTitle;
             self.textLabel.textColor = JobsRedColor;
     //        self.rotation.hidden;// 宽大于高 = 横屏视频，才支持旋转
         }

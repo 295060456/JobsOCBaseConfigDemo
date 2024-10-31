@@ -12,10 +12,6 @@
 @end
 
 @implementation BaseRequest
-#pragma mark —— 一些公有方法
-+(instancetype _Nonnull)init{
-    return [self.alloc init];
-}
 /// 直接调用，后面不能拼byURLParameters
 +(JobsReturnYTKRequestByDictionaryBlock _Nonnull)initByBodyParameters{
     @jobs_weakify(self)
@@ -74,7 +70,7 @@
 }
 /// Body 参数（GET 请求不可用）
 -(id _Nullable)requestArgument{
-    return _parameters;
+    return self.parameters;
 }
 /// 请求方式
 -(YTKRequestMethod)requestMethod {
@@ -88,7 +84,7 @@
 -(NSInteger)cacheTimeInSeconds{
     return 60 * 3;
 }
-
+@synthesize customHTTPHeader = _customHTTPHeader;
 -(NSMutableDictionary *)customHTTPHeader{
     if(!_customHTTPHeader){
         /// 在这里添加你想要的 HTTP header
@@ -163,6 +159,7 @@
 //    return request;
 //}
 #pragma mark —— LazyLoad
+@synthesize parameters = _parameters;
 -(NSMutableDictionary *)parameters{
     if(!_parameters){
         _parameters = jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {

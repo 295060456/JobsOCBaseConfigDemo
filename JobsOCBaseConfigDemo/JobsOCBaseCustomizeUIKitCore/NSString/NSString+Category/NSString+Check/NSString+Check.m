@@ -194,6 +194,19 @@
     BOOL isMatch = [pred evaluateWithObject:self];
     return isMatch;
 }
+/// 正则判断是否为菲律宾手机号码
+/// 菲律宾的手机号码通常有以下格式：
+/// 以 0 开头，后跟 9 和9位数字（如 09668536375）
+/// 直接是10位数字，以 9 开头（如 9668536375）
+/// 国际格式为 +63 开头，后面是10位数字
+-(BOOL)isPhilippinesPhoneNum{
+    /// 判断是否为纯数字
+    if(self.isPureDigit){
+        NSString *pattern = @"^(0?9\\d{9})$";  /// 允许以 0 开头，或直接为 9 开头的 10 位数字
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+        return [predicate evaluateWithObject:self];
+    }else return NO;
+}
 /// 至少包含一个数字、大写字母、小写字母和特殊字符
 -(BOOL)isMixedCharacterString{
     NSString *pattern = @"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$";
@@ -202,7 +215,9 @@
 }
 /// 检查是否是纯数字
 -(BOOL)isPureDigit{
-    return [self.pureString rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet.invertedSet].location != NSNotFound;
+    if(self.length){
+        return [self.pureString rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet.invertedSet].location == NSNotFound;
+    }else return NO;
 }
 /// 本字符串是否包含入参字符串的任何字符
 -(JobsReturnBOOLByStringBlock _Nonnull)isContainBy{

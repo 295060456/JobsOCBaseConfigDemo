@@ -318,7 +318,7 @@ typedef void(^jobsByYTKNetworkConfigBlock)(__kindof YTKNetworkConfig *_Nullable 
 typedef void(^jobsByYTKRequestBlock)(__kindof YTKRequest *_Nullable request);
 
 @class YTKChainRequest;
-typedef void(^jobsByYTKChainRequestBlock)(YTKChainRequest *_Nullable request);
+typedef void(^jobsByYTKChainRequestBlock)(YTKChainRequest *_Nullable chainRequest);
 
 @class YTKBatchRequest;
 typedef void(^jobsByYTKBatchRequestBlock)(__kindof YTKBatchRequest *_Nullable data);
@@ -328,7 +328,7 @@ typedef __kindof YTKBatchRequest *_Nullable(^JobsReturnBatchRequestByArrBlock)(_
 #import "JobsDefineAllEnumHeader.h"
 typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
 typedef JobsResponseModel *_Nullable(^JobsReturnResponseModelByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
-typedef void(^JobsHandelNoSuccessBlock)(HTTPResponseCode data,__kindof YTKBaseRequest *_Nonnull request);
+typedef void(^JobsHandelNoSuccessBlock)(__kindof YTKBaseRequest *_Nonnull request);
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByVoidBlock)(void);
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByIDBlock)(id _Nullable data);
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByDictionaryBlock)(NSDictionary *_Nullable data);
@@ -346,6 +346,9 @@ typedef void(^jobsByMsgDataModelBlock)(__kindof JobsMsgDataModel *_Nullable data
 
 @class JobsToggleBaseView;
 typedef JobsToggleBaseView *_Nonnull(^JobsReturnToggleBaseViewByArrBlock)(NSMutableArray *_Nullable data);
+
+@class FM_updatePassword_model;
+typedef void(^jobsByUpdatePasswordModelBlock)(__kindof FM_updatePassword_model *_Nullable data);
 
 #endif /* JobsBlock_h */
 /*

@@ -16,8 +16,6 @@
 #import "ReactiveObjC.h"
 #endif
 
-@class UIViewModel;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol UIViewModelOthersProtocol <NSObject>
@@ -31,24 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL isVisible;/// ❤️只是一个标记是否可见，如果需要设置请移步@interface UIView (Extras) ：-(BOOL)jobsVisible; 和 -(void)setJobsVisible:(BOOL)jobsVisible;
 @property(nonatomic,assign)BOOL isMultiLineShows;/// 是否多行行显示【默认单行显示】
 @property(nonatomic,assign)UILabelShowingType labelShowingType;
-#pragma mark —— Data
-@property(nonatomic,assign)AppLanguage appLanguage;
-@property(nonatomic,strong,nullable)NSString *internationalizationKEY;/// 国际化的key
-@property(nonatomic,strong,nullable)NSMutableSet *jobsDataMutSet;/// 绑定的数据源，数据类型NSMutableSet
-@property(nonatomic,strong,nullable)NSMutableArray *jobsDataMutArr;/// 绑定的数据源，数据类型NSMutableArray
-@property(nonatomic,strong,nullable)NSMutableArray <UIViewModel *> *viewModelMutArr;
-@property(nonatomic,strong,nullable)NSMutableDictionary *jobsDataMutDic;/// 绑定的数据源，数据类型NSMutableDictionary
-@property(nonatomic,strong,nullable)Class cls;/// 绑定的class
-@property(nonatomic,strong,nullable)RACSignal *reqSignal;
-/// 强引用数据源
-@property(nonatomic,strong,nullable)id data;/// 【强引用】绑定的数据源，数据类型id
-@property(nonatomic,strong,nullable)id requestParams;/// 【强引用】绑定的数据源，数据类型id
-@property(nonatomic,strong,nullable)UIViewModel *viewModel;
-/// 弱引用数据源
-@property(nonatomic,strong,nullable)id data_weak;/// 【弱引用】绑定的数据源，数据类型id
-@property(nonatomic,strong,nullable)id requestParams_weak;/// 【弱引用】绑定的数据源，数据类型id
-@property(nonatomic,strong,nullable)UIViewModel *viewModel_weak;
-@property(nonatomic,strong)NSURL *url;
 #pragma mark —— 定位
 @property(nonatomic,assign)NSUInteger jobsTag;
 #pragma mark —— 点击
@@ -73,21 +53,6 @@ NS_ASSUME_NONNULL_END
 @synthesize isVisible = _isVisible;\
 @synthesize isMultiLineShows = _isMultiLineShows;\
 @synthesize labelShowingType = _labelShowingType;\
-@synthesize appLanguage = _appLanguage;\
-@synthesize internationalizationKEY = _internationalizationKEY;\
-@synthesize jobsDataMutSet = _jobsDataMutSet;\
-@synthesize jobsDataMutArr = _jobsDataMutArr;\
-@synthesize viewModelMutArr = _viewModelMutArr;\
-@synthesize jobsDataMutDic = _jobsDataMutDic;\
-@synthesize cls = _cls;\
-@synthesize reqSignal = _reqSignal;\
-@synthesize data = _data;\
-@synthesize data_weak = _data_weak;\
-@synthesize requestParams = _requestParams;\
-@synthesize requestParams_weak = _requestParams_weak;\
-@synthesize viewModel = _viewModel;\
-@synthesize viewModel_weak = _viewModel_weak;\
-@synthesize url = _url;\
 @synthesize jobsTag = _jobsTag;\
 @synthesize jobsSelected = _jobsSelected;\
 @synthesize jobsEnabled = _jobsEnabled;\
@@ -108,21 +73,6 @@ NS_ASSUME_NONNULL_END
 @dynamic isVisible;\
 @dynamic isMultiLineShows;\
 @dynamic labelShowingType;\
-@dynamic appLanguage;\
-@dynamic internationalizationKEY;\
-@dynamic jobsDataMutSet;\
-@dynamic jobsDataMutArr;\
-@dynamic viewModelMutArr;\
-@dynamic jobsDataMutDic;\
-@dynamic cls;\
-@dynamic reqSignal;\
-@dynamic data;\
-@dynamic requestParams;\
-@dynamic viewModel;\
-@dynamic data_weak;\
-@dynamic requestParams_weak;\
-@dynamic viewModel_weak;\
-@dynamic url;\
 @dynamic jobsTag;\
 @dynamic jobsSelected;\
 @dynamic jobsEnabled;\

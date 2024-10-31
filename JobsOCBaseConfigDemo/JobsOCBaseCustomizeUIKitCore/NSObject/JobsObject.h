@@ -37,7 +37,9 @@
 #import "JobsModel.h"
 
 #pragma mark —— Category
-/// 【二次封装HXPhotoPicker】弹出系统相册选择页面 + 调取系统相机进行拍摄
+/// 猿题库网络框架的集成
+#import "NSObject+YTKRequest.h"
+///【二次封装HXPhotoPicker】弹出系统相册选择页面 + 调取系统相机进行拍摄
 #import "NSObject+HXPhotoPicker.h"
 /// runtime方式获取对象的一些属性
 #import "NSObject+RunrtimeGet.h"
@@ -111,6 +113,6 @@
 /// 关于数据
 #import "NSObject+Data.h"
 /// 作为 NSObject 的替代者使用
-#import "This+URLManager_Base.h"
+#import "This.h"
 
 #endif /* JobsObject_h */

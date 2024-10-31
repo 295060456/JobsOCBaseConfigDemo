@@ -196,7 +196,8 @@ typedef NS_ENUM(NSInteger, HTTPResponseCode) {
     HTTPResponseCodeRiskOperation = 6,/// 风险操作
     HTTPResponseCodeNoSettingTransactionPassword = 7,/// 未设置交易密码
     HTTPResponseCodeOffline = 8,/// 帐号已在其他设备登录
-    HTTPResponseCodeTokenExpire = 10009/// Token 过期
+    HTTPResponseCodeTokenExpire = 10009,/// Token 过期
+    HTTPResponseCodePhoneNumberNotExist = 1002000034,/// 手机号码不存在
     ///其他代号，展示msg内容即可
 };
 #endif /* HTTP_RESPONSE_CODE_ENUM_DEFINED */
@@ -516,5 +517,205 @@ typedef NS_ENUM(NSInteger, FMLoginWork){
     FMLoginWork_MyBank
 };
 #endif /* FMLOGINWORK */
+
+#ifndef KYCSTATUS
+#define KYCSTATUS
+/// 跳转类型
+typedef NS_ENUM(NSInteger, KYCStatus){
+    KYCStatus_待审核 = 0,
+    KYCStatus_通过,
+    KYCStatus_拒绝,
+    KYCStatus_未提交
+};
+#endif /* KYCSTATUS */
+
+#ifndef KYCOK
+#define KYCOK
+/// 是否已KYC验证
+typedef NS_ENUM(NSInteger, KYCok){
+    KYCOK_未通过 = 0,
+    KYCOK_已经通过 = 1
+};
+#endif /* KYCOK */
+
+#ifndef HOMEBARLISTSTYLE
+#define HOMEBARLISTSTYLE
+/// 首页游戏列表名
+typedef NS_ENUM(NSInteger, HomeBarListStyle){
+    HomeBarListStyle_Sports = 1001101, /// Sports
+    HomeBarListStyle_LiveCasino = 1001102, /// Live Casino
+    HomeBarListStyle_SlotsGames = 1001104, /// Slots Games
+};
+#endif /* HOMEBARLISTSTYLE */
+
+#ifndef BINDSTYLE
+#define BINDSTYLE
+/// 绑定状态
+typedef NS_ENUM(NSInteger, BindStyle){
+    NoBinded = 0,/// 未绑定
+    Binded = 1/// 已绑定
+};
+#endif /* BINDSTYLE */
+
+
+#ifndef NEEDREALNAME
+#define NEEDREALNAME
+/// 绑定状态
+typedef NS_ENUM(NSInteger, NeedRealName){
+    NEEDREALNAME_NONEED = 0,/// 不需要
+    NEEDREALNAME_NEED1 = 1,/// 需要-单姓名
+    NEEDREALNAME_NEEDMORE = 2/// 需要-可以多姓名
+};
+#endif /* NEEDREALNAME */
+
+#ifndef IDTYPEENUM
+#define IDTYPEENUM
+typedef NS_ENUM(NSInteger, IdTypeEnum){
+    PHILIPPINE_NATIONAL_ID = 1,/// Philippine National ID
+    DRIVERS_LICENSE = 2,/// Driver's License
+    PHIL_HEALTH_ID = 3,/// PhilHealth ID
+    PHILIPPINE_POSTAL_ID = 4,/// Philippine Postal ID
+    NBI_CLEARANCE = 5,/// NBI Clearanc
+    SENIOR_CITIZEN_CARD = 6,/// Senior Citizen Card
+    ID_PASSPORT = 7,/// ID Passport (Philippine/Foreign)
+    IBP_ID = 8,/// Integrated Bar of the Philippines ID
+    FIREARMS_LICENSE = 9,/// Firearms License
+    PROFESSIONAL_REGULATIONS_COMMISSION = 10,/// Professional Regulations Commission
+    OFW_ID = 11,/// Overseas Filipino Workers (OFW) ID
+    SSS_CARD = 12,/// Social Security System (SSS) Card
+    TIN = 13, /// Tax Identification
+    UMID = 14,/// Unified Multi-Purpose ID
+    VOTERS_ID = 15,/// Voter's Certificate and/or Voter's ID
+    MARINA_ID = 16,/// Maritime Industry Authority (MARINA) ID
+    PWD_ID = 17,/// Person's with Disability (PWD) iD
+    ALIEN_CERTIFICATE_OF_REGISTRATION = 18,/// Alien Certificate of Registration
+    ICR_ID = 19/// Immigrant Certificate of Registration
+};
+#endif /* IDTYPEENUM */
+
+#ifndef ACTIVITYTYPE
+#define ACTIVITYTYPE
+/// 活动类型：1、日常； 2、签到 ；3、存款优惠
+typedef NS_ENUM(NSInteger, ActivityType){
+    ACTIVITYTYPE_NORMAL = 0,/// 日常
+    NEEDREALNAME_SIGNIN = 1,/// 签到
+    NEEDREALNAME_DEPOSITPROMO = 2/// 存款优惠
+};
+#endif /* ACTIVITYTYPE */
+
+#ifndef REWARDDISTRIBUTIONTYPE
+#define REWARDDISTRIBUTIONTYPE
+/// 奖励发放：1、自动发放；2、人工审核
+typedef NS_ENUM(NSInteger, RewardDistributionType) {
+    REWARDDISTRIBUTIONTYPE_AUTO = 1,        /// 自动发放
+    REWARDDISTRIBUTIONTYPE_MANUAL = 2       /// 人工审核
+};
+#endif /* REWARDDISTRIBUTIONTYPE */
+
+#ifndef ACTIVITYDURATION
+#define ACTIVITYDURATION
+/// 活动周期：1、长期有效；2、指定时间
+typedef NS_ENUM(NSInteger, ActivityDuration) {
+    ACTIVITYDURATION_LONGTERM = 1,          /// 长期有效
+    ACTIVITYDURATION_SPECIFIEDTIME = 2      /// 指定时间
+};
+#endif /* ACTIVITYDURATION */
+
+#ifndef ACTIVITYCATEGORY
+#define ACTIVITYCATEGORY
+/// 活动分类：0、新手；1、日常；2、优惠；3、限时
+typedef NS_ENUM(NSInteger, ActivityCategory) {
+    ACTIVITYCATEGORY_NEWBIE = 0,            /// 新手
+    ACTIVITYCATEGORY_DAILY = 1,             /// 日常
+    ACTIVITYCATEGORY_PROMOTION = 2,         /// 优惠
+    ACTIVITYCATEGORY_LIMITEDTIME = 3        /// 限时
+};
+#endif /* ACTIVITYCATEGORY */
+
+#ifndef ACTIVITYSTATUS
+#define ACTIVITYSTATUS
+/// 活动状态：-2、删除；-1、过期；0、禁用；1、预热；2、开启
+typedef NS_ENUM(NSInteger, ActivityStatus) {
+    ACTIVITYSTATUS_DELETED = -2,            /// 删除
+    ACTIVITYSTATUS_EXPIRED = -1,            /// 过期
+    ACTIVITYSTATUS_DISABLED = 0,            /// 禁用
+    ACTIVITYSTATUS_PREHEATING = 1,          /// 预热
+    ACTIVITYSTATUS_OPEN = 2                 /// 开启
+};
+#endif /* ACTIVITYSTATUS */
+
+#ifndef AGENTLINESETTING
+#define AGENTLINESETTING
+/// 代理线设置：1、全部参与；2、排除代理线；3、指定代理线
+typedef NS_ENUM(NSInteger, AgentLineSetting) {
+    AGENTLINESETTING_ALL = 1,               /// 全部参与
+    AGENTLINESETTING_EXCLUDE = 2,           /// 排除代理线
+    AGENTLINESETTING_SPECIFIED = 3          /// 指定代理线
+};
+#endif /* AGENTLINESETTING */
+
+#ifndef HASSUBSETTING
+#define HASSUBSETTING
+/// 是否有子游戏：1.有 0.没有
+typedef NS_ENUM(NSInteger, HasSubSetting) {
+    HASSUBSETTING_NO = 0,     /// 没有子游戏
+    HASSUBSETTING_YES = 1     /// 有子游戏
+};
+#endif /* HASSUBSETTING */
+
+#ifndef ISHOTGAMESETTING
+#define ISHOTGAMESETTING
+/// 是否热门：0.是 1.否
+typedef NS_ENUM(NSInteger, IsHotGameSetting) {
+    ISHOTGAMESETTING_HOT = 0,     /// 是热门游戏
+    ISHOTGAMESETTING_NOT_HOT = 1  /// 不是热门游戏
+};
+#endif /* ISHOTGAMESETTING */
+
+#ifndef STATUSSETTING
+#define STATUSSETTING
+/// 状态：0.开始 1.禁用
+typedef NS_ENUM(NSInteger, StatusSetting) {
+    STATUSSETTING_STARTED = 0,     /// 开始
+    STATUSSETTING_DISABLED = 1     /// 禁用
+};
+#endif /* STATUSSETTING */
+
+#ifndef ELECTRONICLABELTYPESETTING
+#define ELECTRONICLABELTYPESETTING
+/// 电子标签类型：1. Hot 2. New
+typedef NS_ENUM(NSInteger, ElectronicLabelTypeSetting) {
+    ELECTRONICLABELTYPE_HOT = 1,  /// 热门
+    ELECTRONICLABELTYPE_NEW = 2   /// 新品
+};
+#endif /* ELECTRONICLABELTYPESETTING */
+
+#ifndef USERTYPESETTING
+#define USERTYPESETTING
+/// 用户类型设置
+typedef NS_ENUM(NSInteger, UserTypeSetting) {
+    USERTYPE_REGISTER = 1,           /// 注册
+    USERTYPE_LOGIN = 2,              /// 登录
+    USERTYPE_FORGET_PWD = 3,         /// 忘记密码
+    USERTYPE_BIND_PHONE = 4,         /// 绑定手机号
+    USERTYPE_BIND_BANKCARD = 5,      /// 绑定银行卡
+    USERTYPE_BIND_CRYPTO_CURRENCY = 6, /// 绑定加密货币地址
+    USERTYPE_AGENT_PAY_PWD_SET = 7,  /// 支付密码设置
+    USERTYPE_AGENT_PAY_PWD_RESET = 8, /// 支付密码修改
+    USERTYPE_AGENT_WITHDRAWAL_REQ = 9, /// 代理提款申请
+    USERTYPE_AGENT_DEPOSIT = 10,     /// 代理代存
+    USERTYPE_BIND_E_WALLET = 11      /// 绑定电子钱包
+};
+#endif /* USERTYPESETTING */
+
+#ifndef BUSINESSSOURCESETTING
+#define BUSINESSSOURCESETTING
+/// 业务来源
+typedef NS_ENUM(NSInteger, BusinessSourceSetting) {
+    BUSINESSSOURCE_MEMBER = 1,  /// 会员（默认）
+    BUSINESSSOURCE_AGENT = 2    /// 代理
+};
+#endif /* BUSINESSSOURCESETTING */
+
 
 #endif /* JobsDefineAllEnumHeader_h */

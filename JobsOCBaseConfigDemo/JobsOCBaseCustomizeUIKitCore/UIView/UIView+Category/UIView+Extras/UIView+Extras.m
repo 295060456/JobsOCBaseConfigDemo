@@ -870,15 +870,20 @@ JobsKey(_getAnimation)
 //    [self transformByDegrees:45];// 逆时针旋转 45 度
 }
 
--(UIImage *_Nullable)getImage{
-    UIGraphicsBeginImageContextWithOptions(self.bounds.size,
-                                           NO,
-                                           UIScreen.mainScreen.scale);
-    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
+-(UIImage *_Nullable)getImage {
+    /// 检查视图的大小是否为有效值
+    CGSize size = self.bounds.size;
+    /// 如果 size 是 {0, 0}，直接返回 nil
+    if (CGSizeEqualToSize(size, CGSizeZero)) return nil;
+    /// 使用 UIGraphicsImageRenderer 创建图像
+    UIGraphicsImageRenderer *renderer = [UIGraphicsImageRenderer.alloc initWithSize:size];
+    @jobs_weakify(self )
+    UIImage *image = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull context) {
+        @jobs_strongify(self)
+        [self.layer renderInContext:context.CGContext];
+    }];return image;
 }
+
 /// iOS 阴影效果 添加了shadowPath后消除了离屏渲染问题 。特别提示：不能存在 -(void)drawRect:(CGRect)rect 或者在-(void)drawRect:(CGRect)rect里面写，否则无效
 /// @param targetShadowview 需要作用阴影效果的View
 /// @param superview 该阴影效果的View的父View

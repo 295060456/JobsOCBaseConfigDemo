@@ -23,8 +23,8 @@ UIViewModelProtocol
 ,BaseProtocol
 ,BaseViewProtocol
 >
-@property(nonatomic,strong)JobsNavBarConfig *_Nullable navBarConfig;
-@property(nonatomic,strong)JobsNavBar * _Nullable navBar;
+@property(nonatomic,strong,nullable)JobsNavBarConfig *navBarConfig;
+@property(nonatomic,strong,nullable)JobsNavBar *navBar;
 
 @end
 
