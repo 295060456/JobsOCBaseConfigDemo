@@ -10,8 +10,8 @@
 #import "UIButtonModel.h"
 #import "JobsBlock.h"
 
-UIKIT_EXTERN NSString * _Nullable const VerticalScrollBegin;/// 垂直滚动键值
-UIKIT_EXTERN NSString * _Nullable const HorizontalScrollBegin;/// 水平滚动键值
+UIKIT_EXTERN NSString *_Nullable const VerticalScrollBegin;/// 垂直滚动键值
+UIKIT_EXTERN NSString *_Nullable const HorizontalScrollBegin;/// 水平滚动键值
 
 @interface JobsExcelConfigureViewModel : NSObject
 #pragma mark —— 表格设置
@@ -38,17 +38,17 @@ UIKIT_EXTERN NSString * _Nullable const HorizontalScrollBegin;/// 水平滚动�
 @property(nonatomic,strong,null_resettable)UIImage *image3;/// 第一行的背景图片
 #pragma mark —— 值
 @property(nonatomic,strong,null_resettable)UIButtonModel *data_00;/// 起始格子的数据
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <UIButtonModel *>*>* _Nonnull contentArr;
+@property(nonatomic,strong,nonnull)NSMutableArray <NSMutableArray <UIButtonModel *>*>*contentArr;
 @property(nonatomic,strong,null_resettable)NSMutableArray <UIButtonModel *>*topHeaderDatas;
 @property(nonatomic,strong,null_resettable)NSMutableArray <UIButtonModel *>*leftListDatas;
 @property(nonatomic,strong,nonnull)NSValue *VerticalScrollValue;/// 垂直滚动
 @property(nonatomic,strong,nonnull)NSValue *HorizontalScrollValue;/// 水平滚动
 @property(nonatomic,assign,readonly)NSInteger rowNumber;/// 行数
 @property(nonatomic,assign,readonly)NSInteger colNumber;/// 列数
-@property(nonatomic,strong)NSMutableArray <NSString *>* _Nullable topHeaderTitles;
-@property(nonatomic,strong)NSMutableArray <NSString *>* _Nullable leftTitles;
+@property(nonatomic,strong)NSMutableArray <NSString *>*_Nullable topHeaderTitles;
+@property(nonatomic,strong)NSMutableArray <NSString *>*_Nullable leftTitles;
 
-@property(nonatomic,copy,nonnull)jobsByVoidBlock configureData;
+@property(nonatomic,copy)jobsByVoidBlock _Nonnull configureData;
 
 @end
 

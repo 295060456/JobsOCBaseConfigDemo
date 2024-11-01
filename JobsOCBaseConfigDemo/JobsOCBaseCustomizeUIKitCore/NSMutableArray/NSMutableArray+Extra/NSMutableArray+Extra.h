@@ -38,6 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
                                            toIndex:(NSInteger)toIndex;
 /// 将数组里的元素复制times次
 -(JobsReturnArrayByIntegerBlock _Nonnull)copyElementBytimes;
+/// 改变输入的按钮状态
+-(jobsByBtnBlock _Nonnull)chooseBy;
+/// 监控选中状态
+-(void)unselectBlock:(jobsByBtnBlock)unselectBlock
+         selectBlock:(jobsByBtnBlock)selectBlock;
 
 @end
 

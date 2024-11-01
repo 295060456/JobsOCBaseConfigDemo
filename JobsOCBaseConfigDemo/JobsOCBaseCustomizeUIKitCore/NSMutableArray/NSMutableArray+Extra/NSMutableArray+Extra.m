@@ -111,5 +111,29 @@
         });
     };
 }
+/// 改变输入的按钮状态
+-(jobsByBtnBlock _Nonnull)chooseBy{
+    @jobs_weakify(self)
+    return ^(__kindof UIButton *_Nullable x){
+        @jobs_strongify(self)
+        for (UIButton *btn in self) {
+            btn.selected = NO;
+        }x.selected = YES;
+    };
+}
+/// 监控选中状态
+-(void)unselectBlock:(jobsByBtnBlock)unselectBlock
+         selectBlock:(jobsByBtnBlock)selectBlock{
+    for (id obj in self) {
+        [[obj rac_valuesForKeyPath:@"selected" observer:self]
+         subscribeNext:^(NSNumber *selected) {
+            if(selected.boolValue){
+                if(selectBlock) selectBlock(obj);
+            }else{
+                if(unselectBlock) unselectBlock(obj);
+            }
+         }];
+    }
+}
 
 @end

@@ -438,6 +438,7 @@
     return ^__kindof UIButton *(NSTextAlignment data) {
         @jobs_weakify(self)
         return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+            @jobs_strongify(self)
             if(config.subtitle){
                 config.attributedSubtitle = [NSAttributedString.alloc initWithString:config.subtitle
                                                                           attributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data1) {
@@ -992,27 +993,46 @@
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIColor *data) {
         @jobs_strongify(self)
-        [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
+        /// 更新 baseForegroundColor 颜色
+        [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration *_Nullable config) {
             @jobs_strongify(self)
             config.baseForegroundColor = data;
             self.configuration = config;
         }];
-        self.jobsResetTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:nil btnTitleCor:data]);
+        /// 获取当前的 titleTextAttributesTransformer 字体
+        UIConfigurationTextAttributesTransformer currentTransformer = self.configuration.titleTextAttributesTransformer;
+        UIFont *currentFont = nil;
+        if (currentTransformer) {
+            NSDictionary<NSAttributedStringKey, id> *attributes = currentTransformer(@{});
+            currentFont = attributes[NSFontAttributeName];
+        }
+        /// 应用新颜色，同时保持字体
+        self.jobsResetTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:currentFont btnTitleCor:data]);
+        /// 应用更新后的配置
         [self updateConfiguration];
         return self.configuration;
     };
 }
-
+/// UIButtonConfiguration 没有对subTitle字体颜色的描述
 -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetSubTitleBaseForegroundColor API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIColor *data) {
         @jobs_strongify(self)
+        /// 更新 baseForegroundColor，或用于其他需要的配置
         [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
-#warning UIButtonConfiguration 没有对subTitle字体颜色的描述
-            config.baseForegroundColor = data;
+            @jobs_strongify(self)
             self.configuration = config;
         }];
-        self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:nil btnTitleCor:data]);
+        /// 获取当前的 subtitleTextAttributesTransformer 字体，保持字体不变，仅更新颜色
+        UIConfigurationTextAttributesTransformer currentSubtitleTransformer = self.configuration.subtitleTextAttributesTransformer;
+        UIFont *currentSubtitleFont = nil;
+        if (currentSubtitleTransformer) {
+            NSDictionary<NSAttributedStringKey, id> *attributes = currentSubtitleTransformer(@{});
+            currentSubtitleFont = attributes[NSFontAttributeName];
+        }
+        /// 使用 subtitleTextAttributesTransformer 设置新颜色，保持现有字体
+        self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:currentSubtitleFont btnTitleCor:data]);
+        /// 应用更新后的配置
         [self updateConfiguration];
         return self.configuration;
     };

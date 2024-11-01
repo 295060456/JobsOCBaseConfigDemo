@@ -44,9 +44,9 @@
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIImage *_Nonnull image){
         @jobs_strongify(self)
-        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+        return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
             data.buttonModel.backgroundImage = image;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 #pragma mark —— 对副标题进行创建

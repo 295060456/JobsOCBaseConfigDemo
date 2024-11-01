@@ -61,21 +61,24 @@
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
-        return CGSizeMake(JobsRealWidth() - JobsWidth(300), JobsRealHeight() / 2);
+        return CGSizeMake(JobsRealWidth() - JobsWidth(100), JobsRealHeight() / 2);
     };
 }
 #pragma mark —— lazyLoad
 -(UIImageView *)bgImageView{
     if(!_bgImageView){
-        _bgImageView = UIImageView.new;
-        _bgImageView.image = JobsIMG(@"投注记录");
-        [self addSubview:_bgImageView];
-        [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self);
-            make.left.equalTo(self);
-            make.width.mas_equalTo(itemW);
-            make.height.mas_equalTo(self.viewModel_.itemH);
-        }];
+        @jobs_weakify(self)
+        _bgImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = JobsIMG(@"投注记录");
+            [self addSubview:imageView];
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self);
+                make.left.equalTo(self);
+                make.width.mas_equalTo(self->itemW);
+                make.height.mas_equalTo(self.viewModel_.itemH);
+            }];
+        });
     }return _bgImageView;
 }
 
@@ -106,7 +109,7 @@
     }return _leftListView;
 }
 
-- (JobsExcelTopHeadView *)headView{
+-(JobsExcelTopHeadView *)headView{
     if (!_headView) {
         _headView = JobsExcelTopHeadView.new;
         [self addSubview:_headView];
@@ -120,7 +123,7 @@
     }return _headView;
 }
 
-- (JobsExcelContentView *)contentView{
+-(JobsExcelContentView *)contentView{
     if (!_contentView) {
         _contentView = JobsExcelContentView.new;
         [self addSubview:_contentView];
@@ -129,14 +132,15 @@
             make.left.equalTo(self.headView);
             make.right.equalTo(self);
             make.bottom.equalTo(self);
-        }];
-        _contentView.jobsRichViewByModel(self.viewModel_);
+        }];_contentView.jobsRichViewByModel(self.viewModel_);
     }return _contentView;
 }
 
 -(JobsExcelConfigureViewModel *)viewModel_{
     if(!_viewModel_){
-        _viewModel_ = JobsExcelConfigureViewModel.new;
+        _viewModel_ = jobsMakeExcelConfigureViewModel(^(JobsExcelConfigureViewModel * _Nullable data) {
+            
+        });
     }return _viewModel_;
 }
 
