@@ -83,6 +83,8 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 -(JobsReturnViewByFloatBlock _Nonnull)topBorderWidth;
 /// 调用方式：view.bottomBorderColor(color).bottomBorderWidth(borderType);
 -(JobsReturnViewByFloatBlock _Nonnull)bottomBorderWidth;
+/// 描边：统一设置Layer的线宽+颜色+圆切角
+-(jobsByLocationModelBlock _Nonnull)setLayerBy;
 /// 指定描边 【在使用这个方法的一个前提是被描边的view刷新后存在frame】
 /// @param color 作用颜色
 /// @param borderWidth 线宽
@@ -94,7 +96,7 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 /// @param layerBorderCor 颜色
 /// @param borderWidth 边线宽度
 -(void)layerBorderCor:(UIColor *_Nullable)layerBorderCor
-       andBorderWidth:(CGFloat)borderWidth;
+       andBorderWidth:(CGFloat)borderWidth NS_DEPRECATED_IOS(2_0, 10_0, "Use -setLayerBy instead");
 /// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
 -(JobsReturnViewByCorBlock _Nonnull)layerByBorderCor;
 /// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);

@@ -33,8 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 UITableViewCellProtocol
 ,UIViewModelProtocol
 >
-/// 获取绑定的数据源
--(UIViewModel *)getViewModel;
 
 @end
 

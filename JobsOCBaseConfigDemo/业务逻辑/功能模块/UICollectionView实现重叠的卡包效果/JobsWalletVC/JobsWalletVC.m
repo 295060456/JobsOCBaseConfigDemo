@@ -110,11 +110,19 @@ resuableFooterViewHeightForIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == self.dataSourceMutArr.count - 1) {
         JobsBtnStyleCVCell *cell = [collectionView collectionViewCellClass:JobsBtnStyleCVCell.class forIndexPath:indexPath];
         cell.jobsRichElementsInCellWithModel(self.dataSourceMutArr[indexPath.section][indexPath.item]);
-        return cell;
+        cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable data) {
+            data.layerCor = JobsCor(@"#6E5600");
+            data.jobsWidth = JobsWidth(1);
+            data.cornerRadius = JobsWidth(8);
+        }));return cell;
     }else{
         BaiShaETProjBankAccMgmtCVCell *cell = [collectionView collectionViewCellClass:BaiShaETProjBankAccMgmtCVCell.class forIndexPath:indexPath];
         cell.jobsRichElementsInCellWithModel(self.dataSourceMutArr[indexPath.section][indexPath.item]);
-        return cell;
+        cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable data) {
+            data.layerCor = JobsCor(@"#6E5600");
+            data.jobsWidth = JobsWidth(1);
+            data.cornerRadius = JobsWidth(8);
+        }));return cell;
     }
 }
 

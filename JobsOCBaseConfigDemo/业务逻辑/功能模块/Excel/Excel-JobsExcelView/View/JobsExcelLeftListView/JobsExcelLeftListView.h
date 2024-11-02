@@ -11,6 +11,13 @@
 
 #import "JobsExcelConfigureViewModel.h"
 #import "TableViewOneCell.h"
+
+#if __has_include(<ReactiveObjC/ReactiveObjC.h>)
+#import <ReactiveObjC/ReactiveObjC.h>
+#else
+#import "ReactiveObjC.h"
+#endif
+
 @class UIButtonModel;
 
 @interface JobsExcelLeftListView : UIView
@@ -19,5 +26,7 @@ UITableViewDelegate
 ,UITableViewDataSource
 ,BaseViewProtocol
 >
+
+@property(nonatomic,strong,readonly)JobsExcelConfigureViewModel *_Nonnull excelConfigureData;
 
 @end

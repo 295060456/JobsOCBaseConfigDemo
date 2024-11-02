@@ -10,17 +10,12 @@
 
 @interface JobsExcelContentView()
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *excelConfigureData;
+@property(nonatomic,strong)JobsExcelConfigureViewModel *_Nonnull excelConfigureData;
 @property(nonatomic,assign)CGPoint contentOffenset;
 
 @end
 
 @implementation JobsExcelContentView
-
--(void)dealloc{
-    [self.excelConfigureData removeObserver:self forKeyPath:VerticalScrollBegin];
-    [self.excelConfigureData removeObserver:self forKeyPath:HorizontalScrollBegin];
-}
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -28,43 +23,21 @@
     }return self;
 }
 #pragma mark —— BaseViewProtocol
--(jobsByIDBlock _Nonnull)jobsRichViewByModel{
+- (jobsByIDBlock _Nonnull)jobsRichViewByModel {
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.excelConfigureData = model;
         self.tableView.rowHeight = self.excelConfigureData.itemH;
         [self.tableView reloadData];
-        
-        [self.excelConfigureData addObserver:self
-                         forKeyPath:VerticalScrollBegin
-                            options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                            context:nil];
-        
-        [self.excelConfigureData addObserver:self
-                         forKeyPath:HorizontalScrollBegin
-                            options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                            context:nil];
     };
 }
-#pragma mark —— KVO 监听
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
-                       context:(void *)context{
-    JobsExcelConfigureViewModel *excelConfigureData = (JobsExcelConfigureViewModel *)object;
-    if ([keyPath isEqualToString:VerticalScrollBegin]) {
-        self.tableView.contentOffset = excelConfigureData.VerticalScrollValue.CGPointValue;
-    }else if ([keyPath isEqualToString:HorizontalScrollBegin]){
-       [self configureContentOffSet:excelConfigureData.HorizontalScrollValue.CGPointValue];
-    }
-}
-#pragma mark —— UITableView 数据源
+#pragma mark —— UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
     return self.excelConfigureData.colNumber;
 }
-#pragma mark —— UITableView 代理
+#pragma mark —— UITableViewDataSource
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MainTableViewCell *cell = MainTableViewCell.cellStyleValue1WithTableView(tableView);
@@ -76,29 +49,31 @@
     return cell;
 }
 #pragma mark —— UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView == self.tableView) {
-        self.excelConfigureData.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
-        [self configureContentOffSet:self.contentOffenset];
+        [self.excelConfigureData.verticalScrollSignal sendNext:[NSValue valueWithCGPoint:scrollView.contentOffset]];
+        self.configureContentOffSet(self.contentOffenset);
     }
 }
 #pragma mark —— MianTableViewCellDelegate
-- (void)mianTableViewCellScrollerDid:(UIScrollView *)scrollview{
+-(void)mianTableViewCellScrollerDid:(UIScrollView *)scrollview{
     if (scrollview.contentOffset.y != 0) {
         scrollview.contentOffset = CGPointMake(scrollview.contentOffset.x, 0);
         return;
     }
     self.contentOffenset = scrollview.contentOffset;
-    self.excelConfigureData.jobsKVC(HorizontalScrollBegin,[NSValue valueWithCGPoint:scrollview.contentOffset]);
-    [self configureContentOffSet:scrollview.contentOffset];
+    [self.excelConfigureData.horizontalScrollSignal sendNext:[NSValue valueWithCGPoint:scrollview.contentOffset]];
+    self.configureContentOffSet(scrollview.contentOffset);
 }
-
-- (void)configureContentOffSet:(CGPoint)point{
-    [self.tableView.visibleCells enumerateObjectsUsingBlock:^(__kindof MainTableViewCell * _Nonnull cell,
-                                                              NSUInteger idx,
-                                                              BOOL * _Nonnull stop) {
-        [cell scrollerItemWithContentOffset:point];
-    }];
+#pragma mark —— 一些共有方法
+-(jobsByPointBlock _Nonnull)configureContentOffSet{
+    return ^(CGPoint point){
+        [self.tableView.visibleCells enumerateObjectsUsingBlock:^(__kindof MainTableViewCell *_Nonnull cell,
+                                                                  NSUInteger idx,
+                                                                  BOOL *_Nonnull stop) {
+            [cell scrollerItemWithContentOffset:point];
+        }];
+    };
 }
 #pragma mark —— LazyLoad
 /// BaseViewProtocol

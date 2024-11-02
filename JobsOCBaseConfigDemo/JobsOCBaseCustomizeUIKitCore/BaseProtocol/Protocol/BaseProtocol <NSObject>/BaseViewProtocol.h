@@ -37,9 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL isAllowDrag;
 /// 退出当前页面的时候，除了当前页面出栈以外，你额外需要做的事情
 @property(nonatomic,copy,nullable)JobsReturnIDByIDBlock jobsBackBlock;
-/// 作用于-(void)layoutSubviews的圆切角参数
+/// 圆切角参数：作用于-(void)layoutSubviews
 @property(nonatomic,assign)UIRectCorner layoutSubviewsRectCorner;
 @property(nonatomic,assign)CGSize layoutSubviewsRectCornerSize;
+@property(nonatomic,strong)UIColor *layerCor;
 /// 记录该View的Masonry约束情况
 @property(nonatomic,strong)NSMutableArray <MASConstraint *>*constraintMutArr;
 /// 视图长、宽、高的定义
@@ -163,6 +164,7 @@ typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewPro
 @synthesize jobsBackBlock = _jobsBackBlock;\
 @synthesize layoutSubviewsRectCorner = _layoutSubviewsRectCorner;\
 @synthesize layoutSubviewsRectCornerSize = _layoutSubviewsRectCornerSize;\
+@synthesize layerCor = _layerCor;\
 @synthesize constraintMutArr = _constraintMutArr;\
 @synthesize thisViewSize = _thisViewSize;\
 @synthesize headerFooterViewStyle = _headerFooterViewStyle;\
@@ -185,6 +187,7 @@ typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewPro
 @dynamic jobsBackBlock;\
 @dynamic layoutSubviewsRectCorner;\
 @dynamic layoutSubviewsRectCornerSize;\
+@dynamic layerCor;\
 @dynamic constraintMutArr;\
 @dynamic thisViewSize;\
 @dynamic headerFooterViewStyle;\

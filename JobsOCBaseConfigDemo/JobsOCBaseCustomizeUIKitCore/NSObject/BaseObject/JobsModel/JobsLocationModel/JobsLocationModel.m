@@ -9,5 +9,6 @@
 
 @implementation JobsLocationModel
 UILocationProtocol_UIViewModelSynthesize
+@synthesize layerCor = _layerCor;
 
 @end

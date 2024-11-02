@@ -10,62 +10,47 @@
 
 @interface JobsExcelLeftListView()
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *excelConfigureData;
-@property(nonatomic,strong)NSValue *VerticalScrollValue;/**垂直滚动 */
+@property(nonatomic,strong)JobsExcelConfigureViewModel *_Nonnull excelConfigureData;
 
 @end
 
 @implementation JobsExcelLeftListView
-
-- (void)dealloc{
-     [self.excelConfigureData removeObserver:self forKeyPath:VerticalScrollBegin];
+@synthesize racDisposable = _racDisposable;
+- (void)dealloc {
+    [self.racDisposable dispose];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.tableView.reloadDatas();
     }return self;
 }
 #pragma mark —— BaseViewProtocol
--(jobsByIDBlock _Nonnull)jobsRichViewByModel{
+- (jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.excelConfigureData = model;
         self.tableView.rowHeight = model.itemH;
-        [self.excelConfigureData addObserver:self
-                                  forKeyPath:VerticalScrollBegin
-                                     options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                                     context:nil];
     };
 }
-#pragma mark —— KVO 监听
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
-                       context:(void *)context{
-    JobsExcelConfigureViewModel *excelConfigureData = (JobsExcelConfigureViewModel *)object;
-    if ([keyPath isEqualToString:VerticalScrollBegin]) {
-        self.tableView.contentOffset = excelConfigureData.VerticalScrollValue.CGPointValue;
-    }
-}
 #pragma mark —— UITableView 数据源
-- (NSInteger)tableView:(UITableView *)tableView
+-(NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
     return self.excelConfigureData.colNumber;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView
+-(CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.excelConfigureData.itemH;
 }
 #pragma mark —— UITableView 代理
-- (__kindof UITableViewCell *)tableView:(UITableView *)tableView
-                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                  cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewOneCell *cell = TableViewOneCell.cellStyleValue1WithTableView(tableView);
     
     cell.backgroundColor = indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2;
@@ -77,21 +62,27 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return cell;
 }
 #pragma mark —— UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"KKK3 = %f",scrollView.contentOffset.y);
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"KKK3 = %f", scrollView.contentOffset.y);
     /// 防止在初始情况下，无意义的往下拉动👇🏻
-    if (scrollView.contentOffset.y < 0) scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
+    if (scrollView.contentOffset.y < 0) {
+        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
+    }
     if (scrollView.contentOffset.y >= 0) {
         /// 防止在初始情况下，无意义的往上拉动👆🏻
         CGFloat d = ((self.excelConfigureData.colNumber + 1) * self.excelConfigureData.itemH - self.excelConfigureData.XZExcelH) + self.excelConfigureData.scrollOffsetY;
-        if(scrollView.contentOffset.y > d) scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
-        if(scrollView.contentOffset.y <= d) self.excelConfigureData.jobsKVC(VerticalScrollBegin,[NSValue valueWithCGPoint:scrollView.contentOffset]);
+        if(scrollView.contentOffset.y > d) {
+            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
+        }
+        if(scrollView.contentOffset.y <= d) {
+            self.excelConfigureData.VerticalScrollValue = [NSValue valueWithCGPoint:scrollView.contentOffset];
+        }
     }
 }
 #pragma mark —— lazyLoad
 /// BaseViewProtocol
 @synthesize tableView = _tableView;
-- (UITableView *)tableView{
+- (UITableView *)tableView {
     if (!_tableView) {
         _tableView = UITableView.initWithStylePlain;
         _tableView.showsVerticalScrollIndicator = NO;

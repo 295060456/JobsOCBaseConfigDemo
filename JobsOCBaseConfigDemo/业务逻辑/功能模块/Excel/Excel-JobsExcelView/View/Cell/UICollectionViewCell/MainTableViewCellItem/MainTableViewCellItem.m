@@ -9,10 +9,6 @@
 #import "MainTableViewCellItem.h"
 
 @interface MainTableViewCellItem()
-/// UI
-@property(nonatomic,strong)CATextLayer *textLayer;
-@property(nonatomic,strong)UIBezierPath *linePath;
-@property(nonatomic,strong)CAShapeLayer *lineLayer;
 /// Data
 @property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel_;
 @property(nonatomic,assign)CGSize size;
@@ -32,6 +28,14 @@
     }cell.indexPath = indexPath;
     return cell;
 }
+
+-(void)drawRect:(CGRect)rect{
+    [super drawRect:rect];
+    self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable data) {
+        data.layerCor = JobsLightGrayColor;
+        data.jobsWidth = JobsWidth(.5f);
+    }));
+}
 #pragma mark —— BaseCellProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
@@ -42,8 +46,6 @@
         CGSize size = CGSizeMake(viewModel.itemW - 1.0f, viewModel.itemH - 1.0f);
         if (!CGSizeEqualToSize(self.size, size)) {
             self.size = size;
-            [self drawLineWithSize:size];
-            self.textLayer.frame = CGRectMake(0, size.height * 0.5, size.width, size.height);
         }
     };
 }
@@ -54,37 +56,6 @@
 //        @jobs_strongify(self)
         super.jobsRichElementsInCellWithModel(model);
     };
-}
-
-- (void)drawLineWithSize:(CGSize)size{
-    // 其他点
-    [self.linePath addLineToPoint:CGPointMake(size.width, 0)];
-    [self.linePath addLineToPoint:CGPointMake(size.width, size.height)];
-    [self.linePath addLineToPoint:CGPointMake(0, size.height)];
-   
-    UIGraphicsBeginImageContext(size);
-    [self.linePath closePath];
-    [self.linePath stroke];
-    UIGraphicsEndImageContext();
-    
-    [self.btn.layer addSublayer:self.lineLayer];
-}
-#pragma mark —— lazyLoad
--(UIBezierPath *)linePath{
-    if(!_linePath){
-        _linePath = UIBezierPath.bezierPath;
-        [_linePath moveToPoint:CGPointMake(0, 0)]; // 起点
-    }return _linePath;
-}
-
--(CAShapeLayer *)lineLayer{
-    if(!_lineLayer){
-        _lineLayer = CAShapeLayer.layer;
-        _lineLayer.lineWidth = self.viewModel_.LineWidth;
-        _lineLayer.strokeColor = self.viewModel_.cor6.CGColor;
-        _lineLayer.path = self.linePath.CGPath;
-        _lineLayer.fillColor = JobsClearColor.CGColor; // 默认为blackColor
-    }return _lineLayer;
 }
 
 @end

@@ -7,10 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "UILocationProtocol.h"
+#import "BaseViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsLocationModel : NSObject<UILocationProtocol>
+@interface JobsLocationModel : NSObject<UILocationProtocol,BaseViewProtocol>
 #pragma mark —— UILocationProtocol
 ///// Frame
 //@property(nonatomic,assign)CGFloat jobsX;
@@ -29,3 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsLocationModel *_Nonnull jobsMakeLocationModel(jobsByLocationModelBlock _Nonnull block){
+    JobsLocationModel *data = JobsLocationModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

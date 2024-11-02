@@ -10,8 +10,11 @@
 #import "UIButtonModel.h"
 #import "JobsBlock.h"
 
-UIKIT_EXTERN NSString *_Nullable const VerticalScrollBegin;/// 垂直滚动键值
-UIKIT_EXTERN NSString *_Nullable const HorizontalScrollBegin;/// 水平滚动键值
+#if __has_include(<ReactiveObjC/ReactiveObjC.h>)
+#import <ReactiveObjC/ReactiveObjC.h>
+#else
+#import "ReactiveObjC.h"
+#endif
 
 @interface JobsExcelConfigureViewModel : NSObject
 #pragma mark —— 表格设置
@@ -47,7 +50,8 @@ UIKIT_EXTERN NSString *_Nullable const HorizontalScrollBegin;/// 水平滚动键
 @property(nonatomic,assign,readonly)NSInteger colNumber;/// 列数
 @property(nonatomic,strong)NSMutableArray <NSString *>*_Nullable topHeaderTitles;
 @property(nonatomic,strong)NSMutableArray <NSString *>*_Nullable leftTitles;
-
+@property(nonatomic,strong,nonnull)RACSubject *verticalScrollSignal;
+@property(nonatomic,strong,nonnull)RACSubject *horizontalScrollSignal;
 @property(nonatomic,copy)jobsByVoidBlock _Nonnull configureData;
 
 @end

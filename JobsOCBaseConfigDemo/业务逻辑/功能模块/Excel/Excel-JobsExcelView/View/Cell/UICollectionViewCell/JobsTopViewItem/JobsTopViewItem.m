@@ -39,6 +39,13 @@
     
     return cell;
 }
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    /// 内部指定圆切角
+    [self appointCornerCutToCircleByRoundingCorners:UIRectCornerAllCorners
+                                        cornerRadii:CGSizeMake(JobsWidth(0), JobsWidth(0))];
+}
 #pragma mark —— BaseCellProtocol
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
     @jobs_weakify(self)

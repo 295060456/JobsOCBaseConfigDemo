@@ -31,10 +31,7 @@
 }
 
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel{
-    @jobs_weakify(self)
-    return ^(id _Nullable data) {
-        @jobs_strongify(self)
-    };
+    return ^(id _Nullable data) {};
 }
 #pragma mark —— 用类方法定义
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -348,8 +345,8 @@
                                                UIScreen.mainScreen.scale);
 
         /// 获取当前scrollview的frame 和 contentOffset
-        CGRect saveFrame = scrollview.frame;
-        CGPoint saveOffset = scrollview.contentOffset;
+        // CGRect saveFrame = scrollview.frame;
+        // CGPoint saveOffset = scrollview.contentOffset;
         /// 置为起点
         scrollview.contentOffset = CGPointZero;
         scrollview.frame = CGRectMake(0,
@@ -529,6 +526,17 @@ JobsKey(_bottomBorderLayer)
         return self;
     };
 }
+/// 描边：统一设置Layer的线宽+颜色+圆切角
+-(jobsByLocationModelBlock _Nonnull)setLayerBy{
+    @jobs_weakify(self)
+    return ^(__kindof JobsLocationModel *_Nullable data){
+        @jobs_strongify(self)
+        self.layer.borderColor = data.layerCor.CGColor;
+        self.layer.borderWidth = data.jobsWidth;
+        self.layer.cornerRadius = data.cornerRadius;
+        self.layer.masksToBounds = YES;
+    };
+}
 /// 指定描边 【在使用这个方法的一个前提是被描边的view刷新后存在frame】
 /// @param color 作用颜色
 /// @param borderWidth 线宽
@@ -636,26 +644,21 @@ JobsKey(_cornerRadii)
     //    UIRectCornerBottomLeft  = 1 << 2,  左下角
     //    UIRectCornerBottomRight = 1 << 3,  右下角
     //    UIRectCornerAllCorners  = ~0UL     全部角
-    if (CGSizeEqualToSize(cornerRadii, CGSizeZero)) {
-        cornerRadii = CGSizeMake(self.width / 2,self.height / 2);
-    }
     /// 得到view的遮罩路径
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                    byRoundingCorners:corners
                                                          cornerRadii:cornerRadii];
-    /// 创建 layer
-    CAShapeLayer *maskLayer = CAShapeLayer.new;
-    maskLayer.frame = self.bounds;
-    /// 赋值
-    maskLayer.path = maskPath.CGPath;
-    self.layer.mask = maskLayer;
+    self.layer.mask = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable data) {
+        data.frame = self.bounds;
+        data.path = maskPath.CGPath;
+    });
 }
 #pragma mark —— @implementation UILabel (AutoScroll)
 /// 根据文字长短自动判断是否需要显示TextLayer，并且滚动
 -(void)setTextLayerScroll{
     CATextLayer * textLayer = self.getTextLayer;
     if (self.shouldAutoScroll){
-        CABasicAnimation * ani = self.getAnimation;
+        CABasicAnimation *ani = self.getAnimation;
         [textLayer addAnimation:ani forKey:nil];
         [self.layer addSublayer:textLayer];
     }else{

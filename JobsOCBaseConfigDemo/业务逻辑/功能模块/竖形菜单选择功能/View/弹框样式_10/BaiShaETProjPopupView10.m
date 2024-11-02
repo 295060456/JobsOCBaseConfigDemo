@@ -98,8 +98,11 @@ cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
         cell.btn.backgroundColor = HEXCOLOR(0xF3F3F3);
         cell.btn.jobsResetBtnTitleCor(HEXCOLOR(0x757575));
     }
-    
-    cell.cornerCutToCircleWithCornerRadius(JobsBtnStyleCVCell.cellSizeByModel(nil).height / 2);
+    cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable data) {
+        data.layerCor = JobsCor(@"#6E5600");
+        data.jobsWidth = JobsWidth(1);
+        data.cornerRadius = JobsBtnStyleCVCell.cellSizeByModel(nil).height / 2;
+    }));
     return cell;
 }
 

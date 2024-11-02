@@ -12,6 +12,12 @@
 #import "JobsTopViewItem.h"
 #import "JobsExcelConfigureViewModel.h"
 
+#if __has_include(<ReactiveObjC/ReactiveObjC.h>)
+#import <ReactiveObjC/ReactiveObjC.h>
+#else
+#import "ReactiveObjC.h"
+#endif
+
 @interface JobsExcelTopHeadView : UIView
 <
 UICollectionViewDelegate,
@@ -19,5 +25,7 @@ UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout,
 BaseViewProtocol
 >
+
+@property(nonatomic,strong,readonly)JobsExcelConfigureViewModel *_Nonnull excelConfigureData;
 
 @end

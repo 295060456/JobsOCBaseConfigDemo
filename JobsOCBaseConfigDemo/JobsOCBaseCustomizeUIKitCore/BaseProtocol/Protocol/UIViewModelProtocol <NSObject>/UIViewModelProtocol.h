@@ -133,6 +133,17 @@ NS_ASSUME_NONNULL_END
 @synthesize isMark = _isMark;\
 @synthesize presentUpHeight = _presentUpHeight;\
 \
+@synthesize racDisposable = _racDisposable;\
+@synthesize racSubject = _racSubject;\
+@synthesize reqSignal = _reqSignal;\
+@synthesize actionCommand = actionCommand;\
+@synthesize dataSequence = dataSequence;\
+@synthesize dataConnection = dataConnection;\
+@synthesize mainScheduler = mainScheduler;\
+@synthesize backgroundScheduler = backgroundScheduler;\
+@synthesize dataTuple = dataTuple;\
+\
+@synthesize isLock = _isLock;\
 @synthesize layerBorderCor = _layerBorderCor;\
 @synthesize layerBorderWidth = _layerBorderWidth;\
 @synthesize layerCornerRadius = _layerCornerRadius;\
@@ -147,7 +158,6 @@ NS_ASSUME_NONNULL_END
 @synthesize viewModelMutArr = _viewModelMutArr;\
 @synthesize jobsDataMutDic = _jobsDataMutDic;\
 @synthesize cls = _cls;\
-@synthesize reqSignal = _reqSignal;\
 @synthesize data = _data;\
 @synthesize data_weak = _data_weak;\
 @synthesize requestParams = _requestParams;\
@@ -304,6 +314,17 @@ NS_ASSUME_NONNULL_END
 @dynamic isMark;\
 @dynamic presentUpHeight;\
 \
+@dynamic racDisposable = _racDisposable;\
+@dynamic racSubject = _racSubject;\
+@dynamic reqSignal = _reqSignal;\
+@dynamic actionCommand = actionCommand;\
+@dynamic dataSequence = dataSequence;\
+@dynamic dataConnection = dataConnection;\
+@dynamic mainScheduler = mainScheduler;\
+@dynamic backgroundScheduler = backgroundScheduler;\
+@dynamic dataTuple = dataTuple;\
+\
+@dynamic isLock;\
 @dynamic layerBorderCor;\
 @dynamic layerBorderWidth;\
 @dynamic layerCornerRadius;\
@@ -318,7 +339,6 @@ NS_ASSUME_NONNULL_END
 @dynamic viewModelMutArr;\
 @dynamic jobsDataMutDic;\
 @dynamic cls;\
-@dynamic reqSignal;\
 @dynamic data;\
 @dynamic requestParams;\
 @dynamic viewModel;\

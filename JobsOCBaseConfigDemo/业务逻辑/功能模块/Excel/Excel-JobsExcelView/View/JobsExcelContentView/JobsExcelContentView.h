@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewProtocol.h"
+#import "JobsBlock.h"
 
 #import "JobsExcelConfigureViewModel.h"
 #import "MainTableViewCell.h"
@@ -20,5 +21,8 @@ UITableViewDataSource,
 MianTableViewCellDelegate,
 BaseViewProtocol
 >
+
+@property(nonatomic,strong,readonly)JobsExcelConfigureViewModel *_Nonnull excelConfigureData;
+-(jobsByPointBlock _Nonnull)configureContentOffSet;
 
 @end
