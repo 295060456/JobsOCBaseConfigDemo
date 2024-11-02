@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UIBezierPath+TextPath.h"
+#import "JobsDefineAllEnumHeader.h"
 #import "NSObject+Extras.h"
 #import "NSString+Check.h"
 #import "JobsBlock.h"
@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param aFont 文字的字号
 /// @param aColor 文字的颜色
 /// @param directionStr  文字显示的方向
--(CAShapeLayer *_Nonnull)animateOnView:(UIView *_Nonnull)aView
+-(CAShapeLayer *_Nonnull)animateOnView:(__kindof UIView *_Nonnull)aView
                                 atRect:(CGRect)aRect
                                forFont:(UIFont *)aFont
                              withColor:(UIColor *_Nonnull)aColor

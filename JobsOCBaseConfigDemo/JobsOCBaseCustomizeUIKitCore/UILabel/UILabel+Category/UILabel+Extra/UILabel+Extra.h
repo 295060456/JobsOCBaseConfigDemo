@@ -7,9 +7,10 @@
 
 #import <UIKit/UIKit.h>
 #import "JobsLabelDef.h"
+#import "JobsDefineAllEnumHeader.h"
 #import "UIView+Masonry.h"
 #import "UIView+AutoSelfAdaptionSize.h"
-#import "UIBezierPath+TextPath.h"
+#import "UIBezierPath+Extras.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,9 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)TransformLayerDirectionType transformLayerDirectionType;
 #pragma mark —— 一些公共方法
 /// UILabel文字旋转
--(void)transformLayer:(TransformLayerDirectionType)directionType;
+-(jobsByNSUIntegerBlock _Nonnull)transformLayer;
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
--(void)lbBackgroundImage:(UIImage *)bgImage;
+-(jobsByImageBlock _Nonnull)lbBackgroundImage;
 /// 设置UILabel的显示样式 【在Masonry以后拿到了frame】
 -(jobsByNSIntegerBlock _Nonnull)makeLabelByShowingType;
 

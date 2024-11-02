@@ -10,19 +10,27 @@
 @implementation UILabel (Extra)
 #pragma mark —— 一些公共方法
 /// UILabel文字旋转
--(void)transformLayer:(TransformLayerDirectionType)directionType{
-    /**
-     资料来源：
-     https://www.jianshu.com/p/3a08ef4762ac
-     https://github.com/wuzhenweichn/TextDirection
-     */
-    self.transformLayerDirectionType = directionType;
-    [self.layer addSublayer:self.shapeLayer];
-    self.textColor = JobsClearColor;
+-(jobsByNSUIntegerBlock _Nonnull)transformLayer{
+    @jobs_weakify(self)
+    return ^(TransformLayerDirectionType directionType){
+        @jobs_strongify(self)
+        /**
+         资料来源：
+         https://www.jianshu.com/p/3a08ef4762ac
+         https://github.com/wuzhenweichn/TextDirection
+         */
+        self.transformLayerDirectionType = directionType;
+        [self.layer addSublayer:self.shapeLayer];
+        self.textColor = JobsClearColor;
+    };
 }
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
--(void)lbBackgroundImage:(UIImage *)bgImage{
-    self.backgroundColor = self.byPatternImage(bgImage);
+-(jobsByImageBlock _Nonnull)lbBackgroundImage{
+    @jobs_weakify(self)
+    return ^(UIImage *_Nullable data){
+        @jobs_strongify(self)
+        self.backgroundColor = self.byPatternImage(data);
+    };
 }
 /// 设置UILabel的显示样式 【在Masonry以后拿到了frame】
 -(jobsByNSIntegerBlock _Nonnull)makeLabelByShowingType{

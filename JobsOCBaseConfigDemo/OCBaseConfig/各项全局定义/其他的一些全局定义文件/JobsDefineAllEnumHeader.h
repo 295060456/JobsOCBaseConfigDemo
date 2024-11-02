@@ -71,6 +71,16 @@ typedef NS_ENUM(NSInteger, DeviceOrientation) {
     DeviceOrientationLandscape /// 横屏
 };
 #endif /* DeviceOrientation_typedef */
+/// 文字方向
+#ifndef TransformLayerDirectionType_h
+#define TransformLayerDirectionType_h
+typedef NS_ENUM(NSUInteger, TransformLayerDirectionType) {
+    TransformLayerDirectionUp = 0,    /// 文字方向朝上(默认正常)
+    TransformLayerDirectionLeft,      /// 文字方向朝左
+    TransformLayerDirectionDown,      /// 文字方向朝下
+    TransformLayerDirectionRight      /// 文字方向朝右
+};
+#endif /* TransformLayerDirectionType_h */
 /// 当前类型
 #ifndef MyEnums_h
 #define MyEnums_h

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "JobsString.h"
+#import "NSString+Others.h"
 #import "UIImage+YBGIF.h"
 /// 直接拖图片在项目文件夹，没用Bundle进行管理，也没有用Assets.xcassets
 /// @param imgName 文件可以不强制要求带后缀名，系统会自动识别png文件
@@ -31,26 +32,25 @@ NS_INLINE UIImage *__nullable JobsGifIMG(NSString *__nonnull imgName){
 /// @param bundle_folderName 如果在此自定义Bundle下还存在文件夹，不管几级都在此写，属于中间路径，函数内部是进行字符串拼接；如果不存在可以传nil 或者JobsInternationalization(@"")
 /// @param ofType 文件类型（后缀名）
 NS_INLINE NSString *__nonnull JobsPathForResource(NSString *__nullable blueFolderName,
-                                                      NSString *__nullable pathForResource,
-                                                      NSString *__nullable bundle_folderName,
-                                                      NSString *__nullable ofType){
+                                                  NSString *__nullable pathForResource,
+                                                  NSString *__nullable bundle_folderName,
+                                                  NSString *__nullable ofType){
     NSString *filePath = nil;
-    if (isNull(blueFolderName)) {// 最外层是蓝色文件夹
+    /// 最外层是蓝色文件夹
+    if (isNull(blueFolderName)) {
         filePath = [NSBundle.mainBundle pathForResource:pathForResource
                                                  ofType:ofType
                                             inDirectory:blueFolderName];//蓝色文件夹下是bundle
-        
-        if (isNull(filePath)) {//蓝色文件夹下是蓝色文件夹
+        /// 蓝色文件夹下是蓝色文件夹
+        if (isNull(filePath)) {
             filePath = blueFolderName;
         }
-    }else{// 最外层是黄色文件夹
+    }else{/// 最外层是黄色文件夹
         filePath = pathForResource.add(@".").add(ofType).pathForResourceWithFullName;
     }
-    
     if (isValue(bundle_folderName)) {
         filePath = filePath.addPathComponent(bundle_folderName);
     }
-    
     if(!filePath) filePath = @"";
     return filePath;
 }
@@ -60,18 +60,17 @@ NS_INLINE NSString *__nonnull JobsPathForResource(NSString *__nullable blueFolde
 /// @param bundle_folderName 如果在此自定义Bundle下还存在文件夹，不管几级都在此写，属于中间路径，函数内部是进行字符串拼接；如果不存在可以传nil 或者JobsInternationalization(@"")
 /// @param fileFullNameWithSuffix 目标图片的名字。如果不带后缀名，则默认@".png" 后缀；如果是其他格式资源请自带后缀名
 NS_INLINE NSString *__nullable JobsPathForBuddleIMG(NSString *__nullable blueFolderName,
-                                                        NSString *__nullable pathForResource,
-                                                        NSString *__nullable bundle_folderName,
-                                                        NSString *__nonnull fileFullNameWithSuffix){
+                                                    NSString *__nullable pathForResource,
+                                                    NSString *__nullable bundle_folderName,
+                                                    NSString *__nonnull fileFullNameWithSuffix){
     NSString *filePath = JobsPathForResource(blueFolderName,
                                              pathForResource,
                                              bundle_folderName,
                                              @"bundle");
-    //容错处理
+    /// 容错处理
     if (![fileFullNameWithSuffix containsString:@"."]) {//如果是其他格式资源请自带后缀名
         fileFullNameWithSuffix = fileFullNameWithSuffix.add(@".png");
-    }
-    filePath = filePath.addPathComponent(fileFullNameWithSuffix);
+    }filePath = filePath.addPathComponent(fileFullNameWithSuffix);
     return filePath;
 }
 /// 读取自定义Bundle文件里面的图片 输出 UIImage *
@@ -80,16 +79,14 @@ NS_INLINE NSString *__nullable JobsPathForBuddleIMG(NSString *__nullable blueFol
 /// @param bundle_folderName 如果在此自定义Bundle下还存在文件夹，不管几级都在此写，属于中间路径，函数内部是进行字符串拼接；如果不存在可以传nil 或者JobsInternationalization(@"")
 /// @param fileFullNameWithSuffix 目标图片的名字。如果不带后缀名，则默认@".png" 后缀；如果是其他格式资源请自带后缀名
 NS_INLINE UIImage *__nullable JobsBuddleIMG(NSString *__nullable blueFolderName,
-                                                NSString *__nullable pathForResource,
-                                                NSString *__nullable bundle_folderName,
-                                                NSString *__nonnull fileFullNameWithSuffix){
-    
+                                            NSString *__nullable pathForResource,
+                                            NSString *__nullable bundle_folderName,
+                                            NSString *__nonnull fileFullNameWithSuffix){
     NSString *filePath = JobsPathForBuddleIMG(blueFolderName,
                                               pathForResource,
                                               bundle_folderName,
                                               fileFullNameWithSuffix);
-    UIImage *image = [UIImage imageWithContentsOfFile:filePath];
-    return image;
+    return [UIImage imageWithContentsOfFile:filePath];
 }
 /// 读取自定义Bundle文件里面的图片 输出 NSData *
 /// @param blueFolderName 如果资源存在于【蓝色文件夹】下则blueFolderName是蓝色文件夹的名字，如果资源位于【黄色文件夹】下则不填（亦可以传@""）
@@ -97,15 +94,14 @@ NS_INLINE UIImage *__nullable JobsBuddleIMG(NSString *__nullable blueFolderName,
 /// @param bundle_folderName 如果在此自定义Bundle下还存在文件夹，不管几级都在此写，属于中间路径，函数内部是进行字符串拼接；如果不存在可以传nil 或者JobsInternationalization(@"")
 /// @param fileFullNameWithSuffix 目标图片的名字。如果不带后缀名，则默认@".png" 后缀；如果是其他格式资源请自带后缀名
 NS_INLINE NSData *__nullable JobsDataByBuddleIMG(NSString *__nullable blueFolderName,
-                                                     NSString *__nonnull pathForResource,
-                                                     NSString *__nullable bundle_folderName,
-                                                     NSString *__nonnull fileFullNameWithSuffix){
+                                                 NSString *__nonnull pathForResource,
+                                                 NSString *__nullable bundle_folderName,
+                                                 NSString *__nonnull fileFullNameWithSuffix){
     NSString *filePath = JobsPathForBuddleIMG(blueFolderName,
                                               pathForResource,
                                               bundle_folderName,
                                               fileFullNameWithSuffix);
-    NSData *imgData = [NSData dataWithContentsOfFile:filePath];
-    return imgData;
+    return [NSData dataWithContentsOfFile:filePath];
 }
 /// 获取Bundle下的图片
 /// @param blueFolderName 如果资源存在于【蓝色文件夹】下则blueFolderName是蓝色文件夹的名字，如果资源位于【黄色文件夹】下则不填（亦可以传@""）
@@ -113,14 +109,13 @@ NS_INLINE NSData *__nullable JobsDataByBuddleIMG(NSString *__nullable blueFolder
 /// @param bundle_folderName 如果在此自定义Bundle下还存在文件夹，不管几级都在此写，属于中间路径，函数内部是进行字符串拼接；如果不存在可以传nil 或者JobsInternationalization(@"")
 /// @param fileFullNameWithSuffix 目标图片的名字。如果不带后缀名，则默认@".png" 后缀；如果是其他格式资源请自带后缀名
 NS_INLINE UIImage *__nullable JobsIMGByDataFromBuddleIMG(NSString *__nullable blueFolderName,
-                                                             NSString *__nonnull pathForResource,
-                                                             NSString *__nullable bundle_folderName,
-                                                             NSString *__nonnull fileFullNameWithSuffix){
-    UIImage *image = [UIImage imageWithData:JobsDataByBuddleIMG(blueFolderName,
-                                                                pathForResource,
-                                                                bundle_folderName,
-                                                                fileFullNameWithSuffix)];
-    return image;
+                                                         NSString *__nonnull pathForResource,
+                                                         NSString *__nullable bundle_folderName,
+                                                         NSString *__nonnull fileFullNameWithSuffix){
+    return [UIImage imageWithData:JobsDataByBuddleIMG(blueFolderName,
+                                                      pathForResource,
+                                                      bundle_folderName,
+                                                      fileFullNameWithSuffix)];
 }
 /**
  1、imageNamed,其参数为图片的名字。

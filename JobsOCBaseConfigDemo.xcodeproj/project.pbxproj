@@ -450,7 +450,7 @@
 		CE5A64EF2CA83065006D67A7 /* NSUserDefaults+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62452CA82C2D006D67A7 /* NSUserDefaults+Manager.m */; };
 		CE5A64F02CA8306B006D67A7 /* NSUserDefaults+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62482CA82C2D006D67A7 /* NSUserDefaults+Swizzle.m */; };
 		CE5A64F12CA83070006D67A7 /* UserDefaultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A624C2CA82C2D006D67A7 /* UserDefaultModel.m */; };
-		CE5A64F22CA8307E006D67A7 /* UIBezierPath+TextPath.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62572CA82C2D006D67A7 /* UIBezierPath+TextPath.m */; };
+		CE5A64F22CA8307E006D67A7 /* UIBezierPath+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62572CA82C2D006D67A7 /* UIBezierPath+Extras.m */; };
 		CE5A64F32CA8307E006D67A7 /* UIBarButtonItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62522CA82C2D006D67A7 /* UIBarButtonItem+Extra.m */; };
 		CE5A64F42CA830A8006D67A7 /* del_Photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5A62622CA82C2D006D67A7 /* del_Photo@2x.png */; };
 		CE5A64F52CA830A8006D67A7 /* del_Photo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5A62632CA82C2D006D67A7 /* del_Photo@3x.png */; };
@@ -2503,8 +2503,8 @@
 		CE5A62512CA82C2D006D67A7 /* UIBarButtonItem+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extra.h"; sourceTree = "<group>"; };
 		CE5A62522CA82C2D006D67A7 /* UIBarButtonItem+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extra.m"; sourceTree = "<group>"; };
 		CE5A62542CA82C2D006D67A7 /* JobsBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBarButtonItem.h; sourceTree = "<group>"; };
-		CE5A62562CA82C2D006D67A7 /* UIBezierPath+TextPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+TextPath.h"; sourceTree = "<group>"; };
-		CE5A62572CA82C2D006D67A7 /* UIBezierPath+TextPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+TextPath.m"; sourceTree = "<group>"; };
+		CE5A62562CA82C2D006D67A7 /* UIBezierPath+Extras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Extras.h"; sourceTree = "<group>"; };
+		CE5A62572CA82C2D006D67A7 /* UIBezierPath+Extras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Extras.m"; sourceTree = "<group>"; };
 		CE5A625A2CA82C2D006D67A7 /* JobsBezierPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBezierPath.h; sourceTree = "<group>"; };
 		CE5A625C2CA82C2D006D67A7 /* BaseButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseButton.h; sourceTree = "<group>"; };
 		CE5A625D2CA82C2D006D67A7 /* BaseButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseButton.m; sourceTree = "<group>"; };
@@ -10678,19 +10678,19 @@
 			path = UIBarButtonItem;
 			sourceTree = "<group>";
 		};
-		CE5A62582CA82C2D006D67A7 /* UIBezierPath+TextPath */ = {
+		CE5A62582CA82C2D006D67A7 /* UIBezierPath+Extras */ = {
 			isa = PBXGroup;
 			children = (
-				CE5A62562CA82C2D006D67A7 /* UIBezierPath+TextPath.h */,
-				CE5A62572CA82C2D006D67A7 /* UIBezierPath+TextPath.m */,
+				CE5A62562CA82C2D006D67A7 /* UIBezierPath+Extras.h */,
+				CE5A62572CA82C2D006D67A7 /* UIBezierPath+Extras.m */,
 			);
-			path = "UIBezierPath+TextPath";
+			path = "UIBezierPath+Extras";
 			sourceTree = "<group>";
 		};
 		CE5A62592CA82C2D006D67A7 /* UIBezierPath+Category */ = {
 			isa = PBXGroup;
 			children = (
-				CE5A62582CA82C2D006D67A7 /* UIBezierPath+TextPath */,
+				CE5A62582CA82C2D006D67A7 /* UIBezierPath+Extras */,
 			);
 			path = "UIBezierPath+Category";
 			sourceTree = "<group>";
@@ -15256,7 +15256,7 @@
 				CE5A65DE2CA8340C006D67A7 /* JobsShowNumView.m in Sources */,
 				CE4F27A42CA825CD002AF25B /* JobsExcelConfigureViewModel.m in Sources */,
 				CE4F27A52CA825CD002AF25B /* MsgEditBoardView.m in Sources */,
-				CE5A64F22CA8307E006D67A7 /* UIBezierPath+TextPath.m in Sources */,
+				CE5A64F22CA8307E006D67A7 /* UIBezierPath+Extras.m in Sources */,
 				CE5A64F32CA8307E006D67A7 /* UIBarButtonItem+Extra.m in Sources */,
 				CE4F27A62CA825CD002AF25B /* MainTableViewCell.m in Sources */,
 				CE4F27A72CA825CD002AF25B /* ForgetCodeStep_02View.m in Sources */,

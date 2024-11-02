@@ -20,7 +20,7 @@
  6、在较新的iOS版本中，要使用 NSKeyedUnarchiver 来解码对象，被解码的类必须采用 NSSecureCoding 协议，以确保数据的安全性。否则解码失败，报错：This decoder will only decode classes that adopt NSSecureCoding....
  */
 #pragma mark —— NSCoding
-- (instancetype)initWithCoder:(NSCoder *)decoder {
+- (instancetype)initWithCoder:(NSCoder *)decoder{
     if (self = [super init]) {
         // 如果是使用 MJExtension 解析，跳过 NSCoding 解析
         if(decoder.allowsKeyedCoding){

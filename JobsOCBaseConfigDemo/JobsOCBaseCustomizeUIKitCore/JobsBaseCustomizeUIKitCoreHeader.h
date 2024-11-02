@@ -117,6 +117,19 @@
 #import "NSURLRequest+Extra.h"
 #pragma mark —— NSURLSessionDataTask
 #import "NSURLSessionDataTask+Extra.h"
+
+#pragma mark —— 关于贝塞尔曲线的创建
+NS_INLINE __kindof UIBezierPath *_Nonnull jobsMakeBezierPath(jobsByBezierPathBlock _Nonnull block){
+    UIBezierPath *data = UIBezierPath.bezierPath;
+    if (block) block(data);
+    return data;
+}
+#pragma mark —— 关于Layer的创建
+NS_INLINE __kindof CAShapeLayer *_Nonnull jobsMakeCAShapeLayer(jobsByCAShapeLayerBlock _Nonnull block){
+    CAShapeLayer *data = CAShapeLayer.layer;
+    if (block) block(data);
+    return data;
+}
 #pragma mark —— 关于UIView的创建
 NS_INLINE __kindof UIImageView *_Nonnull jobsMakeImageView(jobsByImageViewBlock _Nonnull block){
     UIImageView *data = UIImageView.alloc.init;

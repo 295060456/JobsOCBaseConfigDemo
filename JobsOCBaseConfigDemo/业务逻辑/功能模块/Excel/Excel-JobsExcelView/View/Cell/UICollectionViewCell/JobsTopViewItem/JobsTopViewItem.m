@@ -49,7 +49,15 @@
         CGSize size = CGSizeMake(viewModel.itemW, viewModel.itemH);
         if (!CGSizeEqualToSize(self.size, size)) {
             self.size = size;
-            [self drawLineWithSize:size];
+            // 其他点
+            self.linePath.add(CGPointMake(size.width, 0));
+            self.linePath.add(CGPointMake(size.width, size.height));
+            self.linePath.add(CGPointMake(0, size.height));
+            
+            UIGraphicsBeginImageContext(size);
+            [self.linePath stroke];
+            UIGraphicsEndImageContext();
+            self.lineLayer.hidden = NO;
         }
     };
 }
@@ -59,45 +67,40 @@
         super.jobsRichElementsInCellWithModel(model);
     };
 }
-
-- (void)drawLineWithSize:(CGSize)size{
-    // 其他点
-    [self.linePath addLineToPoint:CGPointMake(size.width, 0)];
-    [self.linePath addLineToPoint:CGPointMake(size.width, size.height)];
-    [self.linePath addLineToPoint:CGPointMake(0, size.height)];
-    
-    UIGraphicsBeginImageContext(size);
-    [self.linePath stroke];
-    UIGraphicsEndImageContext();
-    self.lineLayer.hidden = NO;
-}
 #pragma mark —— lazyLoad
 -(UIImageView *)bgImageView{
     if(!_bgImageView){
-        _bgImageView = UIImageView.new;
-        _bgImageView.image = JobsIMG(@"投注记录");
-        [self.contentView addSubview:_bgImageView];
-        [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-        }];
+        @jobs_weakify(self)
+        _bgImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = JobsIMG(@"投注记录");
+            [self.contentView addSubview:imageView];
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+            }];
+        });
     }return _bgImageView;
 }
 
 -(UIBezierPath *)linePath{
     if(!_linePath){
-        _linePath = UIBezierPath.bezierPath;
-        [_linePath moveToPoint:CGPointMake(0, 0)];// 起点
+        _linePath = jobsMakeBezierPath(^(__kindof UIBezierPath *_Nullable data) {
+            [data moveToPoint:CGPointMake(0, 0)];// 起点
+        });
     }return _linePath;
 }
 
 -(CAShapeLayer *)lineLayer{
     if(!_lineLayer){
-        _lineLayer = CAShapeLayer.layer;
-        _lineLayer.lineWidth = self.viewModel_.LineWidth;
-        _lineLayer.strokeColor = self.viewModel_.cor6.CGColor;
-        _lineLayer.path = self.linePath.CGPath;
-        _lineLayer.fillColor = JobsClearColor.CGColor; // 默认为blackColor
-        [self.btn.layer addSublayer:_lineLayer];
+        @jobs_weakify(self)
+        _lineLayer = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable data) {
+            @jobs_strongify(self)
+            data.lineWidth = self.viewModel_.LineWidth;
+            data.strokeColor = self.viewModel_.cor6.CGColor;
+            data.path = self.linePath.CGPath;
+            data.fillColor = JobsClearColor.CGColor; // 默认为blackColor
+            [self.btn.layer addSublayer:data];
+        });
     }return _lineLayer;
 }
 

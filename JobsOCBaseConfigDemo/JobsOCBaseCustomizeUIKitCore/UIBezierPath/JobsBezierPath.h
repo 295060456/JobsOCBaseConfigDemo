@@ -8,6 +8,6 @@
 #ifndef JobsBezierPath_h
 #define JobsBezierPath_h
 
-#import "UIBezierPath+TextPath.h"
+#import "UIBezierPath+Extras.h"
 
 #endif /* JobsBezierPath_h */

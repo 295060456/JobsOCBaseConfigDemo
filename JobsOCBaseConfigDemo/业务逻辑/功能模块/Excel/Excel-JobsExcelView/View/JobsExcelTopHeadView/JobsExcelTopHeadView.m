@@ -10,7 +10,6 @@
 
 @interface JobsExcelTopHeadView()
 
-//@property(nonatomic,strong)UICollectionView *collectionView;
 @property(nonatomic,strong)JobsExcelConfigureViewModel *vm;
 
 @end
