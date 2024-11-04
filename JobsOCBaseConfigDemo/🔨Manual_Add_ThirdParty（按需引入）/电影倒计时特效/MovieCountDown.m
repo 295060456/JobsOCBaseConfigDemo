@@ -87,7 +87,9 @@
 
 -(UILabel *)countDown{
     if (!_countDown) {
+        @jobs_weakify(self)
         _countDown = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
             label.textColor = self.countDownTextColor;
             label.font = [UIFont boldSystemFontOfSize:100];
             label.textAlignment = 1;

@@ -28,7 +28,6 @@ UILocationProtocol_UIViewModelSynthesize
             @jobs_strongify(self)
             data.timerStyle = self.countDownBtnType;
             data.anticlockwiseTime = self.count;//【逆时针模式：到这个时间点结束】、【顺时针模式：从这个时间点开始】
-            @jobs_weakify(self)
             //倒计时启动
             [data actionObjectBlock:^(TimerProcessModel *data) {
                 @jobs_strongify(self)
@@ -44,9 +43,9 @@ UILocationProtocol_UIViewModelSynthesize
     if (self.labelShowingType == UILabelShowingType_05) {//提行模式
         if (![_formatTimeStr containsString:@"\n"] && _formatTimeStr) {
             if (self.cequenceForShowTitleRuningStrType == CequenceForShowTitleRuningStrType_front) {
-                _formatTimeStr = [@"\n" stringByAppendingString:_formatTimeStr];
+                _formatTimeStr = @"\n".add(_formatTimeStr);
             }else if (self.cequenceForShowTitleRuningStrType == CequenceForShowTitleRuningStrType_tail){
-                _formatTimeStr = [_formatTimeStr stringByAppendingString:@"\n"];
+                _formatTimeStr = _formatTimeStr.add(@"\n");
             }else{}
         }
     }return _formatTimeStr;
@@ -134,6 +133,7 @@ UILocationProtocol_UIViewModelSynthesize
 @end
 
 @implementation ButtonTimerProcessValueModel
+UILocationProtocol_UIViewModelSynthesize
 UIPictureAndBackGroundCorProtocol_synthesize
 UITextModelProtocol_synthesize
 UITextModelProtocol_UIViewModelSynthesize

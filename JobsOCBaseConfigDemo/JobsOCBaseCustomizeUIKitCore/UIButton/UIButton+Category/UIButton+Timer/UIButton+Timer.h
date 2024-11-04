@@ -7,14 +7,18 @@
 
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
+#import "MacroDef_Func.h"
+#import "JobsAttributedString.h"
+
 #import "NSObject+Time.h"
 #import "NSObject+RichText.h"/// 富文本
-#import "NSString+Others.h"
+#import "NSObject+NSMutableParagraphStyle.h"
 #import "NSObject+Extras.h"
+#import "NSString+Others.h"
+
 #import "JobsTimerManager.h"/// 时间管理
 #import "ButtonTimerDefStructure.h"
 #import "ButtonTimerConfigModel.h"
-#import "MacroDef_Func.h"
 #import "UIButton+UI.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
@@ -34,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIButton (Timer)
 
 @property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfig;
+-(ButtonTimerProcessValueModel *)readyPlayValue;
+-(ButtonTimerProcessValueModel *)runningValue;
+-(ButtonTimerProcessValueModel *)endValue;
 #pragma mark —— 时间相关方法【开启定时器】
 -(jobsByVoidBlock _Nonnull)startTimer;/// 开启计时【用初始化时间】
 -(jobsByNSIntegerBlock _Nonnull)startFromTimer;/// 开启计时【从某个时间】
