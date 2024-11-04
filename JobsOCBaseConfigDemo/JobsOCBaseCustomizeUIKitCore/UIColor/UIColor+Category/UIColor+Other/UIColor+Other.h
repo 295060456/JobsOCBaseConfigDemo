@@ -9,6 +9,7 @@
 #import "JobsBlock.h"
 #import "JobsCorModel.h"
 #import "MacroDef_Cor.h"
+#import "JobsBaseCustomizeUIKitCoreHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -506,6 +507,7 @@ NS_INLINE UIColor *_Nullable JobsUnderPageBackgroundCor(CGFloat alpha){
                             blue:corModel.blue
                            alpha:alpha];
 }
+
 #pragma clang pop
 
 

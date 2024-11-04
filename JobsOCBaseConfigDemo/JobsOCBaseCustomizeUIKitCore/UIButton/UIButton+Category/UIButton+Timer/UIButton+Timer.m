@@ -30,15 +30,15 @@
 }
 #pragma clang diagnostic pop
 #pragma mark —— 一些公有方法
--(ButtonTimerProcessValueModel *)readyPlayValue{
+-(UIButtonModel *)readyPlayValue{
     return self.btnTimerConfig.readyPlayValue;
 }
 
--(ButtonTimerProcessValueModel *)runningValue{
+-(UIButtonModel *)runningValue{
     return self.btnTimerConfig.runningValue;
 }
 
--(ButtonTimerProcessValueModel *)endValue{
+-(UIButtonModel *)endValue{
     return self.btnTimerConfig.endValue;
 }
 #pragma mark —— 一些私有方法
@@ -58,7 +58,7 @@
 /// 设置Layer
 -(jobsByButtonTimerProcessValueModelBlock _Nonnull)setLayer{
     @jobs_weakify(self)
-    return ^(ButtonTimerProcessValueModel *_Nullable data){
+    return ^(UIButtonModel *_Nullable data){
         @jobs_strongify(self)
         self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
             model.layerCor = data.layerBorderCor;
@@ -164,7 +164,7 @@
 #pragma mark —— 设置普通标题或者富文本标题【计时器未开始】文字内容
 -(jobsByButtonTimerProcessValueModelBlock)toSetTitle{
     @jobs_weakify(self)
-    return ^(ButtonTimerProcessValueModel *_Nullable data) {
+    return ^(UIButtonModel *_Nullable data) {
         @jobs_strongify(self)
         self.jobsResetAttributedTitle(JobsAttributedStringByAttributes(data.text,
                                                                        jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
@@ -268,7 +268,7 @@
     @jobs_weakify(self)
     return ^(void) {
         @jobs_strongify(self)
-        self.timerRuning(self.btnTimerConfig.timerManager.timerProcessModel.data.anticlockwiseTime);
+        self.timerRuning(self.btnTimerConfig.timerManager.timerProcessModel.timerManager.anticlockwiseTime);
     };
 }
 #pragma mark —— 时间相关方法【定时器运行中】❤️核心方法❤️
@@ -385,16 +385,16 @@ JobsKey(_btnTimerConfig)
     }
     /// 定时器运行时的Block
     @jobs_weakify(self)
-    [BtnTimerConfig actionObjectBlock:^(TimerProcessModel *data) {
+    [BtnTimerConfig actionObjectBlock:^(UIButtonModel *data) {
         @jobs_strongify(self)
         switch (data.timerProcessType) {
             case TimerProcessType_ready:{
                 
             }break;
             case TimerProcessType_running:{
-                data.data.timerStyle = BtnTimerConfig.countDownBtnType;
-                NSLog(@"DDD = %f",data.data.anticlockwiseTime);
-                self.timerRuning((long)data.data.anticlockwiseTime);//倒计时方法
+                data.timerManager.timerStyle = BtnTimerConfig.countDownBtnType;
+                NSLog(@"DDD = %f",data.timerManager.anticlockwiseTime);
+                self.timerRuning((long)data.timerManager.anticlockwiseTime);//倒计时方法
             }break;
             case TimerProcessType_end:{
                 self.timerDestroy();

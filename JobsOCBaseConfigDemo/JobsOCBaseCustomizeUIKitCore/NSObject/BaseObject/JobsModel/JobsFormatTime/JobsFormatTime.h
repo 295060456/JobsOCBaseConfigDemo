@@ -20,13 +20,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *minute;
 @property(nonatomic,copy)NSString *second;
 
--(NSString *_Nonnull)formatTimeWithYear:(NSString * _Nullable)year
-                                  month:(NSString * _Nullable)month
-                                    day:(NSString * _Nullable)day
-                                   hour:(NSString * _Nullable)hour
-                                 minute:(NSString * _Nullable)minute
-                                 second:(NSString * _Nullable)second;
+-(NSString *_Nonnull)formatTimeWithYear:(NSString *_Nullable)year
+                                  month:(NSString *_Nullable)month
+                                    day:(NSString *_Nullable)day
+                                   hour:(NSString *_Nullable)hour
+                                 minute:(NSString *_Nullable)minute
+                                 second:(NSString *_Nullable)second;
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsFormatTime *_Nonnull jobsMakeFormatTime(jobsByFormatTimeBlock _Nonnull block){
+    JobsFormatTime *data = JobsFormatTime.alloc.init;
+    if (block) block(data);
+    return data;
+}

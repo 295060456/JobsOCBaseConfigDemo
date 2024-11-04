@@ -101,166 +101,182 @@
 
 -(void)timerFunc{
     CAGradientLayer *gradLayer = self.gradLayer;
-    NSMutableArray *copyArray = [NSMutableArray arrayWithArray:[gradLayer colors]];
-    UIColor *lastColor = [copyArray lastObject];
+    NSMutableArray *copyArray = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        [data addObjectsFromArray:gradLayer.colors];
+    });
+    UIColor *lastColor = copyArray.lastObject;
     [copyArray removeLastObject];
     if (lastColor) {
-        [copyArray insertObject:lastColor
-                        atIndex:0];
-    }
-    self.gradLayer.colors = copyArray;
+        [copyArray insertObject:lastColor atIndex:0];
+    }self.gradLayer.colors = copyArray;
 }
 #pragma mark —— lazyLoad
 -(CGFloat)increment{
-    if (_increment == 0) {
+    if (!_increment) {
         _increment = 0.1;
     }return _increment;
 }
 
 -(NSTimeInterval)color_timeInterval{
-    if (_color_timeInterval == 0) {
+    if (!_color_timeInterval) {
         _color_timeInterval = 0.03;
     }return _color_timeInterval;
 }
 
 -(NSTimeInterval)length_timeInterval{
-    if (_length_timeInterval == 0) {
+    if (!_length_timeInterval) {
         _length_timeInterval = 1;
     }return _length_timeInterval;
 }
 
 -(NSTimeInterval)length_timeSecIntervalSinceDate{
-    if (_length_timeSecIntervalSinceDate == 0) {
+    if (!_length_timeSecIntervalSinceDate) {
         _length_timeSecIntervalSinceDate = 2;
     }return _length_timeSecIntervalSinceDate;
 }
 
 -(NSTimerManager *)nsTimerManager_color{
     if (!_nsTimerManager_color) {
-        _nsTimerManager_color = NSTimerManager.new;
-        _nsTimerManager_color.timeInterval = self.color_timeInterval;
-        _nsTimerManager_color.timerStyle = TimerStyle_clockwise;
         @jobs_weakify(self)
-        [_nsTimerManager_color actionObjectBlock:^(TimerProcessModel *data) {
+        _nsTimerManager_color = jobsMakeTimerManager(^(NSTimerManager * _Nullable data) {
             @jobs_strongify(self)
-            switch (data.timerProcessType) {
-                case TimerProcessType_ready:{
-                    
-                }break;
-                case TimerProcessType_running:{
-                    [self timerFunc];
-                }break;
-                case TimerProcessType_end:{
-                    NSLog(@"我死球了");
-                }break;
-                    
-                default:
-                    break;
-            }
-        }];
+            data.timeInterval = self.color_timeInterval;
+            data.timerStyle = TimerStyle_clockwise;
+            @jobs_weakify(self)
+            [data actionObjectBlock:^(UIButtonModel *data) {
+                @jobs_strongify(self)
+                switch (data.timerProcessType) {
+                    case TimerProcessType_ready:{
+                        
+                    }break;
+                    case TimerProcessType_running:{
+                        [self timerFunc];
+                    }break;
+                    case TimerProcessType_end:{
+                        NSLog(@"我死球了");
+                    }break;
+                        
+                    default:
+                        break;
+                }
+            }];
+        });
     }return _nsTimerManager_color;
 }
 
 -(NSTimerManager *)nsTimerManager_length{
     if (!_nsTimerManager_length) {
-        _nsTimerManager_length = NSTimerManager.new;
-        _nsTimerManager_length.timeInterval = self.length_timeInterval;
-        _nsTimerManager_length.timeSecIntervalSinceDate = self.length_timeSecIntervalSinceDate;
-        _nsTimerManager_length.timerStyle = TimerStyle_clockwise;
         @jobs_weakify(self)
-        [_nsTimerManager_length actionObjectBlock:^(TimerProcessModel *data) {
-            NSLog(@"你好");
+        _nsTimerManager_length = jobsMakeTimerManager(^(NSTimerManager *_Nullable data) {
             @jobs_strongify(self)
-            switch (data.timerProcessType) {
-                case TimerProcessType_ready:{
-                    
-                }break;
-                case TimerProcessType_running:{
-                    if (self.progress < 1) {
-                        [self start];
+            data.timeInterval = self.length_timeInterval;
+            data.timeSecIntervalSinceDate = self.length_timeSecIntervalSinceDate;
+            data.timerStyle = TimerStyle_clockwise;
+            [data actionObjectBlock:^(UIButtonModel *data) {
+                @jobs_strongify(self)
+                switch (data.timerProcessType) {
+                    case TimerProcessType_ready:{
                         
-                        WGradientProgressModel *model = WGradientProgressModel.new;
-                        model.progress = self.progress;
-                        model.gradLayer = self.gradLayer;
+                    }break;
+                    case TimerProcessType_running:{
+                        if (self.progress < 1) {
+                            [self start];
+                            
+                            WGradientProgressModel *model = WGradientProgressModel.new;
+                            model.progress = self.progress;
+                            model.gradLayer = self.gradLayer;
+                            
+                            if (self.objectBlock) self.objectBlock(model);
+                            
+                            self.progress += self.increment;
+                        }else{
+                            [self.nsTimerManager_length nsTimeDestroy];//销毁
+                        }
+                    }break;
+                    case TimerProcessType_end:{
+                        NSLog(@"我死球了");
+                    }break;
                         
-                        if (self.objectBlock) self.objectBlock(model);
-                        
-                        self.progress += self.increment;
-                    }else{
-                        //销毁
-                        [self.nsTimerManager_length nsTimeDestroy];
-                    }
-                }break;
-                case TimerProcessType_end:{
-                    NSLog(@"我死球了");
-                }break;
-                    
-                default:
-                    break;
-            }
-        }];
-
+                    default:
+                        break;
+                }
+            }];
+        });
     }return _nsTimerManager_length;
 }
 
 -(NSMutableArray *)colors{
     if (!_colors) {
-        _colors = NSMutableArray.array;
-        for (NSInteger deg = 0; deg <= 360; deg += 5) {
-            if (self.progressType == WGradientProgressType_colorNormal) {
-                [_colors addObject:(id)self.progressColor.CGColor];
-            }else{
-                UIColor *color = [UIColor colorWithHue:1.0 * deg / 360.0
-                                            saturation:1.0
-                                            brightness:1.0
-                                                 alpha:1.0];
-                [_colors addObject:(id)color.CGColor];
+        @jobs_weakify(self)
+        _colors = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            for (NSInteger deg = 0; deg <= 360; deg += 5) {
+                if (self.progressType == WGradientProgressType_colorNormal) {
+                    data.add((id)self.progressColor.CGColor);
+                }else{
+                    data.add((id)jobsMakeCor2(^(JobsCorModel * _Nullable data1) {
+                        data1.hue = 1.0 * deg / 360.0;
+                        data1.saturation = 1.f;
+                        data1.brightness = 1.f;
+                        data1.alpha = 1.f;
+                    }).CGColor);
+                }
             }
-        }
+        });
     }return _colors;
 }
 
 -(CAGradientLayer *)gradLayer{
     if (!_gradLayer) {
-        _gradLayer = CAGradientLayer.layer;
-        _gradLayer.frame = CGRectZero;
-        _gradLayer.borderWidth = 1;
-        _gradLayer.startPoint = CGPointMake(0, 0);
-        _gradLayer.endPoint = CGPointMake(1, 1);
-        _gradLayer.colors = [NSArray arrayWithArray:self.colors];
-        [self.layer addSublayer:_gradLayer];
+        @jobs_weakify(self)
+        _gradLayer = jobsMakeGradientLayer(^(__kindof CAGradientLayer * _Nullable data) {
+            @jobs_strongify(self)
+            data.frame = CGRectZero;
+            data.borderWidth = 1;
+            data.startPoint = CGPointMake(0, 0);
+            data.endPoint = CGPointMake(1, 1);
+            data.colors = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+                [data addObjectsFromArray:self.colors];
+            });[self.layer addSublayer:data];
+        });
     }return _gradLayer;
 }
 
 -(CALayer *)roadLayer{
     if (!_roadLayer) {
-        _roadLayer = CALayer.layer;
-        _roadLayer.frame = self.bounds;
-        _roadLayer.backgroundColor = JobsLightGrayColor.CGColor;
-        [self.layer addSublayer:_roadLayer];
+        @jobs_weakify(self)
+        _roadLayer = jobsMakeCALayer(^(__kindof CALayer * _Nullable data) {
+            @jobs_strongify(self)
+            data.frame = self.bounds;
+            data.backgroundColor = JobsLightGrayColor.CGColor;
+            [self.layer addSublayer:data];
+        });
     }return _roadLayer;
 }
 
 -(CALayer *)fenceLayer{
     if (!_fenceLayer) {
-        _fenceLayer = CALayer.layer;
-        _fenceLayer.frame = CGRectMake(self.fenceLayer_x,
-                                       0,
-                                       self.fenceLayer_width,
-                                       self.mj_h);
-        _fenceLayer.backgroundColor = self.fenceLayerColor.CGColor;
-        [self.gradLayer addSublayer:_fenceLayer];
+        @jobs_weakify(self)
+        _fenceLayer = jobsMakeCALayer(^(__kindof CALayer * _Nullable data) {
+            @jobs_strongify(self)
+            data.frame = CGRectMake(self.fenceLayer_x,
+                                    0,
+                                    self.fenceLayer_width,
+                                    self.mj_h);
+            data.backgroundColor = self.fenceLayerColor.CGColor;
+            [self.gradLayer addSublayer:data];
+        });
     }return _fenceLayer;
 }
 
 -(CGFloat)fenceLayer_x{
-    if (_fenceLayer_x == 0) {
+    if (!_fenceLayer_x) {
         _fenceLayer_x = self.width * 0.3;
     }return _fenceLayer_x;
 }
 
 -(CGFloat)fenceLayer_width{
-    if (_fenceLayer_width == 0) {
+    if (!_fenceLayer_width) {
         _fenceLayer_width = 5;
     }return _fenceLayer_width;
 }

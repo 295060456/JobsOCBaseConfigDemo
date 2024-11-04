@@ -217,9 +217,9 @@
         })).onClick(^(__kindof UIButton *_Nullable x){
             x.startTimer();
         }).heartBeat(^(id _Nullable data){
-            if ([data isKindOfClass:TimerProcessModel.class]) {
-                TimerProcessModel *model = (TimerProcessModel *)data;
-                NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
+            if ([data isKindOfClass:UIButtonModel.class]) {
+                UIButtonModel *model = (UIButtonModel *)data;
+                NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
             }
         }).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.layerCor = HEXCOLOR(0xAE8330);

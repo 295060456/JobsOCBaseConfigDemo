@@ -102,13 +102,14 @@
 -(NSString *)getMMSSFromStr:(NSString *_Nonnull)totalTime
                  formatTime:(JobsFormatTime *_Nullable)formatTime{
     if (!formatTime) {
-        formatTime = JobsFormatTime.new;
-        formatTime.year =
-        formatTime.month =
-        formatTime.day =
-        formatTime.hour =
-        formatTime.minute =
-        formatTime.second = JobsInternationalization(@":");
+        formatTime = jobsMakeFormatTime(^(__kindof JobsFormatTime * _Nullable data) {
+            data.year =
+            data.month =
+            data.day =
+            data.hour =
+            data.minute =
+            data.second = JobsInternationalization(@":");
+        });
     }return [formatTime formatTimeWithYear:nil
                                      month:nil
                                        day:nil

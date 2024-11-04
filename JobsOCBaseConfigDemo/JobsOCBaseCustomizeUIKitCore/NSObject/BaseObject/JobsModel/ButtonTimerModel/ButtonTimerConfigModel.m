@@ -29,7 +29,7 @@ UILocationProtocol_UIViewModelSynthesize
             data.timerStyle = self.countDownBtnType;
             data.anticlockwiseTime = self.count;//【逆时针模式：到这个时间点结束】、【顺时针模式：从这个时间点开始】
             //倒计时启动
-            [data actionObjectBlock:^(TimerProcessModel *data) {
+            [data actionObjectBlock:^(UIButtonModel *data) {
                 @jobs_strongify(self)
                 NSLog(@"正在倒计时...");
                 NSLog(@"SSS = %@",self.objectBlock);
@@ -51,9 +51,9 @@ UILocationProtocol_UIViewModelSynthesize
     }return _formatTimeStr;
 }
 /// 计时器未开始
--(ButtonTimerProcessValueModel *)readyPlayValue{
+-(UIButtonModel *)readyPlayValue{
     if (!_readyPlayValue) {
-        _readyPlayValue = jobsMakeButtonTimerProcessValueModel(^(__kindof ButtonTimerProcessValueModel * _Nullable data) {
+        _readyPlayValue = jobsMakeButtonTimerProcessValueModel(^(__kindof UIButtonModel * _Nullable data) {
 //            data.layerBorderCor = JobsWhiteColor;
 //            data.textCor = JobsWhiteColor;
 //            data.font = UIFontWeightRegularSize(12);
@@ -72,10 +72,10 @@ UILocationProtocol_UIViewModelSynthesize
     }return _readyPlayValue;
 }
 /// 计时器进行中
--(ButtonTimerProcessValueModel *)runningValue{
+-(UIButtonModel *)runningValue{
     if (!_runningValue) {
         @jobs_weakify(self)
-        _runningValue = jobsMakeButtonTimerProcessValueModel(^(ButtonTimerProcessValueModel * _Nullable data) {
+        _runningValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable data) {
             @jobs_strongify(self)
 //            data.layerBorderCor = JobsRedColor;
 //            data.textCor = JobsGreenColor;
@@ -95,10 +95,10 @@ UILocationProtocol_UIViewModelSynthesize
     }return _runningValue;
 }
 /// 计时器结束
--(ButtonTimerProcessValueModel *)endValue{
+-(UIButtonModel *)endValue{
     if (!_endValue) {
         @jobs_weakify(self)
-        _endValue = jobsMakeButtonTimerProcessValueModel(^(ButtonTimerProcessValueModel * _Nullable data) {
+        _endValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable data) {
             @jobs_strongify(self)
             data.layerBorderCor = self.readyPlayValue.layerBorderCor;
             data.textCor = self.readyPlayValue.textCor;
@@ -128,52 +128,6 @@ UILocationProtocol_UIViewModelSynthesize
     if (!_secondStr) {
         _secondStr = JobsInternationalization(@"Sec");
     }return _secondStr;
-}
-
-@end
-
-@implementation ButtonTimerProcessValueModel
-UILocationProtocol_UIViewModelSynthesize
-UIPictureAndBackGroundCorProtocol_synthesize
-UITextModelProtocol_synthesize
-UITextModelProtocol_UIViewModelSynthesize
-UIViewModelOthersProtocol_synthesize
-
-#pragma mark —— 缺省值
--(UIColor *)layerBorderCor{
-    if(!_layerBorderCor){
-        _layerBorderCor = JobsWhiteColor;
-    }return _layerBorderCor;
-}
-
--(UIColor *)textCor{
-    if(!_textCor){
-        _textCor = JobsWhiteColor;
-    }return _textCor;
-}
-
--(UIFont *)font{
-    if(!_font){
-        _font = UIFontWeightRegularSize(12);
-    }return _font;
-}
-
--(UIColor *)bgCor{
-    if(!_bgCor){
-        _bgCor = JobsLightGrayColor;
-    }return _bgCor;
-}
-
--(CGFloat)layerCornerRadius{
-    if(!_layerCornerRadius){
-        _layerCornerRadius = JobsWidth(8);
-    }return _layerCornerRadius;
-}
-
--(CGFloat)layerBorderWidth{
-    if(!_layerBorderWidth){
-        _layerBorderWidth = 0.5f;
-    }return _layerBorderWidth;
 }
 
 @end

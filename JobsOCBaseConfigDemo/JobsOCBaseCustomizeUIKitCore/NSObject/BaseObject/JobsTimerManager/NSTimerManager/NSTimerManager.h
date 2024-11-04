@@ -15,13 +15,6 @@
 #import "MacroDef_Func.h"
 
 @class NSTimerManager;
-
-typedef enum : NSInteger {
-    TimerProcessType_ready = 0,
-    TimerProcessType_running,
-    TimerProcessType_end
-} TimerProcessType;
-
 /**
  *  此类虽然为工具类，但是不允许用单例，因为timer需要被释放
 
@@ -29,13 +22,6 @@ typedef enum : NSInteger {
  *  scheduledTimerWithTimeInterval相比它的小伙伴们不仅仅是创建了NSTimer对象, 还把该对象加入到了当前的runloop中，runloop的模式为默认模式（NSDefaultRunLoopMode）!
  */
 NS_ASSUME_NONNULL_BEGIN
-
-@interface TimerProcessModel : NSObject
-
-@property(nonatomic,assign)TimerProcessType timerProcessType;
-@property(nonatomic,strong)NSTimerManager *data;
-
-@end
 
 @interface NSTimerManager : NSObject
 
@@ -48,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat anticlockwiseTime;/// ❤️【逆时针模式：到这个时间点结束】、【顺时针模式：从这个时间点开始】
 @property(nonatomic,assign,readonly)NSTimerCurrentStatus timerCurrentStatus;// 定时器当前状态
 
-@property(nonatomic,strong)TimerProcessModel *timerProcessModel;
+@property(nonatomic,strong)UIButtonModel *timerProcessModel;
 @property(nonatomic,assign)NSTimeInterval timeSecIntervalSinceDate;/// 推移时间，秒数
 @property(nonatomic,assign)NSTimeInterval timeInterval;/// 时间间距
 @property(nonatomic,assign)BOOL repeats;
@@ -113,8 +99,8 @@ NS_INLINE NSTimerManager *_Nonnull jobsMakeTimerManager(jobsByTimerManagerBlock 
          @jobs_weakify(self)
          [_nsTimerManager actionObjectBlock:^(id data) {
              @jobs_strongify(self)
-             if ([data isKindOfClass:TimerProcessModel.class]) {
-                 TimerProcessModel *model = (TimerProcessModel *)data;
+             if ([data isKindOfClass:UIButtonModel.class]) {
+                 UIButtonModel *model = (UIButtonModel *)data;
                  NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
                  self.valueLab.text = [NSString stringWithFormat:@"%.2f",model.data.anticlockwiseTime];
              }

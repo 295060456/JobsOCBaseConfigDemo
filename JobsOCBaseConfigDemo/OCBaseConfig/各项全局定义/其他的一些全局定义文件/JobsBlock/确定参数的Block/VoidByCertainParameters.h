@@ -19,6 +19,10 @@ typedef void(^jobsBySelectorBlock)(id _Nullable weakSelf,id _Nullable arg);
 typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
 #pragma mark —— 关于UIControl
 typedef void(^jobsByControlBlock)(UIControl *_Nullable ctrl);
+#pragma mark —— 关于Layer
+typedef void(^jobsByCAShapeLayerBlock)(__kindof CAShapeLayer *_Nullable data);
+typedef void(^jobsByCALayerBlock)(__kindof CALayer *_Nullable data);
+typedef void(^jobsByCAGradientLayerBlock)(__kindof CAGradientLayer *_Nullable data);
 #pragma mark —— 关于View
 typedef void(^jobsByViewBlock)(__kindof UIView *_Nullable view);
 typedef void(^jobsByScrollViewBlock)(UIScrollView *_Nullable scrollView);
@@ -115,7 +119,6 @@ typedef void(^jobsByRotationGestureBlock)(UIRotationGestureRecognizer *_Nullable
 typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable data);
 typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);
 typedef void(^jobsByDataBlock)(NSData *_Nullable data);
-typedef void(^jobsByCAShapeLayerBlock)(__kindof CAShapeLayer *_Nullable data);
 typedef void(^jobsByBezierPathBlock)(__kindof UIBezierPath *_Nullable data);
 
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;

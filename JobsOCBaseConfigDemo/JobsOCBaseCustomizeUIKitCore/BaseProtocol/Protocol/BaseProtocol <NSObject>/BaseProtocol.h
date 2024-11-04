@@ -21,6 +21,12 @@
 #import "YTKNetwork.h"
 #endif
 
+typedef enum : NSInteger {
+    TimerProcessType_ready = 0,
+    TimerProcessType_running,
+    TimerProcessType_end
+} TimerProcessType;
+
 @class UIViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -48,6 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 一些状态
 @property(nonatomic,assign)BOOL isLock;
 @property(nonatomic,assign)AppLanguage appLanguage;
+@property(nonatomic,assign)TimerProcessType timerProcessType;
 #pragma mark —— Data
 @property(nonatomic,strong)NSURL *url;
 @property(nonatomic,copy,nullable)NSString *internationalizationKEY;/// 国际化的key
@@ -111,6 +118,7 @@ NS_ASSUME_NONNULL_END
 @synthesize dataTuple = dataTuple;\
 @synthesize isLock = _isLock;\
 @synthesize appLanguage = _appLanguage;\
+@synthesize timerProcessType = _timerProcessType;\
 @synthesize internationalizationKEY = _internationalizationKEY;\
 @synthesize jobsDataMutSet = _jobsDataMutSet;\
 @synthesize jobsDataMutArr = _jobsDataMutArr;\
@@ -142,6 +150,7 @@ NS_ASSUME_NONNULL_END
 @dynamic dataTuple = dataTuple;\
 @dynamic isLock;\
 @dynamic appLanguage;\
+@dynamic timerProcessType;\
 @dynamic internationalizationKEY;\
 @dynamic jobsDataMutSet;\
 @dynamic jobsDataMutArr;\

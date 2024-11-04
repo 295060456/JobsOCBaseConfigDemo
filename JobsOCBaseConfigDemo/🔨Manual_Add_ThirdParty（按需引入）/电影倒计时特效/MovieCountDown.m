@@ -74,8 +74,8 @@
                 if ([data isKindOfClass:NSTimerManager.class]) {
                     NSTimerManager *timerManager = (NSTimerManager *)data;
                     [self getCuntDown:(NSInteger)timerManager.anticlockwiseTime];
-                }else if ([data isKindOfClass:TimerProcessModel.class]){
-                    TimerProcessModel *model = (TimerProcessModel *)data;
+                }else if ([data isKindOfClass:UIButtonModel.class]){
+                    UIButtonModel *model = (UIButtonModel *)data;
                     if (model.timerProcessType == TimerProcessType_end) {
                         if (self.objectBlock) self.objectBlock(data);
                     }

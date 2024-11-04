@@ -133,8 +133,8 @@ typedef void(^jobsByTextModelBlock)(__kindof UITextModel *_Nullable data);
 @class JobsTimeFormatterModel;
 typedef JobsTimeFormatterModel *_Nullable(^JobsReturnTimeFormatterModelByStringBlock)(NSString *_Nullable data);
 
-@class ButtonTimerProcessValueModel;
-typedef void(^jobsByButtonTimerProcessValueModelBlock)(ButtonTimerProcessValueModel *_Nullable data);
+@class UIButtonModel;
+typedef void(^jobsByButtonTimerProcessValueModelBlock)(UIButtonModel *_Nullable data);
 
 @class NSTimerManager;
 typedef void(^jobsByTimerManagerBlock)(NSTimerManager *_Nullable data);
@@ -148,6 +148,7 @@ typedef void(^jobsByAppDoorInputViewBaseStyleModelBlock)(JobsAppDoorInputViewBas
 @class JobsCorModel;
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(UIColor *_Nullable data);
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);
+typedef void(^jobsByCorModelBlock)(JobsCorModel *_Nullable data);
 
 @class ButtonTimerConfigModel;
 typedef void(^jobsByButtonTimerConfigModelBlock)(__kindof ButtonTimerConfigModel *_Nullable data);
@@ -204,8 +205,8 @@ typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *
 typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
 
-@class JobsCorModel;
-typedef void(^jobsByCorModelBlock)(__kindof JobsCorModel *_Nullable data);
+@class JobsFormatTime;
+typedef void(^jobsByFormatTimeBlock)(__kindof JobsFormatTime *_Nullable data);
 
 @class GTCaptcha4Model;
 typedef void(^jobsByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);

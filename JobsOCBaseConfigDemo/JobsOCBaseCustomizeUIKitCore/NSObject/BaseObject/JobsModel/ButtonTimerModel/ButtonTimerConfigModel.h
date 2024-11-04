@@ -37,17 +37,6 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
-/// 记录过程值
-@interface ButtonTimerProcessValueModel : NSObject
-<
-UIPictureAndBackGroundCorProtocol
-,UITextModelProtocol
-,UIViewModelOthersProtocol
->
-
-@property(nonatomic,assign)TimerProcessType timerProcessType;
-
-@end
 
 @interface ButtonTimerConfigModel : NSObject<UILocationProtocol>
 /// ❤️如果配置了富文本，则优先显示富文本属性
@@ -62,11 +51,11 @@ UIPictureAndBackGroundCorProtocol
 @property(nonatomic,assign)BOOL isCanBeClickWhenTimerCycle;// 倒计时期间，默认不接受任何的点击事件
 @property(nonatomic,assign)CGFloat widthCompensationValue;// 因为有圆角的时候需要有补偿值否则UI很难看
 #pragma mark —— 计时器未开始【静态值】Ready
-@property(nonatomic,strong)ButtonTimerProcessValueModel *readyPlayValue;
+@property(nonatomic,strong)UIButtonModel *readyPlayValue;
 #pragma mark —— 计时器进行中【动态值】Running
-@property(nonatomic,strong)ButtonTimerProcessValueModel *runningValue;
+@property(nonatomic,strong)UIButtonModel *runningValue;
 #pragma mark —— 计时器结束【静态值】End
-@property(nonatomic,strong)ButtonTimerProcessValueModel *endValue;
+@property(nonatomic,strong)UIButtonModel *endValue;
 #pragma mark —— 其他
 @property(nonatomic,copy)NSString *formatTimeStr;// 根据ShowTimeType格式化以后的时间【内部使用】
 @property(nonatomic,copy)NSString *appendingStrByFormatTimeStr;// formatTimeStr后缀拼接的字符串。因为formatTimeStr是内部使用
@@ -82,8 +71,8 @@ NS_INLINE ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsBy
     return model;
 }
 
-NS_INLINE ButtonTimerProcessValueModel *_Nonnull jobsMakeButtonTimerProcessValueModel(jobsByButtonTimerProcessValueModelBlock _Nonnull block){
-    ButtonTimerProcessValueModel *model = ButtonTimerProcessValueModel.alloc.init;
+NS_INLINE UIButtonModel *_Nonnull jobsMakeButtonTimerProcessValueModel(jobsByButtonTimerProcessValueModelBlock _Nonnull block){
+    UIButtonModel *model = UIButtonModel.alloc.init;
     if (block) block(model);
     return model;
 }

@@ -180,9 +180,9 @@
     }return _nsTimer;
 }
 
--(TimerProcessModel *)timerProcessModel{
+-(UIButtonModel *)timerProcessModel{
     if (!_timerProcessModel) {
-        _timerProcessModel = TimerProcessModel.new;
+        _timerProcessModel = UIButtonModel.new;
     }
     @jobs_weakify(self)
     _timerProcessModel.data = weak_self;
@@ -225,10 +225,6 @@
         self.repeats = YES;
     }return _timerStyle;
 }
-
-@end
-
-@implementation TimerProcessModel
 
 @end
 

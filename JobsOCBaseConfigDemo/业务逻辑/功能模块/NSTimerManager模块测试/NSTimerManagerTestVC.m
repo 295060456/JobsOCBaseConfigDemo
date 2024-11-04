@@ -126,67 +126,75 @@
 #pragma mark —— LazyLoad
 -(NSTimerManager *)nsTimerManager{
     if (!_nsTimerManager) {
-        _nsTimerManager = NSTimerManager.new;
-        /// 以下2种模式任选一种
-        {/// 顺时针模式
-            _nsTimerManager.timerStyle = TimerStyle_clockwise;
-        }
-        
-//        {/// 逆时针模式
-//            _nsTimerManager.timerStyle = TimerStyle_anticlockwise;
-//            _nsTimerManager.anticlockwiseTime = 100;
-//        }
-        
-        _nsTimerManager.timeInterval = .5f;
-        @jobs_weakify(self)
-        [_nsTimerManager actionObjectBlock:^(id data) {
-            @jobs_strongify(self)
-            if ([data isKindOfClass:TimerProcessModel.class]) {
-                TimerProcessModel *model = (TimerProcessModel *)data;
-                NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
-                self.valueLab.text = [NSString stringWithFormat:@"%.2f",model.data.anticlockwiseTime];
+        _nsTimerManager = jobsMakeTimerManager(^(NSTimerManager * _Nullable data) {
+            /// 以下2种模式任选一种
+            {/// 顺时针模式
+                data.timerStyle = TimerStyle_clockwise;
             }
-        }];
+            
+    //        {/// 逆时针模式
+    //            _nsTimerManager.timerStyle = TimerStyle_anticlockwise;
+    //            _nsTimerManager.anticlockwiseTime = 100;
+    //        }
+            
+            data.timeInterval = .5f;
+            @jobs_weakify(self)
+            [data actionObjectBlock:^(id data) {
+                @jobs_strongify(self)
+                if ([data isKindOfClass:UIButtonModel.class]) {
+                    UIButtonModel *model = (UIButtonModel *)data;
+                    NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
+                    self.valueLab.text = [NSString stringWithFormat:@"%.2f",model.timerManager.anticlockwiseTime];
+                }
+            }];
+        });
     }return _nsTimerManager;
 }
 
 -(UILabel *)valueLab{
     if (!_valueLab) {
-        _valueLab = UILabel.new;
-        _valueLab.backgroundColor = HEXCOLOR(0xAE8330);
-        [self.view addSubview:_valueLab];
-        [_valueLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(JobsWidth(20));
-            make.center.equalTo(self.view);
-        }];
-        _valueLab.makeLabelByShowingType(UILabelShowingType_03);
+        @jobs_weakify(self)
+        _valueLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = HEXCOLOR(0xAE8330);
+            [self.view addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(JobsWidth(20));
+                make.center.equalTo(self.view);
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
+        });
     }return _valueLab;
 }
 
 -(NSMutableArray<UIButton *> *)btnMutArr{
     if (!_btnMutArr) {
-        _btnMutArr = NSMutableArray.array;
-        for (NSString *title in self.btnTitleMutArr) {
-            UIButton *btn = UIButton.new;
-            btn.jobsResetBtnTitle(title);
-            btn.jobsResetBtnTitleCor(JobsBlackColor);
-            btn.jobsResetBtnBgImage(JobsIMG(@"弹窗取消按钮背景图"));
-            btn.selectedBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
-            btn.cornerCutToCircleWithCornerRadius(JobsWidth(8));
-            [btn layerBorderCor:HEXCOLOR(0xAE8330) andBorderWidth:0.5f];
-            [self.view addSubview:btn];
-            _btnMutArr.add(btn);
-        }
+        _btnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            for (NSString *title in self.btnTitleMutArr) {
+                UIButton *btn = UIButton.new;
+                btn.jobsResetBtnTitle(title);
+                btn.jobsResetBtnTitleCor(JobsBlackColor);
+                btn.jobsResetBtnBgImage(JobsIMG(@"弹窗取消按钮背景图"));
+                btn.selectedBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
+                btn.cornerCutToCircleWithCornerRadius(JobsWidth(8));
+                btn.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+                    data.layerCor = HEXCOLOR(0xAE8330);
+                    data.jobsWidth = 0.5f;
+                }));
+                [self.view addSubview:btn];
+                data.add(btn);
+            }
+        });
     }return _btnMutArr;
 }
 
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
-        _btnTitleMutArr = NSMutableArray.array;
-        _btnTitleMutArr.add(JobsInternationalization(@"开始"));
-        _btnTitleMutArr.add(JobsInternationalization(@"暂停"));
-        _btnTitleMutArr.add(JobsInternationalization(@"继续"));
-        _btnTitleMutArr.add(JobsInternationalization(@"结束"));
+        _btnTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
+            data.add(JobsInternationalization(@"开始"));
+            data.add(JobsInternationalization(@"暂停"));
+            data.add(JobsInternationalization(@"继续"));
+            data.add(JobsInternationalization(@"结束"));
+        });
     }return _btnTitleMutArr;
 }
 

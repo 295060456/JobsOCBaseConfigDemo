@@ -9,12 +9,12 @@
 
 @implementation JobsFormatTime
 
--(NSString *_Nonnull)formatTimeWithYear:(NSString * _Nullable)year
-                                  month:(NSString * _Nullable)month
-                                    day:(NSString * _Nullable)day
-                                   hour:(NSString * _Nullable)hour
-                                 minute:(NSString * _Nullable)minute
-                                 second:(NSString * _Nullable)second{
+-(NSString *_Nonnull)formatTimeWithYear:(NSString *_Nullable)year
+                                  month:(NSString *_Nullable)month
+                                    day:(NSString *_Nullable)day
+                                   hour:(NSString *_Nullable)hour
+                                 minute:(NSString *_Nullable)minute
+                                 second:(NSString *_Nullable)second{
     if (!year) year = @"";
     if (!month) month = @"";
     if (!day) day = @"";

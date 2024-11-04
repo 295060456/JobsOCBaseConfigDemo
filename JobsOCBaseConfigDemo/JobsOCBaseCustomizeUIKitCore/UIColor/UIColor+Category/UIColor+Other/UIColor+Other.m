@@ -34,19 +34,23 @@
         CGFloat green = ((hexValue & 0x00FF00) >> 8) / 255.0;
         CGFloat blue = (hexValue & 0x0000FF) / 255.0;
         
-        return [UIColor colorWithRed:red
-                               green:green
-                                blue:blue
-                               alpha:1.0];
+        return jobsMakeCor(^(JobsCorModel * _Nullable data) {
+            data.red = red;
+            data.green = green;
+            data.blue = blue;
+            data.alpha = 1.0f;
+        });
     };
 }
 /// uint32_t 颜色的RGB数值 + 透明度 => UIColor *
 +(JobsReturnColorByHexAlphaBlock _Nonnull)jobsColorByHexAlpha {
     return ^UIColor * _Nullable(uint32_t hexValue, CGFloat alpha) {
-        return [UIColor colorWithRed:((float)((hexValue & 0xFF0000) >> 16)) / 255.0
-                               green:((float)((hexValue & 0xFF00) >> 8)) / 255.0
-                                blue:((float)(hexValue & 0xFF)) / 255.0
-                               alpha:alpha];
+        return jobsMakeCor(^(JobsCorModel * _Nullable data) {
+            data.red = ((float)((hexValue & 0xFF0000) >> 16)) / 255.0;
+            data.green = ((float)((hexValue & 0xFF00) >> 8)) / 255.0;
+            data.blue = ((float)(hexValue & 0xFF)) / 255.0;
+            data.alpha = alpha;
+        });
     };
 }
 /// uint32_t 颜色的RGB数值  => UIColor *
@@ -92,10 +96,12 @@
     [[NSScanner scannerWithString:rString] scanHexInt:&r];
     [[NSScanner scannerWithString:gString] scanHexInt:&g];
     [[NSScanner scannerWithString:bString] scanHexInt:&b];
-    return [UIColor colorWithRed:((float)r / 255.0f)
-                           green:((float)g / 255.0f)
-                            blue:((float)b / 255.0f)
-                           alpha:alpha];
+    return jobsMakeCor(^(JobsCorModel * _Nullable data) {
+        data.red = ((float)r / 255.0f);
+        data.green = ((float)g / 255.0f);
+        data.blue = ((float)b / 255.0f);
+        data.alpha = alpha;
+    });
 }
 /// 十六进制字符串 （默认透明度为1） => UIColor *
 +(JobsReturnColorByStringBlock _Nonnull)colorWithHexString{
@@ -146,9 +152,10 @@
     }
     
     if (!CorDataMutArr) {
-        CorDataMutArr = NSMutableArray.array;
-        [CorDataMutArr addObject:(id)JobsRedColor.CGColor];
-        [CorDataMutArr addObject:(id)JobsGreenColor.CGColor];
+        CorDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add((id)JobsRedColor.CGColor);
+            data.add((id)JobsGreenColor.CGColor);
+        });
     }else{
         for (int t = 0; t < CorDataMutArr.count; t++) {
             [CorDataMutArr replaceObjectAtIndex:t
@@ -239,15 +246,14 @@
             // 其他情况（不支持的颜色空间）
             return nil;
         }
-
         // 将RGB值转换为十六进制字符串
-        JobsCorModel *corModel = JobsCorModel.new;
-        corModel.red = (redCor * 255);
-        corModel.green = (greenCor * 255);
-        corModel.blue = (blueCor * 255);
-        corModel.alpha = CGColorGetAlpha(self.CGColor);
-
-        return corModel;
+        return jobsMakeCorModel(^(JobsCorModel * _Nullable data) {
+            @jobs_strongify(self)
+            data.red = (redCor * 255);
+            data.green = (greenCor * 255);
+            data.blue = (blueCor * 255);
+            data.alpha = CGColorGetAlpha(self.CGColor);
+        });
     };
 }
 /// iOS 父视图透明度影响到子视图

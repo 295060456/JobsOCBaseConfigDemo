@@ -24,9 +24,7 @@
 - (instancetype)init{
     if (self = [super init]) {
 //        self.backgroundColor = JobsRedColor;
-        self.titleStr_1 = JobsInternationalization(@"点击");
-        self.titleStr_2 = JobsInternationalization(@"发送验证码");
-        [self layerBorderCor:JobsWhiteColor andBorderWidth:1];
+        self.setting();
     }return self;
 }
 #pragma mark —— BaseViewProtocol
@@ -34,9 +32,7 @@
     if (self = [super init]) {
 //        self.backgroundColor = JobsRedColor;
         self.thisViewSize = thisViewSize;
-        self.titleStr_1 = JobsInternationalization(@"点击");
-        self.titleStr_2 = JobsInternationalization(@"发送验证码");
-        [self layerBorderCor:JobsWhiteColor andBorderWidth:1];
+        self.setting();
     }return self;
 }
 
@@ -46,8 +42,21 @@
     self.textField.width = self.textFieldWidth ? : JobsWidth(180);
 }
 #pragma mark —— 一些私有方法
+-(jobsByVoidBlock _Nonnull)setting{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        self.titleStr_1 = JobsInternationalization(@"点击");
+        self.titleStr_2 = JobsInternationalization(@"发送验证码");
+        self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.layerCor = JobsWhiteColor;
+            data.jobsWidth = 1;
+        }));
+    };
+}
+
 -(void)configTextField{
-    _textField.leftView = [UIImageView.alloc initWithImage:self.doorInputViewBaseStyleModel.leftViewIMG];
+    _textField.leftView = UIImageView.initBy(self.doorInputViewBaseStyleModel.leftViewIMG);
     _textField.leftViewMode = self.doorInputViewBaseStyleModel.leftViewMode;
     _textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
     _textField.keyboardType = self.doorInputViewBaseStyleModel.keyboardType;
@@ -127,7 +136,7 @@
             data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
             data.labelShowingType = UILabelShowingType_01;//【换行模式】
             /// 计时器未开始【静态值】
-            data.readyPlayValue = jobsMakeButtonTimerProcessValueModel(^(ButtonTimerProcessValueModel * _Nullable model) {
+            data.readyPlayValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable model) {
                 model.layerBorderWidth = 1;
                 model.layerCornerRadius = JobsWidth(18);
                 model.bgCor = JobsClearColor;
@@ -137,7 +146,7 @@
                 model.font = UIFontWeightMediumSize(JobsWidth(14));
             });
             /// 计时器进行中【动态值】
-            data.runningValue = jobsMakeButtonTimerProcessValueModel(^(ButtonTimerProcessValueModel * _Nullable model) {
+            data.runningValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable model) {
                 model.bgCor = JobsClearColor;
                 model.text = JobsInternationalization(Title12);
                 model.layerBorderCor = JobsClearColor;
@@ -145,7 +154,7 @@
                 model.font = UIFontWeightMediumSize(JobsWidth(14));
             });
             /// 计时器结束【静态值】
-            data.endValue = jobsMakeButtonTimerProcessValueModel(^(ButtonTimerProcessValueModel * _Nullable model) {
+            data.endValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable model) {
                 model.bgCor = JobsClearColor;
             });
         })).onClick(^(__kindof UIButton *x){
@@ -155,9 +164,9 @@
         }).onLongPressGesture(^(id data){
             NSLog(@"");
         }).heartBeat(^(id _Nullable data){
-            if ([data isKindOfClass:TimerProcessModel.class]) {
-                TimerProcessModel *model = (TimerProcessModel *)data;
-                NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
+            if ([data isKindOfClass:UIButtonModel.class]) {
+                UIButtonModel *model = (UIButtonModel *)data;
+                NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
             }
         });
         [self addSubview:_countDownBtn];

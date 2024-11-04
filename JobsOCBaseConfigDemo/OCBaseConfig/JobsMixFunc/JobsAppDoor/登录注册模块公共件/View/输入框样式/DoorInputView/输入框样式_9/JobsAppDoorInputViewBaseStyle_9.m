@@ -42,7 +42,7 @@
 }
 #pragma mark —— 一些私有方法
 -(void)configTextField{
-    _textField.leftView = [UIImageView.alloc initWithImage:self.doorInputViewBaseStyleModel.leftViewIMG];
+    _textField.leftView = UIImageView.initBy(self.doorInputViewBaseStyleModel.leftViewIMG);
     _textField.leftViewMode = self.doorInputViewBaseStyleModel.leftViewMode;
     _textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
     _textField.keyboardType = self.doorInputViewBaseStyleModel.keyboardType;
@@ -137,9 +137,9 @@
 //            NSLog(@"SSSSS = 获取验证码");
             if (self.objectBlock) self.objectBlock(x);
         }).heartBeat(^(id _Nullable data){
-            if ([data isKindOfClass:TimerProcessModel.class]) {
-                TimerProcessModel *model = (TimerProcessModel *)data;
-                NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
+            if ([data isKindOfClass:UIButtonModel.class]) {
+                UIButtonModel *model = (UIButtonModel *)data;
+                NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
             }
         });
         [self addSubview:_countDownBtn];
@@ -173,4 +173,5 @@
         }];
     }return _textField;
 }
+
 @end

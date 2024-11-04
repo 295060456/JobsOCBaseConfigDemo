@@ -12,6 +12,8 @@
 		84170B002CD0BF5D0007E303 /* YTKBatchRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */; };
 		843099F92CD0F17400A7B9D0 /* GTCaptcha4Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */; };
 		8439F3392CD8A49000319E4A /* UIGestureRecognizer+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F3372CD8A49000319E4A /* UIGestureRecognizer+Extra.m */; };
+		8439F6302CD8E6F100319E4A /* UIImageView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F62B2CD8E6F100319E4A /* UIImageView+Extra.m */; };
+		8439F6312CD8E6F100319E4A /* UIImageView+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F62E2CD8E6F100319E4A /* UIImageView+SDWebImage.m */; };
 		843B73C22CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */; };
 		843B73C62CCF6FD400F172EF /* YTKBaseRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */; };
 		8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */; };
@@ -500,7 +502,6 @@
 		CE5A65202CA8314A006D67A7 /* UIImage+YBGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63052CA82C2D006D67A7 /* UIImage+YBGIF.m */; };
 		CE5A65212CA8314A006D67A7 /* UIImage+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A62F92CA82C2D006D67A7 /* UIImage+Extras.m */; };
 		CE5A65222CA83155006D67A7 /* UIImageView+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63122CA82C2D006D67A7 /* UIImageView+GIF.m */; };
-		CE5A65232CA83155006D67A7 /* UIImageView+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A630F2CA82C2D006D67A7 /* UIImageView+SDWebImage.m */; };
 		CE5A65242CA83155006D67A7 /* BaseImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A630C2CA82C2D006D67A7 /* BaseImageView.m */; };
 		CE5A65252CA83166006D67A7 /* JobsBaseLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63232CA82C2D006D67A7 /* JobsBaseLabel.m */; };
 		CE5A65262CA83166006D67A7 /* JobsAnimationLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63202CA82C2D006D67A7 /* JobsAnimationLabel.m */; };
@@ -1148,6 +1149,10 @@
 		843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTCaptcha4Model.m; sourceTree = "<group>"; };
 		8439F3362CD8A49000319E4A /* UIGestureRecognizer+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Extra.h"; sourceTree = "<group>"; };
 		8439F3372CD8A49000319E4A /* UIGestureRecognizer+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Extra.m"; sourceTree = "<group>"; };
+		8439F62A2CD8E6F100319E4A /* UIImageView+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extra.h"; sourceTree = "<group>"; };
+		8439F62B2CD8E6F100319E4A /* UIImageView+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Extra.m"; sourceTree = "<group>"; };
+		8439F62D2CD8E6F100319E4A /* UIImageView+SDWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SDWebImage.h"; sourceTree = "<group>"; };
+		8439F62E2CD8E6F100319E4A /* UIImageView+SDWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SDWebImage.m"; sourceTree = "<group>"; };
 		843B73BF2CCF6F0100F172EF /* NSURLSessionDataTask+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionDataTask+Extra.h"; sourceTree = "<group>"; };
 		843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionDataTask+Extra.m"; sourceTree = "<group>"; };
 		843B73C32CCF6FD400F172EF /* YTKBaseRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBaseRequest+Extra.h"; sourceTree = "<group>"; };
@@ -2622,8 +2627,6 @@
 		CE5A63092CA82C2D006D67A7 /* JobsLoadingImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsLoadingImage.h; sourceTree = "<group>"; };
 		CE5A630B2CA82C2D006D67A7 /* BaseImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseImageView.h; sourceTree = "<group>"; };
 		CE5A630C2CA82C2D006D67A7 /* BaseImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseImageView.m; sourceTree = "<group>"; };
-		CE5A630E2CA82C2D006D67A7 /* UIImageView+SDWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SDWebImage.h"; sourceTree = "<group>"; };
-		CE5A630F2CA82C2D006D67A7 /* UIImageView+SDWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SDWebImage.m"; sourceTree = "<group>"; };
 		CE5A63112CA82C2D006D67A7 /* UIImageView+GIF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+GIF.h"; sourceTree = "<group>"; };
 		CE5A63122CA82C2D006D67A7 /* UIImageView+GIF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+GIF.m"; sourceTree = "<group>"; };
 		CE5A63152CA82C2D006D67A7 /* JobsImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsImageView.h; sourceTree = "<group>"; };
@@ -3395,6 +3398,24 @@
 				8439F3372CD8A49000319E4A /* UIGestureRecognizer+Extra.m */,
 			);
 			path = UIGestureRecognizer;
+			sourceTree = "<group>";
+		};
+		8439F62C2CD8E6F100319E4A /* UIImageView+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				8439F62A2CD8E6F100319E4A /* UIImageView+Extra.h */,
+				8439F62B2CD8E6F100319E4A /* UIImageView+Extra.m */,
+			);
+			path = "UIImageView+Extra";
+			sourceTree = "<group>";
+		};
+		8439F62F2CD8E6F100319E4A /* UIImageView+SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				8439F62D2CD8E6F100319E4A /* UIImageView+SDWebImage.h */,
+				8439F62E2CD8E6F100319E4A /* UIImageView+SDWebImage.m */,
+			);
+			path = "UIImageView+SDWebImage";
 			sourceTree = "<group>";
 		};
 		843B73C12CCF6F0100F172EF /* NSURLSessionDataTask */ = {
@@ -11337,16 +11358,6 @@
 			path = BaseImageView;
 			sourceTree = "<group>";
 		};
-		CE5A63102CA82C2D006D67A7 /* UIImageView+SDWebImage */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A630E2CA82C2D006D67A7 /* UIImageView+SDWebImage.h */,
-				CE5A630F2CA82C2D006D67A7 /* UIImageView+SDWebImage.m */,
-			);
-			name = "UIImageView+SDWebImage";
-			path = "UIImageView+SDWebImage/UIImageView+SDWebImage";
-			sourceTree = "<group>";
-		};
 		CE5A63132CA82C2D006D67A7 /* UIImageView+GIF */ = {
 			isa = PBXGroup;
 			children = (
@@ -11359,7 +11370,8 @@
 		CE5A63142CA82C2D006D67A7 /* UIImageView+Category */ = {
 			isa = PBXGroup;
 			children = (
-				CE5A63102CA82C2D006D67A7 /* UIImageView+SDWebImage */,
+				8439F62C2CD8E6F100319E4A /* UIImageView+Extra */,
+				8439F62F2CD8E6F100319E4A /* UIImageView+SDWebImage */,
 				CE5A63132CA82C2D006D67A7 /* UIImageView+GIF */,
 			);
 			path = "UIImageView+Category";
@@ -15044,7 +15056,6 @@
 				CE5A64D92CA82FF0006D67A7 /* NSObject+Sound.m in Sources */,
 				CE61AD592C9EAB26002DF138 /* JobsNetworkingAPI.m in Sources */,
 				CE5A65222CA83155006D67A7 /* UIImageView+GIF.m in Sources */,
-				CE5A65232CA83155006D67A7 /* UIImageView+SDWebImage.m in Sources */,
 				CE5A65242CA83155006D67A7 /* BaseImageView.m in Sources */,
 				CE61AD5A2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m in Sources */,
 				CE5A65D22CA833E6006D67A7 /* JobsImageNumberView.m in Sources */,
@@ -15091,6 +15102,8 @@
 				CE5A658C2CA83322006D67A7 /* UIScrollView+FDFullscreenPopGesture.m in Sources */,
 				CE5A658D2CA83322006D67A7 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				CE5A658E2CA83322006D67A7 /* JobsNoticePopupView.m in Sources */,
+				8439F6302CD8E6F100319E4A /* UIImageView+Extra.m in Sources */,
+				8439F6312CD8E6F100319E4A /* UIImageView+SDWebImage.m in Sources */,
 				CECE7E9C2C450E5B00764AF5 /* KTVHCDataNetworkSource.m in Sources */,
 				CECE7EB22C450E5B00764AF5 /* TKPermissionBluetooth.m in Sources */,
 				CECE80BC2C4512BF00764AF5 /* JobsUserModel.m in Sources */,

@@ -119,10 +119,18 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 保留字段
 @property(nonatomic,copy,nullable)JobsReturnRACDisposableByReturnIDByIDBlock jobsReturnedTestBlock;
 @property(nonatomic,copy,nullable)jobsByVoidBlock jobsTestBlock;
+#pragma mark —— 计时器
+@property(nonatomic,strong)NSTimerManager *timerManager;
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof UIButtonModel *_Nonnull jobsMakeButtonModel(jobsByButtonModelBlock _Nonnull block){
+    UIButtonModel *data = UIButtonModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
 
 #ifndef INIT_BUTTON_MODE
 #define INIT_BUTTON_MODE \
@@ -166,9 +174,3 @@ NS_ASSUME_NONNULL_END
     }return _buttonModel; \
 }
 #endif /**INIT_BUTTON_MODE**/
-
-NS_INLINE __kindof UIButtonModel *_Nonnull jobsMakeButtonModel(jobsByButtonModelBlock _Nonnull block){
-    UIButtonModel *data = UIButtonModel.alloc.init;
-    if (block) block(data);
-    return data;
-}

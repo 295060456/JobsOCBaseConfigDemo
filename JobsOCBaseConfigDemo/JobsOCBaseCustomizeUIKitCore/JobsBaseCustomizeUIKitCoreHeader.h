@@ -129,6 +129,16 @@ NS_INLINE __kindof UIColor *_Nonnull jobsMakeCor(jobsByCorModelBlock _Nonnull bl
                             blue:data.blue
                            alpha:data.alpha];
 }
+
+NS_INLINE __kindof UIColor *_Nonnull jobsMakeCor2(jobsByCorModelBlock _Nonnull block){
+    JobsCorModel *data = JobsCorModel.alloc.init;
+    if (block) block(data);
+    return [UIColor colorWithHue:data.hue
+                      saturation:data.saturation
+                      brightness:data.brightness
+                           alpha:data.alpha];
+}
+
 #pragma mark —— 关于贝塞尔曲线的创建
 NS_INLINE __kindof UIBezierPath *_Nonnull jobsMakeBezierPath(jobsByBezierPathBlock _Nonnull block){
     UIBezierPath *data = UIBezierPath.bezierPath;
@@ -138,6 +148,18 @@ NS_INLINE __kindof UIBezierPath *_Nonnull jobsMakeBezierPath(jobsByBezierPathBlo
 #pragma mark —— 关于Layer的创建
 NS_INLINE __kindof CAShapeLayer *_Nonnull jobsMakeCAShapeLayer(jobsByCAShapeLayerBlock _Nonnull block){
     CAShapeLayer *data = CAShapeLayer.layer;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof CALayer *_Nonnull jobsMakeCALayer(jobsByCALayerBlock _Nonnull block){
+    CALayer *data = CALayer.layer;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof CAGradientLayer *_Nonnull jobsMakeGradientLayer(jobsByCAGradientLayerBlock _Nonnull block){
+    CAGradientLayer *data = CAGradientLayer.layer;
     if (block) block(data);
     return data;
 }

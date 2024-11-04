@@ -7,9 +7,9 @@
 
 #import "JobsBitsMonitorCore.h"
 
-NSString* const GSDownloadNetworkSpeedNotificationKey = @"GSDownloadNetworkSpeedNotificationKey";
-NSString* const GSUploadNetworkSpeedNotificationKey = @"GSUploadNetworkSpeedNotificationKey";
-NSString* const GSUploadAndDownloadNetworkSpeedNotificationKey = @"GSUploadAndDownloadNetworkSpeedNotificationKey";
+NSString *const GSDownloadNetworkSpeedNotificationKey = @"GSDownloadNetworkSpeedNotificationKey";
+NSString *const GSUploadNetworkSpeedNotificationKey = @"GSUploadNetworkSpeedNotificationKey";
+NSString *const GSUploadAndDownloadNetworkSpeedNotificationKey = @"GSUploadAndDownloadNetworkSpeedNotificationKey";
 
 @interface JobsBitsMonitorCore (){
     //总网速
@@ -87,9 +87,7 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
 
 -(void)bitsSpeedMonitor{
     struct ifaddrs *ifa_list = 0, *ifa;
-    if (getifaddrs(&ifa_list) == -1) {
-        return;
-    }
+    if (getifaddrs(&ifa_list) == -1) return;
     uint32_t iBytes = 0;
     uint32_t oBytes = 0;
     uint32_t allFlow = 0;
@@ -163,28 +161,29 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
 #pragma mark —— lazyLoad
 -(NSTimerManager *)nsTimerManager{
     if (!_nsTimerManager) {
-        _nsTimerManager = NSTimerManager.new;
-        // 顺时针:每一个时间间隔为 1 秒
-        _nsTimerManager.timerStyle = TimerStyle_clockwise;
-        _nsTimerManager.timeInterval = 1;
-        @jobs_weakify(self)
-        [_nsTimerManager actionObjectBlock:^(TimerProcessModel *data) {
-            @jobs_strongify(self)
-            switch (data.timerProcessType) {
-                case TimerProcessType_ready:{
-                    
-                }break;
-                case TimerProcessType_running:{
-                    [self bitsSpeedMonitor];
-                }break;
-                case TimerProcessType_end:{
-                    NSLog(@"我死球了");
-                }break;
-                    
-                default:
-                    break;
-            }
-        }];
+        _nsTimerManager = jobsMakeTimerManager(^(NSTimerManager * _Nullable data) {
+            // 顺时针:每一个时间间隔为 1 秒
+            data.timerStyle = TimerStyle_clockwise;
+            data.timeInterval = 1;
+            @jobs_weakify(self)
+            [data actionObjectBlock:^(UIButtonModel *data) {
+                @jobs_strongify(self)
+                switch (data.timerProcessType) {
+                    case TimerProcessType_ready:{
+                        
+                    }break;
+                    case TimerProcessType_running:{
+                        [self bitsSpeedMonitor];
+                    }break;
+                    case TimerProcessType_end:{
+                        NSLog(@"我死球了");
+                    }break;
+                        
+                    default:
+                        break;
+                }
+            }];
+        });
     }return _nsTimerManager;
 }
 

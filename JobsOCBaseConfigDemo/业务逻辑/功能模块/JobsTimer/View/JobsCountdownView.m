@@ -14,9 +14,9 @@
 /// Data
 @property(nonatomic,strong)NSTimerManager *nsTimerManager;
 @property(nonatomic,strong)JobsFormatTime *formatTime;
-@property(nonatomic,strong)TimerProcessModel *timerProcessModel;
-@property(nonatomic,strong)NSString *minutesStr;
-@property(nonatomic,strong)NSString *secondStr;
+@property(nonatomic,strong)UIButtonModel *timerProcessModel;
+@property(nonatomic,copy)NSString *minutesStr;
+@property(nonatomic,copy)NSString *secondStr;
 @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
 @property(nonatomic,strong)NSMutableParagraphStyle *paragraphStyle;
@@ -24,9 +24,7 @@
 @end
 
 @implementation JobsCountdownView
-
 @synthesize viewModel = _viewModel;
-
 -(void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
     [self.nsTimerManager nsTimeDestroy];
@@ -92,67 +90,72 @@ static dispatch_once_t static_countdownViewOnceToken;
 #pragma mark —— lazyLoad
 -(NSTimerManager *)nsTimerManager{
     if (!_nsTimerManager) {
-        _nsTimerManager = NSTimerManager.new;
-        _nsTimerManager.timerStyle = TimerStyle_anticlockwise;
-        _nsTimerManager.anticlockwiseTime = 30 * 60;
-        _nsTimerManager.timeInterval = 1;
-        @jobs_weakify(self)
-        [_nsTimerManager actionObjectBlock:^(id data) {
-            @jobs_strongify(self)
-            if ([data isKindOfClass:TimerProcessModel.class]) {
-                self.timerProcessModel = (TimerProcessModel *)data;
-                NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",self.timerProcessModel.data.anticlockwiseTime] formatTime:self.formatTime] componentsSeparatedByString:JobsInternationalization(@"分")];
-                self.minutesStr = strArr1[0];
-                NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
-                self.secondStr = strArr2[0];
-                self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
-                                                                           paragraphStyle:self.paragraphStyle];
-            }
-        }];
+        _nsTimerManager = jobsMakeTimerManager(^(NSTimerManager *_Nullable data) {
+            data.timerStyle = TimerStyle_anticlockwise;
+            data.anticlockwiseTime = 30 * 60;
+            data.timeInterval = 1;
+            @jobs_weakify(self)
+            [data actionObjectBlock:^(id data) {
+                @jobs_strongify(self)
+                if ([data isKindOfClass:UIButtonModel.class]) {
+                    self.timerProcessModel = (UIButtonModel *)data;
+                    NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",self.timerProcessModel.timerManager.anticlockwiseTime] formatTime:self.formatTime] componentsSeparatedByString:JobsInternationalization(@"分")];
+                    self.minutesStr = strArr1[0];
+                    NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
+                    self.secondStr = strArr2[0];
+                    self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
+                                                                               paragraphStyle:self.paragraphStyle];
+                }
+            }];
+        });
     }return _nsTimerManager;
 }
 
 -(JobsFormatTime *)formatTime{
     if (!_formatTime) {
-        _formatTime = JobsFormatTime.new;
-        _formatTime.year = JobsInternationalization(@"");
-        _formatTime.month = JobsInternationalization(@"");
-        _formatTime.day = JobsInternationalization(@"");
-        _formatTime.hour = JobsInternationalization(@"");
-        _formatTime.minute = JobsInternationalization(@"分");
-        _formatTime.second = JobsInternationalization(@"秒");
+        _formatTime = jobsMakeFormatTime(^(__kindof JobsFormatTime * _Nullable data) {
+            data.year = JobsInternationalization(@"");
+            data.month = JobsInternationalization(@"");
+            data.day = JobsInternationalization(@"");
+            data.hour = JobsInternationalization(@"");
+            data.minute = JobsInternationalization(@"分");
+            data.second = JobsInternationalization(@"秒");
+        });
     }return _formatTime;
 }
 
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.text = JobsInternationalization(@"支付時間還有");
-        _titleLab.font = UIFontWeightRegularSize(14);
-        _titleLab.textColor = HEXCOLOR(0x757575);
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
-            make.top.equalTo(self).offset(JobsWidth(28));
-            make.height.mas_equalTo(JobsWidth(14));
-        }];
-        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.text = JobsInternationalization(@"支付時間還有");
+            label.font = UIFontWeightRegularSize(14);
+            label.textColor = HEXCOLOR(0x757575);
+            [self addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self);
+                make.top.equalTo(self).offset(JobsWidth(28));
+                make.height.mas_equalTo(JobsWidth(14));
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
+        });
     }return _titleLab;
 }
 
 -(UILabel *)countdownTimeLab{
     if (!_countdownTimeLab) {
-        _countdownTimeLab = UILabel.new;
-        _countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
-                                                               paragraphStyle:self.paragraphStyle];
-        _countdownTimeLab.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:_countdownTimeLab];
-        [_countdownTimeLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
-            make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(16));
-            make.height.mas_equalTo(JobsWidth(60));
-            make.width.mas_equalTo(JobsCountdownView.viewSizeByModel(nil).width);
-        }];
+        @jobs_weakify(self)
+        _countdownTimeLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
+                                                                   paragraphStyle:self.paragraphStyle];
+            label.textAlignment = NSTextAlignmentCenter;
+            [self addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self);
+                make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(16));
+                make.height.mas_equalTo(JobsWidth(60));
+                make.width.mas_equalTo(JobsCountdownView.viewSizeByModel(nil).width);
+            }];
+        });
     }return _countdownTimeLab;
 }
 
