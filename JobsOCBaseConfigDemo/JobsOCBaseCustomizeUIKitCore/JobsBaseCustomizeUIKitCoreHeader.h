@@ -117,7 +117,18 @@
 #import "NSURLRequest+Extra.h"
 #pragma mark —— NSURLSessionDataTask
 #import "NSURLSessionDataTask+Extra.h"
+#pragma mark —— UIGestureRecognizer
+#import "UIGestureRecognizer+Extra.h"
 
+#pragma mark —— 关于UIColor的创建
+NS_INLINE __kindof UIColor *_Nonnull jobsMakeCor(jobsByCorModelBlock _Nonnull block){
+    JobsCorModel *data = JobsCorModel.alloc.init;
+    if (block) block(data);
+    return [UIColor colorWithRed:data.red
+                           green:data.green
+                            blue:data.blue
+                           alpha:data.alpha];
+}
 #pragma mark —— 关于贝塞尔曲线的创建
 NS_INLINE __kindof UIBezierPath *_Nonnull jobsMakeBezierPath(jobsByBezierPathBlock _Nonnull block){
     UIBezierPath *data = UIBezierPath.bezierPath;
@@ -129,6 +140,43 @@ NS_INLINE __kindof CAShapeLayer *_Nonnull jobsMakeCAShapeLayer(jobsByCAShapeLaye
     CAShapeLayer *data = CAShapeLayer.layer;
     if (block) block(data);
     return data;
+}
+#pragma mark —— 关于手势的创建
+/// Tap Gesture (点击手势)
+NS_INLINE __kindof UITapGestureRecognizer *_Nonnull jobsMakeTapGesture(jobsByTapGestureBlock _Nonnull block) {
+    UITapGestureRecognizer *gesture = UITapGestureRecognizer.alloc.init;
+    if (block) block(gesture);
+    return gesture;
+}
+/// Long Press Gesture (长按手势)
+NS_INLINE __kindof UILongPressGestureRecognizer *_Nonnull jobsMakeLongPressGesture(jobsByLongPressGestureBlock _Nonnull block) {
+    UILongPressGestureRecognizer *gesture = UILongPressGestureRecognizer.alloc.init;
+    if (block) block(gesture);
+    return gesture;
+}
+/// Swipe Gesture (滑动手势)
+NS_INLINE __kindof UISwipeGestureRecognizer *_Nonnull jobsMakeSwipeGesture(jobsBySwipeGestureBlock _Nonnull block) {
+    UISwipeGestureRecognizer *gesture = UISwipeGestureRecognizer.alloc.init;
+    if (block) block(gesture);
+    return gesture;
+}
+/// Pan Gesture (拖动手势)
+NS_INLINE __kindof UIPanGestureRecognizer *_Nonnull jobsMakePanGesture(jobsByPanGestureBlock _Nonnull block) {
+    UIPanGestureRecognizer *gesture = UIPanGestureRecognizer.alloc.init;
+    if (block) block(gesture);
+    return gesture;
+}
+/// Pinch Gesture (捏合手势)
+NS_INLINE __kindof UIPinchGestureRecognizer *_Nonnull jobsMakePinchGesture(jobsByPinchGestureBlock _Nonnull block) {
+    UIPinchGestureRecognizer *gesture = UIPinchGestureRecognizer.alloc.init;
+    if (block) block(gesture);
+    return gesture;
+}
+/// Rotation Gesture (旋转手势)
+NS_INLINE __kindof UIRotationGestureRecognizer *_Nonnull jobsMakeRotationGesture(jobsByRotationGestureBlock _Nonnull block) {
+    UIRotationGestureRecognizer *gesture = UIRotationGestureRecognizer.alloc.init;
+    if (block) block(gesture);
+    return gesture;
 }
 #pragma mark —— 关于UIView的创建
 NS_INLINE __kindof UIImageView *_Nonnull jobsMakeImageView(jobsByImageViewBlock _Nonnull block){

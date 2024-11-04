@@ -12,8 +12,8 @@
 #import "UILocationProtocol.h"
 
 #import "JobsBlock.h"
-#import "JobsTimerManager.h"//时间管理
-#import "NSObject+RichText.h"//富文本
+#import "JobsTimerManager.h"/// 时间管理
+#import "NSObject+RichText.h"/// 富文本
 #import "ButtonTimerDefStructure.h"
 #import "MacroDef_App.h"
 #import "MacroDef_Size.h"
@@ -71,9 +71,9 @@ UIPictureAndBackGroundCorProtocol
 #pragma mark —— 计时器结束【静态值】End
 @property(nonatomic,strong)ButtonTimerProcessValueModel *endValue;
 #pragma mark —— 其他
-@property(nonatomic,strong)NSString *formatTimeStr;// 根据ShowTimeType格式化以后的时间【内部使用】
-@property(nonatomic,strong)NSString *appendingStrByFormatTimeStr;// formatTimeStr后缀拼接的字符串。因为formatTimeStr是内部使用
-@property(nonatomic,strong)NSString *secondStr;
+@property(nonatomic,copy)NSString *formatTimeStr;// 根据ShowTimeType格式化以后的时间【内部使用】
+@property(nonatomic,copy)NSString *appendingStrByFormatTimeStr;// formatTimeStr后缀拼接的字符串。因为formatTimeStr是内部使用
+@property(nonatomic,copy)NSString *secondStr;
 
 @end
 

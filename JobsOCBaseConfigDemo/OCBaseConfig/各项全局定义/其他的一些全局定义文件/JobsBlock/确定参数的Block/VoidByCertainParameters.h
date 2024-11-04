@@ -100,6 +100,14 @@ typedef void(^jobsByUnsignedLongLongBlock)(unsigned long long data);
 #pragma mark —— 关于时间
 typedef void(^jobsByTimerBlock)(NSTimer *_Nullable data);
 typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable data);
+#pragma mark —— 手势
+typedef void(^jobsByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
+typedef void(^jobsByTapGestureBlock)(UITapGestureRecognizer *_Nullable gesture);
+typedef void(^jobsByLongPressGestureBlock)(UILongPressGestureRecognizer *_Nullable gesture);
+typedef void(^jobsBySwipeGestureBlock)(UISwipeGestureRecognizer *_Nullable gesture);
+typedef void(^jobsByPanGestureBlock)(UIPanGestureRecognizer *_Nullable gesture);
+typedef void(^jobsByPinchGestureBlock)(UIPinchGestureRecognizer *_Nullable gesture);
+typedef void(^jobsByRotationGestureBlock)(UIRotationGestureRecognizer *_Nullable gesture);
 #pragma mark —— 其他
 typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable data);
 typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);

@@ -5742,9 +5742,19 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 18、手势封装 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* 因为手势传递是在view层。所以对其进行了一次封装。关注实现类：[**@interface UIView (Gesture)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BGesture)
+* 封装方式1：所有的手势都是在View上添加以及触发的
 
-  调用示例
+  ```objective-c
+  self.addGesture([jobsMakeTapGesture(^(UITapGestureRecognizer * _Nullable gesture) {
+      ///  这里写手势的配置
+  }) gestureActionBy:^{
+      /// 这里写手势的触发
+  }]);
+  ```
+  
+* 封装方式2：
+
+  因为手势传递是在view层。所以对其进行了一次封装。关注实现类：[**@interface UIView (Gesture)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BGesture)
 
   ```objective-c
   {

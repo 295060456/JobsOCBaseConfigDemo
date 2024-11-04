@@ -122,6 +122,7 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 /// 判断是否需要滚动
 -(BOOL)shouldAutoScroll;
 #pragma mark —— 其他
+-(jobsByGestureRecognizer _Nonnull)addGesture;
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;
 -(jobsByViewBlock _Nonnull)addSubview;
 -(jobsByViewBlock _Nonnull)remove;

@@ -196,6 +196,9 @@ typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *
 @class JobsLocationModel;
 typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
 
+@class JobsCorModel;
+typedef void(^jobsByCorModelBlock)(__kindof JobsCorModel *_Nullable data);
+
 @class GTCaptcha4Model;
 typedef void(^jobsByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);

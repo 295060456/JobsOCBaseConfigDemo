@@ -11,6 +11,7 @@
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		84170B002CD0BF5D0007E303 /* YTKBatchRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */; };
 		843099F92CD0F17400A7B9D0 /* GTCaptcha4Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */; };
+		8439F3392CD8A49000319E4A /* UIGestureRecognizer+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F3372CD8A49000319E4A /* UIGestureRecognizer+Extra.m */; };
 		843B73C22CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */; };
 		843B73C62CCF6FD400F172EF /* YTKBaseRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */; };
 		8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */; };
@@ -1145,6 +1146,8 @@
 		84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBatchRequest+Extra.m"; sourceTree = "<group>"; };
 		843099F62CD0F17400A7B9D0 /* GTCaptcha4Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTCaptcha4Model.h; sourceTree = "<group>"; };
 		843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTCaptcha4Model.m; sourceTree = "<group>"; };
+		8439F3362CD8A49000319E4A /* UIGestureRecognizer+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Extra.h"; sourceTree = "<group>"; };
+		8439F3372CD8A49000319E4A /* UIGestureRecognizer+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Extra.m"; sourceTree = "<group>"; };
 		843B73BF2CCF6F0100F172EF /* NSURLSessionDataTask+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionDataTask+Extra.h"; sourceTree = "<group>"; };
 		843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionDataTask+Extra.m"; sourceTree = "<group>"; };
 		843B73C32CCF6FD400F172EF /* YTKBaseRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBaseRequest+Extra.h"; sourceTree = "<group>"; };
@@ -3383,6 +3386,15 @@
 				843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */,
 			);
 			path = GTCaptcha4Model;
+			sourceTree = "<group>";
+		};
+		8439F3382CD8A49000319E4A /* UIGestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				8439F3362CD8A49000319E4A /* UIGestureRecognizer+Extra.h */,
+				8439F3372CD8A49000319E4A /* UIGestureRecognizer+Extra.m */,
+			);
+			path = UIGestureRecognizer;
 			sourceTree = "<group>";
 		};
 		843B73C12CCF6F0100F172EF /* NSURLSessionDataTask */ = {
@@ -9902,6 +9914,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5A61072CA82C2D006D67A7 /* JobsModel.h */,
+				CE5A62DA2CA82C2D006D67A7 /* JobsCorModel */,
 				843099F82CD0F17400A7B9D0 /* GTCaptcha4Model */,
 				CE4299D62CAFA86B00A0446A /* NotificationModel */,
 				CEDD9DE02CAA5752002FD89F /* JobsLocationModel */,
@@ -11152,7 +11165,6 @@
 		CE5A62E02CA82C2D006D67A7 /* UIColor */ = {
 			isa = PBXGroup;
 			children = (
-				CE5A62DA2CA82C2D006D67A7 /* JobsCorModel */,
 				CE5A62DE2CA82C2D006D67A7 /* UIColor+Category */,
 				CE5A62DF2CA82C2D006D67A7 /* JobsColor.h */,
 			);
@@ -12585,6 +12597,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
+				8439F3382CD8A49000319E4A /* UIGestureRecognizer */,
 				843B73C12CCF6F0100F172EF /* NSURLSessionDataTask */,
 				CE5A64732CA82C8F006D67A7 /* AVURLAsset */,
 				CE5A60932CA82C2D006D67A7 /* NSValue */,
@@ -15513,6 +15526,7 @@
 				CE5A65612CA8325F006D67A7 /* UIView+Masonry.m in Sources */,
 				CE5A65622CA8325F006D67A7 /* UIView+UIBackgroundConfig.m in Sources */,
 				CE5A65632CA8325F006D67A7 /* UIView+Animation.m in Sources */,
+				8439F3392CD8A49000319E4A /* UIGestureRecognizer+Extra.m in Sources */,
 				CE5A65642CA8325F006D67A7 /* UIView+Gradient.m in Sources */,
 				CE5A65652CA8325F006D67A7 /* UIView+AutoSelfAdaptionSize.m in Sources */,
 				CE5A65662CA8325F006D67A7 /* UIView+BackgroundImage.m in Sources */,

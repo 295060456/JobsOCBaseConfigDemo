@@ -776,6 +776,14 @@ JobsKey(_getAnimation)
     return shouldScroll;
 }
 #pragma mark —— 其他
+-(jobsByGestureRecognizer _Nonnull)addGesture{
+    @jobs_weakify(self)
+    return ^void(UIGestureRecognizer *_Nonnull gesture) {
+        @jobs_strongify(self)
+        [self addGestureRecognizer:gesture];
+    };
+}
+
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem{
     return ^__kindof UIBarButtonItem *_Nullable(){
         return [UIBarButtonItem.alloc initWithCustomView:self];
