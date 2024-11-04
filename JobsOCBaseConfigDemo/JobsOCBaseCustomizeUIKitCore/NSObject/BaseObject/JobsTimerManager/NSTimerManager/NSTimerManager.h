@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL repeats;
 @property(nonatomic,strong,nullable)NSTimer *__block nsTimer;
 /// 定时器启动 手动添加定时器到RunLoop
--(jobsByRunLoopBlock)nsTimeStartWithRunLoop;/// currentRunLoop可调用子线程；mainrunloop主线程
+-(jobsByRunLoopBlock _Nonnull)nsTimeStartWithRunLoop;/// currentRunLoop可调用子线程；mainrunloop主线程
 /// 定时器启动：newTimer + 系统自动添加到RunLoop
 -(JobsReturnTimerByVoidBlock _Nonnull)nsTimeStartSysAutoInRunLoop;
 /// 定时器暂停
@@ -67,6 +67,12 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE NSTimerManager *_Nonnull jobsMakeTimerManager(jobsByTimerManagerBlock _Nonnull block){
+    NSTimerManager *model = NSTimerManager.alloc.init;
+    if (block) block(model);
+    return model;
+}
 /**
  【优势】
  简单易用： NSTimer 的使用非常简单，只需创建一个实例并指定一个目标方法和触发时间间隔，然后将其添加到运行循环中即可。

@@ -136,6 +136,12 @@ typedef JobsTimeFormatterModel *_Nullable(^JobsReturnTimeFormatterModelByStringB
 @class ButtonTimerProcessValueModel;
 typedef void(^jobsByButtonTimerProcessValueModelBlock)(ButtonTimerProcessValueModel *_Nullable data);
 
+@class NSTimerManager;
+typedef void(^jobsByTimerManagerBlock)(NSTimerManager *_Nullable data);
+
+@class ButtonTimerConfigModel;
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerConfigModelBlock)(ButtonTimerConfigModel *_Nonnull data);
+
 @class JobsAppDoorInputViewBaseStyleModel;
 typedef void(^jobsByAppDoorInputViewBaseStyleModelBlock)(JobsAppDoorInputViewBaseStyleModel *_Nullable data);
 
@@ -183,6 +189,7 @@ typedef void(^jobsByUserDefaultModelBlock)(UserDefaultModel *_Nonnull data);
 
 @class JobsTabBarItemConfig;
 typedef void(^jobsByTabBarItemConfigBlock)(__kindof JobsTabBarItemConfig *_Nullable data);
+typedef __kindof UITabBarItem *_Nullable(^JobsReturnTabBarItemByConfigBlock)(__kindof JobsTabBarItemConfig *_Nullable data);
 
 @class LZTabBarConfig;
 typedef void(^jobsByLZTabBarConfigBlock)(__kindof LZTabBarConfig *_Nullable data);
@@ -195,6 +202,7 @@ typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *
 
 @class JobsLocationModel;
 typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
 
 @class JobsCorModel;
 typedef void(^jobsByCorModelBlock)(__kindof JobsCorModel *_Nullable data);
@@ -307,6 +315,7 @@ typedef void(^jobsByGKPhotoBlock)(GKPhoto *_Nonnull data);
 typedef void(^jobsByXZMRefreshNormalHeaderBlock)(XZMRefreshNormalHeader *_Nonnull data);
 
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByClickBlock)(jobsByBtnBlock _Nullable);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByIDBlock)(jobsByIDBlock _Nullable);
 
 @class MASConstraintMaker;
 typedef void(^jobsByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);

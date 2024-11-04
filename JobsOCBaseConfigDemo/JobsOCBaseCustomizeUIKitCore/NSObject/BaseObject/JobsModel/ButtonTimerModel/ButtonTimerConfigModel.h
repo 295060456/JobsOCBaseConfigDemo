@@ -37,7 +37,6 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
-
 /// 记录过程值
 @interface ButtonTimerProcessValueModel : NSObject
 <
@@ -51,11 +50,9 @@ UIPictureAndBackGroundCorProtocol
 @end
 
 @interface ButtonTimerConfigModel : NSObject<UILocationProtocol>
-/**
-    ❤️如果配置了富文本，则优先显示富文本属性
- */
+/// ❤️如果配置了富文本，则优先显示富文本属性
 #pragma mark —— 一些通用的设置
-// 倒计时开始前的背景色直接对此控件进行赋值 backgroundColor
+/// 倒计时开始前的背景色直接对此控件进行赋值 backgroundColor
 @property(nonatomic,strong)NSTimerManager *timerManager;
 @property(nonatomic,assign)NSInteger count;//【逆时针模式：到这个时间点结束】、【顺时针模式：从这个时间点开始】❤️默认60秒
 @property(nonatomic,assign)ShowTimeType showTimeType;// 时间显示风格
@@ -85,6 +82,11 @@ NS_INLINE ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsBy
     return model;
 }
 
+NS_INLINE ButtonTimerProcessValueModel *_Nonnull jobsMakeButtonTimerProcessValueModel(jobsByButtonTimerProcessValueModelBlock _Nonnull block){
+    ButtonTimerProcessValueModel *model = ButtonTimerProcessValueModel.alloc.init;
+    if (block) block(model);
+    return model;
+}
 /**
  
  -(ButtonTimerConfigModel *)btnTimerConfigModel{

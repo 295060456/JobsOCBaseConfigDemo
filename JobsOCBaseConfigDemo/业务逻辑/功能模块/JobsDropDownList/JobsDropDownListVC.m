@@ -77,7 +77,7 @@
 #pragma mark —— 一些私有化方法
 /// 移除掉这个下拉列表
 -(void)endDropDownListView{
-    [_dropDownListView dropDownListViewDisappear:nil];
+    _dropDownListView.dropDownListViewDisappear(nil);
     _dropDownListView = nil;
 }
 #pragma mark —— lazyLoad
@@ -86,8 +86,8 @@
         @jobs_weakify(self)
         _btn = BaseButton
             .initByStyle1(JobsInternationalization(@"点击按钮弹出下拉列表"),
-                                       UIFontWeightRegularSize(12),
-                                       JobsWhiteColor)
+                          UIFontWeightRegularSize(12),
+                          JobsWhiteColor)
             .bgColor(JobsWhiteColor)
             .cornerRadiusValue(JobsWidth(8))
             .onClick(^(UIButton *x){
@@ -134,7 +134,13 @@
             make.top.equalTo(self.gk_navigationBar.mas_bottom);
             make.left.equalTo(self.view).offset(JobsWidth(16));
         }];
-        [_switcher layerBorderCor:_switcher.selected ? self.cor : HEXCOLOR(0xB0B0B0) andBorderWidth:JobsWidth(1)];
+        _switcher.selected ? _switcher.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.layerCor = self.cor;
+            data.jobsWidth = 1;
+        })) : _switcher.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.layerCor = HEXCOLOR(0xB0B0B0);
+            data.jobsWidth = 1;
+        }));
         @jobs_weakify(self)
         [_switcher jobsSwitchClickEventBlock:^(UISwitch *x) {
             @jobs_strongify(self)
@@ -142,7 +148,14 @@
             self.btn.selected = !self.btn.selected;
             [self endDropDownListView];
             x.thumbTintColor = x.selected ? self.cor : HEXCOLOR(0xB0B0B0);
-            [x layerBorderCor:x.selected ? self.cor : HEXCOLOR(0xB0B0B0) andBorderWidth:JobsWidth(1)];
+            x.selected ? x.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+                @jobs_strongify(self)
+                data.layerCor = self.cor;
+                data.jobsWidth = 1;
+            })) : x.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+                data.layerCor = HEXCOLOR(0xB0B0B0);
+                data.jobsWidth = 1;
+            }));
             toast(x.selected ? JobsInternationalization(@"打开解锁"):JobsInternationalization(@"关闭解锁"));
             self.dropDownListViewDirection = x.selected;
             self.btn.jobsResetBtnTitle(x.selected ? JobsInternationalization(@"点击按钮弹出上拉列表") : JobsInternationalization(@"点击按钮弹出下拉列表"));
@@ -152,7 +165,10 @@
 
 -(UIColor *)cor{
     if (!_cor) {
-        _cor = [UIColor gradientCorDataMutArr:[NSMutableArray arrayWithArray:@[HEXCOLOR(0xE9C65D),HEXCOLOR(0xDDAA3A)]]
+        _cor = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(HEXCOLOR(0xE9C65D));
+            data.add(HEXCOLOR(0xDDAA3A));
+        })
                                    startPoint:CGPointZero
                                      endPoint:CGPointZero
                                        opaque:NO
@@ -162,13 +178,14 @@
 
 -(NSMutableArray<UIViewModel *> *)listViewData{
     if (!_listViewData) {
-        _listViewData = NSMutableArray.new;
-        for (int i = 1; i <= 3; i++) {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = @"0".add(toStringByInt(i));
-            viewModel.subTextModel.text = @"00".add(toStringByInt(i));
-            _listViewData.add(viewModel);
-        }
+        _listViewData = jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>*_Nullable data) {
+            for (int i = 1; i <= 3; i++) {
+                data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+                    data1.textModel.text = @"0".add(toStringByInt(i));
+                    data1.subTextModel.text = @"00".add(toStringByInt(i));
+                }));
+            }
+        });
     }return _listViewData;
 }
 

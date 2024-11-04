@@ -184,16 +184,15 @@
                                                            data:self.jobsPageViewDataMutArr
                                              motivateViewOffset:0
                                                     finishBlock:^(UIViewModel *data) {
-                    @jobs_strongify(self)
+//                    @jobs_strongify(self)
                     NSLog(@"data = %@",data);
                     NSLog(@"data = %@",data.data);
                     x.jobsResetBtnTitle(data.textModel.text.add(data.subTextModel.text));
                 }];
             }else{
-                [self->dropDownListView dropDownListViewDisappear:x];
+                self->dropDownListView.dropDownListViewDisappear(x);
             }return nil;
-        }];
-        _chooseBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTrailing,JobsWidth(8));
+        }];_chooseBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTrailing,JobsWidth(8));
     }return _chooseBtn;
 }
 

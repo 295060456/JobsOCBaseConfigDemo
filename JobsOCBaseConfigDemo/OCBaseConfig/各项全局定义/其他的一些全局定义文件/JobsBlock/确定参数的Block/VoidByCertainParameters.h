@@ -15,7 +15,10 @@ typedef void(^jobsByClassBlock)(Class _Nonnull cls);
 /// 多参数
 typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
 typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
+typedef void(^jobsBySelectorBlock)(id _Nullable weakSelf,id _Nullable arg);
 typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
+#pragma mark —— 关于UIControl
+typedef void(^jobsByControlBlock)(UIControl *_Nullable ctrl);
 #pragma mark —— 关于View
 typedef void(^jobsByViewBlock)(__kindof UIView *_Nullable view);
 typedef void(^jobsByScrollViewBlock)(UIScrollView *_Nullable scrollView);

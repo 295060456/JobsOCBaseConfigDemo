@@ -18,7 +18,6 @@
 @property(nonatomic,strong)BaseButton *chooseBtn;
 /// Data
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
-@property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*jobsPageViewDataMutArr;
 @property(nonatomic,assign)CGSize chooseBtnSize;
 @property(nonatomic,strong)UIViewModel *chooseBtnViewModel;
@@ -29,7 +28,7 @@
 @synthesize thisViewSize = _thisViewSize;
 -(void)dealloc{
     _authCodeBtn.timerDestroy();
-    [dropDownListView dropDownListViewDisappear:nil];
+    dropDownListView.dropDownListViewDisappear(nil);
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -63,7 +62,7 @@
             NSLog(@"SSS = %d",b.boolValue);
         }
         if (self.style_5 == InputViewStyle_5_3) {
-            [self->dropDownListView dropDownListViewDisappear:self.chooseBtn];
+            self->dropDownListView.dropDownListViewDisappear(self.chooseBtn);
         }
     }];
 }
@@ -144,7 +143,6 @@
 #pragma mark —— lazyLoad
 -(BaseButton *)securityModeBtn{
     if (!_securityModeBtn) {
-        @jobs_weakify(self)
         _securityModeBtn = BaseButton
             .initByNormalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image)
             .onClick(^(UIButton *x){
@@ -170,13 +168,16 @@
 
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.textColor = self.doorInputViewBaseStyleModel.titleStrCor;
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self);
-            make.left.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textColor = self.doorInputViewBaseStyleModel.titleStrCor;
+            [self addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self);
+                make.left.equalTo(self);
+            }];
+        });
     }
     _titleLab.text = self.doorInputViewBaseStyleModel.titleLabStr;
     _titleLab.font = self.doorInputViewBaseStyleModel.titleStrFont;
@@ -186,29 +187,51 @@
 
 -(UIButton *)authCodeBtn{
     if (!_authCodeBtn) {
-        _authCodeBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
-                           longPressGestureEventBlock:nil
-                                      clickEventBlock:^id(UIButton *_Nullable x){
+        _authCodeBtn = UIButton.initByConfig(jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
+            /// 一些通用的设置
+            data.jobsSize = CGSizeMake(JobsWidth(120), JobsWidth(25));
+            data.count = 3;
+            data.showTimeType = ShowTimeType_SS;//时间显示风格
+            data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
+            data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;// 文本显示类型
+            data.labelShowingType = UILabelShowingType_03;
+            data.secondStr = JobsInternationalization(@"S");
+            /// 计时器未开始【静态值】
+            data.readyPlayValue.layerBorderWidth = 1;
+            data.readyPlayValue.layerCornerRadius = 0;
+            data.readyPlayValue.bgCor = JobsClearColor;
+            data.readyPlayValue.layerBorderCor = JobsClearColor;
+            data.readyPlayValue.textCor = HEXCOLOR(0xAE8330);
+            data.readyPlayValue.text = JobsInternationalization(@"獲取驗證碼");
+            data.readyPlayValue.font = UIFontWeightBoldSize(14);
+            /// 计时器进行中【动态值】
+            data.runningValue.bgCor = JobsClearColor;
+            data.runningValue.layerBorderCor = JobsClearColor;
+            data.runningValue.textCor = HEXCOLOR(0xAE8330);
+            data.runningValue.text = JobsInternationalization(@"");
+            /// 计时器结束【静态值】
+            data.endValue.bgCor = JobsClearColor;
+            data.endValue.layerBorderCor = JobsClearColor;
+            data.endValue.textCor = HEXCOLOR(0xAE8330);
+            data.endValue.text = JobsInternationalization(@"重新获取验证码");
+        })).onClick(^(__kindof UIButton *_Nullable x){
             x.startTimer();
-            return nil;
-        }].layerByBorderCor(HEXCOLOR(0xAE8330))
-            .layerByBorderWidth(0.5f)
-            .cornerCutToCircleWithCornerRadius(25 / 2);
-        
-        [_authCodeBtn actionObjectBlock:^(id data) {
-//            @jobs_strongify(self)
+        }).heartBeat(^(id _Nullable data){
             if ([data isKindOfClass:TimerProcessModel.class]) {
                 TimerProcessModel *model = (TimerProcessModel *)data;
                 NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
             }
-        }];
+        }).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.layerCor = HEXCOLOR(0xAE8330);
+            data.jobsWidth = 0.5f;
+            data.cornerRadius = 25 / 2;
+        }));
         [self addSubview:_authCodeBtn];
         [_authCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(-JobsWidth(16));
             make.bottom.equalTo(self.textField);
-            make.size.mas_equalTo(self.btnTimerConfigModel.jobsSize);
-        }];
-        [self layoutIfNeeded];
+            make.size.mas_equalTo(CGSizeMake(JobsWidth(120), JobsWidth(25)));
+        }];[self layoutIfNeeded];
     }return _authCodeBtn;
 }
 
@@ -245,7 +268,7 @@
                     x.jobsResetBtnTitle(data.textModel.text.add(data.subTextModel.text));
                 }];
             }else{
-                [self->dropDownListView dropDownListViewDisappear:x];
+                self->dropDownListView.dropDownListViewDisappear(x);
             }
         }).onLongPressGesture(^(id data){
             NSLog(@"");
@@ -341,39 +364,6 @@
             }));
         });
     }return _jobsPageViewDataMutArr;
-}
-
--(ButtonTimerConfigModel *)btnTimerConfigModel{
-    if (!_btnTimerConfigModel) {
-        _btnTimerConfigModel = jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
-            /// 一些通用的设置
-            data.jobsSize = CGSizeMake(JobsWidth(120), JobsWidth(25));
-            data.count = 3;
-            data.showTimeType = ShowTimeType_SS;//时间显示风格
-            data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
-            data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;// 文本显示类型
-            data.labelShowingType = UILabelShowingType_03;
-            data.secondStr = JobsInternationalization(@"S");
-            /// 计时器未开始【静态值】
-            data.readyPlayValue.layerBorderWidth = 1;
-            data.readyPlayValue.layerCornerRadius = 0;
-            data.readyPlayValue.bgCor = JobsClearColor;
-            data.readyPlayValue.layerBorderCor = JobsClearColor;
-            data.readyPlayValue.textCor = HEXCOLOR(0xAE8330);
-            data.readyPlayValue.text = JobsInternationalization(@"獲取驗證碼");
-            data.readyPlayValue.font = UIFontWeightBoldSize(14);
-            /// 计时器进行中【动态值】
-            data.runningValue.bgCor = JobsClearColor;
-            data.runningValue.layerBorderCor = JobsClearColor;
-            data.runningValue.textCor = HEXCOLOR(0xAE8330);
-            data.runningValue.text = JobsInternationalization(@"");
-            /// 计时器结束【静态值】
-            data.endValue.bgCor = JobsClearColor;
-            data.endValue.layerBorderCor = JobsClearColor;
-            data.endValue.textCor = HEXCOLOR(0xAE8330);
-            data.endValue.text = JobsInternationalization(@"重新获取验证码");
-        });
-    }return _btnTimerConfigModel;
 }
 
 @end

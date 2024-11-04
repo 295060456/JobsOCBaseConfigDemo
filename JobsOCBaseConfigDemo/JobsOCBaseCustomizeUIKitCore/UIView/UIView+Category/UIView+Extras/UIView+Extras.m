@@ -527,14 +527,15 @@ JobsKey(_bottomBorderLayer)
     };
 }
 /// 描边：统一设置Layer的线宽+颜色+圆切角
--(jobsByLocationModelBlock _Nonnull)setLayerBy{
+-(JobsReturnViewByLocationModelBlock _Nonnull)setLayerBy{
     @jobs_weakify(self)
-    return ^(__kindof JobsLocationModel *_Nullable data){
+    return ^__kindof UIView *_Nullable(__kindof JobsLocationModel *_Nullable data){
         @jobs_strongify(self)
         self.layer.borderColor = data.layerCor.CGColor;
         self.layer.borderWidth = data.jobsWidth;
         self.layer.cornerRadius = data.cornerRadius;
         self.layer.masksToBounds = YES;
+        return self;
     };
 }
 /// 指定描边 【在使用这个方法的一个前提是被描边的view刷新后存在frame】

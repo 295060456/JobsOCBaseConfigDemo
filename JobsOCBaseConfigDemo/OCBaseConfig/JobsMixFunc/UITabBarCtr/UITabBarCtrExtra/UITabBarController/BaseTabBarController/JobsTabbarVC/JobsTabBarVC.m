@@ -36,7 +36,7 @@ static dispatch_once_t JobsTabBarVCOnceToken;
     });return JobsTabBarVCInstance;
 }
 ///【单例模式】使用外界自定义的JobsTabBar
-+(instancetype _Nonnull)sharedManagerWithJobsTabBar:(JobsTabBar *)tabBar{
++(instancetype _Nonnull)sharedInstanceWithJobsTabBar:(JobsTabBar *)tabBar{
     dispatch_once(&JobsTabBarVCOnceToken, ^{
         JobsTabBarVCInstance = [[super allocWithZone:NULL] init];
         JobsTabBarVCInstance.myTabBar = tabBar;
@@ -61,7 +61,7 @@ static dispatch_once_t JobsTabBarVCOnceToken;
     }return self;
 }
 #pragma mark —— 单例的销毁
-+ (void)destroyInstance {
++(void)destroySingleton {
     JobsTabBarVCInstance = nil;
     JobsTabBarVCOnceToken = 0;
 }
@@ -245,7 +245,7 @@ static dispatch_once_t onceToken;
 //        }
         UIViewController *viewController = AppDelegate.viewCtrlByTabBarCtrlConfigMutArr[i];
         viewController.title = config.title;
-        viewController.tabBarItem = [JobsTabBarItem.alloc initWithConfig:config];
+        viewController.tabBarItem = JobsTabBarItem.initByConfig(config);
         if (config.humpOffsetY != 0) {
             //一般的图片
             /// 修改图片偏移量，上下，左右必须为相反数，否则图片会被压缩

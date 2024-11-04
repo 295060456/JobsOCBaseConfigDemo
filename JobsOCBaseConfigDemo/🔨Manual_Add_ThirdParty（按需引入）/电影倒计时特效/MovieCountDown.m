@@ -64,65 +64,70 @@
 #pragma mark —— lazyLoad
 -(NSTimerManager *)nsTimerManager{
     if (!_nsTimerManager) {
-        _nsTimerManager = NSTimerManager.new;
-        _nsTimerManager.timerStyle = TimerStyle_anticlockwise;
-        _nsTimerManager.anticlockwiseTime = self.countDownTime;
         @jobs_weakify(self)
-        [_nsTimerManager actionObjectBlock:^(id data) {
+        _nsTimerManager = jobsMakeTimerManager(^(NSTimerManager * _Nullable data) {
             @jobs_strongify(self)
-            if ([data isKindOfClass:NSTimerManager.class]) {
-                NSTimerManager *timerManager = (NSTimerManager *)data;
-                [self getCuntDown:(NSInteger)timerManager.anticlockwiseTime];
-            }else if ([data isKindOfClass:TimerProcessModel.class]){
-                TimerProcessModel *model = (TimerProcessModel *)data;
-                if (model.timerProcessType == TimerProcessType_end) {
-                    if (self.objectBlock) self.objectBlock(data);
-                }
-            }else{}
-        }];
-        
+            data.timerStyle = TimerStyle_anticlockwise;
+            data.anticlockwiseTime = self.countDownTime;
+            [data actionObjectBlock:^(id data) {
+                @jobs_strongify(self)
+                if ([data isKindOfClass:NSTimerManager.class]) {
+                    NSTimerManager *timerManager = (NSTimerManager *)data;
+                    [self getCuntDown:(NSInteger)timerManager.anticlockwiseTime];
+                }else if ([data isKindOfClass:TimerProcessModel.class]){
+                    TimerProcessModel *model = (TimerProcessModel *)data;
+                    if (model.timerProcessType == TimerProcessType_end) {
+                        if (self.objectBlock) self.objectBlock(data);
+                    }
+                }else{}
+            }];
+        });
     }return _nsTimerManager;
 }
 
 -(UILabel *)countDown{
     if (!_countDown) {
-        _countDown = UILabel.new;
-        _countDown.textColor = self.countDownTextColor;
-        _countDown.font = [UIFont boldSystemFontOfSize:100];
-        _countDown.textAlignment = 1;
-        _countDown.x = (JobsMainScreen_WIDTH() - 100) / 2;
-        _countDown.y = (JobsMainScreen_HEIGHT() - 100) / 2;
-        _countDown.width = _countDown.height = 100;
-        [self.effectView addSubview:_countDown];
+        _countDown = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.textColor = self.countDownTextColor;
+            label.font = [UIFont boldSystemFontOfSize:100];
+            label.textAlignment = 1;
+            label.x = (JobsMainScreen_WIDTH() - 100) / 2;
+            label.y = (JobsMainScreen_HEIGHT() - 100) / 2;
+            label.width = self->_countDown.height = 100;
+            [self.effectView addSubview:label];
+        });
     }return _countDown;
 }
 
 -(UIView *)aphView{
     if (!_aphView) {
-        _aphView = UIView.new;
-        _aphView.backgroundColor = self.aphViewBackgroundColor;
-        _aphView.frame = CGRectMake(0,
-                                    0,
-                                    100,
-                                    100);
-        _aphView.centerX = _countDown.centerX;
-        _aphView.centerY = _countDown.centerY;
-        _aphView.alpha = 0;
-        _aphView.layer.cornerRadius = 50.f;
-        [self.effectView addSubview:_aphView];
+        @jobs_weakify(self)
+        _aphView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            @jobs_strongify(self)
+            view.backgroundColor = self.aphViewBackgroundColor;
+            view.frame = jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+                data.jobsWidth = data.jobsHeight = JobsWidth(100);
+            });
+            view.centerX = self->_countDown.centerX;
+            view.centerY = self->_countDown.centerY;
+            view.alpha = 0;
+            view.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+                data.cornerRadius = 50.f;
+            }));[self.effectView addSubview:view];
+        });
     }return _aphView;
 }
 
 
 -(UIColor *)countDownTextColor{
     if (!_countDownTextColor) {
-        _countDownTextColor = [UIColor redColor];
+        _countDownTextColor = JobsRedColor;
     }return _countDownTextColor;
 }
 
 -(UIColor *)aphViewBackgroundColor{
     if (!_aphViewBackgroundColor) {
-        _aphViewBackgroundColor = [UIColor clearColor];
+        _aphViewBackgroundColor = JobsClearColor;
     }return _aphViewBackgroundColor;
 }
 

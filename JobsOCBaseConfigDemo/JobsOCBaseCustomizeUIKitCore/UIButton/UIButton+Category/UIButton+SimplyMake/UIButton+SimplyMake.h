@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 /// 对按钮创建方法的二次封装
 @interface UIButton (SimplyMake)
-
+@property(nonatomic,copy)jobsByIDBlock heartBeatBlock;/// 用于计时器
 @property(nonatomic,copy)jobsByBtnBlock clickBlock;
 @property(nonatomic,copy)jobsByBtnBlock longPressGestureBlock;
 #pragma mark —— 依靠单一数据进行简单创建
@@ -63,6 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 一些公有方法
 -(JobsReturnButtonByClickBlock _Nonnull)onClick;
 -(JobsReturnButtonByClickBlock _Nonnull)onLongPressGesture;
+-(JobsReturnButtonByIDBlock _Nonnull)heartBeat;
 -(JobsReturnButtonByColorBlock _Nonnull)bgColor;
 -(JobsReturnButtonByCGFloatBlock _Nonnull)cornerRadiusValue;
 

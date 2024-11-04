@@ -899,9 +899,8 @@
             btn.selected = !btn.selected;
         }
         if (finishBlock) finishBlock(data);
-        [dropDownListView dropDownListViewDisappear:nil];
-    }];
-    //    dropDownListView.backgroundColor = JobsRedColor;
+        dropDownListView.dropDownListViewDisappear(nil);
+    }];// dropDownListView.backgroundColor = JobsRedColor;
     CGRect f = [self getWindowFrameByView:motivateFromView];
     if (!data) {
         data = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {

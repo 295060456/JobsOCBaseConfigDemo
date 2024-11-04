@@ -403,6 +403,15 @@
     };
 }
 
+-(JobsReturnButtonByIDBlock _Nonnull)heartBeat{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(jobsByIDBlock block) {
+        @jobs_strongify(self)
+        self.heartBeatBlock = block;
+        return self;
+    };
+}
+
 -(JobsReturnButtonByColorBlock _Nonnull)bgColor{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIColor *color) {
@@ -439,6 +448,16 @@ JobsKey(_longPressGestureBlock)
 
 -(void)setLongPressGestureBlock:(jobsByBtnBlock)longPressGestureBlock{
     Jobs_setAssociatedRETAIN_NONATOMIC(_longPressGestureBlock, longPressGestureBlock);
+}
+#pragma mark —— @property(nonatomic,copy)jobsByIDBlock heartBeatBlock;
+JobsKey(_heartBeatBlock)
+@dynamic heartBeatBlock;
+-(jobsByIDBlock)heartBeatBlock{
+    return Jobs_getAssociatedObject(_heartBeatBlock);
+}
+
+-(void)setHeartBeatBlock:(jobsByIDBlock)heartBeatBlock{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_heartBeatBlock, heartBeatBlock);
 }
 
 @end

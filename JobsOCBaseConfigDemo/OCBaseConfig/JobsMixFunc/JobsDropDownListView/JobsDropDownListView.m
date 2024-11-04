@@ -11,7 +11,6 @@
     CGFloat CellHeight;
 }
 /// UI
-//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)Class <UITableViewCellProtocol>tbvCell_cls;
 /// Data
 @property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
@@ -59,9 +58,13 @@
                              completionBlock:nil];
 }
 
--(void)dropDownListViewDisappear:(UIControl *_Nullable)x{
-    x.selected = NO;
-    [self removeFromSuperview];
+-(jobsByControlBlock _Nonnull)dropDownListViewDisappear{
+    @jobs_weakify(self)
+    return ^(UIControl *_Nullable ctrl){
+        @jobs_strongify(self)
+        ctrl.selected = NO;
+        [self removeFromSuperview];
+    };
 }
 
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel{

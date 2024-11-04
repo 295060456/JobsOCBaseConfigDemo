@@ -13,7 +13,6 @@
 @property(nonatomic,strong)JobsCountdownView *countdownView;
 @property(nonatomic,strong)NSMutableArray <UIButton *>*btnMutArr;
 /// Data
-@property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
 @property(nonatomic,strong)NSMutableArray <NSString *>*btnTitleMutArr;
 
 @end
@@ -110,41 +109,13 @@
     }];
 }
 #pragma mark —— lazyLoad
--(UIButton *)countDownBtn{
+-(UIButton *)countDownBtn{//startTimer();//选择时机、触发启动
     if (!_countDownBtn) {
-        @jobs_weakify(self)
-        _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
-                            longPressGestureEventBlock:nil
-                                       clickEventBlock:nil]
-            .onClick(^(UIButton *x){
-                x.startTimer();//选择时机、触发启动
-                NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
-            }).onLongPressGesture(^(id data){
-                NSLog(@"");
-            });
-        [self.view addSubview:_countDownBtn];
-        [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(JobsWidth(25));
-            make.center.equalTo(self.view);
-        }];
-        _countDownBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-        [_countDownBtn actionObjectBlock:^(id data) {
-//            @jobs_strongify(self)
-            if ([data isKindOfClass:TimerProcessModel.class]) {
-                TimerProcessModel *model = (TimerProcessModel *)data;
-                NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
-            }
-        }];
-    }return _countDownBtn;
-}
-
--(ButtonTimerConfigModel *)btnTimerConfigModel{
-    if (!_btnTimerConfigModel) {
-        _btnTimerConfigModel = jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
+        _countDownBtn = UIButton.initByConfig(jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel *_Nullable data) {
             /// 一些通用的设置
             data.jobsSize = CGSizeMake(JobsWidth(100), JobsWidth(25));
             data.count = 5;
-            data.showTimeType = ShowTimeType_SS;//时间显示风格
+            data.showTimeType = ShowTimeType_SS;/// 时间显示风格
             data.countDownBtnType = TimerStyle_anticlockwise;/// 逆时针模式（倒计时模式）
             data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;
             data.labelShowingType = UILabelShowingType_03;/// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
@@ -166,8 +137,23 @@
             data.endValue.text = JobsInternationalization(@"哈哈哈哈");
             data.endValue.layerBorderCor = JobsPurpleColor;
             data.endValue.textCor = JobsBlackColor;
+        })).onClick(^(__kindof UIButton *x){
+            x.startTimer();/// 选择时机、触发启动
+        }).onLongPressGesture(^(id data){
+            NSLog(@"");
+        }).heartBeat(^(id _Nullable data){
+            if ([data isKindOfClass:TimerProcessModel.class]) {
+                TimerProcessModel *model = (TimerProcessModel *)data;
+                NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
+            }
         });
-    }return _btnTimerConfigModel;
+        [self.view addSubview:_countDownBtn];
+        [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(JobsWidth(25));
+            make.center.equalTo(self.view);
+        }];
+        _countDownBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
+    }return _countDownBtn;
 }
 
 -(NSMutableArray<__kindof UIButton *>*)btnMutArr{

@@ -10,25 +10,30 @@
 @implementation UIButton (Timer)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
--(instancetype)initWithConfig:(nullable ButtonTimerConfigModel *)config
-   longPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock
-              clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
-    self = UIButton.jobsInit().onClick(^(UIButton *x){
-        x.selected = !x.selected;
-        if(clickEventBlock) clickEventBlock(x);
-    }).onLongPressGesture(^(id data){
-        if (longPressGestureEventBlock) longPressGestureEventBlock(self,data);
-    });
-    self.btnTimerConfig = config;// 为空则加载默认配置，self.btnTimerConfig 有容错机制
-    self.setLayerConfigReadyPlay();// UI配置 1.1、【计时器未开始】设置Layer层 和 背景颜色
-    self.setTitleReadyPlay();// 设置普通标题或者富文本标题【计时器未开始】文字内容
-    self.setTitleLabelConfigReadyPlay();// UI配置 1.2、【计时器未开始】设置普通文字的对齐方式、文字颜色、文字字体、UILabel的显示样式
++(JobsReturnButtonByTimerConfigModelBlock _Nullable)initByConfig{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *(ButtonTimerConfigModel *_Nullable data){
+        @jobs_strongify(self )
+        return [self.class.alloc initByConfig:data];
+    };
+}
+
+-(instancetype)initByConfig:(ButtonTimerConfigModel *_Nullable)config{
+    self = UIButton.jobsInit();
+    /// 为空则加载默认配置，self.btnTimerConfig 有容错机制
+    self.btnTimerConfig = config;
+    /// UI配置 1.1、【计时器未开始】设置Layer层 和 背景颜色
+    self.setLayerConfigReadyPlay();
+    /// 设置普通标题或者富文本标题【计时器未开始】文字内容
+    self.setTitleReadyPlay();
+    /// UI配置 1.2、【计时器未开始】设置普通文字的对齐方式、文字颜色、文字字体、UILabel的显示样式
+    self.setTitleLabelConfigReadyPlay();
     return self;
 }
 #pragma clang diagnostic pop
 #pragma mark —— 一些私有方法
 /// 当设置了圆角的时候，会造成UI的一些畸形，这个地方的补偿值正好等于按钮的高的一半
--(jobsByCGFloatBlock)extraWidth{
+-(jobsByCGFloatBlock _Nonnull)extraWidth{
     @jobs_weakify(self)
     return ^(CGFloat offsetWidth) {
         @jobs_strongify(self)
@@ -336,7 +341,6 @@
         self.setTitleEnd();
         self.setTitleLabelConfigEnd();
         self.setLayerConfigEnd();
-
         if(@available(iOS 16.0, *)){
             self.jobsResetBaseBackgroundColor(self.btnTimerConfig.endValue.bgCor);
         }else self.backgroundColor = self.btnTimerConfig.endValue.bgCor;
@@ -373,7 +377,7 @@ JobsKey(_btnTimerConfig)
             }break;
             default:
                 break;
-        }if (self.objectBlock) self.objectBlock(data);
+        }if (self.heartBeatBlock) self.heartBeatBlock(data);
     }];return BtnTimerConfig;
 }
 

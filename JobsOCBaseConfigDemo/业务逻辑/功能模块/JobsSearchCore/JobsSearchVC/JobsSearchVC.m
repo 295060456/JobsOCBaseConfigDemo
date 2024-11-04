@@ -10,7 +10,6 @@
 @interface JobsSearchVC ()
 /// UI
 @property(nonatomic,strong)BaseButton *scanBtn;
-//@property(nonatomic,strong)BaseTableView *tableView;
 @property(nonatomic,strong)JobsSearchBar *jobsSearchBar;
 @property(nonatomic,strong)JobsDropDownListView *dropDownListView;
 /// Data
@@ -113,7 +112,7 @@
 /// 移除掉这个下拉列表
 -(void)endDropDownListView{
 //    [self.view endEditing:YES];
-    [_dropDownListView dropDownListViewDisappear:nil];
+    _dropDownListView.dropDownListViewDisappear(nil);
     _dropDownListView = nil;
 }
 /// 逐字搜索功能

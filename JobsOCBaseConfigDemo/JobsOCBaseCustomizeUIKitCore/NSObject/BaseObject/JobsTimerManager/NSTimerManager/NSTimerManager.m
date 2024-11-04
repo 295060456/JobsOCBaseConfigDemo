@@ -19,9 +19,7 @@
 
 -(void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
-    if (_nsTimer) {
-        self.nsTimeDestroy();
-    }
+    if (_nsTimer) self.nsTimeDestroy();
 }
 
 - (instancetype)init{
@@ -110,7 +108,7 @@
     };
 }
 /// 定时器启动 手动添加定时器到RunLoop
--(jobsByRunLoopBlock)nsTimeStartWithRunLoop{
+-(jobsByRunLoopBlock _Nonnull)nsTimeStartWithRunLoop{
     @jobs_weakify(self)
     return ^(NSRunLoop *runLoop) {
         @jobs_strongify(self)

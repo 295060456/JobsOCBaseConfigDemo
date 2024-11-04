@@ -15,6 +15,12 @@
 
 @implementation JobsTabBarItem
 
++(JobsReturnTabBarItemByConfigBlock _Nonnull)initByConfig{
+    return ^__kindof UITabBarItem *_Nullable(__kindof JobsTabBarItemConfig *_Nullable data){
+        return [self.class.alloc initWithConfig:data];
+    };
+}
+
 -(instancetype)initWithConfig:(JobsTabBarItemConfig *)config{
     if (self = [super init]) {
         if (config) {
