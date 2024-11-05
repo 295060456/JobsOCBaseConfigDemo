@@ -74,6 +74,12 @@
 #import "YYImage.h"
 #endif
 
+#if __has_include(<ReactiveObjC/ReactiveObjC.h>)
+#import <ReactiveObjC/ReactiveObjC.h>
+#else
+#import "ReactiveObjC.h"
+#endif
+
 #if __has_include(<YTKNetwork/YTKNetwork.h>)
 #import <YTKNetwork/YTKNetwork.h>
 #else
@@ -180,6 +186,9 @@ BaseProtocol
 -(jobsByStringBlock _Nonnull)jobsPost;
 /// 接收通知
 -(void)addNotificationName:(NSString *_Nonnull)notificationName block:(JobsSelectorBlock _Nullable)block;
+/// RAC接收通知
+-(void)addNotificationName:(NSString *_Nonnull)notificationName
+         notificationBlock:(jobsByNotificationBlock _Nullable)block;
 #pragma mark —— 路径获取
 /// 获取bundle路径
 -(NSString *_Nonnull)bundlePath;

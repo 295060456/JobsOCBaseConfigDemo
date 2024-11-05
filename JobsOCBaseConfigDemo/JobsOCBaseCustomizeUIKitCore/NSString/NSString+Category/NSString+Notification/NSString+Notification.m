@@ -13,7 +13,7 @@
     @jobs_weakify(self)
     return ^(id _Nullable data){
         @jobs_strongify(self)
-        [NSNotificationCenter.defaultCenter postNotificationName:self object:data];
+        [JobsNotificationCenter postNotificationName:self object:data];
     };
 }
 
@@ -21,9 +21,9 @@
     @jobs_weakify(self)
     return ^(NotificationModel *_Nullable data){
         @jobs_strongify(self)
-        [NSNotificationCenter.defaultCenter postNotificationName:self
-                                                          object:data.anObject
-                                                        userInfo:data.userInfo];
+        [JobsNotificationCenter postNotificationName:self
+                                              object:data.anObject
+                                            userInfo:data.userInfo];
     };
 }
 

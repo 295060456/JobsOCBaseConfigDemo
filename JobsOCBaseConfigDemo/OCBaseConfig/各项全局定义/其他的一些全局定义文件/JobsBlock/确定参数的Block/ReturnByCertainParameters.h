@@ -18,6 +18,7 @@ typedef id _Nullable(^JobsReturnIDByCGFloatBlock)(CGFloat data);
 typedef id _Nullable(^JobsReturnIDByCenterBlock)(CGFloat x,CGFloat y);
 
 typedef id _Nullable(^JobsReturnIDByIDBlock)(id _Nullable data);
+typedef id _Nullable(^JobsReturnIDByNotificationBlock)(NSNotification *_Nullable notification);
 typedef id _Nullable(^JobsReturnIDByObjBlock)(NSObject *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByArrBlock)(NSArray *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByDataBlock)(NSData *_Nullable data);

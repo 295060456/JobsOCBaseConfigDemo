@@ -185,6 +185,14 @@
         return nil;
     }, MethodName(self), self) name:notificationName object:nil];
 }
+/// RAC接收通知
+-(void)addNotificationName:(NSString *_Nonnull)notificationName
+         notificationBlock:(jobsByNotificationBlock _Nullable)block{
+    [[JobsNotificationCenter rac_addObserverForName:notificationName object:nil]
+     subscribeNext:^(NSNotification *_Nullable x) {
+        if (block) block(x);
+    }];
+}
 #pragma mark —— 路径获取
 /// 获取bundle路径
 -(NSString *_Nonnull)bundlePath{

@@ -52,7 +52,7 @@
                 data1.captchaSession = captchaSession;
                 data1.status = status;
                 data1.result = GTCaptcha4ResultModel.byData(result);
-                data1.targetView = (UIView *)self.data_weak;
+                data1.targetView = (UIView *)(self.data_weak ? : self);
             });
         }));
     }else toast(@"未通过图形验证，请重试");
