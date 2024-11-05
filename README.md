@@ -4243,76 +4243,56 @@ static const uint32_t kSequenceBits = 12;
 * 调用示例
 
   ```objective-c
-  @property(nonatomic,strong)UIButton *countDownBtn;
-  @property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
-  ```
-
-   ```objective-c
-   -(UIButton *)countDownBtn{
-       if (!_countDownBtn) {
-           @jobs_weakify(self)
-           _countDownBtn = [UIButton.alloc initWithConfig:self.btnTimerConfigModel
-                               longPressGestureEventBlock:nil
-                                          clickEventBlock:^id _Nullable(UIButton *_Nullable x) {
-               x.selected = !x.selected;
-               [self adDidFinish];
-               return nil;
-           }];
-           [self.adView addSubview:_countDownBtn];
-            [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(JobsWidth(72));
-                make.top.equalTo(self).offset(JobsWidth(20));
-                make.centerX.equalTo(self);
-            }];
-            _countDownBtn.makeBtnLabelByShowingType(UILabelShowingType_03);
-           /// 倒计时按钮点击事件
-           [_countDownBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-               x.startTimer();//选择时机、触发启动
-               NSLog(@"🪓🪓🪓🪓🪓 = 获取验证码");
-               return nil;
-           }];
-           /// 定时器跳动的回调
-           [_countDownBtn actionObjectBlock:^(id data) {
-               @jobs_strongify(self)
-               if ([data isKindOfClass:TimerProcessModel.class]) {
-                   TimerProcessModel *model = (TimerProcessModel *)data;
-                   NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
-               }
-               [self adDidFinish];
-           }];
-       }return _countDownBtn;
-   }
-   ```
-  
-  ```objective-c
-   -(ButtonTimerConfigModel *)btnTimerConfigModel{
-       if (!_btnTimerConfigModel) {
-           _btnTimerConfigModel = jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
-               /// 一些通用的设置
-               data.count = 50;
-               data.showTimeType = ShowTimeType_SS;// 时间显示风格
-               data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
-               data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
-               data.labelShowingType = UILabelShowingType_01;//【换行模式】
-               /// 计时器未开始【静态值】
-               data.readyPlayValue.layerBorderWidth = 1;
-               data.readyPlayValue.layerCornerRadius = JobsWidth(18);
-               data.readyPlayValue.bgCor = JobsClearColor;
-               data.readyPlayValue.layerBorderCor = JobsClearColor;
-               data.readyPlayValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
-               data.readyPlayValue.text = Title9;
-               data.readyPlayValue.font = UIFontWeightMediumSize(JobsWidth(14));
-               /// 计时器进行中【动态值】
-               data.runningValue.bgCor = JobsClearColor;
-               data.runningValue.text = JobsInternationalization(Title12);
-               data.runningValue.layerBorderCor = JobsClearColor;
-               data.runningValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
-               data.runningValue.font = UIFontWeightMediumSize(JobsWidth(14));
-               /// 计时器结束【静态值】
-               data.endValue.bgCor = JobsClearColor;
-           });
-       }return _btnTimerConfigModel;
-   }
+  /// 带倒计时功能的发送短信验证码按钮
+  -(__kindof UIButton *)makeSendSMSCodeBtn{
+      @jobs_weakify(self)
+      return UIButton.initByConfig(jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
+          /// 一些通用的设置
+          data.count = 10;
+          data.showTimeType = ShowTimeType_SS;// 时间显示风格
+          data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
+          data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
+          data.labelShowingType = UILabelShowingType_01;//【换行模式】
+          data.secondStr = @" ".add(JobsInternationalization(@"S"));
+          /// 计时器未开始【静态值】
+          data.readyPlayValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
+              model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
+              model.bgCor = JobsClearColor;
+              model.layerBorderCor = JobsClearColor;
+              model.titleCor = JobsWhiteColor;
+              model.title = JobsInternationalization(@"GET CODE");
+              model.titleFont = bayonRegular(JobsWidth(12));
+              model.backgroundImage = JobsIMG(@"获取验证码背景图");
+          });
+          /// 计时器进行中【动态值】
+          data.runningValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
+              model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
+              model.bgCor = JobsClearColor;
+              model.title = @"  ";
+              model.layerBorderCor = JobsClearColor;
+              model.titleCor = JobsWhiteColor;
+              model.titleFont = bayonRegular(JobsWidth(12));
+              model.backgroundImage = JobsIMG(@"获取验证码背景图");
+          });
+          /// 计时器结束【静态值】
+          data.endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
+              model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
+              model.bgCor = JobsClearColor;
+              model.titleCor = JobsWhiteColor;
+              model.title = JobsInternationalization(@"GET CODE");
+              model.titleFont = bayonRegular(JobsWidth(12));
+              model.backgroundImage = JobsIMG(@"获取验证码背景图");
+          });
+      })).onClick(^(__kindof UIButton *x){
+          @jobs_strongify(self)
+          x.startTimer();//选择时机、触发启动
+          if (self.objectBlock) self.objectBlock(x);
+      }).onLongPressGesture(^(id data){
+          NSLog(@"");
+      }).heartBeat(^(NSTimerManager *_Nullable data){
+          NSLog(@"❤️❤️❤️❤️❤️%f",data.anticlockwiseTime);
+      });
+  }
   ```
   
 * <font color=red>**倒计时事件触发**</font>
@@ -4360,7 +4340,23 @@ static const uint32_t kSequenceBits = 12;
   * **按钮的长按事件**：
     
     * 因为是低频需求，所以目前只封装在主调用上进行呈现
-    * `longPressGestureEventBlock:(JobsSelectorBlock _Nullable)longPressGestureEventBlock`参数
+    
+    * 长按手势用RAC进行实现
+    
+      ```objective-c
+      /// 设置按钮的长按手势
+      -(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock{
+          if(longPressGestureEventBlock){
+              self.userInteractionEnabled = YES;
+              self.addGesture([jobsMakeLongPressGesture(^(UILongPressGestureRecognizer * _Nullable gesture) {
+                  /// 这里写手势的配置
+              }) gestureActionBy:^{
+                  /// 这里写手势的触发
+                  if(longPressGestureEventBlock) longPressGestureEventBlock(self);
+              }]);
+          }
+      }
+      ```
 
 ### 3、[**`Masonry`**](https://github.com/SnapKit/Masonry) 的一些使用技巧 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
