@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL selected;
 @property(nonatomic,assign)BOOL enabled;
 @property(nonatomic,strong,nullable)UIAction *primaryAction;/// 新Api的点击事件
-@property(nonatomic,copy,nullable)JobsReturnIDBySelectorBlock longPressGestureEventBlock;/// 按钮的长按事件
+@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
 @property(nonatomic,copy,nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
 @property(nonatomic,copy,nullable)jobsByBtnBlock onClickBlock;
 @property(nonatomic,copy,nullable)jobsByBtnBlock onLongPressGestureEventBlock;

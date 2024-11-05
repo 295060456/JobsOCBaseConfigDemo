@@ -16,7 +16,7 @@
 @end
 
 @implementation NSTimerManager
-
+@synthesize timerProcessType = _timerProcessType;
 -(void)dealloc{
     NSLog(@"%@",JobsLocalFunc);
     if (_nsTimer) self.nsTimeDestroy();
@@ -30,19 +30,19 @@
 #pragma mark —— 一些私有化方法
 -(jobsByVoidBlock _Nonnull)callBackRunning{
     @jobs_weakify(self)
-    return ^(void) {
+    return ^() {
         @jobs_strongify(self)
-        self.timerProcessModel.timerProcessType = TimerProcessType_running;
-        if (self.objectBlock) self.objectBlock(self.timerProcessModel);
+        self.timerProcessType = TimerProcessType_running;
+        if (self.objectBlock) self.objectBlock(self);
     };
 }
 
 -(jobsByVoidBlock _Nonnull)callBackEnd{
     @jobs_weakify(self)
-    return ^(void) {
+    return ^() {
         @jobs_strongify(self)
-        self.timerProcessModel.timerProcessType = TimerProcessType_end;
-        if (self.objectBlock) self.objectBlock(self.timerProcessModel);
+        self.timerProcessType = TimerProcessType_end;
+        if (self.objectBlock) self.objectBlock(self);
     };
 }
 /// 定时器启动：newTimer + 系统自动添加到RunLoop
@@ -119,7 +119,7 @@
 /// 定时器暂停
 -(jobsByVoidBlock _Nonnull)nsTimePause{
     @jobs_weakify(self)
-    return ^(void) {
+    return ^() {
         @jobs_strongify(self)
         if (self->_nsTimer) {
             self->_nsTimer.fireDate = NSDate.distantFuture;
@@ -130,7 +130,7 @@
 /// 定时器继续
 -(jobsByVoidBlock _Nonnull)nsTimecontinue{
     @jobs_weakify(self)
-    return ^(void) {
+    return ^() {
         @jobs_strongify(self)
         if (self->_nsTimer) {
             self->_nsTimer.fireDate = NSDate.distantPast;
@@ -141,7 +141,7 @@
 /// 销毁定时器
 -(jobsByVoidBlock _Nonnull)nsTimeDestroy{
     @jobs_weakify(self)
-    return ^(void) {
+    return ^() {
         @jobs_strongify(self)
         if (self->_nsTimer) {
             [self->_nsTimer invalidate];//这个是唯一一个可以将计时器从runloop中移出的方法
@@ -178,15 +178,6 @@
             }
         }];self.timerCurrentStatus = NSTimerCurrentStatusRun;
     }return _nsTimer;
-}
-
--(UIButtonModel *)timerProcessModel{
-    if (!_timerProcessModel) {
-        _timerProcessModel = UIButtonModel.new;
-    }
-    @jobs_weakify(self)
-    _timerProcessModel.data = weak_self;
-    return _timerProcessModel;
 }
 
 -(NSDate *)date{

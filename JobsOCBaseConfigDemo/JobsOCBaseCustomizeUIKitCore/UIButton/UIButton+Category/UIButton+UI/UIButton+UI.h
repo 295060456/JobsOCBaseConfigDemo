@@ -103,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
                            layerBorderCor:(UIColor *_Nullable)layerBorderCor
                               borderWidth:(CGFloat)borderWidth
                             primaryAction:(UIAction *_Nullable)primaryAction
-               longPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock
+               longPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock
                           clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock;
 /// UIButtonConfiguration 创建的UIbutton修改字体以及颜色的方法
 /// 注意⚠️因为UIConfigurationTextAttributesTransformer是没有办法直接获取到里面的字体的，只能从外面生成以后直接赋值，也就是每次修改需要给一个完整的UIConfigurationTextAttributesTransformer对象进UIButtonConfiguration
@@ -122,7 +122,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// RAC 点击事件2次封装
 -(RACDisposable *)jobsBtnClickEventBlock:(JobsReturnIDByIDBlock _Nullable)subscribeNextBlock;
 /// 设置按钮的长按手势
--(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock;
+-(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock;
 /// 方法名字符串（带参数、参数之间用"："隔开）、作用对象、参数
 -(JobsReturnIDByThreeIDBlock _Nonnull)btnClickActionWithParamarrays;
 /// 方法名字符串（不带参数）、作用对象
@@ -166,8 +166,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///【兼容】重设Btn的背景颜色
 -(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnBgCor;
 #pragma mark —— 一些通用修改.Layer
-///【合并】重设Btn的描边：线宽和线段的颜色
--(JobsReturnButtonByColor_FloatBlock _Nonnull)jobsResetBtnLayerBorderCorAndWidth;
+///【合并】统一设置按钮Layer的线宽+颜色+圆切角
+-(JobsReturnViewByLocationModelBlock _Nonnull)jobsResetBtnLayerBy;
 ///【兼容】重设Btn的圆切角
 -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnCornerRadiusValue;
 ///【兼容】重设Btn的描边线段的颜色

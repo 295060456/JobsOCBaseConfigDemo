@@ -83,7 +83,7 @@
                            layerBorderCor:(UIColor *_Nullable)layerBorderCor
                               borderWidth:(CGFloat)borderWidth
                             primaryAction:(UIAction *_Nullable)primaryAction
-               longPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock
+               longPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock
                           clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
     if(!btnConfiguration) btnConfiguration = UIButtonConfiguration.filledButtonConfiguration;
     if(!background) background = UIBackgroundConfiguration.clearConfiguration;
@@ -96,14 +96,10 @@
         btnConfiguration.titleAlignment = buttonConfigTitleAlignment;/// 文本的对齐方式
         btnConfiguration.titleLineBreakMode = titleLineBreakMode;/// 主标题的提行方式
         btnConfiguration.subtitleLineBreakMode = subtitleLineBreakMode;/// 副标题的提行方式
-        if(titleFont && titleCor){
-            btnConfiguration.titleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:titleFont
-                                                                                                          btnTitleCor:titleCor];
-        }
-        if(subTitleFont && subTitleCor){
-            btnConfiguration.subtitleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:subTitleFont
-                                                                                                             btnTitleCor:subTitleCor];
-        }
+        btnConfiguration.titleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:titleFont
+                                                                                                      btnTitleCor:titleCor];
+        btnConfiguration.subtitleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:subTitleFont
+                                                                                                         btnTitleCor:subTitleCor];
     }
     {/// 图片
         btnConfiguration.imagePadding = imagePadding;/// 设置图像与标题之间的间距
@@ -116,33 +112,19 @@
 #warning 这个方法，同时设置了普通文本和富文本，其实是走富文本的创建路线。富文本4要素：文字信息、文字颜色、段落、字体
     {/// 富文本 优先级高于普通文本
         /// 设置按钮标题的文本属性
-        if (attributedTitle) {
-            btnConfiguration.attributedTitle = attributedTitle;
-        }else{
-            if(titleFont && titleCor && title){
-                btnConfiguration.attributedTitle = [AttributedString initWithString:title
-                                                                         attributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
-                    
-                    [data setObject:titleCor forKey:NSForegroundColorAttributeName];
-                    [data setObject:titleFont forKey:NSFontAttributeName];
-                    [data setObject:self.jobsparagraphStyleByTextAlignment(textAlignment) forKey:NSParagraphStyleAttributeName];
-                })];
-            }
-        }
+        btnConfiguration.attributedTitle = attributedTitle ? : JobsAttributedStringByAttributes(title, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+            @jobs_strongify(self)
+            if(titleCor) [data setObject:titleCor forKey:NSForegroundColorAttributeName];
+            if(titleFont) [data setObject:titleFont forKey:NSFontAttributeName];
+            [data setObject:self.jobsparagraphStyleByTextAlignment(textAlignment) forKey:NSParagraphStyleAttributeName];
+        }));
         /// 设置按钮副标题的文本属性
-        if(attributedSubtitle){
-            btnConfiguration.attributedSubtitle = attributedSubtitle;
-        }else{
-            if(subTitleFont && subTitleCor && subTitle){
-                btnConfiguration.attributedSubtitle = [AttributedString initWithString:subTitle
-                                                                            attributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
-                    @jobs_strongify(self)
-                    [data setObject:subTitleCor forKey:NSForegroundColorAttributeName];
-                    [data setObject:subTitleFont forKey:NSFontAttributeName];
-                    [data setObject:self.jobsparagraphStyleByTextAlignment(subTextAlignment) forKey:NSParagraphStyleAttributeName];
-                })];
-            }
-        }
+        btnConfiguration.attributedSubtitle = attributedSubtitle ? : JobsAttributedStringByAttributes(subTitle, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+            @jobs_strongify(self)
+            if (subTitleCor) [data setObject:subTitleCor forKey:NSForegroundColorAttributeName];
+            if (subTitleFont) [data setObject:subTitleFont forKey:NSFontAttributeName];
+            [data setObject:self.jobsparagraphStyleByTextAlignment(subTextAlignment) forKey:NSParagraphStyleAttributeName];
+        }));
     }
     {/// 其他
         /// 内边距
@@ -286,23 +268,30 @@
     }];
 }
 /// 设置按钮的长按手势
--(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDBySelectorBlock _Nullable)longPressGestureEventBlock{
+-(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock{
     @jobs_weakify(self)
     if(longPressGestureEventBlock){
         self.userInteractionEnabled = YES;
-        self.numberOfTouchesRequired = 1;
-        self.numberOfTapsRequired = 0;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
-        self.minimumPressDuration = 0.1;
-        self.numberOfTouchesRequired = 1;
-        self.allowableMovement = 1;
-        self.target = weak_self;/// ⚠️注意：任何手势这一句都要写
-        NSLog(@"%@",NSStringFromSelector(self.longPressGR_SelImp.selector));
-        if (!NSStringFromSelector(self.longPressGR_SelImp.selector)) {
-            self.longPressGR_SelImp.selector = selectorBlocks(longPressGestureEventBlock, MethodName(self), self);
-            [self jobsSelectorBlock:longPressGestureEventBlock];
-        }
-        NSLog(@"%@",NSStringFromSelector(self.longPressGR_SelImp.selector));//
-        self.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+        
+        self.addGesture([jobsMakeLongPressGesture(^(UILongPressGestureRecognizer * _Nullable gesture) {
+            ///  这里写手势的配置
+        }) gestureActionBy:^{
+            /// 这里写手势的触发
+            if(longPressGestureEventBlock) longPressGestureEventBlock(self);
+        }]);
+//        self.numberOfTouchesRequired = 1;
+//        self.numberOfTapsRequired = 0;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
+//        self.minimumPressDuration = 0.1;
+//        self.numberOfTouchesRequired = 1;
+//        self.allowableMovement = 1;
+//        self.target = weak_self;/// ⚠️注意：任何手势这一句都要写
+//        NSLog(@"%@",NSStringFromSelector(self.longPressGR_SelImp.selector));
+//        if (!NSStringFromSelector(self.longPressGR_SelImp.selector)) {
+//            self.longPressGR_SelImp.selector = selectorBlocks(longPressGestureEventBlock, MethodName(self), self);
+//            [self jobsSelectorBlock:longPressGestureEventBlock];
+//        }
+//        NSLog(@"%@",NSStringFromSelector(self.longPressGR_SelImp.selector));//
+//        self.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
     }
 }
 /// 方法名字符串（带参数、参数之间用"："隔开）、作用对象、参数
@@ -314,7 +303,7 @@
              id _Nonnull targetObj,
              NSArray * _Nullable paramarrays){
         @jobs_strongify(self)
-        return [[self rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIButton * _Nullable x) {
+        return [[self rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIButton *_Nullable x) {
             [NSObject methodName:methodName
                        targetObj:targetObj
                      paramarrays:paramarrays];
@@ -458,13 +447,12 @@
             @jobs_weakify(self)
             return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 @jobs_strongify(self)
-                config.attributedTitle = [AttributedString initWithString:self.titleForNormalState
-                                                               attributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+                config.attributedTitle = JobsAttributedStringByAttributes(self.titleForNormalState, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
                     @jobs_strongify(self)
                     data.add(NSForegroundColorAttributeName,self._normalTitleColor);
                     data.add(NSFontAttributeName,self.jobsResetBtnTitleFont);
                     data.add(NSParagraphStyleAttributeName,self.jobsparagraphStyleByTextAlignment (textAlignment));
-                })];
+                }));
             }];
         } else self.titleLabel.textAlignment = textAlignment;
         return self;
@@ -507,15 +495,12 @@
         @jobs_weakify(self)
         return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             @jobs_strongify(self)
-            if(config.subtitle){
-                config.attributedSubtitle = [AttributedString initWithString:config.subtitle
-                                                                  attributes:jobsMakeMutDic(^(__kindof NSMutableDictionary <NSAttributedStringKey, id>*_Nullable data1) {
-                    @jobs_strongify(self)
-                    data1.add(NSForegroundColorAttributeName,self.getTitleColorFromTransformer(config.subtitleTextAttributesTransformer));
-                    data1.add(NSFontAttributeName,self.getTitleFontFromTransformer(config.subtitleTextAttributesTransformer));
-                    data1.add(NSParagraphStyleAttributeName,self.jobsparagraphStyleByTextAlignment(data));
-                })];
-            }
+            config.attributedSubtitle = JobsAttributedStringByAttributes(config.subtitle, jobsMakeMutDic(^(__kindof NSMutableDictionary <NSAttributedStringKey, id>*_Nullable data1) {
+                @jobs_strongify(self)
+                data1.add(NSForegroundColorAttributeName,self.getTitleColorFromTransformer(config.subtitleTextAttributesTransformer));
+                data1.add(NSFontAttributeName,self.getTitleFontFromTransformer(config.subtitleTextAttributesTransformer));
+                data1.add(NSParagraphStyleAttributeName,self.jobsparagraphStyleByTextAlignment(data));
+            }));
         }];
     };
 }
@@ -567,13 +552,14 @@
     };
 }
 #pragma mark —— 一些通用修改.Layer
-///【合并】重设Btn的描边：线宽和线段的颜色
--(JobsReturnButtonByColor_FloatBlock _Nonnull)jobsResetBtnLayerBorderCorAndWidth{
+///【合并】统一设置按钮Layer的线宽+颜色+圆切角
+-(JobsReturnViewByLocationModelBlock _Nonnull)jobsResetBtnLayerBy{
     @jobs_weakify(self)
-    return ^__kindof UIButton *(UIColor *_Nullable layerBorderCor,float borderWidth) {
+    return ^__kindof UIView *_Nullable(__kindof JobsLocationModel *_Nullable data){
         @jobs_strongify(self)
-        self.jobsResetBtnLayerBorderCor(layerBorderCor);
-        self.jobsResetBtnLayerBorderWidth(borderWidth);
+        self.jobsResetBtnLayerBorderCor(data.layerCor);
+        self.jobsResetBtnLayerBorderWidth(data.jobsWidth);
+        self.jobsResetBtnCornerRadiusValue(data.cornerRadius);
         return self;
     };
 }

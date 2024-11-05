@@ -10,6 +10,7 @@
 #import "UITextModelProtocol.h"
 #import "UIViewModelOthersProtocol.h"
 #import "UILocationProtocol.h"
+#import "DefineConstString.h"
 
 #import "JobsBlock.h"
 #import "JobsTimerManager.h"/// 时间管理
@@ -67,12 +68,6 @@ NS_ASSUME_NONNULL_END
 
 NS_INLINE ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsByButtonTimerConfigModelBlock _Nonnull block){
     ButtonTimerConfigModel *model = ButtonTimerConfigModel.alloc.init;
-    if (block) block(model);
-    return model;
-}
-
-NS_INLINE UIButtonModel *_Nonnull jobsMakeButtonTimerProcessValueModel(jobsByButtonTimerProcessValueModelBlock _Nonnull block){
-    UIButtonModel *model = UIButtonModel.alloc.init;
     if (block) block(model);
     return model;
 }

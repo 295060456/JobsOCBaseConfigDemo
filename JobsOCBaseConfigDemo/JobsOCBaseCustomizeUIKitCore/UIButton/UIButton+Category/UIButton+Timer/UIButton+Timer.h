@@ -15,6 +15,7 @@
 #import "NSObject+NSMutableParagraphStyle.h"
 #import "NSObject+Extras.h"
 #import "NSString+Others.h"
+#import "NSMutableArray+Extra.h"
 
 #import "JobsTimerManager.h"/// 时间管理
 #import "ButtonTimerDefStructure.h"
@@ -36,14 +37,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (Timer)
-
+/// 计时器专用数据源
 @property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfig;
--(UIButtonModel *)readyPlayValue;
--(UIButtonModel *)runningValue;
--(UIButtonModel *)endValue;
+-(UIButtonModel *_Nonnull)readyPlayValue;
+-(UIButtonModel *_Nonnull)runningValue;
+-(UIButtonModel *_Nonnull)endValue;
+-(NSTimerManager *_Nonnull)timerManager;
 #pragma mark —— 时间相关方法【开启定时器】
 -(jobsByVoidBlock _Nonnull)startTimer;/// 开启计时【用初始化时间】
--(jobsByNSIntegerBlock _Nonnull)startFromTimer;/// 开启计时【从某个时间】
+-(jobsByNSIntegerBlock _Nonnull)startTimerBy;/// 开启计时【从某个时间】
 #pragma mark —— 时间相关方法【定时器暂停】
 -(jobsByVoidBlock _Nonnull)timerSuspend;
 #pragma mark —— 时间相关方法【定时器继续】
@@ -70,7 +72,7 @@ NS_ASSUME_NONNULL_END
              data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
              data.labelShowingType = UILabelShowingType_01;//【换行模式】
              /// 计时器未开始【静态值】
-             data.readyPlayValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable model) {
+             data.readyPlayValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
                  model.layerBorderWidth = 1;
                  model.layerCornerRadius = JobsWidth(18);
                  model.bgCor = JobsClearColor;
@@ -80,7 +82,7 @@ NS_ASSUME_NONNULL_END
                  model.font = UIFontWeightMediumSize(JobsWidth(14));
              });
              /// 计时器进行中【动态值】
-             data.runningValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable model) {
+             data.runningValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
                  model.bgCor = JobsClearColor;
                  model.text = JobsInternationalization(Title12);
                  model.layerBorderCor = JobsClearColor;
@@ -88,7 +90,7 @@ NS_ASSUME_NONNULL_END
                  model.font = UIFontWeightMediumSize(JobsWidth(14));
              });
              /// 计时器结束【静态值】
-             data.endValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable model) {
+             data.endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
                  model.bgCor = JobsClearColor;
              });
          })).onClick(^(__kindof UIButton *x){

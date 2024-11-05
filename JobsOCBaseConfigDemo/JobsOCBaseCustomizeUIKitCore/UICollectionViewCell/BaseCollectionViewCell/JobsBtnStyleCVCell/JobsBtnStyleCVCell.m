@@ -114,8 +114,7 @@
             return nil;
         }];
         
-        [_btn jobsBtnLongPressGestureEventBlock:self.viewModel.longPressGestureEventBlock ? : ^id(id _Nullable weakSelf,
-                                                                                                  id _Nullable arg) {
+        [_btn jobsBtnLongPressGestureEventBlock:self.viewModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *x) {
 //            @jobs_strongify(self)
             return nil;
         }];
@@ -125,10 +124,10 @@
                 .imageURL(self.viewModel.normalImageURLString.imageURLPlus.jobsUrl)
                 .placeholderImage(self.viewModel.normalImage)
                 .options(self.makeSDWebImageOptions)
-                .completed(^(UIImage * _Nullable image,
-                             NSError * _Nullable error,
+                .completed(^(UIImage *_Nullable image,
+                             NSError *_Nullable error,
                              SDImageCacheType cacheType,
-                             NSURL * _Nullable imageURL) {
+                             NSURL *_Nullable imageURL) {
                     if (error) {
                         NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
                     } else {
@@ -234,12 +233,10 @@
             return nil;
         }];
         
-        [_btn jobsBtnLongPressGestureEventBlock:self.buttonModel.longPressGestureEventBlock ? : ^id(id _Nullable weakSelf,
-                                                                                                    id _Nullable arg) {
+        [_btn jobsBtnLongPressGestureEventBlock:self.buttonModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *x) {
 //            @jobs_strongify(self)
             return nil;
         }];
-        
         /// 图文间距
         if (@available(iOS 16.0, *)) {
             _btn.jobsResetImagePadding(self.buttonModel.imagePadding);

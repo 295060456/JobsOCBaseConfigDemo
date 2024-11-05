@@ -121,8 +121,7 @@ BaseViewControllerProtocol_synthesize
 //    if(!_backBtnModel){
 //        @jobs_strongify(self)
 //        _backBtnModel = self.makeBackBtnModel;
-//        _backBtnModel.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
-//                                                       id _Nullable arg) {
+//        _backBtnModel.longPressGestureEventBlock = ^id(__kindof UIButton *x) {
 //            NSLog(@"按钮的长按事件触发");
 //            return nil;
 //        };

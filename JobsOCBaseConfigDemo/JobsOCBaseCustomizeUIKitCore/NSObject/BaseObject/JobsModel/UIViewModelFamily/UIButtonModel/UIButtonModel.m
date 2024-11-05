@@ -15,6 +15,7 @@ UIViewModelProtocol_synthesize
 @synthesize normalBgImageURLString = _normalBgImageURLString;
 @synthesize normalImageURL = _normalImageURL;
 @synthesize normalBgImageURL = _normalBgImageURL;
+@synthesize timerProcessType = _timerProcessType;
 
 -(NSTextAlignment)textAlignment{
     if (!_textAlignment) {
@@ -90,23 +91,5 @@ UIViewModelProtocol_synthesize
     _normalBgImageURLString = normalBgImageURLString.imageURLPlus;
     _normalBgImageURL = JobsUrl(self.normalBgImageURLString);
 }
-
-//-(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
-//    if(!_clickEventBlock){
-//        _clickEventBlock = ^id _Nullable(id _Nullable data){
-//            NSLog(@"%s", __FUNCTION__);
-//            return nil;
-//        };
-//    }return _clickEventBlock;
-//}
-//
-//-(JobsReturnIDBySelectorBlock)longPressGestureEventBlock{
-//    if(!_longPressGestureEventBlock){
-//        _longPressGestureEventBlock = ^id _Nullable(id _Nullable weakSelf,id _Nullable arg){
-//            NSLog(@"%s", __FUNCTION__);
-//            return nil;
-//        };
-//    }return _longPressGestureEventBlock;
-//}
 
 @end

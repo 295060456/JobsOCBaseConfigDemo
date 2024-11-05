@@ -103,8 +103,7 @@
                                                  layerBorderCor:nil
                                                     borderWidth:JobsWidth(0)
                                                   primaryAction:nil
-                                     longPressGestureEventBlock:^(id _Nullable weakSelf,
-                                                                  id _Nullable arg) {
+                                     longPressGestureEventBlock:^(__kindof UIButton *x) {
            NSLog(@"按钮的长按事件触发");
            return nil;
        }

@@ -136,7 +136,7 @@
             data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
             data.labelShowingType = UILabelShowingType_01;//【换行模式】
             /// 计时器未开始【静态值】
-            data.readyPlayValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable model) {
+            data.readyPlayValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
                 model.layerBorderWidth = 1;
                 model.layerCornerRadius = JobsWidth(18);
                 model.bgCor = JobsClearColor;
@@ -146,7 +146,7 @@
                 model.font = UIFontWeightMediumSize(JobsWidth(14));
             });
             /// 计时器进行中【动态值】
-            data.runningValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable model) {
+            data.runningValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
                 model.bgCor = JobsClearColor;
                 model.text = JobsInternationalization(Title12);
                 model.layerBorderCor = JobsClearColor;
@@ -154,7 +154,7 @@
                 model.font = UIFontWeightMediumSize(JobsWidth(14));
             });
             /// 计时器结束【静态值】
-            data.endValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable model) {
+            data.endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
                 model.bgCor = JobsClearColor;
             });
         })).onClick(^(__kindof UIButton *x){

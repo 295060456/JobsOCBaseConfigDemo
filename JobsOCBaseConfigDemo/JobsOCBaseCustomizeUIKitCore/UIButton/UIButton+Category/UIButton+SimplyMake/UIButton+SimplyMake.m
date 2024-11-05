@@ -272,10 +272,9 @@
                                        layerBorderCor:data.buttonModel.layerBorderCor
                                           borderWidth:data.buttonModel.borderWidth
                                         primaryAction:data.buttonModel.primaryAction
-                           longPressGestureEventBlock:data.buttonModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable weakSelf,
-                                                                                                          id _Nullable arg) {
+                           longPressGestureEventBlock:data.buttonModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable x) {
             NSLog(@"按钮的长按事件触发");
-            if(weakSelf.longPressGestureBlock) weakSelf.longPressGestureBlock(arg);
+            if(x.longPressGestureBlock) x.longPressGestureBlock(x);
             return nil;
         }
                                       clickEventBlock:data.buttonModel.clickEventBlock ? : ^id(__kindof UIButton *x){
@@ -322,10 +321,9 @@
                                        layerBorderCor:data.layerBorderCor
                                           borderWidth:data.borderWidth
                                         primaryAction:data.primaryAction
-                           longPressGestureEventBlock:data.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable weakSelf,
-                                                                                              id _Nullable arg) {
+                           longPressGestureEventBlock:data.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable x) {
             NSLog(@"按钮的长按事件触发");
-            if(weakSelf.longPressGestureBlock) weakSelf.longPressGestureBlock(arg);
+            if(x.longPressGestureBlock) x.longPressGestureBlock(x);
             return nil;
         }
                                       clickEventBlock:data.clickEventBlock ? : ^id(__kindof UIButton *x){
@@ -372,10 +370,9 @@
                                        layerBorderCor:nil
                                           borderWidth:JobsWidth(0)
                                         primaryAction:nil
-                           longPressGestureEventBlock:^id(__kindof UIButton *_Nullable weakSelf,
-                                                          id _Nullable arg) {
+                           longPressGestureEventBlock:^id(__kindof UIButton *_Nullable x) {
             NSLog(@"按钮的长按事件触发");
-            if(weakSelf.longPressGestureBlock) weakSelf.longPressGestureBlock(arg);
+            if(x.longPressGestureBlock) x.longPressGestureBlock(x);
             return nil;
         }
                                       clickEventBlock:^id(__kindof UIButton *x){
@@ -403,9 +400,9 @@
     };
 }
 
--(JobsReturnButtonByIDBlock _Nonnull)heartBeat{
+-(JobsReturnButtonByButtonModel2Block _Nonnull)heartBeat{
     @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(jobsByIDBlock block) {
+    return ^__kindof UIButton *_Nullable(jobsByButtonModelBlock block) {
         @jobs_strongify(self)
         self.heartBeatBlock = block;
         return self;
@@ -449,14 +446,14 @@ JobsKey(_longPressGestureBlock)
 -(void)setLongPressGestureBlock:(jobsByBtnBlock)longPressGestureBlock{
     Jobs_setAssociatedRETAIN_NONATOMIC(_longPressGestureBlock, longPressGestureBlock);
 }
-#pragma mark —— @property(nonatomic,copy)jobsByIDBlock heartBeatBlock;
+#pragma mark —— @property(nonatomic,copy)jobsByButtonModelBlock heartBeatBlock;
 JobsKey(_heartBeatBlock)
 @dynamic heartBeatBlock;
--(jobsByIDBlock)heartBeatBlock{
+-(jobsByButtonModelBlock)heartBeatBlock{
     return Jobs_getAssociatedObject(_heartBeatBlock);
 }
 
--(void)setHeartBeatBlock:(jobsByIDBlock)heartBeatBlock{
+-(void)setHeartBeatBlock:(jobsByButtonModelBlock)heartBeatBlock{
     Jobs_setAssociatedRETAIN_NONATOMIC(_heartBeatBlock, heartBeatBlock);
 }
 

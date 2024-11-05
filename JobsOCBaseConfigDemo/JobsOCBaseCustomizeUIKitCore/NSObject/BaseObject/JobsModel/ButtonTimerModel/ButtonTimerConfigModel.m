@@ -41,11 +41,11 @@ UILocationProtocol_UIViewModelSynthesize
 /// 根据ShowTimeType格式化以后的时间【内部使用】
 -(NSString *)formatTimeStr{
     if (self.labelShowingType == UILabelShowingType_05) {//提行模式
-        if (![_formatTimeStr containsString:@"\n"] && _formatTimeStr) {
+        if (![_formatTimeStr containsString:JobsNewline] && _formatTimeStr) {
             if (self.cequenceForShowTitleRuningStrType == CequenceForShowTitleRuningStrType_front) {
-                _formatTimeStr = @"\n".add(_formatTimeStr);
+                _formatTimeStr = JobsNewline.add(_formatTimeStr);
             }else if (self.cequenceForShowTitleRuningStrType == CequenceForShowTitleRuningStrType_tail){
-                _formatTimeStr = _formatTimeStr.add(@"\n");
+                _formatTimeStr = _formatTimeStr.add(JobsNewline);
             }else{}
         }
     }return _formatTimeStr;
@@ -53,7 +53,7 @@ UILocationProtocol_UIViewModelSynthesize
 /// 计时器未开始
 -(UIButtonModel *)readyPlayValue{
     if (!_readyPlayValue) {
-        _readyPlayValue = jobsMakeButtonTimerProcessValueModel(^(__kindof UIButtonModel * _Nullable data) {
+        _readyPlayValue = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
 //            data.layerBorderCor = JobsWhiteColor;
 //            data.textCor = JobsWhiteColor;
 //            data.font = UIFontWeightRegularSize(12);
@@ -75,7 +75,7 @@ UILocationProtocol_UIViewModelSynthesize
 -(UIButtonModel *)runningValue{
     if (!_runningValue) {
         @jobs_weakify(self)
-        _runningValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable data) {
+        _runningValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable data) {
             @jobs_strongify(self)
 //            data.layerBorderCor = JobsRedColor;
 //            data.textCor = JobsGreenColor;
@@ -98,7 +98,7 @@ UILocationProtocol_UIViewModelSynthesize
 -(UIButtonModel *)endValue{
     if (!_endValue) {
         @jobs_weakify(self)
-        _endValue = jobsMakeButtonTimerProcessValueModel(^(UIButtonModel * _Nullable data) {
+        _endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable data) {
             @jobs_strongify(self)
             data.layerBorderCor = self.readyPlayValue.layerBorderCor;
             data.textCor = self.readyPlayValue.textCor;
@@ -126,7 +126,7 @@ UILocationProtocol_UIViewModelSynthesize
 
 -(NSString *)secondStr{
     if (!_secondStr) {
-        _secondStr = JobsInternationalization(@"Sec");
+        _secondStr = JobsInternationalization(@"SEC");
     }return _secondStr;
 }
 

@@ -27,8 +27,7 @@ static dispatch_once_t static_navBarConfigOnceToken;
     if(!_backBtnModel){
         @jobs_weakify(self)
         _backBtnModel = self.makeBackBtnModel;
-        _backBtnModel.longPressGestureEventBlock = ^id (id _Nullable weakSelf,
-                                                        id _Nullable arg) {
+        _backBtnModel.longPressGestureEventBlock = ^id (__kindof UIButton *x) {
             NSLog(@"按钮的长按事件触发");
             return nil;
         };
@@ -43,15 +42,14 @@ static dispatch_once_t static_navBarConfigOnceToken;
 -(UIButtonModel *)closeBtnModel{
     if(!_closeBtnModel){
         @jobs_weakify(self)
-        _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+        _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
             data.backgroundImage = JobsIMG(@"关闭");
             data.selected_backgroundImage = JobsIMG(@"关闭");
             data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
             data.titleCor = JobsClearColor;
             data.selected_titleCor = JobsClearColor;
             data.roundingCorners = UIRectCornerAllCorners;
-            data.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
-                                                  id _Nullable arg) {
+            data.longPressGestureEventBlock = ^id(__kindof UIButton *x) {
                 NSLog(@"按钮的长按事件触发");
                 return nil;
             };

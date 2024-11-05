@@ -7,6 +7,18 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXTERN NSString *_Nonnull const JobsNewline;         /// 换行符
+FOUNDATION_EXTERN NSString *_Nonnull const JobsTab;             /// 制表符
+FOUNDATION_EXTERN NSString *_Nonnull const JobsSpace;           /// 空格
+FOUNDATION_EXTERN NSString *_Nonnull const JobsEmpty;           /// 空字符串
+FOUNDATION_EXTERN NSString *_Nonnull const JobsComma;           /// 逗号
+FOUNDATION_EXTERN NSString *_Nonnull const JobsDot;             /// 句号
+FOUNDATION_EXTERN NSString *_Nonnull const JobsColon;           /// 冒号
+FOUNDATION_EXTERN NSString *_Nonnull const JobsSemicolon;       /// 分号
+FOUNDATION_EXTERN NSString *_Nonnull const JobsDash;            /// 连字符
+FOUNDATION_EXTERN NSString *_Nonnull const JobsUnderscore;      /// 下划线
+FOUNDATION_EXTERN NSString *_Nonnull const JobsAsterisk;        /// 星号
+
 FOUNDATION_EXTERN NSString *_Nonnull const 网络状态监控;/// 网络状态监控
 FOUNDATION_EXTERN NSString *_Nonnull const 退到后台停止播放ZFPlayer;/// 退到后台停止播放ZFPlayer
 FOUNDATION_EXTERN NSString *_Nonnull const 语言切换;/// 语言切换

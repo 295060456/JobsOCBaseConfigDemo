@@ -133,9 +133,6 @@ typedef void(^jobsByTextModelBlock)(__kindof UITextModel *_Nullable data);
 @class JobsTimeFormatterModel;
 typedef JobsTimeFormatterModel *_Nullable(^JobsReturnTimeFormatterModelByStringBlock)(NSString *_Nullable data);
 
-@class UIButtonModel;
-typedef void(^jobsByButtonTimerProcessValueModelBlock)(UIButtonModel *_Nullable data);
-
 @class NSTimerManager;
 typedef void(^jobsByTimerManagerBlock)(NSTimerManager *_Nullable data);
 
@@ -160,9 +157,12 @@ typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryModelBlock)(__kindof 
 
 @class UIButtonModel;
 typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable data);
+typedef BOOL(^JobsReturnBOOLByButtonModelBlock)(UIButtonModel *_Nullable data);
 typedef NSMutableArray <UIButtonModel *>*_Nullable(^JobsReturnButtonModelArrByArrBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByString)(__kindof NSString *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(UIButtonModel *_Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModel2Block)(jobsByButtonModelBlock _Nullable data);
+
 @class JobsNavBarConfig;
 typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable data);
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,
