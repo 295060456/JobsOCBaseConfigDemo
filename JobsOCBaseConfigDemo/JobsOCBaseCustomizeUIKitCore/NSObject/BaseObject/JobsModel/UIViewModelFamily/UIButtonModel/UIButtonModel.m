@@ -16,6 +16,8 @@ UIViewModelProtocol_synthesize
 @synthesize normalImageURL = _normalImageURL;
 @synthesize normalBgImageURL = _normalBgImageURL;
 @synthesize timerProcessType = _timerProcessType;
+@synthesize titleFont = _titleFont;
+@synthesize subTitleFont = _subTitleFont;
 
 -(NSTextAlignment)textAlignment{
     if (!_textAlignment) {

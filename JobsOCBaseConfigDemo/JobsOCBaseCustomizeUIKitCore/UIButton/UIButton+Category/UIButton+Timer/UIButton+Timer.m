@@ -342,16 +342,16 @@ JobsKey(_btnTimerConfig)
     }
     /// 定时器运行时的Block
     @jobs_weakify(self)
-    [BtnTimerConfig actionObjectBlock:^(UIButtonModel *data) {
+    [BtnTimerConfig actionObjectBlock:^(NSTimerManager *data) {
         @jobs_strongify(self)
         switch (data.timerProcessType) {
             case TimerProcessType_ready:{
                 
             }break;
             case TimerProcessType_running:{
-                data.timerManager.timerStyle = BtnTimerConfig.countDownBtnType;
-                NSLog(@"DDD = %f",data.timerManager.anticlockwiseTime);
-                self.timerRuning((long)data.timerManager.anticlockwiseTime);/// 倒计时方法
+                data.timerStyle = BtnTimerConfig.countDownBtnType;
+                NSLog(@"DDD = %f",data.anticlockwiseTime);
+                self.timerRuning((long)data.anticlockwiseTime);/// 倒计时方法
             }break;
             case TimerProcessType_end:{
                 self.timerDestroy();

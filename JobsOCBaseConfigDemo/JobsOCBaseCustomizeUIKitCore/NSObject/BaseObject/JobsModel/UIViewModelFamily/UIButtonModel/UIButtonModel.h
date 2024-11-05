@@ -14,6 +14,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButtonModel : BaseModel<BaseButtonProtocol,UIViewModelProtocol>
+#pragma mark —— <BaseButtonProtocol>
+//@property(nonatomic,strong,nullable)UIFont *titleFont;/// 主标题字体
+//@property(nonatomic,strong,nullable)UIFont *subTitleFont;///（新Api才有的）副标题字体
+//@property(nonatomic,strong,nullable)UIImage *backgroundImage;/// 背景图片
+//@property(nonatomic,strong,nullable)UIImage *normalImage;/// 正常情况下的image
 #pragma mark —— 对方位
 @property(nonatomic,assign)CGFloat btn_x;
 @property(nonatomic,assign)CGFloat btn_y;
@@ -29,23 +34,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)UIButtonConfigurationTitleAlignment buttonConfigTitleAlignment;/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
 @property(nonatomic,assign)NSTextAlignment textAlignment;/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】。也对应新Api里面的title的对齐方式
 @property(nonatomic,assign)NSTextAlignment subTextAlignment;/// 也对应新Api里面的subTitle的对齐方式
-//@property(nonatomic,strong,nullable)UIImage *normalImage;/// 正常情况下的image
 @property(nonatomic,strong,nullable)UIImage *highlightImage;/// = selected_Image 高亮情况下的image
 @property(nonatomic,strong,nullable)NSAttributedString *attributedTitle;/// 主标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
 @property(nonatomic,strong,nullable)NSAttributedString *selectedAttributedTitle;///（只限于老Api，新Api里面没有）UIControlStateSelected状态下的标题富文本。设置富文本，请关注：#import "NSObject+RichText.h"
 @property(nonatomic,strong,nullable)NSAttributedString *attributedSubtitle;///（新Api才有的）副标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
 @property(nonatomic,copy,nullable)NSString *title;/// 主标题
 @property(nonatomic,copy,nullable)NSString *subTitle;///（新Api才有的）副标题
-@property(nonatomic,strong,nullable)UIFont *titleFont;/// 主标题字体
-@property(nonatomic,strong,nullable)UIFont *subTitleFont;///（新Api才有的）副标题字体
 @property(nonatomic,strong,nullable)UIColor *titleCor;/// 主标题文字颜色
+@property(nonatomic,strong,nullable)UIColor *subTitleCor;/// 副标题文字颜色
 @property(nonatomic,assign)UILabelShowingType titleShowingType;/// 主标题的显示方式
 @property(nonatomic,assign)UILabelShowingType subTitleShowingType;/// 副标题的显示方式
-@property(nonatomic,strong,nullable)UIColor *subTitleCor;/// 副标题文字颜色
 @property(nonatomic,assign)NSLineBreakMode titleLineBreakMode;/// 主标题换行模式
 @property(nonatomic,assign)NSLineBreakMode subtitleLineBreakMode;/// （新Api才有的）副标题换行模式
 @property(nonatomic,strong,nullable)UIColor *baseBackgroundColor;/// 背景颜色
-//@property(nonatomic,strong,nullable)UIImage *backgroundImage;/// 背景图片
 @property(nonatomic,assign)CGFloat imagePadding;/// 图像与标题之间的间距
 @property(nonatomic,assign)CGFloat titlePadding;/// 标题和副标题标签之间的距离
 @property(nonatomic,assign)NSDirectionalRectEdge imagePlacement;/// ❤️图片和文字的位置关系❤️

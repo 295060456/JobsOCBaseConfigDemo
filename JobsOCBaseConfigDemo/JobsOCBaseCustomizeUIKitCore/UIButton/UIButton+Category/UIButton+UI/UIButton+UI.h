@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 #warning 富文本兼容一切
 /// ⚠️当font描绘的文字,或者文字大于UIButton的frame,UIButton的Title将不会显现⚠️
-@interface UIButton (UI)<BaseProtocol,BaseButtonProtocol>
+@interface UIButton (UI)<BaseButtonProtocol>
 #pragma mark —— 一些功能性
 /// 为了兼容新的Api，批量设定UIButton
 /// 新Api较老的Api，增加了subTitle
@@ -116,9 +116,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(UIConfigurationTextAttributesTransformer)jobsSetConfigTextAttributesTransformerByTitleFont:(UIFont *_Nullable)titleFont
                                                                                  btnTitleCor:(UIColor *_Nullable)titleCor;
 /// 通过 Transformer 得到 字体
--(JobsReturnFontByConfigurationTextAttributesTransformerBlock _Nonnull)getTitleFontFromTransformer;
+-(JobsReturnFontByConfigurationTextAttributesTransformerBlock _Nonnull)getTitleFontByTransformer;
 /// 通过 Transformer 得到 文字颜色
--(JobsReturnColorByConfigurationTextAttributesTransformerBlock _Nonnull)getTitleColorFromTransformer;
+-(JobsReturnColorByConfigurationTextAttributesTransformerBlock _Nonnull)getTitleColorByTransformer;
 /// RAC 点击事件2次封装
 -(RACDisposable *)jobsBtnClickEventBlock:(JobsReturnIDByIDBlock _Nullable)subscribeNextBlock;
 /// 设置按钮的长按手势
@@ -235,30 +235,34 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnButtonConfigurationByFontBlock _Nonnull)jobsResetSubTitleFont API_AVAILABLE(ios(16.0));
 #pragma mark —— UIButton.UIControlStateNormal.get
 ///【兼容】获取按钮图片（普通状态下）
--(nullable UIImage *)imageForNormalState;
+-(UIImage *_Nullable)imageForNormalState;
 ///【兼容】获取按钮背景图片（普通状态下）
--(nullable UIImage *)backgroundImageForNormalState;
+-(UIImage *_Nullable)backgroundImageForNormalState;
 ///【兼容】获取按钮富文本字符串内容
--(nullable NSString *)titleForConfigurationAttributedText;
+-(NSString *_Nullable)titleForConfigurationAttributedText;
 ///【兼容】获取按钮富文本内容（更通用）
--(nullable NSAttributedString *)titleForConfigurationAttributed;
+-(NSAttributedString *_Nullable)titleForConfigurationAttributed;
 ///【兼容】获取按钮富文本内容（普通状态下）
--(nullable NSAttributedString *)attributedTitleForNormalState;
+-(NSAttributedString *_Nullable)attributedTitleForNormalState;
 ///【兼容】获取按钮主文字内容
--(nullable NSString *)titleForNormalState;
+-(NSString *_Nullable)titleForNormalState;
 ///【兼容】获取按钮主文字颜色
--(nullable UIColor *)titleColorForNormalState;
+-(UIColor *_Nullable)titleColorForNormalState;
+///【兼容】获取按钮主文字字体
+-(UIFont *_Nullable)titleFont;
+///【兼容】获取按钮副标题文字字体
+-(UIFont *_Nullable)subTitleFont;
 #pragma mark —— UIButton.带状态的 get
 /// 获取 Btn 已选择状态下的按钮图片
--(nullable UIImage *)imageForSelectedState;
+-( UIImage *_Nullable)imageForSelectedState;
 /// 获取 Btn 已选择状态下的背景图片
--(nullable UIImage *)backgroundImageForSelectedState;
+-(UIImage *_Nullable)backgroundImageForSelectedState;
 /// 获取 Btn 已选择状态下的 主标题的文本内容
--(nullable NSString *)titleForSelectedState;
+-(NSString *_Nullable)titleForSelectedState;
 /// 获取 Btn 已选择状态下的 主标题的文本颜色
--(nullable UIColor *)titleColorForSelectedState;
+-(UIColor *_Nullable)titleColorForSelectedState;
 /// 获取 Btn 已选择状态下的 主标题的富文本内容
--(nullable NSAttributedString *)attributedTitleForSelectedState;
+-(NSAttributedString *_Nullable)attributedTitleForSelectedState;
 
 @end
 

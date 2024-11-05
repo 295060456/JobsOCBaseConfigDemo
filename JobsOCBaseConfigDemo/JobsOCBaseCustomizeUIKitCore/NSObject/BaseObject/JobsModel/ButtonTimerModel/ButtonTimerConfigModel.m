@@ -29,7 +29,7 @@ UILocationProtocol_UIViewModelSynthesize
             data.timerStyle = self.countDownBtnType;
             data.anticlockwiseTime = self.count;//【逆时针模式：到这个时间点结束】、【顺时针模式：从这个时间点开始】
             //倒计时启动
-            [data actionObjectBlock:^(UIButtonModel *data) {
+            [data actionObjectBlock:^(NSTimerManager *data) {
                 @jobs_strongify(self)
                 NSLog(@"正在倒计时...");
                 NSLog(@"SSS = %@",self.objectBlock);

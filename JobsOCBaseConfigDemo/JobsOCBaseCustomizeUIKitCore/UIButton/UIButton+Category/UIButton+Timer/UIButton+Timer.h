@@ -61,58 +61,54 @@ NS_ASSUME_NONNULL_END
 
 /** 调用示例
  
- -(UIButton *)countDownBtn{
-     if (!_countDownBtn) {
-         @jobs_weakify(self)
-         _countDownBtn = UIButton.initByConfig(jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
-             /// 一些通用的设置
-             data.count = 50;
-             data.showTimeType = ShowTimeType_SS;// 时间显示风格
-             data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
-             data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
-             data.labelShowingType = UILabelShowingType_01;//【换行模式】
-             /// 计时器未开始【静态值】
-             data.readyPlayValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-                 model.layerBorderWidth = 1;
-                 model.layerCornerRadius = JobsWidth(18);
-                 model.bgCor = JobsClearColor;
-                 model.layerBorderCor = JobsClearColor;
-                 model.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
-                 model.text = Title9;
-                 model.font = UIFontWeightMediumSize(JobsWidth(14));
-             });
-             /// 计时器进行中【动态值】
-             data.runningValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-                 model.bgCor = JobsClearColor;
-                 model.text = JobsInternationalization(Title12);
-                 model.layerBorderCor = JobsClearColor;
-                 model.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
-                 model.font = UIFontWeightMediumSize(JobsWidth(14));
-             });
-             /// 计时器结束【静态值】
-             data.endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-                 model.bgCor = JobsClearColor;
-             });
-         })).onClick(^(__kindof UIButton *x){
-             @jobs_strongify(self)
-             x.startTimer();//选择时机、触发启动
-             if (self.objectBlock) self.objectBlock(x);
-         }).onLongPressGesture(^(id data){
-             NSLog(@"");
-         }).heartBeat(^(id _Nullable data){
-             if ([data isKindOfClass:UIButtonModel.class]) {
-                 UIButtonModel *model = (UIButtonModel *)data;
-                 NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
-             }
+ -(__kindof UIButton *)makeSendSMSCodeBtn{
+     @jobs_weakify(self)
+     return UIButton.initByConfig(jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
+         /// 一些通用的设置
+         data.count = 10;
+         data.showTimeType = ShowTimeType_SS;// 时间显示风格
+         data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
+         data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
+         data.labelShowingType = UILabelShowingType_01;//【换行模式】
+         data.secondStr = @" ".add(JobsInternationalization(@"S"));
+         /// 计时器未开始【静态值】
+         data.readyPlayValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
+             model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
+             model.bgCor = JobsClearColor;
+             model.layerBorderCor = JobsClearColor;
+             model.titleCor = JobsWhiteColor;
+             model.title = JobsInternationalization(@"GET CODE");
+             model.titleFont = bayonRegular(JobsWidth(12));
+             model.backgroundImage = JobsIMG(@"获取验证码背景图");
          });
-         [self addSubview:_countDownBtn];
-         [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.right.equalTo(self).offset(-JobsWidth(120));
-             make.top.equalTo(self).offset(JobsWidth(8));
-             make.bottom.equalTo(self).offset(-JobsWidth(8));
-             make.width.mas_equalTo(JobsWidth(80));
-         }];
-     }return _countDownBtn;
+         /// 计时器进行中【动态值】
+         data.runningValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
+             model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
+             model.bgCor = JobsClearColor;
+             model.title = @"  ";
+             model.layerBorderCor = JobsClearColor;
+             model.titleCor = JobsWhiteColor;
+             model.titleFont = bayonRegular(JobsWidth(12));
+             model.backgroundImage = JobsIMG(@"获取验证码背景图");
+         });
+         /// 计时器结束【静态值】
+         data.endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
+             model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
+             model.bgCor = JobsClearColor;
+             model.titleCor = JobsWhiteColor;
+             model.title = JobsInternationalization(@"GET CODE");
+             model.titleFont = bayonRegular(JobsWidth(12));
+             model.backgroundImage = JobsIMG(@"获取验证码背景图");
+         });
+     })).onClick(^(__kindof UIButton *x){
+         @jobs_strongify(self)
+         x.startTimer();//选择时机、触发启动
+         if (self.objectBlock) self.objectBlock(x);
+     }).onLongPressGesture(^(id data){
+         NSLog(@"");
+     }).heartBeat(^(NSTimerManager *_Nullable data){
+         NSLog(@"❤️❤️❤️❤️❤️%f",data.anticlockwiseTime);
+     });
  }
  
  /// 开始 self.authCodeBtn.startTimer();

@@ -23,6 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL jobsSelected;
 @property(nonatomic,strong,nullable)UIImage *backgroundImage;/// 背景图片
 @property(nonatomic,strong,nullable)UIImage *normalImage;/// 正常情况下的image
+/// 在 iOS 16 中，UIButtonConfiguration 使用 titleTextAttributesTransformer 来调整按钮标题的字体和颜色
+/// 但直接访问字体并不像从 titleLabel 那样简单
+@property(nonatomic,strong)UIFont *titleFont;
+@property(nonatomic,strong)UIFont *subTitleFont API_AVAILABLE(ios(16.0));
 #pragma mark —— JobsBtnModel
 @property(nonatomic,strong)UIColor *btnBackgroundColor;
 @property(nonatomic,assign)CGSize imageSize;
