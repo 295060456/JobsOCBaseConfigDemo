@@ -16,6 +16,8 @@
 		8439F6312CD8E6F100319E4A /* UIImageView+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F62E2CD8E6F100319E4A /* UIImageView+SDWebImage.m */; };
 		843B73C22CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */; };
 		843B73C62CCF6FD400F172EF /* YTKBaseRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */; };
+		8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */; };
+		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
 		8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */; };
 		8493F1ED2CD3A7E000011DD1 /* YTKChainRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1EB2CD3A7E000011DD1 /* YTKChainRequest+Extra.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
@@ -1157,6 +1159,10 @@
 		843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionDataTask+Extra.m"; sourceTree = "<group>"; };
 		843B73C32CCF6FD400F172EF /* YTKBaseRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBaseRequest+Extra.h"; sourceTree = "<group>"; };
 		843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBaseRequest+Extra.m"; sourceTree = "<group>"; };
+		8464A59D2CDB73C30030409A /* NSObject+RACTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+RACTimer.h"; sourceTree = "<group>"; };
+		8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RACTimer.m"; sourceTree = "<group>"; };
+		8464A5A12CDB74D20030409A /* FMDoorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDoorModel.h; sourceTree = "<group>"; };
+		8464A5A22CDB74D20030409A /* FMDoorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDoorModel.m; sourceTree = "<group>"; };
 		8493F1E52CD3A64F00011DD1 /* NSObject+YTKRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YTKRequest.h"; sourceTree = "<group>"; };
 		8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YTKRequest.m"; sourceTree = "<group>"; };
 		8493F1E92CD3A7E000011DD1 /* YTKCustomBaseRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YTKCustomBaseRequest.h; sourceTree = "<group>"; };
@@ -3434,6 +3440,33 @@
 				843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */,
 			);
 			path = "YTKBaseRequest+Extra";
+			sourceTree = "<group>";
+		};
+		8464A59C2CDB73860030409A /* DynamicInvoke */ = {
+			isa = PBXGroup;
+			children = (
+				CE5A61B52CA82C2D006D67A7 /* DynamicInvoke.h */,
+				CE5A61B62CA82C2D006D67A7 /* DynamicInvoke.m */,
+			);
+			path = DynamicInvoke;
+			sourceTree = "<group>";
+		};
+		8464A59F2CDB73C30030409A /* RACTimer */ = {
+			isa = PBXGroup;
+			children = (
+				8464A59D2CDB73C30030409A /* NSObject+RACTimer.h */,
+				8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */,
+			);
+			path = RACTimer;
+			sourceTree = "<group>";
+		};
+		8464A5A32CDB74D20030409A /* FMDoorModel */ = {
+			isa = PBXGroup;
+			children = (
+				8464A5A12CDB74D20030409A /* FMDoorModel.h */,
+				8464A5A22CDB74D20030409A /* FMDoorModel.m */,
+			);
+			path = FMDoorModel;
 			sourceTree = "<group>";
 		};
 		8493F1E72CD3A64F00011DD1 /* NSObject+YTKRequest */ = {
@@ -9934,6 +9967,7 @@
 		CE5A61522CA82C2D006D67A7 /* JobsModel */ = {
 			isa = PBXGroup;
 			children = (
+				8464A59C2CDB73860030409A /* DynamicInvoke */,
 				CE5A61072CA82C2D006D67A7 /* JobsModel.h */,
 				CE5A62DA2CA82C2D006D67A7 /* JobsCorModel */,
 				843099F82CD0F17400A7B9D0 /* GTCaptcha4Model */,
@@ -10067,6 +10101,7 @@
 		CE5A617B2CA82C2D006D67A7 /* JobsTimerManager */ = {
 			isa = PBXGroup;
 			children = (
+				8464A59F2CDB73C30030409A /* RACTimer */,
 				CE5A616F2CA82C2D006D67A7 /* CADisplayLink_TimerManager */,
 				CE5A61722CA82C2D006D67A7 /* DispatchTimerManager */,
 				CE5A61752CA82C2D006D67A7 /* Nanosecond_TimerManager */,
@@ -10265,8 +10300,6 @@
 		CE5A61B92CA82C2D006D67A7 /* NSObject+DynamicInvoke */ = {
 			isa = PBXGroup;
 			children = (
-				CE5A61B52CA82C2D006D67A7 /* DynamicInvoke.h */,
-				CE5A61B62CA82C2D006D67A7 /* DynamicInvoke.m */,
 				CE5A61B72CA82C2D006D67A7 /* NSObject+DynamicInvoke.h */,
 				CE5A61B82CA82C2D006D67A7 /* NSObject+DynamicInvoke.m */,
 			);
@@ -13801,8 +13834,9 @@
 		CECE7F1F2C4512BF00764AF5 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
-				84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */,
 				CECE7F1E2C4512BF00764AF5 /* DAO.h */,
+				8464A5A32CDB74D20030409A /* FMDoorModel */,
+				84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */,
 				CECE7F142C4512BF00764AF5 /* CasinoCustomerContactModel */,
 				CECE7F172C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel */,
 				CECE7F1A2C4512BF00764AF5 /* JobsResponseModel */,
@@ -15582,6 +15616,7 @@
 				CE4F28122CA825CD002AF25B /* JobsCommentPopUpView_viewForHeaderInSection.m in Sources */,
 				CE5A64952CA82E0C006D67A7 /* JobsAppDoorModel.m in Sources */,
 				CEDD9DE12CAA5752002FD89F /* JobsLocationModel.m in Sources */,
+				8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */,
 				CE4F28132CA825CD002AF25B /* JobsSearchResultDataListTBVCell.m in Sources */,
 				CE5A65AE2CA8339C006D67A7 /* BaseContentView.m in Sources */,
 				CE5A64812CA82D5C006D67A7 /* NSBundle+Extra.m in Sources */,
@@ -15607,6 +15642,7 @@
 				CE4F281F2CA825CD002AF25B /* MSCommentModel.m in Sources */,
 				CE4F28202CA825CD002AF25B /* PeekAndPopVC.m in Sources */,
 				CE4F28212CA825CD002AF25B /* YTKNetworkStudyVC.m in Sources */,
+				8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */,
 				CE5A64BD2CA82F19006D67A7 /* NSObject+ChangeAppicon.m in Sources */,
 				CE4F28222CA825CD002AF25B /* ScheduleCell.m in Sources */,
 				CE5A64C42CA82F50006D67A7 /* NSObject+DynamicInvoke.m in Sources */,

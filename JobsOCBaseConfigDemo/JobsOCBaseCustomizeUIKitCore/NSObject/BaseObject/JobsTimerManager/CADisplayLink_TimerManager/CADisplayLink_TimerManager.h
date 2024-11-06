@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsTimerManager_DefineStructure.h"
+#import "JobsBlock.h"
+#import "NSObject+DynamicInvoke.h"
 
 //此类虽然为工具类，但是不允许用单例，因为timer需要被释放
 NS_ASSUME_NONNULL_BEGIN

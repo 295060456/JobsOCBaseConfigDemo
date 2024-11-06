@@ -92,9 +92,12 @@
 }
 /// 显示数据的二次封装：字符串拼接
 -(jobsByVoidBlock _Nonnull)decorateRunningData{
+    @jobs_weakify(self)
     return ^(){
+        @jobs_strongify(self)
         switch (self.btnTimerConfig.cequenceForShowTitleRuningStrType) {
             case CequenceForShowTitleRuningStrType_front:{/// 首在前
+                id f = self.runningValue.title;
                 self.runningValue.title = self.runningValue.title.add(self.btnTimerConfig.formatTimeStr);
             }break;
             case CequenceForShowTitleRuningStrType_tail:{/// 首在后
@@ -127,7 +130,6 @@
         }
     };
 }
-
 #pragma mark —— UI配置 计时器未开始
 /// 设置Layer层 和 背景颜色
 -(jobsByVoidBlock _Nonnull)configLayerReadyPlay{

@@ -94,4 +94,16 @@ UIViewModelProtocol_synthesize
     _normalBgImageURL = JobsUrl(self.normalBgImageURLString);
 }
 
+-(NSString *)title{
+    if (!_title) {
+        _title = @"";
+    }return _title;
+}
+
+-(NSString *)subTitle{
+    if(!_subTitle){
+        _subTitle = @"";
+    }return _subTitle;
+}
+
 @end

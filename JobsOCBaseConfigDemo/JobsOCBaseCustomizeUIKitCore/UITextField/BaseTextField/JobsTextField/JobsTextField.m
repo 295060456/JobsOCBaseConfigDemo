@@ -62,7 +62,7 @@ UITextModelProtocol_synthesize
 }
 #pragma mark —— UITextModelProtocol
 -(NSString *)text{
-    return self.realTextField.text;
+    return _realTextField.text;
 }
 
 -(void)setText:(NSString *)text{
@@ -200,22 +200,30 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
 #pragma mark —— lazyLoad
 -(UITextField *)realTextField{
     if(!_realTextField){
-        _realTextField = UITextField.new;
-        _realTextField.text = self.text;
-        _realTextField.textColor = self.textColor;
-        _realTextField.delegate = self;
-        _realTextField.secureTextEntry = self.secureTextEntry;
-        _realTextField.backgroundColor = self.realTextFieldBgCor;
-        _realTextField.returnKeyType = self.returnKeyType;
-        _realTextField.keyboardAppearance = self.keyboardAppearance;
-        _realTextField.keyboardType = self.keyboardType;
-        _realTextField.leftViewMode = self.leftViewMode;
-        _realTextField.rightViewMode = self.rightViewMode;
-        _realTextField.attributedPlaceholder = self.attributedPlaceholder;
-        _realTextField.placeholder = self.placeholder;
-        _realTextField.placeholderColor = self.placeholderColor;
-        _realTextField.placeholderFont = self.placeholderFont;
         @jobs_weakify(self)
+        _realTextField = jobsMakeTextField(^(__kindof UITextField * _Nullable textField) {
+            @jobs_strongify(self)
+            textField.text = self.text;
+            textField.textColor = self.textColor;
+            textField.delegate = self;
+            textField.secureTextEntry = self.secureTextEntry;
+            textField.backgroundColor = self.realTextFieldBgCor;
+            textField.returnKeyType = self.returnKeyType;
+            textField.keyboardAppearance = self.keyboardAppearance;
+            textField.keyboardType = self.keyboardType;
+            textField.leftViewMode = self.leftViewMode;
+            textField.rightViewMode = self.rightViewMode;
+            textField.attributedPlaceholder = self.attributedPlaceholder;
+            textField.placeholder = self.placeholder;
+            textField.placeholderColor = self.placeholderColor;
+            textField.placeholderFont = self.placeholderFont;
+            [self addSubview:textField];
+            [textField mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.bottom.equalTo(self);
+                make.left.equalTo(self.leftView ? self.leftView.mas_right : self).offset(self.leftViewByTextFieldOffset);
+                make.right.equalTo(self.rightView ? self.rightView.mas_left : self).offset(-self.rightViewByTextFieldOffset);
+            }];
+        });
         [_realTextField jobsTextFieldEventFilterBlock:^BOOL(id data) {
 //            @jobs_strongify(self)
             NSLog(@"");
@@ -224,12 +232,6 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
             @jobs_strongify(self)
             self.realTextField.text = x;
             if (self.objectBlock) self.objectBlock(x);
-        }];
-        [self addSubview:_realTextField];
-        [_realTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.equalTo(self);
-            make.left.equalTo(self.leftView ? self.leftView.mas_right : self).offset(self.leftViewByTextFieldOffset);
-            make.right.equalTo(self.rightView ? self.rightView.mas_left : self).offset(-self.rightViewByTextFieldOffset);
         }];
     }return _realTextField;
 }

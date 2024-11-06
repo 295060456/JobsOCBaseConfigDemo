@@ -208,6 +208,7 @@ typedef NS_ENUM(NSInteger, HTTPResponseCode) {
     HTTPResponseCodeOffline = 8,/// 帐号已在其他设备登录
     HTTPResponseCodeTokenExpire = 10009,/// Token 过期
     HTTPResponseCodePhoneNumberNotExist = 1002000034,/// 手机号码不存在
+    HTTPResponseCodeNoOK = 500,/// 服务器错误
     ///其他代号，展示msg内容即可
 };
 #endif /* HTTP_RESPONSE_CODE_ENUM_DEFINED */

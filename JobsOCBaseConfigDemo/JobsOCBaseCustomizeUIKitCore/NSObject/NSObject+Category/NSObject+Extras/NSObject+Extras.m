@@ -983,18 +983,14 @@
 }
 /// 打印请求体
 -(JobsReturnURLRequestByURLSessionTaskBlock _Nullable)printURLSessionRequestMessage{
-    @jobs_weakify(self)
     return ^__kindof NSMutableURLRequest *_Nullable(__kindof NSURLSessionDataTask *_Nullable task) {
-        @jobs_strongify(self)
         if(!task){NSLog(@"NSURLSessionDataTask *task 为空,请检查");return nil;}
         return task.originalRequest.print();
     };
 }
 /// 打印URLRequest
 -(JobsReturnMutableURLRequestByURLRequestBlock _Nullable)printRequestMessage{
-    @jobs_weakify(self)
     return ^__kindof NSMutableURLRequest *_Nullable(__kindof NSURLRequest *_Nullable data) {
-        @jobs_strongify(self)
         if (!data) {NSLog(@"NSURLRequest *data 为空,请检查");return nil;}
         return data.print();
     };

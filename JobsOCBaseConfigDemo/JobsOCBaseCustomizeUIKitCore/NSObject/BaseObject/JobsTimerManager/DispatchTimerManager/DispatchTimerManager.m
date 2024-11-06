@@ -142,7 +142,7 @@
 }
 
 +(void)executeBlockFromTimer:(DispatchTimerManager *)aTimer {
-    void (^block)(DispatchTimerManager *) = [aTimer userInfo];
+    void (^block)(DispatchTimerManager *) = aTimer.userInfo;
     if (block) block(aTimer);
 }
 // 后续添加queue支持

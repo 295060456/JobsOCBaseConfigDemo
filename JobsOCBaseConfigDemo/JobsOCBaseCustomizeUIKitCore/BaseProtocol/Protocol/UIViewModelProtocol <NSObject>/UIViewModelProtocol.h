@@ -43,7 +43,7 @@ UIViewModelOthersProtocol
 @property(nonatomic,strong,nullable)UITextModel *backBtnTitleModel;/// 在具体的子类去实现，以覆盖父类的方法实现
 @property(nonatomic,strong,nullable)UIButtonModel *buttonModel;
 @property(nonatomic,strong,nullable)UIButtonModel *subButtonModel;
-@property(nonatomic,strong,nullable)JobsReturnIDByIDBlock jobsBlock;
+@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock jobsBlock;
 @property(nonatomic,strong,nullable)NSMutableArray <JobsReturnIDByIDBlock>*jobsBlockMutArr;
 #pragma mark —— 图片配置
 /// 普通图

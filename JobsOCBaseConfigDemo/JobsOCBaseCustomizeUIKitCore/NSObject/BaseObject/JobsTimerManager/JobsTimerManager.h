@@ -10,3 +10,4 @@
 #import "CADisplayLink_TimerManager.h"
 #import "DispatchTimerManager.h"
 #import "NSTimerManager.h"
+#import "NSObject+RACTimer.h"
