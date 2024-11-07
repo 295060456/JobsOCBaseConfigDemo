@@ -194,7 +194,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
                 if ([btn.titleLabel.text isEqualToString:Title2]) {
-                    self.currentPage = CurrentPage_register;
+                    self.currentPage = @(CurrentPage_register);
                     [self->_loginContentView removeContentViewWithOffsetY:0];
                     [self.registerContentView showContentViewWithOffsetY:0];
                     @jobs_weakify(self)
@@ -212,8 +212,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
                         
                     } completion:nil];
                 }else if([btn.titleLabel.text isEqualToString:Title3]){
-                   
-                    self.currentPage = CurrentPage_forgotCode;
+                    self.currentPage = @(CurrentPage_forgotCode);
                     [self->_loginContentView removeContentViewWithOffsetY:0];
                     [self.forgotCodeContentView showContentViewWithOffsetY:0];
                     self.customerServiceBtn.alpha = 0;
@@ -326,11 +325,11 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
 //        @jobs_weakify(self)
         _customerServiceBtn = BaseButton
             .initByStyle2(Title8,
-                                                          nil,
-                                                          nil,
-                                                          JobsIMG(@"客服"),
-                                                          NSDirectionalRectEdgeTop,
-                                                          JobsWidth(5))
+                          nil,
+                          nil,
+                          JobsIMG(@"客服"),
+                          NSDirectionalRectEdgeTop,
+                          JobsWidth(5))
             .bgColor(JobsWhiteColor)
             .cornerRadiusValue(_customerServiceBtn.height / 2)
             .onClick(^(UIButton *x){
@@ -354,13 +353,14 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
 
 -(ZFAVPlayerManager *)playerManager{
     if (!_playerManager) {
-        _playerManager = ZFAVPlayerManager.new;
-        _playerManager.shouldAutoPlay = YES;
-        if (isiPhoneX_series()) {
-            _playerManager.assetURL = @"iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
-        }else{
-            _playerManager.assetURL = @"非iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
-        }
+        _playerManager = jobsMakeZFAVPlayerManager(^(__kindof ZFAVPlayerManager * _Nullable data) {
+            data.shouldAutoPlay = YES;
+            if (isiPhoneX_series()) {
+                data.assetURL = @"iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
+            }else{
+                data.assetURL = @"非iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
+            }
+        });
     }return _playerManager;
 }
 
@@ -391,9 +391,10 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
 
 -(UIImageView *)bgImgV{
     if (!_bgImgV) {
-        _bgImgV = UIImageView.new;
-        _bgImgV.image = JobsIMG(@"AppDoorBgImage");
-        _bgImgV.userInteractionEnabled = YES;
+        _bgImgV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            imageView.image = JobsIMG(@"AppDoorBgImage");
+            imageView.userInteractionEnabled = YES;
+        });
     }return _bgImgV;
 }
 

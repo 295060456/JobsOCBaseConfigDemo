@@ -16,6 +16,7 @@
 @implementation JobsTextStyleTBVCell
 #pragma mark —— @synthesize UIViewModelProtocol
 UIViewModelProtocol_synthesize
+UIViewModelProtocol_self_synthesize
 -(void)layoutSubviews{
     [super layoutSubviews];
 }

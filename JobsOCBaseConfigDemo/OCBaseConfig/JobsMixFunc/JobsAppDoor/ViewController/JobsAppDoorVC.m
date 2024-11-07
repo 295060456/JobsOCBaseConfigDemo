@@ -145,7 +145,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     toRegisterBtn.jobsResetBtnBgCor(Cor4);
     toRegisterBtn.jobsResetBtnTitleCor(Cor1);
     
-    self.currentPage = CurrentPage_register;//注册页面
+    self.currentPage = @(CurrentPage_register);//注册页面
     self->_jobsAppDoorContentView.frame = CGRectMake(JobsAppDoorContentViewRegisterX,
                                                      JobsAppDoorContentViewRegisterY,
                                                      JobsAppDoorContentViewRegisterWidth,
@@ -344,7 +344,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
                 else if (btn.titleForNormalState.isEqualToString(Title3)){// Title3 JobsInternationalization(@"Forgot code")
                     
                     {//本页动效实现的
-                        self.currentPage = CurrentPage_forgotCode;
+                        self.currentPage = @(CurrentPage_forgotCode);
                         [self->_jobsAppDoorContentView removeContentViewWithOffsetY:0];
                         [self.forgotCodeContentView showContentViewWithOffsetY:0];
                         self.customerServiceBtn.alpha = 0;

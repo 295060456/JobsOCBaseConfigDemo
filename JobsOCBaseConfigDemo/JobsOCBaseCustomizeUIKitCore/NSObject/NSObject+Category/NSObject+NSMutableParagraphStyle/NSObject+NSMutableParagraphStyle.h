@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 主要用于支持多语言和本地化的应用，以确保文本对齐方式在不同语言环境下都是合适的。
 -(NSMutableParagraphStyle *)jobsParagraphStyleNatural;
 /// 通过NSTextAlignment映射NSParagraphStyle *
--(JobsReturnParagraphStyleByTextAlignmentBlock)jobsparagraphStyleByTextAlignment;
+-(JobsReturnParagraphStyleByTextAlignmentBlock _Nonnull)jobsparagraphStyleByTextAlignment;
 
 @end
 

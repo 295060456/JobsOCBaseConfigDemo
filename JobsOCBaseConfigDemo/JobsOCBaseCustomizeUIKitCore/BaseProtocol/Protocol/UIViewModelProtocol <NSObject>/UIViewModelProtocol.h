@@ -29,12 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 全局的共用的属性。所有属性的大集合
 @protocol UIViewModelProtocol
 <
-UIViewModelOthersProtocol
-,UIPictureAndBackGroundCorProtocol
-,UILocationProtocol
-,UIMarkProtocol
-,BaseButtonProtocol
-,UITextModelProtocol
+UIViewModelOthersProtocol /// UIViewModelOthersProtocol_synthesize、UIViewModelOthersProtocol_dynamic
+,UIPictureAndBackGroundCorProtocol /// UIPictureAndBackGroundCorProtocol_synthesize、UIPictureAndBackGroundCorProtocol_dynamic
+,UILocationProtocol /// UILocationProtocol_UIViewModelSynthesize、UILocationProtocol_UIViewModelDynamic
+,UIMarkProtocol /// UIMarkProtocol_synthesize + UIMarkProtocol_UIViewModelSynthesize、UIMarkProtocol_dynamic
+,BaseButtonProtocol /// BaseButtonProtocol_synthesize + BaseButtonProtocol_UIViewModelOthersProtocol_synthesize、BaseButtonProtocol_dynamic
+,UITextModelProtocol /// UITextModelProtocol_UIViewModelSynthesize + UITextModelProtocol_synthesize、UITextModelProtocol_dynamic
 >
 @optional
 #pragma mark —— 文字配置
@@ -57,17 +57,26 @@ UIViewModelOthersProtocol
 
 NS_ASSUME_NONNULL_END
 
+#ifndef UIViewModelProtocol_self_synthesize
+#define UIViewModelProtocol_self_synthesize \
+\
+@synthesize textModel = _textModel; \
+@synthesize subTextModel = _subTextModel; \
+@synthesize backBtnTitleModel = _backBtnTitleModel; \
+@synthesize buttonModel = _buttonModel; \
+@synthesize subButtonModel = _subButtonModel; \
+@synthesize jobsBlock = _jobsBlock; \
+@synthesize jobsBlockMutArr = _jobsBlockMutArr; \
+@synthesize normalImageURLString = _normalImageURLString; \
+@synthesize normalImageURL = _normalImageURL; \
+@synthesize normalBgImageURLString = _normalBgImageURLString; \
+@synthesize normalBgImageURL = _normalBgImageURL; \
+
+#endif
+
 #pragma mark —— @synthesize UIViewModelProtocol
 #ifndef UIViewModelProtocol_synthesize
 #define UIViewModelProtocol_synthesize \
-\
-@synthesize textModel = _textModel;\
-@synthesize subTextModel = _subTextModel;\
-@synthesize backBtnTitleModel = _backBtnTitleModel;\
-@synthesize buttonModel = _buttonModel;\
-@synthesize subButtonModel = _subButtonModel;\
-@synthesize jobsBlock = _jobsBlock;\
-@synthesize jobsBlockMutArr = _jobsBlockMutArr;\
 \
 @synthesize navBgImage = _navBgImage;\
 @synthesize navBgCor = _navBgCor;\
@@ -131,6 +140,7 @@ NS_ASSUME_NONNULL_END
 @synthesize index = _index;\
 @synthesize currentPage = _currentPage;\
 @synthesize pageSize = _pageSize;\
+@synthesize pageNum = _pageNum;\
 @synthesize isMark = _isMark;\
 @synthesize presentUpHeight = _presentUpHeight;\
 \
@@ -237,9 +247,9 @@ NS_ASSUME_NONNULL_END
 
 #endif
 
-#pragma mark —— @dynamic UIViewModelProtocol
-#ifndef UIViewModelProtocol_dynamic
-#define UIViewModelProtocol_dynamic \
+#ifndef UIViewModelProtocol_self_dynamic
+#define UIViewModelProtocol_self_dynamic \
+\
 @dynamic textModel;\
 @dynamic subTextModel;\
 @dynamic backBtnTitleModel;\
@@ -247,6 +257,16 @@ NS_ASSUME_NONNULL_END
 @dynamic subButtonModel;\
 @dynamic jobsBlock;\
 @dynamic jobsBlockMutArr;\
+@dynamic normalImageURLString;\
+@dynamic normalImageURL;\
+@dynamic normalBgImageURLString;\
+@dynamic normalBgImageURL;\
+
+#endif
+
+#pragma mark —— @dynamic UIViewModelProtocol
+#ifndef UIViewModelProtocol_dynamic
+#define UIViewModelProtocol_dynamic \
 \
 @dynamic navBgImage;\
 @dynamic navBgCor;\
@@ -313,6 +333,7 @@ NS_ASSUME_NONNULL_END
 @dynamic index;\
 @dynamic currentPage;\
 @dynamic pageSize;\
+@dynamic pageNum;\
 @dynamic isMark;\
 @dynamic presentUpHeight;\
 \

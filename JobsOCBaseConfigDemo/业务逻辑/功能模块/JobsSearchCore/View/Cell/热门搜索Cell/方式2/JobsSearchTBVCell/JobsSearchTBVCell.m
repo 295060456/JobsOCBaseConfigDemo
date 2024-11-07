@@ -8,14 +8,12 @@
 #import "JobsSearchTBVCell.h"
 
 @interface JobsSearchTBVCell ()
-/// UI
-//@property(nonatomic,strong)UICollectionView *collectionView;
-/// Data
 
 @end
 
 @implementation JobsSearchTBVCell
 UIViewModelProtocol_synthesize
+UIViewModelProtocol_self_synthesize
 #pragma mark —— BaseCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {

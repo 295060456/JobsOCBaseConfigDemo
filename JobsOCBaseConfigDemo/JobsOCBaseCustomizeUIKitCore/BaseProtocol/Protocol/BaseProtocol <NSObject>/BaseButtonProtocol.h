@@ -109,6 +109,15 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
 #pragma mark —— @synthesize BaseButtonProtocol
+
+#ifndef BaseButtonProtocol_UIViewModelOthersProtocol_synthesize
+#define BaseButtonProtocol_UIViewModelOthersProtocol_synthesize \
+\
+@synthesize jobsEnabled = _jobsEnabled;\
+@synthesize jobsSelected = _jobsSelected;\
+
+#endif
+
 #ifndef BaseButtonProtocol_synthesize
 #define BaseButtonProtocol_synthesize \
 \
@@ -116,10 +125,10 @@ NS_ASSUME_NONNULL_END
 @synthesize backgroundConfiguration = _backgroundConfiguration;\
 @synthesize titleAlignment = _titleAlignment;\
 @synthesize buttonConfigurationTitleAlignment = _buttonConfigurationTitleAlignment;\
-@synthesize jobsSelected = _jobsSelected;\
 @synthesize backgroundImage = _backgroundImage;\
 @synthesize normalImage = _normalImage;\
-@synthesize jobsEnabled = _jobsEnabled;\
+@synthesize titleFont = _titleFont;\
+@synthesize subTitleFont = _subTitleFont;\
 @synthesize btnBackgroundColor = _btnBackgroundColor;\
 @synthesize imageSize = _imageSize;\
 @synthesize contentHorizontalAlignment = _contentHorizontalAlignment;\
@@ -129,6 +138,7 @@ NS_ASSUME_NONNULL_END
 @synthesize contentInsets = _contentInsets;\
 @synthesize contentSpacing = _contentSpacing;\
 @synthesize lineBreakMode = _lineBreakMode;\
+@synthesize subLineBreakMode = _subLineBreakMode;\
 @synthesize btnWidth = _btnWidth;\
 \
 @synthesize textLabelFrame = _textLabelFrame;\
@@ -181,6 +191,8 @@ NS_ASSUME_NONNULL_END
 @dynamic jobsSelected;\
 @dynamic backgroundImage;\
 @dynamic normalImage;\
+@dynamic titleFont;\
+@dynamic subTitleFont;\
 @dynamic btnBackgroundColor;\
 @dynamic imageSize;\
 @dynamic contentHorizontalAlignment;\

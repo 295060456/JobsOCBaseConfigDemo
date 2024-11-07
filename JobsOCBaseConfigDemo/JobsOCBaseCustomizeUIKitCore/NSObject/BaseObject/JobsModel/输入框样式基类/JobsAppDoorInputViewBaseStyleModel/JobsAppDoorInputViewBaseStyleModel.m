@@ -14,6 +14,7 @@
 
 @implementation JobsAppDoorInputViewBaseStyleModel
 UIViewModelProtocol_synthesize
+UIViewModelProtocol_self_synthesize
 - (instancetype)init{
     if (self = [super init]) {
         self.keyboardEnable = YES;

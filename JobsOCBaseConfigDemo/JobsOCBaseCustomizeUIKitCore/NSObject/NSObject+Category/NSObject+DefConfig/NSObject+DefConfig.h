@@ -12,14 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 // https://www.jianshu.com/p/564b5da57ea1
 @interface NSObject (DefConfig)
 // 回到主线程
--(void)getMainQueue:(jobsByVoidBlock)block;
+-(void)getMainQueue:(jobsByVoidBlock _Nullable)block;
 // 开启一个子线程
--(void)getGlobalQueue:(jobsByVoidBlock)block;
+-(void)getGlobalQueue:(jobsByVoidBlock _Nullable)block;
 /// 从现在开始，等待一段时间，去做一件事情
 /// @param delay 从现在开始，等待的时间
 /// @param doSthBlock 去做的一件事情
 -(void)delay:(CGFloat)delay
-       doSth:(jobsByIDBlock)doSthBlock;
+       doSth:(jobsByIDBlock _Nullable)doSthBlock;
 
 @end
 

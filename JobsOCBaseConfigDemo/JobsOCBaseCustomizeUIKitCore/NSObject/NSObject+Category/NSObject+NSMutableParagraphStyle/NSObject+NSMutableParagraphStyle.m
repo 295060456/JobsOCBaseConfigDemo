@@ -48,9 +48,9 @@
     });
 }
 /// 通过NSTextAlignment映射NSParagraphStyle *
--(JobsReturnParagraphStyleByTextAlignmentBlock)jobsparagraphStyleByTextAlignment{
+-(JobsReturnParagraphStyleByTextAlignmentBlock _Nonnull)jobsparagraphStyleByTextAlignment{
     @jobs_weakify(self)
-    return ^(NSTextAlignment textAlignment) {
+    return ^__kindof NSParagraphStyle *_Nullable(NSTextAlignment textAlignment) {
         @jobs_strongify(self)
         switch (textAlignment) {
             case NSTextAlignmentLeft:{

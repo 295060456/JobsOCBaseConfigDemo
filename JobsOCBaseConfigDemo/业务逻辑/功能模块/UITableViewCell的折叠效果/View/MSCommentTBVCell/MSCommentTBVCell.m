@@ -9,7 +9,7 @@
 
 @interface MSCommentTBVCell ()
 /// UI
-@property(nonatomic,strong)UILabel *titileLab;
+@property(nonatomic,strong)UILabel *titleLab;
 /// Data
 @property(nonatomic,strong)MSCommentDetailModel *commentDetailModel;
 
@@ -20,6 +20,7 @@
 UITableViewCellProtocol_synthesize
 #pragma mark —— @synthesize UIViewModelProtocol
 UIViewModelProtocol_synthesize
+UIViewModelProtocol_self_synthesize
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
 +(instancetype)cellWithTableView:(UITableView *)tableView{
@@ -73,7 +74,7 @@ UIViewModelProtocol_synthesize
         @jobs_strongify(self)
         if([model isKindOfClass:MSCommentDetailModel.class]){
             self.commentDetailModel = model;
-            self.titileLab.alpha = 1;
+            self.titleLab.alpha = 1;
         }
     };
 }
@@ -98,22 +99,20 @@ UIViewModelProtocol_synthesize
     [super setFrame:frame];
 }
 #pragma mark —— lazyLoad
--(UILabel *)titileLab{
-    if(!_titileLab){
-        _titileLab = UILabel.new;
-        _titileLab.textColor = JobsCor(@"#666666");
-        _titileLab.backgroundColor = JobsCor(@"#F7F7F7");
-        _titileLab.font = UIFontWeightRegularSize(14);
-        [self.contentView addSubview:_titileLab];
-        [_titileLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView).with.insets(UIEdgeInsetsMake(JobsWidth(5), JobsWidth(25), JobsWidth(5), JobsWidth(25)));
-        }];
-        _titileLab.cornerCutToCircleWithCornerRadius(JobsWidth(8));
-    }
-    _titileLab.text = self.commentDetailModel.rowTitle;
-    return _titileLab;
+-(UILabel *)titleLab{
+    if(!_titleLab){
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textColor = JobsCor(@"#666666");
+            label.backgroundColor = JobsCor(@"#F7F7F7");
+            label.font = UIFontWeightRegularSize(14);
+            [self.contentView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView).with.insets(UIEdgeInsetsMake(JobsWidth(5), JobsWidth(25), JobsWidth(5), JobsWidth(25)));
+            }];label.cornerCutToCircleWithCornerRadius(JobsWidth(8));
+        });
+    };return _titleLab;
 }
-
-
 
 @end

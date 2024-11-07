@@ -39,10 +39,14 @@
         NSLog(@"self.frame 为空，绘制失败");
     }else{
         if (_ZYTextFieldMasksToBounds) {
-            self.layer.cornerRadius = self.ZYTextFieldCornerRadius;
-            self.layer.borderColor = self.ZYTextFieldBorderColor.CGColor;
-            self.layer.borderWidth = self.ZYTextFieldBorderWidth;
-            self.layer.masksToBounds = ZYTextFieldMasksToBounds;//必须写在最后，否则绘制无效
+            @jobs_weakify(self)
+            self.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+                @jobs_strongify(self)
+                data.cornerRadius = self.ZYTextFieldCornerRadius;
+                data.jobsWidth = self.ZYTextFieldBorderWidth;
+                data.layerCor = self.ZYTextFieldBorderColor;
+                data.masksToBounds = ZYTextFieldMasksToBounds;//必须写在最后，否则绘制无效
+            }));
         }
     }
 }
@@ -64,7 +68,7 @@
 #pragma mark —— (重写父类方法) UITextField
 /// 重写来重置clearButton位置,改变size可能导致button的图片失真
 -(CGRect)clearButtonRectForBounds:(CGRect)bounds{
-    return jobsEqualToZeroRect(self.clearButtonRectForBounds) ? [self clearButtonRectForBounds:bounds] : self.clearButtonRectForBounds;
+    return jobsEqualToZeroRect(self.clearButtonRectForBounds) ? [super clearButtonRectForBounds:bounds] : self.clearButtonRectForBounds;
 }
 /// leftView——Rect 【键盘弹起会调用此方法】？
 -(CGRect)leftViewRectForBounds:(CGRect)bounds{
@@ -80,14 +84,23 @@
 }
 /// 重写改变绘制占位符属性。重写时调用super可以按默认图形属性绘制;若自己完全重写绘制函数，就不用调用super了
 -(void)drawPlaceholderInRect:(CGRect)rect{// 0\0\217.6\27.3
-    CGSize placeholderSize = [self.placeholder sizeWithAttributes: @{NSFontAttributeName : self.placeholderFont}];/// 计算占位文字的 Size
-    CGRect drawInRect = CGRectMake(0,
-                                   (rect.size.height - placeholderSize.height) / 2,
-                                   rect.size.width,
-                                   rect.size.height);
-    [self.placeholder drawInRect:jobsEqualToZeroRect(self.drawPlaceholderInRect) ? drawInRect : self.drawPlaceholderInRect
-                  withAttributes:@{NSForegroundColorAttributeName : self.placeholderColor,
-                                   NSFontAttributeName : self.placeholderFont}];
+    /// 计算占位文字的 Size
+    @jobs_weakify(self)
+    CGSize placeholderSize = [self.placeholder sizeWithAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+        @jobs_strongify(self)
+        [data setValue:self.placeholderFont forKey:NSFontAttributeName];
+    })];
+    [self.placeholder drawInRect:jobsEqualToZeroRect(self.drawPlaceholderInRect) ? jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+        data.jobsX = 0;
+        data.jobsY = (rect.size.height - placeholderSize.height) / 2;
+        data.jobsWidth = rect.size.width;
+        data.jobsHeight = rect.size.height;
+    }) : self.drawPlaceholderInRect
+                  withAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+        @jobs_strongify(self)
+        [data setValue:self.placeholderColor forKey:NSForegroundColorAttributeName];
+        [data setValue:self.placeholderFont forKey:NSFontAttributeName];
+    })];
 }
 /// 重写来重置边缘区域
 -(CGRect)borderRectForBounds:(CGRect)bounds{
@@ -95,10 +108,12 @@
 }
 /// 重写来重置占位符区域 【键盘弹起会调用此方法】
 -(CGRect)placeholderRectForBounds:(CGRect)bounds{
-    
+    @jobs_weakify(self)
     CGRect newbounds = bounds;
-    CGSize size = [self.placeholder sizeWithAttributes:@{NSFontAttributeName:self.placeholderFont}];
-    
+    CGSize size = [self.placeholder sizeWithAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+        @jobs_strongify(self)
+        [data setValue:self.placeholderFont forKey:NSFontAttributeName];
+    })];
     switch (self.placeHolderAlignment) {
         case NSTextAlignmentLeft:{
             newbounds.origin.x += self.placeHolderOffset + self.leftViewOffsetX;
@@ -118,20 +133,26 @@
     }return jobsEqualToZeroRect(self.placeholderRectForBounds) ? newbounds : self.placeholderRectForBounds;
 }
 /// 重写来重置文字区域 【未编辑状态下光标的起始位置】【键盘弹起会调用此方法】
--(CGRect)textRectForBounds:(CGRect)bounds{//0\0\100\100 -—> 0\0\255.333\32 <->0\0\100\100
-    CGRect textRectForBounds = CGRectMake((bounds.origin.x + self.offset) + (self.leftView.Origin.x + self.leftView.sizer.width + self.leftViewOffsetX),
-                                          bounds.origin.y,
-                                          bounds.size.width - (self.offset + self.leftViewOffsetX + self.rightViewOffsetX),
-                                          bounds.size.height);
-    return jobsEqualToZeroRect(self.textRectForBounds) ? textRectForBounds : self.textRectForBounds;
+-(CGRect)textRectForBounds:(CGRect)bounds{
+    @jobs_weakify(self)
+    return jobsEqualToZeroRect(self.textRectForBounds) ? jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+        @jobs_strongify(self)
+        data.jobsX = (bounds.origin.x + self.offset) + (self.leftView.Origin.x + self.leftView.sizer.width + self.leftViewOffsetX);
+        data.jobsY = bounds.origin.y;
+        data.jobsWidth = bounds.size.width - (self.offset + self.leftViewOffsetX + self.rightViewOffsetX);
+        data.jobsHeight = bounds.size.height;
+    }) : self.textRectForBounds;
 }
 /// 重写来重置编辑区域【编辑状态下的起始位置】、UIFieldEditor的位置大小【键盘弹起会调用此方法】
--(CGRect)editingRectForBounds:(CGRect)bounds{// 0\0\217.6\27.3
-    CGRect editingRectForBounds = CGRectMake((bounds.origin.x + self.offset) + (self.leftView.Origin.x + self.leftView.sizer.width + self.leftViewOffsetX),
-                                             bounds.origin.y,
-                                             bounds.size.width - (self.offset + self.leftViewOffsetX + self.rightViewOffsetX + self.fieldEditorOffset),
-                                             bounds.size.height);
-    return jobsEqualToZeroRect(self.editingRectForBounds) ? editingRectForBounds : self.editingRectForBounds;
+-(CGRect)editingRectForBounds:(CGRect)bounds{
+    @jobs_weakify(self)
+    return jobsEqualToZeroRect(self.editingRectForBounds) ? jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+        @jobs_strongify(self)
+        data.jobsX = (bounds.origin.x + self.offset) + (self.leftView.Origin.x + self.leftView.sizer.width + self.leftViewOffsetX);
+        data.jobsY = bounds.origin.y;
+        data.jobsWidth = bounds.size.width - (self.offset + self.leftViewOffsetX + self.rightViewOffsetX + self.fieldEditorOffset);
+        data.jobsHeight = bounds.size.height;
+    }) : self.editingRectForBounds;
 }
 #pragma mark —— lazyLoad
 -(CGFloat)offset{

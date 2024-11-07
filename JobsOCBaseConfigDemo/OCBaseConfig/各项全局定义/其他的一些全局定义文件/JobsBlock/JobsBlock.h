@@ -370,7 +370,6 @@ typedef void(^jobsByZFIJKPlayerManagerBlock)(__kindof ZFIJKPlayerManager *_Nulla
 typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable data);
 typedef WMZBannerParam *_Nonnull(^JobsReturnWMZBannerParamByArrBlock)(__kindof NSMutableArray <FMBannerAdsModel *>*_Nullable data);
 typedef WMZBannerParam *_Nonnull(^JobsReturnWMZBannerParamByArrAndADTypeBlock)(__kindof NSMutableArray <FMBannerAdsModel *>*_Nullable data,FMAdsType ADType);
-
 typedef void(^jobsByWMZBannerParamBlock)(WMZBannerParam *_Nullable data);
 
 @class JobsMsgDataModel;
@@ -379,28 +378,8 @@ typedef void(^jobsByMsgDataModelBlock)(__kindof JobsMsgDataModel *_Nullable data
 @class JobsToggleBaseView;
 typedef JobsToggleBaseView *_Nonnull(^JobsReturnToggleBaseViewByArrBlock)(NSMutableArray *_Nullable data);
 
-@class FM_updatePassword_model;
-typedef void(^jobsByUpdatePasswordModelBlock)(__kindof FM_updatePassword_model *_Nullable data);
-
 @class FMDoorModel;
 typedef void(^jobsBySignUpModelBlock)(__kindof FMDoorModel *_Nullable data);
-
-@class FMDoorModel;
-typedef void(^jobsByLoginParameterModelBlock)(__kindof FMDoorModel *_Nullable data);
-
-@class FMLikeModel;
-typedef void(^jobsByLikeModelBlock)(__kindof FMLikeModel *_Nullable data);
-
-@class FMKYCInfoModel;
-typedef void(^jobsByKYCInfoModelBlock)(__kindof FMKYCInfoModel *_Nullable data);
-
-@class FMHotGameListModel;
-typedef void(^jobsByHotGameListModelBlock)(__kindof FMHotGameListModel *_Nullable data);
-
-@class FMGameHomeSubMobileModel;
-typedef void(^jobsByGameHomeSubMobileModelBlock)(__kindof FMGameHomeSubMobileModel *_Nullable data);
-
-
 
 #endif /* JobsBlock_h */
 /*

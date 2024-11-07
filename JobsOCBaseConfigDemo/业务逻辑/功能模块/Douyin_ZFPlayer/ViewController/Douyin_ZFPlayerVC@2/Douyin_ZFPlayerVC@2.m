@@ -9,7 +9,6 @@
 
 @interface Douyin_ZFPlayerVC_2 ()
 /// UI
-//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ZFPlayerController *player;
 @property(nonatomic,strong)ZFAVPlayerManager *playerManager;
 @property(nonatomic,strong)ZFDouYinControlView *controlView;
@@ -292,7 +291,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
                     NSLog(@"下拉刷新");
-                    self.currentPage = 1;
+                    self.currentPage = @(1);
                     [self requestData];
                 //    [self requestData:NO];
                 //    [self playVideo];
@@ -308,7 +307,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 data.loadBlock = ^id _Nullable(id _Nullable data) {
                     @jobs_strongify(self)
                     NSLog(@"上拉加载更多");
-                    self.currentPage += 1;
+                    self.currentPage = @(self.currentPage.integerValue + 1);
                     [self requestData];
                 //    NSLog(@"currentPageNum = %ld",self.currentPage);
                 //    [self requestData:YES];
@@ -427,7 +426,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     }return _controlView;
 }
 
-- (ZFCustomControlView *)fullControlView {
+-(ZFCustomControlView *)fullControlView{
     if (!_fullControlView) {
         _fullControlView = ZFCustomControlView.new;
     }return _fullControlView;
@@ -500,9 +499,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     }return _dataMutArr;
 }
 @synthesize pageSize = _pageSize;
--(NSInteger)pageSize{
-    if (!_pageSize) {
-        _pageSize = 6;
+-(NSNumber *)pageSize{
+    if(!_pageSize){
+        _pageSize = @(6);
     }return _pageSize;
 }
 #pragma mark —— 暂时用不到的
@@ -523,8 +522,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     @jobs_weakify(self)
     extern NSString *appInterfaceTesting;
     [JobsNetworkingAPI requestApi:This.appInterfaceTesting.funcName
-                     parameters:@{@"pageSize":@(self.pageSize),
-                                  @"pageNum":@(self.currentPage)}
+                     parameters:@{@"pageSize":self.pageSize,
+                                  @"pageNum":self.currentPage}
                    successBlock:^(JobsResponseModel *data) {
         @jobs_strongify(self)
         NSLog(@"");
@@ -566,8 +565,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         }
     }failureBlock:^(id data) {
         @jobs_strongify(self)
-        if (self.currentPage > 1) {
-            self.currentPage -= 1;
+        if (self.currentPage.integerValue > 1) {
+            self.currentPage = @(self.currentPage.integerValue - 1);
         }
     }];
 }

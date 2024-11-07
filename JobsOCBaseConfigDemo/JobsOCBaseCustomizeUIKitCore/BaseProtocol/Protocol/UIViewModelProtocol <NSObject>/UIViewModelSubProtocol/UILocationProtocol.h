@@ -158,7 +158,7 @@ NS_ASSUME_NONNULL_END
 @dynamic offsetHeight;\
 @dynamic offsetWidth;\
 @dynamic axis;\
-@dynamic distributio;\
+@dynamic distribution;\
 @dynamic alignment;\
 @dynamic row;\
 @dynamic item;\

@@ -9,8 +9,26 @@
 
 @implementation UIViewModel
 #pragma mark —— UIViewModelProtocol
-UIViewModelProtocol_synthesize
-#pragma mark —— lazyLoad
+/// UIViewModelOthersProtocol
+UIViewModelOthersProtocol_synthesize
+/// UIPictureAndBackGroundCorProtocol
+UIPictureAndBackGroundCorProtocol_synthesize
+/// UILocationProtocol
+UILocationProtocol_UIViewModelSynthesize
+/// UIMarkProtocol
+UIMarkProtocol_synthesize
+/// BaseButtonProtocol
+BaseButtonProtocol_synthesize
+/// UITextModelProtocol
+UITextModelProtocol_synthesize
+/// BaseViewProtocol
+BaseViewProtocol_synthesize
+/// BaseProtocol
+BaseProtocol_synthesize
+/// UIViewModelProtocol
+UIViewModelProtocol_self_synthesize
+
+#pragma mark —— UIViewModelProtocol
 -(UITextModel *)textModel{
     if (!_textModel) {
         _textModel = UITextModel.new;

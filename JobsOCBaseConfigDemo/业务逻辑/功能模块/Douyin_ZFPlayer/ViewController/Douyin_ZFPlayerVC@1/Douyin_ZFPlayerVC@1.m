@@ -9,7 +9,6 @@
 
 @interface Douyin_ZFPlayerVC_1 ()
 
-//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray <VideoModel_Core *>*__block dataMutArr;
 
 @end
@@ -90,7 +89,7 @@
     RequestTool.setupPublicParametersBy(config);
     @jobs_weakify(self)
     NSDictionary *parameters = @{@"pageSize":@(10),
-                                 @"pageNum":@(self.currentPage)};
+                                 @"pageNum":self.currentPage};
 
     [JobsNetworkingAPI requestApi:This.appInterfaceTesting.funcName
                        parameters:parameters
@@ -130,8 +129,8 @@
         }
     }failureBlock:^(id data) {
         @jobs_strongify(self)
-        if (self.currentPage > 1) {
-            self.currentPage -= 1;
+        if (self.currentPage.integerValue > 1) {
+            self.currentPage = @(self.currentPage.integerValue - 1);
         }
     }];
 }
@@ -279,7 +278,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
                     NSLog(@"下拉刷新");
-                    self.currentPage = 1;
+                    self.currentPage = @(1);
                     @"data".readLocalFileWithName;/// 获取本地的数据
                     self->_tableView.endRefreshing(self.dataMutArr.count);
                     return nil;
@@ -294,7 +293,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
                 data.loadBlock = ^id _Nullable(id _Nullable data1) {
                     @jobs_strongify(self)
                     NSLog(@"上拉加载更多");
-                    self.currentPage += 1;
+                    self.currentPage = @(self.currentPage.integerValue + 1);
                 //    NSLog(@"%@",self.tableView.mj_footer);
                 //    [self.tableView.mj_footer endRefreshing];
                 //    [self.tableView reloadData];

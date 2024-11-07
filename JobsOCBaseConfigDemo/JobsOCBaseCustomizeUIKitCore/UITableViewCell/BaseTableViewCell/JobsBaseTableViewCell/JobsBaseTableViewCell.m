@@ -291,6 +291,7 @@ UITableViewCellProtocol_synthesize
 
 #pragma mark —— @synthesize UIViewModelProtocol
 UIViewModelProtocol_synthesize
+UIViewModelProtocol_self_synthesize
 -(void)setIndexPath:(NSIndexPath *)indexPath{
     _indexPath = indexPath;
 }

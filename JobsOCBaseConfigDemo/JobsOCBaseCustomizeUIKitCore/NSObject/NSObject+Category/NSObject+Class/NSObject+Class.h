@@ -7,6 +7,10 @@
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
+#import "JobsBlock.h"
+#import "MacroDef_Log.h"
+#import "NSString+Others.h"
+#import "NSMutableSet+Extra.h"
 
 #if __has_include(<MJExtension/MJExtension.h>)
 #import <MJExtension/MJExtension.h>
@@ -14,13 +18,10 @@
 #import "MJExtension.h"
 #endif
 
-#import "MacroDef_Log.h"
-#import "JobsBlock.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark —— 打印某个类：可以精确的打印具体的类，包括父类
-// 返回并打印成员变量列表及其值
+/// 返回并打印成员变量列表及其值
 NS_INLINE NSMutableArray<NSString *> *printIvarListByClass(Class cls) {
     unsigned int count;
     NSMutableArray <NSString *>*tempDataMutArr = NSMutableArray.array;
@@ -34,8 +35,7 @@ NS_INLINE NSMutableArray<NSString *> *printIvarListByClass(Class cls) {
         // 打印成员变量名和对应的值
         NSLog(@"ivar(%d) : %@ = %@", i, [NSString stringWithUTF8String:ivarName], value);
         [tempDataMutArr addObject:[NSString stringWithFormat:@"%s: %@", ivarName, value]];
-    }
-    free(ivarList);
+    }free(ivarList);
     return tempDataMutArr;
 }
 // 返回并打印属性列表及其值
@@ -51,8 +51,7 @@ NS_INLINE NSMutableArray<NSString *> *printPropertyListByClass(Class cls) {
         // 打印属性名和对应的值
         NSLog(@"property(%d) : %@ = %@", i, [NSString stringWithUTF8String:propertyName], value);
         [tempDataMutArr addObject:[NSString stringWithFormat:@"%s: %@", propertyName, value]];
-    }
-    free(propertyList);
+    }free(propertyList);
     return tempDataMutArr;
 }
 /// 返回并打印方法列表

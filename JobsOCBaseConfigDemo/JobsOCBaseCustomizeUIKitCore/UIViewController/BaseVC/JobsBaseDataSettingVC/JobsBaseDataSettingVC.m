@@ -26,7 +26,7 @@
     [super loadView];
     self.isHiddenNavigationBar = YES;
     self.setupNavigationBarHidden = YES;
-    self.currentPage = 1;
+    self.currentPage = @(1);
     self.modalInPresentation = NO; /// 禁用下拉手势dismiss画面需要将此属性设置为YES
 }
 

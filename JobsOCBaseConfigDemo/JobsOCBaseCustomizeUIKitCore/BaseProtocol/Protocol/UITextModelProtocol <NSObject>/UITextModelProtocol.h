@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
 #pragma mark —— @synthesize UITextModelProtocol
-/// 和 UIViewModel 重复定义的部分
+/// 和 BaseButtonProtocol 重复定义的部分
 #ifndef UITextModelProtocol_UIViewModelSynthesize
 #define UITextModelProtocol_UIViewModelSynthesize \
 @synthesize lineBreakMode = _lineBreakMode;\
@@ -80,6 +80,8 @@ NS_ASSUME_NONNULL_END
 @synthesize subText = _subText;\
 @synthesize subFont = _subFont;\
 @synthesize subTextCor = _subTextCor;\
+@synthesize attributedSubText = _attributedSubText;\
+@synthesize subTitleAttributedDataMutArr = _subTitleAttributedDataMutArr;\
 @synthesize attributedText = _attributedText;\
 @synthesize titleAttributedDataMutArr = _titleAttributedDataMutArr;\
 @synthesize selectedText = _selectedText;\
@@ -87,6 +89,11 @@ NS_ASSUME_NONNULL_END
 @synthesize selectedTextCor = _selectedTextCor;\
 @synthesize selectedAttributedText = _selectedAttributedText;\
 @synthesize selectedTitleAttributedDataMutArr = _selectedTitleAttributedDataMutArr;\
+@synthesize selectedSubText = _selectedSubText;\
+@synthesize selectedSubFont = _selectedSubFont;\
+@synthesize selectedSubTextCor = _selectedSubTextCor;\
+@synthesize selectedAttributedSubText = _selectedAttributedSubText;\
+@synthesize selectedSubTitleAttributedDataMutArr = _selectedSubTitleAttributedDataMutArr;\
 
 #endif
 
@@ -109,6 +116,8 @@ NS_ASSUME_NONNULL_END
 @dynamic subText;\
 @dynamic subFont;\
 @dynamic subTextCor;\
+@dynamic attributedSubText;\
+@dynamic subTitleAttributedDataMutArr;\
 @dynamic attributedText;\
 @dynamic titleAttributedDataMutArr;\
 @dynamic selectedText;\
@@ -116,6 +125,11 @@ NS_ASSUME_NONNULL_END
 @dynamic selectedTextCor;\
 @dynamic selectedAttributedText;\
 @dynamic selectedTitleAttributedDataMutArr;\
+@dynamic selectedSubText;\
+@dynamic selectedSubFont;\
+@dynamic selectedSubTextCor;\
+@dynamic selectedAttributedSubText;\
+@dynamic selectedSubTitleAttributedDataMutArr;\
 
 #endif
 

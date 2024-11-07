@@ -9,12 +9,9 @@
 
 @implementation UIButtonModel
 UIViewModelProtocol_synthesize
+UIViewModelProtocol_self_synthesize
 @synthesize backgroundImage = _backgroundImage;
 @synthesize normalImage = _normalImage;
-@synthesize normalImageURLString = _normalImageURLString;
-@synthesize normalBgImageURLString = _normalBgImageURLString;
-@synthesize normalImageURL = _normalImageURL;
-@synthesize normalBgImageURL = _normalBgImageURL;
 @synthesize timerProcessType = _timerProcessType;
 @synthesize titleFont = _titleFont;
 @synthesize subTitleFont = _subTitleFont;
