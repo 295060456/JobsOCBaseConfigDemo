@@ -21,14 +21,20 @@
 - (instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = JobsClearColor;
-        [self layerBorderCor:JobsWhiteColor andBorderWidth:1];
+        self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.jobsWidth = 1;
+            data.layerCor = JobsWhiteColor;
+        }));
     }return self;
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
         self.backgroundColor = JobsClearColor;
-        [self layerBorderCor:JobsWhiteColor andBorderWidth:1];
+        self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.jobsWidth = 1;
+            data.layerCor = JobsWhiteColor;
+        }));
     }return self;
 }
 

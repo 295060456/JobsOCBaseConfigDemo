@@ -168,7 +168,10 @@
             make.top.equalTo(self.label.mas_bottom).offset(JobsWidth(10));
             make.bottom.equalTo(self.view).offset(JobsWidth(-20));
         }];
-        [_textView layerBorderCor:JobsLightGrayColor andBorderWidth:.5f];
+        _textView.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+            model.layerCor = JobsLightGrayColor;
+            model.jobsWidth = .5f;
+        }));
     }return _textView;
 }
 

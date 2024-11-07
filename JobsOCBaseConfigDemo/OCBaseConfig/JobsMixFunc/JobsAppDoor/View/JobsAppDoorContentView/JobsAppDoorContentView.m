@@ -375,9 +375,20 @@
         [手机号码 changeTextFieldAnimationColor:self.toRegisterBtn.selected];
         [手机验证码 changeTextFieldAnimationColor:self.toRegisterBtn.selected];
         
-        [用户名 layerBorderCor:Cor4 andBorderWidth:1];
-        [密码 layerBorderCor:Cor4 andBorderWidth:1];
-        [确认密码 layerBorderCor:Cor4 andBorderWidth:1];
+        用户名.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.jobsWidth = 1;
+            data.layerCor = Cor4;
+        }));
+        
+        密码.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.jobsWidth = 1;
+            data.layerCor = Cor4;
+        }));
+        
+        确认密码.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.jobsWidth = 1;
+            data.layerCor = Cor4;
+        }));
     }
 }
 /// 核心方法

@@ -10,7 +10,6 @@
 @interface BaiShaETProjOrderDetailsCVCell ()
 /// UI
 @property(nonatomic,strong)UIButton *jobsCopyBtn;
-//@property(nonatomic,strong)UITableView *tableView;
 
 @end
 
@@ -33,10 +32,12 @@
         collectionView.registerCollectionViewCellClass(BaiShaETProjOrderDetailsCVCell.class,@"");
         cell = (BaiShaETProjOrderDetailsCVCell *)[collectionView collectionViewCellClass:BaiShaETProjOrderDetailsCVCell.class forIndexPath:indexPath];
     }
-    
     cell.indexPath = indexPath;
-    cell.cornerCutToCircleWithCornerRadius(JobsWidth(8));
-    [cell layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:.5f];
+    cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+        model.jobsWidth = .5f;
+        model.layerCor = HEXCOLOR(0xEEE2C8);
+        model.cornerRadius = JobsWidth(8);
+    }));
     JobsCellCor(JobsWhiteColor);
     return cell;
 }

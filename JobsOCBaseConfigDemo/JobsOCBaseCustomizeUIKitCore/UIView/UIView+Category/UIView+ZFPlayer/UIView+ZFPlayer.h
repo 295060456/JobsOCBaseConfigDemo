@@ -8,28 +8,29 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
+#import "JobsBlock.h"
 #import "DefineConstString.h"
 
 #pragma mark —— ZFPlayer 播放器相关
-//Core
+/// Core
 #if __has_include(<ZFPlayer/ZFPlayer.h>)
 #import <ZFPlayer/ZFPlayer.h>
 #else
 #import "ZFPlayer.h"
 #endif
-//AVPlayer
+/// AVPlayer
 #if __has_include(<ZFPlayer/ZFAVPlayerManager.h>)
 #import <ZFPlayer/ZFAVPlayerManager.h>
 #else
 #import "ZFAVPlayerManager.h"
 #endif
-//ijkplayer
+/// ijkplayer
 #if __has_include(<ZFPlayer/ZFIJKPlayerManager.h>)
 #import <ZFPlayer/ZFIJKPlayerManager.h>
 #else
 #import "ZFIJKPlayerManager.h"
 #endif
-//ControlView
+/// ControlView
 #if __has_include(<ZFPlayer/UIImageView+ZFCache.h>)
 #import <ZFPlayer/UIImageView+ZFCache.h>
 #else
@@ -102,7 +103,7 @@
 #import "ZFVolumeBrightnessView.h"
 #endif
 
-#import "CustomZFPlayerControlView.h"//播放器控制层
+#import "CustomZFPlayerControlView.h"/// 播放器控制层
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -118,6 +119,18 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof ZFAVPlayerManager *_Nonnull jobsMakeZFAVPlayerManager(jobsByZFAVPlayerManagerBlock _Nonnull block){
+    ZFAVPlayerManager *data = ZFAVPlayerManager.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof ZFIJKPlayerManager *_Nonnull jobsMakeZFIJKPlayerManager(jobsByZFIJKPlayerManagerBlock _Nonnull block){
+    ZFIJKPlayerManager *data = ZFIJKPlayerManager.alloc.init;
+    if (block) block(data);
+    return data;
+}
 
 /** 用法
  self.playerManager.assetURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"iph_X" ofType:@"mp4"]];

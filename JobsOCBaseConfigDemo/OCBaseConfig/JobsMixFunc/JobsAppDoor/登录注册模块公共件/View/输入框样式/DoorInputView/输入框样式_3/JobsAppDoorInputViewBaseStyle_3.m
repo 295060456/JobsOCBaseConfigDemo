@@ -22,7 +22,10 @@
 - (instancetype)init{
     if (self = [super init]) {
 //        self.backgroundColor = JobsRedColor;
-        [self layerBorderCor:Cor4 andBorderWidth:1];
+        self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.jobsWidth = 1;
+            data.layerCor = Cor4;
+        }));
     }return self;
 }
 #pragma mark —— BaseViewProtocol
@@ -30,7 +33,10 @@
     if (self = [super init]) {
 //        self.backgroundColor = JobsRedColor;
         self.thisViewSize = thisViewSize;
-        [self layerBorderCor:Cor4 andBorderWidth:1];
+        self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.jobsWidth = 1;
+            data.layerCor = Cor4;
+        }));
     }return self;
 }
 

@@ -17,7 +17,6 @@
 /// Data
 @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
 @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
-@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
 @property(nonatomic,strong)NSMutableArray <NSMutableArray <NSString *>*>*richTextMutArr2;
@@ -106,7 +105,7 @@ static dispatch_once_t static_collectionHeaderViewOnceToken;
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return JobsWidth(58 / self.dataMutArr.count);
+    return JobsWidth(JobsWidth(58) / self.dataMutArr.count);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -128,6 +127,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 #pragma mark —— lazyLoad
 -(UIButton *)userHeaderBtn{
     if (!_userHeaderBtn) {
+        @jobs_weakify(self)
         _userHeaderBtn = UIButton.new;
         _userHeaderBtn.jobsResetBtnTitle(self.readUserInfo.userName
                                          .add(@"    ")
@@ -141,33 +141,36 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             make.centerX.equalTo(self);
             make.top.equalTo(self).offset(JobsWidth(43));
         }];
-        _userHeaderBtn.imageView.cornerCutToCircleWithCornerRadius(_userHeaderBtn.imageView.image.jobsHeight / 2);
-        [_userHeaderBtn.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
-        
+        _userHeaderBtn.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+            @jobs_strongify(self)
+            model.jobsWidth = 1.f;
+            model.layerCor = HEXCOLOR(0xEEE2C8);
+            model.cornerRadius = self->_userHeaderBtn.imageView.image.jobsHeight / 2;
+        }));
         _userHeaderBtn.imageTitleSpace = JobsWidth(12);
         _userHeaderBtn.makeBtnTitleByShowingType(UILabelShowingType_05);
         _userHeaderBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTop,_userHeaderBtn.imageTitleSpace);
-        
     }return _userHeaderBtn;
 }
 
 -(UIProgressView *)progressView{
     if (!_progressView) {
-        _progressView = UIProgressView.new;
-        _progressView.progressTintColor = HEXCOLOR(0xAE8330);
-        _progressView.trackTintColor = HEXCOLOR(0xEEE2C8);
-        _progressView.progressViewStyle = UIProgressViewStyleDefault;
-        [self addSubview:_progressView];
-        [_progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(JobsWidth(4));
-            make.width.mas_equalTo(JobsWidth(343));
-            make.centerX.equalTo(self);
-            make.top.equalTo(self.userHeaderBtn.mas_bottom).offset(JobsWidth(58));
-        }];
-        [_progressView animateWithDuration:1
-                                  progress:0.8];
+        @jobs_weakify(self)
+        jobsMakeProgressView(^(__kindof UIProgressView * _Nullable progressView) {
+            @jobs_strongify(self)
+            progressView.progressTintColor = HEXCOLOR(0xAE8330);
+            progressView.trackTintColor = HEXCOLOR(0xEEE2C8);
+            progressView.progressViewStyle = UIProgressViewStyleDefault;
+            [self addSubview:progressView];
+            [progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(JobsWidth(4));
+                make.width.mas_equalTo(JobsWidth(343));
+                make.centerX.equalTo(self);
+                make.top.equalTo(self.userHeaderBtn.mas_bottom).offset(JobsWidth(58));
+            }];
+            [progressView animateWithDuration:1 progress:0.8];
+        });
     }return _progressView;
-    
 }
 
 -(JobsAnimationLabel *)animationLab{
@@ -204,35 +207,35 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(UILabel *)leftLab{
     if (!_leftLab) {
-        _leftLab = UILabel.new;
-        _leftLab.text = JobsInternationalization(@"Lv 0");
-        _leftLab.textColor = HEXCOLOR(0x757575);
-        _leftLab.font = UIFontWeightRegularSize(12);
-        _leftLab.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:_leftLab];
-        [_leftLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.animationLab);
-            make.top.equalTo(self.animationLab.mas_bottom).offset(JobsWidth(22));
-            make.height.mas_equalTo(JobsWidth(12));
-        }];
-        _leftLab.makeLabelByShowingType(UILabelShowingType_03);
+        _leftLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.text = JobsInternationalization(@"Lv 0");
+            label.textColor = HEXCOLOR(0x757575);
+            label.font = UIFontWeightRegularSize(12);
+            label.textAlignment = NSTextAlignmentCenter;
+            [self addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.animationLab);
+                make.top.equalTo(self.animationLab.mas_bottom).offset(JobsWidth(22));
+                make.height.mas_equalTo(JobsWidth(12));
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
+        });
     }return _leftLab;
 }
 
 -(UILabel *)rightLab{
     if (!_rightLab) {
-        _rightLab = UILabel.new;
-        _rightLab.text = JobsInternationalization(@"Lv 1");
-        _rightLab.textColor = HEXCOLOR(0x757575);
-        _rightLab.textAlignment = NSTextAlignmentCenter;
-        _rightLab.font = UIFontWeightRegularSize(12);
-        [self addSubview:_rightLab];
-        [_rightLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self).offset(JobsWidth(-16));
-            make.top.equalTo(self.animationLab.mas_bottom).offset(JobsWidth(22));
-            make.height.mas_equalTo(JobsWidth(12));
-        }];
-        _rightLab.makeLabelByShowingType(UILabelShowingType_03);
+        _rightLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.text = JobsInternationalization(@"Lv").add(@" ").add(@"1");
+            label.textColor = HEXCOLOR(0x757575);
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font = UIFontWeightRegularSize(12);
+            [self addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self).offset(JobsWidth(-16));
+                make.top.equalTo(self.animationLab.mas_bottom).offset(JobsWidth(22));
+                make.height.mas_equalTo(JobsWidth(12));
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
+        });
     }return _rightLab;
 }
 /// BaseViewProtocol
@@ -265,24 +268,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableAttributedString *)attributedStringData{
     if (!_attributedStringData) {
-        _attributedStringData = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
-                                                    paragraphStyle:nil];
-    }return _attributedStringData;
-}
-
--(NSMutableArray<NSString *> *)richTextMutArr{
-    if (!_richTextMutArr) {
-        _richTextMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(JobsInternationalization(@"當前晉級進度"));
-            data.add(@" ".add(@"%"));
-        });
-    }return _richTextMutArr;
-}
-
--(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
-    if (!_richTextConfigMutArr) {
         @jobs_weakify(self)
-        _richTextConfigMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _attributedStringData = [self richTextWithDataConfigMutArr:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
                 data1.font = UIFontWeightRegularSize(12);
@@ -301,8 +288,17 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 data1.textCor = HEXCOLOR(0x3D4A58);
                 data1.targetString = self.richTextMutArr[2];
             }));
+        })paragraphStyle:nil];
+    }return _attributedStringData;
+}
+
+-(NSMutableArray<NSString *> *)richTextMutArr{
+    if (!_richTextMutArr) {
+        _richTextMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(JobsInternationalization(@"當前晉級進度"));
+            data.add(@" ".add(@"%"));
         });
-    }return _richTextConfigMutArr;
+    }return _richTextMutArr;
 }
 
 -(NSMutableArray<UIViewModel *> *)dataMutArr{

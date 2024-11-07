@@ -350,6 +350,13 @@ typedef void(^JobsHandelNoSuccessBlock)(__kindof YTKBaseRequest *_Nonnull reques
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByVoidBlock)(void);
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByIDBlock)(id _Nullable data);
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByDictionaryBlock)(NSDictionary *_Nullable data);
+
+@class ZFAVPlayerManager;
+typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullable data);
+
+@class ZFIJKPlayerManager;
+typedef void(^jobsByZFIJKPlayerManagerBlock)(__kindof ZFIJKPlayerManager *_Nullable data);
+
 #pragma mark —— 关于业务（不与JobsOCBaseConfigDemo同步）
 @class FMBannerAdsModel;
 @class WMZBannerParam;

@@ -70,9 +70,11 @@
             make.centerX.equalTo(self.view);
             make.height.mas_equalTo(JobsWidth(50));
         }];
-        
-        _btn1.imageView.cornerCutToCircleWithCornerRadius(JobsWidth(1));
-        [_btn1.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
+        _btn1.imageView.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+            model.jobsWidth = 1;
+            model.layerCor = HEXCOLOR(0xEEE2C8);
+            model.cornerRadius = 1;
+        }));
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
         _btn1.makeBtnTitleByShowingType(UILabelShowingType_03);
         _btn1.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeLeading,JobsWidth(8));
@@ -94,9 +96,11 @@
             make.centerX.equalTo(self.view);
             make.height.mas_equalTo(JobsWidth(50));
         }];
-        
-        _btn2.imageView.cornerCutToCircleWithCornerRadius(JobsWidth(1));
-        [_btn2.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
+        _btn2.imageView.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+            model.jobsWidth = 1;
+            model.layerCor = HEXCOLOR(0xEEE2C8);
+            model.cornerRadius = 1;
+        }));
         _btn2.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTrailing,JobsWidth(8));
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
         _btn2.makeBtnTitleByShowingType(UILabelShowingType_03);
@@ -118,9 +122,11 @@
             make.centerX.equalTo(self.view);
             make.height.mas_equalTo(JobsWidth(50));
         }];
-        
-        _btn3.imageView.cornerCutToCircleWithCornerRadius(JobsWidth(1));
-        [_btn3.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
+        _btn3.imageView.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+            model.jobsWidth = 1;
+            model.layerCor = HEXCOLOR(0xEEE2C8);
+            model.cornerRadius = 1;
+        }));
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
         _btn3.makeBtnTitleByShowingType(UILabelShowingType_03);
         _btn3.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTop,JobsWidth(8));
@@ -142,9 +148,11 @@
             make.centerX.equalTo(self.view);
             make.height.mas_equalTo(JobsWidth(50));
         }];
-        
-        _btn4.imageView.cornerCutToCircleWithCornerRadius(JobsWidth(1));
-        [_btn4.imageView layerBorderCor:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
+        _btn4.imageView.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+            model.jobsWidth = 1;
+            model.layerCor = HEXCOLOR(0xEEE2C8);
+            model.cornerRadius = 1;
+        }));
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
         _btn4.makeBtnTitleByShowingType(UILabelShowingType_03);
         _btn4.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeBottom,JobsWidth(8));

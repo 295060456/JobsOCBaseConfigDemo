@@ -89,7 +89,6 @@
         _sendBtn.userInteractionEnabled = NO;
         _sendBtn.enabled = NO;
         [_sendBtn setTitleColor:JobsWhiteColor forState:UIControlStateDisabled];
-
         [self addSubview:_sendBtn];
         [_sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(11);
@@ -102,6 +101,7 @@
 
 -(ZYTextField *)inputTextField{
     if (!_inputTextField) {
+        @jobs_weakify(self)
         _inputTextField = ZYTextField.new;
         _inputTextField.placeHolderAlignment = NSTextAlignmentCenter;
         _inputTextField.placeholder = JobsInternationalization(@"在此输入需要发送的信息");
@@ -121,13 +121,13 @@
             make.right.equalTo(self.sendBtn.mas_left).offset(-10);
             make.left.equalTo(self).offset(10);
         }];
-
         [self layoutIfNeeded];
-        
-        _inputTextField.cornerCutToCircleWithCornerRadius(_inputTextField.mj_h / 2);
-        [_inputTextField layerBorderCor:JobsWhiteColor andBorderWidth:1];
-        
-        @jobs_weakify(self)
+        _inputTextField.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+            @jobs_strongify(self)
+            model.jobsWidth = .5f;
+            model.layerCor = JobsWhiteColor;
+            model.cornerRadius = self->_inputTextField.mj_h / 2;
+        }));
         [[_inputTextField.rac_textSignal filter:^BOOL(NSString * _Nullable value) {
             return YES;
         }] subscribeNext:^(NSString * _Nullable x) {
@@ -140,8 +140,9 @@
 
 -(UIImageView *)imgView{
     if (!_imgView) {
-        _imgView = UIImageView.new;
-        _imgView.image = JobsIMG(@"输入框无值");
+        _imgView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            imageView.image = JobsIMG(@"输入框无值");
+        });
     }return _imgView;
 }
 

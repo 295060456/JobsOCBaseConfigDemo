@@ -363,6 +363,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 
 -(UIButton *)customerServiceBtn{
     if (!_customerServiceBtn) {
+        @jobs_weakify(self)
         _customerServiceBtn = UIButton.new;
         _customerServiceBtn.hidden = YES;//本版本需要进行屏蔽
         _customerServiceBtn.jobsResetBtnTitle(Title8);
@@ -376,20 +377,25 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             NSLog(@"点击客服按钮");
             return nil;
         }];
-        _customerServiceBtn.cornerCutToCircleWithCornerRadius(_customerServiceBtn.height / 2);
-        [_customerServiceBtn layerBorderCor:JobsWhiteColor andBorderWidth:2];
+        _customerServiceBtn.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            @jobs_strongify(self)
+            data.jobsWidth = 2;
+            data.layerCor = JobsWhiteColor;
+            data.cornerRadius = self->_customerServiceBtn.height / 2;
+        }));
     }return _customerServiceBtn;
 }
 
 -(ZFAVPlayerManager *)playerManager{
     if (!_playerManager) {
-        _playerManager = ZFAVPlayerManager.new;
-        _playerManager.shouldAutoPlay = YES;
-        if (isiPhoneX_series()) {
-            _playerManager.assetURL = @"iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
-        }else{
-            _playerManager.assetURL = @"非iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
-        }
+        _playerManager = jobsMakeZFAVPlayerManager(^(__kindof ZFAVPlayerManager * _Nullable data) {
+            data.shouldAutoPlay = YES;
+            if (isiPhoneX_series()) {
+                data.assetURL = @"iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
+            }else{
+                data.assetURL = @"非iph_X.mp4".pathForResourceWithFullName.jobsFileUrl;
+            }
+        });
     }return _playerManager;
 }
 
@@ -420,9 +426,10 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 
 -(UIImageView *)bgImgV{
     if (!_bgImgV) {
-        _bgImgV = UIImageView.new;
-        _bgImgV.image = JobsIMG(@"AppDoorBgImage");
-        _bgImgV.userInteractionEnabled = YES;
+        _bgImgV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            imageView.image = JobsIMG(@"AppDoorBgImage");
+            imageView.userInteractionEnabled = YES;
+        });
     }return _bgImgV;
 }
 

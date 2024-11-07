@@ -563,14 +563,6 @@ JobsKey(_bottomBorderLayer)
         self.bottomBorderColor(color).bottomBorderWidth(borderType);
     }
 }
-/// 描边
-/// @param layerBorderCor 颜色
-/// @param borderWidth 边线宽度
--(void)layerBorderCor:(UIColor *_Nullable)layerBorderCor
-       andBorderWidth:(CGFloat)borderWidth{
-    self.layer.borderColor = layerBorderCor.CGColor;
-    self.layer.borderWidth = borderWidth;
-}
 /// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
 -(JobsReturnViewByCorBlock _Nonnull)layerByBorderCor{
     @jobs_weakify(self)

@@ -92,11 +92,6 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 -(void)setBorderWithColor:(UIColor *_Nullable)color
               borderWidth:(CGFloat)borderWidth
                borderType:(UIBorderSideType)borderType;
-/// 描边
-/// @param layerBorderCor 颜色
-/// @param borderWidth 边线宽度
--(void)layerBorderCor:(UIColor *_Nullable)layerBorderCor
-       andBorderWidth:(CGFloat)borderWidth NS_DEPRECATED_IOS(2_0, 10_0, "Use -setLayerBy instead");
 /// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
 -(JobsReturnViewByCorBlock _Nonnull)layerByBorderCor;
 /// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);

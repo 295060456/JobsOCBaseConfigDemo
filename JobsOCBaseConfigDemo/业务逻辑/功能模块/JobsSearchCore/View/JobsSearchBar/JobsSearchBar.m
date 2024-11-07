@@ -79,8 +79,11 @@
             NSLog(@"输入的字符为 = %@",x);
             if (self.objectBlock) self.objectBlock(x);
         }];
-        _textField.cornerCutToCircleWithCornerRadius(JobsWidth(8));
-        [_textField layerBorderCor:JobsBlueColor andBorderWidth:.05f];
+        _textField.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+            model.jobsWidth = .05f;
+            model.layerCor = JobsBlueColor;
+            model.cornerRadius = JobsWidth(8);
+        }));
     }return _textField;
 }
 
@@ -115,8 +118,9 @@
 
 -(UIImageView *)imgView{
     if (!_imgView) {
-        _imgView = UIImageView.new;
-        _imgView.image = JobsIMG(@"放大镜");
+        _imgView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            imageView.image = JobsIMG(@"放大镜");
+        });
     }return _imgView;
 }
 

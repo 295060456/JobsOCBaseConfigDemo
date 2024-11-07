@@ -32,25 +32,34 @@ NS_ASSUME_NONNULL_END
  
  -(UISwitch *)switcher{
      if (!_switcher) {
-         _switcher = UISwitch.new;
-         [self.view addSubview:_switcher];
-         _switcher.selected = NO;// 读取系统记录
-         _switcher.thumbTintColor = _switcher.selected ? self.cor : HEXCOLOR(0xB0B0B0);
-         _switcher.tintColor = JobsWhiteColor;
-         _switcher.onTintColor = HEXCOLOR(0xFFFCF7);
-         _switcher.backgroundColor = JobsWhiteColor;
-         _switcher.cornerCutToCircleWithCornerRadius(31 / 2);
-         [_switcher mas_makeConstraints:^(MASConstraintMaker *make) {
- //            make.top.equalTo(self.titleLab);
-             make.right.equalTo(self.view).offset(JobsWidth(-16));
-         }];
-         [_switcher layerBorderCor:_switcher.selected ? self.cor : HEXCOLOR(0xB0B0B0) andBorderWidth:JobsWidth(1)];
-         [_switcher jobsSwitchClickEventBlock:^(UISwitch *x) {
-             x.selected = !x.selected;
-             self.jobsToastMsg(x.selected ? JobsInternationalization(@"打开解锁"):JobsInternationalization(@"关闭解锁"));
-             x.thumbTintColor = x.selected ? self.cor : HEXCOLOR(0xB0B0B0);
-             [x layerBorderCor:x.selected ? self.cor : HEXCOLOR(0xB0B0B0) andBorderWidth:JobsWidth(1)];
-         }];
+         @jobs_weakify(self)
+         _switcher = jobsMakeSwitch(^(__kindof UISwitch * _Nullable Switch) {
+             @jobs_strongify(self)
+             [self.view addSubview:Switch];
+             Switch.selected = NO;// 读取系统记录
+             Switch.thumbTintColor = _switcher.selected ? self.cor : HEXCOLOR(0xB0B0B0);
+             Switch.tintColor = JobsWhiteColor;
+             Switch.onTintColor = HEXCOLOR(0xFFFCF7);
+             Switch.backgroundColor = JobsWhiteColor;
+             Switch.cornerCutToCircleWithCornerRadius(31 / 2);
+             [Switch mas_makeConstraints:^(MASConstraintMaker *make) {
+     //            make.top.equalTo(self.titleLab);
+                 make.right.equalTo(self.view).offset(JobsWidth(-16));
+             }];
+             Switch.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+                 data.layerCor = Switch.selected ? self.cor : HEXCOLOR(0xB0B0B0)
+                 data.jobsWidth = 1;
+             }));
+             [Switch jobsSwitchClickEventBlock:^(UISwitch *x) {
+                 x.selected = !x.selected;
+                 self.jobsToastMsg(x.selected ? JobsInternationalization(@"打开解锁"):JobsInternationalization(@"关闭解锁"));
+                 x.thumbTintColor = x.selected ? self.cor : HEXCOLOR(0xB0B0B0);
+                 x.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+                     data.layerCor = Switch.selected ? self.cor : HEXCOLOR(0xB0B0B0)
+                     data.jobsWidth = 1;
+                 }));
+             }];
+         })
      }return _switcher;
  }
 

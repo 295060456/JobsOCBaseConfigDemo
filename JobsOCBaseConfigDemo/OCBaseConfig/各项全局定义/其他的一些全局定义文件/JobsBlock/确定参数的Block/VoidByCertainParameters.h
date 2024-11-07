@@ -29,6 +29,8 @@ typedef void(^jobsByScrollViewBlock)(UIScrollView *_Nullable scrollView);
 typedef void(^jobsByBtnBlock)(__kindof UIButton *_Nullable btn);
 typedef void(^jobsByWindowBlock)(__kindof UIWindow *_Nullable data);
 typedef void(^jobsByLabelBlock)(__kindof UILabel *_Nullable label);
+typedef void(^jobsByProgressViewBlock)(__kindof UIProgressView *_Nullable progressView);
+typedef void(^jobsBySwitchBlock)(__kindof UISwitch *_Nullable Switch);
 typedef void(^jobsByTableViewBlock)(__kindof UITableView *_Nullable tableView);
 typedef void(^jobsByCollectionViewBlock)(__kindof UICollectionView *_Nullable collectionView);
 typedef void(^jobsByTextFieldBlock)(__kindof UITextField *_Nullable textField);

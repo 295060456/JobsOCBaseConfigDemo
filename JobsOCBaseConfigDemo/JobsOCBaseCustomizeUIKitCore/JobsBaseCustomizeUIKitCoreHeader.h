@@ -243,6 +243,18 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull blo
     return data;
 }
 
+NS_INLINE __kindof UISwitch *_Nonnull jobsMakeSwitch(jobsBySwitchBlock _Nonnull block){
+    UISwitch *data = UISwitch.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UIProgressView *_Nonnull jobsMakeProgressView(jobsByProgressViewBlock _Nonnull block){
+    UIProgressView *data = UIProgressView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof UIScrollView *_Nonnull jobsMakeScrollView(jobsByScrollViewBlock _Nonnull block){
     UIScrollView *data = UIScrollView.alloc.init;
     if (block) block(data);
