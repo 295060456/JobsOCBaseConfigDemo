@@ -7,15 +7,14 @@
 
 #ifndef JobsTimerManager_DefineStructure_h
 #define JobsTimerManager_DefineStructure_h
-
+/// 倒计时模式
 typedef enum : NSUInteger {
     /// 顺时针模式
     TimerStyle_clockwise = 0,
     /// 逆时针模式（倒计时模式）
     TimerStyle_anticlockwise
 } TimerStyle;
-
-// 用哪一种模式进行初始化NSTimer定时器
+/// 用哪一种模式进行初始化NSTimer定时器
 typedef enum : NSUInteger {
     /// scheduledTimerWithTimeInterval/repeats/block
     ScheduledTimerType_0 = 0,
@@ -24,7 +23,7 @@ typedef enum : NSUInteger {
     /// scheduledTimerWithTimeInterval/target/selector/userInfo/repeats
     ScheduledTimerType_2
 } ScheduledTimerType;
-// NSTimer定时器当前状态
+/// NSTimer定时器当前状态
 typedef enum : NSUInteger {
     /// 定时器未知状态
     NSTimerCurrentStatusUnknow = 0,

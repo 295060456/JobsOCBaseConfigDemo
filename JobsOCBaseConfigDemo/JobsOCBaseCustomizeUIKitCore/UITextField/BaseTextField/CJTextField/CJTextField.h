@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 #import "UITextField+Extend.h"
 #import "NSObject+CurrentDevice.h"
 
@@ -17,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol CJTextFieldDeleteDelegate <NSObject>
 
-- (void)cjTextFieldDeleteBackward:(CJTextField *)textField;
+-(void)cjTextFieldDeleteBackward:(CJTextField *)textField;
 
 @end
 
@@ -28,3 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof CJTextField *_Nonnull jobsMakeCJTextField(jobsByCJTextField _Nonnull block){
+    CJTextField *data = CJTextField.alloc.init;
+    if (block) block(data);
+    return data;
+}

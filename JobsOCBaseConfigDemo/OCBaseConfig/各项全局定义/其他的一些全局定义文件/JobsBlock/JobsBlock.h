@@ -174,6 +174,12 @@ typedef void(^jobsByNavBarBlock)(__kindof JobsNavBar *_Nullable data);
 @class JobsTextField;
 typedef void(^jobsByJobsTextFieldBlock)(__kindof JobsTextField *_Nullable data);
 
+@class CJTextField;
+typedef void(^jobsByCJTextField)(CJTextField *_Nullable textField);
+
+@class ZYTextField;
+typedef void(^jobsByZYTextFieldBlock)(ZYTextField *_Nullable textField);
+
 @class JobsToggleBaseView;
 typedef void(^jobsByToggleBaseViewBlock)(JobsToggleBaseView *_Nullable toggleBaseView);
 

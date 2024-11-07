@@ -526,15 +526,25 @@ JobsKey(_bottomBorderLayer)
         return self;
     };
 }
-/// 描边：统一设置Layer的线宽+颜色+圆切角
+/// 描边：统一设置Layer的线宽+颜色+圆切角（一定切角）
 -(JobsReturnViewByLocationModelBlock _Nonnull)setLayerBy{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(__kindof JobsLocationModel *_Nullable data){
+        @jobs_strongify(self)
+        data.masksToBounds = YES;
+        self.layerBy(data);
+        return self;
+    };
+}
+/// 描边：统一设置Layer的线宽+颜色+圆切角（不一定切角）
+-(JobsReturnViewByLocationModelBlock _Nonnull)layerBy{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof JobsLocationModel *_Nullable data){
         @jobs_strongify(self)
         self.layer.borderColor = data.layerCor.CGColor;
         self.layer.borderWidth = data.jobsWidth;
         self.layer.cornerRadius = data.cornerRadius;
-        self.layer.masksToBounds = YES;
+        self.layer.masksToBounds = data.masksToBounds;
         return self;
     };
 }

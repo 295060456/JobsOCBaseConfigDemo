@@ -10,24 +10,23 @@
 
 @implementation CJTextField
 
-- (void)deleteBackward{
+-(void)deleteBackward{
     [super deleteBackward];
     if ([self.cj_delegate respondsToSelector:@selector(cjTextFieldDeleteBackward:)]) {
         [self.cj_delegate cjTextFieldDeleteBackward:self];
     }
 }
 
-- (BOOL)keyboardInputShouldDelete:(UITextField *)textField{
+-(BOOL)keyboardInputShouldDelete:(UITextField *)textField{
     BOOL shouldDelete = YES;
     if ([UITextField instancesRespondToSelector:_cmd]) {
         BOOL (*keyboardInputShouldDelete)(id, SEL, UITextField *) = (BOOL (*)(id, SEL, UITextField *))[UITextField instanceMethodForSelector:_cmd];
-      
         if (keyboardInputShouldDelete) {
             shouldDelete = keyboardInputShouldDelete(self, _cmd, textField);
         }
     }
   
-    if (![textField.text length] &&
+    if (!textField.text.length &&
         (self.deviceSystemVersion.intValue == 8) &&
         (self.deviceSystemVersion.floatValue < 8.3f)) {
         [self deleteBackward];

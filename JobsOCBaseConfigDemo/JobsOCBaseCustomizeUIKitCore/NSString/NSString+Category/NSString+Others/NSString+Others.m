@@ -135,5 +135,13 @@
 -(void)cleanSDImageCache:(SDWebImageNoParamsBlock)block{
     [SDImageCache.sharedImageCache removeImageForKey:self withCompletion:block];
 }
+/// 创建CABasicAnimation
+-(CABasicAnimation *)basicAnimation{
+    return [CABasicAnimation animationWithKeyPath:self];
+}
+/// 创建CAKeyframeAnimation（关键帧动画）
+-(CAKeyframeAnimation *)keyframeAnimation{
+    return [CAKeyframeAnimation animationWithKeyPath:self];
+}
 
 @end

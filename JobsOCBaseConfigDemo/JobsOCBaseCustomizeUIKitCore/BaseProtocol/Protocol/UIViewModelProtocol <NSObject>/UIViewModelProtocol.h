@@ -86,6 +86,7 @@ NS_ASSUME_NONNULL_END
 @synthesize bgSelectedConfig = _bgSelectedConfig;\
 \
 @synthesize cornerRadius = _cornerRadius;\
+@synthesize masksToBounds = _masksToBounds;\
 @synthesize rectCorner = _rectCorner;\
 @synthesize cornerRadii = _cornerRadii;\
 @synthesize jobsX = _jobsX;\
@@ -264,6 +265,7 @@ NS_ASSUME_NONNULL_END
 @dynamic bgSelectedConfig;\
 \
 @dynamic cornerRadius;\
+@dynamic masksToBounds;\
 @dynamic rectCorner;\
 @dynamic cornerRadii;\
 @dynamic jobsX;\

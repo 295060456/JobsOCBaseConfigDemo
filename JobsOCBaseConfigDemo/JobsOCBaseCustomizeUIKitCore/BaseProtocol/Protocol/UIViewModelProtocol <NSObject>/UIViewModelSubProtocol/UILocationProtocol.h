@@ -53,6 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)NSInteger section;
 /// Layer
 @property(nonatomic,assign)CGFloat cornerRadius;/// 圆切角（全角）
+@property(nonatomic,assign)BOOL masksToBounds;
 #pragma mark —— UIButton 专用属性 — 图文的相对位置
 @property(nonatomic,assign)NSDirectionalRectEdge buttonEdgeInsetsStyle;
 @property(nonatomic,assign)CGFloat imageTitleSpace;
@@ -87,6 +88,7 @@ NS_ASSUME_NONNULL_END
 #ifndef UILocationProtocol_UIViewModelSynthesize
 #define UILocationProtocol_UIViewModelSynthesize \
 @synthesize cornerRadius = _cornerRadius;\
+@synthesize masksToBounds = _masksToBounds;\
 @synthesize rectCorner = _rectCorner;\
 @synthesize cornerRadii = _cornerRadii;\
 @synthesize jobsX = _jobsX;\
@@ -133,6 +135,7 @@ NS_ASSUME_NONNULL_END
 #define UILocationProtocol_UIViewModelDynamic \
 \
 @dynamic cornerRadius;\
+@dynamic masksToBounds;\
 @dynamic rectCorner;\
 @dynamic cornerRadii;\
 @dynamic jobsX;\

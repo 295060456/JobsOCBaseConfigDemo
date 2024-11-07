@@ -88,6 +88,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 清除SDImage的图片缓存（用url为key）
 /// ⚠️ 这个方法一旦使用，亦会清除掉placeholderImage
 -(void)cleanSDImageCache:(SDWebImageNoParamsBlock)block;
+/// 创建CABasicAnimation
+-(CABasicAnimation *)basicAnimation;
+/// 创建CAKeyframeAnimation（关键帧动画）
+-(CAKeyframeAnimation *)keyframeAnimation;
 
 @end
 
