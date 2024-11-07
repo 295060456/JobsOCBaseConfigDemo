@@ -121,13 +121,17 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(void)jobsRichElementsInCellWithModel2:(UIViewModel *_Nullable)model{
-    if ([model isKindOfClass:UIViewModel.class]) {
-        self.textLabel.textColor = model.textCor;
-        self.textLabel.font = model.font;
-        self.textLabel.text = model.text;
-        self.imageView.image = model.image;
-    }
+-(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
+    @jobs_weakify(self)
+    return ^(UIViewModel *_Nullable model) {
+        @jobs_strongify(self)
+        if ([model isKindOfClass:UIViewModel.class]) {
+            self.textLabel.textColor = model.textCor;
+            self.textLabel.font = model.font;
+            self.textLabel.text = model.text;
+            self.imageView.image = model.image;
+        }
+    };
 }
 
 -(jobsByImageBlock _Nonnull)setCellBgImage{
@@ -190,24 +194,19 @@ UITableViewCellProtocol_dynamic
     }
     
     {
-        // 新建一个图层
-        CAShapeLayer *layer = CAShapeLayer.layer;
-        // 线宽
-        layer.borderWidth = borderWidth;
-        // 图层边框路径
-        layer.path = bezierPath.CGPath;
-        // 图层填充色,也就是cell的底色
-        layer.fillColor = cellBgCor.CGColor;
-        // 图层边框线条颜色
-        /*
-         如果self.tableView.style = UITableViewStyleGrouped时,每一组的首尾都会有一根分割线,目前我还没找到去掉每组首尾分割线,保留cell分割线的办法。
-         所以这里取巧,用带颜色的图层边框替代分割线。
-         这里为了美观,最好设为和tableView的底色一致。
-         设为透明,好像不起作用。
-         */
-        layer.strokeColor = cellOutLineCor.CGColor;
-        //将图层添加到cell的图层中,并插到最底层
-        [self.layer insertSublayer:layer atIndex:0];
+        /// 将图层添加到cell的图层中,并插到最底层
+        [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            layer.borderWidth = borderWidth;/// 线宽
+            layer.path = bezierPath.CGPath;/// 图层边框路径
+            layer.fillColor = cellBgCor.CGColor;/// 图层填充色,也就是cell的底色
+            /*
+             如果self.tableView.style = UITableViewStyleGrouped时,每一组的首尾都会有一根分割线,目前我还没找到去掉每组首尾分割线,保留cell分割线的办法。
+             所以这里取巧,用带颜色的图层边框替代分割线。
+             这里为了美观,最好设为和tableView的底色一致。
+             设为透明,好像不起作用。
+             */
+            layer.strokeColor = cellOutLineCor.CGColor;/// 图层边框线条颜色
+        }) atIndex:0];
     }
     /// 除了最后一行以外，所有的cell的最下面的线的颜色为bottomLineCor
     [self tableViewMakesLastRowCellAtIndexPath:indexPath
@@ -237,18 +236,15 @@ UITableViewCellProtocol_dynamic
     if (!indexPath) return;
     if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
     if (indexPath.row != numberOfRowsInSection - 1) {
-        UIBezierPath *linePath = UIBezierPath.bezierPath;
-        // 起点
-        [linePath moveToPoint:CGPointMake(bounds.origin.x, bounds.size.height)];
-        // 其他点
-        [linePath addLineToPoint:CGPointMake(bounds.origin.x + bounds.size.width, bounds.size.height)];
-        // 新建一个图层
-        CAShapeLayer *layer = CAShapeLayer.layer;
-        layer.borderWidth = borderWidth;
-        layer.path = linePath.CGPath;
-        layer.strokeColor = bottomLineCor.CGColor;
-        //将图层添加到cell的图层中,并插到最底层
-        [self.layer insertSublayer:layer atIndex:1];
+        /// 将图层添加到cell的图层中,并插到最底层
+        [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            layer.borderWidth = borderWidth;
+            layer.strokeColor = bottomLineCor.CGColor;
+            layer.path = jobsMakeBezierPath(^(__kindof UIBezierPath * _Nullable data) {
+                [data moveToPoint:CGPointMake(bounds.origin.x, bounds.size.height)];// 起点
+                [data addLineToPoint:CGPointMake(bounds.origin.x + bounds.size.width, bounds.size.height)];// 其他点
+            }).CGPath;
+        }) atIndex:1];
     }
 }
 /// 除了第一行以外，所有的cell的最上面的线为bottomLineCor
@@ -266,18 +262,15 @@ UITableViewCellProtocol_dynamic
     if (!indexPath) return;
     if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
     if(indexPath.row){
-        UIBezierPath *linePath = UIBezierPath.bezierPath;
-        /// 起点
-        [linePath moveToPoint:CGPointMake(bounds.origin.x, 0)];
-        /// 其他点
-        [linePath addLineToPoint:CGPointMake(bounds.origin.x + bounds.size.width,0)];
-        /// 新建一个图层
-        CAShapeLayer *layer3 = CAShapeLayer.layer;
-        layer3.borderWidth = borderWidth;
-        layer3.path = linePath.CGPath;
-        layer3.strokeColor = bottomLineCor.CGColor;
         /// 将图层添加到cell的图层中,并插到最底层
-        [self.layer insertSublayer:layer3 atIndex:1];
+        [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            layer.borderWidth = borderWidth;
+            layer.strokeColor = bottomLineCor.CGColor;
+            layer.path = jobsMakeBezierPath(^(__kindof UIBezierPath * _Nullable linePath) {
+                [linePath moveToPoint:CGPointMake(bounds.origin.x, 0)];/// 起点
+                [linePath addLineToPoint:CGPointMake(bounds.origin.x + bounds.size.width,0)];/// 其他点
+            }).CGPath;
+        }) atIndex:1];
     }
 }
 #pragma mark —— 一些私有的功能方法

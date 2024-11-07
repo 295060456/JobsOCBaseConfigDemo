@@ -26,15 +26,15 @@
 #ifndef jobs_weakify
 #if DEBUG
 #if __has_feature(objc_arc)
-#define jobs_weakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
+#define jobs_weakify(self) autoreleasepool{} __weak __typeof__(self) weak##_##self = self;
 #else
-#define jobs_weakify(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
+#define jobs_weakify(self) autoreleasepool{} __block __typeof__(self) block##_##self = self;
 #endif
 #else
 #if __has_feature(objc_arc)
-#define jobs_weakify(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
+#define jobs_weakify(self) try{} @finally{} {} __weak __typeof__(self) weak##_##self = self;
 #else
-#define jobs_weakify(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
+#define jobs_weakify(self) try{} @finally{} {} __block __typeof__(self) block##_##self = self;
 #endif
 #endif
 #endif
@@ -42,15 +42,15 @@
 #ifndef jobs_strongify
 #if DEBUG
 #if __has_feature(objc_arc)
-#define jobs_strongify(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
+#define jobs_strongify(self) autoreleasepool{} __typeof__(self) self = weak##_##self;
 #else
-#define jobs_strongify(object) autoreleasepool{} __typeof__(object) object = block##_##object;
+#define jobs_strongify(self) autoreleasepool{} __typeof__(self) self = block##_##self;
 #endif
 #else
 #if __has_feature(objc_arc)
-#define jobs_strongify(object) try{} @finally{} __typeof__(object) object = weak##_##object;
+#define jobs_strongify(self) try{} @finally{} __typeof__(self) self = weak##_##self;
 #else
-#define jobs_strongify(object) try{} @finally{} __typeof__(object) object = block##_##object;
+#define jobs_strongify(self) try{} @finally{} __typeof__(self) self = block##_##self;
 #endif
 #endif
 #endif

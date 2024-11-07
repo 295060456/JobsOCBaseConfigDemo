@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MacroDef_Func.h"
+#import "JobsBlock.h"
 #import "UIViewModel.h"
 #import "MacroDef_Size.h"
 #import "UITableViewCellProtocol.h"
