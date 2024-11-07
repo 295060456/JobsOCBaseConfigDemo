@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -37,8 +38,25 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-/**
 
+NS_INLINE __kindof UITableView *_Nonnull jobsMakePlainTableView(jobsByTableViewBlock _Nonnull block){
+    UITableView *data = UITableView.initWithStylePlain;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UITableView *_Nonnull jobsMakeGroupedTableView(jobsByTableViewBlock _Nonnull block){
+    UITableView *data = UITableView.initWithStyleGrouped;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UITableView *_Nonnull jobsMakeInsetGroupedTableView(jobsByTableViewBlock _Nonnull block){
+    UITableView *data = UITableView.initWithStyleInsetGrouped;
+    if (block) block(data);
+    return data;
+}
+/**
  ❤️UITableViewStylePlain ❤️
  不实现footer、header设置方法，默认无header、footer；
                                         iOS 11                                                                         |                      < iOS 11

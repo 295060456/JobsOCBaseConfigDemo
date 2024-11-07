@@ -547,21 +547,13 @@ JobsKey(_bottomBorderLayer)
                borderType:(UIBorderSideType)borderType{
     [self.superview layoutIfNeeded];
     /// 左
-    if (borderType & UIBorderSideTypeLeft) {
-        self.leftBorderColor(color).leftBorderWidth(borderType);
-    }
+    if (borderType & UIBorderSideTypeLeft) self.leftBorderColor(color).leftBorderWidth(borderType);
     /// 右
-    if (borderType & UIBorderSideTypeRight){
-        self.rightBorderColor(color).rightBorderWidth(borderType);
-    }
+    if (borderType & UIBorderSideTypeRight) self.rightBorderColor(color).rightBorderWidth(borderType);
     /// 上
-    if (borderType & UIBorderSideTypeTop) {
-        self.topBorderColor(color).topBorderWidth(borderType);
-    }
+    if (borderType & UIBorderSideTypeTop) self.topBorderColor(color).topBorderWidth(borderType);
     /// 下
-    if (borderType & UIBorderSideTypeBottom) {
-        self.bottomBorderColor(color).bottomBorderWidth(borderType);
-    }
+    if (borderType & UIBorderSideTypeBottom) self.bottomBorderColor(color).bottomBorderWidth(borderType);
 }
 /// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
 -(JobsReturnViewByCorBlock _Nonnull)layerByBorderCor{
