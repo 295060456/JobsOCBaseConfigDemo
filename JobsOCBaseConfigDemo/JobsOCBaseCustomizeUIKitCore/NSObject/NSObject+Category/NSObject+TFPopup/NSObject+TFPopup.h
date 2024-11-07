@@ -90,6 +90,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（不带数据）
 -(jobsByViewBlock _Nonnull)show_view;
 /// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（带数据）
+-(jobsByViewAndDataBlock _Nonnull)show_viewByModel;
+/// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（带数据）
 -(jobsByViewAndDataBlock _Nonnull)showViewByModel;
 /// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框（不带数据）
 -(jobsByViewBlock _Nonnull)show_view2;

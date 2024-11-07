@@ -54,17 +54,20 @@ UIViewModelProtocol_synthesize
 #pragma mark —— lazyLoad
 -(UILabel *)lab{
     if(!_lab){
-        _lab = UILabel.new;
-        _lab.text = self.viewModel.text;
-        _lab.numberOfLines = 0;
-        _lab.lineBreakMode = NSLineBreakByWordWrapping;
-        _lab.textAlignment = self.viewModel.textAlignment;
-        _lab.textColor = self.viewModel.textCor;
-        _lab.font = self.viewModel.font;
-        [self.contentView addSubview:_lab];
-        [_lab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
+        @jobs_weakify(self)
+        _lab = jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
+            @jobs_strongify(self)
+            label.text = self.viewModel.text;
+            label.numberOfLines = 0;
+            label.lineBreakMode = NSLineBreakByWordWrapping;
+            label.textAlignment = self.viewModel.textAlignment;
+            label.textColor = self.viewModel.textCor;
+            label.font = self.viewModel.font;
+            [self.contentView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView);
+            }];
+        });
     }return _lab;
 }
 

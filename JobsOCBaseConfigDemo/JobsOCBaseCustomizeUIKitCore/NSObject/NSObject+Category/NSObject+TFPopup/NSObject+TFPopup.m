@@ -161,6 +161,15 @@
     };
 }
 /// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（带数据）
+-(jobsByViewAndDataBlock _Nonnull)show_viewByModel{
+    @jobs_weakify(self)
+    return ^(__kindof UIView *_Nullable view,id _Nullable data) {
+        @jobs_strongify(self)
+        self.popupParameter.popupSize = view.viewSizeByModel(data);
+        self._showViewCore(view);
+    };
+}
+/// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（带数据）
 -(jobsByViewAndDataBlock _Nonnull)showViewByModel{
     @jobs_weakify(self)
     return ^(__kindof UIView *_Nullable view,id _Nullable data) {

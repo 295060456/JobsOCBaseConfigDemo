@@ -26,7 +26,7 @@
         }
     } failure:^(YTKBaseRequest *request) {
         @jobs_strongify(self)
-        self.jobsHandelFailure(request);
+        if(self) self.jobsHandelFailure(request);
     }];
 }
 /// 多请求の同步请求
@@ -236,7 +236,7 @@
         [self request:request successBlock:successBlock];
     } failure:^(YTKBaseRequest *request) {
         @jobs_strongify(self)
-        self.jobsHandelFailure(request);
+        if(self) self.jobsHandelFailure(request);
     }];
 }
 #pragma mark —— 用户登出【POST】
@@ -253,7 +253,7 @@
         [self request:request successBlock:successBlock];
     } failure:^(YTKBaseRequest *request) {
         @jobs_strongify(self)
-        self.jobsHandelFailure(request);
+        if(self) self.jobsHandelFailure(request);
     }];
 }
 #pragma mark —— 存款优惠活动信息【POST】

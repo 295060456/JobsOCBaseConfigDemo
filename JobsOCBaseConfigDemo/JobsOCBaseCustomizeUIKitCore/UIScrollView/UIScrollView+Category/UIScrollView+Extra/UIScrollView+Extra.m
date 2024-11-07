@@ -21,21 +21,20 @@
     return [self judgementScrollDirectionByPoint:self.contentOffset];
 }
 #pragma mark —— 一些公共方法
+/// 如果使用：dispatch_async + dispatch_get_main_queue()进行主线程上的调用，会执行2次刷新的协议方法
 -(jobsByVoidBlock _Nonnull)reloadDatas{
     @jobs_weakify(self)
     return ^(){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @jobs_strongify(self)
-                if(self){
-                    if (self.isKindOfClass(UICollectionView.class)) {
-                        UICollectionView *collectionView = (UICollectionView *)self;
-                        [collectionView reloadData];
-                    }else if (self.isKindOfClass(UITableView.class)){
-                        UITableView *tableView = (UITableView *)self;
-                        [tableView reloadData];
-                    }else{}
-                }
-            });
+        @jobs_strongify(self)
+        if(self){
+            if (self.isKindOfClass(UICollectionView.class)) {
+                UICollectionView *collectionView = (UICollectionView *)self;
+                [collectionView reloadData];
+            }else if (self.isKindOfClass(UITableView.class)){
+                UITableView *tableView = (UITableView *)self;
+                [tableView reloadData];
+            }else{}
+        }
     };
 }
 /// 得到visibleCells

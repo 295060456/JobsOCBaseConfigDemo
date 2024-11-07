@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 将一个文本整个覆盖到TableViewCell上面
 @interface JobsTextStyleTBVCell : JobsBaseTableViewCell
 
--(UILabel *)lab;
+@property(nonatomic,strong,readonly)UILabel *lab;
 /// 获取绑定的数据源
 -(UIViewModel *)getViewModel;
 
