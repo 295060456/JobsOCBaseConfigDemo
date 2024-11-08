@@ -263,6 +263,23 @@
     };
 }
 #pragma mark —— 功能性的
+/// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
+/// data：包含 HTML 内容的字符串
+-(JobsReturnWKWebViewByStringBlock _Nonnull)makeWebViewByString{
+    return ^__kindof WKWebView *_Nullable(NSString *_Nullable data){
+        return jobsMakeWKWebView(^(__kindof WKWebView * _Nullable webView) {
+            [webView loadHTMLString:data baseURL:nil];
+        });
+    };
+}
+/// 解析网络URL数据
+-(JobsReturnWKWebViewByURLBlock _Nonnull)makeWebViewByURL{
+    return ^__kindof WKWebView *_Nullable(NSURL *_Nullable URL){
+        return jobsMakeWKWebView(^(__kindof WKWebView * _Nullable webView) {
+            [webView loadRequest:URL.URLRequest];
+        });
+    };
+}
 /// 在导航栏堆栈里面，是否存在同样类型的控制器
 -(JobsReturnBOOLByViewControllerBlock _Nonnull)isSameVCBy{
     @jobs_weakify(self)

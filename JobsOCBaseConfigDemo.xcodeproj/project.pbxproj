@@ -17,6 +17,8 @@
 		843B73C22CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */; };
 		843B73C62CCF6FD400F172EF /* YTKBaseRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */; };
 		844291EC2CDDF52F007B56CA /* JobsBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 844291EA2CDDF52F007B56CA /* JobsBaseModel.m */; };
+		845813E12CDE022100B3C038 /* NSString+WKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845813DF2CDE022100B3C038 /* NSString+WKWebView.m */; };
+		845813E62CDE024B00B3C038 /* WKWebView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845813E32CDE024B00B3C038 /* WKWebView+Extra.m */; };
 		8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */; };
 		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
 		8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */; };
@@ -1162,6 +1164,10 @@
 		843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBaseRequest+Extra.m"; sourceTree = "<group>"; };
 		844291E92CDDF52F007B56CA /* JobsBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseModel.h; sourceTree = "<group>"; };
 		844291EA2CDDF52F007B56CA /* JobsBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBaseModel.m; sourceTree = "<group>"; };
+		845813DE2CDE022100B3C038 /* NSString+WKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+WKWebView.h"; sourceTree = "<group>"; };
+		845813DF2CDE022100B3C038 /* NSString+WKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+WKWebView.m"; sourceTree = "<group>"; };
+		845813E22CDE024B00B3C038 /* WKWebView+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebView+Extra.h"; sourceTree = "<group>"; };
+		845813E32CDE024B00B3C038 /* WKWebView+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+Extra.m"; sourceTree = "<group>"; };
 		8464A59D2CDB73C30030409A /* NSObject+RACTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+RACTimer.h"; sourceTree = "<group>"; };
 		8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RACTimer.m"; sourceTree = "<group>"; };
 		8464A5A12CDB74D20030409A /* FMDoorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDoorModel.h; sourceTree = "<group>"; };
@@ -3454,6 +3460,32 @@
 			path = JobsBaseModel;
 			sourceTree = "<group>";
 		};
+		845813E02CDE022100B3C038 /* NSString+WKWebView */ = {
+			isa = PBXGroup;
+			children = (
+				845813DE2CDE022100B3C038 /* NSString+WKWebView.h */,
+				845813DF2CDE022100B3C038 /* NSString+WKWebView.m */,
+			);
+			path = "NSString+WKWebView";
+			sourceTree = "<group>";
+		};
+		845813E42CDE024B00B3C038 /* WKWebView+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				845813E22CDE024B00B3C038 /* WKWebView+Extra.h */,
+				845813E32CDE024B00B3C038 /* WKWebView+Extra.m */,
+			);
+			path = "WKWebView+Extra";
+			sourceTree = "<group>";
+		};
+		845813E52CDE024B00B3C038 /* WKWebView */ = {
+			isa = PBXGroup;
+			children = (
+				845813E42CDE024B00B3C038 /* WKWebView+Extra */,
+			);
+			path = WKWebView;
+			sourceTree = "<group>";
+		};
 		8464A59C2CDB73860030409A /* DynamicInvoke */ = {
 			isa = PBXGroup;
 			children = (
@@ -3620,6 +3652,7 @@
 		CE260F432CAE671C00233F0F /* NSString+Category */ = {
 			isa = PBXGroup;
 			children = (
+				845813E02CDE022100B3C038 /* NSString+WKWebView */,
 				CE260F2A2CAE671C00233F0F /* NSString+Time */,
 				CE260F2D2CAE671C00233F0F /* NSString+Conversion */,
 				CE260F302CAE671C00233F0F /* NSString+Eomji */,
@@ -12655,6 +12688,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
+				845813E52CDE024B00B3C038 /* WKWebView */,
 				8439F3382CD8A49000319E4A /* UIGestureRecognizer */,
 				843B73C12CCF6F0100F172EF /* NSURLSessionDataTask */,
 				CE5A64732CA82C8F006D67A7 /* AVURLAsset */,
@@ -15255,6 +15289,7 @@
 				CE4F27852CA825CD002AF25B /* JobsProgressVC.m in Sources */,
 				CE5A64C72CA82F63006D67A7 /* NSObject+HXPhotoPicker.m in Sources */,
 				CE5A654F2CA8320D006D67A7 /* UITextField+Placeholder.m in Sources */,
+				845813E62CDE024B00B3C038 /* WKWebView+Extra.m in Sources */,
 				CE5A65502CA8320D006D67A7 /* UITextField+Animation.m in Sources */,
 				CE5A65512CA8320D006D67A7 /* UITextField+Extend.m in Sources */,
 				CE5A64782CA82CE9006D67A7 /* NSAttributedString+Extra.m in Sources */,
@@ -15466,6 +15501,7 @@
 				CE4F27DD2CA825CD002AF25B /* JobsExcelLeftListView.m in Sources */,
 				CE5A64CC2CA82F86006D67A7 /* NSObject+UDID.m in Sources */,
 				CE4F27DE2CA825CD002AF25B /* ThreeClassCell.m in Sources */,
+				845813E12CDE022100B3C038 /* NSString+WKWebView.m in Sources */,
 				CE4F27DF2CA825CD002AF25B /* PKProtocolExtension.m in Sources */,
 				CE4F27E02CA825CD002AF25B /* WidgetVC.m in Sources */,
 				CE4F27E12CA825CD002AF25B /* MasonryVC.m in Sources */,

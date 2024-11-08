@@ -8,23 +8,25 @@
 #ifndef JobsOCBaseConfigPrefixHeader_pch
 #define JobsOCBaseConfigPrefixHeader_pch
 #pragma mark —— 系统SDK
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <sys/sysctl.h>
-#import <mach/mach.h>
-#import <objc/runtime.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-#import <CoreTelephony/CTCarrier.h>
-#import <CoreData/CoreData.h>
-#import <CoreImage/CoreImage.h>
-#import <QuartzCore/QuartzCore.h>
-#import <VideoToolbox/VideoToolbox.h>// FFmpeg 需要
-#import <Photos/Photos.h>
-#import <ImageIO/ImageIO.h>
-#import <AVFoundation/AVAsset.h>
-#import <AVFoundation/AVAssetImageGenerator.h>
-#import <AVFoundation/AVTime.h>
-#import <EventKit/EventKit.h>// 用来读取，修改和创建日历上的事件
+#import <Foundation/Foundation.h>                 /// 提供Objective-C的基本数据类型、集合和实用工具类。
+#import <WebKit/WebKit.h>                         /// 用于嵌入和管理网页内容，例如加载和显示网页。
+#import <UIKit/UIKit.h>                           /// 提供iOS应用的UI组件和基础结构，如视图、控件和动画。
+#import <sys/sysctl.h>                            /// 允许查询系统信息和配置，如设备硬件详细信息。
+#import <mach/mach.h>                             /// 提供对底层内存和CPU信息的访问，如内存使用情况和CPU负载。
+#import <objc/runtime.h>                          /// 用于在运行时操作Objective-C对象，例如动态添加方法和属性。
+#import <CommonCrypto/CommonDigest.h>             /// 提供加密和哈希功能，例如MD5和SHA加密。
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>  /// 用于获取设备的蜂窝网络信息。
+#import <CoreTelephony/CTCarrier.h>               /// 提供与设备运营商相关的信息，如网络提供商名称。
+#import <CoreData/CoreData.h>                     /// 提供数据持久化支持，可用于管理本地数据库。
+#import <CoreImage/CoreImage.h>                   /// 提供图像处理功能，包括滤镜和特效。
+#import <QuartzCore/QuartzCore.h>                 /// 用于动画和视觉效果的底层库，支持图层管理。
+#import <VideoToolbox/VideoToolbox.h>             /// 提供视频处理功能，常用于FFmpeg等视频解码库。
+#import <Photos/Photos.h>                         /// 用于访问和管理设备的照片和视频资源。
+#import <ImageIO/ImageIO.h>                       /// 提供对图像数据的读写支持。
+#import <AVFoundation/AVAsset.h>                  /// 用于处理音视频数据，支持加载和操作媒体资源。
+#import <AVFoundation/AVAssetImageGenerator.h>    /// 用于从视频生成缩略图。
+#import <AVFoundation/AVTime.h>                   /// 提供时间相关的功能，用于音视频处理。
+#import <EventKit/EventKit.h>                     /// 用于读取、修改和创建日历事件。
 #pragma mark —— 各项全局定义
 /// DefineConstString
 #import "DefineConstString.h"

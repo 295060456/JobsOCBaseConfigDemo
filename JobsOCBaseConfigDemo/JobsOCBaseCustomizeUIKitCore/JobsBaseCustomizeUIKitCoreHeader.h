@@ -119,6 +119,8 @@
 #import "NSURLSessionDataTask+Extra.h"
 #pragma mark —— UIGestureRecognizer
 #import "UIGestureRecognizer+Extra.h"
+#pragma mark —— WKWebView
+#import "WKWebView+Extra.h"
 
 #pragma mark —— 关于UIColor的创建
 NS_INLINE __kindof UIColor *_Nonnull jobsMakeCor(jobsByCorModelBlock _Nonnull block){
@@ -239,6 +241,12 @@ NS_INLINE __kindof UIView *_Nonnull jobsMakeView(jobsByViewBlock _Nonnull block)
 
 NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull block){
     UILabel *data = UILabel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof WKWebView *_Nonnull jobsMakeWKWebView(jobsByWKWebViewBlock _Nonnull block){
+    WKWebView *data = WKWebView.alloc.init;
     if (block) block(data);
     return data;
 }

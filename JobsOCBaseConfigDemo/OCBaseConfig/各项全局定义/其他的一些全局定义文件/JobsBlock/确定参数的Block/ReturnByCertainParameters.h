@@ -208,6 +208,11 @@ typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellBy
 #pragma mark —— 关于 UIScrollView
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByVoidBlock)(void);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray *_Nullable data);
+#pragma mark —— 关于 WKWebView
+#import <WebKit/WebKit.h>
+typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByVoidBlock)(void);
+typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByStringBlock)(NSString *_Nullable data);
+typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByURLBlock)(NSURL *_Nullable URL);
 #pragma mark —— 关于控制器
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByViewBlock)(__kindof UIView *_Nonnull view);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByVCBlock)(__kindof UIViewController *_Nonnull vc);

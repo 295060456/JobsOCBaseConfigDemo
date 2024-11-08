@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <WebKit/WebKit.h>
 #import <Photos/Photos.h>
 #import <objc/runtime.h>
 #import <sys/sysctl.h>
@@ -213,6 +214,11 @@ BaseProtocol
 /// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
 -(NSString *_Nonnull)tmpDir;
 #pragma mark —— 功能性的
+/// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
+/// data：包含 HTML 内容的字符串
+-(JobsReturnWKWebViewByStringBlock _Nonnull)makeWebViewByString;
+/// 解析网络URL数据
+-(JobsReturnWKWebViewByURLBlock _Nonnull)makeWebViewByURL;
 /// 在导航栏堆栈里面，是否存在同样类型的控制器
 -(JobsReturnBOOLByViewControllerBlock _Nonnull)isSameVCBy;
 /// 根控制器 => 导航控制器（普通控制器）

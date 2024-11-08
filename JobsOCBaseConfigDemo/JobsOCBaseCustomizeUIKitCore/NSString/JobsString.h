@@ -10,10 +10,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <CommonCrypto/CommonDigest.h>
+#import <CommonCrypto/CommonDigest.h> /// 提供加密和哈希功能，例如MD5和SHA加密。
 #import "MacroDef_Func.h"
 
 #pragma mark —— Category
+#import "NSString+WKWebView.h"
 #import "NSString+Time.h"
 #import "NSString+Conversion.h"
 #import "NSString+Eomji.h"
