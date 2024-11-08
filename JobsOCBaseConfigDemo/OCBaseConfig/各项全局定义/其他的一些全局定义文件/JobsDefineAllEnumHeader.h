@@ -718,7 +718,6 @@ typedef NS_ENUM(NSInteger, UserTypeSetting) {
     USERTYPE_BIND_E_WALLET = 11      /// 绑定电子钱包
 };
 #endif /* USERTYPESETTING */
-
 #ifndef BUSINESSSOURCESETTING
 #define BUSINESSSOURCESETTING
 /// 业务来源
@@ -727,6 +726,36 @@ typedef NS_ENUM(NSInteger, BusinessSourceSetting) {
     BUSINESSSOURCE_AGENT = 2    /// 代理
 };
 #endif /* BUSINESSSOURCESETTING */
+/// 站内信类型
+#ifndef FM_INBOX_TYPE_ENUM_DEFINED
+#define FM_INBOX_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, FMINBOXTYPE) {
+    FMINBOX_Undefined = -1,                 /// 未定义或所有类型
+    FMINBOX_SportsMatchAnnouncement = 1,    /// 体育赛事公告
+    FMINBOX_Promo = 2,                      /// 推广
+    FMINBOX_News = 3,                       /// 新闻
+    FMINBOX_Personal = 4,                   /// 个人
+    FMINBOX_Announcement = 5                /// 公告
+};
+#endif /* FM_INBOX_TYPE_ENUM_DEFINED */
+/// 当前类型
+#ifndef READSTATUS
+#define READSTATUS
+typedef NS_ENUM(NSInteger, ReadStatus) {
+    ReadStatus_UNREAD,/// 未读
+    ReadStatus_READ/// 已读
+};
+#endif /* READSTATUS */
+/// 结算状态
+#ifndef SETTLEFLAG
+#define SETTLEFLAG
+typedef NS_ENUM(NSInteger, SettleFlag) {
+    SettleFlag_NO = 0,/// 未结算
+    SettleFlag_YES/// 已结算
+};
+#endif /* SETTLEFLAG */
+
+
 
 
 #endif /* JobsDefineAllEnumHeader_h */

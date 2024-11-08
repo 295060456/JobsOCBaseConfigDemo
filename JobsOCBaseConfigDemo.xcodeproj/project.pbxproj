@@ -16,6 +16,7 @@
 		8439F6312CD8E6F100319E4A /* UIImageView+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F62E2CD8E6F100319E4A /* UIImageView+SDWebImage.m */; };
 		843B73C22CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */; };
 		843B73C62CCF6FD400F172EF /* YTKBaseRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */; };
+		844291EC2CDDF52F007B56CA /* JobsBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 844291EA2CDDF52F007B56CA /* JobsBaseModel.m */; };
 		8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */; };
 		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
 		8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */; };
@@ -1159,6 +1160,8 @@
 		843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionDataTask+Extra.m"; sourceTree = "<group>"; };
 		843B73C32CCF6FD400F172EF /* YTKBaseRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBaseRequest+Extra.h"; sourceTree = "<group>"; };
 		843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBaseRequest+Extra.m"; sourceTree = "<group>"; };
+		844291E92CDDF52F007B56CA /* JobsBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseModel.h; sourceTree = "<group>"; };
+		844291EA2CDDF52F007B56CA /* JobsBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBaseModel.m; sourceTree = "<group>"; };
 		8464A59D2CDB73C30030409A /* NSObject+RACTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+RACTimer.h"; sourceTree = "<group>"; };
 		8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RACTimer.m"; sourceTree = "<group>"; };
 		8464A5A12CDB74D20030409A /* FMDoorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDoorModel.h; sourceTree = "<group>"; };
@@ -3440,6 +3443,15 @@
 				843B73C42CCF6FD400F172EF /* YTKBaseRequest+Extra.m */,
 			);
 			path = "YTKBaseRequest+Extra";
+			sourceTree = "<group>";
+		};
+		844291EB2CDDF52F007B56CA /* JobsBaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				844291E92CDDF52F007B56CA /* JobsBaseModel.h */,
+				844291EA2CDDF52F007B56CA /* JobsBaseModel.m */,
+			);
+			path = JobsBaseModel;
 			sourceTree = "<group>";
 		};
 		8464A59C2CDB73860030409A /* DynamicInvoke */ = {
@@ -9967,6 +9979,7 @@
 		CE5A61522CA82C2D006D67A7 /* JobsModel */ = {
 			isa = PBXGroup;
 			children = (
+				844291EB2CDDF52F007B56CA /* JobsBaseModel */,
 				8464A59C2CDB73860030409A /* DynamicInvoke */,
 				CE5A61072CA82C2D006D67A7 /* JobsModel.h */,
 				CE5A62DA2CA82C2D006D67A7 /* JobsCorModel */,
@@ -15246,6 +15259,7 @@
 				CE5A65512CA8320D006D67A7 /* UITextField+Extend.m in Sources */,
 				CE5A64782CA82CE9006D67A7 /* NSAttributedString+Extra.m in Sources */,
 				CEB8FA6A2CA8380600CCFDF8 /* JhtBannerView.m in Sources */,
+				844291EC2CDDF52F007B56CA /* JobsBaseModel.m in Sources */,
 				CEB8FA6B2CA8380600CCFDF8 /* JhtBannerCardView.m in Sources */,
 				CEB8FA6C2CA8380600CCFDF8 /* JhtBannerScrollView.m in Sources */,
 				CE4F27862CA825CD002AF25B /* DynamicViewTestVC.m in Sources */,

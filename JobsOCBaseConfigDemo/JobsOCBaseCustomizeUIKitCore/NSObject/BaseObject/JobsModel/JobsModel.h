@@ -9,6 +9,7 @@
 #define JobsModel_h
 
 #import "BaseModel.h"
+#import "JobsBaseModel.h"
 #import "UIViewModel.h"/// 本类是自定义类，但是是对系统类的仿写，目的是承接上下文数据 成一束，方便管理
 #import "UIButtonModel.h"/// 按钮数据源
 #import "UITextModel.h"/// 文本数据源

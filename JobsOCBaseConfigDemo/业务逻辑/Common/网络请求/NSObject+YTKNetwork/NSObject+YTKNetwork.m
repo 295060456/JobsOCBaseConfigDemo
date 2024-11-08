@@ -198,6 +198,7 @@
 
 -(jobsByYTKRequestBlock _Nonnull)handleErr{
     return ^(__kindof YTKRequest *_Nullable request){
+        NSLog(@"打印请求头: %@", request.requestHeaderFieldValueDictionary);
         if ([request loadCacheWithError:nil]) {
             NSDictionary *json = request.responseJSONObject;
 //            NSLog(@"可以 = %@", api.parameters);
