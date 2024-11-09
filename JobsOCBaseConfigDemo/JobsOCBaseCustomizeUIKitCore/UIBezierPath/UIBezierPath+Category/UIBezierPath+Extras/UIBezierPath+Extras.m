@@ -64,5 +64,13 @@
         [self addLineToPoint:data];
     };
 }
+/// moveToPoint
+-(jobsByPointBlock _Nonnull)moveTo{
+    @jobs_weakify(self)
+    return ^(CGPoint data){
+        @jobs_strongify(self)
+        [self moveToPoint:data];
+    };
+}
 
 @end

@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
                    andWithDirection:(TransformLayerDirectionType)textDirection;
 /// addLineToPoint
 -(jobsByPointBlock _Nonnull)add;
+/// moveToPoint
+-(jobsByPointBlock _Nonnull)moveTo;
 
 @end
 

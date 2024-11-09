@@ -684,7 +684,9 @@ JobsKey(_getTextLayer)
 
     if ([self isKindOfClass:UILabel.class]) {
         UILabel *label = (UILabel *)self;
-        CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName:label.font}];
+        CGSize size = [label.text sizeWithAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+            [data setValue:label.font forKey:NSFontAttributeName];
+        })];
         CGFloat stringWidth = size.width;
 
         NSLog(@"stringWidth = %f",stringWidth);
@@ -699,7 +701,9 @@ JobsKey(_getTextLayer)
         layer.string = label.text;
     }else if ([self isKindOfClass:UIButton.class]){
         UIButton *button = (UIButton *)self;
-        CGSize size = [button.titleForNormalState sizeWithAttributes:@{NSFontAttributeName:button.titleLabel.font}];
+        CGSize size = [button.titleForNormalState sizeWithAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+            [data setValue:button.titleLabel.font forKey:NSFontAttributeName];
+        })];
         CGFloat stringWidth = size.width;
         layer.frame = CGRectMake(0, 0, stringWidth, self.frame.size.height);
         layer.alignmentMode = kCAAlignmentCenter;
@@ -722,9 +726,9 @@ JobsKey(_getAnimation)
     CATextLayer * textLayer = self.getTextLayer;
     CGPoint point = textLayer.position;
     CGFloat lenth = textLayer.frame.size.width - self.frame.size.width;
-    // 起点位置
+    /// 起点位置
     CGPoint pointSrc = CGPointMake(point.x + 20, point.y);
-    // 终点位置
+    /// 终点位置
     CGPoint pointDes = CGPointMake(pointSrc.x - lenth - 30, pointSrc.y);
     id toValue = [NSValue valueWithCGPoint:pointDes];
     id fromValue = [NSValue valueWithCGPoint:pointSrc];
@@ -733,42 +737,42 @@ JobsKey(_getAnimation)
     ani.duration = 2;
     ani.fillMode = kCAFillModeBoth;
     ani.repeatCount = HUGE_VALF;
-    // 结束后逆向执行动画
+    /// 结束后逆向执行动画
     ani.autoreverses = YES;
     ani.removedOnCompletion = false;
     return ani;
 }
 /// 判断是否需要滚动
 -(BOOL)shouldAutoScroll{
-    BOOL shouldScroll = false;
+    BOOL shouldScroll = NO;
     if ([self isKindOfClass:UILabel.class]) {
         UILabel *label = (UILabel *)self;
         if (label.numberOfLines == 1) {
-            CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName:label.font}];
+            CGSize size = [label.text sizeWithAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+                [data setValue:label.font forKey:NSFontAttributeName];
+            })];
             CGFloat stringWidth = size.width;
             CGFloat labelWidth = self.frame.size.width;
             if (labelWidth < stringWidth) {
-                shouldScroll = true;
+                shouldScroll = YES;
             }
         }
     }else if ([self isKindOfClass:UIButton.class]){
         UIButton *button = (UIButton *)self;
         if (button.titleLabel.numberOfLines == 1) {
-            CGSize size = [button.titleForNormalState sizeWithAttributes:@{NSFontAttributeName:button.titleLabel.font}];
+            CGSize size = [button.titleForNormalState sizeWithAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+                [data setValue:button.titleLabel.font forKey:NSFontAttributeName];
+            })];
             CGFloat stringWidth = size.width;
             CGFloat labelWidth = self.frame.size.width;
-            if (labelWidth < stringWidth) {
-                shouldScroll = true;
-            }
+            if (labelWidth < stringWidth) shouldScroll = YES;
         }
     }else{}
 
     Class ModelClass = NSClassFromString(@"_UIAlertControllerActionView");
     if ([self.superview.superview isKindOfClass:ModelClass]) {
         shouldScroll = false;
-    }
-    
-    return shouldScroll;
+    }return shouldScroll;
 }
 #pragma mark —— 其他
 -(jobsByGestureRecognizer _Nonnull)addGesture{
@@ -925,67 +929,67 @@ JobsKey(_getAnimation)
     
     UIBezierPath *path = UIBezierPath.bezierPath;
 
-    //偏移量保持为正数，便于后续计算
+    /// 偏移量保持为正数，便于后续计算
     offsetX = offsetX >= 0 ? offsetX : -offsetX;
     offsetY = offsetY >= 0 ? offsetY : -offsetY;
-    //偏移量默认值
+    /// 偏移量默认值
     offsetX = offsetX != 0 ? :20;
     offsetY = offsetY != 0 ? :20;
 
     switch (ShadowDirection) {
         case ShadowDirection_top:{
-            [path moveToPoint:CGPointMake(0, -offsetY)];//左上角为绘制的贝塞尔曲线原点
-            [path addLineToPoint:CGPointMake(0, targetShadowview.height)];//👇
-            [path addLineToPoint:CGPointMake(targetShadowview.width, targetShadowview.height)];//👉
-            [path addLineToPoint:CGPointMake(targetShadowview.width, -offsetY)];//👆
+            path.moveTo(CGPointMake(0, -offsetY));/// 左上角为绘制的贝塞尔曲线原点
+            path.add(CGPointMake(0, targetShadowview.height));/// 👇
+            path.add(CGPointMake(targetShadowview.width, targetShadowview.height));/// 👉
+            path.add(CGPointMake(targetShadowview.width, -offsetY));///👆
         }break;
         case ShadowDirection_down:{
-            [path moveToPoint:CGPointMake(0, 0)];//左上角为绘制的贝塞尔曲线原点
-            [path addLineToPoint:CGPointMake(0, targetShadowview.height + offsetY)];//👇
-            [path addLineToPoint:CGPointMake(targetShadowview.width, targetShadowview.height + offsetY)];//👉
-            [path addLineToPoint:CGPointMake(targetShadowview.width, 0)];//👆
+            path.moveTo(CGPointZero);/// 左上角为绘制的贝塞尔曲线原点
+            path.add(CGPointMake(0, targetShadowview.height + offsetY));/// 👇
+            path.add(CGPointMake(targetShadowview.width, targetShadowview.height + offsetY));/// 👉
+            path.add(CGPointMake(targetShadowview.width, 0));///👆
         }break;
         case ShadowDirection_left:{
-            [path moveToPoint:CGPointMake(offsetX, 0)];//左上角
-            [path addLineToPoint:CGPointMake(offsetX, targetShadowview.height)];//👇
-            [path addLineToPoint:CGPointMake(targetShadowview.width, targetShadowview.height)];//👉
-            [path addLineToPoint:CGPointMake(targetShadowview.width, 0)];//👆
+            path.moveTo(CGPointMake(offsetX, 0));/// 左上角
+            path.add(CGPointMake(offsetX, targetShadowview.height));///👇
+            path.add(CGPointMake(targetShadowview.width, targetShadowview.height));/// 👉
+            path.add(CGPointMake(targetShadowview.width, 0));/// 👆
         }break;
         case ShadowDirection_right:{
-            [path moveToPoint:CGPointMake(0, 0)];//左上角
-            [path addLineToPoint:CGPointMake(0, targetShadowview.height)];//👇
-            [path addLineToPoint:CGPointMake(targetShadowview.width + offsetX, targetShadowview.height)];//👉
-            [path addLineToPoint:CGPointMake(targetShadowview.width + offsetX, 0)];//👆
+            path.moveTo(CGPointZero);/// 左上角
+            path.add(CGPointMake(0, targetShadowview.height));/// 👇
+            path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height));/// 👉
+            path.add(CGPointMake(targetShadowview.width + offsetX, 0));/// 👆
         }break;
         case ShadowDirection_leftTop:{
-            [path moveToPoint:CGPointMake(-offsetX, -offsetY)];//左上角
-            [path addLineToPoint:CGPointMake(-offsetX, targetShadowview.height - offsetY)];//👇
-            [path addLineToPoint:CGPointMake(targetShadowview.width - offsetX, targetShadowview.height - offsetY)];//👉
-            [path addLineToPoint:CGPointMake(targetShadowview.width - offsetX, -offsetY)];//👆
+            path.moveTo(CGPointMake(-offsetX, -offsetY));/// 左上角
+            path.add(CGPointMake(-offsetX, targetShadowview.height - offsetY));/// 👇
+            path.add(CGPointMake(targetShadowview.width - offsetX, targetShadowview.height - offsetY));/// 👉
+            path.add(CGPointMake(targetShadowview.width - offsetX, -offsetY));/// 👆
         }break;
         case ShadowDirection_leftDown:{
-            [path moveToPoint:CGPointMake(-offsetX, offsetY)];//左上角
-            [path addLineToPoint:CGPointMake(-offsetX, targetShadowview.height + offsetY)];//👇
-            [path addLineToPoint:CGPointMake(targetShadowview.width - offsetX, targetShadowview.height + offsetX)];//👉
-            [path addLineToPoint:CGPointMake(targetShadowview.width - offsetX, offsetY)];//👆
+            path.moveTo(CGPointMake(-offsetX, offsetY));/// 左上角
+            path.add(CGPointMake(-offsetX, targetShadowview.height + offsetY));/// 👇
+            path.add(CGPointMake(targetShadowview.width - offsetX, targetShadowview.height + offsetX));/// 👉
+            path.add(CGPointMake(targetShadowview.width - offsetX, offsetY));/// 👆
         }break;
         case ShadowDirection_rightTop:{
-            [path moveToPoint:CGPointMake(offsetX, -offsetY)];//左上角
-            [path addLineToPoint:CGPointMake(offsetX, targetShadowview.height - offsetY)];//👇
-            [path addLineToPoint:CGPointMake(targetShadowview.width + offsetX, targetShadowview.height - offsetY)];//👉
-            [path addLineToPoint:CGPointMake(targetShadowview.width + offsetX, -offsetY)];//👆
+            path.moveTo(CGPointMake(offsetX, -offsetY));/// 左上角
+            path.add(CGPointMake(offsetX, targetShadowview.height - offsetY));/// 👇
+            path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height - offsetY));/// 👉
+            path.add(CGPointMake(targetShadowview.width + offsetX, -offsetY));/// 👆
         }break;
         case ShadowDirection_rightDown:{
-            [path moveToPoint:CGPointMake(offsetX, offsetY)];//左上角
-            [path addLineToPoint:CGPointMake(offsetX, targetShadowview.height + offsetY)];//👇
-            [path addLineToPoint:CGPointMake(targetShadowview.width + offsetX, targetShadowview.height + offsetY)];//👉
-            [path addLineToPoint:CGPointMake(targetShadowview.width + offsetX, offsetY)];//👆
+            path.moveTo(CGPointMake(offsetX, offsetY));/// 左上角
+            path.add(CGPointMake(offsetX, targetShadowview.height + offsetY));/// 👇
+            path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height + offsetY));/// 👉
+            path.add(CGPointMake(targetShadowview.width + offsetX, offsetY));/// 👆
         }break;
         case ShadowDirection_All:{
-            [path moveToPoint:CGPointMake(-offsetX, -offsetY)];//左上角
-            [path addLineToPoint:CGPointMake(-offsetX, targetShadowview.height + offsetY)];//👇
-            [path addLineToPoint:CGPointMake(targetShadowview.width + offsetX, targetShadowview.height + offsetY)];//👉
-            [path addLineToPoint:CGPointMake(targetShadowview.width + offsetX, -offsetY)];//👆
+            path.moveTo(CGPointMake(-offsetX, -offsetY));/// 左上角
+            path.add(CGPointMake(-offsetX, targetShadowview.height + offsetY));/// 👇
+            path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height + offsetY));/// 👉
+            path.add(CGPointMake(targetShadowview.width + offsetX, -offsetY));/// 👆
         }break;
             
         default:
