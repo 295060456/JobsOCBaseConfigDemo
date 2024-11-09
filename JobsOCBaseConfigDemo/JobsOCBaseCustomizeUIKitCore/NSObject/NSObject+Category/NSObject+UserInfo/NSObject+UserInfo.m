@@ -14,27 +14,28 @@
  【return】 YES(已经登录)、NO（未登录）
  */
 -(BOOL)isLogin{
-    NSLog(@"userInfo = %@",self.loginModel);
-    NSLog(@"Token = %@",self.loginModel.token);
-    if(self.loginModel.expireTime){
-        NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.loginModel.expireTime.jobsTime());
+    NSLog(@"userInfo = %@",self.doorModel);
+    NSLog(@"Token = %@",self.doorModel.token);
+    if(isValue(self.doorModel.expireTime)){
+        NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.doorModel.expireTime.jobsTime());
     }
     /// 模型都没有建立肯定是没有登录的
-    if(self.loginModel) return YES;
+    if(!self.doorModel) return NO;
     /// Token 都没有肯定也是没有登录的
-    if(isValue(self.loginModel.token)) return YES;
-    /// 存在过期时间，则鉴别过期时间以判断是否登录
-    if(isValue(self.loginModel.expireTime)) {
-        /// 登录是否过期：过期 === 未登录
-        return !self.isLoginByExpiredTime(self.loginModel.expireTime);
-    }else return NO;/// 过期时间都没有，肯定也是没有登录的
+    if(isNull(self.doorModel.token)) return NO;
+//    /// 存在过期时间，则鉴别过期时间以判断是否登录
+//    if(isValue(self.doorModel.expireTime)) {
+//        /// 登录是否过期：过期 === 未登录
+//        return self.isLoginByExpiredTime(self.doorModel.expireTime);
+//    }
+    else return YES;/// 过期时间都没有，肯定也是没有登录的
 }
 /// 判定是否登录的标准1：是否本地存在用户数据模型 + 是否存在Token
 -(BOOL)isLoginByToken{
     /// 模型都没有建立肯定是没有登录的
-    if(self.loginModel) return YES;
+    if(self.doorModel) return YES;
     /// Token 都没有肯定也是没有登录的
-    if(isValue(self.loginModel.token)) return YES;
+    if(isValue(self.doorModel.token)) return YES;
     return NO;
 }
 /// 判定是否登录的标准2
@@ -69,7 +70,7 @@
     return ^(){
         @jobs_strongify(self)
         if(!(self.isLoginByToken &&
-             self.isLoginByExpiredTime((self.loginModel.expireTime)))){
+             self.isLoginByExpiredTime((self.doorModel.expireTime)))){
             self.deleteUserInfoByUserName(用户信息);/// 清理本地用户数据
         }
     };

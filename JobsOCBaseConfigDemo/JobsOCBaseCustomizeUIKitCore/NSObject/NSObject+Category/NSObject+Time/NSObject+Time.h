@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobsBlock.h"
 #import "MacroDef_SysWarning.h"
 #import "NSObject+Time.h"
 #import "NSUserDefaults+Manager.h"
@@ -14,22 +15,23 @@
 #import "NSMutableArray+Extra.h"
 #import "JobsTimeModel.h"
 #import "JobsFormatTime.h"
-#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (Time)
+/// 获取当日零点的时间戳（秒级）
+-(NSTimeInterval)todayZeroTime;
 /// 返回的是（Double）时间戳
 -(NSTimeInterval)currentUnixTimeStamp;
 /// 返回的是（uint64_t）时间戳
 -(uint64_t)currentUnixTimeStampInMilliseconds;
-/// 返回带时间格式的时间字符串
+/// 返回带时间格式的当前时间字符串
 -(NSString *)currentTimestampString;
 #pragma mark —— 时间格式转换
 /// 时间格式
 -(NSDateFormatter *)dateFormatter;
-///接受一个秒数，对这个秒数进行解析出：时、分、秒，存入JobsTimeModel，外层再对这个JobsTimeModel进行取值，对数据进行拼装
--(JobsTimeModel *)HHMMSS:(NSInteger)TimeSec;
+/// 接受一个秒数，对这个秒数进行解析出：时、分、秒，存入JobsTimeModel，外层再对这个JobsTimeModel进行取值，对数据进行拼装
+-(JobsReturnTimeModelByIntegerBlock _Nonnull)HHMMSS;
 /// 将某个（NSDate *）时间 转换格式
 /// @param date 一个指定的时间，若未指定则为当前时间
 /// @param timeFormatStr 时间格式 缺省值 @"MMM dd,yyyy HH:mm tt"
@@ -40,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *)dateConversionTimeStamp:(NSDate *_Nullable)date
                        intervalStyle:(IntervalStyle)intervalStyle;
 /// NSTimeInterval ---> NSString *
--(NSString *)timeIntervalByInterval:(NSTimeInterval)interval;
+-(JobsReturnStringByTimeIntervalBlock _Nonnull)timeIntervalByInterval;
 /// NSString * ---> NSString *   格式转换为   小时：分钟：秒
 /// @param totalTime 传入 秒
 -(NSString *)getHHMMSSFromStr:(NSString *_Nonnull)totalTime
@@ -69,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
                          timeFormatter:(NSString *_Nullable)timeFormatter
                          intervalStyle:(IntervalStyle)intervalStyle;
 /// NSTimeInterval ---> NSDate *
--(JobsReturnDateByTimeIntervalBlock)dateByTimeInterval;
+-(JobsReturnDateByTimeIntervalBlock _Nonnull)dateByTimeInterval;
 /// NSString * ---> NSDate *  (NSString *)时间 转 (NSDate *时间)
 -(NSDate *)strByDate:(NSString *_Nonnull)dateStr
        timeFormatter:(NSString *_Nullable)timeFormatter;
@@ -79,14 +81,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获得当前时间
 -(JobsTimeFormatterModel *)currentTime;
 /// 获得今天的时间：年/月/日
--(JobsReturnTimeFormatterModelByStringBlock)getToday;
+-(JobsReturnTimeFormatterModelByStringBlock _Nonnull)getToday;
 /// 可以获得两个日期之间的时间间隔
 /// @param startTime （给定） 开始时间【字符串格式】
 /// @param endTime （可以不用给定）结束时间【字符串格式】
 /// @param timeFormatter 时间格式：缺省值@"yyyy-MM-dd HH:mm:ss"
--(JobsTimeFormatterModel *)timeIntervalstartDate:(NSString *_Nonnull)startTime
-                                         endDate:(NSString *_Nullable)endTime
-                                   timeFormatter:(NSString *_Nullable)timeFormatter;
+-(NSTimeInterval)timeIntervalstartDate:(NSString *_Nonnull)startTime
+                               endDate:(NSString *_Nullable)endTime
+                         timeFormatter:(NSString *_Nullable)timeFormatter;
 /**
     iOS 获取 加上多少时间以后的时间A (NSDate *) = 基础时间（NSDate *） +  时间间隔（NSInteger）
     参考资料：
@@ -96,9 +98,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSDate *)getDate:(NSDate *_Nonnull)date
   afterIntegerTime:(NSInteger)afterIntegerTime;
 /// 以当前时间为基准，加上某个时间间隔（NSTimeInterval类型）以后的NSData值
--(JobsReturnDateByTimeIntervalBlock)getDateFromCurrentAfterTimeInterval;
+-(JobsReturnDateByTimeIntervalBlock _Nonnull)getDateFromCurrentAfterTimeInterval;
 /// 通过一个（可为空的）NSDateFormatter，将NSTimeInterval转化为可视化时间字符串
--(JobsReturnStringByTimeIntervalAndDateFormatterBlock)strByTimeInterval;
+-(JobsReturnStringByTimeIntervalAndDateFormatterBlock _Nonnull)strByTimeInterval;
 /// 计算两字符串时间的差值【方法一】
 -(NSTimeInterval)intervalDifferenceBetweenStarTime:(NSString *)starTime
                                          toEndTime:(NSString *)endTime
@@ -127,7 +129,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 判断是否当日第一次启动App
 -(BOOL)isFirstLaunchApp;
 /// 判断某个时间是否为  今天（系统时区）
--(JobsReturnBOOLByDateBlock)isToday;
+-(JobsReturnBOOLByDateBlock _Nonnull)isToday;
+/// 将NSTimeInterval类型的时间戳翻译成人类能看懂的文字
+-(JobsReturnStringByTimeIntervalBlock _Nonnull)toReadableTimeBy;
 
 @end
 

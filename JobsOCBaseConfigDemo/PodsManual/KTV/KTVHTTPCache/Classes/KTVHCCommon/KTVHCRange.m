@@ -8,41 +8,33 @@
 
 #import "KTVHCRange.h"
 
-BOOL KTVHCRangeIsFull(KTVHCRange range)
-{
+BOOL KTVHCRangeIsFull(KTVHCRange range){
     return KTVHCEqualRanges(range, KTVHCRangeFull());
 }
 
-BOOL KTVHCRangeIsVaild(KTVHCRange range)
-{
+BOOL KTVHCRangeIsVaild(KTVHCRange range){
     return !KTVHCRangeIsInvaild(range);
 }
 
-BOOL KTVHCRangeIsInvaild(KTVHCRange range)
-{
+BOOL KTVHCRangeIsInvaild(KTVHCRange range){
     return KTVHCEqualRanges(range, KTVHCRangeInvaild());
 }
 
-BOOL KTVHCEqualRanges(KTVHCRange range1, KTVHCRange range2)
-{
+BOOL KTVHCEqualRanges(KTVHCRange range1, KTVHCRange range2){
     return range1.start == range2.start && range1.end == range2.end;
 }
 
-long long KTVHCRangeGetLength(KTVHCRange range)
-{
+long long KTVHCRangeGetLength(KTVHCRange range){
     if (range.start == KTVHCNotFound || range.end == KTVHCNotFound) {
         return KTVHCNotFound;
-    }
-    return range.end - range.start + 1;
+    }return range.end - range.start + 1;
 }
 
-NSString *KTVHCStringFromRange(KTVHCRange range)
-{
+NSString *KTVHCStringFromRange(KTVHCRange range){
     return [NSString stringWithFormat:@"Range : {%lld, %lld}", range.start, range.end];
 }
 
-NSString *KTVHCRangeGetHeaderString(KTVHCRange range)
-{
+NSString *KTVHCRangeGetHeaderString(KTVHCRange range){
     NSMutableString *string = [NSMutableString stringWithFormat:@"bytes="];
     if (range.start != KTVHCNotFound) {
         [string appendFormat:@"%lld", range.start];
@@ -54,23 +46,20 @@ NSString *KTVHCRangeGetHeaderString(KTVHCRange range)
     return [string copy];
 }
 
-NSDictionary *KTVHCRangeFillToRequestHeaders(KTVHCRange range, NSDictionary *headers)
-{
+NSDictionary *KTVHCRangeFillToRequestHeaders(KTVHCRange range, NSDictionary *headers){
     NSMutableDictionary *ret = [NSMutableDictionary dictionaryWithDictionary:headers];
     [ret setObject:KTVHCRangeGetHeaderString(range) forKey:@"Range"];
     return ret;
 }
 
-NSDictionary *KTVHCRangeFillToRequestHeadersIfNeeded(KTVHCRange range, NSDictionary *headers)
-{
+NSDictionary *KTVHCRangeFillToRequestHeadersIfNeeded(KTVHCRange range, NSDictionary *headers){
     if ([headers objectForKey:@"Range"]) {
         return headers;
     }
     return KTVHCRangeFillToRequestHeaders(range, headers);
 }
 
-NSDictionary *KTVHCRangeFillToResponseHeaders(KTVHCRange range, NSDictionary *headers, long long totalLength)
-{
+NSDictionary *KTVHCRangeFillToResponseHeaders(KTVHCRange range, NSDictionary *headers, long long totalLength){
     NSMutableDictionary *ret = [NSMutableDictionary dictionaryWithDictionary:headers];
     long long currentLength = KTVHCRangeGetLength(range);
     [ret setObject:[NSString stringWithFormat:@"%lld", currentLength] forKey:@"Content-Length"];
@@ -78,29 +67,24 @@ NSDictionary *KTVHCRangeFillToResponseHeaders(KTVHCRange range, NSDictionary *he
     return ret;
 }
 
-KTVHCRange KTVHCMakeRange(long long start, long long end)
-{
+KTVHCRange KTVHCMakeRange(long long start, long long end){
     KTVHCRange range = {start, end};
     return range;
 }
 
-KTVHCRange KTVHCRangeZero(void)
-{
+KTVHCRange KTVHCRangeZero(void){
     return KTVHCMakeRange(0, 0);
 }
 
-KTVHCRange KTVHCRangeFull(void)
-{
+KTVHCRange KTVHCRangeFull(void){
     return KTVHCMakeRange(0, KTVHCNotFound);
 }
 
-KTVHCRange KTVHCRangeInvaild()
-{
+KTVHCRange KTVHCRangeInvaild(void){
     return KTVHCMakeRange(KTVHCNotFound, KTVHCNotFound);
 }
 
-KTVHCRange KTVHCRangeWithSeparateValue(NSString *value)
-{
+KTVHCRange KTVHCRangeWithSeparateValue(NSString *value){
     KTVHCRange range = KTVHCRangeInvaild();
     if (value.length > 0) {
         NSArray *components = [value componentsSeparatedByString:@","];
@@ -126,12 +110,10 @@ KTVHCRange KTVHCRangeWithSeparateValue(NSString *value)
                 }
             }
         }
-    }
-    return range;
+    }return range;
 }
 
-KTVHCRange KTVHCRangeWithRequestHeaderValue(NSString *value)
-{
+KTVHCRange KTVHCRangeWithRequestHeaderValue(NSString *value){
     if ([value hasPrefix:@"bytes="]) {
         NSString *rangeString = [value substringFromIndex:6];
         return KTVHCRangeWithSeparateValue(rangeString);
@@ -139,10 +121,9 @@ KTVHCRange KTVHCRangeWithRequestHeaderValue(NSString *value)
     return KTVHCRangeInvaild();
 }
 
-KTVHCRange KTVHCRangeWithResponseHeaderValue(NSString *value, long long *totalLength)
-{
+KTVHCRange KTVHCRangeWithResponseHeaderValue(NSString *value, long long *totalLength){
     if ([value hasPrefix:@"bytes "]) {
-        value = [value stringByReplacingOccurrencesOfString:@"bytes " withString:JobsInternationalization(@"")];
+        value = [value stringByReplacingOccurrencesOfString:@"bytes " withString:@""];
         NSRange range = [value rangeOfString:@"/"];
         if (range.location != NSNotFound) {
             NSString *rangeString = [value substringToIndex:range.location];
@@ -150,14 +131,11 @@ KTVHCRange KTVHCRangeWithResponseHeaderValue(NSString *value, long long *totalLe
             *totalLength = totalLengthString.longLongValue;
             return KTVHCRangeWithSeparateValue(rangeString);
         }
-    }
-    return KTVHCRangeInvaild();
+    }return KTVHCRangeInvaild();
 }
 
-KTVHCRange KTVHCRangeWithEnsureLength(KTVHCRange range, long long ensureLength)
-{
+KTVHCRange KTVHCRangeWithEnsureLength(KTVHCRange range, long long ensureLength){
     if (range.end == KTVHCNotFound && ensureLength > 0) {
         return KTVHCMakeRange(range.start, ensureLength - 1);
-    }
-    return range;
+    }return range;
 }

@@ -53,10 +53,10 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        JobsUserModel *loginModel= self.readUserInfoByUserName(JobsUserModel.class,用户信息);
-        NSLog(@"Token = %@",loginModel.token);
-        if(self.loginModel.expireTime){
-            NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.loginModel.expireTime.jobsTime());
+        JobsUserModel *doorModel= self.readUserInfoByUserName(JobsUserModel.class,用户信息);
+        NSLog(@"Token = %@",doorModel.token);
+        if(isValue(self.doorModel.expireTime)){
+            NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.doorModel.expireTime.jobsTime());
         }
     };
 }
@@ -65,7 +65,6 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 -(__kindof UIButton *_Nullable)makeContactBtn{
     @jobs_weakify(self)
     return BaseButton.initByBackgroundImage(JobsIMG(@"联系我们"))
-        .bgColor(JobsClearColor.colorWithAlphaComponent(0))
         .onClick(^(UIButton *x){
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
@@ -79,7 +78,6 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 -(__kindof UIButton *_Nullable)makeCloseBtnByActionBlock:(jobsByVoidBlock _Nullable)actionBlock{
     @jobs_weakify(self)
     return BaseButton.initByBackgroundImage(JobsIMG(@"关闭"))
-        .bgColor(JobsClearColor.colorWithAlphaComponent(0))
         .onClick(^(UIButton *x){
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
@@ -158,7 +156,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        self.loginModel = nil;
+        self.doorModel = nil;
 #ifdef DEBUG
         toast(@"Token过期，自动清除本地用户数据");
 #endif
@@ -170,7 +168,6 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         // 登录页 不推出 登录页
         UIViewController *viewController = self.getCurrentViewController;
         if ([viewController isKindOfClass:JobsAppDoorVC.class]) return;
-        
         // 首页没有展现的时候，不推出登录页
     //    extern BOOL CasinoHomeVC_viewDidAppear;
     //    if(!CasinoHomeVC_viewDidAppear) return;
@@ -743,16 +740,16 @@ JobsKey(_jxCategoryViewTitleMutArr)
 -(void)setJxCategoryViewTitleMutArr:(NSMutableArray<NSString *> *)jxCategoryViewTitleMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_jxCategoryViewTitleMutArr, jxCategoryViewTitleMutArr)
 }
-#pragma mark —— @property(nonatomic,strong,nullable)JobsUserModel *loginModel;
+#pragma mark —— @property(nonatomic,strong,nullable)JobsUserModel *doorModel;
 JobsKey(_loginModel)
-@dynamic loginModel;
--(JobsUserModel *_Nullable)loginModel{
+@dynamic doorModel;
+-(JobsUserModel *_Nullable)doorModel{
     return self.readUserInfoByUserName(JobsUserModel.class,用户信息);
 }
 
--(void)setLoginModel:(JobsUserModel *_Nullable)loginModel{
-    if(loginModel){
-        self.jobsSaveUserInfo(loginModel,用户信息);
+-(void)setLoginModel:(JobsUserModel *_Nullable)doorModel{
+    if(doorModel){
+        self.jobsSaveUserInfo(doorModel,用户信息);
     }else{
         self.deleteUserInfoByUserName(用户信息);
     }

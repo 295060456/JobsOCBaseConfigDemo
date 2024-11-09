@@ -28,7 +28,7 @@
  */
 -(NSString *_Nonnull)urlProtect{
     if ([self containsString:@"\u200B"]) {
-        return [self stringByReplacingOccurrencesOfString:@"\u200B" withString:@""];
+        return self.remove200BMark;
     }else return self;
 }
 #pragma mark —— 一些功能性的
@@ -143,5 +143,26 @@
 -(CAKeyframeAnimation *)keyframeAnimation{
     return [CAKeyframeAnimation animationWithKeyPath:self];
 }
+/// 组装set方法名：set+首字母大写+：
+-(JobsReturnStringByVoidBlock _Nonnull)capitalizeFirstLetterAndPrefixSet{
+    return ^__kindof NSString *_Nullable(){
+        if (!self.length) return self; /// 如果字符串为空，直接返回
+        /// 获取字符串的首字母并大写
+        NSString *capitalizedFirstLetter = [self substringToIndex:1].uppercaseString;
+        NSString *restOfString = [self substringFromIndex:1];
+        /// 拼接大写的首字母和其余部分
+        NSString *capitalizedString = capitalizedFirstLetter.add(restOfString);
+        /// 在前面加上 "set"
+        return @"set".add(capitalizedString).pureString;
+    };
+}
+/// 截取并返回一个字符串里面冒号前的值，并返回。如果没有冒号，则返回自身
+-(NSString *)substringBeforeColon{
+    NSRange range = [self rangeOfString:@":"];
+    if (range.location != NSNotFound) {
+        return [self substringToIndex:range.location];
+    } else return self; // 如果没有找到冒号，则返回原始字符串
+}
+
 
 @end

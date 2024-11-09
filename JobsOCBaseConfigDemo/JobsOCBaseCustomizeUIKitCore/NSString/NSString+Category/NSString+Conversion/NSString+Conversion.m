@@ -103,7 +103,7 @@
     NSString *resultStr;
     for (int i = 0; i < arr.count; i++) {
         NSString *tempStr = arr[i];
-        tempStr = [tempStr stringByReplacingOccurrencesOfString:@"/" withString:@""];//去除字符 /
+        tempStr = tempStr.removeSeparationMark;//去除字符 /
         resultStr.add(@"/").add(tempStr);
     }return resultStr;
 }

@@ -383,6 +383,7 @@ typedef CGPoint(^JobsReturnCGPointByTenIDBlock)Jobs_10_Arguments;
 typedef NSInteger(^JobsReturnNSIntegerByVoidBlock)(void);
 typedef NSInteger(^JobsReturnByNSIntegerBlock)(NSInteger data);
 typedef NSInteger(^JobsReturnNSIntegerByIDBlock)(id _Nullable data);
+typedef NSInteger(^JobsReturnNSIntegerByStringBlock)(NSString *_Nullable data);
 
 typedef NSUInteger(^JobsReturnNSUIntegerByVoidBlock)(void);
 typedef NSUInteger(^JobsReturnByNSUIntegerBlock)(NSUInteger data);
@@ -422,6 +423,7 @@ typedef float(^JobsReturnFloatByIDBlock)(id _Nullable data);
 typedef double(^JobsReturnDoubleByVoidBlock)(void);
 typedef double(^JobsReturnByDoubleBlock)(double data);
 typedef double(^JobsReturnDoubleByIDBlock)(id _Nullable data);
+typedef double(^JobsReturnDoubleByStringBlock)(NSString *_Nullable data);
 
 typedef char(^JobsReturnByCharBlock)(char data);
 typedef char(^JobsReturnCharByIDBlock)(id _Nullable data);

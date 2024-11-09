@@ -45,7 +45,7 @@
     return ^(NSMutableArray <UIButtonModel *>*_Nullable model) {
         @jobs_strongify(self)
         self.model = model;
-        [self.collectionView reloadData];
+        self.collectionView.reloadDatas();
     };
 }
 

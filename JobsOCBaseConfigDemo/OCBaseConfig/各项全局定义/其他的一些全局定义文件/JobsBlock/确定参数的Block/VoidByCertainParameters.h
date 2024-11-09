@@ -60,7 +60,7 @@ typedef void(^jobsByTextAlignmentBlock)(NSTextAlignment data);
 typedef void(^jobsByLayoutAttributeBlock)(NSLayoutAttribute data);
 typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
 typedef void(^jobsByCorBlock)(UIColor *_Nullable data);
-typedef void(^jobsByFontBlock)(UIFont *_Nullable data);
+typedef void(^jobsByFontBlock)(UIFont *_Nullable font);
 /// 多参数
 typedef void(^jobsByClassAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
 typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
@@ -110,8 +110,8 @@ typedef void(^jobsByLongBlock)(long data);
 typedef void(^jobsByUnsignedLongBlock)(unsigned long data);
 typedef void(^jobsByUnsignedLongLongBlock)(unsigned long long data);
 #pragma mark —— 关于时间
-typedef void(^jobsByTimerBlock)(NSTimer *_Nullable data);
-typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable data);
+typedef void(^jobsByTimerBlock)(NSTimer *_Nullable timer);
+typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable dateFormatter);
 #pragma mark —— 手势
 typedef void(^jobsByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
 typedef void(^jobsByTapGestureBlock)(UITapGestureRecognizer *_Nullable gesture);

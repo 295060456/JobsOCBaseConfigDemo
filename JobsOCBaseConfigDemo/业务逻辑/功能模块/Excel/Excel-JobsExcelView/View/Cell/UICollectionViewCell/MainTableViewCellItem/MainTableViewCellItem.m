@@ -51,9 +51,7 @@
 }
 
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
-//    @jobs_weakify(self)
     return ^(UIButtonModel *_Nullable model) {
-//        @jobs_strongify(self)
         super.jobsRichElementsInCellWithModel(model);
     };
 }

@@ -7,7 +7,6 @@
 //
 
 #import "RSAUtil.h"
-#import <Security/Security.h>
 
 @interface RSAUtil ()
 
@@ -17,24 +16,22 @@
 
 /*
  static NSString *base64_encode(NSString *str){
-	NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
-	if(!data){
+    NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    if(!data){
  return nil;
-	}
-	return base64_encode_data(data);
+    }
+    return base64_encode_data(data);
  }
  */
 
 static NSString *base64_encode_data(NSData *data){
     data = [data base64EncodedDataWithOptions:0];
-    NSString *ret = [[NSString alloc] initWithData:data
-                                          encoding:NSUTF8StringEncoding];
+    NSString *ret = [NSString.alloc initWithData:data encoding:NSUTF8StringEncoding];
     return ret;
 }
 
 static NSData *base64_decode(NSString *str){
-    NSData *data = [[NSData alloc] initWithBase64EncodedString:str
-                                                       options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSData *data = [NSData.alloc initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
     return data;
 }
 
@@ -46,10 +43,7 @@ static NSData *base64_decode(NSString *str){
     if (!len) return(nil);
     
     unsigned char *c_key = (unsigned char *)[d_key bytes];
-    unsigned int  idx	 = 0;
-    
-
-    
+    unsigned int  idx     = 0;
     
     if (c_key[idx] > 0x80) idx += c_key[idx] - 0x80 + 1;
     else idx++;
@@ -72,7 +66,6 @@ static NSData *base64_decode(NSString *str){
     // Now make a new NSData from this buffer
     return([NSData dataWithBytes:&c_key[idx] length:len - idx]);
 }
-
 //credit: http://hg.mozilla.org/services/fx-home/file/tip/Sources/NetworkAndStorage/CryptoUtils.m#l1036
 + (NSData *)stripPrivateKeyHeader:(NSData *)d_key{
     // Skip ASN.1 private key header
@@ -82,7 +75,7 @@ static NSData *base64_decode(NSString *str){
     if (!len) return(nil);
     
     unsigned char *c_key = (unsigned char *)[d_key bytes];
-    unsigned int  idx	 = 22; //magic byte at offset 22
+    unsigned int  idx     = 22; //magic byte at offset 22
     
     if (0x04 != c_key[idx++]) return nil;
     
@@ -121,10 +114,10 @@ static NSData *base64_decode(NSString *str){
         NSRange range = NSMakeRange(s, e-s);
         key = [key substringWithRange:range];
     }
-    key = [key stringByReplacingOccurrencesOfString:@"\r" withString:JobsInternationalization(@"")];
-    key = [key stringByReplacingOccurrencesOfString:@"\n" withString:JobsInternationalization(@"")];
-    key = [key stringByReplacingOccurrencesOfString:@"\t" withString:JobsInternationalization(@"")];
-    key = [key stringByReplacingOccurrencesOfString:@" "  withString:JobsInternationalization(@"")];
+    key = key.removeRetMark;
+    key = key.removeNewLineMark;
+    key = key.removeTableMark;
+    key = key.pureString;
     
     // This will be base64 encoded, decode it.
     NSData *data = base64_decode(key);
@@ -188,10 +181,10 @@ static NSData *base64_decode(NSString *str){
         NSRange range = NSMakeRange(s, e-s);
         key = [key substringWithRange:range];
     }
-    key = [key stringByReplacingOccurrencesOfString:@"\r" withString:JobsInternationalization(@"")];
-    key = [key stringByReplacingOccurrencesOfString:@"\n" withString:JobsInternationalization(@"")];
-    key = [key stringByReplacingOccurrencesOfString:@"\t" withString:JobsInternationalization(@"")];
-    key = [key stringByReplacingOccurrencesOfString:@" "  withString:JobsInternationalization(@"")];
+    key = key.removeRetMark;
+    key = key.removeNewLineMark;
+    key = key.removeTableMark;
+    key = key.pureString;
     
     // This will be base64 encoded, decode it.
     NSData *data = base64_decode(key);

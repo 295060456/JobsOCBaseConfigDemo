@@ -11,27 +11,33 @@
 #import "JobsString.h"
 #import "UITextView+IndicateWordLimit.h"
 
+#if __has_include(<ReactiveObjC/ReactiveObjC.h>)
+#import <ReactiveObjC/ReactiveObjC.h>
+#else
+#import "ReactiveObjC.h"
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UITextView (Extend)
 
-@property(nonatomic,strong)NSString *replacementText;
-@property(nonatomic,strong)NSString *resStr;
+@property(nonatomic,copy)NSString *replacementText;
+@property(nonatomic,copy)NSString *resStr;
 
--(RACDisposable *)jobsTextViewSubscribeNextBlock:(jobsByIDBlock)subscribeNextBlock;
--(RACDisposable *)jobsTextViewFilterBlock:(JobsReturnBOOLByIDBlock)filterBlock
-                       subscribeNextBlock:(jobsByIDBlock)subscribeNextBlock;
+-(RACDisposable *)jobsTextViewSubscribeNextBlock:(jobsByIDBlock _Nullable)subscribeNextBlock;
+-(RACDisposable *)jobsTextViewFilterBlock:(JobsReturnBOOLByIDBlock _Nullable)filterBlock
+                       subscribeNextBlock:(jobsByIDBlock _Nullable)subscribeNextBlock;
 /**
  IOS UITextView内容垂直居中方法 https://www.jianshu.com/p/5e4cf8488bfd
  原理：由于textView是继承自UIScrollview，所以会有ContentSize属性。
  所以可以通过文字内容的高度（也就是ContentSize）的高度和textView的高度之间的差值，设置内边距，就相当于把内容居中了。
  */
-- (void)contentSizeToFitByFont:(UIFont *_Nullable)font;
+-(jobsByFontBlock _Nonnull)contentSizeToFitByFont;
 /**
  如果执行的是删除动作，那么textView.text 去掉最后一个字符向外输出
  否则textView.text + replacementString进行输出
  */
--(NSString *)getCurrentTextViewValueByReplacementText:(NSString *)replacementString;
+-(JobsReturnStringByStringBlock _Nonnull)getCurrentTextViewValueByReplacementText;
 /**
  一般用于终值部分，对应协议方法:textViewDidChange
  因为在- (void)textViewDidChange:(UITextView *)textView里面的textView.text = textView确定值 + 输入法拼音模式下的占位符值
@@ -39,16 +45,16 @@ NS_ASSUME_NONNULL_BEGIN
  @param valueBlock 回调TextView的确定值，以表明占位符有值
  @param invalidBlock 回调占位符无值的状态
  */
--(void)markedTextValue:(jobsByIDBlock)valueBlock
-          invalidBlock:(jobsByVoidBlock)invalidBlock;
+-(void)markedTextValue:(jobsByIDBlock _Nullable)valueBlock
+          invalidBlock:(jobsByVoidBlock _Nullable)invalidBlock;
 /**
  一般用于- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
  对提行、删除【包含删除Emoji表情】、正向输入【包含汉字拼音输入法中的占位符】操作进行区分
  */
 -(BOOL)replacementText:(NSString *)replacementText
-     beginNewLineBlock:(jobsByIDBlock)beginNewLineBlock
-              delBlock:(jobsByIDBlock)delBlock
-      normalInputBlock:(jobsByIDBlock)normalInputBlock;
+     beginNewLineBlock:(jobsByIDBlock _Nullable)beginNewLineBlock
+              delBlock:(jobsByIDBlock _Nullable)delBlock
+      normalInputBlock:(jobsByIDBlock _Nullable)normalInputBlock;
 
 @end
 
@@ -72,6 +78,5 @@ NS_ASSUME_NONNULL_END
  【测试目标】
  1、右下角标注当前字符数是否正确
  2、向外界抛出的当前值打印是否正确
- 
- 
+
  */

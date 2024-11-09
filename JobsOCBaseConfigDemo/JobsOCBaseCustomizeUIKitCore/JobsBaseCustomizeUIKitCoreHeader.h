@@ -10,6 +10,8 @@
 
 #pragma mark —— BaseProtocol
 #import "JobsBaseProtocolHeader.h"
+#pragma mark —— NSCoder
+#import "NSCoder+Extra.h"
 #pragma mark —— Debug
 #import "JobsDebug.h"
 #pragma mark —— CALayer

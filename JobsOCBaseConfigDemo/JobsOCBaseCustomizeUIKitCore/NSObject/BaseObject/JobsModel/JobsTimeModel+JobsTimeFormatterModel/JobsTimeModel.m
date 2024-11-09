@@ -35,7 +35,7 @@
 }
 /// 获取当前时间sec秒后的时间戳秒数
 -(NSTimeInterval)currentTimestampOffsetSec{
-    return [self.currentOffsetDate timeIntervalSince1970];
+    return self.currentOffsetDate.timeIntervalSince1970;
 }
 /// 获取当前时间sec秒后的时间戳毫秒数
 -(NSTimeInterval)currentTimestampOffsetMilliSec{
@@ -43,7 +43,7 @@
 }
 /// 获取当前时间的时间戳秒数
 -(NSTimeInterval)currentTimestampSec{
-    return [self.currentDate timeIntervalSince1970];
+    return self.currentDate.timeIntervalSince1970;
 }
 /// 获取当前时间的时间戳毫秒数
 -(NSTimeInterval)currentTimestampMilliSec{
@@ -60,7 +60,7 @@
 /// 自定义某一个时间的时间戳秒数(基本数据类型)
 -(NSTimeInterval)customTimestampSec{
     if (self.customDate) {
-        return [self.customDate timeIntervalSince1970];
+        return self.customDate.timeIntervalSince1970;
     }else{
         NSLog(@"自定义某一个时间为null，请检查");
         NSAssert(self.customDate, @"自定义某一个时间为null，请检查");
@@ -118,7 +118,6 @@
          s: 秒，1-2位
          ss: 秒，2位
          S: 毫秒
-         
          */
         _dateFormatterStr = @"yyyy-MM-dd HH:mm:ss zzz";//设置缺省类型，外层可自定义
     }return _dateFormatterStr;

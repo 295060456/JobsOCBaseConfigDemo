@@ -15,6 +15,7 @@
 #import <mach/mach.h>                             /// 提供对底层内存和CPU信息的访问，如内存使用情况和CPU负载。
 #import <objc/runtime.h>                          /// 用于在运行时操作Objective-C对象，例如动态添加方法和属性。
 #import <CommonCrypto/CommonDigest.h>             /// 提供加密和哈希功能，例如MD5和SHA加密。
+#import <Security/Security.h>                     /// 该框架提供了与应用程序的安全性相关的功能（加密、密钥管理、证书和身份验证）
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>  /// 用于获取设备的蜂窝网络信息。
 #import <CoreTelephony/CTCarrier.h>               /// 提供与设备运营商相关的信息，如网络提供商名称。
 #import <CoreData/CoreData.h>                     /// 提供数据持久化支持，可用于管理本地数据库。

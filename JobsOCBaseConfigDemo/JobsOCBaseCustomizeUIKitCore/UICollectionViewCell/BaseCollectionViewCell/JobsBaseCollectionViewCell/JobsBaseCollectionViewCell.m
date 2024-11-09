@@ -144,31 +144,31 @@
 
 -(UITextView *)textView{
     if (!_textView) {
-        _textView = UITextView.new;
-        _textView.editable = NO;
-        _textView.userInteractionEnabled = NO;
-        _textView.textColor = self.selected ? self.viewModel.textModel.selectedTextCor : self.viewModel.textModel.textCor;
-        [self.contentView addSubview:_textView];
-        [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
-        [self layoutIfNeeded];
-//        @jobs_weakify(self)
-        [_textView jobsTextViewFilterBlock:^BOOL(id data) {
-//            @jobs_strongify(self)
-            return YES;
-        } subscribeNextBlock:^(id data) {
-//            @jobs_strongify(self)
-        }];
-    }
-    NSLog(@"SSS = %d,self = %@",self.selected,self);
-//    _textView.attributedText = self.viewModel.textModel.attributedText;
-    _textView.font = self.viewModel.textModel.font;
-    _textView.textAlignment = self.viewModel.textModel.textAlignment;
-    _textView.text = self.viewModel.textModel.text;
-    [_textView contentSizeToFitByFont:_textView.font];
-    NSLog(@"textView.text = %@",_textView.text);
-    return _textView;
+        @jobs_weakify(self)
+        _textView = jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
+            @jobs_strongify(self)
+            textView.editable = NO;
+            textView.userInteractionEnabled = NO;
+            textView.textColor = self.selected ? self.viewModel.textModel.selectedTextCor : self.viewModel.textModel.textCor;
+            [self.contentView addSubview:textView];
+            [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView);
+            }];
+            [self layoutIfNeeded];
+    //        @jobs_weakify(self)
+            [textView jobsTextViewFilterBlock:^BOOL(id data) {
+    //            @jobs_strongify(self)
+                return YES;
+            } subscribeNextBlock:^(id data) {
+    //            @jobs_strongify(self)
+            }];
+            textView.attributedText = self.viewModel.textModel.attributedText;
+            textView.font = self.viewModel.textModel.font;
+            textView.textAlignment = self.viewModel.textModel.textAlignment;
+            textView.text = self.viewModel.textModel.text;
+            textView.contentSizeToFitByFont(textView.font);
+        });
+    }return _textView;
 }
 
 @end

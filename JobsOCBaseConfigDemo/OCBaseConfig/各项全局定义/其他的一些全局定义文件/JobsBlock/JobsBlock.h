@@ -222,11 +222,13 @@ typedef void(^jobsByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable da
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
 
 @class FMDoorModel;
-typedef void(^jobsBySMSCodeModelBlock)(__kindof FMDoorModel *_Nullable data);
-typedef __kindof FMDoorModel *_Nullable(^JobsReturnSMSCodeModelByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
+typedef void(^jobsByDoorModelBlock)(__kindof FMDoorModel *_Nullable data);
+typedef __kindof FMDoorModel *_Nullable(^JobsDoorModelBlock)(__kindof FMDoorModel *_Nullable data);
+typedef __kindof FMDoorModel *_Nullable(^JobsReturnDoorModelByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
 
 @class JobsTimeModel;
 typedef void(^jobsByTimeModelBlock)(__kindof JobsTimeModel *_Nullable data);
+typedef JobsTimeModel *_Nullable(^JobsReturnTimeModelByIntegerBlock)(NSInteger timeSec);
 
 @class JobsTimeFormatterModel;
 typedef void(^jobsByTimeFormatterModelBlock)(__kindof JobsTimeFormatterModel *_Nullable data);
@@ -381,6 +383,42 @@ typedef JobsToggleBaseView *_Nonnull(^JobsReturnToggleBaseViewByArrBlock)(NSMuta
 
 @class FMDoorModel;
 typedef void(^jobsBySignUpModelBlock)(__kindof FMDoorModel *_Nullable data);
+
+@class FM_updatePassword_model;
+typedef void(^jobsByUpdatePasswordModelBlock)(__kindof FM_updatePassword_model *_Nullable data);
+
+@class FMLikeModel;
+typedef void(^jobsByLikeModelBlock)(__kindof FMLikeModel *_Nullable data);
+
+@class FMKYCInfoModel;
+typedef void(^jobsByKYCInfoModelBlock)(__kindof FMKYCInfoModel *_Nullable data);
+
+@class FMHotGameListModel;
+typedef void(^jobsByHotGameListModelBlock)(__kindof FMHotGameListModel *_Nullable data);
+
+@class FMGameHomeSubMobileModel;
+typedef void(^jobsByGameHomeSubMobileModelBlock)(__kindof FMGameHomeSubMobileModel *_Nullable data);
+
+@class FMInboxModel;
+typedef void(^jobsByInboxModelBlock)(__kindof FMInboxModel *_Nullable inboxModel);
+
+@class FMInboxTitleModel;
+typedef void(^jobsByInboxTitleModelBlock)(__kindof FMInboxTitleModel *_Nullable inboxTitleModel);
+
+@class FMSubjectModel;
+typedef void(^jobsBySubjectModelBlock)(__kindof FMSubjectModel *_Nullable subjectModel);
+
+@class FMDateModel;
+typedef void(^jobsByDateModelBlock)(__kindof FMDateModel *_Nullable dateModel);
+
+@class FMTypeModel;
+typedef void(^jobsByTypeModelBlock)(__kindof FMTypeModel *_Nullable typeModel);
+
+@class FMMyBetOrderDetailModel;
+typedef void(^jobsByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel *_Nullable data);
+
+@class FMPagerModel;
+typedef void(^jobsByPagerModelBlock)(__kindof FMPagerModel *_Nullable data);
 
 #endif /* JobsBlock_h */
 /*

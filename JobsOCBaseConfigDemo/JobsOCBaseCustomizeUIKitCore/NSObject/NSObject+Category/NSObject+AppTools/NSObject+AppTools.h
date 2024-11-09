@@ -44,7 +44,7 @@ AppToolsProtocol
 ,UITextViewDelegate
 >
 /// UI
-@property(nonatomic,strong,nullable)JobsUserModel *loginModel;
+@property(nonatomic,strong,nullable)JobsUserModel *doorModel;
 @property(nonatomic,strong)BaseButton *联系客服;
 @property(nonatomic,strong)BaseButton *立即注册;
 @property(nonatomic,strong)UILabel *separateLab;/// 分割线

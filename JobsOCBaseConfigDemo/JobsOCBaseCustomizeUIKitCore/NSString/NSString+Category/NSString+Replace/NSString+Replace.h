@@ -59,12 +59,30 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *_Nonnull)encryptedChineseTele;
 /// OC字符串去除最后一个字符
 -(NSString *_Nonnull)removeLastChars;
-/// OC字符串去除空格
--(NSString *)pureString;
 /// 图片URL路径补齐
 -(NSString *_Nullable)imageURLPlus;
 /// 一般的URL路径补齐
 -(NSString *_Nullable)normalURLPlus;
+/// 去除OC字符串中的空格
+-(NSString *)pureString;
+/// 去除OC字符串中的小数点
+-(__kindof NSString *_Nullable)removeDecimalPoint;
+/// 去除OC字符串中回车符号的转义字符：\r
+-(__kindof NSString *_Nullable)removeRetMark;
+/// 去除OC字符串中换行符号的转义字符：\n
+-(__kindof NSString *_Nullable)removeNewLineMark;
+/// 去除OC字符串中换行符号的转义字符：\t
+-(__kindof NSString *_Nullable)removeTableMark;
+/// 去除OC字符串中的等号：=
+-(__kindof NSString *_Nullable)removeEqualMark;
+/// 去除OC字符串中的分隔符：/
+-(__kindof NSString *_Nullable)removeSeparationMark;
+/// 去除OC字符串中的冒号（英文输入法）
+-(__kindof NSString *_Nullable)removeColonMark;
+/// 去除OC字符串中零宽空格的转义字符：\u200B
+/// 零宽空格 (\u200B)：顾名思义，这个字符没有任何宽度（即不可见），它的作用是插入一个“空格”，但不会占据任何可见的空间。
+/// 零宽空格在视觉上不会显示出来，但它可以在字符串中用于各种控制和格式化的目的。
+-(__kindof NSString *_Nullable)remove200BMark;
 
 @end
 

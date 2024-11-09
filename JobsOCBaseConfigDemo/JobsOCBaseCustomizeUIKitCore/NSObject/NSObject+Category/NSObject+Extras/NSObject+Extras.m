@@ -805,8 +805,8 @@
 /// @param versionNumber2 版本号2
 -(CompareRes)versionNumber1:(NSString *_Nonnull)versionNumber1
              versionNumber2:(NSString *_Nonnull)versionNumber2{
-    NSString *v1 = [versionNumber1 stringByReplacingOccurrencesOfString:@"." withString:JobsInternationalization(@"")];
-    NSString *v2 = [versionNumber2 stringByReplacingOccurrencesOfString:@"." withString:JobsInternationalization(@"")];
+    NSString *v1 = versionNumber1.removeDecimalPoint;
+    NSString *v2 = versionNumber2.removeDecimalPoint;
     if (v1.isPureInt && v2.isPureInt) {
         if (v1.integerValue > v2.integerValue) {
             return CompareRes_MoreThan;

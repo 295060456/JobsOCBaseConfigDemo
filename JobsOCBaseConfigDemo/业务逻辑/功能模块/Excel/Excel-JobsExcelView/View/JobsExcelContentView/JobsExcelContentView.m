@@ -29,7 +29,7 @@
         @jobs_strongify(self)
         self.excelConfigureData = model;
         self.tableView.rowHeight = self.excelConfigureData.itemH;
-        [self.tableView reloadData];
+        self.tableView.reloadDatas();
     };
 }
 #pragma mark —— UITableViewDelegate
@@ -44,7 +44,7 @@
     cell.delegate = self;
     cell.indexPath = indexPath;
     cell.jobsRichElementsInCellWithModel(self.excelConfigureData);
-    cell.backgroundColor = cell.contentView.backgroundColor = indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2;
+//    cell.backgroundColor = cell.contentView.backgroundColor = indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2;
     cell.jobsRichElementsInCellWithModel2(self.excelConfigureData.contentArr[indexPath.row]);
     return cell;
 }

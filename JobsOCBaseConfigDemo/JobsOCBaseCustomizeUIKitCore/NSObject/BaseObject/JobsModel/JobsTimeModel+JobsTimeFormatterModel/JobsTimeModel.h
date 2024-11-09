@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, IntervalStyle) {
 @interface JobsTimeFormatterModel : NSObject
 
 @property(nonatomic,strong)NSDate *date;
-@property(nonatomic,strong)NSString *dateStr;
+@property(nonatomic,copy)NSString *dateStr;
 @property(nonatomic,assign)NSTimeInterval intervalBySec;//单位：秒
 @property(nonatomic,assign)NSTimeInterval intervalByMilliSec;//单位：毫秒
 
@@ -36,7 +36,7 @@ typedef NS_ENUM(NSUInteger, IntervalStyle) {
 @property(nonatomic,strong)NSDate *currentDate;/// 获取当前时间，始终有值，且每时每刻都在变化，也就是每次取值都不一样，所以不能用懒加载
 @property(nonatomic,assign)CGFloat currentDateOffsetSec;/// 距离当前时间的秒数 【正数为未来、负数为过去】
 @property(nonatomic,strong)NSDate *currentOffsetDate;/// 与currentDateOffsetSec发生作用，表示据当前时间的一个偏差时间的时间
-@property(nonatomic,strong)NSString *currentTimestampStr;/// 获取当前iOS时间戳（字符串格式）
+@property(nonatomic,copy)NSString *currentTimestampStr;/// 获取当前iOS时间戳（字符串格式）
 @property(nonatomic,assign)NSTimeInterval currentTimestampOffsetSec;/// 取当前时间sec秒后的时间戳秒数
 @property(nonatomic,assign)NSTimeInterval currentTimestampSec;/// 获取当前时间的时间戳秒数
 @property(nonatomic,assign)NSTimeInterval currentTimestampOffsetMilliSec;/// 获取当前时间sec秒后的时间戳毫秒数
@@ -57,7 +57,7 @@ typedef NS_ENUM(NSUInteger, IntervalStyle) {
 @property(nonatomic,assign)NSInteger currentYearForWeekOfYear;///
 #pragma mark —— 自定义某一个时间：来源比如说是服务器时间
 @property(nonatomic,strong)NSDate *customDate;
-@property(nonatomic,strong)NSString *customTimestampStr;/// 自定义某一个时间的时间戳（字符串格式）
+@property(nonatomic,copy)NSString *customTimestampStr;/// 自定义某一个时间的时间戳（字符串格式）
 @property(nonatomic,assign)NSTimeInterval customTimestampSec;/// 自定义某一个时间的时间戳秒数
 @property(nonatomic,assign)NSTimeInterval customTimestampMilliSec;/// 自定义某一个时间的时间戳毫秒数
 @property(nonatomic,assign)NSInteger customEra;/// 当前年代
@@ -76,10 +76,10 @@ typedef NS_ENUM(NSUInteger, IntervalStyle) {
 @property(nonatomic,assign)NSInteger customYearForWeekOfYear;///
 #pragma mark —— 时区
 @property(nonatomic,strong)NSTimeZone *localTimeZone;/// 手机当前时区
-@property(nonatomic,strong)NSString *customTimeZoneStr;/// 自定义时区名 默认北京时区
+@property(nonatomic,copy)NSString *customTimeZoneStr;/// 自定义时区名 默认北京时区
 @property(nonatomic,strong)NSTimeZone *customTimeZone;/// 自定义时区
 #pragma mark —— 时间格式化
-@property(nonatomic,strong)NSString *dateFormatterStr;
+@property(nonatomic,copy)NSString *dateFormatterStr;
 @property(nonatomic,strong)NSDateFormatter *dateFormatter;
 #pragma mark —— 结论部分  外层怎么用自己去拼接 内核只做重要工作
 // 特殊标注：星期是以周日开始的,1代表周日、2代表周一...7代表周六

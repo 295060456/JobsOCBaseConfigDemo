@@ -92,6 +92,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(CABasicAnimation *)basicAnimation;
 /// 创建CAKeyframeAnimation（关键帧动画）
 -(CAKeyframeAnimation *)keyframeAnimation;
+/// 组装set方法名：set+首字母大写+：
+-(JobsReturnStringByVoidBlock _Nonnull)capitalizeFirstLetterAndPrefixSet;
+/// 截取并返回一个字符串里面冒号前的值，并返回。如果没有冒号，则返回自身
+-(NSString *)substringBeforeColon;
 
 @end
 

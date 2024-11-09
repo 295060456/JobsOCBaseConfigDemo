@@ -18,7 +18,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseModel : NSObject<NSCoding>
+@interface BaseModel : NSObject
+<
+NSCoding,/// 编码
+NSSecureCoding/// 解码
+>
 #pragma mark —— MJExtension
 +(NSDictionary *)mj_replacedKeyFromPropertyName;
 #pragma mark —— YYModel
