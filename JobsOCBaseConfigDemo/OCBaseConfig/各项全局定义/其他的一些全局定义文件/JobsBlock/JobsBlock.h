@@ -381,9 +381,6 @@ typedef void(^jobsByMsgDataModelBlock)(__kindof JobsMsgDataModel *_Nullable data
 @class JobsToggleBaseView;
 typedef JobsToggleBaseView *_Nonnull(^JobsReturnToggleBaseViewByArrBlock)(NSMutableArray *_Nullable data);
 
-@class FMDoorModel;
-typedef void(^jobsBySignUpModelBlock)(__kindof FMDoorModel *_Nullable data);
-
 @class FM_updatePassword_model;
 typedef void(^jobsByUpdatePasswordModelBlock)(__kindof FM_updatePassword_model *_Nullable data);
 

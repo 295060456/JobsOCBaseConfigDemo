@@ -33,54 +33,55 @@
 - (nullable instancetype)initWithCoder:(NSCoder *)decoder {
     if (self = [super initWithCoder:decoder]) {
 #pragma mark —— 共用参数
-        _accessToken = [decoder decodeObjectOfClass:NSString.class forKey:@"accessToken"];
-        _mobile = [decoder decodeObjectOfClass:NSString.class forKey:@"mobile"];
-        _userName = [decoder decodeObjectOfClass:NSString.class forKey:@"userName"];
+        _accessToken = decoder.decodeStringBy(@"accessToken");
+        _mobile = decoder.decodeStringBy(@"mobile");
+        _userName = decoder.decodeStringBy(@"userName");
 #pragma mark —— 请求参数
-        _captcha_id = [decoder decodeObjectOfClass:NSString.class forKey:@"captcha_id"];
-        _captcha_key = [decoder decodeObjectOfClass:NSString.class forKey:@"captcha_key"];
-        _captcha_output = [decoder decodeObjectOfClass:NSString.class forKey:@"captcha_output"];
-        _countryCode = [decoder decodeObjectOfClass:NSString.class forKey:@"countryCode"];
-        _domain = [decoder decodeObjectOfClass:NSString.class forKey:@"domain"];
-        _gen_time = [decoder decodeObjectOfClass:NSString.class forKey:@"gen_time"];
-        _inviteCode = [decoder decodeObjectOfClass:NSString.class forKey:@"inviteCode"];
-        _lot_number = [decoder decodeObjectOfClass:NSString.class forKey:@"lot_number"];
-        _pass_token = [decoder decodeObjectOfClass:NSString.class forKey:@"pass_token"];
-        _password = [decoder decodeObjectOfClass:NSString.class forKey:@"password"];
-        _referCode = [decoder decodeObjectOfClass:NSString.class forKey:@"referCode"];
-        _smsCode = [decoder decodeObjectOfClass:NSString.class forKey:@"smsCode"];
-        _actionType = [decoder decodeObjectOfClass:NSNumber.class forKey:@"actionType"];
-        _businessSource = [decoder decodeObjectOfClass:NSNumber.class forKey:@"businessSource"];
-        _callFlag = [decoder decodeObjectOfClass:NSString.class forKey:@"callFlag"];
-        _mobileArea = [decoder decodeObjectOfClass:NSString.class forKey:@"mobileArea"];
+        _captcha_id = decoder.decodeStringBy(@"captcha_id");
+        _captcha_key = decoder.decodeStringBy(@"captcha_key");
+        _captcha_output = decoder.decodeStringBy(@"captcha_output");
+        _countryCode = decoder.decodeStringBy(@"countryCode");
+        _domain = decoder.decodeStringBy(@"domain");
+        _gen_time = decoder.decodeStringBy(@"gen_time");
+        _inviteCode = decoder.decodeStringBy(@"inviteCode");
+        _lot_number = decoder.decodeStringBy(@"lot_number");
+        _pass_token = decoder.decodeStringBy(@"pass_token");
+        _password = decoder.decodeStringBy(@"password");
+        _referCode = decoder.decodeStringBy(@"referCode");
+        _smsCode = decoder.decodeStringBy(@"smsCode");
+        _actionType = decoder.decodeNumberBy(@"actionType");
+        _businessSource = decoder.decodeNumberBy(@"businessSource");
+        _callFlag = decoder.decodeStringBy(@"callFlag");
+        _mobileArea = decoder.decodeStringBy(@"mobileArea");
 #pragma mark —— 响应参数
-        _expireTime = [decoder decodeObjectOfClass:NSString.class forKey:@"expireTime"];
-        _regTime = [decoder decodeObjectOfClass:NSString.class forKey:@"regTime"];
-        _birthday = [decoder decodeObjectOfClass:NSString.class forKey:@"birthday"];
-        _nickName = [decoder decodeObjectOfClass:NSString.class forKey:@"nickName"];
-        _status = [decoder decodeObjectOfClass:NSString.class forKey:@"status"];
-        _financeTier = [decoder decodeIntegerForKey:@"financeTier"];
-        _cryptoCount = [decoder decodeIntegerForKey:@"cryptoCount"];
-        _sex = [decoder decodeObjectOfClass:NSString.class forKey:@"sex"];
-        _realName = [decoder decodeObjectOfClass:NSString.class forKey:@"realName"];
-        _passwordFlag = [decoder decodeBoolForKey:@"passwordFlag"];
-        _regCurrency = [decoder decodeObjectOfClass:NSString.class forKey:@"regCurrency"];
-        _identityCode = [decoder decodeObjectOfClass:NSString.class forKey:@"identityCode"];
-        _ID = [decoder decodeIntegerForKey:@"ID"];
-        _tenantId = [decoder decodeIntegerForKey:@"tenantId"];
-        _email = [decoder decodeObjectOfClass:NSString.class forKey:@"email"];
-        _nickNameStatus = [decoder decodeBoolForKey:@"nickNameStatus"];
-        _regNationCode = [decoder decodeObjectOfClass:NSString.class forKey:@"regNationCode"];
-        _regNation = [decoder decodeObjectOfClass:NSString.class forKey:@"regNation"];
-        _avatar = [decoder decodeObjectOfClass:NSString.class forKey:@"avatar"];
-        _role = [decoder decodeIntegerForKey:@"role"];
-        _bankCardCount = [decoder decodeIntegerForKey:@"bankCardCount"];
-        _regDay = [decoder decodeIntegerForKey:@"regDay"];
-        _vipLevel = [decoder decodeIntegerForKey:@"vipLevel"];
-        _regLang = [decoder decodeObjectOfClass:NSString.class forKey:@"regLang"];
+        _expireTime = decoder.decodeStringBy(@"expireTime");
+        _regTime = decoder.decodeStringBy(@"regTime");
+        _birthday = decoder.decodeStringBy(@"birthday");
+        _nickName = decoder.decodeStringBy(@"nickName");
+        _status = decoder.decodeStringBy(@"status");
+        _financeTier = decoder.decodeIntegerBy(@"financeTier");
+        _cryptoCount = decoder.decodeIntegerBy(@"cryptoCount");
+        _sex = decoder.decodeStringBy(@"sex");
+        _realName = decoder.decodeStringBy(@"realName");
+        _passwordFlag = decoder.decodeBOOLBy(@"passwordFlag");
+        _regCurrency = decoder.decodeStringBy(@"regCurrency");
+        _identityCode = decoder.decodeStringBy(@"identityCode");
+        _ID = decoder.decodeIntegerBy(@"ID");
+        _tenantId = decoder.decodeIntegerBy(@"tenantId");
+        _email = decoder.decodeStringBy(@"email");
+        _nickNameStatus = decoder.decodeBOOLBy(@"nickNameStatus");
+        _regNationCode = decoder.decodeStringBy(@"regNationCode");
+        _regNation = decoder.decodeStringBy(@"regNation");
+        _avatar = decoder.decodeStringBy(@"avatar");
+        _role = decoder.decodeIntegerBy(@"role");
+        _bankCardCount = decoder.decodeIntegerBy(@"bankCardCount");
+        _regDay = decoder.decodeIntegerBy(@"regDay");
+        _vipLevel = decoder.decodeIntegerBy(@"vipLevel");
+        _regLang = decoder.decodeStringBy(@"regLang");
 #pragma mark —— 自建字段
-        _tokenExpireTime = [decoder decodeObjectOfClass:NSString.class forKey:@"tokenExpireTime"];
-        _userDefaultHeadImage = [decoder decodeObjectOfClass:UIImage.class forKey:@"userDefaultHeadImage"];
+        _loginType = decoder.decodeIntegerBy(@"loginType");
+        _tokenExpireTime = decoder.decodeStringBy(@"tokenExpireTime");
+        _userDefaultHeadImage = decoder.decodeImageBy(@"userDefaultHeadImage");
         // 解码更多属性（如有）
     }return self;
 }
@@ -154,6 +155,7 @@
     [encoder encodeInteger:self.vipLevel forKey:@"vipLevel"];
     [encoder encodeObject:self.regLang forKey:@"regLang"];
 #pragma mark —— 自建字段
+    [encoder encodeInteger:self.loginType forKey:@"loginType"];
     [encoder encodeObject:self.tokenExpireTime forKey:@"tokenExpireTime"];
     [encoder encodeObject:self.userDefaultHeadImage forKey:@"userDefaultHeadImage"];
     // 编码更多属性（如有）
@@ -207,6 +209,18 @@
     if(!_userName){
         _userName = @"";
     }return _userName;
+}
+
+-(NSString *)nickName{
+    if(!_nickName){
+        _nickName = @"";
+    }return _nickName;
+}
+
+-(NSString *)realName{
+    if(!_realName){
+        _realName = @"";
+    }return _realName;
 }
 
 -(NSString *)accessToken{

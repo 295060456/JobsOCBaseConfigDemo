@@ -73,30 +73,30 @@ static dispatch_once_t static_userModelOnceToken;
 
 //- (nullable instancetype)initWithCoder:(NSCoder *)coder {
 //    if (self = [super init]) {
-//        _userName = [coder decodeObjectOfClass:NSString.class forKey:@"userName"];
-//        _userHeader = [coder decodeObjectOfClass:NSString.class forKey:@"userHeader"];
-//        _userHeaderIMG = [coder decodeObjectOfClass:UIImage.class forKey:@"userHeaderIMG"];
-//        _userRacnkClass = [coder decodeObjectOfClass:NSString.class forKey:@"userRacnkClass"];
-//        _password = [coder decodeObjectOfClass:NSString.class forKey:@"password"];
-//        _token = [coder decodeObjectOfClass:NSString.class forKey:@"token"];
-//        _uid = [coder decodeObjectOfClass:NSString.class forKey:@"uid"];
-//        _deviceId = [coder decodeObjectOfClass:NSString.class forKey:@"deviceId"];
-//        _validate = [coder decodeObjectOfClass:NSString.class forKey:@"validate"];
-//        _resourcesAddress = [coder decodeObjectOfClass:NSString.class forKey:@"resourcesAddress"];
-//        _postDraftURLStr = [coder decodeObjectOfClass:NSString.class forKey:@"postDraftURLStr"];
-//        _account = [coder decodeObjectOfClass:NSString.class forKey:@"account"];
-//        _domain = [coder decodeObjectOfClass:NSString.class forKey:@"domain"];
-//        _email = [coder decodeObjectOfClass:NSString.class forKey:@"email"];
-//        _headImg = [coder decodeObjectOfClass:NSString.class forKey:@"headImg"];
-//        _inviteCode = [coder decodeObjectOfClass:NSString.class forKey:@"inviteCode"];
-//        _name = [coder decodeObjectOfClass:NSString.class forKey:@"name"];
-//        _phone = [coder decodeObjectOfClass:NSString.class forKey:@"phone"];
-//        _qq = [coder decodeObjectOfClass:NSString.class forKey:@"qq"];
-//        _realName = [coder decodeObjectOfClass:NSString.class forKey:@"realName"];
-//        _superiorAccount = [coder decodeObjectOfClass:NSString.class forKey:@"superiorAccount"];
-//        _userId = [coder decodeObjectOfClass:NSNumber.class forKey:@"userId"];
-//        _webChat = [coder decodeObjectOfClass:NSString.class forKey:@"webChat"];
-//        // 解码更多属性
+//        _userName = coder.decodeStringBy(@"userName");
+//        _userHeader = coder.decodeStringBy(@"userHeader");
+//        _userHeaderIMG = coder.decodeImageBy(@"userHeaderIMG");
+//        _userRacnkClass = coder.decodeStringBy(@"userRacnkClass");
+//        _password = coder.decodeStringBy(@"password");
+//        _token = coder.decodeStringBy(@"token");
+//        _uid = coder.decodeStringBy(@"uid");
+//        _deviceId = coder.decodeStringBy(@"deviceId");
+//        _validate = coder.decodeStringBy(@"validate");
+//        _resourcesAddress = coder.decodeStringBy(@"resourcesAddress");
+//        _postDraftURLStr = coder.decodeStringBy(@"postDraftURLStr");
+//        _account = coder.decodeStringBy(@"account");
+//        _domain = coder.decodeStringBy(@"domain");
+//        _email = coder.decodeStringBy(@"email");
+//        _headImg = coder.decodeStringBy(@"headImg");
+//        _inviteCode = coder.decodeStringBy(@"inviteCode");
+//        _name = coder.decodeStringBy(@"name");
+//        _phone = coder.decodeStringBy(@"phone");
+//        _qq = coder.decodeStringBy(@"qq");
+//        _realName = coder.decodeStringBy(@"realName");
+//        _superiorAccount = coder.decodeStringBy(@"superiorAccount");
+//        _userId = coder.decodeNumberBy(@"userId");
+//        _webChat = coder.decodeStringBy(@"webChat");
+//        // 解码更多属性...
 //    }return self;
 //}
 //
@@ -147,11 +147,11 @@ static dispatch_once_t static_userModelOnceToken;
     }return _token;
 }
 
-//-(NSString *)userName{
-//    if (!_userName) {
-//        _userName = @"暂时没有值.张山";
-//    }return _userName;
-//}
+-(NSString *)userName{
+    if (!_userName) {
+        _userName = @"";
+    }return _userName;
+}
 //
 //-(NSString *)uid{
 //    if (!_uid) {

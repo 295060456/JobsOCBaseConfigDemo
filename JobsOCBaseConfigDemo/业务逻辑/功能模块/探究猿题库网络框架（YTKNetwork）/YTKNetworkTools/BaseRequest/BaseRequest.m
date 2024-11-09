@@ -96,7 +96,7 @@
                        forKey:@"Content-Type"];
             /// 设置 Authorization
             if(self.doorModel) [headers setValue:self.doorModel.token
-                                          forKey:@"Authorization"];
+                                              forKey:@"Authorization"];
             /// 请求的语言环境
     //        switch (self.currentLanguageType) {
     //            case HTTPRequestHeaderLanguageEn:{
@@ -118,9 +118,6 @@
 #pragma mark ——  复写 YTKBaseRequest 方法
 /// 设置自定义的 HTTP Header
 -(NSMutableDictionary *)requestHeaderFieldValueDictionary{
-    self.doorModel = self.readUserInfoByUserName(JobsUserModel.class,FM用户数据);
-    NSLog(@"loginModel = %@",self.doorModel);
-    NSLog(@"Token = %@",self.doorModel.token);
     return self.customHTTPHeader;
 }
 /// 具体子类实现请求Api

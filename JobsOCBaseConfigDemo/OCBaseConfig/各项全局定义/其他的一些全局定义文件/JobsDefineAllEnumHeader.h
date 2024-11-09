@@ -41,6 +41,14 @@ typedef NS_ENUM(NSInteger, JobsTerminalType) {
     JobsTerminalType_All
 };
 #endif /* JOBS_TERMINAL_TYPE_ENUM_DEFINED */
+/// 登录方式
+#ifndef LOGINMODE
+#define LOGINMODE
+typedef NS_ENUM(NSInteger, LoginType) {
+    LoginType_Silent = 0,     /// 静默登录
+    LoginType_Manual,         /// 非静默登录
+};
+#endif /* LOGINMODE */
 /// 更新类型
 #ifndef JOBS_UPDATE_TYPE_ENUM_DEFINED
 #define JOBS_UPDATE_TYPE_ENUM_DEFINED

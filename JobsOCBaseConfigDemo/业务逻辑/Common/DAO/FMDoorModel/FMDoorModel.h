@@ -74,6 +74,7 @@ NSSecureCoding/// 解码
 @property(nonatomic,assign)NSInteger vipLevel;
 @property(nonatomic,copy)NSString *regLang;
 #pragma mark —— 自建字段
+@property(nonatomic,assign)LoginType loginType;
 @property(nonatomic,copy)NSString *tokenExpireTime;
 /// 此对象在使用MJExtension.mj_keyValues（将本数据模型转化为字典的时候）需要被排除，因为不支持UIImage数据类型
 @property(nonatomic,strong)UIImage *userDefaultHeadImage;
@@ -84,7 +85,7 @@ NSSecureCoding/// 解码
 
 NS_ASSUME_NONNULL_END
 
-NS_INLINE __kindof FMDoorModel *_Nonnull jobsMakeDoorModel(jobsBySignUpModelBlock _Nonnull block){
+NS_INLINE __kindof FMDoorModel *_Nonnull jobsMakeDoorModel(jobsByDoorModelBlock _Nonnull block){
     FMDoorModel *data = FMDoorModel.alloc.init;
     if (block) block(data);
     return data;
