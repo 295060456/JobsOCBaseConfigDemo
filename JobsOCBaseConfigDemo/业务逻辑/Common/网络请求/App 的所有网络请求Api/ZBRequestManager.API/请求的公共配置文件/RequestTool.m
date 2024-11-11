@@ -125,7 +125,7 @@
             NSLog(@"成功回调 数据返回之前");
             if ([responseObject isKindOfClass:NSDictionary.class]) {
                 NSDictionary *dataDic = (NSDictionary *)responseObject;
-                JobsResponseModel *model = JobsResponseModel.byDataDic(dataDic);
+                JobsResponseModel *model = JobsResponseModel.byData(dataDic);
     //            [request.userInfo[@"info"] isEqualToString:@"ViewController_1"]
                 return model;
             }else{

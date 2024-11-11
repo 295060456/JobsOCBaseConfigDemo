@@ -188,6 +188,7 @@
     NSLog(@"Token 的过期时间是:%@-%@",expireTime,self.tokenExpireTime);
 }
 #pragma mark —— 一些公有方法
+/// 新值（入参）冲抵老值（调用方）
 -(JobsDoorModelBlock _Nonnull)updateBy{
     @jobs_weakify(self)
     return ^__kindof FMDoorModel *_Nullable(__kindof FMDoorModel *_Nullable doorModel){
@@ -198,12 +199,8 @@
             if(bp[key]) {
                 if([bp[key] isKindOfClass:NSString.class]){
                     NSString *str = bp[key];
-                    if(isValue(str)){
-                        [self setValue:str forKey:key];
-                    }
-                }else{
-                    [self setValue:bp[key] forKey:key];
-                }
+                    if(isValue(str)) [self setValue:str forKey:key];
+                }else [self setValue:bp[key] forKey:key];
             }
         }return self;
     };

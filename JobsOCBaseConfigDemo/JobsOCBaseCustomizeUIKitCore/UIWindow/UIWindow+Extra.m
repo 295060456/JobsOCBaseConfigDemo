@@ -9,6 +9,12 @@
 
 @implementation UIWindow (Extra)
 
++(JobsReturnWindowByWindowSceneBlock _Nonnull)initByScene{
+    return ^__kindof UIWindow *_Nullable(UIWindowScene *_Nullable data){
+        return [UIWindow.alloc initWithWindowScene:data];
+    };
+}
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
     if (self.objectBlock) self.objectBlock(self);
@@ -20,12 +26,16 @@
     }return self;
 }
 /// 横屏模式下Window的宽高互换
--(JobsReturnCGRectByVoidBlock)landscapeWindowFrame{
+-(JobsReturnCGRectByVoidBlock _Nonnull)landscapeWindowFrame{
     return ^CGRect(){
-        return CGRectMake(self.x,
-                          self.y,
-                          MAX(self.height,self.width),
-                          MIN(self.height,self.width));
+        @jobs_weakify(self)
+        return jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+            @jobs_strongify(self)
+            data.jobsX = self.x;
+            data.jobsY = self.y;
+            data.jobsWidth = MAX(self.height,self.width);
+            data.jobsHeight = MIN(self.height,self.width);
+        });
     };
 }
 

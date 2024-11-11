@@ -80,7 +80,7 @@ NSSecureCoding/// 解码
 @property(nonatomic,copy)NSString *tokenExpireTime;
 /// 此对象在使用MJExtension.mj_keyValues（将本数据模型转化为字典的时候）需要被排除，因为不支持UIImage数据类型
 @property(nonatomic,strong)UIImage *userDefaultHeadImage;
-
+/// 新值（入参）冲抵老值（调用方）
 -(JobsDoorModelBlock _Nonnull)updateBy;
 
 @end
