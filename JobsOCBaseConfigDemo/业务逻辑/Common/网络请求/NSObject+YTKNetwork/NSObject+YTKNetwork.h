@@ -49,12 +49,20 @@ NS_ASSUME_NONNULL_BEGIN
    actionBlock:(jobsByResponseModelBlock _Nullable)actionBlock /// 本层对success的解析回调
   successBlock:(jobsByResponseModelBlock _Nullable)successBlock /// 外层对success的解析回调
      failBlock:(jobsByVoidBlock _Nullable)failBlock;
+
 -(void)request:(YTKBaseRequest *)request
   successBlock:(jobsByResponseModelBlock _Nullable)successBlock;
+///【请求已经成功，但是服务器抛异常】处理非HTTPResponseCodeSuccess 的 HTTPResponseCode
+-(void)jobsHandelHTTPResponseCode:(HTTPResponseCode)responseCode
+                      actionBlock:(jobsByNSIntegerBlock _Nullable)actionBlock;
+///【请求失败】请求失败的处理
 -(jobsByIDBlock _Nonnull)jobsHandelFailure;
--(JobsHandelNoSuccessBlock _Nonnull)jobsHandelNoSuccess;
--(jobsByIDBlock _Nonnull)tipsByApi;
+///【请求错误】请求错误的处理
 -(jobsByYTKRequestBlock _Nonnull)handleErr;
+/// 仅仅打印请求体：request.requestTask
+-(JobsHandelNoSuccessBlock _Nonnull)jobsHandelNoSuccess;
+/// Tips封装
+-(jobsByIDBlock _Nonnull)tipsByApi;
 #pragma mark —— 示例代码
 /// 普通的单个请求
 -(void)loadCacheData:(jobsByResponseModelBlock _Nullable)successBlock;

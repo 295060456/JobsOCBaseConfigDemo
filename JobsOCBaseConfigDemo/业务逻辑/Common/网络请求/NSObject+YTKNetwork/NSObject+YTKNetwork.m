@@ -89,12 +89,15 @@
    actionBlock:(jobsByResponseModelBlock _Nullable)actionBlock /// 本层对success的解析回调
   successBlock:(jobsByResponseModelBlock _Nullable)successBlock /// 外层对success的解析回调
      failBlock:(jobsByVoidBlock _Nullable)failBlock{ /// 失败解析回调
+    /// 解析+处理HTTPResponseCode
     JobsResponseModel *responseModel = JobsMapResponseModelBy(request);
-    NSLog(@"%@",request.parameters.jsonString);/// 打印Body参数
+    /// 打印Body参数
+    NSLog(@"%@",request.parameters.jsonString);
     if(responseModel.code == HTTPResponseCodeSuccess){
         if(successBlock) successBlock(successData ? : responseModel);
         if(actionBlock) actionBlock(responseModel);
     }else{
+        /// 仅仅打印请求体：request.requestTask
         self.jobsHandelNoSuccess(request);
         if(failBlock) failBlock();
     }
@@ -108,79 +111,106 @@
      successBlock:successBlock
         failBlock:nil];
 }
-
+///【请求已经成功，但是服务器抛异常】处理非HTTPResponseCodeSuccess 的 HTTPResponseCode
+-(void)jobsHandelHTTPResponseCode:(HTTPResponseCode)responseCode
+                      actionBlock:(jobsByNSIntegerBlock _Nullable)actionBlock{
+    switch (responseCode) {
+        /// 服务器异常
+        case HTTPResponseCodeServeError:{
+            NSLog(@"服务器异常");
+            toast(JobsInternationalization(@"服务器异常"));
+        }break;
+        /// 令牌不能为空
+        case HTTPResponseCodeNoToken:{
+            self.toLogin();
+        }break;
+        /// 登录失败：账密错误
+        case HTTPResponseCodeLoginFailed:{
+            NSLog(@"登录失败：账密错误");
+            toast(JobsInternationalization(@"登录失败：账密错误"));
+        }break;
+        /// 授权失败
+        case HTTPResponseCodeAuthorizationFailure:{
+            NSLog(@"授权失败");
+            toast(JobsInternationalization(@"授权失败"));
+        }break;
+        /// 限定时间内超过请求次数
+        case HTTPResponseCodeLeakTime:{
+            NSLog(@"限定时间内超过请求次数");
+            toast(JobsInternationalization(@"限定时间内超过请求次数"));
+        }break;
+        /// 风险操作
+        case HTTPResponseCodeRiskOperation:{
+            NSLog(@"风险操作");
+            toast(JobsInternationalization(@"风险操作"));
+        }break;
+        /// 未设置交易密码
+        case HTTPResponseCodeNoSettingTransactionPassword:{
+            NSLog(@"未设置交易密码");
+            toast(JobsInternationalization(@"未设置交易密码"));
+        }break;
+        /// 账号已在其他设备登录
+        case HTTPResponseCodeOffline:{
+            NSLog(@"账号已在其他设备登录");
+            toast(JobsInternationalization(@"账号已在其他设备登录"));
+        }break;
+        /// Token 过期：登录已过期，请重新登录
+        case HTTPResponseCodeTokenExpire:{
+            NSLog(@"Token 过期");
+//                self.fm_tokenExpire();
+        }break;
+        /// 手机号码不存在
+        case HTTPResponseCodePhoneNumberNotExist:{
+            NSLog(@"手机号码不存在");
+            toast(JobsInternationalization(@"手机号码不存在"));
+        }break;
+        case HTTPResponseCodeAccountLocked:{
+            NSLog(@"账户被锁");
+            toast(JobsInternationalization(@"账户被锁，请联系系统管理员"));
+        }break;
+        /// 服务器返500可能会有很多其他的业务场景定义
+        case HTTPResponseCodeNoOK:{
+            if(actionBlock) actionBlock(responseCode);
+        }break;
+        default:
+            break;
+    }
+}
+///【请求失败】请求失败的处理
 -(jobsByIDBlock _Nonnull)jobsHandelFailure{
     @jobs_weakify(self)
     return ^(YTKBaseRequest *request){
         @jobs_strongify(self)
+        /// 解析+处理HTTPResponseCode
+        JobsResponseModel *responseModel = JobsMapResponseModelBy(request);
+        /// 打印请求体
         self.printURLSessionRequestMessage(request.requestTask);
         NSLog(@"error = %@",request.error);
+        NSLog(@"responseModel = %@",responseModel);
     };
 }
-
+///【请求错误】请求错误的处理
+-(jobsByYTKRequestBlock _Nonnull)handleErr{
+    return ^(__kindof YTKRequest *_Nullable request){
+        NSLog(@"打印请求头: %@", request.requestHeaderFieldValueDictionary);
+        if ([request loadCacheWithError:nil]) {
+            NSDictionary *json = request.responseJSONObject;
+//            NSLog(@"可以 = %@", api.parameters);
+//            NSLog(@"打断点 = %@", [json decodeUnicodeLog]);
+        }
+    };
+}
+/// 仅仅打印请求体：request.requestTask
 -(JobsHandelNoSuccessBlock _Nonnull)jobsHandelNoSuccess{
     @jobs_weakify(self)
     return ^(__kindof YTKBaseRequest *_Nonnull request){
         @jobs_strongify(self)
+        NSLog(@"%@",request.parameters);
+        /// 打印请求体
         self.printURLSessionRequestMessage(request.requestTask);
-        switch (request.responseModel.code) {
-            /// 服务器异常
-            case HTTPResponseCodeServeError:{
-                NSLog(@"服务器异常");
-                toast(JobsInternationalization(@"服务器异常"));
-            }break;
-            /// 令牌不能为空
-            case HTTPResponseCodeNoToken:{
-                NSLog(@"令牌不能为空");
-                self.toLogin();
-                toast(JobsInternationalization(@"令牌不能为空"));
-            }break;
-            /// 登录失败：账密错误
-            case HTTPResponseCodeLoginFailed:{
-                NSLog(@"登录失败：账密错误");
-                toast(JobsInternationalization(@"登录失败：账密错误"));
-            }break;
-            /// 授权失败
-            case HTTPResponseCodeAuthorizationFailure:{
-                NSLog(@"授权失败");
-                toast(JobsInternationalization(@"授权失败"));
-            }break;
-            /// 限定时间内超过请求次数
-            case HTTPResponseCodeLeakTime:{
-                NSLog(@"限定时间内超过请求次数");
-                toast(JobsInternationalization(@"限定时间内超过请求次数"));
-            }break;
-            /// 风险操作
-            case HTTPResponseCodeRiskOperation:{
-                NSLog(@"风险操作");
-                toast(JobsInternationalization(@"风险操作"));
-            }break;
-            /// 未设置交易密码
-            case HTTPResponseCodeNoSettingTransactionPassword:{
-                NSLog(@"未设置交易密码");
-                toast(JobsInternationalization(@"未设置交易密码"));
-            }break;
-            /// 账号已在其他设备登录
-            case HTTPResponseCodeOffline:{
-                NSLog(@"账号已在其他设备登录");
-                toast(JobsInternationalization(@"账号已在其他设备登录"));
-            }break;
-            /// Token 过期：登录已过期，请重新登录
-            case HTTPResponseCodeTokenExpire:{
-                NSLog(@"Token 过期");
-                self.self.tokenExpire();
-            }break;
-            /// 手机号码不存在
-            case HTTPResponseCodePhoneNumberNotExist:{
-                NSLog(@"手机号码不存在");
-                toast(JobsInternationalization(@"手机号码不存在"));
-            }break;
-            default:
-                break;
-        }
     };
 }
-
+/// Tips封装
 -(jobsByIDBlock _Nonnull)tipsByApi{
     @jobs_weakify(self)
     return ^(JobsBaseApi *_Nullable api){
@@ -193,17 +223,6 @@
         if([self isKindOfClass:UIViewController.class]){
             UIViewController *vc = (UIViewController *)self;
             api.animatingView = vc.view;
-        }
-    };
-}
-
--(jobsByYTKRequestBlock _Nonnull)handleErr{
-    return ^(__kindof YTKRequest *_Nullable request){
-        NSLog(@"打印请求头: %@", request.requestHeaderFieldValueDictionary);
-        if ([request loadCacheWithError:nil]) {
-            NSDictionary *json = request.responseJSONObject;
-//            NSLog(@"可以 = %@", api.parameters);
-//            NSLog(@"打断点 = %@", [json decodeUnicodeLog]);
         }
     };
 }
