@@ -14,6 +14,7 @@
 #import "URLManager.h"
 #import "NSObject+Data.h"
 #import "NSObject+Extras.h"
+#import "NSURLRequest+Extra.h"
 
 #import "YTKNetworkToolsHeader.h" /// 猿题库的网络框架工具
 #import "GetImageApi.h"
