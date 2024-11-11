@@ -11,10 +11,12 @@
 /// 解压缩字符串
 -(NSString *)decompressToStr{
     NSError *error;
+    NSString *string = @"";
     NSData *data = [NSKeyedUnarchiver unarchivedObjectOfClass:NSData.class
                                                      fromData:self
                                                         error:&error];
-    NSString *string = data.stringByUTF8Encoding;
+    if(error) NSLog(@"%@",error.description);
+    if(data) string = data.stringByUTF8Encoding;
     return string;
 }
 

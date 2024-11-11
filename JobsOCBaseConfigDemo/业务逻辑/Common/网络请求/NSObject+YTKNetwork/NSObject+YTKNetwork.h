@@ -26,6 +26,7 @@
 
 /// 后端接口返回数据按照标准格式（msg、code、data）进行解析，取出有用字段（data）
 NS_INLINE JobsResponseModel *_Nullable JobsMapResponseModelBy(YTKBaseRequest *_Nonnull request){
+    JobsPrintURLRequest(request.originalRequest);
     return JobsResponseModel.byData(request.responseObject);
 }
 

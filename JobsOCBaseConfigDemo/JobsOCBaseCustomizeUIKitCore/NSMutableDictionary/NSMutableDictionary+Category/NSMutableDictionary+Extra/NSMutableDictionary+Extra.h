@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(jobsKeyValueBlock _Nonnull)add;
 -(jobsByIDBlock _Nonnull)saveDataBy;
+/// 打印的结果可以直接用于Postman
+-(NSString *)jsonString;
 
 @end
 

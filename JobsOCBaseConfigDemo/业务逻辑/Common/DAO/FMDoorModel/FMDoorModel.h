@@ -35,12 +35,14 @@ NSSecureCoding/// 解码
 @property(nonatomic,copy)NSString *captcha_output;
 @property(nonatomic,copy)NSString *countryCode;/// 国家编码两位码(中国CN、越南VN)-国家的ISO 3166-1 Alpha-2代码
 @property(nonatomic,copy)NSString *domain;
+@property(nonatomic,copy)NSString *domainName;/// 好友邀请域名
 @property(nonatomic,copy)NSString *gen_time;
 @property(nonatomic,copy)NSString *inviteCode;/// 代理邀请码
+@property(nonatomic,copy)NSString *inviteName;/// 好友邀请人账号
 @property(nonatomic,copy)NSString *lot_number;
 @property(nonatomic,copy)NSString *pass_token;
 @property(nonatomic,copy)NSString *password;/// 密码
-@property(nonatomic,copy)NSString *referCode;
+@property(nonatomic,copy)NSString *referCode;/// 好友邀请码
 @property(nonatomic,copy)NSString *smsCode;/// 短信验证码
 /// 获取短信验证码的请求参数
 @property(nonatomic,strong)NSNumber *actionType;

@@ -89,14 +89,15 @@
    actionBlock:(jobsByResponseModelBlock _Nullable)actionBlock /// 本层对success的解析回调
   successBlock:(jobsByResponseModelBlock _Nullable)successBlock /// 外层对success的解析回调
      failBlock:(jobsByVoidBlock _Nullable)failBlock{ /// 失败解析回调
-         JobsResponseModel *responseModel = JobsMapResponseModelBy(request);
-         if(responseModel.code == HTTPResponseCodeSuccess){
-             if(successBlock) successBlock(successData ? : responseModel);
-             if(actionBlock) actionBlock(responseModel);
-         }else{
-             self.jobsHandelNoSuccess(request);
-             if(failBlock) failBlock();
-         }
+    JobsResponseModel *responseModel = JobsMapResponseModelBy(request);
+    NSLog(@"%@",request.parameters.jsonString);/// 打印Body参数
+    if(responseModel.code == HTTPResponseCodeSuccess){
+        if(successBlock) successBlock(successData ? : responseModel);
+        if(actionBlock) actionBlock(responseModel);
+    }else{
+        self.jobsHandelNoSuccess(request);
+        if(failBlock) failBlock();
+    }
 }
 
 -(void)request:(YTKBaseRequest *)request

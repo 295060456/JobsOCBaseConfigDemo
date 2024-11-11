@@ -42,8 +42,10 @@
         _captcha_output = decoder.decodeStringBy(@"captcha_output");
         _countryCode = decoder.decodeStringBy(@"countryCode");
         _domain = decoder.decodeStringBy(@"domain");
+        _domainName = decoder.decodeStringBy(@"domainName");
         _gen_time = decoder.decodeStringBy(@"gen_time");
         _inviteCode = decoder.decodeStringBy(@"inviteCode");
+        _inviteName = decoder.decodeStringBy(@"inviteName");
         _lot_number = decoder.decodeStringBy(@"lot_number");
         _pass_token = decoder.decodeStringBy(@"pass_token");
         _password = decoder.decodeStringBy(@"password");
@@ -118,8 +120,10 @@
     [encoder encodeObject:self.captcha_output forKey:@"captcha_output"];
     [encoder encodeObject:self.countryCode forKey:@"countryCode"];
     [encoder encodeObject:self.domain forKey:@"domain"];
+    [encoder encodeObject:self.domainName forKey:@"domainName"];
     [encoder encodeObject:self.gen_time forKey:@"gen_time"];
     [encoder encodeObject:self.inviteCode forKey:@"inviteCode"];
+    [encoder encodeObject:self.inviteName forKey:@"inviteName"];
     [encoder encodeObject:self.lot_number forKey:@"lot_number"];
     [encoder encodeObject:self.pass_token forKey:@"pass_token"];
     [encoder encodeObject:self.password forKey:@"password"];

@@ -15,7 +15,7 @@
         @jobs_strongify(self)
         if(isNull(key)) return;
         if(!value) return;
-        if(key && value) [self setObject:value forKey:key];        
+        if(key && value) [self setObject:value forKey:key];
     };
 }
 
@@ -27,6 +27,20 @@
             [self setObject:model.data forKey:model.key];
         }
     };
+}
+/// 打印的结果可以直接用于Postman
+-(NSString *)jsonString{
+    NSError *error;
+    NSString *jsonString = @"";
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    if (!jsonData) {
+        NSLog(@"JSON转换失败: %@", error);
+    } else {
+        jsonString = [NSString.alloc initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", jsonString);
+    }return jsonString;
 }
 
 @end
