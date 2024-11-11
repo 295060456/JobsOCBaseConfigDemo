@@ -11,9 +11,10 @@
 
 -(void)setCode:(HTTPResponseCode)code{
     _code = code;
-    if(code == HTTPResponseCodeTokenExpire){
-        self.tokenExpire();
-    }
+    [self jobsHandelHTTPResponseCode:code
+                         actionBlock:^(HTTPResponseCode data) {
+        if(data == HTTPResponseCodeNoOK) toast(self.msg);
+    }];
 }
 
 @end

@@ -157,7 +157,7 @@
         /// Token 过期：登录已过期，请重新登录
         case HTTPResponseCodeTokenExpire:{
             NSLog(@"Token 过期");
-//                self.fm_tokenExpire();
+            self.tokenExpire();
         }break;
         /// 手机号码不存在
         case HTTPResponseCodePhoneNumberNotExist:{
