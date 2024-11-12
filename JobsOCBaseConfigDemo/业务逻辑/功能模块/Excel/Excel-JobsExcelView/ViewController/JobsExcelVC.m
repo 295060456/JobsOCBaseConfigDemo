@@ -93,7 +93,7 @@
                 data.XZExcelH = JobsExcelView.viewSizeByModel(nil).height;
                 data.XZExcelW = JobsExcelView.viewSizeByModel(nil).width;
                 data.itemW = JobsWidth(80);
-                data.topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                data.topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable arr) {
                     arr.add(JobsInternationalization(@"Order Time"));
                     arr.add(JobsInternationalization(@"Order No."));
                     arr.add(JobsInternationalization(@"Transaction Type"));

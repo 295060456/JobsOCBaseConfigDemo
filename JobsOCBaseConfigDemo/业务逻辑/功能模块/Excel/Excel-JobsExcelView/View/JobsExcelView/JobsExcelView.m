@@ -77,7 +77,7 @@
 -(UIImageView *)bgImageView{
     if(!_bgImageView){
         @jobs_weakify(self)
-        _bgImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+        _bgImageView = jobsMakeImageView(^(__kindof UIImageView *_Nullable imageView) {
             @jobs_strongify(self)
             imageView.image = JobsIMG(@"投注记录");
             [self addSubview:imageView];

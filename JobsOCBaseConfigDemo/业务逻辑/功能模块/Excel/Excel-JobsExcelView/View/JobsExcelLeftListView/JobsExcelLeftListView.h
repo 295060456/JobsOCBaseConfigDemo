@@ -28,7 +28,7 @@ UITableViewDelegate
 ,BaseViewProtocol
 >
 
-@property(nonatomic,strong,readonly)JobsExcelConfigureViewModel *_Nonnull excelConfigureData;
+@property(nonatomic,strong,nonnull,readonly)JobsExcelConfigureViewModel *excelConfigureData;
 
 @end
 

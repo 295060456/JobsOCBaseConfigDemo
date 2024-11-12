@@ -23,7 +23,7 @@ MianTableViewCellDelegate,
 BaseViewProtocol
 >
 
-@property(nonatomic,strong,readonly)JobsExcelConfigureViewModel *_Nonnull excelConfigureData;
+@property(nonatomic,strong,nonnull,readonly)JobsExcelConfigureViewModel *excelConfigureData;
 -(jobsByPointBlock _Nonnull)configureContentOffSet;
 
 @end

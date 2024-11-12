@@ -10,7 +10,7 @@
 
 @interface JobsExcelTopHeadView()
 
-@property(nonatomic,strong)JobsExcelConfigureViewModel *_Nonnull excelConfigureData;
+@property(nonatomic,strong,nonnull)JobsExcelConfigureViewModel *excelConfigureData;
 
 @end
 
@@ -36,7 +36,7 @@
 }
 #pragma mark —— UICollectionView 代理和数据源
 -(NSInteger)collectionView:(UICollectionView *)collectionView
-        numberOfItemsInSection:(NSInteger)section {
+    numberOfItemsInSection:(NSInteger)section {
     return self.excelConfigureData.rowNumber;
 }
 

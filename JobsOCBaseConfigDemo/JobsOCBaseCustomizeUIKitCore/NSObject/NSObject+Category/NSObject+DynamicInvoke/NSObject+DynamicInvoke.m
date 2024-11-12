@@ -217,7 +217,7 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
         /// 动态添加方法
         if (class_addMethod([target class], sel, (IMP)selectorImp, "v@:@@")) {
             objc_setAssociatedObject(target, sel, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
-            methodCache[selName] = NSValue.byPoint(sel);
+            methodCache[selName] = NSValue.byPointer(sel);
         } else {
             [NSException raise:JobsInternationalization(@"添加方法失败")
                         format:@"%@ selectorBlock error", target];

@@ -57,11 +57,11 @@
     };
 }
 #pragma mark —— UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x);
     if (scrollView.contentOffset.x >= 0) {
         /// 防止在数据拉完的情况下，无意义的往左拉动👈🏻
-        CGFloat d = (self.excelConfigureData.rowNumber * self.excelConfigureData.itemW - self.excelConfigureData.XZExcelW) + self.excelConfigureData.itemW + self.excelConfigureData.scrollOffsetX;
+        CGFloat d = (self.excelConfigureData.colNumber * self.excelConfigureData.itemW - self.excelConfigureData.XZExcelW) + self.excelConfigureData.itemW + self.excelConfigureData.scrollOffsetX;
         if(scrollView.contentOffset.x > d) scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
         @jobs_weakify(self)
         self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid",^(){

@@ -14,7 +14,7 @@
 @property(nonatomic,strong)CAShapeLayer *lineLayer;
 @property(nonatomic,strong)UIImageView *bgImageView_;
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel_;
+@property(nonatomic,strong)JobsExcelConfigureViewModel *excelConfigureData;
 @property(nonatomic,assign)CGSize size;
 
 @end
@@ -39,7 +39,7 @@
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
-        self.viewModel_ = viewModel;
+        self.excelConfigureData = viewModel;
         self.bgImageView_.alpha = 1;
         CGSize size = CGSizeMake(viewModel.itemW, viewModel.itemH);
         if (!CGSizeEqualToSize(self.size, size)) {
@@ -98,8 +98,8 @@
         @jobs_weakify(self)
         _lineLayer = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable data) {
             @jobs_strongify(self)
-            data.lineWidth = self.viewModel_.LineWidth;
-            data.strokeColor = self.viewModel_.cor6.CGColor;
+            data.lineWidth = self.excelConfigureData.LineWidth;
+            data.strokeColor = self.excelConfigureData.cor6.CGColor;
             data.path = self.linePath.CGPath;
             data.fillColor = JobsClearColor.colorWithAlphaComponent(0).CGColor;
         });
