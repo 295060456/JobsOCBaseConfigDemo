@@ -143,7 +143,7 @@
 -(NSMutableArray<UIButtonModel *> *)topHeaderDatas{
     if(!_topHeaderDatas){
         @jobs_weakify(self)
-        _topHeaderDatas = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _topHeaderDatas = jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
             @jobs_strongify(self)
             for (int y = 1; y <= self.contentArr[0].count ; y++) {
                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
@@ -159,21 +159,21 @@
     }return _topHeaderDatas;
 }
 /// 外界需要进行覆写
--(NSMutableArray<UIButtonModel *> *)leftListDatas{
+-(NSMutableArray <UIButtonModel *>*)leftListDatas{
     if(!_leftListDatas){
-        @jobs_weakify(self)
-        _leftListDatas = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            @jobs_strongify(self)
-            for (int y = 1; y <= self.contentArr.count ; y++) {
-                data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-                    @jobs_strongify(self)
-                    data1.title = toStringByInt(y).add(JobsInternationalization(@"楼"));
-                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-                    data1.titleCor = JobsWhiteColor;
-                    data1.baseBackgroundColor = y % 2 ? self.cor2 : self.cor1;
-                    data1.backgroundImage = y % 2 ? self.image2 : self.image1;
-                }));
-            }
+//        @jobs_weakify(self)
+        _leftListDatas = jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
+//            @jobs_strongify(self)
+//            for (int y = 1; y <= self.contentArr.count ; y++) {
+//                data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+//                    @jobs_strongify(self)
+//                    data1.title = toStringByInt(y).add(JobsInternationalization(@"楼"));
+//                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+//                    data1.titleCor = JobsWhiteColor;
+//                    data1.baseBackgroundColor = y % 2 ? self.cor2 : self.cor1;
+//                    data1.backgroundImage = y % 2 ? self.image2 : self.image1;
+//                }));
+//            }
         });
     }return _leftListDatas;
 }
@@ -273,6 +273,19 @@
 -(void)setTopHeaderTitles:(NSMutableArray <NSString *>*)topHeaderTitles{
     _topHeaderTitles = topHeaderTitles;
     self.colNumber = _topHeaderTitles.count;
+    @jobs_weakify(self)
+    self.topHeaderDatas = jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
+        for (int y = 0; y < topHeaderTitles.count ; y++) {
+            data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                @jobs_strongify(self)
+                data1.title = topHeaderTitles[y];
+                data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                data1.titleCor = self.cor4;
+                data1.baseBackgroundColor = self.cor3;
+                data1.backgroundImage = self.image3;
+            }));
+        }
+    });
 }
 @synthesize leftTitles = _leftTitles;
 -(NSMutableArray <NSString *>*)leftTitles{
