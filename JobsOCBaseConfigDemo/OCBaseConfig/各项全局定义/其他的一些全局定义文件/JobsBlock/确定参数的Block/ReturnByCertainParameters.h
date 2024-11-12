@@ -422,6 +422,7 @@ typedef float(^JobsReturnByFloatBlock)(float data);
 typedef float(^JobsReturnFloatByIDBlock)(id _Nullable data);
 
 typedef double(^JobsReturnDoubleByVoidBlock)(void);
+typedef double(^JobsReturnDoubleByNSIntegerBlock)(NSInteger data);
 typedef double(^JobsReturnByDoubleBlock)(double data);
 typedef double(^JobsReturnDoubleByIDBlock)(id _Nullable data);
 typedef double(^JobsReturnDoubleByStringBlock)(NSString *_Nullable data);

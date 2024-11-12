@@ -7,6 +7,7 @@
 //  特别鸣谢 https://github.com/Mephsito23/iOS-Excel-
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 #import "JobsBaseTableViewCell.h"
 #import "MainTableViewCellItem.h"
 
@@ -15,7 +16,7 @@
 @class UIButtonModel;
 
 @protocol MianTableViewCellDelegate <NSObject>
--(void)mianTableViewCellScrollerDid:(UIScrollView *)scrollview;
+-(void)mianTableViewCellScrollerDid:(UIScrollView *_Nullable)scrollview;
 @end
 
 @interface MainTableViewCell : JobsBaseTableViewCell
@@ -28,6 +29,6 @@ UICollectionViewDelegateFlowLayout
 /// Data
 @property(nonatomic,weak)NSObject <MianTableViewCellDelegate>*delegate;
 
--(void)scrollerItemWithContentOffset:(CGPoint )contentOffset;
+-(jobsByPointBlock _Nonnull)scrollerItemBy;
 
 @end

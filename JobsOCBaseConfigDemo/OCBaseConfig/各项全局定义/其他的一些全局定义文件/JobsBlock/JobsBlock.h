@@ -248,6 +248,9 @@ typedef void(^jobsByExcelConfigureViewModelBlock)(JobsExcelConfigureViewModel *_
 @class PopListBaseView;
 typedef void(^jobsByPopListBaseViewBlock)(PopListBaseView *_Nullable data);
 
+@class JobsExcelView;
+typedef void(^jobsByExcelViewBlock)(__kindof JobsExcelView *_Nullable view);
+
 @class JobsKeyValueModel;
 typedef void(^jobsByKeyValueModelBlock)(JobsKeyValueModel *_Nullable data);
 
@@ -416,6 +419,11 @@ typedef void(^jobsByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel
 
 @class FMPagerModel;
 typedef void(^jobsByPagerModelBlock)(__kindof FMPagerModel *_Nullable data);
+
+@class FMMyBetOrderDetailModel;
+typedef void(^jobsByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel *_Nullable data);
+typedef JobsExcelConfigureViewModel *_Nullable(^JobsReturnExcelConfigureDataByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel *_Nullable data);
+
 
 #endif /* JobsBlock_h */
 /*

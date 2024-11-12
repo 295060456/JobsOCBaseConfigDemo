@@ -24,51 +24,99 @@
     }return self;
 }
 #pragma mark —— lazyLoad
--(jobsByVoidBlock)configureData{
+/// 因为UI架构的原因，数据必须先行后列
+-(jobsByIDBlock _Nonnull)configureDataBy{
     @jobs_weakify(self)
-    if(!_configureData){
-        _configureData = ^() {
+    return ^(id _Nullable data){
+        @jobs_strongify(self)
+        /// 左边的标题
+        self.leftTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
+            data.add(@"1");
+            data.add(@"2");
+            data.add(@"3");
+            data.add(@"4");
+            data.add(@"5");
+            data.add(@"6");
+        });
+        self.leftListDatas = jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
             @jobs_strongify(self)
-            for (int i = 1; i < 50; i++) {/// y
-                self.contentArr.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable row) {
-                    for (int j = 1; j < (self.topHeaderTitles.count ? : 30) ; j++){/// x
-                        row.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-                            if(j == 1){
-                                model.title = self.topHeaderTitles[j];
-                            }else{
-                                model.title = toStringByInt(i * j);
-                            }
-
-                            if(j == 2){
-                                model.imagePlacement = NSDirectionalRectEdgeTrailing;
-                                model.imagePadding = JobsWidth(8);
-                                model.normalImage = JobsIMG(@"复制图标");
-                                model.clickEventBlock = ^id _Nullable(UIButton *_Nullable data) {
-                                    data.titleForNormalState.pasteboard();
-                                    return nil;
-                                };
-                                model.enabled = YES;
-                            }
-                            
-                            model.baseBackgroundColor = i % 2 ? self.cor2: self.cor1;
-                            model.backgroundImage = i % 2 ? self.image2: self.image1;
-                            model.titleCor = JobsWhiteColor;
-                            model.titleFont = UIFontWeightRegularSize(JobsWidth(10));
-                            
-                //            model.jobsTestBlock();
-                //            model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
-                //                return nil;
-                //            });
-                        }));/// 一行的数据
-                    }
+            for (int y = 1; y <= self.leftTitles.count ; y++) {
+                data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                    @jobs_strongify(self)
+                    data1.title = self.leftTitles[y - 1];
+                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                    data1.titleCor = JobsWhiteColor;
+                    data1.baseBackgroundColor = y % 2 ? self.cor2 : self.cor1;
+                    data1.backgroundImage = y % 2 ? self.image2 : self.image1;
                 }));
             }
-            
-            self.rowNumber = self.contentArr[0].count;
-            self.colNumber = self.contentArr.count;
-            NSLog(@"");
-        };
-    }return _configureData;
+        });
+        /// 头部标题
+        self.topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable arr) {
+            arr.add(JobsInternationalization(@"数字/标题"));
+            arr.add(JobsInternationalization(@"标题一"));
+            arr.add(JobsInternationalization(@"标题二"));
+            arr.add(JobsInternationalization(@"标题三"));
+            arr.add(JobsInternationalization(@"标题四"));
+            arr.add(JobsInternationalization(@"标题五"));
+            arr.add(JobsInternationalization(@"标题六"));
+            arr.add(JobsInternationalization(@"标题七"));
+            arr.add(JobsInternationalization(@"标题八"));
+            arr.add(JobsInternationalization(@"标题九"));
+        });
+        /// 第一个元素
+        self.data_00 = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            @jobs_strongify(self)
+            model.title = self.topHeaderTitles[0];
+            model.titleCor = self.cor4;
+            model.baseBackgroundColor = self.cor0;
+            model.backgroundImage = self.image0;
+        });
+        /// 因为第一个元素是00，所以少一个。实际取值从下标1开始
+        /// 先行后列
+        for (int i = 0; i < self.leftTitles.count; i++){/// 行
+            self.contentArr.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable colArr) {
+                @jobs_strongify(self)
+                for (int j = 1; j < self.topHeaderTitles.count ; j++){/// 列
+                    colArr.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+                        @jobs_strongify(self)
+                        model.title = self.leftTitles[i].add(@"@").add(self.topHeaderTitles[j]);
+                        if(j == 2){
+                            model.enabled = YES;
+                            model.imagePlacement = NSDirectionalRectEdgeTrailing;
+                            model.imagePadding = JobsWidth(8);
+                            model.normalImage = JobsIMG(@"复制图标");
+                            model.clickEventBlock = ^id _Nullable(UIButton *_Nullable data) {
+                                data.titleForNormalState.pasteboard();
+                                return nil;
+                            };
+                        }
+                        model.baseBackgroundColor = i % 2 ? self.cor2: self.cor1;
+                        model.backgroundImage = i % 2 ? self.image2: self.image1;
+                        model.titleCor = JobsWhiteColor;
+                        model.titleFont = UIFontWeightRegularSize(JobsWidth(10));
+                        NSLog(@"");
+                        model.jobsTestBlock();
+                        model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
+                            return nil;
+                        });
+                    }));
+                }
+            }));
+        }NSLog(@"");
+    };
+}
+
+-(NSInteger)rowNumber{
+    if(!_rowNumber){
+        _rowNumber = self.leftTitles.count + 1;
+    }return _rowNumber;
+}
+
+-(NSInteger)colNumber{
+    if(!_colNumber){
+        _colNumber = self.topHeaderTitles.count;
+    }return _colNumber;
 }
 
 -(NSMutableArray<NSMutableArray<UIButtonModel *> *> *)contentArr{
@@ -78,7 +126,7 @@
         });
     }return _contentArr;
 }
-
+/// 外界需要进行覆写
 -(UIButtonModel *)data_00{
     if(!_data_00){
         @jobs_weakify(self)
@@ -91,7 +139,7 @@
         });
     }return _data_00;
 }
-
+/// 外界需要进行覆写
 -(NSMutableArray<UIButtonModel *> *)topHeaderDatas{
     if(!_topHeaderDatas){
         @jobs_weakify(self)
@@ -110,7 +158,7 @@
         });
     }return _topHeaderDatas;
 }
-
+/// 外界需要进行覆写
 -(NSMutableArray<UIButtonModel *> *)leftListDatas{
     if(!_leftListDatas){
         @jobs_weakify(self)
@@ -213,21 +261,31 @@
         _image3 = JobsIMG(@"Excel表头的背景图");
     }return _image3;
 }
-
--(NSMutableArray<NSString *> *)topHeaderTitles{
+@synthesize topHeaderTitles = _topHeaderTitles;
+-(NSMutableArray <NSString *>*)topHeaderTitles{
     if(!_topHeaderTitles){
-        _topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
             
         });
     }return _topHeaderTitles;
 }
 
--(NSMutableArray<NSString *> *)leftTitles{
+-(void)setTopHeaderTitles:(NSMutableArray <NSString *>*)topHeaderTitles{
+    _topHeaderTitles = topHeaderTitles;
+    self.colNumber = _topHeaderTitles.count;
+}
+@synthesize leftTitles = _leftTitles;
+-(NSMutableArray <NSString *>*)leftTitles{
     if(!_leftTitles){
-        _leftTitles = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _leftTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
             
         });
     }return _leftTitles;
+}
+
+-(void)setLeftTitles:(NSMutableArray <NSString *>*)leftTitles{
+    _leftTitles = leftTitles;
+    self.rowNumber = _leftTitles.count + 1;
 }
 
 -(CGFloat)itemH{

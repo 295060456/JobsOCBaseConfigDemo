@@ -110,6 +110,7 @@ typedef void(^jobsByLongBlock)(long data);
 typedef void(^jobsByUnsignedLongBlock)(unsigned long data);
 typedef void(^jobsByUnsignedLongLongBlock)(unsigned long long data);
 #pragma mark —— 关于时间
+typedef void(^jobsByDateComponentsBlock)(NSDateComponents *_Nullable dateComponents);
 typedef void(^jobsByTimerBlock)(NSTimer *_Nullable timer);
 typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable dateFormatter);
 #pragma mark —— 手势

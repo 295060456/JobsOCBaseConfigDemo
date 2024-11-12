@@ -22,7 +22,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.tableView.reloadDatas();
+        self.tableView.alpha = 1;
     }return self;
 }
 #pragma mark —— BaseViewProtocol
@@ -32,6 +32,7 @@
         @jobs_strongify(self)
         self.excelConfigureData = model;
         self.tableView.rowHeight = model.itemH;
+        self.tableView.reloadDatas();
     };
 }
 #pragma mark —— UITableView 数据源
@@ -67,8 +68,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     /// 防止在初始情况下，无意义的往下拉动👇🏻
     if (scrollView.contentOffset.y < 0) {
         scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
-    }
-    if (scrollView.contentOffset.y >= 0) {
+    }else{
         /// 防止在初始情况下，无意义的往上拉动👆🏻
         CGFloat d = ((self.excelConfigureData.colNumber + 1) * self.excelConfigureData.itemH - self.excelConfigureData.XZExcelH) + self.excelConfigureData.scrollOffsetY;
         if(scrollView.contentOffset.y > d) {

@@ -50,12 +50,21 @@
         @jobs_strongify(self)
         if(data) self.viewModel_ = data;
         self->itemW = self.viewModel_.itemW;
-        
         self.bgImageView.alpha = 1;
         self.titleBtn.alpha = 1;
         self.headView.alpha = 1;
         self.leftListView.alpha = 1;
         self.contentView.alpha = 1;
+    };
+}
+
+-(jobsByIDBlock _Nonnull)update{
+    @jobs_weakify(self)
+    return ^(JobsExcelConfigureViewModel *_Nullable data) {
+        @jobs_strongify(self)
+        self.headView.jobsRichViewByModel(data);
+        self.leftListView.jobsRichViewByModel(data);
+        self.contentView.jobsRichViewByModel(data);
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -97,6 +106,7 @@
 
 - (JobsExcelLeftListView *)leftListView{
     if (!_leftListView) {
+        @jobs_weakify(self)
         _leftListView = JobsExcelLeftListView.new;
         [self addSubview:_leftListView];
         [_leftListView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -106,11 +116,18 @@
             make.bottom.equalTo(self);
         }];
         _leftListView.jobsRichViewByModel(self.viewModel_);
+        [_leftListView.racDisposable dispose];// 取消之前的订阅，避免多次重复订阅
+        _leftListView.racDisposable = [RACObserve(_leftListView.excelConfigureData, VerticalScrollValue)
+            subscribeNext:^(NSValue *scrollValue) {
+            @jobs_strongify(self)
+            self.contentView.tableView.contentOffset = scrollValue.CGPointValue;
+        }];
     }return _leftListView;
 }
 
 -(JobsExcelTopHeadView *)headView{
     if (!_headView) {
+        @jobs_weakify(self)
         _headView = JobsExcelTopHeadView.new;
         [self addSubview:_headView];
         [_headView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -120,11 +137,17 @@
             make.height.equalTo(self.titleBtn);
         }];
         _headView.jobsRichViewByModel(self.viewModel_);
+        [_headView.racDisposable dispose];// 取消之前的订阅，避免多次重复订阅
+        _headView.racDisposable = [RACObserve(_headView.excelConfigureData, HorizontalScrollValue) subscribeNext:^(id _Nullable x) {
+            @jobs_strongify(self)
+            self.contentView.configureContentOffSet([x CGPointValue]);
+        }];
     }return _headView;
 }
 
 -(JobsExcelContentView *)contentView{
     if (!_contentView) {
+        @jobs_weakify(self)
         _contentView = JobsExcelContentView.new;
         [self addSubview:_contentView];
         [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -132,7 +155,16 @@
             make.left.equalTo(self.headView);
             make.right.equalTo(self);
             make.bottom.equalTo(self);
-        }];_contentView.jobsRichViewByModel(self.viewModel_);
+        }];
+        _contentView.jobsRichViewByModel(self.viewModel_);
+        [_contentView.excelConfigureData.verticalScrollSignal subscribeNext:^(NSValue *value) {
+            @jobs_strongify(self)
+            self.leftListView.tableView.contentOffset = value.CGPointValue;
+        }];
+        [_contentView.excelConfigureData.horizontalScrollSignal subscribeNext:^(NSValue *value) {
+            @jobs_strongify(self)
+            self.headView.collectionView.contentOffset = value.CGPointValue;
+        }];
     }return _contentView;
 }
 

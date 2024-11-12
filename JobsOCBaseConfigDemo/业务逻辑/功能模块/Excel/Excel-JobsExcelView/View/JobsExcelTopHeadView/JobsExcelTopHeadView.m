@@ -22,7 +22,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.collectionView.reloadDatas();
+        self.collectionView.alpha = 1;
     }return self;
 }
 #pragma mark —— BaseViewProtocol
@@ -31,6 +31,7 @@
     return ^(JobsExcelConfigureViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.excelConfigureData = model;
+        self.collectionView.reloadDatas();
     };
 }
 #pragma mark —— UICollectionView 代理和数据源

@@ -8,11 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-#import "JobsExcelConfigureViewModel.h"
 #import "JobsExcelLeftListView.h"
 #import "JobsExcelTopHeadView.h"
 #import "JobsExcelContentView.h"
 
+#if __has_include(<ReactiveObjC/ReactiveObjC.h>)
+#import <ReactiveObjC/ReactiveObjC.h>
+#else
+#import "ReactiveObjC.h"
+#endif
+
+#import "JobsExcelConfigureViewModel.h"
+
 @interface JobsExcelView : UIView
 
 @end
+
+NS_INLINE __kindof JobsExcelView *_Nonnull jobsMakeExcelView(jobsByExcelViewBlock _Nonnull block){
+    JobsExcelView *data = JobsExcelView.alloc.init;
+    if (block) block(data);
+    return data;
+}

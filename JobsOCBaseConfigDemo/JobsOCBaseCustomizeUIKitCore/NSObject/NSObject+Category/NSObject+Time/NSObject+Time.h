@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (Time)
 /// 获取当日零点的时间戳（秒级）
 -(NSTimeInterval)todayZeroTime;
+/// 获取某天前零点的时间戳（秒级）
+-(JobsReturnDoubleByNSIntegerBlock _Nonnull)zeroTimeByDaysBefore;
 /// 返回的是（Double）时间戳
 -(NSTimeInterval)currentUnixTimeStamp;
 /// 返回的是（uint64_t）时间戳
@@ -119,13 +121,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param second 当前时间若干秒后
  参考资料：https://blog.csdn.net/autom_lishun/article/details/79094241
  */
--(NSArray *)dateStringAfterlocalDateForYear:(NSInteger)year
-                                      Month:(NSInteger)month
-                                        Day:(NSInteger)day
-                                       Hour:(NSInteger)hour
-                                     Minute:(NSInteger)minute
-                                     Second:(NSInteger)second
-                              timeFormatter:(NSString *_Nullable)timeFormatter;
+-(NSArray <NSString *>*)dateStringAfterlocalDateForYear:(NSInteger)year
+                                                  month:(NSInteger)month
+                                                    day:(NSInteger)day
+                                                   hour:(NSInteger)hour
+                                                 minute:(NSInteger)minute
+                                                 second:(NSInteger)second
+                                          timeFormatter:(NSString *_Nullable)timeFormatter;
 /// 判断是否当日第一次启动App
 -(BOOL)isFirstLaunchApp;
 /// 判断某个时间是否为  今天（系统时区）

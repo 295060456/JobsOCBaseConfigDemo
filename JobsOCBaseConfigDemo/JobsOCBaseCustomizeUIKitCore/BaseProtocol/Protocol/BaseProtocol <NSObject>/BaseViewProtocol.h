@@ -128,6 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel2;
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel;
 -(jobsByViewModelBlock _Nonnull)jobsRichViewByViewModel;
+-(jobsByIDBlock _Nonnull)update;
 /// 获取绑定的数据源
 -(UIViewModel *_Nullable)getViewModel;
 -(UIButtonModel *_Nullable)getButtonModel;

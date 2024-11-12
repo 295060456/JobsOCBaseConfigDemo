@@ -9,77 +9,76 @@
 #import "NSArray+Safety.h"
 
 @implementation NSArray (Safety)
-
-+ (void)initialize{
-    [super initialize];
-    // 替换不可变数组中的方法 objectAtIndex
-    Method oldObjectAtIndex = class_getInstanceMethod(objc_getClass("__NSArrayI"), @selector(objectAtIndex:));
-    Method newObjectAtIndex = class_getInstanceMethod(objc_getClass("__NSArrayI"), @selector(newObjectAtIndex:));
-    method_exchangeImplementations(oldObjectAtIndex, newObjectAtIndex);
-    // 替换不可变数组中的方法 []调用的方法
-    Method oldMutableObjectAtIndex = class_getInstanceMethod(objc_getClass("__NSArrayI"), @selector(objectAtIndexedSubscript:));
-    Method newMutableObjectAtIndex =  class_getInstanceMethod(objc_getClass("__NSArrayI"), @selector(newObjectAtIndexedSubscript:));
-    method_exchangeImplementations(oldMutableObjectAtIndex, newMutableObjectAtIndex);
-    // 替换可变数组中的方法 objectAtIndex
-    Method oldMObjectAtIndex = class_getInstanceMethod(objc_getClass("__NSArrayM"), @selector(objectAtIndex:));
-    Method newMObjectAtIndex = class_getInstanceMethod(objc_getClass("__NSArrayM"), @selector(newMutableObjectAtIndex:));
-    method_exchangeImplementations(oldMObjectAtIndex, newMObjectAtIndex);
-    // 替换可变数组中的方法  []调用的方法
-    Method oldMMutableObjectAtIndex = class_getInstanceMethod(objc_getClass("__NSArrayM"), @selector(objectAtIndexedSubscript:));
-    Method newMMutableObjectAtIndex =  class_getInstanceMethod(objc_getClass("__NSArrayM"), @selector(newMutableObjectAtIndexedSubscript:));
-    method_exchangeImplementations(oldMMutableObjectAtIndex, newMMutableObjectAtIndex);
+/// "__NSArrayI" 表示不可变数组类型
+/// "__NSArrayM" 表示可变数组类型
++(void)initialize{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+#pragma mark —— 替换不可变数组中的方法 objectAtIndex
+        method_exchangeImplementations(class_getInstanceMethod(objc_getClass("__NSArrayI"), @selector(objectAtIndex:)),
+                                       class_getInstanceMethod(objc_getClass("__NSArrayI"), @selector(safe_objectAtIndex:)));
+#pragma mark —— 替换不可变数组中的方法 []调用的方法
+        method_exchangeImplementations(class_getInstanceMethod(objc_getClass("__NSArrayI"), @selector(objectAtIndexedSubscript:)),
+                                       class_getInstanceMethod(objc_getClass("__NSArrayI"), @selector(safe_objectAtIndexedSubscript:)));
+#pragma mark —— 替换可变数组中的方法 objectAtIndex
+        method_exchangeImplementations(class_getInstanceMethod(objc_getClass("__NSArrayM"), @selector(objectAtIndex:)),
+                                       class_getInstanceMethod(objc_getClass("__NSArrayM"), @selector(safe_mutableObjectAtIndex:)));
+#pragma mark —— 替换可变数组中的方法 []调用的方法
+        method_exchangeImplementations(class_getInstanceMethod(objc_getClass("__NSArrayM"), @selector(objectAtIndexedSubscript:)),
+                                       class_getInstanceMethod(objc_getClass("__NSArrayM"), @selector(safe_mutableObjectAtIndexedSubscript:)));
+    });
 }
 
-- (id)newObjectAtIndex:(NSUInteger)index{
-    if (index > self.count - 1 || !self.count){
+-(id)safe_objectAtIndex:(NSUInteger)index{
+    if (index < self.count && self.count > 0) {
         @try {
-            return [self newObjectAtIndex:index];
+            return [self safe_objectAtIndex:index];
         } @catch (NSException *exception) {
-            NSLog(@"不可数组越界了");
+            NSLog(@"不可变数组越界访问");
             return nil;
-        } @finally {
-            
         }
-    }else return [self newObjectAtIndex:index];
+    }
+    NSLog(@"不可变数组为空或越界访问");
+    return nil;
 }
 
-- (id)newObjectAtIndexedSubscript:(NSUInteger)index{
-    if (index > self.count - 1 || !self.count){
+-(id)safe_objectAtIndexedSubscript:(NSUInteger)index {
+    if (index < self.count && self.count > 0) {
         @try {
-            return [self newObjectAtIndexedSubscript:index];
+            return [self safe_objectAtIndexedSubscript:index];
         } @catch (NSException *exception) {
-            NSLog(@"不可数组越界了");
+            NSLog(@"不可变数组越界访问");
             return nil;
-        } @finally {
-            
         }
-    }else return [self newObjectAtIndexedSubscript:index];
+    }
+    NSLog(@"不可变数组为空或越界访问");
+    return nil;
 }
 
-- (id)newMutableObjectAtIndex:(NSUInteger)index{
-    if (index > self.count - 1 || !self.count){
+- (id)safe_mutableObjectAtIndex:(NSUInteger)index {
+    if (index < self.count && self.count > 0) {
         @try {
-            return [self newMutableObjectAtIndex:index];
+            return [self safe_mutableObjectAtIndex:index];
         } @catch (NSException *exception) {
-            NSLog(@"可变数组越界了");
+            NSLog(@"可变数组越界访问");
             return nil;
-        } @finally {
-            
         }
-    } else return [self newMutableObjectAtIndex:index];
+    }
+    NSLog(@"可变数组为空或越界访问");
+    return nil;
 }
 
-- (id)newMutableObjectAtIndexedSubscript:(NSUInteger)index{
-    if (index > self.count - 1 || !self.count){
+-(id)safe_mutableObjectAtIndexedSubscript:(NSUInteger)index{
+    if (index < self.count && self.count > 0) {
         @try {
-            return [self newMutableObjectAtIndexedSubscript:index];
+            return [self safe_mutableObjectAtIndexedSubscript:index];
         } @catch (NSException *exception) {
-            NSLog(@"可变数组越界了");
+            NSLog(@"可变数组越界访问");
             return nil;
-        } @finally {
-            
         }
-    }else return [self newMutableObjectAtIndexedSubscript:index];
+    }
+    NSLog(@"可变数组为空或越界访问");
+    return nil;
 }
 
 @end

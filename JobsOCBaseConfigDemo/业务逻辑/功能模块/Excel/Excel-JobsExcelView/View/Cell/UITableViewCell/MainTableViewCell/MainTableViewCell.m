@@ -49,8 +49,12 @@
     };
 }
 
-- (void)scrollerItemWithContentOffset:(CGPoint)contentOffset{
-    self.collectionView.contentOffset = contentOffset;
+-(jobsByPointBlock _Nonnull)scrollerItemBy{
+    @jobs_weakify(self)
+    return ^(CGPoint contentOffset){
+        @jobs_strongify(self)
+        self.collectionView.contentOffset = contentOffset;
+    };
 }
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -80,7 +84,7 @@
     MainTableViewCellItem *cell = [MainTableViewCellItem cellWithCollectionView:collectionView
                                                                    forIndexPath:indexPath];
     cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-    NSLog(@"KKK1 = %ld-%@",self.indexPath.row + 1,self.model[0].text);
+    NSLog(@"KKK1 = %ld-%@",self.indexPath.row + 1,self.model[indexPath.row].title);
     cell.jobsRichElementsInCellWithModel(self.viewModel_);
     cell.jobsRichElementsInCellWithModel2(self.model[indexPath.row]);
     return cell;

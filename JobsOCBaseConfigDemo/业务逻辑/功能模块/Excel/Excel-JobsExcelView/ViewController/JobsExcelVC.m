@@ -80,27 +80,30 @@
 #pragma mark —— LazyLoad
 -(JobsExcelView *)excelView{
     if(!_excelView){
-        _excelView = JobsExcelView.new;
-        _excelView.backgroundColor = JobsRedColor;
-        [self.view addSubview:_excelView];
-        [_excelView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self.view);
-            make.size.mas_equalTo(JobsExcelView.viewSizeByModel(nil));
-        }];
-        _excelView.jobsRichViewByModel(jobsMakeExcelConfigureViewModel(^(JobsExcelConfigureViewModel * _Nullable data) {
-            data.XZExcelH = JobsExcelView.viewSizeByModel(nil).height;
-            data.XZExcelW = JobsExcelView.viewSizeByModel(nil).width;
-            data.itemW = JobsWidth(80);
-            
-            data.topHeaderTitles.add(JobsInternationalization(@"Order Time"));
-            data.topHeaderTitles.add(JobsInternationalization(@"Order No."));
-            data.topHeaderTitles.add(JobsInternationalization(@"Transaction Type"));
-            data.topHeaderTitles.add(JobsInternationalization(@"Amount"));
-            data.topHeaderTitles.add(JobsInternationalization(@"Method"));
-            data.topHeaderTitles.add(JobsInternationalization(@"Status"));
-            
-            data.configureData();
-        }));
+        @jobs_weakify(self)
+        _excelView = jobsMakeExcelView(^(__kindof JobsExcelView * _Nullable view) {
+            @jobs_strongify(self)
+            view.backgroundColor = JobsRedColor;
+            [self.view addSubview:view];
+            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(self.view);
+                make.size.mas_equalTo(JobsExcelView.viewSizeByModel(nil));
+            }];
+            view.jobsRichViewByModel(jobsMakeExcelConfigureViewModel(^(JobsExcelConfigureViewModel * _Nullable data) {
+                data.XZExcelH = JobsExcelView.viewSizeByModel(nil).height;
+                data.XZExcelW = JobsExcelView.viewSizeByModel(nil).width;
+                data.itemW = JobsWidth(80);
+                data.topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                    arr.add(JobsInternationalization(@"Order Time"));
+                    arr.add(JobsInternationalization(@"Order No."));
+                    arr.add(JobsInternationalization(@"Transaction Type"));
+                    arr.add(JobsInternationalization(@"Amount"));
+                    arr.add(JobsInternationalization(@"Method"));
+                    arr.add(JobsInternationalization(@"Status"));
+                });
+                data.configureDataBy(nil);
+            }));
+        });
     }return _excelView;
 }
 

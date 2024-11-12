@@ -11,20 +11,25 @@
 @implementation NSObject (Time)
 /// 获取当日零点的时间戳（秒级）
 -(NSTimeInterval)todayZeroTime{
-    /// 获取当前日历
-    NSCalendar *calendar = NSCalendar.currentCalendar;
-    /// 提取当前日期的年、月、日部分
-    NSDateComponents *components = [calendar components:(NSCalendarUnitYear |
-                                                         NSCalendarUnitMonth |
-                                                         NSCalendarUnitDay)
-                                               fromDate:NSDate.date];
-    /// 设置时间为今天的零点
-    NSDate *midnight = [calendar dateFromComponents:components];
     /// 获取今天零点的时间戳（秒级）
-    NSTimeInterval midnightTimestamp = midnight.timeIntervalSince1970;
+    NSTimeInterval midnightTimestamp = self._zeroTime.timeIntervalSince1970;
     /// 打印零点时间戳
     NSLog(@"今天零点的时间戳（秒级）：%.0f", midnightTimestamp);
     return midnightTimestamp;
+}
+/// 获取某天前零点的时间戳（秒级）
+-(JobsReturnDoubleByNSIntegerBlock _Nonnull)zeroTimeByDaysBefore{
+    @jobs_weakify(self)
+    return ^NSTimeInterval(NSInteger days){
+        @jobs_strongify(self)
+        /// 计算24小时前的零点
+        NSDate *dayBeforeMidnight = [self._zeroTime dateByAddingTimeInterval:-(days * 24 * 60 * 60)];
+        /// 获取24小时前零点的时间戳（秒级）
+        NSTimeInterval dayBeforeMidnightTimestamp = dayBeforeMidnight.timeIntervalSince1970;
+        /// 打印24小时前的零点时间戳
+        NSLog(@"24小时前零点的时间戳（秒级）：%.0f", dayBeforeMidnightTimestamp);
+        return dayBeforeMidnightTimestamp;
+    };
 }
 /// 返回的是（Double）时间戳
 -(NSTimeInterval)currentUnixTimeStamp{
@@ -536,45 +541,33 @@
  @param second 当前时间若干秒后
  参考资料：https://blog.csdn.net/autom_lishun/article/details/79094241
  */
--(NSArray *)dateStringAfterlocalDateForYear:(NSInteger)year
-                                      Month:(NSInteger)month
-                                        Day:(NSInteger)day
-                                       Hour:(NSInteger)hour
-                                     Minute:(NSInteger)minute
-                                     Second:(NSInteger)second
-                              timeFormatter:(NSString *_Nullable)timeFormatter{
-    NSDate *localDate = NSDate.date;
-    NSDateComponents *comps = NSDateComponents.new;
-    comps.year = year;
-    comps.month = month;
-    comps.day = day;
-    comps.hour = hour;
-    comps.minute = minute;
-    comps.second = second;
-    
+-(NSArray <NSString *>*)dateStringAfterlocalDateForYear:(NSInteger)year
+                                                  month:(NSInteger)month
+                                                    day:(NSInteger)day
+                                                   hour:(NSInteger)hour
+                                                 minute:(NSInteger)minute
+                                                 second:(NSInteger)second
+                                          timeFormatter:(NSString *_Nullable)timeFormatter{
     NSCalendar *calender = [NSCalendar.alloc initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDate *minDate = [calender dateByAddingComponents:comps
-                                                toDate:localDate
-                                               options:0];
-    NSDateFormatter *formatter = NSDateFormatter.new;
-    formatter.dateStyle = NSDateFormatterMediumStyle;
-    formatter.timeStyle = NSDateFormatterShortStyle;
-    
-    if (isNull(timeFormatter)) {
-        formatter.dateFormat = @"YYYY-MM-dd HH";
-    }else formatter.dateFormat = timeFormatter;
-
+    NSDate *minDate = [calender dateByAddingComponents:jobsMakeDateComponents(^(NSDateComponents * _Nullable dateComponents) {
+        dateComponents.year = year;
+        dateComponents.month = month;
+        dateComponents.day = day;
+        dateComponents.hour = hour;
+        dateComponents.minute = minute;
+        dateComponents.second = second;
+    })toDate:NSDate.date options:0];
     NSDateComponents *components = [calender components:NSCalendarUnitYear |
-                                                       NSCalendarUnitMonth |
-                                                         NSCalendarUnitDay |
-                                                        NSCalendarUnitHour
+                                    NSCalendarUnitMonth |
+                                    NSCalendarUnitDay |
+                                    NSCalendarUnitHour
                                                fromDate:minDate];
-    NSMutableArray *arr = NSMutableArray.array;
-    arr.add(toStringByLong(components.year));
-    arr.add(toStringByLong(components.month));
-    arr.add(toStringByLong(components.day));
-    arr.add(toStringByLong(components.hour));
-    return arr;
+    return jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable arr) {
+        arr.add(toStringByLong(components.year));
+        arr.add(toStringByLong(components.month));
+        arr.add(toStringByLong(components.day));
+        arr.add(toStringByLong(components.hour));
+    });
 }
 /// 判断是否当日第一次启动App
 -(BOOL)isFirstLaunchApp{
@@ -630,6 +623,18 @@
                 (long)components.minute,
                 (long)components.second];
     };
+}
+#pragma mark —— 一些私有方法
+-(NSDate *)_zeroTime{
+    /// 获取当前日历
+    NSCalendar *calendar = NSCalendar.currentCalendar;
+    /// 提取当前日期的年、月、日部分
+    NSDateComponents *components = [calendar components:(NSCalendarUnitYear |
+                                                         NSCalendarUnitMonth |
+                                                         NSCalendarUnitDay)
+                                               fromDate:NSDate.date];
+    /// 设置时间为今天的零点
+    return [calendar dateFromComponents:components];
 }
 
 @end

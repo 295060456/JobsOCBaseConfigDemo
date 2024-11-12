@@ -56,7 +56,7 @@
     }
 }
 #pragma mark —— MianTableViewCellDelegate
--(void)mianTableViewCellScrollerDid:(UIScrollView *)scrollview{
+-(void)mianTableViewCellScrollerDid:(UIScrollView *_Nullable)scrollview{
     if (scrollview.contentOffset.y != 0) {
         scrollview.contentOffset = CGPointMake(scrollview.contentOffset.x, 0);
         return;
@@ -67,11 +67,13 @@
 }
 #pragma mark —— 一些共有方法
 -(jobsByPointBlock _Nonnull)configureContentOffSet{
+    @jobs_weakify(self)
     return ^(CGPoint point){
+        @jobs_strongify(self)
         [self.tableView.visibleCells enumerateObjectsUsingBlock:^(__kindof MainTableViewCell *_Nonnull cell,
                                                                   NSUInteger idx,
                                                                   BOOL *_Nonnull stop) {
-            [cell scrollerItemWithContentOffset:point];
+            cell.scrollerItemBy(point);
         }];
     };
 }

@@ -24,6 +24,7 @@
 		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
 		8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */; };
 		8493F1ED2CD3A7E000011DD1 /* YTKChainRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1EB2CD3A7E000011DD1 /* YTKChainRequest+Extra.m */; };
+		84AA8F442CE32ACC0004501A /* NSArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60B92CA82C2D006D67A7 /* NSArray+Safety.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
 		84E401422CC60F4900C8303A /* This.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E401402CC60E7100C8303A /* This.m */; };
@@ -1180,6 +1181,7 @@
 		8493F1E92CD3A7E000011DD1 /* YTKCustomBaseRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YTKCustomBaseRequest.h; sourceTree = "<group>"; };
 		8493F1EA2CD3A7E000011DD1 /* YTKChainRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKChainRequest+Extra.h"; sourceTree = "<group>"; };
 		8493F1EB2CD3A7E000011DD1 /* YTKChainRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKChainRequest+Extra.m"; sourceTree = "<group>"; };
+		84AA8F462CE330310004501A /* JobsMakes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsMakes.h; sourceTree = "<group>"; };
 		84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMBannerAdsModel.h; sourceTree = "<group>"; };
 		84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMBannerAdsModel.m; sourceTree = "<group>"; };
 		84E4013B2CC60D3100C8303A /* This+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "This+URLManager_Base.h"; sourceTree = "<group>"; };
@@ -12700,6 +12702,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
+				84AA8F462CE330310004501A /* JobsMakes.h */,
 				845C913A2CDF70BA0067105A /* NSCoder */,
 				845813E52CDE024B00B3C038 /* WKWebView */,
 				8439F3382CD8A49000319E4A /* UIGestureRecognizer */,
@@ -15711,6 +15714,7 @@
 				CE4F28222CA825CD002AF25B /* ScheduleCell.m in Sources */,
 				CE5A64C42CA82F50006D67A7 /* NSObject+DynamicInvoke.m in Sources */,
 				CE4F28232CA825CD002AF25B /* MSCommentTableHeaderFooterView.m in Sources */,
+				84AA8F442CE32ACC0004501A /* NSArray+Safety.m in Sources */,
 				CECE7ECC2C450E5B00764AF5 /* WMZBannerView.m in Sources */,
 				CECE7EB72C450E5B00764AF5 /* TKPermissionHealth.m in Sources */,
 				CECE7E7D2C450E5B00764AF5 /* JXCategoryTimelineCellModel.m in Sources */,

@@ -59,9 +59,9 @@
 
 - (void)drawLineWithSize:(CGSize)size{
     // 其他点
-    [self.linePath addLineToPoint:CGPointMake(size.width, 0)];
-    [self.linePath addLineToPoint:CGPointMake(size.width, size.height)];
-    [self.linePath addLineToPoint:CGPointMake(0, size.height)];
+    self.linePath.add(CGPointMake(size.width, 0));
+    self.linePath.add(CGPointMake(size.width, size.height));
+    self.linePath.add(CGPointMake(0, size.height));
     
     [self.linePath stroke];
     
@@ -69,35 +69,40 @@
     [self.linePath stroke];
     UIGraphicsEndImageContext();
 
-    [self.btn.layer addSublayer:self.lineLayer];
+    self.btn.layer.add(self.lineLayer);
 }
 #pragma mark —— lazyLoad
 -(UIImageView *)bgImageView_{
     if(!_bgImageView_){
-        _bgImageView_ = UIImageView.new;
-        _bgImageView_.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-//        _bgImageView_.image = JobsIMG(@"投注记录");
-        [self.contentView addSubview:_bgImageView_];
-        [_bgImageView_ mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-        }];
+        _bgImageView_ = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            imageView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+    //        imageView.image = JobsIMG(@"投注记录");
+            [self.contentView addSubview:imageView];
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+            }];
+        });
     }return _bgImageView_;
 }
 
 -(UIBezierPath *)linePath{
     if(!_linePath){
-        _linePath = UIBezierPath.bezierPath;
-        [_linePath moveToPoint:CGPointMake(0, 0)];
+        _linePath = jobsMakeBezierPath(^(__kindof UIBezierPath * _Nullable data) {
+            data.moveTo(CGPointZero);
+        });
     }return _linePath;
 }
 
 -(CAShapeLayer *)lineLayer{
     if(!_lineLayer){
-        _lineLayer = CAShapeLayer.layer;
-        _lineLayer.lineWidth = self.viewModel_.LineWidth;
-        _lineLayer.strokeColor = self.viewModel_.cor6.CGColor;
-        _lineLayer.path = self.linePath.CGPath;
-        _lineLayer.fillColor = JobsClearColor.colorWithAlphaComponent(0).CGColor;
+        @jobs_weakify(self)
+        _lineLayer = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable data) {
+            @jobs_strongify(self)
+            data.lineWidth = self.viewModel_.LineWidth;
+            data.strokeColor = self.viewModel_.cor6.CGColor;
+            data.path = self.linePath.CGPath;
+            data.fillColor = JobsClearColor.colorWithAlphaComponent(0).CGColor;
+        });
     }return _lineLayer;
 }
 

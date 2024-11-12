@@ -26,7 +26,7 @@
                                        BOOL *stop) {
         [str appendFormat:@"%@,",obj];
     }];
-    //删除最后一个','
+    /// 删除最后一个','
     NSString *strForRight = [str substringWithRange:NSMakeRange(0, str.length - 1)];
     return strForRight;
 }
