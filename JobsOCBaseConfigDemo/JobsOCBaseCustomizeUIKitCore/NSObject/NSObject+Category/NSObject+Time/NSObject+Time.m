@@ -43,6 +43,23 @@
 -(NSString *)currentTimestampString{
     return self.dateFormatter.date(NSDate.date);
 }
+/// 获取某天前的时间。默认时间格式 yyyy-MM-dd HH:mm:ss
+-(NSString *)timeAgo:(NSInteger)timeAgo dateFormat:(NSString *_Nullable)dateFormat{
+    if(isNull(dateFormat)) dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    return [jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
+        dateFormatter.dateFormat = dateFormat;
+    }) stringFromDate:[NSCalendar.currentCalendar dateByAddingComponents:jobsMakeDateComponents(^(NSDateComponents * _Nullable dateComponents) {
+        dateComponents.day = -timeAgo; // 设置为timeAgo天前
+    }) toDate:NSDate.date options:0]];
+}
+/// 获取某天前的时间。时间格式 yyyy-MM-dd HH:mm:ss
+-(JobsReturnStringByIntegerBlock _Nonnull)daysAgoBy{
+    @jobs_weakify(self)
+    return ^__kindof NSString *_Nullable(NSInteger timeAgo){
+        @jobs_strongify(self)
+        return [self timeAgo:timeAgo dateFormat:nil];
+    };
+}
 #pragma mark —— 时间格式转换
 /// 时间格式
 -(NSDateFormatter *)dateFormatter{

@@ -29,6 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(uint64_t)currentUnixTimeStampInMilliseconds;
 /// 返回带时间格式的当前时间字符串
 -(NSString *)currentTimestampString;
+/// 获取某天前的时间。默认时间格式 yyyy-MM-dd HH:mm:ss
+-(NSString *)timeAgo:(NSInteger)timeAgo dateFormat:(NSString *_Nullable)dateFormat;
+/// 获取某天前的时间。时间格式 yyyy-MM-dd HH:mm:ss
+-(JobsReturnStringByIntegerBlock _Nonnull)daysAgoBy;
 #pragma mark —— 时间格式转换
 /// 时间格式
 -(NSDateFormatter *)dateFormatter;
