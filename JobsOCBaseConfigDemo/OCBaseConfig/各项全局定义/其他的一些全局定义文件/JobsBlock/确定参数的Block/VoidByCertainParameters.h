@@ -27,7 +27,7 @@ typedef void(^jobsByCAGradientLayerBlock)(__kindof CAGradientLayer *_Nullable da
 typedef void(^jobsByCABasicAnimationBlock)(__kindof CABasicAnimation *_Nullable data);
 #pragma mark —— 关于View
 typedef void(^jobsByViewBlock)(__kindof UIView *_Nullable view);
-typedef void(^jobsByScrollViewBlock)(UIScrollView *_Nullable scrollView);
+typedef void(^jobsByScrollViewBlock)(__kindof UIScrollView *_Nullable scrollView);
 typedef void(^jobsByBtnBlock)(__kindof UIButton *_Nullable btn);
 typedef void(^jobsByWindowBlock)(__kindof UIWindow *_Nullable data);
 typedef void(^jobsByLabelBlock)(__kindof UILabel *_Nullable label);

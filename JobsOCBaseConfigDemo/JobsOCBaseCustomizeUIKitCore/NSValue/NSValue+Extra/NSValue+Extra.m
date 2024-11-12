@@ -15,9 +15,15 @@
     };
 }
 
-+(JobsReturnValueByPointBlock _Nonnull)byPoint{
++(JobsReturnValueByPointerBlock _Nonnull)byPointer{
     return ^NSValue *_Nullable(const void *_Nullable data){
         return [NSValue valueWithPointer:data];
+    };
+}
+
++(JobsReturnValueByPointBlock _Nonnull)byPoint{
+    return ^NSValue *_Nullable(CGPoint data){
+        return [NSValue valueWithCGPoint:data];
     };
 }
 

@@ -75,7 +75,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, d);
         }
         if(scrollView.contentOffset.y <= d) {
-            self.excelConfigureData.VerticalScrollValue = [NSValue valueWithCGPoint:scrollView.contentOffset];
+            self.excelConfigureData.VerticalScrollValue = NSValue.byPoint(scrollView.contentOffset);
         }
     }
 }

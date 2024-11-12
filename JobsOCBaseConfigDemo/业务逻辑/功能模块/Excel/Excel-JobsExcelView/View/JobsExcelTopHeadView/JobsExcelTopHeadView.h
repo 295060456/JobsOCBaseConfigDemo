@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewProtocol.h"
+#import "NSValue+Extra.h"
 
 #import "JobsTopViewItem.h"
 #import "JobsExcelConfigureViewModel.h"

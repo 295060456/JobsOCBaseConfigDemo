@@ -275,7 +275,7 @@
     self.colNumber = _topHeaderTitles.count;
     @jobs_weakify(self)
     self.topHeaderDatas = jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
-        for (int y = 0; y < topHeaderTitles.count ; y++) {
+        for (int y = 1; y < topHeaderTitles.count ; y++) {
             data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
                 @jobs_strongify(self)
                 data1.title = topHeaderTitles[y];

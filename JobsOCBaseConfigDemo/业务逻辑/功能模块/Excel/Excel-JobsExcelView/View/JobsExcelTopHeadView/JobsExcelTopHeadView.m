@@ -58,7 +58,7 @@
 }
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    self.excelConfigureData.HorizontalScrollValue = [NSValue valueWithCGPoint:scrollView.contentOffset];
+    self.excelConfigureData.HorizontalScrollValue = NSValue.byPoint(scrollView.contentOffset);
     NSLog(@"JobsExcelTopHeadView - scrollView.contentOffset.x = %f", scrollView.contentOffset.x);
     /// 防止在初始情况下，无意义的往右拉动👉🏻
     if (scrollView.contentOffset.x < 0) scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);

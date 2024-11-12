@@ -72,7 +72,8 @@ typedef __kindof NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByVoidBlock)
 
 #pragma mark —— 关于 NSValue
 typedef NSValue *_Nullable(^JobsReturnValueByCGSizeBlock)(CGSize data);
-typedef NSValue *_Nullable(^JobsReturnValueByPointBlock)(const void *_Nullable data);
+typedef NSValue *_Nullable(^JobsReturnValueByPointerBlock)(const void *_Nullable data);
+typedef NSValue *_Nullable(^JobsReturnValueByPointBlock)(CGPoint data);
 
 #pragma mark —— 关于按钮配置信息
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByFontBlock)(UIFont *_Nullable data);

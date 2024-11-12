@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSValue (Extra)
 
 +(JobsReturnValueByCGSizeBlock _Nonnull)bySize;
++(JobsReturnValueByPointerBlock _Nonnull)byPointer;
 +(JobsReturnValueByPointBlock _Nonnull)byPoint;
 
 @end

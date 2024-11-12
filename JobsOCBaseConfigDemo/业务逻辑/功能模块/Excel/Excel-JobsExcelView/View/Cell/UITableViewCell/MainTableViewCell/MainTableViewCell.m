@@ -62,19 +62,18 @@
     if (scrollView.contentOffset.x >= 0) {
         /// 防止在数据拉完的情况下，无意义的往左拉动👈🏻
         CGFloat d = (self.excelConfigureData.rowNumber * self.excelConfigureData.itemW - self.excelConfigureData.XZExcelW) + self.excelConfigureData.itemW + self.excelConfigureData.scrollOffsetX;
-        
         if(scrollView.contentOffset.x > d) scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
         @jobs_weakify(self)
-        self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid:",^(){
+        self.delegate.jobsDelegate(@"mianTableViewCellScrollerDid",^(){
             @jobs_strongify(self)
-            [self.delegate mianTableViewCellScrollerDid:scrollView];
+            self.delegate.mianTableViewCellScrollerDid(scrollView);
         });
     }else{
         /// 防止在数据拉完的情况下，无意义的往右拉动👉🏻
         scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
     }
 }
-#pragma mark —— lazyLoadUICollectionView 代理和数据源
+#pragma mark —— UICollectionView 代理和数据源
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section{
     return self.datas.count;

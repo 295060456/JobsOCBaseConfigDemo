@@ -16,7 +16,7 @@
 @class UIButtonModel;
 
 @protocol MianTableViewCellDelegate <NSObject>
--(void)mianTableViewCellScrollerDid:(UIScrollView *_Nullable)scrollview;
+-(jobsByScrollViewBlock _Nonnull)mianTableViewCellScrollerDid;
 @end
 
 @interface MainTableViewCell : JobsBaseTableViewCell

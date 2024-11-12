@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewProtocol.h"
 #import "JobsBlock.h"
+#import "NSValue+Extra.h"
 
 #import "JobsExcelConfigureViewModel.h"
 #import "MainTableViewCell.h"

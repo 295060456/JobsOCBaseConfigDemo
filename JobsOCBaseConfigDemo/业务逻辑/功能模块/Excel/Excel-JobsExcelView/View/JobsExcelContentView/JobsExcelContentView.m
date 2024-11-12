@@ -51,19 +51,23 @@
 #pragma mark —— UIScrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView == self.tableView) {
-        [self.excelConfigureData.verticalScrollSignal sendNext:[NSValue valueWithCGPoint:scrollView.contentOffset]];
+        [self.excelConfigureData.verticalScrollSignal sendNext:NSValue.byPoint(scrollView.contentOffset)];
         self.configureContentOffSet(self.contentOffenset);
     }
 }
 #pragma mark —— MianTableViewCellDelegate
--(void)mianTableViewCellScrollerDid:(UIScrollView *_Nullable)scrollview{
-    if (scrollview.contentOffset.y != 0) {
-        scrollview.contentOffset = CGPointMake(scrollview.contentOffset.x, 0);
-        return;
-    }
-    self.contentOffenset = scrollview.contentOffset;
-    [self.excelConfigureData.horizontalScrollSignal sendNext:[NSValue valueWithCGPoint:scrollview.contentOffset]];
-    self.configureContentOffSet(scrollview.contentOffset);
+-(jobsByScrollViewBlock _Nonnull)mianTableViewCellScrollerDid{
+    @jobs_weakify(self)
+    return ^(__kindof UIScrollView *_Nullable scrollView){
+        @jobs_strongify(self)
+        if (scrollView.contentOffset.y != 0) {
+            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
+            return;
+        }
+        self.contentOffenset = scrollView.contentOffset;
+        [self.excelConfigureData.horizontalScrollSignal sendNext:NSValue.byPoint(scrollView.contentOffset)];
+        self.configureContentOffSet(scrollView.contentOffset);
+    };
 }
 #pragma mark —— 一些共有方法
 -(jobsByPointBlock _Nonnull)configureContentOffSet{
