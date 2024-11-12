@@ -10,7 +10,7 @@
 
 @interface MainTableViewCellItem()
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel_;
+@property(nonatomic,strong)JobsExcelConfigureViewModel *excelConfigureData;
 @property(nonatomic,assign)CGSize size;
 
 @end
@@ -42,7 +42,7 @@
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
-        self.viewModel_ = viewModel;
+        self.excelConfigureData = viewModel;
         CGSize size = CGSizeMake(viewModel.itemW - 1.0f, viewModel.itemH - 1.0f);
         if (!CGSizeEqualToSize(self.size, size)) {
             self.size = size;

@@ -80,9 +80,6 @@
         return CGSizeMake(JobsWidth(106), JobsWidth(30));
     };
 }
-#pragma mark —— 一些私有方法
-#pragma mark —— 一些公有方法
-
 #pragma mark —— lazyLoad
 -(BaseButton *)btn{
     @jobs_weakify(self)
@@ -101,45 +98,24 @@
         /// 主标题
         _btn.jobsResetBtnTitle(self.viewModel.textModel.text);
         _btn.jobsResetBtnTitleCor(self.viewModel.textModel.textCor);
-        [_btn jobsSetBtnTitleFont:self.viewModel.textModel.font ? : UIFontWeightSemiboldSize(12)
-                      btnTitleCor:self.viewModel.textModel.textCor ? : JobsBlueColor];
+        _btn.jobsResetBtnTitleFont(self.viewModel.textModel.font);
         /// 子标题
-        _btn.jobsResetSubTitle(self.viewModel.subTextModel.text);
-        [_btn jobsSetBtnSubTitleFont:self.viewModel.subTextModel.font ? : UIFontWeightSemiboldSize(12)
-                      btnSubTitleCor:self.viewModel.subTextModel.textCor ? : JobsBlueColor];
-        
+        _btn.jobsResetBtnSubTitle(self.viewModel.subTextModel.text);
+        _btn.jobsResetBtnSubTitleCor(self.viewModel.subTextModel.textCor);
+        _btn.jobsResetBtnSubTitleFont(self.viewModel.subTextModel.font);
+        /// 点击事件
         [_btn jobsBtnClickEventBlock:self.viewModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
             return nil;
         }];
-        
+        /// 长按事件
         [_btn jobsBtnLongPressGestureEventBlock:self.viewModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *x) {
 //            @jobs_strongify(self)
             return nil;
         }];
-        /// 按钮图
-        if (self.viewModel.normalImageURL) {
-            self->_btn
-                .imageURL(self.viewModel.normalImageURLString.imageURLPlus.jobsUrl)
-                .placeholderImage(self.viewModel.normalImage)
-                .options(self.makeSDWebImageOptions)
-                .completed(^(UIImage *_Nullable image,
-                             NSError *_Nullable error,
-                             SDImageCacheType cacheType,
-                             NSURL *_Nullable imageURL) {
-                    if (error) {
-                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
-                    } else {
-                        NSLog(@"图片加载成功");
-                    }
-                }).normalLoad();
-        }else{
-            _btn.jobsResetImage(self.viewModel.image);
-        }
         /// 背景色
         _btn.jobsResetBtnBgCor(self.viewModel.bgCor);
-        _btn.backgroundColor = self.viewModel.bgCor;
         /// 背景图
         if(self.viewModel.normalBgImageURL){
             self->_btn
@@ -158,6 +134,25 @@
                 }).bgNormalLoad();
         }else{
             _btn.jobsResetBtnBgImage(self.viewModel.backgroundImage);
+        }
+        /// 按钮图
+        if (self.viewModel.normalImageURL) {
+            self->_btn
+                .imageURL(self.viewModel.normalImageURLString.imageURLPlus.jobsUrl)
+                .placeholderImage(self.viewModel.normalImage)
+                .options(self.makeSDWebImageOptions)
+                .completed(^(UIImage *_Nullable image,
+                             NSError *_Nullable error,
+                             SDImageCacheType cacheType,
+                             NSURL *_Nullable imageURL) {
+                    if (error) {
+                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                    } else {
+                        NSLog(@"图片加载成功");
+                    }
+                }).normalLoad();
+        }else{
+            _btn.jobsResetImage(self.viewModel.image);
         }
         /// 图文间距
         if (@available(iOS 16.0, *)) {
@@ -178,9 +173,27 @@
     if(self.buttonModel){
         _btn.selected = self.buttonModel.jobsSelected;
         _btn.enabled = self.buttonModel.enabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
+        /// 主标题
+        _btn.jobsResetBtnTitle(self.buttonModel.title);
+        _btn.jobsResetBtnTitleCor(self.buttonModel.titleCor);
+        _btn.jobsResetBtnTitleFont(self.buttonModel.titleFont);
+        /// 子标题
+        _btn.jobsResetBtnSubTitle(self.buttonModel.subTitle);
+        _btn.jobsResetBtnSubTitleCor(self.buttonModel.subTitleCor);
+        _btn.jobsResetBtnSubTitleFont(self.buttonModel.subTitleFont);
+        /// 点击事件
+        [_btn jobsBtnClickEventBlock:self.buttonModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
+            @jobs_strongify(self)
+            if (self.objectBlock) self.objectBlock(x);
+            return nil;
+        }];
+        /// 长按事件
+        [_btn jobsBtnLongPressGestureEventBlock:self.buttonModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *x) {
+//            @jobs_strongify(self)
+            return nil;
+        }];
         /// 背景色
         _btn.jobsResetBtnBgCor(self.buttonModel.baseBackgroundColor);
-//        _btn.backgroundColor = self.buttonModel.baseBackgroundColor;
         /// 背景图
         if(self.buttonModel.normalBgImageURL){
             self->_btn
@@ -200,9 +213,6 @@
         }else{
             _btn.jobsResetBtnBgImage(self.buttonModel.backgroundImage);
         }
-        /// 主标题
-        _btn.jobsResetBtnTitle(self.buttonModel.title);
-        _btn.jobsResetBtnTitleCor(self.buttonModel.titleCor);
         /// 按钮图
         if (self.buttonModel.normalImageURL) {
             self->_btn
@@ -222,21 +232,6 @@
         }else{
             _btn.jobsResetImage(self.buttonModel.normalImage);
         }
-        /// 子标题
-        _btn.jobsResetSubTitle(self.buttonModel.subTitle);
-        [_btn jobsSetBtnSubTitleFont:self.buttonModel.subTitleFont ? : UIFontWeightSemiboldSize(12)
-                      btnSubTitleCor:self.buttonModel.subTitleCor ? : JobsBlueColor];
-        
-        [_btn jobsBtnClickEventBlock:self.buttonModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
-        
-        [_btn jobsBtnLongPressGestureEventBlock:self.buttonModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *x) {
-//            @jobs_strongify(self)
-            return nil;
-        }];
         /// 图文间距
         if (@available(iOS 16.0, *)) {
             _btn.jobsResetImagePadding(self.buttonModel.imagePadding);

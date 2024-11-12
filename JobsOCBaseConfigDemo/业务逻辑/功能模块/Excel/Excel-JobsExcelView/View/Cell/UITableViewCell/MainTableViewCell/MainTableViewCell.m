@@ -10,8 +10,8 @@
 
 @interface MainTableViewCell()
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel_;
-@property(nonatomic,strong)NSMutableArray <UIButtonModel *>*model;
+@property(nonatomic,strong)JobsExcelConfigureViewModel *excelConfigureData;
+@property(nonatomic,strong)NSMutableArray <UIButtonModel *>*datas;
 
 @end
 
@@ -36,7 +36,7 @@
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
-        self.viewModel_ = viewModel;
+        self.excelConfigureData = viewModel;
     };
 }
 
@@ -44,7 +44,7 @@
     @jobs_weakify(self)
     return ^(NSMutableArray <UIButtonModel *>*_Nullable model) {
         @jobs_strongify(self)
-        self.model = model;
+        self.datas = model;
         self.collectionView.reloadDatas();
     };
 }
@@ -63,7 +63,7 @@
     if (scrollView.contentOffset.x < 0) scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
     if (scrollView.contentOffset.x >= 0) {
         /// 防止在数据拉完的情况下，无意义的往左拉动👈🏻
-        CGFloat d = (self.viewModel_.rowNumber * self.viewModel_.itemW - self.viewModel_.XZExcelW) + self.viewModel_.itemW + self.viewModel_.scrollOffsetX;
+        CGFloat d = (self.excelConfigureData.rowNumber * self.excelConfigureData.itemW - self.excelConfigureData.XZExcelW) + self.excelConfigureData.itemW + self.excelConfigureData.scrollOffsetX;
         
         if(scrollView.contentOffset.x > d) scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
         @jobs_weakify(self)
@@ -76,7 +76,7 @@
 #pragma mark —— lazyLoadUICollectionView 代理和数据源
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section{
-    return self.model.count;
+    return self.datas.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -84,16 +84,16 @@
     MainTableViewCellItem *cell = [MainTableViewCellItem cellWithCollectionView:collectionView
                                                                    forIndexPath:indexPath];
     cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-    NSLog(@"KKK1 = %ld-%@",self.indexPath.row + 1,self.model[indexPath.row].title);
-    cell.jobsRichElementsInCellWithModel(self.viewModel_);
-    cell.jobsRichElementsInCellWithModel2(self.model[indexPath.row]);
+    NSLog(@"KKK1 = %ld-%@",self.indexPath.row + 1,self.datas[indexPath.row].title);
+    cell.jobsRichElementsInCellWithModel(self.excelConfigureData);
+    cell.jobsRichElementsInCellWithModel2(self.datas[indexPath.row]);
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(self.viewModel_.itemW, self.viewModel_.itemH);
+    return CGSizeMake(self.excelConfigureData.itemW, self.excelConfigureData.itemH);
 }
 #pragma mark —— lazyLoad
 /// BaseViewProtocol
@@ -103,11 +103,10 @@
         @jobs_weakify(self)
         _collectionView = [UICollectionView.alloc initWithFrame:self.bounds
                                            collectionViewLayout:jobsMakeHorizontalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
-            @jobs_strongify(self)
             data.itemSize = jobsMakeCGSizeByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
                 @jobs_strongify(self)
-                data.jobsWidth = self.viewModel_.itemW;
-                data.jobsHeight = self.viewModel_.itemH;
+                data.jobsWidth = self.excelConfigureData.itemW;
+                data.jobsHeight = self.excelConfigureData.itemH;
             });
             data.minimumLineSpacing = 0;
             data.minimumInteritemSpacing = 0;
