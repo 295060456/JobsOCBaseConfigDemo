@@ -59,8 +59,6 @@
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x);
-    /// 防止在数据拉完的情况下，无意义的往右拉动👉🏻
-    if (scrollView.contentOffset.x < 0) scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
     if (scrollView.contentOffset.x >= 0) {
         /// 防止在数据拉完的情况下，无意义的往左拉动👈🏻
         CGFloat d = (self.excelConfigureData.rowNumber * self.excelConfigureData.itemW - self.excelConfigureData.XZExcelW) + self.excelConfigureData.itemW + self.excelConfigureData.scrollOffsetX;
@@ -71,6 +69,9 @@
             @jobs_strongify(self)
             [self.delegate mianTableViewCellScrollerDid:scrollView];
         });
+    }else{
+        /// 防止在数据拉完的情况下，无意义的往右拉动👉🏻
+        scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
     }
 }
 #pragma mark —— lazyLoadUICollectionView 代理和数据源
