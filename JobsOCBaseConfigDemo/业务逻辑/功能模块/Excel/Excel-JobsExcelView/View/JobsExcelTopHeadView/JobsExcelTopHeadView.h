@@ -29,3 +29,9 @@ BaseViewProtocol
 @property(nonatomic,strong,readonly)JobsExcelConfigureViewModel *_Nonnull excelConfigureData;
 
 @end
+
+NS_INLINE __kindof JobsExcelTopHeadView *_Nonnull jobsMakeExcelTopHeadView(jobsByExcelTopHeadViewBlock _Nonnull block){
+    JobsExcelTopHeadView *data = JobsExcelTopHeadView.alloc.init;
+    if (block) block(data);
+    return data;
+}

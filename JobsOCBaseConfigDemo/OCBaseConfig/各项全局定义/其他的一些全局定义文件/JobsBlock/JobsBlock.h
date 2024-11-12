@@ -250,6 +250,12 @@ typedef void(^jobsByPopListBaseViewBlock)(PopListBaseView *_Nullable data);
 
 @class JobsExcelView;
 typedef void(^jobsByExcelViewBlock)(__kindof JobsExcelView *_Nullable view);
+@class JobsExcelContentView;
+typedef void(^jobsByExcelContentViewBlock)(__kindof JobsExcelContentView *_Nullable contentView);
+@class JobsExcelTopHeadView;
+typedef void(^jobsByExcelTopHeadViewBlock)(__kindof JobsExcelTopHeadView *_Nullable topHeadView);
+@class JobsExcelLeftListView;
+typedef void(^jobsByExcelLeftListViewBlock)(__kindof JobsExcelLeftListView *_Nullable leftListView);
 
 @class JobsKeyValueModel;
 typedef void(^jobsByKeyValueModelBlock)(JobsKeyValueModel *_Nullable data);

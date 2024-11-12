@@ -26,3 +26,9 @@ BaseViewProtocol
 -(jobsByPointBlock _Nonnull)configureContentOffSet;
 
 @end
+
+NS_INLINE __kindof JobsExcelContentView *_Nonnull jobsMakeExcelContentView(jobsByExcelContentViewBlock _Nonnull block){
+    JobsExcelContentView *data = JobsExcelContentView.alloc.init;
+    if (block) block(data);
+    return data;
+}

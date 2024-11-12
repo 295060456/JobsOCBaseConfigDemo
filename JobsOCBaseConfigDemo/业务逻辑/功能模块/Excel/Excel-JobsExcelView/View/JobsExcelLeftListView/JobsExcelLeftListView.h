@@ -30,3 +30,9 @@ UITableViewDelegate
 @property(nonatomic,strong,readonly)JobsExcelConfigureViewModel *_Nonnull excelConfigureData;
 
 @end
+
+NS_INLINE __kindof JobsExcelLeftListView *_Nonnull jobsMakeExcelLeftListView(jobsByExcelLeftListViewBlock _Nonnull block){
+    JobsExcelLeftListView *data = JobsExcelLeftListView.alloc.init;
+    if (block) block(data);
+    return data;
+}

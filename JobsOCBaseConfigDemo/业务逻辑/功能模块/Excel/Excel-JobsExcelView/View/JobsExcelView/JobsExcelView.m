@@ -107,64 +107,70 @@
 - (JobsExcelLeftListView *)leftListView{
     if (!_leftListView) {
         @jobs_weakify(self)
-        _leftListView = JobsExcelLeftListView.new;
-        [self addSubview:_leftListView];
-        [_leftListView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleBtn.mas_bottom).offset(0);
-            make.left.equalTo(self);
-            make.width.mas_equalTo(itemW);
-            make.bottom.equalTo(self);
-        }];
-        _leftListView.jobsRichViewByModel(self.viewModel_);
-        [_leftListView.racDisposable dispose];// 取消之前的订阅，避免多次重复订阅
-        _leftListView.racDisposable = [RACObserve(_leftListView.excelConfigureData, VerticalScrollValue)
-            subscribeNext:^(NSValue *scrollValue) {
+        _leftListView = jobsMakeExcelLeftListView(^(__kindof JobsExcelLeftListView * _Nullable leftListView) {
             @jobs_strongify(self)
-            self.contentView.tableView.contentOffset = scrollValue.CGPointValue;
-        }];
+            [self addSubview:leftListView];
+            [leftListView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.titleBtn.mas_bottom).offset(0);
+                make.left.equalTo(self);
+                make.width.mas_equalTo(self->itemW);
+                make.bottom.equalTo(self);
+            }];
+            leftListView.jobsRichViewByModel(self.viewModel_);
+            [leftListView.racDisposable dispose];// 取消之前的订阅，避免多次重复订阅
+            leftListView.racDisposable = [RACObserve(leftListView.excelConfigureData, VerticalScrollValue)
+                subscribeNext:^(NSValue *scrollValue) {
+                @jobs_strongify(self)
+                self.contentView.tableView.contentOffset = scrollValue.CGPointValue;
+            }];
+        });
     }return _leftListView;
 }
 
 -(JobsExcelTopHeadView *)headView{
     if (!_headView) {
         @jobs_weakify(self)
-        _headView = JobsExcelTopHeadView.new;
-        [self addSubview:_headView];
-        [_headView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleBtn);
-            make.left.equalTo(self.titleBtn.mas_right).offset(0);
-            make.right.equalTo(self);
-            make.height.equalTo(self.titleBtn);
-        }];
-        _headView.jobsRichViewByModel(self.viewModel_);
-        [_headView.racDisposable dispose];// 取消之前的订阅，避免多次重复订阅
-        _headView.racDisposable = [RACObserve(_headView.excelConfigureData, HorizontalScrollValue) subscribeNext:^(id _Nullable x) {
+        _headView = jobsMakeExcelTopHeadView(^(__kindof JobsExcelTopHeadView * _Nullable topHeadView) {
             @jobs_strongify(self)
-            self.contentView.configureContentOffSet([x CGPointValue]);
-        }];
+            [self addSubview:topHeadView];
+            [topHeadView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.titleBtn);
+                make.left.equalTo(self.titleBtn.mas_right).offset(0);
+                make.right.equalTo(self);
+                make.height.equalTo(self.titleBtn);
+            }];
+            topHeadView.jobsRichViewByModel(self.viewModel_);
+            [topHeadView.racDisposable dispose];// 取消之前的订阅，避免多次重复订阅
+            topHeadView.racDisposable = [RACObserve(topHeadView.excelConfigureData, HorizontalScrollValue) subscribeNext:^(id _Nullable x) {
+                @jobs_strongify(self)
+                self.contentView.configureContentOffSet([x CGPointValue]);
+            }];
+        });
     }return _headView;
 }
 
 -(JobsExcelContentView *)contentView{
     if (!_contentView) {
         @jobs_weakify(self)
-        _contentView = JobsExcelContentView.new;
-        [self addSubview:_contentView];
-        [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.leftListView);
-            make.left.equalTo(self.headView);
-            make.right.equalTo(self);
-            make.bottom.equalTo(self);
-        }];
-        _contentView.jobsRichViewByModel(self.viewModel_);
-        [_contentView.excelConfigureData.verticalScrollSignal subscribeNext:^(NSValue *value) {
+        _contentView = jobsMakeExcelContentView(^(__kindof JobsExcelContentView * _Nullable contentView) {
             @jobs_strongify(self)
-            self.leftListView.tableView.contentOffset = value.CGPointValue;
-        }];
-        [_contentView.excelConfigureData.horizontalScrollSignal subscribeNext:^(NSValue *value) {
-            @jobs_strongify(self)
-            self.headView.collectionView.contentOffset = value.CGPointValue;
-        }];
+            [self addSubview:contentView];
+            [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.leftListView);
+                make.left.equalTo(self.headView);
+                make.right.equalTo(self);
+                make.bottom.equalTo(self);
+            }];
+            contentView.jobsRichViewByModel(self.viewModel_);
+            [contentView.excelConfigureData.verticalScrollSignal subscribeNext:^(NSValue *value) {
+                @jobs_strongify(self)
+                self.leftListView.tableView.contentOffset = value.CGPointValue;
+            }];
+            [contentView.excelConfigureData.horizontalScrollSignal subscribeNext:^(NSValue *value) {
+                @jobs_strongify(self)
+                self.headView.collectionView.contentOffset = value.CGPointValue;
+            }];
+        });
     }return _contentView;
 }
 
