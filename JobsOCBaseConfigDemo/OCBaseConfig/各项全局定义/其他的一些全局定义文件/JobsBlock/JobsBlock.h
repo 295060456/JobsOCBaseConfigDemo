@@ -165,6 +165,7 @@ typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByString)(__kind
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(UIButtonModel *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModel2Block)(jobsByButtonModelBlock _Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerManagerBlock)(jobsByTimerManagerBlock _Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelArrayBlock)(__kindof NSArray <UIButtonModel *>*_Nullable arr);
 
 @class JobsNavBarConfig;
 typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable data);
@@ -426,10 +427,19 @@ typedef void(^jobsByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel
 @class FMPagerModel;
 typedef void(^jobsByPagerModelBlock)(__kindof FMPagerModel *_Nullable data);
 
+@class FMReportTradeModel;
+typedef void(^jobsByReportTradeModelBlock)(__kindof FMReportTradeModel *_Nullable model);
+
 @class FMMyBetOrderDetailModel;
 typedef void(^jobsByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel *_Nullable data);
 typedef JobsExcelConfigureViewModel *_Nullable(^JobsReturnExcelConfigureDataByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel *_Nullable data);
+typedef JobsExcelConfigureViewModel *_Nullable(^JobsReturnExcelConfigureDataByReportTradeModelBlock)(__kindof FMReportTradeModel *_Nullable data);
 
+@class FMBankDataSubModel;
+typedef void(^jobsByBankDataSubModelBlock)(__kindof FMBankDataSubModel *_Nullable subModel);
+
+@class FMBankDataModel;
+typedef void(^jobsByBankDataModelBlock)(__kindof FMBankDataModel *_Nullable model);
 
 #endif /* JobsBlock_h */
 /*
