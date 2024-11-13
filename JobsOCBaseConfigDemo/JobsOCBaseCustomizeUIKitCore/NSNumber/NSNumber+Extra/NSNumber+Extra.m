@@ -9,7 +9,7 @@
 
 @implementation NSNumber (Extra)
 
--(JobsReturnStringByNumberBlock)toString{
+-(JobsReturnStringByNumberBlock _Nonnull)toString{
     @jobs_weakify(self)
     return ^NSString *_Nullable(NSNumber *_Nullable data) {
         @jobs_strongify(self)
@@ -45,6 +45,12 @@
             }else return @"";
         }else return @"";
     };
+}
+
+-(NSString *)stringValueOrEmpty{
+    if (self.intValue == -1) {
+        return @""; // 返回空字符串
+    }return self.stringValue;
 }
 
 @end

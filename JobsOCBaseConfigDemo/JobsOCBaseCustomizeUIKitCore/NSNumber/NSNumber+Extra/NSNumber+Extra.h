@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSNumber (Extra)
 
--(JobsReturnStringByNumberBlock)toString;
+@property(nonatomic,readonly)NSString *stringValueOrEmpty;
+
+-(JobsReturnStringByNumberBlock _Nonnull)toString;
 
 @end
 

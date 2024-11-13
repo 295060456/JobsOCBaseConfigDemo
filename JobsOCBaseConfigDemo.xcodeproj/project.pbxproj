@@ -1150,6 +1150,7 @@
 		483BFC42C8B8CA074C2FE187 /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		55AE8BC0EBE5A194A8879F81 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoTests/Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8415A2342CE4729600A09C67 /* JobsExcelView的使用.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "JobsExcelView的使用.md"; sourceTree = "<group>"; };
 		84170AFD2CD0BF5D0007E303 /* YTKBatchRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBatchRequest+Extra.h"; sourceTree = "<group>"; };
 		84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBatchRequest+Extra.m"; sourceTree = "<group>"; };
 		843099F62CD0F17400A7B9D0 /* GTCaptcha4Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTCaptcha4Model.h; sourceTree = "<group>"; };
@@ -5132,6 +5133,7 @@
 		CE4F24A02CA825CD002AF25B /* JobsExcelView */ = {
 			isa = PBXGroup;
 			children = (
+				8415A2342CE4729600A09C67 /* JobsExcelView的使用.md */,
 				CE4F249E2CA825CD002AF25B /* JobsExcelView.h */,
 				CE4F249F2CA825CD002AF25B /* JobsExcelView.m */,
 			);
