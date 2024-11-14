@@ -425,16 +425,22 @@ typedef NS_ENUM(NSInteger, JobsActiveState) {
     JobsActiveState_All
 };
 #endif /* JOBS_ACTIVE_STATE_ENUM_DEFINED */
-/// 客服平台状态
-#ifndef JOBS_CUSTOMER_CONTACT_TYPE_ENUM_DEFINED
-#define JOBS_CUSTOMER_CONTACT_TYPE_ENUM_DEFINED
-typedef NS_ENUM(NSInteger, JobsCustomerContactType) {
-    JobsCustomerContactType_Undefined = 0,/// 未定义
-    JobsCustomerContactType_Close,/// 停用
-    JobsCustomerContactType_Open,/// 启用
-    JobsCustomerContactType_All,
+/// 开关状态
+#ifndef JOBS_SWITCH_TYPE_ENUM_DEFINED
+#define JOBS_SWITCH_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, JobsSwitchType) {
+    JobsSwitchType_Open = 0,/// 启用（正常）
+    JobsSwitchType_Close = 1,/// 停用
 };
-#endif /* JOBS_CUSTOMER_CONTACT_TYPE_ENUM_DEFINED */
+#endif /* JOBS_SWITCH_TYPE_ENUM_DEFINED */
+/// 开关状态
+#ifndef JOBS_SWITCH_TYPE2_ENUM_DEFINED
+#define JOBS_SWITCH_TYPE2_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, JobsSwitchType2) {
+    JobsSwitchType2_Close = 0,/// 停用
+    JobsSwitchType2_Open = 1,/// 启用（正常）
+};
+#endif /* JOBS_SWITCH_TYPE2_ENUM_DEFINED */
 /// 客服平台标识
 #ifndef JOBS_CUSTOMER_CONTACT_STYLE_ENUM_DEFINED
 #define JOBS_CUSTOMER_CONTACT_STYLE_ENUM_DEFINED
@@ -763,7 +769,69 @@ typedef NS_ENUM(NSInteger, SettleFlag) {
     SettleFlag_YES/// 已结算
 };
 #endif /* SETTLEFLAG */
-
+/// 查询时间类型
+#ifndef JOBS_QUERY_TIME_TYPE_DEFINED
+#define JOBS_QUERY_TIME_TYPE_DEFINED
+typedef NS_ENUM(NSInteger, JobsQueryTimeType) {
+    JobsQueryTimeType_SpecificTime = 0, /// 具体时间
+    JobsQueryTimeType_Today,            /// 当天
+    JobsQueryTimeType_Yesterday,        /// 昨天
+    JobsQueryTimeType_Within7Days,      /// 7天内
+    JobsQueryTimeType_Within30Days      /// 30天内
+};
+#endif /* JOBS_QUERY_TIME_TYPE_DEFINED */
+/// 交易订单统一状态
+#ifndef JOBS_TRANSACTION_STATUS_DEFINED
+#define JOBS_TRANSACTION_STATUS_DEFINED
+typedef NS_ENUM(NSInteger, JobsTransactionStatus) {
+    JobsTransactionStatus_All = -1,      /// 查询全部
+    JobsTransactionStatus_Processing = 0, /// 处理中
+    JobsTransactionStatus_Success,       /// 成功
+    JobsTransactionStatus_Failure,       /// 失败
+    JobsTransactionStatus_Review    /// 审核中
+};
+#endif /* JOBS_TRANSACTION_STATUS_DEFINED */
+/// 交易订单类型
+#ifndef JOBS_TRANSACTION_TYPE_DEFINED
+#define JOBS_TRANSACTION_TYPE_DEFINED
+typedef NS_ENUM(NSInteger, JobsTransactionType) {
+    JobsTransactionType_All = -1,             /// 查询全部
+    JobsTransactionType_Deposit = 1,         /// 充值（存款）
+    JobsTransactionType_Withdraw = 2,         /// 提现
+    JobsTransactionType_Transfer = 3,         /// 转账
+    JobsTransactionType_Rebate = 5,         /// 返水
+    JobsTransactionType_Bonus = 6,            /// 红利
+    JobsTransactionType_SystemAdjustment = 7, /// 系统调整
+    JobsTransactionType_Live = 8              /// 直播
+};
+#endif /* JOBS_TRANSACTION_TYPE_DEFINED */
+/// 交易类型
+#ifndef JOBS_TRANSACTION_DIRECTION_DEFINED
+#define JOBS_TRANSACTION_DIRECTION_DEFINED
+typedef NS_ENUM(NSInteger, JobsTransactionDirection) {
+    JobsTransactionDirection_Income = 0, /// 收入
+    JobsTransactionDirection_Expense     /// 支出
+};
+#endif /* JOBS_TRANSACTION_DIRECTION_DEFINED */
+#ifndef FM_WALLET_TYPE_DEFINED
+#define FM_WALLET_TYPE_DEFINED
+typedef NS_ENUM(NSInteger, FMWalletType) {
+    FMWalletType_GCash = 1,    /// GCash
+    FMWalletType_MayaPay,      /// MayaPay
+    FMWalletType_GrabPay       /// GrabPay
+};
+#endif /* FM_WALLET_TYPE_DEFINED */
+/// 提现类型
+#ifndef FM_WITHDRAWAL_TYPE_DEFINED
+#define FM_WITHDRAWAL_TYPE_DEFINED
+typedef NS_ENUM(NSInteger, FMWithdrawalType) {
+    FMWithdrawalType_BankCard = 0,   /// 银行卡提现
+    FMWithdrawalType_Exclusive,      /// 专属提现
+    FMWithdrawalType_USDT,           /// USDT 提现
+    FMWithdrawalType_EBPay,          /// EBpay 提现
+    FMWithdrawalType_EWallet         /// 电子钱包提现
+};
+#endif /* FM_WITHDRAWAL_TYPE_DEFINED */
 
 
 

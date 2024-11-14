@@ -222,6 +222,9 @@ typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByVCBlock)(_
 #pragma mark —— 关于富文本
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString *_Nullable data);
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString *_Nonnull data);
+#pragma mark —— NSNumber
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByIntegerBlock)(NSInteger data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByFloatBlock)(CGFloat data);
 #pragma mark —— 关于字符串
 typedef __kindof NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCharBlock)(char *_Nullable data);

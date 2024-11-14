@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,readonly)NSString *stringValueOrEmpty;
 
 -(JobsReturnStringByNumberBlock _Nonnull)toString;
+-(JobsReturnNumberByIntegerBlock _Nonnull)updateByStepInt;
+-(JobsReturnNumberByFloatBlock _Nonnull)updateByStepFloat;
 
 @end
 

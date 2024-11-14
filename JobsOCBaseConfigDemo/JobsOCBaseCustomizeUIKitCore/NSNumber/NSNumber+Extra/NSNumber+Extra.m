@@ -53,4 +53,20 @@
     }return self.stringValue;
 }
 
+-(JobsReturnNumberByIntegerBlock _Nonnull)updateByStepInt{
+    @jobs_weakify(self)
+    return ^NSNumber *(NSInteger data){
+        @jobs_strongify(self)
+        return @(self.intValue + data);
+    };
+}
+
+-(JobsReturnNumberByFloatBlock _Nonnull)updateByStepFloat{
+    @jobs_weakify(self)
+    return ^NSNumber *(CGFloat data){
+        @jobs_strongify(self)
+        return @(self.floatValue + data);
+    };
+}
+
 @end
