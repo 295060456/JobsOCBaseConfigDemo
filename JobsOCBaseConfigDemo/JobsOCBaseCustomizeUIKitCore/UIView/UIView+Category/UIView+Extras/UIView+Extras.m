@@ -788,19 +788,30 @@ JobsKey(_getAnimation)
 }
 
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem{
+    @jobs_weakify(self)
     return ^__kindof UIBarButtonItem *_Nullable(){
-        return [UIBarButtonItem.alloc initWithCustomView:self];
+        @jobs_strongify(self)
+        return UIBarButtonItem.initBy(self);
     };
 }
 
 -(jobsByViewBlock _Nonnull)addSubview{
+    @jobs_weakify(self)
     return ^(__kindof UIView *_Nullable subView) {
+        @jobs_strongify(self)
         [self addSubview:subView];
+        if(subView.masonryBlock){
+            [subView mas_makeConstraints:subView.masonryBlock];
+            [self layoutIfNeeded];
+            NSLog(@"");
+        }
     };
 }
 
 -(jobsByViewBlock _Nonnull)remove{
+    @jobs_weakify(self)
     return ^(__kindof UIView *_Nullable subView) {
+        @jobs_strongify(self)
         [self removeFromSuperview];
     };
 }

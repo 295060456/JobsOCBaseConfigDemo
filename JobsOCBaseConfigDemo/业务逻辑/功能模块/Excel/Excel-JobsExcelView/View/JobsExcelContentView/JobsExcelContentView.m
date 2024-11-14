@@ -22,6 +22,11 @@
         self.tableView.reloadDatas();
     }return self;
 }
+/// 在某些情况下，当UITableView加载到一个子UIView上的时候，只有在layoutSubviews刷新页面的时候，UITableView才会有Frame
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    self.tableView.reloadDatas();
+}
 #pragma mark —— BaseViewProtocol
 - (jobsByIDBlock _Nonnull)jobsRichViewByModel {
     @jobs_weakify(self)
@@ -35,7 +40,7 @@
 #pragma mark —— UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return self.excelConfigureData.colNumber;
+    return self.excelConfigureData.rowNumber;
 }
 #pragma mark —— UITableViewDataSource
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView

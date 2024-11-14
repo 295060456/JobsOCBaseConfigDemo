@@ -10,7 +10,6 @@
 @interface JobsIMVC ()
 /// UI
 @property(nonatomic,strong)JobsIMInputview *inputview;
-//@property(nonatomic,strong)UITableView *tableView;//显示数据
 @property(nonatomic,strong)BaseButton *shareBtn;
 @property(nonatomic,strong)UIColor *bgColour;
 /// data
@@ -51,11 +50,11 @@
         @jobs_weakify(self)
         self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
-    //        data.add(JobsBarButtonItem(self.shareBtn));
+    //        data.add(UIBarButtonItem.initBy(self.shareBtn));
         });
         self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
-            data.add(JobsBarButtonItem(self.shareBtn));
+            data.add(UIBarButtonItem.initBy(self.shareBtn));
         });
         self.makeNavByAlpha(1);
     }
@@ -403,17 +402,6 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
         }];
         [self.view layoutIfNeeded];
         _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"noData"
-                                                                titleStr:JobsInternationalization(@"暂无数据")
-                                                               detailStr:JobsInternationalization(@"")];
-            
-            if (self.chatInfoModelMutArr.count) {
-                [_tableView ly_hideEmptyView];
-            }else{
-                [_tableView ly_showEmptyView];
-            }
-        }
         
         {
             _tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {

@@ -10,7 +10,6 @@
 @interface JobsCommentCoreVC ()
 /// UI
 @property(nonatomic,strong)JobsCommentTitleHeaderView *titleHeaderView;
-//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)JobsCommentModel *mjModel;
 @property(nonatomic,strong)JobsCommentModel *yyModel;
@@ -46,11 +45,11 @@
 //    @jobs_weakify(self)
 //    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
 //        @jobs_strongify(self)
-//        data.add(JobsBarButtonItem(self.userHeadBtn));
+//        data.add(UIBarButtonItem.initBy(self.userHeadBtn));
 //    });
 //    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
 //        @jobs_strongify(self)
-////        data.add(JobsBarButtonItem(self.deleteBtn));
+////        data.add(UIBarButtonItem.initBy(self.deleteBtn));
 //    });
 //    self.makeNavByAlpha(1);
     self.isHiddenNavigationBar = YES;//禁用系统的导航栏
@@ -81,13 +80,11 @@
 #pragma mark —— 一些公有方法
 -(void)setMJModel:(JobsCommentModel *)mjModel{
     self.mjModel = mjModel;
-    [self dataSource:self.mjModel.listDataArr contentView:self.tableView];
     self.tableView.endRefreshing(self.mjModel.listDataArr.count);
 }
 
 -(void)setYYModel:(JobsCommentModel *)yyModel{
     self.yyModel = yyModel;
-    [self dataSource:self.yyModel.listDataArr contentView:self.tableView];
     self.tableView.endRefreshing(self.mjModel.listDataArr.count);
 }
 
@@ -228,9 +225,16 @@ heightForHeaderInSection:(NSInteger)section{///  👌
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, self.popUpHeight, 0);
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.separatorColor = JobsWhiteColor;
-        _tableView.ly_emptyView = [EmptyView emptyViewWithImageStr:@"Indeterminate Spinner - Small"
-                                                          titleStr:JobsInternationalization(@"没有评论")
-                                                         detailStr:JobsInternationalization(@"来发布第一条吧")];
+        
+        {
+            _tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                data.title = JobsInternationalization(@"没有评论");
+                data.subTitle = JobsInternationalization(@"来发布第一条吧");
+                data.titleCor = JobsWhiteColor;
+                data.titleFont = bayonRegular(JobsWidth(30));
+                data.normalImage = JobsIMG(@"小狮子");
+            });
+        }
         {
             // 用值
             _tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
@@ -246,7 +250,6 @@ heightForHeaderInSection:(NSInteger)section{///  👌
                     self.mjModel = [JobsCommentModel mj_objectWithKeyValues:dic[@"data"]];
                 //    self.yyModel = [MKCommentModel yy_modelWithDictionary:dic[@"data"]];
                     NSLog(@"self.mjModel = %@",self.mjModel);
-                    [self dataSource:self.mjModel.listDataArr contentView:self.tableView];
                     self.tableView.endRefreshing(self.mjModel.listDataArr.count);
                     // 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
                     self.tableView.pagingEnabled = NO;

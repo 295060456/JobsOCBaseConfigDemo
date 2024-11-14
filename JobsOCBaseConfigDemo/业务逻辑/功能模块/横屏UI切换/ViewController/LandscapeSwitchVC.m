@@ -9,7 +9,6 @@
 
 @interface LandscapeSwitchVC ()
 /// UI
-//@property(nonatomic,strong)BaseCollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -318,16 +317,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                     return nil;
                 };
             }));
-        }
-        
-        {
-            _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
-                                                                     titleStr:JobsInternationalization(@"暂无数据")
-                                                                    detailStr:JobsInternationalization(@"")];
-            
-            _collectionView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
-            _collectionView.ly_emptyView.contentViewOffset = JobsWidth(-180);
-            _collectionView.ly_emptyView.titleLabFont = UIFontWeightMediumSize(16);
         }
         
 //        {

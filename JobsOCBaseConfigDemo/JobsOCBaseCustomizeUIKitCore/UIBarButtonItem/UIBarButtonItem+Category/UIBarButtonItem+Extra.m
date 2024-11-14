@@ -9,4 +9,10 @@
 
 @implementation UIBarButtonItem (Extra)
 
++(JobsReturnBarButtonItemByViewBlock _Nonnull)initBy{
+    return ^__kindof UIBarButtonItem *_Nullable(__kindof UIView *_Nullable view){
+        return [UIBarButtonItem.alloc initWithCustomView:view];
+    };
+}
+
 @end

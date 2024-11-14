@@ -63,12 +63,6 @@
 #import "MJRefresh.h"
 #endif
 
-#if __has_include(<LYEmptyView/LYEmptyViewHeader.h>)
-#import <LYEmptyView/LYEmptyViewHeader.h>
-#else
-#import "LYEmptyViewHeader.h"
-#endif
-
 #if __has_include(<YYImage/YYImage.h>)
 #import <YYImage/YYImage.h>
 #else
@@ -510,7 +504,7 @@ BaseProtocol
 /// DeviceOrientation 检测屏幕方向
 -(DeviceOrientation)getDeviceOrientation;
 /// 横屏通知的监听
--(void)横屏通知的监听:(JobsSelectorBlock1)block;
+-(void)横屏通知的监听:(JobsSelectorBlock1 _Nullable)block;
 #pragma mark —— 键盘⌨️
 /**
  使用方法：
@@ -547,9 +541,6 @@ BaseProtocol
 /// 加入键盘通知的监听者
 -(void)keyboardByUpBlock:(jobsByNSNotificationKeyboardModelBlock _Nullable)upBlock
                downBlock:(jobsByNSNotificationKeyboardModelBlock _Nullable)downBlock;
-/// 根据数据源【数组】是否有值进行判定：占位图 和 mj_footer 的显隐性
--(void)dataSource:(__kindof NSArray *_Nonnull)dataSource
-      contentView:(__kindof UIScrollView *_Nonnull)contentView;
 
 @end
 /**

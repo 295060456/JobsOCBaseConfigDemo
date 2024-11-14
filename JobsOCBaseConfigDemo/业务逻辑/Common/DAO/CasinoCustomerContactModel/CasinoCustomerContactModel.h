@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)JobsCustomerContactStyle customerMark; // 客服平台标识
 @property(nonatomic,copy)NSString *ID;
 @property(nonatomic,copy)NSString *pcIconUrl; // PC端图标
-@property(nonatomic,assign)JobsCustomerContactType state;// 客服平台状态
+@property(nonatomic,assign)JobsSwitchType state;// 客服平台状态
 @property(nonatomic,copy)NSString *updateBy;
 @property(nonatomic,copy)NSString *updateTime;
 

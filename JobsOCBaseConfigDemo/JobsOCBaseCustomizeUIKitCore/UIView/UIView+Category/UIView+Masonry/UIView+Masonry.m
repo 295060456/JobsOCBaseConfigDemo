@@ -8,6 +8,15 @@
 #import "UIView+Masonry.h"
 
 @implementation UIView (Masonry)
+/// 实现 masonryBlock 链式方法
+-(JobsReturnViewByMasonryConstraintsBlock _Nonnull)setMasonryBy{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(jobsByMasonryConstraintsBlock _Nullable block){
+        @jobs_strongify(self)
+        self.masonryBlock = block;
+        return self;
+    };
+}
 /// 卸载当前view上的某个方向的约束
 -(jobsByLayoutAttributeBlock _Nonnull)uninstall{
     @jobs_weakify(self)
@@ -60,6 +69,16 @@
             [self.superview layoutIfNeeded]; // 让视图更新布局
         }];
     }];
+}
+#pragma mark —— @property(nonatomic,copy)jobsByMasonryConstraintsBlock masonryBlock;
+JobsKey(_masonryBlock)
+@dynamic masonryBlock;
+-(jobsByMasonryConstraintsBlock)masonryBlock{
+    return Jobs_getAssociatedObject(_masonryBlock);
+}
+
+-(void)setMasonryBlock:(jobsByMasonryConstraintsBlock)masonryBlock{
+    Jobs_setAssociatedCOPY_NONATOMIC(_masonryBlock, masonryBlock)
 }
 
 @end

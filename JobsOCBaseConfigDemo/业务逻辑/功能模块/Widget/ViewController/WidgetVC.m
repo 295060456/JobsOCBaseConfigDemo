@@ -43,11 +43,11 @@
 //    @jobs_weakify(self)
 //    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
 //        @jobs_strongify(self)
-////        data.add(JobsBarButtonItem(self.aboutBtn));
+////        data.add(UIBarButtonItem.initBy(self.aboutBtn));
 //    });
 //    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
 //        @jobs_strongify(self)
-//        data.add(JobsBarButtonItem(self.editBtn));
+//        data.add(UIBarButtonItem.initBy(self.editBtn));
 //    });
 //    self.makeNavByAlpha(0);
 //    [self.bgImageView removeFromSuperview];

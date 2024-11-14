@@ -61,15 +61,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
 //    @jobs_weakify(self)
 //    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
 //        @jobs_strongify(self)
-////        data.add(JobsBarButtonItem(self.aboutBtn));
+////        data.add(UIBarButtonItem.initBy(self.aboutBtn));
 //    });
 //    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
 //        @jobs_strongify(self)
-//        data.add(JobsBarButtonItem(self.scanBtn));
+//        data.add(UIBarButtonItem.initBy(self.scanBtn));
 //    });
 //    self.makeNavByAlpha(1);
     

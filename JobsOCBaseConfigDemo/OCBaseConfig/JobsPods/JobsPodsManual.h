@@ -7,8 +7,7 @@
 
 #ifndef JobsPodsManual_h
 #define JobsPodsManual_h
-// 极大程度上尊重作者，不去污染源代码的基础上，用分类去实现一些功能
-#import "EmptyView.h"
+/// 极大程度上尊重作者，不去污染源代码的基础上，用分类去实现一些功能
 #import "ZMJCell+CustomView.h"
 #import "FMDatabase+Manager.h"
 #import "TKPermissionKit.h"

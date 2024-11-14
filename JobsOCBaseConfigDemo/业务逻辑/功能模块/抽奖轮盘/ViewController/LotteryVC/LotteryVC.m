@@ -9,7 +9,6 @@
 
 @interface LotteryVC ()
 /// UI
-//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvSectionRowCellMutArr;
 @property(nonatomic,strong)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
@@ -261,16 +260,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 data.willRefreshTitle = JobsInternationalization(@"");
                 data.noMoreDataTitle = JobsInternationalization(@"");
             }));
-        }
-        
-        {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                titleStr:JobsInternationalization(@"暂无数据")
-                                                               detailStr:JobsInternationalization(@"")];
-            
-            _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
-            _tableView.ly_emptyView.contentViewOffset = JobsWidth(-180);
-            _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
         }
         
 //        {// 设置tabAnimated相关属性

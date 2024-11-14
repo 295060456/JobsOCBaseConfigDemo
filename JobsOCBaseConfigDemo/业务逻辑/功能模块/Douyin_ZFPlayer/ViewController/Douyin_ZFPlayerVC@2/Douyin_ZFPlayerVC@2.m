@@ -271,16 +271,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         }
         
         {
-//            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
-//                                                                titleStr:JobsInternationalization(@"暂无数据")
-//                                                               detailStr:JobsInternationalization(@"")];
-            _tableView.ly_emptyView = [EmptyView diyEmptyViewWithTitle:JobsInternationalization(@"暂无数据")];
-            _tableView.ly_emptyView.autoShowEmptyView = NO;
-            _tableView.ly_emptyView.titleLabTextColor = JobsWhiteColor;
-            _tableView.ly_emptyView.contentViewOffset = -JobsWidth(40);
-        }
-        
-        {
             _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                 data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
                 data.pullingTitle = JobsInternationalization(@"下拉刷新数据");

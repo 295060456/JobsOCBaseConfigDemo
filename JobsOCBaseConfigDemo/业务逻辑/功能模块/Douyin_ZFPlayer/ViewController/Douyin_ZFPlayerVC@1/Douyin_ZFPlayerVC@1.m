@@ -189,8 +189,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{}
 
 -(NSInteger)tableView:(UITableView *)tableView
 numberOfRowsInSection:(NSInteger)section{
-    [self dataSource:self.dataMutArr
-         contentView:self.tableView];
     return self.dataMutArr.count;
 }
 
@@ -311,9 +309,13 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
         }
         
         {
-            _tableView.ly_emptyView = [EmptyView emptyViewWithImageStr:@"Indeterminate Spinner - Small"
-                                                              titleStr:JobsInternationalization(@"暂无数据")
-                                                             detailStr:JobsInternationalization(@"骚等片刻")];
+            _tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                data.title = JobsInternationalization(@"暂无数据");
+                data.subTitle = JobsInternationalization(@"骚等片刻");
+                data.titleCor = JobsWhiteColor;
+                data.titleFont = bayonRegular(JobsWidth(30));
+                data.normalImage = JobsIMG(@"小狮子");
+            });
         }
         
         if(@available(iOS 11.0, *)) {

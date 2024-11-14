@@ -51,7 +51,7 @@
 //    self.gk_navTitleColor = AppMainCor_01;
 //    self.gk_backStyle = GKNavigationBarBackStyleBlack;
 //    self.gk_navLineHidden = YES;
-//    self.gk_navRightBarButtonItem = JobsBarButtonItem(self.contactBtn);
+//    self.gk_navRightBarButtonItem = UIBarButtonItem.initBy(self.contactBtn);
 //    self.gk_navigationBar.jobsVisible = YES;
 //    @jobs_weakify(self)
 //    self.gk_navRightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {

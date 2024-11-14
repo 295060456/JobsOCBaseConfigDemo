@@ -1480,7 +1480,7 @@
     :DeviceOrientationUnknown;
 }
 /// 横屏通知的监听
--(void)横屏通知的监听:(JobsSelectorBlock1)block{
+-(void)横屏通知的监听:(JobsSelectorBlock1 _Nullable)block{
     [self addNotificationName:UIDeviceOrientationDidChangeNotification
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
@@ -1584,17 +1584,6 @@
             NSLog(@"键盘");
         }
     }];
-}
-/// 根据数据源【数组】是否有值进行判定：占位图 和 mj_footer 的显隐性
--(void)dataSource:(__kindof NSArray *_Nonnull)dataSource
-      contentView:(__kindof UIScrollView *_Nonnull)contentView{
-    if (dataSource.count) {
-        [contentView ly_hideEmptyView];
-        contentView.ly_emptyView.alpha = 0;
-    }else{
-        [contentView ly_showEmptyView];
-        contentView.ly_emptyView.alpha = 1;
-    }contentView.mj_footer.hidden = !dataSource.count;
 }
 #pragma mark —— @property(nonatomic,assign)CGPoint lastPoint;
 JobsKey(_lastPoint)

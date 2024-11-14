@@ -50,15 +50,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     @jobs_weakify(self)
     self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
         @jobs_strongify(self)
-//        data.add(JobsBarButtonItem(self.shareBtn));
+//        data.add(UIBarButtonItem.initBy(self.shareBtn));
     });
     self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
         @jobs_strongify(self)
-        data.add(JobsBarButtonItem(self.deleteBtn));
+        data.add(UIBarButtonItem.initBy(self.deleteBtn));
     });
     self.makeNavByAlpha(1);
     

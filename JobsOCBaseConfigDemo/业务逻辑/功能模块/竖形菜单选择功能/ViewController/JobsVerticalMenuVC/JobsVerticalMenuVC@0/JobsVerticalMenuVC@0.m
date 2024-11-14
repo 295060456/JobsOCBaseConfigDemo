@@ -9,7 +9,6 @@
 
 @interface JobsVerticalMenuVC_0 ()
 /// UI
-//@property(nonatomic,strong)UITableView *tableView; /// 左侧的标题
 @property(nonatomic,strong)BaseButton *customerServiceBtn;
 @property(nonatomic,strong)BaseButton *msgBtn;
 @property(nonatomic,strong)BaseButton *editBtn;
@@ -53,12 +52,12 @@
     @jobs_weakify(self)
     self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
 //        @jobs_strongify(self)
-//        data.add(JobsBarButtonItem(self.aboutBtn));
+//        data.add(UIBarButtonItem.initBy(self.aboutBtn));
     });
     self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
         @jobs_strongify(self)
-        data.add(JobsBarButtonItem(self.msgBtn));
-        data.add(JobsBarButtonItem(self.customerServiceBtn));
+        data.add(UIBarButtonItem.initBy(self.msgBtn));
+        data.add(UIBarButtonItem.initBy(self.customerServiceBtn));
     });
     self.makeNavByAlpha(1);
     

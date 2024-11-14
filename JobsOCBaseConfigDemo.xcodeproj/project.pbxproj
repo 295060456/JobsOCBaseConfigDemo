@@ -22,6 +22,10 @@
 		845C913B2CDF70BB0067105A /* NSCoder+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845C91392CDF70BA0067105A /* NSCoder+Extra.m */; };
 		8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */; };
 		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
+		8489C9DC2CE622CC00BB5E83 /* JobsEmptyDataView.md in Resources */ = {isa = PBXBuildFile; fileRef = 8489C9DA2CE622CB00BB5E83 /* JobsEmptyDataView.md */; };
+		8489C9DD2CE622CC00BB5E83 /* UICollectionView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */; };
+		8489C9DE2CE622CC00BB5E83 /* UITableView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D72CE622CB00BB5E83 /* UITableView+JobsEmptyData.m */; };
+		8489CADA2CE624EF00BB5E83 /* UIScrollView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489CAD82CE624EF00BB5E83 /* UIScrollView+JobsEmptyData.m */; };
 		8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */; };
 		8493F1ED2CD3A7E000011DD1 /* YTKChainRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1EB2CD3A7E000011DD1 /* YTKChainRequest+Extra.m */; };
 		84AA8F442CE32ACC0004501A /* NSArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60B92CA82C2D006D67A7 /* NSArray+Safety.m */; };
@@ -906,7 +910,6 @@
 		CECE7EAC2C450E5B00764AF5 /* KTVHTTPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7DE82C450E5B00764AF5 /* KTVHTTPCache.m */; };
 		CECE7EAD2C450E5B00764AF5 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7DEB2C450E5B00764AF5 /* GCDAsyncSocket.m */; };
 		CECE7EAE2C450E5B00764AF5 /* LMJDropdownMenu+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7DF02C450E5B00764AF5 /* LMJDropdownMenu+Extra.m */; };
-		CECE7EAF2C450E5B00764AF5 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7DF32C450E5B00764AF5 /* EmptyView.m */; };
 		CECE7EB12C450E5B00764AF5 /* RACEXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7DF82C450E5B00764AF5 /* RACEXTRuntimeExtensions.m */; };
 		CECE7EB22C450E5B00764AF5 /* TKPermissionBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7DFD2C450E5B00764AF5 /* TKPermissionBluetooth.m */; };
 		CECE7EB32C450E5B00764AF5 /* TKPermissionCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE7E002C450E5B00764AF5 /* TKPermissionCalendar.m */; };
@@ -1177,6 +1180,14 @@
 		8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RACTimer.m"; sourceTree = "<group>"; };
 		8464A5A12CDB74D20030409A /* FMDoorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDoorModel.h; sourceTree = "<group>"; };
 		8464A5A22CDB74D20030409A /* FMDoorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDoorModel.m; sourceTree = "<group>"; };
+		8489C9D32CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+JobsEmptyData.h"; sourceTree = "<group>"; };
+		8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+JobsEmptyData.m"; sourceTree = "<group>"; };
+		8489C9D62CE622CB00BB5E83 /* UITableView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+JobsEmptyData.h"; sourceTree = "<group>"; };
+		8489C9D72CE622CB00BB5E83 /* UITableView+JobsEmptyData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+JobsEmptyData.m"; sourceTree = "<group>"; };
+		8489C9D92CE622CB00BB5E83 /* JobsEmptyDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsEmptyDataView.h; sourceTree = "<group>"; };
+		8489C9DA2CE622CB00BB5E83 /* JobsEmptyDataView.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = JobsEmptyDataView.md; sourceTree = "<group>"; };
+		8489CAD72CE624EF00BB5E83 /* UIScrollView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+JobsEmptyData.h"; sourceTree = "<group>"; };
+		8489CAD82CE624EF00BB5E83 /* UIScrollView+JobsEmptyData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+JobsEmptyData.m"; sourceTree = "<group>"; };
 		8493F1E52CD3A64F00011DD1 /* NSObject+YTKRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YTKRequest.h"; sourceTree = "<group>"; };
 		8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YTKRequest.m"; sourceTree = "<group>"; };
 		8493F1E92CD3A7E000011DD1 /* YTKCustomBaseRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YTKCustomBaseRequest.h; sourceTree = "<group>"; };
@@ -3056,8 +3067,6 @@
 		CECE7DEB2C450E5B00764AF5 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		CECE7DEF2C450E5B00764AF5 /* LMJDropdownMenu+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LMJDropdownMenu+Extra.h"; sourceTree = "<group>"; };
 		CECE7DF02C450E5B00764AF5 /* LMJDropdownMenu+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LMJDropdownMenu+Extra.m"; sourceTree = "<group>"; };
-		CECE7DF22C450E5B00764AF5 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
-		CECE7DF32C450E5B00764AF5 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
 		CECE7DF52C450E5B00764AF5 /* RAC_Define.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = RAC_Define.md; sourceTree = "<group>"; };
 		CECE7DF62C450E5B00764AF5 /* RACEXTKeyPathCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACEXTKeyPathCoding.h; sourceTree = "<group>"; };
 		CECE7DF72C450E5B00764AF5 /* RACEXTRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACEXTRuntimeExtensions.h; sourceTree = "<group>"; };
@@ -3526,6 +3535,44 @@
 				8464A5A22CDB74D20030409A /* FMDoorModel.m */,
 			);
 			path = FMDoorModel;
+			sourceTree = "<group>";
+		};
+		8489C9D52CE622CB00BB5E83 /* UICollectionView+JobsEmptyData */ = {
+			isa = PBXGroup;
+			children = (
+				8489C9D32CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.h */,
+				8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */,
+			);
+			path = "UICollectionView+JobsEmptyData";
+			sourceTree = "<group>";
+		};
+		8489C9D82CE622CB00BB5E83 /* UITableView+JobsEmptyData */ = {
+			isa = PBXGroup;
+			children = (
+				8489C9D62CE622CB00BB5E83 /* UITableView+JobsEmptyData.h */,
+				8489C9D72CE622CB00BB5E83 /* UITableView+JobsEmptyData.m */,
+			);
+			path = "UITableView+JobsEmptyData";
+			sourceTree = "<group>";
+		};
+		8489C9DB2CE622CB00BB5E83 /* JobsEmptyDataView */ = {
+			isa = PBXGroup;
+			children = (
+				8489C9D52CE622CB00BB5E83 /* UICollectionView+JobsEmptyData */,
+				8489C9D82CE622CB00BB5E83 /* UITableView+JobsEmptyData */,
+				8489C9D92CE622CB00BB5E83 /* JobsEmptyDataView.h */,
+				8489C9DA2CE622CB00BB5E83 /* JobsEmptyDataView.md */,
+			);
+			path = JobsEmptyDataView;
+			sourceTree = "<group>";
+		};
+		8489CAD92CE624EF00BB5E83 /* UIScrollView+JobsEmptyData */ = {
+			isa = PBXGroup;
+			children = (
+				8489CAD72CE624EF00BB5E83 /* UIScrollView+JobsEmptyData.h */,
+				8489CAD82CE624EF00BB5E83 /* UIScrollView+JobsEmptyData.m */,
+			);
+			path = "UIScrollView+JobsEmptyData";
 			sourceTree = "<group>";
 		};
 		8493F1E72CD3A64F00011DD1 /* NSObject+YTKRequest */ = {
@@ -7814,6 +7861,7 @@
 		CE4F27622CA825CD002AF25B /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				8489C9DB2CE622CB00BB5E83 /* JobsEmptyDataView */,
 				CE4F24302CA825CD002AF25B /* 文字前面小圆点 */,
 				CE4F243E2CA825CD002AF25B /* 抽奖轮盘 */,
 				CE4F24AC2CA825CD002AF25B /* Excel */,
@@ -11716,6 +11764,7 @@
 		CE5A63562CA82C2D006D67A7 /* UIScrollView+Category */ = {
 			isa = PBXGroup;
 			children = (
+				8489CAD92CE624EF00BB5E83 /* UIScrollView+JobsEmptyData */,
 				CE5A63522CA82C2D006D67A7 /* UIScrollView+AnimationKit */,
 				CE5A63552CA82C2D006D67A7 /* UIScrollView+Extra */,
 			);
@@ -13514,15 +13563,6 @@
 			path = LMJDropdownMenu;
 			sourceTree = "<group>";
 		};
-		CECE7DF42C450E5B00764AF5 /* LYEmptyView */ = {
-			isa = PBXGroup;
-			children = (
-				CECE7DF22C450E5B00764AF5 /* EmptyView.h */,
-				CECE7DF32C450E5B00764AF5 /* EmptyView.m */,
-			);
-			path = LYEmptyView;
-			sourceTree = "<group>";
-		};
 		CECE7DFB2C450E5B00764AF5 /* RAC_Define */ = {
 			isa = PBXGroup;
 			children = (
@@ -13849,7 +13889,6 @@
 				CECE7D812C450E5B00764AF5 /* JXCategoryView */,
 				CECE7DEE2C450E5B00764AF5 /* KTV */,
 				CECE7DF12C450E5B00764AF5 /* LMJDropdownMenu */,
-				CECE7DF42C450E5B00764AF5 /* LYEmptyView */,
 				CECE7DFB2C450E5B00764AF5 /* RAC_Define */,
 				CECE7E3A2C450E5B00764AF5 /* TKPermissionKit */,
 				CECE7E482C450E5B00764AF5 /* WMZBanner */,
@@ -14771,6 +14810,7 @@
 				CE4F28772CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_01.png in Resources */,
 				CE4F28782CA825CD002AF25B /* 订单详情Cell01.png in Resources */,
 				CE4F28792CA825CD002AF25B /* Progress【OutLines】.png in Resources */,
+				8489C9DC2CE622CC00BB5E83 /* JobsEmptyDataView.md in Resources */,
 				CE4F287A2CA825CD002AF25B /* JobsIM【Outlines 10】.png in Resources */,
 				CE4F287B2CA825CD002AF25B /* JobsIM【Outlines 02】.png in Resources */,
 				CE4F287C2CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_05.png in Resources */,
@@ -15110,7 +15150,6 @@
 				CECE7EBD2C450E5B00764AF5 /* TKPermissionMotion.m in Sources */,
 				CECE7E872C450E5B00764AF5 /* MultipartMessageHeaderField.m in Sources */,
 				CE5A64BE2CA82F1E006D67A7 /* NSObject+Class.m in Sources */,
-				CECE7EAF2C450E5B00764AF5 /* EmptyView.m in Sources */,
 				CECE7EAE2C450E5B00764AF5 /* LMJDropdownMenu+Extra.m in Sources */,
 				CECE7EA52C450E5B00764AF5 /* KTVHCDataUnitQueue.m in Sources */,
 				CE5A64762CA82CCD006D67A7 /* CALayer+Transition.m in Sources */,
@@ -15120,6 +15159,8 @@
 				CE5A64B72CA82EEA006D67A7 /* NSObject+AFNReachability.m in Sources */,
 				CE5A65192CA83127006D67A7 /* UIControl+XY.m in Sources */,
 				CE5A651A2CA83127006D67A7 /* UIControl+Extra.m in Sources */,
+				8489C9DD2CE622CC00BB5E83 /* UICollectionView+JobsEmptyData.m in Sources */,
+				8489C9DE2CE622CC00BB5E83 /* UITableView+JobsEmptyData.m in Sources */,
 				CE61AD4C2C9EAB26002DF138 /* NSObject+YTKNetwork.m in Sources */,
 				CE5A64AF2CA82EAD006D67A7 /* DispatchTimerManager.m in Sources */,
 				CE5A64922CA82DF9006D67A7 /* FileNameModel.m in Sources */,
@@ -15343,6 +15384,7 @@
 				CE4F27932CA825CD002AF25B /* TransparentRegionVC.m in Sources */,
 				CE4F27942CA825CD002AF25B /* JobsTopViewItem.m in Sources */,
 				CE4F27952CA825CD002AF25B /* MyCollectionVC.m in Sources */,
+				8489CADA2CE624EF00BB5E83 /* UIScrollView+JobsEmptyData.m in Sources */,
 				CE5A648A2CA82DBB006D67A7 /* NSMutableDictionary+Ordered.m in Sources */,
 				CE4F27962CA825CD002AF25B /* JobsWalletVC.m in Sources */,
 				CE4F27972CA825CD002AF25B /* Realm_VC.m in Sources */,

@@ -53,7 +53,7 @@ JobsKey(_backBtnCategoryItem)
 -(UIBarButtonItem *)backBtnCategoryItem{
     UIBarButtonItem *BackBtnCategoryItem = Jobs_getAssociatedObject(_backBtnCategoryItem);
     if (!BackBtnCategoryItem) {
-        BackBtnCategoryItem = JobsBarButtonItem(self.backBtnCategory);
+        BackBtnCategoryItem = UIBarButtonItem.initBy(self.backBtnCategory);
         Jobs_setAssociatedRETAIN_NONATOMIC(_backBtnCategoryItem, BackBtnCategoryItem)
     }return BackBtnCategoryItem;
 }

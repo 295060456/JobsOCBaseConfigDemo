@@ -10,7 +10,6 @@
 @interface UITableViewCellEditorVC ()
 /// UI
 @property(nonatomic,strong)BaseButton *editBtn;
-//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)MsgEditBoardView *msgEditBoardView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <JobsMsgDataModel *>*dataMutArr;
@@ -51,11 +50,11 @@
     @jobs_weakify(self)
     self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
         @jobs_strongify(self)
-//        data.add(JobsBarButtonItem(self.aboutBtn));
+//        data.add(UIBarButtonItem.initBy(self.aboutBtn));
     });
     self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
         @jobs_strongify(self)
-        data.add(JobsBarButtonItem(self.editBtn));
+        data.add(UIBarButtonItem.initBy(self.editBtn));
     });
     self.makeNavByAlpha(1);
     
@@ -276,16 +275,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                     return nil;
                 };
             }));
-        }
-        
-        {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
-                                                                titleStr:JobsInternationalization(@"暂无数据")
-                                                               detailStr:JobsInternationalization(@"")];
-            
-            _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
-            _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
-            _tableView.ly_emptyView.titleLabFont = UIFontWeightMediumSize(JobsWidth(16));
         }
         
         [self.view addSubview:_tableView];

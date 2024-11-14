@@ -224,12 +224,6 @@
 #import "PPBadgeView.h"
 #endif
 
-#if __has_include(<LYEmptyView/LYEmptyViewHeader.h>)
-#import <LYEmptyView/LYEmptyViewHeader.h>
-#else
-#import "LYEmptyViewHeader.h"
-#endif
-
 #if __has_include(<WHToast/WHToast.h>)
 #import <WHToast/WHToast.h>
 #else

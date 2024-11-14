@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIBarButtonItem (Extra)
 
++(JobsReturnBarButtonItemByViewBlock _Nonnull)initBy;
+
 @end
 
 NS_ASSUME_NONNULL_END

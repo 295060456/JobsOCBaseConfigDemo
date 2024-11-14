@@ -37,7 +37,7 @@
 #pragma mark —— UICollectionView 代理和数据源
 -(NSInteger)collectionView:(UICollectionView *)collectionView
     numberOfItemsInSection:(NSInteger)section {
-    return self.excelConfigureData.rowNumber;
+    return self.excelConfigureData.colNumber;
 }
 
 -(__kindof UICollectionViewCell *)collectionView:(__kindof UICollectionView *)collectionView
@@ -63,7 +63,7 @@
     /// 防止在初始情况下，无意义的往右拉动👉🏻
     if (scrollView.contentOffset.x < 0) scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
     /// 防止在初始情况下，无意义的往左拉动👈🏻
-    CGFloat d = (self.excelConfigureData.rowNumber * self.excelConfigureData.itemW - self.excelConfigureData.XZExcelW) + self.excelConfigureData.itemW + self.excelConfigureData.scrollOffsetX;
+    CGFloat d = (self.excelConfigureData.colNumber * self.excelConfigureData.itemW - self.excelConfigureData.XZExcelW) + self.excelConfigureData.itemW + self.excelConfigureData.scrollOffsetX;
     if(scrollView.contentOffset.x > d) scrollView.contentOffset = CGPointMake(d, scrollView.contentOffset.y);
 }
 #pragma mark —— getter and setter

@@ -67,11 +67,11 @@ BOOL ISLogin;
     @jobs_weakify(self)
     self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
         @jobs_strongify(self)
-        data.add(JobsBarButtonItem(self.userHeadBtn));
+        data.add(UIBarButtonItem.initBy(self.userHeadBtn));
     });
     self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
         @jobs_strongify(self)
-//        data.add(JobsBarButtonItem(self.deleteBtn));
+//        data.add(UIBarButtonItem.initBy(self.deleteBtn));
     });
     self.makeNavByAlpha(1);
     
@@ -229,16 +229,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     return nil;
                 };
             }));
-        }
-        
-        {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
-                                                                titleStr:JobsInternationalization(@"暂无数据")
-                                                               detailStr:JobsInternationalization(@"")];
-            
-            _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
-            _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
-            _tableView.ly_emptyView.titleLabFont = UIFontSystemFontOfSize(JobsWidth(16));
         }
         
         [self.view addSubview:_tableView];

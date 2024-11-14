@@ -8,7 +8,6 @@
 #import <UIKit/UIKit.h>
 
 #pragma mark —— View
-#import "EmptyView.h"
 #import "JobsCommentPopUpView_viewForHeaderInSection.h"
 #import "JobsCommentTitleHeaderView.h"
 #import "JobsInfoTBVCell.h"//显示具体的有用讯息
@@ -33,12 +32,6 @@
 #import <MJRefresh/MJRefresh.h>
 #else
 #import "MJRefresh.h"
-#endif
-
-#if __has_include(<LYEmptyView/LYEmptyViewHeader.h>)
-#import <LYEmptyView/LYEmptyViewHeader.h>
-#else
-#import "LYEmptyViewHeader.h"
 #endif
 
 //#if __has_include(<YYModel/YYModel.h>)

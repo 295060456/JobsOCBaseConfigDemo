@@ -266,16 +266,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 data.noMoreDataTitle = JobsInternationalization(@"");
             }));
         }
-        
-        {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                titleStr:JobsInternationalization(@"暂无数据")
-                                                               detailStr:JobsInternationalization(@"")];
-            
-            _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
-            _tableView.ly_emptyView.contentViewOffset = JobsWidth(-180);
-            _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
-        }
+
         
 //        {// 设置tabAnimated相关属性
 //            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class

@@ -126,9 +126,6 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.estimatedSectionHeaderHeight = 0 ;
         _tableView.mj_header = self.mjRefreshGifHeader;
         _tableView.mj_footer = self.mjRefreshAutoGifFooter;
-        _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"noData"
-                                                    titleStr:@"您还没有粉丝"
-                                                   detailStr:JobsInternationalization(@"")];
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.gk_navigationBar.mas_bottom);

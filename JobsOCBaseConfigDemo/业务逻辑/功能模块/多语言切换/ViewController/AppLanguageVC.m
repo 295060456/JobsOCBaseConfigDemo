@@ -9,7 +9,6 @@
 
 @interface AppLanguageVC ()
 /// UI
-//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -234,16 +233,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     return nil;
                 };
             }));
-        }
-        
-        {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
-                                                                titleStr:JobsInternationalization(@"暂无数据")
-                                                               detailStr:JobsInternationalization(@"")];
-
-            _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
-            _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
-            _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightMedium];
         }
         
         [self.view addSubview:_tableView];

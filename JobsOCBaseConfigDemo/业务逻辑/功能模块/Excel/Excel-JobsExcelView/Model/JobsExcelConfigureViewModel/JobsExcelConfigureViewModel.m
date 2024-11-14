@@ -109,13 +109,13 @@
 
 -(NSInteger)rowNumber{
     if(!_rowNumber){
-        _rowNumber = self.leftTitles.count + 1;
+        _rowNumber = self.leftTitles.count;
     }return _rowNumber;
 }
 
 -(NSInteger)colNumber{
     if(!_colNumber){
-        _colNumber = self.topHeaderTitles.count;
+        _colNumber = self.topHeaderTitles.count - 1;
     }return _colNumber;
 }
 
@@ -298,7 +298,7 @@
 
 -(void)setLeftTitles:(NSMutableArray <NSString *>*)leftTitles{
     _leftTitles = leftTitles;
-    self.rowNumber = _leftTitles.count + 1;
+    self.rowNumber = _leftTitles.count;
 }
 
 -(CGFloat)itemH{

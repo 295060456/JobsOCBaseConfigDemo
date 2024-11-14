@@ -9,7 +9,6 @@
 
 @interface JobsIMListView ()
 /// UI
-//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIColor *bgColour;
 /// Data
 @property(nonatomic,strong)NSMutableArray <JobsIMListDataModel *>*jobsIMListMutArr;
@@ -98,17 +97,6 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             make.edges.equalTo(self);
         }];
         _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"noData"
-                                                                titleStr:JobsInternationalization(@"暂无数据")
-                                                               detailStr:JobsInternationalization(@"")];
-            
-            if (self.jobsIMListMutArr.count) {
-                [_tableView ly_hideEmptyView];
-            }else{
-                [_tableView ly_showEmptyView];
-            }
-        }
         
         {
             _tableView.mj_header = self.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {

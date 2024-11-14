@@ -8,8 +8,6 @@
 #import "JobsShowObjInfoVC.h"
 
 @interface JobsShowObjInfoVC ()
-/// UI
-//@property(nonatomic,strong)BaseTableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -179,16 +177,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     return nil;
                 };
             }));
-        }
-        
-        {
-            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"加载失败"
-                                                                titleStr:JobsInternationalization(@"No Data")
-                                                               detailStr:JobsInternationalization(@"")];
-            
-            _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
-            _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
-            _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightMedium];
         }
         
         [self.view addSubview:_tableView];

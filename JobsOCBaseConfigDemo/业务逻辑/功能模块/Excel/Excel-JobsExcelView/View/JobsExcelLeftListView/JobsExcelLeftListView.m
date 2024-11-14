@@ -38,7 +38,7 @@
 #pragma mark —— UITableView 数据源
 -(NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return self.excelConfigureData.colNumber;
+    return self.excelConfigureData.rowNumber;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -90,6 +90,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
         _tableView.dataLink(self);
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            /// 这里不显示，传没有配置的UIButtonModel
+        });
         [self addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
