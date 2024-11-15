@@ -39,14 +39,14 @@
     return ^__kindof UIView *_Nullable(UIButtonModel *model){
         @jobs_strongify(self)
         if(self.hasData){
-            self.cleanSubview();
+            self.cleanSubviewBy(BaseView.class);
             return nil;
         }else{
-            return jobsMakeView(^(__kindof UIView *_Nullable view) {
+            return jobsMakeView(^(__kindof BaseView *_Nullable view) {
                 @jobs_strongify(self)
                 view.frame = self.bounds;
                 self.addSubview(view);
-                view.cleanSubview();
+                view.cleanSubviewBy(BaseView.class);
                 view.addSubview(UIButton.initByButtonModel(model ? : jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
                     data.title = JobsInternationalization(@"No Datas");
                     data.titleCor = JobsWhiteColor;
@@ -69,14 +69,14 @@
     return ^__kindof UIView *_Nullable(UITextModel *model){
         @jobs_strongify(self)
         if(self.hasData){
-            self.cleanSubview();
+            self.cleanSubviewBy(BaseView.class);
             return nil;
         }else{
-            return jobsMakeView(^(__kindof UIView *_Nullable view) {
+            return jobsMakeView(^(__kindof BaseView *_Nullable view) {
                 @jobs_strongify(self)
                 view.frame = self.bounds;
                 self.addSubview(view);
-                view.cleanSubview();
+                view.cleanSubviewBy(BaseView.class);
                 view.addSubview(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
                     label.textAlignment = model.textAlignment ? : NSTextAlignmentCenter;
                     label.textColor = model.textCor ? : JobsRedColor;

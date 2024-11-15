@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *tipsTitle;
 
 -(jobsByVoidBlock _Nonnull)cleanSubview;
+-(jobsByClassBlock _Nonnull)cleanSubviewBy;
 -(void)ifEmptyData;
 
 @end

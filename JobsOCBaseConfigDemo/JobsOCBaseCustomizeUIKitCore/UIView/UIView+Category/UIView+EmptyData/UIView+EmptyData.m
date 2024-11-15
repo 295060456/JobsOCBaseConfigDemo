@@ -19,6 +19,18 @@
     };
 }
 
+-(jobsByClassBlock _Nonnull)cleanSubviewBy{
+    @jobs_weakify(self)
+    return ^(Class _Nonnull cls){
+        @jobs_strongify(self)
+        for (UIView *subview in self.subviews) {
+            if([subview isKindOfClass:cls]){
+                [subview removeFromSuperview];
+            }
+        }
+    };
+}
+
 -(void)ifEmptyData{
 #ifdef DEBUG
     //光板返回YES，有其他控件返回NO

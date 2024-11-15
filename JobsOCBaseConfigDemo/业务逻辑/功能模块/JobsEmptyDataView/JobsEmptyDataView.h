@@ -15,6 +15,7 @@
 #import "UILabel+Extra.h"
 #import "UIView+Extras.h"
 #import "UIScrollView+JobsEmptyData.h"
+#import "BaseView.h"
 
 #import "UITableView+JobsEmptyData.h"
 #import "UICollectionView+JobsEmptyData.h"
