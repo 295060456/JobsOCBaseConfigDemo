@@ -48,13 +48,13 @@
         NSRange range = {0,jsonString.length};
         /// 去掉字符串中的空格
         [mutStr replaceOccurrencesOfString:@" "
-                                withString:JobsInternationalization(@"")
+                                withString:@""
                                    options:NSLiteralSearch
                                      range:range];
         NSRange range2 = {0,mutStr.length};
         /// 去掉字符串中的换行符
         [mutStr replaceOccurrencesOfString:@"\n"
-                                withString:JobsInternationalization(@"")
+                                withString:@""
                                    options:NSLiteralSearch
                                      range:range2];
         return mutStr;
@@ -95,7 +95,7 @@
     @jobs_weakify(self)
     return ^NSDate *_Nullable(NSDateFormatter *_Nullable data){
         @jobs_strongify(self)
-        return [data dateFromString:self];;
+        return [data dateFromString:self];
     };
 }
 /// OC字符串数组 转 OC字符串
@@ -125,6 +125,24 @@
             NSLog(@"当前字符串为%@,不是纯字符串，无法格式化输出",self);
             return @"";
         }
+    };
+}
+/// 将字典转换成GET请求的URL（带参数）
+-(JobsReturnStringByDictionaryBlock _Nonnull)GETRequestURLParaBy{
+    @jobs_weakify(self)
+    return ^__kindof NSString *_Nullable(__kindof NSDictionary *_Nullable params){
+        @jobs_strongify(self)
+        NSString *queryString = [jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
+            [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                if (obj && ![obj isKindOfClass:[NSNull class]]) { // 忽略空值
+                    NSString *encodedKey = [[key description] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+                    NSString *encodedValue = [[obj description] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+                    NSString *queryItem = encodedKey.add(@"=").add(encodedValue);
+                    data.add(queryItem);
+                }
+            }];
+        }) componentsJoinedByString:@"&"];
+        return queryString.length ? self.add(@"?").add(queryString) : self;
     };
 }
 

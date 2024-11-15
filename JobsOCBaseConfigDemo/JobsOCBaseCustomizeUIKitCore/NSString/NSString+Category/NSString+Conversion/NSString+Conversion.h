@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NSString+Check.h"
+#import "NSString+Others.h"
 #import "NSData+Other.h"
 #import "JobsBlock.h"
 
@@ -96,6 +97,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 纯字符串格式化为4位数字为一组的银行卡格式字符串
 -(__kindof NSString *_Nullable)bankCardStyle;
 -(JobsReturnStringByIntegerBlock _Nonnull)bankCardStyleBy;
+/// 将字典转换成GET请求的URL（带参数）
+-(JobsReturnStringByDictionaryBlock _Nonnull)GETRequestURLParaBy;
 
 @end
 
