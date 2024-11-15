@@ -287,10 +287,13 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBloc
 
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable data);
 #pragma mark —— 涉及到第三方类的Block定义
+@class WMZBannerView;
+@class WMZBannerParam;
+typedef WMZBannerView *_Nonnull(^JobsReturnWMZBannerViewByBannerParamBlock)(WMZBannerParam *_Nonnull bannerParam);
+
 @class MASConstraintMaker;
 typedef void(^jobsByMasonryConstraintsBlock)(MASConstraintMaker *_Nullable make);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByMasonryConstraintsBlock)(jobsByMasonryConstraintsBlock _Nullable block);
-
 
 @class MJRefreshNormalHeader;
 typedef MJRefreshNormalHeader *_Nonnull(^JobsReturnMJRefreshNormalHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);

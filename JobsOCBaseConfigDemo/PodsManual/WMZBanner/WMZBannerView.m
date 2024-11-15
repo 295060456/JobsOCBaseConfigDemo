@@ -61,6 +61,12 @@
     return self;
 }
 
++(JobsReturnWMZBannerViewByBannerParamBlock _Nonnull)initBy{
+    return ^WMZBannerView *_Nonnull(WMZBannerParam *_Nonnull bannerParam){
+        return [WMZBannerView.alloc initConfigureWithModel:bannerParam];
+    };
+}
+
 - (void)updateUI{
     self.data = [NSArray arrayWithArray:self.param.wData];
     [self resetCollection];

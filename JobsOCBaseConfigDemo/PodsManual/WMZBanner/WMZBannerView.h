@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "UIImageView+SDWebImage.h"
 #import "NSString+Others.h"
+#import "JobsBlock.h"
 
 #import "WMZBannerParam.h"
 #import "WMZBannerFlowLayout.h"
@@ -28,6 +29,7 @@ UICollectionViewDelegate
 - (instancetype)initConfigureWithModel:(WMZBannerParam *)param withView:(UIView*)parentView;
 /// 调用方法
 - (instancetype)initConfigureWithModel:(WMZBannerParam *)param;
++(JobsReturnWMZBannerViewByBannerParamBlock _Nonnull)initBy;
 /// 更新UI
 - (void)updateUI;
 /// 手动调用滚动
