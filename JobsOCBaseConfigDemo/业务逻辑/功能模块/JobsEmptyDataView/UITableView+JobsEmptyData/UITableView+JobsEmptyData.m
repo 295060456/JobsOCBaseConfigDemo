@@ -19,6 +19,11 @@
 
 -(void)jobsReloadData{
     [self jobsReloadData]; // 调用原始的 reloadData（已经交换过）
+//    self.showEmptyLabelBy(self.textModelEmptyData)
+    self.showEmptyButtonBy(self.buttonModelEmptyData);
+}
+#pragma mark —— 一些私有方法
+-(BOOL)hasData{
     NSInteger numberOfSections = self.numberOfSections;
     BOOL hasData = NO;
     for (NSInteger section = 0; section < numberOfSections; section++) {
@@ -26,51 +31,65 @@
             hasData = YES;
             break;
         }
-    }
-//    self.showEmptyLabelBy(self.textModelEmptyData).jobsVisible = !hasData;
-    self.showEmptyButtonBy(self.buttonModelEmptyData).jobsVisible = !hasData;
-}
-
--(JobsReturnViewByTextModelBlock _Nonnull)showEmptyLabelBy{
-    return ^__kindof UIView *_Nullable(UITextModel *model){
-        @jobs_weakify(self)
-        return jobsMakeView(^(__kindof UIView *_Nullable view) {
-            @jobs_strongify(self)
-            view.frame = self.bounds;
-            self.addSubview(view);
-            view.addSubview(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
-                label.textAlignment = model.textAlignment ? : NSTextAlignmentCenter;
-                label.textColor = model.textCor ? : JobsRedColor;
-                label.text = isValue(model.text) ? model.text : JobsInternationalization(@"没有数据");
-                label.makeLabelByShowingType(UILabelShowingType_05);
-                label.setMasonryBy(^(MASConstraintMaker *make){
-                    @jobs_strongify(self)
-                    make.center.equalTo(self);
-                    make.width.equalTo(self);
-                });
-            }));
-        });
-    };
+    }return hasData;
 }
 
 -(JobsReturnViewByButtonModelBlock _Nonnull)showEmptyButtonBy{
+    @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIButtonModel *model){
-        @jobs_weakify(self)
-        return jobsMakeView(^(__kindof UIView *_Nullable view) {
-            @jobs_strongify(self)
-            view.frame = self.bounds;
-            self.addSubview(view);
-            view.addSubview(UIButton.initByButtonModel(model ? : jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                data.title = JobsInternationalization(@"没有数据");
-                data.titleCor = JobsRedColor;
-                data.normalImage = JobsIMG(@"小狮子");
-                data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-            })).setMasonryBy(^(MASConstraintMaker *make){
+        @jobs_strongify(self)
+        if(self.hasData){
+            self.cleanSubview();
+            return nil;
+        }else{
+            return jobsMakeView(^(__kindof UIView *_Nullable view) {
                 @jobs_strongify(self)
-                make.center.equalTo(self);
-                make.width.equalTo(self);
-            }));
-        });
+                view.frame = self.bounds;
+                self.addSubview(view);
+                view.cleanSubview();
+                view.addSubview(UIButton.initByButtonModel(model ? : jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                    data.title = JobsInternationalization(@"No Datas");
+                    data.titleCor = JobsWhiteColor;
+                    data.titleFont = bayonRegular(JobsWidth(30));
+                    data.normalImage = JobsIMG(@"暂无数据");
+                    data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                })).setMasonryBy(^(MASConstraintMaker *make){
+                    @jobs_strongify(self)
+                    make.centerX.equalTo(self).offset(model.btn_offset_x);
+                    make.centerY.equalTo(self).offset(model.btn_offset_y);
+                    make.width.equalTo(self);
+                }));
+            });
+        }
+    };
+}
+
+-(JobsReturnViewByTextModelBlock _Nonnull)showEmptyLabelBy{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(UITextModel *model){
+        @jobs_strongify(self)
+        if(self.hasData){
+            self.cleanSubview();
+            return nil;
+        }else{
+            return jobsMakeView(^(__kindof UIView *_Nullable view) {
+                @jobs_strongify(self)
+                view.frame = self.bounds;
+                self.addSubview(view);
+                view.cleanSubview();
+                view.addSubview(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
+                    label.textAlignment = model.textAlignment ? : NSTextAlignmentCenter;
+                    label.textColor = model.textCor ? : JobsRedColor;
+                    label.text = isValue(model.text) ? model.text : JobsInternationalization(@"No Datas");
+                    label.makeLabelByShowingType(UILabelShowingType_05);
+                    label.setMasonryBy(^(MASConstraintMaker *make){
+                        @jobs_strongify(self)
+                        make.center.equalTo(self);
+                        make.width.equalTo(self);
+                    });
+                }));
+            });
+        }
     };
 }
 

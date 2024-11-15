@@ -6,9 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <objc/runtime.h>
 #import "MacroDef_Cor.h"
 #import "JobsString.h"
-#import <objc/runtime.h>
 
 #if __has_include(<Masonry/Masonry.h>)
 #import <Masonry/Masonry.h>
@@ -21,8 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIView (EmptyData)
 
 @property(nonatomic,strong)UILabel *tipsLab;
-@property(nonatomic,strong)NSString *tipsTitle;
+@property(nonatomic,copy)NSString *tipsTitle;
 
+-(jobsByVoidBlock _Nonnull)cleanSubview;
 -(void)ifEmptyData;
 
 @end

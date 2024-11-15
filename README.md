@@ -4383,6 +4383,33 @@ static const uint32_t kSequenceBits = 12;
   }];
   ```
   
+*  对Masonry约束Block进行存储，一般一个View对应一个约束。先addSubview，再利用存储的约束进行绘制UI
+*  ```objective-c
+  -(JobsReturnViewByButtonModelBlock _Nonnull)showEmptyButtonBy{
+      return ^__kindof UIView *_Nullable(UIButtonModel *model){
+          @jobs_weakify(self)
+          return jobsMakeView(^(__kindof UIView *_Nullable view) {
+              @jobs_strongify(self)
+              view.frame = self.bounds;
+              self.addSubview(view);
+              view.cleanSubview();
+              view.addSubview(UIButton.initByButtonModel(model ? : jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                  data.title = JobsInternationalization(@"No Datas");
+                  data.titleCor = JobsWhiteColor;
+                  data.titleFont = bayonRegular(JobsWidth(30));
+                  data.normalImage = JobsIMG(@"暂无数据");
+                  data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+              })).setMasonryBy(^(MASConstraintMaker *make){
+                  @jobs_strongify(self)
+                  make.centerX.equalTo(self).offset(model.btn_offset_x);
+                  make.centerY.equalTo(self).offset(model.btn_offset_y);
+                  make.width.equalTo(self);
+              }));
+          });
+      };
+  }
+  ```
+  
 * 将以前的约束全部清除，用最新的`mas_remakeConstraints`
   
 * 如果在已有的约束基础上，再更新约束`mas_updateConstraints`

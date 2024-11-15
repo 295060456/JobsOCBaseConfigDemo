@@ -8,6 +8,17 @@
 #import "UIView+EmptyData.h"
 
 @implementation UIView (EmptyData)
+
+-(jobsByVoidBlock _Nonnull)cleanSubview{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        for (UIView *subview in self.subviews) {
+            [subview removeFromSuperview];
+        }
+    };
+}
+
 -(void)ifEmptyData{
 #ifdef DEBUG
     //光板返回YES，有其他控件返回NO
@@ -28,18 +39,20 @@ JobsKey(_tipsLab)
 -(UILabel *)tipsLab{
     UILabel *TipsLab = Jobs_getAssociatedObject(_tipsLab);
     if (!TipsLab) {
-        TipsLab = UILabel.new;
-        TipsLab.text = self.tipsTitle;
-        TipsLab.textAlignment = NSTextAlignmentCenter;
-        TipsLab.textColor = self.backgroundColor == JobsBlueColor ? JobsRedColor : JobsBlueColor;// 防止某些VC在调试阶段，设置view.backgroundColor为随机色
-        TipsLab.font = UIFontWeightBoldSize(20);
-        TipsLab.numberOfLines = 0;
-        TipsLab.makeLabelByShowingType(UILabelShowingType_03);
-        [self addSubview:TipsLab];
-        [TipsLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self);
-        }];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_tipsLab, TipsLab)
+        @jobs_weakify(self)
+        TipsLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = self.tipsTitle;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = self.backgroundColor == JobsBlueColor ? JobsRedColor : JobsBlueColor;// 防止某些VC在调试阶段，设置view.backgroundColor为随机色
+            label.font = UIFontWeightBoldSize(20);
+            label.numberOfLines = 0;
+            label.makeLabelByShowingType(UILabelShowingType_03);
+            [self addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(self);
+            }];
+        });Jobs_setAssociatedRETAIN_NONATOMIC(_tipsLab, TipsLab)
     }return TipsLab;
 }
 
