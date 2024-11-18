@@ -19,7 +19,7 @@
 #import "JobsBasePopupView.h"
 #import "JobsMenuView.h"
 
-#import "JobsViewController.h"
+#import "JobsTabBarSettingVC.h"
 
 #if __has_include(<MJRefresh/MJRefresh.h>)
 #import <MJRefresh/MJRefresh.h>

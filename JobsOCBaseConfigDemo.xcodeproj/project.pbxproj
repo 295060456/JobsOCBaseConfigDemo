@@ -36,6 +36,7 @@
 		84E9992F2CEB2D1C00ABE463 /* NSObject+DEV.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E999232CEB2D1C00ABE463 /* NSObject+DEV.m */; };
 		84E999302CEB2D1C00ABE463 /* NSObject+Mock.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9992C2CEB2D1C00ABE463 /* NSObject+Mock.m */; };
 		84E999312CEB2D1C00ABE463 /* NSObject+UAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E999292CEB2D1C00ABE463 /* NSObject+UAT.m */; };
+		84E99A442CEB4EE100ABE463 /* JobsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E99A422CEB4EE100ABE463 /* JobsWebViewController.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
 		CE260F452CAE671C00233F0F /* NSString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F3E2CAE671C00233F0F /* NSString+Replace.m */; };
 		CE260F462CAE671C00233F0F /* NSString+Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F412CAE671C00233F0F /* NSString+Statistics.m */; };
@@ -1212,6 +1213,8 @@
 		84E999292CEB2D1C00ABE463 /* NSObject+UAT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UAT.m"; sourceTree = "<group>"; };
 		84E9992B2CEB2D1C00ABE463 /* NSObject+Mock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Mock.h"; sourceTree = "<group>"; };
 		84E9992C2CEB2D1C00ABE463 /* NSObject+Mock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Mock.m"; sourceTree = "<group>"; };
+		84E99A412CEB4EE100ABE463 /* JobsWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsWebViewController.h; sourceTree = "<group>"; };
+		84E99A422CEB4EE100ABE463 /* JobsWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsWebViewController.m; sourceTree = "<group>"; };
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -3677,6 +3680,15 @@
 				84E9992C2CEB2D1C00ABE463 /* NSObject+Mock.m */,
 			);
 			path = "NSObject+Mock";
+			sourceTree = "<group>";
+		};
+		84E99A432CEB4EE100ABE463 /* JobsWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84E99A412CEB4EE100ABE463 /* JobsWebViewController.h */,
+				84E99A422CEB4EE100ABE463 /* JobsWebViewController.m */,
+			);
+			path = JobsWebViewController;
 			sourceTree = "<group>";
 		};
 		92563F87BB14F01482586366 /* Frameworks */ = {
@@ -12577,6 +12589,7 @@
 				CE5A64242CA82C2D006D67A7 /* JobsNavSettingVC */,
 				CE5A64272CA82C2D006D67A7 /* JobsTabBarSettingVC */,
 				CE5A642A2CA82C2D006D67A7 /* BaseViewController */,
+				84E99A432CEB4EE100ABE463 /* JobsWebViewController */,
 			);
 			path = BaseVC;
 			sourceTree = "<group>";
@@ -15150,6 +15163,7 @@
 				CECE7EE12C450E5B00764AF5 /* ZWPullMenuModel.m in Sources */,
 				CECE7E902C450E5B00764AF5 /* HTTPLogging.m in Sources */,
 				CECE7EE32C450E5B00764AF5 /* ZWPullMenuView.m in Sources */,
+				84E99A442CEB4EE100ABE463 /* JobsWebViewController.m in Sources */,
 				CECE7EA12C450E5B00764AF5 /* KTVHCDataStorage.m in Sources */,
 				CECE7EC62C450E5B00764AF5 /* TKPermissionTracking.m in Sources */,
 				CECE7E7C2C450E5B00764AF5 /* JXCategoryTimelineCell.m in Sources */,
