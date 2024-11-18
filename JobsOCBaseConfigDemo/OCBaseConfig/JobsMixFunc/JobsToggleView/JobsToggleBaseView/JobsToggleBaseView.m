@@ -49,7 +49,7 @@ JobsToggleNavViewProtocolSynthesize
 //                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— BaseViewProtocol
-- (instancetype)initWithsizer:(CGSize)thisViewsizer{
+- (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
 //        self.backgroundColor = JobsWhiteColor;
     }return self;
@@ -137,8 +137,7 @@ JobsToggleNavViewProtocolSynthesize
                     NSLog(@"当前滑动的index = %ld",(long)self.currentSelectedBtn.index);
                     self.taggedNavView.selectingOneTagWithIndex(self.currentSelectedBtn.index);
                 }
-            }];
-            taggedNavView.jobsRichViewByModel(self.taggedNavDatas);
+            }];taggedNavView.jobsRichViewByModel(self.taggedNavDatas);
         });
     };
 }
@@ -222,20 +221,22 @@ JobsToggleNavViewProtocolSynthesize
 -(UIScrollView *)bgScroll{
     if(!_bgScroll){
         @jobs_weakify(self)
-        _bgScroll = UIScrollView.new;
-        _bgScroll.scrollEnabled = NO;
-        _bgScroll.frame = jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+        _bgScroll = jobsMakeScrollView(^(__kindof UIScrollView * _Nullable scrollView) {
             @jobs_strongify(self)
-            data.jobsX = 0;
-            data.jobsY = self.taggedNavView.height + self.taggedNavView_bgScroll_offset;
-            data.jobsWidth = self.viewSizeByModel(nil).width;
-            data.jobsHeight = self.viewSizeByModel(nil).height - (self.taggedNavView_height + self.taggedNavView_bgScroll_offset);
+            scrollView.scrollEnabled = NO;
+            scrollView.frame = jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+                @jobs_strongify(self)
+                data.jobsX = 0;
+                data.jobsY = self.taggedNavView.height + self.taggedNavView_bgScroll_offset;
+                data.jobsWidth = self.viewSizeByModel(nil).width;
+                data.jobsHeight = self.viewSizeByModel(nil).height - (self.taggedNavView_height + self.taggedNavView_bgScroll_offset);
+            });
+            scrollView.delegate = self;
+            scrollView.pagingEnabled = YES;
+            scrollView.showsHorizontalScrollIndicator = NO;
+            scrollView.showsVerticalScrollIndicator = NO;
+            [self addSubview:scrollView];
         });
-        _bgScroll.delegate = self;
-        _bgScroll.pagingEnabled = YES;
-        _bgScroll.showsHorizontalScrollIndicator = NO;
-        _bgScroll.showsVerticalScrollIndicator = NO;
-        [self addSubview:_bgScroll];
     }return _bgScroll;
 }
 
