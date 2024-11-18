@@ -31,11 +31,19 @@
         return self.remove200BMark;
     }else return self;
 }
+
+-(NSString *_Nonnull)byHttp{
+    return HTTP.add(self).urlProtect;
+}
+
+-(NSString *_Nonnull)byHttps{
+    return HTTPS.add(self).urlProtect;
+}
 #pragma mark —— 一些功能性的
 /// 用入参进行分隔字符串对外输出数组
 -(JobsReturnArrayByStringBlock _Nonnull)makeArrBy{
     @jobs_weakify(self)
-    return ^ __kindof NSArray *_Nullable(NSString *_Nullable data){
+    return ^ __kindof NSArray <NSString *>*_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
         return [self componentsSeparatedByString:data];
     };

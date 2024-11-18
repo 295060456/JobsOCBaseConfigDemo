@@ -11,60 +11,72 @@
 #pragma mark —— BaseURL
 +(NSString *)BaseUrl{
     switch (NetworkingEnvir()) {
-        case JobsNetworkingEnvir_DevEnviron:{
+        case JobsNetworkingEnvir_Dev:{
             /// 开发环境
-            return @"https://www.sports5555.com".urlProtect;
+            return @"www.sports5555.com".byHttps;
         }break;
-        case JobsNetworkingEnvir_UATEnviron:{
+        case JobsNetworkingEnvir_Test:{
+            /// 测试环境
+            return @"".byHttps;
+        }break;
+        case JobsNetworkingEnvir_UAT:{
             /// UAT环境
-            return @"https://bsports.net.ph".urlProtect;
+            return @"bsports.net.ph".byHttps;
         }break;
-        case JobsNetworkingEnvir_ProductEnviron:{
+        case JobsNetworkingEnvir_Product:{
             /// 生产环境
-            return @"https://bsports.ph/".urlProtect;
+            return @"bsports.ph".byHttps;
         }break;
         default:
-            return @"".urlProtect;
+            return @"".byHttps;
             break;
     }
 }
 
 +(NSString *)BaseUrl_Image{
     switch (NetworkingEnvir()) {
-        case JobsNetworkingEnvir_DevEnviron:{
+        case JobsNetworkingEnvir_Dev:{
             /// 开发环境
-            return @"https://img.sports5555.com".urlProtect;
+            return @"img.sports5555.com".byHttps;
         }break;
-        case JobsNetworkingEnvir_UATEnviron:{
+        case JobsNetworkingEnvir_Test:{
+            /// 测试环境
+            return @"".urlProtect;
+        }break;
+        case JobsNetworkingEnvir_UAT:{
             /// UAT环境
-            return @"https://minio.bzpicx.com".urlProtect;
+            return @"minio.bzpicx.com".byHttps;
         }break;
-        case JobsNetworkingEnvir_ProductEnviron:{
+        case JobsNetworkingEnvir_Product:{
             /// 生产环境
-            return @"https://p.bzpicx.com".urlProtect;
+            return @"p.bzpicx.com".byHttps;
         }break;
         default:
-            return @"https://p.bzpicx.com".urlProtect;
+            return @"p.bzpicx.com".byHttps;
             break;
     }
 }
 
 +(NSString *)BaseUrl_H5{
     switch (NetworkingEnvir()) {
-        case JobsNetworkingEnvir_DevEnviron:{
+        case JobsNetworkingEnvir_Dev:{
             /// 开发环境
-            return @"".urlProtect;
+            return @"".byHttps;
         }break;
-        case JobsNetworkingEnvir_UATEnviron:{
+        case JobsNetworkingEnvir_Test:{
+            /// 测试环境
+            return @"".byHttps;
+        }break;
+        case JobsNetworkingEnvir_UAT:{
             /// UAT环境
-            return @"".urlProtect;
+            return @"".byHttps;
         }break;
-        case JobsNetworkingEnvir_ProductEnviron:{
+        case JobsNetworkingEnvir_Product:{
             /// 生产环境
-            return @"".urlProtect;
+            return @"".byHttps;
         }break;
         default:
-            return @"".urlProtect;
+            return @"".byHttps;
             break;
     }
 }

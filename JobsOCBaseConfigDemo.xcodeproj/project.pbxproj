@@ -32,6 +32,10 @@
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
 		84E401422CC60F4900C8303A /* This.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E401402CC60E7100C8303A /* This.m */; };
+		84E9992E2CEB2D1C00ABE463 /* NSObject+TEST.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E999262CEB2D1C00ABE463 /* NSObject+TEST.m */; };
+		84E9992F2CEB2D1C00ABE463 /* NSObject+DEV.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E999232CEB2D1C00ABE463 /* NSObject+DEV.m */; };
+		84E999302CEB2D1C00ABE463 /* NSObject+Mock.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9992C2CEB2D1C00ABE463 /* NSObject+Mock.m */; };
+		84E999312CEB2D1C00ABE463 /* NSObject+UAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E999292CEB2D1C00ABE463 /* NSObject+UAT.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
 		CE260F452CAE671C00233F0F /* NSString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F3E2CAE671C00233F0F /* NSString+Replace.m */; };
 		CE260F462CAE671C00233F0F /* NSString+Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F412CAE671C00233F0F /* NSString+Statistics.m */; };
@@ -1200,6 +1204,14 @@
 		84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "This+URLManager_Base.m"; sourceTree = "<group>"; };
 		84E4013F2CC60E7100C8303A /* This.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = This.h; sourceTree = "<group>"; };
 		84E401402CC60E7100C8303A /* This.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = This.m; sourceTree = "<group>"; };
+		84E999222CEB2D1C00ABE463 /* NSObject+DEV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+DEV.h"; sourceTree = "<group>"; };
+		84E999232CEB2D1C00ABE463 /* NSObject+DEV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DEV.m"; sourceTree = "<group>"; };
+		84E999252CEB2D1C00ABE463 /* NSObject+TEST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+TEST.h"; sourceTree = "<group>"; };
+		84E999262CEB2D1C00ABE463 /* NSObject+TEST.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+TEST.m"; sourceTree = "<group>"; };
+		84E999282CEB2D1C00ABE463 /* NSObject+UAT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+UAT.h"; sourceTree = "<group>"; };
+		84E999292CEB2D1C00ABE463 /* NSObject+UAT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UAT.m"; sourceTree = "<group>"; };
+		84E9992B2CEB2D1C00ABE463 /* NSObject+Mock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Mock.h"; sourceTree = "<group>"; };
+		84E9992C2CEB2D1C00ABE463 /* NSObject+Mock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Mock.m"; sourceTree = "<group>"; };
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -3618,6 +3630,53 @@
 				84E401402CC60E7100C8303A /* This.m */,
 			);
 			path = This;
+			sourceTree = "<group>";
+		};
+		84E999212CEB2D1300ABE463 /* 参数封装 */ = {
+			isa = PBXGroup;
+			children = (
+				84E9992D2CEB2D1C00ABE463 /* NSObject+Mock */,
+			);
+			path = "参数封装";
+			sourceTree = "<group>";
+		};
+		84E999242CEB2D1C00ABE463 /* DEV */ = {
+			isa = PBXGroup;
+			children = (
+				84E999222CEB2D1C00ABE463 /* NSObject+DEV.h */,
+				84E999232CEB2D1C00ABE463 /* NSObject+DEV.m */,
+			);
+			path = DEV;
+			sourceTree = "<group>";
+		};
+		84E999272CEB2D1C00ABE463 /* TEST */ = {
+			isa = PBXGroup;
+			children = (
+				84E999252CEB2D1C00ABE463 /* NSObject+TEST.h */,
+				84E999262CEB2D1C00ABE463 /* NSObject+TEST.m */,
+			);
+			path = TEST;
+			sourceTree = "<group>";
+		};
+		84E9992A2CEB2D1C00ABE463 /* UAT */ = {
+			isa = PBXGroup;
+			children = (
+				84E999282CEB2D1C00ABE463 /* NSObject+UAT.h */,
+				84E999292CEB2D1C00ABE463 /* NSObject+UAT.m */,
+			);
+			path = UAT;
+			sourceTree = "<group>";
+		};
+		84E9992D2CEB2D1C00ABE463 /* NSObject+Mock */ = {
+			isa = PBXGroup;
+			children = (
+				84E999242CEB2D1C00ABE463 /* DEV */,
+				84E999272CEB2D1C00ABE463 /* TEST */,
+				84E9992A2CEB2D1C00ABE463 /* UAT */,
+				84E9992B2CEB2D1C00ABE463 /* NSObject+Mock.h */,
+				84E9992C2CEB2D1C00ABE463 /* NSObject+Mock.m */,
+			);
+			path = "NSObject+Mock";
 			sourceTree = "<group>";
 		};
 		92563F87BB14F01482586366 /* Frameworks */ = {
@@ -13222,6 +13281,7 @@
 		CECE7D352C450CCD00764AF5 /* 网络请求 */ = {
 			isa = PBXGroup;
 			children = (
+				84E999212CEB2D1300ABE463 /* 参数封装 */,
 				CE61AD062C9EAB26002DF138 /* 公共部分 */,
 				CE61AD092C9EAB26002DF138 /* NSObject+YTKNetwork */,
 				CE61AD462C9EAB26002DF138 /* App 的所有网络请求Api */,
@@ -15366,6 +15426,10 @@
 				CE4F278D2CA825CD002AF25B /* TextCell.m in Sources */,
 				CE5A657A2CA832AD006D67A7 /* UIViewController+JPImageresizerView.m in Sources */,
 				CE5A657B2CA832AD006D67A7 /* UIViewController+Shake.m in Sources */,
+				84E9992E2CEB2D1C00ABE463 /* NSObject+TEST.m in Sources */,
+				84E9992F2CEB2D1C00ABE463 /* NSObject+DEV.m in Sources */,
+				84E999302CEB2D1C00ABE463 /* NSObject+Mock.m in Sources */,
+				84E999312CEB2D1C00ABE463 /* NSObject+UAT.m in Sources */,
 				CE5A657C2CA832AD006D67A7 /* UIViewController+SuspendBtn.m in Sources */,
 				CE5A657D2CA832AD006D67A7 /* UIViewController+GifImageView.m in Sources */,
 				CE5A657E2CA832AD006D67A7 /* UIViewController+SafeTransition.m in Sources */,

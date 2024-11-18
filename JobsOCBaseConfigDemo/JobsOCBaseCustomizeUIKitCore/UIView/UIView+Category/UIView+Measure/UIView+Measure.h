@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <objc/runtime.h>
 #import "BaseViewProtocol.h"
 #import "JobsAppTools.h"
 #import "JobsBlock.h"
-#import <objc/runtime.h>
 
 @class UIViewModel;
 
@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat bottom;
 @property(nonatomic,assign)CGSize sizer;/// 避免与size冲突
 @property(nonatomic,assign)CGPoint Origin;
+#pragma mark —— 初始化方法封装
++(JobsReturnViewByClassBlock _Nonnull)build;
 #pragma mark —— 刷新UI
 -(jobsByVoidBlock _Nonnull)jobsRefreshUI;
 #pragma mark —— 交换宽高

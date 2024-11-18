@@ -17,9 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class CJTextField;
 
 @protocol CJTextFieldDeleteDelegate <NSObject>
-
--(void)cjTextFieldDeleteBackward:(CJTextField *)textField;
-
+-(JobsByCJTextFieldBlock _Nonnull)cjTextFieldDeleteBackward;
 @end
 
 @interface CJTextField : UITextField

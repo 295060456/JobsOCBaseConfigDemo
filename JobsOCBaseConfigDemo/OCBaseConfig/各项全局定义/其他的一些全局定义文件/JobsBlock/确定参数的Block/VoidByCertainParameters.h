@@ -22,6 +22,7 @@ typedef void(^jobsByControlBlock)(UIControl *_Nullable ctrl);
 #pragma mark —— 关于Layer
 typedef void(^jobsByCAShapeLayerBlock)(__kindof CAShapeLayer *_Nullable data);
 typedef void(^jobsByCALayerBlock)(__kindof CALayer *_Nullable data);
+typedef void(^jobsByCATransitionBlock)(__kindof CATransition *_Nullable data);
 typedef void(^jobsByCAGradientLayerBlock)(__kindof CAGradientLayer *_Nullable data);
 #pragma mark —— 关于Animation
 typedef void(^jobsByCABasicAnimationBlock)(__kindof CABasicAnimation *_Nullable data);

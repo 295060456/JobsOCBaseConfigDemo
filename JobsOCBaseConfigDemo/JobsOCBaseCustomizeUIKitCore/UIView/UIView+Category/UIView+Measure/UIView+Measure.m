@@ -9,6 +9,13 @@
 #import "UIView+Measure.h"
 /* ❤️【优先级】 @implementation UIView (Measure) > Masonry,因为Masonry刷新后才有frame ❤️*/
 @implementation UIView (Measure)
+#pragma mark —— 初始化方法封装
++(JobsReturnViewByClassBlock _Nonnull)build{
+    return ^__kindof UIView *_Nullable(Class _Nonnull cls){
+        UIView <BaseViewProtocol>*instance = cls.new;
+        return instance;
+    };
+}
 #pragma mark —— 刷新UI
 -(jobsByVoidBlock _Nonnull)jobsRefreshUI{
     @jobs_weakify(self)
@@ -67,7 +74,7 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGSize data){
         @jobs_strongify(self)
-        UIView <BaseViewProtocol>*instance = self.class.new;
+        UIView <BaseViewProtocol>*instance = UIView.build(self.class);
         if ([instance respondsToSelector:@selector(bySize)]) {
             instance.bySize(data); // 确保视图有 bySize: 方法
         }return instance;
@@ -78,7 +85,7 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGRect data){
         @jobs_strongify(self)
-        UIView <BaseViewProtocol>*instance = self.class.new;
+        UIView <BaseViewProtocol>*instance = UIView.build(self.class);
         if ([instance respondsToSelector:@selector(byFrame)]) {
             instance.byFrame(data); // 确保视图有 bySize: 方法
         }return instance;
@@ -89,7 +96,7 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGPoint data){
         @jobs_strongify(self)
-        UIView <BaseViewProtocol>*instance = self.class.new;
+        UIView <BaseViewProtocol>*instance = UIView.build(self.class);
         if ([instance respondsToSelector:@selector(byOrigin)]) {
             instance.byOrigin(data); // 确保视图有 bySize: 方法
         }return instance;
@@ -100,7 +107,7 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGFloat data){
         @jobs_strongify(self)
-        UIView <BaseViewProtocol>*instance = self.class.new;
+        UIView <BaseViewProtocol>*instance = UIView.build(self.class);
         if ([instance respondsToSelector:@selector(byWidth)]) {
             instance.byWidth(data); // 确保视图有 bySize: 方法
         }return instance;
@@ -111,7 +118,7 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGFloat data){
         @jobs_strongify(self)
-        UIView <BaseViewProtocol>*instance = self.class.new;
+        UIView <BaseViewProtocol>*instance = UIView.build(self.class);
         if ([instance respondsToSelector:@selector(byHeight)]) {
             instance.byHeight(data); // 确保视图有 bySize: 方法
         }return instance;
@@ -122,7 +129,7 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGFloat x,CGFloat y){
         @jobs_strongify(self)
-        UIView <BaseViewProtocol>*instance = self.class.new;
+        UIView <BaseViewProtocol>*instance = UIView.build(self.class);
         if ([instance respondsToSelector:@selector(byCenter)]) {
             instance.byCenter(x,y); // 确保视图有 bySize: 方法
         }return instance;

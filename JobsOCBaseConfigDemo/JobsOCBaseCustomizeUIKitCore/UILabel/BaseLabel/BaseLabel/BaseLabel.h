@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 #import "BaseViewProtocol.h"
 #import "UILocationProtocol.h"
 #import "UIView+Extras.h"
@@ -29,10 +30,16 @@ UIGestureRecognizerDelegate
 
 #pragma mark —— 一些公有方法
 /// UILabel文字的复制
--(void)copyText:(NSString *)text;
+-(jobsByStringBlock _Nonnull)copyText;
 /// 弹出系统菜单控件
--(void)makeMenuCtrl:(NSString *)text;
+-(jobsByStringBlock _Nonnull)makeMenuCtrl;
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof BaseLabel *_Nonnull jobsMakeBaseLabel(jobsByBaseLabelBlock _Nonnull block){
+    BaseLabel *data = BaseLabel.alloc.init;
+    if (block) block(data);
+    return data;
+}

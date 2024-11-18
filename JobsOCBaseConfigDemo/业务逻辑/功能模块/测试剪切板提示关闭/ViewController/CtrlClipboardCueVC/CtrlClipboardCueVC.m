@@ -125,53 +125,58 @@
 #pragma mark —— lazyLoad
 -(BaseLabel *)label{
     if(!_label){
-        _label = BaseLabel.new;
-        _label.backgroundColor = JobsLightGrayColor;
-        _label.text = JobsInternationalization(@"请点击复制：").add(self.textData1);
-        _label.textColor = JobsRedColor;
-        _label.font = UIFontSystemFontOfSize(20);
-        _label.textAlignment = NSTextAlignmentCenter;
-        _label.longPressGR.enabled = YES;
-        _label.tapGR.enabled = YES;
         @jobs_weakify(self)
-        [_label actionReturnIDByGestureRecognizerBlock:^id _Nullable(UIGestureRecognizer * _Nullable data) {
-            if(data.state == UIGestureRecognizerStateBegan){
-                @jobs_strongify(self)
-                [self becomeFirstResponder];
-                self->_textData2 = self.textData1;
-                [self->_label makeMenuCtrl:self->_textData2];
-            }return nil;
-        }];
-        [self.view addSubview:_label];
-        [_label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(10));
-            make.centerX.equalTo(self.view);
-            make.height.mas_equalTo(@80);
-        }];
-        _label.cornerCutToCircleWithCornerRadius(JobsWidth(8));
-        _label.makeLabelByShowingType(UILabelShowingType_03);
+        _label = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = JobsLightGrayColor;
+            label.text = JobsInternationalization(@"请点击复制：").add(self.textData1);
+            label.textColor = JobsRedColor;
+            label.font = UIFontSystemFontOfSize(20);
+            label.textAlignment = NSTextAlignmentCenter;
+            label.longPressGR.enabled = YES;
+            label.tapGR.enabled = YES;
+            [label actionReturnIDByGestureRecognizerBlock:^id _Nullable(UIGestureRecognizer * _Nullable data) {
+                if(data.state == UIGestureRecognizerStateBegan){
+                    @jobs_strongify(self)
+                    [self becomeFirstResponder];
+                    self->_textData2 = self.textData1;
+                    self->_label.makeMenuCtrl(self->_textData2);
+                }return nil;
+            }];
+            [self.view addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(10));
+                make.centerX.equalTo(self.view);
+                make.height.mas_equalTo(@80);
+            }];
+            label.cornerCutToCircleWithCornerRadius(JobsWidth(8));
+            label.makeLabelByShowingType(UILabelShowingType_03);
+        });
     }return _label;
 }
 
 -(BaseTextView *)textView{
     if (!_textView) {
-        _textView = BaseTextView.new;
-        _textView.backgroundColor = JobsLightTextColor;
-        _textView.placeholder = JobsInternationalization(@"请粘贴！！！");
-        _textView.textColor = JobsBlackColor;
-        _textView.delegate = self;
-        _textView.font = UIFontSystemFontOfSize(14);
-        [self.view addSubview:_textView];
-        [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view).offset(JobsWidth(10));
-            make.right.equalTo(self.view).offset(JobsWidth(-10));
-            make.top.equalTo(self.label.mas_bottom).offset(JobsWidth(10));
-            make.bottom.equalTo(self.view).offset(JobsWidth(-20));
-        }];
-        _textView.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
-            model.layerCor = JobsLightGrayColor;
-            model.jobsWidth = .5f;
-        }));
+        @jobs_weakify(self)
+        _textView = jobsMakeBaseTextView(^(__kindof BaseTextView * _Nullable textView) {
+            @jobs_strongify(self)
+            textView.backgroundColor = JobsLightTextColor;
+            textView.placeholder = JobsInternationalization(@"请粘贴！！！");
+            textView.textColor = JobsBlackColor;
+            textView.delegate = self;
+            textView.font = UIFontSystemFontOfSize(14);
+            [self.view addSubview:textView];
+            [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view).offset(JobsWidth(10));
+                make.right.equalTo(self.view).offset(JobsWidth(-10));
+                make.top.equalTo(self.label.mas_bottom).offset(JobsWidth(10));
+                make.bottom.equalTo(self.view).offset(JobsWidth(-20));
+            }];
+            textView.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+                model.layerCor = JobsLightGrayColor;
+                model.jobsWidth = .5f;
+            }));
+        });
     }return _textView;
 }
 

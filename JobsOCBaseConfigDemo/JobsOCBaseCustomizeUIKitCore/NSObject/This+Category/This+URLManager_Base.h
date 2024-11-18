@@ -10,6 +10,14 @@
 #import "URLManagerModel.h"
 #import "JobsBlock.h"
 
+#ifndef HTTP
+#define HTTP @"http://"
+#endif
+
+#ifndef HTTPS
+#define HTTPS @"https://"
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface This (URLManager_Base)

@@ -61,6 +61,17 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 #pragma mark —— 一些公共设置
+/// 默认文本段落样式
+-(NSMutableParagraphStyle *)defaultParagraphStyle{
+    return jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+        data.alignment = NSTextAlignmentJustified;
+        data.paragraphSpacing = 0;/// 段距，取值 float
+        data.paragraphSpacingBefore = 0;/// 段首空间，取值 float
+        data.firstLineHeadIndent = 0.0;/// 首行缩进，取值 float
+        data.headIndent = 0.0;/// 整体缩进(首行除外)，取值 float
+        data.lineSpacing = 0;/// 行距，取值 float
+    });
+}
 /// 联系我们.按钮
 -(__kindof UIButton *_Nullable)makeContactBtn{
     @jobs_weakify(self)

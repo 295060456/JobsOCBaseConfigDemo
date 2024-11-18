@@ -49,33 +49,39 @@ UILocationProtocol_UIViewModelSynthesize
 
 #pragma mark —— 一些公有方法
 /// UILabel文字的复制
--(void)copyText:(NSString *)text{
-    text.pasteboard();
-    NSLog(@"%@%@",JobsInternationalization(@"复制的文字："),text);
+-(jobsByStringBlock _Nonnull)copyText{
+    return ^(NSString *_Nullable text){
+        text.pasteboard();
+        NSLog(@"%@%@",JobsInternationalization(@"复制的文字："),text);
+    };
 }
 /// 弹出系统菜单控件
--(void)makeMenuCtrl:(NSString *)text{
-    UIMenuController.sharedMenuController.menuItems = nil;
-    UIMenuController *menu = UIMenuController.sharedMenuController;
+-(jobsByStringBlock _Nonnull)makeMenuCtrl{
     @jobs_weakify(self)
-    UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:JobsInternationalization(@"请复制")
-                                                    action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                                        id _Nullable arg) {
+    return ^(NSString *_Nullable text){
         @jobs_strongify(self)
-        if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
-        [self copyText:text];
-        return nil;
-    }, @"copyText:", self)];
-    menu.menuItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-        data.add(copyItem);
-    });
-    [menu update];
-    if(@available(iOS 10.3, *)){
-        [menu showMenuFromView:self rect:self.bounds];
-    }else{
-        SuppressWdeprecatedDeclarationsWarning([menu setTargetRect:self.bounds inView:self];
-                                               [menu setMenuVisible:YES animated:YES];);
-    }
+        UIMenuController.sharedMenuController.menuItems = nil;
+        UIMenuController *menu = UIMenuController.sharedMenuController;
+        @jobs_weakify(self)
+        UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:JobsInternationalization(@"请复制")
+                                                        action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                                                            id _Nullable arg) {
+            @jobs_strongify(self)
+            if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
+            self.copyText(text);
+            return nil;
+        }, @"copyText", self)];
+        menu.menuItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(copyItem);
+        });
+        [menu update];
+        if(@available(iOS 10.3, *)){
+            [menu showMenuFromView:self rect:self.bounds];
+        }else{
+            SuppressWdeprecatedDeclarationsWarning([menu setTargetRect:self.bounds inView:self];
+                                                   [menu setMenuVisible:YES animated:YES];);
+        }
+    };
 }
 #pragma mark —— UIResponder
 -(BOOL)canPerformAction:(SEL)action
@@ -108,7 +114,7 @@ UILocationProtocol_UIViewModelSynthesize
            action == @selector(_accessibilityPauseSpeaking:) ||
            action == @selector(_share:)){/// 共享
             return NO;
-        }else if ([NSStringFromSelector(action) containsString:@"copyText:"]){
+        }else if ([NSStringFromSelector(action) containsString:@"copyText"]){
             return YES;
         }else return NO;
     }else return YES;

@@ -8,8 +8,6 @@
 #import "TestLabelVC.h"
 
 @interface TestLabelVC ()
-
-//@property(nonatomic,strong)UIScrollView *scrollView;
 /// UILabel
 @property(nonatomic,strong)BaseLabel *lab1;///【UILabelShowingType_01】 一行显示。定宽、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
 @property(nonatomic,strong)BaseLabel *lab2;///【UILabelShowingType_02】 一行显示普通文本。定宽、定字体。多余部分scrollerView ❤️集成@implementation UILabel (AutoScroll)❤️
@@ -96,13 +94,16 @@
 @synthesize scrollView = _scrollView;
 -(UIScrollView *)scrollView{
     if (!_scrollView) {
-        _scrollView = UIScrollView.new;
-        _scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(), 2 * JobsMainScreen_HEIGHT());
-        [self.view addSubview:_scrollView];
-        [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.gk_navigationBar.mas_bottom);
-            make.left.right.bottom.equalTo(self.view);
-        }];
+        @jobs_weakify(self)
+        _scrollView = jobsMakeScrollView(^(__kindof UIScrollView * _Nullable scrollView) {
+            @jobs_strongify(self)
+            scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(), 2 * JobsMainScreen_HEIGHT());
+            [self.view addSubview:scrollView];
+            [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                make.left.right.bottom.equalTo(self.view);
+            }];
+        });
     }return _scrollView;
 }
 #pragma mark —— 富文本
@@ -117,29 +118,14 @@
                 data1.textCor = JobsBlueColor;
                 data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
                 data1.textBgCor = JobsBrownColor;
-                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
-                    data2.alignment = NSTextAlignmentJustified;
-                    data2.paragraphSpacing = 0;//段距，取值 float
-                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
-                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-                    data2.lineSpacing = 0;//行距，取值 float
-                });
+                data1.paragraphStyle = self.defaultParagraphStyle;
             }));
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                @jobs_strongify(self)
                 data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
                 data1.textCor = JobsWhiteColor;
                 data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
                 data1.textBgCor = JobsBrownColor;
-                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
-                    data2.alignment = NSTextAlignmentJustified;
-                    data2.paragraphSpacing = 0;//段距，取值 float
-                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
-                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-                    data2.lineSpacing = 0;//行距，取值 float
-                });
+                data1.paragraphStyle = self.defaultParagraphStyle;
             }));
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
@@ -147,14 +133,7 @@
                 data1.textCor = JobsGreenColor;
                 data1.targetString = JobsInternationalization(@"APP的业务。");
                 data1.textBgCor = JobsBrownColor;
-                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
-                    data2.alignment = NSTextAlignmentJustified;
-                    data2.paragraphSpacing = 0;//段距，取值 float
-                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
-                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-                    data2.lineSpacing = 0;//行距，取值 float
-                });
+                data1.paragraphStyle = self.defaultParagraphStyle;
             }));
         }));
     }return _attributedText;
@@ -163,103 +142,125 @@
 /// 一行显示普通文本。定宽、定高、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
 -(BaseLabel *)lab1{
     if (!_lab1) {
-        _lab1 = BaseLabel.new;
-        _lab1.backgroundColor = JobsRedColor;
-        _lab1.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
-        [self.scrollView addSubview:_lab1];
-        [_lab1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(100, 20));
-            make.top.equalTo(self.scrollView).offset(20);
-            make.centerX.equalTo(self.scrollView);
-        }];
+        @jobs_weakify(self)
+        _lab1 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = JobsRedColor;
+            label.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
+            [self.scrollView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(100, 20));
+                make.top.equalTo(self.scrollView).offset(20);
+                make.centerX.equalTo(self.scrollView);
+            }];
+        });
     }return _lab1;
 }
 /// 一行显示普通文本。定宽、定高、定字体。多余部分scrollerView ❤️集成@implementation UILabel (AutoScroll)❤️
 -(BaseLabel *)lab2{
     if (!_lab2) {
-        _lab2 = BaseLabel.new;
-        _lab2.backgroundColor = JobsRedColor;
-        _lab2.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
-        [self.scrollView addSubview:_lab2];
-        [_lab2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(100, 20));
-            make.top.equalTo(self.lab1.mas_bottom).offset(20);
-            make.centerX.equalTo(self.scrollView);
-        }];
+        @jobs_weakify(self)
+        _lab2 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = JobsRedColor;
+            label.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
+            [self.scrollView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(100, 20));
+                make.top.equalTo(self.lab1.mas_bottom).offset(20);
+                make.centerX.equalTo(self.scrollView);
+            }];
+        });
     }return _lab2;
 }
 /// 一行显示普通文本。不定宽、定高、定字体。宽度自适应
 -(BaseLabel *)lab3{
     if (!_lab3) {
-        _lab3 = BaseLabel.new;
-        _lab3.backgroundColor = JobsRedColor;
-        _lab3.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
-        [self.scrollView addSubview:_lab3];
-        [_lab3 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(20);
-            make.top.equalTo(self.lab2.mas_bottom).offset(20);
-            make.centerX.equalTo(self.scrollView);
-        }];
+        @jobs_weakify(self)
+        _lab3 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = JobsRedColor;
+            label.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
+            [self.scrollView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(20);
+                make.top.equalTo(self.lab2.mas_bottom).offset(20);
+                make.centerX.equalTo(self.scrollView);
+            }];
+        });
     }return _lab3;
 }
 /// 一行显示普通文本。定宽、定高。缩小字体方式全展示
 -(BaseLabel *)lab4{
     if (!_lab4) {
-        _lab4 = BaseLabel.new;
-        _lab4.backgroundColor = JobsRedColor;
-        _lab4.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
-        [self.scrollView addSubview:_lab4];
-        [_lab4 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(100, 20));
-            make.top.equalTo(self.lab3.mas_bottom).offset(20);
-            make.centerX.equalTo(self.scrollView);
-        }];
+        @jobs_weakify(self)
+        _lab4 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = JobsRedColor;
+            label.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
+            [self.scrollView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(100, 20));
+                make.top.equalTo(self.lab3.mas_bottom).offset(20);
+                make.centerX.equalTo(self.scrollView);
+            }];
+        });
     }return _lab4;
 }
 /// 多行显示普通文本。定宽、不定高、定字体
 -(BaseLabel *)lab5{
     if (!_lab5) {
-        _lab5 = BaseLabel.new;
-        _lab5.backgroundColor = JobsRedColor;
-        _lab5.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
-        [self.scrollView addSubview:_lab5];
-        [_lab5 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(100);
-            make.top.equalTo(self.lab4.mas_bottom).offset(20);
-            make.centerX.equalTo(self.scrollView);
-        }];
+        @jobs_weakify(self)
+        _lab5 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = JobsRedColor;
+            label.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
+            [self.scrollView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(100);
+                make.top.equalTo(self.lab4.mas_bottom).offset(20);
+                make.centerX.equalTo(self.scrollView);
+            }];
+        });
     }return _lab5;
 }
 /// 多行显示普通文本，手动\n提行。定宽（宽要足够长，否则就面临自动提行）、定字体
 -(BaseLabel *)lab6{
     if (!_lab6) {
-        _lab6 = BaseLabel.new;
-        _lab6.backgroundColor = JobsRedColor;
-        _lab6.text = JobsInternationalization(@"编译器自动管理内存地址")
-            .add(@"，\n")
-            .add(JobsInternationalization(@"让程序员更加专注于"))
-            .add(@"\n")
-            .add(@"APP的业务。");
-        [self.scrollView addSubview:_lab6];
-        [_lab6 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(JobsMainScreen_WIDTH());
-            make.top.equalTo(self.lab5.mas_bottom).offset(20);
-            make.centerX.equalTo(self.scrollView);
-        }];
+        @jobs_weakify(self)
+        _lab6 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = JobsRedColor;
+            label.text = JobsInternationalization(@"编译器自动管理内存地址")
+                .add(@"，\n")
+                .add(JobsInternationalization(@"让程序员更加专注于"))
+                .add(@"\n")
+                .add(JobsInternationalization(@"APP的业务"))
+                .add(@".");
+            [self.scrollView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(JobsMainScreen_WIDTH());
+                make.top.equalTo(self.lab5.mas_bottom).offset(20);
+                make.centerX.equalTo(self.scrollView);
+            }];
+        });
     }return _lab6;
 }
 /// 多行显示富文本，手动\n提行。定宽（宽要足够长，否则就面临自动提行）、定字体
 -(BaseLabel *)lab7{
     if (!_lab7) {
-        _lab7 = BaseLabel.new;
-        _lab7.backgroundColor = JobsRedColor;
-        _lab7.attributedText = self.attributedText;
-        [self.scrollView addSubview:_lab7];
-        [_lab7 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(JobsMainScreen_WIDTH());
-            make.top.equalTo(self.lab6.mas_bottom).offset(20);
-            make.centerX.equalTo(self.scrollView);
-        }];
+        @jobs_weakify(self)
+        _lab7 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = JobsRedColor;
+            label.attributedText = self.attributedText;
+            [self.scrollView addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(JobsMainScreen_WIDTH());
+                make.top.equalTo(self.lab6.mas_bottom).offset(20);
+                make.centerX.equalTo(self.scrollView);
+            }];
+        });
     }return _lab7;
 }
 #pragma mark —— BaseButton

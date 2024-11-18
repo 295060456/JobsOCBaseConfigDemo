@@ -36,7 +36,7 @@ NS_INLINE BOOL isValue(id _Nonnull string){
 }
 
 NS_INLINE NSString *_Nonnull Guard(NSString *_Nullable data){
-    return isValue(data) ? data : @"sds";
+    return isValue(data) ? data : @"";
 }
 
 NS_ASSUME_NONNULL_BEGIN

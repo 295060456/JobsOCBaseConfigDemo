@@ -60,6 +60,8 @@ AppToolsProtocol
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;
 #pragma mark —— 一些公共设置
+/// 默认文本段落样式
+-(NSMutableParagraphStyle *)defaultParagraphStyle;
 /// 联系我们.按钮
 -(__kindof UIButton *_Nullable)makeContactBtn;
 /// 关闭.按钮

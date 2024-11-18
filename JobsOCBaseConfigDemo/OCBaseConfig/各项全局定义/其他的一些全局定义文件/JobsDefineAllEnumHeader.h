@@ -14,9 +14,10 @@
 #define JOBS_NETWORKING_ENVIR_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, JobsNetworkingEnvir) {
     JobsNetworkingEnvir_Undefined = 0,
-    JobsNetworkingEnvir_DevEnviron,/// 开发环境
-    JobsNetworkingEnvir_UATEnviron,/// UAT环境
-    JobsNetworkingEnvir_ProductEnviron,/// 生产环境
+    JobsNetworkingEnvir_Dev,/// 开发环境
+    JobsNetworkingEnvir_Test,/// 测试环境
+    JobsNetworkingEnvir_UAT,/// UAT环境
+    JobsNetworkingEnvir_Product,/// 生产环境
 };
 #endif /* JOBS_NETWORKING_ENVIR_ENUM_DEFINED */
 /// 平台维护状态
@@ -568,9 +569,12 @@ typedef NS_ENUM(NSInteger, KYCok){
 #define HOMEBARLISTSTYLE
 /// 首页游戏列表名
 typedef NS_ENUM(NSInteger, HomeBarListStyle){
-    HomeBarListStyle_Sports = 1001101, /// Sports
-    HomeBarListStyle_LiveCasino = 1001102, /// Live Casino
-    HomeBarListStyle_SlotsGames = 1001104, /// Slots Games
+    HomeBarListStyle_Sports = 1001101, /// Sports 体育
+    HomeBarListStyle_LiveCasino = 1001102, /// Live Casino 真人
+    HomeBarListStyle_TableGames = 1001103, /// Table Games 棋牌
+    HomeBarListStyle_SlotsGames = 1001104, /// Slots Games 电子
+    HomeBarListStyle_Lottery = 1001105, /// Lottery 彩票
+    HomeBarListStyle_ESport = 1001106 /// ESport 电竞
 };
 #endif /* HOMEBARLISTSTYLE */
 
@@ -832,6 +836,16 @@ typedef NS_ENUM(NSInteger, FMWithdrawalType) {
     FMWithdrawalType_EWallet         /// 电子钱包提现
 };
 #endif /* FM_WITHDRAWAL_TYPE_DEFINED */
+/// 广告标签类型
+#ifndef FM_AD_TAG_TYPE_DEFINED
+#define FM_AD_TAG_TYPE_DEFINED
+typedef NS_ENUM(NSInteger, FMAdTagType) {
+    FMAdTagType_All = 0,             /// 全部广告
+    FMAdTagType_LimitedTime,         /// 限时广告
+    FMAdTagType_NewAccount,          /// 新账户广告
+    FMAdTagType_Daily                /// 日常广告
+};
+#endif /* FM_AD_TAG_TYPE_DEFINED */
 
 
 

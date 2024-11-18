@@ -18,6 +18,14 @@
 #import "SDWebImage.h"
 #endif
 
+#ifndef HTTP
+#define HTTP @"http://"
+#endif
+
+#ifndef HTTPS
+#define HTTPS @"https://"
+#endif
+
 NS_INLINE NSMutableString *_Nonnull JobsMutableString(NSString * _Nonnull str){
     if(!str) str = @"";
     return [NSMutableString stringWithString:str];
@@ -57,6 +65,8 @@ NS_ASSUME_NONNULL_BEGIN
  解决方法：可能存在复制源里面的文字带了空白url编码%E2%80%8B，空白编码没有宽度，虽然看不到但是会影响结果无法正确匹配对应的中文字。可以把文字重新url编码即可。
  */
 -(NSString *_Nonnull)urlProtect;
+-(NSString *_Nonnull)byHttp;
+-(NSString *_Nonnull)byHttps;
 #pragma mark —— 一些功能性的
 /// 用入参进行分隔字符串对外输出数组
 -(JobsReturnArrayByStringBlock _Nonnull)makeArrBy;

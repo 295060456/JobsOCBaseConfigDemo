@@ -185,6 +185,12 @@ typedef void(^jobsByCJTextField)(CJTextField *_Nullable textField);
 @class ZYTextField;
 typedef void(^jobsByZYTextFieldBlock)(ZYTextField *_Nullable textField);
 
+@class BaseLabel;
+typedef void(^jobsByBaseLabelBlock)(__kindof BaseLabel *_Nullable label);
+
+@class BaseTextView;
+typedef void(^jobsByBaseTextViewBlock)(__kindof BaseTextView *_Nullable textView);
+
 @class JobsToggleBaseView;
 typedef void(^jobsByToggleBaseViewBlock)(JobsToggleBaseView *_Nullable toggleBaseView);
 
@@ -287,6 +293,9 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBloc
 
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable data);
 #pragma mark —— 涉及到第三方类的Block定义
+@class CJTextField;
+typedef void(^JobsByCJTextFieldBlock)(CJTextField *_Nullable data);
+
 @class WMZBannerView;
 @class WMZBannerParam;
 typedef WMZBannerView *_Nonnull(^JobsReturnWMZBannerViewByBannerParamBlock)(WMZBannerParam *_Nonnull bannerParam);

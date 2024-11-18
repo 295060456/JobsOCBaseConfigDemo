@@ -49,7 +49,11 @@ NS_INLINE __kindof UIBezierPath *_Nonnull jobsMakeBezierPath(jobsByBezierPathBlo
     if (block) block(data);
     return data;
 }
-#pragma mark —— 关于Layer的创建
+#pragma mark —— 关于动画
+NS_INLINE __kindof CABasicAnimation *_Nonnull jobsMakeBasicAnimationBy(NSString *_Nonnull data){
+    return data.basicAnimation;
+}
+#pragma mark —— 关于Layer
 NS_INLINE __kindof CAShapeLayer *_Nonnull jobsMakeCAShapeLayer(jobsByCAShapeLayerBlock _Nonnull block){
     CAShapeLayer *data = CAShapeLayer.layer;
     if (block) block(data);
@@ -58,6 +62,12 @@ NS_INLINE __kindof CAShapeLayer *_Nonnull jobsMakeCAShapeLayer(jobsByCAShapeLaye
 
 NS_INLINE __kindof CALayer *_Nonnull jobsMakeCALayer(jobsByCALayerBlock _Nonnull block){
     CALayer *data = CALayer.layer;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof CATransition *_Nonnull jobsMakeCATransition(jobsByCATransitionBlock _Nonnull block){
+    CATransition *data = CATransition.animation;
     if (block) block(data);
     return data;
 }

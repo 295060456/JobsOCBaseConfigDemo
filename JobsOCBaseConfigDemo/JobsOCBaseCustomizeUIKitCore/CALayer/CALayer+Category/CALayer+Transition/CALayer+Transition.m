@@ -21,14 +21,15 @@
                                         duration:(CGFloat)duration{
     NSString *key = @"transition";
     if([self animationForKey:key]) [self removeAnimationForKey:key];
-    CATransition *transition = CATransition.animation;
-    transition.duration = duration;/// 动画时长
-    transition.type = self.animaTypeWithTransitionType(animType);/// 动画类型
-    transition.subtype = self.animaSubtype(subType);/// 动画方向
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:self.curve(curve)];/// 缓动函数
-    transition.removedOnCompletion = YES;/// 完成动画删除
-    [self addAnimation:transition
-                forKey:key];
+    @jobs_weakify(self)
+    CATransition *transition = jobsMakeCATransition(^(__kindof CATransition * _Nullable data) {
+        @jobs_strongify(self)
+        data.duration = duration;/// 动画时长
+        data.type = self.animaTypeWithTransitionType(animType);/// 动画类型
+        data.subtype = self.animaSubtype(subType);/// 动画方向
+        data.timingFunction = [CAMediaTimingFunction functionWithName:self.curve(curve)];/// 缓动函数
+        data.removedOnCompletion = YES;/// 完成动画删除
+    });[self addAnimation:transition forKey:key];
     return transition;
 }
 /// 返回动画曲线
@@ -77,13 +78,21 @@
         })index:type isRamdom:(TransitionAnimTypeRandom == type)];
     };
 }
-
+/// 添加Layer
 -(JobsReturnCALayerByCALayerBlock _Nonnull)add{
     @jobs_weakify(self)
     return ^__kindof CALayer *_Nullable(CALayer *_Nullable data){
         @jobs_strongify(self)
         [self addSublayer:data];
         return self;
+    };
+}
+/// 删除Layer
+-(jobsByVoidBlock _Nonnull)remove{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        [self removeFromSuperlayer];
     };
 }
 /// 统一从数据返回对象
