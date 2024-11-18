@@ -15,9 +15,10 @@
 
 +(JobsReturnVCByWebViewBlock _Nonnull)initByWebView{
     @jobs_weakify(self)
-    return ^__kindof UIViewController *_Nullable(__kindof WKWebView *_Nonnull webView){
+    return ^__kindof UIViewController <BaseViewControllerProtocol>*_Nullable(__kindof WKWebView *_Nonnull webView){
         @jobs_strongify(self)
-        UIViewController *vc = (UIViewController *)self.class.new;
+        UIViewController <BaseViewControllerProtocol>*vc = (UIViewController *)self.class.new;
+        vc.webView = webView;
         vc.view.addSubview(webView);
         webView.frame = vc.view.bounds;
         return vc;

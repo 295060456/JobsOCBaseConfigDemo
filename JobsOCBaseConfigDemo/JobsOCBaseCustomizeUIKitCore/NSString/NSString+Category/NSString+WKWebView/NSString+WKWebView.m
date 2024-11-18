@@ -20,10 +20,10 @@
     };
 }
 /// 解析网络URL数据
--(JobsReturnWKWebViewByVoidBlock _Nonnull)webView{
+-(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebView{
     return ^__kindof WKWebView *_Nullable(){
         @jobs_weakify(self)
-        return jobsMakeWKWebView(^(__kindof WKWebView * _Nullable webView) {
+        return jobsMakeWKWebView(^(__kindof WKWebView *_Nullable webView) {
             @jobs_strongify(self)
             [webView loadRequest:self.jobsUrl.URLRequest];
         });

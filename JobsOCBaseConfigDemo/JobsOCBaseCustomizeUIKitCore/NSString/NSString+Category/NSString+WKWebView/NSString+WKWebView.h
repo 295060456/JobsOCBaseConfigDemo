@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
 -(JobsReturnWKWebViewByStringBlock _Nonnull)webViewByloadHTMLString;
 /// 解析网络URL数据
--(JobsReturnWKWebViewByVoidBlock _Nonnull)webView;
+-(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebView;
 
 @end
 

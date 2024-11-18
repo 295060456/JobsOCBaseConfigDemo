@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 #import "BaseViewProtocol.h"
 #import "JobsBlock.h"
 #import "JobsNavBar.h"
@@ -40,6 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL ViewDidDisappear;
 /// UI
 @property(nonatomic,weak)UIViewController *fromVC;
+@property(nonatomic,strong,nullable)WKWebView *webView;
 @property(nonatomic,strong,nullable)SPAlertController *alertController;
 @property(nonatomic,assign)ComingStyle pushOrPresent;
 @property(nonatomic,assign)BOOL setupNavigationBarHidden;
@@ -69,6 +71,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewControllerProtocol_synthesize
 #define BaseViewControllerProtocol_synthesize \
 @synthesize fromVC = _fromVC;\
+@synthesize webView = _webView;\
 @synthesize alertController = _alertController;\
 @synthesize pushOrPresent = _pushOrPresent;\
 @synthesize setupNavigationBarHidden = _setupNavigationBarHidden;\
@@ -92,6 +95,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewControllerProtocol_dynamic
 #define BaseViewControllerProtocol_dynamic \
 @dynamic fromVC;\
+@dynamic webView;\
 @dynamic alertController;\
 @dynamic pushOrPresent;\
 @dynamic setupNavigationBarHidden;\
