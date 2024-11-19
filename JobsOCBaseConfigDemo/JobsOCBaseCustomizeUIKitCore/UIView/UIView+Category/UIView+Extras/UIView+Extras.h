@@ -121,8 +121,8 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 #pragma mark —— 其他
 -(JobsReturnViewByGestureRecognizer _Nonnull)addGesture;
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;
--(jobsByViewBlock _Nonnull)addSubview;
--(jobsByViewBlock _Nonnull)remove;
+-(JobsReturnViewByViewBlock _Nonnull)addSubview;
+-(JobsReturnViewByViewBlock _Nonnull)remove;
 /// 针对数据源是UIImage  *的GKPhotoBrowser
 -(void)viewTapGRSavePicsWithImageDataMutArr:(NSMutableArray <UIImage *>*_Nonnull)imageDataMutArr
                                 atIndexPath:(NSIndexPath *_Nonnull)indexPath

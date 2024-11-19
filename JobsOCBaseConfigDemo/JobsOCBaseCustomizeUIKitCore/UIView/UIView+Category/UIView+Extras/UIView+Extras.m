@@ -796,24 +796,24 @@ JobsKey(_getAnimation)
     };
 }
 
--(jobsByViewBlock _Nonnull)addSubview{
+-(JobsReturnViewByViewBlock _Nonnull)addSubview{
     @jobs_weakify(self)
-    return ^(__kindof UIView *_Nullable subView) {
+    return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {
         @jobs_strongify(self)
         [self addSubview:subView];
         if(subView.masonryBlock){
             [subView mas_makeConstraints:subView.masonryBlock];
             [self layoutIfNeeded];
-            NSLog(@"");
-        }
+        }return subView;
     };
 }
 
--(jobsByViewBlock _Nonnull)remove{
+-(JobsReturnViewByViewBlock _Nonnull)remove{
     @jobs_weakify(self)
-    return ^(__kindof UIView *_Nullable subView) {
+    return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {
         @jobs_strongify(self)
         [self removeFromSuperview];
+        return self;
     };
 }
 /// 针对数据源是UIImage  *的GKPhotoBrowser
