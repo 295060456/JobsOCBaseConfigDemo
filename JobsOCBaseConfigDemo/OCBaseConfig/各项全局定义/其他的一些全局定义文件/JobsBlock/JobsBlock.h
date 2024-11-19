@@ -463,6 +463,9 @@ typedef void(^jobsByBankDataModelBlock)(__kindof FMBankDataModel *_Nullable mode
 @class FMMyGameBetOrderSumModel;
 typedef void(^jobsByMyGameBetOrderSumModelBlock)(__kindof FMMyGameBetOrderSumModel *_Nullable model);
 
+@class GetDepositDiscountActivityRecordModel;
+typedef UIViewModel *_Nullable(^jobsByGetDepositDiscountActivityRecordModelBlock)(__kindof GetDepositDiscountActivityRecordModel *_Nullable model);
+
 #endif /* JobsBlock_h */
 /*
  

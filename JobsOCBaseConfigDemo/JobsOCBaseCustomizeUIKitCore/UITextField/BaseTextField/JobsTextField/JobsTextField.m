@@ -193,9 +193,19 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     _realTextField.placeholderFont = _placeholderFont;
 }
 
+-(void)setFont:(UIFont *)font{
+    _font = font;
+    _realTextField.font = font;
+}
+
 -(void)setSecureTextEntry:(BOOL)secureTextEntry{
     _secureTextEntry = secureTextEntry;
-    self.realTextField.secureTextEntry = secureTextEntry;
+    _realTextField.secureTextEntry = secureTextEntry;
+}
+
+-(void)setTextCor:(UIColor *)textCor{
+    _textCor = textCor;
+    _realTextField.textColor = textCor;
 }
 #pragma mark —— lazyLoad
 -(UITextField *)realTextField{
@@ -204,7 +214,8 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         _realTextField = jobsMakeTextField(^(__kindof UITextField * _Nullable textField) {
             @jobs_strongify(self)
             textField.text = self.text;
-            textField.textColor = self.textColor;
+            textField.font = self.font;
+            textField.textColor = self.textCor;
             textField.delegate = self;
             textField.secureTextEntry = self.secureTextEntry;
             textField.backgroundColor = self.realTextFieldBgCor;
@@ -236,10 +247,10 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     }return _realTextField;
 }
 
--(UIColor *)textColor{
-    if(!_textColor){
-        _textColor = JobsBlackColor;
-    }return _textColor;
+-(UIColor *)textCor{
+    if(!_textCor){
+        _textCor = JobsBlackColor;
+    }return _textCor;
 }
 
 -(UIColor *)realTextFieldBgCor{
