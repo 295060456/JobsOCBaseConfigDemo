@@ -79,37 +79,37 @@ NS_INLINE __kindof CAGradientLayer *_Nonnull jobsMakeGradientLayer(jobsByCAGradi
 }
 #pragma mark —— 关于手势的创建
 /// Tap Gesture (点击手势)
-NS_INLINE __kindof UITapGestureRecognizer *_Nonnull jobsMakeTapGesture(jobsByTapGestureBlock _Nonnull block) {
+NS_INLINE __kindof UITapGestureRecognizer *_Nonnull jobsMakeTapGesture(jobsByTapGestureBlock _Nullable block) {
     UITapGestureRecognizer *gesture = UITapGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;
 }
 /// Long Press Gesture (长按手势)
-NS_INLINE __kindof UILongPressGestureRecognizer *_Nonnull jobsMakeLongPressGesture(jobsByLongPressGestureBlock _Nonnull block) {
+NS_INLINE __kindof UILongPressGestureRecognizer *_Nonnull jobsMakeLongPressGesture(jobsByLongPressGestureBlock _Nullable block) {
     UILongPressGestureRecognizer *gesture = UILongPressGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;
 }
 /// Swipe Gesture (滑动手势)
-NS_INLINE __kindof UISwipeGestureRecognizer *_Nonnull jobsMakeSwipeGesture(jobsBySwipeGestureBlock _Nonnull block) {
+NS_INLINE __kindof UISwipeGestureRecognizer *_Nonnull jobsMakeSwipeGesture(jobsBySwipeGestureBlock _Nullable block) {
     UISwipeGestureRecognizer *gesture = UISwipeGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;
 }
 /// Pan Gesture (拖动手势)
-NS_INLINE __kindof UIPanGestureRecognizer *_Nonnull jobsMakePanGesture(jobsByPanGestureBlock _Nonnull block) {
+NS_INLINE __kindof UIPanGestureRecognizer *_Nonnull jobsMakePanGesture(jobsByPanGestureBlock _Nullable block) {
     UIPanGestureRecognizer *gesture = UIPanGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;
 }
 /// Pinch Gesture (捏合手势)
-NS_INLINE __kindof UIPinchGestureRecognizer *_Nonnull jobsMakePinchGesture(jobsByPinchGestureBlock _Nonnull block) {
+NS_INLINE __kindof UIPinchGestureRecognizer *_Nonnull jobsMakePinchGesture(jobsByPinchGestureBlock _Nullable block) {
     UIPinchGestureRecognizer *gesture = UIPinchGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;
 }
 /// Rotation Gesture (旋转手势)
-NS_INLINE __kindof UIRotationGestureRecognizer *_Nonnull jobsMakeRotationGesture(jobsByRotationGestureBlock _Nonnull block) {
+NS_INLINE __kindof UIRotationGestureRecognizer *_Nonnull jobsMakeRotationGesture(jobsByRotationGestureBlock _Nullable block) {
     UIRotationGestureRecognizer *gesture = UIRotationGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;

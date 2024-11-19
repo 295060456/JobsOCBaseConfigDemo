@@ -779,11 +779,12 @@ JobsKey(_getAnimation)
     }return shouldScroll;
 }
 #pragma mark —— 其他
--(jobsByGestureRecognizer _Nonnull)addGesture{
+-(JobsReturnViewByGestureRecognizer _Nonnull)addGesture{
     @jobs_weakify(self)
-    return ^void(UIGestureRecognizer *_Nonnull gesture) {
+    return ^__kindof UIView *_Nullable(UIGestureRecognizer *_Nonnull gesture) {
         @jobs_strongify(self)
         [self addGestureRecognizer:gesture];
+        return self;
     };
 }
 

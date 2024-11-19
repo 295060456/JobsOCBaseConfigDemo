@@ -105,6 +105,14 @@ typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByImagePa
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitlePaddingBlock)(CGFloat data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitleAlignmentBlock)(UIButtonConfigurationTitleAlignment data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock)(BOOL data) API_AVAILABLE(ios(16.0));
+#pragma mark —— 关于手势
+typedef __kindof UIView *_Nullable(^JobsReturnViewByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByTapGestureBlock)(UITapGestureRecognizer *_Nullable gesture);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByLongPressGestureBlock)(UILongPressGestureRecognizer *_Nullable gesture);
+typedef __kindof UIView *_Nullable(^JobsReturnViewBySwipeGestureBlock)(UISwipeGestureRecognizer *_Nullable gesture);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByPanGestureBlock)(UIPanGestureRecognizer *_Nullable gesture);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByPinchGestureBlock)(UIPinchGestureRecognizer *_Nullable gesture);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByRotationGestureBlock)(UIRotationGestureRecognizer *_Nullable gesture);
 #pragma mark —— 关于Layer
 typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCALayerBlock)(CALayer *_Nullable data);
 #pragma mark —— 关于 View

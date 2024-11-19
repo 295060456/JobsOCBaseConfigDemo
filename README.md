@@ -5777,6 +5777,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   
 * 封装方式2：
 
+  ```objective-c
+   UITapGestureRecognizer *tapGesture = UITapGestureRecognizer.rac_recognizer;
+   [tapGesture.rac_gestureSignal subscribeNext:^(__kindof UIGestureRecognizer * _Nullable gesture) {
+       NSLog(@"");
+   }];
+   self.topBar.addGesture(tapGesture);
+  ```
+  
+* 封装方式3：
+
   因为手势传递是在view层。所以对其进行了一次封装。关注实现类：[**@interface UIView (Gesture)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BGesture)
 
   ```objective-c

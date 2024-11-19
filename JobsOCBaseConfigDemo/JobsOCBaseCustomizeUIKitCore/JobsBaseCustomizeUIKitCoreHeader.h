@@ -121,6 +121,7 @@
 #import "NSURLSessionDataTask+Extra.h"
 #pragma mark —— UIGestureRecognizer
 #import "UIGestureRecognizer+Extra.h"
+#import "UIGestureRecognizer+RAC.h"
 #pragma mark —— WKWebView
 #import "WKWebView+Extra.h"
 

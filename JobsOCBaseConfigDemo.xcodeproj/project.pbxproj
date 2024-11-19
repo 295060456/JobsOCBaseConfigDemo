@@ -11,7 +11,6 @@
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		84170B002CD0BF5D0007E303 /* YTKBatchRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */; };
 		843099F92CD0F17400A7B9D0 /* GTCaptcha4Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */; };
-		8439F3392CD8A49000319E4A /* UIGestureRecognizer+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F3372CD8A49000319E4A /* UIGestureRecognizer+Extra.m */; };
 		8439F6302CD8E6F100319E4A /* UIImageView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F62B2CD8E6F100319E4A /* UIImageView+Extra.m */; };
 		8439F6312CD8E6F100319E4A /* UIImageView+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F62E2CD8E6F100319E4A /* UIImageView+SDWebImage.m */; };
 		843B73C22CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */; };
@@ -28,6 +27,10 @@
 		8489CADA2CE624EF00BB5E83 /* UIScrollView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489CAD82CE624EF00BB5E83 /* UIScrollView+JobsEmptyData.m */; };
 		8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1E62CD3A64F00011DD1 /* NSObject+YTKRequest.m */; };
 		8493F1ED2CD3A7E000011DD1 /* YTKChainRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493F1EB2CD3A7E000011DD1 /* YTKChainRequest+Extra.m */; };
+		849CE6B42CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CE6B02CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa.m */; };
+		849CE6B52CEC5F6000C359F2 /* RACGestureRecognizerActionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CE6AA2CEC5F6000C359F2 /* RACGestureRecognizerActionHandler.m */; };
+		849CE6B62CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CE6AD2CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected.m */; };
+		849CE6B72CEC5F6000C359F2 /* UIGestureRecognizer+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CE6A72CEC5F6000C359F2 /* UIGestureRecognizer+Extra.m */; };
 		84AA8F442CE32ACC0004501A /* NSArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60B92CA82C2D006D67A7 /* NSArray+Safety.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
@@ -1163,8 +1166,6 @@
 		84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBatchRequest+Extra.m"; sourceTree = "<group>"; };
 		843099F62CD0F17400A7B9D0 /* GTCaptcha4Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTCaptcha4Model.h; sourceTree = "<group>"; };
 		843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTCaptcha4Model.m; sourceTree = "<group>"; };
-		8439F3362CD8A49000319E4A /* UIGestureRecognizer+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Extra.h"; sourceTree = "<group>"; };
-		8439F3372CD8A49000319E4A /* UIGestureRecognizer+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Extra.m"; sourceTree = "<group>"; };
 		8439F62A2CD8E6F100319E4A /* UIImageView+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extra.h"; sourceTree = "<group>"; };
 		8439F62B2CD8E6F100319E4A /* UIImageView+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Extra.m"; sourceTree = "<group>"; };
 		8439F62D2CD8E6F100319E4A /* UIImageView+SDWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SDWebImage.h"; sourceTree = "<group>"; };
@@ -1198,6 +1199,15 @@
 		8493F1E92CD3A7E000011DD1 /* YTKCustomBaseRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YTKCustomBaseRequest.h; sourceTree = "<group>"; };
 		8493F1EA2CD3A7E000011DD1 /* YTKChainRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKChainRequest+Extra.h"; sourceTree = "<group>"; };
 		8493F1EB2CD3A7E000011DD1 /* YTKChainRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKChainRequest+Extra.m"; sourceTree = "<group>"; };
+		849CE6A62CEC5F6000C359F2 /* UIGestureRecognizer+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Extra.h"; sourceTree = "<group>"; };
+		849CE6A72CEC5F6000C359F2 /* UIGestureRecognizer+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Extra.m"; sourceTree = "<group>"; };
+		849CE6A92CEC5F6000C359F2 /* RACGestureRecognizerActionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACGestureRecognizerActionHandler.h; sourceTree = "<group>"; };
+		849CE6AA2CEC5F6000C359F2 /* RACGestureRecognizerActionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACGestureRecognizerActionHandler.m; sourceTree = "<group>"; };
+		849CE6AC2CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+ReactiveCocoaProtected.h"; sourceTree = "<group>"; };
+		849CE6AD2CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+ReactiveCocoaProtected.m"; sourceTree = "<group>"; };
+		849CE6AF2CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+ReactiveCocoa.h"; sourceTree = "<group>"; };
+		849CE6B02CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+ReactiveCocoa.m"; sourceTree = "<group>"; };
+		849CE6B22CEC5F6000C359F2 /* UIGestureRecognizer+RAC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+RAC.h"; sourceTree = "<group>"; };
 		84AA8F462CE330310004501A /* JobsMakes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsMakes.h; sourceTree = "<group>"; };
 		84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMBannerAdsModel.h; sourceTree = "<group>"; };
 		84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMBannerAdsModel.m; sourceTree = "<group>"; };
@@ -3439,8 +3449,8 @@
 		8439F3382CD8A49000319E4A /* UIGestureRecognizer */ = {
 			isa = PBXGroup;
 			children = (
-				8439F3362CD8A49000319E4A /* UIGestureRecognizer+Extra.h */,
-				8439F3372CD8A49000319E4A /* UIGestureRecognizer+Extra.m */,
+				849CE6A82CEC5F6000C359F2 /* UIGestureRecognizer+Extra */,
+				849CE6B32CEC5F6000C359F2 /* UIGestureRecognizer+RAC */,
 			);
 			path = UIGestureRecognizer;
 			sourceTree = "<group>";
@@ -3606,6 +3616,53 @@
 				8493F1EB2CD3A7E000011DD1 /* YTKChainRequest+Extra.m */,
 			);
 			path = "YTKChainRequest+Extra";
+			sourceTree = "<group>";
+		};
+		849CE6A82CEC5F6000C359F2 /* UIGestureRecognizer+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				849CE6A62CEC5F6000C359F2 /* UIGestureRecognizer+Extra.h */,
+				849CE6A72CEC5F6000C359F2 /* UIGestureRecognizer+Extra.m */,
+			);
+			path = "UIGestureRecognizer+Extra";
+			sourceTree = "<group>";
+		};
+		849CE6AB2CEC5F6000C359F2 /* RACGestureRecognizerActionHandler */ = {
+			isa = PBXGroup;
+			children = (
+				849CE6A92CEC5F6000C359F2 /* RACGestureRecognizerActionHandler.h */,
+				849CE6AA2CEC5F6000C359F2 /* RACGestureRecognizerActionHandler.m */,
+			);
+			path = RACGestureRecognizerActionHandler;
+			sourceTree = "<group>";
+		};
+		849CE6AE2CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected */ = {
+			isa = PBXGroup;
+			children = (
+				849CE6AC2CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected.h */,
+				849CE6AD2CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected.m */,
+			);
+			path = "UIGestureRecognizer+ReactiveCocoaProtected";
+			sourceTree = "<group>";
+		};
+		849CE6B12CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa */ = {
+			isa = PBXGroup;
+			children = (
+				849CE6AF2CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa.h */,
+				849CE6B02CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa.m */,
+			);
+			path = "UIGestureRecognizer+ReactiveCocoa";
+			sourceTree = "<group>";
+		};
+		849CE6B32CEC5F6000C359F2 /* UIGestureRecognizer+RAC */ = {
+			isa = PBXGroup;
+			children = (
+				849CE6AB2CEC5F6000C359F2 /* RACGestureRecognizerActionHandler */,
+				849CE6AE2CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected */,
+				849CE6B12CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa */,
+				849CE6B22CEC5F6000C359F2 /* UIGestureRecognizer+RAC.h */,
+			);
+			path = "UIGestureRecognizer+RAC";
 			sourceTree = "<group>";
 		};
 		84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */ = {
@@ -15734,6 +15791,10 @@
 				CE5A64D52CA82FD9006D67A7 /* NSObject+RegularExpression.m in Sources */,
 				CE4F28002CA825CD002AF25B /* JobsMembersSubsBaseVC.m in Sources */,
 				CE5A65B82CA833D0006D67A7 /* JobsHotLabelWithMultiLineCVCell.m in Sources */,
+				849CE6B42CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa.m in Sources */,
+				849CE6B52CEC5F6000C359F2 /* RACGestureRecognizerActionHandler.m in Sources */,
+				849CE6B62CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected.m in Sources */,
+				849CE6B72CEC5F6000C359F2 /* UIGestureRecognizer+Extra.m in Sources */,
 				CE5A65B92CA833D0006D67A7 /* JobsHotLabelWithMultiLine.m in Sources */,
 				CE5A65BA2CA833D0006D67A7 /* JobsHotLabelWithSingleLine.m in Sources */,
 				84170B002CD0BF5D0007E303 /* YTKBatchRequest+Extra.m in Sources */,
@@ -15762,7 +15823,6 @@
 				CE5A65612CA8325F006D67A7 /* UIView+Masonry.m in Sources */,
 				CE5A65622CA8325F006D67A7 /* UIView+UIBackgroundConfig.m in Sources */,
 				CE5A65632CA8325F006D67A7 /* UIView+Animation.m in Sources */,
-				8439F3392CD8A49000319E4A /* UIGestureRecognizer+Extra.m in Sources */,
 				CE5A65642CA8325F006D67A7 /* UIView+Gradient.m in Sources */,
 				CE5A65652CA8325F006D67A7 /* UIView+AutoSelfAdaptionSize.m in Sources */,
 				CE5A65662CA8325F006D67A7 /* UIView+BackgroundImage.m in Sources */,
