@@ -33,9 +33,12 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *)timeAgo:(NSInteger)timeAgo dateFormat:(NSString *_Nullable)dateFormat;
 /// 获取某天前的时间。时间格式 yyyy-MM-dd HH:mm:ss
 -(JobsReturnStringByIntegerBlock _Nonnull)daysAgoBy;
+/// 将时间戳按照 yyyy-MM-dd HH:mm:ss 的格式转化为人类可读的时间
+/// 入参不能是毫秒级的时间戳
+-(JobsReturnStringByTimeIntervalBlock _Nonnull)readableTimeByStyle1;
 #pragma mark —— 时间格式转换
-/// 时间格式
--(NSDateFormatter *)dateFormatter;
+/// 字符串转时间格式
+-(JobsReturnDateFormatterByStringBlock _Nonnull)dateFormatterBy;
 /// 接受一个秒数，对这个秒数进行解析出：时、分、秒，存入JobsTimeModel，外层再对这个JobsTimeModel进行取值，对数据进行拼装
 -(JobsReturnTimeModelByIntegerBlock _Nonnull)HHMMSS;
 /// 将某个（NSDate *）时间 转换格式
@@ -105,8 +108,6 @@ NS_ASSUME_NONNULL_BEGIN
   afterIntegerTime:(NSInteger)afterIntegerTime;
 /// 以当前时间为基准，加上某个时间间隔（NSTimeInterval类型）以后的NSData值
 -(JobsReturnDateByTimeIntervalBlock _Nonnull)getDateFromCurrentAfterTimeInterval;
-/// 通过一个（可为空的）NSDateFormatter，将NSTimeInterval转化为可视化时间字符串
--(JobsReturnStringByTimeIntervalAndDateFormatterBlock _Nonnull)strByTimeInterval;
 /// 计算两字符串时间的差值【方法一】
 -(NSTimeInterval)intervalDifferenceBetweenStarTime:(NSString *)starTime
                                          toEndTime:(NSString *)endTime
@@ -135,6 +136,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 判断是否当日第一次启动App
 -(BOOL)isFirstLaunchApp;
 /// 判断某个时间是否为  今天（系统时区）
+/// 对比格式：yyyy-MM-dd
 -(JobsReturnBOOLByDateBlock _Nonnull)isToday;
 /// 将NSTimeInterval类型的时间戳翻译成人类能看懂的文字
 -(JobsReturnStringByTimeIntervalBlock _Nonnull)toReadableTimeBy;

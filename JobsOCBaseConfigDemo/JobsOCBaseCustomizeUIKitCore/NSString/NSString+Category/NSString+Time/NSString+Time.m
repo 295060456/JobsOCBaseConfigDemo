@@ -34,11 +34,8 @@
         date = [NSDate dateWithTimeIntervalSince1970:self.doubleValue / 1000.0];
     }return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
         @jobs_strongify(self)
-        if (isNull(timeFormatter)) {
-            data.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        }else{
-            data.dateFormat = timeFormatter;
-        }data.timeZone = self.timeZone(timeZoneType);
+        data.dateFormat = isNull(timeFormatter) ? @"yyyy-MM-dd HH:mm:ss" : timeFormatter;
+        data.timeZone = self.timeZone(timeZoneType);
     }).date(date);
 }
 /// 当前时间戳较之当前时间是否已过期【过期返回YES】
@@ -54,7 +51,7 @@
         double timeStamp = self.doubleValue;
         /// 创建 NSDate 对象
         NSDate *dateFromTimeStamp;
-        if (self.length > 0) {
+        if (self.length) {
             /// 假设时间戳是以秒为单位
             dateFromTimeStamp = [NSDate dateWithTimeIntervalSince1970:timeStamp];
         }else return NO; /// 时间戳为空，返回 NO

@@ -255,6 +255,7 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateForma
 typedef __kindof NSString *_Nullable(^JobsReturnStringByStringStringBlock)(NSString *_Nullable fontString,
                                                                            NSString *_Nullable tailString);
 #pragma mark —— 关于时间
+typedef NSDateFormatter *_Nullable(^JobsReturnDateFormatterByStringBlock)(NSString *_Nullable);
 typedef NSTimeInterval(^JobsReturnTimeIntervalByDateBlock)(NSDate *_Nullable);
 typedef NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
 typedef NSDate *_Nullable(^JobsReturnDateByVoidBlock)(void);

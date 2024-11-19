@@ -22,8 +22,8 @@ typedef NS_ENUM(NSUInteger, IntervalStyle) {
 
 @property(nonatomic,strong)NSDate *date;
 @property(nonatomic,copy)NSString *dateStr;
-@property(nonatomic,assign)NSTimeInterval intervalBySec;//单位：秒
-@property(nonatomic,assign)NSTimeInterval intervalByMilliSec;//单位：毫秒
+@property(nonatomic,assign)NSTimeInterval intervalBySec;/// 单位：秒
+@property(nonatomic,assign)NSTimeInterval intervalByMilliSec;/// 单位：毫秒
 
 @end
 
