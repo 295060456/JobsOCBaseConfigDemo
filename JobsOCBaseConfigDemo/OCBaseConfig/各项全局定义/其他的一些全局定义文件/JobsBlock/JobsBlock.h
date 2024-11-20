@@ -287,6 +287,10 @@ typedef void(^jobsByRequestToolBlock)(RequestTool *_Nullable requestTool);
 typedef void(^jobsByBaseModelBlock)(__kindof BaseModel *_Nullable baseModel);
 typedef void(^jobsByBaseModelAndIndexBlock)(__kindof BaseModel *_Nullable baseModel,NSInteger index);
 
+@class JobsDecorationModel;
+typedef void(^jobsByDecorationModelBlock)(__kindof JobsDecorationModel *_Nullable model);
+typedef UIViewModel *_Nullable(^JobsReturnViewModelByDecorationModelBlock)(JobsDecorationModel *_Nullable model);
+
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock1)(jobsByIDBlock _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock2)(JobsReturnIDByVoidBlock _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBlock _Nullable data);

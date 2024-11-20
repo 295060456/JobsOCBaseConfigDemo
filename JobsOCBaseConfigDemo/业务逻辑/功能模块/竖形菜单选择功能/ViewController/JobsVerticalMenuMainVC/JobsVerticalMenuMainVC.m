@@ -289,6 +289,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tbvSectionRowCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
+                @jobs_strongify(self)
                 data1.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
                 data1.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
                 data1.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
@@ -308,28 +309,24 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
                 @jobs_strongify(self)
-                {
-                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"右边的架构是UIViewController")
-                                                                   attributeSubTitle:JobsInternationalization(@"正常")];
-                    viewModel.cls = JobsVerticalMenuVC_1.class;
-                    data1.add(viewModel);
-                }
-                
-                {
-                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"右边的架构是UICollectionView")
-                                                                   attributeSubTitle:JobsInternationalization(@"正常")];
-                    viewModel.cls = JobsVerticalMenuVC_2.class;
-                    data1.add(viewModel);
-                }
+                data1.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                    model.title = JobsInternationalization(@"右边的架构是UIViewController");
+                    model.subTitle = JobsInternationalization(@"正常");
+                    model.cls = JobsVerticalMenuVC_1.class;
+                })));
+                data1.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                    model.title = JobsInternationalization(@"右边的架构是UICollectionView");
+                    model.subTitle = JobsInternationalization(@"正常");
+                    model.cls = JobsVerticalMenuVC_2.class;
+                })));
             }));
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
                 @jobs_strongify(self)
-                {
-                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsVerticalMenuVC_0")
-                                                                   attributeSubTitle:JobsInternationalization(@"JobsVerticalMenuVC_0")];
-                    viewModel.cls = JobsVerticalMenuVC_0.class;
-                    data1.add(viewModel);
-                }
+                data1.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                    model.title = JobsInternationalization(@"右边的架构是JobsVerticalMenuVC_0");
+                    model.subTitle = JobsInternationalization(@"JobsVerticalMenuVC_0");
+                    model.cls = JobsVerticalMenuVC_0.class;
+                })));
             }));
         });
     }return _dataMutArr;

@@ -308,41 +308,37 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<NSMutableArray<__kindof UIViewModel *>*>*)dataMutArr{
     if (!_dataMutArr) {
+        @jobs_weakify(self)
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSMutableArray<__kindof UIViewModel *> *>*_Nullable data) {
+            @jobs_strongify(self)
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
-                {
-                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJClassData")
-                                                                   attributeSubTitle:JobsInternationalization(@"正常")];
-                    viewModel.cls = ZMJClassDataVC.class;
-                    data1.add(viewModel);
-                }
-                {
-                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJTimeable")
-                                                                   attributeSubTitle:JobsInternationalization(@"正常")];
-                    viewModel.cls = ZMJTimeableVC.class;
-                    data1.add(viewModel);
-                }
-                
-                {
-                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJSchedule")
-                                                                   attributeSubTitle:JobsInternationalization(@"正常")];
-                    viewModel.cls = ZMJScheduleVC.class;
-                    data1.add(viewModel);
-                }
-                
-                {
-                    UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"ZMJGanttList")
-                                                                   attributeSubTitle:JobsInternationalization(@"有崩溃，需要修复")];
-                    viewModel.cls = ZMJGanttListVC.class;
-                    data1.add(viewModel);
-                }
+                @jobs_strongify(self)
+                data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                    model.title = JobsInternationalization(@"ZMJClassData");
+                    model.subTitle = JobsInternationalization(@"正常");
+                    model.cls = ZMJClassDataVC.class;
+                })));
+                data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                    model.title = JobsInternationalization(@"ZMJTimeable");
+                    model.subTitle = JobsInternationalization(@"正常");
+                    model.cls = ZMJTimeableVC.class;
+                })));
+                data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                    model.title = JobsInternationalization(@"ZMJSchedule");
+                    model.subTitle = JobsInternationalization(@"正常");
+                    model.cls = ZMJScheduleVC.class;
+                })));
+                data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                    model.title = JobsInternationalization(@"ZMJGanttList");
+                    model.subTitle = JobsInternationalization(@"有崩溃，需要修复");
+                    model.cls = ZMJGanttListVC.class;
+                })));
             }));
-            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"JobsExcel")
-                                                               attributeSubTitle:JobsInternationalization(@"JobsExcel")];
-                viewModel.cls = JobsExcelVC.class;
-                data1.add(viewModel);
-            }));
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"JobsExcel");
+                model.subTitle = JobsInternationalization(@"JobsExcel");
+                model.cls = JobsExcelVC.class;
+            })));
         });
     }return _dataMutArr;
 }

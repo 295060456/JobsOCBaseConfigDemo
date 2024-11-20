@@ -294,19 +294,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(NSMutableArray<__kindof UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"方形转盘抽奖")
-                                                               attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
-                viewModel.cls = LuckyDiskVC.class;
-                data.add(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"圆形抽奖轮盘")
-                                                               attributeSubTitle:JobsInternationalization(@"中间有抽奖按钮")];
-                viewModel.cls = LuckyRollVC.class;
-                data.add(viewModel);
-            }
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"方形转盘抽奖");
+                model.subTitle = JobsInternationalization(@"中间有抽奖按钮");
+                model.cls = LuckyDiskVC.class;
+            })));
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"圆形抽奖轮盘");
+                model.subTitle = JobsInternationalization(@"中间有抽奖按钮");
+                model.cls = LuckyRollVC.class;
+            })));
         });
     }return _dataMutArr;
 }

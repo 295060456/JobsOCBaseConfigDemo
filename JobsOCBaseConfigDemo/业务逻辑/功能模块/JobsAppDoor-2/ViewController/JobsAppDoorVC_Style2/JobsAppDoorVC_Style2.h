@@ -8,9 +8,9 @@
 #import "BaseViewController.h"
 #import "JobsAppDoorConfig.h"
 #import "JobsAppDoorLogoContentView.h"
-#import "JobsAppDoorLoginContentView.h"//登录
-#import "JobsAppDoorRegisterContentView.h"//注册
-#import "JobsAppDoorForgotCodeContentView.h"//忘记密码
+#import "JobsAppDoorLoginContentView.h"/// 登录
+#import "JobsAppDoorRegisterContentView.h"/// 注册
+#import "JobsAppDoorForgotCodeContentView.h"/// 忘记密码
 
 #pragma mark —— ZFPlayer 播放器相关
 //Core
@@ -110,9 +110,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 //注册和登录共用一个控制器DoorVC；忘记密码单独一个控制器
 @interface JobsAppDoorVC_Style2 : BaseViewController
-
-+(void)destroyAppDoorSingleton;
-+(instancetype)sharedManager;
 
 @end
 

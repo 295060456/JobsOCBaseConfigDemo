@@ -131,129 +131,124 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = UITableView.new;
-        _tableView.backgroundColor = JobsWhiteColor;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.dataLink(self);
-        _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
-        _tableView.tableFooterView = self.tableFooterView;/// 这里接入的就是一个UIView的派生类
-        _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-        _tableView.contentInset = UIEdgeInsetsMake(JobsWidth(0),
-                                                   JobsWidth(0),
-                                                   JobsWidth(100),
-                                                   JobsWidth(0));
-        {
-            _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
-                    self.feedbackGenerator();//震动反馈
-                    self->_tableView.endRefreshing(YES);
-                    return nil;
-                };
-            }));
-            _tableView.mj_footer = self.view.MJRefreshAutoNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
-                    self->_tableView.endRefreshing(YES);
-                    return nil;
-                };
-            }));
-        }
-        
-        [self.view addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            if (self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 系统、GK均隐藏
-                make.edges.equalTo(self.view);
-            }else{
-                if (!self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 用系统的导航栏
-                    make.top.equalTo(self.view).offset(JobsNavigationBarAndStatusBarHeight(nil));
-                }
-                
-                if (self.setupNavigationBarHidden && !self.gk_statusBarHidden) {// 用GK的导航栏
-                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
-                }
-                
-                make.left.right.bottom.equalTo(self.view);
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self )
+            tableView.backgroundColor = JobsWhiteColor;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.dataLink(self);
+            tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
+            tableView.tableFooterView = self.tableFooterView;/// 这里接入的就是一个UIView的派生类
+            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+            tableView.contentInset = UIEdgeInsetsMake(JobsWidth(0),
+                                                      JobsWidth(0),
+                                                      JobsWidth(100),
+                                                      JobsWidth(0));
+            {
+                tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                    data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+                    data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+                    data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                    data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+                    data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
+                    data.loadBlock = ^id _Nullable(id  _Nullable data) {
+                        @jobs_strongify(self)
+                        self.feedbackGenerator();//震动反馈
+                        self->_tableView.endRefreshing(YES);
+                        return nil;
+                    };
+                }));
+                tableView.mj_footer = self.view.MJRefreshAutoNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                    data.stateIdleTitle = JobsInternationalization(@"");
+                    data.pullingTitle = JobsInternationalization(@"");
+                    data.refreshingTitle = JobsInternationalization(@"");
+                    data.willRefreshTitle = JobsInternationalization(@"");
+                    data.noMoreDataTitle = JobsInternationalization(@"");
+                    data.loadBlock = ^id _Nullable(id  _Nullable data) {
+                        @jobs_strongify(self)
+                        self->_tableView.endRefreshing(YES);
+                        return nil;
+                    };
+                }));
             }
-        }];
+            [self.view addSubview:tableView];
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                if (self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 系统、GK均隐藏
+                    make.edges.equalTo(self.view);
+                }else{
+                    if (!self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 用系统的导航栏
+                        make.top.equalTo(self.view).offset(JobsNavigationBarAndStatusBarHeight(nil));
+                    }
+                    if (self.setupNavigationBarHidden && !self.gk_statusBarHidden) {// 用GK的导航栏
+                        make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                    }make.left.right.bottom.equalTo(self.view);
+                }
+            }];
+        });
     }return _tableView;
 }
 
 -(UILabel *)tableFooterView{
     if (!_tableFooterView) {
-        _tableFooterView = UILabel.new;
-        _tableFooterView.text = JobsInternationalization(@"- 没有更多的内容了 -");
-        _tableFooterView.font = UIFontWeightRegularSize(12);
-        _tableFooterView.textAlignment = NSTextAlignmentCenter;
-        _tableFooterView.textColor = HEXCOLOR(0xB0B0B0);
-//        _tableFooterView.size = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(48));
-        _tableFooterView.makeLabelByShowingType(UILabelShowingType_03);
+        _tableFooterView = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.text = JobsInternationalization(@"- 没有更多的内容了 -");
+            label.font = UIFontWeightRegularSize(12);
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = HEXCOLOR(0xB0B0B0);
+    //        label.size = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(48));
+            label.makeLabelByShowingType(UILabelShowingType_03);
+        });
     }return _tableFooterView;
 }
 
 -(NSMutableArray<__kindof UITableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
-        _tbvCellMutArr = NSMutableArray.array;
-        for (UIViewModel *viewModel in self.dataMutArr) {
-            _tbvCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-        }
+        @jobs_weakify(self)
+        _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            for (UIViewModel *viewModel in self.dataMutArr) {
+                data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            }
+        });
     }return _tbvCellMutArr;
 }
 
 -(NSMutableArray<__kindof UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
+        @jobs_weakify(self)
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用十六进制字符串进行存取")
-                                                               attributeSubTitle:JobsInternationalization(@"")];
-                viewModel.requestParams = @(PicToStrStyle_Hexadecimal);
-                data.add(viewModel);
-            }
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base16编码进行存取")
-                                                               attributeSubTitle:JobsInternationalization(@"")];
-                viewModel.requestParams = @(PicToStrStyle_Base16);
-                data.add(viewModel);
-            }
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base32编码进行存取")
-                                                               attributeSubTitle:JobsInternationalization(@"")];
-                viewModel.requestParams = @(PicToStrStyle_Base32);
-                data.add(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base64编码进行存取")
-                                                               attributeSubTitle:JobsInternationalization(@"")];
-                viewModel.requestParams = @(PicToStrStyle_Base64);
-                data.add(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用Base85编码进行存取")
-                                                               attributeSubTitle:JobsInternationalization(@"")];
-                viewModel.requestParams = @(PicToStrStyle_Base85);
-                data.add(viewModel);
-            }
-            
-            {
-                UIViewModel *viewModel = [self configViewModelWithAttributeTitle:JobsInternationalization(@"利用MIME编码进行存取")
-                                                               attributeSubTitle:JobsInternationalization(@"")];
-                viewModel.requestParams = @(PicToStrStyle_MIME);
-                data.add(viewModel);
-            }
+            @jobs_strongify(self)
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"利用十六进制字符串进行存取");
+                model.subTitle = JobsInternationalization(@"");
+                model.requestParams = @(PicToStrStyle_Hexadecimal);
+            })));
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"利用Base16编码进行存取");
+                model.subTitle = JobsInternationalization(@"");
+                model.requestParams = @(PicToStrStyle_Base16);
+            })));
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"利用Base32编码进行存取");
+                model.subTitle = JobsInternationalization(@"");
+                model.requestParams = @(PicToStrStyle_Base32);
+            })));
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"利用Base64编码进行存取");
+                model.subTitle = JobsInternationalization(@"");
+                model.requestParams = @(PicToStrStyle_Base64);
+            })));
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"利用Base85编码进行存取");
+                model.subTitle = JobsInternationalization(@"");
+                model.requestParams = @(PicToStrStyle_Base85);
+            })));
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"利用MIME编码进行存取");
+                model.subTitle = JobsInternationalization(@"");
+                model.requestParams = @(PicToStrStyle_MIME);
+            })));
         });
     }return _dataMutArr;
 }

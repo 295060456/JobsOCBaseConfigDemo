@@ -88,10 +88,11 @@
 #import "LandscapeSwitchVC.h"
 #import "WidgetVC.h"
 #import "HotRefreshVC.h"
-#import "AppLanguageVC.h"// 国际化
+#import "AppLanguageVC.h"/// 国际化
 #import "FMDB_VC.h"
 #import "Realm_VC.h"
 #import "LotteryVC.h"
 #import "PointLabTestVC.h"
+#import "CalendarVC.h"/// 日历功能
 
 #endif /* Other_h */

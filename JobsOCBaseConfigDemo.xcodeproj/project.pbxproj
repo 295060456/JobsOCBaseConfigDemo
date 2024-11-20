@@ -31,6 +31,8 @@
 		849CE6B52CEC5F6000C359F2 /* RACGestureRecognizerActionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CE6AA2CEC5F6000C359F2 /* RACGestureRecognizerActionHandler.m */; };
 		849CE6B62CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CE6AD2CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected.m */; };
 		849CE6B72CEC5F6000C359F2 /* UIGestureRecognizer+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CE6A72CEC5F6000C359F2 /* UIGestureRecognizer+Extra.m */; };
+		849CE9202CED7D8100C359F2 /* CalendarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CE91F2CED7D8100C359F2 /* CalendarVC.m */; };
+		849CE9232CED7F9F00C359F2 /* JobsDecorationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CE9222CED7F9F00C359F2 /* JobsDecorationModel.m */; };
 		84AA8F442CE32ACC0004501A /* NSArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60B92CA82C2D006D67A7 /* NSArray+Safety.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
@@ -1208,6 +1210,10 @@
 		849CE6AF2CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+ReactiveCocoa.h"; sourceTree = "<group>"; };
 		849CE6B02CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+ReactiveCocoa.m"; sourceTree = "<group>"; };
 		849CE6B22CEC5F6000C359F2 /* UIGestureRecognizer+RAC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+RAC.h"; sourceTree = "<group>"; };
+		849CE91E2CED7D8100C359F2 /* CalendarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarVC.h; sourceTree = "<group>"; };
+		849CE91F2CED7D8100C359F2 /* CalendarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarVC.m; sourceTree = "<group>"; };
+		849CE9212CED7F9F00C359F2 /* JobsDecorationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsDecorationModel.h; sourceTree = "<group>"; };
+		849CE9222CED7F9F00C359F2 /* JobsDecorationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsDecorationModel.m; sourceTree = "<group>"; };
 		84AA8F462CE330310004501A /* JobsMakes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsMakes.h; sourceTree = "<group>"; };
 		84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMBannerAdsModel.h; sourceTree = "<group>"; };
 		84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMBannerAdsModel.m; sourceTree = "<group>"; };
@@ -3663,6 +3669,48 @@
 				849CE6B22CEC5F6000C359F2 /* UIGestureRecognizer+RAC.h */,
 			);
 			path = "UIGestureRecognizer+RAC";
+			sourceTree = "<group>";
+		};
+		849CE91A2CED7D1100C359F2 /* 日历功能模块 */ = {
+			isa = PBXGroup;
+			children = (
+				849CE91D2CED7D3B00C359F2 /* ViewController */,
+				849CE91C2CED7D3400C359F2 /* View */,
+				849CE91B2CED7D2C00C359F2 /* Model */,
+			);
+			path = "日历功能模块";
+			sourceTree = "<group>";
+		};
+		849CE91B2CED7D2C00C359F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		849CE91C2CED7D3400C359F2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		849CE91D2CED7D3B00C359F2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				849CE91E2CED7D8100C359F2 /* CalendarVC.h */,
+				849CE91F2CED7D8100C359F2 /* CalendarVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84B1B50F2CED972E0001562D /* JobsDecorationModel */ = {
+			isa = PBXGroup;
+			children = (
+				849CE9212CED7F9F00C359F2 /* JobsDecorationModel.h */,
+				849CE9222CED7F9F00C359F2 /* JobsDecorationModel.m */,
+			);
+			path = JobsDecorationModel;
 			sourceTree = "<group>";
 		};
 		84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */ = {
@@ -7989,6 +8037,7 @@
 		CE4F27622CA825CD002AF25B /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				849CE91A2CED7D1100C359F2 /* 日历功能模块 */,
 				8489C9DB2CE622CB00BB5E83 /* JobsEmptyDataView */,
 				CE4F24302CA825CD002AF25B /* 文字前面小圆点 */,
 				CE4F243E2CA825CD002AF25B /* 抽奖轮盘 */,
@@ -10204,9 +10253,10 @@
 		CE5A61522CA82C2D006D67A7 /* JobsModel */ = {
 			isa = PBXGroup;
 			children = (
+				CE5A61072CA82C2D006D67A7 /* JobsModel.h */,
+				84B1B50F2CED972E0001562D /* JobsDecorationModel */,
 				844291EB2CDDF52F007B56CA /* JobsBaseModel */,
 				8464A59C2CDB73860030409A /* DynamicInvoke */,
-				CE5A61072CA82C2D006D67A7 /* JobsModel.h */,
 				CE5A62DA2CA82C2D006D67A7 /* JobsCorModel */,
 				843099F82CD0F17400A7B9D0 /* GTCaptcha4Model */,
 				CE4299D62CAFA86B00A0446A /* NotificationModel */,
@@ -10865,8 +10915,8 @@
 		CE5A62172CA82C2D006D67A7 /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
-				84E4013D2CC60D3100C8303A /* This+Category */,
 				CE5A61062CA82C2D006D67A7 /* JobsObject.h */,
+				84E4013D2CC60D3100C8303A /* This+Category */,
 				CE5A61842CA82C2D006D67A7 /* BaseObject */,
 				CE5A62162CA82C2D006D67A7 /* NSObject+Category */,
 			);
@@ -15199,6 +15249,7 @@
 				CE5A661F2CA836B0006D67A7 /* TMSCollectionViewLayout.m in Sources */,
 				CE5A66202CA836B0006D67A7 /* TMSWalletCollectionReusableView.m in Sources */,
 				CE5A650B2CA830F5006D67A7 /* BaseCollectionViewCell.m in Sources */,
+				849CE9232CED7F9F00C359F2 /* JobsDecorationModel.m in Sources */,
 				CEDE33122CB797CA005256B2 /* FM_getDepositDiscountActivityRecord_api.m in Sources */,
 				CE5A650C2CA830F5006D67A7 /* JobsBaseCollectionViewCell.m in Sources */,
 				CE5A66252CA83723006D67A7 /* AESCipher.m in Sources */,
@@ -15237,6 +15288,7 @@
 				CECE7E952C450E5B00764AF5 /* KTVHCLog.m in Sources */,
 				CECE7EA92C450E5B00764AF5 /* KTVHCHTTPServer.m in Sources */,
 				CECE80BA2C4512BF00764AF5 /* CasinoGetiOSNewestVersionModel.m in Sources */,
+				849CE9202CED7D8100C359F2 /* CalendarVC.m in Sources */,
 				CE5A64792CA82CEF006D67A7 /* NSMutableAttributedString+Extra.m in Sources */,
 				CE5A64972CA82E18006D67A7 /* JobsFormatTime.m in Sources */,
 				CE5A648F2CA82DE8006D67A7 /* JobsAppDoorInputViewBaseStyleModel.m in Sources */,

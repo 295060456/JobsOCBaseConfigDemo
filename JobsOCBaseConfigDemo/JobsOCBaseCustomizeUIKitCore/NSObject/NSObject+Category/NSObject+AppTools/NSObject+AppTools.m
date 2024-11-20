@@ -61,6 +61,18 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 #pragma mark —— 一些公共设置
+/// 数据组装
+-(JobsReturnViewModelByDecorationModelBlock _Nonnull)makeDatas{
+    @jobs_weakify(self)
+    return ^UIViewModel *_Nullable(JobsDecorationModel *_Nullable model){
+        @jobs_strongify(self)
+        UIViewModel *viewModel = [self configViewModelWithAttributeTitle:model.title
+                                                       attributeSubTitle:model.subTitle];
+        viewModel.cls = CalendarVC.class;
+        viewModel.requestParams = model.requestParams;
+        return viewModel;
+    };
+}
 /// 默认文本段落样式
 -(NSMutableParagraphStyle *)defaultParagraphStyle{
     return jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
