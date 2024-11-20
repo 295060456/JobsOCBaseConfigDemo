@@ -6,7 +6,7 @@
 //  Copyright © 2019 Corp. All rights reserved.
 //
 
-#ifndef Other_h
+#ifndef Other_hx
 #define Other_h
 
 #import "JobsBlock.h"
@@ -20,7 +20,7 @@
 #import "NSObject+UserInfo.h"
 #import "NSObject+AppTools.h"
 
-#import "JobsAppDoorVC.h"// 登录、注册、忘记密码
+#import "JobsAppDoorVC.h"/// 登录、注册、忘记密码
 
 #import "ViewController@1.h"
 #import "ViewController@2.h"
@@ -28,10 +28,10 @@
 #import "ViewController@4.h"
 #import "ViewController@5.h"
 
-#import "JobsOCBaseConfigPopupViewHeader.h"// 本App相关的自定义弹出框
+#import "JobsOCBaseConfigPopupViewHeader.h"/// 本App相关的自定义弹出框
 
 // 测试专用
-#import "JobsShowObjInfoVC.h"// 查看对象
+#import "JobsShowObjInfoVC.h"/// 查看对象
 
 // App 的所有网络请求Api
 #import "JobsNetworkingHeader.h"

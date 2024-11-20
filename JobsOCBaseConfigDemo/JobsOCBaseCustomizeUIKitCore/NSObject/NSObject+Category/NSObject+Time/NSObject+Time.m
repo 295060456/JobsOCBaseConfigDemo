@@ -64,7 +64,7 @@
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSTimeInterval data){
         @jobs_strongify(self)
-        return [self.dateFormatterBy(nil) stringFromDate:[NSDate dateWithTimeIntervalSince1970:data]];
+        return [self.dateFormatterBy(nil) stringFromDate:NSDate.dateBy(data)];
     };
 }
 #pragma mark —— 时间格式转换
@@ -339,7 +339,7 @@
 -(JobsReturnDateByTimeIntervalBlock _Nonnull)dateByTimeInterval{
     return ^NSDate *_Nullable(NSTimeInterval interval){
         NSDate *date = nil;
-        if(interval)date = [NSDate dateWithTimeIntervalSince1970:interval];
+        if(interval)date = NSDate.dateBy(interval);
         else date = NSDate.date;
         return date;
     };
@@ -593,7 +593,7 @@
         /// 获取当前日历
         NSCalendar *calendar = NSCalendar.currentCalendar;
         /// 创建时间
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+        NSDate *date = NSDate.dateBy(timeInterval);
         /// 获取年、月、日、时、分、秒等信息
         NSDateComponents *components = [calendar components:(NSCalendarUnitYear |
                                                              NSCalendarUnitMonth |

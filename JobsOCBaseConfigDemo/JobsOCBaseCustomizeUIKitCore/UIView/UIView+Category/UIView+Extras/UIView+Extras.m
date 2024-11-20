@@ -808,9 +808,9 @@ JobsKey(_getAnimation)
     };
 }
 
--(JobsReturnViewByViewBlock _Nonnull)remove{
+-(JobsReturnViewByVoidBlock _Nonnull)remove{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {
+    return ^__kindof UIView *_Nullable() {
         @jobs_strongify(self)
         [self removeFromSuperview];
         return self;

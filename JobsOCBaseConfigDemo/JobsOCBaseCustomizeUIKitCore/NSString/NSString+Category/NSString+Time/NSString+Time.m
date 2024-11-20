@@ -29,9 +29,9 @@
     @jobs_weakify(self)
     NSDate *date = nil;
     if (intervalStyle == intervalBySec) {
-        date = [NSDate dateWithTimeIntervalSince1970:self.doubleValue];
+        date = NSDate.dateBy(self.doubleValue);
     }else if(intervalStyle == intervalByMilliSec){
-        date = [NSDate dateWithTimeIntervalSince1970:self.doubleValue / 1000.0];
+        date = NSDate.dateBy(self.doubleValue / 1000.0);
     }return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
         @jobs_strongify(self)
         data.dateFormat = isNull(timeFormatter) ? @"yyyy-MM-dd HH:mm:ss" : timeFormatter;
@@ -53,7 +53,7 @@
         NSDate *dateFromTimeStamp;
         if (self.length) {
             /// 假设时间戳是以秒为单位
-            dateFromTimeStamp = [NSDate dateWithTimeIntervalSince1970:timeStamp];
+            dateFromTimeStamp = NSDate.dateBy(timeStamp);
         }else return NO; /// 时间戳为空，返回 NO
         /// 比较当前时间和时间戳所代表的时间
         NSComparisonResult result = [NSDate.date compare:dateFromTimeStamp];

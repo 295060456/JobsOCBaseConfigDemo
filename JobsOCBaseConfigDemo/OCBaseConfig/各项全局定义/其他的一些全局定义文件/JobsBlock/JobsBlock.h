@@ -128,6 +128,11 @@ typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullabl
 typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByArrBlock)(__kindof NSArray *_Nullable data);
 
+@class JobsDateModel;
+typedef __kindof JobsDateModel *_Nullable(^JobsReturnDateModelByVoidBlock)(void);
+typedef void(^jobsByDateModelBlock)(JobsDateModel *_Nullable dateModel);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByDateModelBlock)(JobsDateModel *_Nullable dateModel);
+
 @class UITextModel;
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextModel *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTextModelBlock)(UITextModel *_Nullable data);
@@ -439,7 +444,7 @@ typedef void(^jobsByInboxTitleModelBlock)(__kindof FMInboxTitleModel *_Nullable 
 typedef void(^jobsBySubjectModelBlock)(__kindof FMSubjectModel *_Nullable subjectModel);
 
 @class FMDateModel;
-typedef void(^jobsByDateModelBlock)(__kindof FMDateModel *_Nullable dateModel);
+typedef void(^jobsByFMDateModelBlock)(__kindof FMDateModel *_Nullable dateModel);
 
 @class FMTypeModel;
 typedef void(^jobsByTypeModelBlock)(__kindof FMTypeModel *_Nullable typeModel);

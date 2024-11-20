@@ -36,6 +36,7 @@
 #import "GTCaptcha4Model.h"
 #import "JobsCorModel.h"
 #import "DynamicInvoke.h"
+#import "JobsDateModel.h"
 
 #import "IncomeSourceModel.h"
 #import "JobsCountriesModel.h"

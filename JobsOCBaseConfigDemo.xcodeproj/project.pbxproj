@@ -49,6 +49,7 @@
 		84B1BA2C2CEDCA570001562D /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA0A2CEDC9410001562D /* FSCalendarCollectionViewLayout.m */; };
 		84B1BA2D2CEDCA570001562D /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA102CEDC9410001562D /* FSCalendarDelegationProxy.m */; };
 		84B1BA2E2CEDCA630001562D /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA022CEDC9410001562D /* FSCalendarAppearance.m */; };
+		84B1BDB12CEDDFD70001562D /* JobsDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BDAF2CEDDFD70001562D /* JobsDateModel.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
 		84E401422CC60F4900C8303A /* This.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E401402CC60E7100C8303A /* This.m */; };
@@ -1261,6 +1262,8 @@
 		84B1BA1B2CEDC9410001562D /* FSCalendarTransitionCoordinator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCalendarTransitionCoordinator.m; sourceTree = "<group>"; };
 		84B1BA1C2CEDC9410001562D /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCalendarWeekdayView.h; sourceTree = "<group>"; };
 		84B1BA1D2CEDC9410001562D /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCalendarWeekdayView.m; sourceTree = "<group>"; };
+		84B1BDAE2CEDDFD70001562D /* JobsDateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsDateModel.h; sourceTree = "<group>"; };
+		84B1BDAF2CEDDFD70001562D /* JobsDateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsDateModel.m; sourceTree = "<group>"; };
 		84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMBannerAdsModel.h; sourceTree = "<group>"; };
 		84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMBannerAdsModel.m; sourceTree = "<group>"; };
 		84E4013B2CC60D3100C8303A /* This+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "This+URLManager_Base.h"; sourceTree = "<group>"; };
@@ -3795,6 +3798,15 @@
 				84B1BA1D2CEDC9410001562D /* FSCalendarWeekdayView.m */,
 			);
 			path = FSCalendar;
+			sourceTree = "<group>";
+		};
+		84B1BDB02CEDDFD70001562D /* JobsDateModel */ = {
+			isa = PBXGroup;
+			children = (
+				84B1BDAE2CEDDFD70001562D /* JobsDateModel.h */,
+				84B1BDAF2CEDDFD70001562D /* JobsDateModel.m */,
+			);
+			path = JobsDateModel;
 			sourceTree = "<group>";
 		};
 		84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */ = {
@@ -10338,6 +10350,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5A61072CA82C2D006D67A7 /* JobsModel.h */,
+				84B1BDB02CEDDFD70001562D /* JobsDateModel */,
 				84B1B50F2CED972E0001562D /* JobsDecorationModel */,
 				844291EB2CDDF52F007B56CA /* JobsBaseModel */,
 				8464A59C2CDB73860030409A /* DynamicInvoke */,
@@ -15887,6 +15900,7 @@
 				CE4F27EB2CA825CD002AF25B /* JobsIMChatInfoTBVCell.m in Sources */,
 				CE4F27EC2CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_04.m in Sources */,
 				CE4F27ED2CA825CD002AF25B /* ZMJChartBarCell.m in Sources */,
+				84B1BDB12CEDDFD70001562D /* JobsDateModel.m in Sources */,
 				CE5A64B32CA82EC6006D67A7 /* TouchID.m in Sources */,
 				CE4F27EE2CA825CD002AF25B /* TreeClassItemCell.m in Sources */,
 				CE4F27EF2CA825CD002AF25B /* AppIconSwitchingVC.m in Sources */,

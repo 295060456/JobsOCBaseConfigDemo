@@ -255,12 +255,13 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateForma
 typedef __kindof NSString *_Nullable(^JobsReturnStringByStringStringBlock)(NSString *_Nullable fontString,
                                                                            NSString *_Nullable tailString);
 #pragma mark —— 关于时间
-typedef NSDateFormatter *_Nullable(^JobsReturnDateFormatterByStringBlock)(NSString *_Nullable);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByDateFormatterBlock)(NSDateFormatter *_Nullable data);
+typedef __kindof NSDateFormatter *_Nullable(^JobsReturnDateFormatterByStringBlock)(NSString *_Nullable);
 typedef NSTimeInterval(^JobsReturnTimeIntervalByDateBlock)(NSDate *_Nullable);
-typedef NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
-typedef NSDate *_Nullable(^JobsReturnDateByVoidBlock)(void);
-typedef NSDate *_Nullable(^JobsReturnDateByTimeIntervalBlock)(NSTimeInterval data);
-typedef NSDate *_Nullable(^JobsReturnDateByDateFormatterBlock)(NSDateFormatter *_Nullable data);
+typedef __kindof NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
+typedef __kindof NSDate *_Nullable(^JobsReturnDateByVoidBlock)(void);
+typedef __kindof NSDate *_Nullable(^JobsReturnDateByTimeIntervalBlock)(NSTimeInterval data);
+typedef __kindof NSDate *_Nullable(^JobsReturnDateByDateFormatterBlock)(NSDateFormatter *_Nullable data);
 #pragma mark —— 关于数据
 typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByVoidBlock)(void);
 typedef NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByVoidBlock)(void);

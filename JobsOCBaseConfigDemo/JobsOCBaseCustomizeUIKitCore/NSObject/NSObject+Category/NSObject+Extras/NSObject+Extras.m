@@ -263,6 +263,20 @@
     };
 }
 #pragma mark —— 功能性的
+/// 将 NSTimeInterval 按照 NSDateFormatter 转换输出成人类可读的时间
+-(JobsReturnStringByDateModelBlock _Nonnull)toVisualTimeBy{
+    return ^__kindof NSString *_Nullable(JobsDateModel *_Nullable dateModel){
+        if(dateModel.date){
+            return [jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
+                dateFormatter.timeZone = self.timeZone(TimeZoneTypeCSTChina);
+                dateFormatter.dateFormat = @"yyyy-MM-dd"; /// 格式化为日期字符串
+            }) stringFromDate:dateModel.date] ;
+            
+        }else{
+            return [dateModel.dateFormatter stringFromDate:NSDate.dateBy(dateModel.timeInterval)];
+        }
+    };
+}
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
 /// data：包含 HTML 内容的字符串
 -(JobsReturnWKWebViewByStringBlock _Nonnull)makeWebViewByString{
