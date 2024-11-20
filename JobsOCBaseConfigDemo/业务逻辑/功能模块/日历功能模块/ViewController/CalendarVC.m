@@ -172,7 +172,7 @@ atMonthPosition:(FSCalendarMonthPosition)monthPosition{
 #pragma mark —— lazyLoad
 -(FSCalendar *)calendar{
     if(!_calendar){
-        _calendar = FSCalendar.new;
+        _calendar = [FSCalendar.alloc initWithFrame:CGRectZero];
 //        _calendar.calendarHeaderView.backgroundColor = JobsRedColor;
 //        _calendar.calendarWeekdayView.backgroundColor = JobsYellowColor;
         _calendar.dataSource = self;

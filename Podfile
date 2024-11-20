@@ -173,7 +173,7 @@ def func
   pod 'lottie-ios', '~> 2.5.3' # 这是OC终极版本 https://github.com/airbnb/lottie-ios
 #  pod 'WCDB'
   pod 'AYCheckVersion'  # https://github.com/AYJk/AYCheckVersion 提示更新 Check version from AppStore / 从AppStore检查更新
-  pod 'FSCalendar' # https://github.com/WenchaoD/FSCalendar 日历签到
+#  pod 'FSCalendar' # https://github.com/WenchaoD/FSCalendar 日历签到
   #pod 'LCAuthManager' # https://github.com/LennonChin/LCAuthManager 简单易用的权限验证库，提供了手势密码、生物特性验证（包括Touch ID和Face ID）的集成
   videoFunc # 视频相关
 end
