@@ -359,6 +359,9 @@ typedef void(^jobsByLOTAnimationMJRefreshHeaderBlock)(LOTAnimationMJRefreshHeade
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);
 
+@class RACSignal;
+typedef NSArray<RACSignal *>*_Nonnull(^JobsReturnRACSignalArrByVoidBlock)(void);
+
 @class GKPhotoBrowser;
 typedef void(^jobsByGKPhotoBrowserBlock)(GKPhotoBrowser *_Nonnull data);
 typedef GKPhotoBrowser *_Nullable(^JobsReturnGKPhotoBrowserByPhotosArrayAndCurrentIndexBlock)(__kindof NSArray * _Nullable photosArray,NSInteger currentIndex);
@@ -474,6 +477,10 @@ typedef void(^jobsByMyGameBetOrderSumModelBlock)(__kindof FMMyGameBetOrderSumMod
 
 @class GetDepositDiscountActivityRecordModel;
 typedef UIViewModel *_Nullable(^jobsByGetDepositDiscountActivityRecordModelBlock)(__kindof GetDepositDiscountActivityRecordModel *_Nullable model);
+
+@class FMAccModel;
+typedef FMAccModel *_Nullable(^JobsReturnAccModelByArrBlock)(__kindof NSArray *_Nullable arr);
+typedef void(^jobsByFMAccModelBlock)(__kindof FMAccModel *_Nullable model);
 
 #endif /* JobsBlock_h */
 /*

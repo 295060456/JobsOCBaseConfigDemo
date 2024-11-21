@@ -132,8 +132,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取绑定的数据源
 -(UIViewModel *_Nullable)getViewModel;
 -(UIButtonModel *_Nullable)getButtonModel;
+#pragma mark —— 关于 TextField
 /// 清除数据
 -(JobsReturnViewByVoidBlock _Nonnull)cleanTextFieldValue;
+/// 返回真实的 TextField
+-(__kindof UITextField *)realTextField;
 /**
  在这个方法里：
  传入：UITableViewHeaderFooterView *
@@ -141,7 +144,7 @@ NS_ASSUME_NONNULL_BEGIN
  再在- (nullable __kindof UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section方法里面：
  self.makeViewOnTableViewHeaderFooterView(headerView).alpha = 1; /// 进行一句话进行调用
  */
--(JobsReturnViewByTableViewHeaderFooterViewBlock)makeViewOnTableViewHeaderFooterView;
+-(JobsReturnViewByTableViewHeaderFooterViewBlock _Nonnull)makeViewOnTableViewHeaderFooterView;
 #pragma mark —— 在View内部进行实现处理，对外暴露的值。（不直接暴露UI控件）
 -(id)value;
 -(id)value1;

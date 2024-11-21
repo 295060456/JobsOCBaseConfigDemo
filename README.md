@@ -1855,6 +1855,72 @@ NSObject <|-- BaseProtocol
   }
   ```
 
+#### 18.7、RAC监控输入框
+
+* 制作信号
+
+  * 如果UITextField不可用
+
+    ```objective-c
+    /// 则监控UITextField.text
+    -(NSArray<RACSignal *>*_Nonnull)makeSignals1{
+       @jobs_weakify(self);
+       return [jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+           @jobs_strongify(self)
+           /// 获取所有需要监控的输入框
+    //            data.add(textField1.realTextField);
+    //            data.add(textField2.realTextField);
+       }).rac_sequence map:^id(UITextField *textField) {
+           return [RACSignal merge:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+               data.add(textField.rac_textSignal);/// 监听用户输入
+               data.add(RACObserve(textField, text));/// 监听直接设置的 text
+           })];
+       }].array;
+    }
+    ```
+
+  * 如果UITextField可用
+
+    ```objective-c
+    /// 创建每个输入框的信号：结合 `rac_textSignal` 和 KVO 信号
+    -(id<NSFastEnumeration>)makeSignals2{
+       @jobs_weakify(self);
+       return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+           @jobs_strongify(self)
+           /// 获取所有需要监控的输入框
+    //        data.add(textField1.rac_textSignal);
+    //        data.add(textField2.rac_textSignal);
+       });
+    }
+    ```
+
+* 处理信号
+
+  ```objective-c
+  -(void)checkInput{
+     @jobs_weakify(self);
+     /// 合并信号并处理逻辑
+     [[RACSignal combineLatest:self.makeSignals1 /// 或者 self.makeSignals2
+                        reduce:^id(NSString *text1,
+                                   NSString *text2) {
+         /// 检查每个输入框是否有值
+         return @(
+             isValue(text1) &&
+             isValue(text2)
+         );
+     }] subscribeNext:^(NSNumber *bothHaveText) {
+         @jobs_strongify(self);
+  //        if (bothHaveText.boolValue) {
+  //            self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT"));
+  //            self.submitBtn.enabled = YES;
+  //        } else {
+  //            self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT（不可点击）"));
+  //            self.submitBtn.enabled = NO;
+  //        }
+     }];
+  }
+  ```
+
 ### 19、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * [**寻找当前控制器 **](#寻找当前控制器 )
 

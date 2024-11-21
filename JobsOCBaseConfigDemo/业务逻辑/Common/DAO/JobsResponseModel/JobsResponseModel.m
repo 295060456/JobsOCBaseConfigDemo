@@ -11,8 +11,10 @@
 
 -(void)setCode:(HTTPResponseCode)code{
     _code = code;
+    @jobs_weakify(self)
     [self jobsHandelHTTPResponseCode:code
                          actionBlock:^(HTTPResponseCode data) {
+        @jobs_strongify(self)
         if(data == HTTPResponseCodeNoOK) toast(self.msg);
     }];
 }
