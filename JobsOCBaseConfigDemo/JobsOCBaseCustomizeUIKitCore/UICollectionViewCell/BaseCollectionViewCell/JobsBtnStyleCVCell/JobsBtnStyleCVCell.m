@@ -95,14 +95,20 @@
     if(self.viewModel){
         _btn.selected = self.viewModel.jobsSelected;
         _btn.enabled = self.viewModel.jobsEnabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
-        /// 主标题
-        _btn.jobsResetBtnTitle(self.viewModel.textModel.text);
-        _btn.jobsResetBtnTitleCor(self.viewModel.textModel.textCor);
-        _btn.jobsResetBtnTitleFont(self.viewModel.textModel.font);
-        /// 子标题
-        _btn.jobsResetBtnSubTitle(self.viewModel.subTextModel.text);
-        _btn.jobsResetBtnSubTitleCor(self.viewModel.subTextModel.textCor);
-        _btn.jobsResetBtnSubTitleFont(self.viewModel.subTextModel.font);
+        if(self.viewModel.textModel.attributedTitle){/// 主标题（富文本）
+            _btn.jobsResetBtnNormalAttributedTitle(self.viewModel.textModel.attributedTitle);
+        }else{/// 主标题（普通）
+            _btn.jobsResetBtnTitle(self.viewModel.textModel.text);
+            _btn.jobsResetBtnTitleCor(self.viewModel.textModel.textCor);
+            _btn.jobsResetBtnTitleFont(self.viewModel.textModel.font);
+        }
+        if(self.viewModel.subTextModel.attributedSubTitle){/// 子标题（富文本）
+            _btn.jobsResetBtnNormalAttributedSubTitle(self.viewModel.subTextModel.attributedSubTitle);
+        }else{/// 子标题
+            _btn.jobsResetBtnSubTitle(self.viewModel.subTextModel.text);
+            _btn.jobsResetBtnSubTitleCor(self.viewModel.subTextModel.textCor);
+            _btn.jobsResetBtnSubTitleFont(self.viewModel.subTextModel.font);
+        }
         /// 点击事件
         [_btn jobsBtnClickEventBlock:self.viewModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
             @jobs_strongify(self)
@@ -173,14 +179,20 @@
     if(self.buttonModel){
         _btn.selected = self.buttonModel.jobsSelected;
         _btn.enabled = self.buttonModel.enabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
-        /// 主标题
-        _btn.jobsResetBtnTitle(self.buttonModel.title);
-        _btn.jobsResetBtnTitleCor(self.buttonModel.titleCor);
-        _btn.jobsResetBtnTitleFont(self.buttonModel.titleFont);
-        /// 子标题
-        _btn.jobsResetBtnSubTitle(self.buttonModel.subTitle);
-        _btn.jobsResetBtnSubTitleCor(self.buttonModel.subTitleCor);
-        _btn.jobsResetBtnSubTitleFont(self.buttonModel.subTitleFont);
+        if(self.buttonModel.attributedTitle){/// 主标题（富文本）
+            _btn.jobsResetBtnNormalAttributedTitle(self.buttonModel.attributedTitle);
+        }else{/// 主标题（普通文本）
+            _btn.jobsResetBtnTitle(self.buttonModel.title);
+            _btn.jobsResetBtnTitleCor(self.buttonModel.titleCor);
+            _btn.jobsResetBtnTitleFont(self.buttonModel.titleFont);
+        }
+        if(self.buttonModel.attributedSubtitle){/// 子标题（富文本）
+            _btn.jobsResetBtnNormalAttributedSubTitle(self.buttonModel.attributedSubtitle);
+        }else{/// 子标题（普通文本）
+            _btn.jobsResetBtnSubTitle(self.buttonModel.subTitle);
+            _btn.jobsResetBtnSubTitleCor(self.buttonModel.subTitleCor);
+            _btn.jobsResetBtnSubTitleFont(self.buttonModel.subTitleFont);
+        }
         /// 点击事件
         [_btn jobsBtnClickEventBlock:self.buttonModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
             @jobs_strongify(self)

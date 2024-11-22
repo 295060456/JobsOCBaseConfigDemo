@@ -70,7 +70,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             [self.player.currentPlayerManager play];
         }else{}
     }
-    self.currentPage = CurrentPage_login;//默认页面是登录
+    self.currentPage = @(CurrentPage_login);//默认页面是登录
     //标的值初始化
     self.logoContentViewY = 0;
     self.jobsAppDoorContentViewY = 0;
@@ -78,7 +78,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -164,7 +164,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     toRegisterBtn.jobsResetBtnBgCor(Cor1);
     toRegisterBtn.jobsResetBtnTitleCor(Cor3);
 
-    self.currentPage = CurrentPage_login;//登录页面
+    self.currentPage = @(CurrentPage_login);//登录页面
     self->_jobsAppDoorContentView.frame = CGRectMake(JobsAppDoorContentViewLoginX,
                                                      JobsAppDoorContentViewLoginY,
                                                      JobsAppDoorContentViewLoginWidth,
@@ -275,7 +275,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
                 if (btn.titleForNormalState.isEqualToString(Title1)){
-                    self.currentPage = CurrentPage_login;
+                    self.currentPage = @(CurrentPage_login);
                     [self.forgotCodeContentView removeContentViewWithOffsetY:0];
                     [self.jobsAppDoorContentView showContentViewWithOffsetY:0];
                     @jobs_weakify(self)

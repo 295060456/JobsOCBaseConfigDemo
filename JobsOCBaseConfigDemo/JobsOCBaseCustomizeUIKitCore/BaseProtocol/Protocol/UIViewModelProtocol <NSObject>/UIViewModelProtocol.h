@@ -237,7 +237,7 @@ NS_ASSUME_NONNULL_END
 @synthesize subText = _subText;\
 @synthesize subFont = _subFont;\
 @synthesize subTextCor = _subTextCor;\
-@synthesize attributedText = _attributedText;\
+@synthesize attributedTitle = _attributedTitle;\
 @synthesize titleAttributedDataMutArr = _titleAttributedDataMutArr;\
 @synthesize selectedText = _selectedText;\
 @synthesize selectedFont = _selectedFont;\

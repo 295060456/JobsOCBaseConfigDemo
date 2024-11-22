@@ -41,13 +41,13 @@
     }
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
     // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-//    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+    //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
     self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
     
@@ -106,19 +106,20 @@
         @jobs_strongify(self)
         /// 这里可以调用接口去获取一级目录分类的数据
         for (int i = 0; i < self.titleMutArr.count; i++){
-            self.leftDataArray.add([self createOneModel:i]);
+            self.leftDataArray.add(self.createOneModel(i));
         }
     };
 }
 /// 最初默认的数据
 -(NSMutableArray<UIViewModel *> *)makeTitleMutArr{
-    NSMutableArray <UIViewModel *>*titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+    @jobs_weakify(self)
+    return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        @jobs_strongify(self)
         data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
             data1.textModel.text = JobsInternationalization(@"收藏");
         }));
-    });
-    [titleMutArr addObjectsFromArray:self.makePopViewDataMutArr];
-    return titleMutArr;
+        data.addBy(self.makePopViewDataMutArr);
+    });;
 }
 
 -(NSMutableArray<UIViewModel *> *)makePopViewDataMutArr{
@@ -144,7 +145,7 @@
     });return titleMutArr;
 }
 
--(jobsByVoidBlock)refreshLeftView{
+-(jobsByVoidBlock _Nonnull)refreshLeftView{
     return ^(){
         [self.tableView reloadData];
         if (self.leftDataArray.count){
@@ -165,59 +166,77 @@
     };
 }
 /// 预算高度
--(CGFloat)getCellHeight:(NSMutableArray *)dataArray{
-    //获取cell 的高度
-    return [self.tempCell getCollectionHeight:dataArray];
+-(JobsReturnCGFloatByArrBlock _Nonnull)getCellHeight{
+    @jobs_weakify(self)
+    return ^(NSMutableArray *_Nullable data){
+        @jobs_strongify(self)
+        /// 获取cell 的高度
+        return self.tempCell.getCollectionHeight(data);
+    };
 }
 /// 根据一级目录的id 获取二三级的分类数据
--(void)getGoodsClassWithPid:(NSString *)pId{
-    self.rightDataArray.clean();
-    /// 每个子页面的section个数
-    for (int i = 0; i < self.imageDataMutArr.count; i++){
-        self.rightDataArray.add([self createTwoModel:i]);
-    }
-    [self.collectionView reloadData];
-    if (self.rightDataArray.count){
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-                                    atScrollPosition:UICollectionViewScrollPositionTop
-                                            animated:NO];
-    }
+-(jobsByStringBlock _Nonnull)getGoodsClassWithPid{
+    @jobs_weakify(self)
+    return ^(NSString *_Nullable data){
+        @jobs_strongify(self)
+        self.rightDataArray.clean();
+        /// 每个子页面的section个数
+        for (int i = 0; i < self.imageDataMutArr.count; i++){
+            self.rightDataArray.add(self.createTwoModel(i));
+        }
+        [self.collectionView reloadData];
+        if (self.rightDataArray.count){
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                        atScrollPosition:UICollectionViewScrollPositionTop
+                                                animated:NO];
+        }
+    };
 }
 
--(GoodsClassModel *)createOneModel:(int)iflag{
-    GoodsClassModel *model = GoodsClassModel.new;
-    model.idField = toStringByInt(iflag);
-    model.pid = @"0";
-    model.name = JobsInternationalization(@"一级目录").add(toStringByInt(iflag));
-    model.textModel.text = self.titleMutArr[iflag].textModel.text;
-    return model;
+-(JobsReturnGoodsClassModelByIntBlock _Nonnull)createOneModel{
+    @jobs_weakify(self)
+    return ^__kindof GoodsClassModel *_Nullable(int iflag){
+        return jobsMakeGoodsClassModel(^(GoodsClassModel * _Nullable model) {
+            @jobs_strongify(self)
+            model.idField = toStringByInt(iflag);
+            model.pid = @"0";
+            model.name = JobsInternationalization(@"一级目录").add(toStringByInt(iflag));
+            model.textModel.text = self.titleMutArr[iflag].textModel.text;
+        });
+    };
 }
 
--(GoodsClassModel *)createTwoModel:(int)iFlag{
-    GoodsClassModel *model = GoodsClassModel.new;
-    model.idField = toStringByInt(iFlag);
-    model.pid = toStringByInt(iFlag);
-    model.name = JobsInternationalization(@"随机").add(@"-").add(toStringByInt(iFlag));
-    model.textModel.text = @"1234";
-    model.subTextModel.text = toStringByInt(iFlag).add(JobsInternationalization(@"球桌球"));
-    model.bgImage = self.imageDataMutArr[iFlag];
-    NSLog(@"%@",model.bgImage);
-    NSMutableArray <GoodsClassModel *>*arr = NSMutableArray.array;
-    /// 每个section里面的item数量
-    for (int i = 0; i < 9; i++){
-        arr.add([self createThreeModel:i]);
-    }
-    model.childrenList = arr;
-    NSLog(@"LKL = %ld",model.childrenList.count);
-    return model;
+-(JobsReturnGoodsClassModelByIntBlock _Nonnull)createTwoModel{
+    @jobs_weakify(self)
+    return ^__kindof GoodsClassModel *_Nullable(int iFlag){
+        return jobsMakeGoodsClassModel(^(GoodsClassModel * _Nullable model) {
+            model.idField = toStringByInt(iFlag);
+            model.pid = toStringByInt(iFlag);
+            model.name = JobsInternationalization(@"随机").add(@"-").add(toStringByInt(iFlag));
+            model.textModel.text = @"1234";
+            model.subTextModel.text = toStringByInt(iFlag).add(JobsInternationalization(@"球桌球"));
+            model.bgImage = self.imageDataMutArr[iFlag];
+            NSLog(@"%@",model.bgImage);
+            @jobs_strongify(self)
+            model.childrenList = jobsMakeMutArr(^(__kindof NSMutableArray <GoodsClassModel *>*_Nullable arr) {
+                @jobs_strongify(self)
+                /// 每个section里面的item数量
+                for (int i = 0; i < 9; i++){
+                    arr.add(self.createThreeModel(i));
+                }
+            });NSLog(@"LKL = %ld",model.childrenList.count);
+        });
+    };
 }
 
--(GoodsClassModel *)createThreeModel:(int)iflag{
-    GoodsClassModel *model = GoodsClassModel.new;
-    model.idField = toStringByInt(iflag);
-    model.pid = toStringByInt(iflag);
-    model.name = JobsInternationalization(@"三级目录").add(toStringByInt(iflag));
-    return model;
+-(JobsReturnGoodsClassModelByIntBlock _Nonnull)createThreeModel{
+    return ^__kindof GoodsClassModel *_Nullable(int iflag){
+        return jobsMakeGoodsClassModel(^(GoodsClassModel * _Nullable model) {
+            model.idField = toStringByInt(iflag);
+            model.pid = toStringByInt(iflag);
+            model.name = JobsInternationalization(@"三级目录").add(toStringByInt(iflag));
+        });
+    };
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 -(NSInteger)tableView:(__kindof UITableView *)tableView
@@ -248,7 +267,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.leftDataArray.count) {
         self.leftViewCurrentSelectModel = self.leftDataArray.objectAt(indexPath.row);
     }
-    [self getGoodsClassWithPid:self.rightViewCurrentSelectModel.idField];
+    self.getGoodsClassWithPid(self.rightViewCurrentSelectModel.idField);
     [self.collectionView setContentOffset:CGPointMake(0, JobsWidth(-5)) animated:YES];
 }
 #pragma mark —— UICollectionViewDelegate,UICollectionViewDataSource ThreeTopBannerCell
@@ -256,7 +275,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                           cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ThreeClassCell *cell = [ThreeClassCell cellWithCollectionView:collectionView forIndexPath:indexPath];
     self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(indexPath.section);
-    [cell getCollectionHeight:(NSMutableArray *)self.rightViewCurrentSelectModel.childrenList];
+    cell.getCollectionHeight(self.rightViewCurrentSelectModel.childrenList);
     cell.jobsRichElementsInCellWithModel(self.rightDataArray);
     [cell reloadData];
 //    @jobs_weakify(self)
@@ -284,15 +303,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                                                                                             forIndexPath:indexPath];
         UILabel *label = [headerView viewWithTag:666];
         if (!label){
-            label = UILabel.new;
-            label.frame = CGRectMake(10,
-                                     20,
-                                     headerView.width - 20.f,
-                                     17.f);
-            label.font = [UIFont systemFontOfSize:12.f];
-            label.textColor = JobsGrayColor;
-            label.tag = 666;
-            [headerView addSubview:label];
+            label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+                label.frame = CGRectMake(10,
+                                         20,
+                                         headerView.width - 20.f,
+                                         17.f);
+                label.font = [UIFont systemFontOfSize:12.f];
+                label.textColor = JobsGrayColor;
+                label.tag = 666;
+            });headerView.addSubview(label);
         }
         
         GoodsClassModel *rightModel = [self.rightDataArray objectAtIndex:indexPath.section];
@@ -322,7 +341,8 @@ referenceSizeForFooterInSection:(NSInteger)section{
 - (CGSize)collectionView:(__kindof UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(self.collectionView.width, [self getCellHeight:(NSMutableArray *)[self.rightDataArray objectAtIndex:indexPath.section].childrenList]);
+    return CGSizeMake(self.collectionView.width,
+                      self.getCellHeight([self.rightDataArray objectAtIndex:indexPath.section].childrenList));
 }
 #pragma mark —— lazyLoad
 /// BaseViewProtocol
@@ -330,8 +350,8 @@ referenceSizeForFooterInSection:(NSInteger)section{
 -(UITableView *)tableView{
     if (!_tableView){
         _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
         _tableView.dataLink(self);
+        _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
         _tableView.frame = CGRectMake(0,
                                       JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
                                       TableViewWidth,
@@ -348,11 +368,11 @@ referenceSizeForFooterInSection:(NSInteger)section{
         _collectionView = UICollectionView.initByLayout(jobsMakeVerticalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
             
         }));
+        _collectionView.dataLink(self);
         _collectionView.frame = CGRectMake(self.tableView.right,
                                            self.tableView.top,
                                            JobsMainScreen_WIDTH() - self.tableView.width,
                                            self.tableView.height + EditBtnHeight);
-        _collectionView.dataLink(self);
         _collectionView.backgroundColor = JobsRandomColor;// ThreeClassCellBgCor;
         _collectionView.alwaysBounceVertical = YES;
         _collectionView.registerCollectionViewClass();

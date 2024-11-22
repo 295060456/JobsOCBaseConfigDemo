@@ -28,7 +28,7 @@
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
 //        self.viewModel.textModel.text = JobsInternationalization(@"設置手勢密碼");
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
@@ -85,14 +85,17 @@
 #pragma mark —— lazyLoad
 -(UILabel *)topLineLab{
     if (!_topLineLab) {
-        _topLineLab = UILabel.new;
-        _topLineLab.backgroundColor = HEXCOLOR(0xF8DA87);
-        [self.view addSubview:_topLineLab];
-        [_topLineLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(2)));
-            make.centerX.equalTo(self.view);
-            make.top.equalTo(self.gk_navigationBar.mas_bottom);
-        }];
+        @jobs_weakify(self)
+        _topLineLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = HEXCOLOR(0xF8DA87);
+            [self.view addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(2)));
+                make.centerX.equalTo(self.view);
+                make.top.equalTo(self.gk_navigationBar.mas_bottom);
+            }];
+        });
     }return _topLineLab;
 }
 

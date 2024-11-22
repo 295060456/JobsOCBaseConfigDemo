@@ -345,9 +345,9 @@
                                      subTextAlignment:NSTextAlignmentCenter
                                           normalImage:nil
                                        highlightImage:nil
-                                      attributedTitle:data.attributedText
+                                      attributedTitle:data.attributedTitle
                               selectedAttributedTitle:nil
-                                   attributedSubtitle:data.attributedSubText
+                                   attributedSubtitle:data.attributedSubTitle
                                                 title:data.text
                                              subTitle:data.subText
                                             titleFont:data.font

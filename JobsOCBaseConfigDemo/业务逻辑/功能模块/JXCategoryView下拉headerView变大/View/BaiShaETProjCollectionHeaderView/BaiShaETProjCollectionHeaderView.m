@@ -308,13 +308,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 @jobs_strongify(self)
                 data1.textModel.text = JobsInternationalization(@"當前存款");
-                data1.subTextModel.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr2[0]
+                data1.subTextModel.attributedTitle = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr2[0]
                                                                         paragraphStyle:nil];
             }));
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 @jobs_strongify(self)
                 data1.textModel.text = JobsInternationalization(@"當前流水");
-                data1.subTextModel.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr2[1]
+                data1.subTextModel.attributedTitle = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr2[1]
                                                                         paragraphStyle:nil];
             }));
         });

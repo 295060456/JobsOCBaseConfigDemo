@@ -15,7 +15,7 @@
 #import "UIView+Measure.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+/// 此类的意义：可以重新定义相关子控件的Frame
 @interface BaseButton : UIButton
 <
 BaseButtonProtocol

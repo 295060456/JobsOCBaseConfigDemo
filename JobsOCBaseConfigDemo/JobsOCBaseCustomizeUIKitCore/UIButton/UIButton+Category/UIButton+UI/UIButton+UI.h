@@ -175,8 +175,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///【兼容】重设Btn的描边线段的宽度
 -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnLayerBorderWidth;
 #pragma mark —— 一些通用修改.富文本
-///【兼容】重设Btn富文本
+///【兼容】重设Btn主标题富文本
 -(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnNormalAttributedTitle;
+///【兼容】重设Btn副标题富文本
+-(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnNormalAttributedSubTitle;
 #pragma mark —— 一些通用修改.间距
 ///【兼容】重设Btn的图文间距和相对位置
 -(JobsReturnButtonByImagePlacementAndPaddingBlock _Nonnull)jobsResetImagePlacement_Padding API_AVAILABLE(ios(16.0));

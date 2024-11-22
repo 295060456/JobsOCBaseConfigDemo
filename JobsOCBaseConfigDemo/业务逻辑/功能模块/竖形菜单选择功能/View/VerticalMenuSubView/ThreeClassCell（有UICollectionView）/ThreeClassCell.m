@@ -9,7 +9,6 @@
 
 @interface ThreeClassCell()
 /// UI
-//@property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,assign)CGFloat sectionInsetTop;
 @property(nonatomic,assign)CGFloat sectionInsetLeft;
@@ -72,13 +71,15 @@
     };
 }
 #pragma mark —— 一些公有方法
--(CGFloat)getCollectionHeight:(NSMutableArray *)dataArray{
-    self.dataArray = dataArray;
-    NSInteger a = self.dataArray.count % self.columns;
-    self.rowCount = a ? (self.dataArray.count / self.columns) + 1 : self.dataArray.count / self.columns;
-    CGFloat collectionHeight = (self.rowCount * self.itemHeight) + ((self.rowCount - 1) * self.minimumLineSpacing) + self.sectionInsetTop + self.sectionInsetBottom;
-    self.collectionView.height = collectionHeight;
-    return collectionHeight;
+-(JobsReturnCGFloatByArrBlock _Nonnull)getCollectionHeight{
+    return ^CGFloat(NSMutableArray *_Nullable data){
+        self.dataArray = data;
+        NSInteger a = self.dataArray.count % self.columns;
+        self.rowCount = a ? (self.dataArray.count / self.columns) + 1 : self.dataArray.count / self.columns;
+        CGFloat collectionHeight = (self.rowCount * self.itemHeight) + ((self.rowCount - 1) * self.minimumLineSpacing) + self.sectionInsetTop + self.sectionInsetBottom;
+        self.collectionView.height = collectionHeight;
+        return collectionHeight;
+    };
 }
 
 -(void)reloadData{
@@ -87,15 +88,17 @@
 #pragma mark —— lazyLoad
 -(UICollectionViewFlowLayout *)flowLayout{
     if (!_flowLayout) {
-        _flowLayout = UICollectionViewFlowLayout.new;
-        _flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _flowLayout.minimumInteritemSpacing = self.minimumInteritemSpacing;
-        _flowLayout.minimumLineSpacing = self.minimumLineSpacing;
-        _flowLayout.itemSize = TreeClassItemCell.cellSizeByModel(nil);
-        _flowLayout.sectionInset = UIEdgeInsetsMake(self.sectionInsetTop,
-                                                    self.sectionInsetLeft,
-                                                    self.sectionInsetBottom,
-                                                    self.sectionInsetRight);
+        @jobs_weakify(self)
+        _flowLayout = jobsMakeVerticalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
+            @jobs_strongify(self)
+            data.minimumInteritemSpacing = self.minimumInteritemSpacing;
+            data.minimumLineSpacing = self.minimumLineSpacing;
+            data.itemSize = TreeClassItemCell.cellSizeByModel(nil);
+            data.sectionInset = UIEdgeInsetsMake(self.sectionInsetTop,
+                                                 self.sectionInsetLeft,
+                                                 self.sectionInsetBottom,
+                                                 self.sectionInsetRight);
+        });
     }return _flowLayout;
 }
 /// BaseViewProtocol
@@ -112,7 +115,7 @@
 
         _collectionView.backgroundColor = ThreeClassCellBgCor;
         _collectionView.layer.backgroundColor = ThreeClassCellBgCor.CGColor;
-        _collectionView.layer.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.08].CGColor;
+        _collectionView.layer.shadowColor = RGBA_COLOR(0, 0, 0, 0.08).CGColor;
         _collectionView.layer.shadowOffset = CGSizeZero;
         _collectionView.layer.shadowOpacity = 1;
         _collectionView.layer.shadowRadius = JobsWidth(5);

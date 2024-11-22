@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 /// 将一个按钮整个覆盖到TableViewCell上面，以实现图文混排
+/// 同 JobsBtnStyleCVCell
 @interface JobsBtnStyleTBVCell : JobsBaseTableViewCell
 
 -(BaseButton *)btn;

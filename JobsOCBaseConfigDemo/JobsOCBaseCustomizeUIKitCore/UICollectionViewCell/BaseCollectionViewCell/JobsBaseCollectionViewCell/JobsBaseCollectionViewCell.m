@@ -71,7 +71,7 @@
         self.viewModel = model;
         /// 如果有图片则只显示这个图片，并铺满
         BOOL A = model.bgImage || model.image;
-        BOOL B = (![model.textModel.text isEqualToString:JobsInternationalization(TextModelDataString)] && model.textModel.text) || model.textModel.attributedText;
+        BOOL B = (![model.textModel.text isEqualToString:JobsInternationalization(TextModelDataString)] && model.textModel.text) || model.textModel.attributedTitle;
 
         if (A || self.forceUseBgBtn) {
             self.bgBtn.jobsVisible = A || self.forceUseBgBtn;
@@ -116,7 +116,7 @@
             .jobsResetBtnTitleCor(self.viewModel.textModel.textCor)
             .jobsResetBtnTitleFont(self.viewModel.textModel.font)
             .jobsResetBtnTitle(self.viewModel.textModel.text)
-            .jobsResetBtnNormalAttributedTitle(self.viewModel.textModel.attributedText)
+            .jobsResetBtnNormalAttributedTitle(self.viewModel.textModel.attributedTitle)
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
@@ -162,7 +162,7 @@
             } subscribeNextBlock:^(id data) {
     //            @jobs_strongify(self)
             }];
-            textView.attributedText = self.viewModel.textModel.attributedText;
+            textView.attributedText = self.viewModel.textModel.attributedTitle;
             textView.font = self.viewModel.textModel.font;
             textView.textAlignment = self.viewModel.textModel.textAlignment;
             textView.text = self.viewModel.textModel.text;

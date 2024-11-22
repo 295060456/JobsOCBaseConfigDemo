@@ -60,7 +60,7 @@ UIPictureAndBackGroundCorProtocol_synthesize
             @jobs_strongify(self)
             data.bgCor = self.viewModel.navBgCor;
             data.bgImage = self.viewModel.navBgImage;
-            data.attributedTitle = self.viewModel.backBtnTitleModel.attributedText;
+            data.attributedTitle = self.viewModel.backBtnTitleModel.attributedTitle;
             data.title = self.viewModel.textModel.text;
             data.font = self.viewModel.textModel.font;
             data.titleCor = self.viewModel.textModel.textCor;

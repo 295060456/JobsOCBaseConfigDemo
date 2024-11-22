@@ -9,6 +9,7 @@
 #define JobsOCBaseConfigPrefixHeader_pch
 #pragma mark —— 系统SDK
 #import <Foundation/Foundation.h>                 /// 提供Objective-C的基本数据类型、集合和实用工具类。
+#import <CoreText/CoreText.h>                     ///  iOS 和 macOS 提供的底层文本布局和渲染框架，支持高级的字体管理和排版功能。相比 UIKit 中的 NSAttributedString，Core Text 更灵活，但也更复杂，适合需要精准控制文本显示的场景。
 #import <WebKit/WebKit.h>                         /// 用于嵌入和管理网页内容，例如加载和显示网页。
 #import <UIKit/UIKit.h>                           /// 提供iOS应用的UI组件和基础结构，如视图、控件和动画。
 #import <sys/sysctl.h>                            /// 允许查询系统信息和配置，如设备硬件详细信息。

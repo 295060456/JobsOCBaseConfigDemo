@@ -6,10 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 #import "JobsVerticalMenuDefineHeader.h"
 #import "TreeClassItemCell.h"
-#import "GoodsClassModel.h"
 #import "JobsBaseCollectionViewCell.h"
+
+#import "GoodsClassModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 这个类用于计算，不用于显示
@@ -19,7 +21,7 @@ UICollectionViewDelegate
 ,UICollectionViewDataSource
 >
 #pragma mark —— 一些公有方法
--(CGFloat)getCollectionHeight:(NSMutableArray *)dataArray;
+-(JobsReturnCGFloatByArrBlock _Nonnull)getCollectionHeight;
 -(void)reloadData;
 
 @end

@@ -58,8 +58,8 @@
         }];
     }
     
-    if (self.viewModel.textModel.attributedText) {
-        _titleLab.attributedText = self.viewModel.textModel.attributedText;
+    if (self.viewModel.textModel.attributedTitle) {
+        _titleLab.attributedText = self.viewModel.textModel.attributedTitle;
     }else{
         _titleLab.text = self.viewModel.textModel.text;
         _titleLab.font = self.viewModel.textModel.font;
@@ -83,13 +83,13 @@
     _subTitleBtn.jobsResetBtnBgImage(self.viewModel.bgImage);
     _subTitleBtn.jobsResetBtnTitle(self.viewModel.subTextModel.text);
     _subTitleBtn.jobsResetBtnTitleCor(self.viewModel.subTextModel.textCor);
-    _subTitleBtn.jobsResetBtnNormalAttributedTitle(self.viewModel.subTextModel.attributedText);
+    _subTitleBtn.jobsResetBtnNormalAttributedTitle(self.viewModel.subTextModel.attributedTitle);
     
     _subTitleBtn.selectedImage(self.viewModel.selectedImage_);
     _subTitleBtn.selectedBackgroundImage(self.viewModel.bgSelectedImage);
     _subTitleBtn.selectedTitle(self.viewModel.subTextModel.text);
     _subTitleBtn.selectedTitleColor(self.viewModel.subTextModel.textCor);
-    _subTitleBtn.selectedAttributedTitle(self.viewModel.subTextModel.attributedText);
+    _subTitleBtn.selectedAttributedTitle(self.viewModel.subTextModel.attributedTitle);
     
     _subTitleBtn.jobsResetBtnTitleFont(self.viewModel.subTextModel.font);
     _subTitleBtn.titleAlignment = self.viewModel.subTextModel.textAlignment;

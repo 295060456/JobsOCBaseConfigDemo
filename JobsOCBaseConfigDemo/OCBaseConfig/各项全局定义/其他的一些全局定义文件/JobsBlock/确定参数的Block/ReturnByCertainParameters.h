@@ -410,6 +410,7 @@ typedef NSUInteger(^JobsReturnNSUIntegerByIDBlock)(id _Nullable data);
 typedef CGFloat(^JobsReturnByCGFloatBlock)(CGFloat data);
 typedef CGFloat(^JobsReturnCGFloatByCGFloatBlock)(CGFloat data);
 typedef CGFloat(^JobsReturnCGFloatByIDBlock)(id _Nullable data);
+typedef CGFloat(^JobsReturnCGFloatByArrBlock)(NSMutableArray *_Nullable data);
 typedef CGFloat(^JobsReturnByFontBlock)(UIFont *_Nullable font);
 typedef CGFloat(^JobsReturnCGFloatByVoidBlock)(void);
 

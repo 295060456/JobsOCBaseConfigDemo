@@ -30,7 +30,7 @@
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
 //    self.viewModel.textModel.text = JobsInternationalization(@"消息详情页");
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -76,17 +76,19 @@
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if(!_titleLab){
-        _titleLab = UILabel.new;
-        _titleLab.text = JobsInternationalization(@"评论");
-        _titleLab.textColor = JobsCor(@"#333333");
-        _titleLab.font = UIFontWeightBoldSize(18);
-        [self.view addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view).offset(JobsWidth(15));
-            make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(25));
-            make.height.mas_equalTo(JobsWidth(20));
-        }];
-        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = JobsInternationalization(@"评论");
+            label.textColor = JobsCor(@"#333333");
+            label.font = UIFontWeightBoldSize(18);
+            [self.view addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view).offset(JobsWidth(15));
+                make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(25));
+                make.height.mas_equalTo(JobsWidth(20));
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
+        });
     }return _titleLab;
 }
 

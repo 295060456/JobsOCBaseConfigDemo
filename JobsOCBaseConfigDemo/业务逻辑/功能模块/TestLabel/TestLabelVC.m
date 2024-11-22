@@ -42,7 +42,7 @@
     }
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -107,11 +107,11 @@
     }return _scrollView;
 }
 #pragma mark —— 富文本
-@synthesize attributedText = _attributedText;
--(NSAttributedString *)attributedText{
-    if (!_attributedText) {
+@synthesize attributedTitle = _attributedTitle;
+-(NSAttributedString *)attributedTitle{
+    if (!_attributedTitle) {
         @jobs_weakify(self)
-        _attributedText = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
+        _attributedTitle = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
                 data1.font = UIFontWeightRegularSize(JobsWidth(12));
@@ -136,7 +136,7 @@
                 data1.paragraphStyle = self.defaultParagraphStyle;
             }));
         }));
-    }return _attributedText;
+    }return _attributedTitle;
 }
 #pragma mark —— BaseLabel
 /// 一行显示普通文本。定宽、定高、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
@@ -253,7 +253,7 @@
         _lab7 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = JobsRedColor;
-            label.attributedText = self.attributedText;
+            label.attributedText = self.attributedTitle;
             [self.scrollView addSubview:label];
             [label mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(JobsMainScreen_WIDTH());
@@ -356,7 +356,7 @@
 -(BaseButton *)btn7{
     if (!_btn7) {
         _btn7 = BaseButton.new;
-        _btn7.jobsResetBtnNormalAttributedTitle(self.attributedText);
+        _btn7.jobsResetBtnNormalAttributedTitle(self.attributedTitle);
         /**
          【特别说明】
          1、_btn7.backgroundColor = JobsBrownColor;// 如果使用富文本，那么背景颜色这个属性无效

@@ -35,7 +35,7 @@
     [super loadView];
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
-        self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+        self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     }
 //    self.viewModel.textModel.text = JobsInternationalization(@"JXCategoryPopupVC");
     self.bgImage = nil;

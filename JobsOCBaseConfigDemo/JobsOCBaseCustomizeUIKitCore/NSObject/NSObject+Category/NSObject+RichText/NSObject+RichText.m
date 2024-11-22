@@ -57,10 +57,10 @@
 -(JobsReturnAttributedStringByRichTextConfigArrayBlock _Nonnull)richTextWithDataConfigMutArr{
     /// richTextDataConfigMutArr 富文本的配置集合,对该纯文本字符串的释义
     /// JobsRichTextConfig：富文本里面单个字符单元的配置
-    return ^(NSArray <JobsRichTextConfig *>*_Nullable richTextDataConfigMutArr) {
+    return ^NSMutableAttributedString *_Nullable(NSArray <JobsRichTextConfig *>*_Nullable arr) {
         NSString *resultString = @"";
         /// 先拼接字符串
-        for (JobsRichTextConfig *config in richTextDataConfigMutArr) {
+        for (JobsRichTextConfig *config in arr) {
             if (config.targetString) {
                 resultString = resultString.add(config.targetString);
                 NSLog(@"resultString = %@",resultString);
@@ -68,14 +68,14 @@
         }
         NSLog(@"resultString = %@",resultString);
         NSMutableAttributedString *attrString = JobsMutAttributedString(resultString);
-        if (!richTextDataConfigMutArr || !richTextDataConfigMutArr.count) return attrString;
+        if (!arr || !arr.count) return attrString;
         ///  因为NSArray <JobsRichTextConfig *>* 是动态。进方法以后为固定，那么以此计算真正的range
-        NSUInteger currentFrontLocation = 0;//当前位置（前）
-        for (JobsRichTextConfig *config in richTextDataConfigMutArr) {
+        NSUInteger currentFrontLocation = 0;/// 当前位置（前）
+        for (JobsRichTextConfig *config in arr) {
             config.range = NSMakeRange(currentFrontLocation, config.targetString.length);
             currentFrontLocation  += config.targetString.length;
         }
-        for (JobsRichTextConfig *config in richTextDataConfigMutArr){
+        for (JobsRichTextConfig *config in arr){
             /// 添加字体 & 设置作用域
             if (config.font) {
                 attrString.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
@@ -116,16 +116,19 @@
 }
 /// 字符串中划线
 -(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation{
-    return ^NSMutableAttributedString *(NSString *data) {
-        return JobsMutAttributedStringByAttributes(data,
-                                             @{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle)});
+    return ^__kindof NSAttributedString *_Nullable(NSString *data) {
+        return JobsMutAttributedStringByAttributes(data,jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable dic) {
+            [dic setValue:@(NSUnderlineStyleSingle) forKey:NSStrikethroughStyleAttributeName];
+        })
+                                             );
     };
 }
 /// 字符串下划线
 -(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation{
-    return ^NSMutableAttributedString *(NSString *data) {
-        return JobsMutAttributedStringByAttributes(data,
-                                                   @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)});
+    return ^__kindof NSAttributedString *_Nullable(NSString *data) {
+        return JobsMutAttributedStringByAttributes(data,jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable dic) {
+            [dic setValue:@(NSUnderlineStyleSingle) forKey:NSUnderlineStyleAttributeName];
+        }));
     };
 }
 

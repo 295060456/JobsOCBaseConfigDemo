@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseModel.h"
+#import "JobsBlock.h"
 
 #if __has_include(<MJExtension/MJExtension.h>)
 #import <MJExtension/MJExtension.h>
@@ -31,3 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof GoodsClassModel *_Nonnull jobsMakeGoodsClassModel(jobsByGoodsClassModelBlock _Nonnull block){
+    GoodsClassModel *data = GoodsClassModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

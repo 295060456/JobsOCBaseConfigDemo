@@ -103,7 +103,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             /// 对中间标题的配置
             data.bgCor = self.viewModel.navBgCor;
             data.bgImage = self.viewModel.navBgImage;
-            data.attributedTitle = Jobs3TO(self.viewModel.attributedText, self.viewModel.textModel.attributedText);
+            data.attributedTitle = Jobs3TO(self.viewModel.attributedTitle, self.viewModel.textModel.attributedTitle);
             data.title = Jobs3TO(self.viewModel.text, self.viewModel.textModel.text);
             data.font = Jobs3TO(self.viewModel.font, self.viewModel.textModel.font);
             data.titleCor = self.viewModel.textModel.textCor;

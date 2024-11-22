@@ -225,8 +225,8 @@ UITableViewCellProtocol_synthesize
                                      limit:(NSInteger)limit;
              */
             if(self.textLabel){
-                if (model.textModel.attributedText) {
-                    self.textLabel.attributedText = model.textModel.attributedText;
+                if (model.textModel.attributedTitle) {
+                    self.textLabel.attributedText = model.textModel.attributedTitle;
                 }else{
                     self.textLabel.text = model.textModel.text;
                     self.textLabel.textColor = self.viewModel.textModel.textCor;
@@ -236,8 +236,8 @@ UITableViewCellProtocol_synthesize
             }
             
             if(self.detailTextLabel){
-                if (model.subTextModel.attributedText) {
-                    self.detailTextLabel.attributedText = model.subTextModel.attributedText;
+                if (model.subTextModel.attributedTitle) {
+                    self.detailTextLabel.attributedText = model.subTextModel.attributedTitle;
                 }else{
                     self.detailTextLabel.text = model.subTextModel.text;
                     self.detailTextLabel.textColor = self.viewModel.subTextModel.textCor;
@@ -259,20 +259,20 @@ UITableViewCellProtocol_synthesize
             UIViewModel *vm = UIViewModel.new;
             NSString *title = @"";
             NSString *subtitle = @"";
-            if(model.textModel.attributedText.string.length){
-                title = model.textModel.attributedText.string;
-                vm.textModel.font = model.textModel.attributedText.attributedStringFont() ? : UIFontWeightRegularSize(14);
-                vm.textModel.textLineSpacing = model.textModel.attributedText.attributedStringParagraphStyle().lineSpacing;
+            if(model.textModel.attributedTitle.string.length){
+                title = model.textModel.attributedTitle.string;
+                vm.textModel.font = model.textModel.attributedTitle.attributedStringFont() ? : UIFontWeightRegularSize(14);
+                vm.textModel.textLineSpacing = model.textModel.attributedTitle.attributedStringParagraphStyle().lineSpacing;
             }else{
                 title = model.textModel.text;
                 vm.textModel.font = model.textModel.font ? : UIFontWeightRegularSize(14);
                 vm.textModel.textLineSpacing = model.textModel.textLineSpacing;
             }
             
-            if(model.subTextModel.attributedText.string.length){
-                subtitle = model.subTextModel.attributedText.string;
-                vm.textModel.font = model.subTextModel.attributedText.attributedStringFont() ? : UIFontWeightRegularSize(14);
-                vm.textModel.textLineSpacing = model.subTextModel.attributedText.attributedStringParagraphStyle().lineSpacing;
+            if(model.subTextModel.attributedTitle.string.length){
+                subtitle = model.subTextModel.attributedTitle.string;
+                vm.textModel.font = model.subTextModel.attributedTitle.attributedStringFont() ? : UIFontWeightRegularSize(14);
+                vm.textModel.textLineSpacing = model.subTextModel.attributedTitle.attributedStringParagraphStyle().lineSpacing;
             }else{
                 subtitle = model.subTextModel.text;
                 vm.textModel.font = model.subTextModel.font ? : UIFontWeightRegularSize(14);
@@ -288,7 +288,6 @@ UITableViewCellProtocol_synthesize
         }return JobsWidth(50);/// 没有数据源传入的时候的缺省值
     };
 }
-
 #pragma mark —— @synthesize UIViewModelProtocol
 UIViewModelProtocol_synthesize
 UIViewModelProtocol_self_synthesize

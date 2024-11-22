@@ -29,7 +29,7 @@
     }
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -61,7 +61,7 @@
     [super viewWillDisappear:animated];
 }
 #pragma mark —— 一些私有方法
--(JobsReturnDataByVoidBlock)getData{
+-(JobsReturnDataByVoidBlock _Nonnull)getData{
     @jobs_weakify(self)
     return ^NSData *(){
         @jobs_strongify(self)
@@ -69,7 +69,7 @@
     };
 }
 
--(JobsReturnImageByDataBlock)getImage{
+-(JobsReturnImageByDataBlock _Nonnull)getImage{
     @jobs_weakify(self)
     return ^UIImage *(NSData *_Nullable data){
         @jobs_strongify(self)
@@ -79,12 +79,15 @@
 #pragma mark —— lazyLoad
 -(UIImageView *)gifImageView{
     if (!_gifImageView) {
-        _gifImageView = UIImageView.new;
-        _gifImageView.image = self.image;
-        [self.view addSubview:_gifImageView];
-        [_gifImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
+        @jobs_weakify(self)
+        _gifImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = self.image;
+            [self.view addSubview:imageView];
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.view);
+            }];
+        });
     }return _gifImageView;
 }
 

@@ -27,7 +27,7 @@
     
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -65,7 +65,7 @@
     [super viewWillDisappear:animated];
 }
 /// 右斜边梯形
-- (void)view1{
+-(void)view1{
     IrregularBtn * btn = [IrregularBtn buttonWithType:UIButtonTypeCustom];
     btn.backgroundColor = [UIColor orangeColor];
     [btn setTitle:@"按钮" forState:UIControlStateNormal];
@@ -73,15 +73,13 @@
         int R = (arc4random() % 256) ;
         int G = (arc4random() % 256) ;
         int B = (arc4random() % 256) ;
-        [x setBackgroundColor:[UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1]];
+        x.backgroundColor = RGB_COLOR(R, G, B);
     }];
-    
-    // 添加路径关键点array
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(0.f, 0.f)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(120, 0.f)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(120 *3/4, 50)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(0.f, 120)]];
-    
+    /// 添加路径关键点array
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(0.f, 0.f)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(120, 0.f)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(120 *3/4, 50)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(0.f, 120)));
     [self.view addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(20);
@@ -91,7 +89,6 @@
 }
 /// 平行四边形
 -(void)view2{
-    //
     IrregularBtn * btn = [IrregularBtn buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(120, 100, 120, 50);
     btn.backgroundColor = [UIColor greenColor];
@@ -100,15 +97,13 @@
         int R = (arc4random() % 256) ;
         int G = (arc4random() % 256) ;
         int B = (arc4random() % 256) ;
-        [x setBackgroundColor:[UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1]];
+        x.backgroundColor = RGB_COLOR(R, G, B);
     }];
-
-    // 添加路径关键点array
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(0.f, 50.f)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(120 / 4, 0.f)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(120, 0)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(120 * 3 / 4, 50)]];
-    
+    /// 添加路径关键点array
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(0.f, 50.f)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(120 / 4, 0.f)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(120, 0)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(120 * 3 / 4, 50)));
     [self.view addSubview:btn];
 }
 /// 左斜边梯形
@@ -121,19 +116,16 @@
         int R = (arc4random() % 256) ;
         int G = (arc4random() % 256) ;
         int B = (arc4random() % 256) ;
-        [x setBackgroundColor:[UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1]];
-    }];
-    [self.view addSubview:btn];
-
-    // 添加路径关键点array
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(120 / 4, 50.f)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(120, 0.f)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(120, 50)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(0, 50)]];
+        x.backgroundColor = RGB_COLOR(R, G, B);
+    }];[self.view addSubview:btn];
+    /// 添加路径关键点array
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(120 / 4, 50.f)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(120, 0.f)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(120, 50)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(0, 50)));
 }
 /// 六角形
 - (void)view4{
-    //
     IrregularBtn * btn = [IrregularBtn buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(20, 200, 150, 150);
     btn.backgroundColor = [UIColor purpleColor];
@@ -142,11 +134,9 @@
         int R = (arc4random() % 256) ;
         int G = (arc4random() % 256) ;
         int B = (arc4random() % 256) ;
-        [x setBackgroundColor:[UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1]];
-    }];
-    [self.view addSubview:btn];
-    
-    // 添加路径关键点array
+        x.backgroundColor = RGB_COLOR(R, G, B);
+    }];[self.view addSubview:btn];
+    /// 添加路径关键点array
     float viewWidth = btn.frame.size.width;
     
     CGPoint point1 = CGPointMake((sin(M_1_PI / 180 * 60)) * (viewWidth / 2), (viewWidth / 4));
@@ -158,18 +148,16 @@
     CGPoint point5 = CGPointMake((viewWidth / 2), viewWidth);
     CGPoint point6 = CGPointMake((sin(M_1_PI / 180 * 60)) * (viewWidth / 2),
                                  (viewWidth / 2) + (viewWidth / 4));
-    
-    // 添加路径关键点array
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:point1]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:point2]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:point3]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:point4]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:point5]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:point6]];
+    /// 添加路径关键点array
+    btn.pointMutArr.add(NSValue.byPoint(point1));
+    btn.pointMutArr.add(NSValue.byPoint(point2));
+    btn.pointMutArr.add(NSValue.byPoint(point3));
+    btn.pointMutArr.add(NSValue.byPoint(point4));
+    btn.pointMutArr.add(NSValue.byPoint(point5));
+    btn.pointMutArr.add(NSValue.byPoint(point6));
 }
 /// 对折形状
 -(void)view5{
-    //
     IrregularBtn * btn = [IrregularBtn buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(200, 200, 150, 150);
     btn.backgroundColor = [UIColor brownColor];
@@ -178,18 +166,16 @@
         int R = (arc4random() % 256) ;
         int G = (arc4random() % 256) ;
         int B = (arc4random() % 256) ;
-        [x setBackgroundColor:[UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1]];
-    }];
-    [self.view addSubview:btn];
-    
-    // 添加路径关键点array
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(0.f, 0.f)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(150, 0)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(0, 150)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(150, 150)]];
+        x.backgroundColor = RGB_COLOR(R, G, B);
+    }];[self.view addSubview:btn];
+    /// 添加路径关键点array
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(0.f, 0.f)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(150, 0)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(0, 150)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(150, 150)));
 }
 /// 箭头
-- (void)view6 {
+-(void)view6 {
     IrregularBtn * btn = [IrregularBtn buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(20, 380, 330, 150);
     btn.backgroundColor = [UIColor magentaColor];
@@ -198,17 +184,16 @@
         int R = (arc4random() % 256) ;
         int G = (arc4random() % 256) ;
         int B = (arc4random() % 256) ;
-        [x setBackgroundColor:[UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1]];
-    }];
-    [self.view addSubview:btn];
-    // 添加路径关键点array
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(0, 150)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(330 * 2 / 3, 150 / 3)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(330 * 2 / 3, 0)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(330, 150 / 2)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(330 * 2 / 3, 150)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(330 * 2 / 3, 150 * 2 / 3)]];
-    [btn.pointMutArr addObject:[NSValue valueWithCGPoint:CGPointMake(0, 150 * 2 / 3)]];
+        x.backgroundColor = RGB_COLOR(R, G, B);
+    }];[self.view addSubview:btn];
+    /// 添加路径关键点array
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(0, 150)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(330 * 2 / 3, 150 / 3)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(330 * 2 / 3, 0)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(330, 150 / 2)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(330 * 2 / 3, 150)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(330 * 2 / 3, 150 * 2 / 3)));
+    btn.pointMutArr.add(NSValue.byPoint(CGPointMake(0, 150 * 2 / 3)));
 }
 
 @end

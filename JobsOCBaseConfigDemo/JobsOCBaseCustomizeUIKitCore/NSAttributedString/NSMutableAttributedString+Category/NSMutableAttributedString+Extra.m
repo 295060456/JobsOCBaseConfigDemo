@@ -23,7 +23,13 @@
     @jobs_weakify(self)
     return ^(__kindof JobsParagraphStyleModel *_Nullable data){
         @jobs_strongify(self)
-        if(!data.value) return;
+        /// 检查 data 是否有效
+        if (!data) return;/// data 为空
+        /// 检查 value 是否有效
+        if (!data.value) return;/// data.value 无效
+        /// 检查 range 是否有效
+        NSRange range = data.range;
+        if (range.location == NSNotFound || NSMaxRange(range) > self.length) return;/// range 无效
         [self addAttribute:NSParagraphStyleAttributeName
                      value:data.value
                      range:data.range];
@@ -34,7 +40,11 @@
     @jobs_weakify(self)
     return ^(__kindof JobsParagraphStyleModel *_Nullable data){
         @jobs_strongify(self)
-        if(!data.value) return;
+        /// 校验 data 是否有效
+        if (!data || !data.value || ![data.value isKindOfClass:UIColor.class]) return;/// 无效的 data 或 value
+        /// 校验 range 是否有效
+        NSRange range = data.range;
+        if (range.location == NSNotFound || NSMaxRange(range) > self.length) return;/// 无效的 range
         [self addAttribute:NSForegroundColorAttributeName
                      value:data.value
                      range:data.range];
@@ -45,7 +55,11 @@
     @jobs_weakify(self)
     return ^(__kindof JobsParagraphStyleModel *_Nullable data){
         @jobs_strongify(self)
-        if(!data.value) return;
+        /// 校验数据
+        if (!data || !data.value || ![data.value isKindOfClass:UIFont.class]) return;/// 字体属性无效
+        /// 校验 range
+        NSRange range = data.range;
+        if (range.location == NSNotFound || NSMaxRange(range) > self.length)  return;/// 字体属性 range 无效
         [self addAttribute:NSFontAttributeName
                      value:data.value
                      range:data.range];
@@ -57,6 +71,11 @@
     return ^(__kindof JobsParagraphStyleModel *_Nullable data){
         @jobs_strongify(self)
         if(!data.value) return;
+        /// 校验数据
+        if (!data || !data.value || ![data.value isKindOfClass:NSNumber.class]) return;/// 下划线属性无效
+        /// 校验 range
+        NSRange range = data.range;
+        if (range.location == NSNotFound || NSMaxRange(range) > self.length) return;/// 下划线属性 range 无效
         [self addAttribute:NSFontAttributeName
                      value:data.value
                      range:data.range];
@@ -67,18 +86,23 @@
     @jobs_weakify(self)
     return ^(__kindof JobsParagraphStyleModel *_Nullable data){
         @jobs_strongify(self)
-        if(!data.value) return;
+        /// 校验数据
+        if (!data || !data.value || ![data.value isKindOfClass:NSURL.class]) return;/// 超链接属性无效
+        /// 校验 range
+        NSRange range = data.range;
+        if (range.location == NSNotFound || NSMaxRange(range) > self.length) return;/// 超链接属性 range 无效
         [self addAttribute:NSLinkAttributeName
                      value:data.value
                      range:data.range];
     };
 }
-
+/// 设置富文本的字符间距
 -(jobsByParagraphStyleModelBlock _Nonnull)addkCTKernAttributeNameByParagraphStyleModel{
     @jobs_weakify(self)
     return ^(__kindof JobsParagraphStyleModel *_Nullable data){
         @jobs_strongify(self)
         if(!data.value) return;
+        /// kCTKernAttributeName 是 Core Text 框架中的一个属性，用于控制字符之间的间距（字距）。
         [self addAttribute:(__bridge NSString *)kCTKernAttributeName
                      value:data.value
                      range:data.range];

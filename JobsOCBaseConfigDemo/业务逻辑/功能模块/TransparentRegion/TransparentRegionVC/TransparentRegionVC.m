@@ -9,7 +9,6 @@
 
 @interface TransparentRegionVC ()
 
-//@property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UILabel *label;
 
 @end
@@ -29,7 +28,7 @@
     }
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -45,7 +44,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = JobsYellowColor;
     self.makeNavByAlpha(1);
-
+    
     self.scrollView.alpha = 1;
     self.label.alpha = 1;
     [self addArc];
@@ -63,53 +62,61 @@
     [super viewWillDisappear:animated];
 }
 #pragma mark —— 一些私有方法
-- (void)addArc {
-    //中间镂空的矩形框
+-(void)addArc{
+    /// 中间镂空的矩形框
     CGRect myRect =CGRectMake(100,100,200,200);
-
-    //背景
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:[UIScreen mainScreen].bounds cornerRadius:0];
-    //镂空
+    /// 背景
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:UIScreen.mainScreen.bounds
+                                                    cornerRadius:0];
+    /// 镂空
     UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:myRect];
     [path appendPath:circlePath];
     [path setUsesEvenOddFillRule:YES];
 
-    CAShapeLayer *fillLayer = [CAShapeLayer layer];
-    fillLayer.path = path.CGPath;
-    fillLayer.fillRule = kCAFillRuleEvenOdd;
-    fillLayer.fillColor = [UIColor whiteColor].CGColor;
-    fillLayer.opacity = 0.5;
-    [self.view.layer addSublayer:fillLayer];
+    [self.view.layer addSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable data) {
+        data.path = path.CGPath;
+        data.fillRule = kCAFillRuleEvenOdd;
+        data.fillColor = JobsWhiteColor.CGColor;
+        data.opacity = 0.5;
+    })];
 }
 #pragma mark —— lazyLoad
 /// BaseViewProtocol
 @synthesize scrollView = _scrollView;
 -(UIScrollView *)scrollView{
     if (!_scrollView) {
-        _scrollView = UIScrollView.new;
-        _scrollView.backgroundColor = [UIColor redColor];
-        _scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT() * 2);
-        [self.view addSubview:_scrollView];
-        [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.right.bottom.equalTo(self.view);
-        }];
+        @jobs_weakify(self)
+        _scrollView = jobsMakeScrollView(^(__kindof UIScrollView * _Nullable scrollView) {
+            @jobs_strongify(self)
+            scrollView.backgroundColor = [UIColor redColor];
+            scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT() * 2);
+            [self.view addSubview:scrollView];
+            [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.left.right.bottom.equalTo(self.view);
+            }];
+        });
     }return _scrollView;
 }
 
 -(UILabel *)label{
     if (!_label) {
-        _label = UILabel.new;
-        _label.text = JobsInternationalization(@"iOS-UIView设置阴影效果");
-        _label.frame = CGRectMake(100, 400, 200, 200);
-        _label.backgroundColor = JobsYellowColor;
-        _label.layer.shadowColor = JobsBlueColor.CGColor;//阴影颜色
-        _label.layer.shadowOpacity = 0.8;//阴影透明度，默认为0，如果不设置的话看不到阴影，切记，这是个大坑
-        _label.layer.shadowOffset = CGSizeMake(0, 0);//设置偏移量
-        _label.layer.cornerRadius = 9.0;
-        _label.layer.shadowRadius = 9.0;
-        //参数依次为大小，设置四个角圆角状态，圆角曲度
-        _label.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_label.bounds byRoundingCorners:5 cornerRadii:CGSizeMake(0, 0)].CGPath;
-        [self.scrollView addSubview:_label];
+        @jobs_weakify(self)
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = JobsInternationalization(@"iOS-UIView设置阴影效果");
+            label.frame = CGRectMake(100, 400, 200, 200);
+            label.backgroundColor = JobsYellowColor;
+            label.layer.shadowColor = JobsBlueColor.CGColor;//阴影颜色
+            label.layer.shadowOpacity = 0.8;//阴影透明度，默认为0，如果不设置的话看不到阴影，切记，这是个大坑
+            label.layer.shadowOffset = CGSizeMake(0, 0);//设置偏移量
+            label.layer.cornerRadius = 9.0;
+            label.layer.shadowRadius = 9.0;
+            //参数依次为大小，设置四个角圆角状态，圆角曲度
+            label.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:label.bounds
+                                                           byRoundingCorners:5
+                                                                 cornerRadii:CGSizeMake(0, 0)].CGPath;
+            [self.scrollView addSubview:label];
+        });
     }return _label;
 }
 

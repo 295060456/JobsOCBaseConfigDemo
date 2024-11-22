@@ -60,7 +60,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         }else if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_video){
             [self.player.currentPlayerManager play];
         }else{}
-        self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+        self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     }
 }
 
@@ -74,7 +74,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     self.registerContentViewY = 0;
     self.loginCustomerServiceBtnY = 0;
     self.registerCustomerServiceBtnY = 0;
-    self.currentPage = CurrentPage_login;//默认页面是登录
+    self.currentPage = @(CurrentPage_login);//默认页面是登录
     self.loginDoorInputEditing = NO;
     
     [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
@@ -235,7 +235,6 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
 -(JobsAppDoorRegisterContentView *)registerContentView{
     if (!_registerContentView) {
         _registerContentView = JobsAppDoorRegisterContentView.new;
-        
         _registerContentView.x = JobsMainScreen_WIDTH() + 20;
         _registerContentView.y = JobsMainScreen_HEIGHT() / 4;
         _registerContentView.height = JobsAppDoorContentViewRegisterHeight;
@@ -249,7 +248,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
                 if ([btn.titleLabel.text isEqualToString:Title1]){
-                    self.currentPage = CurrentPage_login;
+                    self.currentPage = @(CurrentPage_login);
                     [self.registerContentView removeContentViewWithOffsetY:0];
                     [self->_loginContentView showContentViewWithOffsetY:0];
                     @jobs_weakify(self)
@@ -272,7 +271,6 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
 -(JobsAppDoorForgotCodeContentView *)forgotCodeContentView{
     if (!_forgotCodeContentView) {
         _forgotCodeContentView = JobsAppDoorForgotCodeContentView.new;
-        
         _forgotCodeContentView.x = JobsMainScreen_WIDTH() + 20;
         _forgotCodeContentView.y = JobsMainScreen_HEIGHT() / 4;
         _forgotCodeContentView.height = JobsAppDoorContentViewFindPasswordHeight;
@@ -286,7 +284,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
                 if ([btn.titleLabel.text isEqualToString:Title1]){
-                    self.currentPage = CurrentPage_login;
+                    self.currentPage = @(CurrentPage_login);
                     [self.forgotCodeContentView removeContentViewWithOffsetY:0];
                     [self->_loginContentView showContentViewWithOffsetY:0];
                     @jobs_weakify(self)

@@ -29,13 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy,nullable)NSString *text;
 @property(nonatomic,strong,nullable)UIFont *font;
 @property(nonatomic,strong,nullable)UIColor *textCor;/// 主字体颜色
-@property(nonatomic,strong,nullable)NSAttributedString *attributedText API_AVAILABLE(ios(6.0));
+@property(nonatomic,strong,nullable)NSAttributedString *attributedTitle API_AVAILABLE(ios(6.0));
 @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *> *titleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
 /// 子标题
 @property(nonatomic,copy,nullable)NSString *subText;
 @property(nonatomic,strong,nullable)UIFont *subFont;
 @property(nonatomic,strong,nullable)UIColor *subTextCor;/// 主字体颜色
-@property(nonatomic,strong,nullable)NSAttributedString *attributedSubText API_AVAILABLE(ios(6.0));
+@property(nonatomic,strong,nullable)NSAttributedString *attributedSubTitle API_AVAILABLE(ios(6.0));
 @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *> *subTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
 #pragma mark —— Selected
 /// 主标题
@@ -80,9 +80,9 @@ NS_ASSUME_NONNULL_END
 @synthesize subText = _subText;\
 @synthesize subFont = _subFont;\
 @synthesize subTextCor = _subTextCor;\
-@synthesize attributedSubText = _attributedSubText;\
+@synthesize attributedSubTitle = _attributedSubTitle;\
 @synthesize subTitleAttributedDataMutArr = _subTitleAttributedDataMutArr;\
-@synthesize attributedText = _attributedText;\
+@synthesize attributedTitle = _attributedTitle;\
 @synthesize titleAttributedDataMutArr = _titleAttributedDataMutArr;\
 @synthesize selectedText = _selectedText;\
 @synthesize selectedFont = _selectedFont;\
@@ -116,9 +116,9 @@ NS_ASSUME_NONNULL_END
 @dynamic subText;\
 @dynamic subFont;\
 @dynamic subTextCor;\
-@dynamic attributedSubText;\
+@dynamic attributedSubTitle;\
 @dynamic subTitleAttributedDataMutArr;\
-@dynamic attributedText;\
+@dynamic attributedTitle;\
 @dynamic titleAttributedDataMutArr;\
 @dynamic selectedText;\
 @dynamic selectedFont;\

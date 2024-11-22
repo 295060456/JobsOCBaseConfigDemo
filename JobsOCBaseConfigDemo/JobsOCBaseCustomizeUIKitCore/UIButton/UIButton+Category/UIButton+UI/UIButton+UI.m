@@ -268,7 +268,6 @@
 -(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock{
     if(longPressGestureEventBlock){
         self.userInteractionEnabled = YES;
-        
         self.addGesture([jobsMakeLongPressGesture(^(UILongPressGestureRecognizer * _Nullable gesture) {
             /// 这里写手势的配置
         }) gestureActionBy:^{
@@ -585,7 +584,7 @@
     };
 }
 #pragma mark —— 一些通用修改.富文本
-///【兼容】重设Btn富文本
+///【兼容】重设Btn主标题富文本
 -(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnNormalAttributedTitle{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
@@ -596,6 +595,18 @@
             }];
         } else [self setAttributedTitle:title forState:UIControlStateNormal];
         return self;
+    };
+}
+///【兼容】重设Btn副标题富文本
+-(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnNormalAttributedSubTitle{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
+        @jobs_strongify(self)
+        if (@available(iOS 16.0, *)) {
+            return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration *_Nullable config) {
+                config.attributedSubtitle = title;
+            }];
+        }return self;
     };
 }
 #pragma mark —— 一些通用修改.间距

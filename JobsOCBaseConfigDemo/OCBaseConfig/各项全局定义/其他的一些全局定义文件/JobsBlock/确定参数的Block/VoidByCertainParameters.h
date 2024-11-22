@@ -46,7 +46,7 @@ typedef void(^jobsByViewAndDataBlock)(__kindof UIView *_Nullable view,id _Nullab
 typedef void(^jobsByView2Block)(__kindof UIView *_Nullable superview,UIView *_Nullable view);
 #pragma mark —— 关于数据容器
 typedef void(^jobsByArrayBlock)(__kindof NSArray *_Nullable data);
-typedef void(^jobsByMutArrayBlock)(__kindof NSMutableArray *_Nullable data);
+typedef void(^jobsByMutArrayBlock)(__kindof NSMutableArray *_Nullable arr);
 typedef void(^jobsBySetBlock)(__kindof NSSet *_Nullable data);
 typedef void(^jobsByMutableSetBlock)(__kindof NSMutableSet *_Nullable data);
 typedef void(^jobsByDictionaryBlock)(__kindof NSDictionary *_Nullable data);

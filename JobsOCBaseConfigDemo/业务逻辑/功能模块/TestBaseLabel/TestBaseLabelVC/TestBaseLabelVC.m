@@ -28,7 +28,7 @@
     }
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
@@ -103,29 +103,28 @@
 
 -(BaseLabel *)baseLabel{
     if (!_baseLabel) {
-        _baseLabel = BaseLabel.new;
-        _baseLabel.jobsOffsetX = JobsWidth(10);
-        _baseLabel.text = JobsInternationalization(@"测试 -BaseLabel-");
-        _baseLabel.backgroundColor = JobsCyanColor;
-        [self.view addSubview:_baseLabel];
-        [_baseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(20));
-            make.left.equalTo(self.view).offset(JobsWidth(100));
-            make.height.mas_equalTo(JobsWidth(26));
-        }];
-        
-        [_baseLabel actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
-            NSLog(@"BaseLabel的Tap手势");
-            return @1;
-        }];
-        
-        [_baseLabel actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
-            NSLog(@"BaseLabel的LongPress手势");
-            return @1;
-        }];
-        
+        @jobs_weakify(self)
+        _baseLabel = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.jobsOffsetX = JobsWidth(10);
+            label.text = JobsInternationalization(@"测试 -BaseLabel-");
+            label.backgroundColor = JobsCyanColor;
+            [self.view addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(20));
+                make.left.equalTo(self.view).offset(JobsWidth(100));
+                make.height.mas_equalTo(JobsWidth(26));
+            }];
+            [label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
+                NSLog(@"BaseLabel的Tap手势");
+                return @1;
+            }];
+            [label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
+                NSLog(@"BaseLabel的LongPress手势");
+                return @1;
+            }];
+        });
     }return _baseLabel;
 }
-
 
 @end

@@ -196,10 +196,10 @@ UIViewModelProtocol_self_synthesize
     }return _textCor;
 }
 
--(NSAttributedString *)attributedText{
-    if(!_attributedText){
+-(NSAttributedString *)attributedTitle{
+    if(!_attributedTitle){
         
-    }return _attributedText;
+    }return _attributedTitle;
 }
 
 -(NSMutableArray<JobsRichTextConfig *>*)titleAttributedDataMutArr{

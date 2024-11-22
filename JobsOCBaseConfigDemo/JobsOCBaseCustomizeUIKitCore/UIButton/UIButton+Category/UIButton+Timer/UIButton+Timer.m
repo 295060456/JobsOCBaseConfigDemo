@@ -87,7 +87,7 @@
 /// 是否用富文本数据进行渲染
 -(JobsReturnBOOLByButtonModelBlock _Nonnull)isUseAttributedTitle{
     return ^BOOL(UIButtonModel *_Nullable data){
-        return data.titleAttributedDataMutArr.count || data.attributedText;
+        return data.titleAttributedDataMutArr.count || data.attributedTitle;
     };
 }
 /// 显示数据的二次封装：字符串拼接
@@ -284,7 +284,7 @@
         }
         // 富文本：锚定 titleRunningStr 和 formatTimeStr
         if(self.isUseAttributedTitle(self.runningValue)){
-            self.runningValue.attributedText = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            self.runningValue.attributedTitle = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
                 // 亟待补充 见 JobsRichTextConfig 的使用示例
                 switch (self.btnTimerConfig.cequenceForShowTitleRuningStrType) {
                     case CequenceForShowTitleRuningStrType_front:{

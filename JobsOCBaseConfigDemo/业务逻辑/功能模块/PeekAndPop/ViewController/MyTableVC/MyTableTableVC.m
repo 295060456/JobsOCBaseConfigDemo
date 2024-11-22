@@ -9,7 +9,6 @@
 
 @interface MyTableTableVC ()
 /// UI
-//@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)BaiShaETProjChoiceStadiumTBVHeaderView *tbvHeaderView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -32,7 +31,7 @@
     }
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
@@ -334,9 +333,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
-            for (UIViewModel *viewModel in self.dataMutArr) {
+            [self.dataMutArr  enumerateObjectsUsingBlock:^(UIViewModel *_Nonnull obj,
+                                                           NSUInteger idx,
+                                                           BOOL *_Nonnull stop) {
+                @jobs_strongify(self)
                 data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            }
+            }];
         });
     }return _tbvCellMutArr;
 }

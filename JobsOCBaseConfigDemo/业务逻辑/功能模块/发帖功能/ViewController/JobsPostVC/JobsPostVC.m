@@ -51,7 +51,7 @@
     
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedText.string;
+    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -151,7 +151,7 @@
                                                              fileFullname:@"发帖草稿数据.txt"
                                                                     error:&err];
         if(err){
-            NSLog(err.description);
+            NSLog(@"%@",err.description);
         }
     }else{
         FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedManager.postDraftURLStr);
@@ -438,29 +438,34 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
 
 -(UILabel *)tipsLab{
     if (!_tipsLab) {
-        _tipsLab = UILabel.new;
-        _tipsLab.textColor = RGB_SAMECOLOR(173);
-        _tipsLab.font = UIFontWeightBoldSize(12);
-        _tipsLab.numberOfLines = 0;
-        _tipsLab.text = JobsInternationalization(@"1、内容不允许出现纯数字，英文字母；\n2、图片/视频(图片最多9张/仅上传一段视频，大小不超100M)。");
-        [self.view addSubview:_tipsLab];
-        [_tipsLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view).offset(JobsWidth(14));
-            make.top.equalTo(self.textView.mas_bottom).offset(JobsWidth(11));
-        }];
-        _tipsLab.makeLabelByShowingType(UILabelShowingType_03);
+        @jobs_weakify(self)
+        _tipsLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textColor = RGB_SAMECOLOR(173);
+            label.font = UIFontWeightBoldSize(12);
+            label.numberOfLines = 0;
+            label.text = JobsInternationalization(@"1、内容不允许出现纯数字，英文字母；\n2、图片/视频(图片最多9张/仅上传一段视频，大小不超100M)。");
+            [self.view addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view).offset(JobsWidth(14));
+                make.top.equalTo(self.textView.mas_bottom).offset(JobsWidth(11));
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
+        });
     }return _tipsLab;
 }
 
 -(UITextModel *)postTextModel{
     if(!_postTextModel){
-        _postTextModel = UITextModel.new;
-        _postTextModel.text = self.inputDataHistoryString;
-        _postTextModel.textCor = JobsBlackColor;
-        _postTextModel.placeholder = JobsInternationalization(@"撩骚内容，写在这里哦~");
-        _postTextModel.placeholderColor = RGB_SAMECOLOR(173);
-        _postTextModel.font = UIFontWeightRegularSize(14);
-        _postTextModel.maxWordCount = 10;
+        @jobs_weakify(self)
+        _postTextModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
+            @jobs_strongify(self)
+            data.text = self.inputDataHistoryString;
+            data.textCor = JobsBlackColor;
+            data.placeholder = JobsInternationalization(@"撩骚内容，写在这里哦~");
+            data.placeholderColor = RGB_SAMECOLOR(173);
+            data.font = UIFontWeightRegularSize(14);
+            data.maxWordCount = 10;
+        });
     }return _postTextModel;
 }
 

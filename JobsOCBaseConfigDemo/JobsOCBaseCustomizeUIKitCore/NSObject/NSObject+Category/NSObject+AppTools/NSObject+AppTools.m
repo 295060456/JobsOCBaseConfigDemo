@@ -313,7 +313,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
                 });
                 data.range = NSMakeRange(0, JobsInternationalization(title).length);
             }));
-            viewModel.textModel.attributedText = attributedText;
+            viewModel.textModel.attributedTitle = attributedText;
         }
         
         {
@@ -330,7 +330,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
                 });
                 data.range = NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length);
             }));
-            viewModel.subTextModel.attributedText = attributedText;
+            viewModel.subTextModel.attributedTitle = attributedText;
         }
 
         viewModel.backBtnTitleModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {

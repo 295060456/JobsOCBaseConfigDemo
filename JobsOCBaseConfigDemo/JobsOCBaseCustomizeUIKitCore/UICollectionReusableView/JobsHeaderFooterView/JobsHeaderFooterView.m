@@ -12,13 +12,12 @@
 @property(nonatomic,strong)BaseButton *titleBtn;
 @property(nonatomic,strong)BaseButton *subTitleBtn;
 /// Data
-@property(nonatomic,strong)UIViewModel *titleModel;
 @property(nonatomic,strong)UIViewModel *subTitleModel;
 
 @end
 
 @implementation JobsHeaderFooterView
-
+@synthesize titleModel = _titleModel;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
@@ -98,12 +97,12 @@
     _titleBtn.makeBtnTitleByShowingType(self.titleModel.textModel.labelShowingType);
 
     /// 富文本的优先级最高，不括起来上述的设置无效
-    if(self.titleModel.textModel.attributedText){
-        _titleBtn.jobsResetAttributedTitle(self.titleModel.textModel.attributedText);
+    if(self.titleModel.textModel.attributedTitle){
+        _titleBtn.jobsResetAttributedTitle(self.titleModel.textModel.attributedTitle);
     }
     
-    if(self.titleModel.subTextModel.attributedText){
-        _titleBtn.jobsResetAttributedSubtitle(self.titleModel.subTextModel.attributedText);
+    if(self.titleModel.subTextModel.attributedTitle){
+        _titleBtn.jobsResetAttributedSubtitle(self.titleModel.subTextModel.attributedTitle);
     }return _titleBtn;
 }
 
@@ -146,12 +145,12 @@
     [_subTitleBtn jobsSetBtnTitleFont:self.subTitleModel.textModel.font btnTitleCor:self.subTitleModel.textModel.textCor];
     _subTitleBtn.makeBtnTitleByShowingType(self.subTitleModel.textModel.labelShowingType);
     /// 富文本的优先级最高，不括起来上述的设置无效
-    if(self.subTitleModel.textModel.attributedText){
-        _subTitleBtn.jobsResetAttributedTitle(self.subTitleModel.textModel.attributedText);
+    if(self.subTitleModel.textModel.attributedTitle){
+        _subTitleBtn.jobsResetAttributedTitle(self.subTitleModel.textModel.attributedTitle);
     }
     
-    if(self.subTitleModel.subTextModel.attributedText){
-        _subTitleBtn.jobsResetAttributedSubtitle(self.subTitleModel.subTextModel.attributedText);
+    if(self.subTitleModel.subTextModel.attributedTitle){
+        _subTitleBtn.jobsResetAttributedSubtitle(self.subTitleModel.subTextModel.attributedTitle);
     }return _subTitleBtn;
 }
 

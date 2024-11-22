@@ -133,6 +133,10 @@ typedef __kindof JobsDateModel *_Nullable(^JobsReturnDateModelByVoidBlock)(void)
 typedef void(^jobsByDateModelBlock)(JobsDateModel *_Nullable dateModel);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDateModelBlock)(JobsDateModel *_Nullable dateModel);
 
+@class GoodsClassModel;
+typedef void(^jobsByGoodsClassModelBlock)(GoodsClassModel *_Nullable model);
+typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByIntBlock)(int data);
+
 @class UITextModel;
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextModel *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTextModelBlock)(UITextModel *_Nullable data);
@@ -164,11 +168,12 @@ typedef id _Nullable(^JobsReturnIDByMasonryModelBlock)(__kindof MasonryModel *_N
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
 
 @class UIButtonModel;
-typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable data);
+typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable model);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelBlock)(UIButtonModel *_Nullable data);
 typedef BOOL(^JobsReturnBOOLByButtonModelBlock)(UIButtonModel *_Nullable data);
 typedef NSMutableArray <UIButtonModel *>*_Nullable(^JobsReturnButtonModelArrByArrBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByString)(__kindof NSString *_Nullable data);
+typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByAttributedString)(__kindof NSAttributedString *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(UIButtonModel *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModel2Block)(jobsByButtonModelBlock _Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerManagerBlock)(jobsByTimerManagerBlock _Nullable data);
