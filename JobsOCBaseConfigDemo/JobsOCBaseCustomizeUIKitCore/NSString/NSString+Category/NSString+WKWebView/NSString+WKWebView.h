@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 
+#import <JavaScriptCore/JavaScriptCore.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (WKWebView)
@@ -16,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnWKWebViewByStringBlock _Nonnull)webViewByloadHTMLString;
 /// 解析网络URL数据
 -(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebView;
+/// 解析JS
+-(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebViewByJS;
 
 @end
 

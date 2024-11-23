@@ -290,6 +290,16 @@ typedef JobsCustomTabBar *_Nullable(^JobsReturnCustomTabBarByViewBlock)(__kindof
 typedef void(^jobsByResponseModelBlock)(JobsResponseModel *_Nullable responseModel);
 typedef id _Nullable(^JobsReturnIDByResponseModelBlock)(JobsResponseModel *_Nullable responseModel);
 
+@class IpifyModel;
+typedef void(^jobsByIpifyModelBlock)(IpifyModel *_Nullable ipifyModel);
+
+@class IPApiModel;
+typedef void(^jobsByIPApiModelBlock)(IPApiModel *_Nullable iPApiModel);
+
+@class IpinfoModel;
+typedef void(^jobsByIpinfoModelBlock)(IpinfoModel *_Nullable ipinfoModel);
+
+
 @class RequestTool;
 typedef void(^jobsByRequestToolBlock)(RequestTool *_Nullable requestTool);
 

@@ -29,5 +29,23 @@
         });
     };
 }
+/// 解析JS
+-(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebViewByJS{
+    return ^__kindof WKWebView *_Nullable(){
+        @jobs_weakify(self)
+        return jobsMakeWKWebView(^(__kindof WKWebView *_Nullable webView) {
+            @jobs_strongify(self)
+            [webView evaluateJavaScript:self
+                      completionHandler:^(id _Nullable result,
+                                          NSError * _Nullable error) {
+                if (error) {
+                    NSLog(@"执行 JavaScript 出错: %@", error);
+                } else {
+                    NSLog(@"JavaScript 结果: %@", result);
+                }
+            }];
+        });
+    };
+}
 
 @end

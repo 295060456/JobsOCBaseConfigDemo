@@ -16,7 +16,7 @@
         @jobs_strongify(self)
         return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
             data.title = title;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 仅仅依靠主标题富文本内容进行创建
@@ -26,7 +26,7 @@
         @jobs_strongify(self)
         return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
             data.attributedTitle = title;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 仅仅靠按钮图片进行创建
@@ -36,7 +36,7 @@
         @jobs_strongify(self)
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             data.image = image;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 仅仅依靠按钮背景图进行创建
@@ -58,7 +58,7 @@
         return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
             data.title = title;
             data.subTitle = subTitle;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 仅仅依靠（主标题+副标题）富文本内容进行创建
@@ -69,7 +69,7 @@
         return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
             data.attributedTitle = title;
             data.attributedSubtitle = subTitle;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 #pragma mark —— 依靠多数据进行较为复杂的创建
@@ -82,7 +82,7 @@
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
             data.buttonModel.title = title;
             data.buttonModel.titleFont = font;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
@@ -96,7 +96,7 @@
             data.buttonModel.title = title;
             data.buttonModel.titleFont = font;
             data.buttonModel.titleCor = titleCor;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
@@ -116,7 +116,7 @@
             data.buttonModel.titleCor = titleCor;
             data.buttonModel.imagePlacement = imagePlacement;
             data.buttonModel.imagePadding = x;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
@@ -132,7 +132,7 @@
             data.buttonModel.titleFont = font;
             data.buttonModel.titleCor = titleCor;
             data.buttonModel.backgroundImage = backgroundImage;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
@@ -152,7 +152,7 @@
             data.buttonModel.titleCor = titleCor;
             data.buttonModel.backgroundImage = backgroundImage;
             data.buttonModel.imagePlacement = imagePlacement;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
@@ -171,7 +171,7 @@
             data.buttonModel.titleFont = font;
             data.buttonModel.titleCor = titleCor;
             data.directionalRectEdge = directionalRectEdge;
-        }));
+        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 图文混排（图片在上边 ）

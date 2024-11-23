@@ -7,7 +7,11 @@
 
 #ifndef ReturnByCertainParameters_h
 #define ReturnByCertainParameters_h
+#import <JavaScriptCore/JavaScriptCore.h>
 ///【 确定入参个数 并且 有返回值的Block定义】
+#pragma mark —— 关于 JavaScript
+typedef void(^jobsByJSValueBlock)(JSValue *_Nullable value);
+typedef JSValue *_Nullable(^JobsReturnJSValueByStringBlock)(NSString *_Nullable jsCode);
 #pragma mark —— 关于 id
 typedef id _Nullable(^JobsReturnIDByVoidBlock)(void);
 

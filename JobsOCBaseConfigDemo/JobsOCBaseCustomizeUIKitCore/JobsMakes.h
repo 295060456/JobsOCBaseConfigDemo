@@ -9,6 +9,7 @@
 #define JobsMakes_h
 
 #import <Foundation/Foundation.h>
+#import <JavaScriptCore/JavaScriptCore.h>
 #import "JobsBlock.h"
 
 #pragma mark —— 关于时间/日历
@@ -159,6 +160,12 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull blo
 
 NS_INLINE __kindof WKWebView *_Nonnull jobsMakeWKWebView(jobsByWKWebViewBlock _Nonnull block){
     WKWebView *data = WKWebView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof JSContext *_Nonnull jobsMakeJSContext(jobsByJSContextBlock _Nonnull block){
+    JSContext *data = JSContext.alloc.init;
     if (block) block(data);
     return data;
 }

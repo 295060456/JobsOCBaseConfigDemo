@@ -27,29 +27,6 @@
     }NSLog(@"获取到的IP地址为：%@",address);
     return address;
 }
-/// 获取设备当前网络IP地址：淘宝api
--(NSString *)getNetworkIPAddressByTaoBao{
-    NSDictionary *ipDic = NSJSONSerialization.makeDicByData(NSData.byURL(@"http://ip.taobao.com/service/getIpInfo.php?ip=myip".jobsUrl));
-    NSString *ipStr = nil;
-    if (ipDic && [ipDic[@"code"] integerValue] == 0) {
-        ipStr = ipDic[@"data"][@"ip"];/// 获取成功
-    }return (ipStr ? ipStr : @"0.0.0.0");
-}
-/// 获取设备当前网络IP地址：新浪api
--(NSString *)getNetworkIPAddressBySina{
-    NSMutableString *ip = @"http://pv.sohu.com/cityjson?ie=utf-8".stringByContentsOfURL();
-    /// 判断返回字符串是否为所需数据
-    if ([ip hasPrefix:@"var returnCitySN = "]){
-        /// 对字符串进行处理，然后进行json解析
-        /// 删除字符串多余字符串
-        [ip deleteCharactersInRange:NSMakeRange(0, 19)];
-        NSString *nowIp = [ip substringToIndex:ip.length - 1];
-        /// 将字符串转换成二进制进行Json解析
-        NSDictionary *dict = NSJSONSerialization.makeDicByData(nowIp.UTF8Encoding);
-        NSLog(@"%@",dict);
-        return dict[@"cip"] ? dict[@"cip"] : @"0.0.0.0";
-    }return @"0.0.0.0";
-}
 /// 获取设备当前本地IP地址
 -(JobsReturnStringByBOOLBlock _Nonnull)getLocalIPAddressBy{
     @jobs_weakify(self)
@@ -145,6 +122,75 @@
         }freeifaddrs(interfaces); // 释放分配的内存
     }return [addresses count] ? addresses : nil;// 如果字典中有数据，返回字典；否则返回 nil
 }
-
+#pragma mark —— 简单可靠，只返回设备的公网 IP 地址【GET】
+/// https://api.ipify.org?format=json
+-(void)getIpify:(jobsByIpifyModelBlock _Nullable)successBlock{
+    Ipify_api *api = Ipify_api
+        .ByURLParameters(nil) /// 添加URL参数
+        .byBodyParameters(nil) /// 添加Body参数
+        .byHeaderParameters(nil); /// 添加Header参数
+    self.handleErr(api);
+    // self.tipsByApi(self);
+    @jobs_weakify(self)
+    [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+        if(successBlock) successBlock(IpifyModel.byData(request.responseObject));
+    } failure:^(YTKBaseRequest *request) {
+        @jobs_strongify(self)
+        if(self) self.jobsHandelFailure(request);
+    }];
+}
+#pragma mark —— 提供丰富的地理位置信息【GET】
+/// http://ip-api.com/json/
+-(void)getIP:(jobsByIPApiModelBlock _Nullable)successBlock{
+    IP_api *api = IP_api
+        .ByURLParameters(nil) /// 添加URL参数
+        .byBodyParameters(nil) /// 添加Body参数
+        .byHeaderParameters(nil); /// 添加Header参数
+    self.handleErr(api);
+    // self.tipsByApi(self);
+    @jobs_weakify(self)
+    [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+        if(successBlock) successBlock(IPApiModel.byData(request.responseObject));
+    } failure:^(YTKBaseRequest *request) {
+        @jobs_strongify(self)
+        if(self) self.jobsHandelFailure(request);
+    }];
+}
+#pragma mark —— 提供详细的 IP 信息【GET】
+/// https://ipinfo.io/json
+-(void)getIPInfo:(jobsByIpinfoModelBlock _Nullable)successBlock{
+    Ipinfo_api *api = Ipinfo_api
+        .ByURLParameters(nil) /// 添加URL参数
+        .byBodyParameters(nil) /// 添加Body参数
+        .byHeaderParameters(nil); /// 添加Header参数
+    self.handleErr(api);
+    // self.tipsByApi(self);
+    @jobs_weakify(self)
+    [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+        if(successBlock) successBlock(IpinfoModel.byData(request.responseObject));
+    } failure:^(YTKBaseRequest *request) {
+        @jobs_strongify(self)
+        if(self) self.jobsHandelFailure(request);
+    }];
+}
+#pragma mark —— 提供免费和付费选项的地理位置和 IP 查询服务【GET】
+/// https://api.ipdata.co/?api-key=YOUR_API_KEY
+-(void)getIPDataByKey:(NSString *)key
+         successBlock:(jobsByIDBlock _Nullable)successBlock{
+    Ipdata_api *api = Ipdata_api
+        .ByURLParameters(key) /// 添加URL参数
+        .byBodyParameters(nil) /// 添加Body参数
+        .byHeaderParameters(nil); /// 添加Header参数
+    self.handleErr(api);
+    // self.tipsByApi(self);
+    @jobs_weakify(self)
+    [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+        @jobs_strongify(self)
+        if(successBlock) successBlock(IpinfoModel.byData(request.responseObject));
+    } failure:^(YTKBaseRequest *request) {
+        @jobs_strongify(self)
+        if(self) self.jobsHandelFailure(request);
+    }];
+}
 
 @end
