@@ -23,6 +23,7 @@
 		8461D13F2CF1929E00446E4F /* NSJSONSerialization+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D13C2CF1929E00446E4F /* NSJSONSerialization+Extra.m */; };
 		8461D1402CF1929E00446E4F /* NSRegularExpression+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D1392CF1929E00446E4F /* NSRegularExpression+Extra.m */; };
 		8461D1412CF1929E00446E4F /* NSKeyedArchiver+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D1332CF1929E00446E4F /* NSKeyedArchiver+Extra.m */; };
+		8461D3302CF1BC8600446E4F /* NSString+NSUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D32E2CF1BC8600446E4F /* NSString+NSUserDefaults.m */; };
 		8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */; };
 		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
 		8489C9DC2CE622CC00BB5E83 /* JobsEmptyDataView.md in Resources */ = {isa = PBXBuildFile; fileRef = 8489C9DA2CE622CB00BB5E83 /* JobsEmptyDataView.md */; };
@@ -1212,6 +1213,8 @@
 		8461D1392CF1929E00446E4F /* NSRegularExpression+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSRegularExpression+Extra.m"; sourceTree = "<group>"; };
 		8461D13B2CF1929E00446E4F /* NSJSONSerialization+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+Extra.h"; sourceTree = "<group>"; };
 		8461D13C2CF1929E00446E4F /* NSJSONSerialization+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+Extra.m"; sourceTree = "<group>"; };
+		8461D32D2CF1BC8600446E4F /* NSString+NSUserDefaults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+NSUserDefaults.h"; sourceTree = "<group>"; };
+		8461D32E2CF1BC8600446E4F /* NSString+NSUserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSUserDefaults.m"; sourceTree = "<group>"; };
 		8464A59D2CDB73C30030409A /* NSObject+RACTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+RACTimer.h"; sourceTree = "<group>"; };
 		8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RACTimer.m"; sourceTree = "<group>"; };
 		8464A5A12CDB74D20030409A /* FMDoorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDoorModel.h; sourceTree = "<group>"; };
@@ -3638,6 +3641,15 @@
 			path = NSJSONSerialization;
 			sourceTree = "<group>";
 		};
+		8461D32F2CF1BC8600446E4F /* NSString+NSUserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				8461D32D2CF1BC8600446E4F /* NSString+NSUserDefaults.h */,
+				8461D32E2CF1BC8600446E4F /* NSString+NSUserDefaults.m */,
+			);
+			path = "NSString+NSUserDefaults";
+			sourceTree = "<group>";
+		};
 		8464A59C2CDB73860030409A /* DynamicInvoke */ = {
 			isa = PBXGroup;
 			children = (
@@ -4034,6 +4046,7 @@
 		CE260F432CAE671C00233F0F /* NSString+Category */ = {
 			isa = PBXGroup;
 			children = (
+				8461D32F2CF1BC8600446E4F /* NSString+NSUserDefaults */,
 				845813E02CDE022100B3C038 /* NSString+WKWebView */,
 				CE260F2A2CAE671C00233F0F /* NSString+Time */,
 				CE260F2D2CAE671C00233F0F /* NSString+Conversion */,
@@ -15610,6 +15623,7 @@
 				CE5A64FF2CA830CA006D67A7 /* UIButton+ImageTitleSpacing.m in Sources */,
 				CE5A65002CA830CA006D67A7 /* UIButton+Animation.m in Sources */,
 				CE5A65012CA830CA006D67A7 /* UIButton+SimplyMake.m in Sources */,
+				8461D3302CF1BC8600446E4F /* NSString+NSUserDefaults.m in Sources */,
 				CE5A65022CA830CA006D67A7 /* UIButton+SDWebImage.m in Sources */,
 				CE5A65032CA830CA006D67A7 /* UIButton+Timer.m in Sources */,
 				CE4F276A2CA825CD002AF25B /* RegisterApi.m in Sources */,

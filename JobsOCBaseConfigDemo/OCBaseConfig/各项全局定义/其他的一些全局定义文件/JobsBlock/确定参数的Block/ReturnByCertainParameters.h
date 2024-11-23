@@ -282,6 +282,7 @@ typedef NSData *_Nullable(^JobsReturnDataByDictionaryBlock)(__kindof NSDictionar
 typedef PHAsset *_Nullable(^JobsReturnAssetByStrBlock)(NSString *_Nullable Key);
 typedef NSURL *_Nullable(^JobsReturnURLByStringBlock)(NSString *_Nullable data);
 typedef NSURL *_Nullable(^JobsReturnURLByURLBlock)(NSURL *_Nullable data);
+typedef NSURL *_Nullable(^JobsReturnURLByVoidBlock)(void);
 #pragma mark —— 关于字体
 typedef UIFont *_Nullable(^JobsReturnFontByVoidBlock)(void);
 typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
@@ -447,6 +448,7 @@ typedef unsigned int(^JobsReturnUnsignedIntByIDBlock)(id _Nullable data);
 typedef float(^JobsReturnFloatByVoidBlock)(void);
 typedef float(^JobsReturnByFloatBlock)(float data);
 typedef float(^JobsReturnFloatByIDBlock)(id _Nullable data);
+typedef float(^JobsReturnFloatByStringBlock)(NSString *_Nullable data);
 
 typedef double(^JobsReturnDoubleByVoidBlock)(void);
 typedef double(^JobsReturnDoubleByNSIntegerBlock)(NSInteger data);
