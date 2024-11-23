@@ -83,6 +83,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 零宽空格 (\u200B)：顾名思义，这个字符没有任何宽度（即不可见），它的作用是插入一个“空格”，但不会占据任何可见的空间。
 /// 零宽空格在视觉上不会显示出来，但它可以在字符串中用于各种控制和格式化的目的。
 -(__kindof NSString *_Nullable)remove200BMark;
+/// 从字符串中提取指定范围内的子字符串
+-(JobsReturnStringByRangeBlock _Nonnull)substringWithRange;
 
 @end
 

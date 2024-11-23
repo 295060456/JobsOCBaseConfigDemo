@@ -24,4 +24,10 @@
     return [NSString.alloc initWithData:self encoding:NSUTF8StringEncoding];
 }
 
++(JobsReturnDataByURLBlock _Nonnull)byURL{
+    return ^NSData *_Nullable(NSURL *_Nullable data){
+        return [NSData dataWithContentsOfURL:data];
+    };
+}
+
 @end

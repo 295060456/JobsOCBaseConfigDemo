@@ -99,16 +99,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnStringByIntegerBlock _Nonnull)bankCardStyleBy;
 /// 将字典转换成GET请求的URL（带参数）
 -(JobsReturnStringByDictionaryBlock _Nonnull)GETRequestURLParaBy;
+/// 从指定的 URL 加载文本内容，并将其读取为一个可变字符串
+-(JobsReturnStringByVoidBlock _Nonnull)stringByContentsOfURL;
 
 @end
 
 NS_ASSUME_NONNULL_END
-
-NS_INLINE NSData *_Nullable archivedDataWithRootObject(id _Nullable object){
-    NSError *error;
-    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:object
-                                                   requiringSecureCoding:NO
-                                                                   error:&error];
-    if(error) NSLog(@"%@",error.description);
-    return compressedData;
-}

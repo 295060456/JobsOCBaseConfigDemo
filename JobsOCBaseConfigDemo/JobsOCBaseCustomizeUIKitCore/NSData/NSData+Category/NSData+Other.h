@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 解压缩字符串
 -(NSString *)decompressToStr;
 -(NSString *)stringByUTF8Encoding;
++(JobsReturnDataByURLBlock _Nonnull)byURL;
 
 @end
 

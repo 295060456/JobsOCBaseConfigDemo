@@ -1179,7 +1179,7 @@
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             NSLog(@"我只执行一次");
-            // 在这里写遗言：最后希望去完成的事情
+            /// 在这里写遗言：最后希望去完成的事情
             if (checkBlock) checkBlock(@1);
             [NSThread sleepForTimeInterval:60];
             NSLog(@"程序被杀死");
@@ -1193,7 +1193,6 @@
         return [string dataUsingEncoding:NSUTF8StringEncoding];
     }else if ([object isKindOfClass:NSArray.class]){
         NSArray *array = (NSArray *)object;
-        NSError *err = nil;
         /*
          *  object 要归档的对象图的根
          *  requiresSecureCoding 一个布尔值，指示是否所有编码对象都必须符合 NSSecureCoding

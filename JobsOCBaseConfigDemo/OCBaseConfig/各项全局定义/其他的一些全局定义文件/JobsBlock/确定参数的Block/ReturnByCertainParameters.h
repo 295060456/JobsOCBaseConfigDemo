@@ -66,8 +66,8 @@ typedef __kindof NSArray *_Nullable(^JobsReturnArrayByArrayBlock)(__kindof NSArr
 typedef __kindof NSMutableArray *_Nullable(^JobsReturnMutableArrayByVoidBlock)(void);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIntegerBlock)(NSInteger data);
 
-
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(NSString *_Nullable data);
+typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByDataBlock)(NSData *_Nullable data);
 typedef __kindof NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByVoidBlock)(void);
 
 #pragma mark —— 关于 NSValue
@@ -240,8 +240,11 @@ typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByFloatBlock)(CGFloat data
 typedef __kindof NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCharBlock)(char *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegerBlock)(NSInteger data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByRangeBlock)(NSRange data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalBlock)(NSTimeInterval data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByBOOLBlock)(BOOL data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByURLBlock)(NSURL *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByArrBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDateBlock)(NSDate *_Nullable date);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDataBlock)(NSData *_Nullable data);
@@ -255,6 +258,8 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateForma
                                                                                            NSDateFormatter *_Nullable dateFormatter);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByStringStringBlock)(NSString *_Nullable fontString,
                                                                            NSString *_Nullable tailString);
+#pragma mark —— 关于 NSRegularExpression
+typedef __kindof NSRegularExpression *_Nullable(^JobsReturnRegularExpressionByStringBlock)(NSString *_Nullable data);
 #pragma mark —— 关于时间
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDateFormatterBlock)(NSDateFormatter *_Nullable data);
 typedef __kindof NSDateFormatter *_Nullable(^JobsReturnDateFormatterByStringBlock)(NSString *_Nullable);
@@ -270,6 +275,7 @@ typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByURLBlock)(NSURL 
 typedef NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByURLBlock)(NSURL *_Nullable url);
 typedef NSData *_Nullable(^JobsReturnDataByVoidBlock)(void);
 typedef NSData *_Nullable(^JobsReturnDataByIDBlock)(id _Nullable data);
+typedef NSData *_Nullable(^JobsReturnDataByURLBlock)(NSURL *_Nullable data);
 typedef NSData *_Nullable(^JobsReturnDataByAssetBlock)(AVAsset *_Nullable asset);
 typedef NSData *_Nullable(^JobsReturnDataByStringBlock)(__kindof NSString *_Nullable data);
 typedef NSData *_Nullable(^JobsReturnDataByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
@@ -304,6 +310,9 @@ typedef __kindof NSParagraphStyle *_Nullable(^JobsReturnParagraphStyleByTextAlig
 #pragma mark —— 关于Animation
 typedef __kindof CABasicAnimation *_Nullable(^JobsReturnCABasicAnimationByStringBlock)(NSString *_Nullable data);
 #pragma mark —— 关于位置
+typedef NSRange (^JobsReturnRangeByTextCheckingResultBlock)(NSTextCheckingResult *_Nullable data);
+typedef NSRange (^JobsReturnRangeByIntegerBlock)(NSInteger data);
+
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByVoidBlock)(void);
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByIDBlock)(id _Nullable data);
 

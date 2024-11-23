@@ -237,6 +237,13 @@
 -(__kindof NSString *_Nullable)remove200BMark{
     return [self stringByReplacingOccurrencesOfString:@"\u200B" withString:@""];
 }
-
+/// 从字符串中提取指定范围内的子字符串
+-(JobsReturnStringByRangeBlock _Nonnull)substringWithRange{
+    @jobs_weakify(self)
+    return ^__kindof NSString *_Nullable(NSRange data){
+        @jobs_strongify(self)
+        return [self substringWithRange:data];
+    };
+}
 
 @end

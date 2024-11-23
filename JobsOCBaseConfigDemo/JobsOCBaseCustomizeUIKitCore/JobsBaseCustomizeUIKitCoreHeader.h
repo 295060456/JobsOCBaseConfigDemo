@@ -124,6 +124,14 @@
 #import "UIGestureRecognizer+RAC.h"
 #pragma mark —— WKWebView
 #import "WKWebView+Extra.h"
+#pragma mark —— NSJSONSerialization
+#import "NSJSONSerialization+Extra.h"
+#pragma mark —— NSRegularExpression
+#import "NSRegularExpression+Extra.h"
+#pragma mark —— NSTextCheckingResult
+#import "NSTextCheckingResult+Extra.h"
+#pragma mark —— NSKeyedArchiver
+#import "NSKeyedArchiver+Extra.h"
 
 #import "JobsMakes.h"
 

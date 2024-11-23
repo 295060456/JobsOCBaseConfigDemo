@@ -70,12 +70,12 @@
 }
 ///【实例方法】解压缩字符串
 -(NSData *)compress{
-    return archivedDataWithRootObject(self.UTF8Encoding);
+    return NSKeyedArchiver.archivedDataByRootObject(self.UTF8Encoding);
 }
 ///【类方法】压缩字符串成NSData
 -(JobsReturnDataByStringBlock _Nonnull)compressString{
     return ^NSData *_Nullable(__kindof NSString *_Nullable string){
-        return archivedDataWithRootObject(string.UTF8Encoding);
+        return NSKeyedArchiver.archivedDataByRootObject(string.UTF8Encoding);
     };
 }
 ///【类方法】解压缩字符串
@@ -133,7 +133,9 @@
     return ^__kindof NSString *_Nullable(__kindof NSDictionary *_Nullable params){
         @jobs_strongify(self)
         NSString *queryString = [jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
-            [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [params enumerateKeysAndObjectsUsingBlock:^(id key,
+                                                        id obj,
+                                                        BOOL *stop) {
                 if (obj && ![obj isKindOfClass:[NSNull class]]) { // 忽略空值
                     NSString *encodedKey = [[key description] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
                     NSString *encodedValue = [[obj description] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -143,6 +145,19 @@
             }];
         }) componentsJoinedByString:@"&"];
         return queryString.length ? self.add(@"?").add(queryString) : self;
+    };
+}
+/// 从指定的 URL 加载文本内容，并将其读取为一个可变字符串
+-(JobsReturnStringByVoidBlock _Nonnull)stringByContentsOfURL{
+    return ^ __kindof NSString *_Nullable(){
+        NSError *err = nil;
+        NSMutableString *string = [NSMutableString stringWithContentsOfURL:self.jobsUrl
+                                                                  encoding:NSUTF8StringEncoding
+                                                                     error:&err];
+        if(err){
+            NSLog(@"err = %@",err.description)
+            return nil;
+        }return string;
     };
 }
 

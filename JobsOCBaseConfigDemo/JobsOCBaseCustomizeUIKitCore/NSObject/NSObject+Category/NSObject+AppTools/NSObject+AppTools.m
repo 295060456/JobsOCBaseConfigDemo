@@ -61,6 +61,29 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 #pragma mark —— 一些公共设置
+/// 检查当前IP是否为菲律宾IP
+-(void)checkIfIPInPhilippinesByBlock:(jobsByBOOLBlock _Nonnull)block{
+    [[NSURLSession.sharedSession dataTaskWithURL:@"https://ipapi.co/json/".jobsUrl
+                               completionHandler:^(NSData *_Nullable data,
+                                                   NSURLResponse *_Nullable response,
+                                                   NSError *_Nullable error) {
+        if (error) {
+            NSLog(@"请求失败：%@", error.localizedDescription);
+            return;
+        }
+        NSError *jsonError;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                             options:0
+                                                               error:&jsonError];
+        if (jsonError) {
+            NSLog(@"JSON解析失败：%@", jsonError.localizedDescription);
+            return;
+        }
+        // 从响应数据中获取国家代码
+        NSString *countryCode = json[@"country"];
+        if(block) block(countryCode.isEqualToString(@"PH"));
+    }] resume];
+}
 /// 数据组装
 -(JobsReturnViewModelByDecorationModelBlock _Nonnull)makeDatas{
     @jobs_weakify(self)

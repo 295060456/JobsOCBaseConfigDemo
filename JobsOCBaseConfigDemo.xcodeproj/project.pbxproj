@@ -19,6 +19,10 @@
 		845813E12CDE022100B3C038 /* NSString+WKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845813DF2CDE022100B3C038 /* NSString+WKWebView.m */; };
 		845813E62CDE024B00B3C038 /* WKWebView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845813E32CDE024B00B3C038 /* WKWebView+Extra.m */; };
 		845C913B2CDF70BB0067105A /* NSCoder+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845C91392CDF70BA0067105A /* NSCoder+Extra.m */; };
+		8461D13E2CF1929E00446E4F /* NSTextCheckingResult+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D1362CF1929E00446E4F /* NSTextCheckingResult+Extra.m */; };
+		8461D13F2CF1929E00446E4F /* NSJSONSerialization+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D13C2CF1929E00446E4F /* NSJSONSerialization+Extra.m */; };
+		8461D1402CF1929E00446E4F /* NSRegularExpression+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D1392CF1929E00446E4F /* NSRegularExpression+Extra.m */; };
+		8461D1412CF1929E00446E4F /* NSKeyedArchiver+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D1332CF1929E00446E4F /* NSKeyedArchiver+Extra.m */; };
 		8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */; };
 		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
 		8489C9DC2CE622CC00BB5E83 /* JobsEmptyDataView.md in Resources */ = {isa = PBXBuildFile; fileRef = 8489C9DA2CE622CB00BB5E83 /* JobsEmptyDataView.md */; };
@@ -1200,6 +1204,14 @@
 		845813E32CDE024B00B3C038 /* WKWebView+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+Extra.m"; sourceTree = "<group>"; };
 		845C91382CDF70BA0067105A /* NSCoder+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSCoder+Extra.h"; sourceTree = "<group>"; };
 		845C91392CDF70BA0067105A /* NSCoder+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSCoder+Extra.m"; sourceTree = "<group>"; };
+		8461D1322CF1929E00446E4F /* NSKeyedArchiver+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSKeyedArchiver+Extra.h"; sourceTree = "<group>"; };
+		8461D1332CF1929E00446E4F /* NSKeyedArchiver+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSKeyedArchiver+Extra.m"; sourceTree = "<group>"; };
+		8461D1352CF1929E00446E4F /* NSTextCheckingResult+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTextCheckingResult+Extra.h"; sourceTree = "<group>"; };
+		8461D1362CF1929E00446E4F /* NSTextCheckingResult+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTextCheckingResult+Extra.m"; sourceTree = "<group>"; };
+		8461D1382CF1929E00446E4F /* NSRegularExpression+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSRegularExpression+Extra.h"; sourceTree = "<group>"; };
+		8461D1392CF1929E00446E4F /* NSRegularExpression+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSRegularExpression+Extra.m"; sourceTree = "<group>"; };
+		8461D13B2CF1929E00446E4F /* NSJSONSerialization+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+Extra.h"; sourceTree = "<group>"; };
+		8461D13C2CF1929E00446E4F /* NSJSONSerialization+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+Extra.m"; sourceTree = "<group>"; };
 		8464A59D2CDB73C30030409A /* NSObject+RACTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+RACTimer.h"; sourceTree = "<group>"; };
 		8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RACTimer.m"; sourceTree = "<group>"; };
 		8464A5A12CDB74D20030409A /* FMDoorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDoorModel.h; sourceTree = "<group>"; };
@@ -3588,6 +3600,42 @@
 				845C91392CDF70BA0067105A /* NSCoder+Extra.m */,
 			);
 			path = NSCoder;
+			sourceTree = "<group>";
+		};
+		8461D1342CF1929E00446E4F /* NSKeyedArchiver */ = {
+			isa = PBXGroup;
+			children = (
+				8461D1322CF1929E00446E4F /* NSKeyedArchiver+Extra.h */,
+				8461D1332CF1929E00446E4F /* NSKeyedArchiver+Extra.m */,
+			);
+			path = NSKeyedArchiver;
+			sourceTree = "<group>";
+		};
+		8461D1372CF1929E00446E4F /* NSTextCheckingResult */ = {
+			isa = PBXGroup;
+			children = (
+				8461D1352CF1929E00446E4F /* NSTextCheckingResult+Extra.h */,
+				8461D1362CF1929E00446E4F /* NSTextCheckingResult+Extra.m */,
+			);
+			path = NSTextCheckingResult;
+			sourceTree = "<group>";
+		};
+		8461D13A2CF1929E00446E4F /* NSRegularExpression */ = {
+			isa = PBXGroup;
+			children = (
+				8461D1382CF1929E00446E4F /* NSRegularExpression+Extra.h */,
+				8461D1392CF1929E00446E4F /* NSRegularExpression+Extra.m */,
+			);
+			path = NSRegularExpression;
+			sourceTree = "<group>";
+		};
+		8461D13D2CF1929E00446E4F /* NSJSONSerialization */ = {
+			isa = PBXGroup;
+			children = (
+				8461D13B2CF1929E00446E4F /* NSJSONSerialization+Extra.h */,
+				8461D13C2CF1929E00446E4F /* NSJSONSerialization+Extra.m */,
+			);
+			path = NSJSONSerialization;
 			sourceTree = "<group>";
 		};
 		8464A59C2CDB73860030409A /* DynamicInvoke */ = {
@@ -13030,6 +13078,10 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				8461D1342CF1929E00446E4F /* NSKeyedArchiver */,
+				8461D1372CF1929E00446E4F /* NSTextCheckingResult */,
+				8461D13A2CF1929E00446E4F /* NSRegularExpression */,
+				8461D13D2CF1929E00446E4F /* NSJSONSerialization */,
 				845C913A2CDF70BA0067105A /* NSCoder */,
 				845813E52CDE024B00B3C038 /* WKWebView */,
 				8439F3382CD8A49000319E4A /* UIGestureRecognizer */,
@@ -15360,6 +15412,10 @@
 				CE5A65102CA830F5006D67A7 /* JobsBtnsStyleCVCell.m in Sources */,
 				CECE7EA22C450E5B00764AF5 /* KTVHCDataUnit.m in Sources */,
 				CECE7EC42C450E5B00764AF5 /* TKPermissionSiri.m in Sources */,
+				8461D13E2CF1929E00446E4F /* NSTextCheckingResult+Extra.m in Sources */,
+				8461D13F2CF1929E00446E4F /* NSJSONSerialization+Extra.m in Sources */,
+				8461D1402CF1929E00446E4F /* NSRegularExpression+Extra.m in Sources */,
+				8461D1412CF1929E00446E4F /* NSKeyedArchiver+Extra.m in Sources */,
 				CECE7E8D2C450E5B00764AF5 /* HTTPRedirectResponse.m in Sources */,
 				CE5A64CD2CA82F8E006D67A7 /* NSObject+UUID.m in Sources */,
 				CECE7E8C2C450E5B00764AF5 /* HTTPFileResponse.m in Sources */,
