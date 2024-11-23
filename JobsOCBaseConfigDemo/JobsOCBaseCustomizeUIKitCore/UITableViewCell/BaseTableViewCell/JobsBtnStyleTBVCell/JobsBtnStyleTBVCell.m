@@ -59,9 +59,136 @@ UIViewModelProtocol_self_synthesize
 -(UIViewModel *)getViewModel{
     return _viewModel;
 }
+
+-(void)setViewModel:(UIViewModel *)viewModel{
+    _viewModel = viewModel;
+    @jobs_weakify(self)
+    /// viewModel + textModel
+    _btn.selected = viewModel.jobsSelected;
+    _btn.enabled = viewModel.jobsEnabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UITableViewCell
+    if(viewModel.textModel.attributedTitle){/// 主标题（富文本）
+        _btn.jobsResetBtnNormalAttributedTitle(viewModel.textModel.attributedTitle);
+    }else{/// 主标题（普通）
+        _btn.jobsResetBtnTitle(viewModel.textModel.text);
+        _btn.jobsResetBtnTitleCor(viewModel.textModel.textCor);
+        _btn.jobsResetBtnTitleFont(viewModel.textModel.font);
+    }
+    if(self.viewModel.subTextModel.attributedSubTitle){/// 子标题（富文本）
+        _btn.jobsResetBtnNormalAttributedSubTitle(viewModel.subTextModel.attributedSubTitle);
+    }else{/// 子标题
+        _btn.jobsResetBtnSubTitle(viewModel.subTextModel.text);
+        _btn.jobsResetBtnSubTitleCor(viewModel.subTextModel.textCor);
+        _btn.jobsResetBtnSubTitleFont(viewModel.subTextModel.font);
+    }
+    /// 点击事件
+    [_btn jobsBtnClickEventBlock:viewModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
+        @jobs_strongify(self)
+        if (self.objectBlock) self.objectBlock(x);
+        return nil;
+    }];
+    /// 长按事件
+    [_btn jobsBtnLongPressGestureEventBlock:viewModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *x) {
+//            @jobs_strongify(self)
+        return nil;
+    }];
+    /// 背景色
+    _btn.jobsResetBtnBgCor(viewModel.bgCor);
+    /// 背景图
+    if(viewModel.normalBgImageURL){
+        self->_btn
+            .imageURL(viewModel.normalBgImageURLString.imageURLPlus.jobsUrl)
+            .placeholderImage(viewModel.normalImage)
+            .options(self.makeSDWebImageOptions)
+            .completed(^(UIImage *_Nullable image,
+                         NSError *_Nullable error,
+                         SDImageCacheType cacheType,
+                         NSURL *_Nullable imageURL) {
+                if (error) {
+                    NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                }else{
+                    NSLog(@"图片加载成功");
+                }
+            }).bgNormalLoad();
+    }else{
+        _btn.jobsResetBtnBgImage(viewModel.backgroundImage);
+    }
+    /// 按钮图
+    _btn.jobsResetBtnImage(self.selected ? viewModel.selectedImage_ : viewModel.image);
+    /// 图文间距
+    if (@available(iOS 16.0, *)) {
+        _btn.jobsResetImagePadding(viewModel.imageTitleSpace);
+    } else {
+        // Fallback on earlier versions
+    }
+    /// 图文相对位置关系
+    if (@available(iOS 16.0, *)) {
+        _btn.jobsResetImagePlacement(viewModel.buttonEdgeInsetsStyle);
+    } else {
+        // Fallback on earlier versions
+    }
+    /// 圆切角
+    _btn.jobsResetBtnCornerRadiusValue(viewModel.layerCornerRadius);
+}
+
+-(void)setButtonModel:(UIButtonModel *)buttonModel{
+    _buttonModel = buttonModel;
+    
+    _btn.selected = buttonModel.jobsSelected;
+    _btn.enabled = buttonModel.enabled;
+    if(buttonModel.attributedTitle){/// 主标题（富文本）
+        _btn.jobsResetBtnNormalAttributedTitle(buttonModel.attributedTitle);
+    }else{/// 主标题（普通文本）
+        _btn.jobsResetBtnTitle(buttonModel.title);
+        _btn.jobsResetBtnTitleCor(buttonModel.titleCor);
+        _btn.jobsResetBtnTitleFont(buttonModel.titleFont);
+    }
+    if(self.buttonModel.attributedSubtitle){/// 子标题（富文本）
+        _btn.jobsResetBtnNormalAttributedSubTitle(buttonModel.attributedSubtitle);
+    }else{/// 子标题（普通文本）
+        _btn.jobsResetBtnSubTitle(buttonModel.subTitle);
+        _btn.jobsResetBtnSubTitleCor(buttonModel.subTitleCor);
+        _btn.jobsResetBtnSubTitleFont(buttonModel.subTitleFont);
+    }
+    /// 背景图
+    if(buttonModel.normalBgImageURL){
+        self->_btn
+            .imageURL(buttonModel.normalBgImageURLString.imageURLPlus.jobsUrl)
+            .placeholderImage(buttonModel.backgroundImage)
+            .options(self.makeSDWebImageOptions)
+            .completed(^(UIImage * _Nullable image,
+                         NSError * _Nullable error,
+                         SDImageCacheType cacheType,
+                         NSURL * _Nullable imageURL) {
+                if (error) {
+                    NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                } else {
+                    NSLog(@"图片加载成功");
+                }
+            }).bgNormalLoad();
+    }else{
+        _btn.jobsResetBtnBgImage(buttonModel.backgroundImage);
+    }
+    /// 按钮图
+    _btn.jobsResetBtnImage(self.selected ? buttonModel.highlightImage : buttonModel.normalImage);
+    /// 背景色
+    _btn.jobsResetBtnBgCor(buttonModel.baseBackgroundColor);
+    /// 图文间距
+    if (@available(iOS 16.0, *)) {
+        _btn.jobsResetImagePadding(buttonModel.imagePadding);
+    } else {
+        // Fallback on earlier versions
+    }
+    /// 图文相对位置关系
+    if (@available(iOS 16.0, *)) {
+        _btn.jobsResetImagePlacement(buttonModel.imagePlacement);
+    } else {
+        // Fallback on earlier versions
+    }
+    /// 圆切角
+    _btn.jobsResetBtnCornerRadiusValue(buttonModel.cornerRadiusValue);
+}
 #pragma mark —— lazyLoad
 -(BaseButton *)btn{
-    @jobs_weakify(self)
     if(!_btn){
         _btn = BaseButton.jobsInit();
         _btn.enabled = NO;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
@@ -69,128 +196,6 @@ UIViewModelProtocol_self_synthesize
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);/// 如果这里用self.contentView，在某些情况下，约束会失灵。因为self.contentView的生命周期的缘故，还没有完全展开
         }];
-    }
-    if(self.viewModel){/// viewModel + textModel
-        _btn.selected = self.viewModel.jobsSelected;
-        _btn.enabled = self.viewModel.jobsEnabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UITableViewCell
-        if(self.viewModel.textModel.attributedTitle){/// 主标题（富文本）
-            _btn.jobsResetBtnNormalAttributedTitle(self.viewModel.textModel.attributedTitle);
-        }else{/// 主标题（普通）
-            _btn.jobsResetBtnTitle(self.viewModel.textModel.text);
-            _btn.jobsResetBtnTitleCor(self.viewModel.textModel.textCor);
-            _btn.jobsResetBtnTitleFont(self.viewModel.textModel.font);
-        }
-        if(self.viewModel.subTextModel.attributedSubTitle){/// 子标题（富文本）
-            _btn.jobsResetBtnNormalAttributedSubTitle(self.viewModel.subTextModel.attributedSubTitle);
-        }else{/// 子标题
-            _btn.jobsResetBtnSubTitle(self.viewModel.subTextModel.text);
-            _btn.jobsResetBtnSubTitleCor(self.viewModel.subTextModel.textCor);
-            _btn.jobsResetBtnSubTitleFont(self.viewModel.subTextModel.font);
-        }
-        /// 点击事件
-        [_btn jobsBtnClickEventBlock:self.viewModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
-            return nil;
-        }];
-        /// 长按事件
-        [_btn jobsBtnLongPressGestureEventBlock:self.viewModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *x) {
-//            @jobs_strongify(self)
-            return nil;
-        }];
-        /// 背景色
-        _btn.jobsResetBtnBgCor(self.viewModel.bgCor);
-        /// 背景图
-        if(self.viewModel.normalBgImageURL){
-            self->_btn
-                .imageURL(self.viewModel.normalBgImageURLString.imageURLPlus.jobsUrl)
-                .placeholderImage(self.viewModel.normalImage)
-                .options(self.makeSDWebImageOptions)
-                .completed(^(UIImage * _Nullable image,
-                             NSError * _Nullable error,
-                             SDImageCacheType cacheType,
-                             NSURL * _Nullable imageURL) {
-                    if (error) {
-                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
-                    } else {
-                        NSLog(@"图片加载成功");
-                    }
-                }).bgNormalLoad();
-        }else{
-            _btn.jobsResetBtnBgImage(self.viewModel.backgroundImage);
-        }
-        /// 按钮图
-        _btn.jobsResetBtnImage(self.viewModel.image);
-        /// 图文间距
-        if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePadding(self.viewModel.imageTitleSpace);
-        } else {
-            // Fallback on earlier versions
-        }
-        /// 图文相对位置关系
-        if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePlacement(self.viewModel.buttonEdgeInsetsStyle);
-        } else {
-            // Fallback on earlier versions
-        }
-        /// 圆切角
-        _btn.jobsResetBtnCornerRadiusValue(self.viewModel.layerCornerRadius);
-    }
-    
-    if(self.buttonModel){
-        _btn.selected = self.buttonModel.jobsSelected;
-        _btn.enabled = self.buttonModel.enabled;
-        if(self.buttonModel.attributedTitle){/// 主标题（富文本）
-            _btn.jobsResetBtnNormalAttributedTitle(self.buttonModel.attributedTitle);
-        }else{/// 主标题（普通文本）
-            _btn.jobsResetBtnTitle(self.buttonModel.title);
-            _btn.jobsResetBtnTitleCor(self.buttonModel.titleCor);
-            _btn.jobsResetBtnTitleFont(self.buttonModel.titleFont);
-        }
-        if(self.buttonModel.attributedSubtitle){/// 子标题（富文本）
-            _btn.jobsResetBtnNormalAttributedSubTitle(self.buttonModel.attributedSubtitle);
-        }else{/// 子标题（普通文本）
-            _btn.jobsResetBtnSubTitle(self.buttonModel.subTitle);
-            _btn.jobsResetBtnSubTitleCor(self.buttonModel.subTitleCor);
-            _btn.jobsResetBtnSubTitleFont(self.buttonModel.subTitleFont);
-        }
-        /// 背景图
-        if(self.buttonModel.normalBgImageURL){
-            self->_btn
-                .imageURL(self.buttonModel.normalBgImageURLString.imageURLPlus.jobsUrl)
-                .placeholderImage(self.viewModel.backgroundImage)
-                .options(self.makeSDWebImageOptions)
-                .completed(^(UIImage * _Nullable image,
-                             NSError * _Nullable error,
-                             SDImageCacheType cacheType,
-                             NSURL * _Nullable imageURL) {
-                    if (error) {
-                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
-                    } else {
-                        NSLog(@"图片加载成功");
-                    }
-                }).bgNormalLoad();
-        }else{
-            _btn.jobsResetBtnBgImage(self.buttonModel.backgroundImage);
-        }
-        /// 按钮图
-        _btn.jobsResetBtnImage(self.buttonModel.normalImage);
-        /// 背景色
-        _btn.jobsResetBtnBgCor(self.buttonModel.baseBackgroundColor);
-        /// 图文间距
-        if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePadding(self.buttonModel.imagePadding);
-        } else {
-            // Fallback on earlier versions
-        }
-        /// 图文相对位置关系
-        if (@available(iOS 16.0, *)) {
-            _btn.jobsResetImagePlacement(self.buttonModel.imagePlacement);
-        } else {
-            // Fallback on earlier versions
-        }
-        /// 圆切角
-        _btn.jobsResetBtnCornerRadiusValue(self.buttonModel.cornerRadiusValue);
     }return _btn;
 }
 

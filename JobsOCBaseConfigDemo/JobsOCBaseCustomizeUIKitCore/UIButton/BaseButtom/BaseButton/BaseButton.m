@@ -268,5 +268,22 @@ BaseButtonProtocol_synthesize
         return CGRectZero;
     };
 }
+@synthesize selected = _selected;
+-(void)setSelected:(BOOL)selected{
+    _selected = selected;
+    if([self.data isKindOfClass:UIViewModel.class]){
+        UIViewModel *viewModel = (UIViewModel *)self.data;
+        self.jobsResetBtnImage(selected ? viewModel.selectedImage_ : viewModel.image);
+    }
+    if([self.data isKindOfClass:UIButtonModel.class]){
+        UIButtonModel *buttonModel = (UIButtonModel *)self.data;
+//        self.jobsResetBtnImage(selected ? buttonModel.highlightImage : buttonModel.normalImage);
+        if(selected){
+            self.jobsResetBtnImage(buttonModel.highlightImage);
+        }else{
+            self.jobsResetBtnImage(buttonModel.normalImage);
+        }
+    }
+}
 
 @end
