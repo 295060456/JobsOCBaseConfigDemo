@@ -322,7 +322,35 @@
 </dict>
 ```
 
-## 11、其他
+## 11、`WKWebKit` 相关
+
+```xml
+<!--允许加载外部资源-->
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+    <key>NSExceptionDomains</key>
+    <dict>
+        <key>livechatinc.com</key>
+        <dict>
+            <key>NSIncludesSubdomains</key>
+            <true/>
+            <key>NSExceptionAllowsInsecureHTTPLoads</key>
+            <true/>
+            <key>NSExceptionMinimumTLSVersion</key>
+            <string>TLSv1.2</string>
+            <key>NSExceptionRequiresForwardSecrecy</key>
+            <false/>
+        </dict>
+    </dict>
+</dict>
+<key>NSNetworkLogsEnabled</key>
+<true/>
+```
+
+
+## 12、其他
 
 * ```xml
   <!-- 配置 UILaunchStoryboardName，项目里面就必须将 Main.storyboard 包含到工程，进入编译期-->
@@ -341,4 +369,3 @@
   <key>NSPersistentStoreTypeKey</key>
   <string>SQLite</string>
   ```
-

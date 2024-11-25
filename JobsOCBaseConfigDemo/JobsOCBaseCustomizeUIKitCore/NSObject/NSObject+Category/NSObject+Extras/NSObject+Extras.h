@@ -17,6 +17,7 @@
 #import "NSObject+Class.h"
 #import "NSData+Other.h"
 #import "NSURL+Others.h"
+#import "NSString+NSUserDefaults.h"
 
 #import "BaseProtocol.h"
 #import "UIViewModelProtocol.h"

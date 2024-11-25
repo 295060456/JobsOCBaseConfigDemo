@@ -265,7 +265,11 @@ iPhone 15 Pro Max                                   1290 * 249             83
 NS_INLINE CGSize JobsMainScreen(void){
     return UIScreen.mainScreen.bounds.size;
 }
-#pragma mark ——  横屏判定
+#pragma mark —— 屏幕Frame数据输出
+NS_INLINE CGRect MainScreenFrame(void){
+    return UIScreen.mainScreen.bounds;
+}
+#pragma mark —— 横屏判定
 #warning 横屏的时候，较之于竖屏，宽高会互换
 NS_INLINE CGFloat JobsMainScreen_WIDTH(void){
     return JobsMainScreen().width;

@@ -132,6 +132,12 @@
 #import "NSTextCheckingResult+Extra.h"
 #pragma mark —— NSKeyedArchiver
 #import "NSKeyedArchiver+Extra.h"
+#pragma mark —— WKWebViewConfiguration
+#import "WKWebViewConfiguration+Extra.h"
+#pragma mark —— NSURLSession
+#import "NSURLSession+AllowAllCertificates.h"
+#pragma mark —— WKWebsiteDataStore
+#import "WKWebsiteDataStore+Extra.h"
 
 #import "JobsMakes.h"
 

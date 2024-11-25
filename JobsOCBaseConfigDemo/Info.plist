@@ -67,6 +67,28 @@
         <array>
             <string>Bayon.ttf</string>
         </array>
+        <!--允许加载外部资源-->
+        <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSAllowsArbitraryLoads</key>
+            <true/>
+            <key>NSExceptionDomains</key>
+            <dict>
+                <key>livechatinc.com</key>
+                <dict>
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                    <true/>
+                    <key>NSExceptionMinimumTLSVersion</key>
+                    <string>TLSv1.2</string>
+                    <key>NSExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                </dict>
+            </dict>
+        </dict>
+        <key>NSNetworkLogsEnabled</key>
+        <true/>
         <!--❤️各种系统权限索取❤️-->
         <!-- 如果要做多语言，这里必须是静态字符串。即，JobsInternationalization映射的桥接字符串 -->
         <key>NSFaceIDUsageDescription</key>

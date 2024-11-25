@@ -263,6 +263,12 @@
     };
 }
 #pragma mark —— 功能性的
+/// 启用 WebKit 的日志功能。此选项通常用于调试 WebKit 的问题，例如性能、加载时间或 JavaScript 执行等。
+-(jobsByVoidBlock _Nonnull)debugWebKit{
+    return ^(){
+        @"WebKitLoggingEnabled".userDefaultsByBOOL(YES);
+    };
+}
 /// 将 NSTimeInterval 按照 NSDateFormatter 转换输出成人类可读的时间
 -(JobsReturnStringByDateModelBlock _Nonnull)toVisualTimeBy{
     return ^__kindof NSString *_Nullable(JobsDateModel *_Nullable dateModel){

@@ -19,7 +19,7 @@
         });
     };
 }
-/// 解析网络URL数据
+/// 解析URL数据
 -(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebView{
     return ^__kindof WKWebView *_Nullable(){
         @jobs_weakify(self)
@@ -33,7 +33,7 @@
 -(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebViewByJS{
     return ^__kindof WKWebView *_Nullable(){
         @jobs_weakify(self)
-        return jobsMakeWKWebView(^(__kindof WKWebView *_Nullable webView) {
+        return jobsMakeWKWebViewByConfig(^(__kindof WKWebView *_Nullable webView) {
             @jobs_strongify(self)
             [webView evaluateJavaScript:self
                       completionHandler:^(id _Nullable result,

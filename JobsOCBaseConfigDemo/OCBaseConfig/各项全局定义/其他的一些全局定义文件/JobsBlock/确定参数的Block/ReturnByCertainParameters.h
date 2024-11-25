@@ -227,6 +227,8 @@ typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSM
 #pragma mark —— 关于 WKWebView
 #import <WebKit/WebKit.h>
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByVoidBlock)(void);
+typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByConfigurationBlock)(WKWebViewConfiguration *_Nullable config);
+
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByStringBlock)(NSString *_Nullable data);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByURLBlock)(NSURL *_Nullable URL);
 #pragma mark —— 关于控制器

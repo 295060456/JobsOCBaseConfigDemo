@@ -43,6 +43,9 @@
         <!-- iOS 状态栏颜色的修改【全局设置 全局是NO、局部是YES】View controller-based status bar appearance : NO-->
         <key>UIViewControllerBasedStatusBarAppearance</key>
         <false/>
+        <!--只设置UIViewControllerBasedStatusBarAppearance为false，而不设置UIStatusBarHidden为true，在某些情况下会显示本应该隐藏的iOS状态栏-->
+        <key>UIStatusBarHidden</key>
+        <true/>
         <!-- iOS 状态栏颜色的修改【全局设置】Status bar style : Light Content-->
         <key>UIStatusBarStyle</key>
         <string>UIStatusBarStyleLightContent</string>
@@ -222,6 +225,28 @@
             <string>NotoSansDisplay_SemiCondensed-Thin.ttf</string>
             <string>NotoSansDisplay_SemiCondensed-ThinItalic.ttf</string>
         </array>
+        <!--允许加载外部资源-->
+        <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSAllowsArbitraryLoads</key>
+            <true/>
+            <key>NSExceptionDomains</key>
+            <dict>
+                <key>livechatinc.com</key>
+                <dict>
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                    <true/>
+                    <key>NSExceptionMinimumTLSVersion</key>
+                    <string>TLSv1.2</string>
+                    <key>NSExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                </dict>
+            </dict>
+        </dict>
+        <key>NSNetworkLogsEnabled</key>
+        <true/>
         <!--❤️各种系统权限索取❤️-->
         <!-- 如果要做多语言，这里必须是静态字符串。即，JobsInternationalization映射的桥接字符串 -->
         <key>NSFaceIDUsageDescription</key>

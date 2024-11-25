@@ -9,6 +9,7 @@
 #define JobsMakes_h
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "JobsBlock.h"
 
@@ -160,6 +161,22 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull blo
 
 NS_INLINE __kindof WKWebView *_Nonnull jobsMakeWKWebView(jobsByWKWebViewBlock _Nonnull block){
     WKWebView *data = WKWebView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof WKWebView *_Nonnull jobsMakeWKWebViewByConfig(jobsByWKWebViewBlock _Nonnull block){
+    WKWebView *data = WKWebView.initBy(jobsMakeWKWebViewConfiguration(^(WKWebViewConfiguration * _Nullable config) {
+        /// 确保 WebView 的配置允许加载外部资源：
+        config.preferences.javaScriptEnabled = YES;
+        config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
+        config.allowsInlineMediaPlayback = YES;
+        config.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone; // 确保媒体资源可以自动播放
+        config.limitsNavigationsToAppBoundDomains = NO; // 禁止限制导航到受保护的域
+        config.websiteDataStore = WKWebsiteDataStore.defaultDataStore;
+    }));
+    // 确保加载基础页面
+    [data loadHTMLString:@"<html><head></head><body></body></html>" baseURL:nil];
     if (block) block(data);
     return data;
 }

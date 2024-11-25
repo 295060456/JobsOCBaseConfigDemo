@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		33589D4FB7DE9D8EDECA5BF7 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		57BB5B8C9DC674142F9E009C /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
+		8401507E2CF4501B00211910 /* WKWebViewConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401507C2CF4501B00211910 /* WKWebViewConfiguration+Extra.m */; };
+		8401507F2CF4501B00211910 /* WKWebsiteDataStore+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 840150762CF4501B00211910 /* WKWebsiteDataStore+Extra.m */; };
+		840150802CF4501B00211910 /* NSURLSession+AllowAllCertificates.m in Sources */ = {isa = PBXBuildFile; fileRef = 840150792CF4501B00211910 /* NSURLSession+AllowAllCertificates.m */; };
 		84170B002CD0BF5D0007E303 /* YTKBatchRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */; };
 		843099F92CD0F17400A7B9D0 /* GTCaptcha4Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 843099F72CD0F17400A7B9D0 /* GTCaptcha4Model.m */; };
 		8439F6302CD8E6F100319E4A /* UIImageView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F62B2CD8E6F100319E4A /* UIImageView+Extra.m */; };
@@ -1189,6 +1192,12 @@
 		483BFC42C8B8CA074C2FE187 /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		55AE8BC0EBE5A194A8879F81 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoTests/Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		5955656EF85B206C389E8D78 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		840150752CF4501B00211910 /* WKWebsiteDataStore+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebsiteDataStore+Extra.h"; sourceTree = "<group>"; };
+		840150762CF4501B00211910 /* WKWebsiteDataStore+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebsiteDataStore+Extra.m"; sourceTree = "<group>"; };
+		840150782CF4501B00211910 /* NSURLSession+AllowAllCertificates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+AllowAllCertificates.h"; sourceTree = "<group>"; };
+		840150792CF4501B00211910 /* NSURLSession+AllowAllCertificates.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+AllowAllCertificates.m"; sourceTree = "<group>"; };
+		8401507B2CF4501B00211910 /* WKWebViewConfiguration+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebViewConfiguration+Extra.h"; sourceTree = "<group>"; };
+		8401507C2CF4501B00211910 /* WKWebViewConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewConfiguration+Extra.m"; sourceTree = "<group>"; };
 		8415A2342CE4729600A09C67 /* JobsExcelView的使用.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "JobsExcelView的使用.md"; sourceTree = "<group>"; };
 		84170AFD2CD0BF5D0007E303 /* YTKBatchRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBatchRequest+Extra.h"; sourceTree = "<group>"; };
 		84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBatchRequest+Extra.m"; sourceTree = "<group>"; };
@@ -3511,6 +3520,33 @@
 				FE176E0EC1B036786E28E5E5 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		840150772CF4501B00211910 /* WKWebsiteDataStore */ = {
+			isa = PBXGroup;
+			children = (
+				840150752CF4501B00211910 /* WKWebsiteDataStore+Extra.h */,
+				840150762CF4501B00211910 /* WKWebsiteDataStore+Extra.m */,
+			);
+			path = WKWebsiteDataStore;
+			sourceTree = "<group>";
+		};
+		8401507A2CF4501B00211910 /* NSURLSession */ = {
+			isa = PBXGroup;
+			children = (
+				840150782CF4501B00211910 /* NSURLSession+AllowAllCertificates.h */,
+				840150792CF4501B00211910 /* NSURLSession+AllowAllCertificates.m */,
+			);
+			path = NSURLSession;
+			sourceTree = "<group>";
+		};
+		8401507D2CF4501B00211910 /* WKWebViewConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				8401507B2CF4501B00211910 /* WKWebViewConfiguration+Extra.h */,
+				8401507C2CF4501B00211910 /* WKWebViewConfiguration+Extra.m */,
+			);
+			path = WKWebViewConfiguration;
 			sourceTree = "<group>";
 		};
 		84170AFF2CD0BF5D0007E303 /* YTKBatchRequest+Extra */ = {
@@ -13155,6 +13191,9 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				840150772CF4501B00211910 /* WKWebsiteDataStore */,
+				8401507A2CF4501B00211910 /* NSURLSession */,
+				8401507D2CF4501B00211910 /* WKWebViewConfiguration */,
 				8461D4C12CF1EEDC00446E4F /* JSValue */,
 				8461D1342CF1929E00446E4F /* NSKeyedArchiver */,
 				8461D1372CF1929E00446E4F /* NSTextCheckingResult */,
@@ -15471,6 +15510,9 @@
 				CECE7EDF2C450E5B00764AF5 /* ZMJCell+CustomView.m in Sources */,
 				8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */,
 				CE5A64842CA82D7B006D67A7 /* NSDate+Extra.m in Sources */,
+				8401507E2CF4501B00211910 /* WKWebViewConfiguration+Extra.m in Sources */,
+				8401507F2CF4501B00211910 /* WKWebsiteDataStore+Extra.m in Sources */,
+				840150802CF4501B00211910 /* NSURLSession+AllowAllCertificates.m in Sources */,
 				CE5A64FC2CA830B2006D67A7 /* SoundBtn.m in Sources */,
 				CECE7EBB2C450E5B00764AF5 /* TKPermissionMedia.m in Sources */,
 				CE5A661E2CA836B0006D67A7 /* TMSWalletCollectionViewCell.m in Sources */,

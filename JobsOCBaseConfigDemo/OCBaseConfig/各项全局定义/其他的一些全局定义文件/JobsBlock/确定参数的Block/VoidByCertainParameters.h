@@ -68,6 +68,8 @@ typedef void(^jobsByFontBlock)(UIFont *_Nullable font);
 typedef void(^jobsByClassAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
 typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
 #pragma mark —— 关于UI配置
+/// WKWebView配置
+typedef void(^jobsByWKWebViewConfigurationBlock)(WKWebViewConfiguration * _Nullable config);
 /// 按钮配置
 typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
 /// UICollectionView配置

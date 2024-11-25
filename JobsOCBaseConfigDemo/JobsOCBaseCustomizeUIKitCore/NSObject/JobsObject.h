@@ -9,6 +9,8 @@
 #define JobsObject_h
 
 #pragma mark —— Base
+///
+#import "UserDefaultModel.h"
 /// 完整的文件名 = 文件名 + 后缀名
 #import "FileNameModel.h"
 /// 只执行一次
