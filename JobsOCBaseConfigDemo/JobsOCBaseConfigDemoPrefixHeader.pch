@@ -34,7 +34,7 @@
 #import <UserNotifications/UserNotifications.h> /// 用于处理通知（包括本地通知和远程推送通知）的功能。它引入了一套现代化的 API，用来替代较早的 UILocalNotification 和旧的远程推送通知机制。
 
 #pragma mark —— OC-Swift 桥接头文件
-#import "FM-Bridging-Header.h"
+
 #pragma mark —— 各项全局定义
 /// DefineConstString
 #import "DefineConstString.h"

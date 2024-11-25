@@ -19,6 +19,8 @@
 		84392BDD2CF4A47A000D441F /* UIAlertAction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD32CF4A47A000D441F /* UIAlertAction+Extra.m */; };
 		84392BDE2CF4A47A000D441F /* UNUserNotificationCenter+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD92CF4A47A000D441F /* UNUserNotificationCenter+Extra.m */; };
 		84392BDF2CF4A47A000D441F /* UNUserNotificationCenter.md in Resources */ = {isa = PBXBuildFile; fileRef = 84392BDA2CF4A47A000D441F /* UNUserNotificationCenter.md */; };
+		84392CE42CF4A6A8000D441F /* JobsAlertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BC92CF4A402000D441F /* JobsAlertModel.m */; };
+		84392CE52CF4A6AF000D441F /* UserDefaultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BCC2CF4A402000D441F /* UserDefaultModel.m */; };
 		8439F6302CD8E6F100319E4A /* UIImageView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F62B2CD8E6F100319E4A /* UIImageView+Extra.m */; };
 		8439F6312CD8E6F100319E4A /* UIImageView+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439F62E2CD8E6F100319E4A /* UIImageView+SDWebImage.m */; };
 		843B73C22CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B73C02CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m */; };
@@ -15671,6 +15673,7 @@
 				CECE7E942C450E5B00764AF5 /* KTVHCError.m in Sources */,
 				CECE7EB52C450E5B00764AF5 /* TKPermissionContacts.m in Sources */,
 				CE5A64742CA82CAD006D67A7 /* AVURLAsset+Extra.m in Sources */,
+				84392CE42CF4A6A8000D441F /* JobsAlertModel.m in Sources */,
 				CECE7D3D2C450CCD00764AF5 /* JobsOCBaseConfigTestPopupView.m in Sources */,
 				CECE7E952C450E5B00764AF5 /* KTVHCLog.m in Sources */,
 				CECE7EA92C450E5B00764AF5 /* KTVHCHTTPServer.m in Sources */,
@@ -15764,6 +15767,7 @@
 				CE5A662D2CA83740006D67A7 /* UIImage+Base64.m in Sources */,
 				CE5A662E2CA83740006D67A7 /* NSString+Base64.m in Sources */,
 				CE5A662F2CA83740006D67A7 /* NSData+Base64.m in Sources */,
+				84392CE52CF4A6AF000D441F /* UserDefaultModel.m in Sources */,
 				CE5A64D92CA82FF0006D67A7 /* NSObject+Sound.m in Sources */,
 				CE61AD592C9EAB26002DF138 /* JobsNetworkingAPI.m in Sources */,
 				CE5A65222CA83155006D67A7 /* UIImageView+GIF.m in Sources */,

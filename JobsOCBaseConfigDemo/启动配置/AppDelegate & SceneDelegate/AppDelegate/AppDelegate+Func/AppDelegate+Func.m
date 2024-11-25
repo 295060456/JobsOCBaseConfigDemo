@@ -37,7 +37,6 @@
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        self.fm_refreshUserToken2();/// 启动的时候，先检查Token是否已经过期，如果过期，则删除本地题用户的全部数据
     };
 }
 
