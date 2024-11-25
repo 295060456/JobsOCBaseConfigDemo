@@ -128,6 +128,10 @@ typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullabl
 typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByArrBlock)(__kindof NSArray *_Nullable data);
 
+@class JobsAlertModel;
+typedef void(^jobsByAlertModelBlock)(JobsAlertModel *_Nullable data);
+typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByAlertModelBlock)(JobsAlertModel *_Nullable data);
+
 @class JobsDateModel;
 typedef __kindof JobsDateModel *_Nullable(^JobsReturnDateModelByVoidBlock)(void);
 typedef void(^jobsByDateModelBlock)(JobsDateModel *_Nullable dateModel);
@@ -317,6 +321,12 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBloc
 
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable data);
 #pragma mark —— 涉及到第三方类的Block定义
+@class AFSecurityPolicy;
+typedef AFSecurityPolicy *_Nonnull(^JobsReturnAFSecurityPolicyByAFSSLPinningModeBlock)(NSUInteger data);
+
+@class IQKeyboardManager;
+typedef void(^jobsByIQKeyboardManagerBlock)(__kindof IQKeyboardManager *_Nullable manager);
+
 @class CJTextField;
 typedef void(^JobsByCJTextFieldBlock)(CJTextField *_Nullable data);
 

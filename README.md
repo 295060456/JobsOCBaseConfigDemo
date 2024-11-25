@@ -11511,6 +11511,30 @@ NS_INLINE __kindof VideoModel_Core *_Nonnull jobsMakeVideoModelCore(jobsByVideoM
 }
 ```
 
+#### 42.3、`UIAlertController` + `UIAlertAction`
+
+* UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
+
+  ```objective-c
+  self.getCurrentViewController.comingToPresentVC(self.makeAlertControllerByAlertModel(jobsMakeAlertModel(^(JobsAlertModel * _Nullable data) {
+       data.alertControllerTitle = @"主标题";
+       data.message = @"副标题";
+       data.preferredStyle = UIAlertControllerStyleAlert;
+       data.alertActionTitle = @"OK";
+       data.alertActionStyle = UIAlertActionStyleDefault;
+       data.alertActionBlock = ^(__kindof UIAlertAction * _Nullable action) {
+           NSLog(@"OK");
+       };
+       data.cancelAlertActionTitle = @"取消";
+       data.cancelAlertActionStyle = UIAlertActionStyleCancel;
+       data.cancelAlertActionBlock = ^(__kindof UIAlertAction * _Nullable action) {
+           NSLog(@"Cancel");
+       };
+   })));
+  ```
+
+  ![UIAlertController+UIAlertAction](./assets/UIAlertController+UIAlertAction.png)
+
 ### Test  
 
 <details id="Test">

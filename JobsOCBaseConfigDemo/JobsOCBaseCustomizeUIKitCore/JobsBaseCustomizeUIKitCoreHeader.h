@@ -7,7 +7,6 @@
 
 #ifndef JobsBaseCustomizeUIKitCoreHeader_h
 #define JobsBaseCustomizeUIKitCoreHeader_h
-
 #pragma mark —— BaseProtocol
 #import "JobsBaseProtocolHeader.h"
 #pragma mark —— NSCoder
@@ -138,6 +137,12 @@
 #import "NSURLSession+AllowAllCertificates.h"
 #pragma mark —— WKWebsiteDataStore
 #import "WKWebsiteDataStore+Extra.h"
+#pragma mark —— UNUserNotificationCenter
+#import "UNUserNotificationCenter+Extra.h"
+#pragma mark —— UIAlertController
+#import "UIAlertController+Extra.h"
+#pragma mark —— UIAlertAction
+#import "UIAlertAction+Extra.h"
 
 #import "JobsMakes.h"
 

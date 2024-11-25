@@ -11,11 +11,11 @@
 #import "NSObject+UserInfo.h"
 #import "JobsBlock.h"
 #import "JobsNavBarConfig.h"
-
+/// 检查联网情况
 #if __has_include(<Reachability/Reachability.h>)
 #import <Reachability/Reachability.h>
 #else
-#import "Reachability.h"//检查联网情况
+#import "Reachability.h"
 #endif
 
 #if __has_include(<GKNavigationBar/GKNavigationBar.h>)
@@ -36,6 +36,8 @@
 #import "TABAnimated.h"
 #endif
 
+@import LiveChat;
+
 #import "JobsWelcomeVC.h"
 
 #if DEBUG
@@ -51,7 +53,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AppDelegate (Func)
-
+<
+LiveChatDelegate,
+UNUserNotificationCenterDelegate
+>
 #pragma mark —— 启动调用功能
 +(jobsByVoidBlock _Nonnull)launchFunc1;
 -(jobsByVoidBlock _Nonnull)launchFunc2;
@@ -75,10 +80,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByVoidBlock _Nonnull)localNotifications;
 #pragma mark —— 网络环境监测
 -(jobsByVoidBlock _Nonnull)makeReachabilityConfig;
-/// 适配各种机型的开屏图片
--(NSString * _Nullable)imageNameOrURLString;
-/// 适配各种机型的开屏视频
--(NSString * _Nullable)videoNameOrURLString;
 
 @end
 

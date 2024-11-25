@@ -60,6 +60,10 @@ AppToolsProtocol
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;
 #pragma mark —— 一些公共设置
+/// 适配各种机型的开屏图片
+-(NSString * _Nullable)imageNameOrURLString;
+/// 适配各种机型的开屏视频
+-(NSString * _Nullable)videoNameOrURLString;
 /// 数据组装
 -(JobsReturnViewModelByDecorationModelBlock _Nonnull)makeDatas;
 /// 默认文本段落样式

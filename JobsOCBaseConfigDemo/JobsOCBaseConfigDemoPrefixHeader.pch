@@ -9,7 +9,8 @@
 #define JobsOCBaseConfigPrefixHeader_pch
 #pragma mark —— 系统SDK
 #import <Foundation/Foundation.h>                 /// 提供Objective-C的基本数据类型、集合和实用工具类。
-#import <CoreText/CoreText.h>                     ///  iOS 和 macOS 提供的底层文本布局和渲染框架，支持高级的字体管理和排版功能。相比 UIKit 中的 NSAttributedString，Core Text 更灵活，但也更复杂，适合需要精准控制文本显示的场景。
+#import <JavaScriptCore/JavaScriptCore.h>         /// 处理 JavaScript
+#import <CoreText/CoreText.h>                     /// iOS 和 macOS 提供的底层文本布局和渲染框架，支持高级的字体管理和排版功能。相比 UIKit 中的 NSAttributedString，Core Text 更灵活，但也更复杂，适合需要精准控制文本显示的场景。
 #import <WebKit/WebKit.h>                         /// 用于嵌入和管理网页内容，例如加载和显示网页。
 #import <UIKit/UIKit.h>                           /// 提供iOS应用的UI组件和基础结构，如视图、控件和动画。
 #import <sys/sysctl.h>                            /// 允许查询系统信息和配置，如设备硬件详细信息。
@@ -29,6 +30,11 @@
 #import <AVFoundation/AVAssetImageGenerator.h>    /// 用于从视频生成缩略图。
 #import <AVFoundation/AVTime.h>                   /// 提供时间相关的功能，用于音视频处理。
 #import <EventKit/EventKit.h>                     /// 用于读取、修改和创建日历事件。
+#import <MapKit/MapKit.h>                         /// 用于在 iOS 或 macOS 应用程序中处理地图和地理位置相关的功能
+#import <UserNotifications/UserNotifications.h> /// 用于处理通知（包括本地通知和远程推送通知）的功能。它引入了一套现代化的 API，用来替代较早的 UILocalNotification 和旧的远程推送通知机制。
+
+#pragma mark —— OC-Swift 桥接头文件
+#import "FM-Bridging-Header.h"
 #pragma mark —— 各项全局定义
 /// DefineConstString
 #import "DefineConstString.h"
@@ -53,14 +59,16 @@
 #import "JobsDefineAllEnumHeader.h"
 #pragma mark —— JobsBaseCustomizeUIKitCore
 #import "JobsBaseCustomizeUIKitCoreHeader.h"
+#pragma mark —— JobsOCBaseCustomize3rdCore
+#import "JobsOCBaseCustomize3rdCore.h"
 #pragma mark —— JobsMixFunc
 #import "JobsMixFunc.h"
 #pragma mark —— Pods
 #import "JobsPods.h"
 #import "JobsPodsManual.h"
-/// 数据模型层
+#pragma mark —— 数据模型层
 #import "DAO.h"
-/// 网络请求
+#pragma mark —— 网络请求
 #import "JobsNetworkingHeader.h"
 
 #endif /* JobsOCBaseConfigPrefixHeader_pch */

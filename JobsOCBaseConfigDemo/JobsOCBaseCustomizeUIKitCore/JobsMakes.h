@@ -159,6 +159,12 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull blo
     return data;
 }
 
+NS_INLINE __kindof UNUserNotificationCenter *_Nonnull jobsMakeUNUserNotificationCenter(jobsByUNUserNotificationCenterBlock _Nonnull block){
+    UNUserNotificationCenter *data = UNUserNotificationCenter.currentNotificationCenter;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof WKWebView *_Nonnull jobsMakeWKWebView(jobsByWKWebViewBlock _Nonnull block){
     WKWebView *data = WKWebView.alloc.init;
     if (block) block(data);

@@ -131,6 +131,9 @@ typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);
 typedef void(^jobsByDataBlock)(NSData *_Nullable data);
 typedef void(^jobsByBezierPathBlock)(__kindof UIBezierPath *_Nullable data);
 typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable notification);
+#import <UserNotifications/UserNotifications.h>
+typedef void(^jobsByUNUserNotificationCenterBlock)(__kindof UNUserNotificationCenter *_Nullable center);
+typedef void(^jobsByAlertActionBlock)(__kindof UIAlertAction *_Nullable action);
 
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;
 typedef void(^jobsByThreeIDBlock)Jobs_3_Arguments;

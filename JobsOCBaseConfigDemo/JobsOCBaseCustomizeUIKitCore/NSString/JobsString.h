@@ -26,5 +26,6 @@
 #import "NSString+FilteringSpecialCharacters.h"
 #import "NSString+Notification.h"
 #import "NSString+NSUserDefaults.h"
+#import "NSString+_3rd.h"
 
 #endif /* JobsString_h */

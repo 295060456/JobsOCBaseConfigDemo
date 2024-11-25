@@ -263,6 +263,27 @@
     };
 }
 #pragma mark —— 功能性的
+/// UIAlertController + UIAlertAction
+/// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
+-(JobsReturnAlertControllerByAlertModelBlock _Nonnull)makeAlertControllerByAlertModel{
+    return ^__kindof UIAlertController *_Nullable(JobsAlertModel *_Nullable model){
+        UIAlertController *alertVC = JobsMakeAlertControllerBy(jobsMakeAlertModel(^(JobsAlertModel * _Nullable data) {
+            data.alertControllerTitle = model.alertControllerTitle;
+            data.message = model.message;
+            data.preferredStyle = model.preferredStyle;
+        }));
+        alertVC.add(JobsMakeAlertActionBy(jobsMakeAlertModel(^(JobsAlertModel *_Nullable data) {
+            data.alertActionTitle = model.alertActionTitle;
+            data.alertActionStyle = model.alertActionStyle;
+            data.alertActionBlock = model.alertActionBlock;
+        })));
+        alertVC.add(JobsMakeAlertActionBy(jobsMakeAlertModel(^(JobsAlertModel *_Nullable data) {
+            data.alertActionTitle = model.cancelAlertActionTitle;
+            data.alertActionStyle = model.cancelAlertActionStyle;
+            data.alertActionBlock = model.cancelAlertActionBlock;
+        })));return alertVC;
+    };
+}
 /// 启用 WebKit 的日志功能。此选项通常用于调试 WebKit 的问题，例如性能、加载时间或 JavaScript 执行等。
 -(jobsByVoidBlock _Nonnull)debugWebKit{
     return ^(){

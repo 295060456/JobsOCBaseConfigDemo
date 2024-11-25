@@ -209,6 +209,9 @@ BaseProtocol
 /// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
 -(NSString *_Nonnull)tmpDir;
 #pragma mark —— 功能性的
+/// UIAlertController + UIAlertAction
+/// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
+-(JobsReturnAlertControllerByAlertModelBlock _Nonnull)makeAlertControllerByAlertModel;
 /// 将 NSTimeInterval 按照 NSDateFormatter 转换输出成人类可读的时间
 -(JobsReturnStringByDateModelBlock _Nonnull)toVisualTimeBy;
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
