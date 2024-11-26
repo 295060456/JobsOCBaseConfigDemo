@@ -268,14 +268,16 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByStringStringBlock)(NSStr
                                                                            NSString *_Nullable tailString);
 #pragma mark —— 关于 NSRegularExpression
 typedef __kindof NSRegularExpression *_Nullable(^JobsReturnRegularExpressionByStringBlock)(NSString *_Nullable data);
-#pragma mark —— 关于时间
-typedef __kindof NSString *_Nullable(^JobsReturnStringByDateFormatterBlock)(NSDateFormatter *_Nullable data);
-typedef __kindof NSDateFormatter *_Nullable(^JobsReturnDateFormatterByStringBlock)(NSString *_Nullable);
-typedef NSTimeInterval(^JobsReturnTimeIntervalByDateBlock)(NSDate *_Nullable);
+#pragma mark —— 关于时间（格式）/日历/计时器/间隔时间
 typedef __kindof NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByDateFormatterBlock)(NSDateFormatter *_Nullable data);
+typedef NSTimeInterval(^JobsReturnTimeIntervalByDateBlock)(NSDate *_Nullable);
+typedef __kindof NSDateFormatter *_Nullable(^JobsReturnDateFormatterByStringBlock)(NSString *_Nullable);
 typedef __kindof NSDate *_Nullable(^JobsReturnDateByVoidBlock)(void);
 typedef __kindof NSDate *_Nullable(^JobsReturnDateByTimeIntervalBlock)(NSTimeInterval data);
 typedef __kindof NSDate *_Nullable(^JobsReturnDateByDateFormatterBlock)(NSDateFormatter *_Nullable data);
+typedef __kindof NSCalendar *_Nullable(^JobsReturnCalendarByCalendarIdentifierBlock)(NSCalendarIdentifier _Nullable data);
+typedef __kindof UNCalendarNotificationTrigger *_Nullable(^JobsReturnCalendarNotificationTriggerByComponentsBlock)(NSDateComponents *_Nullable data);
 #pragma mark —— 关于数据
 typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByVoidBlock)(void);
 typedef NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByVoidBlock)(void);

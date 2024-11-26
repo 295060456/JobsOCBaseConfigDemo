@@ -143,6 +143,12 @@
 #import "UIAlertController+Extra.h"
 #pragma mark —— UIAlertAction
 #import "UIAlertAction+Extra.h"
+#pragma mark —— NSCalendar
+#import "NSCalendar+Extra.h"
+#pragma mark —— UNCalendarNotificationTrigger
+#import "UNCalendarNotificationTrigger+Extra.h"
+#pragma mark —— UNNotificationRequest
+#import "UNNotificationRequest+Extra.h"
 
 #import "JobsMakes.h"
 

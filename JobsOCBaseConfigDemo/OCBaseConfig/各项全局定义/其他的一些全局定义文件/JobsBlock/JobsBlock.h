@@ -128,6 +128,10 @@ typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullabl
 typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByArrBlock)(__kindof NSArray *_Nullable data);
 
+@class UNNotificationRequestModel;
+typedef void(^jobsByUNNotificationRequestModelBlock)(UNNotificationRequestModel *_Nullable data);
+typedef __kindof UNNotificationRequest *_Nullable(^JobsReturnUNNotificationRequestByModelBlock)(UNNotificationRequestModel *_Nullable data);
+ 
 @class JobsAlertModel;
 typedef void(^jobsByAlertModelBlock)(JobsAlertModel *_Nullable data);
 typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByAlertModelBlock)(JobsAlertModel *_Nullable data);

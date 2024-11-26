@@ -11,6 +11,7 @@
 #import "NSObject+UserInfo.h"
 #import "JobsBlock.h"
 #import "JobsNavBarConfig.h"
+#import "NSObject+UNUserNotificationCenterDelegate.h"
 /// 检查联网情况
 #if __has_include(<Reachability/Reachability.h>)
 #import <Reachability/Reachability.h>
@@ -36,8 +37,6 @@
 #import "TABAnimated.h"
 #endif
 
-@import LiveChat;
-
 #import "JobsWelcomeVC.h"
 
 #if DEBUG
@@ -54,7 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AppDelegate (Func)
 <
-LiveChatDelegate,
 UNUserNotificationCenterDelegate
 >
 #pragma mark —— 启动调用功能

@@ -29,6 +29,11 @@
 		845813E12CDE022100B3C038 /* NSString+WKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845813DF2CDE022100B3C038 /* NSString+WKWebView.m */; };
 		845813E62CDE024B00B3C038 /* WKWebView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845813E32CDE024B00B3C038 /* WKWebView+Extra.m */; };
 		845C913B2CDF70BB0067105A /* NSCoder+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845C91392CDF70BA0067105A /* NSCoder+Extra.m */; };
+		845F86732CF5953300C53A19 /* UNCalendarNotificationTrigger+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F866E2CF5953300C53A19 /* UNCalendarNotificationTrigger+Extra.m */; };
+		845F86742CF5953300C53A19 /* NSCalendar+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F86712CF5953300C53A19 /* NSCalendar+Extra.m */; };
+		845F86752CF5953300C53A19 /* UNNotificationRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F866B2CF5953300C53A19 /* UNNotificationRequest+Extra.m */; };
+		845F86792CF595A000C53A19 /* UNNotificationRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F86772CF595A000C53A19 /* UNNotificationRequestModel.m */; };
+		845F867D2CF595D600C53A19 /* NSObject+LiveChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F867B2CF595D600C53A19 /* NSObject+LiveChat.m */; };
 		8461D13E2CF1929E00446E4F /* NSTextCheckingResult+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D1362CF1929E00446E4F /* NSTextCheckingResult+Extra.m */; };
 		8461D13F2CF1929E00446E4F /* NSJSONSerialization+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D13C2CF1929E00446E4F /* NSJSONSerialization+Extra.m */; };
 		8461D1402CF1929E00446E4F /* NSRegularExpression+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D1392CF1929E00446E4F /* NSRegularExpression+Extra.m */; };
@@ -1245,6 +1250,16 @@
 		845813E32CDE024B00B3C038 /* WKWebView+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+Extra.m"; sourceTree = "<group>"; };
 		845C91382CDF70BA0067105A /* NSCoder+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSCoder+Extra.h"; sourceTree = "<group>"; };
 		845C91392CDF70BA0067105A /* NSCoder+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSCoder+Extra.m"; sourceTree = "<group>"; };
+		845F866A2CF5953300C53A19 /* UNNotificationRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UNNotificationRequest+Extra.h"; sourceTree = "<group>"; };
+		845F866B2CF5953300C53A19 /* UNNotificationRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UNNotificationRequest+Extra.m"; sourceTree = "<group>"; };
+		845F866D2CF5953300C53A19 /* UNCalendarNotificationTrigger+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UNCalendarNotificationTrigger+Extra.h"; sourceTree = "<group>"; };
+		845F866E2CF5953300C53A19 /* UNCalendarNotificationTrigger+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UNCalendarNotificationTrigger+Extra.m"; sourceTree = "<group>"; };
+		845F86702CF5953300C53A19 /* NSCalendar+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+Extra.h"; sourceTree = "<group>"; };
+		845F86712CF5953300C53A19 /* NSCalendar+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+Extra.m"; sourceTree = "<group>"; };
+		845F86762CF595A000C53A19 /* UNNotificationRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UNNotificationRequestModel.h; sourceTree = "<group>"; };
+		845F86772CF595A000C53A19 /* UNNotificationRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UNNotificationRequestModel.m; sourceTree = "<group>"; };
+		845F867A2CF595D600C53A19 /* NSObject+LiveChat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LiveChat.h"; sourceTree = "<group>"; };
+		845F867B2CF595D600C53A19 /* NSObject+LiveChat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LiveChat.m"; sourceTree = "<group>"; };
 		8461D1322CF1929E00446E4F /* NSKeyedArchiver+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSKeyedArchiver+Extra.h"; sourceTree = "<group>"; };
 		8461D1332CF1929E00446E4F /* NSKeyedArchiver+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSKeyedArchiver+Extra.m"; sourceTree = "<group>"; };
 		8461D1352CF1929E00446E4F /* NSTextCheckingResult+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTextCheckingResult+Extra.h"; sourceTree = "<group>"; };
@@ -3771,6 +3786,51 @@
 				845C91392CDF70BA0067105A /* NSCoder+Extra.m */,
 			);
 			path = NSCoder;
+			sourceTree = "<group>";
+		};
+		845F866C2CF5953300C53A19 /* UNNotificationRequest */ = {
+			isa = PBXGroup;
+			children = (
+				845F866A2CF5953300C53A19 /* UNNotificationRequest+Extra.h */,
+				845F866B2CF5953300C53A19 /* UNNotificationRequest+Extra.m */,
+			);
+			path = UNNotificationRequest;
+			sourceTree = "<group>";
+		};
+		845F866F2CF5953300C53A19 /* UNCalendarNotificationTrigger */ = {
+			isa = PBXGroup;
+			children = (
+				845F866D2CF5953300C53A19 /* UNCalendarNotificationTrigger+Extra.h */,
+				845F866E2CF5953300C53A19 /* UNCalendarNotificationTrigger+Extra.m */,
+			);
+			path = UNCalendarNotificationTrigger;
+			sourceTree = "<group>";
+		};
+		845F86722CF5953300C53A19 /* NSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				845F86702CF5953300C53A19 /* NSCalendar+Extra.h */,
+				845F86712CF5953300C53A19 /* NSCalendar+Extra.m */,
+			);
+			path = NSCalendar;
+			sourceTree = "<group>";
+		};
+		845F86782CF595A000C53A19 /* UNNotificationRequestModel */ = {
+			isa = PBXGroup;
+			children = (
+				845F86762CF595A000C53A19 /* UNNotificationRequestModel.h */,
+				845F86772CF595A000C53A19 /* UNNotificationRequestModel.m */,
+			);
+			path = UNNotificationRequestModel;
+			sourceTree = "<group>";
+		};
+		845F867C2CF595D600C53A19 /* NSObject+LiveChat */ = {
+			isa = PBXGroup;
+			children = (
+				845F867A2CF595D600C53A19 /* NSObject+LiveChat.h */,
+				845F867B2CF595D600C53A19 /* NSObject+LiveChat.m */,
+			);
+			path = "NSObject+LiveChat";
 			sourceTree = "<group>";
 		};
 		8461D1342CF1929E00446E4F /* NSKeyedArchiver */ = {
@@ -10624,7 +10684,9 @@
 		CE5A61522CA82C2D006D67A7 /* JobsModel */ = {
 			isa = PBXGroup;
 			children = (
-				CE5A61072CA82C2D006D67A7 /* JobsModel.h */,
+				845F86782CF595A000C53A19 /* UNNotificationRequestModel */,
+				84392BCA2CF4A402000D441F /* JobsAlertModel */,
+				84392BCD2CF4A402000D441F /* UserDefaultModel */,
 				84B1BDB02CEDDFD70001562D /* JobsDateModel */,
 				84B1B50F2CED972E0001562D /* JobsDecorationModel */,
 				844291EB2CDDF52F007B56CA /* JobsBaseModel */,
@@ -10653,6 +10715,7 @@
 				CE5A61412CA82C2D006D67A7 /* SDWebImageModel */,
 				CE5A614E2CA82C2D006D67A7 /* UIViewModelFamily */,
 				CE5A61512CA82C2D006D67A7 /* URLManagerModel */,
+				CE5A61072CA82C2D006D67A7 /* JobsModel.h */,
 			);
 			path = JobsModel;
 			sourceTree = "<group>";
@@ -10794,8 +10857,6 @@
 		CE5A61842CA82C2D006D67A7 /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
-				84392BCA2CF4A402000D441F /* JobsAlertModel */,
-				84392BCD2CF4A402000D441F /* UserDefaultModel */,
 				84E401412CC60E7100C8303A /* This */,
 				CE5A61522CA82C2D006D67A7 /* JobsModel */,
 				CE5A61582CA82C2D006D67A7 /* 雪花算法 */,
@@ -11247,6 +11308,7 @@
 		CE5A62162CA82C2D006D67A7 /* NSObject+Category */ = {
 			isa = PBXGroup;
 			children = (
+				845F867C2CF595D600C53A19 /* NSObject+LiveChat */,
 				8493F1E72CD3A64F00011DD1 /* NSObject+YTKRequest */,
 				CE5A61872CA82C2D006D67A7 /* NSObject+Data */,
 				CE5A618A2CA82C2D006D67A7 /* NSObject+GTCaptcha4 */,
@@ -13301,6 +13363,9 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				845F866C2CF5953300C53A19 /* UNNotificationRequest */,
+				845F866F2CF5953300C53A19 /* UNCalendarNotificationTrigger */,
+				845F86722CF5953300C53A19 /* NSCalendar */,
 				84392BD42CF4A47A000D441F /* UIAlertAction */,
 				84392BD72CF4A47A000D441F /* UIAlertController */,
 				84392BDB2CF4A47A000D441F /* UNUserNotificationCenter */,
@@ -15708,6 +15773,7 @@
 				CECE7E992C450E5B00764AF5 /* KTVHCDataCallback.m in Sources */,
 				CECE7EE22C450E5B00764AF5 /* ZWPullMenuCell.m in Sources */,
 				CECE78952C4509E200764AF5 /* main.m in Sources */,
+				845F867D2CF595D600C53A19 /* NSObject+LiveChat.m in Sources */,
 				CE5A64B52CA82EDB006D67A7 /* NSObject+GTCaptcha4.m in Sources */,
 				CE2E88CD2C69E14100260207 /* PopListBaseView.m in Sources */,
 				CECE7EA72C450E5B00764AF5 /* KTVHCHTTPConnection.m in Sources */,
@@ -15722,6 +15788,7 @@
 				CECE7E8F2C450E5B00764AF5 /* HTTPConnection.m in Sources */,
 				CECE7EBD2C450E5B00764AF5 /* TKPermissionMotion.m in Sources */,
 				84B1BA202CEDCA2A0001562D /* FSCalendar.m in Sources */,
+				845F86792CF595A000C53A19 /* UNNotificationRequestModel.m in Sources */,
 				CECE7E872C450E5B00764AF5 /* MultipartMessageHeaderField.m in Sources */,
 				CE5A64BE2CA82F1E006D67A7 /* NSObject+Class.m in Sources */,
 				CECE7EAE2C450E5B00764AF5 /* LMJDropdownMenu+Extra.m in Sources */,
@@ -16319,6 +16386,9 @@
 				CE260F472CAE671C00233F0F /* NSString+Time.m in Sources */,
 				CE260F482CAE671C00233F0F /* NSString+FilteringSpecialCharacters.m in Sources */,
 				CE260F492CAE671C00233F0F /* NSString+Path.m in Sources */,
+				845F86732CF5953300C53A19 /* UNCalendarNotificationTrigger+Extra.m in Sources */,
+				845F86742CF5953300C53A19 /* NSCalendar+Extra.m in Sources */,
+				845F86752CF5953300C53A19 /* UNNotificationRequest+Extra.m in Sources */,
 				CE260F4A2CAE671C00233F0F /* NSString+Conversion.m in Sources */,
 				CE260F4B2CAE671C00233F0F /* NSString+Check.m in Sources */,
 				CE260F4C2CAE671C00233F0F /* NSString+Others.m in Sources */,

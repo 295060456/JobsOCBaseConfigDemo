@@ -9,8 +9,6 @@
 #define JobsObject_h
 
 #pragma mark —— Base
-///
-#import "UserDefaultModel.h"
 /// 完整的文件名 = 文件名 + 后缀名
 #import "FileNameModel.h"
 /// 只执行一次
@@ -39,6 +37,8 @@
 #import "JobsModel.h"
 
 #pragma mark —— Category
+/// LiveChat
+#import "NSObject+LiveChat.h"
 /// 猿题库网络框架的集成
 #import "NSObject+YTKRequest.h"
 ///【二次封装HXPhotoPicker】弹出系统相册选择页面 + 调取系统相机进行拍摄

@@ -8,30 +8,6 @@
 #import "AppDelegate+Func.h"
 
 @implementation AppDelegate (Func)
-#pragma mark —— 一些私有方法
--(JobsReturnAlertControllerByStringBlock _Nonnull)makeAlertControllerBy{
-    return ^__kindof UIAlertController *_Nullable(NSString *_Nullable string){
-        UIAlertController *alertVC = JobsMakeAlertControllerBy(jobsMakeAlertModel(^(JobsAlertModel * _Nullable data) {
-            data.alertControllerTitle = JobsInternationalization(@"Support");
-            data.message = string;
-            data.preferredStyle = UIAlertControllerStyleAlert;
-        }));
-        alertVC.add(JobsMakeAlertActionBy(jobsMakeAlertModel(^(JobsAlertModel *_Nullable data) {
-            data.alertActionTitle = JobsInternationalization(@"Go to Chat");
-            data.alertActionStyle = UIAlertActionStyleDefault;
-            data.alertActionBlock = ^(__kindof UIAlertAction * _Nullable action) {
-                if (!LiveChat.isChatPresented) [LiveChat presentChatWithAnimated:YES completion:nil];
-            };
-        })));
-        alertVC.add(JobsMakeAlertActionBy(jobsMakeAlertModel(^(JobsAlertModel *_Nullable data) {
-            data.cancelAlertActionTitle = JobsInternationalization(@"Cancel");
-            data.alertActionStyle = UIAlertActionStyleCancel;
-            data.alertActionBlock = ^(__kindof UIAlertAction *_Nullable action) {
-                NSLog(@"");
-            };
-        })));return alertVC;
-    };
-}
 #pragma mark —— 启动调用功能
 +(jobsByVoidBlock _Nonnull)launchFunc1{
     @jobs_weakify(self)
@@ -62,20 +38,6 @@
         self.makeReachabilityConfig();/// 网络环境监测
         self.YTKNetworkConfig();/// YTK网络框架的配置
         self.KTVHTTP();/// KTVHTTPCache
-    };
-}
-#pragma mark —— LiveChat
--(jobsByVoidBlock _Nonnull)configLiveChat{
-    return ^(){
-        LiveChat.licenseId = @"1520"; // Set your licence number here
-        LiveChat.groupId = @"77"; // Optionally, you can set specific group
-        LiveChat.name = @"iOS Widget Example"; // User name and email can be provided if known
-        LiveChat.email = @"example@livechatinc.com";
-        
-        [LiveChat setVariableWithKey:@"First variable name" value:@"Some value"];
-        [LiveChat setVariableWithKey:@"Second name" value:@"Other value"];
-        
-        LiveChat.delegate = self;
     };
 }
 #pragma mark —— 开屏广告
@@ -191,9 +153,8 @@
             userModel.token = @"12345";
             userModel.uid = @"54321";
         }));
-        NSLog(@"");
-        JobsUserModel *f = self.readUserInfo;
-        NSLog(@"");
+//        JobsUserModel *f = self.readUserInfo;
+//        NSLog(@"");
     };
 }
 #pragma mark —— 读取Plist配置文件
@@ -272,9 +233,7 @@
 }
 #pragma mark —— 全局配置JobsNavBarConfig
 -(jobsByVoidBlock _Nonnull)makeJobsNavBarConfig{
-    @jobs_weakify(self)
     return ^(){
-        @jobs_strongify(self)
         static_navBarConfig = JobsNavBarConfig.SharedInstance();
 //        static_navBarConfig.backBtnModel = self.makeBackBtnModel;
     };
@@ -317,7 +276,7 @@
         [self addNotificationName:kReachabilityChangedNotification
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
             NSLog(@"通知传递过来的 = %@",notification.object);
         }];
@@ -326,45 +285,6 @@
             self.jobsPost(kReachabilityChangedNotification);
         });
     };
-}
-#pragma mark —— UNUserNotificationCenterDelegate
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center
-       willPresentNotification:(UNNotification *)notification
-         withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
-    if(completionHandler) completionHandler(UNAuthorizationOptionAlert + UNAuthorizationOptionSound);
-}
-
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center
-didReceiveNotificationResponse:(UNNotificationResponse *)response
-         withCompletionHandler:(void(^)(void))completionHandler{
-    
-}
-
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center
-   openSettingsForNotification:(nullable UNNotification *)notification{
-    
-}
-#pragma mark —— LiveChatDelegate
-- (void)receivedWithMessage:(LiveChatMessage *)message{
-    if (!LiveChat.isChatPresented) {
-        self.getCurrentViewController.comingToPresentVC(self.makeAlertControllerBy(message.text));
-    }
-}
-
--(void)chatPresented {
-    NSLog(@"Chat presented");
-}
-
--(void)chatDismissed {
-    NSLog(@"Chat dismissed");
-}
-
--(void)chatLoadingFailedWith:(NSError *)error {
-    NSLog(@"Chat loading failure %@", error.localizedDescription);
-}
-
--(void)handleWithURL:(NSURL *)URL {
-    self.jobsOpenURL(URL);
 }
 
 @end

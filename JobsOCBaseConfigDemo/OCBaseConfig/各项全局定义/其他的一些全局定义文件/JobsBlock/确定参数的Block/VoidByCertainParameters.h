@@ -17,6 +17,9 @@ typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
 typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
 typedef void(^jobsBySelectorBlock)(id _Nullable weakSelf,id _Nullable arg);
 typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
+#pragma mark —— 关于错误
+typedef void(^jobsByErrorBlock)(NSError *_Nullable error);
+typedef void(^jobsByErrBlock)(jobsByErrorBlock _Nullable block);
 #pragma mark —— 关于UIControl
 typedef void(^jobsByControlBlock)(UIControl *_Nullable ctrl);
 #pragma mark —— 关于Layer
@@ -114,10 +117,13 @@ typedef void(^jobsByUnsignedShortBlock)(unsigned short data);
 typedef void(^jobsByLongBlock)(long data);
 typedef void(^jobsByUnsignedLongBlock)(unsigned long data);
 typedef void(^jobsByUnsignedLongLongBlock)(unsigned long long data);
+typedef void(^jobsByUNNotificationPresentationOptionsBlock)(UNNotificationPresentationOptions options);
 #pragma mark —— 关于时间
+typedef void(^jobsByDateBlock)(NSDate *_Nullable date);
 typedef void(^jobsByDateComponentsBlock)(NSDateComponents *_Nullable dateComponents);
 typedef void(^jobsByTimerBlock)(NSTimer *_Nullable timer);
 typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable dateFormatter);
+typedef void(^jobsByNotificationResponseBlock)(UNNotificationResponse *_Nullable response);
 #pragma mark —— 手势
 typedef void(^jobsByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
 typedef void(^jobsByTapGestureBlock)(UITapGestureRecognizer *_Nullable gesture);
@@ -133,6 +139,7 @@ typedef void(^jobsByBezierPathBlock)(__kindof UIBezierPath *_Nullable data);
 typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable notification);
 #import <UserNotifications/UserNotifications.h>
 typedef void(^jobsByUNUserNotificationCenterBlock)(__kindof UNUserNotificationCenter *_Nullable center);
+typedef void(^jobsByUNMutableNotificationContentBlock)(__kindof UNMutableNotificationContent *_Nullable content);
 typedef void(^jobsByAlertActionBlock)(__kindof UIAlertAction *_Nullable action);
 
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;

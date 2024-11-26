@@ -165,6 +165,12 @@ NS_INLINE __kindof UNUserNotificationCenter *_Nonnull jobsMakeUNUserNotification
     return data;
 }
 
+NS_INLINE __kindof UNMutableNotificationContent *_Nonnull jobsMakeUNMutableNotificationContent(jobsByUNMutableNotificationContentBlock _Nonnull block){
+    UNMutableNotificationContent *data = UNMutableNotificationContent.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof WKWebView *_Nonnull jobsMakeWKWebView(jobsByWKWebViewBlock _Nonnull block){
     WKWebView *data = WKWebView.alloc.init;
     if (block) block(data);

@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
+#import "JobsBlock.h"
+#import "NSString+Check.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -38,6 +38,10 @@
 #import "DynamicInvoke.h"
 #import "JobsDateModel.h"
 
+#import "UNNotificationRequestModel.h"
+#import "JobsAlertModel.h"
+#import "UserDefaultModel.h"
+
 #import "IncomeSourceModel.h"
 #import "JobsCountriesModel.h"
 #import "PhilippinesModel.h"
