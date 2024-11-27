@@ -34,6 +34,8 @@
 		845F86752CF5953300C53A19 /* UNNotificationRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F866B2CF5953300C53A19 /* UNNotificationRequest+Extra.m */; };
 		845F86792CF595A000C53A19 /* UNNotificationRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F86772CF595A000C53A19 /* UNNotificationRequestModel.m */; };
 		845F867D2CF595D600C53A19 /* NSObject+LiveChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F867B2CF595D600C53A19 /* NSObject+LiveChat.m */; };
+		845F888B2CF7030100C53A19 /* UIMenuItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F88892CF7030100C53A19 /* UIMenuItem+Extra.m */; };
+		845F888C2CF7030100C53A19 /* NSLayoutConstraint+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F88862CF7030100C53A19 /* NSLayoutConstraint+Extra.m */; };
 		8461D13E2CF1929E00446E4F /* NSTextCheckingResult+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D1362CF1929E00446E4F /* NSTextCheckingResult+Extra.m */; };
 		8461D13F2CF1929E00446E4F /* NSJSONSerialization+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D13C2CF1929E00446E4F /* NSJSONSerialization+Extra.m */; };
 		8461D1402CF1929E00446E4F /* NSRegularExpression+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D1392CF1929E00446E4F /* NSRegularExpression+Extra.m */; };
@@ -1260,6 +1262,12 @@
 		845F86772CF595A000C53A19 /* UNNotificationRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UNNotificationRequestModel.m; sourceTree = "<group>"; };
 		845F867A2CF595D600C53A19 /* NSObject+LiveChat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LiveChat.h"; sourceTree = "<group>"; };
 		845F867B2CF595D600C53A19 /* NSObject+LiveChat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LiveChat.m"; sourceTree = "<group>"; };
+		845F88822CF702D000C53A19 /* BRStringPickerView+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BRStringPickerView+Extra.h"; sourceTree = "<group>"; };
+		845F88832CF702D000C53A19 /* BRStringPickerView+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BRStringPickerView+Extra.m"; sourceTree = "<group>"; };
+		845F88852CF7030100C53A19 /* NSLayoutConstraint+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Extra.h"; sourceTree = "<group>"; };
+		845F88862CF7030100C53A19 /* NSLayoutConstraint+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Extra.m"; sourceTree = "<group>"; };
+		845F88882CF7030100C53A19 /* UIMenuItem+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIMenuItem+Extra.h"; sourceTree = "<group>"; };
+		845F88892CF7030100C53A19 /* UIMenuItem+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIMenuItem+Extra.m"; sourceTree = "<group>"; };
 		8461D1322CF1929E00446E4F /* NSKeyedArchiver+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSKeyedArchiver+Extra.h"; sourceTree = "<group>"; };
 		8461D1332CF1929E00446E4F /* NSKeyedArchiver+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSKeyedArchiver+Extra.m"; sourceTree = "<group>"; };
 		8461D1352CF1929E00446E4F /* NSTextCheckingResult+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTextCheckingResult+Extra.h"; sourceTree = "<group>"; };
@@ -3637,6 +3645,7 @@
 			isa = PBXGroup;
 			children = (
 				84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */,
+				845F88842CF702D000C53A19 /* BRStringPickerView */,
 				84392BC02CF4A3AF000D441F /* Reachability */,
 				84392BC32CF4A3AF000D441F /* IQKeyboardManager */,
 				84392BC62CF4A3AF000D441F /* AFSecurityPolicy */,
@@ -3831,6 +3840,33 @@
 				845F867B2CF595D600C53A19 /* NSObject+LiveChat.m */,
 			);
 			path = "NSObject+LiveChat";
+			sourceTree = "<group>";
+		};
+		845F88842CF702D000C53A19 /* BRStringPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				845F88822CF702D000C53A19 /* BRStringPickerView+Extra.h */,
+				845F88832CF702D000C53A19 /* BRStringPickerView+Extra.m */,
+			);
+			path = BRStringPickerView;
+			sourceTree = "<group>";
+		};
+		845F88872CF7030100C53A19 /* NSLayoutConstraint */ = {
+			isa = PBXGroup;
+			children = (
+				845F88852CF7030100C53A19 /* NSLayoutConstraint+Extra.h */,
+				845F88862CF7030100C53A19 /* NSLayoutConstraint+Extra.m */,
+			);
+			path = NSLayoutConstraint;
+			sourceTree = "<group>";
+		};
+		845F888A2CF7030100C53A19 /* UIMenuItem */ = {
+			isa = PBXGroup;
+			children = (
+				845F88882CF7030100C53A19 /* UIMenuItem+Extra.h */,
+				845F88892CF7030100C53A19 /* UIMenuItem+Extra.m */,
+			);
+			path = UIMenuItem;
 			sourceTree = "<group>";
 		};
 		8461D1342CF1929E00446E4F /* NSKeyedArchiver */ = {
@@ -13363,6 +13399,8 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				845F88872CF7030100C53A19 /* NSLayoutConstraint */,
+				845F888A2CF7030100C53A19 /* UIMenuItem */,
 				845F866C2CF5953300C53A19 /* UNNotificationRequest */,
 				845F866F2CF5953300C53A19 /* UNCalendarNotificationTrigger */,
 				845F86722CF5953300C53A19 /* NSCalendar */,
@@ -16434,6 +16472,8 @@
 				CE4F28222CA825CD002AF25B /* ScheduleCell.m in Sources */,
 				CE5A64C42CA82F50006D67A7 /* NSObject+DynamicInvoke.m in Sources */,
 				CE4F28232CA825CD002AF25B /* MSCommentTableHeaderFooterView.m in Sources */,
+				845F888B2CF7030100C53A19 /* UIMenuItem+Extra.m in Sources */,
+				845F888C2CF7030100C53A19 /* NSLayoutConstraint+Extra.m in Sources */,
 				84AA8F442CE32ACC0004501A /* NSArray+Safety.m in Sources */,
 				CECE7ECC2C450E5B00764AF5 /* WMZBannerView.m in Sources */,
 				CECE7EB72C450E5B00764AF5 /* TKPermissionHealth.m in Sources */,

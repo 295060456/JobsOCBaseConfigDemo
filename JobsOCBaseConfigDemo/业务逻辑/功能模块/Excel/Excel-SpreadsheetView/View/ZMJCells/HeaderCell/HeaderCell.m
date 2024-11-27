@@ -43,24 +43,28 @@
 #pragma mark —— lazyLoad
 -(UILabel *)label{
     if(!_label){
-        _label = UILabel.new;
-        _label.frame = self.bounds;
-        _label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _label.font = UIFontWeightBoldSize(JobsWidth(14));
-        _label.textAlignment = NSTextAlignmentCenter;
-        _label.numberOfLines = 2;
-        [self.contentView addSubview:_label];
+        @jobs_weakify(self)
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.frame = self.bounds;
+            label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            label.font = UIFontWeightBoldSize(JobsWidth(14));
+            label.textAlignment = NSTextAlignmentCenter;
+            label.numberOfLines = 2;
+            self.contentView.addSubview(label);
+        });
     }return _label;
 }
 
 -(UILabel *)sortArrow{
     if(!_sortArrow){
-        _sortArrow = UILabel.new;
-        _sortArrow.text = @"";
-//        _sortArrow.backgroundColor = JobsRedColor;
-        _sortArrow.font = [UIFont boldSystemFontOfSize:14];
-        _sortArrow.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:_sortArrow];
+        _sortArrow = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.text = @"";
+//            label.backgroundColor = JobsRedColor;
+            label.font = [UIFont boldSystemFontOfSize:14];
+            label.textAlignment = NSTextAlignmentCenter;
+            self.contentView.addSubview(label);
+        });
     }return _sortArrow;
 }
 

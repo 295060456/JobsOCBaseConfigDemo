@@ -48,9 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 以应对一个视图上面多个 BRStringPickerView的情况
 /// 关键代码：[self.pickerView1 addPickerToView:承接的视图1];只能一对一承接
 -(BRPickerStyle *)makeCustomStyle;
--(BRAddressPickerView *)makeAddressPickerView:(BRPickerStyle *_Nullable)pickerStyle;
--(BRStringPickerView *)makeStringPickerView:(BRStringPickerMode)stringPickerMode;
--(BRDatePickerView *)makeDatePickerView:(BRPickerStyle *_Nullable)customStyle;
+-(JobsReturnBRAddressPickerViewByPickerStyleBlock _Nonnull)makeAddressPickerView;
+-(JobsReturnBRStringPickerViewByPickerModeBlock _Nonnull)makeStringPickerView;
+-(JobsReturnBRDatePickerViewByPickerStyleBlock _Nonnull)makeDatePickerView;
 
 @end
 
@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
  *    多列：@[@[@"语文", @"数学", @"英语"], @[@"优秀", @"良好"]]，或直接传多维模型数组
  *    联动：直接传一维模型数组(NSArray <BRResultModel *>*)，要注意数据源联动格式，可参考Demo
  */
-@property(nullable,nonatomic,copy)NSArray *dataSourceArr;
+@property(nonatomic,copy,nullable)NSArray *dataSourceArr;
 /**
  *  2.设置数据源
  *    直接传plist文件名：NSString类型（如：@"test.plist"），要带后缀名
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  推荐使用 selectIndex，更加严谨，可以避免使用 selectValue 时，有名称相同的情况
  */
 @property(nonatomic,assign)NSInteger selectIndex;
-@property(nullable,nonatomic,copy)NSString *selectValue;
+@property(nonatomic,copy,nullable)NSString *selectValue;
 /**
  *  设置默认选中的位置【多列】
  *  推荐使用 selectIndexs，更加严谨，可以避免使用 selectValues 时，有名称相同的情况
@@ -108,6 +108,27 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof BRDatePickerView *_Nonnull jobsMakeBRDatePickerView(jobsByBRDatePickerViewBlock _Nonnull block){
+    BRDatePickerView *data = BRDatePickerView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof BRAddressPickerView *_Nonnull jobsMakeBRAddressPickerView(jobsByBRAddressPickerViewBlock _Nonnull block){
+    BRAddressPickerView *data = BRAddressPickerView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof BRPickerStyle *_Nonnull jobsMakeBRPickerStyle(jobsByBRPickerStyleBlock _Nonnull block){
+    BRPickerStyle *data = BRPickerStyle.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+
+
 /**
  * 常规用法
  * 构建日期选择器
@@ -172,13 +193,13 @@ NS_ASSUME_NONNULL_END
 
     -(BRDatePickerView *)fromDatePickerView{
      if (!_fromDatePickerView) {
-         _fromDatePickerView = [UIView makeDatePickerView:nil];
+         _fromDatePickerView = self.makeDatePickerView(nil);
      }return _fromDatePickerView;
     }
 
     -(BRDatePickerView *)toDatePickerView{
      if (!_toDatePickerView) {
-         _toDatePickerView = [UIView makeDatePickerView:nil];
+         _toDatePickerView = self.makeDatePickerView(nil);
      }return _toDatePickerView;
     }
  * 启动

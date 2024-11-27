@@ -11,5 +11,6 @@
 #import "AFSecurityPolicy+Extra.h"
 #import "IQKeyboardManager+Extra.h"
 #import "Reachability+Extra.h"
+#import "BRStringPickerView+Extra.h"
 
 #endif /* JobsOCBaseCustomize3rdCore_h */

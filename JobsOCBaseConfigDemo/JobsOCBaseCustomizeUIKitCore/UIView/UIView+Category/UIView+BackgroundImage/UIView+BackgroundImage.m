@@ -22,30 +22,32 @@ JobsKey(_backgroundImageView)
 -(UIImageView *)backgroundImageView{
     UIImageView *BackgroundImageView = Jobs_getAssociatedObject(_backgroundImageView);
     if (!BackgroundImageView) {
-        BackgroundImageView = UIImageView.new;
-        BackgroundImageView.userInteractionEnabled = YES;
-        BackgroundImageView.contentMode = UIViewContentModeScaleToFill;
-        self.backgroundColor = JobsClearColor;
-        if ([self isKindOfClass:UICollectionViewCell.class]) {
-            UICollectionViewCell *cell = (UICollectionViewCell *)self;
-            [cell.contentView addSubview:BackgroundImageView];
-            [BackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(cell.contentView);
-            }];
-        }else if ([self isKindOfClass:UITableViewCell.class]){
-            UITableViewCell *cell = (UITableViewCell *)self;
-            [cell.contentView addSubview:BackgroundImageView];
-            [BackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(cell.contentView);
-            }];
-        }else{
-            [self addSubview:BackgroundImageView];
-            [BackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self);
-            }];
-        }
-        BackgroundImageView.layer.zPosition = -1;// 设置层级关系
-        Jobs_setAssociatedRETAIN_NONATOMIC(_backgroundImageView, BackgroundImageView)
+        @jobs_weakify(self)
+        BackgroundImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.userInteractionEnabled = YES;
+            imageView.contentMode = UIViewContentModeScaleToFill;
+            self.backgroundColor = JobsClearColor;
+            if ([self isKindOfClass:UICollectionViewCell.class]) {
+                UICollectionViewCell *cell = (UICollectionViewCell *)self;
+                cell.contentView.addSubview(imageView);
+                [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.equalTo(cell.contentView);
+                }];
+            }else if ([self isKindOfClass:UITableViewCell.class]){
+                UITableViewCell *cell = (UITableViewCell *)self;
+                cell.contentView.addSubview(imageView);
+                [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.equalTo(cell.contentView);
+                }];
+            }else{
+                self.addSubview(BackgroundImageView);
+                [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.equalTo(self);
+                }];
+            }imageView.layer.zPosition = -1;// 设置层级关系
+            Jobs_setAssociatedRETAIN_NONATOMIC(_backgroundImageView, imageView)
+        });
     }return BackgroundImageView;
 }
 

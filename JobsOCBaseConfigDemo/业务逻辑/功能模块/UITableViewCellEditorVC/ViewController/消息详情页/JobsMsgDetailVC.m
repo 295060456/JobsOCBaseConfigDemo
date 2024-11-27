@@ -99,32 +99,36 @@
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.text = self.msgDataModel.textModel.text;
-        _titleLab.font = UIFontWeightBoldSize(16);
-        _titleLab.textColor = HEXCOLOR(0x3D4A58);
-        [self.view addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(28));
-            make.left.equalTo(self.view).offset(JobsWidth(16));
-            make.width.mas_equalTo(JobsWidth(217));
-        }];
-        _titleLab.makeLabelByShowingType(UILabelShowingType_05);
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = self.msgDataModel.textModel.text;
+            label.font = UIFontWeightBoldSize(16);
+            label.textColor = HEXCOLOR(0x3D4A58);
+            self.view.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(28));
+                make.left.equalTo(self.view).offset(JobsWidth(16));
+                make.width.mas_equalTo(JobsWidth(217));
+            }];label.makeLabelByShowingType(UILabelShowingType_05);
+        });
     }return _titleLab;
 }
 
 -(UILabel *)subTitleLab{
     if (!_subTitleLab) {
-        _subTitleLab = UILabel.new;
-        _subTitleLab.font = UIFontWeightRegularSize(12);
-        _subTitleLab.text = self.msgDataModel.time;
-        _subTitleLab.textColor = HEXCOLOR(0xB0B0B0);
-        [self.view addSubview:_subTitleLab];
-        [_subTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(12));
-            make.left.equalTo(self.titleLab);
-        }];
-        _subTitleLab.makeLabelByShowingType(UILabelShowingType_01);
+        @jobs_weakify(self)
+        _subTitleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.font = UIFontWeightRegularSize(12);
+            label.text = self.msgDataModel.time;
+            label.textColor = HEXCOLOR(0xB0B0B0);
+            self.view.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(12));
+                make.left.equalTo(self.titleLab);
+            }];label.makeLabelByShowingType(UILabelShowingType_01);
+        });
     }return _subTitleLab;
 }
 
@@ -147,29 +151,35 @@
 
 -(UILabel *)lineLab{
     if (!_lineLab) {
-        _lineLab = UILabel.new;
-        _lineLab.backgroundColor = HEXCOLOR(0xEAEBED);
-        [self.view addSubview:_lineLab];
-        [_lineLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(343), JobsWidth(2)));
-            make.centerX.equalTo(self.view);
-            make.top.equalTo(self.subTitleLab.mas_bottom).offset(JobsWidth(24));
-        }];
+        @jobs_weakify(self)
+        _lineLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = HEXCOLOR(0xEAEBED);
+            self.view.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(343), JobsWidth(2)));
+                make.centerX.equalTo(self.view);
+                make.top.equalTo(self.subTitleLab.mas_bottom).offset(JobsWidth(24));
+            }];
+        });
     }return _lineLab;
 }
 
 -(UITextView *)textView{
     if (!_textView) {
-        _textView = UITextView.new;
-        _textView.text = self.msgDataModel.subTextModel.text;
-        _textView.textColor = HEXCOLOR(0xB0B0B0);
-        _textView.font = UIFontWeightRegularSize(14);
-        [self.view addSubview:_textView];
-        [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view);
-            make.top.equalTo(self.lineLab.mas_bottom).offset(JobsWidth(20));
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(343), JobsWidth(452)));
-        }];
+        @jobs_weakify(self)
+        _textView = jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
+            @jobs_strongify(self)
+            textView.text = self.msgDataModel.subTextModel.text;
+            textView.textColor = HEXCOLOR(0xB0B0B0);
+            textView.font = UIFontWeightRegularSize(14);
+            self.view.addSubview(textView);
+            [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.view);
+                make.top.equalTo(self.lineLab.mas_bottom).offset(JobsWidth(20));
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(343), JobsWidth(452)));
+            }];
+        });
     }return _textView;
 }
 

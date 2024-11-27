@@ -127,7 +127,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     };
 
     NSInteger index = 0;
-    for (JobsAppDoorInputViewBaseStyle *inputView in currentPageDataMutArr(self.currentPage)) {
+    for (JobsAppDoorInputViewBaseStyle *inputView in currentPageDataMutArr(self.currentPage.integerValue)) {
         Ivar ivar = nil;
         if (index == 0) {
             ivar = class_getInstanceVariable([JobsAppDoorInputViewBaseStyle_3 class], "_tf");//必须是下划线接属性
@@ -161,7 +161,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         
         if (self.currentPage == CurrentPage_login) {
             self.customerServiceBtn.y = self.loginCustomerServiceBtnY;
-        }else if (self.currentPage == CurrentPage_register){
+        }else if (self.currentPage.integerValue == CurrentPage_register){
             self.customerServiceBtn.y = self.registerCustomerServiceBtnY;
         }else{}
         

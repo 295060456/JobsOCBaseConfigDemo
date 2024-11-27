@@ -133,21 +133,20 @@
 
 -(UILabel *)titleLab{
     if(!_titleLab){
-        _titleLab = UILabel.new;
-        _titleLab.text = NavBarConfig.title;
-        if(NavBarConfig.attributedTitle){
-            _titleLab.attributedText = NavBarConfig.attributedTitle;
-        }
-        _titleLab.font = NavBarConfig.font;
-        _titleLab.textColor = NavBarConfig.titleCor;
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self);
-            make.height.mas_equalTo(self.height);
-        }];
-        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
-        [self layoutIfNeeded];
-        NSLog(@"");
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = NavBarConfig.title;
+            if(NavBarConfig.attributedTitle) label.attributedText = NavBarConfig.attributedTitle;
+            label.font = NavBarConfig.font;
+            label.textColor = NavBarConfig.titleCor;
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(self);
+                make.height.mas_equalTo(self.height);
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
+            self.refresh();
+        });
     }return _titleLab;
 }
 

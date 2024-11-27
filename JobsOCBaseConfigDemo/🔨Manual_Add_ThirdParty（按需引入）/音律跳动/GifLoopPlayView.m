@@ -19,7 +19,7 @@
 static dispatch_once_t dispatchOnce;
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = JobsClearColor;
         dispatchOnce = 0;
     }return self;
 }
@@ -44,22 +44,24 @@ static dispatch_once_t dispatchOnce;
 #pragma mark —— lazyLoad
 -(UIImageView *)imageView{
     if (!_imageView) {
-        _imageView = UIImageView.new;
-        _imageView.frame = self.bounds;
-        _imageView.image = self.pauseImage;
-        
-        _imageView.animationImages = (NSArray *)self.gifMutArr; //动画图片数组
-        _imageView.animationDuration = self.duration;
-        _imageView.animationRepeatCount = 0;  //动画重复次数，无限循环
-        
-        [self addSubview:_imageView];
+        @jobs_weakify(self)
+        _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.frame = self.bounds;
+            imageView.image = self.pauseImage;
+            imageView.animationImages = (NSArray *)self.gifMutArr; //动画图片数组
+            imageView.animationDuration = self.duration;
+            imageView.animationRepeatCount = 0;  //动画重复次数，无限循环
+            self.addSubview(imageView);
+        });
     }return _imageView;
 }
 
 -(NSMutableArray<UIImage *> *)gifMutArr{
     if (!_gifMutArr) {
-        _gifMutArr = NSMutableArray.array;
-        [_gifMutArr addObject:JobsBuddleIMG(nil,@"音律跳动", nil, @"1")];
+        _gifMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            arr.add(JobsBuddleIMG(nil,@"音律跳动", nil, @"1"));
+        });
     }return _gifMutArr;
 }
 

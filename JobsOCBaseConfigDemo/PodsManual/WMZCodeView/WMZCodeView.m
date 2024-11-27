@@ -445,7 +445,7 @@ static dispatch_once_t static_codeViewOnceToken;
     self.tipLabel.attributedText = attStr;
 }
 /// 成功动画
-NS_INLINE CABasicAnimation *successAnimal(){
+NS_INLINE CABasicAnimation *successAnimal(void){
     CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     animation.duration = 0.2;
     animation.autoreverses = YES;
@@ -455,7 +455,7 @@ NS_INLINE CABasicAnimation *successAnimal(){
     return animation;
 }
 /// 失败动画
-NS_INLINE CABasicAnimation *failAnimal(){
+NS_INLINE CABasicAnimation *failAnimal(void){
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     [animation setDuration:0.08];
     animation.fromValue = @(-M_1_PI/16);
@@ -476,7 +476,7 @@ NS_INLINE CABasicAnimation *failAnimal(){
     });
 }
 /// 配置滑块贝塞尔曲线
-NS_INLINE UIBezierPath* getCodePath(){
+NS_INLINE UIBezierPath *getCodePath(void){
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(0, 0)];
     [path addLineToPoint:CGPointMake(codeSize * 0.5 - WMZoffset,0)];
@@ -516,19 +516,19 @@ NS_INLINE UIBezierPath* getCodePath(){
     return (int)(from + (arc4random() % (to - from + 1)));
 }
 /// 获取随机数量中文
-- (NSString*)getRandomChineseWithCount:(NSInteger)count{
-     NSMutableString *mString = [NSMutableString.alloc initWithString:JobsInternationalization(@"")];
-     NSStringEncoding gbkEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-    for (int i = 0; i < count; i++) {
-        NSInteger randomH = 0xA1 + arc4random()%(0xFE - 0xA1+1);
-        NSInteger randomL = 0xB0 + arc4random()%(0xF7 - 0xB0+1);
-        NSInteger number = (randomH << 8) + randomL;
-        NSData *data = [NSData dataWithBytes:&number length:2];
-        NSString *string = [NSString.alloc initWithData:data encoding:gbkEncoding];
-        if (string) {
-            [mString appendString:string];
-        }
-    }return [NSString stringWithFormat:@"%@",mString];
+-(JobsReturnStringByIntegerBlock _Nonnull)getRandomChineseWithCount{
+    return ^__kindof NSString *_Nullable(NSInteger count){
+        NSMutableString *mString = JobsMutableString(@"");
+        NSStringEncoding gbkEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+       for (int i = 0; i < count; i++) {
+           NSInteger randomH = 0xA1 + arc4random()%(0xFE - 0xA1+1);
+           NSInteger randomL = 0xB0 + arc4random()%(0xF7 - 0xB0+1);
+           NSInteger number = (randomH << 8) + randomL;
+           NSData *data = [NSData dataWithBytes:&number length:2];
+           NSString *string = [NSString.alloc initWithData:data encoding:gbkEncoding];
+           if (string) mString.add(string);
+       }return [NSString stringWithFormat:@"%@",mString];
+    };
 }
 
 - (NSString *)name{
@@ -539,9 +539,10 @@ NS_INLINE UIBezierPath* getCodePath(){
 
 - (UILabel *)tipLabel{
     if (!_tipLabel) {
-        _tipLabel = UILabel.new;
-        _tipLabel.textAlignment = NSTextAlignmentCenter;
-        _tipLabel.font = [UIFont systemFontOfSize:WMZfont];
+        _tipLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font = [UIFont systemFontOfSize:WMZfont];
+        });
     }return _tipLabel;
 }
 
@@ -592,13 +593,13 @@ NS_INLINE UIBezierPath* getCodePath(){
 
 - (NSString *)factChinese{
     if (!_factChinese) {
-        _factChinese = [self getRandomChineseWithCount:codeLabelCount];
+        _factChinese = self.getRandomChineseWithCount(codeLabelCount);
     }return _factChinese;
 }
 
 - (NSString *)allChinese{
     if (!_allChinese) {
-        _allChinese = [NSString stringWithFormat:@"%@%@",self.factChinese,[self getRandomChineseWithCount: self.type == CodeTypeNineLabel?9-codeLabelCount:codeAddLabelCount]];
+        _allChinese = self.factChinese.add(self.getRandomChineseWithCount(self.type == CodeTypeNineLabel ? 9 - codeLabelCount:codeAddLabelCount));
     }return _allChinese;
 }
 
@@ -618,98 +619,19 @@ NS_INLINE UIBezierPath* getCodePath(){
 
 -(UILabel *)label{
     if (!_label) {
-        _label = UILabel.new;
-        _label.center = self.center;
-        _label.text = @"按住滑块拖动到最右边";
-        _label.font = [UIFont systemFontOfSize:WMZfont];
-        _label.textAlignment = NSTextAlignmentCenter;
-        _label.textColor = RGBA_COLOR(193, 193, 193, 1);
-        _label.layer.masksToBounds = YES;
-        _label.layer.borderWidth = 1;
-        _label.layer.borderColor = RGBA_COLOR(193, 193, 193, 1).CGColor;
+        @jobs_weakify(self)
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.center = self.center;
+            label.text = JobsInternationalization(@"按住滑块拖动到最右边");
+            label.font = [UIFont systemFontOfSize:WMZfont];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = RGBA_COLOR(193, 193, 193, 1);
+            label.layer.masksToBounds = YES;
+            label.layer.borderWidth = 1;
+            label.layer.borderColor = RGBA_COLOR(193, 193, 193, 1).CGColor;
+        });
     }return _label;
-}
-
-@end
-
-@implementation UIImage (Expand)
-/// 截取当前image对象rect区域内的图像
--(UIImage *)dw_SubImageWithRect:(CGRect)rect{
-    CGFloat scale = self.scale;
-    CGRect scaleRect = CGRectMake(rect.origin.x * scale,
-                                  rect.origin.y * scale,
-                                  rect.size.width * scale,
-                                  rect.size.height * scale);
-    CGImageRef newImageRef = CGImageCreateWithImageInRect(self.CGImage, scaleRect);
-    UIImage *newImage = [[UIImage imageWithCGImage:newImageRef] dw_RescaleImageToSize:rect.size];
-    CGImageRelease(newImageRef);
-    return newImage;
-}
-/// 压缩图片至指定尺寸
--(UIImage *)dw_RescaleImageToSize:(CGSize)size{
-    CGRect rect = (CGRect){CGPointZero, size};
-    UIGraphicsBeginImageContextWithOptions(size, NO, UIScreen.mainScreen.scale);
-    [self drawInRect:rect];
-    UIImage *resImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return resImage;
-}
-/// 按给定path剪裁图片
-/// @param path 路径，剪裁区域
-/// @param mode 填充模式
--(UIImage *)dw_ClipImageWithPath:(UIBezierPath *)path
-                            mode:(DWContentMode)mode{
-    CGFloat originScale = self.size.width * 1.0 / self.size.height;
-    CGRect boxBounds = path.bounds;
-    CGFloat width = boxBounds.size.width;
-    CGFloat height = width / originScale;
-    switch (mode) {
-        case DWContentModeScaleAspectFit:{
-            if (height > boxBounds.size.height) {
-                height = boxBounds.size.height;
-                width = height * originScale;
-            }
-        }break;
-        case DWContentModeScaleAspectFill:{
-            if (height < boxBounds.size.height) {
-                height = boxBounds.size.height;
-                width = height * originScale;
-            }
-        }break;
-        default:
-            if (height != boxBounds.size.height) {
-                height = boxBounds.size.height;
-            }break;
-    }
-    /// 开启上下文
-    UIGraphicsBeginImageContextWithOptions(boxBounds.size, NO, UIScreen.mainScreen.scale);
-    CGContextRef bitmap = UIGraphicsGetCurrentContext();
-    /// 归零path
-    UIBezierPath * newPath = path.copy;
-    [newPath applyTransform:CGAffineTransformMakeTranslation(-path.bounds.origin.x, -path.bounds.origin.y)];
-    [newPath addClip];
-    /// 移动原点至图片中心
-    CGContextTranslateCTM(bitmap, boxBounds.size.width / 2.0, boxBounds.size.height / 2.0);
-    CGContextScaleCTM(bitmap, 1.0, -1.0);
-    CGContextDrawImage(bitmap, CGRectMake(-width / 2,
-                                          -height / 2,
-                                          width,
-                                          height), self.CGImage);
-    /// 生成图片
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-/// 裁剪图片
-- (UIImage*)imageScaleToSize:(CGSize)size{
-    UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
-    [self drawInRect:CGRectMake(0,
-                                0,
-                                size.width,
-                                size.height)];
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return scaledImage;
 }
 
 @end

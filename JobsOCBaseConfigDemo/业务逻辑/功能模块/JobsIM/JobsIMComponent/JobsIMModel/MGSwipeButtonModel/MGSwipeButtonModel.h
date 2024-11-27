@@ -18,3 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof MGSwipeButtonModel *_Nonnull jobsMakeMGSwipeButtonModel(jobsByMGSwipeButtonModelBlock _Nonnull block){
+    MGSwipeButtonModel *data = MGSwipeButtonModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

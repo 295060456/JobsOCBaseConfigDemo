@@ -48,15 +48,17 @@
 #pragma mark —— lazyLoad
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = UILabel.new;
-        _titleLabel.font = UIFontWeightRegularSize(15);
-        [self.contentView addSubview:_titleLabel];
-        [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView).offset(10);
-            make.top.equalTo(self.contentView).offset(20);
-        }];
-    }
-    _titleLabel.text = [NSString stringWithFormat:@"indexPath:%zd--%zd selected:%@", self.indexPath.section, self.indexPath.row , self.viewModel.jobsSelected ? @"YES" : @"NO"];
+        @jobs_weakify(self)
+        _titleLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.font = UIFontWeightRegularSize(15);
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.contentView).offset(10);
+                make.top.equalTo(self.contentView).offset(20);
+            }];
+        });
+    }_titleLabel.text = [NSString stringWithFormat:@"indexPath:%zd--%zd selected:%@", self.indexPath.section,self.indexPath.row,self.viewModel.jobsSelected ? @"YES" : @"NO"];
     return _titleLabel;
 }
 

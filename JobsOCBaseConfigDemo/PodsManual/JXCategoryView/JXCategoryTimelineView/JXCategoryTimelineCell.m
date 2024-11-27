@@ -17,12 +17,12 @@
 
 @implementation JXCategoryTimelineCell
 
-- (void)initializeViews{
+-(void)initializeViews{
     [super initializeViews];
     self.timeLabel.alpha = 1;
 }
 
-- (void)reloadData:(JXCategoryBaseCellModel *)cellModel {
+-(void)reloadData:(JXCategoryBaseCellModel *)cellModel{
     [super reloadData:cellModel];
     JXCategoryTimelineCellModel *myCellModel = (JXCategoryTimelineCellModel *)cellModel;
     self.timeLabel.text = myCellModel.timeTitle;
@@ -37,25 +37,29 @@
 #pragma mark —— lazyLoad
 -(UILabel *)timeLabel{
     if (!_timeLabel) {
-        _timeLabel = UILabel.new;
-        _timeLabel.textAlignment = NSTextAlignmentCenter;
-        _timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.contentView addSubview:_timeLabel];
-        NSLayoutConstraint *timeLabelCenterX = [NSLayoutConstraint constraintWithItem:_timeLabel
-                                                                            attribute:NSLayoutAttributeCenterX
-                                                                            relatedBy:NSLayoutRelationEqual
-                                                                               toItem:self.contentView
-                                                                            attribute:NSLayoutAttributeCenterX
-                                                                           multiplier:1
-                                                                             constant:0];
-        NSLayoutConstraint *timeLabelCenterY = [NSLayoutConstraint constraintWithItem:_timeLabel
-                                                                            attribute:NSLayoutAttributeCenterY
-                                                                            relatedBy:NSLayoutRelationEqual
-                                                                               toItem:self.contentView
-                                                                            attribute:NSLayoutAttributeTop
-                                                                           multiplier:1
-                                                                             constant:20];
-        [NSLayoutConstraint activateConstraints:@[timeLabelCenterX, timeLabelCenterY]];
+        @jobs_weakify(self)
+        _timeLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textAlignment = NSTextAlignmentCenter;
+            label.translatesAutoresizingMaskIntoConstraints = NO;
+            self.contentView.addSubview(label);
+            NSLayoutConstraint.initBy(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                arr.add([NSLayoutConstraint constraintWithItem:label
+                                                     attribute:NSLayoutAttributeCenterX
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self.contentView
+                                                     attribute:NSLayoutAttributeCenterX
+                                                    multiplier:1
+                                                      constant:0]);
+                arr.add([NSLayoutConstraint constraintWithItem:label
+                                                     attribute:NSLayoutAttributeCenterY
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self.contentView
+                                                     attribute:NSLayoutAttributeTop
+                                                    multiplier:1
+                                                      constant:20]);
+            }));
+        });
     }return _timeLabel;
 }
 

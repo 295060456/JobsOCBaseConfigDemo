@@ -36,12 +36,15 @@ static dispatch_once_t JobsAppDoorLogoContentViewDispatchOnce;
 #pragma mark —— lazyLoad
 -(UIImageView *)mainImgV{
     if (!_mainImgV) {
-        _mainImgV = UIImageView.new;
-        _mainImgV.image = JobsIMG(@"AppDoorLogo");
-        [self addSubview:_mainImgV];
-        [_mainImgV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _mainImgV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = JobsIMG(@"AppDoorLogo");
+            self.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
+        });
     }return _mainImgV;
 }
 

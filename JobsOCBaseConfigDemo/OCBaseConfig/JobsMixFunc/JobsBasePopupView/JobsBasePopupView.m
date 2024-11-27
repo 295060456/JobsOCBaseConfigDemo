@@ -62,29 +62,33 @@
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.font = self.viewModel.textModel.font;
-        _titleLab.textColor = self.viewModel.textModel.textCor;
-        _titleLab.textAlignment = self.viewModel.textModel.textAlignment;
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
-            make.top.equalTo(self).offset(JobsWidth(50));
-        }];
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.font = self.viewModel.textModel.font;
+            label.textColor = self.viewModel.textModel.textCor;
+            label.textAlignment = self.viewModel.textModel.textAlignment;
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self);
+                make.top.equalTo(self).offset(JobsWidth(50));
+            }];
+        });
     }return _titleLab;
 }
 
 -(UILabel *)subTitleLab{
     if (!_subTitleLab) {
-        _subTitleLab = UILabel.new;
-        _subTitleLab.font = self.viewModel.subTextModel.font;
-        _subTitleLab.textColor = self.viewModel.subTextModel.textCor;
-        _subTitleLab.textAlignment = self.viewModel.subTextModel.textAlignment;
-        [self addSubview:_subTitleLab];
-        [_subTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
-            make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(5));
-        }];
+        @jobs_weakify(self)
+        _subTitleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.font = self.viewModel.subTextModel.font;
+            label.textColor = self.viewModel.subTextModel.textCor;
+            label.textAlignment = self.viewModel.subTextModel.textAlignment;
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self);
+                make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(5));
+            }];
+        });
     }return _subTitleLab;
 }
 
@@ -92,11 +96,11 @@
     if (!_btn1) {
         _btn1 = BaseButton
             .initByStyle4(JobsInternationalization(@"Cancel"),
-                                                                    UIFontWeightRegularSize(14),
-                                                                    HEXCOLOR(0x502600),
-                                                                    self.viewModel.image,
-                                                                    JobsIMG(@"弹窗取消按钮背景图"),
-                                                                    NSDirectionalRectEdgeNone)
+                          UIFontWeightRegularSize(14),
+                          HEXCOLOR(0x502600),
+                          self.viewModel.image,
+                          JobsIMG(@"弹窗取消按钮背景图"),
+                          NSDirectionalRectEdgeNone)
             .onClick(^(UIButton *x){
                 if(self.objectBlock) self.objectBlock(x);
             }).onLongPressGesture(^(id data){
@@ -117,11 +121,11 @@
         @jobs_weakify(self)
         _btn2 = BaseButton
             .initByStyle4(JobsInternationalization(@"Sure"),
-                                                                    UIFontWeightRegularSize(14),
-                                                                    HEXCOLOR(0x502600),
-                                                                    self.viewModel.image,
-                                                                    JobsIMG(@"弹窗确定按钮背景图"),
-                                                                    NSDirectionalRectEdgeNone)
+                          UIFontWeightRegularSize(14),
+                          HEXCOLOR(0x502600),
+                          self.viewModel.image,
+                          JobsIMG(@"弹窗确定按钮背景图"),
+                          NSDirectionalRectEdgeNone)
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 if(self.objectBlock) self.objectBlock(x);

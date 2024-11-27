@@ -14,14 +14,14 @@ JobsKey(_backgroundLabel)
 -(UILabel *)backgroundLabel{
     UILabel *BackgroundLabel = Jobs_getAssociatedObject(_backgroundLabel);
     if (!BackgroundLabel) {
-        BackgroundLabel = UILabel.new;
-        BackgroundLabel.userInteractionEnabled = YES;
-        [self addSubview:BackgroundLabel];
-        [self sendSubviewToBack:BackgroundLabel];
-        [BackgroundLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_backgroundLabel, BackgroundLabel)
+        BackgroundLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.userInteractionEnabled = YES;
+            self.addSubview(label);
+            self.sendSubviewToBack(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];Jobs_setAssociatedRETAIN_NONATOMIC(_backgroundLabel, label)
+        });
     }return BackgroundLabel;
 }
 

@@ -23,25 +23,12 @@
 #define codeAddLabelCount 3
 /// 字体
 #define WMZfont 24
-
-/*
- * CodeType type
- */
+/// CodeType type
 typedef NS_ENUM(NSInteger, CodeType) {
     CodeTypeImage = 0,    // DefaultImage
     CodeTypeLabel,        // Label
     CodeTypeNineLabel,    // NineLabel
     CodeTypeSlider        // Slider
 };
-
-typedef NS_ENUM(NSInteger,DWContentMode)//图片填充模式
-{
-    DWContentModeScaleAspectFit,//适应模式
-    DWContentModeScaleAspectFill,//填充模式
-    DWContentModeScaleToFill//拉伸模式
-};
-
-typedef void (^callBack) (BOOL success);
-
 
 #endif /* WMZCodeViewDefine_h */

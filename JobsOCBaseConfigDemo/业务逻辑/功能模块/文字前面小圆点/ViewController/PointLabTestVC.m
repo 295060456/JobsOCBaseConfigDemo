@@ -7,7 +7,7 @@
 
 #import "PointLabTestVC.h"
 
-@interface PointLabTestVC ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface PointLabTestVC ()
 /// UI
 @property(nonatomic,strong)UILabel *label;
 @property(nonatomic,strong)UILabel *label2;
@@ -38,34 +38,36 @@
 #pragma mark —— lazyLoad
 -(UILabel *)label{
     if(!_label){
-        _label = UILabel.new;
-        _label.backgroundColor = JobsRandomColor;
-        _label.attributedText = self.attributedString;
-        _label.numberOfLines = 0;
-        [self.view addSubview:_label];
-        [_label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(200);
-            make.center.equalTo(self.view);
-        }];
-        _label.makeLabelByShowingType(UILabelShowingType_05);
-        [self.view addSubview:_label];
+        @jobs_weakify(self)
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = JobsRandomColor;
+            label.attributedText = self.attributedString;
+            label.numberOfLines = 0;
+            self.view.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(200);
+                make.center.equalTo(self.view);
+            }];label.makeLabelByShowingType(UILabelShowingType_05);
+        });
     }return _label;
 }
 
 -(UILabel *)label2{
     if(!_label2){
-        _label2 = UILabel.new;
-        _label2.backgroundColor = JobsRandomColor;
-        _label2.attributedText = self.attributedString2;
-        _label2.numberOfLines = 0;
-        [self.view addSubview:_label2];
-        [_label2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(200);
-            make.centerX.equalTo(self.view);
-            make.top.equalTo(self.label.mas_bottom);
-        }];
-        _label2.makeLabelByShowingType(UILabelShowingType_05);
-        [self.view addSubview:_label2];
+        @jobs_weakify(self)
+        _label2 = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = JobsRandomColor;
+            label.attributedText = self.attributedString2;
+            label.numberOfLines = 0;
+            self.view.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(200);
+                make.centerX.equalTo(self.view);
+                make.top.equalTo(self.label.mas_bottom);
+            }];label.makeLabelByShowingType(UILabelShowingType_05);
+        });
     }return _label2;
 }
 

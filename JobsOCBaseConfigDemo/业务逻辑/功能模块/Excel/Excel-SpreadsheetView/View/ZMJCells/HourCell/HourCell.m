@@ -27,16 +27,18 @@
 #pragma mark —— LazyLoad
 -(UILabel *)label{
     if(!_label){
-        _label = UILabel.new;
-        _label.frame = self.bounds;
-        
-        _label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _label.backgroundColor = [UIColor colorWithRed:0.2 green:0.4 blue:0.8 alpha:1];
-        _label.font = [UIFont systemFontOfSize:12];
-        _label.textColor = [UIColor whiteColor];
-        _label.textAlignment = NSTextAlignmentCenter;
-        _label.numberOfLines = 2;
-        [self addSubview:_label];
+        @jobs_weakify(self)
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.frame = self.bounds;
+            label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            label.backgroundColor = [UIColor colorWithRed:0.2 green:0.4 blue:0.8 alpha:1];
+            label.font = [UIFont systemFontOfSize:12];
+            label.textColor = [UIColor whiteColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.numberOfLines = 2;
+            self.addSubview(label);
+        });
     }return _label;
 }
 

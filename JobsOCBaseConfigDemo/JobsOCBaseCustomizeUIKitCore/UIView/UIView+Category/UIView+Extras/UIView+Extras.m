@@ -803,8 +803,17 @@ JobsKey(_getAnimation)
         [self addSubview:subView];
         if(subView.masonryBlock){
             [subView mas_makeConstraints:subView.masonryBlock];
-            [self layoutIfNeeded];
+            self.refresh();
         }return subView;
+    };
+}
+
+-(JobsReturnViewByViewBlock _Nonnull)sendSubviewToBack{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {
+        @jobs_strongify(self)
+        [self sendSubviewToBack:subView];
+        return subView;
     };
 }
 
@@ -932,10 +941,11 @@ JobsKey(_getAnimation)
            layerShadowColor:(UIColor *__nullable)layerShadowColor
           layerShadowRadius:(CGFloat)layerShadowRadius{
     
-    targetShadowview.layer.cornerRadius = cornerRadius;//圆切角
+    targetShadowview.layer.cornerRadius = cornerRadius;/// 圆切角
     
     if (superview && CGRectEqualToRect(targetShadowview.frame,CGRectZero)) {
-        [superview layoutIfNeeded];//targetShadowview当在某些masonry约束的时候，没有frame,需要进行刷新得到frame，否则不会出现阴影效果
+        /// targetShadowview当在某些masonry约束的时候，没有frame,需要进行刷新得到frame，否则不会出现阴影效果
+        superview.refresh();
     }
     
     targetShadowview.layer.shadowOpacity = (shadowOpacity != 0) ? : 0.7f;//shadowOpacity设置了阴影的不透明度,取值范围在0~1;

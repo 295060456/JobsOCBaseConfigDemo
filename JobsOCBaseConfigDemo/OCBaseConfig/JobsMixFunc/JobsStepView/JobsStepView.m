@@ -38,7 +38,7 @@
     [super layoutSubviews];
     /// 内部指定圆切角
     [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
-                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -73,8 +73,7 @@
             [btn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self);
                 make.height.mas_equalTo(self.viewSizeByModel(nil).height);
-            }];
-            [self layoutIfNeeded];
+            }];self.refresh();
             NSLog(@"");
             if(self.btnMutArr.count){
                 UIView *view = self.btnMutArr.lastObject;
@@ -105,27 +104,33 @@
 }
 #pragma mark —— 一些私有方法
 -(void)makeRightLab:(UIButton *)btn buttonModel:(UIButtonModel *)buttonModel{
-    UILabel *rightLab = UILabel.new;
-    rightLab.backgroundColor = self.rightLabBgCor;
-    [self addSubview:rightLab];
-    [rightLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(btn.imageView);
-        make.left.equalTo(btn.mas_right);
-        make.height.mas_equalTo(1);
-        make.width.mas_equalTo(buttonModel.rightViewWidth);
-    }];
+    @jobs_weakify(self)
+    jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+        @jobs_strongify(self)
+        label.backgroundColor = self.rightLabBgCor;
+        self.addSubview(label);
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(btn.imageView);
+            make.left.equalTo(btn.mas_right);
+            make.height.mas_equalTo(1);
+            make.width.mas_equalTo(buttonModel.rightViewWidth);
+        }];
+    }).alpha = 1;
 }
 
 -(void)makeLeftLab:(UIButton *)btn buttonModel:(UIButtonModel *)buttonModel{
-    UILabel *leftLab = UILabel.new;
-    leftLab.backgroundColor = self.leftLabBgCor;
-    [self addSubview:leftLab];
-    [leftLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(btn.imageView);
-        make.right.equalTo(btn.mas_left);
-        make.height.mas_equalTo(1);
-        make.width.mas_equalTo(buttonModel.leftViewWidth);
-    }];
+    @jobs_weakify(self)
+    jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+        @jobs_strongify(self)
+        label.backgroundColor = self.leftLabBgCor;
+        self.addSubview(label);
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(btn.imageView);
+            make.right.equalTo(btn.mas_left);
+            make.height.mas_equalTo(1);
+            make.width.mas_equalTo(buttonModel.leftViewWidth);
+        }];
+    }).alpha = 1;
 }
 #pragma mark —— lazyLoad
 -(NSMutableArray<BaseButton *> *)btnMutArr{

@@ -7,6 +7,10 @@
 
 #ifndef JobsBlock_h
 #define JobsBlock_h
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
+
 /**
     全局的Block块定义
     基本数据类型尽量的用NSNumber进行二次封装成对象对外输出
@@ -107,6 +111,9 @@ typedef NSTimeZone *_Nullable(^JobsReturnTimeZoneByTypeBlock)(TimeZoneType timeZ
 typedef id _Nullable(^JobsReturnIDByAppLanguageBlock)(AppLanguage data);
 typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType componentType,
                                                                  __kindof UIView *_Nullable data);
+@class MGSwipeButtonModel;
+typedef void(^jobsByMGSwipeButtonModelBlock)(__kindof MGSwipeButtonModel *_Nullable model);
+
 @class JobsRichTextConfig;
 typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable data);
 typedef void(^jobsByRichTextConfigBlock)(__kindof JobsRichTextConfig *_Nullable data);
@@ -161,6 +168,8 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerConfigModelBlock)(B
 
 @class JobsAppDoorInputViewBaseStyleModel;
 typedef void(^jobsByAppDoorInputViewBaseStyleModelBlock)(JobsAppDoorInputViewBaseStyleModel *_Nullable data);
+@class JobsAppDoorInputViewBaseStyle;
+typedef JobsAppDoorInputViewBaseStyle *_Nullable(^JobsReturnAppDoorInputViewBaseStyleByClassBlock)(Class _Nonnull data);
 
 @class JobsCorModel;
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(UIColor *_Nullable data);
@@ -315,6 +324,9 @@ typedef void(^jobsByRequestToolBlock)(RequestTool *_Nullable requestTool);
 typedef void(^jobsByBaseModelBlock)(__kindof BaseModel *_Nullable baseModel);
 typedef void(^jobsByBaseModelAndIndexBlock)(__kindof BaseModel *_Nullable baseModel,NSInteger index);
 
+@class BRStringPickerViewModel;
+typedef void(^jobsByBRStringPickerViewModelBlock)(__kindof BRStringPickerViewModel *_Nullable model);
+
 @class JobsDecorationModel;
 typedef void(^jobsByDecorationModelBlock)(__kindof JobsDecorationModel *_Nullable model);
 typedef UIViewModel *_Nullable(^JobsReturnViewModelByDecorationModelBlock)(JobsDecorationModel *_Nullable model);
@@ -325,6 +337,18 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBloc
 
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable data);
 #pragma mark —— 涉及到第三方类的Block定义
+@class BRDatePickerView;
+@class BRAddressPickerView;
+@class BRStringPickerView;
+@class BRPickerStyle;
+//@class BRStringPickerMode;
+typedef void(^jobsByBRPickerStyleBlock)(__kindof BRPickerStyle *_Nullable pickerStyle);
+typedef void(^jobsByBRDatePickerViewBlock)(__kindof BRDatePickerView *_Nullable datePickerView);
+typedef void(^jobsByBRAddressPickerViewBlock)(__kindof BRAddressPickerView *_Nullable addressPickerView);
+typedef BRDatePickerView *_Nonnull(^JobsReturnBRDatePickerViewByPickerStyleBlock)(BRPickerStyle *_Nullable style);
+typedef BRAddressPickerView *_Nonnull(^JobsReturnBRAddressPickerViewByPickerStyleBlock)(BRPickerStyle *_Nullable style);
+typedef BRStringPickerView *_Nonnull(^JobsReturnBRStringPickerViewByPickerModeBlock)(NSInteger mode);
+
 @class AFSecurityPolicy;
 typedef AFSecurityPolicy *_Nonnull(^JobsReturnAFSecurityPolicyByAFSSLPinningModeBlock)(NSUInteger data);
 

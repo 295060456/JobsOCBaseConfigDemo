@@ -60,14 +60,17 @@
 #pragma mark —— lazyLoad
 -(UIImageView *)coverImageView{
     if (!_coverImageView) {
-        _coverImageView = UIImageView.new;
-        _coverImageView.userInteractionEnabled = YES;
-        _coverImageView.tag = kPlayerViewTag;//不写这个光有声音没有图像
-        _coverImageView.contentMode = UIViewContentModeScaleAspectFit;
-        [self.contentView addSubview:_coverImageView];
-        [_coverImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
+        @jobs_weakify(self)
+        _coverImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.userInteractionEnabled = YES;
+            imageView.tag = kPlayerViewTag;//不写这个光有声音没有图像
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
+            self.contentView.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView);
+            }];
+        });
     }return _coverImageView;
 }
 

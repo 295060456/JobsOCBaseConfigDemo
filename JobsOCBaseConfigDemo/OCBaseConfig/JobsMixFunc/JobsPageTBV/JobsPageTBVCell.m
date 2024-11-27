@@ -42,20 +42,21 @@
 }
 
 -(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
-    @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
-        @jobs_strongify(self)
         return 0.f;
     };
 }
 #pragma mark —— lazyLoad
 -(UILabel *)textLab{
     if (!_textLab) {
-        _textLab = UILabel.new;
-        [self.contentView addSubview:_textLab];
-        [_textLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
+        @jobs_weakify(self)
+        _textLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView);
+            }];
+        });
     }return _textLab;
 }
 

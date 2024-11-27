@@ -39,20 +39,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface UIImage (Expand)
-/// 截取当前image对象rect区域内的图像
--(UIImage *)dw_SubImageWithRect:(CGRect)rect;
-/// 压缩图片至指定尺寸
--(UIImage *)dw_RescaleImageToSize:(CGSize)size;
-/**
- * 按给定path剪裁图片
- * path:路径，剪裁区域。
- * mode:填充模式
- */
--(UIImage *)dw_ClipImageWithPath:(UIBezierPath *)path mode:(DWContentMode)mode;
-/// 裁剪图片
--(UIImage*)imageScaleToSize:(CGSize)size;
-
-@end
-
 NS_ASSUME_NONNULL_END

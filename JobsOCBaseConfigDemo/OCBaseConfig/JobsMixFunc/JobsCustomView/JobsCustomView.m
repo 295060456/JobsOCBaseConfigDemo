@@ -95,80 +95,94 @@ static dispatch_once_t static_customViewOnceToken;
 #pragma mark —— lazyLoad
 -(UIImageView *)indicatorIMGV{
     if (!_indicatorIMGV) {
-        _indicatorIMGV = UIImageView.new;
-        _indicatorIMGV.image = JobsIMG(@"起止");
-        [self addSubview:_indicatorIMGV];
-        [_indicatorIMGV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(56), JobsWidth(196)));
-            make.left.equalTo(self).offset(JobsWidth(16));
-            make.top.equalTo(self).offset(JobsWidth(27));
-        }];
+        @jobs_weakify(self)
+        _indicatorIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = JobsIMG(@"起止");
+            self.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(56), JobsWidth(196)));
+                make.left.equalTo(self).offset(JobsWidth(16));
+                make.top.equalTo(self).offset(JobsWidth(27));
+            }];
+        });
     }return _indicatorIMGV;
 }
 
 -(UILabel *)segmentationLine{
     if (!_segmentationLine) {
-        _segmentationLine = UILabel.new;
-        _segmentationLine.backgroundColor = HEXCOLOR(0xEAEBED);
-        [self addSubview:_segmentationLine];
-        [_segmentationLine mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.indicatorIMGV);
-            make.right.equalTo(self).offset(-JobsWidth(16));
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(263), JobsWidth(1)));
-        }];
+        @jobs_weakify(self)
+        _segmentationLine = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = HEXCOLOR(0xEAEBED);
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self.indicatorIMGV);
+                make.right.equalTo(self).offset(-JobsWidth(16));
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(263), JobsWidth(1)));
+            }];
+        });
     }return _segmentationLine;
 }
 
 -(BaseView *)containFromView{
     if (!_containFromView) {
-        _containFromView = BaseView.new;
-        _containFromView.backgroundColor = JobsRandomColor;
-        _containFromView.frame = CGRectMake(JobsWidth(100),
-                                            JobsWidth(44),
-                                            JobsWidth(263),
-                                            JobsWidth(196 / 2));
-//        _containView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [self addSubview:_containFromView];
+        @jobs_weakify(self)
+        _containFromView = jobsMakeBaseView(^(__kindof UIView * _Nullable view) {
+            @jobs_strongify(self)
+            view.backgroundColor = JobsRandomColor;
+            view.frame = CGRectMake(JobsWidth(100),
+                                    JobsWidth(44),
+                                    JobsWidth(263),
+                                    JobsWidth(196 / 2));
+    //        view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            self.addSubview(view);
+        });
     }return _containFromView;
 }
 
 -(BaseView *)containToView{
     if (!_containToView) {
-        _containToView = BaseView.new;
-        _containToView.backgroundColor = JobsRandomColor;
-        _containToView.frame = CGRectMake(JobsWidth(100),
-                                          JobsWidth(44 + 196 / 2),
-                                          JobsWidth(263),
-                                          JobsWidth(196 / 2));
-//        _containView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [self addSubview:_containToView];
+        @jobs_weakify(self)
+        _containToView = jobsMakeBaseView(^(__kindof UIView * _Nullable view) {
+            @jobs_strongify(self)
+            view.backgroundColor = JobsRandomColor;
+            view.frame = CGRectMake(JobsWidth(100),
+                                    JobsWidth(44 + 196 / 2),
+                                    JobsWidth(263),
+                                    JobsWidth(196 / 2));
+    //        view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            self.addSubview(view);
+        });
     }return _containToView;
 }
 
 -(BRDatePickerView *)fromDatePickerView{
     if (!_fromDatePickerView) {
-        _fromDatePickerView = [UIView makeDatePickerView:nil];
+        _fromDatePickerView = self.makeDatePickerView(nil);
     }return _fromDatePickerView;
 }
 
 -(BRDatePickerView *)toDatePickerView{
     if (!_toDatePickerView) {
-        _toDatePickerView = [UIView makeDatePickerView:nil];
+        _toDatePickerView = self.makeDatePickerView(nil);
     }return _toDatePickerView;
 }
 
 -(UILabel *)tipsLab{
     if (!_tipsLab) {
-        _tipsLab = UILabel.new;
-        _tipsLab.text = JobsInternationalization(@"當前支持查詢最近30天的投注記錄");
-        _tipsLab.font = UIFontWeightRegularSize(12);
-        _tipsLab.textColor = HEXCOLOR(0x757575);
-        [self addSubview:_tipsLab];
-        [_tipsLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.indicatorIMGV.mas_bottom).offset(JobsWidth(20));
-            make.left.equalTo(self).offset(JobsWidth(19));
-        }];
-        _tipsLab.makeLabelByShowingType(UILabelShowingType_03);
+        @jobs_weakify(self)
+        _tipsLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = JobsInternationalization(@"當前支持查詢最近30天的投注記錄");
+            label.font = UIFontWeightRegularSize(12);
+            label.textColor = HEXCOLOR(0x757575);
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.indicatorIMGV.mas_bottom).offset(JobsWidth(20));
+                make.left.equalTo(self).offset(JobsWidth(19));
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
+        });
     }return _tipsLab;
 }
 
@@ -214,11 +228,17 @@ static dispatch_once_t static_customViewOnceToken;
 
 -(UIColor *)cancelBtnBgCor{
     if (!_cancelBtnBgCor) {
-        _cancelBtnBgCor = [UIColor gradientCorDataMutArr:[NSMutableArray arrayWithArray:@[HEXCOLOR(0xE7E7E7),HEXCOLOR(0xDDDADA)]]
+        _cancelBtnBgCor = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            arr.add(HEXCOLOR(0xE7E7E7));
+            arr.add(HEXCOLOR((0xDDDADA)));
+        })
                                               startPoint:CGPointZero
                                                 endPoint:CGPointZero
                                                   opaque:NO
-                                          targetViewRect:CGRectMake(0, 0, self.btnSize.width, self.btnSize.height)];
+                                          targetViewRect:CGRectMake(0,
+                                                                    0,
+                                                                    self.btnSize.width,
+                                                                    self.btnSize.height)];
 
         
     }return _cancelBtnBgCor;
@@ -226,11 +246,17 @@ static dispatch_once_t static_customViewOnceToken;
 
 -(UIColor *)sureBtnBgCor{
     if (!_sureBtnBgCor) {
-        _sureBtnBgCor = [UIColor gradientCorDataMutArr:[NSMutableArray arrayWithArray:@[HEXCOLOR(0xF2E4A3),HEXCOLOR(0xF2CC78)]]
+        _sureBtnBgCor = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            arr.add(HEXCOLOR(0xF2E4A3));
+            arr.add(HEXCOLOR((0xF2CC78)));
+        })
                                             startPoint:CGPointZero
                                               endPoint:CGPointZero
                                                 opaque:NO
-                                        targetViewRect:CGRectMake(0, 0, self.btnSize.width, self.btnSize.height)];
+                                        targetViewRect:CGRectMake(0,
+                                                                  0,
+                                                                  self.btnSize.width,
+                                                                  self.btnSize.height)];
     }return _sureBtnBgCor;
 }
 

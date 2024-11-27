@@ -55,14 +55,16 @@ UIViewModelProtocol_self_synthesize
 #pragma mark —— lazyLoad
 -(UIImageView *)backgroudImageView{
     if(!_backgroudImageView){
-        _backgroudImageView = UIImageView.new;
-        _backgroudImageView.image = self.viewModel.bgImage;
-        [self.contentView addSubview:_backgroudImageView];
-        [_backgroudImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
+        @jobs_weakify(self)
+        _backgroudImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = self.viewModel.bgImage;
+            self.contentView.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView);
+            }];
+        });
     }return _backgroudImageView;
 }
-
 
 @end

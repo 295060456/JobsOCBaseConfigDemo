@@ -127,14 +127,17 @@
 
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.text = Title7;
-        _titleLab.textColor = JobsWhiteColor;
-        _titleLab.font = JobsFontRegular(JobsWidth(20));
-        [_titleLab sizeToFit];
-        [self addSubview:_titleLab];
-        _titleLab.centerX = (self.width - self.toRegisterBtn.width) / 2;
-        _titleLab.top = JobsWidth(20);
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = Title7;
+            label.textColor = JobsWhiteColor;
+            label.font = JobsFontRegular(JobsWidth(20));
+            [label sizeToFit];
+            self.addSubview(label);
+            label.centerX = (self.width - self.toRegisterBtn.width) / 2;
+            label.top = JobsWidth(20);
+        });
     }return _titleLab;
 }
 

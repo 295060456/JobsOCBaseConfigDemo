@@ -60,24 +60,28 @@
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
     return ^CGSize(UIViewModel *_Nullable data){
-        return CGSizeEqualToSize(data.jobsSize, CGSizeZero) ? [UILabel sizeWithText:data.textModel.text
-                                                                               font:data.textModel.font
-                                                                            maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)] : data.jobsSize;
+        return CGSizeEqualToSize(data.jobsSize, CGSizeZero) ?
+        [UILabel sizeWithText:data.textModel.text
+                         font:data.textModel.font
+                      maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)] : data.jobsSize;
     };
 }
 #pragma mark —— lazyLoad
 -(UILabel *)textLab{
     if (!_textLab) {
-        _textLab = UILabel.new;
-        _textLab.backgroundColor = self.viewModel.bgCor;
-        _textLab.textColor = self.viewModel.textModel.textCor;
-        _textLab.textAlignment = NSTextAlignmentCenter;
-        _textLab.text = self.viewModel.textModel.text;
-        _textLab.font = self.viewModel.textModel.font;
-        [self.contentView addSubview:_textLab];
-        [_textLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
+        @jobs_weakify(self)
+        _textLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = self.viewModel.bgCor;
+            label.textColor = self.viewModel.textModel.textCor;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.text = self.viewModel.textModel.text;
+            label.font = self.viewModel.textModel.font;
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView);
+            }];
+        });
     }return _textLab;
 }
 

@@ -82,44 +82,50 @@ static dispatch_once_t static_titleView01OnceToken;
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.text = isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"我是标题") : self.viewModel.textModel.text;
-        _titleLab.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
-        _titleLab.textColor = HEXCOLOR(0xAE8330);
-        _titleLab.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self);
-        }];
-        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"我是标题") : self.viewModel.textModel.text;
+            label.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
+            label.textColor = HEXCOLOR(0xAE8330);
+            label.textAlignment = NSTextAlignmentCenter;
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(self);
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
+        });
     }return _titleLab;
 }
 
 -(UILabel *)leftLab{
     if (!_leftLab) {
-        _leftLab = UILabel.new;
-        _leftLab.backgroundColor = HEXCOLOR(0xEEE2C8);
-        [self addSubview:_leftLab];
-        [_leftLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self);
-            make.height.mas_equalTo(JobsWidth(1.5));
-            make.left.equalTo(self).offset(JobsWidth(16));
-            make.right.equalTo(self.titleLab.mas_left).offset(JobsWidth(-30));
-        }];
+        @jobs_weakify(self)
+        _leftLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = HEXCOLOR(0xEEE2C8);
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self);
+                make.height.mas_equalTo(JobsWidth(1.5));
+                make.left.equalTo(self).offset(JobsWidth(16));
+                make.right.equalTo(self.titleLab.mas_left).offset(JobsWidth(-30));
+            }];
+        });
     }return _leftLab;
 }
 
 -(UILabel *)rightLab{
     if (!_rightLab) {
-        _rightLab = UILabel.new;
-        _rightLab.backgroundColor = HEXCOLOR(0xEEE2C8);
-        [self addSubview:_rightLab];
-        [_rightLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self);
-            make.height.mas_equalTo(JobsWidth(1.5));
-            make.right.equalTo(self).offset(JobsWidth(-16));
-            make.left.equalTo(self.titleLab.mas_right).offset(JobsWidth(30));
-        }];
+        _rightLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.backgroundColor = HEXCOLOR(0xEEE2C8);
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self);
+                make.height.mas_equalTo(JobsWidth(1.5));
+                make.right.equalTo(self).offset(JobsWidth(-16));
+                make.left.equalTo(self.titleLab.mas_right).offset(JobsWidth(30));
+            }];
+        });
     }return _rightLab;
 }
 

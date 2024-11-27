@@ -113,7 +113,7 @@
                     self.imageView.image = (UIImage *)self.photosImageMutArr.lastObject;/// 永远值显示最后选择的图
                 }];
             } failBlock:^(HXPhotoPickerModel *data) {
-                @jobs_strongify(self)
+//                @jobs_strongify(self)
             }];return nil;
         }];
     }return _photoAlbumBtn;
@@ -121,14 +121,17 @@
 
 -(UIImageView *)imageView{
     if(!_imageView){
-        _imageView = UIImageView.new;
-        _imageView.image = JobsIMG(@"选择资源➕");
-        [self.view addSubview:_imageView];
-        [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(200), JobsWidth(200)));
-            make.centerX.equalTo(self.view);
-            make.top.equalTo(self.photoAlbumBtn.mas_bottom).offset(JobsWidth(50));
-        }];
+        @jobs_weakify(self)
+        _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = JobsIMG(@"选择资源➕");
+            self.view.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(200), JobsWidth(200)));
+                make.centerX.equalTo(self.view);
+                make.top.equalTo(self.photoAlbumBtn.mas_bottom).offset(JobsWidth(50));
+            }];
+        });
     }return _imageView;
 }
 

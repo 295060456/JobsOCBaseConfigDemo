@@ -15,4 +15,10 @@
     }];return self;
 }
 
+-(__kindof UIGestureRecognizer *)GestureActionBy:(jobsByGestureRecognizerBlock _Nonnull)block{
+    [self.rac_gestureSignal subscribeNext:^(__kindof UIGestureRecognizer * _Nullable gesture) {
+        if(block) block(gesture);
+    }];return self;
+}
+
 @end

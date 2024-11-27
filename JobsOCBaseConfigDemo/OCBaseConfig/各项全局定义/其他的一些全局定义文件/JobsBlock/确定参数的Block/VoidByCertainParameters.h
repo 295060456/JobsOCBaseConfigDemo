@@ -7,6 +7,10 @@
 
 #ifndef VoidByCertainParameters_h
 #define VoidByCertainParameters_h
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
+
 ///【 确定入参个数 并且 没有返回值的Block定义】
 typedef void(^jobsByVoidBlock)(void);
 typedef void(^jobsByIDBlock)(id _Nullable data);
@@ -23,12 +27,14 @@ typedef void(^jobsByErrBlock)(jobsByErrorBlock _Nullable block);
 #pragma mark —— 关于UIControl
 typedef void(^jobsByControlBlock)(UIControl *_Nullable ctrl);
 #pragma mark —— 关于Layer
-typedef void(^jobsByCAShapeLayerBlock)(__kindof CAShapeLayer *_Nullable data);
-typedef void(^jobsByCALayerBlock)(__kindof CALayer *_Nullable data);
-typedef void(^jobsByCATransitionBlock)(__kindof CATransition *_Nullable data);
-typedef void(^jobsByCAGradientLayerBlock)(__kindof CAGradientLayer *_Nullable data);
+typedef void(^jobsByCAShapeLayerBlock)(__kindof CAShapeLayer *_Nullable layer);
+typedef void(^jobsByCALayerBlock)(__kindof CALayer *_Nullable layer);
+typedef void(^jobsByCATransitionBlock)(__kindof CATransition *_Nullable transition);
 #pragma mark —— 关于Animation
-typedef void(^jobsByCABasicAnimationBlock)(__kindof CABasicAnimation *_Nullable data);
+#import <QuartzCore/QuartzCore.h>
+typedef void(^jobsByCAKeyframeAnimationBlock)(__kindof CAKeyframeAnimation *_Nullable animation);
+typedef void(^jobsByCAGradientLayerBlock)(__kindof CAGradientLayer *_Nullable layer);
+typedef void(^jobsByCABasicAnimationBlock)(__kindof CABasicAnimation *_Nullable animation);
 #pragma mark —— 关于View
 typedef void(^jobsByViewBlock)(__kindof UIView *_Nullable view);
 typedef void(^jobsByScrollViewBlock)(__kindof UIScrollView *_Nullable scrollView);
@@ -45,10 +51,14 @@ typedef void(^jobsByCollectionViewBlock)(__kindof UICollectionView *_Nullable co
 typedef void(^jobsByTextFieldBlock)(__kindof UITextField *_Nullable textField);
 typedef void(^jobsByTextViewBlock)(__kindof UITextView *_Nullable textView);
 typedef void(^jobsByImageViewBlock)(__kindof UIImageView *_Nullable imageView);
+typedef void(^jobsByCAEmitterCellBlock)(__kindof CAEmitterCell *_Nullable cell);
+typedef void(^jobsByCAEmitterLayerBlock)(__kindof CAEmitterLayer *_Nullable layer);
 /// 多参数
 typedef void(^jobsByViewAndAnimatedBlock)(__kindof UIView *_Nullable view,BOOL animated);
 typedef void(^jobsByViewAndDataBlock)(__kindof UIView *_Nullable view,id _Nullable data);
 typedef void(^jobsByView2Block)(__kindof UIView *_Nullable superview,UIView *_Nullable view);
+#pragma mark —— 关于 控制器
+typedef void(^jobsByMenuControllerBlock)(__kindof UIMenuController *_Nullable menuController);
 #pragma mark —— 关于数据容器
 typedef void(^jobsByArrayBlock)(__kindof NSArray *_Nullable data);
 typedef void(^jobsByMutArrayBlock)(__kindof NSMutableArray *_Nullable arr);
@@ -88,7 +98,7 @@ typedef __kindof NSMutableURLRequest *_Nullable(^JobsReturnURLRequestByURLSessio
 typedef void(^jobsByVCBlock)(__kindof UIViewController *_Nullable data);
 typedef void(^jobsByVCAndDataBlock)(__kindof UIViewController *_Nullable viewController,id _Nullable data);
 #pragma mark —— 关于手势
-typedef void(^jobsByGestureRecognizerBlock)(__kindof UIGestureRecognizer *_Nullable data);
+typedef void(^jobsByGestureRecognizerBlock)(__kindof UIGestureRecognizer *_Nullable gesture);
 typedef void(^jobsByPanGestureRecognizerBlock)(__kindof UIPanGestureRecognizer *_Nullable data);
 typedef void(^jobsByTapGestureRecognizerBlock)(__kindof UITapGestureRecognizer *_Nullable data);
 typedef void(^jobsByLongPressGestureRecognizerBlock)(__kindof UILongPressGestureRecognizer *_Nullable data);
@@ -97,9 +107,10 @@ typedef void(^jobsByPinchGestureRecognizerBlock)(__kindof UIPinchGestureRecogniz
 typedef void(^jobsByRotationGestureRecognizerBlock)(__kindof UIRotationGestureRecognizer *_Nullable data);
 typedef void(^jobsByScreenEdgePanGestureRecognizerBlock)(__kindof UIScreenEdgePanGestureRecognizer *_Nullable data);
 #pragma mark —— 关于方位
-typedef void(^jobsByPointBlock)(CGPoint data);
-typedef void(^jobsBySizeBlock)(CGSize data);
-typedef void(^jobsByEdgeInsetBlock)(UIEdgeInsets data);
+typedef void(^jobsByFrameBlock)(CGRect frame);
+typedef void(^jobsByPointBlock)(CGPoint point);
+typedef void(^jobsBySizeBlock)(CGSize size);
+typedef void(^jobsByEdgeInsetBlock)(UIEdgeInsets insets);
 typedef void(^jobsByIndexPathBlock)(NSIndexPath *_Nullable indexPath);
 #pragma mark —— 关于数据类型
 typedef void(^jobsByNSIntegerBlock)(NSInteger data);
@@ -119,6 +130,7 @@ typedef void(^jobsByUnsignedLongBlock)(unsigned long data);
 typedef void(^jobsByUnsignedLongLongBlock)(unsigned long long data);
 typedef void(^jobsByUNNotificationPresentationOptionsBlock)(UNNotificationPresentationOptions options);
 #pragma mark —— 关于时间
+typedef void(^jobsByTimeIntervalBlock)(NSTimeInterval data);
 typedef void(^jobsByDateBlock)(NSDate *_Nullable date);
 typedef void(^jobsByDateComponentsBlock)(NSDateComponents *_Nullable dateComponents);
 typedef void(^jobsByTimerBlock)(NSTimer *_Nullable timer);
@@ -141,6 +153,7 @@ typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable notification);
 typedef void(^jobsByUNUserNotificationCenterBlock)(__kindof UNUserNotificationCenter *_Nullable center);
 typedef void(^jobsByUNMutableNotificationContentBlock)(__kindof UNMutableNotificationContent *_Nullable content);
 typedef void(^jobsByAlertActionBlock)(__kindof UIAlertAction *_Nullable action);
+typedef void(^jobsByPasteboardBlock)(__kindof UIPasteboard *_Nullable pasteboard);
 
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;
 typedef void(^jobsByThreeIDBlock)Jobs_3_Arguments;
@@ -159,5 +172,6 @@ typedef void(^_Nullable JobsSelectorBlock)(id _Nullable weakSelf,
 typedef void(^_Nullable JobsSelectorBlock1)(id _Nullable weakSelf,
                                             id _Nullable arg,
                                             id _Nullable data);
+#pragma clang diagnostic pop
 
 #endif /* VoidByCertainParameters_h */

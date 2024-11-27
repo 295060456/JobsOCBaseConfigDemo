@@ -59,20 +59,23 @@
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.font = UIFontWeightMediumSize(14);
-        _titleLab.textColor = HEXCOLOR(0x524740);
-        _titleLab.text = JobsInternationalization(@"The existing new version needs to be updated. Are you sure to download it?");
-        _titleLab.numberOfLines = 0;
-        _titleLab.textAlignment = NSTextAlignmentCenter;
-        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
-            make.top.equalTo(self).offset(JobsWidth(5));
-            make.left.equalTo(self).offset(JobsWidth(10));
-            make.right.equalTo(self).offset(JobsWidth(-10));
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.font = UIFontWeightMediumSize(14);
+            label.textColor = HEXCOLOR(0x524740);
+            label.text = JobsInternationalization(@"The existing new version needs to be updated. Are you sure to download it?");
+            label.numberOfLines = 0;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.makeLabelByShowingType(UILabelShowingType_03);
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self);
+                make.top.equalTo(self).offset(JobsWidth(5));
+                make.left.equalTo(self).offset(JobsWidth(10));
+                make.right.equalTo(self).offset(JobsWidth(-10));
+            }];
+        });
     }return _titleLab;
 }
 

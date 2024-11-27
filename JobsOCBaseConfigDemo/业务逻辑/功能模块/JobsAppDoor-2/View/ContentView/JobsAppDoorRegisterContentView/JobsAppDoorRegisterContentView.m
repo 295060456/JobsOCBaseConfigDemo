@@ -64,50 +64,54 @@
         @jobs_strongify(self)
         self.backToLoginBtn.alpha = 0.7f;
         self.titleLab.alpha = 1;
-        [self makeInputView];
+        self.makeInputView();
         self.sendBtn.alpha = 1;
     };
 }
 #pragma mark —— 一些私有化方法
--(void)makeInputView{
-    for (int i = 0; i < self.registerDoorInputViewBaseStyleModelMutArr.count; i++) {
-        JobsAppDoorInputViewBaseStyle *inputViewBaseStyle = nil;
-        {
-            if (i == 0 || i == 1 || i == 2) {
-                inputViewBaseStyle = [self dk:JobsAppDoorInputViewBaseStyle_3.class];
-            }else if (i == 3){
-                inputViewBaseStyle = [self dk:JobsAppDoorInputViewBaseStyle_1.class];
-            }else if (i == 4){
-                inputViewBaseStyle = [self dk:JobsAppDoorInputViewBaseStyle_4.class];
+-(jobsByVoidBlock _Nonnull)makeInputView{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        for (int i = 0; i < self.registerDoorInputViewBaseStyleModelMutArr.count; i++) {
+            JobsAppDoorInputViewBaseStyle *inputViewBaseStyle = nil;
+            {
+                if (i == 0 || i == 1 || i == 2) {
+                    inputViewBaseStyle = self.dk(JobsAppDoorInputViewBaseStyle_3.class);
+                }else if (i == 3){
+                    inputViewBaseStyle = self.dk(JobsAppDoorInputViewBaseStyle_1.class);
+                }else if (i == 4){
+                    inputViewBaseStyle = self.dk(JobsAppDoorInputViewBaseStyle_4.class);
+                }
             }
-            
+            inputViewBaseStyle.jobsRichViewByModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);//进数据
+            [self addSubview:inputViewBaseStyle];
+            inputViewBaseStyle.sizer = CGSizeMake(self.width - RegisterBtnWidth - JobsWidth(40), ThingsHeight);
+            inputViewBaseStyle.centerX = self.titleLab.centerX;
+            if (i == 0) {
+                inputViewBaseStyle.top = self.titleLab.bottom + JobsWidth(20);//20是偏移量
+            }else{
+                if (self.registerDoorInputViewBaseStyleMutArr.count > i) {
+                    JobsAppDoorInputViewBaseStyle_3 *lastObj = (JobsAppDoorInputViewBaseStyle_3 *)self.registerDoorInputViewBaseStyleMutArr[i - 1];
+                    inputViewBaseStyle.top = lastObj.bottom + InputViewOffset;
+                }
+            }inputViewBaseStyle.layer.cornerRadius = ThingsHeight / 2;
         }
-        inputViewBaseStyle.jobsRichViewByModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);//进数据
-        [self addSubview:inputViewBaseStyle];
-        inputViewBaseStyle.sizer = CGSizeMake(self.width - RegisterBtnWidth - JobsWidth(40), ThingsHeight);
-        inputViewBaseStyle.centerX = self.titleLab.centerX;
-        if (i == 0) {
-            inputViewBaseStyle.top = self.titleLab.bottom + JobsWidth(20);//20是偏移量
-        }else{
-            if (self.registerDoorInputViewBaseStyleMutArr.count > i) {
-                JobsAppDoorInputViewBaseStyle_3 *lastObj = (JobsAppDoorInputViewBaseStyle_3 *)self.registerDoorInputViewBaseStyleMutArr[i - 1];
-                inputViewBaseStyle.top = lastObj.bottom + InputViewOffset;
-            }
-        }
-        inputViewBaseStyle.layer.cornerRadius = ThingsHeight / 2;
-    }
+    };
 }
 
--(JobsAppDoorInputViewBaseStyle *)dk:(Class)cls{
-    if ([cls isSubclassOfClass:JobsAppDoorInputViewBaseStyle.class]) {
-        JobsAppDoorInputViewBaseStyle *inputView = cls.new;
-        [self.registerDoorInputViewBaseStyleMutArr addObject:inputView];
-        @jobs_weakify(self)
-        [inputView actionObjectBlock:^(id data) {
-            @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(data);
-        }];return inputView;
-    }return nil;
+-(JobsReturnAppDoorInputViewBaseStyleByClassBlock _Nonnull)dk{
+    return ^JobsAppDoorInputViewBaseStyle *_Nullable(Class _Nonnull cls){
+        if ([cls isSubclassOfClass:JobsAppDoorInputViewBaseStyle.class]) {
+            JobsAppDoorInputViewBaseStyle *inputView = cls.new;
+            [self.registerDoorInputViewBaseStyleMutArr addObject:inputView];
+            @jobs_weakify(self)
+            [inputView actionObjectBlock:^(id data) {
+                @jobs_strongify(self)
+                if (self.objectBlock) self.objectBlock(data);
+            }];return inputView;
+        }return nil;
+    };
 }
 #pragma mark —— lazyLoad
 -(BaseButton *)backToLoginBtn{
@@ -140,14 +144,17 @@
 
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.text = Title6;
-        _titleLab.textColor = JobsWhiteColor;
-        _titleLab.font = UIFontWeightRegularSize(20);
-        [_titleLab sizeToFit];
-        [self addSubview:_titleLab];
-        _titleLab.centerX = (self.width + self.backToLoginBtn.width) / 2;
-        _titleLab.top = 20;
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = Title6;
+            label.textColor = JobsWhiteColor;
+            label.font = UIFontWeightRegularSize(20);
+            [label sizeToFit];
+            self.addSubview(label);
+            label.centerX = (self.width + self.backToLoginBtn.width) / 2;
+            label.top = 20;
+        });
     }return _titleLab;
 }
 
@@ -177,62 +184,57 @@
 
 -(NSMutableArray<JobsAppDoorInputViewBaseStyleModel *> *)registerDoorInputViewBaseStyleModelMutArr{
     if (!_registerDoorInputViewBaseStyleModelMutArr) {
-        _registerDoorInputViewBaseStyleModelMutArr = NSMutableArray.array;
-        
-        JobsAppDoorInputViewBaseStyleModel *用户名 = JobsAppDoorInputViewBaseStyleModel.new;
-        用户名.leftViewIMG = JobsIMG(@"用户名称");
-        用户名.placeholder = @"用户名";
-        用户名.isShowDelBtn = YES;
-        用户名.isShowSecurityBtn = NO;
-        用户名.returnKeyType = UIReturnKeyDone;
-        用户名.keyboardAppearance = UIKeyboardAppearanceAlert;
-        用户名.leftViewMode = UITextFieldViewModeAlways;
-        [_registerDoorInputViewBaseStyleModelMutArr addObject:用户名];
-        
-        JobsAppDoorInputViewBaseStyleModel *密码 = JobsAppDoorInputViewBaseStyleModel.new;
-        密码.leftViewIMG = JobsIMG(@"Lock");
-        密码.placeholder = @"密码";
-        密码.isShowDelBtn = YES;
-        密码.isShowSecurityBtn = YES;
-        密码.returnKeyType = UIReturnKeyDone;
-        密码.keyboardAppearance = UIKeyboardAppearanceAlert;
-        密码.selectedSecurityBtnIMG = JobsIMG(@"codeEncode");//闭眼
-        密码.unSelectedSecurityBtnIMG = JobsIMG(@"codeDecode");//开眼
-        密码.leftViewMode = UITextFieldViewModeAlways;
-        [_registerDoorInputViewBaseStyleModelMutArr addObject:密码];
-        
-        JobsAppDoorInputViewBaseStyleModel *确认密码 = JobsAppDoorInputViewBaseStyleModel.new;
-        确认密码.leftViewIMG = JobsIMG(@"Lock");
-        确认密码.placeholder = @"确认密码";
-        确认密码.isShowDelBtn = YES;
-        确认密码.isShowSecurityBtn = YES;
-        确认密码.returnKeyType = UIReturnKeyDone;
-        确认密码.keyboardAppearance = UIKeyboardAppearanceAlert;
-        确认密码.selectedSecurityBtnIMG = JobsIMG(@"codeEncode");//闭眼
-        确认密码.unSelectedSecurityBtnIMG =JobsIMG(@"codeDecode");//开眼
-        确认密码.leftViewMode = UITextFieldViewModeAlways;
-        [_registerDoorInputViewBaseStyleModelMutArr addObject:确认密码];
-        
-        JobsAppDoorInputViewBaseStyleModel *推广码 = JobsAppDoorInputViewBaseStyleModel.new;
-        推广码.leftViewIMG = JobsIMG(@"推广码");
-        推广码.placeholder = @"手机验证码";
-        推广码.isShowDelBtn = YES;
-        推广码.isShowSecurityBtn = NO;
-        推广码.returnKeyType = UIReturnKeyDone;
-        推广码.keyboardAppearance = UIKeyboardAppearanceAlert;
-        推广码.leftViewMode = UITextFieldViewModeAlways;
-        [_registerDoorInputViewBaseStyleModelMutArr addObject:推广码];
-        
-        JobsAppDoorInputViewBaseStyleModel *图形验证码 = JobsAppDoorInputViewBaseStyleModel.new;
-        图形验证码.leftViewIMG = JobsIMG(@"验证ICON");
-        图形验证码.placeholder = @"图形验证码";
-        图形验证码.isShowDelBtn = YES;
-        图形验证码.isShowSecurityBtn = NO;
-        图形验证码.returnKeyType = UIReturnKeyDone;
-        图形验证码.keyboardAppearance = UIKeyboardAppearanceAlert;
-        图形验证码.leftViewMode = UITextFieldViewModeAlways;
-        [_registerDoorInputViewBaseStyleModelMutArr addObject:图形验证码];
-        
+        _registerDoorInputViewBaseStyleModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            arr.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 用户名) {
+                用户名.leftViewIMG = JobsIMG(@"用户名称");
+                用户名.placeholder = @"用户名";
+                用户名.isShowDelBtn = YES;
+                用户名.isShowSecurityBtn = NO;
+                用户名.returnKeyType = UIReturnKeyDone;
+                用户名.keyboardAppearance = UIKeyboardAppearanceAlert;
+                用户名.leftViewMode = UITextFieldViewModeAlways;
+            }));
+            arr.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 密码) {
+                密码.leftViewIMG = JobsIMG(@"Lock");
+                密码.placeholder = @"密码";
+                密码.isShowDelBtn = YES;
+                密码.isShowSecurityBtn = YES;
+                密码.returnKeyType = UIReturnKeyDone;
+                密码.keyboardAppearance = UIKeyboardAppearanceAlert;
+                密码.selectedSecurityBtnIMG = JobsIMG(@"codeEncode");//闭眼
+                密码.unSelectedSecurityBtnIMG = JobsIMG(@"codeDecode");//开眼
+                密码.leftViewMode = UITextFieldViewModeAlways;
+            }));
+            arr.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 确认密码) {
+                确认密码.leftViewIMG = JobsIMG(@"Lock");
+                确认密码.placeholder = @"确认密码";
+                确认密码.isShowDelBtn = YES;
+                确认密码.isShowSecurityBtn = YES;
+                确认密码.returnKeyType = UIReturnKeyDone;
+                确认密码.keyboardAppearance = UIKeyboardAppearanceAlert;
+                确认密码.selectedSecurityBtnIMG = JobsIMG(@"codeEncode");//闭眼
+                确认密码.unSelectedSecurityBtnIMG =JobsIMG(@"codeDecode");//开眼
+                确认密码.leftViewMode = UITextFieldViewModeAlways;
+            }));
+            arr.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 推广码) {
+                推广码.leftViewIMG = JobsIMG(@"推广码");
+                推广码.placeholder = @"手机验证码";
+                推广码.isShowDelBtn = YES;
+                推广码.isShowSecurityBtn = NO;
+                推广码.returnKeyType = UIReturnKeyDone;
+                推广码.keyboardAppearance = UIKeyboardAppearanceAlert;
+                推广码.leftViewMode = UITextFieldViewModeAlways;
+            }));
+            arr.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 图形验证码) {
+                图形验证码.leftViewIMG = JobsIMG(@"验证ICON");
+                图形验证码.placeholder = @"图形验证码";
+                图形验证码.isShowDelBtn = YES;
+                图形验证码.isShowSecurityBtn = NO;
+                图形验证码.returnKeyType = UIReturnKeyDone;
+                图形验证码.keyboardAppearance = UIKeyboardAppearanceAlert;
+                图形验证码.leftViewMode = UITextFieldViewModeAlways;
+            }));
+        });
     }return _registerDoorInputViewBaseStyleModelMutArr;
 }
 

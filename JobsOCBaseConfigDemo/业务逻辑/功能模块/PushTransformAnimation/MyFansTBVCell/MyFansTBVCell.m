@@ -67,20 +67,35 @@
     @jobs_weakify(self)
     return ^(id _Nullable model) {
         @jobs_strongify(self)
-        [self.imgView sd_setImageWithURL:@" ".jobsUrl
-                        placeholderImage:JobsIMG(toStringByInt([model intValue]).add(@".jpeg"))];
+        self.imgView
+                .imageURL(@" ".jobsUrl)
+                .placeholderImage(JobsIMG(toStringByInt([model intValue]).add(@".jpeg")))
+                .options(self.makeSDWebImageOptions)
+                .completed(^(UIImage * _Nullable image,
+                             NSError * _Nullable error,
+                             SDImageCacheType cacheType,
+                             NSURL * _Nullable imageURL) {
+                    if (error) {
+                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                    } else {
+                        NSLog(@"图片加载成功");
+                    }
+                }).load();
     };
 }
 #pragma mark —— lazyLoad
 -(UIImageView *)imgView{
     if (!_imgView) {
-        _imgView = UIImageView.new;
-        _imgView.clipsToBounds = YES;
-        _imgView.layer.cornerRadius = 20;
-        [self.contentView addSubview:_imgView];
-        [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
+        @jobs_weakify(self)
+        _imgView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.clipsToBounds = YES;
+            imageView.layer.cornerRadius = 20;
+            self.contentView.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView);
+            }];
+        });
     }return _imgView;
 }
 

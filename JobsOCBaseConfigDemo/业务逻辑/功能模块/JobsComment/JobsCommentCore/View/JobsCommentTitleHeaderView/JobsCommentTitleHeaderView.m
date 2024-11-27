@@ -43,15 +43,16 @@
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.text = JobsInternationalization(@"评论");
-        _titleLab.textColor = JobsCor(@"#999999");
-        _titleLab.font = UIFontWeightRegularSize(18);
-        [_titleLab labelAutoWidthByFont];
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self);
-        }];
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.text = JobsInternationalization(@"评论");
+            label.textColor = JobsCor(@"#999999");
+            label.font = UIFontWeightRegularSize(18);
+            label.labelAutoWidthByFont();
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(self);
+            }];
+        });
     }return _titleLab;
 }
 

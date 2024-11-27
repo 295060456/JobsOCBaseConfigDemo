@@ -17,8 +17,6 @@
 @property(nonatomic,strong)UILabel *subTitleLab;// 副标题
 @property(nonatomic,strong)JobsHotLabelWithSingleLine *hl;
 /// Data
-//@property(nonatomic,strong)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
-//@property(nonatomic,strong)BaiShaETProjCustomerContactModel *customerContactModel;
 
 @end
 
@@ -61,20 +59,23 @@
 }
 #pragma mark —— 网络请求
 /// 获取客服联系方式
--(void)customerContact:(jobsByIDBlock)block{
+-(void)customerContact:(jobsByIDBlock _Nullable)block{
 
 }
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.text = JobsInternationalization(Title10);
-        _titleLab.textColor = JobsWhiteColor;
-        _titleLab.font = UIFontWeightRegularSize(20);
-        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
-        [self addSubview:_titleLab];
-        _titleLab.centerX = (self.width - self.backToLoginBtn.width) / 2;
-        _titleLab.top = JobsWidth(20);
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = JobsInternationalization(Title10);
+            label.textColor = JobsWhiteColor;
+            label.font = UIFontWeightRegularSize(20);
+            label.makeLabelByShowingType(UILabelShowingType_03);
+            label.centerX = (self.width - self.backToLoginBtn.width) / 2;
+            label.top = JobsWidth(20);
+            self.addSubview(label);
+        });
     }return _titleLab;
 }
 
@@ -133,19 +134,22 @@
 
 -(UILabel *)subTitleLab{
     if (!_subTitleLab) {
-        _subTitleLab = UILabel.new;
-        _subTitleLab.text = JobsInternationalization(Title11);
-        _subTitleLab.textAlignment = NSTextAlignmentCenter;
-        _subTitleLab.numberOfLines = 0;
-        _subTitleLab.textColor = JobsWhiteColor;
-        _subTitleLab.font = UIFontWeightMediumSize(12);
-        _subTitleLab.makeLabelByShowingType(UILabelShowingType_03);
-        [self addSubview:_subTitleLab];
-        [_subTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.contactCustomerServiceBtn);
-            make.top.equalTo(self.contactCustomerServiceBtn.mas_bottom).offset(JobsWidth(56));
-            make.width.mas_equalTo(self.width - JobsWidth(80));
-        }];
+        @jobs_weakify(self)
+        _subTitleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = JobsInternationalization(Title11);
+            label.textAlignment = NSTextAlignmentCenter;
+            label.numberOfLines = 0;
+            label.textColor = JobsWhiteColor;
+            label.font = UIFontWeightMediumSize(12);
+            label.makeLabelByShowingType(UILabelShowingType_03);
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.contactCustomerServiceBtn);
+                make.top.equalTo(self.contactCustomerServiceBtn.mas_bottom).offset(JobsWidth(56));
+                make.width.mas_equalTo(self.width - JobsWidth(80));
+            }];
+        });
     }return _subTitleLab;
 }
 

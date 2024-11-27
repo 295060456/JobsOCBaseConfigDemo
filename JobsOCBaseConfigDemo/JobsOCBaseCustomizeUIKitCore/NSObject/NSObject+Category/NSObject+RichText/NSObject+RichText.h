@@ -83,32 +83,38 @@ NS_ASSUME_NONNULL_END
  
  -(UILabel *)connectionTipsLab{
      if (!_connectionTipsLab) {
-         _connectionTipsLab = UILabel.new;
-         _connectionTipsLab.attributedText = self.attributedStringData;
-         [self.view addSubview:_connectionTipsLab];
-         [_connectionTipsLab mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.centerX.equalTo(self.view);
-             make.bottom.equalTo(self.view).offset(JobsWidth(-65));
-             make.height.mas_equalTo(JobsWidth(12));
-         }];
+         @jobs_weakify(self)
+         _connectionTipsLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+             @jobs_strongify(self)
+             label.attributedText = self.attributedStringData;
+             self.view.addSubview(label);
+             [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                 make.centerX.equalTo(self.view);
+                 make.bottom.equalTo(self.view).offset(JobsWidth(-65));
+                 make.height.mas_equalTo(JobsWidth(12));
+             }];
+         });
      }return _connectionTipsLab;
  }
- 
+
  -(UITextView *)tipsTextView{
      if (!_tipsTextView) {
-         _tipsTextView = UITextView.new;
-         _tipsTextView.delegate = self;
-         _tipsTextView.editable = NO;/// 必须禁止输入，否则点击将会弹出输入键盘
-         _tipsTextView.scrollEnabled = NO;/// 可选的，视具体情况而定
-         _tipsTextView.linkTextAttributes = @{NSForegroundColorAttributeName:HEXCOLOR(0xCCB17E)};/// 链接文字颜色
-         _tipsTextView.attributedText = self.attributedStringData;
-         _tipsTextView.userInteractionEnabled = YES;
-         [self.contentView addSubview:_tipsTextView];
-         [_tipsTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(30)));
-             make.centerX.equalTo(self.contentView);
-             make.bottom.equalTo(self.contentView).offset(-JobsWidth(38));
-         }];
+         @jobs_weakify(self)
+         _tipsTextView = jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
+             @jobs_strongify(self)
+             textView.delegate = self;
+             textView.editable = NO;/// 必须禁止输入，否则点击将会弹出输入键盘
+             textView.scrollEnabled = NO;/// 可选的，视具体情况而定
+             textView.linkTextAttributes = @{NSForegroundColorAttributeName:HEXCOLOR(0xCCB17E)};/// 链接文字颜色
+             textView.attributedText = self.attributedStringData;
+             textView.userInteractionEnabled = YES;
+             self.contentView.addSubview(textView);
+             [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+                 make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(30)));
+                 make.centerX.equalTo(self.contentView);
+                 make.bottom.equalTo(self.contentView).offset(-JobsWidth(38));
+             }];
+         });
      }return _tipsTextView;
  }
 

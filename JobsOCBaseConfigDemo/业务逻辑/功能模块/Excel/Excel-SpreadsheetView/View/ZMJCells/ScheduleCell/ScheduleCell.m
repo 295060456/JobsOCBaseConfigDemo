@@ -39,12 +39,15 @@
 #pragma mark —— LazyLoad
 -(UILabel *)label{
     if(!_label){
-        _label = UILabel.new;
-        _label.frame = self.bounds;
-        _label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _label.font = [UIFont boldSystemFontOfSize:12.f];
-        _label.textAlignment = NSTextAlignmentLeft;
-        [self.contentView addSubview:_label];
+        @jobs_weakify(self)
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.frame = self.bounds;
+            label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            label.font = [UIFont boldSystemFontOfSize:12.f];
+            label.textAlignment = NSTextAlignmentLeft;
+            self.contentView.addSubview(label);
+        });
     }return _label;
 }
 

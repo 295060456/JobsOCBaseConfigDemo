@@ -65,9 +65,7 @@
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
-    @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
-        @jobs_strongify(self)
         return JobsWidth(46);
     };
 }
@@ -78,15 +76,18 @@
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.text = isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"请设置标题") : self.viewModel.textModel.text;
-        _titleLab.textColor = self.viewModel.textModel.textCor;
-        _titleLab.font = self.viewModel.textModel.font;
-        _titleLab.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"请设置标题") : self.viewModel.textModel.text;
+            label.textColor = self.viewModel.textModel.textCor;
+            label.font = self.viewModel.textModel.font;
+            label.textAlignment = NSTextAlignmentCenter;
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView);
+            }];
+        });
     }return _titleLab;
 }
 

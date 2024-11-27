@@ -61,8 +61,7 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
         [self.nsTimerManager nsTimecontinue];
     }else{
         self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
-    }
-    [self starAnimation];
+    }[self starAnimation];
 }
 #pragma mark —— 一些私有方法
 /// 创建动画
@@ -97,19 +96,19 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
 
 - (CAShapeLayer *)shapLayer{
     if (!_shapLayer) {
-        _shapLayer = CAShapeLayer.layer;
-    
-        _shapLayer.frame = CGRectMake(0, 0, self.radius, self.radius);
-        _shapLayer.fillColor = JobsClearColor.CGColor;
-        
-        _shapLayer.lineWidth = 2.0f;
-        _shapLayer.strokeColor = self.strokeColor.CGColor;//线条颜色
-
-        _shapLayer.path = self.bezier.CGPath;
-        [self.shapLayerView.layer addSublayer:_shapLayer];
-        _shapLayer.strokeStart = 0;
-        _shapLayer.strokeEnd = 0.85;
-        [_shapLayer addAnimation:self.anim forKey:@"CLAnimation"];
+        @jobs_weakify(self)
+        _shapLayer = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            @jobs_strongify(self)
+            layer.frame = CGRectMake(0, 0, self.radius, self.radius);
+            layer.fillColor = JobsClearColor.CGColor;
+            layer.lineWidth = 2.0f;
+            layer.strokeColor = self.strokeColor.CGColor;//线条颜色
+            layer.path = self.bezier.CGPath;
+            layer.strokeStart = 0;
+            layer.strokeEnd = 0.85;
+            [layer addAnimation:self.anim forKey:@"CLAnimation"];
+            self.shapLayerView.layer.add(layer);
+        });
     }return _shapLayer;
 }
 
@@ -124,76 +123,89 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
 
 -(CAKeyframeAnimation *)anim{
     if (!_anim) {
-        _anim = CAKeyframeAnimation.animation;
-        _anim.keyPath = @"transform.rotation";
-        _anim.values = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-            data.add(@(M_PI/4.0));
-            data.add(@(M_PI * 2/4.0));
-            data.add(@(M_PI * 3/4.0));
-            data.add(@(4 * M_PI /4.0));
-            data.add(@(5 *M_PI/4.0));
-            data.add(@(6 *M_PI/4.0));
-            data.add(@(7 *M_PI/4.0));
-            data.add(@(8 * M_PI /4.0));
-            data.add(@(8 * M_PI /4.0 + M_PI/4.0));
+        _anim = jobsMakeCAKeyframeAnimation(^(__kindof CAKeyframeAnimation * _Nullable animation) {
+            animation.repeatCount = MAXFLOAT;
+            animation.duration = 1;
+            animation.removedOnCompletion = NO;
+            animation.fillMode = kCAFillModeForwards;
+            animation.keyPath = @"transform.rotation";
+            animation.values = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+                data.add(@(M_PI/4.0));
+                data.add(@(M_PI * 2/4.0));
+                data.add(@(M_PI * 3/4.0));
+                data.add(@(4 * M_PI /4.0));
+                data.add(@(5 *M_PI/4.0));
+                data.add(@(6 *M_PI/4.0));
+                data.add(@(7 *M_PI/4.0));
+                data.add(@(8 * M_PI /4.0));
+                data.add(@(8 * M_PI /4.0 + M_PI/4.0));
+            });
         });
-        _anim.repeatCount = MAXFLOAT;
-        _anim.duration = 1;
-        _anim.removedOnCompletion = NO;
-        _anim.fillMode = kCAFillModeForwards;
     }return _anim;
 }
 
 - (UIView *)shapLayerView{
     if (!_shapLayerView) {
-        _shapLayerView = UIView.new;
-        [self addSubview:_shapLayerView];
-        [self.shapLayerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self);
-            make.left.equalTo(self).offset(JobsWidth(62));
-            make.height.offset(self.radius + JobsWidth(2));
-            make.width.offset(self.radius + JobsWidth(2));
-        }];
+        @jobs_weakify(self)
+        _shapLayerView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            @jobs_strongify(self)
+            self.addSubview(view);
+            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self);
+                make.left.equalTo(self).offset(JobsWidth(62));
+                make.height.offset(self.radius + JobsWidth(2));
+                make.width.offset(self.radius + JobsWidth(2));
+            }];
+        });
     }return _shapLayerView;
 }
 
 -(UIImageView *)imgeV{
     if (!_imgeV) {
-        _imgeV = UIImageView.new;
-        _imgeV.image = self.imge;
-        [self.shapLayerView addSubview:_imgeV];
-        [_imgeV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.shapLayerView).offset(-JobsWidth(2)); // 由于图片不是对称的，需要位置微调
-            make.centerX.equalTo(self.shapLayerView).offset(-JobsWidth(8)); // 位置微调
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(12), JobsWidth(20)));
-        }];
+        @jobs_weakify(self)
+        _imgeV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = self.imge;
+            self.shapLayerView.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self.shapLayerView).offset(-JobsWidth(2)); // 由于图片不是对称的，需要位置微调
+                make.centerX.equalTo(self.shapLayerView).offset(-JobsWidth(8)); // 位置微调
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(12), JobsWidth(20)));
+            }];
+        });
     }return _imgeV;
 }
 
 - (UILabel *)refreshLabel{
     if (!_refreshLabel) {
-        _refreshLabel = UILabel.new;
-        _refreshLabel.textColor = JobsWhiteColor;
-        _refreshLabel.text = JobsInternationalization(@"正在上传...");
-        [self addSubview:_refreshLabel];
-        [_refreshLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.shapLayerView.mas_right).offset(JobsWidth(12));
-            make.centerY.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _refreshLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textColor = JobsWhiteColor;
+            label.text = JobsInternationalization(@"正在上传...");
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.shapLayerView.mas_right).offset(JobsWidth(12));
+                make.centerY.equalTo(self);
+            }];
+        });
     }return _refreshLabel;
 }
 
 - (UILabel *)subrefreshLabel{
     if (!_subrefreshLabel) {
-        _subrefreshLabel = UILabel.new;
-        _subrefreshLabel.textColor = JobsWhiteColor;
-        _subrefreshLabel.textAlignment = NSTextAlignmentRight;
-        _subrefreshLabel.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
-        [self addSubview:_subrefreshLabel];
-        [_subrefreshLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self).offset(-JobsWidth(8));
-            make.bottom.equalTo(self).offset(-JobsWidth(8));
-        }];
+        @jobs_weakify(self)
+        _subrefreshLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textColor = JobsWhiteColor;
+            label.textAlignment = NSTextAlignmentRight;
+            label.font = UIFontWeightBoldSize(JobsWidth(12));
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self).offset(-JobsWidth(8));
+                make.bottom.equalTo(self).offset(-JobsWidth(8));
+            }];
+        });
     }return _subrefreshLabel;
 }
 

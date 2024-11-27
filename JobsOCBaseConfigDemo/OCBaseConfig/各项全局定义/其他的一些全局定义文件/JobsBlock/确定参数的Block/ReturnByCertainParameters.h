@@ -7,11 +7,12 @@
 
 #ifndef ReturnByCertainParameters_h
 #define ReturnByCertainParameters_h
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
+
 #import <JavaScriptCore/JavaScriptCore.h>
 ///【 确定入参个数 并且 有返回值的Block定义】
-#pragma mark —— 关于 JavaScript
-typedef void(^jobsByJSValueBlock)(JSValue *_Nullable value);
-typedef JSValue *_Nullable(^JobsReturnJSValueByStringBlock)(NSString *_Nullable jsCode);
 #pragma mark —— 关于 id
 typedef id _Nullable(^JobsReturnIDByVoidBlock)(void);
 
@@ -110,6 +111,8 @@ typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitlePa
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitleAlignmentBlock)(UIButtonConfigurationTitleAlignment data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock)(BOOL data) API_AVAILABLE(ios(16.0));
 #pragma mark —— 关于手势
+typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidBlock)(void);
+typedef void(^jobsByGestureRecognizerBlock)(__kindof UIGestureRecognizer *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTapGestureBlock)(UITapGestureRecognizer *_Nullable gesture);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByLongPressGestureBlock)(UILongPressGestureRecognizer *_Nullable gesture);
@@ -231,7 +234,7 @@ typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByConfigurationBlock)(
 
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByStringBlock)(NSString *_Nullable data);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByURLBlock)(NSURL *_Nullable URL);
-#pragma mark —— 关于控制器
+#pragma mark —— 关于 控制器
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByViewBlock)(__kindof UIView *_Nonnull view);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByVCBlock)(__kindof UIViewController *_Nonnull vc);
 typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByVCBlock)(__kindof UIViewController *_Nonnull vc);
@@ -247,7 +250,9 @@ typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByFloatBlock)(CGFloat data
 #pragma mark —— 关于字符串
 typedef __kindof NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCharBlock)(char *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByCharacterSetBlock)(NSCharacterSet *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegerBlock)(NSInteger data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByUIntegerBlock)(NSUInteger data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByRangeBlock)(NSRange data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalBlock)(NSTimeInterval data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByBOOLBlock)(BOOL data);
@@ -318,11 +323,18 @@ typedef UIImage *_Nullable(^JobsReturnImageByStringBlock)(NSString *_Nullable da
 #pragma mark —— 关于段落配置
 typedef __kindof NSParagraphStyle *_Nullable(^JobsReturnParagraphStyleByVoidBlock)(void);
 typedef __kindof NSParagraphStyle *_Nullable(^JobsReturnParagraphStyleByTextAlignmentBlock)(NSTextAlignment data);
-#pragma mark —— 关于Animation
-typedef __kindof CABasicAnimation *_Nullable(^JobsReturnCABasicAnimationByStringBlock)(NSString *_Nullable data);
+#pragma mark —— 关于 动画
+#import <QuartzCore/QuartzCore.h>
+typedef CAKeyframeAnimation *_Nullable(^JobsReturnCAKeyframeAnimationByStringBlock)(NSString *_Nullable data);
+typedef CABasicAnimation *_Nullable(^JobsReturnCABasicAnimationByStringBlock)(NSString *_Nullable data);
+#pragma mark —— 关于 JavaScript
+typedef void(^jobsByJSValueBlock)(JSValue *_Nullable value);
+typedef JSValue *_Nullable(^JobsReturnJSValueByStringBlock)(NSString *_Nullable jsCode);
 #pragma mark —— 关于位置
 typedef NSRange (^JobsReturnRangeByTextCheckingResultBlock)(NSTextCheckingResult *_Nullable data);
 typedef NSRange (^JobsReturnRangeByIntegerBlock)(NSInteger data);
+typedef NSRange (^JobsReturnRangeByStringBlock)(NSString *_Nullable data);
+typedef NSRange (^JobsReturnRangeByVoidBlock)(void);
 
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByVoidBlock)(void);
 typedef UIEdgeInsets(^JobsReturnUIEdgeInsetsByIDBlock)(id _Nullable data);
@@ -493,5 +505,7 @@ typedef unsigned long(^JobsReturnUnsignedLongByIDBlock)(id _Nullable data);
 typedef unsigned long long(^JobsReturnUnsignedLongLongByIDBlock)(id _Nullable data);
 typedef unsigned long long(^JobsReturnUnsignedLongLongByVoidBlock)(void);
 typedef unsigned long long(^JobsReturnByUnsignedLongLongBlock)(unsigned long long data);
+
+#pragma clang diagnostic pop
 
 #endif /* ReturnByCertainParameters_h */

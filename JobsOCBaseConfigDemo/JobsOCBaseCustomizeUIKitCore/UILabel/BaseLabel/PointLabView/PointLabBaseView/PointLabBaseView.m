@@ -55,38 +55,39 @@
 -(void)updatePointViewPositionWithOffsetY:(CGFloat)y{
     [self.pointView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(y);
-    }];
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
+    }];self.refresh();
 }
 
 -(void)updateLabelPositionWithOffsetX:(CGFloat)x{
     [self.label mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.pointView.mas_right).offset(x);
-    }];
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
+    }];self.refresh();
 }
 #pragma mark —— lazyLoad
 -(UIView *)pointView{
     if(!_pointView){
-        _pointView = UIView.new;
-        [self addSubview:_pointView];
-        [_pointView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(8), JobsWidth(8)));
-            make.left.top.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _pointView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            @jobs_strongify(self)
+            self.addSubview(view);
+            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(8), JobsWidth(8)));
+                make.left.top.equalTo(self);
+            }];
+        });
     }return _pointView;
 }
 
 -(UILabel *)label{
-    if(!_label){
-        _label = UILabel.new;
-        [self addSubview:_label];
-        [_label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.pointView.mas_right);
-            make.top.bottom.right.equalTo(self);
-        }];
+    if(!_label){@jobs_weakify(self)
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.pointView.mas_right);
+                make.top.bottom.right.equalTo(self);
+            }];
+        });
     }return _label;
 }
 

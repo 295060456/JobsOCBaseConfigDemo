@@ -37,32 +37,33 @@
 
 -(UIImageView *)imageView{
     if (!_imageView) {
-        _imageView = UIImageView.new;
-        _imageView.image = JobsIMG(@"登录弹窗");
+        _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            imageView.image = JobsIMG(@"登录弹窗");
 
-        {
-            _imageView.numberOfTouchesRequired = 1;
-            _imageView.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
-            _imageView.minimumPressDuration = 0.1;
-            _imageView.numberOfTouchesRequired = 1;
-            _imageView.allowableMovement = 1;
-            _imageView.userInteractionEnabled = YES;
-            _imageView.target = self;
-            @jobs_weakify(self)
-            _imageView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
-                                                                                     UITapGestureRecognizer *_Nullable arg) {
-                @jobs_strongify(self)
-//                NSLog(@"%@",self.noticePopupView);
-//                [self.noticePopupView tf_hide:nil];
-                return nil;
+            {
+                imageView.numberOfTouchesRequired = 1;
+                imageView.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
+                imageView.minimumPressDuration = 0.1;
+                imageView.numberOfTouchesRequired = 1;
+                imageView.allowableMovement = 1;
+                imageView.userInteractionEnabled = YES;
+                imageView.target = self;
+                @jobs_weakify(self)
+                imageView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
+                                                                                        UITapGestureRecognizer *_Nullable arg) {
+                    @jobs_strongify(self)
+                    NSLog(@"%@",self.noticePopupView);
+                    [self.noticePopupView tf_hide:nil];
+                    return nil;
+                }];
+                imageView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+            }
+            
+            self.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
             }];
-            _imageView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
-        }
-        
-        [self addSubview:_imageView];
-        [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
+        });
     }return _imageView;
 }
 

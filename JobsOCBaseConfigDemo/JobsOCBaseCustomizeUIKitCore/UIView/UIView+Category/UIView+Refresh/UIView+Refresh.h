@@ -82,6 +82,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)MJRefreshBackStateFooter *mjRefreshBackStateFooter;
 @property(nonatomic,strong)MJRefreshBackFooter *mjRefreshBackFooter;
 @property(nonatomic,strong)MJRefreshFooter *mjRefreshFooter;
+#pragma mark —— UI刷新（调用系统底层方法）
+-(jobsByVoidBlock _Nonnull)refresh;
 #pragma mark —— 创建不同类型的MJHeader 和 MJFootor
 /// Header
 -(JobsReturnLOTAnimationMJRefreshHeaderByRefreshConfigModelBlock _Nonnull)LOTAnimationMJRefreshHeaderBy;

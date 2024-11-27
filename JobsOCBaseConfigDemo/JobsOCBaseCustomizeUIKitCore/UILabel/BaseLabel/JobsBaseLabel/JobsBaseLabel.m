@@ -82,33 +82,37 @@ static dispatch_once_t static_baseLabelOnceToken;
 #pragma mark —— lazyLoad
 -(UIImageView *)bgImageView{
     if (!_bgImageView) {
-        _bgImageView = UIImageView.new;
-        [self addSubview:_bgImageView];
-        [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _bgImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            self.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
+        });
     }return _bgImageView;
 }
 
 -(BaseLabel *)label{
     if (!_label) {
-        _label = BaseLabel.new;
-        
-        [self.bgImageView addSubview:_label];
-        [_label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
-        
-        [_label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
-            NSLog(@"JobsBaseLabel的Tap手势");
-            return @1;
-        }];
-        
-        [_label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
-            NSLog(@"JobsBaseLabel的LongPress手势");
-            return @1;
-        }];
-        
+        @jobs_weakify(self)
+        _label = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
+            @jobs_strongify(self)
+            self.bgImageView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
+            
+            [label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
+                NSLog(@"JobsBaseLabel的Tap手势");
+                return @1;
+            }];
+            
+            [label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
+                NSLog(@"JobsBaseLabel的LongPress手势");
+                return @1;
+            }];
+        });
     }return _label;
 }
 

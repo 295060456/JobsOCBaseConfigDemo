@@ -45,13 +45,15 @@
 #pragma mark —— lazyLoad
 -(UIImageView *)bgImageView{
     if (!_bgImageView) {
-        _bgImageView = UIImageView.new;
-        [self addSubview:_bgImageView];
-        [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
-    }
-    _bgImageView.image = self.viewModel.bgImage;
+        @jobs_weakify(self)
+        _bgImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            self.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
+        });
+    }_bgImageView.image = self.viewModel.bgImage;
     return _bgImageView;
 }
 

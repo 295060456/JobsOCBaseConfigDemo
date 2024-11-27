@@ -47,8 +47,8 @@
         self.leftExpansion.fillOnTrigger = NO;
         self.rightExpansion.buttonIndex = 0;
         self.rightExpansion.fillOnTrigger = YES;
-        self.leftButtons = [self createLeftButtons];
-        self.rightButtons = [self createRightButtons];
+        self.leftButtons = self.createLeftButtons;
+        self.rightButtons = self.createRightButtons;
     }return self;
 }
 #pragma mark —— BaseCellProtocol
@@ -67,7 +67,7 @@
 +(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(id _Nullable data){
         if ([data isKindOfClass:JobsIMChatInfoModel.class]){
-            JobsIMChatInfoModel *chatInfoModel = (JobsIMChatInfoModel *)data;
+//            JobsIMChatInfoModel *chatInfoModel = (JobsIMChatInfoModel *)data;
     #warning 这里需要被修改
             CGFloat CellHeight = 0;
     //        CGFloat CellHeight = [chatInfoModel.chatTextStr getContentHeightOrWidthWithParagraphStyleLineSpacing:0
@@ -119,8 +119,20 @@
             NSLog(@"contentHeight = %f",self.contentHeight);
             NSLog(@"contentWidth = %f",self.contentWidth);
             
-            [self.iconIMGV sd_setImageWithURL:[NSURL URLWithString:chatInfoModel.userIconURLStr]
-                             placeholderImage:chatInfoModel.userIconIMG];
+            self.iconIMGV
+                    .imageURL(chatInfoModel.userIconURLStr.jobsUrl)
+                    .placeholderImage(chatInfoModel.userIconIMG)
+                    .options(self.makeSDWebImageOptions)
+                    .completed(^(UIImage * _Nullable image,
+                                 NSError * _Nullable error,
+                                 SDImageCacheType cacheType,
+                                 NSURL * _Nullable imageURL) {
+                        if (error) {
+                            NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                        } else {
+                            NSLog(@"图片加载成功");
+                        }
+                    }).load();
             self.chatUserNameLab.alpha = self.isShowChatUserName;
             self.chatBubbleIMGV.alpha = 1;
             self.chatContentLab.alpha = 1;
@@ -130,60 +142,37 @@
 }
 #pragma mark —— 一些私有化方法
 -(NSArray *)createLeftButtons{
-    NSMutableArray * result = NSMutableArray.array;
-    for (MGSwipeButtonModel *model in self.leftBtnMutArr) {
-        MGSwipeButton * button = [MGSwipeButton buttonWithTitle:model.titleStr
-                                                           icon:model.IconIMG
-                                                backgroundColor:model.bgCor
-                                                        padding:15
-                                                       callback:^BOOL(MGSwipeTableCell * sender){
-            NSLog(@"Convenience callback received (left).");
-            return YES;
-        }];
-        [result addObject:button];
-    }return result;
+    @jobs_weakify(self)
+    return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+        @jobs_strongify(self)
+        for (MGSwipeButtonModel *model in self.leftBtnMutArr) {
+            arr.add([MGSwipeButton buttonWithTitle:model.titleStr
+                                              icon:model.IconIMG
+                                   backgroundColor:model.bgCor
+                                           padding:15
+                                          callback:^BOOL(MGSwipeTableCell * sender){
+                NSLog(@"Convenience callback received (left).");
+                return YES;
+            }]);
+        }
+    });;
 }
 
 -(NSArray *)createRightButtons{
-    NSMutableArray * result = NSMutableArray.array;
-    for (MGSwipeButtonModel *model in self.rightBtnMutArr) {
-        MGSwipeButton * button = [MGSwipeButton buttonWithTitle:model.titleStr
-                                                           icon:model.IconIMG
-                                                backgroundColor:model.bgCor
-                                                        padding:15
-                                                       callback:^BOOL(MGSwipeTableCell * sender){
-            NSLog(@"Convenience callback received (left).");
-            return YES;
-        }];
-        [result addObject:button];
-    }return result;
-}
-/// 长按手势事件
-- (void)cellLongPress:(UIGestureRecognizer *)recognizer{
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
-        JobsIMChatInfoTBVCell *cell = (JobsIMChatInfoTBVCell *)recognizer.view;
-        //这里把cell做为第一响应(cell默认是无法成为responder,需要重写canBecomeFirstResponder方法)
-        [cell becomeFirstResponder];
-        
-        UIMenuController *menuController = UIMenuController.sharedMenuController;
-        //控制箭头方向
-        menuController.arrowDirection = UIMenuControllerArrowDefault;
-        //自定义事件
-        [menuController setMenuItems:self.menuItemMutArr];
-        
-        if (@available(iOS 13.0, *)) {
-            [menuController showMenuFromView:self
-                                        rect:cell.chatBubbleIMGV.frame];
-        }else{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored"-Wdeprecated-declarations"
-            [menuController setTargetRect:cell.frame
-                                   inView:self];
-            [menuController setMenuVisible:YES
-                                  animated:YES];
-#pragma clang diagnostic pop
+    @jobs_weakify(self)
+    return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+        @jobs_strongify(self)
+        for (MGSwipeButtonModel *model in self.rightBtnMutArr) {
+            arr.add([MGSwipeButton buttonWithTitle:model.titleStr
+                                              icon:model.IconIMG
+                                   backgroundColor:model.bgCor
+                                           padding:15
+                                          callback:^BOOL(MGSwipeTableCell * sender){
+                NSLog(@"Convenience callback received (left).");
+                return YES;
+            }]);
         }
-    }
+    });;
 }
 
 -(void)menuTopBtnPressed:(id)sender{
@@ -205,221 +194,251 @@
 #pragma mark —— lazyLoad
 -(UIImageView *)iconIMGV{
     if (!_iconIMGV) {
-        _iconIMGV = UIImageView.new;
-        [self.contentView addSubview:_iconIMGV];
-        [_iconIMGV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsIMChatInfoTBVDefaultCellHeight() - 5, JobsIMChatInfoTBVDefaultCellHeight() - 5));
-            make.top.equalTo(self.contentView).offset(5);
-            
-            switch (self.infoLocation) {
-                case InfoLocation_Left:{
-                    make.left.equalTo(self.contentView).offset(10);
-                }break;
-                case InfoLocation_Right:{
-                    make.right.equalTo(self.contentView).offset(-10);
-                }break;
-                default:
-                    break;
-            }
-        }];
+        @jobs_weakify(self)
+        _iconIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            self.contentView.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(JobsIMChatInfoTBVDefaultCellHeight() - 5, JobsIMChatInfoTBVDefaultCellHeight() - 5));
+                make.top.equalTo(self.contentView).offset(5);
+                switch (self.infoLocation) {
+                    case InfoLocation_Left:{
+                        make.left.equalTo(self.contentView).offset(10);
+                    }break;
+                    case InfoLocation_Right:{
+                        make.right.equalTo(self.contentView).offset(-10);
+                    }break;
+                    default:
+                        break;
+                }
+            }];
+        });
     }return _iconIMGV;
 }
 
 -(UIImageView *)chatBubbleIMGV{
     if (!_chatBubbleIMGV) {
-        _chatBubbleIMGV = UIImageView.new;
-        
-        switch (self.infoLocation) {
-            case InfoLocation_Left:{
-                _chatBubbleIMGV.image = self.chatBubbleMutArr[0];
-            }break;
-            case InfoLocation_Right:{
-                _chatBubbleIMGV.image = self.chatBubbleMutArr[1];
-            }break;
-            default:
-                break;
-        }
-        
-        [self.contentView addSubview:_chatBubbleIMGV];
-        [_chatBubbleIMGV mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.top.equalTo(self.iconIMGV.mas_centerY);
-            make.bottom.equalTo(self.contentView).offset(-5);
-            make.width.mas_equalTo(self.contentWidth);
-            
+        @jobs_weakify(self)
+        _chatBubbleIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
             switch (self.infoLocation) {
                 case InfoLocation_Left:{
-                    make.left.equalTo(self.iconIMGV.mas_right).offset(5);
-                    
+                    imageView.image = self.chatBubbleMutArr[0];
                 }break;
                 case InfoLocation_Right:{
-                    make.right.equalTo(self.iconIMGV.mas_left).offset(-5);
+                    imageView.image = self.chatBubbleMutArr[1];
                 }break;
                 default:
                     break;
             }
-        }];
+            
+            self.contentView.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.top.equalTo(self.iconIMGV.mas_centerY);
+                make.bottom.equalTo(self.contentView).offset(-5);
+                make.width.mas_equalTo(self.contentWidth);
+                
+                switch (self.infoLocation) {
+                    case InfoLocation_Left:{
+                        make.left.equalTo(self.iconIMGV.mas_right).offset(5);
+                        
+                    }break;
+                    case InfoLocation_Right:{
+                        make.right.equalTo(self.iconIMGV.mas_left).offset(-5);
+                    }break;
+                    default:
+                        break;
+                }
+            }];
+        });
     }return _chatBubbleIMGV;
 }
 
 -(UILabel *)chatUserNameLab{
     if (!_chatUserNameLab) {
-        _chatUserNameLab = UILabel.new;
-        _chatUserNameLab.textColor = JobsBlackColor;
-        _chatUserNameLab.font = [UIFont systemFontOfSize:10 weight:UIFontWeightRegular];
-        _chatUserNameLab.textAlignment = NSTextAlignmentCenter;
-        _chatUserNameLab.text = self.senderUserNameStr;
-        [_chatUserNameLab sizeToFit];
-        [self.contentView addSubview:_chatUserNameLab];
-        [_chatUserNameLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.iconIMGV);
-            make.bottom.equalTo(self.iconIMGV.mas_centerY).offset(-3);
-            switch (self.infoLocation) {
-                case InfoLocation_Left:{
-                    make.left.equalTo(self.iconIMGV.mas_right).offset(5);
-                    
-                }break;
-                case InfoLocation_Right:{
-                    make.right.equalTo(self.iconIMGV.mas_left).offset(-5);
-                }break;
-                default:
-                    break;
-            }
-        }];
+        @jobs_weakify(self)
+        _chatUserNameLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textColor = JobsBlackColor;
+            label.font = UIFontWeightRegularSize(JobsWidth(10));
+            label.textAlignment = NSTextAlignmentCenter;
+            label.text = self.senderUserNameStr;
+            [label sizeToFit];
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.iconIMGV);
+                make.bottom.equalTo(self.iconIMGV.mas_centerY).offset(-3);
+                switch (self.infoLocation) {
+                    case InfoLocation_Left:{
+                        make.left.equalTo(self.iconIMGV.mas_right).offset(5);
+                    }break;
+                    case InfoLocation_Right:{
+                        make.right.equalTo(self.iconIMGV.mas_left).offset(-5);
+                    }break;
+                    default:
+                        break;
+                }
+            }];
+        });
     }return _chatUserNameLab;
 }
 
 -(UILabel *)chatContentLab{
     if (!_chatContentLab) {
-        _chatContentLab = UILabel.new;
-        _chatContentLab.numberOfLines = 0;
-        _chatContentLab.textColor = JobsBlackColor;
-        _chatContentLab.font = [UIFont systemFontOfSize:10 weight:UIFontWeightRegular];
-        
-        switch (self.infoLocation) {
-            case InfoLocation_Left:{
-                _chatContentLab.textAlignment = NSTextAlignmentRight;
-            }break;
-            case InfoLocation_Right:{
-                _chatContentLab.textAlignment = NSTextAlignmentLeft;
-            }break;
-            default:
-                break;
-        }
-        
-        _chatContentLab.text = self.senderChatTextStr;
-        [self.chatBubbleIMGV addSubview:_chatContentLab];
-        [_chatContentLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.chatBubbleIMGV).with.insets(UIEdgeInsetsMake(5, 5, 5, 5));
-        }];
+        @jobs_weakify(self)
+        _chatContentLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.numberOfLines = 0;
+            label.textColor = JobsBlackColor;
+            label.font = UIFontWeightRegularSize(JobsWidth(10));
+            
+            switch (self.infoLocation) {
+                case InfoLocation_Left:{
+                    label.textAlignment = NSTextAlignmentRight;
+                }break;
+                case InfoLocation_Right:{
+                    label.textAlignment = NSTextAlignmentLeft;
+                }break;
+                default:
+                    break;
+            }
+            
+            label.text = self.senderChatTextStr;
+            self.chatBubbleIMGV.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.chatBubbleIMGV).with.insets(UIEdgeInsetsMake(5, 5, 5, 5));
+            }];
+        });
     }return _chatContentLab;
 }
 
 -(UILabel *)timeLab{
     if (!_timeLab) {
-        _timeLab = UILabel.new;
-        _timeLab.font = [UIFont systemFontOfSize:10 weight:UIFontWeightRegular];
-        _timeLab.textAlignment = NSTextAlignmentCenter;
-        _timeLab.text = self.senderChatTextTimeStr;
-        _timeLab.textColor = JobsWhiteColor;
-        _timeLab.backgroundColor = JobsLightGrayColor;
-        [_timeLab sizeToFit];
-        
-        [self.contentView addSubview:_timeLab];
-        [_timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        @jobs_weakify(self)
+        _timeLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.font = UIFontWeightRegularSize(JobsWidth(10));
+            label.textAlignment = NSTextAlignmentCenter;
+            label.text = self.senderChatTextTimeStr;
+            label.textColor = JobsWhiteColor;
+            label.backgroundColor = JobsLightGrayColor;
+            [label sizeToFit];
             
-            make.bottom.equalTo(self.chatBubbleIMGV);
-            make.size.mas_equalTo(CGSizeMake(JobsIMChatInfoTimeLabWidth(), 20));
-            
-            switch (self.infoLocation) {
-                case InfoLocation_Left:{
-                    make.left.equalTo(self.chatBubbleIMGV.mas_right).offset(5);
-                }break;
-                case InfoLocation_Right:{
-                    make.right.equalTo(self.chatBubbleIMGV.mas_left).offset(-5);
-                }break;
-                default:
-                    break;
-            }
-        }];
-        _timeLab.cornerCutToCircleWithCornerRadius(20 / 2);
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.bottom.equalTo(self.chatBubbleIMGV);
+                make.size.mas_equalTo(CGSizeMake(JobsIMChatInfoTimeLabWidth(), 20));
+                
+                switch (self.infoLocation) {
+                    case InfoLocation_Left:{
+                        make.left.equalTo(self.chatBubbleIMGV.mas_right).offset(5);
+                    }break;
+                    case InfoLocation_Right:{
+                        make.right.equalTo(self.chatBubbleIMGV.mas_left).offset(-5);
+                    }break;
+                    default:
+                        break;
+                }
+            }];label.cornerCutToCircleWithCornerRadius(20 / 2);
+        });
     }return _timeLab;
 }
 
 -(NSMutableArray<UIImage *> *)chatBubbleMutArr{
     if (!_chatBubbleMutArr) {
-        _chatBubbleMutArr = NSMutableArray.array;
-        [_chatBubbleMutArr addObject:JobsIMG(@"左气泡")];//左气泡
-        [_chatBubbleMutArr addObject:JobsIMG(@"右气泡")];//右气泡
+        _chatBubbleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            arr.add(JobsIMG(@"左气泡"));
+            arr.add(JobsIMG(@"右气泡"));
+        });
     }return _chatBubbleMutArr;
 }
 
 -(UILongPressGestureRecognizer *)longPG{
     if (!_longPG) {
-        _longPG = [UILongPressGestureRecognizer.alloc initWithTarget:self
-                                                              action:@selector(cellLongPress:)];
-        [self addGestureRecognizer:_longPG];
+        @jobs_weakify(self)
+        _longPG = [jobsMakeLongPressGesture(^(UILongPressGestureRecognizer * _Nullable gesture) {
+            /// 这里写手势的配置
+        }) GestureActionBy:^(__kindof UIGestureRecognizer * _Nullable gesture) {
+            @jobs_strongify(self)
+            if (gesture.state == UIGestureRecognizerStateBegan) {
+                JobsIMChatInfoTBVCell *cell = (JobsIMChatInfoTBVCell *)gesture.view;
+                //这里把cell做为第一响应(cell默认是无法成为responder,需要重写canBecomeFirstResponder方法)
+                [cell becomeFirstResponder];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
+                jobsMakeMenuController(^(__kindof UIMenuController * _Nullable menuController) {
+                    menuController.arrowDirection = UIMenuControllerArrowDefault;/// 控制箭头方向
+                    menuController.menuItems = self.menuItemMutArr;/// 自定义事件
+                    if (@available(iOS 13.0, *)) {
+                        [menuController showMenuFromView:self
+                                                    rect:cell.chatBubbleIMGV.frame];
+                    }else{
+                        [menuController setTargetRect:cell.frame
+                                               inView:self];
+                        [menuController setMenuVisible:YES
+                                              animated:YES];
+                    }
+                });
+#pragma clang diagnostic pop
+            }
+        }];self.addGesture(_longPG);
     }return _longPG;
 }
 
 -(NSMutableArray<UIMenuItem *> *)menuItemMutArr{
     if (!_menuItemMutArr) {
-        _menuItemMutArr = NSMutableArray.array;
-        [_menuItemMutArr addObject:[UIMenuItem.alloc initWithTitle:@"置顶"
-                                                            action:@selector(menuTopBtnPressed:)]];
-        [_menuItemMutArr addObject:[UIMenuItem.alloc initWithTitle:@"删除"
-                                                            action:@selector(menuDelBtnPressed:)]];
+        _menuItemMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            arr.add([UIMenuItem.alloc initWithTitle:JobsInternationalization(@"置顶")
+                                             action:@selector(menuTopBtnPressed:)]);
+            arr.add([UIMenuItem.alloc initWithTitle:JobsInternationalization(@"删除")
+                                             action:@selector(menuDelBtnPressed:)]);
+        });
     }return _menuItemMutArr;
 }
 
 -(NSMutableArray<MGSwipeButtonModel *> *)leftBtnMutArr{
     if (!_leftBtnMutArr) {
-        _leftBtnMutArr = NSMutableArray.array;
-        MGSwipeButtonModel *model_1 = MGSwipeButtonModel.new;
-        model_1.titleStr = @"L1";
-        model_1.IconIMG = JobsIMG(@"Check");
-        model_1.bgCor = JobsGreenColor;
-        
-        MGSwipeButtonModel *model_2 = MGSwipeButtonModel.new;
-        model_2.titleStr = @"L2";
-        model_2.IconIMG = JobsIMG(@"Fav");
-        model_2.bgCor = RGBA_COLOR(0, 0x99, 0xcc, 1);
-        
-        MGSwipeButtonModel *model_3 = MGSwipeButtonModel.new;
-        model_3.titleStr = @"L3";
-        model_3.IconIMG = JobsIMG(@"Menu");
-        model_3.bgCor = RGBA_COLOR(0.59, 0.29, 0.08, 1);
-        
-        [_leftBtnMutArr addObject:model_1];
-        [_leftBtnMutArr addObject:model_2];
-        [_leftBtnMutArr addObject:model_3];
-        
+        _leftBtnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = JobsInternationalization(@"L1");
+                model.IconIMG = JobsIMG(@"Check");
+                model.bgCor = JobsGreenColor;
+            }));
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = JobsInternationalization(@"L2");
+                model.IconIMG = JobsIMG(@"Fav");
+                model.bgCor = RGBA_COLOR(0, 0x99, 0xcc, 1);
+            }));
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = JobsInternationalization(@"L3");
+                model.IconIMG = JobsIMG(@"Menu");
+                model.bgCor = RGBA_COLOR(0.59, 0.29, 0.08, 1);
+            }));
+        });
     }return _leftBtnMutArr;
 }
 
 -(NSMutableArray<MGSwipeButtonModel *> *)rightBtnMutArr{
     if (!_rightBtnMutArr) {
-        _rightBtnMutArr = NSMutableArray.array;
-        
-        MGSwipeButtonModel *model_1 = MGSwipeButtonModel.new;
-        model_1.titleStr = @"R1";
-        model_1.IconIMG = JobsIMG(@"Class");
-        model_1.bgCor = JobsPurpleColor;
-        
-        MGSwipeButtonModel *model_2 = MGSwipeButtonModel.new;
-        model_2.titleStr = @"R2";
-        model_2.IconIMG = JobsIMG(@"Drop");
-        model_2.bgCor = JobsDarkTextColor;
-        
-        MGSwipeButtonModel *model_3 = MGSwipeButtonModel.new;
-        model_3.titleStr = @"R3";
-        model_3.IconIMG = JobsIMG(@"Header");
-        model_3.bgCor = JobsCyanColor;
-        
-        [_rightBtnMutArr addObject:model_1];
-        [_rightBtnMutArr addObject:model_2];
-        [_rightBtnMutArr addObject:model_3];
-        
+        _rightBtnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = @"R1";
+                model.IconIMG = JobsIMG(@"Class");
+                model.bgCor = JobsPurpleColor;
+            }));
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = @"R2";
+                model.IconIMG = JobsIMG(@"Drop");
+                model.bgCor = JobsDarkTextColor;
+            }));
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = @"R3";
+                model.IconIMG = JobsIMG(@"Header");
+                model.bgCor = JobsCyanColor;
+            }));
+        });
     }return _rightBtnMutArr;
 }
 

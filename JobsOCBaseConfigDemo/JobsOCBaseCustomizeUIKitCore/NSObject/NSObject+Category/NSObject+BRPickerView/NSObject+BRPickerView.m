@@ -10,62 +10,68 @@
 @implementation NSObject (BRPickerView)
 #pragma mark 一些公有方法
 -(BRPickerStyle *)makeCustomStyle{
-    BRPickerStyle *pickerStyle = BRPickerStyle.new;
-    pickerStyle.pickerColor = JobsWhiteColor;
-    pickerStyle.pickerTextColor = HEXCOLOR(0x3D4A58);
-    pickerStyle.separatorColor = HEXCOLOR(0xEAEBED);
-    pickerStyle.cancelBtnTitle = JobsInternationalization(@"取消");
-    pickerStyle.doneBtnTitle = JobsInternationalization(@"确定");
-    return pickerStyle;
-}
-
--(BRAddressPickerView *)makeAddressPickerView:(BRPickerStyle *_Nullable)pickerStyle{
-    BRAddressPickerView *addressPickerView = BRAddressPickerView.new;
-    /**
-     BRAddressPickerModeArea,/// 显示【省市区】（默认）
-     BRAddressPickerModeCity,/// 显示【省市】
-     BRAddressPickerModeProvince/// 显示【省】
-     */
-    addressPickerView.pickerMode = BRAddressPickerModeArea;
-    addressPickerView.title = JobsInternationalization(@"请选择地区");
-//    addressPickerView.selectValues = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-//        data.add(JobsInternationalization(@"浙江省"));
-//        data.add(JobsInternationalization(@"杭州市"));
-//        data.add(JobsInternationalization(@"西湖区"));
-//    });
-    addressPickerView.selectIndexs = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-        data.add(@10);
-        data.add(0);
-        data.add(@4);
+    return jobsMakeBRPickerStyle(^(__kindof BRPickerStyle * _Nullable pickerStyle) {
+        pickerStyle.pickerColor = JobsWhiteColor;
+        pickerStyle.pickerTextColor = HEXCOLOR(0x3D4A58);
+        pickerStyle.separatorColor = HEXCOLOR(0xEAEBED);
+        pickerStyle.cancelBtnTitle = JobsInternationalization(@"取消");
+        pickerStyle.doneBtnTitle = JobsInternationalization(@"确定");
     });
-    addressPickerView.isAutoSelect = YES;
-    // 设置自定义样式
-    addressPickerView.pickerStyle = pickerStyle;
-    return addressPickerView;
 }
 
--(BRStringPickerView *)makeStringPickerView:(BRStringPickerMode)stringPickerMode{
-    return [BRStringPickerView.alloc initWithPickerMode:stringPickerMode];
+-(JobsReturnBRAddressPickerViewByPickerStyleBlock _Nonnull)makeAddressPickerView{
+    return ^BRAddressPickerView *_Nonnull(BRPickerStyle *_Nullable style){
+        return jobsMakeBRAddressPickerView(^(__kindof BRAddressPickerView * _Nullable addressPickerView) {
+            /**
+             BRAddressPickerModeArea,/// 显示【省市区】（默认）
+             BRAddressPickerModeCity,/// 显示【省市】
+             BRAddressPickerModeProvince/// 显示【省】
+             */
+            addressPickerView.pickerMode = BRAddressPickerModeArea;
+            addressPickerView.title = JobsInternationalization(@"请选择地区");
+        //    addressPickerView.selectValues = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        //        data.add(JobsInternationalization(@"浙江省"));
+        //        data.add(JobsInternationalization(@"杭州市"));
+        //        data.add(JobsInternationalization(@"西湖区"));
+        //    });
+            addressPickerView.selectIndexs = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+                data.add(@10);
+                data.add(0);
+                data.add(@4);
+            });
+            addressPickerView.isAutoSelect = YES;
+            // 设置自定义样式
+            addressPickerView.pickerStyle = style;
+        });
+    };
 }
 
--(BRDatePickerView *)makeDatePickerView:(BRPickerStyle *_Nullable)customStyle{
-    if (!customStyle) {
-        customStyle = self.makeCustomStyle;
-    }
-    BRDatePickerView *datePickerView = BRDatePickerView.new;
-    datePickerView.pickerMode = BRDatePickerModeYMD;
-    datePickerView.title = JobsInternationalization(@"选择年月日");
-    // datePickerView.selectValue = @"2019-10-30";
-    datePickerView.selectDate = [NSDate br_setYear:2019
-                                              month:10
-                                                day:30];
-    datePickerView.minDate = [NSDate br_setYear:1949
-                                           month:3
-                                             day:12];
-    datePickerView.maxDate = NSDate.date;
-    datePickerView.isAutoSelect = YES;
-    datePickerView.pickerStyle = customStyle;
-    return datePickerView;
+-(JobsReturnBRStringPickerViewByPickerModeBlock _Nonnull)makeStringPickerView{
+    return ^BRStringPickerView *_Nonnull(BRStringPickerMode style){
+        return BRStringPickerView.initBy(style);
+    };
+}
+
+-(JobsReturnBRDatePickerViewByPickerStyleBlock _Nonnull)makeDatePickerView{
+    @jobs_weakify(self)
+    return ^BRDatePickerView *_Nonnull(BRPickerStyle *_Nullable customStyle){
+        @jobs_strongify(self )
+        if (!customStyle) customStyle = self.makeCustomStyle;
+        return jobsMakeBRDatePickerView(^(__kindof BRDatePickerView * _Nullable datePickerView) {
+            datePickerView.pickerMode = BRDatePickerModeYMD;
+            datePickerView.title = JobsInternationalization(@"选择年月日");
+            // datePickerView.selectValue = @"2019-10-30";
+            datePickerView.selectDate = [NSDate br_setYear:2019
+                                                      month:10
+                                                        day:30];
+            datePickerView.minDate = [NSDate br_setYear:1949
+                                                   month:3
+                                                     day:12];
+            datePickerView.maxDate = NSDate.date;
+            datePickerView.isAutoSelect = YES;
+            datePickerView.pickerStyle = customStyle;
+        });
+    };
 }
 /// 时间选择器
 //-(void)makeDatePickerDoneBlock:(BRDoneClickBlock)clickDoneBlock
@@ -93,7 +99,7 @@
 //        [self.addressPickerView removePickerFromView:nil];
 //        if (clickDoneBlock) clickDoneBlock();
 //    };
-//    
+//
 //    self.addressPickerView.resultBlock = ^(BRProvinceModel *province,
 //                                           BRCityModel *city,
 //                                           BRAreaModel *area) {
@@ -121,13 +127,13 @@
 //                                                JobsInternationalization(@"博士后")];
 //        stringPickerViewModel.selectIndex = 2;
 //    }
-//    
+//
 //    self.stringPickerView.pickerMode = stringPickerViewModel.pickerMode;
 //    self.stringPickerView.title = stringPickerViewModel.title;
 //    self.stringPickerView.dataSourceArr = stringPickerViewModel.dataSourceArr;
 //    self.stringPickerView.selectIndex = stringPickerViewModel.selectIndex;
 //    self.stringPickerView.pickerStyle = pickerStyle ? : self.customStyle;
-//    
+//
 //    @jobs_weakify(self)
 //    self.stringPickerView.doneBlock = ^{
 //        @jobs_strongify(self)
@@ -145,17 +151,21 @@
 //        @jobs_strongify(self)
 //        if (self.objectBlock) self.objectBlock(resultModelArr);
 //    };
-//    
+//
 //    [self.stringPickerView show];
 //}
 #pragma mark —— 一些私有方法
--(void)change:(BRStringPickerViewModel *)stringPickerViewModel{
-    if (stringPickerViewModel.dataSourceArr.count > 2) {
-        NSMutableArray *temp = stringPickerViewModel.dataSourceArr.copy;
-        [temp removeObjectAtIndex:0];
-        self.stringPickerView.dataSourceArr = temp;
-        self.stringPickerView.title = stringPickerViewModel.dataSourceArr[0];
-    }
+-(jobsByBRStringPickerViewModelBlock _Nonnull)changeBy{
+    @jobs_weakify(self)
+    return ^(__kindof BRStringPickerViewModel *_Nullable model){
+        @jobs_strongify(self)
+        if (model.dataSourceArr.count > 2) {
+            NSMutableArray *temp = model.dataSourceArr.copy;
+            [temp removeObjectAtIndex:0];
+            self.stringPickerView.dataSourceArr = temp;
+            self.stringPickerView.title = model.dataSourceArr[0];
+        }
+    };
 }
 #pragma mark —— @property(nonatomic,strong)BRStringPickerView *stringPickerView;/// 自定义字符串选择器
 JobsKey(_stringPickerView)
@@ -163,7 +173,7 @@ JobsKey(_stringPickerView)
 -(BRStringPickerView *)stringPickerView{
     BRStringPickerView *StringPickerView = Jobs_getAssociatedObject(_stringPickerView);
     if (!StringPickerView) {
-        StringPickerView = [UIView makeStringPickerView:self.brStringPickerMode];
+        StringPickerView = self.makeStringPickerView(self.brStringPickerMode);
         Jobs_setAssociatedRETAIN_NONATOMIC(_stringPickerView, StringPickerView)
     }return StringPickerView;
 }
@@ -177,7 +187,7 @@ JobsKey(_datePickerView)
 -(BRDatePickerView *)datePickerView{
     BRDatePickerView *DatePickerView = Jobs_getAssociatedObject(_datePickerView);
     if (!DatePickerView) {
-        DatePickerView = [UIView makeDatePickerView:self.customStyle];
+        DatePickerView = self.makeDatePickerView(self.customStyle);
         Jobs_setAssociatedRETAIN_NONATOMIC(_datePickerView, DatePickerView)
     }return DatePickerView;
 }
@@ -191,7 +201,7 @@ JobsKey(_addressPickerView)
 -(BRAddressPickerView *)addressPickerView{
     BRAddressPickerView *AddressPickerView = Jobs_getAssociatedObject(_addressPickerView);
     if (!AddressPickerView) {
-        AddressPickerView = [UIView makeAddressPickerView:self.customStyle];
+        AddressPickerView = self.makeAddressPickerView(self.customStyle);
         Jobs_setAssociatedRETAIN_NONATOMIC(_addressPickerView, AddressPickerView)
     }return AddressPickerView;
 }

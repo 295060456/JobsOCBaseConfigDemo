@@ -14,16 +14,19 @@ JobsKey(_indicateWordLimitLab)
 -(UILabel *)indicateWordLimitLab{
     UILabel *IndicateWordLimitLab = Jobs_getAssociatedObject(_indicateWordLimitLab);
     if (!IndicateWordLimitLab) {
-        IndicateWordLimitLab = UILabel.new;
-        IndicateWordLimitLab.textColor = RGB_COLOR(132, 134, 140);
-        IndicateWordLimitLab.textAlignment = NSTextAlignmentCenter;
-        IndicateWordLimitLab.font = UIFontWeightMediumSize(10);
-        IndicateWordLimitLab.text = [NSString stringWithFormat:@"   %ld / %ld   ",self.currentWordNum,self.wordLimitNum];
-        IndicateWordLimitLab.makeLabelByShowingType(UILabelShowingType_03);
-        [self addSubview:IndicateWordLimitLab];
-        IndicateWordLimitLab.right = self.width - self.offsetX;
-        IndicateWordLimitLab.bottom = self.height - self.offsetY;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_indicateWordLimitLab, IndicateWordLimitLab)
+        @jobs_weakify(self)
+        IndicateWordLimitLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textColor = RGB_COLOR(132, 134, 140);
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font = UIFontWeightMediumSize(10);
+            label.text = [NSString stringWithFormat:@"   %ld / %ld   ",self.currentWordNum,self.wordLimitNum];
+            label.makeLabelByShowingType(UILabelShowingType_03);
+            self.addSubview(label);
+            label.right = self.width - self.offsetX;
+            label.bottom = self.height - self.offsetY;
+            Jobs_setAssociatedRETAIN_NONATOMIC(_indicateWordLimitLab, label)
+        });
     }return IndicateWordLimitLab;
 }
 

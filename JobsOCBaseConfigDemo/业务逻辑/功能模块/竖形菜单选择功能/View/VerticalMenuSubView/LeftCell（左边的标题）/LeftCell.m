@@ -68,7 +68,7 @@ UITableViewCell_UIViewModelProtocolSynthesize
         self.accessoryView.resetOriginXByOffset(20);
     }
 }
-#pragma mark —— 一些私有方法
+
 - (void)setSelected:(BOOL)selected
            animated:(BOOL)animated{
     [super setSelected:selected
@@ -103,30 +103,34 @@ UITableViewCell_UIViewModelProtocolSynthesize
 #pragma mark —— lazyLoad
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = UILabel.new;
-        _titleLabel.textColor = HEXCOLOR(0xB0B0B0);
-        _titleLabel.font = bayonRegular(JobsWidth(14));
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:_titleLabel];
-        [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView).offset(JobsWidth(5));
-            make.centerY.equalTo(self.contentView);
-        }];
-        _titleLabel.makeLabelByShowingType(UILabelShowingType_03);
-    }
-    _titleLabel.text = self.viewModel.textModel.text;
+        @jobs_weakify(self)
+        _titleLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textColor = HEXCOLOR(0xB0B0B0);
+            label.font = bayonRegular(JobsWidth(14));
+            label.textAlignment = NSTextAlignmentCenter;
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.contentView).offset(JobsWidth(5));
+                make.centerY.equalTo(self.contentView);
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
+        });
+    }_titleLabel.text = self.viewModel.textModel.text;
     return _titleLabel;
 }
 
 -(UIView *)flagView{
     if (!_flagView) {
-        _flagView = UIView.new;
-        _flagView.frame = CGRectMake(0,
-                                     0,
-                                     3,
-                                     LeftCell_Height);
-        _flagView.backgroundColor = HEXCOLOR(0xFCFBFB);
-        [self.contentView addSubview:_flagView];
+        @jobs_weakify(self)
+        _flagView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            @jobs_strongify(self)
+            view.frame = CGRectMake(0,
+                                    0,
+                                    3,
+                                    LeftCell_Height);
+            view.backgroundColor = HEXCOLOR(0xFCFBFB);
+            self.contentView.addSubview(view);
+        });
     }return _flagView;
 }
 

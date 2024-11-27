@@ -36,18 +36,22 @@
 #pragma mark —— lazyLoad
 -(UIView *)bgView{
     if(!_bgView){
-        _bgView = UIView.new;
-        _bgView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.2f];
+        _bgView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            view.backgroundColor = RGBA_COLOR(0, 0, 1, .2f);
+        });
     }return _bgView;
 }
 
 -(UILabel *)label{
     if(!_label){
-        _label = UILabel.new;
-        _label.frame = self.bounds;
-        _label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _label.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:_label];
+        @jobs_weakify(self)
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.frame = self.bounds;
+            label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            label.textAlignment = NSTextAlignmentCenter;
+            self.contentView.addSubview(label);
+        });
     }return _label;
 }
 

@@ -119,48 +119,42 @@
 #pragma mark —— lazyLoad
 -(UIImageView *)leftIMGV{
     if (!_leftIMGV) {
-        _leftIMGV = UIImageView.new;
-        _leftIMGV.image = self.doorInputViewBaseStyleModel.leftViewIMG;
-        [self addSubview:_leftIMGV];
-        [_leftIMGV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(JobsWidth(17));
-            make.centerY.equalTo(self);
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(12), JobsWidth(16)));
-        }];
+        @jobs_weakify(self)
+        _leftIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = self.doorInputViewBaseStyleModel.leftViewIMG;
+            self.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self).offset(JobsWidth(17));
+                make.centerY.equalTo(self);
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(12), JobsWidth(16)));
+            }];
+        });
     }return _leftIMGV;
 }
 
 -(NSMutableArray<UIViewModel *> *)jobsPageViewDataMutArr{
     if (!_jobsPageViewDataMutArr) {
-        _jobsPageViewDataMutArr = NSMutableArray.array;
-        
-        {
-            UIViewModel *jobsPageViewModel = UIViewModel.new;
-            jobsPageViewModel.textModel.text = JobsInternationalization(@"請選擇區號");
-            jobsPageViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
-            jobsPageViewModel.bgCor = JobsClearColor;
-            jobsPageViewModel.textModel.font = UIFontWeightRegularSize(16);
-            [_jobsPageViewDataMutArr addObject:jobsPageViewModel];
-        }
-        
-        {
-            UIViewModel *jobsPageViewModel = UIViewModel.new;
-            jobsPageViewModel.textModel.text = @"+87";
-            jobsPageViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
-            jobsPageViewModel.bgCor = JobsClearColor;
-            jobsPageViewModel.textModel.font = UIFontWeightRegularSize(16);
-            [_jobsPageViewDataMutArr addObject:jobsPageViewModel];
-        }
-        
-        {
-            UIViewModel *jobsPageViewModel = UIViewModel.new;
-            jobsPageViewModel.textModel.text = @"+88";
-            jobsPageViewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
-            jobsPageViewModel.bgCor = JobsClearColor;
-            jobsPageViewModel.textModel.font = UIFontWeightRegularSize(16);
-            [_jobsPageViewDataMutArr addObject:jobsPageViewModel];
-        }
-        
+        _jobsPageViewDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            arr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+                data.textModel.text = JobsInternationalization(@"請選擇區號");
+                data.textModel.textCor = HEXCOLOR(0xC4C4C4);
+                data.bgCor = JobsClearColor;
+                data.textModel.font = UIFontWeightRegularSize(16);
+            }));
+            arr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+                data.textModel.text = @"+87";
+                data.textModel.textCor = HEXCOLOR(0xC4C4C4);
+                data.bgCor = JobsClearColor;
+                data.textModel.font = UIFontWeightRegularSize(16);
+            }));
+            arr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+                data.textModel.text = @"+88";
+                data.textModel.textCor = HEXCOLOR(0xC4C4C4);
+                data.bgCor = JobsClearColor;
+                data.textModel.font = UIFontWeightRegularSize(16);
+            }));
+        });
     }return _jobsPageViewDataMutArr;
 }
 

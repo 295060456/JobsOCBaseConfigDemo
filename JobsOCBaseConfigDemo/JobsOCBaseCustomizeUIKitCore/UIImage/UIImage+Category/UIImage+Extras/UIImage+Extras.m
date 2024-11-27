@@ -102,7 +102,7 @@
     return [UIImage imageWithCGImage:scaledImage];
 }
 /// 对UIImage对象进行缩放，并返回一个指定尺寸的新图像
--(JobsReturnImageByCGSizeBlock)imageResize{
+-(JobsReturnImageByCGSizeBlock _Nonnull)imageResize{
     return ^UIImage *_Nonnull(CGSize newSize){
         CGFloat scale = UIScreen.mainScreen.scale;
         //UIGraphicsBeginImageContext(newSize);
@@ -117,8 +117,10 @@
     };
 }
 /// 图像模糊化
--(JobsReturnImageByAlphaBlock)alpha{
+-(JobsReturnImageByAlphaBlock _Nonnull)alpha{
+    @jobs_weakify(self)
     return ^UIImage *_Nonnull(CGFloat alpha){
+        @jobs_strongify(self)
         UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
         CGContextRef ctx = UIGraphicsGetCurrentContext();
         CGRect area = CGRectMake(0, 0, self.size.width, self.size.height);
@@ -136,6 +138,84 @@
 
         return newImage;
     };
+}
+/// 截取当前image对象rect区域内的图像
+-(UIImage *)dw_SubImageWithRect:(CGRect)rect{
+    CGFloat scale = self.scale;
+    CGRect scaleRect = CGRectMake(rect.origin.x * scale,
+                                  rect.origin.y * scale,
+                                  rect.size.width * scale,
+                                  rect.size.height * scale);
+    CGImageRef newImageRef = CGImageCreateWithImageInRect(self.CGImage, scaleRect);
+    UIImage *newImage = [[UIImage imageWithCGImage:newImageRef] dw_RescaleImageToSize:rect.size];
+    CGImageRelease(newImageRef);
+    return newImage;
+}
+/// 压缩图片至指定尺寸
+-(UIImage *)dw_RescaleImageToSize:(CGSize)size{
+    CGRect rect = (CGRect){CGPointZero, size};
+    UIGraphicsBeginImageContextWithOptions(size, NO, UIScreen.mainScreen.scale);
+    [self drawInRect:rect];
+    UIImage *resImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return resImage;
+}
+/// 按给定path剪裁图片
+/// @param path 路径，剪裁区域
+/// @param mode 填充模式
+-(UIImage *)dw_ClipImageWithPath:(UIBezierPath *)path
+                            mode:(DWContentMode)mode{
+    CGFloat originScale = self.size.width * 1.0 / self.size.height;
+    CGRect boxBounds = path.bounds;
+    CGFloat width = boxBounds.size.width;
+    CGFloat height = width / originScale;
+    switch (mode) {
+        case DWContentModeScaleAspectFit:{
+            if (height > boxBounds.size.height) {
+                height = boxBounds.size.height;
+                width = height * originScale;
+            }
+        }break;
+        case DWContentModeScaleAspectFill:{
+            if (height < boxBounds.size.height) {
+                height = boxBounds.size.height;
+                width = height * originScale;
+            }
+        }break;
+        default:
+            if (height != boxBounds.size.height) {
+                height = boxBounds.size.height;
+            }break;
+    }
+    /// 开启上下文
+    UIGraphicsBeginImageContextWithOptions(boxBounds.size, NO, UIScreen.mainScreen.scale);
+    CGContextRef bitmap = UIGraphicsGetCurrentContext();
+    /// 归零path
+    UIBezierPath * newPath = path.copy;
+    [newPath applyTransform:CGAffineTransformMakeTranslation(-path.bounds.origin.x, -path.bounds.origin.y)];
+    [newPath addClip];
+    /// 移动原点至图片中心
+    CGContextTranslateCTM(bitmap, boxBounds.size.width / 2.0, boxBounds.size.height / 2.0);
+    CGContextScaleCTM(bitmap, 1.0, -1.0);
+    CGContextDrawImage(bitmap, CGRectMake(-width / 2,
+                                          -height / 2,
+                                          width,
+                                          height), self.CGImage);
+    /// 生成图片
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+/// 裁剪图片
+- (UIImage *)imageScaleToSize:(CGSize)size{
+    UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
+    [self drawInRect:CGRectMake(0,
+                                0,
+                                size.width,
+                                size.height)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
 }
 
 @end

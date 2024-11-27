@@ -46,11 +46,14 @@
 #pragma mark —— lazyLoad
 -(UIImageView *)textIMGV{
     if (!_textIMGV) {
-        _textIMGV = UIImageView.new;
-        [self.contentView addSubview:_textIMGV];
-        [_textIMGV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
+        @jobs_weakify(self)
+        _textIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            self.contentView.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView);
+            }];
+        });
     }return _textIMGV;
 }
 

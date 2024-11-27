@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define kBorderWith 10
+#define KCenter CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0)
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PHCycleView : UIView

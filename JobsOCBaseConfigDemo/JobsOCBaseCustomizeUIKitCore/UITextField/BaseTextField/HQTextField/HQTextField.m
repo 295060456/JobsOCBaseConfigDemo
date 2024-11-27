@@ -77,7 +77,7 @@
 
 -(CABasicAnimation *)opacityAnimation{
     if (!_opacityAnimation) {
-        _opacityAnimation = jobsMakeBasicAnimationBy(@"opacity");
+        _opacityAnimation = jobsMakeCABasicAnimationBy(@"opacity");
         _opacityAnimation.fromValue = @(1.0);
         _opacityAnimation.toValue = @(0.0f);
         _opacityAnimation.repeatCount = 5;

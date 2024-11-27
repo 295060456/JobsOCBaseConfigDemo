@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 
 @interface GDFadeView : UIView
 
-@property(nonatomic,strong)NSString *text;
+@property(nonatomic,copy,nullable)NSString *text;
 @property(nonatomic,assign)NSTextAlignment alignment;
-@property(nonatomic,strong)UIColor *backColor;
-@property(nonatomic,strong)UIColor *foreColor;
-@property(nonatomic,strong)UIFont *font;
+@property(nonatomic,strong,nullable)UIColor *backColor;
+@property(nonatomic,strong,nullable)UIColor *foreColor;
+@property(nonatomic,strong,nullable)UIFont *font;
 
--(void)iPhoneFadeWithDuration:(NSTimeInterval)duration;
+-(jobsByTimeIntervalBlock _Nonnull)iPhoneFadeWithDuration;
 
 @end

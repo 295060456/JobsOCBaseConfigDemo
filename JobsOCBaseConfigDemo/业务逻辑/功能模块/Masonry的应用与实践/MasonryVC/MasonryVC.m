@@ -79,40 +79,45 @@
 #pragma mark —— 一些私有方法
 /// 不用Masonry，直接用frame来实现：根据字符串，一行4个元素，自动提行
 -(void)demo1{
-    // 创建标签数组
-    NSArray *tagNames = @[@"标签1", @"标签2", @"标签3", @"标签4", @"标签5", @"标签6", @"标签7", @"标签8", @"标签9", @"标签10"];
     // 设置标签容器的初始位置
     CGFloat containerX = 20;
     CGFloat containerY = 100;
     // 设置标签容器的宽度
     CGFloat containerWidth = self.view.frame.size.width - 2 * containerX;
     // 设置标签高度和间距
-    CGFloat tagHeight = 30;
-    CGFloat tagSpacing = 10;
+    __block CGFloat tagHeight = 30;
+    __block CGFloat tagSpacing = 10;
     // 初始化当前行的x坐标和y坐标
-    CGFloat currentX = containerX;
-    CGFloat currentY = containerY;
+    __block CGFloat currentX = containerX;
+    __block CGFloat currentY = containerY;
+    __block CGSize tagSize = CGSizeZero;
     // 遍历标签名称并创建标签
-    for (NSString *tagName in tagNames) {
-        UILabel *tagLabel = UILabel.new;
-        tagLabel.text = tagName;
-        tagLabel.backgroundColor = JobsLightGrayColor;
-        tagLabel.textAlignment = NSTextAlignmentCenter;
-        tagLabel.layer.cornerRadius = 5.0;
-        tagLabel.clipsToBounds = YES;
-        // 根据标签文本计算标签宽度
-        CGSize tagSize = [tagLabel sizeThatFits:CGSizeMake(containerWidth, tagHeight)];
-        // 如果当前行放不下该标签，则换行
-        if (currentX + tagSize.width > containerWidth) {
-            currentX = containerX;
-            currentY += tagHeight + tagSpacing;
-        }
-        // 设置标签的位置和大小
-        tagLabel.frame = CGRectMake(currentX, currentY, tagSize.width, tagHeight);
-        // 将标签添加到视图
-        [self.view addSubview:tagLabel];
-        // 更新当前行的x坐标
-        currentX += tagSize.width + tagSpacing;
+    for (NSString *tagName in jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+        arr.add(JobsInternationalization(@"标签1"));
+        arr.add(JobsInternationalization(@"标签2"));
+        arr.add(JobsInternationalization(@"标签3"));
+        arr.add(JobsInternationalization(@"标签4"));
+        arr.add(JobsInternationalization(@"标签5"));
+        arr.add(JobsInternationalization(@"标签6"));
+        arr.add(JobsInternationalization(@"标签7"));
+        arr.add(JobsInternationalization(@"标签8"));
+        arr.add(JobsInternationalization(@"标签9"));
+        arr.add(JobsInternationalization(@"标签10"));
+    })) {
+        self.view.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.text = tagName;
+            label.backgroundColor = JobsLightGrayColor;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.layer.cornerRadius = 5.0;
+            label.clipsToBounds = YES;
+            // 根据标签文本计算标签宽度
+            CGSize tagSize = [label sizeThatFits:CGSizeMake(containerWidth, tagHeight)];
+            // 如果当前行放不下该标签，则换行
+            if (currentX + tagSize.width > containerWidth) {
+                currentX = containerX;
+                currentY += tagHeight + tagSpacing;
+            }label.frame = CGRectMake(currentX, currentY, tagSize.width, tagHeight);
+        }));currentX += tagSize.width + tagSpacing;/// 更新当前行的x坐标
     }
 }
 /**

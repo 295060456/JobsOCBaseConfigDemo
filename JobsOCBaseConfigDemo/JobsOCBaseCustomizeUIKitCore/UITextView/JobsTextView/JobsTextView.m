@@ -54,9 +54,6 @@ static dispatch_once_t static_textViewOnceToken;
             NSLog(@"通知传递过来的 = %@",notification.object);
         }];
     }return self;
-    
-    
-
 }
 
 -(void)drawRect:(CGRect)rect{
@@ -93,7 +90,7 @@ static dispatch_once_t static_textViewOnceToken;
     self.countLabel.makeLabelByShowingType(UILabelShowingType_03);
 }
 #pragma mark —— lazyLoad
-- (SZTextView *)textView{
+-(SZTextView *)textView{
     if (!_textView) {
         _textView = SZTextView.new;
         _textView.backgroundColor = JobsCor(@"#FEF4F3");
@@ -130,16 +127,19 @@ static dispatch_once_t static_textViewOnceToken;
 
 - (UILabel *)countLabel{
     if (!_countLabel) {
-        _countLabel = UILabel.new;
-        _countLabel.textColor = JobsWhiteColor;
-        _countLabel.textAlignment = NSTextAlignmentCenter;
-        _countLabel.font = UIFontWeightBoldSize(12);
-        [self addSubview:_countLabel];
-        [_countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(JobsWidth(17));
-            make.bottom.mas_equalTo(-JobsWidth(8));
-            make.right.equalTo(self).offset(-JobsWidth(5));
-        }];
+        @jobs_weakify(self)
+        _countLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textColor = JobsWhiteColor;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font = UIFontWeightBoldSize(12);
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(JobsWidth(17));
+                make.bottom.mas_equalTo(-JobsWidth(8));
+                make.right.equalTo(self).offset(-JobsWidth(5));
+            }];
+        });
     }return _countLabel;
 }
 

@@ -206,40 +206,52 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 #pragma mark —— lazyLoad
 -(UIImageView *)headIcon{
     if (!_headIcon) {
-        _headIcon = [UIImageView.alloc initWithFrame:CGRectMake((self.view.frame.size.width - JobsWidth(56)) * 0.5,
-                                                                JobsWidth(30),
-                                                                JobsWidth(56),
-                                                                JobsWidth(56))];
-        _headIcon.image = [UIImage imageNamed:@"gesture_headIcon"];
-        [self.view addSubview:_headIcon];
+        @jobs_weakify(self)
+        _headIcon = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.frame = CGRectMake((self.view.frame.size.width - JobsWidth(56)) * 0.5,
+                                         JobsWidth(30),
+                                         JobsWidth(56),
+                                         JobsWidth(56));
+            imageView.image = JobsIMG(@"gesture_headIcon");
+            self.view.addSubview(imageView);
+        });
     }return _headIcon;
 }
 
 -(UILabel *)nameLabel{
     if (!_nameLabel) {
-        _nameLabel = [UILabel.alloc initWithFrame:CGRectMake((self.view.frame.size.width - JobsWidth(100)) * 0.5,
-                                                             JobsWidth(90),
-                                                             JobsWidth(100),
-                                                             JobsWidth(20))];
-        _nameLabel.textAlignment = NSTextAlignmentCenter;
-        _nameLabel.text = JobsInternationalization(@"smile丽");
-        _nameLabel.font = [UIFont systemFontOfSize:12];
-        _nameLabel.textColor = [UIColor orangeColor];
-        [self.view addSubview:_nameLabel];
+        @jobs_weakify(self)
+        _nameLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.frame = CGRectMake((self.view.frame.size.width - JobsWidth(100)) * 0.5,
+                                     JobsWidth(90),
+                                     JobsWidth(100),
+                                     JobsWidth(20));
+            label.textAlignment = NSTextAlignmentCenter;
+            label.text = JobsInternationalization(@"smile丽");
+            label.font = UIFontWeightBoldSize(JobsWidth(12));
+            label.textColor = JobsOrangeColor;
+            self.view.addSubview(label);
+        });
     }return _nameLabel;
 }
 
 -(UILabel *)statusLabel{
     if (!_statusLabel) {
-        _statusLabel = [UILabel.alloc initWithFrame:CGRectMake((self.view.frame.size.width - JobsWidth(200)) * 0.5,
-                                                                       JobsWidth(160),
-                                                                       JobsWidth(200),
-                                                                       JobsWidth(30))];
-        _statusLabel.textAlignment = NSTextAlignmentCenter;
-        _statusLabel.text = JobsInternationalization(@"请绘制手势密码");
-        _statusLabel.font = [UIFont systemFontOfSize:12];
-        _statusLabel.textColor = JobsRedColor;
-        [self.view addSubview:_statusLabel];
+        @jobs_weakify(self)
+        _statusLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.frame = CGRectMake((self.view.frame.size.width - JobsWidth(200)) * 0.5,
+                                     JobsWidth(160),
+                                     JobsWidth(200),
+                                     JobsWidth(30));
+            label.textAlignment = NSTextAlignmentCenter;
+            label.text = JobsInternationalization(@"请绘制手势密码");
+            label.font = [UIFont systemFontOfSize:12];
+            label.textColor = JobsRedColor;
+            self.view.addSubview(label);
+        });
     }return _statusLabel;
 }
 

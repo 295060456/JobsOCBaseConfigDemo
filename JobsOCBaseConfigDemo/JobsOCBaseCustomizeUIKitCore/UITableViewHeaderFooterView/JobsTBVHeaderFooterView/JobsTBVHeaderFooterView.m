@@ -50,12 +50,15 @@
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(self.viewModel.textModel.offsetXForEach);
-            make.top.bottom.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self).offset(self.viewModel.textModel.offsetXForEach);
+                make.top.bottom.equalTo(self);
+            }];
+        });
     }
     
     if (self.viewModel.textModel.attributedTitle) {

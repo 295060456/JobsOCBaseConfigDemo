@@ -63,13 +63,17 @@
 #pragma mark —— lazyLoad
 -(UIImageView *)labView{
     if (!_labView) {
-        _labView = UIImageView.new;
+        _labView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            
+        });
     }return _labView;
 }
 
 -(UILabel *)lab2{
     if (!_lab2) {
-        _lab2 = UILabel.new;
+        _lab2 = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            
+        });
     }return _lab2;
 }
 

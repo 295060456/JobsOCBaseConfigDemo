@@ -8,6 +8,9 @@
 #ifndef JobsMakes_h
 #define JobsMakes_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
@@ -52,8 +55,14 @@ NS_INLINE __kindof UIBezierPath *_Nonnull jobsMakeBezierPath(jobsByBezierPathBlo
     return data;
 }
 #pragma mark —— 关于动画
-NS_INLINE __kindof CABasicAnimation *_Nonnull jobsMakeBasicAnimationBy(NSString *_Nonnull data){
+NS_INLINE __kindof CABasicAnimation *_Nonnull jobsMakeCABasicAnimationBy(NSString *_Nonnull data){
     return data.basicAnimation;
+}
+
+NS_INLINE __kindof CABasicAnimation *_Nonnull jobsMakeCABasicAnimation(jobsByCABasicAnimationBlock _Nonnull block){
+    CABasicAnimation *data = CABasicAnimation.animation;
+    if (block) block(data);
+    return data;
 }
 #pragma mark —— 关于Layer
 NS_INLINE __kindof CAShapeLayer *_Nonnull jobsMakeCAShapeLayer(jobsByCAShapeLayerBlock _Nonnull block){
@@ -74,7 +83,13 @@ NS_INLINE __kindof CATransition *_Nonnull jobsMakeCATransition(jobsByCATransitio
     return data;
 }
 
-NS_INLINE __kindof CAGradientLayer *_Nonnull jobsMakeGradientLayer(jobsByCAGradientLayerBlock _Nonnull block){
+NS_INLINE __kindof CAKeyframeAnimation *_Nonnull jobsMakeCAKeyframeAnimation(jobsByCAKeyframeAnimationBlock _Nonnull block){
+    CAKeyframeAnimation *data = CAKeyframeAnimation.animation;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof CAGradientLayer *_Nonnull jobsMakeCAGradientLayer(jobsByCAGradientLayerBlock _Nonnull block){
     CAGradientLayer *data = CAGradientLayer.layer;
     if (block) block(data);
     return data;
@@ -155,6 +170,30 @@ NS_INLINE __kindof UIView *_Nonnull jobsMakeView(jobsByViewBlock _Nonnull block)
 
 NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull block){
     UILabel *data = UILabel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UIPasteboard *_Nonnull jobsMakePasteboard(jobsByPasteboardBlock _Nonnull block){
+    UIPasteboard *data = UIPasteboard.generalPasteboard;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof CAEmitterCell *_Nonnull jobsMakeCAEmitterCell(jobsByCAEmitterCellBlock _Nonnull block){
+    CAEmitterCell *cell = CAEmitterCell.emitterCell;
+    if (block) block(cell);
+    return cell;
+}
+
+NS_INLINE __kindof CAEmitterLayer *_Nonnull jobsMakeCAEmitterLayer(jobsByCAEmitterLayerBlock _Nonnull block){
+    CAEmitterLayer *layer = CAEmitterLayer.layer;
+    if (block) block(layer);
+    return layer;
+}
+
+NS_INLINE __kindof UIMenuController *_Nonnull jobsMakeMenuController(jobsByMenuControllerBlock _Nonnull block){
+    UIMenuController *data = UIMenuController.sharedMenuController;
     if (block) block(data);
     return data;
 }
@@ -315,5 +354,7 @@ NS_INLINE NSRange jobsMakeRangeByLocationModelBlock(jobsByLocationModelBlock _No
     if (block) block(data);
     return NSMakeRange(data.location, data.length);
 }
+
+#pragma clang diagnostic pop
 
 #endif /* JobsMakes_h */

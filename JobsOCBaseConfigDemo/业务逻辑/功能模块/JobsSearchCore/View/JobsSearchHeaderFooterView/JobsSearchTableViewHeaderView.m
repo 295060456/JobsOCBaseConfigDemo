@@ -51,16 +51,19 @@
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.textColor = self.viewModel.textModel.textCor;
-        _titleLab.backgroundColor = self.viewModel.bgCor;
-        _titleLab.font = self.viewModel.textModel.font;
-        _titleLab.textAlignment = NSTextAlignmentLeft;
-        [self.contentView addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.right.bottom.equalTo(self.contentView);
-            make.left.equalTo(self.contentView).offset(JobsWidth(10));
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textColor = self.viewModel.textModel.textCor;
+            label.backgroundColor = self.viewModel.bgCor;
+            label.font = self.viewModel.textModel.font;
+            label.textAlignment = NSTextAlignmentLeft;
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.right.bottom.equalTo(self.contentView);
+                make.left.equalTo(self.contentView).offset(JobsWidth(10));
+            }];
+        });
     }return _titleLab;
 }
 

@@ -445,8 +445,11 @@
 
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        [self addSubview:_titleLab];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            self.addSubview(label);
+        });
     }return _titleLab;
 }
 
@@ -458,8 +461,7 @@
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
             return nil;
-        }];
-        [self addSubview:_abandonLoginBtn];
+        }];[self addSubview:_abandonLoginBtn];
     }return _abandonLoginBtn;
 }
 /// 登录 或者 注册按钮

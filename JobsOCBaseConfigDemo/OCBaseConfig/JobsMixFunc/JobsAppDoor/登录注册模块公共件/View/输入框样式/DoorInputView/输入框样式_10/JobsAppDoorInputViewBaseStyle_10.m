@@ -133,16 +133,18 @@
 
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.text = isNull(self.doorInputViewBaseStyleModel.textModel.text) ? self.titleStr_2 : self.doorInputViewBaseStyleModel.textModel.text;
-        _titleLab.textColor = self.viewModel.textModel.textCor ? : HEXCOLOR(0xAE8330);
-        _titleLab.font = self.viewModel.textModel.font ? : [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightMedium];
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self);
-            make.centerY.equalTo(self.textField);
-        }];
-        _titleLab.makeLabelByShowingType(UILabelShowingType_03);
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = isNull(self.doorInputViewBaseStyleModel.textModel.text) ? self.titleStr_2 : self.doorInputViewBaseStyleModel.textModel.text;
+            label.textColor = self.viewModel.textModel.textCor ? : HEXCOLOR(0xAE8330);
+            label.font = self.viewModel.textModel.font ? : [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightMedium];
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self);
+                make.centerY.equalTo(self.textField);
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
+        });
     }return _titleLab;
 }
 

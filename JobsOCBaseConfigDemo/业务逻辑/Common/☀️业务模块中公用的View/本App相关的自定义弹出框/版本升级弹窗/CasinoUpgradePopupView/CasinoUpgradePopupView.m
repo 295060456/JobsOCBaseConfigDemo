@@ -51,14 +51,17 @@
 #pragma mark —— lazyLoad
 -(UIImageView *)imageView{
     if (!_imageView) {
-        _imageView = UIImageView.new;
-        _imageView.image = JobsIMG(@"弹窗升级背景图");
-        [self addSubview:_imageView];
-        [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self);
-            make.top.equalTo(self).offset(-JobsWidth(117));
-            make.height.mas_equalTo(JobsWidth(207));
-        }];
+        @jobs_weakify(self)
+        _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = JobsIMG(@"弹窗升级背景图");
+            self.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(self);
+                make.top.equalTo(self).offset(-JobsWidth(117));
+                make.height.mas_equalTo(JobsWidth(207));
+            }];
+        });
     }return _imageView;
 }
 

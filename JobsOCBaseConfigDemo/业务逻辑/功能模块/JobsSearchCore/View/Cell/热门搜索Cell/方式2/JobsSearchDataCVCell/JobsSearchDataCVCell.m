@@ -11,8 +11,8 @@
 
 @property(nonatomic,strong)UILabel *serialNumLab;
 @property(nonatomic,strong)UILabel *contentLab;
-@property(nonatomic,strong)NSString *serialStr;
-@property(nonatomic,strong)NSString *contentStr;
+@property(nonatomic,copy)NSString *serialStr;
+@property(nonatomic,copy)NSString *contentStr;
 @property(nonatomic,strong)UIColor *serialNumLabBGCor;
 
 @end
@@ -54,31 +54,36 @@
 #pragma mark —— lazyLoad
 -(UILabel *)serialNumLab{
     if (!_serialNumLab) {
-        _serialNumLab = UILabel.new;
-        _serialNumLab.text = self.serialStr;
-        _serialNumLab.textAlignment = NSTextAlignmentCenter;
-        _serialNumLab.textColor = JobsWhiteColor;
-        _serialNumLab.backgroundColor = self.serialNumLabBGCor;
-        [self.contentView addSubview:_serialNumLab];
-        [_serialNumLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(20, 20));
-            make.left.equalTo(self.contentView).offset(10);
-            make.centerY.equalTo(self.contentView);
-        }];
-        _serialNumLab.cornerCutToCircleWithCornerRadius(3);
+        @jobs_weakify(self)
+        _serialNumLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = self.serialStr;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = JobsWhiteColor;
+            label.backgroundColor = self.serialNumLabBGCor;
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(20, 20));
+                make.left.equalTo(self.contentView).offset(10);
+                make.centerY.equalTo(self.contentView);
+            }];label.cornerCutToCircleWithCornerRadius(3);
+        });
     }return _serialNumLab;
 }
 
 -(UILabel *)contentLab{
     if (!_contentLab) {
-        _contentLab = UILabel.new;
-        _contentLab.text = self.viewModel.textModel.text;
-        _contentLab.textColor = JobsLightGrayColor;
-        [self.contentView addSubview:_contentLab];
-        [_contentLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.serialNumLab);
-            make.left.equalTo(self.serialNumLab.mas_right).offset(5);
-        }];
+        @jobs_weakify(self)
+        _contentLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = self.viewModel.textModel.text;
+            label.textColor = JobsLightGrayColor;
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self.serialNumLab);
+                make.left.equalTo(self.serialNumLab.mas_right).offset(5);
+            }];
+        });
     }return _contentLab;
 }
 

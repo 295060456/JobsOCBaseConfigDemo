@@ -53,36 +53,45 @@
 #pragma mark —— LazyLoad
 -(UILabel *)minutesLabel{
     if(!_minutesLabel){
-        _minutesLabel = UILabel.new;
-        [self addSubview:_minutesLabel];
-        [_minutesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.equalTo(self);
-            make.height.mas_equalTo(JobsWidth(10));
-        }];
+        @jobs_weakify(self)
+        _minutesLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.left.equalTo(self);
+                make.height.mas_equalTo(JobsWidth(10));
+            }];
+        });
     }return _minutesLabel;
 }
 
 -(UILabel *)titleLabel{
     if(!_titleLabel){
-        _titleLabel = UILabel.new;
-        [self addSubview:_titleLabel];
-        [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.minutesLabel.mas_bottom);
-            make.left.equalTo(self);
-            make.height.mas_equalTo(JobsWidth(10));
-        }];
+        @jobs_weakify(self)
+        _titleLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.minutesLabel.mas_bottom);
+                make.left.equalTo(self);
+                make.height.mas_equalTo(JobsWidth(10));
+            }];
+        });
     }return _titleLabel;
 }
 
 -(UILabel *)tableHighlightLabel{
     if(!_tableHighlightLabel){
-        _tableHighlightLabel = UILabel.new;
-        [self addSubview:_tableHighlightLabel];
-        [_tableHighlightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleLabel.mas_bottom);
-            make.left.equalTo(self);
-            make.height.mas_equalTo(JobsWidth(10));
-        }];
+        @jobs_weakify(self)
+        _tableHighlightLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.titleLabel.mas_bottom);
+                make.left.equalTo(self);
+                make.height.mas_equalTo(JobsWidth(10));
+            }];
+        });
     }return _tableHighlightLabel;
 }
 

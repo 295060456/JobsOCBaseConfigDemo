@@ -42,16 +42,19 @@
 #pragma mark —— lazyLoad
 -(UILabel *)adNoticeLab{
     if (!_adNoticeLab) {
-        _adNoticeLab = UILabel.new;
-        _adNoticeLab.text = @"Jobs安全聊天，为您的聊天加密护航";
-        _adNoticeLab.textColor = JobsRedColor;
-        _adNoticeLab.textAlignment = NSTextAlignmentCenter;
-        _adNoticeLab.font = [UIFont systemFontOfSize:12 weight:UIFontWeightRegular];
-        _adNoticeLab.backgroundColor = JobsClearColor;
-        [self addSubview:_adNoticeLab];
-        [_adNoticeLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _adNoticeLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = JobsInternationalization(@"Jobs安全聊天，为您的聊天加密护航");
+            label.textColor = JobsRedColor;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font = UIFontWeightRegularSize(JobsWidth(12));
+            label.backgroundColor = JobsClearColor;
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
+        });
     }return _adNoticeLab;
 }
 

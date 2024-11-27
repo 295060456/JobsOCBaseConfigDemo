@@ -70,14 +70,17 @@
 #pragma mark —— lazyLoad
 -(UIImageView *)imageView{
     if (!_imageView) {
-        _imageView = UIImageView.new;
-        _imageView.image = self.viewModel.image;
-        [self.view addSubview:_imageView];
-        [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(10);
-            make.left.equalTo(self.view).offset(10);
-            make.size.mas_equalTo(CGSizeMake(300, 300));
-        }];
+        @jobs_weakify(self)
+        _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = self.viewModel.image;
+            self.view.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(10);
+                make.left.equalTo(self.view).offset(10);
+                make.size.mas_equalTo(CGSizeMake(300, 300));
+            }];
+        });
     }return _imageView;
 }
 

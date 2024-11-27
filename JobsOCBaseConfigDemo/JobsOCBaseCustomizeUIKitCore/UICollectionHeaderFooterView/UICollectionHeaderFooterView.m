@@ -63,25 +63,28 @@ static dispatch_once_t static_collectionHeaderFooterViewOnceToken;
 #pragma mark —— lazyLoad
 -(UIImageView *)imageView{
     if (!_imageView) {
-        _imageView = UIImageView.new;
-        _imageView.image = JobsBuddleIMG(@"bundle",
-                                      @"Others",
-                                      nil,
-                                      @"个人中心背景图");
-        _imageView.clipsToBounds = YES;
-        _imageView.contentMode = UIViewContentModeScaleAspectFill;
-        [self addSubview:_imageView];
-        if (self.isZoom) {
-            _imageView.frame = CGRectMake(0,
-                                          0,
-                                          self.width,
-                                          self.height);
-            self.imageViewFrame = _imageView.frame;
-        }else{
-            [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self);
-            }];
-        }
+        @jobs_weakify(self)
+        _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = JobsBuddleIMG(@"bundle",
+                                          @"Others",
+                                          nil,
+                                          @"个人中心背景图");
+            imageView.clipsToBounds = YES;
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            self.addSubview(imageView);
+            if (self.isZoom) {
+                imageView.frame = CGRectMake(0,
+                                              0,
+                                              self.width,
+                                              self.height);
+                self.imageViewFrame = imageView.frame;
+            }else{
+                [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.equalTo(self);
+                }];
+            }
+        });
     }return _imageView;
 }
 

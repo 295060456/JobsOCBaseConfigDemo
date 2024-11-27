@@ -20,43 +20,49 @@
     self.titleLab.alpha = 1;
     self.subTitleLab.alpha = 1;
 }
-
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.font = [UIFont systemFontOfSize:JobsWidth(20)
-                                           weight:UIFontWeightHeavy];
-        [_titleLab sizeToFit];
-        [self.bacKIMGV addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.bacKIMGV);
-            make.bottom.equalTo(self.bacKIMGV.mas_centerY).offset(JobsWidth(7));
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.font = UIFontWeightHeavySize(JobsWidth(20));
+            [label sizeToFit];
+            self.bacKIMGV.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.bacKIMGV);
+                make.bottom.equalTo(self.bacKIMGV.mas_centerY).offset(JobsWidth(7));
+            }];
+        });
     }return _titleLab;
 }
 
 -(UILabel *)subTitleLab{
     if (!_subTitleLab) {
-        _subTitleLab = UILabel.new;
-        _subTitleLab.font = [UIFont systemFontOfSize:JobsWidth(8)
-                                              weight:UIFontWeightRegular];
-        [_subTitleLab sizeToFit];
-        [self.bacKIMGV addSubview:_subTitleLab];
-        [_subTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.bacKIMGV);
-            make.top.equalTo(self.bacKIMGV.mas_centerY).offset(JobsWidth(7));
-        }];
+        @jobs_weakify(self)
+        _subTitleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.font = UIFontWeightRegularSize(JobsWidth(8));
+            [label sizeToFit];
+            self.bacKIMGV.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.bacKIMGV);
+                make.top.equalTo(self.bacKIMGV.mas_centerY).offset(JobsWidth(7));
+            }];
+        });
     }return _subTitleLab;
 }
 
 -(UIImageView *)bacKIMGV{
     if (!_bacKIMGV) {
-        _bacKIMGV = UIImageView.new;
-        [self addSubview:_bacKIMGV];
-        [_bacKIMGV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _bacKIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            self.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
+        });
     }return _bacKIMGV;
 }
 
@@ -86,9 +92,9 @@ static dispatch_once_t dispatchOnce;
 
 -(void)makeFlowChart{
     if (self.flowNum) {
-        //单个节点的高度
+        /// 单个节点的高度
 //        CGFloat singleElementH = self.mj_h;
-        //每个节点的宽度
+        /// 每个节点的宽度
         CGFloat singleElementW = JobsMainScreen_WIDTH() / self.flowNum;
         for (int t = 0; t < self.flowNum; t++) {
             FlowChartSingleElementView *singleElement = FlowChartSingleElementView.new;
@@ -96,26 +102,21 @@ static dispatch_once_t dispatchOnce;
             singleElement.subTitleLab.text = self.subTitleMutArr[t];
             [self changeState:singleElement
                         index:t];
-            [self addSubview:singleElement];
+            self.addSubview(singleElement);
             [singleElement mas_makeConstraints:^(MASConstraintMaker *make) {
                 [singleElement mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.width.mas_equalTo(singleElementW);
                     make.top.bottom.equalTo(self);
-                    if (t == 0) {//第一个元素，从左边开始布局
+                    if (t == 0) {/// 第一个元素，从左边开始布局
                         make.left.equalTo(self);
                     }else{
                         FlowChartSingleElementView *lastSingleElement = self.singleElementMutArr[t - 1];
                         make.left.equalTo(lastSingleElement.mas_right);
                     }
-                }];
-                [self.singleElementMutArr addObject:singleElement];
+                }];self.singleElementMutArr.add(singleElement);
             }];
         }
     }
-    
-//    if (self.singleElementMutArr.count) {
-//        
-//    }
 }
 
 -(void)changeState:(FlowChartSingleElementView *)singleElement

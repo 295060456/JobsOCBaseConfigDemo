@@ -56,16 +56,19 @@
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.backgroundColor = HEXCOLOR(0xFFFFFF);
-        _titleLab.text = isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"请设置大标题") : self.viewModel.textModel.text;
-        _titleLab.textColor = self.viewModel.textModel.textCor;
-        _titleLab.font = [UIFont systemFontOfSize:JobsWidth(20) weight:UIFontWeightRegular];
-        _titleLab.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = HEXCOLOR(0xFFFFFF);
+            label.text = isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"请设置大标题") : self.viewModel.textModel.text;
+            label.textColor = self.viewModel.textModel.textCor;
+            label.font = [UIFont systemFontOfSize:JobsWidth(20) weight:UIFontWeightRegular];
+            label.textAlignment = NSTextAlignmentCenter;
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView);
+            }];
+        });
     }return _titleLab;
 }
 

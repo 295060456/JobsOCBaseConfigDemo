@@ -21,20 +21,22 @@
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder{
-    self = [super initWithCoder:coder];
-    if (self) {
+    if (self = [super initWithCoder:coder]) {
         self.label.alpha = 1;
     }return self;
 }
 #pragma mark —— LazyLoad
 -(UILabel *)label{
     if(!_label){
-        _label = UILabel.new;
-        _label.frame = self.bounds;
-        _label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _label.font = [UIFont boldSystemFontOfSize:14.f];
-        _label.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:_label];
+        @jobs_weakify(self)
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.frame = self.bounds;
+            label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            label.font = [UIFont boldSystemFontOfSize:14.f];
+            label.textAlignment = NSTextAlignmentCenter;
+            self.contentView.addSubview(label);
+        });
     }return _label;
 }
 

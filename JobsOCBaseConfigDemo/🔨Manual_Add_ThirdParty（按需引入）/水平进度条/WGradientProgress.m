@@ -229,7 +229,7 @@
 -(CAGradientLayer *)gradLayer{
     if (!_gradLayer) {
         @jobs_weakify(self)
-        _gradLayer = jobsMakeGradientLayer(^(__kindof CAGradientLayer * _Nullable data) {
+        _gradLayer = jobsMakeCAGradientLayer(^(__kindof CAGradientLayer * _Nullable data) {
             @jobs_strongify(self)
             data.frame = CGRectZero;
             data.borderWidth = 1;

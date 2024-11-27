@@ -98,30 +98,36 @@ static dispatch_once_t static_postDelViewOnceToken;
 #pragma mark —— lazyLoad
 -(UIImageView *)imageView{
     if (!_imageView) {
-        _imageView = UIImageView.new;
-        _imageView.image = JobsIMG(@"hx_photo_edit_trash_close");
-        [self addSubview:_imageView];
-        [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(20), JobsWidth(20)));
-            make.centerX.equalTo(self);
-            make.top.equalTo(self).offset(JobsWidth(5));
-        }];
+        @jobs_weakify(self)
+        _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = JobsIMG(@"hx_photo_edit_trash_close");
+            self.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(20), JobsWidth(20)));
+                make.centerX.equalTo(self);
+                make.top.equalTo(self).offset(JobsWidth(5));
+            }];
+        });
     }return _imageView;
 }
 
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.backgroundColor = JobsRedColor;
-        _titleLab.text = JobsInternationalization(@"拖动到此处删除");
-        _titleLab.textColor = JobsWhiteColor;
-        _titleLab.textAlignment = NSTextAlignmentCenter;
-        [_titleLab sizeToFit];
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.imageView.mas_bottom).offset(JobsWidth(5));
-            make.centerX.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.backgroundColor = JobsRedColor;
+            label.text = JobsInternationalization(@"拖动到此处删除");
+            label.textColor = JobsWhiteColor;
+            label.textAlignment = NSTextAlignmentCenter;
+            [label sizeToFit];
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.imageView.mas_bottom).offset(JobsWidth(5));
+                make.centerX.equalTo(self);
+            }];
+        });
     }return _titleLab;
 }
 

@@ -42,15 +42,18 @@
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.text = @"点击加载更多...";
-        _titleLab.textAlignment = NSTextAlignmentCenter;
-        _titleLab.backgroundColor = [UIColor systemYellowColor];
-        [self.contentView addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = JobsInternationalization(@"点击加载更多").add(@"...");
+            label.textAlignment = NSTextAlignmentCenter;
+            label.backgroundColor = JobsSystemYellowColor;
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.contentView);
+            }];
+        });
     }return _titleLab;
 }
-
+ 
 @end

@@ -14,13 +14,15 @@ JobsKey(_gifImageView)
 -(UIImageView *)gifImageView{
     UIImageView *GifImageView = Jobs_getAssociatedObject(_gifImageView);
     if (!GifImageView) {
-        GifImageView = UIImageView.new;
-        GifImageView.image = self.image;
-        [self.view addSubview:GifImageView];
-        [GifImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_gifImageView, GifImageView)
+        @jobs_weakify(self)
+        GifImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = self.image;
+            [self.view addSubview:imageView];
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.view);
+            }];Jobs_setAssociatedRETAIN_NONATOMIC(_gifImageView, GifImageView)
+        });
     }return GifImageView;
 }
 

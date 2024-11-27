@@ -165,15 +165,18 @@
 
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.font = [UIFont systemFontOfSize:JobsWidth(11) weight:UIControlStateNormal];
-        _titleLab.text = self.doorInputViewBaseStyleModel.textModel.text;
-        _titleLab.textColor = self.doorInputViewBaseStyleModel.textModel.textCor;
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.bottom.equalTo(self);
-            make.top.equalTo(self.textField.mas_bottom);
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.font = UIFontWeightRegularSize(JobsWidth(11));
+            label.text = self.doorInputViewBaseStyleModel.textModel.text;
+            label.textColor = self.doorInputViewBaseStyleModel.textModel.textCor;
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.bottom.equalTo(self);
+                make.top.equalTo(self.textField.mas_bottom);
+            }];
+        });
     }return _titleLab;
 }
 

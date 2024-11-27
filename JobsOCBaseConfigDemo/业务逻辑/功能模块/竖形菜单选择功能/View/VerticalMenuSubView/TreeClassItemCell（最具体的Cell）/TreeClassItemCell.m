@@ -66,16 +66,19 @@ UILocationProtocol_UIViewModelSynthesize
 
 -(UIImageView *)logoImgView{
     if (!_logoImgView) {
-        _logoImgView = UIImageView.new;
-        _logoImgView.contentMode = UIViewContentModeScaleAspectFill;
-        _logoImgView.clipsToBounds = YES;
-        _logoImgView.cornerCutToCircleWithCornerRadius(JobsWidth(8));
-        [self.contentView addSubview:_logoImgView];
-        [_logoImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(self.imageWidth, self.imageWidth));
-            make.centerX.equalTo(self.contentView);
-            make.top.equalTo(self.contentView);
-        }];
+        @jobs_weakify(self)
+        _logoImgView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.clipsToBounds = YES;
+            imageView.cornerCutToCircleWithCornerRadius(JobsWidth(8));
+            self.contentView.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(self.imageWidth, self.imageWidth));
+                make.centerX.equalTo(self.contentView);
+                make.top.equalTo(self.contentView);
+            }];
+        });
     }
     
     if(self.dataModel.bgImage){
@@ -87,18 +90,20 @@ UILocationProtocol_UIViewModelSynthesize
 
 -(UILabel *)nameLabel{
     if (!_nameLabel) {
-        _nameLabel = UILabel.new;
-        _nameLabel.textAlignment= NSTextAlignmentCenter;
-        _nameLabel.font = UIFontWeightRegularSize(12);
-        _nameLabel.textColor = JobsBlackColor;
-        [self.contentView addSubview:_nameLabel];
-        [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.contentView);
-            make.top.equalTo(self.logoImgView.mas_bottom).offset(JobsWidth(5));
-            make.height.mas_equalTo(JobsWidth(10));
-        }];
-    }
-    _nameLabel.text = self.dataModel.textModel.text;
+        @jobs_weakify(self)
+        _nameLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.textAlignment= NSTextAlignmentCenter;
+            label.font = UIFontWeightRegularSize(12);
+            label.textColor = JobsBlackColor;
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.contentView);
+                make.top.equalTo(self.logoImgView.mas_bottom).offset(JobsWidth(5));
+                make.height.mas_equalTo(JobsWidth(10));
+            }];
+        });
+    }_nameLabel.text = self.dataModel.textModel.text;
     return _nameLabel;
 }
 

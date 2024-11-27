@@ -14,9 +14,9 @@
 
 @property(nonatomic,strong)NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
 @property(nonatomic,strong)NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
-@property(nonatomic,strong)NSString *usernameStr;
-@property(nonatomic,strong)NSString *contentStr;
-@property(nonatomic,strong)NSString *timeStr;
+@property(nonatomic,copy)NSString *usernameStr;
+@property(nonatomic,copy)NSString *contentStr;
+@property(nonatomic,copy)NSString *timeStr;
 @property(nonatomic,strong)UIImage *userHeaderIMG;
 
 @end
@@ -119,85 +119,77 @@
 - (BOOL)canBecomeFirstResponder{
     return YES;
 }
-#pragma mark - 长按手势事件
-- (void)cellLongPress:(UIGestureRecognizer *)recognizer{
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"长按手势做什么");
-    }
-}
 #pragma mark —— lazyLoad
 -(UILabel *)timeLab{
     if (!_timeLab) {
-        _timeLab = UILabel.new;
-        _timeLab.text = self.timeStr;
-        _timeLab.textColor = JobsLightGrayColor;
-        _timeLab.font = [UIFont systemFontOfSize:12
-                                          weight:UIFontWeightRegular];
-        [_timeLab sizeToFit];
-        [self.contentView addSubview:_timeLab];
-        [_timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView).offset(5);
-            make.right.equalTo(self.contentView).offset(-5);
-        }];
+        _timeLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label.text = self.timeStr;
+            label.textColor = JobsLightGrayColor;
+            label.font = UIFontWeightRegularSize(JobsWidth(12));
+            [label sizeToFit];
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.contentView).offset(5);
+                make.right.equalTo(self.contentView).offset(-5);
+            }];
+        });
     }return _timeLab;
 }
 
 -(UILongPressGestureRecognizer *)longPG{
     if (!_longPG) {
-        _longPG = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                                action:@selector(cellLongPress:)];
-        [self addGestureRecognizer:_longPG];
+        _longPG = [jobsMakeLongPressGesture(^(UILongPressGestureRecognizer * _Nullable gesture) {
+            /// 这里写手势的配置
+        }) GestureActionBy:^(__kindof UIGestureRecognizer * _Nullable gesture) {
+            /// 这里写手势的触发
+            if (gesture.state == UIGestureRecognizerStateBegan) {
+                NSLog(@"长按手势做什么");
+            }
+        }];self.addGesture(_longPG);
     }return _longPG;
 }
 
 -(NSMutableArray<MGSwipeButtonModel *> *)leftBtnMutArr{
     if (!_leftBtnMutArr) {
-        _leftBtnMutArr = NSMutableArray.array;
-        MGSwipeButtonModel *model_1 = MGSwipeButtonModel.new;
-        model_1.titleStr = @"L1";
-        model_1.IconIMG = JobsIMG(@"Check");
-        model_1.bgCor = JobsGreenColor;
-        
-        MGSwipeButtonModel *model_2 = MGSwipeButtonModel.new;
-        model_2.titleStr = @"L2";
-        model_2.IconIMG = JobsIMG(@"Fav");
-        model_2.bgCor = RGBA_COLOR(0, 0x99, 0xcc, 1);
-        
-        MGSwipeButtonModel *model_3 = MGSwipeButtonModel.new;
-        model_3.titleStr = @"L3";
-        model_3.IconIMG = JobsIMG(@"Menu");
-        model_3.bgCor = RGBA_COLOR(0.59, 0.29, 0.08, 1);
-        
-        [_leftBtnMutArr addObject:model_1];
-        [_leftBtnMutArr addObject:model_2];
-        [_leftBtnMutArr addObject:model_3];
-        
+        _leftBtnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = @"L1";
+                model.IconIMG = JobsIMG(@"Check");
+                model.bgCor = JobsGreenColor;
+            }));
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = @"L2";
+                model.IconIMG = JobsIMG(@"Fav");
+                model.bgCor = RGBA_COLOR(0, 0x99, 0xcc, 1);
+            }));
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = @"L3";
+                model.IconIMG = JobsIMG(@"Menu");
+                model.bgCor = RGBA_COLOR(0.59, 0.29, 0.08, 1);
+            }));
+        });
     }return _leftBtnMutArr;
 }
 
 -(NSMutableArray<MGSwipeButtonModel *> *)rightBtnMutArr{
     if (!_rightBtnMutArr) {
-        _rightBtnMutArr = NSMutableArray.array;
-        
-        MGSwipeButtonModel *model_1 = MGSwipeButtonModel.new;
-        model_1.titleStr = @"R1";
-        model_1.IconIMG = JobsIMG(@"Class");
-        model_1.bgCor = JobsPurpleColor;
-        
-        MGSwipeButtonModel *model_2 = MGSwipeButtonModel.new;
-        model_2.titleStr = @"R2";
-        model_2.IconIMG = JobsIMG(@"Drop");
-        model_2.bgCor = JobsDarkTextColor;
-        
-        MGSwipeButtonModel *model_3 = MGSwipeButtonModel.new;
-        model_3.titleStr = @"R3";
-        model_3.IconIMG = JobsIMG(@"Header");
-        model_3.bgCor = JobsCyanColor;
-        
-        [_rightBtnMutArr addObject:model_1];
-        [_rightBtnMutArr addObject:model_2];
-        [_rightBtnMutArr addObject:model_3];
-        
+        _rightBtnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = @"Class";
+                model.IconIMG = JobsIMG(@"Check");
+                model.bgCor = JobsPurpleColor;
+            }));
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = @"R2";
+                model.IconIMG = JobsIMG(@"Drop");
+                model.bgCor = JobsDarkTextColor;
+            }));
+            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+                model.titleStr = @"R3";
+                model.IconIMG = JobsIMG(@"Header");
+                model.bgCor = JobsCyanColor;
+            }));
+        });
     }return _rightBtnMutArr;
 }
     

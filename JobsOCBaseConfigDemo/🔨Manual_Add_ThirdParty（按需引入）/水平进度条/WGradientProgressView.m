@@ -36,37 +36,40 @@ static dispatch_once_t dispatchOnce;
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = UILabel.new;
-        _titleLab.text = self.titleStr;
-        _titleLab.textColor = self.titleColor;
-        _titleLab.font = self.titleFont;
-        [_titleLab sizeToFit];
-        if (self.img) {
-            [self.imgV addSubview:_titleLab];
-        }else{
-            [self addSubview:_titleLab];
-        }
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = self.titleStr;
+            label.textColor = self.titleColor;
+            label.font = self.titleFont;
+            [label sizeToFit];
+            if (self.img) {
+                [self.imgV addSubview:label];
+            }else self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(self);
+            }];
+        });
     }return _titleLab;
 }
 
 -(UIImageView *)imgV{
     if (!_imgV) {
-        _imgV = UIImageView.new;
-        _imgV.image = self.img;
-        [self addSubview:_imgV];
-        [_imgV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _imgV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
+            imageView.image = self.img;
+            self.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
+        });
     }return _imgV;
 }
 
 -(UIFont *)titleFont{
     if (!_titleFont) {
-        _titleFont = [UIFont systemFontOfSize:JobsWidth(6.5)
-                                       weight:UIFontWeightRegular];
+        _titleFont = UIFontWeightRegularSize(JobsWidth(6.5));
     }return _titleFont;
 }
 

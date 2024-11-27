@@ -35,15 +35,17 @@
 #pragma mark —— lazyLoad
 -(UILabel *)label{
     if (!_label) {
-        _label = UILabel.new;
-        _label.font = UIFontWeightRegularSize(14);
-        [self addSubview:_label];
-        [_label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(JobsWidth(15));
-            make.centerY.equalTo(self);
-        }];
-    }
-    _label.text = self.viewModel.textModel.text;
+        @jobs_weakify(self)
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.font = UIFontWeightRegularSize(14);
+            self.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self).offset(JobsWidth(15));
+                make.centerY.equalTo(self);
+            }];
+        });
+    }_label.text = self.viewModel.textModel.text;
     return _label;
 }
 
