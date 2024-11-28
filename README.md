@@ -3833,6 +3833,16 @@ static const uint32_t kSequenceBits = 12;
   * 当你传递一个对象的指针（比如 UIView）时，编译器可能会将这个指针的参数视为 <font color=red>**__autoreleasing**</font>。而你试图传递一个本地对象的地址给<font color=red>**__autoreleasing**</font> 参数时，就会触发这个警告。简而言之，**Objective-C** 认为这样操作可能会引发内存管理上的问题。
   
   * 要解决这个问题，首先可以强制指定参数为<font color=red>**__strong**</font> 以避免自动推导为  <font color=red>**__autoreleasing**</font>
+  
+* `CGRect` 可能因为浮点数的精度问题或隐式转换，导致某些底层操作触发异常。在设备屏幕渲染中，整数更符合逻辑像素值的要求，因此不会触发异常。
+  
+  * ```objective-c
+    (lldb) po stringWidth
+    628.1015625 
+    
+    layer.frame = CGRectMake(0, 0, stringWidth, self.frame.size.height); /// 崩溃
+    layer.frame = CGRectMake(0, 0, 628, self.frame.size.height);/// 不崩溃
+    ```
 
 ## 四、架构相关 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 

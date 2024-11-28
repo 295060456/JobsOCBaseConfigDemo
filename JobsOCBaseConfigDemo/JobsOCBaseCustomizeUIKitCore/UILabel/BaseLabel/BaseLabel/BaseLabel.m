@@ -128,19 +128,11 @@ UILocationProtocol_UIViewModelSynthesize
 }
 #pragma mark —— 复写相关父类方法
 - (void)drawRect:(CGRect)rect{
-    if (self.labelShowingType == UILabelShowingType_02) {
-        self.layer.masksToBounds = YES;
-        if (!self.shouldAutoScroll){
-            [super drawRect:rect];
-        }
-        [self setTextLayerScroll];
-    }else [super drawRect:rect];
+    [super drawRect:rect];
 }
 
 -(void)setFrame:(CGRect)frame{
-    if (self.labelShowingType == UILabelShowingType_02) {
-        [self setTextLayerScroll];
-    }else [super setFrame:frame];
+    [super setFrame:frame];
 }
 /// 修改绘制文字的区域，edgeInsets增加bounds
 - (CGRect)textRectForBounds:(CGRect)bounds

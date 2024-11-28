@@ -269,12 +269,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<UITableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
+        @jobs_weakify(self)
         _tbvCellMutArr = jobsMakeMutArr(^(NSMutableArray <UITableViewCell *>*_Nullable data) {
-            @jobs_weakify(self)
-            for (UIViewModel *viewModel in self.dataMutArr) {
+            @jobs_strongify(self)
+            [self.dataMutArr enumerateObjectsUsingBlock:^(UIViewModel * _Nonnull obj,
+                                                          NSUInteger idx,
+                                                          BOOL * _Nonnull stop) {
                 @jobs_strongify(self)
                 data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            }
+            }];
         });
     }return _tbvCellMutArr;
 }
@@ -282,6 +285,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"JobsScrollLabelVC");
+                model.subTitle = JobsInternationalization(@"当文本超出的时候，滚动展现文字的Label");
+                model.cls = JobsScrollLabelVC.class;
+            })));
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"CalendarVC");
                 model.subTitle = JobsInternationalization(@"日历功能");

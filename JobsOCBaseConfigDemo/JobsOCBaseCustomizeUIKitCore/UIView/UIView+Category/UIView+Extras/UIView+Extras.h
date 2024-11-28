@@ -109,15 +109,6 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 /// ⚠️这种写法存在一定的弊端：如果在某个View上添加子View，并对这个View使用如下方法的圆切角，则这个View上的子视图不可见⚠️
 -(void)appointCornerCutToCircleByRoundingCorners:(UIRectCorner)corners
                                      cornerRadii:(CGSize)cornerRadii;
-#pragma mark —— @implementation UILabel (AutoScroll)
-/// 根据文字长短自动判断是否需要显示TextLayer，并且滚动
--(void)setTextLayerScroll;
-/// runtime存放textLayer，避免多次生成
--(CATextLayer *_Nonnull)getTextLayer;
-/// runtime存放动画对象，避免多次生成
--(CABasicAnimation *_Nonnull)getAnimation;
-/// 判断是否需要滚动
--(BOOL)shouldAutoScroll;
 #pragma mark —— 其他
 -(JobsReturnViewByGestureRecognizer _Nonnull)addGesture;
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;

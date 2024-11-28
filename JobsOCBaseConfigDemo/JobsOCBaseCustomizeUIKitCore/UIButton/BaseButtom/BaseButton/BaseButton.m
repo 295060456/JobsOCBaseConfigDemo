@@ -34,16 +34,7 @@ BaseButtonProtocol_synthesize
 }
 
 - (void)drawRect:(CGRect)rect{
-    if (self.titleLabel.labelShowingType == UILabelShowingType_02) {
-        self.layer.masksToBounds = true;
-        if (!self.shouldAutoScroll){
-            [super drawRect:rect];
-        }
-        [self setTextLayerScroll];
-        self.jobsResetBtnTitle(JobsInternationalization(@""));
-    }else{
-        [super drawRect:rect];
-    }
+    [super drawRect:rect];
 }
 /// 【形成Frame后直接return，避免被其他中间过程修改】
 -(void)layoutSubviews{
@@ -59,19 +50,7 @@ BaseButtonProtocol_synthesize
 }
 
 -(void)setFrame:(CGRect)frame{
-    if (self.titleLabel.labelShowingType == UILabelShowingType_02) {
-        [self.titleLabel setTextLayerScroll];
-    }
-    if (self.subtitleLabel.labelShowingType == UILabelShowingType_02) {
-        [self.subtitleLabel setTextLayerScroll];
-    }
-    
-    if(self.titleLabel.labelShowingType == UILabelShowingType_02 ||
-       self.subtitleLabel.labelShowingType == UILabelShowingType_02){
-        return;
-    }else{
-        [super setFrame:frame];
-    }
+    [super setFrame:frame];
 }
 #pragma mark —— 一些私有方法
 /// 只能在-(void)layoutSubviews里面进行调用

@@ -508,7 +508,8 @@ typedef NS_ENUM(NSInteger, FMAdsType){
     FMAdsType_ = 1, /// 导航栏4小Banner
     FMAdsType_hotRecommend = 2, /// APP首页右下3Banner
     FMAdsType_memberCentral = 3, /// APP会员中心
-    FMAdsType_promotionArea = 4 /// 活动推广专区
+    FMAdsType_promotionArea = 4, /// 活动推广专区
+    FMAdsType_announcement = 5 /// 公告
 };
 #endif /* FMAFMADSTYPEdsType */
 

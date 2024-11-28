@@ -24,9 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSInteger)jobsGetCurrentNumberOfSections;
 /// 获取当前的UICollectionViewCell对应的section的的item个数
 -(NSInteger)jobsGetCurrentNumberOfItemsInSection;
-/// 获取TextView
+/// 获取 UITextView
 -(UITextView *)getTextView;
-/// 获取BgBtn
+/// 获取 UILabel
+-(UILabel *)getLabel;
+/// 获取 UIButton
 -(UIButton *)getBgBtn;
 /// 对UICollectionView上的每一组的第一个和最后一个UICollectionViewCell进行圆切角
 /// 要求切第一个UICollectionViewCell的左上+右上，最后一个UICollectionViewCell的左下和右下

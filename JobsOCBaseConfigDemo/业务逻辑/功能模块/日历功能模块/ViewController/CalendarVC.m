@@ -179,10 +179,13 @@ atMonthPosition:(FSCalendarMonthPosition)monthPosition{
         _calendar.delegate = self;
         _calendar.calendarHeaderView.backgroundColor = [JobsLightGrayColor colorWithAlphaComponent:0.1];
         _calendar.appearance.headerMinimumDissolvedAlpha = 1;
-        _calendar.appearance.headerDateFormat = @"yyyy年MM月";
+        _calendar.appearance.headerDateFormat = @"yyyy"
+            .add(JobsInternationalization(@"年"))
+            .add(@"MM")
+            .add(JobsInternationalization(@"月"));
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
-        _calendar.appearance.headerTitleFont = [UIFont boldSystemFontOfSize:20];
-        _calendar.appearance.headerTitleColor = [UIColor blackColor];
+        _calendar.appearance.headerTitleFont = UIFontSystemFontOfSize(JobsWidth(20));
+        _calendar.appearance.headerTitleColor = JobsBlackColor;
         _calendar.swipeToChooseGesture.enabled = YES;
         _calendar.allowsMultipleSelection = YES;
         

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Corp. All rights reserved.
 //
 
-#ifndef Other_hx
+#ifndef Other_h
 #define Other_h
 
 #import "JobsBlock.h"
@@ -94,5 +94,10 @@
 #import "LotteryVC.h"
 #import "PointLabTestVC.h"
 #import "CalendarVC.h"/// 日历功能
+#import "JobsScrollLabelVC.h" /// 当文本超出的时候，滚动展现文字的Label
+
+#import "FMErrDefaultView.h"/// 错误缺省页
+
+#import "NSObject+FM.h"
 
 #endif /* Other_h */

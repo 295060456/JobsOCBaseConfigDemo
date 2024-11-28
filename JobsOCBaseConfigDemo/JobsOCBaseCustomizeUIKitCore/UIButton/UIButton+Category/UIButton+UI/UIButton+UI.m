@@ -149,9 +149,9 @@
         btn = [self.class buttonWithConfiguration:btnConfiguration
                                     primaryAction:primaryAction];
         
-        NSLog(@"%@",btnConfiguration);
-        NSLog(@"%@",btn.configuration);
-        NSLog(@"");
+//        NSLog(@"%@",btnConfiguration);
+//        NSLog(@"%@",btn.configuration);
+//        NSLog(@"");
     /**
      UIAction *action = [UIAction actionWithTitle:@"按钮点击操作"
                                             image:nil

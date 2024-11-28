@@ -9,7 +9,7 @@
 
 @interface JobsBaseCollectionViewCell ()
 /// UI
-@property(nonatomic,strong)UITextView *textView;
+@property(nonatomic,strong)UILabel *label;
 @property(nonatomic,strong)BaseButton *bgBtn;
 
 @end
@@ -45,8 +45,8 @@
     return cell;
 }
 
--(UITextView *)getTextView{
-    return self.textView;
+-(UILabel *)getLabel{
+    return self.label;
 }
 
 -(UIButton *)getBgBtn{
@@ -66,23 +66,25 @@
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
+    return ^(UIViewModel *_Nonnull model) {
         @jobs_strongify(self)
         self.viewModel = model;
-        /// 如果有图片则只显示这个图片，并铺满
-        BOOL A = model.bgImage || model.image;
-        BOOL B = (![model.textModel.text isEqualToString:JobsInternationalization(TextModelDataString)] && model.textModel.text) || model.textModel.attributedTitle;
+        if(model){
+            /// 如果有图片则只显示这个图片，并铺满
+            BOOL A = model.bgImage || model.image;
+            BOOL B = (!model.textModel.text.isEqualToString(JobsInternationalization(TextModelDataString)) && isValue(model.textModel.text)) || model.textModel.attributedTitle;
 
-        if (A || self.forceUseBgBtn) {
-            self.bgBtn.jobsVisible = A || self.forceUseBgBtn;
-            return;
-        }
-        /// 如果有文字（普通文本 或者富文本）则只显示这个文字（普通文本 或者富文本），并铺满
-        if (B || self.forceUseTextView) {
-            /// ❤️textView 和 bgBtn不能共存❤️
-            self.bgBtn.jobsVisible = !B || self.forceUseTextView;
-            self.textView.jobsVisible = B || self.forceUseTextView;
-            return;
+            if (A || self.forceUseBgBtn) {
+                self.bgBtn.jobsVisible = A || self.forceUseBgBtn;
+                return;
+            }
+            /// 如果有文字（普通文本 或者富文本）则只显示这个文字（普通文本 或者富文本），并铺满
+            if (B || self.forceUseLabel) {
+                /// ❤️textView 和 bgBtn不能共存❤️
+                self.bgBtn.jobsVisible = !B || self.forceUseBgBtn;
+                self.label.jobsVisible = B || self.forceUseLabel;
+                return;
+            }
         }
     };
 }
@@ -137,38 +139,31 @@
     
     _bgBtn.titleAlignment = self.viewModel.textModel.textAlignment;
     _bgBtn.makeNewLineShows(self.viewModel.textModel.lineBreakMode);
+    _bgBtn.jobsResetBtnNormalAttributedTitle(self.viewModel.textModel.attributedTitle);
+    _bgBtn.jobsResetBtnNormalAttributedSubTitle(self.viewModel.textModel.attributedSubTitle);
     
-    _bgBtn.jobsResetImagePlacement_Padding(self.viewModel.buttonEdgeInsetsStyle,self.viewModel.imageTitleSpace);
+    _bgBtn.jobsResetImagePlacement_Padding(self.viewModel.buttonEdgeInsetsStyle,
+                                           self.viewModel.imageTitleSpace);
     return _bgBtn;
 }
 
--(UITextView *)textView{
-    if (!_textView) {
+-(UILabel *)label{
+    if(!_label){
         @jobs_weakify(self)
-        _textView = jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            textView.editable = NO;
-            textView.userInteractionEnabled = NO;
-            textView.textColor = self.selected ? self.viewModel.textModel.selectedTextCor : self.viewModel.textModel.textCor;
-            [self.contentView addSubview:textView];
-            [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+            self.contentView.addSubview(label);
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];
-            [self layoutIfNeeded];
-    //        @jobs_weakify(self)
-            [textView jobsTextViewFilterBlock:^BOOL(id data) {
-    //            @jobs_strongify(self)
-                return YES;
-            } subscribeNextBlock:^(id data) {
-    //            @jobs_strongify(self)
-            }];
-            textView.attributedText = self.viewModel.textModel.attributedTitle;
-            textView.font = self.viewModel.textModel.font;
-            textView.textAlignment = self.viewModel.textModel.textAlignment;
-            textView.text = self.viewModel.textModel.text;
-            textView.contentSizeToFitByFont(textView.font);
         });
-    }return _textView;
+    }
+    _label.attributedText = self.viewModel.textModel.attributedTitle;
+    _label.font = self.viewModel.textModel.font;
+    _label.textAlignment = self.viewModel.textModel.textAlignment;
+    _label.text = self.viewModel.textModel.text;
+    _label.textColor = self.selected ? self.viewModel.textModel.selectedTextCor : self.viewModel.textModel.textCor;
+    return _label;
 }
 
 @end

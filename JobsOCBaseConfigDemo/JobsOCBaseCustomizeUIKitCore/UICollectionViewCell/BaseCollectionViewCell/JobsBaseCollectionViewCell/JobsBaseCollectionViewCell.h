@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsBaseCollectionViewCell : UICollectionViewCell<UICollectionViewCellProtocol>
 
-@property(nonatomic,assign)BOOL forceUseTextView;
+@property(nonatomic,assign)BOOL forceUseLabel;
 @property(nonatomic,assign)BOOL forceUseBgBtn;
 
 @end

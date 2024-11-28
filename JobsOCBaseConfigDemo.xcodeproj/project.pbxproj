@@ -48,6 +48,8 @@
 		8461D4D22CF1EF1100446E4F /* IP_api.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D4CD2CF1EF1100446E4F /* IP_api.m */; };
 		8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */; };
 		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
+		8474A3B32CF866B100112B4B /* UILabel+Scroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474A3B12CF866B100112B4B /* UILabel+Scroll.m */; };
+		8474A3BA2CF8672200112B4B /* JobsScrollLabelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474A3B62CF8672200112B4B /* JobsScrollLabelVC.m */; };
 		8489C9DC2CE622CC00BB5E83 /* JobsEmptyDataView.md in Resources */ = {isa = PBXBuildFile; fileRef = 8489C9DA2CE622CB00BB5E83 /* JobsEmptyDataView.md */; };
 		8489C9DD2CE622CC00BB5E83 /* UICollectionView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */; };
 		8489C9DE2CE622CC00BB5E83 /* UITableView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D72CE622CB00BB5E83 /* UITableView+JobsEmptyData.m */; };
@@ -571,7 +573,6 @@
 		CE5A65272CA83166006D67A7 /* BaseLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A631D2CA82C2D006D67A7 /* BaseLabel.m */; };
 		CE5A65282CA83166006D67A7 /* PointLabBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63192CA82C2D006D67A7 /* PointLabBaseView.m */; };
 		CE5A65292CA83171006D67A7 /* UILabel+Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63312CA82C2D006D67A7 /* UILabel+Measure.m */; };
-		CE5A652A2CA83171006D67A7 /* UILabel+AutoScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63282CA82C2D006D67A7 /* UILabel+AutoScroll.m */; };
 		CE5A652B2CA83171006D67A7 /* UILabel+Gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A632E2CA82C2D006D67A7 /* UILabel+Gesture.m */; };
 		CE5A652C2CA83171006D67A7 /* UILabel+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A632B2CA82C2D006D67A7 /* UILabel+Extra.m */; };
 		CE5A652D2CA83183006D67A7 /* BaseNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63372CA82C2D006D67A7 /* BaseNavigationBar.m */; };
@@ -1292,6 +1293,10 @@
 		8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RACTimer.m"; sourceTree = "<group>"; };
 		8464A5A12CDB74D20030409A /* FMDoorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDoorModel.h; sourceTree = "<group>"; };
 		8464A5A22CDB74D20030409A /* FMDoorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDoorModel.m; sourceTree = "<group>"; };
+		8474A3B02CF866B100112B4B /* UILabel+Scroll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Scroll.h"; sourceTree = "<group>"; };
+		8474A3B12CF866B100112B4B /* UILabel+Scroll.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Scroll.m"; sourceTree = "<group>"; };
+		8474A3B52CF8672200112B4B /* JobsScrollLabelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsScrollLabelVC.h; sourceTree = "<group>"; };
+		8474A3B62CF8672200112B4B /* JobsScrollLabelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsScrollLabelVC.m; sourceTree = "<group>"; };
 		8489C9D32CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+JobsEmptyData.h"; sourceTree = "<group>"; };
 		8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+JobsEmptyData.m"; sourceTree = "<group>"; };
 		8489C9D62CE622CB00BB5E83 /* UITableView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+JobsEmptyData.h"; sourceTree = "<group>"; };
@@ -2838,8 +2843,6 @@
 		CE5A63222CA82C2D006D67A7 /* JobsBaseLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseLabel.h; sourceTree = "<group>"; };
 		CE5A63232CA82C2D006D67A7 /* JobsBaseLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBaseLabel.m; sourceTree = "<group>"; };
 		CE5A63252CA82C2D006D67A7 /* JobsLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsLabel.h; sourceTree = "<group>"; };
-		CE5A63272CA82C2D006D67A7 /* UILabel+AutoScroll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+AutoScroll.h"; sourceTree = "<group>"; };
-		CE5A63282CA82C2D006D67A7 /* UILabel+AutoScroll.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AutoScroll.m"; sourceTree = "<group>"; };
 		CE5A632A2CA82C2D006D67A7 /* UILabel+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Extra.h"; sourceTree = "<group>"; };
 		CE5A632B2CA82C2D006D67A7 /* UILabel+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Extra.m"; sourceTree = "<group>"; };
 		CE5A632D2CA82C2D006D67A7 /* UILabel+Gesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Gesture.h"; sourceTree = "<group>"; };
@@ -3984,6 +3987,48 @@
 				8464A5A22CDB74D20030409A /* FMDoorModel.m */,
 			);
 			path = FMDoorModel;
+			sourceTree = "<group>";
+		};
+		8474A3B22CF866B100112B4B /* UILabel+Scroll */ = {
+			isa = PBXGroup;
+			children = (
+				8474A3B02CF866B100112B4B /* UILabel+Scroll.h */,
+				8474A3B12CF866B100112B4B /* UILabel+Scroll.m */,
+			);
+			path = "UILabel+Scroll";
+			sourceTree = "<group>";
+		};
+		8474A3B42CF8672200112B4B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8474A3B72CF8672200112B4B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8474A3B52CF8672200112B4B /* JobsScrollLabelVC.h */,
+				8474A3B62CF8672200112B4B /* JobsScrollLabelVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8474A3B82CF8672200112B4B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8474A3B92CF8672200112B4B /* 当文本超出的时候，滚动展现文字的Label */ = {
+			isa = PBXGroup;
+			children = (
+				8474A3B42CF8672200112B4B /* Model */,
+				8474A3B72CF8672200112B4B /* ViewController */,
+				8474A3B82CF8672200112B4B /* View */,
+			);
+			path = "当文本超出的时候，滚动展现文字的Label";
 			sourceTree = "<group>";
 		};
 		8489C9D52CE622CB00BB5E83 /* UICollectionView+JobsEmptyData */ = {
@@ -8504,6 +8549,7 @@
 		CE4F27622CA825CD002AF25B /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				8474A3B92CF8672200112B4B /* 当文本超出的时候，滚动展现文字的Label */,
 				849CE91A2CED7D1100C359F2 /* 日历功能模块 */,
 				8489C9DB2CE622CB00BB5E83 /* JobsEmptyDataView */,
 				CE4F24302CA825CD002AF25B /* 文字前面小圆点 */,
@@ -12231,15 +12277,6 @@
 			path = BaseLabel;
 			sourceTree = "<group>";
 		};
-		CE5A63292CA82C2D006D67A7 /* UILabel+AutoScroll */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A63272CA82C2D006D67A7 /* UILabel+AutoScroll.h */,
-				CE5A63282CA82C2D006D67A7 /* UILabel+AutoScroll.m */,
-			);
-			path = "UILabel+AutoScroll";
-			sourceTree = "<group>";
-		};
 		CE5A632C2CA82C2D006D67A7 /* UILabel+Extra */ = {
 			isa = PBXGroup;
 			children = (
@@ -12270,7 +12307,7 @@
 		CE5A63332CA82C2D006D67A7 /* UILabel+Category */ = {
 			isa = PBXGroup;
 			children = (
-				CE5A63292CA82C2D006D67A7 /* UILabel+AutoScroll */,
+				8474A3B22CF866B100112B4B /* UILabel+Scroll */,
 				CE5A632C2CA82C2D006D67A7 /* UILabel+Extra */,
 				CE5A632F2CA82C2D006D67A7 /* UILabel+Gesture */,
 				CE5A63322CA82C2D006D67A7 /* UILabel+Measure */,
@@ -15871,6 +15908,7 @@
 				CEB8FA752CA8382C00CCFDF8 /* CountdownView.m in Sources */,
 				CE5A662D2CA83740006D67A7 /* UIImage+Base64.m in Sources */,
 				CE5A662E2CA83740006D67A7 /* NSString+Base64.m in Sources */,
+				8474A3B32CF866B100112B4B /* UILabel+Scroll.m in Sources */,
 				CE5A662F2CA83740006D67A7 /* NSData+Base64.m in Sources */,
 				84392CE52CF4A6AF000D441F /* UserDefaultModel.m in Sources */,
 				CE5A64D92CA82FF0006D67A7 /* NSObject+Sound.m in Sources */,
@@ -16103,6 +16141,7 @@
 				CE4299DB2CAFA8CD00A0446A /* NSString+Notification.m in Sources */,
 				8493F1ED2CD3A7E000011DD1 /* YTKChainRequest+Extra.m in Sources */,
 				CE5A650A2CA830E3006D67A7 /* BaseCollectionView.m in Sources */,
+				8474A3BA2CF8672200112B4B /* JobsScrollLabelVC.m in Sources */,
 				CE5A65DA2CA83402006D67A7 /* JobsNavBar.m in Sources */,
 				CE5A65DB2CA83402006D67A7 /* JobsPageView.m in Sources */,
 				CE5A65DC2CA83402006D67A7 /* JobsPageTBVCell.m in Sources */,
@@ -16196,7 +16235,6 @@
 				CE4F27C82CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_03.m in Sources */,
 				CE5A64C32CA82F4B006D67A7 /* DynamicInvoke.m in Sources */,
 				CE5A65292CA83171006D67A7 /* UILabel+Measure.m in Sources */,
-				CE5A652A2CA83171006D67A7 /* UILabel+AutoScroll.m in Sources */,
 				CE5A652B2CA83171006D67A7 /* UILabel+Gesture.m in Sources */,
 				CE5A652C2CA83171006D67A7 /* UILabel+Extra.m in Sources */,
 				84B1BA232CEDCA570001562D /* FSCalendarWeekdayView.m in Sources */,
