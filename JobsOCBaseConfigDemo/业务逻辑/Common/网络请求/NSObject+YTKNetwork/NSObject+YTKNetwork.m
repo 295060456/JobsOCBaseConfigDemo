@@ -73,7 +73,7 @@
         GetUserInfoApi *api2 = GetUserInfoApi.init;
         api2.byURLParameters(nil);
         api2.byBodyParameters(jobsMakeMutDic(^(__kindof NSMutableDictionary *_Nullable data) {
-            [data setValue:result.userId forKey:@"KKK"];
+            if(result.userId) [data setValue:result.userId forKey:@"KKK"];
         })); /// 添加Body参数
         [chainRequest addRequest:api2 callback:nil];
     }];

@@ -39,8 +39,7 @@ isEqualToSize2:(CGSize)size2;
                               title:(NSString *)title
                                font:(UIFont *)font;
 /// UILabe单行文本的宽度：根据字体计算单行文本的宽度
--(CGSize)jobsGetLabelWidthWithTitle:(NSString *)title
-                               font:(UIFont *)font;
+-(CGSize)jobsGetLabelWidthWithTitle:(NSString *)title font:(UIFont *)font;
 /// UILabel多行文本的行数（定宽）：根据文本+字体+控件宽度+提行模式，计算行数
 -(NSInteger)jobsGetLineNumsByWidth:(CGFloat)width
                              title:(NSString *)title

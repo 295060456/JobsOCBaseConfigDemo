@@ -118,7 +118,8 @@
             @jobs_strongify(self)
             if(titleCor) [data setObject:titleCor forKey:NSForegroundColorAttributeName];
             if(titleFont) [data setObject:titleFont forKey:NSFontAttributeName];
-            [data setObject:self.jobsparagraphStyleByTextAlignment(textAlignment) forKey:NSParagraphStyleAttributeName];
+            if(self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter))
+                [data setObject:self.jobsparagraphStyleByTextAlignment(textAlignment) forKey:NSParagraphStyleAttributeName];
         }));
         /// 设置按钮副标题的文本属性
         btnConfiguration.attributedSubtitle = attributedSubtitle ? : JobsAttributedStringByAttributes(subTitle, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {

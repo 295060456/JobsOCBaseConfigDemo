@@ -236,5 +236,13 @@
         return [self stringByTrimmingCharactersInSet:data];
     };
 }
+/// 对系统方法 characterAtIndex 的二次封装
+-(JobsReturnUnsignedShortByNSUIntegerBlock _Nonnull)characterAtIndex{
+    @jobs_weakify(self)
+    return ^unichar(NSUInteger data){
+        @jobs_strongify(self)
+        return [self characterAtIndex:data];
+    };
+}
 
 @end

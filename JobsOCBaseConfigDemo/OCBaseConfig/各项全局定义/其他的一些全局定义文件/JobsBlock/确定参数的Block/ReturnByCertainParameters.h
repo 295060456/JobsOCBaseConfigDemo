@@ -443,7 +443,7 @@ typedef CGFloat(^JobsReturnByCGFloatBlock)(CGFloat data);
 typedef CGFloat(^JobsReturnCGFloatByCGFloatBlock)(CGFloat data);
 typedef CGFloat(^JobsReturnCGFloatByIDBlock)(id _Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByArrBlock)(NSMutableArray *_Nullable data);
-typedef CGFloat(^JobsReturnByFontBlock)(UIFont *_Nullable font);
+typedef CGFloat(^JobsReturnCGFloatByFontBlock)(UIFont *_Nullable font);
 typedef CGFloat(^JobsReturnCGFloatByVoidBlock)(void);
 
 typedef BOOL(^JobsReturnBOOLByVoidBlock)(void);
@@ -493,6 +493,7 @@ typedef short(^JobsReturnShortByVoidBlock)(void);
 typedef unsigned short(^JobsReturnUnsignedShortByVoidBlock)(void);
 typedef unsigned short(^JobsReturnByUnsignedShortBlock)(unsigned short data);
 typedef unsigned short(^JobsReturnUnsignedShortByIDBlock)(id _Nullable data);
+typedef unsigned short(^JobsReturnUnsignedShortByNSUIntegerBlock)(NSUInteger data);
 
 typedef long(^JobsReturnLongByVoidBlock)(void);
 typedef long(^JobsReturnByLongBlock)(long data);

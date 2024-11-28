@@ -9,6 +9,32 @@
 
 @implementation NSString (Statistics)
 #pragma mark —— 字符串的 统计 & 计算
+/// 统计字符串中中英文的字数
+-(JobsReturnByNSIntegerBlock _Nonnull)statisticsAlphabetNumberByType{
+    return ^NSInteger(StatisticsAlphabetNumberType type){
+        NSInteger chineseCount = 0;
+        NSInteger EnglishCount = 0;
+        for (NSInteger i = 0; i < self.length; i++){
+            unichar c = self.characterAtIndex(i);
+            
+            if (c >=0x4E00 && c <=0x9FA5){
+                chineseCount ++;
+            }else{
+                EnglishCount ++;
+            }
+        }NSLog(@"字符串:%@包含——> 汉字字数：%ld;字母字数%ld",self,(long)chineseCount,(long)EnglishCount);
+        switch (type) {
+            case StatisticsAlphabetNumberType_Chinese:{
+                return chineseCount;
+            }break;
+            case StatisticsAlphabetNumberType_English:{
+                return EnglishCount;
+            }break;
+            default:
+                break;
+        }
+    };
+}
 /**
  NSStringDrawingUsesLineFragmentOrigin 是一个 NSStringDrawingOptions枚举值，用于指定字符串绘制时的绘制选项。
  这个选项主要用于计算字符串绘制的矩形框时，特别是在多行文本绘制中，以确定每行文本的起始点和高度。
@@ -107,7 +133,7 @@
 }
 /// 获取一行字符串的高度
 /// 这个方法仅计算文本本身的高度，不包括行间距等因素
--(JobsReturnByFontBlock _Nonnull)widthBy{
+-(JobsReturnCGFloatByFontBlock _Nonnull)widthBy{
     @jobs_weakify(self)
     return ^CGFloat(UIFont *_Nullable font){
         @jobs_strongify(self)
@@ -117,6 +143,17 @@
             if(font) [data setValue:font forKey:NSFontAttributeName];
         })
                                   context:nil].size.width;
+    };
+}
+/// 求一个字符串的长度
+-(JobsReturnCGFloatByFontBlock _Nonnull)lenthByFont{
+    @jobs_weakify(self)
+    return ^CGFloat(UIFont *_Nullable font){
+        @jobs_strongify(self)
+        if(!font) font = UIFontSystemFontOfSize(17);
+        return [self sizeWithAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+            if(font) [data setValue:font forKey:NSFontAttributeName];
+        })].width;
     };
 }
 /**
@@ -132,31 +169,6 @@
     }
     NSUInteger unicodeLength = asciiLength;
     return unicodeLength;
-}
-/// 统计字符串中中英文的字数
-/// @param statisticsAlphabetNumberType 统计模式
--(NSInteger)statisticsAlphabetNumberwithType:(StatisticsAlphabetNumberType)statisticsAlphabetNumberType{
-    NSInteger chineseCount = 0;
-    NSInteger EnglishCount = 0;
-    for (NSInteger i = 0; i < self.length; i++){
-        unichar c = [self characterAtIndex:i];
-        if (c >=0x4E00 && c <=0x9FA5){
-            chineseCount ++;
-        }else{
-            EnglishCount ++;
-        }
-    }
-    NSLog(@"字符串:%@包含——> 汉字字数：%ld;字母字数%ld",self,(long)chineseCount,(long)EnglishCount);
-    switch (statisticsAlphabetNumberType) {
-        case StatisticsAlphabetNumberType_Chinese:{
-            return chineseCount;
-        }break;
-        case StatisticsAlphabetNumberType_English:{
-            return EnglishCount;
-        }break;
-        default:
-            break;
-    }
 }
 
 @end

@@ -88,7 +88,7 @@
     @jobs_weakify(self)
     CGSize placeholderSize = [self.placeholder sizeWithAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
         @jobs_strongify(self)
-        [data setValue:self.placeholderFont forKey:NSFontAttributeName];
+        if(self.placeholderFont) [data setValue:self.placeholderFont forKey:NSFontAttributeName];
     })];
     [self.placeholder drawInRect:jobsEqualToZeroRect(self.drawPlaceholderInRect) ? jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
         data.jobsX = 0;
@@ -98,8 +98,8 @@
     }) : self.drawPlaceholderInRect
                   withAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
         @jobs_strongify(self)
-        [data setValue:self.placeholderColor forKey:NSForegroundColorAttributeName];
-        [data setValue:self.placeholderFont forKey:NSFontAttributeName];
+        if(self.placeholderColor) [data setValue:self.placeholderColor forKey:NSForegroundColorAttributeName];
+        if(self.placeholderFont) [data setValue:self.placeholderFont forKey:NSFontAttributeName];
     })];
 }
 /// 重写来重置边缘区域

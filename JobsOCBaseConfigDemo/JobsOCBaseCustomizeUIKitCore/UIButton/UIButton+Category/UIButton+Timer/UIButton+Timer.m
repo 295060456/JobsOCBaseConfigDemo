@@ -78,9 +78,13 @@
         self.jobsResetAttributedTitle(JobsAttributedStringByAttributes(model.title,
                                                                        jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
             @jobs_strongify(self)
-            if (model.titleCor) [data setValue:model.titleCor forKey:NSForegroundColorAttributeName];
-            if (model.titleFont) [data setValue:model.titleFont forKey:NSFontAttributeName];
-            [data setValue:self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter) forKey:NSParagraphStyleAttributeName];
+            if (model.titleCor) [data setValue:model.titleCor
+                                        forKey:NSForegroundColorAttributeName];
+            if (model.titleFont) [data setValue:model.titleFont
+                                         forKey:NSFontAttributeName];
+            if (self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter))
+            [data setValue:self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter)
+                    forKey:NSParagraphStyleAttributeName];
         })));
     };
 }

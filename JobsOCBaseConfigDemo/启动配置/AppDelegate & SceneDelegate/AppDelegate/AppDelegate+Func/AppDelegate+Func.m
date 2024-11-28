@@ -123,7 +123,7 @@
             data.sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration;
             [data addUrlFilter:[YTKUrlArgumentsFilter filterWithArguments:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
                 @jobs_strongify(self)
-                [data setValue:self.appVersion forKey:@"version"];
+                if(self.appVersion) [data setValue:self.appVersion forKey:@"version"];
             })]];
         });
     };

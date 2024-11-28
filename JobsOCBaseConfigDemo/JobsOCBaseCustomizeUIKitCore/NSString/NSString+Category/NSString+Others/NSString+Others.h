@@ -129,6 +129,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSRange)range;
 /// 对系统方法 stringByTrimmingCharactersInSet 的二次封装
 -(JobsReturnStringByCharacterSetBlock _Nonnull)byTrimmingCharactersInSet;
+/// 对系统方法 characterAtIndex 的二次封装
+-(JobsReturnUnsignedShortByNSUIntegerBlock _Nonnull)characterAtIndex;
 
 @end
 

@@ -84,30 +84,31 @@ isEqualToSize2:(CGSize)size2{
 -(CGFloat)jobsGetLabelHeightByWidth:(CGFloat)width
                               title:(NSString *)title
                                font:(UIFont *)font{
-    UILabel *label = UILabel.new;
-    label.frame = CGRectMake(0, 0, width, 0);
-    label.text = title;
-    label.font = font;
-    label.numberOfLines = 0;
-    [label sizeToFit];
-    CGFloat height = label.frame.size.height;
-    return ceil(height);
+    return ceil(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+        label.frame = CGRectMake(0, 0, width, 0);
+        label.text = title;
+        label.font = font;
+        label.numberOfLines = 0;
+        [label sizeToFit];
+    }).frame.size.height);
 }
 /// UILabe单行文本的宽度：根据字体计算单行文本的宽度
--(CGSize)jobsGetLabelWidthWithTitle:(NSString *)title
-                               font:(UIFont *)font{
-    return [title sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName,nil]];
+-(CGSize)jobsGetLabelWidthWithTitle:(NSString *)title font:(UIFont *)font{
+    return [title sizeWithAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+        if(font) [data setValue:font forKey:NSFontAttributeName];
+    })];
 }
 /// UILabel多行文本的行数（定宽）：根据文本+字体+控件宽度+提行模式，计算行数
 -(NSInteger)jobsGetLineNumsByWidth:(CGFloat)width
                              title:(NSString *)title
                               font:(UIFont *)font{
-    UILabel *label = UILabel.new;
-    label.frame = CGRectMake(0, 0, width, 0);
-    label.text = title;
-    label.font = font;
-    label.numberOfLines = 0;
-    [label sizeToFit];
+    UILabel *label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+        label.frame = CGRectMake(0, 0, width, 0);
+        label.text = title;
+        label.font = font;
+        label.numberOfLines = 0;
+        [label sizeToFit];
+    });
     CGFloat height = label.frame.size.height;
     /// 先用UILabel的 sizeToFit 计算出最佳大小，然后用高度/lineHeight就是行数，lineHeight为UIFont的属性
     return ceil(height) / label.font.lineHeight;
