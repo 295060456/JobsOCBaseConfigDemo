@@ -316,7 +316,6 @@ typedef void(^jobsByIPApiModelBlock)(IPApiModel *_Nullable iPApiModel);
 @class IpinfoModel;
 typedef void(^jobsByIpinfoModelBlock)(IpinfoModel *_Nullable ipinfoModel);
 
-
 @class RequestTool;
 typedef void(^jobsByRequestToolBlock)(RequestTool *_Nullable requestTool);
 
@@ -411,7 +410,8 @@ typedef void(^jobsByLOTAnimationMJRefreshHeaderBlock)(LOTAnimationMJRefreshHeade
 
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);
-
+typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByTimeIntervalBlock)(NSTimeInterval data);
+    
 @class RACSignal;
 typedef NSArray<RACSignal *>*_Nonnull(^JobsReturnRACSignalArrByVoidBlock)(void);
 

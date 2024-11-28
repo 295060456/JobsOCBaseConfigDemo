@@ -50,6 +50,10 @@
 		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
 		8474A3B32CF866B100112B4B /* UILabel+Scroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474A3B12CF866B100112B4B /* UILabel+Scroll.m */; };
 		8474A3BA2CF8672200112B4B /* JobsScrollLabelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474A3B62CF8672200112B4B /* JobsScrollLabelVC.m */; };
+		8474A4AF2CF8696400112B4B /* AFSecurityPolicy+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BC52CF4A3AF000D441F /* AFSecurityPolicy+Extra.m */; };
+		8474A4B02CF8696900112B4B /* IQKeyboardManager+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BC22CF4A3AF000D441F /* IQKeyboardManager+Extra.m */; };
+		8474A4B12CF8696D00112B4B /* Reachability+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BBF2CF4A3AF000D441F /* Reachability+Extra.m */; };
+		8474A4B22CF8697200112B4B /* BRStringPickerView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F88832CF702D000C53A19 /* BRStringPickerView+Extra.m */; };
 		8489C9DC2CE622CC00BB5E83 /* JobsEmptyDataView.md in Resources */ = {isa = PBXBuildFile; fileRef = 8489C9DA2CE622CB00BB5E83 /* JobsEmptyDataView.md */; };
 		8489C9DD2CE622CC00BB5E83 /* UICollectionView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */; };
 		8489C9DE2CE622CC00BB5E83 /* UITableView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D72CE622CB00BB5E83 /* UITableView+JobsEmptyData.m */; };
@@ -15808,6 +15812,7 @@
 				CE410FEA2C57B8B400AB9402 /* ZBRequestManager.m in Sources */,
 				CECE7E922C450E5B00764AF5 /* HTTPServer.m in Sources */,
 				CECE7E972C450E5B00764AF5 /* KTVHCDataCacheItem.m in Sources */,
+				8474A4B22CF8697200112B4B /* BRStringPickerView+Extra.m in Sources */,
 				CECE7EAB2C450E5B00764AF5 /* KTVHCURLTool.m in Sources */,
 				CECE7EC82C450E5B00764AF5 /* WMZBannerFadeLayout.m in Sources */,
 				CECE7E942C450E5B00764AF5 /* KTVHCError.m in Sources */,
@@ -15838,6 +15843,7 @@
 				CE5A65462CA831E5006D67A7 /* JobsTBVHeaderFooterView.m in Sources */,
 				CECE7E7F2C450E5B00764AF5 /* JXCategoryTitleBackgroundCell.m in Sources */,
 				CE5A64912CA82DF4006D67A7 /* ButtonTimerConfigModel.m in Sources */,
+				8474A4B12CF8696D00112B4B /* Reachability+Extra.m in Sources */,
 				CECE7EB92C450E5B00764AF5 /* TKPermissionLocationAlways.m in Sources */,
 				CECE7EBE2C450E5B00764AF5 /* TKPermissionNetWork.m in Sources */,
 				CECE7EBF2C450E5B00764AF5 /* TKPermissionNotification.m in Sources */,
@@ -15904,6 +15910,7 @@
 				CE5A65FE2CA83483006D67A7 /* JobsTabBarItemConfig.m in Sources */,
 				CE5A65FF2CA83483006D67A7 /* TransitionAnimation.m in Sources */,
 				CEB8FA732CA8382C00CCFDF8 /* JobsLaunchAdMgr.m in Sources */,
+				8474A4AF2CF8696400112B4B /* AFSecurityPolicy+Extra.m in Sources */,
 				CEB8FA742CA8382C00CCFDF8 /* AESCrypt.m in Sources */,
 				CEB8FA752CA8382C00CCFDF8 /* CountdownView.m in Sources */,
 				CE5A662D2CA83740006D67A7 /* UIImage+Base64.m in Sources */,
@@ -16381,6 +16388,7 @@
 				CEB8FA7C2CA8385200CCFDF8 /* JobsUploadingProgressView.m in Sources */,
 				CEB8FA7D2CA8385200CCFDF8 /* LongPressToDeleteImageView.m in Sources */,
 				CEB8FA7E2CA8385200CCFDF8 /* ZHKeyChainManager.m in Sources */,
+				8474A4B02CF8696900112B4B /* IQKeyboardManager+Extra.m in Sources */,
 				CE5A65282CA83166006D67A7 /* PointLabBaseView.m in Sources */,
 				CE4F27FA2CA825CD002AF25B /* JobsPushView.m in Sources */,
 				CEB8FA722CA8382000CCFDF8 /* GifLoopPlayView.m in Sources */,

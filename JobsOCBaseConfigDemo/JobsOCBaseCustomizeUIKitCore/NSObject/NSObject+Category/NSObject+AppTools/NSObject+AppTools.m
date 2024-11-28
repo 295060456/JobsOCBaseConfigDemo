@@ -213,7 +213,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         @jobs_strongify(self)
         UIViewModel *viewModel = [self configViewModelWithAttributeTitle:model.title
                                                        attributeSubTitle:model.subTitle];
-        viewModel.cls = CalendarVC.class;
+        viewModel.cls = model.cls;
         viewModel.requestParams = model.requestParams;
         return viewModel;
     };
