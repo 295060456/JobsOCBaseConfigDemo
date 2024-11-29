@@ -409,6 +409,8 @@ typedef LOTAnimationMJRefreshHeader *_Nonnull(^JobsReturnLOTAnimationMJRefreshHe
 typedef void(^jobsByLOTAnimationMJRefreshHeaderBlock)(LOTAnimationMJRefreshHeader *_Nullable view);
 
 @class RACDisposable;
+typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByVoidBlock)(void);
+typedef void(^jobsByRACDisposableBlock)(RACDisposable *_Nullable data);
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByTimeIntervalBlock)(NSTimeInterval data);
     
