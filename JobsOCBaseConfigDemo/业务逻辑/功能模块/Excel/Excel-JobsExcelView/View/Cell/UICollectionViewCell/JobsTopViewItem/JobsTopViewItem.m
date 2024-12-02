@@ -12,7 +12,6 @@
 /// UI
 @property(nonatomic,strong)UIBezierPath *linePath;
 @property(nonatomic,strong)CAShapeLayer *lineLayer;
-@property(nonatomic,strong)UIImageView *bgImageView;
 /// Data
 @property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel_;
 @property(nonatomic,assign)CGSize size;
@@ -75,6 +74,7 @@
     };
 }
 #pragma mark —— lazyLoad
+@synthesize bgImageView = _bgImageView;
 -(UIImageView *)bgImageView{
     if(!_bgImageView){
         @jobs_weakify(self)
@@ -92,7 +92,7 @@
 -(UIBezierPath *)linePath{
     if(!_linePath){
         _linePath = jobsMakeBezierPath(^(__kindof UIBezierPath *_Nullable data) {
-            [data moveToPoint:CGPointMake(0, 0)];// 起点
+            data.moveTo(CGPointZero);// 起点
         });
     }return _linePath;
 }
