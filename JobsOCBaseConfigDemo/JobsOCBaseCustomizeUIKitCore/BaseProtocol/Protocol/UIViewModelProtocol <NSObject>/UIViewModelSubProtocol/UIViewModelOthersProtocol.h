@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat layerCornerRadius;
 @property(nonatomic,assign)BOOL isTranslucent;/// 是否取消tabBar的透明效果
 @property(nonatomic,assign)BOOL isVisible;/// ❤️只是一个标记是否可见，如果需要设置请移步@interface UIView (Extras) ：-(BOOL)jobsVisible; 和 -(void)setJobsVisible:(BOOL)jobsVisible;
+@property(nonatomic,assign)BOOL isInvisible;/// 此属性默认就是NO，即可见
 @property(nonatomic,assign)BOOL isMultiLineShows;/// 是否多行行显示【默认单行显示】
 @property(nonatomic,assign)UILabelShowingType labelShowingType;
 #pragma mark —— 定位
@@ -51,6 +52,7 @@ NS_ASSUME_NONNULL_END
 @synthesize layerCornerRadius = _layerCornerRadius;\
 @synthesize isTranslucent = _isTranslucent;\
 @synthesize isVisible = _isVisible;\
+@synthesize isInvisible = _isInvisible;\
 @synthesize isMultiLineShows = _isMultiLineShows;\
 @synthesize labelShowingType = _labelShowingType;\
 @synthesize jobsTag = _jobsTag;\
@@ -71,6 +73,7 @@ NS_ASSUME_NONNULL_END
 @dynamic layerCornerRadius;\
 @dynamic isTranslucent;\
 @dynamic isVisible;\
+@dynamic isInvisible;\
 @dynamic isMultiLineShows;\
 @dynamic labelShowingType;\
 @dynamic jobsTag;\

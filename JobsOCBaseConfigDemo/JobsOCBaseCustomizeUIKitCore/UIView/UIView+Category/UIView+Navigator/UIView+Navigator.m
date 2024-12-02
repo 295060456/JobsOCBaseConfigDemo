@@ -8,6 +8,33 @@
 #import "UIView+Navigator.h"
 
 @implementation UIView (Navigator)
+#pragma mark —— 汇总方法
+/// 推页面
+-(jobsByViewBlock _Nonnull)pushTo{
+    @jobs_weakify(self)
+    return ^(__kindof UIView *_Nullable nextView){
+        @jobs_strongify(self)
+        self.configViewNavigatorByPushview(nextView);
+        nextView.navigator = self.navigator;
+        self.navigator.pushView(nextView,YES);
+    };
+}
+/// 退回到上一个页面
+-(jobsByBOOLBlock _Nonnull)popViewAnimated{
+    @jobs_weakify(self)
+    return ^(BOOL animated){
+        @jobs_strongify(self)
+        self.navigator.popViewAnimated(YES);
+    };
+}
+/// 退回到根页面
+-(jobsByBOOLBlock _Nonnull)popToRootViewAnimated{
+    @jobs_weakify(self)
+    return ^(BOOL animated){
+        @jobs_strongify(self)
+        self.navigator.popToRootViewAnimated(YES);
+    };
+}
 #pragma mark —— 配置
 -(jobsByViewBlock _Nonnull)configViewNavigatorBySuperview{
     @jobs_weakify(self)

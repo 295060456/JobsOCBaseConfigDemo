@@ -111,8 +111,10 @@
     //            [self.view addSubview:navigator];
     //            navigator.pushView(self.pushView,YES);
                 
-                self.view.configViewNavigatorByPushview(self.pushView);
-                self.view.navigator.pushView(self.pushView,YES);
+//                self.view.configViewNavigatorByPushview(self.pushView);
+//                self.view.navigator.pushView(self.pushView,YES);
+                
+                self.view.pushTo(self.pushView);
                 
     //            self.pushView.configViewNavigatorBySuperview(self.view);
     //            self.view.navigator.pushView(self.pushView,YES);

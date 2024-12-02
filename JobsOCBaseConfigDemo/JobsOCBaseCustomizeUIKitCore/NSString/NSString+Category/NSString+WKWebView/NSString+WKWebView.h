@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// loadHTMLString：包含 HTML 内容的字符串
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
 -(JobsReturnWKWebViewByStringBlock _Nonnull)webViewByloadHTMLString;
+/// 解析纯的HTML字符串
+-(__kindof WKWebView *_Nullable)webViewByloadHTMLStr;
 /// 解析URL数据
 -(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebView;
 /// 解析JS

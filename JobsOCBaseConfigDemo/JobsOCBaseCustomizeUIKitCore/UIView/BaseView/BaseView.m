@@ -73,37 +73,39 @@ UIPictureAndBackGroundCorProtocol_synthesize
 
 -(JobsNavBar *)navBar{
     if(!_navBar){
-        _navBar = JobsNavBar.new;
-        if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-            self.navBarConfig.backBtnModel.btn_offset_x = self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(40);
-            self.navBarConfig.closeBtnModel.btn_offset_x = self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(40);
-        }
-        NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
-        NSLog(@"%f",self.navBarConfig.closeBtnModel.btn_offset_x);
-//        if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
-        _navBar.navBarConfig = self.navBarConfig;
-        [self addSubview:_navBar];
-        [_navBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-                make.top.equalTo(self);
-            }else{
-                make.top.equalTo(self).offset(JobsStatusBarHeight());
-            }
-            make.left.right.equalTo(self);
-            make.height.mas_equalTo(JobsWidth(40));
-        }];
-        [self layoutIfNeeded];
-        _navBar.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [_navBar actionNavBarBackBtnClickBlock:^(UIButton * _Nullable x) {
+        _navBar = jobsMakeNavBar(^(__kindof JobsNavBar *_Nullable data) {
             @jobs_strongify(self)
-            self.jobsBackBtnClickEvent(x);
-            if(self.backBtnClickAction) self.backBtnClickAction(x);
-        }];
-        [_navBar actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable x) {
-            @jobs_strongify(self)
-            if(self.closeBtnClickAction)self.closeBtnClickAction(x);
-        }];
+            if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+                self.navBarConfig.backBtnModel.btn_offset_x = self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(40);
+                self.navBarConfig.closeBtnModel.btn_offset_x = self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(40);
+            }
+            NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
+            NSLog(@"%f",self.navBarConfig.closeBtnModel.btn_offset_x);
+    //        if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
+            data.navBarConfig = self.navBarConfig;
+            self.addSubview(data);
+            [data mas_makeConstraints:^(MASConstraintMaker *make) {
+                if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+                    make.top.equalTo(self);
+                }else{
+                    make.top.equalTo(self).offset(JobsStatusBarHeight());
+                }
+                make.left.right.equalTo(self);
+                make.height.mas_equalTo(JobsWidth(40));
+            }];self.refresh();
+            data.jobsRichViewByModel(nil);
+            @jobs_weakify(self)
+            [data actionNavBarBackBtnClickBlock:^(UIButton * _Nullable x) {
+                @jobs_strongify(self)
+                self.jobsBackBtnClickEvent(x);
+                if(self.backBtnClickAction) self.backBtnClickAction(x);
+            }];
+            [data actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable x) {
+                @jobs_strongify(self)
+                if(self.closeBtnClickAction)self.closeBtnClickAction(x);
+            }];
+        });
     }return _navBar;
 }
 /// 在具体的子类去实现，以覆盖父类的方法实现

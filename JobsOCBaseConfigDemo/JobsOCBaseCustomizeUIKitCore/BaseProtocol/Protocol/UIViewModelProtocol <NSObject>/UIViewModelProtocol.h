@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "JobsBlock.h"
 #import "UIPictureAndBackGroundCorProtocol.h"
 #import "UILocationProtocol.h"
 #import "UIMarkProtocol.h"
@@ -52,6 +52,8 @@ UIViewModelOthersProtocol /// UIViewModelOthersProtocol_synthesize、UIViewModel
 /// 背景图
 @property(nonatomic,copy)NSString *normalBgImageURLString;
 @property(nonatomic,strong)NSURL *normalBgImageURL;
+#pragma mark —— UI约束（Masonry）
+@property(nonatomic,copy,nullable)jobsByMASConstraintMakerBlock masonryBlock;
 
 @end
 
@@ -71,6 +73,7 @@ NS_ASSUME_NONNULL_END
 @synthesize normalImageURL = _normalImageURL; \
 @synthesize normalBgImageURLString = _normalBgImageURLString; \
 @synthesize normalBgImageURL = _normalBgImageURL; \
+@synthesize masonryBlock = _masonryBlock; \
 
 #endif
 
@@ -160,6 +163,7 @@ NS_ASSUME_NONNULL_END
 @synthesize layerCornerRadius = _layerCornerRadius;\
 @synthesize isTranslucent = _isTranslucent;\
 @synthesize isVisible = _isVisible;\
+@synthesize isInvisible = _isInvisible;\
 @synthesize isMultiLineShows = _isMultiLineShows;\
 @synthesize labelShowingType = _labelShowingType;\
 @synthesize appLanguage = _appLanguage;\
@@ -261,6 +265,7 @@ NS_ASSUME_NONNULL_END
 @dynamic normalImageURL;\
 @dynamic normalBgImageURLString;\
 @dynamic normalBgImageURL;\
+@dynamic masonryBlock;\
 
 #endif
 
@@ -353,6 +358,7 @@ NS_ASSUME_NONNULL_END
 @dynamic layerCornerRadius;\
 @dynamic isTranslucent;\
 @dynamic isVisible;\
+@dynamic isInvisible;\
 @dynamic isMultiLineShows;\
 @dynamic labelShowingType;\
 @dynamic appLanguage;\

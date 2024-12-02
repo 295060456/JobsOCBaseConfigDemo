@@ -65,15 +65,13 @@
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-        if (self.navBarConfig.bgImage) {
-            self.image = self.navBarConfig.bgImage;
-        }else{
-            self.backgroundColor = self.navBarConfig.bgCor;
-        }
+        if (NavBarConfig.bgImage) {
+            self.image = NavBarConfig.bgImage;
+        }else self.backgroundColor = NavBarConfig.bgCor;
         self.titleLab.alpha = 1;
         self.backBtn.alpha = 1;
         self.closeBtn.alpha = 1;
-        [self layoutIfNeeded];
+        self.refresh();
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -136,8 +134,8 @@
         @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = NavBarConfig.title;
             if(NavBarConfig.attributedTitle) label.attributedText = NavBarConfig.attributedTitle;
+            label.text = NavBarConfig.title;
             label.font = NavBarConfig.font;
             label.textColor = NavBarConfig.titleCor;
             self.addSubview(label);
@@ -152,29 +150,26 @@
 
 -(BaseButton *)backBtn{
     if(!_backBtn){
-        JobsNavBarConfig *navBarConfig = self.navBarConfig;
-        NSLog(@"%@",navBarConfig);
         _backBtn = BaseButton.initByButtonModel(BackBtnModel);
+        _backBtn.jobsVisible = !BackBtnModel.isInvisible;
         _backBtn.tag = 456;
-        [self addSubview:_backBtn];
-        [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.addSubview(_backBtn);
+        [_backBtn mas_makeConstraints:BackBtnModel.masonryBlock ? : ^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(18));
             make.centerY.equalTo(self);
             NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
             make.left.equalTo(self).offset(self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(20));
-        }];
-        _backBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
+        }];_backBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _backBtn;
 }
 
 -(BaseButton *)closeBtn{
     if(!_closeBtn){
-        JobsNavBarConfig *navBarConfig = self.navBarConfig;
-        NSLog(@"%@",navBarConfig);
         _closeBtn = BaseButton.initByButtonModel(CloseBtnModel);
+        _closeBtn.jobsVisible = !CloseBtnModel.isInvisible;
         _closeBtn.tag = 123;
-        [self addSubview:_closeBtn];
-        [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.addSubview(_closeBtn);
+        [_closeBtn mas_makeConstraints:CloseBtnModel.masonryBlock ? : ^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(22), JobsWidth(22)));
             make.centerY.equalTo(self);
             make.right.equalTo(self).offset(-(self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(15)));

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(jobsByViewAndAnimatedBlock _Nonnull)pushView;
 -(jobsByBOOLBlock _Nonnull)popViewAnimated;
+-(jobsByBOOLBlock _Nonnull)popToRootViewAnimated;
 
 @end
 

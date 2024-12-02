@@ -362,8 +362,11 @@ typedef void(^JobsByCJTextFieldBlock)(CJTextField *_Nullable data);
 typedef WMZBannerView *_Nonnull(^JobsReturnWMZBannerViewByBannerParamBlock)(WMZBannerParam *_Nonnull bannerParam);
 
 @class MASConstraintMaker;
-typedef void(^jobsByMasonryConstraintsBlock)(MASConstraintMaker *_Nullable make);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByMasonryConstraintsBlock)(jobsByMasonryConstraintsBlock _Nullable block);
+typedef void(^jobsByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull make);
+typedef void(^jobsByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByMasonryConstraintsBlock)(jobsByMASConstraintMakerBlock _Nullable block);
+typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
+typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
 
 @class MJRefreshNormalHeader;
 typedef MJRefreshNormalHeader *_Nonnull(^JobsReturnMJRefreshNormalHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
@@ -428,12 +431,6 @@ typedef void(^jobsByXZMRefreshNormalHeaderBlock)(XZMRefreshNormalHeader *_Nonnul
 
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByClickBlock)(jobsByBtnBlock _Nullable);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByIDBlock)(jobsByIDBlock _Nullable);
-
-@class MASConstraintMaker;
-typedef void(^jobsByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
-typedef void(^jobsByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
-typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
-typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
 
 @class YTKNetworkConfig;
 typedef void(^jobsByYTKNetworkConfigBlock)(__kindof YTKNetworkConfig *_Nullable data);

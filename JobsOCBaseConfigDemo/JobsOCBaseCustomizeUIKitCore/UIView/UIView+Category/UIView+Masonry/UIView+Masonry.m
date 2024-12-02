@@ -11,7 +11,7 @@
 /// 实现 masonryBlock 链式方法
 -(JobsReturnViewByMasonryConstraintsBlock _Nonnull)setMasonryBy{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(jobsByMasonryConstraintsBlock _Nullable block){
+    return ^__kindof UIView *_Nullable(jobsByMASConstraintMakerBlock _Nullable block){
         @jobs_strongify(self)
         self.masonryBlock = block;
         return self;
@@ -70,14 +70,14 @@
         }];
     }];
 }
-#pragma mark —— @property(nonatomic,copy)jobsByMasonryConstraintsBlock masonryBlock;
+#pragma mark —— @property(nonatomic,copy)jobsByMASConstraintMakerBlock masonryBlock;
 JobsKey(_masonryBlock)
 @dynamic masonryBlock;
--(jobsByMasonryConstraintsBlock)masonryBlock{
+-(jobsByMASConstraintMakerBlock)masonryBlock{
     return Jobs_getAssociatedObject(_masonryBlock);
 }
 
--(void)setMasonryBlock:(jobsByMasonryConstraintsBlock)masonryBlock{
+-(void)setMasonryBlock:(jobsByMASConstraintMakerBlock)masonryBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_masonryBlock, masonryBlock)
 }
 

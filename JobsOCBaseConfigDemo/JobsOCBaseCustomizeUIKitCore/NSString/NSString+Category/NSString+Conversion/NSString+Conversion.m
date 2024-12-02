@@ -12,7 +12,7 @@
 /// 对系统方法 initWithData 的二次封装
 +(JobsReturnStringByDataBlock _Nonnull)initByUTF8Data{
     return ^__kindof NSString *_Nullable(NSData *_Nullable data){
-        return NSString.initByUTF8Data(data);
+        return [NSString.alloc initWithData:data encoding:NSUTF8StringEncoding];
     };
 }
 /// 转化为可变字符串

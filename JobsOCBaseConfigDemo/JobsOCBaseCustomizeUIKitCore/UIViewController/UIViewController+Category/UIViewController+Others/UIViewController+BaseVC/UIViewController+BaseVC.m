@@ -231,7 +231,9 @@ JobsKey(_navBar)
 -(JobsNavBar *)navBar{
     JobsNavBar *NavBar = Jobs_getAssociatedObject(_navBar);
     if(!NavBar){
+        @jobs_weakify(self)
         Jobs_setAssociatedRETAIN_NONATOMIC(_navBar, jobsMakeNavBar(^(__kindof JobsNavBar * _Nullable data) {
+            @jobs_strongify(self)
             if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
                 self.navBarConfig.backBtnModel.btn_offset_x = self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(40);
                 self.navBarConfig.closeBtnModel.btn_offset_x = self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(40);
@@ -240,7 +242,7 @@ JobsKey(_navBar)
             NSLog(@"%f",self.navBarConfig.closeBtnModel.btn_offset_x);
     //        if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
             data.navBarConfig = self.navBarConfig;
-            [self.view addSubview:data];
+            self.view.addSubview(data);
             [data mas_makeConstraints:^(MASConstraintMaker *make) {
                 if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
                     make.top.equalTo(self.view);
@@ -249,8 +251,7 @@ JobsKey(_navBar)
                 }
                 make.left.right.equalTo(self.view);
                 make.height.mas_equalTo(JobsWidth(40));
-            }];
-            [self.view layoutIfNeeded];
+            }];self.view.refresh();
             data.jobsRichViewByModel(nil);
             @jobs_weakify(self)
             [data actionNavBarBackBtnClickBlock:^(UIButton * _Nullable x) {

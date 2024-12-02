@@ -13,7 +13,7 @@
 ///【类方法】NSData 转换成 以Base64编码的字符串
 +(JobsReturnStringByDataBlock _Nonnull)base64StringFromData{
     return ^__kindof NSString *_Nullable(NSData *_Nullable data){
-        return [data base64EncodedStringWithOptions:0];
+        return [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     };
 }
 ///【实例方法】NSData 转换成 以Base64编码的字符串

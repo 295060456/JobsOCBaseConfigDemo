@@ -19,6 +19,14 @@
         });
     };
 }
+/// 解析纯的HTML字符串
+-(__kindof WKWebView *_Nullable)webViewByloadHTMLStr{
+    @jobs_weakify(self)
+    return jobsMakeWKWebView(^(__kindof WKWebView * _Nullable webView) {
+        @jobs_strongify(self)
+        [webView loadHTMLString:self baseURL:nil];
+    });
+}
 /// 解析URL数据
 -(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebView{
     return ^__kindof WKWebView *_Nullable(){

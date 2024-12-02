@@ -13,7 +13,7 @@
 ///【类方法】NSString对象 转换成  以Base64 编码的字符串
 +(JobsReturnStringByStringBlock _Nonnull)base64String{
     return ^__kindof NSString *_Nullable(NSString *_Nullable data){
-        return [data.UTF8Encoding base64EncodedStringWithOptions:0];
+        return [data.UTF8Encoding base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     };
 }
 ///【实例方法】NSString对象 转换成  以Base64 编码的字符串
@@ -23,7 +23,7 @@
 ///【类方法】Base64 编码的字符串  转换成 NSString对象
 +(JobsReturnStringByStringBlock _Nonnull)nsStringByBase64{
     return ^__kindof NSString *_Nullable(NSString *_Nullable base64String){
-        return NSString.initByUTF8Data([NSData.alloc initWithBase64EncodedString:base64String options:NSDataBase64DecodingIgnoreUnknownCharacters]);
+        return NSString.initByUTF8Data(NSData.initByBase64EncodedString(base64String));
     };
 }
 ///【实例方法】Base64 编码的字符串  转换成 NSString对象
@@ -34,9 +34,7 @@
 ///【类方法】将以Base64编码的字符串 转换为 UIImage对象
 +(JobsReturnImageByStringBlock _Nonnull)imageByBase64String{
     return ^UIImage *_Nullable(NSString *_Nullable base64String){
-        NSData *imageData = [NSData.alloc initWithBase64EncodedString:base64String
-                                                              options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        return UIImage.imageByData(imageData);
+        return UIImage.imageByData(NSData.initByBase64EncodedString(base64String));
     };
 }
 ///【实例方法】将以Base64编码的字符串 转换为 UIImage对象

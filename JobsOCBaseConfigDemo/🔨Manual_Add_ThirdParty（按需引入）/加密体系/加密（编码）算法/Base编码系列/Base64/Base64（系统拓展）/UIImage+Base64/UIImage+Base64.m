@@ -34,9 +34,7 @@
 ///【类方法】将以Base64编码的字符串 转换为 UIImage对象
 +(JobsReturnImageByStringBlock _Nonnull)imageByBase64String{
     return ^UIImage *_Nullable(NSString *_Nullable base64String){
-        NSData *imageData = [NSData.alloc initWithBase64EncodedString:base64String
-                                                              options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        return UIImage.imageByData(imageData);
+        return UIImage.imageByData(NSData.initByBase64EncodedString(base64String));
     };
 }
 ///【实例方法】将以Base64编码的字符串 转换为 UIImage对象

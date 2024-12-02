@@ -112,6 +112,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy,nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
 @property(nonatomic,copy,nullable)jobsByBtnBlock onClickBlock;
 @property(nonatomic,copy,nullable)jobsByBtnBlock onLongPressGestureEventBlock;
+#pragma mark —— UI约束（Masonry）
+@property(nonatomic,copy,nullable)jobsByMASConstraintMakerBlock masonryBlock;
 #pragma mark —— 其他
 @property(nonatomic,assign)CGFloat leftViewWidth;
 @property(nonatomic,assign)CGFloat rightViewWidth;
