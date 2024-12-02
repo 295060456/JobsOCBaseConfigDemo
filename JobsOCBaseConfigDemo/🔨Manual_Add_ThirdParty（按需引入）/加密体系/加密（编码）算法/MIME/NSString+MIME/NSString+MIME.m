@@ -10,58 +10,37 @@
 @implementation NSString (MIME)
 #pragma mark —— MIME编码的数据 <==> NSString对象
 ///【类方法】以MIME编码的字符串数据 转换成 普通NSString对象
-+(NSString *_Nullable)stringByMIMEData:(NSString *)MIMEString{
-    return NSString.initByUTF8Data([NSData.alloc initWithBase64EncodedString:MIMEString options:0]);
++(JobsReturnStringByStringBlock _Nonnull)stringByMIMEData{
+    return ^__kindof NSString *_Nullable(NSString *_Nullable MIMEString){
+        return NSString.initByUTF8Data([NSData.alloc initWithBase64EncodedString:MIMEString options:0]);
+    };
 }
 ///【实例方法】以MIME编码的字符串数据 转换成 普通NSString对象
--(NSString *_Nullable)stringByMIMEData:(NSString *)MIMEString{
-    return NSString.initByUTF8Data([NSData.alloc initWithBase64EncodedString:MIMEString options:0]);
-}
-///【类方法】以MIME编码的字符串数据 转换成 普通NSString对象
-+(NSString *_Nullable)MIME:(NSString *)MIMEString{
-    return NSString.initByUTF8Data([NSData.alloc initWithBase64EncodedString:MIMEString options:0]);
-}
-///【实例方法】以MIME编码的字符串数据 转换成 普通NSString对象
--(NSString *_Nullable)MIME{
-    return NSString.initByUTF8Data([NSData.alloc initWithBase64EncodedString:self options:0]);
+-(NSString *_Nullable)mimeData{
+    return NSString.stringByMIMEData(self);
 }
 #pragma mark —— MIME编码的数据 ==> NSData对象
 ///【类方法】以MIME编码的数据 转换成 NSData对象
-+(NSData *_Nullable)dataByMIMEString:(NSString *)MIMEString{
-    NSData *decodedData = [NSData.alloc initWithBase64EncodedString:MIMEString
-                                                            options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    return decodedData;
-}
-///【实例方法】以MIME编码的数据 转换成 NSData对象
--(NSData *_Nullable)dataByMIMEString:(NSString *)MIMEString{
-    NSData *decodedData = [NSData.alloc initWithBase64EncodedString:MIMEString
-                                                            options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    return decodedData;
++(JobsReturnDataByStringBlock _Nonnull)dataByMIMEString{
+    return ^NSData *_Nullable(__kindof NSString *_Nullable MIMEString){
+        return [NSData.alloc initWithBase64EncodedString:MIMEString
+                                                 options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    };
 }
 ///【实例方法】以MIME编码的数据 转换成 NSData对象
 -(NSData *_Nullable)dataByMIMEString{
-    NSData *decodedData = [NSData.alloc initWithBase64EncodedString:self
-                                                            options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    return decodedData;
+    return NSString.dataByMIMEString(self);
 }
 #pragma mark —— MIME编码的数据 ==> UIImage对象
 ///【类方法】以MIME编码的数据 转换成 UIImage对象
-+(UIImage *_Nullable)imageByMIMEString:(NSString *)MIMEString{
-    NSData *imageData = NSData.dataByMIMEString(MIMEString);
-    UIImage *image = UIImage.imageByData(imageData);
-    return image;
-}
-///【实例方法】以MIME编码的数据 转换成 UIImage对象
--(UIImage *_Nullable)imageByMIMEString:(NSString *)MIMEString{
-    NSData *imageData = NSData.dataByMIMEString(MIMEString);
-    UIImage *image = UIImage.imageByData(imageData);
-    return image;
++(JobsReturnImageByStringBlock _Nonnull)imageByMIMEString{
+    return ^UIImage *_Nullable(NSString *_Nullable MIMEString){
+        return UIImage.imageByData(NSData.dataByMIMEString(MIMEString));
+    };
 }
 ///【实例方法】以MIME编码的数据 转换成 UIImage对象
 -(UIImage *_Nullable)imageByMIMEString{
-    NSData *imageData = NSData.dataByMIMEString(self);
-    UIImage *image = UIImage.imageByData(imageData);
-    return image;
+    return NSString.imageByMIMEString(self);
 }
 
 @end

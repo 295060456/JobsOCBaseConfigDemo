@@ -174,6 +174,12 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull blo
     return data;
 }
 
+NS_INLINE __kindof NSMutableData *_Nonnull jobsMakeMutData(jobsByMutableDataBlock _Nonnull block){
+    NSMutableData *data = NSMutableData.data;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof UIPasteboard *_Nonnull jobsMakePasteboard(jobsByPasteboardBlock _Nonnull block){
     UIPasteboard *data = UIPasteboard.generalPasteboard;
     if (block) block(data);

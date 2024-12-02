@@ -147,6 +147,7 @@ typedef void(^jobsByRotationGestureBlock)(UIRotationGestureRecognizer *_Nullable
 #pragma mark —— 其他
 typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);
 typedef void(^jobsByDataBlock)(NSData *_Nullable data);
+typedef void(^jobsByMutableDataBlock)(__kindof NSMutableData *_Nullable data);
 typedef void(^jobsByBezierPathBlock)(__kindof UIBezierPath *_Nullable data);
 typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable notification);
 #import <UserNotifications/UserNotifications.h>

@@ -23,7 +23,7 @@
 ///【类方法】Base64 编码的字符串  转换成 NSString对象
 +(JobsReturnStringByStringBlock _Nonnull)nsStringByBase64{
     return ^__kindof NSString *_Nullable(NSString *_Nullable base64String){
-        return NSString.initByUTF8Data([NSData.alloc initWithBase64EncodedString:base64String options:0]);;
+        return NSString.initByUTF8Data([NSData.alloc initWithBase64EncodedString:base64String options:NSDataBase64DecodingIgnoreUnknownCharacters]);
     };
 }
 ///【实例方法】Base64 编码的字符串  转换成 NSString对象
