@@ -207,9 +207,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
-            for (UIViewModel *viewModel in self.dataMutArr) {
-                data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-            }
+            [self.dataMutArr enumerateObjectsUsingBlock:^(__kindof UIViewModel *_Nonnull obj,
+                                                          NSUInteger idx,
+                                                          BOOL *_Nonnull stop) {
+                @jobs_strongify(self)
+                 data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+            }];
         });
     }return _tbvCellMutArr;
 }

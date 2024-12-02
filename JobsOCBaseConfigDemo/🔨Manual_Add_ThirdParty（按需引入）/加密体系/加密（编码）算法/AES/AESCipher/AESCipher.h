@@ -9,6 +9,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CommonCrypto/CommonCryptor.h>
 
 NSString * aesEncryptString(NSString *content,
                             NSString *key);

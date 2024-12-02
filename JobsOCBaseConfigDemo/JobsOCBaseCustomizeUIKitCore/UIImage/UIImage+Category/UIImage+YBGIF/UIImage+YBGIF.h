@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <ImageIO/ImageIO.h>
 #import "NSMutableArray+Extra.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (YBGIF)
 /// 根据NSData* 创建gif图片
-+(JobsReturnImageByDataBlock)animatedGIFWithData;
++(JobsReturnImageByDataBlock _Nonnull)animatedGIFWithData;
 /// 根据图片名字创建gif图片
 + (UIImage *)animatedGIFNamed:(NSString *)name;
 /// 根据大小裁剪图片

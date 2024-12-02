@@ -69,7 +69,7 @@
     // 因为之前如果使用过滤镜，输入有可能会被保留，因此，在使用滤镜之前，最好恢复默认设置
     [filter setDefaults];
     // 2、将传入的字符串转换为NSData
-    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = self.UTF8Encoding;
     // 3、将NSData传递给滤镜（通过KVC的方式，设置inputMessage）
     filter.jobsKVC(@"inputMessage",data);
     // 4、由filter输出图像

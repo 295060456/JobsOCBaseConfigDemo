@@ -69,6 +69,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Conversion)
 #pragma mark —— 转化
+/// 对系统方法 initWithData 的二次封装
++(JobsReturnStringByDataBlock _Nonnull)initByUTF8Data;
 /// 转化为可变字符串
 -(NSMutableString *_Nullable)Mutable;
 -(NSData *_Nullable)UTF8Encoding;

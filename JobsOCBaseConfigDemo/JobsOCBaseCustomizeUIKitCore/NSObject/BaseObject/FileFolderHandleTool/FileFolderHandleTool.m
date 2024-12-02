@@ -13,10 +13,11 @@
 /// 因为它会同步。苹果要求：可重复产生的数据不得进行同步,什么叫做可重复数据？这里最好禁止，否则会影响上架，被拒！
 +(jobsByVoidBlock)banSysDocSynchronization{
     return ^(){
-        NSError *err = nil;
+        NSError *error = nil;
         [NSString.documentsDir.jobsFileUrl setResourceValue:@(YES)
                                                      forKey:NSURLIsExcludedFromBackupKey
-                                                      error:&err];
+                                                      error:&error];
+        if(error) NSLog(@"error = %@",error);
     };
 }
 #pragma mark - 创建Library/Caches下的文件夹📂路径 还未真正创建
@@ -254,9 +255,9 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
         }else if ([content isKindOfClass:NSJSONSerialization.class]){//文件内容为JSON类型
             return [(NSDictionary *)content writeToFile:path atomically:YES];
         }else if ([content isKindOfClass:NSMutableString.class]){//文件内容为可变字符串
-            return [[((NSString *)content) dataUsingEncoding:NSUTF8StringEncoding] writeToFile:path atomically:YES];
+            return [((NSString *)content).UTF8Encoding writeToFile:path atomically:YES];
         }else if ([content isKindOfClass:NSString.class]){//文件内容为不可变字符串
-            return [[((NSString *)content) dataUsingEncoding:NSUTF8StringEncoding] writeToFile:path atomically:YES];
+            return [((NSString *)content).UTF8Encoding writeToFile:path atomically:YES];
         }else if ([content isKindOfClass:UIImage.class]){//文件内容为图片 保存为PNG
             return [UIImagePNGRepresentation((UIImage *)content) writeToFile:path atomically:YES];
         }else if ([content conformsToProtocol:@protocol(NSCoding)]){//文件归档

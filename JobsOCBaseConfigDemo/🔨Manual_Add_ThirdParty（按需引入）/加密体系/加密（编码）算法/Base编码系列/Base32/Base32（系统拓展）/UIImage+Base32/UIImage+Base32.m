@@ -20,22 +20,28 @@
 @implementation UIImage (Base32)
 #pragma mark ——【Sys】NSData ==> UIImage
 ///【类方法】NSData 转 UIImage
-+(UIImage *_Nullable)getImageWithData:(NSData *_Nonnull)data{
-    return [UIImage imageWithData:data];
++(JobsReturnImageByDataBlock _Nonnull)getImageWithData{
+    return ^UIImage *_Nonnull(NSData *_Nullable data){
+        return UIImage.imageByData(data);
+    };
 }
 ///【实例方法】NSData 转 UIImage
--(UIImage *_Nullable)getImageWithData:(NSData *_Nonnull)data{
-    return [UIImage imageWithData:data];
+-(JobsReturnImageByDataBlock _Nonnull)getImageWithData{
+    return ^UIImage *_Nonnull(NSData *_Nullable data){
+        return UIImage.getImageWithData(data);
+    };
 }
 #pragma mark ——【Sys】
 #pragma mark ——【Sys】UIImage ==> NSData.PNG
 ///【类方法】UIImage 转 NSData（PNG格式）
-+(NSData *_Nullable)dataWithPNGImage:(UIImage *_Nonnull)image{
-    return UIImagePNGRepresentation(image);
++(JobsReturnDataByImageBlock _Nonnull)dataWithPNGImage{
+    return ^NSData *_Nullable(UIImage *_Nullable image){
+        return UIImagePNGRepresentation(image);
+    };
 }
 ///【实例方法】UIImage 转 NSData（PNG格式）
 -(NSData *_Nullable)PNGImageData{
-    return UIImagePNGRepresentation(self);
+    return UIImage.dataWithPNGImage(self);
 }
 #pragma mark ——【Sys】UIImage ==> NSData.JPEG
 ///【类方法】UIImage 转 NSData（JPEG格式），指定压缩质量
@@ -44,26 +50,36 @@
     return UIImageJPEGRepresentation(image, compressionQuality);
 }
 ///【实例方法】UIImage 转 NSData（JPEG格式），指定压缩质量
--(NSData *_Nullable)JPEGImageDataWithCompressionQuality:(CGFloat)compressionQuality{
-    return UIImageJPEGRepresentation(self, compressionQuality);
+-(JobsReturnDataByFloatBlock _Nonnull)JPEGImageDataWithCompressionQuality{
+    @jobs_weakify(self)
+    return ^NSData *_Nullable(CGFloat compressionQuality){
+        @jobs_strongify(self)
+        return UIImageJPEGRepresentation(self, compressionQuality);
+    };
 }
 #pragma mark ——【Custom】
 #pragma mark —— Base32 <==> UIImage
 ///【类方法】将UIimage对象转成用Base32编码的字符串
-+(NSString *_Nullable)base32StringByImage:(UIImage *_Nonnull)image{
-    return UIImagePNGRepresentation(image).base32String;
++(JobsReturnStringByImageBlock _Nonnull)base32StringByImage{
+    return ^__kindof NSString *_Nullable(UIImage *_Nullable image){
+        return UIImagePNGRepresentation(image).base32String;
+    };
 }
 ///【实例方法】将UIimage对象转成用Base32编码的字符串
 -(NSString *_Nullable)base32Str{
-    return UIImagePNGRepresentation(self).base32String;
+    return UIImage.base32StringByImage(self);
 }
 ///【类方法】将以Base32编码的字符串 转换为 NSData对象，然后再转成UIImage
-+(UIImage *_Nullable)imageByBase32String:(NSString *_Nonnull)base32String{
-   return [UIImage imageWithData:[NSData dataWithBase32String:base32String]];
++(JobsReturnImageByStringBlock _Nonnull)imageByBase32String{
+    return ^UIImage *_Nullable(NSString *_Nullable data){
+        return UIImage.imageByData(NSData.dataWithBase32String(data));
+    };
 }
 ///【实例方法】将以Base32编码的字符串 转换为 NSData对象，然后再转成UIImage
--(UIImage *_Nullable)imageByBase32String:(NSString *_Nonnull)base32String{
-   return [UIImage imageWithData:[NSData dataWithBase32String:base32String]];
+-(JobsReturnImageByStringBlock _Nonnull)imageByBase32String{
+    return ^UIImage *_Nullable(NSString *_Nullable data){
+        return UIImage.imageByBase32String(data);
+    };
 }
 
 @end

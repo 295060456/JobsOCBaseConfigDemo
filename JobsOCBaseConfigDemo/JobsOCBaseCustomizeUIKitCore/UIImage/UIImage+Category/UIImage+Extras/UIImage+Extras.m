@@ -66,7 +66,7 @@
     /// 恢复滤镜的默认属性
     [filter setDefaults];
     /// 将字符串转换成NSData
-    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = string.UTF8Encoding;
     /// 通过KVO设置滤镜inputmessage数据
     filter.jobsKVC(@"inputMessage",data);
     /// 获得滤镜输出的图像
@@ -140,25 +140,48 @@
     };
 }
 /// 截取当前image对象rect区域内的图像
--(UIImage *)dw_SubImageWithRect:(CGRect)rect{
-    CGFloat scale = self.scale;
-    CGRect scaleRect = CGRectMake(rect.origin.x * scale,
-                                  rect.origin.y * scale,
-                                  rect.size.width * scale,
-                                  rect.size.height * scale);
-    CGImageRef newImageRef = CGImageCreateWithImageInRect(self.CGImage, scaleRect);
-    UIImage *newImage = [[UIImage imageWithCGImage:newImageRef] dw_RescaleImageToSize:rect.size];
-    CGImageRelease(newImageRef);
-    return newImage;
+-(JobsReturnImageByCGRectBlock _Nonnull)dw_SubImageWithRect{
+    @jobs_weakify(self)
+    return ^UIImage *_Nonnull(CGRect rect){
+        @jobs_strongify(self)
+        CGFloat scale = self.scale;
+        CGRect scaleRect = CGRectMake(rect.origin.x * scale,
+                                      rect.origin.y * scale,
+                                      rect.size.width * scale,
+                                      rect.size.height * scale);
+        CGImageRef newImageRef = CGImageCreateWithImageInRect(self.CGImage, scaleRect);
+        UIImage *newImage = [UIImage imageWithCGImage:newImageRef].dw_RescaleImageToSize(rect.size);
+        CGImageRelease(newImageRef);
+        return newImage;
+    };
 }
 /// 压缩图片至指定尺寸
--(UIImage *)dw_RescaleImageToSize:(CGSize)size{
-    CGRect rect = (CGRect){CGPointZero, size};
-    UIGraphicsBeginImageContextWithOptions(size, NO, UIScreen.mainScreen.scale);
-    [self drawInRect:rect];
-    UIImage *resImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return resImage;
+-(JobsReturnImageByCGSizeBlock _Nonnull)dw_RescaleImageToSize{
+    @jobs_weakify(self)
+    return ^UIImage *_Nonnull(CGSize size){
+        @jobs_strongify(self)
+        CGRect rect = (CGRect){CGPointZero, size};
+        UIGraphicsBeginImageContextWithOptions(size, NO, UIScreen.mainScreen.scale);
+        [self drawInRect:rect];
+        UIImage *resImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return resImage;
+    };
+}
+/// 裁剪图片
+-(JobsReturnImageByCGSizeBlock _Nonnull)imageScaleToSize{
+    @jobs_weakify(self)
+    return ^UIImage *_Nonnull(CGSize size){
+        @jobs_strongify(self)
+        UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
+        [self drawInRect:CGRectMake(0,
+                                    0,
+                                    size.width,
+                                    size.height)];
+        UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return scaledImage;
+    };
 }
 /// 按给定path剪裁图片
 /// @param path 路径，剪裁区域
@@ -206,16 +229,17 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
-/// 裁剪图片
-- (UIImage *)imageScaleToSize:(CGSize)size{
-    UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
-    [self drawInRect:CGRectMake(0,
-                                0,
-                                size.width,
-                                size.height)];
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return scaledImage;
+/// 对系统方法 initWithData 的二次封装
++(JobsReturnImageByDataBlock _Nonnull)initByData{
+    return ^UIImage *_Nonnull(NSData *_Nullable data){
+        return [UIImage.alloc initWithData:data];
+    };
+}
+/// 对系统方法 imageWithData 的二次封装
++(JobsReturnImageByDataBlock _Nonnull)imageWithData{
+    return ^UIImage *_Nonnull(NSData *_Nullable data){
+        return [UIImage imageWithData:data];
+    };
 }
 
 @end

@@ -35,10 +35,10 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
-    if (!jsonData) {
+    if (error) {
         NSLog(@"JSON转换失败: %@", error);
     } else {
-        jsonString = [NSString.alloc initWithData:jsonData encoding:NSUTF8StringEncoding];
+        jsonString = NSString.initByUTF8Data(jsonData);
         NSLog(@"%@", jsonString);
     }return jsonString;
 }

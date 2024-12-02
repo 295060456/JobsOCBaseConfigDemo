@@ -1,6 +1,5 @@
 //
 //  UIImage+Extras.h
-
 //
 //  Created by Aalto on 2018/12/19.
 //  Copyright © 2018 Aalto. All rights reserved.
@@ -12,7 +11,7 @@
 #import <AVFoundation/AVAsset.h>/// 用于处理音视频数据，支持加载和操作媒体资源。
 #import <AVFoundation/AVAssetImageGenerator.h>/// 用于从视频生成缩略图。
 #import <AVFoundation/AVTime.h>/// 提供时间相关的功能，用于音视频处理。
-
+#import "JobsBlock.h"
 #import "UIView+Measure.h"
 #import "NSObject+Extras.h"
 /// 图片填充模式
@@ -48,17 +47,20 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图像模糊化
 -(JobsReturnImageByAlphaBlock _Nonnull)alpha;
 /// 截取当前image对象rect区域内的图像
--(UIImage *)dw_SubImageWithRect:(CGRect)rect;
+-(JobsReturnImageByCGRectBlock _Nonnull)dw_SubImageWithRect;
 /// 压缩图片至指定尺寸
--(UIImage *)dw_RescaleImageToSize:(CGSize)size;
-/**
- * 按给定path剪裁图片
- * path:路径，剪裁区域。
- * mode:填充模式
- */
--(UIImage *)dw_ClipImageWithPath:(UIBezierPath *)path mode:(DWContentMode)mode;
+-(JobsReturnImageByCGSizeBlock _Nonnull)dw_RescaleImageToSize;
 /// 裁剪图片
--(UIImage*)imageScaleToSize:(CGSize)size;
+-(JobsReturnImageByCGSizeBlock _Nonnull)imageScaleToSize;
+/// 按给定path剪裁图片
+/// @param path 路径，剪裁区域
+/// @param mode 填充模式
+-(UIImage *)dw_ClipImageWithPath:(UIBezierPath *)path
+                            mode:(DWContentMode)mode;
+/// 对系统方法 initWithData 的二次封装
++(JobsReturnImageByDataBlock _Nonnull)initByData;
+/// 对系统方法 imageWithData 的二次封装
++(JobsReturnImageByDataBlock _Nonnull)imageWithData;
 
 @end
 

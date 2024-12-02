@@ -114,6 +114,8 @@
 #import "NSObject+GTCaptcha4.h"
 /// 关于数据
 #import "NSObject+Data.h"
+/// 关于算法
+#import "NSObject+Algorithm.h"
 /// 作为 NSObject 的替代者使用
 #import "This.h"
 

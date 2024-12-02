@@ -9,7 +9,6 @@
 //
 
 #import "AESCipher.h"
-#import <CommonCrypto/CommonCryptor.h>
 
 NSString const *kInitVector = @"AESBytes16String";
 size_t const kKeySize = kCCKeySizeAES128;
@@ -20,7 +19,7 @@ NSData * cipherOperation(NSData *contentData,
                          CCOperation operation) {
     NSUInteger dataLength = contentData.length;
     
-    void const *initVectorBytes = [kInitVector dataUsingEncoding:NSUTF8StringEncoding].bytes;
+    void const *initVectorBytes = kInitVector.UTF8Encoding.bytes;
     void const *contentBytes = contentData.bytes;
     void const *keyBytes = keyData.bytes;
     
@@ -75,8 +74,8 @@ NSString * aesEncryptString(NSString *content,
     NSCParameterAssert(content);
     NSCParameterAssert(key);
     
-    NSData *contentData = [content dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *contentData = content.UTF8Encoding;
+    NSData *keyData = key.UTF8Encoding;
     NSData *encrptedData = aesEncryptData(contentData, keyData);
     return [encrptedData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
 }
@@ -88,9 +87,8 @@ NSString * aesDecryptString(NSString *content,
     
     NSData *contentData = [[NSData alloc] initWithBase64EncodedString:content
                                                               options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *keyData = key.UTF8Encoding;
     NSData *decryptedData = aesDecryptData(contentData, keyData);
-    return [[NSString alloc] initWithData:decryptedData
-                                 encoding:NSUTF8StringEncoding];
+    return NSString.initByUTF8Data(decryptedData);
 }
 

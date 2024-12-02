@@ -54,6 +54,7 @@
 		8474A4B02CF8696900112B4B /* IQKeyboardManager+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BC22CF4A3AF000D441F /* IQKeyboardManager+Extra.m */; };
 		8474A4B12CF8696D00112B4B /* Reachability+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BBF2CF4A3AF000D441F /* Reachability+Extra.m */; };
 		8474A4B22CF8697200112B4B /* BRStringPickerView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F88832CF702D000C53A19 /* BRStringPickerView+Extra.m */; };
+		8474A7B22CFD4B2100112B4B /* NSObject+Algorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474A7B02CFD4B2100112B4B /* NSObject+Algorithm.m */; };
 		8489C9DC2CE622CC00BB5E83 /* JobsEmptyDataView.md in Resources */ = {isa = PBXBuildFile; fileRef = 8489C9DA2CE622CB00BB5E83 /* JobsEmptyDataView.md */; };
 		8489C9DD2CE622CC00BB5E83 /* UICollectionView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */; };
 		8489C9DE2CE622CC00BB5E83 /* UITableView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D72CE622CB00BB5E83 /* UITableView+JobsEmptyData.m */; };
@@ -1301,6 +1302,8 @@
 		8474A3B12CF866B100112B4B /* UILabel+Scroll.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Scroll.m"; sourceTree = "<group>"; };
 		8474A3B52CF8672200112B4B /* JobsScrollLabelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsScrollLabelVC.h; sourceTree = "<group>"; };
 		8474A3B62CF8672200112B4B /* JobsScrollLabelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsScrollLabelVC.m; sourceTree = "<group>"; };
+		8474A7AF2CFD4B2100112B4B /* NSObject+Algorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Algorithm.h"; sourceTree = "<group>"; };
+		8474A7B02CFD4B2100112B4B /* NSObject+Algorithm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Algorithm.m"; sourceTree = "<group>"; };
 		8489C9D32CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+JobsEmptyData.h"; sourceTree = "<group>"; };
 		8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+JobsEmptyData.m"; sourceTree = "<group>"; };
 		8489C9D62CE622CB00BB5E83 /* UITableView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+JobsEmptyData.h"; sourceTree = "<group>"; };
@@ -4033,6 +4036,15 @@
 				8474A3B82CF8672200112B4B /* View */,
 			);
 			path = "当文本超出的时候，滚动展现文字的Label";
+			sourceTree = "<group>";
+		};
+		8474A7B12CFD4B2100112B4B /* NSObject+Algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				8474A7AF2CFD4B2100112B4B /* NSObject+Algorithm.h */,
+				8474A7B02CFD4B2100112B4B /* NSObject+Algorithm.m */,
+			);
+			path = "NSObject+Algorithm";
 			sourceTree = "<group>";
 		};
 		8489C9D52CE622CB00BB5E83 /* UICollectionView+JobsEmptyData */ = {
@@ -11394,6 +11406,7 @@
 		CE5A62162CA82C2D006D67A7 /* NSObject+Category */ = {
 			isa = PBXGroup;
 			children = (
+				8474A7B12CFD4B2100112B4B /* NSObject+Algorithm */,
 				845F867C2CF595D600C53A19 /* NSObject+LiveChat */,
 				8493F1E72CD3A64F00011DD1 /* NSObject+YTKRequest */,
 				CE5A61872CA82C2D006D67A7 /* NSObject+Data */,
@@ -15732,6 +15745,7 @@
 				CECE7EC52C450E5B00764AF5 /* TKPermissionSpeech.m in Sources */,
 				CECE7E822C450E5B00764AF5 /* DDData.m in Sources */,
 				CE410FE72C57B8B400AB9402 /* NSString+ZBURLEncoding.m in Sources */,
+				8474A7B22CFD4B2100112B4B /* NSObject+Algorithm.m in Sources */,
 				CE5A65B22CA833B8006D67A7 /* JobsBitsMonitorSuspendLab.m in Sources */,
 				CE5A65B32CA833B8006D67A7 /* JobsBasePopupView.m in Sources */,
 				CE5A65B42CA833B8006D67A7 /* JobsBitsMonitorCore.m in Sources */,

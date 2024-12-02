@@ -20,31 +20,30 @@
 @implementation UIImage (Base64)
 #pragma mark —— UIImage ==> Base64
 ///【类方法】UIImage对象 转换为 以Base64编码的字符串
-+(NSString *_Nullable)base64StringByImage:(UIImage *_Nonnull)image{
-    NSData *imageData = UIImagePNGRepresentation(image); // 或者UIImageJPEGRepresentation(image, compressionQuality)
-    NSString *base64String = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    return base64String;
++(JobsReturnStringByImageBlock _Nonnull)base64StringByImage{
+    return ^__kindof NSString *_Nullable(UIImage *_Nullable image){
+        NSData *imageData = UIImagePNGRepresentation(image); // 或者UIImageJPEGRepresentation(image, compressionQuality)
+        return [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    };
 }
 ///【实例方法】UIImage对象 转换为 以Base64编码的字符串
 -(NSString *_Nullable)base64Str{
-    NSData *imageData = UIImagePNGRepresentation(self); // 或者UIImageJPEGRepresentation(self, compressionQuality)
-    NSString *base64String = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    return base64String;
+    return UIImage.base64StringByImage(self);
 }
 #pragma mark —— Base64 ==> UIImage
 ///【类方法】将以Base64编码的字符串 转换为 UIImage对象
-+(UIImage *_Nullable)imageByBase64String:(NSString *_Nonnull)base64String{
-    NSData *imageData = [NSData.alloc initWithBase64EncodedString:base64String
-                                                          options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    UIImage *image = [UIImage imageWithData:imageData];
-    return image;
++(JobsReturnImageByStringBlock _Nonnull)imageByBase64String{
+    return ^UIImage *_Nullable(NSString *_Nullable base64String){
+        NSData *imageData = [NSData.alloc initWithBase64EncodedString:base64String
+                                                              options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        return UIImage.imageByData(imageData);
+    };
 }
 ///【实例方法】将以Base64编码的字符串 转换为 UIImage对象
--(UIImage *_Nullable)imageByBase64String:(NSString *_Nonnull)base64String{
-    NSData *imageData = [NSData.alloc initWithBase64EncodedString:base64String
-                                                          options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    UIImage *image = [UIImage imageWithData:imageData];
-    return image;
+-(JobsReturnImageByStringBlock _Nonnull)imageByBase64String{
+    return ^UIImage *_Nullable(NSString *_Nullable base64String){
+        return UIImage.imageByBase64String(base64String);
+    };
 }
 
 @end

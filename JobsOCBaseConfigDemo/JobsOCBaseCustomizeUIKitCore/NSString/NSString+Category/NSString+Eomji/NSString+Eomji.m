@@ -13,8 +13,7 @@
 -(NSString *)emojiEncode{
     NSString *uniStr = StringWithUTF8String(self.UTF8String);
     NSData *uniData = [uniStr dataUsingEncoding:NSNonLossyASCIIStringEncoding];
-    NSString *emojiText = [NSString.alloc initWithData:uniData
-                                              encoding:NSUTF8StringEncoding];
+    NSString *emojiText = NSString.initByUTF8Data(uniData);
     return emojiText;
 }
 /// 解码emoji

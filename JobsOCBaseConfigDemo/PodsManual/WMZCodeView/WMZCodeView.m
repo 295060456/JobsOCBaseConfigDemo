@@ -187,7 +187,7 @@ static dispatch_once_t static_codeViewOnceToken;
     self.WMZSlider.minimumTrackTintColor = JobsClearColor;
     self.WMZSlider.maximumTrackTintColor = JobsClearColor;
     UIImage *tempImage = JobsIMG(@"SliderBtn");
-    tempImage = [tempImage imageScaleToSize:CGSizeMake(self.height+6, self.height+6)];
+    tempImage = tempImage.imageScaleToSize(CGSizeMake(self.height+6, self.height+6));
     [self.WMZSlider setThumbImage:tempImage forState:UIControlStateNormal];
     [self.WMZSlider setThumbImage:tempImage forState:UIControlStateHighlighted];
     /// 滑块滑动事件
@@ -219,7 +219,7 @@ static dispatch_once_t static_codeViewOnceToken;
 /// 添加可移动的图片
 - (void)addMoveImage{
     UIImage *jobsResetBtnImage = JobsIMG(self.name);
-    jobsResetBtnImage = [jobsResetBtnImage dw_RescaleImageToSize:CGSizeMake(self.width-WMZmargin*2, WMZimageHeight)];
+    jobsResetBtnImage = jobsResetBtnImage.dw_RescaleImageToSize(CGSizeMake(self.width-WMZmargin*2, WMZimageHeight));
     self.mainImage.image = jobsResetBtnImage;
     [self.mainImage addSubview:({
         self.maskView.frame = CGRectMake(self.randomPoint.x,
@@ -230,7 +230,7 @@ static dispatch_once_t static_codeViewOnceToken;
     })];
     
     UIBezierPath *path = getCodePath();
-    UIImage * thumbImage = [self.mainImage.image dw_SubImageWithRect:self.maskView.frame];
+    UIImage * thumbImage = self.mainImage.image.dw_SubImageWithRect(self.maskView.frame);
     thumbImage = [thumbImage dw_ClipImageWithPath:path mode:(DWContentModeScaleToFill)];
     [self.mainImage addSubview:({
         self.moveImage.frame = CGRectMake(0,

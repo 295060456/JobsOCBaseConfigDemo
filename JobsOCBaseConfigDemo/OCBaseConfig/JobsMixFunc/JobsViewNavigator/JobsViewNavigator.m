@@ -34,7 +34,8 @@
                                              self.bounds.size.width, 0);
         view.frame = offScreenRight;
         
-        void (^transitionBlock)(void) = ^{
+        jobsByVoidBlock transitionBlock = ^{
+            @jobs_strongify(self)
             view.frame = self.bounds;
             currentTopView.frame = CGRectOffset(self.bounds,
                                                 -self.bounds.size.width, 0);
@@ -50,24 +51,24 @@
     };
 }
 
--(jobsByBOOLBlock)popViewAnimated{
+-(jobsByBOOLBlock _Nonnull)popViewAnimated{
     @jobs_weakify(self)
     return ^(BOOL animated) {
         @jobs_strongify(self)
-        if (self.viewStack.count == 0) {
-            return; // Prevent popping when there's no view
-        }
+        if (self.viewStack.count == 0) return; // Prevent popping when there's no view
         
         UIView *topView = self.viewStack.lastObject;
         [self.viewStack removeLastObject];
         UIView *previousView = self.viewStack.lastObject;
 
-        void (^transitionBlock)(void) = ^{
+        jobsByVoidBlock transitionBlock = ^{
+            @jobs_strongify(self)
             topView.frame = CGRectOffset(self.bounds, self.bounds.size.width, 0);
             previousView.frame = self.bounds;
         };
         
-        void (^completionBlock)(BOOL) = ^(BOOL finished) {
+        jobsByBOOLBlock completionBlock = ^(BOOL finished) {
+            @jobs_strongify(self)
             [topView removeFromSuperview];
             if (self.viewStack.count == 0) {
                 // 移除MyViewNavigator自身

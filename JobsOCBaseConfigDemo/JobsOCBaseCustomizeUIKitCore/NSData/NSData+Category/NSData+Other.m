@@ -21,7 +21,7 @@
 }
 
 -(NSString *)stringByUTF8Encoding{
-    return [NSString.alloc initWithData:self encoding:NSUTF8StringEncoding];
+    return NSString.initByUTF8Data(self);
 }
 
 +(JobsReturnDataByURLBlock _Nonnull)byURL{

@@ -279,7 +279,7 @@ static NSData *base64_decode(NSString *str){
 }
 
 + (NSString *)encryptString:(NSString *)str privateKey:(NSString *)privKey{
-    NSData *data = [RSAUtil encryptData:[str dataUsingEncoding:NSUTF8StringEncoding]
+    NSData *data = [RSAUtil encryptData:str.UTF8Encoding
                              privateKey:privKey];
     NSString *ret = base64_encode_data(data);
     return ret;
@@ -373,7 +373,7 @@ static NSData *base64_decode(NSString *str){
 /* START: Encryption & Decryption with RSA public key */
 
 + (NSString *)encryptString:(NSString *)str publicKey:(NSString *)pubKey{
-    NSData *data = [RSAUtil encryptData:[str dataUsingEncoding:NSUTF8StringEncoding]
+    NSData *data = [RSAUtil encryptData:str.UTF8Encoding
                               publicKey:pubKey];
     NSString *ret = base64_encode_data(data);
     return ret;
@@ -392,8 +392,7 @@ static NSData *base64_decode(NSString *str){
     NSData *data = [[NSData alloc] initWithBase64EncodedString:str
                                                        options:NSDataBase64DecodingIgnoreUnknownCharacters];
     data = [RSAUtil decryptData:data publicKey:pubKey];
-    NSString *ret = [[NSString alloc] initWithData:data
-                                          encoding:NSUTF8StringEncoding];
+    NSString *ret = NSString.initByUTF8Data(data);
     return ret;
 }
 

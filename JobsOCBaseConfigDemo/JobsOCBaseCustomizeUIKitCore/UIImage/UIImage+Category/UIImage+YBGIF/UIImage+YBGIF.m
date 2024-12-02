@@ -10,7 +10,7 @@
 
 @implementation UIImage (YBGIF)
 /// 根据NSData* 创建gif图片
-+(JobsReturnImageByDataBlock)animatedGIFWithData{
++(JobsReturnImageByDataBlock _Nonnull)animatedGIFWithData{
     @jobs_weakify(self)
     return ^UIImage *(NSData * _Nullable data) {
         @jobs_strongify(self)
@@ -19,7 +19,7 @@
         size_t count = CGImageSourceGetCount(source);
         UIImage *animatedImage;
         if (count <= 1) {
-           animatedImage = [UIImage.alloc initWithData:data];
+            animatedImage = UIImage.initByData(data);
         }else {
             __block NSTimeInterval duration = 0.0f;
             @jobs_weakify(self)

@@ -847,7 +847,13 @@ typedef NS_ENUM(NSInteger, FMAdTagType) {
     FMAdTagType_Daily                /// 日常广告
 };
 #endif /* FM_AD_TAG_TYPE_DEFINED */
-
-
+/// 教程标签类型
+#ifndef FM_TUTORIAL_Type_DEFINED
+#define FM_TUTORIAL_Type_DEFINED
+typedef NS_ENUM(NSInteger, FMTutorialType) {
+    FMTutorialType_常见教程 = 1,         /// 常见教程
+    FMTutorialType_关于我们 = 2,         /// 关于我们
+};
+#endif /* FM_TUTORIAL_Type_DEFINED */
 
 #endif /* JobsDefineAllEnumHeader_h */

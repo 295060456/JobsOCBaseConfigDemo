@@ -132,7 +132,7 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     dispatch_main_async_safe(^{
         [self destoryHeartBeat];
         //心跳设置为3分钟，NAT超时一般为5分钟
-        heartBeat = [NSTimer timerWithTimeInterval:3 
+        heartBeat = [NSTimer timerWithTimeInterval:3
                                             target:self
                                           selector:@selector(sentheart)
                                           userInfo:nil r
@@ -174,7 +174,7 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     }
 }
 
-- (void)webSocket:(SRWebSocket *)webSocket 
+- (void)webSocket:(SRWebSocket *)webSocket
  didCloseWithCode:(NSInteger)code
            reason:(NSString *)reason
          wasClean:(BOOL)wasClean {
@@ -197,8 +197,7 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     NSLog(@"reply===%@",reply);
 }
 
-- (void)webSocket:(SRWebSocket *)webSocket 
-didReceiveMessage:(id)message  {
+- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message{
     
     if (webSocket == self.socket) {
         NSLog(@"************************** socket收到数据了************************** ");

@@ -14,8 +14,18 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (SYS)
-
-+(UIImage *)MKImageNamed:(NSString *)name;
+/*
+    这里MKImageNamed方法中不能调用imageNamed方法,
+    因为imageNamed实质已经是MKImageNamed方法了,
+    会出项死循环,
+    调用其自己的时候,
+    实质是调用imageNamed方法,
+    imageNamed中没有代用MKImageNamed,
+    这样就不会出现死循环;
+*/
++(JobsReturnImageByStringBlock _Nonnull)imageByName;
+/// 替换系统的 imageWithData 方法
++(JobsReturnImageByDataBlock _Nonnull)imageByData;
 
 @end
 

@@ -28,7 +28,7 @@
         [scanner scanHexInt:&intValue];
         UInt8 byte = (UInt8)intValue;
         [data appendBytes:&byte length:1];
-    }return [NSString.alloc initWithData:data encoding:NSUTF8StringEncoding];
+    }return NSString.initByUTF8Data(data);
 }
 ///【实例方法】将Base16字符串 转换回 原始的NSString对象
 -(NSString *_Nullable)stringByBase16String{
@@ -49,7 +49,7 @@
         [scanner scanHexInt:&intValue];
         UInt8 byte = (UInt8)intValue;
         [data appendBytes:&byte length:1];
-    }return [NSString.alloc initWithData:data encoding:NSUTF8StringEncoding];
+    }return NSString.initByUTF8Data(data);
 }
 ///【类方法】将普通的NSString字符串对象 转换为 以Base16（也称为十六进制）编码的字符串
 +(NSString *_Nullable)base16StringByImage:(NSString *)string{
@@ -105,7 +105,7 @@
         [scanner scanHexInt:&intValue];
         UInt8 byte = (UInt8)intValue;
         [imageData appendBytes:&byte length:1];
-    }return [UIImage imageWithData:imageData];
+    }return UIImage.imageByData(imageData);
 }
 ///【实例方法】将以Base16编码的字符串 转换为 UIImage对象
 -(UIImage *_Nullable)imageByBase16String{
@@ -124,7 +124,7 @@
         [scanner scanHexInt:&intValue];
         UInt8 byte = (UInt8)intValue;
         [imageData appendBytes:&byte length:1];
-    }return [UIImage imageWithData:imageData];
+    }return UIImage.imageByData(imageData);
 }
 #pragma mark —— Base16 <==> NSData
 ///【类方法】将以Base16编码的字符串 转换为 NSData对象

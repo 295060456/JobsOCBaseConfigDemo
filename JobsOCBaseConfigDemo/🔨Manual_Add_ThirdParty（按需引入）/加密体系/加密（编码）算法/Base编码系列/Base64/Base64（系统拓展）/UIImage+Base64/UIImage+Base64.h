@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /*
@@ -22,14 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (Base64)
 #pragma mark —— UIImage ==> Base64
 ///【类方法】UIImage对象 转换为 以Base64编码的字符串
-+(NSString *_Nullable)base64StringByImage:(UIImage *_Nonnull)image;
++(JobsReturnStringByImageBlock _Nonnull)base64StringByImage;
 ///【实例方法】UIImage对象 转换为 以Base64编码的字符串
 -(NSString *_Nullable)base64Str;
 #pragma mark —— Base64 ==> UIImage
-/// 将以Base64编码的字符串 转换为 UIImage对象
-+(UIImage *_Nullable)imageByBase64String:(NSString *_Nonnull)base64String;
+///【类方法】将以Base64编码的字符串 转换为 UIImage对象
++(JobsReturnImageByStringBlock _Nonnull)imageByBase64String;
 ///【实例方法】将以Base64编码的字符串 转换为 UIImage对象
--(UIImage *_Nullable)imageByBase64String:(NSString *_Nonnull)base64String;
+-(JobsReturnImageByStringBlock _Nonnull)imageByBase64String;
 
 @end
 

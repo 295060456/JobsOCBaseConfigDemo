@@ -73,7 +73,7 @@
         [scanner scanHexInt:&intValue];
         UInt8 byte = (UInt8)intValue;
         [imageData appendBytes:&byte length:1];
-    }return [UIImage imageWithData:imageData];
+    }return UIImage.imageByData(imageData);
 }
 ///【实例方法】将以Base16编码的字符串 转换为 UIImage对象
 -(UIImage *_Nullable)imageByBase16String:(NSString *_Nonnull)base16StringByImage{
@@ -92,7 +92,7 @@
         [scanner scanHexInt:&intValue];
         UInt8 byte = (UInt8)intValue;
         [imageData appendBytes:&byte length:1];
-    }return [UIImage imageWithData:imageData];
+    }return UIImage.imageByData(imageData);
 }
 
 @end

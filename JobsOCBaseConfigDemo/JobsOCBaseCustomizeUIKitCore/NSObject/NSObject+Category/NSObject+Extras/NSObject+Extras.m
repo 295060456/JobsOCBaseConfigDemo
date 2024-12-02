@@ -1217,7 +1217,7 @@
 -(NSData *_Nullable)transformToData:(id _Nullable)object{
     if ([object isKindOfClass:NSString.class]) {
         NSString *string = (NSString *)object;
-        return [string dataUsingEncoding:NSUTF8StringEncoding];
+        return string.UTF8Encoding;
     }else if ([object isKindOfClass:NSArray.class]){
         NSArray *array = (NSArray *)object;
         /*

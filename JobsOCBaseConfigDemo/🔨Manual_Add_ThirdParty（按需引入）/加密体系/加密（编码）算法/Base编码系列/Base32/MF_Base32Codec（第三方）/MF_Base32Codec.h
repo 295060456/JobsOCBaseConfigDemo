@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MF_Base32Codec : NSObject
 /// 将Base32编码的字符串转换为NSData对象
-+(NSData *)dataFromBase32String:(NSString *)encoding;
++(JobsReturnDataByStringBlock _Nonnull)dataFromBase32String;
 /// 将NSData对象转换为Base32编码的字符串
-+(NSString *)base32StringFromData:(NSData *)data;
++(JobsReturnStringByDataBlock _Nonnull)base32StringFromData;
 
 @end
 

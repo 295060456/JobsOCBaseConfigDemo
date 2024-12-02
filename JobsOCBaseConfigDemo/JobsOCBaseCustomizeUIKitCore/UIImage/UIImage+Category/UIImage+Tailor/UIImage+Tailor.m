@@ -12,7 +12,7 @@
 /// 以图片中心为中心，以最小边为边长，裁剪正方形图片
 +(UIImage *)cropSquareImage:(UIImage *)image{
     
-    CGImageRef sourceImageRef = [image CGImage];//将UIImage转换成CGImageRef
+    CGImageRef sourceImageRef = image.CGImage;//将UIImage转换成CGImageRef
     
     CGFloat _imageWidth = image.size.width * image.scale;
     CGFloat _imageHeight = image.size.height * image.scale;
