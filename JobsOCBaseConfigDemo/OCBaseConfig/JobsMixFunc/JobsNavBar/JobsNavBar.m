@@ -25,6 +25,7 @@
 @property(nonatomic,strong)UILabel *titleLab;
 @property(nonatomic,strong)BaseButton *closeBtn;
 /// Data
+@property(nonatomic,strong)JobsNavBarConfig *navBarConfig;
 
 @end
 
@@ -63,12 +64,13 @@
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
+    return ^(JobsNavBarConfig *_Nullable navBarConfig) {
         @jobs_strongify(self)
+        if(navBarConfig) self.navBarConfig = navBarConfig;
         if (NavBarConfig.bgImage) {
             self.image = NavBarConfig.bgImage;
         }else self.backgroundColor = NavBarConfig.bgCor;
-        self.titleLab.alpha = 1;
+        self.titleLab.text = NavBarConfig.title;
         self.backBtn.alpha = 1;
         self.closeBtn.alpha = 1;
         self.refresh();
@@ -88,18 +90,6 @@
         return CGSizeMake(JobsWidth(self.width), JobsWidth(35));
 //        return JobsNavBar.viewSizeByModel(data);
     };
-}
-#pragma mark —— 一些公有方法
--(BaseButton *)getBackBtn{
-    return self.backBtn;
-}
-
--(UILabel *)getTitleLab{
-    return self.titleLab;
-}
-
--(BaseButton *)getCloseBtn{
-    return self.closeBtn;
 }
 #pragma mark —— BaseViewProtocol
 -(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock)objectBlock{

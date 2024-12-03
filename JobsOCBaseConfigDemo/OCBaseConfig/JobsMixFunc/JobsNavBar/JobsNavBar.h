@@ -12,12 +12,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsNavBar : BaseImageView
-/// Data
-@property(nonatomic,strong)JobsNavBarConfig *navBarConfig;
-/// 左中右三个控件
--(BaseButton *)backBtn;
--(UILabel *)titleLab;
--(BaseButton *)closeBtn;
+
+@property(nonatomic,strong,readonly)BaseButton *backBtn;
+@property(nonatomic,strong,readonly)UILabel *titleLab;
+@property(nonatomic,strong,readonly)BaseButton *closeBtn;
 
 @end
 
