@@ -17,7 +17,7 @@
 #import "JobsAppDoorVC.h"
 #import "AppLanguageVC.h"
 //#import "CasinoUpgradePopupView.h"
-#import "JobsHotLabelWithSingleLine.h"
+#import "JobsHotLabelBySingleLine.h"
 
 #import "JobsNetworkingHeader.h"
 #import "UIViewModel.h"
@@ -77,6 +77,10 @@ AppToolsProtocol
 /// 创建JobsCustomTabBar（单例模式）
 +(JobsReturnCustomTabBarByViewBlock _Nonnull)makeCustomTabBarBy;
 -(UIButtonModel *)makeBackBtnModel;
+/// 登录成功
+-(jobsByVoidBlock _Nonnull)loginOK;
+/// 退出登录成功
+-(jobsByVoidBlock _Nonnull)logoutOK;
 #pragma mark —— 弹出框。为了防止业务层的变化，弹出框定义在NSObject层
 /// Debug模式下的弹出框 及其相关的数据封装。在外层进行调用，[ 需要被展现的视图 popupShowScaleWithView:popupView];
 //-(JobsOCBaseConfigTestPopupView *)JobsTestPopView:(NSString *)string;

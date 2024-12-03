@@ -51,6 +51,7 @@ typedef void(^jobsByCollectionViewBlock)(__kindof UICollectionView *_Nullable co
 typedef void(^jobsByTextFieldBlock)(__kindof UITextField *_Nullable textField);
 typedef void(^jobsByTextViewBlock)(__kindof UITextView *_Nullable textView);
 typedef void(^jobsByImageViewBlock)(__kindof UIImageView *_Nullable imageView);
+typedef void(^jobsByStackViewBlock)(__kindof UIStackView *_Nullable stackView);
 typedef void(^jobsByCAEmitterCellBlock)(__kindof CAEmitterCell *_Nullable cell);
 typedef void(^jobsByCAEmitterLayerBlock)(__kindof CAEmitterLayer *_Nullable layer);
 /// 多参数

@@ -15,6 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 +(JobsReturnValueByCGSizeBlock _Nonnull)bySize;
 +(JobsReturnValueByPointerBlock _Nonnull)byPointer;
 +(JobsReturnValueByPointBlock _Nonnull)byPoint;
++(JobsReturnValueByVectorBlock _Nonnull)byVector;
++(JobsReturnValueByRectBlock _Nonnull)byRect;
++(JobsReturnValueByAffineTransformBlock _Nonnull)byAffineTransform;
++(JobsReturnValueByEdgeInsetsBlock _Nonnull)byEdgeInsets;
++(JobsReturnValueByDirectionalEdgeInsetsBlock _Nonnull)byDirectionalEdgeInsets;
++(JobsReturnValueByOffsetBlock _Nonnull)byOffset;
 
 @end
 

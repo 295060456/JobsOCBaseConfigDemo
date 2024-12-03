@@ -15,6 +15,7 @@
 #import <ImageIO/CGImageSource.h>
 
 #import "NSObject+Class.h"
+#import "NSObject+Algorithm.h"
 #import "NSData+Other.h"
 #import "NSURL+Others.h"
 #import "NSString+NSUserDefaults.h"
@@ -173,41 +174,6 @@ BaseProtocol
  */
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
-#pragma mark —— NSNotification
-/// 在主线程上带参发通知
--(jobsByKey_ValueBlock _Nonnull)JobsPost;
-/// 在主线程上带参发通知
--(jobsByKeyValueModelBlock _Nonnull)JobsPostBy;
-/// 在主线程上不带参发通知
--(jobsByStringBlock _Nonnull)jobsPost;
-/// 接收通知
--(void)addNotificationName:(NSString *_Nonnull)notificationName block:(JobsSelectorBlock _Nullable)block;
-/// RAC接收通知
--(void)addNotificationName:(NSString *_Nonnull)notificationName
-         notificationBlock:(jobsByNotificationBlock _Nullable)block;
-#pragma mark —— 路径获取
-/// 获取bundle路径
--(NSString *_Nonnull)bundlePath;
-/// 获取沙盒的主目录路径：
--(NSString *_Nonnull)homeDir;
-/// Documents目录（这个目录通常用于存储应用程序中的用户数据或需要持久保存的数据。用户可以通过 iTunes 文件共享或 iCloud 访问该目录中的内容）下，用户主目录下，返回完整路径
--(NSArray <NSString *>*_Nonnull)documentsPaths;
-/// Library目录（这个目录是每个 iOS 或 macOS 应用程序特有的目录，通常存储应用程序的支持文件、配置文件以及不能直接由用户访问的文件）下，用户主目录下，返回完整路径
--(NSArray <NSString *>*_Nonnull)libraryPaths;
-/// 缓存目录下，用户主目录下，返回完整路径
--(NSArray <NSString *>*_Nonnull)cachesPaths;
-/// 获取真机沙盒中Documents的目录路径：
--(NSString *_Nonnull)documentsDir;
-/// 获取沙盒中Library的目录路径：
--(NSString *_Nonnull)libraryDir;
-/// 获取沙盒中NSUserDefaults的保存位置
--(NSString *_Nonnull)userDefaultsDir;
-/// 获取沙盒中Library/Caches的目录路径：
--(NSString *_Nonnull)cachesDir;
-/// 获取沙盒中Libarary/Preferences的目录路径：
--(NSString *_Nonnull)preferencesDir;
-/// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
--(NSString *_Nonnull)tmpDir;
 #pragma mark —— 功能性的
 /// UIAlertController + UIAlertAction
 /// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
@@ -233,7 +199,7 @@ BaseProtocol
 -(JobsReturnDataByDictionaryBlock _Nonnull)JSONWritingPrettyPrinted;
 -(JobsReturnIDByDataBlock _Nonnull)JSONReadingMutableContainers;
 -(JobsReturnIDByDataBlock _Nonnull)JSONkNilOptions;
--(JobsReturnDataByStringBlock _Nonnull)initWithContentsOfFile;
+-(JobsReturnDataByStringBlock _Nonnull)initByContentsOfFile;
 -(JobsReturnBOOLByIDBlock _Nonnull)isEqual;
 -(JobsReturnIDByStringBlock _Nonnull)dataByKey;
 /// UICollectionViewFlowLayout
@@ -242,8 +208,6 @@ BaseProtocol
 /// JSON对象转NSData
 -(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject;
 -(jobsByVoidBlock _Nonnull)震动特效反馈;
--(jobsByVoidBlock _Nonnull)loginOK;
--(jobsByVoidBlock _Nonnull)logoutOK;
 /**
  注意：有些时候UIApplication.sharedApplication.keyWindow获取到的window有frame，而windowScene.windows.firstObject获取到的window没有frame
  
@@ -259,8 +223,6 @@ BaseProtocol
 /// 使用指定的图像（UIImage）作为颜色的填充图案。
 /// 这个方法的作用是生成一个基于图像的颜色，这个颜色在视图或图层上会以平铺的方式重复显示指定的图像。
 -(JobsReturnColorByImageBlock _Nonnull)byPatternImage;
-/// 雪花算法
--(NSNumber *_Nonnull)makeSnowflake;
 /// present
 /// 简洁版强制present展现一个控制器页面【不需要正向传参】
 -(jobsByVCBlock _Nonnull)comingToPresentVC;
@@ -300,17 +262,11 @@ BaseProtocol
 -(jobsByKey_ValueBlock _Nonnull)jobsKVC;
 -(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClass;
 -(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClass;
--(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
-                         selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock;
+-(void)addCheckerByName:(NSString *_Nonnull)notificationName
+          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock;
++(JobsReturnIDByStringBlock _Nonnull)initByReuseId;
 +(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier;/// 不能用于UITableViewHeaderFooterView
 -(JobsReturnIDByClsAndSaltStrBlock _Nonnull)jobsInitWithReuseIdentifierClass;/// 不能用于UITableViewHeaderFooterView
-/// 查询算法
-/// @param data 查询的数据源
-/// @param searchStrategy 查询策略
-/// @param keywords 关键词
--(NSMutableSet *_Nullable)dimSearchWithData:(id _Nonnull)data
-                             searchStrategy:(JobsSearchStrategy)searchStrategy
-                                   keywords:(NSString *_Nonnull)keywords;
 /// 索取对象obj里面属性名为propertyName的值，如果没有这个属性则查找返回nil
 /// @param obj 索取对象
 /// @param propertyName 需要查找的属性值
@@ -322,9 +278,7 @@ BaseProtocol
 -(CompareRes)versionNumber1:(NSString *_Nonnull)versionNumber1
              versionNumber2:(NSString *_Nonnull)versionNumber2;
 /// 给定一个数据源（数组）和 每行需要展示的元素个数，计算行数
-/// @param num 每行需要展示的元素个数
--(NSInteger)lineNum:(NSInteger)num;
--(NSInteger)count:(NSUInteger)count num:(NSInteger)num;
+-(JobsReturnByNSIntegerBlock _Nonnull)lineNumBy;
 /**
  ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
  -(ScrollDirection)judgementScrollDirectionByPoint:(CGPoint)point;
@@ -338,13 +292,13 @@ BaseProtocol
  ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
  */
 /// X 轴方向的偏移量
--(CGFloat)scrollOffsetByDirectionXPoint:(CGPoint)point;
+-(JobsReturnByCGPointBlock _Nonnull)scrollOffsetByDirectionXPoint;
 /// Y 轴方向的偏移量
--(CGFloat)scrollOffsetByDirectionYPoint:(CGPoint)point;
+-(JobsReturnByCGPointBlock _Nonnull)scrollOffsetByDirectionYPoint;
 /// 依据不断地传入的CGPoint *point，系统通过lastPoint来记录上一次的数据，两者进行比较，以此判断滑动的方向
-/// @param point 最新的point
--(ScrollDirection)judgementScrollDirectionByPoint:(CGPoint)point;
+-(JobsReturnNSIntegerByPointBlock _Nonnull)judgementScrollDirectionByPoint;
 /// 创建IndexPath坐标
+-(JobsReturnIndexPathByXYBlock _Nonnull)indexPathBy;
 -(NSIndexPath *_Nonnull)myIndexPath:(JobsIndexPath)indexPath;
 /// 点击任意一个view，下拉弹出与此View等宽，且与下底有一个motivateViewOffset距离的列表【如果应用于可滑动模块，当触发控件滑动的时候，建议对此进行关闭处理】
 /// @param motivateFromView 点击的锚点View
@@ -358,7 +312,7 @@ BaseProtocol
                                 motivateViewOffset:(CGFloat)motivateViewOffset
                                        finishBlock:(jobsByIDBlock _Nullable)finishBlock;
 /// iOS 获取任意控件在屏幕中的坐标
--(CGRect)getWindowFrameByView:(UIView *_Nonnull)view;
+-(JobsReturnRectByViewBlock _Nonnull)getWindowFrameByView;
 /// 依据View上铆定的internationalizationKEY来全局更改文字以适配国际化
 -(void)languageSwitch;
 /// 打印请求体
@@ -479,22 +433,7 @@ BaseProtocol
 -(UIOffset)jobsGetValueWithUIOffset:(NSValue *_Nullable)value;
 #pragma mark —— 数字
 /// 获取任意数字最高位数字
--(NSInteger)getTopDigit:(NSInteger)number;
-/// 判断任意给定的一个整型是多少位数
--(NSInteger)bitNum:(NSInteger)number;
-/// 判断任意数字是否为小数
--(BOOL)isFloat:(CGFloat)num;
-/**
-    判断 num1 是否能被 num2 整除
-    也就是判断 num2 是否是 num1 的整数倍
-    也就是判断 num1 除以 num2 的余数是否是 0
- 
-    特别指出的是：
-    1、除数为零的情况，被判定为不能被整除；
-    2、num1 和 num2 必须为 NSNumber* 类型，否则判定为不能够被整除
- */
--(BOOL)judgementExactDivisionByNum1:(NSNumber *_Nonnull)num1
-                               num2:(NSNumber *_Nonnull)num2;
+-(JobsReturnByNSIntegerBlock _Nonnull)topDigit;
 #pragma mark —— 检测当前设备屏幕方向
 /// https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md
 -(CGFloat)jobsMainScreen_HEIGHT;

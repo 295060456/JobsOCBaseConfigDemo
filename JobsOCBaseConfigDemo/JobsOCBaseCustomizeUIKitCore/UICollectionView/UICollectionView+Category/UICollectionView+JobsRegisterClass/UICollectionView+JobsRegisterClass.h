@@ -12,7 +12,7 @@
 #import "JobsBaseCollectionViewCell.h"
 #import "BaseCollectionViewCell.h"
 #import "JobsSearchDataCVCell.h"
-#import "JobsHotLabelWithMultiLineCVCell.h"
+#import "JobsHotLabelByMultiLineCVCell.h"
 #import "JobsBtnStyleCVCell.h"
 #import "JobsTextFieldStyleCVCell.h"
 #import "JobsImageViewStyleCVCell.h"

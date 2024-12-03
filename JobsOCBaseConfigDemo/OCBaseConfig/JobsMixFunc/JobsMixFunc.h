@@ -8,11 +8,10 @@
 #ifndef JobsMixFunc_h
 #define JobsMixFunc_h
 
-#pragma mark —— JobsMixFunc
 #import "ZBNetworking.h"/// 网络请求
 #import "JobsNoticePopupView.h"
-#import "JobsHotLabelWithSingleLine.h"
-#import "JobsHotLabelWithMultiLine.h"
+#import "JobsHotLabelBySingleLine.h"
+#import "JobsHotLabelByMultiLine.h"
 #import "JobsPageView.h"
 #import "JobsTitleView01.h"
 #import "JobsBasePopupView.h"

@@ -7,6 +7,9 @@
 
 #import "DefineConstString.h"
 
+NSString *const 回车符号转义字符 = @"\r";       /// 回车符号转义字符
+NSString *const 零宽转义字符 = @"\u200B";      /// 零宽转义字符
+NSString *const JobsSeparation = @"/";       /// 分隔符
 NSString *const JobsNewline = @"\n";         /// 换行符
 NSString *const JobsTab = @"\t";             /// 制表符
 NSString *const JobsSpace = @" ";            /// 空格
@@ -18,6 +21,7 @@ NSString *const JobsSemicolon = @";";        /// 分号
 NSString *const JobsDash = @"-";             /// 连字符
 NSString *const JobsUnderscore = @"_";       /// 下划线
 NSString *const JobsAsterisk = @"*";         /// 星号
+NSString *const JobsEqual = @"=";            /// 等于
 
 NSString *const 网络状态监控 = @"网络状态监控";/// 网络状态监控
 NSString *const 退到后台停止播放ZFPlayer = @"退到后台停止播放ZFPlayer";/// 退到后台停止播放ZFPlayer

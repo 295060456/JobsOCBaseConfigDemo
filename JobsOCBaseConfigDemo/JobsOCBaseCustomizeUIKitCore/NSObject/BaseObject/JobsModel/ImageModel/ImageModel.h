@@ -18,3 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof ImageModel *_Nonnull jobsMakeImageModel(jobsByImageModelBlock _Nonnull block){
+    ImageModel *data = ImageModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

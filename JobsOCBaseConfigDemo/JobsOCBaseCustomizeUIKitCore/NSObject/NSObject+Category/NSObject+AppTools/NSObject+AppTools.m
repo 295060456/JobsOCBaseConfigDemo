@@ -296,6 +296,22 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         data.imagePadding = JobsWidth(5);
     });
 }
+
+-(jobsByVoidBlock _Nonnull)loginOK{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        self.jobsPost(登录成功);
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)logoutOK{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        self.jobsPost(退出登录成功);
+    };
+}
 #pragma mark —— <AppToolsProtocol> 关于注册登录
 /// Token过期应该做的事情
 -(jobsByVoidBlock _Nonnull)tokenExpire{

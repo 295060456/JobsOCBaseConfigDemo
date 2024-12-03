@@ -5,15 +5,15 @@
 //  Created by Jobs on 2022/1/15.
 //
 
-#import "JobsHotLabelWithMultiLineCVCell.h"
+#import "JobsHotLabelByMultiLineCVCell.h"
 
-@interface JobsHotLabelWithMultiLineCVCell ()
+@interface JobsHotLabelByMultiLineCVCell ()
 
 @property(nonatomic,strong)UILabel *textLab;
 
 @end
 
-@implementation JobsHotLabelWithMultiLineCVCell
+@implementation JobsHotLabelByMultiLineCVCell
 @synthesize viewModel = _viewModel;
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -27,10 +27,10 @@
 #pragma mark —— UICollectionViewCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    JobsHotLabelWithMultiLineCVCell *cell = (JobsHotLabelWithMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelWithMultiLineCVCell.class forIndexPath:indexPath];
+    JobsHotLabelByMultiLineCVCell *cell = (JobsHotLabelByMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelByMultiLineCVCell.class forIndexPath:indexPath];
     if (!cell) {
-        collectionView.registerCollectionViewCellClass(JobsHotLabelWithMultiLineCVCell.class,@"");
-        cell = (JobsHotLabelWithMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelWithMultiLineCVCell.class forIndexPath:indexPath];
+        collectionView.registerCollectionViewCellClass(JobsHotLabelByMultiLineCVCell.class,@"");
+        cell = (JobsHotLabelByMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelByMultiLineCVCell.class forIndexPath:indexPath];
     }
     
     // UICollectionViewCell圆切角

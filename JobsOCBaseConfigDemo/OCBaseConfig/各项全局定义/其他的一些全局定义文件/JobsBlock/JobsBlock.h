@@ -130,6 +130,7 @@ typedef __kindof UIViewModel *_Nullable(^JobsReturnViewModelByVoidBlock)(void);
 typedef __kindof UIViewModel *_Nullable(^JobsReturnViewModelByStringBlock)(NSString *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(UIViewModel *_Nullable data);
 typedef void(^jobsByViewModelBlock)(__kindof UIViewModel *_Nullable data);
+typedef void(^jobsByArrWithViewModelBlock)(__kindof NSArray <UIViewModel *>*_Nullable data);
 typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(__kindof UIViewModel *_Nullable data);
@@ -184,6 +185,9 @@ typedef void(^jobsByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
 
+@class UITextFieldModel;
+typedef void(^jobsByTextFieldModelBlock)(__kindof UITextFieldModel *_Nullable model);
+
 @class UIButtonModel;
 typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable model);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelBlock)(UIButtonModel *_Nullable data);
@@ -195,6 +199,9 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(UIButt
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModel2Block)(jobsByButtonModelBlock _Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerManagerBlock)(jobsByTimerManagerBlock _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelArrayBlock)(__kindof NSArray <UIButtonModel *>*_Nullable arr);
+
+@class ImageModel;
+typedef void(^jobsByImageModelBlock)(__kindof ImageModel *_Nullable model);
 
 @class JobsNavBarConfig;
 typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable data);
@@ -220,6 +227,9 @@ typedef void(^jobsByBaseTextViewBlock)(__kindof BaseTextView *_Nullable textView
 
 @class JobsToggleBaseView;
 typedef void(^jobsByToggleBaseViewBlock)(JobsToggleBaseView *_Nullable toggleBaseView);
+
+@class JobsHotLabelBySingleLine;
+typedef void(^jobsByHotLabelBlock)(__kindof JobsHotLabelBySingleLine *_Nullable view);
 
 @class FileNameModel;
 typedef FileNameModel *_Nonnull(^JobsReturnFileNameModelByFileFullNameStringBlock)(NSString *_Nullable FileFullName);

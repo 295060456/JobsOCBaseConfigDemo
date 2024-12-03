@@ -50,7 +50,7 @@
     [super drawRect:rect];
     self.tableView.contentInset = UIEdgeInsetsMake(0,
                                                    0,
-                                                   [JobsDropDownListView getWindowFrameByView:self].origin.y,
+                                                   JobsDropDownListView.getWindowFrameByView(self).origin.y,
                                                    0);
     /// 动画效果
     [self.tableView alphaAnimWithSortingType:(SortingType)self.direction

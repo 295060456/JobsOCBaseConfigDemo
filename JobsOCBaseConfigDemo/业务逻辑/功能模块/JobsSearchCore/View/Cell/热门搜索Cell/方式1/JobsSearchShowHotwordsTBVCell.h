@@ -8,7 +8,7 @@
 #import "JobsBaseTableViewCell.h"
 #import "BaseCellProtocol.h"
 #import "UITableViewCell+Margin.h"
-#import "JobsHotLabelWithMultiLine.h"
+#import "JobsHotLabelByMultiLine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
         1.2、如果超过一行滑动显示；
     2、如果要显示多排固定样式UI，请移步用CollectionView实现
  */
-@interface JobsHotLabelWithSingleLine : BaseView
+@interface JobsHotLabelBySingleLine : BaseView
 
 @property(nonatomic,assign)CGSize elementDefaultSize;/// 内置元素Size的预设值
 
@@ -31,12 +31,12 @@ NS_ASSUME_NONNULL_END
  uses
  
  // Data
- @property(nonatomic,strong)JobsHotLabelWithSingleLine *hl;
+ @property(nonatomic,strong)JobsHotLabelBySingleLine *hl;
  @property(nonatomic,strong)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
  
- -(JobsHotLabelWithSingleLine *)hl{
+ -(JobsHotLabelBySingleLine *)hl{
      if (!_hl) {
-         _hl = JobsHotLabelWithSingleLine.new;
+         _hl = JobsHotLabelBySingleLine.new;
          _hl.backgroundColor = JobsClearColor;
          _hl.labelShowingType = UILabelShowingType_05;
          _hl.hotLabelDefaultHeight = JobsWidth(30);

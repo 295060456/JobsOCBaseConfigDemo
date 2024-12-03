@@ -5,7 +5,7 @@
 @end
 
 @implementation ZYTextField
-
+UITextFieldProtocol_synthesize
 -(instancetype)init{
     if (self = [super init]) {
         self.placeHolderAlignment = NSTextAlignmentLeft;
@@ -29,7 +29,7 @@
 -(void)setUseCustomClearButton:(BOOL)useCustomClearButton{
     _useCustomClearButton = useCustomClearButton;
     if (_useCustomClearButton) {
-        [self modifyClearButtonWithImage:JobsBuddleIMG(nil,@"ZYTextField",JobsInternationalization(@""), @"CloseCircle（小号）.png")];
+        self.modifyClearButtonByImage(JobsBuddleIMG(nil,@"ZYTextField",@"", @"CloseCircle（小号）.png"));
     }
 }
 /// 必须在self有具体frame的时候才管用
@@ -83,7 +83,7 @@
     return jobsEqualToZeroRect(self.rightViewRectForBounds) ? iconRect : self.rightViewRectForBounds;
 }
 /// 重写改变绘制占位符属性。重写时调用super可以按默认图形属性绘制;若自己完全重写绘制函数，就不用调用super了
--(void)drawPlaceholderInRect:(CGRect)rect{// 0\0\217.6\27.3
+-(void)drawPlaceholderInRect:(CGRect)rect{
     /// 计算占位文字的 Size
     @jobs_weakify(self)
     CGSize placeholderSize = [self.placeholder sizeWithAttributes:jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {

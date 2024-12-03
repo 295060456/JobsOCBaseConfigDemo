@@ -34,7 +34,7 @@
     // 获取文件路径
     NSString *path = self.add(@".json").pathForResourceWithFullName;
     // 将文件数据化
-    NSData *data = self.initWithContentsOfFile(path);
+    NSData *data = self.initByContentsOfFile(path);
     // 对数据进行JSON格式化并返回字典形式
     return self.JSONkNilOptions(data);
 }
@@ -59,7 +59,7 @@
                                      range:range];
         NSRange range2 = {0,mutStr.length};
         /// 去掉字符串中的换行符
-        [mutStr replaceOccurrencesOfString:@"\n"
+        [mutStr replaceOccurrencesOfString:JobsNewline
                                 withString:@""
                                    options:NSLiteralSearch
                                      range:range2];

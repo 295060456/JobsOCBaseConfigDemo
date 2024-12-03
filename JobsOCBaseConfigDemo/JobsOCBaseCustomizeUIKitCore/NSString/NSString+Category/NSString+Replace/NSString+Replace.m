@@ -201,41 +201,41 @@
 }
 /// 去除OC字符串中的空格
 -(NSString *)pureString{
-    return [self stringByReplacingOccurrencesOfString:@" " withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsSpace withString:@""];
 }
 /// 去除OC字符串中的小数点
 -(__kindof NSString *_Nullable)removeDecimalPoint{
-    return [self stringByReplacingOccurrencesOfString:@"." withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsDot withString:@""];
 }
 /// 去除OC字符串中回车符号的转义字符：\r
 -(__kindof NSString *_Nullable)removeRetMark{
-    return [self stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    return [self stringByReplacingOccurrencesOfString:回车符号转义字符 withString:@""];
 }
 /// 去除OC字符串中换行符号的转义字符：\n
 -(__kindof NSString *_Nullable)removeNewLineMark{
-    return [self stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsNewline withString:@""];
 }
 /// 去除OC字符串中换行符号的转义字符：\t
 -(__kindof NSString *_Nullable)removeTableMark{
-    return [self stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsTab withString:@""];
 }
 /// 去除OC字符串中的等号：=
 -(__kindof NSString *_Nullable)removeEqualMark{
-    return [self stringByReplacingOccurrencesOfString:@"=" withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsEqual withString:@""];
 }
 /// 去除OC字符串中的分隔符：/
 -(__kindof NSString *_Nullable)removeSeparationMark{
-    return [self stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsSeparation withString:@""];
 }
 /// 去除OC字符串中的冒号（英文输入法）
 -(__kindof NSString *_Nullable)removeColonMark{
-    return [self stringByReplacingOccurrencesOfString:@":" withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsColon withString:@""];
 }
 /// 去除OC字符串中零宽空格的转义字符：\u200B
 /// 零宽空格 (\u200B)：顾名思义，这个字符没有任何宽度（即不可见），它的作用是插入一个“空格”，但不会占据任何可见的空间。
 /// 零宽空格在视觉上不会显示出来，但它可以在字符串中用于各种控制和格式化的目的。
 -(__kindof NSString *_Nullable)remove200BMark{
-    return [self stringByReplacingOccurrencesOfString:@"\u200B" withString:@""];
+    return [self stringByReplacingOccurrencesOfString:零宽转义字符 withString:@""];
 }
 /// 从字符串中提取指定范围内的子字符串
 -(JobsReturnStringByRangeBlock _Nonnull)substringWithRange{

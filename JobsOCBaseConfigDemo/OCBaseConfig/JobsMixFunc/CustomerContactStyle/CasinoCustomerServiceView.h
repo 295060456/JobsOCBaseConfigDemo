@@ -6,7 +6,7 @@
 //
 
 #import "BaseView.h"
-#import "JobsHotLabelWithSingleLine.h"
+#import "JobsHotLabelBySingleLine.h"
 #import "AppToolsProtocol.h"
 #import "BaseProtocol.h"
 

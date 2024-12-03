@@ -6,7 +6,7 @@
 //
 
 #import "BaseView.h"
-#import "JobsHotLabelWithMultiLine.h"
+#import "JobsHotLabelByMultiLine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

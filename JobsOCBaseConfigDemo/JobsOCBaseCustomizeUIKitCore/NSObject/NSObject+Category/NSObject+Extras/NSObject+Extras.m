@@ -147,105 +147,6 @@
                     options:NSKeyValueObservingOptionNew
                     context:nil];
 }
-#pragma mark —— NSNotification
-/// 在主线程上带参发通知
--(jobsByKey_ValueBlock _Nonnull)JobsPost{
-    return ^(NSString *_Nonnull key,id _Nullable value){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            key.postNotificationBy(value);
-        });
-    };
-}
-/// 在主线程上带参发通知
--(jobsByKeyValueModelBlock _Nonnull)JobsPostBy{
-    return ^(JobsKeyValueModel *_Nullable data){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *key = (NSString *)data.key;
-            key.postNotificationBy(data.value);
-        });
-    };
-}
-/// 在主线程上不带参发通知
--(jobsByStringBlock _Nonnull)jobsPost{
-    return ^(NSString *_Nonnull key){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            key.postNotificationBy(nil);
-        });
-    };
-}
-/// 接收通知
--(void)addNotificationName:(NSString *_Nonnull)notificationName
-                     block:(JobsSelectorBlock _Nullable)block{
-    @jobs_weakify(self)
-    [JobsNotificationCenter addObserver:self
-                               selector:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                     id _Nullable arg) {
-        @jobs_strongify(self)
-        if (block) block(self, arg);
-        return nil;
-    }, MethodName(self), self) name:notificationName object:nil];
-}
-/// RAC接收通知
--(void)addNotificationName:(NSString *_Nonnull)notificationName
-         notificationBlock:(jobsByNotificationBlock _Nullable)block{
-    [[JobsNotificationCenter rac_addObserverForName:notificationName object:nil]
-     subscribeNext:^(NSNotification *_Nullable x) {
-        if (block) block(x);
-    }];
-}
-#pragma mark —— 路径获取
-/// 获取bundle路径
--(NSString *_Nonnull)bundlePath{
-    return NSBundle.mainBundle.bundlePath;
-}
-/// 获取沙盒的主目录路径：
--(NSString *_Nonnull)homeDir{
-    return NSHomeDirectory();
-}
-/// Documents目录（这个目录通常用于存储应用程序中的用户数据或需要持久保存的数据。用户可以通过 iTunes 文件共享或 iCloud 访问该目录中的内容）下，用户主目录下，返回完整路径
--(NSArray <NSString *>*_Nonnull)documentsPaths{
-    return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                               NSUserDomainMask,
-                                               YES);
-}
-/// Library目录（这个目录是每个 iOS 或 macOS 应用程序特有的目录，通常存储应用程序的支持文件、配置文件以及不能直接由用户访问的文件）下，用户主目录下，返回完整路径
--(NSArray <NSString *>*_Nonnull)libraryPaths{
-    return NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
-                                               NSUserDomainMask,
-                                               YES);
-}
-/// 缓存目录下，用户主目录下，返回完整路径
--(NSArray <NSString *>*_Nonnull)cachesPaths{
-    return NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
-                                               NSUserDomainMask,
-                                               YES);
-}
-/// 获取真机沙盒中Documents的目录路径：
--(NSString *_Nonnull)documentsDir{
-    return self.documentsPaths.firstObject;
-}
-/// 获取沙盒中Library的目录路径：
--(NSString *_Nonnull)libraryDir{
-    return self.libraryPaths.lastObject;
-}
-/// 获取沙盒中NSUserDefaults的保存位置
--(NSString *_Nonnull)userDefaultsDir{
-    return self.libraryPaths.firstObject;
-}
-/// 获取沙盒中Library/Caches的目录路径：
--(NSString *_Nonnull)cachesDir{
-    return self.cachesPaths.firstObject;
-}
-/// 获取沙盒中Libarary/Preferences的目录路径：
--(NSString *_Nonnull)preferencesDir{
-    return NSString.libraryDir.addPathComponent(@"Preferences");
-}
-/// 获取沙盒中tmp的目录路径：供系统使用，程序员不要使用，因为随时会被销毁
--(NSString *_Nonnull)tmpDir{
-    return NSTemporaryDirectory();
-}
-#pragma mark —— 调试相关
-
 #pragma mark —— 单例相关
 +(JobsReturnIDByVoidBlock _Nonnull)SharedInstance{
     @jobs_weakify(self)
@@ -418,7 +319,7 @@
         return jsonData;
     };
 }
--(JobsReturnDataByStringBlock _Nonnull)initWithContentsOfFile{
+-(JobsReturnDataByStringBlock _Nonnull)initByContentsOfFile{
     return ^NSData *_Nullable(__kindof NSString *_Nullable path){
         return [NSData.alloc initWithContentsOfFile:path];
     };
@@ -474,22 +375,6 @@
                   context:nil];
     };
 }
-
--(jobsByVoidBlock _Nonnull)loginOK{
-    @jobs_weakify(self)
-    return ^(){
-        @jobs_strongify(self)
-        self.jobsPost(登录成功);
-    };
-}
-
--(jobsByVoidBlock _Nonnull)logoutOK{
-    @jobs_weakify(self)
-    return ^(){
-        @jobs_strongify(self)
-        self.jobsPost(退出登录成功);
-    };
-}
 /**
  注意：有些时候UIApplication.sharedApplication.keyWindow获取到的window有frame，而windowScene.windows.firstObject获取到的window没有frame
  
@@ -519,18 +404,6 @@
     return ^UIColor *_Nullable(UIImage *_Nonnull image){
         return [UIColor colorWithPatternImage:image];
     };
-}
-/// 雪花算法
--(NSNumber *_Nonnull)makeSnowflake{
-    JobsSnowflake *snowflake = [JobsSnowflake.alloc initWithPublishMillisecond:self.currentUnixTimeStampInMilliseconds
-                                                                         IDCID:1
-                                                                     machineID:1];
-    NSNumber *snowflakeID = snowflake.nextID;
-    if (snowflakeID){
-        NSLog(@"Generated Snowflake ID: %@", snowflakeID);
-    }else{
-        NSLog(@"Failed to generate Snowflake ID.");
-    }return snowflakeID;
 }
 /// present
 #ifndef JobsPresentationStyle
@@ -687,14 +560,14 @@
     size_t count = CGImageSourceGetCount(source);
     return jobsMakeMutArr(^(__kindof NSMutableArray <ImageModel *>*_Nullable data) {
         for (size_t i = 0; i < count; i++) {
-            ImageModel *imageModel = ImageModel.new;
-            CGImageRef image = CGImageSourceCreateImageAtIndex(source, i, NULL);
-            imageModel.image = [UIImage imageWithCGImage:image];
-            CGImageRelease(image);
-            //获取图片信息
-            imageModel.info = (__bridge NSDictionary*)CGImageSourceCopyPropertiesAtIndex(source, i, NULL);
-            imageModel.timeDic = [imageModel.info objectForKey:(__bridge NSString *)kCGImagePropertyGIFDictionary];
-            data.add(imageModel);
+            data.add(jobsMakeImageModel(^(__kindof ImageModel * _Nullable imageModel) {
+                CGImageRef image = CGImageSourceCreateImageAtIndex(source, i, NULL);
+                imageModel.image = UIImage.imageWithCGImage(image);
+                CGImageRelease(image);
+                //获取图片信息
+                imageModel.info = (__bridge NSDictionary*)CGImageSourceCopyPropertiesAtIndex(source, i, NULL);
+                imageModel.timeDic = [imageModel.info objectForKey:(__bridge NSString *)kCGImagePropertyGIFDictionary];
+            }));
         }
     });
 }
@@ -749,25 +622,32 @@
     };
 }
 
--(void)addNotificationObserverWithName:(NSString *_Nonnull)notificationName
-                         selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock{
+-(void)addCheckerByName:(NSString *_Nonnull)notificationName
+          selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock{
     [JobsNotificationCenter addObserver:self
                                selector:selectorBlocks(^id _Nullable(id _Nullable weakSelf, id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
             NSLog(@"SSS = %d",b.boolValue);
-        }
-        if (selectorBlock) selectorBlock(weakSelf,arg);
+        }if (selectorBlock) selectorBlock(weakSelf,arg);
         return nil;
     }, MethodName(self), self) name:notificationName object:nil];
+}
+
++(JobsReturnIDByStringBlock _Nonnull)initByReuseId{
+    @jobs_weakify(self)
+    return ^id _Nullable(NSString *_Nullable data){
+        @jobs_strongify(self)
+        return [self.class.alloc initWithReuseIdentifier:data];
+    };
 }
 /// 不能用于UITableViewHeaderFooterView
 +(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier{
     @jobs_weakify(self)
     return ^(NSString * _Nullable salt) {
         @jobs_strongify(self)
-        return [self.class.alloc initWithReuseIdentifier:NSStringFromClass(self.class).add(salt)];
+        return self.initByReuseId(NSStringFromClass(self.class).add(salt));
     };
 }
 /// 不能用于UITableViewHeaderFooterView
@@ -775,62 +655,6 @@
     return ^(Class _Nonnull cls,NSString * _Nullable salt) {
         return [cls.alloc initWithReuseIdentifier:NSStringFromClass(cls).add(salt)];
     };
-}
-/// 查询算法
-/// @param data 查询的数据源
-/// @param searchStrategy 查询策略
-/// @param keywords 关键词
--(NSMutableSet *_Nullable)dimSearchWithData:(id _Nonnull)data
-                             searchStrategy:(JobsSearchStrategy)searchStrategy
-                                   keywords:(NSString *_Nonnull)keywords{
-    NSMutableSet *__block resMutSet = NSMutableSet.set;
-    JobsReturnIDByIDBlock dimSearchBlock = ^(id data){
-        for (id obj in data) {// 系统Api提供的基础对象元素
-            if ([obj isKindOfClass:NSNumber.class] ||
-                [obj isKindOfClass:NSString.class]) {
-                if ([obj stringValue].containsString(keywords)) {
-                    resMutSet.add(obj);
-                }
-            }else{// 自定义的对象
-                NSObject *customObj = (NSObject *)obj;
-                NSMutableArray <NSString *>*propertyList = customObj.propertyList;
-                for (NSString *str in propertyList) {
-                    switch (searchStrategy) {
-                        case JobsSearchStrategy_Accurate:{
-                            /// 精确查询
-                            if ([customObj.valueForKey(str) stringValue].lowercaseString.containsString(keywords.lowercaseString)) {
-                                resMutSet.add(customObj);
-                            }
-                        }break;
-                        case JobsSearchStrategy_Fuzzy:{
-                            /// 模糊查询
-                            if ([customObj.valueForKey(str) stringValue].containsString(keywords)) {
-                                resMutSet.add(customObj);
-                            }
-                        }break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }return resMutSet;
-    };
-    
-    if ([data isKindOfClass:NSDictionary.class]){
-        NSDictionary *dataDic = (NSDictionary *)data;
-        [dataDic enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key,
-                                                     id _Nonnull obj,
-                                                     BOOL *_Nonnull stop) {
-            /// Key-Value，value包含关键词则存储对外输出
-            if ([[obj stringValue] containsString:keywords]) {
-                /// 用Set保证对外输出的唯一性
-                resMutSet.add(obj);
-            }
-        }];
-    }else if([data isKindOfClass:NSArray.class] ||
-             [data isKindOfClass:NSSet.class]){
-        if(dimSearchBlock) resMutSet = dimSearchBlock(data);
-    }else{}return resMutSet;
 }
 /// 索取对象obj里面属性名为propertyName的值，如果没有这个属性则查找返回nil
 /// @param obj 索取对象
@@ -862,17 +686,16 @@
     }
 }
 /// 给定一个数据源（数组）和 每行需要展示的元素个数，计算行数
-/// @param num 每行需要展示的元素个数
--(NSInteger)lineNum:(NSInteger)num{
-    if ([self isKindOfClass:NSArray.class] || [self isKindOfClass:NSMutableArray.class]) {
-        NSArray *arr = (NSArray *)self;
-        return [self count:arr.count num:num];
-    }else return 0;
-}
-
--(NSInteger)count:(NSUInteger)count
-              num:(NSInteger)num{
-    return (count + (num - 1)) / num;
+-(JobsReturnByNSIntegerBlock _Nonnull)lineNumBy{
+    @jobs_weakify(self)
+    /// @param num 每行需要展示的元素个数
+    return ^NSInteger(NSInteger num){
+        @jobs_strongify(self)
+        if ([self isKindOfClass:NSArray.class] || [self isKindOfClass:NSMutableArray.class]) {
+            NSArray *arr = (NSArray *)self;
+            return [self count:arr.count num:num];
+        }else return 0;
+    };
 }
 /**
  ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
@@ -887,64 +710,80 @@
  ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
  */
 /// X 轴方向的偏移量
--(CGFloat)scrollOffsetByDirectionXPoint:(CGPoint)point{
-    CGFloat f = self.lastPoint.x - point.x;
-    self.lastPoint = point;
-    return f;
+-(JobsReturnByCGPointBlock _Nonnull)scrollOffsetByDirectionXPoint{
+    @jobs_weakify(self)
+    return ^CGFloat(CGPoint point){
+        @jobs_strongify(self)
+        CGFloat f = self.lastPoint.x - point.x;
+        self.lastPoint = point;
+        return f;
+    };
 }
 /// Y 轴方向的偏移量
--(CGFloat)scrollOffsetByDirectionYPoint:(CGPoint)point{
-    CGFloat f = self.lastPoint.y - point.y;
-    self.lastPoint = point;
-    return f;
+-(JobsReturnByCGPointBlock _Nonnull)scrollOffsetByDirectionYPoint{
+    @jobs_weakify(self)
+    return ^CGFloat(CGPoint point){
+        @jobs_strongify(self)
+        CGFloat f = self.lastPoint.y - point.y;
+        self.lastPoint = point;
+        return f;
+    };
 }
 /// 依据不断地传入的CGPoint *point，系统通过lastPoint来记录上一次的数据，两者进行比较，以此判断滑动的方向
-/// @param point 最新的point
--(ScrollDirection)judgementScrollDirectionByPoint:(CGPoint)point{
-    ScrollDirection direction = ScrollDirectionNone;
-    if (self.lastPoint.x > point.x &&
-        self.lastPoint.y == point.y) {
-        NSLog(@"👉🏻");
-        direction = ScrollDirectionRight;
-    }else if (self.lastPoint.x < point.x &&
-              self.lastPoint.y == point.y){
-        NSLog(@"👈🏻");
-        direction = ScrollDirectionLeft;
-    }else if (self.lastPoint.x == point.x &&
-              self.lastPoint.y > point.y){
-        NSLog(@"👇🏻");
-        direction = ScrollDirectionDown;
-    }else if (self.lastPoint.x == point.x &&
-              self.lastPoint.y < point.y){
-        NSLog(@"👆🏻");
-        direction = ScrollDirectionUp;
-    }else if (self.lastPoint.x > point.x &&
-              self.lastPoint.y < point.y){
-        NSLog(@"👉🏻👆🏻");
-        direction = ScrollDirectionRight_UP;
-    }else if (self.lastPoint.x < point.x &&
-              self.lastPoint.y < point.y){
-        NSLog(@"👈🏻👆🏻");
-        direction = ScrollDirectionLeft_UP;
-    }else if (self.lastPoint.x > point.x &&
-              self.lastPoint.y > point.y){
-        NSLog(@"👉🏻👇🏻");
-        direction = ScrollDirectionRight_Down;
-    }else if (self.lastPoint.x < point.x &&
-              self.lastPoint.y > point.y){
-        NSLog(@"👈🏻👇🏻");
-        direction = ScrollDirectionLeft_Down;
-    }
-    self.lastPoint = point;
-    return direction;
+-(JobsReturnNSIntegerByPointBlock _Nonnull)judgementScrollDirectionByPoint{
+    @jobs_weakify(self)
+    /// @param point 最新的point
+    return ^NSInteger(CGPoint point){
+        @jobs_strongify(self)
+        ScrollDirection direction = ScrollDirectionNone;
+        if (self.lastPoint.x > point.x &&
+            self.lastPoint.y == point.y) {
+            NSLog(@"👉🏻");
+            direction = ScrollDirectionRight;
+        }else if (self.lastPoint.x < point.x &&
+                  self.lastPoint.y == point.y){
+            NSLog(@"👈🏻");
+            direction = ScrollDirectionLeft;
+        }else if (self.lastPoint.x == point.x &&
+                  self.lastPoint.y > point.y){
+            NSLog(@"👇🏻");
+            direction = ScrollDirectionDown;
+        }else if (self.lastPoint.x == point.x &&
+                  self.lastPoint.y < point.y){
+            NSLog(@"👆🏻");
+            direction = ScrollDirectionUp;
+        }else if (self.lastPoint.x > point.x &&
+                  self.lastPoint.y < point.y){
+            NSLog(@"👉🏻👆🏻");
+            direction = ScrollDirectionRight_UP;
+        }else if (self.lastPoint.x < point.x &&
+                  self.lastPoint.y < point.y){
+            NSLog(@"👈🏻👆🏻");
+            direction = ScrollDirectionLeft_UP;
+        }else if (self.lastPoint.x > point.x &&
+                  self.lastPoint.y > point.y){
+            NSLog(@"👉🏻👇🏻");
+            direction = ScrollDirectionRight_Down;
+        }else if (self.lastPoint.x < point.x &&
+                  self.lastPoint.y > point.y){
+            NSLog(@"👈🏻👇🏻");
+            direction = ScrollDirectionLeft_Down;
+        }
+        self.lastPoint = point;
+        return direction;
+    };
 }
 /// 创建IndexPath坐标
+-(JobsReturnIndexPathByXYBlock _Nonnull)indexPathBy{
+    return ^NSIndexPath *_Nonnull(CGFloat x,CGFloat y){
+        if (JobsAvailableSysVersion(6.0)) {
+            return JobsIndexPathForItem(x, y);
+        }else return JobsIndexPathForRow(x, y);
+    };
+}
+
 -(NSIndexPath *_Nonnull)myIndexPath:(JobsIndexPath)indexPath{
-    if (JobsAvailableSysVersion(6.0)) {
-        return JobsIndexPathForItem(indexPath.section, indexPath.rowOrItem);
-    }else{
-        return JobsIndexPathForRow(indexPath.section, indexPath.rowOrItem);
-    }
+    return self.indexPathBy(indexPath.section,indexPath.rowOrItem);
 }
 /// 点击任意一个view，下拉弹出与此View等宽，且与下底有一个motivateViewOffset距离的列表【如果应用于可滑动模块，当触发控件滑动的时候，建议对此进行关闭处理】
 /// @param motivateFromView 点击的锚点View
@@ -967,21 +806,21 @@
         if (finishBlock) finishBlock(data);
         dropDownListView.dropDownListViewDisappear(nil);
     }];// dropDownListView.backgroundColor = JobsRedColor;
-    CGRect f = [self getWindowFrameByView:motivateFromView];
+    CGRect f = self.getWindowFrameByView(motivateFromView);
     if (!data) {
         data = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.textModel.font = UIFontWeightRegularSize(14);
                 viewModel.jobsWidth = f.size.width;
-                viewModel.textModel.text = @"111111111";
-                viewModel.subTextModel.text = @"eeeeeeeee";
+                viewModel.textModel.text = JobsInternationalization(@"111111111");
+                viewModel.subTextModel.text = JobsInternationalization(@"eeeeeeeee");
                 viewModel.textModel.textLineSpacing = 0;
             }));
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.textModel.font = UIFontWeightRegularSize(14);
                 viewModel.jobsWidth = f.size.width;
-                viewModel.textModel.text = @"222222222";
-                viewModel.subTextModel.text = @"wwwwwwwww";
+                viewModel.textModel.text = JobsInternationalization(@"222222222");
+                viewModel.subTextModel.text = JobsInternationalization(@"wwwwwwwww");
                 viewModel.textModel.textLineSpacing = 0;
             }));
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
@@ -1006,21 +845,22 @@
     return dropDownListView;
 }
 /// iOS 获取任意控件在屏幕中的坐标
--(CGRect)getWindowFrameByView:(UIView *_Nonnull)view{
-    // 将rect由rect所在视图转换到目标视图view中，返回在目标视图view中的rect
-    CGRect rect = [view convertRect:view.bounds toView:MainWindow];
-    return rect;
-    /**
-     类似的：
-     // 将像素point由point所在视图转换到目标视图view中，返回在目标视图view中的像素值
-     - (CGPoint)convertPoint:(CGPoint)point toView:(UIView *)view;
-     // 将像素point从view中转换到当前视图中，返回在当前视图中的像素值
-     - (CGPoint)convertPoint:(CGPoint)point fromView:(UIView *)view;
-     // 将rect由rect所在视图转换到目标视图view中，返回在目标视图view中的rect
-     - (CGRect)convertRect:(CGRect)rect toView:(UIView *)view;
-     // 将rect从view中转换到当前视图中，返回在当前视图中的rect
-     - (CGRect)convertRect:(CGRect)rect fromView:(UIView *)view;
-     */
+-(JobsReturnRectByViewBlock _Nonnull)getWindowFrameByView{
+    return ^CGRect(__kindof UIView *_Nonnull view){
+        // 将rect由rect所在视图转换到目标视图view中，返回在目标视图view中的rect
+        return [view convertRect:view.bounds toView:MainWindow];
+        /**
+         类似的：
+         // 将像素point由point所在视图转换到目标视图view中，返回在目标视图view中的像素值
+         - (CGPoint)convertPoint:(CGPoint)point toView:(UIView *)view;
+         // 将像素point从view中转换到当前视图中，返回在当前视图中的像素值
+         - (CGPoint)convertPoint:(CGPoint)point fromView:(UIView *)view;
+         // 将rect由rect所在视图转换到目标视图view中，返回在目标视图view中的rect
+         - (CGRect)convertRect:(CGRect)rect toView:(UIView *)view;
+         // 将rect从view中转换到当前视图中，返回在当前视图中的rect
+         - (CGRect)convertRect:(CGRect)rect fromView:(UIView *)view;
+         */
+    };
 }
 /// 依据View上铆定的internationalizationKEY来全局更改文字以适配国际化
 -(void)languageSwitch{
@@ -1127,9 +967,7 @@
             }
             if (!imageData) return;
             self.saveImageData(imageData);
-        }else{
-            NSLog(@"GKPhotoBrowser * 为空");
-        }
+        }else NSLog(@"GKPhotoBrowser * 为空");
     };
 }
 
@@ -1167,9 +1005,7 @@
 /// @param bitNum 如果操作对象是浮点数，那么小数点后需要保留的位数
 -(nonnull NSMutableArray <UIImage *>*)translateToArr:(CGFloat)inputData
                                    saveBitAfterPoint:(NSInteger)bitNum{
-    if ([self isFloat:inputData] && !bitNum) {
-        bitNum = 2;//默认保存小数点后2位
-    }
+    if (self.isFloat(inputData) && !bitNum) bitNum = 2;/// 默认保存小数点后2位
     NSString *format = @"%.".add(JobsFormattedString(@"%ldf",bitNum));
     NSString *str = JobsFormattedString(format,inputData);
     return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
@@ -1178,10 +1014,9 @@
         [str getCharacters:buffer range:NSMakeRange(0, len)];
         for(int i = 0; i < len; i++) {
             NSString *temp = JobsFormattedString(@"%C",buffer[i]);
-            // 数字映射图片
-            if ([temp isEqualToString:@"."]) {
-                temp = @"小数点";
-            }data.add(JobsIMG(temp));
+            /// 数字映射图片
+            if (temp.isEqualToString(@".")) temp = @"小数点";
+            data.add(JobsIMG(temp));
         }
     });
 }
@@ -1226,11 +1061,11 @@
          *  error 返回时，是编码时发生的错误，或者nil没有发生错误
          */
         if (@available(iOS 11.0, *)) {
-            NSError *err = nil;
+            NSError *error = nil;
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:array
                                                  requiringSecureCoding:YES
-                                                                 error:&err];
-            if (err) NSLog(@"err = %@",err.description);
+                                                                 error:&error];
+            if (error) NSLog(@"err = %@",error.description);
             return data;
         }else{
             SuppressWdeprecatedDeclarationsWarning(return [NSKeyedArchiver archivedDataWithRootObject:array]);
@@ -1332,8 +1167,7 @@
 /// CGPoint
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                        addCGPoint:(CGPoint)point{
-    mutArr.add([NSValue valueWithCGPoint:point]);
-    return mutArr;
+    return mutArr.add(NSValue.byPoint(point));
 }
 
 -(CGPoint)jobsGetPoint:(NSValue *_Nullable)value{
@@ -1342,8 +1176,7 @@
 /// CGVector
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                       addCGVector:(CGVector)vector{
-    mutArr.add([NSValue valueWithCGVector:vector]);
-    return mutArr;
+    return mutArr.add(NSValue.byVector(vector));
 }
 
 -(CGVector)jobsGetVector:(NSValue *_Nullable)value{
@@ -1352,8 +1185,7 @@
 /// CGSize
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                         addCGSize:(CGSize)size{
-    mutArr.add([NSValue valueWithCGSize:size]);
-    return mutArr;
+    return mutArr.add(NSValue.bySize(size));
 }
 
 -(CGSize)jobsGetSize:(NSValue *_Nullable)value{
@@ -1362,8 +1194,7 @@
 /// CGRect
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                         addCGRect:(CGRect)frame{
-    mutArr.add([NSValue valueWithCGRect:frame]);
-    return mutArr;
+    return mutArr.add(NSValue.byRect(frame));
 }
 
 -(CGRect)jobsGetFrame:(NSValue *_Nullable)value{
@@ -1372,8 +1203,7 @@
 /// CGAffineTransform
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                              addCGAffineTransform:(CGAffineTransform)affineTransform{
-    mutArr.add([NSValue valueWithCGAffineTransform:affineTransform]);
-    return mutArr;
+    return mutArr.add(NSValue.byAffineTransform(affineTransform));
 }
 
 -(CGAffineTransform)jobsGetCGAffineTransform:(NSValue *_Nullable)value{
@@ -1382,8 +1212,7 @@
 /// UIEdgeInsets
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                   addUIEdgeInsets:(UIEdgeInsets)edgeInsets{
-    mutArr.add([NSValue valueWithUIEdgeInsets:edgeInsets]);
-    return mutArr;
+    return mutArr.add(NSValue.byEdgeInsets(edgeInsets));
 }
 
 -(UIEdgeInsets)jobsGetUIEdgeInsets:(NSValue *_Nullable)value{
@@ -1392,8 +1221,7 @@
 /// NSDirectionalEdgeInsets
 -(NSMutableArray <NSValue *>*)jobsMutArr:(NSMutableArray <NSValue *>*)mutArr
               addNSDirectionalEdgeInsets:(NSDirectionalEdgeInsets)directionalEdgeInsets{
-    mutArr.add([NSValue valueWithDirectionalEdgeInsets:directionalEdgeInsets]);
-    return mutArr;
+    return mutArr.add(NSValue.byDirectionalEdgeInsets(directionalEdgeInsets));
 }
 
 -(NSDirectionalEdgeInsets)jobsGetNSDirectionalEdgeInsets:(NSValue *_Nullable)value{
@@ -1402,8 +1230,7 @@
 /// UIOffset
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                       addUIOffset:(UIOffset)offset{
-    mutArr.add([NSValue valueWithUIOffset:offset]);
-    return mutArr;
+    return mutArr.add(NSValue.byOffset(offset));
 }
 
 -(UIOffset)jobsGetValueWithUIOffset:(NSValue *_Nullable)value{
@@ -1411,48 +1238,15 @@
 }
 #pragma mark —— 数字
 /// 获取任意数字最高位数字
--(NSInteger)getTopDigit:(NSInteger)number{
-    // makes sure you really get the digit!
-    number = labs(number);// abs()
-    if (number < 10){
-        return number;
-    }return [self getTopDigit:((number - (number % 10)) / 10)];
-}
-/// 判断任意给定的一个整型是多少位数
--(NSInteger)bitNum:(NSInteger)number{
-    NSInteger count = 0;
-    while(number != 0){
-        number /= 10;
-        count++;
-    }
-    printf("数字是 %ld 位数。", (long)count);
-    return count;
-}
-/// 判断任意数字是否为小数
--(BOOL)isFloat:(CGFloat)num{
-    return num - (int)num;
-}
-/**
-    判断 num1 是否能被 num2 整除
-    也就是判断 num2 是否是 num1 的整数倍
-    也就是判断 num1 除以 num2 的余数是否是 0
- 
-    特别指出的是：
-    1、除数为零的情况，被判定为不能被整除；
-    2、num1 和 num2 必须为 NSNumber* 类型，否则判定为不能够被整除
- */
--(BOOL)judgementExactDivisionByNum1:(NSNumber *_Nonnull)num1
-                               num2:(NSNumber *_Nonnull)num2{
-    /// 过滤数据类型
-    if (![num1 isKindOfClass:NSNumber.class] || ![num2 isKindOfClass:NSNumber.class]) return NO;
-    /// 在数据类型为NSNumber* 的基础上进行讨论和判断
-    if (num1 == num2) return YES;
-    if (num2.floatValue) {
-        int a = num2.intValue;
-        double s1 = num1.doubleValue;
-        int s2 = num1.intValue;
-        return s1/a-s2/a <= 0;
-    }else return YES;
+-(JobsReturnByNSIntegerBlock _Nonnull)topDigit{
+    @jobs_weakify(self)
+    return ^NSInteger(NSInteger number){
+        @jobs_strongify(self)
+        number = labs(number);// abs()
+        if (number < 10){
+            return number;
+        }return self.topDigit(((number - (number % 10)) / 10));
+    };
 }
 #pragma mark —— 检测当前设备屏幕方向
 //https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md

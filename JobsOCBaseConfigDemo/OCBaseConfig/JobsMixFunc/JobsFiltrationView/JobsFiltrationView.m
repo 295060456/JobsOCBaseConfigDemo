@@ -9,7 +9,7 @@
 
 @interface JobsFiltrationView ()
 /// UI
-@property(nonatomic,strong)JobsHotLabelWithMultiLine *hotLabel;
+@property(nonatomic,strong)JobsHotLabelByMultiLine *hotLabel;
 /// Data
 @property(nonatomic,strong)NSMutableArray <NSString *>*btnTitleMutArr;
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -79,11 +79,11 @@ static dispatch_once_t static_filtrationViewOnceToken;
     };
 }
 #pragma mark —— lazyLoad
--(JobsHotLabelWithMultiLine *)hotLabel{
+-(JobsHotLabelByMultiLine *)hotLabel{
     if (!_hotLabel) {
-        _hotLabel = JobsHotLabelWithMultiLine.new;
+        _hotLabel = JobsHotLabelByMultiLine.new;
         _hotLabel.jobsRichViewByModel(self.hotLabelModel);
-        [_hotLabel actionObjectBlock:^(JobsHotLabelWithMultiLineCVCell *cell) {
+        [_hotLabel actionObjectBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
             
         }];
         [self addSubview:_hotLabel];

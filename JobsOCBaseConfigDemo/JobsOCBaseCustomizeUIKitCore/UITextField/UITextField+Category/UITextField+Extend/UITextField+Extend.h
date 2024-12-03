@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
+
 #import "JobsString.h"
+#import "JobsBlock.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
 #import <ReactiveObjC/ReactiveObjC.h>
@@ -22,12 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)UIButton *customSysClearBtn;
 /// RAC 回调封装
--(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBOOLByIDBlock)filterBlock
-                             subscribeNextBlock:(jobsByIDBlock)subscribeNextBlock;
+-(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBOOLByIDBlock _Nonnull)filterBlock
+                             subscribeNextBlock:(jobsByIDBlock _Nonnull)subscribeNextBlock;
 /// 自定义系统的清除按钮
--(void)modifyClearButtonWithImage:(UIImage *)image;
-/// 过滤删除最科学的做法,获得当前TextField当前时刻的具体文本值
--(NSString *)getCurrentTextFieldValueByReplacementString:(NSString *)replacementString;
+-(JobsReturnStringByStringBlock _Nonnull)getCurrentTextFieldValueByReplacementString;
+/// 自定义系统的清除按钮
+-(jobsByImageBlock _Nonnull)modifyClearButtonByImage;
 
 @end
 

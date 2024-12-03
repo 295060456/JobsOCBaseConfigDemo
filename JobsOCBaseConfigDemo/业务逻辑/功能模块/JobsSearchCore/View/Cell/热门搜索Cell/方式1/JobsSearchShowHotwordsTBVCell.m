@@ -9,7 +9,7 @@
 
 @interface JobsSearchShowHotwordsTBVCell ()
 
-@property(nonatomic,strong)JobsHotLabelWithMultiLine *jobsHotLabel;
+@property(nonatomic,strong)JobsHotLabelByMultiLine *jobsHotLabel;
 
 @end
 
@@ -59,11 +59,11 @@
 }
 
 #pragma mark —— lazyLoad
--(JobsHotLabelWithMultiLine *)jobsHotLabel{
+-(JobsHotLabelByMultiLine *)jobsHotLabel{
     if (!_jobsHotLabel) {
-        _jobsHotLabel = JobsHotLabelWithMultiLine.new;
+        _jobsHotLabel = JobsHotLabelByMultiLine.new;
         @jobs_weakify(self)
-        [_jobsHotLabel actionObjectBlock:^(JobsHotLabelWithMultiLineCVCell *cell) {
+        [_jobsHotLabel actionObjectBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(cell);
         }];

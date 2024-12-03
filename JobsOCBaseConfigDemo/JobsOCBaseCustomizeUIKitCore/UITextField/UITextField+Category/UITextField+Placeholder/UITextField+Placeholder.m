@@ -10,15 +10,12 @@
 @implementation UITextField (Placeholder)
 UITextModelProtocol_dynamic
 /// 修改Placeholder亦可以通过富文本来完成
--(NSAttributedString *)defaultAttributedPlaceholder{
+-(NSAttributedString *)_defaultAttributedPlaceholder{
     return self.richTextWithDataConfigMutArr(self.titleAttributedDataMutArr);
 }
 
 -(UILabel *)placeholderLabel{
-    //placeholder为nil或者为JobsInternationalization(@""),placeholderLabel均为nil
-    if (!self.placeholder.length || !self.placeholder) {
-        self.placeholder = @" ";
-    }
+    if (isNull(self.placeholder)) self.placeholder = @" ";
     Ivar ivar = class_getInstanceVariable(UITextField.class, "_placeholderLabel");
     UILabel *placeholderLabel = object_getIvar(self, ivar);
     placeholderLabel.numberOfLines = 0;/// 默认折行处理
@@ -60,8 +57,8 @@ JobsKey(_titleAttributedDataMutArr)
     NSMutableArray *TitleAttributedDataMutArr = Jobs_getAssociatedObject(_titleAttributedDataMutArr);
     if (!TitleAttributedDataMutArr) {
         @jobs_weakify(self)
-        TitleAttributedDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+        TitleAttributedDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray *_Nullable data) {
+            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
                 @jobs_strongify(self)
                 data1.targetString = self.placeholder;
                 data1.font = UIFontWeightRegularSize(10);
@@ -69,7 +66,7 @@ JobsKey(_titleAttributedDataMutArr)
         //        data1.underlineStyle;
         //        data1.paragraphStyle;
         //        data1.urlStr;
-                data1.range =  NSMakeRange(0, self.placeholder.length);
+                data1.range = NSMakeRange(0, self.placeholder.length);
             }));
         });Jobs_setAssociatedRETAIN_NONATOMIC(_titleAttributedDataMutArr, TitleAttributedDataMutArr)
     }return TitleAttributedDataMutArr;

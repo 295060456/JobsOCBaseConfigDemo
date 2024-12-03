@@ -61,6 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(JobsReturnImageByDataBlock _Nonnull)initByData;
 /// 对系统方法 imageWithData 的二次封装
 +(JobsReturnImageByDataBlock _Nonnull)imageWithData;
+/// 对系统方法 imageWithCGImage 的二次封装
++(JobsReturnImageByCGImageRefBlock _Nonnull)imageWithCGImage;
 
 @end
 

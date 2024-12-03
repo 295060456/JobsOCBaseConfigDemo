@@ -5,9 +5,9 @@
 //  Created by Jobs on 2022/1/15.
 //
 
-#import "JobsHotLabelWithMultiLine.h"
+#import "JobsHotLabelByMultiLine.h"
 
-@interface JobsHotLabelWithMultiLine ()
+@interface JobsHotLabelByMultiLine ()
 /// UI
 //@property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation JobsHotLabelWithMultiLine
+@implementation JobsHotLabelByMultiLine
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{
@@ -24,11 +24,11 @@
     static_hotLabelWithMultiLine = nil;
 }
 
-static JobsHotLabelWithMultiLine *static_hotLabelWithMultiLine = nil;
+static JobsHotLabelByMultiLine *static_hotLabelWithMultiLine = nil;
 static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
 +(instancetype)sharedManager{
     dispatch_once(&static_hotLabelWithMultiLineOnceToken, ^{
-        static_hotLabelWithMultiLine = JobsHotLabelWithMultiLine.new;
+        static_hotLabelWithMultiLine = JobsHotLabelByMultiLine.new;
     });return static_hotLabelWithMultiLine;
 }
 
@@ -90,9 +90,9 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    JobsHotLabelWithMultiLineCVCell *cell = (JobsHotLabelWithMultiLineCVCell *)self.cvcellMutArr[indexPath.item];
+    JobsHotLabelByMultiLineCVCell *cell = (JobsHotLabelByMultiLineCVCell *)self.cvcellMutArr[indexPath.item];
     cell.jobsRichElementsInCellWithModel(self.dataModel.viewModelMutArr[indexPath.item]);
-    CGSize itemSize = jobsZeroSizeValue(self.dataModel.cellSize) ? JobsHotLabelWithMultiLineCVCell.cellSizeByModel(self.dataModel.viewModelMutArr[indexPath.item]) : self.dataModel.cellSize;
+    CGSize itemSize = jobsZeroSizeValue(self.dataModel.cellSize) ? JobsHotLabelByMultiLineCVCell.cellSizeByModel(self.dataModel.viewModelMutArr[indexPath.item]) : self.dataModel.cellSize;
     cell.cornerCutToCircleWithCornerRadius(itemSize.height / 2);
     cell.contentView.cornerCutToCircleWithCornerRadius(itemSize.height / 2);
     if (indexPath.section == 0 && indexPath.row == 0) {
@@ -154,9 +154,9 @@ shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 -(void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __FUNCTION__);
-    JobsHotLabelWithMultiLineCVCell *_cell = (JobsHotLabelWithMultiLineCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    JobsHotLabelByMultiLineCVCell *_cell = (JobsHotLabelByMultiLineCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
 //    self.jobsToastSuccessMsg(_cell.getViewModel.textModel.text);
-    for (JobsHotLabelWithMultiLineCVCell *cell in collectionView.visibleCells) {
+    for (JobsHotLabelByMultiLineCVCell *cell in collectionView.visibleCells) {
         cell.textLab.backgroundColor = HEXCOLOR(0xF3F3F3);
         cell.textLab.textColor = HEXCOLOR(0x757575);
     }
@@ -194,7 +194,7 @@ referenceSizeForFooterInSection:(NSInteger)section {
                  layout:(UICollectionViewLayout *)collectionViewLayout
  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     /// ❤️外部传入配置优先❤️
-    return jobsZeroSizeValue(self.dataModel.cellSize) ? JobsHotLabelWithMultiLineCVCell.cellSizeByModel(self.dataModel.viewModelMutArr[indexPath.item]) : self.dataModel.cellSize;
+    return jobsZeroSizeValue(self.dataModel.cellSize) ? JobsHotLabelByMultiLineCVCell.cellSizeByModel(self.dataModel.viewModelMutArr[indexPath.item]) : self.dataModel.cellSize;
 }
 /// 定义的是元素垂直之间的间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView
@@ -243,7 +243,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             @jobs_strongify(self)
             for (UIViewModel *viewModel in self.dataModel.viewModelMutArr) {
                 NSUInteger index = [self.dataModel.viewModelMutArr indexOfObject:viewModel];
-                data.add([JobsHotLabelWithMultiLineCVCell cellWithCollectionView:self.collectionView
+                data.add([JobsHotLabelByMultiLineCVCell cellWithCollectionView:self.collectionView
                                                                     forIndexPath:[self myIndexPath:(JobsIndexPath){0,index}]]);
             }
         });

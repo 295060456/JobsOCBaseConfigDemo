@@ -11,8 +11,8 @@
 @implementation UITextField (Extend)
 #pragma mark —— 一些功能方法
 /// RAC 回调封装
--(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBOOLByIDBlock)filterBlock
-                             subscribeNextBlock:(jobsByIDBlock)subscribeNextBlock{
+-(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBOOLByIDBlock _Nonnull)filterBlock
+                             subscribeNextBlock:(jobsByIDBlock _Nonnull)subscribeNextBlock{
     return [[self.rac_textSignal filter:^BOOL(NSString * _Nullable value) {
         return filterBlock ? filterBlock(value) : YES;
     }] subscribeNext:^(NSString * _Nullable x) {
@@ -20,18 +20,24 @@
     }];
 }
 
--(NSString *)getCurrentTextFieldValueByReplacementString:(NSString *)replacementString{
-    if (self.text.length >= 1) {
-        return [replacementString isEqualToString:JobsInternationalization(@"")] ? [self.text substringToIndex:(self.text.length - 1)] : [self.text stringByAppendingString:replacementString];
-    }else{
-        return replacementString;
-    }
+-(JobsReturnStringByStringBlock _Nonnull)getCurrentTextFieldValueByReplacementString{
+    @jobs_weakify(self)
+    return ^__kindof NSString *_Nullable(NSString *_Nullable replacementString){
+        @jobs_strongify(self)
+        if (self.text.length >= 1) {
+            return replacementString.isEqualToString(@"") ? self.text.substringToIndex(self.text.length - 1) : self.text.add(replacementString);
+        }else return replacementString;
+    };
 }
 /// 自定义系统的清除按钮
-- (void)modifyClearButtonWithImage:(UIImage *)image{
-    self.customSysClearBtn.jobsResetBtnImage(image);
-    self.rightView = self.customSysClearBtn;
-    self.rightViewMode = UITextFieldViewModeWhileEditing;
+-(jobsByImageBlock _Nonnull)modifyClearButtonByImage{
+    @jobs_weakify(self)
+    return ^(UIImage *_Nullable image){
+        @jobs_strongify(self)
+        self.customSysClearBtn.jobsResetBtnImage(image);
+        self.rightView = self.customSysClearBtn;
+        self.rightViewMode = UITextFieldViewModeWhileEditing;
+    };
 }
 #pragma mark —— @property(nonatomic,strong)UIButton *customSysClearBtn;
 JobsKey(_customSysClearBtn)

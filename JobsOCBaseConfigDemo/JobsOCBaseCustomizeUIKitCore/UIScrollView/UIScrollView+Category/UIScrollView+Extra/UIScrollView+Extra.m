@@ -18,7 +18,7 @@
 @implementation UIScrollView (Extra)
 /// 在 UIScrollViewDelegate协议方法 -(void)scrollViewDidScroll:(UIScrollView *)scrollView里进行调用
 -(ScrollDirection)scrolldirectionWhenScrollViewDidScroll{
-    return [self judgementScrollDirectionByPoint:self.contentOffset];
+    return self.judgementScrollDirectionByPoint(self.contentOffset);
 }
 #pragma mark —— 一些公共方法
 /// 如果使用：dispatch_async + dispatch_get_main_queue()进行主线程上的调用，会执行2次刷新的协议方法

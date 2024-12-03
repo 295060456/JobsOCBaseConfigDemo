@@ -8,7 +8,7 @@
 #import "JobsHotLabelConfig.h"
 
 #import "BaseView.h"
-#import "JobsHotLabelWithMultiLineCVCell.h"
+#import "JobsHotLabelByMultiLineCVCell.h"
 #import "JobsHeaderFooterView.h"
 #import "JobsHeaderFooterViewModel.h"
 
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface JobsHotLabelWithMultiLine : BaseView
+@interface JobsHotLabelByMultiLine : BaseView
 <
 UICollectionViewDataSource
 ,UICollectionViewDelegate

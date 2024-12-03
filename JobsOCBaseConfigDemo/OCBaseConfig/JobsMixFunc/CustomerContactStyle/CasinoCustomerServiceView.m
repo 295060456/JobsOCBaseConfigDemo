@@ -15,7 +15,7 @@
 @property(nonatomic,strong)UILabel *subTitleLab;// 副标题
 @property(nonatomic,strong)UIImageView *leftIMGV;
 @property(nonatomic,strong)UIImageView *rightIMGV;
-@property(nonatomic,strong)JobsHotLabelWithSingleLine *hl;
+@property(nonatomic,strong)JobsHotLabelBySingleLine *hl;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
 @property(nonatomic,strong)CasinoCustomerContactModel *customerContactModel;
@@ -70,7 +70,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
 
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(NSArray <UIViewModel *>*_Nullable data){
-        CGFloat h = JobsWidth(162) + JobsHotLabelWithSingleLine.viewSizeByModel(data).height + JobsWidth(70);
+        CGFloat h = JobsWidth(162) + JobsHotLabelBySingleLine.viewSizeByModel(data).height + JobsWidth(70);
         return CGSizeMake(JobsWidth(345), h);
     };
 }
@@ -171,18 +171,18 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
     }return _subTitleLab;
 }
 
--(JobsHotLabelWithSingleLine *)hl{
+-(JobsHotLabelBySingleLine *)hl{
     if (!_hl) {
-        _hl = JobsHotLabelWithSingleLine.new;
+        _hl = JobsHotLabelBySingleLine.new;
         _hl.backgroundColor = JobsClearColor;
         _hl.labelShowingType = UILabelShowingType_02;
         _hl.elementDefaultSize = CGSizeMake(JobsWidth(43), JobsWidth(43));
-        [self actionForHotLabel:_hl];
+        self.actionForHotLabel(_hl);
         [self addSubview:_hl];
         [_hl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.top.equalTo(self.subTitleLab.mas_bottom).offset(JobsWidth(13));
-            make.size.mas_equalTo(JobsHotLabelWithSingleLine.viewSizeByModel(self.hotLabelDataMutArr));
+            make.size.mas_equalTo(JobsHotLabelBySingleLine.viewSizeByModel(self.hotLabelDataMutArr));
         }];
         [self layoutIfNeeded];
         _hl.jobsRichViewByModel(self.hotLabelDataMutArr);

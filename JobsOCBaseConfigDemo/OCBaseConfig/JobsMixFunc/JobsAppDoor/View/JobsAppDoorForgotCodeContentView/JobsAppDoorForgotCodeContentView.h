@@ -9,7 +9,7 @@
 #import "BaseContentView.h"
 #import "BaseViewProtocol.h"
 #import "JobsAppDoorConfig.h"
-#import "JobsHotLabelWithSingleLine.h"
+#import "JobsHotLabelBySingleLine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 忘记密码页

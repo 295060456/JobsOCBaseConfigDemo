@@ -241,5 +241,11 @@
         return [UIImage imageWithData:data];
     };
 }
+/// 对系统方法 imageWithCGImage 的二次封装
++(JobsReturnImageByCGImageRefBlock _Nonnull)imageWithCGImage{
+    return ^UIImage *_Nonnull(CGImageRef _Nullable data){
+        return [UIImage imageWithCGImage:data];
+    };
+}
 
 @end

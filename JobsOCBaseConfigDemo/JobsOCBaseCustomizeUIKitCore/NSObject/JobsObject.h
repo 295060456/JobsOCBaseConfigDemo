@@ -77,6 +77,8 @@
 #import "NSObject+Swizzling.h"
 /// 打开URL
 #import "NSObject+OpenURL.h"
+/// 路径获取
+#import "NSObject+Path.h"
 /// 取随机
 #import "NSObject+Random.h"
 /// 富文本

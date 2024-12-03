@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MacroDef_SysWarning.h"
+#import "DefineConstString.h"
 #import "JobsBlock.h"
 #import "NSNumber+Extra.h"
 #import "NSString+Others.h"

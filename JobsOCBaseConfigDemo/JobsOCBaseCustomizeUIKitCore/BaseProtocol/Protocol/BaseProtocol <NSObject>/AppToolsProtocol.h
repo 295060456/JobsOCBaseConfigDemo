@@ -12,7 +12,7 @@
 #import "NetworkingConstant.h"
 #import "NetworkingConstant.h"
 
-@class JobsHotLabelWithSingleLine;
+@class JobsHotLabelBySingleLine;
 @class CasinoGetiOSNewestVersionModel;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
                sureBlock:(jobsByIDBlock _Nullable)sureBlock
              cancelBlock:(jobsByIDBlock _Nullable)cancelBlock;
 
--(void)actionForHotLabel:(JobsHotLabelWithSingleLine *)hl;
+-(jobsByHotLabelBlock)actionForHotLabel;
 
 @end
 

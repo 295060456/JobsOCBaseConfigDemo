@@ -15,7 +15,7 @@
 @property(nonatomic,strong)BaseButton *backToLoginBtn;// 返回登录
 @property(nonatomic,strong)BaseButton *contactCustomerServiceBtn;// 联系客服按钮
 @property(nonatomic,strong)UILabel *subTitleLab;// 副标题
-@property(nonatomic,strong)JobsHotLabelWithSingleLine *hl;
+@property(nonatomic,strong)JobsHotLabelBySingleLine *hl;
 /// Data
 
 @end
@@ -153,13 +153,13 @@
     }return _subTitleLab;
 }
 
--(JobsHotLabelWithSingleLine *)hl{
+-(JobsHotLabelBySingleLine *)hl{
     if (!_hl) {
-        _hl = JobsHotLabelWithSingleLine.new;
+        _hl = JobsHotLabelBySingleLine.new;
         _hl.backgroundColor = JobsClearColor;
         _hl.labelShowingType = UILabelShowingType_02;
         _hl.elementDefaultSize = CGSizeMake(JobsWidth(46), JobsWidth(46));
-        [self actionForHotLabel:_hl];
+        self.actionForHotLabel(_hl);
         [self addSubview:_hl];
         [_hl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.subTitleLab);
