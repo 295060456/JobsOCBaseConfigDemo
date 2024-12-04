@@ -289,39 +289,45 @@
 
 -(JobsReturnDataByDictionaryBlock _Nonnull)JSONWritingPrettyPrinted{
     return ^NSData *_Nullable(__kindof NSDictionary *_Nullable data){
-        NSError *error = nil;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data.copy
-                                                           options:NSJSONWritingPrettyPrinted
-                                                             error:&error];
-        if(error) NSLog(@"%@",error.description);
-        return jsonData;
+        if(data){
+            NSError *error = nil;
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data.copy
+                                                               options:NSJSONWritingPrettyPrinted
+                                                                 error:&error];
+            if(error) NSLog(@"%@",error.description);
+            return jsonData;
+        }else return nil;
     };
 }
 
 -(JobsReturnIDByDataBlock _Nonnull)JSONReadingMutableContainers{
     return ^id _Nullable(NSData *_Nullable data){
-        NSError *error = nil;
-        NSData *jsonData = [NSJSONSerialization JSONObjectWithData:data.copy
-                                                           options:NSJSONReadingMutableContainers
-                                                             error:&error];
-        if(error) NSLog(@"%@",error.description);
-        return jsonData;
+        if(data){
+            NSError *error = nil;
+            NSData *jsonData = [NSJSONSerialization JSONObjectWithData:data.copy
+                                                               options:NSJSONReadingMutableContainers
+                                                                 error:&error];
+            if(error) NSLog(@"%@",error.description);
+            return jsonData;
+        }else return nil;
     };
 }
 
 -(JobsReturnIDByDataBlock _Nonnull)JSONkNilOptions{
     return ^id _Nullable(NSData *_Nullable data){
-        NSError *error = nil;
-        NSData *jsonData = [NSJSONSerialization JSONObjectWithData:data.copy
-                                                           options:kNilOptions
-                                                             error:&error];
-        if(error) NSLog(@"%@",error.description);
-        return jsonData;
+        if(data){
+            NSError *error = nil;
+            NSData *jsonData = [NSJSONSerialization JSONObjectWithData:data.copy
+                                                               options:kNilOptions
+                                                                 error:&error];
+            if(error) NSLog(@"%@",error.description);
+            return jsonData;
+        }else return nil;
     };
 }
 -(JobsReturnDataByStringBlock _Nonnull)initByContentsOfFile{
     return ^NSData *_Nullable(__kindof NSString *_Nullable path){
-        return [NSData.alloc initWithContentsOfFile:path];
+        return NSData.dataByContentsOfFile(path);
     };
 }
 
@@ -335,10 +341,12 @@
 
 -(JobsReturnIDByStringBlock _Nonnull)dataByKey{
     return ^JobsKeyValueModel *_Nullable(NSString *_Nullable key){
-        JobsKeyValueModel *keyValueModel = JobsKeyValueModel.new;
-        keyValueModel.data = self;
-        keyValueModel.key = key;
-        return keyValueModel;
+        @jobs_weakify(self)
+        return jobsMakeKeyValueModel(^(JobsKeyValueModel * _Nullable model) {
+            @jobs_strongify(self)
+            model.data = self;
+            model.key = key;
+        });
     };
 }
 /// UICollectionViewFlowLayout

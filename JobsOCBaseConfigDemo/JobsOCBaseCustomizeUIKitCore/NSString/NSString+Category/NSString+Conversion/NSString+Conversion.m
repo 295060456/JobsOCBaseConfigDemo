@@ -33,10 +33,15 @@
 -(nullable id)readLocalFileWithName{
     // 获取文件路径
     NSString *path = self.add(@".json").pathForResourceWithFullName;
-    // 将文件数据化
-    NSData *data = self.initByContentsOfFile(path);
-    // 对数据进行JSON格式化并返回字典形式
-    return self.JSONkNilOptions(data);
+    if(isValue(path)){
+        // 将文件数据化
+        NSData *data = self.initByContentsOfFile(path);
+        // 对数据进行JSON格式化并返回字典形式
+        return self.JSONkNilOptions(data);
+    }else{
+        toast(JobsInternationalization(@"本地没有找到此Json文件，请检查"));
+        return nil;
+    }
 }
 /// JSON 转 NSDictionary
 -(nullable id)dictionaryWithJsonString{
@@ -125,7 +130,7 @@
         if(self.isPureDigit){
             NSMutableString *formattedString = self.pureString.Mutable;
             for (NSInteger i = formattedString.length - data; i > 0; i -= data) {
-                [formattedString insertString:@" " atIndex:i];
+                [formattedString insertString:JobsSpace atIndex:i];
             }return formattedString;
         }else{
             NSLog(@"当前字符串为%@,不是纯字符串，无法格式化输出",self);
@@ -142,9 +147,9 @@
             [params enumerateKeysAndObjectsUsingBlock:^(id key,
                                                         id obj,
                                                         BOOL *stop) {
-                if (obj && ![obj isKindOfClass:[NSNull class]]) { // 忽略空值
-                    NSString *encodedKey = [[key description] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-                    NSString *encodedValue = [[obj description] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+                if (obj && ![obj isKindOfClass:NSNull.class]) { // 忽略空值
+                    NSString *encodedKey = [[key description] stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet];
+                    NSString *encodedValue = [[obj description] stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet .URLQueryAllowedCharacterSet];
                     NSString *queryItem = encodedKey.add(@"=").add(encodedValue);
                     data.add(queryItem);
                 }

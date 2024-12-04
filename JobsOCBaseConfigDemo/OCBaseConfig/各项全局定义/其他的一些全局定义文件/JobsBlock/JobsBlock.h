@@ -187,6 +187,7 @@ typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryModelBlock)(__kindof 
 
 @class UITextFieldModel;
 typedef void(^jobsByTextFieldModelBlock)(__kindof UITextFieldModel *_Nullable model);
+typedef __kindof UITextFieldModel *_Nullable(^JobsReturnTextFieldModelByString)(__kindof NSString *_Nullable data);
 
 @class UIButtonModel;
 typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable model);
@@ -274,6 +275,9 @@ typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByGTCaptcha4ModelBlock)(_
 typedef void(^jobsByDoorModelBlock)(__kindof FMDoorModel *_Nullable data);
 typedef __kindof FMDoorModel *_Nullable(^JobsDoorModelBlock)(__kindof FMDoorModel *_Nullable data);
 typedef __kindof FMDoorModel *_Nullable(^JobsReturnDoorModelByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
+
+@class FMNameModel;
+typedef void(^jobsByNameModelBlock)(__kindof FMNameModel *_Nullable model);
 
 @class JobsTimeModel;
 typedef void(^jobsByTimeModelBlock)(__kindof JobsTimeModel *_Nullable data);

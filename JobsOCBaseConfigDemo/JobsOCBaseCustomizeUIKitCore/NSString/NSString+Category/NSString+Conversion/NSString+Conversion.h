@@ -10,6 +10,8 @@
 #import "NSString+Others.h"
 #import "NSData+Other.h"
 #import "JobsBlock.h"
+#import "MacroDef_Func.h"
+#import "DefineConstString.h"
 
 #define FORMAT_STRING(fmt, val) [NSString stringWithFormat:(fmt), (val)]
 
